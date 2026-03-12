@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modulio 9 – Dashboard pavyzdys</title>
+  <!-- Modulio 9 pavyzdys: galite pakeisti duomenis ir spalvas pagal DI instrukcijas. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; margin: 0; padding: 1rem; background: #f1f5f9; color: #334e68; }
+    .header { text-align: center; margin-bottom: 1.5rem; }
+    .header h1 { font-size: 1.5rem; color: #102a43; margin: 0; }
+    .header p { font-size: 0.875rem; color: #627d98; margin: 0.25rem 0 0; }
+    .kpi-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+    .kpi { background: white; padding: 1rem 1.5rem; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); min-width: 120px; text-align: center; }
+    .kpi .value { font-size: 1.75rem; font-weight: 800; color: #2563eb; }
+    .kpi .label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .chart-wrap { max-width: 500px; margin: 0 auto 1.5rem; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .chart-wrap h3 { font-size: 0.875rem; margin: 0 0 0.75rem; color: #475569; }
+    .footer { text-align: center; font-size: 0.75rem; color: #94a3b8; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Verslo analizės dashboard</h1>
+    <p>Modulio 9 pavyzdys – KPI ir grafikas (pakeiskite duomenis pagal savo tyrimą)</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="value">24,5%</div>
+      <div class="label">Augimas (YoY)</div>
+    </div>
+    <div class="kpi">
+      <div class="value">12</div>
+      <div class="label">Šaltiniai</div>
+    </div>
+    <div class="kpi">
+      <div class="value">4</div>
+      <div class="label">DI tyrimai sujungti</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <h3>Tendencija pagal ketvirtį (pavyzdys)</h3>
+    <canvas id="trendChart" height="200"></canvas>
+  </div>
+
+  <div class="footer">
+    Promptų anatomija – Modulio 9. Išsaugokite kaip .html ir atidarykite naršyklėje.
+  </div>
+
+  <script>
+    // Pavyzdiniai duomenys – pakeiskite pagal savo integruotą dokumentą
+    const ctx = document.getElementById('trendChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+        datasets: [{
+          label: 'Pardavimai (tūkst. €)',
+          data: [120, 145, 138, 162],
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -5,6 +5,19 @@
 
 ---
 
+## 0. Valdymo dokumentų hierarchija
+
+Ką skaityti pirmiausia ir kaip laikytis tokenų biudžeto:
+
+1. **Visada (alwaysApply):** `.cursor/rules/agent-orchestrator.mdc` – router, SOT lentelė, pipeline, kokybės vartai.
+2. **Pilna orkestruotė:** `docs/development/AGENT_ORCHESTRATOR.md` – router + SOT + mišri užduotis + sutrumpinti agentų nuorodos.
+3. **Konteksto biudžetas:** `docs/development/context-engineering/context_budget.md` – kada ką krauti, max dydžiai, load-only-when.
+4. **Registras:** `docs/development/context-engineering/sot_index.json` – moduliai, SOT keliai, gating, nextStep.
+
+**Pastaba:** Dabartinis produktas = 6 moduliai; sot_index.json registry palaiko 7–9 (ateities plėtra).
+
+---
+
 ## 1. Principles
 
 - **Context is finite.** Prefer loading only what the current task needs.

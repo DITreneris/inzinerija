@@ -39,13 +39,14 @@ if (!index.modules || !Array.isArray(index.modules)) {
   process.exit(1);
 }
 
-if (index.modules.length !== 6) {
-  console.error(`CE-4: Tikėtina 6 moduliai, rasta: ${index.modules.length}`);
+const expectedModuleCount = 15;
+if (index.modules.length < 6 || index.modules.length > expectedModuleCount) {
+  console.error(`CE-4: Tikėtina 6–${expectedModuleCount} moduliai, rasta: ${index.modules.length}`);
   ok = false;
 }
 
 const ids = new Set(index.modules.map((m) => m.id));
-for (let i = 1; i <= 6; i++) {
+for (let i = 1; i <= Math.min(expectedModuleCount, index.modules.length); i++) {
   if (!ids.has(i)) {
     console.error(`CE-4: Trūksta modulio id: ${i}`);
     ok = false;
@@ -70,4 +71,4 @@ if (index.dataSOT) {
 }
 
 if (!ok) process.exit(1);
-console.log('CE-4: sot_index.json validus (6 moduliai, keliai egzistuoja).');
+console.log(`CE-4: sot_index.json validus (${index.modules.length} moduliai, keliai egzistuoja).`);

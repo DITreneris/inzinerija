@@ -1,6 +1,6 @@
 /**
  * Design tokens – spacing ir radius vienoje vietoje (N-DS2).
- * Šaltinis: docs/development/DESIGN_GUIDE_MODULIAI_1_2_3.md §4.3, §4.4.
+ * Šaltinis: docs/development/GOLDEN_STANDARD.md (anksčiau DESIGN_GUIDE_MODULIAI_1_2_3, archyve).
  * Naudojimas: importuoti klasės konstantas arba px vertes; Tailwind naudoja tą pačią 4px bazę.
  */
 

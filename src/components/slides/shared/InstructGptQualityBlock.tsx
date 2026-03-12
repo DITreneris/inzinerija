@@ -1,5 +1,5 @@
 /**
- * InstructGPT kokybės analizės vizualizacija (skaidrė 40.8).
+ * InstructGPT kokybės analizės vizualizacija (content-block su instructGptQuality, pvz. skaidrė id 44).
  * Stats strip, line chart, delta lentelė, key finding.
  * Projekto spalvos: accent, emerald, violet, slate, rose.
  */
@@ -57,7 +57,7 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
           return (
             <div
               key={i}
-              className={`p-4 rounded-xl border-l-4 ${colors.border} bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/90 transition-colors`}
+              className={`p-4 rounded-xl border-l-2 ${colors.border} bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/90 transition-colors`}
             >
               <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
                 {stat.label}
@@ -235,7 +235,7 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
       </div>
 
       {/* Key Finding insight */}
-      <div className="border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-4 rounded-r-xl border border-accent-200 dark:border-accent-800">
+      <div className="border-l-2 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-4 rounded-r-xl border border-accent-200 dark:border-accent-800">
         <div className="text-xs uppercase tracking-wider text-accent-700 dark:text-accent-300 mb-2">
           Pagrindinė išvada
         </div>

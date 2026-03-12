@@ -1,7 +1,16 @@
 # Vartotojų atsiliepimai – bendra analizė
 
 > **Paskirtis:** Vienas šaltinis (bendri atsiliepimai) – gyvo testavimo ir vartotojų feedback analizė. Naudoti planuojant V2, B2B, formatų adaptaciją ir agentų darbus (CONTENT_AGENT, UI_UX_AGENT, QA_AGENT).
-> **Versija:** Modulio 2 užkrovimo atsiliepimas ir diagnostika (2026-02-12); Donato atsiliepimas; V1 Testavimo feedback prieš 1.2 (2026-02-11).
+> **Versija:** 1 dalies santrauka ir mobile UI (2026-02-13); Modulio 2 užkrovimo atsiliepimas (2026-02-12); Donato atsiliepimas; V1 Testavimo feedback prieš 1.2 (2026-02-11). **2026-02-18:** WhatsApp kanalas, LinkedIn lead magnet, funnel – §11; **pirmoji testo savaite** – dalyvių ir auditorijos analizė – §12; pilnas dalyvių sąrašas – `dalyviu_sarasas.md` (neįkeliamas į GitHub). **2026-02-20:** 20260220 vartotojo testas (Moduliai 1–3, mobile, v1.0–1.2) – žr. šaltiniai ir skyrių žemiau.
+
+---
+
+## Atsakas į gyvo testavimo feedback (2026-02-13)
+
+| Problema | Hipotezė | Sprendimas |
+|----------|----------|------------|
+| **Santraukos po 1 dalies sunku rasti; „reikia du kartus grįžti“** | Vartotojai ieško vienos „1 dalies“ apibendrinimo vietos; norint peržiūrėti M1 santrauką po M2/M3 reikia grįžti į M1 ir eiti į paskutinę skaidrę. | Pridėta **„1 dalies santrauka“** skaidrė po Modulio 3 (po „Praktikos Santrauka“): viena vieta, kur apibendrinami Moduliai 1+2+3. Po M3 completion ekrane – nuoroda **„Peržiūrėti 1 dalies santrauką“** (grįžti į tą skaidrę be „grįžti du kartus“). Žr. `docs/CONTENT_MODULIU_ATPAZINIMAS.md` §7, `modules.json` Modulio 3 skaidrė id 38. |
+| **Senesni iPhone – vaizdas per didelis, žodžiai nukarpyti** | Safari text-size-adjust; konteineriai be word-break; etapų etiketės su truncate. | `index.css`: `-webkit-text-size-adjust: 100%` (html); body `overflow-wrap` / `word-break`. SlideGroupProgressBar: etiketės be `truncate`, su `break-words` ir `title` (tooltip). Žr. TEST_REPORT.md. |
 
 ---
 
@@ -14,6 +23,20 @@
 | **Testų ataskaita (klaidos)** | 2026-02-07 – 2026-02-11 | Konkrečios klaidos, Moduliai 1–4 UX, Eglės ir Tomo patirtis, sprendimai. Žr. `docs/development/TEST_REPORT.md`. |
 | **V1 Testavimo feedback analizė** | Prieš 1.2 (2026-02-11) | 4 testuotojai (54 m. teisininkė, 25 m. media planuotoja, 48 m. konsultantas, 56 m. vadovas); segmentai, horizontalios įžvalgos, strateginė išvada, V2 rekomendacijos. Žr. skyrius žemiau. |
 | **Donato atsiliepimas (V1.2)** | 2026-02-12 (apytiksliai) | Kritinis UX/UI feedback: per daug spalvų, per daug info, neintuityvu, sunku suprasti svetainės logiką/struktūrą, prastas usability, nesinorėjo gilintis. Siūlymai: normali architektūra, simplifikacija, „vienos eilutės“ principas. Žr. skyrius žemiau. |
+| **20260220 vartotojo testas (Moduliai 1–3)** | 2026-02-20 | Testuotojas Tomas Pranskūnas, Samsung S24, mobile. Turinys vertinamas; mobile – navigacija „šokinėja“, Apklausoje mygtukas „Pasitikrinti atsakymus“ neaktyvus po visų atsakymų. Rekomendacija: hibridinis Mobile+Desktop, aiškesnis progresas, fiksuota navigacija. **Apimtis:** tik M1–3 (M4–6 netestuoti). Žr. TEST_REPORT.md; detalės (20260220_Testas.txt) – lokaliai archyve. |
+
+---
+
+## Atsakas į 20260220 testo feedback (Moduliai 1–3, mobile)
+
+**Kontekstas:** Testuota tik 1.0–1.2 versija, **Moduliai 1–3**. Moduliai 4–6 testavimui nebuvo pateikti.
+
+| Problema | Sprendimas |
+|----------|------------|
+| **Apklausa: mygtukas „Pasitikrinti atsakymus“ / „Baigti apklausą“ neaktyvus** | QuizPage: pasirinkimo mygtukai ir navigacijos mygtukai – `min-h-[44px]`, `touch-manipulation` (patikimesnis tap mobile). Kai mygtukas disabled – rodomas aiškus pranešimas: „Pasirinkite atsakymą žemiau, tada galėsite pereiti…“ (aria-live, id=quiz-next-hint). |
+| **Navigacija „šokinėja“ (mobile)** | useSlideNavigation: swipe atskirtas nuo vertikalaus scroll – skaidrė keičiama tik jei horizontalus judesys (deltaX) didesnis už vertikalų (deltaY) ir ≥ 60px. ModuleView: mobile bottom nav mygtukai – touch-manipulation. Fiksuota navigacija ir spacer (h-20) jau buvo. |
+
+**Tolesni žingsniai:** pakartoti mobile QA (Samsung arba panašus) su fokusu į Apklausą ir skaidrių perėjimus.
 
 ---
 
@@ -33,7 +56,7 @@
 
 ### Atitikmuo su esamu dokumentavimu
 
-- **Dizaino gidas** (`docs/development/DESIGN_GUIDE_MODULIAI_1_2_3.md`) jau adresuoja: per daug spalvų, per daug vizualinių akcentų, per daug kortelių, silpna hierarchija – Must/Should/Nice prioritetais.
+- **Dizaino gidas** (`docs/development/GOLDEN_STANDARD.md`) jau adresuoja: per daug spalvų, per daug vizualinių akcentų, per daug kortelių, silpna hierarchija – Must/Should/Nice prioritetais.
 - Donato feedback **sutampa** su tais pačiais skausmais: vizualinis triukšmas ir neaiški struktūra.
 - **Naujas akcentas:** „vienos eilutės“ principas – mažiau žingsnių, aiški viena pagrindinė veikla (pvz. vienas CTA, vienas kelias).
 
@@ -194,7 +217,7 @@ Produktas šiuo metu:
 
 ## 9. Must–Should–Want (vystant sistemą)
 
-Sujungta su `docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md` ir V1 atsiliepimais.
+Sujungta su prioritetais MUST/SHOULD (žr. `TODO.md`, `docs/development/PLAN_AGENTAI_DARBAI.md`) ir V1 atsiliepimais.
 
 ### MUST (kritinis – jei nedarai, skausmas artimiausiai)
 
@@ -204,9 +227,9 @@ Sujungta su `docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md` ir V1 atsi
 | M2 | Vienas KPI + event tracking | Analizės verdiktas | ✔ Įgyvendinta |
 | M3 | Remediation uždara kilpa | Analizės verdiktas | ✔ Įgyvendinta |
 | M4 | Content QA gate prieš release | Analizės verdiktas | ✔ Įgyvendinta (5 min) |
-| **M5** | **„Kur pritaikyti?“ po moduliu (bent 1–2 mod.)** | **V1 atsiliepimai** | ❌ Dar ne |
+| **M5** | **„Kur pritaikyti?“ po moduliu (bent 1–2 mod.)** | **V1 atsiliepimai** | ✔ Įgyvendinta (2026-03-11) |
 
-*M5 – pirmas naujas MUST iš vartotojų: be „kur pritaikyti?“ sunku konvertuoti į „naudosiu“.*
+*M5 – pirmas naujas MUST iš vartotojų: be „kur pritaikyti?“ sunku konvertuoti į „naudosiu“. Įgyvendinimas: ModuleCompleteScreen po Modulio 1 – blokas „Kur pritaikyti?“ su 4 use-case (projektų vadovas, marketingas, HR, analitikas). SOT: turinio_pletra.md; i18n module.useCaseHeading, useCaseM1_1–4. Galima vėliau išplėsti į Modulį 3.*
 
 ### SHOULD (stipriai pakels kokybę)
 
@@ -234,7 +257,7 @@ Sujungta su `docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md` ir V1 atsi
 1. **CONTENT_AGENT + DATA:** Pridėti „Kur tai pritaikyti?“ bloką – pradėti nuo Modulio 1 ir 3 (SOT → `modules.json` → skaidrė/summary tipas). **MUST (M5).**
 2. **CONTENT_AGENT + UI:** Įvardinti „Starter lygis“ – HomePage arba ModulesPage (vienas sakinys arba badge). **SHOULD (S5).**
 3. **QA_AGENT / CONTENT:** Paruošti B2B pitch (1 puslapis: struktūra, praktika, testas, „DI darbo metodika“). **SHOULD (S6).**
-4. **SHOULD techniniai:** 6 blokų structure check (S1), Fast track (S4), a11y smoke (S2) – pagal ANALIZES_VERDIKTAS seką.
+4. **SHOULD techniniai:** 6 blokų structure check (S1), Fast track (S4), a11y smoke (S2) – pagal TODO.md ir PLAN_AGENTAI_DARBAI.md seką.
 5. **WANT:** Advanced modulio planas (doc); video – kai bus resursų.
 
 ---
@@ -244,8 +267,85 @@ Sujungta su `docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md` ir V1 atsi
 - **Klaidos ir sprendimai:** `docs/development/TEST_REPORT.md` (QA_AGENT priima įrašus, TODO.md veiksmai).
 - **Agentų router ir SOT:** `.cursor/rules/agent-orchestrator.mdc`, `docs/development/AGENT_ORCHESTRATOR.md`.
 - **Release QA:** `docs/development/RELEASE_QA_CHECKLIST.md`.
-- **Analizės verdiktas (MUST/SHOULD):** `docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md`.
+- **Analizės verdiktas (MUST/SHOULD):** `TODO.md`, `docs/development/PLAN_AGENTAI_DARBAI.md`, `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md`.
 - **Roadmap (user feedback):** `ROADMAP.md` – skyrius „User feedback“.
 - **Roadmap versija 2.0:** `ROADMAP.md` – skyrius „Plėtros planas – versija 2.0 (Must–Should–Want)“: M5, S1–S6, W1–W3.
 
-*Paskutinis atnaujinimas: 2026-02-11 (V1 analizė; 1.2 atitikmuo; v2.0 planas perkeltas į ROADMAP).*
+*Paskutinis atnaujinimas: 2026-02-18 (V1 analizė; 1.2 atitikmuo; §11 funnel; §12 pirmoji testo savaite).*
+
+---
+
+## 11. Marketingo funnel ir monetizacija (2026-02-18)
+
+**Kontekstas:** LinkedIn vyksta lead magnet (nemokami 3 moduliai), susidomėję vartotojai per funnel patenka į WhatsApp kanalą. Reikia nuosekliai monetizuoti ir pasiūlyti 4 modulį mokamai.
+
+### Kanalai ir funnel
+
+| Etapas | Kanalas | Turinys / veiksmas |
+|--------|--------|---------------------|
+| **Įtraukimas** | LinkedIn | Lead magnet: „Nemokami 3 moduliai“ – pritraukia susidomėjusius. |
+| **Kvalifikacija** | Funnel | Vartotojas užsiregistruoja / gauna prieigą prie 1–3 modulių. |
+| **Bendruomenė** | WhatsApp | Nuoroda į grupę: [WhatsApp – prisijunk prie kanalo](https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t). Čia renkami lead’ai, palaikomas įsitraukimas, toliau siunčiamas turinys ir pasiūlymai. |
+
+### Monetizacija – kaip pasiūlyti 4 modulį mokamai
+
+- **Laikas:** Pasiūlyti po to, kai vartotojas užbaigė arba aktyviai naudoja 1–3 modulius (matoma pagal progresą arba apklausą / WhatsApp reakcijas).
+- **Vertė:** Modulis 4 – konteksto inžinerija, RAG, Deep research, haliucinacijos, žinių patikrinimas – natūralus „kitų žingsnis“ po 6 blokų pagrindų (M1–M3). Pozicionuoti kaip „gilinimas“ ir „saugus darbas su šaltiniais“.
+- **Kur pasiūlyti:** WhatsApp kanale (trumpas pranešimas + nuoroda), po M3 completion ekrane (CTA „Toliau – Modulis 4“ su nuoroda į mokamą variantą), el. paštu (jei renkami adresai).
+- **Integracija su atsiliepimais:** V1 atsiliepimai rodo, kad struktūra ir „kas toliau“ aiškumas vertinami; „Kur pritaikyti?“ (M5) padės ir monetizacijos žinutei – pabrėžti, kur Modulis 4 naudingas (verslo analizė, šaltinių patikimumas).
+
+### Nuorodos
+
+- **Rinkodaros planas (pilnas):** `docs/marketing_plan.md` – kanalai (LinkedIn, WhatsApp), funnel, monetizacija M4, žinutės, MUST–SHOULD–WANT, metrikos.
+- **Roadmap (User feedback):** `ROADMAP.md` – skyrius „User feedback“; stebėti atsiliepimus ir analytics, iteruoti pagal duomenis.
+- **Galutinis dalyvių sąrašas (132 asmenys):** §12.1a; pilnas sąrašas vienoje vietoje – **`dalyviu_sarasas.md`** (root, neįkeliamas į GitHub). Dokumentacijoje – tik nuoroda, kopijų repo nėra.
+
+---
+
+## 12. Pirmoji testo savaite (2026-02-18) – dalyviai ir auditorijos įžvalgos
+
+**Šaltiniai:** Duomenų analizė iš dviejų cohort: 2026-02-18 (43 asmenys) ir 2026-02-13 (89 asmenys). Galutinis sujungtas sąrašas – **`dalyviu_sarasas.md`** (root); dokumente §12.1a – tik nuoroda (sąrašas neįkeliamas į GitHub).
+
+**Kas čia:** Testuotojai, vartotojai ir potencialūs klientai, susidomėję kursu (LinkedIn lead magnet / funnel kontekste). Iš viso **132 asmenys** – profesionali, B2B orientuota auditorija. Lead follow-up ir outreach naudoja integruotą strategiją (segmentai A/B/C, ne masinė komunikacija, 3 pitch'ai pagal rolę) – žr. `dalyviu_sarasas.md` ir `docs/marketing_plan.md` poskyrį „Segmentuota B2B ir lead follow-up strategija“.
+
+### 12.1 Dalyvių santrauka (pagal sritis)
+
+| Sritis | Apytikslis dalis | Pavyzdžiai pareigų / įmonių |
+|--------|------------------|-----------------------------|
+| **IT / Data / Projektų valdymas** | ~40 % | IT Business Analyst, IT/Product/Project Manager, DevOps, Head of Data, Developer/Data Analyst, Senior Business Data Analyst (Telia), Senior Project Manager (Telia Lietuva) |
+| **Marketingas ir komunikacijos** | ~25 % | Marketing Manager, Marketing (innovation/exploring), Komunikacijos trenerė, Event & BTL Manager, Marketing Manager Baltics (Coffee Address) |
+| **HR / Lyderystė / Vadovavimas** | ~20 % | Lead People & Culture, Head of HR/CHRO, Mentor, Executive Coach, Dean/Lecturer, COO (Northcliffe Lighting), Executive Leader/Board (IIA Lithuania) |
+| **Kitos sritys** | ~15 % | Tax/Finance, Commercial Real Estate, Customer Experience (BC Žalgiris), Energy Solutions (VDCenergy), Change Request Manager, Sales Project Manager |
+
+**Įmonių pavyzdžiai (nurodyti dalyvių):** Telia, Telia Lietuva, KTU, Vilnius University, IIA Lithuania, VLE, Medžio karma, Coffee Address, BC Žalgiris, Northcliffe Lighting, VDCenergy solutions, #zvaigzdynaivirsezero.
+
+### 12.1a Galutinis dalyvių sąrašas (132 asmenys, dubliatų nėra)
+
+**Pilnas sąrašas – vienoje vietoje analizei (neįkeliamas į GitHub):** `dalyviu_sarasas.md` (projekto šaknyje).
+
+- Sujungti šaltiniai: **2026-02-18** (43 asmenys) ir **2026-02-13** (89 asmenys). Patikrinta – dubliatų tarp cohort nėra.
+- Dokumentacijoje ir repo **nėra kopijų** vardų/pavardžių – visur naudojama tik nuoroda į šį failą. Failas įtrauktas į `.gitignore`.
+
+### 12.2 Pagrindinės įžvalgos
+
+1. **Auditorija stipriai profesionali ir B2B orientuota** – atitinka tikslinę auditoriją iš `docs/marketing_plan.md` (§2) ir V1 segmentų žemėlapį (§3).
+2. **Aukštas vadovų lygis** – daug Head/Lead/Manager, C-level (COO, Executive Leader), universiteto dėstytojai (KTU, VU). Tai sprendimų priėmėjai ir influenceriai – tinka B2B pitch (S6) ir komandos apmokymui.
+3. **Stiprus Telia „klasteris“** – keli dalyviai iš Telia ekosistemos; galima naudoti tinklo efektą (rekomendacijos, vidinis sklaida).
+4. **Marketing + IT sankirta** – daug žmonių tarp skaitmeninių produktų, marketingo ir duomenų; aukštas susidomėjimas skaitmeninėmis kompetencijomis – gerai suderinama su „6 blokų sistema“ ir Modulio 4 (šaltinių patikimumas, analizė).
+
+### 12.3 Integracija su esamu planu
+
+| Dokumentas / skyrius | Ryšys su pirmaja testo savaite |
+|---------------------|--------------------------------|
+| **marketing_plan.md §2 (auditorija)** | Patvirtinimas: profesionalai 35–55 m., B2B sprendžiantys, marketingas/HR/PM – tiesiogiai atitinka dalyvių profilį. |
+| **§11 (funnel, WhatsApp)** | Šie dalyviai – potencialūs lead’ai iš LinkedIn/funnel; kvalifikacija pagal rolę (vadovai, COO, Head of…) – prioritetas M4 pasiūlymui. |
+| **V1 §3 segmentų žemėlapis** | 50+ profesionalai, įmonių vadovai – sutampa; „B2B mokymai“ ir „pardavimo argumentas“ – aktualu. |
+| **M5 „Kur pritaikyti?“** | Vadovams ir „Marketing + IT“ auditorijai – konkretūs use-case (verslo analizė, šaltinių patikimumas, komandos apmokymas) padidins konversiją. |
+
+### 12.4 Rekomenduojami žingsniai (remiantis šiais duomenimis)
+
+- **B2B pitch (S6):** Pabrėžti vadovų ir C-level auditoriją – „dėstymas, praktika, testas“, komandos apmokymas, Telia pavyzdys (jei leidžia).
+- **Žinutės WhatsApp / M4 pasiūlymui:** Tiksinti pagal sritį (IT/Data – Modulis 4 šaltiniai ir RAG; Marketing – turinio ir analizės use-case; HR – apmokymo sistema).
+- **„Kur pritaikyti?“ (M5):** Įtraukti pavyzdžius pagal šias roles: projektų vadovas, marketingo vadovas, HR vadovas, duomenų analitikas – tiesioginė atitiktis su dalyvių profiliais.
+
+*Paskutinis atnaujinimas: 2026-02-18 (pirmoji testo savaite integruota; §12 pridėtas).*

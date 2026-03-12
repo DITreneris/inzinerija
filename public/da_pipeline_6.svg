@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" aria-labelledby="da-pipeline-title" role="img">
+  <title id="da-pipeline-title">Duomenų analizės pipeline – 6 žingsniai: rinkimas, paruošimas, EDA, modeliai, vizualizacija, publikavimas</title>
+  <defs>
+    <linearGradient id="da-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="da-step" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#486581"/>
+      <stop offset="100%" stop-color="#334e68"/>
+    </linearGradient>
+    <marker id="da-arrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#334e68" stroke="#334e68" stroke-width="0.3"/>
+    </marker>
+  </defs>
+  <rect width="400" height="520" fill="url(#da-bg)" rx="12"/>
+  <rect width="400" height="520" fill="none" stroke="#bcccdc" stroke-width="1" rx="12"/>
+  <text x="200" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="800" fill="#102a43">Duomenų analizės pipeline</text>
+  <text x="200" y="52" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="500" fill="#334e68">raw → insight → decision</text>
+
+  <g>
+    <rect x="80" y="68" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="93" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">1. Duomenų rinkimas</text>
+    <text x="200" y="110" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Iš kur paimsime info?</text>
+  </g>
+  <line x1="200" y1="120" x2="200" y2="138" stroke="#334e68" stroke-width="2" marker-end="url(#da-arrow)"/>
+
+  <g>
+    <rect x="80" y="142" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="167" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">2. Paruošimas</text>
+    <text x="200" y="184" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Sutvarkymas, valymas</text>
+  </g>
+  <line x1="200" y1="194" x2="200" y2="212" stroke="#334e68" stroke-width="2" marker-end="url(#da-arrow)"/>
+
+  <g>
+    <rect x="80" y="216" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="241" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">3. Tiriamoji analizė (EDA)</text>
+    <text x="200" y="258" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Ką galiu suprasti?</text>
+  </g>
+  <line x1="200" y1="268" x2="200" y2="286" stroke="#334e68" stroke-width="2" marker-end="url(#da-arrow)"/>
+
+  <g>
+    <rect x="80" y="290" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="315" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">4. Modeliai / algoritmai</text>
+    <text x="200" y="332" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Prognozės, segmentavimas</text>
+  </g>
+  <line x1="200" y1="342" x2="200" y2="360" stroke="#334e68" stroke-width="2" marker-end="url(#da-arrow)"/>
+
+  <g>
+    <rect x="80" y="364" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="389" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">5. Vizualizacija</text>
+    <text x="200" y="406" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Kaip parodyti vadovui?</text>
+  </g>
+  <line x1="200" y1="416" x2="200" y2="434" stroke="#334e68" stroke-width="2" marker-end="url(#da-arrow)"/>
+
+  <g>
+    <rect x="80" y="438" width="240" height="48" rx="10" fill="url(#da-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="463" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="white">6. Publikavimas</text>
+    <text x="200" y="480" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="rgba(255,255,255,0.9)">Sprendimų priėmimas</text>
+  </g>
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" aria-labelledby="schema3-title" role="img">
+  <title id="schema3-title">Schema 3: LLM su RAG ir /rankiais  .vestis � LLM � Iavestis; Tool Use � Generation, Retrieval � duomens baz</title>
+  <defs>
+    <linearGradient id="s3-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="s3-step" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#486581"/>
+      <stop offset="100%" stop-color="#334e68"/>
+    </linearGradient>
+    <marker id="s3-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0 0 L10 4 L0 8 Z" fill="#334e68" stroke="#334e68" stroke-width="0.3"/>
+    </marker>
+  </defs>
+  <rect width="520" height="220" fill="url(#s3-bg)" rx="8"/>
+  <rect width="520" height="220" fill="none" stroke="#bcccdc" stroke-width="1" rx="8"/>
+  <text x="260" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#102a43">Schema 3: LLM su RAG ir /rankiais</text>
+  <!-- Main flow: Input � LLM � Output -->
+  <rect x="20" y="50" width="80" height="44" rx="8" fill="url(#s3-step)" stroke="#334e68" stroke-width="1"/>
+  <text x="60" y="74" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="white">.vestis</text>
+  <text x="60" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="rgba(255,255,255,0.9)">(tekstas)</text>
+  <line x1="100" y1="72" x2="138" y2="72" stroke="#334e68" stroke-width="1.5" marker-end="url(#s3-arrow)"/>
+  <rect x="138" y="50" width="80" height="44" rx="8" fill="url(#s3-step)" stroke="#334e68" stroke-width="1"/>
+  <text x="178" y="77" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="white">LLM</text>
+  <line x1="218" y1="72" x2="256" y2="72" stroke="#334e68" stroke-width="1.5" marker-end="url(#s3-arrow)"/>
+  <rect x="256" y="50" width="80" height="44" rx="8" fill="url(#s3-step)" stroke="#334e68" stroke-width="1"/>
+  <text x="296" y="77" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="white">Iavestis</text>
+  <!-- Branch: Tool Use � Generation, Retrieval � DB -->
+  <line x1="178" y1="94" x2="178" y2="118" stroke="#334e68" stroke-width="1.5" marker-end="url(#s3-arrow)"/>
+  <text x="178" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#334e68">Tool Use</text>
+  <rect x="118" y="118" width="70" height="36" rx="6" fill="#486581" fill-opacity="0.9" stroke="#334e68" stroke-width="1"/>
+  <text x="153" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="white">Generation</text>
+  <rect x="188" y="118" width="70" height="36" rx="6" fill="#486581" fill-opacity="0.9" stroke="#334e68" stroke-width="1"/>
+  <text x="223" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="white">Retrieval</text>
+  <line x1="223" y1="154" x2="223" y2="178" stroke="#334e68" stroke-width="1.5" marker-end="url(#s3-arrow)"/>
+  <rect x="183" y="178" width="80" height="32" rx="6" fill="#64748b" stroke="#475569" stroke-width="1"/>
+  <text x="223" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="white">Duomens baz</text>
+</svg>

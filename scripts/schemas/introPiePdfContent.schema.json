@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "introPiePdfContent.json",
+  "description": "7 segmentų PDF turinys skaidrei „Kam žmonės naudoja GPT?“",
+  "type": "object",
+  "required": ["segments"],
+  "properties": {
+    "segments": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "top5Tips",
+          "mainToolName",
+          "additionalToolNames",
+          "workflowSteps",
+          "glossaryTermNames",
+          "systemPrompt",
+          "motivationWish"
+        ],
+        "properties": {
+          "title": { "type": "string" },
+          "top5Tips": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "mainToolName": { "type": "string" },
+          "additionalToolNames": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "workflowSteps": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "glossaryTermNames": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "systemPrompt": { "type": "string" },
+          "motivationWish": { "type": "string" }
+        }
+      }
+    }
+  }
+}

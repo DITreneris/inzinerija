@@ -1,0 +1,68 @@
+{
+  "description": "Pakeisti skaidrės id 59 content – įterpti į src/data/modules.json vietoje esančio content objekto (sections + footer). Subtitle pakeisti į: Eurostat, data.europa.eu, nacionaliniai portalai – oficialūs šaltiniai",
+  "slideId": 59,
+  "content": {
+    "sections": [
+      {
+        "heading": "1️⃣ Trumpai (30 s)",
+        "body": "RAG = užklausa → oficialus šaltinis → citavimas → išvada. Oficialūs atviri šaltiniai – Eurostat, data.europa.eu, nacionaliniai portalai. RAG užklausose nurodyk šaltinius ir prašyk atsakymo su nuorodomis – tiksliau ir patikimiau.",
+        "blockVariant": "accent"
+      },
+      {
+        "heading": "2️⃣ Daryk dabar",
+        "body": "Nukopijuok žemiau esantį promptą (BVP pavyzdys) ir paleisk DI su Eurostat arba data.europa.eu – gausi atsakymą su datasetų nuorodomis. Tada išbandyk kitus promptus iš šios skaidrės.",
+        "blockVariant": "brand"
+      },
+      {
+        "heading": "Vienas pavyzdys nuo A iki Z: BVP LT vs LV",
+        "body": "Mini-case: Ar Lietuvoje BVP augo sparčiau nei Latvijoje per 2020–2024 m.? Žingsniai: (1) Dataset nama_10_gdp. (2) Filtras: šalys LT, LV. (3) Metai: 2020–2024. (4) Išvestis su citata (dataset, rodiklis, nuoroda). Nukopijuok promptą žemiau.",
+        "blockVariant": "brand",
+        "copyable": "Naudok tik Eurostat (ec.europa.eu/eurostat) duomenis. Užduotis: Ar Lietuvoje BVP augo sparčiau nei Latvijoje per 2020–2024 m.? Naudok dataset nama_10_gdp, filtras šalys LT ir LV, metai 2020–2024. Pateik atsakymą su dataseto pavadinimu, rodikliu ir nuoroda."
+      },
+      {
+        "heading": "Oficialūs atviri duomenų šaltiniai – 3 blokai",
+        "body": "**A. ES lygmuo:** Eurostat (ec.europa.eu/eurostat) – ES statistikos: BVP, užimtumas, prekyba, demografija. data.europa.eu – ES atvirų duomenų portalas: įstatymai, ataskaitos, datasetai. OECD – tarptautinė lyginamoji statistika.\n\n**B. Lietuvos lygmuo:** e-TAR – pagrindinis teisės aktų šaltinis. Seimas – oficialūs įstatymai. Valstybės duomenų agentūra – statistika, API. Registrų centras – juridiniai asmenys, finansinės ataskaitos. VPT – pirkimų duomenys. Lietuvos bankas – finansų statistika.\n\n**Teisės aktų atveju – tik galiojanti redakcija iš e-TAR.**\n\n**C. RAG taisyklės:** Tik oficialūs šaltiniai. Nurodyk dataset ID arba šaltinio pavadinimą. Cituok nuorodas. Patikrink galiojimo datą.",
+        "blockVariant": "brand"
+      },
+      {
+        "heading": "🔽 Kiti tarptautiniai šaltiniai",
+        "body": "data.gov (JAV) – JAV valstybiniai duomenys. Pasaulio banko atviri duomenys – tarptautinė lyginamoji statistika. Baltijos/ES auditorijai dažniau naudojami Eurostat ir data.europa.eu.",
+        "blockVariant": "terms",
+        "collapsible": true,
+        "collapsedByDefault": true
+      },
+      {
+        "heading": "Lentelė „Pavyzdžiai“",
+        "body": "Keturi tipiniai RAG scenarijai su oficialiais šaltiniais – užklausos pavyzdys ir ką gauni.",
+        "blockVariant": "terms",
+        "table": {
+          "headers": ["Pavyzdys", "Užklausa / veiksmas", "Rezultatas (ką parodo)"],
+          "rows": [
+            ["Eurostat – BVP tendencija", "„Iš Eurostat duomenų: kokia [šalies] BVP kitimo tendencija per paskutinius 5 metus? Cituok datasetą ar rodiklį.“", "RAG naudoja tik oficialią statistiką; galima nurodyti konkretų dataset (pvz. nama_10_gdp)."],
+            ["data.europa.eu – tema", "„Surask data.europa.eu atvirų duomenų apie [pvz. atsinaujinančią energiją] ES. Pateik 3 datasetus su nuorodomis ir trumpu aprašymu.“", "Paieška pagal temą; išvestis su nuorodomis – RAG šaltinių nurodymas."],
+            ["Registrų / įmonių duomenys", "„Pagal oficialius [šalies] registrus: kokios 5 didžiausios [sektoriaus] įmonės pagal apyvartą? Šaltinį nurodyk.“", "RAG ribojamas oficialiais registrais – mažesnė haliucinacijų rizika."],
+            ["Lyginamoji statistika", "„Iš OECD ar Eurostat: palygink [rodiklį, pvz. švietimo išlaidos] 3 šalyse. Pateik skaičius ir šaltinio nuorodas.“", "Keli oficialūs šaltiniai vienoje užklausoje; nuorodos prie kiekvienos išvados."]
+          ]
+        }
+      },
+      {
+        "heading": "Mini-promptas: Eurostat šablonas",
+        "body": "Naudok tik Eurostat duomenis. Pateik atsakymą su datasetų pavadinimais ir nuorodomis.",
+        "blockVariant": "terms",
+        "copyable": "Naudok tik Eurostat (ec.europa.eu/eurostat) duomenis. Užduotis: [aprašyk, pvz. BVP palyginimas]. Pateik atsakymą su datasetų pavadinimais ir nuorodomis."
+      },
+      {
+        "heading": "Mini-promptas: atvirų šaltinių sąrašas",
+        "body": "Geras variantas – suskirstyk į kategorijas ir nurodyk instituciją, nuorodą, duomenų tipą, ar turi API.",
+        "blockVariant": "terms",
+        "copyable": "Sudaryk oficialių Lietuvos atvirų duomenų šaltinių sąrašą, tinkamų RAG analizei. Suskirstyk į kategorijas: statistika, teisė, verslas, finansai, viešieji pirkimai. Prie kiekvieno nurodyk: instituciją, nuorodą, kokio tipo duomenys prieinami, ar turi API."
+      },
+      {
+        "heading": "4️⃣ Patikra: anti-haliucinacijos RAG taisyklė",
+        "body": "1. **Jei nėra dataset / šaltinio nuorodos** → atsakymas netinkamas.\n2. **Jei nėra metų arba rodiklio kodo** (pvz. nama_10_gdp) → atsakymas nepakankamas.\n3. **Jei šaltinis nėra oficialus** → atmesti.\n\nPilna tema apie haliucinacijas ir kaip jas sumažinti – vėliau modulyje (skaidrė 4.6a Haliucinacijos).",
+        "blockVariant": "accent"
+      }
+    ],
+    "footer": "Toliau – skaidrė 23: RAG memory ir įrankiai"
+  }
+}

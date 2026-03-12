@@ -58,7 +58,7 @@
 2. **DATA_AGENT:** Pridėti atitinkamą turinį į Modulio 4 skaidres `modules.json` (naujas content-block arba skaidrė 4.5).
 3. **CODING_AGENT:** Jei reikia naujo skaidrės tipo arba collapsible – implementuoti; kitaip tik rodyti naują content.
 4. **CODE_REVIEW_AGENT:** Patikrinti SOT → JSON → UI grandinę.
-5. **QA_AGENT:** Atnaujinti `MODULIO_4_TURINIO_ANALIZE.md`, `CHANGELOG.md`, `TODO.md` (M4 – įgyvendinta).
+5. **QA_AGENT:** Atnaujinti `CHANGELOG.md`, `TODO.md` (M4 – įgyvendinta). Turinio atnaujimai – SOT `docs/turinio_pletra_moduliai_4_5_6.md`; istorinis MODULIO_4_TURINIO_ANALIZE – `docs/archive/MODULIO_4_TURINIO_ANALIZE.md`.
 
 ---
 

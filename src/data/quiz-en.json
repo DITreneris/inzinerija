@@ -1,0 +1,247 @@
+{
+  "title": "Final Quiz",
+  "description": "Final knowledge check",
+  "passingScore": 70,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the best place to start a prompt?",
+      "options": [
+        "With the output format (Output)",
+        "With role and goal (Meta)",
+        "With advanced parameters (Advanced)",
+        "With examples"
+      ],
+      "correct": 1,
+      "explanation": "The Meta block is the most important – it sets the context for the rest of the prompt. Example: \"You are a business analyst with 8 years of experience. Your goal is to prepare a Q3 report for the board.\" Without the Meta block the AI does not know who it is or what to do."
+    },
+    {
+      "id": 2,
+      "question": "What should the Meta block include?",
+      "options": [
+        "Only numbers and data",
+        "Role, experience, and target audience",
+        "Only the result format",
+        "Only quality criteria"
+      ],
+      "correct": 1,
+      "explanation": "The Meta block defines WHO you are, WHAT experience you have, and WHO the result is for. Example: \"You are a marketing director (role) with 10 years of B2B experience (experience). Your goal is to prepare a Q1 plan for the CEO (audience).\""
+    },
+    {
+      "id": 3,
+      "question": "What is 'concrete input'?",
+      "options": [
+        "A general mood",
+        "Exact numbers, dates, metrics",
+        "Only questions",
+        "Only the desired tone"
+      ],
+      "correct": 1,
+      "explanation": "Concrete input = concrete data: 250k EUR, +15%, 1200 orders, Q3 2024. The opposite: \"doing well\", \"many clients\" – that is not concrete input. Concrete input lets the AI work with clear facts."
+    },
+    {
+      "id": 4,
+      "question": "What is the Output block for?",
+      "options": [
+        "To set the AI's role",
+        "To specify the result's format and structure",
+        "To provide initial data",
+        "To check for errors"
+      ],
+      "correct": 1,
+      "explanation": "The Output block specifies the EXACT format: table, 5 columns, English. Example: \"Format: Executive Summary (1–2 pages). Structure: 1) Key metrics 2) Trends 3) Recommendations. Language: professional business tone.\""
+    },
+    {
+      "id": 5,
+      "question": "You want a 5-point list in English. Which block should you specify?",
+      "options": [
+        "Meta",
+        "Output",
+        "Input",
+        "Quality Control"
+      ],
+      "correct": 1,
+      "explanation": "Format (list, 5 points, language) is the job of the Output block. Example: \"OUTPUT: Format – numbered list, 5 points. Language: English.\" Meta sets the role, Input sets the data, but format always goes in the Output block."
+    },
+    {
+      "id": 6,
+      "question": "What is the Reasoning block for?",
+      "options": [
+        "To add style",
+        "To specify how the AI should think",
+        "To change the language",
+        "To shorten the text"
+      ],
+      "correct": 1,
+      "explanation": "The Reasoning block specifies the THINKING SEQUENCE: 1) Analyse 2) Compare 3) Recommend. Example: \"REASONING: 1) Summarise the main metrics 2) Compare with Q2 3) Identify growth areas 4) Formulate 3 recommendations.\" This helps the AI think in a structured way."
+    },
+    {
+      "id": 7,
+      "question": "What is the Quality Control block for?",
+      "options": [
+        "To add style",
+        "To set quality criteria",
+        "To change the language",
+        "To shorten the text"
+      ],
+      "correct": 1,
+      "explanation": "Quality Control = checking criteria: Is it logical? Complete? Are the facts accurate? Example: \"QUALITY: ✓ All numbers accurate ✓ Comparison with Q2 provided ✓ Recommendations concrete ✓ Document does not exceed 2 pages.\""
+    },
+    {
+      "id": 8,
+      "question": "You want a more creative answer. What is worth changing?",
+      "options": [
+        "The amount of Input",
+        "Temperature (increase it)",
+        "The language setting",
+        "The amount of Quality Control"
+      ],
+      "correct": 1,
+      "explanation": "Temperature 0.8–1.0 = more creative, varied answer. Temperature 0.1–0.3 = more accurate, factual. Example: for creative work (slogans, ideas) – 0.8–1.0; for business documents (reports, analysis) – 0.2–0.4."
+    },
+    {
+      "id": 9,
+      "question": "How many blocks does a full structured prompt have?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct": 3,
+      "explanation": "6 blocks: Meta, Input, Output, Reasoning, Quality, Advanced. Example: 1) Meta (role, goal) 2) Input (data) 3) Output (format) 4) Reasoning (thinking sequence) 5) Quality (criteria) 6) Advanced (temperature, parameters)."
+    },
+    {
+      "id": 10,
+      "question": "What is the minimum prompt for a clear result?",
+      "options": [
+        "Only Output",
+        "Meta + Input + Output",
+        "Only Meta",
+        "Reasoning + Quality"
+      ],
+      "correct": 1,
+      "explanation": "Minimum = 3 blocks: WHO you are (Meta) + WHAT you have (Input) + WHAT you want (Output). Example: \"META: You are an analyst. Goal – SWOT analysis. INPUT: Product EcoBox, retail. OUTPUT: Table, S/W/O/T with 3 points each.\""
+    },
+    {
+      "id": 11,
+      "question": "What makes a workflow prompt different?",
+      "options": [
+        "Only short text",
+        "Clear format and result",
+        "No constraints",
+        "Only a creative task"
+      ],
+      "correct": 1,
+      "explanation": "Workflow defines format, requirements, and the expected result. Example: Basic – \"Explain what prompt engineering is.\" Workflow – \"Create a 5-point explanation. Format: numbered list. Tone: professional. Max 120 words.\""
+    },
+    {
+      "id": 12,
+      "question": "Which technique uses examples?",
+      "options": [
+        "Zero-shot",
+        "Few-shot",
+        "Manipulation",
+        "Reasoning"
+      ],
+      "correct": 1,
+      "explanation": "Few-shot gives 1–2 examples, then asks for new ones. Example: \"Examples: 1) 'Less stress, more energy.' 2) 'Your health – your plan.' Create 3 more slogans in a similar style.\" Zero-shot = no examples, just the request."
+    },
+    {
+      "id": 13,
+      "question": "What Temperature value to use for business reports (Q3 sales analysis)?",
+      "options": [
+        "0.8–1.0 (creative)",
+        "0.1–0.3 (factual, precise)",
+        "0.5–0.7 (balanced)",
+        "1.2–1.5 (very creative)"
+      ],
+      "correct": 1,
+      "explanation": "Business reports need precision and facts, so Temperature 0.1–0.3 is best. Example: in a Q3 sales analysis you need exact numbers (250k EUR, +15%), not creative descriptions. For creative work (slogans, ideas) – 0.8–1.0."
+    },
+    {
+      "id": 14,
+      "question": "What does the Frequency penalty parameter do?",
+      "options": [
+        "Reduces repetition",
+        "Increases creativity",
+        "Sets response length",
+        "Changes the language"
+      ],
+      "correct": 0,
+      "explanation": "Frequency penalty (0.3–0.5) reduces word or phrase repetition. Example: if the AI repeated \"business analysis\" 10 times, Frequency penalty 0.5 would encourage synonyms. This matters for long documents."
+    },
+    {
+      "id": 15,
+      "question": "What Reasoning depth to use for a complex business analysis?",
+      "options": [
+        "Fast",
+        "Normal (standard)",
+        "Deep",
+        "No need to specify"
+      ],
+      "correct": 2,
+      "explanation": "For complex analysis (Q3 sales with trends, comparisons, recommendations) use Deep reasoning. Fast – for simple questions, Normal – for standard tasks, Deep – for multi-step analysis."
+    },
+    {
+      "id": 16,
+      "question": "What Max tokens value for an Executive Summary (1–2 pages)?",
+      "options": [
+        "50–100 tokens",
+        "150–300 tokens",
+        "500–800 tokens",
+        "1000+ tokens"
+      ],
+      "correct": 1,
+      "explanation": "Executive Summary (1–2 pages) ≈ 150–300 tokens. 50–100 – too short, 500–800 – too long (3–4 pages), 1000+ – a long document. Rule of thumb: 1 page ≈ 150 tokens, 2 pages ≈ 300 tokens."
+    },
+    {
+      "id": 17,
+      "question": "What does the Top-p parameter do?",
+      "options": [
+        "Controls answer variety",
+        "Sets the language",
+        "Reduces repetition",
+        "Increases precision"
+      ],
+      "correct": 0,
+      "explanation": "Top-p (0.5–0.8) controls how many options the AI can choose from. Top-p 0.7 = 70% of likely options. Lower (0.5) = more focused, higher (0.8) = more varied. Safe default for business documents: 0.7."
+    },
+    {
+      "id": 18,
+      "question": "In the module example (Q3 sales analysis) Temperature 0.3 is used. Why?",
+      "options": [
+        "To be more creative",
+        "To be precise and factual",
+        "To be shorter",
+        "To be longer"
+      ],
+      "correct": 1,
+      "explanation": "Q3 sales analysis needs exact numbers (250k EUR, +15%), not creative descriptions. Temperature 0.3 = factual, precise tone. At 0.8–1.0 the AI might \"invent\" numbers or describe trends too loosely."
+    },
+    {
+      "id": 19,
+      "question": "When to use Presence penalty?",
+      "options": [
+        "When you need more new topics",
+        "When you need more repetition",
+        "When you need a shorter answer",
+        "When you need a longer answer"
+      ],
+      "correct": 0,
+      "explanation": "Presence penalty (0.0–0.3) encourages new topics or keywords, not just ones already used. Example: if the analysis already had \"sales\", \"clients\", Presence penalty 0.3 would encourage adding \"conversion\", \"retention\" – a new angle."
+    },
+    {
+      "id": 20,
+      "question": "Which block is optional but very useful for complex tasks?",
+      "options": [
+        "Meta",
+        "Input",
+        "Advanced Parameters",
+        "Output"
+      ],
+      "correct": 2,
+      "explanation": "Advanced Parameters is optional but very useful. It lets you control AI behaviour: Temperature (creativity), Reasoning depth (analysis depth), Max tokens (length), penalties (repetition). Meta, Input, Output are the minimum for a clear prompt."
+    }
+  ]
+}

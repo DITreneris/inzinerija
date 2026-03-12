@@ -1,0 +1,116 @@
+{
+  "segments": [
+    {
+      "title": "How to use AI for writing?",
+      "top5Tips": [
+        "Specify role and audience – AI matches tone and length better.",
+        "State what you want (e.g. “3 paragraphs, 2–3 sentences each”) – clear format gives better results.",
+        "Add 1–2 style examples – AI will mirror the style.",
+        "Review the first draft and ask “shorten” or “change tone” – iterate.",
+        "Keep one language in the prompt – mixing languages lowers quality."
+      ],
+      "mainToolName": "ChatGPT (OpenAI)",
+      "additionalToolNames": ["Claude (Anthropic)", "Canva", "Gamma"],
+      "workflowSteps": ["Goal (what you write)", "Role and audience", "INPUT (facts, constraints)", "OUTPUT (format, length)", "Review and iterate"],
+      "glossaryTermNames": ["Meta block", "Input", "Output", "6-block system", "Quality block"],
+      "systemPrompt": "You are an experienced writer. You write clearly, concisely, and for the specified audience. If information is missing – ask one concrete question.",
+      "motivationWish": "Good prompts are not long text but clear steps. Start with one precise request and improve. Good luck! — Prompt Anatomy"
+    },
+    {
+      "title": "How to use AI for practical advice?",
+      "top5Tips": [
+        "Define the situation in one sentence – what’s happening and what decision is needed.",
+        "Specify if you want a list, plan, or short answer – format helps.",
+        "Ask “suggest 3 options” – comparison leads to better choices.",
+        "Add constraints (time, resources) – advice becomes actionable.",
+        "After the advice ask “what step to take first” – action starts right away."
+      ],
+      "mainToolName": "Claude (Anthropic)",
+      "additionalToolNames": ["Google Calendar", "Make.com", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["Situation (context)", "Role (who gives advice)", "Task (what to decide)", "Format (list / plan)", "First step"],
+      "glossaryTermNames": ["Chain", "Master prompt", "Methodological prompt", "Process", "Context engineering"],
+      "systemPrompt": "You are a practical consultant. You give short, action-oriented advice. If needed – ask one follow-up question before suggesting.",
+      "motivationWish": "Practice starts with one clear question. Every better prompt gets you closer to the solution. — Prompt Anatomy"
+    },
+    {
+      "title": "How to use AI for information search?",
+      "top5Tips": [
+        "Phrase the question concretely – not “explain” but “explain X in 3 sentences”.",
+        "Specify if you need sources – some tools cite them.",
+        "Check facts critically – AI can be wrong; verify important claims across sources.",
+        "Use “summarize this article” – better than pasting full text.",
+        "If the answer is too vague – ask for “two examples” or “one source”."
+      ],
+      "mainToolName": "Perplexity",
+      "additionalToolNames": ["Elicit", "PaperGuide", "Scite"],
+      "workflowSteps": ["Question (concrete)", "Sources (needed?)", "Search / analysis", "Summary or answer", "Fact check"],
+      "glossaryTermNames": ["RAG", "Deep research", "Haliucinacija", "Konteksto langas", "Vartotojo promptas"],
+      "systemPrompt": "You are a research assistant. You ground answers in sources. If you don’t know – say “I don’t know” and suggest where to check.",
+      "motivationWish": "Information search with AI works better when you know what you’re looking for. A precise query is half the work. — Prompt Anatomy"
+    },
+    {
+      "title": "How to use AI for technical help?",
+      "top5Tips": [
+        "Paste the error message and briefly describe what you’re doing – context solves it.",
+        "Specify language, tool, and version – answers become more accurate.",
+        "Ask for “explain step by step” or “give corrected code” – format saves time.",
+        "If the fix doesn’t work – ask for an alternative or “debug” steps.",
+        "Keep secrets safe – don’t put passwords or API keys in prompts."
+      ],
+      "mainToolName": "DeepSeek",
+      "additionalToolNames": ["n8n", "Make.com", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["Problem (error / task)", "Context (language, tool)", "Input (code / logs)", "Solution step by step", "Check and alternatives"],
+      "glossaryTermNames": ["Tool Use", "Agent (in AI context)", "Agentic prompt", "Process prompt", "Chain"],
+      "systemPrompt": "You are a technical assistant. You give clear steps and code examples. When needed – suggest alternatives. You never ask for secrets.",
+      "motivationWish": "Technical help with AI works best when the problem and context are clear. From a small bug to automation – step by step. — Prompt Anatomy"
+    },
+    {
+      "title": "How to use AI for multimedia?",
+      "top5Tips": [
+        "Describe the image concretely: subject, action, style, mood.",
+        "Specify proportions (e.g. 16:9, 1:1) – for different channels.",
+        "Add “what to avoid” (negative prompt) – fewer bad results.",
+        "For video and audio – short script or tempo / style notes.",
+        "Respect usage rights – use platforms with clear licensing."
+      ],
+      "mainToolName": "Canva AI",
+      "additionalToolNames": ["Midjourney", "InVideo", "ElevenLabs (audio)"],
+      "workflowSteps": ["Goal (image / video / audio)", "Description or script", "Style and proportions", "What to avoid", "Generate and adjust"],
+      "glossaryTermNames": ["Vaizdo promptas", "Neigiamas promptas", "Aspect ratio (proporcijos)", "Stilius (vizualas/garso)", "Brief (marketing)"],
+      "systemPrompt": "You are a visual and audio content assistant. You create from clear descriptions and style notes. You suggest proportions and usage limits.",
+      "motivationWish": "Multimedia with AI opens up through clear descriptions and a few tries. Start with one image or short audio – and improve. — Prompt Anatomy"
+    },
+    {
+      "title": "How to start using AI? (Other / not sure)",
+      "top5Tips": [
+        "Start with one daily task – e.g. one email or one summary.",
+        "Pick one tool and try 3 different prompts – compare results.",
+        "Note what worked and what didn’t – your personal prompt library.",
+        "Don’t ask abstract questions – give a concrete task (“write X”, “summarize Y”).",
+        "If you don’t like the answer – ask for “shorter”, “simpler”, or “different tone”."
+      ],
+      "mainToolName": "Gemini (Google)",
+      "additionalToolNames": ["Copilot (Microsoft)", "NoteLM", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["One simple task", "Choose a tool", "First prompt (concrete)", "Evaluate result", "Repeat or change"],
+      "glossaryTermNames": ["AI universe", "6-block system", "Practice scenario", "Master prompt", "LLM"],
+      "systemPrompt": "You are a friendly assistant for beginners. You explain simply and give one concrete step. You encourage trying and treat mistakes as learning.",
+      "motivationWish": "Every expert started with a first prompt. Start today – one small task is already a winning step. — Prompt Anatomy"
+    },
+    {
+      "title": "How to use AI for self-expression and creativity?",
+      "top5Tips": [
+        "Describe your idea or thought freely – AI can expand or structure it.",
+        "Specify tone (personal, inspired, philosophical) – the answer will match.",
+        "Ask for “5 variants” or “3 different perspectives” – more options.",
+        "Use “imagine that…” – role prompt opens creative thinking.",
+        "Keep personal notes private – don’t put secret thoughts in shared models."
+      ],
+      "mainToolName": "Claude (Anthropic)",
+      "additionalToolNames": ["ChatGPT (OpenAI)", "NoteLM", "Gamma"],
+      "workflowSteps": ["Idea or thought (free form)", "Role / tone", "Variants or perspectives", "Structure (if needed)", "Reflection and improvement"],
+      "glossaryTermNames": ["Master prompt", "Process", "Context engineering", "Process prompt", "Artefact"],
+      "systemPrompt": "You are a creative partner. You help express thoughts and generate ideas without pressure. You respect personal boundaries and suggest, not command.",
+      "motivationWish": "Self-expression with AI is not replacement but addition. Your thoughts stay yours; AI helps refine and express them. Good luck creating! — Prompt Anatomy"
+    }
+  ]
+}

@@ -1,18 +1,27 @@
+/** Ar bold tekstas atrodo kaip skaičius/procentas (pvz. 97 %, 60–70 %, ~90 %). */
+function isNumberLike(s: string): boolean {
+  return /^[\d\s~–-]+%?$/.test(s.trim());
+}
+
 /** Renderuoja tekstą su **bold** ir [tekstas](url) sintakse. Nuorodos – brand spalva, hover paryškinimas. */
-export function renderBodyWithBoldAndLinks(text: string) {
+export function renderBodyWithBoldAndLinks(text: string, opts?: { numberAccent?: boolean }) {
+  const numberAccent = opts?.numberAccent ?? false;
   const combinedRegex = /(\*\*[^*]+\*\*|\[[^\]]+\]\(https?[^)]+\))/g;
   const parts = text.split(combinedRegex).filter(Boolean);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       const inner = part.slice(2, -2);
       const isPraktiskai = inner === 'Praktiškai:';
+      const isNum = numberAccent && isNumberLike(inner);
       return (
         <strong
           key={i}
           className={
             isPraktiskai
               ? 'font-semibold text-accent-700 dark:text-accent-300'
-              : 'font-bold text-gray-900 dark:text-white'
+              : isNum
+                ? 'font-bold text-accent-600 dark:text-accent-400'
+                : 'font-bold text-gray-900 dark:text-white'
           }
         >
           {inner}
@@ -39,7 +48,7 @@ export function renderBodyWithBoldAndLinks(text: string) {
 }
 
 /** Alias atgaliniam suderinamumui – naudoja renderBodyWithBoldAndLinks. Apsauga nuo undefined (content-block sekcijos). */
-export function renderBodyWithBold(text: string | undefined) {
+export function renderBodyWithBold(text: string | undefined, opts?: { numberAccent?: boolean }) {
   if (text == null || text === '') return null;
-  return renderBodyWithBoldAndLinks(text);
+  return renderBodyWithBoldAndLinks(text, opts);
 }

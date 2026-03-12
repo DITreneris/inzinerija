@@ -1,0 +1,36 @@
+{
+  "title": "Module 6 handout. One project with 6 blocks.",
+  "subtitle": "Project stages, data management, reflection – print and use at work.",
+  "projectSteps": [
+    "Goal and role (META) – what you create, for whom, what role. You can pause and save.",
+    "Sources and constraints (INPUT + RAG) – what data you use, RAG guidelines.",
+    "Format (OUTPUT) – structure, length, language.",
+    "Research plan (REASONING / Deep research) – steps, sub-questions.",
+    "Quality and checks (QUALITY) – sources, \"I don't know\", objectivity.",
+    "Technical settings (ADVANCED) – temperature, max_tokens. When ready: run the prompt and get the report."
+  ],
+  "dataManagementPoints": [
+    {
+      "title": "1. Personal prompt library",
+      "practicalMeaning": "Keep all \"working\" prompts in one place (Notion, file, tool) – no need to dig through old chats."
+    },
+    {
+      "title": "2. Prompt versioning",
+      "practicalMeaning": "When you change a prompt – save a copy with date or v1, v2; later you'll see what worked better."
+    },
+    {
+      "title": "3. Documentation",
+      "practicalMeaning": "2–3 sentences per template: what it's for, what to paste, what to expect – in a month you or a colleague will know how to use it."
+    },
+    {
+      "title": "4. Processes",
+      "practicalMeaning": "One document or diagram \"how we do X with AI\" – new joiners or you after a break won't need to reverse-engineer."
+    },
+    {
+      "title": "5. Data sets",
+      "practicalMeaning": "5–10 line sample (e.g. customer feedback) – you change the prompt and in 1 min check if the result is correct."
+    }
+  ],
+  "reflectionSummary": "Reflection: (1) What was hardest in the project? (2) Which skill will you use first at work? (3) What else do you want to learn about AI? First action within 24–48h: open your AI tool and add one prompt from the module to your library or use the 6-block structure for another topic.",
+  "footerText": "Prompt anatomy – prompt structure training. © Course material."
+}

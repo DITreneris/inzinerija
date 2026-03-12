@@ -1,0 +1,403 @@
+{
+  "tools": [
+    {
+      "name": "Adobe Firefly",
+      "url": "https://www.adobe.com/products/firefly.html",
+      "description": "Adobe DI vaizdams – Generative Fill, tekstas į vaizdą; integracija su Photoshop, CC. „Teisiškai saugi“ šaltiniai.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "AIVA",
+      "url": "https://aiva.ai",
+      "description": "Muzikos kompozicijos su DI – reklamai, žaidimams, filmams.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Beatoven.ai",
+      "url": "https://beatoven.ai",
+      "description": "Royalty-free muzika – emocijų kontrolė, optimizacija video fonui, YouTube monetizacija.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Beautiful.ai",
+      "url": "https://www.beautiful.ai",
+      "description": "Be dizaino įgūdžių – smart templates, auto-layout.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Boomy",
+      "url": "https://boomy.com",
+      "description": "Paprasta UI, daug šablonų – lo-fi, background, social content; greitas publikavimas.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Canva",
+      "url": "https://www.canva.com",
+      "description": "Viskas viename – Magic Write, šablonai, vizualai; universalus kasdienis įrankis.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Canva AI",
+      "url": "https://www.canva.com",
+      "description": "Vaizdų generavimas integruotas su dizaino įrankiu – šablonai, Magic Design.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "ChatGPT (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "Universalus pokalbių DI – geriausiai tinka bendram rašymui, santraukoms ir idėjų generavimui.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Claude (Anthropic)",
+      "url": "https://claude.ai",
+      "description": "Stiprus ilgų tekstų ir dokumentų analizei, atsakingas atsakymų stilius.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Connected Papers",
+      "url": "https://www.connectedpapers.com",
+      "description": "Mokslinių straipsnių ryšių vizualizacija – rodo susijusius darbus grafike, padeda greitai rasti aktualius šaltinius.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Consensus",
+      "url": "https://consensus.app",
+      "description": "Mokslinių tyrimų paieška su DI – atsakymai remiantis recenzuotais straipsniais, sintezė ir citatos.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Copilot (Microsoft)",
+      "url": "https://copilot.microsoft.com",
+      "description": "Microsoft ekosistemoje – Outlook, Word, Teams; puikiai tinka biuro darbui.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "DALL·E (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "Vaizdų generavimas per ChatGPT – tekstas į vaizdą, stilius ir proporcijos.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com",
+      "description": "Stiprus kodavimui, matematikai ir logikai – puikus kainos ir kokybės santykis.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "ElevenLabs (garsai)",
+      "url": "https://elevenlabs.io",
+      "description": "Balsų ir garsų efektų generavimas – pranešimai, perėjimai, sound design.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Elicit",
+      "url": "https://elicit.com",
+      "description": "Tyrimų automatizavimas – literatūros apžvalgos, duomenų sintezė, RAG tipo tyrimai.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Figma",
+      "url": "https://figma.com",
+      "description": "Vizualus maketavimas ir dizainas – kontekstas DI generavimui (pvz. tinklalapių HTML).",
+      "moduleId": 4,
+      "category": "Vizualas"
+    },
+    {
+      "name": "Gamma",
+      "url": "https://gamma.app",
+      "description": "Prezentacijų generavimas – skaidrės, pasiūlymai, brošiūros; interaktyvus web formatas.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Gemini (Google)",
+      "url": "https://gemini.google.com",
+      "description": "Integruotas su Google paslaugomis – paštas, dokumentai, paieška vienoje vietoje.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Google Calendar",
+      "url": "https://calendar.google.com",
+      "description": "Google kalendorius – renginių planavimas; grandinėse gali būti naudojamas su Gemini.",
+      "moduleId": 4,
+      "category": "Planavimas"
+    },
+    {
+      "name": "GPTZero",
+      "url": "https://gptzero.me/",
+      "description": "Benchmark įrankis akademijai – ~99 % tikslumas tekstui; atpažįsta ir mišrų (žmogus + DI) turinį.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Grok (xAI)",
+      "url": "https://grok.x.ai",
+      "description": "Realaus laiko duomenys iš X (Twitter) – naujienos, tendencijos, viešos diskusijos.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Ideogram",
+      "url": "https://ideogram.ai",
+      "description": "Vaizdų generavimas su tekstu vaize – reklamos, plakatai, logotipai.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "InVideo",
+      "url": "https://invideo.io",
+      "description": "Vaizdo įrašų kūrimas su DI – šablonai, teksto į video, socialiniam turiniui.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Isgen.ai (LT)",
+      "url": "https://isgen.ai/lt",
+      "description": "Lietuviškas DI detektorius, gerai aptinka populiarių LLM generuotą tekstą (~96 % tikslumas).",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Leonardo.ai",
+      "url": "https://leonardo.ai",
+      "description": "Vaizdų ir vizualų generavimas – žaidimų menas, Stable Diffusion tipo modeliai.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "Luma Dream Machine",
+      "url": "https://lumalabs.ai",
+      "description": "Vaizdo įrašų generavimas iš teksto – realistiniai ir kūrybiniai vaizdeliai.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Make.com",
+      "url": "https://make.com",
+      "description": "Vizualus workflow kūrimas (drag & drop), sąlygos ir ciklai – vidutinio dydžio verslui, geresnis nemokamas planas nei Zapier.",
+      "moduleId": 10,
+      "category": "Verslo automatizavimas"
+    },
+    {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Greitas nemokamas DI teksto detektorius be registracijos, palaiko daug kalbų.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Midjourney",
+      "url": "https://midjourney.com",
+      "description": "Aukštos kokybės vaizdų generavimas – iliustracijos, menas, konceptualūs vaizdai.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "Mubert",
+      "url": "https://mubert.com",
+      "description": "Foninė ir kilnojamųjų vaizdų muzika – licencijos komerciniam naudojimui.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "n8n",
+      "url": "https://n8n.io",
+      "description": "Open-source workflow automatizavimas – pilna kontrolė, DI agentų palaikymas, tinka techninėms komandoms ir daug API integracijų.",
+      "moduleId": 10,
+      "category": "Verslo automatizavimas"
+    },
+    {
+      "name": "NotebookLM (Google)",
+      "url": "https://notebooklm.google.com",
+      "description": "Google įrankis, kuris leidžia įkelti dokumentus ir „kalbėtis“ su jais – asmeninis RAG iš savo failų, podcastų generavimas.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "NoteLM",
+      "url": "https://www.notelm.app/",
+      "description": "Susieja užrašus ir dokumentus su kalbos modeliu – asmeninis RAG iš savo notų.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "Notion",
+      "url": "https://notion.so",
+      "description": "Universali darbo erdvė – užrašai, promptų biblioteka, dokumentacija, projektų valdymas vienoje vietoje.",
+      "moduleId": 6,
+      "category": "Produktyvumas"
+    },
+    {
+      "name": "PaperGuide",
+      "url": "https://paperguide.ai",
+      "description": "„Kalbėjimas“ su PDF – moksliniai PDF, literatūros apžvalgos, duomenų ištraukimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://perplexity.ai",
+      "description": "DI paieška su šaltiniais – akademinės užklausos, literatūros apžvalgos, faktų tikrinimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Pika",
+      "url": "https://pika.art",
+      "description": "Vaizdo įrašų kūrimas iš teksto ar vaizdo – animacijos, trumpi vaizdeliai.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Power Automate",
+      "url": "https://powerautomate.microsoft.com",
+      "description": "Microsoft ekosistemos automatizavimas – Excel, Teams, Outlook, SharePoint; tinka administracijai, pardavimams, projektų valdymui.",
+      "moduleId": 10,
+      "category": "Verslo automatizavimas"
+    },
+    {
+      "name": "Prezent.ai",
+      "url": "https://prezent.ai",
+      "description": "Verslui – brand, Story Builder, naratyvas; korporatyvinės prezentacijos.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Runway",
+      "url": "https://runwayml.com",
+      "description": "Vaizdo įrašų generavimas iš teksto – trumpi klipai, efektai, redagavimas.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Scite",
+      "url": "https://scite.ai",
+      "description": "Išmanios citatos – kaip cituojami tyrimai; šaltinių patikimumo vertinimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Synthesia",
+      "url": "https://www.synthesia.io",
+      "description": "Avatarais paremti vaizdo įrašai – pristatymai, mokymai, įvadiniai.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "SlidesAI",
+      "url": "https://www.slidesai.io",
+      "description": "Tekstas → skaidrės keliais paspaudimais. Google Slides integracija.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Sora (OpenAI)",
+      "url": "https://openai.com/sora",
+      "description": "Vaizdo įrašų generavimas iš teksto – aukšta kokybė, realistinė judesio fizika, scenos nuoseklumas.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Soundraw",
+      "url": "https://soundraw.io",
+      "description": "Muzikos generavimas ir redagavimas – melodijos, tempo, nuotaika.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Stable Diffusion (DreamStudio)",
+      "url": "https://dreamstudio.ai",
+      "description": "Atviras vaizdų generavimo modelis – lankstus, daug stilių, kontrolė per neigiamą promptą.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "Suno",
+      "url": "https://suno.com",
+      "description": "Muzikos generavimas iš aprašymo – dainos, instrumentinė muzika, įvairūs stiliai.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Trello",
+      "url": "https://trello.com",
+      "description": "Lentos ir kortelės – galima aprašyti užduotis kaip kontekstą RAG promptui.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "Udio",
+      "url": "https://udio.com",
+      "description": "Muzikos kūrimas iš teksto – nuotaika, stilius, tempo, vokalas arba instrumentinė.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Veo 3 (Google)",
+      "url": "https://deepmind.google/technologies/veo/",
+      "description": "Google vaizdo generavimo modelis – vaizdo įrašų kūrimas iš teksto (prompto).",
+      "moduleId": 4,
+      "category": "Vaizdo generavimas"
+    },
+    {
+      "name": "Veo 3 (Google)",
+      "url": "https://deepmind.google/technologies/veo/",
+      "description": "Google vaizdo generavimo modelis – vaizdo įrašai iš teksto (prompto), aukšta kokybė.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Visme",
+      "url": "https://www.visme.co",
+      "description": "Ataskaitoms ir duomenims – infografikai, interaktyvumas.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Winston AI",
+      "url": "https://gowinston.ai/",
+      "description": "Labai tiksli DI turinio detekcija, žema klaidingų teigiamų rodiklių norma; plačiai naudojama mokyklose ir leidybos sektoriuje.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Workato",
+      "url": "https://workato.com",
+      "description": "Enterprise workflow ir integracijų platforma – governance, auditoriai, compliance; tinka didelėms organizacijoms.",
+      "moduleId": 10,
+      "category": "Verslo automatizavimas"
+    },
+    {
+      "name": "Zapier",
+      "url": "https://zapier.com",
+      "description": "Automatizuoja darbo eigas tarp programų – DI grandinėse gali siųsti duomenis į el. paštą, kalendorių ir kt.",
+      "moduleId": 4,
+      "category": "Automatizacija"
+    },
+    {
+      "name": "ZeroGPT",
+      "url": "https://zerogpt.com/",
+      "description": "Nemokama priemonė, skirta greitai patikrinti DI turinį.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    }
+  ]
+}

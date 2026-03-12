@@ -1,5 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import i18n from 'i18next';
 import { logError } from '../../utils/logger';
 
 interface Props {
@@ -45,10 +46,10 @@ export default class ErrorBoundary extends Component<Props, State> {
             <AlertTriangle className="w-10 h-10 text-rose-600 dark:text-rose-400" />
           </div>
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-            Kažkas nepavyko
+            {i18n.t('common:errorTitle')}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-md">
-            Įvyko netikėta klaida. Bandykite atnaujinti puslapį arba grįžti atgal.
+            {i18n.t('common:errorHint')}
           </p>
           <div className="flex gap-4">
             <button
@@ -56,19 +57,19 @@ export default class ErrorBoundary extends Component<Props, State> {
               className="btn-secondary flex items-center gap-2"
             >
               <RefreshCw className="w-4 h-4" />
-              Bandyti dar kartą
+              {i18n.t('common:retry')}
             </button>
             <button
               onClick={() => window.location.reload()}
               className="btn-primary"
             >
-              Atnaujinti puslapį
+              {i18n.t('common:refreshPage')}
             </button>
           </div>
           {import.meta.env.DEV && this.state.error && (
             <details className="mt-6 text-left w-full max-w-lg">
               <summary className="text-xs text-gray-500 dark:text-gray-400 cursor-pointer">
-                Techninė informacija
+                {i18n.t('common:techInfo')}
               </summary>
               <pre className="mt-2 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs overflow-auto">
                 {this.state.error.message}

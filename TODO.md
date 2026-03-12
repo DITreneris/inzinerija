@@ -1,312 +1,150 @@
 # TODO – Promptų anatomija
 
-> **Paskutinė peržiūra:** 2026-02-12 (Dizaino gidas Moduliai 1–3 įtrauktas; žr. §2 Dizaino gidas.)  
-> **Tikslas:** Vienas working failas – prioritetai, likusieji darbai, nuorodos. MVP moduliai 1–3 testuotojams paruošti; fokusas – turinys, UX pagal TEST_REPORT, refaktoringas pagal CODEBASE_REFACTORING_ANALYSIS.
-
-**Legenda:** P1 = aukštas, P2 = vidutinis, P3 = žemas. Agentai: CONTENT → DATA → CODING (žr. `docs/development/AGENT_ORCHESTRATOR.md`).
+**Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
+**Legenda:** P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-03-11 (Faze 2–3 „Vartotojui paruošta“ + Architektūra A docs/rules sync).
 
 ---
 
-## 1. Kas jau padaryta (santrauka)
+## 1. Aktualus pipeline (kas toliau)
 
-- **MVP:** Error Boundary, loading/lazy, TypeScript tipai, progress validacija ir migracija, 46 testai, CI, Tailwind safelist, CopyButton fix, SlideContent refaktoras.
-- **Modulio 2 interaktyvaus testo pertvarka (v2.5.0, 2026-02-09):** 5 klausimų tipai (MCQ, True/False, Matching, Ordering, Scenario), 15 klausimų su Bloom taksonomija (1-4), progressive hints sistema (užuominos su 0.5 taško nuolaida), gamifikacija (streak, perfect badge), per-bloko žinių žemėlapis rezultatuose, remediation nuorodos į Modulio 1 skaidres. Nauji komponentai: `src/components/slides/shared/questions/`. `QuestionType` enum ir `TestQuestion` išplėtimas – backward compatible su Moduliu 5 ir WarmUpQuiz.
-- **Moduliai 4–6:** SOT sinchronas, Modulio 5 klausimai/įvadas/rezultatai, Modulio 6 projekto tikslai/refleksija, section-break, content-block image, warm-up-quiz, SEO (react-helmet-async), a11y (skip link, aria, focus), modulių užrakinimas pagal `DEV`.
-- **Vartotojo testai:** Modulio 1 contextIntro + Workflow situacijos; PracticalTask inputHint; Quiz scroll į klaidingą atsakymą; **GPT proceso skaidrė (Custom GPT) – sutvarkyta:** ProcessStepper (1 žingsnis = 1 ekranas), CTA „Toliau: X“, geri/blogi pavyzdžiai, refleksija. **Vartotojo patirties apibendrinimas (2026-02-07):** 2 mod. – grįžus atgal rodomas atsakymas/paaiškinimas; 3 mod. – „Pirmyn“ blokuojamas kol neįvykdyta praktinė užduotis (mikro-privalomas veiksmas).
-- **CODE_REVIEW 4–6:** SOT Modulio 6, skaidrės COMBO/SUPER/Duomenų tvarkymas, Modulio 5 id 501–504.
-- **NEXT įgyvendinimas (2026-02-08):** CONTENT_AGENT – SOT papildytas implementacijos pastabomis (M5 test-intro/test-results, M6 practice-intro). CODING_AGENT – progress.ts pastaba apie skaidrių ID unikalumą per modulį.
-- **Modulio 4 MUST (2026-02-07):** M2 patikrinta (RAG „Nežinau“ + citavimas); M3 – ContentBlockSection.copyable, skaidrė 68; M4 – skaidrė „Saugumas: prompt injection ir jailbreak“ (id 67.5). **Modulio 4 SHOULD S1–S6 (2026-02-07):** S1 kontekstas/tokenai 4.2; S4 bridžinė praktika; S5 Optional prefix; S6 shortTitle – visi įgyvendinti. **P2 content-driven:** intro, hierarchy, comparison, summary, practice-summary – turinys iš JSON, tipai ir default reikšmės.
-- **Skaidrė „4 dedamosios“ UI/UX (2026-02-08):** T1 accent „Esmė“ blokas; T2 workflow tooltips (hover); T3 „Praktiškai“ paryškinimas. Žr. SKAIDRIU_UI_UX_ANALIZE_TOBULINIMAI, MODULIO_4_4_DEDAMOSIOS_ANALIZE.
-- **Skaidrė 4.1a3 (RL/RLHF) ir eilė (2026-02-08):** Pilnas turinys (5 blokų), content-block lentelė (RL vs RLHF); **eilė:** 5 principai (4.1a4) rodomi prieš RL/RLHF (4.1a3). **Pateikimo tobulinimas (2026-02-08):** blockVariant (brand/terms/accent), lentelės aria-label; SLIDE_4_1a3_RL_RLHF_AGENT_SEQUENCE.md §3. **RL proceso diagrama:** interaktyvi schema, RlProcessBlock, SCHEME_AGENT 3.6. **RL schemos UI/UX (2026-02-08, SCHEME_AGENT):** aiškus ciklas (solid grįžtamasis ryšys, be punktyro), rodyklės su tarpu nuo box, „Atlygis“ akcentuotas, mintinis modelis po schema (viena eilutė be kabučių), responsive (desktop row / mobile 2×2). **UI/UX perstatymas:** 2 rodyklių tipai (Forward #7B8794 vs Feedback ACCENT dashed), rankinis polygon arrowhead, forward etiketės virš rodyklių su connector, viewbox 280→330, ARROW_GAP_FWD 12→5. SCHEME_AGENT §3.7. Žr. CHANGELOG, SCHEME_AGENT.md.
-- **Skaidrė 4.1a3 (RL/RLHF) – verslo situacijos ir promptai (2026-02-08):** 2 verslo situacijos (RL: el. parduotuvė/kainos/KPI; RLHF: klientų el. laiškai/žmogaus feedback) pridėtos į esamus blokus. 2 nauji blokai: RL prompto pavyzdys (copyable, 3 variantai + savęs atranka), RLHF prompto pavyzdys (copyable, 3 variantai + žmogaus pasirinkimas + galutinis laiškas). Sekcijos 1–7; SOT sinchronizuotas.
-- **Skaidrė 4.1a3 (RL/RLHF) – antraščių valymas (2026-02-08):** Pašalintos vidinės pastabos iš 4 antraščių (skliaustai → body bold); diagramos title "RL struktūra (labai svarbu parodyti)" → "RL proceso struktūra"; žodyne +4 terminai (RL, Paskatinamasis mokymas, Atlygis, Agentas DI kontekste), RLHF def. "with" → "from".
-- **Skaidrės 4.1a5, 4.1a5-style, 4.1a5-practice – pilnas turinys (2026-02-08):** Skaidrė 50 (Parametrų laukas) – 8 sekcijų (brand intro + 6 parametrų grupių + accent takeaway). Skaidrė 51 (Stilių naudojimas) – 12 sekcijų (5 dimensijos, 4 copyable pavyzdžiai, terms). Skaidrė 52 (Praktinės užduotys) – 13 sekcijų (3 stilių + 3 el. laiškų promptai, HTML 5 blokų lentelė + copyable, terms). SOT sinchronizuotas. Build OK.
-- **Promptų porų atvaizdavimas (2026-02-08):** Skaidrė 54 (Metodinis vs Agentinis) – 4 sekcijos, copyable pavyzdžiai, „Ką analizuoti“ (terms). Dokumentas `docs/development/PROMPTU_PORU_ATVAIZDAVIMAS.md` – gairės kitoms poroms (nestruktūruotas/struktūruotas, manipuliacinis/neutralus).
-- **Modulio 5 skaidrė 47 (Optional: 8 skaidrių prezentacija) (perkelta iš M4 2026-02-11):** DI prezentacijos workflow – clickable 5 žingsnių diagrama, „Tu esi čia“, žingsnių mygtukai, paaiškinimai apačioje; **atskiri blokai:** workflow + įrankiai (6 kortelės: Gamma, SlidesAI, Canva, Prezent.ai, Visme, Beautiful.ai); 8 skaidrių karkasas, master prompt, promptas turiniui (6 blokų), takeaway; artefaktas + atsisiuntimas fiksuoti (funkcija ateityje). SCHEME_AGENT 3.6 – interaktyvumo UX kelias dokumentuotas.
-- **Refaktoringas (2026-02-08):** ✅ **M-R1** – AllSlides padalintas: ContentSlides.tsx, BlockSlides.tsx, TestPracticeSlides.tsx, shared/renderBody.tsx, RecognitionExerciseBlock.tsx; AllSlides – barrel. ✅ **S-R1** – AppNav.tsx, useTheme (utils/useTheme.ts). ✅ **S-R2** – useSlideNavigation, ModuleCompleteScreen.tsx. ✅ **S-R3** – useQuizState, QuizResultsView.tsx.
-- **Promptų inžinerijos skaidrių perkėlimas ir tobulinimas (2026-02-08):** 3 skaidrės (54.5 System vs Master, 55 Proceso prompt, 54 Metodinis vs Agentinis) perkeltos prieš Custom GPT kūrimo procesą (id 46). Nauja eilė: 4 dedamosios → System vs Master → Proceso prompt → Metodinis vs Agentinis → Custom GPT. Visų 3 turinys perrašytas: palyginimo lentelės (table), blockVariant hierarchija (brand/terms/accent), copyable kaip string, practicalTask (54.5 – Master Prompt generatorius su 10 klausimų). Skaidrė 55 pavadinimas: „Optional:" pašalinta → „Proceso prompt ir workflow sudarymas". Build OK, JSON valid.
-- **Modulio 4 tobulinimo planas (2026-02-08):** Diagnostinis quiz feedback (3 warm-up-quiz: id 63.5, 65.7, 66.5 – „Čia stipru / Puiku" tonas). Skaidrė 55 (Proceso prompt) – 6 sekcijų (intro + geras/blogas + 3 copyable šablonai: strateginis, projektų, operacijų + accent takeaway). Asmeninio konteksto miniužduotys (skaidrė 58 RAG + skaidrė 67 Manipuliacijos – „Pagalvokite apie savo darbą/patirtį"). „Pataisyk promptą" praktika (3 vietos – skaidrė 67 (inline) + id 49.5 (5 principai) + id 67.3 (šališkumas)). Bug fix: TestSectionSlide useEffect importas. **UI/UX:** T1 heading hierarchy (h4 font-semibold, ne font-bold – aiškesnė skirtumo nuo h3); T2 dark mode subtitle (dark:text-gray-500 → dark:text-gray-400, PracticalTask chevron dark mode); Progressive disclosure (AdvancedParameters2Slide – 4 parametrų sekcijos collapsible su details/summary, Max Tokens open by default); T6 tap highlight (summary elementai, CSS details/summary stiliai). SOT ↔ modules.json eilė sinchronizuota. Build OK, 46 testai praeina, 0 lint klaidų.
-- **Modulio 4 visapusė analizė ir 5 fazių tobulinimas (2026-02-08):** FAZĖ 1: module-intro (id 40) perkeltas į 1-ą poziciją; 3 section-break (id 40.5, 52.5 atnaujinta, 65.8); 6 optional skaidrės; `Slide.optional` tipas. FAZĖ 2: 3 savitikros išplėstos 2→5 kl.; nauja savitikra 68.5 (manipuliacijos+haliucinacijos, 4 kl.); 2 „Pataisyk promptą" skaidrės (49.5, 67.3); bridžinė praktika 65.5 išplėsta. FAZĖ 3: Desktop progress „Skaidrė X/Y" header; „Papildoma" badge; per-slide ErrorBoundary. FAZĖ 4: id 41 intro/takeaway; id 53 palyginimo lentelė; id 66 tokenų lentelė+pavyzdžiai; id 56, 57 praktiniai pavyzdžiai.
-- **Bug fix (2026-02-09):** ContentSlides.tsx – pridėtas trūkstamas `useEffect` importas; išspręsta „Nepavyko užkrauti skaidrės“ Modulio 4 skaidrėje „Praktika: DI visata“. Žr. TEST_REPORT, CHANGELOG.
-- **Kodo bazės QA (2026-02-09):** sutvarkytas lint „užstrigimas“ (eslint apribotas į `src/`, ignoruojami `.cursor`/`coverage`), pataisytos ESLint klaidos (nenaudojami importai/kintamieji, hook deps), `react-refresh/only-export-components` konsolidacija (paaiškinimų konstantos iškeltos į `src/components/slides/shared/stepExplanations.ts`). `npm run lint`, `npm run test:run`, `npm run build` – OK.
-- **DI turinio detektorių skaidrė (2026-02-09):** Naujas skaidrės tipas `ai-detectors` (slide id: 201) – 10 DI turinio aptikimo įrankių. Komponentas `AiDetectorsSlide.tsx`, duomenys `src/data/aiDetectors.ts`. Filtravimas pagal tipą, paieška, statistika, dark/light mode. Vieta: Modulis 4, po slide 200, prieš slide 68.5. SOT atnaujintas. Lint 0, TS OK.
-- **Modulio 3 UI/UX planas (2026-02-10):** Dokumentas `docs/MODULIO_3_UI_UX_GERIAUSIOS_PRAKTIKOS.md` (Top 10 praktikų iš e-learning/prompt engineering šaltinių). Įgyvendinimo planas `docs/development/PLAN_MODULIO_3_UI_UX.md` – agentų seka (DATA opt. → CODING → CODE_REVIEW → QA), Fazė 1 (#8, #10, #9), Fazė 2 (#1, #6), Fazė 3 backlog (#2, #4). TODO.md § Modulio 3 UI/UX – lentelė ir įgyvendinimo eilė.
-- **Modulio 1 skaidrė 1 – DI įrankiai (2026-02-10):** Apačioje išskleidžiamas blokas su įrankių intro, nuorodomis (ryškiai), aprašymais ir populiariausiais naudojimo atvejais. `ActionIntroContent.tools` + `toolsIntro`; `modules.json` ir `turinio_pletra.md` atnaujinti. Žr. CHANGELOG.
-- **A-M1 (2026-02-11):** Turinio kontraktas – JSON Schema (modules, promptLibrary, glossary) + `scripts/validate-schema.mjs` (Ajv), `prebuild` prieš build. content-block → content.sections[] required. **ContentSlides.tsx:** JSX sintaksės klaida (action-intro DALIS C – fragment wrapper) ištaisyta; build OK.
-- **Sesija 2026-02-11 (P2, P3, PracticalTask, turinys):** P2 pirmos skaidrės hook + 30 s CTA; P3 emerald cover + „X iš 15“; PracticalTask Redaguoti/Kopijuoti (visi moduliai, įsk. M3); action-intro: „Ta pati užduotis“, „Problema – ne DI“, Variant A dviejų eilučių smūgis; Tuščias promptas, Šiuose mokymuose, Grandinės/Medžio (CoT/ToT); DeepSeek įrankių sąraše; questionPool pool-scenario-4 gramatika.
-- **Modulio 2 testo tekstai (2026-02-11):** Pavadinimas „Žinių patikrinimas“, subtitle „15 atsitiktinių klausimų iš nuolat atnaujinamo banko.“
-- **Ikonų patobulinimas (2026-02-11):** Emoji pakeistos Lucide ikonais (TestPracticeSlides, ModulesPage, PracticalTask, HomePage, ContentSlides, BlockSlides); strokeWidth 1.5, ikonų konteineriai, vienoda vizualinė hierarchija.
-- **MVP Release – Moduliai 1–3 (2026-02-11):** `VITE_MVP_MODE=1` build rodo tik modulius 1–3. Module gating: mvpMode.ts, modulesLoader filtravimas, App guard'ai, Glossary filtras, HomePage CTA „Į apklausą“. 4 negatyvūs testai, CI MVP build step. Žr. RELEASE_PLAN_MVP_MODULIAI_1_3.md, RELEASE_QA_CHECKLIST §6.
-- **Pagrindinis puslapis (HomePage) ir ModulesPage – pre-release UX (2026-02-11):** P0 CTA kai quizCompleted – „Peržiūrėti modulius“; P1 progresas virš CTA; P1 ModulesPage mygtukas „Į apklausą“ po completion; P2 Zap → badge „~45 min“; P2 Features CTA neadaptyvus – kai viskas baigta „Peržiūrėti modulius“. HomePage.tsx, ModulesPage.tsx, App.tsx.
-- **Gold standard Moduliai 1–3 (2026-02-11):** Dokumentas `docs/development/GOLD_STANDARD_MODULIAI_1_2_3.md` – etalonas: pedagogika, taksonomija, vartotojo kelionė, UI/UX, testas, praktika, progresas, testavimas. Pritaikyti prie modulių 4–6 ir 7–15 (checklist).
-- **Dizaino gidas Moduliai 1–3 (2026-02-12):** Dokumentas `docs/development/DESIGN_GUIDE_MODULIAI_1_2_3.md` – vizualinio suvienodinimo gidas (vartotojų „per daug spalvinga / chaoso“): inventorius, chaoso diagnozė, Design System v0.1, modulių identitetas, prieš/po rekomendacijos, įgyvendinimo planas (Must/Should/Nice), greiti laimėjimai, QA checklist.
-- **Design System įgyvendinimas (2026-02-12):** Should S-DS1–S-DS4 (tipografija, M2/M3 identitetas, Summary max 3 kortelės, šešėliai), Nice N-DS1 (float išjungtas badge „~45 min“), N-DS2 (`src/design-tokens.ts`). Gold Standard atnaujintas į 1.1.0 – §3.2, §3.5, §9, §10, Changelog. Žr. CHANGELOG [Unreleased] 2026-02-12.
-- **Gold standard Modulio 4 – opcional užbaigtas (2026-02-12):** QA – lietuviškos raidos peržiūra skaidrėms 70 (4.7) ir 67.5 (RELEASE_QA_CHECKLIST §5); M4 = brand dokumentuotas DESIGN_GUIDE §5 ir MODULIO_4_ANALIZE; GAP_ANALIZE §2 prioritetas atnaujintas. UI_UX – fazių etiketės auditas, `ai-detectors` priderintas į Teorija (ModuleView typeToPhase). CODE_REVIEW – build ir lint OK. Žr. GOLD_STANDARD_MODULIAI_4_5_6_GAP_ANALIZE.md, CHANGELOG [Unreleased].
-- **TODO planas (2026-02-12):** M-DS1 – HierarchySlide spalvų taisyklė (brand 1–4, emerald 5–6; ContentSlides.tsx + modules.json). P3 – HomePage badge „DI Promptų Inžinerijos Mokymas“ sumažintas vizualinis svoris (slate, text-xs). F2-1/F2-2 – patvirtinta įgyvendinta. A-S3 – Design System: Card, CTAButton, Banner, Table (`src/components/ui/`).
+### Top priority – projekto lygio sprendimas
 
----
+*(Šiuo metu atvira top-priority užduočių nėra.)*
 
-## 2. Prioritetai – likę darbai
+**P1:** visi atlikti 2026-02-18 (žr. CHANGELOG).
 
-### P1 – Aukštas
+### Artimiausi darbai (prioriteta tvarka)
 
-*(Visi anksčiau P1 punktai įgyvendinti.)*
+**P1 – release / kokybė (prieš release būtina)**  
+*Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.56, M6 sk.64) – pažymėti #1, #2, #4, #5 atlikta.*
 
-### Refaktoringas ir konsolidacija (MUST / SHOULD)
+| # | Užduotis | Agentas / pastaba |
+|---|----------|-------------------|
+| 1 | **M5 PDF – rankinė patikra** – M5 baigti testą → „Parsisiųsti Modulio 5 atmintinę (PDF)“ → atsidaryti PDF: ą, ė, į, š, ų, ū, ž teisingai. NotoSans production. Žr. RELEASE_QA_CHECKLIST §5d, PDF_DOWNLOAD_TESTING.md. | QA_AGENT / ranka |
+| 2 | **M6 PDF – rankinė patikra** – skaidrė 64 + ModuleCompleteScreen → PDF, lietuviškos raidės. RELEASE_QA_CHECKLIST §5d. | QA_AGENT / ranka |
+| ~~3~~ | ~~**M4 footer 65.8 / 66.9**~~ – prieš release: M4 skaidrių eilė, footer numeriai (34, 35). | ✅ 2026-03-11 – pridėti footeriai 66→35, 66.25→36; 65.8 jau 34. |
+| 4 | **Rankinė peržiūra M4 skaidrės 56** – „RAG: kas tai ir pabandyk“: navigacija, LlmArch tabai, copyable promptas, „Peržiūrėti pilname dydyje“. Žr. RELEASE_QA_CHECKLIST §5d. | QA_AGENT / ranka |
+| 5 | **Rankinė peržiūra M6 skaidrės 64** – „Pagalbinis promptas: duomenų tvarkymo sistema“, Kopijuoti, lietuviškos raidės. Žr. RELEASE_QA_CHECKLIST §5d. | QA_AGENT / ranka |
 
-> **Šaltinis:** `docs/development/CODEBASE_REFACTORING_ANALYSIS.md` – gili kodo bazės analizė (eilučių skaičiai, must–should–want).
+**P2 – turinys ir dokumentacija**  
+| # | Užduotis | Agentas / pastaba |
+|---|----------|-------------------|
+| ~~6~~ | ~~MODULIO_4_SKAIDRIU_EILES.md~~ – atnaujinta: viena skaidrė id 56 (4.1c+4.2 suliesta), pašalinta 4.2 eilutė. | ✅ 2026-03-11 |
+| ~~7~~ | ~~M5 skaidrė 47 KISS-MARRY-KILL~~ – collapsible Master + Pilnas turinys; viršuje 1 copyable (8 skaidrių). | ✅ 2026-03-11 |
+| ~~8~~ | ~~M5 paprasta kalba~~ – brief, draft, sprint, use case paaiškinta/pakeista. | ✅ 2026-03-11 |
+| ~~9~~ | ~~65.8 ir 66.9 – paprasta kalba~~ – subtitle, recap, nextSteps pataisyta. | ✅ 2026-03-11 |
+| ~~10~~ | ~~modules.json – Jūs → Tu~~ – Prisiminkite, pabandykite, palyginkite pataisyta. | ✅ 2026-03-11 |
+| ~~11~~ | ~~M4 section-break rankinė peržiūra~~ – dokumentuota TEST_REPORT. | ✅ 2026-03-11 |
+| ~~12~~ | ~~Rankinė peržiūra M5~~ – dokumentuota TEST_REPORT. | ✅ 2026-03-11 |
+| ~~13~~ | ~~Path-step žodynėlio patikra~~ – 10 terminų (71.1–71.5) patvirtinta, dokumentuota. | ✅ 2026-03-11 |
 
-#### MUST (būtina)
+**P2 – UX audito įgyvendinimas**  
+| # | Užduotis | Agentas / pastaba |
+|---|----------|-------------------|
+| UX-1 | **UX audito planas** – Faze 1 įgyvendinta (UX_AUDIT_IMPLEMENTATION_PLAN Faze 1 [x]). Toliau: mobile „Dabar“ blokas – žr. `docs/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` §5; bendras planas „Vartotojui paruošta įrankis“ – `.cursor/plans/vartotojui_paruošta_įrankis_cfe90c31.plan.md` (Faze 1–2 padaryta, Faze 3 – Mobile QA checklist TEST_REPORT). | CODING + DATA |
 
-| # | Užduotis | Failas | Pastaba |
-|---|----------|--------|---------|
-| M-R1 | **AllSlides.tsx (3315 eil.) padalinti** – vienas failas su 35 skaidrių komponentais + helperiais | `src/components/slides/types/AllSlides.tsx` | ✅ Įgyvendinta: ContentSlides.tsx, BlockSlides.tsx, TestPracticeSlides.tsx, shared/renderBody + RecognitionExerciseBlock; AllSlides – barrel. |
+**P2 – optional / backlog**  
+| # | Užduotis | Agentas / pastaba |
+|---|----------|-------------------|
+| 14 | **RAG optional (žr. §3)** – id 61, 63/63.7, Duomenų analizės kelio nuorodos – atskiruose žingsniuose arba backlog. | CONTENT + DATA |
+| 15 | **PDF doc** – PDF_GENERATION_AGENT_MEMORY.md, DOCUMENTATION_INDEX, .cursor/rules/pdf-generation.mdc – jei trūksta. Ranks – M5/M6 (#1, #2). | QA_AGENT |
 
-#### SHOULD (labai pageidautina)
-
-| # | Užduotis | Failas | Pastaba |
-|---|----------|--------|---------|
-| S-R1 | **App.tsx (524 eil.)** – išskirti navigaciją ir temą | `src/App.tsx` | ✅ Įgyvendinta: AppNav.tsx, utils/useTheme.ts. |
-| S-R2 | **ModuleView.tsx (470 eil.)** – išskirti skaidrių navigaciją ir completion ekraną | `src/components/ModuleView.tsx` | ✅ Įgyvendinta: useSlideNavigation, ModuleCompleteScreen.tsx. |
-| S-R3 | **QuizPage.tsx (445 eil.)** – išskirti būseną ir rezultatų ekraną | `src/components/QuizPage.tsx` | ✅ Įgyvendinta: useQuizState, QuizResultsView.tsx. |
-| S-R4 | **(Optional) types/modules.ts (458 eil.)** – padalinti tipus | `src/types/modules.ts` | modules-core.ts + modules-slide-content.ts + re-export. Žemas prioritetas. |
-
-### Modulio 3 (Praktinis Pritaikymas) UI/UX – Top praktikos
-
-> **Šaltinis:** `docs/MODULIO_3_UI_UX_GERIAUSIOS_PRAKTIKOS.md`. **Planas ir agentų seka:** `docs/development/PLAN_MODULIO_3_UI_UX.md`.
-
-**Agentų seka:** DATA_AGENT (optional, CTA/tekstai) → **CODING_AGENT** (+ UI_UX_AGENT) → CODE_REVIEW_AGENT → QA_AGENT.
-
-| Fazė | # | Užduotis | Sritis | Statusas |
-|------|---|----------|--------|----------|
-| **1** | **#8** | Scenarijų lentelė su progresu – Praktikos Įvade 4 kortelės (Ne pradėta/Vykdoma/Užbaigta), „X iš 4“, klikas → skaidrė | CODING | ✅ 2026-02-10 |
-| 1 | **#10** | Konkretūs CTA – „Pereiti prie Scenarijaus 2/3/4“, „Į Praktikos santrauką“ (vietoj bendro „Toliau“) | CODING | ✅ 2026-02-10 |
-| 1 | **#9** | Hint tooltip – prie PracticalTask žingsnių rodyti `step.hint` kaip tooltip | CODING | ✅ 2026-02-10 |
-| **2** | **#1** | Tabs/accordion scenarijui – Kontekstas, Duomenys, Apribojimai, Rezultatas (ne viskas iš karto) | CODING + UI_UX | ✅ 2026-02-10 |
-| 2 | **#6** | 6 blokų checklist – META, INPUT, … užpildymo vizualizacija virš textarea | CODING | ✅ 2026-02-10 |
-| **3** (backlog) | **#2** | Drag-and-drop „Surinkite 6 blokus“ (Scenarijus 1) | CODING + UI_UX | Backlog |
-| 3 | **#4** | Stepper su atskirais laukais (po bloką) vietoj vieno textarea | CODING + DATA | Backlog |
-
-**Įgyvendinimo eilė:** #8 → #10 → #9 → #1 → #6 – **įgyvendinta 2026-02-10.** #2 ir #4 – vėlesnė iteracija.
-
-### Moduliai 1–2–3 UX strategija (2026-02-11)
-
-> **Ataskaita:** `docs/MODULIAI_1_2_3_UX_STRATEGIJA_ATASKAITA.md`. **Seka:** `docs/development/AGENT_SEQUENCE_MODULIAI_1_2_3_UX_STRATEGIJA.md`.
-
-| Prioritetas | Užduotis | Dydis | Sritis | Statusas |
-|-------------|----------|-------|--------|----------|
-| P2 | Pirmos skaidrės hook ir 30 s veiksmas – kontekstas „2x“ arba diskomforto pažadas + aiškus CTA | M | CONTENT + CODING | ✅ 2026-02-11 |
-| P3 | Modulio 3 practice-intro cover su emerald akcentu | S | UI_UX / CODING | ✅ 2026-02-11 |
-| P3 | Modulio 2 „X iš 15“ sticky arba mini-progress virš klausimų | S | CODING | ✅ 2026-02-11 |
-
-### Pagrindinis puslapis (HomePage) – pre-release įvertinimas (2026-02-11)
-
-> **Šaltinis:** Gilus įvertinimas pagal Elucidat, articulat UX tyrimus. CTA + progreso logika, baigto vartotojo kelionė.
-
-| Prioritetas | Problema | Veiksmas | Statusas |
-|-------------|----------|----------|----------|
-| **P0** | CTA „Tęsti mokymą“ kai 100% (6/6 moduliai baigti) – semantiškai neteisinga | CTA turi būti priklausomas nuo būsenos: **„Į apklausą →“** (kai moduliai baigti, apklausa ne); **„Peržiūrėti modulius“** arba „Pakartoti mokymą“ (kai viskas baigta) | ✅ 2026-02-11 |
-| **P1** | Progreso tekstas „X/Y moduliai baigti“ rodomas **po** CTA – kognityvinė prieštara | Progresą rodyti **virš** CTA; arba kai 100% – trumpas sveikinimas vietoj progreso | ✅ 2026-02-11 |
-| **P1** | ModulesPage: „Visi moduliai baigti!“ – nėra CTA mygtuko į apklausą | Pridėti mygtuką „Į apklausą“ po completion message | ✅ 2026-02-11 |
-| **P2** | Zap ikona hero ikonos kampe – mažuose ekranuose gali atrodyti kaip „4“ | Pašalinti arba pakeisti į aiškesnį badge (pvz. „~45 min“) | ✅ 2026-02-11 |
-| **P2** | Features sekcija: CTA visada „Pradėti mokymus dabar“ – neadaptyvus | Kai 100% – „Peržiūrėti modulius“ arba „Pakartoti mokymą“ | ✅ 2026-02-11 |
-| **P3** | Badge „DI Promptų Inžinerijos Mokymas“ – galimas redundantiškumas | Sumažinti vizualinį svorį arba perkelti į subtitle | ✅ 2026-02-12 |
-
-**Techninis planas:** `HomePage.tsx` – sąlyginis CTA pagal `modulesCompleted`, `progress.quizCompleted`; `onStart` gali nukreipti į quiz vietoj modules. `ModulesPage.tsx` – mygtukas „Į apklausą“ kai completedCount === totalModules. **Įgyvendinta 2026-02-11.**
-
-### Analizės verdiktas – MUST / SHOULD (turinio kontraktas, KPI, remediation)
-
-> **Šaltinis:** [docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md](docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md) – gili analizė pagal CHANGELOG: kas lūžta pirmiausia, kas padaryta gerai, prioritetai.
-
-#### MUST (jei nedarai – pradės skaudėti artimiausiai)
-
-| # | Užduotis | Pastaba |
+### P2 – darbai eilėje
+| # | Užduotis | Agentai |
 |---|----------|---------|
-| A-M1 | **Turinio kontraktas: JSON Schema + CI validacija** – `modules.json` (ir optional `promptLibrary.json`, `glossary.json`) schema (pvz. Ajv), CI step: fail build if invalid. Required per slideType (pvz. content-block → sections[]). | Mažiau fallback’ų, mažiau tylių klaidų. ✅ **2026-02-11:** `scripts/schemas/` (modules, promptLibrary, glossary), `scripts/validate-schema.mjs` (Ajv); `npm run validate:schema`, `prebuild` prieš build. content-block → content.sections[] required. |
-| A-M2 | **Vienas mokymosi KPI + minimalus event tracking** – pvz. `module_completion_rate` arba `time_to_first_action_success` (pirmas CTA/copy/submit). Paprastas event log (localStorage + optional export); nereikia Mixpanel iš karto. | Be to „atrodo geriau“ ≠ „veikia geriau“. ✅ **2026-02-11:** `src/utils/learningEvents.ts` – eventai `module_completed`, `first_action_success`; log į localStorage; `getLearningEvents()`, `exportEventsAsJson()`, `downloadEventsExport()`; KPI: `getModuleCompletedCount()`, `getFirstActionSuccessTimestamp()`. Integracija: `App.tsx` (handleModuleComplete, handleTaskComplete). |
-| A-M3 | **Remediation uždara kilpa** – „Peržiūrėti skaidrę X“ turi turėti: **grįžti į testo rezultatą** ir (ideal.) „pakartok N klausimų iš šitos kategorijos“. Dabar deep link į Modulį 1 jau yra; trūksta grįžimo ir „pakartok“. | ✅ **2026-02-11:** Grįžimas: „Grįžti į testo rezultatą“ Modulyje 1 (remediationFrom + onReturnToRemediation). „Pakartok 3 kl.“ – žemėlapyje po kategorija mygtukas, inline mini-quiz (MCQ/true-false). questionPoolSelector.selectQuestionsByCategory. |
-| A-M4 | **Content QA gate prieš release** – 5 min checklist: broken links, 1 mobile + 1 dark mode sanity, 1 a11y smoke. Dokumentuoti ir vykdyti prieš release. | ✅ **2026-02-11:** `docs/development/RELEASE_QA_CHECKLIST.md` – 4 skyriai (broken links, mobile, dark mode, a11y smoke). |
+| 1 | **M5 skaidrė 47 – artefakto atsisiuntimas** – funkcija fiksuota tekste, įgyvendinti | CODING + DATA |
+| 2 | **Testų infrastruktūra T2** – po Vitest `process.on` fix peržiūrėti/atnaujinti testus (App, QuizPage, progress, useAutoSave) | CODING + QA |
+| 3 | **S-R4 (optional)** – `src/types/modules.ts` padalinti (modules-core, modules-slide-content, re-export) | CODING |
+| 4 | **Mobile P2** – TestPracticeSlides, RadarChart, PracticeScenarioHubSlide, CharacterCard: 375px touch spot check (mygtukai/kategorijos ≥44px). Susieta su planu „Vartotojui paruošta“ Faze 1–2 (sticky kontekstas, spacer safe-area, body text-base, max 2 badge; „Pereiti prie veiksmo“, sticky lentelių stulpelis, slide dots mask, Tęsti label). Žr. `docs/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` §5, `docs/archive/development/MOBILE_UI_UX_AUDIT.md` §6 P2. | UI_UX / CODING |
+| L1 | **Lentelių auditas** – visos lentelės (9 skaidrės/sekcijos) pagal LENTELIU_STANDARTAS.md §4 | UI_UX_AGENT |
+| L2 | **comparisonStyle / body** – 2 stulpelių palyginimo lentelėms pridėti `comparisonStyle: true` + trumpą `body` (LENTELIU_STANDARTAS §5) | DATA_AGENT |
+| L3 | **Min-width ir header** – palyginimo lentelės: min-width, skirtingi header fonai; Tailwind safelist jei reikia | CODING_AGENT |
+| L4 | **Lentelių spot-check** – po L1–L3: nesuspausta, header skiriasi, body rodomas (CODE_REVIEW pagal LENTELIU_STANDARTAS §4) | CODE_REVIEW_AGENT |
 
-#### SHOULD (stipriai pakels kokybę)
-
-| # | Užduotis | Pastaba |
+### P3 – žemesnis prioritetas
+| # | Užduotis | Agentai |
 |---|----------|---------|
-| A-S1 | **6 blokų checklist: iš keyword → structure check** – aptikti sekcijas (META:/INPUT: heading’ai arba atskiri paragrafai). Rodyti „missing blocks“ su 1 sakinio pavyzdžiu. Dabar: `PracticalTask.tsx` – tik `answer.toUpperCase().includes(block)`. | ✅ **2026-02-12:** `src/utils/sixBlockStructure.ts` (detectBlocks, BLOCK_EXAMPLES); PracticalTask – checklist pagal struktūrą + „Trūksta blokų“ su pavyzdžiu; unit testai. |
-| A-S2 | **A11y automatika** – axe-core bent smoke kelioms skaidrėms; rankomis nepagausi regresijų. | ✅ **2026-02-12:** axe-core; `src/components/__tests__/a11y.smoke.test.tsx` – HomePage smoke (0 serious/critical). |
-| A-S3 | **Vienas Design system** – Card, Banner, Table, CTAButton su variantais; jau pradėta (blockVariant, CTA gradient). Įtvirtinti vieną rinkinį. | ✅ 2026-02-12: src/components/ui/ Card, CTAButton, Banner, Table (variantai); design-tokens.ts; nauji komponentai naudoti progresyviai |
-| A-S4 | **Optional → „Fast track“ toggle** – rodyti/tęsti praleidžiant optional skaidrės automatiškai. Labai pakels completion rate. | ✅ **2026-02-12:** useSlideNavigation skipOptional, getNextNonOptionalIndex; ModuleView Fast track checkbox (localStorage); unit testai. |
+| 1 | **Savitikros M4** (4.2-check, 4.3-check, 4.4-check) – diagnostika ir nuorodos „Jei klaidingai – žr. skaidrę X“ ne visur | CONTENT + DATA |
+| 2 | **CoVe, chunk, bridžinė, „Pataisyk promptą“** – likusio turinio sinchronas su SOT/modules.json | CONTENT + DATA |
+| 3 | **Schemų vizualinė patikra** (SCHEME_AGENT §5) – custom_gpt_process, RAG, žinių patikrinimas; tik patikra | CODE_REVIEW / SCHEME_AGENT |
+| 4 | **Savitikra 68.5** – 1–2 klausimai apie DI detektorius (po skaidrės 201) | CONTENT + DATA |
+| 5 | **Mobile P3** – pilnas mobile audit (1–2 skaidrės/modulį); LlmArchDiagram 375px. MOBILE_UI_UX_AUDIT §6 P3. | UI_UX / CODE_REVIEW |
+| 6 | **ProcessStepper duomenys** – optional: perkelti CUSTOM_GPT_STEPS / CUSTOM_GPT_STEPS_EN į bendrą duomenų failą arba i18n, kad vengti dubliavimo struktūroje. | DATA_AGENT / CODING |
 
-**Rekomenduojama seka:** A-M1 (schema) → A-M2 (KPI) → A-M3 (remediation return) → A-M4 (QA gate) → A-S1 (6 blokų structure) → A-S4 (Fast track) → A-S2 (a11y) → A-S3 (design system).
-
-### Dizaino gidas Moduliai 1–3 (vizualinis suvienodinimas)
-
-> **Šaltinis:** `docs/development/DESIGN_GUIDE_MODULIAI_1_2_3.md`. Adresuoja vartotojų nusiskundimus „per daug spalvinga“, „per daug chaoso“. Design System v0.1, modulių identitetas (1=brand, 2=slate, 3=accent), prieš/po rekomendacijos.
-
-**Agentų seka:** UI_UX_AGENT (gairės) → **CODING_AGENT** (įgyvendinimas) → CODE_REVIEW_AGENT → QA_AGENT.
-
-| Prioritetas | # | Užduotis | Statusas |
-|-------------|---|----------|----------|
-| **Must (1 sprintas)** | M-DS1 | Spalvų taisyklė: max 2 semantinės + 1 brand/accent per skaidrę; Summary/Hierarchy pataisymai | ✅ 2026-02-12 |
-| Must | M-DS2 | Vienas gradientas per skaidrę (hero ARBA CTA); Infographic be violet, Transition takeaway – neutral | ✅ 2026-02-12 |
-| Must | M-DS3 | Spacing/radius sistema – taikyti ModuleView, Summary, Action intro (4.3, 4.4) | ✅ 2026-02-12 |
-| Must | M-DS4 | Confetti 2 spalvos (brand, accent); emoji → Lucide infographic kur įmanoma | ✅ 2026-02-12 |
-| **Should (2 sprintas)** | S-DS1 | Tipografijos skalė: vienas H1 per skaidrę, auditas (4.2) | ✅ 2026-02-12 |
-| Should | S-DS2 | Modulių identitetas: M2 slate, M3 accent tik CTA (5) | ✅ 2026-02-12 |
-| Should | S-DS3 | Kortelių skaičius: Summary max 3–4 blokai; palyginimas 2 kortelės + takeaway | ✅ 2026-02-12 |
-| Should | S-DS4 | Šešėliai: vienas lygis shadow-md default, shadow-lg hover – auditas | ✅ 2026-02-12 |
-| **Nice** | N-DS1 | Float animacijos – išjungti ant secondary (badge „~45 min“) | ✅ 2026-02-12 |
-| Nice | N-DS2 | Design tokens failas (spacing, radius) vienoje vietoje | ✅ 2026-02-12 |
-| Nice | N-DS3 | Gidas eksportuoti į Gamma / Figma | Liko |
-
-**Greiti laimėjimai (low effort):** Infographic hero `to-violet-600`→`to-brand-700`; Summary confetti tik brand+accent; Transition takeaway → neutral blokas; HomePage orbs – vienas orb; Action intro CTA palikti. **QA:** Vizualinis + UX checklist doc §7.4; naudoti prieš release kartu su RELEASE_QA_CHECKLIST.
-
-### Context Engineering (Agent-Skills → Promptų anatomija)
-
-> **Šaltinis:** `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md` – bottom line, 12 best practices, mapping, target arch, 2 sav. planas. Artefaktai: `docs/development/context-engineering/` (context_budget.md, sot_index.json, memory_schema.md, eval_rubric.md).
-
-**Prioritetas:** P2 (low-risk, high-ROI; stabilizacija konteksto ir SOT). **Leidžiama:** Q_A (QA_AGENT) – dokumentacijai, checklist atnaujinimui, eval_rubric susiejimui, galutiniam suvedimui.
-
-| Fazė | # | Užduotis | Done criteria | Statusas |
-|------|---|----------|---------------|----------|
-| **Day 1–2** | CE-1 | Naudoti **context_budget.md** – agentams konteksto dydis, load-only-when, placement | Failas naudojamas; orchestrator arba doc nuoroda | ✅ Failai sukurti |
-| Day 1–2 | CE-2 | Naudoti **memory_schema.md** – session notes vs long-term konvencijos | Viena release/MEMORY pastaba pagal schemą | ✅ 2026-02-12 (MEMORY.md) |
-| Day 1–2 | CE-3 | Susieti **eval_rubric.md** su release – RELEASE_QA_CHECKLIST nuoroda; vienas rankinis perbėgimas pagal rubric vienam moduliui | Nuoroda į rubric; rezultatas TEST_REPORT arba changelog | ✅ 2026-02-12 (RELEASE_QA_CHECKLIST §7) |
-| **Week 1** | CE-4 | **sot_index.json** – validuoti, kad visi 6 moduliai ir keliai teisingi; agentų užduotims „kur SOT“ naudoti index | JSON validus; agentas naudoja index prieš pilną SOT | ✅ 2026-02-12 (validate-sot-index.mjs, README, orchestrator) |
-| Week 1 | CE-5 | Orchestrator: „Modulių/skaidrių scope – žr. sot_index; pilną SOT krauk tik kai redaguoji tą modulį“ | AGENT_ORCHESTRATOR arba .cursor rule atnaujinta | ✅ Nuoroda į sot_index ir context-engineering įdėta |
-| Week 1 | CE-6 | **context-engineering/README.md** – kada skaityti kurį artefaktą | Naujas narys randa „kur SOT registras“ &lt;1 min | ✅ Sukurta |
-| **Week 2 (optional)** | CE-7 | Optional: gating iš sot_index (publicModules, unlocksAfter) – tik jei ROI&gt;rizika | Build OK; production gating nesulūžta | Backlog |
-| Week 2 (optional) | CE-8 | Optional: vienas heuristikas iš eval_rubric (pvz. lietuviškos arba CTA pattern) – CI arba pre-commit | Script veikia; 0 false positive esamame turinyje | Backlog |
-
-**Pitfalls:** (1) sot_index ir modules.json drift – apibrėžti savininką arba sync taisyklę. (2) Eval rubric neįgyvendinamas – pririšti prie release (pvz. vienas žmogus pildo prieš deploy).
-
-### P2 – Vidutinis
-
-| # | Užduotis | Sritis | Pastaba |
-|---|----------|--------|--------|
-| 1 | **Skaidrių tipų: hardcoded → content-driven** (intro, hierarchy, comparison, summary, practice-summary) | CONTENT → DATA → CODING | ✅ Įgyvendinta: intro, hierarchy (id 4), comparison (id 13), summary (id 14), practice-summary (id 35). Žr. SKAIDRIU_TIPU_ANALIZE §4.1 |
-| 2 | **Savitikros skaidrės Modulyje 4** – 2–3 tarpinės savitikros po RAG, Deep research, tokenų | CONTENT + UI | ✅ Įgyvendinta: 4 warm-up-quiz (id 63.5, 65.7, 66.5 – po 5 kl.; id 68.5 – 4 kl. manipuliacijos+haliucinacijos) |
-| 3 | **Asmeninio konteksto miniužduotys** – „Pagalvokite apie savo darbe“ po RAG ir manipuliacijų | CONTENT | ✅ Įgyvendinta: skaidrė 58 (RAG) + skaidrė 67 (Manipuliacijos) – accent blokai |
-| 4 | **„Pataisyk promptą“** – bent viena užduotis (silpnas/šališkas promptas → pataisyti) | CONTENT | ✅ Įgyvendinta: skaidrė 67 – 2 šališki promptai + pataisyti variantai |
-| 5 | **Prezentacijos artefakto atsisiuntimas** – Modulio 5 skaidrė 47 (Optional: 8 skaidrių prezentacija): vartotojas ruošia artefaktą (struktūra/turinys), kurį galės atsisiųsti; **funkciją įgyvendinti ateityje** | CODING + DATA | Skaidrėje fiksuota: artefaktas + „atsisiuntimo funkcija bus įgyvendinta ateityje“ |
-| 6 | **Skaidrių UI/UX konsistencija (T1/T2/T6)** – blokų antraščių hierarchija, subtitle dark kontrastas, tap highlight brand | UI_UX + CODING | ✅ **T1 done** (6 inner H3 text-xl→text-lg), **T2 done** (dark:text-gray-300→200, 4 failai), **T6 jau OK** (brand spalva index.css). + **P1 mobile grid fix** (7 grid-cols-2→responsive, 3 failai). Žr. CHANGELOG 2026-02-09. |
-
-### Skaidrė „5 principai“ (4.1a4) – user journey (2026-02-08)
-
-> **Šaltinis:** `docs/development/USER_JOURNEY_4_1a4_5_PRINCIPAI.md` – kritinis įvertinimas (user journey, best practices 2026).
-
-| # | Užduotis | Sritis | Prioritetas |
-|---|----------|--------|--------------|
-| UJ-1 | **„Kur paleisti“ promptą** – į „Pabandykite“ arba templateLabel pridėti: „Atidarykite ChatGPT, Claude arba kitą DI įrankį…“ | CONTENT → DATA | ✅ Įgyvendinta: Pabandykite body su „Atidarykite ChatGPT, Claude arba kitą DI įrankį.“ |
-| UJ-2 | **Subtitle su „kur esu“** – „Po 4 dedamųjų – penki veiksmai… Galėsite pats jį įvertinti.“ | CONTENT → DATA | ✅ Įgyvendinta |
-| UJ-3 | **Transition į skaidrę 48 (RL/RLHF)** – skaidrėje 49 sekcija „Toliau“: „Kitoje skaidrėje – … RL/RLHF.“ | CONTENT → DATA | ✅ Įgyvendinta |
-| UJ-4 | **(Optional) „Nukopijavau“** – checkbox arba mygtukas „Pažymėjau, kad nukopijavau“ (ne į progresą, tik UX micro-win) | CODING | P3 |
-| UJ-5 | **(Optional) Nuoroda į Modulį 1** – collapse „Priminti 5 principus iš Modulio 1?“ su 1–2 sakiniais | CONTENT + CODING | P3 |
-
-### Modulio 4 – MUST (būtina) – geriausios praktikos
-
-| # | Užduotis | Kur taikyti | Šaltinis |
-|---|----------|-------------|---------|
-| M1 | Santraukoje (4.7) išlaikyti ryšius tarp temų (RAG, tokenai, patikrinimas, manipuliacijos) | SOT 4.7 | `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` |
-| M2 | RAG (4.2): visur reikalauti „Jei nėra kontekste – parašyk Nežinau“ ir citavimo; patikrinti SOT ir UI | SOT 4.2 | ✅ Patikrinta – SOT ir modules.json (4.2, 4.6) turi reikalavimą |
-| M3 | 4.6 (haliucinacijos): anti-haliucinacinis šablonas ir 4–5 taisyklės visada matomi (CopyButton, nepaslėpti) | SOT 4.6, UI | ✅ ContentBlockSection.copyable + skaidrė 68 (id 68) |
-| M4 | 4.5 (manipuliacijos): atskirti „verslo manipuliacija“ nuo „saugumo“ – pridėti skaidrę/collapsible „Saugumas: prompt injection ir jailbreak“ (OWASP #1) | SOT 4.5 | ✅ SOT + modules.json (id 67.5); žr. PLAN_AGENTAI_DARBAI.md |
-
-### Modulio 4 – SHOULD (labai pageidautina) – geriausios praktikos
-
-| # | Užduotis | Kur taikyti | Šaltinis |
-|---|----------|-------------|---------|
-| S1 | Prieš RAG (4.2): 1–2 sakiniai apie konteksto langą/tokenus + nuoroda į 4.4; patikrinti, ar rodoma UI | SOT 4.2, UI | ✅ modules.json id 58 – blokas „Kontekstas ir tokenai“ |
-| S2 | RAG duomenų paruošimas (4.2b): įtraukti „chunk size“ / fragmentų dydžio gairę (logiški fragmentai, retrieval tikslesnis) | SOT 4.2b | ✅ SOT + modules.json (id 62) |
-| S3 | 4.6: pastraipa arba „Giluminiam“ blokas apie Chain-of-Verification (CoVe) | SOT 4.6 | ✅ SOT + modules.json skaidrė 68 (id 68) – sekcija „Giluminiam: Verifikacijos grandinė (CoVe)“ |
-| S4 | Bridžinė praktika po 4.3: viena 5–10 min užduotis (RAG + Deep research + šaltiniai) | SOT po 4.3a | ✅ SOT + modules.json id 65.5 + MODULIO_4_SKAIDRIU_EILES |
-| S5 | Optional/BONUS skaidres žymėti nuosekliai (4.1a2-viz, 4.1-workflow-ex, 4.1a5-style, 4.1a5-practice, 4.1b2, 4.2a-academic) | SOT 2.1 lentelė | ✅ „Optional:“ prefix prie 6 skaidrių |
-| S6 | Ilgoms skaidrėms – trumpas UI pavadinimas (pvz. „RAG: memory ir įrankiai“) | SOT 2.1 / 2.2 | ✅ shortTitle schema + 6 skaidrių + ModuleView |
-
-### Iš vartotojo testų (Custom GPT – GPT proceso skaidrė sutvarkyta ✅)
-
-| # | Užduotis | Sritis | Statusas |
-|---|----------|--------|----------|
-| 5 | **Custom GPT: „ką daryti dabar“ + mini užduotys** – checklist jau yra; mini input, vizualus žingsnio užbaigimas (✔️) | CONTENT + CODING | ✅ Padaryta |
-| 6 | **Custom GPT: CTA ir uždara navigacija** – CTA „Toliau: X“; uždara nav (Ankstesnis/Kitas) | CONTENT + CODING | ✅ Padaryta |
-| 7 | **Custom GPT: geri/blogi pavyzdžiai** – prie kiekvieno žingsnio 🟢/🔴/⚠️ | CONTENT | ✅ Padaryta |
-| 8 | **Custom GPT: vizualinė kalba** – 👤 Tu, 🤖 GPT, 🎯 Tikslas; viena akcentinė spalva | CONTENT + CODING | ✅ Padaryta |
-| 9 | **Custom GPT: NICE** – progreso santrauka, peršokimas tarp žingsnių, refleksijos ekranas | CONTENT + CODING | ✅ Padaryta |
-
-### Testų infrastruktūra (Vitest/setup) – reikia gilesnio įsigilinimo
-
-| # | Užduotis | Sritis | Pastaba |
-|---|----------|--------|---------|
-| T1 | **Vitest klaida:** `TypeError: Cannot read properties of undefined (reading 'on')` ❯ src/test/setup.ts:64 (afterEach/cleanup). Visi 5 failai: App.integration, App.quiz.integration, QuizPage, progress, useAutoSave. Tests: no tests. | CODING + diagnozė | **Padaryta:** src/test/setup.ts – process/process.on stub (globalThis, global, vi.stubGlobal). Vartotojo aplinkoje (Windows, lokaliai) vis tiek lūžta. **Gilesnis įsigilinimas:** Node versija, Vitest pool (threads/forks), jsdom versija, ar klaida iš cleanup()/@testing-library. |
-| T2 | **Galimybė:** Testai rašyti anksčiau nei sukurta vėlesnė sistemos dalis – stringai, selektoriai ar prielaidos gali būti pasenę. Po setup klaidos išsprendimo – peržiūrėti ir, jei reikia, **perrašyti ar atnaujinti testus** (App, QuizPage, progress, useAutoSave). | CODING + QA | Žr. TEST_REPORT.md 2026-02-09. |
-
-### P3 – Žemas / Backlog
-
-| # | Užduotis | Sritis |
-|---|----------|--------|
-| 9a | Favicon atnaujinimas – naujas ikonas / brand atpažinimas | UI_UX / CODING |
-| 10 | Block skaidrės content-driven (meta, input, output) – optional refaktoras | DATA + CODING |
-| 11 | „Kaip naudoti modulį“ – minimalus vs pilnas kelias (Moduliai 4 ir 6) | CONTENT |
-| 12 | Žodynėlis Moduliui 4 – 8–10 terminų (RAG, tokenas, …) | CONTENT | Dalinai: +4 terminai (RL, Paskatinamasis mokymas, Atlygis, Agentas DI kontekste); RLHF def. pataisyta |
-| 13 | Alternatyvūs projekto kontekstai Modulyje 6 – 1–2 (HR, produktas) | CONTENT |
-| 14 | Monitoring (Sentry, GA4), PWA, Eksportas/Importas, Sertifikatas, Multi-language | CODING / CONTENT |
-| 15 | **Savitikra 68.5: pridėti 1–2 klausimus apie DI detektorius** – po slide 201 (DI turinio detektoriai) quiz 68.5 turėtų apimti klausimą apie detektorius (pvz. „Kam skirti DI turinio detektoriai?", „Kuris detektorius yra lietuviškas?"). Šiuo metu 68.5 turi tik manipuliacijos/haliucinacijos klausimus. | CONTENT + DATA |
-
-### Modulio 2 testo tobulinimas – Fazė 2 (P2)
-
-> **Šaltinis:** Modulio 2 interaktyvaus testo pertvarka v2.5.0 (2026-02-09). Fazė 1 atlikta: 5 klausimų tipai, progressive hints, gamifikacija, per-bloko žemėlapis.
-
-| # | Užduotis | Sritis | Pastaba |
-|---|----------|--------|---------|
-| F2-1 | **Klausimų pool (question bank)** – kiekvienai kategorijai 3–5 klausimų (vietoj 1–2), atsitiktinis parinkimas kiekvieną kartą. Pakartojant testą – matysi kitus klausimus. | DATA + CODING | ✅ 38 klausimų pool; questionPoolSelector atsitiktinis 15 parinkimas pagal kategorijas |
-| F2-2 | **Radar/spider chart** rezultatuose – vizualus per-bloko žinių žemėlapis (8 ašys: Meta, Input, Output, Reasoning, Quality, Advanced, Workflow, Technikos). SVG arba lightweight chart lib. | CODING + UI_UX | ✅ RadarChart.tsx; TestResultsSlide – „Žinių radaras pagal blokus“ |
-| F2-3 | **Remediation deep links** – „Peržiūrėti skaidrę X" mygtukai rezultatuose, kurie atidaro konkrečią Modulio 1 skaidrę | CODING | ✅ Įgyvendinta: onGoToModule(moduleId, slideIndex?), ModuleView initialSlideIndex, tiesioginis atidarymas be resume prompt. |
-| F2-4 | **Score animation** – rezultatų procento „count up" animacija (0 → X% per 1.5s) | CODING + UI_UX | ✅ useCountUp (Moduliai 2, 5 TestResultsSlide + QuizResultsView CircularProgress) |
-
-### Modulio 2 testo tobulinimas – Fazė 3 (P3)
-
-> **Šaltinis:** E-learning tyrimai – Retrieval Practice (Karpicke 2025), Spaced Repetition (MIT OpenLearning), Self-Determination Theory.
-
-| # | Užduotis | Sritis | Pastaba |
-|---|----------|--------|---------|
-| F3-1 | **Confidence indicator** – prieš atsakant: „Kaip esate tikri?" (Tikras / Spėju / Nežinau). Metakognityvinis elementas; rodomas rezultatuose. | CODING + CONTENT | ✅ Įgyvendinta: ConfidenceSelector, būtina pasirinkti prieš atsakant, rezultatuose rodomas „Pasitikėjimas: …". |
-| F3-2 | **Spaced repetition hooks** – Moduliuose 3, 4, 6 automatiškai įterpti 2–3 kartojimo klausimus iš Modulio 2 (warm-up). Klausimai parenkami pagal silpniausias kategorijas. | CONTENT + DATA + CODING | Tyrimas: spaced vs massed g=0.28 (meta-analysis 2025) |
-| F3-3 | **Timed challenge mode** – neprivalomas laiko iššūkis (60s visiems klausimams). Atskiras rezultatas + ženklelis. | CODING + UI_UX | P3 – tik po F2 ir F3-1/F3-2 |
-| F3-4 | **Adaptive difficulty** – jei ≥90% pirmu bandymu, sekantis testas generuoja sunkesnius klausimus (Bloom 3–4 vietoj 1–2). Jei <50%, generuoja lengvesnius. | DATA + CODING | Reikia question difficulty metadata; ilgalaikis |
-| F3-5 | **Peer comparison** – anonimizuotas „X% dalyvių atsakė teisingai" prie kiekvieno klausimo (po atsakymo). Reikia backend arba aggregated stats. | CODING + BACKEND | Ilgalaikis – reikia duomenų rinkimo infrastruktūros |
+### Post-release (MVP Analytics – next)
+| # | Užduotis | Agentai |
+|---|----------|---------|
+| 1 | **PostHog (arba GA4):** snippet index.html, `VITE_POSTHOG_KEY`/`VITE_POSTHOG_HOST`, funnel + 1 dashboard pagal ANALYTICS_DASHBOARD_MVP.md | CODING / QA |
+| 2 | **Micro-win M1:** M1 skaidrės 1–2 – trumpas copy/paste arba vienas klausimas (SOT / modules.json) | CONTENT + DATA |
+| 3 | **Po 2–4 sav. duomenų:** baseline (M1/M3 completion, drop-off), koreguoti target ranges (ANALYTICS_DASHBOARD_MVP §2) | QA / Product |
 
 ---
 
-## 3. Nuorodos
+## 2. Padaryta (santrauka)
+
+- **MVP:** Error Boundary, loading/lazy, TypeScript, progress validacija, ~46 testai, CI, CopyButton, SlideContent refaktoras, Tailwind safelist, Design System (GOLDEN_STANDARD), Emoji→Lucide, HomePage/ModulesPage CTA ir progresas.
+- **Moduliai 4–6:** SOT sinchronas, M5 klausimai/įvadas/rezultatai, M6 projekto tikslai/refleksija, section-break, content-block image, warm-up-quiz, SEO, a11y, užrakinimas. User Journey M4/M5/M6. DI detektorių skaidrė (201). MUST/SHOULD M4 (RAG, CoVe, chunk, optional, shortTitle, saugumo 67.5).
+- **M4 skaidrės:** 4 dedamosios, RL/RLHF (4.1a3), 5 principai (4.1a4), parametrai/stiliai/praktika (50–52), promptų poros (54), proceso prompt (55), Custom GPT ProcessStepper, M5 skaidrė 47 (8 skaidrių prezentacija). Low-hanging fruits (2026-02-15).
+- **Refaktoringas:** M-R1 AllSlides padalintas; S-R1 AppNav/useTheme, S-R2 useSlideNavigation/ModuleCompleteScreen, S-R3 useQuizState/QuizResultsView. A-M1 schema + validate-schema.mjs, A-M2 learningEvents, A-M3 remediation, A-M4 RELEASE_QA_CHECKLIST. A-S1–A-S4 (6 blokai, axe-core, Design system, Fast track).
+- **Modulio 2 testas v2.5:** 5 tipai (MCQ, T/F, Matching, Ordering, Scenario), 15 kl., Bloom, hints, gamifikacija, žinių žemėlapis, remediation. F2 (pool, radar, deep links, score), F3-1 (Confidence).
+- **P1–P3 sesija (2026-02-18):** M3 apšilimas (30.5), M3 „Situacija“ (6 scenarijai), M3 CTA į promptų biblioteką, M1 collapsible „Kodėl tai veikia“ (9,10,11), M3 pasirenkamos praktikos, M1 DI mąstymo logikos collapsible (8). Terminologija: įkaitinimas→apšilimas.
+- **Context Engineering:** context_budget, memory_schema, eval_rubric↔RELEASE_QA, sot_index.json (validate-sot-index.mjs), CE-1–CE-6.
+- **Gili analizė (2026-02-16):** badgeVariant, recommended, unlocksAfter; footer spot-check M1/M4.
+- **MVP Analytics (2026-02-21):** anon_id, session_id, track(), 6 eventai, progreso juosta, practice feedback, nudge beforeunload, ANALYTICS_EVENT_TAXONOMY.md, ANALYTICS_DASHBOARD_MVP.md.
+- **RAG 6 skaidrės suliejimas (2026-02-21):** 56+58 → viena skaidrė „RAG: kas tai ir pabandyk“ (SOT, modules.json, footeriai M4 21→22…48), 58 pašalinta; TODO.md RAG optional skyrius + nuorodos į Duomenų analizės kelį (turinio_pletra_moduliai_7_8_9.md, DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md). Liko rytoj: rankinė peržiūra skaidrės 56, MODULIO_4_SKAIDRIU_EILES.md atnaujinimas, RAG optional užduotys (§3).
+- **ProcessStepper EN (2026-03-07):** Pilnas EN turinys Custom GPT žingsniams – `CUSTOM_GPT_STEPS_EN` (title, description, actionChecklist, tip, externalLink); `steps` pagal locale; žingsnio 4 šablonų nuoroda ir žingsnio 8 santrauka per `stepper.templateHint`, `summaryHeading`, `summaryBullet1–4`. Kortelė ir aria-labels EN, kai `locale === 'en'`.
+- **Modulio 1 EN P2 (2026-03):** Skaidrės 13–21 – ReasoningModelsSlide, ReasoningBlockSlide, QualityBlockSlide, AdvancedParameters2Slide, FullExampleSlide pilnai i18n (lt.json/en.json contentSlides.blockReasoningModels*, blockReasoning*, blockQuality*, blockAdvanced2*, blockFullExample*). VeiksmoIntroBlock turinys – iš modules-en.json, ne iš locale. Žr. docs/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md §3.1, §5.
+- **Audito planas Faze 1.1 (2026-03-11):** Quiz rezultatų ekranas – scroll į pirmą klaidingą atsakymą (RAF + setTimeout 150 ms), aria-live ir id pirmam klaidingam blokui; TEST_REPORT – išspręsta (scroll / M2 M5). Žr. .cursor/plans/audito_įgyvendinimo_planas_agentams_36a36f45.plan.md.
+- **Audito planas Faze 2 (2026-03-11):** „Kur pritaikyti?“ (MUST M5) – ModuleCompleteScreen po Modulio 1: blokas su antrašte ir 4 use-case (projektų vadovas, marketingas, HR, analitikas). SOT: turinio_pletra.md; i18n lt/en; VARTOTOJU_ATSILIEPIMAI §8 M5 – pažymėta įgyvendinta.
+- **Integracija kaip subproject (2026-03-10):** INTEGRATION_OVERVIEW.md (subproject modelis, API kontraktas verify-access), DOCUMENTATION_QUICK_REF skyrius „Išoriniams integratoriams“, DEPLOYMENT skyrius „Integracija kaip subproject“, README nuoroda; VITE_BASE_PATH (vite.config), VITE_VERIFY_ACCESS_URL (App.tsx). Toliau – marketingo repo: įtraukti šį repo kaip apps/prompt-anatomy, build:training, Vercel rewrites, verify-access endpoint.
+- **Vartotojui paruošta – Faze 2 ir Faze 3 (2026-03-11):** Faze 2: „Pereiti prie veiksmo“ (mobile, scroll į CTA), lentelės sticky pirmas stulpelis, bottom nav „Tęsti“ per ilgas → fallback „Tęsti“, slide dots Safari. Faze 3: Mobile QA checklist TEST_REPORT (1 skaidrė/modulis, 375px), UX_AUDIT_IMPLEMENTATION_PLAN Mobile skyrius, TODO sinchronas (UX-1, Mobile P2, P1). Žr. CHANGELOG, .cursor/plans/vartotojui_paruošta_įrankis_cfe90c31.plan.md.
+- **Architektūra A (2026-03-11):** Dokumentacija ir agentų taisyklės suvienodintos pagal dabartinę techninę realybę. `modules.json`, `glossary.json`, `tools.json` lieka full redagavimo SOT; `*-m1-m6.json` failai aprašyti kaip core `1–6` build/runtime profilis per `VITE_MVP_MODE=1`. Atnaujinti: architektūros planas, README, indeksai, deployment docs, AGENT_ORCHESTRATOR, DATA_AGENT docs, `sot_index.json`. **Sprendimas B** (atskiri 1–6 / 7–15 redagavimo failai, agreguotas `modules.json`) paliktas kaip atskiras būsimas refaktoringo projektas.
+- **Pirmyn/Atgal (TODO #0) – įgyvendinta:** ModuleView – viena viršutinė **sticky** navigacijos juosta (`sticky top-16 z-20`), primary CTA „Tęsti“ (didesnis, brand, hover lift), „Atgal“ – ghost; grid vieno stulpelio, dešinėje atskiros nav kolonos nėra. Žr. CHANGELOG 2026-02-26, 2026-02-28 (Pirmyn→Tęsti).
+- **EN UI, PDF ir schemų skaidrės (2026-03-11):** Dokumento title/meta pagal locale (seo namespace); CertificateScreen analytics cta_label per t(); EnlargeableDiagram – viewFullSize, diagramFullSizeAria, close i18n; schemų blokai (AgentOrchestrator, AgentWorkflow, TurinioWorkflow, ContextFlow) enlargeLabel iš diagrams; ContextFlowDiagram LT/EN per contextFlowDiagramLabels.ts; M5/M6 PDF default filename EN; ContentSlides .txt šablonas – pavadinimas ir mygtukas pagal locale; Intro Action Pie – introPiePdfContent-en.json, loaderis, i18n mygtukai, introPiePdf locale (pavadinimas, footer, filename); ActionIntroSlide – visi aria/vietiniai tekstai per t(), CTA fallback (actionIntroCtaReveal/Default); Intro Pie PDF – getGlossary(locale), EN segmentų glossaryTermNames iš glossary-en.json. Žr. CHANGELOG 2026-03-11.
+
+---
+
+## 3. Optional / Backlog
+
+### RAG skyrius (M4) – optional turinys ir Duomenų analizės kelias
+
+- [ ] **RAG optional (id 61):** DI įrankiai informacijos paieškai (Perplexity, PaperGuide, Scite, Elicit) – perkelti į Duomenų analizės kelio kontekstą (M7–M9) arba atskirą skaidrę „Papildomas skaitymas“; nuoroda iš RAG skyriaus.
+- [ ] **RAG 63/63.7:** Strategijos (4 strategijos, kurios pakelia DI atsakymų kokybę), COMBO – ryšys su RAG išlaikomas; skaidrių skaičiaus nedidinti; nuoroda iš paskutinės RAG skaidrės arba Deep research įvado.
+- [ ] **Duomenų analizės kelias (M7–M9):** Dokumentuose `docs/turinio_pletra_moduliai_7_8_9.md` ir `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` nurodyti, kad papildomas RAG/tyrimų įrankių turinys (pvz. id 61) gali būti integruotas į kelio aprašymą arba „Papildomas skaitymas“.
+- [x] **Duomenų analizės kelias: path-step tipas, badge, žodynėlis:** Įgyvendinta – tipas `path-step`, PathStepSlide, progresas, GlossaryPage locked/unlocked; SOT §8.2, GOLDEN_STANDARD §3.4d; glossary.json `unlockedBy` 3 terminams (Deep research, Master promptas 71.2; RAG 71.3); MODULE_LABELS[7]. Optional vėliau: pridėti žodynėlio terminus (EDA, Duomenų analizės pipeline, Sintetinimas, Vizualizacija ir kt.) su unlockedBy 71.1, 71.4, 71.5. Planas: `.cursor/plans/duomenų_analizės_kelias_ir_badge_70d5e403.plan.md`.
+
+- **A1** Moduliai 7+ Jūs vs tu (atskira eiga: GOLDEN_STANDARD §4.2 + grep).
+- **A2** Footer „Toliau – skaidrė X“ – **atidėta iki release QA** (ne iteracijų metu). Prieš release atlikti globalią patikrą visiems moduliams pagal `.cursor/rules/footer-slide-numbers.mdc`.
+- **A3** blockVariant – likusios sekcijos (accent/brand/terms).
+- **Orch** Agentų orkestratoriaus schema į kursą: SVG→React (AgentOrchestratorDiagram), AgentOrchestratorBlock, skaidrei M10 (po 10.2) arba M12 (po 120) arba M6. SOT: AGENT_ORCHESTRATOR.md, SCHEME_AGENT.md.
+- **Arch-B** Jei kada nors bus reikalingas modelis B – atskiri `modules-m1-m6.json` + `modules-m7-m15.json` kaip authoring failai ir agreguotas `modules.json` – tai daryti tik kaip atskirą architektūrinį projektą (scripts, validacija, loaderiai, testai, docs), ne šioje iteracijoje.
+- **N-DS3** Dizaino gidas → Gamma/Figma. **CE-7, CE-8** gating iš sot_index; eval_rubric heuristikas CI.
+- **9a** Favicon. **10** Block skaidrės content-driven. **11** „Kaip naudoti modulį“ M4/M6. **12** Žodynėlis M4 (8–10 terminų). **13** Alternatyvūs kontekstai M6. **14** Monitoring, PWA, Eksportas, Sertifikatas, Multi-language. **15** M2 F3-2–F3-5. **UJ-4, UJ-5** 5 principai: checkbox, collapse.
+
+- [ ] **Reflection prompts M7–M15:** Atnaujinti visų modulių (7, 8, 9, 10, 11, 12, 13, 14, 15) `reflectionPrompt` laukus į META + INPUT + OUTPUT formatą (`modules.json`, `modules-en.json`). M1–M6 jau atnaujinti (id 14, 37, 38).
+
+**Peržiūrai (netraukti):** M7 lean branduolys (~18–20 skaidrių); vizualinis triukšmas (GOLDEN_STANDARD – 2–3 spalvos).
+
+---
+
+## 4. Nuorodos
 
 | Kas | Kur |
 |-----|-----|
-| Vartotojo testų klaidos ir sprendimai | `docs/development/TEST_REPORT.md` |
-| Agentų orkestratorius | `docs/development/AGENT_ORCHESTRATOR.md` |
-| Skaidrių tipų analizė | `docs/SKAIDRIU_TIPU_ANALIZE.md` |
-| Modulio 4 turinys / skaidrių eilė | `docs/MODULIO_4_TURINIO_ANALIZE.md`, `docs/MODULIO_4_SKAIDRIU_EILES.md` |
-| Modulio 4 MUST/SHOULD (geriausios praktikos) | `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` |
-| Modulio 4 DI visata – analizė ir sprendimai | `docs/MODULIO_4_DI_VISATA_ANALIZE_SPRENDIMAI.md` |
-| Skaidrė „4 dedamosios“ – turinio/pedagogika | `docs/MODULIO_4_4_DEDAMOSIOS_ANALIZE.md` |
-| Skaidrių UI/UX, spalvos, šriftai – tobulinimai | `docs/SKAIDRIU_UI_UX_ANALIZE_TOBULINIMAI.md` |
-| Turinio SOT Moduliai 1–3 / 4–6 | `turinio_pletra.md`, `docs/turinio_pletra_moduliai_4_5_6.md` |
-| CODE_REVIEW Moduliai 4–6 | `docs/CODE_REVIEW_MODULIAI_4_5_6.md` |
-| Pedagoginė analizė 4–6 | `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md` |
-| Prioritetuotos problemos | `CODE_REVIEW_ANALYSIS.md` |
-| **Analizės verdiktas – MUST/SHOULD (turinio kontraktas, KPI, remediation, 6 blokų)** | [docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md](docs/development/ANALIZES_VERDIKTAS_MUST_SHOULD_WANT.md) |
-| **Release QA checklist (A-M4)** | [docs/development/RELEASE_QA_CHECKLIST.md](docs/development/RELEASE_QA_CHECKLIST.md) |
-| **Seka: gili analizė → fiksavimas → taisymas** | `docs/development/SEKA_GILI_ANALIZE_FIKSUOJAM_TAISOM.md` |
-| **Refaktoringas (eilučių skaičiai, must–should–want)** | `docs/development/CODEBASE_REFACTORING_ANALYSIS.md` |
-| Agentų ir darbų planas | `docs/development/PLAN_AGENTAI_DARBAI.md` |
-| Modulio 4 SHOULD S1–S6 planas | `docs/development/PLAN_MODULIO_4_SHOULD_S1_S6.md` |
-| SCHEME_AGENT – interaktyvumo UX (3.6), horizontalus layout (3.7) | `docs/development/SCHEME_AGENT.md` |
-| **Skaidrė 5 principai (4.1a4) – user journey įvertinimas** | `docs/development/USER_JOURNEY_4_1a4_5_PRINCIPAI.md` |
-| **Modulio 2 – agentų seka, turinio kokybė (lietuviškos raidės)** | `docs/development/AGENT_SEQUENCE_MODULIO_2_TURINYS_KOKYBE.md` |
-| **Context Engineering (Agent-Skills → įgyvendinimas, SOT, biudžetas, eval)** | `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md`, `docs/development/context-engineering/README.md` |
-| **Modulio 3 UI/UX – geriausios praktikos (Top 10)** | `docs/MODULIO_3_UI_UX_GERIAUSIOS_PRAKTIKOS.md` |
-| **Modulio 3 UI/UX – įgyvendinimo planas ir agentų seka** | `docs/development/PLAN_MODULIO_3_UI_UX.md` |
-| **Dizaino gidas Moduliai 1–3 (vizualinis suvienodinimas, Design System v0.1)** | `docs/development/DESIGN_GUIDE_MODULIAI_1_2_3.md` |
-| Plėtros planas, pedagoginės įžvalgos (must–should–want, TOP kūrėjams) | `ROADMAP.md` (§ Pedagoginės įžvalgos) |
+| Klaidos | `docs/development/TEST_REPORT.md` |
+| Release QA | `docs/development/RELEASE_QA_CHECKLIST.md` |
+| PDF testavimas (introPie, M5, M6) | `docs/development/PDF_DOWNLOAD_TESTING.md` |
+| PDF santrauka ir agentų atmintis | `docs/development/PDF_GENERATION_AGENT_MEMORY.md`, `docs/development/PDF_MAKETO_GAIRES.md` |
+| Golden Standard | `docs/development/GOLDEN_STANDARD.md` |
+| Turinio SOT M1–3 / M4–6 | `turinio_pletra.md`, `docs/turinio_pletra_moduliai_4_5_6.md` |
+| M4 skaidrių eilė, tobulinimai | `docs/MODULIO_4_SKAIDRIU_EILES.md`, `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` |
+| UX todo M4–6 | `docs/development/ux_todo.md` |
+| UX auditas ir įgyvendinimo planas | `docs/UX_AUDIT_MICRO_IMPROVEMENTS.md`, `docs/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md` |
+| Mobile P2/P3 | `docs/archive/development/MOBILE_UI_UX_AUDIT.md` |
+| Lentelių standartas | `docs/development/LENTELIU_STANDARTAS.md` |
+| MUST/SHOULD, agentai | `docs/development/PLAN_AGENTAI_DARBAI.md` |
+| SCHEME_AGENT, skaidrių tipai | `docs/development/SCHEME_AGENT.md`, `docs/SKAIDRIU_TIPU_ANALIZE.md` |
+| MVP Analytics | `docs/development/ANALYTICS_EVENT_TAXONOMY.md`, `docs/development/ANALYTICS_DASHBOARD_MVP.md` |
+| Integracija (subproject, Vercel, marketingo repo) | `docs/deployment/INTEGRATION_OVERVIEW.md`, `docs/deployment/DEPLOYMENT.md` § Integracija kaip subproject |
 
----
-
-*Sprendimų įrašymas: naujos klaidos → TEST_REPORT.md; QA_AGENT atnaujina čia (prioritetai / Iš vartotojo testų).*
+*Naujos klaidos → TEST_REPORT.md; QA_AGENT atnaujina prioritetus čia.*

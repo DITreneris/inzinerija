@@ -18,7 +18,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  quality-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate schema
+        run: npm run validate:schema
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test:run
+
+      - name: Build default production bundle
+        run: npm run build
+        env:
+          NODE_ENV: production
+          VITE_BASE_PATH: '/inzinerija/'
+
+      - name: Build core production profile
+        run: npm run build
+        env:
+          NODE_ENV: production
+          VITE_MVP_MODE: '1'
+          VITE_BASE_PATH: '/inzinerija/'
+
   build-and-deploy:
+    needs: quality-gates
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,11 +74,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build (MVP – tik moduliai 1–3)
+      - name: Build (core production profile – moduliai 1–6)
         run: npm run build
         env:
           NODE_ENV: production
           VITE_MVP_MODE: '1'
+          VITE_BASE_PATH: '/inzinerija/'
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

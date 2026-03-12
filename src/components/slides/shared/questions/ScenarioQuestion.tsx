@@ -1,8 +1,9 @@
-import { Lightbulb, CheckCircle, BookOpen } from 'lucide-react';
+import { Lightbulb, CheckCircle, BookOpen, ExternalLink } from 'lucide-react';
 import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
 import { confidenceLabel } from './confidenceLabels';
+import { useLocale } from '../../../../contexts/LocaleContext';
 
 interface ScenarioQuestionProps {
   question: TestQuestion;
@@ -14,6 +15,7 @@ interface ScenarioQuestionProps {
   onConfidence?: (level: ConfidenceLevel) => void;
   onAnswer: (questionId: string, optionIndex: number) => void;
   onRequestHint: (questionId: string) => void;
+  onRemediationLink?: (moduleId: number, slideId: number) => void;
 }
 
 /**
@@ -29,10 +31,13 @@ export function ScenarioQuestion({
   onConfidence,
   onAnswer,
   onRequestHint,
+  onRemediationLink,
 }: ScenarioQuestionProps) {
+  const { locale } = useLocale();
   const isCorrect = userAnswer === question.correct;
   const options = question.options || [];
   const answerDisabled = showResults || confidence === undefined;
+  const en = locale === 'en';
 
   return (
     <div
@@ -51,7 +56,7 @@ export function ScenarioQuestion({
         <div>
           <span className="text-xs font-semibold text-accent-600 dark:text-accent-400 uppercase tracking-wider">
             <BookOpen className="w-3 h-3 inline mr-1" />
-            Verslo scenarijus
+            {en ? 'Business scenario' : 'Verslo scenarijus'}
           </span>
         </div>
       </div>
@@ -85,7 +90,7 @@ export function ScenarioQuestion({
               key={idx}
               onClick={() => onAnswer(question.id, idx)}
               disabled={answerDisabled}
-              aria-label={`Pasirinkimas: ${option}`}
+              aria-label={`${en ? 'Option' : 'Pasirinkimas'}: ${option}`}
               className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] ${
                 showResults
                   ? isCorrectOption
@@ -136,10 +141,10 @@ export function ScenarioQuestion({
         <button
           onClick={() => onRequestHint(question.id)}
           className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
-          aria-label="Gauti užuominą"
+          aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />
-          Rodyti užuominą
+          {en ? 'Show hint' : 'Rodyti užuominą'}
         </button>
       )}
 
@@ -147,13 +152,27 @@ export function ScenarioQuestion({
         <>
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Pasitikėjimas: <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence)}</span>
+              {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
+              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
             </p>
           )}
           <div className={`mt-4 p-3 rounded-lg ${isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-amber-100 dark:bg-amber-900/30'}`}>
             <p className={`text-sm ${isCorrect ? 'text-emerald-800 dark:text-emerald-200' : 'text-amber-800 dark:text-amber-200'}`}>
-              <strong>{isCorrect ? '✓ Teisingai!' : '✗ Neteisingai.'}</strong> {question.explanation}
+              <strong>{isCorrect ? (en ? 'Correct!' : 'Teisingai!') : (en ? 'Incorrect.' : 'Neteisingai.')}</strong> {question.explanation}
             </p>
+            {!isCorrect && question.ifWrongSee && onRemediationLink && (
+              <button
+                type="button"
+                onClick={() => onRemediationLink(question.ifWrongSee!.moduleId, question.ifWrongSee!.slideId)}
+                className="mt-3 flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline"
+                aria-label={en ? `View slide: ${question.ifWrongSee!.label}` : `Peržiūrėti skaidrę: ${question.ifWrongSee!.label}`}
+              >
+                <ExternalLink className="w-4 h-4" />
+                {en
+                  ? `If incorrect – see slide "${question.ifWrongSee!.label}"`
+                  : `Jei klaidingai – žr. skaidrę \u201E${question.ifWrongSee!.label}\u201C`}
+              </button>
+            )}
           </div>
         </>
       )}

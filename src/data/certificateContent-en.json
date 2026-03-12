@@ -1,0 +1,37 @@
+{
+  "programTitle": "Prompt Anatomy",
+  "certificateLabel": "CERTIFICATE",
+  "authorBy": "Tomas Staniulis",
+  "authorProduct": "Prompt Anatomy",
+  "authorByLabel": "Program and methodology:",
+  "authorProductLabel": "Author:",
+  "serialLabel": "Certificate No.",
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Course and more: promptanatomy.app",
+  "tiers": [
+    {
+      "tier": 1,
+      "introLine": "This document certifies that",
+      "completionLine": "has successfully completed part of the training programme \"Prompt Anatomy\"",
+      "programName": "6-block system – 6 blocks, test, practice",
+      "label": "6-block system",
+      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+    },
+    {
+      "tier": 2,
+      "introLine": "This document certifies that",
+      "completionLine": "has successfully completed the training programme",
+      "programName": "Prompt Anatomy – Context engineering (theory, test and project)",
+      "label": "Context engineering",
+      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+    },
+    {
+      "tier": 3,
+      "introLine": "This document certifies that",
+      "completionLine": "has successfully completed the advanced learning path",
+      "programName": "Prompt Anatomy – Data analytics (full programme, 9 modules)",
+      "label": "Data analytics",
+      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+    }
+  ]
+}

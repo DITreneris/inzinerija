@@ -1,33 +1,23 @@
 import { useState } from 'react';
-import { Target, BookOpen, ClipboardCheck, ArrowRight, Sparkles, CheckCircle, Copy, Check, Lightbulb } from 'lucide-react';
+import { Target, BookOpen, ClipboardCheck, ArrowRight, Sparkles, CheckCircle, Copy, Check, Lightbulb, Rocket } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Progress } from '../utils/progress';
 import { getModulesSync } from '../data/modulesLoader';
 import { getIsMvpMode } from '../utils/mvpMode';
+import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
 
-const QUICK_PROMPTS = [
-  {
-    id: 1,
-    title: 'Gauk aiškų atsakymą',
-    prompt: 'Atsakyk trumpai ir aiškiai: ką man svarbiausia žinoti apie [TEMA] šiandien?',
-    timeLabel: 'Atsakymas ~1 min',
-    tags: ['Trumpai', 'Aiškiai'],
-  },
-  {
-    id: 2,
-    title: 'Atskirti esmę (20/80)',
-    prompt: 'Išskirk 3 svarbiausius dalykus apie [TEMA], kurie duoda didžiausią naudą.',
-    timeLabel: 'Analizė ~2 min',
-    tags: ['Prioritetai', '20/80 esmė'],
-  },
-  {
-    id: 3,
-    title: 'Paversk problemą veiksmais',
-    prompt: 'Pasiūlyk 3 konkrečius žingsnius, ką daryti toliau sprendžiant [PROBLEMĄ].',
-    timeLabel: 'Planas ~2 min',
-    tags: ['Veiksmai', 'Sprendimo planas'],
-  },
+const QUICK_PROMPTS_LT = [
+  { id: 1, title: 'Gauk aiškų atsakymą', prompt: 'Atsakyk trumpai ir aiškiai: ką man svarbiausia žinoti apie [TEMA] šiandien?', timeLabel: 'Atsakymas ~1 min', tags: ['Trumpai', 'Aiškiai'] },
+  { id: 2, title: 'Atskirti esmę (20/80)', prompt: 'Išskirk 3 svarbiausius dalykus apie [TEMA], kurie duoda didžiausią naudą.', timeLabel: 'Analizė ~2 min', tags: ['Prioritetai', '20/80 esmė'] },
+  { id: 3, title: 'Paversk problemą veiksmais', prompt: 'Pasiūlyk 3 konkrečius žingsnius, ką daryti toliau sprendžiant [PROBLEMĄ].', timeLabel: 'Planas ~2 min', tags: ['Veiksmai', 'Sprendimo planas'] },
+] as const;
+
+const QUICK_PROMPTS_EN = [
+  { id: 1, title: 'Get a clear answer', prompt: 'Answer briefly and clearly: what do I most need to know about [TOPIC] today?', timeLabel: 'Answer ~1 min', tags: ['Brief', 'Clear'] },
+  { id: 2, title: 'Focus on what matters (20/80)', prompt: 'Pick 3 most important things about [TOPIC] that give the most value.', timeLabel: 'Analysis ~2 min', tags: ['Priorities', '20/80'] },
+  { id: 3, title: 'Turn problem into actions', prompt: 'Suggest 3 concrete steps to take next when solving [PROBLEM].', timeLabel: 'Plan ~2 min', tags: ['Actions', 'Plan'] },
 ] as const;
 
 interface HomePageProps {
@@ -37,12 +27,15 @@ interface HomePageProps {
 }
 
 export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProps) {
+  const { t } = useTranslation(['home', 'common']);
+  const { locale } = useLocale();
+  const quickPrompts = locale === 'en' ? QUICK_PROMPTS_EN : QUICK_PROMPTS_LT;
   const [copiedQuickId, setCopiedQuickId] = useState<number | null>(null);
   const modulesCompleted = progress.completedModules.length;
   const totalModules = (() => {
-    const n = getModulesSync()?.length;
+    const n = getModulesSync(locale)?.length;
     if (n != null) return n;
-    return getIsMvpMode() ? 3 : 6;
+    return getIsMvpMode() ? 6 : 6;
   })();
   const totalTasks = Object.values(progress.completedTasks).reduce(
     (sum, tasks) => sum + tasks.length,
@@ -51,79 +44,71 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
 
   return (
     <div className="space-y-12">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        {/* Background decorations */}
+      {/* Hero Section – premium SaaS: mesh-style orbs, be gryno balto, gylis */}
+      <div className="relative overflow-hidden rounded-3xl">
+        {/* Mesh-style background: kelios radial gradient „dėmės“ (Stripe/Vercel/Linear praktika) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-brand-400/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute top-10 right-10 w-72 h-72 bg-brand-400/10 dark:bg-brand-400/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-300/8 dark:bg-accent-400/12 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-brand-300/6 dark:bg-brand-400/10 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="relative text-center py-16 md:py-24 animate-fade-in">
           {/* Badge – P3: sumažintas vizualinis svoris (slate, mažesnis) */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800/60 rounded-full text-slate-600 dark:text-slate-400 text-xs font-medium mb-6">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} />
-            <span>DI Promptų Inžinerijos Mokymas</span>
+            <span>{t('home:badge')}</span>
           </div>
           
-          {/* Main icon */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="bg-gradient-to-br from-brand-500 to-accent-500 p-6 rounded-3xl shadow-md hover:shadow-lg shadow-brand-500/20 hover:scale-105 transition-transform duration-300 animate-bounce-in">
+              <div className="bg-gradient-to-br from-brand-400 to-accent-400 dark:from-brand-500 dark:to-accent-500 p-6 rounded-3xl shadow-md shadow-brand-500/10 dark:shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/15 dark:hover:shadow-brand-500/25 hover:scale-105 transition-transform duration-300 animate-bounce-in">
                 <Target className="w-16 h-16 text-white" />
               </div>
-              {/* Badge trukmė (N-DS1: be float – secondary elementas) */}
-              <div className="absolute -top-2 -right-2 bg-accent-400 px-2.5 py-1.5 rounded-xl shadow-md">
-                <span className="text-xs font-semibold text-white">~45 min</span>
+              <div className="absolute -top-2 -right-2 bg-accent-500 dark:bg-accent-400 px-2.5 py-1.5 rounded-xl shadow-md">
+                <span className="text-xs font-semibold text-white">{t('home:durationBadge')}</span>
               </div>
             </div>
           </div>
           
-          {/* Title – +15–20% didesnis, aiški hierarchija */}
           <h1 className="text-6xl md:text-8xl font-black text-gray-950 dark:text-white mb-4 tracking-tight">
-            Promptų <span className="gradient-text gradient-text-hero">anatomija</span>
+            {t('home:titlePart1')} <span className="gradient-text gradient-text-hero">{t('home:titlePart2')}</span>
           </h1>
           
-          {/* Subline – -15% mažesnis + lighter weight */}
           <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 font-normal mb-5 max-w-xl mx-auto">
-            90 proc. žmonių rašo komandas neteisingai – čia išmoksi sistemą.
+            {t('home:subline')}
           </p>
           
-          {/* Subtitle – 6 blokų sistema bold + 110–120% dydžio */}
           <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-2 max-w-2xl mx-auto leading-loose">
-            Išmokite kurti efektyvius DI promptus su{' '}
-            <span className="font-bold text-[1.15em] text-accent-600 dark:text-accent-400">6 blokų sistema</span>
+            {t('home:subtitle')}
+            <span className="font-bold text-[1.15em] text-accent-600 dark:text-accent-400">{t('home:subtitleBold')}</span>
           </p>
           
-          {/* Bonus subline – aiškesnis pažadas */}
           <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-10 max-w-xl mx-auto">
-            Praktinė sistema realioms verslo situacijoms.
-            <span className="font-medium"> ~45 min.</span>
+            {t('home:bonus')}
           </p>
           
-          {/* Trust indicators – muted (ne ryškūs žali), kad CTA lieka vienintelis energinis objektas */}
           <div className="flex flex-wrap justify-center gap-4 mb-14 text-sm text-gray-500 dark:text-gray-500">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-              <span>{totalModules} moduliai</span>
+              <span>{totalModules} {t('home:trustModules')}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-              <span>Verslo pavyzdžiai</span>
+              <span>{t('home:trustExamples')}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-              <span>Baigiamoji apklausa</span>
+              <span>{t('home:trustQuiz')}</span>
             </div>
           </div>
           
-          {/* Progress virš CTA – kognityvinė eilė */}
           {modulesCompleted > 0 && (
             <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
-              Jūsų progresas: {modulesCompleted}/{totalModules} moduliai baigti
+              {t('home:progressLabel', { done: modulesCompleted, total: totalModules })}
             </p>
           )}
           
-          {/* CTA Button – priklauso nuo būsenos: moduliai baigti + apklausa ne → Į apklausą; viskas baigta → Peržiūrėti modulius */}
           <button
             onClick={
               modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted
@@ -135,27 +120,26 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
             className="btn-primary btn-hero-cta text-xl px-10 inline-flex items-center gap-3 group"
             aria-label={
               modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted
-                ? 'Peržiūrėti modulius'
+                ? t('home:ctaViewModulesAria')
                 : modulesCompleted === totalModules && totalModules > 0 && onGoToQuiz
-                  ? 'Į apklausą'
-                  : 'Pradėti mokymą'
+                  ? t('home:ctaToQuizAria')
+                  : t('home:ctaStartAria')
             }
           >
             {modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted
-              ? 'Peržiūrėti modulius'
+              ? t('home:ctaViewModules')
               : modulesCompleted === totalModules && totalModules > 0 && onGoToQuiz
-                ? 'Į apklausą'
+                ? t('home:ctaToQuiz')
                 : modulesCompleted > 0
-                  ? 'Tęsti mokymą'
-                  : 'Pradėti dabar'}
+                  ? t('home:ctaContinue')
+                  : t('home:ctaStartNow')}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card-hover p-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.1s' }}>
           <div className="flex items-center gap-4">
             <CircularProgress
               progress={totalModules > 0 ? (modulesCompleted / totalModules) * 100 : 0}
@@ -165,24 +149,24 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
             />
             <div>
               <p className="text-3xl font-bold text-gray-900 dark:text-white">{modulesCompleted}/{totalModules}</p>
-              <p className="text-gray-600 dark:text-gray-400">Baigti moduliai</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('home:statsCompleted')}</p>
             </div>
           </div>
         </div>
 
-        <div className="card-hover p-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.2s' }}>
           <div className="flex items-center gap-4">
             <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-2xl">
               <ClipboardCheck className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
               <p className="text-3xl font-bold text-gray-900 dark:text-white">{totalTasks}</p>
-              <p className="text-gray-600 dark:text-gray-400">Atliktos užduotys</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('home:statsTasks')}</p>
             </div>
           </div>
         </div>
 
-        <div className="card-hover p-6 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.3s' }}>
           <div className="flex items-center gap-4">
             <div className="bg-accent-100 dark:bg-accent-900/30 p-4 rounded-2xl">
               <Target className="w-8 h-8 text-accent-600 dark:text-accent-400" />
@@ -191,7 +175,7 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
               <p className="text-3xl font-bold text-gray-900 dark:text-white">
                 {progress.quizCompleted ? `${progress.quizScore}%` : '-'}
               </p>
-              <p className="text-gray-600 dark:text-gray-400">Apklausos rezultatas</p>
+              <p className="text-gray-600 dark:text-gray-400">{t('home:statsQuizResult')}</p>
               {progress.quizCompleted && (
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-2">
                   <div
@@ -209,14 +193,13 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
         </div>
       </div>
 
-      {/* Features – sprendimo puslapis su CTA */}
-      <div className="card p-8 md:p-10 animate-fade-in">
+      <div className="card p-8 md:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            Išmok kurti promptus, kurie veikia.
+            {t('home:sectionTitle')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Per 6 praktinius blokus susikursi savo DI komunikacijos sistemą.
+            {t('home:sectionSubtitle')}
           </p>
         </div>
         
@@ -226,133 +209,104 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
               <Target className="w-7 h-7 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">6 Blokų Sistema</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                Struktūra, kuri eliminuoja atsitiktinumą.
-              </p>
-              <button
-                type="button"
-                onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded"
-              >
-                → Išmok struktūruoti
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">{t('home:feature1Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">{t('home:feature1Desc')}</p>
+              <button type="button" onClick={onStart} className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded">
+                {t('home:feature1Cta')}
               </button>
             </div>
           </div>
-
           <div className="flex gap-4 p-5 rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-300 group">
             <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
               <BookOpen className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Verslo Pavyzdžiai</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                Realūs scenarijai, ne teorija.
-              </p>
-              <button
-                type="button"
-                onClick={onStart}
-                className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 rounded"
-              >
-                → Pamatyk praktikoje
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">{t('home:feature2Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">{t('home:feature2Desc')}</p>
+              <button type="button" onClick={onStart} className="text-emerald-600 dark:text-emerald-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 rounded">
+                {t('home:feature2Cta')}
               </button>
             </div>
           </div>
-
           <div className="flex gap-4 p-5 rounded-2xl hover:bg-brand-50 dark:hover:bg-brand-900/20 transition-all duration-300 group">
             <div className="bg-brand-100 dark:bg-brand-900/30 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
               <ClipboardCheck className="w-7 h-7 text-brand-600 dark:text-brand-400" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Praktinės Užduotys</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                Kuri savo promptus čia ir dabar.
-              </p>
-              <button
-                type="button"
-                onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded"
-              >
-                → Pradėk kurti
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">{t('home:feature3Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">{t('home:feature3Desc')}</p>
+              <button type="button" onClick={onStart} className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded">
+                {t('home:feature3Cta')}
               </button>
             </div>
           </div>
-
           <div className="flex gap-4 p-5 rounded-2xl hover:bg-accent-50 dark:hover:bg-accent-900/20 transition-all duration-300 group">
             <div className="bg-accent-100 dark:bg-accent-900/30 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
               <Sparkles className="w-7 h-7 text-accent-600 dark:text-accent-400" />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">Progreso Sekimas</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
-                Matai savo augimą modulis po modulio.
-              </p>
-              <button
-                type="button"
-                onClick={onStart}
-                className="text-accent-600 dark:text-accent-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 rounded"
-              >
-                → Sek savo pažangą
+              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">{t('home:feature4Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-3">{t('home:feature4Desc')}</p>
+              <button type="button" onClick={onStart} className="text-accent-600 dark:text-accent-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 rounded">
+                {t('home:feature4Cta')}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Pagrindinis CTA blokas – neadaptyvus: kai viskas baigta → Peržiūrėti modulius */}
         <div className="mt-12 pt-10 border-t border-gray-200 dark:border-gray-700 text-center">
           <button
             onClick={onStart}
             className="btn-primary text-xl px-10 py-5 rounded-2xl inline-flex items-center gap-3 group w-full sm:w-auto justify-center mb-4"
-            aria-label={modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted ? 'Peržiūrėti modulius' : 'Pradėti mokymus'}
+            aria-label={modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted ? t('home:ctaViewModulesAria') : t('home:ctaPrimaryAria')}
           >
             {modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted
-              ? 'Peržiūrėti modulius'
-              : '🚀 Pradėti mokymus dabar'}
+              ? t('home:ctaViewModules')
+              : (
+                  <>
+                    <Rocket className="w-6 h-6" aria-hidden="true" />
+                    {t('home:ctaPrimary')}
+                  </>
+                )}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
           {!(modulesCompleted === totalModules && totalModules > 0 && progress.quizCompleted) && (
             <>
-              <p className="mb-3 text-sm text-gray-500 dark:text-gray-400">arba</p>
-              <button
-                type="button"
-                onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1"
-              >
-                Peržiūrėti modulius →
+              <p className="mb-3 text-sm text-gray-500 dark:text-gray-400">{t('common:or')}</p>
+              <button type="button" onClick={onStart} className="text-brand-600 dark:text-brand-400 font-semibold hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1">
+                {t('common:viewModulesArrow')}
               </button>
             </>
           )}
         </div>
       </div>
 
-      {/* Kaip naudoti? – pirmiausia, prieš promptus */}
       <section className="animate-fade-in">
         <div className="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 mb-8">
           <h3 className="font-semibold text-brand-800 dark:text-brand-300 mb-3 text-lg flex items-center gap-2">
             <Lightbulb className="w-5 h-5" strokeWidth={1.5} />
-            Kaip naudoti?
+            {t('home:howToTitle')}
           </h3>
           <ol className="text-sm text-brand-700 dark:text-brand-400 space-y-2">
-            <li><span className="font-medium">1.</span> Paspauskite <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-gray-800 rounded border border-brand-200 dark:border-brand-700 text-xs font-medium"><Copy className="w-3 h-3 inline" /> Kopijuoti</span> mygtuką</li>
-            <li><span className="font-medium">2.</span> Įklijuokite į ChatGPT, Claude ar kitą DI įrankį</li>
-            <li><span className="font-medium">3.</span> Pakeiskite <code className="bg-white dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">[tekstą laužtiniuose skliaustuose]</code> savo duomenimis</li>
+            <li><span className="font-medium">1.</span> {t('home:howTo1Before')}<span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-gray-800 rounded border border-brand-200 dark:border-brand-700 text-xs font-medium"><Copy className="w-3 h-3 inline" /> {t('common:copy')}</span>{t('home:howTo1After')}</li>
+            <li><span className="font-medium">2.</span> {t('home:howTo2')}</li>
+            <li><span className="font-medium">3.</span> {t('home:howTo3')}</li>
           </ol>
         </div>
 
-        {/* 3 užduotys – greitam progresui */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            3 užduotys – greitam progresui
+            {t('home:quickPromptsTitle')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Kopijuok ir pritaikyk per kelias sekundes – pakeisk [TEMA] arba [PROBLEMĄ] ir gauk rezultatą.
+            {t('home:quickPromptsSubtitle')}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {QUICK_PROMPTS.map((item) => (
+          {quickPrompts.map((item) => (
             <div
               key={item.id}
-              className="card-hover p-6 flex flex-col relative"
+              className="card-hover p-6 flex flex-col relative shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50"
             >
               <h3 className="font-bold text-gray-900 dark:text-white mb-3 text-lg">
                 {item.title}
@@ -386,24 +340,24 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
                     ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
                     : 'btn-secondary'
                 }`}
-                aria-label={`Kopijuoti: ${item.title}`}
+                aria-label={t('home:copyAria', { title: item.title })}
               >
                 {copiedQuickId === item.id ? (
                   <>
                     <Check className="w-4 h-4" />
-                    Nukopijuota
+                    {t('common:copied')}
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    Kopijuoti
+                    {t('common:copy')}
                   </>
                 )}
               </button>
               {copiedQuickId === item.id && (
                 <div className="absolute bottom-3 right-3 badge-success animate-fade-in">
                   <Check className="w-3 h-3 mr-1" />
-                  Nukopijuota!
+                  {t('common:copiedExclaim')}
                 </div>
               )}
             </div>

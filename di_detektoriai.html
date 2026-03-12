@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top AI Turinio Aptikimo Įrankiai 2026</title>
+    <title>Top DI Turinio Aptikimo Įrankiai 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --brand-500: #627d98;
+            --brand-600: #486581;
+            --accent-500: #d4a520;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +23,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--brand-500) 0%, var(--brand-600) 100%);
             min-height: 100vh;
             padding: 20px;
             color: #333;
@@ -45,7 +56,7 @@
         .controls {
             background: white;
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             animation: fadeIn 0.8s ease;
@@ -56,15 +67,16 @@
             padding: 15px 20px;
             font-size: 1rem;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 0.75rem;
             margin-bottom: 20px;
             transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .search-bar:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: var(--brand-500);
+            box-shadow: 0 0 0 3px rgba(98, 125, 152, 0.15);
         }
 
         .filters {
@@ -77,23 +89,24 @@
             padding: 10px 20px;
             border: 2px solid #e0e0e0;
             background: white;
-            border-radius: 25px;
+            border-radius: 9999px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.95rem;
             font-weight: 500;
+            font-family: inherit;
         }
 
         .filter-btn:hover {
-            border-color: #667eea;
-            color: #667eea;
+            border-color: var(--brand-500);
+            color: var(--brand-600);
             transform: translateY(-2px);
         }
 
         .filter-btn.active {
-            background: #667eea;
+            background: var(--brand-500);
             color: white;
-            border-color: #667eea;
+            border-color: var(--brand-500);
         }
 
         .tools-grid {
@@ -105,7 +118,7 @@
 
         .tool-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 1rem;
             padding: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
@@ -125,7 +138,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, var(--brand-500), var(--accent-500));
         }
 
         .tool-header {
@@ -136,7 +149,7 @@
         }
 
         .tool-number {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--brand-500), var(--accent-500));
             color: white;
             width: 35px;
             height: 35px;
@@ -166,30 +179,30 @@
 
         .type-badge {
             padding: 5px 12px;
-            border-radius: 15px;
+            border-radius: 0.5rem;
             font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
         }
 
         .type-text {
-            background: #e3f2fd;
-            color: #1976d2;
+            background: #d9e2ec;
+            color: var(--brand-600);
         }
 
         .type-image {
-            background: #f3e5f5;
-            color: #7b1fa2;
+            background: #faf0d7;
+            color: #966d09;
         }
 
         .type-video {
-            background: #fff3e0;
-            color: #e65100;
+            background: #f1f5f9;
+            color: var(--slate-500);
         }
 
         .type-plagiat {
-            background: #ffebee;
-            color: #c62828;
+            background: #fef2f2;
+            color: #b91c1c;
         }
 
         .tool-description {
@@ -204,10 +217,10 @@
             align-items: center;
             gap: 8px;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, var(--brand-500), var(--accent-500));
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 0.75rem;
             font-weight: 600;
             transition: all 0.3s ease;
             font-size: 0.9rem;
@@ -215,7 +228,7 @@
 
         .tool-link:hover {
             transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(98, 125, 152, 0.4);
         }
 
         .no-results {
@@ -229,7 +242,7 @@
         .stats {
             background: white;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             margin-bottom: 30px;
             display: flex;
@@ -245,11 +258,11 @@
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #667eea;
+            color: var(--brand-500);
         }
 
         .stat-label {
-            color: #718096;
+            color: var(--slate-500);
             font-size: 0.9rem;
             margin-top: 5px;
         }
@@ -295,17 +308,17 @@
         }
 
         .highlight {
-            background: #fef3c7;
+            background: #faf0d7;
             padding: 2px 4px;
-            border-radius: 3px;
+            border-radius: 0.25rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📊 Top AI Turinio Aptikimo Įrankiai 2026</h1>
-            <p class="subtitle">Išsamiausias sąrašas geriausių įrankių AI generuoto turinio aptikimui</p>
+            <h1>Top DI turinio aptikimo įrankiai 2026</h1>
+            <p class="subtitle">Išsamiausias sąrašas geriausių įrankių DI generuoto turinio aptikimui</p>
         </header>
 
         <div class="stats">

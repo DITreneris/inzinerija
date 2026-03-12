@@ -1,17 +1,18 @@
 # Promptų anatomija - Cursor AI Rules
 
 ## Projekto kontekstas
-- Produktas: interaktyvus DI promptų inžinerijos mokymas su 3 moduliais (Teorija → Testas → Praktika).
-- Turinio šaltinis ir tiesa: `turinio_pletra.md` (pedagogika, terminologija, struktūra).
-- Duomenys yra duomenų-sluoksnyje: `src/data/modules.json` ir `src/data/promptLibrary.json`.
+- Produktas: interaktyvus DI promptų inžinerijos mokymas. Šiuo metu pilnai įgyvendinti moduliai `1–6`; `7–15` lieka full katalogo ir planavimo kontekste.
+- Turinio šaltinis ir tiesa: `turinio_pletra.md` (M1–M3), `docs/turinio_pletra_moduliai_4_5_6.md` (M4–M6).
+- Duomenų architektūra (`A` modelis): full redagavimo SOT yra `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json`; core `1–6` build/runtime profiliui naudojami `src/data/modules-m1-m6.json`, `src/data/glossary-m1-m6.json`, `src/data/tools-m1-m6.json`.
 - UI/UX logika ir renderinimas: `src/components/*` (ypač `SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`).
 - Progresas ir pertraukiamumas: `src/utils/progress.ts` + `src/utils/useAutoSave.ts`.
 
 ## Pagrindinės taisyklės
+- Prieš keisdamas JSON, pirmiausia nustatyk: ar dirbi su **full authoring SOT**, ar su **core build/runtime profiliu**.
 - Turinį keisk per JSON failus, o ne per React komponentus, nebent reikia naujo slide tipo ar naujos UI logikos.
-- Naujas skaidrės tipas → papildyk `SlideContent.tsx` render logiką + `modules.json` struktūrą.
+- Naujas skaidrės tipas → papildyk `SlideContent.tsx` render logiką + full SOT (`modules.json`) struktūrą.
 - Terminologija privaloma: naudoti **DI**, ne **AI**; "promptas" be apostrofų; stilistika lietuviška.
-- Laikykis 3 modulių sekos ir atrakinimo logikos: 1→2→3, sertifikatas po ≥70% teste.
+- Laikykis esamos atrakinimo logikos: `1→2→3→4→5→6`; papildomi moduliai valdomi per full katalogą ir prieigos lygius.
 - Išlaikyk UX: keyboard navigacija, progresas, autosave, confetti, dark/light režimus.
 - Dokumentų sinchronizacija yra privaloma: `README.md`, `docs/getting-started/QUICK_START.md`, `docs/deployment/DEPLOYMENT.md`, `docs/deployment/GITHUB_SETUP.md`, `ROADMAP.md`, `TODO.md` turi sutapti su realia konfigūracija (`vite.config.ts`, `package.json`).
 
@@ -47,9 +48,9 @@
 - Venk ilgų pastraipų; naudok struktūrą (sąrašai, lentelės, žingsniai).
 
 ## Keičiant duomenis
-- Jei keiti skaidres/testo klausimus → atnaujink `modules.json`.
+- Jei keiti skaidres/testo klausimus → pirmiausia atnaujink full SOT `modules.json`; jei keitimas turi atsispindėti core `1–6` build'e, suderink ir `modules-m1-m6.json`.
 - Jei keiti promptų biblioteką → atnaujink `promptLibrary.json`.
-- Jei keiti terminus → atnaujink `turinio_pletra.md` ir susijusius JSON tekstus.
+- Jei keiti terminus → atnaujink atitinkamą turinio SOT (`turinio_pletra.md` arba `docs/turinio_pletra_moduliai_4_5_6.md`) ir susijusius JSON tekstus.
 
 ## Error Handling
 - Visur naudok try-catch su logging (`src/utils/logger.ts`).

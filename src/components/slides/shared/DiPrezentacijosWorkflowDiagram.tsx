@@ -1,8 +1,10 @@
 /**
  * DI prezentacijos workflow diagrama – 5 žingsnių tiesinė schema.
- * Kuo interaktyvus: currentStep, onStepClick – paspaudus žingsnį, rodomas paaiškinimas apačioje.
+ * Tekstai iš getDiPrezentacijosSteps / getDiPrezentacijosDiagramContent(locale).
  */
 import { useId } from 'react';
+import type { Locale } from './diPrezentacijosWorkflowConfig';
+import { getDiPrezentacijosDiagramContent, getDiPrezentacijosSteps } from './diPrezentacijosWorkflowConfig';
 
 const VIEWBOX = '0 0 560 520';
 const STEP_ACTIVE_OPACITY = 1;
@@ -12,7 +14,6 @@ const BOX_H = 56;
 const GAP = 28;
 const COLS_X = 140;
 const COLS_W = 280;
-const ARROW_MARKER_LEN = 6;
 const CX = 280;
 
 const STEP_BOXES: [number, number, number, number][] = [
@@ -23,34 +24,30 @@ const STEP_BOXES: [number, number, number, number][] = [
   [COLS_X, 72 + (BOX_H + GAP) * 4, COLS_W, BOX_H],
 ];
 
-const STEPS: { label: string; desc: string }[] = [
-  { label: 'TIKSLAS', desc: 'Kam ir kokia auditorija' },
-  { label: 'STRUKTŪRA', desc: '8 skaidrių karkasas' },
-  { label: 'TURINIO GENERAVIMAS', desc: 'Tekstas ir idėjos su DI' },
-  { label: 'VIZUALIZACIJA', desc: 'Layout ir grafikai' },
-  { label: 'POLIRAVIMAS', desc: 'CTA, aiškumas, paprastumas' },
-];
-
 interface DiPrezentacijosWorkflowDiagramProps {
   currentStep?: number;
   onStepClick?: (index: number) => void;
+  locale?: Locale;
   className?: string;
 }
 
 export default function DiPrezentacijosWorkflowDiagram({
   currentStep = 0,
   onStepClick,
+  locale = 'lt',
   className = '',
 }: DiPrezentacijosWorkflowDiagramProps) {
   const uid = useId().replace(/:/g, '');
   const isInteractive = typeof onStepClick === 'function';
+  const steps = getDiPrezentacijosSteps(locale);
+  const content = getDiPrezentacijosDiagramContent(locale);
 
   return (
     <svg
       viewBox={VIEWBOX}
       className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
-      aria-label={`DI prezentacijos workflow.${isInteractive ? ' Paspauskite žingsnį, kad pamatytumėte paaiškinimą.' : ''}`}
+      aria-label={`${content.ariaLabel}${isInteractive ? content.interactiveHint : ''}`}
     >
       <defs>
         <linearGradient id={`di-prez-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -70,10 +67,10 @@ export default function DiPrezentacijosWorkflowDiagram({
       <rect width="560" height="520" fill="none" stroke="#bcccdc" strokeWidth="1" rx="12" />
 
       <text x={CX} y="36" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="20" fontWeight="800" fill="#102a43">
-        DI prezentacijos workflow
+        {content.title}
       </text>
       <text x={CX} y="56" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">
-        Paspausk žingsnį – paaiškinimas apačioje
+        {content.subtitle}
       </text>
 
       {STEP_BOXES.map((box, i) => {
@@ -93,10 +90,10 @@ export default function DiPrezentacijosWorkflowDiagram({
                 strokeWidth={isActive ? 2.5 : 1.5}
               />
               <text x={CX} y={box[1] + 24} textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="14" fontWeight="700" fill="white">
-                {i + 1} · {STEPS[i].label}
+                {i + 1} · {steps[i].label}
               </text>
               <text x={CX} y={box[1] + 44} textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="12" fontWeight="500" fill="rgba(255,255,255,0.9)">
-                {STEPS[i].desc}
+                {steps[i].desc}
               </text>
             </g>
             {isInteractive && (
@@ -109,7 +106,7 @@ export default function DiPrezentacijosWorkflowDiagram({
                 fill="transparent"
                 cursor="pointer"
                 onClick={() => onStepClick(i)}
-                aria-label={`Žingsnis ${i + 1}: ${STEPS[i].label}. Paspauskite paaiškinimui.`}
+                aria-label={content.stepAria(i, steps[i].label)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {

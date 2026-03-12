@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" aria-labelledby="da-bi-schema-title" role="img">
+  <title id="da-bi-schema-title">Business intelligence schema: 4 ?ingsniai ? Surink, Analizuok, Ataskaita, Prognoz?</title>
+  <defs>
+    <linearGradient id="bi-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="bi-step" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#486581"/>
+      <stop offset="100%" stop-color="#334e68"/>
+    </linearGradient>
+    <marker id="bi-arrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#334e68" stroke="#334e68" stroke-width="0.3"/>
+    </marker>
+  </defs>
+  <rect width="520" height="200" fill="url(#bi-bg)" rx="12"/>
+  <rect width="520" height="200" fill="none" stroke="#bcccdc" stroke-width="1" rx="12"/>
+  <text x="260" y="28" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="800" fill="#102a43">Business intelligence schema</text>
+  <text x="260" y="46" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="#334e68">4 ?ingsniai: duomenys ? sprendimai</text>
+
+  <!-- 1. Surink -->
+  <g>
+    <rect x="24" y="58" width="108" height="72" rx="10" fill="url(#bi-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="78" y="92" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" fill="white">1. Surink</text>
+    <text x="78" y="110" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Duomen? ?altiniai</text>
+  </g>
+  <line x1="136" y1="87" x2="154" y2="87" stroke="#334e68" stroke-width="2" marker-end="url(#bi-arrow)"/>
+
+  <!-- 2. Analizuok -->
+  <g>
+    <rect x="158" y="58" width="108" height="72" rx="10" fill="url(#bi-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="212" y="92" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" fill="white">2. Analizuok</text>
+    <text x="212" y="110" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">EDA, ??valgos</text>
+  </g>
+  <line x1="270" y1="87" x2="288" y2="87" stroke="#334e68" stroke-width="2" marker-end="url(#bi-arrow)"/>
+
+  <!-- 3. Ataskaita -->
+  <g>
+    <rect x="292" y="58" width="108" height="72" rx="10" fill="url(#bi-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="346" y="92" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" fill="white">3. Ataskaita</text>
+    <text x="346" y="110" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Vizualizacija vadovui</text>
+  </g>
+  <line x1="404" y1="87" x2="422" y2="87" stroke="#334e68" stroke-width="2" marker-end="url(#bi-arrow)"/>
+
+  <!-- 4. Prognoz? -->
+  <g>
+    <rect x="426" y="58" width="110" height="72" rx="10" fill="url(#bi-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="481" y="92" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="700" fill="white">4. Prognoz?</text>
+    <text x="481" y="110" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Ateities vertinimas</text>
+  </g>
+</svg>

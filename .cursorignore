@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+.next/
+coverage/
+*.log
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.webp
+public/
+exports/
+*.csv
+*.xlsx
+*.pdf

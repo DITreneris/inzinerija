@@ -2,7 +2,7 @@
 
 > **Data:** 2026-02-07  
 > **SOT:** `docs/turinio_pletra_moduliai_4_5_6.md`  
-> **Susiję:** `docs/MODULIO_4_TURINIO_ANALIZE.md`, `docs/MODULIO_4_SKAIDRIU_EILES.md`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`  
+> **Susiję:** SOT `docs/turinio_pletra_moduliai_4_5_6.md`, `docs/MODULIO_4_SKAIDRIU_EILES.md`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`. Istorinis turinio aprašas – `docs/archive/MODULIO_4_TURINIO_ANALIZE.md`.  
 > **Šaltiniai:** internetinė paieška – prompt engineering kursai, RAG/haliucinacijų/manipuliacijų geriausios praktikos, MoSCoW prioritizacija.
 
 ---
@@ -11,7 +11,7 @@
 
 **Modulis 4** – „Konteksto inžinerija“ (pažangusis teorijos modulis). Apima: konteksto inžinerijos sąvoką, 4 dedamąsias, RL/RLHF, parametrų lauką, struktūruotą procesą (8 žingsniai), LLM schemas (RAG, multi-modal), **RAG**, atvirus duomenis, RAG įrankius ir duomenų paruošimą, **Deep research**, **tokenų ekonomiką**, **promptų manipuliacijas**, **žinių patikrinimą ir haliucinacijas**, santrauką su ryšiais tarp temų ir CTA į Modulį 5.
 
-**Stiprybės (sutampa su MODULIO_4_TURINIO_ANALIZE.md):**
+**Stiprybės (sutampa su SOT ir istoriniu MODULIO_4_TURINIO_ANALIZE, archyve):**
 - Aiški prielaida (Moduliai 1–3 baigti), nuosekli tema po temos, ryšiai su 6 blokais.
 - Kopijuojami šablonai (CopyButton), kartojimo skaidrė, „3 klausimai sau“ prieš testą.
 - Oficiali skaidrių eilė dokumentuota (`MODULIO_4_SKAIDRIU_EILES.md`), RAG įvade – nuoroda į tokenus (4.4).
@@ -110,7 +110,7 @@ Prioritetai apibrėžti taip:
 
 ### 4.3 Dokumentacija – QA_AGENT
 
-- Atnaujinti `MODULIO_4_TURINIO_ANALIZE.md` – pridėti nuorodą į šį dokumentą ir įgyvendintų MUST/SHOULD statusą.
+- Atnaujinti SOT (`docs/turinio_pletra_moduliai_4_5_6.md`) ir šį dokumentą – įgyvendintų MUST/SHOULD statusą.
 - CHANGELOG – „Modulio 4 tobulinimai pagal geriausias praktikas (Must–Should–Could)“.
 
 ---
@@ -130,7 +130,7 @@ Prioritetai apibrėžti taip:
 - Sukurtas `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` – 4 modulio turinio analizė, geriausios praktikos iš interneto, Must–Should–Could prioritizacija ir konkretūs pasiūlymai.
 
 **CHECKS:**
-- Skaityta SOT (Modulio 4 skyriai), MODULIO_4_TURINIO_ANALIZE.md, MODULIO_4_SKAIDRIU_EILES.md.
+- Skaityta SOT (Modulio 4 skyriai), MODULIO_4_SKAIDRIU_EILES.md.
 - Interneto paieška: prompt engineering courses, RAG best practices, hallucination verification (CoVe), prompt injection/jailbreak (OWASP, Anthropic).
 
 **RISKS:**
@@ -141,4 +141,4 @@ Prioritetai apibrėžti taip:
 1. Priimti sprendimą dėl MUST M4 (4.5 – prompt injection/jailbreak blokas) ir SHOULD S2–S4 (chunk, CoVe, bridžinė praktika).
 2. CONTENT_AGENT: įgyvendinti pasirinktus pakeitimus SOT faile.
 3. DATA_AGENT: sinchronizuoti `modules.json` su nauju turiniu.
-4. Atnaujinti MODULIO_4_TURINIO_ANALIZE.md ir CHANGELOG.
+4. Atnaujinti SOT (reikalui esant) ir CHANGELOG.

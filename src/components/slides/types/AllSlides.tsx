@@ -2,7 +2,9 @@
 
 export type {
   ActionIntroSlideProps,
+  ActionIntroJourneySlideProps,
   IntroSlideProps,
+  IntroActionPieSlideProps,
   HierarchySlideProps,
   ComparisonSlideProps,
   SummarySlideProps,
@@ -11,6 +13,7 @@ export type {
 
 export {
   ActionIntroSlide,
+  ActionIntroJourneySlide,
   IntroSlide,
   ModuleIntroSlide,
   ContentBlockSlide,
@@ -20,6 +23,7 @@ export {
   DefinitionsSlide,
   DiModalitiesSlide,
   PieChartSlide,
+  IntroActionPieSlide,
   AiWorkflowSlide,
   PromptTypesSlide,
   PromptTechniquesSlide,
@@ -30,9 +34,11 @@ export {
   ComparisonSlide,
   SummarySlide,
   ProductivityInfographicSlide,
+  DiParadoxInfographicSlide,
+  NewsPortalInfographicSlide,
   PracticeSummarySlide,
 } from './ContentSlides';
 
 export { MetaBlockSlide, InputBlockSlide, OutputBlockSlide, ReasoningModelsSlide, ReasoningBlockSlide, QualityBlockSlide, AdvancedBlockSlide, AdvancedParameters2Slide, FullExampleSlide } from './BlockSlides';
 
-export { TestIntroSlide, TestSectionSlide, TestResultsSlide, PracticeIntroSlide, PracticeScenarioSlide } from './TestPracticeSlides';
+export { TestIntroSlide, TestSectionSlide, TestResultsSlide, PracticeIntroSlide, PracticeScenarioHubSlide, PracticeScenarioSlide } from './TestPracticeSlides';

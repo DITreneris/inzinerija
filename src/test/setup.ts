@@ -15,7 +15,9 @@ vi.stubGlobal('process', processStub);
 
 // Ensure localStorage is available (jsdom should provide it, but ensure it exists)
 const localStorageMock = (() => {
-  let store: Record<string, string> = {};
+  let store: Record<string, string> = {
+    'prompt-anatomy-locale': 'lt',
+  };
   return {
     getItem: (key: string) => store[key] || null,
     setItem: (key: string, value: string) => {
@@ -60,12 +62,16 @@ if (typeof global !== 'undefined') {
   (global as any).localStorage = localStorageMock;
 }
 
+// i18n must be initialised before any component using useTranslation or i18n.t is rendered
+import '../i18n';
+
 // Cleanup after each test
 afterEach(() => {
   cleanup();
   // Clear localStorage after each test
   if (typeof localStorage !== 'undefined') {
     localStorage.clear();
+    localStorage.setItem('prompt-anatomy-locale', 'lt');
   }
 });
 
@@ -96,6 +102,21 @@ Object.defineProperty(window, 'matchMedia', {
   unobserve() {}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as any;
+
+// Mock HTMLCanvasElement.getContext (axe-core uses it in a11y tests; jsdom does not implement it)
+if (typeof HTMLCanvasElement !== 'undefined') {
+  const noop = () => {};
+  const create2DContextMock = () => ({
+    getImageData: () => ({ data: new Uint8ClampedArray(0), width: 0, height: 0 }),
+    clearRect: noop,
+    canvas: { width: 0, height: 0 },
+  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, contextId: string): any {
+    if (contextId === '2d') return create2DContextMock();
+    return null;
+  };
+}
 
 // Note: jsdom environment should provide document and window automatically via vitest
 // If document is still undefined, there might be a configuration issue

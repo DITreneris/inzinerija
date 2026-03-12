@@ -7,7 +7,7 @@ const SLIDE_POS_KEY = 'prompt-anatomy-slide-pos';
 
 /* ─── Slide position persistence ─── */
 
-function getSavedSlidePosition(moduleId: number): number {
+export function getSavedSlidePosition(moduleId: number): number {
   try {
     const raw = localStorage.getItem(SLIDE_POS_KEY);
     if (!raw) return 0;
@@ -94,6 +94,7 @@ export function useSlideNavigation({
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [showModuleComplete, setShowModuleComplete] = useState(false);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   const nextSlide = useCallback(() => {
     if (!module) return;
@@ -103,10 +104,6 @@ export function useSlideNavigation({
         : currentSlide + 1;
       setCurrentSlide(nextIndex);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (nextIndex === module.slides.length - 1) {
-        if (!progress.completedModules.includes(moduleId)) onComplete(moduleId);
-        setShowModuleComplete(true);
-      }
     } else {
       if (!progress.completedModules.includes(moduleId)) {
         onComplete(moduleId);
@@ -127,15 +124,20 @@ export function useSlideNavigation({
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   }, []);
 
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
-      if (touchStartX.current == null) return;
-      const delta = e.changedTouches[0].clientX - touchStartX.current;
+      if (touchStartX.current == null || touchStartY.current == null) return;
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX.current;
+      const deltaY = touch.clientY - touchStartY.current;
       touchStartX.current = null;
-      if (Math.abs(delta) < SWIPE_THRESHOLD) return;
-      if (delta > 0) prevSlide();
+      touchStartY.current = null;
+      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+      if (Math.abs(deltaY) >= Math.abs(deltaX)) return;
+      if (deltaX > 0) prevSlide();
       else nextSlide();
     },
     [nextSlide, prevSlide]
@@ -156,7 +158,8 @@ export function useSlideNavigation({
   const hasIncompletePracticalTask = useMemo(
     () =>
       Boolean(
-        currentSlideData?.practicalTask &&
+        (currentSlideData?.practicalTask ||
+          currentSlideData?.type === 'action-intro-journey') &&
           !progress.completedTasks[moduleId]?.includes(currentSlideData.id)
       ),
     [currentSlideData, progress.completedTasks, moduleId]

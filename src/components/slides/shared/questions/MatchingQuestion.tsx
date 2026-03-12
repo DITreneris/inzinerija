@@ -4,6 +4,7 @@ import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
 import { confidenceLabel } from './confidenceLabels';
+import { useLocale } from '../../../../contexts/LocaleContext';
 
 interface MatchingQuestionProps {
   question: TestQuestion;
@@ -30,9 +31,10 @@ export function MatchingQuestion({
   onComplete,
   onRequestHint,
 }: MatchingQuestionProps) {
+  const { locale } = useLocale();
+  const en = locale === 'en';
   const pairs = useMemo(() => question.matchPairs || [], [question.matchPairs]);
 
-  // Shuffle right side once on mount
   const shuffledRight = useMemo(() => {
     const arr = pairs.map((p) => p.right);
     for (let i = arr.length - 1; i > 0; i--) {
@@ -43,7 +45,7 @@ export function MatchingQuestion({
   }, [pairs]);
 
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null);
-  const [matches, setMatches] = useState<Record<number, number>>({}); // leftIdx -> rightIdx
+  const [matches, setMatches] = useState<Record<number, number>>({});
   const [isChecked, setIsChecked] = useState(false);
 
   const handleLeftClick = useCallback((idx: number) => {
@@ -53,10 +55,8 @@ export function MatchingQuestion({
 
   const handleRightClick = useCallback((rightIdx: number) => {
     if (isChecked || selectedLeft === null) return;
-    // Check if right is already used
     const usedBy = Object.entries(matches).find(([, v]) => v === rightIdx);
     if (usedBy) {
-      // Remove existing match
       setMatches((prev) => {
         const next = { ...prev };
         delete next[Number(usedBy[0])];
@@ -114,7 +114,7 @@ export function MatchingQuestion({
         <div>
           <span className="text-xs font-semibold text-accent-600 dark:text-accent-400 uppercase tracking-wider">
             <Link2 className="w-3 h-3 inline mr-1" />
-            Sujunk poras
+            {en ? 'Match pairs' : 'Sujunk poras'}
           </span>
           <p className="font-bold text-gray-900 dark:text-white mt-1">{question.question}</p>
         </div>
@@ -122,7 +122,9 @@ export function MatchingQuestion({
 
       {!isChecked && (
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-          Paspauskite kairėje, tada dešinėje – sujunkite teisingas poras.
+          {en
+            ? 'Click left, then right – match the correct pairs.'
+            : 'Paspausk kairėje, tada dešinėje – sujunk teisingas poras.'}
         </p>
       )}
 
@@ -148,7 +150,7 @@ export function MatchingQuestion({
                 key={leftIdx}
                 onClick={() => handleLeftClick(leftIdx)}
                 disabled={isChecked}
-                aria-label={`Kairė pusė: ${pair.left}`}
+                aria-label={`${en ? 'Left side' : 'Kairė pusė'}: ${pair.left}`}
                 className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm font-medium ${
                   isChecked
                     ? isCorrectMatch
@@ -187,7 +189,7 @@ export function MatchingQuestion({
                 key={rightIdx}
                 onClick={() => handleRightClick(rightIdx)}
                 disabled={isChecked}
-                aria-label={`Dešinė pusė: ${rightText}`}
+                aria-label={`${en ? 'Right side' : 'Dešinė pusė'}: ${rightText}`}
                 className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm ${
                   isChecked
                     ? isCorrectMatch
@@ -214,10 +216,10 @@ export function MatchingQuestion({
         <button
           onClick={handleCheck}
           className="mt-4 w-full btn-primary flex items-center justify-center gap-2 min-h-[44px]"
-          aria-label="Patikrinti poras"
+          aria-label={en ? 'Check pairs' : 'Patikrinti poras'}
         >
           <CheckCircle className="w-5 h-5" />
-          Patikrinti poras
+          {en ? 'Check pairs' : 'Patikrinti poras'}
         </button>
       )}
 
@@ -235,10 +237,10 @@ export function MatchingQuestion({
         <button
           onClick={() => onRequestHint(question.id)}
           className="mt-2 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
-          aria-label="Gauti užuominą"
+          aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />
-          Rodyti užuominą prieš tikrinant
+          {en ? 'Show hint before checking' : 'Rodyti užuominą prieš tikrinant'}
         </button>
       )}
 
@@ -246,12 +248,13 @@ export function MatchingQuestion({
         <>
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Pasitikėjimas: <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence)}</span>
+              {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
+              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
             </p>
           )}
           <div className="mt-4 p-3 rounded-lg bg-brand-50 dark:bg-brand-900/20">
             <p className="text-sm text-brand-800 dark:text-brand-200">
-              <strong>Paaiškinimas:</strong> {question.explanation}
+              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong> {question.explanation}
             </p>
           </div>
         </>

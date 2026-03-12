@@ -1,0 +1,40 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Jūratė",
+      "age": 28,
+      "profession": "Verslo analitikė",
+      "experience": "4 m. klientų ir rinkos analizėje",
+      "hobby": "Skaitmeninė fotografija",
+      "imagePath": "/characters/veikejas-1.png"
+    },
+    {
+      "id": 2,
+      "name": "Martynas",
+      "age": 34,
+      "profession": "Duomenų analitikas",
+      "experience": "7 m. EDA ir rizikų vertinime",
+      "hobby": "Bėgimas, maratonai",
+      "imagePath": "/characters/veikejas-2.png"
+    },
+    {
+      "id": 3,
+      "name": "Giedrė",
+      "age": 31,
+      "profession": "Verslo konsultantė (CFO/HR)",
+      "experience": "5 m. finansų ir HR analizėje",
+      "hobby": "Knygos, kelionės",
+      "imagePath": "/characters/veikejas-3.png"
+    },
+    {
+      "id": 4,
+      "name": "Lukas",
+      "age": 26,
+      "profession": "Vizualizacijų ir BI specialistas",
+      "experience": "3 m. Power BI, Python, data storytelling",
+      "hobby": "Muzika, gitara",
+      "imagePath": "/characters/veikejas-4.png"
+    }
+  ]
+}

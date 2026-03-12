@@ -1,0 +1,748 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "slides": [
+        {
+          "id": 1,
+          "content": {
+            "structuredPrompt": "META: You are a marketing strategist with 10 years of B2B experience.\nGoal: prepare a Q1 marketing plan.\nAudience: CMO and leadership.\n\nINPUT: Budget 50k USD. Target market: US (e.g. Midwest or Northeast).\nCompetitors: 3 main players.\n\nOUTPUT: Strategic document, 2–3 pages.\nStructure: goals → channels → budget → key indicators.\nTone: professional, with concrete numbers."
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "slides": [
+        {
+          "id": 27,
+          "testQuestions": [
+            {
+              "id": "q12",
+              "scenarioContext": "You're a marketing lead. You're writing a prompt to AI to generate a quarterly sales report for the board. You have: 250k USD revenue, 1200 orders, +15% growth. The prompt starts: 'You are a senior business analyst...' and ends: 'Present the result in a table with 5 columns.'",
+              "explanation": "The prompt has Meta (role: analyst), Input (data: 250k USD), and Output (table, 5 columns), but no Reasoning – how should AI analyse: compare periods? Look for trends? Recommend actions?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "slides": [
+        {
+          "id": 31,
+          "scenario": {
+            "data": "Q2 2024: revenue 1.2M USD (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, company restructuring, new CRM."
+          },
+          "practicalTask": {
+            "template": "META:\nTu esi vyresnysis vadovas su 10+ metų patirtimi strateginiuose sprendimuose. Tavo tikslas – parengti ketvirčio rezultatų apžvalgą valdybai, kurie priims Q3 prioritetų sprendimus.\n\nINPUT:\nQ2 2024: pajamos 1.2M USD (+8% vs Q1), marža 23%. Projekto “X“ būsena: 70% atlikta, rizika – vėlavimas 2 savaites. Top 3 prioritetai Q3: pardavimų augimas, restruktūrizacija, nauja CRM.\n\nApribojimai: 5 dienos, 4 valdybos nariai, max 2 puslapiai.\n\nOUTPUT:\nFormatas: Executive Summary (1–2 puslapiai). Struktūra: 1) KPI dashboard, 2) Rizikos ir projekto būsena, 3) 3 prioritetai su rekomendacijomis. Kalba: lietuvių, verslo tonas.\n\nREASONING (CoT):\n1) Apibendrinti KPI ir tendencijas\n2) Įvertinti rizikas ir projektų būseną\n3) Prioritetizuoti ir suformuluoti rekomendacijas\n\nQUALITY:\n✓ Skaičiai tikslūs ✓ Rizikos identifikuotos ✓ Rekomendacijos aiškios ✓ Ilgis 1–2 psl.\n\nADVANCED:\nTemperature: 0.3 (faktinis tonas), Format: verslo dokumentas",
+            "instructions": {
+              "steps": [
+                {
+                  "step": 2,
+                  "partialSolution": "INPUT:\nQ2 2024: pajamos 1.2M USD (+8% vs Q1), marža 23%. Projekto “X“ būsena: 70% atlikta, rizika – vėlavimas 2 savaites. Top 3 prioritetai Q3: pardavimų augimas, restruktūrizacija, nauja CRM.\n\nApribojimai: 5 dienos, 4 valdybos nariai, max 2 puslapiai."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": 32,
+          "scenario": {
+            "data": "Q3 2024: 320k USD revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down -12%, B2C +3%. Average order: B2B 890 USD, B2C 165 USD."
+          },
+          "practicalTask": {
+            "instructions": {
+              "steps": [
+                {
+                  "step": 2,
+                  "partialSolution": "INPUT:\nQ4 2024 results: 45 new customers, CAC 6500 USD, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k USD.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment."
+                },
+                {
+                  "step": 4,
+                  "partialSolution": "REASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k USD) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation"
+                },
+                {
+                  "step": 5,
+                  "partialSolution": "QUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k USD) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)"
+                }
+              ]
+            },
+            "template": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions.\n\nINPUT:\nQ4 2024 results: 45 new customers, CAC 6500 USD, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k USD.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment.\n\nOUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone.\n\nREASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k USD) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation\n\nQUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k USD) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)\n\nADVANCED:\nTemperature: 0.4 (strategic thinking with creativity)\nReasoning: extended (deeper analysis needed)\nFormat: structured business document"
+          }
+        },
+        {
+          "id": 33,
+          "scenario": {
+            "data": "Campaign: new product \"SmartFlow\". Budget: 45k USD. Target audience: IT leads (companies with 100–500 employees). Channels: LinkedIn, events, email. Competitors: 2 main. Period: Q2 2025."
+          },
+          "practicalTask": {
+            "instructions": {
+              "steps": [
+                {
+                  "step": 2,
+                  "hint": "Data: participation, satisfaction, problem areas, strengths. Constraints: budget 50k USD, concrete action plan.",
+                  "partialSolution": "INPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k USD. Confidentiality: do not disclose individual responses."
+                },
+                {
+                  "step": 4,
+                  "partialSolution": "REASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions for each problem area\n4) Allocate budget (50k USD) by priority and expected impact"
+                },
+                {
+                  "step": 5,
+                  "partialSolution": "QUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k USD) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)"
+                }
+              ]
+            },
+            "template": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan.\n\nINPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k USD. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone.\n\nREASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions per problem area\n4) Allocate budget (50k USD) by priority and expected impact\n\nQUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k USD) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)\n\nADVANCED:\nTemperature: 0.3 (sensitive, professional tone)\nReasoning: extended (deeper analysis and empathy)\nFormat: structured HR document with visuals"
+          }
+        },
+        {
+          "id": 35,
+          "scenario": {
+            "data": "156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9). Budget for initiatives: 50k USD."
+          },
+          "practicalTask": {
+            "instructions": {
+              "steps": [
+                {
+                  "step": 2,
+                  "partialSolution": "INPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k USD."
+                }
+              ]
+            },
+            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k USD. Confidentiality: do not disclose individuals.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Temperature: 0.3, Format: HR report"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slides": [
+        {
+          "id": 38,
+          "content": {
+            "unstructuredPrompt": "Write me a report on US GDP trends.",
+            "structuredPrompt": "META: You are an economics analyst. Goal: a short GDP trends report.\n\nINPUT: Use only these sources: BEA (bea.gov), Census Bureau (census.gov), or FRED (fred.stlouisfed.org). If data is missing – say \"I don't know\", don't guess.\n\nOUTPUT: 1 page, 3–5 bullet points, with links to sources. Language: English."
+          }
+        },
+        {
+          "id": 45,
+          "content": {
+            "steps": [
+              {
+                "id": "goal",
+                "examplePrompt": "Prepare 5 marketing ideas for a logistics company in Texas."
+              }
+            ]
+          }
+        },
+        {
+          "id": 53.5,
+          "content": {
+            "takeaway": "Census Bureau BTOS: about 5–7% of US businesses use AI.",
+            "kpiCards": [
+              {
+                "icon": "🏢",
+                "value": "5–7%",
+                "desc": "US businesses use AI",
+                "source": "Census Bureau BTOS, 2024",
+                "colorKey": "brand"
+              },
+              {
+                "icon": "📊",
+                "value": "BTOS",
+                "desc": "Business Trends and Outlook Survey",
+                "source": "census.gov",
+                "colorKey": "emerald"
+              },
+              {
+                "icon": "📈",
+                "value": "BEA",
+                "desc": "US GDP and national accounts source",
+                "source": "bea.gov",
+                "colorKey": "brand"
+              },
+              {
+                "icon": "🔗",
+                "value": "FRED",
+                "desc": "Economic series and comparisons",
+                "source": "fred.stlouisfed.org",
+                "colorKey": "emerald"
+              }
+            ],
+            "mainInsightBlock": {
+              "bigNumber": "5–7%",
+              "label": "About 5–7% of US businesses use AI.",
+              "source": "Census Bureau BTOS, 2024"
+            },
+            "secondaryCards": [
+              {
+                "sectionLabel": "01 — Sources",
+                "title": "Use source names and URLs",
+                "value": "3",
+                "label": "Census Bureau, BEA, FRED",
+                "source": "census.gov · bea.gov · fred.stlouisfed.org",
+                "colorKey": "emerald",
+                "imageVertical": {
+                  "src": "di_portal_youth_vertical.png",
+                  "alt": "Official US data sources"
+                }
+              },
+              {
+                "sectionLabel": "02 — United States",
+                "title": "US companies use AI",
+                "value": "5–7%",
+                "label": "About 5–7% of US businesses use AI",
+                "source": "Census Bureau BTOS, 2024",
+                "colorKey": "emerald",
+                "imageVertical": {
+                  "src": "di_portal_section03_vertical.png",
+                  "alt": "US AI adoption – companies"
+                }
+              }
+            ],
+            "toolsAndYouth": {
+              "toolsLabel": "04 — Sources",
+              "toolsTitle": "Core US data sources",
+              "tools": [
+                {
+                  "name": "Census Bureau",
+                  "pct": "census.gov",
+                  "colorKey": "rose"
+                },
+                {
+                  "name": "BEA",
+                  "pct": "bea.gov",
+                  "colorKey": "amber"
+                },
+                {
+                  "name": "FRED",
+                  "pct": "fred.stlouisfed.org",
+                  "colorKey": "violet"
+                },
+                {
+                  "name": "data.gov",
+                  "pct": "data.gov",
+                  "colorKey": "brand"
+                }
+              ],
+              "youthLabel": "05 — Rule",
+              "youthTitle": "Use one business benchmark",
+              "youthBigNum": "1",
+              "youthLabelText": "Primary statistic on this slide",
+              "youthBars": [
+                {
+                  "name": "Business benchmark",
+                  "pct": "5–7%",
+                  "colorKey": "violet"
+                },
+                {
+                  "name": "Source name",
+                  "pct": "BTOS",
+                  "colorKey": "amber"
+                },
+                {
+                  "name": "Source URL",
+                  "pct": "census.gov",
+                  "colorKey": "slate"
+                }
+              ],
+              "youthFootnote": "",
+              "youthImageVertical": {
+                "src": "di_portal_section02_vertical.png",
+                "alt": "US source rule"
+              }
+            },
+            "insightCard": {
+              "tag": "Key message",
+              "headline": "Main takeaways: US, business, official sources.",
+              "illustrationHorizontal": {
+                "src": "di_portal_insight_strip.png",
+                "alt": "Key message – US, business, official sources"
+              },
+              "points": [
+                {
+                  "num": "01",
+                  "text": "**United States:** about 5–7% of businesses use AI (Census Bureau BTOS, 2024)."
+                },
+                {
+                  "num": "02",
+                  "text": "**Use one main benchmark:** this slide keeps one business statistic instead of mixing business and consumer numbers."
+                },
+                {
+                  "num": "03",
+                  "text": "**Official source rule:** when showing sources in EN-US, include the institution name and URL."
+                },
+                {
+                  "num": "04",
+                  "text": "**Default US sources:** Census Bureau, BEA, FRED, and data.gov."
+                }
+              ]
+            },
+            "sources": [
+              {
+                "title": "Census Bureau BTOS",
+                "year": "2024"
+              },
+              {
+                "title": "BEA",
+                "year": "2024"
+              },
+              {
+                "title": "FRED",
+                "year": "2024"
+              }
+            ]
+          }
+        },
+        {
+          "id": 59,
+          "subtitle": "BEA, FRED, data.gov, Census Bureau – official sources",
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ In short (30 s)",
+                "body": "RAG = query → official source → citation → conclusion. Specify sources and ask for answers with links – answers will be grounded, not \"from the head\".",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Do it now",
+                "body": "Copy the GDP example below and run it in AI (BEA, FRED, or data.gov) – you'll get an answer with source links. Then try other prompts from this slide.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "One example A to Z: US GDP vs Germany",
+                "body": "Question: Did GDP grow faster in the US than in Germany over 2020–2024? Steps: (1) Choose a BEA or FRED source. (2) Filter: US and Germany. (3) Years: 2020–2024. (4) Answer with citation (source, indicator, link). Copy the prompt below.",
+                "blockVariant": "emerald",
+                "copyable": "Use only BEA (bea.gov) or FRED (fred.stlouisfed.org) data. Task: Did US GDP grow faster than Germany's over 2020–2024? Give the answer with the dataset name, indicator, and link."
+              },
+              {
+                "heading": "Official open data sources – 3 blocks",
+                "body": "**A. US national level:** Census Bureau – business and population statistics. BEA – GDP, income, regional economy. FRED – economic time series and comparisons. data.gov – federal open datasets.\n\n**B. US federal/state level:** Congress.gov – federal legislation. State legislature portals – state laws. SEC EDGAR – company filings. SAM.gov – procurement. Federal Reserve – financial statistics.\n\n**For legal acts – use the current version from Congress.gov or the relevant state legislature.**\n\n**C. RAG rules:** Only official sources. Specify source name or dataset. Cite links. Check validity date.",
+                "blockVariant": "emerald",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "🔽 Other international sources",
+                "body": "World Bank open data – international statistics. OECD – comparative statistics. For US audience, data.gov, BEA, Census Bureau, and FRED are used most.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Examples table",
+                "body": "Four typical cases: what to ask and what you get – official sources and links.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": [
+                    "Example",
+                    "Query / action",
+                    "Result (what it shows)"
+                  ],
+                  "rows": [
+                    [
+                      "BEA / FRED – GDP trend",
+                      "\"From BEA or FRED data: what is US GDP change over the last 5 years? Cite the source or indicator.\"",
+                      "RAG uses only official statistics; you can specify the source and indicator."
+                    ],
+                    [
+                      "data.gov – topic",
+                      "\"Find data.gov open data on [e.g. renewable energy] in the US. Give 3 datasets with links and short description.\"",
+                      "Search by topic; output with links – RAG source specification."
+                    ],
+                    [
+                      "SEC / company data",
+                      "\"From SEC EDGAR or other official US registers: which are the 5 largest [sector] companies by revenue? Specify source.\"",
+                      "RAG limited to official registers – lower hallucination risk."
+                    ],
+                    [
+                      "Comparative statistics",
+                      "\"From OECD, BEA, or FRED: compare [indicator] for the US and Germany. Give figures and source links.\"",
+                      "Several official sources in one query; links for each conclusion."
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Mini-prompt: BEA / FRED template",
+                "body": "Use only BEA or FRED data. Ask for the answer with source names and links.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "copyable": "Use only BEA (bea.gov) or FRED (fred.stlouisfed.org) data. Task: [describe, e.g. GDP comparison]. Give the answer with source names and links."
+              },
+              {
+                "heading": "Mini-prompt: open sources list",
+                "body": "Good option: group by category (statistics, law, business, finance, procurement), give institution, link, and whether it has API.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "copyable": "Compile a list of official US open data sources suitable for RAG analysis. Group by category: statistics, law, business, finance, public procurement. For each give: institution, link, type of data, whether it has API."
+              },
+              {
+                "heading": "4️⃣ Check: anti-hallucination RAG rule",
+                "body": "**1.** No source link or institution name → answer is invalid.\n**2.** No year or indicator → answer is insufficient.\n**3.** Source not official → reject.\n\nFull topic on hallucinations – later in the module (slide 4.6a).",
+                "blockVariant": "accent"
+              }
+            ]
+          }
+        },
+        {
+          "id": 60,
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ In short (RAG memory and sources)",
+                "body": "In this slide you'll get a simple rule: when AI memory is enough, when you need documents, and how to ask for answers with references, not opinions.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Memory – long-term context about your business",
+                "body": "**What it is:** AI memory (Memory) – where AI stores key facts about your business: what you do, who your customers are, priorities, style.\n\n**Example:** \"My company does FMCG distribution in the Midwest. Priority is profitability and growth, not turnover.\"\n\n**When to use:** When you want AI to always \"know\" who you are and what you do – so you don't repeat it every time.\n\n**Important:** Memory isn't for number crunching. It's background context – no tables or documents.",
+                "blockVariant": "emerald",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "3️⃣ External sources – real RAG in business",
+                "body": "**What it is:** Your real documents: strategy plan, financial report, sales Excel, CRM export, project list, contracts.\n\n**Where to keep / use:** Your files, NotebookLM (Google), Trello, CRM; or NoteLM as a notes ecosystem.\n\n**When to use:** When you want answers based on numbers and text, not generic phrases: profitability analysis, segments, risks, contracts.",
+                "blockVariant": "emerald",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "4️⃣ Data prep – 80% of the result",
+                "body": "RAG will give weak answers if documents are messy, unlabelled, and you don't ask for sources.\n\n**Minimal business RAG standard:** clearly labelled sources (e.g. [Source 1 – 2026 Q1 Financial report], [Source 2 – Sales by region]) and a query that asks for citations.",
+                "blockVariant": "emerald",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "5️⃣ Do it now",
+                "body": "In the prompt say: \"Use both my saved context (Memory) and the documents provided.\" Copy the prompt below and use it with your documents.\n\n🔘 **Copy prompt (below)**",
+                "blockVariant": "emerald"
+              },
+              {
+                "heading": "6️⃣ Copyable prompt",
+                "body": "Paste this prompt into AI (ChatGPT, Claude) with your documents labelled [Source 1], [Source 2]:",
+                "blockVariant": "default",
+                "copyable": "Here is data with references: [paste text with [Source 1], [Source 2]…]. Analyse and give conclusions; for each conclusion give the source reference."
+              },
+              {
+                "heading": "Decision matrix: AI memory vs documents",
+                "body": "In the table – typical situations: when AI memory is enough, when you need documents, and when not to rely on AI memory.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": [
+                    "Situation",
+                    "Recommended",
+                    "Why?"
+                  ],
+                  "rows": [
+                    [
+                      "Need general business context",
+                      "AI memory (Memory)",
+                      "Context is long-term and repeated."
+                    ],
+                    [
+                      "Need to analyse numbers",
+                      "Documents (external sources)",
+                      "You need exact facts and tables."
+                    ],
+                    [
+                      "Need to back a decision",
+                      "Documents (external sources)",
+                      "You need citations and accountability."
+                    ],
+                    [
+                      "Need quick strategic thinking",
+                      "Memory + documents",
+                      "Context and numbers together."
+                    ],
+                    [
+                      "Legal accuracy (laws, contracts)",
+                      "Documents (official sources)",
+                      "⚠ AI memory can be wrong or out of date."
+                    ]
+                  ],
+                  "solutionMatrixStyle": true,
+                  "rowMeta": [
+                    {
+                      "strengthBadge": "AI memory",
+                      "badgeVariant": "blue"
+                    },
+                    {
+                      "strengthBadge": "Dokumentai",
+                      "badgeVariant": "yellow"
+                    },
+                    {
+                      "strengthBadge": "Dokumentai",
+                      "badgeVariant": "yellow"
+                    },
+                    {
+                      "strengthBadge": "Atmintis + dokumentai",
+                      "badgeVariant": "green"
+                    },
+                    {
+                      "strengthBadge": "Dokumentai",
+                      "badgeVariant": "yellow",
+                      "isWarning": true
+                    }
+                  ]
+                },
+                "rowMeta": [
+                  {
+                    "strengthBadge": "AI memory"
+                  },
+                  {
+                    "strengthBadge": "Documents"
+                  },
+                  {
+                    "strengthBadge": "Documents"
+                  },
+                  {
+                    "strengthBadge": "Memory + documents"
+                  },
+                  {
+                    "strengthBadge": "Documents"
+                  }
+                ]
+              },
+              {
+                "heading": "7️⃣ Check",
+                "body": "If AI doesn't cite sources or references are unclear – go back to data prep: add clear labels [Source 1], [Source 2] and in the prompt require \"For each claim give source ID.\"",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Practical workflow – typical business user",
+                "body": "**1. Memory:** \"My company is in construction. Priority is margin, not turnover.\"\n\n**2. Documents uploaded:** Q1 financial report, Project profitability analysis.\n\n**3. Prompt:** \"Using the documents, identify the least profitable projects and suggest 3 actions to improve margin. For each claim give source ID.\"",
+                "blockVariant": "emerald",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Core logic",
+                "body": "**Memory** = context about the business. **Documents** = real numbers. **Structure + citations** = decision reliability.\n\nWithout documents – it's opinion. With documents – it's analysis.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "🔽 Links: NotebookLM, NoteLM, Trello",
+                "body": "**NotebookLM** – Google AI tool for working with document sets (PDF, Docs, Slides) and RAG across sources. Link: [notebooklm.google](https://notebooklm.google/). **NoteLM** – AI notes and video tool if you prefer a notes ecosystem. Link: [notelm.app](https://www.notelm.app/). **Trello** – boards and cards; you can describe tasks as context for a RAG prompt. Link: [trello.com](https://trello.com/).",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              }
+            ]
+          }
+        },
+        {
+          "id": 64,
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ When do you need it?",
+                "body": "When the decision costs money, you need to justify to management, one answer isn't enough, or you need sources, not opinion. Deep Research ≠ a simple question to AI – it's a structured mini research (5–15 min).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "What is it in essence?",
+                "body": "4 stages in one process: (1) topic split into sub-questions, (2) source search, (3) data extraction, (4) synthesis with links. Result – analysis fit for a decision.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "How is it different from RAG?",
+                "body": "**RAG:** works with your documents, answers from a given context. **Deep Research:** searches outside, compares several sources, combines into one analysis. It's not an answer – it's a report.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "2️⃣ Deep Research prompt (copy–paste)",
+                "body": "Copy below and replace [TOPIC], [GOAL], [SOURCES]. Output: 1–2 page synthesis with links.",
+                "blockVariant": "brand",
+                "copyable": "Do deep research on: [TOPIC]. Goal: [e.g. justify a decision to management]. Use only reliable sources: [e.g. BEA, Census Bureau, data.gov, research papers]. Break the topic into sub-questions. Give a 1–2 page synthesis. For each conclusion give the source. If information is missing – say \"I don't know\"."
+              },
+              {
+                "heading": "Where does it work?",
+                "body": "[Perplexity](https://perplexity.ai) (Research mode), [ChatGPT](https://chat.openai.com) (Browse / Advanced Data Analysis), [Claude](https://claude.ai) (with tools), [Gemini](https://gemini.google.com) (built-in search). For academics: [Elicit](https://elicit.com), [Consensus](https://consensus.app).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "⚡ Quick win",
+                "body": "Simplest to start – copy and replace [topic]:",
+                "blockVariant": "accent",
+                "copyable": "Create a prompt for deep research on [topic]."
+              },
+              {
+                "heading": "Bottom line",
+                "body": "Deep Research lets you not \"ask AI\" – but back a decision with data.",
+                "blockVariant": "terms"
+              }
+            ]
+          }
+        },
+        {
+          "id": 65.5,
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ In short (30 s)",
+                "body": "**Benefit:** In 5–10 min you'll combine **RAG** (answer from sources) and **Deep research** (depth) – two prompts, one topic. Sources + depth in one mini-project.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Do it now (5–10 min)",
+                "body": "**What to do:**\n👉 Pick a topic that matters to you. Copy the two-prompt template below. Run **prompt 1** (RAG) – get an answer with sources. Then **prompt 2** (Deep research) – paste the first answer or say \"based on the previous answer\" and get an extended analysis.\n\n🔘 Copy prompt (below)\n\n**Don't aim for perfect** – any topic that's useful to you.",
+                "blockVariant": "emerald"
+              },
+              {
+                "heading": "3️⃣ Copyable prompt",
+                "body": "Two-step template – first RAG, then Deep research. Replace [topic] with yours.",
+                "blockVariant": "terms",
+                "copyable": "PROMPT 1 (RAG):\nAnalyse [topic]. Use only reliable sources (BEA, Census Bureau, data.gov, official portals, research papers). Give your answer with links for each conclusion. If information is missing – say I don't know.\n\nPROMPT 2 (Deep research):\nBased on the previous answer, extend the analysis. What are the 3 main gaps? What do the latest (2025–2026) studies say? Provide links."
+              },
+              {
+                "heading": "4️⃣ Quick check (1 min)",
+                "body": "• Does the answer **include links** to sources?\n• Did **prompt 2** add new insights (depth)?\n• Could you **use this at work** or in study?\n• Were there things the AI **couldn't** answer – and is that clear?\n\nIf 2 or more \"no\" – try another topic or refine the prompt (e.g. a more specific [topic]).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "🔽 Want more detail?",
+                "body": "**3 steps:** (1) RAG – query with source requirements (Perplexity, ChatGPT Browse, etc.). (2) Deep research – follow-up question based on the first answer (sub-questions, synthesis). (3) Check – do links work, are conclusions logical?\n\n**Self-reflection:** Did you find reliable sources? Did the follow-up question add new insights? These questions help you prepare for the Module 5 test and Module 6 project.",
+                "blockVariant": "emerald",
+                "collapsible": true
+              }
+            ]
+          }
+        },
+        {
+          "id": 66.97,
+          "content": {
+            "sections": [
+              {
+                "heading": "Reflection prompt",
+                "body": "Before the Module 5 test or Module 6 project – ask yourself 3 questions. Copy the prompt below into the AI and get personal feedback.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "First action after the module",
+                "body": "Within 24–48 hours open the AI and ask one RAG or fact-check question with sources – e.g. \"From BEA or FRED data: US GDP trend over 3 years. Cite the source.\" That reinforces what the module is for.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Where to apply?",
+                "body": "RAG – reports, research, official data. Deep research – complex questions with sub-questions. Fact-checking – anywhere facts and sources matter.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Copyable prompt",
+                "body": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start.",
+                "blockVariant": "terms",
+                "copyable": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start."
+              },
+              {
+                "heading": "Next step",
+                "body": "Choose your next step – next slide (interactive).",
+                "blockVariant": "emerald"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "slides": [
+        {
+          "id": 61,
+          "practicalTask": {
+            "template": "META:\nYou are a business analyst with 5+ years in market research. Your goal – prepare a short research report for leadership on trends in the chosen market 2024–2025. Audience: managers who will make strategic decisions.\n\nINPUT:\nSources: [paste 1–2 source summaries or key data – e.g. BEA, Census Bureau, Pew Research, market overviews]. Constraints: report 1–2 pages, English, references to sources required.\n\nOUTPUT:\nFormat: research report (1–2 pages). Structure: 1) Summary, 2) Main trends (with sources), 3) Conclusions and recommendations. Language: English, business tone.\n\nREASONING (Deep research steps):\n1) Break the question into 2–3 sub-questions (e.g. trends, risks, opportunities)\n2) For each sub-question find answers from the given sources\n3) Synthesise into one coherent report with references\n\nQUALITY:\n✓ Every conclusion has a source reference ✓ If information is not in the sources – write \"I don't know\" or mark as assumption ✓ Numbers and dates accurate ✓ Length 1–2 pages.\n\nADVANCED:\nTemperature: 0.3 (factual tone). Use only the given context (RAG); if deeper analysis is needed – specify “based on these sources“."
+          }
+        },
+        {
+          "id": 68,
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ In short (20 s)",
+                "body": "6-block system – META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED – for generating a professional, mobile .html page. Below – context engineering flow and full example prompt.",
+                "blockVariant": "accent"
+              },
+              {
+                "body": "Structured practical task – **6-block system** (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) to generate a professional, modern, mobile .html page. Matches Module 6 principle: 6 blocks everywhere.",
+                "blockVariant": "emerald"
+              },
+              {
+                "heading": "Before you build: context engineering flow (Module 4)",
+                "body": "With **context engineering**, before generating HTML it helps to prepare context – then the 6-block prompt gets \"engineered\" input. **1)** Context set – gather information on the topic using **RAG** (sources, your documents) or search (e.g. ChatGPT Browse, Perplexity) → facts, content, CTA into INPUT. **2)** Visual context – prepare a mock-up (e.g. Figma): layout, colours, CTA placement → feeds INPUT. **3)** HTML generation – use the 6-block prompt with the gathered context and generate HTML (e.g. Claude, ChatGPT or another AI). Link to Module 4: context engineering = controlling what you feed the AI; RAG = answer from sources.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "6-block structure",
+                "body": "",
+                "table": {
+                  "headers": [
+                    "Block",
+                    "Instruction"
+                  ],
+                  "rows": [
+                    [
+                      "#1 META",
+                      "Your role – experienced front-end developer and UX/UI designer. Goal – single-page .html website."
+                    ],
+                    [
+                      "#2 INPUT",
+                      "Context: community / product / service. Data: community intro, training, contacts. CTA – visitor fills a form."
+                    ],
+                    [
+                      "#3 OUTPUT",
+                      "Full HTML document with embedded CSS in one file, no comments or extra explanations."
+                    ],
+                    [
+                      "#4 REASONING",
+                      "Steps: 1) Intro section, 2) Content sections (training, etc.), 3) Contacts and CTA form. Logical reading order."
+                    ],
+                    [
+                      "#5 QUALITY",
+                      "Tone – modern, clear, friendly. Mobile-friendly design, easy to read."
+                    ],
+                    [
+                      "#6 ADVANCED",
+                      "Valid HTML+CSS only, no markdown. Consistent output (low temperature if possible)."
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Full example prompt",
+                "body": "Copy, adapt to your topic and run in your AI tool:",
+                "copyable": "META: Your role – experienced front-end developer and UX/UI designer. Goal – single-page .html website. INPUT: Topic – wingfoil community in Florida. Content: community intro, training, contacts. CTA – visitor fills contact form. OUTPUT: Full HTML with embedded CSS in one file, no comments. REASONING: 1) Intro block, 2) Training section, 3) Contacts and form – logical flow. QUALITY: Tone modern, clear, friendly; mobile-friendly, easy to read. ADVANCED: Valid HTML+CSS only, no markdown."
+              },
+              {
+                "heading": "Link to Module 1",
+                "body": "All **6 blocks** (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) – same system as in Module 1 and Module 6 project stages. Applied to HTML page creation.",
+                "blockVariant": "terms"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "quiz": {
+    "questions": [
+      {
+        "id": "q3",
+        "explanation": "Concrete input = concrete data: 250k USD, +15%, 1200 orders."
+      }
+    ]
+  }
+}

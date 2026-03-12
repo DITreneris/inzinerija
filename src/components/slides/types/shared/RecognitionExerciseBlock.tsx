@@ -71,13 +71,15 @@ export function RecognitionExerciseBlock({
                   );
                 })}
               </div>
-              {selected !== null && !isCorrect && (
+              {selected !== null && (
                 <div className="mt-3 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
-                  <p className="text-sm text-emerald-800 dark:text-emerald-200 font-medium">
-                    Teisingas atsakymas: <strong>{exercise.choices[correct]}</strong>
-                  </p>
+                  {!isCorrect && (
+                    <p className="text-sm text-emerald-800 dark:text-emerald-200 font-medium">
+                      Teisingas atsakymas: <strong>{exercise.choices[correct]}</strong>
+                    </p>
+                  )}
                   {exercise.explanations?.[exIdx] && (
-                    <p className="mt-1.5 text-sm text-emerald-700 dark:text-emerald-300 leading-relaxed">
+                    <p className={`text-sm text-emerald-700 dark:text-emerald-300 leading-relaxed ${!isCorrect ? 'mt-1.5' : ''}`}>
                       {exercise.explanations[exIdx]}
                     </p>
                   )}

@@ -4,6 +4,7 @@ import {
   HALLUCINATION_RATES_SOURCE,
   type HallucinationRateEntry,
 } from '../data/hallucinationRates';
+import { useLocale } from '../contexts/LocaleContext';
 
 const MAX_RATE = 6;
 const BAR_HEIGHT = 28;
@@ -26,6 +27,7 @@ function sortData(data: HallucinationRateEntry[], sort: SortKey): HallucinationR
 }
 
 export default function HallucinationRatesDashboard() {
+  const { locale } = useLocale();
   const [sort, setSort] = useState<SortKey>('rate-asc');
   const [hoverId, setHoverId] = useState<string | null>(null);
 
@@ -35,18 +37,18 @@ export default function HallucinationRatesDashboard() {
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-          Haliucinacijų rodikliai pagal modelį
+          {locale === 'en' ? 'Hallucination rates by model' : 'Haliucinacijų rodikliai pagal modelį'}
         </h3>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Rikiuoti:</span>
+          <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{locale === 'en' ? 'Sort:' : 'Rikiuoti:'}</span>
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
             className="text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-2 py-1 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
           >
-            <option value="rate-asc">Rodiklis (mažėjančiai)</option>
-            <option value="rate-desc">Rodiklis (didėjančiai)</option>
-            <option value="name">Pagal modelio pavadinimą</option>
+            <option value="rate-asc">{locale === 'en' ? 'Rate (descending)' : 'Rodiklis (mažėjančiai)'}</option>
+            <option value="rate-desc">{locale === 'en' ? 'Rate (ascending)' : 'Rodiklis (didėjančiai)'}</option>
+            <option value="name">{locale === 'en' ? 'By model name' : 'Pagal modelio pavadinimą'}</option>
           </select>
         </div>
       </div>
@@ -57,8 +59,8 @@ export default function HallucinationRatesDashboard() {
       >
         <div className="space-y-2 mb-2">
           <div className="flex text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">
-            <span className="w-40 flex-shrink-0">Modelis</span>
-            <span className="flex-1 text-right pr-2">Haliucinacijų rodiklis (%)</span>
+            <span className="w-40 flex-shrink-0">{locale === 'en' ? 'Model' : 'Modelis'}</span>
+            <span className="flex-1 text-right pr-2">{locale === 'en' ? 'Hallucination rate (%)' : 'Haliucinacijų rodiklis (%)'}</span>
           </div>
           {sorted.map((entry) => {
             const widthPercent = (entry.ratePercent / MAX_RATE) * 100;
@@ -111,13 +113,13 @@ export default function HallucinationRatesDashboard() {
         {hoverId && (
           <div className="mt-2 p-2 rounded bg-gray-100 dark:bg-gray-700/80 text-xs text-gray-700 dark:text-gray-300">
             {sorted.find((e) => e.id === hoverId)?.model}:{' '}
-            <strong>{sorted.find((e) => e.id === hoverId)?.ratePercent}%</strong> haliucinacijų
-            rodiklis (benchmarke).
+            <strong>{sorted.find((e) => e.id === hoverId)?.ratePercent}%</strong>{' '}
+            {locale === 'en' ? 'hallucination rate (benchmark).' : 'haliucinacijų rodiklis (benchmarke).'}
           </div>
         )}
 
         <p className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 dark:text-gray-400">
-          Šaltinis:{' '}
+          {locale === 'en' ? 'Source:' : 'Šaltinis:'}{' '}
           <a
             href={HALLUCINATION_RATES_SOURCE.url}
             target="_blank"
@@ -126,7 +128,7 @@ export default function HallucinationRatesDashboard() {
           >
             {HALLUCINATION_RATES_SOURCE.name} by {HALLUCINATION_RATES_SOURCE.by}
           </a>
-          . Rodikliai gali skirtis priklausomai nuo vertinimo datos ir metodologijos.
+          . {locale === 'en' ? 'Rates may vary depending on evaluation date and methodology.' : 'Rodikliai gali skirtis priklausomai nuo vertinimo datos ir metodologijos.'}
         </p>
       </div>
     </div>

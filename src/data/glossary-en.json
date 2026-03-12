@@ -1,0 +1,229 @@
+{
+  "terms": [
+    {
+      "term": "6-block system",
+      "definition": "A structured prompt framework: Meta, Input, Output, Reasoning, Quality, Advanced.",
+      "moduleId": 1
+    },
+    {
+      "term": "Advanced Parameters",
+      "definition": "Model settings: temperature, reasoning depth, response length, repetition control.",
+      "moduleId": 1
+    },
+    {
+      "term": "Agent (in AI context)",
+      "definition": "An AI system that observes the environment, makes decisions, and learns from outcomes; the main actor in reinforcement learning.",
+      "moduleId": 4
+    },
+    {
+      "term": "Agentic prompt",
+      "definition": "Asks the AI to take action – search, use tools (Browse, Search, API), gather data; the AI acts as an agent; requires a platform with tool/search support (e.g. “find and list TOP10”).",
+      "moduleId": 4
+    },
+    {
+      "term": "AI memory",
+      "definition": "Long-term context the AI “remembers” across conversations – your preferences, style, past decisions.",
+      "moduleId": 4
+    },
+    {
+      "term": "AI universe",
+      "definition": "A metaphor: the world of AI as a hierarchy – from simple rules to generative AI and tools. Helps you see where sources, context, and tools “fit”; the deeper the level, the more powerful the options.",
+      "moduleId": 4
+    },
+    {
+      "term": "Artefact",
+      "definition": "A ready-made end result – a report, Custom GPT, webpage, or other tangible output created with AI.",
+      "moduleId": 6
+    },
+    {
+      "term": "Autoregressive model",
+      "definition": "A language model that generates text word by word – each next word depends on the previous ones; this is how ChatGPT, Claude, and other LLMs work.",
+      "moduleId": 4
+    },
+    {
+      "term": "Brief",
+      "definition": "A short brief before you start: topic, audience, goal, scope, and tone – the basis for a structured prompt.",
+      "moduleId": 5
+    },
+    {
+      "term": "Chain",
+      "definition": "A sequence of tools or steps (e.g. Claude → ChatGPT → Gamma). A workflow chain is when several AI tools are used one after another for a single result.",
+      "moduleId": 4
+    },
+    {
+      "term": "Chunk",
+      "definition": "A logical piece of text into which a document is split for a RAG system – helps the AI find and use only relevant information.",
+      "moduleId": 4
+    },
+    {
+      "term": "COMBO",
+      "definition": "A prompt type that combines several methods in one prompt – role + steps + comparison + format; the most powerful but also the most complex.",
+      "moduleId": 4
+    },
+    {
+      "term": "Context capsule",
+      "definition": "A compact set of sources (summaries, facts, quotes) that fits in one prompt and gives the AI the context it needs.",
+      "moduleId": 5
+    },
+    {
+      "term": "Context degradation",
+      "definition": "When the AI “forgets” earlier information in a long conversation – attention fades, and information in the middle loses impact (Lost in the Middle).",
+      "moduleId": 4
+    },
+    {
+      "term": "Context engineering",
+      "definition": "Deliberate, structured presentation of information to the AI – what data, in what order, how much – so that the answer is accurate and useful.",
+      "moduleId": 4
+    },
+    {
+      "term": "Context window",
+      "definition": "The maximum amount of input and output text (in tokens) the model can “see” at once; beyond that, the oldest information is dropped.",
+      "moduleId": 4
+    },
+    {
+      "term": "Custom GPT",
+      "definition": "A ChatGPT project with rules, instructions, and files – a personal or team assistant for a specific task.",
+      "moduleId": 4
+    },
+    {
+      "term": "Deep Learning",
+      "definition": "The part of machine learning that uses multi-layer neural networks – the basis for image, language, and text AI models.",
+      "moduleId": 4
+    },
+    {
+      "term": "Deep research",
+      "definition": "In-depth research with AI – several steps (breaking down questions, searching sources, synthesising into one answer or report).",
+      "moduleId": 4
+    },
+    {
+      "term": "Input",
+      "definition": "Block that provides concrete data: numbers, dates, metrics – the facts the AI needs for the task.",
+      "moduleId": 1
+    },
+    {
+      "term": "Knowledge check",
+      "definition": "Quiz or test to verify understanding before moving to practice.",
+      "moduleId": 2
+    },
+    {
+      "term": "Leading questions",
+      "definition": "Questions phrased to steer the answer in a desired direction; a form of prompt manipulation to avoid – use neutral prompts instead.",
+      "moduleId": 4
+    },
+    {
+      "term": "LLM",
+      "definition": "Large Language Model – a large language model; the technical basis for AI that processes text and can use tools (Tool Use) and memory (Retrieval).",
+      "moduleId": 4
+    },
+    {
+      "term": "Machine learning (ML)",
+      "definition": "The area of AI where the system learns from data without being explicitly programmed – it finds patterns and makes predictions.",
+      "moduleId": 4
+    },
+    {
+      "term": "Master prompt",
+      "definition": "A personalised prompt about you or your organisation (who you are, what you do, goals, style, audience), giving the AI context; differs from a system prompt, which defines how the AI should behave.",
+      "moduleId": 4
+    },
+    {
+      "term": "Meta block",
+      "definition": "Block that defines who you are (role), what experience, and who the result is for (audience).",
+      "moduleId": 1
+    },
+    {
+      "term": "Methodological prompt",
+      "definition": "Specifies how to do the task – role, steps, format; the model produces an answer from the method without needing external search or tools (e.g. an analysis report).",
+      "moduleId": 4
+    },
+    {
+      "term": "Multimodality",
+      "definition": "The AI’s ability to work with several formats at once – text, images, audio, video; e.g. upload a photo and get a description.",
+      "moduleId": 4
+    },
+    {
+      "term": "Neural networks",
+      "definition": "A computing model inspired by brain neurons – the basis for deep learning and modern AI models.",
+      "moduleId": 4
+    },
+    {
+      "term": "Output",
+      "definition": "Block that specifies the format and structure of the result: table, list, language, length.",
+      "moduleId": 1
+    },
+    {
+      "term": "Parallel",
+      "definition": "When several tasks or steps are done at the same time (not one after another). The opposite of a chain – a chain is step by step.",
+      "moduleId": 4
+    },
+    {
+      "term": "Practice scenario",
+      "definition": "A concrete business situation where you apply the 6-block system to create a prompt.",
+      "moduleId": 3
+    },
+    {
+      "term": "Process",
+      "definition": "A repeatable sequence of steps; a clear process gives clarity and consistent results. Differs from a single chain – here it’s the overall way of working with AI.",
+      "moduleId": 4
+    },
+    {
+      "term": "Process prompt",
+      "definition": "A process-based request – asking to create or describe a process (strategy, project management, operations improvement); brings clarity for teams and decision-makers.",
+      "moduleId": 4
+    },
+    {
+      "term": "Prompt library",
+      "definition": "A personal or team store of templates – prompts organised by task and use case so you don’t have to write from scratch.",
+      "moduleId": 6
+    },
+    {
+      "term": "Prompt manipulation",
+      "definition": "Using strategically worded prompts to influence AI answers (bias, leading questions, etc.); something to avoid – use neutral prompts.",
+      "moduleId": 4
+    },
+    {
+      "term": "Prompt versioning",
+      "definition": "Keeping prompts in versions (v1, v2, v3) – what worked, what didn’t, what you changed; helps improve and avoid repeating mistakes.",
+      "moduleId": 6
+    },
+    {
+      "term": "Quality block",
+      "definition": "In the 6-block system – quality requirements: sources, citing, “say I don’t know” rule, objectivity, limits.",
+      "moduleId": 4
+    },
+    {
+      "term": "RAG",
+      "definition": "Retrieval-Augmented Generation – a method where the AI generates the answer using retrieved information from documents or databases, not only from its training.",
+      "moduleId": 4
+    },
+    {
+      "term": "Reward",
+      "definition": "A numeric signal showing whether an AI action was good or bad; the main mechanism in reinforcement learning.",
+      "moduleId": 4
+    },
+    {
+      "term": "RL",
+      "definition": "Reinforcement Learning – the AI learns from trial and error by receiving a numeric reward (without human scoring).",
+      "moduleId": 4
+    },
+    {
+      "term": "RLHF",
+      "definition": "Reinforcement Learning from Human Feedback – reinforcement learning with human feedback; used to shape “better” answer behaviour in AI models.",
+      "moduleId": 4
+    },
+    {
+      "term": "SFT (Supervised Fine-Tuning)",
+      "definition": "A supervised training stage – people prepare example question–answer pairs, and the model learns to respond in the desired style.",
+      "moduleId": 4
+    },
+    {
+      "term": "Token",
+      "definition": "The smallest unit of text the AI processes; roughly ~4 characters (EN); determines context window size and cost.",
+      "moduleId": 4
+    },
+    {
+      "term": "Tool Use",
+      "definition": "The AI uses external tools – search, API calls, calculations, retrieval from a database; needed for agentic prompts and RAG.",
+      "moduleId": 4
+    }
+  ]
+}

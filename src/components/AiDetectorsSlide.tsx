@@ -1,14 +1,24 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  AI_DETECTORS,
-  DETECTOR_TYPE_LABELS,
-  DETECTOR_FILTERS,
+  getAiDetectors,
+  getDetectorFilters,
+  getDetectorTypeLabels,
+  getSixBlockPrompt,
   type DetectorType,
   type AiDetectorEntry,
 } from '../data/aiDetectors';
+import { useLocale } from '../contexts/LocaleContext';
+import CopyButton from './slides/shared/CopyButton';
 
 /** Statistikos blokas viršuje */
-function StatsBar({ tools }: { tools: AiDetectorEntry[] }) {
+function StatsBar({
+  tools,
+  statLabels,
+}: {
+  tools: AiDetectorEntry[];
+  statLabels: { tools: string; text: string; imageVideo: string };
+}) {
   const textCount = tools.filter((t) => t.types.includes('text')).length;
   const imageCount = tools.filter((t) =>
     t.types.includes('image') || t.types.includes('video'),
@@ -17,9 +27,9 @@ function StatsBar({ tools }: { tools: AiDetectorEntry[] }) {
   return (
     <div className="grid grid-cols-3 gap-3 mb-5">
       {[
-        { value: tools.length, label: 'Įrankių' },
-        { value: textCount, label: 'Teksto detektorių' },
-        { value: imageCount, label: 'Vaizdo / video' },
+        { value: tools.length, label: statLabels.tools },
+        { value: textCount, label: statLabels.text },
+        { value: imageCount, label: statLabels.imageVideo },
       ].map((stat) => (
         <div
           key={stat.label}
@@ -38,8 +48,14 @@ function StatsBar({ tools }: { tools: AiDetectorEntry[] }) {
 }
 
 /** Tipo badge */
-function TypeBadge({ type }: { type: DetectorType }) {
-  const { label, colorClass } = DETECTOR_TYPE_LABELS[type];
+function TypeBadge({
+  type,
+  typeLabels,
+}: {
+  type: DetectorType;
+  typeLabels: Record<DetectorType, { label: string; colorClass: string }>;
+}) {
+  const { label, colorClass } = typeLabels[type];
   return (
     <span
       className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide ${colorClass}`}
@@ -50,7 +66,15 @@ function TypeBadge({ type }: { type: DetectorType }) {
 }
 
 /** Viena įrankio kortelė */
-function ToolCard({ tool }: { tool: AiDetectorEntry }) {
+function ToolCard({
+  tool,
+  typeLabels,
+  visitSiteLabel,
+}: {
+  tool: AiDetectorEntry;
+  typeLabels: Record<DetectorType, { label: string; colorClass: string }>;
+  visitSiteLabel: string;
+}) {
   return (
     <div
       className={`relative bg-white dark:bg-gray-800 rounded-xl border shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 overflow-hidden ${
@@ -81,7 +105,7 @@ function ToolCard({ tool }: { tool: AiDetectorEntry }) {
         {/* Tipo badge'ai */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {tool.types.map((type) => (
-            <TypeBadge key={type} type={type} />
+            <TypeBadge key={type} type={type} typeLabels={typeLabels} />
           ))}
         </div>
 
@@ -98,7 +122,7 @@ function ToolCard({ tool }: { tool: AiDetectorEntry }) {
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
           >
-            Aplankykite svetainę
+            {visitSiteLabel}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-3.5 w-3.5"
@@ -122,44 +146,107 @@ function ToolCard({ tool }: { tool: AiDetectorEntry }) {
 
 /** Pagrindinė skaidrė: DI turinio detektoriai */
 export default function AiDetectorsSlide() {
+  const { t } = useTranslation(['contentSlides', 'aiDetectors']);
+  const { locale } = useLocale();
   const [activeFilter, setActiveFilter] = useState<DetectorType | 'all'>('all');
   const [search, setSearch] = useState('');
 
+  const tools = getAiDetectors(locale);
+  const typeLabels = getDetectorTypeLabels(locale);
+  const filters = getDetectorFilters(locale);
+  const sixBlockPrompt = getSixBlockPrompt(locale);
+  const statLabels = {
+    tools: t('aiDetectors:statTools'),
+    text: t('aiDetectors:statText'),
+    imageVideo: t('aiDetectors:statImageVideo'),
+  };
+
   const filtered = useMemo(() => {
-    let result: AiDetectorEntry[] = AI_DETECTORS;
+    let result: AiDetectorEntry[] = tools;
 
     if (activeFilter !== 'all') {
-      result = result.filter((t) => t.types.includes(activeFilter));
+      result = result.filter((entry) => entry.types.includes(activeFilter));
     }
 
     const term = search.trim().toLowerCase();
     if (term) {
       result = result.filter(
-        (t) =>
-          t.name.toLowerCase().includes(term) ||
-          t.description.toLowerCase().includes(term),
+        (entry) =>
+          entry.name.toLowerCase().includes(term) ||
+          entry.description.toLowerCase().includes(term),
       );
     }
 
     return result;
-  }, [activeFilter, search]);
+  }, [tools, activeFilter, search]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-4">
+    <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Antraštė */}
       <div>
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-          DI turinio aptikimo įrankiai (2026)
+          {t('aiDetectors:title')}
         </h3>
         <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Šie įrankiai padeda nustatyti, ar turinys (tekstas, vaizdai, video) buvo
-          sugeneruotas DI. Naudokite juos turinio patikimumui vertinti -- ne
-          slepimuisi.
+          {t('aiDetectors:intro')}
         </p>
       </div>
 
+      {/* TL;DR – accent (Golden Standard §3.2) */}
+      <div className="rounded-xl p-4 md:p-5 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+        <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+          {t('contentSlides:tldrHeading')}
+        </h4>
+        <p className="text-sm text-gray-700 dark:text-gray-300">
+          {t('aiDetectors:tldrBody')}
+        </p>
+      </div>
+
+      {/* Daryk dabar + CTA – brand */}
+      <div className="rounded-xl p-4 md:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
+        <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+          {t('contentSlides:doNowHeading')}
+        </h4>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+          {t('aiDetectors:doNowBody1')}
+        </p>
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          {t('aiDetectors:doNowBody2')}
+        </p>
+      </div>
+
+      {/* Kopijuojamas 6 blokų promptas */}
+      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+            {t('aiDetectors:promptBlockTitle')}
+          </h4>
+          <CopyButton
+            text={sixBlockPrompt}
+            size="sm"
+            ariaLabel={t('aiDetectors:copyPromptAria')}
+          />
+        </div>
+        <pre className="text-xs font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed bg-gray-50 dark:bg-gray-900 p-3 rounded-lg">
+          {sixBlockPrompt}
+        </pre>
+      </div>
+
+      {/* Kaip naudoti įrankį – brand */}
+      <div className="rounded-xl p-4 md:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
+        <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+          {t('aiDetectors:howToTitle')}
+        </h4>
+        <ol className="text-sm text-gray-700 dark:text-gray-300 space-y-1 list-decimal list-inside">
+          <li>{t('aiDetectors:howToStep1')}</li>
+          <li>{t('aiDetectors:howToStep2')}</li>
+          <li>{t('aiDetectors:howToStep3')}</li>
+          <li>{t('aiDetectors:howToStep4')}</li>
+        </ol>
+      </div>
+
       {/* Statistika */}
-      <StatsBar tools={filtered} />
+      <StatsBar tools={filtered} statLabels={statLabels} />
 
       {/* Paieška + filtrai */}
       <div className="space-y-3">
@@ -167,12 +254,12 @@ export default function AiDetectorsSlide() {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Ieškoti pagal pavadinimą ar aprašymą..."
+          placeholder={t('aiDetectors:searchPlaceholder')}
           className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 placeholder:text-gray-400 dark:placeholder:text-gray-500"
         />
 
         <div className="flex flex-wrap gap-2">
-          {DETECTOR_FILTERS.map((f) => (
+          {filters.map((f) => (
             <button
               key={f.key}
               onClick={() => setActiveFilter(f.key)}
@@ -192,20 +279,26 @@ export default function AiDetectorsSlide() {
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filtered.map((tool) => (
-            <ToolCard key={tool.id} tool={tool} />
+            <ToolCard
+              key={tool.id}
+              tool={tool}
+              typeLabels={typeLabels}
+              visitSiteLabel={t('aiDetectors:visitSite')}
+            />
           ))}
         </div>
       ) : (
         <div className="text-center py-10 text-gray-500 dark:text-gray-400 text-sm">
-          Įrankių nerasta. Pabandykite pakeisti paieškos kriterijus.
+          {t('aiDetectors:emptyState')}
         </div>
       )}
 
-      {/* Etikos pastaba */}
-      <p className="text-[11px] text-gray-500 dark:text-gray-400 pt-2 border-t border-gray-200 dark:border-gray-700">
-        Detektoriai skirti turinio autentiškumui vertinti, ne DI naudojimui slėpti.
-        Nė vienas detektorius nėra 100 % tikslus -- rezultatus vertinkite kritiškai.
-      </p>
+      {/* Etikos pastaba – terms (Golden Standard §2.2) */}
+      <div className="rounded-xl p-3 bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400">
+        <p className="text-xs text-gray-600 dark:text-gray-400">
+          {t('aiDetectors:ethicsNote')}
+        </p>
+      </div>
     </div>
   );
 }

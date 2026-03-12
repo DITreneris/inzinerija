@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banner 5 variantai – Promptų anatomija</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      background: #1a1a1a;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      padding: 24px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+    .controls select, .controls a { padding: 8px 12px; border-radius: 8px; }
+    .controls a { background: #102a43; color: #d4a520; text-decoration: none; }
+    .banner-wrap {
+      background: #0a0a0a;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .banner {
+      background: #102a43;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 72px;
+    }
+    .banner.square { padding: 60px 56px; }
+    .banner .line1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+      animation: fadeIn 0.4s ease-out both;
+    }
+    .banner.square .line1 { font-size: 42px; margin-bottom: 20px; }
+    .banner .line2 {
+      font-size: 42px;
+      font-weight: 400;
+      color: #e2e8f0;
+      margin-bottom: 36px;
+      animation: fadeIn 0.4s 0.2s ease-out both;
+    }
+    .banner.square .line2 { font-size: 34px; margin-bottom: 28px; }
+    .banner .cta {
+      font-size: 48px;
+      font-weight: 700;
+      color: #d4a520;
+      animation: fadeIn 0.4s 0.5s ease-out both, ctaPulse 1.5s 1s ease-in-out infinite;
+    }
+    .banner.square .cta { font-size: 40px; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ctaPulse {
+      0%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+      50%      { opacity: 0.92; transform: translateY(0) scale(1.02); }
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label>Variantas:</label>
+    <select id="v">
+      <option value="1">1 – 90 % rašo neteisingai…</option>
+      <option value="2">2 – DI promptai – ne chaosas…</option>
+      <option value="3">3 – Nuspėjami rezultatai…</option>
+      <option value="4">4 – Promptų inžinerija – ne teorija…</option>
+      <option value="5">5 – Komandos apmokymui…</option>
+    </select>
+    <label>Dydis:</label>
+    <select id="size">
+      <option value="1200x628">1200×628 (landscape)</option>
+      <option value="1080x1080">1080×1080 (square)</option>
+    </select>
+    <a href="#" id="permalink">Atnaujinti URL</a>
+  </div>
+  <div class="banner-wrap">
+    <div class="banner" id="banner">
+      <p class="line1" id="line1"></p>
+      <p class="line2" id="line2"></p>
+      <p class="cta" id="cta"></p>
+    </div>
+  </div>
+  <script>
+    var VARIANTS = [
+      { line1: '90 % rašo neteisingai. Čia išmoksi sistemą.', line2: '6 blokų mokymas ~45 min.', cta: 'Pradėti' },
+      { line1: 'DI promptai – ne chaosas. Aiški sistema.', line2: 'Promptų anatomija. ~45 min.', cta: 'Išbandyti' },
+      { line1: 'Nuspėjami rezultatai – išmok 6 blokų sistemą.', line2: 'Starter lygis. ~45 min.', cta: 'Išmokti' },
+      { line1: 'Promptų inžinerija – ne teorija. Praktika.', line2: '6 blokai, testas, ~45 min.', cta: 'Pradėti' },
+      { line1: 'Komandos apmokymui: promptų sistema per 45 min.', line2: 'Dėstymas, praktika, testas.', cta: 'Sužinoti daugiau' },
+    ];
+    function parseQuery() {
+      var q = {};
+      location.search.slice(1).split('&').forEach(function(s) {
+        var p = s.split('=');
+        if (p[0]) q[decodeURIComponent(p[0])] = decodeURIComponent((p[1] || '').replace(/\+/g, ' '));
+      });
+      return q;
+    }
+    function apply() {
+      var q = parseQuery();
+      var v = Math.max(1, Math.min(5, parseInt(q.v, 10) || 1));
+      var size = (q.size || '1200x628') === '1080x1080' ? '1080x1080' : '1200x628';
+      var w = size === '1080x1080' ? 1080 : 1200;
+      var h = size === '1080x1080' ? 1080 : 628;
+      var data = VARIANTS[v - 1];
+      document.getElementById('v').value = String(v);
+      document.getElementById('size').value = size;
+      document.getElementById('line1').textContent = data.line1;
+      document.getElementById('line2').textContent = data.line2;
+      document.getElementById('cta').textContent = data.cta;
+      var banner = document.getElementById('banner');
+      banner.style.width = w + 'px';
+      banner.style.height = h + 'px';
+      banner.classList.toggle('square', size === '1080x1080');
+      document.getElementById('permalink').href = '?v=' + v + '&size=' + size;
+    }
+    document.getElementById('v').addEventListener('change', function() {
+      location.search = '?v=' + this.value + '&size=' + document.getElementById('size').value;
+    });
+    document.getElementById('size').addEventListener('change', function() {
+      location.search = '?v=' + document.getElementById('v').value + '&size=' + this.value;
+    });
+    apply();
+  </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+{
+  "tools": [
+    {
+      "name": "Adobe Firefly",
+      "url": "https://www.adobe.com/products/firefly.html",
+      "description": "Adobe AI for images – Generative Fill, text-to-image; integration with Photoshop, CC. \"Legally safe\" sources.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "AIVA",
+      "url": "https://aiva.ai",
+      "description": "Music composition with AI – for ads, games, films.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Beatoven.ai",
+      "url": "https://beatoven.ai",
+      "description": "Royalty-free music – emotion control, optimization for video background, YouTube monetization.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Beautiful.ai",
+      "url": "https://www.beautiful.ai",
+      "description": "No design skills needed – smart templates, auto-layout.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Boomy",
+      "url": "https://boomy.com",
+      "description": "Simple UI, many templates – lo-fi, background, social content; quick publishing.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Canva",
+      "url": "https://www.canva.com",
+      "description": "All-in-one – Magic Write, templates, visuals; universal everyday tool.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Canva AI",
+      "url": "https://www.canva.com",
+      "description": "Image generation integrated with design tool – templates, Magic Design.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "ChatGPT (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "Universal conversational AI – best for general writing, summaries and idea generation.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "Claude (Anthropic)",
+      "url": "https://claude.ai",
+      "description": "Strong on long texts and document analysis, responsible response style.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "Connected Papers",
+      "url": "https://www.connectedpapers.com",
+      "description": "Academic paper relationship visualization – shows related work in a graph, helps find relevant sources quickly.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "Consensus",
+      "url": "https://consensus.app",
+      "description": "Research search with AI – answers based on peer-reviewed articles, synthesis and citations.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "Copilot (Microsoft)",
+      "url": "https://copilot.microsoft.com",
+      "description": "In the Microsoft ecosystem – Outlook, Word, Teams; great for office work.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "DALL·E (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "Image generation via ChatGPT – text-to-image, style and proportions.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com",
+      "description": "Strong for coding, math and logic – great value for money.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "ElevenLabs (voices)",
+      "url": "https://elevenlabs.io",
+      "description": "Voice and sound effects generation – announcements, transitions, sound design.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Elicit",
+      "url": "https://elicit.com",
+      "description": "Research automation – literature reviews, data synthesis, RAG-style research.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "Figma",
+      "url": "https://figma.com",
+      "description": "Visual layout and design – context for AI generation (e.g. web HTML).",
+      "moduleId": 4,
+      "category": "Visual design"
+    },
+    {
+      "name": "Gamma",
+      "url": "https://gamma.app",
+      "description": "Presentation generation – slides, proposals, brochures; interactive web format.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Gemini (Google)",
+      "url": "https://gemini.google.com",
+      "description": "Integrated with Google services – mail, docs, search in one place.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "Google Calendar",
+      "url": "https://calendar.google.com",
+      "description": "Google Calendar – event planning; can be used in chains with Gemini.",
+      "moduleId": 4,
+      "category": "Planning"
+    },
+    {
+      "name": "GPTZero",
+      "url": "https://gptzero.me/",
+      "description": "Benchmark tool for academia – ~99% accuracy on text; detects mixed (human + AI) content.",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    },
+    {
+      "name": "Grok (xAI)",
+      "url": "https://grok.x.ai",
+      "description": "Real-time data from X (Twitter) – news, trends, public discussion.",
+      "moduleId": 1,
+      "category": "Chat AI"
+    },
+    {
+      "name": "Ideogram",
+      "url": "https://ideogram.ai",
+      "description": "Image generation with text in image – ads, posters, logos.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "InVideo",
+      "url": "https://invideo.io",
+      "description": "Video creation with AI – templates, text-to-video, for social content.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Isgen.ai (LT)",
+      "url": "https://isgen.ai/lt",
+      "description": "Lithuanian AI detector, good at spotting text from popular LLMs (~96% accuracy).",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    },
+    {
+      "name": "Leonardo.ai",
+      "url": "https://leonardo.ai",
+      "description": "Image and visual generation – game art, Stable Diffusion-style models.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "Luma Dream Machine",
+      "url": "https://lumalabs.ai",
+      "description": "Video generation from text – realistic and creative clips.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Make.com",
+      "url": "https://make.com",
+      "description": "Visual workflow building (drag & drop), conditions and loops – for mid-size business, better free plan than Zapier.",
+      "moduleId": 10,
+      "category": "Business automation"
+    },
+    {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Quick free AI text detector, no sign-up, supports many languages.",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    },
+    {
+      "name": "Midjourney",
+      "url": "https://midjourney.com",
+      "description": "High-quality image generation – illustrations, art, conceptual images.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "Mubert",
+      "url": "https://mubert.com",
+      "description": "Background and stock video music – licenses for commercial use.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "n8n",
+      "url": "https://n8n.io",
+      "description": "Open-source workflow automation – full control, AI agent support, for technical teams and many API integrations.",
+      "moduleId": 10,
+      "category": "Business automation"
+    },
+    {
+      "name": "NotebookLM (Google)",
+      "url": "https://notebooklm.google.com",
+      "description": "Google tool to upload documents and \"talk\" to them – personal RAG from your files, podcast generation.",
+      "moduleId": 4,
+      "category": "RAG / external sources"
+    },
+    {
+      "name": "NoteLM",
+      "url": "https://www.notelm.app/",
+      "description": "Links notes and documents to a language model – personal RAG from your notes.",
+      "moduleId": 4,
+      "category": "RAG / external sources"
+    },
+    {
+      "name": "Notion",
+      "url": "https://notion.so",
+      "description": "Universal workspace – notes, prompt library, docs, project management in one place.",
+      "moduleId": 6,
+      "category": "Productivity"
+    },
+    {
+      "name": "PaperGuide",
+      "url": "https://paperguide.ai",
+      "description": "\"Talk\" to PDFs – academic PDFs, literature reviews, data extraction.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://perplexity.ai",
+      "description": "AI search with sources – academic queries, literature reviews, fact-checking.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "Pika",
+      "url": "https://pika.art",
+      "description": "Video creation from text or image – animations, short clips.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Power Automate",
+      "url": "https://powerautomate.microsoft.com",
+      "description": "Microsoft ecosystem automation – Excel, Teams, Outlook, SharePoint; for admin, sales, project management.",
+      "moduleId": 10,
+      "category": "Business automation"
+    },
+    {
+      "name": "Prezent.ai",
+      "url": "https://prezent.ai",
+      "description": "For business – brand, Story Builder, narrative; corporate presentations.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Runway",
+      "url": "https://runwayml.com",
+      "description": "Video generation from text – short clips, effects, editing.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Scite",
+      "url": "https://scite.ai",
+      "description": "Smart citations – how research is cited; source reliability assessment.",
+      "moduleId": 4,
+      "category": "RAG / research"
+    },
+    {
+      "name": "SlidesAI",
+      "url": "https://www.slidesai.io",
+      "description": "Text → slides in a few clicks. Google Slides integration.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Sora (OpenAI)",
+      "url": "https://openai.com/sora",
+      "description": "Video generation from text – high quality, realistic motion physics, scene consistency.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Soundraw",
+      "url": "https://soundraw.io",
+      "description": "Music generation and editing – melodies, tempo, mood.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Stable Diffusion (DreamStudio)",
+      "url": "https://dreamstudio.ai",
+      "description": "Open image generation model – flexible, many styles, control via negative prompt.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "Suno",
+      "url": "https://suno.com",
+      "description": "Music generation from description – songs, instrumental, various styles.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Synthesia",
+      "url": "https://www.synthesia.io",
+      "description": "Avatar-based videos – presentations, training, intros.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Trello",
+      "url": "https://trello.com",
+      "description": "Boards and cards – can describe tasks as context for RAG prompts.",
+      "moduleId": 4,
+      "category": "RAG / external sources"
+    },
+    {
+      "name": "Udio",
+      "url": "https://udio.com",
+      "description": "Music creation from text – mood, style, tempo, vocal or instrumental.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "Veo 3 (Google)",
+      "url": "https://deepmind.google/technologies/veo/",
+      "description": "Google video generation model – create videos from text (prompt).",
+      "moduleId": 4,
+      "category": "Video generation"
+    },
+    {
+      "name": "Veo 3 (Google)",
+      "url": "https://deepmind.google/technologies/veo/",
+      "description": "Google video generation model – videos from text (prompt), high quality.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Visme",
+      "url": "https://www.visme.co",
+      "description": "For reports and data – infographics, interactivity.",
+      "moduleId": 4,
+      "category": "Presentations"
+    },
+    {
+      "name": "Winston AI",
+      "url": "https://gowinston.ai/",
+      "description": "Highly accurate AI content detection, low false positive rate; widely used in schools and publishing.",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    },
+    {
+      "name": "Workato",
+      "url": "https://workato.com",
+      "description": "Enterprise workflow and integration platform – governance, audits, compliance; for large organizations.",
+      "moduleId": 10,
+      "category": "Business automation"
+    },
+    {
+      "name": "Zapier",
+      "url": "https://zapier.com",
+      "description": "Automates workflows between apps – in AI chains can send data to email, calendar, etc.",
+      "moduleId": 4,
+      "category": "Automation"
+    },
+    {
+      "name": "ZeroGPT",
+      "url": "https://zerogpt.com/",
+      "description": "Free tool to quickly check AI content.",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    }
+  ]
+}

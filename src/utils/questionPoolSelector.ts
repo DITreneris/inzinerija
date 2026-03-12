@@ -10,6 +10,13 @@
  */
 import type { TestQuestion } from '../types/modules';
 import { QUESTION_POOL, POOL_CATEGORIES } from '../data/questionPool';
+import { QUESTION_POOL_EN } from '../data/questionPool.en';
+
+export type QuestionPoolLocale = 'lt' | 'en';
+
+function getPool(locale: QuestionPoolLocale): TestQuestion[] {
+  return locale === 'en' ? QUESTION_POOL_EN : QUESTION_POOL;
+}
 
 const TARGET_TOTAL = 15;
 
@@ -40,10 +47,10 @@ const CATEGORY_QUOTAS: Record<string, number> = {
 
 /**
  * Select a balanced random set of questions from the pool.
- * Returns { questions, slideAssignments } where slideAssignments maps
- * each question to a suggested slide group.
+ * Use locale to pick LT or EN pool when not passing pool explicitly.
  */
-export function selectQuestions(pool: TestQuestion[] = QUESTION_POOL): TestQuestion[] {
+export function selectQuestions(poolOrLocale?: TestQuestion[] | QuestionPoolLocale): TestQuestion[] {
+  const pool = Array.isArray(poolOrLocale) ? poolOrLocale : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
   // Group by category
   const byCategory: Record<string, TestQuestion[]> = {};
   for (const cat of POOL_CATEGORIES) {
@@ -134,8 +141,9 @@ export function selectQuestions(pool: TestQuestion[] = QUESTION_POOL): TestQuest
 export function selectQuestionsByCategory(
   category: string,
   n: number,
-  pool: TestQuestion[] = QUESTION_POOL
+  poolOrLocale?: TestQuestion[] | QuestionPoolLocale
 ): TestQuestion[] {
+  const pool = Array.isArray(poolOrLocale) ? poolOrLocale : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
   const filtered = pool.filter((q) => (q.category || 'bendra') === category);
   return shuffleArray(filtered).slice(0, Math.min(n, filtered.length));
 }

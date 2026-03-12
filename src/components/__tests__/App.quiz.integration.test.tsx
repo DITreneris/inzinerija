@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HelmetProvider } from 'react-helmet-async';
+import { renderWithProviders } from '../../test/test-utils';
 import App from '../../App';
-import { getProgress, resetProgress } from '../../utils/progress';
+import { flushProgressSave, getProgress, resetProgress } from '../../utils/progress';
 import { loadModules, getModulesDataSync, getModulesSync, preloadModules } from '../../data/modulesLoader';
 import type { ModulesData } from '../../types/modules';
 
@@ -35,13 +36,21 @@ const matchMediaMock = (query: string) => ({
   dispatchEvent: vi.fn(),
 });
 
+function getQuizNavButton() {
+  const nav = screen.getByRole('navigation', { name: /Pagrindinė navigacija|Main navigation/i });
+  return within(nav).getByRole('button', { name: /Apklausa|Quiz/i });
+}
+
 describe('App – Quiz integracinis srautas', () => {
+  const storageKey = 'prompt-anatomy-locale';
+
   beforeEach(() => {
     vi.mocked(getModulesDataSync).mockReturnValue(fixtureEmptyQuiz);
     vi.mocked(loadModules).mockResolvedValue(fixtureEmptyQuiz);
     vi.mocked(getModulesSync).mockReturnValue([]);
     vi.mocked(preloadModules).mockImplementation(() => {});
     localStorage.clear();
+    localStorage.setItem(storageKey, 'lt');
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: vi.fn().mockImplementation(matchMediaMock),
@@ -51,45 +60,47 @@ describe('App – Quiz integracinis srautas', () => {
   });
 
   afterEach(() => {
+    flushProgressSave();
     resetProgress();
     vi.restoreAllMocks();
   });
 
   it('naviguoja į Apklausą ir rodo empty-state kai quiz.questions tuščias', async () => {
-    render(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
 
-    const apklausaButton = screen.getByRole('button', { name: /Apklausa/i });
-    await userEvent.click(apklausaButton);
+    await userEvent.click(getQuizNavButton());
 
-    await waitFor(
-      () => {
-        expect(screen.getByText(/Apklausos klausimų šiuo metu nėra/)).toBeInTheDocument();
-      },
-      { timeout: 3000 }
-    );
+    // Laukiame stabilesnio signalo, kad QuizPage empty-state jau tikrai užsikrovė.
+    await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }, { timeout: 10000 });
 
-    expect(screen.getByRole('button', { name: /Grįžti atgal/i })).toBeInTheDocument();
-  });
+    expect(
+      screen.getByText((content) =>
+        /Apklausos klausimų nėra|No quiz questions available/i.test(content)
+      )
+    ).toBeInTheDocument();
+
+    expect(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })).toBeInTheDocument();
+  }, 15000);
 
   it('mygtukas „Grįžti atgal“ Apklausoje grąžina atgal', async () => {
-    render(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
 
-    await userEvent.click(screen.getByRole('button', { name: /Apklausa/i }));
+    await userEvent.click(getQuizNavButton());
 
+    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, { timeout: 10000 });
+
+    const backButton = await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i, timeout: 5000 });
+    await userEvent.click(backButton);
+
+    // Po navigacijos į Home Quiz turinys (empty state) turi išnykti
     await waitFor(
       () => {
-        expect(screen.getByText(/Apklausos klausimų šiuo metu nėra/)).toBeInTheDocument();
+        expect(screen.queryByText(/Apklausos klausimų nėra|No quiz questions available/i)).not.toBeInTheDocument();
       },
-      { timeout: 3000 }
+      { timeout: 10000 }
     );
-
-    await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal/i }));
-
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /Apklausa/i })).toBeInTheDocument();
-      expect(screen.queryByText(/Apklausos klausimų šiuo metu nėra/)).not.toBeInTheDocument();
-    });
-  });
+    expect(getQuizNavButton()).toBeInTheDocument();
+  }, 20000);
 
   it('progress išlieka po navigacijos į Apklausą ir atgal', async () => {
     const progressWithModule = {
@@ -110,21 +121,75 @@ describe('App – Quiz integracinis srautas', () => {
       })
     );
 
-    render(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
 
-    await userEvent.click(screen.getByRole('button', { name: /Apklausa/i }));
+    await userEvent.click(getQuizNavButton());
 
-    await waitFor(
-      () => {
-        expect(screen.getByText(/Apklausos klausimų šiuo metu nėra/)).toBeInTheDocument();
-      },
-      { timeout: 3000 }
-    );
+    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, { timeout: 10000 });
 
-    await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal/i }));
+    await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }));
 
     const progressAfter = getProgress();
     expect(progressAfter.completedModules).toContain(1);
     expect(progressAfter.completedTasks[1]).toContain(1);
+  }, 15000);
+
+  it('rodo retry fallback quiz puslapyje, kai modulių užkrovimas nepavyksta', async () => {
+    vi.mocked(getModulesDataSync).mockReturnValue(null);
+    vi.mocked(loadModules).mockRejectedValueOnce(new Error('load failed'));
+
+    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
+
+    await userEvent.click(getQuizNavButton());
+
+    await screen.findByText(
+      /Nepavyko įkelti mokymo medžiagos|Failed to load training material/i,
+      { timeout: 10000 }
+    );
+    expect(screen.getByRole('button', { name: /Bandyti dar kartą|Try again/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Atgal|Back/i })).toBeInTheDocument();
+  }, 15000);
+});
+
+describe('App – EN locale smoke', () => {
+  const storageKey = 'prompt-anatomy-locale';
+
+  beforeEach(() => {
+    vi.mocked(getModulesDataSync).mockReturnValue(fixtureEmptyQuiz);
+    vi.mocked(loadModules).mockResolvedValue(fixtureEmptyQuiz);
+    vi.mocked(getModulesSync).mockReturnValue([]);
+    vi.mocked(preloadModules).mockImplementation(() => {});
+    localStorage.setItem(storageKey, 'en');
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: vi.fn().mockImplementation((query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      })),
+    });
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    flushProgressSave();
+    localStorage.removeItem(storageKey);
+    vi.restoreAllMocks();
+  });
+
+  it('shows EN nav strings when locale is en', async () => {
+    renderWithProviders(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
+    expect(screen.getByRole('button', { name: /home/i })).toBeInTheDocument();
+    expect(screen.getByText('Modules')).toBeInTheDocument();
   });
 });

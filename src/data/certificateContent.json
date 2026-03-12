@@ -1,0 +1,37 @@
+{
+  "programTitle": "Promptų anatomija",
+  "certificateLabel": "SERTIFIKATAS",
+  "authorBy": "Tomas Staniulis",
+  "authorProduct": "Promptų anatomija",
+  "authorByLabel": "Programa ir metodika:",
+  "authorProductLabel": "Autorius:",
+  "serialLabel": "Sertifikato Nr.",
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Kursas ir daugiau: promptanatomy.app",
+  "tiers": [
+    {
+      "tier": 1,
+      "introLine": "Šiuo dokumentu patvirtinama, kad",
+      "completionLine": "sėkmingai baigė mokymų programos „Promptų anatomija“ dalį",
+      "programName": "6 blokų sistema – 6 blokai, testas, praktika",
+      "label": "6 blokų sistema",
+      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+    },
+    {
+      "tier": 2,
+      "introLine": "Šiuo dokumentu patvirtinama, kad",
+      "completionLine": "sėkmingai baigė mokymų programą",
+      "programName": "Promptų anatomija – Konteksto inžinerija (teorija, testas ir projektas)",
+      "label": "Konteksto inžinerija",
+      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+    },
+    {
+      "tier": 3,
+      "introLine": "Šiuo dokumentu patvirtinama, kad",
+      "completionLine": "sėkmingai baigė pažangųjį mokymų kelią",
+      "programName": "Promptų anatomija – Duomenų analitika (pilna programa, 9 moduliai)",
+      "label": "Duomenų analitika",
+      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+    }
+  ]
+}

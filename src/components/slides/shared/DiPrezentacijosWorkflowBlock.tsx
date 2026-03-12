@@ -1,56 +1,43 @@
 /**
  * Interaktyvus DI prezentacijos workflow blokas – clickable diagrama + paaiškinimai apačioje.
- * UI/UX: „Tu esi čia“ orientacija, žingsnių mygtukai, sklandus perėjimas.
+ * Lokalizuota per useLocale() ir getterius.
  */
-import { useState } from 'react';
+import { useLocale } from '../../../contexts/LocaleContext';
 import DiPrezentacijosWorkflowDiagram from './DiPrezentacijosWorkflowDiagram';
-import { DI_PREZENTACIJOS_STEP_EXPLANATIONS } from './stepExplanations';
-
-const TOTAL_STEPS = DI_PREZENTACIJOS_STEP_EXPLANATIONS.length;
-
-/** Renderuoja **bold** tekste */
-function renderBold(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((p, i) =>
-    p.startsWith('**') && p.endsWith('**') ? (
-      <strong key={i} className="font-bold text-gray-900 dark:text-white">
-        {p.slice(2, -2)}
-      </strong>
-    ) : (
-      <span key={i}>{p}</span>
-    )
-  );
-}
+import { getDiPrezentacijosBlockLabels } from './diPrezentacijosWorkflowConfig';
+import { getDiPrezentacijosStepExplanations } from './stepExplanations';
+import { renderBold } from '../../../utils/renderBold';
+import { useStepDiagram } from '../../../utils/useStepDiagram';
 
 export default function DiPrezentacijosWorkflowBlock() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const step = DI_PREZENTACIJOS_STEP_EXPLANATIONS[currentStep];
+  const { locale } = useLocale();
+  const explanations = getDiPrezentacijosStepExplanations(locale);
+  const blockLabels = getDiPrezentacijosBlockLabels(locale);
+  const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
 
   return (
-    <div className="space-y-4" role="region" aria-label="DI prezentacijos workflow">
-      {/* 1. „Tu esi čia“ – nuolatinė orientacija (Nielsen: recognition over recall) */}
+    <div className="space-y-4" role="region" aria-label={blockLabels.regionAria}>
       <div className="flex flex-wrap items-center gap-2">
         <span
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1.5 text-sm font-semibold text-brand-700 dark:text-brand-300"
           aria-live="polite"
         >
           <span className="h-2 w-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
-          Tu esi čia: {currentStep + 1}. {step.title}
+          {blockLabels.youAreHere} {currentStep + 1}. {step.title}
         </span>
         <span className="text-xs text-gray-500 dark:text-gray-400">{currentStep + 1} / {TOTAL_STEPS}</span>
       </div>
 
-      <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} />
+      <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
 
-      {/* 2. Greita navigacija – perjungti be scroll atgal į diagramą */}
-      <nav className="flex flex-wrap justify-center gap-1.5" aria-label="Žingsnių pasirinkimas">
-        {DI_PREZENTACIJOS_STEP_EXPLANATIONS.map((s, idx) => (
+      <nav className="flex flex-wrap justify-center gap-1.5" aria-label={blockLabels.navAria}>
+        {explanations.map((s, idx) => (
           <button
             key={idx}
             type="button"
             onClick={() => setCurrentStep(idx)}
             aria-current={currentStep === idx ? 'step' : undefined}
-            aria-label={`Žingsnis ${idx + 1}: ${s.title}`}
+            aria-label={blockLabels.stepAria(idx, s.title)}
             className={`
               flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all
               focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2

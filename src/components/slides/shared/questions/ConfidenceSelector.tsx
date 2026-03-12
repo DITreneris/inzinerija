@@ -3,7 +3,8 @@
  * "Kaip esate tikri?" – Tikras / Spėju / Nežinau.
  */
 import { ThumbsUp, HelpCircle, MinusCircle } from 'lucide-react';
-import { CONFIDENCE_LABELS, type ConfidenceLevel } from './confidenceLabels';
+import { getConfidenceLabels, type ConfidenceLevel } from './confidenceLabels';
+import { useLocale } from '../../../../contexts/LocaleContext';
 
 export type { ConfidenceLevel };
 
@@ -27,14 +28,17 @@ export function ConfidenceSelector({
   onChange,
   disabled = false,
   compact = false,
-  ariaLabel = 'Kaip esate tikri?',
+  ariaLabel,
 }: ConfidenceSelectorProps) {
+  const { locale } = useLocale();
+  const labels = getConfidenceLabels(locale);
   const levels: ConfidenceLevel[] = ['sure', 'guess', 'unsure'];
+  const resolvedAriaLabel = ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?');
 
   return (
-    <div className="mb-4" role="group" aria-label={ariaLabel}>
+    <div className="mb-4" role="group" aria-label={resolvedAriaLabel}>
       <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-        Kaip esate tikri?
+        {locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?'}
       </p>
       <div className={`flex flex-wrap gap-2 ${compact ? 'gap-1.5' : ''}`}>
         {levels.map((level) => {
@@ -47,7 +51,7 @@ export function ConfidenceSelector({
               onClick={() => !disabled && onChange(level)}
               disabled={disabled}
               aria-pressed={isSelected}
-              aria-label={CONFIDENCE_LABELS[level]}
+              aria-label={labels[level]}
               className={`inline-flex items-center gap-1.5 rounded-lg border-2 transition-all min-h-[44px] ${
                 compact ? 'px-2 py-1.5 text-sm' : 'px-3 py-2'
               } ${
@@ -59,7 +63,7 @@ export function ConfidenceSelector({
               }`}
             >
               <Icon className={compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} aria-hidden />
-              <span>{CONFIDENCE_LABELS[level]}</span>
+              <span>{labels[level]}</span>
             </button>
           );
         })}

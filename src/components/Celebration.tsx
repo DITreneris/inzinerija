@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle, Star, Sparkles, Trophy } from 'lucide-react';
 
 interface CelebrationProps {
@@ -14,6 +15,7 @@ export default function Celebration({
   message,
   onComplete,
 }: CelebrationProps) {
+  const { t } = useTranslation('celebration');
   const [particles, setParticles] = useState<Array<{ id: number; x: number; color: string }>>([]);
   const [visible, setVisible] = useState(false);
 
@@ -57,11 +59,11 @@ export default function Celebration({
     if (message) return message;
     switch (type) {
       case 'module':
-        return 'Modulis baigtas! 🎉';
+        return t('moduleDone');
       case 'quiz':
-        return 'Puikiai! 🌟';
+        return t('quizDone');
       default:
-        return 'Užduotis atlikta!';
+        return t('taskDone');
     }
   };
 
@@ -113,7 +115,7 @@ export default function Celebration({
         
         {type === 'module' && (
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Tęskite į kitą modulį →
+            {t('continueNext')}
           </p>
         )}
       </div>

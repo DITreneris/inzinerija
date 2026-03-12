@@ -7,11 +7,17 @@ import { ErrorBoundary, LoadingSpinner } from './components/ui';
 import { getProgress, saveProgress, flushProgressSave } from './utils/progress';
 import { logLearningEvent, hasLoggedFirstActionSuccess } from './utils/learningEvents';
 import { useTheme } from './utils/useTheme';
-import { loadModules, getModulesDataSync, preloadModules, clearModulesLoadError } from './data/modulesLoader';
-import { getIsMvpMode } from './utils/mvpMode';
+import { loadModules, getModulesDataSync, preloadModules, clearModulesLoadError, type ModulesLocale } from './data/modulesLoader';
+import {
+  getMaxAccessibleModuleId,
+  hasAccessTokenInUrl,
+  stripMagicLinkSearchParams,
+  VERIFIED_ACCESS_TIER_KEY,
+} from './utils/accessTier';
+import { useLocale } from './contexts/LocaleContext';
+import { useTranslation } from 'react-i18next';
 import type { ModulesData } from './types/modules';
-
-const isMvpMode = getIsMvpMode();
+import { getBrowserEnglishContentVariant } from './i18n';
 
 // Lazy load heavy components for better initial load
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -19,10 +25,23 @@ const ModulesPage = lazy(() => import('./components/ModulesPage'));
 const ModuleView = lazy(() => import('./components/ModuleView'));
 const QuizPage = lazy(() => import('./components/QuizPage'));
 const GlossaryPage = lazy(() => import('./components/GlossaryPage'));
+const ToolsPage = lazy(() => import('./components/ToolsPage'));
+const CertificateScreen = lazy(() => import('./components/CertificateScreen').then(m => ({ default: m.CertificateScreen })));
 
-type Page = 'home' | 'modules' | 'module' | 'quiz' | 'glossary';
+type Page = 'home' | 'modules' | 'module' | 'quiz' | 'glossary' | 'tools' | 'certificate';
+
+function getVerifyAccessUrl(configuredValue: string): string {
+  const trimmed = configuredValue.trim();
+  if (!trimmed) return '/api/verify-access';
+  if (trimmed.endsWith('/api/verify-access')) return trimmed;
+  return `${trimmed.replace(/\/+$/, '')}/api/verify-access`;
+}
 
 function App() {
+  const { t } = useTranslation(['common', 'seo', 'footer']);
+  const { locale } = useLocale();
+  const modulesLocale: ModulesLocale = locale;
+  const englishContentVariant = getBrowserEnglishContentVariant();
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
   const [initialSlideIndex, setInitialSlideIndex] = useState<number | null>(null);
@@ -31,26 +50,69 @@ function App() {
   const [progress, setProgress] = useState(getProgress());
   const [showCelebration, setShowCelebration] = useState(false);
   const [celebrationType, setCelebrationType] = useState<'task' | 'module' | 'quiz'>('task');
-  const [modulesData, setModulesData] = useState<ModulesData | null>(getModulesDataSync());
+  const [modulesData, setModulesData] = useState<ModulesData | null>(() => getModulesDataSync(modulesLocale, englishContentVariant));
   const [modulesLoadError, setModulesLoadError] = useState<Error | null>(null);
   const [isDark, setIsDark] = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [toolsInitialFilter, setToolsInitialFilter] = useState<number | null>(null);
+  const [glossaryHighlightTerm, setGlossaryHighlightTerm] = useState<string | null>(null);
+  const [certificateTier, setCertificateTier] = useState<1 | 2 | 3>(1);
+  /** Incremented after magic link verification so getMaxAccessibleModuleId() re-reads sessionStorage. */
+  const [, setAccessTierRefresh] = useState(0);
 
-  // Load modules data on mount
+  const replaceUrlWithoutMagicLinkParams = useCallback(() => {
+    const cleanSearch = stripMagicLinkSearchParams(window.location.search);
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${cleanSearch}${window.location.hash}`
+    );
+  }, []);
+
+  // Magic link: verify token and persist tier to sessionStorage, then clean URL
   useEffect(() => {
-    if (!modulesData) {
-      loadModules()
-        .then((data) => {
-          setModulesLoadError(null);
-          setModulesData(data);
-        })
-        .catch((err) => {
-          console.error('Nepavyko įkelti modulių:', err);
-          setModulesLoadError(err);
-        });
-    }
-    preloadModules();
-  }, [modulesData]);
+    if (!hasAccessTokenInUrl() || typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const accessTier = params.get('access_tier');
+    const expires = params.get('expires');
+    const token = params.get('token');
+    if (!accessTier || !token) return;
+
+    const query = new URLSearchParams({ access_tier: accessTier, token });
+    if (expires) query.set('expires', expires);
+    const apiBase = (import.meta.env.VITE_VERIFY_ACCESS_URL as string) || '';
+    const verifyAccessUrl = getVerifyAccessUrl(apiBase);
+    fetch(`${verifyAccessUrl}?${query.toString()}`)
+      .then((res) => {
+        if (res.ok) return res.json() as Promise<{ access_tier: number }>;
+        throw new Error(res.status === 401 ? 'Invalid or expired link' : 'Verification failed');
+      })
+      .then((data) => {
+        const tier = data.access_tier;
+        if (Number.isInteger(tier) && [3, 6].includes(tier)) {
+          sessionStorage.setItem(VERIFIED_ACCESS_TIER_KEY, String(tier));
+          replaceUrlWithoutMagicLinkParams();
+          setAccessTierRefresh((n) => n + 1);
+        }
+      })
+      .catch(() => {
+        replaceUrlWithoutMagicLinkParams();
+      });
+  }, [replaceUrlWithoutMagicLinkParams]);
+
+  // Load modules data for current locale; reload when locale changes
+  useEffect(() => {
+    loadModules(modulesLocale, englishContentVariant)
+      .then((data) => {
+        setModulesLoadError(null);
+        setModulesData(data);
+      })
+      .catch((err) => {
+        console.error('Nepavyko įkelti modulių:', err);
+        setModulesLoadError(err);
+      });
+    preloadModules(modulesLocale, englishContentVariant);
+  }, [modulesLocale, englishContentVariant]);
 
   useEffect(() => {
     saveProgress(progress);
@@ -68,14 +130,25 @@ function App() {
     };
   }, []);
 
-  // MVP: redirect if selectedModule > 3 (e.g. state manipulation, direct link)
+  // Redirect if selected module exceeds access tier (e.g. direct link, state manipulation)
   useEffect(() => {
-    if (isMvpMode && currentPage === 'module' && selectedModule != null && selectedModule > 3) {
+    const maxAccessible = getMaxAccessibleModuleId();
+    if (currentPage === 'module' && selectedModule != null && selectedModule > maxAccessible) {
       setCurrentPage('modules');
       setSelectedModule(null);
       setRemediationFrom(null);
     }
   }, [currentPage, selectedModule]);
+
+  // Kai išeiname iš įrankių puslapio – išvalome pradinį filtrą
+  useEffect(() => {
+    if (currentPage !== 'tools') setToolsInitialFilter(null);
+  }, [currentPage]);
+
+  // Kai išeiname iš žodynėlio – išvalome paryškintą terminą
+  useEffect(() => {
+    if (currentPage !== 'glossary') setGlossaryHighlightTerm(null);
+  }, [currentPage]);
 
   // Close mobile menu when clicking outside or when page changes
   useEffect(() => {
@@ -104,7 +177,7 @@ function App() {
   }, [isMobileMenuOpen]);
 
   const handleModuleSelect = useCallback((moduleId: number) => {
-    if (isMvpMode && moduleId > 3) return;
+    if (moduleId > getMaxAccessibleModuleId()) return;
     setSelectedModule(moduleId);
     setCurrentPage('module');
   }, []);
@@ -124,7 +197,7 @@ function App() {
     clearModulesLoadError();
     setModulesLoadError(null);
     setModulesData(null);
-    loadModules()
+    loadModules(modulesLocale, englishContentVariant)
       .then((data) => {
         setModulesLoadError(null);
         setModulesData(data);
@@ -133,7 +206,7 @@ function App() {
         console.error('Nepavyko įkelti modulių:', err);
         setModulesLoadError(err);
       });
-  }, []);
+  }, [modulesLocale, englishContentVariant]);
 
   const handleModuleComplete = (moduleId: number) => {
     if (!progress.completedModules.includes(moduleId)) {
@@ -149,7 +222,7 @@ function App() {
   };
 
   const handleGoToModule = useCallback((moduleId: number, slideIndex?: number, fromRemediationSourceModuleId?: number) => {
-    if (isMvpMode && moduleId > 3) {
+    if (moduleId > getMaxAccessibleModuleId()) {
       setCurrentPage('modules');
       setSelectedModule(null);
       setRemediationFrom(null);
@@ -167,6 +240,17 @@ function App() {
   }, []);
 
   /** A-M3: return to test-results slide of the module we came from (e.g. Module 2). */
+  const handleRequestCertificate = useCallback((tier: 1 | 2 | 3) => {
+    setCertificateTier(tier);
+    setCurrentPage('certificate');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleCertificateBack = useCallback(() => {
+    setCurrentPage('modules');
+    setSelectedModule(null);
+  }, []);
+
   const handleReturnToRemediation = useCallback(() => {
     if (!remediationFrom) return;
     const sourceId = remediationFrom.sourceModuleId;
@@ -227,26 +311,31 @@ function App() {
   const overallProgress = totalModules > 0 ? Math.round((completedModulesCount / totalModules) * 100) : 0;
 
   const currentModule = selectedModule && modulesData?.modules ? modulesData.modules.find((m) => m.id === selectedModule) : null;
-  const baseTitle = 'Promptų anatomija';
+  const baseTitle = t('seo:baseTitle');
   const seoTitle =
-    currentPage === 'home' ? `${baseTitle} – Interaktyvus Mokymas` :
-    currentPage === 'modules' ? `Moduliai – ${baseTitle}` :
+    currentPage === 'home' ? t('seo:titleHome') :
+    currentPage === 'modules' ? t('seo:titleModules') :
     currentPage === 'module' && currentModule ? `${currentModule.title} – ${baseTitle}` :
-    currentPage === 'glossary' ? `Žodynėlis – ${baseTitle}` :
-    currentPage === 'quiz' ? `Apklausa – ${baseTitle}` :
-    `${baseTitle} – Interaktyvus Mokymas`;
-  const defaultDescription = isMvpMode
-    ? 'Mokykitės kurti efektyvius DI promptus: 3 moduliai, praktika ir apklausa.'
-    : 'Mokykitės kurti efektyvius DI promptus: 6 moduliai, praktika ir apklausa.';
+    currentPage === 'glossary' ? t('seo:titleGlossary') :
+    currentPage === 'tools' ? t('seo:titleTools') :
+    currentPage === 'quiz' ? t('seo:titleQuiz') :
+    currentPage === 'certificate' ? t('seo:titleCertificate') :
+    t('seo:titleDefault');
+  const maxAccessible = getMaxAccessibleModuleId();
+  const requiresModulesData = currentPage === 'modules' || currentPage === 'module' || currentPage === 'quiz';
+  const defaultDescription = maxAccessible > 0
+    ? t('seo:descDefaultWithModules', { count: maxAccessible })
+    : t('seo:descDefault');
   const seoDescription =
     currentPage === 'module' && currentModule?.description ? currentModule.description :
-    currentPage === 'modules' ? 'Pasirinkite mokymo modulį: 6 blokų sistema, žinių testas, praktika, konteksto inžinerija, pažangus testas, projektas.' :
-    currentPage === 'glossary' ? 'Terminų žodynėlis: DI, promptas, RAG, tokenas ir kt.' :
-    currentPage === 'quiz' ? 'Apklausa apie promptų anatomijos temas.' :
+    currentPage === 'modules' ? t('seo:descModules') :
+    currentPage === 'glossary' ? t('seo:descGlossary') :
+    currentPage === 'tools' ? t('seo:descTools') :
+    currentPage === 'quiz' ? t('seo:descQuiz') :
     defaultDescription;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-accent-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-brand-50/40 to-accent-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
@@ -263,7 +352,7 @@ function App() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-gray-900 focus:outline-none"
       >
-        Praleisti į turinį
+        {t('skipToContent')}
       </a>
       <AppNav
         currentPage={currentPage}
@@ -277,21 +366,29 @@ function App() {
       {/* Content */}
       <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" role="main">
         <ErrorBoundary>
-          {(currentPage === 'modules' || currentPage === 'module') && !modulesData && modulesLoadError && (
+          {requiresModulesData && !modulesData && modulesLoadError && (
             <div className="flex flex-col items-center justify-center min-h-[300px] gap-4 p-6 text-center">
               <p className="text-gray-600 dark:text-gray-400">
-                Nepavyko įkelti mokymo medžiagos. Pabandykite iš naujo.
+                {t('modulesLoadError')}
               </p>
+              {currentPage === 'quiz' && (
+                <button
+                  onClick={() => setCurrentPage('modules')}
+                  className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  {t('back')}
+                </button>
+              )}
               <button
                 onClick={handleRetryModules}
                 className="px-6 py-3 rounded-xl bg-brand-500 text-white font-medium hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 transition-colors"
               >
-                Bandyti iš naujo
+                {t('retry')}
               </button>
             </div>
           )}
-          {(!((currentPage === 'modules' || currentPage === 'module') && !modulesData && modulesLoadError)) && (
-            <Suspense fallback={<LoadingSpinner size="lg" text="Kraunama..." />}>
+          {(!(requiresModulesData && !modulesData && modulesLoadError)) && (
+            <Suspense fallback={<LoadingSpinner size="lg" text={t('loading')} />}>
             {currentPage === 'home' && (
               <HomePage
                 onStart={() => setCurrentPage('modules')}
@@ -306,7 +403,7 @@ function App() {
                 progress={progress}
               />
             )}
-            {currentPage === 'module' && selectedModule && (!isMvpMode || selectedModule <= 3) && (
+            {currentPage === 'module' && selectedModule && selectedModule <= maxAccessible && (
               <ModuleView
                 moduleId={selectedModule}
                 initialSlideIndex={initialSlideIndex}
@@ -325,14 +422,34 @@ function App() {
                   setInitialSlideIndex(slideIndex);
                   setCurrentPage('glossary');
                 }}
+                onGoToGlossaryTerm={(term) => {
+                  setGlossaryHighlightTerm(term);
+                  setCurrentPage('glossary');
+                }}
+                onGoToTools={(moduleId) => {
+                  setToolsInitialFilter(moduleId);
+                  setCurrentPage('tools');
+                }}
                 remediationFrom={selectedModule === 1 && remediationFrom?.sourceModuleId === 2 ? remediationFrom : null}
                 onReturnToRemediation={remediationFrom && selectedModule === 1 ? handleReturnToRemediation : undefined}
+                onRequestCertificate={handleRequestCertificate}
                 progress={progress}
                 totalModules={totalModules}
               />
             )}
             {currentPage === 'glossary' && (
               <GlossaryPage
+                highlightTerm={glossaryHighlightTerm}
+                onBackToModule={
+                  selectedModule
+                    ? () => setCurrentPage('module')
+                    : undefined
+                }
+                progress={progress}
+              />
+            )}
+            {currentPage === 'tools' && (
+              <ToolsPage
                 onBackToModule={
                   selectedModule
                     ? () => {
@@ -341,11 +458,12 @@ function App() {
                       }
                     : undefined
                 }
+                initialFilter={toolsInitialFilter}
               />
             )}
             {currentPage === 'quiz' && (
               <QuizPage
-                onBack={() => setCurrentPage('home')}
+                onBack={() => setCurrentPage('modules')}
                 progress={progress}
                 onQuizComplete={(score) => {
                   setProgress(prev => ({
@@ -354,6 +472,12 @@ function App() {
                     quizCompleted: true,
                   }));
                 }}
+              />
+            )}
+            {currentPage === 'certificate' && (
+              <CertificateScreen
+                tier={certificateTier}
+                onBack={handleCertificateBack}
               />
             )}
             </Suspense>
@@ -369,23 +493,41 @@ function App() {
               <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-1.5 rounded-lg">
                 <Sparkles className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="font-medium text-gray-700 dark:text-gray-300">Promptų anatomija</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">{t('footer:brandName')}</span>
             </div>
             <div className="text-center">
               <span>© 2024-2026 </span>
               <span className="font-medium text-gray-700 dark:text-gray-300">Tomas Staniulis</span>
               <span className="mx-2">•</span>
-              <span>Autorinė mokymo medžiaga</span>
+              <span>{t('footer:copyright')}</span>
             </div>
             <div className="flex items-center gap-4">
+              <a 
+                href="https://www.promptanatomy.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                aria-label={t('footer:websiteAria')}
+              >
+                {t('footer:websiteLabel')}
+              </a>
+              <a 
+                href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                aria-label={t('footer:whatsAppAria')}
+              >
+                {t('footer:whatsAppLabel')}
+              </a>
               <a 
                 href="https://github.com/DITreneris" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-                aria-label="GitHub (atidaryti naujame lange)"
+                aria-label={t('footer:githubAria')}
               >
-                GitHub
+                {t('footer:githubLabel')}
               </a>
             </div>
           </div>

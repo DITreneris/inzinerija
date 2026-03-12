@@ -4,6 +4,7 @@ import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
 import { confidenceLabel } from './confidenceLabels';
+import { useLocale } from '../../../../contexts/LocaleContext';
 
 interface OrderingQuestionProps {
   question: TestQuestion;
@@ -30,8 +31,9 @@ export function OrderingQuestion({
   onComplete,
   onRequestHint,
 }: OrderingQuestionProps) {
-  // _showResults passed from parent for interface consistency; ordering uses internal isChecked
   void _showResults;
+  const { locale } = useLocale();
+  const en = locale === 'en';
   const correctOrder = useMemo(() => question.correctOrder || [], [question.correctOrder]);
   const initialItems = question.items || [...correctOrder].sort(() => Math.random() - 0.5);
 
@@ -73,7 +75,7 @@ export function OrderingQuestion({
         </span>
         <div>
           <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
-            Surikiuok
+            {en ? 'Order' : 'Surikiuok'}
           </span>
           <p className="font-bold text-gray-900 dark:text-white mt-1">{question.question}</p>
         </div>
@@ -81,7 +83,9 @@ export function OrderingQuestion({
 
       {!isChecked && (
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-          Naudokite rodykles, kad surikiuotumėte elementus teisinga tvarka (nuo viršaus žemyn).
+          {en
+            ? 'Use the arrows to reorder items in the correct order (top to bottom).'
+            : 'Naudokite rodykles, kad surikiuotumėte elementus teisinga tvarka (nuo viršaus žemyn).'}
         </p>
       )}
 
@@ -132,7 +136,7 @@ export function OrderingQuestion({
                   <button
                     onClick={() => moveItem(idx, 'up')}
                     disabled={idx === 0}
-                    aria-label={`Perkelti aukštyn: ${item}`}
+                    aria-label={en ? `Move up: ${item}` : `Perkelti aukštyn: ${item}`}
                     className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <ArrowUp className="w-4 h-4 text-gray-600 dark:text-gray-400" />
@@ -140,7 +144,7 @@ export function OrderingQuestion({
                   <button
                     onClick={() => moveItem(idx, 'down')}
                     disabled={idx === items.length - 1}
-                    aria-label={`Perkelti žemyn: ${item}`}
+                    aria-label={en ? `Move down: ${item}` : `Perkelti žemyn: ${item}`}
                     className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <ArrowDown className="w-4 h-4 text-gray-600 dark:text-gray-400" />
@@ -167,10 +171,10 @@ export function OrderingQuestion({
         <button
           onClick={handleCheck}
           className="mt-4 w-full btn-primary flex items-center justify-center gap-2 min-h-[44px]"
-          aria-label="Patikrinti tvarką"
+          aria-label={en ? 'Check order' : 'Patikrinti tvarką'}
         >
           <CheckCircle className="w-5 h-5" />
-          Patikrinti tvarką
+          {en ? 'Check order' : 'Patikrinti tvarką'}
         </button>
       )}
 
@@ -188,10 +192,10 @@ export function OrderingQuestion({
         <button
           onClick={() => onRequestHint(question.id)}
           className="mt-2 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
-          aria-label="Gauti užuominą"
+          aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />
-          Rodyti užuominą
+          {en ? 'Show hint' : 'Rodyti užuominą'}
         </button>
       )}
 
@@ -199,12 +203,13 @@ export function OrderingQuestion({
         <>
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Pasitikėjimas: <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence)}</span>
+              {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
+              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
             </p>
           )}
           <div className="mt-4 p-3 rounded-lg bg-brand-50 dark:bg-brand-900/20">
             <p className="text-sm text-brand-800 dark:text-brand-200">
-              <strong>Paaiškinimas:</strong> {question.explanation}
+              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong> {question.explanation}
             </p>
           </div>
         </>

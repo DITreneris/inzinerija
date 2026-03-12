@@ -1,0 +1,116 @@
+{
+  "segments": [
+    {
+      "title": "Kaip pasitelkti DI rašymui?",
+      "top5Tips": [
+        "Nurodyk rolę ir auditoriją – DI geriau atitinka toną ir ilgį.",
+        "Parašyk, ko nori (pvz. „3 pastraipos, po 2–3 sakinius“) – aiškus formatas duoda geresnius rezultatus.",
+        "Pridėk 1–2 pavyzdžius stiliui – DI perims išraišką.",
+        "Patikrink pirmą versiją ir paprašyk „sutrumpink“ arba „pakeisk toną“ – iteruok.",
+        "Laikykis vienos kalbos prompte – maišant kalbas, kokybė krenta."
+      ],
+      "mainToolName": "ChatGPT (OpenAI)",
+      "additionalToolNames": ["Claude (Anthropic)", "Canva", "Gamma"],
+      "workflowSteps": ["Tikslas (ką rašai)", "Rolė ir auditorija", "INPUT (faktai, apribojimai)", "OUTPUT (formatas, ilgis)", "Patikra ir iteracija"],
+      "glossaryTermNames": ["META blokas", "INPUT blokas", "OUTPUT blokas", "Promptas", "Few-shot"],
+      "systemPrompt": "Tu esi patyręs rašytojas. Rašai aiškiai, trumpai ir pagal nurodytą auditoriją. Jei neužtenka informacijos – klausi vienu konkrečiu klausimu.",
+      "motivationWish": "Geri promptai – tai ne ilgas tekstas, o aiškūs žingsniai. Pradėk nuo vieno tikslaus užsakymo ir tobulink. Sėkmės! — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pasitelkti DI praktiniams patarimams?",
+      "top5Tips": [
+        "Apibrėžk situaciją vienu sakiniu – kas vyksta ir koks sprendimas reikalingas.",
+        "Nurodyk, ar nori sąrašo, plano, ar trumpo atsakymo – formatas padeda.",
+        "Prašyk „pasiūlyk 3 variantus“ – palyginimas skatina geresnį pasirinkimą.",
+        "Pridėk apribojimus (laikas, resursai) – patarimai tampa pritaikomi.",
+        "Po patarimo paklausk „kokį žingsnį daryti pirmą“ – veiksmas pradedamas iš karto."
+      ],
+      "mainToolName": "Claude (Anthropic)",
+      "additionalToolNames": ["Google Calendar", "Make.com", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["Situacija (kontekstas)", "Rolė (kas duoda patarimą)", "Užduotis (ką nuspręsti)", "Formatas (sąrašas / planas)", "Pirmas žingsnis"],
+      "glossaryTermNames": ["Workflow", "Master promptas", "Metodinis promptas", "CoT (Chain of Thought)", "Kontekstinis promptas"],
+      "systemPrompt": "Tu esi praktinis konsultantas. Duodi trumpus, veiksmus nurodančius patarimus. Jei reikia – klausi vieno papildomo klausimo prieš siūlydamas.",
+      "motivationWish": "Praktika pradedama nuo vieno aiškaus klausimo. Kiekvienas geresnis promptas – artesnis sprendimui. — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pasitelkti DI informacijos paieškai?",
+      "top5Tips": [
+        "Formuluok klausimą konkrečiai – ne „paaiškink“, o „paaiškink X per 3 sakinius“.",
+        "Nurodyk, ar reikia šaltinių – dalis įrankių juos cituoja.",
+        "Tikrink faktus kritiškai – DI gali klysti; svarbūs teiginiai – per kelis šaltinius.",
+        "Naudok „santraukyk šią straipsnį“ – geriau nei kopijuoti visą tekstą.",
+        "Jei atsakymas per bendras – paprašyk „du pavyzdžius“ arba „vieną šaltinį“."
+      ],
+      "mainToolName": "Perplexity",
+      "additionalToolNames": ["Elicit", "PaperGuide", "Scite"],
+      "workflowSteps": ["Klausimas (konkretus)", "Šaltiniai (ar reikia?)", "Paieška / analizė", "Santrauka ar atsakymas", "Faktų patikra"],
+      "glossaryTermNames": ["RAG", "Deep research", "Haliucinacija", "Konteksto langas", "Vartotojo promptas"],
+      "systemPrompt": "Tu esi tyrimų asistentas. Atsakymus grindži šaltiniais. Jei nežinai – parašyk „nežinau“ ir pasiūlyk, kur tikrinti.",
+      "motivationWish": "Informacijos paieška su DI tampa efektyvesnė, kai žinai, ko tiksliai ieškoti. Tiksli užklausa – pusė darbo. — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pasitelkti DI techninei pagalbai?",
+      "top5Tips": [
+        "Įklijuok klaidos pranešimą ir trumpai aprašyk, ką darai – kontekstas sprendžia.",
+        "Nurodyk kalbą, įrankį ir versiją – atsakymai tampa tikslesni.",
+        "Prašyk „paaiškink žingsniais“ arba „pateik pataisytą kodą“ – formatas sutaupo laiko.",
+        "Jei sprendimas neveikia – paprašyk alternatyvos arba „debug“ žingsnių.",
+        "Saugok slaptus duomenis – į promptą neįtrauk slaptažodžių ar API raktų."
+      ],
+      "mainToolName": "DeepSeek",
+      "additionalToolNames": ["n8n", "Make.com", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["Problema (klaida / užduotis)", "Kontekstas (kalba, įrankis)", "Įvestis (kodas / logai)", "Sprendimas žingsniais", "Patikra ir alternatyvos"],
+      "glossaryTermNames": ["Įrankis (tool)", "Agentas (DI)", "Tool Use", "Klaidos tvarkymas", "Integracija"],
+      "systemPrompt": "Tu esi techninis asistentas. Pateiki aiškius žingsnius ir kodo pavyzdžius. Jei reikia – siūlai alternatyvas. Slaptų duomenų neprašai.",
+      "motivationWish": "Techninė pagalba su DI veikia geriausiai, kai problema ir kontekstas aiškūs. Nuo mažos klaidos iki didesnio automatikavimo – žingsnis po žingsnio. — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pasitelkti DI multimedijai?",
+      "top5Tips": [
+        "Aprašyk vaizdą konkrečiai: subjektas, veiksmas, stilius, nuotaika.",
+        "Nurodyk proporcijas (pvz. 16:9, 1:1) – tinka skirtingiems kanalams.",
+        "Pridėk „ko vengti“ (neigiamas promptas) – mažiau netinkamų rezultatų.",
+        "Video ir garso – trumpas scenarijus ar nurodymai tempo / stiliui.",
+        "Laikykis naudojimo teisių – naudok platformas su aiškia licencija."
+      ],
+      "mainToolName": "Canva AI",
+      "additionalToolNames": ["Midjourney", "InVideo", "ElevenLabs (garsai)"],
+      "workflowSteps": ["Tikslas (vaizdas / video / garsas)", "Aprašymas ar scenarijus", "Stilius ir proporcijos", "Ko vengti", "Generavimas ir koregavimas"],
+      "glossaryTermNames": ["Vaizdo promptas", "Neigiamas promptas", "Aspect ratio (proporcijos)", "Stilius (vizualas/garso)", "Brief (marketing)"],
+      "systemPrompt": "Tu esi vizualaus ir garso turinio asistentas. Kuri pagal aiškius aprašymus ir stiliaus nurodymus. Pasiūlymuose nurodai proporcijas ir naudojimo ribas.",
+      "motivationWish": "Multimedija su DI atsidaro per aiškius aprašymus ir kelis bandymus. Pradėk nuo vieno vaizdo ar trumpo garso – ir tobulink. — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pradėti naudoti DI? (Kita / nežinau)",
+      "top5Tips": [
+        "Pradėk nuo vienos dienos užduotės – pvz. vienas laiškas ar viena santrauka.",
+        "Pasirink vieną įrankį ir išbandyk 3 skirtingus promptus – palygink rezultatus.",
+        "Užsirašyk, kas veikė ir kas ne – tai tavo asmeninė „promptų biblioteka“.",
+        "Neklausk abstrakčių klausimų – konkreči užduotį („parašyk X“, „santraukyk Y“).",
+        "Jei nepatinka atsakymas – paprašyk „trumpiau“, „paprasčiau“ ar „kitu tonu“."
+      ],
+      "mainToolName": "Gemini (Google)",
+      "additionalToolNames": ["Copilot (Microsoft)", "NoteLM", "ChatGPT (OpenAI)"],
+      "workflowSteps": ["Viena paprasta užduotis", "Įrankio pasirinkimas", "Pirmas promptas (konkretus)", "Rezultato vertinimas", "Pakartok ar pakeisk"],
+      "glossaryTermNames": ["Generatyvus DI", "DI visata", "Promptų inžinerija", "Zero-shot", "Sisteminis promptas"],
+      "systemPrompt": "Tu esi draugiškas pradedančiųjų asistentas. Aiškini paprastai, duodi vieną konkretų žingsnį. Skatini bandyti ir klaidas laikyti mokymusi.",
+      "motivationWish": "Kiekvienas ekspertas kažkada pradėjo nuo pirmo prompto. Pradėk šiandien – viena maža užduotis jau yra pergalingas žingsnis. — Promptų anatomija"
+    },
+    {
+      "title": "Kaip pasitelkti DI saviraiškai ir kūrybai?",
+      "top5Tips": [
+        "Aprašyk savo idėją ar mintį laisvai – DI padės ją išplėsti ar struktūrizuoti.",
+        "Nurodyk toną (asmeniškas, įkvėpęs, filosofinis) – atsakymas atitiks.",
+        "Prašyk „5 variantų“ arba „3 skirtingos perspektyvos“ – atsidaro pasirinkimai.",
+        "Naudok „įsivaizduok, kad…“ – vaidmens promptas atveria kūrybinį mąstymą.",
+        "Saugok asmeninius įrašus – į bendrinius modelius neįtrauk slaptų mintų."
+      ],
+      "mainToolName": "Claude (Anthropic)",
+      "additionalToolNames": ["ChatGPT (OpenAI)", "NoteLM", "Gamma"],
+      "workflowSteps": ["Idėja ar mintis (laisva forma)", "Rolė / tonas", "Variantai ar perspektyvos", "Struktūrizavimas (jei reikia)", "Refleksija ir tobulinimas"],
+      "glossaryTermNames": ["Master promptas", "Reasoning blokas", "Promptų seka", "ToT (Tree of Thoughts)", "Vaidmens promptas"],
+      "systemPrompt": "Tu esi kūrybinis partneris. Padėdi išreikšti mintis ir generuoti idėjas be spaudimo. Garbinai asmenines ribas ir siūlai, o ne įsako.",
+      "motivationWish": "Saviraiška su DI – tai ne pakeitimas, o papildymas. Tavo mintys lieka tavo; DI padeda jas išgryninti ir išsakyti. Sėkmės kūryboje! — Promptų anatomija"
+    }
+  ]
+}

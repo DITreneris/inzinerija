@@ -1,20 +1,9 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Copy, Check, Sparkles, BookOpen } from 'lucide-react';
-import promptLibrary from '../data/promptLibrary.json';
-
-type Section = {
-  id: string;
-  title: string;
-  items: Array<{
-    id: string;
-    title: string;
-    goal?: string;
-    logika?: string;
-    prompt: string;
-  }>;
-};
-
-const library = promptLibrary as { sections: Section[] };
+import { getPromptLibrary } from '../data/promptLibraryLoader';
+import { useLocale } from '../contexts/LocaleContext';
+import type { PromptLibrarySection } from '../data/promptLibraryLoader';
 
 /** Paryškina [PLACEHOLDER] tekste */
 function PromptText({ text }: { text: string }) {
@@ -38,6 +27,9 @@ function PromptText({ text }: { text: string }) {
 }
 
 export default function PromptLibrary() {
+  const { t } = useTranslation(['promptLibrary', 'common']);
+  const { locale } = useLocale();
+  const library = useMemo(() => getPromptLibrary(locale), [locale]);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopy = async (id: string, text: string) => {
@@ -58,20 +50,20 @@ export default function PromptLibrary() {
         </div>
         <div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Promptų biblioteka
+            {t('promptLibrary:title')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-sm mt-0.5">
-            Pasirinkite kategoriją, kopijuokite promptą ir pakeiskite [laužtiniuose skliaustuose] savo duomenimis.
+            {t('promptLibrary:subtitle')}
           </p>
         </div>
       </div>
 
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
-        Naudokite taisykles „Kaip naudoti?“ (aukščiau puslapyje).
+        {t('promptLibrary:howToHint')}
       </p>
 
       <div className="space-y-10">
-        {library.sections.map((section) => (
+        {library.map((section: PromptLibrarySection) => (
           <section key={section.id} className="space-y-4">
             <h3 className="flex items-center gap-2 text-lg font-bold text-gray-900 dark:text-white pb-2 border-b-2 border-brand-200 dark:border-brand-800">
               <Sparkles className="w-5 h-5 text-brand-500" />
@@ -94,17 +86,17 @@ export default function PromptLibrary() {
                           ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600'
                           : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-200 hover:bg-brand-50 dark:hover:bg-brand-900/20 hover:border-brand-300 dark:hover:border-brand-700 hover:text-brand-600'
                       }`}
-                      aria-label={`Kopijuoti: ${item.title}`}
+                      aria-label={t('promptLibrary:copyAria', { title: item.title })}
                     >
                       {copiedId === item.id ? (
                         <>
                           <Check className="w-4 h-4" />
-                          <span className="hidden sm:inline">Nukopijuota</span>
+                          <span className="hidden sm:inline">{t('common:copied')}</span>
                         </>
                       ) : (
                         <>
                           <Copy className="w-4 h-4" />
-                          <span className="hidden sm:inline">Kopijuoti</span>
+                          <span className="hidden sm:inline">{t('common:copy')}</span>
                         </>
                       )}
                     </button>
@@ -114,13 +106,13 @@ export default function PromptLibrary() {
                     <div className="mb-3 space-y-1.5">
                       {item.goal && (
                         <p className="text-xs">
-                          <span className="font-semibold text-brand-700 dark:text-brand-300">Tikslas:</span>{' '}
+                          <span className="font-semibold text-brand-700 dark:text-brand-300">{t('promptLibrary:goalLabel')}:</span>{' '}
                           <span className="text-gray-600 dark:text-gray-400">{item.goal}</span>
                         </p>
                       )}
                       {item.logika && (
                         <p className="text-xs">
-                          <span className="font-semibold text-violet-700 dark:text-violet-300">Logika:</span>{' '}
+                          <span className="font-semibold text-violet-700 dark:text-violet-300">{t('promptLibrary:logikaLabel')}:</span>{' '}
                           <span className="text-gray-600 dark:text-gray-400">{item.logika}</span>
                         </p>
                       )}
@@ -128,7 +120,7 @@ export default function PromptLibrary() {
                   )}
 
                   <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
-                    Promptas:
+                    {t('promptLibrary:promptLabel')}
                   </p>
                   <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line bg-white dark:bg-gray-900/50 rounded-xl border border-gray-200/50 dark:border-gray-700/50 p-4 font-mono leading-relaxed">
                     <PromptText text={item.prompt} />
@@ -137,7 +129,7 @@ export default function PromptLibrary() {
                   {copiedId === item.id && (
                     <div className="absolute bottom-3 right-3 badge-success animate-fade-in">
                       <Check className="w-3 h-3 mr-1" />
-                      Nukopijuota!
+                      {t('common:copiedExclaim')}
                     </div>
                   )}
                 </div>

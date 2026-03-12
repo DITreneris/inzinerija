@@ -19,10 +19,25 @@
 | **Proceso diagramos (Custom GPT ir pan.)** | `src/components/slides/shared/CustomGptProcessDiagram.tsx`, `ProcessStepper.tsx` |
 | **RL proceso diagrama (Agentas→Aplinka→Veiksmas→Atlygis)** | `RlProcessDiagram.tsx`, `RlProcessBlock.tsx` – 2 rodyklių tipai (forward grey, feedback ACCENT dashed), etiketės virš rodyklių |
 | **DI prezentacijos workflow (interaktyvus)** | `DiPrezentacijosWorkflowDiagram.tsx`, `DiPrezentacijosWorkflowBlock.tsx` – 3.6 interaktyvumo UX kelias |
-| **Statinis SVG (jei naudojamas)** | `public/custom_gpt_process.svg` – gali būti atskiras eksportas; tiesa geometrijai – React diagramoje (konstantos, STEP_BOXES). |
+| **Suvienyta schema (DI sistema su įrankiais ir atmintimi)** | `Schema3InteractiveBlock.tsx` + `Schema3InteractiveDiagram.tsx` – interaktyvi suvienyta schema (pagrindinis srautas + atminties sluoksnis, punktyrinė „pasirinktinis įrašymas“); `schema3Layout.ts` – geometrijos SOT; `Schema3Diagram.tsx` – statinė kopija. „Peržiūrėti pilname dydyje“ – `EnlargeableDiagram` atidaro **tą patį React** modale. Multimodalinė įvestis/išvestis – tik tekste (optional collapsible skaidrėje), ne ant diagramos. |
+| **Schema 4 (archyvas / atskiras komponentas)** | `Schema4Diagram.tsx`, `schema4Layout.ts` – nebenaudojami skaidrėse; suvienyta į vieną skaidrę (id 56) su schema3. |
+| **Agentinė vizualizacija (4.1c, LlmArch)** | `LlmArchDiagramBlock.tsx` + `LlmArchDiagramDiagram.tsx` – režimai Bazinis/RAG/Tool Use; `llmArchLayout.ts` – geometrijos ir turinio SOT. „Peržiūrėti pilname dydyje" – `EnlargeableDiagram` atidaro tą patį React modale. Ryšys su Schema3: abstrakti schema vs vizualūs režimai. |
+| **Agentų orkestratorius (M12)** | `AgentOrchestratorDiagram.tsx`, `AgentOrchestratorBlock.tsx` – statinė schema iš `public/agent_orchestrator_v2.svg`. „Peržiūrėti pilname dydyje“ – `EnlargeableDiagram` atidaro tą patį React (img) modale. Skaidrė: Modulio 12 (id 120.5). |
+| **Statinis SVG (atsarginė kopija)** | `public/schema3_llm_rag.svg` – nuoroda leidžiama kaip atsarginė; **geometrijos tiesa – React** (`Schema3InteractiveDiagram`). Pilname dydyje pagrindinis būdas – modalas su React per `EnlargeableDiagram`. |
 | **Projekto vizualinė paletė** | `tailwind.config.js` (brand, accent, slate); diagramose – brand (#334e68 ir pan.), accent grįžtamajam ryšiui. |
 
 Konfliktas: jei turinys (žingsnių pavadinimai, skaičius) keičiasi – pirmiausia CONTENT_AGENT / turinio SOT, tada SCHEME_AGENT atnaujina schemos struktūrą ir geometriją.
+
+### 2.1 Mūsų požiūris vs react-diagrams
+
+Projektas **nenaudojame** bibliotekos [@projectstorm/react-diagrams](https://github.com/projectstorm/react-diagrams); principus pritaikome savo stack'e:
+
+- **Model vs View atitikmuo:** Layout failas (pvz. `schema3Layout.ts`) = „modelis“ (nodes, edges, anchor); Diagram komponentas (pvz. `Schema3InteractiveDiagram.tsx`) = „view“ – tik skaito iš layout ir piešia SVG. Geometriją keisti **tik** layout faile; komponentas nerašo koordinačių.
+- **Vienas SOT:** Visos koordinatės ir rodyklės kyla iš vieno šaltinio (layout arba diagramos konstantos). Eksportas į SVG/PNG ar ataskaitos turi kilti iš to paties layout arba būti aiškiai pažymėtas kaip atsarginė kopija (žr. §2 statinis SVG).
+- **TypeScript:** Layout tipai (Schema3Node, Schema3Edge, Anchor) – standartas visiems naujiems layout failams.
+- **Kodėl ne biblioteka:** Mūsų reikmėms SVG + React pakanka; rodyklės kraštas į kraštą, 4 anchor, deterministiškas renderinimas valdomi tiesiogiai. Mažesnis priklausomybių skaičius ir pilna atitiktis SCHEME_AGENT §3.
+
+Išsamios diagramų praktikos ir KISS-Marry-Kill santrauka: **docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md**. Horizontalios rodyklės ir blokų užrašai (analizė + checklist įgyvendinimui): **DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md §6**.
 
 ---
 
@@ -40,6 +55,7 @@ Konfliktas: jei turinys (žingsnių pavadinimai, skaičius) keičiasi – pirmia
 - **Linija prasideda** prie ištekančio bloko išorės krašto (pvz. `boxBottom`).
 - **Linija baigiasi** prieš įeinančio bloko kraštą: `nextTop - ARROW_MARKER_LEN`, kad **antgalio smailė** (refX) liestų kraštą – neįsibraukiant į bloką.
 - **Antgalio dydis** (refX) turi atitikti `ARROW_MARKER_LEN` naudojamą path skaičiavime; kitaip trikampis persidengs su bloku.
+- **DRAUDŽIAMA:** trikampiai **neperšoka** blokų ribų; rodyklės **neįlenda** į bloko vidų; rodyklės **neišlenda** už blokų taip, kad antgalis būtų „ore"; rodyklės **neuždengia** teksto (path ir etiketės – laisvoje erdvėje ar virš/po blokais, ne ant teksto).
 
 ### 3.3 Proporcingos rodyklės
 
@@ -56,6 +72,7 @@ Konfliktas: jei turinys (žingsnių pavadinimai, skaičius) keičiasi – pirmia
 
 - **Paspaudžiamos zonos:** virš vizualaus bloko – transparentus `<rect>` su tais pačiais x, y, width, height; `onClick` → callback (pvz. `onStepClick(index)`).
 - **Prieinamumas:** kiekvienam tokiam rect – `aria-label` (pvz. „Žingsnis 1: Tikslas"), `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter / tarpas).
+- **Rekomenduojama:** schemos, kuriose dalyvis gali pasirinkti žingsnį arba matyti paaiškinimą – padaryti **interaktyvias** (3.6 „Tu esi čia“, žingsnių mygtukai), ne tik statines – sumažina „per mažai interaktyvumo“ problemą.
 
 ### 3.6 Interaktyvumo UX kelias (workflow su paaiškinimais apačioje)
 
@@ -128,6 +145,57 @@ Kai diagramoje yra **forward flow** ir **feedback loop**, vizualiai atskirti:
 - Viena pagrindinė spalva srautui (brand), accent – grįžtamajam ryšiui ar paryškinimui.
 - Šriftas: projekto (Plus Jakarta Sans); tekstas diagramoje lietuvių kalba, terminologija – kaip CONTENT_AGENT (DI, ne AI kur tinka).
 
+### 3.10 Kodėl React diagrama nesutampa su ataskaita ir SVG (ir kaip išvengti)
+
+**Priežastys:**
+
+| # | Priežastis | Pasekmė |
+|---|------------|---------|
+| 1 | **Skirtingos koordinačių sistemos** – SVG viewBox vs CSS/DOM px; skaičiavimai „pagal dizaino px“ vienur ir „pagal realų DOM“ kitu – poslinkiai garantuoti. | Rodyklės / blokai vizualiai „beveik“, bet tiksliai nesueina. |
+| 2 | **Skirtingi anchor taškai** – vienur rodyklė į bloko **centrą**, kitu į **viršutinį kairį** (arba kraštą). Tada linijos baigiasi skirtingose vietose. | Persidengimas arba per trumpa/ilga rodyklė. |
+| 3 | **Tekstas ir šriftai** – skirtingi fontai, line-height, letter-spacing; labeliai keičia dėžutės aukštį/plotį, o rodyklės taškai lieka seni. | 2–6 px per elementą dauginasi per visą schemą. |
+| 4 | **Stroke/marker matematika** – SVG `marker-end` turi savo „užėjimą“ (refX, markerUnits); kitaip skaičiuojant linijos galą gaunamas persidengimas arba tarpas. | Antgalis „plūsta“ į bloką arba atsiranda tarpas. |
+| 5 | **Responsive / zoom / devicePixelRatio** – SVG skaluojasi sklandžiai, DOM apvalinama kitaip. | „Iš akies“ OK, matuojant – nesutampa. |
+| 6 | **Rankinis redagavimas vs generavimas** – ataskaita tekstu, SVG ranka (Figma/Illustrator), React – iš kodo. Jei bet kuris taisomas atskirai, sinchronas miręs. | React, SVG ir ataskaita skiriasi. |
+
+**Geriausias variantas (vienas layout SOT):**
+
+- **Vienas šaltinis tiesos** – pvz. `layout.json` arba `schema4Layout.ts`: **nodes** (id, x, y, w, h), **edges** (from, to, fromAnchor, toAnchor).
+- **React** renderina tik pagal tą patį layout (koordinatės ir rodyklės iš tų pačių skaičių).
+- **SVG eksportas** (jei reikia) generuojamas iš to paties layout arba rankinį SVG laikyti sinchronizuotą su layout (geometrijos tiesa – layout, ne atskiri failai).
+- **Ataskaitoje** – embed'intas vaizdas iš to paties SOT (sugeneruotas SVG arba PNG).
+
+**Anchor taškai – tik 4 standartiniai:**
+
+- Naudoti tik **top | right | bottom | left** (su offset, jei reikia). Rodyklės prasideda/baigiasi **krašte**, ne centre.
+- **Venk** „center“ įėjimų/išėjimų, kol nesusitvarkęs SOT – centre lengva susipainioti su skirtingais koordinačių skaičiavimais.
+- Linijos: pradžia = `nodeA[fromAnchor]` (pvz. `bottom` → x = node.x + node.w/2, y = node.y + node.h); pabaiga = `nodeB[toAnchor] - ARROW_MARKER_LEN` kad antgalis liestų kraštą.
+
+**Debug metodas (kur lūžta):**
+
+- React: uždėti **debug overlay** – rodyti kiekvieno mazgo bounding box ir anchor taškus (maži apskritimai).
+- SVG: įjungti tą patį – rodyti anchor taškus.
+- Palyginti: ar anchor'ai tie patys? Jei ne – problema 2/3/4.
+
+**Projekte:** Schema 4 naudoja layout SOT (`schema4Layout.ts`) su nodes/edges ir anchor funkcija; rodyklės skaičiuojamos tik iš kraštų (top/right/bottom/left). Žr. `src/components/slides/shared/schema4Layout.ts`.
+
+### 3.11 Schemų UI/UX geriausios praktikos (flowchart blokai)
+
+Iš LLM ir kitų diagramų patirties – kad vartotojo kelionė būtų pateisinama ir schema ne „darželio lygio“:
+
+| Praktika | Specifikacija |
+|----------|----------------|
+| **Centravimas viewBox** | Turinys horizontaliai centre: `START_X = (VIEWBOX_W - turinio_plotis) / 2`. Kairėje ir dešinėje vienodos maržos – schema ne „pavažiavusi“ į vieną pusę. |
+| **Tekstas telpa į blokus** | Ilgas tekstas – laužyti į kelias eilutes (`<tspan>` dy); Išvesties bloke naudoti PAD_TOP_OUTPUT / LINE_HEIGHT_OUTPUT, kad 4 eilutės tilptų į BOX_H; ne viena ilga eilutė, kuri „lenda“ už rect. |
+| **Lygmenų kvėpavimas** | Tarpas tarp dviejų eilučių (pvz. Žingsnis N ir N+1) ne per mažas: ~40 viewBox vienetų arba daugiau, ne 24 – vizualiai „susispaudę“ lygmenys = prastas UX. |
+| **Vertikalus grid bloke** | Wrapper sekcijoms: 32px tarp sekcijų, 24px antraštė–turinys, 12–16px maži blokai (žr. UI_UX_AGENT §3.7). Diagramos wrapper: pt-8 pb-4 arba panašiai – ne per daug erdvės apačioje. |
+| **„Peržiūrėti visą dydį“** | Naudoti tik ten, kur skaidrėje tikrai reikia pilno dydžio; kai default vaizdas pakankamai skaitomas – galima rodyti diagramą tiesiogiai be EnlargeableDiagram. **Interaktyvios schemos** (toggle, įvestys, dinamiška vizualizacija – pvz. WorkflowComparison) **nereikalauja** Enlarge: tai ne statinis .png/vaizdas, o interaktyvus blokas – išdidinimas nėra būtinas. Žr. AGENT_VERIFICATION_NE_MELUOTI. |
+| **Šaltinis** | Oro virš „Šaltinis“ teksto (VIEWBOX_H pakankamas, SOURCE_LABEL_Y – ne priklijuotas prie diagramos apačios). |
+| **Flex + padding: rodyklė siekia turinio** | Kai blokai turi horizontalų padding (pvz. `pl-4`) nuo Connector krašto – rodyklė vizualiai „nesiekia“ pilko bloko. Sprendimas: antram ir tolesniems blokams `-ml-4` (pirmam `first:ml-0`), kad turinio kairys kraštas sutaptų su Connector dešiniu. Žr. StrukturuotasProcesasDiagram. |
+| **Aktyvus blokas: ring ant turinio** | Paryškinimui naudoti `ring-inset` ant **turinio** elemento (vidinis div), ne ant wrapper su padding – kitaip ring „išlenda“ už matomo bloko. Žr. StrukturuotasProcesasDiagram (ring ant inner div). |
+
+**Nuorodos:** `docs/development/LLM_DIAGRAMOS_VIZUALUS_VERTINIMAS.md`, `docs/development/UI_UX_AGENT.md` §3.7, `llmAutoregressiveLayout.ts` (layout SOT pavyzdys).
+
 ---
 
 ## 4. Kada naudoti SCHEME_AGENT
@@ -143,17 +211,53 @@ Kai diagramoje yra **forward flow** ir **feedback loop**, vizualiai atskirti:
 
 ---
 
-## 5. Išvestis ir kokybės vartai
+## 5. Vizualinė patikra ir iteracijos
+
+**Kas tikrina schemų vizualinę kokybę:** **CODE_REVIEW_AGENT** (ne CONTENT_AGENT). CONTENT_AGENT nustato turinį (ką rodyk); geometriją ir rodykles daro SCHEME_AGENT; **vizualinį įvertinimą** (ar trikampiai neperšoka blokų, ar rodyklės neuždengia teksto) atlieka CODE_REVIEW_AGENT pagal šį checklist.
+
+**Checklist (CODE_REVIEW_AGENT taiko po SCHEME_AGENT):**
+
+| Kriterijus | Klausimas |
+|------------|-----------|
+| Rodyklės kraštas į kraštą | Ar linija prasideda/baigiasi prie bloko krašto? Ar antgalio smailė tik **liečia** kraštą, o trikampis **neįeina** į bloką ir **neperšoka** ribų? |
+| Proporcingumas | Ar refX atitinka ARROW_MARKER_LEN path'e? Ar antgalis ne didesnis už tarpą (GAP) tarp blokų? |
+| Path nekerta blokų | Ar grįžtamasis ryšys eina aplink blokus? Ar rodyklės ir etiketės **neuždengia** teksto? |
+| Interaktyvumas (jei clickable) | Ar yra aria-label, role, tabIndex, onKeyDown? Ar taikomas 3.6 („Tu esi čia“, žingsnių mygtukai)? |
+
+**Iteracijos:** rekomenduojama **2 iteracijos** schemoms: (1) SCHEME_AGENT atlieka pakeitimus → (2) CODE_REVIEW_AGENT atlieka schemų vizualinę patikrą (checklist). Jei randamos klaidos – SCHEME_AGENT pataisymas (konkretus failas, konstanta, eilutė) → vėl CODE_REVIEW. Orkestratorius: `docs/development/AGENT_ORCHESTRATOR.md` (skyrius 4 – proceso diagramą / schemą; skyrius 7 – CODE_REVIEW_AGENT).
+
+---
+
+## 5.5 Privaloma verifikacija – nemeluoti
+
+**Problema:** Agentas gali raportuoti „Schema X įgyvendinta kaip React, statinis SVG tik fallback“, bet vartotojas, paspaudęs „Peržiūrėti pilname dydyje“, mato tik statinį SVG ir mano, kad darbas neapdarytas. Žr. `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`.
+
+**Privaloma po schemos / React diagramos pakeitimų:**
+
+| Patikra | Klausimas |
+|---------|-----------|
+| **Skaidrėje** | Ar tikrai renderinamas React komponentas (ne `<img src="...svg">`)? Failas: `ContentSlides.tsx` – `section.image.includes('schema3')` → `<Schema3InteractiveBlock />` (viduje `EnlargeableDiagram` + `Schema3InteractiveDiagram`). |
+| **„Peržiūrėti pilname dydyje“** | Ar vartotojas gauna **tą patį** turinį (React)? Jei nuoroda veda į statinį SVG – ar ataskaitoje aiškiai parašyta: „Pilname dydyje nuoroda atidaro statinį SVG (atsarginė kopija); geometrijos tiesa skaidrėje ir pilname dydyje – React (modalas).“ **Draudžiama** raportuoti „SVG tik fallback“, jei vienintelis pilno dydžio vaizdas vartotojui yra SVG. |
+
+**Suvienyta schema (4.1c):** „Peržiūrėti pilname dydyje“ (iš `Schema3InteractiveBlock` per `EnlargeableDiagram`) atidaro **tą patį React** komponentą (`Schema3InteractiveDiagram`) modale. Nuoroda į statinį SVG leidžiama kaip „Atidaryti SVG failą (atsarginė kopija)“ tik jei ji aiškiai pažymėta.
+
+---
+
+## 6. Išvestis ir kokybės vartai
 
 - **Išvestis:** Atnaujintos schemos konstantos ir/ar SVG/React diagramos kodas (`CustomGptProcessDiagram.tsx`, `ProcessStepper.tsx`, ar atitinkami failai); užtikrinta edge-to-edge rodyklių, proporcingi antgaliai, path nekerta blokų.
 - **Privaloma** atsakymo pabaigoje: CHANGES, CHECKS, RISKS, NEXT (kaip ir kiti agentai orkestratoriuje).
 
 ---
 
-## 6. Nuorodos
+## 7. Nuorodos
 
+- Diagramų geriausios praktikos ir KISS-Marry-Kill: `docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`
 - Orkestratorius ir router: `docs/development/AGENT_ORCHESTRATOR.md`, `.cursor/rules/agent-orchestrator.mdc`
 - Turinio SOT: `turinio_pletra.md`, `docs/turinio_pletra_moduliai_4_5_6.md`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`
 - Referencinė diagrama (pamokos iš čia): `src/components/slides/shared/CustomGptProcessDiagram.tsx`
 - RL horizontali diagrama (3.7 pamokos): `src/components/slides/shared/RlProcessDiagram.tsx`
 - Interaktyvumo UX kelias (3.6): `DiPrezentacijosWorkflowBlock.tsx`, `DiPrezentacijosWorkflowDiagram.tsx`
+- Suvienyta schema (Modulio 4, 4.1c): `Schema3InteractiveBlock.tsx`, `Schema3InteractiveDiagram.tsx`, `schema3Layout.ts` – geometrijos tiesa; `EnlargeableDiagram` – „Peržiūrėti pilname dydyje“ atidaro tą patį React modale; `ContentSlides.tsx` – `section.image.includes('schema3')` → Schema3InteractiveBlock.
+- **Layout SOT (Schema 4):** `schema4Layout.ts` – nodes (id, x, y, w, h), edges (from, to, fromAnchor, toAnchor), `getAnchorPoint`, `getLineEndPoint`; rodyklės tik anchor'ai top/right/bottom/left. Žr. §3.10.
+- Verifikacija (nemeluoti): `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`; SCHEME_AGENT §5.5.

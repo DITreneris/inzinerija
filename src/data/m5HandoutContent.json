@@ -1,0 +1,27 @@
+{
+  "title": "Modulio 5 atmintinė. Prezentacijos sprintas.",
+  "subtitle": "15 min – 8 skaidrių prezentacija su DI",
+  "toolsIntro": "DI (struktūra ir turinys): ChatGPT, Claude, Gemini, Copilot. Prezentacijų įrankiai (formatas): Gamma, Canva, SlidesAI, Prezent.ai, Visme, Beautiful.ai.",
+  "toolsBullets": [
+    "ChatGPT, Claude, Gemini, Copilot – struktūra ir turinys",
+    "Gamma, Canva ir kt. – įklijuoti turinį, gauti skaidres"
+  ],
+  "structure8": "1. Problema / kontekstas\n2. Kodėl tai svarbu dabar\n3. Sprendimo idėja\n4. Kaip tai veikia (paprastai)\n5. Pavyzdys / use case\n6. Nauda / rezultatai\n7. Rizikos / ribos\n8. Ką daryti toliau (CTA)",
+  "masterPrompt": "Sukurk 8 skaidrių prezentacijos struktūrą (ne pilną turinį). Tema: [Įrašyti]. Auditorija: [Įrašyti]. Kiekvienai skaidrei pateik: pavadinimą ir 2–3 pagrindines mintis. Formatas: numeruotas sąrašas. Tonas: aiškus, non-tech.",
+  "fullPromptPrinciple": "META (rolė, tikslas, auditorija) + INPUT (tema, apribojimai) + OUTPUT (formatas) + REASONING (žingsniai) + QUALITY (3 punktai max, lietuvių kalba) + ADVANCED (temperature).",
+  "sequenceSteps": [
+    "Brief – tema, auditorija, tikslas, skaidrių skaičius, tonas",
+    "Struktūra – 8 skaidrių planas (pavadinimas + 2 bullet)",
+    "Turinys – sugeneruoti su DI, įklijuoti į įrankį",
+    "Kokybės patikra – aiškumas, auditorija, struktūra, faktai"
+  ],
+  "briefDefinition": "Brief – tai orientacija DI: kokia tema, kam skirta, kokio rezultato tikimės. Pilnas brief apima: temą, auditoriją, tikslą, skaidrių skaičių, toną/formatą. Be brief DI „spėlioja“ ir pateikia bendrybes.",
+  "qualityCheckPoints": [
+    "Ar aiškus tikslas?",
+    "Ar atitinka auditoriją?",
+    "Ar logiška struktūra?",
+    "Ar nėra „išgalvotų“ faktų? (jei faktai – šaltiniai arba prielaidos)"
+  ],
+  "thresholdsExplanation": "≥70% – supranti brief, struktūrą ir kokybės patikrą; gali pereiti prie Modulio 6 (projektas). Mažiau nei 70% – rekomenduojama dar kartą peržiūrėti sprintą ir nurodytas skaidres.",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

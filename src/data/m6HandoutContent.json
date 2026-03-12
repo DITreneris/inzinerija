@@ -1,0 +1,36 @@
+{
+  "title": "Modulio 6 atmintinė. Vienas projektas su 6 blokais.",
+  "subtitle": "Projekto etapai, duomenų tvarkymas, refleksija – atsispausdink ir naudok prie darbo.",
+  "projectSteps": [
+    "Tikslas ir rolė (META) – ką kuri, kam, kokia rolė. Gali sustoti ir išsaugoti.",
+    "Šaltiniai ir apribojimai (INPUT + RAG) – kokius duomenis naudojate, RAG gairės.",
+    "Formatas (OUTPUT) – struktūra, ilgis, kalba.",
+    "Tyrimo planas (REASONING / Deep research) – žingsniai, sub-klausimai.",
+    "Kokybė ir patikrinimas (QUALITY) – šaltiniai, „nežinau“, objektyvumas.",
+    "Techniniai nustatymai (ADVANCED) – temperature, max_tokens. Kada toliau: paleisk promptą ir gauk ataskaitą."
+  ],
+  "dataManagementPoints": [
+    {
+      "title": "1. Asmeninė promptų biblioteka",
+      "practicalMeaning": "Vienoje vietoje (Notion, failas, įrankis) laikote visus „veikiančius“ promptus – nebereikia ieškoti sename pokalbyje."
+    },
+    {
+      "title": "2. Promptų versijavimas",
+      "practicalMeaning": "Kai pakeičiate promptą – išsaugokite kopiją su data arba v1, v2; vėliau matysite, kas veikė geriau."
+    },
+    {
+      "title": "3. Dokumentacija",
+      "practicalMeaning": "Prie kiekvieno šablono 2–3 sakiniai: kam jis, ką įklijuoti, ką tikėtis – po mėnesio jūs ar kolega supras, kaip naudoti."
+    },
+    {
+      "title": "4. Procesai",
+      "practicalMeaning": "Vienas dokumentas ar schema „kaip mes darome X su DI“ – naujiems atėjusiems ar sau po pertraukos nebereikia atgalinėti."
+    },
+    {
+      "title": "5. Duomenų rinkiniai",
+      "practicalMeaning": "5–10 eilučių pavyzdys (pvz. klientų atsiliepimai) – pakeitėte promptą ir per 1 min patikrinate, ar rezultatas teisingas."
+    }
+  ],
+  "reflectionSummary": "Refleksija: (1) Kas buvo sunkiausia projekte? (2) Kurį įgūdį naudosite pirmiausia darbe? (3) Ką dar norėtumėte išmokti apie DI? Pirmas veiksmas per 24–48 val.: atidaryk savo DI įrankį ir įrašyk vieną promptą iš modulio į savo biblioteką arba panaudok 6 blokų struktūrą kitai temai.",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

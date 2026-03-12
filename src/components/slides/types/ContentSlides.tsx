@@ -1,19 +1,28 @@
-import { useState, useEffect, Fragment } from 'react';
-import { CheckCircle, Sparkles, MessageCircle, Languages, Lightbulb, Target, Layers, Repeat, ChevronRight, ChevronDown, ChevronUp, Info, ExternalLink, ArrowRight, Zap, Copy, Wrench, BookMarked, Rocket, Trophy } from 'lucide-react';
-import { CopyButton, TemplateBlock, ProcessStepper, DiPrezentacijosWorkflowBlock, EnlargeableImage, InstructGptQualityBlock, RlProcessBlock } from '../shared';
+import { useState, useEffect, useRef, Fragment, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getT } from '../../../i18n';
+import { CheckCircle, Sparkles, MessageCircle, Languages, Lightbulb, Target, Layers, Repeat, ChevronRight, ChevronDown, ChevronUp, Info, ExternalLink, ArrowRight, Zap, Copy, Wrench, BookMarked, BookOpen, Rocket, Trophy, TrendingUp, Image, Cpu, Users, Briefcase, Compass, Download, Settings, User, MapPin, FileSearch } from 'lucide-react';
+import { track } from '../../../utils/analytics';
+import { downloadM6HandoutPdf, type M6HandoutContent } from '../../../utils/m6HandoutPdf';
+import { getM6HandoutContent } from '../../../data/handoutContentLoader';
+import { useLocale } from '../../../contexts/LocaleContext';
+import { CopyButton, TemplateBlock, ProcessStepper, DiPrezentacijosWorkflowBlock, FigmaEmbed, InstructGptQualityBlock, RlProcessBlock, AgentWorkflowBlock, AgentOrchestratorBlock, Schema3InteractiveBlock, LlmArchDiagramBlock, StrukturuotasProcesasBlock, WorkflowChainsBlock, TurinioWorkflowBlock, LlmAutoregressiveBlock, WorkflowComparisonInteractiveBlock, RagDuomenuRuosimasBlock, ContextEngineeringPipelineDiagram } from '../shared';
 import { getColorClasses } from '../utils/colorStyles';
 import type {
-  ActionIntroContent,
+  ActionIntroJourneyContent,
+  JourneyChoice,
   DefinitionsContent,
   DiModalitiesContent,
   DiModalityGroup,
   PieChartContent,
+  IntroActionPieContent as _IntroActionPieContent,
   AiWorkflowContent,
   IntroContent,
   ModuleIntroContent,
   ContentBlockContent,
   SectionBreakContent,
   WarmUpQuizContent,
+  PathStepContent,
   GlossaryContent,
   PromptTypesContent,
   PromptTechniquesContent,
@@ -21,42 +30,114 @@ import type {
   PromptTemplateContent,
   TransitionContent,
   HierarchyContent,
+  HierarchyBlock,
   ComparisonContent,
   SummaryContent,
   PracticeSummaryContent,
   ProductivityInfographicContent,
+  DiParadoxInfographicContent,
+  DiParadoxStatTooltip,
+  NewsPortalInfographicContent,
+  NewsPortalKpiCard as _NewsPortalKpiCard,
+  NewsPortalSectionCard as _NewsPortalSectionCard,
+  NewsPortalToolsAndYouth as _NewsPortalToolsAndYouth,
+  NewsPortalInsightCard as _NewsPortalInsightCard,
+  Slide,
 } from '../../../types/modules';
 import { renderBodyWithBold, RecognitionExerciseBlock } from './shared';
+import { ActionIntroSlide, type ActionIntroSlideProps } from './content/ActionIntroSlide';
+import { IntroActionPieSlide, type IntroActionPieSlideProps } from './content/IntroActionPieSlide';
+export { ActionIntroSlide, type ActionIntroSlideProps };
+export { IntroActionPieSlide, type IntroActionPieSlideProps };
 
-/* ─── Action Intro Slide v3 (provokacija + micro-action + kontekstas) ───
- *  v3: UI/UX polish pagal projekto tipografijos standartus ir geriausias praktikas.
- *  - Hero: kompaktiškas, tamsus, provokuojantis. CTA su subtiliu pulse.
- *  - Palyginimas: slide-in animacija, nested white cards, didesnis šriftas.
- *  - Kontekstas: rodomas tik po reveal, su fade-in.
- */
-
-export interface ActionIntroSlideProps {
-  content: ActionIntroContent;
+/* ─── StatWithTooltip – skaičius su custom hover/focus tooltip (DI paradoksas) ─── */
+function StatWithTooltip({
+  value,
+  tooltip,
+  className = '',
+  colorClass = 'text-brand-600 dark:text-brand-400',
+}: {
+  value: string;
+  tooltip?: DiParadoxStatTooltip;
+  className?: string;
+  colorClass?: string;
+}) {
+  const id = tooltip ? `stat-tooltip-${value.replace(/\s/g, '-')}-${Math.random().toString(36).slice(2, 9)}` : undefined;
+  return (
+    <span
+      className={`group/stat relative inline-flex ${tooltip ? 'cursor-help underline decoration-dotted decoration-brand-400/60 underline-offset-2 rounded py-1 px-1.5 -my-1 -mx-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900' : ''} ${colorClass} ${className}`}
+      title={tooltip ? undefined : undefined}
+      aria-label={tooltip ? `${value}: ${tooltip.explanation}` : undefined}
+      aria-describedby={tooltip ? id : undefined}
+      tabIndex={tooltip ? 0 : undefined}
+    >
+      {value}
+      {tooltip && id && (
+        <span
+          id={id}
+          role="tooltip"
+          className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 px-3 py-2 text-xs text-left text-white bg-slate-800 dark:bg-slate-700 rounded-lg shadow-lg opacity-0 invisible group-hover/stat:opacity-100 group-hover/stat:visible group-focus/stat:opacity-100 group-focus/stat:visible transition-opacity duration-150 z-50"
+        >
+          <span className="block">{tooltip.explanation}</span>
+          {tooltip.trend && (
+            <span className="mt-1 block text-accent-300 font-medium border-t border-slate-600 pt-1.5">
+              Tendencija: {tooltip.trend}
+            </span>
+          )}
+        </span>
+      )}
+    </span>
+  );
 }
 
-export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
-  const [revealed, setRevealed] = useState(false);
-  const [showTools, setShowTools] = useState(false);
+/* ActionIntroSlide exported from ./content/ActionIntroSlide */
 
-  const ctaLabel = content.ctaText || 'Pamatyk skirtumą per 30 sekundžių!';
+/* ─── Action Intro Journey (Modulio 7) – pasirink savo kelionę, tada CTA tęsti ─── */
+const JOURNEY_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  TrendingUp,
+  Image,
+  Cpu,
+  Users,
+  Briefcase,
+  Compass,
+  Sparkles,
+};
+
+export interface ActionIntroJourneySlideProps {
+  content: ActionIntroJourneyContent;
+  onJourneyComplete?: () => void;
+}
+
+export function ActionIntroJourneySlide({ content, onJourneyComplete }: ActionIntroJourneySlideProps) {
+  useTranslation();
+  const { locale } = useLocale();
+  const [selected, setSelected] = useState<JourneyChoice | null>(null);
+  const [confirmed, setConfirmed] = useState(false);
+
+  const isEn = locale === 'en';
+  const journeyHeading = content.journeyHeading ?? (isEn ? 'Choose your journey' : 'Pasirink savo kelionę');
+  const confirmMessage = content.confirmMessage ?? (isEn ? 'You chose: {label}. Next in the module you will find templates tailored to this area.' : 'Tu pasirinkai: {label}. Toliau modulyje rasite šablonus pritaikytus šiai sričiai.');
+  const ctaContinue = content.ctaContinue ?? (isEn ? 'Start the journey' : 'Pradėti kelionę');
+
+  const handleConfirm = () => {
+    setConfirmed(true);
+    onJourneyComplete?.();
+  };
 
   return (
     <div className="space-y-6">
-      {/* ── DALIS A: Provokacija + CTA (5-7 sek.) ── */}
+      {/* Hero – tamsus, provokuojantis */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 md:p-10 text-white">
-        {/* Dekoratyvinis fonas – subtilūs ? ir ! ženklai */}
         <div className="absolute inset-0 opacity-[0.06] pointer-events-none" aria-hidden="true">
           <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-black leading-none select-none">?</div>
           <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-black leading-none select-none">!</div>
         </div>
-
         <div className="relative z-10 flex flex-col items-center text-center gap-3 sm:gap-4 max-w-lg mx-auto">
-          {/* Pagrindinė provokacija – Plus Jakarta Sans, font-black */}
+          {content.whyBenefit && (
+            <p className="text-sm sm:text-base text-brand-200 dark:text-brand-300 font-medium leading-snug max-w-md">
+              {content.whyBenefit}
+            </p>
+          )}
           <h2 className="text-lg md:text-xl font-bold tracking-tight leading-tight">
             {content.heroStat}
             <br />
@@ -64,209 +145,153 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
               {content.heroText}
             </span>
           </h2>
-
-          {/* Konflikto eilutė – Variant A: dviejų eilučių smūgis (1. eilutė 60% opacity, 2. bold + accent) */}
-          {content.heroSubText && (() => {
-            const parts = content.heroSubText.split(/\.\s+/).filter(Boolean);
-            const isTwoLineSmugis = parts.length === 2 && content.heroSubText.includes('Problema');
-            if (isTwoLineSmugis) {
-              return (
-                <div className="flex flex-col gap-2 sm:gap-3 max-w-sm leading-[1.5]">
-                  <p className="text-sm sm:text-base text-gray-400 dark:text-gray-500 opacity-60">
-                    {parts[0]}.
-                  </p>
-                  <p className="text-sm sm:text-base font-bold text-accent-400 dark:text-accent-300">
-                    {parts[1]}.
-                  </p>
-                </div>
-              );
-            }
-            return (
-              <p className="text-sm sm:text-base text-gray-400 italic font-medium leading-relaxed max-w-sm">
-                {content.heroSubText}
-              </p>
-            );
-          })()}
-
-          {/* CTA mygtukas – pirmas veiksmas per 5 sek. Didelis, ryškus, pulse-slow. */}
-          {!revealed && (
-            <button
-              onClick={() => setRevealed(true)}
-              aria-label={ctaLabel}
-              className="group mt-2 sm:mt-3 flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500 text-white font-bold text-base sm:text-lg shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/40 transition-all duration-300 hover:scale-[1.06] active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 focus:ring-offset-gray-900 min-h-[52px] animate-pulse-slow hover:animate-none"
-            >
-              <Zap className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-              <span>{ctaLabel}</span>
-              <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-            </button>
+          {content.heroSubText && (
+            <p className="text-sm sm:text-base text-gray-400 dark:text-gray-500 font-medium leading-relaxed max-w-sm">
+              {content.heroSubText}
+            </p>
           )}
-
         </div>
       </div>
 
-      {/* ── DALIS B: Side-by-side palyginimas (atsiskleidžia po CTA) ── */}
-      {revealed && (
-        <div className="animate-slide-in">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Nestruktūruotas (kairė – blogas) */}
-            <div className="bg-rose-50 dark:bg-rose-900/20 border-2 border-rose-200 dark:border-rose-800 rounded-2xl p-5 sm:p-6 flex flex-col">
-              <p className="text-xs font-semibold text-rose-700 dark:text-rose-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" aria-hidden="true" />
-                Tuščias promptas
-              </p>
-              <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center border border-rose-100 dark:border-rose-900/30">
-                <p className="text-gray-800 dark:text-gray-200 text-base sm:text-lg italic leading-relaxed font-sans">
-                  &ldquo;{content.unstructuredPrompt}&rdquo;
-                </p>
-              </div>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 flex-shrink-0" aria-hidden="true" />
-                <p className="text-xs sm:text-sm text-rose-600 dark:text-rose-400 font-medium leading-snug">
-                  Neaiškus tikslas. Nėra konteksto. DI spėlioja.
-                </p>
-              </div>
-            </div>
+      {/* Kelionės pasirinkimas – kortelės */}
+      <div className="animate-fade-in">
+        <h3 className="text-center text-base font-bold text-gray-900 dark:text-white mb-4">
+          {journeyHeading}
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          {content.journeyChoices.map((choice) => {
+            const IconComponent = (choice.icon && JOURNEY_ICONS[choice.icon]) || Compass;
+            const isSelected = selected?.id === choice.id;
+            return (
+              <button
+                key={choice.id}
+                type="button"
+                onClick={() => setSelected(choice)}
+                aria-pressed={isSelected}
+                className={`relative flex flex-col items-start text-left p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
+                  isSelected
+                    ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30 shadow-lg shadow-brand-500/20 ring-2 ring-brand-200 dark:ring-brand-800'
+                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md'
+                }`}
+              >
+                <span className="flex items-center gap-3 mb-2">
+                  <span className={`flex items-center justify-center w-10 h-10 rounded-xl ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'}`}>
+                    <IconComponent className="w-5 h-5" aria-hidden="true" />
+                  </span>
+                  <span className="font-bold text-gray-900 dark:text-white">{choice.label}</span>
+                </span>
+                <span className="text-sm text-gray-600 dark:text-gray-400 leading-snug">{choice.subtitle}</span>
+                {isSelected && (
+                  <span className="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center" aria-hidden="true">
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-            {/* Struktūruotas (dešinė – geras, vizualiai „laimintis") */}
-            <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl p-5 sm:p-6 flex flex-col ring-2 ring-emerald-200/60 dark:ring-emerald-800/40 shadow-md">
-              <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" aria-hidden="true" />
-                6 blokų promptas
-              </p>
-              <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-4 border border-emerald-100 dark:border-emerald-900/30">
-                <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line font-mono leading-relaxed max-h-56 overflow-y-auto pr-1">
-                  {content.structuredPrompt}
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-4 gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" aria-hidden="true" />
-                  <p className="text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 font-medium leading-snug truncate">
-                    Aiškus kontekstas, struktūra, rezultatas.
-                  </p>
-                </div>
-                <CopyButton text={content.structuredPrompt} size="sm" />
-              </div>
-            </div>
-          </div>
+      {/* Patvirtinimas + CTA po pasirinkimo */}
+      {selected && !confirmed && (
+        <div className="animate-slide-in rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800 p-5 sm:p-6">
+          <p className="text-sm sm:text-base text-gray-800 dark:text-gray-200 leading-relaxed mb-4">
+            {confirmMessage.replace('{label}', selected.label)}
+          </p>
+          <button
+            type="button"
+            onClick={handleConfirm}
+            className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2"
+          >
+            <Rocket className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+            <span>{ctaContinue}</span>
+            <ArrowRight className="w-5 h-5 flex-shrink-0" />
+          </button>
         </div>
       )}
 
-      {/* ── DALIS C: Kontekstas (rodomas tik po reveal su animacija) ── */}
-      {revealed && (
-        <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in">
-          {/* Apie mokymą + outcomes */}
-          <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 p-5 rounded-xl">
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-              {content.aboutText}
-            </p>
-            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              {content.outcomes.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Trukmė + DI įrankių išskleidimo mygtukas */}
-          <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-5 rounded-xl flex flex-col">
-            <div className="mb-4">
-              <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-1">Trukmė:</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{content.duration}</p>
-            </div>
-
-            <button
-              onClick={() => setShowTools(!showTools)}
-              className="flex items-center gap-2 text-sm font-semibold text-brand-700 dark:text-brand-300 hover:text-brand-800 dark:hover:text-brand-200 transition-colors min-h-[44px] py-2"
-              aria-expanded={showTools}
-            >
-              <Wrench className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-              <span>{showTools ? 'Paslėpti DI įrankius' : 'DI įrankiai – peržiūrėti'}</span>
-              <ChevronDown className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${showTools ? 'rotate-180' : ''}`} aria-hidden="true" />
-            </button>
-          </div>
+      {confirmed && (
+        <div className="animate-fade-in flex items-center gap-3 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-300 dark:border-emerald-700 px-4 py-3">
+          <CheckCircle className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
+          <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+            Kelionė pasirinkta. Gali pereiti prie kitos skaidrės.
+          </p>
         </div>
-
-        {/* Apačioje: aiškiai išskleidžiamas DI įrankių blokas */}
-        {showTools && (
-          <div className="animate-fade-in border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-              <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
-              DI įrankiai – kur pradėti
-            </h3>
-            {content.toolsIntro && (
-              <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                {content.toolsIntro}
-              </p>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {content.tools.map((t, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                    {t.url ? (
-                      <a
-                        href={t.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
-                      >
-                        {t.name}
-                        <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
-                      </a>
-                    ) : (
-                      <span className="text-base font-semibold text-gray-900 dark:text-white">{t.name}</span>
-                    )}
-                  </div>
-                  {t.description && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug mb-3">
-                      {t.description}
-                    </p>
-                  )}
-                  {t.useCases && t.useCases.length > 0 && (
-                    <div>
-                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
-                        Populiariausi naudojimo atvejai
-                      </p>
-                      <ul className="flex flex-wrap gap-1.5">
-                        {t.useCases.map((uc, i) => (
-                          <li key={i}>
-                            <span className="inline-block text-xs px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">
-                              {uc}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
-              Principai veikia visuose įrankiuose – svarbi prompto struktūra, ne platforma.
-            </p>
-          </div>
-        )}
-        </>
       )}
     </div>
   );
 }
 
-export function ContentBlockSlide({ content }: { content: ContentBlockContent }) {
-  const isDiVisata = !!content.comparisonImages;
-  const [openSections, setOpenSections] = useState<Record<number, boolean>>({});
-  const hasCollapsibleSections = (content.sections ?? []).some((s) => Boolean(s.collapsible));
+// Survives remounts so "Atidaryti visus" / "Suskleisti visus" state is restored when ContentBlockSlide remounts.
+const collapsibleStateCache = new Map<string, Record<number, boolean>>();
 
-  // Initialize collapsible sections (accordion) – closed by default
+function getCollapsibleSignature(sections: { collapsible?: boolean; collapsedByDefault?: boolean }[]): string {
+  return JSON.stringify(
+    sections.map((s, idx) => (s.collapsible ? `${idx}:${s.collapsedByDefault ?? true}` : null)).filter(Boolean)
+  );
+}
+
+/** Collapsible turi taupyti vietą – neapsunkinti UI. Viena eilutė ar labai trumpas tekstas rodomas kaip paprastas blokas. Sekcijos su lentele arba su copyable nelaikomos trumpomis – gali būti collapsible. */
+function isShortContent(section: { body?: string; table?: { rows?: unknown[] }; copyable?: string }): boolean {
+  if (section.table?.rows?.length) return false;
+  if ((section.copyable ?? '').trim().length > 0) return false;
+  const body = (section.body ?? '').trim();
+  if (body.length < 180) return true;
+  const lines = body.split(/\n/).filter((l) => l.trim().length > 0);
+  if (lines.length <= 1 && body.length < 280) return true;
+  return false;
+}
+
+export function ContentBlockSlide({
+  content,
+  slide,
+  moduleId,
+  onGoToTools,
+}: {
+  content: ContentBlockContent;
+  slide?: Slide;
+  moduleId?: number;
+  onGoToTools?: (moduleId: number) => void;
+}) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const tCommon = getT('common');
+  const tQuiz = getT('quiz');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const isDiVisata = !!content.comparisonImages;
+  const isBonusSlide = slide?.id === 51 || slide?.id === 52 || slide?.id === 801 || slide?.id === 802;
+  const [openSections, setOpenSections] = useState<Record<number, boolean>>({});
+  const [showCorrectPromptSolution, setShowCorrectPromptSolution] = useState(false);
+  const [correctPromptUserText, setCorrectPromptUserText] = useState('');
+  const sectionsList = content.sections ?? [];
+  const collapsibleSections = sectionsList.filter((s) => Boolean(s.collapsible) && !isShortContent(s));
+  const hasCollapsibleSections = collapsibleSections.length > 0;
+  const showExpandCollapseAll = hasCollapsibleSections && collapsibleSections.length >= 2;
+  const isTabsMode = content.displayMode === 'tabs';
+  const tabSections = isTabsMode ? (content.sections ?? []).slice(1).filter((s) => s.copyable || s.heading) : [];
+  const [activeTabIdx, setActiveTabIdx] = useState(0);
+  const [briefCheckAnswer, setBriefCheckAnswer] = useState<number | null>(null);
+  const [preCopyCheckAnswer, setPreCopyCheckAnswer] = useState<number | null>(null);
+  const practice = content.correctPromptPractice;
+  const [selectedToolRowIndex, setSelectedToolRowIndex] = useState<number | null>(null);
+  const tableRowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
+  const slideContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const sectionsSignatureRef = useRef<string | null>(null);
   useEffect(() => {
+    const sections = content.sections ?? [];
+    const signature = getCollapsibleSignature(sections);
+    const skip = sectionsSignatureRef.current === signature;
+    if (skip) return;
+    sectionsSignatureRef.current = signature;
+    const cached = collapsibleStateCache.get(signature);
+    if (cached) {
+      setOpenSections(cached);
+      return;
+    }
     const initial: Record<number, boolean> = {};
-    (content.sections ?? []).forEach((s, idx) => {
+    sections.forEach((s, idx) => {
       if (s.collapsible) {
         initial[idx] = !(s.collapsedByDefault ?? true);
       }
@@ -275,38 +300,96 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
   }, [content]);
 
   const expandAll = () => {
+    const sections = content.sections ?? [];
     const next: Record<number, boolean> = {};
-    (content.sections ?? []).forEach((s, idx) => {
+    sections.forEach((s, idx) => {
       if (s.collapsible) next[idx] = true;
     });
+    const signature = getCollapsibleSignature(sections);
+    collapsibleStateCache.set(signature, next);
     setOpenSections(next);
   };
 
   const collapseAll = () => {
+    const sections = content.sections ?? [];
     const next: Record<number, boolean> = {};
-    (content.sections ?? []).forEach((s, idx) => {
+    sections.forEach((s, idx) => {
       if (s.collapsible) next[idx] = false;
     });
+    const signature = getCollapsibleSignature(sections);
+    collapsibleStateCache.set(signature, next);
     setOpenSections(next);
   };
 
+  const handleM6HandoutDownload = useCallback(async () => {
+    await downloadM6HandoutPdf(getM6HandoutContent(locale) as M6HandoutContent, undefined, locale);
+  }, [locale]);
+
+  useEffect(() => {
+    if (selectedToolRowIndex == null) return;
+    const el = tableRowRefs.current[selectedToolRowIndex];
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [selectedToolRowIndex]);
+
+  const scrollToFirstAction = useCallback(() => {
+    const el = slideContainerRef.current?.querySelector?.('[data-action="copy"]');
+    if (el instanceof HTMLElement) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, []);
+
+  const showGotoActionButton = !isTabsMode && sectionsList.length > 3 && sectionsList.some((s) => (s.copyable ?? '').trim().length > 0);
+
   return (
     <div
+      ref={slideContainerRef}
       className={`space-y-6 rounded-2xl p-6 -mx-2 sm:-mx-4 ${
         isDiVisata
           ? 'bg-gradient-to-b from-di-visata-bg-top to-di-visata-bg-bottom dark:from-gray-900/80 dark:to-gray-800/90'
           : ''
       }`}
     >
+      {/* M1 Faze 3: „Kas čia?“ blokas pirmose skaidrėse – DefinitionsSlide stilius */}
+      {content.contextIntro && (
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-4 sm:p-5 text-white" role="region" aria-label={t('contextIntroAria')}>
+          <div className="relative z-10 text-center max-w-md mx-auto">
+            <p className="text-sm sm:text-base font-bold leading-snug tracking-tight">
+              {content.contextIntro}
+            </p>
+          </div>
+        </div>
+      )}
+      {isBonusSlide && (
+        <div
+          className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-accent-50 to-amber-50 dark:from-accent-900/20 dark:to-amber-900/20 border-l-4 border-accent-500 animate-fade-in"
+          role="region"
+          aria-label={t('bonusSlideAria')}
+        >
+          <Sparkles className="w-5 h-5 text-accent-600 dark:text-accent-400 shrink-0" aria-hidden />
+          <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+            Tu įveikei testą. Čia – papildoma nauda.
+          </p>
+        </div>
+      )}
+      {content.whyBenefit && (
+        <div className="rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-4 border border-accent-200 dark:border-accent-800" role="region" aria-label={t('whyBenefitAria')}>
+          <p className="text-sm font-medium text-accent-900 dark:text-accent-100">{content.whyBenefit}</p>
+        </div>
+      )}
       {content.comparisonImages && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Kairė: Dantė – metafora, istorija / mąstymo modelis */}
+        <div className="space-y-6">
+          {content.comparisonImages.bridgeText && (
+            <div className="p-4 rounded-xl bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800">
+              <p className="text-base text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+                {content.comparisonImages.bridgeText}
+              </p>
+            </div>
+          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Kairė: Dantė – metafora (paprastas vaizdas, GOLDEN §3.2 enlarge nenaudoti) */}
           <div className="flex flex-col gap-2 p-4 rounded-xl bg-di-visata-dante-paper dark:bg-gray-800/80 border-t-4 border-t-di-visata-dante-accent border border-amber-100 dark:border-amber-900/30 shadow-sm">
-            <EnlargeableImage
-              src={content.comparisonImages.left.src}
+            <img
+              src={`${import.meta.env.BASE_URL || '/'}${content.comparisonImages.left.src.replace(/^\//, '')}`}
               alt={content.comparisonImages.left.label || ''}
-              enlargeLabel={content.comparisonImages.left.label || undefined}
-              className="border-amber-200/60 dark:border-amber-800/40"
+              className="w-full h-auto object-contain rounded-lg border border-amber-200/60 dark:border-amber-800/40 max-h-64"
             />
             {content.comparisonImages.left.label && (
               <p className="text-sm font-semibold text-di-visata-text-muted dark:text-gray-300">
@@ -322,13 +405,12 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
               <p className="text-xs text-gray-500 dark:text-gray-400 italic">{content.comparisonImages.left.source}</p>
             )}
           </div>
-          {/* Dešinė: AI Universe – sistema, dabartis / technologija */}
+          {/* Dešinė: DI visata (paprastas vaizdas, GOLDEN §3.2 enlarge nenaudoti) */}
           <div className="flex flex-col gap-2 p-4 rounded-xl bg-di-visata-ai-cool dark:bg-gray-800/80 border-t-4 border-t-di-visata-ai-accent border border-blue-100 dark:border-blue-900/30 shadow-sm">
-            <EnlargeableImage
-              src={content.comparisonImages.right.src}
+            <img
+              src={`${import.meta.env.BASE_URL || '/'}${content.comparisonImages.right.src.replace(/^\//, '')}`}
               alt={content.comparisonImages.right.label || ''}
-              enlargeLabel={content.comparisonImages.right.label || undefined}
-              className="border-blue-200/60 dark:border-blue-800/40"
+              className="w-full h-auto object-contain rounded-lg border border-blue-200/60 dark:border-blue-800/40 max-h-64"
             />
             {content.comparisonImages.right.label && (
               <p className="text-sm font-semibold text-di-visata-text-muted dark:text-gray-300">
@@ -344,81 +426,283 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
               <p className="text-xs text-gray-500 dark:text-gray-400 italic">{content.comparisonImages.right.source}</p>
             )}
           </div>
+          </div>
         </div>
       )}
-      {hasCollapsibleSections && (
+      {content.briefCheckBlock && (
+        <div className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
+              <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
+            </span>
+            Ar brief pilnas? (savitikra)
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{content.briefCheckBlock.question}</p>
+          <div className="space-y-2">
+            {content.briefCheckBlock.options.map((opt, idx) => {
+              const isSelected = briefCheckAnswer === idx;
+              const isCorrect = idx === content.briefCheckBlock!.correct;
+              const showResult = briefCheckAnswer !== null;
+              const showAsCorrect = showResult && isCorrect;
+              const showAsWrong = showResult && isSelected && !isCorrect;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => briefCheckAnswer === null && setBriefCheckAnswer(idx)}
+                  disabled={briefCheckAnswer !== null}
+                  className={`w-full text-left p-3 rounded-lg border-2 min-h-[44px] transition-colors ${
+                    showResult
+                      ? showAsCorrect
+                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
+                        : showAsWrong
+                          ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/20'
+                          : 'border-gray-200 dark:border-gray-700'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
+                  }`}
+                >
+                  <span className="text-gray-700 dark:text-gray-300">{opt}</span>
+                  {showAsCorrect && <CheckCircle className="w-4 h-4 inline ml-2 text-emerald-600" />}
+                  {showAsWrong && <span className="ml-2 text-rose-600">✗</span>}
+                </button>
+              );
+            })}
+          </div>
+          {briefCheckAnswer !== null && (
+            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+              <strong>{briefCheckAnswer === content.briefCheckBlock!.correct ? tQuiz('correctLabel') : tQuiz('incorrectLabel')}</strong>{' '}
+              {content.briefCheckBlock!.explanation}
+            </p>
+          )}
+        </div>
+      )}
+      {content.preCopyCheckBlock && (
+        <div className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10">
+          <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
+              <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
+            </span>
+            Prieš kopijuojant: ar brief pilnas?
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{content.preCopyCheckBlock.question}</p>
+          <div className="space-y-2">
+            {content.preCopyCheckBlock.options.map((opt, idx) => {
+              const isSelected = preCopyCheckAnswer === idx;
+              const isCorrect = idx === content.preCopyCheckBlock!.correct;
+              const showResult = preCopyCheckAnswer !== null;
+              const showAsCorrect = showResult && isCorrect;
+              const showAsWrong = showResult && isSelected && !isCorrect;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => preCopyCheckAnswer === null && setPreCopyCheckAnswer(idx)}
+                  disabled={preCopyCheckAnswer !== null}
+                  className={`w-full text-left p-3 rounded-lg border-2 min-h-[44px] transition-colors ${
+                    showResult
+                      ? showAsCorrect
+                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
+                        : showAsWrong
+                          ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/20'
+                          : 'border-gray-200 dark:border-gray-700'
+                      : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
+                  }`}
+                >
+                  <span className="text-gray-700 dark:text-gray-300">{opt}</span>
+                  {showAsCorrect && <CheckCircle className="w-4 h-4 inline ml-2 text-emerald-600" />}
+                  {showAsWrong && <span className="ml-2 text-rose-600">✗</span>}
+                </button>
+              );
+            })}
+          </div>
+          {preCopyCheckAnswer !== null && (
+            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+              <strong>{preCopyCheckAnswer === content.preCopyCheckBlock!.correct ? tQuiz('correctLabel') : tQuiz('incorrectLabel')}</strong>{' '}
+              {content.preCopyCheckBlock!.explanation}
+            </p>
+          )}
+        </div>
+      )}
+
+      {isTabsMode && tabSections.length > 0 && (
+        <div className="space-y-6">
+          {(content.sections ?? [])[0] && (
+            <div className="p-4 md:p-5 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">{(content.sections ?? [])[0].heading}</h3>
+              {(content.sections ?? [])[0].body && (
+                <p className="text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold((content.sections ?? [])[0].body)}</p>
+              )}
+            </div>
+          )}
+          <div role="tablist" aria-label={t('helpCardsTablistAria')} className="flex flex-wrap gap-2 border-b border-gray-200 dark:border-gray-700 pb-3">
+            {tabSections.map((tab, idx) => {
+              const label = tab.heading?.includes(':') ? tab.heading.split(':')[0].trim() : tab.heading || t('cardFallback', { n: idx + 1 });
+              const isActive = activeTabIdx === idx;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`help-tab-panel-${idx}`}
+                  id={`help-tab-${idx}`}
+                  onClick={() => setActiveTabIdx(idx)}
+                  className={`min-h-[44px] px-4 py-2 rounded-t-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
+                    isActive
+                      ? 'bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-200 border border-brand-300 dark:border-brand-700 border-b-0 -mb-px'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 border border-transparent'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+          {tabSections.map((tab, idx) => {
+            if (idx !== activeTabIdx) return null;
+            const variant = tab.blockVariant || 'default';
+            const blockClasses = variant === 'accent'
+              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 md:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
+              : variant === 'brand'
+                ? 'bg-brand-50 dark:bg-brand-900/20 p-4 md:p-5 rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800'
+                : variant === 'terms'
+                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
+                  : variant === 'emerald'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 md:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
+                    : variant === 'violet'
+                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 md:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
+                      : 'bg-white dark:bg-gray-800 p-4 md:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+            return (
+              <div
+                key={idx}
+                id={`help-tab-panel-${idx}`}
+                role="tabpanel"
+                aria-labelledby={`help-tab-${idx}`}
+                className={blockClasses}
+              >
+                {tab.heading && (
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">{tab.heading}</h3>
+                )}
+                {tab.body && (
+                  <p className="text-base text-gray-600 dark:text-gray-400 mb-4">{renderBodyWithBold(tab.body)}</p>
+                )}
+                {tab.copyable && (
+                  <TemplateBlock label={tCommon('copy')} template={tab.copyable} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {showExpandCollapseAll && !isTabsMode && (
         <div className="flex flex-wrap items-center justify-end gap-2">
           <button
             type="button"
             onClick={expandAll}
-            className="btn-secondary px-4 py-2 text-sm"
-            aria-label="Atidaryti visas korteles"
+            className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            aria-label={t('expandAllAria')}
           >
-            Atidaryti visus
+            {isEn ? 'Expand all' : 'Atidaryti visus'}
           </button>
           <button
             type="button"
             onClick={collapseAll}
-            className="btn-secondary px-4 py-2 text-sm"
-            aria-label="Suskleisti visas korteles"
+            className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            aria-label={t('collapseAllAria')}
           >
-            Suskleisti visus
+            {isEn ? 'Collapse all' : 'Suskleisti visus'}
           </button>
         </div>
       )}
 
-      {(content.sections ?? []).map((section, i) => {
+      {showGotoActionButton && (
+        <div className="md:hidden">
+          <button
+            type="button"
+            onClick={scrollToFirstAction}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-xl font-medium bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-700 hover:bg-brand-200 dark:hover:bg-brand-900/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            aria-label={t('gotoActionAria')}
+          >
+            <ArrowRight className="w-4 h-4 shrink-0" aria-hidden />
+            {t('gotoActionLabel')}
+          </button>
+        </div>
+      )}
+
+      {!isTabsMode && sectionsList.map((section, i) => {
         const isOptional = section.heading?.toLowerCase().includes('(optional)');
         const variant = section.blockVariant || 'default';
         const isBottomLine = isDiVisata && variant === 'accent';
-        const isCollapsible = Boolean(section.collapsible);
+        const isRlDiagramSection = section.image === 'rl_process_diagram';
+        const isCollapsible = Boolean(section.collapsible) && !isShortContent(section);
         const isOpen = isCollapsible ? Boolean(openSections[i]) : true;
         const contentId = `content-section-${i}`;
+        const sectionPadding = isRlDiagramSection ? 'p-4' : 'p-4 md:p-5';
         const blockClasses = isOptional
-          ? 'bg-gray-50 dark:bg-gray-800/70 p-4 rounded-xl border-l-4 border-gray-300 dark:border-gray-600 border border-gray-200 dark:border-gray-700'
+          ? 'bg-gray-50 dark:bg-gray-800/70 p-4 md:p-5 rounded-xl border-l-4 border-gray-300 dark:border-gray-600 border border-gray-200 dark:border-gray-700'
           : isBottomLine
-            ? 'bg-white/90 dark:bg-gray-800/90 p-6 rounded-xl border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40 shadow-md'
+            ? 'bg-white/90 dark:bg-gray-800/90 p-4 md:p-5 rounded-xl border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40 shadow-md'
             : variant === 'accent'
-              ? 'bg-accent-50 dark:bg-accent-900/20 p-6 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
+              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 md:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
               : variant === 'brand'
-                ? 'bg-brand-50 dark:bg-brand-900/20 p-6 rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800'
+                ? `bg-brand-50 dark:bg-brand-900/20 ${sectionPadding} rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800`
                 : variant === 'terms'
-                  ? 'bg-slate-50 dark:bg-slate-800/60 p-6 rounded-xl border-l-4 border-slate-400 dark:border-slate-600 border border-slate-200 dark:border-slate-700'
-                  : 'bg-white dark:bg-gray-800 p-6 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
+                  : variant === 'emerald'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 md:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
+                    : variant === 'violet'
+                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 md:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
+                      : 'bg-white dark:bg-gray-800 p-4 md:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
         return (
         <Fragment key={i}>
         <div className={blockClasses}>
           {section.heading && !isCollapsible && (
-            <h4
+            <h3
               className={
                 isOptional
                   ? 'font-semibold text-sm text-gray-600 dark:text-gray-400 mb-2'
                   : isBottomLine
-                    ? 'font-semibold text-lg text-gray-800 dark:text-gray-100 mb-3'
-                    : 'font-semibold text-lg text-gray-900 dark:text-white mb-3'
+                    ? 'text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2'
+                    : 'text-base font-semibold text-gray-900 dark:text-white mb-2'
               }
             >
               {section.heading}
-            </h4>
+            </h3>
           )}
 
           {section.heading && isCollapsible && (
             <button
               type="button"
-              onClick={() => setOpenSections((prev) => ({ ...prev, [i]: !prev[i] }))}
-              className={`w-full flex items-center justify-between gap-3 text-left focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg ${
-                isOptional ? 'mb-2' : 'mb-3'
+              onClick={() => {
+                setOpenSections((prev) => {
+                  const next = { ...prev, [i]: !prev[i] };
+                  if (!prev[i] && next[i] && moduleId != null && slide?.id != null && typeof slide.id === 'number') {
+                    track('collapse_open', {
+                      module_id: moduleId,
+                      slide_id: slide.id,
+                      section_index: i,
+                    });
+                  }
+                  const sig = getCollapsibleSignature(content.sections ?? []);
+                  collapsibleStateCache.set(sig, next);
+                  return next;
+                });
+              }}
+              className={`w-full flex items-center justify-between gap-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-lg ${
+                isOptional ? 'mb-2' : 'mb-2'
               }`}
               aria-expanded={isOpen}
               aria-controls={contentId}
+              aria-label={t('expandCollapseAria', { action: isOpen ? t('collapseLabel') : t('expandLabel'), section: section.heading })}
             >
               <span
                 className={
                   isOptional
                     ? 'font-semibold text-sm text-gray-600 dark:text-gray-400'
                     : isBottomLine
-                      ? 'font-semibold text-lg text-gray-800 dark:text-gray-100'
-                      : 'font-semibold text-lg text-gray-900 dark:text-white'
+                      ? 'text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100'
+                      : 'text-base font-semibold text-gray-900 dark:text-white'
                 }
               >
                 {section.heading}
@@ -432,19 +716,26 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
             </button>
           )}
 
-          <div id={contentId} className={isCollapsible && !isOpen ? 'hidden' : ''}>
-          {section.presentationToolsBlock && content.presentationTools && content.presentationTools.length > 0 ? (
-            <div className="space-y-3" role="region" aria-label="Prezentacijų įrankiai">
-              <p className="text-sm text-gray-600 dark:text-gray-400">Kam ir kada naudoti – paspausk, kad atidarytum:</p>
+          <div
+            id={contentId}
+            className={isCollapsible && !isOpen ? 'hidden' : isCollapsible && isOpen ? 'border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50/50 dark:bg-slate-800/30 pl-4 rounded-r-lg mt-1' : ''}
+            style={isCollapsible && !isOpen ? { display: 'none' } : undefined}
+          >
+          {section.presentationToolsBlock && (() => {
+            const tools = section.presentationTools ?? content.presentationTools;
+            return tools && tools.length > 0;
+          })() ? (
+            <div className="space-y-3" role="region" aria-label={t('presentationToolsAria')}>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{isEn ? 'When and how to use – click to expand:' : 'Kam ir kada naudoti – paspausk, kad atidarytum:'}</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {content.presentationTools.map((tool, idx) => (
+                {(section.presentationTools ?? content.presentationTools ?? []).map((tool, idx) => (
                   <a
                     key={idx}
                     href={tool.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col p-3 rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/10 hover:border-brand-500 dark:hover:border-brand-500 hover:bg-brand-100/80 dark:hover:bg-brand-900/20 transition-colors group"
-                    aria-label={`${tool.name}: ${tool.forWhom}. Atidaryti naujame lange.`}
+                    aria-label={`${tool.name}: ${tool.forWhom}. ${isEn ? 'Open in new tab.' : 'Atidaryti naujame lange.'}`}
                   >
                     <span className="font-bold text-brand-700 dark:text-brand-300 group-hover:text-brand-800 dark:group-hover:text-brand-200 flex items-center gap-1.5">
                       {tool.name}
@@ -455,44 +746,104 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
                 ))}
               </div>
             </div>
+          ) : section.figmaUrl ? (
+            <figure className="my-4">
+              <FigmaEmbed
+                src={section.figmaUrl}
+                title={section.imageAlt ?? section.heading ?? 'Figma diagrama'}
+              />
+              {section.body && (
+                <figcaption className="mt-2 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {renderBodyWithBold(section.body)}
+                </figcaption>
+              )}
+            </figure>
           ) : section.image ? (
-            section.image.includes('rl_process_diagram') ? (
+            section.image.includes('agent_workflow') ? (
               <div className="my-4">
-                <RlProcessBlock />
+                <AgentWorkflowBlock />
                 {section.body && (
-                  <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+              </div>
+            ) : section.image.includes('agent_orchestrator') ? (
+              <div className="my-4">
+                <AgentOrchestratorBlock />
+                {section.body && (
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+              </div>
+            ) : section.image.includes('rl_process_diagram') ? (
+              <div className="my-4">
+                <RlProcessBlock moduleId={moduleId} slideId={slide?.id} showHero={false} />
+                {section.body && (
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
                 )}
               </div>
             ) : section.image.includes('di_prezentacijos_workflow') ? (
               <div className="my-4">
                 <DiPrezentacijosWorkflowBlock />
                 {section.body && (
-                  <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+              </div>
+            ) : section.image.includes('turinio_workflow') ? (
+              <div className="my-4">
+                <TurinioWorkflowBlock />
+                {section.body && (
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+              </div>
+            ) : section.image.includes('rag_duomenu_ruosimas') ? (
+              <div className="my-4">
+                <RagDuomenuRuosimasBlock />
+                {section.body && (
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
                 )}
               </div>
             ) : section.image.includes('custom_gpt_process') ? (
               <div className="my-4">
                 <ProcessStepper />
-                <a
-                  href={section.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline"
-                >
-                  Peržiūrėti pilną diagramą
-                </a>
+              </div>
+            ) : section.image.includes('strukturuotas_procesas') ? (
+              <div className="my-4">
+                {section.body && (
+                  <p className="mb-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+                <StrukturuotasProcesasBlock />
+              </div>
+            ) : section.image?.includes('llm_arch') ? (
+              <div className="my-4">
+                {section.body && (
+                  <p className="mb-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+                <LlmArchDiagramBlock />
+              </div>
+            ) : section.image?.includes('llm_autoregressive') ? (
+              <div className="my-4">
+                <LlmAutoregressiveBlock />
+                {section.body && (
+                  <p className="mt-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+              </div>
+            ) : section.image?.includes('schema3') ? (
+              <div className="my-4">
+                {section.body && (
+                  <p className="mb-3 text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold(section.body)}</p>
+                )}
+                <Schema3InteractiveBlock />
               </div>
             ) : (
             <figure className="my-4">
-              <div className={`overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/30 max-h-80`}>
+              <div className="overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/30 max-h-80">
                 <img
                   src={`${import.meta.env.BASE_URL || '/'}${section.image.replace(/^\//, '')}`}
                   alt={section.imageAlt ?? section.heading ?? ''}
-                  className="w-full h-auto min-h-0 object-contain"
+                  className="w-full h-auto bg-transparent border-0 rounded-lg object-contain"
                 />
               </div>
               {section.body && (
-                <figcaption className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <figcaption className="mt-2 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                   {renderBodyWithBold(section.body)}
                 </figcaption>
               )}
@@ -502,81 +853,243 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
                 rel="noopener noreferrer"
                 className="mt-1.5 inline-block text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline"
               >
-                Peržiūrėti pilname dydyje
+                {isEn ? 'Open in new tab' : 'Atidaryti naujame lange'}
               </a>
             </figure>
             )
           ) : null}
+          {!section.image && !section.presentationToolsBlock && section.body && (
+            <div className={isOptional ? 'text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line' : 'text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line'}>
+              {renderBodyWithBold(section.body)}
+            </div>
+          )}
           {section.copyable && !section.presentationToolsBlock && (
             <div className="mt-2 mb-3">
               <TemplateBlock
-                label="Kopijuoti"
+                label={tCommon('copy')}
                 template={section.copyable}
+                copyAriaLabel={t('copyPrompt')}
+                copyCopiedLabel={tCommon('copiedExclaim')}
               />
             </div>
           )}
-          {section.table && !section.presentationToolsBlock && (
-            <div
-              className="overflow-x-auto my-3 rounded-lg border border-gray-200 dark:border-gray-600"
-              role="region"
-              aria-label={section.table.headers?.length === 2 ? `Palyginimo lentelė: ${section.table.headers.join(' ir ')}` : 'Palyginimo lentelė'}
-            >
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="bg-brand-100 dark:bg-brand-900/40">
-                    {(section.table.headers ?? []).map((h, j) => (
-                      <th key={j} className="px-4 py-3 text-left font-bold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {(section.table.rows ?? []).map((row, ri) => (
-                    <tr key={ri} className="border-b border-gray-100 dark:border-gray-700 last:border-b-0 even:bg-gray-50/50 dark:even:bg-gray-800/30">
-                      {row.map((cell, ci) => (
-                        <td key={ci} className="px-4 py-3 text-gray-700 dark:text-gray-300 align-top">
-                          {cell}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          {section.workflowChains && section.workflowChains.length > 0 && !section.presentationToolsBlock && (
+            <WorkflowChainsBlock chains={section.workflowChains} />
+          )}
+          {section.toolChoiceBar && section.table && !section.presentationToolsBlock && (
+            <div className="mb-4 space-y-3" role="region" aria-label={t('chooseTaskTypeAria')}>
+              {section.toolChoiceBar.question && (
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">{section.toolChoiceBar.question}</p>
+              )}
+              <div className="flex flex-wrap gap-2">
+                {(section.toolChoiceBar.choices ?? []).map((choice, idx) => {
+                  const isSelected = selectedToolRowIndex === choice.rowIndex;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedToolRowIndex(choice.rowIndex)}
+                      className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
+                        isSelected
+                          ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
+                          : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
+                      }`}
+                      aria-pressed={isSelected}
+                      aria-label={`${choice.label}${isSelected ? ', pasirinkta' : ''}`}
+                    >
+                      {choice.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
-          {!section.image && !section.presentationToolsBlock && (section.body || !section.table) && (
-            <div className={isOptional ? 'text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line' : 'text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line'}>
-              {renderBodyWithBold(section.body)}
+          {!section.workflowChains?.length && section.table && !section.presentationToolsBlock && (() => {
+            const isComparison = section.table?.comparisonStyle === true;
+            const isSolutionMatrix = section.table?.solutionMatrixStyle === true;
+            const tableRows = section.table.rows ?? [];
+            const rowMeta = section.table.rowMeta;
+            const hasRowMeta = rowMeta && rowMeta.length >= tableRows.length;
+            const numCols = section.table.headers?.length ?? 0;
+            const ariaLabel =
+              numCols === 2
+                ? `Palyginimo lentelė: ${(section.table.headers ?? []).join(' ir ')}`
+                : numCols === 3 && (section.heading?.includes('Sprendimo matrica') ?? false)
+                  ? (section.heading ?? 'Sprendimo matrica')
+                  : numCols >= 3
+                    ? `Lentelė: ${section.heading ?? section.table.headers?.join(', ') ?? 'turinyje'}`
+                    : 'Įrankių palyginimo lentelė';
+            const toolBadgeClasses: Record<string, string> = {
+              blue: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
+              green: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200',
+              violet: 'bg-violet-100 dark:bg-violet-900/40 text-violet-800 dark:text-violet-200',
+              yellow: 'bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200',
+              orange: 'bg-orange-100 dark:bg-orange-900/40 text-orange-800 dark:text-orange-200',
+            };
+            const isTermsTable = section.blockVariant === 'terms';
+            return (
+              <div
+                className={`overflow-x-auto my-3 rounded-lg ${isComparison ? 'border border-gray-100 dark:border-gray-700' : 'border border-gray-200 dark:border-gray-600'} ${isTermsTable ? 'bg-white dark:bg-slate-900/40 border-l-4 border-slate-400 dark:border-slate-500' : ''}`}
+                role="region"
+                aria-label={ariaLabel}
+              >
+                <table className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}>
+                  <thead>
+                    <tr>
+                      {(section.table.headers ?? []).map((h, j) => (
+                        <th
+                          key={j}
+                          className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
+                            isComparison
+                              ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : 'bg-slate-200 dark:bg-slate-800/50'}`
+                              : isSolutionMatrix
+                                ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : ''}`
+                                : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : ''}`
+                          }`}
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tableRows.map((row, ri) => {
+                      const isLastRow = ri === tableRows.length - 1;
+                      const meta = hasRowMeta ? rowMeta[ri] : undefined;
+                      const isHighlighted = section.toolChoiceBar && selectedToolRowIndex === ri;
+                      const isWarningRow = meta?.isWarning === true;
+                      const zebraClass = isSolutionMatrix
+                        ? 'even:bg-gray-100 dark:even:bg-gray-700/50'
+                        : !isComparison
+                          ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
+                          : '';
+                      return (
+                        <tr
+                          key={ri}
+                          ref={(el) => {
+                            if (section.toolChoiceBar) (tableRowRefs.current[ri] = el);
+                          }}
+                          className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''}`}
+                        >
+                          {row.map((cell, ci) => {
+                            const isFirstCol = ci === 0;
+                            const isStrengthCol = ci === 1;
+                            const isPriceCol = numCols >= 4 && ci === numCols - 1;
+                            const isThirdCol = numCols === 3 && ci === 2;
+                            const cellContent = typeof cell === 'string' ? renderBodyWithBold(cell) : cell;
+                            const cellPadding = isSolutionMatrix ? 'px-4 py-5' : isComparison ? 'px-5 py-5' : 'px-4 py-3.5';
+                            const stickyFirstCellBg = isFirstCol
+                              ? isComparison && isLastRow
+                                ? 'bg-brand-50/50 dark:bg-brand-900/20'
+                                : isSolutionMatrix
+                                  ? ri % 2 === 1
+                                    ? 'bg-gray-100 dark:bg-gray-700/50'
+                                    : 'bg-white dark:bg-gray-900'
+                                  : ri % 2 === 1
+                                    ? 'bg-gray-50 dark:bg-gray-800/30'
+                                    : 'bg-white dark:bg-gray-900'
+                              : '';
+                            return (
+                              <td
+                                key={ci}
+                                className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
+                                  isFirstCol
+                                    ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)] ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
+                                    : isPriceCol
+                                      ? 'text-gray-500 dark:text-gray-400'
+                                      : isThirdCol
+                                        ? 'text-gray-600 dark:text-gray-400 min-w-[12rem] sm:min-w-[14rem]'
+                                        : `text-gray-700 dark:text-gray-300 ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : ''} ${numCols === 2 && !isSolutionMatrix && ci === 1 ? 'min-w-[10rem]' : ''} ${hasRowMeta && isStrengthCol ? 'font-semibold' : ''}`
+                                }`}
+                              >
+                                {isFirstCol && meta?.bestFor != null ? (
+                                  <div className="space-y-0.5">
+                                    <span className="block text-base font-semibold text-gray-900 dark:text-white">{cellContent}</span>
+                                    <span className="block text-xs text-gray-500 dark:text-gray-400">{meta.bestFor}</span>
+                                  </div>
+                                ) : isStrengthCol && meta?.strengthBadge != null ? (
+                                  <span
+                                    className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
+                                    aria-label={`Stiprybė: ${meta.strengthBadge}`}
+                                  >
+                                    {meta.strengthBadge}
+                                  </span>
+                                ) : (
+                                  cellContent
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })()}
+          {(section.heading === 'Įrankiai' || section.heading === 'Tools') && moduleId != null && onGoToTools && (
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={() => onGoToTools(moduleId)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-brand-700 dark:text-brand-300 bg-brand-50 dark:bg-brand-900/30 hover:bg-brand-100 dark:hover:bg-brand-900/50 border border-brand-200 dark:border-brand-800 transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                aria-label={t('openToolsListAria', { moduleId: moduleId ?? 0 })}
+              >
+                <Wrench className="w-4 h-4" aria-hidden />
+                {isEn ? 'View tools' : 'Peržiūrėti įrankius'}
+              </button>
             </div>
           )}
           </div>
         </div>
-        {i === 1 && content.instructGptQuality && (
+        {i === 5 && content.instructGptQuality && (
           <InstructGptQualityBlock data={content.instructGptQuality} />
         )}
-        {i === 0 && content.workflowImages && content.workflowImages.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" role="region" aria-label="Inžinerijos workflow pavyzdžiai">
+        {i === 1 && content.pipelineDiagram === 'context-engineering' && (
+          <div className="space-y-4" role="region" aria-label={content.workflowImagesHeading ?? (isEn ? 'Context engineering pipeline diagram' : 'Konteksto inžinerijos pipeline schema')}>
+            {content.workflowImagesHeading && (
+              <h3 className="font-extrabold text-xl md:text-2xl text-brand-800 dark:text-brand-200 mb-1">
+                {content.workflowImagesHeading}
+              </h3>
+            )}
+            {content.pipelineDiagramSubtitle && (
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-300 -mt-2 whitespace-pre-line">
+                {content.pipelineDiagramSubtitle}
+              </p>
+            )}
+            <ContextEngineeringPipelineDiagram interactiveContent={content.interactivePipeline} />
+          </div>
+        )}
+        {i === 1 && !content.pipelineDiagram && content.workflowImages && content.workflowImages.length > 0 && (
+          <div className="space-y-3" role="region" aria-label={content.workflowImagesHeading ?? 'Inžinerijos workflow pavyzdžiai'}>
+            {content.workflowImagesHeading && (
+              <h3 className="font-bold text-lg md:text-xl text-brand-800 dark:text-brand-200">
+                {content.workflowImagesHeading}
+              </h3>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {content.workflowImages.slice(0, 2).map((img, j) => (
               <figure
                 key={j}
                 className="group relative rounded-xl border border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10 overflow-visible"
               >
                 <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
-                  <EnlargeableImage
-                    src={img.src}
+                  <img
+                    src={`${import.meta.env.BASE_URL || '/'}${String(img.src).replace(/^\//, '')}`}
                     alt={img.alt ?? img.label ?? 'Workflow schema'}
-                    enlargeLabel={img.label ?? undefined}
-                    className="border-brand-200 dark:border-brand-800 rounded-lg max-h-72"
+                    className="w-full h-auto object-contain border border-brand-200 dark:border-brand-800 rounded-lg max-h-72"
                   />
                 </div>
                 {img.label && (
                   <figcaption className="p-3 text-sm font-semibold text-brand-800 dark:text-brand-200 flex items-center gap-2">
                     {img.label}
                     {img.tooltip && (
-                      <span
-                        className="relative inline-flex"
+                      <button
+                        type="button"
+                        className="relative inline-flex rounded-md p-1.5 min-h-[44px] min-w-[44px] items-center justify-center hover:bg-brand-100 dark:hover:bg-brand-900/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
                         aria-label={`Papildoma informacija: ${img.label}`}
+                        aria-describedby={`workflow-tooltip-${j}`}
                       >
                         <Info
                           className="w-4 h-4 text-brand-500 dark:text-brand-400 shrink-0"
@@ -584,21 +1097,83 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
                         />
                         <span
                           id={`workflow-tooltip-${j}`}
-                          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-64 p-3 text-xs font-normal text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity z-10 pointer-events-none"
+                          className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-64 p-3 text-xs font-normal text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity z-10 pointer-events-none"
                           role="tooltip"
                         >
                           {img.tooltip}
                         </span>
-                      </span>
+                      </button>
                     )}
                   </figcaption>
                 )}
               </figure>
             ))}
+            </div>
           </div>
         )}
         </Fragment>
       ); })}
+      {content.tools && content.tools.length > 0 && (
+        <div className="border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+            <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
+            DI įrankiai – kur pradėti
+          </h3>
+          {content.toolsIntro && (
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              {content.toolsIntro}
+            </p>
+          )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {content.tools?.map((t, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex flex-wrap items-baseline gap-2 mb-2">
+                  {t.url ? (
+                    <a
+                      href={t.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
+                    >
+                      {t.name}
+                      <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <span className="text-base font-semibold text-gray-900 dark:text-white">{t.name}</span>
+                  )}
+                </div>
+                {t.description && (
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug mb-3">
+                    {t.description}
+                  </p>
+                )}
+                {t.useCases && t.useCases.length > 0 && (
+                  <div>
+                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+                      Populiariausi naudojimo atvejai
+                    </p>
+                    <ul className="flex flex-wrap gap-1.5">
+                      {t.useCases.map((uc, i) => (
+                        <li key={i}>
+                          <span className="inline-block text-xs px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">
+                            {uc}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
+            Principai veikia visuose įrankiuose – svarbi prompto struktūra, ne platforma.
+          </p>
+        </div>
+      )}
       {content.recognitionExercise && (
         <RecognitionExerciseBlock
           exercise={content.recognitionExercise}
@@ -606,24 +1181,402 @@ export function ContentBlockSlide({ content }: { content: ContentBlockContent })
         />
       )}
       {content.practicalTask && (
-        <div
+        <section
           className={
             isDiVisata
-              ? 'mt-6 rounded-xl border-l-4 border-l-di-visata-ai-accent bg-di-visata-ai-cool/80 dark:bg-gray-800/80 pl-4'
-              : 'mt-6 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 pl-4'
+              ? 'mt-8 rounded-xl border-l-4 border-l-di-visata-ai-accent bg-di-visata-ai-cool/80 dark:bg-gray-800/80 p-6'
+              : 'mt-8 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-6'
           }
+          aria-labelledby="practical-task-heading"
+          role="region"
         >
           <TemplateBlock
+            id="practical-task-heading"
             label={content.practicalTask.templateLabel || 'Kopijuojamas šablonas'}
             template={content.practicalTask.template}
           />
+        </section>
+      )}
+
+      {practice && (
+        <section
+          className="mt-8 space-y-4"
+          aria-labelledby="correct-prompt-practice-heading"
+          role="region"
+        >
+          <h2 id="correct-prompt-practice-heading" className="text-lg font-bold text-gray-900 dark:text-white">
+            {isEn ? 'Practice: fix the prompt' : 'Praktika: pataisyk promptą'}
+          </h2>
+          <div className="p-4 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800">
+            <p className="text-sm text-gray-800 dark:text-gray-200">{practice.intro}</p>
+          </div>
+          <div className="p-4 rounded-xl border-l-4 border-slate-400 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{t('badExample')}</h3>
+            <p className="text-sm text-gray-700 dark:text-gray-300 font-mono whitespace-pre-wrap">{practice.badPrompt}</p>
+          </div>
+          <div className="p-4 rounded-xl border-l-4 border-l-brand-500 bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800">
+            <label htmlFor="correct-prompt-textarea" className="block font-semibold text-gray-900 dark:text-white mb-2">
+              {isEn ? 'Your corrected version' : 'Tavo pataisytas variantas'}
+            </label>
+            <textarea
+              id="correct-prompt-textarea"
+              value={correctPromptUserText}
+              onChange={(e) => setCorrectPromptUserText(e.target.value)}
+              placeholder={t('promptPlaceholder')}
+              rows={4}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent min-h-[44px]"
+              aria-label="Įveskite pataisytą promptą"
+            />
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowCorrectPromptSolution(true)}
+              className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              aria-expanded={showCorrectPromptSolution}
+              aria-controls="correct-prompt-solution"
+            >
+              {practice.revealButtonLabel}
+            </button>
+          </div>
+          {showCorrectPromptSolution && (
+            <div id="correct-prompt-solution" className="space-y-4" role="region" aria-label={t('solutionAria')}>
+              <div className="p-4 rounded-xl border-l-4 border-slate-400 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Kokie principai pažeidžiami?</h3>
+                <div className="text-sm text-gray-700 dark:text-gray-300">{renderBodyWithBold(practice.solutionAnalysis)}</div>
+              </div>
+              <div className="p-4 rounded-xl border-l-4 border-slate-400 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                <TemplateBlock label="Pataisytas variantas (kopijuoti)" template={practice.solutionCopyable} />
+              </div>
+              <div className="p-4 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Kas pasikeitė?</h3>
+                <p className="text-sm text-gray-800 dark:text-gray-200">{practice.solutionSummary}</p>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
+      {moduleId === 6 && slide?.id === 64 && content.handoutDownloadLabel && (
+        <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4" role="region" aria-label={t('pdfHandoutAria')}>
+          <button
+            type="button"
+            onClick={handleM6HandoutDownload}
+            className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            aria-label={content.handoutDownloadLabel}
+          >
+            <Download className="w-4 h-4 shrink-0" aria-hidden />
+            {content.handoutDownloadLabel}
+          </button>
         </div>
       )}
     </div>
   );
 }
 
-export function SectionBreakSlide({ content }: { content: SectionBreakContent }) {
+const sectionBreakColorMap = {
+  brand: {
+    heroBg: 'bg-brand-800 dark:bg-brand-900',
+    heroBorder: 'border-brand-700 dark:border-brand-600',
+    badge: 'bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300',
+    pill: 'bg-brand-100 dark:bg-brand-800/50 text-brand-800 dark:text-brand-100 border-brand-300 dark:border-brand-600',
+    footerBg: 'bg-brand-700 dark:bg-brand-800 border-brand-700 dark:border-brand-600',
+    progressBar: 'bg-brand-600 dark:bg-brand-400',
+    kasToliau: 'border-brand-500',
+  },
+  emerald: {
+    heroBg: 'bg-emerald-800 dark:bg-emerald-900',
+    heroBorder: 'border-emerald-700 dark:border-emerald-600',
+    badge: 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300',
+    pill: 'bg-emerald-100 dark:bg-emerald-800/50 text-emerald-800 dark:text-emerald-100 border-emerald-300 dark:border-emerald-600',
+    footerBg: 'bg-emerald-700 dark:bg-emerald-800 border-emerald-700 dark:border-emerald-600',
+    progressBar: 'bg-emerald-600 dark:bg-emerald-400',
+    kasToliau: 'border-emerald-500',
+  },
+  violet: {
+    heroBg: 'bg-violet-800 dark:bg-violet-900',
+    heroBorder: 'border-violet-700 dark:border-violet-600',
+    badge: 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300',
+    pill: 'bg-violet-100 dark:bg-violet-800/50 text-violet-800 dark:text-violet-100 border-violet-300 dark:border-violet-600',
+    footerBg: 'bg-violet-700 dark:bg-violet-800 border-violet-700 dark:border-violet-600',
+    progressBar: 'bg-violet-600 dark:bg-violet-400',
+    kasToliau: 'border-violet-500',
+  },
+} as const;
+
+export function SectionBreakSlide({
+  content,
+  onGoToGlossaryTerm,
+}: {
+  content?: SectionBreakContent | null;
+  onGoToGlossaryTerm?: (term: string) => void;
+}) {
+  useTranslation();
+  const t = getT('contentSlides');
+  if (!content) return null;
+  const hck = content.heroColorKey ?? 'brand';
+  const colors = sectionBreakColorMap[hck] ?? sectionBreakColorMap.brand;
+  const hasRecap = content.recap?.items?.length;
+  const hasNextSteps = (content.nextSteps?.length ?? 0) > 0;
+  const hasSubtitle = Boolean(content.subtitle);
+  const showKasToliau = hasNextSteps || hasSubtitle;
+
+  const recapIconList = content.recap?.items?.length === 3
+    ? [Settings, User, Repeat]
+    : content.recap?.items?.length === 5
+      ? [Settings, User, Repeat, Wrench, Cpu]
+      : content.recap?.items?.length === 7
+        ? [Settings, User, Repeat, Wrench, Cpu, FileSearch, Layers]
+        : [Layers, Settings, User, Repeat];
+  const recapIcons = recapIconList;
+
+  const pillLabels = ['Sisteminis', 'Master', 'Procesas'] as const;
+  const pillIcons = [Settings, User, Repeat] as const;
+  const pillLabels5 = ['Sisteminis', 'Master', 'Procesas', 'Metodinis', 'Agentinis'] as const;
+  const pillIcons5 = [Settings, User, Repeat, Wrench, Cpu] as const;
+  const pillLabels7 = ['Sisteminis', 'Master', 'Procesas', 'Metodinis', 'Agentinis', 'RAG promptai', 'Combo promptai'] as const;
+  const pillIcons7 = [Settings, User, Repeat, Wrench, Cpu, FileSearch, Layers] as const;
+  const itemsLength = content.recap?.items?.length ?? 0;
+  const progressTotal = content.recap?.progressTotal ?? itemsLength;
+  const showPills = content.celebrationText && ((itemsLength === 3 && progressTotal === 7) || itemsLength === 5 || itemsLength === 7 || (itemsLength === 5 && progressTotal === 7));
+  const pillsCount = showPills ? (itemsLength === 5 && progressTotal === 7 ? 7 : itemsLength) : 0;
+  const getPillLabel = (i: number) => (i < 7 ? (itemsLength === 7 ? pillLabels7[i] : itemsLength === 5 && progressTotal === 7 ? pillLabels7[i] : itemsLength === 5 ? pillLabels5[i] : pillLabels[i]) : null) ?? 'Item';
+  const getPillIcon = (i: number) => (i < 7 ? (itemsLength === 7 ? pillIcons7[i] : itemsLength === 5 && progressTotal === 7 ? pillIcons7[i] : itemsLength === 5 ? pillIcons5[i] : pillIcons[i]) : null) ?? Layers;
+  const isPillUpcoming = (i: number) => itemsLength === 5 && progressTotal === 7 && i >= 5;
+
+  if (hasRecap) {
+    return (
+      <div className="max-w-3xl mx-auto space-y-6 px-4 py-6">
+        <div className="flex flex-col items-center text-center">
+          {content.sectionNumber && (
+            <span className={`inline-block px-4 py-1.5 rounded-full ${colors.badge} font-semibold text-sm mb-4`}>
+              {content.sectionNumber}
+            </span>
+          )}
+          {!content.celebrationText && (
+            <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+              {content.title}
+            </h2>
+          )}
+          {content.celebrationText && (
+            <div
+              className={`mt-1 relative flex flex-col sm:flex-row items-center justify-center gap-2 rounded-[20px] border-2 ${colors.heroBorder} ${colors.heroBg} pl-4 pr-36 sm:pr-32 py-4 text-left w-full`}
+              role="region"
+              aria-label={t('sectionCompleteAria')}
+            >
+              <div className="flex items-center gap-4 w-full flex-wrap sm:flex-nowrap">
+                <Sparkles className="w-6 h-6 flex-shrink-0 text-accent-300 dark:text-accent-400 opacity-90" aria-hidden />
+                <h2 className="text-xl md:text-2xl m-0 max-w-md">
+                  {(() => {
+                    const text = typeof content.celebrationText === 'string' ? content.celebrationText : String(content.celebrationText ?? '');
+                    const idx = text.indexOf('! ');
+                    if (idx !== -1) {
+                      const exclamation = text.slice(0, idx + 1);
+                      const rest = text.slice(idx + 2);
+                      return (
+                        <span className="flex flex-col">
+                          <span className="font-bold text-accent-300 dark:text-accent-400 mb-1.5 text-xl md:text-2xl leading-tight">{exclamation}</span>
+                          <span className="font-semibold text-white dark:text-brand-100 leading-[1.2] tracking-[-0.01em]">{rest}</span>
+                        </span>
+                      );
+                    }
+                    return <span className="font-bold text-white dark:text-brand-100">{text}</span>;
+                  })()}
+                </h2>
+              </div>
+              {(content.recap?.items?.length === 3 || content.recap?.items?.length === 5 || content.recap?.items?.length === 7) && (() => {
+                const total = content.recap?.progressTotal ?? content.recap?.items?.length ?? 0;
+                const current = content.recap?.items?.length ?? 0;
+                const pct = total > 0 ? (current / total) * 100 : 0;
+                return (
+                  <div
+                    className="absolute top-4 right-5 flex flex-col items-center justify-center rounded-[14px] border border-[#DCE3EA] dark:border-slate-600 bg-[#F5F7FA] dark:bg-slate-800/90 px-3.5 pt-2.5 pb-0 min-w-[5.5rem] leading-[1.35] overflow-hidden shadow-[0_14px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.18)]"
+                    role="status"
+                    aria-label={`${current} iš ${total}`}
+                  >
+                    <span className="text-[1.25rem] font-semibold tabular-nums text-brand-700 dark:text-brand-300 tracking-[-0.02em]">
+                      {current}/{total}
+                    </span>
+                    <div className="w-full mt-2 rounded-full overflow-hidden bg-gray-200 dark:bg-slate-500" style={{ height: '4px' }} role="presentation">
+                      <div className={`h-full rounded-full ${colors.progressBar}`} style={{ width: `${pct}%`, minWidth: pct > 0 ? `${pct}%` : '0' }} />
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
+        </div>
+
+        {showPills && pillsCount > 0 && (
+          <div
+            className="flex flex-wrap gap-3 justify-center"
+            role="list"
+            aria-label="Promptų tipai – žodyno nuorodos"
+          >
+            {Array.from({ length: pillsCount }, (_, i) => {
+              const Icon = getPillIcon(i);
+              const label = getPillLabel(i);
+              const term = content.recap?.itemGlossaryTerms?.[i];
+              const isLink = Boolean(term && onGoToGlossaryTerm);
+              const upcoming = isPillUpcoming(i);
+              const pillStyle = upcoming ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-600' : colors.pill;
+              const baseClass = `inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg ${pillStyle} text-sm font-semibold border-2`;
+              const linkClass = ' focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 hover:text-brand-700 dark:hover:text-brand-200 hover:underline underline-offset-2 cursor-pointer';
+              const numCircleClass = upcoming ? 'bg-blue-500 text-white' : 'bg-brand-500 text-white';
+              const iconClass = upcoming ? 'text-blue-600 dark:text-blue-400' : 'text-brand-600 dark:text-brand-400';
+              if (isLink && term) {
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => onGoToGlossaryTerm(term)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onGoToGlossaryTerm(term);
+                      }
+                    }}
+                    className={baseClass + linkClass}
+                    aria-label={`Atidaryti žodynėlį: ${term}`}
+                  >
+                    <span className={`flex items-center justify-center w-5 h-5 rounded-full ${numCircleClass} text-xs font-bold`} aria-hidden>{i + 1}</span>
+                    <Icon className={`w-4 h-4 ${iconClass} shrink-0`} aria-hidden />
+                    {label}
+                    <BookOpen className={`w-3.5 h-3.5 ${iconClass} shrink-0 opacity-80`} aria-hidden />
+                  </button>
+                );
+              }
+              return (
+                <span key={i} className={baseClass}>
+                  <span className={`flex items-center justify-center w-5 h-5 rounded-full ${numCircleClass} text-xs font-bold`} aria-hidden>{i + 1}</span>
+                  <Icon className={`w-4 h-4 ${iconClass}`} aria-hidden />
+                  {label}
+                </span>
+              );
+            })}
+          </div>
+        )}
+
+        <section
+          className="rounded-r-lg border-l-4 border-emerald-500 bg-slate-100 dark:bg-slate-800/60 pl-4 pr-3 py-3 text-left"
+          aria-label={content.recap?.heading ?? ''}
+        >
+          <h3 className="font-bold text-sm mb-1.5 text-gray-900 dark:text-white">
+            {content.recap?.heading}
+          </h3>
+          {content.recap?.lead && (
+            <p className="text-xs text-gray-600 dark:text-gray-300 italic mb-2 leading-relaxed">{content.recap.lead}</p>
+          )}
+          <ul className="space-y-2" role="list">
+            {(content.recap?.items ?? []).map((item, idx) => {
+              const TermIcon = recapIcons[idx % recapIcons.length];
+              const term = content.recap?.itemGlossaryTerms?.[idx];
+              const hasGlossaryLink = Boolean(term && onGoToGlossaryTerm);
+              const termStart = hasGlossaryLink && term ? item.indexOf(term) : -1;
+              const hasTermInItem = termStart >= 0;
+              const before = hasTermInItem ? item.slice(0, termStart) : '';
+              const after = hasTermInItem && term ? item.slice(termStart + term.length) : '';
+              return (
+                <li
+                  key={idx}
+                  className="flex items-start gap-3 pl-3 border-l-4 border-emerald-500 animate-fade-in"
+                  style={{ animationDelay: `${idx * 80}ms`, animationFillMode: 'backwards' }}
+                  role="listitem"
+                >
+                  {hasGlossaryLink && term ? (
+                    <button
+                      type="button"
+                      onClick={() => onGoToGlossaryTerm(term)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onGoToGlossaryTerm(term);
+                        }
+                      }}
+                      className="flex-shrink-0 mt-0.5 p-0.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                      aria-label={`Atidaryti žodynėlį: ${term}`}
+                    >
+                      <TermIcon className="w-4 h-4" aria-hidden />
+                    </button>
+                  ) : (
+                    <TermIcon className="w-4 h-4 flex-shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5" aria-hidden />
+                  )}
+                  <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {hasTermInItem && term ? (
+                      <>
+                        {before}
+                        <button
+                          type="button"
+                          onClick={() => onGoToGlossaryTerm!(term)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              onGoToGlossaryTerm!(term);
+                            }
+                          }}
+className="font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded align-baseline"
+                            aria-label={`Atidaryti žodynėlį: ${term}`}
+                        >
+                          {term}
+                        </button>
+                        {after}
+                      </>
+                    ) : (
+                      item
+                    )}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        {showKasToliau && (
+          <section
+            className={`pl-3 py-2 border-l-4 ${colors.kasToliau} text-left`}
+            aria-label="Kas toliau"
+          >
+            <h3 className="font-bold text-sm mb-1 text-gray-900 dark:text-white">Kas toliau</h3>
+            {hasNextSteps ? (
+              <ul className="space-y-0.5 text-xs text-gray-700 dark:text-gray-300 list-disc list-inside">
+                {(content.nextSteps ?? []).map((step, idx) => (
+                  <li key={idx}>{step}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xs text-gray-700 dark:text-gray-300">{content.subtitle}</p>
+            )}
+          </section>
+        )}
+
+        {content.footer && (
+          <section
+            className={`rounded-lg border-2 ${colors.footerBg} p-3 text-left`}
+            aria-label={t('nextStepAria')}
+          >
+            <p className="text-xs font-semibold text-white flex items-center gap-2">
+              <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
+              {content.footer}
+            </p>
+          </section>
+        )}
+
+        {content.spinoffCta && (
+          <a
+            href={content.spinoffCta.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            aria-label={`${content.spinoffCta.label} (atidaroma naujame lange)`}
+          >
+            <Sparkles className="w-4 h-4 flex-shrink-0" aria-hidden />
+            <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden />
+            {content.spinoffCta.label}
+          </a>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-[280px] text-center px-4 py-8">
       {content.sectionNumber && (
@@ -644,6 +1597,10 @@ export function SectionBreakSlide({ content }: { content: SectionBreakContent })
 }
 
 export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const tCommon = getT('common');
+  const tQuiz = getT('quiz');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -682,7 +1639,7 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
           <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto mb-3" aria-hidden />
           <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">Pasiruošimo savitikra baigta</h3>
           <p className="text-gray-700 dark:text-gray-300 text-sm">
-            Galite pradėti testą – įskaita neįskaitoma, tai tik pasiruošimas.
+            Gali pradėti testą – įskaita neįskaitoma, tai tik pasiruošimas.
           </p>
         </div>
       </div>
@@ -694,7 +1651,7 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   return (
     <div className="space-y-6">
       <p className="text-sm text-gray-600 dark:text-gray-400">
-        Klausimas {currentIndex + 1} iš {questions.length}. Įskaita neįskaitoma – tik pasiruošimas.
+        {t('warmUpQuestionInfo', { n: currentIndex + 1, total: questions.length })}
       </p>
       <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border-2 border-gray-200 dark:border-gray-700">
         <p className="font-bold text-gray-900 dark:text-white mb-4">{q.question}</p>
@@ -737,14 +1694,14 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
       </div>
       {showFeedback && (
         <div className={`p-4 rounded-xl ${isCorrect ? 'bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-900/20 border border-rose-200 dark:border-rose-800'}`}>
-          <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">{isCorrect ? 'Teisingai' : 'Neteisingai'}</p>
+          <p className="text-sm font-medium text-gray-900 dark:text-white mb-1">{isCorrect ? tQuiz('correctLabel') : tQuiz('incorrectLabel')}</p>
           {q.explanation && <p className="text-sm text-gray-700 dark:text-gray-300">{q.explanation}</p>}
           <button
             type="button"
             onClick={handleNext}
             className="mt-3 px-4 py-2 rounded-lg bg-brand-500 text-white font-medium hover:bg-brand-600 transition-colors"
           >
-            {currentIndex + 1 < questions.length ? 'Kitas' : 'Baigti'}
+            {currentIndex + 1 < questions.length ? tCommon('next') : tCommon('finish')}
           </button>
         </div>
       )}
@@ -752,13 +1709,20 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   );
 }
 
-export function GlossarySlide({ content }: { content: GlossaryContent }) {
+export function GlossarySlide({ content, optional }: { content: GlossaryContent; optional?: boolean }) {
+  useTranslation();
+  const t = getT('contentSlides');
   return (
     <div className="space-y-4">
       {/* ── Header ── */}
       <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500 p-5 rounded-r-xl">
-        <h4 className="font-bold text-lg text-brand-900 dark:text-brand-100">Žodynėlis</h4>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Pagrindiniai terminai – greitai susigrąžink, jei reikia.</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <h4 className="font-bold text-lg text-brand-900 dark:text-brand-100">{t('glossaryLabel')}</h4>
+          {optional && (
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-200" aria-label={t('optionalSlideAria')}>{t('optionalSlideLabel')}</span>
+          )}
+        </div>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('glossarySlideIntro')}</p>
       </div>
 
       {/* ── Terminai ── */}
@@ -780,11 +1744,15 @@ export function GlossarySlide({ content }: { content: GlossaryContent }) {
 }
 
 export function ModuleIntroSlide({ content }: { content: ModuleIntroContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   return (
     <div className="space-y-6">
       <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 p-6 rounded-xl">
         <h3 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100">
-          Po šio modulio galėsite:
+          {isEn ? 'After this module you will be able to:' : 'Po šio modulio galėsite:'}
         </h3>
         <ul className="space-y-2 text-gray-700 dark:text-gray-300">
           {(content.learningOutcomes ?? []).map((item, i) => (
@@ -797,13 +1765,13 @@ export function ModuleIntroSlide({ content }: { content: ModuleIntroContent }) {
       </div>
       <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-6 rounded-xl">
         <h3 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100">
-          Kodėl konteksto inžinerija?
+          {isEn ? 'Why context engineering?' : 'Kodėl konteksto inžinerija?'}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{content.whyAdvanced}</p>
       </div>
       {content.connectionToModule1 && (
         <div className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 dark:border-slate-600 border border-slate-200 dark:border-slate-700 p-5 rounded-xl">
-          <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">Ryšys su Moduliu 1</p>
+          <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">{t('linkToModule1')}</p>
           <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             {content.connectionToModule1}
           </p>
@@ -813,29 +1781,44 @@ export function ModuleIntroSlide({ content }: { content: ModuleIntroContent }) {
   );
 }
 
-const DEFAULT_INTRO: IntroContent = {
-  aboutText: 'Šis mokymas padės jums kurti efektyvius promptus, kurie duoda nuoseklius, profesionalius rezultatus. Išmoksite hierarchinę struktūrą, kuri paverčia chaotišką DI komunikaciją sistemingu ir valdomu procesu.',
-  tools: [
-    { name: 'ChatGPT (OpenAI)', url: 'https://chat.openai.com' },
-    { name: 'Claude (Anthropic)', url: 'https://claude.ai' },
-    { name: 'Gemini (Google)', url: 'https://gemini.google.com' },
-    { name: 'Copilot (Microsoft)', url: 'https://copilot.microsoft.com' },
-    { name: 'Grok (xAI)', url: 'https://grok.x.ai' },
-  ],
-  outcomes: ['Struktūruoti promptus profesionaliai', 'Gauti nuspėjamus rezultatus', 'Taupyti laiką ir išteklius'],
-  toolsTip: 'Mokymuose dėmesys skiriamas promptų struktūrai, todėl tie patys principai veikia skirtinguose įrankiuose.',
-  tip: 'Pagalvokite apie vieną verslo užduotį, kurią norėtumėte automatizuoti ar pagerinti naudojant DI. Šį pavyzdį naudosime viso mokymo metu.',
-};
+function getDefaultIntro(locale: string): IntroContent {
+  const isEn = locale === 'en';
+  return {
+    aboutText: isEn
+      ? 'This training will help you create effective prompts that produce consistent, professional results. You will learn a hierarchical structure that transforms chaotic AI communication into a systematic and manageable process.'
+      : 'Šis mokymas padės jums kurti efektyvius promptus, kurie duoda nuoseklius, profesionalius rezultatus. Išmoksite hierarchinę struktūrą, kuri paverčia chaotišką DI komunikaciją sistemingu ir valdomu procesu.',
+    tools: [
+      { name: 'ChatGPT (OpenAI)', url: 'https://chat.openai.com' },
+      { name: 'Claude (Anthropic)', url: 'https://claude.ai' },
+      { name: 'Gemini (Google)', url: 'https://gemini.google.com' },
+      { name: 'Copilot (Microsoft)', url: 'https://copilot.microsoft.com' },
+      { name: 'Grok (xAI)', url: 'https://grok.x.ai' },
+    ],
+    outcomes: isEn
+      ? ['Structure prompts professionally', 'Get predictable results', 'Save time and resources']
+      : ['Struktūruoti promptus profesionaliai', 'Gauti nuspėjamus rezultatus', 'Taupyti laiką ir išteklius'],
+    toolsTip: isEn
+      ? 'The training focuses on prompt structure, so the same principles apply across different tools.'
+      : 'Mokymuose dėmesys skiriamas promptų struktūrai, todėl tie patys principai veikia skirtinguose įrankiuose.',
+    tip: isEn
+      ? 'Think of one business task you would like to automate or improve using AI. We will use this example throughout the training.'
+      : 'Pagalvokite apie vieną verslo užduotį, kurią norėtumėte automatizuoti ar pagerinti naudojant DI. Šį pavyzdį naudosime viso mokymo metu.',
+  };
+}
 
 export interface IntroSlideProps {
   content?: IntroContent | null;
 }
 export function IntroSlide({ content: contentProp }: IntroSlideProps) {
-  const content = contentProp ?? DEFAULT_INTRO;
+  useTranslation();
+  const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const content = contentProp ?? getDefaultIntro(locale);
   return (
     <div className="space-y-6">
       <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 p-6 rounded-xl">
-        <h3 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100">Apie šį mokymą</h3>
+        <h3 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100">{isEn ? 'About this training' : 'Apie šį mokymą'}</h3>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{content.aboutText}</p>
       </div>
 
@@ -844,7 +1827,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
           <span className="text-2xl">🛠️</span> Kokius DI įrankius naudoti?
         </h3>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          Visas šiuose mokymuose pateiktas praktines užduotis galite atlikti naudodami bet kurį modernų generatyvinio dirbtinio intelekto įrankį.
+          {t('practiceTasksHint')}
         </p>
         <div className="mb-4">
           <p className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">Galimi įrankiai:</p>
@@ -870,7 +1853,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
           <div className="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
             <p className="text-sm text-amber-900 dark:text-amber-100 flex items-start gap-2">
               <span className="text-amber-600 dark:text-amber-400 mt-0.5">🔹</span>
-              <span><strong>Svarbu:</strong> {content.toolsTip}</span>
+              <span><strong>{isEn ? 'Important:' : 'Svarbu:'}</strong> {content.toolsTip}</span>
             </p>
           </div>
         )}
@@ -878,7 +1861,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
         <div className="bg-emerald-50 dark:bg-emerald-900/20 p-5 rounded-xl">
-          <h4 className="font-bold text-emerald-900 dark:text-emerald-100 mb-3">Po šio mokymo galėsite:</h4>
+          <h4 className="font-bold text-emerald-900 dark:text-emerald-100 mb-3">{isEn ? 'After this training you will be able to:' : 'Po šio mokymo galėsite:'}</h4>
           <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
             {content.outcomes.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
@@ -890,11 +1873,11 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
         </div>
         {/* M-DS2: neutral (slate) vietoj violet – vienas gradientas/akcentas per skaidrę */}
         <div className="bg-slate-50 dark:bg-slate-900/20 p-5 rounded-xl">
-          <h4 className="font-bold text-slate-900 dark:text-slate-100 mb-3">Mokymo trukmė:</h4>
+          <h4 className="font-bold text-slate-900 dark:text-slate-100 mb-3">{isEn ? 'Training duration:' : 'Mokymo trukmė:'}</h4>
           <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            <li>• 3 moduliai</li>
-            <li>• Praktinės užduotys</li>
-            <li>• ~45 minučių</li>
+            <li>• {isEn ? '3 modules' : '3 moduliai'}</li>
+            <li>• {isEn ? 'Practical tasks' : 'Praktinės užduotys'}</li>
+            <li>• {isEn ? '~45 minutes' : '~45 minučių'}</li>
           </ul>
         </div>
       </div>
@@ -904,7 +1887,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
           <p className="text-sm text-accent-900 dark:text-accent-100 leading-relaxed">
             <strong className="block mb-2 flex items-center gap-2">
               <Lightbulb className="w-4 h-4 text-accent-600 dark:text-accent-400" strokeWidth={1.5} />
-              Praktinė užduotis:
+              {isEn ? 'Practical task:' : 'Praktinė užduotis:'}
             </strong>
             {content.tip}
           </p>
@@ -915,6 +1898,8 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
 }
 
 export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
   const [showPrompt, setShowPrompt] = useState(false);
   const [showEngineering, setShowEngineering] = useState(false);
   const [showSources, setShowSources] = useState(false);
@@ -949,7 +1934,7 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
             </p>
             {!bothRevealed && (
               <p className="text-xs sm:text-sm text-brand-300/80 mt-2 font-medium">
-                Paspauskite korteles žemiau ir sužinokite.
+                {t('clickCardsHint')}
               </p>
             )}
           </div>
@@ -963,7 +1948,7 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
             <div className="flex flex-col items-center gap-2">
               <img
                 src={content.heroImage}
-                alt={content.heroImageLabel || 'DI ir promptų inžinerijos kontekstas'}
+                alt={content.heroImageLabel || t('definitionsHeroImageAlt')}
                 className="w-full h-auto rounded-xl border border-gray-200 dark:border-gray-700 object-contain max-h-64"
               />
               {content.comparisonImage && content.heroImageLabel && (
@@ -975,7 +1960,7 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
             <div className="flex flex-col items-center gap-2">
               <img
                 src={content.comparisonImage}
-                alt={content.comparisonImageLabel || 'Palyginimo iliustracija'}
+                alt={content.comparisonImageLabel || t('definitionsComparisonImageAlt')}
                 className="w-full h-auto rounded-xl border border-gray-200 dark:border-gray-700 object-contain max-h-64"
               />
               {content?.comparisonImageLabel && (
@@ -1008,9 +1993,9 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
                 <MessageCircle className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-gray-900 dark:text-white">Promptas</h3>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-white">{t('promptCardTitle')}</h3>
                 {!showPrompt && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Paspauskite ir sužinokite</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{t('clickToFindOut')}</p>
                 )}
               </div>
               {!showPrompt && (
@@ -1049,9 +2034,9 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
                 <Layers className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-gray-900 dark:text-white">Promptų Inžinerija</h3>
+                <h3 className="font-bold text-lg text-gray-900 dark:text-white">{t('engineeringCardTitle')}</h3>
                 {!showEngineering && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Paspauskite ir sužinokite</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{t('clickToFindOut')}</p>
                 )}
               </div>
               {!showEngineering && (
@@ -1097,7 +2082,7 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
                 </p>
                 <div className="bg-white dark:bg-gray-900/50 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
                   <div className="flex items-center justify-between gap-1 mb-1">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Pavyzdys</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">{t('example')}</p>
                     <CopyButton text={aspect.example} size="sm" />
                   </div>
                   <p className="text-xs text-gray-700 dark:text-gray-300 italic leading-relaxed">{aspect.example}</p>
@@ -1150,6 +2135,8 @@ export function DefinitionsSlide({ content }: { content?: DefinitionsContent }) 
 }
 
 function DiModalityCard({ group, idx }: { group: DiModalityGroup; idx: number }) {
+  useTranslation();
+  const t = getT('contentSlides');
   return (
     <article
       key={idx}
@@ -1167,7 +2154,7 @@ function DiModalityCard({ group, idx }: { group: DiModalityGroup; idx: number })
         {group.description}
       </p>
       <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Įrankiai:</p>
-      <ul className="flex flex-wrap gap-2" aria-label="Įrankiai šiai kategorijai">
+      <ul className="flex flex-wrap gap-2" aria-label={t('toolsForCategoryAria')}>
         {group.examples.map((ex, i) => (
           <li key={i} className="inline-flex items-center gap-1.5">
             {ex.url ? (
@@ -1187,8 +2174,9 @@ function DiModalityCard({ group, idx }: { group: DiModalityGroup; idx: number })
             )}
             {ex.recommended && (
               <span
-                className="inline-flex items-center gap-0.5 px-2 py-1 rounded-md text-[10px] font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap"
-                title="Rekomenduojamas įrankis šiai kategorijai"
+                className="inline-flex items-center gap-0.5 px-2 py-1 rounded-md text-[10px] font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap min-h-[28px] items-center"
+                title={t('recommendedToolAria')}
+                aria-label={t('recommendedToolAria')}
               >
                 <CheckCircle className="w-3 h-3 shrink-0" aria-hidden />
                 Rek.
@@ -1202,6 +2190,10 @@ function DiModalityCard({ group, idx }: { group: DiModalityGroup; idx: number })
 }
 
 export function DiModalitiesSlide({ content }: { content?: DiModalitiesContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const groups = content?.groups ?? [];
   const showFirst = content?.showFirst ?? 0;
   const useProgressive = showFirst > 0 && groups.length > showFirst;
@@ -1209,18 +2201,20 @@ export function DiModalitiesSlide({ content }: { content?: DiModalitiesContent }
   const visibleGroups = useProgressive && !showAll ? groups.slice(0, showFirst) : groups;
   const remainingCount = groups.length - showFirst;
 
-  const intro = content?.intro ?? 'DI modeliai, pagrįsti transformeriais, gali dirbti su įvairiomis įvesties ir išvesties formomis. Žemiau – pagrindinės kategorijos su pavyzdžiais ir nuorodomis. Pažymėta rekomenduojami įrankiai kiekvienai kategorijai.';
+  const intro = content?.intro ?? (isEn
+    ? 'AI models based on transformers can work with various input and output forms. Below are the main categories with examples and links. Recommended tools are marked for each category.'
+    : 'DI modeliai, pagrįsti transformeriais, gali dirbti su įvairiomis įvesties ir išvesties formomis. Žemiau – pagrindinės kategorijos su pavyzdžiais ir nuorodomis. Pažymėta rekomenduojami įrankiai kiekvienai kategorijai.');
   return (
     <div className="space-y-8">
       <div className="max-w-3xl mx-auto space-y-2">
+        <p className="text-center text-slate-500 dark:text-slate-400 text-xs">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-300 font-medium" role="status" aria-label={t('recommendedToolStatusAria')}>
+            <CheckCircle className="w-3 h-3 shrink-0" aria-hidden />
+            {isEn ? 'Rec. = recommended tool for this category' : 'Rek. = rekomenduojamas įrankis šiai kategorijai'}
+          </span>
+        </p>
         <p className="text-center text-slate-600 dark:text-slate-300 text-base leading-relaxed">
           {intro}
-        </p>
-        <p className="text-center text-slate-500 dark:text-slate-400 text-xs">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-300 font-medium">
-            <CheckCircle className="w-3 h-3 shrink-0" aria-hidden />
-            Rek. = rekomenduojamas įrankis šiai kategorijai
-          </span>
         </p>
       </div>
 
@@ -1241,12 +2235,12 @@ export function DiModalitiesSlide({ content }: { content?: DiModalitiesContent }
             {showAll ? (
               <>
                 <ChevronUp className="w-4 h-4 shrink-0" aria-hidden />
-                Slėpti kitas kategorijas
+                {isEn ? 'Hide other categories' : 'Slėpti kitas kategorijas'}
               </>
             ) : (
               <>
                 <ChevronDown className="w-4 h-4 shrink-0" aria-hidden />
-                Rodyti kitas {remainingCount} kategorijas
+                {isEn ? `Show ${remainingCount} more categories` : `Rodyti kitas ${remainingCount} kategorijas`}
               </>
             )}
           </button>
@@ -1256,11 +2250,13 @@ export function DiModalitiesSlide({ content }: { content?: DiModalitiesContent }
       {content?.takeaway && (
         <div className="rounded-2xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 dark:border-accent-600 p-5 shadow-sm">
           <p className="text-slate-700 dark:text-slate-200 text-sm leading-relaxed">
-            <span className="font-bold text-accent-700 dark:text-accent-300">Trumpai: </span>
+            <span className="font-bold text-accent-700 dark:text-accent-300">{t('takeawayLabel')}</span>
             {content.takeaway}
           </p>
         </div>
       )}
+
+      {/* Footer rodomas SlideContent lygmenyje pagal content.footer */}
     </div>
   );
 }
@@ -1339,6 +2335,8 @@ export function PieChartSlide({ content }: { content?: PieChartContent }) {
           ))}
         </ul>
       </div>
+
+      {/* Footer rodomas SlideContent lygmenyje pagal content.footer */}
     </div>
   );
 }
@@ -1425,6 +2423,8 @@ export function AiWorkflowSlide({ content }: { content?: AiWorkflowContent }) {
 }
 
 export function PromptTypesSlide({ content }: { content?: PromptTypesContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
   const typeStyles: Record<string, { bg: string; border: string; text: string; badge: string; num: string }> = {
     brand: {
       bg: 'bg-brand-50 dark:bg-brand-900/20',
@@ -1488,7 +2488,7 @@ export function PromptTypesSlide({ content }: { content?: PromptTypesContent }) 
               <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed">{type.description}</p>
               <div className="space-y-3">
                 <div>
-                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Pavyzdys:</p>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">{t('example')}:</p>
                   <div className="bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <p className="text-sm text-gray-700 dark:text-gray-300 italic">&ldquo;{type.example}&rdquo;</p>
@@ -1523,6 +2523,8 @@ export function PromptTypesSlide({ content }: { content?: PromptTypesContent }) 
 }
 
 export function PromptTechniquesSlide({ content }: { content?: PromptTechniquesContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
   return (
     <div className="space-y-6">
       {/* ── Intro: vizualus žingsnių kelias, ne sąrašas ── */}
@@ -1580,7 +2582,7 @@ export function PromptTechniquesSlide({ content }: { content?: PromptTechniquesC
               }`}>
                 <div className="flex items-start justify-between gap-2 mb-1">
                   <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                    {isAntiPattern ? 'Blogas pavyzdys' : 'Pavyzdys'}
+                    {isAntiPattern ? t('badExample') : t('example')}
                   </p>
                   {!isAntiPattern && <CopyButton text={technique.example} size="sm" />}
                 </div>
@@ -1597,80 +2599,114 @@ export function PromptTechniquesSlide({ content }: { content?: PromptTechniquesC
 }
 
 export function WorkflowSummarySlide({ content }: { content?: WorkflowSummaryContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const { locale } = useLocale();
   const baseUrl = import.meta.env.BASE_URL || '/';
   const diagramImages = [`${baseUrl}LLM_1.png`, `${baseUrl}LLM_2.png`];
+  const useInteractive = content?.interactive?.enabled ?? false;
 
   return (
     <div className="space-y-6">
-      {/* ── Intro: provokuojantis hook ── */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-5 sm:p-7 text-white">
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none" aria-hidden="true">
-          <div className="absolute top-2 right-4 text-[80px] font-black leading-none select-none">⚙</div>
-          <div className="absolute bottom-2 left-4 text-[80px] font-black leading-none select-none">💬</div>
-        </div>
-        <div className="relative z-10 text-center max-w-lg mx-auto">
-          <p className="text-base sm:text-lg font-bold leading-snug tracking-tight">
-            {content?.intro}
-          </p>
-        </div>
-      </div>
+      {/* ── Intro: vienas sakinys (be gradient, be emoji) ── */}
+      {content?.intro && (
+        <p className="text-center text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 max-w-2xl mx-auto tracking-tight leading-snug">
+          {content.intro}
+        </p>
+      )}
 
-      {/* ── Diagramos: Basic (neutralus) vs Workflow (paryškintas) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {content?.diagrams.map((diagram, idx) => {
-          const isWorkflow = diagram.variant === 'workflow' || idx === 1;
-          const cardClasses = isWorkflow
-            ? 'bg-emerald-50 dark:bg-emerald-900/10 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl p-5 ring-2 ring-emerald-200/60 dark:ring-emerald-800/40 shadow-md'
-            : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5';
-          const noteClasses = isWorkflow
-            ? 'inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-            : 'inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800';
-          const noteIcon = isWorkflow ? '✓' : '⚠';
+      {/* ── Diagramos: interaktyvus arba statinis režimas ── */}
+      {useInteractive ? (
+        <WorkflowComparisonInteractiveBlock locale={locale} />
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {content?.diagrams.map((diagram, idx) => {
+            const isWorkflow = diagram.variant === 'workflow' || idx === 1;
+            const cardClasses = isWorkflow
+              ? 'bg-emerald-50 dark:bg-emerald-900/10 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl p-5 ring-2 ring-emerald-200/60 dark:ring-emerald-800/40 shadow-md'
+              : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-5';
+            const noteClasses = isWorkflow
+              ? 'inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+              : 'inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800';
+            const noteIcon = isWorkflow ? '✓' : '⚠';
 
-          return (
-            <article
-              key={idx}
-              className={cardClasses}
-              role="article"
-              aria-label={diagram.title}
-            >
-              <div className="mb-4">
-                <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">{diagram.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{diagram.subtitle}</p>
-              </div>
-
-              {/* Vizualizacijos paveikslėlis – EnlargeableImage */}
-              {diagramImages[idx] && (
-                <div className={`mb-3 rounded-xl p-2 border ${isWorkflow ? 'bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800' : 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700'}`}>
-                  <EnlargeableImage
-                    src={diagramImages[idx]}
-                    alt={diagram.title}
-                    enlargeLabel={diagram.title}
-                    className={isWorkflow ? 'border-emerald-200/60 dark:border-emerald-800/40' : 'border-gray-200 dark:border-gray-700'}
-                  />
+            return (
+              <article
+                key={idx}
+                className={cardClasses}
+                role="article"
+                aria-label={diagram.title}
+              >
+                <div className="mb-4">
+                  <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">{diagram.title}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{diagram.subtitle}</p>
                 </div>
-              )}
 
-              {/* Pastaba – badge stilius su spalva */}
-              {diagram.note && (
-                <div>
-                  <span className={noteClasses}>
-                    <span aria-hidden="true">{noteIcon}</span>
-                    {diagram.note}
-                  </span>
-                </div>
-              )}
-            </article>
-          );
-        })}
-      </div>
+                {diagramImages[idx] && (
+                  <div className={`mb-3 rounded-xl p-2 border ${isWorkflow ? 'bg-white dark:bg-gray-800 border-emerald-200 dark:border-emerald-800' : 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700'}`}>
+                    <img
+                      src={diagramImages[idx]}
+                      alt={diagram.title}
+                      className={`w-full h-auto object-contain ${isWorkflow ? 'border border-emerald-200/60 dark:border-emerald-800/40' : 'border border-gray-200 dark:border-gray-700'} rounded-lg`}
+                    />
+                  </div>
+                )}
 
-      {/* ── Praktiniai pavyzdžiai ── */}
+                {diagram.note && (
+                  <div>
+                    <span className={noteClasses}>
+                      <span aria-hidden="true">{noteIcon}</span>
+                      {diagram.note}
+                    </span>
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── Palygink promptus: Pokalbis vs Workflow ── */}
       {content?.examples && content.examples.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
-          {content.examples.map((example, idx) => (
-            <TemplateBlock key={idx} label={example.title} template={example.prompt} />
-          ))}
+        <div className="max-w-[800px] mx-auto mt-8">
+          <p className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 text-center">
+            {t('comparePrompts')}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {content.examples.map((example, idx) => {
+              const isWf = example.title.toLowerCase().includes('workflow');
+              return (
+                <div
+                  key={idx}
+                  className={`relative rounded-xl border-2 p-5 transition-colors ${
+                    isWf
+                      ? 'bg-emerald-50/60 dark:bg-emerald-950/20 border-emerald-300 dark:border-emerald-700'
+                      : 'bg-amber-50/60 dark:bg-amber-950/20 border-amber-300 dark:border-amber-700'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span
+                      className={`inline-flex items-center px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider ${
+                        isWf
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-accent-500 text-brand-900'
+                      }`}
+                    >
+                      {example.title}
+                    </span>
+                    <CopyButton text={example.prompt} size="sm" />
+                  </div>
+                  <p
+                    className={`text-[15px] leading-relaxed whitespace-pre-line text-gray-800 dark:text-gray-200 ${
+                      isWf ? 'font-mono' : ''
+                    }`}
+                  >
+                    {example.prompt}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
@@ -1678,6 +2714,8 @@ export function WorkflowSummarySlide({ content }: { content?: WorkflowSummaryCon
 }
 
 export function PromptTemplateSlide({ content }: { content?: PromptTemplateContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
   const blockColors = [
     { bg: 'bg-brand-50 dark:bg-brand-900/20', border: 'border-brand-300 dark:border-brand-700', num: 'bg-brand-500' },
     { bg: 'bg-amber-50 dark:bg-amber-900/20', border: 'border-amber-300 dark:border-amber-700', num: 'bg-amber-500' },
@@ -1693,17 +2731,17 @@ export function PromptTemplateSlide({ content }: { content?: PromptTemplateConte
         </div>
         <div className="relative z-10 text-center max-w-lg mx-auto">
           <p className="text-base sm:text-lg font-bold leading-snug tracking-tight">
-            3 blokai. 1 šablonas. Nukopijuok ir naudok iš karto.
+            {t('promptTemplateIntro')}
           </p>
           <p className="text-xs sm:text-sm text-brand-300/80 mt-2 font-medium">
-            META + INPUT + OUTPUT = minimalus, bet veiksmingas prompto pagrindas.
+            {t('promptTemplateSub')}
           </p>
         </div>
       </div>
 
       {/* ── 3 blokai su spalvomis ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {content?.blocks.map((block, idx) => {
+        {(content?.blocks ?? []).map((block, idx) => {
           const c = blockColors[idx] || blockColors[0];
           return (
             <article
@@ -1720,7 +2758,7 @@ export function PromptTemplateSlide({ content }: { content?: PromptTemplateConte
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{block.description}</p>
               <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-3">
-                <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Pavyzdys</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">{t('example')}</p>
                 <p className="text-sm text-gray-700 dark:text-gray-300 italic">{block.example}</p>
               </div>
             </article>
@@ -1731,12 +2769,12 @@ export function PromptTemplateSlide({ content }: { content?: PromptTemplateConte
       {/* ── Šablonai: ryškesni su accent akcentu ── */}
       {content?.template && (
         <div className="border-l-4 border-accent-500 rounded-r-xl bg-accent-50 dark:bg-accent-900/20 p-1">
-          <TemplateBlock label="Nukopijuok šabloną" template={content.template} />
+          <TemplateBlock label={t('copyTemplateLabel')} template={content.template} />
         </div>
       )}
       {content?.example && (
         <div className="border-l-4 border-emerald-500 rounded-r-xl bg-emerald-50 dark:bg-emerald-900/10 p-1">
-          <TemplateBlock label="Pilnas pavyzdys" template={content.example} />
+          <TemplateBlock label={t('fullExampleLabel')} template={content.example} />
         </div>
       )}
     </div>
@@ -1760,7 +2798,7 @@ export function TransitionSlide({ content }: { content?: TransitionContent }) {
 
       {/* ── Kortelės: padaryta vs toliau ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {content?.mapping.map((item, idx) => {
+        {(content?.mapping ?? []).map((item, idx) => {
           const s = cardStyles[idx] || cardStyles[1];
           return (
             <article
@@ -1789,24 +2827,106 @@ export function TransitionSlide({ content }: { content?: TransitionContent }) {
   );
 }
 
+/** Blokų sąrašas su collapsible: jei bloke yra concepts arba tip, rodomas mygtukas išskleisti; viduje – sąvokos ir patarimas */
+function HierarchyBlocksList({ blocks }: { blocks: HierarchyBlock[] }) {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const safeBlocks = blocks ?? [];
+  return (
+    <div className="space-y-3">
+      {safeBlocks.map((item, idx) => {
+        const colors = getColorClasses(item.color);
+        const hasExpandable = (item.concepts?.length ?? 0) > 0 || (item.tip?.trim().length ?? 0) > 0;
+        const isOpen = openIdx === idx;
+        return (
+          <div
+            key={item.num}
+            className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 overflow-hidden hover:shadow-md transition-shadow"
+          >
+            <button
+              type="button"
+              onClick={hasExpandable ? () => setOpenIdx(isOpen ? null : idx) : undefined}
+              className={`w-full flex items-center gap-4 p-4 text-left ${hasExpandable ? 'cursor-pointer' : 'cursor-default'}`}
+              aria-expanded={hasExpandable ? isOpen : undefined}
+              aria-controls={hasExpandable ? `hierarchy-block-${idx}` : undefined}
+              aria-label={`${item.name}. ${item.priority}${hasExpandable ? (isOpen ? '. Suskleisti' : '. Išskleisti') : ''}`}
+              id={`hierarchy-block-btn-${idx}`}
+            >
+              <div className={`w-10 h-10 rounded-full ${colors.bg} ${colors.bgDark} flex items-center justify-center font-bold ${colors.text} ${colors.textDark} flex-shrink-0`}>
+                {item.num}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-gray-900 dark:text-white">{item.name}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 truncate">{item.desc}</div>
+              </div>
+              <div className={`px-3 py-1 rounded-full text-xs font-medium min-w-0 max-w-[14rem] truncate ${colors.bg} ${colors.bgDark} ${colors.text} ${colors.textDark}`}>
+                {item.priority}
+              </div>
+              {hasExpandable && (
+                <ChevronDown className={`w-5 h-5 flex-shrink-0 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} aria-hidden />
+              )}
+            </button>
+            {hasExpandable && isOpen && (
+              <div
+                id={`hierarchy-block-${idx}`}
+                role="region"
+                aria-labelledby={`hierarchy-block-btn-${idx}`}
+                className="px-4 pb-4 pt-0 border-t border-gray-100 dark:border-gray-700"
+              >
+                <div className="pl-14 space-y-3 text-sm">
+                  {item.concepts && item.concepts.length > 0 && (
+                    <div>
+                      <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">Sąvokos, padėsiančios suprasti:</div>
+                      <ul className="list-disc list-inside space-y-0.5 text-gray-600 dark:text-gray-400">
+                        {item.concepts.map((c, i) => (
+                          <li key={i}>{c}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {item.tip?.trim() && (
+                    <div className="flex gap-2 p-3 rounded-lg bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800">
+                      <Lightbulb className="w-4 h-4 text-accent-600 dark:text-accent-400 shrink-0 mt-0.5" strokeWidth={1.5} />
+                      <p className="text-accent-900 dark:text-accent-100">{item.tip}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 /** M-DS1: max 2 semantinės + brand per skaidrę – brand (1–4), emerald (5–6 Rekomenduojama/Pasirenkama) */
-const DEFAULT_HIERARCHY: HierarchyContent = {
-  introHeading: 'Kodėl hierarchija svarbi?',
-  introBody: 'DI modeliai skaito ir apdoroja informaciją nuosekliai. Svarbiausia informacija turi būti pateikta pirmiausia, kad rezultatas atitiktų jūsų lūkesčius.',
-  blocks: [
-    { num: '1', name: 'Meta blokas', desc: 'Rolė, patirtis, tikslas, auditorija', priority: 'Kritinis', color: 'brand' },
-    { num: '2', name: 'Input blokas', desc: 'Duomenys, skaičiai, faktai, apribojimai', priority: 'Labai svarbus', color: 'brand' },
-    { num: '3', name: 'Output blokas', desc: 'Formatas, struktūra, ilgis, kalba', priority: 'Labai svarbus', color: 'brand' },
-    { num: '4', name: 'Reasoning blokas', desc: 'Mąstymo seka, logika, žingsniai', priority: 'Svarbus', color: 'brand' },
-    { num: '5', name: 'Quality Control', desc: 'Tikrinimo kriterijai, validacija', priority: 'Rekomenduojama', color: 'emerald' },
-    { num: '6', name: 'Advanced Parameters', desc: 'Temperature, reasoning gylis', priority: 'Pasirenkama', color: 'emerald' },
-  ],
-  tip: 'Pabandykite sukurti promptą be struktūros (kaip paprastai darote). Išsaugokite - palyginsime su struktūruota versija pabaigoje.',
-};
+function getDefaultHierarchy(locale: string): HierarchyContent {
+  const isEn = locale === 'en';
+  return {
+    introHeading: isEn ? 'Why is hierarchy important?' : 'Kodėl hierarchija svarbi?',
+    introBody: '',
+    blocks: [
+      { num: '1', name: isEn ? 'Meta block' : 'Meta blokas', desc: isEn ? 'Role, experience, goal, audience' : 'Rolė, patirtis, tikslas, auditorija', priority: isEn ? 'Critical' : 'Kritinis', color: 'brand' },
+      { num: '2', name: isEn ? 'Input block' : 'Input blokas', desc: isEn ? 'Data, numbers, facts, constraints' : 'Duomenys, skaičiai, faktai, apribojimai', priority: isEn ? 'Very important' : 'Labai svarbus', color: 'brand' },
+      { num: '3', name: isEn ? 'Output block' : 'Output blokas', desc: isEn ? 'Format, structure, length, language' : 'Formatas, struktūra, ilgis, kalba', priority: isEn ? 'Very important' : 'Labai svarbus', color: 'brand' },
+      { num: '4', name: isEn ? 'Reasoning block' : 'Reasoning blokas', desc: isEn ? 'Thinking sequence, logic, steps' : 'Mąstymo seka, logika, žingsniai', priority: isEn ? 'Important' : 'Svarbus', color: 'brand' },
+      { num: '5', name: 'Quality Control', desc: isEn ? 'Validation criteria, checks' : 'Tikrinimo kriterijai, validacija', priority: isEn ? 'Recommended' : 'Rekomenduojama', color: 'emerald' },
+      { num: '6', name: 'Advanced Parameters', desc: isEn ? 'Temperature, reasoning depth' : 'Temperature, reasoning gylis', priority: isEn ? 'Optional' : 'Pasirenkama', color: 'emerald' },
+    ],
+    tip: isEn
+      ? 'Try creating a prompt without structure (as you normally do). Save it – we will compare it with a structured version at the end.'
+      : 'Pabandykite sukurti promptą be struktūros (kaip paprastai darote). Išsaugokite - palyginsime su struktūruota versija pabaigoje.',
+  };
+}
 
 export interface HierarchySlideProps { content?: HierarchyContent | null }
 export function HierarchySlide({ content: contentProp }: HierarchySlideProps) {
-  const content = contentProp ?? DEFAULT_HIERARCHY;
+  useTranslation();
+  const t = getT('contentSlides');
+  const tCommon = getT('common');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const content = contentProp ?? getDefaultHierarchy(locale);
   return (
     <div className="space-y-6">
       {/* ── Intro: tamsus hook ── */}
@@ -1815,69 +2935,97 @@ export function HierarchySlide({ content: contentProp }: HierarchySlideProps) {
           <div className="absolute top-2 right-4 text-[80px] font-black leading-none select-none">📐</div>
         </div>
         <div className="relative z-10 max-w-lg mx-auto text-center">
-          <h3 className="text-lg sm:text-xl font-bold leading-snug tracking-tight mb-2">{content.introHeading ?? 'Kodėl hierarchija svarbi?'}</h3>
-          <p className="text-sm sm:text-base text-brand-200/90 leading-relaxed">{content.introBody ?? ''}</p>
+          <h3 className="text-lg sm:text-xl font-bold leading-snug tracking-tight mb-2">{content.introHeading ?? (isEn ? 'Why is hierarchy important?' : 'Kodėl hierarchija svarbi?')}</h3>
+          <p className="text-sm sm:text-base text-brand-200/90 leading-relaxed">{content.introBody || t('introBodyRlOrder')}</p>
         </div>
       </div>
 
-      <div className="space-y-3">
-        {content.blocks.map((item) => {
-          const colors = getColorClasses(item.color);
-          return (
-            <div key={item.num} className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition-shadow">
-              <div className={`w-10 h-10 rounded-full ${colors.bg} ${colors.bgDark} flex items-center justify-center font-bold ${colors.text} ${colors.textDark} flex-shrink-0`}>
-                {item.num}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-semibold text-gray-900 dark:text-white">{item.name}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 truncate">{item.desc}</div>
-              </div>
-              <div className={`px-3 py-1 rounded-full text-xs font-medium ${colors.bg} ${colors.bgDark} ${colors.text} ${colors.textDark} flex-shrink-0`}>
-                {item.priority}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <HierarchyBlocksList blocks={content.blocks ?? []} />
 
-      {content.tip && (
+      {content.practiceCopyable ? (
+        <>
+          <div className="mt-6 p-5 rounded-xl border border-accent-200 dark:border-accent-800 bg-accent-50 dark:bg-accent-900/20">
+            <h3 className="font-bold text-lg text-accent-900 dark:text-accent-100 mb-2 flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 text-accent-600 dark:text-accent-400 shrink-0" strokeWidth={1.5} />
+              {content.practiceHeading ?? (isEn ? 'Practical task' : 'Praktinė užduotis')}
+            </h3>
+            {content.practiceBody && (
+              <p className="text-sm text-accent-900 dark:text-accent-100 mb-3">{content.practiceBody}</p>
+            )}
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <pre className="flex-1 min-w-0 text-xs sm:text-sm font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap break-words bg-white/50 dark:bg-gray-800/50 p-3 rounded-lg border border-accent-200 dark:border-accent-800">
+                {content.practiceCopyable}
+              </pre>
+              <CopyButton
+                text={content.practiceCopyable}
+                className="shrink-0 inline-flex items-center gap-2 px-4 py-2 min-h-[44px] rounded-lg bg-accent-500 hover:bg-accent-600 text-white font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+                ariaLabel={t('copyPrompt')}
+                copiedLabel={tCommon('copiedExclaim')}
+              />
+            </div>
+          </div>
+          {content.tip && (
+            <div className="mt-4 p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-800/60 border-l-4 border-l-slate-400">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">{isEn ? 'Key takeaway' : 'Ką prisiminti'}</h3>
+              <p className="text-sm text-gray-700 dark:text-gray-300">{content.tip}</p>
+            </div>
+          )}
+        </>
+      ) : content.tip ? (
         <div className="mt-6 p-5 bg-accent-50 dark:bg-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800">
           <p className="text-sm text-accent-900 dark:text-accent-100">
             <strong className="inline-flex items-center gap-1.5">
-            <Lightbulb className="w-4 h-4 text-accent-600 dark:text-accent-400 shrink-0" strokeWidth={1.5} />
-            Praktinė užduotis:
-          </strong> {content.tip}
+              <Lightbulb className="w-4 h-4 text-accent-600 dark:text-accent-400 shrink-0" strokeWidth={1.5} />
+              {isEn ? 'Practical task:' : 'Praktinė užduotis:'}
+            </strong> {content.tip}
           </p>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
 
-const DEFAULT_COMPARISON: ComparisonContent = {
-  introText: 'Kas lyginama: ta pati užduotis, bet skirtinga struktūra (be blokų vs su blokais).',
-  unstructuredPrompt: 'Sukurk man mokymo programą apie DI. Turi būti įdomi ir praktinė.',
-  structuredPrompt: 'META: Tu esi mokymo kūrėjas. Tikslas – parengti 4 val. DI įvadinį mokymą. Auditorija – 12–15 pradedančiųjų.\nINPUT: Apribojimai – 1 lektorius, be praktinių įrankių demonstracijų.\nOUTPUT: Lentelė su 5 stulpeliais: modulis, trukmė, tikslas, veikla, rezultatas. Tonas – aiškus, profesionalus.',
-  unstructuredCons: ['Neaiški tikslinė auditorija', 'Nėra konkretių duomenų', 'Neapibrėžtas formatas'],
-  structuredPros: ['Aiški auditorija', 'Konkretūs parametrai', 'Tikslus formatas'],
-  labelLeft: 'Nestruktūruotas',
-  labelRight: 'Struktūruotas',
-  stats: { leftPct: 40, rightPct: 85, lessEditsPct: 60 },
-};
+function getDefaultComparison(locale: string): ComparisonContent {
+  const isEn = locale === 'en';
+  return {
+    introText: isEn
+      ? 'What is compared: the same task, but different structure (without blocks vs with blocks).'
+      : 'Kas lyginama: ta pati užduotis, bet skirtinga struktūra (be blokų vs su blokais).',
+    unstructuredPrompt: isEn
+      ? 'Create a training program about AI for me. It should be interesting and practical.'
+      : 'Sukurk man mokymo programą apie DI. Turi būti įdomi ir praktinė.',
+    structuredPrompt: isEn
+      ? 'META: You are a training creator. Goal – prepare a 4-hour introductory AI training. Audience – 12–15 beginners.\nINPUT: Constraints – 1 instructor, no practical tool demos.\nOUTPUT: Table with 5 columns: module, duration, goal, activity, outcome. Tone – clear, professional.'
+      : 'META: Tu esi mokymo kūrėjas. Tikslas – parengti 4 val. DI įvadinį mokymą. Auditorija – 12–15 pradedančiųjų.\nINPUT: Apribojimai – 1 lektorius, be praktinių įrankių demonstracijų.\nOUTPUT: Lentelė su 5 stulpeliais: modulis, trukmė, tikslas, veikla, rezultatas. Tonas – aiškus, profesionalus.',
+    unstructuredCons: isEn
+      ? ['Unclear target audience', 'No concrete data', 'Undefined format']
+      : ['Neaiški tikslinė auditorija', 'Nėra konkretių duomenų', 'Neapibrėžtas formatas'],
+    structuredPros: isEn
+      ? ['Clear audience', 'Concrete parameters', 'Precise format']
+      : ['Aiški auditorija', 'Konkretūs parametrai', 'Tikslus formatas'],
+    labelLeft: isEn ? 'Unstructured' : 'Nestruktūruotas',
+    labelRight: isEn ? 'Structured' : 'Struktūruotas',
+    stats: { leftPct: 40, rightPct: 85, lessEditsPct: 60 },
+  };
+}
 
 export interface ComparisonSlideProps { content?: ComparisonContent | null }
 export function ComparisonSlide({ content: contentProp }: ComparisonSlideProps) {
-  const c = contentProp ?? DEFAULT_COMPARISON;
-  const cons = c.unstructuredCons ?? DEFAULT_COMPARISON.unstructuredCons!;
-  const pros = c.structuredPros ?? DEFAULT_COMPARISON.structuredPros!;
-  const stats = c.stats ?? DEFAULT_COMPARISON.stats!;
+  useTranslation();
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const defaults = getDefaultComparison(locale);
+  const c = contentProp ?? defaults;
+  const cons = c.unstructuredCons ?? defaults.unstructuredCons!;
+  const pros = c.structuredPros ?? defaults.structuredPros!;
+  const stats = c.stats ?? defaults.stats!;
   return (
     <div className="space-y-6">
       {/* ── Intro: tamsus hook ── */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-5 sm:p-7 text-white">
         <div className="relative z-10 text-center max-w-lg mx-auto">
           <p className="text-base sm:text-lg font-bold leading-snug tracking-tight">
-            Ta pati užduotis. Du skirtingi promptai. Kuris laimi?
+            {isEn ? 'Same task. Two different prompts. Which one wins?' : 'Ta pati užduotis. Du skirtingi promptai. Kuris laimi?'}
           </p>
           {c.introText && (
             <p className="text-xs sm:text-sm text-brand-300/80 mt-2 font-medium">{c.introText}</p>
@@ -1887,7 +3035,7 @@ export function ComparisonSlide({ content: contentProp }: ComparisonSlideProps) 
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="bg-rose-50 dark:bg-rose-900/20 p-5 rounded-xl border-2 border-rose-200 dark:border-rose-800">
-          <h4 className="font-bold text-rose-900 dark:text-rose-100 mb-3 flex items-center gap-2">❌ {c.labelLeft ?? 'Nestruktūruotas'}</h4>
+          <h4 className="font-bold text-rose-900 dark:text-rose-100 mb-3 flex items-center gap-2">❌ {c.labelLeft ?? (isEn ? 'Unstructured' : 'Nestruktūruotas')}</h4>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-xl text-sm italic text-gray-700 dark:text-gray-300 mb-4 relative whitespace-pre-line">
             <CopyButton text={c.unstructuredPrompt} className="absolute top-2 right-2" size="sm" />
             <p>{c.unstructuredPrompt}</p>
@@ -1900,7 +3048,7 @@ export function ComparisonSlide({ content: contentProp }: ComparisonSlideProps) 
         </div>
 
         <div className="bg-emerald-50 dark:bg-emerald-900/20 p-5 rounded-xl border-2 border-emerald-200 dark:border-emerald-800">
-          <h4 className="font-bold text-emerald-900 dark:text-emerald-100 mb-3 flex items-center gap-2">✓ {c.labelRight ?? 'Struktūruotas'}</h4>
+          <h4 className="font-bold text-emerald-900 dark:text-emerald-100 mb-3 flex items-center gap-2">✓ {c.labelRight ?? (isEn ? 'Structured' : 'Struktūruotas')}</h4>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-xl text-xs text-gray-700 dark:text-gray-300 max-h-40 overflow-y-auto mb-4 relative whitespace-pre-line">
             <CopyButton text={c.structuredPrompt} className="absolute top-2 right-2" size="sm" />
             <p>{c.structuredPrompt}</p>
@@ -1944,22 +3092,37 @@ export function ComparisonSlide({ content: contentProp }: ComparisonSlideProps) 
  *  - Gamification patterns: stats, badges, staggered card entrance
  * ─────────────────────────────────────────────────────────────────────── */
 
-const DEFAULT_SUMMARY: SummaryContent = {
-  introHeading: 'Ką išmokote',
-  introBody: 'Sveikiname! Dabar žinote, kaip profesionaliai struktūruoti promptus naudojant 6 blokų sistemą, workflow sampratą ir promptavimo technikas.',
-  stats: [
-    { label: 'Blokai', value: '6' },
-    { label: 'Technikos', value: '5' },
-    { label: 'Workflow', value: '2' },
-  ],
-  sections: [
-    { heading: '6 Pagrindiniai Blokai', icon: 'Layers', color: 'brand', items: ['Meta - rolė, kontekstas ir tikslas (kas esate ir ką darote)', 'Input - duomenys, faktai ir apribojimai (ką turite)', 'Output - formatas, struktūra ir tonas (ko norite)', 'Reasoning - mąstymo struktūra (CoT arba ToT)', 'Quality - kokybės kriterijai (kaip patikrinti)', 'Advanced - parametrai (Temperature, Reasoning depth)'] },
-    { heading: 'Workflow ir Technikos', icon: 'Workflow', color: 'violet', items: ['Basic naudojimas – pokalbiams, idėjoms', 'Workflow naudojimas – dokumentams, procesams', 'Zero-shot, Few-shots, CoT, ToT, Instruktavimas', 'Manipuliacija – ko vengti'] },
-    { heading: 'Pagrindinės Idėjos', icon: 'Lightbulb', color: 'amber', items: ['Hierarchija yra kritinė (nuo svarbiausio)', 'Konkretumas > bendrumas (tikslūs skaičiai)', 'Pavyzdžiai pagerina rezultatus (Few-shots)', 'Kokybės kontrolė būtina (Quality blokas)', 'Workflow > Basic (procesams)', 'Mąstymo modeliai svarbūs (CoT/ToT pasirinkimas)'] },
-    { heading: 'Kitas Žingsnis', icon: 'ArrowRight', color: 'emerald', items: ['Dabar, kai išmokote 6 blokų sistemą, workflow ir technikas, laikas patikrinti savo žinias – Modulio 2 testas.'] },
-  ],
-  tagline: 'Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas',
-};
+function getDefaultSummary(locale: string): SummaryContent {
+  const isEn = locale === 'en';
+  return {
+    introHeading: isEn ? 'What you learned' : 'Ką išmokote',
+    introBody: isEn
+      ? 'Congratulations! Now you know how to professionally structure prompts using the 6-block system, workflow concepts and prompting techniques.'
+      : 'Sveikiname! Dabar žinote, kaip profesionaliai struktūruoti promptus naudojant 6 blokų sistemą, workflow sampratą ir promptavimo technikas.',
+    stats: [
+      { label: isEn ? 'Blocks' : 'Blokai', value: '6' },
+      { label: isEn ? 'Techniques' : 'Technikos', value: '5' },
+      { label: 'Workflow', value: '2' },
+    ],
+    sections: [
+      { heading: isEn ? '6 Key Blocks' : '6 Pagrindiniai Blokai', icon: 'Layers', color: 'brand', items: isEn
+        ? ['Meta – role, context and goal (who you are and what you do)', 'Input – data, facts and constraints (what you have)', 'Output – format, structure and tone (what you want)', 'Reasoning – thinking structure (CoT or ToT)', 'Quality – quality criteria (how to check)', 'Advanced – parameters (Temperature, Reasoning depth)']
+        : ['Meta - rolė, kontekstas ir tikslas (kas esate ir ką darote)', 'Input - duomenys, faktai ir apribojimai (ką turite)', 'Output - formatas, struktūra ir tonas (ko norite)', 'Reasoning - mąstymo struktūra (CoT arba ToT)', 'Quality - kokybės kriterijai (kaip patikrinti)', 'Advanced - parametrai (Temperature, Reasoning depth)'] },
+      { heading: isEn ? 'Workflow & Techniques' : 'Workflow ir Technikos', icon: 'Workflow', color: 'violet', items: isEn
+        ? ['Basic usage – for chats, ideas', 'Workflow usage – for documents, processes', 'Zero-shot, Few-shots, CoT, ToT, Instructing', 'Manipulation – what to avoid']
+        : ['Basic naudojimas – pokalbiams, idėjoms', 'Workflow naudojimas – dokumentams, procesams', 'Zero-shot, Few-shots, CoT, ToT, Instruktavimas', 'Manipuliacija – ko vengti'] },
+      { heading: isEn ? 'Key Ideas' : 'Pagrindinės Idėjos', icon: 'Lightbulb', color: 'amber', items: isEn
+        ? ['Hierarchy is critical (most important first)', 'Specificity > generality (exact numbers)', 'Examples improve results (Few-shots)', 'Quality control is essential (Quality block)', 'Workflow > Basic (for processes)', 'Thinking models matter (CoT/ToT choice)']
+        : ['Hierarchija yra kritinė (nuo svarbiausio)', 'Konkretumas > bendrumas (tikslūs skaičiai)', 'Pavyzdžiai pagerina rezultatus (Few-shots)', 'Kokybės kontrolė būtina (Quality blokas)', 'Workflow > Basic (procesams)', 'Mąstymo modeliai svarbūs (CoT/ToT pasirinkimas)'] },
+      { heading: isEn ? 'Next Step' : 'Kitas Žingsnis', icon: 'ArrowRight', color: 'emerald', items: isEn
+        ? ['Now that you have learned the 6-block system, workflow and techniques, it is time to test your knowledge – Module 2 test.']
+        : ['Dabar, kai išmokote 6 blokų sistemą, workflow ir technikas, laikas patikrinti savo žinias – Modulio 2 testas.'] },
+    ],
+    tagline: isEn
+      ? 'Structured prompts = predictable results = greater efficiency'
+      : 'Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas',
+  };
+}
 
 /** Ikona pagal sekcijos pavadinimą – fallback CheckCircle */
 function SectionIcon({ name, className }: { name?: string; className?: string }) {
@@ -1971,6 +3134,7 @@ function SectionIcon({ name, className }: { name?: string; className?: string })
     case 'Target':     return <Target className={className} />;
     case 'Sparkles':   return <Sparkles className={className} />;
     case 'Zap':        return <Zap className={className} />;
+    case 'Compass':    return <Compass className={className} />;
     default:           return <CheckCircle className={className} />;
   }
 }
@@ -2023,6 +3187,9 @@ function ConfettiParticles() {
 
 /** Kopijuojamo refleksijos prompto mygtukas su „Nukopijuota!" atsakymu */
 function ReflectionCopyButton({ text }: { text: string }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const tCommon = getT('common');
   const [copied, setCopied] = useState(false);
   const handleCopy = async () => {
     try {
@@ -2039,10 +3206,10 @@ function ReflectionCopyButton({ text }: { text: string }) {
           ? 'bg-emerald-500 text-white shadow-emerald-500/20'
           : 'bg-gradient-to-r from-accent-400 to-accent-500 hover:from-accent-500 hover:to-accent-600 text-white shadow-accent-500/20 hover:shadow-lg hover:shadow-accent-500/30'
       }`}
-      aria-label="Kopijuoti refleksijos promptą"
+      aria-label={t('copyReflectionPromptAria')}
     >
       {copied ? <CheckCircle className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-      <span>{copied ? 'Nukopijuota!' : 'Kopijuoti promptą'}</span>
+      <span>{copied ? tCommon('copiedExclaim') : t('copyPrompt')}</span>
     </button>
   );
 }
@@ -2053,7 +3220,11 @@ export interface SummarySlideProps {
   onNextStep?: () => void;
 }
 export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideProps) {
-  const content = contentProp ?? DEFAULT_SUMMARY;
+  useTranslation();
+  const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const content = contentProp ?? getDefaultSummary(locale);
   const [showContent, setShowContent] = useState(false);
   const [showConfetti, setShowConfetti] = useState(true);
 
@@ -2065,13 +3236,13 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
     return () => { clearTimeout(timer); clearTimeout(confettiTimer); };
   }, []);
 
-  // Separate "Kitas Žingsnis" from knowledge sections; S-DS3: max 3–4 blokai – rodyti max 3 žinių korteles
+  const nextStepHeadings = ['Kitas Žingsnis', 'Next Step'];
   const allKnowledge = (content.sections ?? []).filter(
-    (s) => s.icon !== 'ArrowRight' && s.heading !== 'Kitas Žingsnis'
+    (s) => s.icon !== 'ArrowRight' && !nextStepHeadings.includes(s.heading ?? '')
   );
-  const knowledgeSections = allKnowledge.slice(0, 3);
+  const knowledgeSections = allKnowledge.slice(0, 4);
   const nextStepSection = (content.sections ?? []).find(
-    (s) => s.icon === 'ArrowRight' || s.heading === 'Kitas Žingsnis'
+    (s) => s.icon === 'ArrowRight' || nextStepHeadings.includes(s.heading ?? '')
   );
 
   return (
@@ -2091,7 +3262,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
             <Trophy className="w-10 h-10 text-white" strokeWidth={1.5} aria-hidden />
           </div>
           <h2 className="text-lg md:text-xl font-bold mb-2 drop-shadow-sm">
-            {content.introHeading ?? 'Ką išmokote'}
+            {content.introHeading ?? t('whatYouLearnedHeading')}
           </h2>
           <p className="text-white/85 max-w-lg text-base md:text-lg leading-relaxed">
             {content.introBody ?? ''}
@@ -2118,7 +3289,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
       {/* ── Knowledge Section Cards (staggered entrance) ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {knowledgeSections.map((section, sIdx) => {
-          const colors = defaultColor; // M-DS1: vienoda brand per skaidrę
+          const colors = sectionColorMap[section.color ?? 'brand'] ?? defaultColor;
           return (
             <div
               key={sIdx}
@@ -2157,43 +3328,71 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
             </div>
           );
         })}
-
-        {/* ── Reflection Prompt Card (fills empty grid cell) ── */}
-        {content.reflectionPrompt && (
-          <div
-            className={`relative rounded-2xl border-2 border-accent-200 dark:border-accent-800 bg-accent-50 dark:bg-accent-900/20 p-6 flex flex-col transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
-              showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
-            style={{ transitionDelay: `${knowledgeSections.length * 120}ms` }}
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 shadow-md">
-                <MessageCircle className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="font-bold text-gray-900 dark:text-white text-lg leading-tight">
-                  {content.reflectionTitle ?? 'Refleksijos promptas'}
-                </h4>
-                <p className="text-xs text-accent-700 dark:text-accent-300 font-medium mt-0.5">Nukopijuok ir naudok su DI</p>
-              </div>
-            </div>
-
-            {/* Prompt text */}
-            <div className="relative flex-1 bg-white/70 dark:bg-gray-800/70 rounded-xl p-4 border border-accent-200/50 dark:border-accent-700/50 mb-3">
-              <pre className="text-xs text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-sans leading-relaxed">
-                {content.reflectionPrompt}
-              </pre>
-            </div>
-
-            {/* Copy button - prominent, with feedback */}
-            <ReflectionCopyButton text={content.reflectionPrompt ?? ''} />
-          </div>
-        )}
       </div>
 
+      {/* ── Reflection Prompt (full-width, dedicated section) ── */}
+      {content.reflectionPrompt && (
+        <div
+          className={`relative rounded-2xl border-2 border-accent-200 dark:border-accent-800 bg-accent-50 dark:bg-accent-900/20 p-6 md:p-8 flex flex-col transition-all duration-300 shadow-md ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: `${knowledgeSections.length * 120}ms` }}
+        >
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-accent-400 to-accent-500 shadow-md">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="font-bold text-gray-900 dark:text-white text-xl leading-tight">
+                {content.reflectionTitle ?? 'Refleksijos promptas'}
+              </h4>
+              <p className="text-sm text-accent-700 dark:text-accent-300 font-medium mt-0.5">
+                {isEn ? 'Copy and use with AI' : 'Nukopijuok ir naudok su DI'}
+              </p>
+            </div>
+          </div>
+
+          {/* Steps instruction */}
+          <div className="flex flex-wrap gap-3 mb-4 text-xs font-medium text-accent-700 dark:text-accent-300">
+            <span className="inline-flex items-center gap-1.5 bg-accent-100 dark:bg-accent-800/40 px-3 py-1.5 rounded-lg">
+              <span className="font-bold text-accent-600 dark:text-accent-200">1.</span> {isEn ? 'Copy' : 'Nukopijuok'}
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-accent-100 dark:bg-accent-800/40 px-3 py-1.5 rounded-lg">
+              <span className="font-bold text-accent-600 dark:text-accent-200">2.</span> {isEn ? 'Paste into ChatGPT / Claude' : 'Įklijuok į ChatGPT / Claude'}
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-accent-100 dark:bg-accent-800/40 px-3 py-1.5 rounded-lg">
+              <span className="font-bold text-accent-600 dark:text-accent-200">3.</span> {isEn ? 'Reflect' : 'Atsakyk'}
+            </span>
+          </div>
+
+          {/* Prompt text */}
+          <div className="relative bg-white/70 dark:bg-gray-800/70 rounded-xl p-5 border border-accent-200/50 dark:border-accent-700/50 mb-4">
+            <pre className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-sans leading-relaxed">
+              {content.reflectionPrompt}
+            </pre>
+          </div>
+
+          {/* Copy button */}
+          <ReflectionCopyButton text={content.reflectionPrompt ?? ''} />
+        </div>
+      )}
+
+      {/* ── Pirmas veiksmas per 24–48 val. (User Journey) ── */}
+      {content.firstAction24h && (
+        <div
+          className={`relative overflow-hidden rounded-2xl border-2 border-accent-200 dark:border-accent-700 bg-accent-50/50 dark:bg-accent-900/20 p-6 md:p-8 transition-all duration-500 ${
+            showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+          style={{ transitionDelay: `${knowledgeSections.length * 120 + 80}ms` }}
+        >
+          <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Pirmas veiksmas per 24–48 val.</h4>
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{content.firstAction24h}</p>
+        </div>
+      )}
+
       {/* ── Next Step CTA ── */}
-      {nextStepSection && (
+      {(nextStepSection || content.nextStepCTA) && (
         <div
           className={`relative overflow-hidden rounded-2xl border-2 border-emerald-300 dark:border-emerald-700 bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 p-6 md:p-8 transition-all duration-500 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -2205,23 +3404,25 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
               <ArrowRight className="w-6 h-6 text-white" />
             </div>
             <div className="flex-1">
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Kitas Žingsnis</h4>
-              {(nextStepSection.items ?? []).map((item, i) => (
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t('nextStepHeading')}</h4>
+              {nextStepSection ? (nextStepSection.items ?? []).map((item, i) => (
                 <p key={i} className="text-gray-700 dark:text-gray-300 leading-relaxed">{item}</p>
-              ))}
+              )) : content.nextStepCTA ? (
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{content.nextStepCTA}</p>
+              ) : null}
               {onNextStep ? (
                 <button
                   type="button"
                   onClick={onNextStep}
                   className="mt-4 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm px-4 py-2 rounded-xl border border-emerald-600 shadow-sm hover:shadow-md transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 min-h-[44px]"
-                  aria-label="Pereiti prie kito modulio"
+                  aria-label={t('goToNextModuleAria')}
                 >
-                  <span>Pereikite prie kito modulio</span>
+                  <span>{t('nextStepCtaLabel')}</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               ) : (
                 <div className="mt-4 inline-flex items-center gap-2 bg-emerald-500/10 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 font-semibold text-sm px-4 py-2 rounded-xl border border-emerald-200 dark:border-emerald-700">
-                  <span>Pereikite prie kito modulio</span>
+                  <span>{t('nextStepCtaLabel')}</span>
                   <ChevronRight className="w-4 h-4" />
                 </div>
               )}
@@ -2240,20 +3441,16 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
 
       {/* ── Motivational Footer ── */}
       <div
-        className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 dark:from-brand-800 dark:via-brand-700 dark:to-accent-600 p-8 md:p-10 text-center text-white shadow-md transition-all duration-500 ${
+        className={`relative overflow-hidden rounded-2xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 p-6 md:p-8 text-center transition-all duration-500 ${
           showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
         style={{ transitionDelay: `${(knowledgeSections.length + 1) * 120 + 200}ms` }}
       >
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.08),transparent_70%)]" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.05),transparent_60%)]" aria-hidden="true" />
-
         <div className="relative z-10">
-          <div className="mb-3" aria-hidden="true"><Rocket className="w-12 h-12 text-white/90" strokeWidth={1.5} /></div>
-          <h2 className="text-lg md:text-xl font-bold mb-3 drop-shadow-sm">Sėkmės su DI!</h2>
-          <p className="text-white/80 text-base md:text-lg max-w-md mx-auto">
-            {content.tagline ?? 'Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas'}
+          <div className="mb-3 flex justify-center" aria-hidden="true"><Sparkles className="w-8 h-8 text-brand-500 dark:text-brand-400" strokeWidth={1.5} /></div>
+          <h2 className="text-lg md:text-xl font-bold mb-2 text-brand-800 dark:text-brand-200">{isEn ? 'Good luck with AI!' : 'Sėkmės su DI!'}</h2>
+          <p className="text-brand-600 dark:text-brand-400 text-base md:text-lg max-w-md mx-auto">
+            {content.tagline ?? (isEn ? 'Structured prompts = predictable results = greater efficiency' : 'Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas')}
           </p>
         </div>
       </div>
@@ -2261,7 +3458,381 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
   );
 }
 
+/* ─── DI Paradoksas Infographic (skaidrė 725) – pilna interaktyvi infografika ─── */
+export function DiParadoxInfographicSlide({
+  content,
+  onGoToGlossary,
+}: {
+  content?: DiParadoxInfographicContent;
+  onGoToGlossary?: () => void;
+}) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const [showSources, setShowSources] = useState(false);
+  if (!content || content.variant !== 'di-paradox') return null;
+
+  const heroColorMap: Record<string, string> = {
+    rose: 'text-rose-600 dark:text-rose-400',
+    brand: 'text-brand-600 dark:text-brand-400',
+    amber: 'text-amber-600 dark:text-amber-400',
+  };
+
+  const barColorMap: Record<string, string> = {
+    accent: 'bg-accent-500',
+    amber: 'bg-amber-500',
+    slate: 'bg-slate-400 dark:bg-slate-500',
+  };
+
+  const funnelColorMap: Record<string, string> = {
+    accent: 'bg-accent-500',
+    orange: 'bg-orange-500',
+    amber: 'bg-amber-500',
+  };
+
+  const actionBorderMap: Record<string, string> = {
+    accent: 'border-t-accent-500',
+    amber: 'border-t-amber-500',
+    slate: 'border-t-slate-500',
+  };
+
+  return (
+    <div className="w-full max-w-4xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div className="p-5 md:p-6 border-b border-slate-200 dark:border-slate-700 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end">
+          <div>
+            {content.badge && (
+              <span className="inline-flex items-center gap-1.5 bg-accent-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded mb-3">
+                {content.badge}
+              </span>
+            )}
+            <h2 className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white leading-tight">
+              {content.title}
+            </h2>
+            {content.subtitle && (
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 max-w-xl">{content.subtitle}</p>
+            )}
+          </div>
+          {content.sourceBox && (
+            <div className="text-right">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                {content.sourceBox.label}
+              </div>
+              <div className="font-bold text-gray-900 dark:text-white text-sm">{content.sourceBox.title}</div>
+              {content.sourceBox.meta && (
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 italic">{content.sourceBox.meta}</div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Hero Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-700 bg-slate-900 dark:bg-slate-950">
+          {(content.heroStats ?? []).map((stat, idx) => (
+            <div
+              key={idx}
+              className="relative p-5 md:p-6 flex flex-col gap-2 min-h-[52px] py-4 hover:bg-slate-800/50 dark:hover:bg-slate-800/30 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 md:after:left-6 md:after:right-6 after:h-0.5 after:bg-transparent hover:after:bg-accent-500 after:transition-colors"
+            >
+              <div className={`text-3xl md:text-4xl font-extrabold ${heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand}`}>
+                <StatWithTooltip value={stat.value} tooltip={stat.tooltip} colorClass={heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand} />
+              </div>
+              <div className="text-xs text-slate-300 dark:text-slate-400 leading-snug max-w-[180px]">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Paradox Cards */}
+      <div>
+        <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-2">
+          Paradoksas: asmeninis vs. organizacinis lygmuo
+          <span className="flex-1 h-px bg-slate-200 dark:bg-slate-600" />
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {(content.paradoxCards ?? []).map((card, idx) => (
+            <div
+              key={idx}
+              className="relative bg-white dark:bg-gray-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <span className="absolute -top-3 left-5 bg-accent-500 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded">
+                {card.number}
+              </span>
+              <div className="text-2xl mb-2">{card.icon}</div>
+              <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-2">{card.title}</h4>
+              <div className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+                {renderBodyWithBold(card.body, { numberAccent: true })}
+              </div>
+              {card.stats && card.stats.length > 0 && (
+                <div className="space-y-1.5">
+                  {card.stats.map((s, sIdx) => (
+                    <div key={sIdx} className="flex justify-between items-center p-2 bg-slate-50 dark:bg-slate-900/50 rounded">
+                      <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">{s.label}</span>
+                      <span className="text-sm font-extrabold text-brand-600 dark:text-brand-400">
+                        <StatWithTooltip value={s.value} tooltip={s.tooltip} />
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Shadow Section – Bar Chart */}
+      {content.shadowSection && (
+        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 md:p-6">
+          <div className="mb-4">
+            {content.shadowSection.sublabel && (
+              <div className="text-[10px] font-normal uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                {content.shadowSection.sublabel}
+              </div>
+            )}
+            <div className="font-bold text-white text-sm">{content.shadowSection.label}</div>
+          </div>
+          <div className="space-y-3">
+            {(content.shadowSection.bars ?? []).map((bar, idx) => (
+              <div key={idx} className="flex items-center gap-3">
+                <div className="text-[11px] text-slate-400 w-44 flex-shrink-0">{bar.label}</div>
+                <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${barColorMap[bar.colorKey ?? 'accent'] ?? barColorMap.accent} transition-[width] duration-1000 ease-out`}
+                    style={{ width: `${bar.percent}%` }}
+                    role="progressbar"
+                    aria-valuenow={bar.percent}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`${bar.label}: ${bar.value}`}
+                  />
+                </div>
+                <span
+                  className="font-bold text-white text-sm w-10 text-right"
+                  title={bar.tooltip ? `${bar.tooltip.explanation} ${bar.tooltip.trend ?? ''}` : undefined}
+                >
+                  <StatWithTooltip value={bar.value} tooltip={bar.tooltip} colorClass="text-white" />
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Funnel + Value – two columns */}
+      {(content.funnelSection || content.valueSection) && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {content.funnelSection && (
+            <div>
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+                {content.funnelSection.title}
+              </h3>
+              <div className="space-y-4">
+                {(content.funnelSection.steps ?? []).map((step, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div
+                      className={`flex-shrink-0 w-14 h-10 flex items-center justify-center font-extrabold text-white text-sm rounded ${funnelColorMap[step.colorKey ?? 'accent'] ?? funnelColorMap.accent}`}
+                      title={step.tooltip ? `${step.tooltip.explanation} ${step.tooltip.trend ?? ''}` : undefined}
+                    >
+                      <StatWithTooltip value={step.value} tooltip={step.tooltip} colorClass="text-white" />
+                    </div>
+                    <div className="pt-1">
+                      <div className="font-semibold text-gray-900 dark:text-white text-sm">{step.title}</div>
+                      <div className="text-xs text-slate-600 dark:text-slate-400">{step.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {content.valueSection && (
+            <div>
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+                {content.valueSection.title}
+              </h3>
+              <div className="space-y-1">
+                {(content.valueSection.items ?? []).map((item, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex items-center gap-3 p-2.5 rounded border-l-4 ${
+                      item.tag ? 'bg-white dark:bg-gray-800 border-l-accent-500 shadow-sm' : 'bg-slate-50 dark:bg-slate-800/60 border-l-transparent'
+                    }`}
+                  >
+                    <span className={`w-2 h-2 rounded-full flex-shrink-0 ${idx === 0 ? 'bg-accent-500' : 'bg-slate-400'}`} />
+                    <span className="text-sm text-gray-900 dark:text-white flex-1">{item.text}</span>
+                    {item.tag && (
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 px-2 py-0.5 rounded">
+                        {item.tag}
+                      </span>
+                    )}
+                  </div>
+                ))}
+                {content.valueSection.commonCondition && (
+                  <div className="mt-4 p-3 rounded bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+                    <div className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 mb-1">
+                      {content.valueSection.commonCondition.label}
+                    </div>
+                    <div className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {content.valueSection.commonCondition.text}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Solution Pipeline */}
+      {content.solutionSection && (
+        <div>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+            {content.solutionSection.label}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
+            {(content.solutionSection.pipeline ?? []).map((step, idx) => (
+              <div
+                key={idx}
+                className={`relative rounded-lg border-2 p-4 text-center transition-all ${
+                  step.highlighted
+                    ? 'border-accent-500 bg-accent-50/50 dark:bg-accent-900/10'
+                    : 'border-slate-200 dark:border-slate-700 hover:border-accent-400'
+                }`}
+              >
+                <div className="text-[10px] font-extrabold uppercase tracking-wider text-accent-600 dark:text-accent-400 mb-1">{step.num}</div>
+                <div className="text-2xl mb-2">{step.icon}</div>
+                <div className="font-bold text-gray-900 dark:text-white text-sm mb-1">{step.name}</div>
+                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">{step.description}</div>
+                {idx < (content.solutionSection!.pipeline?.length ?? 0) - 1 && (
+                  <div className="hidden sm:block absolute top-1/2 -right-1 -translate-y-1/2 text-slate-300 dark:text-slate-600 text-lg">→</div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Action Cards */}
+      {content.actionSection && (
+        <div>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+            {content.actionSection.label}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {(content.actionSection.cards ?? []).map((card, idx) => (
+              <div
+                key={idx}
+                className={`relative rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 p-5 pt-6 overflow-hidden hover:bg-white dark:hover:bg-gray-800 transition-colors ${
+                  actionBorderMap[card.colorKey ?? 'accent'] ?? actionBorderMap.accent
+                } border-t-4`}
+              >
+                <div className="text-4xl font-extrabold text-slate-200 dark:text-slate-600 mb-2">{card.num}</div>
+                <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-2">{card.title}</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">{card.body}</p>
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 flex items-center gap-1.5">
+                  <span className="w-4 h-px bg-accent-500" />
+                  {card.kpi}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Conclusion */}
+      {content.conclusionSection && (
+        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 md:p-6 flex gap-4 items-start">
+          <div className="text-4xl opacity-80" aria-hidden="true">{content.conclusionSection.icon}</div>
+          <div>
+            <h3 className="font-extrabold text-white text-lg mb-2">
+              {content.conclusionSection.heading.includes('technologinė')
+                ? (
+                    <>
+                      {content.conclusionSection.heading.replace(' technologinė', '')}{' '}
+                      <span className="text-accent-400">technologinė</span>
+                    </>
+                  )
+                : content.conclusionSection.heading}
+            </h3>
+            <p className="text-sm text-slate-300 dark:text-slate-400 leading-relaxed">{content.conclusionSection.body}</p>
+            {content.conclusionSection.chips && content.conclusionSection.chips.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4">
+                {content.conclusionSection.chips.map((chip, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[11px] font-medium text-slate-300 dark:text-slate-400 bg-white/10 border border-white/15 px-3 py-1 rounded"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Footer rodomas SlideContent lygmenyje pagal content.footer */}
+
+      {/* Glossary CTA */}
+      {onGoToGlossary && content.onGoToGlossaryTerm && (
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={onGoToGlossary}
+            className="inline-flex items-center gap-1.5 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-sm font-medium py-2 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg"
+            aria-label={t('openGlossaryAria', { term: content.onGoToGlossaryTerm ?? '' })}
+          >
+            <BookMarked className="w-4 h-4" aria-hidden />
+            <span>{t('glossaryLabel')}</span>
+            <ChevronRight className="w-3.5 h-3.5" aria-hidden />
+          </button>
+        </div>
+      )}
+
+      {/* Sources – Collapsible */}
+      {content.sources && content.sources.length > 0 && (
+        <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
+          <button
+            type="button"
+            onClick={() => setShowSources(!showSources)}
+            className="w-full flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors min-h-[44px]"
+            aria-expanded={showSources}
+          >
+            <span className="flex items-center gap-1.5">{t('showSourcesAria')} ({content.sources.length})</span>
+            <ChevronDown className={`w-4 h-4 transition-transform ${showSources ? 'rotate-180' : ''}`} aria-hidden />
+          </button>
+          {showSources && (
+            <ul className="mt-3 divide-y divide-slate-200 dark:divide-slate-700" role="list">
+              {content.sources.map((source, idx) => (
+                <li key={idx} className="py-3 first:pt-0 last:pb-0">
+                  <div className="text-xs leading-relaxed">
+                    <div className="font-bold text-gray-900 dark:text-white">{source.title ?? source.label}</div>
+                    <div className="mt-0.5 text-slate-600 dark:text-slate-400">
+                      {source.year && <span>({source.year})</span>}
+                      {source.institution && <span> · {source.institution}</span>}
+                    </div>
+                    {source.url && (
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
+                      >
+                        {t('viewStudyLabel')}
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ProductivityInfographicSlide({ content, onGoToGlossary }: { content?: ProductivityInfographicContent; onGoToGlossary?: () => void }) {
+  useTranslation();
+  const t = getT('contentSlides');
   const [showSources, setShowSources] = useState(false);
   
   if (!content) return null;
@@ -2285,10 +3856,10 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
                 type="button"
                 onClick={onGoToGlossary}
                 className="inline-flex items-center gap-1.5 text-white/80 hover:text-white text-xs font-medium mb-6 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg py-1 min-h-[44px]"
-                aria-label="Atidaryti žodynėlį – terminas Generatyvus DI"
+                aria-label={t('openGlossaryAria', { term: content.title ?? '' })}
               >
                 <BookMarked className="w-4 h-4" aria-hidden />
-                <span>Žodynėlis</span>
+                <span>{t('glossaryLabel')}</span>
                 <ChevronRight className="w-3.5 h-3.5" aria-hidden />
               </button>
             )}
@@ -2367,7 +3938,7 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
                   className="w-full flex items-center justify-between text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
                 >
                   <span className="flex items-center gap-1.5">
-                    <span>📚</span> Šaltiniai ({content.sources.length})
+                    <span>📚</span> {t('showSourcesAria')} ({content.sources.length})
                   </span>
                   <span className={`transform transition-transform ${showSources ? 'rotate-180' : ''}`}>
                     ▼
@@ -2397,7 +3968,7 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
                               rel="noreferrer"
                               className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
                             >
-                              Peržiūrėti tyrimą
+                              {t('viewStudyLabel')}
                             </a>
                           )}
                         </div>
@@ -2414,51 +3985,687 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
   );
 }
 
+/* ─── News-portal infographic (DI galimybės praktiškai) – data from docs/archive/root/portalas.txt ─── */
+function parsePercent(s: string): number {
+  const normalized = String(s).replace(',', '.').replace(/[^\d.]/g, '');
+  const n = parseFloat(normalized);
+  return Number.isFinite(n) ? Math.min(100, Math.max(0, n)) : 0;
+}
+
+const _KPI_COLORS: Record<string, string> = {
+  brand: 'border-t-brand-500 dark:border-t-brand-400',
+  violet: 'border-t-violet-500 dark:border-t-violet-400',
+  emerald: 'border-t-emerald-500 dark:border-t-emerald-400',
+  amber: 'border-t-amber-500 dark:border-t-amber-400',
+};
+
+const NUM_COLORS: Record<string, string> = {
+  brand: 'text-brand-600 dark:text-brand-400',
+  violet: 'text-violet-600 dark:text-violet-400',
+  emerald: 'text-emerald-600 dark:text-emerald-400',
+  amber: 'text-amber-600 dark:text-amber-400',
+  rose: 'text-rose-600 dark:text-rose-400',
+  slate: 'text-slate-600 dark:text-slate-400',
+};
+
+const BAR_COLORS: Record<string, string> = {
+  brand: 'bg-brand-500 dark:bg-brand-400',
+  violet: 'bg-violet-500 dark:bg-violet-400',
+  emerald: 'bg-emerald-500 dark:bg-emerald-400',
+  amber: 'bg-amber-500 dark:bg-amber-400',
+  rose: 'bg-rose-500 dark:bg-rose-400',
+  slate: 'bg-slate-300 dark:bg-slate-500',
+};
+
+const PORTAL_BASE_URL = import.meta.env.BASE_URL || '/';
+function portalImageSrc(src: string): string {
+  if (src.startsWith('http') || src.startsWith('/')) return src;
+  return `${PORTAL_BASE_URL}${src.replace(/^\//, '')}`;
+}
+
+export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalInfographicContent }) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const [showSources, setShowSources] = useState(false);
+  if (!content) return null;
+
+  const {
+    portalBrand,
+    eyebrow,
+    headline,
+    subline,
+    takeaway,
+    takeawayCta,
+    featured,
+    heroImageVertical,
+    bannerImageHorizontal,
+    bannerBetweenKpiAndSections,
+    kpiCards,
+    sectionCards,
+    mainInsightBlock,
+    secondaryCards,
+    toolsAndYouth,
+    insightCard,
+    ctaBlock,
+    footerBrand,
+    footerSub,
+    sources,
+  } = content;
+
+  const useTwoLevelLayout = Boolean(mainInsightBlock && secondaryCards && secondaryCards.length === 2);
+
+  const hasHeroImage = Boolean(heroImageVertical?.src);
+
+  return (
+    <div className="w-full max-w-6xl mx-auto space-y-6 md:space-y-8">
+      {/* Portal masthead – "shouting" brand (Next Level AI), not report header */}
+      {portalBrand && (
+        <div className="flex items-center gap-3 border-b border-accent-200 dark:border-accent-800 py-4 bg-accent-50 dark:bg-accent-900/10 px-1 -mx-1 rounded-lg">
+          <span className="text-xl md:text-2xl font-extrabold text-accent-700 dark:text-accent-300 tracking-tight" aria-label={`Redakcija: ${portalBrand}`}>
+            {portalBrand}
+          </span>
+          <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Žiniasklaida</span>
+        </div>
+      )}
+      {/* Header: optional vertical image | eyebrow + headline + subline + takeaway | hero stat */}
+      <div
+        className={`grid gap-6 items-center ${hasHeroImage ? 'grid-cols-1 lg:grid-cols-[minmax(200px,280px)_1fr_minmax(200px,280px)]' : 'grid-cols-1 lg:grid-cols-[1fr_minmax(200px,280px)]'}`}
+      >
+        {hasHeroImage && (
+          <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shrink-0 shadow-sm">
+            <div className="p-3 bg-gray-50/50 dark:bg-gray-900/30">
+              <img
+                src={portalImageSrc(heroImageVertical!.src)}
+                alt={heroImageVertical!.alt}
+                className="block w-full h-auto object-cover max-h-72 rounded-lg"
+              />
+            </div>
+          </div>
+        )}
+        <div className="min-w-0">
+          <div className="inline-flex items-center gap-2 bg-brand-500 dark:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider px-3.5 py-2 rounded-full mb-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" aria-hidden />
+            {eyebrow}
+          </div>
+          <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
+            {headline}
+          </h2>
+          <p className="mt-2 text-base text-gray-600 dark:text-gray-300 max-w-xl">{subline}</p>
+          {(takeaway || takeawayCta) && (
+            <div className="mt-4 max-w-xl border-l-4 border-accent-400 dark:border-accent-600 pl-3" role="complementary" aria-label="Pagrindinė išvada – vienos eilutės takeaway">
+              {takeaway && <p className="text-base font-bold text-accent-700 dark:text-accent-300">{takeaway}</p>}
+              {takeawayCta && (
+                <p className="mt-2 text-base md:text-lg font-extrabold bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 dark:from-accent-500 dark:via-accent-600 dark:to-accent-700 bg-clip-text text-transparent">
+                  {takeawayCta}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+        <div className="bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white rounded-2xl p-5 text-center min-w-[200px] shadow-lg">
+          <div className="text-3xl md:text-4xl font-extrabold">{featured.bigNumber}</div>
+          <div className="mt-2 text-xs md:text-sm opacity-95 leading-snug">
+            {featured.labelStrong && <strong className="block">{featured.labelStrong}</strong>}
+            {featured.label}
+          </div>
+          {featured.source && (
+            <div className="mt-3 text-xs opacity-60">{featured.source}</div>
+          )}
+        </div>
+      </div>
+
+      {bannerImageHorizontal?.src && (
+        <div className="w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 aspect-[21/9] max-h-40">
+          <div className="p-2 h-full">
+            <img
+              src={portalImageSrc(bannerImageHorizontal.src)}
+              alt={bannerImageHorizontal.alt}
+              className="block w-full h-full object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* KPI strip – vienoda border (brand) mažesniam vizualiniam triukšmui; skaičiai spalvoti (NUM_COLORS) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {(kpiCards ?? []).map((card, idx) => (
+          <div
+            key={idx}
+            className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 border-t-4 border-t-brand-500 dark:border-t-brand-400 animate-fade-in`}
+            style={{ animationDelay: `${idx * 80}ms` }}
+          >
+            <div className="text-xl mb-1">{card.icon}</div>
+            <div className={`text-2xl font-extrabold ${NUM_COLORS[card.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}>{card.value}</div>
+            <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-snug">{card.desc}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-500 mt-1.5">{card.source}</div>
+          </div>
+        ))}
+      </div>
+
+      {bannerBetweenKpiAndSections?.src && (
+        <div className="w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 aspect-[21/9] max-h-40">
+          <div className="p-2 h-full">
+            <img
+              src={portalImageSrc(bannerBetweenKpiAndSections.src)}
+              alt={bannerBetweenKpiAndSections.alt}
+              className="block w-full h-full object-cover rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      {useTwoLevelLayout ? (
+        <>
+          {/* Level 1: full-width main insight block */}
+          {mainInsightBlock && (
+            <div
+              className="rounded-xl p-6 md:p-8 bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white flex flex-col sm:flex-row items-center gap-6 shadow-lg"
+              role="region"
+              aria-label="Pagrindinė išvada"
+            >
+              {mainInsightBlock.imageVertical?.src && (
+                <div className="w-full sm:w-48 shrink-0 rounded-xl overflow-hidden border border-white/20">
+                  <div className="p-2">
+                    <img
+                      src={portalImageSrc(mainInsightBlock.imageVertical.src)}
+                      alt={mainInsightBlock.imageVertical.alt}
+                      className="block w-full h-auto object-cover max-h-40 rounded-lg"
+                    />
+                  </div>
+                </div>
+              )}
+              <div className="flex-1 min-w-0 text-center sm:text-left">
+                <div className="text-4xl md:text-5xl font-extrabold">{mainInsightBlock.bigNumber}</div>
+                <p className="mt-3 text-lg md:text-xl font-semibold opacity-95">{mainInsightBlock.label}</p>
+                {mainInsightBlock.source && (
+                  <p className="mt-2 text-sm opacity-75">{mainInsightBlock.source}</p>
+                )}
+              </div>
+            </div>
+          )}
+          {/* Level 2: 2 smaller KPI cards */}
+          {secondaryCards && secondaryCards.length === 2 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {secondaryCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm animate-fade-in ${card.imageVertical?.src ? 'grid grid-cols-1 sm:grid-cols-[minmax(100px,140px)_1fr] gap-4 items-stretch' : ''}`}
+                  style={{ animationDelay: `${idx * 80}ms` }}
+                >
+                  {card.imageVertical?.src && (
+                    <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                      <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
+                        <img
+                          src={portalImageSrc(card.imageVertical.src)}
+                          alt={card.imageVertical.alt}
+                          className="block w-full h-auto object-cover max-h-36 rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">{card.sectionLabel}</div>
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">{card.title}</h3>
+                    <div className={`text-3xl font-extrabold ${NUM_COLORS[card.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}>{card.value}</div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 break-normal">{card.label}</p>
+                    {card.source && <p className="text-xs text-gray-500 dark:text-gray-500 mt-1.5">{card.source}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+      /* Legacy: 3 section cards */
+      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 items-stretch">
+        {(sectionCards ?? []).map((card, idx) => {
+          const sectionImage = 'imageVertical' in card ? card.imageVertical : undefined;
+          const hasSectionImage = Boolean(sectionImage?.src);
+          return (
+          <div
+            key={idx}
+            className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm min-h-0 animate-fade-in ${hasSectionImage ? 'grid grid-cols-1 sm:grid-cols-[minmax(80px,120px)_minmax(260px,1fr)]' : ''}`}
+            style={{ animationDelay: `${idx * 100}ms` }}
+          >
+            {hasSectionImage && (
+              <div className="min-w-0 w-full max-w-[120px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 sm:max-w-none">
+                <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
+                  <img
+                    src={portalImageSrc(sectionImage!.src)}
+                    alt={sectionImage!.alt}
+                    className="block w-full h-auto object-cover max-h-48 rounded-lg"
+                  />
+                </div>
+              </div>
+            )}
+            <div className="p-4 min-w-0 min-h-0 overflow-x-auto">
+            <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">{card.sectionLabel}</div>
+            <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">{card.title}</h3>
+            {'type' in card && card.type === 'split' && (
+              <>
+                <div className="grid grid-cols-2 gap-2 mb-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+                  <div className="text-center min-w-0">
+                    <div className={`text-2xl font-extrabold ${NUM_COLORS.brand}`}>{card.leftNum}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">{card.leftLabel}</div>
+                  </div>
+                  <div className="text-center border-l border-gray-200 dark:border-gray-700 min-w-0">
+                    <div className={`text-2xl font-extrabold ${NUM_COLORS.rose}`}>{card.rightNum}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">{card.rightLabel}</div>
+                  </div>
+                </div>
+                {card.gapLabel && <p className="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">{card.gapLabel}</p>}
+                <div className="space-y-2">
+                  {card.bars.map((bar, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between text-xs mb-0.5 gap-2">
+                        <span className="text-gray-600 dark:text-gray-400 break-normal min-w-0">{bar.name}</span>
+                        <span className={`font-bold shrink-0 whitespace-nowrap ${NUM_COLORS[bar.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}>{bar.pct}</span>
+                      </div>
+                      <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'brand'] ?? BAR_COLORS.brand}`} style={{ width: `${parsePercent(bar.pct)}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            {'type' in card && card.type === 'business' && (
+              <>
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  {card.sectorTiles.map((tile, i) => {
+                    const bgMap: Record<string, string> = { brand: 'bg-brand-50 dark:bg-brand-900/20', violet: 'bg-violet-50 dark:bg-violet-900/20', emerald: 'bg-emerald-50 dark:bg-emerald-900/20', amber: 'bg-amber-50 dark:bg-amber-900/20' };
+                    return (
+                      <div key={i} className={`flex items-center gap-2 p-2 rounded-xl min-w-0 ${bgMap[tile.colorKey ?? 'brand'] ?? bgMap.brand}`}>
+                        <span className="text-lg shrink-0">{tile.icon}</span>
+                        <div className="min-w-0 overflow-hidden">
+                          <div className={`text-lg font-extrabold whitespace-nowrap ${NUM_COLORS[tile.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}>{tile.pct}</div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">{tile.name}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex items-start gap-3 p-3 bg-brand-50 dark:bg-brand-900/20 rounded-xl min-w-0">
+                  <span className="text-2xl font-extrabold text-brand-600 dark:text-brand-400 shrink-0 whitespace-nowrap">{card.calloutValue}</span>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 min-w-0 break-normal space-y-1.5">
+                    {card.calloutText.includes('**Pagal dydį:**')
+                      ? (() => {
+                          const [first, ...rest] = card.calloutText.split(/\*\*Pagal dydį:\*\*/);
+                          const second = rest.join('**Pagal dydį:**').trim();
+                          const toHtml = (s: string) => s.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                          return (
+                            <>
+                              <p dangerouslySetInnerHTML={{ __html: toHtml(first.trim()) }} />
+                              {second ? <p dangerouslySetInnerHTML={{ __html: '<strong>Pagal dydį:</strong> ' + toHtml(second) }} /> : null}
+                            </>
+                          );
+                        })()
+                      : <p dangerouslySetInnerHTML={{ __html: card.calloutText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />}
+                  </div>
+                </div>
+              </>
+            )}
+            {'type' in card && card.type === 'lithuania' && (
+              <>
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  {card.stats.map((stat, i) => (
+                    <div key={i} className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center min-w-0">
+                      <div className={`text-2xl font-extrabold whitespace-nowrap ${NUM_COLORS[stat.colorKey ?? 'emerald'] ?? NUM_COLORS.emerald}`}>{stat.value}</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">{stat.sub}</div>
+                      {stat.badge && <span className="inline-block mt-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded whitespace-nowrap">{stat.badge}</span>}
+                    </div>
+                  ))}
+                </div>
+                <div className="space-y-2">
+                  {card.bars.map((bar, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between text-xs mb-0.5 gap-2">
+                        <span className="text-gray-600 dark:text-gray-400 break-normal min-w-0">{bar.name}</span>
+                        <span className={`font-bold shrink-0 whitespace-nowrap ${NUM_COLORS[bar.colorKey ?? 'slate'] ?? NUM_COLORS.slate}`}>{bar.pct}</span>
+                      </div>
+                      <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'slate'] ?? BAR_COLORS.slate}`} style={{ width: `${parsePercent(bar.pct)}%` }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            </div>
+          </div>
+          );
+        })}
+      </div>
+      )}
+
+      {/* Row 2 → Variant C: 3 atskiros zonos (Įrankiai | Jaunimas | Pagrindinė žinutė) – vertikali seka, 8pt grid: space-y-5 */}
+      <div className="space-y-5">
+        {toolsAndYouth && (
+          <>
+            {/* Zona 1: Įrankiai – pilno pločio kortelė */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+              <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">{toolsAndYouth.toolsLabel}</div>
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">{toolsAndYouth.toolsTitle}</h3>
+              <div className="space-y-2 max-w-2xl">
+                {(toolsAndYouth.tools ?? []).map((t, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-sm shrink-0">{t.name.slice(0, 1)}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-xs text-gray-600 dark:text-gray-400 truncate">{t.name}</div>
+                      <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${BAR_COLORS[t.colorKey ?? 'brand'] ?? BAR_COLORS.brand}`} style={{ width: `${parsePercent(t.pct)}%` }} />
+                      </div>
+                    </div>
+                    <span className={`text-xs font-bold shrink-0 ${NUM_COLORS[t.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}>{t.pct}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Zona 2: Jaunimas – pilno pločio kortelė */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
+              <div className={`grid grid-cols-1 ${toolsAndYouth.youthImageVertical?.src ? 'md:grid-cols-[minmax(140px,200px)_1fr]' : ''} gap-4 items-stretch`}>
+                {toolsAndYouth.youthImageVertical?.src && (
+                  <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                    <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
+                      <img
+                        src={portalImageSrc(toolsAndYouth.youthImageVertical.src)}
+                        alt={toolsAndYouth.youthImageVertical.alt}
+                        className="block w-full h-auto object-cover max-h-52 rounded-lg"
+                      />
+                    </div>
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">{toolsAndYouth.youthLabel}</div>
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">{toolsAndYouth.youthTitle}</h3>
+                  <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl text-center mb-3 inline-block">
+                    <div className="text-3xl font-extrabold text-violet-600 dark:text-violet-400">{toolsAndYouth.youthBigNum}</div>
+                    <div className="text-xs text-gray-600 dark:text-gray-400 mt-1" dangerouslySetInnerHTML={{ __html: toolsAndYouth.youthLabelText.replace(/<br\s*\/?>/g, '<br />') }} />
+                  </div>
+                  <div className="space-y-2 mt-4">
+                    {(toolsAndYouth.youthBars ?? []).map((bar, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between text-xs mb-0.5">
+                          <span className="text-gray-600 dark:text-gray-400">{bar.name}</span>
+                          <span className={`font-bold ${NUM_COLORS[bar.colorKey ?? 'slate'] ?? NUM_COLORS.slate}`}>{bar.pct}</span>
+                        </div>
+                        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'slate'] ?? BAR_COLORS.slate}`} style={{ width: `${parsePercent(bar.pct)}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {toolsAndYouth.youthFootnote && <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">{toolsAndYouth.youthFootnote}</p>}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        {insightCard && (
+          /* Zona 3: Pagrindinė žinutė – pilno pločio blokas */
+          <div className="bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white rounded-xl p-5 flex flex-col">
+            <div className="text-xs font-bold uppercase tracking-wider opacity-75 mb-2">{insightCard.tag}</div>
+            <h3 className="text-base font-bold leading-snug mb-4 flex-1">{insightCard.headline}</h3>
+            <ul className="space-y-2">
+              {(insightCard.points ?? []).map((p, i) => (
+                <li key={i} className="flex gap-2 text-sm opacity-95">
+                  <span className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center text-xs font-bold shrink-0">{p.num}</span>
+                  <span dangerouslySetInnerHTML={{ __html: p.text.replace(/\*\*(.*?)\*\*/g, '<strong class="opacity-100">$1</strong>') }} />
+                </li>
+              ))}
+            </ul>
+            {insightCard.illustrationHorizontal?.src && (
+              <div className="mt-4 w-full rounded-xl overflow-hidden border border-white/20 max-h-20 aspect-[3/1] shrink-0">
+                <div className="p-2 h-full">
+                  <img
+                    src={portalImageSrc(insightCard.illustrationHorizontal.src)}
+                    alt={insightCard.illustrationHorizontal.alt}
+                    className="block w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Single CTA block – invitation to act, not dashboard (GOLDEN_STANDARD: accent) */}
+      {ctaBlock?.label && (
+        <div
+          className="rounded-xl p-5 md:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
+          role="region"
+          aria-label={t('whatToDoNextAria')}
+        >
+          <p className="text-base md:text-lg font-bold text-gray-900 dark:text-white leading-snug">
+            {ctaBlock.label}
+          </p>
+          {ctaBlock.subline && (
+            <p className="mt-2 text-sm font-semibold text-accent-700 dark:text-accent-300">
+              {ctaBlock.subline}
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Footer */}
+      <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <div className="font-bold text-gray-900 dark:text-white">{footerBrand}</div>
+          {footerSub && <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{footerSub}</div>}
+        </div>
+        {sources && sources.length > 0 ? (
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowSources(!showSources)}
+              aria-label={t('showSourcesAria')}
+              aria-expanded={showSources}
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-lg"
+            >
+              {t('showSourcesAria')} ({sources.length}) {showSources ? '▲' : '▼'}
+            </button>
+            {showSources && (
+              <ul className="mt-2 text-xs text-gray-500 dark:text-gray-400 space-y-1" role="list">
+                {sources.map((s, i) => {
+                  const name = s.title ?? s.label ?? s.institution ?? '';
+                  const y = (s as { year?: string }).year;
+                  return <li key={i}>{y ? `${name} (${y})` : name}</li>;
+                })}
+              </ul>
+            )}
+          </div>
+        ) : (
+          <div className="text-xs text-gray-500 dark:text-gray-400 text-right">{t('sourcesLabel')}: KPMG · McKinsey · Eurostat · Stat.gov.lt · AIPRM</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const DEFAULT_PRACTICE_SUMMARY: PracticeSummaryContent = {
   title: 'Mokymas Baigtas!',
-  subtitle: 'Sveikiname! Jūs sėkmingai baigėte Prompt Anatomijos mokymą ir dabar galite kurti profesionalius, struktūruotus promptus.',
+  subtitle: 'Sveikiname! Tu sėkmingai baigei Prompt Anatomijos mokymą ir dabar gali kurti profesionalius, struktūruotus promptus.',
   learnedItems: ['6 blokų sistemą', 'Hierarchijos svarbą', 'Konkretaus input naudą', 'Kokybės kontrolę'],
   nextStepsItems: ['Praktikuokite kasdien', 'Kurkite šablonų biblioteką', 'Dalinkitės su komanda', 'Iteruokite ir tobulinkite'],
   taglineTitle: 'Struktūra = Rezultatas',
   taglineSub: '5 minutės geram promptui = valandos sutaupytos vėliau',
 };
 
-export interface PracticeSummarySlideProps { content?: PracticeSummaryContent | null }
-export function PracticeSummarySlide({ content: contentProp }: PracticeSummarySlideProps) {
+export interface PracticeSummarySlideProps {
+  content?: PracticeSummaryContent | null;
+  /** M9: rodyti „Užbaigta X iš 16 scenarijų“ */
+  completedScenarioCount?: number;
+  totalScenarioCount?: number;
+}
+export function PracticeSummarySlide({ content: contentProp, completedScenarioCount, totalScenarioCount }: PracticeSummarySlideProps) {
+  useTranslation();
+  const t = getT('contentSlides');
   const c = contentProp ?? DEFAULT_PRACTICE_SUMMARY;
-  const learned = c.learnedItems ?? DEFAULT_PRACTICE_SUMMARY.learnedItems!;
-  const nextSteps = c.nextStepsItems ?? DEFAULT_PRACTICE_SUMMARY.nextStepsItems!;
+  const isDefault = contentProp == null;
+  const displaySubtitle = isDefault ? t('practiceSummaryDefaultSubtitle') : (c.subtitle ?? '');
+  const displayLearned = isDefault
+    ? [t('practiceSummaryDefaultLearned1'), t('practiceSummaryDefaultLearned2'), t('practiceSummaryDefaultLearned3'), t('practiceSummaryDefaultLearned4')]
+    : (c.learnedItems ?? DEFAULT_PRACTICE_SUMMARY.learnedItems!);
+  const displayNextSteps = isDefault
+    ? [t('practiceSummaryDefaultNext1'), t('practiceSummaryDefaultNext2'), t('practiceSummaryDefaultNext3'), t('practiceSummaryDefaultNext4')]
+    : (c.nextStepsItems ?? DEFAULT_PRACTICE_SUMMARY.nextStepsItems!);
+  const displayTaglineTitle = isDefault ? t('practiceSummaryDefaultTaglineTitle') : (c.taglineTitle ?? '');
+  const displayTaglineSub = isDefault ? t('practiceSummaryDefaultTaglineSub') : (c.taglineSub ?? '');
+  const hasSections = (c.sections?.length ?? 0) > 0;
+  const showScenarioProgress =
+    completedScenarioCount != null && totalScenarioCount != null && totalScenarioCount > 0;
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-emerald-50 to-accent-50 dark:from-emerald-900/20 dark:to-accent-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
         <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-emerald-400 to-brand-500 mb-4">
           <span className="text-4xl">🎓</span>
         </div>
-        <h2 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">{c.title ?? 'Mokymas Baigtas!'} 🎉</h2>
-        <p className="text-gray-700 dark:text-gray-300 max-w-lg mx-auto">{c.subtitle ?? ''}</p>
+        <h2 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">
+          {(c as { introHeading?: string }).introHeading ?? c.title ?? t('trainingCompleteTitle')} 🎉
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300 max-w-lg mx-auto">
+          {(c as { introBody?: string }).introBody ?? displaySubtitle}
+        </p>
+        {(c as { stats?: { label: string; value: string }[] }).stats?.length ? (
+          <div className="mt-4 flex flex-wrap justify-center gap-4">
+            {(c as { stats: { label: string; value: string }[] }).stats.map((s, i) => (
+              <span key={i} className="text-sm font-semibold text-accent-700 dark:text-accent-300">
+                {s.value} {s.label}
+              </span>
+            ))}
+          </div>
+        ) : null}
+        {showScenarioProgress && (
+          <p className="mt-3 text-sm font-semibold text-accent-700 dark:text-accent-300">
+            {t('completedScenariosText', { count: completedScenarioCount, total: totalScenarioCount })}
+          </p>
+        )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500" strokeWidth={1.5} /> Ką išmokote:</h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            {learned.map((item, i) => <li key={i}>• {item}</li>)}
-          </ul>
+      {hasSections ? (
+        <div className="space-y-4">
+          {c.sections!.map((section, i) => (
+            <div
+              key={i}
+              className={`p-5 rounded-xl border ${
+                section.blockVariant === 'accent'
+                  ? 'bg-accent-50 dark:bg-accent-900/20 border-accent-200 dark:border-accent-800'
+                  : section.blockVariant === 'emerald'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                    : section.blockVariant === 'violet'
+                      ? 'bg-violet-50 dark:bg-violet-900/20 border-violet-200 dark:border-violet-800'
+                      : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+              }`}
+            >
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2">{section.heading}</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">{section.body}</p>
+            </div>
+          ))}
         </div>
-        <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Rocket className="w-4 h-4" strokeWidth={1.5} /> Kiti žingsniai:</h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            {nextSteps.map((item, i) => <li key={i}>• {item}</li>)}
-          </ul>
-        </div>
-      </div>
-
-      {(c.taglineTitle ?? c.taglineSub) && (
-        <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-6 rounded-xl text-white text-center">
-          {c.taglineTitle && <h4 className="text-xl font-bold mb-2">{c.taglineTitle}</h4>}
-          {c.taglineSub && <p className="text-brand-100">{c.taglineSub}</p>}
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500" strokeWidth={1.5} /> {t('whatYouLearnedHeading')}</h4>
+            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              {displayLearned.map((item, i) => <li key={i}>• {item}</li>)}
+            </ul>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2"><Rocket className="w-4 h-4" strokeWidth={1.5} /> {t('nextStepsHeading')}</h4>
+            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              {displayNextSteps.map((item, i) => <li key={i}>• {item}</li>)}
+            </ul>
+          </div>
         </div>
       )}
+
+      {c.reflectionPrompt && (
+        <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border-2 border-accent-200 dark:border-accent-700">
+          <h4 className="font-bold text-gray-900 dark:text-white mb-2">Refleksijos promptas</h4>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Įklijuok į DI ir atsakyk trumpai.</p>
+          <div className="relative bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 mb-3">
+            <pre className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-sans">{c.reflectionPrompt}</pre>
+          </div>
+          <ReflectionCopyButton text={c.reflectionPrompt} />
+        </div>
+      )}
+
+      {((c as { nextStepCTA?: string }).nextStepCTA) && (
+        <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 text-center">
+          <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">{t('nextStepHeading')}</p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">{(c as { nextStepCTA: string }).nextStepCTA}</p>
+        </div>
+      )}
+      {((c as { tagline?: string }).tagline ?? displayTaglineTitle ?? displayTaglineSub) && (
+        <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-6 rounded-xl text-white text-center">
+          {(c as { tagline?: string }).tagline && <p className="text-lg font-bold">{(c as { tagline: string }).tagline}</p>}
+          {!(c as { tagline?: string }).tagline && displayTaglineTitle && <h4 className="text-xl font-bold mb-2">{displayTaglineTitle}</h4>}
+          {!(c as { tagline?: string }).tagline && displayTaglineSub && <p className="text-brand-100">{displayTaglineSub}</p>}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** path-step (kelio žingsnis) – Duomenų analizės kelias; badge atrakina žodynėlio terminus */
+export function PathStepSlide({
+  content,
+  isCompleted,
+  onMarkComplete,
+}: {
+  content: PathStepContent;
+  isCompleted: boolean;
+  onMarkComplete: () => void;
+}) {
+  useTranslation();
+  const t = getT('contentSlides');
+  const hasSections = (content.sections?.length ?? 0) > 0;
+  return (
+    <div className="max-w-3xl mx-auto space-y-6 px-4 py-6">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <MapPin className="w-5 h-5 text-brand-600 dark:text-brand-400 shrink-0" aria-hidden />
+          <span className="text-sm font-semibold text-brand-800 dark:text-brand-200">Duomenų analizės kelias</span>
+        </div>
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/40 text-accent-800 dark:text-accent-200 text-sm font-medium">
+          Žingsnis {content.stepNumber}
+        </span>
+      </div>
+      <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">{content.title}</h2>
+      {content.body && <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{content.body}</p>}
+      {hasSections && (
+        <div className="space-y-4">
+          {content.sections!.map((sec, i) => (
+            <div key={i} className="rounded-lg border-l-4 border-brand-500 bg-slate-50 dark:bg-slate-800/40 pl-4 py-3 pr-3">
+              {sec.heading && <h3 className="font-semibold text-gray-900 dark:text-white mb-1">{sec.heading}</h3>}
+              <p className="text-sm text-gray-700 dark:text-gray-300">{sec.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {content.unlockedGlossaryTerms && content.unlockedGlossaryTerms.length > 0 && (
+        <p className="text-xs text-slate-600 dark:text-slate-400">
+          Užbaigę žingsnį atrakinsite žodynėlyje: {content.unlockedGlossaryTerms.join(', ')}.
+        </p>
+      )}
+      {!isCompleted ? (
+        <button
+          type="button"
+          onClick={onMarkComplete}
+          className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+          aria-label={t('markStepDoneAria')}
+        >
+          <CheckCircle className="w-5 h-5" aria-hidden />
+          Pažymėjau kaip atliktą
+        </button>
+      ) : (
+        <p className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+          <CheckCircle className="w-5 h-5" aria-hidden />
+          Šis žingsnis jau atliktas
+        </p>
+      )}
+      {content.footer && <p className="text-sm text-gray-500 dark:text-gray-400 pt-2">{content.footer}</p>}
     </div>
   );
 }

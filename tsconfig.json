@@ -13,6 +13,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@modules-data": ["src/data/modules.json"],
+      "@glossary-data": ["src/data/glossary.json"],
+      "@tools-data": ["src/data/tools.json"],
+      "@tools-en-data": ["src/data/tools-en.json"],
+      "@m9-characters-data": ["src/data/m9Characters.json"],
+      "@ai-detectors-slide": ["src/components/AiDetectorsSlide.tsx"],
+      "@vaizdo-generatorius-slide": ["src/components/VaizdoGeneratoriusSlide.tsx"]
+    },
 
     /* Linting */
     "strict": true,

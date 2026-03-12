@@ -1,0 +1,27 @@
+{
+  "title": "Module 5 handout. Presentation sprint.",
+  "subtitle": "15 min – 8-slide presentation with AI",
+  "toolsIntro": "AI (structure and content): ChatGPT, Claude, Gemini, Copilot. Presentation tools (format): Gamma, Canva, SlidesAI, Prezent.ai, Visme, Beautiful.ai.",
+  "toolsBullets": [
+    "ChatGPT, Claude, Gemini, Copilot – structure and content",
+    "Gamma, Canva, etc. – paste content, get slides"
+  ],
+  "structure8": "1. Problem / context\n2. Why it matters now\n3. Solution idea\n4. How it works (simply)\n5. Example / use case\n6. Benefits / results\n7. Risks / limits\n8. What to do next (CTA)",
+  "masterPrompt": "Create an 8-slide presentation structure (not full content). Topic: [Enter]. Audience: [Enter]. For each slide provide: title and 2–3 key points. Format: numbered list. Tone: clear, non-tech.",
+  "fullPromptPrinciple": "META (role, goal, audience) + INPUT (topic, constraints) + OUTPUT (format) + REASONING (steps) + QUALITY (3 points max, language) + ADVANCED (temperature).",
+  "sequenceSteps": [
+    "Brief – topic, audience, goal, slide count, tone",
+    "Structure – 8-slide plan (title + 2 bullets)",
+    "Content – generate with AI, paste into tool",
+    "Quality check – clarity, audience, structure, facts"
+  ],
+  "briefDefinition": "Brief is the orientation for AI: what topic, who it's for, what outcome we expect. A full brief includes: topic, audience, goal, slide count, tone/format. Without a brief AI \"guesses\" and gives generic output.",
+  "qualityCheckPoints": [
+    "Is the goal clear?",
+    "Does it match the audience?",
+    "Is the structure logical?",
+    "No \"made up\" facts? (if facts – sources or assumptions)"
+  ],
+  "thresholdsExplanation": "≥70% – you understand the brief, structure and quality check; you can proceed to Module 6 (project). Below 70% – we recommend reviewing the sprint and the indicated slides again.",
+  "footerText": "Prompt anatomy – prompt structure training. © Course material."
+}

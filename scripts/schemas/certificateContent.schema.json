@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "certificateContent.json / certificateContent-en.json",
+  "description": "Sertifikatų PDF turinys – 3 lygiai (tier 1: 6 blokų sistema, tier 2: Konteksto inžinerija, tier 3: Duomenų analitika). Bendras kursas: Promptų anatomija. Validacija – abiem locale failams (LT ir EN).",
+  "type": "object",
+  "required": ["tiers", "websiteUrl", "websiteCta"],
+  "properties": {
+    "programTitle": { "type": "string", "description": "Programos pavadinimas PDF viršuje (pvz. Promptų anatomija / Prompt Anatomy)" },
+    "certificateLabel": { "type": "string", "description": "Sertifikato etiketė (pvz. SERTIFIKATAS / CERTIFICATE)" },
+    "authorBy": { "type": "string", "description": "Programa ir metodika: vardas" },
+    "authorProduct": { "type": "string", "description": "Autorius: produkto pavadinimas" },
+    "authorByLabel": { "type": "string", "description": "Etiketė prieš autoriaus vardą (pvz. Programa ir metodika:)" },
+    "authorProductLabel": { "type": "string", "description": "Etiketė prieš produkto pavadinimą (pvz. Autorius:)" },
+    "serialLabel": { "type": "string", "description": "Serijinio numerio prefiksas (pvz. Sertifikato Nr. / Certificate No.)" },
+    "websiteUrl": { "type": "string", "format": "uri", "description": "Privaloma: oficialus kursų puslapis (pvz. https://www.promptanatomy.app/)" },
+    "websiteCta": { "type": "string", "description": "Privaloma: CTA tekstas nuorodai (pvz. Kursas ir daugiau: promptanatomy.app)" },
+    "tiers": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["tier", "introLine", "completionLine", "programName", "label", "footerText"],
+        "properties": {
+          "tier": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "introLine": { "type": "string" },
+          "completionLine": { "type": "string" },
+          "programName": { "type": "string" },
+          "label": { "type": "string", "description": "Etiketė: 6 blokų sistema | Konteksto inžinerija | Duomenų analitika" },
+          "footerText": { "type": "string" }
+        }
+      }
+    }
+  }
+}

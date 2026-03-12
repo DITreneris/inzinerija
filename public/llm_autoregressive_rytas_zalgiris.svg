@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- FINAL: vienas pagrindinis srautas, identiskos rodykles, loop subtili (ne akcentas).
   Forward: 1px, arrowhead 40% mazesne (5px), neutral 400-500 (#94a3b8). Centras i centra (y=116/232).
-  Feedback: ta pati pilka, 1px punktyras, trumpa, semantiskai ai?ki. Spalva: pilka=srautas, geltona=tik Pasirinkta blokas.
+  Feedback: ta pati pilka, 1px punktyras, trumpa, semantiškai aiški. Spalva: pilka=srautas, geltona=tik Pasirinkta blokas.
 -->
 <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" aria-labelledby="llm-diagram-title" aria-describedby="llm-diagram-desc" role="img">
   <title id="llm-diagram-title">Autoregresinio kalbos modelio schema: &#381;ingsnis N ir N+1 su Rytas, &#381;algiris, LKL pavyzd&#382;iais</title>
@@ -66,7 +66,7 @@
   <!-- Loop: ne pagrindinis srautas ? ta pati pilka, 1px, trumpa, subtili. Akcentas tik Pasirinkta bloke. -->
   <circle cx="546" cy="144" r="2.5" fill="#94a3b8" stroke="#64748b" stroke-width="0.4"/>
   <path d="M 546 144 L 546 176 Q 546 196 526 196 L 114 196 Q 94 196 94 214" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 3" stroke-linejoin="round" stroke-linecap="round"/>
-  <polygon points="94,204 90,211 98,211" fill="#94a3b8" stroke="#64748b" stroke-width="0.4" stroke-linejoin="round"/>
+  <polygon points="94,211 90,204 98,204" fill="#94a3b8" stroke="#64748b" stroke-width="0.4" stroke-linejoin="round"/>
   <text x="320" y="192" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" font-weight="500" fill="#64748b">Pridedama prie naujos &#302;vesties</text>
 
   <text x="360" y="318" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-style="italic" fill="#647b8c">&#352;altinis: RBC Borealis &#8211; A high-level overview of LLMs</text>

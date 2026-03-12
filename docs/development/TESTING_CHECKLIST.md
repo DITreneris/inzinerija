@@ -97,6 +97,13 @@
 - [ ] Lazy loading veikia
 - [ ] Bundle size < 500KB (gzipped)
 
+## EN locale (Moduliai 1–6)
+
+- [x] **Unit:** `glossaryLoader.test.ts` – getGlossary('en') / getGlossary('lt') grąžina atitinkamus terminus.
+- [x] **Unit:** `questionPoolSelector.test.ts` – selectQuestions('en') ir selectQuestions('lt') naudoja atitinkamą pool.
+- [x] **Unit:** `modulesLoader.test.ts` – loadModules('en') merge'ina modules-en.json ir modules-en-m4-m6.json (M1–M6).
+- [x] **Smoke:** `App.quiz.integration.test.tsx` – describe „App – EN locale smoke“ – su locale 'en' rodomi EN nav stringai (Home, Modules).
+
 ---
 
 **Pastaba:** Šis checklist yra perkeltas į `docs/development/` katalogą kaip dalis dokumentacijos organizavimo.

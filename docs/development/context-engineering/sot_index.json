@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Promptų anatomija – SOT and module registry",
-  "description": "Single registry for modules, SOT paths, gating, and next-step routing. UI data remains in src/data/modules.json.",
+  "description": "Single registry for modules, SOT paths, gating, and next-step routing. Architektūra A: full authoring SOT remains in src/data/modules.json, while core 1-6 runtime/build uses dedicated *-m1-m6.json files.",
   "version": "1.0.0",
   "contentSOT": {
     "moduliai_1_3": {
@@ -12,24 +12,74 @@
       "path": "docs/turinio_pletra_moduliai_4_5_6.md",
       "description": "Content truth for Moduliai 4–6 (Konteksto inžinerija, Prezentacijos sprintas, Projekto kūrimas)"
     },
+    "moduliai_7_9": {
+      "path": "docs/turinio_pletra_moduliai_7_8_9.md",
+      "description": "Content truth for Moduliai 7–9 (Duomenų analizės kelias: teorija, testas, finalinis projektas)"
+    },
     "modulio_atpazinimas": {
       "path": "docs/CONTENT_MODULIU_ATPAZINIMAS.md",
       "description": "Where 'Modulis 1'…'Modulis 6' and skaidrė numbers (e.g. 4.1–4.7) are defined to avoid confusion"
+    },
+    "moduliai_10_12": {
+      "path": "docs/turinio_pletra_moduliai_10_11_12.md",
+      "description": "Content truth for Moduliai 10–12 (Agentų inžinerija)"
+    },
+    "moduliai_13_15": {
+      "path": "docs/turinio_pletra_moduliai_13_14_15.md",
+      "description": "Content truth for Moduliai 13-15 (Turinio inzinerija)"
     }
   },
   "dataSOT": {
-    "modules": "src/data/modules.json",
+    "modules": {
+      "path": "src/data/modules.json",
+      "role": "full authoring SOT",
+      "coreRuntimeProfile": "src/data/modules-m1-m6.json"
+    },
     "promptLibrary": "src/data/promptLibrary.json",
-    "glossary": "src/data/glossary.json",
+    "glossary": {
+      "path": "src/data/glossary.json",
+      "role": "full authoring SOT",
+      "coreRuntimeProfile": "src/data/glossary-m1-m6.json"
+    },
+    "tools": {
+      "path": "src/data/tools.json",
+      "role": "full authoring SOT",
+      "coreRuntimeProfile": "src/data/tools-m1-m6.json"
+    },
     "hallucinationRates": "src/data/hallucinationRates.ts"
   },
-  "publicModules": [1, 2, 3],
+  "publicModules": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
   "unlocksAfter": {
     "2": 1,
     "3": 2,
     "4": 3,
     "5": 4,
-    "6": 5
+    "6": 5,
+    "7": 6,
+    "8": 7,
+    "9": 8,
+    "10": 6,
+    "11": 10,
+    "12": 11,
+    "13": 6,
+    "14": 13,
+    "15": 14
   },
   "nextStepAfterModule": {
     "1": "module",
@@ -37,7 +87,16 @@
     "3": "quiz",
     "4": "module",
     "5": "module",
-    "6": "certificate_or_review"
+    "6": "module",
+    "7": "module",
+    "8": "module",
+    "9": "certificate_or_review",
+    "10": "module",
+    "11": "module",
+    "12": "module",
+    "13": "module",
+    "14": "module",
+    "15": "certificate_or_review"
   },
   "modules": [
     {
@@ -75,6 +134,60 @@
       "title": "Projekto kūrimas",
       "sotPath": "docs/turinio_pletra_moduliai_4_5_6.md",
       "description": "Practice: research report or Custom GPT project"
+    },
+    {
+      "id": 7,
+      "title": "Duomenų analizė su DI",
+      "sotPath": "docs/turinio_pletra_moduliai_7_8_9.md",
+      "description": "Learn: pipeline, promptų architektūra, MASTER PROMPT (Duomenų analizės kelias)"
+    },
+    {
+      "id": 8,
+      "title": "Žinių patikrinimas (DA kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_7_8_9.md",
+      "description": "Test: pipeline, BI schema, MASTER PROMPT"
+    },
+    {
+      "id": 9,
+      "title": "Finalinis projektas (DA kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_7_8_9.md",
+      "description": "Practice: one full project with MASTER PROMPT"
+    },
+    {
+      "id": 10,
+      "title": "Agentų inžinerija su DI",
+      "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
+      "description": "Learn: agentų ciklas, įrankiai, promptai"
+    },
+    {
+      "id": 11,
+      "title": "Žinių patikrinimas (Agentų kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
+      "description": "Test: agentų ciklas, promptai, įrankiai"
+    },
+    {
+      "id": 12,
+      "title": "Finalinis projektas (Agentų kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
+      "description": "Practice: agentų/automatizacijos scenarijai"
+    },
+    {
+      "id": 13,
+      "title": "Turinio inzinerija su DI",
+      "sotPath": "docs/turinio_pletra_moduliai_13_14_15.md",
+      "description": "Learn: vaizdai, video, muzika"
+    },
+    {
+      "id": 14,
+      "title": "Žinių patikrinimas (Turinio kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_13_14_15.md",
+      "description": "Test: vaizdai, video, muzika"
+    },
+    {
+      "id": 15,
+      "title": "Finalinis projektas (Turinio kelias)",
+      "sotPath": "docs/turinio_pletra_moduliai_13_14_15.md",
+      "description": "Practice: vaizdas, video arba muzika"
     }
   ]
 }

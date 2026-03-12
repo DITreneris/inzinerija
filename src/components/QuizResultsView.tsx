@@ -1,8 +1,11 @@
-import { useRef, useEffect } from 'react';
-import { CheckCircle, XCircle, Trophy, RefreshCw, ArrowRight } from 'lucide-react';
+import { useRef, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CheckCircle, XCircle, Trophy, RefreshCw, ArrowRight, ExternalLink } from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import { useCountUp } from '../utils/useCountUp';
 import type { QuizQuestion } from '../types/modules';
+
+const CEO_SPINOFF_URL = 'https://ditreneris.github.io/ceo/';
 
 export interface QuizResultsViewProps {
   questions: QuizQuestion[];
@@ -21,9 +24,20 @@ export function QuizResultsView({
   onRestart,
   onBack,
 }: QuizResultsViewProps) {
+  const { t } = useTranslation('quiz');
   const resultsReviewRef = useRef<HTMLDivElement>(null);
   const firstWrongRef = useRef<HTMLDivElement>(null);
   const animatedScore = useCountUp(score, 1500, 300);
+
+  const correctCount = questions.filter((q) => answers[q.id] === q.correct).length;
+  const hasWrong = correctCount < questions.length;
+
+  /** M3: klaidingi atsakymai pirmi – pirmas neteisingas iš karto matomas */
+  const orderedQuestions = useMemo(() => {
+    const wrong = questions.filter((q) => answers[q.id] !== q.correct);
+    const correct = questions.filter((q) => answers[q.id] === q.correct);
+    return [...wrong, ...correct];
+  }, [questions, answers]);
 
   useEffect(() => {
     const scroll = (el: HTMLElement | null, opts: ScrollIntoViewOptions) => {
@@ -31,14 +45,21 @@ export function QuizResultsView({
         el.scrollIntoView(opts);
       }
     };
-    if (firstWrongIndex >= 0 && firstWrongRef.current) {
-      scroll(firstWrongRef.current, { behavior: 'smooth', block: 'nearest' });
-    } else {
-      scroll(resultsReviewRef.current, { behavior: 'smooth', block: 'start' });
-    }
-  }, [firstWrongIndex]);
+    const runScroll = () => {
+      if (hasWrong && firstWrongRef.current) {
+        scroll(firstWrongRef.current, { behavior: 'smooth', block: 'start' });
+      } else if (resultsReviewRef.current) {
+        scroll(resultsReviewRef.current, { behavior: 'smooth', block: 'start' });
+      }
+    };
+    const rafId = requestAnimationFrame(runScroll);
+    const timeoutId = setTimeout(runScroll, 150);
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timeoutId);
+    };
+  }, [firstWrongIndex, hasWrong]);
 
-  const correctCount = questions.filter((q) => answers[q.id] === q.correct).length;
   const passed = score >= 70;
 
   return (
@@ -61,7 +82,7 @@ export function QuizResultsView({
         </div>
 
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-          {passed ? 'Puikiai! 🎉' : 'Bandykite dar kartą'}
+          {passed ? t('resultsTitlePass') : t('resultsTitleFail')}
         </h2>
 
         <div className="my-8">
@@ -73,28 +94,35 @@ export function QuizResultsView({
         </div>
 
         <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          Teisingai atsakyta:{' '}
+          {t('resultsScoreBefore')}
           <span className="font-bold text-gray-900 dark:text-white">
             {correctCount}
-          </span>{' '}
-          iš {questions.length}
+          </span>
+          {t('resultsScoreAfter', { total: questions.length })}
         </p>
 
+        {hasWrong && (
+          <p className="text-left text-sm font-medium text-rose-700 dark:text-rose-300 mb-2">
+            {t('wrongFirstHint')}
+          </p>
+        )}
         <div
           ref={resultsReviewRef}
           className="space-y-4 mb-8 text-left max-h-[50vh] overflow-y-auto overscroll-contain"
         >
-          {questions.map((q, idx) => {
+          {orderedQuestions.map((q, idx) => {
             const isCorrect = answers[q.id] === q.correct;
-            const isFirstWrong = firstWrongIndex >= 0 && idx === firstWrongIndex;
+            const isFirstWrong = hasWrong && idx === 0;
             return (
               <div
                 key={q.id}
                 ref={isFirstWrong ? firstWrongRef : undefined}
+                id={isFirstWrong ? 'quiz-first-wrong' : undefined}
+                aria-live={isFirstWrong ? 'polite' : undefined}
                 className={`p-4 rounded-xl border-2 scroll-mt-4 ${
                   isCorrect
                     ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-300 dark:border-emerald-700'
-                    : 'bg-rose-50 dark:bg-rose-900/20 border-rose-300 dark:border-rose-700 ring-2 ring-rose-400/50'
+                    : `bg-rose-50 dark:bg-rose-900/20 border-rose-300 dark:border-rose-700 ${isFirstWrong ? 'border-l-4 border-l-rose-500' : 'ring-2 ring-rose-400/50'}`
                 }`}
               >
                 <div className="flex items-start gap-3 mb-3">
@@ -143,8 +171,8 @@ export function QuizResultsView({
                       }`}
                     >
                       <strong>
-                        {isCorrect ? '✓ Paaiškinimas:' : '✗ Paaiškinimas:'}
-                      </strong>{' '}
+                        {isCorrect ? t('explanationStrong') : t('explanationTryAgain')}
+                      </strong>
                       {q.explanation}
                     </p>
                   </div>
@@ -160,15 +188,30 @@ export function QuizResultsView({
             className="btn-secondary flex items-center justify-center gap-2"
           >
             <RefreshCw className="w-5 h-5" />
-            Pradėti iš naujo
+            {t('btnRestart')}
           </button>
           <button
             onClick={onBack}
             className="btn-primary flex items-center justify-center gap-2"
           >
-            Grįžti į pradžią
+            {t('btnBack')}
             <ArrowRight className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Hidden treasure: nuoroda į DI Operacinį centrą (Spin-off Nr. 5, CEO) */}
+        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{t('ceoSpinoffDescription')}</p>
+          <a
+            href={CEO_SPINOFF_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            aria-label={t('ceoSpinoffAria')}
+          >
+            <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden />
+            {t('ceoSpinoffLabel')}
+          </a>
         </div>
       </div>
     </div>

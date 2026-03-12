@@ -66,7 +66,7 @@ Moduliai 4–6 jau turi **aiškų turinio rėmą**: teorija (4) → testas (5) �
 | Problema | Dabartinė būklė | Rekomendacija |
 |----------|------------------|----------------|
 | Vienas projekto kontekstas | Scenarijus – „verslo analitikas“, „tyrimo ataskaita“. | **Papildyti:** 1–2 **alternatyvūs kontekstai** (pvz. „HR: politikos santrauka“, „Produktas: konkurentų lyginimas“) su tais pačiais 6 žingsniais, bet skirtingu rezultatu – kad skirtingų rolės dalyviai matytų pritaikymą. |
-| Praktikos daugiausia „copy-paste“ | Stiprybė – daug šablonų; silpnybė – mažai **„pataisyk / pagerink“** tipo užduočių. | **Papildyti:** Bent vienoje vietoje (pvz. po 4.2c „100% veikiančios strategijos“ arba Modulyje 6) – **„Pataisyk šį promptą“**: pateikiamas silpnas/s šališkas promptas, dalyvis rašo pataisytą versiją (laisvas tekstas arba pasirinkimas iš variantų). |
+| Praktikos daugiausia „copy-paste“ | Stiprybė – daug šablonų; silpnybė – mažai **„pataisyk / pagerink“** tipo užduočių. | **Papildyti:** Bent vienoje vietoje (pvz. po 4.2c „4 strategijos, kurios pakelia DI atsakymų kokybę“ arba Modulyje 6) – **„Pataisyk šį promptą“**: pateikiamas silpnas/s šališkas promptas, dalyvis rašo pataisytą versiją (laisvas tekstas arba pasirinkimas iš variantų). |
 
 ---
 

@@ -176,13 +176,13 @@ function v2ToProgress(v2: ProgressV2): Progress {
  * Get progress from localStorage with validation and migration
  */
 export const getProgress = (): Progress => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  
-  if (!stored) {
-    return getDefaultProgress();
-  }
-  
   try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+
+    if (!stored) {
+      return getDefaultProgress();
+    }
+
     const parsed = JSON.parse(stored);
     
     // Handle v1 format (legacy - no version field)
@@ -219,7 +219,10 @@ export const getProgress = (): Progress => {
     return getDefaultProgress();
     
   } catch (error) {
-    logError(error instanceof Error ? error : new Error('Failed to parse progress'), { stored });
+    logError(
+      error instanceof Error ? error : new Error('Failed to read progress'),
+      {}
+    );
     resetProgress();
     return getDefaultProgress();
   }

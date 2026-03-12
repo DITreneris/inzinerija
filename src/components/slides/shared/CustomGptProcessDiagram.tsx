@@ -3,6 +3,7 @@
  * Vartotojas visada mato, kurioje diagramos dalyje yra.
  */
 import { useId } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const VIEWBOX = '0 0 560 700';
 const STEP_ACTIVE_OPACITY = 1;
@@ -35,16 +36,23 @@ const HORIZ_Y = 588;   // y of horizontal branch
 const BRANCH_LEFT_X = 160;   // center of step 7 (80 + 160/2)
 const BRANCH_RIGHT_X = 400;  // center of step 8 (320 + 160/2)
 
+const STEP_TITLES_LT = ['Tikslas', 'Rolė', 'Prisijungimas', 'Konfigūracija', 'Papildomos funkcijos', 'Testavimas', 'Publikavimas', 'Tobulinimas'];
+
 interface CustomGptProcessDiagramProps {
   currentStep: number;
   onStepClick?: (stepIndex: number) => void;
   className?: string;
+  /** Step titles for locale-aware aria-labels (e.g. from ProcessStepper steps); falls back to LT when omitted */
+  stepTitles?: string[];
 }
 
-export default function CustomGptProcessDiagram({ currentStep, onStepClick, className = '' }: CustomGptProcessDiagramProps) {
+export default function CustomGptProcessDiagram({ currentStep, onStepClick, className = '', stepTitles }: CustomGptProcessDiagramProps) {
+  const { t } = useTranslation('stepper');
   const uid = useId().replace(/:/g, '');
   const step = (i: number) => (currentStep === i ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY);
   const isInteractive = typeof onStepClick === 'function';
+  const titles = stepTitles ?? STEP_TITLES_LT;
+  const getStepAria = (i: number) => (i >= 0 && i < titles.length ? t('stepButtonAria', { id: i + 1, title: titles[i] }) : '');
 
   return (
     <svg
@@ -52,7 +60,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
       className={`w-full max-w-2xl mx-auto block ${className}`}
       aria-hidden="true"
       role="img"
-      aria-label={`Proceso diagrama. Dabartinis žingsnis: ${currentStep + 1}.${isInteractive ? ' Paspauskite žingsnį, kad pereitumėte.' : ''}`}
+      aria-label={isInteractive ? t('diagramAria', { n: currentStep + 1 }) : t('diagramAriaStatic', { n: currentStep + 1 })}
     >
       <defs>
         <linearGradient id={`bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -91,7 +99,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="280" y="132" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">Kam skirtas? (pardavimai, mokymai, kūryba)</text>
       </g>
       {isInteractive && (
-        <rect x="140" y="78" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(0)} aria-label="Žingsnis 1: Tikslas" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(0); } }} />
+        <rect x="140" y="78" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(0)} aria-label={getStepAria(0)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(0); } }} />
       )}
       <line x1={CX} y1={STEP_BOXES[0][1] + STEP_BOXES[0][3]} x2={CX} y2={STEP_BOXES[1][1] - ARROW_MARKER_LEN} stroke="#334e68" strokeWidth="2" markerEnd={`url(#arrow-${uid})`} />
 
@@ -102,7 +110,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="280" y="216" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">Tonas, stilius, kompetencija</text>
       </g>
       {isInteractive && (
-        <rect x="140" y="162" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(1)} aria-label="Žingsnis 2: Rolė" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(1); } }} />
+        <rect x="140" y="162" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(1)} aria-label={getStepAria(1)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(1); } }} />
       )}
       <line x1={CX} y1={STEP_BOXES[1][1] + STEP_BOXES[1][3]} x2={CX} y2={STEP_BOXES[2][1] - ARROW_MARKER_LEN} stroke="#334e68" strokeWidth="2" markerEnd={`url(#arrow-${uid})`} />
 
@@ -124,7 +132,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="280" y="384" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">Pavadinimas, aprašymas, instrukcijos, persona</text>
       </g>
       {isInteractive && (
-        <rect x="140" y="330" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(3)} aria-label="Žingsnis 4: Konfigūracija" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(3); } }} />
+        <rect x="140" y="330" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(3)} aria-label={getStepAria(3)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(3); } }} />
       )}
       <line x1={CX} y1={STEP_BOXES[3][1] + STEP_BOXES[3][3]} x2={CX} y2={STEP_BOXES[4][1] - ARROW_MARKER_LEN} stroke="#334e68" strokeWidth="2" markerEnd={`url(#arrow-${uid})`} />
 
@@ -135,7 +143,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="280" y="468" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">Dokumentai, API, įrankiai</text>
       </g>
       {isInteractive && (
-        <rect x="140" y="414" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(4)} aria-label="Žingsnis 5: Papildomos funkcijos" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(4); } }} />
+        <rect x="140" y="414" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(4)} aria-label={getStepAria(4)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(4); } }} />
       )}
       <line x1={CX} y1={STEP_BOXES[4][1] + STEP_BOXES[4][3]} x2={CX} y2={STEP_BOXES[5][1] - ARROW_MARKER_LEN} stroke="#334e68" strokeWidth="2" markerEnd={`url(#arrow-${uid})`} />
 
@@ -146,7 +154,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="280" y="552" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">Išbandykite ir pataisykite</text>
       </g>
       {isInteractive && (
-        <rect x="140" y="498" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(5)} aria-label="Žingsnis 6: Testavimas" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(5); } }} />
+        <rect x="140" y="498" width="280" height="56" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(5)} aria-label={getStepAria(5)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(5); } }} />
       )}
       {/* 6 → horizontal spine (no marker); spine → branches; branches → 7 & 8 edge-to-edge */}
       <line x1={CX} y1={STEP_BOXES[5][1] + STEP_BOXES[5][3]} x2={CX} y2={HORIZ_Y} stroke="#334e68" strokeWidth="2" />
@@ -171,7 +179,7 @@ export default function CustomGptProcessDiagram({ currentStep, onStepClick, clas
         <text x="400" y="658" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="12" fontWeight="500" fill="rgba(255,255,255,0.95)">Grįžtamasis ryšys</text>
       </g>
       {isInteractive && (
-        <rect x="320" y="612" width="160" height="52" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick(7)} aria-label="Žingsnis 8: Tobulinimas" role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(7); } }} />
+        <rect x="320" y="612" width="160" height="52" rx="12" fill="transparent" cursor="pointer" onClick={() => onStepClick?.(7)} aria-label={getStepAria(7)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(7); } }} />
       )}
 
       {/* Grįžtamasis ryšys 8 → 4: paskutinis segmentas 436→434 (kryptis į kairę), antgalis liečia 4 dešinį kraštą (420), trikampis neįeina į bloką */}

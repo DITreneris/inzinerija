@@ -1,5 +1,9 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+
+const isCoreBuild = process.env.VITE_MVP_MODE === '1'
+const resolvePath = (value: string) => fileURLToPath(new URL(value, import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,7 +13,11 @@ export default defineConfig({
     {
       name: 'no-cache-modules-json',
       configureServer(server) {
-        const noCache = (_req: any, res: any, next: () => void) => {
+        const noCache = (
+          _req: import('node:http').IncomingMessage,
+          res: import('node:http').ServerResponse,
+          next: () => void
+        ) => {
           if (_req.url?.includes('modules.json')) {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate')
             res.setHeader('Pragma', 'no-cache')
@@ -20,7 +28,18 @@ export default defineConfig({
       },
     },
   ],
-  base: process.env.NODE_ENV === 'production' ? '/anatomija/' : '/',
+  resolve: {
+    alias: {
+      '@modules-data': resolvePath(isCoreBuild ? './src/data/modules-m1-m6.json' : './src/data/modules.json'),
+      '@glossary-data': resolvePath(isCoreBuild ? './src/data/glossary-m1-m6.json' : './src/data/glossary.json'),
+      '@tools-data': resolvePath(isCoreBuild ? './src/data/tools-m1-m6.json' : './src/data/tools.json'),
+      '@tools-en-data': resolvePath(isCoreBuild ? './src/data/tools-en-m1-m6.json' : './src/data/tools-en.json'),
+      '@m9-characters-data': resolvePath(isCoreBuild ? './src/data/m9Characters-empty.json' : './src/data/m9Characters.json'),
+      '@ai-detectors-slide': resolvePath(isCoreBuild ? './src/components/stubs/UnavailableModuleSlide.tsx' : './src/components/AiDetectorsSlide.tsx'),
+      '@vaizdo-generatorius-slide': resolvePath(isCoreBuild ? './src/components/stubs/UnavailableModuleSlide.tsx' : './src/components/VaizdoGeneratoriusSlide.tsx'),
+    },
+  },
+  base: process.env.VITE_BASE_PATH ?? (process.env.NODE_ENV === 'production' ? '/inzinerija/' : '/'),
   server: {
     port: 3000,
     host: '0.0.0.0',
@@ -40,7 +59,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          icons: ['lucide-react']
+          icons: ['lucide-react'],
+          helmet: ['react-helmet-async']
         },
         // Optimize chunk size
         chunkFileNames: 'assets/[name]-[hash].js',

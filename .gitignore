@@ -39,6 +39,7 @@ build
 # Test coverage
 coverage/
 *.lcov
+test_coverage_test.txt
 
 # Temporary files
 *.tmp
@@ -56,6 +57,16 @@ archive/
 
 # One-off notes / local analysis (remove from list to track in git)
 *_user_tests.md
+
+# Root memo (komandos / asmeniniai)
+memo.md
+mokymu_komanda_memo.md
+
+# Konfidencialūs gyvo testavimo duomenys (vardai, pavardės – neįtraukti į repo)
+*testo_dalyviai*
+*dalyvių_sąrašas*
+dalyviu_sarasas.md
+*pirmoji_testo_savaite*
 CODE_REVIEW_ANALYSIS.md
 UI_KOMPONENTU_ANALIZE.md
 vartotojo_kelione.md

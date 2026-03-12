@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Banner – Promptų anatomija</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .banner {
+      width: 1200px;
+      height: 626px;
+      background: #102a43;
+      color: #fff;
+      padding: 80px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner::before, .banner::after {
+      content: '';
+      position: absolute;
+      opacity: 0.06;
+      font-size: 200px;
+      pointer-events: none;
+    }
+    .banner::before {
+      content: '?';
+      top: 20px;
+      right: 40px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .banner::after {
+      content: '!';
+      top: 180px;
+      left: 40px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .line1 {
+      font-size: 52px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .line2 {
+      font-size: 42px;
+      font-weight: 400;
+      color: #e2e8f0;
+      margin-bottom: 36px;
+    }
+    .line3 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #d4a520;
+      margin-bottom: 32px;
+      display: inline-block;
+      animation: rotate180 3.6s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .line4 {
+      font-size: 38px;
+      font-weight: 400;
+      color: #e2e8f0;
+    }
+    @keyframes rotate180 {
+      0%   { transform: rotate(0deg);   }
+      25%  { transform: rotate(180deg); }
+      50%  { transform: rotate(180deg); }
+      75%  { transform: rotate(360deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <p class="line1">90 proc. iš mūsų DI meluoja.</p>
+    <p class="line2">Problema ne tu - promptas.</p>
+    <p class="line3">Pasikeisk 180 laipsnių.</p>
+    <p class="line4">"Promptų anatomija" ~ 45 min..</p>
+  </div>
+</body>
+</html>

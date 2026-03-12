@@ -64,6 +64,36 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 
 ---
 
+### „Kur pritaikyti?“ blokas (ModuleCompleteScreen)
+
+**Šaltinis:** Auditas §2, §3.1, §9, §10.2; VARTOTOJU_ATSILIEPIMAI_BENDRAS §8 (M5 MUST); CONTENT_AGENT §3.3.
+
+**Kur rodoma:** Modulio užbaigimo ekrane (ModuleCompleteScreen), po Modulio 1 ir po Modulio 3.
+
+**Struktūra:** Viena antraštė „Kur pritaikyti?“ + 4 use-case pagal rolę (projektų vadovas, marketingas, HR/ personalas, analitikas). Kiekvienas punktas – 1–2 sakiniai, paprasta kalba (PAPRASTOS_KALBOS_GAIRES), DI terminologija. Refleksija (3 klausimai sau) lieka atskira; „Kur pritaikyti?“ – konkrečios darbo vietos, ne metaloginis klausimas.
+
+**Turinys (Modulis 1 – 6 blokų sistema):**
+
+| Rolė | Turinys (LT) |
+|------|--------------|
+| Projektų vadovas | Naudok tą patį 6 blokų šabloną susitikimų darbotvarkei ar ataskaitoms: nurodyk rolę (Meta), duomenis (Input) ir norimą formatą (Output). |
+| Marketingas | Parašyk kampanijų tekstus ar planus: nustatyk rolę (pvz. copywriter), įvesk faktus ir apribojimus (Input), nurodyk rezultato formatą (Output). |
+| HR / personalas | Paruošk apklausų klausimus ar darbo aprašymus su aiškia struktūra – rolė (Meta), klausimų/ reikalavimų sąrašas (Input), formatas (Output). |
+| Analitikas | Formuluok užduotis duomenų analizei: kokį rezultatą nori gauti (Output) ir kokius duomenis duodi (Input); DI geriau atsakys, kai viskas aišku. |
+
+**Turinys (Modulis 3 – praktinis pritaikymas, 4 scenarijai):**
+
+| Rolė | Turinys (LT) |
+|------|--------------|
+| Projektų vadovas | Panaudok modulio scenarijus: ketvirčio ataskaita valdybai ar pardavimų analizė su veiksmų planu – nukopijuok ir pritaikyk savo skaičiams ir terminams. |
+| Marketingas | Kampanijos ar produkto pristatymo planas – naudok scenarijaus šabloną: auditorija, kanalai, biudžetas (Input), rezultato formatas (Output). |
+| HR / personalas | Darbuotojų apklausos analizė ir veiksmų planas vadovybei – įvesk savo apklausos duomenis į tą patį 6 blokų promptą ir gauk struktūruotą ataskaitą. |
+| Analitikas | Pardavimų ar kitų duomenų analizė su konkrečiais veiksmais – naudok scenarijų „skaičiai → įžvalgos → veiksmai“ ir pakeisk duomenis (Input) pagal savo atvejį. |
+
+**Implementacija:** Tekstai laikomi i18n (module.useCaseHeading; module.useCaseM1_1 … useCaseM1_4; module.useCaseM3_1 … useCaseM3_4). UI: `ModuleCompleteScreen.tsx` – blokas rodomas, kai `module.id === 1` arba `module.id === 3`.
+
+---
+
 ## 🆕 Nauji Skaidrių Turiniai
 
 ### Skaidrė 1.5: Generatyvaus DI Poveikis Produktyvumui ✅
@@ -120,14 +150,19 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 
 ### Skaidrė 3: Workflow Samprata
 
-**Tikslas:** Parodyti skirtumą tarp paprasto pokalbio ir darbo workflow.
+**Tikslas:** Parodyti skirtumą tarp paprasto **pokalbio** ir **Workflow (darbo eigos)** – t. y. kai iš DI nori ne „paaiškinimo“, o konkretaus darbo rezultato.
 
 **Kontekstas (situacijos):** Dvi situacijos: (1) kai tiesiog kalbate su DI (pokalbis, idėjos, paaiškinimai) ir (2) kai naudojate jį darbui – dokumentams, analizėms, planams; tada reikia aiškesnės struktūros. Įvado tekstas skaidrėje tai nurodo.
 
 **Turinys:**
-- Schema 1: Basic naudojimas (pokalbis) - Input (klausimas) → LLM → Output (atsakymas)
-- Schema 2: Workflow naudojimas (procesams) - Input (promptas + duomenys) → LLM → Output (analizė/dokumentas/planas)
-- 2 kopijuojami pavyzdžiai (basic naudojimas + workflow naudojimas)
+- Interaktyvus palyginimas (toggle): **Pokalbis** vs **Workflow (darbo eiga)**.
+- Schema 1: Pokalbis (Basic) – Įvestis (Input): klausimas → LLM (kalbos modelis) → Išvestis (Output): atsakymas
+- Schema 2: Workflow (darbo eiga) – Įvestis (Input): promptas + duomenys → LLM (kalbos modelis) → Išvestis (Output): analizė / dokumentas / planas
+- 1 kopijuojamas pavyzdys (Workflow)
+
+**Micro-win (vartotojui):** Perjunk į Workflow ir įrašyk 3–5 žodžius – pamatysi, kaip „struktūra“ pakeičia rezultato formą.
+
+**Runtime pastaba (kad SOT neatsiliktų):** `src/data/modules.json` – Modulis 1, skaidrė `id: 15`, tipas `workflow-summary`, `interactive.enabled: true`.
 
 ---
 
@@ -320,6 +355,10 @@ REASONING (ToT):
 3. Įvertink kiekvieno privalumus ir trūkumus
 4. Pasirink geriausią
 ```
+
+**Kodėl DI mąstymas veikia taip**
+
+DI ne „mąsto“ savarankiškai kaip žmogus – jis seka tavo instrukcijas. Kai nurodai mąstymo seką (CoT arba ToT), modelis išveda žingsnis po žingsnio arba palygina variantus pagal nurodytas taisykles. Todėl teisingas modelio pasirinkimas ir aiški struktūra prompte tiesiogiai lemia geresnius ir labiau nuspėjamus rezultatus.
 
 **Svarbi pastaba**
 
@@ -575,8 +614,8 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 
 ### Skaidrė 3: Workflow Samprata ✅
 **ID:** 15 (kode)
-- 2 schemos (pokalbis vs dokumentų workflow)
-- 2 kopijuojami pavyzdžiai (basic + liepiantis)
+- 2 schemos (Pokalbis vs Workflow (darbo eiga) – interaktyvus palyginimas)
+- 2 kopijuojami pavyzdžiai (pokalbis + workflow)
 
 ### Skaidrė 4: Pagrindiniai Promptų Tipai ✅
 **ID:** 3 (kode)
@@ -692,8 +731,8 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
 
 3. **Workflow ir Technikos** (2 stulpelių grid)
    - **Workflow Samprata** (violet spalva):
-     - Basic naudojimas - Pokalbiams, idėjoms, diskusijoms. Ribota kontrolė.
-     - Workflow naudojimas - Dokumentams, procesams. Aiškus formatas ir rezultatas.
+     - Pokalbis (Basic) - Pokalbiams, idėjoms, diskusijoms. Ribota kontrolė.
+     - Workflow (darbo eiga) - Dokumentams, procesams. Aiškus formatas ir rezultatas.
    - **Promptavimo Technikos** (amber spalva):
      - Zero-shot - be pavyzdžių
      - Few-shots - su pavyzdžiais
@@ -787,6 +826,25 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 
 ## 💼 Modulis 3: Praktinis Pritaikymas
 
+### Apšilimas (Warming-up) – pirmas praktinis pavyzdys
+
+**Tikslas:** 2–3 min paprasta praktika prieš 6 scenarijus. Vienas labai paprastas kopijuojamas promptas (META + INPUT + OUTPUT), kad dalyvis iš karto pajaustų 6 blokų naudą be sudėtingo konteksto.
+
+**Skaidrė:** Po „Praktikos Įvadas“, prieš „Scenarijus 1“. Tipas: `content-block`.
+
+**Turinys (GOLDEN_STANDARD §3.2):**
+1. **Trumpai (TL;DR)** – accent: „Per 2–3 minutes nukopijuok promptą ir paleisk DI – gausi 3 konkrečius savaitės tikslus. Tai parodo, kaip META + INPUT + OUTPUT jau pagerina rezultatą.“
+2. **Daryk dabar** – brand: „🔘 Nukopijuok promptą (žemiau) ir įklijuok į bet kurį DI įrankį – ChatGPT, Claude ar Copilot. Per 1 minutę gausite 3 verslo tikslus šiai savaitei.“
+3. **Kopijuojamas promptas** (vienas blokas):
+   - META: rolė (verslo asistentas), tikslas (3 tikslai šiai savaitei).
+   - INPUT: kontekstas (pvz. „darbas su klientais, projektų terminai“) – dalyvis gali pakeisti.
+   - OUTPUT: formatas (3 numeruoti tikslai, kiekvienas 1–2 sakiniai).
+4. **Quality check** (accent): „Jei gavote 3 konkrečius tikslus – puiku. Jei atsakymas per bendras – pridėkite INPUT bloke savo rolę ar sritį.“
+
+**whyBenefit:** „Per 2–3 minutes išmausi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.“
+
+**CTA:** „Nukopijuok ir paleisk“.
+
 ### 6 Verslo Scenarijai
 
 #### Scenarijus 1: Vadovo Strateginė Ataskaita
@@ -830,6 +888,17 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Fokusas**: Empatija, atsakomybė, sprendimo struktūra
 - **Duomenys**: Skundo aprašymas, istorija, kliento tipas
 - **Formatas**: Atsakymas klientui (el. laiškas) + vidinis veiksmų planas (3–5 punktai)
+
+### Situacija (2–3 sakiniai) kiekvienam scenarijui
+
+Prieš „Kontekstas / Duomenys / Apribojimai / Rezultatas“ skirtukus rodomas blokas **Situacija**: persona, problema, kontekstas – žmogui suprantama forma.
+
+- **Scenarijus 1:** Jūs esate vadovas ir turite per kelias dienas parengti ketvirčio rezultatų apžvalgą valdybai. Valdyba priims sprendimus dėl kitų ketvirčių prioritetų, todėl jums reikia aiškiai apibendrinti skaičius, rizikas ir pasiūlyti konkrečius žingsnius.
+- **Scenarijus 2:** Pardavimai nepakilo iki plano, o vadovybė nori greitai suprasti priežastis ir gauti konkrečių veiksmų sąrašą. Jūs turite duomenis pagal segmentus ir laikotarpius – reikia iš jų išvesti įžvalgas ir rekomendacijas su atsakingais asmenimis ir terminais.
+- **Scenarijus 3:** Jūs planuojate naujos kampanijos ar produkto pristatymą rinkoje ir turite ribotą biudžetą bei laikotarpį. Reikia suformuluoti planą: kam skirta kampanija, kokiais kanalais pasieksite auditoriją ir kaip matysite, ar tikslai pasiekti.
+- **Scenarijus 4:** Organizacijoje įvyksta dideli pokyčiai – perėjimas prie naujos sistemos ar restruktūrizacija – ir darbuotojai nerimauja. Jūsų užduotis – parengti pranešimą, kuris aiškiai paaiškina, kas keičiasi, kodėl ir ką daryti toliau, bei atsakyti į dažniausius klausimus.
+- **Scenarijus 5:** Metinė darbuotojų apklausa atlikta – matote, kur srityse pasitenkinimas silpnesnis, o kur stipresnis. Vadovybė nori ne tik skaičių, bet ir konkrečių priemonių: ką pradėti daryti, su kokiu biudžetu ir laikotarpiu.
+- **Scenarijus 6:** Klientas skundžiasi vėlavimu ir neaiškia komunikacija – yra reputacinė rizika ir reikia greitai reaguoti. Jūs turite parengti dviejų dalių sprendimą: empatišką atsakymą klientui ir vidinį planą komandai – ką pakeisti, kad to nepasikartotų.
 
 ### Kiekvieno Scenarijaus Struktūra
 1. **Kontekstas** - Kas jūs esate ir ką darote

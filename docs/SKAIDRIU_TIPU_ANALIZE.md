@@ -1,7 +1,7 @@
 # Skaidrių tipų, turinio ir atvaizdavimo analizė
 
 > **Tikslas:** Aiškiai aprašyti skaidrių tipus, jų duomenų šaltinius, atvaizdavimą ir konkrečius tobulinimų siūlymus.  
-> **Šaltiniai:** `src/components/slides/`, `SlideContent.tsx`, `ModuleView.tsx`, `src/types/modules.ts`, `src/data/modules.json`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`, `UI_KOMPONENTU_ANALIZE.md`, `docs/MODULIAI_4_5_6_STRUKTUROS_ANALIZE.md`, `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`.
+> **Šaltiniai:** `src/components/slides/`, `SlideContent.tsx`, `ModuleView.tsx`, `src/types/modules.ts`, `src/data/modules.json`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`, `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`. Istoriniai (lokaliai archyve): `docs/archive/root/UI_KOMPONENTU_ANALIZE.md`, `docs/archive/MODULIAI_4_5_6_STRUKTUROS_ANALIZE.md`.
 
 ---
 
@@ -11,12 +11,14 @@
 
 | Kategorija | Skaidrių tipai | Duomenų šaltinis | Pavyzdžiai |
 |------------|----------------|------------------|------------|
-| **A) Content-driven (JSON)** | `module-intro`, `content-block`, `glossary`, `definitions`, `di-modalities`, `pie-chart`, `ai-workflow`, `prompt-types`, `prompt-techniques`, `workflow-summary`, `prompt-template`, `transition-3-to-6`, `infographic` | `slide.content` (specifinis tipas pagal `SlideType`) | Modulio 4 daug `content-block`; definitions, glossary – pilnas content |
+| **A) Content-driven (JSON)** | `module-intro`, `content-block`, `path-step`, `glossary`, `definitions`, `di-modalities`, `pie-chart`, `ai-workflow`, `prompt-types`, `prompt-techniques`, `workflow-summary`, `prompt-template`, `transition-3-to-6`, `infographic` | `slide.content` (specifinis tipas pagal `SlideType`) | Modulio 4 daug `content-block`; M7 `path-step` (kelio žingsnis, badge, unlockedGlossaryTerms); definitions, glossary – pilnas content |
 | **B) Block + PracticalTask** | `meta`, `input`, `output`, `reasoning-models`, `reasoning`, `quality`, `advanced`, `advanced-2`, `full-example` | Hardcoded turinys komponente + `slide.practicalTask` (JSON) | Modulio 1 blokų skaidrės |
 | **C) Hardcoded (be content)** | `intro`, `hierarchy`, `comparison`, `summary`, `practice-summary` | Visas turinys – kode (`AllSlides.tsx`) | IntroSlide, HierarchySlide, ComparisonSlide |
-| **D) Test/Quiz** | `test-intro`, `test-section`, `test-results` | `slide`, `slide.testQuestions`, `progress` | Moduliai 2 ir 5 |
+| **D) Test/Quiz** | `test-intro`, `test-section`, `test-results`, `warm-up-quiz` | `slide`, `slide.testQuestions`, `slide.content`, `progress` | Moduliai 2 ir 5; M4 savitikros (`warm-up-quiz`) |
 | **E) Practice** | `practice-intro`, `practice-scenario` | `slide`, `slide.scenario`, `slide.practicalTask`, `progress` | Moduliai 3 ir 6 |
-| **F) Special** | `hallucination-dashboard` | Atskiras komponentas (`HallucinationRatesDashboard`), be `slide.content` | Modulio 4 skaidrė 200 |
+| **F) Special** | `hallucination-dashboard`, `section-break`, `path-step` | Atskiras komponentas arba `slide.content` | M4 skaidrė 200; M4 skyrių skiriamosios (`section-break`); M7 Duomenų analizės kelias (`path-step` – žingsnis, badge, žodynėlio atrakinimas) |
+
+**Pastaba:** Apšilimas = `content-block` su specifine schema (M3 skaidrė id 30.5) – nėra atskiras tipas. Žr. GOLDEN_STANDARD §3.2a. Skirtumas nuo `warm-up-quiz`: apšilimas – praktinis pavyzdys (kopijuojamas promptas); warm-up-quiz – savitikra klausimais.
 
 ### 1.2 Skaidrių skaičius pagal modulį
 
@@ -24,8 +26,8 @@
 |---------|----------|------------------|
 | 1 | 20 | intro, infographic, definitions, workflow-summary, prompt-types, prompt-techniques, prompt-template, transition-3-to-6, hierarchy, meta/input/output/reasoning/quality/advanced, full-example, comparison, glossary, summary |
 | 2 | 7 | test-intro, test-section (5×), test-results |
-| 3 | 6 | practice-intro, practice-scenario (4×), practice-summary |
-| 4 | ~50+ | module-intro, content-block (daug), di-modalities, pie-chart, ai-workflow, glossary, hallucination-dashboard |
+| 3 | 9 | practice-intro, content-block (Apšilimas id 30.5), practice-scenario (6×), summary (id 37), summary (1 dalies santrauka id 38) |
+| 4 | ~50+ | module-intro, content-block (daug), di-modalities, pie-chart, ai-workflow, glossary, hallucination-dashboard, warm-up-quiz, section-break |
 | 5 | ~10 | test-intro, test-section, test-results |
 | 6 | ~5+ | practice-intro, practice-scenario, content-block |
 
@@ -126,12 +128,32 @@ SlideContent.tsx
 
 ---
 
-### 3.6 HallucinationRatesDashboard
+### 3.6 Apšilimas vs warm-up-quiz – skirtumas
+
+| Aspektas | Apšilimas | warm-up-quiz |
+|----------|-----------|--------------|
+| **Tipas** | `content-block` (specifinė schema) | Atskiras tipas `warm-up-quiz` |
+| **Vieta** | M3 po practice-intro | M4 po temų |
+| **Paskirtis** | Pirmas lengvas praktinis žingsnis (2–3 min) – kopijuojamas promptas | Savitikra prieš testą – 3 klausimai, diagnostinis feedback |
+| **Turinys** | TL;DR → Daryk dabar → Copy → Patikra (be Optional) | Klausimai, explanations |
+| **SOT** | GOLDEN_STANDARD §3.2a, turinio_pletra.md | GOLDEN_STANDARD §3.4a |
+
+### 3.7 HallucinationRatesDashboard
 
 - Atskiras komponentas, `slide.content` nenaudojamas.
 - Skaidrė `type: "hallucination-dashboard"` – tik „parodymo“ tipas.
 
 **Siūlymas:** Palikti kaip specialų tipą; jei reikės konfigūruojamų šaltinių – pridėti `content?: { sourceUrl?, title? }`.
+
+### 3.8 path-step (Duomenų analizės kelio žingsnis)
+
+- **Paskirtis:** Vienas „keliautojo“ žingsnis M7 – atlikti užduotį → gauti badge → atrakinti žodynėlio terminus. Kelias pramaišytas su M7 teorija (žr. `docs/turinio_pletra_moduliai_7_8_9.md` §8.2).
+- **Turinys:** `PathStepContent` – title, stepNumber, body/sections, unlockedGlossaryTerms. Žodynėlyje terminai su `unlockedBy: { moduleId, slideId }` rodomi kaip užrakinti, kol atitinkamas path-step neįrašytas į `progress.completedTasks[moduleId]`.
+- **Vizualė:** „Duomenų analizės kelias“ identitetas (MapPin), žingsnio badge, CTA „Pažymėjau kaip atliktą“ / „Šis žingsnis jau atliktas“. GOLDEN_STANDARD §3.4d.
+
+---
+
+**Atnaujinta 2026-02-21:** Pridėtas `path-step` (§3.8), DOCUMENTATION_INDEX ir GOLDEN_STANDARD §3.4d. **2026-02-18:** Pridėti `warm-up-quiz`, `section-break`; apšilimas dokumentuotas kaip content-block variantas. Moduliai 1–3 pakeitimai pagal vartotojų apklausą – žr. VARTOTOJU_ATSILIEPIMAI_BENDRAS.md, UX_ANALIZE_MODULIAI_1_3_V1_SURVEY_16.md.
 
 ---
 
@@ -212,21 +234,23 @@ SlideContent.tsx
 1. **Content-driven (P2 įgyvendinta):** intro, hierarchy (id 4), comparison (id 13), summary (id 14), practice-summary (id 35) – turinys iš `modules.json`; tipai HierarchyContent, ComparisonContent, SummaryContent, PracticeSummaryContent; atgalinė suderinamumas (default turinys komponente, jei content nėra).
 2. **Block skaidrės** – turinys kode; tik PracticalTask – JSON.
 3. **Content-block** – trūksta standartinio vizualų palaikymo (daug skaidrių tik tekstu).
-4. **Modulio 4** – ilgas, be milestone/skyriaus skaidrių.
+4. **Modulio 4** – `section-break` ir `warm-up-quiz` įgyvendinti; milestone skaidrės naudojamos.
 
 ### Rekomenduojama seka
 
 1. **CONTENT_AGENT:** Suformuluoti IntroContent, HierarchyContent, ComparisonContent, SummaryContent, PracticeSummaryContent struktūras ir pavyzdinius tekstus (SOT).
 2. **DATA_AGENT:** Atnaujinti `modules.ts` (tipai), `modules.json` (content į hardcoded skaidres).
 3. **CODING_AGENT:** Pakeisti IntroSlide, HierarchySlide, ComparisonSlide, SummarySlide, PracticeSummarySlide – naudoti `content`.
-4. **CONTENT_AGENT + DATA_AGENT:** Nustatyti Modulio 4 milestone skaidres ir naują `section-break` tipą.
-5. **CODING_AGENT:** Įdiegti SectionBreakSlide; išplėsti ContentBlockSlide vizualams (jei priimta).
-6. **CODE_REVIEW_AGENT:** Patikrinti pakeitimus; **QA_AGENT:** Atnaujinti dokumentaciją.
+4. **Moduliai 1–3 (įgyvendinta):** Apšilimas (M3 id 30.5), Situacija blokas scenarijams, pasirenkamos praktikos (min 2), 1 dalies santrauka (id 38). Žr. GOLDEN_STANDARD §3.2a.
+5. **Modulio 4:** `section-break` ir `warm-up-quiz` – įgyvendinta; dokumentuota GOLDEN_STANDARD §3.4a, §3.4b.
+6. **M5 MUST:** „Kur pritaikyti?“ blokas po moduliu – CONTENT_AGENT → DATA_AGENT.
+7. **CODE_REVIEW_AGENT:** Patikrinti pakeitimus; **QA_AGENT:** Atnaujinti dokumentaciją.
 
 ---
 
 **CHANGES:**  
-- Sukurtas `docs/SKAIDRIU_TIPU_ANALIZE.md` – skaidrių tipų, turinio ir atvaizdavimo analizė, tobulinimų planas, agentų parinkimas.
+- Sukurtas `docs/SKAIDRIU_TIPU_ANALIZE.md` – skaidrių tipų, turinio ir atvaizdavimo analizė, tobulinimų planas, agentų parinkimas.  
+- Atnaujinta 2026-02-18: `warm-up-quiz`, `section-break`, apšilimas (§3.6), modulių 1–3 sekos atnaujinimas.
 
 **CHECKS:**  
 - Peržiūrėta pagal `modules.ts`, `SlideContent.tsx`, `AllSlides.tsx`, `modules.json`, esamą dokumentaciją.

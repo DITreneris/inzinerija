@@ -1,0 +1,121 @@
+{
+  "sections": [
+    {
+      "id": "slogans",
+      "title": "1. Slogans and examples",
+      "items": [
+        {
+          "id": "mini-zero-shot",
+          "title": "Mini: Zero-shot slogan",
+          "goal": "One sentence, no examples.",
+          "prompt": "Create a one-sentence product slogan for [PRODUCT]."
+        },
+        {
+          "id": "mini-few-shots",
+          "title": "Mini: Few-shot slogans",
+          "goal": "Match the style.",
+          "prompt": "Examples:\n\"[EXAMPLE 1]\"\n\"[EXAMPLE 2]\"\nCreate 3 more slogans in the same style for [PRODUCT]."
+        }
+      ]
+    },
+    {
+      "id": "reasoning",
+      "title": "2. Structuring reasoning",
+      "items": [
+        {
+          "id": "mini-chain",
+          "title": "Mini: Chain of thought",
+          "logika": "Problems → solutions → actions",
+          "prompt": "Identify 3 main problems related to [SITUATION / PRODUCT / PROCESS].\nSuggest solutions.\nOutline a short action plan."
+        },
+        {
+          "id": "mini-sequence",
+          "title": "Mini: Prompt sequence",
+          "logika": "Theses → plan → intro",
+          "prompt": "Create 5 main theses on [TOPIC].\nOutline the plan structure.\nWrite a 1-paragraph intro."
+        }
+      ]
+    },
+    {
+      "id": "instructions",
+      "title": "3. Instructions and constraints",
+      "items": [
+        {
+          "id": "mini-instructions",
+          "title": "Mini: Instruction-giving",
+          "prompt": "Write a [WORD COUNT] word text on [TOPIC].\nAudience: [AUDIENCE].\nTone: [TONE].\nLanguage: [LANGUAGE]."
+        },
+        {
+          "id": "mini-restrictions",
+          "title": "Mini: Constraints",
+          "goal": "Set limits and what to avoid.",
+          "prompt": "Task: [DESCRIBE TASK].\nConstraints:\nLength: [E.G. Max 200 words / 1 page].\nAvoid: [E.G. jargon, ads, subjective claims].\nFormat: [E.G. bullets, table, paragraphs].\nLanguage: [LANGUAGE]."
+        }
+      ]
+    },
+    {
+      "id": "daily",
+      "title": "4. Daily work prompts",
+      "items": [
+        {
+          "id": "daily-summary",
+          "title": "Daily summary",
+          "prompt": "META: You are [ROLE].\nINPUT:\nToday's work: [ENTER]\nResults: [ENTER]\nBlockers: [ENTER]\nTomorrow's plan: [ENTER]\nOUTPUT:\n5 bullet list\n1–2 sentences each"
+        },
+        {
+          "id": "meeting-notes",
+          "title": "Meeting notes",
+          "prompt": "META: You are a meeting secretary.\nINPUT:\nTopic: [TOPIC]\nAttendees: [NAMES]\nNotes: [TEXT]\nOUTPUT:\nSummary\nDecisions\nActions (who / when)\nOpen questions"
+        },
+        {
+          "id": "email-reply",
+          "title": "Email reply",
+          "prompt": "META: You are a customer support specialist.\nINPUT: Incoming email: [ENTER]\nOUTPUT:\n4–6 sentences\nProfessional, polite tone\nClear next step"
+        },
+        {
+          "id": "task-list",
+          "title": "Task list",
+          "prompt": "META: You are a personal work assistant.\nINPUT: Text with ideas or requirements: [TEXT]\nOUTPUT:\nTask list\nPriorities A / B / C\nDeadlines if mentioned"
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "title": "5. Decisions and analysis",
+      "items": [
+        {
+          "id": "decision-brief",
+          "title": "Decision brief",
+          "prompt": "META: You are a business analyst.\nINPUT:\nSituation: [DESCRIPTION]\nOptions: [OPTIONS]\nData: [NUMBERS / FACTS]\nOUTPUT:\nProblem\n2–3 options\nRecommendation\nRisks"
+        },
+        {
+          "id": "process-outline",
+          "title": "Process outline",
+          "prompt": "META: You are a process specialist.\nINPUT:\nTopic: [PROCESS]\nCurrent steps: [STEPS]\nOUTPUT:\n6–10 clear steps\nShort sentences, action verbs"
+        },
+        {
+          "id": "content-rewrite",
+          "title": "Text simplification",
+          "prompt": "META: You are an editor.\nINPUT:\nText: [TEXT]\nAudience: [AUDIENCE]\nOUTPUT:\n30–50% shorter version\nClear, plain language"
+        },
+        {
+          "id": "swot",
+          "title": "SWOT analysis",
+          "prompt": "META: You are a business consultant.\nINPUT:\nProject / company: [DESCRIPTION]\nData: [FACTS]\nOUTPUT:\nSWOT table\n3–5 concrete points per section"
+        }
+      ]
+    },
+    {
+      "id": "quality-eval",
+      "title": "6. Quality and evaluation",
+      "items": [
+        {
+          "id": "prompt-quality-5",
+          "title": "Prompt quality check (by 5 principles)",
+          "goal": "Paste your prompt and run. Checks against 5 principles, suitable for RAG and agents.",
+          "prompt": "ROLE:\nYou are an experienced prompt engineer and training facilitator.\nYour goal is to critically evaluate prompt quality and suggest improvements.\n\nTASK:\nEvaluate the given prompt against 5 principles:\n1) Clarity\n2) Experimentation\n3) From simple to complex\n4) Context\n5) Word choice\n\nINPUT:\n[prompt provided]\n\nEVALUATION FORMAT:\n1. Evaluation table (1–5 score per principle)\n2. Brief explanation of WHY that score\n3. 3 main weak points\n4. Suggested improved prompt version\n\nRULES:\n- Be specific, no generic phrases\n- If information is missing – state it clearly\n- If prompt is too complex – suggest a simpler V1\n- Don’t rewrite unnecessarily – only fix what adds real value\n\nOUTPUT:\nStructured, clear, practically applicable response."
+        }
+      ]
+    }
+  ]
+}

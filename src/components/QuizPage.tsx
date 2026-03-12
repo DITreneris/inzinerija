@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import { Progress } from '../utils/progress';
 import { getModulesDataSync } from '../data/modulesLoader';
+import { useLocale } from '../contexts/LocaleContext';
 import { useQuizState } from '../utils/useQuizState';
 import { LoadingSpinner } from './ui';
 import CircularProgress from './CircularProgress';
@@ -27,7 +29,9 @@ export default function QuizPage({
   progress,
   onQuizComplete,
 }: QuizPageProps) {
-  const modulesData = getModulesDataSync();
+  const { t } = useTranslation(['quiz', 'common']);
+  const { locale } = useLocale();
+  const modulesData = getModulesDataSync(locale);
 
   const questions = useMemo(() => {
     if (!modulesData?.quiz.questions) return [];
@@ -66,26 +70,25 @@ export default function QuizPage({
   if (!modulesData) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <LoadingSpinner size="lg" text="Kraunama..." />
+        <LoadingSpinner size="lg" text={t('common:loading')} />
       </div>
     );
   }
 
-  // No quiz questions (e.g. missing or malformed quiz in JSON)
   if (questions.length === 0) {
     return (
       <div className="max-w-2xl mx-auto space-y-6 animate-fade-in">
         <button
           onClick={onBack}
           className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400"
-          aria-label="Grįžti atgal"
+          aria-label={t('backToHomeAria')}
         >
           <ArrowLeft className="w-5 h-5" />
-          Grįžti atgal
+          {t('backToHome')}
         </button>
         <div className="card p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300">
-            Apklausos klausimų šiuo metu nėra. Grįžkite vėliau arba peržiūrėkite modulius.
+            {t('emptyState')} {t('emptyStateHint')}
           </p>
         </div>
       </div>
@@ -106,6 +109,20 @@ export default function QuizPage({
   }
 
   const currentQ = questions[currentQuestion];
+  // Apsauga: jei klausimų masyvas pasikeitė (pvz. locale), currentQuestion gali būti už ribų
+  if (!currentQ) {
+    return (
+      <div className="max-w-2xl mx-auto space-y-6 animate-fade-in">
+        <button onClick={onBack} className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400" aria-label={t('backToHomeAria')}>
+          <ArrowLeft className="w-5 h-5" />
+          {t('backToHome')}
+        </button>
+        <div className="card p-8 text-center">
+          <p className="text-gray-700 dark:text-gray-300">{t('emptyState')}</p>
+        </div>
+      </div>
+    );
+  }
   const isLastQuestion = currentQuestion === questions.length - 1;
   const hasAnswer = selectedAnswers[currentQ.id] !== undefined;
   const quizProgress = ((currentQuestion + 1) / questions.length) * 100;
@@ -120,11 +137,11 @@ export default function QuizPage({
             className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Atgal</span>
+            <span>{t('quiz:backToHome')}</span>
           </button>
           {progress.completedModules.length > 0 && (
             <span className="text-xs text-gray-500 dark:text-gray-400">
-              Baigta modulių: {progress.completedModules.length}/{modulesData?.modules?.length ?? 6}
+              {t('quiz:completedModulesCount')}: {progress.completedModules.length}/{modulesData?.modules?.length ?? 6}
             </span>
           )}
         </div>
@@ -136,7 +153,7 @@ export default function QuizPage({
             showPercentage={false}
           />
           <div className="text-right">
-            <p className="text-xs text-gray-500 dark:text-gray-400">Klausimas</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('quiz:questionLabel')}</p>
             <p className="text-lg font-bold text-brand-600 dark:text-brand-400">
               {currentQuestion + 1}/{questions.length}
             </p>
@@ -172,14 +189,14 @@ export default function QuizPage({
               <button
                 key={idx}
                 onClick={() => handleAnswerSelect(currentQ.id, idx)}
-                className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 ${
+                className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 min-h-[44px] touch-manipulation ${
                   isSelected
                     ? isCorrect
                       ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 shadow-lg scale-[1.02]'
                       : 'border-rose-500 bg-rose-50 dark:bg-rose-900/30 shadow-lg scale-[1.02]'
                     : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/50 dark:hover:bg-brand-900/10 bg-white dark:bg-gray-800'
                 } focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2`}
-                aria-label={`Pasirinkti atsakymą: ${option}`}
+                aria-label={t('selectOptionAria', { option })}
                 aria-pressed={isSelected}
                 disabled={showExplanation}
               >
@@ -229,7 +246,7 @@ export default function QuizPage({
                     ? 'text-emerald-800 dark:text-emerald-200'
                     : 'text-amber-800 dark:text-amber-200'
                 }`}>
-                  {selectedAnswers[currentQ.id] === currentQ.correct ? '✓ Teisingai!' : '✗ Neteisingai.'}
+                  {selectedAnswers[currentQ.id] === currentQ.correct ? t('correctLabel') : t('incorrectLabel')}
                 </p>
                 <p className={`text-sm ${
                   selectedAnswers[currentQ.id] === currentQ.correct
@@ -244,40 +261,49 @@ export default function QuizPage({
         )}
 
         {/* Navigation */}
-        <div className="mt-8 flex justify-between">
-          <button
-            onClick={() => setCurrentQuestion(Math.max(0, currentQuestion - 1))}
-            disabled={currentQuestion === 0}
-            className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed"
-            aria-label="Ankstesnis klausimas"
-          >
-            Atgal
-          </button>
-          
-          {isLastQuestion ? (
-            <button
-              onClick={handleSubmit}
-              disabled={!hasAnswer}
-              className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              aria-label="Baigti apklausą"
-            >
-              Baigti apklausą
-              <CheckCircle className="w-5 h-5" />
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                setCurrentQuestion((prev) => prev + 1);
-                setShowExplanation(false);
-              }}
-              disabled={!hasAnswer}
-              className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-              aria-label="Kitas klausimas"
-            >
-              Kitas
-              <ArrowRight className="w-5 h-5" />
-            </button>
+        <div className="mt-8 flex flex-col gap-3">
+          {!hasAnswer && (
+            <p id="quiz-next-hint" className="text-sm text-gray-500 dark:text-gray-400" role="status" aria-live="polite">
+              {t('selectAnswerHint')}
+            </p>
           )}
+          <div className="flex justify-between gap-4">
+            <button
+              onClick={() => setCurrentQuestion(Math.max(0, currentQuestion - 1))}
+              disabled={currentQuestion === 0}
+              className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation"
+              aria-label={t('prevQuestionAria')}
+            >
+              {t('common:back')}
+            </button>
+
+            {isLastQuestion ? (
+              <button
+                onClick={handleSubmit}
+                disabled={!hasAnswer}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-h-[44px] touch-manipulation"
+                aria-label={t('finishQuizAria')}
+                aria-describedby={!hasAnswer ? 'quiz-next-hint' : undefined}
+              >
+                {t('submit')}
+                <CheckCircle className="w-5 h-5" />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setCurrentQuestion((prev) => prev + 1);
+                  setShowExplanation(false);
+                }}
+                disabled={!hasAnswer}
+                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-h-[44px] touch-manipulation"
+                aria-label={t('nextQuestionAria')}
+                aria-describedby={!hasAnswer ? 'quiz-next-hint' : undefined}
+              >
+                {t('nextQuestion')}
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

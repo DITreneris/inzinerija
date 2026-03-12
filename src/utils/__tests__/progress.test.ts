@@ -151,6 +151,24 @@ describe('progress.ts', () => {
         moduleTestScores: {},
       });
     });
+
+    it('should return default progress when localStorage access throws', () => {
+      const getItemSpy = vi.spyOn(localStorage, 'getItem').mockImplementation(() => {
+        throw new Error('Storage disabled');
+      });
+
+      const progress = getProgress();
+
+      expect(progress).toEqual({
+        completedModules: [],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        moduleTestScores: {},
+      });
+
+      getItemSpy.mockRestore();
+    });
   });
 
   describe('saveProgress', () => {
@@ -343,6 +361,63 @@ describe('progress.ts', () => {
         quizCompleted: false,
         quizScore: null,
       })).toBe(false);
+    });
+  });
+
+  describe('moduleTestScores', () => {
+    it('should save and load moduleTestScores correctly', () => {
+      const progress: Progress = {
+        completedModules: [1, 2, 3, 4, 5],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        moduleTestScores: { 5: 85 },
+      };
+
+      saveProgress(progress);
+      flushProgressSave();
+      const loaded = getProgress();
+      expect(loaded.moduleTestScores).toEqual({ 5: 85 });
+    });
+
+    it('should preserve moduleTestScores when updating other fields', () => {
+      const progress: Progress = {
+        completedModules: [1, 2],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        moduleTestScores: { 2: 90, 5: 75 },
+      };
+
+      saveProgress(progress);
+      flushProgressSave();
+
+      saveProgress({ ...progress, quizCompleted: true, quizScore: 80 });
+      flushProgressSave();
+
+      const loaded = getProgress();
+      expect(loaded.moduleTestScores).toEqual({ 2: 90, 5: 75 });
+      expect(loaded.quizCompleted).toBe(true);
+    });
+
+    it('should reject moduleTestScores with non-number value', () => {
+      expect(validateProgress({
+        completedModules: [],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        moduleTestScores: { 5: 'not a number' },
+      })).toBe(false);
+    });
+
+    it('should accept valid moduleTestScores with multiple entries', () => {
+      expect(validateProgress({
+        completedModules: [],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        moduleTestScores: { 2: 90, 5: 75, 8: 60 },
+      })).toBe(true);
     });
   });
 

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tools (tools.json)",
+  "type": "object",
+  "required": ["tools"],
+  "properties": {
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "moduleId"],
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string" },
+          "description": { "type": "string" },
+          "moduleId": { "type": "number" },
+          "category": { "type": "string" }
+        }
+      }
+    }
+  }
+}

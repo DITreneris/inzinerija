@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 720" xmlns="http://www.w3.org/2000/svg" aria-labelledby="m9-workflow-title" role="img">
+  <title id="m9-workflow-title">Modulio 9 workflow: 8 ~ingsnis duomens valdymo ciklas  surinkimas, metodika, deep research, valymas, integracija, atvaizdavimas, dashboard</title>
+  <defs>
+    <linearGradient id="m9-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="m9-step" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#486581"/>
+      <stop offset="100%" stop-color="#334e68"/>
+    </linearGradient>
+    <marker id="m9-arrow" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">
+      <path d="M0 0 L12 5 L0 10 Z" fill="#334e68" stroke="#334e68" stroke-width="0.3"/>
+    </marker>
+  </defs>
+  <rect width="400" height="720" fill="url(#m9-bg)" rx="12"/>
+  <rect width="400" height="720" fill="none" stroke="#bcccdc" stroke-width="1" rx="12"/>
+  <text x="200" y="28" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="800" fill="#102a43">Modulio 9 workflow</text>
+  <text x="200" y="46" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="500" fill="#334e68">8 ~ingsnis duomens valdymo ciklas</text>
+
+  <g>
+    <rect x="60" y="58" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">1. Duomens surinkimas</text>
+    <text x="200" y="95" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">.mon / sektorius, aaltiniai, KPI</text>
+  </g>
+  <line x1="200" y1="104" x2="200" y2="118" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="122" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="144" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">2. Metodikos prompto paruoaimas</text>
+    <text x="200" y="159" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Rodikliai, struktkra</text>
+  </g>
+  <line x1="200" y1="168" x2="200" y2="182" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="186" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="208" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">3. Deep research prompto paruoaimas</text>
+    <text x="200" y="223" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Vienas promptas 4 /rankiams</text>
+  </g>
+  <line x1="200" y1="232" x2="200" y2="246" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="250" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="269" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">4. 4� Deep research vienu metu</text>
+    <text x="200" y="286" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">ChatGPT, Gemini, DeepSeek, Grok</text>
+  </g>
+  <line x1="200" y1="296" x2="200" y2="310" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="314" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="336" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">5. Duomens iavalymas</text>
+    <text x="200" y="351" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Dublis aalinimas, formatas, checklist</text>
+  </g>
+  <line x1="200" y1="360" x2="200" y2="374" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="378" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="397" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">6. Duomens integracija</text>
+    <text x="200" y="415" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Vienas dokumentas (lentel / markdown)</text>
+  </g>
+  <line x1="200" y1="424" x2="200" y2="438" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="442" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="461" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">7. Atvaizdavimas (Claude / ChatGPT)</text>
+    <text x="200" y="478" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">Spalvos, grafiks pavadinimai, sandbox</text>
+  </g>
+  <line x1="200" y1="488" x2="200" y2="502" stroke="#334e68" stroke-width="2" marker-end="url(#m9-arrow)"/>
+
+  <g>
+    <rect x="60" y="506" width="280" height="42" rx="8" fill="url(#m9-step)" stroke="#334e68" stroke-width="1.5"/>
+    <text x="200" y="525" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700" fill="white">8. Dashboard / demonstracija</text>
+    <text x="200" y="542" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="500" fill="rgba(255,255,255,0.9)">.html snippet � Notepad � naraykl</text>
+  </g>
+</svg>

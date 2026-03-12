@@ -1,0 +1,2022 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "title": "6-Block System",
+      "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
+      "description": "Six prompt structure blocks in one clear course – the full system from A to Z.",
+      "icon": "Target",
+      "level": "learn",
+      "duration": "25 min",
+      "slides": [
+        {
+          "id": 1,
+          "title": "Same task. Two different answers.",
+          "subtitle": "Why does AI sometimes answer brilliantly and sometimes vaguely?",
+          "type": "action-intro",
+          "content": {
+            "whyBenefit": "After this module you'll write prompts 6x better than before.",
+            "heroStat": "Same task.",
+            "heroText": "Two different answers.",
+            "heroSubText": "The problem isn't AI. The problem is your prompt.",
+            "ctaText": "See the difference in 30 seconds!",
+            "unstructuredPrompt": "Write me a marketing plan.",
+            "structuredPrompt": "META: You are a marketing strategist with 10 years of B2B experience.\nGoal: prepare a Q1 marketing plan.\nAudience: CMO and leadership.\n\nINPUT: Budget 50k EUR. Target market: Baltic countries.\nCompetitors: 3 main players.\n\nOUTPUT: Strategic document, 2–3 pages.\nStructure: goals → channels → budget → key indicators.\nTone: professional, with concrete numbers.",
+            "aboutText": "In this course you'll learn the 6-block system – from a messy question to a professional result.",
+            "sandboxMessage": "This is a sandbox – you can try, make mistakes, and go back. Results aren't saved here; what matters is learning.",
+            "outcomes": [
+              "Write prompts that give predictable results",
+              "Use the 6-block structure in any AI tool",
+              "Save time – fewer iterations, more precision"
+            ],
+            "toolsIntro": "The 6-block principles work in any of these tools. Below – a short intro and the most common use cases.",
+            "tools": [
+              {
+                "name": "ChatGPT (OpenAI)",
+                "url": "https://chat.openai.com",
+                "description": "General-purpose conversational AI – best for everyday writing, summaries, and idea generation.",
+                "useCases": [
+                  "Letters and email",
+                  "Summaries and analysis",
+                  "Brainstorming",
+                  "Code help"
+                ]
+              },
+              {
+                "name": "Claude (Anthropic)",
+                "url": "https://claude.ai",
+                "description": "Strong on long texts and documents; careful, consistent response style.",
+                "useCases": [
+                  "Long documents",
+                  "Ethics and safety questions",
+                  "Writing and editing",
+                  "Structured answers"
+                ]
+              },
+              {
+                "name": "Gemini (Google)",
+                "url": "https://gemini.google.com",
+                "description": "Integrated with Google services – mail, docs, search in one place.",
+                "useCases": [
+                  "Gmail and Docs integration",
+                  "Search and fact-checking",
+                  "Working with images",
+                  "Everyday tasks"
+                ]
+              },
+              {
+                "name": "Copilot (Microsoft)",
+                "url": "https://copilot.microsoft.com",
+                "description": "In the Microsoft stack – Outlook, Word, Teams; great for office work.",
+                "useCases": [
+                  "Outlook email",
+                  "Word and PowerPoint",
+                  "Excel analysis",
+                  "Meeting summaries"
+                ]
+              },
+              {
+                "name": "Grok (xAI)",
+                "url": "https://grok.x.ai",
+                "description": "Real-time data from X (Twitter) – news, trends, public discussion.",
+                "useCases": [
+                  "News roundups",
+                  "Trend analysis",
+                  "Social discussion context"
+                ]
+              },
+              {
+                "name": "DeepSeek",
+                "url": "https://chat.deepseek.com",
+                "description": "Strong for coding, maths, and logic – good value for money.",
+                "useCases": [
+                  "Code generation",
+                  "Math and analysis",
+                  "Long context",
+                  "Technical writing"
+                ]
+              }
+            ],
+            "duration": "3 modules, ~45 min",
+            "footer": "Next – slide 2: Generative AI impact on productivity"
+          }
+        },
+        {
+          "id": 0.5,
+          "title": "Generative AI impact on productivity",
+          "subtitle": "Statistics and research results",
+          "type": "infographic",
+          "content": {
+            "title": "Generative AI impact on productivity",
+            "heroNumber": "56%",
+            "heroText": "FASTER WORK",
+            "conclusion": "AI takes over routine tasks, lets you work faster and better, and helps beginners the most.",
+            "cards": [
+              {
+                "icon": "✍️",
+                "title": "Content writing",
+                "stats": [
+                  {
+                    "label": "Speed",
+                    "value": "+40%"
+                  },
+                  {
+                    "label": "Quality",
+                    "value": "+18%"
+                  }
+                ]
+              },
+              {
+                "icon": "💻",
+                "title": "Programming",
+                "stats": [
+                  {
+                    "label": "Speed",
+                    "value": "+56%"
+                  },
+                  {
+                    "label": "Code",
+                    "value": "+55%"
+                  }
+                ]
+              },
+              {
+                "icon": "🎧",
+                "title": "Customer service",
+                "stats": [
+                  {
+                    "label": "Overall",
+                    "value": "+14%"
+                  },
+                  {
+                    "label": "Beginners",
+                    "value": "+34%"
+                  }
+                ]
+              }
+            ],
+            "insights": [
+              {
+                "emoji": "⏱",
+                "value": "56%",
+                "text": "Faster"
+              },
+              {
+                "emoji": "✨",
+                "value": "18%",
+                "text": "Better quality"
+              },
+              {
+                "emoji": "🚀",
+                "value": "+34%",
+                "text": "Beginners"
+              },
+              {
+                "emoji": "🤖",
+                "value": "15%",
+                "text": "Experts"
+              }
+            ],
+            "sources": [
+              {
+                "title": "Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence",
+                "institution": "MIT",
+                "year": "2023",
+                "journal": "Science (Vol. 381)",
+                "url": "https://www.science.org/doi/10.1126/science.adh2586"
+              },
+              {
+                "title": "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot",
+                "institution": "Microsoft Research",
+                "year": "2023",
+                "journal": "arXiv",
+                "url": "https://arxiv.org/abs/2302.06590"
+              },
+              {
+                "title": "Generative AI at Work",
+                "institution": "Stanford & MIT",
+                "year": "2023",
+                "journal": "NBER",
+                "url": "https://www.nber.org/papers/w31161"
+              }
+            ],
+            "footer": "Next – slide 3: Prompt and prompt engineering"
+          }
+        },
+        {
+          "id": 2,
+          "title": "Prompt and prompt engineering",
+          "subtitle": "Two terms that change how well you work with AI",
+          "type": "definitions",
+          "content": {
+            "contextIntro": "Every time you write to AI, you're writing a prompt. The question is: do you do it in a structured way?",
+            "promptDefinition": "A prompt is a text instruction to an AI model. Every question, task, or direction you give the AI is a prompt.",
+            "engineeringDefinition": "Prompt engineering is a systematic approach to what and how you write to AI. Not guesswork – a process: specification, structure, iteration.",
+            "aspects": [
+              {
+                "icon": "Target",
+                "title": "Specification",
+                "description": "Clear definition of the task: goal, audience, requirements, and constraints.",
+                "example": "Goal: prepare a Q3 sales summary for the board. Audience: 6 members. Constraints: 1 page, English."
+              },
+              {
+                "icon": "Layers",
+                "title": "Structure",
+                "description": "How you organise information: context, data, format, priorities.",
+                "example": "Separate and number: 1) META 2) INPUT 3) OUTPUT 4) QUALITY. Briefly – what to write."
+              },
+              {
+                "icon": "Repeat",
+                "title": "Iteration",
+                "description": "Try, measure, refine, and check quality until the result fits your needs.",
+                "example": "Iteration: 1) format 2) key indicators 3) criteria. Briefly – what to check."
+              }
+            ],
+            "keyInsight": "Prompt engineering = Specification + Structure + Iteration",
+            "sources": [
+              {
+                "label": "OpenAI Prompt Engineering Guide",
+                "url": "https://platform.openai.com/docs/guides/prompt-engineering"
+              },
+              {
+                "label": "Microsoft OpenAI Prompt Engineering",
+                "url": "https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering"
+              },
+              {
+                "label": "Anthropic Prompt Engineering",
+                "url": "https://docs.anthropic.com/claude/docs/prompt-engineering"
+              }
+            ],
+            "footer": "Next – slide 4: Workflow concept"
+          }
+        },
+        {
+          "id": 15,
+          "title": "Workflow concept",
+          "subtitle": "From simple chat to work results",
+          "type": "workflow-summary",
+          "content": {
+            "intro": "Chat = free-form answer. Workflow = structured result.",
+            "diagrams": [
+              {
+                "title": "1) Chat (Basic)",
+                "subtitle": "Good for ideas, explanations, discussion.",
+                "steps": [
+                  "Input: question",
+                  "LLM (language model)",
+                  "Output: answer"
+                ],
+                "note": "Limited control – AI guesses what you want.",
+                "variant": "basic"
+              },
+              {
+                "title": "2) Workflow",
+                "subtitle": "Good for documents, analysis, plans.",
+                "steps": [
+                  "Input: prompt + data",
+                  "LLM (language model)",
+                  "Output: analysis / document / plan"
+                ],
+                "note": "AI becomes a work tool, not just a chat.",
+                "variant": "workflow"
+              }
+            ],
+            "examples": [
+              {
+                "title": "Chat",
+                "prompt": "Tell me about prompt engineering"
+              },
+              {
+                "title": "Workflow",
+                "prompt": "You are a training designer.\nCreate a 5-point explanation of prompt engineering.\nFormat: numbered list.\nTone: professional.\nMax 120 words."
+              }
+            ],
+            "footer": "Next – slide 5: Main prompt types",
+            "interactive": {
+              "enabled": true,
+              "defaultMode": "basic"
+            }
+          }
+        },
+        {
+          "id": 3,
+          "title": "Main prompt types",
+          "subtitle": "Three core types for effective communication with AI",
+          "type": "prompt-types",
+          "content": {
+            "types": [
+              {
+                "name": "System prompts",
+                "color": "brand",
+                "description": "Set the AI's goal and boundaries.",
+                "example": "You are a marketing analyst; provide the structure and key metrics for a competitor analysis, please.",
+                "result": "AI acts as a specialist analyst, giving structured business insights."
+              },
+              {
+                "name": "Context prompts",
+                "color": "accent",
+                "description": "Give the task and important context.",
+                "example": "Prepare a competitor analysis for the logistics sector, short and clear, using 2024 data.",
+                "result": "Answers focused on the market and the latest data."
+              },
+              {
+                "name": "Role prompts",
+                "color": "violet",
+                "description": "Set tone, style, and audience.",
+                "example": "Imagine you're a company lead presenting the strategy to the team – short and convincing.",
+                "result": "Text in a leader's voice – inspiring, forward-looking, motivating."
+              }
+            ],
+            "practicalTip": "Combine all three prompt types in one request to get the most precise, business-ready result. Especially important for strategy documents or analysis.",
+            "footer": "Next – slide 6: Prompting techniques"
+          }
+        },
+        {
+          "id": 14,
+          "title": "Prompting techniques",
+          "subtitle": "6 basic techniques and copyable examples",
+          "type": "prompt-techniques",
+          "content": {
+            "logicSteps": [
+              "Zero-shot (no examples)",
+              "Few-shot (with examples)",
+              "Chain of thought (steps)",
+              "Prompt chain (result becomes next prompt)",
+              "Instruction (format, tone)",
+              "Manipulation (what to avoid)"
+            ],
+            "techniques": [
+              {
+                "title": "Zero-shot",
+                "description": "One clear request with no extra examples.",
+                "example": "Create a one-sentence product tagline."
+              },
+              {
+                "title": "Few-shot",
+                "description": "Give 1–2 examples and ask for new ones.",
+                "example": "Examples: \"Less stress, more energy.\" \"Your health – your plan.\" Create 3 more."
+              },
+              {
+                "title": "Chain of thought",
+                "description": "Break the task into clear steps.",
+                "example": "Chain: 1) concept 2) plan 3) budget 4) schedule."
+              },
+              {
+                "title": "Prompt chain",
+                "description": "Use one result as input for the next.",
+                "example": "Create outline → Draft plan → Write intro."
+              },
+              {
+                "title": "Instruction",
+                "description": "Specify format, length, and tone.",
+                "example": "Write a 200-word message, formal tone, in English."
+              },
+              {
+                "title": "Manipulation (avoid)",
+                "description": "Biased requests distort the result.",
+                "example": "Prove that X is better than Y."
+              }
+            ],
+            "footer": "Next – slide 7: Good prompt template"
+          }
+        },
+        {
+          "id": 16,
+          "title": "Good prompt template",
+          "subtitle": "META + INPUT + OUTPUT",
+          "type": "prompt-template",
+          "content": {
+            "blocks": [
+              {
+                "title": "META (role + goal + audience)",
+                "description": "Who you are, what you're doing, and who the result is for.",
+                "example": "Role – marketing lead. Goal – SWOT analysis. Audience – leadership."
+              },
+              {
+                "title": "INPUT (data + constraints)",
+                "description": "Facts, numbers, and limits you're working with.",
+                "example": "Product \"EcoBox\". Goal – retail. Constraint – 1 page."
+              },
+              {
+                "title": "OUTPUT (format + structure + tone)",
+                "description": "How the result should look and sound.",
+                "example": "Format – table. Structure – S/W/O/T, 3 points each. Tone – professional."
+              }
+            ],
+            "template": "META: Role – [who you are]. Goal – [what to create]. Audience – [who for].\nINPUT: Data – [facts/numbers]. Constraints – [time/budget].\nOUTPUT: Format – [table/list/document]. Structure – [points/sections]. Tone – [style].",
+            "example": "META: Role – marketing lead. Goal – prepare SWOT analysis. Audience – leadership.\nINPUT: Data – product \"EcoBox\", goal retail. Constraints – 1 page.\nOUTPUT: Format – table with bullets. Structure – S/W/O/T, 3 points each. Tone – professional, clear.",
+            "footer": "Next – slide 8: What you've learned so far"
+          }
+        },
+        {
+          "id": 17,
+          "title": "What you've learned so far",
+          "subtitle": "From a clear task to validation",
+          "type": "transition-3-to-6",
+          "content": {
+            "title": "So far – clear task. Next – control.",
+            "mapping": [
+              {
+                "from": "Done",
+                "to": "You have a clear task with META, INPUT, OUTPUT."
+              },
+              {
+                "from": "Next",
+                "to": "Add Reasoning, Quality, and Advanced – for checking and consistency."
+              }
+            ],
+            "note": "Complex tasks need more than clarity – they need validation.",
+            "takeaway": "From 3 blocks to 6 blocks = from task to control.",
+            "footer": "Next – slide 9: Hierarchical structure"
+          }
+        },
+        {
+          "id": 4,
+          "title": "Hierarchical structure",
+          "subtitle": "6-block system: from most to least critical",
+          "type": "hierarchy",
+          "content": {
+            "introHeading": "Why does hierarchy matter?",
+            "introBody": "AI models read and process information in order. The most important information should come first so the result matches your expectations.",
+            "blocks": [
+              {
+                "num": "1",
+                "name": "Meta block",
+                "desc": "Role, experience, goal, audience",
+                "priority": "Critical",
+                "color": "brand"
+              },
+              {
+                "num": "2",
+                "name": "Input block",
+                "desc": "Data, numbers, facts, constraints",
+                "priority": "Very important",
+                "color": "brand"
+              },
+              {
+                "num": "3",
+                "name": "Output block",
+                "desc": "Format, structure, length, language",
+                "priority": "Very important",
+                "color": "brand"
+              },
+              {
+                "num": "4",
+                "name": "Reasoning block",
+                "desc": "Thought sequence, logic, steps",
+                "priority": "Important",
+                "color": "brand"
+              },
+              {
+                "num": "5",
+                "name": "Quality Control",
+                "desc": "Check criteria, validation",
+                "priority": "Recommended",
+                "color": "emerald"
+              },
+              {
+                "num": "6",
+                "name": "Advanced Parameters",
+                "desc": "Temperature, reasoning depth",
+                "priority": "Optional",
+                "color": "emerald"
+              }
+            ],
+            "tip": "Try creating a prompt without structure (as you usually would). Save it – we'll compare with the structured version at the end.",
+            "footer": "Next – slide 10: 1 Meta block"
+          }
+        },
+        {
+          "id": 5,
+          "title": "1 Meta block",
+          "subtitle": "Role, context, and goal – who are you and what do you do?",
+          "type": "meta",
+          "blockNumber": 1,
+          "keyQuestion": "Who are you and what do you do?"
+        },
+        {
+          "id": 6,
+          "title": "2 Input block",
+          "subtitle": "Facts, data, and constraints – what do you have?",
+          "type": "input",
+          "blockNumber": 2,
+          "keyQuestion": "What data and constraints do you have?"
+        },
+        {
+          "id": 7,
+          "title": "3 Output block",
+          "subtitle": "Format and structure – what do you expect?",
+          "type": "output",
+          "blockNumber": 3,
+          "keyQuestion": "What format and structure do you want?"
+        },
+        {
+          "id": 8,
+          "title": "Reasoning models",
+          "subtitle": "CoT vs ToT – how is AI reasoning controlled?",
+          "type": "reasoning-models",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "**Benefit:** Two reasoning models – chain (CoT) and tree (ToT). Chain = sequence. Tree = alternatives. Choice depends on the task.",
+              "darykDabar": "**What to do:** Review both models below. Pick one template (CoT or ToT), copy it, and run it in AI with your business task.",
+              "patikra": "Did AI follow the reasoning sequence? If the answer is too shallow – try the other model."
+            },
+            "sections": [
+              {
+                "heading": "Why it works",
+                "body": "AI doesn't \"think\" on its own like a person – it follows your instructions. When you specify a reasoning sequence (CoT or ToT), the model outputs step by step or compares options by your rules. So the right model choice and clear structure in the prompt lead to better, more predictable results.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              }
+            ],
+            "footer": "Next – slide 14: 4 Reasoning block"
+          }
+        },
+        {
+          "id": 9,
+          "title": "4 Reasoning block",
+          "subtitle": "Reasoning logic – how should AI think?",
+          "type": "reasoning",
+          "blockNumber": 4,
+          "keyQuestion": "How to think before answering?",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "**Benefit:** The Reasoning block tells AI how to think before answering. Without it – AI guesses. With it – AI justifies the answer step by step.",
+              "darykDabar": "**What to do:** Choose the Lite (3 steps) or Advanced (6 steps) template below. Copy it, add your business problem, and run AI.",
+              "patikra": "Did AI give reasoned logic, not just a conclusion? Do you see steps, assumptions, alternatives?"
+            },
+            "sections": [
+              {
+                "heading": "Why it works",
+                "body": "AI doesn't \"think\" on its own – it follows instructions. When you specify a reasoning sequence (CoT or ToT), the model outputs step by step or compares options. That reduces errors and improves answer logic.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              }
+            ],
+            "footer": "Next – slide 15: 5 Quality Control block"
+          }
+        },
+        {
+          "id": 10,
+          "title": "5 Quality Control block",
+          "subtitle": "Quality criteria – how to check?",
+          "type": "quality",
+          "blockNumber": 5,
+          "keyQuestion": "How to check result quality?",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "**Benefit:** Quality Control – a safety net. AI checks its own answer before giving it. Reduces hallucinations and logic gaps.",
+              "darykDabar": "**What to do:** Copy the Inline QC template below and add it to the end of your prompt. Run AI – watch for assumptions and limitations in the answer.",
+              "patikra": "Did AI mark assumptions? Did it state uncertainties? If not – strengthen the QC instruction."
+            },
+            "sections": [
+              {
+                "heading": "Why it works",
+                "body": "When you set quality criteria (e.g. \"mark assumptions\", \"state limitations\"), AI separates what's fact-based from what's guesswork in the answer. That helps you judge the answer critically and reduces over-trust.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              }
+            ]
+          }
+        },
+        {
+          "id": 11,
+          "title": "6 Advanced Parameters",
+          "subtitle": "Advanced parameters – how to control precisely?",
+          "type": "advanced",
+          "blockNumber": 6,
+          "keyQuestion": "What model-specific parameters?",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "**Benefit:** Temperature controls creativity, Reasoning – depth of thought. You can try right away: pick one example below, copy and run AI.",
+              "darykDabar": "**What to do:** Pick one of the 3 examples below (business analysis, marketing, SOP). Copy the block with ADVANCED parameters and your task, run AI. Examples below.",
+              "patikra": "Did the answer match the settings (short/long, creative/precise)? Would you change temperature or reasoning next time?"
+            },
+            "heroTitle": "🧠 Advanced Parameters – precision vs creativity",
+            "heroBody": "Optional but powerful block: control AI predictability, depth, and creativity for your business task.",
+            "temperatureTitle": "Temperature – creativity dial",
+            "temperatureScaleLeft": "⬅️ Precision",
+            "temperatureScaleRight": "Creativity ➡️",
+            "temperatureLevels": [
+              { "range": "0.0–0.3", "label": "Low → facts, analysis, instructions", "note": "The lower the temperature – the less improvisation." },
+              { "range": "0.4–0.7", "label": "Medium → balanced business use" },
+              { "range": "0.8–1.0", "label": "High → ideas, marketing, creative" }
+            ],
+            "reasoningTitle": "Reasoning depth – thinking intensity",
+            "reasoningLevels": [
+              { "label": "Fast → simple questions, Q&A" },
+              { "label": "Normal → standard business tasks" },
+              { "label": "Deep → analysis, strategy, comparing options", "note": "Deep = more time, but better logic." }
+            ],
+            "cheatSheetTitle": "When to use what? (Business cheat sheet)",
+            "cheatSheetHeaders": ["Task", "Temperature", "Reasoning"],
+            "cheatSheetRows": [
+              ["Reports, analysis", "0.1–0.3", "Deep"],
+              ["SOP, instructions", "0.1–0.2", "Normal"],
+              ["Emails, HR", "0.4–0.5", "Normal"],
+              ["Marketing, copy", "0.6–0.8", "Normal"],
+              ["Strategy, ideas", "0.5–0.6", "Deep"]
+            ],
+            "safeDefaultBadge": "80% of business cases",
+            "safeDefaultValue": "Temperature: <strong>0.4–0.6</strong> · Reasoning: <strong>Normal</strong>",
+            "examplesTitle": "Ready-to-copy examples (3)",
+            "examples": [
+              {
+                "icon": "🔍",
+                "label": "Business analysis",
+                "copyText": "ADVANCED:\nTemperature: 0.2\nReasoning: Deep\n\nTask:\nAnalyze this company's process and provide 3 problems and 3 realistic optimization recommendations.",
+                "taskLabel": "Task:"
+              },
+              {
+                "icon": "📣",
+                "label": "Marketing copy",
+                "copyText": "ADVANCED:\nTemperature: 0.7\nReasoning: Normal\n\nTask:\nWrite a LinkedIn post about a new service. Tone – professional, focused on business value.",
+                "taskLabel": "Task:"
+              },
+              {
+                "icon": "⚙️",
+                "label": "SOP / instruction",
+                "copyText": "ADVANCED:\nTemperature: 0.1\nReasoning: Normal\n\nTask:\nCreate a step-by-step instruction for a new employee, no interpretation.",
+                "taskLabel": "Task:"
+              }
+            ],
+            "errorsTitle": "Common mistakes",
+            "errors": [
+              "High temperature for analysis → \"looks nice, but inaccurate\"",
+              "Deep reasoning for simple tasks → too slow",
+              "Changing parameters but not the task formulation"
+            ],
+            "ruleTemperatureLabel": "CREATIVITY",
+            "ruleReasoningLabel": "THINKING",
+            "templateLabel": "Copyable template",
+            "templateValue": "ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].",
+            "sections": [
+              {
+                "heading": "Why it works",
+                "body": "Temperature and reasoning depth change how the model generates answers: lower temperature – more precise and consistent; higher – more variation. By setting parameters in the prompt or tool, you align the result better with your goal.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              }
+            ],
+            "footer": "Next – slide 17: 6 Advanced Parameters (II)"
+          }
+        },
+        {
+          "id": 18,
+          "title": "6 Advanced Parameters (II)",
+          "subtitle": "Response control – length, focus, repetition",
+          "type": "advanced-2",
+          "blockNumber": 6,
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "**Benefit:** You control response length (max tokens), focus (top-p), and repetition (penalties). First – a clear task; then parameters. You can try one example below right away.",
+              "darykDabar": "**What to do:** Pick one parameter below (Max Tokens, Top-p, Frequency, or Presence). Copy the example, add your task, run AI. Examples under each parameter.",
+              "patikra": "Did response length match expectations? Fewer repetitions (or more new ideas)? If not – change the parameter value and run again."
+            },
+            "footer": "Next – slide 18: Full prompt example"
+          }
+        },
+        {
+          "id": 12,
+          "title": "Full prompt example",
+          "subtitle": "All 6 blocks work together",
+          "type": "full-example",
+          "practicalTask": {
+            "title": "Create your full prompt",
+            "motivation": "Use it at work – create a structured prompt for a real task from your job or business.",
+            "inputHint": "Enter the full prompt in the field below – all blocks (META, INPUT, OUTPUT, etc.) in your own words, not just placeholders.",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "Use the template above and build a full prompt for your real task. Remember: each block adds to the next and creates clear context for the AI model."
+          },
+          "content": {
+            "footer": "Next – slide 19: Before vs After"
+          }
+        },
+        {
+          "id": 13,
+          "title": "Before and After",
+          "shortTitle": "Before and After",
+          "subtitle": "Structured vs unstructured prompt comparison",
+          "type": "comparison",
+          "content": {
+            "introText": "What's compared: the same task, different structure (no blocks vs with blocks).",
+            "unstructuredPrompt": "Create a training programme about AI for me. It should be interesting and practical.",
+            "structuredPrompt": "META: You are a training designer. Goal – prepare a 4-hour intro to AI. Audience – 12–15 beginners.\nINPUT: Constraints – 1 facilitator, no live tool demos.\nOUTPUT: Table with 5 columns: module, duration, goal, activity, result. Tone – clear, professional.",
+            "unstructuredCons": [
+              "Unclear target audience",
+              "No concrete data",
+              "Vague format"
+            ],
+            "structuredPros": [
+              "Clear audience",
+              "Concrete parameters",
+              "Precise format"
+            ],
+            "labelLeft": "Unstructured",
+            "labelRight": "Structured",
+            "stats": {
+              "leftPct": 40,
+              "rightPct": 85,
+              "lessEditsPct": 60
+            },
+            "footer": "Next – slide 20: Glossary"
+          }
+        },
+        {
+          "id": 13.5,
+          "title": "Glossary",
+          "subtitle": "Key Module 1 terms – prompt, blocks, techniques",
+          "type": "glossary",
+          "content": {
+            "terms": [
+              {
+                "term": "Prompt",
+                "definition": "A text instruction or question you give an AI model to get the answer you want; your way of communicating with the AI system."
+              },
+              {
+                "term": "Prompt engineering",
+                "definition": "The art and practice of communicating effectively with AI: specification (goal, audience), structure (context, format), and iteration (testing, refinement)."
+              },
+              {
+                "term": "Workflow",
+                "definition": "A process where input is not just a question but a prompt and data; output is analysis, document, or plan, not just a reply."
+              },
+              {
+                "term": "System prompt",
+                "definition": "Sets the AI's goal and role (e.g. \"You are a marketing analyst…\")."
+              },
+              {
+                "term": "Context prompt",
+                "definition": "Provides situational information (sector, data, year)."
+              },
+              {
+                "term": "Role prompt",
+                "definition": "Shapes style and tone (e.g. \"Imagine you're a company lead…\")."
+              },
+              {
+                "term": "Zero-shot",
+                "definition": "A request with no examples – one question or instruction."
+              },
+              {
+                "term": "Few-shot",
+                "definition": "A request with a few examples so AI adopts the style or format."
+              },
+              {
+                "term": "CoT (Chain of Thought)",
+                "definition": "A single step-by-step chain of reasoning; good for analysis and calculation."
+              },
+              {
+                "term": "ToT (Tree of Thoughts)",
+                "definition": "Several branches or options; you pick the best; good for strategy and creativity."
+              },
+              {
+                "term": "META block",
+                "definition": "Role (who you are), context and goal (what to create), audience (who for)."
+              },
+              {
+                "term": "INPUT block",
+                "definition": "Data, facts, constraints – what you have before you start."
+              },
+              {
+                "term": "OUTPUT block",
+                "definition": "Format, structure, requirements – what you want to get (table, list, tone)."
+              },
+              {
+                "term": "Reasoning block",
+                "definition": "Specifies what logic AI should use before answering (CoT or ToT)."
+              },
+              {
+                "term": "Quality Control block",
+                "definition": "Quality criteria: sources, objectivity, limits, \"don't know\" rule."
+              },
+              {
+                "term": "Advanced Parameters",
+                "definition": "Model settings: temperature, reasoning depth, response length, repetition control."
+              }
+            ],
+            "footer": "Next – slide 21: Module summary"
+          }
+        },
+        {
+          "id": 14,
+          "title": "Module summary",
+          "subtitle": "Main ideas and what you learned",
+          "type": "summary",
+          "content": {
+            "introHeading": "What you learned",
+            "introBody": "Well done! You now know how to structure prompts professionally using the 6-block system, workflow, and prompting techniques.",
+            "stats": [
+              {
+                "label": "Blocks",
+                "value": "6"
+              },
+              {
+                "label": "Techniques",
+                "value": "6"
+              },
+              {
+                "label": "Workflow",
+                "value": "2"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "6 main blocks",
+                "icon": "Layers",
+                "color": "brand",
+                "items": [
+                  "Meta – role, context, goal (who you are and what you do)",
+                  "Input – data, facts, constraints (what you have)",
+                  "Output – format, structure, tone (what you want)",
+                  "Reasoning – thought structure (CoT or ToT)",
+                  "Quality – quality criteria (how to check)",
+                  "Advanced – parameters (Temperature, Reasoning depth)"
+                ]
+              },
+              {
+                "heading": "Workflow and techniques",
+                "icon": "Workflow",
+                "color": "violet",
+                "items": [
+                  "Basic use – for chat, ideas",
+                  "Workflow use – for documents, processes",
+                  "Zero-shot, Few-shot, CoT, ToT, Instruction",
+                  "Manipulation – what to avoid"
+                ]
+              },
+              {
+                "heading": "Main ideas",
+                "icon": "Lightbulb",
+                "color": "amber",
+                "items": [
+                  "Hierarchy is critical (most important first)",
+                  "Concrete beats vague (exact numbers)",
+                  "Examples improve results (Few-shot)",
+                  "Quality control is essential (Quality block)",
+                  "Workflow over Basic (for processes)",
+                  "Reasoning models matter (CoT/ToT choice)"
+                ]
+              },
+              {
+                "heading": "Next step",
+                "icon": "ArrowRight",
+                "color": "emerald",
+                "items": [
+                  "Now that you know the 6-block system, workflow, and techniques, it's time to check your knowledge – Module 2 quiz."
+                ]
+              }
+            ],
+            "tagline": "Structured prompts = predictable results = better efficiency",
+            "reflectionTitle": "Reflection prompt",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 1.\nINPUT: I just finished training on prompt engineering – the 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced) and workflow principles.\nOUTPUT: Ask 3 questions: (1) Which block could I use at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start."
+          }
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "E-commerce analysis",
+          "description": "Sales reports with concrete key indicators"
+        },
+        {
+          "title": "Strategy documents",
+          "description": "Board presentations and plans"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Knowledge check",
+      "subtitle": "15 random questions from an updated question bank.",
+      "description": "Five formats: multiple choice, matching, ordering, true/false, and scenario-based questions.",
+      "icon": "Brain",
+      "level": "test",
+      "duration": "10 min",
+      "slides": [
+        {
+          "id": 20,
+          "title": "Quiz intro",
+          "subtitle": "15 interactive questions – 5 different formats",
+          "type": "test-intro",
+          "content": {
+            "whyBenefit": "After this quiz your knowledge will grow by another 60%.",
+            "footer": "Next – slide 2: Meta and Input – Quiz"
+          }
+        },
+        {
+          "id": 21,
+          "title": "Meta and Input – Quiz",
+          "subtitle": "Questions about role, context, and data",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q1",
+              "type": "mcq",
+              "question": "What's the best place to start a prompt?",
+              "options": [
+                "With role and goal (Meta)",
+                "With output format (Output)",
+                "With data (Input)",
+                "With parameters (Advanced)"
+              ],
+              "correct": 0,
+              "explanation": "The Meta block is the most important – it sets the context for the rest of the prompt.",
+              "hint": "Think about what sets the 'who I am' and 'why I'm writing' context.",
+              "bloomLevel": 1,
+              "relatedSlideId": 8,
+              "category": "meta"
+            },
+            {
+              "id": "q2",
+              "type": "true-false",
+              "question": "The Meta block only defines the AI's role – audience and experience are in other blocks.",
+              "isTrue": false,
+              "explanation": "The Meta block covers everything: WHO you are (role), WHAT experience, and WHO the result is for (audience).",
+              "hint": "Remember: Meta = role + experience + target audience.",
+              "bloomLevel": 2,
+              "relatedSlideId": 8,
+              "category": "meta"
+            },
+            {
+              "id": "q3",
+              "type": "mcq",
+              "question": "What is 'concrete input'?",
+              "options": [
+                "Exact numbers, dates, metrics",
+                "General mood",
+                "Only questions",
+                "Only desired tone"
+              ],
+              "correct": 0,
+              "explanation": "Concrete input = concrete data: 250k EUR, +15%, 1200 orders.",
+              "hint": "Input is facts, numbers, and data – not mood or questions.",
+              "bloomLevel": 1,
+              "relatedSlideId": 9,
+              "category": "input"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 3: Output and Reasoning – Quiz"
+          }
+        },
+        {
+          "id": 22,
+          "title": "Output and Reasoning – Quiz",
+          "subtitle": "Questions about format and reasoning sequence",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q4",
+              "type": "mcq",
+              "question": "You want a 5-point list in English. Which block should you specify?",
+              "options": [
+                "Output",
+                "Meta",
+                "Input",
+                "Quality Control"
+              ],
+              "correct": 0,
+              "explanation": "Format (list, 5 points, language) is the Output block's job.",
+              "hint": "Which block sets the result's format and structure?",
+              "bloomLevel": 2,
+              "relatedSlideId": 10,
+              "category": "output"
+            },
+            {
+              "id": "q5",
+              "type": "true-false",
+              "question": "The Reasoning block is only needed for complex questions – for simple ones Meta + Input + Output is enough.",
+              "isTrue": true,
+              "explanation": "Correct! Minimal prompt = Meta + Input + Output (3 blocks). Add Reasoning when you need more complex thinking (e.g. analyse, compare, recommend).",
+              "hint": "Think: does a simple 'Translate this sentence' need a reasoning sequence?",
+              "bloomLevel": 4,
+              "relatedSlideId": 11,
+              "category": "reasoning"
+            },
+            {
+              "id": "q6",
+              "type": "mcq",
+              "question": "What is the Reasoning block for?",
+              "options": [
+                "To specify how AI should think before answering",
+                "Only to add style",
+                "Only to change language",
+                "Only to shorten text"
+              ],
+              "correct": 0,
+              "explanation": "The Reasoning block specifies the THOUGHT SEQUENCE: 1) Analyse 2) Compare 3) Recommend.",
+              "hint": "Reasoning = thought sequence. Think about steps before the answer.",
+              "bloomLevel": 1,
+              "relatedSlideId": 11,
+              "category": "reasoning"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 4: 6-block system – Match pairs"
+          }
+        },
+        {
+          "id": 23,
+          "title": "6-block system – Match pairs",
+          "subtitle": "Match each block to its function",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q7",
+              "type": "matching",
+              "question": "Match each block to its main function:",
+              "matchPairs": [
+                {
+                  "left": "Meta",
+                  "right": "Role, experience, audience"
+                },
+                {
+                  "left": "Input",
+                  "right": "Concrete data and facts"
+                },
+                {
+                  "left": "Output",
+                  "right": "Result format and structure"
+                },
+                {
+                  "left": "Reasoning",
+                  "right": "Thought sequence and logic"
+                },
+                {
+                  "left": "Quality",
+                  "right": "Quality check criteria"
+                },
+                {
+                  "left": "Advanced",
+                  "right": "Technical parameters (temperature)"
+                }
+              ],
+              "explanation": "Each of the 6 blocks has a clear responsibility. When they work together – the result is predictable and good quality.",
+              "hint": "Think: which block answers 'who am I?', 'what do I have?', 'what do I want?', 'how to think?', 'is it good?', 'what settings?'",
+              "bloomLevel": 2,
+              "relatedSlideId": 14,
+              "category": "bendra"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 5: Priority ordering"
+          }
+        },
+        {
+          "id": 24,
+          "title": "Priority ordering",
+          "subtitle": "Order the blocks by priority",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q8",
+              "type": "ordering",
+              "question": "Order the 6 blocks from most to least important (by priority):",
+              "correctOrder": [
+                "Meta (role and context)",
+                "Input (data)",
+                "Output (format)",
+                "Reasoning (reasoning logic)",
+                "Quality (quality criteria)",
+                "Advanced (parameters)"
+              ],
+              "items": [
+                "Quality (quality criteria)",
+                "Advanced (parameters)",
+                "Meta (role and context)",
+                "Output (format)",
+                "Input (data)",
+                "Reasoning (reasoning logic)"
+              ],
+              "explanation": "Meta, Input, Output – required (top 3). Reasoning, Quality, Advanced – optional but important for harder tasks.",
+              "hint": "The first three blocks are the 'required minimum' for a clear result.",
+              "bloomLevel": 3,
+              "relatedSlideId": 14,
+              "category": "bendra"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 6: Advanced and Quality – Quiz"
+          }
+        },
+        {
+          "id": 25,
+          "title": "Advanced and Quality – Quiz",
+          "subtitle": "Questions about parameters and quality control",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q9",
+              "type": "mcq",
+              "question": "You want a more creative answer. What's best to change?",
+              "options": [
+                "Temperature (increase it)",
+                "Amount of Input",
+                "Language setting",
+                "Amount of Quality Control"
+              ],
+              "correct": 0,
+              "explanation": "Temperature 0.8–1.0 = more creative. Temperature 0.1–0.3 = more precise, factual.",
+              "hint": "Which parameter controls creativity vs precision?",
+              "bloomLevel": 2,
+              "relatedSlideId": 13,
+              "category": "advanced"
+            },
+            {
+              "id": "q10",
+              "type": "true-false",
+              "question": "The Quality Control block only checks the result after AI has already generated the answer.",
+              "isTrue": false,
+              "explanation": "We set Quality Control criteria before generation – it's an instruction to AI to 'check yourself': is it logical? Are facts accurate? Is it complete?",
+              "hint": "Think: is Quality Control an instruction to AI, or an action after the result?",
+              "bloomLevel": 4,
+              "relatedSlideId": 12,
+              "category": "quality"
+            },
+            {
+              "id": "q11",
+              "type": "mcq",
+              "question": "How many blocks does a full structured prompt have?",
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "correct": 3,
+              "explanation": "6 blocks: Meta, Input, Output, Reasoning, Quality, Advanced.",
+              "hint": "Remember: M-I-O-R-Q-A system.",
+              "bloomLevel": 1,
+              "relatedSlideId": 14,
+              "category": "bendra"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 7: Business scenario – Quiz"
+          }
+        },
+        {
+          "id": 27,
+          "title": "Business scenario – Quiz",
+          "subtitle": "Apply your knowledge in a real scenario",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q12",
+              "type": "scenario",
+              "scenarioContext": "You're a marketing lead. You're writing a prompt to AI to generate a quarterly sales report for the board. You have: 250k EUR revenue, 1200 orders, +15% growth. The prompt starts: 'You are a senior business analyst...' and ends: 'Present the result in a table with 5 columns.'",
+              "question": "Which block is missing from this prompt?",
+              "options": [
+                "Reasoning – how to analyse the data is not specified",
+                "Meta – role not specified",
+                "Input – no data",
+                "Output – format not specified"
+              ],
+              "correct": 0,
+              "explanation": "The prompt has Meta (role: analyst), Input (data: 250k EUR), and Output (table, 5 columns), but no Reasoning – how should AI analyse: compare periods? Look for trends? Recommend actions?",
+              "hint": "Compare: what's already there (role, data, format) and what's missing from the 6 blocks.",
+              "bloomLevel": 4,
+              "relatedSlideId": 11,
+              "category": "reasoning"
+            },
+            {
+              "id": "q13",
+              "type": "scenario",
+              "scenarioContext": "A colleague wrote the prompt: 'Write me an article about AI.' The result – 3 pages of generic text, no structure, no sources, in English (though they wanted another language).",
+              "question": "What would improve this prompt the most?",
+              "options": [
+                "Add Meta (role: journalist), Output (1000 words, target language, with sources), and Quality (factual accuracy)",
+                "Add only 'write in [language]'",
+                "Repeat the same prompt again",
+                "Switch to another AI model"
+              ],
+              "correct": 0,
+              "explanation": "Bad result = unstructured prompt. Adding Meta (who writes), Output (format, language), and Quality (sources, accuracy) makes the result predictable.",
+              "hint": "Think: how many 6-block elements are missing from this prompt?",
+              "bloomLevel": 3,
+              "relatedSlideId": 16,
+              "category": "bendra"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 8: Workflow and techniques – Quiz"
+          }
+        },
+        {
+          "id": 28,
+          "title": "Workflow and techniques – Quiz",
+          "subtitle": "Questions about workflow and techniques",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "q14",
+              "type": "mcq",
+              "question": "How does basic chat differ from workflow?",
+              "options": [
+                "Workflow has a clear format and result",
+                "Basic always has a dataset",
+                "Workflow is only for creativity",
+                "Basic always uses a template"
+              ],
+              "correct": 0,
+              "explanation": "Workflow defines format, requirements, and expected result.",
+              "hint": "Workflow = structured process with a clear end result.",
+              "bloomLevel": 2,
+              "relatedSlideId": 3,
+              "category": "workflow"
+            },
+            {
+              "id": "q15",
+              "type": "mcq",
+              "question": "Which technique relies on examples?",
+              "options": [
+                "Few-shot",
+                "Zero-shot",
+                "Chain-of-thought",
+                "Prompt chain"
+              ],
+              "correct": 0,
+              "explanation": "Few-shot gives 1–2 examples, then asks for new ones. Zero-shot – no examples.",
+              "hint": "'Few' means 'a few' – a technique that uses several examples.",
+              "bloomLevel": 1,
+              "relatedSlideId": 5,
+              "category": "technikos"
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 9: Quiz results"
+          }
+        },
+        {
+          "id": 26,
+          "title": "Quiz results",
+          "subtitle": "Your knowledge assessment",
+          "type": "test-results",
+          "content": {
+            "footer": "Next – slide 10: Bonus: Using style in prompts"
+          }
+        },
+        {
+          "id": 51,
+          "title": "Bonus: Using style in prompts",
+          "subtitle": "Tone, style, audience, language – business tone, formal, compact",
+          "type": "content-block",
+          "content": {
+            "whyBenefit": "You passed the knowledge check – here's a bonus: a skill few have. Tone, style, audience – in one sentence, predictable result.",
+            "sections": [
+              {
+                "heading": "What will make your prompts stand out",
+                "body": "This isn't theory – it's business practice. **Tone:** formal, friendly, business, academic (e.g. \"business tone\"). **Style:** concise, narrative, bullet list, compact. **Audience:** experts, beginners, leads, customers. **Language:** target language, term level (\"no jargon\"). **Structure:** \"5 points\", \"max 1 page\", \"max 150 words\".",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "How to specify in the prompt",
+                "body": "Clear, concrete words – not \"write well\", but \"business tone\", \"formal style\", \"target audience: leads\", \"English\", \"bullet list with headings\".",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Examples – copy and adapt",
+                "body": "Professional style, formal summary, compact style, or formatting – pick one and paste into your prompt.",
+                "blockVariant": "default"
+              },
+              {
+                "heading": "Professional style",
+                "body": "Copy the prompt below and use it in your AI – target audience and style will be clearly specified.",
+                "copyable": "Style: professional, clear, no fluff. Target audience: [Enter audience]."
+              },
+              {
+                "heading": "Formal summary",
+                "body": "Copy the prompt below and paste into AI – you'll get a formal summary (5–7 sentences).",
+                "copyable": "Formal tone. Provide a 5–7 sentence summary."
+              },
+              {
+                "heading": "Compact style",
+                "body": "Copy the prompt below – AI will keep to roughly 500 words (or your chosen length).",
+                "copyable": "Compact style; keep to ~500 words (or max_tokens≈750)."
+              },
+              {
+                "heading": "Formatting",
+                "body": "Copy the prompt below and adapt to your format (e.g. Markdown or company style).",
+                "copyable": "Fix formatting to match [Markdown / company style]."
+              },
+              {
+                "heading": "Want more detail? Link to the 6 blocks",
+                "body": "**Output** – what output we want (format, structure). **Quality** – quality criteria (clarity, fit for audience, tone).",
+                "blockVariant": "terms"
+              }
+            ],
+            "footer": "Next – slide 11: Bonus: Practical tasks"
+          },
+          "optional": true,
+          "badgeVariant": "bonus"
+        },
+        {
+          "id": 52,
+          "title": "Bonus: Practical tasks",
+          "subtitle": "Style texts and email replies",
+          "type": "content-block",
+          "content": {
+            "whyBenefit": "Second bonus: practice. Each prompt is ready – just copy and run.",
+            "sections": [
+              {
+                "heading": "1. Creating texts in different styles and formats",
+                "body": "Official invitation, formal agreement, enthusiastic announcement – three different styles. Copy and adapt.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Official invitation",
+                "body": "(official / formal style)",
+                "copyable": "META: You are a business communications specialist. Goal – prepare an invitation.\nINPUT: Event – [your business event]. Date – [next month]. Audience – partners and clients.\nOUTPUT: Official invitation text, 1 page, formal tone."
+              },
+              {
+                "heading": "Formal agreement",
+                "body": "(formal / legal style)",
+                "copyable": "META: You are a legal specialist. Goal – draft an agreement.\nINPUT: Product – [enter product]. Parties – seller and client. Constraints – 1–2 pages.\nOUTPUT: Formal agreement with sections: parties, subject, price, terms. Legal tone."
+              },
+              {
+                "heading": "Job posting",
+                "body": "(enthusiastic / inclusive style)",
+                "copyable": "META: You are an HR specialist. Goal – attract candidates.\nINPUT: Position – [enter position]. Company – [enter company]. Benefits – flexible schedule, team.\nOUTPUT: Job posting, 150–200 words, enthusiastic and engaging tone."
+              },
+              {
+                "heading": "2. Replies to customer emails",
+                "body": "Polite, professional, respectful – three different tones. Copy and adapt.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Apology reply",
+                "body": "(polite, apologetic, problem-solving)",
+                "copyable": "META: You are a customer service specialist. Goal – retain the customer.\nINPUT: Situation – customer complains about late delivery. Tone – polite, apologetic.\nOUTPUT: Email reply, 80–120 words, with a concrete solution and apology."
+              },
+              {
+                "heading": "Informative reply",
+                "body": "(professional, informative)",
+                "copyable": "META: You are a sales manager. Goal – provide information and encourage purchase.\nINPUT: Customer asks about service prices and discounts. Services – [enter services].\nOUTPUT: Professional reply, 100–150 words, with pricing structure and call to action."
+              },
+              {
+                "heading": "Returns policy",
+                "body": "(respectful, clearly describing policy)",
+                "copyable": "META: You are an e-commerce customer service specialist. Goal – clearly explain the policy.\nINPUT: Customer asks about returns policy. Store – [enter store]. Deadline – 14 days.\nOUTPUT: Respectful reply, 80–120 words, with return steps and conditions."
+              },
+              {
+                "heading": "Adapt to your business",
+                "body": "Copy any prompt and run it in AI – you'll get text in the chosen style. Then change [enter product] or context to fit your needs.",
+                "blockVariant": "accent"
+              }
+            ]
+          },
+          "optional": true,
+          "badgeVariant": "bonus"
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "6-block system and workflow",
+          "description": "Questions on Meta, Input, Output, Reasoning, Quality, Advanced"
+        },
+        {
+          "title": "Structured prompt principles",
+          "description": "15 interactive questions – 5 different formats"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Practical application",
+      "subtitle": "6 business scenarios with 6 blocks",
+      "description": "6 different scenarios – create your prompts and build a template library.",
+      "icon": "Settings",
+      "level": "practice",
+      "duration": "25–30 min",
+      "slides": [
+        {
+          "id": 30,
+          "title": "Practice intro",
+          "subtitle": "How to do the tasks – Module 3, slide 1",
+          "type": "practice-intro",
+          "content": {
+            "whyBenefit": "After the practice part you'll have 6 ready-made templates for everyday work.",
+            "minScenariosToComplete": 2,
+            "optionalInstruction": "Choose at least 2 scenarios that match your role or interest – you can skip the rest.",
+            "footer": "Next – slide 2: Warm-up"
+          }
+        },
+        {
+          "id": 30.5,
+          "title": "Warm-up",
+          "subtitle": "A simple first practical example – 2–3 min before the scenarios",
+          "type": "content-block",
+          "content": {
+            "whyBenefit": "In 2–3 minutes you'll see how even a short structured prompt gives a concrete result – without complex context.",
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "In 2–3 minutes copy the prompt and run AI – you'll get 3 concrete goals for this week. This shows how META + INPUT + OUTPUT already improve the result.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do it now",
+                "body": "Copy the prompt (below) and paste it into any AI tool – ChatGPT, Claude, or Copilot. In 1 minute you'll get 3 business goals for this week.",
+                "blockVariant": "brand",
+                "copyable": "META: You are a business assistant. Your goal is to help formulate 3 concrete goals for this week.\n\nINPUT: My context – [enter yours: e.g. client work, project deadlines, sales].\n\nOUTPUT: Give 3 numbered goals for this week. Each goal – 1–2 sentences, concrete and achievable."
+              },
+              {
+                "heading": "Check",
+                "body": "If you got 3 concrete goals – great. If the answer is too vague – add your role or area in the INPUT block.",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 3: Scenario 1: Executive strategy report"
+          }
+        },
+        {
+          "id": 31,
+          "title": "Scenario 1: Executive strategy report",
+          "subtitle": "Quarterly or half-year results overview for the board",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "You're a lead and need to prepare a quarterly results overview for the board in a few days. The board will decide on priorities for the next quarters, so you need to clearly summarise numbers, risks, and suggest concrete steps.",
+            "context": "You're a lead. You need to prepare a quarterly or half-year results overview for the board or owners.",
+            "data": "Q2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, company restructuring, new CRM.",
+            "constraints": "Report due in 5 days. Board has 4 members. Max length: 2 pages.",
+            "expectedFormat": "Executive Summary (1–2 pages), KPI dashboard, 3 priorities with recommendations"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for an executive strategy report",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "templateLabel": "View full example",
+            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk \u2013 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1\u20132 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n\u2713 Numbers accurate \u2713 Risks identified \u2713 Recommendations clear \u2713 Length 1\u20132 pages\n\nADVANCED:\nTemperature: 0.3 (factual tone), Format: business document",
+            "explanation": "A strategy report requires decision logic, summaries, and clear recommendations.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block \u2013 Start with role",
+                  "description": "Define who you are and who the document is for",
+                  "hint": "Role: executive. Goal: strategy report. Audience: board.",
+                  "partialSolution": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block \u2013 Gather data",
+                  "description": "List KPI, risks, and constraints",
+                  "hint": "Data: revenue, margin, project status, priorities. Constraints: 5 days, 4 members.",
+                  "partialSolution": "INPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk \u2013 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block \u2013 Define format",
+                  "description": "Specify the structure and KPI dashboard",
+                  "hint": "Format: Executive Summary. Structure: KPI, risks, 3 priorities.",
+                  "partialSolution": "OUTPUT:\nFormat: Executive Summary (1\u20132 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block \u2013 Set thought sequence",
+                  "description": "Specify analysis and prioritisation logic",
+                  "hint": "CoT: 1) KPI summary, 2) Risk assessment, 3) Priority recommendations.",
+                  "partialSolution": "REASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block \u2013 Set quality criteria",
+                  "description": "Define check criteria",
+                  "hint": "Numbers accurate, risks identified, recommendations clear.",
+                  "partialSolution": "QUALITY:\n\u2713 Numbers accurate \u2713 Risks identified \u2713 Recommendations clear \u2713 Length 1\u20132 pages"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block \u2013 Set parameters",
+                  "description": "Model parameters",
+                  "hint": "Temperature: 0.3 (factual tone).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (factual tone), Format: business document"
+                }
+              ]
+            }
+          },
+          "content": {
+            "footer": "Next \u2013 slide 4: Scenario 2: Sales analysis and action plan"
+          }
+        },
+        {
+          "id": 32,
+          "title": "Scenario 2: Sales analysis and action plan",
+          "subtitle": "Numbers → insights → actions",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "Sales didn't meet plan and leadership wants to understand why quickly and get a concrete action list. You have data by segment and period – you need to turn it into insights and recommendations with owners and deadlines.",
+            "context": "Sales growth, decline, or stagnation. You need to analyse the data and propose concrete actions to improve results.",
+            "data": "Q3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down -12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.",
+            "constraints": "Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.",
+            "expectedFormat": "Analysis + 5 concrete actions with deadlines and owners"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for sales analysis and action plan",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "Sales analysis needs number interpretation and concrete actions with deadlines.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block – Start with role",
+                  "description": "Define who you are and who the document is for",
+                  "hint": "Role: marketing lead. Goal: Q1 2025 marketing plan. Audience: CEO.",
+                  "partialSolution": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block – Gather data",
+                  "description": "List concrete numbers, metrics, and constraints",
+                  "hint": "Data: Q4 results, CAC, conversion, competitors. Constraints: 2 weeks, 3 people, B2B priority.",
+                  "partialSolution": "INPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block – Define format",
+                  "description": "Specify what document you want",
+                  "hint": "Format: strategic document. Structure: action plan + KPI. Language: English, business tone.",
+                  "partialSolution": "OUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block – Set thought sequence",
+                  "description": "Specify how AI should think before creating the plan",
+                  "hint": "Use CoT (Chain of Thought) – one logical sequence. 1) Analyse Q4 results, 2) Assess competitor threat, 3) Set Q1 goals, 4) Formulate strategy.",
+                  "partialSolution": "REASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block – Set quality criteria",
+                  "description": "Define how to check result quality",
+                  "hint": "Check: concrete KPI, budget allocation, B2B focus, feasibility.",
+                  "partialSolution": "QUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block – Set parameters",
+                  "description": "Choose model parameters (if needed)",
+                  "hint": "Temperature: 0.4–0.5 (strategic but creative). Reasoning: normal or extended.",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strategic thinking with creativity)\nReasoning: extended (deeper analysis needed)\nFormat: structured business document"
+                }
+              ]
+            },
+            "templateLabel": "View full example",
+            "template": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions.\n\nINPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment.\n\nOUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone.\n\nREASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation\n\nQUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)\n\nADVANCED:\nTemperature: 0.4 (strategic thinking with creativity)\nReasoning: extended (deeper analysis needed)\nFormat: structured business document"
+          },
+          "content": {
+            "footer": "Next – slide 5: Scenario 3: Marketing campaign plan"
+          }
+        },
+        {
+          "id": 33,
+          "title": "Scenario 3: Marketing campaign plan",
+          "subtitle": "Audience, channels, KPI",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "You're planning a new campaign or product launch and have a limited budget and timeline. You need to spell out: who the campaign is for, which channels will reach them, and how you'll measure success.",
+            "context": "New campaign or product communication in the market. You need a clear action plan with audience, channels, and KPI.",
+            "data": "Campaign: new product \"SmartFlow\". Budget: 45k EUR. Target audience: IT leads (companies with 100–500 employees). Channels: LinkedIn, events, email. Competitors: 2 main. Period: Q2 2025.",
+            "constraints": "Plan in 2 weeks. Team: 2 people. Need KPI and measurement plan.",
+            "expectedFormat": "Strategic document with channels, KPI, timeline"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for a marketing campaign plan",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "For a marketing campaign, focus on: audience, channels, KPI, and how you'll measure results.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block – Start with role",
+                  "description": "Define who you are and who the document is for",
+                  "hint": "Role: HR lead. Goal: survey analysis and recommendations. Audience: leadership.",
+                  "partialSolution": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block – Gather data",
+                  "description": "List concrete numbers, metrics, and constraints",
+                  "hint": "Data: participation, satisfaction, problem areas, strengths. Constraints: budget 50k EUR, concrete action plan.",
+                  "partialSolution": "INPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block – Define format",
+                  "description": "Specify what document you want",
+                  "hint": "Format: report. Structure: analysis + visuals + action plan. Language: English, sensitive tone.",
+                  "partialSolution": "OUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block – Set thought sequence",
+                  "description": "Specify how AI should think before creating the analysis",
+                  "hint": "Use CoT (Chain of Thought). 1) Analyse problem areas, 2) Assess causes, 3) Formulate solutions, 4) Allocate budget.",
+                  "partialSolution": "REASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions for each problem area\n4) Allocate budget (50k EUR) by priority and expected impact"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block – Set quality criteria",
+                  "description": "Define how to check result quality",
+                  "hint": "Check: sensitivity to data, concrete actions, budget allocation, feasibility.",
+                  "partialSolution": "QUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block – Set parameters",
+                  "description": "Choose model parameters (if needed)",
+                  "hint": "Temperature: 0.3–0.4 (sensitive but professional). Reasoning: extended (deeper analysis).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (sensitive, professional tone)\nReasoning: extended (deeper analysis and empathy)\nFormat: structured HR document with visuals"
+                }
+              ]
+            },
+            "templateLabel": "View full example",
+            "template": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan.\n\nINPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone.\n\nREASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions per problem area\n4) Allocate budget (50k EUR) by priority and expected impact\n\nQUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)\n\nADVANCED:\nTemperature: 0.3 (sensitive, professional tone)\nReasoning: extended (deeper analysis and empathy)\nFormat: structured HR document with visuals"
+          },
+          "content": {
+            "footer": "Next – slide 6: Scenario 4: Internal comms document"
+          }
+        },
+        {
+          "id": 34,
+          "title": "Scenario 4: Internal comms document",
+          "subtitle": "Change message to staff",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "Big changes are happening – a new system rollout or restructuring – and staff are worried. Your job is to draft a message that clearly explains what's changing, why, what to do next, and answers the most common questions.",
+            "context": "Organisational change (strategy, restructuring, new system). You need a clear message staff can understand.",
+            "data": "Company is moving to a new CRM. Changes start in 6 weeks. All 120 staff will have training. Most common question: \"Will we lose our jobs?\"",
+            "constraints": "Message in 3 days. Max 500 words. Tone: caring, clear. Include a Q&A section.",
+            "expectedFormat": "Internal message / email, 300–500 words, Q&A section"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for an internal comms document",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "For internal comms, focus on: tone, clarity, reducing resistance, and a Q&A section.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block – Start with role",
+                  "description": "Define who you are and who the message is for",
+                  "hint": "Role: internal comms lead. Goal: message to staff. Audience: all employees.",
+                  "partialSolution": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about changes in the organisation, reducing worry and resistance."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block – Gather data",
+                  "description": "List: what's changing, why, when, top questions",
+                  "hint": "Data: CRM change, 6 weeks, 120 staff, training. Question: \"Will we lose our jobs?\"",
+                  "partialSolution": "INPUT:\nCompany moving to new CRM. Changes in 6 weeks. 120 staff – training. Most common question: \"Will we lose our jobs?\" Constraints: 3 days, max 500 words, caring tone."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block – Define format",
+                  "description": "Internal message with Q&A",
+                  "hint": "Format: email 300–500 words. Structure: what's changing, why, what to do next, Q&A.",
+                  "partialSolution": "OUTPUT:\nFormat: Internal message (300–500 words). Structure: 1) What's changing, 2) Why, 3) When and what to do, 4) Q&A section. Tone: caring, clear."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block – Set thought sequence",
+                  "description": "Tone, clarity, reducing resistance",
+                  "hint": "CoT: 1) Explain clearly, 2) Address fears, 3) What staff need to know.",
+                  "partialSolution": "REASONING (CoT):\n1) Explain the changes as clearly as possible\n2) Address fears (\"Will we lose our jobs?\" etc.)\n3) Give concrete next steps and Q&A"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block – Set quality criteria",
+                  "description": "Check criteria",
+                  "hint": "Caring tone, clarity, Q&A section, length 300–500 words.",
+                  "partialSolution": "QUALITY:\n✓ Caring, clear tone ✓ Q&A section included ✓ Length 300–500 words ✓ Reduces worry"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block – Set parameters",
+                  "description": "Model parameters",
+                  "hint": "Temperature: 0.4 (empathetic but professional).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (empathetic tone), Format: internal message"
+                }
+              ]
+            },
+            "templateLabel": "View full example",
+            "template": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about the CRM change, reducing worry.\n\nINPUT:\nCompany moving to new CRM. Changes in 6 weeks. 120 staff – training. Most common question: \"Will we lose our jobs?\" Constraints: 3 days, max 500 words.\n\nOUTPUT:\nFormat: Internal message (300–500 words). Structure: 1) What's changing, 2) Why, 3) When and what to do, 4) Q&A. Tone: caring, clear.\n\nREASONING: 1) Explain clearly, 2) Address fears, 3) Q&A section.\n\nQUALITY: ✓ Caring tone ✓ Q&A included ✓ 300–500 words\n\nADVANCED: Temperature: 0.4, Format: internal message"
+          },
+          "content": {
+            "footer": "Next – slide 7: Scenario 5: People decisions analysis"
+          }
+        },
+        {
+          "id": 35,
+          "title": "Scenario 5: People decisions analysis",
+          "subtitle": "Survey analysis and action plan",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "The annual staff survey is done – you can see where satisfaction is weaker and where it's stronger. Leadership wants not just numbers but concrete measures: what to start doing, with what budget and timeline.",
+            "context": "Staff survey results, motivation or effectiveness. You need to analyse the situation and propose an action plan to leadership.",
+            "data": "156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9). Budget for initiatives: 50k EUR.",
+            "constraints": "Leadership wants a concrete action plan. Confidentiality: do not disclose individual responses.",
+            "expectedFormat": "Report with analysis and action plan"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for people decisions analysis",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "People analysis needs data interpretation, priorities, and realistic decisions.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block – Start with role",
+                  "description": "Define who you are and who the document is for",
+                  "hint": "Role: HR lead. Goal: survey analysis. Audience: leadership.",
+                  "partialSolution": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block – Gather data",
+                  "description": "List survey results and constraints",
+                  "hint": "Data: participation, satisfaction, problem areas, budget.",
+                  "partialSolution": "INPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block – Define format",
+                  "description": "Report with action plan",
+                  "hint": "Format: report. Structure: analysis + action plan.",
+                  "partialSolution": "OUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block – Set thought sequence",
+                  "description": "Data interpretation, priorities",
+                  "hint": "CoT: 1) Analyse problems, 2) Assess causes, 3) Formulate solutions.",
+                  "partialSolution": "REASONING (CoT):\n1) Analyse problem areas and causes\n2) Formulate concrete solutions\n3) Allocate budget by priority"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block – Set quality criteria",
+                  "description": "Check criteria",
+                  "hint": "Sensitivity, concrete actions, budget allocation.",
+                  "partialSolution": "QUALITY:\n✓ Sensitive approach ✓ Concrete actions ✓ Budget allocated ✓ Confidentiality"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block – Set parameters",
+                  "description": "Model parameters",
+                  "hint": "Temperature: 0.3 (sensitive, professional).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.3, Format: HR report"
+                }
+              ]
+            },
+            "templateLabel": "View full example",
+            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individuals.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Temperature: 0.3, Format: HR report"
+          },
+          "content": {
+            "footer": "Next – slide 8: Scenario 6: Customer complaint handling"
+          }
+        },
+        {
+          "id": 36,
+          "title": "Scenario 6: Customer complaint handling",
+          "subtitle": "Reply to customer and internal action plan",
+          "type": "practice-scenario",
+          "scenario": {
+            "situation": "A customer is complaining about delay and unclear communication – there's reputational risk and you need to respond quickly. You have to prepare a two-part response: an empathetic reply to the customer and an internal plan for the team – what to change so it doesn't happen again.",
+            "context": "Unhappy customer or reputational risk. You need a reply to the customer and an internal action plan to fix the issue.",
+            "data": "Customer complains: 2-week delay, unclear communication. Customer: B2B, long-standing (3 years). Contacted by email. Reputational risk: may leave a review.",
+            "constraints": "Reply within 24 hours. Tone: empathetic, accountable. Need: reply to customer + internal action plan (3–5 points).",
+            "expectedFormat": "Reply to customer (email) + internal action plan (3–5 points)"
+          },
+          "practicalTask": {
+            "title": "Create a full prompt for customer complaint handling",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "explanation": "Complaint handling needs empathy, accountability, and a clear structure for the response.",
+            "instructions": {
+              "title": "Step-by-step instructions",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "META block – Start with role",
+                  "description": "Define who you are and who it's for",
+                  "hint": "Role: customer service lead. Goal: reply + internal plan.",
+                  "partialSolution": "META:\nYou are a customer service lead. Your goal is to prepare an empathetic reply to the customer and an internal action plan to fix the issue."
+                },
+                {
+                  "step": 2,
+                  "title": "INPUT block – Gather data",
+                  "description": "Complaint description, history, customer type",
+                  "hint": "Data: delay, communication, B2B, 3 years, reputational risk.",
+                  "partialSolution": "INPUT:\nComplaint: 2-week delay, unclear communication. Customer: B2B, long-standing (3 years). Reputational risk. Constraints: 24 hours, empathetic tone."
+                },
+                {
+                  "step": 3,
+                  "title": "OUTPUT block – Define format",
+                  "description": "Reply to customer + internal plan",
+                  "hint": "Format: email to customer + 3–5 point internal plan.",
+                  "partialSolution": "OUTPUT:\nFormat: 1) Email to customer (empathetic, accountable), 2) Internal plan 3–5 points. Language: English."
+                },
+                {
+                  "step": 4,
+                  "title": "REASONING block – Set thought sequence",
+                  "description": "Empathy, accountability, response structure",
+                  "hint": "CoT: 1) Acknowledge the problem, 2) Offer solution, 3) Internal plan.",
+                  "partialSolution": "REASONING (CoT):\n1) Acknowledge the problem and respond with empathy\n2) Give the customer a concrete solution\n3) Formulate internal action plan (3–5 points)"
+                },
+                {
+                  "step": 5,
+                  "title": "QUALITY block – Set quality criteria",
+                  "description": "Check criteria",
+                  "hint": "Empathy, accountability, concrete actions.",
+                  "partialSolution": "QUALITY:\n✓ Empathetic tone ✓ Accountability acknowledged ✓ Concrete actions ✓ Internal plan 3–5 points"
+                },
+                {
+                  "step": 6,
+                  "title": "ADVANCED block – Set parameters",
+                  "description": "Model parameters",
+                  "hint": "Temperature: 0.4 (empathetic but controlled).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.4, Format: customer service document"
+                }
+              ]
+            },
+            "templateLabel": "View full example",
+            "template": "META:\nYou are a customer service lead. Your goal is to prepare an empathetic reply to the customer and an internal action plan.\n\nINPUT:\nComplaint: 2-week delay, unclear communication. Customer: B2B, 3 years. Reputational risk. Constraints: 24 hours, empathetic tone.\n\nOUTPUT:\nFormat: 1) Email to customer, 2) Internal plan 3–5 points. Language: English.\n\nREASONING: 1) Acknowledge problem, 2) Offer solution, 3) Internal plan.\n\nQUALITY: ✓ Empathy ✓ Accountability ✓ Concrete actions\n\nADVANCED: Temperature: 0.4, Format: customer service"
+          },
+          "content": {
+            "footer": "Next – slide 9: Practice summary"
+          }
+        },
+        {
+          "id": 37,
+          "title": "Practice summary",
+          "subtitle": "What you learned and next steps",
+          "type": "summary",
+          "content": {
+            "introHeading": "What you learned",
+            "introBody": "Well done! You applied the 6-block system in 6 business scenarios – you created structured prompts for real work: board reports, sales analysis, marketing plans, internal comms, people decisions, and customer complaint handling.",
+            "stats": [
+              {
+                "label": "Scenarios",
+                "value": "6"
+              },
+              {
+                "label": "Blocks",
+                "value": "6"
+              },
+              {
+                "label": "Templates",
+                "value": "6"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "6 business scenarios",
+                "icon": "Target",
+                "color": "brand",
+                "items": [
+                  "Board report – quarterly/half-year results overview",
+                  "Sales analysis – numbers, insights, actions",
+                  "Marketing plan – audience, channels, key indicators",
+                  "Internal comms – change message to staff",
+                  "People analysis – survey results and action plan",
+                  "Customer complaint handling – reply and internal plan"
+                ]
+              },
+              {
+                "heading": "6-block application",
+                "icon": "Layers",
+                "color": "violet",
+                "items": [
+                  "Meta – role and context for the scenario",
+                  "Input – concrete data and constraints",
+                  "Output – format, structure, tone",
+                  "Reasoning – thought sequence (CoT)",
+                  "Quality – quality criteria",
+                  "Advanced – parameters (Temperature)"
+                ]
+              },
+              {
+                "heading": "Main ideas",
+                "icon": "Lightbulb",
+                "color": "amber",
+                "items": [
+                  "Context → data → format in each scenario",
+                  "CoT thought sequence – priorities and logic",
+                  "Quality criteria – concrete, actionable",
+                  "Template library – your prompts for work"
+                ]
+              },
+              {
+                "heading": "Next step",
+                "icon": "ArrowRight",
+                "color": "emerald",
+                "items": [
+                  "You've finished the 3-module programme. You can move on to Module 4: Context engineering (RAG, Deep research, tokens) or start using your templates at work.",
+                  "Check the prompt library – ready-made templates by topic (Prompt library section on the main page)."
+                ]
+              }
+            ],
+            "reflectionTitle": "Reflection prompt",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate practical knowledge after Module 3.\nINPUT: I just finished the practice module – I applied the 6-block system in 6 business scenarios (board report, sales analysis, marketing plan, internal comms, people analysis, complaint handling).\nOUTPUT: Ask 3 questions: (1) Which scenario could I use at work today? (2) What was newest in the practice? (3) What do I want to try with my real data? After my answers – 1 concrete tip on how to start.",
+            "tagline": "6 blocks + 6 scenarios = your template library for the workday",
+            "footer": "Next – slide 10: Part 1 summary"
+          }
+        },
+        {
+          "id": 38,
+          "title": "Part 1 summary",
+          "subtitle": "What you learned – 3 modules: 6 blocks, quiz, and practice",
+          "type": "summary",
+          "content": {
+            "introHeading": "What you learned",
+            "introBody": "Well done! You've completed Part 1: you learned the 6-block system (Module 1), checked your knowledge in the quiz (Module 2), and applied prompts in 6 business scenarios (Module 3). You now have a solid base for further learning or for use at work.",
+            "stats": [
+              {
+                "label": "Modules",
+                "value": "3"
+              },
+              {
+                "label": "Blocks",
+                "value": "6"
+              },
+              {
+                "label": "Scenarios",
+                "value": "6"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "Module 1 – 6-block system",
+                "icon": "Layers",
+                "color": "brand",
+                "items": [
+                  "Meta, Input, Output, Reasoning, Quality, Advanced",
+                  "Workflow and techniques (Zero-shot, Few-shot, CoT, ToT)",
+                  "Hierarchy and concreteness – predictable results"
+                ]
+              },
+              {
+                "heading": "Module 2 – Knowledge check",
+                "icon": "Target",
+                "color": "violet",
+                "items": [
+                  "15-question quiz from an updated bank",
+                  "Explanations and links to slides",
+                  "Ready for Module 3 practice"
+                ]
+              },
+              {
+                "heading": "Module 3 – Practice",
+                "icon": "Lightbulb",
+                "color": "amber",
+                "items": [
+                  "6 business scenarios: board, sales, marketing, comms, people, complaints",
+                  "Structured prompts with 6 blocks",
+                  "Template library for your work"
+                ]
+              },
+              {
+                "heading": "Where to apply?",
+                "icon": "Compass",
+                "color": "brand",
+                "items": [
+                  "You can use the 6-block system and structured prompts every day: short replies, reports, emails, meeting summaries, strategy points.",
+                  "From Module 4 onwards – sources and RAG; your foundation is already in place."
+                ]
+              },
+              {
+                "heading": "Next step",
+                "icon": "ArrowRight",
+                "color": "emerald",
+                "items": [
+                  "Go to Module 4: Context engineering (RAG, Deep research, tokens, manipulation, hallucinations) – or start using your templates at work."
+                ]
+              }
+            ],
+            "reflectionTitle": "Reflection prompt",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Part 1.\nINPUT: I just finished 3 modules: 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced), knowledge quiz, and 6 practice scenarios.\nOUTPUT: Ask 3 questions: (1) What can I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
+            "tagline": "3 modules = 6 blocks + quiz + 6 scenarios – your foundation for what's next."
+          }
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "Real business scenarios",
+          "description": "6 different situations for practical application"
+        },
+        {
+          "title": "Building a portfolio",
+          "description": "The prompts you create become your template library"
+        }
+      ]
+    }
+  ]
+}

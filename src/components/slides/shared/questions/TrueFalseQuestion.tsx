@@ -3,6 +3,7 @@ import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
 import { confidenceLabel } from './confidenceLabels';
+import { useLocale } from '../../../../contexts/LocaleContext';
 
 interface TrueFalseQuestionProps {
   question: TestQuestion;
@@ -28,9 +29,11 @@ export function TrueFalseQuestion({
   onAnswer,
   onRequestHint,
 }: TrueFalseQuestionProps) {
+  const { locale } = useLocale();
   const correctValue = question.isTrue ? 1 : 0;
   const isCorrect = userAnswer === correctValue;
   const answerDisabled = showResults || confidence === undefined;
+  const en = locale === 'en';
 
   const handleSelect = (value: number) => {
     if (showResults || confidence === undefined) return;
@@ -52,7 +55,9 @@ export function TrueFalseQuestion({
           {questionIndex + 1}
         </span>
         <div>
-          <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider">Tiesa ar Netiesa?</span>
+          <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider">
+            {en ? 'True or False?' : 'Tiesa ar Netiesa?'}
+          </span>
           <p className="font-bold text-gray-900 dark:text-white mt-1">{question.question}</p>
         </div>
       </div>
@@ -68,7 +73,7 @@ export function TrueFalseQuestion({
         <button
           onClick={() => handleSelect(1)}
           disabled={answerDisabled}
-          aria-label="Tiesa"
+          aria-label={en ? 'True' : 'Tiesa'}
           className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold ${
             showResults
               ? correctValue === 1
@@ -82,14 +87,14 @@ export function TrueFalseQuestion({
           }`}
         >
           <Check className="w-5 h-5" />
-          Tiesa
+          {en ? 'True' : 'Tiesa'}
         </button>
 
         {/* Netiesa button */}
         <button
           onClick={() => handleSelect(0)}
           disabled={answerDisabled}
-          aria-label="Netiesa"
+          aria-label={en ? 'False' : 'Netiesa'}
           className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold ${
             showResults
               ? correctValue === 0
@@ -103,7 +108,7 @@ export function TrueFalseQuestion({
           }`}
         >
           <X className="w-5 h-5" />
-          Netiesa
+          {en ? 'False' : 'Netiesa'}
         </button>
       </div>
 
@@ -122,10 +127,10 @@ export function TrueFalseQuestion({
         <button
           onClick={() => onRequestHint(question.id)}
           className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
-          aria-label="Gauti užuominą"
+          aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />
-          Rodyti užuominą
+          {en ? 'Show hint' : 'Rodyti užuominą'}
         </button>
       )}
 
@@ -133,12 +138,13 @@ export function TrueFalseQuestion({
         <>
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Pasitikėjimas: <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence)}</span>
+              {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
+              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
             </p>
           )}
           <div className={`mt-4 p-3 rounded-lg ${isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-amber-100 dark:bg-amber-900/30'}`}>
             <p className={`text-sm ${isCorrect ? 'text-emerald-800 dark:text-emerald-200' : 'text-amber-800 dark:text-amber-200'}`}>
-              <strong>{isCorrect ? '✓ Teisingai!' : '✗ Neteisingai.'}</strong> {question.explanation}
+              <strong>{isCorrect ? (en ? 'Correct!' : 'Teisingai!') : (en ? 'Incorrect.' : 'Neteisingai.')}</strong> {question.explanation}
             </p>
           </div>
         </>

@@ -15,15 +15,16 @@ export default function CircularProgress({
   label,
   className = '',
 }: CircularProgressProps) {
+  const safeProgress = Number.isFinite(progress) ? Math.min(100, Math.max(0, progress)) : 0;
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const offset = circumference - (progress / 100) * circumference;
+  const offset = circumference - (safeProgress / 100) * circumference;
 
   // Color based on progress
   const getProgressColor = () => {
-    if (progress >= 100) return 'text-emerald-500';
-    if (progress >= 70) return 'text-brand-500';
-    if (progress >= 30) return 'text-accent-500';
+    if (safeProgress >= 100) return 'text-emerald-500';
+    if (safeProgress >= 70) return 'text-brand-500';
+    if (safeProgress >= 30) return 'text-accent-500';
     return 'text-gray-400';
   };
 
@@ -47,7 +48,7 @@ export default function CircularProgress({
         
         {/* Gradient definition - Navy to Gold */}
         <defs>
-          <linearGradient id={`progress-gradient-${progress}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id={`progress-gradient-${safeProgress}`} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#334e68" />
             <stop offset="100%" stopColor="#d4a520" />
           </linearGradient>
@@ -58,15 +59,15 @@ export default function CircularProgress({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={`url(#progress-gradient-${progress})`}
+          stroke={`url(#progress-gradient-${safeProgress})`}
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           strokeLinecap="round"
-          className="transition-all duration-1000 ease-out"
+          className="transition-all duration-500 ease-out"
           style={{
-            filter: progress > 0 ? 'drop-shadow(0 0 6px rgba(51, 78, 104, 0.4))' : 'none',
+            filter: safeProgress > 0 ? 'drop-shadow(0 0 6px rgba(51, 78, 104, 0.4))' : 'none',
           }}
         />
       </svg>
@@ -75,7 +76,7 @@ export default function CircularProgress({
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         {showPercentage && (
           <span className={`text-lg font-bold ${getProgressColor()}`}>
-            {Math.round(progress)}%
+            {Math.round(safeProgress)}%
           </span>
         )}
         {label && (

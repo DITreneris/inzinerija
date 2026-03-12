@@ -1,0 +1,221 @@
+{
+  "tools": [
+    {
+      "name": "Beautiful.ai",
+      "url": "https://www.beautiful.ai",
+      "description": "Be dizaino įgūdžių – smart templates, auto-layout.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Canva",
+      "url": "https://www.canva.com",
+      "description": "Viskas viename – Magic Write, šablonai, vizualai; universalus kasdienis įrankis.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "ChatGPT (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "Universalus pokalbių DI – geriausiai tinka bendram rašymui, santraukoms ir idėjų generavimui.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Claude (Anthropic)",
+      "url": "https://claude.ai",
+      "description": "Stiprus ilgų tekstų ir dokumentų analizei, atsakingas atsakymų stilius.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Connected Papers",
+      "url": "https://www.connectedpapers.com",
+      "description": "Mokslinių straipsnių ryšių vizualizacija – rodo susijusius darbus grafike, padeda greitai rasti aktualius šaltinius.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Consensus",
+      "url": "https://consensus.app",
+      "description": "Mokslinių tyrimų paieška su DI – atsakymai remiantis recenzuotais straipsniais, sintezė ir citatos.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Copilot (Microsoft)",
+      "url": "https://copilot.microsoft.com",
+      "description": "Microsoft ekosistemoje – Outlook, Word, Teams; puikiai tinka biuro darbui.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "DeepSeek",
+      "url": "https://chat.deepseek.com",
+      "description": "Stiprus kodavimui, matematikai ir logikai – puikus kainos ir kokybės santykis.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Elicit",
+      "url": "https://elicit.com",
+      "description": "Tyrimų automatizavimas – literatūros apžvalgos, duomenų sintezė, RAG tipo tyrimai.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Figma",
+      "url": "https://figma.com",
+      "description": "Vizualus maketavimas ir dizainas – kontekstas DI generavimui (pvz. tinklalapių HTML).",
+      "moduleId": 4,
+      "category": "Vizualas"
+    },
+    {
+      "name": "Gamma",
+      "url": "https://gamma.app",
+      "description": "Prezentacijų generavimas – skaidrės, pasiūlymai, brošiūros; interaktyvus web formatas.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Gemini (Google)",
+      "url": "https://gemini.google.com",
+      "description": "Integruotas su Google paslaugomis – paštas, dokumentai, paieška vienoje vietoje.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Google Calendar",
+      "url": "https://calendar.google.com",
+      "description": "Google kalendorius – renginių planavimas; grandinėse gali būti naudojamas su Gemini.",
+      "moduleId": 4,
+      "category": "Planavimas"
+    },
+    {
+      "name": "GPTZero",
+      "url": "https://gptzero.me/",
+      "description": "Benchmark įrankis akademijai – ~99 % tikslumas tekstui; atpažįsta ir mišrų (žmogus + DI) turinį.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Grok (xAI)",
+      "url": "https://grok.x.ai",
+      "description": "Realaus laiko duomenys iš X (Twitter) – naujienos, tendencijos, viešos diskusijos.",
+      "moduleId": 1,
+      "category": "Pokalbių DI"
+    },
+    {
+      "name": "Isgen.ai (LT)",
+      "url": "https://isgen.ai/lt",
+      "description": "Lietuviškas DI detektorius, gerai aptinka populiarių LLM generuotą tekstą (~96 % tikslumas).",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Greitas nemokamas DI teksto detektorius be registracijos, palaiko daug kalbų.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "NotebookLM (Google)",
+      "url": "https://notebooklm.google.com",
+      "description": "Google įrankis, kuris leidžia įkelti dokumentus ir „kalbėtis“ su jais – asmeninis RAG iš savo failų, podcastų generavimas.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "NoteLM",
+      "url": "https://www.notelm.app/",
+      "description": "Susieja užrašus ir dokumentus su kalbos modeliu – asmeninis RAG iš savo notų.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "Notion",
+      "url": "https://notion.so",
+      "description": "Universali darbo erdvė – užrašai, promptų biblioteka, dokumentacija, projektų valdymas vienoje vietoje.",
+      "moduleId": 6,
+      "category": "Produktyvumas"
+    },
+    {
+      "name": "PaperGuide",
+      "url": "https://paperguide.ai",
+      "description": "„Kalbėjimas“ su PDF – moksliniai PDF, literatūros apžvalgos, duomenų ištraukimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Perplexity",
+      "url": "https://perplexity.ai",
+      "description": "DI paieška su šaltiniais – akademinės užklausos, literatūros apžvalgos, faktų tikrinimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Prezent.ai",
+      "url": "https://prezent.ai",
+      "description": "Verslui – brand, Story Builder, naratyvas; korporatyvinės prezentacijos.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Scite",
+      "url": "https://scite.ai",
+      "description": "Išmanios citatos – kaip cituojami tyrimai; šaltinių patikimumo vertinimas.",
+      "moduleId": 4,
+      "category": "RAG / tyrimai"
+    },
+    {
+      "name": "SlidesAI",
+      "url": "https://www.slidesai.io",
+      "description": "Tekstas → skaidrės keliais paspaudimais. Google Slides integracija.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Trello",
+      "url": "https://trello.com",
+      "description": "Lentos ir kortelės – galima aprašyti užduotis kaip kontekstą RAG promptui.",
+      "moduleId": 4,
+      "category": "RAG / išoriniai šaltiniai"
+    },
+    {
+      "name": "Veo 3 (Google)",
+      "url": "https://deepmind.google/technologies/veo/",
+      "description": "Google vaizdo generavimo modelis – vaizdo įrašų kūrimas iš teksto (prompto).",
+      "moduleId": 4,
+      "category": "Vaizdo generavimas"
+    },
+    {
+      "name": "Visme",
+      "url": "https://www.visme.co",
+      "description": "Ataskaitoms ir duomenims – infografikai, interaktyvumas.",
+      "moduleId": 4,
+      "category": "Prezentacijos"
+    },
+    {
+      "name": "Winston AI",
+      "url": "https://gowinston.ai/",
+      "description": "Labai tiksli DI turinio detekcija, žema klaidingų teigiamų rodiklių norma; plačiai naudojama mokyklose ir leidybos sektoriuje.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Zapier",
+      "url": "https://zapier.com",
+      "description": "Automatizuoja darbo eigas tarp programų – DI grandinėse gali siųsti duomenis į el. paštą, kalendorių ir kt.",
+      "moduleId": 4,
+      "category": "Automatizacija"
+    },
+    {
+      "name": "ZeroGPT",
+      "url": "https://zerogpt.com/",
+      "description": "Nemokama priemonė, skirta greitai patikrinti DI turinį.",
+      "moduleId": 4,
+      "category": "DI turinio detektoriai"
+    }
+  ]
+}

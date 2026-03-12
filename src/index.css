@@ -7,6 +7,9 @@
 @layer base {
   body {
     @apply transition-colors duration-300 font-sans antialiased;
+    /* Ilgi žodžiai (lietuviški) – lūžti vietoje overflow (senesni iPhone) */
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -25,11 +28,25 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  /* Senesni Safari (iPhone): nekeisti teksto dydžio savavališkai – mažina „per didelio“ vaizdo ir nukarpytų žodžių riziką */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles for accessibility – keyboard only (focus-visible) */
 *:focus-visible {
   @apply outline-2 outline-brand-500 outline-offset-2;
+}
+
+/* Interactive elements: ring instead of outline (Tailwind consistency, GOLDEN_STANDARD §7) */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex="0"]:focus-visible {
+  @apply outline-none ring-2 ring-brand-500 ring-offset-2;
 }
 
 /* Custom scrollbar */
@@ -48,6 +65,12 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-brand-600 dark:bg-brand-500;
+}
+
+/* Slide dots: gradient mask dešinėje („yra daugiau“) */
+.mask-gradient-dots {
+  mask-image: linear-gradient(to right, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
 }
 
 /* Mobile touch improvements */
@@ -79,6 +102,19 @@ html {
     -webkit-tap-highlight-color: rgba(98, 125, 152, 0.25);
     touch-action: manipulation;
   }
+}
+
+/* RAG diagram: no tap/focus flash (SO #20853238; H1: only circle clickable) */
+.rag-duomenu-step {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  touch-action: manipulation;
+}
+.rag-duomenu-step:focus,
+.rag-duomenu-step:focus-visible,
+.rag-duomenu-step:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Smooth transitions for all interactive elements */
@@ -142,22 +178,30 @@ details[open] > summary {
   @apply bg-gradient-to-r from-brand-700 to-accent-600 bg-clip-text text-transparent;
 }
 
-/* Hero title – tamsesnė gradient spalva, aiškesnė hierarchija */
+/* Hero title – dienos režime minkštesnis gradientas (neplėšo akių), dark – ryškumas */
 .gradient-text-hero {
-  @apply bg-gradient-to-r from-brand-800 to-accent-700 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-brand-600 to-accent-600 bg-clip-text text-transparent;
 }
 
 .dark .gradient-text-hero {
   @apply from-brand-300 to-accent-400;
 }
 
-/* Hero CTA – vienintelis energinis objektas: tamsesnis mėlynas, +10–15% aukštesnis, subtle glow */
+/* Hero CTA – dienos režime minkštesnis šešėlis ir gradientas (neplėšo akių) */
 .btn-hero-cta {
   @apply rounded-2xl py-6 text-xl min-h-[56px] font-semibold;
+  background: linear-gradient(135deg, #5a7a94 0%, #486581 100%);
+  box-shadow: 0 4px 14px rgba(36, 59, 83, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+.btn-hero-cta:hover {
+  background: linear-gradient(135deg, #486581 0%, #334e68 100%);
+  box-shadow: 0 6px 18px rgba(36, 59, 83, 0.28);
+}
+.dark .btn-hero-cta {
   background: linear-gradient(135deg, #486581 0%, #334e68 100%);
   box-shadow: 0 4px 18px rgba(36, 59, 83, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 }
-.btn-hero-cta:hover {
+.dark .btn-hero-cta:hover {
   background: linear-gradient(135deg, #334e68 0%, #243b53 100%);
   box-shadow: 0 6px 22px rgba(36, 59, 83, 0.5);
 }

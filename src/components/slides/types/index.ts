@@ -1,6 +1,7 @@
-export type { ActionIntroSlideProps, IntroSlideProps, HierarchySlideProps, ComparisonSlideProps, SummarySlideProps, PracticeSummarySlideProps } from './AllSlides';
+export type { ActionIntroSlideProps, ActionIntroJourneySlideProps, IntroSlideProps, IntroActionPieSlideProps, HierarchySlideProps, ComparisonSlideProps, SummarySlideProps, PracticeSummarySlideProps } from './AllSlides';
 export {
   ActionIntroSlide,
+  ActionIntroJourneySlide,
   IntroSlide,
   ModuleIntroSlide,
   ContentBlockSlide,
@@ -10,6 +11,7 @@ export {
   DefinitionsSlide,
   DiModalitiesSlide,
   PieChartSlide,
+  IntroActionPieSlide,
   AiWorkflowSlide,
   PromptTypesSlide,
   PromptTechniquesSlide,
@@ -32,7 +34,10 @@ export {
   TestSectionSlide,
   TestResultsSlide,
   PracticeIntroSlide,
+  PracticeScenarioHubSlide,
   PracticeScenarioSlide,
   ProductivityInfographicSlide,
+  DiParadoxInfographicSlide,
+  NewsPortalInfographicSlide,
   PracticeSummarySlide,
 } from './AllSlides';

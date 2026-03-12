@@ -13,15 +13,22 @@
     "test:coverage": "vitest --coverage",
     "test:run": "vitest run",
     "validate:schema": "node scripts/validate-schema.mjs",
+    "generate:core-data": "node scripts/generate-core-data.mjs",
+    "audit:collapsible": "node scripts/audit-collapsible-sections.mjs",
+    "audit:long-no-collapsible": "node scripts/audit-long-without-collapsible.mjs",
+    "audit:heading-time": "node scripts/audit-heading-time-ambiguity.mjs",
+    "audit:footer-numbers": "node scripts/audit-footer-numbers.mjs",
     "prebuild": "npm run validate:schema"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
+    "i18next": "^25.8.14",
+    "jspdf": "^4.2.0",
     "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",
-    "recharts": "^3.7.0"
+    "react-i18next": "^16.5.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",
@@ -36,6 +43,7 @@
     "@vitest/coverage-v8": "^1.1.0",
     "@vitest/ui": "^1.1.0",
     "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "autoprefixer": "^10.4.16",
     "axe-core": "^4.11.1",
     "eslint": "^8.55.0",
@@ -61,12 +69,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DITreneris/anatomija.git"
+    "url": "https://github.com/DITreneris/inzinerija.git"
   },
   "bugs": {
-    "url": "https://github.com/DITreneris/anatomija/issues"
+    "url": "https://github.com/DITreneris/inzinerija/issues"
   },
-  "homepage": "https://ditreneris.github.io/anatomija/",
+  "homepage": "https://ditreneris.github.io/inzinerija/",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
