@@ -221,12 +221,19 @@ export async function downloadM5HandoutPdf(
   applyFont(doc, useCustomFont);
   doc.text(content.footerText, MARGIN, FOOTER_Y);
   doc.text(linkLabel, MARGIN, LINK_Y);
+  const getWidth = (d: jsPDF, text: string): number => {
+    if (typeof (d as jsPDF & { getTextWidth?(t: string): number }).getTextWidth === 'function') {
+      return (d as jsPDF & { getTextWidth(t: string): number }).getTextWidth(text);
+    }
+    const dim = (d as jsPDF & { getTextDimensions?(t: string): { w: number } }).getTextDimensions?.(text);
+    return dim?.w ?? 80;
+  };
+  const linkX = MARGIN + getWidth(doc, linkLabel);
   const docWithLink = doc as jsPDF & { textWithLink?(text: string, x: number, y: number, opts: { url: string }): void };
   if (typeof docWithLink.textWithLink === 'function') {
-    const linkX = MARGIN + doc.getTextWidth(linkLabel);
     docWithLink.textWithLink(websiteCta, linkX, LINK_Y, { url: WEBSITE_URL });
   } else {
-    doc.text(websiteCta, MARGIN + doc.getTextWidth(linkLabel), LINK_Y);
+    doc.text(websiteCta, linkX, LINK_Y);
   }
 
   const defaultName = locale === 'en' ? 'Prompt_Anatomy_Module5_handout.pdf' : 'Promptu_anatomija_Modulio5_atmintine.pdf';

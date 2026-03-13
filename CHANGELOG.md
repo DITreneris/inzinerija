@@ -32,6 +32,7 @@ Ištaisyti EN UI/UX trūkumai pagal bug bundle: refleksijos skaidrė, RL diagram
 - **RlProcessDiagram:** Pilna EN lokalizacija – `STEPS_ROW_EN` / `STEPS_GRID_EN` (Agent, Environment, Action, Reward), `FORWARD_LABELS_EN`, `FEEDBACK_LABEL_EN`, diagramos antraštė („RL process structure“ / „RL structure“), `aria-label` ir click rect aria-label EN, feedback path `<title>` EN; `useLocale()` naudojamas pasirinkimui.
 - **RlProcessBlock:** „You are here“ eilutei pridėtas `whitespace-nowrap`, kad „1. Agent“ nesulipėtų į „Agent1“.
 - **M5 handout PDF:** Po footer teksto pridėta antra eilutė su spaudžiama nuoroda – „More: “ / „Daugiau: “ + `textWithLink('www.promptanatomy.app', …, { url: 'https://www.promptanatomy.app/' })` (`src/utils/m5HandoutPdf.ts`).
+- **M5 handout PDF testai:** `doc.getTextWidth is not a function` – testų mockas papildytas `getTextWidth`; `m5HandoutPdf.ts` naudoja helperį `getWidth(doc, text)`, kuris palaiko ir `getTextWidth`, ir `getTextDimensions` (jsPDF versijų suderinamumui). `src/utils/__tests__/m5HandoutPdf.test.ts` – mock įtraukia `getTextWidth`.
 
 ### Fixed (2026-03-13)
 

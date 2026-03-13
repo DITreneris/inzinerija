@@ -14,6 +14,7 @@ const mockAddFileToVFS = vi.fn();
 const mockAddFont = vi.fn();
 const mockAddPage = vi.fn();
 const mockSplitTextToSize = vi.fn((text: string) => [text]);
+const mockGetTextWidth = vi.fn((_text: string) => 50);
 
 vi.mock('jspdf', () => ({
   jsPDF: vi.fn().mockImplementation(() => ({
@@ -29,6 +30,7 @@ vi.mock('jspdf', () => ({
     addFont: mockAddFont,
     addPage: mockAddPage,
     splitTextToSize: mockSplitTextToSize,
+    getTextWidth: mockGetTextWidth,
   })),
 }));
 
