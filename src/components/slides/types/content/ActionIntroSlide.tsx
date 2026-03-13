@@ -110,7 +110,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
             <div className="bg-rose-50 dark:bg-rose-900/20 border-2 border-rose-200 dark:border-rose-800 rounded-2xl p-5 sm:p-6 flex flex-col">
               <p className="text-xs font-semibold text-rose-700 dark:text-rose-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" aria-hidden="true" />
-                Tuščias promptas
+                {t('emptyPromptLabel')}
               </p>
               <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center border border-rose-100 dark:border-rose-900/30">
                 <p className="text-gray-800 dark:text-gray-200 text-base sm:text-lg italic leading-relaxed font-sans">
@@ -120,7 +120,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
               <div className="mt-4 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-400 flex-shrink-0" aria-hidden="true" />
                 <p className="text-xs sm:text-sm text-rose-600 dark:text-rose-400 font-medium leading-snug">
-                  Neaiškus tikslas. Nėra konteksto. DI spėlioja.
+                  {t('emptyPromptNote')}
                 </p>
               </div>
             </div>
@@ -128,7 +128,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
             <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl p-5 sm:p-6 flex flex-col ring-2 ring-emerald-200/60 dark:ring-emerald-800/40 shadow-md">
               <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" aria-hidden="true" />
-                6 blokų promptas
+                {t('structuredPromptLabel')}
               </p>
               <div className="flex-1 bg-white dark:bg-gray-800 rounded-xl p-4 border border-emerald-100 dark:border-emerald-900/30">
                 <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line font-mono leading-relaxed max-h-56 overflow-y-auto pr-1">
@@ -139,7 +139,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
                 <div className="flex items-center gap-2 min-w-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" aria-hidden="true" />
                   <p className="text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 font-medium leading-snug truncate">
-                    Aiškus kontekstas, struktūra, rezultatas.
+                    {t('structuredPromptNote')}
                   </p>
                 </div>
                 {content.structuredPrompt && <CopyButton text={content.structuredPrompt} size="sm" />}

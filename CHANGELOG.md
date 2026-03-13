@@ -22,6 +22,19 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ### Fixed (2026-03-13)
 
+**EN UI/UX bug bundle – skaidrės, diagramos, PDF**
+
+Ištaisyti EN UI/UX trūkumai pagal bug bundle: refleksijos skaidrė, RL diagrama, ActionIntroSlide, M5 handout PDF, footer/nav tekstai.
+
+- **modules-en-m4-m6.json:** Skaidrė 66.97 (refleksija) – `title` pakeistas iš „3 klausimai sau“ į „3 questions for yourself“; section „Next step“ – `body` sutrumpintas į „Pick one option below.“
+- **modules-en-us-overrides.json:** Tas pats „Next step“ body – „Pick one option below.“
+- **ActionIntroSlide:** Keturi hardcoded LT stringai („Tuščias promptas“, „Neaiškus tikslas…“, „6 blokų promptas“, „Aiškus kontekstas…“) pakeisti į i18n – pridėti `emptyPromptLabel`, `emptyPromptNote`, `structuredPromptLabel`, `structuredPromptNote` į `src/locales/lt.json` ir `en.json`; komponentas naudoja `t()`.
+- **RlProcessDiagram:** Pilna EN lokalizacija – `STEPS_ROW_EN` / `STEPS_GRID_EN` (Agent, Environment, Action, Reward), `FORWARD_LABELS_EN`, `FEEDBACK_LABEL_EN`, diagramos antraštė („RL process structure“ / „RL structure“), `aria-label` ir click rect aria-label EN, feedback path `<title>` EN; `useLocale()` naudojamas pasirinkimui.
+- **RlProcessBlock:** „You are here“ eilutei pridėtas `whitespace-nowrap`, kad „1. Agent“ nesulipėtų į „Agent1“.
+- **M5 handout PDF:** Po footer teksto pridėta antra eilutė su spaudžiama nuoroda – „More: “ / „Daugiau: “ + `textWithLink('www.promptanatomy.app', …, { url: 'https://www.promptanatomy.app/' })` (`src/utils/m5HandoutPdf.ts`).
+
+### Fixed (2026-03-13)
+
 **Pre-deploy auditas – README ir LlmArchDiagramDiagram**
 
 Gili kodo bazės analizė prieš deploy: schema, lint, testai, build – visi praeina. Atlikti pataisymai:

@@ -85,7 +85,7 @@ export default function RlProcessBlock({ moduleId: _moduleId, slideId: _slideId,
 
       <div className="flex flex-wrap items-center gap-2">
         <span
-          className="inline-flex items-center gap-1 rounded-full bg-brand-100 dark:bg-brand-900/40 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300"
+          className="inline-flex items-center gap-1 rounded-full bg-brand-100 dark:bg-brand-900/40 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300 whitespace-nowrap"
           aria-live="polite"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" aria-hidden />

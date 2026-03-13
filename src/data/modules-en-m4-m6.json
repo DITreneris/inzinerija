@@ -3409,7 +3409,7 @@
         },
         {
           "id": 66.97,
-          "title": "3 klausimai sau",
+          "title": "3 questions for yourself",
           "subtitle": "Reflection before the quiz and project – copy the prompt",
           "type": "content-block",
           "content": {
@@ -3437,7 +3437,7 @@
               },
               {
                 "heading": "Next step",
-                "body": "Choose your next step – next slide (interactive).",
+                "body": "Pick one option below.",
                 "blockVariant": "emerald"
               }
             ],

@@ -210,10 +210,24 @@ export async function downloadM5HandoutPdf(
   }
 
   // Footer
+  const FOOTER_Y = 287;
+  const LINK_Y = 292;
+  const WEBSITE_URL = 'https://www.promptanatomy.app/';
+  const websiteCta = 'www.promptanatomy.app';
+  const linkLabel = isEn ? 'More: ' : 'Daugiau: ';
+
   doc.setFontSize(FONT_SMALL);
   doc.setTextColor(128, 128, 128);
   applyFont(doc, useCustomFont);
-  doc.text(content.footerText, MARGIN, 290);
+  doc.text(content.footerText, MARGIN, FOOTER_Y);
+  doc.text(linkLabel, MARGIN, LINK_Y);
+  const docWithLink = doc as jsPDF & { textWithLink?(text: string, x: number, y: number, opts: { url: string }): void };
+  if (typeof docWithLink.textWithLink === 'function') {
+    const linkX = MARGIN + doc.getTextWidth(linkLabel);
+    docWithLink.textWithLink(websiteCta, linkX, LINK_Y, { url: WEBSITE_URL });
+  } else {
+    doc.text(websiteCta, MARGIN + doc.getTextWidth(linkLabel), LINK_Y);
+  }
 
   const defaultName = locale === 'en' ? 'Prompt_Anatomy_Module5_handout.pdf' : 'Promptu_anatomija_Modulio5_atmintine.pdf';
   const name = filename ?? defaultName;

@@ -5,6 +5,7 @@
  * Rodyklės = arrow (filled triangle), ne chevron (stroke „>“).
  */
 import { useId, useState, useEffect } from 'react';
+import { useLocale } from '../../../contexts/LocaleContext';
 
 /* ═══ Viewbox – sutemptas (mažiau tuščios erdvės, schema vizualiai didesnė) ═══ */
 const VIEWBOX_DESKTOP = '0 0 920 268';
@@ -61,6 +62,13 @@ const STEPS_ROW = [
   { x: START_X + (BOX_W + GAP) * 3, y: ROW_Y, w: BOX_W, h: BOX_H, title: 'Atlygis', desc: 'gerai / blogai' },
 ];
 
+const STEPS_ROW_EN = [
+  { x: START_X, y: ROW_Y, w: BOX_W, h: BOX_H, title: 'Agent', desc: 'LLM system' },
+  { x: START_X + (BOX_W + GAP) * 1, y: ROW_Y, w: BOX_W, h: BOX_H, title: 'Environment', desc: 'situation / task' },
+  { x: START_X + (BOX_W + GAP) * 2, y: ROW_Y, w: BOX_W, h: BOX_H, title: 'Action', desc: 'what it does' },
+  { x: START_X + (BOX_W + GAP) * 3, y: ROW_Y, w: BOX_W, h: BOX_H, title: 'Reward', desc: 'good / bad' },
+];
+
 /* ═══ Mobile: 2×2 grid ═══ */
 const MOBILE_OFFSET_X = 40;
 const MOBILE_OFFSET_Y = 60;
@@ -71,10 +79,19 @@ const STEPS_GRID = [
   { x: MOBILE_OFFSET_X + BOX_W + GAP, y: MOBILE_OFFSET_Y + BOX_H + GAP, w: BOX_W, h: BOX_H, title: 'Atlygis', desc: 'gerai / blogai' },
 ];
 
+const STEPS_GRID_EN = [
+  { x: MOBILE_OFFSET_X, y: MOBILE_OFFSET_Y, w: BOX_W, h: BOX_H, title: 'Agent', desc: 'LLM system' },
+  { x: MOBILE_OFFSET_X + BOX_W + GAP, y: MOBILE_OFFSET_Y, w: BOX_W, h: BOX_H, title: 'Environment', desc: 'situation / task' },
+  { x: MOBILE_OFFSET_X, y: MOBILE_OFFSET_Y + BOX_H + GAP, w: BOX_W, h: BOX_H, title: 'Action', desc: 'what it does' },
+  { x: MOBILE_OFFSET_X + BOX_W + GAP, y: MOBILE_OFFSET_Y + BOX_H + GAP, w: BOX_W, h: BOX_H, title: 'Reward', desc: 'good / bad' },
+];
+
 /** Etiketės ant forward rodyklių */
 const FORWARD_LABELS = ['sprendimas', 'atlikimas', 'rezultatas'] as const;
+const FORWARD_LABELS_EN = ['decision', 'execution', 'outcome'] as const;
 /** Etiketė ant grįžtamosios rodyklės */
 const FEEDBACK_LABEL = 'elgesio korekcija';
+const FEEDBACK_LABEL_EN = 'behaviour adjustment';
 
 interface RlProcessDiagramProps {
   currentStep?: number;
@@ -107,10 +124,23 @@ export default function RlProcessDiagram({
   className = '',
 }: RlProcessDiagramProps) {
   const uid = useId().replace(/:/g, '');
+  const { locale } = useLocale();
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const isInteractive = typeof onStepClick === 'function';
   const isCompact = useIsCompact();
-  const STEPS = isCompact ? STEPS_GRID : STEPS_ROW;
+  const isEn = locale === 'en';
+  const STEPS = isCompact ? (isEn ? STEPS_GRID_EN : STEPS_GRID) : (isEn ? STEPS_ROW_EN : STEPS_ROW);
+  const forwardLabels = isEn ? FORWARD_LABELS_EN : FORWARD_LABELS;
+  const feedbackLabel = isEn ? FEEDBACK_LABEL_EN : FEEDBACK_LABEL;
+  const diagramTitle = isEn ? (isCompact ? 'RL structure' : 'RL process structure') : (isCompact ? 'RL struktūra' : 'RL proceso struktūra');
+  const svgAriaLabel = isEn
+    ? `RL process diagram.${isInteractive ? ' Click a step for explanation.' : ''}`
+    : `RL proceso schema.${isInteractive ? ' Paspausk žingsnį, kad pamatytum paaiškinimą.' : ''}`;
+  const stepAriaLabel = (i: number, title: string) =>
+    isEn ? `Step ${i + 1}: ${title}. Click for explanation.` : `Žingsnis ${i + 1}: ${title}. Paspausk paaiškinimui.`;
+  const feedbackPathTitle = isEn
+    ? 'Feedback: reward returns to agent and shapes behaviour'
+    : 'Grįžtamasis ryšys: atlygis grįžta į agentą ir keičia elgesį';
   const viewBox = isCompact ? VIEWBOX_MOBILE : VIEWBOX_DESKTOP;
   const vbWidth = isCompact ? VB_WIDTH_MOBILE : VB_WIDTH_DESKTOP;
   const vbHeight = isCompact ? VB_HEIGHT_MOBILE : VB_HEIGHT_DESKTOP;
@@ -164,7 +194,7 @@ export default function RlProcessDiagram({
       viewBox={viewBox}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
-      aria-label={`RL proceso schema.${isInteractive ? ' Paspausk žingsnį, kad pamatytum paaiškinimą.' : ''}`}
+      aria-label={svgAriaLabel}
     >
       <defs>
         <linearGradient id={`rl-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -208,12 +238,12 @@ export default function RlProcessDiagram({
       {/* Title – progresas „Tu esi čia“ RlProcessBlock */}
       {!isCompact && (
         <text x={vbWidth / 2} y="28" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="17" fontWeight="800" fill={TEXT_DARK}>
-          RL proceso struktūra
+          {diagramTitle}
         </text>
       )}
       {isCompact && (
         <text x={vbWidth / 2} y="32" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="15" fontWeight="800" fill={TEXT_DARK}>
-          RL struktūra
+          {diagramTitle}
         </text>
       )}
 
@@ -268,7 +298,7 @@ export default function RlProcessDiagram({
                 onClick={() => onStepClick?.(i)}
                 onMouseEnter={() => setHoveredStep(i)}
                 onMouseLeave={() => setHoveredStep(null)}
-                aria-label={`Žingsnis ${i + 1}: ${step.title}. Paspausk paaiškinimui.`}
+                aria-label={stepAriaLabel(i, step.title)}
                 role="button" tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick?.(i); } }}
               />
@@ -277,7 +307,7 @@ export default function RlProcessDiagram({
             {/* Forward arrow + centered-on-edge label (yWorks / GoJS pattern) */}
             {next && (() => {
               const n = next;
-              const labelText = FORWARD_LABELS[i];
+              const labelText = forwardLabels[i];
 
               /* ── Etiketės VIRŠ rodyklių, laisvoje erdvėje tarp title ir box'ų ── */
               const gapCenterX = rightEdge + GAP / 2;
@@ -290,7 +320,7 @@ export default function RlProcessDiagram({
                 const y1 = bottomEdge;
                 const y2 = n.y - ARROW_MARKER_LEN;
                 return (
-                  <g key={`arrow-${i}`} aria-label={`Rodyklė: ${step.title} → ${n.title} (${labelText})`}>
+                  <g key={`arrow-${i}`} aria-label={isEn ? `Arrow: ${step.title} → ${n.title} (${labelText})` : `Rodyklė: ${step.title} → ${n.title} (${labelText})`}>
                     <line x1={centerX} y1={y1} x2={nCenterX} y2={y2} stroke={FORWARD_STROKE} strokeWidth="2" strokeLinecap="round" markerEnd={`url(#rl-arrow-${uid})`} />
                     {labelText && (
                       <text x={(centerX + nCenterX) / 2 + 14} y={(y1 + y2) / 2 + 4} textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="10" fontWeight="600" fill={TEXT_MUTED}>{labelText}</text>
@@ -305,7 +335,7 @@ export default function RlProcessDiagram({
               const toX = n.x - ARROW_MARKER_LEN;
               const connTop = lblRectY + lblRectH;   /* connector start: label rect apačia */
               return (
-                <g key={`arrow-${i}`} aria-label={`Rodyklė: ${step.title} → ${n.title} (${labelText})`}>
+                <g key={`arrow-${i}`} aria-label={isEn ? `Arrow: ${step.title} → ${n.title} (${labelText})` : `Rodyklė: ${step.title} → ${n.title} (${labelText})`}>
                   {/* Horizontalus jungtis – storesnė linija, aiški kryptis */}
                   <line x1={fromX} y1={arrowY} x2={toX} y2={arrowY} stroke={FORWARD_STROKE} strokeWidth="2" strokeLinecap="round" markerEnd={`url(#rl-arrow-${uid})`} />
                   {/* Etiketė virš gap'o + vertikalus connector */}
@@ -339,7 +369,7 @@ export default function RlProcessDiagram({
         strokeLinejoin="round"
         strokeLinecap="round"
       >
-        <title>Grįžtamasis ryšys: atlygis grįžta į agentą ir keičia elgesį</title>
+        <title>{feedbackPathTitle}</title>
       </path>
 
       {/* Feedback arrow – smailė ties fbTipY (po bloku), bazė žemiau */}
@@ -358,7 +388,7 @@ export default function RlProcessDiagram({
         fontWeight="700"
         fill={ACCENT_DARK}
       >
-        {FEEDBACK_LABEL}
+        {feedbackLabel}
       </text>
     </svg>
   );
