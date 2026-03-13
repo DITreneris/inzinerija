@@ -91,8 +91,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock IntersectionObserver (used by some components)
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(globalThis as any).IntersectionObserver = class IntersectionObserver {
+const IntersectionObserverMock = class {
   constructor() {}
   disconnect() {}
   observe() {}
@@ -100,8 +99,28 @@ Object.defineProperty(window, 'matchMedia', {
     return [];
   }
   unobserve() {}
+};
+vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).IntersectionObserver = IntersectionObserverMock;
+
+// Mock ResizeObserver (used by AppNav; jsdom does not provide it). vi.stubGlobal ensures it exists in CI workers.
+const ResizeObserverMock = class {
+  constructor(_callback: ResizeObserverCallback) {}
+  disconnect() {}
+  observe() {}
+  unobserve() {}
+};
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).ResizeObserver = ResizeObserverMock;
+if (typeof window !== 'undefined') {
+  (window as unknown as { ResizeObserver: typeof ResizeObserverMock }).ResizeObserver = ResizeObserverMock;
+}
+if (typeof global !== 'undefined') {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} as any;
+  (global as any).ResizeObserver = ResizeObserverMock;
+}
 
 // Mock HTMLCanvasElement.getContext (axe-core uses it in a11y tests; jsdom does not implement it)
 if (typeof HTMLCanvasElement !== 'undefined') {

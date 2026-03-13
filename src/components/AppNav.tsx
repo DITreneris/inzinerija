@@ -32,8 +32,12 @@ export function AppNav({
 
   useEffect(() => {
     const el = navRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
+    const Ctor =
+      typeof window !== 'undefined' && 'ResizeObserver' in window
+        ? (window as Window & { ResizeObserver: typeof ResizeObserver }).ResizeObserver
+        : null;
+    if (!el || !Ctor) return;
+    const ro = new Ctor(([entry]) => {
       const h = entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
       document.documentElement.style.setProperty('--app-nav-height', `${h}px`);
     });
