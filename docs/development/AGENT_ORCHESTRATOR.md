@@ -21,6 +21,7 @@
 | **Duomenų tiesa** | `src/data/modules.json`, `src/data/modules-m1-m6.json`, `src/data/promptLibrary.json`, `src/data/glossary.json`, `src/data/glossary-m1-m6.json`, `src/data/tools.json`, `src/data/tools-m1-m6.json`, `src/data/hallucinationRates.ts` |
 | **UI tiesa** | React komponentai, kurie renderina JSON (`SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`) |
 | **Bendri atsiliepimai** (gyvas testavimas, V1 analizė, segmentai, V2 veiksmai) | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`; klaidos ir sprendimai – `docs/development/TEST_REPORT.md` |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` (turinio ir dizaino SOT – tik `docs/development/GOLDEN_STANDARD.md`) |
 
 **Modulių / skaidrių registras ir kontekstas:** Žr. `docs/development/context-engineering/sot_index.json` (kur kokia tiesa, publicModules, unlocksAfter, nextStep). Pilnas planas: `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md`. Konteksto biudžetas agentams: `docs/development/context-engineering/context_budget.md`. **Prieš redaguojant modulio turinį:** atidaryk sot_index.json; pilną SOT (turinio_pletra*.md) krauk tik tada, kai užduotis liečia tą modulį (validacija: `node scripts/validate-sot-index.mjs`).
 
@@ -30,6 +31,8 @@
 1. Sutvarkyk turinio SOT (semantika, terminai, struktūra) – pagal modulį: `turinio_pletra.md` arba `docs/turinio_pletra_moduliai_4_5_6.md`.
 2. Sinchronizuok JSON su turiniu.
 3. Tik tada taisyk UI/komponentus.
+
+**Dokumentų savininkai:** **GOLD_LEGACY_STANDARD.md** atnaujina **QA_AGENT** (prieš release arba kai pasikeitė versija/struktūra); didelių refaktorų atveju atnaujinti gali pasiūlyti **CODING_AGENT** arba **CODE_REVIEW_AGENT**. **GOLDEN_STANDARD.md** – turinio ir dizaino SOT; atnaujina **UI_UX_AGENT** (dizainas) ir **CONTENT_AGENT** (turinis); prieš release peržiūra – **QA_AGENT**.
 
 ---
 

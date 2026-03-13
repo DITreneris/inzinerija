@@ -20,6 +20,29 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+### Fixed (2026-03-13)
+
+**Pre-deploy auditas – README ir LlmArchDiagramDiagram**
+
+Gili kodo bazės analizė prieš deploy: schema, lint, testai, build – visi praeina. Atlikti pataisymai:
+
+- **README.md:** GitHub Pages prieiga pakeista iš `ditreneris.github.io/anatomija/` į `ditreneris.github.io/inzinerija/`; pastaba apie base path – production default `/inzinerija/`.
+- **LlmArchDiagramDiagram.tsx:** ResizeObserver naudojamas per guard (kaip AppNav) – tik jei `window.ResizeObserver` egzistuoja; išvengiama klaidos senose naršyklėse arba edge testuose.
+- **docs/development/PRE_DEPLOY_AUDIT_2026-03-13.md:** Naujas dokumentas – audito santrauka, kas anksčiau nepavyko (CHANGELOG/TEST_REPORT), šios analizės pataisymai, rekomenduojami žingsniai ir žemos rizikos darbai.
+
+### Changed (2026-03-13)
+
+**Mobilaus UI sumažinimas (de-clutter) – mažiau detalių, aiškesnė esmė**
+
+Mažame ekrane sumažintas informacijos tankis (~10–20 %): pašalintas dubliavimas, paslėpti antriniai elementai, išlaikyta viena aiški navigacija ir CTA. Tikslas – neprarasti mobile vartotojų.
+
+- **AppNav:** Mobile rodomas trumpesnis pavadinimas (`appTitleShort`: „P. anatomija“ / „Prompt Anatomy“); progreso procentas mobile paslėptas – lieka tik juosta. **i18n:** `src/locales/lt.json`, `src/locales/en.json` – pridėtas `nav.appTitleShort`.
+- **ModuleView – fixed bottom bar:** Centro blokas „Modulis 4 · 3/41“ mobile paslėptas (`hidden md:flex`) – lieka tik Atgal + Tęsti.
+- **ModuleView – SlideGroupProgressBar:** Fazių etiketės mobile paslėptos (`hidden md:inline`) – rodomos tik spalvotos juostos.
+- **ModuleView – Progress info (po turiniu):** Visas blokas (modulių taškai, skaidrės skaitiklis, fazių juosta) mobile paslėptas (`hidden md:block`).
+- **ModuleView – Slide dots:** Visų skaidrių taškų eilutė mobile paslėpta (`hidden md:flex`).
+- **ModuleView – Subtitle:** Skaidrės subtitle mobile paslėptas (`hidden md:block`) – rodomas tik H1.
+
 ### Changed (2026-03-12)
 
 **Deploy į DITreneris/inzinerija – base path ir repo nuorodos**
@@ -34,7 +57,45 @@ Kad deploy į [GitHub inzinerija](https://github.com/DITreneris/inzinerija/) vei
 - **docs/deployment/PRE_DEPLOY_INZINERIJA.md:** Naujas dokumentas – pre-deploy analizė ir checklist.
 - **docs/deployment/DEPLOYMENT.md:** Lentelėje default base path nurodyta `/inzinerija/`.
 
+### Changed (2026-03-13)
+
+**Golden ir Gold Legacy dokumentų pertvarka – atsakomybės ir SOT**
+
+GOLDEN_STANDARD ir GOLD_LEGACY_STANDARD aiškiai suskirstyti: turinio/dizaino SOT – tik GOLDEN; GOLD_LEGACY – techninė atspirties būsena. Priskirti dokumentų savininkai agentams.
+
+- **.cursor/rules/agent-orchestrator.mdc:** SOT lentelėje pridėta GOLD_LEGACY_STANDARD.md; pastaba „Turinio ir dizaino taisyklės – tik GOLDEN_STANDARD.md; GOLD_LEGACY – tik techninė būsena“.
+- **docs/DOCUMENTATION_QUICK_REF.md, docs/LEAN_INDEX.md, docs/DOCUMENTATION_INDEX.md:** GOLD_LEGACY įtrauktas į SOT/indeksus (techninė atspirties būsena; savininkas QA_AGENT).
+- **docs/development/AGENT_ORCHESTRATOR.md:** SOT eilutė GOLD_LEGACY; naujas skyrius „Dokumentų savininkai“ (GOLD_LEGACY → QA_AGENT; GOLDEN → UI_UX_AGENT, CONTENT_AGENT; release peržiūra → QA_AGENT).
+- **docs/development/GOLD_LEGACY_STANDARD.md:** Įvade nuoroda į GOLDEN_STANDARD kaip turinio/dizaino SOT; §22.2 ir §22.3 sutrumpinti – tik nuoroda į GOLDEN, be dubliavimo.
+- **docs/development/GOLDEN_STANDARD.md:** Įvade nuoroda į GOLD_LEGACY (techninė apžvalga, inventorius).
+
+### Changed (2026-03-13)
+
+**Haliucinacijos Modulyje 7 – SOT, standartai ir kodo sinchronizavimas**
+
+Haliucinacijų ir žinių patikrinimo tema perkelta į Modulį 7 (blokas „Patikrumas ir etika“). Atnaujinti SOT, JSON ir kodas, kad nuorodos rodytų į M7, ne į Modulio 4 (4.6).
+
+- **SOT:** `docs/turinio_pletra_moduliai_4_5_6.md` – SUPER PROMPTAI skyrius (perėjimas prie haliucinacijų → Modulio 7, skaidrės 67.8, 68). `docs/turinio_pletra_moduliai_7_8_9.md` – nuorodos 4.6 → M7. `docs/CONTENT_MODULIU_ATPAZINIMAS.md` – Modulio 4 aprašas patikslintas (pilnas haliucinacijų blokas – M7). `docs/development/AUDIT_SKAIDRE_63_SUPER_PROMPTAI.md` – nuorodos į M7.
+- **Duomenys:** `modules.json`, `modules-m1-m6.json` – skaidrė 63 (SUPER PROMPTAI) body M4→M7; „Daryk dabar“ blockVariant violet→brand; RAG/quiz/label/path-step ir M7 vidinės nuorodos (4.6/4.6a) pakeistos. `modules-en-us-overrides.json`, `modules-en-m4-m6.json` – atitinkami EN pakeitimai (Module 7, Hallucinations, Fact-checking).
+- **Kodas:** `src/data/aiDetectors.ts` – komentaras „Modulis 4, sekcija 4.6“ → „Modulio 7, Patikrumas ir etika“.
+
+### Fixed (2026-03-13)
+
+**DiPrezentacijosWorkflowDiagram – ARROW_MARKER_LEN neapibrėžtas (skaidrė 47)**
+
+Skaidrė „Kas yra 15 min sprintas ir ką daryti pirmiausia“ (id: 47, Modulis 5) mėtė `ReferenceError: ARROW_MARKER_LEN is not defined` – rodyklės linijos pabaigoje naudojama konstanta nebuvo apibrėžta faile.
+
+- **src/components/slides/shared/DiPrezentacijosWorkflowDiagram.tsx:** Pridėta `const ARROW_MARKER_LEN = 6;` (atitinka markerio refX ir path), rodyklės edge-to-edge geometrija išlaikyta.
+
 ### Fixed (2026-03-12)
+
+**ResizeObserver neapibrėžtas testuose (jsdom) – CI failina**
+
+Vitest/jsdom aplinkoje `ResizeObserver` nėra; AppNav naudojo jį tiesiogiai, todėl integraciniai testai (App.quiz.integration) mėtdavo `ReferenceError: ResizeObserver is not defined` ir CI failindavo.
+
+- **src/test/setup.ts:** Pridėtas **ResizeObserver** mock – `vi.stubGlobal('ResizeObserver', ResizeObserverMock)` ir priskyrimas į `globalThis`, `window`, `global`, kad būtų prieinamas visuose Vitest workeriuose. IntersectionObserver perkeliamas į `vi.stubGlobal` dėl vienodumo.
+- **src/components/AppNav.tsx:** ResizeObserver naudojamas tik per **`window.ResizeObserver`** ir guard `if (!el || !Ctor) return` – jei API nėra (pvz. senas jsdom be mock), efektas tiesiog nevykdomas, komponentas nebekrenta.
+- **docs/development/VERSION_ANALIZE.md:** Versijavimo analizė – kur identifikuoti versiją (package.json), ar galima keisti (1.3.0), kada „dar anksti“.
 
 **PNG vaizdai nerodomi po deploy (base path)**
 

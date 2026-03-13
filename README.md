@@ -1,4 +1,4 @@
-ch-# Promptų anatomija – Interaktyvus DI mokymas
+# Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai, pilnas interaktyvus mokymas (moduliai 1–6) – sistema nuo A iki Z.**
 
@@ -136,9 +136,9 @@ Pilna paletė (50–950) ir papildomos spalvos (slate, di-visata) – žr. `tail
 2. Source: pasirinkite "GitHub Actions"
 3. Push į `main` automatiškai deployina
 
-Prieiga: `https://ditreneris.github.io/anatomija/`
+Prieiga: `https://ditreneris.github.io/inzinerija/`
 
-**Pastaba:** tai yra statinis preview kelias. GitHub Pages neturi marketingo repo autentifikacijos ir `verify-access` API sluoksnio, todėl jo nereikėtų laikyti pilnu production deployment modeliu.
+**Pastaba:** tai yra statinis preview kelias. Base path turi atitikti repo pavadinimą (šiame repozitorijuje – `inzinerija`). GitHub Pages neturi marketingo repo autentifikacijos ir `verify-access` API sluoksnio, todėl jo nereikėtų laikyti pilnu production deployment modeliu.
 
 ### Production (rekomenduojama)
 
@@ -149,7 +149,7 @@ Prieiga: `https://ditreneris.github.io/anatomija/`
 Pilnas production aprašas: `docs/deployment/INTEGRATION_OVERVIEW.md` ir `docs/deployment/DEPLOYMENT.md`.
 
 
-**Pastaba:** `vite.config.ts` naudoja base path `/anatomija/`. Jei keičiate repo pavadinimą, atnaujinkite base.
+**Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (atitinka GitHub Pages repo pavadinimą). Per env galima nustatyti `VITE_BASE_PATH` (pvz. `/anatomija/` kito repo atveju).
 
 ### Kiti variantai
 

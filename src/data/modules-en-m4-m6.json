@@ -2325,7 +2325,7 @@
               },
               {
                 "heading": "4️⃣ Check: anti-hallucination RAG rule",
-                "body": "**1.** No dataset or source link → answer is invalid.\n**2.** No year or indicator code (e.g. nama_10_gdp) → answer is insufficient.\n**3.** Source not official → reject.\n\nFull topic on hallucinations – later in the module (slide 4.6a).",
+                "body": "**1.** No dataset or source link → answer is invalid.\n**2.** No year or indicator code (e.g. nama_10_gdp) → answer is insufficient.\n**3.** Source not official → reject.\n\nFull topic on hallucinations – Module 7 (Hallucinations).",
                 "blockVariant": "accent"
               }
             ],
@@ -2751,7 +2751,7 @@
                   "Because AI turns off creativity"
                 ],
                 "correct": 0,
-                "explanation": "RAG \"anchors\" the answer in sources – fewer fabrications. If wrong – see slides 4.2 and 4.6."
+                "explanation": "RAG \"anchors\" the answer in sources – fewer fabrications. If wrong – see slides 4.2 and Module 7 (Hallucinations, Fact-checking)."
               },
               {
                 "id": "check-rag-5",
@@ -3894,7 +3894,7 @@
               "ifWrongSee": {
                 "moduleId": 4,
                 "slideId": 68,
-                "label": "Fact-checking (4.6)"
+                "label": "Fact-checking (Module 7)"
               }
             },
             {
@@ -4216,7 +4216,7 @@
               },
               {
                 "heading": "2. EXPERIMENT (extreme scenario)",
-                "body": "An extreme prompt can make AI produce a convincing but unreal answer – that's a **hallucination** example. Knowledge check and \"say I don't know\" rule – Module 4 topic (4.6)."
+                "body": "An extreme prompt can make AI produce a convincing but unreal answer – that's a **hallucination** example. Knowledge check and \"say I don't know\" rule – Module 7 (Hallucinations, Fact-checking)."
               },
               {
                 "heading": "3. REVIEW (work review)",

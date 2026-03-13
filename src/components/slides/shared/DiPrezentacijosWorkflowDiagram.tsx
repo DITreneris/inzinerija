@@ -15,6 +15,7 @@ const GAP = 28;
 const COLS_X = 140;
 const COLS_W = 280;
 const CX = 280;
+const ARROW_MARKER_LEN = 6;
 
 const STEP_BOXES: [number, number, number, number][] = [
   [COLS_X, 72, COLS_W, BOX_H],

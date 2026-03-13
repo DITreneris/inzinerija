@@ -22,6 +22,7 @@
 | `docs/turinio_pletra_moduliai_4_5_6.md` | Turinys M4–6 |
 | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` | Modulių/skaidrių numeracija (4.1 = Modulio 4, ne 6) |
 | `docs/development/GOLDEN_STANDARD.md` | Dizainas, skaidrių išdėstymas, content-block |
+| `docs/development/GOLD_LEGACY_STANDARD.md` | Techninė kodo bazės atspirties būsena (inventorius, architektūra, testai) – kai reikia pilno techninio konteksto |
 | `src/data/modules.json`, `glossary.json`, `promptLibrary.json`, `tools.json` | Full redagavimo SOT |
 | `src/data/modules-m1-m6.json`, `glossary-m1-m6.json`, `tools-m1-m6.json` | Core `1–6` build/runtime profilis (`VITE_MVP_MODE=1`) |
 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` | Atsiliepimai |

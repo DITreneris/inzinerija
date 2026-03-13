@@ -54,7 +54,8 @@ export function AppNav({
               <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
             </div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              {t('appTitle')}
+              <span className="md:hidden">{t('appTitleShort')}</span>
+              <span className="hidden md:inline">{t('appTitle')}</span>
             </h1>
           </div>
 
@@ -187,7 +188,7 @@ export function AppNav({
                     style={{ width: `${overallProgress}%` }}
                   />
                 </div>
-                <span className="text-xs font-semibold text-brand-600 dark:text-brand-400">
+                <span className="hidden md:inline text-xs font-semibold text-brand-600 dark:text-brand-400">
                   {overallProgress}%
                 </span>
               </div>

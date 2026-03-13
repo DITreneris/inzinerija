@@ -4343,7 +4343,7 @@
               },
               {
                 "heading": "4️⃣ Patikra: anti-haliucinacijos RAG taisyklė",
-                "body": "**1.** Nėra dataset ar šaltinio nuorodos → atsakymas netinkamas.\n**2.** Nėra metų arba rodiklio kodo (pvz. nama_10_gdp) → atsakymas nepakankamas.\n**3.** Šaltinis neoficialus → atmesti.\n\nPilna tema apie haliucinacijas – vėliau modulyje (skaidrė 4.6a).",
+                "body": "**1.** Nėra dataset ar šaltinio nuorodos → atsakymas netinkamas.\n**2.** Nėra metų arba rodiklio kodo (pvz. nama_10_gdp) → atsakymas nepakankamas.\n**3.** Šaltinis neoficialus → atmesti.\n\nPilna tema apie haliucinacijas – Modulyje 7 (Haliucinacijos).",
                 "blockVariant": "accent"
               }
             ],
@@ -4752,7 +4752,7 @@
                   "Nes DI išjungia kūrybingumo režimą"
                 ],
                 "correct": 0,
-                "explanation": "RAG „inkaruoja“ atsakymą šaltiniuose – mažiau išgalvojimų. Jei klaidingai – žr. skaidres 4.2 ir 4.6."
+                "explanation": "RAG „inkaruoja“ atsakymą šaltiniuose – mažiau išgalvojimų. Jei klaidingai – žr. skaidres 4.2 ir Modulio 7 (Haliucinacijos, Žinių patikrinimas)."
               },
               {
                 "id": "check-rag-5",
@@ -5898,7 +5898,7 @@
               "ifWrongSee": {
                 "moduleId": 4,
                 "slideId": 68,
-                "label": "Žinių patikrinimas (4.6)"
+                "label": "Žinių patikrinimas (Modulio 7)"
               }
             },
             {
@@ -6212,7 +6212,7 @@
               {
                 "heading": "Daryk dabar",
                 "body": "Nukopijuok MOKYTIS arba PERŽIŪRĖTI šabloną žemiau, įrašyk [X] ir [TEMA] (arba įklijuok savo tekstą), paleisk DI – gausi naudingą rezultatą.",
-                "blockVariant": "violet"
+                "blockVariant": "brand"
               },
               {
                 "heading": "1. MOKYTIS (20/80 principas)",
@@ -6220,7 +6220,7 @@
               },
               {
                 "heading": "2. EKSPERIMENTUOTI (ekstremalus scenarijus)",
-                "body": "Ekstremalus promptas gali paskatinti DI generuoti įtikinamą, bet nerealų atsakymą – tai **haliucinacijos** pavyzdys. Žinių patikrinimas ir „nežinau“ taisyklė – Modulio 4 tema (4.6)."
+                "body": "Ekstremalus promptas gali paskatinti DI generuoti įtikinamą, bet nerealų atsakymą – tai **haliucinacijos** pavyzdys. Žinių patikrinimas ir „nežinau“ taisyklė – Modulio 7 tema (Haliucinacijos, Žinių patikrinimas)."
               },
               {
                 "heading": "3. PERŽIŪRĖTI (darbų peržiūra)",
@@ -7821,12 +7821,12 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "Haliucinacija = DI sugeneruotas turinys, atrodo įtikinamai, bet faktu nepagrįstas. 4 patarimai ir 5 taisyklės – kaip mažinti. Žemiau – anti-haliucinacinis šablonas. Toliau – žinių patikrinimas (4.6).",
+                "body": "Haliucinacija = DI sugeneruotas turinys, atrodo įtikinamai, bet faktu nepagrįstas. 4 patarimai ir 5 taisyklės – kaip mažinti. Žemiau – anti-haliucinacinis šablonas. Toliau – Žinių patikrinimas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Kas yra haliucinacija?",
-                "body": "DI sugeneruotas turinys, kuris atrodo įtikinamai, bet yra faktu nepagrįstas, netikslus arba išgalvotas – modelis „užpildo spragas“ tikimybėmis. Todėl žinių patikrinimas (toliau skaidrėje 4.6) būtinas.",
+                "body": "DI sugeneruotas turinys, kuris atrodo įtikinamai, bet yra faktu nepagrįstas, netikslus arba išgalvotas – modelis „užpildo spragas“ tikimybėmis. Todėl žinių patikrinimas (toliau skaidrėje) būtinas.",
                 "blockVariant": "brand"
               },
               {
@@ -7891,14 +7891,14 @@
               },
               {
                 "heading": "Giluminiam: CoVe (verifikacijos grandinė)",
-                "body": "CoVe – būdas, kai DI pirmiausia suplanuoja patikrinimo klausimus, atsako į juos atskirai ir tada pataiso galutinį atsakymą; tyrimuose mažina haliucinacijas. Pilnas aprašas ir „Kaip naudoti“ – skaidrėje „Haliucinacijos“ (4.6a), bloke „Verifikacijos grandinė (CoVe)“.",
+                "body": "CoVe – būdas, kai DI pirmiausia suplanuoja patikrinimo klausimus, atsako į juos atskirai ir tada pataiso galutinį atsakymą; tyrimuose mažina haliucinacijas. Pilnas aprašas ir „Kaip naudoti“ – šioje skaidrėje (Haliucinacijos), bloke „Verifikacijos grandinė (CoVe)“.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "Ką prisiminti",
-                "body": "Žinių patikrinimas ir haliucinacijų mažinimas (skaidrė 4.6a) eina kartu: RAG + šaltiniai, citavimas, „nežinau“ taisyklė, cross-check. Naudok anti-haliucinacinį šabloną (4.6a) ir visada tikrink kritines teigtis. Šias 5 taisykles gali įrašyti į Quality bloką savo promptuose. Tai tiesiogiai susiję su Quality bloku – paruošia Modulio 4 santrauką ir Modulio 5 testą.",
+                "body": "Žinių patikrinimas ir haliucinacijų mažinimas (Haliucinacijos skaidrė) eina kartu: RAG + šaltiniai, citavimas, „nežinau“ taisyklė, cross-check. Naudok anti-haliucinacinį šabloną (šioje skaidrėje) ir visada tikrink kritines teigtis. Šias 5 taisykles gali įrašyti į Quality bloką savo promptuose. Tai tiesiogiai susiję su Quality bloku – paruošia Modulio 7 santrauką ir tolesnius modulius.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -8268,7 +8268,7 @@
             "sections": [
               {
                 "heading": "Rekomenduojama plėtra",
-                "body": "Modeliai (regresija, klasifikacija) – konceptualiai arba 1 skaidrė max. Realūs duomenų pavyzdžiai (datasetai, nuorodos). Automatizavimo sluoksnis (aprašymas). Validacijos metodika – kaip tikrinti DI išvestį (ryšys su 4.6). Prioritetas – promptams."
+                "body": "Modeliai (regresija, klasifikacija) – konceptualiai arba 1 skaidrė max. Realūs duomenų pavyzdžiai (datasetai, nuorodos). Automatizavimo sluoksnis (aprašymas). Validacijos metodika – kaip tikrinti DI išvestį (ryšys su Modulio 7 Haliucinacijos, Žinių patikrinimas). Prioritetas – promptams."
               }
             ]
           }

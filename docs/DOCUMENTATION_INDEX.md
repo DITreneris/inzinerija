@@ -19,6 +19,7 @@
 | **Turinys Moduliai 13–15** | `docs/turinio_pletra_moduliai_13_14_15.md` | Turinio inžinerija: teorija (13), testas (14), projektas (15) |
 | **Kur kalbama apie kurį modulį** | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13 |
 | **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos) | `docs/development/GOLDEN_STANDARD.md` | Vienas etalonas visiems moduliams (v2.3.0: §3.4c skiriamoji/apibendrinimo; §3.4d path-step kelio žingsnis, badge, žodynėlio atrakinimas) |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` | Production deploy v1.2.0 būsenos aprašas; atnaujina QA_AGENT (release) arba po didelių refaktorų |
 | **Duomenys** | `src/data/modules.json`, `src/data/modules-m1-m6.json`, `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` | `modules.json` / `glossary.json` / `tools.json` = full redagavimo SOT; `*-m1-m6.json` = core build/runtime profilis |
 | **Vartotojo atsiliepimai** | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` | Gyvas testavimas, V1/V2, segmentai |
 | **Klaidos ir sprendimai** | `docs/development/TEST_REPORT.md` | QA_AGENT priima klaidas čia |
@@ -33,6 +34,7 @@
 | Failas | Paskirtis |
 |--------|-----------|
 | `docs/development/AGENT_ORCHESTRATOR.md` | Routeris, pipeline, kokybės vartai |
+| `docs/development/GOLD_LEGACY_STANDARD.md` | Techninė atspirties dokumentacija (inventorius, failai, testai, CI); savininkas QA_AGENT |
 | `docs/development/PLAN_AGENTAI_DARBAI.md` | Kas, seka, Modulio 4 MUST/SHOULD |
 | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md` | Pedagoginės įžvalgos, Must/Should/Want |
 | `docs/development/CONTENT_AGENT.md` | CONTENT_AGENT spec |

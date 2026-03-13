@@ -81,6 +81,7 @@ jobs:
           VITE_MVP_MODE: '1'
           VITE_BASE_PATH: '/inzinerija/'
 
+      # Reikia: Repo Settings → Pages → Source = "GitHub Actions". Žr. docs/deployment/PRE_DEPLOY_INZINERIJA.md §2.1
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

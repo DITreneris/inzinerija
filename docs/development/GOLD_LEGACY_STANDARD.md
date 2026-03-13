@@ -3,7 +3,8 @@
 > **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.2.0, 2026-03-12). Šis dokumentas yra **atskaitos taškas** – sistema veikia, moduliai 1–6 deployed, ir bet kokie tolimesni pakeitimai turi būti vertinami šio standarto kontekste.  
 > **Apimtis:** Visa kodo bazė, išskyrus modulių 7–15 turinį (jie yra `modules.json`, bet dar neplėtojami).  
 > **Versija:** 1.0.0  
-> **Data:** 2026-03-12
+> **Data:** 2026-03-12  
+> Šis dokumentas – **techninė** atspirties būsena. Turinio ir dizaino SOT – **`docs/development/GOLDEN_STANDARD.md`**.
 
 ---
 
@@ -30,7 +31,7 @@
 19. [Stilių sistema](#19-stilių-sistema)
 20. [Konfigūracija ir aplinkos kintamieji](#20-konfigūracija-ir-aplinkos-kintamieji)
 21. [Kritiniai keliai ir priklausomybės](#21-kritiniai-keliai-ir-priklausomybės)
-22. [Žinomos konvencijos ir taisyklės](#22-žinomos-konvencijos-ir-taisyklės)
+22. [Žinomos konvencijos ir taisyklės](#22-žinomos-konvencijos-ir-taisyklės) (įsk. §22.6 Apsauga nuo tipinių klaidų)
 
 ---
 
@@ -40,9 +41,9 @@
 **Paketas:** `prompt-anatomy-training` v1.2.0  
 **Autorius:** Tomas Staniulis  
 **Licencija:** MIT (kodas), © 2024–2026 (turinys)  
-**Repozitorija:** `https://github.com/DITreneris/anatomija.git`  
+**Repozitorija:** `https://github.com/DITreneris/inzinerija.git` (deploy šiam projektui; alternatyva – anatomija)  
 **Production URL:** `https://promptanatomy.app/` (marketingo repo integracija)  
-**Demo URL:** `https://ditreneris.github.io/anatomija/` (GitHub Pages)
+**Demo URL:** `https://ditreneris.github.io/inzinerija/` (GitHub Pages; base path turi atitikti repo pavadinimą)
 
 ### Kas tai?
 Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus naudojant **6 blokų sistemą** (Meta, Input, Output, Reasoning, Quality Control, Advanced Parameters). Kursas orientuotas į verslo problemų sprendimą su praktiniu rezultatu.
@@ -733,10 +734,13 @@ Visi PDF naudoja:
 - `process` stub (jsdom compatibility)
 - `localStorage` mock su numatytu `prompt-anatomy-locale: 'lt'`
 - `window.matchMedia` mock
-- `IntersectionObserver` mock
+- `IntersectionObserver` mock (`vi.stubGlobal` + globalThis/window)
+- **`ResizeObserver` mock** (`vi.stubGlobal` + globalThis/window/global) – jsdom jo neturi; be mock AppNav ir kiti komponentai, naudojantys ResizeObserver, mesta „ResizeObserver is not defined“ ir CI failina
 - `HTMLCanvasElement.getContext` mock (axe-core)
 - i18n init prieš testus
 - `cleanup()` po kiekvieno testo
+
+**Taisyklė (kad nebūtų tokių klaidų ateityje):** Naršyklės API, kurių jsdom neturi (pvz. `ResizeObserver`), privalo būti **mock'inami** `setup.ts` per `vi.stubGlobal` ir priskyrimą į `window`/`global`, arba komponente naudoti **guard**: tik `window.ResizeObserver` (ne globalų `ResizeObserver`) ir `if (!window.ResizeObserver) return`, kad testuose be mock komponentas tiesiog nevykdytų efekto, o ne kristų.
 
 ### 13.4 NPM test komandos
 
@@ -757,7 +761,7 @@ npm run test:ui       # Vitest UI
 
 | Savybė | Reikšmė |
 |---------|---------|
-| Base path | `VITE_BASE_PATH` arba `/anatomija/` (production) |
+| Base path | `VITE_BASE_PATH` arba production default `/inzinerija/` (GitHub Pages repo pavadinimas; pvz. anatomija → `/anatomija/`) |
 | Dev port | 3000 |
 | Dev host | `0.0.0.0` |
 | Output | `dist/` |
@@ -1115,19 +1119,11 @@ npm run build
 
 ### 22.2 Turinio konvencijos
 
-- **DI, ne AI** – UI ir mokymuose naudojama „DI" (dirbtinis intelektas)
-- **Paprasta kalba** – vengiama žargono (ROI, HR, CFO, EBITDA, NPS, SWOT, influencer)
-- **Lietuviška diakritika** – privaloma (ž, ė, ą, ų, ū, š, č, į)
-- **6 blokų sistema** – Meta, Input, Output, Reasoning, Quality Control, Advanced Parameters
-- **Modulių numeracija** – skaidrė be modulio prefikso = M1; 4.1–4.7 = tik M4
+Išsamios turinio taisyklės (šriftai, spalvos, skaidrių schemos, CTA, footeriai, sertifikatai, paprasta kalba, DI ne AI): **`docs/development/GOLDEN_STANDARD.md`**. Čia – tik techninė nuoroda: DI ne AI; paprasta kalba; lietuviška diakritika; 6 blokų sistema; modulių numeracija (4.1–4.7 = M4).
 
 ### 22.3 Dizaino konvencijos
 
-- **Vienas H1 per skaidrę** – `text-2xl md:text-3xl font-bold`
-- **Bold** – tik svarbiems žodžiams
-- **Kodas/promptai** – `font-mono`, JetBrains Mono
-- **Dark mode** – `class` based, togglable
-- **Responsive** – mobile-first, Tailwind breakpoints
+Išsamus dizaino etalonas (H1, bold, šriftai, spalvos, dark mode, responsive): **`docs/development/GOLDEN_STANDARD.md`**. Čia – tik techninė nuoroda: vienas H1; bold tik svarbiems žodžiams; font-mono promptams; dark mode `class`; mobile-first.
 
 ### 22.4 Failų keitimo disciplina
 
@@ -1148,6 +1144,17 @@ Prieš kiekvieną release:
 7. Mobile responsive ✓
 8. Dark mode ✓
 9. EN kalbos tikrinimas ✓
+
+### 22.6 Apsauga nuo tipinių klaidų (CI, deploy, testai)
+
+Kad ateityje nepasikartotų tipinės klaidos (CI failas, 404 vaizdai po deploy, testų „X is not defined“):
+
+| Problema | Priežastis | Sprendimas / taisyklė |
+|----------|------------|------------------------|
+| **PNG/vaizdai 404 po deploy** | Production build naudoja `base: '/…/'` (Vite). Keliai iš JSON (`/image.png`) naudojami be BASE_URL – naršyklė kreipiasi į svetainės šaknį. | **Visi** vaizdų `src`, imami iš duomenų (JSON), renderinant privalo naudoti `import.meta.env.BASE_URL` prieš kelią: `\`${import.meta.env.BASE_URL || '/'}${path.replace(/^\//, '')}\``. Pvz. ContentSlides (comparisonImages, workflowImages), CharacterCard (imagePath). |
+| **ResizeObserver (arba kitas browser API) is not defined** | jsdom testuose neturi ResizeObserver, fullscreen API ir kt. | **1)** Mock'inti `src/test/setup.ts`: `vi.stubGlobal('ResizeObserver', MockClass)` ir priskyrimas į `window`/`global`. **2)** Komponente naudoti tik `window.ResizeObserver` ir guard `if (!window.ResizeObserver) return`, kad be mock komponentas nekreiptų į neegzistuojantį globalą. |
+| **Deploy 404 visiems asset'ams** | Base path nesutampa su hosting keliu (pvz. build su `/anatomija/`, o GitHub Pages servina `/inzinerija/`). | **VITE_BASE_PATH** turi atitikti **repo pavadinimą** (GitHub Pages: `https://<user>.github.io/<repo>/` → base = `/<repo>/`). Deploy workflow'e nustatyti `VITE_BASE_PATH: '/<repo>/'` visiems build step'ams. Žr. `docs/deployment/PRE_DEPLOY_INZINERIJA.md`. |
+| **Versija neaiški** | Keičiama keliuose failuose arba pamirštama. | **Release versija** = vienintelis šaltinis `package.json` `version`. CHANGELOG – tik žmogaus skaitoma istorija; naujas release = nauja sekcija `## [X.Y.Z] – data` ir `package.json` atnaujinimas. Žr. `docs/development/VERSION_ANALIZE.md`. |
 
 ---
 

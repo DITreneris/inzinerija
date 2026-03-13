@@ -1,8 +1,9 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.5  
-> **Data:** 2026-03-12  
+> **Versija:** 2.3.6  
+> **Data:** 2026-03-13  
+> **2.3.6:** Haliucinacijų ir žinių patikrinimo tema – **Modulyje 7** (blokas „Patikrumas ir etika“, skaidrės Haliucinacijos 67.8, Žinių patikrinimas 68). Skaidrėse ir SOT nuorodos į šią temą turi rodyti į Modulį 7, ne į Modulio 4 (4.6). Žr. `docs/MODULIO_7_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_7_8_9.md`.  
 > **2.3.5:** §5.5 Sticky stacking – AppNav nustato `--app-nav-height` CSS kintamąjį (ResizeObserver); visi sticky elementai po AppNav naudoja `top-[var(--app-nav-height,4rem)]`, ne hardcoded `top-16`. Z-index hierarchija dokumentuota.  
 > **2.3.4:** §3.6 Footerių ilgis – įgyvendinta rekomendacija ≤55 simb.; visi „Toliau – skaidrė N“ / „Next – slide N“ footeriai sutrumpinti (shortTitle arba rankinis sutrumpinimas). Žr. `docs/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`.  
 > **2.3.3:** §3.7 Sertifikatai moduliuose – atkartojamas golden standard (kada išduoti, duomenys, PDF maketas, UI); privaloma websiteUrl/websiteCta; receptas naujiems moduliams; §9, §10 atnaujinti.  
@@ -12,7 +13,8 @@
 > **2.2.1:** §8.4 Modulių puslapis – H1 „Paversk DI savo darbo sistema“, subtitle (legacy idea).  
 > **2.2.0:** §3.2a Apšilimo skaidrė, §3.4a warm-up-quiz, §3.4b section-break.  
 > **2.1.0:** §3.6 Footeriai (nuoseklūs skaidrių numeriai), checklist ir nuorodos.  
-> **Supersedes:** GOLD_STANDARD_MODULIAI_1_2_3.md, DESIGN_GUIDE_MODULIAI_1_2_3.md, QA_DI_VISATA_UI_UX.md, AGENT_SEQUENCE_SKAIDRES_SYSTEM_PROCESO_STRUKTURUOTAS.md (archyvuoti).
+> **Supersedes:** GOLD_STANDARD_MODULIAI_1_2_3.md, DESIGN_GUIDE_MODULIAI_1_2_3.md, QA_DI_VISATA_UI_UX.md, AGENT_SEQUENCE_SKAIDRES_SYSTEM_PROCESO_STRUKTURUOTAS.md (archyvuoti).  
+> Techninė kodo bazės apžvalga ir inventorius – **`docs/development/GOLD_LEGACY_STANDARD.md`**.
 
 ---
 

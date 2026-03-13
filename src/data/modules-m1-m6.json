@@ -4343,7 +4343,7 @@
               },
               {
                 "heading": "4️⃣ Patikra: anti-haliucinacijos RAG taisyklė",
-                "body": "**1.** Nėra dataset ar šaltinio nuorodos → atsakymas netinkamas.\n**2.** Nėra metų arba rodiklio kodo (pvz. nama_10_gdp) → atsakymas nepakankamas.\n**3.** Šaltinis neoficialus → atmesti.\n\nPilna tema apie haliucinacijas – vėliau modulyje (skaidrė 4.6a).",
+                "body": "**1.** Nėra dataset ar šaltinio nuorodos → atsakymas netinkamas.\n**2.** Nėra metų arba rodiklio kodo (pvz. nama_10_gdp) → atsakymas nepakankamas.\n**3.** Šaltinis neoficialus → atmesti.\n\nPilna tema apie haliucinacijas – Modulyje 7 (Haliucinacijos).",
                 "blockVariant": "accent"
               }
             ],
@@ -4752,7 +4752,7 @@
                   "Nes DI išjungia kūrybingumo režimą"
                 ],
                 "correct": 0,
-                "explanation": "RAG „inkaruoja“ atsakymą šaltiniuose – mažiau išgalvojimų. Jei klaidingai – žr. skaidres 4.2 ir 4.6."
+                "explanation": "RAG „inkaruoja“ atsakymą šaltiniuose – mažiau išgalvojimų. Jei klaidingai – žr. skaidres 4.2 ir Modulio 7 (Haliucinacijos, Žinių patikrinimas)."
               },
               {
                 "id": "check-rag-5",
@@ -5898,7 +5898,7 @@
               "ifWrongSee": {
                 "moduleId": 4,
                 "slideId": 68,
-                "label": "Žinių patikrinimas (4.6)"
+                "label": "Žinių patikrinimas (Modulio 7)"
               }
             },
             {
@@ -6212,7 +6212,7 @@
               {
                 "heading": "Daryk dabar",
                 "body": "Nukopijuok MOKYTIS arba PERŽIŪRĖTI šabloną žemiau, įrašyk [X] ir [TEMA] (arba įklijuok savo tekstą), paleisk DI – gausi naudingą rezultatą.",
-                "blockVariant": "violet"
+                "blockVariant": "brand"
               },
               {
                 "heading": "1. MOKYTIS (20/80 principas)",
@@ -6220,7 +6220,7 @@
               },
               {
                 "heading": "2. EKSPERIMENTUOTI (ekstremalus scenarijus)",
-                "body": "Ekstremalus promptas gali paskatinti DI generuoti įtikinamą, bet nerealų atsakymą – tai **haliucinacijos** pavyzdys. Žinių patikrinimas ir „nežinau“ taisyklė – Modulio 4 tema (4.6)."
+                "body": "Ekstremalus promptas gali paskatinti DI generuoti įtikinamą, bet nerealų atsakymą – tai **haliucinacijos** pavyzdys. Žinių patikrinimas ir „nežinau“ taisyklė – Modulio 7 tema (Haliucinacijos, Žinių patikrinimas)."
               },
               {
                 "heading": "3. PERŽIŪRĖTI (darbų peržiūra)",

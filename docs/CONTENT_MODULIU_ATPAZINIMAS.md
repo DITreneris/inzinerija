@@ -11,7 +11,7 @@
 | **Modulis 1** | „6 Blokų Sistema“ (MOKYMASIS) – teorija, 19 skaidrių |
 | **Modulis 2** | „Žinių Patikrinimas“ (TESTAS) – 12 klausimų |
 | **Modulis 3** | „Praktinis Pritaikymas“ (PRAKTIKA) – 6 scenarijai |
-| **Modulis 4** | Pažangusis lygis – teorija (RAG, Deep research, tokenai, manipuliacijos, žinių patikrinimas) |
+| **Modulis 4** | Pažangusis lygis – teorija (RAG, Deep research, tokenai, manipuliacijos). Pilnas haliucinacijų ir žinių patikrinimo blokas – Modulyje 7 (Patikrumas ir etika). |
 | **Modulis 5** | Pažangusis lygis – testas (žinių patikrinimas) |
 | **Modulis 6** | Pažangusis lygis – praktika (vienas projektas) |
 | **Skaidrė 1 … 19** (be modulio pavadinimo) | **Visada Modulio 1** skaidrės, jei kontekstas `turinio_pletra.md` |

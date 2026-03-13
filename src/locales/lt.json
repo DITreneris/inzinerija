@@ -39,6 +39,7 @@
   "nav": {
     "ariaLabel": "Pagrindinė navigacija",
     "appTitle": "Promptų anatomija",
+    "appTitleShort": "P. anatomija",
     "progressLabel": "Bendras pažangos procentas: {{percent}} procentų",
     "progressShort": "Pažanga: {{percent}}%",
     "toggleDark": "Perjungti tamsųjį režimą",

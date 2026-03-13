@@ -13,6 +13,7 @@
 | Turinys M4–6 | `docs/turinio_pletra_moduliai_4_5_6.md` |
 | Modulių/skaidrių numeracija | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` |
 | Dizainas (šriftai, skaidrės) | `docs/development/GOLDEN_STANDARD.md` |
+| Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` |
 | Duomenys | `src/data/modules.json` (full redagavimo SOT), `src/data/modules-m1-m6.json` (core build/runtime), `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` |
 | Atsiliepimai / klaidos | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `docs/development/TEST_REPORT.md` |
 

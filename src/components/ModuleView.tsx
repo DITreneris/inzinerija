@@ -111,7 +111,7 @@ function SlideGroupProgressBar({
             </div>
             {group.label && (
               <span
-                className={`text-[10px] font-medium max-w-full text-center break-words ${
+                className={`hidden md:inline text-[10px] font-medium max-w-full text-center break-words ${
                   isActive
                     ? 'text-brand-600 dark:text-brand-400'
                     : isPast
@@ -768,7 +768,7 @@ function ModuleView({
                 {currentSlideData.shortTitle ?? currentSlideData.title}
               </h1>
               {currentSlideData.subtitle != null && (
-                <p className="text-lg text-gray-600 dark:text-gray-200 leading-relaxed">{currentSlideData.subtitle}</p>
+                <p className="hidden md:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">{currentSlideData.subtitle}</p>
               )}
             </div>
           )}
@@ -876,7 +876,7 @@ function ModuleView({
               <span className="font-medium">{t('backShort')}</span>
             </button>
 
-            <div className="flex items-center justify-center px-2 min-w-[60px] shrink-0" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+            <div className="hidden md:flex items-center justify-center px-2 min-w-[60px] shrink-0" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
               <p className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap">
                 {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/{module.slides.length}
               </p>
@@ -907,8 +907,8 @@ function ModuleView({
       {/* Spacer for mobile bottom nav; safe-area for notch/gesture bar */}
       <div className="md:hidden min-h-[5rem] pb-[env(safe-area-inset-bottom)]" />
 
-      {/* Progress info moved below content */}
-      <div className="mt-6 space-y-3">
+      {/* Progress info moved below content – hidden on mobile (sticky + bottom bar show progress) */}
+      <div className="hidden md:block mt-6 space-y-3">
         <div className="flex items-center justify-between gap-4">
           {/* Module indicator: skaičius = modulio nr., žalia varnelė = baigtas */}
           <div className="hidden sm:flex flex-col gap-1">
@@ -958,8 +958,8 @@ function ModuleView({
         </p>
       </div>
 
-      {/* Slide dots: viena eilutė + horizontalus scroll; gradient mask dešinėje („yra daugiau") */}
-      <div className="mt-4 flex justify-center relative">
+      {/* Slide dots: viena eilutė + horizontalus scroll; gradient mask dešinėje („yra daugiau") – hidden on mobile */}
+      <div className="hidden md:flex mt-4 justify-center relative">
         <div
           className="flex overflow-x-auto overflow-y-hidden justify-start max-w-full scroll-smooth pb-2 mask-gradient-dots"
           role="group"

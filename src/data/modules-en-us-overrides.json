@@ -385,7 +385,7 @@
               },
               {
                 "heading": "4️⃣ Check: anti-hallucination RAG rule",
-                "body": "**1.** No source link or institution name → answer is invalid.\n**2.** No year or indicator → answer is insufficient.\n**3.** Source not official → reject.\n\nFull topic on hallucinations – later in the module (slide 4.6a).",
+                "body": "**1.** No source link or institution name → answer is invalid.\n**2.** No year or indicator → answer is insufficient.\n**3.** Source not official → reject.\n\nFull topic on hallucinations – Module 7 (Hallucinations).",
                 "blockVariant": "accent"
               }
             ]

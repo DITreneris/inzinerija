@@ -1,7 +1,7 @@
 /**
  * DI turinio aptikimo įrankiai – Top 10 (2026).
  * Šaltinis: di_detektoriai.html (kurso autorių apžvalga).
- * Naudojama skaidrėje „DI turinio detektoriai" (Modulis 4, sekcija 4.6).
+ * Naudojama skaidrėje „DI turinio detektoriai" (Modulio 7, Patikrumas ir etika).
  */
 
 export type AiDetectorsLocale = 'lt' | 'en';

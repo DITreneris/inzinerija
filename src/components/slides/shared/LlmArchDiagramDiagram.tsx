@@ -84,7 +84,12 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
 
     update();
 
-    const ro = new ResizeObserver(update);
+    const Ctor =
+      typeof window !== 'undefined' && 'ResizeObserver' in window
+        ? (window as Window & { ResizeObserver: typeof ResizeObserver }).ResizeObserver
+        : null;
+    if (!Ctor) return;
+    const ro = new Ctor(update);
     ro.observe(containerRef.current);
     return () => ro.disconnect();
   }, [returnFrom, showVertical]);

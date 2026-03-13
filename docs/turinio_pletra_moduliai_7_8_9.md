@@ -41,9 +41,9 @@
 - **META:** Rolė „vyresnysis verslo duomenų analitikas“ arba „analitikas, naudojantis DI“; sisteminis principas; sprendimai – duomenimis, ne intuicija.
 - **INPUT:** Duomenų šaltiniai (nuoroda į 4.2, 4.2-open – kaip nurodyti šaltinius), duomenų struktūra/schema, ribos („tik šie stulpeliai“, oficialūs šaltiniai).
 - **OUTPUT:** Ataskaitos formatas, grafikai, prognozės, „jei duomenų nėra – parašyk Nežinau“.
-- **Quality:** Šaltinių tikrinimas, haliucinacijų mažinimas (4.6), verifikacija – ryšys su Moduliu 4.
+- **Quality:** Šaltinių tikrinimas, haliucinacijų mažinimas (Modulio 7, skaidrė Haliucinacijos), verifikacija – ryšys su M7 bloku „Patikrumas ir etika“.
 
-**Aiškus nuorodas (pirmose M7 skaidrėse 7.1, 7.4):** „Šaltinių nurodymas – Modulyje 4 (4.2); atsakymų tikrinimas – 4.6. Čia fokusas – analizės užklausos ir išvados.“
+**Aiškus nuorodas (pirmose M7 skaidrėse 7.1, 7.4):** „Šaltinių nurodymas – Modulyje 4 (4.2); atsakymų tikrinimas ir haliucinacijos – šiame modulyje (M7, skaidrės Haliucinacijos, Žinių patikrinimas). Čia fokusas – analizės užklausos ir išvados.“
 
 **Apribojimas (ROADMAP):** SQL/Python – bendram supratimui; **po 1 skaidrę max** ilgiems kodo pavyzdžiams; prioritetas **promptams**, ne kodo mokymui.
 

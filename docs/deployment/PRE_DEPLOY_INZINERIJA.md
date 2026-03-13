@@ -32,6 +32,29 @@ GitHub Pages servina svetainę pagal **repo pavadinimą**: `https://<user>.githu
 
 ---
 
+### Trikčių šalinimas: „Get Pages site failed“ / „Not Found“
+
+Jei deploy workflow meta klaidą:
+
+```text
+Run actions/configure-pages@v4
+Error: Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions...
+Error: HttpError: Not Found
+```
+
+**Priežastis:** GitHub Pages repozitorijoje dar neįjungtas arba šaltinis nustatytas ne „GitHub Actions“.
+
+**Ką padaryti (vienkartinai):**
+
+1. Eik į repozitoriją **GitHub** → **Settings** → **Pages** (kairėje meniu: "Code and automation" → Pages).
+2. Skyriuje **Build and deployment** pasirink **Source: GitHub Actions** (ne "Deploy from a branch").
+3. Jei Pages visai neįjungtas – Source pasirinkimas „GitHub Actions“ ir išsaugojimas įjungia Pages.
+4. Po to vėl paleisk workflow (push į `main` arba **Actions** → pasirink workflow → **Run workflow**).
+
+Po šių žingsnių `configure-pages` turėtų rasti Pages svetainę ir deploy turėtų pavykti.
+
+---
+
 ## 3. Asset'ai ir vaizdai
 
 - **Public:** Vite kopijuoja `public/` į `dist/` šaknį. GitHub Pages servina `dist/` po `/inzinerija/`, todėl pvz. `public/Dante_visata.png` → `https://ditreneris.github.io/inzinerija/Dante_visata.png`.

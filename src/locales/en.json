@@ -39,6 +39,7 @@
   "nav": {
     "ariaLabel": "Main navigation",
     "appTitle": "Prompt Anatomy",
+    "appTitleShort": "Prompt Anatomy",
     "progressLabel": "Overall progress: {{percent}} percent",
     "progressShort": "Progress: {{percent}}%",
     "toggleDark": "Toggle dark mode",
