@@ -77,7 +77,7 @@ export function AppNav({
             type="button"
             onClick={() => nav('home')}
             className="flex items-center gap-3 flex-shrink-0 rounded-xl transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px]"
-            aria-label={t('homeAria')}
+            aria-label={t('appTitle')}
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
             <div className="rounded-xl bg-brand-900/95 dark:bg-brand-950/90 p-2.5 shadow-sm shadow-brand-900/10 ring-1 ring-brand-700/15 dark:ring-white/10">
