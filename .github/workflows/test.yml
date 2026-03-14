@@ -1,6 +1,6 @@
 name: Tests
 
-# Opt into Node 24 for JS actions (checkout, setup-node); avoids deprecation warning. Project still uses matrix node-version for install/test.
+# Opt into Node 24 for JS actions; official actions below are updated accordingly.
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
@@ -20,10 +20,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
