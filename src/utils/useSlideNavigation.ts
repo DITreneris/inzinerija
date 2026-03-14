@@ -3,7 +3,19 @@ import type { Module, Slide } from '../types/modules';
 import type { Progress } from './progress';
 
 const SWIPE_THRESHOLD = 60;
+const MOBILE_SWIPE_THRESHOLD = 80;
 const SLIDE_POS_KEY = 'prompt-anatomy-slide-pos';
+const SWIPE_LOCK_SELECTOR = [
+  '[data-slide-swipe-lock]',
+  'button',
+  'a[href]',
+  'input',
+  'textarea',
+  'select',
+  'summary',
+  '[role="button"]',
+  '[contenteditable="true"]',
+].join(', ');
 
 /* ─── Slide position persistence ─── */
 
@@ -12,7 +24,9 @@ export function getSavedSlidePosition(moduleId: number): number {
     const raw = localStorage.getItem(SLIDE_POS_KEY);
     if (!raw) return 0;
     const map: Record<string, number> = JSON.parse(raw);
-    return typeof map[String(moduleId)] === 'number' ? map[String(moduleId)] : 0;
+    return typeof map[String(moduleId)] === 'number'
+      ? map[String(moduleId)]
+      : 0;
   } catch {
     return 0;
   }
@@ -54,6 +68,7 @@ export interface UseSlideNavigationResult {
   currentSlideData: Slide | undefined;
   handleTouchStart: (e: React.TouchEvent) => void;
   handleTouchEnd: (e: React.TouchEvent) => void;
+  handleTouchCancel: () => void;
   showModuleComplete: boolean;
   setShowModuleComplete: (show: boolean) => void;
   /** Saved slide pozicija (>0) jei vartotojas turi progress šiame modulyje */
@@ -61,7 +76,11 @@ export interface UseSlideNavigationResult {
 }
 
 /** A-S4: rasti kitą ne-optional skaidrės indeksą (į priekį arba atgal). Eksportuojama tik testams. */
-export function getNextNonOptionalIndex(slides: Slide[], fromIndex: number, forward: boolean): number {
+export function getNextNonOptionalIndex(
+  slides: Slide[],
+  fromIndex: number,
+  forward: boolean
+): number {
   if (!slides?.length) return fromIndex;
   if (forward) {
     for (let i = fromIndex + 1; i < slides.length; i++) {
@@ -73,6 +92,16 @@ export function getNextNonOptionalIndex(slides: Slide[], fromIndex: number, forw
     if (!slides[i].optional) return i;
   }
   return 0;
+}
+
+export function getSwipeThreshold(viewportWidth: number): number {
+  return viewportWidth < 1024 ? MOBILE_SWIPE_THRESHOLD : SWIPE_THRESHOLD;
+}
+
+export function shouldLockSwipeFromTarget(target: EventTarget | null): boolean {
+  return (
+    target instanceof Element && Boolean(target.closest(SWIPE_LOCK_SELECTOR))
+  );
 }
 
 export function useSlideNavigation({
@@ -95,6 +124,7 @@ export function useSlideNavigation({
   const [showModuleComplete, setShowModuleComplete] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+  const touchStartLocked = useRef(false);
 
   const nextSlide = useCallback(() => {
     if (!module) return;
@@ -110,7 +140,14 @@ export function useSlideNavigation({
       }
       setShowModuleComplete(true);
     }
-  }, [currentSlide, module, progress.completedModules, moduleId, onComplete, skipOptional]);
+  }, [
+    currentSlide,
+    module,
+    progress.completedModules,
+    moduleId,
+    onComplete,
+    skipOptional,
+  ]);
 
   const prevSlide = useCallback(() => {
     if (currentSlide > 0) {
@@ -123,24 +160,38 @@ export function useSlideNavigation({
   }, [currentSlide, module?.slides, skipOptional]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartLocked.current = shouldLockSwipeFromTarget(e.target);
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchCancel = useCallback(() => {
+    touchStartX.current = null;
+    touchStartY.current = null;
+    touchStartLocked.current = false;
   }, []);
 
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
       if (touchStartX.current == null || touchStartY.current == null) return;
+      if (touchStartLocked.current) {
+        handleTouchCancel();
+        return;
+      }
       const touch = e.changedTouches[0];
       const deltaX = touch.clientX - touchStartX.current;
       const deltaY = touch.clientY - touchStartY.current;
-      touchStartX.current = null;
-      touchStartY.current = null;
-      if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+      handleTouchCancel();
+      const swipeThreshold =
+        typeof window !== 'undefined'
+          ? getSwipeThreshold(window.innerWidth)
+          : SWIPE_THRESHOLD;
+      if (Math.abs(deltaX) < swipeThreshold) return;
       if (Math.abs(deltaY) >= Math.abs(deltaX)) return;
       if (deltaX > 0) prevSlide();
       else nextSlide();
     },
-    [nextSlide, prevSlide]
+    [handleTouchCancel, nextSlide, prevSlide]
   );
 
   const currentSlideData = useMemo(
@@ -160,14 +211,13 @@ export function useSlideNavigation({
       Boolean(
         (currentSlideData?.practicalTask ||
           currentSlideData?.type === 'action-intro-journey') &&
-          !progress.completedTasks[moduleId]?.includes(currentSlideData.id)
+        !progress.completedTasks[moduleId]?.includes(currentSlideData.id)
       ),
     [currentSlideData, progress.completedTasks, moduleId]
   );
 
   const slideProgress = useMemo(
-    () =>
-      module ? ((currentSlide + 1) / module.slides.length) * 100 : 0,
+    () => (module ? ((currentSlide + 1) / module.slides.length) * 100 : 0),
     [currentSlide, module]
   );
 
@@ -186,7 +236,8 @@ export function useSlideNavigation({
         : resumeImmediately && saved > 0
           ? saved
           : 0;
-    const clampedSlide = slideCount > 0 && nextSlide >= slideCount ? slideCount - 1 : nextSlide;
+    const clampedSlide =
+      slideCount > 0 && nextSlide >= slideCount ? slideCount - 1 : nextSlide;
     setCurrentSlide(clampedSlide);
     setShowModuleComplete(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -224,6 +275,7 @@ export function useSlideNavigation({
     currentSlideData,
     handleTouchStart,
     handleTouchEnd,
+    handleTouchCancel,
     showModuleComplete,
     setShowModuleComplete,
     savedSlidePosition: savedPos,

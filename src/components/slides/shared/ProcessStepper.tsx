@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 import { useLocale } from '../../../contexts/LocaleContext';
 import CustomGptProcessDiagram from './CustomGptProcessDiagram';
-import { useIsMobile } from '../../../utils/useIsMobile';
 
 export interface ProcessStep {
   id: number;
@@ -21,53 +20,95 @@ const CUSTOM_GPT_STEPS: ProcessStep[] = [
   {
     id: 1,
     title: 'Tikslas',
-    description: 'Nuspręsk, kam skirtas GPT: pardavimams, mokymams, kūrybai ar kitiems scenarijams. Aiškūs tikslai padeda formuoti instrukcijas.',
-    actionChecklist: ['Užrašyk vienu sakiniumi: kam bus naudojamas asistentas.', 'Pasirink 1–2 konkrečius naudojimo atvejus (pvz. „santraukos“, „atsakymai klientams“).'],
+    description:
+      'Nuspręsk, kam skirtas GPT: pardavimams, mokymams, kūrybai ar kitiems scenarijams. Aiškūs tikslai padeda formuoti instrukcijas.',
+    actionChecklist: [
+      'Užrašyk vienu sakiniumi: kam bus naudojamas asistentas.',
+      'Pasirink 1–2 konkrečius naudojimo atvejus (pvz. „santraukos“, „atsakymai klientams“).',
+    ],
   },
   {
     id: 2,
     title: 'Rolė',
-    description: 'Apibrėžk toną, stilių ir kompetenciją: kaip asistentas turi atsakyti ir kokią ekspertizę demonstruoti.',
-    actionChecklist: ['Parašyk: „Tu esi [rolė]“.', 'Nustatyk toną: profesionalus / draugiškas / glaustas.', 'Apribok temas: ką asistentas moka ir ko ne.'],
+    description:
+      'Apibrėžk toną, stilių ir kompetenciją: kaip asistentas turi atsakyti ir kokią ekspertizę demonstruoti.',
+    actionChecklist: [
+      'Parašyk: „Tu esi [rolė]“.',
+      'Nustatyk toną: profesionalus / draugiškas / glaustas.',
+      'Apribok temas: ką asistentas moka ir ko ne.',
+    ],
   },
   {
     id: 3,
     title: 'Prisijungimas',
-    description: 'ChatGPT → Explore GPTs → Create a GPT. Atidaryk Custom GPT kūrimo langą.',
-    actionChecklist: ['Prisijunk prie ChatGPT (Plus būtina).', 'Meniu: Explore GPTs → Create a GPT.', 'Pasirink „Configure“ ir pradėk nuo pavadinimo.'],
-    externalLink: { label: 'Atidaryti ChatGPT → Create a GPT', href: 'https://chat.openai.com/gpts/editor' },
+    description:
+      'ChatGPT → Explore GPTs → Create a GPT. Atidaryk Custom GPT kūrimo langą.',
+    actionChecklist: [
+      'Prisijunk prie ChatGPT (Plus būtina).',
+      'Meniu: Explore GPTs → Create a GPT.',
+      'Pasirink „Configure“ ir pradėk nuo pavadinimo.',
+    ],
+    externalLink: {
+      label: 'Atidaryti ChatGPT → Create a GPT',
+      href: 'https://chat.openai.com/gpts/editor',
+    },
   },
   {
     id: 4,
     title: 'Konfigūracija',
-    description: 'Įvesk pavadinimą, aprašymą, pagrindines instrukcijas ir personą – kaip GPT elgsis ir ką moka.',
-    actionChecklist: ['Pavadinimas: aiškus ir trumpas.', 'Instructions: įklijuok arba parašyk instrukcijas (šabloną rasite šios skaidrės apačioje).', 'Conversation starters: 2–4 pavyzdinės užklausos.'],
+    description:
+      'Įvesk pavadinimą, aprašymą, pagrindines instrukcijas ir personą – kaip GPT elgsis ir ką moka.',
+    actionChecklist: [
+      'Pavadinimas: aiškus ir trumpas.',
+      'Instructions: įklijuok arba parašyk instrukcijas (šabloną rasite šios skaidrės apačioje).',
+      'Conversation starters: 2–4 pavyzdinės užklausos.',
+    ],
     tip: 'Instrukcijas rašyk taip, lyg aiškintum naujam darbuotojui – konkrečiai ir veiksmažodžiais.',
   },
   {
     id: 5,
     title: 'Papildomos funkcijos',
-    description: 'Pridėk dokumentus, API ar įrankius (Tools), jei reikia – tai praplėčia GPT galimybes.',
-    actionChecklist: ['Jei reikia: įkelk PDF/tekstus (Knowledge).', 'Jei reikia: prijunk „Actions“ (API).', 'Jei ne – palik tuščią ir pereik prie testavimo.'],
+    description:
+      'Pridėk dokumentus, API ar įrankius (Tools), jei reikia – tai praplėčia GPT galimybes.',
+    actionChecklist: [
+      'Jei reikia: įkelk PDF/tekstus (Knowledge).',
+      'Jei reikia: prijunk „Actions“ (API).',
+      'Jei ne – palik tuščią ir pereik prie testavimo.',
+    ],
   },
   {
     id: 6,
     title: 'Testavimas',
-    description: 'Išbandyk GPT su įvairiomis užklausomis ir pataisyk instrukcijas pagal rezultatus.',
-    actionChecklist: ['Užduok 3 skirtingas užklausas (paprastą, sudėtingą, kraštutinę).', 'Patikrink: ar tonas ir ilgis atitinka tikslus.', 'Jei ne – grįžk į Instructions ir pataisyk.'],
+    description:
+      'Išbandyk GPT su įvairiomis užklausomis ir pataisyk instrukcijas pagal rezultatus.',
+    actionChecklist: [
+      'Užduok 3 skirtingas užklausas (paprastą, sudėtingą, kraštutinę).',
+      'Patikrink: ar tonas ir ilgis atitinka tikslus.',
+      'Jei ne – grįžk į Instructions ir pataisyk.',
+    ],
     tip: 'Dažna klaida: per bendros instrukcijos. Pridėk konkrečių pavyzdžių ar apribojimų.',
   },
   {
     id: 7,
     title: 'Publikavimas',
-    description: 'Kai rezultatai patenkina – publikuok tik savo naudojimui arba bendrai bendruomenei.',
-    actionChecklist: ['Pasirink: Only me / Anyone with link / Public.', 'Nustatyk (jei reikia) kategoriją ir žymes.', 'Paspausk Publish.'],
+    description:
+      'Kai rezultatai patenkina – publikuok tik savo naudojimui arba bendrai bendruomenei.',
+    actionChecklist: [
+      'Pasirink: Only me / Anyone with link / Public.',
+      'Nustatyk (jei reikia) kategoriją ir žymes.',
+      'Paspausk Publish.',
+    ],
   },
   {
     id: 8,
     title: 'Tobulinimas',
-    description: 'Naudok grįžtamąjį ryšį: stebėk naudotojų elgesį ir nuolatos tobulink instrukcijas.',
-    actionChecklist: ['Stebėk, kokios užklausos dažnos ir ar atsakymai tinka.', 'Periodiškai atidaryk Configure ir pataisyk Instructions.', 'Pridėk naujų Conversation starters pagal naudojimą.'],
+    description:
+      'Naudok grįžtamąjį ryšį: stebėk naudotojų elgesį ir nuolatos tobulink instrukcijas.',
+    actionChecklist: [
+      'Stebėk, kokios užklausos dažnos ir ar atsakymai tinka.',
+      'Periodiškai atidaryk Configure ir pataisyk Instructions.',
+      'Pridėk naujų Conversation starters pagal naudojimą.',
+    ],
   },
 ];
 
@@ -76,60 +117,101 @@ const CUSTOM_GPT_STEPS_EN: ProcessStep[] = [
   {
     id: 1,
     title: 'Goal',
-    description: 'Decide what the GPT is for: sales, training, creativity, or other uses. Clear goals help shape the instructions.',
-    actionChecklist: ['Write in one sentence: what the assistant will be used for.', 'Choose 1–2 concrete use cases (e.g. "summaries", "customer replies").'],
+    description:
+      'Decide what the GPT is for: sales, training, creativity, or other uses. Clear goals help shape the instructions.',
+    actionChecklist: [
+      'Write in one sentence: what the assistant will be used for.',
+      'Choose 1–2 concrete use cases (e.g. "summaries", "customer replies").',
+    ],
   },
   {
     id: 2,
     title: 'Role',
-    description: 'Define tone, style and expertise: how the assistant should answer and what knowledge to show.',
-    actionChecklist: ['Write: "You are [role]".', 'Set the tone: professional / friendly / concise.', 'Limit the scope: what the assistant can and cannot do.'],
+    description:
+      'Define tone, style and expertise: how the assistant should answer and what knowledge to show.',
+    actionChecklist: [
+      'Write: "You are [role]".',
+      'Set the tone: professional / friendly / concise.',
+      'Limit the scope: what the assistant can and cannot do.',
+    ],
   },
   {
     id: 3,
     title: 'Connection',
-    description: 'ChatGPT → Explore GPTs → Create a GPT. Open the Custom GPT creation screen.',
-    actionChecklist: ['Sign in to ChatGPT (Plus required).', 'Menu: Explore GPTs → Create a GPT.', 'Choose "Configure" and start with the name.'],
-    externalLink: { label: 'Open ChatGPT → Create a GPT', href: 'https://chat.openai.com/gpts/editor' },
+    description:
+      'ChatGPT → Explore GPTs → Create a GPT. Open the Custom GPT creation screen.',
+    actionChecklist: [
+      'Sign in to ChatGPT (Plus required).',
+      'Menu: Explore GPTs → Create a GPT.',
+      'Choose "Configure" and start with the name.',
+    ],
+    externalLink: {
+      label: 'Open ChatGPT → Create a GPT',
+      href: 'https://chat.openai.com/gpts/editor',
+    },
   },
   {
     id: 4,
     title: 'Configuration',
-    description: 'Enter name, description, main instructions and persona – how the GPT will behave and what it knows.',
-    actionChecklist: ['Name: clear and short.', 'Instructions: paste or write your instructions (template at the bottom of this slide).', 'Conversation starters: 2–4 example prompts.'],
+    description:
+      'Enter name, description, main instructions and persona – how the GPT will behave and what it knows.',
+    actionChecklist: [
+      'Name: clear and short.',
+      'Instructions: paste or write your instructions (template at the bottom of this slide).',
+      'Conversation starters: 2–4 example prompts.',
+    ],
     tip: 'Write instructions as if explaining to a new team member – concrete and action-oriented.',
   },
   {
     id: 5,
     title: 'Extra features',
-    description: 'Add documents, API or tools if needed – this extends what the GPT can do.',
-    actionChecklist: ['If needed: upload PDFs or text (Knowledge).', 'If needed: connect Actions (API).', 'If not – leave empty and go to testing.'],
+    description:
+      'Add documents, API or tools if needed – this extends what the GPT can do.',
+    actionChecklist: [
+      'If needed: upload PDFs or text (Knowledge).',
+      'If needed: connect Actions (API).',
+      'If not – leave empty and go to testing.',
+    ],
   },
   {
     id: 6,
     title: 'Testing',
-    description: 'Try the GPT with different prompts and adjust instructions based on the results.',
-    actionChecklist: ['Ask 3 different prompts (simple, complex, edge case).', 'Check: does the tone and length match your goals.', 'If not – go back to Instructions and adjust.'],
+    description:
+      'Try the GPT with different prompts and adjust instructions based on the results.',
+    actionChecklist: [
+      'Ask 3 different prompts (simple, complex, edge case).',
+      'Check: does the tone and length match your goals.',
+      'If not – go back to Instructions and adjust.',
+    ],
     tip: 'Common mistake: instructions too vague. Add concrete examples or limits.',
   },
   {
     id: 7,
     title: 'Publishing',
-    description: 'When you are happy with the results – publish for yourself only or share with others.',
-    actionChecklist: ['Choose: Only me / Anyone with link / Public.', 'Set category and tags if needed.', 'Click Publish.'],
+    description:
+      'When you are happy with the results – publish for yourself only or share with others.',
+    actionChecklist: [
+      'Choose: Only me / Anyone with link / Public.',
+      'Set category and tags if needed.',
+      'Click Publish.',
+    ],
   },
   {
     id: 8,
     title: 'Improvement',
-    description: 'Use feedback: watch how people use it and keep improving the instructions.',
-    actionChecklist: ['See which prompts are used most and whether answers fit.', 'Open Configure from time to time and adjust Instructions.', 'Add new Conversation starters based on use.'],
+    description:
+      'Use feedback: watch how people use it and keep improving the instructions.',
+    actionChecklist: [
+      'See which prompts are used most and whether answers fit.',
+      'Open Configure from time to time and adjust Instructions.',
+      'Add new Conversation starters based on use.',
+    ],
   },
 ];
 
 export default function ProcessStepper() {
   const { t } = useTranslation('stepper');
   const { locale } = useLocale();
-  const isMobile = useIsMobile();
   const [currentStep, setCurrentStep] = useState(0);
   const steps = locale === 'en' ? CUSTOM_GPT_STEPS_EN : CUSTOM_GPT_STEPS;
   const stepTitles = steps.map((s) => s.title);
@@ -142,25 +224,31 @@ export default function ProcessStepper() {
   return (
     <div className="space-y-6" role="region" aria-label={t('regionAria')}>
       {/* Pilna proceso diagrama: aktyvus žingsnis paryškintas, kiti priteminti */}
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 p-4 shadow-sm overflow-hidden">
+      <div
+        className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 p-4 shadow-sm overflow-hidden"
+        data-slide-swipe-lock
+      >
         <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1 text-sm font-semibold text-brand-700 dark:text-brand-300">
-            <span className="h-2 w-2 rounded-full bg-brand-500 animate-pulse" aria-hidden />
-            {t('youAreHere', { n: currentStep + 1, title: stepTitles[currentStep] })}
+            <span
+              className="h-2 w-2 rounded-full bg-brand-500 animate-pulse"
+              aria-hidden
+            />
+            {t('youAreHere', {
+              n: currentStep + 1,
+              title: stepTitles[currentStep],
+            })}
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-400">
             {currentStep + 1} / {steps.length}
           </span>
         </div>
-        {isMobile ? (
-          <div className="overflow-x-auto -mx-2 px-2 pb-2">
-            <div style={{ minWidth: 600 }}>
-              <CustomGptProcessDiagram currentStep={currentStep} onStepClick={setCurrentStep} stepTitles={stepTitles} className="min-h-[320px]" />
-            </div>
-          </div>
-        ) : (
-          <CustomGptProcessDiagram currentStep={currentStep} onStepClick={setCurrentStep} stepTitles={stepTitles} className="min-h-[320px]" />
-        )}
+        <CustomGptProcessDiagram
+          currentStep={currentStep}
+          onStepClick={setCurrentStep}
+          stepTitles={stepTitles}
+          className="min-h-[320px]"
+        />
       </div>
 
       {/* Žingsnių juosta: pasirinkimas */}
@@ -168,7 +256,10 @@ export default function ProcessStepper() {
         <p className="text-center text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
           {t('selectStep')}
         </p>
-        <nav className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2" aria-label={t('navAria')}>
+        <nav
+          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2"
+          aria-label={t('navAria')}
+        >
           {steps.map((step, idx) => {
             const isPast = idx < currentStep;
             const isActive = idx === currentStep;
@@ -178,7 +269,17 @@ export default function ProcessStepper() {
                 type="button"
                 onClick={() => setCurrentStep(idx)}
                 aria-current={isActive ? 'step' : undefined}
-                aria-label={isPast ? t('stepButtonDoneAria', { id: step.id, title: stepTitles[idx] }) : t('stepButtonAria', { id: step.id, title: stepTitles[idx] })}
+                aria-label={
+                  isPast
+                    ? t('stepButtonDoneAria', {
+                        id: step.id,
+                        title: stepTitles[idx],
+                      })
+                    : t('stepButtonAria', {
+                        id: step.id,
+                        title: stepTitles[idx],
+                      })
+                }
                 className={`
                   flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all min-w-[2.5rem] cursor-pointer
                   focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900
@@ -203,7 +304,10 @@ export default function ProcessStepper() {
           aria-valuenow={currentStep + 1}
           aria-valuemin={1}
           aria-valuemax={steps.length}
-          aria-label={t('progressAria', { current: currentStep + 1, total: steps.length })}
+          aria-label={t('progressAria', {
+            current: currentStep + 1,
+            total: steps.length,
+          })}
         />
       </div>
 
@@ -225,21 +329,27 @@ export default function ProcessStepper() {
         </p>
 
         {/* Ką padaryti dabar – veiksmo checklist (max nauda) */}
-        {steps[currentStep].actionChecklist && steps[currentStep].actionChecklist.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-brand-200 dark:border-brand-700">
-            <p className="text-xs font-semibold text-brand-700 dark:text-brand-300 mb-2">
-              {t('doNow')}
-            </p>
-            <ul className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-              {steps[currentStep].actionChecklist!.map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <span className="text-brand-500 mt-0.5 shrink-0" aria-hidden>✓</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {steps[currentStep].actionChecklist &&
+          steps[currentStep].actionChecklist.length > 0 && (
+            <div className="mt-4 pt-4 border-t border-brand-200 dark:border-brand-700">
+              <p className="text-xs font-semibold text-brand-700 dark:text-brand-300 mb-2">
+                {t('doNow')}
+              </p>
+              <ul className="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
+                {steps[currentStep].actionChecklist!.map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span
+                      className="text-brand-500 mt-0.5 shrink-0"
+                      aria-hidden
+                    >
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
         {/* Išorinė nuoroda (pvz. ChatGPT Create GPT) */}
         {steps[currentStep].externalLink && (
@@ -250,7 +360,9 @@ export default function ProcessStepper() {
             className="mt-4 inline-flex items-center gap-2 rounded-lg bg-white dark:bg-gray-800 border border-brand-200 dark:border-brand-700 px-4 py-2.5 text-sm font-medium text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors"
           >
             {steps[currentStep].externalLink!.label}
-            <span className="text-xs" aria-hidden>↗</span>
+            <span className="text-xs" aria-hidden>
+              ↗
+            </span>
           </a>
         )}
 
@@ -268,7 +380,15 @@ export default function ProcessStepper() {
 
         {/* Nuoroda į šabloną kitoje skaidrėje (žingsnis 4 – Konfigūracija) */}
         {currentStep === 3 && (
-          <p className="mt-4 text-xs text-gray-600 dark:text-gray-400" dangerouslySetInnerHTML={{ __html: t('templateHint').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <p
+            className="mt-4 text-xs text-gray-600 dark:text-gray-400"
+            dangerouslySetInnerHTML={{
+              __html: t('templateHint').replace(
+                /\*\*(.*?)\*\*/g,
+                '<strong>$1</strong>'
+              ),
+            }}
+          />
         )}
 
         {/* Refleksija pabaigoje (žingsnis 8) – max nauda: ką jau turi / ką toliau */}
@@ -301,16 +421,27 @@ export default function ProcessStepper() {
         </button>
         <button
           type="button"
-          onClick={() => setCurrentStep((s) => Math.min(steps.length - 1, s + 1))}
+          onClick={() =>
+            setCurrentStep((s) => Math.min(steps.length - 1, s + 1))
+          }
           disabled={isLast}
           className="btn-primary inline-flex items-center justify-center gap-2 py-3 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed order-1 sm:order-2"
-          aria-label={isLast ? t('lastStepAria') : t('nextStepAria', { title: nextStep ? stepTitles[currentStep + 1] : '' })}
+          aria-label={
+            isLast
+              ? t('lastStepAria')
+              : t('nextStepAria', {
+                  title: nextStep ? stepTitles[currentStep + 1] : '',
+                })
+          }
         >
-          {isLast ? t('lastStep') : t('nextStepAria', { title: nextStep ? stepTitles[currentStep + 1] : '' })}
+          {isLast
+            ? t('lastStep')
+            : t('nextStepAria', {
+                title: nextStep ? stepTitles[currentStep + 1] : '',
+              })}
           <ChevronRight className="h-5 w-5 shrink-0" />
         </button>
       </div>
-
     </div>
   );
 }

@@ -7,7 +7,12 @@
 import { useState } from 'react';
 import WorkflowComparisonDiagram from './WorkflowComparisonDiagram';
 import { useIsMobile } from '../../../utils/useIsMobile';
-import type { WorkflowMode, OutputType, Locale } from './workflowComparisonConfig';
+import MobileDiagramScroller from './MobileDiagramScroller';
+import type {
+  WorkflowMode,
+  OutputType,
+  Locale,
+} from './workflowComparisonConfig';
 import {
   getWorkflowModes,
   getOutputTypes,
@@ -23,7 +28,9 @@ interface Props {
   locale?: Locale;
 }
 
-export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Props) {
+export default function WorkflowComparisonInteractiveBlock({
+  locale = 'lt',
+}: Props) {
   const [mode, setMode] = useState<WorkflowMode>('basic');
   const [promptInput, setPromptInput] = useState('');
   const isMobile = useIsMobile();
@@ -45,92 +52,94 @@ export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Pr
     >
       {/* ═══ ZONA 1: Toggle + Schema + CTA ═══ */}
       <div className="space-y-6">
-      {/* „Tu esi čia“ orientacija + Mode toggle */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border bg-brand-50/80 dark:bg-brand-900/20 border-brand-200 dark:border-brand-700 text-brand-700 dark:text-brand-300"
-            aria-live="polite"
-          >
-            {blockLabels.nowLabel} {config.label}
-          </span>
-          <div className="flex gap-0.5 p-0.5 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-600 shadow-sm">
-            {MODE_KEYS.map((m) => (
-              <button
-                key={m}
-                type="button"
-                onClick={() => setMode(m)}
-                aria-pressed={mode === m}
-                aria-label={`${blockLabels.modeLabel} ${workflowModes[m].label}`}
-                className={`
+        {/* „Tu esi čia“ orientacija + Mode toggle */}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border bg-brand-50/80 dark:bg-brand-900/20 border-brand-200 dark:border-brand-700 text-brand-700 dark:text-brand-300"
+              aria-live="polite"
+            >
+              {blockLabels.nowLabel} {config.label}
+            </span>
+            <div className="flex gap-0.5 p-0.5 rounded-md bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-600 shadow-sm">
+              {MODE_KEYS.map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  aria-pressed={mode === m}
+                  aria-label={`${blockLabels.modeLabel} ${workflowModes[m].label}`}
+                  className={`
                   font-mono text-[13px] font-medium uppercase px-5 py-2.5 rounded
                   transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
                   min-h-[44px] min-w-[44px]
-                  ${mode === m
-                    ? m === 'workflow'
-                      ? 'bg-emerald-500 text-white font-semibold'
-                      : 'bg-accent-500 text-brand-900 font-semibold'
-                    : m === 'workflow'
-                      ? 'border-2 border-emerald-400 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 shadow-sm shadow-emerald-200/50 dark:shadow-emerald-900/30'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  ${
+                    mode === m
+                      ? m === 'workflow'
+                        ? 'bg-emerald-500 text-white font-semibold'
+                        : 'bg-accent-500 text-brand-900 font-semibold'
+                      : m === 'workflow'
+                        ? 'border-2 border-emerald-400 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 shadow-sm shadow-emerald-200/50 dark:shadow-emerald-900/30'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }
                 `}
-                style={{ letterSpacing: '0.1em' }}
-              >
-                {workflowModes[m].label}
-              </button>
-            ))}
+                  style={{ letterSpacing: '0.1em' }}
+                >
+                  {workflowModes[m].label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 font-mono text-[13px] text-gray-600 dark:text-gray-400">
+              <span
+                className={`h-2 w-2 rounded-full shrink-0 transition-colors duration-300 ${
+                  isWorkflow ? 'bg-emerald-500' : 'bg-gray-400 dark:bg-gray-500'
+                }`}
+                aria-hidden="true"
+              />
+              <span aria-live="polite">{config.desc}</span>
+            </div>
+            <p
+              className="text-sm text-gray-700 dark:text-gray-300 font-medium"
+              aria-live="polite"
+            >
+              {config.consequenceLine}
+            </p>
           </div>
         </div>
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2 font-mono text-[13px] text-gray-600 dark:text-gray-400">
-            <span
-              className={`h-2 w-2 rounded-full shrink-0 transition-colors duration-300 ${
-                isWorkflow ? 'bg-emerald-500' : 'bg-gray-400 dark:bg-gray-500'
-              }`}
-              aria-hidden="true"
-            />
-            <span aria-live="polite">{config.desc}</span>
-          </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 font-medium" aria-live="polite">
-            {config.consequenceLine}
-          </p>
-        </div>
-      </div>
 
-      {/* Section 1 — Schema (Hero) su Workflow glow; mobile: horizontally scrollable */}
-      <div
-        className={`max-w-[800px] mx-auto pt-8 pb-6 rounded-xl px-4 py-6 transition-colors duration-300 border bg-white dark:bg-gray-900 ${
-          isWorkflow
-            ? 'border-emerald-200 dark:border-emerald-800 ring-2 ring-emerald-200/50 dark:ring-emerald-800/30 shadow-lg shadow-emerald-200/30 dark:shadow-emerald-900/20'
-            : 'border-gray-200 dark:border-gray-700 shadow-lg shadow-gray-200/50 dark:shadow-none'
-        }`}
-      >
-        {isMobile ? (
-          <div className="overflow-x-auto -mx-2 px-2 pb-2">
-            <div style={{ minWidth: 620 }}>
+        {/* Section 1 — Schema (Hero) su Workflow glow; mobile: horizontally scrollable */}
+        <div
+          className={`max-w-[800px] mx-auto pt-8 pb-6 rounded-xl px-4 py-6 transition-colors duration-300 border bg-white dark:bg-gray-900 ${
+            isWorkflow
+              ? 'border-emerald-200 dark:border-emerald-800 ring-2 ring-emerald-200/50 dark:ring-emerald-800/30 shadow-lg shadow-emerald-200/30 dark:shadow-emerald-900/20'
+              : 'border-gray-200 dark:border-gray-700 shadow-lg shadow-gray-200/50 dark:shadow-none'
+          }`}
+        >
+          {isMobile ? (
+            <MobileDiagramScroller minWidth={620} compactMinWidth={500}>
               <WorkflowComparisonDiagram
                 locale={locale}
                 mode={mode}
                 outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
               />
-            </div>
-          </div>
-        ) : (
-          <WorkflowComparisonDiagram
-            locale={locale}
-            mode={mode}
-            outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
-          />
-        )}
-      </div>
+            </MobileDiagramScroller>
+          ) : (
+            <WorkflowComparisonDiagram
+              locale={locale}
+              mode={mode}
+              outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
+            />
+          )}
+        </div>
 
-      {/* CTA — vienas accent blokas po schema */}
-      <div className="max-w-[800px] mx-auto">
-        <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 border-l-4 border-accent-500 pl-3 py-2.5 bg-accent-50 dark:bg-accent-900/20 rounded-r shadow-md shadow-accent-200/30 dark:shadow-accent-900/20">
-          {ctaSentence}
-        </p>
-      </div>
+        {/* CTA — vienas accent blokas po schema */}
+        <div className="max-w-[800px] mx-auto">
+          <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 border-l-4 border-accent-500 pl-3 py-2.5 bg-accent-50 dark:bg-accent-900/20 rounded-r shadow-md shadow-accent-200/30 dark:shadow-accent-900/20">
+            {ctaSentence}
+          </p>
+        </div>
       </div>
 
       {/* ═══ ZONA 2: INPUT + OUTPUT (tik Workflow režime) ═══ */}
@@ -178,7 +187,6 @@ export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Pr
               </p>
             </div>
           </div>
-
         </div>
       )}
     </div>

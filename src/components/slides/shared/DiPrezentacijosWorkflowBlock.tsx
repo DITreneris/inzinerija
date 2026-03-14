@@ -9,38 +9,66 @@ import { getDiPrezentacijosStepExplanations } from './stepExplanations';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
 import { useIsMobile } from '../../../utils/useIsMobile';
+import MobileDiagramScroller from './MobileDiagramScroller';
 
 export default function DiPrezentacijosWorkflowBlock() {
   const { locale } = useLocale();
   const isMobile = useIsMobile();
   const explanations = getDiPrezentacijosStepExplanations(locale);
   const blockLabels = getDiPrezentacijosBlockLabels(locale);
-  const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
+  const {
+    currentStep,
+    setCurrentStep,
+    step,
+    totalSteps: TOTAL_STEPS,
+  } = useStepDiagram(explanations);
 
   return (
-    <div className="space-y-4" role="region" aria-label={blockLabels.regionAria}>
+    <div
+      className="space-y-4"
+      role="region"
+      aria-label={blockLabels.regionAria}
+    >
       <div className="flex flex-wrap items-center gap-2">
         <span
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1.5 text-sm font-semibold text-brand-700 dark:text-brand-300"
           aria-live="polite"
         >
-          <span className="h-2 w-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
+          <span
+            className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
+            aria-hidden
+          />
           {blockLabels.youAreHere} {currentStep + 1}. {step.title}
         </span>
-        <span className="text-xs text-gray-500 dark:text-gray-400">{currentStep + 1} / {TOTAL_STEPS}</span>
+        <span className="text-xs text-gray-500 dark:text-gray-400">
+          {currentStep + 1} / {TOTAL_STEPS}
+        </span>
       </div>
 
       {isMobile ? (
-        <div className="overflow-x-auto -mx-2 px-2 pb-2">
-          <div style={{ minWidth: 480 }}>
-            <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
-          </div>
-        </div>
+        <MobileDiagramScroller
+          minWidth={480}
+          compactMinWidth={400}
+          behavior="reflow"
+        >
+          <DiPrezentacijosWorkflowDiagram
+            currentStep={currentStep}
+            onStepClick={setCurrentStep}
+            locale={locale}
+          />
+        </MobileDiagramScroller>
       ) : (
-        <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
+        <DiPrezentacijosWorkflowDiagram
+          currentStep={currentStep}
+          onStepClick={setCurrentStep}
+          locale={locale}
+        />
       )}
 
-      <nav className="flex flex-wrap justify-center gap-1.5" aria-label={blockLabels.navAria}>
+      <nav
+        className="flex flex-wrap justify-center gap-1.5"
+        aria-label={blockLabels.navAria}
+      >
         {explanations.map((s, idx) => (
           <button
             key={idx}
@@ -51,9 +79,11 @@ export default function DiPrezentacijosWorkflowBlock() {
             className={`
               flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all
               focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
-              ${currentStep === idx
-                ? 'border-brand-500 bg-brand-500 text-white shadow-md'
-                : 'border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/30'}
+              ${
+                currentStep === idx
+                  ? 'border-brand-500 bg-brand-500 text-white shadow-md'
+                  : 'border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/30'
+              }
             `}
           >
             {idx + 1}
@@ -67,7 +97,9 @@ export default function DiPrezentacijosWorkflowBlock() {
         role="status"
         aria-live="polite"
       >
-        <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">{step.title}</p>
+        <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">
+          {step.title}
+        </p>
         <p>{renderBold(step.body)}</p>
       </div>
     </div>

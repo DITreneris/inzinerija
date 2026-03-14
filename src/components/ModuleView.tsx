@@ -1,11 +1,30 @@
-import { useState, useEffect, useCallback, useMemo, useRef, memo, Suspense } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+  memo,
+  Suspense,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import { ChevronLeft, ChevronRight, CheckCircle, ArrowLeft, AlertTriangle, RefreshCw, Play, RotateCcw, Sparkles } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle,
+  ArrowLeft,
+  AlertTriangle,
+  RefreshCw,
+  Play,
+  RotateCcw,
+  Sparkles,
+} from 'lucide-react';
 import { spacingClasses, radiusClasses } from '../design-tokens';
 import { Progress } from '../utils/progress';
 import { getModulesSync, preloadModules } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { useSlideNavigation } from '../utils/useSlideNavigation';
+import { useCompactViewport } from '../utils/useCompactViewport';
 import { LoadingSpinner } from './ui';
 import { ModuleCompleteScreen } from './ModuleCompleteScreen';
 import ErrorBoundary from './ui/ErrorBoundary';
@@ -27,34 +46,34 @@ function getFastTrack(): boolean {
 
 /** Map phase labels from slidePhaseConfig to module namespace translation keys (for EN/LT UI). */
 const PHASE_LABEL_TO_KEY: Record<string, string> = {
-  'Pagrindai': 'phaseBasics',
-  'Šablonas': 'phaseTemplate',
+  Pagrindai: 'phaseBasics',
+  Šablonas: 'phaseTemplate',
   '6 Blokai': 'phase6Blocks',
-  'Santrauka': 'phaseSummary',
-  'Įvadas': 'phaseIntro',
-  'Teorija': 'phaseTheory',
-  'RAG': 'phaseRAG',
+  Santrauka: 'phaseSummary',
+  Įvadas: 'phaseIntro',
+  Teorija: 'phaseTheory',
+  RAG: 'phaseRAG',
   'Deep research': 'phaseDeepResearch',
-  'Tokenai': 'phaseTokens',
-  'Manipuliacijos': 'phaseManipulations',
-  'Skyrius': 'phaseSection',
-  'Kelionė': 'phaseJourney',
-  'Savitikra': 'phaseSelfCheck',
-  'Testas': 'phaseTest',
-  'Praktika': 'phasePractice',
-  'Sprintas': 'phaseSprint',
-  'Pagalba': 'phaseHelp',
-  'Projektas': 'phaseProject',
+  Tokenai: 'phaseTokens',
+  Manipuliacijos: 'phaseManipulations',
+  Skyrius: 'phaseSection',
+  Kelionė: 'phaseJourney',
+  Savitikra: 'phaseSelfCheck',
+  Testas: 'phaseTest',
+  Praktika: 'phasePractice',
+  Sprintas: 'phaseSprint',
+  Pagalba: 'phaseHelp',
+  Projektas: 'phaseProject',
   'COMBO ir HTML': 'phaseComboHtml',
-  'SUPER': 'phaseSuper',
-  'Refleksija': 'phaseReflection',
+  SUPER: 'phaseSuper',
+  Refleksija: 'phaseReflection',
   'Duomenų tvarkymas': 'phaseDataHandling',
   'Custom GPT': 'phaseCustomGpt',
-  'Vaizdai': 'phaseImages',
-  'Video': 'phaseVideo',
-  'Muzika': 'phaseMusic',
-  'Verslas': 'phaseBusiness',
-  'Kita': 'phaseOther',
+  Vaizdai: 'phaseImages',
+  Video: 'phaseVideo',
+  Muzika: 'phaseMusic',
+  Verslas: 'phaseBusiness',
+  Kita: 'phaseOther',
 };
 
 /* ─── Slide Group Progress Bar ─── */
@@ -87,8 +106,8 @@ function SlideGroupProgressBar({
         const groupProgress = isActive
           ? ((currentSlide - group.startIdx + 1) / groupSize) * 100
           : isPast
-          ? 100
-          : 0;
+            ? 100
+            : 0;
         const displayLabel = getPhaseDisplayLabel(group.label);
 
         return (
@@ -103,8 +122,8 @@ function SlideGroupProgressBar({
                   isActive
                     ? 'bg-brand-500 dark:bg-brand-400'
                     : isPast
-                    ? 'bg-emerald-400 dark:bg-emerald-600'
-                    : 'bg-transparent'
+                      ? 'bg-emerald-400 dark:bg-emerald-600'
+                      : 'bg-transparent'
                 }`}
                 style={{ width: `${groupProgress}%` }}
               />
@@ -115,8 +134,8 @@ function SlideGroupProgressBar({
                   isActive
                     ? 'text-brand-600 dark:text-brand-400'
                     : isPast
-                    ? 'text-emerald-600 dark:text-emerald-400'
-                    : 'text-gray-400 dark:text-gray-500'
+                      ? 'text-emerald-600 dark:text-emerald-400'
+                      : 'text-gray-400 dark:text-gray-500'
                 }`}
                 title={displayLabel}
               >
@@ -137,9 +156,17 @@ interface ModuleViewProps {
   onClearInitialSlideIndex?: () => void;
   onBack: () => void;
   onComplete: (moduleId: number) => void;
-  onTaskComplete: (moduleId: number, taskId: number, testScore?: number) => void;
+  onTaskComplete: (
+    moduleId: number,
+    taskId: number,
+    testScore?: number
+  ) => void;
   onContinueToNext: (currentModuleId: number) => void;
-  onGoToModule?: (moduleId: number, slideIndex?: number, fromRemediationSourceModuleId?: number) => void;
+  onGoToModule?: (
+    moduleId: number,
+    slideIndex?: number,
+    fromRemediationSourceModuleId?: number
+  ) => void;
   onGoToGlossary?: (slideIndex: number) => void;
   onGoToGlossaryTerm?: (term: string) => void;
   onGoToTools?: (moduleId: number) => void;
@@ -175,7 +202,10 @@ function ModuleView({
   const modules = getModulesSync(locale);
 
   const getPhaseDisplayLabel = useCallback(
-    (label: string) => (PHASE_LABEL_TO_KEY[label] ? t(`module:${PHASE_LABEL_TO_KEY[label]}`) : label),
+    (label: string) =>
+      PHASE_LABEL_TO_KEY[label]
+        ? t(`module:${PHASE_LABEL_TO_KEY[label]}`)
+        : label,
     [t]
   );
 
@@ -229,7 +259,9 @@ function ModuleView({
 
     // Module 8: bonus slides (801, 802) tik po testo rezultatų – ta pati logika kaip M2
     if (moduleId === 8 && raw.slides) {
-      const bonusSlides = raw.slides.filter((s) => s.id === 801 || s.id === 802);
+      const bonusSlides = raw.slides.filter(
+        (s) => s.id === 801 || s.id === 802
+      );
       const mainSlides = raw.slides.filter((s) => s.id !== 801 && s.id !== 802);
       if (bonusSlides.length > 0) {
         return {
@@ -246,8 +278,7 @@ function ModuleView({
     [modules, moduleId]
   );
   const isLastModule = useMemo(
-    () =>
-      moduleIndex >= 0 && moduleIndex === (modules?.length ?? 0) - 1,
+    () => moduleIndex >= 0 && moduleIndex === (modules?.length ?? 0) - 1,
     [moduleIndex, modules?.length]
   );
 
@@ -271,6 +302,7 @@ function ModuleView({
     currentSlideData,
     handleTouchStart,
     handleTouchEnd,
+    handleTouchCancel,
     showModuleComplete,
     setShowModuleComplete,
     savedSlidePosition,
@@ -296,8 +328,19 @@ function ModuleView({
     });
   }, []);
 
+  const { isCompactNav } = useCompactViewport();
+  const mobileCounterClass = isCompactNav ? 'py-1 px-3' : 'py-1.5 px-3';
+  const mobileBottomShellClass = isCompactNav ? 'px-3 py-1.5' : 'px-4 py-2';
+  const mobileNavButtonClass = isCompactNav
+    ? 'px-3 py-2 min-h-[44px]'
+    : 'px-4 py-3 min-h-[52px]';
+  const mobileBottomSpacerClass = isCompactNav
+    ? 'min-h-[3.75rem]'
+    : 'min-h-[5rem]';
+
   // Show resume prompt if user has saved position > 0 (skip when opening via F2-3 deep link)
-  const showResumePrompt = !resumeDecided && savedSlidePosition > 0 && initialSlideIndex == null;
+  const showResumePrompt =
+    !resumeDecided && savedSlidePosition > 0 && initialSlideIndex == null;
 
   const handleResumeFromSaved = useCallback(() => {
     setResumeImmediate(true);
@@ -338,16 +381,23 @@ function ModuleView({
     [progress.completedModules, moduleId]
   );
   const hasIncompleteCurrentTestSection = useMemo(() => {
-    if (!currentSlideData || currentSlideData.type !== 'test-section') return false;
+    if (!currentSlideData || currentSlideData.type !== 'test-section')
+      return false;
     return !progress.completedTasks[moduleId]?.includes(currentSlideData.id);
   }, [currentSlideData, progress.completedTasks, moduleId]);
-  const isNextDisabled = hasIncompletePracticalTask || hasIncompleteCurrentTestSection;
+  const isNextDisabled =
+    hasIncompletePracticalTask || hasIncompleteCurrentTestSection;
 
   /** Modulio 3 / 9: scenarijų skaidrės (indeksas, id, pavadinimas) – progresui ir navigacijai */
   const practiceScenarioSlides = useMemo(() => {
     if (!module) return [];
     return module.slides
-      .map((s, i) => ({ slideIndex: i, slideId: s.id, title: s.title, type: s.type }))
+      .map((s, i) => ({
+        slideIndex: i,
+        slideId: s.id,
+        title: s.title,
+        type: s.type,
+      }))
       .filter((x) => x.type === 'practice-scenario');
   }, [module]);
 
@@ -383,7 +433,9 @@ function ModuleView({
   );
 
   /** M9 žaidimo logika: po scenarijaus grįžti į to paties veikėjo 4 užduotis (hub su pasirinktu veikėju) */
-  const [returnToHubWithLevel1, setReturnToHubWithLevel1] = useState<number | null>(null);
+  const [returnToHubWithLevel1, setReturnToHubWithLevel1] = useState<
+    number | null
+  >(null);
   const hubSlideIndex = useMemo(
     () => (module?.slides ? module.slides.findIndex((s) => s.id === 99) : -1),
     [module?.slides]
@@ -396,17 +448,31 @@ function ModuleView({
       module?.slides &&
       hubSlideIndex >= 0
     ) {
-      const characterId = (currentSlideData as { characterId: number }).characterId;
+      const characterId = (currentSlideData as { characterId: number })
+        .characterId;
       setReturnToHubWithLevel1(characterId - 1);
       onNavigateToSlide(hubSlideIndex);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       nextSlide();
     }
-  }, [moduleId, currentSlideData, module?.slides, hubSlideIndex, onNavigateToSlide, nextSlide]);
+  }, [
+    moduleId,
+    currentSlideData,
+    module?.slides,
+    hubSlideIndex,
+    onNavigateToSlide,
+    nextSlide,
+  ]);
 
   useEffect(() => {
-    if (module && currentSlide < module.slides.length && hubSlideIndex >= 0 && currentSlide === hubSlideIndex && returnToHubWithLevel1 != null) {
+    if (
+      module &&
+      currentSlide < module.slides.length &&
+      hubSlideIndex >= 0 &&
+      currentSlide === hubSlideIndex &&
+      returnToHubWithLevel1 != null
+    ) {
       const t = setTimeout(() => setReturnToHubWithLevel1(null), 50);
       return () => clearTimeout(t);
     }
@@ -426,10 +492,15 @@ function ModuleView({
   /** MVP Analytics: on "Baigti" / next from last slide – track slide_complete for last slide before showing complete screen */
   const handleNextOrCompleteClick = useCallback(() => {
     if (isLastSlide && module && currentSlideData) {
-      const timeOnSlideSec = Math.round((Date.now() - slideEnterTimeRef.current) / 1000);
+      const timeOnSlideSec = Math.round(
+        (Date.now() - slideEnterTimeRef.current) / 1000
+      );
       track('slide_complete', {
         module_id: moduleId,
-        slide_id: typeof currentSlideData.id === 'number' ? currentSlideData.id : currentSlide,
+        slide_id:
+          typeof currentSlideData.id === 'number'
+            ? currentSlideData.id
+            : currentSlide,
         slide_index: currentSlide,
         slide_type: currentSlideData.type ?? undefined,
         time_on_slide_sec: timeOnSlideSec,
@@ -440,7 +511,15 @@ function ModuleView({
     } else {
       nextSlide();
     }
-  }, [isLastSlide, module, moduleId, currentSlide, currentSlideData, nextSlide, handleNextOrReturnToHub]);
+  }, [
+    isLastSlide,
+    module,
+    moduleId,
+    currentSlide,
+    currentSlideData,
+    nextSlide,
+    handleNextOrReturnToHub,
+  ]);
 
   /** Po Modulio 3 / 9: grįžti į santraukos skaidrę iš completion ekrano. (Hook turi būti prieš bet kurį early return.) */
   const onViewPart1Summary = useCallback(() => {
@@ -448,46 +527,75 @@ function ModuleView({
     setShowModuleComplete(false);
     setCurrentSlide(module.slides.length - 1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [moduleId, module?.slides?.length, setShowModuleComplete, setCurrentSlide]);
+  }, [
+    moduleId,
+    module?.slides?.length,
+    setShowModuleComplete,
+    setCurrentSlide,
+  ]);
 
   /** Modulio 3 / M9: konkretus CTA tekstas – locale-aware. */
   const nextSlideLabel = useMemo(() => {
-    if (!module || (moduleId !== 3 && moduleId !== 9) || currentSlide >= module.slides.length) return null;
+    if (
+      !module ||
+      (moduleId !== 3 && moduleId !== 9) ||
+      currentSlide >= module.slides.length
+    )
+      return null;
     const current = module.slides[currentSlide];
-    if (moduleId === 9 && current?.type === 'practice-scenario') return t('module:nextSelectOtherTask');
+    if (moduleId === 9 && current?.type === 'practice-scenario')
+      return t('module:nextSelectOtherTask');
     if (currentSlide >= module.slides.length - 1) return null;
     const next = module.slides[currentSlide + 1];
-    if (next.type === 'practice-scenario-hub') return t('module:nextSelectScenario');
+    if (next.type === 'practice-scenario-hub')
+      return t('module:nextSelectScenario');
     if (next.type === 'practice-scenario') {
-      const scenarioSlides = module.slides.filter((s) => s.type === 'practice-scenario');
+      const scenarioSlides = module.slides.filter(
+        (s) => s.type === 'practice-scenario'
+      );
       const idx = scenarioSlides.findIndex((s) => s.id === next.id);
       const n = idx >= 0 ? idx + 1 : currentSlide + 2;
       return t('module:nextStartScenarioN', { n });
     }
-    if (next.type === 'practice-summary') return t('module:nextToPracticeSummary');
-    if (moduleId === 3 && next.type === 'summary') return t('module:nextToPracticeSummary');
+    if (next.type === 'practice-summary')
+      return t('module:nextToPracticeSummary');
+    if (moduleId === 3 && next.type === 'summary')
+      return t('module:nextToPracticeSummary');
     return null;
   }, [module, moduleId, currentSlide, t]);
 
   /** Kontekstinė etiketė „Tęsti: [2–3 žodžiai]“ – locale-aware. */
   const nextSlideContextLabel = useMemo(() => {
     if (nextSlideLabel) return nextSlideLabel;
-    if (!module || isLastSlide || currentSlide + 1 >= module.slides.length) return null;
+    if (!module || isLastSlide || currentSlide + 1 >= module.slides.length)
+      return null;
     const next = module.slides[currentSlide + 1];
     const raw = (next.shortTitle ?? next.title ?? '').trim();
     if (!raw) return null;
     const text = raw
-      .replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}\u{20E3}]+\s*/u, '')
-      .replace(/^(Papildoma|Praktika|Skyrius|Savitikra|Projektas|Pavyzdys iš praktikos)[:\s]+/i, '')
+      .replace(
+        /^[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}\u{20E3}]+\s*/u,
+        ''
+      )
+      .replace(
+        /^(Papildoma|Praktika|Skyrius|Savitikra|Projektas|Pavyzdys iš praktikos)[:\s]+/i,
+        ''
+      )
       .replace(/\s*\([^)]*\)?\s*/g, ' ')
       .trim();
     const words = text.split(/\s+/).slice(0, 3);
-    const TRAIL_LT = /^(ir|su|iš|ar|be|per|po|nuo|dėl|apie|kaip|savo|kurios|kodėl|tai)$/i;
-    const TRAIL_EN = /^(and|with|from|for|the|to|or|of|in|on|a|an|by|at|into|as)$/i;
+    const TRAIL_LT =
+      /^(ir|su|iš|ar|be|per|po|nuo|dėl|apie|kaip|savo|kurios|kodėl|tai)$/i;
+    const TRAIL_EN =
+      /^(and|with|from|for|the|to|or|of|in|on|a|an|by|at|into|as)$/i;
     const TRAIL = locale === 'en' ? TRAIL_EN : TRAIL_LT;
     while (words.length > 1 && TRAIL.test(words[words.length - 1])) words.pop();
-    let label = words.join(' ').replace(/[,:;\u2013\u2014?!\u2026.]+$/, '').trim();
-    if (label.length < 3 && text.length > 0) label = text.split(/\s+/).slice(0, 2).join(' ');
+    let label = words
+      .join(' ')
+      .replace(/[,:;\u2013\u2014?!\u2026.]+$/, '')
+      .trim();
+    if (label.length < 3 && text.length > 0)
+      label = text.split(/\s+/).slice(0, 2).join(' ');
     if (label.length > 20) return t('continueShort');
     return t('module:nextContinueWith', { label });
   }, [nextSlideLabel, module, isLastSlide, currentSlide, t, locale]);
@@ -505,12 +613,20 @@ function ModuleView({
     const prevIdx = prevSlideIndexRef.current;
     const slides = module.slides;
 
-    if (prevIdx !== null && prevIdx !== currentSlide && prevIdx >= 0 && prevIdx < slides.length) {
+    if (
+      prevIdx !== null &&
+      prevIdx !== currentSlide &&
+      prevIdx >= 0 &&
+      prevIdx < slides.length
+    ) {
       const prevSlideData = slides[prevIdx];
-      const timeOnSlideSec = Math.round((Date.now() - slideEnterTimeRef.current) / 1000);
+      const timeOnSlideSec = Math.round(
+        (Date.now() - slideEnterTimeRef.current) / 1000
+      );
       track('slide_complete', {
         module_id: moduleId,
-        slide_id: typeof prevSlideData.id === 'number' ? prevSlideData.id : prevIdx,
+        slide_id:
+          typeof prevSlideData.id === 'number' ? prevSlideData.id : prevIdx,
         slide_index: prevIdx,
         slide_type: prevSlideData.type ?? undefined,
         time_on_slide_sec: timeOnSlideSec,
@@ -519,7 +635,10 @@ function ModuleView({
 
     track('slide_view', {
       module_id: moduleId,
-      slide_id: typeof currentSlideData.id === 'number' ? currentSlideData.id : currentSlide,
+      slide_id:
+        typeof currentSlideData.id === 'number'
+          ? currentSlideData.id
+          : currentSlide,
       slide_index: currentSlide,
       slide_type: currentSlideData.type ?? undefined,
     });
@@ -627,7 +746,10 @@ function ModuleView({
             {t('module:resumeWelcome')}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-2 max-w-md">
-            {t('module:resumeFromSlide', { n: savedSlidePosition + 1, total: module.slides.length })}
+            {t('module:resumeFromSlide', {
+              n: savedSlidePosition + 1,
+              total: module.slides.length,
+            })}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
             {t('module:resumeModuleLabel')} {module.title}
@@ -676,7 +798,9 @@ function ModuleView({
       {remediationFrom && onReturnToRemediation && (
         <div className="rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/20 p-3 lg:p-4 flex items-center justify-between gap-3">
           <p className="text-sm text-brand-800 dark:text-brand-200">
-            {t('remediationBannerText', { moduleId: remediationFrom.sourceModuleId })}
+            {t('remediationBannerText', {
+              moduleId: remediationFrom.sourceModuleId,
+            })}
           </p>
           <button
             type="button"
@@ -699,12 +823,20 @@ function ModuleView({
             aria-label={t('module:backToModules')}
           >
             <ArrowLeft className="w-5 h-5" />
-            <span className="hidden sm:inline">{t('module:backToModules')}</span>
+            <span className="hidden sm:inline">
+              {t('module:backToModules')}
+            </span>
             <span className="sm:hidden">{t('module:backShort')}</span>
           </button>
 
           <div className="hidden lg:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <span className="flex items-center gap-2" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+            <span
+              className="flex items-center gap-2"
+              aria-label={t('slideOf', {
+                current: currentSlide + 1,
+                total: module.slides.length,
+              })}
+            >
               <span>{t('slideShort')}</span>
               <span className="font-bold text-brand-600 dark:text-brand-400">
                 {currentSlide + 1} / {module.slides.length} {t('slidesSuffix')}
@@ -732,53 +864,86 @@ function ModuleView({
           className={`card ${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y ${radiusClasses.card}`}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchCancel}
           role="region"
           aria-label={t('slideNavAria')}
         >
-          {currentSlideData.type !== 'action-intro' && !(currentSlideData.type === 'section-break' && currentSlideData.content && typeof (currentSlideData.content as Record<string, unknown>).celebrationText === 'string') && (
-            <div className="mb-8">
-              <div className="flex items-center gap-3 mb-3">
-                <span className={moduleId === 2 || moduleId === 3 ? 'badge-slate' : 'badge-brand'}>
-                  {t('moduleLabel', { n: moduleIndex + 1 })}
-                </span>
-                {isModuleCompleted && (
-                  <span className="badge-success">
-                    <CheckCircle className="w-3 h-3 mr-1" />
-                    {t('completedLabel')}
+          {currentSlideData.type !== 'action-intro' &&
+            !(
+              currentSlideData.type === 'section-break' &&
+              currentSlideData.content &&
+              typeof (currentSlideData.content as Record<string, unknown>)
+                .celebrationText === 'string'
+            ) && (
+              <div className="mb-8">
+                <div className="flex items-center gap-3 mb-3">
+                  <span
+                    className={
+                      moduleId === 2 || moduleId === 3
+                        ? 'badge-slate'
+                        : 'badge-brand'
+                    }
+                  >
+                    {t('moduleLabel', { n: moduleIndex + 1 })}
                   </span>
-                )}
-                {currentSlideData.optional && (
-                  currentSlideData.badgeVariant === 'bonus' ? (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-accent-100 to-amber-100 dark:from-accent-900/30 dark:to-amber-900/20 text-accent-800 dark:text-accent-200 border border-accent-200 dark:border-accent-700/50">
-                      <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} aria-hidden />
-                      {t('bonusLabel')}
+                  {isModuleCompleted && (
+                    <span className="badge-success">
+                      <CheckCircle className="w-3 h-3 mr-1" />
+                      {t('completedLabel')}
                     </span>
-                  ) : currentSlideData.badgeVariant === 'optional' ? (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50" aria-label={t('optionalSlideAria')}>
-                      {t('common:optional')}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50">
-                      {t('additionalLabel')}
-                    </span>
-                  )
+                  )}
+                  {currentSlideData.optional &&
+                    (currentSlideData.badgeVariant === 'bonus' ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-accent-100 to-amber-100 dark:from-accent-900/30 dark:to-amber-900/20 text-accent-800 dark:text-accent-200 border border-accent-200 dark:border-accent-700/50">
+                        <Sparkles
+                          className="w-3.5 h-3.5"
+                          strokeWidth={1.5}
+                          aria-hidden
+                        />
+                        {t('bonusLabel')}
+                      </span>
+                    ) : currentSlideData.badgeVariant === 'optional' ? (
+                      <span
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50"
+                        aria-label={t('optionalSlideAria')}
+                      >
+                        {t('common:optional')}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-700/50">
+                        {t('additionalLabel')}
+                      </span>
+                    ))}
+                </div>
+                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+                  {currentSlideData.shortTitle ?? currentSlideData.title}
+                </h1>
+                {currentSlideData.subtitle != null && (
+                  <p className="hidden lg:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">
+                    {currentSlideData.subtitle}
+                  </p>
                 )}
               </div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-                {currentSlideData.shortTitle ?? currentSlideData.title}
-              </h1>
-              {currentSlideData.subtitle != null && (
-                <p className="hidden lg:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">{currentSlideData.subtitle}</p>
-              )}
-            </div>
-          )}
+            )}
 
           {/* Sticky nav bar: mobile = compact counter + progress line only; desktop (lg+) = full Atgal/counter/Tęsti */}
-          <nav className="sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm" aria-label={t('slideNavBarAria')}>
+          <nav
+            className="sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
+            aria-label={t('slideNavBarAria')}
+          >
             {/* Mobile: compact counter only (buttons are in bottom nav) */}
-            <div className="lg:hidden flex items-center justify-center py-1.5 px-3">
-              <span className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
-                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/{module.slides.length}
+            <div
+              className={`lg:hidden flex items-center justify-center ${mobileCounterClass}`}
+            >
+              <span
+                className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
+                aria-label={t('slideOf', {
+                  current: currentSlide + 1,
+                  total: module.slides.length,
+                })}
+              >
+                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/
+                {module.slides.length}
               </span>
             </div>
             {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
@@ -793,7 +958,13 @@ function ModuleView({
                 <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
                 <span>{t('backShort')}</span>
               </button>
-              <span className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+              <span
+                className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
+                aria-label={t('slideOf', {
+                  current: currentSlide + 1,
+                  total: module.slides.length,
+                })}
+              >
                 {currentSlide + 1}/{module.slides.length}
               </span>
               <button
@@ -802,17 +973,38 @@ function ModuleView({
                 disabled={isNextDisabled}
                 title={nextSlideContextLabel ?? undefined}
                 className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium min-h-[48px] bg-brand-600 dark:bg-brand-500 text-white hover:bg-brand-700 dark:hover:bg-brand-600 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-                aria-label={isLastSlide ? t('completeAria') : nextButtonLabel ?? t('nextSlide')}
+                aria-label={
+                  isLastSlide
+                    ? t('completeAria')
+                    : (nextButtonLabel ?? t('nextSlide'))
+                }
               >
-                <span className="truncate" title={nextSlideContextLabel ?? undefined}>{isLastSlide ? t('complete') : (nextButtonLabel ?? t('continueShort'))}</span>
-                {!isLastSlide && <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />}
-                {isLastSlide && <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />}
+                <span
+                  className="truncate"
+                  title={nextSlideContextLabel ?? undefined}
+                >
+                  {isLastSlide
+                    ? t('complete')
+                    : (nextButtonLabel ?? t('continueShort'))}
+                </span>
+                {!isLastSlide && (
+                  <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />
+                )}
+                {isLastSlide && (
+                  <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />
+                )}
               </button>
             </div>
-            <div className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden" role="presentation" aria-hidden>
+            <div
+              className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
+              role="presentation"
+              aria-hidden
+            >
               <div
                 className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
-                style={{ width: `${((currentSlide + 1) / module.slides.length) * 100}%` }}
+                style={{
+                  width: `${((currentSlide + 1) / module.slides.length) * 100}%`,
+                }}
               />
             </div>
           </nav>
@@ -830,11 +1022,18 @@ function ModuleView({
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
                   {t('module:slideLoadErrorHint')}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-4" aria-hidden>
-                  {currentSlideData.title} (id: {String(currentSlideData.id)}, type: {currentSlideData.type ?? '—'})
+                <p
+                  className="text-xs text-gray-500 dark:text-gray-400 mb-4"
+                  aria-hidden
+                >
+                  {currentSlideData.title} (id: {String(currentSlideData.id)},
+                  type: {currentSlideData.type ?? '—'})
                 </p>
                 <div className="flex gap-3">
-                  <button onClick={() => window.location.reload()} className="btn-secondary flex items-center gap-2">
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="btn-secondary flex items-center gap-2"
+                  >
                     <RefreshCw className="w-4 h-4" />
                     {t('module:refresh')}
                   </button>
@@ -845,23 +1044,39 @@ function ModuleView({
               </div>
             }
           >
-            <Suspense fallback={<LoadingSpinner size="md" text={t('module:slideShort')} />}>
+            <Suspense
+              fallback={
+                <LoadingSpinner size="md" text={t('module:slideShort')} />
+              }
+            >
               <SlideContent
                 slide={currentSlideData}
                 moduleId={moduleId}
                 onTaskComplete={handleTaskComplete}
                 progress={progress}
                 onGoToModule={onGoToModule}
-                onGoToGlossary={onGoToGlossary ? () => onGoToGlossary(currentSlide) : undefined}
+                onGoToGlossary={
+                  onGoToGlossary
+                    ? () => onGoToGlossary(currentSlide)
+                    : undefined
+                }
                 onGoToGlossaryTerm={onGoToGlossaryTerm}
                 onGoToTools={onGoToTools}
                 onNextSlide={nextSlide}
                 practiceScenarioSlides={practiceScenarioSlides}
                 onNavigateToSlide={onNavigateToSlide}
-                onGoToSummary={moduleId === 3 || moduleId === 9 ? onGoToSummary : undefined}
-                onNavigateToSlideById={moduleId === 9 ? onNavigateToSlideById : undefined}
-                initialHubLevel1={moduleId === 9 ? returnToHubWithLevel1 : undefined}
-                onNavigateToHubWithCharacter={moduleId === 9 ? onNavigateToHubWithCharacter : undefined}
+                onGoToSummary={
+                  moduleId === 3 || moduleId === 9 ? onGoToSummary : undefined
+                }
+                onNavigateToSlideById={
+                  moduleId === 9 ? onNavigateToSlideById : undefined
+                }
+                initialHubLevel1={
+                  moduleId === 9 ? returnToHubWithLevel1 : undefined
+                }
+                onNavigateToHubWithCharacter={
+                  moduleId === 9 ? onNavigateToHubWithCharacter : undefined
+                }
               />
             </Suspense>
           </ErrorBoundary>
@@ -870,21 +1085,30 @@ function ModuleView({
 
       {/* Mobile: Bottom Navigation Bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800 shadow-lg z-30 safe-area-inset-bottom">
-        <div className="max-w-7xl mx-auto px-4 py-2">
+        <div className={`max-w-7xl mx-auto ${mobileBottomShellClass}`}>
           <div className="flex items-center justify-between gap-3">
             <button
               onClick={prevSlide}
               disabled={isFirstSlide}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[52px] bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 touch-manipulation"
+              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 touch-manipulation ${mobileNavButtonClass}`}
               aria-label={t('prevSlide')}
             >
               <ChevronLeft className="w-5 h-5" />
-              <span className="font-medium whitespace-nowrap">{t('backShort')}</span>
+              <span className="font-medium whitespace-nowrap">
+                {t('backShort')}
+              </span>
             </button>
 
-            <div className="hidden lg:flex items-center justify-center px-2 min-w-[60px] shrink-0" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+            <div
+              className="hidden lg:flex items-center justify-center px-2 min-w-[60px] shrink-0"
+              aria-label={t('slideOf', {
+                current: currentSlide + 1,
+                total: module.slides.length,
+              })}
+            >
               <p className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap">
-                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/{module.slides.length}
+                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/
+                {module.slides.length}
               </p>
             </div>
 
@@ -892,10 +1116,21 @@ function ModuleView({
               onClick={handleNextOrCompleteClick}
               disabled={isNextDisabled}
               title={nextSlideContextLabel ?? undefined}
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-semibold min-h-[52px] bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md hover:shadow-lg shadow-brand-500/20 hover:from-brand-600 hover:to-brand-700 hover:shadow-brand-500/25 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 touch-manipulation"
-              aria-label={isLastSlide ? t('completeAria') : nextButtonLabel ?? t('nextSlide')}
+              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md hover:shadow-lg shadow-brand-500/20 hover:from-brand-600 hover:to-brand-700 hover:shadow-brand-500/25 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 touch-manipulation ${mobileNavButtonClass}`}
+              aria-label={
+                isLastSlide
+                  ? t('completeAria')
+                  : (nextButtonLabel ?? t('nextSlide'))
+              }
             >
-              <span className="font-medium truncate max-w-[140px] sm:max-w-none" title={nextSlideContextLabel ?? undefined}>{isLastSlide ? t('complete') : (nextButtonLabel ?? t('continueShort'))}</span>
+              <span
+                className="font-medium truncate max-w-[140px] sm:max-w-none"
+                title={nextSlideContextLabel ?? undefined}
+              >
+                {isLastSlide
+                  ? t('complete')
+                  : (nextButtonLabel ?? t('continueShort'))}
+              </span>
               {!isLastSlide && <ChevronRight className="w-5 h-5" />}
               {isLastSlide && <CheckCircle className="w-5 h-5" />}
             </button>
@@ -911,15 +1146,23 @@ function ModuleView({
       </div>
 
       {/* Spacer for mobile bottom nav; safe-area for notch/gesture bar */}
-      <div className="lg:hidden min-h-[5rem] pb-[env(safe-area-inset-bottom)]" />
+      <div
+        className={`lg:hidden ${mobileBottomSpacerClass} pb-[env(safe-area-inset-bottom)]`}
+      />
 
       {/* Progress info moved below content – hidden on mobile (sticky + bottom bar show progress) */}
       <div className="hidden lg:block mt-6 space-y-3">
         <div className="flex items-center justify-between gap-4">
           {/* Module indicator: skaičius = modulio nr., žalia varnelė = baigtas */}
           <div className="hidden sm:flex flex-col gap-1">
-            <p className="text-xs text-gray-500 dark:text-gray-300">{t('modulesProgressHint')}</p>
-            <div className="flex items-center gap-2" role="group" aria-label={t('modulesProgressAria')}>
+            <p className="text-xs text-gray-500 dark:text-gray-300">
+              {t('modulesProgressHint')}
+            </p>
+            <div
+              className="flex items-center gap-2"
+              role="group"
+              aria-label={t('modulesProgressAria')}
+            >
               {modules.map((m, idx) => (
                 <div
                   key={m.id}
@@ -927,10 +1170,16 @@ function ModuleView({
                     m.id === moduleId
                       ? 'bg-brand-500 text-white scale-110'
                       : progress.completedModules.includes(m.id)
-                      ? 'bg-emerald-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                        ? 'bg-emerald-500 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                   }`}
-                  title={m.id === moduleId ? t('moduleDotTitleCurrent', { n: idx + 1 }) : progress.completedModules.includes(m.id) ? t('moduleDotTitleCompleted', { n: idx + 1 }) : t('moduleDotTitle', { n: idx + 1 })}
+                  title={
+                    m.id === moduleId
+                      ? t('moduleDotTitleCurrent', { n: idx + 1 })
+                      : progress.completedModules.includes(m.id)
+                        ? t('moduleDotTitleCompleted', { n: idx + 1 })
+                        : t('moduleDotTitle', { n: idx + 1 })
+                  }
                 >
                   {progress.completedModules.includes(m.id) ? (
                     <CheckCircle className="w-4 h-4" aria-hidden />
@@ -944,7 +1193,9 @@ function ModuleView({
 
           {/* Slide counter */}
           <div className="text-right">
-            <p className="text-xs text-gray-500 dark:text-gray-300">{t('slideShort')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-300">
+              {t('slideShort')}
+            </p>
             <p className="text-lg font-bold text-brand-600 dark:text-brand-400">
               {currentSlide + 1}/{module.slides.length}
             </p>
@@ -953,12 +1204,16 @@ function ModuleView({
 
         {/* Grouped progress bar */}
         <SlideGroupProgressBar
-          groups={buildSlideGroups(module.slides, module.id, locale as 'lt' | 'en')}
+          groups={buildSlideGroups(
+            module.slides,
+            module.id,
+            locale as 'lt' | 'en'
+          )}
           currentSlide={currentSlide}
           totalSlides={module.slides.length}
           getPhaseDisplayLabel={getPhaseDisplayLabel}
         />
-        
+
         <p className="hidden lg:block text-xs text-gray-500 dark:text-gray-300 text-center">
           {t('keyboardNavHint')}
         </p>
@@ -999,7 +1254,9 @@ function ModuleView({
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${sizeClass} touch-manipulation ${
-                    idx === currentSlide ? 'bg-brand-50 dark:bg-brand-900/30' : 'hover:bg-gray-100 dark:hover:bg-gray-800/60'
+                    idx === currentSlide
+                      ? 'bg-brand-50 dark:bg-brand-900/30'
+                      : 'hover:bg-gray-100 dark:hover:bg-gray-800/60'
                   }`}
                   aria-label={t('goToSlideAria', { n: idx + 1 })}
                   aria-current={idx === currentSlide ? 'true' : 'false'}
@@ -1022,10 +1279,16 @@ function ModuleView({
 // Custom comparison to handle early return case
 export default memo(ModuleView, (prevProps, nextProps) => {
   if (prevProps.moduleId !== nextProps.moduleId) return false;
-  if (prevProps.remediationFrom?.sourceModuleId !== nextProps.remediationFrom?.sourceModuleId) return false;
   if (
-    prevProps.progress.completedModules.length !== nextProps.progress.completedModules.length ||
-    JSON.stringify(prevProps.progress.completedTasks) !== JSON.stringify(nextProps.progress.completedTasks)
+    prevProps.remediationFrom?.sourceModuleId !==
+    nextProps.remediationFrom?.sourceModuleId
+  )
+    return false;
+  if (
+    prevProps.progress.completedModules.length !==
+      nextProps.progress.completedModules.length ||
+    JSON.stringify(prevProps.progress.completedTasks) !==
+      JSON.stringify(nextProps.progress.completedTasks)
   ) {
     return false;
   }

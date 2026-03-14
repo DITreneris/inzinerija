@@ -3,11 +3,15 @@
  * Šioje skaidrėje „Peržiūrėti visą dydį“ nenaudojamas – diagrama rodoma tiesiogiai.
  */
 import LlmAutoregressiveDiagram from './LlmAutoregressiveDiagram';
-import { LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS, LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN } from './stepExplanations';
+import {
+  LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS,
+  LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN,
+} from './stepExplanations';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { useIsMobile } from '../../../utils/useIsMobile';
+import MobileDiagramScroller from './MobileDiagramScroller';
 
 const BLOCK_LABELS = {
   lt: {
@@ -39,8 +43,16 @@ const BLOCK_LABELS = {
 export default function LlmAutoregressiveBlock() {
   const { locale } = useLocale();
   const isMobile = useIsMobile();
-  const explanations = locale === 'en' ? LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN : LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS;
-  const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
+  const explanations =
+    locale === 'en'
+      ? LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN
+      : LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS;
+  const {
+    currentStep,
+    setCurrentStep,
+    step,
+    totalSteps: TOTAL_STEPS,
+  } = useStepDiagram(explanations);
   const t = BLOCK_LABELS[locale];
 
   const progressPct = ((currentStep + 1) / TOTAL_STEPS) * 100;
@@ -50,9 +62,22 @@ export default function LlmAutoregressiveBlock() {
       {/* Pažadas: ką suprasi (1 eilutė) – 24px iki „Tu esi čia“ */}
       <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mb-6">
         {locale === 'lt' ? (
-          <>Ką suprasi: kaip LLM žodį po žodžio &quot;spėja&quot; kitą žodį – kaip <strong className="font-semibold text-gray-800 dark:text-gray-200">lošimų automatas</strong> pagal tikimybes.</>
+          <>
+            Ką suprasi: kaip LLM žodį po žodžio &quot;spėja&quot; kitą žodį –
+            kaip{' '}
+            <strong className="font-semibold text-gray-800 dark:text-gray-200">
+              lošimų automatas
+            </strong>{' '}
+            pagal tikimybes.
+          </>
         ) : (
-          <>What you&apos;ll see: how the LLM predicts the next word – like a <strong className="font-semibold text-gray-800 dark:text-gray-200">slot machine</strong> by probabilities.</>
+          <>
+            What you&apos;ll see: how the LLM predicts the next word – like a{' '}
+            <strong className="font-semibold text-gray-800 dark:text-gray-200">
+              slot machine
+            </strong>{' '}
+            by probabilities.
+          </>
         )}
       </p>
 
@@ -61,7 +86,10 @@ export default function LlmAutoregressiveBlock() {
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1.5 text-sm font-semibold text-brand-700 dark:text-brand-300"
           aria-live="polite"
         >
-          <span className="h-2 w-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
+          <span
+            className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
+            aria-hidden
+          />
           {t.youAreHere} {step.title}
         </span>
         <span className="text-sm font-medium text-gray-600 dark:text-gray-400 tabular-nums">
@@ -70,7 +98,14 @@ export default function LlmAutoregressiveBlock() {
       </div>
 
       {/* Progress bar – 32px iki diagramos */}
-      <div className="w-full max-w-7xl mx-auto mb-8" role="progressbar" aria-valuenow={currentStep + 1} aria-valuemin={1} aria-valuemax={TOTAL_STEPS} aria-label={t.progressAria(currentStep + 1, TOTAL_STEPS)}>
+      <div
+        className="w-full max-w-7xl mx-auto mb-8"
+        role="progressbar"
+        aria-valuenow={currentStep + 1}
+        aria-valuemin={1}
+        aria-valuemax={TOTAL_STEPS}
+        aria-label={t.progressAria(currentStep + 1, TOTAL_STEPS)}
+      >
         <div className="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
           <div
             className="h-full rounded-full bg-brand-500 transition-all duration-300 ease-out"
@@ -80,17 +115,18 @@ export default function LlmAutoregressiveBlock() {
       </div>
 
       {/* Schema – 32px viršuje, 16px apačioje; be „Peržiūrėti visą dydį“ */}
-      <div className="w-full max-w-7xl mx-auto pt-8 pb-4 min-h-[320px] flex flex-col mb-8" style={{ maxWidth: '90vw' }}>
+      <div
+        className="w-full max-w-7xl mx-auto pt-8 pb-4 min-h-[320px] flex flex-col mb-8"
+        style={{ maxWidth: '90vw' }}
+      >
         {isMobile ? (
-          <div className="overflow-x-auto -mx-2 px-2 pb-2">
-            <div style={{ minWidth: 600 }}>
-              <LlmAutoregressiveDiagram
-                locale={locale}
-                currentStep={currentStep}
-                onStepClick={(stepIndex) => setCurrentStep(stepIndex)}
-              />
-            </div>
-          </div>
+          <MobileDiagramScroller minWidth={600} compactMinWidth={460}>
+            <LlmAutoregressiveDiagram
+              locale={locale}
+              currentStep={currentStep}
+              onStepClick={(stepIndex) => setCurrentStep(stepIndex)}
+            />
+          </MobileDiagramScroller>
         ) : (
           <LlmAutoregressiveDiagram
             locale={locale}
@@ -100,7 +136,10 @@ export default function LlmAutoregressiveBlock() {
         )}
       </div>
 
-      <nav className="flex flex-wrap items-center justify-center gap-2 mb-6" aria-label={t.navAria}>
+      <nav
+        className="flex flex-wrap items-center justify-center gap-2 mb-6"
+        aria-label={t.navAria}
+      >
         <button
           type="button"
           onClick={() => setCurrentStep(currentStep - 1)}
@@ -119,15 +158,21 @@ export default function LlmAutoregressiveBlock() {
               type="button"
               onClick={() => setCurrentStep(idx)}
               aria-current={isActive ? 'step' : undefined}
-              aria-label={isPast ? t.stepDone(idx + 1, s.title) : t.stepLabel(idx + 1, s.title)}
+              aria-label={
+                isPast
+                  ? t.stepDone(idx + 1, s.title)
+                  : t.stepLabel(idx + 1, s.title)
+              }
               className={`
                 flex min-h-[48px] min-w-[48px] shrink-0 items-center justify-center rounded-xl border-2 text-base font-semibold transition-all touch-manipulation
                 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
-                ${isActive
-                  ? 'border-brand-500 bg-brand-500 text-white shadow-md'
-                  : isPast
-                    ? 'border-emerald-400 dark:border-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
-                    : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 hover:border-brand-300 hover:bg-brand-50/50 dark:hover:bg-brand-900/20'}
+                ${
+                  isActive
+                    ? 'border-brand-500 bg-brand-500 text-white shadow-md'
+                    : isPast
+                      ? 'border-emerald-400 dark:border-emerald-600 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
+                      : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800/50 text-gray-500 dark:text-gray-400 hover:border-brand-300 hover:bg-brand-50/50 dark:hover:bg-brand-900/20'
+                }
               `}
             >
               {isPast ? <span aria-hidden>✓</span> : idx + 1}
@@ -150,7 +195,9 @@ export default function LlmAutoregressiveBlock() {
         role="status"
         aria-live="polite"
       >
-        <p className="text-lg font-semibold text-brand-800 dark:text-brand-200 mb-2">{step.title}</p>
+        <p className="text-lg font-semibold text-brand-800 dark:text-brand-200 mb-2">
+          {step.title}
+        </p>
         <p className="text-base leading-relaxed">{renderBold(step.body)}</p>
       </div>
     </div>
