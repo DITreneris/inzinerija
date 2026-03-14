@@ -3,6 +3,7 @@
  * Stats strip, line chart, delta lentelė, key finding.
  * Projekto spalvos: accent, emerald, violet, slate, rose.
  */
+import { useTranslation } from 'react-i18next';
 import type { InstructGptQualityBlock as InstructGptQualityBlockType } from '../../../types/modules';
 
 const CHART_COLORS: Record<string, string> = {
@@ -14,10 +15,22 @@ const CHART_COLORS: Record<string, string> = {
 };
 
 const STAT_COLOR_CLASSES: Record<string, { text: string; border: string }> = {
-  accent: { text: 'text-accent-700 dark:text-accent-300', border: 'border-accent-500' },
-  emerald: { text: 'text-emerald-700 dark:text-emerald-300', border: 'border-emerald-500' },
-  violet: { text: 'text-violet-700 dark:text-violet-300', border: 'border-violet-500' },
-  slate: { text: 'text-slate-600 dark:text-slate-400', border: 'border-slate-500' },
+  accent: {
+    text: 'text-accent-700 dark:text-accent-300',
+    border: 'border-accent-500',
+  },
+  emerald: {
+    text: 'text-emerald-700 dark:text-emerald-300',
+    border: 'border-emerald-500',
+  },
+  violet: {
+    text: 'text-violet-700 dark:text-violet-300',
+    border: 'border-violet-500',
+  },
+  slate: {
+    text: 'text-slate-600 dark:text-slate-400',
+    border: 'border-slate-500',
+  },
 };
 
 const DELTA_COLOR_CLASSES: Record<string, string> = {
@@ -37,23 +50,37 @@ const CHART_HEIGHT = 260;
 const Y_PX_PER_UNIT = CHART_HEIGHT / (Y_MAX - Y_MIN);
 const Y_BOTTOM = VIEWBOX.h - PAD.bottom;
 
-const X_POSITIONS: Record<string, number> = { '1.5B': 120, '6B': 350, '175B': 600 };
+const X_POSITIONS: Record<string, number> = {
+  '1.5B': 120,
+  '6B': 350,
+  '175B': 600,
+};
 
 function getChartY(score: number): number {
   return Y_BOTTOM - (score - Y_MIN) * Y_PX_PER_UNIT;
 }
 
-export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBlockType }) {
+export function InstructGptQualityBlock({
+  data,
+}: {
+  data: InstructGptQualityBlockType;
+}) {
+  const { t } = useTranslation('contentSlides');
   const stats = data.stats ?? [];
   const chartData = data.chartData ?? [];
   const deltaRows = data.deltaRows ?? [];
 
   return (
-    <div className="space-y-6" role="region" aria-label="InstructGPT kokybės analizė">
+    <div
+      className="space-y-6"
+      role="region"
+      aria-label={t('instructGptQualityAria')}
+    >
       {/* Stats strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {stats.map((stat, i) => {
-          const colors = STAT_COLOR_CLASSES[stat.colorKey] ?? STAT_COLOR_CLASSES.slate;
+          const colors =
+            STAT_COLOR_CLASSES[stat.colorKey] ?? STAT_COLOR_CLASSES.slate;
           return (
             <div
               key={i}
@@ -62,8 +89,12 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
               <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
                 {stat.label}
               </div>
-              <div className={`text-2xl font-bold ${colors.text}`}>{stat.value}</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stat.detail}</div>
+              <div className={`text-2xl font-bold ${colors.text}`}>
+                {stat.value}
+              </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                {stat.detail}
+              </div>
             </div>
           );
         })}
@@ -72,17 +103,25 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
       {/* Line chart */}
       <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/60 p-4 overflow-x-auto">
         <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">
-          Kokybės įvertinimas vs modelio dydis
+          {t('instructGptChartHeading')}
         </div>
         <svg
           viewBox={`0 0 ${VIEWBOX.w} ${VIEWBOX.h}`}
           className="w-full min-w-[320px] h-auto text-gray-800 dark:text-gray-200"
-          aria-label="Linijinė diagrama: kokybės įvertinimas pagal modelio dydį"
+          aria-label={t('instructGptChartAria')}
         >
           <defs>
             <linearGradient id="glowInstruct" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor={CHART_COLORS.accent} stopOpacity="0" />
-              <stop offset="100%" stopColor={CHART_COLORS.accent} stopOpacity="0.15" />
+              <stop
+                offset="0%"
+                stopColor={CHART_COLORS.accent}
+                stopOpacity="0"
+              />
+              <stop
+                offset="100%"
+                stopColor={CHART_COLORS.accent}
+                stopOpacity="0.15"
+              />
             </linearGradient>
           </defs>
           {/* Grid */}
@@ -205,27 +244,34 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
           })}
         </svg>
         {data.scaleNote && (
-          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{data.scaleNote}</p>
+          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            {data.scaleNote}
+          </p>
         )}
       </div>
 
       {/* Delta grid */}
       <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/60 overflow-hidden">
         <div className="px-4 py-3 text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700">
-          Pokytis 1.5B → 175B
+          {t('instructGptDeltaHeading')}
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y divide-gray-200 dark:divide-gray-700">
           {deltaRows.map((row, i) => {
-            const colorClass = DELTA_COLOR_CLASSES[row.colorKey] ?? DELTA_COLOR_CLASSES.slate;
+            const colorClass =
+              DELTA_COLOR_CLASSES[row.colorKey] ?? DELTA_COLOR_CLASSES.slate;
             return (
               <div key={i} className="p-4">
                 <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
                   {row.model}
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-lg text-gray-500 dark:text-gray-400">{row.start}</span>
+                  <span className="text-lg text-gray-500 dark:text-gray-400">
+                    {row.start}
+                  </span>
                   <span className="text-gray-500">→</span>
-                  <span className={`text-lg font-semibold ${colorClass}`}>{row.end}</span>
+                  <span className={`text-lg font-semibold ${colorClass}`}>
+                    {row.end}
+                  </span>
                 </div>
                 <div className={`text-xs mt-1 ${colorClass}`}>{row.change}</div>
               </div>
@@ -237,9 +283,11 @@ export function InstructGptQualityBlock({ data }: { data: InstructGptQualityBloc
       {/* Key Finding insight */}
       <div className="border-l-2 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-4 rounded-r-xl border border-accent-200 dark:border-accent-800">
         <div className="text-xs uppercase tracking-wider text-accent-700 dark:text-accent-300 mb-2">
-          Pagrindinė išvada
+          {t('instructGptKeyFindingHeading')}
         </div>
-        <p className="text-gray-800 dark:text-gray-200 italic leading-relaxed">{data.insight}</p>
+        <p className="text-gray-800 dark:text-gray-200 italic leading-relaxed">
+          {data.insight}
+        </p>
       </div>
     </div>
   );

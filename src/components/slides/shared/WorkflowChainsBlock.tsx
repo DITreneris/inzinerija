@@ -5,6 +5,7 @@
  */
 import { useState } from 'react';
 import { ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import CopyButton from './CopyButton';
 import { useLocale } from '../../../contexts/LocaleContext';
 import type { WorkflowChainItem } from '../../../types/modules';
@@ -19,7 +20,10 @@ function formatCopyText(item: WorkflowChainItem): string {
   return `${chainStr} | ${flowStr}`;
 }
 
-export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps) {
+export default function WorkflowChainsBlock({
+  chains,
+}: WorkflowChainsBlockProps) {
+  const { t } = useTranslation('contentSlides');
   const { locale } = useLocale();
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
@@ -31,7 +35,7 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
     <div
       className="my-3 space-y-3"
       role="region"
-      aria-label={locale === 'en' ? 'Tool chain examples from practice' : 'Įrankių grandinės pavyzdžiai iš praktikos'}
+      aria-label={t('workflowChainsRegionAria')}
     >
       {chains.map((item, index) => {
         const hasExpand = !!(item.expandInput || item.expandOutput);
@@ -52,7 +56,10 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
                     {tool}
                   </span>
                   {i < item.chain.length - 1 && (
-                    <ChevronRight className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 flex-shrink-0" aria-hidden />
+                    <ChevronRight
+                      className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 flex-shrink-0"
+                      aria-hidden
+                    />
                   )}
                 </span>
               ))}
@@ -65,7 +72,12 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
                   <span key={i} className="inline-flex items-baseline gap-0.5">
                     <span>{step}</span>
                     {i < item.flow.length - 1 && (
-                      <span className="text-gray-500 dark:text-gray-400 font-normal mx-0.5" aria-hidden>→</span>
+                      <span
+                        className="text-gray-500 dark:text-gray-400 font-normal mx-0.5"
+                        aria-hidden
+                      >
+                        →
+                      </span>
                     )}
                   </span>
                 ))}
@@ -73,7 +85,9 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
               {item.tag && (
                 <span
                   className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300 bg-brand-50 dark:bg-brand-900/30 px-2 py-1 rounded"
-                  aria-label={`Kategorija: ${item.tag}`}
+                  aria-label={t('workflowChainsCategoryAria', {
+                    tag: item.tag,
+                  })}
                 >
                   {item.tag}
                 </span>
@@ -83,7 +97,9 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
                 className="flex-shrink-0 hover:bg-brand-50 dark:hover:bg-brand-900/20"
                 size="sm"
                 title={locale === 'en' ? 'Copy chain' : 'Kopijuoti grandinę'}
-                ariaLabel={locale === 'en' ? 'Copy chain' : 'Kopijuoti grandinę'}
+                ariaLabel={
+                  locale === 'en' ? 'Copy chain' : 'Kopijuoti grandinę'
+                }
                 copiedLabel={locale === 'en' ? 'Copied' : 'Nukopijuota'}
               />
             </div>
@@ -122,14 +138,22 @@ export default function WorkflowChainsBlock({ chains }: WorkflowChainsBlockProps
                   >
                     {item.expandInput && (
                       <p>
-                        <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-0.5">{locale === 'en' ? 'Input' : 'Įvestis'}</span>
-                        <span className="text-gray-700 dark:text-gray-300">{item.expandInput}</span>
+                        <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-0.5">
+                          {locale === 'en' ? 'Input' : 'Įvestis'}
+                        </span>
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {item.expandInput}
+                        </span>
                       </p>
                     )}
                     {item.expandOutput && (
                       <p>
-                        <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-0.5">{locale === 'en' ? 'Result' : 'Rezultatas'}</span>
-                        <span className="text-gray-700 dark:text-gray-300">{item.expandOutput}</span>
+                        <span className="font-semibold text-gray-800 dark:text-gray-200 block mb-0.5">
+                          {locale === 'en' ? 'Result' : 'Rezultatas'}
+                        </span>
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {item.expandOutput}
+                        </span>
                       </p>
                     )}
                   </div>
