@@ -1,6 +1,10 @@
 // Ensure process.on exists before any imports (avoids "Cannot read properties of undefined (reading 'on')" in jsdom/vitest).
 // Do not read `process` here – it may be undefined in some runners.
-const processStub = { on: function () { return processStub; }, env: {} as NodeJS.ProcessEnv };
+const processStub = {
+  on: function () { return processStub; },
+  env: {} as Record<string, string | undefined>,
+  cwd: () => '.',
+};
 (function () {
   if (typeof globalThis !== 'undefined') (globalThis as Record<string, unknown>).process = processStub;
   if (typeof global !== 'undefined') (global as Record<string, unknown>).process = processStub;

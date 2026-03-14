@@ -39,7 +39,6 @@ const FB_GAP_ABOVE_BLOCK = 2; /** Tarpas tarp bloko apačios ir feedback smailė
 
 /* ═══ Spalvos – procesas: Agentas (brand) → Aplinka (neutrali) → Veiksmas (šviesiai mėlyna) → Atlygis (accent) ═══ */
 const BRAND = '#334e68';           /* Agentas – tamsiai mėlynas (brand) */
-const _BRAND_LIGHT = '#486581';
 const ENV_START = '#475569';       /* Aplinka – neutrali pilka (ne mėlyna) */
 const ENV_END = '#64748b';
 const ACTION_START = '#4a7aa0';    /* Veiksmas – aiškiai mėlyna */
@@ -251,7 +250,6 @@ export default function RlProcessDiagram({
       {STEPS.map((step, i) => {
         const isActive = currentStep === i;
         const isHovered = hoveredStep === i;
-        const _isAtlygis = i === 3;
         const opacity = isActive ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
         const [x, y, w, h] = [step.x, step.y, step.w, step.h];
         const rightEdge = x + w;

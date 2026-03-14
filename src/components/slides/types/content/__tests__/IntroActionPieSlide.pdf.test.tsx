@@ -29,7 +29,7 @@ const minimalContent: IntroActionPieContent = {
     { icon: 'Pen', title: 'Rašymui', description: 'laiškai, tekstai' },
   ],
   revealInsights: [
-    { heading: 'Ką tai reiškia?', body: 'Tu patenki į 40% segmentą.', question: 'Klausimas tau?' },
+    { insight: 'Tu patenki į 40% segmentą.', question: 'Klausimas tau?' },
   ],
 };
 

@@ -113,7 +113,6 @@ export default function LlmAutoregressiveBlock() {
         {explanations.map((s, idx) => {
           const isPast = idx < currentStep;
           const isActive = idx === currentStep;
-          const _isUpcoming = idx > currentStep;
           return (
             <button
               key={idx}

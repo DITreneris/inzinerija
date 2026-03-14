@@ -160,7 +160,7 @@ export const loadModules = async (
         if (resolvedVariant === 'en-us') {
           try {
             const usOverride = await import('./modules-en-us-overrides.json');
-            data = mergeModulesData(data, usOverride.default as Partial<ModulesData>);
+            data = mergeModulesData(data, usOverride.default as unknown as Partial<ModulesData>);
           } catch {
             // Fallback: keep base EN content if EN-US overrides are missing
           }

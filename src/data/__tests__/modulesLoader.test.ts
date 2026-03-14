@@ -13,13 +13,28 @@ import {
   preloadModules,
   __clearCacheForTesting,
 } from '../modulesLoader';
-import type { ModulesData } from '../../types/modules';
+import type { ModulesData, Module } from '../../types/modules';
+
+function minimalModule(overrides: Partial<Module> & { id: number; title: string }): Module {
+  return {
+    subtitle: '',
+    description: '',
+    icon: 'Target',
+    level: 'learn',
+    duration: '',
+    slides: [],
+    businessExamples: [],
+    ...overrides,
+    id: overrides.id,
+    title: overrides.title,
+  };
+}
 
 const fakeModulesData: ModulesData = {
   modules: [
-    { id: 1, title: 'M1', description: '', slides: [], recommended: false },
-    { id: 2, title: 'M2', description: '', slides: [], recommended: false },
-    { id: 4, title: 'M4', description: '', slides: [], recommended: false },
+    minimalModule({ id: 1, title: 'M1' }),
+    minimalModule({ id: 2, title: 'M2' }),
+    minimalModule({ id: 4, title: 'M4' }),
   ],
   quiz: {
     title: 'Apklausa',
@@ -27,7 +42,7 @@ const fakeModulesData: ModulesData = {
     passingScore: 70,
     questions: [
       {
-        id: 'q1',
+        id: 1,
         question: 'Q?',
         options: ['A', 'B'],
         correct: 0,
@@ -40,12 +55,12 @@ const fakeModulesData: ModulesData = {
 /** Base with 6 modules so loadModules("en") can merge modules-en.json and modules-en-m4-m6.json */
 const fakeModulesDataWith6: ModulesData = {
   modules: [
-    { id: 1, title: 'M1', description: '', slides: [], recommended: false },
-    { id: 2, title: 'M2', description: '', slides: [], recommended: false },
-    { id: 3, title: 'M3', description: '', slides: [], recommended: false },
-    { id: 4, title: 'M4', description: '', slides: [], recommended: false },
-    { id: 5, title: 'M5', description: '', slides: [], recommended: false },
-    { id: 6, title: 'M6', description: '', slides: [], recommended: false },
+    minimalModule({ id: 1, title: 'M1' }),
+    minimalModule({ id: 2, title: 'M2' }),
+    minimalModule({ id: 3, title: 'M3' }),
+    minimalModule({ id: 4, title: 'M4' }),
+    minimalModule({ id: 5, title: 'M5' }),
+    minimalModule({ id: 6, title: 'M6' }),
   ],
   quiz: fakeModulesData.quiz,
 };
@@ -105,7 +120,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
 
   it('normalizes missing quiz.questions to empty array', async () => {
     mockDataHolder.data = {
-      modules: [{ id: 1, title: 'M', description: '', slides: [], recommended: false }],
+      modules: [minimalModule({ id: 1, title: 'M' })],
       quiz: {
         title: 'Test',
         description: '',
@@ -121,7 +136,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
 
   it('normalizes missing quiz to default quiz with empty questions', async () => {
     mockDataHolder.data = {
-      modules: [{ id: 1, title: 'M', description: '', slides: [], recommended: false }],
+      modules: [minimalModule({ id: 1, title: 'M' })],
       quiz: undefined as unknown as ModulesData['quiz'],
     };
     const data = await loadModules();
@@ -198,7 +213,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     __clearCacheForTesting();
     const data = await loadModules('en', 'en-lt');
     const introSlide = data.modules[3]?.slides?.find((slide) => slide.id === 38);
-    expect(introSlide?.content?.unstructuredPrompt).toBe("Write me a report on Lithuania's GDP trends.");
+    expect((introSlide?.content as { unstructuredPrompt?: string })?.unstructuredPrompt).toBe("Write me a report on Lithuania's GDP trends.");
   }, 20000);
 
   it('loadModules("en", "en-us") applies US overrides on top of base EN', async () => {
@@ -207,9 +222,11 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     const data = await loadModules('en', 'en-us');
     const m1Intro = data.modules[0]?.slides?.find((slide) => slide.id === 1);
     const m4Intro = data.modules[3]?.slides?.find((slide) => slide.id === 38);
-    expect(m1Intro?.content?.structuredPrompt).toContain('Budget 50k USD');
-    expect(m1Intro?.content?.structuredPrompt).toContain('Target market: US');
-    expect(m4Intro?.content?.unstructuredPrompt).toBe('Write me a report on US GDP trends.');
+    const m1Content = m1Intro?.content as { structuredPrompt?: string };
+    const m4Content = m4Intro?.content as { unstructuredPrompt?: string };
+    expect(m1Content?.structuredPrompt).toContain('Budget 50k USD');
+    expect(m1Content?.structuredPrompt).toContain('Target market: US');
+    expect(m4Content?.unstructuredPrompt).toBe('Write me a report on US GDP trends.');
   }, 20000);
 
   it('US variant falls back to base EN where override is not provided', async () => {
@@ -230,9 +247,9 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     expect(enLt).not.toBe(enUs);
     expect(getModulesDataSync('en', 'en-lt')).toBe(enLt);
     expect(getModulesDataSync('en', 'en-us')).toBe(enUs);
-    expect(getModulesDataSync('en', 'en-lt')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content?.unstructuredPrompt)
+    expect((getModulesDataSync('en', 'en-lt')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content as { unstructuredPrompt?: string })?.unstructuredPrompt)
       .toBe("Write me a report on Lithuania's GDP trends.");
-    expect(getModulesDataSync('en', 'en-us')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content?.unstructuredPrompt)
+    expect((getModulesDataSync('en', 'en-us')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content as { unstructuredPrompt?: string })?.unstructuredPrompt)
       .toBe('Write me a report on US GDP trends.');
   }, 20000);
 });

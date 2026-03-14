@@ -1428,11 +1428,11 @@ export function SectionBreakSlide({
                   <button
                     key={i}
                     type="button"
-                    onClick={() => onGoToGlossaryTerm(term)}
+                    onClick={() => onGoToGlossaryTerm?.(term)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        onGoToGlossaryTerm(term);
+                        onGoToGlossaryTerm?.(term);
                       }
                     }}
                     className={baseClass + linkClass}
@@ -1485,11 +1485,11 @@ export function SectionBreakSlide({
                   {hasGlossaryLink && term ? (
                     <button
                       type="button"
-                      onClick={() => onGoToGlossaryTerm(term)}
+                      onClick={() => onGoToGlossaryTerm?.(term)}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          onGoToGlossaryTerm(term);
+                          onGoToGlossaryTerm?.(term);
                         }
                       }}
                       className="flex-shrink-0 mt-0.5 p-0.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
@@ -3991,13 +3991,6 @@ function parsePercent(s: string): number {
   const n = parseFloat(normalized);
   return Number.isFinite(n) ? Math.min(100, Math.max(0, n)) : 0;
 }
-
-const _KPI_COLORS: Record<string, string> = {
-  brand: 'border-t-brand-500 dark:border-t-brand-400',
-  violet: 'border-t-violet-500 dark:border-t-violet-400',
-  emerald: 'border-t-emerald-500 dark:border-t-emerald-400',
-  amber: 'border-t-amber-500 dark:border-t-amber-400',
-};
 
 const NUM_COLORS: Record<string, string> = {
   brand: 'text-brand-600 dark:text-brand-400',

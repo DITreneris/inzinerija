@@ -23,7 +23,6 @@ import { getSchema3DiagramTitles, getSchema3NodeLabels } from './schema3Labels';
 
 const BRAND = '#334e68';
 const BRAND_LIGHT = '#486581';
-const _ACCENT = '#d4a520';
 const BORDER = '#bcccdc';
 const BG_LIGHT = '#f0f4f8';
 const BG_LIGHT_END = '#f1f5f9';

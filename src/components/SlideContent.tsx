@@ -410,7 +410,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   'test-section': (ctx) => (
     <LazyTestSectionSlide
       questions={ctx.slide.testQuestions || []}
-      onComplete={(score) => ctx.handleTaskComplete(ctx.slide.id, score)}
+      onComplete={(score?: number) => ctx.handleTaskComplete(ctx.slide.id, score)}
       isCompleted={ctx.isTaskCompleted}
       moduleId={ctx.moduleId}
       onGoToModule={ctx.onGoToModule}

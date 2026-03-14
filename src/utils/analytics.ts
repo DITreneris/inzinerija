@@ -29,7 +29,7 @@ export interface AnalyticsProperties {
   practice_id?: number;
   cta_id?: string;
   cta_label?: string;
-  destination?: 'internal' | 'external' | 'spin-off';
+  destination?: 'internal' | 'external' | 'spin-off' | 'download';
   section_index?: number;
   step_index?: number;
   session_id: string;
@@ -123,7 +123,6 @@ function shouldDedupe(eventName: string, props: Record<string, unknown>): boolea
 /** Send to PostHog if configured (anonymous) */
 function sendToPostHog(eventName: string, properties: Record<string, unknown>): void {
   const key = typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.VITE_POSTHOG_KEY;
-  const _host = typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.VITE_POSTHOG_HOST;
   if (!key || typeof window === 'undefined' || !(window as unknown as { posthog?: { capture: (e: string, p?: Record<string, unknown>) => void } }).posthog) {
     return;
   }

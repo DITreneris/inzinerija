@@ -90,7 +90,7 @@ export function setStoredLocale(locale: Locale): void {
  */
 export function getT(ns: string) {
   return (key: string, options?: Record<string, unknown>) =>
-    i18n.t(key, { ns, ...options } as object);
+    i18n.t(key as never, { ns, ...options } as Record<string, unknown>);
 }
 
 export default i18n;

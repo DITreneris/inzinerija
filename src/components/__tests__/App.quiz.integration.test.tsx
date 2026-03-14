@@ -87,9 +87,9 @@ describe('App – Quiz integracinis srautas', () => {
 
     await userEvent.click(getQuizNavButton());
 
-    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, { timeout: 10000 });
+    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, {}, { timeout: 10000 });
 
-    const backButton = await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i, timeout: 5000 });
+    const backButton = await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }, { timeout: 5000 });
     await userEvent.click(backButton);
 
     // Po navigacijos į Home Quiz turinys (empty state) turi išnykti
@@ -125,7 +125,7 @@ describe('App – Quiz integracinis srautas', () => {
 
     await userEvent.click(getQuizNavButton());
 
-    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, { timeout: 10000 });
+    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, {}, { timeout: 10000 });
 
     await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }));
 
@@ -144,6 +144,7 @@ describe('App – Quiz integracinis srautas', () => {
 
     await screen.findByText(
       /Nepavyko įkelti mokymo medžiagos|Failed to load training material/i,
+      {},
       { timeout: 10000 }
     );
     expect(screen.getByRole('button', { name: /Bandyti dar kartą|Try again/i })).toBeInTheDocument();

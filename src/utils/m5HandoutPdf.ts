@@ -10,7 +10,6 @@
 import { jsPDF } from 'jspdf';
 
 const BRAND_COLOR = '#627d98';
-const _ACCENT_COLOR = '#d4a520';
 const MARGIN = 18;
 const PAGE_W = 210;
 const BORDER_LEFT_WIDTH = 1.5;

@@ -402,8 +402,8 @@ export interface ContentBlockSection {
   imageAlt?: string;
   /** Figma embed URL – rodomas kaip iframe (pvz. Schema 3 architektūra) */
   figmaUrl?: string;
-  /** Bloko stilius: brand – pagrindinė info, accent – CTA/esminė žinutė, terms – žodynėlis (slate), default – neutralus */
-  blockVariant?: 'brand' | 'accent' | 'terms' | 'default';
+  /** Bloko stilius: brand – pagrindinė info, accent – CTA/esminė žinutė, terms – žodynėlis (slate), emerald, violet – akcentai, default – neutralus */
+  blockVariant?: 'brand' | 'accent' | 'terms' | 'emerald' | 'violet' | 'default';
   /** Kai true – sekcija rodo įrankius (section.presentationTools arba content.presentationTools) */
   presentationToolsBlock?: boolean;
   /** Pasirenkama: šios sekcijos įrankiai (viršija content.presentationTools) – M5 logika: DI pirmiausia, paskui prez. */

@@ -92,7 +92,6 @@ export default function AgentWorkflowDiagram({ className = '' }: { className?: s
 
       {STEPS.map((step, i) => {
         const rightEdge = step.x + step.w;
-        const _bottomEdge = step.y + step.h;
         const centerX = step.x + step.w / 2;
         const centerY = step.y + step.h / 2;
         const next = STEPS[i + 1];

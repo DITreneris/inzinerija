@@ -49,7 +49,6 @@ const OUTPUT_X = Math.round(MODEL_X + LLM_W + GAP_H);
 const TOOL_USE_Y = ROW_Y + BOX_H + GAP_V;
 const RETR_Y = TOOL_USE_Y + BOX_H + GAP_V;
 const DB_Y = RETR_Y + BOX_H + GAP_V;
-const _BOTTOM_PAD = 36;
 
 /* Visi vertikalūs blokai vienodo pločio, centre */
 const VERT_X = Math.round(CENTER_X - BOX_W / 2);
