@@ -3,6 +3,7 @@
  * CI saugiklis prieš sugedusius modules.json / promptLibrary / glossary / tools.
  * Requires Node environment (Vitest pool: node). Node built-in types not in main tsconfig.
  */
+/* eslint-disable @typescript-eslint/ban-ts-comment -- Node-only test; Node built-ins (child_process, path) not in main tsconfig */
 // @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { execSync } from 'child_process';

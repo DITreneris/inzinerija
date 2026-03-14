@@ -8,6 +8,7 @@ const RETRY_DELAY_MS = 1500;
  * on unreliable mobile networks. Falls back to standard lazy() semantics
  * after all retries are exhausted.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Generic must accept any props for SlideContent lazy registry
 export function lazyWithRetry<T extends ComponentType<any>>(
   importFn: () => Promise<{ default: T }>,
 ): React.LazyExoticComponent<T> {
