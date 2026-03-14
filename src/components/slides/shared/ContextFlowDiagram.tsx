@@ -4,7 +4,12 @@
  * Turinys pagal locale per contextFlowDiagramLabels.
  */
 import { useLocale } from '../../../contexts/LocaleContext';
-import { getContextFlowBoxes, getContextFlowHeading, getContextFlowAriaLabel } from './contextFlowDiagramLabels';
+import {
+  getContextFlowBoxes,
+  getContextFlowHeading,
+  getContextFlowAriaLabel,
+} from './contextFlowDiagramLabels';
+import { useCompactViewport } from '../../../utils/useCompactViewport';
 
 const VIEWBOX_W = 640;
 const VIEWBOX_H = 200;
@@ -24,6 +29,14 @@ const GREY_ARROW = '#64748b';
 const TEXT_DARK = '#102a43';
 const BG_LIGHT = '#f0f4f8';
 
+const COMPACT_VIEWBOX_W = 300;
+const COMPACT_VIEWBOX_H = 344;
+const COMPACT_BOX_W = 212;
+const COMPACT_BOX_H = 64;
+const COMPACT_START_X = 44;
+const COMPACT_ROW_Y = 56;
+const COMPACT_GAP = 34;
+
 function getBoxPositions() {
   return [
     { x: START_X, y: ROW_Y, w: BOX_W, h: BOX_H },
@@ -32,17 +45,45 @@ function getBoxPositions() {
   ];
 }
 
+function getCompactBoxPositions() {
+  return [
+    {
+      x: COMPACT_START_X,
+      y: COMPACT_ROW_Y,
+      w: COMPACT_BOX_W,
+      h: COMPACT_BOX_H,
+    },
+    {
+      x: COMPACT_START_X,
+      y: COMPACT_ROW_Y + COMPACT_BOX_H + COMPACT_GAP,
+      w: COMPACT_BOX_W,
+      h: COMPACT_BOX_H,
+    },
+    {
+      x: COMPACT_START_X,
+      y: COMPACT_ROW_Y + (COMPACT_BOX_H + COMPACT_GAP) * 2,
+      w: COMPACT_BOX_W,
+      h: COMPACT_BOX_H,
+    },
+  ];
+}
+
 export default function ContextFlowDiagram() {
   const { locale } = useLocale();
+  const { isCompactDiagram } = useCompactViewport();
   const labels = getContextFlowBoxes(locale);
-  const positions = getBoxPositions();
+  const positions = isCompactDiagram
+    ? getCompactBoxPositions()
+    : getBoxPositions();
   const boxes = positions.map((pos, i) => ({ ...pos, ...labels[i] }));
   const heading = getContextFlowHeading(locale);
   const ariaLabel = getContextFlowAriaLabel(locale);
+  const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : VIEWBOX_W;
+  const viewBoxHeight = isCompactDiagram ? COMPACT_VIEWBOX_H : VIEWBOX_H;
 
   return (
     <svg
-      viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className="w-full max-w-2xl mx-auto block"
       role="img"
       aria-label={ariaLabel}
@@ -68,21 +109,50 @@ export default function ContextFlowDiagram() {
           refY={5}
           orient="auto"
         >
-          <path d={`M0 0 L${ARROW_MARKER_LEN} 5 L0 10 Z`} fill={GREY_ARROW} stroke={GREY_ARROW} strokeWidth="0.5" />
+          <path
+            d={`M0 0 L${ARROW_MARKER_LEN} 5 L0 10 Z`}
+            fill={GREY_ARROW}
+            stroke={GREY_ARROW}
+            strokeWidth="0.5"
+          />
         </marker>
       </defs>
-      <rect width={VIEWBOX_W} height={VIEWBOX_H} fill="url(#ctx-bg)" rx="12" />
-      <rect width={VIEWBOX_W} height={VIEWBOX_H} fill="none" stroke={BORDER} strokeWidth="1" rx="12" />
-      <text x={VIEWBOX_W / 2} y="28" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="16" fontWeight="700" fill={TEXT_DARK}>
+      <rect
+        width={viewBoxWidth}
+        height={viewBoxHeight}
+        fill="url(#ctx-bg)"
+        rx="12"
+      />
+      <rect
+        width={viewBoxWidth}
+        height={viewBoxHeight}
+        fill="none"
+        stroke={BORDER}
+        strokeWidth="1"
+        rx="12"
+      />
+      <text
+        x={viewBoxWidth / 2}
+        y="28"
+        textAnchor="middle"
+        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+        fontSize="16"
+        fontWeight="700"
+        fill={TEXT_DARK}
+      >
         {heading}
       </text>
       {boxes.map((box, i) => {
         const rightEdge = box.x + box.w;
         const centerY = box.y + box.h / 2;
+        const centerX = box.x + box.w / 2;
         const next = boxes[i + 1];
         const fromX = rightEdge + 4;
         const toX = next ? next.x + ARROW_MARKER_LEN : 0;
-        const fill = box.color === 'accent' ? 'url(#ctx-accent)' : 'url(#ctx-brand)';
+        const fromY = box.y + box.h + 4;
+        const toY = next ? next.y - ARROW_MARKER_LEN : 0;
+        const fill =
+          box.color === 'accent' ? 'url(#ctx-accent)' : 'url(#ctx-brand)';
         const stroke = box.color === 'accent' ? ACCENT_DARK : BRAND;
         return (
           <g key={i}>
@@ -97,19 +167,19 @@ export default function ContextFlowDiagram() {
               strokeWidth="1.5"
             />
             <text
-              x={box.x + box.w / 2}
-              y={box.y + 30}
+              x={centerX}
+              y={box.y + (isCompactDiagram ? 27 : 30)}
               textAnchor="middle"
               fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-              fontSize="13"
+              fontSize={isCompactDiagram ? '12' : '13'}
               fontWeight="700"
               fill="white"
             >
               {box.title}
             </text>
             <text
-              x={box.x + box.w / 2}
-              y={box.y + 50}
+              x={centerX}
+              y={box.y + (isCompactDiagram ? 46 : 50)}
               textAnchor="middle"
               fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
               fontSize="11"
@@ -118,17 +188,28 @@ export default function ContextFlowDiagram() {
             >
               {box.desc}
             </text>
-            {next && (
-              <line
-                x1={fromX}
-                y1={centerY}
-                x2={toX}
-                y2={centerY}
-                stroke={GREY_ARROW}
-                strokeWidth="2.5"
-                markerEnd="url(#ctx-arrow)"
-              />
-            )}
+            {next &&
+              (isCompactDiagram ? (
+                <line
+                  x1={centerX}
+                  y1={fromY}
+                  x2={centerX}
+                  y2={toY}
+                  stroke={GREY_ARROW}
+                  strokeWidth="2.5"
+                  markerEnd="url(#ctx-arrow)"
+                />
+              ) : (
+                <line
+                  x1={fromX}
+                  y1={centerY}
+                  x2={toX}
+                  y2={centerY}
+                  stroke={GREY_ARROW}
+                  strokeWidth="2.5"
+                  markerEnd="url(#ctx-arrow)"
+                />
+              ))}
           </g>
         );
       })}
