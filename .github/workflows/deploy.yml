@@ -14,8 +14,12 @@ permissions:
 
 # Allow only one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
+
+# Opt into Node 24 for JS actions (checkout, setup-node, configure-pages, deploy-pages); avoids deprecation warning.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
   quality-gates:

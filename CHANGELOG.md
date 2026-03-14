@@ -20,6 +20,14 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+### Fixed (2026-03-14)
+
+**Sertifikato PDF atsisiuntimas po Modulio 3 (Tier 1)**
+
+- **`src/utils/introPiePdf.ts`:** Pridėta `getCachedPdfFontBase64()` – šrifto cache getter, kad kiti moduliai galėtų pakartotinai naudoti jau užkrautą šriftą.
+- **`src/components/CertificateScreen.tsx`:** Po `ensurePdfFont()` šrifto cache perduodamas `certificatePdf` moduliui per `setCertificatePdfFontCache()` – eliminuotas dvigubas async šrifto krovimas iš tinklo, dėl kurio naršyklė galėjo blokuoti `doc.save()` (prarastas vartotojo gesto kontekstas). Pridėtas `catch` blokas su `downloadError` state ir vartotojui matomu klaidos pranešimu (`role="alert"`).
+- **`src/components/__tests__/CertificateScreen.test.tsx`:** Pridėti 2 nauji testai: šrifto cache sinchronizacija tarp modulių ir klaidos pranešimas kai atsisiuntimas nepavyksta.
+
 ### Added (2026-03-14)
 
 **Production hardening + brand sync su promptanatomy.app**
@@ -64,6 +72,40 @@ CI/CD, a11y, SEO, developer experience ir brand tapatumo pagerinimiai -- saugūs
 - **`src/components/HomePage.tsx`:** 23 vietos `[#f3cc30]` → `gold`.
 - **`src/components/AppNav.tsx`:** `text-[#f3cc30]` → `text-gold`.
 - **`src/components/ui/LoadingSpinner.tsx`:** Ištaisytas duplicate key `lg` -- pirmas `lg` pakeistas į `md` (build warning dingo).
+
+### Fixed (2026-03-14)
+
+**TypeScript regresijos – typecheck ir testai žali**
+
+- **`src/utils/lazyWithRetry.ts`:** `ComponentType<unknown>` → `ComponentType<any>` (lazy komponentai priima skirtingus props; ESLint no-explicit-any leidžiamas su komentaru).
+- **`src/utils/analytics.ts`:** Į `destination` tipą pridėta reikšmė `'download'` (CertificateScreen, ModuleCompleteScreen).
+- **`src/components/SlideContent.tsx`:** `onComplete` parametras `(score?: number)`; **App.quiz.integration.test.tsx:** `timeout` perkeltas į trečią argumentą (`findByRole`/`findByText` waitForOptions).
+- **`src/i18n.ts`:** `getT()` options tipas pataisytas (be `i18n.TOptions`).
+- **`src/types/modules.ts`:** `blockVariant` papildytas `'emerald' | 'violet'`. **ContentSlides.tsx:** `onGoToGlossaryTerm?.(term)`; pašalintas nenaudojamas `_KPI_COLORS`.
+- **Nenaudojami kintamieji pašalinti:** AgentWorkflowDiagram, LlmAutoregressiveBlock, RlProcessDiagram, Schema3InteractiveDiagram, schema3Layout, analytics, m5HandoutPdf.
+- **`src/data/__tests__/modulesLoader.test.ts`:** `minimalModule()`, pilni Module/Quiz tipai, content assertions su type cast; **modulesLoader.ts:** merge cast `as unknown as Partial<ModulesData>`.
+- **IntroActionPieSlide.pdf.test.tsx:** `revealInsights` naudoja `insight` ir `question` (ne `heading`/`body`). **validate-schema.integration.test.ts:** `@ts-nocheck` (Node built-ins ne pagrindiniame tsconfig); **setup.ts:** `processStub.cwd = () => '.'`, `NodeJS.ProcessEnv` → `Record<string, string | undefined>`.
+- **`package.json`:** Pridėta `@types/node` (devDependency).
+
+### Changed (2026-03-14)
+
+**CI: package-lock sinchronizacija, lint-staged su Node 18**
+
+- **`package.json`:** `lint-staged` ^16.3.3 → ^15.2.10 (Node 18 palaikymas; 16.x reikalauja Node ≥20.17).
+- **`package-lock.json`:** Atnaujintas po `npm install` – sutampa su package.json (išvengiama „Missing from lock file“ per `npm ci`).
+
+### Fixed (2026-03-14)
+
+**ESLint – pateisinti disable komentarai**
+
+- **`src/test/validate-schema.integration.test.ts`:** `eslint-disable @typescript-eslint/ban-ts-comment` (Node-only testas, be Node tipų pagrindiniame tsconfig).
+- **`src/utils/lazyWithRetry.ts`:** `eslint-disable-next-line @typescript-eslint/no-explicit-any` (generic turi priimti bet kokius props lazy registry).
+
+### Changed (2026-03-14)
+
+**GitHub Actions – Node 24 opt-in JS actions**
+
+- **`.github/workflows/test.yml`, `deploy.yml`:** Pridėtas `env: FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'` – JavaScript actions (checkout, setup-node, configure-pages, deploy-pages) naudoja Node 24; išvengiamas „Node.js 20 actions are deprecated“ įspėjimas. Projekto build/test Node versija (18.x, 20.x) nepakeista.
 
 ### Changed (2026-03-13)
 
@@ -452,7 +494,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **Finalinio testo (apklausos) hidden treasure – nuoroda į DI Operacinį centrą (CEO)**
 
-- **QuizResultsView.tsx:** Po mygtukų „Pradėti iš naujo“ / „Grįžti į pradžią“ – papildoma sekcija su nuoroda į https://ditreneris.github.io/ceo/ (Spin-off Nr. 5), etiketė „Jei neaišku – klausk“, stilius pagal spinoff CTA (accent border, ExternalLink, min-h-[44px], target="_blank", rel="noopener noreferrer", aria-label).
+- **QuizResultsView.tsx:** Po mygtukų „Pradėti iš naujo“ / „Grįžti į pradžią“ – papildoma sekcija su nuoroda į https://ditreneris.github.io/ceo/ (Spin-off Nr. 5), etiketė „Jei neaišku – klausk“, stilius pagal spinoff CTA (accent border, ExternalLink, min-h-[44px], target="\_blank", rel="noopener noreferrer", aria-label).
 - **Lokalizacija:** `quiz.ceoSpinoffLabel`, `quiz.ceoSpinoffAria` (lt.json, en.json). Rezultatų ekrano tekstai per i18n: `resultsTitlePass`/`resultsTitleFail`, `resultsScoreBefore`/`resultsScoreAfter`, `wrongFirstHint`, `explanationStrong`/`explanationTryAgain`, `btnRestart`, `btnBack`.
 - **docs/development/PDF_GENERATION_AGENT_MEMORY.md:** Pastaba – po finalinio testo hidden treasure = nuoroda į DI Operacinį centrą (CEO).
 - **QuizPage.test.tsx:** Smoke testas – rezultatų ekrane rodomas CEO nuorodos linkas su teisingu href ir aria-label (LT/EN).
@@ -467,7 +509,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 - **docs/development/PLAN_JUS_TU_DI_AI_SLIDES.md:** Konkretus planas – konfigų failai (workflowComparisonConfig, stepExplanations, diagramų aria ir kt.) in-place pakeitimai; ProcessStepper CUSTOM_GPT_STEPS lentelė; nauji/pataisyti locale raktai (stepper, testPractice, contentSlides, celebration); komponentai (ContentSlides, TestPracticeSlides, TrueFalseQuestion/McqQuestion/ScenarioQuestion, Celebration, PracticalTask); įgyvendinimo fazės ir grep patikra. Pagal PAPRASTOS_KALBOS_GAIRES §4.
 
-**Įgyvendinta (Fazės 1–4):** Fazė 1 – konfigai (workflowComparisonConfig, stepExplanations, ragDuomenuRuosimasLayout, diPrezentacijosWorkflowConfig, LlmAutoregressiveDiagram, TurinioWorkflowDiagram, RlProcessDiagram, MatchingQuestion, ProcessStepper CUSTOM_GPT_STEPS LT). Fazė 2 – locale (stepper, testPractice, contentSlides, celebration) lt.json/en.json. Fazė 3 – komponentai (ContentSlides, TestPracticeSlides, quiz/Celebration/PracticalTask). Fazė 4 – grep patikra. **Detalus įrašas:** žr. *Changed (2026-03-10) – LT kreipinys Jūs→Tu* aukščiau.
+**Įgyvendinta (Fazės 1–4):** Fazė 1 – konfigai (workflowComparisonConfig, stepExplanations, ragDuomenuRuosimasLayout, diPrezentacijosWorkflowConfig, LlmAutoregressiveDiagram, TurinioWorkflowDiagram, RlProcessDiagram, MatchingQuestion, ProcessStepper CUSTOM_GPT_STEPS LT). Fazė 2 – locale (stepper, testPractice, contentSlides, celebration) lt.json/en.json. Fazė 3 – komponentai (ContentSlides, TestPracticeSlides, quiz/Celebration/PracticalTask). Fazė 4 – grep patikra. **Detalus įrašas:** žr. _Changed (2026-03-10) – LT kreipinys Jūs→Tu_ aukščiau.
 
 **Toliau:** Grep visiems šaltiniams (components/slides, data); prireikus – PracticalTask, Celebration, ContentSlides hardcoded eilutės (plan §4.4–4.6).
 
@@ -524,7 +566,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 - **docs/DOCUMENTATION_QUICK_REF.md:** Greita nuoroda agentams – SOT lentelė, kritiniai keliai; pirmiausia naudoti vietoj pilno indekso (mažiau tokenų).
 - **docs/LEAN_INDEX.md:** Lean branduolys – ~20 failų (SOT, agentai, M4 eilė, kokybė); pakanka daugumai užduočių; visa kita – pagal poreikį arba archyve.
-- **Archyvas – development:** Perkelta ~49 failų iš `docs/development/` į `docs/archive/development/`: User Journey analizės (MODULIO_*_USER_JOURNEY_ANALIZE, AGENT_SEQUENCE_USER_JOURNEY_MVP), ANALIZE_* (UI/UX, kalbos mikro), M4_SKAIDRE_* auditai, planai ir ataskaitos; papildomai – SUMMARY_SLIDE_SPEC.md, EN_LANGUAGE_STANDARD.md, MOBILE_UI_UX_AUDIT.md. Nuorodos atnaujintos: .cursor/rules (agent-orchestrator, content-agent, content-agent-summary-slide, curriculum-agent), AGENT_ORCHESTRATOR, CONTENT_AGENT, CURRICULUM_AGENT, GOLDEN_STANDARD, RELEASE_QA_CHECKLIST, DOCUMENTATION_INDEX, LEAN_INDEX, TODO.
+- **Archyvas – development:** Perkelta ~49 failų iš `docs/development/` į `docs/archive/development/`: User Journey analizės (MODULIO*\*\_USER_JOURNEY_ANALIZE, AGENT_SEQUENCE_USER_JOURNEY_MVP), ANALIZE*_ (UI/UX, kalbos mikro), M4*SKAIDRE*_ auditai, planai ir ataskaitos; papildomai – SUMMARY_SLIDE_SPEC.md, EN_LANGUAGE_STANDARD.md, MOBILE_UI_UX_AUDIT.md. Nuorodos atnaujintos: .cursor/rules (agent-orchestrator, content-agent, content-agent-summary-slide, curriculum-agent), AGENT_ORCHESTRATOR, CONTENT_AGENT, CURRICULUM_AGENT, GOLDEN_STANDARD, RELEASE_QA_CHECKLIST, DOCUMENTATION_INDEX, LEAN_INDEX, TODO.
 - **Archyvas – root ir docs .txt:** Perkelta 6 failų iš repo šaknies į `docs/archive/root/` (20260220_Testas.txt, 20260213_testo_metodologija.txt, 20260309_test_report.txt, portalas.txt, duomenu_ruosimas.txt, vaizdo_generatorius.txt) ir `docs/20260221_Linkedin_analize.txt` į `docs/archive/`. Nuorodos: VARTOTOJU_ATSILIEPIMAI_BENDRAS, LinkedIn_audience_insights_2026-02-21, DOCUMENTATION_INDEX, GOLDEN_STANDARD, ContentSlides.tsx (komentaras); ARCHIVE_README papildytas.
 - **Indeksai:** DOCUMENTATION_INDEX – lean-first (LEAN_INDEX viršuje), sutrumpintos §2–4; agent-orchestrator.mdc – SOT: QUICK_REF → LEAN_INDEX → DOCUMENTATION_INDEX. docs/development/ dabar ~30 .md failų (buvo 82).
 
@@ -600,7 +642,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 **2026-03-08 (EN a11y – testPractice, vaizdoGen, contentSlides, diagrams)**
 
 - **i18n:** Nauji namespace: `testPractice`, `vaizdoGen`, `contentSlides`, `diagrams` (`lt.json`, `en.json`, `i18n.ts`).
-- **TestPracticeSlides.tsx:** Visi kreipiniai ir aria per `useTranslation('testPractice')` (TestIntroSlide, TestSectionSlide, TestResultsSlide, PracticeIntroSlide, RemediationRetryBlock, CategoryBreakdownWithLinks) – durationLabel, thresholdPassHint, checkAnswers/checkShort, resultMeaningAria/Heading, whereToApply*, viewModule*/startModule*/retry* aria, radarTitle/Desc, knowledgeMapTitle/Hint*, close, backToResultAria, M5 fallbacks ir kt.
+- **TestPracticeSlides.tsx:** Visi kreipiniai ir aria per `useTranslation('testPractice')` (TestIntroSlide, TestSectionSlide, TestResultsSlide, PracticeIntroSlide, RemediationRetryBlock, CategoryBreakdownWithLinks) – durationLabel, thresholdPassHint, checkAnswers/checkShort, resultMeaningAria/Heading, whereToApply*, viewModule*/startModule*/retry* aria, radarTitle/Desc, knowledgeMapTitle/Hint\*, close, backToResultAria, M5 fallbacks ir kt.
 - **VaizdoGeneratoriusSlide.tsx:** Pilnas UI per `useTranslation('vaizdoGen')` – tldr, žingsniai, sekcijos, laukai, placeholders, copy/copied, eksperto patarimai, chooseGenerator, checkTitle/checkText.
 - **Schema3InteractiveDiagram.tsx:** `useTranslation('diagrams')` – schema3Aria, schema3InteractiveHint, schema3NodeAria.
 - **ContentSlides.tsx (ContentBlockSlide):** `useTranslation('contentSlides')` – bonusSlideAria, whyBenefitAria, downloadTemplateAria, helpCardsTablistAria, expandAllAria, collapseAllAria, solutionAria, pdfHandoutAria, optionalSlideAria/Label.
@@ -657,7 +699,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **2026-03-08 (Jūs→Tu, -ite→-i: locale ir modules.json)**
 
-- **lt.json:** Kreipinys į dalyvį – Jūsų/jūsų→Tavo/tavo (home.progressLabel, certificate.*, stepper.summaryHeading/diagramAria/selectStep, testPractice.radarDesc/whatYouLearned/yourTaskAria/yourChoiceLabel/selfAssessmentDesc/projectStepsDesc ir kt.). Veiksmažodžiai: Paspauskite→Paspausk, Įrašykite→Įrašyk, Pasirinkite→Pasirink, Peržiūrėkite→Peržiūrėk, Tęskite→Tęsk (home, certificate, stepper, testPractice, module, quiz, vaizdoGen, contentSlides, diagrams). thresholdPassHint: „Kai pasieksi ≥{{pass}} %, gali pereiti…“.
+- **lt.json:** Kreipinys į dalyvį – Jūsų/jūsų→Tavo/tavo (home.progressLabel, certificate.\*, stepper.summaryHeading/diagramAria/selectStep, testPractice.radarDesc/whatYouLearned/yourTaskAria/yourChoiceLabel/selfAssessmentDesc/projectStepsDesc ir kt.). Veiksmažodžiai: Paspauskite→Paspausk, Įrašykite→Įrašyk, Pasirinkite→Pasirink, Peržiūrėkite→Peržiūrėk, Tęskite→Tęsk (home, certificate, stepper, testPractice, module, quiz, vaizdoGen, contentSlides, diagrams). thresholdPassHint: „Kai pasieksi ≥{{pass}} %, gali pereiti…“.
 - **modules.json:** Visi moduliai (1–15) – galite/Galite→gali/Gali, galėsite→galėsi, Įrašykite→Įrašyk, Pasirinkite→Pasirink, Peržiūrėkite→Peržiūrėk; jūsų/Jūsų→tavo/Tavo (organizacijoje, projekte, pagrindas, duomenys, duomenų sritis); atidarykite→atidaryk, atsispausdinsite→atsispausdinsi; žinote→žinai, Turite→Turi, Užbaigėte→Užbaigei, Turėte→Turi, Norite→Nori; pasirinkite/naudokite/peržiūrėkite→pasirink/naudok/peržiūrėk; Pasiekę ≥70 % gali→Kai pasieksi ≥70 %, gali; rekomenduojame peržiūrėti→rekomenduojame peržiūrėk. Schema validacija po pakeitimų – OK.
 - **MIKRO_UI_UX_COPY_AUDIT.md §3.1:** Pažymėta, kad modules.json Jūs→Tu atlikta.
 
@@ -746,7 +788,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **2026-03-02 (RAG duomenų paruošimas – Kiss-Marry-Kill planas įgyvendintas)**
 
-- **Visa paruošimas promptas (P1):** Pridėtas 6-as promptas į skaidrės 62 „Kopijuojami promptai“ – „Paruošk šį tekstą RAG naudojimui: 1) išvalyk, 2) pridėk santrauką pradžioje, 3) antraštės ir anonsas, 4) metaduomenys (šaltinis, data, tipas). Pateik vienu bloku.“ SOT atitiktis. *(Pakeista: blokas pašalintas 2026-03-02 supaprastinime.)*
+- **Visa paruošimas promptas (P1):** Pridėtas 6-as promptas į skaidrės 62 „Kopijuojami promptai“ – „Paruošk šį tekstą RAG naudojimui: 1) išvalyk, 2) pridėk santrauką pradžioje, 3) antraštės ir anonsas, 4) metaduomenys (šaltinis, data, tipas). Pateik vienu bloku.“ SOT atitiktis. _(Pakeista: blokas pašalintas 2026-03-02 supaprastinime.)_
 - **Schema sekcija blockVariant (P2):** „RAG ruošimo magistralė“ sekcijai pridėtas `blockVariant: brand` – vizualinė hierarchija.
 - **5 patarimų skenuojamumas (P3):** Body išskaidytas į bullet points su **bold** antraštėmis kiekvienam punktui – geresnis skenuojamumas.
 - **SCHEME_AGENT §5 checklist (P4):** Sukurtas `docs/development/M4_SKAIDRE_62_SCHEMA_CHECKLIST.md` – RAG ruošimo magistralės vizualinė patikra (rodyklės N/A, path OK, interaktyvumas OK).
@@ -957,7 +999,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **2026-02-21 (MVP Analytics ir Completion Rate – instrumentacija)**
 
-- **Analytics modulis:** `src/utils/analytics.ts` – anon_id, session_id (30 min inactivity), `track(eventName, properties)` su dedupe (1x per session slide_view, slide_complete, practice_*, collapse_open). Optional PostHog: `VITE_POSTHOG_KEY`, `VITE_POSTHOG_HOST`; `$process_person_profile: false`.
+- **Analytics modulis:** `src/utils/analytics.ts` – anon*id, session_id (30 min inactivity), `track(eventName, properties)` su dedupe (1x per session slide_view, slide_complete, practice*\*, collapse_open). Optional PostHog: `VITE_POSTHOG_KEY`, `VITE_POSTHOG_HOST`; `$process_person_profile: false`.
 - **Event taxonomy:** `docs/development/ANALYTICS_EVENT_TAXONOMY.md` – 6 eventai (slide_view, slide_complete, practice_start, practice_complete, cta_click, collapse_open), required/optional properties, dedupe, funnel apibrėžimai.
 - **Instrumentacija:** ModuleView – slide_view / slide_complete (su time_on_slide_sec); PracticalTask – practice_start (onFocus), practice_complete (submit/mark); SlideContent – wrappedOnGoToModule (cta_click internal); ModuleCompleteScreen – cta_click (back_to_modules, next_module); ContentBlockSlide – collapse_open.
 - **Progreso juosta:** Desktop header „X / Y skaidrių“, mobile counter; aria-label.
@@ -1582,7 +1624,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 - **SOT:** `docs/turinio_pletra_moduliai_7_8_9.md` §10.3, §10.4 – viena dominuojanti mintis įvade, užduoties rėmas (Užduotis / Užbaigta, kai) kiekvienam scenarijui, veikėjų prasmė vienu sakiniu, „Kur pritaikyti?“ su triggeriais; §10.4 – veikėjų kortelės įvade paspaudžiamos → hub su pasirinktu veikėju. Naujas §10.3.1 – tekstai į JSON (meaningParagraph, storyBlock, characterMeaning, firstActionCTA, useCaseBlock, taskFrame 101–116, reflectionPromptAfter, practice-summary 5 blokai).
 - **Duomenys:** `modules.json` M9 – practice-intro (id 90): meaningParagraph, characterMeaning, atnaujinti storyBlock, firstActionCTA, useCaseBlock; 16 scenarijų (101–116): taskFrame { task, doneWhen }; practice-summary (id 92): introHeading, introBody, stats, tagline, nextStepCTA.
 - **Tipai:** `PracticeSummaryContent` – introHeading?, introBody?, stats?, tagline?, nextStepCTA?; `TaskFrame` { task, doneWhen }.
-- **UI:** PracticeIntroSlide (M9) – meaningParagraph viršuje, characterMeaning po storyBlock (su ** paryškinimu); PracticeScenarioSlide – taskFrame blokas (Užduotis / Užbaigta, kai); PracticeSummarySlide – introHeading, introBody, stats, nextStepCTA, tagline kai pateikti. Hub initialLevel1 jau veikė (paspaudus veikėją įvade – hub su to veikėjo 4 scenarijais).
+- **UI:** PracticeIntroSlide (M9) – meaningParagraph viršuje, characterMeaning po storyBlock (su \*\* paryškinimu); PracticeScenarioSlide – taskFrame blokas (Užduotis / Užbaigta, kai); PracticeSummarySlide – introHeading, introBody, stats, nextStepCTA, tagline kai pateikti. Hub initialLevel1 jau veikė (paspaudus veikėją įvade – hub su to veikėjo 4 scenarijais).
 
 **2026-02-14 (Modulio 5 User Journey – 5 zonų analizė ir įgyvendinimas)**
 

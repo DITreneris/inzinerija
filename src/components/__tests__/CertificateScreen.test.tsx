@@ -6,11 +6,14 @@ import { CertificateScreen } from '../CertificateScreen';
 
 vi.mock('../../utils/introPiePdf', () => ({
   ensurePdfFont: vi.fn().mockResolvedValue(undefined),
+  getCachedPdfFontBase64: vi.fn(() => 'mock-base64-font'),
 }));
 
 const mockDownload = vi.fn().mockResolvedValue(undefined);
+const mockSetFontCache = vi.fn();
 vi.mock('../../utils/certificatePdf', () => ({
   downloadCertificatePdf: (...args: unknown[]) => mockDownload(...args),
+  setCertificatePdfFontCache: (...args: unknown[]) => mockSetFontCache(...args),
 }));
 
 vi.mock('../../utils/analytics', () => ({
@@ -33,7 +36,9 @@ describe('CertificateScreen', () => {
 
   it('renders certificate content for tier 1', () => {
     renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
-    expect(screen.getByRole('heading', { name: /Sertifikatas|Certificate/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /Sertifikatas|Certificate/i })
+    ).toBeInTheDocument();
   });
 
   it('shows LT program title and certificate label in preview by default', () => {
@@ -44,7 +49,9 @@ describe('CertificateScreen', () => {
 
   it('download button is disabled when name is empty', () => {
     renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
-    const downloadBtn = screen.getByRole('button', { name: /parsisiųsti|download/i });
+    const downloadBtn = screen.getByRole('button', {
+      name: /parsisiųsti|download/i,
+    });
     expect(downloadBtn).toBeDisabled();
   });
 
@@ -54,7 +61,9 @@ describe('CertificateScreen', () => {
     await act(async () => {
       await userEvent.type(input, 'Jonas');
     });
-    const downloadBtn = screen.getByRole('button', { name: /parsisiųsti|download/i });
+    const downloadBtn = screen.getByRole('button', {
+      name: /parsisiųsti|download/i,
+    });
     expect(downloadBtn).not.toBeDisabled();
   });
 
@@ -65,7 +74,9 @@ describe('CertificateScreen', () => {
       await userEvent.type(input, 'Jonas');
     });
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /parsisiųsti|download/i }));
+      await userEvent.click(
+        screen.getByRole('button', { name: /parsisiųsti|download/i })
+      );
     });
     expect(mockDownload).toHaveBeenCalledTimes(1);
     const [, , name, options] = mockDownload.mock.calls[0];
@@ -89,7 +100,11 @@ describe('CertificateScreen', () => {
       await userEvent.type(input, 'Jane');
     });
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /save name and download certificate as pdf/i }));
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: /save name and download certificate as pdf/i,
+        })
+      );
     });
     expect(mockDownload).toHaveBeenCalledTimes(1);
     const options = mockDownload.mock.calls[0][3];
@@ -103,5 +118,35 @@ describe('CertificateScreen', () => {
     renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
     await userEvent.click(screen.getByRole('button', { name: /Grįžti|Back/i }));
     expect(onBack).toHaveBeenCalledTimes(1);
+  });
+
+  it('syncs font cache from introPiePdf to certificatePdf before download', async () => {
+    renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
+    const input = screen.getByLabelText(/vardas|your name/i);
+    await act(async () => {
+      await userEvent.type(input, 'Jonas');
+    });
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', { name: /parsisiųsti|download/i })
+      );
+    });
+    expect(mockSetFontCache).toHaveBeenCalledWith('mock-base64-font');
+  });
+
+  it('shows error message when download fails', async () => {
+    mockDownload.mockRejectedValueOnce(new Error('PDF generation failed'));
+    renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
+    const input = screen.getByLabelText(/vardas|your name/i);
+    await act(async () => {
+      await userEvent.type(input, 'Jonas');
+    });
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', { name: /parsisiųsti|download/i })
+      );
+    });
+    expect(screen.getByRole('alert')).toBeInTheDocument();
+    expect(screen.getByText(/nepavyko|failed/i)).toBeInTheDocument();
   });
 });

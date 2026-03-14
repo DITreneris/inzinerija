@@ -3,9 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import { useLocale } from '../contexts/LocaleContext';
 import { getCertificateContent } from '../data/certificateContentLoader';
-import { ensurePdfFont } from '../utils/introPiePdf';
-import { downloadCertificatePdf } from '../utils/certificatePdf';
-import { getCertificateName, setCertificateName } from '../utils/certificateStorage';
+import { ensurePdfFont, getCachedPdfFontBase64 } from '../utils/introPiePdf';
+import {
+  downloadCertificatePdf,
+  setCertificatePdfFontCache,
+} from '../utils/certificatePdf';
+import {
+  getCertificateName,
+  setCertificateName,
+} from '../utils/certificateStorage';
 import { track } from '../utils/analytics';
 
 const WEBSITE_URL = 'https://www.promptanatomy.app/';
@@ -18,19 +24,29 @@ export interface CertificateScreenProps {
 export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
   const { t } = useTranslation('certificate');
   const { locale } = useLocale();
-  const certificateContent = useMemo(() => getCertificateContent(locale), [locale]);
-  const content = useMemo(() => certificateContent.tiers.find((c) => c.tier === tier), [certificateContent, tier]);
+  const certificateContent = useMemo(
+    () => getCertificateContent(locale),
+    [locale]
+  );
+  const content = useMemo(
+    () => certificateContent.tiers.find((c) => c.tier === tier),
+    [certificateContent, tier]
+  );
   const [name, setName] = useState(() => getCertificateName());
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
+  const [downloadError, setDownloadError] = useState(false);
 
   const handleSaveAndDownload = useCallback(async () => {
     const trimmed = name.trim();
     if (!trimmed) return;
     setCertificateName(trimmed);
     setIsDownloading(true);
+    setDownloadError(false);
     try {
       await ensurePdfFont();
+      const fontCache = getCachedPdfFontBase64();
+      if (fontCache) setCertificatePdfFontCache(fontCache);
       if (!content) return;
       await downloadCertificatePdf(tier, content, trimmed, {
         locale,
@@ -51,6 +67,9 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         destination: 'download',
         module_id: tier,
       });
+    } catch (err) {
+      console.error('Certificate PDF download failed:', err);
+      setDownloadError(true);
     } finally {
       setIsDownloading(false);
     }
@@ -59,7 +78,9 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
   if (!content) {
     return (
       <div className="max-w-2xl mx-auto p-8">
-        <p className="text-gray-600 dark:text-gray-400">{t('contentNotFound')}</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          {t('contentNotFound')}
+        </p>
         <button onClick={onBack} className="btn-secondary mt-4">
           {t('back')}
         </button>
@@ -83,11 +104,16 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
           style={{ maxWidth: '400px' }}
           aria-hidden="true"
         >
-          <p className="text-center text-sm font-medium mb-1" style={{ color: '#222' }}>
-            {certificateContent.programTitle ?? (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija')}
+          <p
+            className="text-center text-sm font-medium mb-1"
+            style={{ color: '#222' }}
+          >
+            {certificateContent.programTitle ??
+              (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija')}
           </p>
           <p className="text-center text-xs text-gray-500 dark:text-gray-400 mb-4">
-            {certificateContent.certificateLabel ?? (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS')}
+            {certificateContent.certificateLabel ??
+              (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS')}
           </p>
           <p className="text-center text-sm text-gray-700 dark:text-gray-300 mb-2">
             {content.introLine}
@@ -95,20 +121,31 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
           <p className="text-center text-xl font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-600 pb-2 mb-3">
             {name.trim() || t('yourNamePlaceholder')}
           </p>
-          <div className="w-16 h-0.5 mx-auto mb-3 rounded-full" style={{ backgroundColor: '#d4a520' }} aria-hidden="true" />
+          <div
+            className="w-16 h-0.5 mx-auto mb-3 rounded-full"
+            style={{ backgroundColor: '#d4a520' }}
+            aria-hidden="true"
+          />
           <p className="text-center text-sm text-gray-700 dark:text-gray-300 mb-1">
             {content.completionLine}
           </p>
           <p className="text-center text-xs text-gray-600 dark:text-gray-500">
             {content.programName}
           </p>
-          <div className="w-16 h-0.5 mx-auto mt-4 rounded-full" style={{ backgroundColor: '#d4a520' }} aria-hidden="true" />
+          <div
+            className="w-16 h-0.5 mx-auto mt-4 rounded-full"
+            style={{ backgroundColor: '#d4a520' }}
+            aria-hidden="true"
+          />
           <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
             {certificateContent.websiteCta || t('websiteCta')}
           </p>
         </div>
 
-        <label htmlFor="cert-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label
+          htmlFor="cert-name"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        >
           {t('nameLabel')}
         </label>
         <input
@@ -146,7 +183,10 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         </div>
 
         {downloadSuccess && (
-          <p className="mt-4 text-center text-sm text-emerald-600 dark:text-emerald-400 font-medium" role="status">
+          <p
+            className="mt-4 text-center text-sm text-emerald-600 dark:text-emerald-400 font-medium"
+            role="status"
+          >
             {t('downloadSuccess')}{' '}
             <a
               href={certificateContent.websiteUrl ?? WEBSITE_URL}
@@ -156,6 +196,20 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
             >
               {t('downloadSuccessCta')}
             </a>
+          </p>
+        )}
+
+        {downloadError && (
+          <p
+            className="mt-4 text-center text-sm text-rose-600 dark:text-rose-400 font-medium"
+            role="alert"
+          >
+            {t('downloadError', {
+              defaultValue:
+                locale === 'en'
+                  ? 'Download failed. Please try again.'
+                  : 'Atsisiuntimas nepavyko. Bandykite dar kartą.',
+            })}
           </p>
         )}
 

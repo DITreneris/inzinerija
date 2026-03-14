@@ -53,11 +53,16 @@ export async function ensurePdfFont(): Promise<void> {
     const buf = await res.arrayBuffer();
     const bytes = new Uint8Array(buf);
     let binary = '';
-    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    for (let i = 0; i < bytes.length; i++)
+      binary += String.fromCharCode(bytes[i]);
     cachedFontBase64 = btoa(binary);
   } catch {
     // Fallback: naudosime Helvetica
   }
+}
+
+export function getCachedPdfFontBase64(): string | null {
+  return cachedFontBase64;
 }
 
 function applyFont(doc: jsPDF, fontRegistered = false): void {
@@ -83,7 +88,12 @@ function addWrappedText(
   return y + lines.length * lineHeight;
 }
 
-function drawSectionLeftBorder(doc: jsPDF, yStart: number, yEnd: number, colorHex: string): void {
+function drawSectionLeftBorder(
+  doc: jsPDF,
+  yStart: number,
+  yEnd: number,
+  colorHex: string
+): void {
   const [r, g, b] = hexToRgb(colorHex);
   doc.setFillColor(r, g, b);
   doc.rect(MARGIN, yStart, BORDER_LEFT_WIDTH, Math.max(yEnd - yStart, 2));
@@ -95,7 +105,12 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-function addSectionTitle(doc: jsPDF, title: string, y: number, useCustomFont: boolean): number {
+function addSectionTitle(
+  doc: jsPDF,
+  title: string,
+  y: number,
+  useCustomFont: boolean
+): number {
   doc.setTextColor(BRAND_COLOR);
   doc.setFontSize(FONT_H3);
   applyFont(doc, useCustomFont);
@@ -107,8 +122,10 @@ function addSectionTitle(doc: jsPDF, title: string, y: number, useCustomFont: bo
 
 const PDF_BRAND_TITLE_LT = 'Promptų anatomija';
 const PDF_BRAND_TITLE_EN = 'Prompt Anatomy';
-const PDF_FOOTER_LT = 'Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.';
-const PDF_FOOTER_EN = 'Prompt Anatomy – prompt structure training. © Course material.';
+const PDF_FOOTER_LT =
+  'Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.';
+const PDF_FOOTER_EN =
+  'Prompt Anatomy – prompt structure training. © Course material.';
 
 /**
  * Sukuria ir atsisiunčia PDF failą pagal segmento turinį, įrankių ir žodyno duomenis.
@@ -156,9 +173,23 @@ export function downloadIntroPiePdf(
   const sectionStartY = y;
 
   // 1) Top 5 patarimai
-  y = addSectionTitle(doc, isEn ? '1. Top 5 tips' : '1. Top 5 patarimai', y, useCustomFont);
+  y = addSectionTitle(
+    doc,
+    isEn ? '1. Top 5 tips' : '1. Top 5 patarimai',
+    y,
+    useCustomFont
+  );
   for (let i = 0; i < segment.top5Tips.length; i++) {
-    y = addWrappedText(doc, `${i + 1}. ${segment.top5Tips[i]}`, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + PARAGRAPH_GAP;
+    y =
+      addWrappedText(
+        doc,
+        `${i + 1}. ${segment.top5Tips[i]}`,
+        CONTENT_X,
+        y,
+        CONTENT_W_INNER,
+        FONT_BODY,
+        LINE_HEIGHT_BODY
+      ) + PARAGRAPH_GAP;
   }
   drawSectionLeftBorder(doc, sectionStartY, y, BRAND_COLOR);
   y += SECTION_GAP;
@@ -169,16 +200,30 @@ export function downloadIntroPiePdf(
   const mainTool = toolsByName.get(segment.mainToolName);
   if (mainTool) {
     applyFont(doc, useCustomFont);
-    doc.text(isEn ? `Main: ${mainTool.name}` : `Pagrindinis: ${mainTool.name}`, CONTENT_X, y);
+    doc.text(
+      isEn ? `Main: ${mainTool.name}` : `Pagrindinis: ${mainTool.name}`,
+      CONTENT_X,
+      y
+    );
     y += LINE_HEIGHT_BODY;
     applyFont(doc, useCustomFont);
-    y = addWrappedText(doc, mainTool.description, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + PARAGRAPH_GAP;
+    y =
+      addWrappedText(
+        doc,
+        mainTool.description,
+        CONTENT_X,
+        y,
+        CONTENT_W_INNER,
+        FONT_BODY,
+        LINE_HEIGHT_BODY
+      ) + PARAGRAPH_GAP;
   }
   doc.setFontSize(FONT_BODY - 1);
   applyFont(doc, useCustomFont);
   for (const name of segment.additionalToolNames) {
     const t = toolsByName.get(name);
-    if (t) doc.text(`• ${t.name}: ${t.url}`, CONTENT_X, (y += LINE_HEIGHT_BODY));
+    if (t)
+      doc.text(`• ${t.name}: ${t.url}`, CONTENT_X, (y += LINE_HEIGHT_BODY));
   }
   y += PARAGRAPH_GAP;
   drawSectionLeftBorder(doc, yToolsStart, y, BRAND_COLOR);
@@ -189,13 +234,27 @@ export function downloadIntroPiePdf(
   const yWorkflowStart = y;
   y = addSectionTitle(doc, '3. Workflow', y, useCustomFont);
   const workflowLine = segment.workflowSteps.join(' → ');
-  y = addWrappedText(doc, workflowLine, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + SECTION_GAP;
+  y =
+    addWrappedText(
+      doc,
+      workflowLine,
+      CONTENT_X,
+      y,
+      CONTENT_W_INNER,
+      FONT_BODY,
+      LINE_HEIGHT_BODY
+    ) + SECTION_GAP;
   drawSectionLeftBorder(doc, yWorkflowStart, y, BRAND_COLOR);
   y += SECTION_GAP;
 
   // 4) 5 sąvokos
   const yGlossStart = y;
-  y = addSectionTitle(doc, isEn ? '4. Key concepts' : '4. Svarbios sąvokos', y, useCustomFont);
+  y = addSectionTitle(
+    doc,
+    isEn ? '4. Key concepts' : '4. Svarbios sąvokos',
+    y,
+    useCustomFont
+  );
   for (const termName of segment.glossaryTermNames) {
     const g = glossaryByTerm.get(termName);
     if (g) {
@@ -203,7 +262,16 @@ export function downloadIntroPiePdf(
       doc.text(g.term, CONTENT_X, y);
       y += LINE_HEIGHT_BODY;
       applyFont(doc, useCustomFont);
-      y = addWrappedText(doc, g.definition, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + PARAGRAPH_GAP;
+      y =
+        addWrappedText(
+          doc,
+          g.definition,
+          CONTENT_X,
+          y,
+          CONTENT_W_INNER,
+          FONT_BODY,
+          LINE_HEIGHT_BODY
+        ) + PARAGRAPH_GAP;
     }
   }
   drawSectionLeftBorder(doc, yGlossStart, y, BRAND_COLOR);
@@ -211,8 +279,22 @@ export function downloadIntroPiePdf(
 
   // 5) Sisteminis promptas
   const ySysStart = y;
-  y = addSectionTitle(doc, isEn ? '5. System prompt' : '5. Sisteminis promptas', y, useCustomFont);
-  y = addWrappedText(doc, segment.systemPrompt, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + SECTION_GAP;
+  y = addSectionTitle(
+    doc,
+    isEn ? '5. System prompt' : '5. Sisteminis promptas',
+    y,
+    useCustomFont
+  );
+  y =
+    addWrappedText(
+      doc,
+      segment.systemPrompt,
+      CONTENT_X,
+      y,
+      CONTENT_W_INNER,
+      FONT_BODY,
+      LINE_HEIGHT_BODY
+    ) + SECTION_GAP;
   drawSectionLeftBorder(doc, ySysStart, y, BRAND_COLOR);
   y += SECTION_GAP;
 
@@ -225,7 +307,16 @@ export function downloadIntroPiePdf(
   y += LINE_HEIGHT_BODY + PARAGRAPH_GAP;
   doc.setTextColor(0, 0, 0);
   applyFont(doc, useCustomFont);
-  y = addWrappedText(doc, segment.motivationWish, CONTENT_X, y, CONTENT_W_INNER, FONT_BODY, LINE_HEIGHT_BODY) + SECTION_GAP;
+  y =
+    addWrappedText(
+      doc,
+      segment.motivationWish,
+      CONTENT_X,
+      y,
+      CONTENT_W_INNER,
+      FONT_BODY,
+      LINE_HEIGHT_BODY
+    ) + SECTION_GAP;
   drawSectionLeftBorder(doc, yWishStart, y, ACCENT_COLOR);
   y += SECTION_GAP;
 
@@ -241,7 +332,9 @@ export function downloadIntroPiePdf(
   doc.text(footerText, MARGIN, 290);
 
   const safeTitle = segment.title.replace(/[?/:\\*"]/g, '').slice(0, 40);
-  const defaultName = isEn ? `Prompt_Anatomy_${safeTitle}.pdf` : `Promptu_anatomija_${safeTitle}.pdf`;
+  const defaultName = isEn
+    ? `Prompt_Anatomy_${safeTitle}.pdf`
+    : `Promptu_anatomija_${safeTitle}.pdf`;
   const name = filename ?? defaultName;
   doc.save(name);
 }
