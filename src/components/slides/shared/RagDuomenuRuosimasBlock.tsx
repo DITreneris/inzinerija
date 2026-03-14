@@ -72,8 +72,8 @@ export default function RagDuomenuRuosimasBlock() {
       >
         <div className={`h-1.5 w-full ${colors.bg}`} aria-hidden />
 
-        <div className="p-4 md:p-6">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+        <div className="p-4 lg:p-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
             <div className="flex items-center gap-3">
               {(() => {
                 const Icon = STEP_ICONS[currentStep];
@@ -104,7 +104,7 @@ export default function RagDuomenuRuosimasBlock() {
             <div className="absolute -top-2.5 left-4 px-2 bg-white dark:bg-slate-900 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
               {blockLabels.promptLabel}
             </div>
-            <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 border border-slate-100 dark:border-slate-700 font-mono text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4 lg:p-5 border border-slate-100 dark:border-slate-700 font-mono text-sm leading-relaxed text-slate-700 dark:text-slate-300">
               &bdquo;{step.prompt}&ldquo;
             </div>
           </div>

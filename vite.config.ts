@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1'
 const resolvePath = (value: string) => fileURLToPath(new URL(value, import.meta.url))
@@ -9,6 +10,7 @@ const resolvePath = (value: string) => fileURLToPath(new URL(value, import.meta.
 export default defineConfig({
   plugins: [
     react(),
+    ...(process.env.ANALYZE ? [visualizer({ open: true, gzipSize: true, filename: 'stats.html' })] : []),
     // Dev: nekešinti modules.json, kad po serverio perkrovimo matytum naują turinį
     {
       name: 'no-cache-modules-json',

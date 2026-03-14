@@ -339,6 +339,8 @@ function App() {
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDescription} />
       </Helmet>
       {/* Celebration overlay */}
       <Celebration

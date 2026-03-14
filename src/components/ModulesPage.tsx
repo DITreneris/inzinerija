@@ -131,7 +131,7 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
     <div className="space-y-8">
       {/* Header – paprasta kalba, konkretus naudos sakinys, Golden: vienas H1 */}
       <div className="text-center animate-fade-in">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3">
           {t('headerTitle')}
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -156,7 +156,7 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
       </div>
 
       {/* Modules grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {modules.map((module, index) => {
           const moduleNumber = index + 1;
           const moduleProgress = getModuleProgress(module.id);
@@ -242,36 +242,36 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
                         </span>
                         {/* Desktop: level (when not recommended), recommended, completed */}
                         {!isRecommendedNext && (
-                          <span className={`hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
+                          <span className={`hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
                             <BadgeIcon className="w-3 h-3" strokeWidth={2} />
                             {styles.badgeLabel}
                           </span>
                         )}
                         {isRecommendedNext && (
-                          <span className="hidden md:inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
+                          <span className="hidden lg:inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
                             {t('recommendedNext')}
                           </span>
                         )}
                         {isCompleted && (
-                          <span className="hidden md:inline-flex badge-success text-xs">
+                          <span className="hidden lg:inline-flex badge-success text-xs">
                             <CheckCircle className="w-3 h-3 mr-1" />
                             {t('badgeCompleted')}
                           </span>
                         )}
                         {/* Mobile: exactly one secondary badge – Rekomenduojama > Baigta > level */}
                         {isRecommendedNext && (
-                          <span className="md:hidden inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
+                          <span className="lg:hidden inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
                             {t('recommendedNext')}
                           </span>
                         )}
                         {!isRecommendedNext && isCompleted && (
-                          <span className="md:hidden inline-flex items-center gap-1 text-xs badge-success">
+                          <span className="lg:hidden inline-flex items-center gap-1 text-xs badge-success">
                             <CheckCircle className="w-3 h-3" />
                             {t('badgeCompleted')}
                           </span>
                         )}
                         {!isRecommendedNext && !isCompleted && (
-                          <span className={`md:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
+                          <span className={`lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
                             <BadgeIcon className="w-3 h-3" strokeWidth={2} />
                             {styles.badgeLabel}
                           </span>

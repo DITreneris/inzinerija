@@ -1452,7 +1452,7 @@ export function PracticeIntroSlide({
             {t('m6ProgressLabel', { done: m6CompletedCount, total: m6ScenarioTotal })}
           </p>
         )}
-        <p className="text-gray-600 dark:text-gray-400 text-center text-sm md:text-base max-w-2xl mx-auto">
+        <p className="text-gray-600 dark:text-gray-400 text-center text-sm lg:text-base max-w-2xl mx-auto">
           {locale === 'en'
             ? <>In this module you will create one project (a research report or Custom GPT), followed by additional techniques: <strong>COMBO</strong>, <strong>HTML practice</strong>, <strong>SUPER PROMPTS</strong>, reflection and data management.</>
             : <>Šiame modulyje sukursite vieną projektą (tyrimo ataskaitą arba Custom GPT), o po jo – papildomos technikos: <strong>COMBO</strong>, <strong>HTML praktika</strong>, <strong>SUPER PROMPTAI</strong>, refleksija ir duomenų tvarkymas.</>}

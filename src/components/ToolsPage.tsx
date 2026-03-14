@@ -79,7 +79,7 @@ export default function ToolsPage({ onBackToModule, initialFilter }: ToolsPagePr
               <Wrench className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
                 {t('toolsPage:title')}
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-0.5">

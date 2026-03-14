@@ -193,7 +193,7 @@ export default function AiDetectorsSlide() {
       </div>
 
       {/* TL;DR – accent (Golden Standard §3.2) */}
-      <div className="rounded-xl p-4 md:p-5 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+      <div className="rounded-xl p-4 lg:p-5 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
         <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
           {t('contentSlides:tldrHeading')}
         </h4>
@@ -203,7 +203,7 @@ export default function AiDetectorsSlide() {
       </div>
 
       {/* Daryk dabar + CTA – brand */}
-      <div className="rounded-xl p-4 md:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
+      <div className="rounded-xl p-4 lg:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
         <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
           {t('contentSlides:doNowHeading')}
         </h4>
@@ -233,7 +233,7 @@ export default function AiDetectorsSlide() {
       </div>
 
       {/* Kaip naudoti įrankį – brand */}
-      <div className="rounded-xl p-4 md:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
+      <div className="rounded-xl p-4 lg:p-5 bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500">
         <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
           {t('aiDetectors:howToTitle')}
         </h4>

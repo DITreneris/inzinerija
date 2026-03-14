@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Target, BookOpen, ClipboardCheck, ArrowRight, Sparkles, CheckCircle, Copy, Check, Lightbulb, Rocket } from 'lucide-react';
+import { Target, BookOpen, ClipboardCheck, ArrowRight, Zap, Sparkles, CheckCircle, Copy, Check, Lightbulb, Rocket } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Progress } from '../utils/progress';
 import { getModulesSync } from '../data/modulesLoader';
@@ -48,12 +48,12 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
       <div className="relative overflow-hidden rounded-3xl">
         {/* Mesh-style background: kelios radial gradient „dėmės“ (Stripe/Vercel/Linear praktika) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-brand-400/10 dark:bg-brand-400/20 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-300/8 dark:bg-accent-400/12 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-brand-300/6 dark:bg-brand-400/10 rounded-full blur-3xl" />
+          <div className="absolute top-10 right-10 w-72 h-72 bg-gold/8 dark:bg-gold/15 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-300/8 dark:bg-gold/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-brand-300/6 dark:bg-brand-400/8 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative text-center py-16 md:py-24 animate-fade-in">
+        <div className="relative text-center py-10 lg:py-24 animate-fade-in">
           {/* Badge – P3: sumažintas vizualinis svoris (slate, mažesnis) */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800/60 rounded-full text-slate-600 dark:text-slate-400 text-xs font-medium mb-6">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={1.5} />
@@ -62,43 +62,43 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
           
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="bg-gradient-to-br from-brand-400 to-accent-400 dark:from-brand-500 dark:to-accent-500 p-6 rounded-3xl shadow-md shadow-brand-500/10 dark:shadow-brand-500/20 hover:shadow-lg hover:shadow-brand-500/15 dark:hover:shadow-brand-500/25 hover:scale-105 transition-transform duration-300 animate-bounce-in">
-                <Target className="w-16 h-16 text-white" />
+              <div className="bg-gray-900 dark:bg-black p-6 rounded-3xl shadow-md shadow-gold/10 dark:shadow-gold/20 hover:shadow-lg hover:shadow-gold/15 dark:hover:shadow-gold/25 hover:scale-105 transition-transform duration-300 animate-bounce-in">
+                <Zap className="w-16 h-16 text-gold" strokeWidth={1.5} />
               </div>
-              <div className="absolute -top-2 -right-2 bg-accent-500 dark:bg-accent-400 px-2.5 py-1.5 rounded-xl shadow-md">
-                <span className="text-xs font-semibold text-white">{t('home:durationBadge')}</span>
+              <div className="absolute -top-2 -right-2 bg-gold px-2.5 py-1.5 rounded-xl shadow-md shadow-gold/20">
+                <span className="text-xs font-semibold text-gray-900">{t('home:durationBadge')}</span>
               </div>
             </div>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-black text-gray-950 dark:text-white mb-4 tracking-tight">
+          <h1 className="text-5xl lg:text-8xl font-black text-gray-950 dark:text-white mb-4 tracking-tight">
             {t('home:titlePart1')} <span className="gradient-text gradient-text-hero">{t('home:titlePart2')}</span>
           </h1>
           
-          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 font-normal mb-5 max-w-xl mx-auto">
+          <p className="text-sm lg:text-base text-gray-500 dark:text-gray-400 font-normal mb-5 max-w-xl mx-auto">
             {t('home:subline')}
           </p>
           
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-2 max-w-2xl mx-auto leading-loose">
+          <p className="text-base lg:text-xl text-gray-500 dark:text-gray-400 mb-2 max-w-2xl mx-auto leading-loose">
             {t('home:subtitle')}
             <span className="font-bold text-[1.15em] text-accent-600 dark:text-accent-400">{t('home:subtitleBold')}</span>
           </p>
           
-          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-10 max-w-xl mx-auto">
+          <p className="text-sm lg:text-base text-gray-500 dark:text-gray-400 mb-6 lg:mb-10 max-w-xl mx-auto">
             {t('home:bonus')}
           </p>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-14 text-sm text-gray-500 dark:text-gray-500">
+          <div className="flex flex-wrap justify-center gap-4 mb-8 lg:mb-14 text-sm text-gray-500 dark:text-gray-500">
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              <CheckCircle className="w-5 h-5 text-gold/70 dark:text-gold/60" />
               <span>{totalModules} {t('home:trustModules')}</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              <CheckCircle className="w-5 h-5 text-gold/70 dark:text-gold/60" />
               <span>{t('home:trustExamples')}</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              <CheckCircle className="w-5 h-5 text-gold/70 dark:text-gold/60" />
               <span>{t('home:trustQuiz')}</span>
             </div>
           </div>
@@ -138,8 +138,8 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.1s' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.1s' }}>
           <div className="flex items-center gap-4">
             <CircularProgress
               progress={totalModules > 0 ? (modulesCompleted / totalModules) * 100 : 0}
@@ -154,7 +154,7 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
           </div>
         </div>
 
-        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.2s' }}>
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.2s' }}>
           <div className="flex items-center gap-4">
             <div className="bg-emerald-100 dark:bg-emerald-900/30 p-4 rounded-2xl">
               <ClipboardCheck className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
@@ -166,7 +166,7 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
           </div>
         </div>
 
-        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.3s' }}>
+        <div className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50" style={{ animationDelay: '0.3s' }}>
           <div className="flex items-center gap-4">
             <div className="bg-accent-100 dark:bg-accent-900/30 p-4 rounded-2xl">
               <Target className="w-8 h-8 text-accent-600 dark:text-accent-400" />
@@ -193,9 +193,9 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
         </div>
       </div>
 
-      <div className="card p-8 md:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
+      <div className="card p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             {t('home:sectionTitle')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -203,7 +203,7 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="flex gap-4 p-5 rounded-2xl hover:bg-brand-50 dark:hover:bg-brand-900/20 transition-all duration-300 group">
             <div className="bg-brand-100 dark:bg-brand-900/30 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
               <Target className="w-7 h-7 text-brand-600 dark:text-brand-400" />
@@ -241,8 +241,8 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
             </div>
           </div>
           <div className="flex gap-4 p-5 rounded-2xl hover:bg-accent-50 dark:hover:bg-accent-900/20 transition-all duration-300 group">
-            <div className="bg-accent-100 dark:bg-accent-900/30 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
-              <Sparkles className="w-7 h-7 text-accent-600 dark:text-accent-400" />
+            <div className="bg-gold/10 dark:bg-gold/15 p-4 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform">
+              <Sparkles className="w-7 h-7 text-gold dark:text-gold" />
             </div>
             <div>
               <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-lg">{t('home:feature4Title')}</h3>
@@ -302,7 +302,7 @@ export default function HomePage({ onStart, onGoToQuiz, progress }: HomePageProp
             {t('home:quickPromptsSubtitle')}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {quickPrompts.map((item) => (
             <div
               key={item.id}

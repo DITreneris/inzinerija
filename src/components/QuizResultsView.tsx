@@ -64,7 +64,7 @@ export function QuizResultsView({
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
-      <div className="card p-8 md:p-12 text-center">
+      <div className="card p-4 sm:p-6 lg:p-12 text-center">
         <div className="mb-6">
           <div
             className={`inline-flex items-center justify-center w-24 h-24 rounded-full ${

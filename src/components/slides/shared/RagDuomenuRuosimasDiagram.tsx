@@ -44,11 +44,11 @@ export default function RagDuomenuRuosimasDiagram({
     >
       {/* Jungiamoji linija (desktop) */}
       <div
-        className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 dark:bg-slate-600 -translate-y-1/2 z-0 hidden md:block"
+        className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 dark:bg-slate-600 -translate-y-1/2 z-0 hidden lg:block"
         aria-hidden
       />
 
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
+      <div className="relative z-10 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-0">
         {steps.map((step, idx) => {
           const isActive = currentStep === idx;
           const colorKey = step.colorKey as RagStepColorKey;

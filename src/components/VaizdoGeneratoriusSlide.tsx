@@ -253,7 +253,7 @@ export default function VaizdoGeneratoriusSlide() {
             onFocus={() => setActiveStep(1)}
           >
             <SectionHeader step={1} icon={Layout} title={t('sectionCampaign')} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <FieldLabel>{t('labelGoal')}</FieldLabel>
                 <TextInput name="goal" placeholder={t('placeholderGoal')} value={formData.goal} onChange={handleChange} />
@@ -292,7 +292,7 @@ export default function VaizdoGeneratoriusSlide() {
                   aria-label={t('labelObject')}
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                   <FieldLabel>{t('labelStyle')}</FieldLabel>
                   <SelectInput name="style" value={formData.style} options={STYLES} onChange={handleChange} />
@@ -319,7 +319,7 @@ export default function VaizdoGeneratoriusSlide() {
             onFocus={() => setActiveStep(3)}
           >
             <SectionHeader step={3} icon={Type} title={t('sectionText')} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <FieldLabel>{t('labelHeadline')}</FieldLabel>
                 <TextInput name="headline" placeholder={t('placeholderHeadline')} value={formData.headline} onChange={handleChange} />

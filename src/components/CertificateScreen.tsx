@@ -69,7 +69,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <div className="card p-6 md:p-8">
+      <div className="card p-6 lg:p-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
           {t('title')}
         </h1>

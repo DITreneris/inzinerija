@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --brand-gold: #f3cc30;
+}
+
 @layer base {
   body {
     @apply transition-colors duration-300 font-sans antialiased;
@@ -18,7 +22,8 @@
 }
 
 .dark body {
-  @apply bg-gray-900 text-gray-100;
+  @apply text-gray-100;
+  background-color: #0d0d0d;
 }
 
 * {
@@ -60,7 +65,7 @@ textarea:focus-visible,
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-brand-500 dark:bg-brand-600 rounded;
+  @apply bg-brand-500 dark:bg-gold/60 rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -73,8 +78,8 @@ textarea:focus-visible,
   -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
 }
 
-/* Mobile touch improvements */
-@media (max-width: 768px) {
+/* Mobile touch improvements (lg = 1024px aligns with Tailwind lg: breakpoint) */
+@media (max-width: 1023px) {
   button, a, summary {
     -webkit-tap-highlight-color: rgba(98, 125, 152, 0.35);
   }
@@ -90,8 +95,8 @@ textarea:focus-visible,
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Mobile bottom navigation improvements */
-@media (max-width: 768px) {
+/* Mobile bottom navigation improvements (lg = 1024px) */
+@media (max-width: 1023px) {
   /* Prevent body scroll when bottom nav is visible */
   body {
     padding-bottom: env(safe-area-inset-bottom, 0);
@@ -180,30 +185,32 @@ details[open] > summary {
 
 /* Hero title – dienos režime minkštesnis gradientas (neplėšo akių), dark – ryškumas */
 .gradient-text-hero {
-  @apply bg-gradient-to-r from-brand-600 to-accent-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-brand-500 to-gold bg-clip-text text-transparent;
 }
 
 .dark .gradient-text-hero {
-  @apply from-brand-300 to-accent-400;
+  @apply from-brand-300 to-gold;
 }
 
-/* Hero CTA – dienos režime minkštesnis šešėlis ir gradientas (neplėšo akių) */
+/* Hero CTA – auksinis brand akcentas (sync su promptanatomy.app) */
 .btn-hero-cta {
   @apply rounded-2xl py-6 text-xl min-h-[56px] font-semibold;
-  background: linear-gradient(135deg, #5a7a94 0%, #486581 100%);
-  box-shadow: 0 4px 14px rgba(36, 59, 83, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
+  color: #0d0d0d;
+  box-shadow: 0 4px 18px rgba(243, 204, 48, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 }
 .btn-hero-cta:hover {
-  background: linear-gradient(135deg, #486581 0%, #334e68 100%);
-  box-shadow: 0 6px 18px rgba(36, 59, 83, 0.28);
+  background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
+  box-shadow: 0 6px 22px rgba(243, 204, 48, 0.35);
 }
 .dark .btn-hero-cta {
-  background: linear-gradient(135deg, #486581 0%, #334e68 100%);
-  box-shadow: 0 4px 18px rgba(36, 59, 83, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
+  color: #0d0d0d;
+  box-shadow: 0 4px 18px rgba(243, 204, 48, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 .dark .btn-hero-cta:hover {
-  background: linear-gradient(135deg, #334e68 0%, #243b53 100%);
-  box-shadow: 0 6px 22px rgba(36, 59, 83, 0.5);
+  background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
+  box-shadow: 0 6px 22px rgba(243, 204, 48, 0.4);
 }
 
 /* Glass morphism cards */
@@ -277,4 +284,16 @@ details[open] > summary {
 /* Code/mono text */
 .mono {
   @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded;
+}
+
+/* A11y: respect user preference for reduced motion (WCAG 2.1 SC 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

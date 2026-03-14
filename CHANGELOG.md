@@ -20,6 +20,68 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+### Added (2026-03-14)
+
+**Production hardening + brand sync su promptanatomy.app**
+
+CI/CD, a11y, SEO, developer experience ir brand tapatumo pagerinimiai -- saugūs, nepriklausomi pakeitimai.
+
+- **`.nvmrc`:** Naujas failas (`18`) -- Node.js versijos fiksavimas.
+- **`public/robots.txt`:** Naujas failas -- leidžia indeksavimą, nurodo sitemap.
+- **`public/favicon.svg`:** Naujas failas -- geltonas žaibas tamsiame fone (brand sync su promptanatomy.app).
+- **`public/apple-touch-icon.png`:** Naujas failas (180×180) -- iOS home screen ikona su žaibu.
+- **`public/og-image.png`:** Naujas failas (1200×630) -- OG socialinio dalinimosi paveikslas su „PROMPTŲ ANATOMIJA" tekstu.
+- **`index.html`:** Favicon pakeistas iš Vite į brand žaibą; pridėti `apple-touch-icon`, `theme-color` (#0d0d0d), OG ir Twitter meta žymės (title, description, image).
+- **`src/App.tsx`:** `<Helmet>` papildytas dinaminėmis `og:title` ir `og:description` meta žymėmis.
+- **`package.json`:** Pridėti `typecheck`, `analyze`, `prepare` scriptai; `lint-staged` konfigūracija.
+- **`.github/workflows/test.yml`, `deploy.yml`:** Pridėtas `tsc --noEmit` type check žingsnis CI pipeline.
+- **`vite.config.ts`:** Pridėtas `rollup-plugin-visualizer` (sąlyginis, tik su `ANALYZE=true`).
+- **Husky + lint-staged:** Pre-commit hook su ESLint + Prettier.
+- **`src/index.css`:** Pridėta `prefers-reduced-motion: reduce` media query (WCAG 2.1 a11y).
+
+### Changed (2026-03-14)
+
+**Brand identity sync -- AppNav + HomePage ikonos**
+
+- **`src/components/AppNav.tsx`:** Nav logo ikona `Sparkles` → `Zap` (geltonas žaibas tamsiame fone, kaip promptanatomy.app).
+- **`src/components/HomePage.tsx`:** Hero ikona `Target` → `Zap` (geltonas žaibas tamsiame fone).
+
+### Changed (2026-03-14)
+
+**HomePage brand polish -- micro UI/UX derinimas prie promptanatomy.app**
+
+9 spalvų/gradientų/šešėlių pakeitimai dviejuose failuose, nekeičiant struktūros ar turinio:
+
+- **`src/index.css`:** Dark mode fonas `bg-gray-900` → `#0d0d0d`; gradient-text-hero ryškesnis auksinis (`to-gold`); hero CTA mygtukas navy → auksinis gradientas (`#f3cc30 → #d4a520`); scrollbar dark mode → auksinis.
+- **`src/components/HomePage.tsx`:** Hero mesh orbs → auksinis glow; duration badge → tikslus `#f3cc30`; trust checkmarks → švelnus auksinis; stats kortelių dark shadow → auksinis; 4-oji feature kortelė → auksinis tonas.
+
+### Changed (2026-03-14)
+
+**Brand gold spalvos centralizacija + LoadingSpinner fix**
+
+- **`tailwind.config.js`:** Pridėta `gold: '#f3cc30'` spalva -- leidžia naudoti `text-gold`, `bg-gold/10`, `shadow-gold/5` vietoj hardcoded `[#f3cc30]`.
+- **`src/index.css`:** Pridėta `:root { --brand-gold: #f3cc30; }` CSS custom property; visi `[#f3cc30]` pakeisti į `gold` tokeną; `linear-gradient` naudoja `var(--brand-gold)`.
+- **`src/components/HomePage.tsx`:** 23 vietos `[#f3cc30]` → `gold`.
+- **`src/components/AppNav.tsx`:** `text-[#f3cc30]` → `text-gold`.
+- **`src/components/ui/LoadingSpinner.tsx`:** Ištaisytas duplicate key `lg` -- pirmas `lg` pakeistas į `md` (build warning dingo).
+
+### Changed (2026-03-13)
+
+**Struktūrinis mobile UI fix – viena navigacija, lg: breakpoint, diagramų scrollable režimas**
+
+Pilnas mobile UI perstatymas: ne dar vienas `hidden` sluoksnis, o architektūrinis pokytis. Visas projektas dabar naudoja vieną breakpoint'ą `lg:` (1024px) vietoj buvusio `md:` (768px).
+
+- **Navigacija (ModuleView):** Mobile (<1024px) – viršuje tik kompaktiškas counter „M1 · 7/21" + progress bar (~24px); apačioje fixed nav su Atgal/Tęsti mygtukais. Desktop (lg+) – pilna top nav su Atgal/counter/Tęsti. Pašalinta dviguba navigacija (buvo sticky top + fixed bottom = ~21-24% viewport).
+- **Atgal mygtukas:** `whitespace-nowrap` + `shrink-0` – nebewrappina vertikaliai. Bottom nav Atgal su `whitespace-nowrap`. Tęsti CTA – `max-w-[60%]` + `truncate`.
+- **Breakpoint migracija md: → lg: (visas src/):** 140+ `md:` Tailwind klasių pakeistos į `lg:` – navigacija, visibility, grid layout, padding, text size, width/height, gap, divider direction. 24 komponentų failai + `design-tokens.ts` + `index.css`. Nulinis `md:` likutis visame `src/`.
+- **Landscape fix:** Samsung S24 landscape (915px) dabar gauna mobile layout (915 < 1024), ne desktop nav.
+- **Diagramos mobile (EnlargeableDiagram):** Mobile – diagrama renderinama horizontaliai scrollable konteineryje su `minWidth: 600px` (pilno dydžio, skaitoma); fade gradient hint. Desktop – be pakeitimų.
+- **Standalone diagramos:** `WorkflowComparisonInteractiveBlock` (M1), `LlmAutoregressiveBlock` (M4), `ProcessStepper`/CustomGPT (M4), `DiPrezentacijosWorkflowBlock` (M5) – mobile scrollable wrapper.
+- **Shared hook:** `src/utils/useIsMobile.ts` – `matchMedia(<1024px)`.
+- **HomePage hero:** Mobile kompaktiškesnis – `py-10` (buvo `py-16`), `text-5xl` (buvo `text-6xl`), `mb-6`/`mb-8` (buvo `mb-10`/`mb-14`). ~90-100px sutaupyta viewport aukščio.
+- **Quiz padding:** `QuizPage` ir `QuizResultsView` – `p-4 sm:p-6 lg:p-8/12` (buvo `p-8`). 375px turinio plotis padidėjo ~64px.
+- **TEST_REPORT.md:** Atnaujinta Mobile QA kriterijų lentelė su nauja navigacijos architektūra.
+
 ### Fixed (2026-03-13)
 
 **EN UI/UX bug bundle – skaidrės, diagramos, PDF**

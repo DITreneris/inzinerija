@@ -97,7 +97,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
   return (
     <div
       ref={containerRef}
-      className={`relative rounded-xl p-3 md:p-4 overflow-visible min-w-0 transition-transform duration-200 hover:-translate-y-0.5 bg-slate-50 border border-black/[0.04] shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:bg-slate-900 dark:border-gray-700 dark:shadow-xl dark:shadow-black/20 ${className}`}
+      className={`relative rounded-xl p-3 lg:p-4 overflow-visible min-w-0 transition-transform duration-200 hover:-translate-y-0.5 bg-slate-50 border border-black/[0.04] shadow-[0_8px_24px_rgba(0,0,0,0.06)] dark:bg-slate-900 dark:border-gray-700 dark:shadow-xl dark:shadow-black/20 ${className}`}
       role="img"
       aria-label={`LLM: ${config.label}. ${config.desc}`}
     >
@@ -152,7 +152,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
         <div className="flex items-center justify-center gap-1 w-full py-0">
           {/* Input node – light blue tint, label „Žmogus“; dark mode fonas */}
           <div
-            className="flex flex-col items-center justify-center rounded-xl w-[165px] md:w-[195px] h-[100px] md:h-[120px] shrink-0 bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-300 shadow-[0_4px_12px_rgba(37,99,235,0.12)] dark:from-blue-900/40 dark:to-slate-800/80 dark:border-blue-700/60 dark:shadow-none font-[Plus_Jakarta_Sans,system-ui,sans-serif]"
+            className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-300 shadow-[0_4px_12px_rgba(37,99,235,0.12)] dark:from-blue-900/40 dark:to-slate-800/80 dark:border-blue-700/60 dark:shadow-none font-[Plus_Jakarta_Sans,system-ui,sans-serif]"
           >
             <div className="text-[11px] font-medium uppercase tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">{labels.inputRole}</div>
             <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-1 bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-300 text-base">
@@ -164,7 +164,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
 
           {/* Arrow į LLM – solid, hover highlight */}
           <div
-            className="w-12 md:w-14 h-0.5 relative shrink-0 transition-all duration-200 group-hover/flow:opacity-100"
+            className="w-12 lg:w-14 h-0.5 relative shrink-0 transition-all duration-200 group-hover/flow:opacity-100"
             style={{ background: TOKENS.arrow, height: 2 }}
           >
             <div
@@ -176,7 +176,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
           {/* DI node – gradient + glow, badge „Branduolys“; +8–10% width vizualinei dominacijai */}
           <div
             ref={diNodeRef}
-            className="relative flex flex-col items-center justify-center rounded-xl w-[242px] md:w-[292px] h-[126px] md:h-[140px] shrink-0 z-[3]"
+            className="relative flex flex-col items-center justify-center rounded-xl w-[242px] lg:w-[292px] h-[126px] lg:h-[140px] shrink-0 z-[3]"
             style={{
               background: `linear-gradient(145deg, ${TOKENS.primaryLight} 0%, #1D4ED8 100%)`,
               border: '1px solid rgba(255,255,255,0.2)',
@@ -198,7 +198,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
 
           {/* Arrow iš LLM – storesnė (3px), hover */}
           <div
-            className="w-12 md:w-14 relative shrink-0 transition-all duration-200 group-hover/flow:opacity-100"
+            className="w-12 lg:w-14 relative shrink-0 transition-all duration-200 group-hover/flow:opacity-100"
             style={{ background: TOKENS.success, height: 3 }}
           >
             <div
@@ -209,7 +209,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
 
           {/* Output node – light green tint, label „Sistema“; dark mode fonas */}
           <div
-            className="flex flex-col items-center justify-center rounded-xl w-[165px] md:w-[195px] h-[100px] md:h-[120px] shrink-0 bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-300 shadow-[0_4px_12px_rgba(22,163,74,0.12)] dark:from-emerald-900/40 dark:to-slate-800/80 dark:border-emerald-700/60 dark:shadow-none font-[Plus_Jakarta_Sans,system-ui,sans-serif]"
+            className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-gradient-to-br from-emerald-100 to-emerald-50 border border-emerald-300 shadow-[0_4px_12px_rgba(22,163,74,0.12)] dark:from-emerald-900/40 dark:to-slate-800/80 dark:border-emerald-700/60 dark:shadow-none font-[Plus_Jakarta_Sans,system-ui,sans-serif]"
           >
             <div className="text-[11px] font-medium uppercase tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">{labels.outputRole}</div>
             <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-1 bg-emerald-200/50 dark:bg-emerald-800/50 text-emerald-600 dark:text-emerald-300 text-base">
@@ -240,7 +240,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
           {/* Tool node; dark mode */}
           <div
             ref={toolNodeRef}
-            className={`flex flex-col items-center justify-center rounded-xl w-[195px] md:w-[225px] h-[100px] md:h-[116px] shrink-0 transition-all bg-slate-50 dark:bg-slate-800 dark:border-gray-600 font-[Plus_Jakarta_Sans,system-ui,sans-serif] ${
+            className={`flex flex-col items-center justify-center rounded-xl w-[195px] lg:w-[225px] h-[100px] lg:h-[116px] shrink-0 transition-all bg-slate-50 dark:bg-slate-800 dark:border-gray-600 font-[Plus_Jakarta_Sans,system-ui,sans-serif] ${
               mode === 'tool' ? 'border border-blue-500 shadow-[0_6px_16px_rgba(37,99,235,0.14)] dark:border-blue-400' : 'border border-slate-200 shadow-[0_6px_16px_rgba(0,0,0,0.12)]'
             }`}
           >
@@ -265,7 +265,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
           {/* Database – dots pattern light; dark mode solid (overlay uždengia taškus) */}
           <div
             ref={dbNodeRef}
-            className={`relative rounded-xl overflow-hidden w-[195px] md:w-[225px] shrink-0 transition-opacity duration-300 bg-slate-50 ${
+            className={`relative rounded-xl overflow-hidden w-[195px] lg:w-[225px] shrink-0 transition-opacity duration-300 bg-slate-50 ${
               mode === 'tool' ? 'opacity-40' : ''
             } ${mode === 'rag' ? 'border border-blue-500 dark:border-blue-400 shadow-[0_6px_16px_rgba(37,99,235,0.14)]' : 'border border-slate-200 dark:border-gray-600 shadow-[0_6px_16px_rgba(0,0,0,0.12)]'}`}
             style={{
@@ -296,7 +296,7 @@ export default function LlmArchDiagramDiagram({ mode, locale = 'lt', className =
           {labels.sectionArch}
         </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {cards.map((card, idx) => (
           <div
             key={idx}

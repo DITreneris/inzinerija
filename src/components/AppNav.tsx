@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Home, BookOpen, ClipboardCheck, Moon, Sun, Sparkles, Menu, X, BookMarked, Wrench } from 'lucide-react';
+import { Home, BookOpen, ClipboardCheck, Moon, Sun, Zap, Menu, X, BookMarked, Wrench } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 
@@ -50,17 +50,17 @@ export function AppNav({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center min-h-16 gap-y-2 py-2">
           <div className="flex items-center gap-3 flex-shrink-0">
-            <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-2 rounded-xl shadow-sm">
-              <Sparkles className="w-5 h-5 text-white" strokeWidth={1.5} />
+            <div className="bg-gray-900 dark:bg-black p-2 rounded-xl shadow-sm">
+              <Zap className="w-5 h-5 text-gold" strokeWidth={1.5} />
             </div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              <span className="md:hidden">{t('appTitleShort')}</span>
-              <span className="hidden md:inline">{t('appTitle')}</span>
+              <span className="lg:hidden">{t('appTitleShort')}</span>
+              <span className="hidden lg:inline">{t('appTitle')}</span>
             </h1>
           </div>
 
           {/* Desktop Navigation – min-w nav mygtukams kad keičiant LT/EN meniu nešoktų */}
-          <div className="hidden md:flex flex-wrap items-center justify-end gap-2">
+          <div className="hidden lg:flex flex-wrap items-center justify-end gap-2">
             {overallProgress > 0 && (
               <div className="flex items-center gap-2 mr-4 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 rounded-full" role="img" aria-label={t('progressLabel', { percent: overallProgress })}>
                 <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden" aria-hidden="true">
@@ -179,7 +179,7 @@ export function AppNav({
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             {overallProgress > 0 && (
               <div className="flex items-center gap-1.5 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-full" role="img" aria-label={t('progressShort', { percent: overallProgress })}>
                 <div className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden" aria-hidden="true">
@@ -188,7 +188,7 @@ export function AppNav({
                     style={{ width: `${overallProgress}%` }}
                   />
                 </div>
-                <span className="hidden md:inline text-xs font-semibold text-brand-600 dark:text-brand-400">
+                <span className="hidden lg:inline text-xs font-semibold text-brand-600 dark:text-brand-400">
                   {overallProgress}%
                 </span>
               </div>
@@ -216,7 +216,7 @@ export function AppNav({
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200/50 dark:border-gray-800 animate-fade-in overflow-hidden">
+          <div className="lg:hidden border-t border-gray-200/50 dark:border-gray-800 animate-fade-in overflow-hidden">
             <div className="py-2 space-y-1">
               <button
                 onClick={() => nav('home')}

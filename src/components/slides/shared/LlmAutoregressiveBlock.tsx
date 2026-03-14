@@ -7,6 +7,7 @@ import { LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS, LLM_AUTOREGRESSIVE_STEP_EXPLANATI
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { useIsMobile } from '../../../utils/useIsMobile';
 
 const BLOCK_LABELS = {
   lt: {
@@ -37,6 +38,7 @@ const BLOCK_LABELS = {
 
 export default function LlmAutoregressiveBlock() {
   const { locale } = useLocale();
+  const isMobile = useIsMobile();
   const explanations = locale === 'en' ? LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN : LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS;
   const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
   const t = BLOCK_LABELS[locale];
@@ -79,11 +81,23 @@ export default function LlmAutoregressiveBlock() {
 
       {/* Schema – 32px viršuje, 16px apačioje; be „Peržiūrėti visą dydį“ */}
       <div className="w-full max-w-7xl mx-auto pt-8 pb-4 min-h-[320px] flex flex-col mb-8" style={{ maxWidth: '90vw' }}>
-        <LlmAutoregressiveDiagram
-          locale={locale}
-          currentStep={currentStep}
-          onStepClick={(stepIndex) => setCurrentStep(stepIndex)}
-        />
+        {isMobile ? (
+          <div className="overflow-x-auto -mx-2 px-2 pb-2">
+            <div style={{ minWidth: 600 }}>
+              <LlmAutoregressiveDiagram
+                locale={locale}
+                currentStep={currentStep}
+                onStepClick={(stepIndex) => setCurrentStep(stepIndex)}
+              />
+            </div>
+          </div>
+        ) : (
+          <LlmAutoregressiveDiagram
+            locale={locale}
+            currentStep={currentStep}
+            onStepClick={(stepIndex) => setCurrentStep(stepIndex)}
+          />
+        )}
       </div>
 
       <nav className="flex flex-wrap items-center justify-center gap-2 mb-6" aria-label={t.navAria}>

@@ -54,6 +54,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        gold: '#f3cc30',
         // Navy blue - trust, expertise, professionalism (like consulting firms)
         brand: {
           50: '#f0f4f8',

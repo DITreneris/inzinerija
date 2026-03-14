@@ -127,7 +127,7 @@ export function ActionIntroJourneySlide({ content, onJourneyComplete }: ActionIn
   return (
     <div className="space-y-6">
       {/* Hero – tamsus, provokuojantis */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 lg:p-10 text-white">
         <div className="absolute inset-0 opacity-[0.06] pointer-events-none" aria-hidden="true">
           <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-black leading-none select-none">?</div>
           <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-black leading-none select-none">!</div>
@@ -138,7 +138,7 @@ export function ActionIntroJourneySlide({ content, onJourneyComplete }: ActionIn
               {content.whyBenefit}
             </p>
           )}
-          <h2 className="text-lg md:text-xl font-bold tracking-tight leading-tight">
+          <h2 className="text-lg lg:text-xl font-bold tracking-tight leading-tight">
             {content.heroStat}
             <br />
             <span className="bg-gradient-to-r from-brand-300 to-accent-300 bg-clip-text text-transparent">
@@ -527,7 +527,7 @@ export function ContentBlockSlide({
       {isTabsMode && tabSections.length > 0 && (
         <div className="space-y-6">
           {(content.sections ?? [])[0] && (
-            <div className="p-4 md:p-5 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+            <div className="p-4 lg:p-5 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
               <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">{(content.sections ?? [])[0].heading}</h3>
               {(content.sections ?? [])[0].body && (
                 <p className="text-base text-gray-600 dark:text-gray-400">{renderBodyWithBold((content.sections ?? [])[0].body)}</p>
@@ -562,16 +562,16 @@ export function ContentBlockSlide({
             if (idx !== activeTabIdx) return null;
             const variant = tab.blockVariant || 'default';
             const blockClasses = variant === 'accent'
-              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 md:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
+              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
               : variant === 'brand'
-                ? 'bg-brand-50 dark:bg-brand-900/20 p-4 md:p-5 rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800'
+                ? 'bg-brand-50 dark:bg-brand-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800'
                 : variant === 'terms'
-                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
+                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 lg:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
                   : variant === 'emerald'
-                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 md:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
                     : variant === 'violet'
-                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 md:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
-                      : 'bg-white dark:bg-gray-800 p-4 md:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
+                      : 'bg-white dark:bg-gray-800 p-4 lg:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
             return (
               <div
                 key={idx}
@@ -617,7 +617,7 @@ export function ContentBlockSlide({
       )}
 
       {showGotoActionButton && (
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button
             type="button"
             onClick={scrollToFirstAction}
@@ -638,22 +638,22 @@ export function ContentBlockSlide({
         const isCollapsible = Boolean(section.collapsible) && !isShortContent(section);
         const isOpen = isCollapsible ? Boolean(openSections[i]) : true;
         const contentId = `content-section-${i}`;
-        const sectionPadding = isRlDiagramSection ? 'p-4' : 'p-4 md:p-5';
+        const sectionPadding = isRlDiagramSection ? 'p-4' : 'p-4 lg:p-5';
         const blockClasses = isOptional
-          ? 'bg-gray-50 dark:bg-gray-800/70 p-4 md:p-5 rounded-xl border-l-4 border-gray-300 dark:border-gray-600 border border-gray-200 dark:border-gray-700'
+          ? 'bg-gray-50 dark:bg-gray-800/70 p-4 lg:p-5 rounded-xl border-l-4 border-gray-300 dark:border-gray-600 border border-gray-200 dark:border-gray-700'
           : isBottomLine
-            ? 'bg-white/90 dark:bg-gray-800/90 p-4 md:p-5 rounded-xl border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40 shadow-md'
+            ? 'bg-white/90 dark:bg-gray-800/90 p-4 lg:p-5 rounded-xl border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40 shadow-md'
             : variant === 'accent'
-              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 md:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
+              ? 'bg-accent-50 dark:bg-accent-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
               : variant === 'brand'
                 ? `bg-brand-50 dark:bg-brand-900/20 ${sectionPadding} rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800`
                 : variant === 'terms'
-                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 md:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
+                  ? 'bg-slate-50 dark:bg-slate-800/60 p-4 lg:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
                   : variant === 'emerald'
-                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 md:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
                     : variant === 'violet'
-                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 md:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
-                      : 'bg-white dark:bg-gray-800 p-4 md:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+                      ? 'bg-violet-50 dark:bg-violet-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
+                      : 'bg-white dark:bg-gray-800 p-4 lg:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
         return (
         <Fragment key={i}>
         <div className={blockClasses}>
@@ -663,7 +663,7 @@ export function ContentBlockSlide({
                 isOptional
                   ? 'font-semibold text-sm text-gray-600 dark:text-gray-400 mb-2'
                   : isBottomLine
-                    ? 'text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2'
+                    ? 'text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2'
                     : 'text-base font-semibold text-gray-900 dark:text-white mb-2'
               }
             >
@@ -701,7 +701,7 @@ export function ContentBlockSlide({
                   isOptional
                     ? 'font-semibold text-sm text-gray-600 dark:text-gray-400'
                     : isBottomLine
-                      ? 'text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100'
+                      ? 'text-lg lg:text-xl font-semibold text-gray-800 dark:text-gray-100'
                       : 'text-base font-semibold text-gray-900 dark:text-white'
                 }
               >
@@ -1049,7 +1049,7 @@ export function ContentBlockSlide({
         {i === 1 && content.pipelineDiagram === 'context-engineering' && (
           <div className="space-y-4" role="region" aria-label={content.workflowImagesHeading ?? (isEn ? 'Context engineering pipeline diagram' : 'Konteksto inžinerijos pipeline schema')}>
             {content.workflowImagesHeading && (
-              <h3 className="font-extrabold text-xl md:text-2xl text-brand-800 dark:text-brand-200 mb-1">
+              <h3 className="font-extrabold text-xl lg:text-2xl text-brand-800 dark:text-brand-200 mb-1">
                 {content.workflowImagesHeading}
               </h3>
             )}
@@ -1064,7 +1064,7 @@ export function ContentBlockSlide({
         {i === 1 && !content.pipelineDiagram && content.workflowImages && content.workflowImages.length > 0 && (
           <div className="space-y-3" role="region" aria-label={content.workflowImagesHeading ?? 'Inžinerijos workflow pavyzdžiai'}>
             {content.workflowImagesHeading && (
-              <h3 className="font-bold text-lg md:text-xl text-brand-800 dark:text-brand-200">
+              <h3 className="font-bold text-lg lg:text-xl text-brand-800 dark:text-brand-200">
                 {content.workflowImagesHeading}
               </h3>
             )}
@@ -1353,7 +1353,7 @@ export function SectionBreakSlide({
             </span>
           )}
           {!content.celebrationText && (
-            <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
               {content.title}
             </h2>
           )}
@@ -1365,7 +1365,7 @@ export function SectionBreakSlide({
             >
               <div className="flex items-center gap-4 w-full flex-wrap sm:flex-nowrap">
                 <Sparkles className="w-6 h-6 flex-shrink-0 text-accent-300 dark:text-accent-400 opacity-90" aria-hidden />
-                <h2 className="text-xl md:text-2xl m-0 max-w-md">
+                <h2 className="text-xl lg:text-2xl m-0 max-w-md">
                   {(() => {
                     const text = typeof content.celebrationText === 'string' ? content.celebrationText : String(content.celebrationText ?? '');
                     const idx = text.indexOf('! ');
@@ -1374,7 +1374,7 @@ export function SectionBreakSlide({
                       const rest = text.slice(idx + 2);
                       return (
                         <span className="flex flex-col">
-                          <span className="font-bold text-accent-300 dark:text-accent-400 mb-1.5 text-xl md:text-2xl leading-tight">{exclamation}</span>
+                          <span className="font-bold text-accent-300 dark:text-accent-400 mb-1.5 text-xl lg:text-2xl leading-tight">{exclamation}</span>
                           <span className="font-semibold text-white dark:text-brand-100 leading-[1.2] tracking-[-0.01em]">{rest}</span>
                         </span>
                       );
@@ -1584,7 +1584,7 @@ className="font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 d
           {content.sectionNumber}
         </span>
       )}
-      <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+      <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
         {content.title}
       </h2>
       {content.subtitle && (
@@ -2315,7 +2315,7 @@ export function PieChartSlide({ content }: { content?: PieChartContent }) {
       )}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
         <div className="flex-shrink-0">
-          <svg viewBox="0 0 200 200" className="w-48 h-48 md:w-56 md:h-56">
+          <svg viewBox="0 0 200 200" className="w-48 h-48 lg:w-56 lg:h-56">
             {paths.map((p, i) => (
               <path key={i} d={p.d} fill={p.fill} stroke="white" strokeWidth={1.5} />
             ))}
@@ -2366,7 +2366,7 @@ export function AiWorkflowSlide({ content }: { content?: AiWorkflowContent }) {
       )}
 
       {stages.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {stages.map((stage, i) => {
             const style = STAGE_COLORS[i % STAGE_COLORS.length];
             return (
@@ -2469,7 +2469,7 @@ export function PromptTypesSlide({ content }: { content?: PromptTypesContent }) 
       </div>
 
       {/* ── Kortelės su numeracija ir progresija ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {content?.types.map((type, idx) => {
           const s = typeStyles[type.color] || typeStyles.brand;
           return (
@@ -2548,7 +2548,7 @@ export function PromptTechniquesSlide({ content }: { content?: PromptTechniquesC
       </div>
 
       {/* ── Technikos: geros (5) + antipattern (1) ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {content?.techniques.map((technique, idx) => {
           const isAntiPattern = technique.title.toLowerCase().includes('manipuliacija') || technique.title.toLowerCase().includes('vengti');
           return (
@@ -2672,7 +2672,7 @@ export function WorkflowSummarySlide({ content }: { content?: WorkflowSummaryCon
           <p className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 text-center">
             {t('comparePrompts')}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {content.examples.map((example, idx) => {
               const isWf = example.title.toLowerCase().includes('workflow');
               return (
@@ -2797,7 +2797,7 @@ export function TransitionSlide({ content }: { content?: TransitionContent }) {
       </div>
 
       {/* ── Kortelės: padaryta vs toliau ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {(content?.mapping ?? []).map((item, idx) => {
           const s = cardStyles[idx] || cardStyles[1];
           return (
@@ -3033,7 +3033,7 @@ export function ComparisonSlide({ content: contentProp }: ComparisonSlideProps) 
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-rose-50 dark:bg-rose-900/20 p-5 rounded-xl border-2 border-rose-200 dark:border-rose-800">
           <h4 className="font-bold text-rose-900 dark:text-rose-100 mb-3 flex items-center gap-2">❌ {c.labelLeft ?? (isEn ? 'Unstructured' : 'Nestruktūruotas')}</h4>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-xl text-sm italic text-gray-700 dark:text-gray-300 mb-4 relative whitespace-pre-line">
@@ -3248,7 +3248,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
   return (
     <div className="space-y-8">
       {/* ── Hero Celebration Header ── */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-500 to-accent-500 dark:from-brand-800 dark:via-brand-700 dark:to-accent-700 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-500 to-accent-500 dark:from-brand-800 dark:via-brand-700 dark:to-accent-700 p-8 lg:p-10 text-white">
         {/* Confetti overlay */}
         {showConfetti && <ConfettiParticles />}
 
@@ -3261,24 +3261,24 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
           <div className="mb-5 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/15 backdrop-blur-sm shadow-lg shadow-black/10 animate-celebrate">
             <Trophy className="w-10 h-10 text-white" strokeWidth={1.5} aria-hidden />
           </div>
-          <h2 className="text-lg md:text-xl font-bold mb-2 drop-shadow-sm">
+          <h2 className="text-lg lg:text-xl font-bold mb-2 drop-shadow-sm">
             {content.introHeading ?? t('whatYouLearnedHeading')}
           </h2>
-          <p className="text-white/85 max-w-lg text-base md:text-lg leading-relaxed">
+          <p className="text-white/85 max-w-lg text-base lg:text-lg leading-relaxed">
             {content.introBody ?? ''}
           </p>
 
           {/* Stats row */}
           {content.stats && content.stats.length > 0 && (
-            <div className="mt-6 flex gap-4 md:gap-8 justify-center">
+            <div className="mt-6 flex gap-4 lg:gap-8 justify-center">
               {content.stats.map((stat, i) => (
                 <div
                   key={i}
                   className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 min-w-[80px] border border-white/10"
                   style={{ animationDelay: `${0.3 + i * 0.15}s` }}
                 >
-                  <span className="text-3xl md:text-4xl font-black leading-none">{stat.value}</span>
-                  <span className="text-xs md:text-sm text-white/70 mt-1 font-medium uppercase tracking-wider">{stat.label}</span>
+                  <span className="text-3xl lg:text-4xl font-black leading-none">{stat.value}</span>
+                  <span className="text-xs lg:text-sm text-white/70 mt-1 font-medium uppercase tracking-wider">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -3287,7 +3287,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
       </div>
 
       {/* ── Knowledge Section Cards (staggered entrance) ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {knowledgeSections.map((section, sIdx) => {
           const colors = sectionColorMap[section.color ?? 'brand'] ?? defaultColor;
           return (
@@ -3333,7 +3333,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
       {/* ── Reflection Prompt (full-width, dedicated section) ── */}
       {content.reflectionPrompt && (
         <div
-          className={`relative rounded-2xl border-2 border-accent-200 dark:border-accent-800 bg-accent-50 dark:bg-accent-900/20 p-6 md:p-8 flex flex-col transition-all duration-300 shadow-md ${
+          className={`relative rounded-2xl border-2 border-accent-200 dark:border-accent-800 bg-accent-50 dark:bg-accent-900/20 p-6 lg:p-8 flex flex-col transition-all duration-300 shadow-md ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: `${knowledgeSections.length * 120}ms` }}
@@ -3381,7 +3381,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
       {/* ── Pirmas veiksmas per 24–48 val. (User Journey) ── */}
       {content.firstAction24h && (
         <div
-          className={`relative overflow-hidden rounded-2xl border-2 border-accent-200 dark:border-accent-700 bg-accent-50/50 dark:bg-accent-900/20 p-6 md:p-8 transition-all duration-500 ${
+          className={`relative overflow-hidden rounded-2xl border-2 border-accent-200 dark:border-accent-700 bg-accent-50/50 dark:bg-accent-900/20 p-6 lg:p-8 transition-all duration-500 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: `${knowledgeSections.length * 120 + 80}ms` }}
@@ -3394,7 +3394,7 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
       {/* ── Next Step CTA ── */}
       {(nextStepSection || content.nextStepCTA) && (
         <div
-          className={`relative overflow-hidden rounded-2xl border-2 border-emerald-300 dark:border-emerald-700 bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 p-6 md:p-8 transition-all duration-500 ${
+          className={`relative overflow-hidden rounded-2xl border-2 border-emerald-300 dark:border-emerald-700 bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 p-6 lg:p-8 transition-all duration-500 ${
             showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
           style={{ transitionDelay: `${knowledgeSections.length * 120 + 100}ms` }}
@@ -3441,15 +3441,15 @@ export function SummarySlide({ content: contentProp, onNextStep }: SummarySlideP
 
       {/* ── Motivational Footer ── */}
       <div
-        className={`relative overflow-hidden rounded-2xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 p-6 md:p-8 text-center transition-all duration-500 ${
+        className={`relative overflow-hidden rounded-2xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 p-6 lg:p-8 text-center transition-all duration-500 ${
           showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
         style={{ transitionDelay: `${(knowledgeSections.length + 1) * 120 + 200}ms` }}
       >
         <div className="relative z-10">
           <div className="mb-3 flex justify-center" aria-hidden="true"><Sparkles className="w-8 h-8 text-brand-500 dark:text-brand-400" strokeWidth={1.5} /></div>
-          <h2 className="text-lg md:text-xl font-bold mb-2 text-brand-800 dark:text-brand-200">{isEn ? 'Good luck with AI!' : 'Sėkmės su DI!'}</h2>
-          <p className="text-brand-600 dark:text-brand-400 text-base md:text-lg max-w-md mx-auto">
+          <h2 className="text-lg lg:text-xl font-bold mb-2 text-brand-800 dark:text-brand-200">{isEn ? 'Good luck with AI!' : 'Sėkmės su DI!'}</h2>
+          <p className="text-brand-600 dark:text-brand-400 text-base lg:text-lg max-w-md mx-auto">
             {content.tagline ?? (isEn ? 'Structured prompts = predictable results = greater efficiency' : 'Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas')}
           </p>
         </div>
@@ -3499,14 +3499,14 @@ export function DiParadoxInfographicSlide({
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 overflow-hidden">
-        <div className="p-5 md:p-6 border-b border-slate-200 dark:border-slate-700 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-end">
+        <div className="p-5 lg:p-6 border-b border-slate-200 dark:border-slate-700 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 items-end">
           <div>
             {content.badge && (
               <span className="inline-flex items-center gap-1.5 bg-accent-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded mb-3">
                 {content.badge}
               </span>
             )}
-            <h2 className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-white leading-tight">
               {content.title}
             </h2>
             {content.subtitle && (
@@ -3527,13 +3527,13 @@ export function DiParadoxInfographicSlide({
         </div>
 
         {/* Hero Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-700 bg-slate-900 dark:bg-slate-950">
+        <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-700 bg-slate-900 dark:bg-slate-950">
           {(content.heroStats ?? []).map((stat, idx) => (
             <div
               key={idx}
-              className="relative p-5 md:p-6 flex flex-col gap-2 min-h-[52px] py-4 hover:bg-slate-800/50 dark:hover:bg-slate-800/30 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 md:after:left-6 md:after:right-6 after:h-0.5 after:bg-transparent hover:after:bg-accent-500 after:transition-colors"
+              className="relative p-5 lg:p-6 flex flex-col gap-2 min-h-[52px] py-4 hover:bg-slate-800/50 dark:hover:bg-slate-800/30 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 lg:after:left-6 lg:after:right-6 after:h-0.5 after:bg-transparent hover:after:bg-accent-500 after:transition-colors"
             >
-              <div className={`text-3xl md:text-4xl font-extrabold ${heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand}`}>
+              <div className={`text-3xl lg:text-4xl font-extrabold ${heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand}`}>
                 <StatWithTooltip value={stat.value} tooltip={stat.tooltip} colorClass={heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand} />
               </div>
               <div className="text-xs text-slate-300 dark:text-slate-400 leading-snug max-w-[180px]">{stat.label}</div>
@@ -3548,7 +3548,7 @@ export function DiParadoxInfographicSlide({
           Paradoksas: asmeninis vs. organizacinis lygmuo
           <span className="flex-1 h-px bg-slate-200 dark:bg-slate-600" />
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {(content.paradoxCards ?? []).map((card, idx) => (
             <div
               key={idx}
@@ -3581,7 +3581,7 @@ export function DiParadoxInfographicSlide({
 
       {/* Shadow Section – Bar Chart */}
       {content.shadowSection && (
-        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 md:p-6">
+        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 lg:p-6">
           <div className="mb-4">
             {content.shadowSection.sublabel && (
               <div className="text-[10px] font-normal uppercase tracking-wider text-slate-400 dark:text-slate-500">
@@ -3619,7 +3619,7 @@ export function DiParadoxInfographicSlide({
 
       {/* Funnel + Value – two columns */}
       {(content.funnelSection || content.valueSection) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {content.funnelSection && (
             <div>
               <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
@@ -3716,7 +3716,7 @@ export function DiParadoxInfographicSlide({
           <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
             {content.actionSection.label}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {(content.actionSection.cards ?? []).map((card, idx) => (
               <div
                 key={idx}
@@ -3739,7 +3739,7 @@ export function DiParadoxInfographicSlide({
 
       {/* Conclusion */}
       {content.conclusionSection && (
-        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 md:p-6 flex gap-4 items-start">
+        <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 lg:p-6 flex gap-4 items-start">
           <div className="text-4xl opacity-80" aria-hidden="true">{content.conclusionSection.icon}</div>
           <div>
             <h3 className="font-extrabold text-white text-lg mb-2">
@@ -3883,7 +3883,7 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
           {/* Right Section - Cards and Insights */}
           <div className="lg:col-span-2 p-6 lg:p-8 bg-gray-50 dark:bg-gray-900 flex flex-col">
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
               {(content.cards ?? []).map((card, idx) => (
                 <div
                   key={idx}
@@ -3913,7 +3913,7 @@ export function ProductivityInfographicSlide({ content, onGoToGlossary }: { cont
             </div>
             
             {/* Insights Row */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
               {(content.insights ?? []).map((insight, idx) => (
                 <div
                   key={idx}
@@ -4057,11 +4057,11 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
   const hasHeroImage = Boolean(heroImageVertical?.src);
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6 md:space-y-8">
+    <div className="w-full max-w-6xl mx-auto space-y-6 lg:space-y-8">
       {/* Portal masthead – "shouting" brand (Next Level AI), not report header */}
       {portalBrand && (
         <div className="flex items-center gap-3 border-b border-accent-200 dark:border-accent-800 py-4 bg-accent-50 dark:bg-accent-900/10 px-1 -mx-1 rounded-lg">
-          <span className="text-xl md:text-2xl font-extrabold text-accent-700 dark:text-accent-300 tracking-tight" aria-label={`Redakcija: ${portalBrand}`}>
+          <span className="text-xl lg:text-2xl font-extrabold text-accent-700 dark:text-accent-300 tracking-tight" aria-label={`Redakcija: ${portalBrand}`}>
             {portalBrand}
           </span>
           <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Žiniasklaida</span>
@@ -4087,7 +4087,7 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
             <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" aria-hidden />
             {eyebrow}
           </div>
-          <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
+          <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white leading-tight">
             {headline}
           </h2>
           <p className="mt-2 text-base text-gray-600 dark:text-gray-300 max-w-xl">{subline}</p>
@@ -4095,7 +4095,7 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
             <div className="mt-4 max-w-xl border-l-4 border-accent-400 dark:border-accent-600 pl-3" role="complementary" aria-label="Pagrindinė išvada – vienos eilutės takeaway">
               {takeaway && <p className="text-base font-bold text-accent-700 dark:text-accent-300">{takeaway}</p>}
               {takeawayCta && (
-                <p className="mt-2 text-base md:text-lg font-extrabold bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 dark:from-accent-500 dark:via-accent-600 dark:to-accent-700 bg-clip-text text-transparent">
+                <p className="mt-2 text-base lg:text-lg font-extrabold bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 dark:from-accent-500 dark:via-accent-600 dark:to-accent-700 bg-clip-text text-transparent">
                   {takeawayCta}
                 </p>
               )}
@@ -4103,8 +4103,8 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
           )}
         </div>
         <div className="bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white rounded-2xl p-5 text-center min-w-[200px] shadow-lg">
-          <div className="text-3xl md:text-4xl font-extrabold">{featured.bigNumber}</div>
-          <div className="mt-2 text-xs md:text-sm opacity-95 leading-snug">
+          <div className="text-3xl lg:text-4xl font-extrabold">{featured.bigNumber}</div>
+          <div className="mt-2 text-xs lg:text-sm opacity-95 leading-snug">
             {featured.labelStrong && <strong className="block">{featured.labelStrong}</strong>}
             {featured.label}
           </div>
@@ -4159,7 +4159,7 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
           {/* Level 1: full-width main insight block */}
           {mainInsightBlock && (
             <div
-              className="rounded-xl p-6 md:p-8 bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white flex flex-col sm:flex-row items-center gap-6 shadow-lg"
+              className="rounded-xl p-6 lg:p-8 bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white flex flex-col sm:flex-row items-center gap-6 shadow-lg"
               role="region"
               aria-label="Pagrindinė išvada"
             >
@@ -4175,8 +4175,8 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
                 </div>
               )}
               <div className="flex-1 min-w-0 text-center sm:text-left">
-                <div className="text-4xl md:text-5xl font-extrabold">{mainInsightBlock.bigNumber}</div>
-                <p className="mt-3 text-lg md:text-xl font-semibold opacity-95">{mainInsightBlock.label}</p>
+                <div className="text-4xl lg:text-5xl font-extrabold">{mainInsightBlock.bigNumber}</div>
+                <p className="mt-3 text-lg lg:text-xl font-semibold opacity-95">{mainInsightBlock.label}</p>
                 {mainInsightBlock.source && (
                   <p className="mt-2 text-sm opacity-75">{mainInsightBlock.source}</p>
                 )}
@@ -4185,7 +4185,7 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
           )}
           {/* Level 2: 2 smaller KPI cards */}
           {secondaryCards && secondaryCards.length === 2 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               {secondaryCards.map((card, idx) => (
                 <div
                   key={idx}
@@ -4363,7 +4363,7 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
             </div>
             {/* Zona 2: Jaunimas – pilno pločio kortelė */}
             <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <div className={`grid grid-cols-1 ${toolsAndYouth.youthImageVertical?.src ? 'md:grid-cols-[minmax(140px,200px)_1fr]' : ''} gap-4 items-stretch`}>
+              <div className={`grid grid-cols-1 ${toolsAndYouth.youthImageVertical?.src ? 'lg:grid-cols-[minmax(140px,200px)_1fr]' : ''} gap-4 items-stretch`}>
                 {toolsAndYouth.youthImageVertical?.src && (
                   <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
                     <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
@@ -4432,11 +4432,11 @@ export function NewsPortalInfographicSlide({ content }: { content?: NewsPortalIn
       {/* Single CTA block – invitation to act, not dashboard (GOLDEN_STANDARD: accent) */}
       {ctaBlock?.label && (
         <div
-          className="rounded-xl p-5 md:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
+          className="rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
           role="region"
           aria-label={t('whatToDoNextAria')}
         >
-          <p className="text-base md:text-lg font-bold text-gray-900 dark:text-white leading-snug">
+          <p className="text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
             {ctaBlock.label}
           </p>
           {ctaBlock.subline && (
@@ -4521,7 +4521,7 @@ export function PracticeSummarySlide({ content: contentProp, completedScenarioCo
         <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-emerald-400 to-brand-500 mb-4">
           <span className="text-4xl">🎓</span>
         </div>
-        <h2 className="text-lg md:text-xl font-bold mb-2 text-gray-900 dark:text-white">
+        <h2 className="text-lg lg:text-xl font-bold mb-2 text-gray-900 dark:text-white">
           {(c as { introHeading?: string }).introHeading ?? c.title ?? t('trainingCompleteTitle')} 🎉
         </h2>
         <p className="text-gray-700 dark:text-gray-300 max-w-lg mx-auto">
@@ -4632,7 +4632,7 @@ export function PathStepSlide({
           Žingsnis {content.stepNumber}
         </span>
       </div>
-      <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">{content.title}</h2>
+      <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">{content.title}</h2>
       {content.body && <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{content.body}</p>}
       {hasSections && (
         <div className="space-y-4">

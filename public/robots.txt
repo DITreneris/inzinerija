@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ditreneris.github.io/inzinerija/sitemap.xml

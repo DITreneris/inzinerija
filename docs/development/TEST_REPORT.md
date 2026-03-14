@@ -1,4 +1,4 @@
-# Testų ataskaita (vartotojo klaidos)
+﻿# Testų ataskaita (vartotojo klaidos)
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
@@ -26,7 +26,7 @@ Kiekvienam pranešimui:
 
 | Kriterijus | Įvertinimas (auditas §3) | Pastabos |
 |------------|--------------------------|-----------|
-| **Navigacija** | Sticky + bottom nav rodo M·N/N; modulio kontekstas matomas. | Po Faze 1–2: viršuje „M4 · 12/41“, apačioje tas pats; slide dots su gradient. |
+| **Navigacija** | Viena nav mobile: viršuje kompaktiškas counter + progress bar; apačioje fixed nav su Atgal/Tęsti. Breakpoint: lg (1024px). | Struktūrinis fix 2026-03-13: pašalinta dviguba navigacija, md→lg. |
 | **Skaitomumas** | Body text-base mobile; H2/H3 hierarchija. | Faze 1.3: content-block body text-base. |
 | **Informacijos tankis** | Max 2 badge kortelėje; vienas dominuojantis CTA. | Faze 1.5: modulių kortelė max 2 badge. |
 | **CTA matomumas** | Primary CTA (Tęsti) matomas; „Pereiti prie veiksmo“ ilgose skaidrėse. | Faze 2.1: mygtukas scroll į pirmą CTA. |

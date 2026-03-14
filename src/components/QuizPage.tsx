@@ -86,7 +86,7 @@ export default function QuizPage({
           <ArrowLeft className="w-5 h-5" />
           {t('backToHome')}
         </button>
-        <div className="card p-8 text-center">
+        <div className="card p-4 sm:p-6 lg:p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300">
             {t('emptyState')} {t('emptyStateHint')}
           </p>
@@ -117,7 +117,7 @@ export default function QuizPage({
           <ArrowLeft className="w-5 h-5" />
           {t('backToHome')}
         </button>
-        <div className="card p-8 text-center">
+        <div className="card p-4 sm:p-6 lg:p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300">{t('emptyState')}</p>
         </div>
       </div>
@@ -162,7 +162,7 @@ export default function QuizPage({
       </div>
 
       {/* Question card */}
-      <div className="card p-6 md:p-8">
+      <div className="card p-4 sm:p-6 lg:p-8">
         {/* Progress bar */}
         <div className="mb-6">
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
@@ -176,7 +176,7 @@ export default function QuizPage({
         </div>
         
         {/* Question */}
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+        <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
           {currentQ.question}
         </h2>
 

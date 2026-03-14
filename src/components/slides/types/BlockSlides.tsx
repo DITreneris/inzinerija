@@ -52,7 +52,7 @@ export function MetaBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Eleme
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-rose-50 dark:bg-rose-900/10 p-5 rounded-xl border-2 border-rose-200 dark:border-rose-800 relative">
           <div className="flex justify-between items-start mb-3">
             <span className="badge bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">{t('blockMetaBadLabel')}</span>
@@ -107,7 +107,7 @@ export function InputBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Elem
       <div className="space-y-4">
         <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border-2 border-gray-200 dark:border-gray-700">
           <h4 className="font-bold mb-3 text-gray-900 dark:text-white">{t('blockInputWhatToInclude')}</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 text-sm">
             {inputItems.map((item, idx) => (
               <div key={idx} className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
@@ -176,7 +176,7 @@ export function OutputBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Ele
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
           <h4 className="font-bold mb-3 text-brand-900 dark:text-brand-100">{t('blockOutputFormatTypesTitle')}</h4>
           <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
@@ -233,7 +233,7 @@ export function ReasoningModelsSlide({ slide, onRenderTask }: { slide?: Slide; o
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-brand-50 dark:bg-brand-900/20 p-4 rounded-xl border-2 border-brand-200 dark:border-brand-800" role="article" aria-label={t('blockReasoningModelsCotTitle')}>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl" aria-hidden="true">🔗</span>
@@ -267,7 +267,7 @@ export function ReasoningModelsSlide({ slide, onRenderTask }: { slide?: Slide; o
           <span className="text-gray-400 dark:text-gray-500 group-open:rotate-180 transition-transform text-sm shrink-0">▼</span>
         </summary>
         <div className="px-5 pb-5 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
               <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">{t('blockReasoningModelsWhenUse')}</p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -304,7 +304,7 @@ export function ReasoningModelsSlide({ slide, onRenderTask }: { slide?: Slide; o
           <span className="text-gray-400 dark:text-gray-500 group-open:rotate-180 transition-transform text-sm shrink-0">▼</span>
         </summary>
         <div className="px-5 pb-5 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
               <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">{t('blockReasoningModelsWhenUse')}</p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -332,7 +332,7 @@ export function ReasoningModelsSlide({ slide, onRenderTask }: { slide?: Slide; o
         </div>
       </details>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <TemplateBlock label={t('blockReasoningModelsCotTemplateLabel')} template={cotTemplate} />
         <TemplateBlock label={t('blockReasoningModelsTotTemplateLabel')} template={totTemplate} />
       </div>
@@ -378,7 +378,7 @@ export function ReasoningBlockSlide({ slide, onRenderTask }: { slide?: Slide; on
         <p className="text-sm text-gray-300 mt-2">{t('blockReasoningHero3')}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl border-2 border-emerald-200 dark:border-emerald-800" role="article" aria-label={t('blockReasoningUseWhen')}>
           <h4 className="font-bold mb-2 text-emerald-900 dark:text-emerald-100 flex items-center gap-2 text-sm">
             <span>✅</span> {t('blockReasoningUseWhen')}
@@ -513,7 +513,7 @@ export function QualityBlockSlide({ slide, onRenderTask }: { slide?: Slide; onRe
       <div className="bg-rose-50 dark:bg-rose-900/20 border-2 border-rose-300 dark:border-rose-700 p-5 rounded-xl">
         <h4 className="font-bold text-base mb-3 text-rose-900 dark:text-rose-100">{t('blockQualityNotEqual')}</h4>
         <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">{t('blockQualityNotEqualBody')}</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <div className="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 p-3 rounded-lg" role="article" aria-label={t('blockQualityBadLabel')}>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-lg">❌</span>

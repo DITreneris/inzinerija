@@ -43,7 +43,7 @@ export default function PromptLibrary() {
   };
 
   return (
-    <div className="card p-8 md:p-10 animate-fade-in">
+    <div className="card p-8 lg:p-10 animate-fade-in">
       <div className="flex items-center gap-3 mb-2">
         <div className="bg-brand-100 dark:bg-brand-900/30 p-2.5 rounded-xl">
           <BookOpen className="w-6 h-6 text-brand-600 dark:text-brand-400" />
@@ -69,7 +69,7 @@ export default function PromptLibrary() {
               <Sparkles className="w-5 h-5 text-brand-500" />
               {section.title}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               {section.items.map((item) => (
                 <div
                   key={item.id}

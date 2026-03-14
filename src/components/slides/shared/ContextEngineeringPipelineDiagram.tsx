@@ -139,7 +139,7 @@ export default function ContextEngineeringPipelineDiagram({ className = '', inte
         <div
           role="status"
           aria-live="polite"
-          className="pointer-events-none absolute z-10 left-1/2 -translate-x-1/2 w-[92%] max-w-[420px] px-3 py-2 rounded-lg border border-brand-200 dark:border-brand-700 bg-white/95 dark:bg-gray-900/95 text-xs md:text-sm text-brand-900 dark:text-brand-100 shadow-md"
+          className="pointer-events-none absolute z-10 left-1/2 -translate-x-1/2 w-[92%] max-w-[420px] px-3 py-2 rounded-lg border border-brand-200 dark:border-brand-700 bg-white/95 dark:bg-gray-900/95 text-xs lg:text-sm text-brand-900 dark:text-brand-100 shadow-md"
           style={{ top: `calc(${tooltipTopPercent}% - 44px)` }}
         >
           <span className="font-semibold">{hoveredStep.title}:</span>{' '}
@@ -424,7 +424,7 @@ export default function ContextEngineeringPipelineDiagram({ className = '', inte
       {/* ═══ Mini panelė po paspaudimo ═══ */}
       {activeStep && (
         <section
-          className="p-4 md:p-5 rounded-xl border border-brand-200 dark:border-brand-800 bg-white dark:bg-gray-900/40 space-y-3"
+          className="p-4 lg:p-5 rounded-xl border border-brand-200 dark:border-brand-800 bg-white dark:bg-gray-900/40 space-y-3"
           aria-label={`${uiLabels.stepDetailAria}: ${activeStep.title}`}
         >
           <div className="space-y-1">
@@ -436,7 +436,7 @@ export default function ContextEngineeringPipelineDiagram({ className = '', inte
             </p>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-700 p-3 md:p-4 space-y-2">
+          <div className="rounded-lg border border-gray-200 dark:border-gray-700 p-3 lg:p-4 space-y-2">
             <h4 className="font-bold text-brand-900 dark:text-brand-100">{activeStep.title}</h4>
             <p className="text-sm text-gray-700 dark:text-gray-300">
               <span className="font-semibold">{content.labels.hint}:</span> {activeStep.description}
@@ -448,7 +448,7 @@ export default function ContextEngineeringPipelineDiagram({ className = '', inte
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-3">
               <p className="text-xs uppercase tracking-wide font-bold text-amber-700 dark:text-amber-300 mb-1">
                 {content.labels.withoutContext}

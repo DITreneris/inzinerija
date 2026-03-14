@@ -6,6 +6,7 @@
  */
 import { useState } from 'react';
 import WorkflowComparisonDiagram from './WorkflowComparisonDiagram';
+import { useIsMobile } from '../../../utils/useIsMobile';
 import type { WorkflowMode, OutputType, Locale } from './workflowComparisonConfig';
 import {
   getWorkflowModes,
@@ -25,6 +26,7 @@ interface Props {
 export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Props) {
   const [mode, setMode] = useState<WorkflowMode>('basic');
   const [promptInput, setPromptInput] = useState('');
+  const isMobile = useIsMobile();
 
   const workflowModes = getWorkflowModes(locale);
   const config = workflowModes[mode];
@@ -96,7 +98,7 @@ export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Pr
         </div>
       </div>
 
-      {/* Section 1 — Schema (Hero) su Workflow glow */}
+      {/* Section 1 — Schema (Hero) su Workflow glow; mobile: horizontally scrollable */}
       <div
         className={`max-w-[800px] mx-auto pt-8 pb-6 rounded-xl px-4 py-6 transition-colors duration-300 border bg-white dark:bg-gray-900 ${
           isWorkflow
@@ -104,11 +106,23 @@ export default function WorkflowComparisonInteractiveBlock({ locale = 'lt' }: Pr
             : 'border-gray-200 dark:border-gray-700 shadow-lg shadow-gray-200/50 dark:shadow-none'
         }`}
       >
-        <WorkflowComparisonDiagram
-          locale={locale}
-          mode={mode}
-          outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
-        />
+        {isMobile ? (
+          <div className="overflow-x-auto -mx-2 px-2 pb-2">
+            <div style={{ minWidth: 620 }}>
+              <WorkflowComparisonDiagram
+                locale={locale}
+                mode={mode}
+                outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
+              />
+            </div>
+          </div>
+        ) : (
+          <WorkflowComparisonDiagram
+            locale={locale}
+            mode={mode}
+            outputType={isWorkflow ? FIXED_OUTPUT_TYPE : undefined}
+          />
+        )}
       </div>
 
       {/* CTA — vienas accent blokas po schema */}

@@ -36,7 +36,7 @@ export const spacingClasses = {
   cardPaddingMd: 'p-5' as const,
   cardPaddingLg: 'p-6' as const,
   /** Skaidrės wrapper */
-  slideWrapper: 'p-6 md:p-10' as const,
+  slideWrapper: 'p-6 lg:p-10' as const,
   /** Tarp sekcijų (Summary) */
   sectionGap: 'space-y-8' as const,
 } as const;

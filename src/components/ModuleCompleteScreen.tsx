@@ -57,7 +57,7 @@ export function ModuleCompleteScreen({
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <div className="card p-8 md:p-12 text-center">
+      <div className="card p-8 lg:p-12 text-center">
         <div className="mb-6">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 border-2 border-emerald-200 dark:border-emerald-700">
             <CheckCircle className="w-10 h-10 text-emerald-500 dark:text-emerald-400" />
@@ -97,7 +97,7 @@ export function ModuleCompleteScreen({
         {/* Hidden treasure: atrakinto sertifikato „discovery“ blokas (Unlock Features pattern) */}
         {(showCertTier1 || showCertTier2) && (
           <div
-            className="mb-8 p-5 md:p-6 rounded-2xl border-2 border-accent-300 dark:border-accent-600 bg-accent-50 dark:bg-accent-900/25 text-center"
+            className="mb-8 p-5 lg:p-6 rounded-2xl border-2 border-accent-300 dark:border-accent-600 bg-accent-50 dark:bg-accent-900/25 text-center"
             role="region"
             aria-label={t('module:unlockCertTitle')}
           >
@@ -192,13 +192,13 @@ export function ModuleCompleteScreen({
         {/* „Kur pritaikyti?“ – use-case blokas (M1, M3, M6 Faze 3 – M6 kompaktiškai) */}
         {(module.id === 1 || module.id === 3 || module.id === 6) && (
           <section
-            className={`mb-8 rounded-2xl border border-brand-200 dark:border-brand-700 bg-brand-50/80 dark:bg-brand-900/20 text-left ${module.id === 6 ? 'p-4 md:p-5' : 'p-5 md:p-6'}`}
+            className={`mb-8 rounded-2xl border border-brand-200 dark:border-brand-700 bg-brand-50/80 dark:bg-brand-900/20 text-left ${module.id === 6 ? 'p-4 lg:p-5' : 'p-5 lg:p-6'}`}
             aria-labelledby="use-case-heading"
           >
             <h3 id="use-case-heading" className={`font-bold text-brand-800 dark:text-brand-200 ${module.id === 6 ? 'text-base mb-2' : 'text-lg mb-3'}`}>
               {t('module:useCaseHeading')}
             </h3>
-            <ul className={`space-y-1.5 text-brand-700 dark:text-brand-300 list-disc list-inside ${module.id === 6 ? 'text-xs md:text-sm' : 'text-sm'}`} aria-label={t('module:useCaseHeading')}>
+            <ul className={`space-y-1.5 text-brand-700 dark:text-brand-300 list-disc list-inside ${module.id === 6 ? 'text-xs lg:text-sm' : 'text-sm'}`} aria-label={t('module:useCaseHeading')}>
               {module.id === 1 && (
                 <>
                   <li>{t('module:useCaseM1_1')}</li>

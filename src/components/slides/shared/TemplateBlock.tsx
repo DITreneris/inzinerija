@@ -14,7 +14,7 @@ interface TemplateBlockProps {
 export default function TemplateBlock({ id, label, template, copyAriaLabel, copyCopiedLabel }: TemplateBlockProps) {
   const { locale } = useLocale();
   return (
-    <div className="bg-accent-50/50 dark:bg-accent-900/10 border border-gray-200 dark:border-gray-700 rounded-xl p-4 md:p-5 relative" data-action="copy">
+    <div className="bg-accent-50/50 dark:bg-accent-900/10 border border-gray-200 dark:border-gray-700 rounded-xl p-4 lg:p-5 relative" data-action="copy">
       {label && (
         <p id={id} className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-2">
           {label}

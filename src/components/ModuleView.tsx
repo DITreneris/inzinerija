@@ -111,7 +111,7 @@ function SlideGroupProgressBar({
             </div>
             {group.label && (
               <span
-                className={`hidden md:inline text-[10px] font-medium max-w-full text-center break-words ${
+                className={`hidden lg:inline text-[10px] font-medium max-w-full text-center break-words ${
                   isActive
                     ? 'text-brand-600 dark:text-brand-400'
                     : isPast
@@ -573,7 +573,7 @@ function ModuleView({
   if (!module) {
     return (
       <div className="space-y-6">
-        <div className="card p-4 md:p-6">
+        <div className="card p-4 lg:p-6">
           <button
             onClick={onBack}
             className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg px-3 py-2 min-h-[44px]"
@@ -608,7 +608,7 @@ function ModuleView({
   if (showResumePrompt && module) {
     return (
       <div className="space-y-6">
-        <div className="card p-4 md:p-6">
+        <div className="card p-4 lg:p-6">
           <button
             onClick={onBack}
             className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg px-3 py-2 min-h-[44px]"
@@ -619,7 +619,7 @@ function ModuleView({
           </button>
         </div>
 
-        <div className="card p-8 md:p-12 min-h-[400px] flex flex-col items-center justify-center text-center">
+        <div className="card p-8 lg:p-12 min-h-[400px] flex flex-col items-center justify-center text-center">
           <div className="bg-brand-100 dark:bg-brand-900/30 p-4 rounded-full mb-6">
             <Play className="w-10 h-10 text-brand-600 dark:text-brand-400" />
           </div>
@@ -674,7 +674,7 @@ function ModuleView({
     <div className="space-y-6">
       {/* A-M3: Remediation return – grįžti į testo rezultatą */}
       {remediationFrom && onReturnToRemediation && (
-        <div className="rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/20 p-3 md:p-4 flex items-center justify-between gap-3">
+        <div className="rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/20 p-3 lg:p-4 flex items-center justify-between gap-3">
           <p className="text-sm text-brand-800 dark:text-brand-200">
             {t('remediationBannerText', { moduleId: remediationFrom.sourceModuleId })}
           </p>
@@ -691,7 +691,7 @@ function ModuleView({
       )}
 
       {/* Header */}
-      <div className="card p-4 md:p-6">
+      <div className="card p-4 lg:p-6">
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={onBack}
@@ -703,7 +703,7 @@ function ModuleView({
             <span className="sm:hidden">{t('module:backShort')}</span>
           </button>
 
-          <div className="hidden md:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="hidden lg:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
             <span className="flex items-center gap-2" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
               <span>{t('slideShort')}</span>
               <span className="font-bold text-brand-600 dark:text-brand-400">
@@ -764,30 +764,36 @@ function ModuleView({
                   )
                 )}
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+              <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
                 {currentSlideData.shortTitle ?? currentSlideData.title}
               </h1>
               {currentSlideData.subtitle != null && (
-                <p className="hidden md:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">{currentSlideData.subtitle}</p>
+                <p className="hidden lg:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">{currentSlideData.subtitle}</p>
               )}
             </div>
           )}
 
-          {/* Single nav bar; sticky. Compact "12/41" + 2px progress line; Primary CTA = Tęsti */}
+          {/* Sticky nav bar: mobile = compact counter + progress line only; desktop (lg+) = full Atgal/counter/Tęsti */}
           <nav className="sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm" aria-label={t('slideNavBarAria')}>
-            <div className="flex items-center justify-between gap-3 py-2">
+            {/* Mobile: compact counter only (buttons are in bottom nav) */}
+            <div className="lg:hidden flex items-center justify-center py-1.5 px-3">
+              <span className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/{module.slides.length}
+              </span>
+            </div>
+            {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
+            <div className="hidden lg:flex items-center justify-between gap-3 py-2">
               <button
                 type="button"
                 onClick={prevSlide}
                 disabled={isFirstSlide}
-                className="flex items-center gap-1.5 px-2.5 py-2.5 rounded-lg text-sm font-medium min-h-[44px] min-w-[44px] bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                className="shrink-0 flex items-center gap-1.5 px-2.5 py-2.5 rounded-lg text-sm font-medium min-h-[44px] min-w-[44px] whitespace-nowrap bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
                 aria-label={t('prevSlide')}
               >
                 <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
                 <span>{t('backShort')}</span>
               </button>
               <span className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
-                <span className="md:hidden">{t('moduleLabel', { n: moduleId })} · </span>
                 {currentSlide + 1}/{module.slides.length}
               </span>
               <button
@@ -798,7 +804,7 @@ function ModuleView({
                 className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium min-h-[48px] bg-brand-600 dark:bg-brand-500 text-white hover:bg-brand-700 dark:hover:bg-brand-600 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
                 aria-label={isLastSlide ? t('completeAria') : nextButtonLabel ?? t('nextSlide')}
               >
-                <span title={nextSlideContextLabel ?? undefined}>{isLastSlide ? t('complete') : (nextButtonLabel ?? t('continueShort'))}</span>
+                <span className="truncate" title={nextSlideContextLabel ?? undefined}>{isLastSlide ? t('complete') : (nextButtonLabel ?? t('continueShort'))}</span>
                 {!isLastSlide && <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />}
                 {isLastSlide && <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />}
               </button>
@@ -863,7 +869,7 @@ function ModuleView({
       </div>
 
       {/* Mobile: Bottom Navigation Bar */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800 shadow-lg z-30 safe-area-inset-bottom">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800 shadow-lg z-30 safe-area-inset-bottom">
         <div className="max-w-7xl mx-auto px-4 py-2">
           <div className="flex items-center justify-between gap-3">
             <button
@@ -873,10 +879,10 @@ function ModuleView({
               aria-label={t('prevSlide')}
             >
               <ChevronLeft className="w-5 h-5" />
-              <span className="font-medium">{t('backShort')}</span>
+              <span className="font-medium whitespace-nowrap">{t('backShort')}</span>
             </button>
 
-            <div className="hidden md:flex items-center justify-center px-2 min-w-[60px] shrink-0" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
+            <div className="hidden lg:flex items-center justify-center px-2 min-w-[60px] shrink-0" aria-label={t('slideOf', { current: currentSlide + 1, total: module.slides.length })}>
               <p className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap">
                 {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/{module.slides.length}
               </p>
@@ -905,10 +911,10 @@ function ModuleView({
       </div>
 
       {/* Spacer for mobile bottom nav; safe-area for notch/gesture bar */}
-      <div className="md:hidden min-h-[5rem] pb-[env(safe-area-inset-bottom)]" />
+      <div className="lg:hidden min-h-[5rem] pb-[env(safe-area-inset-bottom)]" />
 
       {/* Progress info moved below content – hidden on mobile (sticky + bottom bar show progress) */}
-      <div className="hidden md:block mt-6 space-y-3">
+      <div className="hidden lg:block mt-6 space-y-3">
         <div className="flex items-center justify-between gap-4">
           {/* Module indicator: skaičius = modulio nr., žalia varnelė = baigtas */}
           <div className="hidden sm:flex flex-col gap-1">
@@ -953,19 +959,19 @@ function ModuleView({
           getPhaseDisplayLabel={getPhaseDisplayLabel}
         />
         
-        <p className="hidden md:block text-xs text-gray-500 dark:text-gray-300 text-center">
+        <p className="hidden lg:block text-xs text-gray-500 dark:text-gray-300 text-center">
           {t('keyboardNavHint')}
         </p>
       </div>
 
       {/* Slide dots: viena eilutė + horizontalus scroll; gradient mask dešinėje („yra daugiau") – hidden on mobile */}
-      <div className="hidden md:flex mt-4 justify-center relative">
+      <div className="hidden lg:flex mt-4 justify-center relative">
         <div
           className="flex overflow-x-auto overflow-y-hidden justify-start max-w-full scroll-smooth pb-2 mask-gradient-dots"
           role="group"
           aria-label={t('slideDotsAria', { count: module.slides.length })}
         >
-          <div className="flex gap-1 md:gap-2 flex-nowrap justify-start min-w-max mx-auto">
+          <div className="flex gap-1 lg:gap-2 flex-nowrap justify-start min-w-max mx-auto">
             {module.slides.map((_, idx) => {
               const isLongModule = module.slides.length > 24;
               const sizeClass = isLongModule

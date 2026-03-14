@@ -8,9 +8,11 @@ import { getDiPrezentacijosBlockLabels } from './diPrezentacijosWorkflowConfig';
 import { getDiPrezentacijosStepExplanations } from './stepExplanations';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
+import { useIsMobile } from '../../../utils/useIsMobile';
 
 export default function DiPrezentacijosWorkflowBlock() {
   const { locale } = useLocale();
+  const isMobile = useIsMobile();
   const explanations = getDiPrezentacijosStepExplanations(locale);
   const blockLabels = getDiPrezentacijosBlockLabels(locale);
   const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
@@ -28,7 +30,15 @@ export default function DiPrezentacijosWorkflowBlock() {
         <span className="text-xs text-gray-500 dark:text-gray-400">{currentStep + 1} / {TOTAL_STEPS}</span>
       </div>
 
-      <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
+      {isMobile ? (
+        <div className="overflow-x-auto -mx-2 px-2 pb-2">
+          <div style={{ minWidth: 480 }}>
+            <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
+          </div>
+        </div>
+      ) : (
+        <DiPrezentacijosWorkflowDiagram currentStep={currentStep} onStepClick={setCurrentStep} locale={locale} />
+      )}
 
       <nav className="flex flex-wrap justify-center gap-1.5" aria-label={blockLabels.navAria}>
         {explanations.map((s, idx) => (

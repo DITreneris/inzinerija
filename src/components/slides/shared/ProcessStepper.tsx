@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 import { useLocale } from '../../../contexts/LocaleContext';
 import CustomGptProcessDiagram from './CustomGptProcessDiagram';
+import { useIsMobile } from '../../../utils/useIsMobile';
 
 export interface ProcessStep {
   id: number;
@@ -128,6 +129,7 @@ const CUSTOM_GPT_STEPS_EN: ProcessStep[] = [
 export default function ProcessStepper() {
   const { t } = useTranslation('stepper');
   const { locale } = useLocale();
+  const isMobile = useIsMobile();
   const [currentStep, setCurrentStep] = useState(0);
   const steps = locale === 'en' ? CUSTOM_GPT_STEPS_EN : CUSTOM_GPT_STEPS;
   const stepTitles = steps.map((s) => s.title);
@@ -150,7 +152,15 @@ export default function ProcessStepper() {
             {currentStep + 1} / {steps.length}
           </span>
         </div>
-        <CustomGptProcessDiagram currentStep={currentStep} onStepClick={setCurrentStep} stepTitles={stepTitles} className="min-h-[320px]" />
+        {isMobile ? (
+          <div className="overflow-x-auto -mx-2 px-2 pb-2">
+            <div style={{ minWidth: 600 }}>
+              <CustomGptProcessDiagram currentStep={currentStep} onStepClick={setCurrentStep} stepTitles={stepTitles} className="min-h-[320px]" />
+            </div>
+          </div>
+        ) : (
+          <CustomGptProcessDiagram currentStep={currentStep} onStepClick={setCurrentStep} stepTitles={stepTitles} className="min-h-[320px]" />
+        )}
       </div>
 
       {/* Žingsnių juosta: pasirinkimas */}

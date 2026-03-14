@@ -2,8 +2,9 @@
 
 > **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.2.0, 2026-03-12). Šis dokumentas yra **atskaitos taškas** – sistema veikia, moduliai 1–6 deployed, ir bet kokie tolimesni pakeitimai turi būti vertinami šio standarto kontekste.  
 > **Apimtis:** Visa kodo bazė, išskyrus modulių 7–15 turinį (jie yra `modules.json`, bet dar neplėtojami).  
-> **Versija:** 1.0.0  
-> **Data:** 2026-03-12  
+> **Versija:** 1.1.0  
+> **Data:** 2026-03-14  
+> **1.1.0:** Production hardening – pridėti husky, lint-staged, prettier, rollup-plugin-visualizer; .nvmrc, .husky/, public/ brand assets (favicon.svg, apple-touch-icon.png, og-image.png, robots.txt); NPM skriptai typecheck/prepare/analyze; CI pipeline typecheck žingsnis; Tailwind `gold` spalva; Global CSS `--brand-gold`, `btn-hero-cta` auksinis gradientas, `prefers-reduced-motion`, dark mode `#0d0d0d` fonas.  
 > Šis dokumentas – **techninė** atspirties būsena. Turinio ir dizaino SOT – **`docs/development/GOLDEN_STANDARD.md`**.
 
 ---
@@ -115,6 +116,10 @@ Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus
 | `eslint-plugin-react-hooks` | ^4.6.0 | React hooks taisyklės |
 | `eslint-plugin-react-refresh` | ^0.4.5 | React refresh taisyklės |
 | `@typescript-eslint/*` | ^6.14.0 | TypeScript ESLint |
+| `husky` | ^9.x | Pre-commit hooks |
+| `lint-staged` | ^15.x | Staged failų lint/format |
+| `rollup-plugin-visualizer` | ^5.x | Bundle analysis |
+| `prettier` | ^3.x | Code formatter |
 
 ### Engine reikalavimai
 - Node.js ≥18.0.0
@@ -128,6 +133,8 @@ Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus
 prompt-anatomy-training/
 ├── .cursor/rules/           # Cursor AI taisyklės (agent orchestrator, content, scheme, etc.)
 ├── .github/workflows/       # CI/CD (deploy.yml, test.yml)
+├── .husky/pre-commit        # Pre-commit hook (lint-staged)
+├── .nvmrc                   # Node.js versijos fiksavimas (22)
 ├── api/                     # Serverless API (verify-access.ts)
 ├── docs/                    # Dokumentacija
 │   ├── deployment/          # Deployment gairės
@@ -136,7 +143,11 @@ prompt-anatomy-training/
 │   │   └── context-engineering/ # SOT indeksas, konteksto biudžetas
 │   └── ...                  # Turinio plėtra, audito ataskaitos
 ├── public/                  # Statiniai failai (SVG diagramos, šriftai, banneriai)
-│   └── fonts/               # NotoSans-Regular.ttf (PDF, LT diakritika)
+│   ├── fonts/               # NotoSans-Regular.ttf (PDF, LT diakritika)
+│   ├── robots.txt           # SEO – leisti indeksavimą
+│   ├── favicon.svg          # Brand žaibas (geltonas ant tamsaus fono)
+│   ├── apple-touch-icon.png # iOS home screen ikona (180×180)
+│   └── og-image.png         # OG socialinio dalinimosi paveikslas (1200×630)
 ├── sales-os/                # Pardavimų dokumentai
 ├── scripts/                 # Build/utility skriptai
 │   └── schemas/             # JSON schemos (modules, glossary, tools, etc.)
@@ -816,11 +827,24 @@ helmet: ['react-helmet-async']
   "audit:long-no-collapsible": "node scripts/audit-long-without-collapsible.mjs",
   "audit:heading-time": "node scripts/audit-heading-time-ambiguity.mjs",
   "audit:footer-numbers": "node scripts/audit-footer-numbers.mjs",
-  "prebuild": "npm run validate:schema"
+  "prebuild": "npm run validate:schema",
+  "typecheck": "tsc --noEmit",
+  "prepare": "husky",
+  "analyze": "ANALYZE=true vite build"
 }
 ```
 
 **Svarbu:** `prebuild` automatiškai vykdo JSON validaciją prieš kiekvieną build.
+
+**`lint-staged` konfigūracija** (`package.json`):
+```json
+{
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+    "*.{json,md,css}": ["prettier --write"]
+  }
+}
+```
 
 ---
 
@@ -835,9 +859,10 @@ helmet: ['react-helmet-async']
 1. `npm ci`
 2. `npm run validate:schema`
 3. `npm run lint`
-4. `npm run test:run`
-5. `VITE_MVP_MODE=1 npm run build`
-6. Coverage upload (tik Node 20.x) → Codecov
+4. `npm run typecheck`
+5. `npm run test:run`
+6. `VITE_MVP_MODE=1 npm run build`
+7. Coverage upload (tik Node 20.x) → Codecov
 
 ### 15.2 Deploy workflow (`.github/workflows/deploy.yml`)
 
@@ -848,9 +873,10 @@ helmet: ['react-helmet-async']
 1. `npm ci`
 2. Schema validacija
 3. Lint
-4. Tests
-5. Default production build (be `VITE_MVP_MODE`)
-6. Core production build (`VITE_MVP_MODE=1`)
+4. Typecheck (`tsc --noEmit`)
+5. Tests
+6. Default production build (be `VITE_MVP_MODE`)
+7. Core production build (`VITE_MVP_MODE=1`)
 
 **Build-and-deploy job** (po quality gates):
 1. `npm ci`
@@ -988,6 +1014,7 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 |-------------|---------|------------|
 | `brand` (50–950) | Navy/slate mėlyna (#627d98, #486581) | Pagrindinė spalva |
 | `accent` (50–950) | Auksinė (#d4a520, #b8860b) | Akcentai, CTA |
+| `gold` | #f3cc30 | Brand akcentas (žaibas, hero CTA) |
 | `di-visata` (50–950) | Custom | DI visatos tema |
 | `slate` (50–950) | Pilka | Fonas, border |
 
@@ -1002,20 +1029,27 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 ### 19.2 Global CSS (`src/index.css`)
 
 **Šriftai:** Plus Jakarta Sans (Google Fonts), JetBrains Mono  
-**Base stiliai:** dark mode, focus-visible, scrollbar, mobile touch, safe-area  
+**Base stiliai:** dark mode (`#0d0d0d` fonas), focus-visible, scrollbar, mobile touch, safe-area  
+**CSS custom properties:**
+- `:root { --brand-gold: #f3cc30 }` – centralizuota brand gold spalva
+
 **Custom klasės:**
 - `.mask-gradient-dots` – gradientinis taškų mask
 - `.rag-duomenu-step` – RAG žingsnio stilius
 - `.progress-ring` – progreso žiedo animacija
 - `.particle` – dalelių animacija
 - `.gradient-text` – gradientinis tekstas
-- `.btn-hero-cta` – hero CTA mygtukas
+- `.gradient-text-hero` – hero gradientinis tekstas (brand → gold)
+- `.btn-hero-cta` – hero CTA mygtukas (auksinis gradientas `#f3cc30 → #d4a520`, dark: subtilus glow)
 - `.glass-card` – stiklinio efekto kortelė
 - `.btn-primary` – pirminis mygtukas
 - `.card` – kortelė
 - `.badge` – žymė
 - `.input` – įvesties laukas
 - `.mono` – monospace šriftas
+
+**Accessibility:**
+- `@media (prefers-reduced-motion: reduce)` – visos animacijos ir transition išjungiamos
 
 ---
 

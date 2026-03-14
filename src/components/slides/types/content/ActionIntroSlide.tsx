@@ -35,7 +35,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
 
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 lg:p-10 text-white">
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true">
           <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-black leading-none select-none">?</div>
           <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-black leading-none select-none">!</div>
@@ -50,10 +50,10 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
           {!showHookOnly && (
             <>
               <div className="flex flex-col gap-1">
-                <p className="text-base md:text-lg text-gray-300 dark:text-gray-400 font-medium tracking-tight">
+                <p className="text-base lg:text-lg text-gray-300 dark:text-gray-400 font-medium tracking-tight">
                   {content.heroStat}
                 </p>
-                <h2 className="text-xl md:text-2xl font-bold tracking-tight leading-tight">
+                <h2 className="text-xl lg:text-2xl font-bold tracking-tight leading-tight">
                   <span className="bg-gradient-to-r from-brand-300 to-accent-300 bg-clip-text text-transparent">
                     {content.heroText}
                   </span>
@@ -106,7 +106,7 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
 
       {hasReveal && revealed && (
         <div className="animate-slide-in">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="bg-rose-50 dark:bg-rose-900/20 border-2 border-rose-200 dark:border-rose-800 rounded-2xl p-5 sm:p-6 flex flex-col">
               <p className="text-xs font-semibold text-rose-700 dark:text-rose-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" aria-hidden="true" />

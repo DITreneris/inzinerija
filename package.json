@@ -18,7 +18,10 @@
     "audit:long-no-collapsible": "node scripts/audit-long-without-collapsible.mjs",
     "audit:heading-time": "node scripts/audit-heading-time-ambiguity.mjs",
     "audit:footer-numbers": "node scripts/audit-footer-numbers.mjs",
-    "prebuild": "npm run validate:schema"
+    "typecheck": "tsc --noEmit",
+    "analyze": "ANALYZE=true vite build",
+    "prebuild": "npm run validate:schema",
+    "prepare": "husky"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",
@@ -50,8 +53,11 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "husky": "^9.1.7",
     "jsdom": "^23.0.1",
+    "lint-staged": "^16.3.3",
     "postcss": "^8.4.32",
+    "rollup-plugin-visualizer": "^6.0.11",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
@@ -78,5 +84,14 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix --max-warnings 0",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
   }
 }

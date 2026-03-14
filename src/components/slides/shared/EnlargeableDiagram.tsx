@@ -1,29 +1,30 @@
 import { useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { X } from 'lucide-react';
+import { X, Maximize2 } from 'lucide-react';
+import { useIsMobile } from '../../../utils/useIsMobile';
 
 interface EnlargeableDiagramProps {
-  /** Funkcija, kuri grąžina diagramos React medį. Kvietimas du kartus: skaidrėje ir modale – tas pats turinys. */
   renderContent: () => ReactNode;
-  /** Etiketė mygtukui ir modalo aria-label */
   enlargeLabel: string;
-  /** Papildoma klasė wrapper'iui */
   className?: string;
+  /** Minimum width for the scrollable mobile container (default 600px) */
+  mobileMinWidth?: number;
 }
 
 /**
- * Diagrama (React komponentas), kurią paspaudus „Peržiūrėti visą dydį“ atidaromas modalas su tuo pačiu turiniu.
- * Naudojama Schema 3/4: vartotojas visur mato tą patį React komponentą, ne statinį SVG.
- * Uždaryti: Escape, backdrop paspaudimas arba uždarymo mygtukas.
+ * Mobile (<lg): diagram rendered at readable size in a horizontally scrollable container.
+ * Desktop (lg+): diagram inline with "View full size" modal button.
  */
 export default function EnlargeableDiagram({
   renderContent,
   enlargeLabel,
   className = '',
+  mobileMinWidth = 600,
 }: EnlargeableDiagramProps) {
   const { t } = useTranslation('common');
   const [open, setOpen] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const isMobile = useIsMobile();
 
   const close = useCallback(() => setOpen(false), []);
 
@@ -36,6 +37,29 @@ export default function EnlargeableDiagram({
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [open, close]);
+
+  if (isMobile) {
+    return (
+      <div className={className}>
+        <div className="relative">
+          <div
+            className="overflow-x-auto overflow-y-hidden -mx-2 px-2 pb-3"
+            role="img"
+            aria-label={enlargeLabel}
+          >
+            <div style={{ minWidth: mobileMinWidth }}>
+              {renderContent()}
+            </div>
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent" aria-hidden />
+        </div>
+        <div className="flex items-center gap-2 mt-1">
+          <Maximize2 className="w-3.5 h-3.5 text-gray-400" aria-hidden />
+          <span className="text-xs text-gray-400">{t('swipeToExplore', { defaultValue: 'Slinkite horizontaliai' })}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
