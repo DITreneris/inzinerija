@@ -20,19 +20,11 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
-### Fixed (2026-03-14)
-
-**Sertifikato PDF atsisiuntimas po Modulio 3 (Tier 1)**
-
-- **`src/utils/introPiePdf.ts`:** Pridėta `getCachedPdfFontBase64()` – šrifto cache getter, kad kiti moduliai galėtų pakartotinai naudoti jau užkrautą šriftą.
-- **`src/components/CertificateScreen.tsx`:** Po `ensurePdfFont()` šrifto cache perduodamas `certificatePdf` moduliui per `setCertificatePdfFontCache()` – eliminuotas dvigubas async šrifto krovimas iš tinklo, dėl kurio naršyklė galėjo blokuoti `doc.save()` (prarastas vartotojo gesto kontekstas). Pridėtas `catch` blokas su `downloadError` state ir vartotojui matomu klaidos pranešimu (`role="alert"`).
-- **`src/components/__tests__/CertificateScreen.test.tsx`:** Pridėti 2 nauji testai: šrifto cache sinchronizacija tarp modulių ir klaidos pranešimas kai atsisiuntimas nepavyksta.
-
 ### Added (2026-03-14)
 
-**Production hardening + brand sync su promptanatomy.app**
+**Production hardening + brand assetai**
 
-CI/CD, a11y, SEO, developer experience ir brand tapatumo pagerinimiai -- saugūs, nepriklausomi pakeitimai.
+CI/CD, a11y, SEO, developer experience ir brand tapatumo pagerinimai -- saugūs, nepriklausomi pakeitimai.
 
 - **`.nvmrc`:** Naujas failas (`18`) -- Node.js versijos fiksavimas.
 - **`public/robots.txt`:** Naujas failas -- leidžia indeksavimą, nurodo sitemap.
@@ -49,28 +41,76 @@ CI/CD, a11y, SEO, developer experience ir brand tapatumo pagerinimiai -- saugūs
 
 ### Changed (2026-03-14)
 
-**Brand identity sync -- AppNav + HomePage ikonos**
+**Brand identity ir logo UI derinimas**
 
-- **`src/components/AppNav.tsx`:** Nav logo ikona `Sparkles` → `Zap` (geltonas žaibas tamsiame fone, kaip promptanatomy.app).
-- **`src/components/HomePage.tsx`:** Hero ikona `Target` → `Zap` (geltonas žaibas tamsiame fone).
-
-### Changed (2026-03-14)
-
-**HomePage brand polish -- micro UI/UX derinimas prie promptanatomy.app**
-
-9 spalvų/gradientų/šešėlių pakeitimai dviejuose failuose, nekeičiant struktūros ar turinio:
-
-- **`src/index.css`:** Dark mode fonas `bg-gray-900` → `#0d0d0d`; gradient-text-hero ryškesnis auksinis (`to-gold`); hero CTA mygtukas navy → auksinis gradientas (`#f3cc30 → #d4a520`); scrollbar dark mode → auksinis.
-- **`src/components/HomePage.tsx`:** Hero mesh orbs → auksinis glow; duration badge → tikslus `#f3cc30`; trust checkmarks → švelnus auksinis; stats kortelių dark shadow → auksinis; 4-oji feature kortelė → auksinis tonas.
-
-### Changed (2026-03-14)
-
-**Brand gold spalvos centralizacija + LoadingSpinner fix**
+Brand ženklas suvienodintas su `promptanatomy.app`, o vėlesnėse iteracijose jo pateikimas UI sušvelnintas nekeičiant žaibo idėjos ar gold akcento.
 
 - **`tailwind.config.js`:** Pridėta `gold: '#f3cc30'` spalva -- leidžia naudoti `text-gold`, `bg-gold/10`, `shadow-gold/5` vietoj hardcoded `[#f3cc30]`.
-- **`src/index.css`:** Pridėta `:root { --brand-gold: #f3cc30; }` CSS custom property; visi `[#f3cc30]` pakeisti į `gold` tokeną; `linear-gradient` naudoja `var(--brand-gold)`.
-- **`src/components/HomePage.tsx`:** 23 vietos `[#f3cc30]` → `gold`.
-- **`src/components/AppNav.tsx`:** `text-[#f3cc30]` → `text-gold`.
+- **`src/index.css`:** Pridėta `:root { --brand-gold: #f3cc30; }` CSS custom property; `gradient-text-hero` ir hero CTA pervesti į centralizuotą gold gradientą; dark mode fonas `bg-gray-900` → `#0d0d0d`.
+- **`src/components/AppNav.tsx`:** Nav logo ikona `Sparkles` → `Zap`; `text-[#f3cc30]` → `text-gold`; logotipo badge fonas pakeistas iš beveik juodo į švelnesnį `brand` toną su lengvu ring ir minkštesniu šešėliu.
+- **`src/components/HomePage.tsx`:** Hero ikona `Target` → `Zap`; hero mesh orbs, duration badge, trust checkmarks ir kiti gold akcentai suderinti su brand sistema; hero ženklo konteineris vėliau sušvelnintas per ramesnį `brand` toną, mažesnį glow ir kuklesnį hover scale.
+
+### Fixed (2026-03-14)
+
+**M1-M6 bug bundle – shared locale leak'ai, Custom GPT schema, mobile reflow**
+
+Uždarytas sisteminis M1-M6 bug bundle, kuris taiso ne pavienes skaidres, o bendrus renderer'ius ir diagramų wrapper'ius.
+
+- **`src/components/slides/shared/CustomGptProcessDiagram.tsx`:** Visi vartotojui matomi `Custom GPT` schemos tekstai perkelti į `stepper` i18n; pridėtas `COMPACT_LAYOUT`, kad siaurame mobile view schema persidėliotų be priverstinio horizontal scroll.
+- **`src/components/slides/shared/ProcessStepper.tsx`:** Pašalintas atskiras mobile scroller wrapperis `Custom GPT` schemai; diagrama dabar remiasi savo reflow logika ir turi `data-slide-swipe-lock`.
+- **`src/components/slides/shared/MobileDiagramScroller.tsx`, `src/components/slides/shared/EnlargeableDiagram.tsx`:** Įvestas bendras kontraktas `behavior="scroll" | "reflow"` mobiliosioms diagramoms.
+- **`src/components/slides/shared/DiPrezentacijosWorkflowBlock.tsx`:** `DI prezentacijos` schema mobile režime perjungta į `reflow`, o ne bendrą horizontal scroll.
+- **`src/components/slides/types/ContentSlides.tsx`:** Išvalyti M1 EN UI hardcode `Prompt types` / `Prompt techniques` ir solution reveal šakose: `Rezultatas`, `Praktinis patarimas`, `Technikų logika`, `Vengti`, `Kokie principai pažeidžiami?`, `Pataisytas variantas`, `Kas pasikeitė?`.
+- **`src/components/slides/types/ContentSlides.tsx` (2 banga):** Papildomai išvalyti likę locale fallback tekstai bendruose `content` rendererio keliuose: `Choose your journey`, `Expand all`, `Collapse all`, `When and how to use`, `Open in new tab`, `View tools`, `Practice: fix the prompt`, `Your corrected version`, `Context engineering pipeline diagram`.
+- **`src/components/slides/shared/InstructGptQualityBlock.tsx`, `WorkflowChainsBlock.tsx`, `FigmaEmbed.tsx`:** Uždaryti likę shared locale leak'ai, įskaitant `aria-label` ir fallback tekstus.
+- **`src/locales/lt.json`, `src/locales/en.json`:** Pridėti nauji raktai `stepper` ir `contentSlides` namespace'ams (`diagramTitle`, `diagramStep*`, `promptTypesHeroTitle`, `promptTechniquesLogicTitle`, `figmaDiagramTitle`, `mainTakeawaySummaryAria`, `journeyHeading`, `expandAllLabel`, `presentationToolsHint`, `openInNewTabLabel`, `viewToolsLabel` ir kt.).
+- **`docs/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`:** Nauja M1-M6 audit coverage matrica su `audited / partial / missing` būsena ir po-bundle snapshot.
+- **`docs/development/TEST_REPORT.md`:** Dokumentuotas bug bundle rezultatas ir automatinės patikros įrodymai.
+
+### Added (2026-03-14)
+
+**Locale/mobile regresijos saugikliai bug bundle šakoms**
+
+- **`src/components/slides/shared/__tests__/ProcessStepper.locale.test.tsx`:** Smoke testas EN locale + compact mobile layout `Custom GPT` schemai.
+- **`src/components/slides/types/content/__tests__/ContentSlides.locale.test.tsx`:** Smoke testai M1 `PromptTypesSlide` ir `PromptTechniquesSlide`, kad EN režime neliktų LT helper tekstų.
+
+### Changed (2026-03-14)
+
+**Sisteminė mobile UI iteracija – swipe guard, compact schemos, landscape nav**
+
+Atliktas ne pavienis mobile fix, o bendras gesture + wrapper + compact layout sluoksnis, kad schemos mobiliame režime būtų stabilesnės ir skaitomesnės.
+
+- **`src/utils/useSlideNavigation.ts`:** Įvestas centralizuotas `swipe-lock` mechanizmas – swipe ignoruojamas, jei touch prasideda interaktyvioje zonoje (`data-slide-swipe-lock`, `button`, `a`, `input`, `[role="button"]` ir pan.). Mobile swipe threshold padidintas iki 80px; pridėtas `handleTouchCancel()`.
+- **`src/components/ModuleView.tsx`:** Skaidrės wrapper dabar naudoja `onTouchCancel`; mobile viršutinis counter, bottom nav shell, mygtukų aukštis ir spaceris kompaktiškėja landscape / low-height režime.
+- **`src/utils/useCompactViewport.ts`:** Naujas bendras hook diagramų compact režimui ir mažo aukščio navigacijai (`isCompactDiagram`, `isCompactNav`).
+- **`src/components/slides/shared/MobileDiagramScroller.tsx`:** Naujas bendras mobile diagramų scroller wrapperis su `data-slide-swipe-lock`, horizontaliu scroll ir optional fade/hint.
+- **Suvienodinti wrapperiai:** `EnlargeableDiagram.tsx`, `ProcessStepper.tsx`, `DiPrezentacijosWorkflowBlock.tsx`, `WorkflowComparisonInteractiveBlock.tsx`, `LlmAutoregressiveBlock.tsx` perkelti ant bendro mobile scroller kontrakto vietoj pavienių `overflow-x-auto + minWidth` blokų.
+- **Compact schemos (1 banga):**
+  - `ContextFlowDiagram.tsx` – horizontalus 3 blokų flow mobile/compact režime perstatomas į vertikalų.
+  - `TurinioWorkflowDiagram.tsx` – pilna 7 žingsnių schema mobile režime susiaurinta be horizontalaus scroll kaip vienas stulpelis.
+  - `AgentWorkflowDiagram.tsx` – horizontalus agentų ciklas mobile režime perstatytas į vertikalų stulpelį su kairiniu feedback path.
+
+### Fixed (2026-03-14)
+
+**EN mobile UI reliktas + touch regresijos apsauga**
+
+- **`src/components/slides/types/ContentSlides.tsx`:** Hardcoded LT antraštės `Ar brief pilnas? (savitikra)` ir `Prieš kopijuojant: ar brief pilnas?` perkeltos į locale-aware tekstus per `contentSlides` i18n.
+- **`src/locales/lt.json`, `src/locales/en.json`:** Pridėti `briefCheckHeading` ir `preCopyCheckHeading` raktai; EN režime rodoma „Is the brief complete? (self-check)“ ir „Before copying: is the brief complete?“.
+- **`src/utils/__tests__/useSlideNavigation.touch.test.tsx`:** Nauji 3 regresiniai testai – swipe veikia paprastoje zonoje, neveikia `data-slide-swipe-lock` zonoje ir neveikia ant interaktyvaus `button`.
+- **`docs/development/TEST_REPORT.md`:** Dokumentuotas naujas sisteminis mobile UI incidentas ir atlikta automatinė patikra (`test:run`, `lint`, `typecheck`, `build`).
+
+### Fixed (2026-03-14)
+
+**Sertifikato PDF atsisiuntimas po Modulio 3 (Tier 1)**
+
+- **`src/utils/introPiePdf.ts`:** Pridėta `getCachedPdfFontBase64()` – šrifto cache getter, kad kiti moduliai galėtų pakartotinai naudoti jau užkrautą šriftą.
+- **`src/components/CertificateScreen.tsx`:** Po `ensurePdfFont()` šrifto cache perduodamas `certificatePdf` moduliui per `setCertificatePdfFontCache()` – eliminuotas dvigubas async šrifto krovimas iš tinklo, dėl kurio naršyklė galėjo blokuoti `doc.save()` (prarastas vartotojo gesto kontekstas). Pridėtas `catch` blokas su `downloadError` state ir vartotojui matomu klaidos pranešimu (`role="alert"`).
+- **`src/components/__tests__/CertificateScreen.test.tsx`:** Pridėti 2 nauji testai: šrifto cache sinchronizacija tarp modulių ir klaidos pranešimas kai atsisiuntimas nepavyksta.
+
+### Fixed (2026-03-14)
+
+**LoadingSpinner build warning**
+
 - **`src/components/ui/LoadingSpinner.tsx`:** Ištaisytas duplicate key `lg` -- pirmas `lg` pakeistas į `md` (build warning dingo).
 
 ### Fixed (2026-03-14)
@@ -509,7 +549,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 - **docs/development/PLAN_JUS_TU_DI_AI_SLIDES.md:** Konkretus planas – konfigų failai (workflowComparisonConfig, stepExplanations, diagramų aria ir kt.) in-place pakeitimai; ProcessStepper CUSTOM_GPT_STEPS lentelė; nauji/pataisyti locale raktai (stepper, testPractice, contentSlides, celebration); komponentai (ContentSlides, TestPracticeSlides, TrueFalseQuestion/McqQuestion/ScenarioQuestion, Celebration, PracticalTask); įgyvendinimo fazės ir grep patikra. Pagal PAPRASTOS_KALBOS_GAIRES §4.
 
-**Įgyvendinta (Fazės 1–4):** Fazė 1 – konfigai (workflowComparisonConfig, stepExplanations, ragDuomenuRuosimasLayout, diPrezentacijosWorkflowConfig, LlmAutoregressiveDiagram, TurinioWorkflowDiagram, RlProcessDiagram, MatchingQuestion, ProcessStepper CUSTOM_GPT_STEPS LT). Fazė 2 – locale (stepper, testPractice, contentSlides, celebration) lt.json/en.json. Fazė 3 – komponentai (ContentSlides, TestPracticeSlides, quiz/Celebration/PracticalTask). Fazė 4 – grep patikra. **Detalus įrašas:** žr. _Changed (2026-03-10) – LT kreipinys Jūs→Tu_ aukščiau.
+**Įgyvendinta (Fazės 1–4):** Fazė 1 – konfigai (workflowComparisonConfig, stepExplanations, ragDuomenuRuosimasLayout, diPrezentacijosWorkflowConfig, LlmAutoregressiveDiagram, TurinioWorkflowDiagram, RlProcessDiagram, MatchingQuestion, ProcessStepper CUSTOM*GPT_STEPS LT). Fazė 2 – locale (stepper, testPractice, contentSlides, celebration) lt.json/en.json. Fazė 3 – komponentai (ContentSlides, TestPracticeSlides, quiz/Celebration/PracticalTask). Fazė 4 – grep patikra. **Detalus įrašas:** žr. \_Changed (2026-03-10) – LT kreipinys Jūs→Tu* aukščiau.
 
 **Toliau:** Grep visiems šaltiniams (components/slides, data); prireikus – PracticalTask, Celebration, ContentSlides hardcoded eilutės (plan §4.4–4.6).
 

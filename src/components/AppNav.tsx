@@ -1,9 +1,27 @@
 import { useRef, useEffect } from 'react';
-import { Home, BookOpen, ClipboardCheck, Moon, Sun, Zap, Menu, X, BookMarked, Wrench } from 'lucide-react';
+import {
+  Home,
+  BookOpen,
+  ClipboardCheck,
+  Moon,
+  Sun,
+  Zap,
+  Menu,
+  X,
+  BookMarked,
+  Wrench,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
 
-export type NavPage = 'home' | 'modules' | 'module' | 'quiz' | 'glossary' | 'tools' | 'certificate';
+export type NavPage =
+  | 'home'
+  | 'modules'
+  | 'module'
+  | 'quiz'
+  | 'glossary'
+  | 'tools'
+  | 'certificate';
 
 export interface AppNavProps {
   currentPage: NavPage;
@@ -34,7 +52,8 @@ export function AppNav({
     const el = navRef.current;
     const Ctor =
       typeof window !== 'undefined' && 'ResizeObserver' in window
-        ? (window as Window & { ResizeObserver: typeof ResizeObserver }).ResizeObserver
+        ? (window as Window & { ResizeObserver: typeof ResizeObserver })
+            .ResizeObserver
         : null;
     if (!el || !Ctor) return;
     const ro = new Ctor(([entry]) => {
@@ -46,24 +65,42 @@ export function AppNav({
   }, []);
 
   return (
-    <nav ref={navRef} className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-gray-200/50 dark:border-gray-800" aria-label={t('ariaLabel')}>
+    <nav
+      ref={navRef}
+      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-gray-200/50 dark:border-gray-800"
+      aria-label={t('ariaLabel')}
+    >
+      <h1 className="sr-only">{t('appTitle')}</h1>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center min-h-16 gap-y-2 py-2">
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <div className="bg-gray-900 dark:bg-black p-2 rounded-xl shadow-sm">
+          <button
+            type="button"
+            onClick={() => nav('home')}
+            className="flex items-center gap-3 flex-shrink-0 rounded-xl transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px]"
+            aria-label={t('homeAria')}
+            aria-current={currentPage === 'home' ? 'page' : undefined}
+          >
+            <div className="rounded-xl bg-brand-900/95 dark:bg-brand-950/90 p-2.5 shadow-sm shadow-brand-900/10 ring-1 ring-brand-700/15 dark:ring-white/10">
               <Zap className="w-5 h-5 text-gold" strokeWidth={1.5} />
             </div>
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+            <span className="text-xl font-bold text-gray-900 dark:text-white">
               <span className="lg:hidden">{t('appTitleShort')}</span>
               <span className="hidden lg:inline">{t('appTitle')}</span>
-            </h1>
-          </div>
+            </span>
+          </button>
 
           {/* Desktop Navigation – min-w nav mygtukams kad keičiant LT/EN meniu nešoktų */}
           <div className="hidden lg:flex flex-wrap items-center justify-end gap-2">
             {overallProgress > 0 && (
-              <div className="flex items-center gap-2 mr-4 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 rounded-full" role="img" aria-label={t('progressLabel', { percent: overallProgress })}>
-                <div className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden" aria-hidden="true">
+              <div
+                className="flex items-center gap-2 mr-4 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 rounded-full"
+                role="img"
+                aria-label={t('progressLabel', { percent: overallProgress })}
+              >
+                <div
+                  className="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+                  aria-hidden="true"
+                >
                   <div
                     className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-500"
                     style={{ width: `${overallProgress}%` }}
@@ -84,12 +121,18 @@ export function AppNav({
               <Sun className="w-5 h-5 hidden dark:block" strokeWidth={1.5} />
             </button>
 
-            <div className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden" role="group" aria-label={t('langSwitchAria')}>
+            <div
+              className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+              role="group"
+              aria-label={t('langSwitchAria')}
+            >
               <button
                 type="button"
                 onClick={() => setLocale('lt')}
                 className={`px-3 py-2 text-sm font-medium min-h-[44px] transition-colors ${
-                  locale === 'lt' ? 'bg-brand-600 text-white dark:bg-brand-500' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  locale === 'lt'
+                    ? 'bg-brand-600 text-white dark:bg-brand-500'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
                 aria-pressed={locale === 'lt'}
               >
@@ -99,7 +142,9 @@ export function AppNav({
                 type="button"
                 onClick={() => setLocale('en')}
                 className={`px-3 py-2 text-sm font-medium min-h-[44px] transition-colors ${
-                  locale === 'en' ? 'bg-brand-600 text-white dark:bg-brand-500' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                  locale === 'en'
+                    ? 'bg-brand-600 text-white dark:bg-brand-500'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
                 aria-pressed={locale === 'en'}
               >
@@ -118,7 +163,13 @@ export function AppNav({
               aria-current={currentPage === 'home' ? 'page' : undefined}
             >
               <Home className="w-5 h-5" strokeWidth={1.5} />
-              <span className={currentPage === 'home' ? 'font-semibold' : 'font-medium'}>{t('home')}</span>
+              <span
+                className={
+                  currentPage === 'home' ? 'font-semibold' : 'font-medium'
+                }
+              >
+                {t('home')}
+              </span>
             </button>
 
             <button
@@ -129,10 +180,22 @@ export function AppNav({
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
               }`}
               aria-label={t('modulesAria')}
-              aria-current={currentPage === 'modules' || currentPage === 'module' ? 'page' : undefined}
+              aria-current={
+                currentPage === 'modules' || currentPage === 'module'
+                  ? 'page'
+                  : undefined
+              }
             >
               <BookOpen className="w-5 h-5" strokeWidth={1.5} />
-              <span className={currentPage === 'modules' || currentPage === 'module' ? 'font-semibold' : 'font-medium'}>{t('modules')}</span>
+              <span
+                className={
+                  currentPage === 'modules' || currentPage === 'module'
+                    ? 'font-semibold'
+                    : 'font-medium'
+                }
+              >
+                {t('modules')}
+              </span>
             </button>
 
             <button
@@ -146,7 +209,13 @@ export function AppNav({
               aria-current={currentPage === 'glossary' ? 'page' : undefined}
             >
               <BookMarked className="w-5 h-5" strokeWidth={1.5} />
-              <span className={currentPage === 'glossary' ? 'font-semibold' : 'font-medium'}>{t('glossary')}</span>
+              <span
+                className={
+                  currentPage === 'glossary' ? 'font-semibold' : 'font-medium'
+                }
+              >
+                {t('glossary')}
+              </span>
             </button>
 
             <button
@@ -160,7 +229,13 @@ export function AppNav({
               aria-current={currentPage === 'tools' ? 'page' : undefined}
             >
               <Wrench className="w-5 h-5" strokeWidth={1.5} />
-              <span className={currentPage === 'tools' ? 'font-semibold' : 'font-medium'}>{t('tools')}</span>
+              <span
+                className={
+                  currentPage === 'tools' ? 'font-semibold' : 'font-medium'
+                }
+              >
+                {t('tools')}
+              </span>
             </button>
 
             <button
@@ -174,15 +249,28 @@ export function AppNav({
               aria-current={currentPage === 'quiz' ? 'page' : undefined}
             >
               <ClipboardCheck className="w-5 h-5" strokeWidth={1.5} />
-              <span className={currentPage === 'quiz' ? 'font-semibold' : 'font-medium'}>{t('quiz')}</span>
+              <span
+                className={
+                  currentPage === 'quiz' ? 'font-semibold' : 'font-medium'
+                }
+              >
+                {t('quiz')}
+              </span>
             </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-2">
             {overallProgress > 0 && (
-              <div className="flex items-center gap-1.5 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-full" role="img" aria-label={t('progressShort', { percent: overallProgress })}>
-                <div className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden" aria-hidden="true">
+              <div
+                className="flex items-center gap-1.5 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-full"
+                role="img"
+                aria-label={t('progressShort', { percent: overallProgress })}
+              >
+                <div
+                  className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+                  aria-hidden="true"
+                >
                   <div
                     className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full transition-all duration-500"
                     style={{ width: `${overallProgress}%` }}
@@ -209,7 +297,11 @@ export function AppNav({
               aria-label={isMobileMenuOpen ? t('menuClose') : t('menuOpen')}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -229,7 +321,13 @@ export function AppNav({
                 aria-current={currentPage === 'home' ? 'page' : undefined}
               >
                 <Home className="w-5 h-5 flex-shrink-0" />
-                <span className={currentPage === 'home' ? 'font-semibold' : 'font-medium'}>{t('home')}</span>
+                <span
+                  className={
+                    currentPage === 'home' ? 'font-semibold' : 'font-medium'
+                  }
+                >
+                  {t('home')}
+                </span>
               </button>
 
               <button
@@ -240,10 +338,22 @@ export function AppNav({
                     : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-transparent'
                 }`}
                 aria-label={t('modulesAria')}
-                aria-current={currentPage === 'modules' || currentPage === 'module' ? 'page' : undefined}
+                aria-current={
+                  currentPage === 'modules' || currentPage === 'module'
+                    ? 'page'
+                    : undefined
+                }
               >
                 <BookOpen className="w-5 h-5 flex-shrink-0" />
-                <span className={currentPage === 'modules' || currentPage === 'module' ? 'font-semibold' : 'font-medium'}>{t('modules')}</span>
+                <span
+                  className={
+                    currentPage === 'modules' || currentPage === 'module'
+                      ? 'font-semibold'
+                      : 'font-medium'
+                  }
+                >
+                  {t('modules')}
+                </span>
               </button>
 
               <button
@@ -257,7 +367,13 @@ export function AppNav({
                 aria-current={currentPage === 'glossary' ? 'page' : undefined}
               >
                 <BookMarked className="w-5 h-5 flex-shrink-0" />
-                <span className={currentPage === 'glossary' ? 'font-semibold' : 'font-medium'}>{t('glossary')}</span>
+                <span
+                  className={
+                    currentPage === 'glossary' ? 'font-semibold' : 'font-medium'
+                  }
+                >
+                  {t('glossary')}
+                </span>
               </button>
 
               <button
@@ -271,7 +387,13 @@ export function AppNav({
                 aria-current={currentPage === 'tools' ? 'page' : undefined}
               >
                 <Wrench className="w-5 h-5 flex-shrink-0" />
-                <span className={currentPage === 'tools' ? 'font-semibold' : 'font-medium'}>{t('tools')}</span>
+                <span
+                  className={
+                    currentPage === 'tools' ? 'font-semibold' : 'font-medium'
+                  }
+                >
+                  {t('tools')}
+                </span>
               </button>
 
               <button
@@ -285,16 +407,28 @@ export function AppNav({
                 aria-current={currentPage === 'quiz' ? 'page' : undefined}
               >
                 <ClipboardCheck className="w-5 h-5 flex-shrink-0" />
-                <span className={currentPage === 'quiz' ? 'font-semibold' : 'font-medium'}>{t('quiz')}</span>
+                <span
+                  className={
+                    currentPage === 'quiz' ? 'font-semibold' : 'font-medium'
+                  }
+                >
+                  {t('quiz')}
+                </span>
               </button>
 
               <div className="px-4 py-2 mt-1 border-t border-gray-200/50 dark:border-gray-800">
-                <div className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden w-full" role="group" aria-label={t('langSwitchAria')}>
+                <div
+                  className="flex items-center rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden w-full"
+                  role="group"
+                  aria-label={t('langSwitchAria')}
+                >
                   <button
                     type="button"
                     onClick={() => setLocale('lt')}
                     className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                      locale === 'lt' ? 'bg-brand-600 text-white dark:bg-brand-500' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                      locale === 'lt'
+                        ? 'bg-brand-600 text-white dark:bg-brand-500'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                     aria-pressed={locale === 'lt'}
                   >
@@ -304,7 +438,9 @@ export function AppNav({
                     type="button"
                     onClick={() => setLocale('en')}
                     className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                      locale === 'en' ? 'bg-brand-600 text-white dark:bg-brand-500' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                      locale === 'en'
+                        ? 'bg-brand-600 text-white dark:bg-brand-500'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
                     }`}
                     aria-pressed={locale === 'en'}
                   >
