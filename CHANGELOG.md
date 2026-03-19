@@ -22,6 +22,15 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ### Fixed (2026-03-19)
 
+**Stale chunks auto-recovery — „Something went wrong" klaida po deploy**
+
+Po naujo deploy Vite sugeneruoja JS chunk failus su naujais hash vardais, o seni failai ištrinami. Vartotojai su cached `index.html` bandydavo parsiųsti senus chunk failus (404) ir matydavo „Something went wrong" klaidą. Dabar aplikacija automatiškai atpažįsta chunk load klaidą ir perkrauna puslapį, kad gautų naują `index.html` su teisingomis chunk nuorodomis.
+
+- **`src/utils/lazyWithRetry.ts`:** Pridėta `isChunkLoadError()` detekcija (atpažįsta `Failed to fetch dynamically imported module`, `ChunkLoadError` ir pan.). Po 3 nesėkmingų retry, jei klaida yra chunk load failure, automatiškai iškviečiamas `window.location.reload()`. `sessionStorage` flag (`chunk-reload-attempted`) apsaugo nuo begalinių reload ciklų. Eksportuota `clearChunkReloadFlag()` — iškviečiama iš `main.tsx` po sėkmingo app load.
+- **`src/main.tsx`:** Iškviečiama `clearChunkReloadFlag()` po sėkmingo puslapio įkrovimo — atstato apsaugos flag kitam deploy ciklui.
+- **`index.html`:** Pridėti `cache-control`, `pragma`, `expires` meta tags — nurodo naršyklei nekešinti HTML failo (JS/CSS assets kešinami pagal hash).
+- **`src/components/ui/ErrorBoundary.tsx`:** `componentDidCatch` papildytas chunk error detekcija — backup auto-reload, jei `lazyWithRetry` nepagavo klaidos (ta pati `isChunkLoadError` + `sessionStorage` apsauga).
+
 **Prieigos vartai (access gate) — mokamas turinys uždarytas lankytojams be prieigos**
 
 Iki šiol `VITE_MVP_MODE=1` produkcijos build'e automatiškai atrakindavo visus 6 modulius kiekvienam lankytojui, nepriklausomai nuo apmokėjimo. Dabar turinys pagal nutylėjimą užrakintas (`maxAccessible = 0`), kol vartotojas patvirtina prieigą per magic link arba turi išsaugotą tier localStorage.

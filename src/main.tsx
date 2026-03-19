@@ -1,10 +1,13 @@
-import './i18n'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { HelmetProvider } from 'react-helmet-async'
-import App from './App.tsx'
-import { LocaleProvider } from './contexts/LocaleContext.tsx'
-import './index.css'
+import './i18n';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
+import App from './App.tsx';
+import { LocaleProvider } from './contexts/LocaleContext.tsx';
+import { clearChunkReloadFlag } from './utils/lazyWithRetry.ts';
+import './index.css';
+
+clearChunkReloadFlag();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -13,5 +16,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <App />
       </LocaleProvider>
     </HelmetProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

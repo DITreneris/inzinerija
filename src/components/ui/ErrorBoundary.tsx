@@ -3,6 +3,19 @@ import { AlertTriangle, RefreshCw } from 'lucide-react';
 import i18n from 'i18next';
 import { logError } from '../../utils/logger';
 
+const RELOAD_FLAG = 'chunk-reload-attempted';
+
+function isChunkLoadError(err: unknown): boolean {
+  if (!(err instanceof Error)) return false;
+  const msg = err.message.toLowerCase();
+  return (
+    msg.includes('failed to fetch dynamically imported module') ||
+    msg.includes('loading chunk') ||
+    msg.includes('loading css chunk') ||
+    err.name === 'ChunkLoadError'
+  );
+}
+
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
@@ -28,6 +41,11 @@ export default class ErrorBoundary extends Component<Props, State> {
       componentStack: errorInfo.componentStack,
       errorBoundary: true,
     });
+
+    if (isChunkLoadError(error) && !sessionStorage.getItem(RELOAD_FLAG)) {
+      sessionStorage.setItem(RELOAD_FLAG, '1');
+      window.location.reload();
+    }
   }
 
   handleRetry = () => {
