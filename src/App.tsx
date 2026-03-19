@@ -5,9 +5,18 @@ import Celebration from './components/Celebration';
 import { AppNav } from './components/AppNav';
 import { ErrorBoundary, LoadingSpinner } from './components/ui';
 import { getProgress, saveProgress, flushProgressSave } from './utils/progress';
-import { logLearningEvent, hasLoggedFirstActionSuccess } from './utils/learningEvents';
+import {
+  logLearningEvent,
+  hasLoggedFirstActionSuccess,
+} from './utils/learningEvents';
 import { useTheme } from './utils/useTheme';
-import { loadModules, getModulesDataSync, preloadModules, clearModulesLoadError, type ModulesLocale } from './data/modulesLoader';
+import {
+  loadModules,
+  getModulesDataSync,
+  preloadModules,
+  clearModulesLoadError,
+  type ModulesLocale,
+} from './data/modulesLoader';
 import {
   getMaxAccessibleModuleId,
   hasAccessTokenInUrl,
@@ -26,9 +35,20 @@ const ModuleView = lazy(() => import('./components/ModuleView'));
 const QuizPage = lazy(() => import('./components/QuizPage'));
 const GlossaryPage = lazy(() => import('./components/GlossaryPage'));
 const ToolsPage = lazy(() => import('./components/ToolsPage'));
-const CertificateScreen = lazy(() => import('./components/CertificateScreen').then(m => ({ default: m.CertificateScreen })));
+const CertificateScreen = lazy(() =>
+  import('./components/CertificateScreen').then((m) => ({
+    default: m.CertificateScreen,
+  }))
+);
 
-type Page = 'home' | 'modules' | 'module' | 'quiz' | 'glossary' | 'tools' | 'certificate';
+type Page =
+  | 'home'
+  | 'modules'
+  | 'module'
+  | 'quiz'
+  | 'glossary'
+  | 'tools'
+  | 'certificate';
 
 function getVerifyAccessUrl(configuredValue: string): string {
   const trimmed = configuredValue.trim();
@@ -44,20 +64,32 @@ function App() {
   const englishContentVariant = getBrowserEnglishContentVariant();
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
-  const [initialSlideIndex, setInitialSlideIndex] = useState<number | null>(null);
+  const [initialSlideIndex, setInitialSlideIndex] = useState<number | null>(
+    null
+  );
   /** A-M3: when viewing Module 1 from Module 2 test results (remediation), allow return to results */
-  const [remediationFrom, setRemediationFrom] = useState<{ sourceModuleId: number } | null>(null);
+  const [remediationFrom, setRemediationFrom] = useState<{
+    sourceModuleId: number;
+  } | null>(null);
   const [progress, setProgress] = useState(getProgress());
   const [showCelebration, setShowCelebration] = useState(false);
-  const [celebrationType, setCelebrationType] = useState<'task' | 'module' | 'quiz'>('task');
-  const [modulesData, setModulesData] = useState<ModulesData | null>(() => getModulesDataSync(modulesLocale, englishContentVariant));
+  const [celebrationType, setCelebrationType] = useState<
+    'task' | 'module' | 'quiz'
+  >('task');
+  const [modulesData, setModulesData] = useState<ModulesData | null>(() =>
+    getModulesDataSync(modulesLocale, englishContentVariant)
+  );
   const [modulesLoadError, setModulesLoadError] = useState<Error | null>(null);
   const [isDark, setIsDark] = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [toolsInitialFilter, setToolsInitialFilter] = useState<number | null>(null);
-  const [glossaryHighlightTerm, setGlossaryHighlightTerm] = useState<string | null>(null);
+  const [toolsInitialFilter, setToolsInitialFilter] = useState<number | null>(
+    null
+  );
+  const [glossaryHighlightTerm, setGlossaryHighlightTerm] = useState<
+    string | null
+  >(null);
   const [certificateTier, setCertificateTier] = useState<1 | 2 | 3>(1);
-  /** Incremented after magic link verification so getMaxAccessibleModuleId() re-reads sessionStorage. */
+  /** Incremented after magic link verification so getMaxAccessibleModuleId() re-reads localStorage. */
   const [, setAccessTierRefresh] = useState(0);
 
   const replaceUrlWithoutMagicLinkParams = useCallback(() => {
@@ -69,7 +101,7 @@ function App() {
     );
   }, []);
 
-  // Magic link: verify token and persist tier to sessionStorage, then clean URL
+  // Magic link: verify token and persist tier to localStorage, then clean URL
   useEffect(() => {
     if (!hasAccessTokenInUrl() || typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
@@ -85,12 +117,14 @@ function App() {
     fetch(`${verifyAccessUrl}?${query.toString()}`)
       .then((res) => {
         if (res.ok) return res.json() as Promise<{ access_tier: number }>;
-        throw new Error(res.status === 401 ? 'Invalid or expired link' : 'Verification failed');
+        throw new Error(
+          res.status === 401 ? 'Invalid or expired link' : 'Verification failed'
+        );
       })
       .then((data) => {
         const tier = data.access_tier;
         if (Number.isInteger(tier) && [3, 6].includes(tier)) {
-          sessionStorage.setItem(VERIFIED_ACCESS_TIER_KEY, String(tier));
+          localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, String(tier));
           replaceUrlWithoutMagicLinkParams();
           setAccessTierRefresh((n) => n + 1);
         }
@@ -133,7 +167,11 @@ function App() {
   // Redirect if selected module exceeds access tier (e.g. direct link, state manipulation)
   useEffect(() => {
     const maxAccessible = getMaxAccessibleModuleId();
-    if (currentPage === 'module' && selectedModule != null && selectedModule > maxAccessible) {
+    if (
+      currentPage === 'module' &&
+      selectedModule != null &&
+      selectedModule > maxAccessible
+    ) {
       setCurrentPage('modules');
       setSelectedModule(null);
       setRemediationFrom(null);
@@ -168,7 +206,7 @@ function App() {
 
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscape);
-      
+
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('keydown', handleEscape);
@@ -183,15 +221,18 @@ function App() {
   }, []);
 
   // Get next module ID
-  const getNextModuleId = useCallback((currentModuleId: number): number | null => {
-    if (!modulesData) return null;
-    const moduleIds = modulesData.modules.map(m => m.id);
-    const currentIndex = moduleIds.indexOf(currentModuleId);
-    if (currentIndex < moduleIds.length - 1) {
-      return moduleIds[currentIndex + 1];
-    }
-    return null;
-  }, [modulesData]);
+  const getNextModuleId = useCallback(
+    (currentModuleId: number): number | null => {
+      if (!modulesData) return null;
+      const moduleIds = modulesData.modules.map((m) => m.id);
+      const currentIndex = moduleIds.indexOf(currentModuleId);
+      if (currentIndex < moduleIds.length - 1) {
+        return moduleIds[currentIndex + 1];
+      }
+      return null;
+    },
+    [modulesData]
+  );
 
   const handleRetryModules = useCallback(() => {
     clearModulesLoadError();
@@ -210,7 +251,7 @@ function App() {
 
   const handleModuleComplete = (moduleId: number) => {
     if (!progress.completedModules.includes(moduleId)) {
-      setProgress(prev => ({
+      setProgress((prev) => ({
         ...prev,
         completedModules: [...prev.completedModules, moduleId],
       }));
@@ -221,23 +262,30 @@ function App() {
     }
   };
 
-  const handleGoToModule = useCallback((moduleId: number, slideIndex?: number, fromRemediationSourceModuleId?: number) => {
-    if (moduleId > getMaxAccessibleModuleId()) {
-      setCurrentPage('modules');
-      setSelectedModule(null);
-      setRemediationFrom(null);
-      return;
-    }
-    setSelectedModule(moduleId);
-    setInitialSlideIndex(slideIndex ?? null);
-    if (fromRemediationSourceModuleId != null) {
-      setRemediationFrom({ sourceModuleId: fromRemediationSourceModuleId });
-    } else {
-      setRemediationFrom(null);
-    }
-    setCurrentPage('module');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  const handleGoToModule = useCallback(
+    (
+      moduleId: number,
+      slideIndex?: number,
+      fromRemediationSourceModuleId?: number
+    ) => {
+      if (moduleId > getMaxAccessibleModuleId()) {
+        setCurrentPage('modules');
+        setSelectedModule(null);
+        setRemediationFrom(null);
+        return;
+      }
+      setSelectedModule(moduleId);
+      setInitialSlideIndex(slideIndex ?? null);
+      if (fromRemediationSourceModuleId != null) {
+        setRemediationFrom({ sourceModuleId: fromRemediationSourceModuleId });
+      } else {
+        setRemediationFrom(null);
+      }
+      setCurrentPage('module');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    []
+  );
 
   /** A-M3: return to test-results slide of the module we came from (e.g. Module 2). */
   const handleRequestCertificate = useCallback((tier: 1 | 2 | 3) => {
@@ -257,11 +305,15 @@ function App() {
     setRemediationFrom(null);
     setSelectedModule(sourceId);
     // Module 2 enriched view: slides = [test-intro, test-section, test-results] → index 2
-    const resultsSlideIndex = sourceId === 2 ? 2 : (() => {
-      const mod = modulesData?.modules?.find((m) => m.id === sourceId);
-      const idx = mod?.slides?.findIndex((s) => s.type === 'test-results') ?? -1;
-      return idx >= 0 ? idx : 0;
-    })();
+    const resultsSlideIndex =
+      sourceId === 2
+        ? 2
+        : (() => {
+            const mod = modulesData?.modules?.find((m) => m.id === sourceId);
+            const idx =
+              mod?.slides?.findIndex((s) => s.type === 'test-results') ?? -1;
+            return idx >= 0 ? idx : 0;
+          })();
     setInitialSlideIndex(resultsSlideIndex);
     setCurrentPage('module');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -281,10 +333,14 @@ function App() {
     }
   };
 
-  const handleTaskComplete = (moduleId: number, taskId: number, testScore?: number) => {
+  const handleTaskComplete = (
+    moduleId: number,
+    taskId: number,
+    testScore?: number
+  ) => {
     const isNewTask = !progress.completedTasks[moduleId]?.includes(taskId);
     if (isNewTask || testScore !== undefined) {
-      setProgress(prev => ({
+      setProgress((prev) => ({
         ...prev,
         ...(isNewTask && {
           completedTasks: {
@@ -293,7 +349,10 @@ function App() {
           },
         }),
         ...(testScore !== undefined && {
-          moduleTestScores: { ...(prev.moduleTestScores ?? {}), [moduleId]: testScore },
+          moduleTestScores: {
+            ...(prev.moduleTestScores ?? {}),
+            [moduleId]: testScore,
+          },
         }),
       }));
       if (isNewTask) {
@@ -308,31 +367,53 @@ function App() {
 
   const totalModules = modulesData?.modules.length || 0;
   const completedModulesCount = progress.completedModules.length;
-  const overallProgress = totalModules > 0 ? Math.round((completedModulesCount / totalModules) * 100) : 0;
+  const overallProgress =
+    totalModules > 0
+      ? Math.round((completedModulesCount / totalModules) * 100)
+      : 0;
 
-  const currentModule = selectedModule && modulesData?.modules ? modulesData.modules.find((m) => m.id === selectedModule) : null;
+  const currentModule =
+    selectedModule && modulesData?.modules
+      ? modulesData.modules.find((m) => m.id === selectedModule)
+      : null;
   const baseTitle = t('seo:baseTitle');
   const seoTitle =
-    currentPage === 'home' ? t('seo:titleHome') :
-    currentPage === 'modules' ? t('seo:titleModules') :
-    currentPage === 'module' && currentModule ? `${currentModule.title} – ${baseTitle}` :
-    currentPage === 'glossary' ? t('seo:titleGlossary') :
-    currentPage === 'tools' ? t('seo:titleTools') :
-    currentPage === 'quiz' ? t('seo:titleQuiz') :
-    currentPage === 'certificate' ? t('seo:titleCertificate') :
-    t('seo:titleDefault');
+    currentPage === 'home'
+      ? t('seo:titleHome')
+      : currentPage === 'modules'
+        ? t('seo:titleModules')
+        : currentPage === 'module' && currentModule
+          ? `${currentModule.title} – ${baseTitle}`
+          : currentPage === 'glossary'
+            ? t('seo:titleGlossary')
+            : currentPage === 'tools'
+              ? t('seo:titleTools')
+              : currentPage === 'quiz'
+                ? t('seo:titleQuiz')
+                : currentPage === 'certificate'
+                  ? t('seo:titleCertificate')
+                  : t('seo:titleDefault');
   const maxAccessible = getMaxAccessibleModuleId();
-  const requiresModulesData = currentPage === 'modules' || currentPage === 'module' || currentPage === 'quiz';
-  const defaultDescription = maxAccessible > 0
-    ? t('seo:descDefaultWithModules', { count: maxAccessible })
-    : t('seo:descDefault');
+  const requiresModulesData =
+    currentPage === 'modules' ||
+    currentPage === 'module' ||
+    currentPage === 'quiz';
+  const defaultDescription =
+    maxAccessible > 0
+      ? t('seo:descDefaultWithModules', { count: maxAccessible })
+      : t('seo:descDefault');
   const seoDescription =
-    currentPage === 'module' && currentModule?.description ? currentModule.description :
-    currentPage === 'modules' ? t('seo:descModules') :
-    currentPage === 'glossary' ? t('seo:descGlossary') :
-    currentPage === 'tools' ? t('seo:descTools') :
-    currentPage === 'quiz' ? t('seo:descQuiz') :
-    defaultDescription;
+    currentPage === 'module' && currentModule?.description
+      ? currentModule.description
+      : currentPage === 'modules'
+        ? t('seo:descModules')
+        : currentPage === 'glossary'
+          ? t('seo:descGlossary')
+          : currentPage === 'tools'
+            ? t('seo:descTools')
+            : currentPage === 'quiz'
+              ? t('seo:descQuiz')
+              : defaultDescription;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-brand-50/40 to-accent-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
@@ -348,7 +429,7 @@ function App() {
         type={celebrationType}
         onComplete={() => setShowCelebration(false)}
       />
-      
+
       {/* Skip link – matomas tik klaviatūra / ekrano skaitytuvams */}
       <a
         href="#main-content"
@@ -366,7 +447,11 @@ function App() {
       />
 
       {/* Content */}
-      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" role="main">
+      <main
+        id="main-content"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+        role="main"
+      >
         <ErrorBoundary>
           {requiresModulesData && !modulesData && modulesLoadError && (
             <div className="flex flex-col items-center justify-center min-h-[300px] gap-4 p-6 text-center">
@@ -389,99 +474,110 @@ function App() {
               </button>
             </div>
           )}
-          {(!(requiresModulesData && !modulesData && modulesLoadError)) && (
-            <Suspense fallback={<LoadingSpinner size="lg" text={t('loading')} />}>
-            {currentPage === 'home' && (
-              <HomePage
-                onStart={() => setCurrentPage('modules')}
-                onGoToQuiz={() => setCurrentPage('quiz')}
-                progress={progress}
-              />
-            )}
-            {currentPage === 'modules' && (
-              <ModulesPage
-                onModuleSelect={handleModuleSelect}
-                onGoToQuiz={() => setCurrentPage('quiz')}
-                progress={progress}
-              />
-            )}
-            {currentPage === 'module' && selectedModule && selectedModule <= maxAccessible && (
-              <ModuleView
-                moduleId={selectedModule}
-                initialSlideIndex={initialSlideIndex}
-                onClearInitialSlideIndex={() => setInitialSlideIndex(null)}
-                onBack={() => {
-                  setCurrentPage('modules');
-                  setSelectedModule(null);
-                  setInitialSlideIndex(null);
-                  setRemediationFrom(null);
-                }}
-                onComplete={handleModuleComplete}
-                onTaskComplete={handleTaskComplete}
-                onContinueToNext={handleContinueToNextModule}
-                onGoToModule={handleGoToModule}
-                onGoToGlossary={(slideIndex) => {
-                  setInitialSlideIndex(slideIndex);
-                  setCurrentPage('glossary');
-                }}
-                onGoToGlossaryTerm={(term) => {
-                  setGlossaryHighlightTerm(term);
-                  setCurrentPage('glossary');
-                }}
-                onGoToTools={(moduleId) => {
-                  setToolsInitialFilter(moduleId);
-                  setCurrentPage('tools');
-                }}
-                remediationFrom={selectedModule === 1 && remediationFrom?.sourceModuleId === 2 ? remediationFrom : null}
-                onReturnToRemediation={remediationFrom && selectedModule === 1 ? handleReturnToRemediation : undefined}
-                onRequestCertificate={handleRequestCertificate}
-                progress={progress}
-                totalModules={totalModules}
-              />
-            )}
-            {currentPage === 'glossary' && (
-              <GlossaryPage
-                highlightTerm={glossaryHighlightTerm}
-                onBackToModule={
-                  selectedModule
-                    ? () => setCurrentPage('module')
-                    : undefined
-                }
-                progress={progress}
-              />
-            )}
-            {currentPage === 'tools' && (
-              <ToolsPage
-                onBackToModule={
-                  selectedModule
-                    ? () => {
-                        setCurrentPage('module');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }
-                    : undefined
-                }
-                initialFilter={toolsInitialFilter}
-              />
-            )}
-            {currentPage === 'quiz' && (
-              <QuizPage
-                onBack={() => setCurrentPage('modules')}
-                progress={progress}
-                onQuizComplete={(score) => {
-                  setProgress(prev => ({
-                    ...prev,
-                    quizScore: score,
-                    quizCompleted: true,
-                  }));
-                }}
-              />
-            )}
-            {currentPage === 'certificate' && (
-              <CertificateScreen
-                tier={certificateTier}
-                onBack={handleCertificateBack}
-              />
-            )}
+          {!(requiresModulesData && !modulesData && modulesLoadError) && (
+            <Suspense
+              fallback={<LoadingSpinner size="lg" text={t('loading')} />}
+            >
+              {currentPage === 'home' && (
+                <HomePage
+                  onStart={() => setCurrentPage('modules')}
+                  onGoToQuiz={() => setCurrentPage('quiz')}
+                  progress={progress}
+                />
+              )}
+              {currentPage === 'modules' && (
+                <ModulesPage
+                  onModuleSelect={handleModuleSelect}
+                  onGoToQuiz={() => setCurrentPage('quiz')}
+                  progress={progress}
+                />
+              )}
+              {currentPage === 'module' &&
+                selectedModule &&
+                selectedModule <= maxAccessible && (
+                  <ModuleView
+                    moduleId={selectedModule}
+                    initialSlideIndex={initialSlideIndex}
+                    onClearInitialSlideIndex={() => setInitialSlideIndex(null)}
+                    onBack={() => {
+                      setCurrentPage('modules');
+                      setSelectedModule(null);
+                      setInitialSlideIndex(null);
+                      setRemediationFrom(null);
+                    }}
+                    onComplete={handleModuleComplete}
+                    onTaskComplete={handleTaskComplete}
+                    onContinueToNext={handleContinueToNextModule}
+                    onGoToModule={handleGoToModule}
+                    onGoToGlossary={(slideIndex) => {
+                      setInitialSlideIndex(slideIndex);
+                      setCurrentPage('glossary');
+                    }}
+                    onGoToGlossaryTerm={(term) => {
+                      setGlossaryHighlightTerm(term);
+                      setCurrentPage('glossary');
+                    }}
+                    onGoToTools={(moduleId) => {
+                      setToolsInitialFilter(moduleId);
+                      setCurrentPage('tools');
+                    }}
+                    remediationFrom={
+                      selectedModule === 1 &&
+                      remediationFrom?.sourceModuleId === 2
+                        ? remediationFrom
+                        : null
+                    }
+                    onReturnToRemediation={
+                      remediationFrom && selectedModule === 1
+                        ? handleReturnToRemediation
+                        : undefined
+                    }
+                    onRequestCertificate={handleRequestCertificate}
+                    progress={progress}
+                    totalModules={totalModules}
+                  />
+                )}
+              {currentPage === 'glossary' && (
+                <GlossaryPage
+                  highlightTerm={glossaryHighlightTerm}
+                  onBackToModule={
+                    selectedModule ? () => setCurrentPage('module') : undefined
+                  }
+                  progress={progress}
+                />
+              )}
+              {currentPage === 'tools' && (
+                <ToolsPage
+                  onBackToModule={
+                    selectedModule
+                      ? () => {
+                          setCurrentPage('module');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                      : undefined
+                  }
+                  initialFilter={toolsInitialFilter}
+                />
+              )}
+              {currentPage === 'quiz' && (
+                <QuizPage
+                  onBack={() => setCurrentPage('modules')}
+                  progress={progress}
+                  onQuizComplete={(score) => {
+                    setProgress((prev) => ({
+                      ...prev,
+                      quizScore: score,
+                      quizCompleted: true,
+                    }));
+                  }}
+                />
+              )}
+              {currentPage === 'certificate' && (
+                <CertificateScreen
+                  tier={certificateTier}
+                  onBack={handleCertificateBack}
+                />
+              )}
             </Suspense>
           )}
         </ErrorBoundary>
@@ -495,16 +591,20 @@ function App() {
               <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-1.5 rounded-lg">
                 <Sparkles className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="font-medium text-gray-700 dark:text-gray-300">{t('footer:brandName')}</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {t('footer:brandName')}
+              </span>
             </div>
             <div className="text-center">
               <span>© 2024-2026 </span>
-              <span className="font-medium text-gray-700 dark:text-gray-300">Tomas Staniulis</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                Tomas Staniulis
+              </span>
               <span className="mx-2">•</span>
               <span>{t('footer:copyright')}</span>
             </div>
             <div className="flex items-center gap-4">
-              <a 
+              <a
                 href="https://www.promptanatomy.app/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -513,18 +613,18 @@ function App() {
               >
                 {t('footer:websiteLabel')}
               </a>
-              <a 
-                href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t" 
-                target="_blank" 
+              <a
+                href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 aria-label={t('footer:whatsAppAria')}
               >
                 {t('footer:whatsAppLabel')}
               </a>
-              <a 
-                href="https://github.com/DITreneris" 
-                target="_blank" 
+              <a
+                href="https://github.com/DITreneris"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 aria-label={t('footer:githubAria')}

@@ -321,7 +321,10 @@
     "lockTierAria": "Module {{moduleNumber}} locked. Get access to {{maxModuleId}} modules – {{priceEur}} EUR.",
     "lockSequenceAria": "Module {{moduleNumber}} locked: {{title}}",
     "lockTierShort": "– {{max}} modules, {{price}} EUR",
-    "lockTierMvpLater": "Modules 7–15 coming soon"
+    "lockTierMvpLater": "Modules 7–15 coming soon",
+    "gateTitle": "Access restricted",
+    "gateMessage": "To use the course, purchase access.",
+    "gateCta": "Get access"
   },
   "certificate": {
     "saveAndDownloadAria": "Save name and download certificate as PDF",

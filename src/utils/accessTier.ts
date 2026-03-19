@@ -3,15 +3,23 @@ import { getIsMvpMode } from './mvpMode';
 
 type ValidMaxModuleId = (typeof VALID_MAX_MODULE_IDS)[number];
 
-/** sessionStorage key for verified access tier (set after magic link token verification). */
+/** localStorage key for verified access tier (set after magic link token verification). */
 export const VERIFIED_ACCESS_TIER_KEY = 'verified_access_tier';
-const MAGIC_LINK_PARAMS = ['token', 'expires', 'access_tier', 'max_module'] as const;
+const MAGIC_LINK_PARAMS = [
+  'token',
+  'expires',
+  'access_tier',
+  'max_module',
+] as const;
 
-function parseAndValidateMaxModuleId(value: string | null): ValidMaxModuleId | null {
+function parseAndValidateMaxModuleId(
+  value: string | null
+): ValidMaxModuleId | null {
   if (value === null || value === '') return null;
   const n = Number(value);
   if (!Number.isInteger(n)) return null;
-  if ((VALID_MAX_MODULE_IDS as readonly number[]).includes(n)) return n as ValidMaxModuleId;
+  if ((VALID_MAX_MODULE_IDS as readonly number[]).includes(n))
+    return n as ValidMaxModuleId;
   return null;
 }
 
@@ -45,7 +53,7 @@ export function stripMagicLinkSearchParams(search: string): string {
 /**
  * Grąžina maksimalų atrakintą modulio ID (0 | 3 | 6 | 9 | 12).
  * 0 = niekas neįsigyta; 3 = 1–3, 6 = 1–6, 9 = 1–9, 12 = 1–12.
- * Šaltinio eilė: DEV (visi atrakinti) → sessionStorage (patikrintas) → env → VITE_MVP_MODE=1 → 6 (core 1–6 build).
+ * Šaltinio eilė: DEV (visi atrakinti) → localStorage (patikrintas) → sessionStorage migracija → env → 0.
  * URL query param fallback productione nenaudojamas, kad neteisingas magic-link srautas
  * negalėtų atrakinti prieigos vien per `access_tier`.
  */
@@ -53,9 +61,20 @@ export function getMaxAccessibleModuleId(): ValidMaxModuleId {
   if (import.meta.env.DEV) return 12;
 
   if (typeof window !== 'undefined') {
-    const stored = sessionStorage.getItem(VERIFIED_ACCESS_TIER_KEY);
-    const fromStorage = parseAndValidateMaxModuleId(stored);
-    if (fromStorage !== null) return capForMvp(fromStorage);
+    const fromLocal = parseAndValidateMaxModuleId(
+      localStorage.getItem(VERIFIED_ACCESS_TIER_KEY)
+    );
+    if (fromLocal !== null) return capForMvp(fromLocal);
+
+    // One-time migration: move verified tier from sessionStorage to localStorage
+    const fromSession = parseAndValidateMaxModuleId(
+      sessionStorage.getItem(VERIFIED_ACCESS_TIER_KEY)
+    );
+    if (fromSession !== null) {
+      localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, String(fromSession));
+      sessionStorage.removeItem(VERIFIED_ACCESS_TIER_KEY);
+      return capForMvp(fromSession);
+    }
   }
 
   const envVal = import.meta.env.VITE_MAX_ACCESSIBLE_MODULE;
@@ -63,8 +82,6 @@ export function getMaxAccessibleModuleId(): ValidMaxModuleId {
     const fromEnv = parseAndValidateMaxModuleId(String(envVal));
     if (fromEnv !== null) return capForMvp(fromEnv);
   }
-
-  if (import.meta.env.VITE_MVP_MODE === '1') return 6;
 
   return 0;
 }

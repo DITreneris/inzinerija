@@ -1,6 +1,20 @@
 import { useMemo, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, ArrowRight, Target, Brain, Settings, Lock, BookOpen, ClipboardList, Briefcase, PartyPopper, BarChart3, ClipboardCheck, Rocket } from 'lucide-react';
+import {
+  CheckCircle,
+  ArrowRight,
+  Target,
+  Brain,
+  Settings,
+  Lock,
+  BookOpen,
+  ClipboardList,
+  Briefcase,
+  PartyPopper,
+  BarChart3,
+  ClipboardCheck,
+  Rocket,
+} from 'lucide-react';
 import { Progress } from '../utils/progress';
 import { getModulesSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
@@ -9,6 +23,7 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
 import { LoadingSpinner } from './ui';
 import CircularProgress from './CircularProgress';
+import AccessGateScreen from './AccessGateScreen';
 
 interface ModulesPageProps {
   onModuleSelect: (moduleId: number) => void;
@@ -19,15 +34,40 @@ interface ModulesPageProps {
 // Level colors for modules based on type: learn, test, practice (business-oriented)
 function useLevelStyles(t: (k: string) => string) {
   return {
-    learn: { gradient: 'from-brand-700 to-brand-800', bg: 'bg-brand-50 dark:bg-brand-900/20', border: 'border-brand-200 dark:border-brand-800', text: 'text-brand-700 dark:text-brand-300', badgeIcon: BookOpen, badgeLabel: t('modulesPage:badgeLearn') },
-    test: { gradient: 'from-slate-600 to-slate-700', bg: 'bg-slate-50 dark:bg-slate-900/20', border: 'border-slate-200 dark:border-slate-800', text: 'text-slate-700 dark:text-slate-300', badgeIcon: ClipboardList, badgeLabel: t('modulesPage:badgeTest') },
-    practice: { gradient: 'from-slate-600 to-slate-700', bg: 'bg-slate-50 dark:bg-slate-900/20', border: 'border-slate-200 dark:border-slate-800', text: 'text-slate-700 dark:text-slate-300', badgeIcon: Briefcase, badgeLabel: t('modulesPage:badgePractice') },
+    learn: {
+      gradient: 'from-brand-700 to-brand-800',
+      bg: 'bg-brand-50 dark:bg-brand-900/20',
+      border: 'border-brand-200 dark:border-brand-800',
+      text: 'text-brand-700 dark:text-brand-300',
+      badgeIcon: BookOpen,
+      badgeLabel: t('modulesPage:badgeLearn'),
+    },
+    test: {
+      gradient: 'from-slate-600 to-slate-700',
+      bg: 'bg-slate-50 dark:bg-slate-900/20',
+      border: 'border-slate-200 dark:border-slate-800',
+      text: 'text-slate-700 dark:text-slate-300',
+      badgeIcon: ClipboardList,
+      badgeLabel: t('modulesPage:badgeTest'),
+    },
+    practice: {
+      gradient: 'from-slate-600 to-slate-700',
+      bg: 'bg-slate-50 dark:bg-slate-900/20',
+      border: 'border-slate-200 dark:border-slate-800',
+      text: 'text-slate-700 dark:text-slate-300',
+      badgeIcon: Briefcase,
+      badgeLabel: t('modulesPage:badgePractice'),
+    },
   };
 }
 
 const moduleLevels = ['learn', 'test', 'practice'] as const;
 
-function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps) {
+function ModulesPage({
+  onModuleSelect,
+  onGoToQuiz,
+  progress,
+}: ModulesPageProps) {
   const { t } = useTranslation('modulesPage');
   const { locale } = useLocale();
   const levelStyles = useLevelStyles(t);
@@ -40,22 +80,26 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
   }, []);
 
   // Memoize completed count and total modules (hooks must be called before early return)
-  const completedCount = useMemo(() => progress.completedModules.length, [progress.completedModules.length]);
+  const completedCount = useMemo(
+    () => progress.completedModules.length,
+    [progress.completedModules.length]
+  );
   const totalModules = useMemo(() => modules?.length ?? 0, [modules?.length]);
 
   // Memoize module progress calculations
   const moduleProgressMap = useMemo(() => {
     if (!modules) return new Map<number, number>();
     const map = new Map<number, number>();
-    modules.forEach(module => {
+    modules.forEach((module) => {
       const completedTasks = progress.completedTasks[module.id]?.length || 0;
-      const totalTasks = module.slides.filter(s => 
-        (s as { practicalTask?: unknown }).practicalTask || 
-        (s as { testQuestions?: unknown }).testQuestions ||
-        (s as { scenario?: unknown }).scenario
+      const totalTasks = module.slides.filter(
+        (s) =>
+          (s as { practicalTask?: unknown }).practicalTask ||
+          (s as { testQuestions?: unknown }).testQuestions ||
+          (s as { scenario?: unknown }).scenario
       ).length;
       const isCompleted = progress.completedModules.includes(module.id);
-      
+
       if (isCompleted) {
         map.set(module.id, 100);
       } else if (totalTasks === 0) {
@@ -68,7 +112,9 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
   }, [progress.completedTasks, progress.completedModules, modules]);
 
   // Development arba localhost (preview): sekantinis užrakinimas išjungtas; tier užrakinimas visada taikomas.
-  const DISABLE_MODULE_LOCK = import.meta.env.DEV || (typeof window !== 'undefined' && window.location.hostname === 'localhost');
+  const DISABLE_MODULE_LOCK =
+    import.meta.env.DEV ||
+    (typeof window !== 'undefined' && window.location.hostname === 'localhost');
 
   const maxAccessible = getMaxAccessibleModuleId();
 
@@ -104,6 +150,10 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
         <LoadingSpinner size="lg" text={t('loading')} />
       </div>
     );
+  }
+
+  if (maxAccessible === 0) {
+    return <AccessGateScreen />;
   }
 
   // Helper functions (moved outside to avoid recreation)
@@ -142,12 +192,16 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
       <div className="flex justify-center">
         <div className="card px-8 py-4 inline-flex items-center gap-6">
           <CircularProgress
-            progress={totalModules === 0 ? 0 : (completedCount / totalModules) * 100}
+            progress={
+              totalModules === 0 ? 0 : (completedCount / totalModules) * 100
+            }
             size={60}
             strokeWidth={6}
           />
           <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">{t('overallProgress')}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {t('overallProgress')}
+            </p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">
               {t('modulesCount', { done: completedCount, total: totalModules })}
             </p>
@@ -163,32 +217,51 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
           const isCompleted = progress.completedModules.includes(module.id);
           const locked = isModuleLocked(index);
           const lockReason = getLockReason(module.id, index);
-          let tierForCta = lockReason === 'tier' ? getTierForModule(module.id) : null;
+          let tierForCta =
+            lockReason === 'tier' ? getTierForModule(module.id) : null;
           if (getIsMvpMode() && module.id > 6) tierForCta = null;
           const levelKey = (module as { level?: string }).level;
-          const level = levelKey === 'learn' || levelKey === 'test' || levelKey === 'practice'
-            ? levelKey
-            : moduleLevels[index % moduleLevels.length];
+          const level =
+            levelKey === 'learn' ||
+            levelKey === 'test' ||
+            levelKey === 'practice'
+              ? levelKey
+              : moduleLevels[index % moduleLevels.length];
           const styles = levelStyles[level];
           const BadgeIcon = styles.badgeIcon;
-          const ctaLabel = locked ? t('locked') : moduleProgress === 0 ? t('ctaStart') : moduleProgress >= 100 ? t('ctaView') : t('ctaContinue');
+          const ctaLabel = locked
+            ? t('locked')
+            : moduleProgress === 0
+              ? t('ctaStart')
+              : moduleProgress >= 100
+                ? t('ctaView')
+                : t('ctaContinue');
           const isRecommendedNext = index === firstIncompleteIndex;
 
-          const isMvpLocked7Plus = getIsMvpMode() && module.id > 6 && lockReason === 'tier';
+          const isMvpLocked7Plus =
+            getIsMvpMode() && module.id > 6 && lockReason === 'tier';
           const lockedAriaLabel = isMvpLocked7Plus
             ? t('lockTierMvpLater')
             : lockReason === 'tier' && tierForCta
-            ? t('lockTierAria', { moduleNumber, maxModuleId: tierForCta.maxModuleId, priceEur: tierForCta.priceEur })
-            : t('lockSequenceAria', { moduleNumber, title: module.title });
-          const cardAriaLabel = locked ? lockedAriaLabel : t('cardAria', { action: ctaLabel, moduleNumber, title: module.title });
+              ? t('lockTierAria', {
+                  moduleNumber,
+                  maxModuleId: tierForCta.maxModuleId,
+                  priceEur: tierForCta.priceEur,
+                })
+              : t('lockSequenceAria', { moduleNumber, title: module.title });
+          const cardAriaLabel = locked
+            ? lockedAriaLabel
+            : t('cardAria', {
+                action: ctaLabel,
+                moduleNumber,
+                title: module.title,
+              });
 
           return (
             <div
               key={module.id}
               className={`card relative overflow-hidden transition-all duration-300 animate-fade-in ${
-                locked
-                  ? 'opacity-60 cursor-not-allowed'
-                  : 'card-hover'
+                locked ? 'opacity-60 cursor-not-allowed' : 'card-hover'
               } ${isRecommendedNext ? 'ring-2 ring-accent-500 ring-offset-2 dark:ring-offset-gray-900 shadow-lg shadow-accent-500/20' : ''}`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => !locked && onModuleSelect(module.id)}
@@ -204,45 +277,87 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
               aria-disabled={locked}
             >
               {/* Top gradient bar */}
-              <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${styles.gradient}`} />
-              
+              <div
+                className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${styles.gradient}`}
+              />
+
               {/* Locked overlay */}
               {locked && (
                 <div className="absolute inset-0 bg-gray-100/80 dark:bg-gray-900/80 z-10 flex items-center justify-center">
                   <div className="text-center">
                     <Lock className="w-10 h-10 text-gray-400 dark:text-gray-600 mx-auto mb-2" />
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {isMvpLocked7Plus
+                      {isMvpLocked7Plus
                         ? t('lockTierMvpLater')
                         : lockReason === 'tier' && tierForCta
-                        ? t('lockTierShort', { max: tierForCta.maxModuleId, price: tierForCta.priceEur })
-                        : t('lockCompletePrevious')}
+                          ? t('lockTierShort', {
+                              max: tierForCta.maxModuleId,
+                              price: tierForCta.priceEur,
+                            })
+                          : t('lockCompletePrevious')}
                     </p>
                   </div>
                 </div>
               )}
-              
+
               <div className="p-6">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}>
-                      {module.icon === 'Target' && <Target className="w-6 h-6 text-white" strokeWidth={1.5} />}
-                      {module.icon === 'Brain' && <Brain className="w-6 h-6 text-white" strokeWidth={1.5} />}
-                      {module.icon === 'Settings' && <Settings className="w-6 h-6 text-white" strokeWidth={1.5} />}
-                      {module.icon === 'BarChart3' && <BarChart3 className="w-6 h-6 text-white" strokeWidth={1.5} />}
-                      {module.icon === 'ClipboardCheck' && <ClipboardCheck className="w-6 h-6 text-white" strokeWidth={1.5} />}
-                      {module.icon === 'Rocket' && <Rocket className="w-6 h-6 text-white" strokeWidth={1.5} />}
+                    <div
+                      className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
+                    >
+                      {module.icon === 'Target' && (
+                        <Target
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                      {module.icon === 'Brain' && (
+                        <Brain
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                      {module.icon === 'Settings' && (
+                        <Settings
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                      {module.icon === 'BarChart3' && (
+                        <BarChart3
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                      {module.icon === 'ClipboardCheck' && (
+                        <ClipboardCheck
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
+                      {module.icon === 'Rocket' && (
+                        <Rocket
+                          className="w-6 h-6 text-white"
+                          strokeWidth={1.5}
+                        />
+                      )}
                     </div>
                     <div>
                       {/* Badges: mobile max 2 (Modulis N + vienas iš Rekomenduojama/Baigta/level), desktop – visi */}
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="text-xs font-semibold text-gray-500 dark:text-gray-400" aria-label={t('moduleN', { n: moduleNumber })}>
+                        <span
+                          className="text-xs font-semibold text-gray-500 dark:text-gray-400"
+                          aria-label={t('moduleN', { n: moduleNumber })}
+                        >
                           {t('moduleN', { n: moduleNumber })}
                         </span>
                         {/* Desktop: level (when not recommended), recommended, completed */}
                         {!isRecommendedNext && (
-                          <span className={`hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
+                          <span
+                            className={`hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}
+                          >
                             <BadgeIcon className="w-3 h-3" strokeWidth={2} />
                             {styles.badgeLabel}
                           </span>
@@ -271,20 +386,26 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
                           </span>
                         )}
                         {!isRecommendedNext && !isCompleted && (
-                          <span className={`lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}>
+                          <span
+                            className={`lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}
+                          >
                             <BadgeIcon className="w-3 h-3" strokeWidth={2} />
                             {styles.badgeLabel}
                           </span>
                         )}
                       </div>
-                      <h2 className="text-lg font-bold text-gray-900 dark:text-white">{module.title}</h2>
+                      <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                        {module.title}
+                      </h2>
                     </div>
                   </div>
                 </div>
 
                 {/* Subtitle */}
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{module.subtitle}</p>
-                
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  {module.subtitle}
+                </p>
+
                 {/* Description – min-h užtikrina vienodą kortelių aukštį grid'e (max 120 simbolių per .cursor/rules/module-description-criteria.mdc) */}
                 <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed min-h-[4.5rem] line-clamp-3">
                   {module.description}
@@ -309,26 +430,31 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
                 </div>
 
                 {/* Temos / Verslo pavyzdžiai – rodoma tik jei yra bent vienas (1–3 ir 4–7, 9 užpildyti; 8, 10–15 kol tušti – blokas nesimato) */}
-                {module.businessExamples && module.businessExamples.length > 0 && (
-                  <div className="mb-5">
-                    <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                      {level === 'test' ? t('topicsLabel') : t('businessExamplesLabel')}
-                    </p>
-                    <div className="space-y-1.5">
-                      {module.businessExamples.slice(0, 2).map((example, idx) => (
-                        <div 
-                          key={idx} 
-                          className={`text-xs text-gray-600 dark:text-gray-400 ${styles.bg} p-2 rounded-lg`}
-                        >
-                          • {example.title}
-                        </div>
-                      ))}
+                {module.businessExamples &&
+                  module.businessExamples.length > 0 && (
+                    <div className="mb-5">
+                      <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                        {level === 'test'
+                          ? t('topicsLabel')
+                          : t('businessExamplesLabel')}
+                      </p>
+                      <div className="space-y-1.5">
+                        {module.businessExamples
+                          .slice(0, 2)
+                          .map((example, idx) => (
+                            <div
+                              key={idx}
+                              className={`text-xs text-gray-600 dark:text-gray-400 ${styles.bg} p-2 rounded-lg`}
+                            >
+                              • {example.title}
+                            </div>
+                          ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 {/* Action button – M3 accent tik čia (S-DS2), kiti moduliai – savo gradient */}
-                <button 
+                <button
                   className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${
                     locked
                       ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
@@ -367,7 +493,10 @@ function ModulesPage({ onModuleSelect, onGoToQuiz, progress }: ModulesPageProps)
           </div>
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 flex items-center justify-center gap-2">
             {t('allCompleteTitle')}
-            <PartyPopper className="w-5 h-5 text-accent-500" strokeWidth={1.5} />
+            <PartyPopper
+              className="w-5 h-5 text-accent-500"
+              strokeWidth={1.5}
+            />
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             {t('allCompleteSubtitle')}

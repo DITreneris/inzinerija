@@ -20,6 +20,35 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+### Fixed (2026-03-19)
+
+**Prieigos vartai (access gate) — mokamas turinys uždarytas lankytojams be prieigos**
+
+Iki šiol `VITE_MVP_MODE=1` produkcijos build'e automatiškai atrakindavo visus 6 modulius kiekvienam lankytojui, nepriklausomai nuo apmokėjimo. Dabar turinys pagal nutylėjimą užrakintas (`maxAccessible = 0`), kol vartotojas patvirtina prieigą per magic link arba turi išsaugotą tier localStorage.
+
+- **`src/utils/accessTier.ts`:** Pašalintas `VITE_MVP_MODE=1` fallback (`return 6`); default dabar `return 0` (užrakinta). `sessionStorage` pakeistas į `localStorage` su vienkartine migracija iš sessionStorage (esami patikrinti vartotojai nepraranda prieigos).
+- **`src/App.tsx`:** Magic link verifikacijos rezultatas saugomas į `localStorage` (buvo `sessionStorage`), kad prieiga išliktų uždarius tab'ą.
+- **`src/components/AccessGateScreen.tsx`:** Naujas gate komponentas — rodomas kai `maxAccessible === 0`. Lock ikona, „Prieiga ribota" pranešimas, CTA mygtukas į kainodarą (`promptanatomy.app/#pricing`).
+- **`src/components/ModulesPage.tsx`:** Integruotas gate ekranas — kai `maxAccessible === 0`, vietoj modulių sąrašo rodomas `AccessGateScreen`.
+- **`src/locales/lt.json`, `src/locales/en.json`:** Pridėti gate vertimo raktai (`gateTitle`, `gateMessage`, `gateCta`).
+- **`src/utils/__tests__/accessTier.test.ts`:** Testai atnaujinti: `sessionStorage` → `localStorage`, pridėti testai default=0, migracija, localStorage prioritetas (13 testų, visi praeina).
+
+---
+
+## [1.3.0] – 2026-03-16
+
+Production release: deploy veikia, integruoti mokėjimai marketingo tinklalapyje, pirmas pirkimas. Šis release apima visus pakeitimus nuo 2026-03-12 iki 2026-03-16.
+
+### Changed (2026-03-14)
+
+**CI workflow atnaujinimas Node 24 perspėjimams mažinti**
+
+Saugiai atnaujintos oficialių GitHub Actions versijos workflow lygyje, neliečiant aplikacijos dependency grandinės ar integracijos su didesniu `promptanatomy` projektu.
+
+- **`.github/workflows/test.yml`:** `actions/checkout` atnaujintas `v4` → `v6`, `actions/setup-node` `v4` → `v6`; paliktas `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true`.
+- **`.github/workflows/deploy.yml`:** `actions/checkout` atnaujintas `v4` → `v6`, `actions/setup-node` `v4` → `v6`, `actions/configure-pages` `v4` → `v5`, `actions/upload-pages-artifact` `v3` → `v4`.
+- **`codecov/codecov-action@v3`:** Sąmoningai nejudintas šiame žingsnyje, kad nekiltų papildoma rizika dabartinei CI ir didesnio projekto integracijai.
+
 ### Added (2026-03-14)
 
 **Production hardening + brand assetai**
@@ -309,7 +338,7 @@ Mobiliam Chrome demonstracijos metu skaidrė (id: 47, type: content-block) rodė
 
 ### Added (2026-03-12)
 
-**Gold Legacy Standard – išsami kodo bazės dokumentacija v1.2.0**
+**Gold Legacy Standard – išsami kodo bazės dokumentacija v1.3.0**
 
 Sukurtas `docs/development/GOLD_LEGACY_STANDARD.md` (~750 eilučių) – visapusiška production deploy būsenos dokumentacija, skirta apsaugoti esamą kodą tobulinant sistemą toliau.
 

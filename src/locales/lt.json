@@ -321,7 +321,10 @@
     "lockTierAria": "Modulis {{moduleNumber}} užrakintas. Įsigyk prieigą iki {{maxModuleId}} modulių – {{priceEur}} EUR.",
     "lockSequenceAria": "Modulis {{moduleNumber}} užrakintas: {{title}}",
     "lockTierShort": "– {{max}} modulių, {{price}} EUR",
-    "lockTierMvpLater": "Moduliai 7–15 ateityje"
+    "lockTierMvpLater": "Moduliai 7–15 ateityje",
+    "gateTitle": "Prieiga ribota",
+    "gateMessage": "Norėdami naudoti mokymus, įsigykite prieigą.",
+    "gateCta": "Įsigyti prieigą"
   },
   "certificate": {
     "saveAndDownloadAria": "Išsaugoti vardą ir parsisiųsti sertifikatą PDF",
