@@ -120,6 +120,14 @@ _Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.
 - [ ] **Duomenų analizės kelias (M7–M9):** Dokumentuose `docs/turinio_pletra_moduliai_7_8_9.md` ir `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` nurodyti, kad papildomas RAG/tyrimų įrankių turinys (pvz. id 61) gali būti integruotas į kelio aprašymą arba „Papildomas skaitymas“.
 - [x] **Duomenų analizės kelias: path-step tipas, badge, žodynėlis:** Įgyvendinta – tipas `path-step`, PathStepSlide, progresas, GlossaryPage locked/unlocked; SOT §8.2, GOLDEN_STANDARD §3.4d; glossary.json `unlockedBy` 3 terminams (Deep research, Master promptas 71.2; RAG 71.3); MODULE_LABELS[7]. Optional vėliau: pridėti žodynėlio terminus (EDA, Duomenų analizės pipeline, Sintetinimas, Vizualizacija ir kt.) su unlockedBy 71.1, 71.4, 71.5. Planas: `.cursor/plans/duomenų_analizės_kelias_ir_badge_70d5e403.plan.md`.
 
+### Marketing homepage / CRO backlog
+
+- [ ] **Landingo positioning suvienodinimas:** suvienodinti framing tarp „sistema / mokymai / bendruomenė“, kad `Hero`, `What is` ir `Pricing` kalbėtų tuo pačiu produkto modeliu.
+- [ ] **Hero value proposition ir CTA perrašymas:** aiškiau įvardyti kam skirta ir kokį konkretų rezultatą duoda; peržiūrėti CTA formuluotes (`Žiūrėti planus` vs. stipresnis pirkimo/demo veiksmas).
+- [ ] **Trust / social proof blokas prie sprendimo momento:** pridėti realesnius įrodymus prie `Hero` arba prieš `Pricing` (logotipai, trumpas testimonial, konkretūs outcome skaičiai), vietoje silpnesnių placeholder signalų.
+- [ ] **`Pricing` srauto prioritetai naujam lankytojui:** peržiūrėti sekos logiką, kad naujam vartotojui planai būtų matomi anksčiau nei `Patikrink prieigą`, o returning-user flow liktų aiškus.
+- [ ] **`Ecosystem` sekcijos vaidmens peržiūra:** sumažinti riziką, kad outbound CTA per anksti išveda iš marketinginio funnel prieš pagrindinį conversion veiksmą.
+
 - **A1** Moduliai 7+ Jūs vs tu (atskira eiga: GOLDEN_STANDARD §4.2 + grep).
 - **A2** Footer „Toliau – skaidrė X“ – **atidėta iki release QA** (ne iteracijų metu). Prieš release atlikti globalią patikrą visiems moduliams pagal `.cursor/rules/footer-slide-numbers.mdc`.
 - **A3** blockVariant – likusios sekcijos (accent/brand/terms).
