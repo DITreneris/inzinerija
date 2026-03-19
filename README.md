@@ -1,6 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
-**6 promptų struktūros blokai, pilnas interaktyvus mokymas (moduliai 1–6) – sistema nuo A iki Z.**
+**6 promptų struktūros blokai, pilnas interaktyvus mokymas (moduliai 1–6) – sistema nuo A iki Z.**  
+**Versija:** 1.3.0 (2026-03-16). Production: deploy, integruoti mokėjimai marketingo tinklalapyje.
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti 6 moduliai** (6 blokų sistema, žinių testas, praktika, konteksto inžinerija, pažangus testas, projektas) su progresu, sertifikatais ir PDF atmintinėmis. Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus** – mokoma kurti promptus ir scenarijus, ne tik suprasti teoriją.  
 UI ir turinys palaiko **LT / EN** (moduliams 1–6), kalba pasirenkama programėlėje.
@@ -9,35 +10,35 @@ UI ir turinys palaiko **LT / EN** (moduliams 1–6), kalba pasirenkama programė
 
 Mokymo kursas (treniruoklis), kuris moko **kurti** efektyvius DI promptus naudojant **6 blokų sistemą**:
 
-| Blokas | Paskirtis |
-|--------|-----------|
-| 1️⃣ **Meta** | Rolė, kontekstas ir tikslas |
-| 2️⃣ **Input** | Duomenys, faktai ir apribojimai |
-| 3️⃣ **Output** | Formatas, struktūra ir reikalavimai |
-| 4️⃣ **Reasoning** | Mąstymo seka ir logika |
-| 5️⃣ **Quality Control** | Kokybės kriterijai |
+| Blokas                     | Paskirtis                               |
+| -------------------------- | --------------------------------------- |
+| 1️⃣ **Meta**                | Rolė, kontekstas ir tikslas             |
+| 2️⃣ **Input**               | Duomenys, faktai ir apribojimai         |
+| 3️⃣ **Output**              | Formatas, struktūra ir reikalavimai     |
+| 4️⃣ **Reasoning**           | Mąstymo seka ir logika                  |
+| 5️⃣ **Quality Control**     | Kokybės kriterijai                      |
 | 6️⃣ **Advanced Parameters** | Modelio nustatymai ir atsakymo valdymas |
 
 Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenarijuose (nuo pirmųjų užduočių iki projekto).
 
 ## ✨ Pagrindinės funkcijos
 
-- **Pilnas 1–6 modulių kelias:**  
-  1) 6 Blokų Sistema (teorija) → 2) Žinių Patikrinimas (testas) → 3) Praktinis Pritaikymas (6 scenarijų) → 4) Konteksto inžinerija (pažangi teorija) → 5) Pažangus testas / prezentacijos sprintas → 6) Projekto kūrimas (praktika).  
-  Moduliai 7–15 – rezervuoti ateities turiniui (plėtra aprašyta dokumentacijoje).
+- **Pilnas 1–6 modulių kelias:**
+  1. 6 Blokų Sistema (teorija) → 2) Žinių Patikrinimas (testas) → 3) Praktinis Pritaikymas (6 scenarijų) → 4) Konteksto inžinerija (pažangi teorija) → 5) Pažangus testas / prezentacijos sprintas → 6) Projekto kūrimas (praktika).  
+     Moduliai 7–15 – rezervuoti ateities turiniui (plėtra aprašyta dokumentacijoje).
 - **6 blokų sistema** su workflow, technikomis ir mąstymo modeliais (CoT, ToT, konteksto inžinerijos schemos).
 - **Praktiniai verslo scenarijai** (Modulis 3) ir **vienas integruotas projektas** (Modulis 6).
 - **Žodynėlis** (terminai) ir **Įrankių puslapis** (DI įrankių katalogas pagal modulius).
 - **Apklausa** – bendras žinių patikrinimas po mokymų.
 - **Promptų biblioteka** pagrindiniame puslapyje su kopijavimo funkcija.
-- **Sertifikatai:**  
-  - Po 3 modulių (1–3) – pirmas lygis.  
+- **Sertifikatai:**
+  - Po 3 modulių (1–3) – pirmas lygis.
   - Po 6 modulių (1–6) ir ≥70 % pažangaus testo – antras lygis.  
-  Sertifikatai generuojami kaip PDF (NotoSans šriftas, LT diakritika).
+    Sertifikatai generuojami kaip PDF (NotoSans šriftas, LT diakritika).
 - **PDF atmintinės:** M5 ir M6 turi atskiras atsisiunčiamas atmintines (LT/EN).
 - **Progreso sekimas:** localStorage, versijavimas, automatinis išsaugojimas (baigti moduliai, užduotys, testų rezultatai).
-- **Prieigos lygiai (access tier):**  
-  - Pilna versija (1–6) per magic link (`api/verify-access.ts`).  
+- **Prieigos lygiai (access tier):**
+  - Pilna versija (1–6) per magic link (`api/verify-access.ts`).
   - Core production profilis – buildina ir rodo tik modulius 1–6 (testuotojams / demo).
 - **LT/EN kalbos palaikymas** moduliams 1–6, žodynėliui, promptų bibliotekai, įrankiams ir pagrindiniam UI.
 - **Responsive dizainas**, tamsusis/šviesusis režimas, klaviatūros navigacija.
@@ -46,6 +47,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 ## 🚀 Greitas startas
 
 ### Reikalavimai
+
 - Node.js 18+ (rekomenduojama `engines` iš `package.json`: node >=18, npm >=9)
 - npm arba yarn
 
@@ -91,14 +93,14 @@ Testai apima duomenų loaderius (LT/EN), progresą, EN/LT apklausą, sertifikat�
 
 ## 📚 Modulių struktūra
 
-| Modulis | Pavadinimas | Turinys |
-|---------|-------------|---------|
-| 1 | **6 Blokų Sistema** | Teorija: promptų struktūra, workflow, technikos, kiekvienas blokas (Meta, Input, Output, Reasoning, Quality, Advanced). |
-| 2 | **Žinių Patikrinimas** | Testas: klausimai su paaiškinimais; sertifikatas nuo 70 %. |
-| 3 | **Praktinis Pritaikymas** | 6 verslo scenarijų su žingsniais ir pavyzdiniais sprendimais. |
-| 4 | **Konteksto inžinerija** | Pažangus teorija: RAG, deep research, tokenų ekonomika, manipuliacijos, žinių patikrinimas. |
-| 5 | **Pažangus testas / prezentacijos sprintas** | Pažangus suvokimo testas + prezentacijos struktūros rėmelis. ≥70 % rekomenduojama prieš Modulį 6. |
-| 6 | **Projekto kūrimas** | Vienas integruotas projektas (capstone) su 6 blokų sistema ir pažangiomis temomis. |
+| Modulis | Pavadinimas                                  | Turinys                                                                                                                 |
+| ------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 1       | **6 Blokų Sistema**                          | Teorija: promptų struktūra, workflow, technikos, kiekvienas blokas (Meta, Input, Output, Reasoning, Quality, Advanced). |
+| 2       | **Žinių Patikrinimas**                       | Testas: klausimai su paaiškinimais; sertifikatas nuo 70 %.                                                              |
+| 3       | **Praktinis Pritaikymas**                    | 6 verslo scenarijų su žingsniais ir pavyzdiniais sprendimais.                                                           |
+| 4       | **Konteksto inžinerija**                     | Pažangus teorija: RAG, deep research, tokenų ekonomika, manipuliacijos, žinių patikrinimas.                             |
+| 5       | **Pažangus testas / prezentacijos sprintas** | Pažangus suvokimo testas + prezentacijos struktūros rėmelis. ≥70 % rekomenduojama prieš Modulį 6.                       |
+| 6       | **Projekto kūrimas**                         | Vienas integruotas projektas (capstone) su 6 blokų sistema ir pažangiomis temomis.                                      |
 
 **Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Apklausa.  
 **Duomenų architektūra:** `src/data/modules.json` yra full `1–15` redagavimo SOT. Core production profilis naudoja `src/data/modules-m1-m6.json`, o EN turinys sujungiamas per `modules-en.json` ir `modules-en-m4-m6.json`.
@@ -148,7 +150,6 @@ Prieiga: `https://ditreneris.github.io/inzinerija/`
 
 Pilnas production aprašas: `docs/deployment/INTEGRATION_OVERVIEW.md` ir `docs/deployment/DEPLOYMENT.md`.
 
-
 **Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (atitinka GitHub Pages repo pavadinimą). Per env galima nustatyti `VITE_BASE_PATH` (pvz. `/anatomija/` kito repo atveju).
 
 ### Kiti variantai
@@ -158,15 +159,15 @@ Pilnas production aprašas: `docs/deployment/INTEGRATION_OVERVIEW.md` ir `docs/d
 
 ## 🛠️ Technologijos
 
-| Technologija | Paskirtis |
-|--------------|-----------|
-| React 18 | UI biblioteka (lazy loading, Suspense) |
-| TypeScript | Tipai (`src/types/modules.ts`) |
-| Vite | Build ir dev serveris |
-| Tailwind CSS | Styling (brand, accent, dark mode) |
-| Vitest + React Testing Library | Unit ir integraciniai testai |
-| react-helmet-async | SEO (title, description pagal puslapį) |
-| lucide-react | Ikonos; recharts – diagramos (pvz. haliucinacijų rodikliai); canvas-confetti – šventimas |
+| Technologija                   | Paskirtis                                                                                |
+| ------------------------------ | ---------------------------------------------------------------------------------------- |
+| React 18                       | UI biblioteka (lazy loading, Suspense)                                                   |
+| TypeScript                     | Tipai (`src/types/modules.ts`)                                                           |
+| Vite                           | Build ir dev serveris                                                                    |
+| Tailwind CSS                   | Styling (brand, accent, dark mode)                                                       |
+| Vitest + React Testing Library | Unit ir integraciniai testai                                                             |
+| react-helmet-async             | SEO (title, description pagal puslapį)                                                   |
+| lucide-react                   | Ikonos; recharts – diagramos (pvz. haliucinacijų rodikliai); canvas-confetti – šventimas |
 
 ## 📁 Projekto struktūra
 
@@ -220,6 +221,6 @@ src/
 
 Autorinė mokymo medžiaga © 2024-2026 Tomas Staniulis
 
-*Sukurta verslo problemų sprendimui su DI* 🎯
+_Sukurta verslo problemų sprendimui su DI_ 🎯
 
 </div>

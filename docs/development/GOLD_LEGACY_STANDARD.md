@@ -1,6 +1,6 @@
-# Gold Legacy Standard – Promptų anatomija v1.2.0
+# Gold Legacy Standard – Promptų anatomija v1.3.0
 
-> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.2.0, 2026-03-12). Šis dokumentas yra **atskaitos taškas** – sistema veikia, moduliai 1–6 deployed, ir bet kokie tolimesni pakeitimai turi būti vertinami šio standarto kontekste.  
+> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). Šis dokumentas yra **atskaitos taškas** – sistema veikia, moduliai 1–6 deployed, ir bet kokie tolimesni pakeitimai turi būti vertinami šio standarto kontekste.  
 > **Apimtis:** Visa kodo bazė, išskyrus modulių 7–15 turinį (jie yra `modules.json`, bet dar neplėtojami).  
 > **Versija:** 1.1.0  
 > **Data:** 2026-03-14  
@@ -39,7 +39,7 @@
 ## 1. Projekto apžvalga
 
 **Pavadinimas:** Promptų anatomija – Interaktyvus DI mokymas  
-**Paketas:** `prompt-anatomy-training` v1.2.0  
+**Paketas:** `prompt-anatomy-training` v1.3.0  
 **Autorius:** Tomas Staniulis  
 **Licencija:** MIT (kodas), © 2024–2026 (turinys)  
 **Repozitorija:** `https://github.com/DITreneris/inzinerija.git` (deploy šiam projektui; alternatyva – anatomija)  
@@ -47,20 +47,22 @@
 **Demo URL:** `https://ditreneris.github.io/inzinerija/` (GitHub Pages; base path turi atitikti repo pavadinimą)
 
 ### Kas tai?
+
 Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus naudojant **6 blokų sistemą** (Meta, Input, Output, Reasoning, Quality Control, Advanced Parameters). Kursas orientuotas į verslo problemų sprendimą su praktiniu rezultatu.
 
 ### Modulių struktūra (1–6, production)
 
-| Modulis | Pavadinimas | Tipas |
-|---------|-------------|-------|
-| 1 | **6 Blokų Sistema** | Teorija: promptų struktūra, workflow, technikos |
-| 2 | **Žinių Patikrinimas** | Testas: klausimai su paaiškinimais; sertifikatas nuo 70% |
-| 3 | **Praktinis Pritaikymas** | 6 verslo scenarijai su žingsniais ir pavyzdiniais sprendimais |
-| 4 | **Konteksto inžinerija** | Pažangi teorija: RAG, deep research, tokenai, manipuliacijos |
-| 5 | **Pažangus testas / prezentacijos sprintas** | Pažangus testas + prezentacijos struktūros rėmelis; ≥70% rekomenduojama prieš M6 |
-| 6 | **Projekto kūrimas** | Integruotas capstone projektas su 6 blokų sistema ir pažangiomis temomis |
+| Modulis | Pavadinimas                                  | Tipas                                                                            |
+| ------- | -------------------------------------------- | -------------------------------------------------------------------------------- |
+| 1       | **6 Blokų Sistema**                          | Teorija: promptų struktūra, workflow, technikos                                  |
+| 2       | **Žinių Patikrinimas**                       | Testas: klausimai su paaiškinimais; sertifikatas nuo 70%                         |
+| 3       | **Praktinis Pritaikymas**                    | 6 verslo scenarijai su žingsniais ir pavyzdiniais sprendimais                    |
+| 4       | **Konteksto inžinerija**                     | Pažangi teorija: RAG, deep research, tokenai, manipuliacijos                     |
+| 5       | **Pažangus testas / prezentacijos sprintas** | Pažangus testas + prezentacijos struktūros rėmelis; ≥70% rekomenduojama prieš M6 |
+| 6       | **Projekto kūrimas**                         | Integruotas capstone projektas su 6 blokų sistema ir pažangiomis temomis         |
 
 ### Pagrindinės funkcijos
+
 - Pilnas 1→6 modulių kelias su progresu
 - LT/EN kalbos palaikymas (moduliams 1–6)
 - Žodynėlis (97 terminai LT / EN), Įrankių katalogas (57 įrankiai)
@@ -80,48 +82,49 @@ Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus
 
 ### Runtime priklausomybės
 
-| Paketas | Versija | Paskirtis |
-|---------|---------|-----------|
-| `react` | ^18.2.0 | UI biblioteka |
-| `react-dom` | ^18.2.0 | DOM renderinimas |
-| `i18next` | ^25.8.14 | Internacionalizacija |
-| `react-i18next` | ^16.5.6 | React i18n integracija |
-| `react-helmet-async` | ^2.0.5 | SEO (title, description pagal puslapį) |
-| `lucide-react` | ^0.294.0 | Ikonos |
-| `jspdf` | ^4.2.0 | PDF generavimas (sertifikatai, atmintinės) |
-| `canvas-confetti` | ^1.9.4 | Šventimo animacija |
+| Paketas              | Versija  | Paskirtis                                  |
+| -------------------- | -------- | ------------------------------------------ |
+| `react`              | ^18.2.0  | UI biblioteka                              |
+| `react-dom`          | ^18.2.0  | DOM renderinimas                           |
+| `i18next`            | ^25.8.14 | Internacionalizacija                       |
+| `react-i18next`      | ^16.5.6  | React i18n integracija                     |
+| `react-helmet-async` | ^2.0.5   | SEO (title, description pagal puslapį)     |
+| `lucide-react`       | ^0.294.0 | Ikonos                                     |
+| `jspdf`              | ^4.2.0   | PDF generavimas (sertifikatai, atmintinės) |
+| `canvas-confetti`    | ^1.9.4   | Šventimo animacija                         |
 
 ### Dev priklausomybės
 
-| Paketas | Versija | Paskirtis |
-|---------|---------|-----------|
-| `vite` | ^5.0.8 | Build ir dev serveris |
-| `@vitejs/plugin-react` | ^4.2.1 | React Vite plugin |
-| `typescript` | ^5.2.2 | TypeScript kompiliatorius |
-| `tailwindcss` | ^3.3.6 | CSS framework |
-| `postcss` | ^8.4.32 | PostCSS |
-| `autoprefixer` | ^10.4.16 | Autoprefixer |
-| `vitest` | ^1.1.0 | Testų framework |
-| `@testing-library/react` | ^14.1.2 | React testų biblioteka |
-| `@testing-library/jest-dom` | ^6.1.5 | Jest-DOM matchers |
-| `@testing-library/user-event` | ^14.5.1 | User event simuliavimas |
-| `@vitest/coverage-v8` | ^1.1.0 | Coverage reportai |
-| `@vitest/ui` | ^1.1.0 | Vitest UI |
-| `jsdom` | ^23.0.1 | DOM aplinka testams |
-| `ajv` | ^8.17.1 | JSON schemos validacija |
-| `ajv-formats` | ^3.0.1 | AJV formatų palaikymas |
-| `axe-core` | ^4.11.1 | Accessibility testai |
-| `eslint` | ^8.55.0 | Linteris |
-| `eslint-plugin-react` | ^7.37.5 | React ESLint taisyklės |
-| `eslint-plugin-react-hooks` | ^4.6.0 | React hooks taisyklės |
-| `eslint-plugin-react-refresh` | ^0.4.5 | React refresh taisyklės |
-| `@typescript-eslint/*` | ^6.14.0 | TypeScript ESLint |
-| `husky` | ^9.x | Pre-commit hooks |
-| `lint-staged` | ^15.x | Staged failų lint/format |
-| `rollup-plugin-visualizer` | ^5.x | Bundle analysis |
-| `prettier` | ^3.x | Code formatter |
+| Paketas                       | Versija  | Paskirtis                 |
+| ----------------------------- | -------- | ------------------------- |
+| `vite`                        | ^5.0.8   | Build ir dev serveris     |
+| `@vitejs/plugin-react`        | ^4.2.1   | React Vite plugin         |
+| `typescript`                  | ^5.2.2   | TypeScript kompiliatorius |
+| `tailwindcss`                 | ^3.3.6   | CSS framework             |
+| `postcss`                     | ^8.4.32  | PostCSS                   |
+| `autoprefixer`                | ^10.4.16 | Autoprefixer              |
+| `vitest`                      | ^1.1.0   | Testų framework           |
+| `@testing-library/react`      | ^14.1.2  | React testų biblioteka    |
+| `@testing-library/jest-dom`   | ^6.1.5   | Jest-DOM matchers         |
+| `@testing-library/user-event` | ^14.5.1  | User event simuliavimas   |
+| `@vitest/coverage-v8`         | ^1.1.0   | Coverage reportai         |
+| `@vitest/ui`                  | ^1.1.0   | Vitest UI                 |
+| `jsdom`                       | ^23.0.1  | DOM aplinka testams       |
+| `ajv`                         | ^8.17.1  | JSON schemos validacija   |
+| `ajv-formats`                 | ^3.0.1   | AJV formatų palaikymas    |
+| `axe-core`                    | ^4.11.1  | Accessibility testai      |
+| `eslint`                      | ^8.55.0  | Linteris                  |
+| `eslint-plugin-react`         | ^7.37.5  | React ESLint taisyklės    |
+| `eslint-plugin-react-hooks`   | ^4.6.0   | React hooks taisyklės     |
+| `eslint-plugin-react-refresh` | ^0.4.5   | React refresh taisyklės   |
+| `@typescript-eslint/*`        | ^6.14.0  | TypeScript ESLint         |
+| `husky`                       | ^9.x     | Pre-commit hooks          |
+| `lint-staged`                 | ^15.x    | Staged failų lint/format  |
+| `rollup-plugin-visualizer`    | ^5.x     | Bundle analysis           |
+| `prettier`                    | ^3.x     | Code formatter            |
 
 ### Engine reikalavimai
+
 - Node.js ≥18.0.0
 - npm ≥9.0.0
 
@@ -182,6 +185,7 @@ prompt-anatomy-training/
 ```
 
 ### Entry point seka
+
 1. `index.html` → `<script src="/src/main.tsx">`
 2. `src/main.tsx` → `import './i18n'` → `ReactDOM.createRoot` → `<HelmetProvider>` → `<LocaleProvider>` → `<App />`
 3. `src/App.tsx` → lazy loads pages, manages routing/progress/celebration/access
@@ -194,108 +198,108 @@ prompt-anatomy-training/
 
 Sistema naudoja **dviejų profilių** architektūrą, valdomą per `VITE_MVP_MODE` env kintamąjį:
 
-| Profilis | Aprašymas | Aktyvavimas |
-|----------|-----------|-------------|
-| **Full (authoring)** | Visi moduliai 1–15, pilnas žodynėlis, visi įrankiai | Numatytasis (be `VITE_MVP_MODE`) |
-| **Core (production)** | Tik moduliai 1–6, filtruotas žodynėlis ir įrankiai | `VITE_MVP_MODE=1` |
+| Profilis              | Aprašymas                                           | Aktyvavimas                      |
+| --------------------- | --------------------------------------------------- | -------------------------------- |
+| **Full (authoring)**  | Visi moduliai 1–15, pilnas žodynėlis, visi įrankiai | Numatytasis (be `VITE_MVP_MODE`) |
+| **Core (production)** | Tik moduliai 1–6, filtruotas žodynėlis ir įrankiai  | `VITE_MVP_MODE=1`                |
 
 Aliasai `vite.config.ts` persijungia failų kelius:
 
-| Aliasas | Full build | Core build |
-|---------|------------|------------|
-| `@modules-data` | `modules.json` | `modules-m1-m6.json` |
-| `@glossary-data` | `glossary.json` | `glossary-m1-m6.json` |
-| `@tools-data` | `tools.json` | `tools-m1-m6.json` |
-| `@tools-en-data` | `tools-en.json` | `tools-en-m1-m6.json` |
-| `@m9-characters-data` | `m9Characters.json` | `m9Characters-empty.json` |
-| `@ai-detectors-slide` | `AiDetectorsSlide.tsx` | `UnavailableModuleSlide.tsx` |
+| Aliasas                      | Full build                    | Core build                   |
+| ---------------------------- | ----------------------------- | ---------------------------- |
+| `@modules-data`              | `modules.json`                | `modules-m1-m6.json`         |
+| `@glossary-data`             | `glossary.json`               | `glossary-m1-m6.json`        |
+| `@tools-data`                | `tools.json`                  | `tools-m1-m6.json`           |
+| `@tools-en-data`             | `tools-en.json`               | `tools-en-m1-m6.json`        |
+| `@m9-characters-data`        | `m9Characters.json`           | `m9Characters-empty.json`    |
+| `@ai-detectors-slide`        | `AiDetectorsSlide.tsx`        | `UnavailableModuleSlide.tsx` |
 | `@vaizdo-generatorius-slide` | `VaizdoGeneratoriusSlide.tsx` | `UnavailableModuleSlide.tsx` |
 
 ### 4.2 Duomenų failų inventorius
 
 #### Pagrindiniai SOT failai (redagavimo šaltiniai)
 
-| Failas | Aprašymas | Turinys |
-|--------|-----------|---------|
-| `src/data/modules.json` | **Pagrindinis SOT** – visi moduliai, skaidrės, testas, apklausa | ~12,000 eilučių; `{ modules: Module[], quiz: Quiz }` |
-| `src/data/glossary.json` | Žodynėlis (pilnas) | `{ terms: GlossaryTerm[] }` – 97 terminai |
-| `src/data/tools.json` | Įrankių katalogas (pilnas) | `{ tools: ToolItem[] }` – ~57 įrankiai |
-| `src/data/promptLibrary.json` | Promptų biblioteka | `{ sections: PromptLibrarySection[] }` – 6 sekcijos |
-| `src/data/certificateContent.json` | Sertifikatų PDF tekstai (LT) | `{ tiers: [tier1, tier2, tier3], websiteUrl, websiteCta, ... }` |
-| `src/data/m5HandoutContent.json` | M5 atmintinės turinys (LT) | `{ title, toolsBullets, sequenceSteps, ... }` |
-| `src/data/m6HandoutContent.json` | M6 atmintinės turinys (LT) | `{ title, projectSteps, dataManagementPoints, ... }` |
-| `src/data/introPiePdfContent.json` | Intro-action-pie PDF (LT) | `{ segments: IntroActionPiePdfSegment[7] }` |
-| `src/data/hallucinationRates.ts` | Haliucinacijų rodikliai | 9 modelių duomenys (GPT-4, Gemini, Llama, etc.) |
-| `src/data/aiDetectors.ts` | DI detektorių duomenys | Detektorių sąrašas su statistika |
+| Failas                             | Aprašymas                                                       | Turinys                                                         |
+| ---------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `src/data/modules.json`            | **Pagrindinis SOT** – visi moduliai, skaidrės, testas, apklausa | ~12,000 eilučių; `{ modules: Module[], quiz: Quiz }`            |
+| `src/data/glossary.json`           | Žodynėlis (pilnas)                                              | `{ terms: GlossaryTerm[] }` – 97 terminai                       |
+| `src/data/tools.json`              | Įrankių katalogas (pilnas)                                      | `{ tools: ToolItem[] }` – ~57 įrankiai                          |
+| `src/data/promptLibrary.json`      | Promptų biblioteka                                              | `{ sections: PromptLibrarySection[] }` – 6 sekcijos             |
+| `src/data/certificateContent.json` | Sertifikatų PDF tekstai (LT)                                    | `{ tiers: [tier1, tier2, tier3], websiteUrl, websiteCta, ... }` |
+| `src/data/m5HandoutContent.json`   | M5 atmintinės turinys (LT)                                      | `{ title, toolsBullets, sequenceSteps, ... }`                   |
+| `src/data/m6HandoutContent.json`   | M6 atmintinės turinys (LT)                                      | `{ title, projectSteps, dataManagementPoints, ... }`            |
+| `src/data/introPiePdfContent.json` | Intro-action-pie PDF (LT)                                       | `{ segments: IntroActionPiePdfSegment[7] }`                     |
+| `src/data/hallucinationRates.ts`   | Haliucinacijų rodikliai                                         | 9 modelių duomenys (GPT-4, Gemini, Llama, etc.)                 |
+| `src/data/aiDetectors.ts`          | DI detektorių duomenys                                          | Detektorių sąrašas su statistika                                |
 
 #### EN vertimo failai (merge overlay)
 
-| Failas | Aprašymas |
-|--------|-----------|
-| `src/data/modules-en.json` | EN vertimas moduliams 1–3 |
-| `src/data/modules-en-m4-m6.json` | EN vertimas moduliams 4–6 |
+| Failas                                  | Aprašymas                                       |
+| --------------------------------------- | ----------------------------------------------- |
+| `src/data/modules-en.json`              | EN vertimas moduliams 1–3                       |
+| `src/data/modules-en-m4-m6.json`        | EN vertimas moduliams 4–6                       |
 | `src/data/modules-en-us-overrides.json` | US-specifiniai override'ai (pvz. USD, US rinka) |
-| `src/data/quiz-en.json` | EN baigiamasis testas |
-| `src/data/glossary-en.json` | EN žodynėlis |
-| `src/data/tools-en.json` | EN įrankių katalogas |
-| `src/data/promptLibrary-en.json` | EN promptų biblioteka |
-| `src/data/certificateContent-en.json` | EN sertifikatų tekstai |
-| `src/data/m5HandoutContent-en.json` | EN M5 atmintinė |
-| `src/data/m6HandoutContent-en.json` | EN M6 atmintinė |
-| `src/data/introPiePdfContent-en.json` | EN intro-action-pie PDF |
+| `src/data/quiz-en.json`                 | EN baigiamasis testas                           |
+| `src/data/glossary-en.json`             | EN žodynėlis                                    |
+| `src/data/tools-en.json`                | EN įrankių katalogas                            |
+| `src/data/promptLibrary-en.json`        | EN promptų biblioteka                           |
+| `src/data/certificateContent-en.json`   | EN sertifikatų tekstai                          |
+| `src/data/m5HandoutContent-en.json`     | EN M5 atmintinė                                 |
+| `src/data/m6HandoutContent-en.json`     | EN M6 atmintinė                                 |
+| `src/data/introPiePdfContent-en.json`   | EN intro-action-pie PDF                         |
 
 #### Core profilio failai (generuojami iš SOT)
 
-| Failas | Generuojamas iš | Generavimo skriptas |
-|--------|-----------------|---------------------|
-| `modules-m1-m6.json` | `modules.json` (moduliai su `id ≤ 6`) | `scripts/generate-core-data.mjs` |
-| `glossary-m1-m6.json` | `glossary.json` (terminai su `moduleId ≤ 6`) | `scripts/generate-core-data.mjs` |
-| `tools-m1-m6.json` | `tools.json` (įrankiai su `moduleId ≤ 6`) | `scripts/generate-core-data.mjs` |
-| `tools-en-m1-m6.json` | `tools-en.json` (EN įrankiai su `moduleId ≤ 6`) | `scripts/generate-core-data.mjs` |
-| `m9Characters-empty.json` | Tuščias `{ characters: [] }` | `scripts/generate-core-data.mjs` |
+| Failas                    | Generuojamas iš                                 | Generavimo skriptas              |
+| ------------------------- | ----------------------------------------------- | -------------------------------- |
+| `modules-m1-m6.json`      | `modules.json` (moduliai su `id ≤ 6`)           | `scripts/generate-core-data.mjs` |
+| `glossary-m1-m6.json`     | `glossary.json` (terminai su `moduleId ≤ 6`)    | `scripts/generate-core-data.mjs` |
+| `tools-m1-m6.json`        | `tools.json` (įrankiai su `moduleId ≤ 6`)       | `scripts/generate-core-data.mjs` |
+| `tools-en-m1-m6.json`     | `tools-en.json` (EN įrankiai su `moduleId ≤ 6`) | `scripts/generate-core-data.mjs` |
+| `m9Characters-empty.json` | Tuščias `{ characters: [] }`                    | `scripts/generate-core-data.mjs` |
 
 #### Klausimų pool (TypeScript, ne JSON)
 
-| Failas | Aprašymas |
-|--------|-----------|
-| `src/data/questionPool.ts` | Modulio 2 klausimų pool'as (LT) – kategorijos: meta, input, output, reasoning, quality, advanced |
-| `src/data/questionPool.en.ts` | Modulio 2 klausimų pool'as (EN) |
+| Failas                        | Aprašymas                                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------------------------ |
+| `src/data/questionPool.ts`    | Modulio 2 klausimų pool'as (LT) – kategorijos: meta, input, output, reasoning, quality, advanced |
+| `src/data/questionPool.en.ts` | Modulio 2 klausimų pool'as (EN)                                                                  |
 
 ### 4.3 Modulio duomenų struktūra
 
 ```typescript
 interface Module {
-  id: number;                    // 1–15
-  title: string;                 // "6 Blokų Sistema"
-  subtitle: string;              // Trumpas aprašymas
-  description: string;           // Pilnas aprašymas
-  level: ModuleLevel;            // 'beginner' | 'intermediate' | 'advanced'
-  icon: ModuleIcon;              // 'blocks' | 'quiz' | 'practice' | ...
-  slides: Slide[];               // Skaidrių masyvas
+  id: number; // 1–15
+  title: string; // "6 Blokų Sistema"
+  subtitle: string; // Trumpas aprašymas
+  description: string; // Pilnas aprašymas
+  level: ModuleLevel; // 'beginner' | 'intermediate' | 'advanced'
+  icon: ModuleIcon; // 'blocks' | 'quiz' | 'practice' | ...
+  slides: Slide[]; // Skaidrių masyvas
   testQuestions?: TestQuestion[]; // Modulio testo klausimai (M2, M5)
   businessExamples?: BusinessExample[];
 }
 
 interface Slide {
-  id: number;                    // Unikalus skaidrės ID
-  type: SlideType;               // ~50+ tipų
+  id: number; // Unikalus skaidrės ID
+  type: SlideType; // ~50+ tipų
   title: string;
-  content: SlideContent;         // Tipo-specifinis turinys
+  content: SlideContent; // Tipo-specifinis turinys
 }
 ```
 
 ### 4.4 Pagrindiniai skaidrių tipai (SlideType)
 
-| Kategorija | Tipai |
-|------------|-------|
-| **Intro** | `action-intro`, `intro-action-pie`, `module-intro`, `warm-up-quiz` |
-| **Turinys** | `content-block`, `definitions`, `infographic`, `comparison`, `hierarchy`, `glossary` |
-| **6 blokai** | `meta`, `input`, `output`, `reasoning`, `quality`, `advanced`, `full-example` |
-| **Schemos** | `prompt-techniques`, `prompt-template`, `workflow-summary`, `productivity-infographic` |
+| Kategorija          | Tipai                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Intro**           | `action-intro`, `intro-action-pie`, `module-intro`, `warm-up-quiz`                                           |
+| **Turinys**         | `content-block`, `definitions`, `infographic`, `comparison`, `hierarchy`, `glossary`                         |
+| **6 blokai**        | `meta`, `input`, `output`, `reasoning`, `quality`, `advanced`, `full-example`                                |
+| **Schemos**         | `prompt-techniques`, `prompt-template`, `workflow-summary`, `productivity-infographic`                       |
 | **Testas/Praktika** | `test-intro`, `test-section`, `test-results`, `practice-intro`, `practice-scenario-hub`, `practice-scenario` |
-| **Navigacija** | `section-break`, `transition`, `path-step`, `summary`, `practice-summary` |
-| **Specialūs** | `evaluator-prompt-block`, `di-modalities`, `news-portal-infographic`, `di-paradox-infographic` |
-| **Pažangūs** | `advanced-veikmo-intro`, `advanced-veikmo-intro-journey` |
+| **Navigacija**      | `section-break`, `transition`, `path-step`, `summary`, `practice-summary`                                    |
+| **Specialūs**       | `evaluator-prompt-block`, `di-modalities`, `news-portal-infographic`, `di-paradox-infographic`               |
+| **Pažangūs**        | `advanced-veikmo-intro`, `advanced-veikmo-intro-journey`                                                     |
 
 ---
 
@@ -304,6 +308,7 @@ interface Slide {
 ### 5.1 Root komponentas
 
 #### `src/App.tsx` (~413 eilučių)
+
 - **Funkcija:** Pagrindinis root komponentas – routing, navigacija, progreso valdymas, locale, modulių krovimas, magic link, SEO, celebration overlay
 - **Būsena:** `currentPage`, `selectedModule`, `initialSlideIndex`, `remediationFrom`, `progress`, `showCelebration`, `celebrationType`, `modulesData`, `modulesLoadError`, `isDark`, `isMobileMenuOpen`, `toolsInitialFilter`, `glossaryHighlightTerm`, `certificateTier`, `accessTierRefresh`
 - **Hooks:** `useState`, `useEffect`, `useCallback`, `useLocale`, `useTranslation`
@@ -311,57 +316,58 @@ interface Slide {
 
 ### 5.2 Pagrindiniai puslapių komponentai
 
-| Komponentas | Eilutės | Props | Funkcija |
-|-------------|---------|-------|----------|
-| `HomePage.tsx` | ~362 | `onStart`, `onGoToQuiz`, `progress` | Hero, stats, quick prompts, PromptLibrary embed |
-| `ModulesPage.tsx` | ~309 | `onModuleSelect`, `onGoToQuiz`, `progress` | Modulių tinklelis su progresu, locked/unlocked būsena, CTA |
-| `ModuleView.tsx` | ~743 | `moduleId`, `initialSlideIndex`, `onBack`, `onComplete`, `progress`, +12 props | Skaidrių navigacija, resume, progreso valdymas, M2 klausimų pool, M9 hub |
-| `QuizPage.tsx` | ~316 | `onBack`, `progress`, `onQuizComplete` | Apklausos srautas: klausimai, atsakymai, rezultatai |
-| `GlossaryPage.tsx` | ~192 | `highlightTerm`, `onBackToModule`, `progress` | Žodynėlis su modulio filtru |
-| `ToolsPage.tsx` | ~179 | `onBackToModule`, `initialFilter` | Įrankių sąrašas su modulio ir kategorijos filtrais |
-| `CertificateScreen.tsx` | ~176 | `tier`, `onBack` | Sertifikato peržiūra, vardo įvedimas, PDF atsisiuntimas |
+| Komponentas             | Eilutės | Props                                                                          | Funkcija                                                                 |
+| ----------------------- | ------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `HomePage.tsx`          | ~362    | `onStart`, `onGoToQuiz`, `progress`                                            | Hero, stats, quick prompts, PromptLibrary embed                          |
+| `ModulesPage.tsx`       | ~309    | `onModuleSelect`, `onGoToQuiz`, `progress`                                     | Modulių tinklelis su progresu, locked/unlocked būsena, CTA               |
+| `ModuleView.tsx`        | ~743    | `moduleId`, `initialSlideIndex`, `onBack`, `onComplete`, `progress`, +12 props | Skaidrių navigacija, resume, progreso valdymas, M2 klausimų pool, M9 hub |
+| `QuizPage.tsx`          | ~316    | `onBack`, `progress`, `onQuizComplete`                                         | Apklausos srautas: klausimai, atsakymai, rezultatai                      |
+| `GlossaryPage.tsx`      | ~192    | `highlightTerm`, `onBackToModule`, `progress`                                  | Žodynėlis su modulio filtru                                              |
+| `ToolsPage.tsx`         | ~179    | `onBackToModule`, `initialFilter`                                              | Įrankių sąrašas su modulio ir kategorijos filtrais                       |
+| `CertificateScreen.tsx` | ~176    | `tier`, `onBack`                                                               | Sertifikato peržiūra, vardo įvedimas, PDF atsisiuntimas                  |
 
 ### 5.3 Skaidrių turinio komponentas
 
 #### `SlideContent.tsx` (~413 eilučių)
+
 - **Funkcija:** Skaidrių registras – susieja `slide.type` su atitinkamu renderiniu komponentu
 - **Pattern:** Lazy-loading skaidrių tipų; `SlideRenderContext` kontekstas su navigacija, progresu, analytics
 - **Palaiko:** ~50+ skaidrių tipų
 
 ### 5.4 Navigacijos ir UI komponentai
 
-| Komponentas | Eilutės | Funkcija |
-|-------------|---------|----------|
-| `AppNav.tsx` | ~309 | Sticky nav: Home, Modules, Glossary, Tools, Quiz; dark mode; LT/EN; mobile menu; progress bar |
-| `ModuleCompleteScreen.tsx` | ~274 | Modulio pabaigos ekranas: trofėjus, progreso statistika, kitas modulis, M6 handout PDF |
-| `QuizResultsView.tsx` | ~228 | Rezultatų suvestinė, animuotas score, klaidų sąrašas |
-| `Celebration.tsx` | ~124 | Animuotas overlay su dalelėmis (task/module/quiz completion) |
-| `CircularProgress.tsx` | ~91 | SVG apvalus progreso indikatorius su gradientu |
-| `PromptLibrary.tsx` | ~144 | Promptų biblioteka su copy-to-clipboard |
-| `HallucinationRatesDashboard.tsx` | ~137 | Haliucinacijų rodiklių bar chart pagal modelius |
+| Komponentas                       | Eilutės | Funkcija                                                                                      |
+| --------------------------------- | ------- | --------------------------------------------------------------------------------------------- |
+| `AppNav.tsx`                      | ~309    | Sticky nav: Home, Modules, Glossary, Tools, Quiz; dark mode; LT/EN; mobile menu; progress bar |
+| `ModuleCompleteScreen.tsx`        | ~274    | Modulio pabaigos ekranas: trofėjus, progreso statistika, kitas modulis, M6 handout PDF        |
+| `QuizResultsView.tsx`             | ~228    | Rezultatų suvestinė, animuotas score, klaidų sąrašas                                          |
+| `Celebration.tsx`                 | ~124    | Animuotas overlay su dalelėmis (task/module/quiz completion)                                  |
+| `CircularProgress.tsx`            | ~91     | SVG apvalus progreso indikatorius su gradientu                                                |
+| `PromptLibrary.tsx`               | ~144    | Promptų biblioteka su copy-to-clipboard                                                       |
+| `HallucinationRatesDashboard.tsx` | ~137    | Haliucinacijų rodiklių bar chart pagal modelius                                               |
 
 ### 5.5 Specialūs modulių komponentai
 
-| Komponentas | Eilutės | Funkcija |
-|-------------|---------|----------|
-| `AiDetectorsSlide.tsx` | ~305 | DI detektorių įrankių apžvalga su statistika |
-| `VaizdoGeneratoriusSlide.tsx` | ~475 | Vaizdo generavimo promptų konstruktorius (platforma, tonas, stilius) |
+| Komponentas                   | Eilutės | Funkcija                                                             |
+| ----------------------------- | ------- | -------------------------------------------------------------------- |
+| `AiDetectorsSlide.tsx`        | ~305    | DI detektorių įrankių apžvalga su statistika                         |
+| `VaizdoGeneratoriusSlide.tsx` | ~475    | Vaizdo generavimo promptų konstruktorius (platforma, tonas, stilius) |
 
 ### 5.6 UI primityvai (`src/components/ui/`)
 
-| Komponentas | Funkcija |
-|-------------|----------|
-| `ErrorBoundary.tsx` | Class error boundary su fallback UI ir retry |
-| `LoadingSpinner.tsx` | Spinneris su tekstu (sm/md/lg dydžiai) |
-| `CTAButton.tsx` | Variantai: primary, secondary, accent, hero |
-| `Card.tsx` | Variantai: default, brand, accent |
-| `Table.tsx` | Lentelė su a11y (Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell) |
-| `Banner.tsx` | Variantai: info, success, warning |
+| Komponentas          | Funkcija                                                                            |
+| -------------------- | ----------------------------------------------------------------------------------- |
+| `ErrorBoundary.tsx`  | Class error boundary su fallback UI ir retry                                        |
+| `LoadingSpinner.tsx` | Spinneris su tekstu (sm/md/lg dydžiai)                                              |
+| `CTAButton.tsx`      | Variantai: primary, secondary, accent, hero                                         |
+| `Card.tsx`           | Variantai: default, brand, accent                                                   |
+| `Table.tsx`          | Lentelė su a11y (Table, TableHead, TableBody, TableRow, TableHeaderCell, TableCell) |
+| `Banner.tsx`         | Variantai: info, success, warning                                                   |
 
 ### 5.7 Stub komponentai
 
-| Komponentas | Funkcija |
-|-------------|----------|
+| Komponentas                  | Funkcija                                                                                  |
+| ---------------------------- | ----------------------------------------------------------------------------------------- |
 | `UnavailableModuleSlide.tsx` | Grąžina `null` – naudojamas core build aliasams pakeisti neprieinamus modulių komponentus |
 
 ---
@@ -370,41 +376,42 @@ interface Slide {
 
 ### 6.1 Pagrindiniai utility
 
-| Failas | Eksportai | Funkcija |
-|--------|-----------|----------|
-| `progress.ts` | `Progress`, `getProgress`, `saveProgress`, `resetProgress`, `flushProgressSave`, `migrateV1ToV2`, `validateProgress` | Progreso persistencija localStorage su v1→v2 migracija. Debounced save (500ms). Storage key: `prompt-anatomy-progress` |
-| `logger.ts` | `logError`, `logWarning`, `logInfo`, `initErrorTracking` | Console logging su kontekstu ir timestamp. Sentry placeholder. `logInfo` tik DEV |
-| `analytics.ts` | `track`, `getAnonId`, `getSessionId` | Anoniminė analitika. Events: `slide_view`, `slide_complete`, `practice_start/complete`, `cta_click`, `collapse_open`, `rl_step_click`. Session (30 min inactivity), dedupe. Optional PostHog |
-| `accessTier.ts` | `hasAccessTokenInUrl`, `stripMagicLinkSearchParams`, `getMaxAccessibleModuleId` | Prieigos lygis iš magic link. DEV: max 12. Prod: sessionStorage + env + MVP mode |
-| `mvpMode.ts` | `getIsMvpMode` | Grąžina `VITE_MVP_MODE === '1'` |
-| `learningEvents.ts` | `logLearningEvent`, `getLearningEvents`, `exportEventsAsJson`, `downloadEventsExport` | Mokymosi įvykiai localStorage (max 500). Tipai: `module_completed`, `first_action_success` |
-| `sixBlockStructure.ts` | `SIX_BLOCKS`, `detectBlocks`, `isBlockFilled` | 6 blokų struktūros atpažinimas per regex |
-| `certificateStorage.ts` | `getCertificateName`, `setCertificateName` | Sertifikato vardo persistencija localStorage |
-| `renderBold.tsx` | `renderBold` | Parsina `**text**` → `<strong>` |
-| `slidePhaseConfig.ts` | `getPhaseLabel`, `buildSlideGroups` | Fazių etiketės skaidrių progreso juostoms. Modulio-specifinės fazės (M4, M5, M6, M10, M13) |
-| `questionPoolSelector.ts` | `selectQuestions`, `selectQuestionsByCategory`, `assignToSlides` | Parenka 15 klausimų su kategorijų balansu ir tipų diversifikacija. Fisher–Yates shuffle |
+| Failas                    | Eksportai                                                                                                            | Funkcija                                                                                                                                                                                     |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `progress.ts`             | `Progress`, `getProgress`, `saveProgress`, `resetProgress`, `flushProgressSave`, `migrateV1ToV2`, `validateProgress` | Progreso persistencija localStorage su v1→v2 migracija. Debounced save (500ms). Storage key: `prompt-anatomy-progress`                                                                       |
+| `logger.ts`               | `logError`, `logWarning`, `logInfo`, `initErrorTracking`                                                             | Console logging su kontekstu ir timestamp. Sentry placeholder. `logInfo` tik DEV                                                                                                             |
+| `analytics.ts`            | `track`, `getAnonId`, `getSessionId`                                                                                 | Anoniminė analitika. Events: `slide_view`, `slide_complete`, `practice_start/complete`, `cta_click`, `collapse_open`, `rl_step_click`. Session (30 min inactivity), dedupe. Optional PostHog |
+| `accessTier.ts`           | `hasAccessTokenInUrl`, `stripMagicLinkSearchParams`, `getMaxAccessibleModuleId`                                      | Prieigos lygis iš magic link. DEV: max 12. Prod: sessionStorage + env + MVP mode                                                                                                             |
+| `mvpMode.ts`              | `getIsMvpMode`                                                                                                       | Grąžina `VITE_MVP_MODE === '1'`                                                                                                                                                              |
+| `learningEvents.ts`       | `logLearningEvent`, `getLearningEvents`, `exportEventsAsJson`, `downloadEventsExport`                                | Mokymosi įvykiai localStorage (max 500). Tipai: `module_completed`, `first_action_success`                                                                                                   |
+| `sixBlockStructure.ts`    | `SIX_BLOCKS`, `detectBlocks`, `isBlockFilled`                                                                        | 6 blokų struktūros atpažinimas per regex                                                                                                                                                     |
+| `certificateStorage.ts`   | `getCertificateName`, `setCertificateName`                                                                           | Sertifikato vardo persistencija localStorage                                                                                                                                                 |
+| `renderBold.tsx`          | `renderBold`                                                                                                         | Parsina `**text**` → `<strong>`                                                                                                                                                              |
+| `slidePhaseConfig.ts`     | `getPhaseLabel`, `buildSlideGroups`                                                                                  | Fazių etiketės skaidrių progreso juostoms. Modulio-specifinės fazės (M4, M5, M6, M10, M13)                                                                                                   |
+| `questionPoolSelector.ts` | `selectQuestions`, `selectQuestionsByCategory`, `assignToSlides`                                                     | Parenka 15 klausimų su kategorijų balansu ir tipų diversifikacija. Fisher–Yates shuffle                                                                                                      |
 
 ### 6.2 Custom hooks
 
-| Hook | Funkcija |
-|------|----------|
-| `useAutoSave.ts` | Debounced localStorage writes. `useAutoSave(key, value, delay)` |
-| `useQuizState.ts` | Apklausos būsena: `currentIndex`, `answers`, `showResults`, `score`, `showExplanation`. Confetti nuo ≥70% |
+| Hook                    | Funkcija                                                                                                  |
+| ----------------------- | --------------------------------------------------------------------------------------------------------- |
+| `useAutoSave.ts`        | Debounced localStorage writes. `useAutoSave(key, value, delay)`                                           |
+| `useQuizState.ts`       | Apklausos būsena: `currentIndex`, `answers`, `showResults`, `score`, `showExplanation`. Confetti nuo ≥70% |
 | `useSlideNavigation.ts` | Skaidrių navigacija su persistencija, touch swipe (60px threshold), keyboard (arrows), optional-skip mode |
-| `useTheme.ts` | Dark mode: init iš localStorage arba `prefers-color-scheme`, sync su `document.documentElement.classList` |
-| `useCountUp.ts` | Animuoja skaičių 0→target per duration su ease-out cubic. `requestAnimationFrame` |
-| `useStepDiagram.ts` | Step index būsena diagramų blokams (RL, Turinio, Schema3) |
+| `useTheme.ts`           | Dark mode: init iš localStorage arba `prefers-color-scheme`, sync su `document.documentElement.classList` |
+| `useCountUp.ts`         | Animuoja skaičių 0→target per duration su ease-out cubic. `requestAnimationFrame`                         |
+| `useStepDiagram.ts`     | Step index būsena diagramų blokams (RL, Turinio, Schema3)                                                 |
 
 ### 6.3 PDF generatoriai
 
-| Failas | Funkcija |
-|--------|----------|
+| Failas              | Funkcija                                                                                                                                                          |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `certificatePdf.ts` | Sertifikato PDF (3 lygiai). NotoSans šriftas. Layout: programos pavadinimas, sertifikato etiketė, intro, vardas, completion, serialas, data, footer, website link |
-| `introPiePdf.ts` | Intro-action-pie segmento PDF. Sekcijos: Top 5 tips, tools, workflow, glossary, system prompt, motivation |
-| `m5HandoutPdf.ts` | Modulio 5 atmintinės PDF: tools, 8-slide structure, master prompt, sequence, brief, quality checks |
-| `m6HandoutPdf.ts` | Modulio 6 atmintinės PDF: project steps (6), data management (5), reflection |
+| `introPiePdf.ts`    | Intro-action-pie segmento PDF. Sekcijos: Top 5 tips, tools, workflow, glossary, system prompt, motivation                                                         |
+| `m5HandoutPdf.ts`   | Modulio 5 atmintinės PDF: tools, 8-slide structure, master prompt, sequence, brief, quality checks                                                                |
+| `m6HandoutPdf.ts`   | Modulio 6 atmintinės PDF: project steps (6), data management (5), reflection                                                                                      |
 
 **Bendros PDF savybės:**
+
 - Šriftas: NotoSans-Regular.ttf (iš `/fonts/NotoSans-Regular.ttf`) – palaiko lietuvišką diakritiką
 - Brand spalva: `#627d98`, Accent: `#d4a520`
 - Biblioteka: jsPDF ^4.2.0
@@ -433,14 +440,14 @@ SlideContent.tsx (registras, ~50+ tipų)
 
 ### 7.3 Klausimų tipai (`slides/shared/questions/`)
 
-| Komponentas | Klausimo tipas |
-|-------------|----------------|
-| `McqQuestion.tsx` | Multiple choice (vienas teisingas) |
-| `TrueFalseQuestion.tsx` | Tiesa/Netiesa |
-| `MatchingQuestion.tsx` | Porų atitikimas |
-| `OrderingQuestion.tsx` | Rikiavimas |
-| `ScenarioQuestion.tsx` | Scenarinis klausimas |
-| `ConfidenceSelector.tsx` | Pasitikėjimo lygio parinkimas |
+| Komponentas              | Klausimo tipas                     |
+| ------------------------ | ---------------------------------- |
+| `McqQuestion.tsx`        | Multiple choice (vienas teisingas) |
+| `TrueFalseQuestion.tsx`  | Tiesa/Netiesa                      |
+| `MatchingQuestion.tsx`   | Porų atitikimas                    |
+| `OrderingQuestion.tsx`   | Rikiavimas                         |
+| `ScenarioQuestion.tsx`   | Scenarinis klausimas               |
+| `ConfidenceSelector.tsx` | Pasitikėjimo lygio parinkimas      |
 
 ### 7.4 Skaidrių tipų komponentų render context
 
@@ -469,45 +476,46 @@ interface SlideRenderContext {
 ### 8.1 Block + Diagram pattern
 
 Kiekviena diagrama naudoja **Block + Diagram** šabloną:
+
 - **Block** (`*Block.tsx`) – wrapper su paaiškinimais, CTA, interaktyvumu
 - **Diagram** (`*Diagram.tsx`) – SVG/JSX vizualizacija
 - **Config/Layout** (`*Config.ts`, `*Layout.ts`) – koordinatės, spalvos, step paaiškinimai
 
 ### 8.2 Diagramų inventorius
 
-| Diagrama | Block | Diagram | Config |
-|----------|-------|---------|--------|
-| Custom GPT procesas | – | `CustomGptProcessDiagram.tsx` | – |
-| DI prezentacijos workflow | `DiPrezentacijosWorkflowBlock.tsx` | `DiPrezentacijosWorkflowDiagram.tsx` | `diPrezentacijosWorkflowConfig.ts` |
-| RL procesas | `RlProcessBlock.tsx` | `RlProcessDiagram.tsx` | `stepExplanations.ts` |
-| Agentų workflow | `AgentWorkflowBlock.tsx` | `AgentWorkflowDiagram.tsx` | – |
-| Agentų orkestratorius | `AgentOrchestratorBlock.tsx` | `AgentOrchestratorDiagram.tsx` | – |
-| Schema 3 (LLM RAG) | `Schema3InteractiveBlock.tsx` | `Schema3Diagram.tsx`, `Schema3InteractiveDiagram.tsx` | `schema3Layout.ts`, `schema3Labels.ts`, `schema3StepExplanations.ts` |
-| Schema 4 (Multimodal) | – | `Schema4Diagram.tsx` | `schema4Layout.ts` |
-| LLM architektūra | `LlmArchDiagramBlock.tsx` | `LlmArchDiagramDiagram.tsx` | `llmArchLayout.ts` |
-| LLM autoregresyvus | `LlmAutoregressiveBlock.tsx` | `LlmAutoregressiveDiagram.tsx` | `llmAutoregressiveLayout.ts` |
-| Struktūruotas procesas | `StrukturuotasProcesasBlock.tsx` | `StrukturuotasProcesasDiagram.tsx` | `strukturuotasProcesasStepExplanations.ts` |
-| Workflow chains | `WorkflowChainsBlock.tsx` | – | – |
-| Turinio workflow | `TurinioWorkflowBlock.tsx` | `TurinioWorkflowDiagram.tsx` | – |
-| Context flow | `ContextFlowBlock.tsx` | `ContextFlowDiagram.tsx` | `contextFlowDiagramLabels.ts` |
-| Workflow palyginimas | `WorkflowComparisonInteractiveBlock.tsx` | `WorkflowComparisonDiagram.tsx` | `workflowComparisonConfig.ts` |
-| RAG duomenų ruošimas | `RagDuomenuRuosimasBlock.tsx` | `RagDuomenuRuosimasDiagram.tsx` | `ragDuomenuRuosimasLayout.ts` |
-| Context engineering pipeline | – | `ContextEngineeringPipelineDiagram.tsx` | `ContextEngineeringPipelineConfig.ts`, `contextEngineeringPipelineInteraction.ts` |
-| InstructGPT kokybė | `InstructGptQualityBlock.tsx` | – | – |
+| Diagrama                     | Block                                    | Diagram                                               | Config                                                                            |
+| ---------------------------- | ---------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Custom GPT procesas          | –                                        | `CustomGptProcessDiagram.tsx`                         | –                                                                                 |
+| DI prezentacijos workflow    | `DiPrezentacijosWorkflowBlock.tsx`       | `DiPrezentacijosWorkflowDiagram.tsx`                  | `diPrezentacijosWorkflowConfig.ts`                                                |
+| RL procesas                  | `RlProcessBlock.tsx`                     | `RlProcessDiagram.tsx`                                | `stepExplanations.ts`                                                             |
+| Agentų workflow              | `AgentWorkflowBlock.tsx`                 | `AgentWorkflowDiagram.tsx`                            | –                                                                                 |
+| Agentų orkestratorius        | `AgentOrchestratorBlock.tsx`             | `AgentOrchestratorDiagram.tsx`                        | –                                                                                 |
+| Schema 3 (LLM RAG)           | `Schema3InteractiveBlock.tsx`            | `Schema3Diagram.tsx`, `Schema3InteractiveDiagram.tsx` | `schema3Layout.ts`, `schema3Labels.ts`, `schema3StepExplanations.ts`              |
+| Schema 4 (Multimodal)        | –                                        | `Schema4Diagram.tsx`                                  | `schema4Layout.ts`                                                                |
+| LLM architektūra             | `LlmArchDiagramBlock.tsx`                | `LlmArchDiagramDiagram.tsx`                           | `llmArchLayout.ts`                                                                |
+| LLM autoregresyvus           | `LlmAutoregressiveBlock.tsx`             | `LlmAutoregressiveDiagram.tsx`                        | `llmAutoregressiveLayout.ts`                                                      |
+| Struktūruotas procesas       | `StrukturuotasProcesasBlock.tsx`         | `StrukturuotasProcesasDiagram.tsx`                    | `strukturuotasProcesasStepExplanations.ts`                                        |
+| Workflow chains              | `WorkflowChainsBlock.tsx`                | –                                                     | –                                                                                 |
+| Turinio workflow             | `TurinioWorkflowBlock.tsx`               | `TurinioWorkflowDiagram.tsx`                          | –                                                                                 |
+| Context flow                 | `ContextFlowBlock.tsx`                   | `ContextFlowDiagram.tsx`                              | `contextFlowDiagramLabels.ts`                                                     |
+| Workflow palyginimas         | `WorkflowComparisonInteractiveBlock.tsx` | `WorkflowComparisonDiagram.tsx`                       | `workflowComparisonConfig.ts`                                                     |
+| RAG duomenų ruošimas         | `RagDuomenuRuosimasBlock.tsx`            | `RagDuomenuRuosimasDiagram.tsx`                       | `ragDuomenuRuosimasLayout.ts`                                                     |
+| Context engineering pipeline | –                                        | `ContextEngineeringPipelineDiagram.tsx`               | `ContextEngineeringPipelineConfig.ts`, `contextEngineeringPipelineInteraction.ts` |
+| InstructGPT kokybė           | `InstructGptQualityBlock.tsx`            | –                                                     | –                                                                                 |
 
 ### 8.3 Bendri vizualizacijos komponentai
 
-| Komponentas | Funkcija |
-|-------------|----------|
-| `ProcessStepper.tsx` | Step-by-step stepper su numeriais ir paaiškinimais |
-| `EnlargeableDiagram.tsx` | Wrapper – diagrama su „Peržiūrėti pilname dydyje" |
-| `EnlargeableImage.tsx` | Paveikslėlis su padidinimu |
-| `FigmaEmbed.tsx` | Figma iframe embed |
-| `RadarChart.tsx` | Radar chart (pvz. įgūdžių palyginimui) |
-| `CharacterCard.tsx` | M9 veikėjo kortelė |
-| `CopyButton.tsx` | Copy-to-clipboard mygtukas |
-| `TemplateBlock.tsx` | Šablono blokas su kopijavimu |
-| `PracticalTask.tsx` | Praktinės užduoties blokas |
+| Komponentas              | Funkcija                                           |
+| ------------------------ | -------------------------------------------------- |
+| `ProcessStepper.tsx`     | Step-by-step stepper su numeriais ir paaiškinimais |
+| `EnlargeableDiagram.tsx` | Wrapper – diagrama su „Peržiūrėti pilname dydyje"  |
+| `EnlargeableImage.tsx`   | Paveikslėlis su padidinimu                         |
+| `FigmaEmbed.tsx`         | Figma iframe embed                                 |
+| `RadarChart.tsx`         | Radar chart (pvz. įgūdžių palyginimui)             |
+| `CharacterCard.tsx`      | M9 veikėjo kortelė                                 |
+| `CopyButton.tsx`         | Copy-to-clipboard mygtukas                         |
+| `TemplateBlock.tsx`      | Šablono blokas su kopijavimu                       |
+| `PracticalTask.tsx`      | Praktinės užduoties blokas                         |
 
 ---
 
@@ -516,19 +524,20 @@ Kiekviena diagrama naudoja **Block + Diagram** šabloną:
 ### 9.1 Loaderių architektūra
 
 Kiekvienas duomenų tipas turi dedikuotą loaderį su:
+
 - **Cache per locale** – kešuoja LT ir EN atskirai
 - **Deep merge** – EN duomenys merginami ant LT bazės pagal `id` lauką
 - **Lazy init** – kraunama tik kai reikia
 
-| Loaderis | SOT failas | EN failas | Eksportai |
-|----------|------------|-----------|-----------|
-| `modulesLoader.ts` | `@modules-data` | `modules-en.json` + `modules-en-m4-m6.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache` |
-| `glossaryLoader.ts` | `@glossary-data` | `glossary-en.json` | `getGlossary` |
-| `toolsLoader.ts` | `@tools-data` | `@tools-en-data` | `getTools` |
-| `promptLibraryLoader.ts` | `promptLibrary.json` | `promptLibrary-en.json` | `getPromptLibrary` |
-| `certificateContentLoader.ts` | `certificateContent.json` | `certificateContent-en.json` | `getCertificateContent` |
-| `handoutContentLoader.ts` | `m5HandoutContent.json`, `m6HandoutContent.json` | `*-en.json` | `getM5HandoutContent`, `getM6HandoutContent` |
-| `introPiePdfContentLoader.ts` | `introPiePdfContent.json` | `introPiePdfContent-en.json` | `getIntroPiePdfContent` |
+| Loaderis                      | SOT failas                                       | EN failas                                                                                     | Eksportai                                                                                |
+| ----------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `modulesLoader.ts`            | `@modules-data`                                  | `modules-en.json` + `modules-en-m4-m6.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache` |
+| `glossaryLoader.ts`           | `@glossary-data`                                 | `glossary-en.json`                                                                            | `getGlossary`                                                                            |
+| `toolsLoader.ts`              | `@tools-data`                                    | `@tools-en-data`                                                                              | `getTools`                                                                               |
+| `promptLibraryLoader.ts`      | `promptLibrary.json`                             | `promptLibrary-en.json`                                                                       | `getPromptLibrary`                                                                       |
+| `certificateContentLoader.ts` | `certificateContent.json`                        | `certificateContent-en.json`                                                                  | `getCertificateContent`                                                                  |
+| `handoutContentLoader.ts`     | `m5HandoutContent.json`, `m6HandoutContent.json` | `*-en.json`                                                                                   | `getM5HandoutContent`, `getM6HandoutContent`                                             |
+| `introPiePdfContentLoader.ts` | `introPiePdfContent.json`                        | `introPiePdfContent-en.json`                                                                  | `getIntroPiePdfContent`                                                                  |
 
 ### 9.2 EN turinio merge strategija (modulesLoader)
 
@@ -544,18 +553,19 @@ Deep merge pagal `id` – masyvai merginami pagal elementų `id` lauką.
 
 **Failas:** `src/i18n.ts`
 
-| Savybė | Reikšmė |
-|---------|---------|
-| Biblioteka | `i18next` + `react-i18next` |
-| Kalbos | `lt` (numatytoji), `en` |
-| Namespace'ai | `common`, `footer`, `nav`, `seo`, `home`, `module`, `quiz`, `glossary`, `modulesPage`, `certificate`, `stepper`, `testPractice`, `vaizdoGen`, `contentSlides`, `celebration`, `diagrams`, `toolsPage`, `promptLibrary`, `aiDetectors` |
-| Storage key | `prompt-anatomy-locale` |
-| EN content variantai | `en-lt` (LT rinka, EN kalba), `en-us` (US rinka, EN kalba) |
-| Locale failai | `src/locales/lt.json` (~533 eilučių), `src/locales/en.json` (~533 eilučių) |
+| Savybė               | Reikšmė                                                                                                                                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Biblioteka           | `i18next` + `react-i18next`                                                                                                                                                                                                           |
+| Kalbos               | `lt` (numatytoji), `en`                                                                                                                                                                                                               |
+| Namespace'ai         | `common`, `footer`, `nav`, `seo`, `home`, `module`, `quiz`, `glossary`, `modulesPage`, `certificate`, `stepper`, `testPractice`, `vaizdoGen`, `contentSlides`, `celebration`, `diagrams`, `toolsPage`, `promptLibrary`, `aiDetectors` |
+| Storage key          | `prompt-anatomy-locale`                                                                                                                                                                                                               |
+| EN content variantai | `en-lt` (LT rinka, EN kalba), `en-us` (US rinka, EN kalba)                                                                                                                                                                            |
+| Locale failai        | `src/locales/lt.json` (~533 eilučių), `src/locales/en.json` (~533 eilučių)                                                                                                                                                            |
 
 ### 9.4 Locale kontekstas
 
 **Failas:** `src/contexts/LocaleContext.tsx`
+
 - **Eksportai:** `LocaleProvider`, `useLocale`
 - **Kontekstas:** `locale`, `setLocale`, `toggleLocale`
 - **Sinchronizuoja:** i18next kalbą, localStorage
@@ -572,16 +582,17 @@ Deep merge pagal `id` – masyvai merginami pagal elementų `id` lauką.
 ```typescript
 interface Progress {
   version: 2;
-  completedModules: number[];      // Baigti moduliai [1, 2, 3]
-  completedTasks: string[];        // Baigtos užduotys ["task-3-1", "task-3-2"]
-  quizCompleted: boolean;          // Baigiamasis testas
-  quizScore: number;               // Testo rezultatas (0–100)
+  completedModules: number[]; // Baigti moduliai [1, 2, 3]
+  completedTasks: string[]; // Baigtos užduotys ["task-3-1", "task-3-2"]
+  quizCompleted: boolean; // Baigiamasis testas
+  quizScore: number; // Testo rezultatas (0–100)
   moduleTestScores: Record<number, number>; // Modulio testų rezultatai {2: 85, 5: 70}
   lastSlidePositions?: Record<number, number>; // Paskutinė skaidrė modulyje
 }
 ```
 
 **Savybės:**
+
 - Debounced save (500ms) – `flushProgressSave()` priverstiniam sync
 - v1→v2 migracija: prideda `moduleTestScores`, `version`
 - Skaidrių ID migracijos: M3 (35→37, remove 34), M5 (49–52, 501–504 → 510–514)
@@ -593,6 +604,7 @@ interface Progress {
 **Valdomas per:** `useSlideNavigation` hook
 
 **Funkcijos:**
+
 - Resume (tęsti iš paskutinės pozicijos)
 - Touch swipe navigacija (60px threshold)
 - Keyboard navigacija (rodyklės)
@@ -602,6 +614,7 @@ interface Progress {
 ### 10.3 Auto-save
 
 **Hook:** `useAutoSave(key, value, delay)`
+
 - Debounced localStorage writes
 - `loadAutoSave(key)` / `clearAutoSave(key)` – read/clear
 - `saveCompletedContent(key, content)` – baigto turinio išsaugojimas
@@ -620,6 +633,7 @@ interface Progress {
 ### 11.1 Bendras šablonas
 
 Visi PDF naudoja:
+
 - **jsPDF** ^4.2.0
 - **NotoSans-Regular.ttf** (iš `/fonts/NotoSans-Regular.ttf`) – lietuviška diakritika
 - **Brand spalva:** `#627d98` (navy/slate)
@@ -629,6 +643,7 @@ Visi PDF naudoja:
 ### 11.2 Sertifikatų PDF
 
 **3 lygiai (tiers):**
+
 1. **6 blokų sistema** (po M1–M3)
 2. **Konteksto inžinerija** (po M1–M6 + M5 ≥70%)
 3. **Duomenų analitika** (ateičiai)
@@ -652,13 +667,13 @@ Visi PDF naudoja:
 
 ### 12.1 Lygiai ir kainos
 
-| Tier | Max modulis | Kaina |
-|------|-------------|-------|
-| 0 | Niekas | Nemokama (neįsigyta) |
-| 3 | Moduliai 1–3 | 39€ |
-| 6 | Moduliai 1–6 | 99€ |
-| 9 | Moduliai 1–9 | 149€ |
-| 12 | Moduliai 1–12 | 199€ |
+| Tier | Max modulis   | Kaina                |
+| ---- | ------------- | -------------------- |
+| 0    | Niekas        | Nemokama (neįsigyta) |
+| 3    | Moduliai 1–3  | 39€                  |
+| 6    | Moduliai 1–6  | 99€                  |
+| 9    | Moduliai 1–9  | 149€                 |
+| 12   | Moduliai 1–12 | 199€                 |
 
 ### 12.2 Magic link mechanizmas
 
@@ -667,6 +682,7 @@ Visi PDF naudoja:
 **URL formatas:** `?access_tier=6&expires=UNIX_TS&token=BASE64URL_HMAC`
 
 **Veikimas:**
+
 1. Generuojama HMAC-SHA256 nuo `{access_tier}:{expires}` su `ACCESS_TOKEN_SECRET`
 2. Patikrinamas per `crypto.timingSafeEqual`
 3. Grąžina `{ access_tier: number }` arba klaidos JSON
@@ -696,48 +712,48 @@ Visi PDF naudoja:
 
 #### Utility testai (`src/utils/__tests__/`)
 
-| Testas | Kas testuojama |
-|--------|----------------|
-| `progress.test.ts` | Progreso CRUD, migracija v1→v2, validacija |
-| `accessTier.test.ts` | Magic link parsimas, tier ribojimas, MVP mode |
-| `certificatePdf.test.ts` | PDF generavimas, šrifto krovimas |
-| `certificateStorage.test.ts` | Vardo persistencija |
-| `introPiePdf.test.ts` | Intro-pie PDF generavimas |
-| `m5HandoutPdf.test.ts` | M5 atmintinės PDF |
-| `m6HandoutPdf.test.ts` | M6 atmintinės PDF |
-| `questionPoolSelector.test.ts` | Klausimų atranka, kategorijų balansas |
-| `sixBlockStructure.test.ts` | 6 blokų atpažinimas |
-| `slidePhaseConfig.test.ts` | Fazių konfigūracija |
-| `useAutoSave.test.ts` | Auto-save hook |
-| `useSlideNavigation.fastTrack.test.ts` | Fast track navigacija |
-| `useSlideNavigation.position.test.ts` | Pozicijos persistencija |
+| Testas                                 | Kas testuojama                                |
+| -------------------------------------- | --------------------------------------------- |
+| `progress.test.ts`                     | Progreso CRUD, migracija v1→v2, validacija    |
+| `accessTier.test.ts`                   | Magic link parsimas, tier ribojimas, MVP mode |
+| `certificatePdf.test.ts`               | PDF generavimas, šrifto krovimas              |
+| `certificateStorage.test.ts`           | Vardo persistencija                           |
+| `introPiePdf.test.ts`                  | Intro-pie PDF generavimas                     |
+| `m5HandoutPdf.test.ts`                 | M5 atmintinės PDF                             |
+| `m6HandoutPdf.test.ts`                 | M6 atmintinės PDF                             |
+| `questionPoolSelector.test.ts`         | Klausimų atranka, kategorijų balansas         |
+| `sixBlockStructure.test.ts`            | 6 blokų atpažinimas                           |
+| `slidePhaseConfig.test.ts`             | Fazių konfigūracija                           |
+| `useAutoSave.test.ts`                  | Auto-save hook                                |
+| `useSlideNavigation.fastTrack.test.ts` | Fast track navigacija                         |
+| `useSlideNavigation.position.test.ts`  | Pozicijos persistencija                       |
 
 #### Loaderių testai (`src/data/__tests__/`)
 
-| Testas | Kas testuojama |
-|--------|----------------|
-| `modulesLoader.test.ts` | Krovimas, cache, merge, EN variantai, klaidos |
-| `glossaryLoader.test.ts` | LT/EN žodynėlio krovimas |
+| Testas                   | Kas testuojama                                |
+| ------------------------ | --------------------------------------------- |
+| `modulesLoader.test.ts`  | Krovimas, cache, merge, EN variantai, klaidos |
+| `glossaryLoader.test.ts` | LT/EN žodynėlio krovimas                      |
 
 #### Komponentų testai (`src/components/__tests__/`)
 
-| Testas | Kas testuojama |
-|--------|----------------|
-| `QuizPage.test.tsx` | Apklausos komponentas |
-| `ErrorBoundary.test.tsx` | Error boundary fallback |
-| `CertificateScreen.test.tsx` | Sertifikato peržiūra |
-| `ModuleCompleteScreen.test.tsx` | Modulio pabaigos ekranas |
-| `ToolsPage.test.tsx` | Įrankių puslapis |
-| `a11y.smoke.test.tsx` | Accessibility smoke testas |
-| `mvp.gating.test.tsx` | MVP režimo apribojimai |
+| Testas                          | Kas testuojama             |
+| ------------------------------- | -------------------------- |
+| `QuizPage.test.tsx`             | Apklausos komponentas      |
+| `ErrorBoundary.test.tsx`        | Error boundary fallback    |
+| `CertificateScreen.test.tsx`    | Sertifikato peržiūra       |
+| `ModuleCompleteScreen.test.tsx` | Modulio pabaigos ekranas   |
+| `ToolsPage.test.tsx`            | Įrankių puslapis           |
+| `a11y.smoke.test.tsx`           | Accessibility smoke testas |
+| `mvp.gating.test.tsx`           | MVP režimo apribojimai     |
 | `App.quiz.integration.test.tsx` | App + apklausa integracija |
-| `progress.integration.test.tsx` | Progreso integracija |
+| `progress.integration.test.tsx` | Progreso integracija       |
 
 #### Integraciniai testai
 
-| Testas | Kas testuojama |
-|--------|----------------|
-| `IntroActionPieSlide.pdf.test.tsx` | Intro-pie PDF skaidrė |
+| Testas                                | Kas testuojama                                    |
+| ------------------------------------- | ------------------------------------------------- |
+| `IntroActionPieSlide.pdf.test.tsx`    | Intro-pie PDF skaidrė                             |
 | `validate-schema.integration.test.ts` | JSON schemos validacija per `validate-schema.mjs` |
 
 ### 13.3 Test setup (`src/test/setup.ts`)
@@ -770,18 +786,19 @@ npm run test:ui       # Vitest UI
 
 **Failas:** `vite.config.ts`
 
-| Savybė | Reikšmė |
-|---------|---------|
-| Base path | `VITE_BASE_PATH` arba production default `/inzinerija/` (GitHub Pages repo pavadinimas; pvz. anatomija → `/anatomija/`) |
-| Dev port | 3000 |
-| Dev host | `0.0.0.0` |
-| Output | `dist/` |
-| Sourcemap | `false` (production) |
-| Minify | `esbuild` |
-| CSS split | `true` |
-| CSS minify | `true` |
+| Savybė     | Reikšmė                                                                                                                 |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Base path  | `VITE_BASE_PATH` arba production default `/inzinerija/` (GitHub Pages repo pavadinimas; pvz. anatomija → `/anatomija/`) |
+| Dev port   | 3000                                                                                                                    |
+| Dev host   | `0.0.0.0`                                                                                                               |
+| Output     | `dist/`                                                                                                                 |
+| Sourcemap  | `false` (production)                                                                                                    |
+| Minify     | `esbuild`                                                                                                               |
+| CSS split  | `true`                                                                                                                  |
+| CSS minify | `true`                                                                                                                  |
 
 **Manual chunks:**
+
 ```
 vendor: ['react', 'react-dom']
 icons: ['lucide-react']
@@ -796,13 +813,14 @@ helmet: ['react-helmet-async']
 **Module:** ESNext  
 **Strict mode:** `true`  
 **No unused vars/params:** `true`  
-**JSX:** `react-jsx`  
+**JSX:** `react-jsx`
 
 **Path aliasai:** atitinka Vite aliasus
 
 ### 14.3 ESLint konfigūracija
 
 **Failas:** `.eslintrc.cjs`
+
 - `eslint:recommended` + `@typescript-eslint/recommended` + `react-hooks/recommended` + `react/recommended`
 - `react-refresh/only-export-components` (warn)
 - `@typescript-eslint/no-unused-vars` (error, ignore `^_`)
@@ -837,6 +855,7 @@ helmet: ['react-helmet-async']
 **Svarbu:** `prebuild` automatiškai vykdo JSON validaciją prieš kiekvieną build.
 
 **`lint-staged` konfigūracija** (`package.json`):
+
 ```json
 {
   "lint-staged": {
@@ -856,6 +875,7 @@ helmet: ['react-helmet-async']
 **Matrix:** Node 18.x, 20.x
 
 **Žingsniai:**
+
 1. `npm ci`
 2. `npm run validate:schema`
 3. `npm run lint`
@@ -870,6 +890,7 @@ helmet: ['react-helmet-async']
 **Concurrency:** vienas deployment vienu metu
 
 **Quality gates job:**
+
 1. `npm ci`
 2. Schema validacija
 3. Lint
@@ -879,6 +900,7 @@ helmet: ['react-helmet-async']
 7. Core production build (`VITE_MVP_MODE=1`)
 
 **Build-and-deploy job** (po quality gates):
+
 1. `npm ci`
 2. Build su `VITE_MVP_MODE=1`
 3. Upload artifact → GitHub Pages deploy
@@ -905,13 +927,13 @@ helmet: ['react-helmet-async']
 
 ### 16.3 Aplinkos kintamieji
 
-| Kintamasis | Aprašymas | Pavyzdys |
-|------------|-----------|----------|
-| `ACCESS_TOKEN_SECRET` | Magic link HMAC secret (≥16 chars) | `changeme_min16chars` |
-| `VITE_VERIFY_ACCESS_URL` | Verify-access endpoint URL | (tuščia = same-origin) |
-| `VITE_MAX_ACCESSIBLE_MODULE` | Max atrakinto modulio ID | `0`, `3`, `6`, `9`, `12` |
-| `VITE_MVP_MODE` | Core production profilis | `1` |
-| `VITE_BASE_PATH` | Statinio hosting base path | `/anatomija/` |
+| Kintamasis                   | Aprašymas                          | Pavyzdys                 |
+| ---------------------------- | ---------------------------------- | ------------------------ |
+| `ACCESS_TOKEN_SECRET`        | Magic link HMAC secret (≥16 chars) | `changeme_min16chars`    |
+| `VITE_VERIFY_ACCESS_URL`     | Verify-access endpoint URL         | (tuščia = same-origin)   |
+| `VITE_MAX_ACCESSIBLE_MODULE` | Max atrakinto modulio ID           | `0`, `3`, `6`, `9`, `12` |
+| `VITE_MVP_MODE`              | Core production profilis           | `1`                      |
+| `VITE_BASE_PATH`             | Statinio hosting base path         | `/anatomija/`            |
 
 ---
 
@@ -919,14 +941,14 @@ helmet: ['react-helmet-async']
 
 ### 17.1 Schemos inventorius
 
-| Schema failas | Validuojamas failas |
-|---------------|---------------------|
-| `modules.schema.json` | `modules.json`, `modules-m1-m6.json`, `modules-en-m4-m6.json` |
-| `promptLibrary.schema.json` | `promptLibrary.json` |
-| `glossary.schema.json` | `glossary.json`, `glossary-m1-m6.json` |
-| `tools.schema.json` | `tools.json`, `tools-m1-m6.json`, `tools-en-m1-m6.json` |
-| `certificateContent.schema.json` | `certificateContent.json`, `certificateContent-en.json` |
-| `introPiePdfContent.schema.json` | `introPiePdfContent.json`, `introPiePdfContent-en.json` |
+| Schema failas                    | Validuojamas failas                                           |
+| -------------------------------- | ------------------------------------------------------------- |
+| `modules.schema.json`            | `modules.json`, `modules-m1-m6.json`, `modules-en-m4-m6.json` |
+| `promptLibrary.schema.json`      | `promptLibrary.json`                                          |
+| `glossary.schema.json`           | `glossary.json`, `glossary-m1-m6.json`                        |
+| `tools.schema.json`              | `tools.json`, `tools-m1-m6.json`, `tools-en-m1-m6.json`       |
+| `certificateContent.schema.json` | `certificateContent.json`, `certificateContent-en.json`       |
+| `introPiePdfContent.schema.json` | `introPiePdfContent.json`, `introPiePdfContent-en.json`       |
 
 ### 17.2 Validacijos skriptas
 
@@ -935,6 +957,7 @@ helmet: ['react-helmet-async']
 **Vykdomas:** `npm run validate:schema` (taip pat per `prebuild`)
 
 **Kas validuojama:**
+
 1. `modules.json` – pilna struktūra (moduliai, skaidrės, testas, apklausa)
 2. `modules-m1-m6.json` – struktūra + papildoma: ar nėra modulių su `id > 6`
 3. `modules-en-m4-m6.json` – struktūra (tik 3 moduliai M4–M6)
@@ -950,6 +973,7 @@ helmet: ['react-helmet-async']
 
 **Failas:** `scripts/validate-sot-index.mjs`  
 **Tikrina:** `docs/development/context-engineering/sot_index.json`
+
 - 6–15 modulių
 - Unikalūs ID
 - Keliai egzistuoja (`sotPath`, `contentSOT`, `dataSOT`)
@@ -960,31 +984,31 @@ helmet: ['react-helmet-async']
 
 ### 18.1 Core skriptai
 
-| Skriptas | NPM komanda | Funkcija |
-|----------|-------------|----------|
-| `validate-schema.mjs` | `validate:schema` | JSON schemos validacija (prebuild) |
+| Skriptas                 | NPM komanda          | Funkcija                                                           |
+| ------------------------ | -------------------- | ------------------------------------------------------------------ |
+| `validate-schema.mjs`    | `validate:schema`    | JSON schemos validacija (prebuild)                                 |
 | `generate-core-data.mjs` | `generate:core-data` | Generuoja `*-m1-m6.json` ir `m9Characters-empty.json` iš pilnų SOT |
-| `validate-sot-index.mjs` | – | SOT indekso validacija |
+| `validate-sot-index.mjs` | –                    | SOT indekso validacija                                             |
 
 ### 18.2 Extract skriptai (vienkartiniai)
 
-| Skriptas | Funkcija |
-|----------|----------|
-| `extract-modules-en.mjs` | Ištraukia M1–M3 į `modules-en.json` (vertimo pradžia) |
-| `extract-modules-m4-m6.mjs` | Ištraukia M4–M6 į `modules-en-m4-m6.json` |
-| `extract-block-slides.mjs` | Blokų skaidrių ekstrakcija |
-| `extract-slides.cjs` | Skaidrių ekstrakcija |
-| `extract-test-practice-slides.mjs` | Testo/praktikos skaidrių ekstrakcija |
+| Skriptas                           | Funkcija                                              |
+| ---------------------------------- | ----------------------------------------------------- |
+| `extract-modules-en.mjs`           | Ištraukia M1–M3 į `modules-en.json` (vertimo pradžia) |
+| `extract-modules-m4-m6.mjs`        | Ištraukia M4–M6 į `modules-en-m4-m6.json`             |
+| `extract-block-slides.mjs`         | Blokų skaidrių ekstrakcija                            |
+| `extract-slides.cjs`               | Skaidrių ekstrakcija                                  |
+| `extract-test-practice-slides.mjs` | Testo/praktikos skaidrių ekstrakcija                  |
 
 ### 18.3 Audit skriptai
 
-| Skriptas | NPM komanda | Funkcija |
-|----------|-------------|----------|
-| `audit-collapsible-sections.mjs` | `audit:collapsible` | Collapsible sekcijų tikrinimas |
-| `audit-long-without-collapsible.mjs` | `audit:long-no-collapsible` | Ilgų skaidrių be collapsible |
-| `audit-heading-time-ambiguity.mjs` | `audit:heading-time` | Antraščių/laiko dviprasmybės |
-| `audit-footer-numbers.mjs` | `audit:footer-numbers` | Skaidrių footerių numeracijos tikrinimas |
-| `audit-footer-length.mjs` | – | Footerių ilgio tikrinimas |
+| Skriptas                             | NPM komanda                 | Funkcija                                 |
+| ------------------------------------ | --------------------------- | ---------------------------------------- |
+| `audit-collapsible-sections.mjs`     | `audit:collapsible`         | Collapsible sekcijų tikrinimas           |
+| `audit-long-without-collapsible.mjs` | `audit:long-no-collapsible` | Ilgų skaidrių be collapsible             |
+| `audit-heading-time-ambiguity.mjs`   | `audit:heading-time`        | Antraščių/laiko dviprasmybės             |
+| `audit-footer-numbers.mjs`           | `audit:footer-numbers`      | Skaidrių footerių numeracijos tikrinimas |
+| `audit-footer-length.mjs`            | –                           | Footerių ilgio tikrinimas                |
 
 ### 18.4 Patch skriptai
 
@@ -992,11 +1016,11 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 
 ### 18.5 Kiti
 
-| Failas | Funkcija |
-|--------|----------|
+| Failas                   | Funkcija                                         |
+| ------------------------ | ------------------------------------------------ |
 | `download-noto-font.ps1` | NotoSans šrifto atsisiuntimo PowerShell skriptas |
-| `generate_banner_gif.py` | Banner GIF generavimas (Python) |
-| `apply-en-patch-m4.mjs` | EN M4 translation patch pritaikymas |
+| `generate_banner_gif.py` | Banner GIF generavimas (Python)                  |
+| `apply-en-patch-m4.mjs`  | EN M4 translation patch pritaikymas              |
 
 ---
 
@@ -1010,15 +1034,16 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 
 **Spalvų paletė:**
 
-| Pavadinimas | Reikšmė | Naudojimas |
-|-------------|---------|------------|
-| `brand` (50–950) | Navy/slate mėlyna (#627d98, #486581) | Pagrindinė spalva |
-| `accent` (50–950) | Auksinė (#d4a520, #b8860b) | Akcentai, CTA |
-| `gold` | #f3cc30 | Brand akcentas (žaibas, hero CTA) |
-| `di-visata` (50–950) | Custom | DI visatos tema |
-| `slate` (50–950) | Pilka | Fonas, border |
+| Pavadinimas          | Reikšmė                              | Naudojimas                        |
+| -------------------- | ------------------------------------ | --------------------------------- |
+| `brand` (50–950)     | Navy/slate mėlyna (#627d98, #486581) | Pagrindinė spalva                 |
+| `accent` (50–950)    | Auksinė (#d4a520, #b8860b)           | Akcentai, CTA                     |
+| `gold`               | #f3cc30                              | Brand akcentas (žaibas, hero CTA) |
+| `di-visata` (50–950) | Custom                               | DI visatos tema                   |
+| `slate` (50–950)     | Pilka                                | Fonas, border                     |
 
 **Šriftai:**
+
 - `sans`: Plus Jakarta Sans, system fallbacks
 - `mono`: JetBrains Mono, monospace
 
@@ -1031,9 +1056,11 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 **Šriftai:** Plus Jakarta Sans (Google Fonts), JetBrains Mono  
 **Base stiliai:** dark mode (`#0d0d0d` fonas), focus-visible, scrollbar, mobile touch, safe-area  
 **CSS custom properties:**
+
 - `:root { --brand-gold: #f3cc30 }` – centralizuota brand gold spalva
 
 **Custom klasės:**
+
 - `.mask-gradient-dots` – gradientinis taškų mask
 - `.rag-duomenu-step` – RAG žingsnio stilius
 - `.progress-ring` – progreso žiedo animacija
@@ -1049,6 +1076,7 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 - `.mono` – monospace šriftas
 
 **Accessibility:**
+
 - `@media (prefers-reduced-motion: reduce)` – visos animacijos ir transition išjungiamos
 
 ---
@@ -1057,31 +1085,31 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 
 ### 20.1 Failų inventorius
 
-| Failas | Paskirtis |
-|--------|-----------|
-| `vite.config.ts` | Build ir dev serverio konfigūracija |
-| `vitest.config.ts` | Testų konfigūracija |
-| `tsconfig.json` | TypeScript konfigūracija |
-| `tsconfig.node.json` | Node.js TypeScript (vite.config) |
-| `tailwind.config.js` | CSS framework konfigūracija |
-| `postcss.config.js` | PostCSS plugins |
-| `.eslintrc.cjs` | ESLint taisyklės |
-| `.prettierrc.json` | Prettier formatavimas |
-| `.prettierignore` | Prettier ignore |
-| `.editorconfig` | Editor nustatymai |
-| `.env.example` | Aplinkos kintamųjų šablonas |
-| `vite-env.d.ts` | Vite env TypeScript deklaracijos |
+| Failas               | Paskirtis                           |
+| -------------------- | ----------------------------------- |
+| `vite.config.ts`     | Build ir dev serverio konfigūracija |
+| `vitest.config.ts`   | Testų konfigūracija                 |
+| `tsconfig.json`      | TypeScript konfigūracija            |
+| `tsconfig.node.json` | Node.js TypeScript (vite.config)    |
+| `tailwind.config.js` | CSS framework konfigūracija         |
+| `postcss.config.js`  | PostCSS plugins                     |
+| `.eslintrc.cjs`      | ESLint taisyklės                    |
+| `.prettierrc.json`   | Prettier formatavimas               |
+| `.prettierignore`    | Prettier ignore                     |
+| `.editorconfig`      | Editor nustatymai                   |
+| `.env.example`       | Aplinkos kintamųjų šablonas         |
+| `vite-env.d.ts`      | Vite env TypeScript deklaracijos    |
 
 ### 20.2 Env kintamieji
 
-| Kintamasis | Tipas | Paskirtis |
-|------------|-------|-----------|
-| `ACCESS_TOKEN_SECRET` | Server-side | HMAC secret magic linkams (≥16 chars) |
-| `VITE_VERIFY_ACCESS_URL` | Client-side | Verify-access endpoint (tuščia = same-origin) |
-| `VITE_MAX_ACCESSIBLE_MODULE` | Client-side | Max atrakinto modulio ID (0, 3, 6, 9, 12) |
-| `VITE_MVP_MODE` | Build-time | `1` = core profilis (tik M1–M6) |
-| `VITE_BASE_PATH` | Build-time | Hosting base path |
-| `VITE_POSTHOG_KEY` | Client-side | Optional PostHog analytics key |
+| Kintamasis                   | Tipas       | Paskirtis                                     |
+| ---------------------------- | ----------- | --------------------------------------------- |
+| `ACCESS_TOKEN_SECRET`        | Server-side | HMAC secret magic linkams (≥16 chars)         |
+| `VITE_VERIFY_ACCESS_URL`     | Client-side | Verify-access endpoint (tuščia = same-origin) |
+| `VITE_MAX_ACCESSIBLE_MODULE` | Client-side | Max atrakinto modulio ID (0, 3, 6, 9, 12)     |
+| `VITE_MVP_MODE`              | Build-time  | `1` = core profilis (tik M1–M6)               |
+| `VITE_BASE_PATH`             | Build-time  | Hosting base path                             |
+| `VITE_POSTHOG_KEY`           | Client-side | Optional PostHog analytics key                |
 
 ---
 
@@ -1169,6 +1197,7 @@ Išsamus dizaino etalonas (H1, bold, šriftai, spalvos, dark mode, responsive): 
 ### 22.5 Release checklist
 
 Prieš kiekvieną release:
+
 1. `npm run validate:schema` ✓
 2. `npm run lint` ✓
 3. `npm run test:run` ✓
@@ -1183,39 +1212,39 @@ Prieš kiekvieną release:
 
 Kad ateityje nepasikartotų tipinės klaidos (CI failas, 404 vaizdai po deploy, testų „X is not defined“):
 
-| Problema | Priežastis | Sprendimas / taisyklė |
-|----------|------------|------------------------|
-| **PNG/vaizdai 404 po deploy** | Production build naudoja `base: '/…/'` (Vite). Keliai iš JSON (`/image.png`) naudojami be BASE_URL – naršyklė kreipiasi į svetainės šaknį. | **Visi** vaizdų `src`, imami iš duomenų (JSON), renderinant privalo naudoti `import.meta.env.BASE_URL` prieš kelią: `\`${import.meta.env.BASE_URL || '/'}${path.replace(/^\//, '')}\``. Pvz. ContentSlides (comparisonImages, workflowImages), CharacterCard (imagePath). |
-| **ResizeObserver (arba kitas browser API) is not defined** | jsdom testuose neturi ResizeObserver, fullscreen API ir kt. | **1)** Mock'inti `src/test/setup.ts`: `vi.stubGlobal('ResizeObserver', MockClass)` ir priskyrimas į `window`/`global`. **2)** Komponente naudoti tik `window.ResizeObserver` ir guard `if (!window.ResizeObserver) return`, kad be mock komponentas nekreiptų į neegzistuojantį globalą. |
-| **Deploy 404 visiems asset'ams** | Base path nesutampa su hosting keliu (pvz. build su `/anatomija/`, o GitHub Pages servina `/inzinerija/`). | **VITE_BASE_PATH** turi atitikti **repo pavadinimą** (GitHub Pages: `https://<user>.github.io/<repo>/` → base = `/<repo>/`). Deploy workflow'e nustatyti `VITE_BASE_PATH: '/<repo>/'` visiems build step'ams. Žr. `docs/deployment/PRE_DEPLOY_INZINERIJA.md`. |
-| **Versija neaiški** | Keičiama keliuose failuose arba pamirštama. | **Release versija** = vienintelis šaltinis `package.json` `version`. CHANGELOG – tik žmogaus skaitoma istorija; naujas release = nauja sekcija `## [X.Y.Z] – data` ir `package.json` atnaujinimas. Žr. `docs/development/VERSION_ANALIZE.md`. |
+| Problema                                                   | Priežastis                                                                                                                                 | Sprendimas / taisyklė                                                                                                                                                                                                                                                                    |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
+| **PNG/vaizdai 404 po deploy**                              | Production build naudoja `base: '/…/'` (Vite). Keliai iš JSON (`/image.png`) naudojami be BASE_URL – naršyklė kreipiasi į svetainės šaknį. | **Visi** vaizdų `src`, imami iš duomenų (JSON), renderinant privalo naudoti `import.meta.env.BASE_URL` prieš kelią: `\`${import.meta.env.BASE_URL                                                                                                                                        |     | '/'}${path.replace(/^\//, '')}\``. Pvz. ContentSlides (comparisonImages, workflowImages), CharacterCard (imagePath). |
+| **ResizeObserver (arba kitas browser API) is not defined** | jsdom testuose neturi ResizeObserver, fullscreen API ir kt.                                                                                | **1)** Mock'inti `src/test/setup.ts`: `vi.stubGlobal('ResizeObserver', MockClass)` ir priskyrimas į `window`/`global`. **2)** Komponente naudoti tik `window.ResizeObserver` ir guard `if (!window.ResizeObserver) return`, kad be mock komponentas nekreiptų į neegzistuojantį globalą. |
+| **Deploy 404 visiems asset'ams**                           | Base path nesutampa su hosting keliu (pvz. build su `/anatomija/`, o GitHub Pages servina `/inzinerija/`).                                 | **VITE_BASE_PATH** turi atitikti **repo pavadinimą** (GitHub Pages: `https://<user>.github.io/<repo>/` → base = `/<repo>/`). Deploy workflow'e nustatyti `VITE_BASE_PATH: '/<repo>/'` visiems build step'ams. Žr. `docs/deployment/PRE_DEPLOY_INZINERIJA.md`.                            |
+| **Versija neaiški**                                        | Keičiama keliuose failuose arba pamirštama.                                                                                                | **Release versija** = vienintelis šaltinis `package.json` `version`. CHANGELOG – tik žmogaus skaitoma istorija; naujas release = nauja sekcija `## [X.Y.Z] – data` ir `package.json` atnaujinimas. Žr. `docs/development/VERSION_ANALIZE.md`.                                            |
 
 ---
 
 ## Appendix A: Failų dydžiai (top 20)
 
-| Failas | ~Eilutės | Komentaras |
-|--------|----------|------------|
-| `src/data/modules.json` | ~12,000 | Pagrindinis SOT |
-| `src/data/modules-m1-m6.json` | ~6,600 | Core profilis |
-| `src/components/ModuleView.tsx` | ~743 | Didžiausias komponentas |
-| `src/components/VaizdoGeneratoriusSlide.tsx` | ~475 | Vaizdo generatorius |
-| `src/components/SlideContent.tsx` | ~413 | Skaidrių registras |
-| `src/App.tsx` | ~413 | Root komponentas |
-| `src/locales/lt.json` | ~533 | LT vertimai |
-| `src/locales/en.json` | ~533 | EN vertimai |
-| `src/components/HomePage.tsx` | ~362 | Pagrindinis puslapis |
-| `src/components/QuizPage.tsx` | ~316 | Apklausa |
-| `src/components/ModulesPage.tsx` | ~309 | Modulių puslapis |
-| `src/components/AppNav.tsx` | ~309 | Navigacija |
-| `src/components/AiDetectorsSlide.tsx` | ~305 | DI detektoriai |
-| `src/components/ModuleCompleteScreen.tsx` | ~274 | Modulio pabaiga |
-| `scripts/validate-schema.mjs` | ~239 | Schema validacija |
-| `src/components/QuizResultsView.tsx` | ~228 | Rezultatų peržiūra |
-| `src/utils/m5HandoutPdf.ts` | ~222 | M5 PDF |
-| `src/components/GlossaryPage.tsx` | ~192 | Žodynėlis |
-| `src/components/ToolsPage.tsx` | ~179 | Įrankiai |
-| `src/components/CertificateScreen.tsx` | ~176 | Sertifikatas |
+| Failas                                       | ~Eilutės | Komentaras              |
+| -------------------------------------------- | -------- | ----------------------- |
+| `src/data/modules.json`                      | ~12,000  | Pagrindinis SOT         |
+| `src/data/modules-m1-m6.json`                | ~6,600   | Core profilis           |
+| `src/components/ModuleView.tsx`              | ~743     | Didžiausias komponentas |
+| `src/components/VaizdoGeneratoriusSlide.tsx` | ~475     | Vaizdo generatorius     |
+| `src/components/SlideContent.tsx`            | ~413     | Skaidrių registras      |
+| `src/App.tsx`                                | ~413     | Root komponentas        |
+| `src/locales/lt.json`                        | ~533     | LT vertimai             |
+| `src/locales/en.json`                        | ~533     | EN vertimai             |
+| `src/components/HomePage.tsx`                | ~362     | Pagrindinis puslapis    |
+| `src/components/QuizPage.tsx`                | ~316     | Apklausa                |
+| `src/components/ModulesPage.tsx`             | ~309     | Modulių puslapis        |
+| `src/components/AppNav.tsx`                  | ~309     | Navigacija              |
+| `src/components/AiDetectorsSlide.tsx`        | ~305     | DI detektoriai          |
+| `src/components/ModuleCompleteScreen.tsx`    | ~274     | Modulio pabaiga         |
+| `scripts/validate-schema.mjs`                | ~239     | Schema validacija       |
+| `src/components/QuizResultsView.tsx`         | ~228     | Rezultatų peržiūra      |
+| `src/utils/m5HandoutPdf.ts`                  | ~222     | M5 PDF                  |
+| `src/components/GlossaryPage.tsx`            | ~192     | Žodynėlis               |
+| `src/components/ToolsPage.tsx`               | ~179     | Įrankiai                |
+| `src/components/CertificateScreen.tsx`       | ~176     | Sertifikatas            |
 
 ## Appendix B: Pilnas dependency graph (runtime)
 
@@ -1238,17 +1267,17 @@ react (18) → react-dom (18)
 
 ## Appendix C: localStorage raktai
 
-| Raktas | Tipas | Paskirtis |
-|--------|-------|-----------|
-| `prompt-anatomy-progress` | JSON (Progress v2) | Modulių progresas |
-| `prompt-anatomy-slide-pos` | JSON | Skaidrių pozicijos |
-| `prompt-anatomy-locale` | `'lt'` \| `'en'` | Kalba |
-| `prompt-anatomy-certificate-name` | string | Sertifikato vardas |
-| `prompt-anatomy-theme` | `'dark'` \| `'light'` | Tema |
-| `prompt-anatomy-en-variant` | `'en-lt'` \| `'en-us'` | EN turinio variantas |
-| `prompt-anatomy-learning-events` | JSON array | Mokymosi įvykiai |
-| `prompt-anatomy-autosave-*` | JSON | Auto-save duomenys |
+| Raktas                            | Tipas                  | Paskirtis            |
+| --------------------------------- | ---------------------- | -------------------- |
+| `prompt-anatomy-progress`         | JSON (Progress v2)     | Modulių progresas    |
+| `prompt-anatomy-slide-pos`        | JSON                   | Skaidrių pozicijos   |
+| `prompt-anatomy-locale`           | `'lt'` \| `'en'`       | Kalba                |
+| `prompt-anatomy-certificate-name` | string                 | Sertifikato vardas   |
+| `prompt-anatomy-theme`            | `'dark'` \| `'light'`  | Tema                 |
+| `prompt-anatomy-en-variant`       | `'en-lt'` \| `'en-us'` | EN turinio variantas |
+| `prompt-anatomy-learning-events`  | JSON array             | Mokymosi įvykiai     |
+| `prompt-anatomy-autosave-*`       | JSON                   | Auto-save duomenys   |
 
 ---
 
-*Šis dokumentas fiksuoja production deploy v1.2.0 būseną. Bet kokie tolimesni kodo pakeitimai turi būti vertinami šio standarto kontekste, užtikrinant, kad esama funkcionalumas nebus pažeistas.*
+_Šis dokumentas fiksuoja production deploy v1.3.0 būseną. Bet kokie tolimesni kodo pakeitimai turi būti vertinami šio standarto kontekste, užtikrinant, kad esama funkcionalumas nebus pažeistas._
