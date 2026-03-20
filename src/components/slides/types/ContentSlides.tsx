@@ -1699,6 +1699,8 @@ export function SectionBreakSlide({
 }) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   if (!content) return null;
   const hck = content.heroColorKey ?? 'brand';
   const colors = sectionBreakColorMap[hck] ?? sectionBreakColorMap.brand;
@@ -2523,6 +2525,8 @@ export function DefinitionsSlide({
 }) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [showPrompt, setShowPrompt] = useState(false);
   const [showEngineering, setShowEngineering] = useState(false);
   const [showSources, setShowSources] = useState(false);
