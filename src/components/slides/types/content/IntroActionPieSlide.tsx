@@ -2,12 +2,35 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getT } from '../../../../i18n';
 import { useLocale } from '../../../../contexts/LocaleContext';
-import { ArrowRight, Check, Pen, Wrench, Search, Code, Image, HelpCircle, Brain, FileDown, Sparkles, X, type LucideIcon } from 'lucide-react';
-import type { IntroActionPieContent, IntroActionPiePdfSegment, PieChartSegment } from '../../../../types/modules';
+import {
+  ArrowRight,
+  Check,
+  Pen,
+  Wrench,
+  Search,
+  Code,
+  Image,
+  HelpCircle,
+  Brain,
+  FileDown,
+  Sparkles,
+  X,
+  type LucideIcon,
+} from 'lucide-react';
+import type {
+  IntroActionPieContent,
+  IntroActionPiePdfSegment,
+  PieChartSegment,
+} from '../../../../types/modules';
 import { getIntroPiePdfContent } from '../../../../data/introPiePdfContentLoader';
 import { getGlossary } from '../../../../data/glossaryLoader';
 import toolsData from '../../../../data/tools.json';
-import { downloadIntroPiePdf, ensurePdfFont, type ToolInfo, type GlossaryTermInfo } from '../../../../utils/introPiePdf';
+import {
+  downloadIntroPiePdf,
+  ensurePdfFont,
+  type ToolInfo,
+  type GlossaryTermInfo,
+} from '../../../../utils/introPiePdf';
 
 /** Lucide ikonos „Kam žmonės naudoja GPT?“ kortoms ir sąrašui – vektorinės, ne emoji */
 const INTRO_PIE_ICONS: Record<string, LucideIcon> = {
@@ -44,7 +67,18 @@ const PIE_COLORS: Record<string, string> = {
 };
 
 function getPieColor(colorKey?: string, index?: number): string {
-  const key = colorKey || ['brand', 'emerald', 'orange', 'rose', 'violet', 'amber', 'slate', 'fuchsia'][index ?? 0];
+  const key =
+    colorKey ||
+    [
+      'brand',
+      'emerald',
+      'orange',
+      'rose',
+      'violet',
+      'amber',
+      'slate',
+      'fuchsia',
+    ][index ?? 0];
   return PIE_COLORS[key] ?? PIE_COLORS.brand;
 }
 
@@ -61,19 +95,29 @@ function HorizontalBarChartViz({
   highlightIndex,
   getIcon,
   iconBg,
+  locale = 'lt',
 }: {
   segments: PieChartSegment[];
   highlightIndex?: number | null;
   getIcon: (index: number) => LucideIcon | null;
   iconBg: (colorKey?: string) => string;
+  locale?: 'lt' | 'en';
 }) {
+  const isEn = locale === 'en';
   const maxVal = Math.max(...segments.map((s) => s.value), 1);
   const sorted = segments
     .map((seg, originalIndex) => ({ seg, originalIndex }))
     .sort((a, b) => b.seg.value - a.seg.value);
 
   return (
-    <ul className="space-y-3 w-full max-w-xl mx-auto" aria-label="2026 m. pasiskirstymas pagal kategorijas">
+    <ul
+      className="space-y-3 w-full max-w-xl mx-auto"
+      aria-label={
+        isEn
+          ? '2026 distribution by category'
+          : '2026 m. pasiskirstymas pagal kategorijas'
+      }
+    >
       {sorted.map(({ seg, originalIndex }) => {
         const isHighlight = originalIndex === highlightIndex;
         const fill = getPieColor(seg.colorKey, originalIndex);
@@ -96,7 +140,9 @@ function HorizontalBarChartViz({
                 <IconC className="w-4 h-4" strokeWidth={2} />
               </span>
             )}
-            <span className="flex-1 min-w-0 text-sm font-medium truncate">{seg.label}</span>
+            <span className="flex-1 min-w-0 text-sm font-medium truncate">
+              {seg.label}
+            </span>
             <div className="flex-shrink-0 flex items-center gap-2 w-36 sm:w-44">
               <div
                 className={`flex-1 rounded-md overflow-hidden bg-gray-100 dark:bg-gray-700 min-w-[60px] ${
@@ -105,7 +151,10 @@ function HorizontalBarChartViz({
               >
                 <div
                   className="h-full rounded-md transition-all duration-300"
-                  style={{ width: `${(seg.value / maxVal) * 100}%`, backgroundColor: fill }}
+                  style={{
+                    width: `${(seg.value / maxVal) * 100}%`,
+                    backgroundColor: fill,
+                  }}
                   role="presentation"
                 />
               </div>
@@ -115,11 +164,17 @@ function HorizontalBarChartViz({
               {isHighlight && (
                 <span
                   className="flex items-center gap-1 flex-shrink-0 rounded-full px-2 py-0.5 bg-brand-200/80 dark:bg-brand-800/50 text-brand-800 dark:text-brand-200 text-xs font-semibold"
-                  aria-label="Tavo pasirinkimas"
-                  title="Tavo pasirinkimas"
+                  aria-label={isEn ? 'Your selection' : 'Tavo pasirinkimas'}
+                  title={isEn ? 'Your selection' : 'Tavo pasirinkimas'}
                 >
-                  <Check className="w-3.5 h-3.5 shrink-0" strokeWidth={2.5} aria-hidden="true" />
-                  <span className="hidden sm:inline">Tavo pasirinkimas</span>
+                  <Check
+                    className="w-3.5 h-3.5 shrink-0"
+                    strokeWidth={2.5}
+                    aria-hidden="true"
+                  />
+                  <span className="hidden sm:inline">
+                    {isEn ? 'Your selection' : 'Tavo pasirinkimas'}
+                  </span>
                 </span>
               )}
             </div>
@@ -136,7 +191,9 @@ function getIntroPieIcon(iconKey: string | undefined): LucideIcon | null {
   return INTRO_PIE_ICONS[iconKey] ?? null;
 }
 
-const toolsList = (toolsData as { tools: { name: string; url: string; description: string }[] }).tools;
+const toolsList = (
+  toolsData as { tools: { name: string; url: string; description: string }[] }
+).tools;
 
 /** Lazy-loaded skaidrė: vertimai per getT(module). */
 function IntroActionPieActions({
@@ -154,21 +211,33 @@ function IntroActionPieActions({
 
   const toolsByName = useMemo(() => {
     const m = new Map<string, ToolInfo>();
-    for (const tool of toolsList) m.set(tool.name, { name: tool.name, url: tool.url, description: tool.description });
+    for (const tool of toolsList)
+      m.set(tool.name, {
+        name: tool.name,
+        url: tool.url,
+        description: tool.description,
+      });
     return m;
   }, []);
 
   const glossaryByTerm = useMemo(() => {
     const terms = getGlossary(locale);
     const m = new Map<string, GlossaryTermInfo>();
-    for (const g of terms) m.set(g.term, { term: g.term, definition: g.definition });
+    for (const g of terms)
+      m.set(g.term, { term: g.term, definition: g.definition });
     return m;
   }, [locale]);
 
   const handlePdf = async () => {
     if (!pdfSegment) return;
     await ensurePdfFont();
-    downloadIntroPiePdf(pdfSegment, toolsByName, glossaryByTerm, undefined, locale);
+    downloadIntroPiePdf(
+      pdfSegment,
+      toolsByName,
+      glossaryByTerm,
+      undefined,
+      locale
+    );
   };
 
   if (!pdfSegment) return null;
@@ -202,6 +271,7 @@ function IntroActionPieActions({
           toolsByName={toolsByName}
           glossaryByTerm={glossaryByTerm}
           onClose={() => setShowModal(false)}
+          locale={locale}
         />
       )}
     </>
@@ -213,12 +283,15 @@ function IntroActionPieTipsModal({
   toolsByName,
   glossaryByTerm,
   onClose,
+  locale = 'lt',
 }: {
   pdfSegment: IntroActionPiePdfSegment;
   toolsByName: Map<string, ToolInfo>;
   glossaryByTerm: Map<string, GlossaryTermInfo>;
   onClose: () => void;
+  locale?: 'lt' | 'en';
 }) {
+  const isEn = locale === 'en';
   const mainTool = toolsByName.get(pdfSegment.mainToolName);
 
   return (
@@ -230,21 +303,26 @@ function IntroActionPieTipsModal({
     >
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-700">
         <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
-          <h2 id="intro-pie-modal-title" className="text-lg font-bold text-brand-700 dark:text-brand-300">
-            Promptų anatomija – {pdfSegment.title}
+          <h2
+            id="intro-pie-modal-title"
+            className="text-lg font-bold text-brand-700 dark:text-brand-300"
+          >
+            {isEn ? 'Prompt Anatomy' : 'Promptų anatomija'} – {pdfSegment.title}
           </h2>
           <button
             type="button"
             onClick={onClose}
             className="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
-            aria-label="Uždaryti"
+            aria-label={isEn ? 'Close' : 'Uždaryti'}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         <div className="p-6 space-y-6 text-sm">
           <section>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">1. Top 5 patarimai</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              {isEn ? '1. Top 5 tips' : '1. Top 5 patarimai'}
+            </h3>
             <ol className="list-decimal list-inside space-y-1.5 text-gray-700 dark:text-gray-300">
               {pdfSegment.top5Tips.map((tip, i) => (
                 <li key={i}>{tip}</li>
@@ -252,14 +330,22 @@ function IntroActionPieTipsModal({
             </ol>
           </section>
           <section>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">2. Įrankiai</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              {isEn ? '2. Tools' : '2. Įrankiai'}
+            </h3>
             {mainTool && (
               <p className="text-gray-700 dark:text-gray-300 mb-2">
-                <strong>Pagrindinis:</strong>{' '}
-                <a href={mainTool.url} target="_blank" rel="noopener noreferrer" className="text-brand-600 dark:text-brand-400 underline">
+                <strong>{isEn ? 'Primary:' : 'Pagrindinis:'}</strong>{' '}
+                <a
+                  href={mainTool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-600 dark:text-brand-400 underline"
+                >
                   {mainTool.name}
                 </a>
-                {' – '}{mainTool.description}
+                {' – '}
+                {mainTool.description}
               </p>
             )}
             <ul className="list-disc list-inside space-y-0.5 text-gray-600 dark:text-gray-400">
@@ -267,7 +353,12 @@ function IntroActionPieTipsModal({
                 const t = toolsByName.get(name);
                 return t ? (
                   <li key={name}>
-                    <a href={t.url} target="_blank" rel="noopener noreferrer" className="text-brand-600 dark:text-brand-400 underline">
+                    <a
+                      href={t.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-600 dark:text-brand-400 underline"
+                    >
                       {t.name}
                     </a>
                   </li>
@@ -276,13 +367,17 @@ function IntroActionPieTipsModal({
             </ul>
           </section>
           <section>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">3. Workflow</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              3. Workflow
+            </h3>
             <p className="text-gray-700 dark:text-gray-300">
               {pdfSegment.workflowSteps.join(' → ')}
             </p>
           </section>
           <section>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">4. Svarbios sąvokos</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              {isEn ? '4. Key concepts' : '4. Svarbios sąvokos'}
+            </h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
               {pdfSegment.glossaryTermNames.map((termName) => {
                 const g = glossaryByTerm.get(termName);
@@ -295,12 +390,20 @@ function IntroActionPieTipsModal({
             </ul>
           </section>
           <section>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">5. Sisteminis promptas</h3>
-            <p className="text-gray-700 dark:text-gray-300 italic">{pdfSegment.systemPrompt}</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              {isEn ? '5. System prompt' : '5. Sisteminis promptas'}
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 italic">
+              {pdfSegment.systemPrompt}
+            </p>
           </section>
           <section className="rounded-xl bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-4">
-            <p className="font-semibold text-accent-800 dark:text-accent-200 mb-1">Palinkėjimas</p>
-            <p className="text-gray-700 dark:text-gray-300">{pdfSegment.motivationWish}</p>
+            <p className="font-semibold text-accent-800 dark:text-accent-200 mb-1">
+              {isEn ? 'Encouragement' : 'Palinkėjimas'}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              {pdfSegment.motivationWish}
+            </p>
           </section>
         </div>
       </div>
@@ -314,22 +417,25 @@ export interface IntroActionPieSlideProps {
 
 export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
   const { locale } = useLocale();
+  const isEn = locale === 'en';
   const pdfContent = useMemo(() => getIntroPiePdfContent(locale), [locale]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const segments = content.segments ?? [];
-  const ctaLabel = content.ctaReveal ?? 'Parodyk 2026 duomenis';
+  const ctaLabel =
+    content.ctaReveal ?? (isEn ? 'Show 2026 data' : 'Parodyk 2026 duomenis');
   const ctaEnabled = selectedIndex !== null;
 
   if (segments.length === 0) {
     return (
       <div className="p-6 text-center text-gray-600 dark:text-gray-400">
-        Skaidrės duomenų nėra.
+        {isEn ? 'No slide data available.' : 'Skaidrės duomenų nėra.'}
       </div>
     );
   }
 
-  const useCardDeck = Array.isArray(content.cards) && content.cards.length === segments.length;
+  const useCardDeck =
+    Array.isArray(content.cards) && content.cards.length === segments.length;
 
   if (!revealed) {
     return (
@@ -384,11 +490,23 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
                     >
                       {(() => {
                         const IconC = getIntroPieIcon(card.icon);
-                        return IconC ? <IconC className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} /> : <span className="text-xl sm:text-2xl leading-none">{card.icon}</span>;
+                        return IconC ? (
+                          <IconC
+                            className="w-5 h-5 sm:w-6 sm:h-6"
+                            strokeWidth={2}
+                          />
+                        ) : (
+                          <span className="text-xl sm:text-2xl leading-none">
+                            {card.icon}
+                          </span>
+                        );
                       })()}
                     </span>
                     <div className="flex-1 min-w-0 space-y-1.5">
-                      <span id={`intro-pie-option-${idx}`} className="text-base font-semibold text-gray-900 dark:text-white block">
+                      <span
+                        id={`intro-pie-option-${idx}`}
+                        className="text-base font-semibold text-gray-900 dark:text-white block"
+                      >
                         {card.title}
                       </span>
                       {card.description && (
@@ -399,24 +517,35 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
                     </div>
                     <span
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                        isSelected ? 'border-brand-500 bg-brand-500 text-white' : 'border-gray-300 dark:border-gray-600'
+                        isSelected
+                          ? 'border-brand-500 bg-brand-500 text-white'
+                          : 'border-gray-300 dark:border-gray-600'
                       }`}
                       aria-hidden="true"
                     >
-                      {isSelected ? <Check className="w-3.5 h-3.5 stroke-[2.5]" /> : null}
+                      {isSelected ? (
+                        <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                      ) : null}
                     </span>
                   </>
                 ) : (
                   <>
                     <span
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                        isSelected ? 'border-brand-500 bg-brand-500 text-white' : 'border-gray-300 dark:border-gray-600'
+                        isSelected
+                          ? 'border-brand-500 bg-brand-500 text-white'
+                          : 'border-gray-300 dark:border-gray-600'
                       }`}
                       aria-hidden="true"
                     >
-                      {isSelected ? <Check className="w-3 h-3 stroke-[2.5]" /> : null}
+                      {isSelected ? (
+                        <Check className="w-3 h-3 stroke-[2.5]" />
+                      ) : null}
                     </span>
-                    <span id={`intro-pie-option-${idx}`} className="text-gray-700 dark:text-gray-300 text-sm">
+                    <span
+                      id={`intro-pie-option-${idx}`}
+                      className="text-gray-700 dark:text-gray-300 text-sm"
+                    >
                       {seg.label}
                     </span>
                   </>
@@ -448,12 +577,16 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
 
   const selectedIdx = selectedIndex ?? null;
   const selectedSegment = selectedIdx !== null ? segments[selectedIdx] : null;
-  const selectedCard = selectedIdx !== null && useCardDeck ? content.cards?.[selectedIdx] : null;
+  const selectedCard =
+    selectedIdx !== null && useCardDeck ? content.cards?.[selectedIdx] : null;
   const displayLabel = selectedCard?.title ?? selectedSegment?.label ?? null;
-  const insight = selectedIdx !== null ? content.revealInsights?.[selectedIdx] : undefined;
+  const insight =
+    selectedIdx !== null ? content.revealInsights?.[selectedIdx] : undefined;
 
-  const getBarIcon = (index: number) => getIntroPieIcon(content.cards?.[index]?.icon);
-  const getIconBg = (colorKey?: string) => ICON_BG[colorKey ?? 'brand'] ?? ICON_BG.brand;
+  const getBarIcon = (index: number) =>
+    getIntroPieIcon(content.cards?.[index]?.icon);
+  const getIconBg = (colorKey?: string) =>
+    ICON_BG[colorKey ?? 'brand'] ?? ICON_BG.brand;
 
   return (
     <div className="space-y-6">
@@ -465,7 +598,8 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
           aria-live="polite"
         >
           <p className="text-sm font-medium text-brand-800 dark:text-brand-200">
-            Tu pasirinkai: <span className="font-bold">{displayLabel}</span>
+            {isEn ? 'You selected:' : 'Tu pasirinkai:'}{' '}
+            <span className="font-bold">{displayLabel}</span>
           </p>
         </div>
       )}
@@ -473,13 +607,14 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
       {/* Grafikas – balta kortelė, trumpas pavadinimas */}
       <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-md p-4 sm:p-5">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 text-center">
-          2026 m. pasiskirstymas
+          {isEn ? '2026 distribution' : '2026 m. pasiskirstymas'}
         </h3>
         <HorizontalBarChartViz
           segments={segments}
           highlightIndex={selectedIdx}
           getIcon={getBarIcon}
           iconBg={getIconBg}
+          locale={locale}
         />
       </div>
 
@@ -519,12 +654,18 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
             </>
           ) : (
             <>
-              <p className="font-semibold text-gray-900 dark:text-white text-sm">Ką tai reiškia tau?</p>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Tu patenki į <span className="font-semibold">{selectedSegment.value}%</span>{' '}
-                {insight.segmentPhrase ?? selectedSegment.label.toLowerCase()} segmentą.
+              <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                Ką tai reiškia tau?
               </p>
-              <p className="text-gray-700 dark:text-gray-300 text-sm">{insight.insight}</p>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                Tu patenki į{' '}
+                <span className="font-semibold">{selectedSegment.value}%</span>{' '}
+                {insight.segmentPhrase ?? selectedSegment.label.toLowerCase()}{' '}
+                segmentą.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                {insight.insight}
+              </p>
               <p className="text-gray-800 dark:text-gray-200 text-sm">
                 👉 Klausimas tau: {insight.question}
               </p>

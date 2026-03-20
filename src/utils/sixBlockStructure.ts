@@ -3,7 +3,14 @@
  * Vietoj tik keyword buvimo tekste – tikriname, ar yra atpažįstama sekcija (eilutės pradžia).
  */
 
-export const SIX_BLOCKS = ['META', 'INPUT', 'OUTPUT', 'REASONING', 'QUALITY', 'ADVANCED'] as const;
+export const SIX_BLOCKS = [
+  'META',
+  'INPUT',
+  'OUTPUT',
+  'REASONING',
+  'QUALITY',
+  'ADVANCED',
+] as const;
 export type BlockName = (typeof SIX_BLOCKS)[number];
 
 /** Vieno sakinio pavyzdžiai trūkstamiems blokams (rodomi UI) */
@@ -15,6 +22,20 @@ export const BLOCK_EXAMPLES: Record<BlockName, string> = {
   QUALITY: 'QUALITY: Tikrinimo kriterijai.',
   ADVANCED: 'ADVANCED: Temperature, max tokens (jei reikia).',
 };
+
+const BLOCK_EXAMPLES_EN: Record<BlockName, string> = {
+  META: 'META: Your role, goal, and audience.',
+  INPUT: 'INPUT: Data, numbers, constraints.',
+  OUTPUT: 'OUTPUT: Format, structure, language.',
+  REASONING: 'REASONING: Steps or reasoning style.',
+  QUALITY: 'QUALITY: Quality-check criteria.',
+  ADVANCED: 'ADVANCED: Temperature, max tokens (if needed).',
+};
+
+/** Pavyzdinė eilutė trūkstam blokui pagal kalbą */
+export function getBlockExample(block: BlockName, locale: 'lt' | 'en'): string {
+  return locale === 'en' ? BLOCK_EXAMPLES_EN[block] : BLOCK_EXAMPLES[block];
+}
 
 /**
  * Tikrina, ar tekste yra bloko antraštė (eilutės pradžioje "BLOCK:" arba "BLOCK ").
@@ -39,7 +60,10 @@ export function detectBlocks(text: string | null | undefined): {
 }
 
 /** Ar blokas „užpildytas“ pagal struktūrą (sekcijos buvimas). */
-export function isBlockFilled(block: BlockName, text: string | null | undefined): boolean {
+export function isBlockFilled(
+  block: BlockName,
+  text: string | null | undefined
+): boolean {
   const { present } = detectBlocks(text);
   return present.includes(block);
 }

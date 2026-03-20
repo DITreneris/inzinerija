@@ -1124,7 +1124,7 @@ function ModuleView({
               }
             >
               <span
-                className="font-medium truncate max-w-[140px] sm:max-w-none"
+                className="font-medium min-w-0 flex-1 text-center leading-tight line-clamp-2 break-words hyphens-auto"
                 title={nextSlideContextLabel ?? undefined}
               >
                 {isLastSlide

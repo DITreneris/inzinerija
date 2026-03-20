@@ -20,8 +20,8 @@ function StatsBar({
   statLabels: { tools: string; text: string; imageVideo: string };
 }) {
   const textCount = tools.filter((t) => t.types.includes('text')).length;
-  const imageCount = tools.filter((t) =>
-    t.types.includes('image') || t.types.includes('video'),
+  const imageCount = tools.filter(
+    (t) => t.types.includes('image') || t.types.includes('video')
   ).length;
 
   return (
@@ -119,7 +119,7 @@ function ToolCard({
           <a
             href={tool.url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
           >
             {visitSiteLabel}
@@ -173,7 +173,7 @@ export default function AiDetectorsSlide() {
       result = result.filter(
         (entry) =>
           entry.name.toLowerCase().includes(term) ||
-          entry.description.toLowerCase().includes(term),
+          entry.description.toLowerCase().includes(term)
       );
     }
 

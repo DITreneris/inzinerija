@@ -180,6 +180,8 @@ export function ActionIntroJourneySlide({
 }: ActionIntroJourneySlideProps) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [selected, setSelected] = useState<JourneyChoice | null>(null);
   const [confirmed, setConfirmed] = useState(false);
 
@@ -302,7 +304,9 @@ export function ActionIntroJourneySlide({
             aria-hidden="true"
           />
           <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
-            Kelionė pasirinkta. Gali pereiti prie kitos skaidrės.
+            {isEn
+              ? 'Journey selected. You can move to the next slide.'
+              : 'Kelionė pasirinkta. Gali pereiti prie kitos skaidrės.'}
           </p>
         </div>
       )}
@@ -355,7 +359,9 @@ export function ContentBlockSlide({
   const t = getT('contentSlides');
   const tCommon = getT('common');
   const tQuiz = getT('quiz');
+  const tPractice = getT('testPractice');
   const { locale } = useLocale();
+  const isEn = locale === 'en';
   const isDiVisata = !!content.comparisonImages;
   const isBonusSlide =
     slide?.id === 51 ||
@@ -493,7 +499,9 @@ export function ContentBlockSlide({
             aria-hidden
           />
           <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
-            Tu įveikei testą. Čia – papildoma nauda.
+            {isEn
+              ? 'You passed the test. Here\u2019s a bonus.'
+              : 'Tu įveikei testą. Čia – papildoma nauda.'}
           </p>
         </div>
       )}
@@ -1190,14 +1198,18 @@ export function ContentBlockSlide({
                       const numCols = section.table.headers?.length ?? 0;
                       const ariaLabel =
                         numCols === 2
-                          ? `Palyginimo lentelė: ${(section.table.headers ?? []).join(' ir ')}`
+                          ? `${isEn ? 'Comparison table' : 'Palyginimo lentelė'}: ${(section.table.headers ?? []).join(isEn ? ' and ' : ' ir ')}`
                           : numCols === 3 &&
                               (section.heading?.includes('Sprendimo matrica') ??
+                                section.heading?.includes('Decision matrix') ??
                                 false)
-                            ? (section.heading ?? 'Sprendimo matrica')
+                            ? (section.heading ??
+                              (isEn ? 'Decision matrix' : 'Sprendimo matrica'))
                             : numCols >= 3
-                              ? `Lentelė: ${section.heading ?? section.table.headers?.join(', ') ?? 'turinyje'}`
-                              : 'Įrankių palyginimo lentelė';
+                              ? `${isEn ? 'Table' : 'Lentelė'}: ${section.heading ?? section.table.headers?.join(', ') ?? (isEn ? 'in content' : 'turinyje')}`
+                              : isEn
+                                ? 'Tool comparison table'
+                                : 'Įrankių palyginimo lentelė';
                       const toolBadgeClasses: Record<string, string> = {
                         blue: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
                         green:
@@ -1417,7 +1429,7 @@ export function ContentBlockSlide({
                                 <button
                                   type="button"
                                   className="relative inline-flex rounded-md p-1.5 min-h-[44px] min-w-[44px] items-center justify-center hover:bg-brand-100 dark:hover:bg-brand-900/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
-                                  aria-label={`Papildoma informacija: ${img.label}`}
+                                  aria-label={`${isEn ? 'Additional information' : 'Papildoma informacija'}: ${img.label}`}
                                   aria-describedby={`workflow-tooltip-${j}`}
                                 >
                                   <Info
@@ -1447,7 +1459,7 @@ export function ContentBlockSlide({
         <div className="border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
             <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
-            DI įrankiai – kur pradėti
+            {tPractice('toolsHeading')}
           </h3>
           {content.toolsIntro && (
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
@@ -1465,7 +1477,7 @@ export function ContentBlockSlide({
                     <a
                       href={t.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
                     >
                       {t.name}
@@ -1488,7 +1500,7 @@ export function ContentBlockSlide({
                 {t.useCases && t.useCases.length > 0 && (
                   <div>
                     <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
-                      Populiariausi naudojimo atvejai
+                      {tPractice('popularUseCases')}
                     </p>
                     <ul className="flex flex-wrap gap-1.5">
                       {t.useCases.map((uc, i) => (
@@ -1505,8 +1517,7 @@ export function ContentBlockSlide({
             ))}
           </div>
           <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
-            Principai veikia visuose įrankiuose – svarbi prompto struktūra, ne
-            platforma.
+            {tPractice('toolsPrincipleNote')}
           </p>
         </div>
       )}
@@ -1529,7 +1540,7 @@ export function ContentBlockSlide({
           <TemplateBlock
             id="practical-task-heading"
             label={
-              content.practicalTask.templateLabel || 'Kopijuojamas šablonas'
+              content.practicalTask.templateLabel || t('blockMetaTemplateLabel')
             }
             template={content.practicalTask.template}
           />
@@ -1840,7 +1851,7 @@ export function SectionBreakSlide({
                     <div
                       className="absolute top-4 right-5 flex flex-col items-center justify-center rounded-[14px] border border-[#DCE3EA] dark:border-slate-600 bg-[#F5F7FA] dark:bg-slate-800/90 px-3.5 pt-2.5 pb-0 min-w-[5.5rem] leading-[1.35] overflow-hidden shadow-[0_14px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.18)]"
                       role="status"
-                      aria-label={`${current} iš ${total}`}
+                      aria-label={`${current} ${isEn ? 'of' : 'iš'} ${total}`}
                     >
                       <span className="text-[1.25rem] font-semibold tabular-nums text-brand-700 dark:text-brand-300 tracking-[-0.02em]">
                         {current}/{total}
@@ -1869,7 +1880,11 @@ export function SectionBreakSlide({
           <div
             className="flex flex-wrap gap-3 justify-center"
             role="list"
-            aria-label="Promptų tipai – žodyno nuorodos"
+            aria-label={
+              isEn
+                ? 'Prompt types \u2013 glossary references'
+                : 'Promptų tipai \u2013 žodyno nuorodos'
+            }
           >
             {Array.from({ length: pillsCount }, (_, i) => {
               const Icon = getPillIcon(i);
@@ -1902,7 +1917,7 @@ export function SectionBreakSlide({
                       }
                     }}
                     className={baseClass + linkClass}
-                    aria-label={`Atidaryti žodynėlį: ${term}`}
+                    aria-label={`${isEn ? 'Open glossary' : 'Atidaryti žodynėlį'}: ${term}`}
                   >
                     <span
                       className={`flex items-center justify-center w-5 h-5 rounded-full ${numCircleClass} text-xs font-bold`}
@@ -1984,7 +1999,7 @@ export function SectionBreakSlide({
                         }
                       }}
                       className="flex-shrink-0 mt-0.5 p-0.5 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
-                      aria-label={`Atidaryti žodynėlį: ${term}`}
+                      aria-label={`${isEn ? 'Open glossary' : 'Atidaryti žodynėlį'}: ${term}`}
                     >
                       <TermIcon className="w-4 h-4" aria-hidden />
                     </button>
@@ -2008,7 +2023,7 @@ export function SectionBreakSlide({
                             }
                           }}
                           className="font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded align-baseline"
-                          aria-label={`Atidaryti žodynėlį: ${term}`}
+                          aria-label={`${isEn ? 'Open glossary' : 'Atidaryti žodynėlį'}: ${term}`}
                         >
                           {term}
                         </button>
@@ -2027,10 +2042,10 @@ export function SectionBreakSlide({
         {showKasToliau && (
           <section
             className={`pl-3 py-2 border-l-4 ${colors.kasToliau} text-left`}
-            aria-label="Kas toliau"
+            aria-label={isEn ? 'What\u2019s next' : 'Kas toliau'}
           >
             <h3 className="font-bold text-sm mb-1 text-gray-900 dark:text-white">
-              Kas toliau
+              {isEn ? 'What\u2019s next' : 'Kas toliau'}
             </h3>
             {hasNextSteps ? (
               <ul className="space-y-0.5 text-xs text-gray-700 dark:text-gray-300 list-disc list-inside">
@@ -2099,6 +2114,8 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   const t = getT('contentSlides');
   const tCommon = getT('common');
   const tQuiz = getT('quiz');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -2125,7 +2142,7 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
   if (questions.length === 0) {
     return (
       <div className="p-6 text-center text-gray-600 dark:text-gray-400">
-        Bandomųjų klausimų nėra.
+        {isEn ? 'No warm-up questions available.' : 'Bandomųjų klausimų nėra.'}
       </div>
     );
   }
@@ -2139,10 +2156,14 @@ export function WarmUpQuizSlide({ content }: { content: WarmUpQuizContent }) {
             aria-hidden
           />
           <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
-            Pasiruošimo savitikra baigta
+            {isEn
+              ? 'Warm-up self-check complete'
+              : 'Pasiruošimo savitikra baigta'}
           </h3>
           <p className="text-gray-700 dark:text-gray-300 text-sm">
-            Gali pradėti testą – įskaita neįskaitoma, tai tik pasiruošimas.
+            {isEn
+              ? 'You can start the test \u2013 it\u2019s not graded, just preparation.'
+              : 'Gali pradėti testą – įskaita neįskaitoma, tai tik pasiruošimas.'}
           </p>
         </div>
       </div>
@@ -2396,14 +2417,15 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
 
       <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-6 rounded-xl">
         <h3 className="font-bold text-lg mb-3 text-amber-900 dark:text-amber-100 flex items-center gap-2">
-          <span className="text-2xl">🛠️</span> Kokius DI įrankius naudoti?
+          <span className="text-2xl">🛠️</span>{' '}
+          {isEn ? 'Which AI tools to use?' : 'Kokius DI įrankius naudoti?'}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
           {t('practiceTasksHint')}
         </p>
         <div className="mb-4">
           <p className="text-sm font-semibold text-amber-900 dark:text-amber-100 mb-2">
-            Galimi įrankiai:
+            {isEn ? 'Available tools:' : 'Galimi įrankiai:'}
           </p>
           <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
             {content.tools.map((t, idx) => (
@@ -2420,7 +2442,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
                       <a
                         href={t.url}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-amber-700 dark:text-amber-300 underline hover:text-amber-900 dark:hover:text-amber-100"
                       >
                         {t.url}
@@ -2763,7 +2785,9 @@ export function DefinitionsSlide({
             className="flex items-center gap-2 text-xs font-semibold text-brand-700 dark:text-brand-300 hover:text-brand-800 dark:hover:text-brand-200 transition-colors min-h-[44px]"
             aria-expanded={showSources}
           >
-            <span>Šaltiniai ir gairės</span>
+            <span>
+              {isEn ? 'Sources and guidelines' : 'Šaltiniai ir gairės'}
+            </span>
             <ChevronDown
               className={`w-3.5 h-3.5 transition-transform duration-200 ${showSources ? 'rotate-180' : ''}`}
               aria-hidden="true"
@@ -2776,7 +2800,7 @@ export function DefinitionsSlide({
                   <a
                     href={source.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="underline underline-offset-2 hover:text-brand-900 dark:hover:text-brand-100"
                   >
                     {source.label}
@@ -2800,6 +2824,8 @@ function DiModalityCard({
 }) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   return (
     <article
       key={idx}
@@ -2817,7 +2843,7 @@ function DiModalityCard({
         {group.description}
       </p>
       <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">
-        Įrankiai:
+        {isEn ? 'Tools:' : 'Įrankiai:'}
       </p>
       <ul
         className="flex flex-wrap gap-2"
@@ -3075,6 +3101,8 @@ const EXAMPLE_STEP_COLORS = [
 ];
 
 export function AiWorkflowSlide({ content }: { content?: AiWorkflowContent }) {
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const stages = content?.stages ?? [];
   const examples = content?.examples ?? [];
 
@@ -3117,7 +3145,9 @@ export function AiWorkflowSlide({ content }: { content?: AiWorkflowContent }) {
       {examples.length > 0 && (
         <div>
           <h3 className="font-bold text-gray-900 dark:text-white mb-3 text-sm">
-            Pavyzdžiai: DI įrankių grandinės
+            {isEn
+              ? 'Examples: AI tool chains'
+              : 'Pavyzdžiai: DI įrankių grandinės'}
           </h3>
           <div className="space-y-4">
             {examples.map((ex, exIdx) => (
@@ -3684,6 +3714,8 @@ export function TransitionSlide({ content }: { content?: TransitionContent }) {
 
 /** Blokų sąrašas su collapsible: jei bloke yra concepts arba tip, rodomas mygtukas išskleisti; viduje – sąvokos ir patarimas */
 function HierarchyBlocksList({ blocks }: { blocks: HierarchyBlock[] }) {
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const safeBlocks = blocks ?? [];
   return (
@@ -3711,7 +3743,7 @@ function HierarchyBlocksList({ blocks }: { blocks: HierarchyBlock[] }) {
               aria-controls={
                 hasExpandable ? `hierarchy-block-${idx}` : undefined
               }
-              aria-label={`${item.name}. ${item.priority}${hasExpandable ? (isOpen ? '. Suskleisti' : '. Išskleisti') : ''}`}
+              aria-label={`${item.name}. ${item.priority}${hasExpandable ? (isOpen ? (isEn ? '. Collapse' : '. Suskleisti') : isEn ? '. Expand' : '. Išskleisti') : ''}`}
               id={`hierarchy-block-btn-${idx}`}
             >
               <div
@@ -3750,7 +3782,9 @@ function HierarchyBlocksList({ blocks }: { blocks: HierarchyBlock[] }) {
                   {item.concepts && item.concepts.length > 0 && (
                     <div>
                       <div className="font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Sąvokos, padėsiančios suprasti:
+                        {isEn
+                          ? 'Concepts to help you understand:'
+                          : 'Sąvokos, padėsiančios suprasti:'}
                       </div>
                       <ul className="list-disc list-inside space-y-0.5 text-gray-600 dark:text-gray-400">
                         {item.concepts.map((c, i) => (
@@ -4053,7 +4087,7 @@ export function ComparisonSlide({
       {stats && (
         <div className="bg-brand-50 dark:bg-brand-900/20 p-6 rounded-xl">
           <h4 className="font-bold mb-4 text-gray-900 dark:text-white">
-            Rezultatų palyginimas:
+            {isEn ? 'Results comparison:' : 'Rezultatų palyginimas:'}
           </h4>
           <div className="grid grid-cols-3 gap-4 text-center text-sm">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
@@ -4061,7 +4095,8 @@ export function ComparisonSlide({
                 {stats.leftPct}%
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {c.labelLeft?.toLowerCase() ?? 'nestruktūruotas'}
+                {c.labelLeft?.toLowerCase() ??
+                  (isEn ? 'unstructured' : 'nestruktūruotas')}
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
@@ -4069,7 +4104,8 @@ export function ComparisonSlide({
                 {stats.rightPct}%
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {c.labelRight?.toLowerCase() ?? 'struktūruotas'}
+                {c.labelRight?.toLowerCase() ??
+                  (isEn ? 'structured' : 'struktūruotas')}
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm">
@@ -4077,7 +4113,7 @@ export function ComparisonSlide({
                 {stats.lessEditsPct}%
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                mažiau taisymų
+                {isEn ? 'fewer edits' : 'mažiau taisymų'}
               </p>
             </div>
           </div>
@@ -5118,7 +5154,7 @@ export function DiParadoxInfographicSlide({
                       <a
                         href={source.url}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
                       >
                         {t('viewStudyLabel')}
@@ -5293,7 +5329,7 @@ export function ProductivityInfographicSlide({
                             <a
                               href={source.url}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noopener noreferrer"
                               className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
                             >
                               {t('viewStudyLabel')}
@@ -5353,6 +5389,8 @@ export function NewsPortalInfographicSlide({
 }) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [showSources, setShowSources] = useState(false);
   if (!content) return null;
 
@@ -5392,12 +5430,12 @@ export function NewsPortalInfographicSlide({
         <div className="flex items-center gap-3 border-b border-accent-200 dark:border-accent-800 py-4 bg-accent-50 dark:bg-accent-900/10 px-1 -mx-1 rounded-lg">
           <span
             className="text-xl lg:text-2xl font-extrabold text-accent-700 dark:text-accent-300 tracking-tight"
-            aria-label={`Redakcija: ${portalBrand}`}
+            aria-label={`${isEn ? 'Editorial' : 'Redakcija'}: ${portalBrand}`}
           >
             {portalBrand}
           </span>
           <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-            Žiniasklaida
+            {isEn ? 'Media' : 'Žiniasklaida'}
           </span>
         </div>
       )}
@@ -6031,7 +6069,7 @@ export function NewsPortalInfographicSlide({
   );
 }
 
-const DEFAULT_PRACTICE_SUMMARY: PracticeSummaryContent = {
+const DEFAULT_PRACTICE_SUMMARY_LT: PracticeSummaryContent = {
   title: 'Mokymas Baigtas!',
   subtitle:
     'Sveikiname! Tu sėkmingai baigei Prompt Anatomijos mokymą ir dabar gali kurti profesionalius, struktūruotus promptus.',
@@ -6051,6 +6089,26 @@ const DEFAULT_PRACTICE_SUMMARY: PracticeSummaryContent = {
   taglineSub: '5 minutės geram promptui = valandos sutaupytos vėliau',
 };
 
+const DEFAULT_PRACTICE_SUMMARY_EN: PracticeSummaryContent = {
+  title: 'Training Complete!',
+  subtitle:
+    'Congratulations! You have successfully completed the Prompt Anatomy training and can now create professional, structured prompts.',
+  learnedItems: [
+    '6-block system',
+    'Importance of hierarchy',
+    'Benefits of concrete input',
+    'Quality control',
+  ],
+  nextStepsItems: [
+    'Practice daily',
+    'Build a template library',
+    'Share with your team',
+    'Iterate and improve',
+  ],
+  taglineTitle: 'Structure = Results',
+  taglineSub: '5 minutes for a good prompt = hours saved later',
+};
+
 export interface PracticeSummarySlideProps {
   content?: PracticeSummaryContent | null;
   /** M9: rodyti „Užbaigta X iš 16 scenarijų“ */
@@ -6064,7 +6122,12 @@ export function PracticeSummarySlide({
 }: PracticeSummarySlideProps) {
   useTranslation();
   const t = getT('contentSlides');
-  const c = contentProp ?? DEFAULT_PRACTICE_SUMMARY;
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const localDefault = isEn
+    ? DEFAULT_PRACTICE_SUMMARY_EN
+    : DEFAULT_PRACTICE_SUMMARY_LT;
+  const c = contentProp ?? localDefault;
   const isDefault = contentProp == null;
   const displaySubtitle = isDefault
     ? t('practiceSummaryDefaultSubtitle')
@@ -6076,7 +6139,7 @@ export function PracticeSummarySlide({
         t('practiceSummaryDefaultLearned3'),
         t('practiceSummaryDefaultLearned4'),
       ]
-    : (c.learnedItems ?? DEFAULT_PRACTICE_SUMMARY.learnedItems!);
+    : (c.learnedItems ?? localDefault.learnedItems!);
   const displayNextSteps = isDefault
     ? [
         t('practiceSummaryDefaultNext1'),
@@ -6084,7 +6147,7 @@ export function PracticeSummarySlide({
         t('practiceSummaryDefaultNext3'),
         t('practiceSummaryDefaultNext4'),
       ]
-    : (c.nextStepsItems ?? DEFAULT_PRACTICE_SUMMARY.nextStepsItems!);
+    : (c.nextStepsItems ?? localDefault.nextStepsItems!);
   const displayTaglineTitle = isDefault
     ? t('practiceSummaryDefaultTaglineTitle')
     : (c.taglineTitle ?? '');
@@ -6193,10 +6256,12 @@ export function PracticeSummarySlide({
       {c.reflectionPrompt && (
         <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border-2 border-accent-200 dark:border-accent-700">
           <h4 className="font-bold text-gray-900 dark:text-white mb-2">
-            Refleksijos promptas
+            {isEn ? 'Reflection prompt' : 'Refleksijos promptas'}
           </h4>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-            Įklijuok į DI ir atsakyk trumpai.
+            {isEn
+              ? 'Paste into AI and answer briefly.'
+              : 'Įklijuok į DI ir atsakyk trumpai.'}
           </p>
           <div className="relative bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 mb-3">
             <pre className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-sans">
@@ -6250,6 +6315,8 @@ export function PathStepSlide({
 }) {
   useTranslation();
   const t = getT('contentSlides');
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const hasSections = (content.sections?.length ?? 0) > 0;
   return (
     <div className="max-w-3xl mx-auto space-y-6 px-4 py-6">
@@ -6260,11 +6327,11 @@ export function PathStepSlide({
             aria-hidden
           />
           <span className="text-sm font-semibold text-brand-800 dark:text-brand-200">
-            Duomenų analizės kelias
+            {isEn ? 'Data analysis path' : 'Duomenų analizės kelias'}
           </span>
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/40 text-accent-800 dark:text-accent-200 text-sm font-medium">
-          Žingsnis {content.stepNumber}
+          {isEn ? 'Step' : 'Žingsnis'} {content.stepNumber}
         </span>
       </div>
       <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
@@ -6297,7 +6364,9 @@ export function PathStepSlide({
       {content.unlockedGlossaryTerms &&
         content.unlockedGlossaryTerms.length > 0 && (
           <p className="text-xs text-slate-600 dark:text-slate-400">
-            Užbaigę žingsnį atrakinsite žodynėlyje:{' '}
+            {isEn
+              ? 'Completing this step unlocks in the glossary:'
+              : 'Užbaigę žingsnį atrakinsite žodynėlyje:'}{' '}
             {content.unlockedGlossaryTerms.join(', ')}.
           </p>
         )}
@@ -6309,12 +6378,14 @@ export function PathStepSlide({
           aria-label={t('markStepDoneAria')}
         >
           <CheckCircle className="w-5 h-5" aria-hidden />
-          Pažymėjau kaip atliktą
+          {isEn ? 'Mark as completed' : 'Pažymėjau kaip atliktą'}
         </button>
       ) : (
         <p className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
           <CheckCircle className="w-5 h-5" aria-hidden />
-          Šis žingsnis jau atliktas
+          {isEn
+            ? 'This step is already completed'
+            : 'Šis žingsnis jau atliktas'}
         </p>
       )}
       {content.footer && (

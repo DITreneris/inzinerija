@@ -15,26 +15,106 @@ import {
 import { useLocale } from '../contexts/LocaleContext';
 import { getTools } from '../data/toolsLoader';
 
-const PLATFORMS_LT = ['Instagram', 'LinkedIn', 'Facebook', 'Web baneris', 'Lauko reklama (Print)'] as const;
-const PLATFORMS_EN = ['Instagram', 'LinkedIn', 'Facebook', 'Web banner', 'Outdoor advertising (Print)'] as const;
+const PLATFORMS_LT = [
+  'Instagram',
+  'LinkedIn',
+  'Facebook',
+  'Web baneris',
+  'Lauko reklama (Print)',
+] as const;
+const PLATFORMS_EN = [
+  'Instagram',
+  'LinkedIn',
+  'Facebook',
+  'Web banner',
+  'Outdoor advertising (Print)',
+] as const;
 
-const TONES_LT = ['Premium (Prabangus)', 'Bold (Drąsus)', 'Minimalistinis', 'Žaismingas', 'Ekspertiškas'] as const;
-const TONES_EN = ['Premium (Luxurious)', 'Bold (Daring)', 'Minimalist', 'Playful', 'Expert'] as const;
+const TONES_LT = [
+  'Premium (Prabangus)',
+  'Bold (Drąsus)',
+  'Minimalistinis',
+  'Žaismingas',
+  'Ekspertiškas',
+] as const;
+const TONES_EN = [
+  'Premium (Luxurious)',
+  'Bold (Daring)',
+  'Minimalist',
+  'Playful',
+  'Expert',
+] as const;
 
-const STYLES_LT = ['Tikroviška nuotrauka', '3D renderis (Studio)', 'Kinematografinis stilius', 'Mados žurnalo stilius', 'Minimalistinė iliustracija'] as const;
-const STYLES_EN = ['Realistic photo', '3D render (Studio)', 'Cinematic style', 'Fashion magazine style', 'Minimalist illustration'] as const;
+const STYLES_LT = [
+  'Tikroviška nuotrauka',
+  '3D renderis (Studio)',
+  'Kinematografinis stilius',
+  'Mados žurnalo stilius',
+  'Minimalistinė iliustracija',
+] as const;
+const STYLES_EN = [
+  'Realistic photo',
+  '3D render (Studio)',
+  'Cinematic style',
+  'Fashion magazine style',
+  'Minimalist illustration',
+] as const;
 
-const LIGHTINGS_LT = ['Cinematic (Kino apšvietimas)', 'Minkšta dienos šviesa', 'Auksinė valanda (Golden Hour)', 'Studijinis apšvietimas', 'Neoninis apšvietimas'] as const;
-const LIGHTINGS_EN = ['Cinematic lighting', 'Soft daylight', 'Golden Hour', 'Studio lighting', 'Neon lighting'] as const;
+const LIGHTINGS_LT = [
+  'Cinematic (Kino apšvietimas)',
+  'Minkšta dienos šviesa',
+  'Auksinė valanda (Golden Hour)',
+  'Studijinis apšvietimas',
+  'Neoninis apšvietimas',
+] as const;
+const LIGHTINGS_EN = [
+  'Cinematic lighting',
+  'Soft daylight',
+  'Golden Hour',
+  'Studio lighting',
+  'Neon lighting',
+] as const;
 
-const CAMERAS_LT = ['Close-up (Stambus planas)', 'Akių lygis (Eye level)', 'Iš viršaus (Flatlay)', 'Platus kampas (Wide angle)', 'Iš apačios (Hero shot)'] as const;
-const CAMERAS_EN = ['Close-up', 'Eye level', 'Top-down (Flatlay)', 'Wide angle', 'Low angle (Hero shot)'] as const;
+const CAMERAS_LT = [
+  'Close-up (Stambus planas)',
+  'Akių lygis (Eye level)',
+  'Iš viršaus (Flatlay)',
+  'Platus kampas (Wide angle)',
+  'Iš apačios (Hero shot)',
+] as const;
+const CAMERAS_EN = [
+  'Close-up',
+  'Eye level',
+  'Top-down (Flatlay)',
+  'Wide angle',
+  'Low angle (Hero shot)',
+] as const;
 
-const TEXT_POSITIONS_LT = ['Centras', 'Viršutinė dalis', 'Apatinis trečdalis', 'Dinaminis išdėstymas'] as const;
-const TEXT_POSITIONS_EN = ['Center', 'Top area', 'Lower third', 'Dynamic layout'] as const;
+const TEXT_POSITIONS_LT = [
+  'Centras',
+  'Viršutinė dalis',
+  'Apatinis trečdalis',
+  'Dinaminis išdėstymas',
+] as const;
+const TEXT_POSITIONS_EN = [
+  'Center',
+  'Top area',
+  'Lower third',
+  'Dynamic layout',
+] as const;
 
-const TYPOGRAPHIES_LT = ['Modernus Sans-serif', 'Prabangus Serif', 'Minimalistinis', 'Rankraštinis'] as const;
-const TYPOGRAPHIES_EN = ['Modern Sans-serif', 'Elegant Serif', 'Minimalist', 'Handwritten'] as const;
+const TYPOGRAPHIES_LT = [
+  'Modernus Sans-serif',
+  'Prabangus Serif',
+  'Minimalistinis',
+  'Rankraštinis',
+] as const;
+const TYPOGRAPHIES_EN = [
+  'Modern Sans-serif',
+  'Elegant Serif',
+  'Minimalist',
+  'Handwritten',
+] as const;
 
 interface FormData {
   goal: string;
@@ -70,7 +150,15 @@ function getInitialForm(isEn: boolean): FormData {
   };
 }
 
-function SectionHeader({ step, icon: Icon, title }: { step: number; icon: typeof Layout; title: string }) {
+function SectionHeader({
+  step,
+  icon: Icon,
+  title,
+}: {
+  step: number;
+  icon: typeof Layout;
+  title: string;
+}) {
   return (
     <div className="flex items-center gap-3 mb-5">
       <div className="w-9 h-9 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -91,8 +179,18 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function TextInput({ name, placeholder, value, onChange }: {
-  name: string; placeholder: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+function TextInput({
+  name,
+  placeholder,
+  value,
+  onChange,
+}: {
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }) {
   return (
     <input
@@ -107,8 +205,16 @@ function TextInput({ name, placeholder, value, onChange }: {
   );
 }
 
-function SelectInput({ name, value, options, onChange }: {
-  name: string; value: string; options: readonly string[]; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+function SelectInput({
+  name,
+  value,
+  options,
+  onChange,
+}: {
+  name: string;
+  value: string;
+  options: readonly string[];
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
   return (
     <select
@@ -119,7 +225,9 @@ function SelectInput({ name, value, options, onChange }: {
       aria-label={name}
     >
       {options.map((opt) => (
-        <option key={opt} value={opt}>{opt}</option>
+        <option key={opt} value={opt}>
+          {opt}
+        </option>
       ))}
     </select>
   );
@@ -129,7 +237,9 @@ export default function VaizdoGeneratoriusSlide() {
   const { t } = useTranslation('vaizdoGen');
   const { locale } = useLocale();
   const isEn = locale === 'en';
-  const [formData, setFormData] = useState<FormData>(() => getInitialForm(isEn));
+  const [formData, setFormData] = useState<FormData>(() =>
+    getInitialForm(isEn)
+  );
   const [copied, setCopied] = useState(false);
   const [showTips, setShowTips] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
@@ -145,17 +255,40 @@ export default function VaizdoGeneratoriusSlide() {
   const imageTools = useMemo(() => {
     const tools = getTools(locale as 'lt' | 'en');
     return tools.filter(
-      (tool) => tool.moduleId === 13 && tool.category === (isEn ? 'Image generation' : 'Vaizdų generavimas'),
+      (tool) =>
+        tool.moduleId === 13 &&
+        tool.category === (isEn ? 'Image generation' : 'Vaizdų generavimas')
     );
   }, [locale, isEn]);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  }, []);
+  const handleChange = useCallback(
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    },
+    []
+  );
 
   const generatedPrompt = useMemo(() => {
-    const { goal, audience, platform, tone, object, style, lighting, camera, color, headline, cta, textPosition, typography } = formData;
+    const {
+      goal,
+      audience,
+      platform,
+      tone,
+      object,
+      style,
+      lighting,
+      camera,
+      color,
+      headline,
+      cta,
+      textPosition,
+      typography,
+    } = formData;
     const parts: string[] = [];
 
     const coreVisual = `${object || (isEn ? '[Subject]' : '[Objektas]')}`;
@@ -166,28 +299,36 @@ export default function VaizdoGeneratoriusSlide() {
       parts.push(technical);
 
       if (goal || audience || platform) {
-        parts.push(`Created for marketing purpose: ${goal || 'advertisement'}, targeting ${audience || 'target audience'} on ${platform}. Mood: ${tone}.`);
+        parts.push(
+          `Created for marketing purpose: ${goal || 'advertisement'}, targeting ${audience || 'target audience'} on ${platform}. Mood: ${tone}.`
+        );
       }
 
       if (headline || cta) {
         const textParts = [];
         if (headline) textParts.push(`headline \u201C${headline}\u201D`);
         if (cta) textParts.push(`call-to-action \u201C${cta}\u201D`);
-        parts.push(`Advertising mock-up with ${textParts.join(' and ')}. Font style: ${typography}. Text position: ${textPosition}. Clean negative space around text for readability.`);
+        parts.push(
+          `Advertising mock-up with ${textParts.join(' and ')}. Font style: ${typography}. Text position: ${textPosition}. Clean negative space around text for readability.`
+        );
       }
     } else {
       const technical = `${camera}, ${lighting}${color ? `, ${color} spalvų gama` : ''}, itin detalu, aukščiausia kokybė, profesionali kompozicija.`;
       parts.push(technical);
 
       if (goal || audience || platform) {
-        parts.push(`Sukurta rinkodaros tikslui: ${goal || 'reklama'}, skirta ${audience || 'tikslinė auditorija'} platformai ${platform}. Nuotaika: ${tone}.`);
+        parts.push(
+          `Sukurta rinkodaros tikslui: ${goal || 'reklama'}, skirta ${audience || 'tikslinė auditorija'} platformai ${platform}. Nuotaika: ${tone}.`
+        );
       }
 
       if (headline || cta) {
         const textParts = [];
         if (headline) textParts.push(`antrašte \u201E${headline}\u201C`);
         if (cta) textParts.push(`kvietimu veikti \u201E${cta}\u201C`);
-        parts.push(`Reklaminis maketas su ${textParts.join(' ir ')}. Šrifto stilius: ${typography}. Teksto pozicija: ${textPosition}. Švari erdvė aplink tekstą skaitomumui užtikrinti.`);
+        parts.push(
+          `Reklaminis maketas su ${textParts.join(' ir ')}. Šrifto stilius: ${typography}. Teksto pozicija: ${textPosition}. Švari erdvė aplink tekstą skaitomumui užtikrinti.`
+        );
       }
     }
 
@@ -211,10 +352,25 @@ export default function VaizdoGeneratoriusSlide() {
     }
   }, [generatedPrompt]);
 
-  const handleOpenTool = useCallback((url: string) => {
-    handleCopy();
-    window.open(url, '_blank', 'noopener');
-  }, [handleCopy]);
+  const handleOpenTool = useCallback(
+    (url: string) => {
+      // iOS Safari: atidaryti langą sinchroniškai su paspaudimu (user gesture).
+      // Jei prieš tai kviesti async handleCopy(), popup dažnai užblokuojamas.
+      const opened = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!opened) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+      void handleCopy();
+    },
+    [handleCopy]
+  );
 
   return (
     <div className="space-y-8">
@@ -227,21 +383,23 @@ export default function VaizdoGeneratoriusSlide() {
 
       {/* Žingsnių indikatorius */}
       <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-full border border-slate-200 dark:border-slate-700 w-fit">
-        {[t('stepContext'), t('stepVisual'), t('stepText')].map((stepLabel, idx) => (
-          <button
-            key={`step-${idx}`}
-            type="button"
-            onClick={() => setActiveStep(idx + 1)}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-              activeStep === idx + 1
-                ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-400 shadow-sm'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
-            }`}
-            aria-label={`${idx + 1}. ${stepLabel}`}
-          >
-            {idx + 1}. {stepLabel}
-          </button>
-        ))}
+        {[t('stepContext'), t('stepVisual'), t('stepText')].map(
+          (stepLabel, idx) => (
+            <button
+              key={`step-${idx}`}
+              type="button"
+              onClick={() => setActiveStep(idx + 1)}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+                activeStep === idx + 1
+                  ? 'bg-white dark:bg-slate-700 text-brand-600 dark:text-brand-400 shadow-sm'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
+              }`}
+              aria-label={`${idx + 1}. ${stepLabel}`}
+            >
+              {idx + 1}. {stepLabel}
+            </button>
+          )
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -252,23 +410,47 @@ export default function VaizdoGeneratoriusSlide() {
             className="bg-white dark:bg-slate-800/40 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-brand-300 dark:hover:border-brand-600 transition-colors"
             onFocus={() => setActiveStep(1)}
           >
-            <SectionHeader step={1} icon={Layout} title={t('sectionCampaign')} />
+            <SectionHeader
+              step={1}
+              icon={Layout}
+              title={t('sectionCampaign')}
+            />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <FieldLabel>{t('labelGoal')}</FieldLabel>
-                <TextInput name="goal" placeholder={t('placeholderGoal')} value={formData.goal} onChange={handleChange} />
+                <TextInput
+                  name="goal"
+                  placeholder={t('placeholderGoal')}
+                  value={formData.goal}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelPlatform')}</FieldLabel>
-                <SelectInput name="platform" value={formData.platform} options={PLATFORMS} onChange={handleChange} />
+                <SelectInput
+                  name="platform"
+                  value={formData.platform}
+                  options={PLATFORMS}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelAudience')}</FieldLabel>
-                <TextInput name="audience" placeholder={t('placeholderAudience')} value={formData.audience} onChange={handleChange} />
+                <TextInput
+                  name="audience"
+                  placeholder={t('placeholderAudience')}
+                  value={formData.audience}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelTone')}</FieldLabel>
-                <SelectInput name="tone" value={formData.tone} options={TONES} onChange={handleChange} />
+                <SelectInput
+                  name="tone"
+                  value={formData.tone}
+                  options={TONES}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </section>
@@ -278,7 +460,11 @@ export default function VaizdoGeneratoriusSlide() {
             className="bg-white dark:bg-slate-800/40 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-brand-300 dark:hover:border-brand-600 transition-colors"
             onFocus={() => setActiveStep(2)}
           >
-            <SectionHeader step={2} icon={ImageIcon} title={t('sectionVisual')} />
+            <SectionHeader
+              step={2}
+              icon={ImageIcon}
+              title={t('sectionVisual')}
+            />
             <div className="space-y-4">
               <div>
                 <FieldLabel>{t('labelObject')}</FieldLabel>
@@ -295,19 +481,39 @@ export default function VaizdoGeneratoriusSlide() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div>
                   <FieldLabel>{t('labelStyle')}</FieldLabel>
-                  <SelectInput name="style" value={formData.style} options={STYLES} onChange={handleChange} />
+                  <SelectInput
+                    name="style"
+                    value={formData.style}
+                    options={STYLES}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div>
                   <FieldLabel>{t('labelLighting')}</FieldLabel>
-                  <SelectInput name="lighting" value={formData.lighting} options={LIGHTINGS} onChange={handleChange} />
+                  <SelectInput
+                    name="lighting"
+                    value={formData.lighting}
+                    options={LIGHTINGS}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div>
                   <FieldLabel>{t('labelCamera')}</FieldLabel>
-                  <SelectInput name="camera" value={formData.camera} options={CAMERAS} onChange={handleChange} />
+                  <SelectInput
+                    name="camera"
+                    value={formData.camera}
+                    options={CAMERAS}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div>
                   <FieldLabel>{t('labelColor')}</FieldLabel>
-                  <TextInput name="color" placeholder={t('placeholderColor')} value={formData.color} onChange={handleChange} />
+                  <TextInput
+                    name="color"
+                    placeholder={t('placeholderColor')}
+                    value={formData.color}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
@@ -322,19 +528,39 @@ export default function VaizdoGeneratoriusSlide() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div>
                 <FieldLabel>{t('labelHeadline')}</FieldLabel>
-                <TextInput name="headline" placeholder={t('placeholderHeadline')} value={formData.headline} onChange={handleChange} />
+                <TextInput
+                  name="headline"
+                  placeholder={t('placeholderHeadline')}
+                  value={formData.headline}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelCta')}</FieldLabel>
-                <TextInput name="cta" placeholder={t('placeholderCta')} value={formData.cta} onChange={handleChange} />
+                <TextInput
+                  name="cta"
+                  placeholder={t('placeholderCta')}
+                  value={formData.cta}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelTextPosition')}</FieldLabel>
-                <SelectInput name="textPosition" value={formData.textPosition} options={TEXT_POSITIONS} onChange={handleChange} />
+                <SelectInput
+                  name="textPosition"
+                  value={formData.textPosition}
+                  options={TEXT_POSITIONS}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <FieldLabel>{t('labelTypography')}</FieldLabel>
-                <SelectInput name="typography" value={formData.typography} options={TYPOGRAPHIES} onChange={handleChange} />
+                <SelectInput
+                  name="typography"
+                  value={formData.typography}
+                  options={TYPOGRAPHIES}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </section>
@@ -363,7 +589,11 @@ export default function VaizdoGeneratoriusSlide() {
                   aria-label={copied ? t('copiedAria') : t('copyPromptAria')}
                   title={t('copyTitle')}
                 >
-                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {copied ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
                 </button>
               </div>
 
@@ -406,23 +636,55 @@ export default function VaizdoGeneratoriusSlide() {
                   <Lightbulb className="w-4 h-4" />
                   {t('expertTipsTitle')}
                 </span>
-                {showTips ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                {showTips ? (
+                  <ChevronUp className="w-4 h-4 text-slate-400" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-slate-400" />
+                )}
               </button>
               {showTips && (
                 <div className="p-4 bg-slate-50 dark:bg-slate-800/40 border-t border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 space-y-2.5 border-l-4 border-l-slate-400">
                   {isEn ? (
                     <>
-                      <p><strong>Be specific:</strong> Instead of &quot;nice car&quot; write &quot;matte black SUV on a forest road&quot;.</p>
-                      <p><strong>Lighting:</strong> It defines 80% of the mood. Always select a lighting type.</p>
-                      <p><strong>Text space:</strong> If you plan to add text later, include &quot;clean negative space&quot; in the prompt.</p>
-                      <p><strong>Aspect ratios:</strong> Instagram – 1:1 or 4:5; LinkedIn – 1.91:1; Stories – 9:16.</p>
+                      <p>
+                        <strong>Be specific:</strong> Instead of &quot;nice
+                        car&quot; write &quot;matte black SUV on a forest
+                        road&quot;.
+                      </p>
+                      <p>
+                        <strong>Lighting:</strong> It defines 80% of the mood.
+                        Always select a lighting type.
+                      </p>
+                      <p>
+                        <strong>Text space:</strong> If you plan to add text
+                        later, include &quot;clean negative space&quot; in the
+                        prompt.
+                      </p>
+                      <p>
+                        <strong>Aspect ratios:</strong> Instagram – 1:1 or 4:5;
+                        LinkedIn – 1.91:1; Stories – 9:16.
+                      </p>
                     </>
                   ) : (
                     <>
-                      <p><strong>Būkite konkretūs:</strong> Vietoj &quot;gražus automobilis&quot; rašykite &quot;matinis juodas visureigis miško kelyje&quot;.</p>
-                      <p><strong>Apšvietimas:</strong> Tai 80 % vaizdo nuotaikos. Visada parinkite apšvietimo tipą.</p>
-                      <p><strong>Teksto erdvė:</strong> Jei planuojate dėti tekstą vėliau, prompte nurodykite &quot;clean negative space&quot;.</p>
-                      <p><strong>Proporcijos:</strong> Instagram – 1:1 arba 4:5; LinkedIn – 1.91:1; Stories – 9:16.</p>
+                      <p>
+                        <strong>Būkite konkretūs:</strong> Vietoj &quot;gražus
+                        automobilis&quot; rašykite &quot;matinis juodas
+                        visureigis miško kelyje&quot;.
+                      </p>
+                      <p>
+                        <strong>Apšvietimas:</strong> Tai 80 % vaizdo nuotaikos.
+                        Visada parinkite apšvietimo tipą.
+                      </p>
+                      <p>
+                        <strong>Teksto erdvė:</strong> Jei planuojate dėti
+                        tekstą vėliau, prompte nurodykite &quot;clean negative
+                        space&quot;.
+                      </p>
+                      <p>
+                        <strong>Proporcijos:</strong> Instagram – 1:1 arba 4:5;
+                        LinkedIn – 1.91:1; Stories – 9:16.
+                      </p>
                     </>
                   )}
                 </div>

@@ -12,13 +12,48 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 **Gilaus analizės dokumentas:** [docs/development/CODEBASE_WHAT_IS_DONE.md](docs/development/CODEBASE_WHAT_IS_DONE.md)
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
-- **LT/EN (i18n):** Pilnas UI ir turinys M1–M6; 16 namespace; schemos/diagramos, VeiksmoIntroBlock, AiDetectorsSlide – lokalizuoti. Sisteminis EN kokybės pataisymas: ~120+ hardcoded LT eilučių pašalinta iš komponentų, PDF utils ir duomenų failų.
+- **LT/EN (i18n):** Pilnas UI ir turinys M1–M6; 16 namespace; schemos/diagramos, VeiksmoIntroBlock, AiDetectorsSlide – lokalizuoti. Sisteminis EN kokybės pataisymas: ~170+ hardcoded LT eilučių pašalinta iš komponentų, PDF utils ir duomenų failų.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas, access tier:** Įgyvendinta.
 - **Testai:** ~26 failų (unit, component, integration, a11y). Validacija: prebuild schema.
 
 ---
 
 ## [Unreleased]
+
+### Fixed (2026-03-20)
+
+**iOS Safari: įrankių nuorodos neatsidaro (window.open blokavimas)**
+
+iPhone Safari blokuodavo `window.open()` naują skirtuką, nes prieš tai buvo kviečiamas asinchroninis `handleCopy()` (`await navigator.clipboard.writeText(…)`), ir iOS prarasdavo „user gesture" kontekstą. Android ir desktop naršyklės buvo atlaidesnės ir atidarydavo normaliai.
+
+- **`src/components/VaizdoGeneratoriusSlide.tsx`:** `handleOpenTool` — pakeista veiksmų tvarka: pirma sinchroniškai `window.open(url, '_blank', 'noopener,noreferrer')`, fallback per `<a>` elementą jei `window.open` grąžina `null`, galiausiai `void handleCopy()` (asinchroninis kopijavimas neblokuoja gesto).
+
+**EN mobili CTA etiketė sutrumpinta („Start scen…")**
+
+Mobili apačios navigacijos juosta turėjo `truncate max-w-[140px]` — ilgesni EN vertimai (pvz. „Start scenario 3") buvo apkarpomi.
+
+- **`src/components/ModuleView.tsx`:** Pakeista į `line-clamp-2 break-words hyphens-auto` su `flex-1 min-w-0` — dabar tekstas padalinamas į 2 eilutes, ne apkarpomas.
+
+**Sisteminis EN lokalizacijos pataisymas (~50 hardcoded LT eilučių)**
+
+EN vartotojai skaidrėse matė lietuvišką tekstą (pvz. „Įvesk visą promptą į lauką žemiau…", „Šaltiniai ir gairės", „Kas toliau", „Rezultatų palyginimas:" ir kt.). Priežastis — hardcoded Lithuanian strings komponentuose be `locale` patikros.
+
+- **`src/components/slides/types/ContentSlides.tsx`:** Pridėta `isEn` 9 funkcijose (ActionIntroJourneySlide, ContentBlockSlide, WarmUpQuizSlide, AiWorkflowSlide, NewsPortalInfographicSlide, PracticeSummarySlide, PathStepSlide, HierarchyBlocksList, DiModalityCard); lokalizuota ~25 matomų tekstų ir ~10 aria-label; pridėta `DEFAULT_PRACTICE_SUMMARY_EN` (fallback kai EN content fields trūksta); ištaisyti 4× `rel="noreferrer"` → `"noopener noreferrer"`.
+- **`src/components/slides/shared/PracticalTask.tsx`:** Lokalizuotas inputHint fallback, blokų pavyzdžiai, žingsnių skaičiuoklė, hint aria-label per `locale === 'en'` ternary.
+- **`src/utils/sixBlockStructure.ts`:** Pridėta `BLOCK_EXAMPLES_EN` ir `getBlockExample(block, locale)` funkcija.
+- **`src/components/slides/types/content/IntroActionPieSlide.tsx`:** Lokalizuota 12 hardcoded LT eilučių (sekcijų antraštės, aria-labels, CTA fallback, modal pavadinimas); `locale` prop pridėtas `HorizontalBarChartViz` ir `IntroActionPieTipsModal`.
+- **`src/components/slides/types/shared/RecognitionExerciseBlock.tsx`:** Pridėta `useLocale`; lokalizuoti 3 tekstai (aria-label, „Teisingas atsakymas:", „Tikslas:").
+- **`src/components/slides/shared/CharacterCard.tsx`:** Pridėta `useLocale`; lokalizuoti 2 aria-labels.
+- **`src/components/slides/shared/WorkflowComparisonDiagram.tsx`:** Lokalizuotas „DI naudojimo schema:" aria-label prefix.
+
+**`rel="noopener noreferrer"` suvienodinimas**
+
+5 vietose buvo `rel="noreferrer"` be `noopener` — saugesnė ir konsistentiška praktika reikalauja abiejų.
+
+- **`src/components/slides/types/ContentSlides.tsx`:** 4 vietos.
+- **`src/components/HallucinationRatesDashboard.tsx`:** 1 vieta.
+- **`src/components/slides/types/content/ActionIntroSlide.tsx`:** 1 vieta (ankstesnis taisymas).
+- **`src/components/AiDetectorsSlide.tsx`:** 1 vieta (ankstesnis taisymas).
 
 ### Fixed (2026-03-19)
 

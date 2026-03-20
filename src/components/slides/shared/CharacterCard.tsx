@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useLocale } from '../../../contexts/LocaleContext';
 import type { M9Character } from '../../../types/modules';
 
 export interface CharacterCardProps {
   character: M9Character;
-  /** Kai nurodyta – kortelė paspaudžiama, vedė į hub su šiuo veikėju (M9 intro). */
   onSelect?: () => void;
 }
 
-/** Modulio 9 role-quest: asmens kortelė (veikėjas atliekantis scenarijų). Rodo nuotrauką (fallback jei PNG nėra), vardą, amžių, profesiją, patirtį, hobį. Kai onSelect – paspaudžiama. */
-export default function CharacterCard({ character, onSelect }: CharacterCardProps) {
+export default function CharacterCard({
+  character,
+  onSelect,
+}: CharacterCardProps) {
+  const { locale } = useLocale();
+  const isEn = locale === 'en';
   const [imageError, setImageError] = useState(false);
   const showImage = character.imagePath && !imageError;
   const isClickable = Boolean(onSelect);
@@ -34,10 +38,16 @@ export default function CharacterCard({ character, onSelect }: CharacterCardProp
       <div className="flex-1 min-w-0">
         <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
           {character.name}
-          <span className="font-normal text-gray-600 dark:text-gray-400 ml-2">{character.age} m.</span>
+          <span className="font-normal text-gray-600 dark:text-gray-400 ml-2">
+            {character.age} m.
+          </span>
         </h4>
-        <p className="text-sm font-medium text-brand-700 dark:text-brand-300">{character.profession}</p>
-        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{character.experience}</p>
+        <p className="text-sm font-medium text-brand-700 dark:text-brand-300">
+          {character.profession}
+        </p>
+        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+          {character.experience}
+        </p>
         <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5">
           Hobis: {character.hobby}
         </p>
@@ -56,8 +66,14 @@ export default function CharacterCard({ character, onSelect }: CharacterCardProp
             onSelect();
           }
         }}
-        className={baseClasses + interactiveClasses + ' min-h-[44px] touch-manipulation'}
-        aria-label={`Pasirinkti veikėją ${character.name} – atsidarys jo 4 užduotys`}
+        className={
+          baseClasses + interactiveClasses + ' min-h-[44px] touch-manipulation'
+        }
+        aria-label={
+          isEn
+            ? `Select character ${character.name} \u2013 opens their 4 tasks`
+            : `Pasirinkti veikėją ${character.name} \u2013 atsidarys jo 4 užduotys`
+        }
       >
         {content}
       </button>
@@ -65,7 +81,15 @@ export default function CharacterCard({ character, onSelect }: CharacterCardProp
   }
 
   return (
-    <div className={baseClasses} role="complementary" aria-label={`Veikėjas: ${character.name}, ${character.profession}`}>
+    <div
+      className={baseClasses}
+      role="complementary"
+      aria-label={
+        isEn
+          ? `Character: ${character.name}, ${character.profession}`
+          : `Veikėjas: ${character.name}, ${character.profession}`
+      }
+    >
       {content}
     </div>
   );
