@@ -55,6 +55,12 @@ EN vartotojai skaidrėse matė lietuvišką tekstą (pvz. „Įvesk visą prompt
 - **`src/components/slides/types/content/ActionIntroSlide.tsx`:** 1 vieta (ankstesnis taisymas).
 - **`src/components/AiDetectorsSlide.tsx`:** 1 vieta (ankstesnis taisymas).
 
+**TypeScript: trūkstamas `isEn` kintamasis `SectionBreakSlide` ir `DefinitionsSlide`**
+
+Lokalizacijos pakeitimų metu `isEn` buvo naudojamas 2 funkcijose, bet nebuvo apibrėžtas, kas sukėlė 8 TypeScript klaidas CI.
+
+- **`src/components/slides/types/ContentSlides.tsx`:** Pridėta `useLocale()` ir `isEn` apibrėžimas `SectionBreakSlide` (7 klaidos: 1854, 1884, 1920, 2002, 2026, 2045, 2048) ir `DefinitionsSlide` (1 klaida: 2789).
+
 ### Fixed (2026-03-19)
 
 **Stale chunks auto-recovery — „Something went wrong" klaida po deploy**
