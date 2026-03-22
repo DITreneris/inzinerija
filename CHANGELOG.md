@@ -20,6 +20,26 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+### Fixed (2026-03-22)
+
+**jsPDF 4: visi PDF (sertifikatas, intro „Eksportuok PDF“, M5/M6 atmintinės) – „No unicode cmap“ ir `TypeError: ... widths`**
+
+Produkcijoje `addFont(NotoSans-Regular.ttf)` su kai kuriais Noto TTF build’ais kėlė PubSub klaidą „No unicode cmap for font“; `useCustomFont` likdavo įjungtas, o `doc.text` krisdavo dėl `widths`. Papildomai `fetch('/fonts/...')` ignoravo Vite `base` (subpath deploy).
+
+- **`src/utils/pdfNotoFont.ts`:** bendras cache, `import.meta.env.BASE_URL` + `fonts/Roboto-Regular.ttf` (pageidautina), atsarginis `NotoSans-Regular.ttf`; `registerUnicodePdfFont` – zondas su `getTextWidth('ąė')`, kad nebūtų pusiau užregistruoto šrifto.
+- **`src/utils/introPiePdf.ts`, `certificatePdf.ts`, `m5HandoutPdf.ts`, `m6HandoutPdf.ts`:** naudoja `loadPdfUnicodeFont` / `registerUnicodePdfFont`; pašalinti dubliuoti cache.
+- **`src/components/CertificateScreen.tsx`:** pašalintas `setCertificatePdfFontCache` (pakanka vieno modulio cache).
+- **`scripts/download-noto-font.ps1`:** atsisiunčia **Roboto-Regular.ttf** į `public/fonts/` (Apache 2.0).
+- **Testai:** `clearPdfUnicodeFontCache` beforeEach; CertificateScreen – `ensurePdfFont` assert vietoj font cache sinchronizacijos.
+
+### Fixed (2026-03-22)
+
+**LT ortografija: 6 blokų praktika, REASONING `partialSolution` („konkrečius žingsnius“)**
+
+Neteisinga forma „konkretius“ kopijuojamame tekste (turėjo būti galininkas _konkrečius_, derinant su _žingsnius_).
+
+- **`src/data/modules.json`, `src/data/modules-m1-m6.json`:** „Nurodyti konkretius žingsnius“ → „Nurodyti konkrečius žingsnius“.
+
 ### Fixed (2026-03-20)
 
 **iOS Safari: įrankių nuorodos neatsidaro (window.open blokavimas)**

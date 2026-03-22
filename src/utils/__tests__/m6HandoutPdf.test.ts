@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { downloadM6HandoutPdf, type M6HandoutContent } from '../m6HandoutPdf';
+import { clearPdfUnicodeFontCache } from '../pdfNotoFont';
 import m6Content from '../../data/m6HandoutContent.json';
 
 const mockSave = vi.fn();
@@ -34,6 +35,8 @@ vi.mock('jspdf', () => ({
 
 beforeEach(() => {
   vi.clearAllMocks();
+  clearPdfUnicodeFontCache();
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }));
   mockSplitTextToSize.mockImplementation((text: string) => [text]);
 });
 
@@ -65,7 +68,9 @@ describe('m6HandoutPdf', () => {
   });
 
   it('generates PDF from real m6HandoutContent.json without throwing', async () => {
-    await expect(downloadM6HandoutPdf(m6Content as M6HandoutContent)).resolves.toBeUndefined();
+    await expect(
+      downloadM6HandoutPdf(m6Content as M6HandoutContent)
+    ).resolves.toBeUndefined();
     expect(mockSave).toHaveBeenCalledTimes(1);
   });
 });

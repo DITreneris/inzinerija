@@ -601,15 +601,28 @@
             "temperatureScaleLeft": "⬅️ Tikslumas",
             "temperatureScaleRight": "Kūrybiškumas ➡️",
             "temperatureLevels": [
-              { "range": "0.0–0.3", "label": "Žemas → faktai, analizė, instrukcijos", "note": "Kuo žemesnė temperatūra – tuo mažiau improvizacijos." },
-              { "range": "0.4–0.7", "label": "Vidutinis → subalansuotas verslo naudojimas" },
-              { "range": "0.8–1.0", "label": "Aukštas → idėjos, marketingas, kūryba" }
+              {
+                "range": "0.0–0.3",
+                "label": "Žemas → faktai, analizė, instrukcijos",
+                "note": "Kuo žemesnė temperatūra – tuo mažiau improvizacijos."
+              },
+              {
+                "range": "0.4–0.7",
+                "label": "Vidutinis → subalansuotas verslo naudojimas"
+              },
+              {
+                "range": "0.8–1.0",
+                "label": "Aukštas → idėjos, marketingas, kūryba"
+              }
             ],
             "reasoningTitle": "Reasoning gylis – mąstymo intensyvumas",
             "reasoningLevels": [
               { "label": "Greitas → paprasti klausimai, Q&A" },
               { "label": "Normalus → standartinės verslo užduotys" },
-              { "label": "Gilus → analizė, strategija, sprendimų palyginimas", "note": "Gilus = daugiau laiko, bet geresnė logika." }
+              {
+                "label": "Gilus → analizė, strategija, sprendimų palyginimas",
+                "note": "Gilus = daugiau laiko, bet geresnė logika."
+              }
             ],
             "cheatSheetTitle": "Kada ką naudoti? (Business cheat sheet)",
             "cheatSheetHeaders": ["Užduotis", "Temperature", "Reasoning"],
@@ -972,12 +985,7 @@
               "id": "q4",
               "type": "mcq",
               "question": "Nori gauti 5 punktų sąrašą lietuviškai. Kurį bloką turi nurodyti?",
-              "options": [
-                "Output",
-                "Meta",
-                "Input",
-                "Quality Control"
-              ],
+              "options": ["Output", "Meta", "Input", "Quality Control"],
               "correct": 0,
               "explanation": "Formatas (sąrašas, 5 punktai, kalba) – tai Output bloko atsakomybė.",
               "hint": "Kuris blokas nustato rezultato formatą ir struktūrą?",
@@ -1140,12 +1148,7 @@
               "id": "q11",
               "type": "mcq",
               "question": "Kiek blokų turi pilnas struktūruotas promptas?",
-              "options": [
-                "3",
-                "4",
-                "5",
-                "6"
-              ],
+              "options": ["3", "4", "5", "6"],
               "correct": 3,
               "explanation": "6 blokai: Meta, Input, Output, Reasoning, Quality, Advanced.",
               "hint": "Prisimink: M-I-O-R-Q-A sistema.",
@@ -1689,7 +1692,7 @@
                   "title": "REASONING blokas - Nustatykite mąstymo seką",
                   "description": "Tonas, aiškumas, pasipriešinimo mažinimas",
                   "hint": "CoT: 1) Kuo aiškiai paaiškinti, 2) Kaip atsakyti į baimę, 3) Ką darbuotojai turi žinoti.",
-                  "partialSolution": "REASONING (CoT):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Adresuoti baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkretius žingsnius ir Q&A"
+                  "partialSolution": "REASONING (CoT):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Adresuoti baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkrečius žingsnius ir Q&A"
                 },
                 {
                   "step": 5,
@@ -2680,10 +2683,7 @@
                   "examplePrompt": "Paruošk 5 marketingo idėjas logistikos įmonei Lietuvoje.",
                   "withoutContext": "Atsakymas bendrinis, nes nežino verslo situacijos.",
                   "withContext": "Atsakymas orientuotas į konkretų tikslą ir auditoriją.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "prompt",
@@ -2693,10 +2693,7 @@
                   "examplePrompt": "Sukurk 5 idėjas. Kiekvienai parašyk pavadinimą, kanalą ir trumpą paaiškinimą.",
                   "withoutContext": "Idėjos universalios, dažnai panašios į bendrus šablonus.",
                   "withContext": "Promptas remiasi papildoma informacija, todėl pasiūlymai tikslesni.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "context",
@@ -2706,9 +2703,7 @@
                   "examplePrompt": "Kontekstas: B2B logistika, 40 darbuotojų, tikslas – nauji klientai Klaipėdoje, biudžetas 1500 EUR/mėn.",
                   "withoutContext": "Modelis nežino tavo realios situacijos ir siūlo „visiems tinkamus“ variantus.",
                   "withContext": "Modelis parenka idėjas pagal tavo duomenis, ribas ir prioritetus.",
-                  "availableInModes": [
-                    "context"
-                  ]
+                  "availableInModes": ["context"]
                 },
                 {
                   "id": "llm",
@@ -2718,10 +2713,7 @@
                   "examplePrompt": "Pateik atsakymą lentele: idėja | kodėl tinka logistikai | pirmas žingsnis.",
                   "withoutContext": "Rezultatas sklandus, bet mažiau praktiškas realiam darbui.",
                   "withContext": "Rezultatas labiau pritaikomas, su aiškesniais veiksmais.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "tools",
@@ -2731,9 +2723,7 @@
                   "examplePrompt": "Patikrink paskutinių 3 mėn. pardavimų CSV ir pasiūlyk idėjas pagal TOP klientų segmentą.",
                   "withoutContext": "Nėra patikros su realiais duomenimis, todėl atsakymas gali būti per abstraktus.",
                   "withContext": "Atsakymas remiasi realiais skaičiais ir tampa patikimesnis.",
-                  "availableInModes": [
-                    "context"
-                  ]
+                  "availableInModes": ["context"]
                 },
                 {
                   "id": "output",
@@ -2743,10 +2733,7 @@
                   "examplePrompt": "Pabaigoje pridėk 3 veiksmus, kuriuos galime atlikti šią savaitę.",
                   "withoutContext": "Geras startui, bet dažnai reikia daug rankinio tikslinimo.",
                   "withContext": "Greičiau pritaikoma praktikoje, mažiau papildomų taisymų.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 }
               ]
             },
@@ -2860,11 +2847,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "",
-                    "Sisteminis promptas",
-                    "Master promptas"
-                  ],
+                  "headers": ["", "Sisteminis promptas", "Master promptas"],
                   "rows": [
                     [
                       "Ką apibrėžia",
@@ -2994,19 +2977,13 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": [
-                    "❌ Blogas",
-                    "✅ Geras"
-                  ],
+                  "headers": ["❌ Blogas", "✅ Geras"],
                   "rows": [
                     [
                       "„Sukurk man strategiją.“",
                       "„Rolė: verslo strategas. Kontekstas: mažmeninė prekyba, 50 darbuotojų, Lietuvos rinka.“"
                     ],
-                    [
-                      "Nėra konteksto",
-                      "Nurodytas sektorius, dydis, rinka"
-                    ],
+                    ["Nėra konteksto", "Nurodytas sektorius, dydis, rinka"],
                     [
                       "Nėra struktūros",
                       "3 etapai: įvestis → apdorojimas → rezultatas"
@@ -3046,11 +3023,7 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "ChatGPT",
-                      "Claude AI",
-                      "Gamma App"
-                    ],
+                    "chain": ["ChatGPT", "Claude AI", "Gamma App"],
                     "flow": [
                       "Pradinis užklausa",
                       "Apdorojimas",
@@ -3061,77 +3034,42 @@
                     "expandOutput": "Struktūruota prezentacija (Gamma)"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Figma"
-                    ],
-                    "flow": [
-                      "Idėjos",
-                      "Dizainas"
-                    ],
+                    "chain": ["GPT", "Figma"],
+                    "flow": ["Idėjos", "Dizainas"],
                     "tag": "Dizainas",
                     "expandInput": "Aprašymas ar moodboard",
                     "expandOutput": "Maketai, UI skeleto"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Gamma"
-                    ],
-                    "flow": [
-                      "Turinys",
-                      "Skaidrės"
-                    ],
+                    "chain": ["GPT", "Gamma"],
+                    "flow": ["Turinys", "Skaidrės"],
                     "tag": "Turinys",
                     "expandInput": "Tema ir struktūra",
                     "expandOutput": "Paruoštos skaidrės su dizainu"
                   },
                   {
-                    "chain": [
-                      "Gemini",
-                      "Calendar"
-                    ],
-                    "flow": [
-                      "Planavimas",
-                      "Renginiai"
-                    ],
+                    "chain": ["Gemini", "Calendar"],
+                    "flow": ["Planavimas", "Renginiai"],
                     "tag": "Planavimas",
                     "expandInput": "Data, laikas, aprašymas",
                     "expandOutput": "Įrašai kalendoriuje"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Zapier",
-                      "Gmail"
-                    ],
-                    "flow": [
-                      "Automatizavimas",
-                      "Siuntimas"
-                    ],
+                    "chain": ["GPT", "Zapier", "Gmail"],
+                    "flow": ["Automatizavimas", "Siuntimas"],
                     "tag": "Automatizacija",
                     "expandInput": "Trigger + šablonas",
                     "expandOutput": "Išsiųstas laiškas pagal taisyklę"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Google Veo3"
-                    ],
-                    "flow": [
-                      "Promptas",
-                      "Video"
-                    ],
+                    "chain": ["GPT", "Google Veo3"],
+                    "flow": ["Promptas", "Video"],
                     "tag": "Video",
                     "expandInput": "Tekstinis promptas arba scenarijus",
                     "expandOutput": "Sugeneruotas vaizdo įrašas"
                   },
                   {
-                    "chain": [
-                      "ChatGPT / Perplexity",
-                      "Figma",
-                      "Claude"
-                    ],
+                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
                     "flow": [
                       "Konteksto rinkinys (RAG)",
                       "Vizualus maketas",
@@ -3206,13 +3144,7 @@
                 "Gilusis mokymasis",
                 "Generatyvinis DI"
               ],
-              "correctAnswers": [
-                0,
-                1,
-                3,
-                2,
-                4
-              ],
+              "correctAnswers": [0, 1, 3, 2, 4],
               "explanations": [
                 "Veikia pagal iš anksto parašytas taisykles, ne mokosi iš duomenų – tai bendresnė DI (AI) sritis.",
                 "Sistema mokosi iš duomenų (istorinių transakcijų) ir atpažįsta anomalijas – tipinis mašininio mokymo uždavinys.",
@@ -3698,10 +3630,7 @@
                     "RLHF (optimizuoja kokybę)"
                   ],
                   "rows": [
-                    [
-                      "Mokosi iš skaičių ir KPI",
-                      "Mokosi iš žmonių vertinimo"
-                    ],
+                    ["Mokosi iš skaičių ir KPI", "Mokosi iš žmonių vertinimo"],
                     [
                       "Tikslas – geresni rezultatai",
                       "Tikslas – geresnė komunikacija"
@@ -4168,26 +4097,12 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "Claude",
-                      "ChatGPT",
-                      "Gamma"
-                    ],
-                    "flow": [
-                      "Analizė",
-                      "Strategija",
-                      "Skaidrės"
-                    ]
+                    "chain": ["Claude", "ChatGPT", "Gamma"],
+                    "flow": ["Analizė", "Strategija", "Skaidrės"]
                   },
                   {
-                    "chain": [
-                      "Gemini",
-                      "ChatGPT"
-                    ],
-                    "flow": [
-                      "Tyrimas + vaizdai",
-                      "Formulavimas"
-                    ]
+                    "chain": ["Gemini", "ChatGPT"],
+                    "flow": ["Tyrimas + vaizdai", "Formulavimas"]
                   }
                 ]
               },
@@ -4521,19 +4436,13 @@
                 "name": "Scite",
                 "url": "https://scite.ai",
                 "description": "Ar šaltinis tikrai palaiko tavo teiginį? Rodo, kaip tyrimas cituojamas – palaiko ar prieštarauja.",
-                "useCases": [
-                  "Citavimo tikrinimas",
-                  "Argumentų stiprinimas"
-                ]
+                "useCases": ["Citavimo tikrinimas", "Argumentų stiprinimas"]
               },
               {
                 "name": "Elicit",
                 "url": "https://elicit.com",
                 "description": "Suranda ir apibendrina tyrimus pagal temą. Įvesk klausimą – gauk tendencijas, rizikas, pavyzdžius.",
-                "useCases": [
-                  "Sintezė",
-                  "Tendencijų paieška"
-                ]
+                "useCases": ["Sintezė", "Tendencijų paieška"]
               },
               {
                 "name": "Consensus",
@@ -5071,16 +4980,8 @@
                       "iki 1M tokenų",
                       "≈ 750 000 žodžių / ~1 500 puslapių"
                     ],
-                    [
-                      "Copilot",
-                      "16k–128k tokenų",
-                      "≈ 12 000–96 000 žodžių"
-                    ],
-                    [
-                      "DeepSeek",
-                      "64k–128k tokenų",
-                      "≈ 48 000–96 000 žodžių"
-                    ]
+                    ["Copilot", "16k–128k tokenų", "≈ 12 000–96 000 žodžių"],
+                    ["DeepSeek", "64k–128k tokenų", "≈ 48 000–96 000 žodžių"]
                   ]
                 }
               },
@@ -5120,11 +5021,7 @@
                 "body": "Kaip ilgame pokalbyje prarandamas svarbus prioritetas – ir kokia rizika verslui.",
                 "blockVariant": "brand",
                 "table": {
-                  "headers": [
-                    "Iteracija",
-                    "Veiksmas",
-                    "Konteksto būsena"
-                  ],
+                  "headers": ["Iteracija", "Veiksmas", "Konteksto būsena"],
                   "rows": [
                     [
                       "**1-oji**",
@@ -6104,11 +6001,7 @@
                 "blockVariant": "emerald",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "ChatGPT / Perplexity",
-                      "Figma",
-                      "Claude"
-                    ],
+                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
                     "flow": [
                       "Konteksto rinkinys (RAG)",
                       "Vizualus maketas",
@@ -6152,10 +6045,7 @@
                 "heading": "6 blokų struktūra",
                 "body": "",
                 "table": {
-                  "headers": [
-                    "Blokas",
-                    "Nurodymas"
-                  ],
+                  "headers": ["Blokas", "Nurodymas"],
                   "rows": [
                     [
                       "#1 META",
@@ -6503,12 +6393,7 @@
       {
         "id": 5,
         "question": "Nori gauti 5 punktų sąrašą lietuviškai. Kurį bloką turi nurodyti?",
-        "options": [
-          "Meta",
-          "Output",
-          "Input",
-          "Quality Control"
-        ],
+        "options": ["Meta", "Output", "Input", "Quality Control"],
         "correct": 1,
         "explanation": "Formatas (sąrašas, 5 punktai, kalba) – tai Output bloko atsakomybė. Pavyzdys: \\\"OUTPUT: Formatas – numeruotas sąrašas, 5 punktai. Kalba: lietuvių.\\\" Meta nustato rolę, Input – duomenis, bet formatas visada Output bloke."
       },
@@ -6551,12 +6436,7 @@
       {
         "id": 9,
         "question": "Kiek blokų turi pilnas struktūruotas promptas?",
-        "options": [
-          "3",
-          "4",
-          "5",
-          "6"
-        ],
+        "options": ["3", "4", "5", "6"],
         "correct": 3,
         "explanation": "6 blokai: Meta, Input, Output, Reasoning, Quality, Advanced. Pavyzdys: 1) Meta (rolė, tikslas) 2) Input (duomenys) 3) Output (formatas) 4) Reasoning (mąstymo seka) 5) Quality (kriterijai) 6) Advanced (temperature, parametrai)."
       },
@@ -6587,12 +6467,7 @@
       {
         "id": 12,
         "question": "Kuri technika naudoja pavyzdžius?",
-        "options": [
-          "Zero-shot",
-          "Few-shots",
-          "Manipuliacija",
-          "Reasoning"
-        ],
+        "options": ["Zero-shot", "Few-shots", "Manipuliacija", "Reasoning"],
         "correct": 1,
         "explanation": "Few-shots pateikia 1–2 pavyzdžius, po to prašo naujų. Pavyzdys: \\\"Pavyzdžiai: 1) 'Mažiau streso, daugiau energijos.' 2) 'Tavo sveikata – tavo planas.' Sukurk dar 3 panašaus stiliaus šūkius.\\\" Zero-shot – be pavyzdžių, tiesiog prašymas."
       },
@@ -6683,12 +6558,7 @@
       {
         "id": 20,
         "question": "Kuris blokas yra neprivalomas, bet labai naudingas sudėtingoms užduotims?",
-        "options": [
-          "Meta",
-          "Input",
-          "Advanced Parameters",
-          "Output"
-        ],
+        "options": ["Meta", "Input", "Advanced Parameters", "Output"],
         "correct": 2,
         "explanation": "Advanced Parameters yra neprivalomas, bet labai naudingas blokas. Jis leidžia tiksliai kontroliuoti DI elgesį: Temperature (kūrybiškumas), Reasoning depth (analizės gylis), Max tokens (ilgis), penalties (pasikartojimai). Meta, Input, Output yra privalomi minimaliam promptui."
       }

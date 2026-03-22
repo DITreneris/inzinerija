@@ -34,7 +34,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 - **Sertifikatai:**
   - Po 3 modulių (1–3) – pirmas lygis.
   - Po 6 modulių (1–6) ir ≥70 % pažangaus testo – antras lygis.  
-    Sertifikatai generuojami kaip PDF (NotoSans šriftas, LT diakritika).
+    Sertifikatai generuojami kaip PDF (Roboto TTF per `pdfNotoFont`, LT diakritika; žr. `public/fonts/README.md`).
 - **PDF atmintinės:** M5 ir M6 turi atskiras atsisiunčiamas atmintines (LT/EN).
 - **Progreso sekimas:** localStorage, versijavimas, automatinis išsaugojimas (baigti moduliai, užduotys, testų rezultatai).
 - **Prieigos lygiai (access tier):**

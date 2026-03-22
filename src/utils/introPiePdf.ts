@@ -7,6 +7,11 @@
 
 import { jsPDF } from 'jspdf';
 import type { IntroActionPiePdfSegment } from '../types/modules';
+import {
+  getPdfUnicodeFontBase64,
+  loadPdfUnicodeFont,
+  registerUnicodePdfFont,
+} from './pdfNotoFont';
 
 const BRAND_COLOR = '#627d98';
 const ACCENT_COLOR = '#d4a520';
@@ -27,8 +32,6 @@ const LINE_HEIGHT_BODY = 4.2;
 const SECTION_GAP = 7;
 const PARAGRAPH_GAP = 3.5;
 
-let cachedFontBase64: string | null = null;
-
 export interface ToolInfo {
   name: string;
   url: string;
@@ -41,32 +44,20 @@ export interface GlossaryTermInfo {
 }
 
 /**
- * Įkrauna custom šriftą su lietuviškais simboliais iš public/fonts/NotoSans-Regular.ttf.
+ * Įkrauna PDF šriftą (Roboto → registruojamas kaip NotoSans) iš public/fonts.
  * Skambinti prieš pirmą downloadIntroPiePdf (pvz. mygtuko „Eksportuok PDF“ onClick).
  * Jei failas nepasiekiamas – PDF generuojamas su Helvetica (diakritikos gali būti neteisingos).
  */
 export async function ensurePdfFont(): Promise<void> {
-  if (cachedFontBase64) return;
-  try {
-    const res = await fetch('/fonts/NotoSans-Regular.ttf');
-    if (!res.ok) return;
-    const buf = await res.arrayBuffer();
-    const bytes = new Uint8Array(buf);
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++)
-      binary += String.fromCharCode(bytes[i]);
-    cachedFontBase64 = btoa(binary);
-  } catch {
-    // Fallback: naudosime Helvetica
-  }
+  await loadPdfUnicodeFont();
 }
 
 export function getCachedPdfFontBase64(): string | null {
-  return cachedFontBase64;
+  return getPdfUnicodeFontBase64();
 }
 
 function applyFont(doc: jsPDF, fontRegistered = false): void {
-  if (fontRegistered && cachedFontBase64) {
+  if (fontRegistered) {
     doc.setFont('NotoSans', 'normal');
   } else {
     doc.setFont('helvetica', 'normal');
@@ -143,16 +134,7 @@ export function downloadIntroPiePdf(
   const footerText = isEn ? PDF_FOOTER_EN : PDF_FOOTER_LT;
 
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-  let useCustomFont = false;
-  if (cachedFontBase64) {
-    try {
-      doc.addFileToVFS('NotoSans-Regular.ttf', cachedFontBase64);
-      doc.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
-      useCustomFont = true;
-    } catch {
-      /* naudoti Helvetica */
-    }
-  }
+  const useCustomFont = registerUnicodePdfFont(doc, getPdfUnicodeFontBase64());
   applyFont(doc, useCustomFont);
   let y = MARGIN;
 

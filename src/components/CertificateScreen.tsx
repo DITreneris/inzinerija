@@ -3,11 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import { useLocale } from '../contexts/LocaleContext';
 import { getCertificateContent } from '../data/certificateContentLoader';
-import { ensurePdfFont, getCachedPdfFontBase64 } from '../utils/introPiePdf';
-import {
-  downloadCertificatePdf,
-  setCertificatePdfFontCache,
-} from '../utils/certificatePdf';
+import { ensurePdfFont } from '../utils/introPiePdf';
+import { downloadCertificatePdf } from '../utils/certificatePdf';
 import {
   getCertificateName,
   setCertificateName,
@@ -45,8 +42,6 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
     setDownloadError(false);
     try {
       await ensurePdfFont();
-      const fontCache = getCachedPdfFontBase64();
-      if (fontCache) setCertificatePdfFontCache(fontCache);
       if (!content) return;
       await downloadCertificatePdf(tier, content, trimmed, {
         locale,

@@ -53,12 +53,12 @@
 
 ### 2.2 Rekomenduojama (prieš pirmą deploy)
 
-| #   | Užduotis                                                                                                                                | Pastaba                   |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| 6   | **M5/M6 PDF rankinė** – parsisiuntimas, atidaryti PDF – ą, ė, į, š, ų, ū, ž; `public/fonts/NotoSans-Regular.ttf` servinamas production. | PDF_DOWNLOAD_TESTING.md   |
-| 7   | **Broken links** – skip link, 1–2 išorinės nuorodos, AI detektoriai / Prompt biblioteka.                                                | RELEASE_QA_CHECKLIST §1   |
-| 8   | **Mobile sanity** – 375×667, viena skaidrė, navigacija; dark mode perjungimas.                                                          | RELEASE_QA_CHECKLIST §2–3 |
-| 9   | **DOCUMENTATION_INDEX** – nuorodos neį neegzistuojančius failus; README → INTEGRATION_OVERVIEW.                                         | PRE_LAUNCH                |
+| #   | Užduotis                                                                                                                                                                                    | Pastaba                   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| 6   | **M5/M6 PDF rankinė** – parsisiuntimas, atidaryti PDF – ą, ė, į, š, ų, ū, ž; `public/fonts/Roboto-Regular.ttf` (pageidautina) arba atsarginis `NotoSans-Regular.ttf` servinamas production. | PDF_DOWNLOAD_TESTING.md   |
+| 7   | **Broken links** – skip link, 1–2 išorinės nuorodos, AI detektoriai / Prompt biblioteka.                                                                                                    | RELEASE_QA_CHECKLIST §1   |
+| 8   | **Mobile sanity** – 375×667, viena skaidrė, navigacija; dark mode perjungimas.                                                                                                              | RELEASE_QA_CHECKLIST §2–3 |
+| 9   | **DOCUMENTATION_INDEX** – nuorodos neį neegzistuojančius failus; README → INTEGRATION_OVERVIEW.                                                                                             | PRE_LAUNCH                |
 
 ### 2.3 Pasirinktinai (gali likti po deploy)
 

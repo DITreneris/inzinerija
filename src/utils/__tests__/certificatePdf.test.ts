@@ -5,7 +5,11 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { CertificateTierContent } from '../certificatePdf';
-import { downloadCertificatePdf, generateSerialNumber } from '../certificatePdf';
+import {
+  downloadCertificatePdf,
+  generateSerialNumber,
+} from '../certificatePdf';
+import { clearPdfUnicodeFontCache } from '../pdfNotoFont';
 
 const mockSave = vi.fn();
 const mockText = vi.fn();
@@ -47,6 +51,7 @@ vi.mock('jspdf', () => ({
 
 beforeEach(() => {
   vi.clearAllMocks();
+  clearPdfUnicodeFontCache();
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }));
 });
 
@@ -56,7 +61,8 @@ const tier1Content: CertificateTierContent = {
   completionLine: 'sėkmingai baigė mokymų programos „Promptų anatomija“ dalį',
   programName: '6 blokų sistema – 6 blokai, testas, praktika',
   label: '6 blokų sistema',
-  footerText: 'Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.',
+  footerText:
+    'Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.',
 };
 
 describe('certificatePdf', () => {
@@ -84,7 +90,9 @@ describe('certificatePdf', () => {
     });
 
     it('displays serial as Sertifikato Nr. PA-2026-XXX (no #)', async () => {
-      await downloadCertificatePdf(1, tier1Content, 'Test', { serialNumber: '#PA-2026-CUSTOM01' });
+      await downloadCertificatePdf(1, tier1Content, 'Test', {
+        serialNumber: '#PA-2026-CUSTOM01',
+      });
       expect(mockText).toHaveBeenCalledWith(
         'Sertifikato Nr. PA-2026-CUSTOM01',
         expect.any(Number),
@@ -102,7 +110,9 @@ describe('certificatePdf', () => {
       expect(flatTexts).toContain(tier1Content.introLine);
       expect(flatTexts).toContain('Vardas');
       expect(flatTexts).toContain(tier1Content.completionLine);
-      expect(flatTexts.some((t) => String(t).includes(tier1Content.programName))).toBe(true);
+      expect(
+        flatTexts.some((t) => String(t).includes(tier1Content.programName))
+      ).toBe(true);
       expect(flatTexts).toContain(tier1Content.footerText);
     });
 
@@ -142,7 +152,11 @@ describe('certificatePdf', () => {
       });
       const textCalls = mockText.mock.calls.map((c: unknown[]) => c[0]);
       const flatTexts = textCalls.flat();
-      expect(flatTexts.some((t) => String(t).includes('March') && String(t).includes('2026'))).toBe(true);
+      expect(
+        flatTexts.some(
+          (t) => String(t).includes('March') && String(t).includes('2026')
+        )
+      ).toBe(true);
     });
 
     it('draws border rect and accent lines', async () => {

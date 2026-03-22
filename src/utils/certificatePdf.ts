@@ -1,10 +1,15 @@
 /**
  * Sertifikatų PDF generavimas – 3 lygiai (po 3, 6, 9 modulio).
  * Maketas pagal docs/development/PDF_MAKETO_GAIRES.md ir premium planą (rėmelis, linijos, etiketės).
- * Lietuviškos raidės: naudoti ensurePdfFont() (introPiePdf) prieš pirmą kvietimą arba loadFontBase64 čia.
+ * Lietuviškos raidės: naudoti ensurePdfFont() (introPiePdf) prieš pirmą kvietimą arba loadPdfUnicodeFont (pdfNotoFont).
  */
 
 import { jsPDF } from 'jspdf';
+import {
+  getPdfUnicodeFontBase64,
+  loadPdfUnicodeFont,
+  registerUnicodePdfFont,
+} from './pdfNotoFont';
 
 const ACCENT_COLOR = '#d4a520';
 const MARGIN = 18;
@@ -26,8 +31,6 @@ const INITIAL_Y = MARGIN + 22;
 /** Dekoratyvios linijos plotis (mm), storis (mm) */
 const RULE_WIDTH = 25;
 const RULE_HEIGHT_MM = 0.6;
-
-let cachedFontBase64: string | null = null;
 
 export interface CertificateTierContent {
   tier: 1 | 2 | 3;
@@ -63,31 +66,8 @@ export interface DownloadCertificateOptions {
   websiteCta?: string;
 }
 
-/**
- * Įkrauna NotoSans iš public/fonts. Galima kviesti ensurePdfFont() iš introPiePdf prieš – tada cache jau bus.
- */
-async function loadFontBase64(): Promise<string | null> {
-  if (cachedFontBase64) return cachedFontBase64;
-  try {
-    const res = await fetch('/fonts/NotoSans-Regular.ttf');
-    if (!res.ok) return null;
-    const buf = await res.arrayBuffer();
-    const bytes = new Uint8Array(buf);
-    let binary = '';
-    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-    cachedFontBase64 = btoa(binary);
-    return cachedFontBase64;
-  } catch {
-    return null;
-  }
-}
-
-export function setCertificatePdfFontCache(base64: string | null): void {
-  cachedFontBase64 = base64;
-}
-
 function applyFont(doc: jsPDF, fontRegistered: boolean): void {
-  if (fontRegistered && cachedFontBase64) {
+  if (fontRegistered) {
     doc.setFont('NotoSans', 'normal');
   } else {
     doc.setFont('helvetica', 'normal');
@@ -141,35 +121,38 @@ export async function downloadCertificatePdf(
   learnerName: string,
   options?: DownloadCertificateOptions
 ): Promise<void> {
-  await loadFontBase64();
+  await loadPdfUnicodeFont();
 
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-  let useCustomFont = false;
-  if (cachedFontBase64) {
-    try {
-      doc.addFileToVFS('NotoSans-Regular.ttf', cachedFontBase64);
-      doc.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
-      useCustomFont = true;
-    } catch {
-      /* Helvetica */
-    }
-  }
+  const useCustomFont = registerUnicodePdfFont(doc, getPdfUnicodeFontBase64());
 
   const locale = options?.locale ?? 'lt';
   const serial = options?.serialNumber ?? generateSerialNumber();
   const serialDisplay = formatSerialForDisplay(
     serial,
-    options?.serialLabel ?? (locale === 'en' ? 'Certificate No.' : 'Sertifikato Nr.')
+    options?.serialLabel ??
+      (locale === 'en' ? 'Certificate No.' : 'Sertifikato Nr.')
   );
   const date = options?.date ?? new Date();
   const dateLocale = locale === 'en' ? 'en-GB' : 'lt-LT';
-  const dateStr = date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateStr = date.toLocaleDateString(dateLocale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   const authorBy = options?.authorBy ?? '';
   const authorProduct = options?.authorProduct ?? '';
-  const programTitle = options?.programTitle ?? (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija');
-  const certificateLabel = options?.certificateLabel ?? (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS');
-  const authorByLabel = options?.authorByLabel ?? (locale === 'en' ? 'Program and methodology:' : 'Programa ir metodika:');
-  const authorProductLabel = options?.authorProductLabel ?? (locale === 'en' ? 'Author:' : 'Autorius:');
+  const programTitle =
+    options?.programTitle ??
+    (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija');
+  const certificateLabel =
+    options?.certificateLabel ??
+    (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS');
+  const authorByLabel =
+    options?.authorByLabel ??
+    (locale === 'en' ? 'Program and methodology:' : 'Programa ir metodika:');
+  const authorProductLabel =
+    options?.authorProductLabel ?? (locale === 'en' ? 'Author:' : 'Autorius:');
 
   // Plonas rėmelis (pilka)
   doc.setDrawColor(136, 136, 136);
@@ -216,7 +199,10 @@ export async function downloadCertificatePdf(
   y += 8;
 
   // programName (gali persikelti)
-  const programLines = doc.splitTextToSize(content.programName, PAGE_W - MARGIN * 2);
+  const programLines = doc.splitTextToSize(
+    content.programName,
+    PAGE_W - MARGIN * 2
+  );
   doc.text(programLines, PAGE_W / 2, y, { align: 'center' });
   y += programLines.length * LINE_HEIGHT + 10;
 
@@ -242,7 +228,8 @@ export async function downloadCertificatePdf(
   if (authorBy || authorProduct) {
     const authorParts: string[] = [];
     if (authorBy) authorParts.push(`${authorByLabel} ${authorBy}`);
-    if (authorProduct) authorParts.push(`${authorProductLabel} „${authorProduct}"`);
+    if (authorProduct)
+      authorParts.push(`${authorProductLabel} „${authorProduct}"`);
     if (authorParts.length > 0) {
       doc.setFontSize(FONT_FOOTER);
       doc.setTextColor(100, 100, 100);
@@ -263,7 +250,14 @@ export async function downloadCertificatePdf(
   const websiteCta = options?.websiteCta || websiteUrl;
   if (websiteCta && websiteUrl) {
     const linkY = PAGE_H - 10;
-    const docWithLink = doc as jsPDF & { textWithLink?(text: string, x: number, y: number, opts: { url: string }): void };
+    const docWithLink = doc as jsPDF & {
+      textWithLink?(
+        text: string,
+        x: number,
+        y: number,
+        opts: { url: string }
+      ): void;
+    };
     if (typeof docWithLink.textWithLink === 'function') {
       const w = doc.getTextWidth(websiteCta);
       const linkX = Math.max(MARGIN, (PAGE_W - w) / 2);
@@ -273,7 +267,11 @@ export async function downloadCertificatePdf(
     }
   }
 
-  const safeName = (learnerName || (locale === 'en' ? 'certificate' : 'sertifikatas')).replace(/[?/:\\*"]/g, '').slice(0, 30);
+  const safeName = (
+    learnerName || (locale === 'en' ? 'certificate' : 'sertifikatas')
+  )
+    .replace(/[?/:\\*"]/g, '')
+    .slice(0, 30);
   const filename =
     locale === 'en'
       ? `Prompt_Anatomy_Certificate_Tier_${tier}_${safeName}.pdf`

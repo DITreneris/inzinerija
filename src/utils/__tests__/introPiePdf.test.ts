@@ -7,6 +7,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { IntroActionPiePdfSegment } from '../../types/modules';
 import type { ToolInfo, GlossaryTermInfo } from '../introPiePdf';
 import { downloadIntroPiePdf, ensurePdfFont } from '../introPiePdf';
+import { clearPdfUnicodeFontCache } from '../pdfNotoFont';
 import introPiePdfContentJson from '../../data/introPiePdfContent.json';
 import toolsJson from '../../data/tools.json';
 import glossaryJson from '../../data/glossary.json';
@@ -47,6 +48,7 @@ vi.mock('jspdf', () => ({
 
 beforeEach(() => {
   vi.clearAllMocks();
+  clearPdfUnicodeFontCache();
   mockSplitTextToSize.mockImplementation((text: string) => [text]);
 });
 
@@ -76,7 +78,12 @@ describe('introPiePdf', () => {
     });
 
     it('uses custom filename when provided', () => {
-      downloadIntroPiePdf(minimalSegment, emptyTools, emptyGlossary, 'Custom.pdf');
+      downloadIntroPiePdf(
+        minimalSegment,
+        emptyTools,
+        emptyGlossary,
+        'Custom.pdf'
+      );
       expect(mockSave).toHaveBeenCalledWith('Custom.pdf');
     });
 
@@ -84,8 +91,20 @@ describe('introPiePdf', () => {
       downloadIntroPiePdf(minimalSegment, emptyTools, emptyGlossary);
       const textCalls = mockText.mock.calls.map((c: unknown[]) => c[0]);
       const flatTexts = textCalls.flat() as string[];
-      expect(flatTexts.some((t) => t === 'Promptų anatomija' || (Array.isArray(t) && t.includes('Promptų anatomija')))).toBe(true);
-      expect(flatTexts.some((t) => t === minimalSegment.title || (Array.isArray(t) && t.includes(minimalSegment.title)))).toBe(true);
+      expect(
+        flatTexts.some(
+          (t) =>
+            t === 'Promptų anatomija' ||
+            (Array.isArray(t) && t.includes('Promptų anatomija'))
+        )
+      ).toBe(true);
+      expect(
+        flatTexts.some(
+          (t) =>
+            t === minimalSegment.title ||
+            (Array.isArray(t) && t.includes(minimalSegment.title))
+        )
+      ).toBe(true);
     });
   });
 
@@ -122,17 +141,30 @@ describe('introPiePdf', () => {
 
   describe('7 segments smoke', () => {
     it('generates PDF for all 7 segments without throwing', () => {
-      const introPiePdfContent = introPiePdfContentJson as { segments: IntroActionPiePdfSegment[] };
-      const toolsData = toolsJson as { tools: { name: string; url?: string; description?: string }[] };
-      const glossaryData = glossaryJson as { terms: { term: string; definition?: string }[] };
+      const introPiePdfContent = introPiePdfContentJson as {
+        segments: IntroActionPiePdfSegment[];
+      };
+      const toolsData = toolsJson as {
+        tools: { name: string; url?: string; description?: string }[];
+      };
+      const glossaryData = glossaryJson as {
+        terms: { term: string; definition?: string }[];
+      };
 
       const toolsByName = new Map<string, ToolInfo>();
       for (const t of toolsData.tools || []) {
-        toolsByName.set(t.name, { name: t.name, url: t.url || '', description: t.description || '' });
+        toolsByName.set(t.name, {
+          name: t.name,
+          url: t.url || '',
+          description: t.description || '',
+        });
       }
       const glossaryByTerm = new Map<string, GlossaryTermInfo>();
       for (const g of glossaryData.terms || []) {
-        glossaryByTerm.set(g.term, { term: g.term, definition: g.definition || '' });
+        glossaryByTerm.set(g.term, {
+          term: g.term,
+          definition: g.definition || '',
+        });
       }
 
       const segments = introPiePdfContent.segments;

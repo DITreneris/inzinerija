@@ -146,7 +146,7 @@ prompt-anatomy-training/
 │   │   └── context-engineering/ # SOT indeksas, konteksto biudžetas
 │   └── ...                  # Turinio plėtra, audito ataskaitos
 ├── public/                  # Statiniai failai (SVG diagramos, šriftai, banneriai)
-│   ├── fonts/               # NotoSans-Regular.ttf (PDF, LT diakritika)
+│   ├── fonts/               # Roboto-Regular.ttf (pageidautina PDF), NotoSans-Regular.ttf atsarginis
 │   ├── robots.txt           # SEO – leisti indeksavimą
 │   ├── favicon.svg          # Brand žaibas (geltonas ant tamsaus fono)
 │   ├── apple-touch-icon.png # iOS home screen ikona (180×180)
@@ -412,7 +412,7 @@ interface Slide {
 
 **Bendros PDF savybės:**
 
-- Šriftas: NotoSans-Regular.ttf (iš `/fonts/NotoSans-Regular.ttf`) – palaiko lietuvišką diakritiką
+- Šriftas: `pdfNotoFont.ts` – `Roboto-Regular.ttf` pageidautina, `NotoSans-Regular.ttf` atsarginis (`BASE_URL` + `/fonts/...`)
 - Brand spalva: `#627d98`, Accent: `#d4a520`
 - Biblioteka: jsPDF ^4.2.0
 
@@ -635,7 +635,7 @@ interface Progress {
 Visi PDF naudoja:
 
 - **jsPDF** ^4.2.0
-- **NotoSans-Regular.ttf** (iš `/fonts/NotoSans-Regular.ttf`) – lietuviška diakritika
+- **Roboto-Regular.ttf** / atsarginis **NotoSans-Regular.ttf** – lietuviška diakritika PDF (žr. `pdfNotoFont.ts`)
 - **Brand spalva:** `#627d98` (navy/slate)
 - **Accent spalva:** `#d4a520` (auksinė)
 - Puslapio dydis: A4 (210×297mm)
@@ -1256,7 +1256,7 @@ react (18) → react-dom (18)
     ├── i18next + react-i18next (i18n)
     ├── canvas-confetti (šventimas)
     ├── jspdf (PDF generavimas)
-    │   └── /fonts/NotoSans-Regular.ttf
+    │   └── /fonts/Roboto-Regular.ttf (pageidautina), NotoSans-Regular.ttf (atsarginis)
     ├── modulesLoader → @modules-data + EN overlays
     ├── glossaryLoader → @glossary-data + EN
     ├── toolsLoader → @tools-data + EN
