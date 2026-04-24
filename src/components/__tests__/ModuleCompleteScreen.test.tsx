@@ -20,11 +20,15 @@ function makeModule(id: number): Module {
     id,
     title: `Modulis ${id}`,
     subtitle: `Aprašymas ${id}`,
-    slides: [{ id: id * 10, type: 'content-block', title: 'Slide', content: {} }],
+    slides: [
+      { id: id * 10, type: 'content-block', title: 'Slide', content: {} },
+    ],
   } as Module;
 }
 
 const allModules = [1, 2, 3, 4, 5, 6].map(makeModule);
+const module9 = makeModule(9);
+const modulesThrough9 = [...allModules, makeModule(7), makeModule(8), module9];
 
 function defaultProgress(overrides: Partial<Progress> = {}): Progress {
   return {
@@ -62,7 +66,9 @@ describe('ModuleCompleteScreen', () => {
       />
     );
     expect(screen.getByText(/Tęsti į kitą modulį/)).toBeInTheDocument();
-    expect(screen.queryByText(/Parsisiųsti sertifikatą/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Parsisiųsti sertifikatą/)
+    ).not.toBeInTheDocument();
   });
 
   it('shows tier 1 certificate button after completing modules 1-2-3', () => {
@@ -79,7 +85,9 @@ describe('ModuleCompleteScreen', () => {
         onRequestCertificate={onRequestCertificate}
       />
     );
-    expect(screen.getByRole('button', { name: /sertifikatą.*1 dalis/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /sertifikatą.*1 dalis/i })
+    ).toBeInTheDocument();
   });
 
   it('does NOT show tier 1 certificate if module 2 is missing', () => {
@@ -96,7 +104,9 @@ describe('ModuleCompleteScreen', () => {
         onRequestCertificate={onRequestCertificate}
       />
     );
-    expect(screen.queryByText(/Parsisiųsti sertifikatą/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/Parsisiųsti sertifikatą/)
+    ).not.toBeInTheDocument();
   });
 
   it('shows tier 2 certificate and handout PDF for module 6 with quiz >= 70%', () => {
@@ -117,8 +127,12 @@ describe('ModuleCompleteScreen', () => {
         onRequestCertificate={onRequestCertificate}
       />
     );
-    expect(screen.getByRole('button', { name: /sertifikatą.*kurso baigimas/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /atmintinę/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /sertifikatą.*kurso baigimas/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /atmintinę/i })
+    ).toBeInTheDocument();
   });
 
   it('does NOT show tier 2 certificate when quiz score < 70%', () => {
@@ -139,8 +153,60 @@ describe('ModuleCompleteScreen', () => {
         onRequestCertificate={onRequestCertificate}
       />
     );
-    expect(screen.queryByRole('button', { name: /sertifikatą.*kurso baigimas/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /atmintinę/i })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /sertifikatą.*kurso baigimas/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /atmintinę/i })
+    ).toBeInTheDocument();
+  });
+
+  it('shows tier 3 certificate button on module 9 when path 7–9 done and M8 test >= 70%', () => {
+    const idx = modulesThrough9.findIndex((m) => m.id === 9);
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={module9}
+        moduleIndex={idx}
+        totalModules={modulesThrough9.length}
+        modules={modulesThrough9}
+        progress={defaultProgress({
+          completedModules: [7, 8, 9],
+          moduleTestScores: { 8: 72 },
+        })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+    expect(
+      screen.getByRole('button', {
+        name: /sertifikatą.*Duomenų analizės kelias 7–9/i,
+      })
+    ).toBeInTheDocument();
+  });
+
+  it('does NOT show tier 3 certificate when M8 test < 70%', () => {
+    const idx = modulesThrough9.findIndex((m) => m.id === 9);
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={module9}
+        moduleIndex={idx}
+        totalModules={modulesThrough9.length}
+        modules={modulesThrough9}
+        progress={defaultProgress({
+          completedModules: [7, 8, 9],
+          moduleTestScores: { 8: 65 },
+        })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+    expect(
+      screen.queryByText(/Parsisiųsti sertifikatą/)
+    ).not.toBeInTheDocument();
   });
 
   it('shows "Pradėti apklausą" when isLastModule is true', () => {

@@ -11,11 +11,11 @@
 
 ### 1.1 Vieta kurse
 
-| Moduliai 1–6 | Moduliai 7–9 | Moduliai 10–12 |
-|--------------|--------------|----------------|
-| 6 blokų sistema, konteksto inžinerija, RAG | Duomenų analizės kelias | **Agentų inžinerija** – DI kaip agentų sistemų kūrėjas |
-| Teorija → Testas → Projektas (M4–M6) | Teorija → Testas → Projektas (M7–M9) | Teorija (M10) → Testas (M11) → Projektas (M12) |
-| Bendras pamatas | Analitikai | **Softo inžinieriai** |
+| Moduliai 1–6                               | Moduliai 7–9                         | Moduliai 10–12                                         |
+| ------------------------------------------ | ------------------------------------ | ------------------------------------------------------ |
+| 6 blokų sistema, konteksto inžinerija, RAG | Duomenų analizės kelias              | **Agentų inžinerija** – DI kaip agentų sistemų kūrėjas |
+| Teorija → Testas → Projektas (M4–M6)       | Teorija → Testas → Projektas (M7–M9) | Teorija (M10) → Testas (M11) → Projektas (M12)         |
+| Bendras pamatas                            | Analitikai                           | **Softo inžinieriai**                                  |
 
 **Prielaida:** Dalyvis baigė **Modulius 4–6** (konteksto inžinerija, RAG, žinių patikrinimas). Moduliai 10–12 fokusas: **agentų projektavimas, vykdymas, integracijos** – įrankiai, promptai, sistemos.
 
@@ -42,11 +42,11 @@
 
 Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.1:
 
-| Modulis | Skaidrė / tipas | whyBenefit (tekstas į JSON) |
-|---------|------------------|-----------------------------|
-| **10** | action-intro (pirmoji) | Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo ir įrankių iki integracijų ir promptų architektūros. |
-| **11** | test-intro | Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12). |
-| **12** | practice-intro | Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui. |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                          |
+| ------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **10**  | action-intro (pirmoji) | Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo ir įrankių iki integracijų ir promptų architektūros. |
+| **11**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).                         |
+| **12**  | practice-intro         | Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui.                |
 
 ---
 
@@ -54,7 +54,7 @@ Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.
 
 **Skaidrė: Kelio apžvalga (10.1)**
 
-- **Workflow, trigger, webhook (matomas blokas 10.1):** Workflow = automatizuotų veiksmų seka, paleidžiama trigger. Struktūra: Trigger → Condition → Action. Webhook = realaus laiko duomenų perdavimas tarp sistemų. Lentelė: Trigger, Action, Condition, Integration, API, Polling, Error handling, Logs (žr. §3a).
+- **Trumpai:** Tik **kelio žemėlapis** – ką modulyje rasite ir kokia tvarka. Išsamūs workflow terminai (trigger, action, condition, webhook ir kt.) – **tik skaidrėje 10.15**; čia jų **nebekartoti** (vengti dublio su 10.15).
 - **Įrankiai:** Kokius įrankius DI gali naudoti (paieška, skaičiuoklės, API, failai); populiarios platformos (ChatGPT, Claude, Gemini – agentinės funkcijos).
 - **Promptai:** Kaip rašyti sisteminius ir vartotojo promptus agentams (rolė, žingsniai, klaidos tvarkymas).
 - **Sistemos:** Agentų ciklas (Steigti → Gauti įvestį → Vykdyti → Įrankiai → Grąžtamasis ryšys → Rezultatas).
@@ -76,40 +76,37 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Turinys (skaidrė 10.2):**
 
-- **Agentas** gauna užduotį (vartotojo įvestis).
-- **Planavimas / žingsniai** – kas atliekama (vienas ar kelii žingsniai).
-- **Įrankiai** – paieška, API, failai (jei platforma palaiko).
-- **Aplinka** – išoriniai duomenys, kontekstas.
-- **Grįžtamasis ryšys** – rezultatas atgal vartotojui arba kitam žingsniui.
-
-**Kaip veikia agentas (ReAct-style ciklas):** Agentas kartuoja ciklą: (1) suprasti užduotį ir nuspręsti, ką daryti toliau, (2) pasirinkti įrankį (paieška, API, skaičiuoklė ir kt.), (3) vykdyti įrankį ir gauti stebėjimą (rezultatą), (4) naudoti stebėjimą tolesniam mąstymui – kartoti žingsnius arba grąžinti galutinį atsakymą. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir naudoja išorinius įrankius.
-
-**Kada naudoti agentą:** Agentas tinka, kai (1) reikia **sudėtingesnių sprendimų** – ne vieno atsakymo, o žingsnių sekos, (2) sunku aprašyti **grynais taisyklėmis** (kada ką daryti), (3) daug **nestruktūruotų duomenų** (tekstas, el. laiškai, atsiliepimai), kuriuos reikia interpretuoti. Paprastas promptas pakanka – kai vienas aiškus klausimas, vienas atsakymas, be paieškos ar išorinių sistemų.
+- **Vienas sujungtas blokas „Kaip veikia agentas“:** DI agentas (1) gauna užduotį, (2) planuoja žingsnius, (3) naudoja įrankius (paieška, API, failai – jei platforma leidžia), (4) grąžina rezultatą su grįžtamuoju ryšiu. **Ciklas (ReAct stiliumi):** suprasti → pasirinkti įrankį → vykdyti → pagal rezultatą spręsti, ar kartoti, ar baigti. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir gali kviesti išorinius įrankius.
+- **Kada naudoti agentą (trumpai skaidrėje 10.2):** 3–4 bullet’ai + sakinys „Išsamiau ir su pavyzdžiais – skaidrė **10.5** (Kada rinktis agentą, kada paprastą promptą)“.
 
 **Vizualizacija:** Proceso diagrama (React komponentas pagal [docs/development/SCHEME_AGENT.md](development/SCHEME_AGENT.md)) – pvz. Agent → Planavimas → Įrankiai → Aplinka → Rezultatas → Grįžtamasis ryšys. „Peržiūrėti pilname dydyje“ – tas pats React per EnlargeableDiagram.
 
-**CopyButton (trumpas aprašymas ciklo):** „DI agentas: (1) gauna užduotį, (2) planuoja žingsnius, (3) naudoja įrankius pagal poreikį, (4) grąžina rezultatą. Skirtumas nuo paprasto pokalbio – agentas gali atlikti kelis veiksmus ir naudoti išorinius įrankius.“
+**CopyButton:** **ne** dubliuoti ankstesnio „Trumpai“ paragrafo. Naudoti **užduotį DI**, pvz.: „Paaiškink savo žodžiais 4 žingsniais, kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“
 
 ---
 
-## 3a. Workflow, trigger, action, condition, webhook (skaidrė 10.1 ir 10.15)
+## 3a. Workflow, trigger, action, condition, webhook (skaidrė 10.15; apžvalga 10.1)
+
+**10.1** – be sąvokų lentelės / ilgos prozos; nuoroda į **10.15**.
 
 **Workflow** – automatizuotų veiksmų seka, kurią paleidžia **trigger**. Struktūra: **Trigger → Condition → Action**.
 
 **Webhook** – realaus laiko duomenų perdavimas tarp sistemų (įvykis įvyksta → sistema iškviečia kitos sistemos adresą su duomenimis). Pvz.: apmokėjimas atliktas → webhook → pardavimų sistema atnaujina užsakymą.
 
-**Pagrindinės sąvokos (lentelė į skaidrį 10.1 / 10.15):**
+**UI (GOLDEN_STANDARD §2.2) – skaidrė 10.15:** dauguma sekcijų **`brand`** arba **`terms`**; **`accent`** ne daugiau kaip **1–2** (pvz. vienas CTA arba paryškinimas). Venkti 8+ `accent` juostų iš eilės.
 
-| Sąvoka | Apibrėžimas |
-|--------|--------------|
-| **Trigger** | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
-| **Action** | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM). |
-| **Condition** | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €). |
-| **Integration** | Ryšys tarp sistemų – API arba webhook. |
-| **API** | Sistemų sąsaja – programinis būdas duomenims keistis. |
-| **Polling** | Tikrinimas kas X minučių – ar atsirado nauji duomenys. |
-| **Error handling** | Klaidų logika – ką daryti, kai žingsnis nepavyksta. |
-| **Logs / Audit trail** | Veiksmų istorija – kas, kada, ką atliko. |
+**Pagrindinės sąvokos (lentelė / sąrašas – skaidrė 10.15):**
+
+| Sąvoka                 | Apibrėžimas                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| **Trigger**            | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
+| **Action**             | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM).            |
+| **Condition**          | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €).                   |
+| **Integration**        | Ryšys tarp sistemų – API arba webhook.                                         |
+| **API**                | Sistemų sąsaja – programinis būdas duomenims keistis.                          |
+| **Polling**            | Tikrinimas kas X minučių – ar atsirado nauji duomenys.                         |
+| **Error handling**     | Klaidų logika – ką daryti, kai žingsnis nepavyksta.                            |
+| **Logs / Audit trail** | Veiksmų istorija – kas, kada, ką atliko.                                       |
 
 **Pavyzdžiai:** (1) Formos pateikimas → trigger → įrašas į CRM (action); sąlyga – jei el. paštas validus. (2) PayPal apmokėjimas → webhook → pardavimų sistema atnaujina užsakymą.
 
@@ -117,11 +114,11 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 ## 3b. 3A strategija (skaidrė 10.25)
 
-| Lygis | Dalis | Aprašymas |
-|-------|-------|-----------|
-| **AUTOMATIZE** | 80 % | Taisyklėmis paremti srautai – be žmogaus sprendimo (pvz. forma → CRM → laiškas). |
-| **AUGMENT** | 15 % | Žmogus sprendžia, DI padeda (santraukos, klasifikacija, rekomendacijos). |
-| **AUTONOMIZE** | 5 % | DI agentai, RAG, kokybės kontrolė, eskalacija – sistema gali veikti autonomiškai su ribomis. |
+| Lygis          | Dalis | Aprašymas                                                                                    |
+| -------------- | ----- | -------------------------------------------------------------------------------------------- |
+| **AUTOMATIZE** | 80 %  | Taisyklėmis paremti srautai – be žmogaus sprendimo (pvz. forma → CRM → laiškas).             |
+| **AUGMENT**    | 15 %  | Žmogus sprendžia, DI padeda (santraukos, klasifikacija, rekomendacijos).                     |
+| **AUTONOMIZE** | 5 %   | DI agentai, RAG, kokybės kontrolė, eskalacija – sistema gali veikti autonomiškai su ribomis. |
 
 **Taisyklė 80/15/5** – optimali vertės ir saugumo proporcija: didžioji dalis – paprasta automatizacija, maža dalis – žmogaus + DI, mažiausia – pilnai autonomiški agentai su žmogaus priežiūra.
 
@@ -131,11 +128,13 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 ## 3c. Verslo automatizavimo įrankiai (skaidrė 10.35)
 
-**Zapier:** 7000+ integracijų (Gmail, Slack, Salesforce, Google Workspace). No-code, greitas startas, idealu mažoms komandoms. **Tipinis workflow:** Naujas klientas (Google Forms) → Įrašas CRM → Personalizuotas laiškas → Slack pranešimas komandai. **Stiprybės:** milžiniška integracijų biblioteka, minimalus mokymosi laikas. **Silpnybės:** brangu didelėms apimtims, ribotas klaidų valdymas.
+**Skirtingi tipiniai srautai kiekvienam įrankiui** – vengti to paties „forma → CRM → laiškas → Slack“ kartojimo su 10.25 / 10.15.
 
-**Make.com:** Drag & drop vizualus kūrimas, sudėtingesnė logika nei Zapier, vidutinio dydžio verslui. **Pavyzdys:** Shopify → DB → atsargos → tiekėjai → logistika. **Stiprybės:** sąlygos, ciklai, duomenų transformacijos; geresnis nemokamas planas. **Silpnybės:** mokymosi kreivė, sunkiau valdyti daug scenarijų.
+**Zapier:** 7000+ integracijų (Gmail, Slack, Salesforce, Google Workspace). No-code, greitas startas, idealu mažoms komandoms. **Tipinis workflow (unikalus):** Naujas įrašas kalendoriuje (pvz. Calendly) → įrašas į Google Calendar → priminimo el. laiškas dalyviui. **Stiprybės:** milžiniška integracijų biblioteka, minimalus mokymosi laikas. **Silpnybės:** brangu didelėms apimtims, ribotas klaidų valdymas.
 
-**n8n:** Atviro kodo (open-source), pilna kontrolė, duomenų vietos kontrolė. Tinka techninėms komandoms, daug API integracijų. **Pavyzdys:** CRM + atsiliepimai → sentimentų analizė → ataskaita → kokybės užduotis. **Stiprybės:** neriboti workflow, galima rašyti kodą, pažangus error handling. **Silpnybės:** reikia IT žinių, serverių administravimas.
+**Make.com:** Drag & drop vizualus kūrimas, sudėtingesnė logika nei Zapier, vidutinio dydžio verslui. **Pavyzdys:** Shopify užsakymas → atsargų lentelė → sąlyga „žema atsarga“ → pranešimas tiekėjui (el. paštas). **Stiprybės:** sąlygos, ciklai, duomenų transformacijos; geresnis nemokamas planas. **Silpnybės:** mokymosi kreivė, sunkiau valdyti daug scenarijų.
+
+**n8n:** Atviro kodo (open-source), pilna kontrolė, duomenų vietos kontrolė. Tinka techninėms komandoms, daug API integracijų. **Pavyzdys:** Mokėjimo platformos webhook → patikra ir įrašas į vidinę DB → klaidos atveju į įspėjimų kanalą (Slack). **Stiprybės:** neriboti workflow, galima rašyti kodą, pažangus error handling. **Silpnybės:** reikia IT žinių, serverių administravimas.
 
 **Power Automate:** Microsoft integracija – Excel, Teams, Outlook, SharePoint, Office 365. Tinka administracijai, pardavimams, projektų valdymui. **Pavyzdys:** Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel. **Stiprybės:** enterprise saugumas, integruotas licencijavimas. **Silpnybės:** ribota už Microsoft ekosistemos, priklausomybė nuo MS.
 
@@ -145,40 +144,32 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Standartinė workflow specifikacija (1 puslapis)** – kiekvienam lab'ui rekomenduojama vieno puslapio specifikacija:
 
-| Blokas | Turinys |
-|--------|---------|
-| **Trigger** | Kas paleidžia (įvykis, dažnumas). |
-| **Input schema** | Kokie laukai, formatai, privalomi/optional. |
-| **Condition** | Sąlygos (pvz. jei laukas X > 500). |
-| **Actions** | Žingsnių sąrašas (1, 2, 3…) su įrankiais. |
-| **Output** | Ką gauname (įrašas CRM, laiškas, ticket). |
-| **SLA, retries, rate limits** | Max laukimo laikas, kiek kartų bandyti, API limitai. |
-| **Error handling** | Ką darom klaidos atveju (retry, alert, žmogaus eskalacija). |
-| **Audit log** | Ką fiksuojame ir kur (run_id, laikas, žingsnis, rezultatas). |
+| Blokas                        | Turinys                                                      |
+| ----------------------------- | ------------------------------------------------------------ |
+| **Trigger**                   | Kas paleidžia (įvykis, dažnumas).                            |
+| **Input schema**              | Kokie laukai, formatai, privalomi/optional.                  |
+| **Condition**                 | Sąlygos (pvz. jei laukas X > 500).                           |
+| **Actions**                   | Žingsnių sąrašas (1, 2, 3…) su įrankiais.                    |
+| **Output**                    | Ką gauname (įrašas CRM, laiškas, ticket).                    |
+| **SLA, retries, rate limits** | Max laukimo laikas, kiek kartų bandyti, API limitai.         |
+| **Error handling**            | Ką darom klaidos atveju (retry, alert, žmogaus eskalacija).  |
+| **Audit log**                 | Ką fiksuojame ir kur (run_id, laikas, žingsnis, rezultatas). |
 
-**Testavimo rinkinys (minimalus)** – 10 edge-case scenarijų prieš paleidžiant į „gyvą“ naudojimą: (1) tušti laukai (privalomi tušti), (2) neteisingas el. pašto formatas, (3) dublikatai (tas pats įrašas du kartus), (4) timeout (API neatsako laiku), (5) webhook duplikatai (tas pats webhook gaunamas du kartus), (6) specialieji simboliai / ilgas tekstas laukuose, (7) neleistinos reikšmės (pvz. ne skaičius ten, kur tikimasi skaičiaus), (8) trūkstami laukai (schema pasikeitė), (9) rate limit pasiektas (429), (10) autentifikacijos klaida (401/403). **Idempotency taisyklė:** kaip išvengti dvigubo siuntimo – pvz. unikalus request_id; „jei įrašas su šiuo ID jau egzistuoja – atnaujink, ne kurk naują“.
+**Testavimo rinkinys (minimalus)** – 10 edge-case scenarijų prieš paleidžiant į „gyvą“ naudojimą: (1) tušti laukai (privalomi tušti), (2) neteisingas el. pašto formatas, (3) dublikatai (tas pats įrašas du kartus), (4) timeout (API neatsako laiku), (5) webhook duplikatai (tas pats webhook gaunamas du kartus), (6) specialieji simboliai / ilgas tekstas laukuose, (7) neleistinos reikšmės (pvz. ne skaičius ten, kur tikimasi skaičiaus), (8) trūkstami laukai (schema pasikeitė), (9) rate limit pasiektas (429), (10) autentifikacijos klaida (401/403). **Idempotency (paprasta kalba):** taisyklės, kad **tas pats veiksmas neįvyktų du kartus** dėl pasikartojančio webhook ar paspaudimo – pvz. unikalus užklausos ID; jei įrašas su tuo ID jau yra – atnaujinti, ne kurti naują.
 
 **Saugumas ir atitiktis:** **PII taisyklės** – ką leidžiama siųsti į DI, ką maskuoti (vardas, pavardė, el. paštas – pagal GDPR ir įmonės politiką). **Access kontrolė** – kas gali redaguoti workflow (peržiūrėtojas, redaktorius, administratorius); API raktai – ne į kode, o secrets manager arba platformos saugykla. **Incident playbook (5 žingsniai):** (1) Sustabdyti workflow / atjungti integraciją, (2) Fiksuoti (log'ai, kas, kada, ką), (3) Įvertinti apimtį, (4) Pranešti (DPO, vadovui, jei reikia – valstybinėms), (5) Ištaisyti ir įdiegti apsaugas. **Human-in-the-loop:** kada privalomas žmogaus patvirtinimas – pvz. finansinės operacijos virš X sumos, asmens duomenų masinis eksportas.
 
-**Įrankių pasirinkimo medis (lentelė):**
-
-| Jei… | Tuomet pasirink |
-|------|------------------|
-| **Office 365 heavy** (Teams, Outlook, SharePoint kasdien) | **Power Automate** |
-| **Non-tech komanda + greitai startuoti** | **Zapier** |
-| **Reikia sudėtingos logikos + gera kaina** | **Make.com** |
-| **Reikia pilnos kontrolės + savihost / duomenys pas mus** | **n8n** |
-| **Enterprise governance, auditoriai, compliance** | **Workato** |
+**Įrankių pasirinkimo medis:** **JSON skaidrėje 10.65** – ne kartoti lentelę; trumpa nuoroda: „Žr. skaidrę **Įrankių pasirinkimas ir apribojimai (10.4)** – interaktyvi schema ir tekstas; išsamiau – **Automatizavimo įrankiai verslui**, §21.“
 
 ---
 
 ## 4. Content-block skaidrės (veiksmo skaidrės)
 
-Schema pagal GOLDEN_STANDARD §3.2: TL;DR (accent) → Daryk dabar (brand) → Kopijuojamas promptas → Patikra (accent) → Optional (terms, collapsible).
+Schema pagal GOLDEN_STANDARD §3.2: Trumpai (accent) → Daryk dabar (brand) → Kopijuojamas promptas → Patikra (accent) → Optional (terms, collapsible).
 
-### 4.1 Rolės ir sisteminio prompto šablonas (10.4)
+### 4.1 Rolės ir sisteminio prompto šablonas (10.3)
 
-**TL;DR:** Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai.
+**Trumpai:** Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai.
 
 **Daryk dabar:** Nukopijuok žemiau esantį promptą į savo DI įrankio „sisteminio nustatymo“ lauką (jei toks yra). Tada užduok vieną agentinę užduotį – pvz. „Ieškok [X] ir pateik santrauką su šaltiniais“.
 
@@ -195,9 +186,9 @@ Neišsivaizduok duomenų – jei reikia faktų, naudok paiešką arba parašyk �
 
 **Kur pritaikyti:** Bet kur, kur reikia ne tik vieno atsakymo, bet ir paieškos, skaičiavimų ar išorinių duomenų.
 
-### 4.2 Įrankių pasirinkimas ir apribojimai (10.5)
+### 4.2 Įrankių pasirinkimas ir apribojimai (10.4)
 
-**TL;DR:** Ne visi DI įrankiai turi tuos pačius įrankius. ChatGPT – Browse, DALL·E, skaičiuoklė; Claude – Tools; Gemini – paieška, „Workspace“. Nurodyk vartotojui, ką gali naudoti.
+**Trumpai:** Ne visi DI įrankiai turi tuos pačius įrankius. ChatGPT – Browse, DALL·E, skaičiuoklė; Claude – Tools; Gemini – paieška, „Workspace“. Nurodyk vartotojui, ką gali naudoti.
 
 **Daryk dabar:** Atidaryk savo DI įrankio nustatymus ir pažymėk, kokius įrankius leidi (paieška, failai, API). Tada vienoje užduotyje aiškiai parašyk: „Naudok paiešką ir pateik šaltinius“.
 
@@ -212,9 +203,9 @@ Naudok paiešką, kad rastum naujausią informaciją. Jei randi šaltinius – n
 
 **Kur pritaikyti:** Tyrimai, faktų tikrinimas, naujienų santraukos.
 
-### 4.3 Kada rinktis agentą, kada – paprastą promptą (10.6)
+### 4.3 Kada rinktis agentą, kada – paprastą promptą (10.5)
 
-**TL;DR:** Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių.
+**Trumpai:** Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių.
 
 **Daryk dabar:** Prieš rašant promptą, paklausk: „Ar reikia paieškos, failų ar kelių žingsnių?“ Jei taip – formuluok kaip agentinę užduotį (žingsniai, įrankiai). Jei ne – pakanka 6 blokų (META, INPUT, OUTPUT).
 
@@ -234,13 +225,13 @@ Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius š
 
 **Agentinio prompto šablonas (5 dalių):**
 
-| # | Dalis | Ką įrašyti | Pavyzdys |
-|---|--------|------------|----------|
-| 1 | **Rolė** | Kas esi, kokių įgūdžių, kokios atsakomybės ir ribos | „Tu esi [sritis] asistentas. Tavo rolė – [atsakomybės]. Turi prieigą prie [įrankių]. Ko nedaryti: [ribos].“ |
-| 2 | **Užduotis žingsniais** | Aiškūs nuoseklūs žingsniai – ką atlikti pirmiausia, ką paskui | „(1) Ieškoti [X], (2) išrinkti 3–5 šaltinius, (3) parašyti santrauką su nuorodomis.“ |
-| 3 | **Įrankiai / kada naudoti** | Kokius įrankius naudoti ir kada (paieška, API, skaičiuoklė) | „Naudok paiešką naujausiems duomenims. Jei reikia skaičiavimų – naudok skaičiuoklę.“ |
-| 4 | **Išvesties formatas** | Ką grąžinti (lentelė, sąrašas, kalba, šaltiniai) | „Formatas: lentelė. Kalba: lietuvių. Šaltiniai: nurodyk kiekvienam faktui.“ |
-| 5 | **Klaidos tvarkymas** | Ką daryti, kai nepavyksta (trūksta duomenų, timeout) | „Jei nerandi – parašyk „Nerasta“ ir kodėl. Neverk tuščio atsakymo.“ |
+| #   | Dalis                       | Ką įrašyti                                                    | Pavyzdys                                                                                                    |
+| --- | --------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | **Rolė**                    | Kas esi, kokių įgūdžių, kokios atsakomybės ir ribos           | „Tu esi [sritis] asistentas. Tavo rolė – [atsakomybės]. Turi prieigą prie [įrankių]. Ko nedaryti: [ribos].“ |
+| 2   | **Užduotis žingsniais**     | Aiškūs nuoseklūs žingsniai – ką atlikti pirmiausia, ką paskui | „(1) Ieškoti [X], (2) išrinkti 3–5 šaltinius, (3) parašyti santrauką su nuorodomis.“                        |
+| 3   | **Įrankiai / kada naudoti** | Kokius įrankius naudoti ir kada (paieška, API, skaičiuoklė)   | „Naudok paiešką naujausiems duomenims. Jei reikia skaičiavimų – naudok skaičiuoklę.“                        |
+| 4   | **Išvesties formatas**      | Ką grąžinti (lentelė, sąrašas, kalba, šaltiniai)              | „Formatas: lentelė. Kalba: lietuvių. Šaltiniai: nurodyk kiekvienam faktui.“                                 |
+| 5   | **Klaidos tvarkymas**       | Ką daryti, kai nepavyksta (trūksta duomenų, timeout)          | „Jei nerandi – parašyk „Nerasta“ ir kodėl. Neverk tuščio atsakymo.“                                         |
 
 **Taisyklės:**
 
@@ -256,13 +247,15 @@ Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius š
 - **Pavyzdys (few-shot):** Jei įmanoma, įdėk 1–2 pavyzdžius „panašios užduoties → kaip atlikti“ – tai sumažina klaidas.
 - **Testuok su ribomis:** Patikrink, ar DI teisingai atsako, kai duomenų nėra arba timeout – klaidos tvarkymas turi veikti.
 
-**Kopijuojamas pilnas šablonas (CopyButton):** žr. skaidrė 10.5 – sekcija „Agentinio prompto šablonas (5 dalių)“.
+**Kopijuojamas pilnas šablonas (CopyButton):** žr. skaidrė **10.5** – sekcija „Agentinio prompto šablonas (5 dalių)“.
 
-### 4.4 Klaidos tvarkymas ir ribos (10.7)
+**Sekcija „Taisyklės ir patarimai“ (skaidrė 10.5):** JSON – `collapsible: true`, `collapsedByDefault: true` (ilgas tekstas pagal nutylėjimą suskleistas).
 
-**TL;DR:** Agentas turi žinoti, ką daryti, kai kažkas nepavyksta (nėra duomenų, timeout, neleistinas veiksmas). Nurodyk ribas: ko nedaryti, ką grąžinti vietoj tuščio atsakymo.
+### 4.4 Klaidos tvarkymas ir ribos (10.6)
 
-**Daryk dabar:** Prie savo sisteminio arba vartotojo prompto pridėk 1–2 sakinius: ką daryti, jei nepavyksta (pvz. „Jei nerandi – parašyk Nežinau ir kodėl“).
+**Trumpai:** Agentas turi žinoti, ką daryti, kai kažkas nepavyksta (nėra duomenų, timeout, neleistinas veiksmas). Nurodyk ribas: ko nedaryti, ką grąžinti vietoj tuščio atsakymo.
+
+**Daryk dabar:** Įklijuok copyable tekstą į sisteminį arba vartotojo promptą; tada užduok sąmoningai neįvykdomą užduotį (pvz. neegzistuojantis šaltinis).
 
 **Kopijuojamas promptas (CopyButton):**
 
@@ -270,7 +263,7 @@ Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius š
 Jei užduoties atlikti negalima (trūksta duomenų, neleistinas veiksmas arba timeout): parašyk trumpą pranešimą „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Neverk tuščio atsakymo.
 ```
 
-**Patikra:** Ar DI kartais tiesiog nutyla? Pridėk aiškų nurodymą „jei nepavyksta – parašyk kodėl“.
+**Patikra:** Ar DI grąžina „Nepavyko“ ir priežastį, o ne tuščią atsakymą? Jei nutyli – papildyk: „Jei negali – visada parašyk kodėl.“
 
 **Kur pritaikyti:** Visose agentų sistemose – geresnė vartotojo patirtis ir saugesnis elgesys.
 
@@ -280,20 +273,20 @@ Jei užduoties atlikti negalima (trūksta duomenų, neleistinas veiksmas arba ti
 
 Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 terminų:
 
-| Terminas | Apibrėžimas (vienas sakinys) |
-|----------|------------------------------|
-| **Agentas (DI)** | Sistema, kuri atlieka užduotis žingsniais ir gali naudoti įrankius (paieška, API, failai). |
-| **Įrankis (tool)** | Funkcija, kurią DI gali iškviesti (pvz. paieška, skaičiuoklė, failo skaitymas). |
-| **Sisteminis promptas** | Nustatymas „kas esi“ ir „kaip elgtis“ – matomas DI, ne vartotojui. |
-| **Vartotojo promptas** | Užduotis, kurią įveda vartotojas. |
-| **Integracija** | Ryšys tarp DI ir išorinių duomenų ar paslaugų (API, duomenų bazė). |
-| **Vykdymas (execution)** | Žingsnių atlikimas – planavimas ir įrankių kvietimai. |
-| **Ribos (guardrails)** | Taisyklės, ko agentas nedaro (pvz. neleistinos veiklos, privatumas). |
-| **Klaidos tvarkymas** | Ką grąžinti vartotojui, kai užduotis nepavyksta. |
-| **Trigger** | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
-| **Action** | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM). |
-| **Condition** | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €). |
-| **Webhook** | Realaus laiko duomenų perdavimas tarp sistemų (įvykis → API kvietimas). |
+| Terminas                 | Apibrėžimas (vienas sakinys)                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| **Agentas (DI)**         | Sistema, kuri atlieka užduotis žingsniais ir gali naudoti įrankius (paieška, API, failai). |
+| **Įrankis (tool)**       | Funkcija, kurią DI gali iškviesti (pvz. paieška, skaičiuoklė, failo skaitymas).            |
+| **Sisteminis promptas**  | Nustatymas „kas esi“ ir „kaip elgtis“ – matomas DI, ne vartotojui.                         |
+| **Vartotojo promptas**   | Užduotis, kurią įveda vartotojas.                                                          |
+| **Integracija**          | Ryšys tarp DI ir išorinių duomenų ar paslaugų (API, duomenų bazė).                         |
+| **Vykdymas (execution)** | Žingsnių atlikimas – planavimas ir įrankių kvietimai.                                      |
+| **Ribos (guardrails)**   | Taisyklės, ko agentas nedaro (pvz. neleistinos veiklos, privatumas).                       |
+| **Klaidos tvarkymas**    | Ką grąžinti vartotojui, kai užduotis nepavyksta.                                           |
+| **Trigger**              | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas).             |
+| **Action**               | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM).                        |
+| **Condition**            | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €).                               |
+| **Webhook**              | Realaus laiko duomenų perdavimas tarp sistemų (įvykis → API kvietimas).                    |
 
 ---
 
@@ -301,13 +294,13 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc):
 
-| # | Blokas | Turinys |
-|---|--------|---------|
-| 1 | Celebration Hero | „Ką išmokote“ – Agentų ciklas, įrankiai, promptų architektūra, ribos. 3 statistikos: pvz. „1 ciklas“, „3 promptų šablonai“, „4 „Kur pritaikyti?“ taškai“. |
-| 2 | Žinių kortelės | Max 3: (1) Agentų ciklas ir įrankiai, (2) Rolė ir sisteminis promptas, (3) Kada agentas, kada paprastas promptas. |
-| 3 | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia. |
-| 4 | Kitas žingsnis CTA | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą. |
-| 5 | Motyvacinis footer | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“ |
+| #   | Blokas               | Turinys                                                                                                                                                   |
+| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Celebration Hero     | „Ką išmokote“ – Agentų ciklas, įrankiai, promptų architektūra, ribos. 3 statistikos: pvz. „1 ciklas“, „3 promptų šablonai“, „4 „Kur pritaikyti?“ taškai“. |
+| 2   | Žinių kortelės       | Max 3: (1) Agentų ciklas ir įrankiai, (2) Rolė ir sisteminis promptas, (3) Kada agentas, kada paprastas promptas.                                         |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                      |
+| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                  |
+| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“                                                                       |
 
 **Pirmas veiksmas po modulio:** Šiandien atidaryk vieną DI įrankį su įjungtais įrankiais (paieška arba Tools) ir užduok vieną agentinę užklausą su „Naudok paiešką ir pateik šaltinius“.
 
@@ -319,13 +312,13 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).
 - **duration:** ~10–12 min.
-- **firstActionCTA:** Atsakyk į 6–8 klausimus – apie agentų ciklą, įrankius, promptus ir „Kur pritaikyti?“.
+- **firstActionCTA:** Atsakyk į 8 klausimus – dalis su trumpa situacija; temos: agentų ciklas, įrankiai, promptai, workflow.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad esi pasiruošęs projektuoti agentus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 12 (projektas). &lt;70 % – peržiūrėk rekomenduojamas skaidres (remediation pagal klausimą).
 
 ### 7.2 test-section ir test-results
 
-- **Klausimai:** 6–8 klausimų – MCQ ir/ar scenarijų tipas („Duota situacija – kuris promptas geriausias?“). Remediation – nuoroda į konkretų M10 slide id.
+- **Klausimai:** 8 MCQ – šeši žinių klausimai ir du situaciniai (pvz. forma→Sheets→paštas; Augment su žmogaus patvirtinimu). Remediation – `relatedSlideId` į M10 skaidrę.
 - **test-results:** passedMessage, failedMessage, **useCaseBlock** („Kur pritaikyti?“ – accent): pvz. „Agentų žinias gali pritaikyti: tyrimų automatizavimas, ataskaitų generavimas iš kelių šaltinių, įrankių naudojimas (paieška, API).“ thresholdExplanation: „Pasiekę ≥70 % parodėte, kad suprantate agentų ciklą ir promptus – galite pereiti prie projekto. &lt;70 % – rekomenduojame dar kartą peržiūrėti Modulio 10 skaidres.“
 
 ---
@@ -343,11 +336,11 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 
 **MUST – be šito mokymai nėra „delivery-first“.** Modulio 12 branduolys – **3 realūs lab'ai su rezultatu (artefaktais)**:
 
-| # | Lab | 3A lygis | Trumpas aprašymas | Artefaktai |
-|---|-----|----------|-------------------|------------|
-| **1** | **Lab #1 „Automatize (80 %)“** | Automatize | Form → Sheets/CRM → Email → Slack/Teams (Zapier arba Make). Taisyklėmis paremti srautai. | Workflow schema, laukų mappingas, test cases, logų screenshot'ai. |
-| **2** | **Lab #2 „Augment (15 %)“** | Augment | Gautas laiškas → DI santrauka → žmogaus approve → išsiuntimas. Žmogus sprendžia, DI padeda. | Workflow schema, santraukos šablonas, approval žingsnio aprašymas, 1–2 test cases. |
-| **3** | **Lab #3 „Autonomize (5 %)“** | Autonomize | Atsiliepimai → sentiment DI → eskalacija → ticket/užduotis. DI agentas + QA/eskalacija. | Workflow schema, sentiment slenksčiai, eskalacijos taisyklės, incident playbook nuoroda. |
+| #     | Lab                            | 3A lygis   | Trumpas aprašymas                                                                           | Artefaktai                                                                               |
+| ----- | ------------------------------ | ---------- | ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **1** | **Lab #1 „Automatize (80 %)“** | Automatize | Form → Sheets/CRM → Email → Slack/Teams (Zapier arba Make). Taisyklėmis paremti srautai.    | Workflow schema, laukų mappingas, test cases, logų screenshot'ai.                        |
+| **2** | **Lab #2 „Augment (15 %)“**    | Augment    | Gautas laiškas → DI santrauka → žmogaus approve → išsiuntimas. Žmogus sprendžia, DI padeda. | Workflow schema, santraukos šablonas, approval žingsnio aprašymas, 1–2 test cases.       |
+| **3** | **Lab #3 „Autonomize (5 %)“**  | Autonomize | Atsiliepimai → sentiment DI → eskalacija → ticket/užduotis. DI agentas + QA/eskalacija.     | Workflow schema, sentiment slenksčiai, eskalacijos taisyklės, incident playbook nuoroda. |
 
 **Bendri artefaktai visiems lab'ams:** workflow schema (1 pusl.), laukų mappingas, test cases (min. 2), logų/screenshot'ai. Detalus aprašymas ir šablonai – [docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.
 
@@ -386,23 +379,23 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 
 ### MUST (be šito mokymai nėra „delivery-first“)
 
-| Elementas | Vieta | Pastaba |
-|-----------|--------|---------|
-| **3 realūs lab'ai su artefaktais** | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize) | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17. |
-| **Standartinė workflow specifikacija (1 p.)** | **M10** – nuoroda skaidrėje 10.4 arba 10.5 (įrankių / kada agentas); pilnas šablonas – ref. doc | Trigger, input schema, condition, actions, output; SLA, retries, rate limits; error handling; audit log. Ref.: §18 to paties doc. |
-| **Testavimo rinkinys (minimalus)** | **M10** – optional skaidrė arba collapsible „Testavimas“ po 10.6; pilnas – ref. doc | 10 edge-case scenarijų (tušti laukai, neteisingas email, dublikatai, timeout, webhook duplikatai); idempotency taisyklė. Ref.: §19. |
-| **Saugumo/atitikties mini-modulis** | **M10** – viena skaidrė arba collapsible „Saugumas ir atitiktis“ (po 10.6 arba 10.7); pilnas – ref. doc | PII taisyklės (ką siųsti į LLM, ką maskuoti); access kontrolė (kas gali redaguoti workflow); incident playbook (5 žingsniai); kada privalomas „human-in-the-loop“. Ref.: §20. |
-| **Įrankių pasirinkimo sprendimų medis** | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
+| Elementas                                     | Vieta                                                                                                   | Pastaba                                                                                                                                                                                     |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize)                    | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
+| **Standartinė workflow specifikacija (1 p.)** | **M10** – nuoroda skaidrėje 10.4 arba 10.5 (įrankių / kada agentas); pilnas šablonas – ref. doc         | Trigger, input schema, condition, actions, output; SLA, retries, rate limits; error handling; audit log. Ref.: §18 to paties doc.                                                           |
+| **Testavimo rinkinys (minimalus)**            | **M10** – optional skaidrė arba collapsible „Testavimas“ po 10.6; pilnas – ref. doc                     | 10 edge-case scenarijų (tušti laukai, neteisingas email, dublikatai, timeout, webhook duplikatai); idempotency taisyklė. Ref.: §19.                                                         |
+| **Saugumo/atitikties mini-modulis**           | **M10** – viena skaidrė arba collapsible „Saugumas ir atitiktis“ (po 10.6 arba 10.7); pilnas – ref. doc | PII taisyklės (ką siųsti į LLM, ką maskuoti); access kontrolė (kas gali redaguoti workflow); incident playbook (5 žingsniai); kada privalomas „human-in-the-loop“. Ref.: §20.               |
+| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc  | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 
-| Elementas | Vieta | Pastaba |
-|-----------|--------|---------|
-| **ROI skaičiuoklės šablonas** | **M12** practice-intro arba ref. doc | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22. |
-| **Use case katalogas (20 pvz.)** | Ref. doc; M10.1 arba santraukoje – nuoroda | Pardavimai, HR, finansai, klientų aptarnavimas, gamyba, e-komercija. Kiekvienam: trigger → actions → rizika → KPI. Ref.: §23. |
-| **Duomenų modeliavimas non-tech** | **M10** – optional skaidrė arba collapsible; ref. doc | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24. |
-| **Observability** | Ref. doc; M12 arba M10 – nuoroda | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25. |
-| **Promptų standartas automatizacijai** | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26. |
+| Elementas                              | Vieta                                                              | Pastaba                                                                                                                                 |
+| -------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **ROI skaičiuoklės šablonas**          | **M12** practice-intro arba ref. doc                               | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22. |
+| **Use case katalogas (20 pvz.)**       | Ref. doc; M10.1 arba santraukoje – nuoroda                         | Pardavimai, HR, finansai, klientų aptarnavimas, gamyba, e-komercija. Kiekvienam: trigger → actions → rizika → KPI. Ref.: §23.           |
+| **Duomenų modeliavimas non-tech**      | **M10** – optional skaidrė arba collapsible; ref. doc              | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24.                                    |
+| **Observability**                      | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                             |
+| **Promptų standartas automatizacijai** | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                 |
 
 ### WANT (galima vėlesniam išplėtimui)
 

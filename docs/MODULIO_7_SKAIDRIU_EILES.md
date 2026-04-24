@@ -8,59 +8,60 @@
 
 ## Pilna seka ir motyvacija
 
-| Eilė | ID | Skaidrė / tema | Kodėl čia? |
-|------|-----|----------------|-------------|
-| 0 | 70 | Modulio 7 įvadas / itraukimas (action-intro) | Pirmoji skaidrė – hook, whyBenefit, CTA; nuoroda į 4.2/4.6. |
-| 1 | 7.1 | Duomenų analizės kelias – ką čia rasite | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); fokusas – analizės užklausos ir išvados. |
-| 2 | 7.2 | Strateginis pamatas | Duomenys = sprendimų sistema; duomenys > nuomonė; variacija; tobulinti sistemą. |
-| 2a | 725 | **DI paradoksas** (infographic) | Aktualus kontekstas: 95 % nepamatė P&L; >40 mlrd $ investicijos; šešėlinis DI; asmeninis vs organizacinis. MIT 2025. |
-| 2b | 726 | **Problematika: kodėl DI nesukuria vertės ir ką daryti** | Investicijų kryptis, pilotų spąstai, duomenų kultūra (Lietuva); 4 žingsniai verslui; esminė išvada. |
-| 3 | 7.3-4 | **Pipeline ir operacinė lentelė** (sujungta 7.3+7.4) | 6 žingsnių pipeline + etapas vs „ką reiškia versle“ vs DI promptas; CopyButton. |
-| 3a | 731 | **4 analizės tipai** | Aprašomoji→Diagnostinė→Nuspėjamoji→Nurodomoji; 4 CopyButton; M8 blokas – Learn prieš Test. |
-| 3b | 732 | **Sentimentų analizė – verslo lygio OUTPUT** | 5 punktų struktūra; CopyButton ROLE/TASK/OUTPUT; M8-q4 remediation. |
-| 3c | 733 | **Verslo analizės šablonai** | Duomenų kūrimas, Konkurentai, CFO – 3 CopyButton; M9 scenarijų turinys. |
-| 4 | 7.5 | Verslo duomenų išplėtimas | 6 domenai (klientai, tiekimas, pardavimai, CRM, procesai, konkurentai). |
-| 5 | 7.6-7 | **Duomenų tipai ir rinkimo strategija** (sujungta 7.6+7.7) | 5 tipai + 3 rinkimo būdai; CopyButton kiekvienam. |
-| 5a | 7.7a | **Data scraping (duomenų siurbimas) – paprasčiausi būdai** | Kas tai; 4 būdai (rankinis, naršyklė, DI skriptas, API); etika/teisė; CopyButton – promptas skriptui generuoti; kaip paleisti (pip, python). SOT: turinio_pletra_moduliai_7_8_9.md §3.4. |
-| 6 | 78 | **DI vaidmuo verslo analizėje** (sujungta 7.8+7.9) | Skirtumas tradicinei analizei + ką DI gali; tiltelis į rolę, DB, vizualizacijas. |
-| 7 | 83 | Rolės aktyvavimas | CopyButton: vyresnysis analitikas, sisteminis principas. META. |
-| 8 | 84 | Duomenų struktūros kūrimas (DB) | E-commerce DB, ER, KPI; CopyButton. |
-| 9 | 7.12 | Duomenų ryšių analizė | Ryšiai, dubliavimas, butelio kakliukai, 5 KPI; CopyButton. |
-| 11 | 7.13 | Vizualizacijų generavimas | CopyButton: tendencijos, segmentai, pelningumas, įžvalgos. |
-| 12 | 7.14 | Prognozavimas | CopyButton: 6 mėn. prognozė, sezoniškumas, scenarijai. |
-| 13 | 7.15 | Tyrimų promptų sistema | 3 šablonai: prekės ženklas, lojalumas, pardavimai. |
-| 14 | 7.16 | 5 žingsnių algoritmas | Šaltiniai → struktūra → surinkti → valymas → eksportas; 5 promptai. |
-| 14a | 891 | **Duomenų paruošimas ir workflow** (sujungta 7.16a+7.16b) | Žingsnių seka + valymo checklist, metaduomenys 3 tipai, CopyButton; M8-q7, M8-q8. |
-| 14b | **66.9** | **Skyrius: Patikrumas ir etika** (perkelta iš M4) | Section-break – manipuliacijos, haliucinacijos, žinių patikrinimas, DI detektoriai. |
-| 14c | 67 | Promptų manipuliacijos | Šališkumas, leading questions, neutralūs promptai; ko vengti. |
-| 14d | 67.3 | Praktika: pataisyk šališką promptą | Atpažinti manipuliaciją ir perrašyti neutraliai. |
-| 14e | 67.5 | Saugumas: prompt injection ir jailbreak | OWASP LLM #1; gynybos principai. |
-| 14f | 67.8 | Haliucinacijos | Kas tai, kaip mažinti; 5 taisyklės, anti-haliucinacinis šablonas. |
-| 14g | 68 | Žinių patikrinimas | Šaltiniai, cross-check, „nežinau“ taisyklė. |
-| 14h | 200 | Haliucinacijų rodikliai (benchmark) | Pagrindinių DI modelių palyginimas (Vectara). |
-| 14i | 201 | DI turinio detektoriai | Top 10 įrankių DI turinio aptikimui. |
-| 14j | 68.5 | Savitikra: Manipuliacijos ir haliucinacijos | Formatinis grįžtamasis ryšys. |
-| 15 | 7.17 | EDA praktiškai | Statistika, koreliacija, anomalijos, hipotezės; CopyButton. |
-| 16 | 7.18 | Lentelių kūrimo metodika | Tikslas → Stulpeliai → Pavyzdžiai → Validacija; profesionalus promptas. |
-| 17 | 92 | **BI schema ir taikymas (pavyzdys)** (sujungta 7.19+7.20) | BI schema + BI planas CopyButton + rinkos tendencijų pavyzdys CopyButton. |
-| 18 | 7.21 | DI agentų koncepcija | Data Research, EDA, Insight – 3 kortelės. |
-| 19 | 95 | **DI įvesties analizė: nuotrauka ir schema** (sujungta 7.22+7.23) | Screenshot + schema; 2 CopyButton, optional image. |
-| 21 | 7.24 | Deming ir duomenimis grįsta kultūra | Citata; promptas vadovybei CopyButton. |
-| 22 | 7.25 | Silpnosios vietos – ką pridėti | Optional/collapsible: modeliai, datasetai, validacija. |
-| 23 | 7.26 | MASTER PROMPTAS | 8 žingsnių; CopyButton; M9 šablonas. META, OUTPUT. |
-| 24 | 7.27 | Modulio 7 santrauka | 5 blokų modelis (summary); CTA į M8 (testas), M9 (projektas). |
-| 25 | 7.28-29 | **Vizualizacija – pozicionavimas ir ciklas** (sujungta 7.28+7.29) | Data storytelling + DI; vizualizacija = istorijos dalis; ciklas su vizualizacija. |
-| 26 | 101 | **Vizualizacijos pagrindai: psichologija + Geštaltas** (sujungta 7.30+7.31) | 10/20/80 + 8 principai; M8-q6 remediation. |
-| 27 | 7.32 | Sustiprinti vizualizacijos promptai | 4 CopyButton: tipas, istorija, Power BI, Python viz. |
-| 28 | 104 | **Istorijos modelis ir geri dashboard'ai** (sujungta 7.33+7.34) | Duomenys→Istorija (4 etapai) + KPI, tendencija, Netflix/BBC pavyzdžiai. |
-| 29 | 7.35 | DI pagalba + super promptas + alternatyvos | 4 sritys; super promptas; Julius AI, Echobase, DataLab, Power BI. |
+| Eilė | ID       | Skaidrė / tema                                                              | Kodėl čia?                                                                                                                                                                               |
+| ---- | -------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0    | 70       | Modulio 7 įvadas / itraukimas (action-intro)                                | Pirmoji skaidrė – hook, whyBenefit, CTA; nuoroda į 4.2/4.6.                                                                                                                              |
+| 1    | 7.1      | Duomenų analizės kelias – ką čia rasite                                     | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); fokusas – analizės užklausos ir išvados.                                                                                          |
+| 2    | 7.2      | Strateginis pamatas                                                         | Duomenys = sprendimų sistema; duomenys > nuomonė; variacija; tobulinti sistemą.                                                                                                          |
+| 2a   | 725      | **DI paradoksas** (infographic)                                             | Aktualus kontekstas: 95 % nepamatė P&L; >40 mlrd $ investicijos; šešėlinis DI; asmeninis vs organizacinis. MIT 2025.                                                                     |
+| 2b   | 726      | **Problematika: kodėl DI nesukuria vertės ir ką daryti**                    | Investicijų kryptis, pilotų spąstai, duomenų kultūra (Lietuva); 4 žingsniai verslui; esminė išvada.                                                                                      |
+| 3    | 7.3-4    | **Pipeline ir operacinė lentelė** (sujungta 7.3+7.4)                        | 6 žingsnių pipeline + etapas vs „ką reiškia versle“ vs DI promptas; CopyButton.                                                                                                          |
+| 3a   | 731      | **4 analizės tipai**                                                        | Aprašomoji→Diagnostinė→Nuspėjamoji→Nurodomoji; 4 CopyButton; M8 blokas – Learn prieš Test.                                                                                               |
+| 3b   | 732      | **Sentimentų analizė – verslo lygio OUTPUT**                                | 5 punktų struktūra; CopyButton ROLE/TASK/OUTPUT; M8-q4 remediation.                                                                                                                      |
+| 3c   | 733      | **Verslo analizės šablonai**                                                | Duomenų kūrimas, Konkurentai, CFO – 3 CopyButton; M9 scenarijų turinys.                                                                                                                  |
+| 4    | 7.5      | Verslo duomenų išplėtimas                                                   | 6 domenai (klientai, tiekimas, pardavimai, CRM, procesai, konkurentai).                                                                                                                  |
+| 5    | 7.6-7    | **Duomenų tipai ir rinkimo strategija** (sujungta 7.6+7.7)                  | 5 tipai + 3 rinkimo būdai; CopyButton kiekvienam.                                                                                                                                        |
+| 5a   | 7.7a     | **Data scraping (duomenų siurbimas) – paprasčiausi būdai**                  | Kas tai; 4 būdai (rankinis, naršyklė, DI skriptas, API); etika/teisė; CopyButton – promptas skriptui generuoti; kaip paleisti (pip, python). SOT: turinio_pletra_moduliai_7_8_9.md §3.4. |
+| 6    | 78       | **DI vaidmuo verslo analizėje** (sujungta 7.8+7.9)                          | Skirtumas tradicinei analizei + ką DI gali; tiltelis į rolę, DB, vizualizacijas.                                                                                                         |
+| 7    | 83       | Rolės aktyvavimas                                                           | CopyButton: vyresnysis analitikas, sisteminis principas. META.                                                                                                                           |
+| 8    | 84       | Duomenų struktūros kūrimas (DB)                                             | E-commerce DB, ER, KPI; CopyButton.                                                                                                                                                      |
+| 9    | 7.12     | Duomenų ryšių analizė                                                       | Ryšiai, dubliavimas, butelio kakliukai, 5 KPI; CopyButton.                                                                                                                               |
+| 11   | 7.13     | Vizualizacijų generavimas                                                   | CopyButton: tendencijos, segmentai, pelningumas, įžvalgos.                                                                                                                               |
+| 12   | 7.14     | Prognozavimas                                                               | CopyButton: 6 mėn. prognozė, sezoniškumas, scenarijai.                                                                                                                                   |
+| 13   | 7.15     | Tyrimų promptų sistema                                                      | 3 šablonai: prekės ženklas, lojalumas, pardavimai.                                                                                                                                       |
+| 14   | 7.16     | 5 žingsnių algoritmas                                                       | Šaltiniai → struktūra → surinkti → valymas → eksportas; 5 promptai.                                                                                                                      |
+| 14a  | 891      | **Duomenų paruošimas ir workflow** (sujungta 7.16a+7.16b)                   | Žingsnių seka + valymo checklist, metaduomenys 3 tipai, CopyButton; M8-q7, M8-q8.                                                                                                        |
+| 14b  | **66.9** | **Skyrius: Patikrumas ir etika** (perkelta iš M4)                           | Section-break – manipuliacijos, haliucinacijos, žinių patikrinimas, DI detektoriai.                                                                                                      |
+| 14c  | 67       | Promptų manipuliacijos                                                      | Šališkumas, leading questions, neutralūs promptai; ko vengti.                                                                                                                            |
+| 14d  | 67.3     | Praktika: pataisyk šališką promptą                                          | Atpažinti manipuliaciją ir perrašyti neutraliai.                                                                                                                                         |
+| 14e  | 67.5     | Saugumas: prompt injection ir jailbreak                                     | OWASP LLM #1; gynybos principai.                                                                                                                                                         |
+| 14f  | 67.7     | **Haliucinacijų mažinimo grandinė**                                         | Tipas `hallucination-pipeline` – 5 žingsnių vizualas (šaltiniai → patikra → struktūra → rizika → peržiūra) prieš tekstinę skaidrę 67.8.                                                  |
+| 14g  | 67.8     | Haliucinacijos                                                              | Kas tai, kaip mažinti; 5 taisyklės, anti-haliucinacinis šablonas.                                                                                                                        |
+| 14h  | 68       | Žinių patikrinimas                                                          | Šaltiniai, cross-check, „nežinau“ taisyklė.                                                                                                                                              |
+| 14i  | 200      | Haliucinacijų rodikliai (benchmark)                                         | Pagrindinių DI modelių palyginimas (Vectara).                                                                                                                                            |
+| 14j  | 201      | DI turinio detektoriai                                                      | Top 10 įrankių DI turinio aptikimui.                                                                                                                                                     |
+| 14k  | 68.5     | Savitikra: Manipuliacijos ir haliucinacijos                                 | Formatinis grįžtamasis ryšys.                                                                                                                                                            |
+| 15   | 7.17     | EDA praktiškai                                                              | Statistika, koreliacija, anomalijos, hipotezės; CopyButton.                                                                                                                              |
+| 16   | 7.18     | Lentelių kūrimo metodika                                                    | Tikslas → Stulpeliai → Pavyzdžiai → Validacija; profesionalus promptas.                                                                                                                  |
+| 17   | 92       | **BI schema ir taikymas (pavyzdys)** (sujungta 7.19+7.20)                   | BI schema + BI planas CopyButton + rinkos tendencijų pavyzdys CopyButton.                                                                                                                |
+| 18   | 7.21     | DI agentų koncepcija                                                        | Data Research, EDA, Insight – 3 kortelės.                                                                                                                                                |
+| 19   | 95       | **DI įvesties analizė: nuotrauka ir schema** (sujungta 7.22+7.23)           | Screenshot + schema; 2 CopyButton, optional image.                                                                                                                                       |
+| 21   | 7.24     | Deming ir duomenimis grįsta kultūra                                         | Citata; promptas vadovybei CopyButton.                                                                                                                                                   |
+| 22   | 7.25     | Silpnosios vietos – ką pridėti                                              | Optional/collapsible: modeliai, datasetai, validacija.                                                                                                                                   |
+| 23   | 7.26     | MASTER PROMPTAS                                                             | 8 žingsnių; CopyButton; M9 šablonas. META, OUTPUT.                                                                                                                                       |
+| 24   | 7.27     | Modulio 7 santrauka                                                         | 5 blokų modelis (summary); CTA į M8 (testas), M9 (projektas).                                                                                                                            |
+| 25   | 7.28-29  | **Vizualizacija – pozicionavimas ir ciklas** (sujungta 7.28+7.29)           | Data storytelling + DI; vizualizacija = istorijos dalis; ciklas su vizualizacija.                                                                                                        |
+| 26   | 101      | **Vizualizacijos pagrindai: psichologija + Geštaltas** (sujungta 7.30+7.31) | 10/20/80 + 8 principai; M8-q6 remediation.                                                                                                                                               |
+| 27   | 7.32     | Sustiprinti vizualizacijos promptai                                         | 4 CopyButton: tipas, istorija, Power BI, Python viz.                                                                                                                                     |
+| 28   | 104      | **Istorijos modelis ir geri dashboard'ai** (sujungta 7.33+7.34)             | Duomenys→Istorija (4 etapai) + KPI, tendencija, Netflix/BBC pavyzdžiai.                                                                                                                  |
+| 29   | 7.35     | DI pagalba + super promptas + alternatyvos                                  | 4 sritys; super promptas; Julius AI, Echobase, DataLab, Power BI.                                                                                                                        |
 
 ---
 
 ## Trumpos taisyklės
 
 - **70 (action-intro) visada pirmas** – whyBenefit, hook, nuoroda į 4.2/4.6, CTA.
-- **Patikrumas ir etika (66.9–68.5)** – blokas perkeltas iš Modulio 4; įterptas po 891 (Duomenų paruošimas). Tematika: manipuliacijos, haliucinacijos, žinių patikrinimas, DI detektoriai – atitinka duomenų/turinio patikimumą analizėje.
+- **Patikrumas ir etika (66.9–68.5)** – blokas perkeltas iš Modulio 4; įterptas po 891 (Duomenų paruošimas). Tematika: manipuliacijos, haliucinacijos, žinių patikrinimas, DI detektoriai – atitinka duomenų/turinio patikimumą analizėje. **UX tiltas:** 66.9 `nextSteps` ir EDA skaidrės (90) įvadas aiškiai sako, kad po etikos bloko grįžtama prie **tos pačios** analizės krypties (EDA → lentelės → BI → MASTER), ne prie naujo modulio. **Santrauka (75):** pipeline kortelėje **6** etapai (suderinta su 73), CTA – „tu“ forma.
 - **7.3-4, 7.6-7, 7.28-29** – sujungtos skaidrės (viena skaidrė, dvigubas turinys) – mažesnė kognityvinė apkrova, greitesnė peržiūra.
 - **7.26 MASTER PROMPTAS** – akcentuotas (blockVariant: accent); naudoti kaip M9 projekto šabloną.
 - **7.27 santrauka** – 5 blokų modelis pagal content-agent-summary-slide.mdc: Celebration Hero, max 3 žinių kortelės, refleksijos promptas, Kitas žingsnis CTA, motyvacinis footer.

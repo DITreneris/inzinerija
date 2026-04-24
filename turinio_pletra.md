@@ -1,7 +1,7 @@
 # Turinio Plėtra - Promptų anatomija Mokymas
 
 > **Autorinė mokymo medžiaga © 2024-2026 Tomas Staniulis**
-> 
+>
 > Šis dokumentas aprašo "Promptų anatomija" mokymo turinio struktūrą, pedagoginę logiką ir plėtros planą.
 
 ---
@@ -32,7 +32,7 @@
    ├── 17. Pilnas Prompto Pavyzdys (visi 6 blokai)
    ├── 18. Prieš vs Po (palyginimas)
    └── 19. Modulio Santrauka
-   
+
 📝 MODULIS 2: "Žinių Patikrinimas" (TESTAS) - 10 min
    ├── Testo Įvadas (12 klausimų apie 6 blokus ir workflow)
    ├── Meta Blokas – Testas (2 klausimai)
@@ -41,7 +41,7 @@
    ├── Advanced ir Bendra – Testas (3 klausimai)
    ├── Workflow ir Technikos – Testas (2 klausimai) ✅
    └── Testo Rezultatai
-   
+
 💼 MODULIS 3: "Praktinis Pritaikymas" (PRAKTIKA) - 20 min
    ├── Praktikos Įvadas
    ├── Scenarijus 1: Pardavimų Analizė (E-commerce)
@@ -56,6 +56,7 @@
 **Turinio plėtra ir struktūra** moduliams 4–6 aprašyta atskirai: **[docs/turinio_pletra_moduliai_4_5_6.md](docs/turinio_pletra_moduliai_4_5_6.md)**. Ten rasite skaidrių planą, mokymosi tikslus, Modulio 4 pradžios blokus („Po šio modulio galėsite:“, „Kodėl konteksto inžinerija?“), Modulio 5 testą ir Modulio 6 projektą.
 
 **Progreso / atrakinimo logika (4→5→6):**
+
 - **Modulis 4** (Konteksto inžinerija) – atrakintas po **Modulio 3** (praktikos) užbaigimo.
 - **Modulis 5** (Žinių patikrinimas, pažangus) – atrakintas po **Modulio 4** užbaigimo.
 - **Modulis 6** (Projekto kūrimas) – atrakintas po **Modulio 5**; rekomenduojama prieiga po ≥70% Modulio 5 teste (optional).
@@ -74,21 +75,21 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 
 **Turinys (Modulis 1 – 6 blokų sistema):**
 
-| Rolė | Turinys (LT) |
-|------|--------------|
-| Projektų vadovas | Naudok tą patį 6 blokų šabloną susitikimų darbotvarkei ar ataskaitoms: nurodyk rolę (Meta), duomenis (Input) ir norimą formatą (Output). |
-| Marketingas | Parašyk kampanijų tekstus ar planus: nustatyk rolę (pvz. copywriter), įvesk faktus ir apribojimus (Input), nurodyk rezultato formatą (Output). |
-| HR / personalas | Paruošk apklausų klausimus ar darbo aprašymus su aiškia struktūra – rolė (Meta), klausimų/ reikalavimų sąrašas (Input), formatas (Output). |
-| Analitikas | Formuluok užduotis duomenų analizei: kokį rezultatą nori gauti (Output) ir kokius duomenis duodi (Input); DI geriau atsakys, kai viskas aišku. |
+| Rolė             | Turinys (LT)                                                                                                                                   |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Projektų vadovas | Naudok tą patį 6 blokų šabloną susitikimų darbotvarkei ar ataskaitoms: nurodyk rolę (Meta), duomenis (Input) ir norimą formatą (Output).       |
+| Marketingas      | Parašyk kampanijų tekstus ar planus: nustatyk rolę (pvz. copywriter), įvesk faktus ir apribojimus (Input), nurodyk rezultato formatą (Output). |
+| HR / personalas  | Paruošk apklausų klausimus ar darbo aprašymus su aiškia struktūra – rolė (Meta), klausimų/ reikalavimų sąrašas (Input), formatas (Output).     |
+| Analitikas       | Formuluok užduotis duomenų analizei: kokį rezultatą nori gauti (Output) ir kokius duomenis duodi (Input); DI geriau atsakys, kai viskas aišku. |
 
 **Turinys (Modulis 3 – praktinis pritaikymas, 4 scenarijai):**
 
-| Rolė | Turinys (LT) |
-|------|--------------|
-| Projektų vadovas | Panaudok modulio scenarijus: ketvirčio ataskaita valdybai ar pardavimų analizė su veiksmų planu – nukopijuok ir pritaikyk savo skaičiams ir terminams. |
-| Marketingas | Kampanijos ar produkto pristatymo planas – naudok scenarijaus šabloną: auditorija, kanalai, biudžetas (Input), rezultato formatas (Output). |
-| HR / personalas | Darbuotojų apklausos analizė ir veiksmų planas vadovybei – įvesk savo apklausos duomenis į tą patį 6 blokų promptą ir gauk struktūruotą ataskaitą. |
-| Analitikas | Pardavimų ar kitų duomenų analizė su konkrečiais veiksmais – naudok scenarijų „skaičiai → įžvalgos → veiksmai“ ir pakeisk duomenis (Input) pagal savo atvejį. |
+| Rolė             | Turinys (LT)                                                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Projektų vadovas | Panaudok modulio scenarijus: ketvirčio ataskaita valdybai ar pardavimų analizė su veiksmų planu – nukopijuok ir pritaikyk savo skaičiams ir terminams.        |
+| Marketingas      | Kampanijos ar produkto pristatymo planas – naudok scenarijaus šabloną: auditorija, kanalai, biudžetas (Input), rezultato formatas (Output).                   |
+| HR / personalas  | Darbuotojų apklausos analizė ir veiksmų planas vadovybei – įvesk savo apklausos duomenis į tą patį 6 blokų promptą ir gauk struktūruotą ataskaitą.            |
+| Analitikas       | Pardavimų ar kitų duomenų analizė su konkrečiais veiksmais – naudok scenarijų „skaičiai → įžvalgos → veiksmai“ ir pakeisk duomenis (Input) pagal savo atvejį. |
 
 **Implementacija:** Tekstai laikomi i18n (module.useCaseHeading; module.useCaseM1_1 … useCaseM1_4; module.useCaseM3_1 … useCaseM3_4). UI: `ModuleCompleteScreen.tsx` – blokas rodomas, kai `module.id === 1` arba `module.id === 3`.
 
@@ -97,11 +98,13 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 ## 🆕 Nauji Skaidrių Turiniai
 
 ### Skaidrė 1.5: Generatyvaus DI Poveikis Produktyvumui ✅
+
 **ID:** 0.5 (kode)
 
 **Tikslas:** Parodyti mokslinius tyrimų rezultatus apie DI produktyvumo poveikį, motyvuoti mokymąsi.
 
 **Turinys:**
+
 - Infografikas su statistika apie generatyvaus DI poveikį produktyvumui
 - Hero statistika: 56% greitesnis darbas
 - 3 pagrindinės kategorijos su statistikomis
@@ -109,6 +112,7 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 - Collapsible šaltinių sekcija su 3 moksliniais tyrimais
 
 **Šaltiniai:**
+
 1. Shakked Noy & Whitney Zhang - Science (2023), MIT
 2. Sida Peng et al. - arXiv/Microsoft Research (2023)
 3. Erik Brynjolfsson et al. - NBER (2023), Stanford & MIT
@@ -119,9 +123,10 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 
 **Tikslas:** Įvesti pagrindinius apibrėžimus prieš gilintis į struktūrą.
 
-**Kontekstas („Kas čia?“):** Skaidrėje – du pagrindiniai žodžiai: *promptas* ir *promptų inžinerija*. Jei dar nepažįstate – žemiau trumpai paaiškinama, ką jie reiškia ir kodėl tai svarbu praktikoje. (Atitinka `contextIntro` skaidrės turinyje.)
+**Kontekstas („Kas čia?“):** Skaidrėje – du pagrindiniai žodžiai: _promptas_ ir _promptų inžinerija_. Jei dar nepažįstate – žemiau trumpai paaiškinama, ką jie reiškia ir kodėl tai svarbu praktikoje. (Atitinka `contextIntro` skaidrės turinyje.)
 
 **Turinys:**
+
 - **Promptas** – tekstinė instrukcija ar klausimas DI modeliui
 - **Promptų inžinerija** – menas ir mokslas efektyviai bendrauti su DI
 
@@ -135,6 +140,7 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 **Išvada (inžinerinis požiūris):** Promptų inžinerija = Specifikacija + Struktūra + Iteracija
 
 **Kodėl tai inžinerija:**
+
 - **Specifikacija** – aiškus tikslas, auditorija, reikalavimai
 - **Struktūra** – kontekstas, apribojimai, formatas, prioritetai
 - **Iteracija** – testavimas, tikslinimas, kokybės kriterijai
@@ -142,6 +148,7 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 **Pastaba:** kūrybiškumas padeda, bet nėra branduolys.
 
 **Šaltiniai (gairės):**
+
 - OpenAI Prompt Engineering Guide: https://platform.openai.com/docs/guides/prompt-engineering
 - Microsoft OpenAI Prompt Engineering: https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering
 - Anthropic Prompt Engineering: https://docs.anthropic.com/claude/docs/prompt-engineering
@@ -155,6 +162,7 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 **Kontekstas (situacijos):** Dvi situacijos: (1) kai tiesiog kalbate su DI (pokalbis, idėjos, paaiškinimai) ir (2) kai naudojate jį darbui – dokumentams, analizėms, planams; tada reikia aiškesnės struktūros. Įvado tekstas skaidrėje tai nurodo.
 
 **Turinys:**
+
 - Interaktyvus palyginimas (toggle): **Pokalbis** vs **Workflow (darbo eiga)**.
 - Schema 1: Pokalbis (Basic) – Įvestis (Input): klausimas → LLM (kalbos modelis) → Išvestis (Output): atsakymas
 - Schema 2: Workflow (darbo eiga) – Įvestis (Input): promptas + duomenys → LLM (kalbos modelis) → Išvestis (Output): analizė / dokumentas / planas
@@ -170,11 +178,11 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 
 **Tikslas:** Supažindinti su 3 promptų tipais prieš pereinant prie 6 blokų.
 
-| Tipas | Spalva | Funkcija | Pavyzdys |
-|-------|--------|----------|----------|
-| **Sisteminiai** | Mėlyna | Nustato DI darbo tikslą ir funkciją | "Tu esi rinkodaros analitikas..." |
-| **Kontekstiniai** | Žydra | Pateikia situacinę informaciją | "Lietuvos logistikos sektorius, 2024 m. duomenys..." |
-| **Vaidmens** | Rožinė | Formuoja komunikacijos stilių ir toną | "Įsivaizduok, kad esi įmonės vadovas..." |
+| Tipas             | Spalva | Funkcija                              | Pavyzdys                                             |
+| ----------------- | ------ | ------------------------------------- | ---------------------------------------------------- |
+| **Sisteminiai**   | Mėlyna | Nustato DI darbo tikslą ir funkciją   | "Tu esi rinkodaros analitikas..."                    |
+| **Kontekstiniai** | Žydra  | Pateikia situacinę informaciją        | "Lietuvos logistikos sektorius, 2024 m. duomenys..." |
+| **Vaidmens**      | Rožinė | Formuoja komunikacijos stilių ir toną | "Įsivaizduok, kad esi įmonės vadovas..."             |
 
 **Praktinis patarimas:** Promptų kombinacija leidžia gauti maksimaliai tikslų ir verslo poreikius atitinkantį rezultatą. Tai ypač svarbu ruošiant strateginius dokumentus ar analizes.
 
@@ -185,14 +193,16 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 **Tikslas:** Supažindinti su 6 bazinėmis technikomis, kad būtų aišku, kaip formuoti užklausas.
 
 **Glausta logika:**
-1) Pradedame nuo **zero-shot** (be konteksto)  
-2) Tada **few-shots** (su pavyzdžiais)  
-3) Pereiname į **minčių grandinę** (užduotis žingsniais)  
-4) Parodome **promptų seką** (vienas rezultatas tampa kito pradžia)  
-5) Sustipriname **instruktavimu** (formatas, tonas)  
-6) Įvardijame **manipuliaciją** (ko vengti)
+
+1. Pradedame nuo **zero-shot** (be konteksto)
+2. Tada **few-shots** (su pavyzdžiais)
+3. Pereiname į **minčių grandinę** (užduotis žingsniais)
+4. Parodome **promptų seką** (vienas rezultatas tampa kito pradžia)
+5. Sustipriname **instruktavimu** (formatas, tonas)
+6. Įvardijame **manipuliaciją** (ko vengti)
 
 **Greitai kopijuojami pavyzdžiai:**
+
 ```
 Zero-shot: Sukurk 1 sakinio produkto šūkį.
 Few-shots: Pateik 2 šūkių pavyzdžius, tada sukurk 3 naujus.
@@ -209,20 +219,24 @@ Manipuliacija (vengti): Įrodyk, kad X geriau už Y (šališka užklausa).
 **Tikslas:** Suskaidyti 3 pagrindinius blokus ir sujungti į vieną aiškų šabloną.
 
 **META (kas jūs esate ir kam):**
+
 - **Vaidmuo**: kas jūs esate (funkcija, patirtis)
 - **Tikslas**: ką reikia sukurti
 - **Auditorija**: kam skirtas rezultatas
 
 **INPUT (ką turite):**
+
 - **Duomenys**: faktai, skaičiai, kontekstas
 - **Apribojimai**: laikas, biudžetas, ribos
 
 **OUTPUT (ko norite):**
+
 - **Formatas**: lentelė, sąrašas, dokumentas
 - **Struktūra**: punktai, skyriai, seka
 - **Tonas**: profesionalus, aiškus, draugiškas
 
 **Kopijuojamas šablonas:**
+
 ```
 META: Vaidmuo – [kas esate]. Tikslas – [ką sukurti]. Auditorija – [kam].
 INPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].
@@ -230,6 +244,7 @@ OUTPUT: Format – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyr
 ```
 
 **Pavyzdys:**
+
 ```
 META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.
 INPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.
@@ -243,6 +258,7 @@ OUTPUT: Format – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. To
 **Tikslas:** Paaiškinti, kodėl prie 3 blokų pridedame Reasoning, Quality ir Advanced.
 
 **Turinys:**
+
 - Mapping: META / INPUT / OUTPUT → branduolys
 - REASONING / QUALITY / ADVANCED → kontrolė ir patikrinamumas
 - Išvada: 3 blokai = aiški užklausa; 6 blokai = aiški + nuspėjama + patikrinama
@@ -259,6 +275,7 @@ OUTPUT: Format – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. To
 Tai nėra DI „natūralus mąstymas“. Tai – struktūra, kurią tu nurodai prompt'e, kad DI spręstų užduotį tinkamu būdu.
 
 **Reasoning blokas nusprendžia:**
+
 - ar DI eis viena nuoseklia logine seka
 - ar išbandys kelias alternatyvas ir pasirinks geriausią
 
@@ -267,11 +284,13 @@ Tai nėra DI „natūralus mąstymas“. Tai – struktūra, kurią tu nurodai p
 Viena linijinė minčių seka. Sprendimas vyksta žingsnis po žingsnio.
 
 **Kada naudoti:**
+
 - kai yra vienas aiškus atsakymas
 - kai reikia loginio paaiškinimo
 - kai svarbus nuoseklumas ir tikslumas
 
 **Tinka:**
+
 - analizėms
 - skaičiavimams
 - procesų paaiškinimams
@@ -290,11 +309,13 @@ REASONING:
 Kelios mąstymo šakos (alternatyvos). DI išbando kelis variantus ir pasirenka geriausią.
 
 **Kada naudoti:**
+
 - kai yra keli galimi sprendimai
 - kai reikia kūrybos ar strategijos
 - kai svarbu įvertinti pliusus ir minusus
 
 **Tinka:**
+
 - strateginiams sprendimams
 - marketingui
 - idėjų generavimui
@@ -340,6 +361,7 @@ REASONING (ToT):
 **Kopijuojami šablonai**
 
 **CoT šablonas:**
+
 ```
 REASONING (CoT):
 1. Apibrėžk problemą
@@ -348,6 +370,7 @@ REASONING (CoT):
 ```
 
 **ToT šablonas:**
+
 ```
 REASONING (ToT):
 1. Įvardink problemą
@@ -380,11 +403,13 @@ Reasoning blokas nurodo, kokią sprendimo logiką DI turi taikyti prieš pateikd
 **Kada naudoti Reasoning bloką?**
 
 ✅ **Naudok, kai:**
+
 - reikia sprendimo ar rekomendacijos
 - yra keli galimi variantai
 - reikia įvertinti rizikas ar kompromisus
 
 ❌ **NENAUDOK, kai:**
+
 - reikia greito fakto
 - reikia perrašyti ar sutrumpinti tekstą
 - atsakymas turi būti vienas ir akivaizdus
@@ -392,6 +417,7 @@ Reasoning blokas nurodo, kokią sprendimo logiką DI turi taikyti prieš pateikd
 **Trumpa (Lite) Reasoning versija – 80% atvejų**
 
 Tinka kasdieniams verslo klausimams:
+
 1. Kokia problema?
 2. Kokie 2–3 galimi sprendimai?
 3. Kuris geriausias ir kodėl?
@@ -399,21 +425,27 @@ Tinka kasdieniams verslo klausimams:
 **Pilna Reasoning struktūra (Advanced)**
 
 1️⃣ **Apibrėžti problemą**
+
 - Kokia tikroji problema, kurią reikia išspręsti?
 
 2️⃣ **Analizuoti turimus duomenis**
+
 - Ką jau žinome? Kokie faktai, apribojimai, kontekstas?
 
 3️⃣ **Nustatyti trūkstamus elementus**
+
 - Ko trūksta pilnam sprendimui? Kokios prielaidos daromos?
 
 4️⃣ **Įvardinti galimus variantus**
+
 - Kokie galimi sprendimo būdai?
 
 5️⃣ **Įvertinti kompromisus**
+
 - Kiekvieno varianto privalumai ir trūkumai?
 
 6️⃣ **Išvada**
+
 - Kurį sprendimą rekomenduoti ir kodėl?
 
 **Verslo pavyzdys №1 – Sprendimas**
@@ -467,6 +499,7 @@ REASONING:
 **Svarbi pastaba**
 
 ⚠️ Reasoning blokas nepadarys stebuklo, jei:
+
 - problema apibrėžta netiksliai
 - pateikti klaidingi duomenys
 - neaiškus galutinis tikslas
@@ -479,14 +512,14 @@ REASONING:
 
 ### Kodėl ši struktūra geresnė?
 
-| Senas modelis | Naujas modelis |
-|---------------|----------------|
-| 3 moduliai = 3 atskiri mokymai | 1 nuoseklus mokymas + testas + praktika |
-| Teorija išskaidyta | Visa teorija vienoje vietoje |
-| Iškart į blokus | Pirma apibrėžimai → tipai → blokai |
-| Testas pabaigoje | Testas po teorijos, prieš praktiką |
-| 1-2 praktinės užduotys | 4 realūs verslo scenarijai |
-| Tas pats pavyzdys visur | Skirtingi kontekstai: E-com, Marketing, HR, Product |
+| Senas modelis                  | Naujas modelis                                      |
+| ------------------------------ | --------------------------------------------------- |
+| 3 moduliai = 3 atskiri mokymai | 1 nuoseklus mokymas + testas + praktika             |
+| Teorija išskaidyta             | Visa teorija vienoje vietoje                        |
+| Iškart į blokus                | Pirma apibrėžimai → tipai → blokai                  |
+| Testas pabaigoje               | Testas po teorijos, prieš praktiką                  |
+| 1-2 praktinės užduotys         | 4 realūs verslo scenarijai                          |
+| Tas pats pavyzdys visur        | Skirtingi kontekstai: E-com, Marketing, HR, Product |
 
 ### Mokymosi Seka (Bloom's Taxonomy)
 
@@ -506,6 +539,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 ## 📚 Modulis 1: 6 Blokų Sistema (18 Skaidrių)
 
 ### Skaidrė 1: Ta pati užduotis. Du skirtingi atsakymai. ✅ (v3 – 2026-02-11, P2 hook)
+
 **Tikslas:** Emocinis hook per 5 sek + pirmas interaktyvus veiksmas per ~30 sek (paspaudus CTA – palyginimas toje pačioje skaidrėje).
 **Tipas:** `action-intro` (v2 – vartotojo kelionė; v3 – P2: problėmos nukreipimas + 30 s CTA)
 
@@ -514,6 +548,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 **Turinys (3 dalys):**
 
 **A) Provokacija + CTA hero bloke (5-7 sek.):**
+
 - Tamsus fonas (gray-900 → brand-900) – vizualinis kontrastas su likusia skaidre
 - Pagrindinė antraštė: "Ta pati užduotis."
 - Antroji eilutė (brand-300): "Du skirtingi atsakymai."
@@ -522,17 +557,20 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 - Po paspaudimo – mygtukas dingsta, atsiranda mikro-summary
 
 **B) Side-by-side palyginimas (atsiskleidžia po CTA):**
+
 - Kairė (rose): Tuščias promptas – "Parašyk man marketingo planą." + anotacija "Neaiškus tikslas. Nėra konteksto. DI spėlioja."
 - Dešinė (emerald, ring akcentas): 6 blokų promptas – META/INPUT/OUTPUT + anotacija "Aiškus kontekstas, struktūra, rezultatas." + CopyButton
 - Visa sekcija animuotai atsiskleidžia (animate-fade-in)
 
 **C) Kontekstas (kompaktiškas, visada matomas):**
+
 - Opacity 60% prieš reveal, 100% po reveal
 - "Šiuose mokymuose išmoksite 6 blokų sistemą..." (1 sakinys)
 - Outcomes (3 punktai: nuspėjami rezultatai, 6 blokai bet kuriame įrankyje, mažiau iteracijų)
 - Trukmė + mygtukas „DI įrankiai – peržiūrėti“ (išskleidžia bloką apačioje)
 
 **D) DI įrankiai (apačioje, aiškiai išskleidžiamas blokas):**
+
 - Paspaudus „DI įrankiai – peržiūrėti“ – atsiranda pilno pločio sekcija po kontekstu
 - Antraštė: „DI įrankiai – kur pradėti“
 - Intro tekstas (pvz. kad 6 blokų principai veikia bet kuriame įrankyje)
@@ -540,6 +578,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 - Įrankiai: ChatGPT, Claude, Gemini, Copilot, Grok, DeepSeek – su nuorodomis, aprašymais ir use cases
 
 **Techninė implementacija:**
+
 - Tipas: `action-intro`
 - Komponentas: `ActionIntroSlide` (`src/components/slides/types/ContentSlides.tsx`)
 - TypeScript: `ActionIntroContent` – `heroSubText`, `ctaText`; įrankiams: `toolsIntro`, `tools[].description`, `tools[].useCases` (`src/types/modules.ts`)
@@ -547,11 +586,13 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 - Senasis `IntroSlide` paliekamas kaip fallback / Modulio 4 intro
 
 ### Skaidrė 1.5: Generatyvaus DI Poveikis Produktyvumui ✅
+
 **ID:** 0.5 (kode)
 
 **Tikslas:** Parodyti mokslinius tyrimų rezultatus apie DI produktyvumo poveikį, motyvuoti mokymąsi.
 
 **Turinys:**
+
 - **Infografikas** su statistika apie generatyvaus DI poveikį produktyvumui
 - **Hero statistika:** 56% greitesnis darbas
 - **3 pagrindinės kategorijos:**
@@ -566,6 +607,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 - **Išvada:** "DI perima rutinos užduotis, leidžia dirbti greičiau ir geriau, o pradedantiesiems padeda labiausiai."
 
 **Šaltiniai (moksliniai tyrimai):**
+
 1. **Shakked Noy & Whitney Zhang**, "Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence"
    - Science (2023, Vol. 381), MIT
    - https://www.science.org/doi/10.1126/science.adh2586
@@ -579,6 +621,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
    - https://www.nber.org/papers/w31161
 
 **Techninė implementacija:**
+
 - Tipas: `infographic`
 - Komponentas: `ProductivityInfographicSlide`
 - Collapsible šaltiniai (pagal nutylėjimą paslėpti)
@@ -588,95 +631,125 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 **Pastaba:** Ši skaidrė įtraukta po įvado, kad motyvuotų mokymąsi ir parodytų praktinę DI naudos vertę remiantis moksliniais tyrimais.
 
 ### Skaidrė 2: Promptas ir Promptų Inžinerija ✅ (Perdarytas 2026-02-09, veiksmo modelis)
+
 **Tikslas:** Vietoj pasyvaus skaitymo -- interaktyvus terminų atradimas per click-to-reveal korteles.
 **Tipas:** `definitions` (komponentas perstruktūruotas)
 
 **Turinys (veiksmo modelis):**
 
 **A) Hook (tamsus, provokuojantis):**
+
 - "Kiekvieną kartą rašydami DI -- jūs rašote promptą. Klausimas: ar darote tai struktūriškai?"
 - Subtilus "Paspauskite korteles žemiau" CTA
 
 **B) Dvi interaktyvios kortelės (click-to-expand):**
+
 - [💬 Promptas] -- paspausk → apibrėžimas atsiskleidžia su border-left akcentu
 - [🔧 Promptų Inžinerija] -- paspausk → apibrėžimas + 3 dedamosios (Specifikacija, Struktūra, Iteracija) atsiskleidžia
 
 **C) 3 Dedamosios (rodomi po Inžinerijos atskleidimo):**
+
 - 3 kortelės horizontaliai (sm:grid-cols-3) su slide-in animacija
 - Kiekviena su ikona, aprašymu ir kopijuojamu pavyzdžiu
 
 **D) Key Insight (rodomas kai ABU terminai atskleisti):**
+
 - "Promptų inžinerija = Specifikacija + Struktūra + Iteracija"
 - bounce-in animacija -- "payoff" momentas
 
 **E) Šaltiniai (collapsible, rodomi tik po reveal):**
+
 - OpenAI, Microsoft, Anthropic gairės
 
 ### Skaidrė 3: Workflow Samprata ✅
+
 **ID:** 15 (kode)
+
 - 2 schemos (Pokalbis vs Workflow (darbo eiga) – interaktyvus palyginimas)
 - 2 kopijuojami pavyzdžiai (pokalbis + workflow)
 
 ### Skaidrė 4: Pagrindiniai Promptų Tipai ✅
+
 **ID:** 3 (kode)
+
 - Sisteminiai promptai
 - Kontekstiniai promptai
 - Vaidmens promptai
 - Praktinis patarimas: kombinuokite visus tris
 
 ### Skaidrė 5: Prompting'o Technikos ✅
+
 **ID:** 14 (kode)
+
 - 6 technikos su kopijuojamais pavyzdžiais
 
 ### Skaidrė 6: Gero Prompto Šablonas ✅
+
 **ID:** 16 (kode)
+
 - META + INPUT + OUTPUT šablonas
 - Kopijuojamas pavyzdys
 
 ### Skaidrė 7: Ko jau išmokome? ✅
+
 **ID:** 17 (kode)
+
 - Pereiname nuo 3 blokų (META + INPUT + OUTPUT) prie 6 blokų
 - Pridedame Reasoning, Quality ir Advanced – tikrinimui ir stabilumui
 
 ### Skaidrė 8: Hierarchinė Struktūra
+
 **ID:** 4 (kode)
+
 - 6 blokų piramidė (nuo svarbiausio)
 - Kiekvieno bloko prioritetas
 - Trumpi apibūdinimai kiekvienam blokui
 
 ### Skaidrės 9-11: Pagrindiniai 3 Blokai
+
 **ID:** 5, 6, 7 (kode)
 
 **Skaidrė 9: 1️⃣ Meta Blokas**
+
 - Rolė, kontekstas ir tikslas – kas esate ir ką darote?
 
 **Skaidrė 10: 2️⃣ Input Blokas**
+
 - Faktai, duomenys ir apribojimai – ką turite?
 
 **Skaidrė 11: 3️⃣ Output Blokas**
+
 - **Formatas ir struktūra – ko tikitės?**
 - **Klausimas:** Kokio formato ir struktūros noriu?
 - **Esmė:** Output blokas nurodo TIKSLŲ rezultato formatą. Tai pašalina nereikalingus taisymo iteracijos ciklus.
 - **Pavyzdys:** Q4 Pardavimų Analizės Ataskaita (Executive Summary, struktūra: KPI, tendencijos, kategorijos, rekomendacijos; kalba, tonas, priedai).
 
 ### Skaidrė 12: Mąstymo Modeliai
+
 **ID:** 8 (kode)
+
 - CoT vs ToT – kaip valdoma DI sprendimo logika?
 
 ### Skaidrės 13-15: Papildomi 3 Blokai
+
 **ID:** 9, 10, 11 (kode)
 
 **Skaidrė 13: 4️⃣ Reasoning Blokas**
+
 - Mąstymo logika – kaip DI turi mąstyti?
 
 **Skaidrė 14: 5️⃣ Quality Control Blokas**
+
 - Kokybės kriterijai – kaip patikrinti?
 
 **Skaidrė 15: 6️⃣ Advanced Parameters**
+
 - Pažangūs parametrai – kaip tiksliai kontroliuoti?
 
 ### Skaidrė 16: 6️⃣ Advanced Parameters (II) ✅
+
 **ID:** 18 (kode)
+
 - Atsakymo kontrolė – ilgis, fokusas, pasikartojimai
 - Frequency penalty, Presence penalty, Max tokens, Top-p parametrai
 
@@ -685,6 +758,7 @@ Po mokymo galėsite kurti struktūruotus DI promptus verslo ataskaitoms, marketi
 **Skaidrė 17: Pilnas Prompto Pavyzdys**
 **ID:** 12 (kode)
 Kiekviena skaidrė turi:
+
 - **Pagrindinį klausimą** (pvz., "Kas esate ir ką darote?")
 - **Apibrėžimą** (kas tai yra)
 - **Komponentus** (ką apima)
@@ -692,6 +766,7 @@ Kiekviena skaidrė turi:
 - **Kopijuojamą šabloną** ✅
 
 **Greitas šablonų rinkinys (įterpti į kiekvieną bloką):**
+
 ```
 META: Tu esi [vaidmuo]. Tikslas: [rezultatas]. Auditorija: [kam].
 INPUT: Duomenys: [faktai/skaičiai]. Apribojimai: [laikas/biudžetas].
@@ -705,12 +780,15 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
 - Praktinė užduotis: sukurkite savo pilną promptą
 
 ### Skaidrė 18: Prieš vs Po
+
 **ID:** 13 (kode)
+
 - Nestruktūruotas promptas (40% tikslumas)
 - Struktūruotas promptas (85% tikslumas)
 - Rezultatų palyginimas
 
 ### Skaidrė 19: Modulio Santrauka
+
 **ID:** 14 (kode)
 
 **Tikslas:** Apibendrinti visą Modulio 1 turinį ir motyvuoti pereiti prie Modulio 2.
@@ -769,6 +847,7 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
    - Tekstas: "Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas"
 
 **Vizualiniai Elementai:**
+
 - Spalvų kodavimas: brand (blokai), violet (workflow), amber (technikos), cyan (mąstymo modeliai), rose (3→6 perėjimas), emerald (idėjos)
 - Responsive dizainas: grid layout su 1-2 stulpeliais
 - Dark mode palaikymas: visi elementai turi dark variantus
@@ -779,6 +858,7 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
 ## 📝 Modulis 2: Žinių Patikrinimas (Testas)
 
 ### Testo Struktūra (v2 – 2026-02-09)
+
 - **15 klausimų** su **5 skirtingais formatais** (buvo 12 MCQ)
 - Klausimai sugrupuoti pagal blokus ir temas
 - Kiekvienas klausimas turi paaiškinimą IR užuominą (progressive hint)
@@ -790,19 +870,22 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
 - **Komponentai:** `src/components/slides/shared/questions/`
 
 ### Ko tikėtis teste
+
 Teste bus patikrinama: **Meta bloko** vaidmuo ir turinys (2 kl.), **Input ir Output** skirtumas bei formatas (3 kl.), **Reasoning ir Quality Control** paskirtis (2 kl.), **Advanced parametrai** ir bendra 6 blokų sistema (3 kl.), **workflow** ir **promptavimo technikos** (2 kl.). Kiekvienas klausimas turi paaiškinimą po atsakymo – tai ir mokymosi galimybė, ne tik vertinimas.
 
 ### Klausimų Pasiskirstymas
-| Blokas | Klausimų sk. |
-|--------|--------------|
-| Meta | 2 |
-| Input + Output | 3 |
-| Reasoning + Quality | 2 |
-| Advanced + Bendra | 3 |
-| Workflow + Technikos | 2 |
-| **Viso** | **12** |
+
+| Blokas               | Klausimų sk. |
+| -------------------- | ------------ |
+| Meta                 | 2            |
+| Input + Output       | 3            |
+| Reasoning + Quality  | 2            |
+| Advanced + Bendra    | 3            |
+| Workflow + Technikos | 2            |
+| **Viso**             | **12**       |
 
 ### Testo Formatas
+
 ```
 Klausimas: "Nuo ko geriausia pradėti promptą?"
 ○ Nuo rolės ir tikslo (Meta) ✓
@@ -810,11 +893,12 @@ Klausimas: "Nuo ko geriausia pradėti promptą?"
 ○ Nuo duomenų (Input)
 ○ Nuo parametrų (Advanced)
 
-Paaiškinimas: "Meta blokas yra svarbiausias – 
+Paaiškinimas: "Meta blokas yra svarbiausias –
 jis nustato kontekstą visam likusiam promptui."
 ```
 
 ### Testo rezultatų ekrano turinys (CTA)
+
 Rezultatų ekrane (po paskutinio klausimo) rodomi **procentas** ir **žinutė**, priklausanti nuo rezultato:
 
 - **Jei &lt;70%:** „Rekomenduojame dar kartą peržiūrėti Modulį 1, ypač 6 blokų skyrius (skaidrės 8–16) ir workflow/technikas (skaidrės 3–6). Kiekvienas klausimas turi paaiškinimą – naudokite juos mokymuisi. Galite pakartoti testą.“
@@ -833,7 +917,8 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 **Skaidrė:** Po „Praktikos Įvadas“, prieš „Scenarijus 1“. Tipas: `content-block`.
 
 **Turinys (GOLDEN_STANDARD §3.2):**
-1. **Trumpai (TL;DR)** – accent: „Per 2–3 minutes nukopijuok promptą ir paleisk DI – gausi 3 konkrečius savaitės tikslus. Tai parodo, kaip META + INPUT + OUTPUT jau pagerina rezultatą.“
+
+1. **Trumpai** – accent: „Per 2–3 minutes nukopijuok promptą ir paleisk DI – gausi 3 konkrečius savaitės tikslus. Tai parodo, kaip META + INPUT + OUTPUT jau pagerina rezultatą.“
 2. **Daryk dabar** – brand: „🔘 Nukopijuok promptą (žemiau) ir įklijuok į bet kurį DI įrankį – ChatGPT, Claude ar Copilot. Per 1 minutę gausite 3 verslo tikslus šiai savaitei.“
 3. **Kopijuojamas promptas** (vienas blokas):
    - META: rolė (verslo asistentas), tikslas (3 tikslai šiai savaitei).
@@ -848,6 +933,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 ### 6 Verslo Scenarijai
 
 #### Scenarijus 1: Vadovo Strateginė Ataskaita
+
 - **Kontekstas**: Ketvirčio/pusmečio rezultatų apžvalga valdybai/savininkams
 - **Užduotis**: Parengti aiškią, struktūruotą ataskaitą su KPI, rizikomis ir prioritetais
 - **Fokusas**: Sprendimų logika, santrauka, rekomendacijos
@@ -855,6 +941,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Formatas**: Executive Summary, 1–2 puslapiai, KPI dashboard, 3 prioritetai
 
 #### Scenarijus 2: Pardavimų Analizė ir Veiksmų Planas
+
 - **Kontekstas**: Pardavimų augimas, kritimas arba stagnacija
 - **Užduotis**: Išanalizuoti duomenis ir pateikti konkrečius veiksmus rezultatams gerinti
 - **Fokusas**: Skaičiai → įžvalgos → veiksmai
@@ -862,6 +949,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Formatas**: Analizė + 5 konkrečių veiksmų su terminais ir atsakingais
 
 #### Scenarijus 3: Marketingo Kampanijos Planas
+
 - **Kontekstas**: Nauja kampanija ar produkto komunikacija rinkoje
 - **Užduotis**: Sukurti aiškų veiksmų planą su auditorija, kanalais ir KPI
 - **Fokusas**: Struktūra, tikslumas, rezultato matavimas
@@ -869,6 +957,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Formatas**: Strateginis dokumentas su kanalais, KPI, laikotarpiu
 
 #### Scenarijus 4: Vidaus Komunikacijos Dokumentas
+
 - **Kontekstas**: Pokyčiai organizacijoje (strategija, restruktūrizacija, nauja sistema)
 - **Užduotis**: Parengti aiškų ir darbuotojams suprantamą pranešimą
 - **Fokusas**: Tonas, aiškumas, pasipriešinimo mažinimas
@@ -876,6 +965,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Formatas**: Vidinis pranešimas / el. laiškas, 300–500 žodžių, Q&A skyrius
 
 #### Scenarijus 5: Personalo Sprendimų Analizė
+
 - **Kontekstas**: Darbuotojų apklausos rezultatai, motyvacija ar efektyvumo klausimai
 - **Užduotis**: Išanalizuoti situaciją ir pateikti veiksmų planą vadovybei
 - **Fokusas**: Duomenų interpretacija, prioritetai, realūs sprendimai
@@ -883,6 +973,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 - **Formatas**: Ataskaita su analize ir veiksmų planu
 
 #### Scenarijus 6: Kliento Skundo Valdymas
+
 - **Kontekstas**: Nepatenkinto kliento situacija ar reputacinė rizika
 - **Užduotis**: Parengti atsakymą klientui ir vidinį veiksmų planą problemai spręsti
 - **Fokusas**: Empatija, atsakomybė, sprendimo struktūra
@@ -901,6 +992,7 @@ Prieš „Kontekstas / Duomenys / Apribojimai / Rezultatas“ skirtukus rodomas 
 - **Scenarijus 6:** Klientas skundžiasi vėlavimu ir neaiškia komunikacija – yra reputacinė rizika ir reikia greitai reaguoti. Jūs turite parengti dviejų dalių sprendimą: empatišką atsakymą klientui ir vidinį planą komandai – ką pakeisti, kad to nepasikartotų.
 
 ### Kiekvieno Scenarijaus Struktūra
+
 1. **Kontekstas** - Kas jūs esate ir ką darote
 2. **Duomenys** - Konkretūs skaičiai ir faktai
 3. **Apribojimai** - Laikas, biudžetas, komanda
@@ -915,6 +1007,7 @@ Prieš „Kontekstas / Duomenys / Apribojimai / Rezultatas“ skirtukus rodomas 
 #### ✨ Nauja Funkcionalumas
 
 **1. Instrukcijos su žingsniais (Žingsnis po žingsnio)**
+
 - Kiekvienas scenarijus turi 6 žingsnius (po vieną kiekvienam blokui)
 - Kiekvienas žingsnis turi:
   - **Pavadinimą ir aprašymą** - Aiškiai nurodo, ką reikia daryti
@@ -924,12 +1017,14 @@ Prieš „Kontekstas / Duomenys / Apribojimai / Rezultatas“ skirtukus rodomas 
 - Vizualus dizainas su spalvų kodavimu (brand spalva žingsniams, amber patarimams, emerald sprendimams)
 
 **2. Tarpiniai sprendimai (Partial Solutions)**
+
 - Kiekvienam blokui (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)
 - Kopijuojami su vienu paspaudimu
 - Padeda suprasti, kaip formuoti kiekvieną bloką
 - Nėra pilno sprendimo - tik pagrindas, kurį reikia pritaikyti
 
 **3. Pavyzdiniai sprendimai (Full Templates)**
+
 - Visi 6 scenarijai turi pilnus pavyzdinius sprendimus
 - Kopijuojami su vienu paspaudimu
 - Rodo, kaip visi 6 blokai veikia kartu
@@ -949,12 +1044,14 @@ Kiekvienas scenarijus turi: instrukcijas su 6 žingsniais, tarpinius sprendimus,
 #### 🎯 Pedagoginė Vertė
 
 **Prieš patobulinimus:**
+
 - Užduotys buvo per abstrakčios
 - Nėra aiškių gairių
 - Tik 1 scenarijus turėjo pavyzdį
 - Sunku suprasti, nuo ko pradėti
 
 **Po patobulinimų:**
+
 - ✅ Aiškios instrukcijos su žingsniais
 - ✅ Tarpiniai sprendimai padeda pradėti
 - ✅ Visi scenarijai turi pavyzdžius
@@ -964,6 +1061,7 @@ Kiekvienas scenarijus turi: instrukcijas su 6 žingsniais, tarpinius sprendimus,
 #### 🛠️ Techniniai Pakeitimai
 
 **TypeScript Tipai (`src/types/modules.ts`):**
+
 - Pridėti `InstructionStep` interfeisas:
   ```typescript
   interface InstructionStep {
@@ -984,12 +1082,14 @@ Kiekvienas scenarijus turi: instrukcijas su 6 žingsniais, tarpinius sprendimus,
 - Atnaujintas `PracticalTask` interfeisas su `instructions?: TaskInstructions`
 
 **Komponentas (`src/components/slides/shared/PracticalTask.tsx`):**
+
 - Pridėta instrukcijų sekcija su accordion funkcionalumu
 - Tarpinių sprendimų rodymas su kopijavimo funkcija
 - Patarimų blokai su vizualiu akcentu
 - Responsive dizainas su dark mode palaikymu
 
 **Duomenys (`src/data/modules.json`):**
+
 - Visi 4 scenarijai atnaujinti su `instructions` objektais
 - Pridėti tarpiniai sprendimai kiekvienam žingsniui
 - Pridėti pilni pavyzdiniai sprendimai visiems scenarijams
@@ -999,6 +1099,7 @@ Kiekvienas scenarijus turi: instrukcijas su 6 žingsniais, tarpinius sprendimus,
 ## 🎓 Progreso Logika
 
 ### Modulių Atrakinimas
+
 ```
 Modulis 1 → Visada atrakintas
 Modulis 2 → Atrakinamas baigus Modulį 1
@@ -1011,6 +1112,7 @@ Modulis 6 → Atrakinamas baigus Modulį 5 (optional: ≥70% Modulio 5 teste)
 ```
 
 ### Progreso Sekimas
+
 - Kiekvieno modulio procentas
 - Bendra pažanga
 - Užbaigtų praktinių užduočių skaičius
@@ -1021,15 +1123,17 @@ Modulis 6 → Atrakinamas baigus Modulį 5 (optional: ≥70% Modulio 5 teste)
 ## 🌐 Kalbos ir Stiliaus Gairės
 
 ### Terminologija
-| Angliškai | Lietuviškai |
-|-----------|-------------|
-| AI | DI (Dirbtinis Intelektas) |
-| prompt | promptas |
-| prompt engineering | promptų inžinerija |
-| input | įvestis / duomenys |
-| output | išvestis / rezultatas |
+
+| Angliškai          | Lietuviškai               |
+| ------------------ | ------------------------- |
+| AI                 | DI (Dirbtinis Intelektas) |
+| prompt             | promptas                  |
+| prompt engineering | promptų inžinerija        |
+| input              | įvestis / duomenys        |
+| output             | išvestis / rezultatas     |
 
 ### Gramatika
+
 - Vartojama "DI" vietoj "AI"
 - "promptas, promptui, promptą, promptus" (be apostrofo)
 - "mąstyti" vietoj "galvoti" kalbant apie DI
@@ -1042,8 +1146,8 @@ Modulis 6 → Atrakinamas baigus Modulį 5 (optional: ≥70% Modulio 5 teste)
 
 ```
 META:
-Tu esi vyresnysis verslo analitikas su 8 metų patirtimi 
-e-commerce srityje. Tavo tikslas – parengti Q3 pardavimų 
+Tu esi vyresnysis verslo analitikas su 8 metų patirtimi
+e-commerce srityje. Tavo tikslas – parengti Q3 pardavimų
 ataskaitą valdybos nariams, kurie priims strateginius Q4 sprendimus.
 
 INPUT:
@@ -1090,11 +1194,13 @@ ADVANCED:
 ### Mini Promptai Greitam Kopijavimui
 
 **1) Vienas sakinys (zero-shot):**
+
 ```
 Sukurk vieno sakinio produkto šūkį sveikatos programėlei.
 ```
 
 **2) Su pavyzdžiais (few-shots):**
+
 ```
 Pavyzdžiai:
 1) „Mažiau streso, daugiau energijos.“
@@ -1103,16 +1209,19 @@ Sukurk dar 3 panašaus stiliaus šūkius.
 ```
 
 **3) Struktūruota užduotis (minčių grandinė):**
+
 ```
 1) koncepcija 2) planas 3) biudžetas 4) darbų grafikas.
 ```
 
 **4) Promptų seka:**
+
 ```
 Sukurk 5 tezes apie darbuotojų įsitraukimą → Sudaryk plano struktūrą → Parašyk 1 pastraipos įvadą.
 ```
 
 **5) Instruktavimas:**
+
 ```
 Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba: LT.
 ```
@@ -1122,6 +1231,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 ## 🔄 Ateities Plėtra
 
 ### Fazė 1 (Dabartinė) ✅
+
 - ✅ 3 modulių sistema (Learn → Test → Practice)
 - ✅ 16 skaidrių teorijoje (įtraukta Workflow + Technikos + Mąstymo Modeliai)
 - ✅ 4 praktiniai scenarijai
@@ -1133,6 +1243,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 - ✅ Modernus Navy/Gold dizainas
 
 ### Techniniai Patobulinimai (2026-02) ✅
+
 - ✅ **Tailwind safelist** - Pataisyta dinaminės spalvų klasės produkcijoje
 - ✅ **Copy button bug fix** - Individualus state kiekvienam kopijavimo mygtukui
 - ✅ **Komponentų refaktorinimas** - SlideContent.tsx išskaidytas į mažesnius komponentus
@@ -1144,6 +1255,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 ### Nauji Patobulinimai (2026-02) ✅
 
 **1. Nauja skaidrė: Mąstymo Modeliai** ✅
+
 - Pridėta skaidrė apie CoT (Chain of Thought) vs ToT (Tree of Thoughts)
 - Vizualizacija su nuotrauka (`mastymo_modeliai.png`)
 - Detalus CoT aprašymas su pavyzdžiais
@@ -1152,6 +1264,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 - Kopijuojami šablonai abiems modeliams
 
 **2. Reasoning bloko patobulinimas** ✅
+
 - Išplėstas Reasoning blokas su:
   - "Kada naudoti / kada nenaudoti" sekcija
   - Trumpa (Lite) versija (80% atvejų)
@@ -1160,6 +1273,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
   - Svarbi pastaba apie reasoning struktūros svarbą
 
 **3. 3 Modulio Patobulinimai** ✅ (Naujausi)
+
 - **Instrukcijos su žingsniais** - Kiekvienas scenarijus turi 6 žingsnius (po vieną kiekvienam blokui)
 - **Tarpiniai sprendimai** - Kopijuojami sprendimai kiekvienam blokui
 - **Pavyzdiniai sprendimai** - Visi 4 scenarijai turi pilnus pavyzdžius
@@ -1167,6 +1281,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 - **Pedagoginė vertė** - Struktūruotas mokymasis žingsnis po žingsnio
 
 **4. Skaidrių numerių atnaujinimas** ✅
+
 - Skaidrė 10: Mąstymo Modeliai (nauja)
 - Skaidrė 11: Reasoning Blokas (buvo 10)
 - Skaidrė 12: Quality Control (buvo 11)
@@ -1176,17 +1291,20 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 - Skaidrė 16: Santrauka (buvo 15)
 
 **5. UI komponentai** ✅
+
 - **ReasoningModelsSlide** - Naujas komponentas su vizualizacija
 - **PracticalTask** - Patobulintas su instrukcijų sekcija
 - **CopyButton** - Individualus state kiekvienam mygtukui
 
 ### Fazė 2 (Planuojama)
+
 - [ ] Sertifikato generavimas
 - [ ] Promptų išsaugojimas/eksportavimas
 - [ ] Papildomi scenarijai (8-10 viso)
 - [ ] ROI skaičiuoklė
 
 ### Moduliai 4–6 (Pažangusis lygis) – Turinio plėtra
+
 - **Atskiras turinio plėtros failas:** [`docs/turinio_pletra_moduliai_4_5_6.md`](docs/turinio_pletra_moduliai_4_5_6.md)
 - **Teorija (Modulis 4):** RAG, Deep research, tokenų ekonomika, promptų manipuliacijos, žinių patikrinimas
 - **Testas (Modulis 5):** Žinių patikrinimas pažangiam lygiui
@@ -1194,6 +1312,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 - Progreso logika: 4 atrakinamas po 3; 5 po 4; 6 po 5 (ir optional ≥70% Modulio 5 teste)
 
 ### Fazė 3 (Ateitis)
+
 - [ ] DI grįžtamasis ryšys praktinėms užduotims
 - [ ] Komandiniai mokymai
 - [ ] Pažangusis kursas (advanced techniques) – turinys plėtojamas pagal `docs/turinio_pletra_moduliai_4_5_6.md`
@@ -1221,6 +1340,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 ```
 
 **Kontaktai:**
+
 - GitHub: [DITreneris](https://github.com/DITreneris)
 
 **Versija:** 2.3.0 (2026-02)
@@ -1263,7 +1383,9 @@ src/
 ### Techninės Detalės
 
 #### 1. Tailwind Safelist
+
 `tailwind.config.js` dabar turi safelist dinaminėms spalvų klasėms:
+
 - `bg-{color}-{shade}` (rose, orange, amber, emerald, brand, violet, cyan, fuchsia)
 - `text-{color}-{shade}`
 - `border-{color}-{shade}`
@@ -1272,22 +1394,28 @@ src/
 **Rezultatas:** Visos dinaminės klasės veikia produkcijoje ✓
 
 #### 2. Copy Button Fix
+
 Kiekvienas `CopyButton` komponentas turi savo state:
+
 - Prieš: vienas `copied` state visoms kopijoms → visi mygtukai rodė "Copied"
 - Po: individualus `copiedId` tracking → tik paspaustas mygtukas rodo "Copied"
 
 #### 3. Komponentų Refaktorinimas
+
 - **SlideContent.tsx**: 1802 → ~1400 eilučių
 - Išskirti shared komponentai: `CopyButton`, `TemplateBlock`, `PracticalTask`
 - Kiekvienas slide tipas dabar atskira funkcija (lengviau testuoti)
 
 #### 4. Loading/Error States
+
 - **LoadingSpinner**: 3 dydžiai (sm, md, lg)
 - **ErrorBoundary**: Class component su retry funkcija
 - **Lazy loading**: React.lazy() + Suspense visiems dideliems komponentams
 
 #### 5. TypeScript Tipai
+
 `src/types/modules.ts` apima:
+
 - `Slide`, `Module`, `Quiz` interfeisus
 - `TestQuestion`, `Scenario`, `PracticalTask`
 - `InstructionStep`, `TaskInstructions` (nauji - 3 modulio instrukcijoms)
@@ -1297,6 +1425,7 @@ Kiekvienas `CopyButton` komponentas turi savo state:
 **Rezultatas:** Pilnas type safety + autocomplete visur ✓
 
 #### 6. 3 Modulio Instrukcijų Sistema
+
 - **Accordion UI** - Išskleidžiamos/suskleidžiamos instrukcijų sekcijos
 - **Tarpiniai sprendimai** - Kopijuojami su CopyButton
 - **Patarimų blokai** - Vizualus akcentas su amber spalva
@@ -1321,6 +1450,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 #### ✨ Nauja Funkcionalumas
 
 **1. Nauja pirma veiksmo skaidrė (action-intro)**
+
 - Hero blokas su statistika (2x tikslesni rezultatai)
 - Micro-action: nestruktūruotas vs struktūruotas promptas su mygtuku „Pažiūrėk"
 - Sutrumpintas kontekstas su collapsible DI įrankiais
@@ -1328,16 +1458,19 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 - Naujas `ActionIntroContent` TypeScript interfeisas
 
 **2. Resume / State Save mechanizmas**
+
 - Slide pozicija išsaugoma localStorage per `useSlideNavigation`
 - „Sveiki sugrįžę!" resume prompt su mygtukais „Tęsti" / „Nuo pradžios"
 - Apsauga nuo duomenų praradimo su `beforeunload` event
 - Persistent „Juodraštis išsaugotas" indikatorius PracticalTask komponente
 
 **3. Kognityvinės apkrovos mažinimas**
+
 - Supaprastinti Modulio 1 skaidrių 2-3 tekstai (definitions, workflow)
 - Trumpesni aprašymai, vizualiniai elementai vietoj ilgų tekstų
 
 **4. Grupuotas progreso indikatorius**
+
 - Progress bar su etapų pavadinimais (Pagrindai → Šablonas → 6 Blokai → Santrauka)
 - Spalvų kodavimas: brand (aktyvus), emerald (praėjęs), gray (būsimas)
 - Automatinis grupavimas pagal slide tipus
@@ -1345,6 +1478,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 #### 🛠️ Techniniai Pakeitimai
 
 **Failai:**
+
 - `src/types/modules.ts` – pridėtas `ActionIntroContent` interfeisas, `action-intro` tipas
 - `src/components/slides/types/ContentSlides.tsx` – naujas `ActionIntroSlide` komponentas
 - `src/components/slides/types/AllSlides.tsx` – re-export
@@ -1356,6 +1490,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 - `src/components/slides/shared/PracticalTask.tsx` – beforeunload + persistent saved indicator
 
 #### 📊 Statistikos
+
 - **Naujų komponentų:** 2 (`ActionIntroSlide`, `SlideGroupProgressBar`)
 - **Naujų TypeScript tipų:** 1 (`ActionIntroContent`)
 - **Atnaujintų komponentų:** 4
@@ -1368,6 +1503,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 #### ✨ Nauja Funkcionalumas
 
 **1. Instrukcijos su žingsniais visiems scenarijams**
+
 - Kiekvienas scenarijus turi 6 žingsnius (po vieną kiekvienam blokui)
 - Kiekvienas žingsnis turi:
   - Pavadinimą ir aprašymą
@@ -1377,12 +1513,14 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 - Vizualus dizainas su spalvų kodavimu
 
 **2. Tarpiniai sprendimai (Partial Solutions)**
+
 - Kiekvienam blokui (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)
 - Kopijuojami su vienu paspaudimu
 - Padeda suprasti, kaip formuoti kiekvieną bloką
 - Nėra pilno sprendimo - tik pagrindas, kurį reikia pritaikyti
 
 **3. Pavyzdiniai sprendimai visiems scenarijams**
+
 - Scenarijus 1: Pardavimų Analizė - patobulintas su instrukcijomis
 - Scenarijus 2: Marketingo Planas - pridėtas pilnas pavyzdys
 - Scenarijus 3: HR Dokumentas - pridėtas pilnas pavyzdys
@@ -1391,16 +1529,19 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 #### 🛠️ Techniniai Pakeitimai
 
 **TypeScript Tipai:**
+
 - Pridėti `InstructionStep` ir `TaskInstructions` interfeisai
 - Atnaujintas `PracticalTask` interfeisas su `instructions?: TaskInstructions`
 
 **Komponentas PracticalTask:**
+
 - Pridėta instrukcijų sekcija su accordion funkcionalumu
 - Tarpinių sprendimų rodymas su kopijavimo funkcija
 - Patarimų blokai su vizualiu akcentu
 - Responsive dizainas su dark mode palaikymu
 
 **Duomenys:**
+
 - Visi 4 scenarijai atnaujinti su `instructions` objektais
 - Pridėti tarpiniai sprendimai kiekvienam žingsniui
 - Pridėti pilni pavyzdiniai sprendimai visiems scenarijams
@@ -1419,6 +1560,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 #### ✨ Nauja Funkcionalumas
 
 **1. Nauja Skaidrė: Mąstymo Modeliai (Skaidrė 10)**
+
 - Pridėta nauja skaidrė apie Chain of Thought (CoT) vs Tree of Thoughts (ToT)
 - Vizualizacija su nuotrauka (`mastymo_modeliai.png`)
 - Detalus CoT (Grandinė) aprašymas:
@@ -1434,6 +1576,7 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
 - Svarbi pastaba apie reasoning struktūros svarbą
 
 **2. Reasoning Bloko Patobulinimas (Skaidrė 11)**
+
 - Išplėsta "Kada naudoti / kada nenaudoti" sekcija su ✅/❌ indikatoriais
 - Pridėta Trumpa (Lite) versija – 80% atvejų
 - Patobulinta Pilna (Advanced) struktūra su 6 žingsniais
@@ -1462,14 +1605,11 @@ Remiantis vartotojų testais (20260209_user_tests.md) su 2 dalyviais (Moduliai 1
   - Responsive dizainas su grid layout
   - Dark mode palaikymas
   - CopyButton funkcionalumas visiems pavyzdžiams
-  
 - **Atnaujinta `modules.json`:**
   - Pridėta nauja skaidrė su `id: 8`, `type: "reasoning-models"`
   - Atnaujinti visų vėlesnių skaidrių ID
-  
 - **Atnaujinta `types/modules.ts`:**
   - Pridėtas naujas tipas `'reasoning-models'` į `SlideType` union
-  
 - **Atnaujinta `SlideContent.tsx`:**
   - Pridėtas naujas case `'reasoning-models'` į switch statement
   - Sukurtas `ReasoningModelsSlide` komponentas (~200 eilučių)

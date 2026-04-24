@@ -1,7 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai, pilnas interaktyvus mokymas (moduliai 1–6) – sistema nuo A iki Z.**  
-**Versija:** 1.3.0 (2026-03-16). Production: deploy, integruoti mokėjimai marketingo tinklalapyje.
+**Versija:** 1.3.0 (2026-03-16). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Naujausi deploy ir UX pataisymai – [CHANGELOG.md](CHANGELOG.md) (`[Unreleased]`).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti 6 moduliai** (6 blokų sistema, žinių testas, praktika, konteksto inžinerija, pažangus testas, projektas) su progresu, sertifikatais ir PDF atmintinėmis. Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus** – mokoma kurti promptus ir scenarijus, ne tik suprasti teoriją.  
 UI ir turinys palaiko **LT / EN** (moduliams 1–6), kalba pasirenkama programėlėje.
@@ -144,11 +144,11 @@ Prieiga: `https://ditreneris.github.io/inzinerija/`
 
 ### Production (rekomenduojama)
 
-- **Produkcinis domenas:** `https://promptanatomy.app/`
-- **Hostingas:** marketingo repo / Vercel integracija
-- **Mokymo app:** servinamas kaip subproject po keliu, pvz. `/academy` arba `/anatomija`
+- **Mokymo aplikacija (dabartinis kelias):** [https://www.promptanatomy.app](https://www.promptanatomy.app)
+- **Hostingas:** Vercel; repo integruotas kaip **git submodulis** (`www`) didesniame marketingo monorepo
+- **Alternatyvus kelias po domenu:** kartais naudojamas subpath (pvz. `/academy` arba `/anatomija`) – priklauso nuo monorepo nustatymų; žr. `VITE_BASE_PATH` ir `INTEGRATION_OVERVIEW.md`
 
-Pilnas production aprašas: `docs/deployment/INTEGRATION_OVERVIEW.md` ir `docs/deployment/DEPLOYMENT.md`.
+Pilnas production aprašas: [docs/deployment/INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md) ir [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
 
 **Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (atitinka GitHub Pages repo pavadinimą). Per env galima nustatyti `VITE_BASE_PATH` (pvz. `/anatomija/` kito repo atveju).
 
@@ -197,6 +197,8 @@ src/
 - **docs/development/CODEBASE_WHAT_IS_DONE.md** – kodo bazės santrauka: kas įgyvendinta (duomenys, i18n, testai, access tier).
 - **docs/development/RELEASE_QA_CHECKLIST.md** – 5 min sanity prieš release (nuorodos, mobilus, tamsus režimas, lietuviškos raidės, EN).
 - **TODO.md** – dabartinės užduotys.
+- **ROADMAP.md** – plėtros prioritetai, deploy / post-deploy, nuorodos į dokumentaciją.
+- **CHANGELOG.md** – versijų ir svarbių pakeitimų žurnalas (įsk. produkcijos pastabos `[Unreleased]`).
 - **docs/README.md** – dokumentacijos struktūra; pasenę dokumentai – `docs/archive/` (lokaliai, žr. `docs/archive/README.md`).
 
 ## 📄 Licencija

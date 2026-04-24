@@ -333,6 +333,19 @@ function App() {
     }
   };
 
+  const handleModuleJourneyFocus = useCallback(
+    (moduleId: number, choiceLabel: string) => {
+      setProgress((prev) => ({
+        ...prev,
+        moduleJourneyFocus: {
+          ...(prev.moduleJourneyFocus ?? {}),
+          [moduleId]: choiceLabel,
+        },
+      }));
+    },
+    []
+  );
+
   const handleTaskComplete = (
     moduleId: number,
     taskId: number,
@@ -507,6 +520,7 @@ function App() {
                     }}
                     onComplete={handleModuleComplete}
                     onTaskComplete={handleTaskComplete}
+                    onJourneyFocusChoice={handleModuleJourneyFocus}
                     onContinueToNext={handleContinueToNextModule}
                     onGoToModule={handleGoToModule}
                     onGoToGlossary={(slideIndex) => {

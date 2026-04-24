@@ -16,7 +16,17 @@
   "$defs": {
     "module": {
       "type": "object",
-      "required": ["id", "title", "subtitle", "description", "icon", "level", "duration", "slides", "businessExamples"],
+      "required": [
+        "id",
+        "title",
+        "subtitle",
+        "description",
+        "icon",
+        "level",
+        "duration",
+        "slides",
+        "businessExamples"
+      ],
       "properties": {
         "id": { "type": "number" },
         "title": { "type": "string" },
@@ -40,7 +50,10 @@
             }
           }
         },
-        "unlocksAfter": { "type": "number", "description": "Modulio ID, po kurio šis modulis atrakinamas" }
+        "unlocksAfter": {
+          "type": "number",
+          "description": "Modulio ID, po kurio šis modulis atrakinamas"
+        }
       }
     },
     "slide": {
@@ -53,14 +66,50 @@
         "type": {
           "type": "string",
           "enum": [
-            "action-intro", "action-intro-journey", "intro", "definitions", "prompt-types", "prompt-techniques",
-            "workflow-summary", "prompt-template", "transition-3-to-6", "hierarchy", "meta",
-            "input", "output", "reasoning-models", "reasoning", "quality", "advanced",
-            "advanced-2", "full-example", "comparison", "summary", "test-intro", "test-section",
-            "test-results", "practice-intro", "practice-scenario", "practice-scenario-hub", "practice-summary",
-            "infographic", "hallucination-dashboard", "ai-detectors", "di-modalities",
-            "pie-chart", "intro-action-pie", "ai-workflow", "module-intro", "content-block", "evaluator-prompt-block", "glossary",
-            "section-break", "warm-up-quiz", "path-step", "vaizdo-generatorius"
+            "action-intro",
+            "action-intro-journey",
+            "intro",
+            "definitions",
+            "prompt-types",
+            "prompt-techniques",
+            "workflow-summary",
+            "prompt-template",
+            "transition-3-to-6",
+            "hierarchy",
+            "meta",
+            "input",
+            "output",
+            "reasoning-models",
+            "reasoning",
+            "quality",
+            "advanced",
+            "advanced-2",
+            "full-example",
+            "comparison",
+            "summary",
+            "test-intro",
+            "test-section",
+            "test-results",
+            "practice-intro",
+            "practice-scenario",
+            "practice-scenario-hub",
+            "practice-summary",
+            "infographic",
+            "hallucination-dashboard",
+            "hallucination-pipeline",
+            "ai-detectors",
+            "di-modalities",
+            "pie-chart",
+            "intro-action-pie",
+            "ai-workflow",
+            "module-intro",
+            "content-block",
+            "evaluator-prompt-block",
+            "glossary",
+            "section-break",
+            "warm-up-quiz",
+            "path-step",
+            "vaizdo-generatorius"
           ]
         },
         "shortTitle": { "type": "string" },
@@ -74,13 +123,28 @@
         },
         "scenario": { "$ref": "#/$defs/scenario" },
         "practicalTask": { "$ref": "#/$defs/practicalTask" },
-        "characterId": { "type": "number", "minimum": 1, "maximum": 4, "description": "M9 role-quest: veikėjas 1–4 atlieka šį scenarijų" },
-        "recommended": { "type": "boolean", "description": "M9/M10/… rekomenduojamas pradedantiesiems" },
-        "badgeVariant": { "type": "string", "enum": ["bonus", "optional"], "description": "Optional badge tipas: bonus (Sparkles) arba optional (Neprivaloma)" }
+        "characterId": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "M9 role-quest: veikėjas 1–4 atlieka šį scenarijų"
+        },
+        "recommended": {
+          "type": "boolean",
+          "description": "M9/M10/… rekomenduojamas pradedantiesiems"
+        },
+        "badgeVariant": {
+          "type": "string",
+          "enum": ["bonus", "optional"],
+          "description": "Optional badge tipas: bonus (Sparkles) arba optional (Neprivaloma)"
+        }
       },
       "allOf": [
         {
-          "if": { "properties": { "type": { "const": "content-block" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "content-block" } },
+            "required": ["type"]
+          },
           "then": {
             "required": ["content"],
             "properties": {
@@ -99,11 +163,45 @@
                         "body": { "type": "string" },
                         "copyable": { "type": "string" },
                         "collapsible": { "type": "boolean" },
-                        "blockVariant": { "type": "string", "enum": ["accent", "brand", "terms", "emerald", "violet", "default"] },
+                        "blockVariant": {
+                          "type": "string",
+                          "enum": [
+                            "accent",
+                            "brand",
+                            "terms",
+                            "emerald",
+                            "violet",
+                            "default"
+                          ]
+                        },
                         "image": { "type": "string" },
                         "imageAlt": { "type": "string" },
-                        "figmaUrl": { "type": "string", "description": "Figma embed URL – rodomas kaip iframe" },
+                        "figmaUrl": {
+                          "type": "string",
+                          "description": "Figma embed URL – rodomas kaip iframe"
+                        },
                         "table": { "type": "object" }
+                      }
+                    }
+                  },
+                  "toolsIntro": { "type": "string" },
+                  "toolsCollapsible": {
+                    "type": "boolean",
+                    "description": "Įrankių blokas – details/summary (pvz. M7 skaidrė 71)"
+                  },
+                  "tools": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["name"],
+                      "properties": {
+                        "name": { "type": "string" },
+                        "url": { "type": "string" },
+                        "description": { "type": "string" },
+                        "useCases": {
+                          "type": "array",
+                          "items": { "type": "string" }
+                        }
                       }
                     }
                   }
@@ -113,7 +211,10 @@
           }
         },
         {
-          "if": { "properties": { "type": { "const": "evaluator-prompt-block" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "evaluator-prompt-block" } },
+            "required": ["type"]
+          },
           "then": {
             "required": ["content"],
             "properties": {
@@ -133,7 +234,17 @@
                         "body": { "type": "string" },
                         "copyable": { "type": "string" },
                         "collapsible": { "type": "boolean" },
-                        "blockVariant": { "type": "string", "enum": ["accent", "brand", "terms", "emerald", "violet", "default"] },
+                        "blockVariant": {
+                          "type": "string",
+                          "enum": [
+                            "accent",
+                            "brand",
+                            "terms",
+                            "emerald",
+                            "violet",
+                            "default"
+                          ]
+                        },
                         "image": { "type": "string" },
                         "imageAlt": { "type": "string" },
                         "figmaUrl": { "type": "string" },
@@ -148,7 +259,10 @@
           }
         },
         {
-          "if": { "properties": { "type": { "const": "practice-scenario-hub" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "practice-scenario-hub" } },
+            "required": ["type"]
+          },
           "then": {
             "required": ["content"],
             "properties": {
@@ -157,13 +271,19 @@
           }
         },
         {
-          "if": { "properties": { "type": { "const": "infographic" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "infographic" } },
+            "required": ["type"]
+          },
           "then": {
             "properties": {
               "content": {
                 "type": "object",
                 "properties": {
-                  "portalBrand": { "type": "string", "description": "Optional masthead brand (e.g. Next Level AI) – portal feel" },
+                  "portalBrand": {
+                    "type": "string",
+                    "description": "Optional masthead brand (e.g. Next Level AI) – portal feel"
+                  },
                   "ctaBlock": {
                     "type": "object",
                     "description": "Optional single CTA block – invitation to act",
@@ -174,10 +294,17 @@
                     "required": ["label"]
                   },
                   "takeaway": { "type": "string" },
-                  "takeawayCta": { "type": "string", "description": "Optional CTA line below takeaway – new line, bold, accent gradient" },
+                  "takeawayCta": {
+                    "type": "string",
+                    "description": "Optional CTA line below takeaway – new line, bold, accent gradient"
+                  },
                   "heroImageVertical": { "$ref": "#/$defs/portalImageSlot" },
-                  "bannerImageHorizontal": { "$ref": "#/$defs/portalImageSlot" },
-                  "bannerBetweenKpiAndSections": { "$ref": "#/$defs/portalImageSlot" },
+                  "bannerImageHorizontal": {
+                    "$ref": "#/$defs/portalImageSlot"
+                  },
+                  "bannerBetweenKpiAndSections": {
+                    "$ref": "#/$defs/portalImageSlot"
+                  },
                   "sectionCards": {
                     "type": "array",
                     "description": "Legacy: 3 section cards. When mainInsightBlock + secondaryCards present, 2-level layout is used instead.",
@@ -213,7 +340,10 @@
                         "value": { "type": "string" },
                         "label": { "type": "string" },
                         "source": { "type": "string" },
-                        "colorKey": { "type": "string", "enum": ["brand", "violet", "emerald", "amber"] },
+                        "colorKey": {
+                          "type": "string",
+                          "enum": ["brand", "violet", "emerald", "amber"]
+                        },
                         "imageVertical": { "$ref": "#/$defs/portalImageSlot" }
                       }
                     }
@@ -221,13 +351,17 @@
                   "toolsAndYouth": {
                     "type": "object",
                     "properties": {
-                      "youthImageVertical": { "$ref": "#/$defs/portalImageSlot" }
+                      "youthImageVertical": {
+                        "$ref": "#/$defs/portalImageSlot"
+                      }
                     }
                   },
                   "insightCard": {
                     "type": "object",
                     "properties": {
-                      "illustrationHorizontal": { "$ref": "#/$defs/portalImageSlot" }
+                      "illustrationHorizontal": {
+                        "$ref": "#/$defs/portalImageSlot"
+                      }
                     }
                   }
                 }
@@ -236,7 +370,10 @@
           }
         },
         {
-          "if": { "properties": { "type": { "const": "section-break" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "section-break" } },
+            "required": ["type"]
+          },
           "then": {
             "properties": {
               "content": {
@@ -250,13 +387,30 @@
                     "type": "object",
                     "properties": {
                       "heading": { "type": "string" },
-                      "lead": { "type": "string", "description": "Neprivaloma įvadinė eilutė virš punktų (pvz. „Promptų inžinerija – kaip knyga.“)" },
-                      "items": { "type": "array", "items": { "type": "string" } },
-                      "itemGlossaryTerms": { "type": "array", "items": { "type": "string" }, "description": "Žodynėlio termino pavadinimas kiekvienam item (nuoroda į žodyną)" }
+                      "lead": {
+                        "type": "string",
+                        "description": "Neprivaloma įvadinė eilutė virš punktų (pvz. „Promptų inžinerija – kaip knyga.“)"
+                      },
+                      "items": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      },
+                      "itemGlossaryTerms": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "description": "Žodynėlio termino pavadinimas kiekvienam item (nuoroda į žodyną)"
+                      }
                     }
                   },
-                  "celebrationText": { "type": "string", "description": "Teigiamas stiprinimas prieš recap (įsiminimo skaidrėms)" },
-                  "nextSteps": { "type": "array", "items": { "type": "string" }, "description": "Kas toliau – trumpi punktai" },
+                  "celebrationText": {
+                    "type": "string",
+                    "description": "Teigiamas stiprinimas prieš recap (įsiminimo skaidrėms)"
+                  },
+                  "nextSteps": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Kas toliau – trumpi punktai"
+                  },
                   "spinoffCta": {
                     "type": "object",
                     "properties": {
@@ -271,7 +425,10 @@
           }
         },
         {
-          "if": { "properties": { "type": { "const": "path-step" } }, "required": ["type"] },
+          "if": {
+            "properties": { "type": { "const": "path-step" } },
+            "required": ["type"]
+          },
           "then": {
             "required": ["content"],
             "properties": {
@@ -282,6 +439,11 @@
                 "properties": {
                   "title": { "type": "string" },
                   "stepNumber": { "type": "number", "minimum": 1 },
+                  "stepTotal": {
+                    "type": "number",
+                    "minimum": 1,
+                    "description": "Rodoma „Žingsnis N / M“ (pvz. M7 kelias)"
+                  },
                   "body": { "type": "string" },
                   "sections": {
                     "type": "array",
@@ -293,7 +455,11 @@
                       }
                     }
                   },
-                  "unlockedGlossaryTerms": { "type": "array", "items": { "type": "string" }, "description": "Terminų pavadinimai – atrakinti žodynėlyje po žingsnio užbaigimo" },
+                  "unlockedGlossaryTerms": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "description": "Terminų pavadinimai – atrakinti žodynėlyje po žingsnio užbaigimo"
+                  },
                   "footer": { "type": "string" }
                 }
               }
@@ -398,8 +564,14 @@
         "data": { "type": "string" },
         "constraints": { "type": "string" },
         "expectedFormat": { "type": "string" },
-        "situation": { "type": "string", "description": "2–3 sakiniai: persona, problema, kontekstas (virš scenarijaus skirtukų)" },
-        "narrativeLead": { "type": "string", "description": "M9 role-quest: įvedantis sakinys" },
+        "situation": {
+          "type": "string",
+          "description": "2–3 sakiniai: persona, problema, kontekstas (virš scenarijaus skirtukų)"
+        },
+        "narrativeLead": {
+          "type": "string",
+          "description": "M9 role-quest: įvedantis sakinys"
+        },
         "branching": {
           "type": "object",
           "properties": {

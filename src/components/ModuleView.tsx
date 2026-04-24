@@ -74,6 +74,12 @@ const PHASE_LABEL_TO_KEY: Record<string, string> = {
   Muzika: 'phaseMusic',
   Verslas: 'phaseBusiness',
   Kita: 'phaseOther',
+  Pamatas: 'phaseFoundation',
+  'Pipeline ir promptai': 'phasePipelinePrompts',
+  Patikimumas: 'phaseTrustEthics',
+  'Analizė ir BI': 'phaseAnalysisBi',
+  MASTER: 'phaseMasterPrompt',
+  Vizualizacija: 'phaseVisualization',
 };
 
 /* ─── Slide Group Progress Bar ─── */
@@ -161,6 +167,8 @@ interface ModuleViewProps {
     taskId: number,
     testScore?: number
   ) => void;
+  /** Modulio 7: išsaugoti kelionės fokusą (juostai virš skaidrės) */
+  onJourneyFocusChoice?: (moduleId: number, choiceLabel: string) => void;
   onContinueToNext: (currentModuleId: number) => void;
   onGoToModule?: (
     moduleId: number,
@@ -173,7 +181,7 @@ interface ModuleViewProps {
   /** A-M3: when set, show "Grįžti į testo rezultatą" and call onReturnToRemediation to go back */
   remediationFrom?: { sourceModuleId: number } | null;
   onReturnToRemediation?: () => void;
-  /** Hidden treasure: parsisiųsti sertifikatą (tier 1 po 3 mod., tier 2 po 6 mod. + quiz ≥70%). */
+  /** Hidden treasure: parsisiųsti sertifikatą (tier 1 po 3 mod., tier 2 po 6 mod. + apklausa ≥70%, tier 3 po 7–9 + M8 testas ≥70%). */
   onRequestCertificate?: (tier: 1 | 2 | 3) => void;
   progress: Progress;
   totalModules: number;
@@ -186,6 +194,7 @@ function ModuleView({
   onBack,
   onComplete,
   onTaskComplete,
+  onJourneyFocusChoice,
   onContinueToNext,
   onGoToModule,
   onGoToGlossary,
@@ -1007,6 +1016,17 @@ function ModuleView({
                 }}
               />
             </div>
+            {moduleId === 7 && progress.moduleJourneyFocus?.[7] && (
+              <div
+                className="px-3 py-2 text-center text-xs sm:text-sm font-medium text-brand-800 dark:text-brand-200 bg-brand-50/90 dark:bg-brand-950/50 border-t border-brand-100 dark:border-brand-900/60"
+                role="status"
+                aria-label={t('module:m7JourneyFocusAria')}
+              >
+                {t('module:m7JourneyFocus', {
+                  label: progress.moduleJourneyFocus[7],
+                })}
+              </div>
+            )}
           </nav>
 
           <ErrorBoundary
@@ -1077,6 +1097,7 @@ function ModuleView({
                 onNavigateToHubWithCharacter={
                   moduleId === 9 ? onNavigateToHubWithCharacter : undefined
                 }
+                onJourneyFocusChoice={onJourneyFocusChoice}
               />
             </Suspense>
           </ErrorBoundary>
@@ -1288,7 +1309,9 @@ export default memo(ModuleView, (prevProps, nextProps) => {
     prevProps.progress.completedModules.length !==
       nextProps.progress.completedModules.length ||
     JSON.stringify(prevProps.progress.completedTasks) !==
-      JSON.stringify(nextProps.progress.completedTasks)
+      JSON.stringify(nextProps.progress.completedTasks) ||
+    JSON.stringify(prevProps.progress.moduleJourneyFocus ?? {}) !==
+      JSON.stringify(nextProps.progress.moduleJourneyFocus ?? {})
   ) {
     return false;
   }

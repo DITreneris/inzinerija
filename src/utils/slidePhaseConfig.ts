@@ -14,35 +14,41 @@ export interface SlideGroup {
 
 /** LT → EN phase label mapping (keys match i18n `module.phase*` values). */
 const phaseLabelsEn: Record<string, string> = {
-  'Pagrindai': 'Basics',
-  'Šablonas': 'Template',
+  Pagrindai: 'Basics',
+  Šablonas: 'Template',
   '6 Blokai': '6 Blocks',
-  'Santrauka': 'Summary',
-  'Įvadas': 'Intro',
-  'Teorija': 'Theory',
-  'RAG': 'RAG',
+  Santrauka: 'Summary',
+  Įvadas: 'Intro',
+  Teorija: 'Theory',
+  RAG: 'RAG',
   'Deep research': 'Deep research',
-  'Tokenai': 'Tokens',
-  'Manipuliacijos': 'Manipulations',
-  'Skyrius': 'Section',
-  'Kelionė': 'Journey',
-  'Kelias': 'Journey',
-  'Savitikra': 'Self-check',
-  'Testas': 'Test',
-  'Praktika': 'Practice',
-  'Sprintas': 'Sprint',
-  'Pagalba': 'Help',
-  'Projektas': 'Project',
+  Tokenai: 'Tokens',
+  Manipuliacijos: 'Manipulations',
+  Skyrius: 'Section',
+  Kelionė: 'Journey',
+  Kelias: 'Journey',
+  Savitikra: 'Self-check',
+  Testas: 'Test',
+  Praktika: 'Practice',
+  Sprintas: 'Sprint',
+  Pagalba: 'Help',
+  Projektas: 'Project',
   'COMBO ir HTML': 'COMBO & HTML',
-  'SUPER': 'SUPER',
-  'Refleksija': 'Reflection',
+  SUPER: 'SUPER',
+  Refleksija: 'Reflection',
   'Duomenų tvarkymas': 'Data handling',
   'Custom GPT': 'Custom GPT',
-  'Vaizdai': 'Images',
-  'Video': 'Video',
-  'Muzika': 'Music',
-  'Verslas': 'Business',
-  'Kita': 'Other',
+  Vaizdai: 'Images',
+  Video: 'Video',
+  Muzika: 'Music',
+  Verslas: 'Business',
+  Kita: 'Other',
+  Pamatas: 'Foundation',
+  'Pipeline ir promptai': 'Pipeline & prompts',
+  Patikimumas: 'Trust & ethics',
+  'Analizė ir BI': 'Analysis & BI',
+  MASTER: 'Master prompt',
+  Vizualizacija: 'Visualization',
 };
 
 function localizePhase(label: string, locale: PhaseLocale): string {
@@ -57,6 +63,44 @@ export function getPhaseLabel(
   slideType?: string,
   locale: PhaseLocale = 'lt'
 ): string {
+  // Module 7: DA kelias – fazės pagal skaidrės id (M7 skaidrių eilė)
+  if (moduleId === 7 && slideId != null) {
+    let lt = 'Pipeline ir promptai';
+    if (slideId === 70 || slideId === 71) lt = 'Įvadas';
+    else if (slideId === 72 || slideId === 725 || slideId === 726)
+      lt = 'Pamatas';
+    else if (
+      slideId === 66.9 ||
+      slideId === 67 ||
+      slideId === 67.3 ||
+      slideId === 67.5 ||
+      slideId === 67.7 ||
+      slideId === 67.8 ||
+      slideId === 68 ||
+      slideId === 200 ||
+      slideId === 201 ||
+      slideId === 68.5
+    )
+      lt = 'Patikimumas';
+    else if (
+      slideId === 90 ||
+      slideId === 91 ||
+      slideId === 92 ||
+      slideId === 94 ||
+      slideId === 95 ||
+      slideId === 97 ||
+      slideId === 98
+    )
+      lt = 'Analizė ir BI';
+    else if (slideId === 71.1 || slideId === 71.2 || slideId === 71.3)
+      lt = 'Kelias';
+    else if (slideId === 74 || slideId === 71.4 || slideId === 71.5)
+      lt = 'MASTER';
+    else if (slideId >= 100 && slideId <= 106) lt = 'Vizualizacija';
+    else if (slideId === 75) lt = 'Santrauka';
+    return localizePhase(lt, locale);
+  }
+
   // Module 4: Įvadas / RAG / Deep research / Tokenai / Manipuliacijos / Santrauka (MODULIO_4_SKAIDRIU_EILES, section-breaks 40.5, 65.8)
   if (moduleId === 4) {
     let lt = 'Teorija';
@@ -77,7 +121,8 @@ export function getPhaseLabel(
     if (slideId != null) {
       if (slideId === 60) lt = 'Įvadas';
       else if (slideId === 61) lt = 'Projektas';
-      else if (slideId === 62 || slideId === 67.8 || slideId === 68) lt = 'COMBO ir HTML';
+      else if (slideId === 62 || slideId === 67.8 || slideId === 68)
+        lt = 'COMBO ir HTML';
       else if (slideId === 63) lt = 'SUPER';
       else if (slideId === 65) lt = 'Refleksija';
       else if (slideId === 64) lt = 'Duomenų tvarkymas';
@@ -102,50 +147,55 @@ export function getPhaseLabel(
     let lt = 'Vaizdai';
     if (slideId != null) {
       if (slideId === 130) lt = 'Įvadas';
-      else if (slideId === 13.36 || slideId === 13.4 || slideId === 13.5) lt = 'Video';
-      else if (slideId === 13.56 || slideId === 13.6 || slideId === 13.7) lt = 'Muzika';
-      else if (slideId === 13.10 || slideId === 13.11) lt = 'Verslas';
+      else if (slideId === 13.36 || slideId === 13.4 || slideId === 13.5)
+        lt = 'Video';
+      else if (slideId === 13.56 || slideId === 13.6 || slideId === 13.7)
+        lt = 'Muzika';
+      else if (slideId === 13.101 || slideId === 13.11) lt = 'Verslas';
       else if (slideId === 13.8 || slideId === 13.9) lt = 'Santrauka';
     }
     return localizePhase(lt, locale);
   }
 
   // Module 11, 14 – testas; 12, 15 – praktika (single-phase modules, label from type)
-  if (moduleId === 11 || moduleId === 14) return localizePhase('Testas', locale);
-  if (moduleId === 12 || moduleId === 15) return localizePhase('Praktika', locale);
+  if (moduleId === 11 || moduleId === 14)
+    return localizePhase('Testas', locale);
+  if (moduleId === 12 || moduleId === 15)
+    return localizePhase('Praktika', locale);
 
   // Module 5: fixed three groups (Sprintas, Pagalba, Testas) – handled in buildSlideGroups only
   // Generic: by slide type (Module 1 and similar)
   const typeToPhase: Record<string, string> = {
     'action-intro': 'Pagrindai',
     'action-intro-journey': 'Kelionė',
-    'intro': 'Pagrindai',
-    'infographic': 'Pagrindai',
-    'definitions': 'Pagrindai',
+    intro: 'Pagrindai',
+    infographic: 'Pagrindai',
+    definitions: 'Pagrindai',
     'workflow-summary': 'Pagrindai',
     'prompt-types': 'Pagrindai',
     'prompt-techniques': 'Pagrindai',
     'prompt-template': 'Šablonas',
     'transition-3-to-6': 'Šablonas',
-    'hierarchy': '6 Blokai',
-    'meta': '6 Blokai',
-    'input': '6 Blokai',
-    'output': '6 Blokai',
+    hierarchy: '6 Blokai',
+    meta: '6 Blokai',
+    input: '6 Blokai',
+    output: '6 Blokai',
     'reasoning-models': '6 Blokai',
-    'reasoning': '6 Blokai',
-    'quality': '6 Blokai',
-    'advanced': '6 Blokai',
+    reasoning: '6 Blokai',
+    quality: '6 Blokai',
+    advanced: '6 Blokai',
     'advanced-2': '6 Blokai',
     'full-example': 'Santrauka',
-    'comparison': 'Santrauka',
-    'glossary': 'Santrauka',
-    'summary': 'Santrauka',
+    comparison: 'Santrauka',
+    glossary: 'Santrauka',
+    summary: 'Santrauka',
     'module-intro': 'Įvadas',
     'section-break': 'Skyrius',
     'path-step': 'Kelias',
     'content-block': 'Teorija',
     'evaluator-prompt-block': 'Teorija',
     'hallucination-dashboard': 'Teorija',
+    'hallucination-pipeline': 'Teorija',
     'di-modalities': 'Teorija',
     'pie-chart': 'Teorija',
     'intro-action-pie': 'Teorija',
@@ -206,7 +256,7 @@ export function buildSlideGroups(
 
   slides.forEach((s, idx) => {
     const phase =
-      (mid === 4 || mid === 6 || mid === 10 || mid === 13)
+      mid === 4 || mid === 6 || mid === 7 || mid === 10 || mid === 13
         ? getPhaseLabel(mid, s.id, undefined, locale)
         : getPhaseLabel(mid, s.id, s.type, locale);
     if (!current || current.label !== phase) {

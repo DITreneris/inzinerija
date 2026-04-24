@@ -34,6 +34,8 @@ import {
   User,
   MapPin,
   FileSearch,
+  Video,
+  Music,
 } from 'lucide-react';
 import { track } from '../../../utils/analytics';
 import {
@@ -57,6 +59,19 @@ import {
   StrukturuotasProcesasBlock,
   WorkflowChainsBlock,
   TurinioWorkflowBlock,
+  M9DataWorkflowBlock,
+  M7AnalysisTypesBlock,
+  M7DataPrepWorkflowBlock,
+  M7ThreeAgentsBlock,
+  M10TriggerFlowBlock,
+  M10ThreeAStrategyBlock,
+  M10ToolDecisionTreeBlock,
+  M10SpecIncidentBlock,
+  M13AecFunnelBlock,
+  M13PromptStackBlock,
+  M13RuleOfThirdsBlock,
+  M12ThreeLabsBlock,
+  M15PracticeLoopBlock,
   LlmAutoregressiveBlock,
   WorkflowComparisonInteractiveBlock,
   RagDuomenuRuosimasBlock,
@@ -172,11 +187,20 @@ const JOURNEY_ICONS: Record<
 export interface ActionIntroJourneySlideProps {
   content: ActionIntroJourneyContent;
   onJourneyComplete?: () => void;
+  /** Išsaugotas fokusas (progresas) – atkurti būseną grįžus prie skaidrės */
+  savedFocusLabel?: string | null;
+  /** Užduotis jau pažymėta – rodyti patvirtinimą be pakartotinio paspaudimo */
+  taskCompleted?: boolean;
+  /** Išsaugoti pasirinktą sritį (rodoma juostoje modulyje) */
+  onJourneyFocusSave?: (choice: JourneyChoice) => void;
 }
 
 export function ActionIntroJourneySlide({
   content,
   onJourneyComplete,
+  savedFocusLabel = null,
+  taskCompleted = false,
+  onJourneyFocusSave,
 }: ActionIntroJourneySlideProps) {
   useTranslation();
   const t = getT('contentSlides');
@@ -189,7 +213,17 @@ export function ActionIntroJourneySlide({
   const confirmMessage = content.confirmMessage ?? t('journeyConfirmMessage');
   const ctaContinue = content.ctaContinue ?? t('journeyStartCta');
 
+  useEffect(() => {
+    if (!taskCompleted || !savedFocusLabel) return;
+    const match = content.journeyChoices.find(
+      (c) => c.label === savedFocusLabel
+    );
+    if (match) setSelected(match);
+    setConfirmed(true);
+  }, [taskCompleted, savedFocusLabel, content.journeyChoices]);
+
   const handleConfirm = () => {
+    if (selected) onJourneyFocusSave?.(selected);
     setConfirmed(true);
     onJourneyComplete?.();
   };
@@ -349,11 +383,14 @@ export function ContentBlockSlide({
   slide,
   moduleId,
   onGoToTools,
+  onGoToSummary,
 }: {
   content: ContentBlockContent;
   slide?: Slide;
   moduleId?: number;
   onGoToTools?: (moduleId: number) => void;
+  /** M9 skaidrė 94: praleisti hub ir scenarijus – tiesiai į praktikos santrauką */
+  onGoToSummary?: () => void;
 }) {
   useTranslation();
   const t = getT('contentSlides');
@@ -464,6 +501,9 @@ export function ContentBlockSlide({
     !isTabsMode &&
     sectionsList.length > 3 &&
     sectionsList.some((s) => (s.copyable ?? '').trim().length > 0);
+
+  const m9SkipToSummaryHandler =
+    moduleId === 9 && slide?.id === 94 ? onGoToSummary : undefined;
 
   return (
     <div
@@ -1040,6 +1080,132 @@ export function ContentBlockSlide({
                           </p>
                         )}
                       </div>
+                    ) : section.image.includes('m7_analysis_types') ? (
+                      <div className="my-4">
+                        <M7AnalysisTypesBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m7_data_prep_workflow') ? (
+                      <div className="my-4">
+                        <M7DataPrepWorkflowBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m7_three_agents_flow') ? (
+                      <div className="my-4">
+                        <M7ThreeAgentsBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m7_master_workflow') ? (
+                      <div className="my-4">
+                        <M9DataWorkflowBlock context="m7_master" />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m9_data_workflow') ? (
+                      <div className="my-4">
+                        <M9DataWorkflowBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m10_trigger_flow') ? (
+                      <div className="my-4">
+                        <M10TriggerFlowBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m10_three_a_strategy') ? (
+                      <div className="my-4">
+                        <M10ThreeAStrategyBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m10_tool_decision_tree') ? (
+                      <div className="my-4">
+                        <M10ToolDecisionTreeBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m10_spec_incident') ? (
+                      <div className="my-4">
+                        <M10SpecIncidentBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m13_aec_funnel') ? (
+                      <div className="my-4">
+                        <M13AecFunnelBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m13_prompt_stack') ? (
+                      <div className="my-4">
+                        <M13PromptStackBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m13_rule_of_thirds') ? (
+                      <div className="my-4">
+                        <M13RuleOfThirdsBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m12_three_labs') ? (
+                      <div className="my-4">
+                        <M12ThreeLabsBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m15_practice_loop') ? (
+                      <div className="my-4">
+                        <M15PracticeLoopBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
                     ) : section.image.includes('rag_duomenu_ruosimas') ? (
                       <div className="my-4">
                         <RagDuomenuRuosimasBlock />
@@ -1455,72 +1621,113 @@ export function ContentBlockSlide({
             </Fragment>
           );
         })}
-      {content.tools && content.tools.length > 0 && (
-        <div className="border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-            <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
-            {tPractice('toolsHeading')}
-          </h3>
-          {content.toolsIntro && (
+      {content.tools &&
+        content.tools.length > 0 &&
+        (() => {
+          const toolsList = content.tools!;
+          const toolsGrid = (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {toolsList.map((tool, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="flex flex-wrap items-baseline gap-2 mb-2">
+                    {tool.url ? (
+                      <a
+                        href={tool.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
+                      >
+                        {tool.name}
+                        <ExternalLink
+                          className="w-3.5 h-3.5 flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    ) : (
+                      <span className="text-base font-semibold text-gray-900 dark:text-white">
+                        {tool.name}
+                      </span>
+                    )}
+                  </div>
+                  {tool.description && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug mb-3">
+                      {tool.description}
+                    </p>
+                  )}
+                  {tool.useCases && tool.useCases.length > 0 && (
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+                        {tPractice('popularUseCases')}
+                      </p>
+                      <ul className="flex flex-wrap gap-1.5">
+                        {tool.useCases.map((uc, i) => (
+                          <li key={i}>
+                            <span className="inline-block text-xs px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">
+                              {uc}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+          const toolsIntroBlock = content.toolsIntro ? (
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               {content.toolsIntro}
             </p>
-          )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {content.tools?.map((t, idx) => (
-              <div
-                key={idx}
-                className="bg-white dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex flex-wrap items-baseline gap-2 mb-2">
-                  {t.url ? (
-                    <a
-                      href={t.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
-                    >
-                      {t.name}
-                      <ExternalLink
-                        className="w-3.5 h-3.5 flex-shrink-0"
-                        aria-hidden="true"
-                      />
-                    </a>
-                  ) : (
-                    <span className="text-base font-semibold text-gray-900 dark:text-white">
-                      {t.name}
-                    </span>
-                  )}
+          ) : null;
+          const toolsFooter = (
+            <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
+              {tPractice('toolsPrincipleNote')}
+            </p>
+          );
+          const shellClass =
+            'border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900';
+
+          if (content.toolsCollapsible) {
+            return (
+              <details className={`group ${shellClass} overflow-hidden`}>
+                <summary
+                  className="flex cursor-pointer list-none items-center gap-2 p-4 sm:p-5 text-lg font-bold text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl"
+                  aria-label={tPractice('toolsCollapsibleAria')}
+                >
+                  <ChevronDown
+                    className="h-5 w-5 shrink-0 text-brand-500 transition-transform group-open:rotate-180"
+                    aria-hidden
+                  />
+                  <Wrench className="h-5 w-5 text-brand-500" aria-hidden />
+                  <span>{tPractice('toolsHeading')}</span>
+                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    ({toolsList.length})
+                  </span>
+                </summary>
+                <div className="border-t border-brand-200 dark:border-brand-700 px-4 pb-6 pt-2 sm:px-8 sm:pt-4">
+                  {toolsIntroBlock}
+                  {toolsGrid}
+                  {toolsFooter}
                 </div>
-                {t.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug mb-3">
-                    {t.description}
-                  </p>
-                )}
-                {t.useCases && t.useCases.length > 0 && (
-                  <div>
-                    <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
-                      {tPractice('popularUseCases')}
-                    </p>
-                    <ul className="flex flex-wrap gap-1.5">
-                      {t.useCases.map((uc, i) => (
-                        <li key={i}>
-                          <span className="inline-block text-xs px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">
-                            {uc}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
-            {tPractice('toolsPrincipleNote')}
-          </p>
-        </div>
-      )}
+              </details>
+            );
+          }
+
+          return (
+            <div className={`${shellClass} p-6 sm:p-8`}>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+                <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
+                {tPractice('toolsHeading')}
+              </h3>
+              {toolsIntroBlock}
+              {toolsGrid}
+              {toolsFooter}
+            </div>
+          );
+        })()}
       {content.recognitionExercise && (
         <RecognitionExerciseBlock
           exercise={content.recognitionExercise}
@@ -1650,6 +1857,24 @@ export function ContentBlockSlide({
           </button>
         </div>
       )}
+      {m9SkipToSummaryHandler && (
+        <div
+          className="rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 p-4"
+          role="region"
+          aria-label={tPractice('m9SkipToSummaryAria')}
+        >
+          <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+            {tPractice('m9SkipToSummaryHint')}
+          </p>
+          <button
+            type="button"
+            onClick={m9SkipToSummaryHandler}
+            className="min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-xl text-sm font-semibold border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+          >
+            {tPractice('m9SkipToSummaryCta')}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -1693,9 +1918,12 @@ const sectionBreakColorMap = {
 export function SectionBreakSlide({
   content,
   onGoToGlossaryTerm,
+  onNextSlide,
 }: {
   content?: SectionBreakContent | null;
   onGoToGlossaryTerm?: (term: string) => void;
+  /** Modulio vaizdas: „Toliau – skaidrė N…“ juosta veda į kitą skaidrę (kaip „Tęsti“). */
+  onNextSlide?: () => void;
 }) {
   useTranslation();
   const t = getT('contentSlides');
@@ -1782,6 +2010,28 @@ export function SectionBreakSlide({
       : null) ?? Layers;
   const isPillUpcoming = (i: number) =>
     itemsLength === 5 && progressTotal === 7 && i >= 5;
+
+  const footerShell = `rounded-lg border-2 ${colors.footerBg} p-3 text-left`;
+  const footerNavBlock = !content.footer ? null : onNextSlide ? (
+    <button
+      type="button"
+      onClick={onNextSlide}
+      className={`w-full ${footerShell} transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 cursor-pointer min-h-[44px]`}
+      aria-label={content.footer}
+    >
+      <span className="text-xs font-semibold text-white flex items-center gap-2">
+        <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
+        {content.footer}
+      </span>
+    </button>
+  ) : (
+    <section className={footerShell} aria-label={t('nextStepAria')}>
+      <p className="text-xs font-semibold text-white flex items-center gap-2">
+        <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
+        {content.footer}
+      </p>
+    </section>
+  );
 
   if (hasRecap) {
     return (
@@ -2063,17 +2313,7 @@ export function SectionBreakSlide({
           </section>
         )}
 
-        {content.footer && (
-          <section
-            className={`rounded-lg border-2 ${colors.footerBg} p-3 text-left`}
-            aria-label={t('nextStepAria')}
-          >
-            <p className="text-xs font-semibold text-white flex items-center gap-2">
-              <ArrowRight className="w-4 h-4 flex-shrink-0" aria-hidden />
-              {content.footer}
-            </p>
-          </section>
-        )}
+        {footerNavBlock}
 
         {content.spinoffCta && (
           <a
@@ -2093,7 +2333,7 @@ export function SectionBreakSlide({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[280px] text-center px-4 py-8">
+    <div className="flex flex-col items-center justify-center min-h-[280px] text-center px-4 py-8 w-full">
       {content.sectionNumber && (
         <span className="inline-block px-4 py-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 font-semibold text-sm mb-4">
           {content.sectionNumber}
@@ -2107,6 +2347,11 @@ export function SectionBreakSlide({
           {content.subtitle}
         </p>
       )}
+      {footerNavBlock ? (
+        <div className="w-full max-w-3xl mx-auto mt-8 self-stretch text-left">
+          {footerNavBlock}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -4254,6 +4499,12 @@ function SectionIcon({
       return <Zap className={className} />;
     case 'Compass':
       return <Compass className={className} />;
+    case 'Image':
+      return <Image className={className} />;
+    case 'Video':
+      return <Video className={className} />;
+    case 'Music':
+      return <Music className={className} />;
     default:
       return <CheckCircle className={className} />;
   }
@@ -5388,8 +5639,11 @@ function portalImageSrc(src: string): string {
 
 export function NewsPortalInfographicSlide({
   content,
+  onNextSlide,
 }: {
   content?: NewsPortalInfographicContent;
+  /** Kai yra (modulio vaizdas), apačios CTA blokas veda į kitą skaidrę – kaip „Tęsti“. */
+  onNextSlide?: () => void;
 }) {
   useTranslation();
   const t = getT('contentSlides');
@@ -6007,23 +6261,40 @@ export function NewsPortalInfographicSlide({
         )}
       </div>
 
-      {/* Single CTA block – invitation to act, not dashboard (GOLDEN_STANDARD: accent) */}
-      {ctaBlock?.label && (
-        <div
-          className="rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
-          role="region"
-          aria-label={t('whatToDoNextAria')}
-        >
-          <p className="text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
-            {ctaBlock.label}
-          </p>
-          {ctaBlock.subline && (
-            <p className="mt-2 text-sm font-semibold text-accent-700 dark:text-accent-300">
-              {ctaBlock.subline}
+      {/* Single CTA block – invitation to act; su onNextSlide = tikras perėjimas (ne tik dekoratyvinis tekstas) */}
+      {ctaBlock?.label &&
+        (onNextSlide ? (
+          <button
+            type="button"
+            onClick={onNextSlide}
+            className="group w-full text-left rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm transition-colors hover:bg-accent-100/90 dark:hover:bg-accent-900/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 cursor-pointer min-h-[44px]"
+            aria-label={`${ctaBlock.label}${ctaBlock.subline ? `. ${ctaBlock.subline}` : ''}`}
+          >
+            <span className="block text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
+              {ctaBlock.label}
+            </span>
+            {ctaBlock.subline && (
+              <span className="mt-2 block text-sm font-semibold text-accent-700 dark:text-accent-300 underline-offset-2 group-hover:underline">
+                {ctaBlock.subline}
+              </span>
+            )}
+          </button>
+        ) : (
+          <div
+            className="rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
+            role="region"
+            aria-label={t('whatToDoNextAria')}
+          >
+            <p className="text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
+              {ctaBlock.label}
             </p>
-          )}
-        </div>
-      )}
+            {ctaBlock.subline && (
+              <p className="mt-2 text-sm font-semibold text-accent-700 dark:text-accent-300">
+                {ctaBlock.subline}
+              </p>
+            )}
+          </div>
+        ))}
 
       {/* Footer */}
       <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-wrap justify-between items-center gap-3">
@@ -6115,7 +6386,7 @@ const DEFAULT_PRACTICE_SUMMARY_EN: PracticeSummaryContent = {
 
 export interface PracticeSummarySlideProps {
   content?: PracticeSummaryContent | null;
-  /** M9: rodyti „Užbaigta X iš 16 scenarijų“ */
+  /** M9: rodyti „Užbaigta X iš N scenarijų“ (N iš practiceScenarioSlides) */
   completedScenarioCount?: number;
   totalScenarioCount?: number;
 }
@@ -6335,7 +6606,12 @@ export function PathStepSlide({
           </span>
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/40 text-accent-800 dark:text-accent-200 text-sm font-medium">
-          {isEn ? 'Step' : 'Žingsnis'} {content.stepNumber}
+          {content.stepTotal != null
+            ? t('pathStepOfTotal', {
+                n: content.stepNumber,
+                total: content.stepTotal,
+              })
+            : `${isEn ? 'Step' : 'Žingsnis'} ${content.stepNumber}`}
         </span>
       </div>
       <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">

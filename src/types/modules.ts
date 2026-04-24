@@ -1,7 +1,12 @@
 // TypeScript types for modules.json data structure
 
 /** Klausimo tipas – MCQ (numatytasis), matching, ordering, true-false, scenario */
-export type QuestionType = 'mcq' | 'matching' | 'ordering' | 'true-false' | 'scenario';
+export type QuestionType =
+  | 'mcq'
+  | 'matching'
+  | 'ordering'
+  | 'true-false'
+  | 'scenario';
 
 /** Matching klausimo pora – kairė ir dešinė pusė */
 export interface MatchPair {
@@ -403,7 +408,13 @@ export interface ContentBlockSection {
   /** Figma embed URL – rodomas kaip iframe (pvz. Schema 3 architektūra) */
   figmaUrl?: string;
   /** Bloko stilius: brand – pagrindinė info, accent – CTA/esminė žinutė, terms – žodynėlis (slate), emerald, violet – akcentai, default – neutralus */
-  blockVariant?: 'brand' | 'accent' | 'terms' | 'emerald' | 'violet' | 'default';
+  blockVariant?:
+    | 'brand'
+    | 'accent'
+    | 'terms'
+    | 'emerald'
+    | 'violet'
+    | 'default';
   /** Kai true – sekcija rodo įrankius (section.presentationTools arba content.presentationTools) */
   presentationToolsBlock?: boolean;
   /** Pasirenkama: šios sekcijos įrankiai (viršija content.presentationTools) – M5 logika: DI pirmiausia, paskui prez. */
@@ -489,7 +500,11 @@ export interface InstructGptQualityDelta {
 /** InstructGPT kokybės vizualizacijos blokas (stats, chart, delta, insight) */
 export interface InstructGptQualityBlock {
   stats: InstructGptQualityStat[];
-  chartData: { model: string; points: { x: string; y: number }[]; colorKey: string }[];
+  chartData: {
+    model: string;
+    points: { x: string; y: number }[];
+    colorKey: string;
+  }[];
   deltaRows: InstructGptQualityDelta[];
   insight: string;
   scaleNote?: string;
@@ -582,6 +597,8 @@ export interface ContentBlockContent {
     description?: string;
     useCases?: string[];
   }[];
+  /** Jei true – įrankiai rodomi išskleidžiamame bloke (details/summary), pvz. M7 skaidrė 71 */
+  toolsCollapsible?: boolean;
   /** Praktika „pataisyk promptą“ su textarea ir paslėptu sprendimu (mygtukas „Parodyti sprendimą“) – skaidrė 49 */
   correctPromptPractice?: {
     intro: string;
@@ -604,7 +621,13 @@ export interface SectionBreakContent {
   /** „Toliau – skaidrė N: …“ – rodomas SlideContent lygmenyje */
   footer?: string;
   /** Neprivaloma: „Ką jau supratome?“ blokas su punktais (emerald, CheckCircle) – įsiminimo skaidrėms */
-  recap?: { heading: string; /** Neprivaloma įvadinė eilutė virš punktų (pvz. „Promptų inžinerija – kaip knyga.“) */ lead?: string; items: string[]; /** Žodynėlio termino pavadinimas kiekvienam item (nuoroda į žodyną) */ itemGlossaryTerms?: string[]; /** Bendras konceptų skaičius progresijai (pvz. 7) – badge rodo X/progressTotal (3/7, 5/7, 7/7) */ progressTotal?: number };
+  recap?: {
+    heading: string;
+    /** Neprivaloma įvadinė eilutė virš punktų (pvz. „Promptų inžinerija – kaip knyga.“) */ lead?: string;
+    items: string[];
+    /** Žodynėlio termino pavadinimas kiekvienam item (nuoroda į žodyną) */ itemGlossaryTerms?: string[];
+    /** Bendras konceptų skaičius progresijai (pvz. 7) – badge rodo X/progressTotal (3/7, 5/7, 7/7) */ progressTotal?: number;
+  };
   /** Trumpas teigiamas stiprinimas prieš recap (šventimo elementas) */
   celebrationText?: string;
   /** Kas toliau – trumpi punktai (rekomenduojama vietoj ilgo subtitle) */
@@ -624,6 +647,8 @@ export interface WarmUpQuizContent {
 export interface PathStepContent {
   title: string;
   stepNumber: number;
+  /** Optional: bendras žingsnių skaičius – rodoma „Žingsnis N / M“ (pvz. M7 kelias 1–5) */
+  stepTotal?: number;
   /** Trumpas aprašymas – ką daryti */
   body?: string;
   /** Arba sekcijos (heading + body) – content-block panašūs blokai */
@@ -844,12 +869,25 @@ export interface DiParadoxInfographicContent {
   heroStats: DiParadoxHeroStat[];
   conclusion: string;
   paradoxCards: DiParadoxParadoxCard[];
-  shadowSection?: { label: string; sublabel?: string; bars: DiParadoxShadowBar[] };
+  shadowSection?: {
+    label: string;
+    sublabel?: string;
+    bars: DiParadoxShadowBar[];
+  };
   funnelSection?: { title: string; steps: DiParadoxFunnelStep[] };
-  valueSection?: { title: string; items: DiParadoxValueItem[]; commonCondition?: { label: string; text: string } };
+  valueSection?: {
+    title: string;
+    items: DiParadoxValueItem[];
+    commonCondition?: { label: string; text: string };
+  };
   solutionSection?: { label: string; pipeline: DiParadoxSolutionStep[] };
   actionSection?: { label: string; cards: DiParadoxActionCard[] };
-  conclusionSection?: { icon: string; heading: string; body: string; chips?: string[] };
+  conclusionSection?: {
+    icon: string;
+    heading: string;
+    body: string;
+    chips?: string[];
+  };
   footer?: string;
   onGoToGlossaryTerm?: string;
   sources?: {
@@ -892,7 +930,12 @@ export interface NewsPortalSectionSplit {
 /** Section card: Verslas – sector tiles + callout */
 export interface NewsPortalSectionBusiness {
   type: 'business';
-  sectorTiles: { icon: string; pct: string; name: string; colorKey?: 'brand' | 'violet' | 'emerald' | 'amber' }[];
+  sectorTiles: {
+    icon: string;
+    pct: string;
+    name: string;
+    colorKey?: 'brand' | 'violet' | 'emerald' | 'amber';
+  }[];
   calloutValue: string;
   calloutText: string;
   imageVertical?: NewsPortalImageSlot;
@@ -901,8 +944,17 @@ export interface NewsPortalSectionBusiness {
 /** Section card: Lietuva – stats + bars */
 export interface NewsPortalSectionLithuania {
   type: 'lithuania';
-  stats: { value: string; sub: string; badge?: string; colorKey?: 'emerald' | 'brand' }[];
-  bars: { name: string; pct: string; colorKey?: 'emerald' | 'brand' | 'slate' }[];
+  stats: {
+    value: string;
+    sub: string;
+    badge?: string;
+    colorKey?: 'emerald' | 'brand';
+  }[];
+  bars: {
+    name: string;
+    pct: string;
+    colorKey?: 'emerald' | 'brand' | 'slate';
+  }[];
   imageVertical?: NewsPortalImageSlot;
 }
 
@@ -915,12 +967,20 @@ export type NewsPortalSectionCard =
 export interface NewsPortalToolsAndYouth {
   toolsLabel: string;
   toolsTitle: string;
-  tools: { name: string; pct: string; colorKey?: 'rose' | 'amber' | 'violet' | 'brand' }[];
+  tools: {
+    name: string;
+    pct: string;
+    colorKey?: 'rose' | 'amber' | 'violet' | 'brand';
+  }[];
   youthLabel: string;
   youthTitle: string;
   youthBigNum: string;
   youthLabelText: string;
-  youthBars: { name: string; pct: string; colorKey?: 'violet' | 'amber' | 'slate' }[];
+  youthBars: {
+    name: string;
+    pct: string;
+    colorKey?: 'violet' | 'amber' | 'slate';
+  }[];
   youthFootnote?: string;
   youthImageVertical?: NewsPortalImageSlot;
 }
@@ -1035,6 +1095,7 @@ export type SlideType =
   | 'practice-summary'
   | 'infographic'
   | 'hallucination-dashboard'
+  | 'hallucination-pipeline'
   | 'ai-detectors'
   | 'di-modalities'
   | 'pie-chart'
@@ -1077,7 +1138,12 @@ export interface AdvancedSlideContent extends AdvancedVeiksmoIntroContent {
   safeDefaultBadge: string;
   safeDefaultValue: string;
   examplesTitle: string;
-  examples: { icon: string; label: string; copyText: string; taskLabel: string }[];
+  examples: {
+    icon: string;
+    label: string;
+    copyText: string;
+    taskLabel: string;
+  }[];
   errorsTitle: string;
   errors: string[];
   ruleTemperatureLabel: string;
@@ -1179,7 +1245,13 @@ export interface BusinessExample {
 }
 
 export type ModuleLevel = 'learn' | 'test' | 'practice';
-export type ModuleIcon = 'Target' | 'Brain' | 'Settings' | 'BarChart3' | 'ClipboardCheck' | 'Rocket';
+export type ModuleIcon =
+  | 'Target'
+  | 'Brain'
+  | 'Settings'
+  | 'BarChart3'
+  | 'ClipboardCheck'
+  | 'Rocket';
 
 export interface Module {
   id: number;
@@ -1216,7 +1288,13 @@ export interface ModulesData {
 }
 
 // Color mapping types for consistent styling
-export type BlockColor = 'rose' | 'orange' | 'amber' | 'emerald' | 'brand' | 'violet';
+export type BlockColor =
+  | 'rose'
+  | 'orange'
+  | 'amber'
+  | 'emerald'
+  | 'brand'
+  | 'violet';
 
 export interface HierarchyBlock {
   num: string;
@@ -1301,7 +1379,7 @@ export interface PracticeSummaryContent {
   introHeading?: string;
   /** M9: įvodinis body */
   introBody?: string;
-  /** M9: statistikos (pvz. 16 scenarijų, 4 veikėjai) */
+  /** M9: statistikos (pvz. 17 scenarijų, 4 veikėjai) */
   stats?: { label: string; value: string }[];
   /** M9: tagline (pvz. „Vienas scenarijus = vienas rezultatas.“) */
   tagline?: string;

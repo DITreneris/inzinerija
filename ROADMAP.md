@@ -1,33 +1,34 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-03-10 | **Versija:** 2.1  
-> **Principas:** Stabilumas ir turinys pirmiausia; deploy paruošimas → paleidimas → post-deploy monitoring ir iteracijos.
+> **Atnaujinta:** 2026-04-11 | **Versija:** 2.2  
+> **Principas:** Stabilumas ir turinys pirmiausia; produkcija paleista ([www.promptanatomy.app](https://www.promptanatomy.app)) – post-deploy monitoring, iteracijos ir release QA.
 
 ---
 
-## 1. Gilaus analizės santrauka (2026-03-10)
+## 1. Gilaus analizės santrauka
 
 ### Kas įgyvendinta ir stabilu
 
-| Sritis                                                                  | Būsena               | Pastabos                                                                                                                              |
-| ----------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Moduliai 1–6**                                                        | ✅ Pilnai            | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`. |
-| **LT/EN (i18n)**                                                        | ✅ Pilnas UI + M1–M6 | 16 namespace; loaderiai merge pagal locale; schemos, AiDetectorsSlide, ProcessStepper – lokalizuoti.                                  |
-| **Žodynėlis, apklausa, sertifikatai, PDF (M5/M6), įrankiai, progresas** | ✅                   | Path-step žodynėlio atrakinimas (M7); certificate + handout PDF su NotoSans.                                                          |
-| **Access tier ir MVP režimas**                                          | ✅                   | `accessTier.ts`: DEV→sessionStorage→URL→env→VITE_MVP_MODE; magic link `api/verify-access.ts`; užrakinimas modulių.                    |
-| **Build ir CI**                                                         | ✅                   | `prebuild` → `validate:schema`; test.yml: lint, test:run, VITE_MVP_MODE=1 build; Node 18/20.                                          |
-| **Dokumentacija**                                                       | ✅                   | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                               |
+| Sritis                                                                  | Būsena               | Pastabos                                                                                                                                                                   |
+| ----------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Produkcija (Vercel)**                                                 | ✅ Veikia            | [www.promptanatomy.app](https://www.promptanatomy.app) – mokymo app kaip **git submodulis** marketingo repo; diegimas per Vercel. Žr. `CHANGELOG.md` [Unreleased] → Notes. |
+| **Moduliai 1–6**                                                        | ✅ Pilnai            | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`.                                      |
+| **LT/EN (i18n)**                                                        | ✅ Pilnas UI + M1–M6 | 16 namespace; loaderiai merge pagal locale; schemos, AiDetectorsSlide, ProcessStepper – lokalizuoti.                                                                       |
+| **Žodynėlis, apklausa, sertifikatai, PDF (M5/M6), įrankiai, progresas** | ✅                   | Path-step žodynėlio atrakinimas (M7); certificate + handout PDF su NotoSans.                                                                                               |
+| **Access tier ir MVP režimas**                                          | ✅                   | `accessTier.ts`: DEV→sessionStorage→URL→env→VITE_MVP_MODE; magic link `api/verify-access.ts`; užrakinimas modulių.                                                         |
+| **Build ir CI**                                                         | ✅                   | `prebuild` → `validate:schema`; test.yml: lint, test:run, VITE_MVP_MODE=1 build; Node 18/20.                                                                               |
+| **Dokumentacija**                                                       | ✅                   | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                                                                    |
 
 ### Žinomi trūkumai / sprendžiami
 
-| Sritis                        | Kas                                                                                                                                                   | Prioritetas              |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **Navigacija (Pirmyn/Atgal)** | ✅ Įgyvendinta – viena sticky juosta viršuje, primary „Tęsti“, Atgal ghost (CHANGELOG 2026-02-26, 2026-02-28).                                        | —                        |
-| **GitHub Pages deploy**       | `.github/workflows/deploy.yml` build su `VITE_MVP_MODE=1` – **moduliai 1–6**, bet komentaras sako „1–3“; production 1–6 reikalauja env arba monorepo. | Patikrinti / sutapatinti |
-| **M5/M6 PDF**                 | Rankinė lietuviškų raidžių ir parsisiuntimo patikra; NotoSans production.                                                                             | Prieš release            |
-| **Footer numeriai M4**        | 65.8, 66.9 – prieš release pagal `footer-slide-numbers.mdc`.                                                                                          | Release gate             |
-| **E2E**                       | Nėra; kritiniai flow (registracija → M1 → M3 → apklausa) – rekomenduojama 1–2 testai.                                                                 | Aukštas (post-MVP)       |
-| **Monitoring**                | Sentry/GA4/PostHog neįdiegti; analytics eventai aprašyti (ANALYTICS_EVENT_TAXONOMY, ANALYTICS_DASHBOARD_MVP).                                         | Post-deploy              |
+| Sritis                        | Kas                                                                                                                                                                                                                                 | Prioritetas              |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| **Navigacija (Pirmyn/Atgal)** | ✅ Įgyvendinta – viena sticky juosta viršuje, primary „Tęsti“, Atgal ghost (CHANGELOG 2026-02-26, 2026-02-28). Papildomai: in-content CTA į kitą skaidrę – `news-portal` `ctaBlock`, `section-break` footer (CHANGELOG 2026-03-28). | —                        |
+| **GitHub Pages deploy**       | `.github/workflows/deploy.yml` build su `VITE_MVP_MODE=1` – **moduliai 1–6**, bet komentaras sako „1–3“; production 1–6 reikalauja env arba monorepo.                                                                               | Patikrinti / sutapatinti |
+| **M5/M6 PDF**                 | Rankinė lietuviškų raidžių ir parsisiuntimo patikra; NotoSans production.                                                                                                                                                           | Prieš release            |
+| **Footer numeriai M4**        | 65.8, 66.9 – prieš release pagal `footer-slide-numbers.mdc`.                                                                                                                                                                        | Release gate             |
+| **E2E**                       | Nėra; kritiniai flow (registracija → M1 → M3 → apklausa) – rekomenduojama 1–2 testai.                                                                                                                                               | Aukštas (post-MVP)       |
+| **Monitoring**                | Sentry/GA4/PostHog neįdiegti; analytics eventai aprašyti (ANALYTICS_EVENT_TAXONOMY, ANALYTICS_DASHBOARD_MVP).                                                                                                                       | Post-deploy              |
 
 ### Testai ir kokybė
 
@@ -37,9 +38,9 @@
 
 ---
 
-## 2. Pasiruošimas deploy (pre-deploy)
+## 2. Pasiruošimas deploy (pre-deploy ir nauji release)
 
-**Tikslas:** Prieš pirmą production deploy į promptanatomy.app (arba GitHub Pages) – užbaigti kritinius punktus ir perbėgti release checklist.
+**Tikslas:** Kiekvienam naujam **production** deploy (šiuo metu pagrindinis kelias – **Vercel** + [www.promptanatomy.app](https://www.promptanatomy.app), submodulis) – kritiniai punktai ir release checklist. **GitHub Pages** lieka statiniam preview (`/inzinerija/`); pilnas production modelis – monorepo / marketing + training app.
 
 ### 2.1 Privaloma (blokuoja deploy)
 
@@ -97,12 +98,12 @@
 
 ### 4.1 Pirmos 1–2 savaites
 
-| #   | Užduotis                           | Tikslas                                                                                                                        |
-| --- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | **Monitoring įdiegimas**           | Sentry (klaidos) arba PostHog/GA4 (funnel, completion, drop-off). Žr. ANALYTICS_EVENT_TAXONOMY.md, ANALYTICS_DASHBOARD_MVP.md. |
-| 2   | **Verify-access (jei naudojamas)** | Įsitikinti, kad magic link ir API veikia production; testuoti 200/401/400.                                                     |
-| 3   | **Smoke**                          | Kasdien arba po kiekvieno deploy: pagrindinis kelias (Home → Moduliai → 1 skaidrė → Apklausa) atsidaro, nėra konsolės klaidų.  |
-| 4   | **Dokumentacijos atnaujinimas**    | CHANGELOG – 1.3.0 released (2026-03-16); README / INTEGRATION_OVERVIEW – jei kas pasikeitė.                                    |
+| #   | Užduotis                           | Tikslas                                                                                                                                                        |
+| --- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Monitoring įdiegimas**           | Sentry (klaidos) arba PostHog/GA4 (funnel, completion, drop-off). Žr. ANALYTICS_EVENT_TAXONOMY.md, ANALYTICS_DASHBOARD_MVP.md.                                 |
+| 2   | **Verify-access (jei naudojamas)** | Įsitikinti, kad magic link ir API veikia production; testuoti 200/401/400.                                                                                     |
+| 3   | **Smoke**                          | Kasdien arba po kiekvieno deploy: pagrindinis kelias (Home → Moduliai → 1 skaidrė → Apklausa) atsidaro, nėra konsolės klaidų.                                  |
+| 4   | **Dokumentacijos atnaujinimas**    | `CHANGELOG.md` (įsk. [Unreleased]), `README.md`, `ROADMAP.md` – sinchronas su produkcijos URL ir deploy keliu; `INTEGRATION_OVERVIEW` – jei keičiasi monorepo. |
 
 ### 4.2 Po 2–4 savaičių (duomenų surinkimas)
 
@@ -145,9 +146,9 @@
 | Vartotojų atsiliepimai, V2 prioritetai | docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md                                                    |
 | Release QA                             | docs/development/RELEASE_QA_CHECKLIST.md                                                  |
 | Deploy, env, monorepo                  | docs/deployment/DEPLOYMENT.md, docs/deployment/INTEGRATION_OVERVIEW.md                    |
-| Kas įgyvendinta                        | docs/development/CODEBASE_WHAT_IS_DONE.md                                                 |
+| Kas įgyvendinta, changelog             | docs/development/CODEBASE_WHAT_IS_DONE.md, CHANGELOG.md, README.md (startas)              |
 | Analytics MVP                          | docs/development/ANALYTICS_EVENT_TAXONOMY.md, docs/development/ANALYTICS_DASHBOARD_MVP.md |
 
 ---
 
-**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Kitas peržiūrėjimas – 2026-04.
+**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Paskutinė sinchronizacija su README / CHANGELOG – 2026-04-11.

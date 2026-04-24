@@ -1,7 +1,7 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-03-14 (M1-M6 bug bundle, changelog ir likusių rizikų sinchronas).
+**Legenda:** P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-04-12 (M13–M14 LT planas – changelog; sekančios užduotys – EN sinchronas, footer QA).
 
 ---
 
@@ -31,6 +31,9 @@ _Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.
 **P2 – turinys ir dokumentacija**  
 | # | Užduotis | Agentas / pastaba |
 |---|----------|-------------------|
+| M13-1 | **M13–M14 EN sinchronas** – po LT pakeitimų (`modules.json` M13–M14): atnaujinti `modules-en` sluoksnį / vertimą (`en.json`, jei reikia – test intro, vaizdoGen EN `tldr` analogas). Turinio SOT anglų versija – pagal `turinio_pletra_moduliai_13_14_15.md` arba atskiras EN doc. | DATA_AGENT + CONTENT |
+| M13-2 | **M13 footerių release QA** – prieš release: `footer-slide-numbers.mdc` – ar „Toliau – skaidrė N“ atitinka **1…N** poziciją modulyje (13 skaidrių eilė po 13.101 pakeitimo). Skriptas: `node scripts/audit-footer-numbers.mjs --modules=13` (jei palaiko). | QA_AGENT |
+| M13-3 | **(Optional)** `slidePhaseConfig.test.ts` – vienas testas **M13** `getPhaseLabel(13, 13.101)` → „Verslas“ (regresijai po id pakeitimo). | CODING |
 | ~~6~~ | ~~MODULIO_4_SKAIDRIU_EILES.md~~ – atnaujinta: viena skaidrė id 56 (4.1c+4.2 suliesta), pašalinta 4.2 eilutė. | ✅ 2026-03-11 |
 | ~~7~~ | ~~M5 skaidrė 47 KISS-MARRY-KILL~~ – collapsible Master + Pilnas turinys; viršuje 1 copyable (8 skaidrių). | ✅ 2026-03-11 |
 | ~~8~~ | ~~M5 paprasta kalba~~ – brief, draft, sprint, use case paaiškinta/pakeista. | ✅ 2026-03-11 |
@@ -107,6 +110,7 @@ _Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.
 - **Architektūra A (2026-03-11):** Dokumentacija ir agentų taisyklės suvienodintos pagal dabartinę techninę realybę. `modules.json`, `glossary.json`, `tools.json` lieka full redagavimo SOT; `*-m1-m6.json` failai aprašyti kaip core `1–6` build/runtime profilis per `VITE_MVP_MODE=1`. Atnaujinti: architektūros planas, README, indeksai, deployment docs, AGENT_ORCHESTRATOR, DATA_AGENT docs, `sot_index.json`. **Sprendimas B** (atskiri 1–6 / 7–15 redagavimo failai, agreguotas `modules.json`) paliktas kaip atskiras būsimas refaktoringo projektas.
 - **Pirmyn/Atgal (TODO #0) – įgyvendinta:** ModuleView – viena viršutinė **sticky** navigacijos juosta (`sticky top-16 z-20`), primary CTA „Tęsti“ (didesnis, brand, hover lift), „Atgal“ – ghost; grid vieno stulpelio, dešinėje atskiros nav kolonos nėra. Žr. CHANGELOG 2026-02-26, 2026-02-28 (Pirmyn→Tęsti).
 - **EN UI, PDF ir schemų skaidrės (2026-03-11):** Dokumento title/meta pagal locale (seo namespace); CertificateScreen analytics cta_label per t(); EnlargeableDiagram – viewFullSize, diagramFullSizeAria, close i18n; schemų blokai (AgentOrchestrator, AgentWorkflow, TurinioWorkflow, ContextFlow) enlargeLabel iš diagrams; ContextFlowDiagram LT/EN per contextFlowDiagramLabels.ts; M5/M6 PDF default filename EN; ContentSlides .txt šablonas – pavadinimas ir mygtukas pagal locale; Intro Action Pie – introPiePdfContent-en.json, loaderis, i18n mygtukai, introPiePdf locale (pavadinimas, footer, filename); ActionIntroSlide – visi aria/vietiniai tekstai per t(), CTA fallback (actionIntroCtaReveal/Default); Intro Pie PDF – getGlossary(locale), EN segmentų glossaryTermNames iš glossary-en.json. Žr. CHANGELOG 2026-03-11.
+- **M13–M14 LT tobulinimas (2026-04-12):** Mažesnis turinio dubliavimas ir perkrova (collapsible, vienas accent 13.5), santraukos statistika, M14 rezultatų „Kitas žingsnis: M15“, testo klausimai (rizikos/workflow), „Verslas ir rizikos“ techninis **`id: 13.101`** (JSON 13.10 ↔ JS 13.1 kolizija). Žr. CHANGELOG [Unreleased] Changed (2026-04-12); `docs/MODULIO_13_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_13_14_15.md`. Toliau – TODO **M13-1** (EN), **M13-2** (footer QA).
 - **M1-M6 bug bundle (2026-03-14):** Shared locale leak'ai ir mobile diagramų politika sutvarkyti sistemiškai: `CustomGptProcessDiagram` locale + compact mobile layout, `ProcessStepper` reflow, `ContentSlides` M1 EN helper label cleanup, `InstructGptQualityBlock` / `WorkflowChainsBlock` / `FigmaEmbed` locale fix, nauji smoke testai `ProcessStepper.locale.test.tsx` ir `ContentSlides.locale.test.tsx`, audit matrica `docs/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`. Liko rankinis browser spot-check ir PDF entry point patikra (#6, #7).
 
 ---

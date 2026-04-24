@@ -13,21 +13,22 @@
 
 ## 2. Source of Truth (SOT)
 
-| Sritis | SOT failas |
-|--------|------------|
-| **Turinio tiesa (Moduliai 1–3)** | `turinio_pletra.md` |
-| **Turinio tiesa (Moduliai 4–6)** | `docs/turinio_pletra_moduliai_4_5_6.md` |
-| **Turinio atpažinimas** (kur kalbama apie Modulį 1…6, skaidrės) | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` |
-| **Duomenų tiesa** | `src/data/modules.json`, `src/data/modules-m1-m6.json`, `src/data/promptLibrary.json`, `src/data/glossary.json`, `src/data/glossary-m1-m6.json`, `src/data/tools.json`, `src/data/tools-m1-m6.json`, `src/data/hallucinationRates.ts` |
-| **UI tiesa** | React komponentai, kurie renderina JSON (`SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`) |
-| **Bendri atsiliepimai** (gyvas testavimas, V1 analizė, segmentai, V2 veiksmai) | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`; klaidos ir sprendimai – `docs/development/TEST_REPORT.md` |
-| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` (turinio ir dizaino SOT – tik `docs/development/GOLDEN_STANDARD.md`) |
+| Sritis                                                                                     | SOT failas                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Turinio tiesa (Moduliai 1–3)**                                                           | `turinio_pletra.md`                                                                                                                                                                                                                   |
+| **Turinio tiesa (Moduliai 4–6)**                                                           | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                                                               |
+| **Turinio atpažinimas** (kur kalbama apie Modulį 1…6, skaidrės)                            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                                 |
+| **Duomenų tiesa**                                                                          | `src/data/modules.json`, `src/data/modules-m1-m6.json`, `src/data/promptLibrary.json`, `src/data/glossary.json`, `src/data/glossary-m1-m6.json`, `src/data/tools.json`, `src/data/tools-m1-m6.json`, `src/data/hallucinationRates.ts` |
+| **UI tiesa**                                                                               | React komponentai, kurie renderina JSON (`SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`)                                                                                                                                        |
+| **Bendri atsiliepimai** (gyvas testavimas, V1 analizė, segmentai, V2 veiksmai)             | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`; klaidos ir sprendimai – `docs/development/TEST_REPORT.md`                                                                                                                                   |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` (turinio ir dizaino SOT – tik `docs/development/GOLDEN_STANDARD.md`)                                                                                                                       |
 
-**Modulių / skaidrių registras ir kontekstas:** Žr. `docs/development/context-engineering/sot_index.json` (kur kokia tiesa, publicModules, unlocksAfter, nextStep). Pilnas planas: `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md`. Konteksto biudžetas agentams: `docs/development/context-engineering/context_budget.md`. **Prieš redaguojant modulio turinį:** atidaryk sot_index.json; pilną SOT (turinio_pletra*.md) krauk tik tada, kai užduotis liečia tą modulį (validacija: `node scripts/validate-sot-index.mjs`).
+**Modulių / skaidrių registras ir kontekstas:** Žr. `docs/development/context-engineering/sot_index.json` (kur kokia tiesa, publicModules, unlocksAfter, nextStep). Pilnas planas: `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md`. Konteksto biudžetas agentams: `docs/development/context-engineering/context_budget.md`. **Prieš redaguojant modulio turinį:** atidaryk sot_index.json; pilną SOT (turinio_pletra\*.md) krauk tik tada, kai užduotis liečia tą modulį (validacija: `node scripts/validate-sot-index.mjs`).
 
 **Architektūra A:** `src/data/modules.json`, `src/data/glossary.json` ir `src/data/tools.json` lieka full redagavimo SOT. `*-m1-m6.json` failai yra core `1–6` build/runtime profilio failai, naudojami per `VITE_MVP_MODE=1`, bet nelaikomi pagrindiniu authoring šaltiniu.
 
 **Konfliktų tvarka:**
+
 1. Sutvarkyk turinio SOT (semantika, terminai, struktūra) – pagal modulį: `turinio_pletra.md` arba `docs/turinio_pletra_moduliai_4_5_6.md`.
 2. Sinchronizuok JSON su turiniu.
 3. Tik tada taisyk UI/komponentus.
@@ -40,17 +41,17 @@
 
 Pasirink agentą pagal **dominančią veiklą**:
 
-| Veikla | Agentas | Failai / sritis |
-|--------|----------|-----------------|
-| **A) Turinys / CTA / kopija** – aprašyti ir pateikti turinį geriausiai: tekstas, CTA, antraštės, aiškumas, terminologija (struktūrą nustato CURRICULUM arba SOT) | **CONTENT_AGENT** | `turinio_pletra.md`, tekstai JSON |
-| **A2) Pedagogika / mokymosi dizainas** – mokymosi tikslai, modulių/skaidrių seka, Bloom, refleksija, santraukos struktūra (5 blokai) | **CURRICULUM_AGENT** | žr. `docs/development/CURRICULUM_AGENT.md` |
-| **A1) Schemos / diagramos** – proceso diagramos, flowchart, SVG geometrija, rodyklės, proporcijos (pavaldus CONTENT_AGENT) | **SCHEME_AGENT** | `CustomGptProcessDiagram.tsx`, `ProcessStepper.tsx`, `public/*.svg`; žr. `docs/development/SCHEME_AGENT.md` |
-| **B) Duomenys (JSON/duomenys)** – struktūra, validacija, sinchronas su turiniu, duomenų kokybė | **DATA_AGENT** | full SOT: `modules.json`, `glossary.json`, `tools.json`; core profilis: `*-m1-m6.json`; taip pat `promptLibrary.json`, `hallucinationRates.ts` |
-| **C) Kodas** – komponentai, utils, hooks, render logika, klaidos, refaktoras | **CODING_AGENT** | `src/components/*`, `src/utils/*`, tipai |
-| **C1) UI/UX** – layout, a11y, vizualinė hierarchija, dizaino sistema (pavaldus CODING_AGENT) | **UI_UX_AGENT** | žr. `docs/development/UI_UX_AGENT.md` |
-| **D) Kokybė / diagnozė** – kas blogai, kodėl lūžta, rizika | **CODE_REVIEW_AGENT** | bet kuris failas |
-| **E) Dokumentacija** – README, changelog, „kaip naudoti“, suderinimas; **vartotojo testų klaidos** → TEST_REPORT, sprendimai → TODO | **QA_AGENT** (Q_A; leidžiamas) | `README.md`, `docs/*`, `CHANGELOG.md`, `docs/development/TEST_REPORT.md`, `TODO.md` |
-| **V) Vartotojo kelionė / MVP modulio analizė** – trintis, energija, onboarding, konversija, 5 zonų diagnostika | **USER_JOURNEY_AGENT** | žr. `docs/development/USER_JOURNEY_AGENT.md` |
+| Veikla                                                                                                                                                           | Agentas                        | Failai / sritis                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A) Turinys / CTA / kopija** – aprašyti ir pateikti turinį geriausiai: tekstas, CTA, antraštės, aiškumas, terminologija (struktūrą nustato CURRICULUM arba SOT) | **CONTENT_AGENT**              | `turinio_pletra.md`, tekstai JSON                                                                                                              |
+| **A2) Pedagogika / mokymosi dizainas** – mokymosi tikslai, modulių/skaidrių seka, Bloom, refleksija, santraukos struktūra (5 blokai)                             | **CURRICULUM_AGENT**           | žr. `docs/development/CURRICULUM_AGENT.md`                                                                                                     |
+| **A1) Schemos / diagramos** – proceso diagramos, flowchart, SVG geometrija, rodyklės, proporcijos (pavaldus CONTENT_AGENT)                                       | **SCHEME_AGENT**               | `CustomGptProcessDiagram.tsx`, `ProcessStepper.tsx`, `public/*.svg`; žr. `docs/development/SCHEME_AGENT.md`                                    |
+| **B) Duomenys (JSON/duomenys)** – struktūra, validacija, sinchronas su turiniu, duomenų kokybė                                                                   | **DATA_AGENT**                 | full SOT: `modules.json`, `glossary.json`, `tools.json`; core profilis: `*-m1-m6.json`; taip pat `promptLibrary.json`, `hallucinationRates.ts` |
+| **C) Kodas** – komponentai, utils, hooks, render logika, klaidos, refaktoras                                                                                     | **CODING_AGENT**               | `src/components/*`, `src/utils/*`, tipai                                                                                                       |
+| **C1) UI/UX** – layout, a11y, vizualinė hierarchija, dizaino sistema (pavaldus CODING_AGENT)                                                                     | **UI_UX_AGENT**                | žr. `docs/development/UI_UX_AGENT.md`                                                                                                          |
+| **D) Kokybė / diagnozė** – kas blogai, kodėl lūžta, rizika                                                                                                       | **CODE_REVIEW_AGENT**          | bet kuris failas                                                                                                                               |
+| **E) Dokumentacija** – README, changelog, „kaip naudoti“, suderinimas; **vartotojo testų klaidos** → TEST_REPORT, sprendimai → TODO                              | **QA_AGENT** (Q_A; leidžiamas) | `README.md`, `docs/*`, `CHANGELOG.md`, `docs/development/TEST_REPORT.md`, `TODO.md`                                                            |
+| **V) Vartotojo kelionė / MVP modulio analizė** – trintis, energija, onboarding, konversija, 5 zonų diagnostika                                                   | **USER_JOURNEY_AGENT**         | žr. `docs/development/USER_JOURNEY_AGENT.md`                                                                                                   |
 
 **Lentelės (content-block):** standartas ir vizualinė hierarchija – **UI_UX_AGENT** (`docs/development/LENTELIU_STANDARTAS.md`); JSON struktūra ir `comparisonStyle`/`body` – **DATA_AGENT**; renderinimas – **CODING_AGENT**; patikra – **CODE_REVIEW_AGENT**.
 
@@ -107,7 +108,7 @@ NEXT:
 
 **CHECKS reikalavimas:** Draudžiama rašyti tik „patikrinau – atitinka“. Privaloma nurodyti: kurį failą atidarėte, pagal kurį dokumentą tikrinote, ir 1–2 konkrečius pavyzdžius (pvz. „pagal PAPRASTOS_KALBOS_GAIRES – pakeista X → Y“). Jei CHANGES sąraše yra **diagramos failas** (pvz. `*Diagram*.tsx`, `*ProcessStepper*`), CHECKS **privalo** įtraukti schemų vizualinės patikros rezultatus (SCHEME_AGENT.md §5) – kiekvienas kriterijus su OK arba FAIL. **Kai keičiama skaidrių vizualizacija (diagramos, nuorodos „Peržiūrėti pilname dydyje“):** CHECKS privalo įtraukti **vartotojo kelio** patikrą – ar skaidrėje rodomas teisingas šaltinis (React komponentas), ar veiksmas „Peržiūrėti pilname dydyje“ atidaro tą patį turinį (ne klaidinantį statinį failą); žr. `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md` ir SCHEME_AGENT.md §5.5. Pilnas privalomo doc įsikrovimo lentelė pagal rolę – `.cursor/rules/agent-orchestrator.mdc` §4.1.
 
-**Patikra pagal SOT** (privaloma, jei CHANGES sąraše yra `modules.json`, `modules-m1-m6.json` arba skaidrių komponentas – keitei turinį arba skaidrių UI). Atsakyme privaloma įtraukti bloką: **Paprasta kalba** (atidaryta PAPRASTOS_KALBOS_GAIRES.md – 1–2 pavyzdžiai, OK/FAIL); **Golden standard (content-block)** (atidaryta GOLDEN_STANDARD.md §3.2 – skaidrės tipas, seka TL;DR → Daryk dabar → Copy → Quality check → Optional, OK/FAIL); **Lietuviškos raidės** (bent 1–2 vietos, OK/FAIL). Jei nieko nekeitei (tik diagnozė) – bloko neįtraukti.
+**Patikra pagal SOT** (privaloma, jei CHANGES sąraše yra `modules.json`, `modules-m1-m6.json` arba skaidrių komponentas – keitei turinį arba skaidrių UI). Atsakyme privaloma įtraukti bloką: **Paprasta kalba** (atidaryta PAPRASTOS_KALBOS_GAIRES.md – 1–2 pavyzdžiai, OK/FAIL); **Golden standard (content-block)** (atidaryta GOLDEN_STANDARD.md §3.2 – skaidrės tipas, seka Trumpai → Daryk dabar → Copy → Patikra → Optional, OK/FAIL; EN – In short → Do now → …); **Lietuviškos raidės** (bent 1–2 vietos, OK/FAIL). Jei nieko nekeitei (tik diagnozė) – bloko neįtraukti.
 
 ---
 
@@ -125,39 +126,48 @@ Naudok šiuos promptus kaip „personą“, kai atlieki atitinkamą rolę. **Pil
 ---
 
 ### CONTENT_AGENT
+
 **Užduotis:** Aprašyti ir pateikti visą mokomojo turinį geriausiai – aiškumas, CTA, antraštės, terminologija (DI, lietuviškai), SOT atitiktis; kopijuojami promptai ir refleksijos tekstai. Struktūros sprendimai (modulių/skaidrių seka, 5 blokai, Bloom) – CURRICULUM_AGENT. CONTENT_AGENT nedirba su kodu ar JSON struktūra – tik turinio semantika ir tekstai.
 **Rolė:** Turinio ir kopijos rašytojas; užpildo ir tobulina tekstą pagal nustatytą struktūrą ir geriausias praktikas.
 **Pilna spec:** `docs/development/CONTENT_AGENT.md`. Santraukos skaidrės – `docs/development/SUMMARY_SLIDE_SPEC.md`; veiksmo skaidrės ir sekos – `docs/development/GOLDEN_STANDARD.md` §3.2. Modulių atpažinimas – `docs/CONTENT_MODULIU_ATPAZINIMAS.md`.
 
 ### CURRICULUM_AGENT
+
 **Rolė:** Pedagogikos ir mokymosi dizaino vertintojas (tikslai, seka, Bloom, refleksija, santraukos 5 blokai). Nerašo galutinės kopijos; nekeičia JSON ar kodo.
 **Pilna spec:** `docs/development/CURRICULUM_AGENT.md`.
 
 ### SCHEME_AGENT (pavaldus CONTENT_AGENT)
+
 **Rolė:** Schemų ir diagramų geometrijos, rodyklių ir vizualinės hierarchijos prižiūrėtojas. Turinio semantiką nustato CONTENT_AGENT.
 **Pilna spec:** `docs/development/SCHEME_AGENT.md`. Referencinė implementacija: `src/components/slides/shared/CustomGptProcessDiagram.tsx`.
 
 ### DATA_AGENT
+
 **Rolė:** Duomenų sluoksnio prižiūrėtojas. Full authoring SOT: `modules.json`, `glossary.json`, `tools.json`; core profilis: `modules-m1-m6.json`, `glossary-m1-m6.json`, `tools-m1-m6.json`; taip pat `promptLibrary.json`, `hallucinationRates.ts`. Tipai – `src/types/modules.ts`. UI keičia CODING_AGENT.
 **Pilna spec:** Periodiškumas ir trigeriai – `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`; įrankiai (tools.json) – `docs/development/DATA_AGENT_TOOLS.md`.
 
 ### CODING_AGENT
+
 **Rolė:** Kodo (React, TypeScript, utils) įgyvendintojas. Nedirba su turinio tekstais ar JSON semantika. UI/UX gaires – UI_UX_AGENT.
 **Pilna spec:** Žinių patikrinimo moduliams – `docs/development/CODING_AGENT_ZINIU_PATIKRINIMO_MODULIAI.md`; UI/UX – `docs/development/UI_UX_AGENT.md`.
 
 ### UI_UX_AGENT (pavaldus CODING_AGENT)
+
 **Rolė:** UI/UX gairių, a11y, vizualinės hierarchijos ir dizaino atitikties prižiūrėtojas. Implementaciją atlieka CODING_AGENT.
 **Pilna spec:** `docs/development/UI_UX_AGENT.md`.
 
 ### CODE_REVIEW_AGENT
+
 **Rolė:** Diagnozė ir kokybės įvertinimas; nerašo naujo turinio ar kodo. Po SCHEME_AGENT atlieka schemų vizualinę patikrą (checklist – SCHEME_AGENT.md); rekomenduoja agentą tolesniam darbui.
 **Pilna spec:** Schemų checklist – `docs/development/SCHEME_AGENT.md`; SOT ir tipų vertinimas – šiame doc §2, §8–9.
 
 ### USER_JOURNEY_AGENT
+
 **Rolė:** Vartotojo kelionės ir MVP modulio diagnostikas; 5 zonos, 6 punktų išvestis. Įgyvendinimą atlieka CONTENT/DATA/CODING.
 **Pilna spec:** `docs/development/USER_JOURNEY_AGENT.md`; seka – lokaliai archyve (jei naudojate) `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
 
 ### QA_AGENT
+
 **Rolė:** Dokumentacijos ir galutinio suderinimo prižiūrėtojas; vartotojo testų klaidų priėmimas → TEST_REPORT.md → TODO.md. Lietuviškų raidžių patikrinimas prieš release.
 **Pilna spec:** `docs/development/RELEASE_QA_CHECKLIST.md`; testų klaidų seka – TEST_REPORT.md ir TODO.md gairės (priimti → fiksuoti reporte → įrašyti į TODO).
 
@@ -180,4 +190,4 @@ Naudok šiuos promptus kaip „personą“, kai atlieki atitinkamą rolę. **Pil
 
 ---
 
-*Šis dokumentas yra vienas „source of truth“ orkestratoriui. Cursor rule: `.cursor/rules/agent-orchestrator.mdc`. Schemų pamokos: `docs/development/SCHEME_AGENT.md`. UI/UX gairės: `docs/development/UI_UX_AGENT.md`.*
+_Šis dokumentas yra vienas „source of truth“ orkestratoriui. Cursor rule: `.cursor/rules/agent-orchestrator.mdc`. Schemų pamokos: `docs/development/SCHEME_AGENT.md`. UI/UX gairės: `docs/development/UI_UX_AGENT.md`._

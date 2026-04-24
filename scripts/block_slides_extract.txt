@@ -1,4 +1,4 @@
-﻿export function MetaBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Element | null }) {
+export function MetaBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Element | null }) {
   return (
     <div className="space-y-6">
       <div className="bg-rose-50 dark:bg-rose-900/20 border-l-4 border-rose-500 p-6 rounded-xl">
@@ -58,7 +58,7 @@ export function InputBlockSlide({ onRenderTask }: { onRenderTask: () => JSX.Elem
           Klausimas: Kokia faktinÄ— informacija, duomenys, apribojimai?
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
-          Input blokas nurodo KONKRETIUS duomenis, su kuriais DI turi dirbti. AiÅ¡kus input = aiÅ¡kus output.
+          Input blokas nurodo KONKREČIUS duomenis, su kuriais DI turi dirbti. AiÅ¡kus input = aiÅ¡kus output.
         </p>
       </div>
 

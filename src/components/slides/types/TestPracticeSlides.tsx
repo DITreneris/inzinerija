@@ -1,9 +1,42 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { CheckCircle, ChevronRight, Target, Flame, ExternalLink, ClipboardCheck, ListChecks, Lightbulb, BarChart2, TrendingUp, Users, Megaphone, MessageSquare, AlertCircle, Briefcase, Download } from 'lucide-react';
-import type { Slide, TestQuestion, PracticeScenarioHubContent, M9Character } from '../../../types/modules';
-import { CharacterCard, CopyButton } from '../shared';
+import {
+  CheckCircle,
+  ChevronRight,
+  Target,
+  Flame,
+  ExternalLink,
+  ClipboardCheck,
+  ListChecks,
+  Lightbulb,
+  BarChart2,
+  TrendingUp,
+  Users,
+  Megaphone,
+  MessageSquare,
+  AlertCircle,
+  Briefcase,
+  Download,
+} from 'lucide-react';
+import type {
+  Slide,
+  TestQuestion,
+  PracticeScenarioHubContent,
+  M9Character,
+} from '../../../types/modules';
+import {
+  CharacterCard,
+  CopyButton,
+  TestKnowledgeScopeDiagram,
+  TestRemediationChips,
+} from '../shared';
 import type { Progress } from '../../../utils/progress';
-import { McqQuestion, TrueFalseQuestion, MatchingQuestion, OrderingQuestion, ScenarioQuestion } from '../shared/questions';
+import {
+  McqQuestion,
+  TrueFalseQuestion,
+  MatchingQuestion,
+  OrderingQuestion,
+  ScenarioQuestion,
+} from '../shared/questions';
 import type { ConfidenceLevel } from '../shared/questions';
 import RadarChart from '../shared/RadarChart';
 import type { RadarDataPoint } from '../shared/RadarChart';
@@ -14,7 +47,10 @@ import { getModulesSync } from '../../../data/modulesLoader';
 import { useLocale } from '../../../contexts/LocaleContext';
 import m9CharactersData from '@m9-characters-data';
 import { getM5HandoutContent } from '../../../data/handoutContentLoader';
-import { downloadM5HandoutPdf, type M5HandoutContent } from '../../../utils/m5HandoutPdf';
+import {
+  downloadM5HandoutPdf,
+  type M5HandoutContent,
+} from '../../../utils/m5HandoutPdf';
 import { saveSlidePosition } from '../../../utils/useSlideNavigation';
 import { selectQuestionsByCategory } from '../../../utils/questionPoolSelector';
 
@@ -27,7 +63,9 @@ export interface CategoryScore {
 let lastCategoryScores: Record<string, CategoryScore> = {};
 let lastMaxStreak = 0;
 
-const M9_CHARACTERS: M9Character[] = (m9CharactersData as { characters: M9Character[] }).characters;
+const M9_CHARACTERS: M9Character[] = (
+  m9CharactersData as { characters: M9Character[] }
+).characters;
 
 function getWhyBenefit(slide: Slide | undefined): string | undefined {
   const c = slide?.content as { whyBenefit?: string } | undefined;
@@ -51,7 +89,9 @@ function getPracticeIntroContent(slide: Slide | undefined): {
   characterMeaning?: string;
   /** Modulio 9: „Kur pritaikyti?“ blokas */
   useCaseBlock?: string;
-  /** Modulio 9: rekomenduojamų scenarijų slide id sąrašas (101, 102, 105, 104) */
+  /** M9: pagrindinis kelias – 8 žingsnių workflow (93–94), rodomas viršuje */
+  primaryPathIntro?: string;
+  /** Modulio 9: rekomenduojamų scenarijų slide id sąrašas */
   recommendedSlideIds?: number[];
   /** M3: bent kiek scenarijų privaloma užbaigti (jei nurodyta – rodoma „Pasirinkite bent N“) */
   minScenariosToComplete?: number;
@@ -70,14 +110,29 @@ function getPracticeIntroContent(slide: Slide | undefined): {
         audience: c.audience as string | undefined,
         firstActionCTA: c.firstActionCTA as string | undefined,
         recommendedStart: c.recommendedStart as string | undefined,
-        learningOutcomes: Array.isArray(c.learningOutcomes) ? (c.learningOutcomes as string[]) : undefined,
+        learningOutcomes: Array.isArray(c.learningOutcomes)
+          ? (c.learningOutcomes as string[])
+          : undefined,
         storyBlock: c.storyBlock as string | undefined,
         characterMeaning: c.characterMeaning as string | undefined,
         useCaseBlock: c.useCaseBlock as string | undefined,
-        recommendedSlideIds: Array.isArray(c.recommendedSlideIds) ? (c.recommendedSlideIds as number[]) : undefined,
-        minScenariosToComplete: typeof c.minScenariosToComplete === 'number' ? c.minScenariosToComplete : undefined,
-        optionalInstruction: typeof c.optionalInstruction === 'string' ? c.optionalInstruction : undefined,
-        handoutPromise: typeof c.handoutPromise === 'string' ? c.handoutPromise : undefined,
+        primaryPathIntro:
+          typeof c.primaryPathIntro === 'string'
+            ? c.primaryPathIntro
+            : undefined,
+        recommendedSlideIds: Array.isArray(c.recommendedSlideIds)
+          ? (c.recommendedSlideIds as number[])
+          : undefined,
+        minScenariosToComplete:
+          typeof c.minScenariosToComplete === 'number'
+            ? c.minScenariosToComplete
+            : undefined,
+        optionalInstruction:
+          typeof c.optionalInstruction === 'string'
+            ? c.optionalInstruction
+            : undefined,
+        handoutPromise:
+          typeof c.handoutPromise === 'string' ? c.handoutPromise : undefined,
       }
     : {};
 }
@@ -93,8 +148,10 @@ function getM5TestIntroContent(slide: Slide): {
   return {
     introTitle: typeof c.introTitle === 'string' ? c.introTitle : undefined,
     introBody: typeof c.introBody === 'string' ? c.introBody : undefined,
-    microWinPhrase: typeof c.microWinPhrase === 'string' ? c.microWinPhrase : undefined,
-    thresholdsText: typeof c.thresholdsText === 'string' ? c.thresholdsText : undefined,
+    microWinPhrase:
+      typeof c.microWinPhrase === 'string' ? c.microWinPhrase : undefined,
+    thresholdsText:
+      typeof c.thresholdsText === 'string' ? c.thresholdsText : undefined,
   };
 }
 
@@ -109,24 +166,45 @@ function getTestIntroContent(slide: Slide): {
 } {
   const c = slide?.content as Record<string, unknown> | undefined;
   if (!c) return {};
-  const thresholds = c.thresholds as { pass?: number; fail?: number } | undefined;
+  const thresholds = c.thresholds as
+    | { pass?: number; fail?: number }
+    | undefined;
   return {
     whyBenefit: typeof c.whyBenefit === 'string' ? c.whyBenefit : undefined,
     duration: typeof c.duration === 'string' ? c.duration : undefined,
-    firstActionCTA: typeof c.firstActionCTA === 'string' ? c.firstActionCTA : undefined,
-    microWinPhrase: typeof c.microWinPhrase === 'string' ? c.microWinPhrase : undefined,
-    thresholds: thresholds && typeof thresholds.pass === 'number' ? { pass: thresholds.pass, fail: typeof thresholds.fail === 'number' ? thresholds.fail : 0 } : undefined,
-    thresholdExplanation: typeof c.thresholdExplanation === 'string' ? c.thresholdExplanation : undefined,
+    firstActionCTA:
+      typeof c.firstActionCTA === 'string' ? c.firstActionCTA : undefined,
+    microWinPhrase:
+      typeof c.microWinPhrase === 'string' ? c.microWinPhrase : undefined,
+    thresholds:
+      thresholds && typeof thresholds.pass === 'number'
+        ? {
+            pass: thresholds.pass,
+            fail: typeof thresholds.fail === 'number' ? thresholds.fail : 0,
+          }
+        : undefined,
+    thresholdExplanation:
+      typeof c.thresholdExplanation === 'string'
+        ? c.thresholdExplanation
+        : undefined,
   };
 }
 
-export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: number }) {
+export function TestIntroSlide({
+  slide,
+  moduleId,
+}: {
+  slide: Slide;
+  moduleId: number;
+}) {
   useTranslation();
   const t = getT('testPractice');
   const { locale } = useLocale();
   const whyBenefit = getWhyBenefit(slide);
   const testIntro = getTestIntroContent(slide);
-  const useContentDriven = Boolean(testIntro.whyBenefit && (testIntro.duration || testIntro.firstActionCTA));
+  const useContentDriven = Boolean(
+    testIntro.whyBenefit && (testIntro.duration || testIntro.firstActionCTA)
+  );
 
   if (moduleId === 5) {
     const m5Content = getM5TestIntroContent(slide);
@@ -137,51 +215,102 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
       <div className="space-y-6">
         <div className="bg-gradient-to-r from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-900/30 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
           {whyBenefit && (
-            <p className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3">{whyBenefit}</p>
+            <p className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3">
+              {whyBenefit}
+            </p>
           )}
-          <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">{title}</h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-4" dangerouslySetInnerHTML={{ __html: body.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">
+            {title}
+          </h3>
+          <p
+            className="text-gray-700 dark:text-gray-300 mb-4"
+            dangerouslySetInnerHTML={{
+              __html: body.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'),
+            }}
+          />
           {m5Content.microWinPhrase && (
             <p className="text-sm text-emerald-700 dark:text-emerald-300 mb-3 font-medium bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-lg">
               {m5Content.microWinPhrase}
             </p>
           )}
-          <p className="text-sm text-brand-700 dark:text-brand-300" dangerouslySetInnerHTML={{ __html: thresholds.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+          <p
+            className="text-sm text-brand-700 dark:text-brand-300"
+            dangerouslySetInnerHTML={{
+              __html: thresholds.replace(
+                /\*\*(.*?)\*\*/g,
+                '<strong>$1</strong>'
+              ),
+            }}
+          />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 border border-brand-200 dark:border-brand-800 p-5 rounded-xl">
             <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
               <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
-                <ListChecks className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+                <ListChecks
+                  className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                  strokeWidth={1.5}
+                />
               </span>
               {locale === 'en' ? 'Test structure' : 'Testo struktūra'}
             </h4>
             <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              <li>{locale === 'en' ? '• 4 questions (brief, structure, tool, quality check)' : '• 4 klausimai (brief, struktūra, įrankis, kokybės patikra)'}</li>
-              <li>{locale === 'en' ? '• Each has an explanation' : '• Kiekvienas turi paaiškinimą'}</li>
-              <li>{locale === 'en' ? '• No time limit' : '• Nėra laiko limito'}</li>
+              <li>
+                {locale === 'en'
+                  ? '• 4 questions (brief, structure, tool, quality check)'
+                  : '• 4 klausimai (brief, struktūra, įrankis, kokybės patikra)'}
+              </li>
+              <li>
+                {locale === 'en'
+                  ? '• Each has an explanation'
+                  : '• Kiekvienas turi paaiškinimą'}
+              </li>
+              <li>
+                {locale === 'en' ? '• No time limit' : '• Nėra laiko limito'}
+              </li>
             </ul>
           </div>
           <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800 p-5 rounded-xl">
             <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
               <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
-                <Target className="w-5 h-5 text-accent-600 dark:text-accent-400" strokeWidth={1.5} />
+                <Target
+                  className="w-5 h-5 text-accent-600 dark:text-accent-400"
+                  strokeWidth={1.5}
+                />
               </span>
               {locale === 'en' ? 'Goal' : 'Tikslas'}
             </h4>
             <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-              <li>{locale === 'en' ? '• Confirm the sprint was done correctly' : '• Įsitikinti, kad sprintas padarytas teisingai'}</li>
-              <li>{locale === 'en' ? '• Quickly spot gaps' : '• Greitai pastebėti spragas'}</li>
-              <li>{locale === 'en' ? '• ≥70% = recommended for practice' : '• ≥70% = rekomenduojama į praktiką'}</li>
+              <li>
+                {locale === 'en'
+                  ? '• Confirm the sprint was done correctly'
+                  : '• Įsitikinti, kad sprintas padarytas teisingai'}
+              </li>
+              <li>
+                {locale === 'en'
+                  ? '• Quickly spot gaps'
+                  : '• Greitai pastebėti spragas'}
+              </li>
+              <li>
+                {locale === 'en'
+                  ? '• ≥70% = recommended for practice'
+                  : '• ≥70% = rekomenduojama į praktiką'}
+              </li>
             </ul>
           </div>
         </div>
         <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
           <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
             <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5">
-              <Lightbulb className="w-4 h-4 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+              <Lightbulb
+                className="w-4 h-4 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+              />
             </span>
-            <span><strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong> {t('tipUnknownAnswer')}</span>
+            <span>
+              <strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong>{' '}
+              {t('tipUnknownAnswer')}
+            </span>
           </p>
         </div>
       </div>
@@ -189,25 +318,42 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
   }
 
   if (useContentDriven) {
-    const title = (slide.title as string) || (locale === 'en' ? 'Knowledge check' : 'Žinių patikrinimas');
+    const title =
+      (slide.title as string) ||
+      (locale === 'en' ? 'Knowledge check' : 'Žinių patikrinimas');
     return (
       <div className="space-y-6">
         <div className="bg-gradient-to-r from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-900/30 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
           {testIntro.whyBenefit && (
-            <p className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3" role="status">{testIntro.whyBenefit}</p>
+            <p
+              className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3"
+              role="status"
+            >
+              {testIntro.whyBenefit}
+            </p>
           )}
           <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white flex items-center gap-2.5">
-            <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20" aria-hidden="true">
-              <ClipboardCheck className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+            <span
+              className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20"
+              aria-hidden="true"
+            >
+              <ClipboardCheck
+                className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+              />
             </span>
             {title}
           </h3>
           {testIntro.duration && (
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-2"><strong>{t('durationLabel')}</strong> {testIntro.duration}</p>
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+              <strong>{t('durationLabel')}</strong> {testIntro.duration}
+            </p>
           )}
           {testIntro.firstActionCTA && (
             <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-4 rounded-lg mb-3">
-              <p className="text-sm font-medium text-accent-900 dark:text-accent-100">{testIntro.firstActionCTA}</p>
+              <p className="text-sm font-medium text-accent-900 dark:text-accent-100">
+                {testIntro.firstActionCTA}
+              </p>
             </div>
           )}
           {testIntro.microWinPhrase && (
@@ -216,18 +362,37 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
             </p>
           )}
           {testIntro.thresholdExplanation && (
-            <p className="text-sm text-brand-700 dark:text-brand-300">{testIntro.thresholdExplanation}</p>
+            <p className="text-sm text-brand-700 dark:text-brand-300">
+              {testIntro.thresholdExplanation}
+            </p>
           )}
           {testIntro.thresholds && !testIntro.thresholdExplanation && (
-            <p className="text-sm text-brand-700 dark:text-brand-300">{t('thresholdPassHint', { pass: testIntro.thresholds.pass })}</p>
+            <p className="text-sm text-brand-700 dark:text-brand-300">
+              {t('thresholdPassHint', { pass: testIntro.thresholds.pass })}
+            </p>
           )}
         </div>
+        {[8, 11, 14].includes(moduleId) && (
+          <TestKnowledgeScopeDiagram
+            moduleId={moduleId as 8 | 11 | 14}
+            locale={locale === 'en' ? 'en' : 'lt'}
+          />
+        )}
         <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
           <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
-            <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5" aria-hidden="true">
-              <Lightbulb className="w-4 h-4 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+            <span
+              className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5"
+              aria-hidden="true"
+            >
+              <Lightbulb
+                className="w-4 h-4 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+              />
             </span>
-            <span><strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong> {t('tipUnknownAnswer')}</span>
+            <span>
+              <strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong>{' '}
+              {t('tipUnknownAnswer')}
+            </span>
           </p>
         </div>
       </div>
@@ -238,11 +403,16 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-900/30 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
         {whyBenefit && (
-          <p className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3">{whyBenefit}</p>
+          <p className="text-sm font-medium text-brand-700 dark:text-brand-300 mb-3">
+            {whyBenefit}
+          </p>
         )}
         <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white flex items-center gap-2.5">
           <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
-            <ClipboardCheck className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+            <ClipboardCheck
+              className="w-5 h-5 text-brand-600 dark:text-brand-400"
+              strokeWidth={1.5}
+            />
           </span>
           {locale === 'en' ? 'Knowledge Check' : 'Žinių Patikrinimas'}
         </h3>
@@ -256,28 +426,62 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
         <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 border border-brand-200 dark:border-brand-800 p-5 rounded-xl">
           <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
             <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
-              <ListChecks className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+              <ListChecks
+                className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+              />
             </span>
             {locale === 'en' ? 'Test structure' : 'Testo struktūra'}
           </h4>
           <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            <li>{locale === 'en' ? '• 15 questions – 5 different formats' : '• 15 klausimų – 5 skirtingi formatai'}</li>
-            <li>{locale === 'en' ? '• Multiple choice, matching, ordering' : '• Pasirinkimai, porų sujungimas, rikiavimas'}</li>
-            <li>{locale === 'en' ? '• True/false and business scenarios' : '• Tiesa/netiesa ir verslo scenarijai'}</li>
-            <li>{locale === 'en' ? '• Each has an explanation and a hint' : '• Kiekvienas turi paaiškinimą ir užuominą'}</li>
+            <li>
+              {locale === 'en'
+                ? '• 15 questions – 5 different formats'
+                : '• 15 klausimų – 5 skirtingi formatai'}
+            </li>
+            <li>
+              {locale === 'en'
+                ? '• Multiple choice, matching, ordering'
+                : '• Pasirinkimai, porų sujungimas, rikiavimas'}
+            </li>
+            <li>
+              {locale === 'en'
+                ? '• True/false and business scenarios'
+                : '• Tiesa/netiesa ir verslo scenarijai'}
+            </li>
+            <li>
+              {locale === 'en'
+                ? '• Each has an explanation and a hint'
+                : '• Kiekvienas turi paaiškinimą ir užuominą'}
+            </li>
           </ul>
         </div>
         <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800 p-5 rounded-xl">
           <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
             <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
-              <Target className="w-5 h-5 text-accent-600 dark:text-accent-400" strokeWidth={1.5} />
+              <Target
+                className="w-5 h-5 text-accent-600 dark:text-accent-400"
+                strokeWidth={1.5}
+              />
             </span>
             {locale === 'en' ? 'Goal' : 'Tikslas'}
           </h4>
           <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
-            <li>{locale === 'en' ? '• Reinforce knowledge in different ways' : '• Įtvirtinti žinias skirtingais būdais'}</li>
-            <li>{locale === 'en' ? '• Identify gaps by block' : '• Identifikuoti spragas pagal blokus'}</li>
-            <li>{locale === 'en' ? '• Prepare for practice' : '• Pasiruošti praktikai'}</li>
+            <li>
+              {locale === 'en'
+                ? '• Reinforce knowledge in different ways'
+                : '• Įtvirtinti žinias skirtingais būdais'}
+            </li>
+            <li>
+              {locale === 'en'
+                ? '• Identify gaps by block'
+                : '• Identifikuoti spragas pagal blokus'}
+            </li>
+            <li>
+              {locale === 'en'
+                ? '• Prepare for practice'
+                : '• Pasiruošti praktikai'}
+            </li>
             <li>{locale === 'en' ? '• ≥70% = success' : '• ≥70% = sėkmė'}</li>
           </ul>
         </div>
@@ -285,9 +489,15 @@ export function TestIntroSlide({ slide, moduleId }: { slide: Slide; moduleId: nu
       <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
         <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
           <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5">
-            <Lightbulb className="w-4 h-4 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
+            <Lightbulb
+              className="w-4 h-4 text-brand-600 dark:text-brand-400"
+              strokeWidth={1.5}
+            />
           </span>
-          <span><strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong> {t('tipUnknownAnswer')}</span>
+          <span>
+            <strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong>{' '}
+            {t('tipUnknownAnswer')}
+          </span>
         </p>
       </div>
     </div>
@@ -300,7 +510,11 @@ function getQuestionType(q: TestQuestion): string {
 }
 
 /** Check if a question is answered (works for all types) */
-function isQuestionAnswered(q: TestQuestion, answers: Record<string, number>, completedSpecial: Set<string>): boolean {
+function isQuestionAnswered(
+  q: TestQuestion,
+  answers: Record<string, number>,
+  completedSpecial: Set<string>
+): boolean {
   const type = getQuestionType(q);
   if (type === 'matching' || type === 'ordering') {
     return completedSpecial.has(q.id);
@@ -318,6 +532,9 @@ function isMcqCorrect(q: TestQuestion, answer: number | undefined): boolean {
   return answer === (q.correct ?? -1);
 }
 
+/** Modulio 8: relatedSlideId rodo į Modulį 7 – užpildyti ifWrongSee diagnostinei nuorodai */
+const M8_REMEDIATION_TARGET_MODULE_ID = 7;
+
 export function TestSectionSlide({
   questions,
   onComplete,
@@ -329,17 +546,27 @@ export function TestSectionSlide({
   onComplete: (score?: number) => void;
   isCompleted: boolean;
   moduleId?: number;
-  onGoToModule?: (moduleId: number, slideIndex?: number, fromRemediationSourceModuleId?: number) => void;
+  onGoToModule?: (
+    moduleId: number,
+    slideIndex?: number,
+    fromRemediationSourceModuleId?: number
+  ) => void;
 }) {
   useTranslation();
   const t = getT('testPractice');
   const { locale } = useLocale();
   const [answers, setAnswers] = useState<Record<string, number>>({});
-  const [confidence, setConfidence] = useState<Record<string, ConfidenceLevel>>({});
+  const [confidence, setConfidence] = useState<Record<string, ConfidenceLevel>>(
+    {}
+  );
   const [showResults, setShowResults] = useState(false);
   const [hints, setHints] = useState<Set<string>>(new Set());
-  const [completedSpecial, setCompletedSpecial] = useState<Set<string>>(new Set());
-  const [specialScores, setSpecialScores] = useState<Record<string, number>>({});
+  const [completedSpecial, setCompletedSpecial] = useState<Set<string>>(
+    new Set()
+  );
+  const [specialScores, setSpecialScores] = useState<Record<string, number>>(
+    {}
+  );
   const [, setStreak] = useState(0);
   const [maxStreak, setMaxStreak] = useState(0);
 
@@ -354,20 +581,55 @@ export function TestSectionSlide({
     setMaxStreak(0);
   }, [questions]);
 
-  const handleAnswer = useCallback((questionId: string, optionIndex: number) => {
-    if (showResults) return;
-    setAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
-  }, [showResults]);
+  const resolvedQuestions = useMemo(() => {
+    if (moduleId !== 8 || !onGoToModule) return questions;
+    const allModules = getModulesSync(locale);
+    const m7 = allModules?.find(
+      (m) => m.id === M8_REMEDIATION_TARGET_MODULE_ID
+    );
+    if (!m7?.slides?.length) return questions;
+
+    return questions.map((q) => {
+      if (q.ifWrongSee != null || q.relatedSlideId == null) return q;
+      const slide = m7.slides.find((s) => s.id === q.relatedSlideId);
+      const raw = (slide?.shortTitle ?? slide?.title ?? '').trim();
+      const label =
+        raw.length > 0
+          ? raw
+          : locale === 'en'
+            ? `Slide ${q.relatedSlideId}`
+            : `Skaidrė ${q.relatedSlideId}`;
+      return {
+        ...q,
+        ifWrongSee: {
+          moduleId: M8_REMEDIATION_TARGET_MODULE_ID,
+          slideId: q.relatedSlideId,
+          label,
+        },
+      };
+    });
+  }, [questions, moduleId, onGoToModule, locale]);
+
+  const handleAnswer = useCallback(
+    (questionId: string, optionIndex: number) => {
+      if (showResults) return;
+      setAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
+    },
+    [showResults]
+  );
 
   const handleRequestHint = useCallback((questionId: string) => {
     setHints((prev) => new Set(prev).add(questionId));
   }, []);
 
   /** Called by Matching/Ordering when they self-check */
-  const handleSpecialComplete = useCallback((questionId: string, score: number) => {
-    setCompletedSpecial((prev) => new Set(prev).add(questionId));
-    setSpecialScores((prev) => ({ ...prev, [questionId]: score }));
-  }, []);
+  const handleSpecialComplete = useCallback(
+    (questionId: string, score: number) => {
+      setCompletedSpecial((prev) => new Set(prev).add(questionId));
+      setSpecialScores((prev) => ({ ...prev, [questionId]: score }));
+    },
+    []
+  );
 
   const handleRemediationLink = useCallback(
     (targetModuleId: number, slideId: number) => {
@@ -379,27 +641,34 @@ export function TestSectionSlide({
         return;
       }
       const slideIndex = mod.slides.findIndex((s) => s.id === slideId);
-      onGoToModule(targetModuleId, slideIndex >= 0 ? slideIndex : undefined, moduleId);
+      onGoToModule(
+        targetModuleId,
+        slideIndex >= 0 ? slideIndex : undefined,
+        moduleId
+      );
     },
     [onGoToModule, moduleId, locale]
   );
 
-  const handleConfidence = useCallback((questionId: string, level: ConfidenceLevel) => {
-    setConfidence((prev) => ({ ...prev, [questionId]: level }));
-  }, []);
+  const handleConfidence = useCallback(
+    (questionId: string, level: ConfidenceLevel) => {
+      setConfidence((prev) => ({ ...prev, [questionId]: level }));
+    },
+    []
+  );
 
   const handleCheck = useCallback(() => {
     setShowResults(true);
 
     // Calculate score across all question types
     let totalScore = 0;
-    const questionCount = questions.length;
+    const questionCount = resolvedQuestions.length;
 
-    questions.forEach((q) => {
+    resolvedQuestions.forEach((q) => {
       const type = getQuestionType(q);
       if (type === 'matching' || type === 'ordering') {
         // Score already captured from self-check (0–1 fraction)
-        totalScore += (specialScores[q.id] ?? 0);
+        totalScore += specialScores[q.id] ?? 0;
       } else {
         // MCQ, true-false, scenario – binary correct
         const answer = answers[q.id];
@@ -410,7 +679,7 @@ export function TestSectionSlide({
     });
 
     // Apply hint penalty: reduce by 0.5 for questions where hint was used but got right (half credit)
-    questions.forEach((q) => {
+    resolvedQuestions.forEach((q) => {
       const type = getQuestionType(q);
       if (hints.has(q.id) && type !== 'matching' && type !== 'ordering') {
         if (isMcqCorrect(q, answers[q.id])) {
@@ -419,12 +688,13 @@ export function TestSectionSlide({
       }
     });
 
-    const score = questionCount > 0 ? Math.round((totalScore / questionCount) * 100) : 0;
+    const score =
+      questionCount > 0 ? Math.round((totalScore / questionCount) * 100) : 0;
 
     // Calculate streak
     let currentStreak = 0;
     let bestStreak = 0;
-    questions.forEach((q) => {
+    resolvedQuestions.forEach((q) => {
       const type = getQuestionType(q);
       let isCorrect = false;
       if (type === 'matching' || type === 'ordering') {
@@ -445,9 +715,10 @@ export function TestSectionSlide({
 
     // Calculate per-category scores for radar chart
     const catScores: Record<string, CategoryScore> = {};
-    questions.forEach((q) => {
+    resolvedQuestions.forEach((q) => {
       const cat = q.category || 'bendra';
-      if (!catScores[cat]) catScores[cat] = { correct: 0, total: 0, percentage: 0 };
+      if (!catScores[cat])
+        catScores[cat] = { correct: 0, total: 0, percentage: 0 };
       catScores[cat].total += 1;
       const qType = getQuestionType(q);
       let qCorrect = false;
@@ -460,21 +731,40 @@ export function TestSectionSlide({
     });
     for (const cat of Object.keys(catScores)) {
       const { correct, total: catTotal } = catScores[cat];
-      catScores[cat].percentage = catTotal > 0 ? Math.round((correct / catTotal) * 100) : 0;
+      catScores[cat].percentage =
+        catTotal > 0 ? Math.round((correct / catTotal) * 100) : 0;
     }
     lastCategoryScores = catScores;
 
-    const allAnswered = questions.every((q) => isQuestionAnswered(q, answers, completedSpecial) && confidence[q.id] != null);
+    const allAnswered = resolvedQuestions.every(
+      (q) =>
+        isQuestionAnswered(q, answers, completedSpecial) &&
+        confidence[q.id] != null
+    );
     if (allAnswered) {
       onComplete(Math.max(0, score));
     }
-  }, [questions, answers, specialScores, hints, completedSpecial, confidence, onComplete]);
+  }, [
+    resolvedQuestions,
+    answers,
+    specialScores,
+    hints,
+    completedSpecial,
+    confidence,
+    onComplete,
+  ]);
 
-  const allAnswered = questions.every((q) => isQuestionAnswered(q, answers, completedSpecial) && confidence[q.id] != null);
-  const answeredCount = questions.filter(
-    (q) => isQuestionAnswered(q, answers, completedSpecial) && confidence[q.id] != null
+  const allAnswered = resolvedQuestions.every(
+    (q) =>
+      isQuestionAnswered(q, answers, completedSpecial) &&
+      confidence[q.id] != null
+  );
+  const answeredCount = resolvedQuestions.filter(
+    (q) =>
+      isQuestionAnswered(q, answers, completedSpecial) &&
+      confidence[q.id] != null
   ).length;
-  const totalCount = questions.length;
+  const totalCount = resolvedQuestions.length;
 
   return (
     <div className="space-y-6">
@@ -482,21 +772,32 @@ export function TestSectionSlide({
       {!showResults && (
         <div className="sticky top-0 z-10 py-3 mb-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 -mt-2">
           <div className="flex items-center justify-between gap-3">
-            <span className="text-base font-bold tabular-nums text-gray-800 dark:text-gray-200" aria-hidden="true">
+            <span
+              className="text-base font-bold tabular-nums text-gray-800 dark:text-gray-200"
+              aria-hidden="true"
+            >
               {answeredCount} / {totalCount}
             </span>
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300 sr-only sm:not-sr-only">
-              {t('questionsAnsweredAria', { answered: answeredCount, total: totalCount })}
+              {t('questionsAnsweredAria', {
+                answered: answeredCount,
+                total: totalCount,
+              })}
             </span>
             <div className="flex-1 max-w-[120px] h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-brand-500 to-accent-500 transition-all duration-300"
-                style={{ width: `${totalCount > 0 ? (answeredCount / totalCount) * 100 : 0}%` }}
+                style={{
+                  width: `${totalCount > 0 ? (answeredCount / totalCount) * 100 : 0}%`,
+                }}
                 role="progressbar"
                 aria-valuenow={answeredCount}
                 aria-valuemin={0}
                 aria-valuemax={totalCount}
-                aria-label={t('questionsAnsweredAria', { answered: answeredCount, total: totalCount })}
+                aria-label={t('questionsAnsweredAria', {
+                  answered: answeredCount,
+                  total: totalCount,
+                })}
               />
             </div>
           </div>
@@ -508,9 +809,11 @@ export function TestSectionSlide({
         <div className="flex items-center justify-center gap-2 p-3 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-xl border border-amber-200 dark:border-amber-800 animate-fade-in">
           <Flame className="w-5 h-5 text-orange-500" />
           <span className="font-bold text-orange-700 dark:text-orange-300">
-            {locale === 'en' ? `${maxStreak} correct in a row!` : `${maxStreak} teisingi iš eilės!`}
+            {locale === 'en'
+              ? `${maxStreak} correct in a row!`
+              : `${maxStreak} teisingi iš eilės!`}
           </span>
-          {maxStreak === questions.length && (
+          {maxStreak === resolvedQuestions.length && (
             <span className="ml-2 px-2 py-0.5 bg-orange-500 text-white text-xs font-bold rounded-full">
               {locale === 'en' ? 'Perfect!' : 'Puikiai!'}
             </span>
@@ -518,7 +821,7 @@ export function TestSectionSlide({
         </div>
       )}
 
-      {questions.map((q, qIdx) => {
+      {resolvedQuestions.map((q, qIdx) => {
         const type = getQuestionType(q);
         const userAnswer = answers[q.id];
         const showHint = hints.has(q.id);
@@ -534,7 +837,9 @@ export function TestSectionSlide({
                 showResults={showResults}
                 showHint={showHint}
                 confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) => handleConfidence(q.id, level)}
+                onConfidence={(level: ConfidenceLevel) =>
+                  handleConfidence(q.id, level)
+                }
                 onAnswer={handleAnswer}
                 onRequestHint={handleRequestHint}
               />
@@ -549,7 +854,9 @@ export function TestSectionSlide({
                 showResults={showResults}
                 showHint={showHint}
                 confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) => handleConfidence(q.id, level)}
+                onConfidence={(level: ConfidenceLevel) =>
+                  handleConfidence(q.id, level)
+                }
                 onComplete={handleSpecialComplete}
                 onRequestHint={handleRequestHint}
               />
@@ -564,7 +871,9 @@ export function TestSectionSlide({
                 showResults={showResults}
                 showHint={showHint}
                 confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) => handleConfidence(q.id, level)}
+                onConfidence={(level: ConfidenceLevel) =>
+                  handleConfidence(q.id, level)
+                }
                 onComplete={handleSpecialComplete}
                 onRequestHint={handleRequestHint}
               />
@@ -580,10 +889,14 @@ export function TestSectionSlide({
                 showResults={showResults}
                 showHint={showHint}
                 confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) => handleConfidence(q.id, level)}
+                onConfidence={(level: ConfidenceLevel) =>
+                  handleConfidence(q.id, level)
+                }
                 onAnswer={handleAnswer}
                 onRequestHint={handleRequestHint}
-                onRemediationLink={onGoToModule ? handleRemediationLink : undefined}
+                onRemediationLink={
+                  onGoToModule ? handleRemediationLink : undefined
+                }
               />
             );
 
@@ -597,10 +910,14 @@ export function TestSectionSlide({
                 showResults={showResults}
                 showHint={showHint}
                 confidence={confidence[q.id]}
-                onConfidence={(level: ConfidenceLevel) => handleConfidence(q.id, level)}
+                onConfidence={(level: ConfidenceLevel) =>
+                  handleConfidence(q.id, level)
+                }
                 onAnswer={handleAnswer}
                 onRequestHint={handleRequestHint}
-                onRemediationLink={onGoToModule ? handleRemediationLink : undefined}
+                onRemediationLink={
+                  onGoToModule ? handleRemediationLink : undefined
+                }
               />
             );
         }
@@ -608,7 +925,10 @@ export function TestSectionSlide({
 
       {!showResults && !isCompleted && (
         <>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-300 dark:via-brand-600 to-transparent" aria-hidden />
+          <div
+            className="h-px w-full bg-gradient-to-r from-transparent via-brand-300 dark:via-brand-600 to-transparent"
+            aria-hidden
+          />
           <button
             onClick={handleCheck}
             disabled={!allAnswered}
@@ -635,7 +955,10 @@ export function TestSectionSlide({
 const PASS_THRESHOLD = 70;
 
 /** Per-block category metadata (F2-2/F2-3) */
-const CATEGORY_META: Record<string, { label: string; color: string; slideId: number }> = {
+const CATEGORY_META: Record<
+  string,
+  { label: string; color: string; slideId: number }
+> = {
   meta: { label: 'Meta', color: 'rose', slideId: 8 },
   input: { label: 'Input', color: 'orange', slideId: 9 },
   output: { label: 'Output', color: 'amber', slideId: 10 },
@@ -659,15 +982,29 @@ function getCategoryLabel(key: string, locale: string): string {
 
 const COLOR_MAP: Record<string, string> = {
   rose: 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-700',
-  orange: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-700',
-  amber: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-700',
-  emerald: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700',
-  brand: 'bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border-brand-300 dark:border-brand-700',
-  violet: 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border-violet-300 dark:border-violet-700',
+  orange:
+    'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-orange-300 dark:border-orange-700',
+  amber:
+    'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-700',
+  emerald:
+    'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700',
+  brand:
+    'bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 border-brand-300 dark:border-brand-700',
+  violet:
+    'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 border-violet-300 dark:border-violet-700',
   cyan: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 border-cyan-300 dark:border-cyan-700',
 };
 
-const RADAR_CATEGORIES = ['meta', 'input', 'output', 'reasoning', 'quality', 'advanced', 'workflow', 'technikos'] as const;
+const RADAR_CATEGORIES = [
+  'meta',
+  'input',
+  'output',
+  'reasoning',
+  'quality',
+  'advanced',
+  'workflow',
+  'technikos',
+] as const;
 
 export function TestResultsSlide({
   moduleId,
@@ -677,7 +1014,11 @@ export function TestResultsSlide({
 }: {
   moduleId: number;
   progress: Progress;
-  onGoToModule?: (moduleId: number, slideIndex?: number, fromRemediationSourceModuleId?: number) => void;
+  onGoToModule?: (
+    moduleId: number,
+    slideIndex?: number,
+    fromRemediationSourceModuleId?: number
+  ) => void;
   onNextSlide?: () => void;
 }) {
   useTranslation();
@@ -703,7 +1044,11 @@ export function TestResultsSlide({
   );
 
   const handleM5HandoutPdf = useCallback(async () => {
-    await downloadM5HandoutPdf(getM5HandoutContent(locale) as M5HandoutContent, undefined, locale);
+    await downloadM5HandoutPdf(
+      getM5HandoutContent(locale) as M5HandoutContent,
+      undefined,
+      locale
+    );
   }, [locale]);
 
   const radarData: RadarDataPoint[] = RADAR_CATEGORIES.map((cat) => ({
@@ -716,20 +1061,58 @@ export function TestResultsSlide({
   if (moduleId === 5 && rawScore > 0) {
     const m5Module = getModulesSync(locale)?.find((m) => m.id === 5);
     const m5ResultsSlide = m5Module?.slides?.find((s) => s.id === 514);
-    const m5TestSectionIndex = m5Module?.slides?.findIndex((s) => s.id === 513) ?? -1;
-    const m5Content = m5ResultsSlide?.content as Record<string, unknown> | undefined;
-    const passedTitle = (typeof m5Content?.passedTitle === 'string' ? m5Content.passedTitle : null) ?? t('passedTitleDefault');
-    const passedMessageRaw = (typeof m5Content?.passedMessage === 'string' ? m5Content.passedMessage : null) ?? t('passedMessageDefault', { score: animatedScore });
-    const passedMessageHtml = passedMessageRaw.replace(/\[X\]/g, String(animatedScore)).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    const thresholdExplanation = typeof m5Content?.thresholdExplanation === 'string' ? m5Content.thresholdExplanation : null;
-    const useCaseBlock = typeof m5Content?.useCaseBlock === 'string' ? m5Content.useCaseBlock : null;
-    const passedCtaLabel = (typeof m5Content?.passedCtaLabel === 'string' ? m5Content.passedCtaLabel : null) ?? t('passedCtaLabelDefault');
-    const failedTitle = (typeof m5Content?.failedTitle === 'string' ? m5Content.failedTitle : null) ?? t('failedTitleDefault', { score: animatedScore });
-    const failedMessage = (typeof m5Content?.failedMessage === 'string' ? m5Content.failedMessage : null) ?? t('failedMessageDefault');
-    const failedCtaRetry = (typeof m5Content?.failedCtaRetry === 'string' ? m5Content.failedCtaRetry : null) ?? t('retryMiniTestAria');
-    const failedCtaContinue = (typeof m5Content?.failedCtaContinue === 'string' ? m5Content.failedCtaContinue : null) ?? t('failedCtaContinueDefault');
-    const failedCtaReview = (typeof m5Content?.failedCtaReview === 'string' ? m5Content.failedCtaReview : null) ?? t('viewModule4Aria');
-    const handoutDownloadLabel = (typeof m5Content?.handoutDownloadLabel === 'string' ? m5Content.handoutDownloadLabel : null) ?? t('handoutDownloadLabelDefault');
+    const m5TestSectionIndex =
+      m5Module?.slides?.findIndex((s) => s.id === 513) ?? -1;
+    const m5Content = m5ResultsSlide?.content as
+      | Record<string, unknown>
+      | undefined;
+    const passedTitle =
+      (typeof m5Content?.passedTitle === 'string'
+        ? m5Content.passedTitle
+        : null) ?? t('passedTitleDefault');
+    const passedMessageRaw =
+      (typeof m5Content?.passedMessage === 'string'
+        ? m5Content.passedMessage
+        : null) ?? t('passedMessageDefault', { score: animatedScore });
+    const passedMessageHtml = passedMessageRaw
+      .replace(/\[X\]/g, String(animatedScore))
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    const thresholdExplanation =
+      typeof m5Content?.thresholdExplanation === 'string'
+        ? m5Content.thresholdExplanation
+        : null;
+    const useCaseBlock =
+      typeof m5Content?.useCaseBlock === 'string'
+        ? m5Content.useCaseBlock
+        : null;
+    const passedCtaLabel =
+      (typeof m5Content?.passedCtaLabel === 'string'
+        ? m5Content.passedCtaLabel
+        : null) ?? t('passedCtaLabelDefault');
+    const failedTitle =
+      (typeof m5Content?.failedTitle === 'string'
+        ? m5Content.failedTitle
+        : null) ?? t('failedTitleDefault', { score: animatedScore });
+    const failedMessage =
+      (typeof m5Content?.failedMessage === 'string'
+        ? m5Content.failedMessage
+        : null) ?? t('failedMessageDefault');
+    const failedCtaRetry =
+      (typeof m5Content?.failedCtaRetry === 'string'
+        ? m5Content.failedCtaRetry
+        : null) ?? t('retryMiniTestAria');
+    const failedCtaContinue =
+      (typeof m5Content?.failedCtaContinue === 'string'
+        ? m5Content.failedCtaContinue
+        : null) ?? t('failedCtaContinueDefault');
+    const failedCtaReview =
+      (typeof m5Content?.failedCtaReview === 'string'
+        ? m5Content.failedCtaReview
+        : null) ?? t('viewModule4Aria');
+    const handoutDownloadLabel =
+      (typeof m5Content?.handoutDownloadLabel === 'string'
+        ? m5Content.handoutDownloadLabel
+        : null) ?? t('handoutDownloadLabelDefault');
     const handleRetryM5Test = () => {
       if (onGoToModule && m5TestSectionIndex >= 0) {
         onGoToModule(5, m5TestSectionIndex, 5);
@@ -744,8 +1127,13 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{passedTitle}</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6" dangerouslySetInnerHTML={{ __html: passedMessageHtml }} />
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {passedTitle}
+              </h3>
+              <p
+                className="text-gray-700 dark:text-gray-300 mb-6"
+                dangerouslySetInnerHTML={{ __html: passedMessageHtml }}
+              />
             </div>
             {thresholdExplanation && (
               <div
@@ -753,8 +1141,12 @@ export function TestResultsSlide({
                 role="region"
                 aria-label={t('resultMeaningAria')}
               >
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{t('resultMeaningHeading')}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{thresholdExplanation}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {t('resultMeaningHeading')}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {thresholdExplanation}
+                </p>
               </div>
             )}
             {useCaseBlock && (
@@ -763,8 +1155,12 @@ export function TestResultsSlide({
                 role="region"
                 aria-label={t('whereToApplyAria')}
               >
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{t('whereToApplyHeading')}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{useCaseBlock}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {t('whereToApplyHeading')}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {useCaseBlock}
+                </p>
               </div>
             )}
             <div className="flex flex-wrap gap-3 justify-center items-center">
@@ -793,8 +1189,12 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{failedTitle.replace('[X]', String(animatedScore))}</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">{failedMessage}</p>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {failedTitle.replace('[X]', String(animatedScore))}
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {failedMessage}
+              </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <button
                   type="button"
@@ -841,27 +1241,72 @@ export function TestResultsSlide({
             {/* Ką pakartoti: nuorodos į skaidres pagal MODULIO_5_INTERAKTYVUMO_ANALIZE §5.3 */}
             {onGoToModule && (
               <div className="bg-slate-50 dark:bg-slate-800/60 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-3">{t('recommendReviewHeading')}</h4>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-3">
+                  {t('recommendReviewHeading')}
+                </h4>
                 <ul className="space-y-2 text-left">
-                  {(locale === 'en' ? [
-                    { moduleId: 4, slideId: 43, label: 'Structured process (4.1b)' },
-                    { moduleId: 5, slideId: 47, label: 'Presentation workflow' },
-                    { moduleId: 5, slideId: 47, label: 'Presentation workflow (tools)' },
-                    { moduleId: 4, slideId: 68, label: 'Knowledge check and hallucinations (4.6)' },
-                  ] : [
-                    { moduleId: 4, slideId: 43, label: 'Struktūruotas procesas (4.1b)' },
-                    { moduleId: 5, slideId: 47, label: 'Prezentacijos workflow' },
-                    { moduleId: 5, slideId: 47, label: 'Prezentacijos workflow (įrankiai)' },
-                    { moduleId: 4, slideId: 68, label: 'Žinių patikrinimas ir haliucinacijos (4.6)' },
-                  ]).map((item) => {
+                  {(locale === 'en'
+                    ? [
+                        {
+                          moduleId: 4,
+                          slideId: 43,
+                          label: 'Structured process (4.1b)',
+                        },
+                        {
+                          moduleId: 5,
+                          slideId: 47,
+                          label: 'Presentation workflow',
+                        },
+                        {
+                          moduleId: 5,
+                          slideId: 47,
+                          label: 'Presentation workflow (tools)',
+                        },
+                        {
+                          moduleId: 4,
+                          slideId: 68,
+                          label: 'Knowledge check and hallucinations (4.6)',
+                        },
+                      ]
+                    : [
+                        {
+                          moduleId: 4,
+                          slideId: 43,
+                          label: 'Struktūruotas procesas (4.1b)',
+                        },
+                        {
+                          moduleId: 5,
+                          slideId: 47,
+                          label: 'Prezentacijos workflow',
+                        },
+                        {
+                          moduleId: 5,
+                          slideId: 47,
+                          label: 'Prezentacijos workflow (įrankiai)',
+                        },
+                        {
+                          moduleId: 4,
+                          slideId: 68,
+                          label: 'Žinių patikrinimas ir haliucinacijos (4.6)',
+                        },
+                      ]
+                  ).map((item) => {
                     const allModules = getModulesSync(locale);
                     const mod = allModules?.find((m) => m.id === item.moduleId);
-                    const slideIndex = mod ? mod.slides.findIndex((s) => s.id === item.slideId) : -1;
+                    const slideIndex = mod
+                      ? mod.slides.findIndex((s) => s.id === item.slideId)
+                      : -1;
                     return (
                       <li key={`${item.moduleId}-${item.slideId}`}>
                         <button
                           type="button"
-                          onClick={() => onGoToModule(item.moduleId, slideIndex >= 0 ? slideIndex : undefined, 5)}
+                          onClick={() =>
+                            onGoToModule(
+                              item.moduleId,
+                              slideIndex >= 0 ? slideIndex : undefined,
+                              5
+                            )
+                          }
                           className="text-brand-600 dark:text-brand-400 hover:underline font-medium text-left min-h-[44px] py-2 px-0 flex items-center"
                           aria-label={t('viewSlideAria', { label: item.label })}
                         >
@@ -880,17 +1325,16 @@ export function TestResultsSlide({
     );
   }
 
-  // Module 11 (Agentų kelias) results – content-driven from slide 112
-  if (moduleId === 11 && rawScore > 0) {
-    const m11Module = getModulesSync(locale)?.find((m) => m.id === 11);
-    const m11ResultsSlide = m11Module?.slides?.find((s) => s.id === 112);
-    const m11Content = m11ResultsSlide?.content as Record<string, unknown> | undefined;
-    const passedMessage = (typeof m11Content?.passedMessage === 'string' ? m11Content.passedMessage : null) ?? (locale === 'en' ? 'Congratulations! You are ready for the Agent Engineering project (Module 12).' : 'Sveikiname! Esate pasiruošę Agentų inžinerijos projektui (Modulis 12).');
-    const failedMessage = (typeof m11Content?.failedMessage === 'string' ? m11Content.failedMessage : null) ?? (locale === 'en' ? 'We recommend reviewing Module 10 slides again – agent cycle, role and prompts, tools, error handling.' : 'Rekomenduojame dar kartą peržiūrėti Modulio 10 skaidres – agentų ciklas, rolė ir promptai, įrankiai, klaidos tvarkymas.');
-    const thresholdExplanation = typeof m11Content?.thresholdExplanation === 'string' ? m11Content.thresholdExplanation : null;
-    const useCaseBlockObj = m11Content?.useCaseBlock as { heading?: string; body?: string; blockVariant?: string } | undefined;
-    const useCaseHeading = typeof useCaseBlockObj?.heading === 'string' ? useCaseBlockObj.heading : (locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?');
-    const useCaseBody = typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
+  // Module 8 (Duomenų analizės kelias) results – analogiškai M11
+  if (moduleId === 8 && rawScore > 0) {
+    const passedMessage =
+      locale === 'en'
+        ? 'Congratulations! You are ready for the Data Analytics path project (Module 9).'
+        : 'Sveikiname! Esate pasiruošę Duomenų analizės kelio projektui (Modulis 9).';
+    const failedMessage =
+      locale === 'en'
+        ? 'We recommend reviewing Module 7 slides again – pipeline, MASTER prompt, data prep, visualisation.'
+        : 'Rekomenduojame dar kartą peržiūrėti Modulio 7 skaidres – pipeline, MASTER promptą, duomenų paruošimą, vizualizaciją.';
 
     return (
       <div className="space-y-6">
@@ -900,24 +1344,171 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{t('passedTitleDefault')}</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">{passedMessage}</p>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('passedTitleDefault')}
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {passedMessage}
+              </p>
+            </div>
+            {onNextSlide && (
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={onNextSlide}
+                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  aria-label={
+                    locale === 'en'
+                      ? 'Continue to Module 9'
+                      : 'Tęsti į Modulį 9'
+                  }
+                >
+                  <ChevronRight className="w-5 h-5" />
+                  {locale === 'en'
+                    ? 'Continue to Module 9'
+                    : 'Tęsti į Modulį 9'}
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('resultLabel')} {animatedScore}%
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {failedMessage}
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {onGoToModule && (
+                  <button
+                    type="button"
+                    onClick={() => onGoToModule(7)}
+                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={
+                      locale === 'en' ? 'View Module 7' : 'Peržiūrėti Modulį 7'
+                    }
+                  >
+                    {locale === 'en' ? 'View Module 7' : 'Peržiūrėti Modulį 7'}
+                  </button>
+                )}
+                {onNextSlide && (
+                  <button
+                    type="button"
+                    onClick={onNextSlide}
+                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={t('retryTestAria')}
+                  >
+                    {locale === 'en'
+                      ? 'Try test again'
+                      : 'Bandyti testą dar kartą'}
+                  </button>
+                )}
+              </div>
+            </div>
+            {onGoToModule && (
+              <TestRemediationChips
+                testModuleId={8}
+                sourceModuleId={8}
+                locale={locale === 'en' ? 'en' : 'lt'}
+                onGoToModule={onGoToModule}
+              />
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
+
+  // Module 11 (Agentų kelias) results – content-driven from slide 112
+  if (moduleId === 11 && rawScore > 0) {
+    const m11Module = getModulesSync(locale)?.find((m) => m.id === 11);
+    const m11ResultsSlide = m11Module?.slides?.find((s) => s.id === 112);
+    const m11Content = m11ResultsSlide?.content as
+      | Record<string, unknown>
+      | undefined;
+    const passedMessage =
+      (typeof m11Content?.passedMessage === 'string'
+        ? m11Content.passedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'Congratulations! You are ready for the Agent Engineering project (Module 12).'
+        : 'Sveikiname! Esate pasiruošę Agentų inžinerijos projektui (Modulis 12).');
+    const failedMessage =
+      (typeof m11Content?.failedMessage === 'string'
+        ? m11Content.failedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'We recommend reviewing Module 10 slides again – agent cycle, role and prompts, tools, error handling.'
+        : 'Rekomenduojame dar kartą peržiūrėti Modulio 10 skaidres – agentų ciklas, rolė ir promptai, įrankiai, klaidos tvarkymas.');
+    const thresholdExplanation =
+      typeof m11Content?.thresholdExplanation === 'string'
+        ? m11Content.thresholdExplanation
+        : null;
+    const useCaseBlockObj = m11Content?.useCaseBlock as
+      | { heading?: string; body?: string; blockVariant?: string }
+      | undefined;
+    const useCaseHeading =
+      typeof useCaseBlockObj?.heading === 'string'
+        ? useCaseBlockObj.heading
+        : locale === 'en'
+          ? 'Where to apply?'
+          : 'Kur pritaikyti?';
+    const useCaseBody =
+      typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
+
+    return (
+      <div className="space-y-6">
+        {passed ? (
+          <>
+            <div className="bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+                <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('passedTitleDefault')}
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {passedMessage}
+              </p>
             </div>
             {thresholdExplanation && (
-              <div className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl" role="region" aria-label={t('resultMeaningAria')}>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{t('whatItMeansHeading')}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{thresholdExplanation}</p>
+              <div
+                className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl"
+                role="region"
+                aria-label={t('resultMeaningAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {t('whatItMeansHeading')}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {thresholdExplanation}
+                </p>
               </div>
             )}
             {useCaseBody && (
-              <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl" role="region" aria-label={t('whereToApplyShortAria')}>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{useCaseHeading}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{useCaseBody}</p>
+              <div
+                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
+                role="region"
+                aria-label={t('whereToApplyShortAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {useCaseHeading}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {useCaseBody}
+                </p>
               </div>
             )}
             {onNextSlide && (
               <div className="flex justify-center">
-                <button type="button" onClick={onNextSlide} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('startModule12Aria')}>
+                <button
+                  type="button"
+                  onClick={onNextSlide}
+                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  aria-label={t('startModule12Aria')}
+                >
                   <ChevronRight className="w-5 h-5" />
                   {t('startModule12Aria')}
                 </button>
@@ -927,21 +1518,47 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{t('resultLabel')} {animatedScore}%</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">{failedMessage}</p>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('resultLabel')} {animatedScore}%
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {failedMessage}
+              </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {onGoToModule && (
-                  <button type="button" onClick={() => onGoToModule(10)} className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('viewModule10Aria')}>
-                    {locale === 'en' ? 'View Module 10' : 'Peržiūrėti Modulį 10'}
+                  <button
+                    type="button"
+                    onClick={() => onGoToModule(10)}
+                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={t('viewModule10Aria')}
+                  >
+                    {locale === 'en'
+                      ? 'View Module 10'
+                      : 'Peržiūrėti Modulį 10'}
                   </button>
                 )}
                 {onNextSlide && (
-                  <button type="button" onClick={onNextSlide} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('retryTestAria')}>
-                    {locale === 'en' ? 'Try test again' : 'Bandyti testą dar kartą'}
+                  <button
+                    type="button"
+                    onClick={onNextSlide}
+                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={t('retryTestAria')}
+                  >
+                    {locale === 'en'
+                      ? 'Try test again'
+                      : 'Bandyti testą dar kartą'}
                   </button>
                 )}
               </div>
             </div>
+            {onGoToModule && (
+              <TestRemediationChips
+                testModuleId={11}
+                sourceModuleId={11}
+                locale={locale === 'en' ? 'en' : 'lt'}
+                onGoToModule={onGoToModule}
+              />
+            )}
           </>
         )}
       </div>
@@ -952,13 +1569,38 @@ export function TestResultsSlide({
   if (moduleId === 14 && rawScore > 0) {
     const m14Module = getModulesSync(locale)?.find((m) => m.id === 14);
     const m14ResultsSlide = m14Module?.slides?.find((s) => s.id === 142);
-    const m14Content = m14ResultsSlide?.content as Record<string, unknown> | undefined;
-    const passedMessage = (typeof m14Content?.passedMessage === 'string' ? m14Content.passedMessage : null) ?? (locale === 'en' ? 'Congratulations! You are ready for the Content Engineering project (Module 15).' : 'Sveikiname! Esate pasiruošę Turinio inžinerijos projektui (Modulis 15).');
-    const failedMessage = (typeof m14Content?.failedMessage === 'string' ? m14Content.failedMessage : null) ?? (locale === 'en' ? 'We recommend reviewing Module 13 slides again – images, video, music.' : 'Rekomenduojame dar kartą peržiūrėti Modulio 13 skaidres – vaizdai, video, muzika.');
-    const thresholdExplanation = typeof m14Content?.thresholdExplanation === 'string' ? m14Content.thresholdExplanation : null;
-    const useCaseBlockObj = m14Content?.useCaseBlock as { heading?: string; body?: string; blockVariant?: string } | undefined;
-    const useCaseHeading = typeof useCaseBlockObj?.heading === 'string' ? useCaseBlockObj.heading : (locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?');
-    const useCaseBody = typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
+    const m14Content = m14ResultsSlide?.content as
+      | Record<string, unknown>
+      | undefined;
+    const passedMessage =
+      (typeof m14Content?.passedMessage === 'string'
+        ? m14Content.passedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'Congratulations! You are ready for the Content Engineering project (Module 15).'
+        : 'Sveikiname! Esate pasiruošę Turinio inžinerijos projektui (Modulis 15).');
+    const failedMessage =
+      (typeof m14Content?.failedMessage === 'string'
+        ? m14Content.failedMessage
+        : null) ??
+      (locale === 'en'
+        ? 'We recommend reviewing Module 13 slides again – images, video, music.'
+        : 'Rekomenduojame dar kartą peržiūrėti Modulio 13 skaidres – vaizdai, video, muzika.');
+    const thresholdExplanation =
+      typeof m14Content?.thresholdExplanation === 'string'
+        ? m14Content.thresholdExplanation
+        : null;
+    const useCaseBlockObj = m14Content?.useCaseBlock as
+      | { heading?: string; body?: string; blockVariant?: string }
+      | undefined;
+    const useCaseHeading =
+      typeof useCaseBlockObj?.heading === 'string'
+        ? useCaseBlockObj.heading
+        : locale === 'en'
+          ? 'Where to apply?'
+          : 'Kur pritaikyti?';
+    const useCaseBody =
+      typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
 
     return (
       <div className="space-y-6">
@@ -968,24 +1610,49 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{t('passedTitleDefault')}</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">{passedMessage}</p>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('passedTitleDefault')}
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {passedMessage}
+              </p>
             </div>
             {thresholdExplanation && (
-              <div className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl" role="region" aria-label={t('resultMeaningAria')}>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{t('whatItMeansHeading')}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{thresholdExplanation}</p>
+              <div
+                className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl"
+                role="region"
+                aria-label={t('resultMeaningAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {t('whatItMeansHeading')}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {thresholdExplanation}
+                </p>
               </div>
             )}
             {useCaseBody && (
-              <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl" role="region" aria-label={t('whereToApplyShortAria')}>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{useCaseHeading}</h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">{useCaseBody}</p>
+              <div
+                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
+                role="region"
+                aria-label={t('whereToApplyShortAria')}
+              >
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {useCaseHeading}
+                </h4>
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  {useCaseBody}
+                </p>
               </div>
             )}
             {onNextSlide && (
               <div className="flex justify-center">
-                <button type="button" onClick={onNextSlide} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('startModule15Aria')}>
+                <button
+                  type="button"
+                  onClick={onNextSlide}
+                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  aria-label={t('startModule15Aria')}
+                >
                   <ChevronRight className="w-5 h-5" />
                   {t('startModule15Aria')}
                 </button>
@@ -995,21 +1662,47 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">{t('resultLabel')} {animatedScore}%</h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6">{failedMessage}</p>
+              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+                {t('resultLabel')} {animatedScore}%
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {failedMessage}
+              </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {onGoToModule && (
-                  <button type="button" onClick={() => onGoToModule(13)} className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('viewModule13Aria')}>
-                    {locale === 'en' ? 'View Module 13' : 'Peržiūrėti Modulį 13'}
+                  <button
+                    type="button"
+                    onClick={() => onGoToModule(13)}
+                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={t('viewModule13Aria')}
+                  >
+                    {locale === 'en'
+                      ? 'View Module 13'
+                      : 'Peržiūrėti Modulį 13'}
                   </button>
                 )}
                 {onNextSlide && (
-                  <button type="button" onClick={onNextSlide} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('retryTestAria')}>
-                    {locale === 'en' ? 'Try test again' : 'Bandyti testą dar kartą'}
+                  <button
+                    type="button"
+                    onClick={onNextSlide}
+                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    aria-label={t('retryTestAria')}
+                  >
+                    {locale === 'en'
+                      ? 'Try test again'
+                      : 'Bandyti testą dar kartą'}
                   </button>
                 )}
               </div>
             </div>
+            {onGoToModule && (
+              <TestRemediationChips
+                testModuleId={14}
+                sourceModuleId={14}
+                locale={locale === 'en' ? 'en' : 'lt'}
+                onGoToModule={onGoToModule}
+              />
+            )}
           </>
         )}
       </div>
@@ -1020,17 +1713,29 @@ export function TestResultsSlide({
   return (
     <div className="space-y-6">
       {/* F2-4: Animated score hero */}
-      <div className={`p-8 rounded-xl border-2 text-center ${
-        passed
-          ? 'bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 border-emerald-200 dark:border-emerald-800'
-          : 'bg-gradient-to-r from-amber-50 to-brand-50 dark:from-amber-900/20 dark:to-brand-900/20 border-amber-200 dark:border-amber-800'
-      }`}>
-        <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${
-          passed ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-amber-100 dark:bg-amber-900/30'
-        }`}>
-          <span className={`text-3xl font-extrabold tabular-nums ${
-            passed ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'
-          }`}>{animatedScore}%</span>
+      <div
+        className={`p-8 rounded-xl border-2 text-center ${
+          passed
+            ? 'bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 border-emerald-200 dark:border-emerald-800'
+            : 'bg-gradient-to-r from-amber-50 to-brand-50 dark:from-amber-900/20 dark:to-brand-900/20 border-amber-200 dark:border-amber-800'
+        }`}
+      >
+        <div
+          className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${
+            passed
+              ? 'bg-emerald-100 dark:bg-emerald-900/30'
+              : 'bg-amber-100 dark:bg-amber-900/30'
+          }`}
+        >
+          <span
+            className={`text-3xl font-extrabold tabular-nums ${
+              passed
+                ? 'text-emerald-600 dark:text-emerald-400'
+                : 'text-amber-600 dark:text-amber-400'
+            }`}
+          >
+            {animatedScore}%
+          </span>
         </div>
         <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
           {passed ? t('testCompleteTitle') : t('resultLabel')}
@@ -1045,7 +1750,9 @@ export function TestResultsSlide({
         {lastMaxStreak >= 3 && (
           <div className="inline-flex items-center gap-1.5 mt-3 px-3 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 text-sm font-medium">
             <Flame className="w-4 h-4" />
-            {locale === 'en' ? `Best streak: ${lastMaxStreak} in a row` : `Geriausias streak: ${lastMaxStreak} iš eilės`}
+            {locale === 'en'
+              ? `Best streak: ${lastMaxStreak} in a row`
+              : `Geriausias streak: ${lastMaxStreak} iš eilės`}
           </div>
         )}
       </div>
@@ -1053,35 +1760,47 @@ export function TestResultsSlide({
       {/* F2-2: Radar chart (Module 2 only, if data exists) */}
       {moduleId === 2 && hasRadarData && (
         <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-1">{t('radarTitle')}</h4>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{t('radarDesc')}</p>
+          <h4 className="font-bold text-gray-900 dark:text-white mb-1">
+            {t('radarTitle')}
+          </h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            {t('radarDesc')}
+          </p>
           <RadarChart data={radarData} size={300} />
         </div>
       )}
 
       {/* F2-3: Category deep links (Module 2 only) */}
       {moduleId === 2 && (
-        <CategoryBreakdownWithLinks categoryScores={lastCategoryScores} onDeepLink={handleDeepLink} />
+        <CategoryBreakdownWithLinks
+          categoryScores={lastCategoryScores}
+          onDeepLink={handleDeepLink}
+        />
       )}
 
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-        <h4 className="font-bold text-gray-900 dark:text-white mb-4">{t('whatYouLearned')}</h4>
+        <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+          {t('whatYouLearned')}
+        </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-          {(locale === 'en' ? [
-            'Meta block = role and context',
-            'Input = concrete data',
-            'Output = format and structure',
-            'Reasoning = thinking logic',
-            'Quality = quality criteria',
-            'Advanced = parameter control',
-          ] : [
-            'Meta blokas = rolė ir kontekstas',
-            'Input = konkretūs duomenys',
-            'Output = formatas ir struktūra',
-            'Reasoning = mąstymo logika',
-            'Quality = kokybės kriterijai',
-            'Advanced = parametrų kontrolė',
-          ]).map((item, idx) => (
+          {(locale === 'en'
+            ? [
+                'Meta block = role and context',
+                'Input = concrete data',
+                'Output = format and structure',
+                'Reasoning = thinking logic',
+                'Quality = quality criteria',
+                'Advanced = parameter control',
+              ]
+            : [
+                'Meta blokas = rolė ir kontekstas',
+                'Input = konkretūs duomenys',
+                'Output = formatas ir struktūra',
+                'Reasoning = mąstymo logika',
+                'Quality = kokybės kriterijai',
+                'Advanced = parametrų kontrolė',
+              ]
+          ).map((item, idx) => (
             <div key={idx} className="flex items-start gap-2">
               <CheckCircle className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
               <span className="text-gray-700 dark:text-gray-300">{item}</span>
@@ -1093,12 +1812,22 @@ export function TestResultsSlide({
       {/* Navigation buttons */}
       <div className="flex flex-wrap gap-3 justify-center">
         {!passed && onGoToModule && (
-          <button type="button" onClick={() => onGoToModule(1)} className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('viewModule1Aria')}>
+          <button
+            type="button"
+            onClick={() => onGoToModule(1)}
+            className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+            aria-label={t('viewModule1Aria')}
+          >
             {locale === 'en' ? 'View Module 1' : 'Peržiūrėti Modulį 1'}
           </button>
         )}
         {passed && onGoToModule && (
-          <button type="button" onClick={() => onGoToModule(3)} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]" aria-label={t('startModule3Aria')}>
+          <button
+            type="button"
+            onClick={() => onGoToModule(3)}
+            className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+            aria-label={t('startModule3Aria')}
+          >
             <ChevronRight className="w-5 h-5" /> {t('startModule3Aria')}
           </button>
         )}
@@ -1122,16 +1851,24 @@ function RemediationRetryBlock({
   const { locale } = useLocale();
   const questions = useMemo<TestQuestion[]>(() => {
     const all = selectQuestionsByCategory(categoryKey, 5, locale);
-    return all.filter((q: TestQuestion) => (q.type || 'mcq') === 'mcq' || (q.type || '') === 'true-false').slice(0, 3);
+    return all
+      .filter(
+        (q: TestQuestion) =>
+          (q.type || 'mcq') === 'mcq' || (q.type || '') === 'true-false'
+      )
+      .slice(0, 3);
   }, [categoryKey, locale]);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-  const handleAnswer = useCallback((questionId: string, optionIndex: number) => {
-    if (showResults) return;
-    setAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
-  }, [showResults]);
+  const handleAnswer = useCallback(
+    (questionId: string, optionIndex: number) => {
+      if (showResults) return;
+      setAnswers((prev) => ({ ...prev, [questionId]: optionIndex }));
+    },
+    [showResults]
+  );
 
   const handleCheck = useCallback(() => {
     setShowResults(true);
@@ -1139,16 +1876,29 @@ function RemediationRetryBlock({
     questions.forEach((q: TestQuestion) => {
       if (isMcqCorrect(q, answers[q.id])) correct += 1;
     });
-    setScore(questions.length > 0 ? Math.round((correct / questions.length) * 100) : 0);
+    setScore(
+      questions.length > 0 ? Math.round((correct / questions.length) * 100) : 0
+    );
   }, [questions, answers]);
 
-  const allAnswered = questions.length > 0 && questions.every((q: TestQuestion) => answers[q.id] !== undefined);
+  const allAnswered =
+    questions.length > 0 &&
+    questions.every((q: TestQuestion) => answers[q.id] !== undefined);
 
   if (questions.length === 0) {
     return (
       <div className="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4">
-        <p className="text-sm text-amber-800 dark:text-amber-200">{t('noRetakeInCategory')}</p>
-        <button type="button" onClick={onClose} className="mt-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline" aria-label={t('close')}>{t('close')}</button>
+        <p className="text-sm text-amber-800 dark:text-amber-200">
+          {t('noRetakeInCategory')}
+        </p>
+        <button
+          type="button"
+          onClick={onClose}
+          className="mt-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline"
+          aria-label={t('close')}
+        >
+          {t('close')}
+        </button>
       </div>
     );
   }
@@ -1156,8 +1906,19 @@ function RemediationRetryBlock({
   return (
     <div className="rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/10 p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h5 className="font-bold text-gray-900 dark:text-white">{locale === 'en' ? `Retake 3 questions: ${categoryLabel}` : `Pakartok 3 klausimus: ${categoryLabel}`}</h5>
-        <button type="button" onClick={onClose} className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center py-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400" aria-label={t('close')}>{t('close')}</button>
+        <h5 className="font-bold text-gray-900 dark:text-white">
+          {locale === 'en'
+            ? `Retake 3 questions: ${categoryLabel}`
+            : `Pakartok 3 klausimus: ${categoryLabel}`}
+        </h5>
+        <button
+          type="button"
+          onClick={onClose}
+          className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center py-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400"
+          aria-label={t('close')}
+        >
+          {t('close')}
+        </button>
       </div>
       {questions.map((q: TestQuestion, qIdx: number) => {
         const type = getQuestionType(q);
@@ -1194,14 +1955,29 @@ function RemediationRetryBlock({
         );
       })}
       {!showResults && (
-        <button type="button" onClick={handleCheck} disabled={!allAnswered} className="btn-primary inline-flex items-center justify-center min-h-[44px] px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed" aria-label={t('checkAnswersAria')}>
+        <button
+          type="button"
+          onClick={handleCheck}
+          disabled={!allAnswered}
+          className="btn-primary inline-flex items-center justify-center min-h-[44px] px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label={t('checkAnswersAria')}
+        >
           {t('checkShort')}
         </button>
       )}
       {showResults && (
         <div className="flex items-center justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
-          <span className="font-semibold text-gray-900 dark:text-white">{t('resultLabel')}: {score}%</span>
-          <button type="button" onClick={onClose} className="btn-secondary px-3 py-2 min-h-[44px] text-sm" aria-label={t('backToResultAria')}>{t('backToResultAria')}</button>
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {t('resultLabel')}: {score}%
+          </span>
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn-secondary px-3 py-2 min-h-[44px] text-sm"
+            aria-label={t('backToResultAria')}
+          >
+            {t('backToResultAria')}
+          </button>
         </div>
       )}
     </div>
@@ -1219,15 +1995,20 @@ function CategoryBreakdownWithLinks({
   useTranslation();
   const t = getT('testPractice');
   const { locale } = useLocale();
-  const [activeRetryCategory, setActiveRetryCategory] = useState<{ key: string; label: string } | null>(null);
+  const [activeRetryCategory, setActiveRetryCategory] = useState<{
+    key: string;
+    label: string;
+  } | null>(null);
   const hasScores = Object.keys(categoryScores).length > 0;
   const categories = Object.entries(CATEGORY_META).filter(([key]) =>
-    RADAR_CATEGORIES.includes(key as typeof RADAR_CATEGORIES[number])
+    RADAR_CATEGORIES.includes(key as (typeof RADAR_CATEGORIES)[number])
   );
 
   return (
     <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-      <h4 className="font-bold text-gray-900 dark:text-white mb-2">{t('knowledgeMapTitle')}</h4>
+      <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+        {t('knowledgeMapTitle')}
+      </h4>
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
         {hasScores ? t('knowledgeMapHint1') : t('knowledgeMapHint2')}
       </p>
@@ -1248,11 +2029,15 @@ function CategoryBreakdownWithLinks({
                 {getCategoryLabel(key, locale)}
               </div>
               {pct !== undefined ? (
-                <div className={`text-xs font-bold mt-1 ${isWeak ? 'text-rose-600 dark:text-rose-400' : isStrong ? 'text-emerald-600 dark:text-emerald-400' : ''}`}>
+                <div
+                  className={`text-xs font-bold mt-1 ${isWeak ? 'text-rose-600 dark:text-rose-400' : isStrong ? 'text-emerald-600 dark:text-emerald-400' : ''}`}
+                >
                   {pct}%
                 </div>
               ) : (
-                <div className="text-xs opacity-75 mt-1">{t('slideLabel', { id: meta.slideId })}</div>
+                <div className="text-xs opacity-75 mt-1">
+                  {t('slideLabel', { id: meta.slideId })}
+                </div>
               )}
               <div className="mt-2 flex flex-col gap-1">
                 <button
@@ -1266,7 +2051,9 @@ function CategoryBreakdownWithLinks({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveRetryCategory({ key, label: meta.label })}
+                  onClick={() =>
+                    setActiveRetryCategory({ key, label: meta.label })
+                  }
                   className="text-xs font-medium min-h-[44px] py-2 px-2 rounded bg-brand-100 dark:bg-brand-900/30 hover:bg-brand-200 dark:hover:bg-brand-800/50 transition-colors flex items-center justify-center"
                   aria-label={t('retake3FromAria', { label: meta.label })}
                 >
@@ -1313,7 +2100,10 @@ function loadModule6SelfAssessment(): Record<number, SelfAssessmentValue> {
       const out: Record<number, SelfAssessmentValue> = {};
       for (const [k, v] of Object.entries(parsed)) {
         const id = parseInt(k, 10);
-        if ([1, 2, 3, 4, 5].includes(id) && (v === 'taip' || v === 'dar_ne' || v === 'netaikau')) {
+        if (
+          [1, 2, 3, 4, 5].includes(id) &&
+          (v === 'taip' || v === 'dar_ne' || v === 'netaikau')
+        ) {
           out[id] = v;
         }
       }
@@ -1357,20 +2147,31 @@ export function PracticeIntroSlide({
   const { locale } = useLocale();
   const whyBenefit = getWhyBenefit(slide);
   const recommendedNote = getRecommendedNote(slide);
-  const [selfAssessment, setSelfAssessment] = useState<Record<number, SelfAssessmentValue>>(loadModule6SelfAssessment);
+  const [selfAssessment, setSelfAssessment] = useState<
+    Record<number, SelfAssessmentValue>
+  >(loadModule6SelfAssessment);
 
   useEffect(() => {
     if (moduleId !== 6 || Object.keys(selfAssessment).length === 0) return;
-    localStorage.setItem(MODULE6_SELF_ASSESSMENT_KEY, JSON.stringify(selfAssessment));
+    localStorage.setItem(
+      MODULE6_SELF_ASSESSMENT_KEY,
+      JSON.stringify(selfAssessment)
+    );
   }, [moduleId, selfAssessment]);
 
   const setModule6SelfAssessment = setSelfAssessment;
 
   if (moduleId === 6) {
     const introContent = getPracticeIntroContent(slide);
-    const hasM6Progress = Boolean(scenarioSlides?.length && progress?.completedTasks && progress.completedTasks[6]);
+    const hasM6Progress = Boolean(
+      scenarioSlides?.length &&
+      progress?.completedTasks &&
+      progress.completedTasks[6]
+    );
     const m6CompletedCount = hasM6Progress
-      ? scenarioSlides!.filter((s) => progress!.completedTasks[6]!.includes(s.slideId)).length
+      ? scenarioSlides!.filter((s) =>
+          progress!.completedTasks[6]!.includes(s.slideId)
+        ).length
       : 0;
     const m6ScenarioTotal = scenarioSlides?.length ?? 2;
     const outcomes = [
@@ -1382,35 +2183,125 @@ export function PracticeIntroSlide({
         ? 'A RAG and knowledge verification example for your topic (sources, "I don\'t know", Deep research steps).'
         : 'RAG ir žinių patikrinimo pavyzdys savo temai (šaltiniai, „nežinau“, Deep research žingsniai).',
     ];
-    const journey = locale === 'en' ? [
-      { step: 1, label: 'Project: Research report with AI', detail: '6-step instructions + intermediate decisions + full example' },
-      { step: 2, label: 'COMBO', detail: 'Combine multiple methods in one prompt' },
-      { step: 3, label: 'Practice: One-page HTML', detail: '6-block structure' },
-      { step: 4, label: 'SUPER PROMPTS', detail: 'LEARN (20/80) + EXPERIMENT' },
-      { step: 5, label: 'Reflection and "What next?"', detail: 'Copyable reflection prompt + links' },
-      { step: 6, label: 'Data management', detail: 'Library, versioning, documentation' },
-    ] : [
-      { step: 1, label: 'Projektas: Tyrimo ataskaita su DI', detail: '6 žingsnių instrukcijos + tarpiniai sprendimai + pilnas pavyzdys' },
-      { step: 2, label: 'COMBO', detail: 'Sujunk kelis metodus viename prompte' },
-      { step: 3, label: 'Praktika: Vieno puslapio HTML', detail: '6 blokų struktūra' },
-      { step: 4, label: 'SUPER PROMPTAI', detail: 'MOKYTIS (20/80) + EKSPERIMENTUOTI' },
-      { step: 5, label: 'Refleksija ir „Ką toliau?“', detail: 'Kopijuojamas refleksijos promptas + nuorodos' },
-      { step: 6, label: 'Duomenų tvarkymas', detail: 'Biblioteka, versijavimas, dokumentacija' },
+    const journey =
+      locale === 'en'
+        ? [
+            {
+              step: 1,
+              label: 'Project: Research report with AI',
+              detail:
+                '6-step instructions + intermediate decisions + full example',
+            },
+            {
+              step: 2,
+              label: 'COMBO',
+              detail: 'Combine multiple methods in one prompt',
+            },
+            {
+              step: 3,
+              label: 'Practice: One-page HTML',
+              detail: '6-block structure',
+            },
+            {
+              step: 4,
+              label: 'SUPER PROMPTS',
+              detail: 'LEARN (20/80) + EXPERIMENT',
+            },
+            {
+              step: 5,
+              label: 'Reflection and "What next?"',
+              detail: 'Copyable reflection prompt + links',
+            },
+            {
+              step: 6,
+              label: 'Data management',
+              detail: 'Library, versioning, documentation',
+            },
+          ]
+        : [
+            {
+              step: 1,
+              label: 'Projektas: Tyrimo ataskaita su DI',
+              detail:
+                '6 žingsnių instrukcijos + tarpiniai sprendimai + pilnas pavyzdys',
+            },
+            {
+              step: 2,
+              label: 'COMBO',
+              detail: 'Sujunk kelis metodus viename prompte',
+            },
+            {
+              step: 3,
+              label: 'Praktika: Vieno puslapio HTML',
+              detail: '6 blokų struktūra',
+            },
+            {
+              step: 4,
+              label: 'SUPER PROMPTAI',
+              detail: 'MOKYTIS (20/80) + EKSPERIMENTUOTI',
+            },
+            {
+              step: 5,
+              label: 'Refleksija ir „Ką toliau?“',
+              detail: 'Kopijuojamas refleksijos promptas + nuorodos',
+            },
+            {
+              step: 6,
+              label: 'Duomenų tvarkymas',
+              detail: 'Biblioteka, versijavimas, dokumentacija',
+            },
+          ];
+    const checklist =
+      locale === 'en'
+        ? [
+            {
+              label:
+                'Used the 6-block system (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)',
+              id: 1,
+            },
+            {
+              label:
+                'Included a RAG element (sources, "use only provided context")',
+              id: 2,
+            },
+            { label: 'Included Deep research steps (multi-step)', id: 3 },
+            {
+              label:
+                'Included a knowledge verification element (sources or "I don\'t know")',
+              id: 4,
+            },
+            { label: 'Considered token limits (length, max_tokens)', id: 5 },
+          ]
+        : [
+            {
+              label:
+                'Naudojau 6 blokų sistemą (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)',
+              id: 1,
+            },
+            {
+              label:
+                'Įtraukiau RAG elementą (šaltiniai, „naudok tik pateiktą kontekstą“)',
+              id: 2,
+            },
+            { label: 'Įtraukiau Deep research žingsnius (multi-step)', id: 3 },
+            {
+              label:
+                'Įtraukiau žinių patikrinimo elementą (šaltiniai arba „nežinau“)',
+              id: 4,
+            },
+            {
+              label: 'Apsvarstau tokenų apribojimą (ilgis, max_tokens)',
+              id: 5,
+            },
+          ];
+    const stages = [
+      t('projectStep1'),
+      t('projectStep2'),
+      t('projectStep3'),
+      t('projectStep4'),
+      t('projectStep5'),
+      t('projectStep6'),
     ];
-    const checklist = locale === 'en' ? [
-      { label: 'Used the 6-block system (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)', id: 1 },
-      { label: 'Included a RAG element (sources, "use only provided context")', id: 2 },
-      { label: 'Included Deep research steps (multi-step)', id: 3 },
-      { label: 'Included a knowledge verification element (sources or "I don\'t know")', id: 4 },
-      { label: 'Considered token limits (length, max_tokens)', id: 5 },
-    ] : [
-      { label: 'Naudojau 6 blokų sistemą (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED)', id: 1 },
-      { label: 'Įtraukiau RAG elementą (šaltiniai, „naudok tik pateiktą kontekstą“)', id: 2 },
-      { label: 'Įtraukiau Deep research žingsnius (multi-step)', id: 3 },
-      { label: 'Įtraukiau žinių patikrinimo elementą (šaltiniai arba „nežinau“)', id: 4 },
-      { label: 'Apsvarstau tokenų apribojimą (ilgis, max_tokens)', id: 5 },
-    ];
-    const stages = [t('projectStep1'), t('projectStep2'), t('projectStep3'), t('projectStep4'), t('projectStep5'), t('projectStep6')];
     return (
       <div className="space-y-6">
         {introContent.whyBenefit && (
@@ -1430,40 +2321,75 @@ export function PracticeIntroSlide({
         )}
         {introContent.recommendedStart && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
-            <p className="text-sm font-medium text-amber-800 dark:text-amber-200">{introContent.recommendedStart}</p>
+            <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+              {introContent.recommendedStart}
+            </p>
           </div>
         )}
         {introContent.firstActionCTA && (
           <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4">
-            <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">{t('firstStepLabel')}</p>
-            <p className="text-sm text-emerald-700 dark:text-emerald-300">{introContent.firstActionCTA}</p>
+            <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
+              {t('firstStepLabel')}
+            </p>
+            <p className="text-sm text-emerald-700 dark:text-emerald-300">
+              {introContent.firstActionCTA}
+            </p>
           </div>
         )}
         {introContent.handoutPromise && (
-          <div className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4" role="region" aria-label={t('pdfHandoutAria')}>
+          <div
+            className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4"
+            role="region"
+            aria-label={t('pdfHandoutAria')}
+          >
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug flex items-center gap-2">
-              <Download className="w-4 h-4 flex-shrink-0 text-slate-500" aria-hidden="true" />
+              <Download
+                className="w-4 h-4 flex-shrink-0 text-slate-500"
+                aria-hidden="true"
+              />
               {introContent.handoutPromise}
             </p>
           </div>
         )}
         {hasM6Progress && m6ScenarioTotal > 0 && (
           <p className="text-center text-sm font-semibold text-violet-700 dark:text-violet-300">
-            {t('m6ProgressLabel', { done: m6CompletedCount, total: m6ScenarioTotal })}
+            {t('m6ProgressLabel', {
+              done: m6CompletedCount,
+              total: m6ScenarioTotal,
+            })}
           </p>
         )}
         <p className="text-gray-600 dark:text-gray-400 text-center text-sm lg:text-base max-w-2xl mx-auto">
-          {locale === 'en'
-            ? <>In this module you will create one project (a research report or Custom GPT), followed by additional techniques: <strong>COMBO</strong>, <strong>HTML practice</strong>, <strong>SUPER PROMPTS</strong>, reflection and data management.</>
-            : <>Šiame modulyje sukursite vieną projektą (tyrimo ataskaitą arba Custom GPT), o po jo – papildomos technikos: <strong>COMBO</strong>, <strong>HTML praktika</strong>, <strong>SUPER PROMPTAI</strong>, refleksija ir duomenų tvarkymas.</>}
+          {locale === 'en' ? (
+            <>
+              In this module you will create one project (a research report or
+              Custom GPT), followed by additional techniques:{' '}
+              <strong>COMBO</strong>, <strong>HTML practice</strong>,{' '}
+              <strong>SUPER PROMPTS</strong>, reflection and data management.
+            </>
+          ) : (
+            <>
+              Šiame modulyje sukursite vieną projektą (tyrimo ataskaitą arba
+              Custom GPT), o po jo – papildomos technikos:{' '}
+              <strong>COMBO</strong>, <strong>HTML praktika</strong>,{' '}
+              <strong>SUPER PROMPTAI</strong>, refleksija ir duomenų tvarkymas.
+            </>
+          )}
         </p>
         <div className="bg-gradient-to-r from-emerald-50 to-accent-50 dark:from-emerald-900/20 dark:to-accent-900/20 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800">
-          <h3 className="font-bold text-lg mb-1 text-gray-900 dark:text-white">{t('projectOutcomeTitle')}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('projectOutcomeDesc')}</p>
+          <h3 className="font-bold text-lg mb-1 text-gray-900 dark:text-white">
+            {t('projectOutcomeTitle')}
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            {t('projectOutcomeDesc')}
+          </p>
           <ul className="space-y-2 text-gray-700 dark:text-gray-300">
             {outcomes.map((o, i) => (
               <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5" aria-hidden />
+                <CheckCircle
+                  className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400 mt-0.5"
+                  aria-hidden
+                />
                 <span>{o}</span>
               </li>
             ))}
@@ -1472,20 +2398,35 @@ export function PracticeIntroSlide({
         <details className="bg-white dark:bg-gray-800 rounded-xl border border-violet-200 dark:border-violet-800 overflow-hidden group">
           <summary className="list-none cursor-pointer p-4 font-bold text-gray-900 dark:text-white flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/50">
             <span className="flex items-center gap-2">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 text-sm font-bold">1–6</span>
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 text-sm font-bold">
+                1–6
+              </span>
               {t('m6JourneyHeading')}
             </span>
-            <ChevronRight className="w-5 h-5 text-violet-500 dark:text-violet-400 shrink-0 group-open:rotate-90 transition-transform" aria-hidden />
+            <ChevronRight
+              className="w-5 h-5 text-violet-500 dark:text-violet-400 shrink-0 group-open:rotate-90 transition-transform"
+              aria-hidden
+            />
           </summary>
           <div className="px-6 pb-6 border-t border-violet-200 dark:border-violet-800">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-4">{locale === 'en' ? 'Project → COMBO → HTML practice → SUPER PROMPTS → Reflection → Data management.' : 'Projektas → COMBO → HTML praktika → SUPER PROMPTAI → Refleksija → Duomenų tvarkymas.'}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-4">
+              {locale === 'en'
+                ? 'Project → COMBO → HTML practice → SUPER PROMPTS → Reflection → Data management.'
+                : 'Projektas → COMBO → HTML praktika → SUPER PROMPTAI → Refleksija → Duomenų tvarkymas.'}
+            </p>
             <ol className="space-y-2 list-none">
               {journey.map((j) => (
                 <li key={j.step} className="flex gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 text-xs font-bold flex items-center justify-center mt-0.5">{j.step}</span>
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 text-xs font-bold flex items-center justify-center mt-0.5">
+                    {j.step}
+                  </span>
                   <div>
-                    <span className="font-medium text-gray-800 dark:text-gray-200">{j.label}</span>
-                    <span className="text-gray-600 dark:text-gray-400 text-sm block">{j.detail}</span>
+                    <span className="font-medium text-gray-800 dark:text-gray-200">
+                      {j.label}
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-400 text-sm block">
+                      {j.detail}
+                    </span>
                   </div>
                 </li>
               ))}
@@ -1494,74 +2435,184 @@ export function PracticeIntroSlide({
         </details>
         <details className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden group">
           <summary className="list-none cursor-pointer p-4 font-bold text-gray-900 dark:text-white flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/50">
-            <span>{locale === 'en' ? 'Self-assessment card and Project steps' : 'Savęs vertinimo kortelė ir Projekto etapai'}</span>
-            <ChevronRight className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-90 transition-transform" aria-hidden />
+            <span>
+              {locale === 'en'
+                ? 'Self-assessment card and Project steps'
+                : 'Savęs vertinimo kortelė ir Projekto etapai'}
+            </span>
+            <ChevronRight
+              className="w-5 h-5 text-gray-500 dark:text-gray-400 group-open:rotate-90 transition-transform"
+              aria-hidden
+            />
           </summary>
           <div className="px-6 pb-6 space-y-6 border-t border-gray-200 dark:border-gray-700">
-        <div className="pt-4">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-4">{t('selfAssessmentTitle')}</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t('selfAssessmentDesc')}</p>
-          <ul className="space-y-3" role="list">
-            {checklist.map((c) => {
-              const value = selfAssessment[c.id];
-              return (
-                <li key={c.id} className="flex flex-wrap items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50">
-                  <span className="text-gray-700 dark:text-gray-300 flex-1 min-w-0">{c.label}</span>
-                  <div className="flex gap-1 shrink-0" role="group" aria-label={t('selfAssessmentAria', { label: c.label })}>
-                    {(['taip', 'dar_ne', 'netaikau'] as const).map((opt) => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => setModule6SelfAssessment((prev) => ({ ...prev, [c.id]: opt }))}
-                        aria-pressed={value === opt}
-                        className={`min-h-[44px] px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
-                          value === opt
-                            ? opt === 'taip'
-                              ? 'bg-emerald-600 text-white dark:bg-emerald-500'
-                              : opt === 'dar_ne'
-                                ? 'bg-amber-500 text-white dark:bg-amber-400'
-                                : 'bg-gray-500 text-white dark:bg-gray-400'
-                            : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
-                        }`}
+            <div className="pt-4">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+                {t('selfAssessmentTitle')}
+              </h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                {t('selfAssessmentDesc')}
+              </p>
+              <ul className="space-y-3" role="list">
+                {checklist.map((c) => {
+                  const value = selfAssessment[c.id];
+                  return (
+                    <li
+                      key={c.id}
+                      className="flex flex-wrap items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-900/50"
+                    >
+                      <span className="text-gray-700 dark:text-gray-300 flex-1 min-w-0">
+                        {c.label}
+                      </span>
+                      <div
+                        className="flex gap-1 shrink-0"
+                        role="group"
+                        aria-label={t('selfAssessmentAria', { label: c.label })}
                       >
-                        {opt === 'taip' ? (locale === 'en' ? 'Yes' : 'Taip') : opt === 'dar_ne' ? (locale === 'en' ? 'Not yet' : 'Dar ne') : (locale === 'en' ? 'N/A' : 'Netaikau')}
-                      </button>
-                    ))}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="bg-violet-50 dark:bg-violet-900/20 p-6 rounded-xl border border-violet-200 dark:border-violet-800">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-4">{t('projectStepsTitle')}</h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{t('projectStepsDesc')}</p>
-          <ol className="space-y-2 list-decimal list-inside text-gray-700 dark:text-gray-300">
-            {stages.map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ol>
-        </div>
+                        {(['taip', 'dar_ne', 'netaikau'] as const).map(
+                          (opt) => (
+                            <button
+                              key={opt}
+                              type="button"
+                              onClick={() =>
+                                setModule6SelfAssessment((prev) => ({
+                                  ...prev,
+                                  [c.id]: opt,
+                                }))
+                              }
+                              aria-pressed={value === opt}
+                              className={`min-h-[44px] px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
+                                value === opt
+                                  ? opt === 'taip'
+                                    ? 'bg-emerald-600 text-white dark:bg-emerald-500'
+                                    : opt === 'dar_ne'
+                                      ? 'bg-amber-500 text-white dark:bg-amber-400'
+                                      : 'bg-gray-500 text-white dark:bg-gray-400'
+                                  : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600'
+                              }`}
+                            >
+                              {opt === 'taip'
+                                ? locale === 'en'
+                                  ? 'Yes'
+                                  : 'Taip'
+                                : opt === 'dar_ne'
+                                  ? locale === 'en'
+                                    ? 'Not yet'
+                                    : 'Dar ne'
+                                  : locale === 'en'
+                                    ? 'N/A'
+                                    : 'Netaikau'}
+                            </button>
+                          )
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="bg-violet-50 dark:bg-violet-900/20 p-6 rounded-xl border border-violet-200 dark:border-violet-800">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+                {t('projectStepsTitle')}
+              </h4>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                {t('projectStepsDesc')}
+              </p>
+              <ol className="space-y-2 list-decimal list-inside text-gray-700 dark:text-gray-300">
+                {stages.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
+              </ol>
+            </div>
           </div>
         </details>
       </div>
     );
   }
 
-  const scenarioIcons = [BarChart2, TrendingUp, Megaphone, MessageSquare, Users, AlertCircle] as const;
+  const scenarioIcons = [
+    BarChart2,
+    TrendingUp,
+    Megaphone,
+    MessageSquare,
+    Users,
+    AlertCircle,
+  ] as const;
   const scenarioCards = [
-    { title: locale === 'en' ? 'Executive strategic report' : 'Vadovo strateginė ataskaita', desc: locale === 'en' ? 'Prepare a clear quarterly / semi-annual report for the board.' : 'Paruošk aiškią ketvirčio / pusmečio ataskaitą valdybai.', action: locale === 'en' ? 'Generate report' : 'Generuok ataskaitą' },
-    { title: locale === 'en' ? 'Sales analysis and action plan' : 'Pardavimų analizė ir veiksmų planas', desc: locale === 'en' ? 'Evaluate results and create a concrete action plan.' : 'Įvertink rezultatus ir sukurk konkretų veiksmų planą.', action: locale === 'en' ? 'Create plan' : 'Sudaryk planą' },
-    { title: locale === 'en' ? 'Marketing campaign plan' : 'Marketingo kampanijos planas', desc: locale === 'en' ? 'Create a campaign strategy from idea to action.' : 'Sukurk kampanijos strategiją nuo idėjos iki veiksmų.', action: locale === 'en' ? 'Create campaign' : 'Kurk kampaniją' },
-    { title: locale === 'en' ? 'Internal communications document' : 'Vidaus komunikacijos dokumentas', desc: locale === 'en' ? 'Prepare a clear, structured communication text for the team.' : 'Paruošk aiškų, struktūruotą komunikacijos tekstą komandai.', action: locale === 'en' ? 'Prepare document' : 'Ruošk dokumentą' },
-    { title: locale === 'en' ? 'HR decision analysis' : 'Personalo sprendimų analizė', desc: locale === 'en' ? 'Evaluate the situation and provide solution options.' : 'Įvertink situaciją ir pateik sprendimo variantus.', action: locale === 'en' ? 'Analyse decision' : 'Analizuok sprendimą' },
-    { title: locale === 'en' ? 'Customer complaint management' : 'Kliento skundo valdymas', desc: locale === 'en' ? 'Respond in a structured way and manage the situation.' : 'Struktūruotai atsakyk ir suvaldyk situaciją.', action: locale === 'en' ? 'Prepare response' : 'Paruošk atsakymą' },
+    {
+      title:
+        locale === 'en'
+          ? 'Executive strategic report'
+          : 'Vadovo strateginė ataskaita',
+      desc:
+        locale === 'en'
+          ? 'Prepare a clear quarterly / semi-annual report for the board.'
+          : 'Paruošk aiškią ketvirčio / pusmečio ataskaitą valdybai.',
+      action: locale === 'en' ? 'Generate report' : 'Generuok ataskaitą',
+    },
+    {
+      title:
+        locale === 'en'
+          ? 'Sales analysis and action plan'
+          : 'Pardavimų analizė ir veiksmų planas',
+      desc:
+        locale === 'en'
+          ? 'Evaluate results and create a concrete action plan.'
+          : 'Įvertink rezultatus ir sukurk konkretų veiksmų planą.',
+      action: locale === 'en' ? 'Create plan' : 'Sudaryk planą',
+    },
+    {
+      title:
+        locale === 'en'
+          ? 'Marketing campaign plan'
+          : 'Marketingo kampanijos planas',
+      desc:
+        locale === 'en'
+          ? 'Create a campaign strategy from idea to action.'
+          : 'Sukurk kampanijos strategiją nuo idėjos iki veiksmų.',
+      action: locale === 'en' ? 'Create campaign' : 'Kurk kampaniją',
+    },
+    {
+      title:
+        locale === 'en'
+          ? 'Internal communications document'
+          : 'Vidaus komunikacijos dokumentas',
+      desc:
+        locale === 'en'
+          ? 'Prepare a clear, structured communication text for the team.'
+          : 'Paruošk aiškų, struktūruotą komunikacijos tekstą komandai.',
+      action: locale === 'en' ? 'Prepare document' : 'Ruošk dokumentą',
+    },
+    {
+      title:
+        locale === 'en'
+          ? 'HR decision analysis'
+          : 'Personalo sprendimų analizė',
+      desc:
+        locale === 'en'
+          ? 'Evaluate the situation and provide solution options.'
+          : 'Įvertink situaciją ir pateik sprendimo variantus.',
+      action: locale === 'en' ? 'Analyse decision' : 'Analizuok sprendimą',
+    },
+    {
+      title:
+        locale === 'en'
+          ? 'Customer complaint management'
+          : 'Kliento skundo valdymas',
+      desc:
+        locale === 'en'
+          ? 'Respond in a structured way and manage the situation.'
+          : 'Struktūruotai atsakyk ir suvaldyk situaciją.',
+      action: locale === 'en' ? 'Prepare response' : 'Paruošk atsakymą',
+    },
   ];
   const hasScenarioProgress = Boolean(
     scenarioSlides?.length && progress?.completedTasks && moduleId != null
   );
   const completedCount = hasScenarioProgress
-    ? scenarioSlides!.filter((s) => progress!.completedTasks[moduleId!]?.includes(s.slideId)).length
+    ? scenarioSlides!.filter((s) =>
+        progress!.completedTasks[moduleId!]?.includes(s.slideId)
+      ).length
     : 0;
 
   const isMod3 = moduleId === 3;
@@ -1574,6 +2625,7 @@ export function PracticeIntroSlide({
     : 'text-accent-700 dark:text-accent-300';
 
   const isM9 = moduleId === 9;
+  const isM12 = moduleId === 12;
   const recommendedIds = introContent.recommendedSlideIds ?? [];
   /** M9 / M12: rekomenduojami scenarijai pirmi (MUST lab'ai prieš SHOULD) */
   const displayScenarioSlides =
@@ -1589,30 +2641,84 @@ export function PracticeIntroSlide({
       : scenarioSlides;
   /** M9: intro rodo tik 4 rekomenduojamus + „Visi 16 → hub“, ne visus 16 (USER_JOURNEY: 16 vienoje skaidrėje = absurdas) */
   const m9ScenarioBase = displayScenarioSlides ?? scenarioSlides;
+  const m9ScenarioTotal = isM9 ? (scenarioSlides?.length ?? 0) : 0;
   const introOnlyFourAndHub =
     isM9 && onNavigateToSlideById && m9ScenarioBase?.length
-      ? [...m9ScenarioBase.slice(0, 4), { slideId: M9_HUB_SLIDE_ID, slideIndex: -1, title: locale === 'en' ? 'View all 16 scenarios (4×4)' : 'Peržiūrėti visus 16 scenarijų (4×4)', isHubLink: true } as PracticeScenarioSlideInfo & { isHubLink?: boolean }]
+      ? [
+          ...m9ScenarioBase.slice(0, 4),
+          {
+            slideId: M9_HUB_SLIDE_ID,
+            slideIndex: -1,
+            title:
+              locale === 'en'
+                ? `View all ${m9ScenarioTotal} scenarios (4×4 hub)`
+                : `Peržiūrėti visus ${m9ScenarioTotal} scenarijus (4×4 hub)`,
+            isHubLink: true,
+          } as PracticeScenarioSlideInfo & { isHubLink?: boolean },
+        ]
       : null;
 
   return (
     <div className="space-y-6">
       <div className={coverClasses}>
         {isM9 && introContent.meaningParagraph && (
-          <p className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed" role="region" aria-label={t('moduleMeaningAria')}>
+          <p
+            className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed"
+            role="region"
+            aria-label={t('moduleMeaningAria')}
+          >
             {introContent.meaningParagraph}
           </p>
         )}
-        {!isM9 && whyBenefit && (
-          <p className={`text-sm font-medium mb-3 ${isMod3 ? 'text-emerald-700 dark:text-emerald-300' : 'text-accent-700 dark:text-accent-300'}`}>
+        {isM9 && introContent.primaryPathIntro && (
+          <div
+            className="mb-4 p-4 rounded-xl border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40"
+            role="region"
+            aria-label={t('m9PrimaryPathAria')}
+          >
+            <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-2">
+              {t('m9PrimaryPathHeading')}
+            </h4>
+            <p
+              className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed"
+              dangerouslySetInnerHTML={{
+                __html: introContent.primaryPathIntro.replace(
+                  /\*\*(.*?)\*\*/g,
+                  '<strong>$1</strong>'
+                ),
+              }}
+            />
+          </div>
+        )}
+        {isM9 && whyBenefit && (
+          <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300 text-center max-w-2xl mx-auto">
             {whyBenefit}
           </p>
         )}
-        {isM9 && !introContent.meaningParagraph && whyBenefit && (
-          <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300">{whyBenefit}</p>
+        {!isM9 && whyBenefit && (
+          <p
+            className={`text-sm font-medium mb-3 ${isMod3 ? 'text-emerald-700 dark:text-emerald-300' : 'text-accent-700 dark:text-accent-300'}`}
+          >
+            {whyBenefit}
+          </p>
         )}
+        {isM9 &&
+          !introContent.meaningParagraph &&
+          !introContent.primaryPathIntro &&
+          whyBenefit && (
+            <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300">
+              {whyBenefit}
+            </p>
+          )}
         {isM9 && introContent.taskOneLiner && (
-          <div className="mb-3 p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30 border-2 border-brand-400 dark:border-brand-600" role="region" aria-label={t('yourTaskAria')}>
-            <p className="font-bold text-brand-900 dark:text-brand-100 text-sm">{introContent.taskOneLiner}</p>
+          <div
+            className="mb-3 p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30 border-2 border-brand-400 dark:border-brand-600"
+            role="region"
+            aria-label={t('yourTaskAria')}
+          >
+            <p className="font-bold text-brand-900 dark:text-brand-100 text-sm">
+              {introContent.taskOneLiner}
+            </p>
           </div>
         )}
         {isM9 && introContent.duration && (
@@ -1621,31 +2727,49 @@ export function PracticeIntroSlide({
           </p>
         )}
         {isM9 && introContent.audience && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{introContent.audience}</p>
-        )}
-        {isM9 && introContent.recommendedStart && (
-          <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3">
-            <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-1">{locale === 'en' ? 'Recommended for beginners' : 'Rekomenduojami pradedantiesiems'}</h4>
-            <p className="text-sm text-amber-800 dark:text-amber-200">{introContent.recommendedStart}</p>
-          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            {introContent.audience}
+          </p>
         )}
         {isM9 && introContent.useCaseBlock && (
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-xl p-3 mb-3" role="region" aria-label={t('whereToApplyQAria')}>
-            <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-1">{locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}</h4>
-            <p className="text-sm text-gray-700 dark:text-gray-300">{introContent.useCaseBlock}</p>
+          <div
+            className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-xl p-3 mb-3"
+            role="region"
+            aria-label={t('whereToApplyQAria')}
+          >
+            <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-1">
+              {locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}
+            </h4>
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              {introContent.useCaseBlock}
+            </p>
           </div>
         )}
         {!isM9 && introContent.duration && (
-          <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">{t('durationLabel')} {introContent.duration}</p>
+          <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
+            {t('durationLabel')} {introContent.duration}
+          </p>
         )}
         {isMod3 && introContent.optionalInstruction && (
-          <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3" role="region" aria-label={t('optionalPracticeAria')}>
-            <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">{introContent.optionalInstruction}</p>
+          <div
+            className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
+            role="region"
+            aria-label={t('optionalPracticeAria')}
+          >
+            <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
+              {introContent.optionalInstruction}
+            </p>
           </div>
         )}
         {!isM9 && introContent.recommendedStart && (
-          <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3" role="region" aria-label={t('recommendedStartAria')}>
-            <p className="text-sm text-amber-800 dark:text-amber-200">{introContent.recommendedStart}</p>
+          <div
+            className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
+            role="region"
+            aria-label={t('recommendedStartAria')}
+          >
+            <p className="text-sm text-amber-800 dark:text-amber-200">
+              {introContent.recommendedStart}
+            </p>
           </div>
         )}
         {recommendedNote && (
@@ -1654,192 +2778,607 @@ export function PracticeIntroSlide({
           </p>
         )}
         {introContent.firstActionCTA && (
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 mb-3" role="region" aria-label={t('firstStepAria')}>
-            <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">{t('firstStepLabel')}</p>
-            <p className="text-sm text-emerald-700 dark:text-emerald-300">{introContent.firstActionCTA}</p>
+          <div
+            className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 mb-3"
+            role="region"
+            aria-label={t('firstStepAria')}
+          >
+            <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
+              {t('firstStepLabel')}
+            </p>
+            <p className="text-sm text-emerald-700 dark:text-emerald-300">
+              {introContent.firstActionCTA}
+            </p>
           </div>
         )}
-        {moduleId === 9 && (introContent.storyBlock || introContent.characterMeaning) && (
-          <div className="mb-3" role="region" aria-label={t('storyBlockAria')}>
-            {introContent.storyBlock && (
-              <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 rounded-r-xl p-4 mb-3">
-                <h4 className="font-bold text-brand-900 dark:text-brand-100 text-sm mb-2">{t('storyBlockHeading')}</h4>
-                <p className="text-sm text-gray-700 dark:text-gray-300">{introContent.storyBlock}</p>
-              </div>
-            )}
-            {introContent.characterMeaning && (
-              <p className="text-sm text-gray-700 dark:text-gray-300 mb-2" dangerouslySetInnerHTML={{ __html: introContent.characterMeaning.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
-            )}
-            <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">{t('pressCharacterHint')}</p>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {M9_CHARACTERS.map((ch) => (
-                <CharacterCard
-                  key={ch.id}
-                  character={ch}
-                  onSelect={onNavigateToHubWithCharacter ? () => onNavigateToHubWithCharacter(ch.id - 1) : undefined}
-                />
+        {introContent.learningOutcomes &&
+          introContent.learningOutcomes.length > 0 && (
+            <ul className="mb-3 space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
+              {introContent.learningOutcomes.map((o, i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <CheckCircle
+                    className="w-4 h-4 shrink-0 text-accent-600 dark:text-accent-400 mt-0.5"
+                    aria-hidden
+                  />
+                  <span>{o}</span>
+                </li>
               ))}
-            </div>
-          </div>
-        )}
-        {introContent.learningOutcomes && introContent.learningOutcomes.length > 0 && (
-          <ul className="mb-3 space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-            {introContent.learningOutcomes.map((o, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckCircle className="w-4 h-4 shrink-0 text-accent-600 dark:text-accent-400 mt-0.5" aria-hidden />
-                <span>{o}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
-          <h3 className="font-bold text-xl text-gray-900 dark:text-white flex items-center gap-2.5">
-            <Briefcase className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
-            {locale === 'en' ? 'Practical Application' : 'Praktinis Pritaikymas'}
-          </h3>
-          {isMod3 && (
-            <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50">
-              {locale === 'en' ? '6 scenarios' : '6 scenarijai'}
-            </span>
+            </ul>
           )}
-        </div>
-        <p className="text-gray-700 dark:text-gray-300">
-          {isM9
-            ? (locale === 'en' ? 'Now you will apply business analysis scenarios (continuation of Modules 7–8, data analysis path) to real business situations.' : 'Dabar pritaikysite verslo analizės scenarijus (Modulių 7–8 tęsinys, duomenų analizės kelias) realiems verslo situacijoms.')
-            : (locale === 'en' ? 'Now you will apply the 6-block system to real business scenarios.' : 'Dabar pritaikysite 6 blokų sistemą realiems verslo scenarijams.')}
-          {' '}{locale === 'en' ? 'Each scenario has a different context and challenges.' : 'Kiekvienas scenarijus turi skirtingą kontekstą ir iššūkius.'}
-        </p>
-        {hasScenarioProgress && (
-          <p className={`mt-3 text-sm font-semibold ${progressTextClasses}`}>
-            {isMod3 && introContent.minScenariosToComplete != null
-              ? (locale === 'en'
-                ? `${completedCount} of ${scenarioSlides!.length} scenarios completed (at least ${introContent.minScenariosToComplete} required)`
-                : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta (bent ${introContent.minScenariosToComplete} privaloma)`)
-              : (locale === 'en'
-                ? `${completedCount} of ${scenarioSlides!.length} scenarios completed`
-                : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta`)}
+        {isM9 && (
+          <p
+            className="text-sm text-gray-700 dark:text-gray-300 mb-2"
+            role="note"
+          >
+            {t('m9WorkflowFirstFooter')}
           </p>
+        )}
+        {!isM9 && (
+          <>
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <h3 className="font-bold text-xl text-gray-900 dark:text-white flex items-center gap-2.5">
+                <Briefcase
+                  className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                  strokeWidth={1.5}
+                />
+                {locale === 'en'
+                  ? 'Practical Application'
+                  : 'Praktinis Pritaikymas'}
+              </h3>
+              {isMod3 && (
+                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50">
+                  {locale === 'en' ? '6 scenarios' : '6 scenarijai'}
+                </span>
+              )}
+            </div>
+            <p className="text-gray-700 dark:text-gray-300">
+              {isMod3 ? (
+                <>
+                  {locale === 'en'
+                    ? 'Now you will apply the 6-block system to real business scenarios.'
+                    : 'Dabar pritaikysite 6 blokų sistemą realiems verslo scenarijams.'}{' '}
+                  {locale === 'en'
+                    ? 'Each scenario has a different context and challenges.'
+                    : 'Kiekvienas scenarijus turi skirtingą kontekstą ir iššūkius.'}
+                </>
+              ) : isM12 ? (
+                <>
+                  {locale === 'en'
+                    ? 'You will build or adjust a real workflow (e.g. Zapier or Make) and save artefacts: a schema, tests, and logs. Three required practice labs cover Automatize, Augment, and Autonomize; optional scenarios are below.'
+                    : 'Sukursi arba pertvarkysi realų workflow (pvz. Zapier arba Make) ir užfiksuosi artefaktus: schemą, testus, logus. Trys privalomos praktikos – Automatize, Augment ir Autonomize kryptys; žemiau – papildomi scenarijai.'}{' '}
+                  {locale === 'en'
+                    ? 'Pick a lab card and complete the listed artefacts before moving on.'
+                    : 'Pasirink praktikos kortelę ir užbaik nurodytus artefaktus prieš einant toliau.'}
+                </>
+              ) : (
+                <>
+                  {locale === 'en'
+                    ? 'You will work through practical scenarios—each has its own context, templates, and tasks.'
+                    : 'Eisi per praktinius scenarijus – kiekvienas turi savo kontekstą, šablonus ir užduotis.'}{' '}
+                  {locale === 'en'
+                    ? 'Use the copyable prompts and checklists on each slide.'
+                    : 'Naudok kopijuojamus šablonus ir kontrolinius sąrašus kiekvienoje skaidrėje.'}
+                </>
+              )}
+            </p>
+            {hasScenarioProgress && (
+              <p
+                className={`mt-3 text-sm font-semibold ${progressTextClasses}`}
+              >
+                {(isMod3 || isM12) &&
+                introContent.minScenariosToComplete != null
+                  ? locale === 'en'
+                    ? `${completedCount} of ${scenarioSlides!.length} scenarios completed (at least ${introContent.minScenariosToComplete} required)`
+                    : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta (bent ${introContent.minScenariosToComplete} privaloma)`
+                  : locale === 'en'
+                    ? `${completedCount} of ${scenarioSlides!.length} scenarios completed`
+                    : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta`}
+              </p>
+            )}
+          </>
         )}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-        <h4 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2.5">
-          <Target className="w-5 h-5 text-accent-600 dark:text-accent-400" strokeWidth={1.5} />
-          <span>{scenarioSlides?.length === 16
-              ? (locale === 'en' ? '🔥 16 scenarios (4×4)' : '🔥 16 scenarijų (4×4)')
-              : (locale === 'en' ? '🔥 6 Business Scenarios' : '🔥 6 Verslo Scenarijai')}</span>
-        </h4>
-        {isM9 && ((introOnlyFourAndHub?.length ?? displayScenarioSlides?.length ?? 0) > 0) && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3" role="doc-subtitle">
-            {introOnlyFourAndHub
-              ? t('selectScenarioHintA')
-              : t('selectScenarioHintB')}
-          </p>
-        )}
-        <div className={`grid gap-3 ${scenarioSlides?.length === 16 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
-          {((() => {
-            const list = introOnlyFourAndHub ?? displayScenarioSlides ?? scenarioSlides;
-            return list?.length ? list : [0, 1, 2, 3, 4, 5];
-          })()).map((item, idx) => {
-            const isHubLink = typeof item === 'object' && item !== null && 'isHubLink' in item && (item as PracticeScenarioSlideInfo & { isHubLink?: boolean }).isHubLink;
-            const isScenario = typeof item === 'object' && item !== null && 'slideId' in item && !isHubLink;
-            const slideIndex = isScenario ? (item as PracticeScenarioSlideInfo).slideIndex : 0;
-            const slideId = isScenario ? (item as PracticeScenarioSlideInfo).slideId : isHubLink ? M9_HUB_SLIDE_ID : 0;
-            /** M3 Faze 3: vienas dominuojantis CTA per scenarijų – pirmas scenarijus primary, kiti secondary */
-            const isFirstScenarioPrimary = isMod3 && isScenario && idx === 0;
-            const cardData = scenarioCards[idx] ?? {
-              title: isScenario ? (item as PracticeScenarioSlideInfo).title.replace(/^Scenarijus \d+:?\s*/i, '').trim() : isHubLink ? (locale === 'en' ? 'All 16 scenarios (4×4)' : 'Visi 16 scenarijų (4×4)') : '',
-              desc: isHubLink ? (locale === 'en' ? 'Hub slide – 4 paths × 4 scenarios' : 'Hub skaidrė – 4 kryptys × 4 scenarijai') : (locale === 'en' ? 'Scenario' : 'Scenarijus'),
-              action: isHubLink ? (locale === 'en' ? 'Open hub →' : 'Atidaryti hub →') : (locale === 'en' ? 'Go to scenario' : 'Eiti į scenarijų'),
-            };
-            const title = isScenario
-              ? (item as PracticeScenarioSlideInfo).title.replace(/^Scenarijus \d+:?\s*/i, '').trim() || cardData.title
-              : isHubLink
-                ? (item as PracticeScenarioSlideInfo & { isHubLink?: boolean }).title
-                : cardData.title;
-            const desc = cardData.desc ?? '';
-            const action = cardData.action ?? (locale === 'en' ? 'Go' : 'Eiti');
-            const IconComponent = scenarioIcons[idx % scenarioIcons.length];
-            const isCompleted = hasScenarioProgress && isScenario && progress!.completedTasks[moduleId!]?.includes(slideId);
-            const isRecommended = recommendedIds.length > 0 && isScenario && recommendedIds.includes(slideId);
-            const canNavigate = isHubLink ? Boolean(onNavigateToSlideById) : (onNavigateToSlide && isScenario);
-            const handleClick = isHubLink && onNavigateToSlideById ? () => onNavigateToSlideById(M9_HUB_SLIDE_ID) : (onNavigateToSlide && isScenario ? () => onNavigateToSlide(slideIndex) : undefined);
-            const card = (
-              <div
-                key={isHubLink ? 'hub' : isScenario ? slideId : idx}
-                className={`flex items-start gap-3 p-3 rounded-xl border transition-all relative ${
-                  canNavigate
-                    ? `cursor-pointer hover:ring-2 focus:outline-none focus:ring-2 bg-gray-50 dark:bg-gray-900/50 ${
-                        isMod3
-                          ? 'hover:ring-emerald-500 focus:ring-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
-                          : 'hover:ring-brand-500 focus:ring-brand-500 hover:bg-brand-50 dark:hover:bg-brand-900/20 border-transparent'
-                      }`
-                    : 'bg-gray-50 dark:bg-gray-900/50 border-transparent'
-                } ${isHubLink ? 'border-dashed border-brand-400 dark:border-brand-600 bg-brand-50/50 dark:bg-brand-900/10' : ''} ${isRecommended ? 'ring-2 ring-amber-400 dark:ring-amber-500 border-amber-300 dark:border-amber-600' : ''}`}
-                onClick={handleClick}
-                onKeyDown={
-                  canNavigate && handleClick
-                    ? (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          handleClick();
-                        }
+      {isM9 ? (
+        <details className="group rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 overflow-hidden">
+          <summary className="list-none cursor-pointer px-4 py-3 font-bold text-gray-900 dark:text-white flex items-center justify-between gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
+            <span className="flex items-center gap-2">
+              <Briefcase
+                className="w-5 h-5 text-brand-600 dark:text-brand-400 shrink-0"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+              {t('m9OptionalScenariosSummary', { count: m9ScenarioTotal })}
+            </span>
+            <ChevronRight
+              className="w-5 h-5 text-gray-500 dark:text-gray-400 shrink-0 group-open:rotate-90 transition-transform"
+              aria-hidden
+            />
+          </summary>
+          <div className="px-4 pb-4 pt-0 border-t border-gray-200 dark:border-gray-700 space-y-4">
+            {introContent.recommendedStart && (
+              <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3">
+                <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-1">
+                  {t('m9RecommendedAfterWorkflow')}
+                </h4>
+                <p className="text-sm text-amber-800 dark:text-amber-200">
+                  {introContent.recommendedStart}
+                </p>
+              </div>
+            )}
+            {(introContent.storyBlock || introContent.characterMeaning) && (
+              <div role="region" aria-label={t('storyBlockAria')}>
+                {introContent.storyBlock && (
+                  <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 rounded-r-xl p-4 mb-3">
+                    <h4 className="font-bold text-brand-900 dark:text-brand-100 text-sm mb-2">
+                      {t('storyBlockHeading')}
+                    </h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      {introContent.storyBlock}
+                    </p>
+                  </div>
+                )}
+                {introContent.characterMeaning && (
+                  <p
+                    className="text-sm text-gray-700 dark:text-gray-300 mb-2"
+                    dangerouslySetInnerHTML={{
+                      __html: introContent.characterMeaning.replace(
+                        /\*\*(.*?)\*\*/g,
+                        '<strong>$1</strong>'
+                      ),
+                    }}
+                  />
+                )}
+                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
+                  {t('pressCharacterHint')}
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  {M9_CHARACTERS.map((ch) => (
+                    <CharacterCard
+                      key={ch.id}
+                      character={ch}
+                      onSelect={
+                        onNavigateToHubWithCharacter
+                          ? () => onNavigateToHubWithCharacter(ch.id - 1)
+                          : undefined
                       }
-                    : undefined
-                }
-                role={canNavigate ? 'button' : undefined}
-                tabIndex={canNavigate ? 0 : undefined}
-                aria-label={canNavigate ? (isHubLink ? t('openHub16Aria') : t('goToAria', { title })) : undefined}
-              >
-                <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0">
-                  <IconComponent className="w-5 h-5 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-wrap">
-                    {title}
-                    {isRecommended && (
-                      <span className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-400/50 dark:border-amber-600/50">
-                        {locale === 'en' ? 'Recommended' : 'Rekomenduojama'}
-                      </span>
-                    )}
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{desc}</p>
-                  <span className={`mt-1 ${isFirstScenarioPrimary ? 'inline-flex min-h-[40px] items-center rounded-xl bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-md' : 'block text-sm font-medium text-emerald-600 dark:text-emerald-400'}`}>
-                    👉 {action}
-                  </span>
-                  {hasScenarioProgress && isScenario && (
-                    <span
-                      className={`mt-1 inline-flex items-center text-xs font-medium ${
-                        isCompleted
-                          ? 'text-emerald-600 dark:text-emerald-400'
-                          : 'text-gray-500 dark:text-gray-400'
-                      }`}
-                    >
-                      {isCompleted ? `✓ ${t('completedLabel')}` : t('notAddedLabel')}
-                    </span>
-                  )}
+                    />
+                  ))}
                 </div>
               </div>
-            );
-            return card;
-          })}
-        </div>
-      </div>
+            )}
+            {hasScenarioProgress && (
+              <p className={`text-sm font-semibold ${progressTextClasses}`}>
+                {locale === 'en'
+                  ? `${completedCount} of ${scenarioSlides!.length} optional scenarios completed`
+                  : `${completedCount} iš ${scenarioSlides!.length} papildomų scenarijų užbaigta`}
+              </p>
+            )}
+            <div className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-xl border border-gray-200 dark:border-gray-700">
+              <h4 className="font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2.5">
+                <Target
+                  className="w-5 h-5 text-accent-600 dark:text-accent-400"
+                  strokeWidth={1.5}
+                />
+                <span>
+                  {m9ScenarioTotal >= 16
+                    ? t('m9ScenarioGridHeading', { n: m9ScenarioTotal })
+                    : locale === 'en'
+                      ? 'Business scenarios'
+                      : 'Verslo scenarijai'}
+                </span>
+              </h4>
+              {(introOnlyFourAndHub?.length ??
+                displayScenarioSlides?.length ??
+                0) > 0 && (
+                <p
+                  className="text-sm text-gray-600 dark:text-gray-400 mb-3"
+                  role="doc-subtitle"
+                >
+                  {introOnlyFourAndHub
+                    ? t('selectScenarioHintA')
+                    : t('selectScenarioHintB')}
+                </p>
+              )}
+              <div
+                className={`grid gap-3 ${m9ScenarioTotal >= 16 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3'}`}
+              >
+                {(() => {
+                  const list =
+                    introOnlyFourAndHub ??
+                    displayScenarioSlides ??
+                    scenarioSlides;
+                  return list?.length ? list : [0, 1, 2, 3, 4, 5];
+                })().map((item, idx) => {
+                  const isHubLink =
+                    typeof item === 'object' &&
+                    item !== null &&
+                    'isHubLink' in item &&
+                    (
+                      item as PracticeScenarioSlideInfo & {
+                        isHubLink?: boolean;
+                      }
+                    ).isHubLink;
+                  const isScenario =
+                    typeof item === 'object' &&
+                    item !== null &&
+                    'slideId' in item &&
+                    !isHubLink;
+                  const slideIndex = isScenario
+                    ? (item as PracticeScenarioSlideInfo).slideIndex
+                    : 0;
+                  const slideId = isScenario
+                    ? (item as PracticeScenarioSlideInfo).slideId
+                    : isHubLink
+                      ? M9_HUB_SLIDE_ID
+                      : 0;
+                  const isFirstScenarioPrimary =
+                    isMod3 && isScenario && idx === 0;
+                  const cardData = scenarioCards[idx] ?? {
+                    title: isScenario
+                      ? (item as PracticeScenarioSlideInfo).title
+                          .replace(/^Scenarijus \d+:?\s*/i, '')
+                          .trim()
+                      : isHubLink
+                        ? locale === 'en'
+                          ? `All ${m9ScenarioTotal} scenarios (hub)`
+                          : `Visi ${m9ScenarioTotal} scenarijai (hub)`
+                        : '',
+                    desc: isHubLink
+                      ? locale === 'en'
+                        ? 'Hub – 4 paths × 4 scenarios'
+                        : 'Hub – 4 kryptys × 4 scenarijai'
+                      : locale === 'en'
+                        ? 'Scenario'
+                        : 'Scenarijus',
+                    action: isHubLink
+                      ? locale === 'en'
+                        ? 'Open hub →'
+                        : 'Atidaryti hub →'
+                      : locale === 'en'
+                        ? 'Go to scenario'
+                        : 'Eiti į scenarijų',
+                  };
+                  const title = isScenario
+                    ? (item as PracticeScenarioSlideInfo).title
+                        .replace(/^Scenarijus \d+:?\s*/i, '')
+                        .trim() || cardData.title
+                    : isHubLink
+                      ? (
+                          item as PracticeScenarioSlideInfo & {
+                            isHubLink?: boolean;
+                          }
+                        ).title
+                      : cardData.title;
+                  const desc = cardData.desc ?? '';
+                  const action =
+                    cardData.action ?? (locale === 'en' ? 'Go' : 'Eiti');
+                  const IconComponent =
+                    scenarioIcons[idx % scenarioIcons.length];
+                  const isCompleted =
+                    hasScenarioProgress &&
+                    isScenario &&
+                    progress!.completedTasks[moduleId!]?.includes(slideId);
+                  const isRecommended =
+                    recommendedIds.length > 0 &&
+                    isScenario &&
+                    recommendedIds.includes(slideId);
+                  const canNavigate = isHubLink
+                    ? Boolean(onNavigateToSlideById)
+                    : onNavigateToSlide && isScenario;
+                  const handleClick =
+                    isHubLink && onNavigateToSlideById
+                      ? () => onNavigateToSlideById(M9_HUB_SLIDE_ID)
+                      : onNavigateToSlide && isScenario
+                        ? () => onNavigateToSlide(slideIndex)
+                        : undefined;
+                  const card = (
+                    <div
+                      key={isHubLink ? 'hub' : isScenario ? slideId : idx}
+                      className={`flex items-start gap-3 p-3 rounded-xl border transition-all relative ${
+                        canNavigate
+                          ? `cursor-pointer hover:ring-2 focus:outline-none focus:ring-2 bg-gray-50 dark:bg-gray-900/50 ${
+                              isMod3
+                                ? 'hover:ring-emerald-500 focus:ring-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                                : 'hover:ring-brand-500 focus:ring-brand-500 hover:bg-brand-50 dark:hover:bg-brand-900/20 border-transparent'
+                            }`
+                          : 'bg-gray-50 dark:bg-gray-900/50 border-transparent'
+                      } ${isHubLink ? 'border-dashed border-brand-400 dark:border-brand-600 bg-brand-50/50 dark:bg-brand-900/10' : ''} ${isRecommended ? 'ring-2 ring-amber-400 dark:ring-amber-500 border-amber-300 dark:border-amber-600' : ''}`}
+                      onClick={handleClick}
+                      onKeyDown={
+                        canNavigate && handleClick
+                          ? (e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                handleClick();
+                              }
+                            }
+                          : undefined
+                      }
+                      role={canNavigate ? 'button' : undefined}
+                      tabIndex={canNavigate ? 0 : undefined}
+                      aria-label={
+                        canNavigate
+                          ? isHubLink
+                            ? t('openHub16Aria')
+                            : t('goToAria', { title })
+                          : undefined
+                      }
+                    >
+                      <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0">
+                        <IconComponent
+                          className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                          strokeWidth={1.5}
+                        />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-wrap">
+                          {title}
+                          {isRecommended && (
+                            <span className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-400/50 dark:border-amber-600/50">
+                              {locale === 'en'
+                                ? 'Recommended'
+                                : 'Rekomenduojama'}
+                            </span>
+                          )}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {desc}
+                        </p>
+                        <span
+                          className={`mt-1 ${isFirstScenarioPrimary ? 'inline-flex min-h-[40px] items-center rounded-xl bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-md' : 'block text-sm font-medium text-emerald-600 dark:text-emerald-400'}`}
+                        >
+                          👉 {action}
+                        </span>
+                        {hasScenarioProgress && isScenario && (
+                          <span
+                            className={`mt-1 inline-flex items-center text-xs font-medium ${
+                              isCompleted
+                                ? 'text-emerald-600 dark:text-emerald-400'
+                                : 'text-gray-500 dark:text-gray-400'
+                            }`}
+                          >
+                            {isCompleted
+                              ? `✓ ${t('completedLabel')}`
+                              : t('notAddedLabel')}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                  return card;
+                })}
+              </div>
+            </div>
+            <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl border border-brand-200/60 dark:border-brand-800/50">
+              <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
+                <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5">
+                  <Lightbulb
+                    className="w-4 h-4 text-brand-600 dark:text-brand-400"
+                    strokeWidth={1.5}
+                  />
+                </span>
+                <span>{t('m9OptionalLightbulb')}</span>
+              </p>
+            </div>
+          </div>
+        </details>
+      ) : (
+        <>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h4 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2.5">
+              <Target
+                className="w-5 h-5 text-accent-600 dark:text-accent-400"
+                strokeWidth={1.5}
+              />
+              <span>
+                {scenarioSlides?.length === 16
+                  ? locale === 'en'
+                    ? '🔥 16 scenarios (4×4)'
+                    : '🔥 16 scenarijų (4×4)'
+                  : locale === 'en'
+                    ? '🔥 6 Business Scenarios'
+                    : '🔥 6 Verslo Scenarijai'}
+              </span>
+            </h4>
+            {(introOnlyFourAndHub?.length ??
+              displayScenarioSlides?.length ??
+              0) > 0 && (
+              <p
+                className="text-sm text-gray-600 dark:text-gray-400 mb-3"
+                role="doc-subtitle"
+              >
+                {introOnlyFourAndHub
+                  ? t('selectScenarioHintA')
+                  : t('selectScenarioHintB')}
+              </p>
+            )}
+            <div
+              className={`grid gap-3 ${scenarioSlides?.length === 16 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3'}`}
+            >
+              {(() => {
+                const list =
+                  introOnlyFourAndHub ??
+                  displayScenarioSlides ??
+                  scenarioSlides;
+                return list?.length ? list : [0, 1, 2, 3, 4, 5];
+              })().map((item, idx) => {
+                const isHubLink =
+                  typeof item === 'object' &&
+                  item !== null &&
+                  'isHubLink' in item &&
+                  (item as PracticeScenarioSlideInfo & { isHubLink?: boolean })
+                    .isHubLink;
+                const isScenario =
+                  typeof item === 'object' &&
+                  item !== null &&
+                  'slideId' in item &&
+                  !isHubLink;
+                const slideIndex = isScenario
+                  ? (item as PracticeScenarioSlideInfo).slideIndex
+                  : 0;
+                const slideId = isScenario
+                  ? (item as PracticeScenarioSlideInfo).slideId
+                  : isHubLink
+                    ? M9_HUB_SLIDE_ID
+                    : 0;
+                const isFirstScenarioPrimary =
+                  isMod3 && isScenario && idx === 0;
+                const cardData = scenarioCards[idx] ?? {
+                  title: isScenario
+                    ? (item as PracticeScenarioSlideInfo).title
+                        .replace(/^Scenarijus \d+:?\s*/i, '')
+                        .trim()
+                    : isHubLink
+                      ? locale === 'en'
+                        ? 'All scenarios (hub)'
+                        : 'Visi scenarijai (hub)'
+                      : '',
+                  desc: isHubLink
+                    ? locale === 'en'
+                      ? 'Hub slide – 4 paths × 4 scenarios'
+                      : 'Hub skaidrė – 4 kryptys × 4 scenarijai'
+                    : locale === 'en'
+                      ? 'Scenario'
+                      : 'Scenarijus',
+                  action: isHubLink
+                    ? locale === 'en'
+                      ? 'Open hub →'
+                      : 'Atidaryti hub →'
+                    : locale === 'en'
+                      ? 'Go to scenario'
+                      : 'Eiti į scenarijų',
+                };
+                const title = isScenario
+                  ? (item as PracticeScenarioSlideInfo).title
+                      .replace(/^Scenarijus \d+:?\s*/i, '')
+                      .trim() || cardData.title
+                  : isHubLink
+                    ? (
+                        item as PracticeScenarioSlideInfo & {
+                          isHubLink?: boolean;
+                        }
+                      ).title
+                    : cardData.title;
+                const desc = cardData.desc ?? '';
+                const action =
+                  cardData.action ?? (locale === 'en' ? 'Go' : 'Eiti');
+                const IconComponent = scenarioIcons[idx % scenarioIcons.length];
+                const isCompleted =
+                  hasScenarioProgress &&
+                  isScenario &&
+                  progress!.completedTasks[moduleId!]?.includes(slideId);
+                const isRecommended =
+                  recommendedIds.length > 0 &&
+                  isScenario &&
+                  recommendedIds.includes(slideId);
+                const canNavigate = isHubLink
+                  ? Boolean(onNavigateToSlideById)
+                  : onNavigateToSlide && isScenario;
+                const handleClick =
+                  isHubLink && onNavigateToSlideById
+                    ? () => onNavigateToSlideById(M9_HUB_SLIDE_ID)
+                    : onNavigateToSlide && isScenario
+                      ? () => onNavigateToSlide(slideIndex)
+                      : undefined;
+                const card = (
+                  <div
+                    key={isHubLink ? 'hub' : isScenario ? slideId : idx}
+                    className={`flex items-start gap-3 p-3 rounded-xl border transition-all relative ${
+                      canNavigate
+                        ? `cursor-pointer hover:ring-2 focus:outline-none focus:ring-2 bg-gray-50 dark:bg-gray-900/50 ${
+                            isMod3
+                              ? 'hover:ring-emerald-500 focus:ring-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                              : 'hover:ring-brand-500 focus:ring-brand-500 hover:bg-brand-50 dark:hover:bg-brand-900/20 border-transparent'
+                          }`
+                        : 'bg-gray-50 dark:bg-gray-900/50 border-transparent'
+                    } ${isHubLink ? 'border-dashed border-brand-400 dark:border-brand-600 bg-brand-50/50 dark:bg-brand-900/10' : ''} ${isRecommended ? 'ring-2 ring-amber-400 dark:ring-amber-500 border-amber-300 dark:border-amber-600' : ''}`}
+                    onClick={handleClick}
+                    onKeyDown={
+                      canNavigate && handleClick
+                        ? (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleClick();
+                            }
+                          }
+                        : undefined
+                    }
+                    role={canNavigate ? 'button' : undefined}
+                    tabIndex={canNavigate ? 0 : undefined}
+                    aria-label={
+                      canNavigate
+                        ? isHubLink
+                          ? t('openHub16Aria')
+                          : t('goToAria', { title })
+                        : undefined
+                    }
+                  >
+                    <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0">
+                      <IconComponent
+                        className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                        strokeWidth={1.5}
+                      />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-wrap">
+                        {title}
+                        {isRecommended && (
+                          <span className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-400/50 dark:border-amber-600/50">
+                            {locale === 'en' ? 'Recommended' : 'Rekomenduojama'}
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {desc}
+                      </p>
+                      <span
+                        className={`mt-1 ${isFirstScenarioPrimary ? 'inline-flex min-h-[40px] items-center rounded-xl bg-accent-500 px-4 py-2 text-sm font-semibold text-white shadow-md' : 'block text-sm font-medium text-emerald-600 dark:text-emerald-400'}`}
+                      >
+                        👉 {action}
+                      </span>
+                      {hasScenarioProgress && isScenario && (
+                        <span
+                          className={`mt-1 inline-flex items-center text-xs font-medium ${
+                            isCompleted
+                              ? 'text-emerald-600 dark:text-emerald-400'
+                              : 'text-gray-500 dark:text-gray-400'
+                          }`}
+                        >
+                          {isCompleted
+                            ? `✓ ${t('completedLabel')}`
+                            : t('notAddedLabel')}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+                return card;
+              })}
+            </div>
+          </div>
 
-      <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
-        <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
-          <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5">
-            <Lightbulb className="w-4 h-4 text-brand-600 dark:text-brand-400" strokeWidth={1.5} />
-          </span>
-          <span>
-            {scenarioSlides?.length === 16
-              ? introOnlyFourAndHub
-                ? t('selectOneOf4OrHub')
-                : t('selectOneScenarioBelow')
-              : (locale === 'en' ? 'Review the first scenario as an example. Create the rest yourself.' : 'Pirmą scenarijų peržiūrėk kaip pavyzdį. Kitus – sukurk pats.')}
-          </span>
-        </p>
-      </div>
+          <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
+            <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
+              <span className="inline-flex p-1.5 rounded-lg bg-brand-500/10 dark:bg-brand-500/20 shrink-0 mt-0.5">
+                <Lightbulb
+                  className="w-4 h-4 text-brand-600 dark:text-brand-400"
+                  strokeWidth={1.5}
+                />
+              </span>
+              <span>
+                {scenarioSlides?.length === 16
+                  ? introOnlyFourAndHub
+                    ? t('selectOneOf4OrHub')
+                    : t('selectOneScenarioBelow')
+                  : locale === 'en'
+                    ? 'Review the first scenario as an example. Create the rest yourself.'
+                    : 'Pirmą scenarijų peržiūrėk kaip pavyzdį. Kitus – sukurk pats.'}
+              </span>
+            </p>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -1858,18 +3397,30 @@ export function PracticeScenarioHubSlide({
 }) {
   useTranslation();
   const t = getT('testPractice');
-  const { locale } = useLocale();
-  const [selectedLevel1, setSelectedLevel1] = useState<number | null>(() => initialLevel1 ?? null);
+  const [selectedLevel1, setSelectedLevel1] = useState<number | null>(
+    () => initialLevel1 ?? null
+  );
 
   useEffect(() => {
-    if (typeof initialLevel1 === 'number' && initialLevel1 >= 0 && initialLevel1 < 4) {
+    if (
+      typeof initialLevel1 === 'number' &&
+      initialLevel1 >= 0 &&
+      initialLevel1 < 4
+    ) {
       setSelectedLevel1(initialLevel1);
     }
   }, [initialLevel1]);
 
-  const level1Choices = Array.isArray(content?.level1Choices) ? content.level1Choices : [];
-  const level2Choices = Array.isArray(content?.level2Choices) ? content.level2Choices : [];
-  const level2 = selectedLevel1 !== null && level2Choices[selectedLevel1] ? level2Choices[selectedLevel1] : null;
+  const level1Choices = Array.isArray(content?.level1Choices)
+    ? content.level1Choices
+    : [];
+  const level2Choices = Array.isArray(content?.level2Choices)
+    ? content.level2Choices
+    : [];
+  const level2 =
+    selectedLevel1 !== null && level2Choices[selectedLevel1]
+      ? level2Choices[selectedLevel1]
+      : null;
 
   const cardBase =
     'flex flex-col gap-2 p-4 rounded-xl border-2 text-left transition-all min-h-[44px] justify-center focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 cursor-pointer ' +
@@ -1880,7 +3431,9 @@ export function PracticeScenarioHubSlide({
       <div className="bg-gradient-to-r from-accent-50 to-brand-50 dark:from-accent-900/20 dark:to-brand-900/20 p-6 rounded-xl border-2 border-accent-200 dark:border-accent-800">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">{t('scenarioGridTitle')}</h3>
+            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">
+              {t('scenarioGridTitle')}
+            </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               {t('scenarioGridDesc')}
             </p>
@@ -1892,14 +3445,17 @@ export function PracticeScenarioHubSlide({
               className="shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-3 py-2 touch-manipulation"
               aria-label={t('goToSummaryAria')}
             >
-              {locale === 'en' ? '✓ Finish and go to summary' : '✓ Baigti ir į santrauką'}
+              {t('hubFinishGoToSummary')}
             </button>
           )}
         </div>
       </div>
 
       {selectedLevel1 === null && (
-        <p className="text-sm font-medium text-gray-500 dark:text-gray-400" aria-live="polite">
+        <p
+          className="text-sm font-medium text-gray-500 dark:text-gray-400"
+          aria-live="polite"
+        >
           {t('step1SelectCharacter')}
         </p>
       )}
@@ -1918,23 +3474,14 @@ export function PracticeScenarioHubSlide({
             className="min-h-[44px] inline-flex items-center justify-center text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-3 py-2 gap-1 touch-manipulation"
             aria-label={t('backToFirstChoiceAria')}
           >
-            {locale === 'en' ? '← Back to selection' : '← Grįžti prie pasirinkimo'}
+            {t('hubBackToCharacterSelection')}
           </button>
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400" aria-live="polite">
+          <p
+            className="text-sm font-medium text-gray-500 dark:text-gray-400"
+            aria-live="polite"
+          >
             {t('step2SelectScenario')}
           </p>
-          {onGoToSummary && (
-            <div className="mt-2">
-              <button
-                type="button"
-                onClick={onGoToSummary}
-                className="min-h-[44px] inline-flex items-center justify-center text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-3 py-2 touch-manipulation"
-                aria-label={t('goToSummaryAria')}
-              >
-                {locale === 'en' ? '✓ Finish and go to summary' : '✓ Baigti ir pereiti į santrauką'}
-              </button>
-            </div>
-          )}
         </>
       )}
 
@@ -1956,10 +3503,16 @@ export function PracticeScenarioHubSlide({
                 }
               }}
               className={cardBase}
-              aria-label={t('selectCharacterAria', { title: choice?.title ?? t('characterN', { n: index + 1 }) })}
+              aria-label={t('selectCharacterAria', {
+                title: choice?.title ?? t('characterN', { n: index + 1 }),
+              })}
             >
-              <span className="font-semibold text-gray-900 dark:text-white">{choice?.title ?? t('characterN', { n: index + 1 })}</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">{choice?.description ?? ''}</span>
+              <span className="font-semibold text-gray-900 dark:text-white">
+                {choice?.title ?? t('characterN', { n: index + 1 })}
+              </span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                {choice?.description ?? ''}
+              </span>
             </button>
           ))}
         </div>
@@ -1979,8 +3532,12 @@ export function PracticeScenarioHubSlide({
               className={cardBase}
               aria-label={t('goToScenarioAria', { title: choice.title })}
             >
-              <span className="font-semibold text-gray-900 dark:text-white">{choice.title}</span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">{choice.description}</span>
+              <span className="font-semibold text-gray-900 dark:text-white">
+                {choice.title}
+              </span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                {choice.description}
+              </span>
             </button>
           ))}
         </div>
@@ -2024,7 +3581,9 @@ export function PracticeScenarioSlide({
   const SCENARIO_TABS = locale === 'en' ? SCENARIO_TABS_EN : SCENARIO_TABS_LT;
   const [activeTab, setActiveTab] = useState<ScenarioTabId>('context');
   /** W1: šakotas scenarijus – pasirinkto varianto indeksas (null = dar nepasirinkta) */
-  const [selectedBranchingIndex, setSelectedBranchingIndex] = useState<number | null>(null);
+  const [selectedBranchingIndex, setSelectedBranchingIndex] = useState<
+    number | null
+  >(null);
   if (!slide.scenario) return null;
 
   const branching = slide.scenario.branching;
@@ -2038,34 +3597,54 @@ export function PracticeScenarioSlide({
   };
   const isDataTab = activeTab === 'data';
 
-  const reflectionPromptAfter = (slide.content as { reflectionPromptAfter?: string } | undefined)?.reflectionPromptAfter;
-  const taskFrame = (slide.content as { taskFrame?: { task: string; doneWhen: string } } | undefined)?.taskFrame;
+  const reflectionPromptAfter = (
+    slide.content as { reflectionPromptAfter?: string } | undefined
+  )?.reflectionPromptAfter;
+  const taskFrame = (
+    slide.content as
+      | { taskFrame?: { task: string; doneWhen: string } }
+      | undefined
+  )?.taskFrame;
 
   return (
     <div className="space-y-6">
-      {character && (
-        <CharacterCard character={character} />
-      )}
+      {character && <CharacterCard character={character} />}
       {slide.scenario?.narrativeLead && (
-        <p className="text-brand-700 dark:text-brand-300 italic text-sm border-l-4 border-brand-400 dark:border-brand-600 pl-3 py-1" role="complementary" aria-label={t('scenarioIntroAria')}>
+        <p
+          className="text-brand-700 dark:text-brand-300 italic text-sm border-l-4 border-brand-400 dark:border-brand-600 pl-3 py-1"
+          role="complementary"
+          aria-label={t('scenarioIntroAria')}
+        >
           {slide.scenario.narrativeLead}
         </p>
       )}
       {taskFrame && (
-        <div className="space-y-2 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/20 p-4" role="region" aria-label={t('taskFrameAria')}>
+        <div
+          className="space-y-2 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/20 p-4"
+          role="region"
+          aria-label={t('taskFrameAria')}
+        >
           <p className="text-sm font-bold text-brand-900 dark:text-brand-100">
-            {locale === 'en' ? 'Task:' : 'Užduotis:'} <span className="font-normal">{taskFrame.task}</span>
+            {locale === 'en' ? 'Task:' : 'Užduotis:'}{' '}
+            <span className="font-normal">{taskFrame.task}</span>
           </p>
           <p className="text-sm text-gray-700 dark:text-gray-300">
-            <span className="font-semibold">{t('doneWhenLabel')}</span> {taskFrame.doneWhen}
+            <span className="font-semibold">{t('doneWhenLabel')}</span>{' '}
+            {taskFrame.doneWhen}
           </p>
         </div>
       )}
 
       {/* W1: šakotas scenarijus – pirmiausia pasirinkimas */}
       {showBranchingOnly && (
-        <div className="bg-violet-50 dark:bg-violet-900/20 border-2 border-violet-200 dark:border-violet-800 rounded-xl p-6" role="region" aria-label={t('scenarioChoiceAria')}>
-          <h4 className="font-bold text-violet-900 dark:text-violet-100 mb-3">{branching!.question}</h4>
+        <div
+          className="bg-violet-50 dark:bg-violet-900/20 border-2 border-violet-200 dark:border-violet-800 rounded-xl p-6"
+          role="region"
+          aria-label={t('scenarioChoiceAria')}
+        >
+          <h4 className="font-bold text-violet-900 dark:text-violet-100 mb-3">
+            {branching!.question}
+          </h4>
           <ul className="space-y-2 list-none">
             {branching!.choices.map((choice, idx) => (
               <li key={idx}>
@@ -2075,7 +3654,9 @@ export function PracticeScenarioSlide({
                   className="w-full text-left min-h-[44px] px-4 py-3 rounded-xl border-2 border-violet-200 dark:border-violet-700 bg-white dark:bg-gray-800 hover:border-violet-400 dark:hover:border-violet-500 hover:bg-violet-50 dark:hover:bg-violet-900/20 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 transition-colors touch-manipulation"
                   aria-label={t('selectChoiceAria', { label: choice.label })}
                 >
-                  <span className="font-medium text-gray-900 dark:text-white">{choice.label}</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {choice.label}
+                  </span>
                 </button>
               </li>
             ))}
@@ -2085,85 +3666,118 @@ export function PracticeScenarioSlide({
 
       {/* W1: po pasirinkimo – pasekmė ir toliau scenarijus */}
       {branching && selectedBranchingIndex !== null && (
-        <div className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 dark:border-emerald-600 pl-4 py-3 rounded-r-xl" role="status" aria-live="polite">
-          <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200 mb-1">{t('yourChoiceLabel', { label: branching.choices[selectedBranchingIndex].label })}</p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">{branching.choices[selectedBranchingIndex].consequence}</p>
+        <div
+          className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 dark:border-emerald-600 pl-4 py-3 rounded-r-xl"
+          role="status"
+          aria-live="polite"
+        >
+          <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200 mb-1">
+            {t('yourChoiceLabel', {
+              label: branching.choices[selectedBranchingIndex].label,
+            })}
+          </p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            {branching.choices[selectedBranchingIndex].consequence}
+          </p>
         </div>
       )}
 
       {!showBranchingOnly && (
-      <>
-      {slide.scenario?.situation && (
-        <div className="bg-brand-50/80 dark:bg-brand-900/20 border-l-4 border-brand-500 dark:border-brand-600 pl-4 py-3 rounded-r-xl" role="region" aria-label={t('situationAria')}>
-          <h4 className="font-semibold text-brand-900 dark:text-brand-100 text-sm mb-1">{locale === 'en' ? 'Situation' : 'Situacija'}</h4>
-          <p className="text-sm text-gray-700 dark:text-gray-300">{slide.scenario.situation}</p>
-        </div>
-      )}
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
-        <h4 className="font-bold text-brand-900 dark:text-brand-100 mb-4 flex items-center gap-2">
-          <span className="text-xl">📋</span> {t('scenarioDescription')}
-        </h4>
-
-        <div role="tablist" aria-label={t('scenarioSectionsAria')} className="flex flex-wrap gap-1 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
-          {SCENARIO_TABS.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-controls={`scenario-panel-${tab.id}`}
-              id={`scenario-tab-${tab.id}`}
-              onClick={() => setActiveTab(tab.id)}
-              className={`min-h-[44px] px-3 py-2 rounded-t-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
-                activeTab === tab.id
-                  ? 'bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-200 border border-brand-300 dark:border-brand-700 border-b-0 -mb-px'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
+        <>
+          {slide.scenario?.situation && (
+            <div
+              className="bg-brand-50/80 dark:bg-brand-900/20 border-l-4 border-brand-500 dark:border-brand-600 pl-4 py-3 rounded-r-xl"
+              role="region"
+              aria-label={t('situationAria')}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+              <h4 className="font-semibold text-brand-900 dark:text-brand-100 text-sm mb-1">
+                {locale === 'en' ? 'Situation' : 'Situacija'}
+              </h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                {slide.scenario.situation}
+              </p>
+            </div>
+          )}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
+            <h4 className="font-bold text-brand-900 dark:text-brand-100 mb-4 flex items-center gap-2">
+              <span className="text-xl">📋</span> {t('scenarioDescription')}
+            </h4>
 
-        <div
-          id={`scenario-panel-${activeTab}`}
-          role="tabpanel"
-          aria-labelledby={`scenario-tab-${activeTab}`}
-          className="min-h-[80px]"
-        >
-          <p
-            className={`text-gray-700 dark:text-gray-300 ${isDataTab ? 'bg-gray-50 dark:bg-gray-900/50 p-3 rounded-lg font-mono text-sm' : ''}`}
-          >
-            {tabContent[activeTab]}
-          </p>
-        </div>
-      </div>
+            <div
+              role="tablist"
+              aria-label={t('scenarioSectionsAria')}
+              className="flex flex-wrap gap-1 border-b border-gray-200 dark:border-gray-700 pb-3 mb-4"
+            >
+              {SCENARIO_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === tab.id}
+                  aria-controls={`scenario-panel-${tab.id}`}
+                  id={`scenario-tab-${tab.id}`}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`min-h-[44px] px-3 py-2 rounded-t-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
+                    activeTab === tab.id
+                      ? 'bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-200 border border-brand-300 dark:border-brand-700 border-b-0 -mb-px'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-      {onRenderTask()}
+            <div
+              id={`scenario-panel-${activeTab}`}
+              role="tabpanel"
+              aria-labelledby={`scenario-tab-${activeTab}`}
+              className="min-h-[80px]"
+            >
+              <p
+                className={`text-gray-700 dark:text-gray-300 ${isDataTab ? 'bg-gray-50 dark:bg-gray-900/50 p-3 rounded-lg font-mono text-sm' : ''}`}
+              >
+                {tabContent[activeTab]}
+              </p>
+            </div>
+          </div>
 
-      {reflectionPromptAfter && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-xl p-4" role="region" aria-label={t('shortReflectionAria')}>
-          <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-2 flex items-center gap-2">
-            <span className="text-base">💡</span> {locale === 'en' ? 'Short reflection' : 'Trumpa refleksija'}
-          </h4>
-          <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap mb-3">{reflectionPromptAfter}</p>
-          <CopyButton text={reflectionPromptAfter} size="sm" ariaLabel={t('copyReflectionPromptAria')} />
-        </div>
-      )}
+          {onRenderTask()}
 
-      {onGoToSummary && (
-        <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={onGoToSummary}
-            className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1.5"
-            aria-label={t('goToPracticeSummaryAria')}
-          >
-            {locale === 'en' ? '→ To summary' : '→ Į santrauką'}
-          </button>
-        </div>
-      )}
-      </>
+          {reflectionPromptAfter && (
+            <div
+              className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-xl p-4"
+              role="region"
+              aria-label={t('shortReflectionAria')}
+            >
+              <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-2 flex items-center gap-2">
+                <span className="text-base">💡</span>{' '}
+                {locale === 'en' ? 'Short reflection' : 'Trumpa refleksija'}
+              </h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap mb-3">
+                {reflectionPromptAfter}
+              </p>
+              <CopyButton
+                text={reflectionPromptAfter}
+                size="sm"
+                ariaLabel={t('copyReflectionPromptAria')}
+              />
+            </div>
+          )}
+
+          {onGoToSummary && (
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={onGoToSummary}
+                className="text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1.5"
+                aria-label={t('goToPracticeSummaryAria')}
+              >
+                {locale === 'en' ? '→ To summary' : '→ Į santrauką'}
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

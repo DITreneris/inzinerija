@@ -601,15 +601,25 @@
             "temperatureScaleLeft": "⬅️ Precision",
             "temperatureScaleRight": "Creativity ➡️",
             "temperatureLevels": [
-              { "range": "0.0–0.3", "label": "Low → facts, analysis, instructions", "note": "The lower the temperature – the less improvisation." },
+              {
+                "range": "0.0–0.3",
+                "label": "Low → facts, analysis, instructions",
+                "note": "The lower the temperature – the less improvisation."
+              },
               { "range": "0.4–0.7", "label": "Medium → balanced business use" },
-              { "range": "0.8–1.0", "label": "High → ideas, marketing, creative" }
+              {
+                "range": "0.8–1.0",
+                "label": "High → ideas, marketing, creative"
+              }
             ],
             "reasoningTitle": "Reasoning depth – thinking intensity",
             "reasoningLevels": [
               { "label": "Fast → simple questions, Q&A" },
               { "label": "Normal → standard business tasks" },
-              { "label": "Deep → analysis, strategy, comparing options", "note": "Deep = more time, but better logic." }
+              {
+                "label": "Deep → analysis, strategy, comparing options",
+                "note": "Deep = more time, but better logic."
+              }
             ],
             "cheatSheetTitle": "When to use what? (Business cheat sheet)",
             "cheatSheetHeaders": ["Task", "Temperature", "Reasoning"],
@@ -802,7 +812,7 @@
           }
         },
         {
-          "id": 14,
+          "id": 19,
           "title": "Module summary",
           "subtitle": "Main ideas and what you learned",
           "type": "summary",
@@ -972,12 +982,7 @@
               "id": "q4",
               "type": "mcq",
               "question": "You want a 5-point list in English. Which block should you specify?",
-              "options": [
-                "Output",
-                "Meta",
-                "Input",
-                "Quality Control"
-              ],
+              "options": ["Output", "Meta", "Input", "Quality Control"],
               "correct": 0,
               "explanation": "Format (list, 5 points, language) is the Output block's job.",
               "hint": "Which block sets the result's format and structure?",
@@ -1140,12 +1145,7 @@
               "id": "q11",
               "type": "mcq",
               "question": "How many blocks does a full structured prompt have?",
-              "options": [
-                "3",
-                "4",
-                "5",
-                "6"
-              ],
+              "options": ["3", "4", "5", "6"],
               "correct": 3,
               "explanation": "6 blocks: Meta, Input, Output, Reasoning, Quality, Advanced.",
               "hint": "Remember: M-I-O-R-Q-A system.",

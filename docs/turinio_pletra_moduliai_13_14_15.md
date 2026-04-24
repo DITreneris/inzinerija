@@ -11,11 +11,11 @@
 
 ### 1.1 Vieta kurse
 
-| Moduliai 1–6 | Moduliai 10–12 | Moduliai 13–15 |
-|--------------|----------------|----------------|
-| 6 blokų sistema, konteksto inžinerija | Agentų inžinerija | **Turinio inžinerija** – vaizdai, video, muzika su DI |
-| Teorija → Testas → Projektas (M4–M6) | Teorija (M10) → Testas (M11) → Projektas (M12) | Teorija (M13) → Testas (M14) → Projektas (M15) |
-| Bendras pamatas | Softo inžinieriai | **Rinkodaros ir komunikacijos specialistai** |
+| Moduliai 1–6                          | Moduliai 10–12                                 | Moduliai 13–15                                        |
+| ------------------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
+| 6 blokų sistema, konteksto inžinerija | Agentų inžinerija                              | **Turinio inžinerija** – vaizdai, video, muzika su DI |
+| Teorija → Testas → Projektas (M4–M6)  | Teorija (M10) → Testas (M11) → Projektas (M12) | Teorija (M13) → Testas (M14) → Projektas (M15)        |
+| Bendras pamatas                       | Softo inžinieriai                              | **Rinkodaros ir komunikacijos specialistai**          |
 
 **Prielaida:** Dalyvis gali pradėti po Modulio 6 (arba lygiagrečiai keliems keliams). Moduliai 13–15 fokusas: **vaizdų, vaizdo įrašų ir muzikos generavimas** – įrankiai, promptų principai, kokybės patikra.
 
@@ -37,11 +37,11 @@
 
 Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.1:
 
-| Modulis | Skaidrė / tipas | whyBenefit (tekstas į JSON) |
-|---------|------------------|-----------------------------|
-| **13** | action-intro (pirmoji) | Po šio modulio mokėsi kurti vaizdus, trumpus vaizdo įrašus ir muziką su DI – nuo promptų iki įrankių ir kokybės patikros. |
-| **14** | test-intro | Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15). |
-| **15** | practice-intro | Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui. |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                                                                                                                                                                      |
+| ------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **13**  | action-intro (pirmoji) | Po šio modulio mokėsi kurti vaizdus, trumpus vaizdo įrašus ir muziką su DI – nuo promptų iki įrankių ir kokybės patikros. **Outcomes** (3 punktai) – aukšto lygio kryptys; skaidrėje 13.1 „Trumpai“ – gilesnis sluoksnis (mažiau žodinio kartojimosi su įvanga). |
+| **14**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).                                                                                                                                                                    |
+| **15**  | practice-intro         | Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui.                                                                                                                                                          |
 
 ---
 
@@ -55,6 +55,7 @@ Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.
 
 **Kampanijos tikslai ir vaizdo tipas (MUST – 13.1 arba atskira skaidrė 13.2)**  
 Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
+
 - **Awareness (atpažįstamumas):** Vaizdas pritraukia dėmesį – ryškus, lengvai atpažįstamas, emocija ar intriga. Tinka: viršelio nuotrauka, baneris, social postas.
 - **Engagement (įsitraukimas):** Vaizdas skatina sustoti ir sąveikauti – aiškus kontekstas, „kas čia?“ arba naudinga info. Tinka: carousel, video intro, iliustracija straipsniui.
 - **Conversion (konversija):** Vaizdas skatina veiksmą – produktas, pasiūlymas, CTA vizualiai paryškintas. Tinka: reklamos maketas, landingo hero, „pirk dabar“ blokas.
@@ -62,6 +63,8 @@ Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
 **Kada emocija, kada aiškumas:** Awareness dažnai = emocija, kontrastas; Conversion = aiškumas, pasitikėjimas, skaitomumas. Engagement – pusiausvyra.
 
 **Kur pritaikyti:** Rinkodaros vizualai, socialinio turinio vaizdai ir trumpi vaizdo įrašai, foninė muzika ar garsai projektams – be būtino dizainerio ar kompozitoriaus.
+
+**modules.json (LT):** Skaidrės 13.1 „Trumpai“ formuluotė nurodo, kad čia – **gilesnis nei 130 įvanga** sluoksnis (kampanijos tikslų modelis + kur pritaikyti), kad nesidubliuotų su outcomes.
 
 ---
 
@@ -71,11 +74,11 @@ Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
 
 ### 3.1 Vaizdo prompto pagrindai (13.2)
 
-**TL;DR:** Geras vaizdo promptas apima: ką rodoma (subjektas, vieta, veiksmas), stilių (fotorealistiškas, iliustracija, minimalistinis), proporcijas (pvz. 16:9, 1:1) ir ko vengti (negalima turinio sąrašas platformoje).
+**Trumpai:** Geras vaizdo promptas apima: ką rodoma (subjektas, vieta, veiksmas), stilių (fotorealistiškas, iliustracija, minimalistinis), proporcijas (pvz. 16:9, 1:1) ir ko vengti (negalima turinio sąrašas platformoje).
 
 **Minimalūs reikalavimai:** Bent 3–7 žodžių; vengti abstrakcijų („gražu“, „įdomu“ be konteksto); naudoti konkrečius daiktavardžius. Estetikos raktinis žodis (stilius) vainikuoja idėją.
 
-**Esminė formulė:** Vaizdas = Objektas + Kontekstas + Estetika (stilius).
+**Formulė ir trys sluoksniai (vienas blokas + diagrama modules.json):** Vaizdas = Objektas + Kontekstas + Estetika (stilius); viename bloke – ir trys sluoksniai (objektas, kontekstas, estetika), kad mažiau kartotųsi antraštės.
 
 **Pravartu:** Užklausa startuoja nuo „generuok vaizdą“ (arba „sukurk vaizdą“) + konkreti užklausa – taip įrankis aiškiai supranta užduotį.
 
@@ -94,7 +97,7 @@ Stilius: profesionalus, šviesus, minimalistinis. Proporcijos: 16:9. Nenaudok te
 
 ### 3.2 Stilius ir proporcijos (13.3)
 
-**TL;DR:** Stilius nustato išvaizdą (fotorealistiškas, akrilas, 3D, piešinys). Proporcijos (aspect ratio) – vaizdo formátas: 1:1 kvadratas, 16:9 platus, 9:16 vertikalus (stories).
+**Trumpai:** Stilius nustato išvaizdą (fotorealistiškas, akrilas, 3D, piešinys). Proporcijos (aspect ratio) – vaizdo formátas: 1:1 kvadratas, 16:9 platus, 9:16 vertikalus (stories).
 
 **Pamoka:** Tas pats aprašymas (pvz. „namelis miške“) su skirtingu stiliaus žodžiu (impresionizmas, ekspresionizmas, minimalistinė grafika) duoda labai skirtingą rezultatą. Stilius = rezultato architektūra.
 
@@ -120,7 +123,7 @@ Proporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tek
 
 ### 3.3 Kompozicija ir kadras (neprivaloma, 13.3 optional)
 
-**TL;DR:** Kompozicija ir kadravimas pakelia rezultatą į „profi“ lygį: kur dėti pagrindinį objektą, kokį kadrą ir kameros kampą nurodyti.
+**Trumpai:** Kompozicija ir kadravimas pakelia rezultatą į „profi“ lygį: kur dėti pagrindinį objektą, kokį kadrą ir kameros kampą nurodyti. **Ryšys su video:** tie patys principai kaip trumpo vaizdo įrašo skaidrėje – čia pritaikymas **statinio vaizdo** promptui (modules.json – vienas sakinys „Trumpai“).
 
 - **Trečdalių taisyklė:** Įsivaizduok 3×3 tinklelį; pagrindinis objektas ar fokusas – sankirtos taškuose (ne centre). Tai suteikia balansą ir nukreipia žvilgsnį.
 - **Pirmas ir antras planas:** Pirmas planas – ryškesnis, labiau apšviestas objektas; antras planas (fonas) – gylis ir atmosfera. Nurodyk prompte: „pirmame plane…“, „fone…“.
@@ -145,6 +148,8 @@ Stilius: [nurodyk]. Proporcijos: 16:9.
 ```
 
 ### 3.4 DI vaizdų generavimo workflow (5 žingsniai, optional)
+
+**Kaip naudotis skaidre (modules.json):** Jei užtenka vieno sprendimo – rinkis tik MASTER šabloną arba vieną ready šabloną; visa kita – gilinimuisi.
 
 Karkasas, kurį galima naudoti nuo koncepcijos iki rezultato:
 
@@ -181,20 +186,20 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 **Ready prompts (8 verslo scenarijų) – trumpi šablonai:**
 
-| Use-case | Prompt (įklijuoti ir užpildyti) |
-|----------|---------------------------------|
-| **Logotipas** | Sukurk logotipą [verslo sritis] įmonei [pavadinimas]. Stilius [minimalistinis/modernus], spalvos [x], fonas skaidrus/baltas, pateik 3 variantus. |
-| **Produkto maketas** | Sukurk fotorealistinį [produktas] maketą. Aplinka [studija/virtuvė], medžiagos [x], šviesa softbox, 3 kampai. |
-| **Social post** | Pagal šį tekstą [įklijuoti], sukurk iliustraciją LinkedIn/Facebook. Įvaizdis [korporatyvus], spalvos [x], formatas 1:1 ar 4:5, be teksto / su CTA tekstu [jei reikia]. |
-| **Reklaminė kampanija** | Sugeneruok 5 vizualines kryptis reklamai [produktas/paslauga], tema [x], auditorija [x], stiliai [x], formatas Stories/Feed. |
-| **Naujienlaiškio hero** | Sukurk naujienlaiškio hero antraštės vizualą. Turinys: [įklijuoti]. Palik vietos tekstui viršuje 30% ploto, fonas švarus. |
-| **Brošiūra** | Sukurk viršelio vizualą brošiūrai: pristatome [produktas/paslauga]. Stilius [x], aiški hierarchija, vieta logotipui. |
-| **Plakatas** | Sukurk ryškų plakatą renginiui [pavadinimas], data/vieta [x], stilius [x], įtrauk tikslų tekstą: '…'. |
-| **Blogo vizualas** | Sugeneruok blogo cover image temai [x]. Stilius [x], be teksto, palik „negative space“ antraštei. |
+| Use-case                | Prompt (įklijuoti ir užpildyti)                                                                                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logotipas**           | Sukurk logotipą [verslo sritis] įmonei [pavadinimas]. Stilius [minimalistinis/modernus], spalvos [x], fonas skaidrus/baltas, pateik 3 variantus.                       |
+| **Produkto maketas**    | Sukurk fotorealistinį [produktas] maketą. Aplinka [studija/virtuvė], medžiagos [x], šviesa softbox, 3 kampai.                                                          |
+| **Social post**         | Pagal šį tekstą [įklijuoti], sukurk iliustraciją LinkedIn/Facebook. Įvaizdis [korporatyvus], spalvos [x], formatas 1:1 ar 4:5, be teksto / su CTA tekstu [jei reikia]. |
+| **Reklaminė kampanija** | Sugeneruok 5 vizualines kryptis reklamai [produktas/paslauga], tema [x], auditorija [x], stiliai [x], formatas Stories/Feed.                                           |
+| **Naujienlaiškio hero** | Sukurk naujienlaiškio hero antraštės vizualą. Turinys: [įklijuoti]. Palik vietos tekstui viršuje 30% ploto, fonas švarus.                                              |
+| **Brošiūra**            | Sukurk viršelio vizualą brošiūrai: pristatome [produktas/paslauga]. Stilius [x], aiški hierarchija, vieta logotipui.                                                   |
+| **Plakatas**            | Sukurk ryškų plakatą renginiui [pavadinimas], data/vieta [x], stilius [x], įtrauk tikslų tekstą: '…'.                                                                  |
+| **Blogo vizualas**      | Sugeneruok blogo cover image temai [x]. Stilius [x], be teksto, palik „negative space“ antraštei.                                                                      |
 
 ### 3.7 Vaizdo generatorius – sugeneruok savo promptą (interaktyvus, 13.37)
 
-**TL;DR:** Interaktyvus įrankis, kuris padeda sudėlioti vaizdo promptą žingsnis po žingsnio: kampanijos kontekstas (tikslas, platforma, auditorija, tonas), vizualo esmė (objektas, stilius, apšvietimas, kamera, spalva) ir tekstų integracija (antraštė, CTA, šriftas). Rezultatas – vienas paruoštas promptas, kurį galima nukopijuoti ir įklijuoti į bet kurį vaizdų generavimo įrankį.
+**Trumpai:** Interaktyvus įrankis, kuris padeda sudėlioti vaizdo promptą žingsnis po žingsnio: kampanijos kontekstas (tikslas, platforma, auditorija, tonas), vizualo esmė (objektas, stilius, apšvietimas, kamera, spalva) ir tekstų integracija (antraštė, CTA, šriftas). Rezultatas – vienas paruoštas promptas, kurį galima nukopijuoti ir įklijuoti į bet kurį vaizdų generavimo įrankį.
 
 **Ryšys su 13.35 (MASTER):** MASTER šablonas (§3.6) – universalus, bet reikalauja pačiam užpildyti laukus tekstu. Generatorius (13.37) – interaktyvūs laukai su dropdown pasirinkimais ir laisvais tekstais; promptas sudedamas automatiškai. Tai „Daryk dabar" skaidrė: vartotojas išbando visus principus (stilius, proporcijos, kompozicija) viename įrankyje.
 
@@ -214,13 +219,13 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 ## 4. Blokas 2 – Video generavimas
 
-**Kodėl DI video verta dėmesio (trumpai):** Mažiau įrangos, aktorių ir montažo; greitis ir mastelis (dešimtys variantų per valandą); personalizavimas rinkoms/kalboms/segmentams. Tinka: vidiniai mokymai, saugos instrukcijos, reklamos kampanijos. *Procentų (pvz. „sutaupykite 90%“) vengti be šaltinio – žr. §5a „Verslo argumentai“.*
+**Kodėl DI video verta dėmesio (trumpai):** Mažiau įrangos, aktorių ir montažo; greitis ir mastelis (dešimtys variantų per valandą); personalizavimas rinkoms/kalboms/segmentams. Tinka: vidiniai mokymai, saugos instrukcijos, reklamos kampanijos. _Procentų (pvz. „sutaupykite 90%“) vengti be šaltinio – žr. §5a „Verslo argumentai“._
 
 **Video workflow (sutrumpintas):** Koncepcija → idėja/scenarijus → promptų generavimas → optimizacija → generavimas (Sora, Runway, Veo3, Synthesia, InVideo).
 
 ### 4.1 Scenarijus trumpam vaizdo įrašui (13.4)
 
-**TL;DR:** Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, kokiu tonu (dramatiškas, ramus, informatyvus). Kadravimas ir kameros kampas (lygus akims, iš viršaus, iš apačios, POV) keičia emociją – nurodyk prompte, jei nori kontroliuoti išvaizdą. DI gali generuoti vaizdo įrašą iš teksto arba kadrų aprašymo.
+**Trumpai:** Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, kokiu tonu (dramatiškas, ramus, informatyvus). Kadravimas ir kameros kampas (lygus akims, iš viršaus, iš apačios, POV) keičia emociją – nurodyk prompte, jei nori kontroliuoti išvaizdą. DI gali generuoti vaizdo įrašą iš teksto arba kadrų aprašymo.
 
 **Daryk dabar:** Parašyk 2–3 sakinius: kas matoma vaizdo įraše, nuo pradžios iki pabaigos. Nukopijuok žemiau esantį šabloną į vaizdo generavimo įrankį.
 
@@ -238,7 +243,9 @@ Tonas: [profesionalus / dinamiškas / ramus]. Be garso arba paprasta foninė muz
 
 ### 4.2 Įrankiai ir formatas (13.5)
 
-**TL;DR:** Skirtingi įrankiai duoda skirtingą kokybę ir trukmę. Nurodyk formatą (horizontalus / vertikalus) ir maksimalią trukmę pagal įrankio galimybes.
+**UI (modules.json):** Vienas accent blokas „Kodėl verta ir ką nurodyti“ (sujungia motyvaciją ir formatą/teises). Ilgas įrankių sąrašas – **collapsible** „Visi video įrankiai“ (numatytai uždaryta).
+
+**Trumpai:** Skirtingi įrankiai duoda skirtingą kokybę ir trukmę. Nurodyk formatą (horizontalus / vertikalus) ir maksimalią trukmę pagal įrankio galimybes.
 
 **Daryk dabar:** Pasirink vieną įrankį (žr. sąrašą žemiau), atidaryk ir sugeneruok vieną trumpą vaizdo įrašą pagal savo scenarijų.
 
@@ -267,17 +274,19 @@ Formatas: [horizontalus 16:9 / vertikalus 9:16]. Trukmė: 5–10 sek. Stilius: [
 
 ### 5.1 Muzikos aprašymas (13.6)
 
-**TL;DR:** Muzikos generavimui reikia aprašyti: nuotaiką (linksma, įtempta, rami), stilių (pop, elektroninė, akustinė), tempo (lėtas, vidutinis, greitas) ir, jei reikia, instrumentus ar vokalą. **Prompt struktūra:** Mood + Genre + Tempo + Instrumentation + Vocal type + Structure + Platform use case.
+**Trumpai (modules.json – paprasta kalba):** Nuotaika, stilius, tempas, instrumentai; daugelis įrankių leidžia greitai gauti juodraštį – vis tiek patikrink naudojimo teises prieš viešą naudojimą. **Angliškas MASTER šablonas:** paliktas kaip copyable EN tekstas; viršuje – LT paaiškinimas, kodėl anglų kalba. Collapsible antraštė: „Papildomi pavyzdžiai įvairiems įrankiams (ilgas sąrašas)“.
+
+**Trumpai (detaliau SOT):** Muzikos generavimui reikia aprašyti: nuotaiką (linksma, įtempta, rami), stilių (pop, elektroninė, akustinė), tempo (lėtas, vidutinis, greitas) ir, jei reikia, instrumentus ar vokalą. **Prompt struktūra:** Mood + Genre + Tempo + Instrumentation + Vocal type + Structure + Platform use case.
 
 **TOP 5 DI muzikos generatoriai – pozicionavimas:**
 
-| Įrankis | Stiprybės | Kaina (apytiksliai) | Kam tinka |
-|---------|-----------|----------------------|-----------|
-| **Suno** | Tekstas → pilna daina, integracija su Copilot, greitis (~5 min) | Free su limitais; ~24 €/mėn | YouTube testai, viral hook, demo |
-| **Boomy** | Paprasta UI, daug šablonų, greitas publikavimas | 25 dainos free; 10–30 €/mėn | Naujokams, lo-fi, social content |
-| **Soundraw** | Nuotaika + trukmė, Pro – instrumentų mixas, autorių teisių saugumas | ~17–30 €/mėn | Podcast intro, reklama, brand content |
-| **Udio** | Įkelti savo audio, redaguoti tekstus, miksuoti – gili kontrolė | 0–30 €/mėn | Rimtesni projektai, albumo prototipas, remix |
-| **Beatoven.ai** | Royalty-free, emocijų kontrolė, optimizacija video fonui | ~6–20 € (minutės pagrindu) | YouTube monetizacija, vlog, reklamos |
+| Įrankis         | Stiprybės                                                           | Kaina (apytiksliai)         | Kam tinka                                    |
+| --------------- | ------------------------------------------------------------------- | --------------------------- | -------------------------------------------- |
+| **Suno**        | Tekstas → pilna daina, integracija su Copilot, greitis (~5 min)     | Free su limitais; ~24 €/mėn | YouTube testai, viral hook, demo             |
+| **Boomy**       | Paprasta UI, daug šablonų, greitas publikavimas                     | 25 dainos free; 10–30 €/mėn | Naujokams, lo-fi, social content             |
+| **Soundraw**    | Nuotaika + trukmė, Pro – instrumentų mixas, autorių teisių saugumas | ~17–30 €/mėn                | Podcast intro, reklama, brand content        |
+| **Udio**        | Įkelti savo audio, redaguoti tekstus, miksuoti – gili kontrolė      | 0–30 €/mėn                  | Rimtesni projektai, albumo prototipas, remix |
+| **Beatoven.ai** | Royalty-free, emocijų kontrolė, optimizacija video fonui            | ~6–20 € (minutės pagrindu)  | YouTube monetizacija, vlog, reklamos         |
 
 **Industrinės implikacijos:** Demokratizacija (barjeras krenta); produkcijos pagreitis (kūrinys per minučių); industrijos pokyčiai (kompozitoriai – viena iš galimybių). **Rizikos (neaptartos plačiai):** autorių teisių konfliktai (modelių treniravimo duomenys), platformų politikos/banai, muzikos saturacija, AI turinio nuvertėjimas, YouTube monetizacijos pokyčiai – prieš skalavimą verta įvertinti.
 
@@ -311,7 +320,7 @@ production quality: professional.
 
 ### 5.2 Garsai ir naudojimo teisės (13.7)
 
-**TL;DR:** Kai kurie įrankiai leidžia naudoti sugeneruotą muziką ar garsus komerciniu tikslu; kiti – tik asmeniniam. Visada patikrink paslaugos taisykles ir licenciją.
+**Trumpai:** Kai kurie įrankiai leidžia naudoti sugeneruotą muziką ar garsus komerciniu tikslu; kiti – tik asmeniniam. Visada patikrink paslaugos taisykles ir licenciją.
 
 **Daryk dabar:** Prieš naudodamas sugeneruotą muziką viešai ar projekte – atidaryk įrankio puslapį apie naudojimo teises ir įsitikink, kad gali naudoti.
 
@@ -328,21 +337,21 @@ Formatas: MP3 arba WAV. Be muzikos – tik garsas.
 
 ### 5.3 Ready prompts – muzika, tekstai, viršeliai, video (optional)
 
-**Suno:** Viral lietuviškas hit – *Modern techno trap, melancholic but powerful, male vocal, Lithuanian lyrics, theme: summer ending, strong catchy chorus, TikTok hook in first 15 seconds, professional mix, radio ready.* Gaming kanalui – *Aggressive rap trap, dark cyberpunk mood, 140 bpm, lyrics about leveling up, epic drop at 0:40, YouTube gaming intro style.* Podcast intro – *Minimal ambient electronic intro, inspiring, futuristic, no vocals, 20 seconds, soft build up.*
+**Suno:** Viral lietuviškas hit – _Modern techno trap, melancholic but powerful, male vocal, Lithuanian lyrics, theme: summer ending, strong catchy chorus, TikTok hook in first 15 seconds, professional mix, radio ready._ Gaming kanalui – _Aggressive rap trap, dark cyberpunk mood, 140 bpm, lyrics about leveling up, epic drop at 0:40, YouTube gaming intro style._ Podcast intro – _Minimal ambient electronic intro, inspiring, futuristic, no vocals, 20 seconds, soft build up._
 
-**Boomy:** Lo-fi fonas – *Lo-fi chillhop instrumental, rain background, soft piano, nostalgic but calming, study YouTube stream.* Corporate video – *Upbeat corporate instrumental, clean modern synth, light percussion, optimistic, 2 minutes, tech presentation.*
+**Boomy:** Lo-fi fonas – _Lo-fi chillhop instrumental, rain background, soft piano, nostalgic but calming, study YouTube stream._ Corporate video – _Upbeat corporate instrumental, clean modern synth, light percussion, optimistic, 2 minutes, tech presentation._
 
-**Soundraw:** Reklamos takelis – *Mood: energetic and inspiring. Genre: electronic pop. Length: 45 seconds. Use case: startup product launch. Dynamic build up, climax at 0:30.* Meditacija – *Mood: calm, deep relaxation. Genre: ambient. Length: 10 minutes. Slow evolving pads, no percussion.*
+**Soundraw:** Reklamos takelis – _Mood: energetic and inspiring. Genre: electronic pop. Length: 45 seconds. Use case: startup product launch. Dynamic build up, climax at 0:30._ Meditacija – _Mood: calm, deep relaxation. Genre: ambient. Length: 10 minutes. Slow evolving pads, no percussion._
 
-**Udio:** Remix – *Take uploaded melody, transform into modern deep house, groovy bassline, female vocal hook, club energy, 4 minutes.* Albumo prototipas – *Alternative electronic rock, moody atmosphere, live drum feeling, expressive male vocal, concept album about digital loneliness.*
+**Udio:** Remix – _Take uploaded melody, transform into modern deep house, groovy bassline, female vocal hook, club energy, 4 minutes._ Albumo prototipas – _Alternative electronic rock, moody atmosphere, live drum feeling, expressive male vocal, concept album about digital loneliness._
 
-**Beatoven.ai:** YouTube vlog – *Emotion: uplifting and adventurous. Tempo: medium. Instruments: acoustic guitar + light percussion. Use case: travel vlog. Subtle cinematic feel.*
+**Beatoven.ai:** YouTube vlog – _Emotion: uplifting and adventurous. Tempo: medium. Instruments: acoustic guitar + light percussion. Use case: travel vlog. Subtle cinematic feel._
 
-**Tekstų generavimas (ChatGPT):** Lietuviškas rap – *Parašyk lietuvišką rap tekstą apie DI revoliuciją, agresyvus bet motyvuojantis, aiškus priedainis, 4 posmai, šiuolaikinis slangas.* Pop hitas – *Write catchy pop lyrics, theme: digital love, simple repetitive chorus, radio friendly, modern 2026 vibe.*
+**Tekstų generavimas (ChatGPT):** Lietuviškas rap – _Parašyk lietuvišką rap tekstą apie DI revoliuciją, agresyvus bet motyvuojantis, aiškus priedainis, 4 posmai, šiuolaikinis slangas._ Pop hitas – _Write catchy pop lyrics, theme: digital love, simple repetitive chorus, radio friendly, modern 2026 vibe._
 
-**Albumo viršelis (DALL·E):** *Futuristic Lithuanian rapper, cyberpunk Vilnius skyline, neon lights, album cover design, dark purple and electric blue, high detail, cinematic lighting.*
+**Albumo viršelis (DALL·E):** _Futuristic Lithuanian rapper, cyberpunk Vilnius skyline, neon lights, album cover design, dark purple and electric blue, high detail, cinematic lighting._
 
-**Muzikos video (bendrai):** *Cinematic music video, dark urban setting, slow motion, neon reflections, moody atmosphere, professional lighting, 4K.*
+**Muzikos video (bendrai):** _Cinematic music video, dark urban setting, slow motion, neon reflections, moody atmosphere, professional lighting, 4K._
 
 **Ko šis modulis dar neturi (tolimesnė plėtra):** Neigiami promptai („be X“), tikslūs parametrai (apšvietimo reikšmės, aspect ratio skaičiai), iteracijos metodika (kaip gerinti per kelis ciklus), QA modelis sugeneruotam turiniui – dalis įtraukta į 13.10 ir 13.11 žemiau.
 
@@ -350,7 +359,11 @@ Formatas: MP3 arba WAV. Be muzikos – tik garsas.
 
 ## 5a. Verslas ir rizikos (13.10) – MUST
 
+**Techninis ID `modules.json`:** skaidrei naudoti **`13.101`** (unikalus JS skaičius). JSON reikšmė **13.10** suparsinama kaip **13.1** ir sutaptų su skaidre „Turinio inžinerijos kelias – ką čia rasite“. Dokumentacijoje temą vis dar galima vadinti **13.10**.
+
 **Kampanijos vaizdams būtina:** KPI matavimas, A/B testavimas, teisės ir rizikos. Be šito nėra verslo mokymo.
+
+**Struktūra UI (modules.json):** trumpas accent „Trumpai“; collapsible „Rodikliai ir A/B testas (plačiau)“; matomas A/B CopyButton; collapsible „Teisės, rizikos ir verslas“; collapsible „Prieš publikuojant (QA ir versijos)“; matomas „Top 3 pitfalls“.
 
 ### 5a.1 KPI ir A/B testavimo sistema (MUST)
 
@@ -396,6 +409,8 @@ Failų naming ir versijavimas: V1, V2, V3 + viena eilutė „kas pasikeitė prom
 
 ## 5b. Workflow: nuo brief iki publikacijos (13.11) – MUST
 
+**Ryšys su 13.35:** Pilname „Trumpai“ tekste (modules.json) – nuoroda į neprivalomą skaidrę **13.35** kaip į techninį 5 žingsnių vaizdų pipeline; čia – **verslo** ciklas nuo brief iki publikacijos.
+
 **Dabar to nėra – turi būti.** Pilnas ciklas:
 
 1. **Marketing brief** – kam, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija.
@@ -416,13 +431,21 @@ Brand: [1–2 sakiniai – spalvos, tipografija, nuotaika]. Variantų skaičius:
 
 ### 5b.1 SHOULD – stipriai pakelia lygį
 
-| # | Elementas | Kur / kaip |
-|---|-----------|------------|
-| **6** | **Social platform adaptacija** | LinkedIn, Instagram, TikTok, Meta Ads, Google Display – skiriasi kadras, teksto kiekis, fokusas, kontrastas, emocija. Nurodyk prompte platformą arba formatą (pvz. „vertikalus 9:16, stiprus pirmas kadras – TikTok“). |
-| **7** | **Funnel thinking** | TOFU (viršutinis – atpažįstamumas) / MOFU (vidurys – įsitraukimas) / BOFU (apatinis – konversija). Awareness vizualas ≠ Conversion vizualas – skirtingi tikslai, skirtingas vaizdo pasirinkimas. |
-| **8** | **Data-driven promptavimas** | Kaip naudoti praeitos kampanijos duomenis, heatmap analizę, scroll analizę – promptas pagrįstas duomenimis, ne tik intuicija. |
-| **9** | **Automation** | Integracijos: GPT → Canva → Zapier → Ads manager; variantų generavimas masiškai. Marketingui svarbus mastelis. |
-| **10** | **Storyselling** | Vaizdas integruojamas su antrašte, hook'u, CTA – ne izoliuotas nuo copywriting. Mokymas: kaip vaizdas „parduoda“ kartu su tekstu. |
+| #      | Elementas                      | Kur / kaip                                                                                                                                                                                                             |
+| ------ | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **6**  | **Social platform adaptacija** | LinkedIn, Instagram, TikTok, Meta Ads, Google Display – skiriasi kadras, teksto kiekis, fokusas, kontrastas, emocija. Nurodyk prompte platformą arba formatą (pvz. „vertikalus 9:16, stiprus pirmas kadras – TikTok“). |
+| **7**  | **Funnel thinking**            | TOFU (viršutinis – atpažįstamumas) / MOFU (vidurys – įsitraukimas) / BOFU (apatinis – konversija). Awareness vizualas ≠ Conversion vizualas – skirtingi tikslai, skirtingas vaizdo pasirinkimas.                       |
+| **8**  | **Data-driven promptavimas**   | Kaip naudoti praeitos kampanijos duomenis, heatmap analizę, scroll analizę – promptas pagrįstas duomenimis, ne tik intuicija.                                                                                          |
+| **9**  | **Automation**                 | Integracijos: GPT → Canva → Zapier → Ads manager; variantų generavimas masiškai. Marketingui svarbus mastelis.                                                                                                         |
+| **10** | **Storyselling**               | Vaizdas integruojamas su antrašte, hook'u, CTA – ne izoliuotas nuo copywriting. Mokymas: kaip vaizdas „parduoda“ kartu su tekstu.                                                                                      |
+
+---
+
+## 5c. Modulio 14 testas (LT, modules.json)
+
+- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“ (galininkas mot. g. dgs.); `firstActionCTA` – 6 klausimai apie vaizdus, video, muziką, **rizikas ir workflow**.
+- **Klausimai (141):** Vietoj pasikartojančio „kur pritaikyti“ – **m14-q5** apie veidą/balsą ir teises (`relatedSlideId`: **13.101**); **m14-q6** – logiškas žingsnis po brief (`relatedSlideId`: **13.11**).
+- **Rezultatai (142):** `useCaseBlock` – **„Kitas žingsnis: Modulis 15“** (ne trečias „Kur pritaikyti?“ kartojimas); `thresholdExplanation` suderinta su „tu“ tonu.
 
 ---
 
@@ -430,23 +453,23 @@ Brand: [1–2 sakiniai – spalvos, tipografija, nuotaika]. Variantų skaičius:
 
 Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 terminų:
 
-| Terminas | Apibrėžimas (vienas sakinys) |
-|----------|------------------------------|
-| **Vaizdo promptas** | Tekstinis aprašymas, pagal kurį DI sukuria vaizdą (subjektas, stilius, proporcijos). |
-| **Aspect ratio (proporcijos)** | Vaizdo ar vaizdo įrašo santykis (pvz. 16:9 platus, 1:1 kvadratas, 9:16 vertikalus). |
-| **Scenarijus vaizdui** | Trumpas tekstas, aprašantis, kas vyksta vaizde arba vaizdo įraše (kadrai, veiksmas). |
-| **BPM** | Taktų per minutę – muzikos tempo matas (lėtas ~60–80, greitas ~120–140). |
-| **Nuotaika (mood)** | Jausmas, kurį skleidžia vaizdas ar muzika (ramus, energingas, įtemptas). |
-| **Stilius** | Vizualus ar garso išvaizdos tipas (fotorealistiškas, akrilas, pop, akustinė). |
-| **Naudojimo teisės / licencija** | Ar sugeneruotą turinį galima naudoti komerciniu tikslu (reklama, produktas). |
-| **Foninė muzika** | Muzika fone (prezentacijose, vaizdo įrašuose), dažnai be vokalo. |
-| **Trečdalių taisyklė** | Kompozicijos principas: įsivaizduok 3×3 tinklelį; pagrindinis objektas – sankirtos taškuose (ne centre). |
-| **Kameros kampas** | Iš kur „žiūri“ kamera: lygus akims (neutralu), iš viršaus (silpnina), iš apačios (suteikia galios), oberžas (iš viršaus), POV („tavo“ akimis). Kadras = emocijos kontrolė. |
-| **Naratyvinis vaizdas** | Vaizdas, kuris pasakoja istoriją arba konceptą (pvz. mitologija + modernybė, emocija per metaforą). „Kas čia buvo?“ – klausimas, kurį atsako kompozicija. |
-| **CTR (paspaudimų dalis)** | Kiek procentų žmonių, kurie pamatė reklamą ar vaizdą, jį paspaudė. Svarbus rodiklis reklamų ir banerių vertinimui. |
-| **CVR (konversijų dalis)** | Kiek lankytojų atliko norimą veiksmą (pirkimas, registracija). Skiriasi nuo CTR – matuojamas po paspaudimo. |
-| **CPM (kaina už 1000 parodymų)** | Kiek kainuoja 1000 reklamos ar vaizdo parodymų. Naudinga lyginti skirtingas platformas ir formatus. |
-| **Demokratizacija (muzikoje)** | Kūryba tampa prieinama daugiau žmonių – technologija (DI, DAW, streaming) sumažina įgūdžių ir įrangos barjerą. |
+| Terminas                         | Apibrėžimas (vienas sakinys)                                                                                                                                               |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Vaizdo promptas**              | Tekstinis aprašymas, pagal kurį DI sukuria vaizdą (subjektas, stilius, proporcijos).                                                                                       |
+| **Aspect ratio (proporcijos)**   | Vaizdo ar vaizdo įrašo santykis (pvz. 16:9 platus, 1:1 kvadratas, 9:16 vertikalus).                                                                                        |
+| **Scenarijus vaizdui**           | Trumpas tekstas, aprašantis, kas vyksta vaizde arba vaizdo įraše (kadrai, veiksmas).                                                                                       |
+| **BPM**                          | Taktų per minutę – muzikos tempo matas (lėtas ~60–80, greitas ~120–140).                                                                                                   |
+| **Nuotaika (mood)**              | Jausmas, kurį skleidžia vaizdas ar muzika (ramus, energingas, įtemptas).                                                                                                   |
+| **Stilius**                      | Vizualus ar garso išvaizdos tipas (fotorealistiškas, akrilas, pop, akustinė).                                                                                              |
+| **Naudojimo teisės / licencija** | Ar sugeneruotą turinį galima naudoti komerciniu tikslu (reklama, produktas).                                                                                               |
+| **Foninė muzika**                | Muzika fone (prezentacijose, vaizdo įrašuose), dažnai be vokalo.                                                                                                           |
+| **Trečdalių taisyklė**           | Kompozicijos principas: įsivaizduok 3×3 tinklelį; pagrindinis objektas – sankirtos taškuose (ne centre).                                                                   |
+| **Kameros kampas**               | Iš kur „žiūri“ kamera: lygus akims (neutralu), iš viršaus (silpnina), iš apačios (suteikia galios), oberžas (iš viršaus), POV („tavo“ akimis). Kadras = emocijos kontrolė. |
+| **Naratyvinis vaizdas**          | Vaizdas, kuris pasakoja istoriją arba konceptą (pvz. mitologija + modernybė, emocija per metaforą). „Kas čia buvo?“ – klausimas, kurį atsako kompozicija.                  |
+| **CTR (paspaudimų dalis)**       | Kiek procentų žmonių, kurie pamatė reklamą ar vaizdą, jį paspaudė. Svarbus rodiklis reklamų ir banerių vertinimui.                                                         |
+| **CVR (konversijų dalis)**       | Kiek lankytojų atliko norimą veiksmą (pirkimas, registracija). Skiriasi nuo CTR – matuojamas po paspaudimo.                                                                |
+| **CPM (kaina už 1000 parodymų)** | Kiek kainuoja 1000 reklamos ar vaizdo parodymų. Naudinga lyginti skirtingas platformas ir formatus.                                                                        |
+| **Demokratizacija (muzikoje)**   | Kūryba tampa prieinama daugiau žmonių – technologija (DI, DAW, streaming) sumažina įgūdžių ir įrangos barjerą.                                                             |
 
 ---
 
@@ -454,13 +477,13 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc):
 
-| # | Blokas | Turinys |
-|---|--------|---------|
-| 1 | Celebration Hero | „Ką išmokote“ – Vaizdų, video ir muzikos generavimas su DI; promptų principai, įrankiai, 3 blokai. 3 statistikos: pvz. „3 blokai“, „3 promptų šablonai“, „6+ įrankių“. |
-| 2 | Žinių kortelės | Max 3: (1) Vaizdų promptai – stilius, proporcijos, (2) Video – scenarijus, formatas, (3) Muzika – nuotaika, stilius, naudojimo teisės. |
-| 3 | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi vaizdus/video/muziką, kas buvo naujausia, ką išbandysi pirmiausia. |
-| 4 | Kitas žingsnis CTA | „Pereikite prie Modulio 14: Žinių patikrinimas (Turinio kelias)“ – testas prieš projektą. |
-| 5 | Motyvacinis footer | Tagline: „Vaizdas + video + muzika = vienas kelias turinio inžinerijai.“ |
+| #   | Blokas               | Turinys                                                                                                                                                                |
+| --- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Celebration Hero     | „Ką išmokote“ – Vaizdų, video ir muzikos generavimas su DI; promptų principai, įrankiai, 3 blokai. 3 statistikos: pvz. „3 blokai“, „3 promptų šablonai“, „6+ įrankių“. |
+| 2   | Žinių kortelės       | Max 3: (1) Vaizdų promptai – stilius, proporcijos, (2) Video – scenarijus, formatas, (3) Muzika – nuotaika, stilius, naudojimo teisės.                                 |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi vaizdus/video/muziką, kas buvo naujausia, ką išbandysi pirmiausia.                                     |
+| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 14: Žinių patikrinimas (Turinio kelias)“ – testas prieš projektą.                                                                              |
+| 5   | Motyvacinis footer   | Tagline: „Vaizdas + video + muzika = vienas kelias turinio inžinerijai.“                                                                                               |
 
 **Pirmas veiksmas po modulio:** Šiandien atidaryk vieną vaizdų generavimo įrankį ir sugeneruok vieną vaizdą pagal savo aprašymą (stilius, proporcijos).
 
@@ -495,11 +518,11 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 
 **MUST – bent vienas artefaktas:**
 
-| # | Scenarijus | Aprašymas | Artefaktas |
-|---|------------|-----------|------------|
-| **1** | Vaizdas | Sukurk vieną vaizdą savo temai (rinkodara, prezentacija, socialinis turinys). Nurodyk stilių ir proporcijas. | Sugeneruotas vaizdas + naudotas promptas (tekstas). |
-| **2** | Trumpas vaizdo įrašas | Parašyk 2–3 sakinius scenarijų ir sugeneruok 5–10 sek. vaizdo įrašą. | Vaizdo įrašas arba nuoroda + promptas. |
-| **3** | Muzikos fragmentas | Aprašyk nuotaiką ir stilių, sugeneruok 30–60 sek. muzikos arba garsą. | Muzikos / garsų failas arba nuoroda + promptas. |
+| #     | Scenarijus            | Aprašymas                                                                                                    | Artefaktas                                          |
+| ----- | --------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| **1** | Vaizdas               | Sukurk vieną vaizdą savo temai (rinkodara, prezentacija, socialinis turinys). Nurodyk stilių ir proporcijas. | Sugeneruotas vaizdas + naudotas promptas (tekstas). |
+| **2** | Trumpas vaizdo įrašas | Parašyk 2–3 sakinius scenarijų ir sugeneruok 5–10 sek. vaizdo įrašą.                                         | Vaizdo įrašas arba nuoroda + promptas.              |
+| **3** | Muzikos fragmentas    | Aprašyk nuotaiką ir stilių, sugeneruok 30–60 sek. muzikos arba garsą.                                        | Muzikos / garsų failas arba nuoroda + promptas.     |
 
 **Delivery-first:** Dalyvis turi turėti bent **vieną** iš trijų artefaktų (vaizdas arba video arba muzika) ir **naudotą promptą** (kopijuojamas į praktinę užduotį arba įrašytas atskirai).
 
@@ -525,22 +548,22 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 
 ### MUST (be šito marketingo mokymas neveiks)
 
-| # | Elementas | Vieta SOT / skaidrė |
-|---|-----------|----------------------|
-| **1** | **Kampanijos tikslų modelis** (Objective → Visual Strategy) | §2 – 13.1 (arba atskira 13.2): Awareness / Engagement / Conversion; koks vaizdo tipas kuriems tikslams; kada emocija, kada aiškumas. |
-| **2** | **KPI ir A/B testavimo sistema** | §5a.1 (13.10): CTR, CVR, CPM, scroll stop rate, heatmap; kaip generuoti 3–5 variantus testui; kaip formuluoti hipotezę. |
-| **3** | **Brand consistency framework** | §3.2 (13.3): Spalvų sistema, tipografijos kontrolė, tonas, vizualinis identitetas – kitaip DI generuos chaotišką brandą. |
-| **4** | **Legal / Risk** | §5a.2 (13.10): Autorinių teisių rizika, deepfake rizika, prekės ženklai, GDPR vaizduose. |
-| **5** | **Workflow: nuo brief iki publikacijos** | §5b (13.11): Marketing brief → Prompt generavimas → Variantai → Iteracija → Adaptacija platformoms → Testavimas → Optimizacija. |
-| **+** | 3 blokai (vaizdai, video, muzika) + M15 artefaktas + M14 testas | Kaip anksčiau. |
+| #     | Elementas                                                       | Vieta SOT / skaidrė                                                                                                                  |
+| ----- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **1** | **Kampanijos tikslų modelis** (Objective → Visual Strategy)     | §2 – 13.1 (arba atskira 13.2): Awareness / Engagement / Conversion; koks vaizdo tipas kuriems tikslams; kada emocija, kada aiškumas. |
+| **2** | **KPI ir A/B testavimo sistema**                                | §5a.1 (13.10): CTR, CVR, CPM, scroll stop rate, heatmap; kaip generuoti 3–5 variantus testui; kaip formuluoti hipotezę.              |
+| **3** | **Brand consistency framework**                                 | §3.2 (13.3): Spalvų sistema, tipografijos kontrolė, tonas, vizualinis identitetas – kitaip DI generuos chaotišką brandą.             |
+| **4** | **Legal / Risk**                                                | §5a.2 (13.10): Autorinių teisių rizika, deepfake rizika, prekės ženklai, GDPR vaizduose.                                             |
+| **5** | **Workflow: nuo brief iki publikacijos**                        | §5b (13.11): Marketing brief → Prompt generavimas → Variantai → Iteracija → Adaptacija platformoms → Testavimas → Optimizacija.      |
+| **+** | 3 blokai (vaizdai, video, muzika) + M15 artefaktas + M14 testas | Kaip anksčiau.                                                                                                                       |
 
 ### SHOULD (stipriai pakelia lygį)
 
-| # | Elementas | Vieta |
-|---|-----------|--------|
-| **6** | Social platform adaptacija (LinkedIn, Instagram, TikTok, Meta Ads, Google Display) | §5b.1 – kadras, teksto kiekis, fokusas, kontrastas, emocija. |
-| **7** | Funnel thinking (TOFU / MOFU / BOFU) | §5b.1 – Awareness vizualas ≠ Conversion vizualas. |
-| **8** | Data-driven promptavimas (kampanijų duomenys, heatmap, scroll) | §5b.1 – promptas pagrįstas duomenimis. |
-| **9** | Automation (GPT → Canva → Zapier → Ads; masiški variantai) | §5b.1. |
-| **10** | Storyselling (vaizdas + antraštė, hook, CTA) | §5b.1 – ne izoliuotas nuo copywriting. |
-| Įrankių nuorodos, žodynėlis, refleksijos promptas | Kaip anksčiau (tools.json, 13.8, santrauka). |
+| #                                                 | Elementas                                                                          | Vieta                                                        |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **6**                                             | Social platform adaptacija (LinkedIn, Instagram, TikTok, Meta Ads, Google Display) | §5b.1 – kadras, teksto kiekis, fokusas, kontrastas, emocija. |
+| **7**                                             | Funnel thinking (TOFU / MOFU / BOFU)                                               | §5b.1 – Awareness vizualas ≠ Conversion vizualas.            |
+| **8**                                             | Data-driven promptavimas (kampanijų duomenys, heatmap, scroll)                     | §5b.1 – promptas pagrįstas duomenimis.                       |
+| **9**                                             | Automation (GPT → Canva → Zapier → Ads; masiški variantai)                         | §5b.1.                                                       |
+| **10**                                            | Storyselling (vaizdas + antraštė, hook, CTA)                                       | §5b.1 – ne izoliuotas nuo copywriting.                       |
+| Įrankių nuorodos, žodynėlis, refleksijos promptas | Kaip anksčiau (tools.json, 13.8, santrauka).                                       |

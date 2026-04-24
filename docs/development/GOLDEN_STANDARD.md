@@ -1,8 +1,9 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.7  
-> **Data:** 2026-03-14  
+> **Versija:** 2.3.8  
+> **Data:** 2026-04-09  
+> **2.3.8:** §3.2, §3.2a – LT content-block: vartotojui matomoje antraštėje **„Trumpai“** be anglų santrumpų (`modules.json`, `lt.json`); schema žymėjimas Trumpai (LT) / In short (EN). Žr. `docs/development/PAPRASTOS_KALBOS_GAIRES.md` §2.  
 > **2.3.7:** §2.1 Paletė – pridėta `gold: #f3cc30` spalva (brand žaibas, hero CTA, dark mode glow). Centralizuota per `tailwind.config.js` ir CSS custom property `--brand-gold`. Sync su promptanatomy.app.  
 > **2.3.6:** Haliucinacijų ir žinių patikrinimo tema – **Modulyje 7** (blokas „Patikrumas ir etika“, skaidrės Haliucinacijos 67.8, Žinių patikrinimas 68). Skaidrėse ir SOT nuorodos į šią temą turi rodyti į Modulį 7, ne į Modulio 4 (4.6). Žr. `docs/MODULIO_7_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_7_8_9.md`.  
 > **2.3.5:** §5.5 Sticky stacking – AppNav nustato `--app-nav-height` CSS kintamąjį (ResizeObserver); visi sticky elementai po AppNav naudoja `top-[var(--app-nav-height,4rem)]`, ne hardcoded `top-16`. Z-index hierarchija dokumentuota.  
@@ -21,14 +22,14 @@
 
 ## 1. Šriftai ir tipografija
 
-| Vieta | Šriftas | Tailwind | Naudojimas |
-|-------|---------|----------|------------|
-| **H1 (skaidrės pavadinimas)** | Plus Jakarta Sans | `text-2xl md:text-3xl font-bold` | Vienas per skaidrę – ModuleView |
-| **H2 (poskyrio antraštė)** | Plus Jakarta Sans | `text-lg md:text-xl font-bold` | Blokų heading |
-| **H3 (kortelės/bloko antraštė)** | Plus Jakarta Sans | `text-base font-semibold` | Sekcijų heading |
-| **Body (pagrindinis tekstas)** | Plus Jakarta Sans | `text-sm md:text-base` | Aprašymai, body |
-| **Small (etiketės, šaltiniai)** | Plus Jakarta Sans | `text-xs` | Badge, šaltiniai |
-| **Kodas / promptai / šablonai** | JetBrains Mono | `font-mono text-sm` | Copyable blokai, kodo pavyzdžiai |
+| Vieta                            | Šriftas           | Tailwind                         | Naudojimas                       |
+| -------------------------------- | ----------------- | -------------------------------- | -------------------------------- |
+| **H1 (skaidrės pavadinimas)**    | Plus Jakarta Sans | `text-2xl md:text-3xl font-bold` | Vienas per skaidrę – ModuleView  |
+| **H2 (poskyrio antraštė)**       | Plus Jakarta Sans | `text-lg md:text-xl font-bold`   | Blokų heading                    |
+| **H3 (kortelės/bloko antraštė)** | Plus Jakarta Sans | `text-base font-semibold`        | Sekcijų heading                  |
+| **Body (pagrindinis tekstas)**   | Plus Jakarta Sans | `text-sm md:text-base`           | Aprašymai, body                  |
+| **Small (etiketės, šaltiniai)**  | Plus Jakarta Sans | `text-xs`                        | Badge, šaltiniai                 |
+| **Kodas / promptai / šablonai**  | JetBrains Mono    | `font-mono text-sm`              | Copyable blokai, kodo pavyzdžiai |
 
 **Taisyklė:** Vienas H1 per skaidrę. Bold – tik svarbiems žodžiams, ne visai pastraipai.
 
@@ -40,31 +41,31 @@
 
 ### 2.1 Pagrindinė paletė (tailwind.config.js)
 
-| Spalva | Hex (500) | Paskirtis |
-|--------|-----------|-----------|
-| **brand** | #627d98 | Pasitikėjimas, pagrindinė info, navigacija |
-| **accent** | #d4a520 | CTA, pasiekimai, „daryk dabar“, takeaway |
-| **gold** | #f3cc30 | Brand akcentas (žaibas), hero CTA, dark mode glow |
-| **slate** | #64748b | Neutralūs UI elementai, Testas, antrinė info |
+| Spalva     | Hex (500) | Paskirtis                                         |
+| ---------- | --------- | ------------------------------------------------- |
+| **brand**  | #627d98   | Pasitikėjimas, pagrindinė info, navigacija        |
+| **accent** | #d4a520   | CTA, pasiekimai, „daryk dabar“, takeaway          |
+| **gold**   | #f3cc30   | Brand akcentas (žaibas), hero CTA, dark mode glow |
+| **slate**  | #64748b   | Neutralūs UI elementai, Testas, antrinė info      |
 
 ### 2.2 blockVariant – sekcijų spalvų logika
 
-| blockVariant | Tailwind klasės | Kada naudoti |
-|--------------|-----------------|--------------|
-| **accent** | `bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500` | CTA, „daryk dabar“, takeaway, pirmas žingsnis |
-| **brand** | `bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500` | Pagrindinė info, proceso žingsniai, kontekstas |
-| **terms** | `bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400` | Šalutinė info, žodynėlis, collapsible, nuorodos |
-| **default** | `border-l-4 border-brand-200` | Kai variantas nenurodytas |
+| blockVariant | Tailwind klasės                                                   | Kada naudoti                                    |
+| ------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
+| **accent**   | `bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500` | CTA, „daryk dabar“, takeaway, pirmas žingsnis   |
+| **brand**    | `bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500`  | Pagrindinė info, proceso žingsniai, kontekstas  |
+| **terms**    | `bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400`    | Šalutinė info, žodynėlis, collapsible, nuorodos |
+| **default**  | `border-l-4 border-brand-200`                                     | Kai variantas nenurodytas                       |
 
 **Taisyklė:** Vienoje skaidrėje – max 2 semantinės + 1 CTA. CTA ir „daryk dabar“ – accent; pagrindinė info – brand; papildoma – terms.
 
 ### 2.3 Semantinės spalvos (ribotas naudojimas)
 
-| Semantika | Spalva | Naudojimas |
-|-----------|--------|------------|
+| Semantika           | Spalva  | Naudojimas                                  |
+| ------------------- | ------- | ------------------------------------------- |
 | Success / teisingai | emerald | Teisingas atsakymas, struktūruotas pavyzdys |
-| Error / blogas | rose | Nestruktūruotas pavyzdys, klaida |
-| Warning / papildoma | amber | Papildoma skaidrė, optional |
+| Error / blogas      | rose    | Nestruktūruotas pavyzdys, klaida            |
+| Warning / papildoma | amber   | Papildoma skaidrė, optional                 |
 
 ---
 
@@ -72,27 +73,29 @@
 
 ### 3.1 action-intro
 
-| Laukas | Privalomas | Turinio taisyklė |
-|--------|------------|------------------|
-| whyBenefit | Taip | Vienas sakinys „kas man iš to?“ |
-| heroStat, heroText, heroSubText | Taip | Provokacija + CTA |
-| firstActionCTA | Taip | Pirmas veiksmas per ~1 min |
-| duration, audience | Ne | Trumpai |
-| outcomes | Taip | 3–6 punktų |
+| Laukas                          | Privalomas | Turinio taisyklė                |
+| ------------------------------- | ---------- | ------------------------------- |
+| whyBenefit                      | Taip       | Vienas sakinys „kas man iš to?“ |
+| heroStat, heroText, heroSubText | Taip       | Provokacija + CTA               |
+| firstActionCTA                  | Taip       | Pirmas veiksmas per ~1 min      |
+| duration, audience              | Ne         | Trumpai                         |
+| outcomes                        | Taip       | 3–6 punktų                      |
 
 **Veiksmo modelis:** Hook (problema + CTA) → Reveal (palyginimas) → Kontekstas.
 
 ### 3.2 content-block (veiksmo skaidrės)
 
-**Sekcijų schema:** TL;DR (accent) → Do now (brand) → Copy-paste prompt → Quality check → Optional (terms, collapsible).
+**LT vartotojui matomas turinys** (`modules.json` lietuviškos skaidrės, `src/locales/lt.json`): pirmojo santraukos bloko **`heading`** – **„Trumpai“** (arba kitas pilnas lietuviškas pavadinimas). **Draudžiama** antraštėse ir matomoje kopijoje naudoti anglų santrumpas be prasmės lietuvių sąsajoje (pvz. **TL;DR**). **EN** atitikmuo: pvz. „In short“. **Pastaba agentams:** žemiau lentelėje angliški žodžiai „Do now“, „Quality check“, „Copy-paste“ – procesinės sekos aprašymui dokumente; **LT JSON `heading`** – lietuviškas pagal šią taisyklę. Detaliau: `docs/development/PAPRASTOS_KALBOS_GAIRES.md` §2.
 
-| Sekcija | blockVariant | Turinio taisyklė |
-|---------|--------------|------------------|
-| 1. Trumpai / TL;DR | accent | 1–2 sakiniai, be perteklius |
-| 2. Daryk dabar | brand | Aiškus veiksmas; CTA „🔘 Kopijuoti promptą (žemiau)“ |
-| 3. Kopijuojamas promptas | — | Vienas blokas; copyable |
-| 4. Patikra / Quality check | accent | „Jei bent 2 „ne“ → grįžk prie…“ |
-| 5. Optional (collapsible) | terms | „🔽 Nori suprasti detaliau?“ – teorija, nuorodos |
+**Sekcijų schema:** Trumpai (LT) / In short (EN), accent → Daryk dabar / Do now (brand) → Kopijuojamas promptas / Copy-paste prompt → Patikra / Quality check (accent) → Optional (terms, collapsible).
+
+| Sekcija                         | blockVariant | Turinio taisyklė                                     |
+| ------------------------------- | ------------ | ---------------------------------------------------- |
+| 1. Trumpai (LT) / In short (EN) | accent       | 1–2 sakiniai, be perteklius                          |
+| 2. Daryk dabar                  | brand        | Aiškus veiksmas; CTA „🔘 Kopijuoti promptą (žemiau)“ |
+| 3. Kopijuojamas promptas        | —            | Vienas blokas; copyable                              |
+| 4. Patikra / Quality check      | accent       | „Jei bent 2 „ne“ → grįžk prie…“                      |
+| 5. Optional (collapsible)       | terms        | „🔽 Nori suprasti detaliau?“ – teorija, nuorodos     |
 
 **CTA „(žemiau)“ ir render eilė:** Formuluotę „Kopijuoti promptą (žemiau)“ naudoti **tik tada**, kai UI vizualiai rodo kopijuojamą bloką **po** CTA tekstu. Sekcijų render eilė: pirmiau „Daryk dabar“ (body su CTA), paskiau „Kopijuojamas promptas“ (TemplateBlock). Jei dėl layout promptas būtų virš CTA – vartoti tik „Kopijuoti promptą“ be „(žemiau)“.
 
@@ -112,14 +115,14 @@
 
 **Paskirtis:** Pirmas lengvas praktinis žingsnis prieš sudėtingesnius scenarijus (pvz. M3 prieš 6 scenarijus). Sumažina trintį – vartotojas iš karto „daro“, ne tik skaito.
 
-**Schema:** TL;DR (accent) → Daryk dabar (brand) → Kopijuojamas promptas → Patikra (accent). **Be Optional** – trumpas, low-friction.
+**Schema:** Trumpai (LT) / In short (EN), accent → Daryk dabar (brand) → Kopijuojamas promptas → Patikra (accent). **Be Optional** – trumpas, low-friction. LT antraštės – kaip §3.2 (be anglų santrumpų vartotojui matomame tekste).
 
-| Sekcija | blockVariant | Turinio taisyklė |
-|---------|--------------|------------------|
-| 1. Trumpai / TL;DR | accent | 1–2 sakiniai – ką gausi per 2–3 min |
-| 2. Daryk dabar | brand | „Nukopijuok promptą ir paleisk DI“ |
-| 3. Kopijuojamas promptas | — | Vienas blokas; META + INPUT + OUTPUT (trumpas) |
-| 4. Patikra | accent | „Jei X – puiku. Jei ne – pridėk…“ |
+| Sekcija                         | blockVariant | Turinio taisyklė                               |
+| ------------------------------- | ------------ | ---------------------------------------------- |
+| 1. Trumpai (LT) / In short (EN) | accent       | 1–2 sakiniai – ką gausi per 2–3 min            |
+| 2. Daryk dabar                  | brand        | „Nukopijuok promptą ir paleisk DI“             |
+| 3. Kopijuojamas promptas        | —            | Vienas blokas; META + INPUT + OUTPUT (trumpas) |
+| 4. Patikra                      | accent       | „Jei X – puiku. Jei ne – pridėk…“              |
 
 **Trukmė:** 2–3 min.
 
@@ -133,9 +136,9 @@
 
 **Struktūra (privaloma):**
 
-| Elementas | Turinio taisyklė |
-|-----------|------------------|
-| **sections** | Bent viena sekcija su **copyable** = vertintojo promptas (vienintelė pilna versija skaidrėje). Body/heading aiškina: „vienas promptas vertina kitą“. |
+| Elementas         | Turinio taisyklė                                                                                                                                                                                                                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **sections**      | Bent viena sekcija su **copyable** = vertintojo promptas (vienintelė pilna versija skaidrėje). Body/heading aiškina: „vienas promptas vertina kitą“.                                                                                                                                                                     |
 | **practicalTask** | **Privalomas.** Ne to paties vertintojo teksto dubliavimas, o **žingsniai**: templateLabel pvz. „Žingsniai: vienas promptas vertina kitą“; template = 4–5 žingsniai (nukopijuok vertintojo promptą → įklijuok į DI → įklijuok savo promptą → gauk įvertinimą) + pastaba „Vertintojas ir tavo promptas – ne konkurentai“. |
 
 **Kada naudoti:** Skaidrėse, kur dalyvis turi **paleisti vertintojo promptą**, o po to **savo** – ir gauti grįžtamąjį ryšį (kokybė, manipuliacijos, haliucinacijos ir t. t.).
@@ -150,13 +153,13 @@
 
 **Veiksmo modelis:** Klausimas (vienas pasirinkimas iš segmentų) → CTA „Palyginti su statistika“ → Atskleidžiamas blokas „Jūs pasirinkote: [X]“ + pie chart su 2026 m. duomenimis.
 
-| Laukas | Privalomas | Turinio taisyklė |
-|--------|------------|------------------|
-| question | Taip | Klausimas (pvz. „Kur tu dažniausiai naudoji DI?“) |
-| segments | Taip | Tie patys segmentai naudojami ir pasirinkimams (label), ir grafikui (label, value, colorKey) |
-| subtitle | Ne | Intro tekstas virš klausimo |
-| ctaReveal | Ne | CTA mygtuko tekstas (numatytas: „Palyginti su statistika“) |
-| footer | Ne | „Toliau – skaidrė X: …“ |
+| Laukas    | Privalomas | Turinio taisyklė                                                                             |
+| --------- | ---------- | -------------------------------------------------------------------------------------------- |
+| question  | Taip       | Klausimas (pvz. „Kur tu dažniausiai naudoji DI?“)                                            |
+| segments  | Taip       | Tie patys segmentai naudojami ir pasirinkimams (label), ir grafikui (label, value, colorKey) |
+| subtitle  | Ne         | Intro tekstas virš klausimo                                                                  |
+| ctaReveal | Ne         | CTA mygtuko tekstas (numatytas: „Palyginti su statistika“)                                   |
+| footer    | Ne         | „Toliau – skaidrė X: …“                                                                      |
 
 **Pavyzdys:** M4 skaidrė id 42 „Kam žmonės naudoja GPT?“.
 
@@ -168,21 +171,21 @@
 
 **5 blokų modelis** (SOT: `docs/development/SUMMARY_SLIDE_SPEC.md`):
 
-| # | Blokas | Turinys |
-|---|--------|---------|
-| 1 | Celebration Hero | Gradient brand→accent, „Ką išmokote“, intro body, 3 statistikos |
-| 2 | Žinių kortelės | Max 3 kortelės; ikona + heading + items su CheckCircle |
-| 3 | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) |
-| 4 | Kitas žingsnis CTA | Konkretus tekstas („Pereikite prie Modulio 2“) |
-| 5 | Motyvacinis footer | Tagline, formulė |
+| #   | Blokas               | Turinys                                                         |
+| --- | -------------------- | --------------------------------------------------------------- |
+| 1   | Celebration Hero     | Gradient brand→accent, „Ką išmokote“, intro body, 3 statistikos |
+| 2   | Žinių kortelės       | Max 3 kortelės; ikona + heading + items su CheckCircle          |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create)                  |
+| 4   | Kitas žingsnis CTA   | Konkretus tekstas („Pereikite prie Modulio 2“)                  |
+| 5   | Motyvacinis footer   | Tagline, formulė                                                |
 
 ### 3.4 test-intro, practice-intro
 
-| Laukas | Turinio taisyklė |
-|--------|------------------|
-| whyBenefit | Vienas aiškus naudos sakinys |
-| duration | „~15 min“ arba panašiai |
-| firstActionCTA / pirmas veiksmas | Trumpas, konkretus |
+| Laukas                           | Turinio taisyklė             |
+| -------------------------------- | ---------------------------- |
+| whyBenefit                       | Vienas aiškus naudos sakinys |
+| duration                         | „~15 min“ arba panašiai      |
+| firstActionCTA / pirmas veiksmas | Trumpas, konkretus           |
 
 ### 3.4a warm-up-quiz (savitikra)
 
@@ -224,11 +227,11 @@
 
 **Turinio schema:** `PathStepContent` – title, stepNumber (1…N), body (trumpas aprašymas) arba sections (content-block panašūs blokai), unlockedGlossaryTerms (string[] – terminų pavadinimai, kurie atrakinti po žingsnio užbaigimo).
 
-| Laukas | Privalomas | Turinio taisyklė |
-|--------|------------|------------------|
-| title | Taip | Žingsnio pavadinimas (pvz. „Įrankių seka ir workflow“) |
-| stepNumber | Taip | Kelio žingsnio numeris (1, 2, … N) |
-| body arba sections | Taip | Kas daryti; trumpas tekstas arba sekcijos su heading/body |
+| Laukas                | Privalomas     | Turinio taisyklė                                                              |
+| --------------------- | -------------- | ----------------------------------------------------------------------------- |
+| title                 | Taip           | Žingsnio pavadinimas (pvz. „Įrankių seka ir workflow“)                        |
+| stepNumber            | Taip           | Kelio žingsnio numeris (1, 2, … N)                                            |
+| body arba sections    | Taip           | Kas daryti; trumpas tekstas arba sekcijos su heading/body                     |
 | unlockedGlossaryTerms | Rekomenduojama | Terminų pavadinimų masyvas – atrakinti žodynėlyje po „Pažymėjau kaip atliktą“ |
 
 **Vizualė (atpažįstamumas):** „Duomenų analizės kelias“ identitetas – brand + accent juosta arba ikona (kelias/žemėlapis); badge pvz. „Žingsnis 1/N“ arba custom („Lygiagretūs tyrimai“). Skaidrė skiriasi nuo section-break (recap + „Kas toliau“) ir content-block (veiksmo sekcijos).
@@ -250,14 +253,14 @@
 
 **Principas:** Vartotojas mato skaidrės numerį kaip **nuoseklų sveikąjį skaičių modulyje** (1, 2, 3, …) – atitinka UI „Skaidrė 1/N“, „Skaidrė 2/N“. Footeryje **nenaudojame** skaidrės `id` (kuris gali būti dešimtainis, pvz. 40.8, 63.7).
 
-| Taisyklė | Aprašymas |
-|----------|------------|
-| **Formatas** | `"footer": "Toliau – skaidrė N: [kitos skaidrės pavadinimas]"`, kur **N** = kitos skaidrės **1-based pozicija** modulyje (ne `id`). |
-| **Ilgis** | Rekomenduojama: visas footer tekstas **iki 55 simbolių** (viena eilutė tipiniame ekrane). Jei skaidrė turi `shortTitle`, naudoti jį footeryje; jei vis tiek per ilga – sutrumpinti tik pavadinimo dalį. Žr. `docs/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`. |
-| **Kur pridedame** | `content.footer` – skaidrėse, kurios turi `content` objektą. Paskutinė modulio skaidrė (santrauka, rezultatai) – be „Toliau“ arba su CTA, ne su skaidrės numeriu. |
-| **Pavyzdys teisingas** | „Toliau – skaidrė 5: DI įrankiai pagal formą“ (5 = penkta skaidrė modulyje). |
-| **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių). |
-| **Kitos formos** | Šaltinio / nuorodos footeriai (pvz. „Šaltinis: MIT…“) – be skaidrės numerio; nekoreguojami. |
+| Taisyklė                 | Aprašymas                                                                                                                                                                                                                                                             |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Formatas**             | `"footer": "Toliau – skaidrė N: [kitos skaidrės pavadinimas]"`, kur **N** = kitos skaidrės **1-based pozicija** modulyje (ne `id`).                                                                                                                                   |
+| **Ilgis**                | Rekomenduojama: visas footer tekstas **iki 55 simbolių** (viena eilutė tipiniame ekrane). Jei skaidrė turi `shortTitle`, naudoti jį footeryje; jei vis tiek per ilga – sutrumpinti tik pavadinimo dalį. Žr. `docs/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`. |
+| **Kur pridedame**        | `content.footer` – skaidrėse, kurios turi `content` objektą. Paskutinė modulio skaidrė (santrauka, rezultatai) – be „Toliau“ arba su CTA, ne su skaidrės numeriu.                                                                                                     |
+| **Pavyzdys teisingas**   | „Toliau – skaidrė 5: DI įrankiai pagal formą“ (5 = penkta skaidrė modulyje).                                                                                                                                                                                          |
+| **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių).                                                                                                                                                                                    |
+| **Kitos formos**         | Šaltinio / nuorodos footeriai (pvz. „Šaltinis: MIT…“) – be skaidrės numerio; nekoreguojami.                                                                                                                                                                           |
 
 **Kai skaidrė perkeliama arba keičiama eilė:** Privaloma perskaičiuoti ir atnaujinti visus footerių numerius modulyje – N turi atitikti faktinę 1-based poziciją. Žr. **`.cursor/rules/footer-slide-numbers.mdc`** ir **agent-orchestrator.mdc §7**.
 
@@ -271,11 +274,11 @@
 
 #### 3.7.1 Kada išduoti sertifikatą
 
-| Sąlyga | Pavyzdys (dabartinis) |
-|--------|------------------------|
-| **Užbaigti moduliai** | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: moduliai 1–9. |
-| **Papildoma (optional)** | Testas išlaikytas (pvz. Modulio 5 quiz ≥70%) – tier 2. |
-| **Vieta mygtuko** | ModuleCompleteScreen – mygtukas „Parsisiųsti sertifikatą“ rodomas **tik** kai atitinka modulį (pvz. `module.id === 3` arba `module.id === 6`) ir sąlygas (completedModules, quizScore). |
+| Sąlyga                   | Pavyzdys (dabartinis)                                                                                                                                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: moduliai 1–9.                                                                                                                     |
+| **Papildoma (optional)** | Testas išlaikytas (pvz. Modulio 5 quiz ≥70%) – tier 2.                                                                                                                                  |
+| **Vieta mygtuko**        | ModuleCompleteScreen – mygtukas „Parsisiųsti sertifikatą“ rodomas **tik** kai atitinka modulį (pvz. `module.id === 3` arba `module.id === 6`) ir sąlygas (completedModules, quizScore). |
 
 **Receptas naujam moduliui:** Nuspręsti, po kurio modulio išduodamas sertifikatas; ar reikia quiz ribos; pridėti sąlygą ModuleCompleteScreen (pvz. `module.id === 9` ir `canRequestTier3`).
 
@@ -284,20 +287,21 @@
 #### 3.7.2 Duomenys (certificateContent.json)
 
 **Root (privaloma visiems):**
+
 - `websiteUrl` – oficialus puslapis (pvz. `https://www.promptanatomy.app/`). Rodyti PDF footeryje ir UI.
 - `websiteCta` – CTA tekstas nuorodai (pvz. „Kursas ir daugiau: promptanatomy.app“).
 - `tiers` – masyvas; kiekvienas elementas = vienas sertifikato lygis (tier).
 
 **Kiekvienam tier (vienas objektas masyve):**
 
-| Laukas | Privalomas | Turinio taisyklė |
-|--------|------------|------------------|
-| `tier` | Taip | Skaičius 1, 2, 3, … – atitinka lygį (1 = pirmas sertifikatas, 2 = antras, …). |
-| `introLine` | Taip | Pirmoji eilutė, pvz. „Šiuo dokumentu patvirtinama, kad“. Vienodas tonas – paprasta kalba. |
-| `completionLine` | Taip | Po vardo, pvz. „sėkmingai baigė mokymų programos dalį“ arba „sėkmingai baigė mokymų programą“. |
-| `programName` | Taip | Pilnas aprašymas (gali būti kelios eilutės), pvz. „6 blokų sistema – 6 blokai, testas, praktika“. |
-| `label` | Taip | Trumpa etiketė sertifikatui (pvz. „6 blokų sistema“, „Konteksto inžinerija“, „Duomenų analitika“). Fiksuota vienam tier. |
-| `footerText` | Taip | Footer tekstas, pvz. „Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.“ |
+| Laukas           | Privalomas | Turinio taisyklė                                                                                                         |
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `tier`           | Taip       | Skaičius 1, 2, 3, … – atitinka lygį (1 = pirmas sertifikatas, 2 = antras, …).                                            |
+| `introLine`      | Taip       | Pirmoji eilutė, pvz. „Šiuo dokumentu patvirtinama, kad“. Vienodas tonas – paprasta kalba.                                |
+| `completionLine` | Taip       | Po vardo, pvz. „sėkmingai baigė mokymų programos dalį“ arba „sėkmingai baigė mokymų programą“.                           |
+| `programName`    | Taip       | Pilnas aprašymas (gali būti kelios eilutės), pvz. „6 blokų sistema – 6 blokai, testas, praktika“.                        |
+| `label`          | Taip       | Trumpa etiketė sertifikatui (pvz. „6 blokų sistema“, „Konteksto inžinerija“, „Duomenų analitika“). Fiksuota vienam tier. |
+| `footerText`     | Taip       | Footer tekstas, pvz. „Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.“                                 |
 
 **Naujam moduliui:** Pridėti naują tier į `tiers` (arba išplėsti tier sąvoką, jei reikia daugiau lygių). Schema: `scripts/schemas/certificateContent.schema.json` – `tiers` masyvas; jei tier skaičius auga, schema gali leisti `minItems` / `maxItems` atnaujintus.
 
@@ -306,6 +310,7 @@
 #### 3.7.3 PDF maketas (atkartojamas)
 
 **Eilė dokumente (vienoda visiems tier):**
+
 1. Rėmelis (plonas, pilka).
 2. Viršus: „Promptų anatomija“ (mažesnis šriftas), po to „SERTIFIKATAS“.
 3. introLine → **vardas** (vartotojo įrašas) → completionLine → programName.
@@ -322,12 +327,12 @@
 
 #### 3.7.4 UI (atkartojamas)
 
-| Vieta | Kas |
-|-------|-----|
-| **ModuleCompleteScreen** | Kai modulis atitinka (pvz. id 3, 6, 9) ir sąlygos tenkinamos – mygtukas „Parsisiųsti sertifikatą“ (aria-label su lygio aprašymu). Po mygtukų – nuoroda „Kursas: promptanatomy.app“ (websiteUrl). |
-| **CertificateScreen** | Gauna `tier` (1 | 2 | 3 | …). Rodo maketo peržiūrą, vardo lauką, mygtukus „Grįžti“ ir „Išsaugoti ir parsisiųsti PDF“. Po mygtukų – nuoroda su websiteCta ir ExternalLink ikona. |
-| **Navigacija** | Sertifikatas pasiekiamas tik per ModuleCompleteScreen (hidden treasure) arba tiesiogiai per route `/certificate?tier=N` – nėra atskiro meniu punkto. |
-| **Lokalizacija** | `certificate.*` (lt.json, en.json): title, introText, nameLabel, namePlaceholder, nameHint, saveAndDownloadButton, back, preparing, contentNotFound, websiteCta, websiteCtaAria, yourNamePlaceholder. |
+| Vieta                    | Kas                                                                                                                                                                                                   |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ModuleCompleteScreen** | Kai modulis atitinka (pvz. id 3, 6, 9) ir sąlygos tenkinamos – mygtukas „Parsisiųsti sertifikatą“ (aria-label su lygio aprašymu). Po mygtukų – nuoroda „Kursas: promptanatomy.app“ (websiteUrl).      |
+| **CertificateScreen**    | Gauna `tier` (1                                                                                                                                                                                       | 2   | 3   | …). Rodo maketo peržiūrą, vardo lauką, mygtukus „Grįžti“ ir „Išsaugoti ir parsisiųsti PDF“. Po mygtukų – nuoroda su websiteCta ir ExternalLink ikona. |
+| **Navigacija**           | Sertifikatas pasiekiamas tik per ModuleCompleteScreen (hidden treasure) arba tiesiogiai per route `/certificate?tier=N` – nėra atskiro meniu punkto.                                                  |
+| **Lokalizacija**         | `certificate.*` (lt.json, en.json): title, introText, nameLabel, namePlaceholder, nameHint, saveAndDownloadButton, back, preparing, contentNotFound, websiteCta, websiteCtaAria, yourNamePlaceholder. |
 
 **Hidden treasure pattern:** Hidden treasure rodomas kaip **Unlock kortelė** – accent blokas (antraštė, body tekstas pagal tier, vienas dominuojantis CTA). Įgyvendinimas: `ModuleCompleteScreen.tsx` (Unlock kortelė, accent blokas, CTA).
 
@@ -338,6 +343,7 @@
 #### 3.7.5 Privaloma nuoroda ir CTA (visi artefaktai)
 
 Kiekvienas išvesties dokumentas (sertifikatas, PDF handout ir pan.) **privalo** turėti:
+
 - **websiteUrl** ir **websiteCta** – root lygyje duomenyse; rodomi PDF footeryje ir atitinkamame UI (nuoroda po atsisiuntimo mygtuko).
 
 **SOT:** `docs/development/CERTIFICATE_CONTENT_SOT.md` (titulai, tonas, websiteUrl, websiteCta, UI vietos).
@@ -350,14 +356,14 @@ Kiekvienas išvesties dokumentas (sertifikatas, PDF handout ir pan.) **privalo**
 
 Kiekvieno modulio **pirmoji skaidrė** – vienas aiškus naudos sakinys.
 
-| Modulis | Pavyzdys |
-|---------|----------|
-| 1 | Po šio modulio rašysi promptus 6x geriau nei anksčiau. |
-| 2 | Po šio testo tavo žinios išaugs dar 60%. |
-| 3 | Po praktinės dalies turėsi 6 paruoštus šablonus kasdieniam darbui. |
-| 4 | Po šio modulio klaidų DI atsakymuose sumažės 40%. |
-| 5 | Po šio sprinto tu kursi verslo prezentacijas per 15 minučių! |
-| 6 | Po projekto turėsi vieną paruoštą artefaktą ir šablonus tolesniam darbui. |
+| Modulis | Pavyzdys                                                                  |
+| ------- | ------------------------------------------------------------------------- |
+| 1       | Po šio modulio rašysi promptus 6x geriau nei anksčiau.                    |
+| 2       | Po šio testo tavo žinios išaugs dar 60%.                                  |
+| 3       | Po praktinės dalies turėsi 6 paruoštus šablonus kasdieniam darbui.        |
+| 4       | Po šio modulio klaidų DI atsakymuose sumažės 40%.                         |
+| 5       | Po šio sprinto tu kursi verslo prezentacijas per 15 minučių!              |
+| 6       | Po projekto turėsi vieną paruoštą artefaktą ir šablonus tolesniam darbui. |
 
 ### 4.2 Antraštės ir CTA
 
@@ -385,27 +391,27 @@ Kiekvieno modulio **pirmoji skaidrė** – vienas aiškus naudos sakinys.
 
 ### 5.1 Spacing
 
-| Kontekstas | Klasė |
-|------------|--------|
-| Tarp blokų skaidrėje | `space-y-6` arba `gap-6` |
-| Vidinis bloko padding | `p-4` md: `p-5` / `p-6` |
-| Skaidrės wrapper | `p-6 md:p-10` |
+| Kontekstas            | Klasė                    |
+| --------------------- | ------------------------ |
+| Tarp blokų skaidrėje  | `space-y-6` arba `gap-6` |
+| Vidinis bloko padding | `p-4` md: `p-5` / `p-6`  |
+| Skaidrės wrapper      | `p-6 md:p-10`            |
 
 ### 5.2 Border-radius
 
-| Elementas | Klasė |
-|-----------|--------|
-| Kortelė, didesnis blokas | `rounded-2xl` |
-| Mažesnis blokas, mygtukas | `rounded-xl` |
-| Badge | `rounded-full` arba `rounded-lg` |
+| Elementas                 | Klasė                            |
+| ------------------------- | -------------------------------- |
+| Kortelė, didesnis blokas  | `rounded-2xl`                    |
+| Mažesnis blokas, mygtukas | `rounded-xl`                     |
+| Badge                     | `rounded-full` arba `rounded-lg` |
 
 ### 5.3 Šešėliai
 
-| Lygis | Klasė |
-|-------|--------|
-| Default | `shadow-md` |
-| Hover | `shadow-lg` |
-| CTA | `shadow-brand-500/25` (subtilius) |
+| Lygis   | Klasė                             |
+| ------- | --------------------------------- |
+| Default | `shadow-md`                       |
+| Hover   | `shadow-lg`                       |
+| CTA     | `shadow-brand-500/25` (subtilius) |
 
 **Taisyklė:** Vengti `shadow-2xl` ant kelių elementų vienoje skaidrėje.
 
@@ -417,11 +423,11 @@ Kiekvieno modulio **pirmoji skaidrė** – vienas aiškus naudos sakinys.
 
 AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilutes, kai viewport < ~1280px. Todėl visi sticky elementai po AppNav turi naudoti CSS kintamąjį, ne hardcoded reikšmę.
 
-| Elementas | Pozicionavimas | z-index |
-|-----------|---------------|---------|
-| AppNav | `sticky top-0` | `z-40` |
-| Slide nav (ModuleView) | `sticky top-[var(--app-nav-height,4rem)]` | `z-20` |
-| Modal / overlay | `fixed inset-0` | `z-50` |
+| Elementas              | Pozicionavimas                            | z-index |
+| ---------------------- | ----------------------------------------- | ------- |
+| AppNav                 | `sticky top-0`                            | `z-40`  |
+| Slide nav (ModuleView) | `sticky top-[var(--app-nav-height,4rem)]` | `z-20`  |
+| Modal / overlay        | `fixed inset-0`                           | `z-50`  |
 
 **Mechanizmas:** `AppNav.tsx` naudoja `ResizeObserver` ir nustato `--app-nav-height` CSS kintamąjį ant `<html>`. Fallback `4rem` (64px) veikia kai kintamasis dar nenustatytas.
 
@@ -431,12 +437,12 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 
 ## 6. Modulio identitetas (badge ir akcentai)
 
-| Modulis | Badge | CTA / akcentas |
-|---------|-------|----------------|
-| 1 (Mokymas) | brand | brand → accent gradient |
-| 2 (Testas) | slate | brand mygtukai, ramus tonas |
-| 3 (Praktika) | slate | accent tik 1–2 CTA |
-| 4–6 | brand (learn), slate (test/practice) | Pagal modulio tipą |
+| Modulis      | Badge                                | CTA / akcentas              |
+| ------------ | ------------------------------------ | --------------------------- |
+| 1 (Mokymas)  | brand                                | brand → accent gradient     |
+| 2 (Testas)   | slate                                | brand mygtukai, ramus tonas |
+| 3 (Praktika) | slate                                | accent tik 1–2 CTA          |
+| 4–6          | brand (learn), slate (test/practice) | Pagal modulio tipą          |
 
 **Bendras principas:** Vienas akcentas per kontekstą; neutralūs fonai (slate/gray).
 
@@ -471,9 +477,9 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 **H1 ir subtitle** – etalonas, keisti tik pagal SOT / vartotojų atsiliepimus:
 
-| Elementas | Tekstas |
-|-----------|---------|
-| **H1** | Paversk DI savo darbo sistema |
+| Elementas    | Tekstas                                                               |
+| ------------ | --------------------------------------------------------------------- |
+| **H1**       | Paversk DI savo darbo sistema                                         |
 | **Subtitle** | Kiekvienas modulis – realios užduotys, verslo scenarijai ir šablonai. |
 
 **Taisyklė:** H1 ir subtitle nesidubliuoja. Implementacija: `src/components/ModulesPage.tsx`.
@@ -484,12 +490,12 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 **Geriausia praktika (legacy standard atnaujintas):**
 
-| Taisyklė | Aprašymas |
-|----------|-----------|
-| **Viena eilutė** | Taškai **niekada** nepersidėlioja į kelias eilutes – naudoti `flex-nowrap`. |
-| **Horizontalus scroll** | Kai skaidrių daug – konteineris su `overflow-x-auto`, `scroll-smooth`; vartotojas slenka taškų juostą horizontaliai. |
-| **Ilgi moduliai (>24 skaidrės)** | Mažesni taškai: touch target 36px (vietoj 44px), aktyvus taškas proporcingai mažesnis – daugiau telpa į matomą plotį, mažiau reikia slinkti. |
-| **A11y** | Konteineriui `role="group"` ir `aria-label` su skaidrių skaičiumi (`slideDotsAria`); kiekvienas taškas – `aria-label` „Eiti į skaidrę N“, `aria-current` dabartinei. |
+| Taisyklė                         | Aprašymas                                                                                                                                                            |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Viena eilutė**                 | Taškai **niekada** nepersidėlioja į kelias eilutes – naudoti `flex-nowrap`.                                                                                          |
+| **Horizontalus scroll**          | Kai skaidrių daug – konteineris su `overflow-x-auto`, `scroll-smooth`; vartotojas slenka taškų juostą horizontaliai.                                                 |
+| **Ilgi moduliai (>24 skaidrės)** | Mažesni taškai: touch target 36px (vietoj 44px), aktyvus taškas proporcingai mažesnis – daugiau telpa į matomą plotį, mažiau reikia slinkti.                         |
+| **A11y**                         | Konteineriui `role="group"` ir `aria-label` su skaidrių skaičiumi (`slideDotsAria`); kiekvienas taškas – `aria-label` „Eiti į skaidrę N“, `aria-current` dabartinei. |
 
 **Implementacija:** `src/components/ModuleView.tsx` – blokas „Slide dots“. Vertimai: `module.slideDotsAria` (lt/en).
 
@@ -497,21 +503,21 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 ## 9. Nuorodos ir failai
 
-| Sritis | Failas |
-|--------|--------|
-| Turinio SOT (1–3) | turinio_pletra.md |
-| Turinio SOT (4–6) | docs/turinio_pletra_moduliai_4_5_6.md |
-| Turinio SOT (7–9) | docs/turinio_pletra_moduliai_7_8_9.md |
-| Modulių atpažinimas | docs/CONTENT_MODULIU_ATPAZINIMAS.md |
-| Santraukos skaidrės | docs/development/SUMMARY_SLIDE_SPEC.md |
-| Paprasta kalba | docs/development/PAPRASTOS_KALBOS_GAIRES.md |
-| Spalvos, šriftai | tailwind.config.js |
-| Design tokens | src/design-tokens.ts |
-| Skaidrių routing | SlideContent.tsx, ModuleView.tsx |
-| Duomenys | src/data/modules.json |
-| Tipai | src/types/modules.ts, scripts/schemas/modules.schema.json |
-| **Footeriai (nuoseklūs nr.)** | .cursor/rules/footer-slide-numbers.mdc, agent-orchestrator.mdc §7 |
-| **Skaidrių taškai (navigacija)** | ModuleView.tsx §8.5 – viena eilutė, overflow-x-auto, ilgiems moduliams mažesni taškai |
+| Sritis                                                | Failas                                                                                                                    |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Turinio SOT (1–3)                                     | turinio_pletra.md                                                                                                         |
+| Turinio SOT (4–6)                                     | docs/turinio_pletra_moduliai_4_5_6.md                                                                                     |
+| Turinio SOT (7–9)                                     | docs/turinio_pletra_moduliai_7_8_9.md                                                                                     |
+| Modulių atpažinimas                                   | docs/CONTENT_MODULIU_ATPAZINIMAS.md                                                                                       |
+| Santraukos skaidrės                                   | docs/development/SUMMARY_SLIDE_SPEC.md                                                                                    |
+| Paprasta kalba                                        | docs/development/PAPRASTOS_KALBOS_GAIRES.md                                                                               |
+| Spalvos, šriftai                                      | tailwind.config.js                                                                                                        |
+| Design tokens                                         | src/design-tokens.ts                                                                                                      |
+| Skaidrių routing                                      | SlideContent.tsx, ModuleView.tsx                                                                                          |
+| Duomenys                                              | src/data/modules.json                                                                                                     |
+| Tipai                                                 | src/types/modules.ts, scripts/schemas/modules.schema.json                                                                 |
+| **Footeriai (nuoseklūs nr.)**                         | .cursor/rules/footer-slide-numbers.mdc, agent-orchestrator.mdc §7                                                         |
+| **Skaidrių taškai (navigacija)**                      | ModuleView.tsx §8.5 – viena eilutė, overflow-x-auto, ilgiems moduliams mažesni taškai                                     |
 | **Sertifikatai moduliuose (atkartojamas standartas)** | §3.7 – kada išduoti, certificateContent.json (tiers, websiteUrl, websiteCta), PDF maketas, UI; CERTIFICATE_CONTENT_SOT.md |
 
 ---
@@ -523,7 +529,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 - [ ] Antraštės trumpos (3–7 žodžių)
 - [ ] DI, ne AI; paprasta kalba
 - [ ] Bold tik svarbiems žodžiams
-- [ ] content-block: TL;DR → Do now → Copy → Quality check → Optional
+- [ ] content-block: Trumpai (LT) → Daryk dabar → Copy → Patikra → Optional (EN: In short → Do now → …)
 - [ ] **Footer (jei skaidrė turi „Toliau“):** nuoseklus numeris (1, 2, 3…), ne skaidrės `id`; formatas „Toliau – skaidrė N: [pavadinimas]“ (§3.6)
 - [ ] **Naujas sertifikatas moduliui:** §3.7 – tier į certificateContent.json (introLine, completionLine, programName, label, footerText); root websiteUrl, websiteCta; ModuleCompleteScreen sąlyga + mygtukas; tas pats PDF maketas ir CertificateScreen; nuoroda po mygtukais
 - [ ] Touch targets min 44px (trumpi moduliai) arba 36px ilgiems (>24 skaidrės); aria-label interaktyviems; skaidrių taškai – viena eilutė + horizontalus scroll (§8.5)
@@ -531,4 +537,4 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 ---
 
-*Šis dokumentas – vienintelis golden standard. Kontrolės: CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT, CODING_AGENT.*
+_Šis dokumentas – vienintelis golden standard. Kontrolės: CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT, CODING_AGENT._

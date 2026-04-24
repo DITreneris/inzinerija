@@ -11,11 +11,11 @@
 
 ### 1.1 Vieta kurse
 
-| Moduliai 1–6 | Moduliai 7–9 |
-|--------------|--------------|
-| 6 blokų sistema, konteksto inžinerija, RAG, žinių patikrinimas | **Duomenų analizės kelias** – DI kaip analizės asistentas |
-| Žinių testas + vienas projektas (M4–M6) | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
-| Learn → Test → Practice | Ta pati seka, auditorija: analitikai |
+| Moduliai 1–6                                                   | Moduliai 7–9                                                 |
+| -------------------------------------------------------------- | ------------------------------------------------------------ |
+| 6 blokų sistema, konteksto inžinerija, RAG, žinių patikrinimas | **Duomenų analizės kelias** – DI kaip analizės asistentas    |
+| Žinių testas + vienas projektas (M4–M6)                        | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
+| Learn → Test → Practice                                        | Ta pati seka, auditorija: analitikai                         |
 
 **Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys (pvz. M4 skaidrė id 61 – DI įrankiai informacijos paieškai) gali būti integruotas į Duomenų analizės kelio aprašymą arba „Papildomas skaitymas“.
 
@@ -51,11 +51,11 @@
 
 Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas aiškus naudos sakinys pirmoje kiekvieno modulio skaidrėje:
 
-| Modulis | Skaidrė / tipas | whyBenefit (tekstas į JSON) |
-|---------|------------------|-----------------------------|
-| **7** | action-intro (pirmoji) | Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki MASTER PROMPT ir vizualizacijų. |
-| **8** | test-intro | Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9). |
-| **9** | practice-intro | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI. |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                  |
+| ------- | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **7**   | action-intro (pirmoji) | Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki MASTER PROMPT ir vizualizacijų. |
+| **8**   | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9).              |
+| **9**   | practice-intro         | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.             |
 
 ---
 
@@ -74,13 +74,14 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 - **Variacija egzistuoja** – ne kiekvienas svyravimas = problema; reikia statistinio mąstymo.
 - **Tobulinti sistemą, ne kaltinti žmones** – procesinis požiūris (Deming, nuolatinis tobulinimas).
 
-*Šią dalį galima pateikti kaip vieną skaidrę „Strateginis pamatas“ su 5–6 punktais; optional – citata „In God we trust, all others bring data“ (Deming) kaip tiltis į VIII.*
+_Šią dalį galima pateikti kaip vieną skaidrę „Strateginis pamatas“ su 5–6 punktais; optional – citata „In God we trust, all others bring data“ (Deming) kaip tiltis į VIII._
 
 ### 2A. DI paradoksas: aktualus kontekstas (MIT 2025) – problematikos apibrėžimas
 
 **Paskirtis:** Integruoti aktualų kontekstą – milijardai investicijų į DI, bet beveik jokio pelno augimo organizacijose; formuoti supratimą, kodėl duomenų kultūra ir struktūra yra būtini.
 
 **Faktai (tarptautinis MIT tyrimas 2025, 300+ DI projektų, 52 organizacijos, ~150 vadovų):**
+
 - **95 %** DI diegiančių įmonių nepamatė teigiamo pokyčio P&L ataskaitose; tik **5 %** deklaruoja realią finansinę grąžą.
 - Į generatyvinį DI investuota **>40 mlrd JAV dolerių** (apie 34 mlrd per praėjusius metus); skirtumas tarp investicijų ir grąžos – dramatiškas.
 - **Paradoksas 2:** 97 % IT specialistų kasdien naudoja DI; 60–70 % darbuotojų – darbas greitesnis; bet tai beveik neatsispindi organizacijos pelningume. Produktyvumas asmeniniame lygmenyje ≠ struktūrinis organizacinis efektyvumas.
@@ -92,7 +93,7 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 
 **Esminė išvada:** DI problema nėra technologinė; ji kultūrinė, organizacinė, struktūrinė, strateginė. Asmeniniame lygmenyje DI jau laimėjo; organizaciniame – dar tik pradžia.
 
-**Implementacija M7:** Skaidrė **725** – infographic (variant `di-paradox`): pilna interaktyvi infografika – hero stats (95 %, >40 mlrd$, 5 %) su hover tooltip (paaiškinimas ir tendencija), 4 paradokso kortelės (FAKTAS 01–04), „Šešėlinis DI“ bar chart, pilotų piltuvas, kur vertė, 4 žingsnių sprendimas, 3 veiksmai, išvada. Užvedus ant skaičiaus – tooltip su paaiškinimu ir tendencija. Skaidrė **726** – content-block „Problematika: kodėl DI nesukuria vertės ir ką daryti“ (5 sekcijų).
+**Implementacija M7:** Skaidrė **725** – infographic (variant `di-paradox`): pilna interaktyvi infografika – hero stats (95 %, >40 mlrd$, 5 %) su hover tooltip (paaiškinimas ir tendencija), 4 paradokso kortelės (FAKTAS 01–04), „Šešėlinis DI“ bar chart, pilotų piltuvas, kur vertė, 4 žingsnių sprendimas, 3 veiksmai, išvada. Užvedus ant skaičiaus – tooltip su paaiškinimu ir tendencija. Skaidrė **726** – content-block „Problematika: kodėl DI nesukuria vertės ir ką daryti“: pirmoje sekcijoje nuoroda skaityti kartu su 725 (vengti to paties ilgo skaičių kartojimo); toliau tekstinės sekcijos (problemos ir veiksmai), sutampančios su infografika. Žargonas ROI tekste vengiamas – naudoti „grąža iš investicijų / grąžos ciklas“ kontekste.
 
 ### 2.2 Duomenų analizės pipeline (02_DA I)
 
@@ -105,19 +106,19 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 5. **Vizualizacija**
 6. **Publikavimas / sprendimų priėmimas**
 
-*Skaidrėje – 6 žingsnių schema arba workflow diagrama; ryšys su tolesnėmis operacinėmis lentelėmis ir promptais.*
+_Skaidrėje – 6 žingsnių schema arba workflow diagrama; ryšys su tolesnėmis operacinėmis lentelėmis ir promptais._
 
 ### 2.3 Pagrindinės sąvokos – operacinis paaiškinimas (02_DA II)
 
-| Etapas | Ką realiai reiškia versle | DI promptas (CopyButton) |
-|--------|---------------------------|---------------------------|
-| Duomenų rinkimas | Iš kur paimsime info? | „Išvardink 10 galimų duomenų šaltinių [X] temai.“ |
-| Paruošimas | Sutvarkymas | „Identifikuok trūkstamas reikšmes ir pasiūlyk užpildymo metodus.“ |
-| EDA | Ką galiu suprasti? | „Identifikuok 5 svarbiausius dėsningumus.“ |
-| Vizualizacija | Kaip parodyti vadovui? | „Pasiūlyk 3 grafikus šiai analizei.“ |
-| Publikavimas | Kaip tai parduoti? | „Sugeneruok vadovų ataskaitą su rekomendacijomis.“ |
+| Etapas           | Ką realiai reiškia versle | DI promptas (CopyButton)                                          |
+| ---------------- | ------------------------- | ----------------------------------------------------------------- |
+| Duomenų rinkimas | Iš kur paimsime info?     | „Išvardink 10 galimų duomenų šaltinių [X] temai.“                 |
+| Paruošimas       | Sutvarkymas               | „Identifikuok trūkstamas reikšmes ir pasiūlyk užpildymo metodus.“ |
+| EDA              | Ką galiu suprasti?        | „Identifikuok 5 svarbiausius dėsningumus.“                        |
+| Vizualizacija    | Kaip parodyti vadovui?    | „Pasiūlyk 3 grafikus šiai analizei.“                              |
+| Publikavimas     | Kaip tai parduoti?        | „Sugeneruok vadovų ataskaitą su rekomendacijomis.“                |
 
-*Skaidrėje – lentelė su CopyButton kiekvienam promptui; laukas [X] – tema.*
+_Skaidrėje – lentelė su CopyButton kiekvienam promptui; laukas [X] – tema._
 
 ---
 
@@ -128,33 +129,33 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 ### 3.1 Tradicinis vs išplėstinis požiūris
 
 | Tradicinis požiūris | Išplėstinis požiūris (6 domenai) |
-|---------------------|-----------------------------------|
-| Sąnaudos | **Klientų elgsena** |
-| Pajamos | **Tiekimo grandinė** |
-| Pelnas | **Pardavimų dinamika** |
-| | **CRM / marketing duomenys** |
-| | **Procesų efektyvumas** |
-| | **Konkurencinė analizė** |
+| ------------------- | -------------------------------- |
+| Sąnaudos            | **Klientų elgsena**              |
+| Pajamos             | **Tiekimo grandinė**             |
+| Pelnas              | **Pardavimų dinamika**           |
+|                     | **CRM / marketing duomenys**     |
+|                     | **Procesų efektyvumas**          |
+|                     | **Konkurencinė analizė**         |
 
 **Skaidrėje:** Dvi kortelės arba lentelė; paaiškinimas – „Šie 6 domenai – potencialūs DI analizės moduliai“; ryšys su tolesnėmis skaidrėmis (DB struktūra, KPI, vizualizacijos).
 
 ### 3.2 Duomenų tipai (02_DA III)
 
-| Tipas | Aprašymas | DI promptas (CopyButton) |
-|-------|------------|---------------------------|
-| **Kiekybiniai** | Skaičiai, kainos, kiekiai. | „Išskirk visus kiekybinius rodiklius ir apskaičiuok jų vidurkius bei dispersiją.“ |
-| **Kokybiniai** | Nuomonės, emocijos. | „Sugrupuok klientų atsiliepimus į 5 temines kategorijas.“ |
-| **Struktūruoti** | Excel, SQL, ERP. | „Normalizuok lentelę pagal 3NF principus.“ |
-| **Nestruktūruoti** | PDF, tekstai, social media. | „Išanalizuok šį tekstą ir ištrauk pagrindines temas bei sentimentą.“ |
-| **Pusiau struktūruoti** | JSON, API. | „Sugeneruok JSON schemą pagal pateiktą pavyzdį.“ |
+| Tipas                   | Aprašymas                   | DI promptas (CopyButton)                                                          |
+| ----------------------- | --------------------------- | --------------------------------------------------------------------------------- |
+| **Kiekybiniai**         | Skaičiai, kainos, kiekiai.  | „Išskirk visus kiekybinius rodiklius ir apskaičiuok jų vidurkius bei dispersiją.“ |
+| **Kokybiniai**          | Nuomonės, emocijos.         | „Sugrupuok klientų atsiliepimus į 5 temines kategorijas.“                         |
+| **Struktūruoti**        | Excel, SQL, ERP.            | „Normalizuok lentelę pagal 3NF principus.“                                        |
+| **Nestruktūruoti**      | PDF, tekstai, social media. | „Išanalizuok šį tekstą ir ištrauk pagrindines temas bei sentimentą.“              |
+| **Pusiau struktūruoti** | JSON, API.                  | „Sugeneruok JSON schemą pagal pateiktą pavyzdį.“                                  |
 
 ### 3.3 Duomenų rinkimo strategija (02_DA IV)
 
-| Kategorija | Pavyzdžiai | DI promptas (CopyButton) |
-|------------|------------|---------------------------|
-| **Pirminiai** | Apklausos, interviu, stebėjimas, eksperimentai. | „Sukurk apklausą apie [X] su 10 uždarų ir 5 atvirais klausimais.“ |
-| **Antriniai** | Statistikos duomenys, CRM, socialiniai tinklai. | „Išvardink viešus šaltinius Lietuvoje [X] temai.“ |
-| **Automatiniai** | Web scraping, API, log failai. | „Sukurk Python skriptą, kuris renka duomenis iš [X] API.“ *(Pastaba: ROADMAP – 1 skaidrė max kodo; galima tik kaip užduoties aprašymas.)* |
+| Kategorija       | Pavyzdžiai                                      | DI promptas (CopyButton)                                                                                                                  |
+| ---------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Pirminiai**    | Apklausos, interviu, stebėjimas, eksperimentai. | „Sukurk apklausą apie [X] su 10 uždarų ir 5 atvirais klausimais.“                                                                         |
+| **Antriniai**    | Statistikos duomenys, CRM, socialiniai tinklai. | „Išvardink viešus šaltinius Lietuvoje [X] temai.“                                                                                         |
+| **Automatiniai** | Web scraping, API, log failai.                  | „Sukurk Python skriptą, kuris renka duomenis iš [X] API.“ _(Pastaba: ROADMAP – 1 skaidrė max kodo; galima tik kaip užduoties aprašymas.)_ |
 
 ### 3.4 Data scraping (duomenų siurbimas) – skirta skaidrė
 
@@ -171,7 +172,7 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 - **Etika ir teisė:** Tik vieši ar leisti duomenys; gerbti svetainės naudojimo taisykles ir robots.txt; asmens duomenų neieškoti be teisėto pagrindo.
 - **CopyButton – promptas skriptui generuoti:** žr. §10.2 Scenarijus „Data scraping su paprastu Python skriptu“.
 
-*Ryšys su pipeline (§2.2) ir 7.6–7 (Duomenų tipai ir rinkimo strategija). Skaidrių eilė: žr. MODULIO_7_SKAIDRIU_EILES.md – įterpti po 7.6–7.*
+_Ryšys su pipeline (§2.2) ir 7.6–7 (Duomenų tipai ir rinkimo strategija). Skaidrių eilė: žr. MODULIO_7_SKAIDRIU_EILES.md – įterpti po 7.6–7._
 
 ---
 
@@ -179,12 +180,12 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 
 ### 4.1 Esminis skirtumas: tradicinė vs DI analizė (skaidrė)
 
-| Tradicinė | DI |
-|-----------|-----|
-| Rankinis darbas | **Automatizacija** |
-| Riboti modeliai | **Kompleksiniai metodai** |
+| Tradicinė              | DI                              |
+| ---------------------- | ------------------------------- |
+| Rankinis darbas        | **Automatizacija**              |
+| Riboti modeliai        | **Kompleksiniai metodai**       |
 | Žmogaus interpretacija | **Duomenų pagrįsti sprendimai** |
-| Mažas lankstumas | **Prisitaikantis** |
+| Mažas lankstumas       | **Prisitaikantis**              |
 
 **Naratyvas:** DI = analitikas + automatizatorius + prognozuotojas.
 
@@ -196,7 +197,7 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 - Prognozuoti
 - Modeliuoti scenarijus
 
-*Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų architektūra (V).*
+_Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų architektūra (V)._
 
 ---
 
@@ -214,7 +215,7 @@ Mąstai sisteminiu principu.
 Sprendimus grindži duomenimis, ne intuicija.
 ```
 
-*Ryšys su META bloku (6 blokų sistema).*
+_Ryšys su META bloku (6 blokų sistema)._
 
 ### 5.2 Duomenų struktūros kūrimas (DB dizainas) (7.x skaidrė)
 
@@ -239,7 +240,7 @@ Pateik:
 - KPI, kuriuos verta stebėti
 ```
 
-*Skaidrėje – šablonas su lauku [X]; pastaba: jei reikia, viena skaidrė su labai trumpu SQL pavyzdžiu (ROADMAP – po 1 skaidrę max).*
+_Skaidrėje – šablonas su lauku [X]; pastaba: jei reikia, viena skaidrė su labai trumpu SQL pavyzdžiu (ROADMAP – po 1 skaidrę max)._
 
 ### 5.3 Duomenų ryšių analizė (7.x skaidrė)
 
@@ -270,20 +271,20 @@ Sugeneruok:
 4. 3 pagrindines įžvalgas
 ```
 
-*Ryšys su OUTPUT ir Quality – „jei duomenų nepakanka – nurodyk, ko trūksta“.*
+_Ryšys su OUTPUT ir Quality – „jei duomenų nepakanka – nurodyk, ko trūksta“._
 
 ### 5.4a Paprastos vizualizacijos – promptai pagal tipą (7.x skaidrė)
 
 Viena skaidrė su **4 CopyButton** – po vieną paprastam vizualizacijos tipui:
 
-| Tipas | Kada naudoti | Kopijuojamas promptas (CopyButton) |
-|-------|----------------|-------------------------------------|
-| **Stulpelinė** | Kategorijų palyginimas (regionai, produktai) | „Turiu duomenis: [kategorija, reikšmė]. Pasiūlyk stulpelinę diagramą; pridėk trumpą įžvalgą (top 3).“ |
-| **Linijinė** | Tendencijos per laiką | „Turiu laiko eilės duomenis: [datos, rodiklis]. Pasiūlyk linijinę diagramą; nurodyk tendenciją ir 1–2 įžvalgas.“ |
-| **Skritulinė** | Proporcijos, dalys visumoje | „Turiu proporcijų duomenis: [kategorija, dalis %]. Pasiūlyk skritulinę diagramą; legendą ir vieną įžvalgą.“ |
-| **Lentelė** | Tikslūs skaičiai, ne grafikas | „Apibendrink šiuos duomenis lentelėje: stulpeliai [X], max 10 eilučių; 1–2 sakiniai interpretacijos.“ |
+| Tipas          | Kada naudoti                                 | Kopijuojamas promptas (CopyButton)                                                                               |
+| -------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Stulpelinė** | Kategorijų palyginimas (regionai, produktai) | „Turiu duomenis: [kategorija, reikšmė]. Pasiūlyk stulpelinę diagramą; pridėk trumpą įžvalgą (top 3).“            |
+| **Linijinė**   | Tendencijos per laiką                        | „Turiu laiko eilės duomenis: [datos, rodiklis]. Pasiūlyk linijinę diagramą; nurodyk tendenciją ir 1–2 įžvalgas.“ |
+| **Skritulinė** | Proporcijos, dalys visumoje                  | „Turiu proporcijų duomenis: [kategorija, dalis %]. Pasiūlyk skritulinę diagramą; legendą ir vieną įžvalgą.“      |
+| **Lentelė**    | Tikslūs skaičiai, ne grafikas                | „Apibendrink šiuos duomenis lentelėje: stulpeliai [X], max 10 eilučių; 1–2 sakiniai interpretacijos.“            |
 
-*Skaidrėje – 4 sekcijos, kiekviena su CopyButton; integruota po „Vizualizacijų generavimas“ (5.4).*
+_Skaidrėje – 4 sekcijos, kiekviena su CopyButton; integruota po „Vizualizacijų generavimas“ (5.4)._
 
 ### 5.5 Prognozavimo promptas (7.x skaidrė)
 
@@ -338,26 +339,26 @@ Sukurk pardavimų tyrimo planą:
 
 ### 5.7 5 žingsnių algoritmas (02_DA VI) – šaltinių ir duomenų valdymas
 
-*AI-driven šaltinių / duomenų valdymo sistema (operacinė).*
+_AI-driven šaltinių / duomenų valdymo sistema (operacinė)._
 
-| Žingsnis | DI promptas (CopyButton) |
-|----------|---------------------------|
-| **1. Identifikuoti šaltinius** | „Sudaryk 20 viešų duomenų šaltinių Lietuvoje sąrašą su nuorodomis.“ |
-| **2. Sukurti struktūrą** | „Sukurk lentelę su stulpeliais: kategorija, šaltinis, URL, atnaujinimo dažnis.“ |
-| **3. Surinkti duomenis** | „Priskirk šiuos rinkinius kategorijoms.“ |
-| **4. Valymas** | „Pašalink dubliavimus.“ |
-| **5. Eksportas** | „Paruošk CSV formatą.“ |
+| Žingsnis                       | DI promptas (CopyButton)                                                        |
+| ------------------------------ | ------------------------------------------------------------------------------- |
+| **1. Identifikuoti šaltinius** | „Sudaryk 20 viešų duomenų šaltinių Lietuvoje sąrašą su nuorodomis.“             |
+| **2. Sukurti struktūrą**       | „Sukurk lentelę su stulpeliais: kategorija, šaltinis, URL, atnaujinimo dažnis.“ |
+| **3. Surinkti duomenis**       | „Priskirk šiuos rinkinius kategorijoms.“                                        |
+| **4. Valymas**                 | „Pašalink dubliavimus.“                                                         |
+| **5. Eksportas**               | „Paruošk CSV formatą.“                                                          |
 
 ### 5.8 EDA – ką tai reiškia praktiškai (02_DA VII)
 
 **Tikslas:** „KĄ GALIU SUPRASTI IŠ DUOMENŲ?“
 
-| Užduotis | DI promptas (CopyButton) |
-|----------|---------------------------|
+| Užduotis               | DI promptas (CopyButton)                                |
+| ---------------------- | ------------------------------------------------------- |
 | **Statistinė analizė** | „Pateik vidurkį, medianą, IQR ir standartinį nuokrypį.“ |
-| **Koreliacija** | „Apskaičiuok koreliacijų matricą ir paaiškink ryšius.“ |
-| **Anomalijos** | „Identifikuok outlierius pagal IQR metodą.“ |
-| **Hipotezės** | „Pasiūlyk 3 hipotezes, kurias verta testuoti.“ |
+| **Koreliacija**        | „Apskaičiuok koreliacijų matricą ir paaiškink ryšius.“  |
+| **Anomalijos**         | „Identifikuok outlierius pagal IQR metodą.“             |
+| **Hipotezės**          | „Pasiūlyk 3 hipotezes, kurias verta testuoti.“          |
 
 ### 5.9 Lentelių kūrimo metodika (02_DA VIII)
 
@@ -378,9 +379,9 @@ Pridėk:
 
 ### 5.10 Tikslinės informacijos paieška (02_DA IX)
 
-*Business intelligence schema:* **Surink** → **Analizuok** → **Ataskaita** → **Prognozė**.
+_Business intelligence schema:_ **Surink** → **Analizuok** → **Ataskaita** → **Prognozė**.
 
-*Skaidrėje – 4 žingsnių schema; ryšys su pipeline (§2.2) ir Master promptu (§5.14).*
+_Skaidrėje – 4 žingsnių schema; ryšys su pipeline (§2.2) ir Master promptu (§5.14)._
 
 ### 5.11 Patobulintas rinkos tendencijų promptas (02_DA X)
 
@@ -402,15 +403,15 @@ Rezultatas:
 
 ### 5.12 DI agentų koncepcija (02_DA XI)
 
-*Kaip šią medžiagą paversti DI agentais:*
+_Kaip šią medžiagą paversti DI agentais:_
 
-| Agentas | Funkcijos |
-|---------|-----------|
+| Agentas                 | Funkcijos                                                     |
+| ----------------------- | ------------------------------------------------------------- |
 | **Data Research Agent** | Šaltinių identifikavimas, duomenų struktūra, duomenų valymas. |
-| **EDA Agent** | Statistinė analizė, vizualizacijų generavimas. |
-| **Insight Agent** | Rekomendacijos, prognozės. |
+| **EDA Agent**           | Statistinė analizė, vizualizacijų generavimas.                |
+| **Insight Agent**       | Rekomendacijos, prognozės.                                    |
 
-*Skaidrėje – 3 kortelės; ryšys su 5 žingsnių algoritmu ir Master promptu.*
+_Skaidrėje – 3 kortelės; ryšys su 5 žingsnių algoritmu ir Master promptu._
 
 ### 5.13 Silpnosios vietos – ką pridėti mokymuose (02_DA XII)
 
@@ -421,7 +422,7 @@ Dokumente trūksta (jei kuriam pilną mokymų programą – rekomenduojama prid�
 - Automatizavimo sluoksnis (aprašymas, ne būtinai kodas).
 - Validacijos metodika (kaip tikrinti DI išvestį – ryšys su 4.6).
 
-*Skaidrėje – optional „Ką toliau?“ arba collapsible; nesilaikyti tik šio sąrašo – prioritetas promptams.*
+_Skaidrėje – optional „Ką toliau?“ arba collapsible; nesilaikyti tik šio sąrašo – prioritetas promptams._
 
 ### 5.14 MASTER PROMPTAS (02_DA XIII)
 
@@ -442,7 +443,7 @@ Struktūra:
 8. Strateginės rekomendacijos
 ```
 
-*Skaidrėje – akcentuotas blokas (pvz. blockVariant: accent); naudoti kaip Modulio 9 projekto šabloną.*
+_Skaidrėje – akcentuotas blokas (pvz. blockVariant: accent); naudoti kaip Modulio 9 projekto šabloną._
 
 ---
 
@@ -473,7 +474,7 @@ Analizuok šią ekrano nuotrauką.
    - Prioritetas (Low / Medium / High)
 ```
 
-*Naudinga: UX auditai, agentų kontekstas, Promptų anatomijos ir GitHub projektų kontekstas.*
+_Naudinga: UX auditai, agentų kontekstas, Promptų anatomijos ir GitHub projektų kontekstas._
 
 ### 6.2 Schema paaiškinimo metodas (7.x skaidrė)
 
@@ -522,7 +523,7 @@ Sukurk:
 3. Vadovų elgesio pokyčių gaires (pavyzdžiai: „prašyti duomenų prieš sprendimą“, „ne spėti – matuoti“)
 ```
 
-*Skaidrėje – 5 sekcijos: Griežta teorija, Kodėl pagrindas, Kontekstas Lietuva, Citata, Promptas vadovybei (CopyButton).*
+_Skaidrėje – 5 sekcijos: Griežta teorija, Kodėl pagrindas, Kontekstas Lietuva, Citata, Promptas vadovybei (CopyButton)._
 
 ---
 
@@ -542,30 +543,30 @@ Remiantis DA_4 (2–4 psl.) – susisteminta struktūra:
 4. **Duomenų analizė**
 5. **Duomenų istorija**
 
-*Ryšys su §2.2 pipeline; čia akcentas – vizualizacija ir istorija kaip ciklo dalys.*
+_Ryšys su §2.2 pipeline; čia akcentas – vizualizacija ir istorija kaip ciklo dalys._
 
 ### 7A.2 Psichologija – kodėl vizualizacija veikia
 
 Žmonės įsimena (orientacinis tyrimas):
 
-- **10 %** to, ką girdi  
-- **20 %** to, ką perskaito  
+- **10 %** to, ką girdi
+- **20 %** to, ką perskaito
 - **80 %** to, ką **mato ir patiria**
 
 **➡ Argumentas už:** interaktyvias ataskaitas, dashboard'us, grafines istorijas.
 
 ### 7A.3 Geštalto principai (8) – reikšmė vizualizacijai
 
-| Principas | Reikšmė vizualizacijai |
-|-----------|-------------------------|
-| **Artumas** | Grupavimas pagal atstumą |
-| **Panašumas** | Spalva / forma rodo ryšį |
-| **Išskyrimas** | Fokusas |
-| **Sujungimas** | Linijos kuria ryšį |
-| **Tęstinumas** | Akis seka kryptį |
-| **Uždarymas** | Užbaigti kontūrai |
-| **Figūra–fonas** | Kas svarbiausia |
-| **Bendras judėjimas** | Kryptis = ryšys |
+| Principas             | Reikšmė vizualizacijai   |
+| --------------------- | ------------------------ |
+| **Artumas**           | Grupavimas pagal atstumą |
+| **Panašumas**         | Spalva / forma rodo ryšį |
+| **Išskyrimas**        | Fokusas                  |
+| **Sujungimas**        | Linijos kuria ryšį       |
+| **Tęstinumas**        | Akis seka kryptį         |
+| **Uždarymas**         | Užbaigti kontūrai        |
+| **Figūra–fonas**      | Kas svarbiausia          |
+| **Bendras judėjimas** | Kryptis = ryšys          |
 
 ### 7A.4 Sustiprinti promptai (verslo lygis)
 
@@ -604,18 +605,18 @@ OUTPUT: 1) Duomenų įkėlimas 2) Data model patikra 3) Vizualizacijos kūrimas 
 Parašyk Python kodą, kuris: 1) Sugeneruoja pardavimų dataset 2) Nubraižo: stulpelinę diagramą regionams, linijinę tendenciją per laiką 3) Naudoja seaborn 4) Prideda anotacijas su pagrindinėmis įžvalgomis
 ```
 
-*(ROADMAP: 1 skaidrė max ilgiems kodo pavyzdžiams – galima tik kaip užduoties aprašymas arba trumpas fragmentas.)*
+_(ROADMAP: 1 skaidrė max ilgiems kodo pavyzdžiams – galima tik kaip užduoties aprašymas arba trumpas fragmentas.)_
 
 ### 7A.5 Duomenys → Istorija modelis (DA_4, 10 psl.)
 
 **Modelis:** Duomenys → Grafika → Naratyvas → Menas → Istorija
 
-| Etapas | Reikšmė |
-|--------|---------|
-| Skaičiai | Patikimumas |
-| Grafika | Aiškumas |
-| Naratyvas | Emocinis ryšys |
-| Istorija | Sprendimų pagrindas |
+| Etapas    | Reikšmė             |
+| --------- | ------------------- |
+| Skaičiai  | Patikimumas         |
+| Grafika   | Aiškumas            |
+| Naratyvas | Emocinis ryšys      |
+| Istorija  | Sprendimų pagrindas |
 
 ### 7A.6 Netflix / BBC pavyzdžiai – dashboard ir hierarchija
 
@@ -623,7 +624,7 @@ Parašyk Python kodą, kuris: 1) Sugeneruoja pardavimų dataset 2) Nubraižo: st
 
 **BBC pavyzdys:** Kontekstas; vizualinė hierarchija; aiški legenda.
 
-*Skaidrėje – 2 kortelės arba schema; optional – nuotraukos/ nuorodos.*
+_Skaidrėje – 2 kortelės arba schema; optional – nuotraukos/ nuorodos._
 
 ### 7A.7 Kaip DI gali padėti (4 sritys) + super promptas
 
@@ -646,12 +647,12 @@ OUTPUT:
 
 ### 7A.8 Alternatyvos ChatGPT (DA_4, 14–20 psl.)
 
-| Įrankis | Stiprybės |
-|---------|-----------|
-| **Julius AI** | NLP analizė; paprasta naudoti; tinka ne techniniams. |
-| **Echobase** | Agentų kūrimas; failų sinchronizacija; komandinis darbas. |
+| Įrankis                | Stiprybės                                                          |
+| ---------------------- | ------------------------------------------------------------------ |
+| **Julius AI**          | NLP analizė; paprasta naudoti; tinka ne techniniams.               |
+| **Echobase**           | Agentų kūrimas; failų sinchronizacija; komandinis darbas.          |
 | **DataLab (DataCamp)** | SQL + Python generavimas; real-time notebook; enterprise saugumas. |
-| **Power BI** | Šimtai vizualizacijų; integracijos; enterprise lygis. |
+| **Power BI**           | Šimtai vizualizacijų; integracijos; enterprise lygis.              |
 
 ### 7A.9 Strateginė išvada ir pro lygio papildymai
 
@@ -667,53 +668,53 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 
 ### 8.1 Skaidrių planas (7.1 – 7.N)
 
-| # | Skaidrė / tema | Trumpas aprašymas | Ryšys |
-|---|----------------|-------------------|--------|
-| **7.1** | **Duomenų analizės kelias – ką čia rasite** | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); fokusas – analizės užklausos ir išvados. Kodėl duomenų analizė su DI svarbu analitikams. | META, 4.2 |
-| **7.2** | **Strateginis pamatas** | Duomenys = sprendimų sistema; rinkimas + tvarkymas + interpretavimas → sprendimai; duomenys > nuomonė; variacija; tobulinti sistemą, ne kaltinti žmones. | Governance |
-| **7.3** | **Duomenų analizės pipeline** | 6 žingsniai: rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas; „raw → insight → decision“. | — |
-| **7.4** | **Pagrindinės sąvokos – operacinė lentelė** | Etapas vs „ką reiškia versle“ vs DI promptas (rinkimas, paruošimas, EDA, vizualizacija, publikavimas); CopyButton. | INPUT, OUTPUT |
-| **7.4a** | **4 analizės tipai** | Aprašomoji (Kas įvyko?) → Diagnostinė (Kodėl?) → Nuspėjamoji (Kas gali?) → Nurodomoji (Kaip veikti?). 4 CopyButton – po vieną promptą kiekvienam tipui. Ryšys su M8 blokais. | OUTPUT, M8 |
-| **7.4b** | **Sentimentų analizė – verslo lygio OUTPUT** | 5 punktų struktūra: sentimentų %, temos, intensyvumas, kritiniai skundai, 3 veiksmai. CopyButton su ROLE/TASK/CONTEXT/OUTPUT/TONE. | OUTPUT, M8 |
-| **7.4c** | **Verslo analizės šablonai** | Duomenų kūrimas, Konkurentai, CFO – 3 CopyButton (M9 Scenarijai 3–5). | OUTPUT |
-| **7.5** | **Verslo duomenų išplėtimas** | 6 domenai: klientų elgsena, tiekimo grandinė, pardavimų dinamika, CRM/marketingas, procesų efektyvumas, konkurencinė analizė. | INPUT |
-| **7.6** | **Duomenų tipai** | Kiekybiniai, kokybiniai, struktūruoti, nestruktūruoti, pusiau struktūruoti; po 1 DI promptą kiekvienam (CopyButton). | INPUT |
-| **7.7** | **Duomenų rinkimo strategija** | Pirminiai / antriniai / automatiniai; CopyButton (apklausa, vieši šaltiniai, API skriptas aprašymas). | INPUT |
-| **7.7a** | **Data scraping (duomenų siurbimas)** | Paprasčiausi būdai (rankinis, naršyklė, DI skriptas, API); etika/teisė; CopyButton – promptas skriptui generuoti; kaip paleisti. Žr. §3.4. | INPUT |
-| **7.8** | **Kaip DI keičia analizę** | Lentelė: tradicinė vs DI; DI = analitikas + automatizatorius + prognozuotojas. | — |
-| **7.9** | **Ką DI gali verslo analitiko vaidmenyje** | Sąrašas: metodai, statistika, vizualizacijos, prognozės, scenarijai; tiltelis į promptus. | OUTPUT |
-| **7.10** | **Rolės aktyvavimas** | CopyButton: „Vyresnysis verslo duomenų analitikas“, sisteminis principas, sprendimai duomenimis. | META |
-| **7.11** | **Duomenų struktūros kūrimas (DB)** | CopyButton: e-commerce DB (6 lentelių tipai), ER, KPI; optional lentelių metodika (5.9). | INPUT |
-| **7.12** | **Duomenų ryšių analizė** | CopyButton: ryšiai, dubliavimas, butelio kakliukai, 5 KPI. | INPUT, Quality |
-| **7.13** | **Vizualizacijų generavimas** | CopyButton: tendencijos, segmentai, pelningumas, 3 įžvalgos. | OUTPUT |
-| **7.14** | **Prognozavimas** | CopyButton: 6 mėn. prognozė, sezoniškumas, scenarijai, rizikos. | OUTPUT |
-| **7.15** | **Tyrimų promptų sistema** | CopyButton: prekės ženklo tyrimas, darbuotojų lojalumas, pardavimų tyrimas (3 šablonai). | OUTPUT |
-| **7.16** | **5 žingsnių algoritmas** | Šaltiniai → struktūra → surinkti → valymas → eksportas; 5 DI promptai (CopyButton). | INPUT |
-| **7.16a** | **Duomenų valymas ir metaduomenys** | Valymo checklist: anonimizacija, formatų suvienodinimas, dublių šalinimas, trūkstamos reikšmės, data type validacija, laiko/regiono žymės. Metaduomenys 3 tipai: aprašomieji, struktūriniai, administraciniai. CopyButton. | INPUT, M8 |
-| **7.16b** | **Promptų sekos (workflow)** | Surink → Išvalyk (checklist) → Metaduomenys → 4 analizės tipai → Veiksmų planas. Schema arba numeruotas sąrašas. Ryšys su M8-q8. | OUTPUT, M8 |
-| **7.17** | **EDA praktiškai** | „Ką galiu suprasti?“; CopyButton: statistinė analizė, koreliacija, anomalijos, hipotezės. | — |
-| **7.18** | **Lentelių kūrimo metodika** | Tikslas → Stulpeliai → Pavyzdžiai → Skaičiavimai → Iteracija → Validacija; profesionalus promptas (CopyButton). | INPUT, OUTPUT |
-| **7.19** | **Tikslinė informacijos paieška** | Surink → Analizuok → Ataskaita → Prognozė (BI schema). | — |
-| **7.20** | **Rinkos tendencijų pavyzdys** | Patobulintas promptas: Rolė + Užduotis + Šaltiniai + Rezultatas (5 tendencijos, poveikis, rizika, prognozė); CopyButton. | OUTPUT |
-| **7.21** | **DI agentų koncepcija** | Data Research Agent, EDA Agent, Insight Agent – 3 kortelės. | — |
-| **7.22** | **Screenshot analizė** | Ką DI gali iš nuotraukos; CopyButton: sisteminis promptas (elementai, problemos, optimizacijos, prioritetas). | — |
-| **7.23** | **Schema paaiškinimo metodas** | CopyButton: entitetai, ryšiai, normalizavimas, optimizavimas. | INPUT |
-| **7.24** | **Deming ir duomenimis grįsta kultūra** | Citata; CopyButton: promptas vadovybei (5 žingsniai, KPI, vadovų elgesio gairės). | Governance |
-| **7.25** | **Silpnosios vietos – ką pridėti** | Modeliai, realūs pavyzdžiai, automatizavimas, validacijos metodika (optional / collapsible). | — |
-| **7.26** | **MASTER PROMPTAS** | Galutinis 8 žingsnių promptas (šaltiniai → struktūra → valymas → EDA → vizualizacijos → įžvalgos → prognozės → rekomendacijos); CopyButton; M9 šablonas. | META, OUTPUT |
-| **7.27** | **Modulio 7 santrauka** | Apžvalga; „Ką toliau?“ – Testas (Modulis 8), Projektas (Modulis 9). | — |
-| **7.28** | **Vizualizacija ir data storytelling – pozicionavimas** | Ne techninis kursas; data storytelling + DI įvadas; vizualizacija = istorijos dalis, sprendimų įrankis; DI = katalizatorius. | OUTPUT |
-| **7.29** | **Duomenų ciklas (su vizualizacija)** | Surinkimas → Paruošimas → Vizualizacija → Analizė → Istorija; ryšys su pipeline. | — |
-| **7.30** | **Psichologija – kodėl vizualizacija veikia** | 10 % girdi / 20 % skaito / 80 % mato ir patiria; argumentas už dashboard'us, interaktyvias ataskaitas. | — |
-| **7.31** | **Geštalto principai (8)** | Lentelė: Artumas, Panašumas, Išskyrimas, Sujungimas, Tęstinumas, Uždarymas, Figūra–fonas, Bendras judėjimas. | OUTPUT |
-| **7.32** | **Sustiprinti vizualizacijos promptai** | CopyButton: vizualizacijos tipo parinkimas, istorijos kūrimas, Power BI žingsniai, Python viz (4 promptai). | OUTPUT |
-| **7.33** | **Duomenys→Istorija modelis** | Duomenys → Grafika → Naratyvas → Menas → Istorija; skaičiai = patikimumas, grafika = aiškumas, naratyvas = emocinis ryšys. | OUTPUT |
-| **7.34** | **Dashboard pavyzdžiai (Netflix/BBC)** | KPI viršuje, tendencija, segmentavimas, filtrai; kontekstas, hierarchija, legenda. | — |
-| **7.35** | **DI pagalba + super promptas + alternatyvos** | 4 sritys; kombinuotas super promptas (analizė + grafikai + Power BI + Python + istorija + veiksmas); Julius AI, Echobase, DataLab, Power BI. | OUTPUT |
+| #         | Skaidrė / tema                                          | Trumpas aprašymas                                                                                                                                                                                                          | Ryšys          |
+| --------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| **7.1**   | **Duomenų analizės kelias – ką čia rasite**             | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); fokusas – analizės užklausos ir išvados. Kodėl duomenų analizė su DI svarbu analitikams.                                                                            | META, 4.2      |
+| **7.2**   | **Strateginis pamatas**                                 | Duomenys = sprendimų sistema; rinkimas + tvarkymas + interpretavimas → sprendimai; duomenys > nuomonė; variacija; tobulinti sistemą, ne kaltinti žmones.                                                                   | Governance     |
+| **7.3**   | **Duomenų analizės pipeline**                           | 6 žingsniai: rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas; „raw → insight → decision“.                                                                                                            | —              |
+| **7.4**   | **Pagrindinės sąvokos – operacinė lentelė**             | Etapas vs „ką reiškia versle“ vs DI promptas (rinkimas, paruošimas, EDA, vizualizacija, publikavimas); CopyButton.                                                                                                         | INPUT, OUTPUT  |
+| **7.4a**  | **4 analizės tipai**                                    | Aprašomoji (Kas įvyko?) → Diagnostinė (Kodėl?) → Nuspėjamoji (Kas gali?) → Nurodomoji (Kaip veikti?). 4 CopyButton – po vieną promptą kiekvienam tipui. Ryšys su M8 blokais.                                               | OUTPUT, M8     |
+| **7.4b**  | **Sentimentų analizė – verslo lygio OUTPUT**            | 5 punktų struktūra: sentimentų %, temos, intensyvumas, kritiniai skundai, 3 veiksmai. CopyButton su ROLE/TASK/CONTEXT/OUTPUT/TONE.                                                                                         | OUTPUT, M8     |
+| **7.4c**  | **Verslo analizės šablonai**                            | Duomenų kūrimas, Konkurentai, CFO – 3 CopyButton (M9 Scenarijai 3–5).                                                                                                                                                      | OUTPUT         |
+| **7.5**   | **Verslo duomenų išplėtimas**                           | 6 domenai: klientų elgsena, tiekimo grandinė, pardavimų dinamika, CRM/marketingas, procesų efektyvumas, konkurencinė analizė.                                                                                              | INPUT          |
+| **7.6**   | **Duomenų tipai**                                       | Kiekybiniai, kokybiniai, struktūruoti, nestruktūruoti, pusiau struktūruoti; po 1 DI promptą kiekvienam (CopyButton).                                                                                                       | INPUT          |
+| **7.7**   | **Duomenų rinkimo strategija**                          | Pirminiai / antriniai / automatiniai; CopyButton (apklausa, vieši šaltiniai, API skriptas aprašymas).                                                                                                                      | INPUT          |
+| **7.7a**  | **Data scraping (duomenų siurbimas)**                   | Paprasčiausi būdai (rankinis, naršyklė, DI skriptas, API); etika/teisė; CopyButton – promptas skriptui generuoti; kaip paleisti. Žr. §3.4.                                                                                 | INPUT          |
+| **7.8**   | **Kaip DI keičia analizę**                              | Lentelė: tradicinė vs DI; DI = analitikas + automatizatorius + prognozuotojas.                                                                                                                                             | —              |
+| **7.9**   | **Ką DI gali verslo analitiko vaidmenyje**              | Sąrašas: metodai, statistika, vizualizacijos, prognozės, scenarijai; tiltelis į promptus.                                                                                                                                  | OUTPUT         |
+| **7.10**  | **Rolės aktyvavimas**                                   | CopyButton: „Vyresnysis verslo duomenų analitikas“, sisteminis principas, sprendimai duomenimis.                                                                                                                           | META           |
+| **7.11**  | **Duomenų struktūros kūrimas (DB)**                     | CopyButton: e-commerce DB (6 lentelių tipai), ER, KPI; optional lentelių metodika (5.9).                                                                                                                                   | INPUT          |
+| **7.12**  | **Duomenų ryšių analizė**                               | CopyButton: ryšiai, dubliavimas, butelio kakliukai, 5 KPI.                                                                                                                                                                 | INPUT, Quality |
+| **7.13**  | **Vizualizacijų generavimas**                           | CopyButton: tendencijos, segmentai, pelningumas, 3 įžvalgos.                                                                                                                                                               | OUTPUT         |
+| **7.14**  | **Prognozavimas**                                       | CopyButton: 6 mėn. prognozė, sezoniškumas, scenarijai, rizikos.                                                                                                                                                            | OUTPUT         |
+| **7.15**  | **Tyrimų promptų sistema**                              | CopyButton: prekės ženklo tyrimas, darbuotojų lojalumas, pardavimų tyrimas (3 šablonai).                                                                                                                                   | OUTPUT         |
+| **7.16**  | **5 žingsnių algoritmas**                               | Šaltiniai → struktūra → surinkti → valymas → eksportas; 5 DI promptai (CopyButton).                                                                                                                                        | INPUT          |
+| **7.16a** | **Duomenų valymas ir metaduomenys**                     | Valymo checklist: anonimizacija, formatų suvienodinimas, dublių šalinimas, trūkstamos reikšmės, data type validacija, laiko/regiono žymės. Metaduomenys 3 tipai: aprašomieji, struktūriniai, administraciniai. CopyButton. | INPUT, M8      |
+| **7.16b** | **Promptų sekos (workflow)**                            | Surink → Išvalyk (checklist) → Metaduomenys → 4 analizės tipai → Veiksmų planas. Schema arba numeruotas sąrašas. Ryšys su M8-q8.                                                                                           | OUTPUT, M8     |
+| **7.17**  | **EDA praktiškai**                                      | „Ką galiu suprasti?“; CopyButton: statistinė analizė, koreliacija, anomalijos, hipotezės.                                                                                                                                  | —              |
+| **7.18**  | **Lentelių kūrimo metodika**                            | Tikslas → Stulpeliai → Pavyzdžiai → Skaičiavimai → Iteracija → Validacija; profesionalus promptas (CopyButton).                                                                                                            | INPUT, OUTPUT  |
+| **7.19**  | **Tikslinė informacijos paieška**                       | Surink → Analizuok → Ataskaita → Prognozė (BI schema).                                                                                                                                                                     | —              |
+| **7.20**  | **Rinkos tendencijų pavyzdys**                          | Patobulintas promptas: Rolė + Užduotis + Šaltiniai + Rezultatas (5 tendencijos, poveikis, rizika, prognozė); CopyButton.                                                                                                   | OUTPUT         |
+| **7.21**  | **DI agentų koncepcija**                                | Data Research Agent, EDA Agent, Insight Agent – 3 kortelės.                                                                                                                                                                | —              |
+| **7.22**  | **Screenshot analizė**                                  | Ką DI gali iš nuotraukos; CopyButton: sisteminis promptas (elementai, problemos, optimizacijos, prioritetas).                                                                                                              | —              |
+| **7.23**  | **Schema paaiškinimo metodas**                          | CopyButton: entitetai, ryšiai, normalizavimas, optimizavimas.                                                                                                                                                              | INPUT          |
+| **7.24**  | **Deming ir duomenimis grįsta kultūra**                 | Citata; CopyButton: promptas vadovybei (5 žingsniai, KPI, vadovų elgesio gairės).                                                                                                                                          | Governance     |
+| **7.25**  | **Silpnosios vietos – ką pridėti**                      | Modeliai, realūs pavyzdžiai, automatizavimas, validacijos metodika (optional / collapsible).                                                                                                                               | —              |
+| **7.26**  | **MASTER PROMPTAS**                                     | Galutinis 8 žingsnių promptas (šaltiniai → struktūra → valymas → EDA → vizualizacijos → įžvalgos → prognozės → rekomendacijos); CopyButton; M9 šablonas.                                                                   | META, OUTPUT   |
+| **7.27**  | **Modulio 7 santrauka**                                 | Apžvalga; „Ką toliau?“ – Testas (Modulis 8), Projektas (Modulis 9).                                                                                                                                                        | —              |
+| **7.28**  | **Vizualizacija ir data storytelling – pozicionavimas** | Ne techninis kursas; data storytelling + DI įvadas; vizualizacija = istorijos dalis, sprendimų įrankis; DI = katalizatorius.                                                                                               | OUTPUT         |
+| **7.29**  | **Duomenų ciklas (su vizualizacija)**                   | Surinkimas → Paruošimas → Vizualizacija → Analizė → Istorija; ryšys su pipeline.                                                                                                                                           | —              |
+| **7.30**  | **Psichologija – kodėl vizualizacija veikia**           | 10 % girdi / 20 % skaito / 80 % mato ir patiria; argumentas už dashboard'us, interaktyvias ataskaitas.                                                                                                                     | —              |
+| **7.31**  | **Geštalto principai (8)**                              | Lentelė: Artumas, Panašumas, Išskyrimas, Sujungimas, Tęstinumas, Uždarymas, Figūra–fonas, Bendras judėjimas.                                                                                                               | OUTPUT         |
+| **7.32**  | **Sustiprinti vizualizacijos promptai**                 | CopyButton: vizualizacijos tipo parinkimas, istorijos kūrimas, Power BI žingsniai, Python viz (4 promptai).                                                                                                                | OUTPUT         |
+| **7.33**  | **Duomenys→Istorija modelis**                           | Duomenys → Grafika → Naratyvas → Menas → Istorija; skaičiai = patikimumas, grafika = aiškumas, naratyvas = emocinis ryšys.                                                                                                 | OUTPUT         |
+| **7.34**  | **Dashboard pavyzdžiai (Netflix/BBC)**                  | KPI viršuje, tendencija, segmentavimas, filtrai; kontekstas, hierarchija, legenda.                                                                                                                                         | —              |
+| **7.35**  | **DI pagalba + super promptas + alternatyvos**          | 4 sritys; kombinuotas super promptas (analizė + grafikai + Power BI + Python + istorija + veiksmas); Julius AI, Echobase, DataLab, Power BI.                                                                               | OUTPUT         |
 
-*Skaidrių skaičius gali būti sumažintas sujungiant pvz. 7.3+7.4, 7.6+7.7, 7.28+7.29, 7.32 į vieną – pagal UI ir laiką. **Papildomi sujungimai (mažas turinys, teminis ryšys, pedagogika):** žr. [docs/MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md](MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md) – 78+79, 891+892, 95+96, 101+102, 104+105, 92+93. Šaltiniai: 02_DA, DA_4 (Duomenų vizualizacija ir istorija).*
+_Skaidrių skaičius gali būti sumažintas sujungiant pvz. 7.3+7.4, 7.6+7.7, 7.28+7.29, 7.32 į vieną – pagal UI ir laiką. **Papildomi sujungimai (mažas turinys, teminis ryšys, pedagogika):** žr. [docs/MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md](MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md) – 78+79, 891+892, 95+96, 101+102, 104+105, 92+93. Šaltiniai: 02_DA, DA_4 (Duomenų vizualizacija ir istorija)._
 
-**Blokas „Patikrumas ir etika“ (perkeltas iš Modulio 4):** Po skaidrės 891 (Duomenų paruošimas ir workflow) įterptas blokas: 66.9 (section-break), 67 (Promptų manipuliacijos), 67.3 (Praktika: pataisyk šališką promptą), 67.5 (Saugumas: prompt injection ir jailbreak), 67.8 (Haliucinacijos), 68 (Žinių patikrinimas), 200 (Haliucinacijų rodikliai), 201 (DI turinio detektoriai), 68.5 (Savitikra). Tematika atitinka duomenų/turinio patikimumą analizėje. Žr. [MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
+**Blokas „Patikrumas ir etika“ (perkeltas iš Modulio 4):** Po skaidrės 891 (Duomenų paruošimas ir workflow) įterptas blokas: 66.9 (section-break), 67 (Promptų manipuliacijos), 67.3 (Praktika: pataisyk šališką promptą), 67.5 (Saugumas: prompt injection ir jailbreak), 67.7 (Haliucinacijų mažinimo grandinė – vizuali 5 žingsnių schema, tipas `hallucination-pipeline`), 67.8 (Haliucinacijos), 68 (Žinių patikrinimas), 200 (Haliucinacijų rodikliai), 201 (DI turinio detektoriai), 68.5 (Savitikra). Tematika atitinka duomenų/turinio patikimumą analizėje. Žr. [MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
 
 ### 8.2 Kelias pramaišytas su teorija (path-step skaidrės)
 
@@ -721,13 +722,13 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 
 **Path-step skaidrės (kelio žingsniai):**
 
-| Žingsnis | Pavadinimas (orientacinis) | Vieta (po kokios teorijos) | unlockedGlossaryTerms (kandidatai) |
-|----------|----------------------------|-----------------------------|-------------------------------------|
-| 1 | Įrankių seka ir workflow | Po 7.4 (operacinė lentelė) | Duomenų analizės pipeline, EDA |
-| 2 | Sisteminis promptas ir gilaus tyrimo tema | Po 7.7 / 7.16 (rinkimo strategija, 5 žingsnių algoritmas) | Deep research, MASTER PROMPTAS |
-| 3 | Lygiagrečių tyrimų parengimas (2–4 šaltiniai) | Po 7.19 (tikslinė paieška) | RAG, Šaltinių nurodymas |
-| 4 | 4× tyrimų sintetinimas ir RAG | Po 7.26 (MASTER PROMPTAS) | Sintetinimas, Duomenų valymas |
-| 5 | Duomenų masyvas ir atvaizdavimas | Prieš 7.27 (santrauka) arba M9 kontekste | Vizualizacija, Dashboard |
+| Žingsnis | Pavadinimas (orientacinis)                    | Vieta (po kokios teorijos)                                | unlockedGlossaryTerms (kandidatai) |
+| -------- | --------------------------------------------- | --------------------------------------------------------- | ---------------------------------- |
+| 1        | Įrankių seka ir workflow                      | Po 7.4 (operacinė lentelė)                                | Duomenų analizės pipeline, EDA     |
+| 2        | Sisteminis promptas ir gilaus tyrimo tema     | Po 7.7 / 7.16 (rinkimo strategija, 5 žingsnių algoritmas) | Deep research, MASTER PROMPTAS     |
+| 3        | Lygiagrečių tyrimų parengimas (2–4 šaltiniai) | Po 7.19 (tikslinė paieška)                                | RAG, Šaltinių nurodymas            |
+| 4        | 4× tyrimų sintetinimas ir RAG                 | Po 7.26 (MASTER PROMPTAS)                                 | Sintetinimas, Duomenų valymas      |
+| 5        | Duomenų masyvas ir atvaizdavimas              | Prieš 7.27 (santrauka) arba M9 kontekste                  | Vizualizacija, Dashboard           |
 
 **Turinio schema path-step:** `title`, `stepNumber`, `body` arba `sections`, `unlockedGlossaryTerms` (terminų pavadinimų masyvas – šie terminai žodynėlyje atrakinti po žingsnio užbaigimo). Sąveika: vartotojas paspaudžia „Pažymėjau kaip atliktą“ → įrašas į progresą (`completedTasks[moduleId]`) → žodynėlyje terminai iš `unlockedGlossaryTerms` laikomi atrakintais. Žodynėlio terminai su optional `unlockedBy: { moduleId, slideId }` rodomi kaip užrakinti, kol atitinkamas path-step neužbaigtas (GOLDEN_STANDARD §path-step; implementacija – CODING_AGENT, DATA_AGENT).
 
@@ -747,24 +748,24 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 
 Teste naudojami **scenarijų tipo klausimai**, pagrįsti šiais 5 blokais (AI-driven data thinking framework):
 
-| Blokas | Turinys | Pavyzdinis scenarijaus tipas |
-|--------|---------|------------------------------|
-| **Sentimentų analizė** | Tonas, temos, emocijos intensyvumas, prioritetai, veiksmai. | „Duoti atsiliepimai – pasirink geriausią prompto struktūrą“ arba „Ką dar reikia papildyti sentimentų prompte?“ |
-| **4 analizės tipai** | Aprašomoji → Diagnostinė → Nuspėjamoji → Nurodomoji. | „Kokia analizė tinka klausimui ‚Kodėl Q3 pardavimai krito?‘“ / „Kuri analizė atsako į ‚Kaip veikti?‘“ |
-| **Verslo taikymas** | Finansai, HR, konkurentai, rizikos. | „Kurį promptą naudotum CFO pagalbai?“ / „Konkurentų analizė – kas turi būti OUTPUT?“ |
-| **Promptų sekos (workflow)** | Surink → Išvalyk → Metaduomenys → 4 analizės → Veiksmų planas. | „Kokia teisinga žingsnių seka?“ / „Ką daryti prieš diagnostinę analizę?“ |
-| **Duomenų valymas + metaduomenys + pateikimas** | Checklist, 3 metaduomenų tipai. | „Kas įeina į valymo checklist?“ / „Kam reikia struktūrinių metaduomenų?“ |
-| **Vizualizacija ir data storytelling (DA_4)** | Ciklas (vizualizacija, istorija), psichologija (10/20/80), Geštaltas, 4 promptai, super promptas, alternatyvos. | „Kuris Geštalto principas atsakingas už grupavimą?“ / „Ką turi išvesti super promptas?“ / „Kada naudoti DataLab vietoj ChatGPT?“ |
+| Blokas                                          | Turinys                                                                                                         | Pavyzdinis scenarijaus tipas                                                                                                     |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Sentimentų analizė**                          | Tonas, temos, emocijos intensyvumas, prioritetai, veiksmai.                                                     | „Duoti atsiliepimai – pasirink geriausią prompto struktūrą“ arba „Ką dar reikia papildyti sentimentų prompte?“                   |
+| **4 analizės tipai**                            | Aprašomoji → Diagnostinė → Nuspėjamoji → Nurodomoji.                                                            | „Kokia analizė tinka klausimui ‚Kodėl Q3 pardavimai krito?‘“ / „Kuri analizė atsako į ‚Kaip veikti?‘“                            |
+| **Verslo taikymas**                             | Finansai, HR, konkurentai, rizikos.                                                                             | „Kurį promptą naudotum CFO pagalbai?“ / „Konkurentų analizė – kas turi būti OUTPUT?“                                             |
+| **Promptų sekos (workflow)**                    | Surink → Išvalyk → Metaduomenys → 4 analizės → Veiksmų planas.                                                  | „Kokia teisinga žingsnių seka?“ / „Ką daryti prieš diagnostinę analizę?“                                                         |
+| **Duomenų valymas + metaduomenys + pateikimas** | Checklist, 3 metaduomenų tipai.                                                                                 | „Kas įeina į valymo checklist?“ / „Kam reikia struktūrinių metaduomenų?“                                                         |
+| **Vizualizacija ir data storytelling (DA_4)**   | Ciklas (vizualizacija, istorija), psichologija (10/20/80), Geštaltas, 4 promptai, super promptas, alternatyvos. | „Kuris Geštalto principas atsakingas už grupavimą?“ / „Ką turi išvesti super promptas?“ / „Kada naudoti DataLab vietoj ChatGPT?“ |
 
-*Detalus klausimų sąrašas – DATA_AGENT / CONTENT_AGENT (modules.json, questionPool).*
+_Detalus klausimų sąrašas – DATA_AGENT / CONTENT_AGENT (modules.json, questionPool)._
 
 ### 9.2 Modulio 8 BONUS skaidrės (po testo, su praktinėmis užduotimis)
 
 Po M8 testo (test-results) gali būti rodomos **2 neprivalomos BONUS skaidrės** su praktinėmis užduotimis – pagal Modulio 2 precedentą (id 51, 52). Rekomenduojamos pagal gilų analizę:
 
-| # | Skaidrė | SOT šaltinis | Praktinė užduotis |
-|---|---------|----------------|-------------------|
-| **1** | **Screenshot analizė (praktika)** | §6.1 (7.22) | Įkelti ekrano nuotrauką (dashboard, lentelė, schema), nukopijuoti sisteminį promptą, gauti: elementai, problemos, optimizacijos, prioritetas. |
+| #     | Skaidrė                                         | SOT šaltinis        | Praktinė užduotis                                                                                                                                                                              |
+| ----- | ----------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1** | **Screenshot analizė (praktika)**               | §6.1 (7.22)         | Įkelti ekrano nuotrauką (dashboard, lentelė, schema), nukopijuoti sisteminį promptą, gauti: elementai, problemos, optimizacijos, prioritetas.                                                  |
 | **2** | **Vizualizacijos praktika (tipas ir pavyzdys)** | §7A.4, §5.4a (7.32) | Vizualizacijos tipo parinkimas (ROLE/TASK/CONTEXT/OUTPUT) arba paprasta vizualizacija pagal tipą (stulpelinė/linijinė/skritulinė/lentelė); copy-paste promptas, išbandymas su savo duomenimis. |
 
 **Alternatyva 2-ai skaidrei:** Schema paaiškinimo metodas (§6.2, 7.23) – įkelti duomenų schemą, gauti entitetus, ryšius, optimizavimo pasiūlymus.
@@ -785,16 +786,16 @@ Po M8 testo (test-results) gali būti rodomos **2 neprivalomos BONUS skaidrės**
 
 Vienas aiškus 8 žingsnių ciklas – nuo duomenų surinkimo iki dashboard atvaizdavimo. Ryšys su Moduliu 4 (4.2 šaltiniai, 4.3 Deep research) ir Moduliu 7 (MASTER PROMPT, 5 žingsnių algoritmas, 7.16a valymas, 7A vizualizacija).
 
-| # | Žingsnis | Trumpas aprašymas |
-|---|----------|-------------------|
-| 1 | **Duomenų surinkimas** | Surinkti info apie įmonę/sektorių (šaltiniai, KPI, kontekstas). |
-| 2 | **Metodikos prompto paruošimas** | Šablonas: ką analizuoti, kokius rodiklius, kokią struktūrą naudoti. |
-| 3 | **Deep research prompto paruošimas** | Vienas promptas, tinkamas paleisti 4 įrankiams (ChatGPT, Gemini, DeepSeek, Grok). |
-| 4 | **4× Deep research vienu metu** | Paleisti tą patį (arba labai panašų) promptą ChatGPT, Gemini, DeepSeek, Grok – lyginamajai sintezei. *Pastaba: naudokite prieinamus iš 4 įrankių.* |
-| 5 | **Duomenų išvalymas** | Checklist (anonimizacija, formatas, dublių šalinimas, trūkstamos reikšmės) – ryšys su M7 7.16a ir 4.2b. |
-| 6 | **Duomenų integracija į vieną dokumentą** | Suvienodinti iš 4 šaltinių rezultatus į vieną struktūruotą dokumentą (lentelė / markdown). |
-| 7 | **Atvaizdavimas (Claude / ChatGPT)** | Promptas vizualizacijai: parametrai, spalvos, grafikų pavadinimai, dinamika – **sandbox** gairės. |
-| 8 | **Dashboard / demonstracija** | Rezultatas: .html snippet, kurį galima išsaugoti per Notepad ir atidaryti naršyklėje; informatyvus, ne per sudėtingas. Pavyzdys: `public/m9_dashboard_snippet.html` – galite atsidaryti ir redaguoti pagal savo duomenis. |
+| #   | Žingsnis                                  | Trumpas aprašymas                                                                                                                                                                                                         |
+| --- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Duomenų surinkimas**                    | Surinkti info apie įmonę/sektorių (šaltiniai, KPI, kontekstas).                                                                                                                                                           |
+| 2   | **Metodikos prompto paruošimas**          | Šablonas: ką analizuoti, kokius rodiklius, kokią struktūrą naudoti.                                                                                                                                                       |
+| 3   | **Deep research prompto paruošimas**      | Vienas promptas, tinkamas paleisti 4 įrankiams (ChatGPT, Gemini, DeepSeek, Grok).                                                                                                                                         |
+| 4   | **4× Deep research vienu metu**           | Paleisti tą patį (arba labai panašų) promptą ChatGPT, Gemini, DeepSeek, Grok – lyginamajai sintezei. _Pastaba: naudokite prieinamus iš 4 įrankių._                                                                        |
+| 5   | **Duomenų išvalymas**                     | Checklist (anonimizacija, formatas, dublių šalinimas, trūkstamos reikšmės) – ryšys su M7 7.16a ir 4.2b.                                                                                                                   |
+| 6   | **Duomenų integracija į vieną dokumentą** | Suvienodinti iš 4 šaltinių rezultatus į vieną struktūruotą dokumentą (lentelė / markdown).                                                                                                                                |
+| 7   | **Atvaizdavimas (Claude / ChatGPT)**      | Promptas vizualizacijai: parametrai, spalvos, grafikų pavadinimai, dinamika – **sandbox** gairės.                                                                                                                         |
+| 8   | **Dashboard / demonstracija**             | Rezultatas: .html snippet, kurį galima išsaugoti per Notepad ir atidaryti naršyklėje; informatyvus, ne per sudėtingas. Pavyzdys: `public/m9_dashboard_snippet.html` – galite atsidaryti ir redaguoti pagal savo duomenis. |
 
 **Sandbox principas:** Parametrai, spalvos, grafikų pavadinimai ir jų dinamika nurodomi prompte; mažai rankinio kodo, daug aišių instrukcijų DI.
 
@@ -864,7 +865,7 @@ Sugeneruok vieną pilną .html failą su įterptu CSS ir, jei reikia, minimaliu 
 Reikalavimai: antraštė, 2–3 KPI blokai (skaičiai ar placeholder), 1–2 grafikai (stulpelinė arba linijinė). Kodas turi būti pilnas – kad galėčiau nukopijuoti į Notepad, išsaugoti kaip .html ir atidaryti naršyklėje be papildomų failų. Naudok spalvas ir pavadinimus, kuriuos nurodžiau [arba: pagrindinė #2563eb, antrinė #64748b, akcentas #10b981]. Komentaras faile: „Modulio 9 pavyzdys – galite pakeisti duomenis ir spalvas.“
 ```
 
-*Vizualinė workflow schema: žr. `public/m9_workflow.svg`.*
+_Vizualinė workflow schema: žr. `public/m9_workflow.svg`._
 
 #### 10.0.2 Integruota kelionė: 27 ES šalys, LinkedIn + Eurostat (pagrindinė M9 kelionė)
 
@@ -888,7 +889,7 @@ Modulio 9 praktika remiasi **5 dideliais blokais** – mini „AI-driven data th
 4. **Promptų sekos** – workflow logika (surink → išvalyk → metaduomenys → 4 analizės → veiksmų planas).
 5. **Duomenų valymas + metaduomenys + pateikimas** – checklist, 3 metaduomenų tipai.
 
-*Framework apima: tekstinę analizę, skaitinę analizę, prognozavimą, rizikas, strategiją, duomenų architektūrą.*
+_Framework apima: tekstinę analizę, skaitinę analizę, prognozavimą, rizikas, strategiją, duomenų architektūrą._
 
 ### 10.2 Modulio 9 scenarijai ir promptai (referencas – už pagrindinio modulio ribų)
 
@@ -1035,6 +1036,7 @@ Identifikuok:
 **Kontekstas:** Duomenų analizės kelio **duomenų rinkimo** žingsnis – kaip automatiškai surinkti duomenis iš svetainės (lentelės, sąrašai, kainos) naudojant DI sugeneruotą Python skriptą. Paprastai: bibliotekos (trumpai), promptas skriptui gauti, kaip paleisti.
 
 **Kas reikia (paprasta kalba):**
+
 - **Bibliotekos (trumpai):** `requests` – atsidaryti puslapį; `BeautifulSoup` arba `pandas` (su lxml) – ištraukti lenteles/tekstą. DI gali parašyti skriptą už jus.
 - **Promptas (CopyButton)** – nukopijuok į DI, gausi paruoštą skriptą; tada: įdiegti Python (jei dar nėra), atidaryti terminalą, `pip install requests beautifulsoup4`, įrašyti skriptą į failą (pvz. `scrape.py`), paleisti `python scrape.py`. Rezultatas – CSV arba Excel, kurį vėliau galima analizuoti arba vizualizuoti.
 
@@ -1055,6 +1057,7 @@ Pateik pilną skriptą – kad galėčiau nukopijuoti į failą ir paleisti: pip
 ```
 
 **Kaip naudoti ir paleisti (skaidrėje ar M9 instrukcijoje – trumpai):**
+
 1. Nukopijuok promptą į DI; įrašyk savo svetainės nuorodą ir ką nori surinkti.
 2. DI pateiks skriptą – nukopijuok į tekstinį redaktorius, išsaugok kaip `scrape.py`.
 3. Atidaryk komandų eilutę (terminalą) – per „Paleisti“ (Windows) įvesk `cmd` arba naudok VS Code / Cursor terminalą.
@@ -1118,7 +1121,7 @@ Papildomai: Sudaryk 3 scenarijus (optimistinis / realus / pesimistinis)
 - Laiko žymės
 - Regiono žymės
 
-*Skaidrėje arba M9 instrukcijoje – checklist su varnelėmis; ryšys su 4.2b (duomenų paruošimas RAG).*
+_Skaidrėje arba M9 instrukcijoje – checklist su varnelėmis; ryšys su 4.2b (duomenų paruošimas RAG)._
 
 ---
 
@@ -1126,13 +1129,13 @@ Papildomai: Sudaryk 3 scenarijus (optimistinis / realus / pesimistinis)
 
 **3 tipai:**
 
-| Tipas | Kam reikia |
-|-------|------------|
-| **Aprašomieji** | Kontekstas |
-| **Struktūriniai** | Schema |
+| Tipas                | Kam reikia       |
+| -------------------- | ---------------- |
+| **Aprašomieji**      | Kontekstas       |
+| **Struktūriniai**    | Schema           |
 | **Administraciniai** | Teisės, saugumas |
 
-*Be metaduomenų DI analizė tampa paviršinė. Integruoti į workflow prieš 4 analizės tipus.*
+_Be metaduomenų DI analizė tampa paviršinė. Integruoti į workflow prieš 4 analizės tipus._
 
 ---
 
@@ -1140,16 +1143,16 @@ Papildomai: Sudaryk 3 scenarijus (optimistinis / realus / pesimistinis)
 
 **Žingsnių seka:**
 
-1. Surink duomenis  
-2. Išvalyk (checklist)  
-3. Pridėk metaduomenis  
-4. Aprašomoji analizė  
-5. Diagnostinė analizė  
-6. Nuspėjamoji analizė  
-7. Nurodomoji analizė  
-8. Veiksmų planas  
+1. Surink duomenis
+2. Išvalyk (checklist)
+3. Pridėk metaduomenis
+4. Aprašomoji analizė
+5. Diagnostinė analizė
+6. Nuspėjamoji analizė
+7. Nurodomoji analizė
+8. Veiksmų planas
 
-*M9 galutinis projektas gali būti: atlikti visą ciklą vienai temai (pvz. pardavimai, atsiliepimai) naudojant šiuos scenarijus ir MASTER PROMPTĄ.*
+_M9 galutinis projektas gali būti: atlikti visą ciklą vienai temai (pvz. pardavimai, atsiliepimai) naudojant šiuos scenarijus ir MASTER PROMPTĄ._
 
 ---
 
@@ -1195,66 +1198,68 @@ Papildomai: Sudaryk 3 scenarijus (optimistinis / realus / pesimistinis)
 
 ### 10.2.1 Modulio 9 – 4×4 scenarijų medis (referencas – už pagrindinio modulio ribų)
 
-*Ši struktūra (4×4, 16 scenarijų, id 101–116) dokumentuota SOT; pagrindinė M9 kelionė – §10.0.2 (27 šalys, 8 žingsniai). Jei vėliau atgaunama:* vartotojas pirmiausia pasirenka vieną iš 4 krypčių (1 lygis), paskui vieną iš 4 scenarijų (2 lygis) → 16 pabaigų. Kiekviena = viena `practice-scenario` skaidrė su SOT scenarijumi.
+_Ši struktūra (4×4, 16 scenarijų, id 101–116) dokumentuota SOT; pagrindinė M9 kelionė – §10.0.2 (27 šalys, 8 žingsniai). Jei vėliau atgaunama:_ vartotojas pirmiausia pasirenka vieną iš 4 krypčių (1 lygis), paskui vieną iš 4 scenarijų (2 lygis) → 16 pabaigų. Kiekviena = viena `practice-scenario` skaidrė su SOT scenarijumi.
 
-| 1 lygis (4 kortelės) | 2 lygis (po 4 scenarijus) | SOT scenarijai → skaidrės id |
-|----------------------|---------------------------|------------------------------|
-| **A. Sentimentai ir duomenų valdymas** | Sentimentų analizė, Duomenų valymas, Metaduomenys, Pilnas workflow | 1, 9, 10, 11 → id 101–104 |
-| **B. 4 analizės tipai ir rizikos** | 4 analizės tipai, Rizikų prognozavimas, Social media monitoring, Kombinuotas super promptas | 2, 7, 8, 16 → id 105–108 |
-| **C. Verslo taikymas** | Duomenų kūrimas, Konkurentų analizė, CFO (finansai), HR analitika | 3, 4, 5, 6 → id 109–112 |
-| **D. Vizualizacija ir istorija** | Vizualizacijos tipas, Istorijos kūrimas, Power BI žingsniai, Python vizualizacijos | 12, 13, 14, 15 → id 113–116 |
+| 1 lygis (4 kortelės)                   | 2 lygis (po 4 scenarijus)                                                                   | SOT scenarijai → skaidrės id |
+| -------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
+| **A. Sentimentai ir duomenų valdymas** | Sentimentų analizė, Duomenų valymas, Metaduomenys, Pilnas workflow                          | 1, 9, 10, 11 → id 101–104    |
+| **B. 4 analizės tipai ir rizikos**     | 4 analizės tipai, Rizikų prognozavimas, Social media monitoring, Kombinuotas super promptas | 2, 7, 8, 16 → id 105–108     |
+| **C. Verslo taikymas**                 | Duomenų kūrimas, Konkurentų analizė, CFO (finansai), HR analitika                           | 3, 4, 5, 6 → id 109–112      |
+| **D. Vizualizacija ir istorija**       | Vizualizacijos tipas, Istorijos kūrimas, Power BI žingsniai, Python vizualizacijos          | 12, 13, 14, 15 → id 113–116  |
 
 - **Hub skaidrė** (tipas `practice-scenario-hub`): rodo 4 korteles 1 lygyje; pasirinkus – 4 korteles 2 lygyje; pasirinkus 2 lygį – navigacija į atitinkamą skaidrę pagal `targetSlideId`.
-- **Progresas:** `completedTasks[9]` = užbaigtų scenarijų skaidrių id (101–116). Galima rodyti „X iš 16 scenarijų užbaigta“.
+- **Progresas:** `completedTasks[9]` = užbaigtų scenarijų skaidrių id (101–116 ir 117). Galima rodyti „X iš 17 scenarijų užbaigta“ (arba 16, jei 117 neskaičiuojamas atskirai – JSON turi būti nuoseklus).
 
-**4 rekomenduojami scenarijai pradedantiesiems (80 % vertės):** Skaidrės 101, 102, 105, 104 – Sentimentų analizė, Duomenų valymas, 4 analizės tipai, Pilnas workflow. Intro ir hub – sekcija „Rekomenduojami pradedantiesiems“ su šiais 4 scenarijais viršuje arba vizualiai paryškinti. JSON: `recommended: true` prie skaidrių 101, 102, 105, 104. Pirmas žingsnis: „Pasirink vieną iš šių keturių ir eik į hub.“
+**4 rekomenduojami papildomi scenarijai:** Skaidrės 101, 102, 111, 116, 117 (JSON `recommendedSlideIds`). Po pagrindinio workflow – hub arba greitos kortelės suskleidžiamoje „Papildomai“ dalyje. JSON: `recommended: true` ten, kur produktas paryškina starterius.
 
 ---
 
 ### 10.3 Modulio 9 praktikos įgyvendinimas
 
-- **Pagrindinė kelionė (default):** §10.0.2 – **Pasirink šalį** (27 ES valstybės, bėgančioje juostoje) → **8 užduotys** (LinkedIn + Eurostat), promptų užuominos trumpos, keičiasi tik šalis. Skaidrė 104 = Pilnas workflow su pasirinktos šalies tema.
-- **Viena dominuojanti mintis įvade:** Practice-intro (id 90): „Pasirink savo ES šalį žemiau – visa kelionė (8 žingsniai) susikonfigūruos pagal ją. Nukopijuok promptų užuominas į DI, atlik tyrimus, sintetizuok ir integruok – rezultatas: vienos šalies LinkedIn ir Eurostat analizė, paruošta tau.“
-- **Skaidrės / užduotys:** 8 žingsnių seka (§10.0) – kiekvienas žingsnis su trumpa promptų užuomina; šalis įkeičiama iš pasirinkimo pradžioje. Vesti per procesą – mažai konfigūracijos.
+**Produkto pasirinkimas (supaprastintas variantas B):** pagrindinis vartotojo kelias – **8 žingsnių workflow** skaidrėse **93–94** (schema + CopyButton promptai pagal §10.0). Tai laikoma **pakankamu** modulio užbaigimui. **Hub (id 99), 4 veikėjai ir iki 17 scenarijų (101–116 + 117)** – **papildoma biblioteka** po workflow; įvade UI suskleidžiama į „Papildomai“, kad nekurtų konkurencijos su pagrindiniu keliu.
+
+- **Integruota ES šalių kelionė (§10.0.2):** palikta SOT kaip **alternatyvus / būsimas** produkto variantas; dabartinė implementacija jo nenaudoja kaip default.
+- **Skaidrių eilė:** 90 (intro) → 93 → 94 → 99 (hub) → 101–116, 117 → 92 (santrauka). Po 94 skaidrės UI gali pasiūlyti **tiesioginį perėjimą į santrauką** (`onGoToSummary`), kad nereikėtų linijiniu būdu eiti per hub ir visus scenarijus.
 - **Ryšys su M8:** Modulio 8 klausimai tikrina 5 blokus ir workflow logiką (surinkimas, deep research, valymas, integracija, vizualizacija).
-- **Practice-intro (id 90):** **firstActionCTA**: „Pasirink šalį bėgančioje juostoje – pradėk 8 žingsnių kelionę. Kiekviename žingsnyje – trumpa užuomina; copy-paste į DI ir atlik.“ **useCaseBlock:** „Viena šalis, LinkedIn (vieši duomenys) + Eurostat – nuo tyrimo iki dashboard. Etika: tik vieši šaltiniai.“
-- **Practice-summary (id 92):** 5 blokų etalonas. **48h CTA:** „Pritaikyk su kita šalimi arba išsaugok savo dashboard.“ **Refleksijos blokas:** What–So What–Now What.
-- **15 scenarijų (101–103, 105–116):** Už modulio ribų – žr. §10.2 ir 10.2.1 kaip referencas; jei vėliau atgaunami, 10.3.1 taskFrame ir characterMeaning lieka SOT.
+- **Practice-intro (id 90):** `primaryPathIntro` – aiškiai: „Tęsti“ → 93–94; `firstActionCTA` – ne scenarijai pirmiausia. Veikėjai ir `storyBlock` – kontekstas **papildomiems** scenarijams (suskleidžiama sekcija).
+- **Practice-summary (id 92):** sveikinimas už **workflow**; statistikos ir CTA atspindi 8 žingsnius kaip branduolį, scenarijai – „iki 17“, neprivaloma.
+- **§10.2 / 10.2.1** scenarijų lentelės ir taskFrame lieka referencu; skaidrė **117** – Data scraping, įskaičiuota į papildomų scenarijų skaičių.
 
 #### 10.3.1 Tekstai į JSON (practice-intro, 8 žingsnių kelionė, summary)
 
-**Practice-intro (id 90) – pagrindinė kelionė (27 ES šalys, 8 žingsniai):**
-- `meaningParagraph`: „Pasirink savo ES šalį žemiau – visa kelionė (8 žingsniai) susikonfigūruos pagal ją. Nukopijuok promptų užuominas į DI, atlik tyrimus, sintetizuok ir integruok – rezultatas: vienos šalies LinkedIn ir Eurostat analizė.“
-- `storyBlock`: „27 Europos Sąjungos šalys – viena kelionė. Pasirink šalį bėgančioje juostoje; 8 žingsniai nuo tyrimo iki dashboard. Mažai konfigūracijos – mes vedame per procesą.“
-- `firstActionCTA`: „Pasirink šalį bėgančioje juostoje – pradėk 8 žingsnių kelionę. Kiekviename žingsnyje – trumpa užuomina; copy-paste į DI ir atlik.“
-- `useCaseBlock`: „Viena šalis, LinkedIn (vieši duomenys) + Eurostat. Etika: tik vieši šaltiniai. Išmokysim sugeneruoti gilaus tyrimo promptą pagal 6 blokų šabloną (Modulis 1).“
+**Practice-intro (id 90) – dominuojantis kelias (workflow 93–94):**
 
-*Jei vėliau atgaunami 16 scenarijų (101–116), reference laukai: characterMeaning, 4 veikėjai, taskFrame – žr. §10.2.1 ir toliau 10.3.1 užduoties rėmas 101–116 lentelė.*
+- `primaryPathIntro`: trumpas blokas – 8 žingsniai kitose dviejose skaidrėse, „Tęsti“, pakanka moduliui užbaigti.
+- `meaningParagraph`, `taskOneLiner`, `firstActionCTA`, `learningOutcomes`: workflow pirmiausia; scenarijai / hub – antraeilis.
+- `storyBlock`, `characterMeaning`, `recommendedStart`: kontekstas **papildomai** (įvade – po suskleidžiamu „Papildomai“).
+- `useCaseBlock`: gali likti verslo pavyzdžiai; nekonkuruoja su firstActionCTA.
+
+_Scenarijų laukai (characterMeaning, 4 veikėjai, taskFrame 101–116 + 117) – žr. §10.2.1 ir lentelę žemiau._
 
 **Užduoties rėmas (taskFrame) – 101–116:**
 
-| id | task (Užduotis) | doneWhen (Užbaigta, kai) |
-|----|-----------------|--------------------------|
-| 101 | Paruošk sentimentų analizės santrauką klientų atsiliepimams. | Turi 1 puslapio santrauką su sentimentų struktūra, temomis ir 3–5 įžvalgomis arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 102 | Paruošk duomenų valymo checklistą prieš analizę. | Turi checklist (anonimizacija, formatai, dublių šalinimas, trūkstamos reikšmės) arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 103 | Pridėk metaduomenis prie duomenų rinkinių (aprašomieji, struktūriniai, administraciniai). | Turi metaduomenų aprašymą arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 104 | Atlik pilną 8 žingsnių workflow vienai temai (nuo surinkimo iki dashboard). | Turi suvestinį dokumentą arba dashboard specifikaciją arba nukopijavai promptus ir gavai atsakymus iš DI. |
-| 105 | Taikyk 4 analizės tipus (aprašomoji, diagnostinė, nuspėjamoji, nurodomoji) pardavimų duomenims. | Turi atsakymus pagal 4 tipus arba nukopijavai promptus ir gavai atsakymus iš DI. |
-| 106 | Sudaryk rizikų matricą ir 3 scenarijus (optimistinis, realus, pesimistinis). | Turi rizikų matricą ir scenarijus arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 107 | Stebėk socialinius kanalus – temos, sentimentas, reputacijos rizika, atsako strategija. | Turi santrauką su temomis, sentimentu ir 2 savaičių strategija arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 108 | Naudok kombinuotą super promptą (analitikas + vizualizacija + verslo strategas). | Turi santrauką, siūlomus grafikus ir rekomenduojamą veiksmą arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 109 | Sukurk struktūruotus pardavimų duomenų pavyzdžius (stulpeliai, formulės, regionai). | Turi 20 eilučių pavyzdį su stulpeliais ir formulėmis arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 110 | Atlik konkurentų analizę – SWOT, silpnos vietos, 30 d. planas. | Turi SWOT lentelę ir 30 dienų strategiją arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 111 | Paruošk CFO lygio finansų analizę (EBITDA, marža, rizikos, optimizacijos). | Turi finansinę santrauką su 3 rizikomis ir 3 galimybėmis arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 112 | Įvertink mokymų ROI ir segmentuok darbuotojus pagal poveikį. | Turi ROI įvertinimą ir rekomendacijas (ką nutraukti/plėsti/testuoti) arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 113 | Parink optimalų vizualizacijos tipą vadovybei (3 variantai, paaiškinimai, rizikos). | Turi 3 vizualizacijos variantus su paaiškinimais arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 114 | Sukurk duomenų istoriją – įžvalga, įtampa, ką reiškia verslui, veiksmas. | Turi 4 punktų naratyvą (įžvalga, konfliktas/įtampa, reikšmė, veiksmas) arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 115 | Sugeneruok Power BI žingsnius (CSV, data model, DAX, Geštaltas). | Turi žingsnių sąrašą arba instrukciją arba nukopijavai promptą ir gavai atsakymą iš DI. |
-| 116 | Paruošk Python vizualizacijų kodą (seaborn, anotacijos, įžvalgos). | Turi kodą arba specifikaciją arba nukopijavai promptą ir gavai atsakymą iš DI. |
+| id  | task (Užduotis)                                                                                 | doneWhen (Užbaigta, kai)                                                                                                          |
+| --- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| 101 | Paruošk sentimentų analizės santrauką klientų atsiliepimams.                                    | Turi 1 puslapio santrauką su sentimentų struktūra, temomis ir 3–5 įžvalgomis arba nukopijavai promptą ir gavai atsakymą iš DI.    |
+| 102 | Paruošk duomenų valymo checklistą prieš analizę.                                                | Turi checklist (anonimizacija, formatai, dublių šalinimas, trūkstamos reikšmės) arba nukopijavai promptą ir gavai atsakymą iš DI. |
+| 103 | Pridėk metaduomenis prie duomenų rinkinių (aprašomieji, struktūriniai, administraciniai).       | Turi metaduomenų aprašymą arba nukopijavai promptą ir gavai atsakymą iš DI.                                                       |
+| 104 | Atlik pilną 8 žingsnių workflow vienai temai (nuo surinkimo iki dashboard).                     | Turi suvestinį dokumentą arba dashboard specifikaciją arba nukopijavai promptus ir gavai atsakymus iš DI.                         |
+| 105 | Taikyk 4 analizės tipus (aprašomoji, diagnostinė, nuspėjamoji, nurodomoji) pardavimų duomenims. | Turi atsakymus pagal 4 tipus arba nukopijavai promptus ir gavai atsakymus iš DI.                                                  |
+| 106 | Sudaryk rizikų matricą ir 3 scenarijus (optimistinis, realus, pesimistinis).                    | Turi rizikų matricą ir scenarijus arba nukopijavai promptą ir gavai atsakymą iš DI.                                               |
+| 107 | Stebėk socialinius kanalus – temos, sentimentas, reputacijos rizika, atsako strategija.         | Turi santrauką su temomis, sentimentu ir 2 savaičių strategija arba nukopijavai promptą ir gavai atsakymą iš DI.                  |
+| 108 | Naudok kombinuotą super promptą (analitikas + vizualizacija + verslo strategas).                | Turi santrauką, siūlomus grafikus ir rekomenduojamą veiksmą arba nukopijavai promptą ir gavai atsakymą iš DI.                     |
+| 109 | Sukurk struktūruotus pardavimų duomenų pavyzdžius (stulpeliai, formulės, regionai).             | Turi 20 eilučių pavyzdį su stulpeliais ir formulėmis arba nukopijavai promptą ir gavai atsakymą iš DI.                            |
+| 110 | Atlik konkurentų analizę – SWOT, silpnos vietos, 30 d. planas.                                  | Turi SWOT lentelę ir 30 dienų strategiją arba nukopijavai promptą ir gavai atsakymą iš DI.                                        |
+| 111 | Paruošk CFO lygio finansų analizę (EBITDA, marža, rizikos, optimizacijos).                      | Turi finansinę santrauką su 3 rizikomis ir 3 galimybėmis arba nukopijavai promptą ir gavai atsakymą iš DI.                        |
+| 112 | Įvertink mokymų ROI ir segmentuok darbuotojus pagal poveikį.                                    | Turi ROI įvertinimą ir rekomendacijas (ką nutraukti/plėsti/testuoti) arba nukopijavai promptą ir gavai atsakymą iš DI.            |
+| 113 | Parink optimalų vizualizacijos tipą vadovybei (3 variantai, paaiškinimai, rizikos).             | Turi 3 vizualizacijos variantus su paaiškinimais arba nukopijavai promptą ir gavai atsakymą iš DI.                                |
+| 114 | Sukurk duomenų istoriją – įžvalga, įtampa, ką reiškia verslui, veiksmas.                        | Turi 4 punktų naratyvą (įžvalga, konfliktas/įtampa, reikšmė, veiksmas) arba nukopijavai promptą ir gavai atsakymą iš DI.          |
+| 115 | Sugeneruok Power BI žingsnius (CSV, data model, DAX, Geštaltas).                                | Turi žingsnių sąrašą arba instrukciją arba nukopijavai promptą ir gavai atsakymą iš DI.                                           |
+| 116 | Paruošk Python vizualizacijų kodą (seaborn, anotacijos, įžvalgos).                              | Turi kodą arba specifikaciją arba nukopijavai promptą ir gavai atsakymą iš DI.                                                    |
 
 **Refleksija po scenarijaus (reflectionPromptAfter)** – tas pats visiems 101–116: „Esi mokymų refleksijos asistentas. Ką tik atlikau vieną iš Modulio 9 scenarijų (verslo analizė su DI). Užduok man vieną klausimą: Ką šis scenarijus tau davė ir ką pritaikysi kitą kartą? Po mano atsakymo duok vieną konkretų patarimą.“
 
-**Practice-summary (id 92)** – 5 blokų tekstai: introHeading „Ką išmokote“, introBody (sveikiname + vienas artefaktas, 16 scenarijų); stats (pvz. „16 scenarijų“, „4 veikėjai“, „1 artefaktas“); sections (žinių kortelės); reflectionPrompt (What–So What–Now What); tagline „Vienas scenarijus = vienas rezultatas.“; nextStepCTA „Pritaikyk per 48 val. – pasirink kitą scenarijų arba tą patį su kita tema.“
+**Practice-summary (id 92)** – introBody ir stats atspindi **užbaigtą 8 žingsnių workflow**; papildomi scenarijai – neprivaloma praktika (iki 17). reflectionPrompt (What–So What–Now What); tagline ir nextStepCTA – pakartoti workflow arba atidaryti papildomą scenarijų.
 
 ---
 
@@ -1266,17 +1271,17 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 
 **4 veikėjai (asmens kortelė: vardas, amžius, profesija, patirtis, hobis, PNG):**
 
-| id | Vardas   | Amžius | Profesija                  | Patirtis                          | Hobis              | PNG                |
-|----|----------|--------|----------------------------|-----------------------------------|--------------------|--------------------|
-| 1  | Jūratė   | 28     | Verslo analitikė           | 4 m. klientų ir rinkos analizėje  | Skaitmeninė fotografija | veikejas-1.png |
-| 2  | Martynas | 34     | Duomenų analitikas         | 7 m. EDA ir rizikų vertinime      | Bėgimas, maratonai | veikejas-2.png |
-| 3  | Giedrė   | 31     | Verslo konsultantė (CFO/HR) | 5 m. finansų ir HR analizėje     | Knygos, kelionės  | veikejas-3.png |
-| 4  | Lukas    | 26     | Vizualizacijų ir BI specialistas | 3 m. Power BI, Python, data storytelling | Muzika, gitara | veikejas-4.png |
+| id  | Vardas   | Amžius | Profesija                        | Patirtis                                 | Hobis                   | PNG            |
+| --- | -------- | ------ | -------------------------------- | ---------------------------------------- | ----------------------- | -------------- |
+| 1   | Jūratė   | 28     | Verslo analitikė                 | 4 m. klientų ir rinkos analizėje         | Skaitmeninė fotografija | veikejas-1.png |
+| 2   | Martynas | 34     | Duomenų analitikas               | 7 m. EDA ir rizikų vertinime             | Bėgimas, maratonai      | veikejas-2.png |
+| 3   | Giedrė   | 31     | Verslo konsultantė (CFO/HR)      | 5 m. finansų ir HR analizėje             | Knygos, kelionės        | veikejas-3.png |
+| 4   | Lukas    | 26     | Vizualizacijų ir BI specialistas | 3 m. Power BI, Python, data storytelling | Muzika, gitara          | veikejas-4.png |
 
 **Priskyrimas skaidrės id → characterId (kas atlieka užduotį):**
 
-| Skaidrės id | characterId | Veikėjas  |
-|-------------|-------------|-----------|
+| Skaidrės id | characterId | Veikėjas                                 |
+| ----------- | ----------- | ---------------------------------------- |
 | 101–104     | 1           | Jūratė (Sentimentai ir duomenų valdymas) |
 | 105–108     | 2           | Martynas (4 analizės tipai ir rizikos)   |
 | 109–112     | 3           | Giedrė (Verslo taikymas)                 |
@@ -1291,24 +1296,24 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 
 **Naratyvinis sakinys per scenarijų (S1):** Kiekvienoje skaidrėje 101–116 – optional laukas `scenario.narrativeLead`: vienas įvedantis sakinys „Šią savaitę [Veikėjas] atlieka…“. Lentelė (tekstas į JSON):
 
-| id  | narrativeLead (pavyzdys) |
-|-----|---------------------------|
-| 101 | Šią savaitę Jūratė atlieka sentimentų analizę klientų atsiliepimams. |
-| 102 | Šią savaitę Jūratė ruošia duomenų valymo checklistą prieš analizę. |
-| 103 | Šią savaitę Jūratė prideda metaduomenis prie duomenų rinkinių. |
-| 104 | Šią savaitę Jūratė koordinuoja pilną 8 žingsnių workflow vienai temai. |
-| 105 | Šią savaitę Martynas taiko 4 analizės tipus pardavimų duomenims. |
-| 106 | Šią savaitę Martynas sudaro rizikų matricą ir 3 scenarijus. |
-| 107 | Šią savaitę Martynas stebi socialinius kanalus ir reputaciją. |
+| id  | narrativeLead (pavyzdys)                                                            |
+| --- | ----------------------------------------------------------------------------------- |
+| 101 | Šią savaitę Jūratė atlieka sentimentų analizę klientų atsiliepimams.                |
+| 102 | Šią savaitę Jūratė ruošia duomenų valymo checklistą prieš analizę.                  |
+| 103 | Šią savaitę Jūratė prideda metaduomenis prie duomenų rinkinių.                      |
+| 104 | Šią savaitę Jūratė koordinuoja pilną 8 žingsnių workflow vienai temai.              |
+| 105 | Šią savaitę Martynas taiko 4 analizės tipus pardavimų duomenims.                    |
+| 106 | Šią savaitę Martynas sudaro rizikų matricą ir 3 scenarijus.                         |
+| 107 | Šią savaitę Martynas stebi socialinius kanalus ir reputaciją.                       |
 | 108 | Šią savaitę Martynas naudoja kombinuotą super promptą (analitikas + vizualizacija). |
-| 109 | Šią savaitę Giedrė kuria struktūruotus duomenų pavyzdžius verslui. |
-| 110 | Šią savaitę Giedrė atlieka konkurentų analizę – SWOT ir 30 d. planas. |
-| 111 | Šią savaitę Giedrė paruošia CFO lygio finansų analizę (EBITDA, marža, rizikos). |
-| 112 | Šią savaitę Giedrė vertina HR mokymų efektyvumą ir ROI. |
-| 113 | Šią savaitę Lukas parenka optimalų vizualizacijos tipą vadovybei. |
-| 114 | Šią savaitę Lukas kuria duomenų istoriją – įžvalga, įtampa, veiksmas. |
-| 115 | Šią savaitę Lukas generuoja Power BI žingsnius (CSV, DAX, Geštaltas). |
-| 116 | Šią savaitę Lukas rašo Python vizualizacijų kodą (seaborn, anotacijos). |
+| 109 | Šią savaitę Giedrė kuria struktūruotus duomenų pavyzdžius verslui.                  |
+| 110 | Šią savaitę Giedrė atlieka konkurentų analizę – SWOT ir 30 d. planas.               |
+| 111 | Šią savaitę Giedrė paruošia CFO lygio finansų analizę (EBITDA, marža, rizikos).     |
+| 112 | Šią savaitę Giedrė vertina HR mokymų efektyvumą ir ROI.                             |
+| 113 | Šią savaitę Lukas parenka optimalų vizualizacijos tipą vadovybei.                   |
+| 114 | Šią savaitę Lukas kuria duomenų istoriją – įžvalga, įtampa, veiksmas.               |
+| 115 | Šią savaitę Lukas generuoja Power BI žingsnius (CSV, DAX, Geštaltas).               |
+| 116 | Šią savaitę Lukas rašo Python vizualizacijų kodą (seaborn, anotacijos).             |
 
 **Refleksija po scenarijaus (S3):** Skaidrėse 101–116 – optional laukas `content.reflectionPromptAfter` (tas pats visiems). Kopijuojamas promptas: „Esi mokymų refleksijos asistentas. Ką tik atlikau vieną iš Modulio 9 scenarijų (verslo analizė su DI). Užduok man vieną klausimą: Ką šis scenarijus tau davė ir ką pritaikysi kitą kartą? Po mano atsakymo duok vieną konkretų patarimą.“
 
@@ -1320,20 +1325,20 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 
 ## 11. Žodynėlis (Modulis 7) – optional skaidrė arba collapsible
 
-| Terminas | Apibrėžimas (vienas sakinys) |
-|----------|-----------------------------|
-| **Duomenų analizė** | Rinkimas, tvarkymas ir interpretavimas duomenų siekiant priimti sprendimus – suprasti praeitį, įvertinti dabartį, prognozuoti ateitį. |
-| **Duomenimis grįsti sprendimai** | Sprendimai, pagrįsti duomenų analize ir įžvalgomis, o ne vien intuicija ar nuomone. |
-| **ER modelis** | Entity-Relationship modelis – lentelių ir jų ryšių (1-N, N-N) logikos aprašas. |
-| **KPI** | Key Performance Indicator – pagrindinis veiklos rodiklis, kurį verta stebėti. |
-| **Screenshot analizė** | DI galimybė analizuoti ekrano nuotraukas – tekstas, kodas, grafikai, UI/UX. |
-| **Deming principas** | „In God we trust, all others bring data“ – prioritetas duomenims ir nuolatiniam tobulinimui. |
-| **Pipeline (duomenų analizės)** | Rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas; „raw → insight → decision“ ciklas. |
-| **EDA (Exploratory Data Analysis)** | Tiriamoji duomenų analizė – „ką galiu suprasti iš duomenų?“; aprašomoji statistika, koreliacijos, anomalijos, hipotezės. |
-| **3NF** | Trečioji normalios formos – duomenų bazės normalizavimo principas (sumažinti dubliavimą ir priklausomybes). |
-| **MASTER PROMPTAS** | Galutinis 8 žingsnių promptas pilnai duomenų analizei: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos. |
-| **Sentimentų analizė** | Tekstinės nuotaikos įvertinimas (teigiamas / neutralus / neigiamas) + temos, intensyvumas, prioritetai, veiksmų rekomendacijos. |
-| **4 analizės tipai** | Aprašomoji (Kas įvyko?) → Diagnostinė (Kodėl?) → Nuspėjamoji (Kas gali įvykti?) → Nurodomoji (Kaip veikti?). |
-| **Metaduomenys** | Aprašomieji (kontekstas), struktūriniai (schema), administraciniai (teisės, saugumas) – pagerina DI analizės kokybę. |
-| **Data storytelling** | Duomenų pasakojimas – skaičiai → grafika → naratyvas → istorija; vizualizacija kaip sprendimų įrankis, ne tik grafikas. |
-| **Geštalto principai** | Vizualinio suvokimo taisyklės: artumas, panašumas, išskyrimas, sujungimas, tęstinumas, uždarymas, figūra–fonas, bendras judėjimas – taikomi vizualizacijų dizaine. |
+| Terminas                            | Apibrėžimas (vienas sakinys)                                                                                                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Duomenų analizė**                 | Rinkimas, tvarkymas ir interpretavimas duomenų siekiant priimti sprendimus – suprasti praeitį, įvertinti dabartį, prognozuoti ateitį.                              |
+| **Duomenimis grįsti sprendimai**    | Sprendimai, pagrįsti duomenų analize ir įžvalgomis, o ne vien intuicija ar nuomone.                                                                                |
+| **ER modelis**                      | Entity-Relationship modelis – lentelių ir jų ryšių (1-N, N-N) logikos aprašas.                                                                                     |
+| **KPI**                             | Key Performance Indicator – pagrindinis veiklos rodiklis, kurį verta stebėti.                                                                                      |
+| **Screenshot analizė**              | DI galimybė analizuoti ekrano nuotraukas – tekstas, kodas, grafikai, UI/UX.                                                                                        |
+| **Deming principas**                | „In God we trust, all others bring data“ – prioritetas duomenims ir nuolatiniam tobulinimui.                                                                       |
+| **Pipeline (duomenų analizės)**     | Rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas; „raw → insight → decision“ ciklas.                                                          |
+| **EDA (Exploratory Data Analysis)** | Tiriamoji duomenų analizė – „ką galiu suprasti iš duomenų?“; aprašomoji statistika, koreliacijos, anomalijos, hipotezės.                                           |
+| **3NF**                             | Trečioji normalios formos – duomenų bazės normalizavimo principas (sumažinti dubliavimą ir priklausomybes).                                                        |
+| **MASTER PROMPTAS**                 | Galutinis 8 žingsnių promptas pilnai duomenų analizei: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos.                    |
+| **Sentimentų analizė**              | Tekstinės nuotaikos įvertinimas (teigiamas / neutralus / neigiamas) + temos, intensyvumas, prioritetai, veiksmų rekomendacijos.                                    |
+| **4 analizės tipai**                | Aprašomoji (Kas įvyko?) → Diagnostinė (Kodėl?) → Nuspėjamoji (Kas gali įvykti?) → Nurodomoji (Kaip veikti?).                                                       |
+| **Metaduomenys**                    | Aprašomieji (kontekstas), struktūriniai (schema), administraciniai (teisės, saugumas) – pagerina DI analizės kokybę.                                               |
+| **Data storytelling**               | Duomenų pasakojimas – skaičiai → grafika → naratyvas → istorija; vizualizacija kaip sprendimų įrankis, ne tik grafikas.                                            |
+| **Geštalto principai**              | Vizualinio suvokimo taisyklės: artumas, panašumas, išskyrimas, sujungimas, tęstinumas, uždarymas, figūra–fonas, bendras judėjimas – taikomi vizualizacijų dizaine. |

@@ -6,13 +6,13 @@
 
 ## 1. Rolė ir atsakomybė
 
-| Ką daro | Ko nedirba |
-|---------|------------|
-| Rašo ir tobulina **tekstus** (antraštės, body, CTA, mygtukų etiketės, refleksijos promptai, kopijuojami promptai) | Nekeičia JSON struktūros (`modules.json`) – DATA_AGENT |
-| Užpildo turinį pagal **SOT** (turinio tiesa) | Nerašo kodo, tipų, komponentų – CODING_AGENT |
-| Laikosi **terminologijos** (DI, ne AI; lietuviškai; vienoda formuluotė) | Nekeičia pedagoginės struktūros (sekos, blokai, tikslai) – CURRICULUM_AGENT |
-| Kuria turinį **naujoms skaidrėms** pagal geriausias praktikas | Nekuria schemų/diagramų geometrijos – SCHEME_AGENT |
-| Atnaujina **SOT** turinio semantika (tekstai, sąvokos, pavyzdžiai) | Nekeičia render logikos – CODING_AGENT |
+| Ką daro                                                                                                           | Ko nedirba                                                                  |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Rašo ir tobulina **tekstus** (antraštės, body, CTA, mygtukų etiketės, refleksijos promptai, kopijuojami promptai) | Nekeičia JSON struktūros (`modules.json`) – DATA_AGENT                      |
+| Užpildo turinį pagal **SOT** (turinio tiesa)                                                                      | Nerašo kodo, tipų, komponentų – CODING_AGENT                                |
+| Laikosi **terminologijos** (DI, ne AI; lietuviškai; vienoda formuluotė)                                           | Nekeičia pedagoginės struktūros (sekos, blokai, tikslai) – CURRICULUM_AGENT |
+| Kuria turinį **naujoms skaidrėms** pagal geriausias praktikas                                                     | Nekuria schemų/diagramų geometrijos – SCHEME_AGENT                          |
+| Atnaujina **SOT** turinio semantika (tekstai, sąvokos, pavyzdžiai)                                                | Nekeičia render logikos – CODING_AGENT                                      |
 
 **Santraukos skaidrės:** 5 blokų struktūra – CURRICULUM_AGENT; **tekstus** užpildo CONTENT_AGENT pagal `docs/development/SUMMARY_SLIDE_SPEC.md`.
 
@@ -20,15 +20,15 @@
 
 ## 2. Source of Truth (SOT)
 
-| Sritis | SOT failas | CONTENT_AGENT veikla |
-|--------|------------|----------------------|
-| **Moduliai 1–3** | `turinio_pletra.md` | Turinio kūrimas, redagavimas, atnaujinimas |
-| **Moduliai 4–6** | `docs/turinio_pletra_moduliai_4_5_6.md` | Turinio kūrimas, redagavimas, atnaujinimas |
-| **Moduliai 7–9** | `docs/turinio_pletra_moduliai_7_8_9.md` | Turinio kūrimas, redagavimas, atnaujinimas |
-| **Modulių atpažinimas** | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` | **Privaloma** naudoti – vienoda numeracija (4.1–4.7 = tik Modulio 4) |
-| **Santraukos skaidrės** | `docs/development/SUMMARY_SLIDE_SPEC.md` | Tekstai pagal 5 blokų struktūrą |
-| **Duomenų analizės geriausios praktikos** | `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` | Moduliams 7–9 turinio semantika |
-| **GOLDEN STANDARD (privaloma)** | `docs/development/GOLDEN_STANDARD.md` | Vienas etalonas – šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas, modulio identitetas. **Privaloma** prieš rašant ar redaguojant turinį. |
+| Sritis                                    | SOT failas                                                  | CONTENT_AGENT veikla                                                                                                                                           |
+| ----------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Moduliai 1–3**                          | `turinio_pletra.md`                                         | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **Moduliai 4–6**                          | `docs/turinio_pletra_moduliai_4_5_6.md`                     | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **Moduliai 7–9**                          | `docs/turinio_pletra_moduliai_7_8_9.md`                     | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **Modulių atpažinimas**                   | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                       | **Privaloma** naudoti – vienoda numeracija (4.1–4.7 = tik Modulio 4)                                                                                           |
+| **Santraukos skaidrės**                   | `docs/development/SUMMARY_SLIDE_SPEC.md`                    | Tekstai pagal 5 blokų struktūrą                                                                                                                                |
+| **Duomenų analizės geriausios praktikos** | `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` | Moduliams 7–9 turinio semantika                                                                                                                                |
+| **GOLDEN STANDARD (privaloma)**           | `docs/development/GOLDEN_STANDARD.md`                       | Vienas etalonas – šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas, modulio identitetas. **Privaloma** prieš rašant ar redaguojant turinį. |
 
 **Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json`. Core `*-m1-m6.json` failai naudojami build/runtime profiliui ir nėra pagrindinis CONTENT_AGENT authoring taikinys.
 
@@ -50,11 +50,11 @@
 - **Lietuviškos raidės:** ž, ė, ą, ų, ū, š, č, į – visur. Dažnos klaidos: `perziureti`→`peržiūrėti`, `Ziniu`→`Žinių`, `zemelapis`→`žemėlapis`, `Ka ismokote`→`Ką išmokote`, `ypac`→`ypač`, `role`→`rolė`, `struktura`→`struktūra`.
 - Angliški terminai – **TERM** (paprastas paaiškinimas vienu sakiniu), jei būtina.
 
-### 3.2 Antraštės ir TL;DR
+### 3.2 Antraštės ir trumpa santrauka (Trumpai)
 
 - **Antraštė:** Konkrečiai, ne abstrakčiai. „Ką išmokote“ vietoj „Modulio santrauka“.
 - **Savarankiškumas (UI/UX):** Antraštė turi būti suprantama **be skaidrės pavadinimo**. Ne „Kodėl verta 10 minučių“ (neaišku – 10 min kam?), o „Kodėl verta skirti ~10 min Master Prompt kūrimui“. Jei antraštėje yra laikas, skaičius ar objektas – nurodyk, **ką** tai reiškia.
-- **TL;DR:** 1–2 sakiniai, be perteklinio „procesų“/„analizės“ kalbos.
+- **Trumpai** (pirmoji accent sekcija, LT `heading` – žr. `GOLDEN_STANDARD.md` §3.2): 1–2 sakiniai, be perteklinio „procesų“/„analizės“ kalbos.
 - **Kodėl čia?** Trumpas (1–2 sakiniai); ilgas turinys – collapsible („Nori suprasti detaliau?“).
 
 ### 3.3 CTA (Call-to-action) ir „Do now“
@@ -80,8 +80,8 @@
 
 Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 
-- **TL;DR** – aiškus, 1–2 sakiniai.
-- **Do now** – aiškus veiksmas; vienas CTA „🔘 Kopijuoti promptą (žemiau)“.
+- **Trumpai** – aiškus, 1–2 sakiniai (LT); EN – „In short“.
+- **Daryk dabar** – aiškus veiksmas; vienas CTA „🔘 Kopijuoti promptą (žemiau)“.
 - **Quality check** – „Jei bent 2 „ne“ → grįžk prie…“ (vienoda formuluotė).
 - **Optional** – antraštė „🔽 Nori suprasti detaliau? (optional)“; collapsible teorija.
 
@@ -89,14 +89,14 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 
 ## 4. Skaidrių tipai ir CONTENT_AGENT fokusas
 
-| Tipas | Kas svarbu CONTENT_AGENT |
-|-------|--------------------------|
-| **action-intro** | whyBenefit, firstActionCTA, duration, vertė (1 sakinys), palyginimas/veiksmas per ~30 s |
-| **summary** | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA |
-| **content-block** | Sekcijos (heading, body), TL;DR, Do now, Quality check, optional collapsible, CopyButton promptas |
-| **test-intro** | whyBenefit, trukmė, pirmas žingsnis |
-| **practice-intro** | whyBenefit, vertė, pirmas veiksmas |
-| **practicalTask** | instructions (žingsniai), partialSolution, template, hint |
+| Tipas              | Kas svarbu CONTENT_AGENT                                                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **action-intro**   | whyBenefit, firstActionCTA, duration, vertė (1 sakinys), palyginimas/veiksmas per ~30 s                                                  |
+| **summary**        | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA     |
+| **content-block**  | Sekcijos (heading, body), Trumpai, Daryk dabar, Patikra, optional collapsible, CopyButton promptas (EN: In short, Do now, Quality check) |
+| **test-intro**     | whyBenefit, trukmė, pirmas žingsnis                                                                                                      |
+| **practice-intro** | whyBenefit, vertė, pirmas veiksmas                                                                                                       |
+| **practicalTask**  | instructions (žingsniai), partialSolution, template, hint                                                                                |
 
 ---
 
@@ -104,7 +104,7 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 
 ### 5.1 Naujas turinys (nauja skaidrė arba modulis)
 
-1. Patikrink **SOT** – kur faile (turinio_pletra*.md) turi būti šis turinys.
+1. Patikrink **SOT** – kur faile (turinio_pletra\*.md) turi būti šis turinys.
 2. Patikrink **CONTENT_MODULIU_ATPAZINIMAS.md** – teisinga numeracija ir terminologija.
 3. Užrašyk **tekstus** pagal geriausias praktikas (§3).
 4. Pateik **konkretų tobulinimų sąrašą** – kas įrašyti, kur (citata, pastraipa).
@@ -127,14 +127,14 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 
 ## 6. Anti-patternai (ko vengti)
 
-| Anti-pattern | Ką daryti vietoj |
-|--------------|------------------|
-| Abstraktus CTA „tęskite“ | Konkretus: „Pereikite prie Modulio 2: Žinių Patikrinimas“ |
-| Per ilgas refleksijos promptas | Max 6–8 eilutės su aiškia struktūra |
-| Bullet points be vizualų (santraukoje) | Kortelės su ikonėlėmis ir spalvomis |
-| „Modulio santrauka“ antraštė | „Ką išmokote“ – veiksmas, ne etiketė |
-| Painiavos 4.1–4.7 | 4.1–4.7 = tik Modulio 4 skaidrės; Modulio 6 skyriai be numerių |
-| Keisti JSON tiesiogiai | Pateikti tekstus; DATA_AGENT sinchronizuoja |
+| Anti-pattern                           | Ką daryti vietoj                                               |
+| -------------------------------------- | -------------------------------------------------------------- |
+| Abstraktus CTA „tęskite“               | Konkretus: „Pereikite prie Modulio 2: Žinių Patikrinimas“      |
+| Per ilgas refleksijos promptas         | Max 6–8 eilutės su aiškia struktūra                            |
+| Bullet points be vizualų (santraukoje) | Kortelės su ikonėlėmis ir spalvomis                            |
+| „Modulio santrauka“ antraštė           | „Ką išmokote“ – veiksmas, ne etiketė                           |
+| Painiavos 4.1–4.7                      | 4.1–4.7 = tik Modulio 4 skaidrės; Modulio 6 skyriai be numerių |
+| Keisti JSON tiesiogiai                 | Pateikti tekstus; DATA_AGENT sinchronizuoja                    |
 
 ---
 
@@ -169,11 +169,11 @@ NEXT:
 
 ## 9. Nuorodos
 
-| Dokumentas | Paskirtis |
-|------------|-----------|
-| **`docs/development/GOLDEN_STANDARD.md`** | **Vienas etalonas viskam – privaloma prieš rašant.** Šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas. |
-| `docs/development/AGENT_ORCHESTRATOR.md` | Router, pipeline, agentų system promptai |
-| `docs/development/SUMMARY_SLIDE_SPEC.md` | Santraukos skaidrės 5 blokai, refleksijos šablonas |
-| `docs/CONTENT_MODULIU_ATPAZINIMAS.md` | Modulių numeracija ir atpažinimas |
-| `docs/development/CURRICULUM_AGENT.md` | Pedagogikos struktūra (5 blokai, Bloom, seka) |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md` | Paprasta kalba, žargono atitikmenys (vengti ROI, HR, CFO ir kt.) |
+| Dokumentas                                    | Paskirtis                                                                                                                  |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **`docs/development/GOLDEN_STANDARD.md`**     | **Vienas etalonas viskam – privaloma prieš rašant.** Šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas. |
+| `docs/development/AGENT_ORCHESTRATOR.md`      | Router, pipeline, agentų system promptai                                                                                   |
+| `docs/development/SUMMARY_SLIDE_SPEC.md`      | Santraukos skaidrės 5 blokai, refleksijos šablonas                                                                         |
+| `docs/CONTENT_MODULIU_ATPAZINIMAS.md`         | Modulių numeracija ir atpažinimas                                                                                          |
+| `docs/development/CURRICULUM_AGENT.md`        | Pedagogikos struktūra (5 blokai, Bloom, seka)                                                                              |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md` | Paprasta kalba, žargono atitikmenys (vengti ROI, HR, CFO ir kt.)                                                           |

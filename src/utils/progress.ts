@@ -7,6 +7,11 @@ export interface Progress {
   quizScore: number | null;
   /** Modulio testo rezultatas (procentais), pvz. Moduliai 2 ir 5 */
   moduleTestScores?: Record<number, number>;
+  /**
+   * Modulio 7 action-intro-journey: išsaugotas orientacinio fokuso pavadinimas (pvz. „Pardavimai“).
+   * Raktas – moduleId, reikšmė – rodoma etiketė.
+   */
+  moduleJourneyFocus?: Record<number, string>;
 }
 
 // Internal storage format with versioning
@@ -17,6 +22,7 @@ interface ProgressV2 {
   quizCompleted: boolean;
   quizScore: number | null;
   moduleTestScores?: Record<number, number>;
+  moduleJourneyFocus?: Record<number, string>;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -67,35 +73,62 @@ function isProgressV2(data: unknown): data is ProgressV2 {
  */
 function validateProgress(data: unknown): data is Progress {
   if (!data || typeof data !== 'object') return false;
-  
+
   const obj = data as Record<string, unknown>;
-  
+
   // Check required fields
   if (!Array.isArray(obj.completedModules)) return false;
-  if (typeof obj.completedTasks !== 'object' || obj.completedTasks === null) return false;
+  if (typeof obj.completedTasks !== 'object' || obj.completedTasks === null)
+    return false;
   if (typeof obj.quizCompleted !== 'boolean') return false;
   if (obj.quizScore !== null && typeof obj.quizScore !== 'number') return false;
-  if (obj.moduleTestScores !== undefined && (typeof obj.moduleTestScores !== 'object' || obj.moduleTestScores === null)) return false;
+  if (
+    obj.moduleTestScores !== undefined &&
+    (typeof obj.moduleTestScores !== 'object' || obj.moduleTestScores === null)
+  )
+    return false;
   if (obj.moduleTestScores && typeof obj.moduleTestScores === 'object') {
     for (const k of Object.keys(obj.moduleTestScores)) {
-      if (typeof (obj.moduleTestScores as Record<string, unknown>)[k] !== 'number') return false;
+      if (
+        typeof (obj.moduleTestScores as Record<string, unknown>)[k] !== 'number'
+      )
+        return false;
     }
   }
-  
+
+  if (obj.moduleJourneyFocus !== undefined) {
+    if (
+      typeof obj.moduleJourneyFocus !== 'object' ||
+      obj.moduleJourneyFocus === null
+    )
+      return false;
+    const jf = obj.moduleJourneyFocus as Record<string, unknown>;
+    for (const k of Object.keys(jf)) {
+      if (Number.isNaN(Number(k))) return false;
+      if (typeof jf[k] !== 'string') return false;
+    }
+  }
+
   // Validate completedModules array
-  if (!obj.completedModules.every((item: unknown) => typeof item === 'number')) {
+  if (
+    !obj.completedModules.every((item: unknown) => typeof item === 'number')
+  ) {
     return false;
   }
-  
+
   // Validate completedTasks structure
   const tasks = obj.completedTasks as Record<string, unknown>;
   for (const key in tasks) {
     if (!Array.isArray(tasks[key])) return false;
-    if (!(tasks[key] as unknown[]).every((item: unknown) => typeof item === 'number')) {
+    if (
+      !(tasks[key] as unknown[]).every(
+        (item: unknown) => typeof item === 'number'
+      )
+    ) {
       return false;
     }
   }
-  
+
   return true;
 }
 
@@ -124,7 +157,9 @@ function migrateV1ToV2(v1: ProgressV1): ProgressV2 {
  */
 
 /** Migruoja Modulio 3 skaidrių id (4→6 scenarijai, 2026-02): 35 (summary) → 37, pašalina 34 (Produkto) */
-function migrateModule3SlideIds(tasks: Record<number, number[]>): Record<number, number[]> {
+function migrateModule3SlideIds(
+  tasks: Record<number, number[]>
+): Record<number, number[]> {
   const m3 = tasks[3];
   if (!m3 || !Array.isArray(m3)) return tasks;
   const migrated = m3
@@ -135,7 +170,9 @@ function migrateModule3SlideIds(tasks: Record<number, number[]>): Record<number,
 }
 
 /** Migruoja Modulio 5 skaidrių id (senos versijos) į naujas (modules.json 2026-02/02-09) */
-function migrateModule5SlideIds(tasks: Record<number, number[]>): Record<number, number[]> {
+function migrateModule5SlideIds(
+  tasks: Record<number, number[]>
+): Record<number, number[]> {
   const m5 = tasks[5];
   if (!m5 || !Array.isArray(m5)) return tasks;
   // Pastaba: completedTasks saugo tik „užduočių“ skaidres (pvz. test-section). Tačiau migruojame visus,
@@ -169,6 +206,7 @@ function v2ToProgress(v2: ProgressV2): Progress {
     quizCompleted: v2.quizCompleted,
     quizScore: v2.quizScore,
     moduleTestScores: v2.moduleTestScores,
+    moduleJourneyFocus: v2.moduleJourneyFocus,
   };
 }
 
@@ -184,7 +222,7 @@ export const getProgress = (): Progress => {
     }
 
     const parsed = JSON.parse(stored);
-    
+
     // Handle v1 format (legacy - no version field)
     if (isProgressV1(parsed)) {
       logInfo('Migrating progress from v1 to v2', { stored });
@@ -193,31 +231,35 @@ export const getProgress = (): Progress => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
       return v2ToProgress(migrated);
     }
-    
+
     // Handle v2 format
     if (isProgressV2(parsed)) {
       // Validate structure
       if (!validateProgress(parsed)) {
-        logWarning('Progress v2 validation failed, resetting to default', { parsed });
+        logWarning('Progress v2 validation failed, resetting to default', {
+          parsed,
+        });
         resetProgress();
         return getDefaultProgress();
       }
       return v2ToProgress(parsed);
     }
-    
+
     // Unknown format - try to validate as Progress (for backward compatibility)
     if (validateProgress(parsed)) {
-      logWarning('Unknown progress format, but valid structure. Migrating to v2', { parsed });
+      logWarning(
+        'Unknown progress format, but valid structure. Migrating to v2',
+        { parsed }
+      );
       const migrated = migrateV1ToV2(parsed as ProgressV1);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
       return v2ToProgress(migrated);
     }
-    
+
     // Invalid format - reset
     logError(new Error('Invalid progress format'), { stored, parsed });
     resetProgress();
     return getDefaultProgress();
-    
   } catch (error) {
     logError(
       error instanceof Error ? error : new Error('Failed to read progress'),
@@ -237,13 +279,13 @@ function debounce<T extends (...args: any[]) => void>(
   wait: number
 ): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null;
-  
+
   return function executedFunction(...args: Parameters<T>) {
     const later = () => {
       timeout = null;
       func(...args);
     };
-    
+
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
@@ -257,12 +299,15 @@ let saveQueue: ProgressV2 | null = null;
  */
 function performSave(): void {
   if (!saveQueue) return;
-  
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(saveQueue));
     saveQueue = null;
   } catch (error) {
-    logError(error instanceof Error ? error : new Error('Failed to save progress'), {});
+    logError(
+      error instanceof Error ? error : new Error('Failed to save progress'),
+      {}
+    );
     saveQueue = null;
   }
 }
@@ -287,7 +332,7 @@ export const saveProgress = (progress: Progress): void => {
   try {
     const existing = getExistingCreatedAt();
     const now = new Date().toISOString();
-    
+
     const v2: ProgressV2 = {
       version: CURRENT_SCHEMA_VERSION,
       completedModules: progress.completedModules,
@@ -295,15 +340,22 @@ export const saveProgress = (progress: Progress): void => {
       quizCompleted: progress.quizCompleted,
       quizScore: progress.quizScore,
       moduleTestScores: progress.moduleTestScores ?? {},
+      ...(progress.moduleJourneyFocus &&
+      Object.keys(progress.moduleJourneyFocus).length > 0
+        ? { moduleJourneyFocus: progress.moduleJourneyFocus }
+        : {}),
       updatedAt: now,
       createdAt: existing.createdAt || now,
     };
-    
+
     // Update queue and trigger debounced save
     saveQueue = v2;
     debouncedSave();
   } catch (error) {
-    logError(error instanceof Error ? error : new Error('Failed to save progress'), { progress });
+    logError(
+      error instanceof Error ? error : new Error('Failed to save progress'),
+      { progress }
+    );
   }
 };
 
@@ -332,7 +384,10 @@ export const resetProgress = (): void => {
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch (error) {
-    logError(error instanceof Error ? error : new Error('Failed to reset progress'), {});
+    logError(
+      error instanceof Error ? error : new Error('Failed to reset progress'),
+      {}
+    );
   }
 };
 

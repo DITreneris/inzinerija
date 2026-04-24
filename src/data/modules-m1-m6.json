@@ -815,7 +815,7 @@
           }
         },
         {
-          "id": 14,
+          "id": 19,
           "title": "Modulio Santrauka",
           "subtitle": "Pagrindinės idėjos ir ką išmokai",
           "type": "summary",
@@ -5957,7 +5957,7 @@
           "content": {
             "sections": [
               {
-                "heading": "Trumpai (TL;DR)",
+                "heading": "Trumpai",
                 "body": "COMBO – rolė + žingsniai + palyginimas + formatas viename prompte. Čia pritaikai jau išmoktą M4 metodą savo projektui.",
                 "blockVariant": "accent"
               },
@@ -6096,7 +6096,7 @@
           "content": {
             "sections": [
               {
-                "heading": "Trumpai (TL;DR)",
+                "heading": "Trumpai",
                 "body": "Trys tipai: **MOKYTIS** (20/80) – greitas įsitraukimas į temą; **EKSPERIMENTUOTI** – haliucinacijų pavyzdys; **PERŽIŪRĖTI** – konstruktyvus atsiliepimas apie tavo darbą. Nukopijuok šabloną žemiau.",
                 "blockVariant": "accent"
               },
@@ -6173,7 +6173,7 @@
           "content": {
             "sections": [
               {
-                "heading": "Trumpai (TL;DR)",
+                "heading": "Trumpai",
                 "body": "5 dalykai: biblioteka, versijavimas, dokumentacija, procesai, testiniai duomenys. Pradėk nuo 1–2 – pvz. biblioteka ir versijavimas.",
                 "blockVariant": "accent"
               },

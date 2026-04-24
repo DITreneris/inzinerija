@@ -1,9 +1,23 @@
 # Changelog
 
-Visos reikšmingos pakeitimų šiame projekte bus dokumentuojamos šiame faile.
+Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
-Formatas pagrįstas [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+**Formatas:** [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) (angl.). **Versijų politika:** [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
+### Kaip naršyti šį failą
+
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.3.0]**, **[1.2.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+
+**Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
+
+### Versijų antraštės (turinio medis)
+
+| Skiltis                     | Ką rasite                                                                                     |
+| --------------------------- | --------------------------------------------------------------------------------------------- |
+| **[Unreleased]**            | Pakeitimai, dar neįtraukti į pažymėtą release (įskaitant veiklą po **[1.3.0]**).              |
+| **[1.3.0] – 2026-03-16**    | Paskutinis žurnale fiksuotas release, sutampantis su `README.md` ir `package.json` `version`. |
+| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                         |
+| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                     |
 
 ---
 
@@ -13,12 +27,203 @@ ir šis projektas laikosi [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
 - **LT/EN (i18n):** Pilnas UI ir turinys M1–M6; 16 namespace; schemos/diagramos, VeiksmoIntroBlock, AiDetectorsSlide – lokalizuoti. Sisteminis EN kokybės pataisymas: ~170+ hardcoded LT eilučių pašalinta iš komponentų, PDF utils ir duomenų failų.
-- **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas, access tier:** Įgyvendinta.
-- **Testai:** ~26 failų (unit, component, integration, a11y). Validacija: prebuild schema.
+- **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas, access tier:** Įgyvendinta; **tier 3** – Duomenų analizės kelias (moduliai 7–9, Modulio 8 testas ≥ 70 %), CTA po Modulio 9 (`[Unreleased]`).
+- **Testai:** ~30 failų, ~218 testų (unit, component, integration, a11y). Validacija: prebuild schema.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel diegimas, integracija kaip pagrindinės svetainės **submodulis**; stabili eksploatacija (~14+ dienų, žr. [Unreleased] pastabą).
 
 ---
 
 ## [Unreleased]
+
+### Fixed (2026-04-24)
+
+**Modulis 1 (EN): skaidrė „Prompting techniques“ rodė LT turinį EN režime – dubliuotas `id: 14`**
+
+- **Priežastis:** Modulio 1 `slides` masyve du slaidai turėjo tą patį `id: 14` – „Prompting'o Technikos“ (`prompt-techniques`, ~335 eil.) ir „Modulio Santrauka“ (`summary`, ~818 eil. LT / 805 eil. EN). `src/data/modulesLoader.ts` funkcija `mergeArraysById` raktuoja `baseIndexById` pagal `id`, todėl antrasis `id: 14` perrašydavo pirmąjį – EN override'o slaidai atsidurdavo Santraukos pozicijoje, o pirmasis LT slaidas likdavo neperrašytas. Rezultatas: EN režime skaidrė „Prompting'o Technikos“ rodė LT antraštę, `logicSteps`, `techniques[]` ir `footer`. Pažeidė `src/utils/progress.ts` 134 eil. kontraktą („`slide.id` unikalu modulio viduje“).
+- **`src/data/modules-m1-m6.json`**, **`src/data/modules.json`**, **`src/data/modules-en.json`:** Modulio 1 santraukos slaido `id: 14` → **`id: 19`**. Pirmasis `id: 14` (Prompting techniques) nekeistas, todėl `relatedSlideId: 14` nuorodos (`questionPool.ts`, `questionPool.en.ts`, `TestPracticeSlides.tsx` `CATEGORY_META.bendra.slideId`) sprendžiasi lygiai taip pat, kaip iki pataisos (per `Array.find/findIndex` – pirmojo atitikmens). `id: 19` anksčiau nebuvo naudotas Modulyje 1 (1–18, 20–21 + dublikatas).
+- **Patikra:** `node scripts/validate-schema.mjs` – OK (13 failų). `npx vitest run src/data/__tests__/modulesLoader.test.ts` – 17/17 ✓ (įskaitant EN merge fixtures).
+- **Pastaba apie esamą localStorage progresą:** Vartotojams, kurie jau pažymėję Modulio 1 Santrauką kaip baigtą, `completedTasks[1]` masyve yra `14` – po pataisos tai atitinka tik „Prompting techniques“ slaidą. Naujasis Santraukos slaidas (`id: 19`) rodomas kaip nebaigtas, kol dar kartą apsilankoma – jokio duomenų praradimo, savaime išsitaiso per kitą peržiūrą.
+
+### Changed (2026-04-13)
+
+**Footeriai ir trumpos etiketės moduliuose 7, 12, 13 (LT) + saugumo sąvokų pavadinimas**
+
+- **`src/data/modules.json` (M7):** etikos / patikimumo blokas (**66.9** → **90**) – `content.footer` su formatu **„Toliau – skaidrė N: …“** (GOLDEN_STANDARD §3.6, ≤55 simb.); pridėti / suderinti **`shortTitle`** skaidrėse **67.5**, **200**, **201**, **68.5**, **90** (footeryje ir navigacijai). Skaidrė **67** footeris – **„Pataisyk promptą“** (atitinka **67.3** `shortTitle`).
+- **`src/data/modules.json` (M7) – skaidrė 67.5:** **`shortTitle`** ir ankstesnės skaidrės footeris – **„Promptų injekcija ir ribų apėjimas“** (vietoj „įskiepimas / apeijimas“); **66.9** `nextSteps` ir **67.5** „Takoskyra“ tekstas suderinti su ta pačia terminologija.
+- **`src/data/modules.json` (M12):** **120.25** footeris – be perteklinio „(neprivaloma)“ (žyma lieka skaidrėje).
+- **`src/data/modules.json` (M13):** trumpesni footeriai ir **`shortTitle`** – **13.3**, **13.33**, **13.4**, **13.7** (stilius/kompozicija/video scenarijus/muzikos teisės).
+- **Patikra:** `node scripts/audit-footer-length.mjs`, `AUDIT_MODULES=7,8,9,10,11,12,13,14,15 node scripts/audit-footer-numbers.mjs`, `node scripts/validate-schema.mjs` – OK.
+
+### Notes
+
+**Produkcinė aplinka:** mokymosi aplikacija pasiekiama adresu **[www.promptanatomy.app](https://www.promptanatomy.app)**. Diegimas vyksta per **Vercel**; šis repo prijungtas prie didesnio projekto kaip **git submodulis** (`www`). Stabili eksploatacija produkcijoje – **maždaug 14 dienų** (įrašymo į changelog metu).
+
+**Dokumentacijos sinchronas:** `README.md` ir `ROADMAP.md` atnaujinti pagal tą patį produkcijos URL ir deploy modelį (2026-04-11).
+
+### Changed (2026-04-12)
+
+**Moduliai 13–14 (LT): M13–M14 tobulinimo planas – mažiau kartojimosi, perkrovos kontrolė, testas ir techninis `id`**
+
+- **`src/data/modules.json` (M13):** **130** – outcomes aukštesnio lygio (mažiau dubliavimo su 13.1). **13.1** – „Trumpai“ kaip gilesnis nei įvanga sluoksnis. **13.2** – vienas blokas „Formulė ir trys sluoksniai“ + `m13_prompt_stack`. **13.33** – ryšys su video (tie patys principai statiniam vaizdui). **13.35** – „Kaip naudotis šia skaidre“; trumpesni ready antraščių tekstai. **13.5** – vienas accent „Kodėl verta ir ką nurodyti“; ilgi video įrankiai – **collapsible** „Visi video įrankiai“. **13.6** – paprastesnis „Trumpai“ blokas; **Angliškas MASTER** su LT paaiškinimu; collapsible „Papildomi pavyzdžiai…“. **Verslas ir rizikos** – trumpas „Trumpai“; KPI/A/B, teisės/verslas, QA/versijos – **collapsible**; matomi „Top 3 pitfalls“. **13.11** – „Trumpai“ su nuoroda į optional **13.35**. **13.9** – `introBody` „išmokai“; statistika **„Šablonai ir generatoriai: 5+“**. **Techninis `id`:** „Verslas ir rizikos“ → **`13.101`** (JSON **`13.10`** JS suparsinamas kaip **`13.1`** ir sutapdindavo su skaidre 13.1 – navigacija/remediation klaidinga).
+- **`src/data/modules.json` (M14):** **140** – `thresholdExplanation` / gramatika (**peržiūrėti**, **skaidres**); `firstActionCTA` – rizikos ir workflow. **141** – **m14-q5** (veidas/balsas, `relatedSlideId` **13.101**), **m14-q6** (workflow po brief, **13.11**). **142** – `useCaseBlock` **„Kitas žingsnis: Modulis 15“** (vietoj trečio „Kur pritaikyti?“); `failedMessage` / `thresholdExplanation` – „skaidres“.
+- **`src/utils/slidePhaseConfig.ts`**, **`src/components/slides/shared/TestRemediationChips.tsx`:** M13 verslo fazė / remediation – **`13.101`**.
+- **`src/locales/lt.json`:** `vaizdoGen.tldr` – ryšys su optional MASTER (13.35).
+- **Dokumentacija:** `docs/turinio_pletra_moduliai_13_14_15.md` (§5a techninis id, §5c M14 testas, sinchronas su JSON); `docs/MODULIO_13_SKAIDRIU_EILES.md` (13.101 vs teminė 13.10, M13/M14 eilės aprašymai).
+
+### Changed (2026-04-11)
+
+**Modulis 7: UX tiltai, mažesnis dubliavimas, path-step ir įrankių blokas**
+
+- **`src/data/modules.json` (M7):** santraukos (**75**) pipeline kortelė – **6** etapai (įtrauktas **Modeliai**, suderinta su skaidre 73); „Kitas žingsnis“ – **„tu“** forma (`PAPRASTOS_KALBOS_GAIRES`). **66.9** – aiškesni `subtitle` / `nextSteps` (po etikos – EDA, lentelės, BI, MASTER). **90** (EDA) – tiltas „grįžtame prie analitinės dalies“. **726** – pirmoji sekcija su nuoroda į **725** (mažiau skaičių kartojimo); **ROI** → paprastesnė formulė. **67** – ilga praktika pakeista nuoroda į **67.3**. **68** – CoVe tik nuoroda į **67.8**; „Ką prisiminti“ nurodo anti-haliucinacinį šabloną skaidrėje **67.8**. **76** – sekcija **„Kodėl čia?“** (ryšys su DB ir KPI). Visi **path-step** (71.1–71.5): **`stepTotal: 5`**. Skaidrė **71:** **`toolsCollapsible: true`**.
+- **`src/components/slides/types/ContentSlides.tsx`:** **PathStepSlide** – žyma **„Žingsnis n iš total“** (kai `stepTotal`); **ContentBlockSlide** – pasirenkamas **details/summary** įrankių blokui (`toolsCollapsible`), **aria-label**, **focus-visible**.
+- **`src/types/modules.ts`:** `PathStepContent.stepTotal`, `ContentBlockContent.toolsCollapsible`.
+- **`scripts/schemas/modules.schema.json`:** `path-step.content.stepTotal`; `content-block` – `tools`, `toolsIntro`, `toolsCollapsible`.
+- **`src/locales/lt.json`, `en.json`:** `contentSlides.pathStepOfTotal`; `testPractice.toolsCollapsibleAria`.
+- **Dokumentacija:** `docs/MODULIO_7_SKAIDRIU_EILES.md` (UX tiltas, santrauka); `docs/turinio_pletra_moduliai_7_8_9.md` (726 + 725 skaitymo tvarka, ROI).
+
+### Changed (2026-04-09)
+
+**LT content-block: antraštė „Trumpai“ be anglų santrumpų vartotojo UI**
+
+- **`src/data/modules.json`**, **`src/data/modules-m1-m6.json`:** skaidrės **62**, **63**, **64** (Modulis 6) – pirmos content-block sekcijos `heading` **„Trumpai“** (buvo „Trumpai (TL;DR)“).
+- **`docs/development/GOLDEN_STANDARD.md` v2.3.8:** §3.2 / §3.2a – LT `heading` ir matoma kopija be TL;DR; schema žymėjimas Trumpai (LT) / In short (EN).
+- **`docs/development/PAPRASTOS_KALBOS_GAIRES.md` §2:** eilutė apie TL;DR → „Trumpai“.
+- **Agentų doc:** `CONTENT_AGENT.md`, `AGENT_ORCHESTRATOR.md`, `.cursor/rules/agent-orchestrator.mdc` – patikros seka su „Trumpai“.
+- **SOT / modulių eilės / auditai:** `turinio_pletra*.md`, `turinio_pletra.md`, `MODULIO_*_SKAIDRIU_EILES.md`, `AUDIT_SKAIDRE_63_*`, `SKAIDRIU_TIPU_ANALIZE.md`, `UX_AUDIT_MICRO_IMPROVEMENTS.md`, `KURSO_1_IKI_15_ANALIZE_APIBENDRINIMAS.md`, `AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` – schemose ir etiketėse „Trumpai“ vietoj TL;DR.
+- **Patikra:** `node scripts/validate-schema.mjs` – OK; `npm run build` – OK; Vitest – 218 testų – OK.
+
+**Modulis 10: mažesnis turinio dubliavimas, GOLDEN hierarchija, aiškesnė vartotojo kelionė**
+
+- **`src/data/modules.json` (M10):** **100** – pirmas `outcomes` punktas nebekartoja „agentas vs promptas“ detalės. **10.1** – pašalinta ilga workflow proza; kelio žemėlapis + nuoroda į **10.15**. **10.2** – sujungtas agento veikimo paaiškinimas; **copyable** – DI užduotis (ne tas pats paragrafas); trumpa „kada agentas“ + nuoroda į **10.5**. **10.15** – sąvokos ir pavyzdžiai viename **`terms`** bloke, diagrama **`brand`**, vienas **`accent`** CTA (`GOLDEN_STANDARD` §2.2). **10.35** – skirtingi Zapier / Make / n8n scenarijai (vengiant kartojimo su 10.25 / 10.15). **10.5** – „Taisyklės ir patarimai“ – **`terms`** + **`collapsible`** / **`collapsedByDefault`**. **10.6** – **Daryk dabar** ir **Patikra**. **10.65** – įrankių medis pakeistas nuoroda į **10.4**; **idempotency** – paaiškinimas paprasta kalba. **10.8** – trumpesnis `introBody`.
+- **`src/data/modules.json` (M11):** `failedMessage` – skaidrei 2 pašalinta klaidinanti „sąvokų santrauka“ (10.1 nebekartoja sąvokų).
+- **Dokumentacija:** `docs/turinio_pletra_moduliai_10_11_12.md` (§2, §3, §3a–3d, §4 – skaidrių numeracija 10.4/10.5/10.6; SOT sutampa su JSON); `docs/MODULIO_10_SKAIDRIU_EILES.md` (lentelė 10.1 / 10.65, GOLDEN pastaba 10.15).
+
+### Added (2026-04-07)
+
+**Tier 3 sertifikatas (Duomenų analizės kelias 7–9)**
+
+- **Sąlyga:** baigti modulius 7, 8, 9 ir Modulio 8 testas ≥ 70 %; CTA – Modulio 9 užbaigimo ekrane (`ModuleCompleteScreen` – `activeCertificateTier`, analytics `request_certificate_tier3`).
+- **`src/utils/certificateEligibility.ts`:** `canRequestCertificateTier3(progress)`; unit testai `certificateEligibility.test.ts`; `ModuleCompleteScreen.test.tsx` – tier 3 rodymo / slenksčio scenarijai.
+- **`src/locales/lt.json`, `en.json`:** `unlockCertBodyTier3`, `certAriaPart3`.
+- **`src/data/certificateContent.json`, `certificateContent-en.json`:** tier 3 tekstai – kelias 7–9 (ne „9 moduliai“ be konteksto).
+- **`docs/development/CERTIFICATE_CONTENT_SOT.md`:** lygių atrakinimo lentelė.
+
+### Changed (2026-04-07)
+
+**Moduliai 12 ir 15: paskutinė skaidrė kaip `summary` (SUMMARY_SLIDE_SPEC paritetas)**
+
+- **`src/data/modules.json`:** skaidrės **128** (M12) ir **158** (M15) – `type: "summary"`, turinys su hero statistikomis, žinių kortelėmis (`items` + `icon` + `color`), refleksijos promptu (META/INPUT/OUTPUT), `nextStepCTA`, `firstAction24h`, „Kitas Žingsnis“ kortele.
+- **`src/components/slides/types/ContentSlides.tsx`:** `SectionIcon` – palaikomos ikonos **Image**, **Video**, **Music** (M15 santraukai).
+- **`src/components/ModuleView.tsx`:** komentaras apie tier 3 atrakinimą prie `onRequestCertificate`.
+- **Dokumentacija:** `docs/MODULIO_10_SKAIDRIU_EILES.md`, `docs/MODULIO_13_SKAIDRIU_EILES.md` – tipas `summary` vietoj `practice-summary`.
+
+### Fixed (2026-04-07)
+
+**Modulis 12: practice-scenario skaidrės (121–127) rodė tuščią turinį**
+
+`PracticeScenarioSlide` ir `PracticalTask` skaitė tik **`slide.scenario`** ir **`slide.practicalTask`** (šaknyje), o M12 duomenys buvo tik **`content.*`** – scenarijaus blokas grąžindavo `null`, praktinės užduoties sekcija nerodė.
+
+- **`src/data/modules.json`:** kiekvienai M12 `practice-scenario` (121–127) pridėti šaknies **`scenario`** (kontekstas, duomenys, apribojimai, tikėtina išvestis, `narrativeLead`, `situation`) ir **`practicalTask`** (šablonas, žingsniai, `allowMarkWithoutAnswer`).
+
+**Practice-intro: Moduliui 12 (ir kitiems ne M3) rodė „6 blokų sistemą“**
+
+Bendras `PracticeIntroSlide` tekstas ne M9 buvo skirtas Moduliui 3 – netiko Agentų keliui (M12) ir kitiems practice moduliams (pvz. M15).
+
+- **`src/components/slides/types/TestPracticeSlides.tsx`:** atskiras įvadinis tekstas **`moduleId === 12`**; neutrali praktika **ne M3** (be 6 blokų frazės); **M12** progreso eilutė su **`minScenariosToComplete`** (kaip M3), kai nurodyta JSON.
+
+**Moduliai 13–14: „Verslas ir rizikos“ skaidrės `id` dublikatas; LT „tu“ forma**
+
+Antroji skaidrė su pavadinimu „Verslas ir rizikos“ buvo su **`id: 13.1`** – sutapdino su „Turinio inžinerijos kelias – ką čia rasite“ ir su `completedTasks[13]` progresu; `slidePhaseConfig` verslo fazei tikėjosi **`13.10`**. Atkurta sutartis su SOT (`docs/MODULIO_13_SKAIDRIU_EILES.md`).
+
+- **`src/data/modules.json`:** „Verslas ir rizikos“ → **`"id": 13.10`**; **13.9** santraukos `nextStepCTA` – **„Pereik prie Modulio 14…“** (`PAPRASTOS_KALBOS_GAIRES` – tu forma); **142** `passedMessage` – **„Dabar gali pereiti prie Modulio 15…“** (vietoj „Esate pasiruošę“).
+
+**Footeriai M12 / M15 – vartotojo skaidrės numeris (ne vidinis `id`)**
+
+Po įterptų skaidrių **120.25** ir **150.25** footeriai dalinai rodė **vidinius `id`** (120.5, 121, 151…) – neatitinka `.cursor/rules/footer-slide-numbers.mdc` (vartotojui rodoma pozicija modulyje 1, 2, 3…).
+
+- **`src/data/modules.json` — Modulis 12:** **120.25** → **„Toliau – skaidrė 3: Agentų orkestratorius (neprivaloma)“**. **120.5** → pridėtas **`footer`:** **„Toliau – skaidrė 4: 1 praktika: Automatize (80 %)“**.
+- **`src/data/modules.json` — Modulis 15:** **150.25** → **„Toliau – skaidrė 3: Scenarijus: Vaizdas“**.
+- **Patikra:** `node scripts/audit-footer-numbers.mjs --modules=12,15` – OK.
+
+**Dokumentacija – M12 / M15 skaidrių eilės lentelės**
+
+- **`docs/MODULIO_10_SKAIDRIU_EILES.md`:** M12 – **120.25**, **120.5**, stulpelis „Eilė (UI 1…N)“.
+- **`docs/MODULIO_13_SKAIDRIU_EILES.md`:** M15 – **150.25**, UI eilės 1…6; taisyklėje M15 – schema po įvado.
+
+### Added (2026-04-07)
+
+**Interaktyvios schemos moduliuose 7–15 (planas „Schemų plėtra M7–M15“)**
+
+- **M7:** `m7_analysis_types`, `m7_data_prep_workflow`, `m7_three_agents_flow`, `m7_master_workflow` (bendras 8 žingsnių vaizdas su `M9DataWorkflowBlock` / `diagramContext`); komponentai `M7*Block`, `m7DiagramContent.ts`; skaidrės **731, 89, 94, 74** – `modules.json`.
+- **M9:** **93** – `m9_data_workflow` (`M9DataWorkflowBlock` / `M9DataWorkflowDiagram`, `EnlargeableDiagram`).
+- **M10:** **10.15, 10.25, 10.4, 10.65** – `m10_trigger_flow`, `m10_three_a_strategy`, `m10_tool_decision_tree`, `m10_spec_incident`.
+- **M12:** nauja skaidrė **120.25** – `m12_three_labs`; **120.5** lieka optional orkestratorius.
+- **M13:** **13.1, 13.2, 13.33** – `m13_aec_funnel`, `m13_prompt_stack`, `m13_rule_of_thirds`; **13.11** – `turinio_workflow` (kaip ir buvo).
+- **M15:** nauja skaidrė **150.25** – `m15_practice_loop`.
+- **Testai M8 / M11 / M14:** `TestKnowledgeScopeDiagram`, `TestRemediationChips` – `TestPracticeSlides.tsx`; Modulio **8** test-intro papildytas (trukmė, CTA, slenkstis).
+- **Dokumentacija:** `docs/development/SCHEME_AGENT.md` §2 lentelė – naujos eilutės (M7–M15, testai).
+
+### Changed (2026-04-07)
+
+**Moduliai 10–12: turinys, testas, įvadas, santrauka (UI/UX / curriculum sinchronas)**
+
+- **`src/data/modules.json` — M12:** įvadas **120** – `minScenariosToComplete: 3`, lietuvinta kopija (praktikos vietoj „lab“, privaloma/rekomenduojama), ROI santrauka + nuoroda į doc §22; **120.5** – `optional`, `badgeVariant: optional`, sutrumpintas `whyBenefit`; skaidrės **121–123** pavadinimai „1/2/3 praktika“; **128** ir modulio `businessExamples` – be angl. žargono „delivery-first“ / „lab“. _(Vėliau tą pačią dieną skaidrė **128** pervesta į `type: "summary"` – žr. **[Unreleased] Changed (2026-04-07)** aukščiau.)_
+- **`src/data/modules.json` — M10:** **10.1** – sąvokų blokas (įskaitant integraciją, API, polling, klaidas, logus), kelio apžvalga be vidinių `10.x` id; **10.15** – papildomi blokai (Integracija, API, Polling, Klaidų tvarkymas, Logai); **10.25** – antraštė „Trys juostos (80 / 15 / 5)“ vietoj klaidinančios „Lentelė“; **10.5** – antras ilgas `copyable` – **`collapsible`**, iš pradžių uždarytas; **10.2** – sumažintas `accent` pasikartojimas („Trumpai“ → `brand`).
+- **`src/data/modules.json` — M11:** **112** – remediation tekstai su **modulio skaidrių eilės numeriais** (ne `10.1` ir pan.); **test-section** – du nauji situaciniai MCQ (**m11-q7**, **m11-q8**, `bloomLevel: 3`); **110** – `firstActionCTA` atnaujinta į **8 klausimus**.
+- **Dokumentacija:** `docs/turinio_pletra_moduliai_10_11_12.md` (§4.1 skaidrė **10.3**; §7.1–7.2 – 8 MCQ ir situaciniai); `docs/MODULIO_10_SKAIDRIU_EILES.md` (M11 klausimų aprašas).
+
+**Modulis 9: dominuojantis 8 žingsnių workflow (93–94); hub ir 17 scenarijų – papildomai**
+
+- **`src/data/modules.json` (M9):** įvadas **90** – `primaryPathIntro`, kopija ir CTA pirmiausia į **Tęsti → 93–94**; santrauka **92** – workflow kaip pakankamas rezultatas, scenarijai kaip „daugiau praktikos“; **93–94** subtitle – pagrindinis projektas; modulio `description` suderinta su fokusu.
+- **`docs/turinio_pletra_moduliai_7_8_9.md`:** §10.3 – supaprastintas variantas B (pagrindinis kelias 93–94; hub + scenarijai optional; nuoroda į skip į santrauką).
+- **`src/components/slides/types/TestPracticeSlides.tsx`:** `PracticeIntroSlide` (M9) – viršuje pagrindinio kelio blokas; veikėjai / hub / kortelės **`details`** „Papildomai“; dinaminis skaičius **17** scenarijų; i18n raktai `testPractice.*`.
+- **`src/components/SlideContent.tsx`:** `practice-summary` (M9) – `totalScenarioCount` iš `practiceScenarioSlides.length` (atsarginis **17**); `content-block` / `evaluator-prompt-block` – `onGoToSummary` tik **M9 skaidrei 94**.
+- **`src/components/slides/types/ContentSlides.tsx`:** `ContentBlockSlide` – prop `onGoToSummary`; antrinis regionas **„Į santrauką (praleisti papildomus scenarijus)“** (tik M9, id 94), `ContentBlockSlide` pabaigoje (ne kitame komponente).
+- **`src/locales/lt.json`, `en.json`:** `m9SkipToSummaryAria` / `Hint` / `Cta` ir susiję M9 įvado raktai.
+- **`src/types/modules.ts`:** `PracticeSummaryContent.stats` komentaras – 17 scenarijų.
+
+### Documentation (2026-04-07)
+
+**Moduliai 10–12: gilaus UI/UX ir ugdymo kelio audito suvestinė**
+
+Analizės rėmas: turinio SOT (`docs/turinio_pletra_moduliai_10_11_12.md`, `docs/MODULIO_10_SKAIDRIU_EILES.md`), `GOLDEN_STANDARD`, `UI_UX_AGENT`, `CURRICULUM_AGENT`. **2026-04-07** įrašyta **[Unreleased]** pradžioje: **Added / Changed** – M12/M15 `summary` + tier 3 sertifikatas; toliau taip pat **Fixed (2026-04-07)** ir **Changed (2026-04-07)** – M10–M12, M9 ir kt.
+
+- **Skaidrė 128 (M12) ir 158 (M15):** vizualus paritetas su `SUMMARY_SLIDE_SPEC` – įgyvendinta 2026-04-07 (`type: "summary"`, žr. **[Unreleased] Changed (2026-04-07)**). **Vis dar atskiras etapas:** pilnas EN turinio sinchronas M10–M12 (ir naujų santraukų vertimas).
+
+### Fixed (2026-03-28)
+
+**Modulis 4, infografika „news-portal“: apačios CTA „Pirmyn →“ neperėjo į kitą skaidrę**
+
+`ctaBlock` (pvz. „Toliau: Metodinis ir agentinis promptas…“ / „Pirmyn →“) buvo tik dekoratyvinis tekstas – vizualiai kaip kvietimas eiti toliau, bet be valdiklio. Dabar, kai skaidrė atidaroma per modulį, visas blokas yra paspaudžiamas mygtukas ir kviečia tą patį `nextSlide`, kaip viršuje „Tęsti“.
+
+- **`src/components/slides/types/ContentSlides.tsx`:** `NewsPortalInfographicSlide` – optional `onNextSlide`; su `ctaBlock` ir callback – `<button>`, hover/fokusas, `aria-label`, `min-h-[44px]`; be callback – ankstesnis statinis variantas (pvz. preview).
+- **`src/components/SlideContent.tsx`:** `infographic` + `variant: news-portal` perduoda `ctx.onNextSlide`.
+
+**Modulis 4 ir kiti: `section-break` footer „Toliau – skaidrė N…“ – navigacija ir dublikato pašalinimas**
+
+Violetinė juosta su rodykle (pvz. M4 skaidrė 40.5 → „skaidrė 11: DI skaičiai ir kontekstas“) buvo neinteraktyvi; tas pats tekstas dubliuotas italic footeriu `SlideContent` apačioje. Dabar su `onNextSlide` juosta yra paspaudžiamas mygtukas tiek su `recap`, tiek supaprastintoje šakoje be `recap` (M7+ skyrių įvadai); išorinis `SlideContent` footeris `section-break` tipui išjungtas.
+
+- **`src/components/slides/types/ContentSlides.tsx`:** `SectionBreakSlide` – optional `onNextSlide`; bendras `footerNavBlock` (mygtukas arba ankstesnis `<section>` be callback).
+- **`src/components/SlideContent.tsx`:** `section-break` perduoda `onNextSlide`; `showOuterFooter` – `false`, kai `slide.type === 'section-break'` (nėra dubliato).
+
+### Added (2026-03-27)
+
+**Modulis 7: haliucinacijų mažinimo pipeline skaidrė (67.7)**
+
+Po skaidrės 67.5 (Saugumas), prieš 67.8 (Haliucinacijos) – vizuali 5 žingsnių schema (šaltiniai → patikra → struktūra → rizika → žmogaus peržiūra), adaptuota prie **GOLDEN_STANDARD** (brand / accent / slate, šviesi kortelė, be išorinių URL), LT ir EN etiketės komponente, `prefers-reduced-motion` palaikymas.
+
+- **`src/components/HallucinationPipelineSlide.tsx`:** naujas komponentas; antraštė tik iš **ModuleView** (be vidinio dubliavimo).
+- **Naujas skaidrės tipas `hallucination-pipeline`:** `src/types/modules.ts`, `scripts/schemas/modules.schema.json`, `src/components/SlideContent.tsx`, `src/utils/slidePhaseConfig.ts`.
+- **`src/data/modules.json`:** skaidrė **id 67.7**; **Patikrumas ir etika** bloke atnaujinti „Toliau – skaidrė N“ footeriai (67.5 → 67.8 ir toliau +1).
+- **Dokumentacija:** `docs/MODULIO_7_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_7_8_9.md`, `docs/SKAIDRIU_TIPU_ANALIZE.md`.
+
+### Fixed (2026-03-26)
+
+**LT locale ir susiję šaltiniai: Input blokas (KONKREČIUS), Quality hero, praktikos hint**
+
+- **`src/locales/lt.json`:** `blockInputBody` – **KONKRETIUS** → **KONKREČIUS** (galininkas prie „duomenis“); `blockQualityHero3` – **nuodyti** → **nurodyti**; `practiceTasksHint` – sutvarkytas linksnių derinimas ir **generatyvinio** → **generatyvinį** (prie „įrankį“).
+- **`docs/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md`:** citata sinchronizuota su **KONKREČIUS**.
+- **`scripts/block_slides_extract.txt`:** ekstrakte **KONKREČIUS** (sinchronas su UI).
 
 ### Fixed (2026-03-22)
 
@@ -2487,7 +2692,13 @@ Remiantis vartotojų testais su 2 dalyviais (Moduliai 1-3): `20260209_user_tests
 
 ---
 
-## [2.1.0] - 2026-02-02
+## Ankstesnis versijų žymėjimas (2.x ir 1.0.0)
+
+Žemiau – senesnis changelog įrašas, kai projektas naudojo **2.x** (2026-02 pradžia) ir **1.0.0** (2024). **Dabartinė produkcijos eilė** aprašyta aukščiau: **[Unreleased]**, **[1.3.0]**, **[1.2.0]**. Oficiali versija – `package.json` ir `README.md`.
+
+---
+
+## [2.1.0] – 2026-02-02
 
 ### Added
 
@@ -2511,7 +2722,7 @@ Remiantis vartotojų testais su 2 dalyviais (Moduliai 1-3): `20260209_user_tests
 
 ---
 
-## [2.0.0] - 2026-02
+## [2.0.0] – 2026-02
 
 ### Added
 
@@ -2528,7 +2739,7 @@ Remiantis vartotojų testais su 2 dalyviais (Moduliai 1-3): `20260209_user_tests
 
 ---
 
-## [1.0.0] - 2024
+## [1.0.0] – 2024
 
 ### Added
 
