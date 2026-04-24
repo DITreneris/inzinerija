@@ -11,7 +11,6 @@ const BOX_H = 52;
 const GAP = 22;
 const Y_MAIN = 48;
 const X0 = 36;
-const _BRAND = '#334e68';
 const GREY = '#7B8794';
 const ACCENT = '#b8860b';
 const ARROW = 8;
