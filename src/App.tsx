@@ -628,13 +628,13 @@ function App() {
                 {t('footer:websiteLabel')}
               </a>
               <a
-                href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t"
+                href="https://t.me/prompt_anatomy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-                aria-label={t('footer:whatsAppAria')}
+                aria-label={t('footer:telegramAria')}
               >
-                {t('footer:whatsAppLabel')}
+                {t('footer:telegramLabel')}
               </a>
               <a
                 href="https://github.com/DITreneris"

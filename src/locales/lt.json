@@ -31,8 +31,8 @@
     "copyright": "Autorinė mokymo medžiaga",
     "websiteLabel": "Svetainė",
     "websiteAria": "Oficialus projekto puslapis (atidaryti naujame lange)",
-    "whatsAppLabel": "WhatsApp",
-    "whatsAppAria": "Prisijungti prie WhatsApp bendruomenės (atidaryti naujame lange)",
+    "telegramLabel": "Telegram",
+    "telegramAria": "Prisijungti prie viešos Telegram grupės (atidaryti naujame lange)",
     "githubLabel": "GitHub",
     "githubAria": "GitHub profilis (atidaryti naujame lange)"
   },

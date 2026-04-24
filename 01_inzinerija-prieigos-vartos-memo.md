@@ -94,4 +94,4 @@ Kai **`maxAccessible === 0`** (arba panašus jūsų kintamasis – prieiga nepat
 
 **Klausimai:** kreiptis į pagrindinės platformos atsakingą asmenį.
 
-**Nuorodos:** Magic link formato ir HMAC spec – [mokymu_komanda_memo.md](../mokymu_komanda_memo.md). Analizė, kodėl turinys dabar atviras – [docs/anatomija-paid-content-open-analysis.md](anatomija-paid-content-open-analysis.md).
+**Nuorodos:** Magic link formato ir HMAC spec – [mokymu_komanda_memo.md](../mokymu_komanda_memo.md). Analizė, kodėl turinys dabar atviras – [docs/archive/analysis/anatomija-paid-content-open-analysis.md](../../docs/archive/analysis/anatomija-paid-content-open-analysis.md).

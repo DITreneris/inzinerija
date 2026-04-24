@@ -998,7 +998,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **2026-03-08 (WWW nuorodos integracija – footer ir README)**
 
-- **Footer:** Pridėta nuoroda „Svetainė“ → https://www.promptanatomy.app/ (`src/App.tsx`) – prieš WhatsApp ir GitHub; tas pats stilius, `target="_blank"`, `rel="noopener noreferrer"`, `aria-label="Oficialus projekto puslapis (atidaryti naujame lange)"`.
+- **Footer:** Pridėta nuoroda „Svetainė“ → https://www.promptanatomy.app/ (`src/App.tsx`) – prieš Telegram ir GitHub; tas pats stilius, `target="_blank"`, `rel="noopener noreferrer"`, `aria-label="Oficialus projekto puslapis (atidaryti naujame lange)"`.
 - **README § Kontaktai:** Pridėta eilutė **Svetainė:** [promptanatomy.app](https://www.promptanatomy.app/) – pagal EDU/GitHub geriausias praktikas (docs/development/WWW_NUORODOS_INTEGRACIJA_KISS_MARRY_KILL.md).
 
 **2026-03-07 (LT/EN lokalizacija – moduliai 1–3, pilnas UI)**

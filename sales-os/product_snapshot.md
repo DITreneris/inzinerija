@@ -19,7 +19,7 @@ Profesionalams (vadovams, marketingui, HR, IT, konsultantams), kurie nori efekty
 
 - Produktas veikia (gyvuose testuose stabiliai)
 - 132+ testo dalyviai – auditorija validuota
-- LinkedIn ir WhatsApp kanalai paruošti
+- LinkedIn ir vieša Telegram grupė paruošti
 - Konkurencijoje – daug chaosas, mažai sistemų
 
 ## Kaina / pasiūlymo forma
