@@ -18,7 +18,7 @@
 
 **Stipriosios pusės (iš atsiliepimų):** aiški struktūra, loginis dėstymas, praktika ir testas, profesionalus tonas, tinka B2B kontekstui.
 
-**Spin-off (funnel dalis):** (1) **Nr. 1** – [„8 promptų biblioteka“](https://ditreneris.github.io/biblioteka/) (~30 min). (2) **Nr. 2** – [„SOT_Marketingas“ – rinkodaros vadovo AI operacinė sistema](https://ditreneris.github.io/marketingas/) (~45–60 min, 10 promptų: turinys, lead'ai, metrikos). (3) **Nr. 3** – [„Personalas“ – HR kasdienė atrankos sistema](https://ditreneris.github.io/personalas/) (~30 min, 10 promptų: diagnostika, profilis, pritraukimas, atranka, pasiūlymas, išlaikymas). Visi pristato vertę ir nukreipia į pilną kursą ir viešą Telegram grupę. **LinkedIn:** antro spin-off postas numatytas **2026-02-25**. Žr. §6 „Spin-off kaip funnel dalis“.
+**Spin-off (funnel dalis):** (1) **Nr. 1** – [„8 promptų biblioteka“](https://www.promptanatomy.info/lt/) (~30 min). (2) **Nr. 2** – [„SOT_Marketingas“ – rinkodaros vadovo AI operacinė sistema](https://ditreneris.github.io/marketingas/) (~45–60 min, 10 promptų: turinys, lead'ai, metrikos). (3) **Nr. 3** – [„Personalas“ – HR kasdienė atrankos sistema](https://ditreneris.github.io/personalas/) (~30 min, 10 promptų: diagnostika, profilis, pritraukimas, atranka, pasiūlymas, išlaikymas). Visi pristato vertę ir nukreipia į pilną kursą ir viešą Telegram grupę. **LinkedIn:** antro spin-off postas numatytas **2026-02-25**. Žr. §6 „Spin-off kaip funnel dalis“.
 
 ---
 
@@ -121,15 +121,15 @@ _Principas: jei visiems siūlai tą patį – prarandi vertę._
 
 ### Fase 1 – Dabar (be didelių išlaidų)
 
-| Veiksmas                           | Aprašymas                                                                                                                                                                                                                                                 |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **LinkedIn lead magnet**           | „Nemokami 3 moduliai“ – pritraukti susidomėjusius; CTA – gauti prieigą arba tiesiai į kursą.                                                                                                                                                              |
-| **Spin-off: 8 promptų biblioteka** | Dalintis nuoroda [ditreneris.github.io/biblioteka](https://ditreneris.github.io/biblioteka/) **gyvų mokymų metu** ir **LinkedIn** – nemokamas trumpas įrankis (~30 min), pritraukia naujus vartotojus ir nukreipia į pilną kursą ir viešą Telegram grupę. |
-| **Spin-off: SOT_Marketingas**      | [ditreneris.github.io/marketingas](https://ditreneris.github.io/marketingas/) – rinkodaros vadovams (10 promptų: turinio sistema, repurpose, lead magnet, metrikos). **LinkedIn postas numatytas 2026-02-25.**                                            |
-| **Spin-off: Personalas**           | [ditreneris.github.io/personalas](https://ditreneris.github.io/personalas/) – personalo vadovams (10 promptų: diagnostika, profilis, pritraukimas, atranka, pasiūlymas, išlaikymas). Veikianti atrankos struktūra per ~30 min.                            |
-| **Nuorodos ir kvietimai**          | Siųsti testo nuorodą ir apklausą jau surinktai auditorijai; naudoti vieną pagrindinį pranešimą.                                                                                                                                                           |
-| **Vienas pagrindinis pranešimas**  | Visur: „90 % rašo neteisingai – čia išmoksi sistemą. 6 blokų mokymas ~45 min.“                                                                                                                                                                            |
-| **Kur skelbti**                    | LinkedIn (asmeninis profilis arba puslapis), el. paštas, vieša Telegram grupė – trumpas tekstas + nuoroda (į kursą arba į spin-off biblioteką).                                                                                                           |
+| Veiksmas                           | Aprašymas                                                                                                                                                                                                                                 |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **LinkedIn lead magnet**           | „Nemokami 3 moduliai“ – pritraukti susidomėjusius; CTA – gauti prieigą arba tiesiai į kursą.                                                                                                                                              |
+| **Spin-off: 8 promptų biblioteka** | Dalintis nuoroda [promptanatomy.info/lt](https://www.promptanatomy.info/lt/) **gyvų mokymų metu** ir **LinkedIn** – nemokamas trumpas įrankis (~30 min), pritraukia naujus vartotojus ir nukreipia į pilną kursą ir viešą Telegram grupę. |
+| **Spin-off: SOT_Marketingas**      | [ditreneris.github.io/marketingas](https://ditreneris.github.io/marketingas/) – rinkodaros vadovams (10 promptų: turinio sistema, repurpose, lead magnet, metrikos). **LinkedIn postas numatytas 2026-02-25.**                            |
+| **Spin-off: Personalas**           | [ditreneris.github.io/personalas](https://ditreneris.github.io/personalas/) – personalo vadovams (10 promptų: diagnostika, profilis, pritraukimas, atranka, pasiūlymas, išlaikymas). Veikianti atrankos struktūra per ~30 min.            |
+| **Nuorodos ir kvietimai**          | Siųsti testo nuorodą ir apklausą jau surinktai auditorijai; naudoti vieną pagrindinį pranešimą.                                                                                                                                           |
+| **Vienas pagrindinis pranešimas**  | Visur: „90 % rašo neteisingai – čia išmoksi sistemą. 6 blokų mokymas ~45 min.“                                                                                                                                                            |
+| **Kur skelbti**                    | LinkedIn (asmeninis profilis arba puslapis), el. paštas, vieša Telegram grupė – trumpas tekstas + nuoroda (į kursą arba į spin-off biblioteką).                                                                                           |
 
 ### Fase 2 – Po apklausos rezultatų / nurturing
 
@@ -166,7 +166,7 @@ Reklama (Google, Meta ir kt.) – ne pirmoje fazėje; pirmiausia organinis pasie
 
 ### Spin-off kaip funnel dalis
 
-**Nr. 1 – [8 promptų biblioteka](https://ditreneris.github.io/biblioteka/)** – „Leisk DI atlikti 30–50% tavo kasdienių užduočių“. 8 pratimai (~30 min), kopijuoti → ChatGPT/Claude → [ĮMONĖ], [MANO ROLĖ]. Vertė: 3–5 val/savaitę, mažiau klaidų, aiškesnis kontekstas. CTA į viešą Telegram grupę ir pilną kursą.
+**Nr. 1 – [8 promptų biblioteka](https://www.promptanatomy.info/lt/)** – „Leisk DI atlikti 30–50% tavo kasdienių užduočių“. 8 pratimai (~30 min), kopijuoti → ChatGPT/Claude → [ĮMONĖ], [MANO ROLĖ]. Vertė: 3–5 val/savaitę, mažiau klaidų, aiškesnis kontekstas. CTA į viešą Telegram grupę ir pilną kursą.
 
 **Nr. 2 – [SOT_Marketingas](https://ditreneris.github.io/marketingas/)** – „Rinkodaros vadovo AI operacinė sistema“. 10 promptų (~45–60 min): 30 d. turinio sistema, repurpose (1 insight → 7 formatai), LinkedIn postai, 30s video scenarijus, metrikos → sprendimai, objection handling, lead magnet + DM seka, case study, MASTER prompt. Plan → Kurk → Distribuok → Matuok → Spręsk. **LinkedIn postas numatytas 2026-02-25.**
 
@@ -179,7 +179,7 @@ Reklama (Google, Meta ir kt.) – ne pirmoje fazėje; pirmiausia organinis pasie
 | **Gyvi mokymai** | Dalintis spin-off nuorodas – biblioteka (bendram kontekstui), SOT_Marketingas (rinkodaros auditorijai), **Personalas** (HR / personalo vadovams).                                                                                                                                                                                |
 | **LinkedIn**     | Nr. 1 – postai su nuoroda į biblioteką; Nr. 2 – **postas 2026-02-25** su nuoroda į [marketingas](https://ditreneris.github.io/marketingas/); Nr. 3 – postai HR auditorijai su nuoroda į [personalas](https://ditreneris.github.io/personalas/). CTA – išbandyti, prisijungti prie Telegram grupės, toliau – 3 nemokami moduliai. |
 
-Nuorodos: **https://ditreneris.github.io/biblioteka/** | **https://ditreneris.github.io/marketingas/** | **https://ditreneris.github.io/personalas/**
+Nuorodos: **https://www.promptanatomy.info/lt/** | **https://ditreneris.github.io/marketingas/** | **https://ditreneris.github.io/personalas/**
 
 ---
 

@@ -662,10 +662,7 @@
                   "examplePrompt": "Prepare 5 marketing ideas for a logistics company in Lithuania.",
                   "withoutContext": "Answer is generic – it doesn't know your business situation.",
                   "withContext": "Answer is aimed at a clear goal and audience.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "prompt",
@@ -675,10 +672,7 @@
                   "examplePrompt": "Create 5 ideas. For each give a title, channel, and short explanation.",
                   "withoutContext": "Ideas are generic, often like common templates.",
                   "withContext": "Prompt uses extra information, so suggestions are more targeted.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "context",
@@ -688,9 +682,7 @@
                   "examplePrompt": "Context: B2B logistics, 40 staff, goal – new clients in the region, budget 1500 EUR/month.",
                   "withoutContext": "Model doesn't know your real situation and suggests \"one size fits all\" options.",
                   "withContext": "Model picks ideas to match your data, limits, and priorities.",
-                  "availableInModes": [
-                    "context"
-                  ]
+                  "availableInModes": ["context"]
                 },
                 {
                   "id": "llm",
@@ -700,10 +692,7 @@
                   "examplePrompt": "Give the answer in a table: idea | why it fits logistics | first step.",
                   "withoutContext": "Result is smooth but less practical for real work.",
                   "withContext": "Result is more actionable, with clearer next steps.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 },
                 {
                   "id": "tools",
@@ -713,9 +702,7 @@
                   "examplePrompt": "Check the last 3 months' sales CSV and suggest ideas for the TOP client segment.",
                   "withoutContext": "No check against real data, so the answer can be too abstract.",
                   "withContext": "Answer is based on real numbers and more reliable.",
-                  "availableInModes": [
-                    "context"
-                  ]
+                  "availableInModes": ["context"]
                 },
                 {
                   "id": "output",
@@ -725,10 +712,7 @@
                   "examplePrompt": "At the end add 3 actions we can do this week.",
                   "withoutContext": "Good to start, but often needs a lot of manual tweaking.",
                   "withContext": "Easier to use in practice, fewer fixes.",
-                  "availableInModes": [
-                    "prompt",
-                    "context"
-                  ]
+                  "availableInModes": ["prompt", "context"]
                 }
               ]
             },
@@ -842,11 +826,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "",
-                    "System prompt",
-                    "Master prompt"
-                  ],
+                  "headers": ["", "System prompt", "Master prompt"],
                   "rows": [
                     [
                       "What it defines",
@@ -863,11 +843,7 @@
                       "\"Answer in English. If you don't know – say I don't know. Format – bullet list.\"",
                       "\"I'm a startup founder, work with B2B clients, 10 years' experience. Audience – managers.\""
                     ],
-                    [
-                      "Who sets it",
-                      "Creator / administrator",
-                      "User (you)"
-                    ],
+                    ["Who sets it", "Creator / administrator", "User (you)"],
                     [
                       "When it applies",
                       "From session start, for all answers",
@@ -976,23 +952,14 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": [
-                    "❌ Bad",
-                    "✅ Good"
-                  ],
+                  "headers": ["❌ Bad", "✅ Good"],
                   "rows": [
                     [
                       "\"Create a strategy for me.\"",
                       "\"Role: business strategist. Context: retail, 50 employees, UK market.\""
                     ],
-                    [
-                      "No context",
-                      "Sector, size, market specified"
-                    ],
-                    [
-                      "No structure",
-                      "3 stages: input → processing → result"
-                    ],
+                    ["No context", "Sector, size, market specified"],
+                    ["No structure", "3 stages: input → processing → result"],
                     [
                       "No output guidance",
                       "Format: table. For each stage: goal, key indicators (KPI), deadlines."
@@ -1028,92 +995,49 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "ChatGPT",
-                      "Claude AI",
-                      "Gamma App"
-                    ],
-                    "flow": [
-                      "Initial request",
-                      "Processing",
-                      "Presentation"
-                    ],
+                    "chain": ["ChatGPT", "Claude AI", "Gamma App"],
+                    "flow": ["Initial request", "Processing", "Presentation"],
                     "tag": "Content",
                     "expandInput": "Request and context",
                     "expandOutput": "Structured presentation (Gamma)"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Figma"
-                    ],
-                    "flow": [
-                      "Ideas",
-                      "Dizainas"
-                    ],
+                    "chain": ["GPT", "Figma"],
+                    "flow": ["Ideas", "Dizainas"],
                     "tag": "Dizainas",
                     "expandInput": "Description or moodboard",
                     "expandOutput": "Mockups, UI skeleton"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Gamma"
-                    ],
-                    "flow": [
-                      "Turinys",
-                      "Slides"
-                    ],
+                    "chain": ["GPT", "Gamma"],
+                    "flow": ["Turinys", "Slides"],
                     "tag": "Turinys",
                     "expandInput": "Topic and structure",
                     "expandOutput": "Ready slides with design"
                   },
                   {
-                    "chain": [
-                      "Gemini",
-                      "Calendar"
-                    ],
-                    "flow": [
-                      "Planavimas",
-                      "Renginiai"
-                    ],
+                    "chain": ["Gemini", "Calendar"],
+                    "flow": ["Planavimas", "Renginiai"],
                     "tag": "Planavimas",
                     "expandInput": "Date, time, description",
                     "expandOutput": "Calendar entries"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Zapier",
-                      "Gmail"
-                    ],
-                    "flow": [
-                      "Automatizavimas",
-                      "Siuntimas"
-                    ],
+                    "chain": ["GPT", "Zapier", "Gmail"],
+                    "flow": ["Automatizavimas", "Siuntimas"],
                     "tag": "Automatizacija",
                     "expandInput": "Trigger + template",
                     "expandOutput": "Email sent by rule"
                   },
                   {
-                    "chain": [
-                      "GPT",
-                      "Google Veo3"
-                    ],
-                    "flow": [
-                      "Promptas",
-                      "Video"
-                    ],
+                    "chain": ["GPT", "Google Veo3"],
+                    "flow": ["Promptas", "Video"],
                     "tag": "Video",
                     "expandInput": "Text prompt or script",
                     "expandOutput": "Generated video"
                   },
                   {
-                    "chain": [
-                      "ChatGPT / Perplexity",
-                      "Figma",
-                      "Claude"
-                    ],
+                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
                     "flow": [
                       "Context set (RAG)",
                       "Visual mock-up",
@@ -1188,13 +1112,7 @@
                 "Deep learning",
                 "Generative AI"
               ],
-              "correctAnswers": [
-                0,
-                1,
-                3,
-                2,
-                4
-              ],
+              "correctAnswers": [0, 1, 3, 2, 4],
               "explanations": [
                 "Works by fixed rules, doesn't learn from data – that's the broader AI field.",
                 "System learns from data (e.g. past transactions) and spots anomalies – typical machine learning.",
@@ -1226,7 +1144,7 @@
             ],
             "spinoffCta": {
               "label": "Try the 8-prompt library (~30 min)",
-              "url": "https://ditreneris.github.io/biblioteka/"
+              "url": "https://www.promptanatomy.info/en/"
             },
             "recap": {
               "heading": "What do you already know?",
@@ -1684,10 +1602,7 @@
                       "Learns from numbers and KPI",
                       "Learns from human ratings"
                     ],
-                    [
-                      "Goal – better results",
-                      "Goal – better communication"
-                    ],
+                    ["Goal – better results", "Goal – better communication"],
                     [
                       "Maximises conversion, profit, speed",
                       "Improves tone, clarity, experience"
@@ -2066,12 +1981,7 @@
                   ]
                 },
                 "table": {
-                  "headers": [
-                    "Tool",
-                    "Strength",
-                    "Best for",
-                    "Price (2026)"
-                  ],
+                  "headers": ["Tool", "Strength", "Best for", "Price (2026)"],
                   "rows": [
                     [
                       "ChatGPT (OpenAI)",
@@ -2150,26 +2060,12 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "Claude",
-                      "ChatGPT",
-                      "Gamma"
-                    ],
-                    "flow": [
-                      "Analysis",
-                      "Strategy",
-                      "Slides"
-                    ]
+                    "chain": ["Claude", "ChatGPT", "Gamma"],
+                    "flow": ["Analysis", "Strategy", "Slides"]
                   },
                   {
-                    "chain": [
-                      "Gemini",
-                      "ChatGPT"
-                    ],
-                    "flow": [
-                      "Research + images",
-                      "Wording"
-                    ]
+                    "chain": ["Gemini", "ChatGPT"],
+                    "flow": ["Research + images", "Wording"]
                   }
                 ]
               },
@@ -2384,11 +2280,7 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": [
-                    "Situation",
-                    "Recommended",
-                    "Why?"
-                  ],
+                  "headers": ["Situation", "Recommended", "Why?"],
                   "rows": [
                     [
                       "Need general business context",
@@ -2511,28 +2403,19 @@
                 "name": "PaperGuide",
                 "url": "https://paperguide.ai",
                 "description": "Talk to your PDF. Upload a report or study – get summary, conclusions, main points.",
-                "useCases": [
-                  "Report analysis",
-                  "Quick document scan"
-                ]
+                "useCases": ["Report analysis", "Quick document scan"]
               },
               {
                 "name": "Scite",
                 "url": "https://scite.ai",
                 "description": "Does the source really support your claim? Shows how the study is cited – supports or contradicts.",
-                "useCases": [
-                  "Citation check",
-                  "Strengthening arguments"
-                ]
+                "useCases": ["Citation check", "Strengthening arguments"]
               },
               {
                 "name": "Elicit",
                 "url": "https://elicit.com",
                 "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
-                "useCases": [
-                  "Synthesis",
-                  "Trend search"
-                ]
+                "useCases": ["Synthesis", "Trend search"]
               },
               {
                 "name": "Consensus",
@@ -3049,11 +2932,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Model",
-                    "Context window",
-                    "Roughly…"
-                  ],
+                  "headers": ["Model", "Context window", "Roughly…"],
                   "rows": [
                     [
                       "ChatGPT (GPT-4o)",
@@ -3070,16 +2949,8 @@
                       "up to 1M tokens",
                       "≈ 750,000 words / ~1,500 pages"
                     ],
-                    [
-                      "Copilot",
-                      "16k–128k tokens",
-                      "≈ 12,000–96,000 words"
-                    ],
-                    [
-                      "DeepSeek",
-                      "64k–128k tokens",
-                      "≈ 48,000–96,000 words"
-                    ]
+                    ["Copilot", "16k–128k tokens", "≈ 12,000–96,000 words"],
+                    ["DeepSeek", "64k–128k tokens", "≈ 48,000–96,000 words"]
                   ]
                 }
               },
@@ -3119,11 +2990,7 @@
                 "body": "How an important priority gets lost in a long conversation – and what risk that is for the business.",
                 "blockVariant": "brand",
                 "table": {
-                  "headers": [
-                    "Iteration",
-                    "Action",
-                    "Context state"
-                  ],
+                  "headers": ["Iteration", "Action", "Context state"],
                   "rows": [
                     [
                       "**1st**",
@@ -3275,10 +3142,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "❌ Negative (no) prompt",
-                    "✅ Good prompt"
-                  ],
+                  "headers": ["❌ Negative (no) prompt", "✅ Good prompt"],
                   "rows": [
                     [
                       "\"Help with a report.\"",
@@ -4100,11 +3964,7 @@
                 "blockVariant": "emerald",
                 "workflowChains": [
                   {
-                    "chain": [
-                      "ChatGPT / Perplexity",
-                      "Figma",
-                      "Claude"
-                    ],
+                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
                     "flow": [
                       "Context set (RAG)",
                       "Visual mock-up",
@@ -4148,10 +4008,7 @@
                 "heading": "6-block structure",
                 "body": "",
                 "table": {
-                  "headers": [
-                    "Block",
-                    "Instruction"
-                  ],
+                  "headers": ["Block", "Instruction"],
                   "rows": [
                     [
                       "#1 META",
