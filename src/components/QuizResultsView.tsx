@@ -1,11 +1,18 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle, XCircle, Trophy, RefreshCw, ArrowRight, ExternalLink } from 'lucide-react';
+import {
+  CheckCircle,
+  XCircle,
+  Trophy,
+  RefreshCw,
+  ArrowRight,
+  ExternalLink,
+} from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import { useCountUp } from '../utils/useCountUp';
 import type { QuizQuestion } from '../types/modules';
 
-const CEO_SPINOFF_URL = 'https://ditreneris.github.io/ceo/';
+const CEO_SPINOFF_URL = 'https://www.promptanatomy.ceo/';
 
 export interface QuizResultsViewProps {
   questions: QuizQuestion[];
@@ -29,7 +36,9 @@ export function QuizResultsView({
   const firstWrongRef = useRef<HTMLDivElement>(null);
   const animatedScore = useCountUp(score, 1500, 300);
 
-  const correctCount = questions.filter((q) => answers[q.id] === q.correct).length;
+  const correctCount = questions.filter(
+    (q) => answers[q.id] === q.correct
+  ).length;
   const hasWrong = correctCount < questions.length;
 
   /** M3: klaidingi atsakymai pirmi – pirmas neteisingas iš karto matomas */
@@ -49,7 +58,10 @@ export function QuizResultsView({
       if (hasWrong && firstWrongRef.current) {
         scroll(firstWrongRef.current, { behavior: 'smooth', block: 'start' });
       } else if (resultsReviewRef.current) {
-        scroll(resultsReviewRef.current, { behavior: 'smooth', block: 'start' });
+        scroll(resultsReviewRef.current, {
+          behavior: 'smooth',
+          block: 'start',
+        });
       }
     };
     const rafId = requestAnimationFrame(runScroll);
@@ -171,7 +183,9 @@ export function QuizResultsView({
                       }`}
                     >
                       <strong>
-                        {isCorrect ? t('explanationStrong') : t('explanationTryAgain')}
+                        {isCorrect
+                          ? t('explanationStrong')
+                          : t('explanationTryAgain')}
                       </strong>
                       {q.explanation}
                     </p>
@@ -201,7 +215,9 @@ export function QuizResultsView({
 
         {/* Hidden treasure: nuoroda į DI Operacinį centrą (Spin-off Nr. 5, CEO) */}
         <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{t('ceoSpinoffDescription')}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            {t('ceoSpinoffDescription')}
+          </p>
           <a
             href={CEO_SPINOFF_URL}
             target="_blank"

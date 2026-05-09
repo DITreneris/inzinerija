@@ -838,7 +838,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **Finalinio testo (apklausos) hidden treasure – nuoroda į DI Operacinį centrą (CEO)**
 
-- **QuizResultsView.tsx:** Po mygtukų „Pradėti iš naujo“ / „Grįžti į pradžią“ – papildoma sekcija su nuoroda į https://ditreneris.github.io/ceo/ (Spin-off Nr. 5), etiketė „Jei neaišku – klausk“, stilius pagal spinoff CTA (accent border, ExternalLink, min-h-[44px], target="\_blank", rel="noopener noreferrer", aria-label).
+- **QuizResultsView.tsx:** Po mygtukų „Pradėti iš naujo“ / „Grįžti į pradžią“ – papildoma sekcija su nuoroda į https://www.promptanatomy.ceo/ (Spin-off Nr. 5), etiketė „Jei neaišku – klausk“, stilius pagal spinoff CTA (accent border, ExternalLink, min-h-[44px], target="\_blank", rel="noopener noreferrer", aria-label).
 - **Lokalizacija:** `quiz.ceoSpinoffLabel`, `quiz.ceoSpinoffAria` (lt.json, en.json). Rezultatų ekrano tekstai per i18n: `resultsTitlePass`/`resultsTitleFail`, `resultsScoreBefore`/`resultsScoreAfter`, `wrongFirstHint`, `explanationStrong`/`explanationTryAgain`, `btnRestart`, `btnBack`.
 - **docs/development/PDF_GENERATION_AGENT_MEMORY.md:** Pastaba – po finalinio testo hidden treasure = nuoroda į DI Operacinį centrą (CEO).
 - **QuizPage.test.tsx:** Smoke testas – rezultatų ekrane rodomas CEO nuorodos linkas su teisingu href ir aria-label (LT/EN).

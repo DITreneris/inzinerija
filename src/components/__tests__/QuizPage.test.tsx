@@ -62,11 +62,17 @@ describe('QuizPage', () => {
       />
     );
 
-    expect(screen.getByText(/Apklausos klausimų nėra|No quiz questions available/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })).toBeInTheDocument();
+    expect(
+      screen.getByText(/Apklausos klausimų nėra|No quiz questions available/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
+    ).toBeInTheDocument();
     expect(onQuizComplete).not.toHaveBeenCalled();
 
-    await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }));
+    await userEvent.click(
+      screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
+    );
     expect(onBack).toHaveBeenCalledTimes(1);
   });
 
@@ -99,11 +105,15 @@ describe('QuizPage', () => {
     );
 
     expect(screen.getByText(/Test question/)).toBeInTheDocument();
-    const optionButtons = screen.getAllByRole('button', { name: /Pasirink atsakymą:|Select answer:/i });
+    const optionButtons = screen.getAllByRole('button', {
+      name: /Pasirink atsakymą:|Select answer:/i,
+    });
     await act(async () => {
       await userEvent.click(optionButtons[0]);
     });
-    const submitButton = screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i });
+    const submitButton = screen.getByRole('button', {
+      name: /Baigti apklausą|Finish quiz/i,
+    });
     await act(async () => {
       await userEvent.click(submitButton);
     });
@@ -145,7 +155,9 @@ describe('QuizPage', () => {
       await userEvent.click(screen.getByRole('button', { name: /Correct/ }));
     });
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i }));
+      await userEvent.click(
+        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+      );
     });
     expect(screen.getByText(/Puikiai|Well done/i)).toBeInTheDocument();
   });
@@ -180,9 +192,13 @@ describe('QuizPage', () => {
       await userEvent.click(screen.getByRole('button', { name: /Wrong/ }));
     });
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i }));
+      await userEvent.click(
+        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+      );
     });
-    expect(screen.getByRole('heading', { name: /Bandykite dar kartą|Try again/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /Bandykite dar kartą|Try again/i })
+    ).toBeInTheDocument();
   });
 
   it('shows explanation after answering a question', async () => {
@@ -212,7 +228,11 @@ describe('QuizPage', () => {
       />
     );
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /Pasirink atsakymą: A|Select answer: A/i }));
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: /Pasirink atsakymą: A|Select answer: A/i,
+        })
+      );
     });
     expect(screen.getByText(/Because A is correct/)).toBeInTheDocument();
   });
@@ -244,14 +264,22 @@ describe('QuizPage', () => {
       />
     );
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /Pasirink atsakymą: A|Select answer: A/i }));
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: /Pasirink atsakymą: A|Select answer: A/i,
+        })
+      );
     });
     await act(async () => {
-      await userEvent.click(screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i }));
+      await userEvent.click(
+        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+      );
     });
-    const ceoLink = screen.getByRole('link', { name: /DI Operacinį centrą|AI Operations Centre|Operations Centre/i });
+    const ceoLink = screen.getByRole('link', {
+      name: /DI Operacinį centrą|AI Operations Centre|Operations Centre/i,
+    });
     expect(ceoLink).toBeInTheDocument();
-    expect(ceoLink).toHaveAttribute('href', 'https://ditreneris.github.io/ceo/');
+    expect(ceoLink).toHaveAttribute('href', 'https://www.promptanatomy.ceo/');
     expect(ceoLink).toHaveAttribute('target', '_blank');
     expect(ceoLink).toHaveAttribute('rel', expect.stringMatching(/noopener/));
   });
