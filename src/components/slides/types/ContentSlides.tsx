@@ -78,6 +78,9 @@ import {
   ContextEngineeringPipelineDiagram,
 } from '../shared';
 import { getColorClasses } from '../utils/colorStyles';
+import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
+import SectionDivider from '../../ui/SectionDivider';
+import type { ModuleAccent } from '../../../types/modules';
 import type {
   ActionIntroJourneyContent,
   JourneyChoice,
@@ -1917,10 +1920,13 @@ const sectionBreakColorMap = {
 
 export function SectionBreakSlide({
   content,
+  moduleAccent,
   onGoToGlossaryTerm,
   onNextSlide,
 }: {
   content?: SectionBreakContent | null;
+  /** DS v0.2 E5 — sectionNumber badge only; hero lieka heroColorKey. */
+  moduleAccent?: ModuleAccent;
   onGoToGlossaryTerm?: (term: string) => void;
   /** Modulio vaizdas: „Toliau – skaidrė N…“ juosta veda į kitą skaidrę (kaip „Tęsti“). */
   onNextSlide?: () => void;
@@ -1932,6 +1938,9 @@ export function SectionBreakSlide({
   if (!content) return null;
   const hck = content.heroColorKey ?? 'brand';
   const colors = sectionBreakColorMap[hck] ?? sectionBreakColorMap.brand;
+  const sectionBadgeClass = moduleAccent
+    ? sectionBreakBadgeByAccent[moduleAccent]
+    : colors.badge;
   const hasRecap = content.recap?.items?.length;
   const hasNextSteps = (content.nextSteps?.length ?? 0) > 0;
   const hasSubtitle = Boolean(content.subtitle);
@@ -2039,7 +2048,7 @@ export function SectionBreakSlide({
         <div className="flex flex-col items-center text-center">
           {content.sectionNumber && (
             <span
-              className={`inline-block px-4 py-1.5 rounded-full ${colors.badge} font-semibold text-sm mb-4`}
+              className={`inline-block px-4 py-1.5 rounded-full ${sectionBadgeClass} font-semibold text-sm mb-4`}
             >
               {content.sectionNumber}
             </span>
@@ -2335,7 +2344,9 @@ export function SectionBreakSlide({
   return (
     <div className="flex flex-col items-center justify-center min-h-[280px] text-center px-4 py-8 w-full">
       {content.sectionNumber && (
-        <span className="inline-block px-4 py-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 font-semibold text-sm mb-4">
+        <span
+          className={`inline-block px-4 py-1.5 rounded-full ${sectionBadgeClass} font-semibold text-sm mb-4`}
+        >
           {content.sectionNumber}
         </span>
       )}
@@ -4787,6 +4798,16 @@ export function SummarySlide({
           );
         })}
       </div>
+
+      {content.reflectionPrompt && (
+        <SectionDivider
+          label={
+            content.reflectionTitle ?? (isEn ? 'Reflection' : 'Refleksija')
+          }
+          accent="accent"
+          className="my-2"
+        />
+      )}
 
       {/* ── Reflection Prompt (full-width, dedicated section) ── */}
       {content.reflectionPrompt && (

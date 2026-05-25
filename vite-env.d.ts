@@ -6,7 +6,10 @@ interface ImportMetaEnv {
   readonly DEV: boolean;
   readonly PROD: boolean;
   readonly BASE_URL: string;
-  // Add other env variables as needed
+  readonly VITE_PUBLIC_SITE_URL?: string;
+  readonly VITE_VERIFY_ACCESS_URL?: string;
+  readonly VITE_MAX_ACCESSIBLE_MODULE?: string;
+  readonly VITE_MVP_MODE?: string;
 }
 
 interface ImportMeta {

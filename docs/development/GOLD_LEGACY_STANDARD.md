@@ -41,7 +41,7 @@
 **Pavadinimas:** Promptų anatomija – Interaktyvus DI mokymas  
 **Paketas:** `prompt-anatomy-training` v1.3.0  
 **Autorius:** Tomas Staniulis  
-**Licencija:** MIT (kodas), © 2024–2026 (turinys)  
+**Licencija:** MIT (kodas), © 2026 (turinys)  
 **Repozitorija:** `https://github.com/DITreneris/inzinerija.git` (deploy šiam projektui; alternatyva – anatomija)  
 **Production URL:** `https://promptanatomy.app/` (marketingo repo integracija)  
 **Demo URL:** `https://ditreneris.github.io/inzinerija/` (GitHub Pages; base path turi atitikti repo pavadinimą)
@@ -147,7 +147,7 @@ prompt-anatomy-training/
 │   └── ...                  # Turinio plėtra, audito ataskaitos
 ├── public/                  # Statiniai failai (SVG diagramos, šriftai, banneriai)
 │   ├── fonts/               # Roboto-Regular.ttf (pageidautina PDF), NotoSans-Regular.ttf atsarginis
-│   ├── robots.txt           # SEO – leisti indeksavimą
+│   ├── robots.txt           # Subpath: Disallow /; app – noindex (žr. SEO_SUBMODULE.md)
 │   ├── favicon.svg          # Brand žaibas (geltonas ant tamsaus fono)
 │   ├── apple-touch-icon.png # iOS home screen ikona (180×180)
 │   └── og-image.png         # OG socialinio dalinimosi paveikslas (1200×630)

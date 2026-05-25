@@ -1,6 +1,6 @@
 # Turinio plėtra – Moduliai 10, 11, 12 (Agentų inžinerija)
 
-> **Autorinė mokymo medžiaga © 2024–2026**  
+> **Autorinė mokymo medžiaga © 2026**  
 > Šis dokumentas yra **turínio SOT** Agentų inžinerijos keliui (Moduliai 10–12). Papildo `turinio_pletra.md` ir modulius 1–9.  
 > **Source of truth:** turinio semantika – šis failas; full redagavimo duomenų struktūra – `src/data/modules.json` po sinchronizacijos.  
 > **Auditorija:** softo inžinieriai. **Įėjimui būtini** Moduliai 4–6 (Konteksto inžinerija). Žr. [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6, [ROADMAP.md](../ROADMAP.md).

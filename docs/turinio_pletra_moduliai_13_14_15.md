@@ -1,6 +1,6 @@
 # Turinio plėtra – Moduliai 13, 14, 15 (Turinio inžinerija)
 
-> **Autorinė mokymo medžiaga © 2024–2026**  
+> **Autorinė mokymo medžiaga © 2026**  
 > Šis dokumentas yra **turínio SOT** Turinio inžinerijos keliui (Moduliai 13–15). Papildo `turinio_pletra.md` ir modulius 1–12.  
 > **Source of truth:** turinio semantika – šis failas; full redagavimo duomenų struktūra – `src/data/modules.json` po sinchronizacijos.  
 > **Auditorija:** rinkodaros ir komunikacijos specialistai. Žr. [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6, [ROADMAP.md](../ROADMAP.md).

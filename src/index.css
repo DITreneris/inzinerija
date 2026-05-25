@@ -15,8 +15,13 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight;
   }
 }
@@ -46,11 +51,11 @@ html {
 /* Interactive elements: ring instead of outline (Tailwind consistency, GOLDEN_STANDARD §7) */
 button:focus-visible,
 a:focus-visible,
-[role="button"]:focus-visible,
+[role='button']:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
-[tabindex="0"]:focus-visible {
+[tabindex='0']:focus-visible {
   @apply outline-none ring-2 ring-brand-500 ring-offset-2;
 }
 
@@ -80,10 +85,12 @@ textarea:focus-visible,
 
 /* Mobile touch improvements (lg = 1024px aligns with Tailwind lg: breakpoint) */
 @media (max-width: 1023px) {
-  button, a, summary {
+  button,
+  a,
+  summary {
     -webkit-tap-highlight-color: rgba(98, 125, 152, 0.35);
   }
-  
+
   button {
     min-height: 44px;
     min-width: 44px;
@@ -101,9 +108,12 @@ textarea:focus-visible,
   body {
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
-  
+
   /* Better touch targets for mobile */
-  button, a, summary, [role="button"] {
+  button,
+  a,
+  summary,
+  [role='button'] {
     -webkit-tap-highlight-color: rgba(98, 125, 152, 0.25);
     touch-action: manipulation;
   }
@@ -123,7 +133,11 @@ textarea:focus-visible,
 }
 
 /* Smooth transitions for all interactive elements */
-button, a, input, textarea, select {
+button,
+a,
+input,
+textarea,
+select {
   @apply transition-all duration-150 ease-out;
 }
 
@@ -197,7 +211,9 @@ details[open] > summary {
   @apply rounded-2xl py-6 text-xl min-h-[56px] font-semibold;
   background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
   color: #0d0d0d;
-  box-shadow: 0 4px 18px rgba(243, 204, 48, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  box-shadow:
+    0 4px 18px rgba(243, 204, 48, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
 }
 .btn-hero-cta:hover {
   background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
@@ -206,7 +222,9 @@ details[open] > summary {
 .dark .btn-hero-cta {
   background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
   color: #0d0d0d;
-  box-shadow: 0 4px 18px rgba(243, 204, 48, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  box-shadow:
+    0 4px 18px rgba(243, 204, 48, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 .dark .btn-hero-cta:hover {
   background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
@@ -224,6 +242,7 @@ details[open] > summary {
 }
 
 /* Button base styles */
+/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="primary" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
 .btn-primary {
   @apply bg-gradient-to-r from-brand-500 to-brand-600 text-white px-6 py-3 rounded-xl font-semibold 
          hover:from-brand-600 hover:to-brand-700 shadow-md shadow-brand-500/20 
@@ -231,12 +250,14 @@ details[open] > summary {
          focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
 }
 
+/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="secondary" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
 .btn-secondary {
   @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-xl font-semibold 
          hover:bg-gray-200 dark:hover:bg-gray-700 active:scale-95 
          focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2;
 }
 
+/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="accent" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
 .btn-accent {
   @apply bg-gradient-to-r from-accent-400 to-accent-500 text-white px-6 py-3 rounded-xl font-semibold 
          hover:from-accent-500 hover:to-accent-600 shadow-md shadow-accent-500/20 
@@ -244,23 +265,28 @@ details[open] > summary {
 }
 
 /* Card styles */
+/* @deprecated v0.2 — naudoti <Card /> (src/components/ui/Card.tsx). Migracija — v0.3. */
 .card {
   @apply bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700;
 }
 
+/* @deprecated v0.2 — naudoti <Card /> + Tailwind hover:* utility'es. Migracija — v0.3. */
 .card-hover {
   @apply card hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer;
 }
 
 /* Badge styles */
+/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
 .badge {
   @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
 }
 
+/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
 .badge-brand {
   @apply badge bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300;
 }
 
+/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
 .badge-accent {
   @apply badge bg-accent-100 text-accent-700 dark:bg-accent-900/30 dark:text-accent-300;
 }

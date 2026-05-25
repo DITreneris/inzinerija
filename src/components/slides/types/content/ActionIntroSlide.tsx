@@ -12,19 +12,35 @@ import {
   Download,
 } from 'lucide-react';
 import { CopyButton } from '../../shared';
-import type { ActionIntroContent } from '../../../../types/modules';
+import Eyebrow from '../../../ui/Eyebrow';
+import type { LucideIcon } from 'lucide-react';
+import type {
+  ActionIntroContent,
+  ModuleAccent,
+} from '../../../../types/modules';
 
 export interface ActionIntroSlideProps {
   content: ActionIntroContent;
+  moduleId: number;
+  moduleAccent: ModuleAccent;
+  identityIcon?: LucideIcon;
+  levelLabel: string;
 }
 
 const TOOLS_PREVIEW_COUNT = 3;
 const OUTCOMES_PREVIEW_COUNT = 4;
 
 /** Lazy-loaded skaidrė: vertimai per getT(module), kad namespace būtų imamas iš globalaus i18n. */
-export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
+export function ActionIntroSlide({
+  content,
+  moduleId,
+  moduleAccent,
+  identityIcon,
+  levelLabel,
+}: ActionIntroSlideProps) {
   useTranslation(); // re-render kai keičiasi kalba
   const t = getT('testPractice');
+  const tModules = getT('modulesPage');
   const [revealed, setRevealed] = useState(false);
   const [showAllTools, setShowAllTools] = useState(false);
   const [showMetaCollapsible, setShowMetaCollapsible] = useState(false);
@@ -51,6 +67,9 @@ export function ActionIntroSlide({ content }: ActionIntroSlideProps) {
 
   return (
     <div className="space-y-6">
+      <Eyebrow icon={identityIcon} accent={moduleAccent} className="mb-0">
+        {tModules('moduleN', { n: moduleId })} · {levelLabel}
+      </Eyebrow>
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 lg:p-10 text-white">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"

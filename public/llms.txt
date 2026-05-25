@@ -1,0 +1,16 @@
+# Promptų anatomija – training app (gated)
+
+> Interaktyvus DI promptų mokymas. Pilnas kursas – tik įsigijusiems vartotojams.
+
+## Viešas marketingas
+
+- https://www.promptanatomy.app/
+
+## Vieši modulių santraukos (be skaidrių turinio)
+
+- seo-public-snippets.json (šio app deploy keliu, pvz. /anatomija/seo-public-snippets.json)
+
+## Politika
+
+- Šis app kelias nėra skirtas paieškos indeksavimui (noindex).
+- Nenaudokite modulių/skaidrių URL kaip viešų citatų šaltinių – naudokite marketingo LP ir seo-public-snippets.json.

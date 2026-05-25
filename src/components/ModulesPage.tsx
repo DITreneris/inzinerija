@@ -22,6 +22,12 @@ import { getMaxAccessibleModuleId } from '../utils/accessTier';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
 import { LoadingSpinner } from './ui';
+import Eyebrow from './ui/Eyebrow';
+import type { ModuleAccent } from '../types/modules';
+import {
+  accentTopBarClasses,
+  resolveModuleAccent,
+} from '../utils/moduleIdentity';
 import CircularProgress from './CircularProgress';
 import AccessGateScreen from './AccessGateScreen';
 
@@ -51,10 +57,10 @@ function useLevelStyles(t: (k: string) => string) {
       badgeLabel: t('modulesPage:badgeTest'),
     },
     practice: {
-      gradient: 'from-slate-600 to-slate-700',
-      bg: 'bg-slate-50 dark:bg-slate-900/20',
-      border: 'border-slate-200 dark:border-slate-800',
-      text: 'text-slate-700 dark:text-slate-300',
+      gradient: 'from-emerald-600 to-emerald-700',
+      bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+      border: 'border-emerald-200 dark:border-emerald-800',
+      text: 'text-emerald-700 dark:text-emerald-300',
       badgeIcon: Briefcase,
       badgeLabel: t('modulesPage:badgePractice'),
     },
@@ -237,6 +243,10 @@ function ModulesPage({
                 ? t('ctaView')
                 : t('ctaContinue');
           const isRecommendedNext = index === firstIncompleteIndex;
+          const moduleAccent: ModuleAccent = resolveModuleAccent(module);
+          const topStripeClass = module.accent
+            ? accentTopBarClasses[module.accent]
+            : null;
 
           const isMvpLocked7Plus =
             getIsMvpMode() && module.id > 6 && lockReason === 'tier';
@@ -276,9 +286,11 @@ function ModulesPage({
               aria-label={cardAriaLabel}
               aria-disabled={locked}
             >
-              {/* Top gradient bar */}
+              {/* Top stripe — module.accent (E5.4) or level gradient */}
               <div
-                className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${styles.gradient}`}
+                className={`absolute top-0 left-0 right-0 h-1.5 ${
+                  topStripeClass ?? `bg-gradient-to-r ${styles.gradient}`
+                }`}
               />
 
               {/* Locked overlay */}
@@ -348,19 +360,21 @@ function ModulesPage({
                       {/* Badges: mobile max 2 (Modulis N + vienas iš Rekomenduojama/Baigta/level), desktop – visi */}
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span
-                          className="text-xs font-semibold text-gray-500 dark:text-gray-400"
+                          className="text-xs font-semibold text-gray-500 dark:text-gray-400 lg:hidden"
                           aria-label={t('moduleN', { n: moduleNumber })}
                         >
                           {t('moduleN', { n: moduleNumber })}
                         </span>
-                        {/* Desktop: level (when not recommended), recommended, completed */}
-                        {!isRecommendedNext && (
-                          <span
-                            className={`hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}
+                        {/* Desktop: Eyebrow (level) when not recommended */}
+                        {!isRecommendedNext && !isCompleted && (
+                          <Eyebrow
+                            icon={BadgeIcon}
+                            accent={moduleAccent}
+                            className="hidden lg:flex mb-0"
                           >
-                            <BadgeIcon className="w-3 h-3" strokeWidth={2} />
+                            {t('moduleN', { n: moduleNumber })} ·{' '}
                             {styles.badgeLabel}
-                          </span>
+                          </Eyebrow>
                         )}
                         {isRecommendedNext && (
                           <span className="hidden lg:inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">

@@ -1,6 +1,7 @@
 # Deployment Instrukcijos (konsoliduota)
 
 Detalios instrukcijos yra `README.md`:
+
 - GitHub Pages
 - Vercel / Netlify
 - Lokalus testavimas
@@ -29,12 +30,12 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
    - `expires=UNIX_TIMESTAMP`
    - `token=BASE64URL_HMAC` (payload: `access_tier:expires`, žr. `api/verify-access.ts`)
    - Pvz.: `https://www.promptanatomy.app/?access_tier=6&expires=1735689600&token=...`  
-   Frontend kreipiasi į `GET /api/verify-access?access_tier=6&expires=...&token=...`; jei 200 – įrašo tier į `sessionStorage` ir išvalo URL.
+     Frontend kreipiasi į `GET /api/verify-access?access_tier=6&expires=...&token=...`; jei 200 – įrašo tier į `sessionStorage` ir išvalo URL.
 
 2. **Aplinkos kintamasis (build laikas)**  
    Jei reikia „demo“ režimo (visi 1–6 matomi be pirkimo), production build nustatykite:
    - `VITE_MAX_ACCESSIBLE_MODULE=6`  
-   (Vercel / Netlify / GitHub Actions env).
+     (Vercel / Netlify / GitHub Actions env).
 
 ### Pilnas 1–6: MVP režimas išjungtas
 
@@ -46,6 +47,7 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
 **Architektūra A:** redagavimo tiesa lieka full failai. `*-m1-m6.json` failai yra build/runtime profilio failai, o ne pagrindinis authoring šaltinis.
 
 **Build komandos:**
+
 - Pilnas 1–6 (arba daugiau pagal tier): `npm run build` (be env).
 - Core 1–6 build: `VITE_MVP_MODE=1 npm run build` (žr. README).
 
@@ -64,6 +66,7 @@ Automatiniai EN testai: `npm run test:run` – EN kelias tikrinamas `modulesLoad
 
 - Prieigos logika: `src/utils/accessTier.ts`
 - Magic link API: `api/verify-access.ts`
+- SEO / crawlers / GEO: `docs/deployment/SEO_SUBMODULE.md`
 - Release QA: `docs/development/RELEASE_QA_CHECKLIST.md`
 
 ---
@@ -83,12 +86,13 @@ Kai šis app integruojamas į marketingo repo (pvz. promptanatomy.app) kaip subp
 
 ### Base path ir env
 
-| Kintamasis | Paskirtis | Default (šis repo) |
-|------------|-----------|-------------------|
-| `VITE_BASE_PATH` | Kelias, po kurio servinamas training app (pvz. `/academy/`). GitHub Pages repo **inzinerija** → `/inzinerija/`. | `/inzinerija/` |
-| `VITE_MVP_MODE` | `1` = core production profilis, buildina tik modulius 1–6 | neįjungta |
-| `VITE_MAX_ACCESSIBLE_MODULE` | Demo/build-time override: atrakinti iki N modulio (0, 3, 6, 9, 12) | 0 (production – tik per magic link) |
-| `VITE_VERIFY_ACCESS_URL` | Verify-access origin/base URL (pvz. `https://promptanatomy.app`); tuščias = same-origin `/api/verify-access` | tuščias = same-origin |
+| Kintamasis                   | Paskirtis                                                                                                    | Default (šis repo)                  |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| `VITE_BASE_PATH`             | Kelias, po kurio servinamas training app (pvz. `/anatomija/`). GitHub Pages **inzinerija** → `/inzinerija/`. | `/inzinerija/` (vite prod default)  |
+| `VITE_PUBLIC_SITE_URL`       | OG/canonical origin (pvz. `https://www.promptanatomy.app`)                                                   | `https://www.promptanatomy.app`     |
+| `VITE_MVP_MODE`              | `1` = core production profilis, buildina tik modulius 1–6                                                    | neįjungta                           |
+| `VITE_MAX_ACCESSIBLE_MODULE` | Demo/build-time override: atrakinti iki N modulio (0, 3, 6, 9, 12)                                           | 0 (production – tik per magic link) |
+| `VITE_VERIFY_ACCESS_URL`     | Verify-access origin/base URL (pvz. `https://promptanatomy.app`); tuščias = same-origin `/api/verify-access` | tuščias = same-origin               |
 
 Jei marketingas servina training po `/academy`, prieš training build nustatyti `VITE_BASE_PATH=/academy/`.
 Jei dėl senesnės integracijos jau turite pilną endpoint URL (`.../api/verify-access`), runtime jį taip pat priims, bet naujoms integracijoms rekomenduojamas origin/base URL.

@@ -1245,6 +1245,25 @@ export interface BusinessExample {
 }
 
 export type ModuleLevel = 'learn' | 'test' | 'practice';
+
+/** Modulio identiteto accent (DS v0.2 §1). */
+export type ModuleAccent =
+  | 'brand'
+  | 'slate'
+  | 'emerald'
+  | 'violet'
+  | 'cyan'
+  | 'accent';
+
+/** Lucide identity icon name for module eyebrow (DS v0.2 §1). */
+export type ModuleIdentityIcon =
+  | 'BookOpen'
+  | 'ClipboardList'
+  | 'Briefcase'
+  | 'Brain'
+  | 'ClipboardCheck'
+  | 'Rocket';
+
 export type ModuleIcon =
   | 'Target'
   | 'Brain'
@@ -1265,6 +1284,10 @@ export interface Module {
   businessExamples: BusinessExample[];
   /** Modulio ID, po kurio šis modulis atrakinamas (jei nurodyta – naudojama vietoj „ankstesnis modulis masyve“). */
   unlocksAfter?: number;
+  /** Modulio identiteto accent (M1–M6). */
+  accent?: ModuleAccent;
+  /** Identity icon virš intro / ModulesPage eyebrow (M1–M6). */
+  identityIcon?: ModuleIdentityIcon;
 }
 
 export interface QuizQuestion {

@@ -53,6 +53,23 @@
         "unlocksAfter": {
           "type": "number",
           "description": "Modulio ID, po kurio šis modulis atrakinamas"
+        },
+        "accent": {
+          "type": "string",
+          "enum": ["brand", "slate", "emerald", "violet", "cyan", "accent"],
+          "description": "Modulio identiteto accent (DS v0.2 §1). Optional; M1–M6."
+        },
+        "identityIcon": {
+          "type": "string",
+          "enum": [
+            "BookOpen",
+            "ClipboardList",
+            "Briefcase",
+            "Brain",
+            "ClipboardCheck",
+            "Rocket"
+          ],
+          "description": "Lucide identity icon name (DS v0.2 §1). Optional; M1–M6."
         }
       }
     },

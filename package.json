@@ -18,6 +18,8 @@
     "audit:long-no-collapsible": "node scripts/audit-long-without-collapsible.mjs",
     "audit:heading-time": "node scripts/audit-heading-time-ambiguity.mjs",
     "audit:footer-numbers": "node scripts/audit-footer-numbers.mjs",
+    "audit:design-tokens": "node scripts/audit-design-tokens.mjs",
+    "export:seo-snippets": "node scripts/export-public-seo-snippets.mjs",
     "typecheck": "tsc --noEmit",
     "analyze": "ANALYZE=true vite build",
     "prebuild": "npm run validate:schema",

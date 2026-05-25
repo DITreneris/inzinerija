@@ -95,6 +95,17 @@
 
 ---
 
+## 5e. SEO submodule (gated app, ~2 min)
+
+> **Įtraukta:** 2026-05-25. Mokymų app neindeksuojamas; GEO – per eksportą marketingui. Žr. `docs/deployment/SEO_SUBMODULE.md`.
+
+- [ ] **View Source** (incognito, be prieigos): `<meta name="robots" content="noindex, nofollow">` yra `index.html` arba po JS (Helmet).
+- [ ] **OG URL:** `og:url` / `og:image` – teisingas origin (`promptanatomy.app` monorepo arba `ditreneris.github.io` GH Pages), ne pasenęs hardcoded kelias be env.
+- [ ] **`npm run export:seo-snippets`:** Sukuria `public/seo-public-snippets.json` – tik `id`, `title`, `subtitle`, `description`, `duration`, `level`; nėra `slides` / `copyable`.
+- [ ] **Marketingo root** (jei deploy per monorepo): root `robots.txt` disallow app subpath – patvirtinta integratoriaus.
+
+---
+
 ## 6. MVP release (jei deploy su VITE_MVP_MODE=1)
 
 - [ ] **Core 1–6 build:** `VITE_MVP_MODE=1 npm run build` → atidaryti → Moduliai → matyti tik 6 produkcinės kortelės; `7–15` neatsiranda kataloge.
@@ -109,6 +120,19 @@
 
 - [ ] **Vienas modulis per release pagal rubric:** Prieš release atlikti vieną rankinį perbėgimą pagal eval_rubric (bent vienas modulis + HomePage arba vienas CTA kelias). Rezultatą įrašyti į TEST_REPORT arba changelog (pvz. „Modulis X – visos dimensijos ≥2, 4/5 = 3“).
 - [ ] **Pirmyn/Atgal CTA (desktop):** Modulio skaidrė – viršutinė juosta sticky (scroll’inant lieka matoma); „Pirmyn“ – vienintelis ryškus CTA (didesnis mygtukas, brand, shadow, hover lift); „Atgal“ – ghost (be fono); dešinėje prie „Pirmyn“ rodomas progresas „Skaidrė X / N“. Klaviatūra ← → veikia. Žr. CHANGELOG 2026-02-26 (ModuleView Pirmyn/Atgal).
+
+---
+
+## 8. Design tokens baseline regression (~1 min, automatinis)
+
+> **Įtraukta:** 2026-05-19 (Design System v0.2, E2.3). **SOT:** [`docs/development/DESIGN_SYSTEM_V0_2.md §5`](DESIGN_SYSTEM_V0_2.md). **Baseline:** [`docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md). **Skriptas:** `node scripts/audit-design-tokens.mjs` (warn-only, exit 0).
+
+- [ ] **Paleisti audit'ą:** `node scripts/audit-design-tokens.mjs` (arba `node scripts/audit-design-tokens.mjs --json` JSON formatu) – skenuoja `src/components/**` ir `src/utils/**`, suskaičiuoja hex literal'us, inline `style={{ ... }}` ir SVG `fill`/`stroke` atvejus.
+- [ ] **Palyginti su baseline (2026-05-19):** TOTAL findings **≤ 480** (hex ≤ 351, inline ≤ 13, svg ≤ 116). **Tendencija turi būti ↓ arba lygi.** Jei skaičius **padidėjo** – patikrinti, ar naujas hex'as turi paaiškinimo komentarą (pvz. `// v0.2 — module identity` arba `// jspdf RGB`); kitaip rollback'as task'ui, kuris pridėjo naują hex'ą (žr. plano §10 E7.4).
+- [ ] **Top-5 „dirtiest" failai – nepakitę:** Pirmieji 5 (`CustomGptProcessDiagram`, `LlmArchDiagramDiagram`, `M10SpecIncidentDiagram`, `LlmAutoregressiveDiagram`, `M13RuleOfThirdsDiagram`) – pagal v0.3 backlog'ą **B1**, jų konsolidavimas planuojamas vėliau; v0.2 metu jie **nesikeičia**.
+- [ ] **Jei `audit:design-tokens` `package.json` script'as pridėtas (E2.1 baigta):** vietoj `node scripts/...` galima naudoti `npm run audit:design-tokens` (žr. plano §5 E2.1 exit-kriterijus).
+
+**Pastaba.** Audit skriptas yra **warn-only** (`exit 0`) – jis NEturi blokuoti `npm run build` ar CI. Pre-commit gate – v0.3 backlog **B7**.
 
 ---
 
@@ -132,18 +156,18 @@
 
 ## Statusas (2026-02-12)
 
-| Kas | Statusas |
-|-----|----------|
-| **A-M4** | ✅ Įgyvendinta – 6 skyriai (links, mobile, dark, a11y, lietuvių raidės, MVP). |
-| **§1–5, 5a patikra (2026-02-18)** | §1: Skip link `#main-content` ir `<main id="main-content">` – App.tsx. §2–4: rankinė patikra (viewport, dark, a11y) – rekomenduojama prieš release. §5: grep modules.json – tipinių klaidų (perziureti, Ziniu, reiskia…) nerasta. §5a: SWOT, CFO, EBITDA, NPS, ROI, HR, Senior – naudojami modulių scenarijuose (M3, M9); PAPRASTOS_KALBOS_GAIRES – kontekste su „vadovybė“, „finansai“, „analizė“; jei reikia – papildomas žargonas vienu sakinio paaiškinimu. |
-| **M4 lietuviškos (4.7, 67.5)** | ✅ 2026-02-12 – skaidrės 70 (Modulio 4 santrauka) ir 67.5 (Saugumas) peržiūrėtos §5; klaidų nerasta. |
-| **M4 action-intro (id 38)** | ✅ 2026-02-12 – nauja pirmoji skaidrė (hero, CTA, outcomes, aboutText, promptai) peržiūrėta §5; lietuviškos raidės teisingos. |
-| **HomePage Hero CTA** | ✅ Baigus modulius – „Į apklausą“; kai apklausa baigta – „Peržiūrėti modulius“. |
-| **ModulesPage: CTA po completion** | ✅ Mygtukas „Į apklausą“ pridėtas (2026-02-11). |
-| **HomePage P0 (quizCompleted)** | ✅ Įgyvendinta – CTA „Peržiūrėti modulius“ kai viskas baigta. |
-| **HomePage P1 (progresas virš CTA)** | ✅ Progresas perkeltas virš CTA (2026-02-11). |
-| **Mobile UI Moduliai 2 ir 3** | ✅ 2026-02-11 – touch targets, responsive padding, MatchingQuestion overflow; skyrius 2 papildytas rekomendacija Moduliams 2 ir 3. Žr. MOBILE_UI_AUDIT_MOD2_MOD3.md. |
-| **Moduliai 13–15 planas** | ✅ 2026-02-15 – getM13Phase fazės juosta, 13.11 workflow diagrama, M14 thresholdExplanation, content-block schema, analizės dokumentai. Prieš release: §5 lietuviškos raidės M13–15; §5b schemų patikra (TurinioWorkflowDiagram). |
+| Kas                                  | Statusas                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A-M4**                             | ✅ Įgyvendinta – 6 skyriai (links, mobile, dark, a11y, lietuvių raidės, MVP).                                                                                                                                                                                                                                                                                                                                                                                   |
+| **§1–5, 5a patikra (2026-02-18)**    | §1: Skip link `#main-content` ir `<main id="main-content">` – App.tsx. §2–4: rankinė patikra (viewport, dark, a11y) – rekomenduojama prieš release. §5: grep modules.json – tipinių klaidų (perziureti, Ziniu, reiskia…) nerasta. §5a: SWOT, CFO, EBITDA, NPS, ROI, HR, Senior – naudojami modulių scenarijuose (M3, M9); PAPRASTOS_KALBOS_GAIRES – kontekste su „vadovybė“, „finansai“, „analizė“; jei reikia – papildomas žargonas vienu sakinio paaiškinimu. |
+| **M4 lietuviškos (4.7, 67.5)**       | ✅ 2026-02-12 – skaidrės 70 (Modulio 4 santrauka) ir 67.5 (Saugumas) peržiūrėtos §5; klaidų nerasta.                                                                                                                                                                                                                                                                                                                                                            |
+| **M4 action-intro (id 38)**          | ✅ 2026-02-12 – nauja pirmoji skaidrė (hero, CTA, outcomes, aboutText, promptai) peržiūrėta §5; lietuviškos raidės teisingos.                                                                                                                                                                                                                                                                                                                                   |
+| **HomePage Hero CTA**                | ✅ Baigus modulius – „Į apklausą“; kai apklausa baigta – „Peržiūrėti modulius“.                                                                                                                                                                                                                                                                                                                                                                                 |
+| **ModulesPage: CTA po completion**   | ✅ Mygtukas „Į apklausą“ pridėtas (2026-02-11).                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **HomePage P0 (quizCompleted)**      | ✅ Įgyvendinta – CTA „Peržiūrėti modulius“ kai viskas baigta.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **HomePage P1 (progresas virš CTA)** | ✅ Progresas perkeltas virš CTA (2026-02-11).                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Mobile UI Moduliai 2 ir 3**        | ✅ 2026-02-11 – touch targets, responsive padding, MatchingQuestion overflow; skyrius 2 papildytas rekomendacija Moduliams 2 ir 3. Žr. MOBILE_UI_AUDIT_MOD2_MOD3.md.                                                                                                                                                                                                                                                                                            |
+| **Moduliai 13–15 planas**            | ✅ 2026-02-15 – getM13Phase fazės juosta, 13.11 workflow diagrama, M14 thresholdExplanation, content-block schema, analizės dokumentai. Prieš release: §5 lietuviškos raidės M13–15; §5b schemų patikra (TurinioWorkflowDiagram).                                                                                                                                                                                                                               |
 
 ---
 

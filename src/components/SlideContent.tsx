@@ -5,6 +5,14 @@ import {
   type ReactElement,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { LucideIcon } from 'lucide-react';
+import { useLocale } from '../contexts/LocaleContext';
+import { getModulesSync } from '../data/modulesLoader';
+import type { ModuleAccent } from '../types/modules';
+import {
+  resolveModuleAccent,
+  resolveModuleIdentityIcon,
+} from '../utils/moduleIdentity';
 import { Progress } from '../utils/progress';
 import { logWarning } from '../utils/logger';
 import { track } from '../utils/analytics';
@@ -321,6 +329,10 @@ export interface SlideRenderContext {
   initialHubLevel1?: number | null;
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
   onJourneyFocusChoice?: (moduleId: number, choiceLabel: string) => void;
+  /** DS v0.2 E5 — modulio identitetas skaidrėms */
+  moduleAccent: ModuleAccent;
+  identityIcon?: LucideIcon;
+  levelLabel: string;
 }
 
 export default function SlideContent({
@@ -342,6 +354,20 @@ export default function SlideContent({
   onJourneyFocusChoice,
 }: SlideContentProps) {
   const { t } = useTranslation('module');
+  const { t: tModulesPage } = useTranslation('modulesPage');
+  const { locale } = useLocale();
+  const currentModule =
+    getModulesSync(locale)?.find((m) => m.id === moduleId) ?? undefined;
+  const moduleAccent = resolveModuleAccent(currentModule);
+  const identityIcon = resolveModuleIdentityIcon(currentModule?.identityIcon);
+  const levelKey = currentModule?.level ?? 'learn';
+  const levelLabel =
+    levelKey === 'learn'
+      ? tModulesPage('badgeLearn')
+      : levelKey === 'test'
+        ? tModulesPage('badgeTest')
+        : tModulesPage('badgePractice');
+
   const isTaskCompleted =
     progress.completedTasks[moduleId]?.includes(slide.id) || false;
 
@@ -461,6 +487,9 @@ export default function SlideContent({
     initialHubLevel1,
     onNavigateToHubWithCharacter,
     onJourneyFocusChoice,
+    moduleAccent,
+    identityIcon,
+    levelLabel,
   };
 
   const renderer = slideRegistry[slide.type];
@@ -496,7 +525,13 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   'action-intro': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
     return (
-      <LazyActionIntroSlide content={ctx.slide.content as ActionIntroContent} />
+      <LazyActionIntroSlide
+        content={ctx.slide.content as ActionIntroContent}
+        moduleId={ctx.moduleId}
+        moduleAccent={ctx.moduleAccent}
+        identityIcon={ctx.identityIcon}
+        levelLabel={ctx.levelLabel}
+      />
     );
   },
   'action-intro-journey': (ctx) => {
@@ -565,6 +600,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     return (
       <LazySectionBreakSlide
         content={ctx.slide.content as SectionBreakContent}
+        moduleAccent={ctx.moduleAccent}
         onGoToGlossaryTerm={ctx.onGoToGlossaryTerm}
         onNextSlide={ctx.onNextSlide}
       />

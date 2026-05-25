@@ -1,6 +1,6 @@
 # Turinio plėtra – Moduliai 7, 8, 9 (Duomenų analizės kelias)
 
-> **Autorinė mokymo medžiaga © 2024–2026 Tomas Staniulis**  
+> **Autorinė mokymo medžiaga © 2026 Tomas Staniulis**  
 > Šis dokumentas yra **turínio SOT** Duomenų analizės keliui (Moduliai 7–9). Papildo `turinio_pletra.md` ir modulius 1–6.  
 > **Source of truth:** turinio semantika – šis failas; duomenų struktūra – `src/data/modules.json` po sinchronizacijos.  
 > **Pagrindas:** [docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md](development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md). **Integruota:** 02_DA „Duomenų analizės pagrindai“ (I–XIII). **M8–M9 praktika:** 5 blokai, 16 scenarijų (įsk. DA_4 vizualizacija ir data storytelling) – §9.1, §10.1–10.3. **DA_4:** §7A (vizualizacija, psichologija, Geštaltas, 4+super promptai, alternatyvos).

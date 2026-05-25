@@ -3354,7 +3354,9 @@
           "title": "Manipulation and hallucinations",
           "description": "Neutral prompts, fact-checking"
         }
-      ]
+      ],
+      "accent": "violet",
+      "identityIcon": "Brain"
     },
     {
       "id": 5,
@@ -3810,7 +3812,9 @@
           "title": "Mini quiz",
           "description": "Brief + structure + quality check"
         }
-      ]
+      ],
+      "accent": "cyan",
+      "identityIcon": "ClipboardCheck"
     },
     {
       "id": 6,
@@ -4297,7 +4301,9 @@
           "title": "Capstone – 6 blocks + RAG",
           "description": "Integrated project as final application"
         }
-      ]
+      ],
+      "accent": "accent",
+      "identityIcon": "Rocket"
     }
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-05-25T06:04:06.276Z",
+  "source": "modules.json",
+  "product": "Promptų anatomija",
+  "publicMarketingUrl": "https://www.promptanatomy.app/",
+  "modules": [
+    {
+      "id": 1,
+      "title": "6 Blokų Sistema",
+      "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
+      "description": "6 promptų struktūros blokai, vienas nuoseklus mokymas – sistema nuo A iki Z.",
+      "duration": "25 min",
+      "level": "learn"
+    },
+    {
+      "id": 2,
+      "title": "Žinių Patikrinimas",
+      "subtitle": "15 atsitiktinių klausimų iš nuolat atnaujinamo banko.",
+      "description": "15 klausimų 5 tipais: pasirinkimas, porų sujungimas, rikiavimas, tiesa/netiesa ir scenarijai.",
+      "duration": "10 min",
+      "level": "test"
+    },
+    {
+      "id": 3,
+      "title": "Praktinis Pritaikymas",
+      "subtitle": "6 verslo scenarijai su 6 blokais",
+      "description": "6 skirtingi scenarijai – sukurkite savo promptus ir sukurkite šablonų biblioteką.",
+      "duration": "25–30 min",
+      "level": "practice"
+    },
+    {
+      "id": 4,
+      "title": "Konteksto inžinerija",
+      "subtitle": "Šaltiniai, tokenai, manipuliacijos, haliucinacijos",
+      "description": "Šaltiniai (RAG), gilusis tyrimas ir tokenai – kaip valdyti kontekstą ir gauti tikslesnius atsakymus.",
+      "duration": "30–35 min",
+      "level": "learn"
+    },
+    {
+      "id": 5,
+      "title": "Prezentacijos sprintas",
+      "subtitle": "15 min prezentacijos draftas + mini suvokimo testas",
+      "description": "15 min prezentacijos draftas + mini testas. Brief → struktūra → skaidrės. ≥70% rekomenduojama prieš Modulį 6.",
+      "duration": "15–18 min",
+      "level": "test"
+    },
+    {
+      "id": 6,
+      "title": "Projekto kūrimas",
+      "subtitle": "Praktika: tyrimo ataskaita arba Custom GPT projektas",
+      "description": "Vienas pilnas projektas su 6 blokais: tyrimo ataskaita (su šaltiniais) arba Custom GPT kūrimas pagal schemą.",
+      "duration": "25–35 min",
+      "level": "practice"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-04-12 (M13–M14 LT planas – changelog; sekančios užduotys – EN sinchronas, footer QA).
+**Legenda:** P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-05-19 (DS v0.2 E2–E7 baigti; release gate — screenshot'ai + `CHANGELOG [v0.2.0]`).
 
 ---
 
@@ -49,6 +49,38 @@ _Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.
 |---|----------|-------------------|
 | UX-1 | **UX audito planas** – Faze 1 įgyvendinta (UX*AUDIT_IMPLEMENTATION_PLAN Faze 1 [x]). Toliau: mobile „Dabar“ blokas – žr. `docs/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` §5; bendras planas „Vartotojui paruošta įrankis“ – `.cursor/plans/vartotojui_paruošta*įrankis_cfe90c31.plan.md` (Faze 1–2 padaryta, Faze 3 – Mobile QA checklist TEST_REPORT). | CODING + DATA |
 
+**P1 – Design System v0.2 (planas: `docs/development/DESIGN_SYSTEM_V0_2.md`; vykdymas: `docs/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`)**
+
+> **E1 ✅ · E2 ✅ · E3 ✅ · E4 ✅ · E5 ✅ · E6 ✅ · E7 ✅ (2026-05-19).** Baseline: 480. **Prieš release:** rankiniai screenshot'ai (žr. MODULE_IDENTITY + DESIGN_SYSTEM_V0_2_VISUAL_DIFF).
+
+| #           | Užduotis (task ID)                                                                               | Agentas        | Pastaba                                               |
+| ----------- | ------------------------------------------------------------------------------------------------ | -------------- | ----------------------------------------------------- |
+| ~~DS-E2.1~~ | ~~Sukurti/užbaigti `scripts/audit-design-tokens.mjs`~~                                           | CODING         | ✅ 2026-05-19 — `audit:design-tokens`, `--verbose`    |
+| ~~DS-E2.2~~ | ~~Paleisti audit + `DESIGN_TOKENS_BASELINE_2026-05.md`~~                                         | QA             | ✅ 2026-05-19 — TOTAL 480                             |
+| ~~DS-E2.3~~ | ~~Pridėti regression check į `RELEASE_QA_CHECKLIST.md`~~                                         | QA             | ✅ 2026-05-19 — §8                                    |
+| ~~DS-E3.1~~ | ~~Dublikatų lentelė (Card, CTA, Banner, Badge, Input)~~                                          | CODE_REVIEW    | ✅ 2026-05-19 — `DESIGN_SYSTEM_DUPLICATES_2026-05.md` |
+| ~~DS-E3.2~~ | ~~`@deprecated` ant `.card`, `.btn-*`, `.badge-*` `src/index.css`~~                              | CODING         | ✅ 2026-05-19 — 8 komentarai                          |
+| ~~DS-E3.3~~ | ~~`Banner` variantas `terms` (slate)~~                                                           | UI_UX          | ✅ 2026-05-19 — opt-in, 4 variantai                   |
+| ~~DS-E4.1~~ | ~~`src/components/ui/Eyebrow.tsx` primitive (+smoke testas)~~                                    | CODING         | ✅ 2026-05-19 — 6 accent                              |
+| ~~DS-E4.2~~ | ~~`src/components/ui/IconChip.tsx` primitive (+smoke testas)~~                                   | CODING         | ✅ 2026-05-19 — 5 role, sm/md/lg                      |
+| ~~DS-E4.3~~ | ~~`src/components/ui/SectionDivider.tsx` primitive (+smoke testas)~~                             | CODING         | ✅ 2026-05-19 — su/be label                           |
+| ~~DS-E4.4~~ | ~~Proof: Eyebrow → ModulesPage; IconChip → ModuleCompleteScreen; SectionDivider → SummarySlide~~ | UI_UX + CODING | ✅ 2026-05-19                                         |
+| ~~DS-E4.5~~ | ~~`src/components/ui/index.ts` + `README.md` katalogas~~                                         | QA             | ✅ 2026-05-19 — 9 sekcijos                            |
+| ~~DS-E5.1~~ | ~~`scripts/schemas/modules.schema.json` — `accent`, `identityIcon`~~                             | DATA           | ✅ 2026-05-19                                         |
+| ~~DS-E5.2~~ | ~~`modules.json` M1–M6 laukai~~                                                                  | DATA           | ✅ 2026-05-19                                         |
+| ~~DS-E5.3~~ | ~~`modules-en.json` + `modules-m1-m6.json` + `modules-en-m4-m6.json` sinchronas~~                | DATA           | ✅ 2026-05-19                                         |
+| ~~DS-E5.4~~ | ~~`ModulesPage` top stripe + practice emerald~~                                                  | CODING + UI_UX | ✅ 2026-05-19                                         |
+| ~~DS-E5.5~~ | ~~`ActionIntroSlide` Eyebrow + `SlideContent` wiring~~                                           | CODING         | ✅ 2026-05-19                                         |
+| ~~DS-E5.6~~ | ~~`SectionBreakSlide` badge → `moduleAccent`~~                                                   | CODING         | ✅ 2026-05-19                                         |
+| ~~DS-E5.7~~ | ~~`MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md` (checklist; screenshot'ai rankiniu)~~              | QA             | ✅ 2026-05-19                                         |
+| ~~DS-E6.1~~ | ~~`audit-footer-length` → `MICROCOPY_LENGTHS_2026-05.md`~~                                       | QA             | ✅ 2026-05-19 — footers ≤55 OK                        |
+| ~~DS-E6.2~~ | ~~M1/M4/M6 read-only sąrašai~~                                                                   | QA + CONTENT   | ✅ 2026-05-19                                         |
+| ~~DS-E6.3~~ | ~~Microcopy backlog → TODO P3 #7~~                                                               | QA             | ✅ 2026-05-19                                         |
+| ~~DS-E7.1~~ | ~~`DESIGN_SYSTEM_V0_2_VISUAL_DIFF/` README (8 PNG laukiama)~~                                    | UI_UX          | ✅ 2026-05-19 — rankinis įkėlimas                     |
+| ~~DS-E7.2~~ | ~~`DESIGN_SYSTEM.md` 10 skyrių~~                                                                 | QA             | ✅ 2026-05-19                                         |
+| ~~DS-E7.3~~ | ~~`CHANGELOG.md` `[v0.2.0]`~~                                                                    | QA             | ✅ 2026-05-19                                         |
+| ~~DS-E7.4~~ | ~~Baseline regression po E5–E7~~                                                                 | QA             | ✅ 2026-05-19 — TOTAL 480                             |
+
 **P2 – optional / backlog**  
 | # | Užduotis | Agentas / pastaba |
 |---|----------|-------------------|
@@ -70,14 +102,15 @@ _Po plano „Vartotojui paruošta“ Faze 0.1 ir 0.2 (rankinė M5/M6 PDF, M4 sk.
 
 ### P3 – žemesnis prioritetas
 
-| #   | Užduotis                                                                                                                                                     | Agentai                    |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
-| 1   | **Savitikros M4** (4.2-check, 4.3-check, 4.4-check) – diagnostika ir nuorodos „Jei klaidingai – žr. skaidrę X“ ne visur                                      | CONTENT + DATA             |
-| 2   | **CoVe, chunk, bridžinė, „Pataisyk promptą“** – likusio turinio sinchronas su SOT/modules.json                                                               | CONTENT + DATA             |
-| 3   | **Schemų vizualinė patikra** (SCHEME_AGENT §5) – custom_gpt_process, RAG, žinių patikrinimas; tik patikra                                                    | CODE_REVIEW / SCHEME_AGENT |
-| 4   | **Savitikra 68.5** – 1–2 klausimai apie DI detektorius (po skaidrės 201)                                                                                     | CONTENT + DATA             |
-| 5   | **Mobile P3** – pilnas mobile audit (1–2 skaidrės/modulį); LlmArchDiagram 375px. MOBILE_UI_UX_AUDIT §6 P3.                                                   | UI_UX / CODE_REVIEW        |
-| 6   | **ProcessStepper duomenys** – optional: perkelti CUSTOM_GPT_STEPS / CUSTOM_GPT_STEPS_EN į bendrą duomenų failą arba i18n, kad vengti dubliavimo struktūroje. | DATA_AGENT / CODING        |
+| #   | Užduotis                                                                                                                                                                        | Agentai                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| 1   | **Savitikros M4** (4.2-check, 4.3-check, 4.4-check) – diagnostika ir nuorodos „Jei klaidingai – žr. skaidrę X“ ne visur                                                         | CONTENT + DATA             |
+| 2   | **CoVe, chunk, bridžinė, „Pataisyk promptą“** – likusio turinio sinchronas su SOT/modules.json                                                                                  | CONTENT + DATA             |
+| 3   | **Schemų vizualinė patikra** (SCHEME_AGENT §5) – custom_gpt_process, RAG, žinių patikrinimas; tik patikra                                                                       | CODE_REVIEW / SCHEME_AGENT |
+| 4   | **Savitikra 68.5** – 1–2 klausimai apie DI detektorius (po skaidrės 201)                                                                                                        | CONTENT + DATA             |
+| 5   | **Mobile P3** – pilnas mobile audit (1–2 skaidrės/modulį); LlmArchDiagram 375px. MOBILE_UI_UX_AUDIT §6 P3.                                                                      | UI_UX / CODE_REVIEW        |
+| 6   | **ProcessStepper duomenys** – optional: perkelti CUSTOM_GPT_STEPS / CUSTOM_GPT_STEPS_EN į bendrą duomenų failą arba i18n, kad vengti dubliavimo struktūroje.                    | DATA_AGENT / CODING        |
+| 7   | **Microcopy v0.3 backlog** – sutrumpinti perteklinius content-block tekstus M1/M4/M6 (footers OK); žr. `docs/development/analysis/MICROCOPY_LENGTHS_2026-05.md` (CONTENT_AGENT) | CONTENT_AGENT              |
 
 ### Post-release (MVP Analytics – next)
 

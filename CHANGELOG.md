@@ -35,6 +35,119 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ## [Unreleased]
 
+_Įrašai po Design System v0.2.0 release._
+
+### Added (2026-05-25) – SEO / crawlers / GEO (submodulis)
+
+- **`src/utils/publicSiteMeta.ts`:** `VITE_PUBLIC_SITE_URL` + `BASE_URL` – canonical / OG URL; build helper `resolvePublicAppUrlsForBuild`.
+- **`index.html` + `vite.config.ts`:** statinis `noindex`; OG placeholder `%VITE_OG_URL%` / `%VITE_OG_IMAGE%` transform build metu.
+- **`App.tsx` Helmet:** `noindex, nofollow`, canonical, `og:url`, `og:image`, `twitter:image`.
+- **`public/robots.txt`:** `Disallow: /` (subpath); **`public/llms.txt`** – AI crawler orientacija.
+- **`npm run export:seo-snippets`:** `public/seo-public-snippets.json` + `.md` (moduliai 1–6, be skaidrių).
+- **Docs:** `docs/deployment/SEO_SUBMODULE.md`; `RELEASE_QA_CHECKLIST.md` §5e; atnaujinti `INTEGRATION_OVERVIEW`, `DEPLOYMENT`, `README`, `.env.example`.
+- **Testai:** `publicSiteMeta.test.ts`, `App.seo.test.tsx`.
+
+### Changed (2026-05-25)
+
+- **QuizResultsView:** CEO spin-off nuoroda `https://ditreneris.github.io/ceo/` → `https://www.promptanatomy.ceo/` (DI Operacinis centras / AI Operations Center).
+- **App footer + SOT:** © metai `2024-2026` → `2026` (`App.tsx`, `turinio_pletra.md`, `docs/turinio_pletra_moduliai_*.md`, `README.md`, `GOLD_LEGACY_STANDARD.md`).
+
+### Fixed (2026-05-25)
+
+- **M3 Apšilimas (skaidrė 30.5):** `whyBenefit` – „išmausi“ → „išmoksi“ (`modules.json`, `modules-m1-m6.json`, `turinio_pletra.md`).
+
+### Fixed (2026-05-19)
+
+_(Palikta būsimiems pataisymams — žr. git istoriją virš [v0.2.0].)_
+
+---
+
+## [v0.2.0] – 2026-05-19 – Design System konsolidacija ir modulio identitetas
+
+**Apimtis:** Design System v0.1 → v0.2 — token baseline, dublikatų žemėlapis, 3 UI primitive'ai, modulio identitetas M1–M6, microcopy audit (be turinio keitimo), release dokumentacija. **Produkto `package.json` versija lieka 1.3.0** — v0.2.0 žymi dizaino sistemos sluoksnį.
+
+### Added
+
+- **E2 Token inventory:** `scripts/audit-design-tokens.mjs` (`--verbose`), `npm run audit:design-tokens`, `DESIGN_TOKENS_BASELINE_2026-05.md` (TOTAL **480**), `RELEASE_QA_CHECKLIST.md` §8.
+- **E3 Style map:** `DESIGN_SYSTEM_DUPLICATES_2026-05.md`; `Banner` variantas `terms`; `@deprecated` CSS komentarai `.btn-*`, `.card`, `.badge-*` (`src/index.css`).
+- **E4 Primitives:** `Eyebrow`, `IconChip`, `SectionDivider` + smoke testai + `src/components/ui/README.md`; proof ModulesPage, ModuleCompleteScreen, SummarySlide.
+- **E5 Module identity:** `module.accent` + `module.identityIcon` (schema, JSON M1–M6); `moduleIdentity.ts`; ModulesPage top stripe; ActionIntroSlide Eyebrow; SectionBreakSlide badge.
+- **E6 Microcopy QA:** `MICROCOPY_LENGTHS_2026-05.md` (footers OK; M1/M4/M6 body >20 žodžių sąrašas); `audit-microcopy-content-blocks.mjs`.
+- **E7 Release docs:** `docs/development/DESIGN_SYSTEM.md`; `DESIGN_SYSTEM_V0_2_VISUAL_DIFF/README.md`; `MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`; screenshot katalogai.
+
+### Changed
+
+- **ModulesPage:** `practice` level → emerald diferenciacija; top stripe ir Eyebrow iš `module.accent` (M1–M6).
+- **SlideContent:** perduoda `moduleAccent`, `identityIcon`, `levelLabel` į `action-intro` ir `section-break`.
+
+### Deprecated
+
+- Tiesioginis `.btn-primary` / `.btn-secondary` / `.btn-accent` / `.card` / `.badge-*` naudojimas naujame JSX — canonical: `<CTAButton />`, `<Card />` (migracija **v0.3**).
+- CSS klasės **lieka** kaip `CTAButton` backend ir legacy skaidrėms.
+
+### Not changed
+
+- Skaidrių **tekstai** (`modules.json` body, `lt.json` / `en.json`) — išskyrus struktūrinius laukus `accent` / `identityIcon`.
+- Diagramų hex refactor (backlog **B1** v0.3).
+- `package.json` semver (1.3.0).
+
+### Migration notes
+
+- **Autoriai:** M1–M6 moduliams galima nurodyti `accent` + `identityIcon` — žr. `DESIGN_SYSTEM.md` §4.
+- **QA prieš release:** `npm run audit:design-tokens` (≤480); įkelti screenshot'us pagal `MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md` ir `DESIGN_SYSTEM_V0_2_VISUAL_DIFF/README.md`.
+- **Microcopy:** pertekliniai tekstai — `MICROCOPY_LENGTHS_2026-05.md` (CONTENT_AGENT v0.3).
+
+---
+
+#### Išsamus etapų žurnalas (E2–E5)
+
+### Added (2026-05-19) – Design System v0.2 – Etapas E5 (Module identity layer)
+
+**Modulio savitumas M1–M6 per `accent` + `identityIcon` duomenis ir 3 UI vietas. Skaidrių tekstai neliesti.**
+
+- **`scripts/schemas/modules.schema.json`** (E5.1): optional `module.accent` (enum 6 spalvų), `module.identityIcon` (6 Lucide pavadinimai).
+- **`src/types/modules.ts`**: `ModuleAccent`, `ModuleIdentityIcon`, laukai `Module` interface.
+- **`src/data/modules.json`**, **`modules-m1-m6.json`**, **`modules-en.json`**, **`modules-en-m4-m6.json`** (E5.2–E5.3): M1–M6 žemėlapis (brand/BookOpen … accent/Rocket); M7–M15 be laukų.
+- **`src/utils/moduleIdentity.ts`**: `resolveModuleAccent`, `resolveModuleIdentityIcon`, `accentTopBarClasses`, `sectionBreakBadgeByAccent`.
+- **`ModulesPage.tsx`** (E5.4): top stripe iš `module.accent`; `practice` level → emerald; Eyebrow naudoja `moduleAccent`.
+- **`SlideContent.tsx` + `ActionIntroSlide.tsx`** (E5.5): Eyebrow virš intro hero su modulio ikona ir accent.
+- **`ContentSlides.tsx` `SectionBreakSlide`** (E5.6): `sectionNumber` badge iš `moduleAccent`; hero/spinoff nepakeisti.
+- **`docs/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`** (E5.7): 12 screenshot checklist + WCAG / GOLDEN_STANDARD §2.2 patikra.
+- **Helper:** `scripts/sync-module-identity-fields.mjs` — JSON sinchronas (pakartotiniems atnaujinimams).
+
+### Added (2026-05-19) – Design System v0.2 – Etapas E4 (Component normalization)
+
+**Trys UI primitive'ai su smoke testais, proof-of-usage ir katalogu. Turinys (`modules.json`, locale) neliestas. SOT: [`docs/development/DESIGN_SYSTEM_V0_2.md`](docs/development/DESIGN_SYSTEM_V0_2.md) §7.**
+
+- **`src/components/ui/Eyebrow.tsx`** (E4.1): maža uppercase antraštė; `accent` ×6 (`brand`, `accent`, `slate`, `emerald`, `violet`, `cyan`); optional Lucide ikona; pilni `Record` Tailwind klasės.
+- **`src/components/ui/IconChip.tsx`** (E4.2): apvalus piktogramos chip; 5 `role` (`cta`→accent, `info`→brand, `warn`→amber, `success`→emerald, `error`→rose); 3 dydžiai (28/36/44 px).
+- **`src/components/ui/SectionDivider.tsx`** (E4.3): horizontali skiriamoji linija su/be `label`; accent spektras kaip Eyebrow.
+- **Smoke testai:** `src/components/ui/__tests__/Eyebrow.test.tsx`, `IconChip.test.tsx`, `SectionDivider.test.tsx`.
+- **Proof of usage:** `ModulesPage.tsx` (desktop Eyebrow vietoj level badge); `ModuleCompleteScreen.tsx` (IconChip prie use-case `h3`); `ContentSlides.tsx` `SummarySlide` (SectionDivider prieš refleksiją).
+- **Katalogas:** `src/components/ui/index.ts` (9 export'ai su tipais); naujas `src/components/ui/README.md`.
+- **Patikra:** `npm run lint`, `typecheck`, `test:run`, `build`, `audit:design-tokens` — TOTAL ≤ 480.
+
+### Added (2026-05-19) – Design System v0.2 – Etapai E2 (Token inventory) ir E3 (Style inconsistencies map)
+
+**Pamatas v0.2 konsolidacijai – baseline auditui, dublikatų lentelei ir `@deprecated` JSDoc/CSS komentarams. Turinys nelietamas; senas kodas veikia. SOT: [`docs/development/DESIGN_SYSTEM_V0_2.md`](docs/development/DESIGN_SYSTEM_V0_2.md) §5–§6.**
+
+- **`scripts/audit-design-tokens.mjs`** (E2.1, CODING_AGENT): pridėtas `--verbose` flag'as – atspausdina per-finding eilutes formatu `path:line  [category]  preview` (atitinka plano §5 E2.1 exit-kriterijų #2). Skripto detekcija nepakitusi (hex `#abc`/`#abcdef`/`#aabbccdd`, inline `style={{ color/background/boxShadow/fill/stroke }}`, SVG `fill="#..."`/`stroke="#..."`); warn-only (`exit 0`); skenuoja `src/components/**` ir `src/utils/**`, praleidžia `*.test.tsx`, `*.d.ts`.
+- **`package.json`** (E2.1): pridėtas `"audit:design-tokens": "node scripts/audit-design-tokens.mjs"` script alias – aktyvuoja `RELEASE_QA §8` paskutinę checkbox eilutę (`npm run audit:design-tokens`).
+- **`docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`** (E2.2, QA_AGENT, naujas): užfiksuotas v0.2 pradinės būklės token inventory – **TOTAL 480 findings** (351 hex + 13 inline style + 116 SVG fill/stroke) **164 failuose**, **41 failas** su radiniais > 0. Pagal direktorijas: `slides/shared/` 91.7 % (440/480), `slides/types/` 4.2 %, `components/` 2.1 %, `utils/` 2.1 %. Top-5 „dirtiest" failai: `CustomGptProcessDiagram.tsx` (42), `LlmArchDiagramDiagram.tsx` (25), `M10SpecIncidentDiagram.tsx` (24), `LlmAutoregressiveDiagram.tsx` (23), `M13RuleOfThirdsDiagram.tsx` (20) – sudaro 27.9 % visų radinių; konsolidacija planuojama v0.3 (Backlog **B1** – `diagramTokens.ts`). Dokumentas naudojamas **E7.4** release regression patikrai.
+- **`docs/development/RELEASE_QA_CHECKLIST.md`** (E2.3, QA_AGENT): pridėtas naujas **§8 „Design tokens baseline regression"** (~1 min, automatinis) – 4 checkbox eilutės (paleisti audit'ą, palyginti su baseline ≤480, top-5 nepakitę, npm script alternatyva). Nuoroda į `DESIGN_TOKENS_BASELINE_2026-05.md`. Skriptas warn-only – NEblokuoja `npm run build` ar CI.
+- **`docs/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`** (E3.1, CODE_REVIEW_AGENT, naujas): 5 dublikatų lentelė su canonical sprendimais – Kortelė (`<Card />`), CTA mygtukas (`<CTAButton />`), Badge (CSS kol kas, JSX primitive – v0.3 backlog'as), Banner/Callout (`<Banner />`, po E3.3 – 4 variantai), Input (CSS kol kas, 1 naudotojas). Naudotojų skaičiaus apytiksliai (`rg`-based, reproducibilumo komandos pateikiamos): `card-hover` ×5, `btn-primary` ~26, `btn-secondary` ~27, `badge-{brand,accent,success,slate}` ~9, inline `border-l-4` 161 atvejis 28 failuose, `.input` 1 atvejis. **Esminis radinys:** visi 3 JSX primitive'ai (`<Card />`, `<CTAButton />`, `<Banner />`) šiandien turi **0 vartotojų** – v0.2 yra konsolidacijos pradžia, ne pabaiga; migracija – v0.3.
+- **`src/index.css`** (E3.2, CODING_AGENT): 8 utility'ams pridėti `/* @deprecated v0.2 — ... */` komentarai – `.btn-primary`, `.btn-secondary`, `.btn-accent` (canonical: `<CTAButton variant="..." />`; klasės **lieka kaip canonical primitive bekendas** – `CTAButton.tsx` vidiniai per `variantClasses` jas naudoja); `.card`, `.card-hover` (canonical: `<Card />`); `.badge`, `.badge-brand`, `.badge-accent` (canonical: laukti Badge primitivo v0.3 arba inline Tailwind). **Kodas NEšalinamas** – egzistuojantys ~50+ `.btn-*` ir `.card*` naudotojai veikia toliau. NEpalietama: `.glass-card`, `.hover-card`, `.input`, `.badge-success`, `.badge-slate`, `.mono`, `.btn-hero-cta`.
+- **`src/components/ui/Banner.tsx`** (E3.3, UI_UX_AGENT): `BannerVariant` papildytas opt-in `terms` variantu (slate paletė: `bg-slate-50 dark:bg-slate-900/20 border-l-4 border-slate-500 text-slate-900 dark:text-slate-100`) – atitinka GOLDEN_STANDARD §2.2 blockVariant `terms`. Egzistuojantys 3 variantai (`info`/`success`/`warning`) nepakeisti. JSDoc pažymėtas `@since v0.2`. NEbūtina taikyti existing slide'uose (opt-in); pre-flight `rg "BannerVariant"` patvirtino, kad nėra exhaustive switch'ų, kurie sulaužytų TS strict.
+- **Patikra (Iter 1 + Iter 2):** `npm run lint` OK; `npm run typecheck` OK; `npm run test:run` 30 file/218 testai ✓; `npm run build` sėkmingas; `npm run audit:design-tokens` TOTAL=480 (nepakitęs po visų pakeitimų – CSS komentarai ir TS tipo praplėtimas neprideda hex/inline/svg literalų); `npm run validate:schema` OK (13 JSON failų). Fail-safe rule §1 (≤5 failų): Iter 1 = 3 failai, Iter 2 = 2 failai. Rule §2 (turinio neliečimo): jokių `modules.json`/`lt.json`/`en.json`/`turinio_pletra*.md` keitimų. Rule §6 (veikia—nelaužti): `summary`, `section-break recap`, `Diagram+Block`, `lazyWithRetry`, `validate:schema` neliečiama.
+- **TODO.md (DS-E2 ir DS-E3 statusas):** ~~DS-E2.1~~, ~~DS-E2.2~~, ~~DS-E2.3~~, ~~DS-E3.1~~, ~~DS-E3.2~~, ~~DS-E3.3~~ – baigti. Sekantys etapai: E4 (Eyebrow/IconChip/SectionDivider primitive'ai – paraleliai), E5 (modulio identitetas, sekos darbas), E6 (microcopy QA, paraleliai su E5), E7 (release dokumentacija + baseline regression).
+
+### Fixed (2026-05-19)
+
+**Kopijos pataisymai (LT) – Modulis 1 QC šablonas ir Modulis 3 praktikos įvadas**
+
+- **`src/locales/lt.json`:** `contentSlides.blockQualityInlineTemplate` – **„patikrink loginę nuoseklumą“** → **„patikrink logiką“** (M1 skaidrė 15, Quality Control – Inline QC kopijuojamas šablonas).
+- **`src/data/modules.json`**, **`src/data/modules-m1-m6.json`:** Modulio 3 `practice-intro` (`id: 30`) `optionalInstruction` – **„rolę arba dominą“** → **„rolę / veiklos sritį“** (geltonas info blokas „Pasirink bent 2 scenarijus…“).
+
 ### Fixed (2026-04-24)
 
 **Modulis 1 (EN): skaidrė „Prompting techniques“ rodė LT turinį EN režime – dubliuotas `id: 14`**

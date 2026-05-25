@@ -606,7 +606,10 @@
                 "label": "Low → facts, analysis, instructions",
                 "note": "The lower the temperature – the less improvisation."
               },
-              { "range": "0.4–0.7", "label": "Medium → balanced business use" },
+              {
+                "range": "0.4–0.7",
+                "label": "Medium → balanced business use"
+              },
               {
                 "range": "0.8–1.0",
                 "label": "High → ideas, marketing, creative"
@@ -614,8 +617,12 @@
             ],
             "reasoningTitle": "Reasoning depth – thinking intensity",
             "reasoningLevels": [
-              { "label": "Fast → simple questions, Q&A" },
-              { "label": "Normal → standard business tasks" },
+              {
+                "label": "Fast → simple questions, Q&A"
+              },
+              {
+                "label": "Normal → standard business tasks"
+              },
               {
                 "label": "Deep → analysis, strategy, comparing options",
                 "note": "Deep = more time, but better logic."
@@ -895,7 +902,9 @@
           "title": "Strategy documents",
           "description": "Board presentations and plans"
         }
-      ]
+      ],
+      "accent": "brand",
+      "identityIcon": "BookOpen"
     },
     {
       "id": 2,
@@ -1383,7 +1392,9 @@
           "title": "Structured prompt principles",
           "description": "15 interactive questions – 5 different formats"
         }
-      ]
+      ],
+      "accent": "slate",
+      "identityIcon": "ClipboardList"
     },
     {
       "id": 3,
@@ -1450,49 +1461,49 @@
             "title": "Create a full prompt for an executive strategy report",
             "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
             "templateLabel": "View full example",
-            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk \u2013 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1\u20132 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n\u2713 Numbers accurate \u2713 Risks identified \u2713 Recommendations clear \u2713 Length 1\u20132 pages\n\nADVANCED:\nTemperature: 0.3 (factual tone), Format: business document",
+            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTemperature: 0.3 (factual tone), Format: business document",
             "explanation": "A strategy report requires decision logic, summaries, and clear recommendations.",
             "instructions": {
               "title": "Step-by-step instructions",
               "steps": [
                 {
                   "step": 1,
-                  "title": "META block \u2013 Start with role",
+                  "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
                   "hint": "Role: executive. Goal: strategy report. Audience: board.",
                   "partialSolution": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT block \u2013 Gather data",
+                  "title": "INPUT block – Gather data",
                   "description": "List KPI, risks, and constraints",
                   "hint": "Data: revenue, margin, project status, priorities. Constraints: 5 days, 4 members.",
-                  "partialSolution": "INPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk \u2013 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages."
+                  "partialSolution": "INPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT block \u2013 Define format",
+                  "title": "OUTPUT block – Define format",
                   "description": "Specify the structure and KPI dashboard",
                   "hint": "Format: Executive Summary. Structure: KPI, risks, 3 priorities.",
-                  "partialSolution": "OUTPUT:\nFormat: Executive Summary (1\u20132 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone."
+                  "partialSolution": "OUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING block \u2013 Set thought sequence",
+                  "title": "REASONING block – Set thought sequence",
                   "description": "Specify analysis and prioritisation logic",
                   "hint": "CoT: 1) KPI summary, 2) Risk assessment, 3) Priority recommendations.",
                   "partialSolution": "REASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY block \u2013 Set quality criteria",
+                  "title": "QUALITY block – Set quality criteria",
                   "description": "Define check criteria",
                   "hint": "Numbers accurate, risks identified, recommendations clear.",
-                  "partialSolution": "QUALITY:\n\u2713 Numbers accurate \u2713 Risks identified \u2713 Recommendations clear \u2713 Length 1\u20132 pages"
+                  "partialSolution": "QUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block \u2013 Set parameters",
+                  "title": "ADVANCED block – Set parameters",
                   "description": "Model parameters",
                   "hint": "Temperature: 0.3 (factual tone).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.3 (factual tone), Format: business document"
@@ -1501,7 +1512,7 @@
             }
           },
           "content": {
-            "footer": "Next \u2013 slide 4: Scenario 2: Sales analysis and action plan"
+            "footer": "Next – slide 4: Scenario 2: Sales analysis and action plan"
           }
         },
         {
@@ -2016,7 +2027,9 @@
           "title": "Building a portfolio",
           "description": "The prompts you create become your template library"
         }
-      ]
+      ],
+      "accent": "emerald",
+      "identityIcon": "Briefcase"
     }
   ]
 }

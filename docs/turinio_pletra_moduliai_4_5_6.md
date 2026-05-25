@@ -1,6 +1,6 @@
 1# Turinio plėtra – Moduliai 4, 5, 6 (Konteksto inžinerija)
 
-> **Autorinė mokymo medžiaga © 2024-2026 Tomas Staniulis**  
+> **Autorinė mokymo medžiaga © 2026 Tomas Staniulis**  
 > Šis dokumentas yra **atskiras turinio plėtros failas** moduliams 4–6 ir papildo pagrindinį `turinio_pletra.md`.  
 > **Source of truth:** turinio semantika – šis failas; duomenų struktūra – `src/data/modules.json` po sinchronizacijos.
 
@@ -1607,7 +1607,7 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
   3. OUTPUT – formatas, struktūra, ilgis. _Kada toliau: kai formatas apibrėžtas, eik į REASONING._
   4. REASONING – tyrimo žingsniai (Deep research). _Kada toliau: kai žingsniai išdėstyti, eik į QUALITY._
   5. QUALITY – šaltiniai, patikrinimas, objektyvumas. _Kada toliau: kai patikrinimo taisyklės nurodytos, eik į ADVANCED._
-  6. ADVANCED – temperature, max_tokens (tokenų ekonomika). _Kada toliau: kai parametrai nustatyti – paleisk promptą ir gauk ataskaitą._
+  6. ADVANCED – temperature, max*tokens (tokenų ekonomika). \_Kada toliau: kai parametrai nustatyti – paleisk promptą ir gauk ataskaitą.*
 - **Pirmas žingsnis (META)** – įgyvendinamas per <3 min su partialSolution (nukopijuok ir pritaikyk); tai „mažas laimėjimas“ per 5–7 min. Pirmo žingsnio **description** – 1–2 sakiniai; detalė – hint ir partialSolution.
 - **Tarpiniai sprendimai:** po vieną pavyzdinį bloką kiekvienam žingsniui (kaip Modulyje 3).
 - **Pilnas pavyzdinis sprendimas:** vienas kopijuojamas pilnas promptas + (neprivaloma) pavyzdinis išvesties fragmentas.

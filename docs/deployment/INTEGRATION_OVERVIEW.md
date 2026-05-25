@@ -35,21 +35,22 @@
 
 ## Kas reikalinga iš šio repo
 
-| Kas | Aprašymas |
-|-----|------------|
-| **Build output** | `npm run build` → `dist/` (index.html, assets). |
-| **Base path** | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/academy/`). Default šiame repo: `/anatomija/`. |
-| **Env lentelė** | Žr. [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md) skyrių „Integracija kaip subproject“ – `VITE_BASE_PATH`, `VITE_MVP_MODE`, `VITE_MAX_ACCESSIBLE_MODULE`, `VITE_VERIFY_ACCESS_URL` (origin/base URL). |
+| Kas                | Aprašymas                                                                                                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Build output**   | `npm run build` → `dist/` (index.html, assets).                                                                                                                                    |
+| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomija/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomija/`. |
+| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md) – `VITE_BASE_PATH`, `VITE_PUBLIC_SITE_URL`, `VITE_MVP_MODE`, `VITE_MAX_ACCESSIBLE_MODULE`, `VITE_VERIFY_ACCESS_URL`.                            |
+| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                       |
 
 ---
 
 ## Kas reikalinga iš marketingo repo
 
-| Užduotis | Aprašymas |
-|----------|------------|
-| **Servuoti training statiką** | Po pasirinktu path (pvz. `/academy`). SPA fallback: `/academy` ir `/academy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
-| **Eksponuoti verify-access API** | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Rekomenduojama – **domain root** `/api/verify-access`, ne po `/academy`. |
-| **Magic link redirect** | Po sėkmingo Stripe / magic link nukreipti vartotoją į training URL su query: `https://promptanatomy.app/academy?access_tier=6&expires=...&token=...`. |
+| Užduotis                         | Aprašymas                                                                                                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Servuoti training statiką**    | Po pasirinktu path (pvz. `/academy`). SPA fallback: `/academy` ir `/academy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
+| **Eksponuoti verify-access API** | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Rekomenduojama – **domain root** `/api/verify-access`, ne po `/academy`.                             |
+| **Magic link redirect**          | Po sėkmingo Stripe / magic link nukreipti vartotoją į training URL su query: `https://promptanatomy.app/academy?access_tier=6&expires=...&token=...`.       |
 
 **Auth ir verify-access atsakomybė – marketingo app.** Šiame repo – tik kontrakto aprašas ir reference kodas.
 
@@ -85,9 +86,10 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 
 ## Greitos nuorodos
 
-| Tikslas | Dokumentas |
-|---------|------------|
-| SOT, duomenys, agentai | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md) |
+| Tikslas                                  | Dokumentas                                                                           |
+| ---------------------------------------- | ------------------------------------------------------------------------------------ |
+| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                     |
 | Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md) |
-| Deploy, env, base path, production | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md) |
-| API kontraktas (verify-access) | Šis dokumentas, skyrius „Verify-access API“ |
+| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                       |
+| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                 |
+| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                          |

@@ -848,7 +848,7 @@
     "blockQualityQcTemplatesHeading": "Kopijuojami QC šablonai (2)",
     "blockQualityInlineTitle": "A. Inline Quality Control (prompt'e)",
     "blockQualityInlineIntro": "Prieš pateikiant galutinį atsakymą, DI turi patikrinti:",
-    "blockQualityInlineTemplate": "Prieš pateikiant galutinį atsakymą:\n- patikrink loginę nuoseklumą (ar visi teiginiai dera tarpusavyje?)\n- pažymėk prielaidas (kokie faktai remiasi spėjimais, o ne duomenimis?)\n- nurodyk neapibrėžtumus (kur trūksta duomenų ar yra rizika?)\n- ištaisyk faktinius spėjimus (ar visi skaičiai ir faktai tikslūs?)",
+    "blockQualityInlineTemplate": "Prieš pateikiant galutinį atsakymą:\n- patikrink logiką (ar visi teiginiai dera tarpusavyje?)\n- pažymėk prielaidas (kokie faktai remiasi spėjimais, o ne duomenimis?)\n- nurodyk neapibrėžtumus (kur trūksta duomenų ar yra rizika?)\n- ištaisyk faktinius spėjimus (ar visi skaičiai ir faktai tikslūs?)",
     "blockQualityInlineExample": "„Prieš pateikiant Q4 strategijos rekomendacijas, patikrink: ar visi KPI dera su biudžetu? Pažymėk, kurios prognozės remiasi spėjimais.\"",
     "blockQualityPostHocTitle": "B. Post-hoc Quality Audit (antras žingsnis)",
     "blockQualityPostHocIntro": "Po pirmo atsakymo, prašyk DI peržiūrėti:",

@@ -27,6 +27,7 @@ import { useLocale } from './contexts/LocaleContext';
 import { useTranslation } from 'react-i18next';
 import type { ModulesData } from './types/modules';
 import { getBrowserEnglishContentVariant } from './i18n';
+import { getPublicAppUrl, getOgImageUrl } from './utils/publicSiteMeta';
 
 // Lazy load heavy components for better initial load
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -433,8 +434,13 @@ function App() {
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDescription} />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href={getPublicAppUrl()} />
+        <meta property="og:url" content={getPublicAppUrl()} />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDescription} />
+        <meta property="og:image" content={getOgImageUrl()} />
+        <meta name="twitter:image" content={getOgImageUrl()} />
       </Helmet>
       {/* Celebration overlay */}
       <Celebration
@@ -610,7 +616,7 @@ function App() {
               </span>
             </div>
             <div className="text-center">
-              <span>© 2024-2026 </span>
+              <span>© 2026 </span>
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 Tomas Staniulis
               </span>

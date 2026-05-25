@@ -1,6 +1,6 @@
 # Turinio Plėtra - Promptų anatomija Mokymas
 
-> **Autorinė mokymo medžiaga © 2024-2026 Tomas Staniulis**
+> **Autorinė mokymo medžiaga © 2026 Tomas Staniulis**
 >
 > Šis dokumentas aprašo "Promptų anatomija" mokymo turinio struktūrą, pedagoginę logiką ir plėtros planą.
 
@@ -926,7 +926,7 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
    - OUTPUT: formatas (3 numeruoti tikslai, kiekvienas 1–2 sakiniai).
 4. **Quality check** (accent): „Jei gavote 3 konkrečius tikslus – puiku. Jei atsakymas per bendras – pridėkite INPUT bloke savo rolę ar sritį.“
 
-**whyBenefit:** „Per 2–3 minutes išmausi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.“
+**whyBenefit:** „Per 2–3 minutes išmoksi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.“
 
 **CTA:** „Nukopijuok ir paleisk“.
 
@@ -1328,7 +1328,7 @@ Parašyk 180–220 žodžių pranešimą investuotojams. Tonas: formalus. Kalba:
 ║   PROMPTŲ ANATOMIJA - Interaktyvus DI Mokymas                   ║
 ║                                                                ║
 ║   Autorinė mokymo medžiaga                                     ║
-║   © 2024-2026 Tomas Staniulis                                  ║
+║   © 2026 Tomas Staniulis                                       ║
 ║   Visos teisės saugomos                                        ║
 ║                                                                ║
 ║   Mokymo turinys, metodika ir 6 blokų sistema yra              ║

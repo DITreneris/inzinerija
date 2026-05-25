@@ -150,7 +150,9 @@ Prieiga: `https://ditreneris.github.io/inzinerija/`
 
 Pilnas production aprašas: [docs/deployment/INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md) ir [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
 
-**Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (atitinka GitHub Pages repo pavadinimą). Per env galima nustatyti `VITE_BASE_PATH` (pvz. `/anatomija/` kito repo atveju).
+**SEO / crawlers:** Mokymų app kelias (`/anatomija/` ir pan.) – **neindeksuojamas** (`noindex`). Organinis SEO ir GEO – marketingo LP; submodulio politika – [docs/deployment/SEO_SUBMODULE.md](docs/deployment/SEO_SUBMODULE.md). Viešoms santraukoms: `npm run export:seo-snippets`.
+
+**Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (GitHub Pages). Monorepo: `VITE_BASE_PATH=/anatomija/`, `VITE_PUBLIC_SITE_URL=https://www.promptanatomy.app`.
 
 ### Kiti variantai
 
@@ -166,7 +168,7 @@ Pilnas production aprašas: [docs/deployment/INTEGRATION_OVERVIEW.md](docs/deplo
 | Vite                           | Build ir dev serveris                                                                    |
 | Tailwind CSS                   | Styling (brand, accent, dark mode)                                                       |
 | Vitest + React Testing Library | Unit ir integraciniai testai                                                             |
-| react-helmet-async             | SEO (title, description pagal puslapį)                                                   |
+| react-helmet-async             | Meta (title, description, noindex, OG URL pagal puslapį)                                 |
 | lucide-react                   | Ikonos; recharts – diagramos (pvz. haliucinacijų rodikliai); canvas-confetti – šventimas |
 
 ## 📁 Projekto struktūra
@@ -203,7 +205,7 @@ src/
 
 ## 📄 Licencija
 
-**Mokymo turinys:** © 2024-2026 Tomas Staniulis. Visos teisės saugomos.
+**Mokymo turinys:** © 2026 Tomas Staniulis. Visos teisės saugomos.
 
 **Programinė įranga:** MIT License
 
@@ -221,7 +223,7 @@ src/
 
 **Promptų anatomija** - Interaktyvus DI Mokymas
 
-Autorinė mokymo medžiaga © 2024-2026 Tomas Staniulis
+Autorinė mokymo medžiaga © 2026 Tomas Staniulis
 
 _Sukurta verslo problemų sprendimui su DI_ 🎯
 

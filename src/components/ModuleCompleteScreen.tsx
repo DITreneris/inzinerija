@@ -7,8 +7,10 @@ import {
   Download,
   Award,
   BookOpen,
+  Briefcase,
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
+import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
 import {
   downloadM6HandoutPdf,
@@ -242,12 +244,15 @@ export function ModuleCompleteScreen({
             className={`mb-8 rounded-2xl border border-brand-200 dark:border-brand-700 bg-brand-50/80 dark:bg-brand-900/20 text-left ${module.id === 6 ? 'p-4 lg:p-5' : 'p-5 lg:p-6'}`}
             aria-labelledby="use-case-heading"
           >
-            <h3
-              id="use-case-heading"
-              className={`font-bold text-brand-800 dark:text-brand-200 ${module.id === 6 ? 'text-base mb-2' : 'text-lg mb-3'}`}
-            >
-              {t('module:useCaseHeading')}
-            </h3>
+            <div className="flex items-center gap-3 mb-2 lg:mb-3">
+              <IconChip icon={Briefcase} role="info" size="md" />
+              <h3
+                id="use-case-heading"
+                className={`font-bold text-brand-800 dark:text-brand-200 ${module.id === 6 ? 'text-base mb-0' : 'text-lg mb-0'}`}
+              >
+                {t('module:useCaseHeading')}
+              </h3>
+            </div>
             <ul
               className={`space-y-1.5 text-brand-700 dark:text-brand-300 list-disc list-inside ${module.id === 6 ? 'text-xs lg:text-sm' : 'text-sm'}`}
               aria-label={t('module:useCaseHeading')}

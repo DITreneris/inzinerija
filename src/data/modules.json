@@ -617,8 +617,12 @@
             ],
             "reasoningTitle": "Reasoning gylis – mąstymo intensyvumas",
             "reasoningLevels": [
-              { "label": "Greitas → paprasti klausimai, Q&A" },
-              { "label": "Normalus → standartinės verslo užduotys" },
+              {
+                "label": "Greitas → paprasti klausimai, Q&A"
+              },
+              {
+                "label": "Normalus → standartinės verslo užduotys"
+              },
               {
                 "label": "Gilus → analizė, strategija, sprendimų palyginimas",
                 "note": "Gilus = daugiau laiko, bet geresnė logika."
@@ -658,7 +662,7 @@
             ],
             "errorsTitle": "Dažniausios klaidos",
             "errors": [
-              "Aukšta temperature analizei → \u201egražu, bet netikslu\u201c",
+              "Aukšta temperature analizei → „gražu, bet netikslu“",
               "Deep reasoning paprastoms užduotims → per lėta",
               "Keiti parametrus, bet nekeiti užduoties formuluotės"
             ],
@@ -898,7 +902,9 @@
           "title": "Strategijos dokumentai",
           "description": "Valdybos prezentacijos ir planai"
         }
-      ]
+      ],
+      "accent": "brand",
+      "identityIcon": "BookOpen"
     },
     {
       "id": 2,
@@ -1386,7 +1392,9 @@
           "title": "Struktūruotų promptų principai",
           "description": "15 interaktyvių klausimų – 5 skirtingi formatai"
         }
-      ]
+      ],
+      "accent": "slate",
+      "identityIcon": "ClipboardList"
     },
     {
       "id": 3,
@@ -1405,7 +1413,7 @@
           "content": {
             "whyBenefit": "Po praktinės dalies turėsi 6 paruoštus šablonus kasdieniam darbui.",
             "minScenariosToComplete": 2,
-            "optionalInstruction": "Pasirink bent 2 scenarijus pagal savo rolę arba dominą – gali praleisti likusius.",
+            "optionalInstruction": "Pasirink bent 2 scenarijus pagal savo rolę / veiklos sritį – gali praleisti likusius.",
             "footer": "Toliau – skaidrė 2: Apšilimas"
           }
         },
@@ -1415,7 +1423,7 @@
           "subtitle": "Paprastas pirmas praktinis pavyzdys – 2–3 min prieš scenarijus",
           "type": "content-block",
           "content": {
-            "whyBenefit": "Per 2–3 minutes išmausi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.",
+            "whyBenefit": "Per 2–3 minutes išmoksi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.",
             "sections": [
               {
                 "heading": "Trumpai",
@@ -2019,7 +2027,9 @@
           "title": "Portfolio kūrimas",
           "description": "Sukurti promptai tampa tavo šablonų biblioteka"
         }
-      ]
+      ],
+      "accent": "emerald",
+      "identityIcon": "Briefcase"
     },
     {
       "id": 4,
@@ -5388,7 +5398,9 @@
           "title": "Manipuliacijos ir haliucinacijos",
           "description": "Neutralūs promptai, žinių patikrinimas"
         }
-      ]
+      ],
+      "accent": "violet",
+      "identityIcon": "Brain"
     },
     {
       "id": 5,
@@ -5847,7 +5859,9 @@
           "title": "Mini testas",
           "description": "Brief + struktūra + kokybės patikra"
         }
-      ]
+      ],
+      "accent": "cyan",
+      "identityIcon": "ClipboardCheck"
     },
     {
       "id": 6,
@@ -6334,7 +6348,9 @@
           "title": "Capstone – 6 blokai + RAG",
           "description": "Integruotas projektas kaip finalinis pritaikymas"
         }
-      ]
+      ],
+      "accent": "accent",
+      "identityIcon": "Rocket"
     },
     {
       "id": 7,
