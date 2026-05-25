@@ -19,7 +19,7 @@
 
 - **Domenas:** [https://promptanatomy.app/](https://promptanatomy.app/)
 - **Hospitingas:** Vercel (marketingo projektas).
-- **Mokymo app:** servinamas po keliu, pvz. `/academy` arba `/anatomija` (konfigūruojama per `VITE_BASE_PATH`).
+- **Mokymo app:** servinamas po keliu, pvz. `/academy` arba `/anatomy` (konfigūruojama per `VITE_BASE_PATH`).
 
 ---
 
@@ -35,12 +35,12 @@
 
 ## Kas reikalinga iš šio repo
 
-| Kas                | Aprašymas                                                                                                                                                                          |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Build output**   | `npm run build` → `dist/` (index.html, assets).                                                                                                                                    |
-| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomija/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomija/`. |
-| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md) – `VITE_BASE_PATH`, `VITE_PUBLIC_SITE_URL`, `VITE_MVP_MODE`, `VITE_MAX_ACCESSIBLE_MODULE`, `VITE_VERIFY_ACCESS_URL`.                            |
-| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                       |
+| Kas                | Aprašymas                                                                                                                                                                      |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Build output**   | `npm run build` → `dist/` (index.html, assets).                                                                                                                                |
+| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`. |
+| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md) – `VITE_BASE_PATH`, `VITE_PUBLIC_SITE_URL`, `VITE_MVP_MODE`, `VITE_MAX_ACCESSIBLE_MODULE`, `VITE_VERIFY_ACCESS_URL`.                        |
+| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                   |
 
 ---
 

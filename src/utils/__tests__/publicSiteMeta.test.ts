@@ -10,11 +10,11 @@ describe('resolvePublicAppUrlsForBuild', () => {
   it('builds monorepo prod URLs', () => {
     const { appUrl, ogImageUrl } = resolvePublicAppUrlsForBuild({
       publicSiteUrl: 'https://www.promptanatomy.app',
-      basePath: '/anatomija/',
+      basePath: '/anatomy/',
     });
-    expect(appUrl).toBe('https://www.promptanatomy.app/anatomija/');
+    expect(appUrl).toBe('https://www.promptanatomy.app/anatomy/');
     expect(ogImageUrl).toBe(
-      'https://www.promptanatomy.app/anatomija/og-image.png'
+      'https://www.promptanatomy.app/anatomy/og-image.png'
     );
   });
 
@@ -29,16 +29,16 @@ describe('resolvePublicAppUrlsForBuild', () => {
   it('strips trailing slash from origin', () => {
     const { appUrl } = resolvePublicAppUrlsForBuild({
       publicSiteUrl: 'https://www.promptanatomy.app/',
-      basePath: '/anatomija/',
+      basePath: '/anatomy/',
     });
-    expect(appUrl).toBe('https://www.promptanatomy.app/anatomija/');
+    expect(appUrl).toBe('https://www.promptanatomy.app/anatomy/');
   });
 });
 
 describe('getPublicSiteOrigin / getPublicAppUrl (runtime env)', () => {
   beforeEach(() => {
     vi.stubEnv('VITE_PUBLIC_SITE_URL', 'https://www.promptanatomy.app');
-    vi.stubEnv('BASE_URL', '/anatomija/');
+    vi.stubEnv('BASE_URL', '/anatomy/');
   });
 
   afterEach(() => {
@@ -50,9 +50,9 @@ describe('getPublicSiteOrigin / getPublicAppUrl (runtime env)', () => {
   });
 
   it('composes app and OG image URLs', () => {
-    expect(getPublicAppUrl()).toBe('https://www.promptanatomy.app/anatomija/');
+    expect(getPublicAppUrl()).toBe('https://www.promptanatomy.app/anatomy/');
     expect(getOgImageUrl()).toBe(
-      'https://www.promptanatomy.app/anatomija/og-image.png'
+      'https://www.promptanatomy.app/anatomy/og-image.png'
     );
   });
 });

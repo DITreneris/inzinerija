@@ -6,7 +6,7 @@
 
 ## Kontekstas
 
-- Mokymų app servinamas po subpath (pvz. `/anatomija/` ar `/inzinerija/`).
+- Mokymų app servinamas po subpath (pvz. `/anatomy/` ar `/inzinerija/`).
 - Prieiga – **kliento gate** (magic link + `localStorage`), ne serverio auth visam HTML.
 - Organinis SEO ir GEO – **marketingo LP**, ne modulių/skaidrių URL.
 
@@ -28,11 +28,11 @@
 
 ## Marketingo repo (integratorius)
 
-1. Root `robots.txt`: `Disallow: /anatomija/` (arba jūsų `VITE_BASE_PATH` be trailing slash).
+1. Root `robots.txt`: `Disallow: /anatomy/` (arba jūsų `VITE_BASE_PATH` be trailing slash).
 2. `sitemap.xml` – **be** app subpath URL.
 3. Build env submoduliui:
    - `VITE_PUBLIC_SITE_URL=https://www.promptanatomy.app`
-   - `VITE_BASE_PATH=/anatomija/`
+   - `VITE_BASE_PATH=/anatomy/`
 4. Patikrinti, kad edge/WAF neblokuoja retrieval botų visam domenui (žr. marketingo Cloudflare/Vercel).
 
 ---
@@ -41,7 +41,7 @@
 
 | Deploy        | `VITE_PUBLIC_SITE_URL`          | `VITE_BASE_PATH` |
 | ------------- | ------------------------------- | ---------------- |
-| Monorepo prod | `https://www.promptanatomy.app` | `/anatomija/`    |
+| Monorepo prod | `https://www.promptanatomy.app` | `/anatomy/`      |
 | GitHub Pages  | `https://ditreneris.github.io`  | `/inzinerija/`   |
 
 Žr. [`.env.example`](../../.env.example), [DEPLOYMENT.md](DEPLOYMENT.md).

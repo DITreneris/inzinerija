@@ -48,7 +48,7 @@ describe('App – SEO meta', () => {
     localStorage.clear();
     localStorage.setItem('prompt-anatomy-locale', 'lt');
     vi.stubEnv('VITE_PUBLIC_SITE_URL', 'https://www.promptanatomy.app');
-    vi.stubEnv('BASE_URL', '/anatomija/');
+    vi.stubEnv('BASE_URL', '/anatomy/');
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: vi.fn().mockImplementation(matchMediaMock),
