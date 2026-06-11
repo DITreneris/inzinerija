@@ -522,6 +522,32 @@ function isQuestionAnswered(
   return answers[q.id] !== undefined;
 }
 
+type IncompleteReasonKind = 'answer' | 'confidence' | 'matching';
+
+/** Trūkstamų atsakymų/pasitikėjimo sąrašas disabled submit mygtukui */
+function getIncompleteReasons(
+  questions: TestQuestion[],
+  answers: Record<string, number>,
+  confidence: Record<string, ConfidenceLevel>,
+  completedSpecial: Set<string>
+): Array<{ n: number; kind: IncompleteReasonKind }> {
+  const reasons: Array<{ n: number; kind: IncompleteReasonKind }> = [];
+  questions.forEach((q, idx) => {
+    const n = idx + 1;
+    const qType = getQuestionType(q);
+    const answered = isQuestionAnswered(q, answers, completedSpecial);
+    if (!answered) {
+      reasons.push({
+        n,
+        kind: qType === 'matching' ? 'matching' : 'answer',
+      });
+    } else if (confidence[q.id] == null) {
+      reasons.push({ n, kind: 'confidence' });
+    }
+  });
+  return reasons;
+}
+
 /** Check if answer is correct for MCQ/TF/Scenario */
 function isMcqCorrect(q: TestQuestion, answer: number | undefined): boolean {
   const type = getQuestionType(q);
@@ -765,6 +791,16 @@ export function TestSectionSlide({
       confidence[q.id] != null
   ).length;
   const totalCount = resolvedQuestions.length;
+  const incompleteReasons = useMemo(
+    () =>
+      getIncompleteReasons(
+        resolvedQuestions,
+        answers,
+        confidence,
+        completedSpecial
+      ),
+    [resolvedQuestions, answers, confidence, completedSpecial]
+  );
 
   return (
     <div className="space-y-6">
@@ -938,6 +974,30 @@ export function TestSectionSlide({
             <CheckCircle className="w-5 h-5" />
             {t('checkAnswers')}
           </button>
+          {!allAnswered && incompleteReasons.length > 0 && (
+            <div
+              className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800"
+              role="status"
+              aria-live="polite"
+            >
+              <p className="text-sm font-semibold text-amber-800 dark:text-amber-200 mb-2">
+                {t('submitBlockedHint')}
+              </p>
+              <ul className="space-y-1 list-none">
+                {incompleteReasons.map(({ n, kind }) => (
+                  <li
+                    key={`${n}-${kind}`}
+                    className="text-sm text-amber-700 dark:text-amber-300"
+                  >
+                    {kind === 'confidence' &&
+                      t('submitBlockedConfidence', { n })}
+                    {kind === 'answer' && t('submitBlockedAnswer', { n })}
+                    {kind === 'matching' && t('submitBlockedMatching', { n })}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </>
       )}
 

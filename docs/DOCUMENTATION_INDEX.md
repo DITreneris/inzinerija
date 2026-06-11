@@ -103,10 +103,11 @@
 
 ### Konteksto inžinerija (agentams)
 
-| Failas                                                                | Paskirtis                                                     |
-| --------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `docs/development/context-engineering/`                               | sot_index.json, context_budget.md, memory_schema, eval_rubric |
-| `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md` | Planas konteksto biudžetui                                    |
+| Failas                                  | Paskirtis                                                     |
+| --------------------------------------- | ------------------------------------------------------------- |
+| `docs/development/context-engineering/` | sot_index.json, context_budget.md, memory_schema, eval_rubric |
+| `docs/development/dod_01.md`            | Definition of Done indeksas (agentų DoD, pipeline handoff)    |
+| `.cursor/skills/`                       | Agentų skills (workflow + lessons.md)                         |
 
 ### Pradžia ir deployment
 

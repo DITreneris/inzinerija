@@ -17,6 +17,8 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .cursor/
+# Local Cursor agent spine (rules/skills under .cursor/; registry not in repo)
+AGENTS.md
 .DS_Store
 *.suo
 *.ntvs*

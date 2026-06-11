@@ -2,6 +2,15 @@
 
 > Pavaldus **CONTENT_AGENT**. Tvarko proceso diagramas, schemas (SVG, flowchart, proceso vizualizacijas) pagal projekto geriausias praktikas.
 
+## Agent contract (EN)
+
+- **Role:** Own diagram geometry, arrows, layout model/view split.
+- **Does NOT:** Copy semantics (CONTENT_AGENT owns labels).
+- **Trigger:** `*Diagram*.tsx`, `ProcessStepper.tsx`, SVG schema.
+- **Skill:** `.cursor/skills/scheme-agent/`
+- **Handoff:** → CODE_REVIEW_AGENT: Schemu CODE_REVIEW checklist block (§5).
+- **Registry:** `AGENTS.md` §Agents.
+
 ---
 
 ## 1. Rolė ir pavaldumas

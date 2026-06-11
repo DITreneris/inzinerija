@@ -1,4 +1,4 @@
-# Modulio 10 skaidrių eilė (oficiali)
+﻿# Modulio 10 skaidrių eilė (oficiali)
 
 > **Paskirtis:** Rekomenduojama Modulio 10 (Agentų inžinerija) skaidrių/temų seka su trumpu pateisinimu. SOT: `docs/turinio_pletra_moduliai_10_11_12.md`. Atpažinimas: 10.1–10.8 = tik Modulio 10 (`docs/CONTENT_MODULIU_ATPAZINIMAS.md` §6).  
 > **Lean branduolys:** ~15–22 skaidrės (planas – apie 9–10 M10 teorijos skaidrių + M11 testas + M12 praktika).
@@ -54,7 +54,7 @@
 - **100 (action-intro) visada pirmas** – whyBenefit, hook, nuoroda į M4–M6, firstActionCTA.
 - **10.2 Agentų ciklas** – vizualizacija pagal SCHEME_AGENT.md; „Peržiūrėti pilname dydyje“ – tas pats React per EnlargeableDiagram.
 - **10.3–10.6** – content-block schema: Trumpai (accent) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Optional (terms).
-- **10.8 santrauka** – 5 blokų modelis pagal content-agent-summary-slide.mdc.
+- **10.8 santrauka** – 5 blokų modelis pagal SUMMARY_SLIDE_SPEC.md.
 - **M11** – test-results useCaseBlock su blockVariant: accent.
 - **M12** – po įvado (**120**) – schema **120.25** (`m12_three_labs`); optional **120.5** (orkestratorius). **MUST:** 3 lab'ai (121–123) su artefaktais; **SHOULD:** 4 rekomenduojami scenarijai (124–127). SOT §8.2, §11; [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.
 
@@ -64,5 +64,5 @@
 
 - **Turinio SOT:** [docs/turinio_pletra_moduliai_10_11_12.md](turinio_pletra_moduliai_10_11_12.md)
 - **Modulių atpažinimas:** [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6
-- **Santraukos skaidrės:** [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc)
+- **Santraukos skaidrės:** [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md)
 - **Schemos:** [docs/development/SCHEME_AGENT.md](development/SCHEME_AGENT.md)

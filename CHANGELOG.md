@@ -37,6 +37,27 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po Design System v0.2.0 release._
 
+### Changed (2026-06-11) – Agentų sistemos refaktoras: AGENTS.md spine + skills visiems agentams
+
+- **`AGENTS.md` (naujas, repo šaknyje, EN):** vienas agentų registras – 9 agentų kontraktai (rolė, „does NOT“, trigeriai, skill, handoff), mišrios užduoties pipeline, 3 subagentų rolės (explore-diagnosis, data-validate, content-spellcheck), Architecture A, output gate, validacijos skriptai.
+- **`.cursor/rules/agent-orchestrator.mdc`:** sutrumpintas iš ~126 iki ~36 eil. (EN spine); router/pipeline perkelti į naują `.cursor/skills/orchestrator/SKILL.md`.
+- **`.cursorrules`:** deprecated – tik nuoroda į `AGENTS.md`; kodo kokybės gairės perkeltos į `coding-agent` skill, doc sinchrono – į `qa-agent` skill.
+- **Skills 3 → 10 (visi aktyvūs):** nauji `orchestrator/`, `curriculum-agent/`, `scheme-agent/`, `coding-agent/`, `ui-ux-agent/`, `qa-agent/`, `user-journey-agent/`; esamų 3 skill frontmatter `description` perrašyti į EN (auto-apply trigeriai). Indeksas: `.cursor/skills/README.md`.
+- **Rules konsolidacija:** `content-agent.mdc`, `curriculum-agent.mdc`, `scheme-agent.mdc` – ploni trigerio stub'ai (EN, rodo į skill); `content-agent-summary-slide.mdc` pašalintas (turinys – `SUMMARY_SLIDE_SPEC.md` + content-agent skill); naujas `modules-data.mdc` – vienas `modules.json` glob router pagal užduoties raktažodį. Nuorodos į pašalintą rule atnaujintos 8 docs failuose → `docs/development/SUMMARY_SLIDE_SPEC.md`.
+- **EN agent contract blokai:** `CONTENT_AGENT.md`, `CURRICULUM_AGENT.md`, `SCHEME_AGENT.md`, `UI_UX_AGENT.md`, `USER_JOURNEY_AGENT.md`, `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` viršuje – `## Agent contract (EN)` (rolė, trigeris, skill, handoff); pilni LT spec nepakeisti.
+- **Deterministiniai vartai:** `.husky/pre-commit` (lint-staged) + `lint-staged` taisyklė `src/data/*.json` → `validate:schema`; dokumentuota `AGENTS.md`.
+- **Doc sinchronas:** `docs/DOCUMENTATION_QUICK_REF.md` §2 (AGENTS.md nuoroda), `context_budget.md` §0 hierarchija, `AGENT_ORCHESTRATOR.md` §7 (pašalinta nuoroda į neegzistuojantį `CODING_AGENT_ZINIU_PATIKRINIMO_MODULIAI.md`).
+
+### Added (2026-06-11) – Definition of Done indeksas ir agentų skills (pilotas)
+
+- **`docs/development/dod_01.md`:** DoD indeksas – globalus DoD (§1), mixed-task pipeline handoff kriterijai (§2), 9 agentų checkbox su nuorodomis į pilnus checklist (§3), release gate nuoroda (§4), skill evolution / `lessons.md` formatas (§5). Be checklist kopijavimo – tik kriterijai + SOT nuorodos.
+- **`.cursor/skills/` (lokaliai, ne repo – `.gitignore` `.cursor/`):** `README.md` indeksas + `_template/`; 3 pilot skills – `content-agent/`, `data-agent/`, `code-review-agent/` (SKILL.md workflow + `lessons.md` pamokų kaupimui).
+- **Integracija:** DoD nuorodos `agent-orchestrator.mdc` §4, `AGENT_ORCHESTRATOR.md` §5, `DOCUMENTATION_QUICK_REF.md` §2, `DOCUMENTATION_INDEX.md`, `context-engineering/README.md` (pašalinta nutrūkusi `CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md` nuoroda).
+
+### Fixed (2026-06-11) – SUMMARY_SLIDE_SPEC kelias rules failuose
+
+- **`.cursor/rules/` (lokaliai):** `content-agent.mdc`, `content-agent-summary-slide.mdc`, `curriculum-agent.mdc`, `agent-orchestrator.mdc` – nutrūkęs kelias `docs/archive/development/SUMMARY_SLIDE_SPEC.md` → `docs/development/SUMMARY_SLIDE_SPEC.md` (failas egzistuoja tik ten).
+
 ### Added (2026-05-25) – SEO / crawlers / GEO (submodulis)
 
 - **`src/utils/publicSiteMeta.ts`:** `VITE_PUBLIC_SITE_URL` + `BASE_URL` – canonical / OG URL; build helper `resolvePublicAppUrlsForBuild`.
@@ -51,6 +72,14 @@ _Įrašai po Design System v0.2.0 release._
 
 - **QuizResultsView:** CEO spin-off nuoroda `https://ditreneris.github.io/ceo/` → `https://www.promptanatomy.ceo/` (DI Operacinis centras / AI Operations Center).
 - **App footer + SOT:** © metai `2024-2026` → `2026` (`App.tsx`, `turinio_pletra.md`, `docs/turinio_pletra_moduliai_*.md`, `README.md`, `GOLD_LEGACY_STANDARD.md`).
+
+### Fixed (2026-06-11) – Modulio 2 ir test-section regresija
+
+- **Atsakymų flow (M2, M5, M8, M11, M14):** pašalintas F3-1 confidence gate MCQ/T/F/Scenario komponentuose – variantai aktyvūs iš karto; pasitikėjimas privalomas tik submit metu (`TestPracticeSlides` `allAnswered`).
+- **Matching auto-check (M2):** `MatchingQuestion` automatiškai tikrina poras, kai visos susietos – submit nebeblokuojamas dėl pamiršto „Patikrinti poras“.
+- **M2 pool + locale:** `ModuleView` – `poolRef` pakeistas į `useMemo(selectQuestions(locale))`; LT↔EN perjungimas modulio viduje regeneruoja klausimus.
+- **Resume clamp (visi moduliai):** `clampSlideIndex` + `handleResumeFromSaved` / `useSlideNavigation` – sena localStorage pozicija > skaidrių skaičiaus nebekelia loading loop (ypač M2 po suspaudimo).
+- **Submit hint:** disabled „Patikrinti atsakymus“ rodo amber bloką su trūkstamais žingsniais (`getIncompleteReasons`, i18n `testPractice`).
 
 ### Fixed (2026-05-25)
 

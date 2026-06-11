@@ -1,4 +1,4 @@
-# Modulio 13 skaidrių eilė (oficiali)
+﻿# Modulio 13 skaidrių eilė (oficiali)
 
 > **Paskirtis:** Rekomenduojama Modulio 13 (Turinio inžinerija) skaidrių/temų seka su trumpu pateisinimu. SOT: `docs/turinio_pletra_moduliai_13_14_15.md`. Atpažinimas: 13.1–13.11 = tik Modulio 13 (įsk. temą **13.10 Verslas ir rizikos**, 13.11 Workflow) (`docs/CONTENT_MODULIU_ATPAZINIMAS.md` §6). **Techninis pastebėjimas:** `modules.json` skaidrei „Verslas ir rizikos“ naudojamas **`id`: 13.101** (unikalus skaičius JS), nes JSON skaičius **13.10** suparsinamas kaip **13.1** ir sutaptų su skaidre „Turinio inžinerijos kelias – ką čia rasite“.
 
@@ -58,7 +58,7 @@
 - **13.15, 13.36, 13.56** – section-break skaidrės (Vaizdai / Video / Muzika); vizualiai skiria modulio skyrius; turi title, subtitle, sectionNumber, footer.
 - **13.2–13.7, 13.101 (Verslas), 13.11** – content-block schema: Trumpai (accent) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Optional (terms). Verslas = KPI/A/B + Legal + QA su collapsible grupėmis; 13.11 = Workflow + SHOULD.
 - **13.37** – interaktyvus vaizdo generatorius (type: `vaizdo-generatorius`); atskiras React komponentas su forma ir generuojamu promptu; po 13.35 MASTER, prieš 13.36 Video.
-- **13.9 santrauka** – 5 blokų modelis pagal content-agent-summary-slide.mdc.
+- **13.9 santrauka** – 5 blokų modelis pagal SUMMARY_SLIDE_SPEC.md.
 - **M14** – test-results `useCaseBlock`: „Kitas žingsnis: Modulis 15“ (accent); intro CTA atitinka 6 klausimų turinį.
 - **M15** – MUST: bent vienas artefaktas (vaizdas / video / muzika) + naudotas promptas; po įvado – optional schema **150.25**; 3 practice-scenario (151–153), tada 158 summary.
 
@@ -68,4 +68,4 @@
 
 - **Turinio SOT:** [docs/turinio_pletra_moduliai_13_14_15.md](turinio_pletra_moduliai_13_14_15.md)
 - **Modulių atpažinimas:** [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6
-- **Santraukos skaidrės:** [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc)
+- **Santraukos skaidrės:** [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md)

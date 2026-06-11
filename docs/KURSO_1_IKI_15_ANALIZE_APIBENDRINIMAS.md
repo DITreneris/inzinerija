@@ -1,4 +1,4 @@
-# Mokymų kurso (Moduliai 1–15) analizė ir apibendrinimas
+﻿# Mokymų kurso (Moduliai 1–15) analizė ir apibendrinimas
 
 > **Paskirtis:** Vienas dokumentas – kas gerai, kas negerai, ko trūksta, ko per daug, SWOT, pasiūlymai ir rekomendacijos kiekvienai mokymų daliai, low-hanging fruits.  
 > **Šaltiniai:** DOCUMENTATION*INDEX, CONTENT_MODULIU_ATPAZINIMAS, modules.json, turinio_pletra\*.md, ANALIZE_MODULIAI*\*\_UI_UX_USABILITY, USER_JOURNEY ataskaitos, VARTOTOJU_ATSILIEPIMAI_BENDRAS, ROADMAP, MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS, CURRICULUM_AGENT, GOLDEN_STANDARD.  
@@ -22,7 +22,7 @@
 
 ## 2. Kas gerai
 
-- **Aiški pedagoginė struktūra:** Learn → Test → Practice visose dalyse; 6 blokų sistema – vienas etalonas; santraukos 5 blokų modelis (content-agent-summary-slide); refleksijos promptai.
+- **Aiški pedagoginė struktūra:** Learn → Test → Practice visose dalyse; 6 blokų sistema – vienas etalonas; santraukos 5 blokų modelis (SUMMARY_SLIDE_SPEC.md); refleksijos promptai.
 - **SOT ir dokumentacija:** Vienas šaltinis tiesos moduliams (turinio_pletra.md, turinio_pletra_moduliai_4_5_6, 7_8_9, 10_11_12, 13_14_15); CONTENT_MODULIU_ATPAZINIMAS išvengia painiavos 4.1–4.7 vs Modulio 6.
 - **CopyButton ir praktiškumas:** Daug skaidrių su kopijuojamais promptais – iš karto naudojama vertė (ypač M4 RAG, M10 agentai, M13 vaizdai).
 - **Moduliai 10–12 ir 13–15:** Trumpesnė teorija, aiškus content-block (Trumpai → Daryk dabar → Copy → Patikra); 3 lab'ai + scenarijai; useCaseBlock santraukose.

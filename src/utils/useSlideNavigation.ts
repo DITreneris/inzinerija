@@ -75,6 +75,12 @@ export interface UseSlideNavigationResult {
   savedSlidePosition: number;
 }
 
+/** Riboja skaidrės indeksą į [0, slideCount - 1]; tuščiam moduliui grąžina 0. */
+export function clampSlideIndex(index: number, slideCount: number): number {
+  if (slideCount <= 0) return 0;
+  return Math.min(Math.max(0, index), slideCount - 1);
+}
+
 /** A-S4: rasti kitą ne-optional skaidrės indeksą (į priekį arba atgal). Eksportuojama tik testams. */
 export function getNextNonOptionalIndex(
   slides: Slide[],
@@ -115,10 +121,14 @@ export function useSlideNavigation({
 }: UseSlideNavigationParams): UseSlideNavigationResult {
   const savedPos = useMemo(() => getSavedSlidePosition(moduleId), [moduleId]);
   const initialSlide = useMemo(() => {
-    if (initialSlideIndex != null && module?.slides?.length) {
-      return Math.min(Math.max(0, initialSlideIndex), module.slides.length - 1);
+    const slideCount = module?.slides?.length ?? 0;
+    if (initialSlideIndex != null && slideCount > 0) {
+      return clampSlideIndex(initialSlideIndex, slideCount);
     }
-    return resumeImmediately && savedPos > 0 ? savedPos : 0;
+    if (resumeImmediately && savedPos > 0) {
+      return clampSlideIndex(savedPos, slideCount);
+    }
+    return 0;
   }, [initialSlideIndex, module?.slides?.length, resumeImmediately, savedPos]);
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
   const [showModuleComplete, setShowModuleComplete] = useState(false);
@@ -226,22 +236,19 @@ export function useSlideNavigation({
     saveSlidePosition(moduleId, currentSlide);
   }, [moduleId, currentSlide]);
 
-  // Reset when module changes (new module opened)
+  // Reset when module changes or slide count changes (e.g. M2 compression)
   useEffect(() => {
     const saved = getSavedSlidePosition(moduleId);
     const slideCount = module?.slides?.length ?? 0;
     const nextSlide =
       initialSlideIndex != null && slideCount > 0
-        ? Math.min(Math.max(0, initialSlideIndex), slideCount - 1)
+        ? clampSlideIndex(initialSlideIndex, slideCount)
         : resumeImmediately && saved > 0
-          ? saved
+          ? clampSlideIndex(saved, slideCount)
           : 0;
-    const clampedSlide =
-      slideCount > 0 && nextSlide >= slideCount ? slideCount - 1 : nextSlide;
-    setCurrentSlide(clampedSlide);
+    setCurrentSlide(nextSlide);
     setShowModuleComplete(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [moduleId]);
+  }, [moduleId, module?.slides?.length, initialSlideIndex, resumeImmediately]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
