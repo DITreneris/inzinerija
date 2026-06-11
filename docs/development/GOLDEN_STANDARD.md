@@ -262,7 +262,7 @@
 | **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių).                                                                                                                                                                                    |
 | **Kitos formos**         | Šaltinio / nuorodos footeriai (pvz. „Šaltinis: MIT…“) – be skaidrės numerio; nekoreguojami.                                                                                                                                                                           |
 
-**Kai skaidrė perkeliama arba keičiama eilė:** Privaloma perskaičiuoti ir atnaujinti visus footerių numerius modulyje – N turi atitikti faktinę 1-based poziciją. Žr. **`.cursor/rules/footer-slide-numbers.mdc`** ir **agent-orchestrator.mdc §7**.
+**Kai skaidrė perkeliama arba keičiama eilė:** Privaloma perskaičiuoti ir atnaujinti visus footerių numerius modulyje – N turi atitikti faktinę 1-based poziciją. Žr. **`.cursor/rules/footer-slide-numbers.mdc`** ir **`.cursor/skills/orchestrator/SKILL.md`** (Special cases).
 
 **Taikymas:** Visi moduliai (1–15). DATA_AGENT atsakingas už `modules.json` ir footer atitiktį eilei.
 
@@ -516,7 +516,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 | Skaidrių routing                                      | SlideContent.tsx, ModuleView.tsx                                                                                          |
 | Duomenys                                              | src/data/modules.json                                                                                                     |
 | Tipai                                                 | src/types/modules.ts, scripts/schemas/modules.schema.json                                                                 |
-| **Footeriai (nuoseklūs nr.)**                         | .cursor/rules/footer-slide-numbers.mdc, agent-orchestrator.mdc §7                                                         |
+| **Footeriai (nuoseklūs nr.)**                         | .cursor/rules/footer-slide-numbers.mdc, .cursor/skills/orchestrator/SKILL.md                                              |
 | **Skaidrių taškai (navigacija)**                      | ModuleView.tsx §8.5 – viena eilutė, overflow-x-auto, ilgiems moduliams mažesni taškai                                     |
 | **Sertifikatai moduliuose (atkartojamas standartas)** | §3.7 – kada išduoti, certificateContent.json (tiers, websiteUrl, websiteCta), PDF maketas, UI; CERTIFICATE_CONTENT_SOT.md |
 

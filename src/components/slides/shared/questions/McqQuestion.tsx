@@ -34,7 +34,7 @@ export function McqQuestion({
   const { locale } = useLocale();
   const isCorrect = userAnswer === question.correct;
   const options = question.options || [];
-  const answerDisabled = showResults || confidence === undefined;
+  const answerDisabled = showResults;
   const en = locale === 'en';
 
   return (
@@ -51,7 +51,9 @@ export function McqQuestion({
         <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 text-sm font-bold flex-shrink-0">
           {questionIndex + 1}
         </span>
-        <p className="font-bold text-gray-900 dark:text-white">{question.question}</p>
+        <p className="font-bold text-gray-900 dark:text-white">
+          {question.question}
+        </p>
       </div>
 
       <ConfidenceSelector
@@ -76,11 +78,11 @@ export function McqQuestion({
                   ? isCorrectOption
                     ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
                     : isSelected && !isCorrectOption
-                    ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
-                    : 'border-gray-200 dark:border-gray-700'
+                      ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
+                      : 'border-gray-200 dark:border-gray-700'
                   : isSelected
-                  ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30'
-                  : 'border-gray-200 dark:border-gray-700 hover:border-brand-300'
+                    ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-300'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -90,17 +92,23 @@ export function McqQuestion({
                       ? isCorrectOption
                         ? 'border-emerald-500 bg-emerald-500'
                         : isSelected
-                        ? 'border-rose-500 bg-rose-500'
-                        : 'border-gray-300'
+                          ? 'border-rose-500 bg-rose-500'
+                          : 'border-gray-300'
                       : isSelected
-                      ? 'border-brand-500 bg-brand-500'
-                      : 'border-gray-300'
+                        ? 'border-brand-500 bg-brand-500'
+                        : 'border-gray-300'
                   }`}
                 >
-                  {showResults && isCorrectOption && <CheckCircle className="w-4 h-4 text-white" />}
-                  {isSelected && !showResults && <div className="w-3 h-3 rounded-full bg-white" />}
+                  {showResults && isCorrectOption && (
+                    <CheckCircle className="w-4 h-4 text-white" />
+                  )}
+                  {isSelected && !showResults && (
+                    <div className="w-3 h-3 rounded-full bg-white" />
+                  )}
                 </div>
-                <span className="text-gray-700 dark:text-gray-300">{option}</span>
+                <span className="text-gray-700 dark:text-gray-300">
+                  {option}
+                </span>
               </div>
             </button>
           );
@@ -112,41 +120,71 @@ export function McqQuestion({
         <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <div className="flex items-start gap-2">
             <Lightbulb className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-amber-800 dark:text-amber-200">{question.hint}</p>
+            <p className="text-sm text-amber-800 dark:text-amber-200">
+              {question.hint}
+            </p>
           </div>
         </div>
       )}
 
       {/* Request hint button */}
-      {!showHint && question.hint && !showResults && userAnswer !== undefined && userAnswer !== question.correct && (
-        <button
-          onClick={() => onRequestHint(question.id)}
-          className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
-          aria-label={en ? 'Get hint' : 'Gauti užuominą'}
-        >
-          <Lightbulb className="w-4 h-4" />
-          {en ? 'Show hint' : 'Rodyti užuominą'}
-        </button>
-      )}
+      {!showHint &&
+        question.hint &&
+        !showResults &&
+        userAnswer !== undefined &&
+        userAnswer !== question.correct && (
+          <button
+            onClick={() => onRequestHint(question.id)}
+            className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
+            aria-label={en ? 'Get hint' : 'Gauti užuominą'}
+          >
+            <Lightbulb className="w-4 h-4" />
+            {en ? 'Show hint' : 'Rodyti užuominą'}
+          </button>
+        )}
 
       {showResults && (
         <>
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
               {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
-              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {confidenceLabel(confidence, locale)}
+              </span>
             </p>
           )}
-          <div className={`mt-4 p-3 rounded-lg ${isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-amber-100 dark:bg-amber-900/30'}`}>
-            <p className={`text-sm ${isCorrect ? 'text-emerald-800 dark:text-emerald-200' : 'text-amber-800 dark:text-amber-200'}`}>
-              <strong>{isCorrect ? (en ? 'Correct!' : 'Teisingai!') : (en ? 'Incorrect.' : 'Neteisingai.')}</strong> {question.explanation}
+          <div
+            className={`mt-4 p-3 rounded-lg ${isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/30' : 'bg-amber-100 dark:bg-amber-900/30'}`}
+          >
+            <p
+              className={`text-sm ${isCorrect ? 'text-emerald-800 dark:text-emerald-200' : 'text-amber-800 dark:text-amber-200'}`}
+            >
+              <strong>
+                {isCorrect
+                  ? en
+                    ? 'Correct!'
+                    : 'Teisingai!'
+                  : en
+                    ? 'Incorrect.'
+                    : 'Neteisingai.'}
+              </strong>{' '}
+              {question.explanation}
             </p>
             {!isCorrect && question.ifWrongSee && onRemediationLink && (
               <button
                 type="button"
-                onClick={() => onRemediationLink(question.ifWrongSee!.moduleId, question.ifWrongSee!.slideId)}
+                onClick={() =>
+                  onRemediationLink(
+                    question.ifWrongSee!.moduleId,
+                    question.ifWrongSee!.slideId
+                  )
+                }
                 className="mt-3 flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline"
-                aria-label={en ? `View slide: ${question.ifWrongSee!.label}` : `Peržiūrėti skaidrę: ${question.ifWrongSee!.label}`}
+                aria-label={
+                  en
+                    ? `View slide: ${question.ifWrongSee!.label}`
+                    : `Peržiūrėti skaidrę: ${question.ifWrongSee!.label}`
+                }
               >
                 <ExternalLink className="w-4 h-4" />
                 {en

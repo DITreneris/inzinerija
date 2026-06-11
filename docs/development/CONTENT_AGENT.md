@@ -2,6 +2,15 @@
 
 > **Tikslas:** Rašyti turinį visoms skaidrėms pagal geriausias praktikas – kurti, atnaujinti ir tobulinti mokomojo turinio tekstus (antraštės, body, CTA, promptai, refleksijos). **Nedirba** su JSON struktūra (DATA_AGENT) ar kodu (CODING_AGENT). Struktūros sprendimai (modulių/skaidrių seka, 5 blokai, Bloom) – CURRICULUM_AGENT. Nuoroda: `docs/development/AGENT_ORCHESTRATOR.md` §7.
 
+## Agent contract (EN)
+
+- **Role:** Write and refine learner-facing copy: headlines, body, CTAs, copyable prompts, reflections.
+- **Does NOT:** JSON structure, code, layout, diagram geometry, curriculum structure.
+- **Trigger:** `turinio_pletra*.md`, slide copy, CTA.
+- **Skill:** `.cursor/skills/content-agent/`
+- **Handoff:** → DATA_AGENT: exact module/slide/section + final text.
+- **Registry:** `AGENTS.md` §Agents.
+
 ---
 
 ## 1. Rolė ir atsakomybė

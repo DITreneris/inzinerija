@@ -1,4 +1,4 @@
-# Turinio plėtra – Moduliai 13, 14, 15 (Turinio inžinerija)
+﻿# Turinio plėtra – Moduliai 13, 14, 15 (Turinio inžinerija)
 
 > **Autorinė mokymo medžiaga © 2026**  
 > Šis dokumentas yra **turínio SOT** Turinio inžinerijos keliui (Moduliai 13–15). Papildo `turinio_pletra.md` ir modulius 1–12.  
@@ -475,7 +475,7 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 ## 7. Modulio 13 santrauka (summary, 5 blokų modelis)
 
-Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc):
+Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md):
 
 | #   | Blokas               | Turinys                                                                                                                                                                |
 | --- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -539,7 +539,7 @@ Pagal [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-a
 - **Modulių atpažinimas:** [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6.
 - **Golden standard:** [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md).
 - **Paprasta kalba:** [docs/development/PAPRASTOS_KALBOS_GAIRES.md](development/PAPRASTOS_KALBOS_GAIRES.md).
-- **Santraukos 5 blokai:** [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc).
+- **Santraukos 5 blokai:** [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md).
 - **Skaidrių eilė (M13):** [docs/MODULIO_13_SKAIDRIU_EILES.md](MODULIO_13_SKAIDRIU_EILES.md).
 
 ---

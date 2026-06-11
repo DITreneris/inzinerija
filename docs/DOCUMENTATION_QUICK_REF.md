@@ -7,15 +7,15 @@
 
 ## 1. Source of Truth (SOT)
 
-| Sritis | Failas |
-|--------|--------|
-| Turinys M1–3 | `turinio_pletra.md` |
-| Turinys M4–6 | `docs/turinio_pletra_moduliai_4_5_6.md` |
-| Modulių/skaidrių numeracija | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` |
-| Dizainas (šriftai, skaidrės) | `docs/development/GOLDEN_STANDARD.md` |
-| Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` |
-| Duomenys | `src/data/modules.json` (full redagavimo SOT), `src/data/modules-m1-m6.json` (core build/runtime), `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` |
-| Atsiliepimai / klaidos | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `docs/development/TEST_REPORT.md` |
+| Sritis                                                             | Failas                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Turinys M1–3                                                       | `turinio_pletra.md`                                                                                                                                                                                                        |
+| Turinys M4–6                                                       | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                                                    |
+| Modulių/skaidrių numeracija                                        | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                      |
+| Dizainas (šriftai, skaidrės)                                       | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                      |
+| Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                 |
+| Duomenys                                                           | `src/data/modules.json` (full redagavimo SOT), `src/data/modules-m1-m6.json` (core build/runtime), `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` |
+| Atsiliepimai / klaidos                                             | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `docs/development/TEST_REPORT.md`                                                                                                                                                |
 
 **Konfliktas:** 1) Turinio SOT → 2) JSON sinchronas → 3) UI.
 
@@ -25,23 +25,26 @@
 
 ## 2. Agentai ir kur žiūrėti
 
-| Veikla | Agentas | Dokumentas |
-|--------|---------|------------|
-| Turinys, CTA, kopija | CONTENT_AGENT | `docs/development/CONTENT_AGENT.md`, `docs/development/PAPRASTOS_KALBOS_GAIRES.md` |
-| Pedagogika, Bloom, santraukos | CURRICULUM_AGENT | `docs/development/CURRICULUM_AGENT.md` |
-| Schemos, diagramos | SCHEME_AGENT | `docs/development/SCHEME_AGENT.md` |
-| JSON, duomenys | DATA_AGENT | `src/data/*` |
-| UI/UX, layout, a11y | UI_UX_AGENT | `docs/development/UI_UX_AGENT.md`, GOLDEN_STANDARD |
-| Kokybė, diagnozė | CODE_REVIEW_AGENT | — |
-| Vartotojo kelionė | USER_JOURNEY_AGENT | `docs/development/USER_JOURNEY_AGENT.md` |
-| Routeris, pipeline | — | `docs/development/AGENT_ORCHESTRATOR.md` |
+**Agentų registras (EN, vienas grep):** `AGENTS.md` (repo šaknyje) – rolės, trigeriai, pipeline, handoff, subagentai. Skills: `.cursor/skills/<agentas>/SKILL.md`.
+
+| Veikla                               | Agentas            | Dokumentas                                                                         |
+| ------------------------------------ | ------------------ | ---------------------------------------------------------------------------------- |
+| Turinys, CTA, kopija                 | CONTENT_AGENT      | `docs/development/CONTENT_AGENT.md`, `docs/development/PAPRASTOS_KALBOS_GAIRES.md` |
+| Pedagogika, Bloom, santraukos        | CURRICULUM_AGENT   | `docs/development/CURRICULUM_AGENT.md`                                             |
+| Schemos, diagramos                   | SCHEME_AGENT       | `docs/development/SCHEME_AGENT.md`                                                 |
+| JSON, duomenys                       | DATA_AGENT         | `src/data/*`                                                                       |
+| UI/UX, layout, a11y                  | UI_UX_AGENT        | `docs/development/UI_UX_AGENT.md`, GOLDEN_STANDARD                                 |
+| Kokybė, diagnozė                     | CODE_REVIEW_AGENT  | —                                                                                  |
+| Vartotojo kelionė                    | USER_JOURNEY_AGENT | `docs/development/USER_JOURNEY_AGENT.md`                                           |
+| Routeris, pipeline                   | —                  | `docs/development/AGENT_ORCHESTRATOR.md`                                           |
+| Definition of Done (kada „padaryta“) | visi               | `docs/development/dod_01.md`; skills – `.cursor/skills/README.md`                  |
 
 ---
 
 ## 3. Lean ir pilnas sąrašas
 
-- **Lean branduolys (pakanka daugumai):** `docs/LEAN_INDEX.md`  
-- **Pilnas aktyvių sąrašas:** `docs/DOCUMENTATION_INDEX.md` §2–4  
+- **Lean branduolys (pakanka daugumai):** `docs/LEAN_INDEX.md`
+- **Pilnas aktyvių sąrašas:** `docs/DOCUMENTATION_INDEX.md` §2–4
 - **Archyvas (modulio analizės, ataskaitos):** `docs/archive/` – tik lokaliai (ne commitinama, .gitignore); jei naudojate lokaliai – žr. `docs/archive/README.md`.
 
 ---

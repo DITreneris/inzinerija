@@ -2,6 +2,15 @@
 
 > Pavaldus **CODING_AGENT**. Tvarko UI/UX gaires, prieinamumą (a11y), vizualinę hierarchiją, dizaino sistemos taikymą. Implementaciją atlieka CODING_AGENT.
 
+## Agent contract (EN)
+
+- **Role:** Audit layout, a11y, visual hierarchy against GOLDEN_STANDARD.
+- **Does NOT:** Implementation (recommends to CODING_AGENT).
+- **Trigger:** layout, a11y, aria, Tailwind, blockVariant, dark mode.
+- **Skill:** `.cursor/skills/ui-ux-agent/`
+- **Handoff:** → CODING_AGENT: concrete Tailwind class / aria fixes.
+- **Registry:** `AGENTS.md` §Agents.
+
 ---
 
 ## 1. Rolė ir pavaldumas
@@ -14,14 +23,14 @@
 
 ## 2. Source of Truth UI/UX sričiai
 
-| Sritis | SOT / failai |
-|--------|---------------|
-| **Spalvos ir paletė** | `tailwind.config.js` – brand, accent, slate, di-visata |
-| **Šriftai** | Plus Jakarta Sans (sans), JetBrains Mono (mono) |
+| Sritis                          | SOT / failai                                                                                                                              |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Spalvos ir paletė**           | `tailwind.config.js` – brand, accent, slate, di-visata                                                                                    |
+| **Šriftai**                     | Plus Jakarta Sans (sans), JetBrains Mono (mono)                                                                                           |
 | **GOLDEN STANDARD (privaloma)** | `docs/development/GOLDEN_STANDARD.md` – šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas. **Vienas etalonas viskam.** |
-| **Komponentų sąrašas** | `UI_KOMPONENTU_ANALIZE.md` – skaidrių tipai ir atitikmuo |
-| **Animacijos** | `tailwind.config.js` – fade-in, slide-in, bounce-in, shimmer, celebrate ir kt. |
-| **Skaidrių ir tipų struktūra** | `src/components/SlideContent.tsx`, `src/types/modules.ts`, `src/data/modules.json` |
+| **Komponentų sąrašas**          | `UI_KOMPONENTU_ANALIZE.md` – skaidrių tipai ir atitikmuo                                                                                  |
+| **Animacijos**                  | `tailwind.config.js` – fade-in, slide-in, bounce-in, shimmer, celebrate ir kt.                                                            |
+| **Skaidrių ir tipų struktūra**  | `src/components/SlideContent.tsx`, `src/types/modules.ts`, `src/data/modules.json`                                                        |
 
 Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rekomenduoja pagal SOT, tada CODING_AGENT įgyvendina.
 
@@ -90,17 +99,17 @@ UI_UX_AGENT geba **patikrinti visas skaidres** ar jos atitinka geriausias prakti
 
 ### 4.2 Checklist (geriausios praktikos)
 
-| Kriterijus | Klausimas |
-|------------|-----------|
-| Vizualinė hierarchija | Ar brand/accent/slate blokai naudojami teisingai? |
+| Kriterijus               | Klausimas                                                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Vizualinė hierarchija    | Ar brand/accent/slate blokai naudojami teisingai?                                                                       |
 | Vienas dominuojantis CTA | Ar skaidrėje yra vienas aiškiai dominuojantis CTA (pagal „vienos eilutės“ principą)? Ar antriniai mygtukai antro plano? |
-| A11y | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown? |
-| Touch targets | Ar min 44px (py-1.5 px-3 badge'ams)? |
-| Dark mode | Ar visi blokai turi dark: variantus? |
-| Spalvos | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)? |
-| Konsistencija | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.? |
-| Skenuojamumas | Ar antraštės, bullet points, CTA aiškūs? |
-| Lentelės | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių? |
+| A11y                     | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown?                                                   |
+| Touch targets            | Ar min 44px (py-1.5 px-3 badge'ams)?                                                                                    |
+| Dark mode                | Ar visi blokai turi dark: variantus?                                                                                    |
+| Spalvos                  | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)?                                                         |
+| Konsistencija            | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.?                                                         |
+| Skenuojamumas            | Ar antraštės, bullet points, CTA aiškūs?                                                                                |
+| Lentelės                 | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių?   |
 
 ### 4.3 Išvesties formatas (audito ataskaita)
 
@@ -142,28 +151,28 @@ Kurdamas naują skaidrės tipą, UI_UX_AGENT laikosi:
 
 ### 5.3 Reikalingi failai (naujam tipui)
 
-| Žingsnis | Failas | Agentas |
-|----------|--------|---------|
-| Aprašymas ir gairės | UI_UX_AGENT išvestis | UI_UX_AGENT |
-| Tipas (interface) | `src/types/modules.ts` | DATA_AGENT arba CODING_AGENT |
-| Komponentas | `src/components/slides/types/*.tsx` | CODING_AGENT |
-| Switch case | `SlideContent.tsx` | CODING_AGENT |
-| Duomenys | `modules.json` | DATA_AGENT |
+| Žingsnis            | Failas                              | Agentas                      |
+| ------------------- | ----------------------------------- | ---------------------------- |
+| Aprašymas ir gairės | UI_UX_AGENT išvestis                | UI_UX_AGENT                  |
+| Tipas (interface)   | `src/types/modules.ts`              | DATA_AGENT arba CODING_AGENT |
+| Komponentas         | `src/components/slides/types/*.tsx` | CODING_AGENT                 |
+| Switch case         | `SlideContent.tsx`                  | CODING_AGENT                 |
+| Duomenys            | `modules.json`                      | DATA_AGENT                   |
 
 ---
 
 ## 6. Kada naudoti UI_UX_AGENT
 
-| Situacija | Agentas |
-|-----------|---------|
-| **Visų skaidrių auditas** – ar atitinka geriausias praktikas | UI_UX_AGENT |
+| Situacija                                                        | Agentas                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Visų skaidrių auditas** – ar atitinka geriausias praktikas     | UI_UX_AGENT                                                      |
 | **Nauja skaidrė / naujas tipas** – layout, hierarchija, šablonas | UI_UX_AGENT (gairės) → CODING_AGENT + DATA_AGENT (įgyvendinimas) |
-| Naujo skaidrės tipo UI – layout, hierarchija, spalvos | CODING_AGENT → UI_UX_AGENT (gairės, tikrinimas) |
-| A11y pataisymai – aria, focus, klaviatūra | UI_UX_AGENT → CODING_AGENT (implementacija) |
-| Dizaino sistemos neatitiktis – nestandartinės spalvos, klasės | UI_UX_AGENT |
-| Touch targets per maži, dark mode trūksta | UI_UX_AGENT |
-| Vizualinės hierarchijos klaida – blokų eilė, accent vs brand | UI_UX_AGENT |
-| Tik logika / tipai / utils (be UI) | CODING_AGENT (be UI_UX_AGENT) |
+| Naujo skaidrės tipo UI – layout, hierarchija, spalvos            | CODING_AGENT → UI_UX_AGENT (gairės, tikrinimas)                  |
+| A11y pataisymai – aria, focus, klaviatūra                        | UI_UX_AGENT → CODING_AGENT (implementacija)                      |
+| Dizaino sistemos neatitiktis – nestandartinės spalvos, klasės    | UI_UX_AGENT                                                      |
+| Touch targets per maži, dark mode trūksta                        | UI_UX_AGENT                                                      |
+| Vizualinės hierarchijos klaida – blokų eilė, accent vs brand     | UI_UX_AGENT                                                      |
+| Tik logika / tipai / utils (be UI)                               | CODING_AGENT (be UI_UX_AGENT)                                    |
 
 ---
 

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Link2, Lightbulb, CheckCircle, XCircle } from 'lucide-react';
 import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
@@ -48,30 +48,34 @@ export function MatchingQuestion({
   const [matches, setMatches] = useState<Record<number, number>>({});
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleLeftClick = useCallback((idx: number) => {
-    if (isChecked) return;
-    setSelectedLeft((prev) => (prev === idx ? null : idx));
-  }, [isChecked]);
+  const handleLeftClick = useCallback(
+    (idx: number) => {
+      if (isChecked) return;
+      setSelectedLeft((prev) => (prev === idx ? null : idx));
+    },
+    [isChecked]
+  );
 
-  const handleRightClick = useCallback((rightIdx: number) => {
-    if (isChecked || selectedLeft === null) return;
-    const usedBy = Object.entries(matches).find(([, v]) => v === rightIdx);
-    if (usedBy) {
-      setMatches((prev) => {
-        const next = { ...prev };
-        delete next[Number(usedBy[0])];
-        return next;
-      });
-    }
-    setMatches((prev) => ({ ...prev, [selectedLeft]: rightIdx }));
-    setSelectedLeft(null);
-  }, [isChecked, selectedLeft, matches]);
+  const handleRightClick = useCallback(
+    (rightIdx: number) => {
+      if (isChecked || selectedLeft === null) return;
+      const usedBy = Object.entries(matches).find(([, v]) => v === rightIdx);
+      if (usedBy) {
+        setMatches((prev) => {
+          const next = { ...prev };
+          delete next[Number(usedBy[0])];
+          return next;
+        });
+      }
+      setMatches((prev) => ({ ...prev, [selectedLeft]: rightIdx }));
+      setSelectedLeft(null);
+    },
+    [isChecked, selectedLeft, matches]
+  );
 
   const allMatched = Object.keys(matches).length === pairs.length;
 
-  const handleCheck = useCallback(() => {
-    if (!allMatched) return;
-    setIsChecked(true);
+  const computeScore = useCallback(() => {
     let correct = 0;
     pairs.forEach((pair, leftIdx) => {
       const rightIdx = matches[leftIdx];
@@ -79,9 +83,28 @@ export function MatchingQuestion({
         correct++;
       }
     });
-    const score = pairs.length > 0 ? correct / pairs.length : 0;
-    onComplete(question.id, score);
-  }, [allMatched, pairs, matches, shuffledRight, onComplete, question.id]);
+    return pairs.length > 0 ? correct / pairs.length : 0;
+  }, [pairs, matches, shuffledRight]);
+
+  const handleCheck = useCallback(() => {
+    if (!allMatched) return;
+    setIsChecked(true);
+    onComplete(question.id, computeScore());
+  }, [allMatched, computeScore, onComplete, question.id]);
+
+  useEffect(() => {
+    if (allMatched && !isChecked && !showResults) {
+      setIsChecked(true);
+      onComplete(question.id, computeScore());
+    }
+  }, [
+    allMatched,
+    isChecked,
+    showResults,
+    computeScore,
+    onComplete,
+    question.id,
+  ]);
 
   const getMatchColor = (leftIdx: number): string => {
     const colors = [
@@ -116,7 +139,9 @@ export function MatchingQuestion({
             <Link2 className="w-3 h-3 inline mr-1" />
             {en ? 'Match pairs' : 'Sujunk poras'}
           </span>
-          <p className="font-bold text-gray-900 dark:text-white mt-1">{question.question}</p>
+          <p className="font-bold text-gray-900 dark:text-white mt-1">
+            {question.question}
+          </p>
         </div>
       </div>
 
@@ -142,8 +167,11 @@ export function MatchingQuestion({
             const isSelected = selectedLeft === leftIdx;
             const rightIdx = matches[leftIdx];
             const isCorrectMatch =
-              isChecked && rightIdx !== undefined && shuffledRight[rightIdx] === pair.right;
-            const isWrongMatch = isChecked && rightIdx !== undefined && !isCorrectMatch;
+              isChecked &&
+              rightIdx !== undefined &&
+              shuffledRight[rightIdx] === pair.right;
+            const isWrongMatch =
+              isChecked && rightIdx !== undefined && !isCorrectMatch;
 
             return (
               <button
@@ -156,19 +184,25 @@ export function MatchingQuestion({
                     ? isCorrectMatch
                       ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
                       : isWrongMatch
-                      ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
-                      : 'border-gray-200 dark:border-gray-700'
+                        ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
+                        : 'border-gray-200 dark:border-gray-700'
                     : isSelected
-                    ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30 ring-2 ring-brand-300'
-                    : matched
-                    ? `border-2 ${getMatchColor(leftIdx)}`
-                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-300'
+                      ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30 ring-2 ring-brand-300'
+                      : matched
+                        ? `border-2 ${getMatchColor(leftIdx)}`
+                        : 'border-gray-200 dark:border-gray-700 hover:border-brand-300'
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
-                  {isChecked && isCorrectMatch && <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />}
-                  {isChecked && isWrongMatch && <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />}
-                  <span className="text-gray-800 dark:text-gray-200 break-words">{pair.left}</span>
+                  {isChecked && isCorrectMatch && (
+                    <CheckCircle className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  )}
+                  {isChecked && isWrongMatch && (
+                    <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />
+                  )}
+                  <span className="text-gray-800 dark:text-gray-200 break-words">
+                    {pair.left}
+                  </span>
                 </div>
               </button>
             );
@@ -195,16 +229,18 @@ export function MatchingQuestion({
                     ? isCorrectMatch
                       ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
                       : isWrongMatch
-                      ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
-                      : 'border-gray-200 dark:border-gray-700'
+                        ? 'border-rose-500 bg-rose-100 dark:bg-rose-900/30'
+                        : 'border-gray-200 dark:border-gray-700'
                     : matched && matchedByLeft !== undefined
-                    ? `border-2 ${getMatchColor(matchedByLeft)}`
-                    : selectedLeft !== null && !matched
-                    ? 'border-gray-200 dark:border-gray-700 hover:border-accent-400 cursor-pointer'
-                    : 'border-gray-200 dark:border-gray-700'
+                      ? `border-2 ${getMatchColor(matchedByLeft)}`
+                      : selectedLeft !== null && !matched
+                        ? 'border-gray-200 dark:border-gray-700 hover:border-accent-400 cursor-pointer'
+                        : 'border-gray-200 dark:border-gray-700'
                 }`}
               >
-                <span className="text-gray-800 dark:text-gray-200 break-words block min-w-0">{rightText}</span>
+                <span className="text-gray-800 dark:text-gray-200 break-words block min-w-0">
+                  {rightText}
+                </span>
               </button>
             );
           })}
@@ -228,7 +264,9 @@ export function MatchingQuestion({
         <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <div className="flex items-start gap-2">
             <Lightbulb className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-amber-800 dark:text-amber-200">{question.hint}</p>
+            <p className="text-sm text-amber-800 dark:text-amber-200">
+              {question.hint}
+            </p>
           </div>
         </div>
       )}
@@ -249,12 +287,15 @@ export function MatchingQuestion({
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
               {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
-              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {confidenceLabel(confidence, locale)}
+              </span>
             </p>
           )}
           <div className="mt-4 p-3 rounded-lg bg-brand-50 dark:bg-brand-900/20">
             <p className="text-sm text-brand-800 dark:text-brand-200">
-              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong> {question.explanation}
+              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong>{' '}
+              {question.explanation}
             </p>
           </div>
         </>

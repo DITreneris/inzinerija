@@ -23,7 +23,10 @@ import { spacingClasses, radiusClasses } from '../design-tokens';
 import { Progress } from '../utils/progress';
 import { getModulesSync, preloadModules } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
-import { useSlideNavigation } from '../utils/useSlideNavigation';
+import {
+  useSlideNavigation,
+  clampSlideIndex,
+} from '../utils/useSlideNavigation';
 import { useCompactViewport } from '../utils/useCompactViewport';
 import { LoadingSpinner } from './ui';
 import { ModuleCompleteScreen } from './ModuleCompleteScreen';
@@ -31,7 +34,7 @@ import ErrorBoundary from './ui/ErrorBoundary';
 import { selectQuestions } from '../utils/questionPoolSelector';
 import { buildSlideGroups, type SlideGroup } from '../utils/slidePhaseConfig';
 import { track } from '../utils/analytics';
-import type { Slide, TestQuestion } from '../types/modules';
+import type { Slide } from '../types/modules';
 import SlideContent from './SlideContent';
 
 const FAST_TRACK_KEY = 'prompt-anatomy-fast-track';
@@ -219,21 +222,17 @@ function ModuleView({
   );
 
   // ─── Question Pool: Module 2 enrichment ───
-  const prevPoolModuleRef = useRef<number | null>(null);
-  const poolRef = useRef<TestQuestion[] | null>(null);
-
-  // Regenerate pool when entering Module 2 (each visit = new random set)
-  if (moduleId === 2 && prevPoolModuleRef.current !== 2) {
-    poolRef.current = selectQuestions(locale);
-  }
-  prevPoolModuleRef.current = moduleId;
+  const m2Questions = useMemo(
+    () => (moduleId === 2 ? selectQuestions(locale) : null),
+    [moduleId, locale]
+  );
 
   const module = useMemo(() => {
     const raw = modules?.find((m) => m.id === moduleId);
     if (!raw) return raw;
 
     // Module 2: collapse test-section slides into one with pool questions + bonus slides after test
-    if (moduleId === 2 && poolRef.current) {
+    if (moduleId === 2 && m2Questions) {
       const testIntro = raw.slides.find((s) => s.type === 'test-intro');
       const testResults = raw.slides.find((s) => s.type === 'test-results');
       const bonusSlides = raw.slides.filter((s) => s.id === 51 || s.id === 52);
@@ -251,7 +250,7 @@ function ModuleView({
         title: t('module:m2TestTitle'),
         subtitle: t('module:m2TestSubtitle'),
         type: 'test-section',
-        testQuestions: poolRef.current,
+        testQuestions: m2Questions,
       };
 
       return {
@@ -281,7 +280,7 @@ function ModuleView({
     }
 
     return raw;
-  }, [modules, moduleId, t]);
+  }, [modules, moduleId, t, m2Questions]);
   const moduleIndex = useMemo(
     () => modules?.findIndex((m) => m.id === moduleId) ?? -1,
     [modules, moduleId]
@@ -353,9 +352,11 @@ function ModuleView({
 
   const handleResumeFromSaved = useCallback(() => {
     setResumeImmediate(true);
-    setCurrentSlide(savedSlidePosition);
+    setCurrentSlide(
+      clampSlideIndex(savedSlidePosition, module?.slides?.length ?? 0)
+    );
     setResumeDecided(true);
-  }, [savedSlidePosition, setCurrentSlide]);
+  }, [savedSlidePosition, setCurrentSlide, module?.slides?.length]);
 
   const handleStartFromBeginning = useCallback(() => {
     setCurrentSlide(0);

@@ -1,4 +1,4 @@
-# Modulio 7 skaidrių eilė (oficiali)
+﻿# Modulio 7 skaidrių eilė (oficiali)
 
 > **Paskirtis:** Rekomenduojama Modulio 7 (Duomenų analizės kelias) skaidrių/temų seka su trumpu pateisinimu. SOT: `docs/turinio_pletra_moduliai_7_8_9.md`. Atpažinimas: 7.1–7.35 = tik Modulio 7 (`docs/CONTENT_MODULIU_ATPAZINIMAS.md`).  
 > **Sujungtos skaidrės:** 7.3+7.4, 7.6+7.7, 7.28+7.29; **įgyvendinta:** 78+79, 891+892, 95+96, 101+102, 92+93 (BI schema + pavyzdys), 104+105 (istorijos modelis + dashboard'ai) – sumažintas skaidrių skaičius.  
@@ -64,7 +64,7 @@
 - **Patikrumas ir etika (66.9–68.5)** – blokas perkeltas iš Modulio 4; įterptas po 891 (Duomenų paruošimas). Tematika: manipuliacijos, haliucinacijos, žinių patikrinimas, DI detektoriai – atitinka duomenų/turinio patikimumą analizėje. **UX tiltas:** 66.9 `nextSteps` ir EDA skaidrės (90) įvadas aiškiai sako, kad po etikos bloko grįžtama prie **tos pačios** analizės krypties (EDA → lentelės → BI → MASTER), ne prie naujo modulio. **Santrauka (75):** pipeline kortelėje **6** etapai (suderinta su 73), CTA – „tu“ forma.
 - **7.3-4, 7.6-7, 7.28-29** – sujungtos skaidrės (viena skaidrė, dvigubas turinys) – mažesnė kognityvinė apkrova, greitesnė peržiūra.
 - **7.26 MASTER PROMPTAS** – akcentuotas (blockVariant: accent); naudoti kaip M9 projekto šabloną.
-- **7.27 santrauka** – 5 blokų modelis pagal content-agent-summary-slide.mdc: Celebration Hero, max 3 žinių kortelės, refleksijos promptas, Kitas žingsnis CTA, motyvacinis footer.
+- **7.27 santrauka** – 5 blokų modelis pagal SUMMARY_SLIDE_SPEC.md: Celebration Hero, max 3 žinių kortelės, refleksijos promptas, Kitas žingsnis CTA, motyvacinis footer.
 - **DA_4 (7.28–7.35)** – SHOULD; galima fazuoti: pirmiausia 7.1–7.27, paskui vizualizacijos blokas.
 - **Papildomi sujungimai:** Mažas turinys ir teminis ryšys – žr. [docs/MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md](MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md) (78+79, 891+892, 95+96, 101+102, 104+105, 92+93).
 - **path-step (kelio žingsniai):** Tipas `path-step`; id 71.1–71.5. **Įgyvendinta** `modules.json`: po 73 (Pipeline) → 71.1; po 77.5 (7.7a) → 71.2; po 92 → 71.3; po 74 (MASTER) → 71.4 ir 71.5; prieš 75 (santrauka). M7 neturi „Toliau – skaidrė X“ footerių – perskaičiuoti nereikėjo.
@@ -75,4 +75,4 @@
 
 - **Turinio SOT:** [docs/turinio_pletra_moduliai_7_8_9.md](turinio_pletra_moduliai_7_8_9.md)
 - **Modulių atpažinimas:** [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md)
-- **Santraukos skaidrės:** [.cursor/rules/content-agent-summary-slide.mdc](../.cursor/rules/content-agent-summary-slide.mdc)
+- **Santraukos skaidrės:** [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md)

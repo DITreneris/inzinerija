@@ -23,7 +23,7 @@
 | **Bendri atsiliepimai** (gyvas testavimas, V1 analizė, segmentai, V2 veiksmai)             | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`; klaidos ir sprendimai – `docs/development/TEST_REPORT.md`                                                                                                                                   |
 | **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md` (turinio ir dizaino SOT – tik `docs/development/GOLDEN_STANDARD.md`)                                                                                                                       |
 
-**Modulių / skaidrių registras ir kontekstas:** Žr. `docs/development/context-engineering/sot_index.json` (kur kokia tiesa, publicModules, unlocksAfter, nextStep). Pilnas planas: `docs/development/CONTEXT_ENGINEERING_AGENT_SKILLS_IMPLEMENTATION.md`. Konteksto biudžetas agentams: `docs/development/context-engineering/context_budget.md`. **Prieš redaguojant modulio turinį:** atidaryk sot_index.json; pilną SOT (turinio_pletra\*.md) krauk tik tada, kai užduotis liečia tą modulį (validacija: `node scripts/validate-sot-index.mjs`).
+**Modulių / skaidrių registras ir kontekstas:** Žr. `docs/development/context-engineering/sot_index.json` (kur kokia tiesa, publicModules, unlocksAfter, nextStep). DoD ir skills: `docs/development/dod_01.md`, `.cursor/skills/README.md`. Konteksto biudžetas agentams: `docs/development/context-engineering/context_budget.md`. **Prieš redaguojant modulio turinį:** atidaryk sot_index.json; pilną SOT (turinio_pletra\*.md) krauk tik tada, kai užduotis liečia tą modulį (validacija: `node scripts/validate-sot-index.mjs`).
 
 **Architektūra A:** `src/data/modules.json`, `src/data/glossary.json` ir `src/data/tools.json` lieka full redagavimo SOT. `*-m1-m6.json` failai yra core `1–6` build/runtime profilio failai, naudojami per `VITE_MVP_MODE=1`, bet nelaikomi pagrindiniu authoring šaltiniu.
 
@@ -106,9 +106,11 @@ NEXT:
 - 1–3 sekančios užduotys (konkretu, su failais)
 ```
 
-**CHECKS reikalavimas:** Draudžiama rašyti tik „patikrinau – atitinka“. Privaloma nurodyti: kurį failą atidarėte, pagal kurį dokumentą tikrinote, ir 1–2 konkrečius pavyzdžius (pvz. „pagal PAPRASTOS_KALBOS_GAIRES – pakeista X → Y“). Jei CHANGES sąraše yra **diagramos failas** (pvz. `*Diagram*.tsx`, `*ProcessStepper*`), CHECKS **privalo** įtraukti schemų vizualinės patikros rezultatus (SCHEME_AGENT.md §5) – kiekvienas kriterijus su OK arba FAIL. **Kai keičiama skaidrių vizualizacija (diagramos, nuorodos „Peržiūrėti pilname dydyje“):** CHECKS privalo įtraukti **vartotojo kelio** patikrą – ar skaidrėje rodomas teisingas šaltinis (React komponentas), ar veiksmas „Peržiūrėti pilname dydyje“ atidaro tą patį turinį (ne klaidinantį statinį failą); žr. `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md` ir SCHEME_AGENT.md §5.5. Pilnas privalomo doc įsikrovimo lentelė pagal rolę – `.cursor/rules/agent-orchestrator.mdc` §4.1.
+**CHECKS reikalavimas:** Draudžiama rašyti tik „patikrinau – atitinka“. Privaloma nurodyti: kurį failą atidarėte, pagal kurį dokumentą tikrinote, ir 1–2 konkrečius pavyzdžius (pvz. „pagal PAPRASTOS_KALBOS_GAIRES – pakeista X → Y“). Jei CHANGES sąraše yra **diagramos failas** (pvz. `*Diagram*.tsx`, `*ProcessStepper*`), CHECKS **privalo** įtraukti schemų vizualinės patikros rezultatus (SCHEME_AGENT.md §5) – kiekvienas kriterijus su OK arba FAIL. **Kai keičiama skaidrių vizualizacija (diagramos, nuorodos „Peržiūrėti pilname dydyje“):** CHECKS privalo įtraukti **vartotojo kelio** patikrą – ar skaidrėje rodomas teisingas šaltinis (React komponentas), ar veiksmas „Peržiūrėti pilname dydyje“ atidaro tą patį turinį (ne klaidinantį statinį failą); žr. `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md` ir SCHEME_AGENT.md §5.5. Pilna privalomo doc įsikrovimo lentelė pagal rolę – `.cursor/skills/orchestrator/SKILL.md` (Mandatory doc loading per role).
 
 **Patikra pagal SOT** (privaloma, jei CHANGES sąraše yra `modules.json`, `modules-m1-m6.json` arba skaidrių komponentas – keitei turinį arba skaidrių UI). Atsakyme privaloma įtraukti bloką: **Paprasta kalba** (atidaryta PAPRASTOS_KALBOS_GAIRES.md – 1–2 pavyzdžiai, OK/FAIL); **Golden standard (content-block)** (atidaryta GOLDEN_STANDARD.md §3.2 – skaidrės tipas, seka Trumpai → Daryk dabar → Copy → Patikra → Optional, OK/FAIL; EN – In short → Do now → …); **Lietuviškos raidės** (bent 1–2 vietos, OK/FAIL). Jei nieko nekeitei (tik diagnozė) – bloko neįtraukti.
+
+**Definition of Done:** Prieš rašydamas „padaryta“ – patikrink savo agento DoD skyrių `docs/development/dod_01.md` §3 (checkbox + nuorodos į pilnus checklist; handoff kriterijai – §2). Skills (workflow + pamokos): `.cursor/skills/<agentas>/SKILL.md`.
 
 ---
 
@@ -149,7 +151,7 @@ Naudok šiuos promptus kaip „personą“, kai atlieki atitinkamą rolę. **Pil
 ### CODING_AGENT
 
 **Rolė:** Kodo (React, TypeScript, utils) įgyvendintojas. Nedirba su turinio tekstais ar JSON semantika. UI/UX gaires – UI_UX_AGENT.
-**Pilna spec:** Žinių patikrinimo moduliams – `docs/development/CODING_AGENT_ZINIU_PATIKRINIMO_MODULIAI.md`; UI/UX – `docs/development/UI_UX_AGENT.md`.
+**Pilna spec:** UI/UX – `docs/development/UI_UX_AGENT.md`; workflow – `.cursor/skills/coding-agent/SKILL.md`.
 
 ### UI_UX_AGENT (pavaldus CODING_AGENT)
 

@@ -2,6 +2,15 @@
 
 > Specializuotas diagnostikas: analizuoja modulį kaip realaus vartotojo kelionę – trintis, energijos kritimas, aiškumas, konversija. **Nekeičia** kodo ar JSON – tik analizuoja ir pateikia prioritetizuotą taisymų planą. Kai naudoti – žr. `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md` (lokaliai archyve, jei naudojate).
 
+## Agent contract (EN)
+
+- **Role:** Diagnose UX with 5-zone analysis, Top 5 frictions, micro-win, 48h test.
+- **Does NOT:** Code/JSON changes.
+- **Trigger:** friction, onboarding, conversion, MVP module analysis.
+- **Skill:** `.cursor/skills/user-journey-agent/`
+- **Handoff:** → CONTENT / DATA / CODING agents.
+- **Registry:** `AGENTS.md` §Agents.
+
 ---
 
 ## 1. Rolė ir meta (META)
@@ -22,22 +31,22 @@ Tu **nekomentuoji teorijos**. Tu **diagnozuoji patirtį**.
 
 ## 2. Įvestis (INPUT)
 
-| Įvestis | Aprašymas |
-|--------|------------|
-| **Modulio turinys** | Tekstas, struktūra, skaidrės ar nuoroda (SOT + modules.json) |
-| **Tikslinė auditorija** | Amžius, lygis, kontekstas |
-| **Modulio trukmė** | Nurodyta arba išvesta iš struktūros |
-| **Tikslinis rezultatas** | Ką dalyvis turėtų pasiekti |
+| Įvestis                  | Aprašymas                                                    |
+| ------------------------ | ------------------------------------------------------------ |
+| **Modulio turinys**      | Tekstas, struktūra, skaidrės ar nuoroda (SOT + modules.json) |
+| **Tikslinė auditorija**  | Amžius, lygis, kontekstas                                    |
+| **Modulio trukmė**       | Nurodyta arba išvesta iš struktūros                          |
+| **Tikslinis rezultatas** | Ką dalyvis turėtų pasiekti                                   |
 
 **Šaltiniai (SOT):**
 
-| Sritis | Failas |
-|--------|--------|
-| Turinio atpažinimas (Moduliai 1…6, skaidrės) | `docs/CONTENT_MODULIU_ATPAZINIMAS.md` |
-| Modulio turinys (1–3) | `turinio_pletra.md` |
-| Modulio turinys (4–6) | `docs/turinio_pletra_moduliai_4_5_6.md` |
-| Struktūra, skaidrių tipai, content | `src/data/modules.json` |
-| Atsiliepimai (gyvas testavimas, segmentai) | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` (pasirinktinai) |
+| Sritis                                       | Failas                                                   |
+| -------------------------------------------- | -------------------------------------------------------- |
+| Turinio atpažinimas (Moduliai 1…6, skaidrės) | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                    |
+| Modulio turinys (1–3)                        | `turinio_pletra.md`                                      |
+| Modulio turinys (4–6)                        | `docs/turinio_pletra_moduliai_4_5_6.md`                  |
+| Struktūra, skaidrių tipai, content           | `src/data/modules.json`                                  |
+| Atsiliepimai (gyvas testavimas, segmentai)   | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` (pasirinktinai) |
 
 ---
 
