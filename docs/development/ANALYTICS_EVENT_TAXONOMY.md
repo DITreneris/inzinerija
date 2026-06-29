@@ -6,15 +6,16 @@
 
 ## 1. Event tracking spec (lentelė)
 
-| event_name | Kada triggerinamas (definition) | Required properties | Optional | Dedupe taisyklė |
-|------------|----------------------------------|---------------------|----------|------------------|
-| **slide_view** | Skaidrė tampa matoma viewport (arba pirmas paint po navigacijos) | `module_id`, `slide_id`, `session_id`, `anon_id` | `slide_index`, `slide_type`, `utm_source`, `utm_medium`, `timestamp` | 1x per session per (module_id, slide_id) |
-| **slide_complete** | Vartotojas pereina į kitą skaidrę (next) arba baigia modulį (paskutinė skaidrė) | `module_id`, `slide_id`, `session_id`, `anon_id` | `slide_index`, `time_on_slide_sec`, `timestamp` | 1x per session per (module_id, slide_id) |
-| **practice_start** | Atidaroma/pradėta praktinė užduotis (pirmas focus/click į input arba „Pradėti“) | `module_id`, `slide_id`, `practice_id`, `session_id`, `anon_id` | `timestamp` | 1x per session per (module_id, practice_id) |
-| **practice_complete** | Vartotojas pažymi užduotį kaip atliktą (success/check) arba Copy + paste | `module_id`, `slide_id`, `practice_id`, `session_id`, `anon_id` | `time_to_complete_sec`, `timestamp` | 1x per session per (module_id, practice_id) |
-| **cta_click** | Paspaudimas į CTA (nuoroda/mygtukas: kitas modulis, spin-off, copy, išorinis) | `module_id`, `slide_id`, `cta_id`, `session_id`, `anon_id` | `cta_label`, `destination` (internal/external/spin-off), `utm_source`, `timestamp` | Nėra (kiekvienas click skaičiuojamas) |
-| **collapse_open** | Vartotojas atidaro collapsible sekciją (expand) | `module_id`, `slide_id`, `section_index`, `session_id`, `anon_id` | `timestamp` | 1x per session per (module_id, slide_id, section_index) |
-| **rl_step_click** | Paspaudimas į RL proceso diagramos žingsnį (1–4) – mokymosi signalas | `module_id`, `slide_id`, `step_index`, `session_id`, `anon_id` | `timestamp` | Nėra (kiekvienas click skaičiuojamas) |
+| event_name            | Kada triggerinamas (definition)                                                                          | Required properties                                               | Optional                                                                           | Dedupe taisyklė                                         |
+| --------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **slide_view**        | Skaidrė tampa matoma viewport (arba pirmas paint po navigacijos)                                         | `module_id`, `slide_id`, `session_id`, `anon_id`                  | `slide_index`, `slide_type`, `utm_source`, `utm_medium`, `timestamp`               | 1x per session per (module_id, slide_id)                |
+| **slide_complete**    | Vartotojas pereina į kitą skaidrę (next) arba baigia modulį (paskutinė skaidrė)                          | `module_id`, `slide_id`, `session_id`, `anon_id`                  | `slide_index`, `time_on_slide_sec`, `timestamp`                                    | 1x per session per (module_id, slide_id)                |
+| **practice_start**    | Atidaroma/pradėta praktinė užduotis (pirmas focus/click į input arba „Pradėti“)                          | `module_id`, `slide_id`, `practice_id`, `session_id`, `anon_id`   | `timestamp`                                                                        | 1x per session per (module_id, practice_id)             |
+| **practice_complete** | Vartotojas pažymi užduotį kaip atliktą (success/check) arba Copy + paste                                 | `module_id`, `slide_id`, `practice_id`, `session_id`, `anon_id`   | `time_to_complete_sec`, `timestamp`                                                | 1x per session per (module_id, practice_id)             |
+| **cta_click**         | Paspaudimas į CTA (nuoroda/mygtukas: kitas modulis, spin-off, copy, išorinis)                            | `module_id`, `slide_id`, `cta_id`, `session_id`, `anon_id`        | `cta_label`, `destination` (internal/external/spin-off), `utm_source`, `timestamp` | Nėra (kiekvienas click skaičiuojamas)                   |
+| **collapse_open**     | Vartotojas atidaro collapsible sekciją (expand)                                                          | `module_id`, `slide_id`, `section_index`, `session_id`, `anon_id` | `timestamp`                                                                        | 1x per session per (module_id, slide_id, section_index) |
+| **rl_step_click**     | Paspaudimas į RL proceso diagramos žingsnį (1–4) – mokymosi signalas                                     | `module_id`, `slide_id`, `step_index`, `session_id`, `anon_id`    | `timestamp`                                                                        | Nėra (kiekvienas click skaičiuojamas)                   |
+| **pricing_click**     | Paspaudimas į kainodaros / upsell CTA (M3/M6 completion upsell, AccessGateScreen) – konversijos signalas | `module_id`, `cta_id`, `session_id`, `anon_id`                    | `cta_label`, `destination` (external), `utm_source`, `timestamp`                   | Nėra (kiekvienas click skaičiuojamas)                   |
 
 ---
 
@@ -46,6 +47,27 @@ Etapai:
 7. **Spin_off_enter** – cta_click destination=spin-off
 
 Conversion: unikalūs anon_id, laiko langas 30 d. nuo pirmo Landing.
+
+---
+
+## 4a. Spin-off `cta_id` reikšmės (M1–12)
+
+| cta_id               | Fazė / touchpoint    | Šaltinis                                                                |
+| -------------------- | -------------------- | ----------------------------------------------------------------------- |
+| `spinoff_enter`      | Enter (cloud)        | Gate, M1 complete                                                       |
+| `spinoff_use`        | Use (info)           | M3 complete, M4 40.5                                                    |
+| `spinoff_create`     | Create (space)       | M4 52.5                                                                 |
+| `spinoff_hire`       | Hire (help)          | M3 complete                                                             |
+| `spinoff_manage`     | Manage (ceo)         | M5 TestResultsSlide, M12 complete                                       |
+| `spinoff_decide`     | Decide (pro)         | M6 complete, M9 complete                                                |
+| `spinoff_deepen`     | Deepen (blog)        | M2 quiz `<70%`, M4 65.8, M7 66.9, M8/M11 test fail, M9/M10/M12 complete |
+| `spinoff_play`       | Play (lol)           | M6 complete                                                             |
+| `spinoff_map`        | Map (site#ecosystem) | Footer, M4 66.95, M6/M9/M10/M12 complete                                |
+| `spinoff_anatomizer` | Anatomizer demo      | M1 complete                                                             |
+
+Blog deep links: `blogArticleUrl()` + UTM; registry `docs/development/BLOG_CURRICULUM_LINKS.yaml`.
+
+Generuojama per `getSpinoffCtaIdFromUrl()` (`src/constants/ecosystemUrls.ts`). Event: `cta_click` su `destination: spin-off`.
 
 ---
 

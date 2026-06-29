@@ -3,17 +3,11 @@ import { useTranslation } from 'react-i18next';
 import {
   CheckCircle,
   ArrowRight,
-  Target,
-  Brain,
-  Settings,
   Lock,
   BookOpen,
   ClipboardList,
   Briefcase,
   PartyPopper,
-  BarChart3,
-  ClipboardCheck,
-  Rocket,
 } from 'lucide-react';
 import { Progress } from '../utils/progress';
 import { getModulesSync } from '../data/modulesLoader';
@@ -27,6 +21,7 @@ import type { ModuleAccent } from '../types/modules';
 import {
   accentTopBarClasses,
   resolveModuleAccent,
+  resolveModuleIcon,
 } from '../utils/moduleIdentity';
 import CircularProgress from './CircularProgress';
 import AccessGateScreen from './AccessGateScreen';
@@ -247,6 +242,7 @@ function ModulesPage({
           const topStripeClass = module.accent
             ? accentTopBarClasses[module.accent]
             : null;
+          const ModuleIconCmp = resolveModuleIcon(module.icon);
 
           const isMvpLocked7Plus =
             getIsMvpMode() && module.id > 6 && lockReason === 'tier';
@@ -319,38 +315,8 @@ function ModulesPage({
                     <div
                       className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
                     >
-                      {module.icon === 'Target' && (
-                        <Target
-                          className="w-6 h-6 text-white"
-                          strokeWidth={1.5}
-                        />
-                      )}
-                      {module.icon === 'Brain' && (
-                        <Brain
-                          className="w-6 h-6 text-white"
-                          strokeWidth={1.5}
-                        />
-                      )}
-                      {module.icon === 'Settings' && (
-                        <Settings
-                          className="w-6 h-6 text-white"
-                          strokeWidth={1.5}
-                        />
-                      )}
-                      {module.icon === 'BarChart3' && (
-                        <BarChart3
-                          className="w-6 h-6 text-white"
-                          strokeWidth={1.5}
-                        />
-                      )}
-                      {module.icon === 'ClipboardCheck' && (
-                        <ClipboardCheck
-                          className="w-6 h-6 text-white"
-                          strokeWidth={1.5}
-                        />
-                      )}
-                      {module.icon === 'Rocket' && (
-                        <Rocket
+                      {ModuleIconCmp && (
+                        <ModuleIconCmp
                           className="w-6 h-6 text-white"
                           strokeWidth={1.5}
                         />

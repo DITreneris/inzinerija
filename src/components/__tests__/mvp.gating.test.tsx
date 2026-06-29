@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { loadModules, getModule, getModulesSync, __clearCacheForTesting } from '../../data/modulesLoader';
+import {
+  loadModules,
+  getModule,
+  getModulesSync,
+  __clearCacheForTesting,
+} from '../../data/modulesLoader';
 
 vi.mock('../../utils/accessTier', () => ({
   getMaxAccessibleModuleId: vi.fn(() => 3),
@@ -66,5 +71,31 @@ describe('Access tier 6 / MVP (M1–M6 accessible, 7+ locked)', () => {
     const mod = await getModule(6);
     expect(mod).not.toBeNull();
     expect(mod?.id).toBe(6);
+  });
+});
+
+describe('Access tier 9 / corporate (Duomenų analizės kelias 7–9 accessible, 10+ locked)', () => {
+  beforeEach(() => {
+    vi.mocked(getMaxAccessibleModuleId).mockReturnValue(9);
+    __clearCacheForTesting();
+    localStorage.clear();
+  });
+
+  it('getModule(7) returns non-null when tier is 9', async () => {
+    const mod = await getModule(7);
+    expect(mod).not.toBeNull();
+    expect(mod?.id).toBe(7);
+  });
+
+  it('getModule(9) returns non-null when tier is 9', async () => {
+    const mod = await getModule(9);
+    expect(mod).not.toBeNull();
+    expect(mod?.id).toBe(9);
+  });
+
+  it('getModule(10) returns null when tier is 9 (M10+ locked)', async () => {
+    await loadModules();
+    const mod = await getModule(10);
+    expect(mod).toBeNull();
   });
 });

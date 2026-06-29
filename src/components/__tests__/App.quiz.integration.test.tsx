@@ -4,8 +4,17 @@ import userEvent from '@testing-library/user-event';
 import { HelmetProvider } from 'react-helmet-async';
 import { renderWithProviders } from '../../test/test-utils';
 import App from '../../App';
-import { flushProgressSave, getProgress, resetProgress } from '../../utils/progress';
-import { loadModules, getModulesDataSync, getModulesSync, preloadModules } from '../../data/modulesLoader';
+import {
+  flushProgressSave,
+  getProgress,
+  resetProgress,
+} from '../../utils/progress';
+import {
+  loadModules,
+  getModulesDataSync,
+  getModulesSync,
+  preloadModules,
+} from '../../data/modulesLoader';
 import type { ModulesData } from '../../types/modules';
 
 const fixtureEmptyQuiz: ModulesData = {
@@ -37,7 +46,9 @@ const matchMediaMock = (query: string) => ({
 });
 
 function getQuizNavButton() {
-  const nav = screen.getByRole('navigation', { name: /Pagrindinė navigacija|Main navigation/i });
+  const nav = screen.getByRole('navigation', {
+    name: /Pagrindinė navigacija|Main navigation/i,
+  });
   return within(nav).getByRole('button', { name: /Apklausa|Quiz/i });
 }
 
@@ -51,6 +62,9 @@ describe('App – Quiz integracinis srautas', () => {
     vi.mocked(preloadModules).mockImplementation(() => {});
     localStorage.clear();
     localStorage.setItem(storageKey, 'lt');
+    // CONV-2: quiz route is gated when maxAccessible === 0; this flow assumes a
+    // user with purchased access, so set a verified tier (modules 1–6).
+    localStorage.setItem('verified_access_tier', '6');
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: vi.fn().mockImplementation(matchMediaMock),
@@ -66,12 +80,20 @@ describe('App – Quiz integracinis srautas', () => {
   });
 
   it('naviguoja į Apklausą ir rodo empty-state kai quiz.questions tuščias', async () => {
-    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
 
     await userEvent.click(getQuizNavButton());
 
     // Laukiame stabilesnio signalo, kad QuizPage empty-state jau tikrai užsikrovė.
-    await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }, { timeout: 10000 });
+    await screen.findByRole(
+      'button',
+      { name: /Grįžti atgal|Back to home|Go back/i },
+      { timeout: 10000 }
+    );
 
     expect(
       screen.getByText((content) =>
@@ -79,23 +101,41 @@ describe('App – Quiz integracinis srautas', () => {
       )
     ).toBeInTheDocument();
 
-    expect(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
+    ).toBeInTheDocument();
   }, 15000);
 
   it('mygtukas „Grįžti atgal“ Apklausoje grąžina atgal', async () => {
-    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
 
     await userEvent.click(getQuizNavButton());
 
-    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, {}, { timeout: 10000 });
+    await screen.findByText(
+      /Apklausos klausimų nėra|No quiz questions available/i,
+      {},
+      { timeout: 10000 }
+    );
 
-    const backButton = await screen.findByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }, { timeout: 5000 });
+    const backButton = await screen.findByRole(
+      'button',
+      { name: /Grįžti atgal|Back to home|Go back/i },
+      { timeout: 5000 }
+    );
     await userEvent.click(backButton);
 
     // Po navigacijos į Home Quiz turinys (empty state) turi išnykti
     await waitFor(
       () => {
-        expect(screen.queryByText(/Apklausos klausimų nėra|No quiz questions available/i)).not.toBeInTheDocument();
+        expect(
+          screen.queryByText(
+            /Apklausos klausimų nėra|No quiz questions available/i
+          )
+        ).not.toBeInTheDocument();
       },
       { timeout: 10000 }
     );
@@ -121,13 +161,23 @@ describe('App – Quiz integracinis srautas', () => {
       })
     );
 
-    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
 
     await userEvent.click(getQuizNavButton());
 
-    await screen.findByText(/Apklausos klausimų nėra|No quiz questions available/i, {}, { timeout: 10000 });
+    await screen.findByText(
+      /Apklausos klausimų nėra|No quiz questions available/i,
+      {},
+      { timeout: 10000 }
+    );
 
-    await userEvent.click(screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i }));
+    await userEvent.click(
+      screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
+    );
 
     const progressAfter = getProgress();
     expect(progressAfter.completedModules).toContain(1);
@@ -138,7 +188,11 @@ describe('App – Quiz integracinis srautas', () => {
     vi.mocked(getModulesDataSync).mockReturnValue(null);
     vi.mocked(loadModules).mockRejectedValueOnce(new Error('load failed'));
 
-    renderWithProviders(<HelmetProvider><App /></HelmetProvider>);
+    renderWithProviders(
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    );
 
     await userEvent.click(getQuizNavButton());
 
@@ -147,8 +201,12 @@ describe('App – Quiz integracinis srautas', () => {
       {},
       { timeout: 10000 }
     );
-    expect(screen.getByRole('button', { name: /Bandyti dar kartą|Try again/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Atgal|Back/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Bandyti dar kartą|Try again/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Atgal|Back/i })
+    ).toBeInTheDocument();
   }, 15000);
 });
 
