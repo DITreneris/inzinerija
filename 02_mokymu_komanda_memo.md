@@ -1,5 +1,7 @@
 # Memo: Mokymų komandai – magic link integracija
 
+> **Pastaba (2026-06-30):** Phase 1 – tier `3` ir `6`. Phase 2 (tier `9`, vienas production build M1–9) – žr. [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md) (marketingui) ir atnaujintą [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md).
+
 **Kam:** Mokymų sistemos (Prompt Anatomy) kūrėjams  
 **Nuo:** Pagrindinės platformos (Stripe + Supabase) komanda  
 **Tema:** Ką jūsų pusėje reikia įgyvendinti, kad priimtumėte vartotojus po apmokėjimo (saugiai ir pagal sutartą formatą).

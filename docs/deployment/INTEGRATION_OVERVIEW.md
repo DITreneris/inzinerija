@@ -1,9 +1,13 @@
 # Integracijos apžvalga: mokymo app kaip subproject (Vercel + marketingo repo)
 
 > **Tikslas:** Išoriniams agentams ir integratoriams – viena vieta suprasti, kas yra šis repo, kur production, kaip integruoti į marketingo monorepo ir ką marketingo pusė turi įgyvendinti.  
-> **Atnaujinta:** 2026-03-11
+> **Atnaujinta:** 2026-06-30
 
 ---
+
+## Marketingo repo handoff
+
+Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, support): **[MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)**. Tier 9 / vienas build: **[05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)**. TODO ID: MON-1–MON-8 (`TODO.md` §1.1).
 
 ## Kas yra šis repo
 
@@ -37,9 +41,9 @@
 
 | Kas                | Aprašymas                                                                                                                                                                      |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Build output**   | `npm run build` → `dist/` (index.html, assets).                                                                                                                                |
+| **Build output**   | Production (Vercel): `npm run build:production` → `dist/`. Dev/full SOT: `npm run build`. GitHub Pages demo: `VITE_MVP_MODE=1 npm run build`.                                  |
 | **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`. |
-| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md) – `VITE_BASE_PATH`, `VITE_PUBLIC_SITE_URL`, `VITE_MVP_MODE`, `VITE_MAX_ACCESSIBLE_MODULE`, `VITE_VERIFY_ACCESS_URL`.                        |
+| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) – `VITE_MAX_BUILD_MODULE=9`, `VITE_VERIFY_ACCESS_URL`.                    |
 | **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                   |
 
 ---
@@ -63,13 +67,13 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 ### Endpoint
 
 - **Method/URL:** `GET /api/verify-access`
-- **Query params:** `access_tier` (Phase 1: `3` arba `6`), `expires` (Unix timestamp), `token` (Base64url HMAC).
+- **Query params:** `access_tier` (Phase 2: `3`, `6`, or `9`), `expires` (Unix timestamp), `token` (Base64url HMAC).
 
 ### Validacija
 
 - Payload: `access_tier:expires` (string).
 - HMAC-SHA256 su slaptuoju (`ACCESS_TOKEN_SECRET`), rezultatas – Base64url (be padding).
-- Leidžiami tier: 3, 6. Jei ateityje plėsite į 9 ar 12, reikia vienu metu atnaujinti frontend, docs ir reference implementaciją.
+- Leidžiami tier: **3, 6, 9**. Tier 12 – vėliau, sinchronuojant frontend + docs + API.
 
 ### Response
 
@@ -86,10 +90,13 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 
 ## Greitos nuorodos
 
-| Tikslas                                  | Dokumentas                                                                           |
-| ---------------------------------------- | ------------------------------------------------------------------------------------ |
-| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                     |
-| Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md) |
-| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                       |
-| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                 |
-| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                          |
+| Tikslas                                  | Dokumentas                                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
+| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                           |
+| Marketing handoff (env, Stripe, smoke)   | [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)           |
+| Tier 9 / vienas production build (memo)  | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) |
+| Production audit santrauka               | [docs/development/AUDIT_2026-06_SUMMARY.md](../development/AUDIT_2026-06_SUMMARY.md)       |
+| Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md)       |
+| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                             |
+| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                       |
+| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                                |
