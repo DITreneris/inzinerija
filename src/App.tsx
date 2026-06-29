@@ -28,12 +28,14 @@ import { useTranslation } from 'react-i18next';
 import type { ModulesData } from './types/modules';
 import { getBrowserEnglishContentVariant } from './i18n';
 import { getPublicAppUrl, getOgImageUrl } from './utils/publicSiteMeta';
+import { isMagicLinkTier } from './constants/pricing';
 
 // Lazy load heavy components for better initial load
 const HomePage = lazy(() => import('./components/HomePage'));
 const ModulesPage = lazy(() => import('./components/ModulesPage'));
 const ModuleView = lazy(() => import('./components/ModuleView'));
 const QuizPage = lazy(() => import('./components/QuizPage'));
+const AccessGateScreen = lazy(() => import('./components/AccessGateScreen'));
 const GlossaryPage = lazy(() => import('./components/GlossaryPage'));
 const ToolsPage = lazy(() => import('./components/ToolsPage'));
 const CertificateScreen = lazy(() =>
@@ -124,7 +126,7 @@ function App() {
       })
       .then((data) => {
         const tier = data.access_tier;
-        if (Number.isInteger(tier) && [3, 6].includes(tier)) {
+        if (Number.isInteger(tier) && isMagicLinkTier(tier)) {
           localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, String(tier));
           replaceUrlWithoutMagicLinkParams();
           setAccessTierRefresh((n) => n + 1);
@@ -579,19 +581,22 @@ function App() {
                   initialFilter={toolsInitialFilter}
                 />
               )}
-              {currentPage === 'quiz' && (
-                <QuizPage
-                  onBack={() => setCurrentPage('modules')}
-                  progress={progress}
-                  onQuizComplete={(score) => {
-                    setProgress((prev) => ({
-                      ...prev,
-                      quizScore: score,
-                      quizCompleted: true,
-                    }));
-                  }}
-                />
-              )}
+              {currentPage === 'quiz' &&
+                (maxAccessible === 0 ? (
+                  <AccessGateScreen />
+                ) : (
+                  <QuizPage
+                    onBack={() => setCurrentPage('modules')}
+                    progress={progress}
+                    onQuizComplete={(score) => {
+                      setProgress((prev) => ({
+                        ...prev,
+                        quizScore: score,
+                        quizCompleted: true,
+                      }));
+                    }}
+                  />
+                ))}
               {currentPage === 'certificate' && (
                 <CertificateScreen
                   tier={certificateTier}
@@ -632,6 +637,15 @@ function App() {
                 aria-label={t('footer:websiteAria')}
               >
                 {t('footer:websiteLabel')}
+              </a>
+              <a
+                href="https://promptanatomy.site/#ecosystem"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                aria-label={t('footer:ecosystemAria')}
+              >
+                {t('footer:ecosystemLabel')}
               </a>
               <a
                 href="https://t.me/prompt_anatomy"
