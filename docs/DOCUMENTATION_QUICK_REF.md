@@ -1,25 +1,28 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean branduolys:** `docs/LEAN_INDEX.md`. Pilnas sąrašas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-03-11 (architektūra A)
+> **Atnaujinta:** 2026-06-30 (tier 9 production build, memo 05)
 
 ---
 
 ## 1. Source of Truth (SOT)
 
-| Sritis                                                             | Failas                                                                                                                                                                                                                     |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Turinys M1–3                                                       | `turinio_pletra.md`                                                                                                                                                                                                        |
-| Turinys M4–6                                                       | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                                                    |
-| Modulių/skaidrių numeracija                                        | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                      |
-| Dizainas (šriftai, skaidrės)                                       | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                      |
-| Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                 |
-| Duomenys                                                           | `src/data/modules.json` (full redagavimo SOT), `src/data/modules-m1-m6.json` (core build/runtime), `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` |
-| Atsiliepimai / klaidos                                             | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `docs/development/TEST_REPORT.md`                                                                                                                                                |
+| Sritis                                                             | Failas                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Turinys M1–3                                                       | `turinio_pletra.md`                                                                                                                                                                                                                                                                                                              |
+| Turinys M4–6                                                       | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                                                                                                                                                          |
+| Turinys M7–9                                                       | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                                                                                                                                                                          |
+| Turinys M10–12                                                     | `docs/turinio_pletra_moduliai_10_11_12.md`; M10 seka – `docs/MODULIO_10_SKAIDRIU_EILES.md`                                                                                                                                                                                                                                       |
+| Modulių/skaidrių numeracija                                        | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                                                                                                                            |
+| Dizainas (šriftai, skaidrės)                                       | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                                                                                                                            |
+| Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                                                                                                                       |
+| Duomenys                                                           | Full SOT: `modules.json`, `glossary.json`, `tools.json`. Build profiliai: `*-m1-m6.json` (MVP/demo), `*-m1-m9.json` (**production** `build:production`). EN overlay: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`. Žr. `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`. |
+| Ekosistema (M1–12 touchpoints, URL, analytics)                     | `docs/ECOSYSTEM_MAP.md`, `docs/development/BLOG_CURRICULUM_LINKS.yaml`, `src/constants/ecosystemUrls.ts`; agent spine: `AGENTS.md` §Ecosystem, `sot_index.json` → `ecosystem`                                                                                                                                                    |
+| Atsiliepimai / klaidos                                             | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `docs/development/TEST_REPORT.md`                                                                                                                                                                                                                                                      |
 
 **Konfliktas:** 1) Turinio SOT → 2) JSON sinchronas → 3) UI.
 
-**Architektūra A:** `src/data/modules.json` lieka full `1–15` redagavimo SOT. `VITE_MVP_MODE=1` per aliasus perjungia runtime į `*-m1-m6.json` failus, bet jų nelaikome pagrindiniais authoring failais.
+**Architektūra A:** `src/data/modules.json` lieka full `1–15` redagavimo SOT. Build profiliai: `*-m1-m6.json` (`VITE_MVP_MODE=1`, demo) ir `*-m1-m9.json` (**production** `npm run build:production`). Marketing memo tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](../05_marketingo_memo_tier9_vienas_build.md).
 
 ---
 
@@ -53,6 +56,9 @@
 
 - **Šis repo** = mokymo turinio ir UI šaltinis; **production** = [promptanatomy.app](https://promptanatomy.app/); auth, Stripe, DB – **marketingo repo**.
 - **Integracija kaip subproject (monorepo):** [docs/deployment/INTEGRATION_OVERVIEW.md](deployment/INTEGRATION_OVERVIEW.md).
+- **Marketing handoff (MON-\*):** [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](deployment/MARKETING_HANDOFF_CHECKLIST.md).
+- **Tier 9 / vienas production build:** [05_marketingo_memo_tier9_vienas_build.md](../05_marketingo_memo_tier9_vienas_build.md).
+- **Production audit (2026-06):** [docs/development/AUDIT_2026-06_SUMMARY.md](development/AUDIT_2026-06_SUMMARY.md); prioritetai → [TODO.md](../TODO.md) §1.1.
 - **Deploy, env, base path:** [docs/deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md) (Production + skyrius „Integracija kaip subproject“).
 - **Kas įgyvendinta (duomenys, i18n, testai):** [docs/development/CODEBASE_WHAT_IS_DONE.md](development/CODEBASE_WHAT_IS_DONE.md).
 
