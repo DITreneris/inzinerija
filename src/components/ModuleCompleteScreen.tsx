@@ -8,6 +8,8 @@ import {
   Award,
   BookOpen,
   Briefcase,
+  Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import IconChip from './ui/IconChip';
@@ -21,6 +23,53 @@ import { useLocale } from '../contexts/LocaleContext';
 import type { Module } from '../types/modules';
 import type { Progress } from '../utils/progress';
 import { canRequestCertificateTier3 } from '../utils/certificateEligibility';
+import { getMaxAccessibleModuleId } from '../utils/accessTier';
+import { EcosystemOutboundLink } from './EcosystemOutboundLink';
+import {
+  ECOSYSTEM_URLS,
+  blogArticleUrl,
+  ecosystemLocaleUrl,
+} from '../constants/ecosystemUrls';
+import {
+  MODULE_ECOSYSTEM_COMPLETE,
+  MODULE_ECOSYSTEM_INTRO_KEYS,
+  type ModuleEcosystemLinkSpec,
+} from '../constants/moduleEcosystemComplete';
+
+/** Pricing/upsell destination (marketing landing). Mirrors AccessGateScreen. */
+const PRICING_URL = 'https://www.promptanatomy.app/#pricing';
+
+function resolveEcosystemHref(
+  spec: ModuleEcosystemLinkSpec,
+  locale: string,
+  moduleId: number
+): string {
+  switch (spec.hrefKey) {
+    case 'enter':
+      return ECOSYSTEM_URLS.enter;
+    case 'anatomizer':
+      return ECOSYSTEM_URLS.anatomizer;
+    case 'use':
+      return ecosystemLocaleUrl('use', locale);
+    case 'hire':
+      return ECOSYSTEM_URLS.hire;
+    case 'decide':
+      return ECOSYSTEM_URLS.decide;
+    case 'play':
+      return ECOSYSTEM_URLS.play;
+    case 'map':
+      return ECOSYSTEM_URLS.map;
+    case 'manage':
+      return ECOSYSTEM_URLS.manage;
+    case 'deepenBlog':
+      return blogArticleUrl(spec.blogSlug ?? '', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
+    default:
+      return ECOSYSTEM_URLS.map;
+  }
+}
 
 export interface ModuleCompleteScreenProps {
   module: Module;
@@ -67,6 +116,10 @@ export function ModuleCompleteScreen({
     module.id === 9 &&
     canRequestCertificateTier3(progress) &&
     onRequestCertificate;
+  // CONV-1: po Modulio 3 – upsell į kainodarą, kai dar neatrakinti moduliai 4–6.
+  const showM3Upsell = module.id === 3 && getMaxAccessibleModuleId() < 6;
+  // CONV-5: po Modulio 6 – upsell į Duomenų analizės kelią (M7–9), kai tier < 9.
+  const showM6Upsell = module.id === 6 && getMaxAccessibleModuleId() < 9;
   const activeCertificateTier: 1 | 2 | 3 | null = showCertTier1
     ? 1
     : showCertTier2
@@ -74,6 +127,8 @@ export function ModuleCompleteScreen({
       : showCertTier3
         ? 3
         : null;
+  const ecosystemLinks = MODULE_ECOSYSTEM_COMPLETE[module.id];
+  const ecosystemIntroKey = MODULE_ECOSYSTEM_INTRO_KEYS[module.id];
   const handleM6HandoutDownload = useCallback(async () => {
     const content = getM6HandoutContent(locale) as M6HandoutContent;
     await downloadM6HandoutPdf(content, undefined, locale);
@@ -282,6 +337,119 @@ export function ModuleCompleteScreen({
                 </>
               )}
             </ul>
+          </section>
+        )}
+
+        {ecosystemLinks && ecosystemIntroKey && (
+          <section
+            className="mb-8 p-4 lg:p-5 rounded-2xl border-l-4 border-slate-400 bg-slate-50/80 dark:bg-slate-800/40 text-left"
+            aria-labelledby="ecosystem-heading"
+          >
+            <h3
+              id="ecosystem-heading"
+              className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1"
+            >
+              {t('module:ecosystemHeading')}
+            </h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400 mb-3">
+              {t(`module:${ecosystemIntroKey}`)}
+            </p>
+            <div className="flex flex-col gap-2 items-start">
+              {ecosystemLinks.map((spec) => (
+                <EcosystemOutboundLink
+                  key={spec.labelKey}
+                  href={resolveEcosystemHref(spec, locale, module.id)}
+                  label={t(`module:${spec.labelKey}`)}
+                  ariaLabel={t(`module:${spec.ariaKey}`)}
+                  moduleId={module.id}
+                  ctaId={spec.ctaId}
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* CONV-1: M3 completion upsell – atrakinti M4–M6 (kainodara) */}
+        {showM3Upsell && (
+          <section
+            className="mb-8 p-5 lg:p-6 rounded-2xl border-2 border-accent-300 dark:border-accent-600 bg-gradient-to-br from-accent-50 to-brand-50 dark:from-accent-900/25 dark:to-brand-900/20 text-center"
+            aria-labelledby="m3-upsell-heading"
+          >
+            <div
+              className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent-500 dark:bg-accent-500 text-white mb-3"
+              aria-hidden
+            >
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h3
+              id="m3-upsell-heading"
+              className="text-lg font-bold text-accent-800 dark:text-accent-200 mb-1"
+            >
+              {t('module:upsellM3Title')}
+            </h3>
+            <p className="text-sm text-accent-700 dark:text-accent-300 mb-4 max-w-md mx-auto">
+              {t('module:upsellM3Body')}
+            </p>
+            <a
+              href={PRICING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                track('pricing_click', {
+                  module_id: module.id,
+                  cta_id: 'm3_upsell_pricing',
+                  cta_label: t('module:upsellM3Cta'),
+                  destination: 'external',
+                });
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-accent-500 hover:bg-accent-600 text-white font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+              aria-label={t('module:upsellM3Aria')}
+            >
+              {t('module:upsellM3Cta')}
+              <ExternalLink className="w-4 h-4" aria-hidden />
+            </a>
+          </section>
+        )}
+
+        {/* CONV-5: M6 completion upsell – Duomenų analizės kelias M7–9 (tier 9) */}
+        {showM6Upsell && (
+          <section
+            className="mb-8 p-5 lg:p-6 rounded-2xl border-2 border-accent-300 dark:border-accent-600 bg-gradient-to-br from-accent-50 to-brand-50 dark:from-accent-900/25 dark:to-brand-900/20 text-center"
+            aria-labelledby="m6-upsell-heading"
+          >
+            <div
+              className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent-500 dark:bg-accent-500 text-white mb-3"
+              aria-hidden
+            >
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h3
+              id="m6-upsell-heading"
+              className="text-lg font-bold text-accent-800 dark:text-accent-200 mb-1"
+            >
+              {t('module:upsellM6Title')}
+            </h3>
+            <p className="text-sm text-accent-700 dark:text-accent-300 mb-4 max-w-md mx-auto">
+              {t('module:upsellM6Body')}
+            </p>
+            <a
+              href={PRICING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                track('pricing_click', {
+                  module_id: module.id,
+                  cta_id: 'm6_upsell_tier9',
+                  cta_label: t('module:upsellM6Cta'),
+                  destination: 'external',
+                });
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-accent-500 hover:bg-accent-600 text-white font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+              aria-label={t('module:upsellM6Aria')}
+            >
+              {t('module:upsellM6Cta')}
+              <ExternalLink className="w-4 h-4" aria-hidden />
+            </a>
           </section>
         )}
 

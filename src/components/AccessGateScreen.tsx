@@ -1,7 +1,9 @@
 import { Lock, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { track, trackSpinoffClick } from '../utils/analytics';
+import { ECOSYSTEM_URLS } from '../constants/ecosystemUrls';
 
-const PRICING_URL = 'https://www.promptanatomy.app/#pricing';
+const PRICING_URL = ECOSYSTEM_URLS.hubPricing;
 
 export default function AccessGateScreen() {
   const { t } = useTranslation('modulesPage');
@@ -25,11 +27,38 @@ export default function AccessGateScreen() {
           href={PRICING_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            track('pricing_click', {
+              module_id: 0,
+              cta_id: 'access_gate_pricing',
+              cta_label: t('gateCta'),
+              destination: 'external',
+            });
+          }}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all"
         >
           {t('gateCta')}
           <ExternalLink className="w-4 h-4" />
         </a>
+        <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
+          <a
+            href={ECOSYSTEM_URLS.enter}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              trackSpinoffClick({
+                module_id: 0,
+                url: ECOSYSTEM_URLS.enter,
+                cta_id: 'spinoff_enter',
+                cta_label: t('gateFreeLesson'),
+              })
+            }
+            className="text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
+            aria-label={t('gateFreeLessonAria')}
+          >
+            {t('gateFreeLesson')}
+          </a>
+        </p>
       </div>
     </div>
   );
