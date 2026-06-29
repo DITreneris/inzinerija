@@ -9,16 +9,37 @@ Detalios instrukcijos yra `README.md`:
 
 ---
 
-## Production (moduliai 1–6)
+## Production (moduliai 1–9, vienas build)
 
-Production gali veikti dviem keliais:
+**Vercel (promptanatomy.app / marketing monorepo):**
 
-- **full katalogo build** – paliekate `modules.json`, `glossary.json`, `tools.json` kaip redagavimo SOT ir buildinate be `VITE_MVP_MODE`;
-- **core 1–6 build** – įjungiate `VITE_MVP_MODE=1`, todėl aliasai runtime naudoja `modules-m1-m6.json`, `glossary-m1-m6.json`, `tools-m1-m6.json`.
+- **Build:** `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`, be `VITE_MVP_MODE`).
+- **Bundle:** `modules-m1-m9.json`, glossary/tools M1–9 – M10–15 ne client-side.
+- **Prieiga:** magic link tier 3, 6, 9; gate kai tier 0. Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md).
 
-Production deployment gali būti vykdomas ir per marketingo monorepo (žr. skyrių „Integracija kaip subproject“).
+### Prieigos lygis (tier 3, 6, 9)
 
-### Prieigos lygis (Phase 1: tier 3 arba 6)
+Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/utils/accessTier.ts`). Be patikrinto magic link numatytasis lygis yra **0**.
+
+**Magic link (rekomenduojama):**
+
+- `access_tier=3` | `6` | `9`
+- `expires=UNIX_TIMESTAMP`, `token=BASE64URL_HMAC`
+- Pvz. tier 9: `https://www.promptanatomy.app/anatomija/?access_tier=9&expires=...&token=...`
+- Frontend → `GET /api/verify-access`; 200 → `localStorage` `verified_access_tier`
+
+**Draudžiama production:** `VITE_MAX_ACCESSIBLE_MODULE=6` arba `9` (atidaro visiems be apmokėjimo).
+
+---
+
+## GitHub Pages / demo (moduliai 1–6)
+
+Production gali veikti dviem keliais (dev/demo):
+
+- **full katalogo build** – `modules.json` be env;
+- **core 1–6 build** – `VITE_MVP_MODE=1` → `*-m1-m6.json`.
+
+### Prieigos lygis (Phase 1: tier 3 arba 6) – legacy demo
 
 Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/utils/accessTier.ts`). Be patikrinto magic link arba env kintamojo numatytasis lygis yra **0**.
 
@@ -30,7 +51,7 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
    - `expires=UNIX_TIMESTAMP`
    - `token=BASE64URL_HMAC` (payload: `access_tier:expires`, žr. `api/verify-access.ts`)
    - Pvz.: `https://www.promptanatomy.app/?access_tier=6&expires=1735689600&token=...`  
-     Frontend kreipiasi į `GET /api/verify-access?access_tier=6&expires=...&token=...`; jei 200 – įrašo tier į `sessionStorage` ir išvalo URL.
+     Frontend kreipiasi į `GET /api/verify-access?access_tier=6&expires=...&token=...`; jei 200 – įrašo tier į `localStorage` ir išvalo URL.
 
 2. **Aplinkos kintamasis (build laikas)**  
    Jei reikia „demo“ režimo (visi 1–6 matomi be pirkimo), production build nustatykite:
@@ -48,8 +69,9 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
 
 **Build komandos:**
 
-- Pilnas 1–6 (arba daugiau pagal tier): `npm run build` (be env).
-- Core 1–6 build: `VITE_MVP_MODE=1 npm run build` (žr. README).
+- **Production (Vercel M1–9):** `npm run build:production`
+- Pilnas SOT (authoring): `npm run build` (be env).
+- Core 1–6 demo (GitHub Pages): `VITE_MVP_MODE=1 npm run build` (žr. README).
 
 ### EN lokalizacija (moduliai 1–6)
 
