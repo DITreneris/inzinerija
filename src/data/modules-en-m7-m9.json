@@ -1,0 +1,18 @@
+{
+  "modules": [
+    {
+      "id": 7,
+      "slides": [
+        {
+          "id": 66.9,
+          "content": {
+            "spinoffCta": {
+              "label": "Deep reads: grounding and RAG",
+              "url": "https://www.promptanatomy.blog/articles/grounding-ai-outputs/?utm_source=training&utm_medium=spinoff&utm_campaign=m7_66_9"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
