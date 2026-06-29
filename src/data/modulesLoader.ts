@@ -14,30 +14,50 @@ const modulesCache = new Map<CacheKey, ModulesData>();
 const modulesPromises = new Map<CacheKey, Promise<ModulesData>>();
 let modulesLoadError: Error | null = null;
 
-function resolveEnglishVariant(locale: ModulesLocale, englishVariant?: ModulesEnglishVariant): ModulesEnglishVariant {
+function resolveEnglishVariant(
+  locale: ModulesLocale,
+  englishVariant?: ModulesEnglishVariant
+): ModulesEnglishVariant {
   if (locale !== 'en') return 'en-lt';
   return englishVariant ?? getBrowserEnglishContentVariant();
 }
 
-function getCacheKey(locale: ModulesLocale, englishVariant?: ModulesEnglishVariant): CacheKey {
+function getCacheKey(
+  locale: ModulesLocale,
+  englishVariant?: ModulesEnglishVariant
+): CacheKey {
   return locale === 'lt' ? 'lt' : resolveEnglishVariant(locale, englishVariant);
 }
 
-function getCache(locale: ModulesLocale, englishVariant?: ModulesEnglishVariant): ModulesData | null {
+function getCache(
+  locale: ModulesLocale,
+  englishVariant?: ModulesEnglishVariant
+): ModulesData | null {
   return modulesCache.get(getCacheKey(locale, englishVariant)) ?? null;
 }
 
-function setCache(locale: ModulesLocale, englishVariant: ModulesEnglishVariant | undefined, data: ModulesData | null): void {
+function setCache(
+  locale: ModulesLocale,
+  englishVariant: ModulesEnglishVariant | undefined,
+  data: ModulesData | null
+): void {
   const key = getCacheKey(locale, englishVariant);
   if (data) modulesCache.set(key, data);
   else modulesCache.delete(key);
 }
 
-function getPromise(locale: ModulesLocale, englishVariant?: ModulesEnglishVariant): Promise<ModulesData> | null {
+function getPromise(
+  locale: ModulesLocale,
+  englishVariant?: ModulesEnglishVariant
+): Promise<ModulesData> | null {
   return modulesPromises.get(getCacheKey(locale, englishVariant)) ?? null;
 }
 
-function setPromise(locale: ModulesLocale, englishVariant: ModulesEnglishVariant | undefined, p: Promise<ModulesData> | null): void {
+function setPromise(
+  locale: ModulesLocale,
+  englishVariant: ModulesEnglishVariant | undefined,
+  p: Promise<ModulesData> | null
+): void {
   const key = getCacheKey(locale, englishVariant);
   if (p) modulesPromises.set(key, p);
   else modulesPromises.delete(key);
@@ -48,7 +68,10 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 }
 
 function hasMergeableId(value: unknown): value is { id: string | number } {
-  return isPlainObject(value) && (typeof value.id === 'string' || typeof value.id === 'number');
+  return (
+    isPlainObject(value) &&
+    (typeof value.id === 'string' || typeof value.id === 'number')
+  );
 }
 
 function mergeArraysById(base: unknown[], override: unknown[]): unknown[] {
@@ -77,7 +100,8 @@ function deepMerge<T>(base: T, override: unknown): T {
 
   if (Array.isArray(base) && Array.isArray(override)) {
     const shouldMergeById =
-      base.every((item) => hasMergeableId(item)) && override.every((item) => hasMergeableId(item));
+      base.every((item) => hasMergeableId(item)) &&
+      override.every((item) => hasMergeableId(item));
     return (shouldMergeById ? mergeArraysById(base, override) : override) as T;
   }
 
@@ -86,9 +110,7 @@ function deepMerge<T>(base: T, override: unknown): T {
     for (const [key, value] of Object.entries(override)) {
       const baseValue = result[key];
       result[key] =
-        baseValue === undefined
-          ? value
-          : deepMerge(baseValue, value);
+        baseValue === undefined ? value : deepMerge(baseValue, value);
     }
     return result as T;
   }
@@ -96,7 +118,10 @@ function deepMerge<T>(base: T, override: unknown): T {
   return override as T;
 }
 
-function mergeModulesData(base: ModulesData, override: Partial<ModulesData>): ModulesData {
+function mergeModulesData(
+  base: ModulesData,
+  override: Partial<ModulesData>
+): ModulesData {
   return deepMerge(base, override);
 }
 
@@ -118,10 +143,19 @@ export const loadModules = async (
     promise = (async () => {
       const m = await import('@modules-data');
       const raw = m.default as unknown;
-      if (!raw || typeof raw !== 'object' || !Array.isArray((raw as ModulesData).modules)) {
+      if (
+        !raw ||
+        typeof raw !== 'object' ||
+        !Array.isArray((raw as ModulesData).modules)
+      ) {
         const empty: ModulesData = {
           modules: [],
-          quiz: { title: 'Apklausa', description: '', passingScore: 70, questions: [] },
+          quiz: {
+            title: 'Apklausa',
+            description: '',
+            passingScore: 70,
+            questions: [],
+          },
         };
         setCache(locale, resolvedVariant, empty);
         return empty;
@@ -140,7 +174,7 @@ export const loadModules = async (
         }
         try {
           const quizEn = await import('./quiz-en.json');
-          const q = (quizEn.default as ModulesData['quiz'] | undefined);
+          const q = quizEn.default as ModulesData['quiz'] | undefined;
           if (q && Array.isArray(q.questions) && q.title) {
             data = { ...data, quiz: q };
           }
@@ -156,11 +190,41 @@ export const loadModules = async (
         } catch {
           // Fallback: keep LT content for modules 4–6 if EN M4–M6 file missing
         }
+        try {
+          const maxModuleIdEarly = Math.max(
+            ...data.modules.map((m) => m.id),
+            0
+          );
+          if (maxModuleIdEarly >= 7) {
+            const enM79 = await import('./modules-en-m7-m9.json');
+            const m79 = enM79.default as Partial<ModulesData>;
+            if (Array.isArray(m79.modules) && m79.modules.length > 0) {
+              data = mergeModulesData(data, m79);
+            }
+          }
+        } catch {
+          // Fallback: keep LT content for modules 7–9 if EN M7–M9 file missing
+        }
+        try {
+          const maxModuleId = Math.max(...data.modules.map((m) => m.id), 0);
+          if (maxModuleId >= 10) {
+            const enM1012 = await import('./modules-en-m10-m12.json');
+            const m1012 = enM1012.default as Partial<ModulesData>;
+            if (Array.isArray(m1012.modules) && m1012.modules.length > 0) {
+              data = mergeModulesData(data, m1012);
+            }
+          }
+        } catch {
+          // Fallback: keep LT content for modules 10–12 if EN M10–M12 file missing
+        }
 
         if (resolvedVariant === 'en-us') {
           try {
             const usOverride = await import('./modules-en-us-overrides.json');
-            data = mergeModulesData(data, usOverride.default as unknown as Partial<ModulesData>);
+            data = mergeModulesData(
+              data,
+              usOverride.default as unknown as Partial<ModulesData>
+            );
           } catch {
             // Fallback: keep base EN content if EN-US overrides are missing
           }
@@ -200,7 +264,7 @@ export const getModule = async (
 ) => {
   if (id > getMaxAccessibleModuleId()) return null;
   const modules = await loadModules(locale, englishVariant);
-  return modules.modules.find(m => m.id === id) ?? null;
+  return modules.modules.find((m) => m.id === id) ?? null;
 };
 
 /**
@@ -227,8 +291,14 @@ export const getModulesDataSync = (
 /**
  * Preload modules for a locale in background.
  */
-export const preloadModules = (locale: ModulesLocale = 'lt', englishVariant?: ModulesEnglishVariant): void => {
-  if (!getCache(locale, englishVariant) && !getPromise(locale, englishVariant)) {
+export const preloadModules = (
+  locale: ModulesLocale = 'lt',
+  englishVariant?: ModulesEnglishVariant
+): void => {
+  if (
+    !getCache(locale, englishVariant) &&
+    !getPromise(locale, englishVariant)
+  ) {
     void loadModules(locale, englishVariant);
   }
 };
@@ -236,7 +306,10 @@ export const preloadModules = (locale: ModulesLocale = 'lt', englishVariant?: Mo
 /**
  * Invalidate cache for a locale (e.g. when switching language so next load fetches fresh).
  */
-export const invalidateModulesCache = (locale?: ModulesLocale, englishVariant?: ModulesEnglishVariant): void => {
+export const invalidateModulesCache = (
+  locale?: ModulesLocale,
+  englishVariant?: ModulesEnglishVariant
+): void => {
   if (locale === 'lt') {
     modulesCache.delete('lt');
     modulesPromises.delete('lt');
