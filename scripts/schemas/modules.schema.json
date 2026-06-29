@@ -56,8 +56,18 @@
         },
         "accent": {
           "type": "string",
-          "enum": ["brand", "slate", "emerald", "violet", "cyan", "accent"],
-          "description": "Modulio identiteto accent (DS v0.2 §1). Optional; M1–M6."
+          "enum": [
+            "brand",
+            "slate",
+            "emerald",
+            "violet",
+            "cyan",
+            "accent",
+            "sky",
+            "fuchsia",
+            "rose"
+          ],
+          "description": "Modulio identiteto accent. Optional. M1–M6 spektras (DS v0.2 §1); M7–M15 per taką (DS v0.3): sky=Duomenų analizė, fuchsia=Agentai, rose=Turinys."
         },
         "identityIcon": {
           "type": "string",
@@ -67,9 +77,12 @@
             "Briefcase",
             "Brain",
             "ClipboardCheck",
-            "Rocket"
+            "Rocket",
+            "BarChart3",
+            "Cpu",
+            "Image"
           ],
-          "description": "Lucide identity icon name (DS v0.2 §1). Optional; M1–M6."
+          "description": "Lucide identity icon name. Optional. M1–M15 (DS v0.2 §1 + DS v0.3 plėtra)."
         }
       }
     },
@@ -133,6 +146,11 @@
         "blockNumber": { "type": "number" },
         "keyQuestion": { "type": "string" },
         "optional": { "type": "boolean" },
+        "pathBranch": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Teminių šakų id (M7 keliai, Lygis B). Nurodyta = skaidrė rodoma tik kai pasirinktas fokusas turi sutampančią šaką; nenurodyta = branduolio skaidrė."
+        },
         "content": { "$ref": "#/$defs/slideContent" },
         "testQuestions": {
           "type": "array",

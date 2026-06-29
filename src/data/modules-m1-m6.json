@@ -3185,7 +3185,7 @@
               "Kada leisti DI ieškoti internete ir naudoti įrankius."
             ],
             "spinoffCta": {
-              "label": "Išbandyk 8 promptų biblioteką (~30 min)",
+              "label": "8 organizacijos promptų biblioteka (~30 min)",
               "url": "https://www.promptanatomy.info/lt/"
             },
             "recap": {
@@ -3614,7 +3614,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**RL (Reinforcement Learning)** – DI mokosi iš atlygio.\nJei rezultatas atitinka tikslą (KPI, balai, sėkmės rodikliai) → gauna „pliusą“. Jei ne → koreguoja elgesį.\n\n**RLHF (Reinforcement Learning from Human Feedback)** – DI mokosi iš žmonių vertinimo.\nŽmonės palygina atsakymus ir pasako, kuris geresnis.\nTaip modelis išmoksta, koks atsakymas laikomas kokybišku.\n\n👉 GPT atsakymų kokybė – RLHF rezultatas.\n👉 Tavo promptas aktyvuoja ir nukreipia tą išmoktą elgesį.\n\n**Išbandyk dabar**\n\nNukopijuok vieną iš žemiau esančių promptų (5️⃣ arba 6️⃣) ir paleisk DI.\nStebėk, kaip keičiasi atsakymo kokybė keičiant formuluotę. #pasitariam jei reikia",
+                "body": "**RL (Reinforcement Learning)** – DI mokosi iš atlygio: jei rezultatas atitinka tikslą → „pliusas“, jei ne → koreguoja elgesį.\n\n**RLHF (su žmonių grįžtamuoju ryšiu)** – žmonės palygina atsakymus ir nurodo, kuris geresnis; taip modelis išmoksta, kas yra kokybiška. 👉 GPT kokybė – RLHF rezultatas; tavo promptas aktyvuoja tą elgesį.\n\n**Išbandyk:** nukopijuok promptą (5️⃣ ar 6️⃣) ir stebėk, kaip kinta kokybė.",
                 "blockVariant": "accent",
                 "collapsible": true,
                 "collapsedByDefault": false
@@ -3826,8 +3826,8 @@
             ],
             "footer": "Toliau – skaidrė 19: Kam tu dažniausiai naudoji DI?",
             "spinoffCta": {
-              "label": "Turinio DI sistema rinkodaros vadovams (~45 min)",
-              "url": "https://ditreneris.github.io/marketingas/"
+              "label": "10 marketingo promptų rinkinys (~30 min)",
+              "url": "https://www.promptanatomy.space/lt/"
             },
             "heroColorKey": "emerald"
           }
@@ -4495,6 +4495,11 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
+              },
+              {
+                "heading": "📍 Kur dar pritaikyti? (Duomenų analizės kelias)",
+                "body": "Tie patys tyrimų įrankiai naudojami **Duomenų analizės kelyje (Moduliai 7–9)**: Deep research šaltinių rinkimui ir 4× lygiagrečiam tyrimui (M9 workflow, kelio žingsniai 71.3–71.4). Jei eisi tuo keliu – grįžk prie šios skaidrės kaip įrankių atmintinės.",
+                "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – skaidrė 25: Pradinis duomenų paruošimas RAG"
@@ -4934,6 +4939,10 @@
                 "COMBO"
               ],
               "progressTotal": 7
+            },
+            "spinoffCta": {
+              "label": "Gilesni skaitiniai: RAG ir kontekstas (EN)",
+              "url": "https://www.promptanatomy.blog/articles/rag-in-production/?utm_source=training&utm_medium=spinoff&utm_campaign=m4_65_8"
             }
           }
         },
@@ -5312,6 +5321,10 @@
                 "Tokenas"
               ],
               "progressTotal": 7
+            },
+            "spinoffCta": {
+              "label": "Peržiūrėk visą ekosistemą",
+              "url": "https://promptanatomy.site/#ecosystem"
             }
           }
         },

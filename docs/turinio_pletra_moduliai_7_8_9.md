@@ -714,6 +714,12 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 
 _Skaidrių skaičius gali būti sumažintas sujungiant pvz. 7.3+7.4, 7.6+7.7, 7.28+7.29, 7.32 į vieną – pagal UI ir laiką. **Papildomi sujungimai (mažas turinys, teminis ryšys, pedagogika):** žr. [docs/MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md](MODULIO_7_SKAIDRIU_SUJUNGIMO_ANALIZE.md) – 78+79, 891+892, 95+96, 101+102, 104+105, 92+93. Šaltiniai: 02_DA, DA_4 (Duomenų vizualizacija ir istorija)._
 
+### Papildomas skaitymas (blog)
+
+- **Skaidrė 66.9 (section-break):** `spinoffCta` → blog `grounding-ai-outputs` (EN skaitinys; patikrumas, haliucinacijos, RAG). Žr. `docs/development/BLOG_CURRICULUM_LINKS.yaml`.
+- **M8 testas nepavyko (`<70%`):** UI deepen → blog `rag-in-production`; vidinė remediation lieka `TestRemediationChips` → M7 skaidrės.
+- **M9 ModuleComplete:** secondary links – blog `ai-workflow-canvas-template`, `promptanatomy.pro`, `promptanatomy.site#ecosystem`.
+
 **Blokas „Patikrumas ir etika“ (perkeltas iš Modulio 4):** Po skaidrės 891 (Duomenų paruošimas ir workflow) įterptas blokas: 66.9 (section-break), 67 (Promptų manipuliacijos), 67.3 (Praktika: pataisyk šališką promptą), 67.5 (Saugumas: prompt injection ir jailbreak), 67.7 (Haliucinacijų mažinimo grandinė – vizuali 5 žingsnių schema, tipas `hallucination-pipeline`), 67.8 (Haliucinacijos), 68 (Žinių patikrinimas), 200 (Haliucinacijų rodikliai), 201 (DI turinio detektoriai), 68.5 (Savitikra). Tematika atitinka duomenų/turinio patikimumą analizėje. Žr. [MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
 
 ### 8.2 Kelias pramaišytas su teorija (path-step skaidrės)

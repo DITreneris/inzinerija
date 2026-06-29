@@ -15,29 +15,39 @@ function writeJson(fileName, value) {
 }
 
 const modules = readJson('modules.json');
-writeJson('modules-m1-m6.json', {
-  ...modules,
-  modules: modules.modules.filter((module) => module.id <= 6),
-});
-
 const glossary = readJson('glossary.json');
-writeJson('glossary-m1-m6.json', {
-  ...glossary,
-  terms: glossary.terms.filter((term) => term.moduleId <= 6),
-});
-
 const tools = readJson('tools.json');
-writeJson('tools-m1-m6.json', {
-  ...tools,
-  tools: tools.tools.filter((tool) => tool.moduleId <= 6),
-});
-
 const toolsEn = readJson('tools-en.json');
-writeJson('tools-en-m1-m6.json', {
-  ...toolsEn,
-  tools: toolsEn.tools.filter((tool) => tool.moduleId <= 6),
-});
+
+/**
+ * Build/runtime profiliai (Architektūra A): core 1–6 (viešas MVP) ir
+ * korporatyvinis 1–9 (Duomenų analizės kelias, tier 9). Abu generuojami
+ * iš full authoring SOT (modules.json / glossary.json / tools.json).
+ */
+const PROFILES = [
+  { maxModuleId: 6, suffix: 'm1-m6' },
+  { maxModuleId: 9, suffix: 'm1-m9' },
+];
+
+for (const { maxModuleId, suffix } of PROFILES) {
+  writeJson(`modules-${suffix}.json`, {
+    ...modules,
+    modules: modules.modules.filter((module) => module.id <= maxModuleId),
+  });
+  writeJson(`glossary-${suffix}.json`, {
+    ...glossary,
+    terms: glossary.terms.filter((term) => term.moduleId <= maxModuleId),
+  });
+  writeJson(`tools-${suffix}.json`, {
+    ...tools,
+    tools: tools.tools.filter((tool) => tool.moduleId <= maxModuleId),
+  });
+  writeJson(`tools-en-${suffix}.json`, {
+    ...toolsEn,
+    tools: toolsEn.tools.filter((tool) => tool.moduleId <= maxModuleId),
+  });
+}
 
 writeJson('m9Characters-empty.json', { characters: [] });
 
-console.log('Core production data generated.');
+console.log('Core (1–6) and corporate (1–9) production data generated.');

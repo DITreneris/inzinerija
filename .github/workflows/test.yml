@@ -46,6 +46,9 @@ jobs:
       - name: Build core production profile
         run: VITE_MVP_MODE=1 npm run build
 
+      - name: Build production profile (M1–9)
+        run: VITE_MAX_BUILD_MODULE=9 npm run build
+
       - name: Upload coverage reports
         if: matrix.node-version == '20.x'
         uses: codecov/codecov-action@v3
