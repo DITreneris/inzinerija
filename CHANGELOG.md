@@ -37,6 +37,127 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po Design System v0.2.0 release._
 
+### Added (2026-06-30) – Tier 9 vienas production build + marketing memo
+
+- **Magic link Phase 2:** `api/verify-access.ts` ir `App.tsx` – tier `9`; `MAGIC_LINK_TIERS` / `isMagicLinkTier()` – [`src/constants/pricing.ts`](src/constants/pricing.ts); `UPGRADE_FROM_TIER_6_EUR = 49`.
+- **Production build:** `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); CI step [`.github/workflows/test.yml`](.github/workflows/test.yml); `build:corporate` → alias.
+- **CONV-5 M6 upsell:** `ModuleCompleteScreen` – Duomenų analizės kelias (M7–9) kai `maxAccessible < 9`; `pricing_click` `cta_id: m6_upsell_tier9`; LT/EN locales.
+- **Testai:** `magicLinkTier.test.ts`; `gate.smoke.test.tsx` tier 9 (M7 open, M10 locked).
+- **Docs:** [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) §3/§7a; [`INTEGRATION_OVERVIEW.md`](docs/deployment/INTEGRATION_OVERVIEW.md), [`DEPLOYMENT.md`](docs/deployment/DEPLOYMENT.md).
+
+### Added (2026-06-30) – Blog / ecosystem integracija M7–12 (training repo)
+
+- **Ekosistema M7–12:** `docs/ECOSYSTEM_MAP.md` § Moduliai 7–12; curriculum registry `docs/development/BLOG_CURRICULUM_LINKS.yaml`; `sot_index.json` scope M1–M12.
+- **JSON:** M7 `66.9` spinoffCta → blog `grounding-ai-outputs`; M4 `65.8` deep link → `rag-in-production`; M10 section-break skaidrės `10.481`, `10.151` su blog spinoff.
+- **Kodas:** `blogArticleUrl()`, `BLOG_ARTICLE_SLUGS`, `EcosystemDeepenBlock`, `moduleEcosystemComplete.ts`; M8/M11 test-fail deepen; ModuleComplete M9/M10/M12; EN overlay `modules-en-m7-m9.json` + loader merge.
+- **Analytics:** `ANALYTICS_EVENT_TAXONOMY.md` §4a papildyta M7–12 touchpointais.
+
+### Added (2026-06-29) – M7 adaptyvūs keliai: branduolys + teminės šakos + rerun (Lygis B)
+
+- **Adaptyvi navigacija:** Modulis 7 dabar turi **vieną branduolį visiems** (27 skaidrės) + **4 temines šakas** (`viz`, `etika-plus`, `technika`, `strategija`; 24 skaidrės), filtruojamas pagal skaidrėje 70 pasirinktą fokusą. Skirtingi fokusai mato skirtingas skaidres → padidina mokymų _rerun_ vertę.
+- **Tipai/schema:** `Slide.pathBranch?: string[]` ir `JourneyChoice.branchIds?: string[]` ([`src/types/modules.ts`](src/types/modules.ts), [`scripts/schemas/modules.schema.json`](scripts/schemas/modules.schema.json)).
+- **Navigacijos filtras:** [`useSlideNavigation.ts`](src/utils/useSlideNavigation.ts) – `isSlideHiddenForNav`, `getAdjacentVisibleIndex`, `resolveVisibleIndex`, `countVisibleSlides`, `getVisiblePosition`. Filtruojama **navigacijos sluoksnyje** (pilnas `slides` masyvas nekeičiamas → M8 remediation deep-link'ai stabilūs). Progreso skaitiklis „X / N" rodo **matomas** skaidres.
+- **ModuleView:** `activeBranchIds` apskaičiuojamas iš `moduleJourneyFocus[7]`; visi skaitikliai ir progreso juosta naudoja `visiblePosition` / `visibleSlideCount`.
+- **Rerun:** santraukoje (75) CTA „Grįžk su kitu fokusu" → skaidrė 70; `ActionIntroJourneySlide` leidžia perrinkti fokusą net po užduoties (pasirinkus kitą kortelę vėl rodomas patvirtinimo CTA). i18n: `module.rerunWithNewFocus`, `module.rerunHint` (LT/EN).
+- **Duomenys:** [`modules.json`](src/data/modules.json) – `pathBranch` 24 šakų skaidrėms, `branchIds` 6 fokuso pasirinkimams; `modules-m1-m9.json` regeneruotas (`npm run generate:core-data`). M8 remediation auditas: nei vienas `relatedSlideId` (73, 74, 86, 92, 731, 732, 733, 891) neturi `pathBranch`.
+- **Testai:** [`useSlideNavigation.branches.test.ts`](src/utils/__tests__/useSlideNavigation.branches.test.ts) – matomumas, gretima skaidrė, resolve, skaičiavimas.
+- **Docs:** [`MODULIO_7_SKAIDRIU_EILES.md`](docs/MODULIO_7_SKAIDRIU_EILES.md) §Branduolys + teminės šakos; [`AGENTS.md`](AGENTS.md) §Architecture A.
+
+### Added (2026-06-29) – Agent spine: ekosistemos M1–M6 žinios
+
+- **Spine:** [`AGENTS.md`](AGENTS.md) §Ecosystem integration; trigeriai CONTENT/DATA/CODING/QA/CODE_REVIEW/USER_JOURNEY; [`sot_index.json`](docs/development/context-engineering/sot_index.json) → `ecosystem`.
+- **Orchestrator:** doc-loading triggers + Special case Ecosystem/spin-off; [`orchestrator/lessons.md`](.cursor/skills/orchestrator/lessons.md).
+- **Skills + lessons:** ecosystem bullet'ai ir sesijų pamokos (`data`, `coding`, `content`, `qa`, `code-review`, `user-journey` agents).
+- **QA/DATA/Analytics:** [`RELEASE_QA_CHECKLIST.md`](docs/development/RELEASE_QA_CHECKLIST.md) §5f outbound smoke; [`ANALYTICS_EVENT_TAXONOMY.md`](docs/development/ANALYTICS_EVENT_TAXONOMY.md) §4a `spinoff_*` cta_id lentelė.
+
+### Changed (2026-06-29) – Agentų docs sinchronas (M1–9 profilis, M10–12)
+
+- **DATA_AGENT:** `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` – du build profiliai (`*-m1-m6`, `*-m1-m9`), EN partial overlay `modules-en-m10-m12.json`, trigeriai M10+, dažnos klaidos §.
+- **CONTENT/CURRICULUM:** M10–12 SOT keliai, M10 turinio gairės, curriculum precedentas (10.45/10.48 seka).
+- **Orkestratorius:** `AGENT_ORCHESTRATOR.md`, `.cursorrules`, `DOCUMENTATION_QUICK_REF.md` – Architecture A atnaujinta.
+- **Registras:** `sot_index.json` M10–12 descriptions; `CODEBASE_WHAT_IS_DONE.md`, `GOLD_LEGACY_STANDARD.md` §9 EN merge; `RELEASE_QA_CHECKLIST.md` EN M10–12 punktas.
+
+### Added (2026-06-29) – Ekosistemos integracija M1–M6
+
+- **SOT:** `docs/ECOSYSTEM_MAP.md`, `src/constants/ecosystemUrls.ts` – modulis ↔ fazė ↔ URL ↔ analytics.
+- **M4 section-break spin-off:** 52.5 → `promptanatomy.space`; 65.8 → blog; 66.95 → site map; 40.5 label patikslintas (Use).
+- **UI:** ModuleCompleteScreen ekosistemos secondary links (M1/M3/M6); AccessGate → cloud; footer → Ekosistema; M5 TestResults → CEO (Manage); QuizPage → Deepen kai &lt;70 %.
+- **Analytics:** `trackSpinoffClick`, section-break `spinoffCta` onClick.
+
+### Added (2026-06-29) – Agent docs sync (M10–12 pamokos)
+
+- **Lessons:** `scheme-agent`, `qa-agent` (tuščia→užpildyta); papildyta `data-agent`, `orchestrator`, `coding-agent`, `content-agent`.
+- **Spine:** [`AGENTS.md`](AGENTS.md) — deep-merge EN M10–12, validation scripts, `data-validate` subagent, LT DI / EN AI.
+- **Skills:** M10 diagram pipeline (`scheme-agent`), M10–12 release gate (`qa-agent`), EN handoff (`content-agent`), mixed task eiga (`orchestrator`).
+- **Specs:** [`SCHEME_AGENT.md`](docs/development/SCHEME_AGENT.md) §2.2 checklist; M12 120.5 legacy; [`sot_index.json`](docs/development/context-engineering/sot_index.json) `modulesEnM1012`; [`CONTENT_AGENT.md`](docs/development/CONTENT_AGENT.md) §3.1.2 EN M10+.
+
+### Added (2026-06-29) – M10–12 NEXT: taksonomija, EN, footer QA
+
+- **M10 10.45:** `M10AgentTaxonomyDiagram` + `M10AgentTaxonomyBlock` – L0–L3 ladder + multi-agent rolės; `section.image: m10_agent_taxonomy`; etiketės `m10DiagramContent.ts` (LT/EN).
+- **EN M10–12:** Pilnas `modules-en-m10-m12.json` (30 skaidrių body, M11 testas, glossary 10.7, footers); `scripts/build-en-m10-m12.mjs`, `extract-modules-m10-m12.mjs`, `audit-en-coverage-m10-12.mjs`; `validateModulesEnM1012()` schema gate.
+- **Footer QA M10:** `AUDIT_MODULES=10` PASS (10.45→6, 10.48→7); EN footers merge audit `--locale=en`; ilgis ≤55 simb.
+
+### Added (2026-06-29) – M10–12 verslo multi-agent turinys
+
+- **M10:** Naujos skaidrės **10.45** (DI agentų tipai ir rolės – L0–L3 taksonomija) ir **10.48** (5 workflow šablonai verslui); skaidrių eilė perrikiuota (workflow sąvokos 10.15 – po agentų mąstymo); žodynėlis +4 terminai; santrauka su use case katalogu (4 sritys); 10.65 – 3 DI agento QC testai.
+- **M11:** q3/q5/q6 pakeisti į taksonomijos ir multi-agent klausimus; remediation naudoja slide ID (10.45, 10.48).
+- **M12:** **120.5** perrašyta į verslo multi-agent schemą (privaloma); naujas scenarijus **124.5** (Koordinatorius + 2 specialistai); Lab #2 vertintojo promptas; Lab #3 rolės etiketės; „AI moduliu“ → „DI moduliu“ LT tekste.
+- **SOT:** `docs/turinio_pletra_moduliai_10_11_12.md`, `docs/MODULIO_10_SKAIDRIU_EILES.md` – auditorija platinta į verslo specialistus.
+- **EN:** `src/data/modules-en-m10-m12.json` + `modulesLoader.ts` merge (M10–12 EN override).
+- **UX:** `TestRemediationChips` – M11 chip'ai 10.45, 10.48.
+- **Script:** `scripts/sync-m10-12-multi-agent.mjs` (JSON sinchronizacija iš plano).
+
+### Added (2026-06-29) – DS v0.3: modulių takų stilistika (M7-15)
+
+- **Modulio identitetas per taką (M7-15):** trims specializacijos takams suteiktas savitas `accent`: Duomenų analizė (M7-9) = `sky`, Agentai (M10-12) = `fuchsia`, Turinys (M13-15) = `rose`. Spalva žymi taką; lygis (learn/test/practice) toliau skiriasi kūno gradientu, badge ir kortelės ikona. M1-6 spektras nekeičiamas. Laukai pridėti `src/data/modules.json` (SOT), profiliai pergeneruoti (`npm run generate:core-data`).
+- **`identityIcon` M7-15:** intro/section-break eyebrow ikonos (`BarChart3`, `Cpu`, `Image`, `ClipboardCheck`, `Rocket`).
+- **Tipų/token'ų plėtra:** `ModuleAccent` += `sky|fuchsia|rose`; `ModuleIcon` ir `ModuleIdentityIcon` += `BarChart3|Cpu|Image`; `EyebrowAccent` += `sky|fuchsia|rose`. Papildyti `accentTopBarClasses`, `sectionBreakBadgeByAccent`, `IDENTITY_ICON_MAP`, `Eyebrow`/`SectionDivider` klasių žemėlapiai, `tailwind.config.js` safelist, `scripts/schemas/modules.schema.json` enum.
+
+### Fixed (2026-06-29)
+
+- **M10/M13 tuščios kortelių ikonos:** `ModulesPage.tsx` 6-ių hardcoded `if` ikonų grandinė pakeista dinamišku `MODULE_ICON_MAP` žemėlapiu (`src/utils/moduleIdentity.ts`). M10 (`Cpu`) ir M13 (`Image`) ikonos dabar renderinamos.
+- **Typecheck: pasenęs `McqQuestion` confidence testas:** `src/components/slides/shared/questions/__tests__/McqQuestion.confidence.test.tsx` `renderMcq` parametras suderintas su dabartiniu `ConfidenceLevel` string union (`'sure'|'guess'|'unsure'`) vietoj senos skaitinės skalės `1|2|3`. Pašalina pre-existing `tsc --noEmit` TS2322 klaidą; produkcinis kodas nepaliestas.
+
+### Added (2026-06-29) – Konversijos track (CONV-1..4) + MON-6 paywall riba
+
+- **CONV-4 `pricing_click` event:** naujas analytics event (`src/utils/analytics.ts` `AnalyticsEventName`), dokumentuotas `docs/development/ANALYTICS_EVENT_TAXONOMY.md` §1. Triggerina M3 upsell ir `AccessGateScreen` kainodaros CTA (`cta_id`: `m3_upsell_pricing`, `access_gate_pricing`; `destination: external`).
+- **CONV-1 M3 completion upsell:** `ModuleCompleteScreen.tsx` – po Modulio 3, kai `getMaxAccessibleModuleId() < 6`, rodomas upsell blokas su CTA į kainodarą (`https://www.promptanatomy.app/#pricing`). Nauji `module` namespace raktai (`upsellM3Title`, `upsellM3Body`, `upsellM3Cta`, `upsellM3Aria`) LT + EN.
+- **CONV-2 quiz gate:** `App.tsx` quiz route renderina `AccessGateScreen`, kai `maxAccessible === 0` (suvienodina su `ModulesPage` tier-0 gate); neapmokėtas vartotojas nebepasiekia testo.
+- **CONV-3 gate smoke test:** `src/components/__tests__/gate.smoke.test.tsx` – tier 0 → `AccessGateScreen` (modulių sąrašas užrakintas), tier 3 → sąrašas matomas + `getModule(4) === null`. Playwright neįdiegtas, todėl vitest variantas.
+- **MON-6 client-side paywall riba:** `docs/development/AUDIT_2026-06_SUMMARY.md` – naujas skyrius „Client-side paywall riba (MON-6 — priimta MVP rizika)“ (localStorage tier + JSON bundle bypass, mažinimo priemonės, peržiūros kriterijus).
+- **TODO sinchronas:** `TODO.md` §1.1 MON-6 ir §1.3 CONV-1..4 pažymėti įgyvendintais.
+
+### Added (2026-06-29) – Korporatyvinis build profilis (M1–9, tier 9)
+
+- **Build profilis M1–9:** `scripts/generate-core-data.mjs` dabar generuoja **du** profilius – core `*-m1-m6.json` (viešas MVP) ir korporatyvinį `*-m1-m9.json` (Duomenų analizės kelias, tier 9). Generuojama iš full SOT (`modules.json` / `glossary.json` / `tools.json`).
+- **`vite.config.ts`:** naujas `VITE_MAX_BUILD_MODULE=9` (BE `VITE_MVP_MODE=1`) → `@modules-data`/`@glossary-data`/`@tools-data`/`@tools-en-data` rodo į `*-m1-m9.json`; bundle'e tik moduliai **1–9** (M10–15 turinys neįtraukiamas). M9 veikėjai ir AI detektorių skaidrė įtraukti; Vaizdo generatorius (M15) – stub.
+- **`package.json`:** `npm run build:corporate` (`VITE_MAX_BUILD_MODULE=9 vite build`).
+- **`scripts/validate-schema.mjs`:** korporatyvinio profilio validacija (`modules-m1-m9.json`/`glossary`/`tools` su `id/moduleId ≤ 9` patikra).
+- **Testai:** `mvp.gating.test.tsx` – tier 9 blokas (M7–9 prieinami, M10+ užrakinti); pilnas test:run 240/240.
+- **Docs:** `MARKETING_HANDOFF_CHECKLIST.md` §7a (tier 9 korporatyvinis build), support playbook tier `3 / 6 / 9`.
+
+### Changed (2026-06-29) – M7–9 turinio tobulinimas + M4–6 mikropataisos
+
+- **M7 (Duomenų analizės kelias):** MUST/SHOULD klasifikacija (`docs/MODULIO_7_SKAIDRIU_EILES.md`), DA_4 vizualizacija lieka `optional` (Fast track); paradokso tekstas (726) ir paprastos vizualizacijos (861) → `optional`. „📍 Kur pritaikyti?“ blokai prie 73 (pipeline), 731 (4 tipai), 97 (Deming), 74 (MASTER).
+- **M8 testas:** q6 (Geštalto MCQ → optional skaidrė 101) → scenarijaus klausimas apie vizualizacijos generavimą (relatedSlideId 86, MUST) – pataisytas remediation tarpas; iš viso 5 scenarijaus tipo klausimai.
+- **M9 capstone:** pridėtas „📄 Pavyzdinis rezultatas (MASTER PROMPT)“ blokas (slide 93); rekomenduojami scenarijai išlaikyti.
+- **Reflection prompts M7/M9:** META+INPUT+OUTPUT formatas (kaip M1–M6).
+- **M4:** slide 61 (tyrimų įrankiai) → „📍 Kur dar pritaikyti? (Duomenų analizės kelias)“ cross-reference; slide 48 „Trumpai (30 s)“ sutrumpinta (~90 → ~55 žodžių). Self-check remediation („Jei klaidingai – žr. skaidrę X“) ir CoVe/chunk sinchronas patikrinti.
+
+### Notes (2026-06-29) – Deferred vartas: korporatyvinis pardavimas (tier 9)
+
+- **Kontekstas:** korporatyvinis klientas (50 licencijų) įsigijo kelią 7–9 → Deferred vartas (`TODO.md` §1.5) **M7–9 turiniui praeitas**.
+- **`TODO.md` §1.5:** DEF-1 padalintas į **DEF-1a** (M7–9 – aktyvu / iš esmės padaryta) ir **DEF-1b** (M10–15 – vis dar Deferred); DEF-2 microcopy → dalinai; P3 #1, #2 pažymėti ✓.
+- **`ROADMAP.md` §4.4/§5:** pridėtas „Korporatyvinis kelias 7–9 (aktyvu)“ etapas; §5 gate – išimtis 7–9 (tier 9), 10–15 lieka Deferred.
+- **`docs/development/AUDIT_2026-06_SUMMARY.md`:** Deferred sekcija – 7–9 aktyvūs (korporatyvinis build), tik 10–15 Deferred.
+
+### Notes (2026-06-29) – TODO/ROADMAP sinchronas su production audit
+
+- **Verdict:** CONDITIONAL GO (M1–6 shippable; monetizacija ~45% ready). Santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
+- **`TODO.md`:** naujas P0 track MON-1–MON-7 (monetizacija/integracija); P1 CONV-1–CONV-4 (konversija); Release vs Monetization gate apibrėžimai; M13/M7–15 → §1.5 Deferred; DS v0.2 perkeltas į Padaryta; Post-release analytics → MON-4/MON-7.
+- **`ROADMAP.md` v2.3:** audit reference; localStorage (ne sessionStorage) tier; GitHub Pages demo rizika; PostHog/verify-access → P0; monetization pilot etapas; M7–15 gate note.
+- **Nauji docs:** `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md` (marketing komandai); cross-links `DOCUMENTATION_QUICK_REF.md`, `INTEGRATION_OVERVIEW.md`.
+
 ### Changed (2026-06-11) – Agentų sistemos refaktoras: AGENTS.md spine + skills visiems agentams
 
 - **`AGENTS.md` (naujas, repo šaknyje, EN):** vienas agentų registras – 9 agentų kontraktai (rolė, „does NOT“, trigeriai, skill, handoff), mišrios užduoties pipeline, 3 subagentų rolės (explore-diagnosis, data-validate, content-spellcheck), Architecture A, output gate, validacijos skriptai.
