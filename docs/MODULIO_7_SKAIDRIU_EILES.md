@@ -71,6 +71,38 @@
 
 ---
 
+## Branduolys + teminės šakos (Lygis B – adaptyvūs keliai)
+
+> **Mechanizmas (2026-06):** M7 turi **vieną branduolį visiems** + **teminės šakos**, filtruojamos pagal skaidrėje 70 pasirinktą fokusą. Filtravimas vyksta **navigacijos sluoksnyje** (`useSlideNavigation.ts` `isSlideHiddenForNav` + `getAdjacentVisibleIndex`), identiškai Fast track logikai – pilnas `slides` masyvas nekeičiamas, indeksai stabilūs (M8 remediation deep-link'ai nelūžta). Skaidrė matoma, jei ji **branduolys** (neturi `pathBranch`) **arba** jos `pathBranch` sutampa su pasirinkto fokuso `branchIds` (`modules.json` skaidrė 70 `journeyChoices`). Fokusas nepasirinktas (`activeBranchIds == null`) → rodomos visos. Fast track papildomai paslepia `optional: true`.
+
+**Branduolys (27, visada matomas – be `pathBranch`):** 70, 71, 72, 73, 71.1, 731, 732, 733, 71.2, 78, 83, 84, 86, 87, 89, 891, 66.9, 67, 67.8, 68, 90, 92, 71.3, 74, 71.4, 71.5, 75. Apima visus M8 remediation taikinius (73, 74, 86, 92, 731, 732, 733, 891), 5 path-step (71.1–71.5), intro (70), MASTER (74), minimalią etiką (66.9, 67, 67.8, 68) ir santrauką (75).
+
+**Teminės šakos (`pathBranch`, 24 skaidrės):**
+
+| Šaka                                           | id         | Skaidrės                         |
+| ---------------------------------------------- | ---------- | -------------------------------- |
+| `viz` – Vizualizacija ir istorija              | viz        | 861, 100, 101, 103, 104, 106     |
+| `etika-plus` – Patikimumas ir etika (gilesnis) | etika-plus | 67.3, 67.5, 67.7, 200, 201, 68.5 |
+| `technika` – Techninis gylis                   | technika   | 77, 77.5, 85, 91, 94, 95, 98     |
+| `strategija` – Strategija ir kultūra           | strategija | 725, 726, 76, 88, 97             |
+
+**Fokusas → šakos (skaidrė 70 `journeyChoices.branchIds`):**
+
+| Fokusas (choice id)                | branchIds                      | Mato (be branduolio) |
+| ---------------------------------- | ------------------------------ | -------------------- |
+| Pardavimai (`pardavimai`)          | `["viz"]`                      | +6                   |
+| Rinkodara (`rinkodara`)            | `["viz"]`                      | +6                   |
+| IT ir inžinerija (`it-inzinerija`) | `["technika", "etika-plus"]`   | +13                  |
+| Personalas (`personalas`)          | `["strategija"]`               | +5                   |
+| Vadovai/vadyba (`vadyba`)          | `["strategija", "etika-plus"]` | +11                  |
+| Kita (`kita`)                      | `[]`                           | tik branduolys (27)  |
+
+**Rerun:** modulio santraukoje (75) rodomas CTA „Grįžk su kitu fokusu" (`ModuleView.handleRerunFocus` → skaidrė 70); `ActionIntroJourneySlide` leidžia perrinkti fokusą net kai užduotis jau atlikta (pasirinkus kitą kortelę vėl rodomas patvirtinimo CTA).
+
+> **Auditas prieš keičiant šakas:** nei vienas M8 `relatedSlideId` (73, 74, 86, 92, 731, 732, 733, 891) **negali** turėti `pathBranch`. Po `modules.json` keitimo: `npm run validate:schema` + `npm run generate:core-data` (M7 įeina į `modules-m1-m9.json`).
+
+---
+
 ## Nuorodos
 
 - **Turinio SOT:** [docs/turinio_pletra_moduliai_7_8_9.md](turinio_pletra_moduliai_7_8_9.md)

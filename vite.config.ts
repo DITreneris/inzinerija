@@ -5,8 +5,15 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { resolvePublicAppUrlsForBuild } from './src/utils/publicSiteMeta';
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1';
+// Production profilis: M1–9 (Duomenų analizės kelias, tier 9). Naudoti BE VITE_MVP_MODE.
+// Bundle'as turi tik 1–9 modulius – M10–15 turinys neįtraukiamas (nėra client-side exposure).
+const isProductionBuild =
+  !isCoreBuild && process.env.VITE_MAX_BUILD_MODULE === '9';
 const resolvePath = (value: string) =>
   fileURLToPath(new URL(value, import.meta.url));
+
+const dataAlias = (core: string, production: string, full: string) =>
+  resolvePath(isCoreBuild ? core : isProductionBuild ? production : full);
 
 function seoIndexHtmlPlugin() {
   return {
@@ -56,36 +63,41 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@modules-data': resolvePath(
-        isCoreBuild
-          ? './src/data/modules-m1-m6.json'
-          : './src/data/modules.json'
+      '@modules-data': dataAlias(
+        './src/data/modules-m1-m6.json',
+        './src/data/modules-m1-m9.json',
+        './src/data/modules.json'
       ),
-      '@glossary-data': resolvePath(
-        isCoreBuild
-          ? './src/data/glossary-m1-m6.json'
-          : './src/data/glossary.json'
+      '@glossary-data': dataAlias(
+        './src/data/glossary-m1-m6.json',
+        './src/data/glossary-m1-m9.json',
+        './src/data/glossary.json'
       ),
-      '@tools-data': resolvePath(
-        isCoreBuild ? './src/data/tools-m1-m6.json' : './src/data/tools.json'
+      '@tools-data': dataAlias(
+        './src/data/tools-m1-m6.json',
+        './src/data/tools-m1-m9.json',
+        './src/data/tools.json'
       ),
-      '@tools-en-data': resolvePath(
-        isCoreBuild
-          ? './src/data/tools-en-m1-m6.json'
-          : './src/data/tools-en.json'
+      '@tools-en-data': dataAlias(
+        './src/data/tools-en-m1-m6.json',
+        './src/data/tools-en-m1-m9.json',
+        './src/data/tools-en.json'
       ),
+      // M9 veikėjai reikalingi korporatyviniam (1–9) ir full build'ams; tušti tik core 1–6.
       '@m9-characters-data': resolvePath(
         isCoreBuild
           ? './src/data/m9Characters-empty.json'
           : './src/data/m9Characters.json'
       ),
+      // AI detektorių skaidrė (M7, id 201) reikalinga korporatyviniam build'ui; stub tik core 1–6.
       '@ai-detectors-slide': resolvePath(
         isCoreBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/AiDetectorsSlide.tsx'
       ),
+      // Vaizdo generatorius – M15 turinys; nereikalingas core (1–6) nei korporatyviniam (1–9) build'ui.
       '@vaizdo-generatorius-slide': resolvePath(
-        isCoreBuild
+        isCoreBuild || isCorporateBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/VaizdoGeneratoriusSlide.tsx'
       ),
