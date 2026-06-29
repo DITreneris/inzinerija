@@ -309,6 +309,12 @@ export interface JourneyChoice {
   subtitle: string;
   /** Lucide ikonos pavadinimas (pvz. "TrendingUp") – optional vizualui */
   icon?: string;
+  /**
+   * Teminių šakų id, kurias mato šis fokusas (Lygis B – M7 keliai).
+   * Tuščias arba nenurodytas = tik branduolys (core skaidrės). Skaidrė rodoma,
+   * jei ji core (neturi `pathBranch`) arba jos `pathBranch` sutampa su šiuo masyvu.
+   */
+  branchIds?: string[];
 }
 
 /** Kelionės pasirinkimo intro (Modulio 7 pirmoji skaidrė) – hook + pasirink savo kelionę + CTA */
@@ -1220,6 +1226,13 @@ export interface Slide {
   practicalTask?: PracticalTask;
   /** Ar skaidrė yra papildoma (optional) – mokiniui galima praleisti */
   optional?: boolean;
+  /**
+   * Teminių šakų id (Lygis B – M7 keliai). Jei nurodyta, skaidrė matoma tik tada,
+   * kai pasirinktas fokusas (`JourneyChoice.branchIds`) sutampa bent su viena šaka.
+   * Nenurodyta = branduolio (core) skaidrė – matoma visada. Remediation taikiniai
+   * (M8 `relatedSlideId`) NEGALI turėti `pathBranch`.
+   */
+  pathBranch?: string[];
   /** Modulio 9 role-quest: kuris veikėjas (1–4) atlieka šį scenarijų – rodoma asmens kortelė */
   characterId?: number;
   /** Modulio 9: ar scenarijus rekomenduojamas pradedantiesiems (101, 102, 105, 104) */
@@ -1246,23 +1259,33 @@ export interface BusinessExample {
 
 export type ModuleLevel = 'learn' | 'test' | 'practice';
 
-/** Modulio identiteto accent (DS v0.2 §1). */
+/**
+ * Modulio identiteto accent.
+ * M1–M6: spektras (DS v0.2 §1). M7–M15: per taką (DS v0.3) —
+ * sky (Duomenų analizė), fuchsia (Agentai), rose (Turinys).
+ */
 export type ModuleAccent =
   | 'brand'
   | 'slate'
   | 'emerald'
   | 'violet'
   | 'cyan'
-  | 'accent';
+  | 'accent'
+  | 'sky'
+  | 'fuchsia'
+  | 'rose';
 
-/** Lucide identity icon name for module eyebrow (DS v0.2 §1). */
+/** Lucide identity icon name for module eyebrow (DS v0.2 §1, plėtra DS v0.3). */
 export type ModuleIdentityIcon =
   | 'BookOpen'
   | 'ClipboardList'
   | 'Briefcase'
   | 'Brain'
   | 'ClipboardCheck'
-  | 'Rocket';
+  | 'Rocket'
+  | 'BarChart3'
+  | 'Cpu'
+  | 'Image';
 
 export type ModuleIcon =
   | 'Target'
@@ -1270,7 +1293,9 @@ export type ModuleIcon =
   | 'Settings'
   | 'BarChart3'
   | 'ClipboardCheck'
-  | 'Rocket';
+  | 'Rocket'
+  | 'Cpu'
+  | 'Image';
 
 export interface Module {
   id: number;
@@ -1284,9 +1309,9 @@ export interface Module {
   businessExamples: BusinessExample[];
   /** Modulio ID, po kurio šis modulis atrakinamas (jei nurodyta – naudojama vietoj „ankstesnis modulis masyve“). */
   unlocksAfter?: number;
-  /** Modulio identiteto accent (M1–M6). */
+  /** Modulio identiteto accent (M1–M6 spektras; M7–M15 per taką). */
   accent?: ModuleAccent;
-  /** Identity icon virš intro / ModulesPage eyebrow (M1–M6). */
+  /** Identity icon virš intro / ModulesPage eyebrow (M1–M15). */
   identityIcon?: ModuleIdentityIcon;
 }
 

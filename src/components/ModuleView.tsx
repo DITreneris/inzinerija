@@ -34,7 +34,7 @@ import ErrorBoundary from './ui/ErrorBoundary';
 import { selectQuestions } from '../utils/questionPoolSelector';
 import { buildSlideGroups, type SlideGroup } from '../utils/slidePhaseConfig';
 import { track } from '../utils/analytics';
-import type { Slide } from '../types/modules';
+import type { Slide, ActionIntroJourneyContent } from '../types/modules';
 import SlideContent from './SlideContent';
 
 const FAST_TRACK_KEY = 'prompt-anatomy-fast-track';
@@ -294,6 +294,25 @@ function ModuleView({
   const [resumeImmediate, setResumeImmediate] = useState(false);
   const [fastTrack, setFastTrack] = useState(() => getFastTrack());
 
+  /**
+   * Lygis B (M7 keliai): aktyvios teminės šakos pagal pasirinktą fokusą.
+   * `null` = fokusas nepasirinktas → rodyti visas skaidres. Tuščias masyvas
+   * = pasirinktas fokusas be šakų → tik branduolys.
+   */
+  const activeBranchIds = useMemo<string[] | null>(() => {
+    if (!module) return null;
+    const focusLabel = progress.moduleJourneyFocus?.[moduleId];
+    if (!focusLabel) return null;
+    const journeySlide = module.slides.find(
+      (s) => s.type === 'action-intro-journey'
+    );
+    const choices = (
+      journeySlide?.content as ActionIntroJourneyContent | undefined
+    )?.journeyChoices;
+    const choice = choices?.find((c) => c.label === focusLabel);
+    return choice?.branchIds ?? [];
+  }, [module, progress.moduleJourneyFocus, moduleId]);
+
   /** MVP Analytics: slide_view / slide_complete with time_on_slide */
   const slideEnterTimeRef = useRef<number>(Date.now());
   const prevSlideIndexRef = useRef<number | null>(null);
@@ -314,6 +333,8 @@ function ModuleView({
     showModuleComplete,
     setShowModuleComplete,
     savedSlidePosition,
+    visibleSlideCount,
+    visiblePosition,
   } = useSlideNavigation({
     module,
     moduleId,
@@ -322,6 +343,7 @@ function ModuleView({
     resumeImmediately: resumeImmediate,
     initialSlideIndex,
     skipOptional: fastTrack,
+    activeBranchIds,
   });
 
   const toggleFastTrack = useCallback(() => {
@@ -335,6 +357,19 @@ function ModuleView({
       return next;
     });
   }, []);
+
+  /** Lygis B rerun: iš santraukos grįžti į fokuso pasirinkimą (skaidrė 70). */
+  const handleRerunFocus = useCallback(() => {
+    if (!module) return;
+    const idx = module.slides.findIndex(
+      (s) => s.type === 'action-intro-journey'
+    );
+    if (idx >= 0) {
+      setShowModuleComplete(false);
+      setCurrentSlide(idx);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [module, setCurrentSlide, setShowModuleComplete]);
 
   const { isCompactNav } = useCompactViewport();
   const mobileCounterClass = isCompactNav ? 'py-1 px-3' : 'py-1.5 px-3';
@@ -677,9 +712,9 @@ function ModuleView({
   /** MVP Analytics D4: nudge prieš išeinant – jei modulyje peržiūrėta 1+ skaidrė ir < 80 % */
   useEffect(() => {
     if (!module?.slides?.length) return;
-    const total = module.slides.length;
-    const viewed = currentSlide + 1;
-    const pct = viewed / total;
+    const total = visibleSlideCount;
+    const viewed = visiblePosition;
+    const pct = total > 0 ? viewed / total : 0;
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (viewed > 1 && pct < 0.8) {
         e.preventDefault();
@@ -687,7 +722,7 @@ function ModuleView({
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [module?.slides?.length, currentSlide]);
+  }, [module?.slides?.length, visiblePosition, visibleSlideCount]);
 
   // Show loading if modules not yet loaded
   if (!modules) {
@@ -843,13 +878,13 @@ function ModuleView({
             <span
               className="flex items-center gap-2"
               aria-label={t('slideOf', {
-                current: currentSlide + 1,
-                total: module.slides.length,
+                current: visiblePosition,
+                total: visibleSlideCount,
               })}
             >
               <span>{t('slideShort')}</span>
               <span className="font-bold text-brand-600 dark:text-brand-400">
-                {currentSlide + 1} / {module.slides.length} {t('slidesSuffix')}
+                {visiblePosition} / {visibleSlideCount} {t('slidesSuffix')}
               </span>
             </span>
             {module.slides.some((s) => s.optional) && (
@@ -948,12 +983,12 @@ function ModuleView({
               <span
                 className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
                 aria-label={t('slideOf', {
-                  current: currentSlide + 1,
-                  total: module.slides.length,
+                  current: visiblePosition,
+                  total: visibleSlideCount,
                 })}
               >
-                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/
-                {module.slides.length}
+                {t('moduleLabel', { n: moduleId })} · {visiblePosition}/
+                {visibleSlideCount}
               </span>
             </div>
             {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
@@ -971,11 +1006,11 @@ function ModuleView({
               <span
                 className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
                 aria-label={t('slideOf', {
-                  current: currentSlide + 1,
-                  total: module.slides.length,
+                  current: visiblePosition,
+                  total: visibleSlideCount,
                 })}
               >
-                {currentSlide + 1}/{module.slides.length}
+                {visiblePosition}/{visibleSlideCount}
               </span>
               <button
                 type="button"
@@ -1013,7 +1048,7 @@ function ModuleView({
               <div
                 className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
                 style={{
-                  width: `${((currentSlide + 1) / module.slides.length) * 100}%`,
+                  width: `${visibleSlideCount > 0 ? (visiblePosition / visibleSlideCount) * 100 : 0}%`,
                 }}
               />
             </div>
@@ -1102,6 +1137,24 @@ function ModuleView({
               />
             </Suspense>
           </ErrorBoundary>
+
+          {moduleId === 7 &&
+            currentSlideData?.type === 'summary' &&
+            progress.moduleJourneyFocus?.[7] && (
+              <div className="mt-6 rounded-2xl border-2 border-dashed border-brand-300 dark:border-brand-700 bg-brand-50/60 dark:bg-brand-900/20 p-5 sm:p-6 text-center">
+                <p className="text-sm sm:text-base font-medium text-gray-800 dark:text-gray-200 mb-3">
+                  {t('module:rerunHint')}
+                </p>
+                <button
+                  type="button"
+                  onClick={handleRerunFocus}
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <RotateCcw className="w-5 h-5 flex-shrink-0" aria-hidden />
+                  <span>{t('module:rerunWithNewFocus')}</span>
+                </button>
+              </div>
+            )}
         </div>
       </div>
 
@@ -1124,13 +1177,13 @@ function ModuleView({
             <div
               className="hidden lg:flex items-center justify-center px-2 min-w-[60px] shrink-0"
               aria-label={t('slideOf', {
-                current: currentSlide + 1,
-                total: module.slides.length,
+                current: visiblePosition,
+                total: visibleSlideCount,
               })}
             >
               <p className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap">
-                {t('moduleLabel', { n: moduleId })} · {currentSlide + 1}/
-                {module.slides.length}
+                {t('moduleLabel', { n: moduleId })} · {visiblePosition}/
+                {visibleSlideCount}
               </p>
             </div>
 
@@ -1219,7 +1272,7 @@ function ModuleView({
               {t('slideShort')}
             </p>
             <p className="text-lg font-bold text-brand-600 dark:text-brand-400">
-              {currentSlide + 1}/{module.slides.length}
+              {visiblePosition}/{visibleSlideCount}
             </p>
           </div>
         </div>
