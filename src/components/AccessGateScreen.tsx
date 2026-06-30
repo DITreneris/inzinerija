@@ -1,9 +1,16 @@
 import { Lock, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { track, trackSpinoffClick } from '../utils/analytics';
-import { ECOSYSTEM_URLS } from '../constants/ecosystemUrls';
+import { buildEcosystemUrl } from '../constants/ecosystemUrls';
 
-const PRICING_URL = ECOSYSTEM_URLS.hubPricing;
+const PRICING_URL = buildEcosystemUrl('hubPricing', {
+  moduleId: 0,
+  touchpoint: 'access_gate_pricing',
+});
+const ENTER_URL = buildEcosystemUrl('enter', {
+  moduleId: 0,
+  touchpoint: 'access_gate',
+});
 
 export default function AccessGateScreen() {
   const { t } = useTranslation('modulesPage');
@@ -42,13 +49,13 @@ export default function AccessGateScreen() {
         </a>
         <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
           <a
-            href={ECOSYSTEM_URLS.enter}
+            href={ENTER_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
               trackSpinoffClick({
                 module_id: 0,
-                url: ECOSYSTEM_URLS.enter,
+                url: ENTER_URL,
                 cta_id: 'spinoff_enter',
                 cta_label: t('gateFreeLesson'),
               })

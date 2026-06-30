@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import { useCountUp } from '../utils/useCountUp';
-import { ECOSYSTEM_URLS } from '../constants/ecosystemUrls';
+import { buildEcosystemUrl } from '../constants/ecosystemUrls';
 import { EcosystemDeepenBlock } from './EcosystemDeepenBlock';
 import type { QuizQuestion } from '../types/modules';
 
@@ -42,6 +42,14 @@ export function QuizResultsView({
     (q) => answers[q.id] === q.correct
   ).length;
   const hasWrong = correctCount < questions.length;
+  const deepenHref = useMemo(
+    () =>
+      buildEcosystemUrl('deepen', {
+        moduleId: 2,
+        touchpoint: 'quiz_fail',
+      }),
+    []
+  );
 
   /** M3: klaidingi atsakymai pirmi – pirmas neteisingas iš karto matomas */
   const orderedQuestions = useMemo(() => {
@@ -219,7 +227,7 @@ export function QuizResultsView({
         {showDeepenSpinoff && (
           <div className="mt-6">
             <EcosystemDeepenBlock
-              href={ECOSYSTEM_URLS.deepen}
+              href={deepenHref}
               label={t('ecosystemDeepenLabel')}
               description={t('ecosystemDeepenDescription')}
               ariaLabel={t('ecosystemDeepenAria')}

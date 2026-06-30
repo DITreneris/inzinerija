@@ -54,14 +54,42 @@ export type BlogArticleCampaign = {
   touchpoint: string;
 };
 
+export type EcosystemUrlKey = keyof typeof ECOSYSTEM_URLS;
+
+export type EcosystemUrlCampaign = {
+  moduleId: number;
+  touchpoint: string;
+};
+
+export type EcosystemUrlOptions = {
+  medium?: 'spinoff' | 'handout';
+};
+
+/** Ecosystem URL with training UTM; hash targets stay intact (query is inserted before #hash). */
+export function buildEcosystemUrl(
+  key: EcosystemUrlKey,
+  campaign: EcosystemUrlCampaign,
+  options?: EcosystemUrlOptions
+): string {
+  const parsed = new URL(ECOSYSTEM_URLS[key]);
+  parsed.searchParams.set('utm_source', 'training');
+  parsed.searchParams.set('utm_medium', options?.medium ?? 'spinoff');
+  parsed.searchParams.set(
+    'utm_campaign',
+    `m${campaign.moduleId}_${campaign.touchpoint}`
+  );
+  return parsed.toString();
+}
+
 /** Deep link to a blog article with UTM for training spin-offs. */
 export function blogArticleUrl(
   slug: string,
-  campaign: BlogArticleCampaign
+  campaign: BlogArticleCampaign,
+  options?: { medium?: 'spinoff' | 'handout' }
 ): string {
   const params = new URLSearchParams({
     utm_source: 'training',
-    utm_medium: 'spinoff',
+    utm_medium: options?.medium ?? 'spinoff',
     utm_campaign: `m${campaign.moduleId}_${campaign.touchpoint}`,
   });
   return `${BLOG_ARTICLE_BASE}/${slug}/?${params.toString()}`;

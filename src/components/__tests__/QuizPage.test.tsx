@@ -281,7 +281,7 @@ describe('QuizPage', () => {
     expect(deepenLink).toBeInTheDocument();
     expect(deepenLink).toHaveAttribute(
       'href',
-      'https://www.promptanatomy.blog/'
+      'https://www.promptanatomy.blog/?utm_source=training&utm_medium=spinoff&utm_campaign=m2_quiz_fail'
     );
     expect(
       screen.queryByRole('link', {
