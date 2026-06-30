@@ -110,7 +110,7 @@ npm run test:coverage # Su coverage report
 
 **Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Apklausa.
 
-**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m10-m12.json`.
+**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`.
 
 ## ⚙️ Konfigūracija
 

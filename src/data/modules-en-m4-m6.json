@@ -5,7 +5,7 @@
       "title": "Context engineering",
       "subtitle": "Sources, tokens, manipulation, hallucinations",
       "description": "Sources (RAG), deep research, and tokens – how to control context and get more accurate answers.",
-      "icon": "Target",
+      "icon": "Brain",
       "level": "learn",
       "duration": "30–35 min",
       "slides": [
@@ -3371,7 +3371,7 @@
       "title": "Presentation sprint",
       "subtitle": "15 min presentation draft + mini knowledge quiz",
       "description": "15 min presentation draft + mini quiz. Brief → structure → slides. ≥70% recommended before Module 6.",
-      "icon": "Brain",
+      "icon": "ClipboardCheck",
       "level": "test",
       "duration": "15–18 min",
       "slides": [
@@ -3829,7 +3829,7 @@
       "title": "Project creation",
       "subtitle": "Practice: research report or Custom GPT project",
       "description": "One full project with 6 blocks: research report (with sources) or Custom GPT creation following the schema.",
-      "icon": "Settings",
+      "icon": "Rocket",
       "level": "practice",
       "duration": "25–35 min",
       "slides": [

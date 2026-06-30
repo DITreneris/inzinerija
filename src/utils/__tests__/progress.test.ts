@@ -25,7 +25,7 @@ const setupLocalStorage = () => {
         delete store[key];
       },
       clear: () => {
-        Object.keys(store).forEach(key => delete store[key]);
+        Object.keys(store).forEach((key) => delete store[key]);
       },
       get length() {
         return Object.keys(store).length;
@@ -53,7 +53,7 @@ describe('progress.ts', () => {
   describe('getProgress', () => {
     it('should return default progress when localStorage is empty', () => {
       const progress = getProgress();
-      
+
       expect(progress).toEqual({
         completedModules: [],
         completedTasks: {},
@@ -73,11 +73,14 @@ describe('progress.ts', () => {
         createdAt: '2026-02-02T00:00:00.000Z',
         updatedAt: '2026-02-02T00:00:00.000Z',
       };
-      
-      localStorage.setItem('prompt-anatomy-progress', JSON.stringify(v2Progress));
-      
+
+      localStorage.setItem(
+        'prompt-anatomy-progress',
+        JSON.stringify(v2Progress)
+      );
+
       const progress = getProgress();
-      
+
       expect(progress).toEqual({
         completedModules: [1, 2],
         completedTasks: { 1: [1, 2] },
@@ -93,11 +96,14 @@ describe('progress.ts', () => {
         quizCompleted: false,
         quizScore: null,
       };
-      
-      localStorage.setItem('prompt-anatomy-progress', JSON.stringify(v1Progress));
-      
+
+      localStorage.setItem(
+        'prompt-anatomy-progress',
+        JSON.stringify(v1Progress)
+      );
+
       const progress = getProgress();
-      
+
       // Should return valid progress
       expect(progress).toEqual({
         completedModules: [1],
@@ -106,7 +112,7 @@ describe('progress.ts', () => {
         quizScore: null,
         moduleTestScores: {},
       });
-      
+
       // Should save migrated version
       const stored = localStorage.getItem('prompt-anatomy-progress');
       expect(stored).toBeTruthy();
@@ -124,11 +130,14 @@ describe('progress.ts', () => {
         quizCompleted: false,
         quizScore: null,
       };
-      
-      localStorage.setItem('prompt-anatomy-progress', JSON.stringify(invalidProgress));
-      
+
+      localStorage.setItem(
+        'prompt-anatomy-progress',
+        JSON.stringify(invalidProgress)
+      );
+
       const progress = getProgress();
-      
+
       expect(progress).toEqual({
         completedModules: [],
         completedTasks: {},
@@ -140,9 +149,9 @@ describe('progress.ts', () => {
 
     it('should handle corrupted JSON gracefully', () => {
       localStorage.setItem('prompt-anatomy-progress', 'invalid json{');
-      
+
       const progress = getProgress();
-      
+
       expect(progress).toEqual({
         completedModules: [],
         completedTasks: {},
@@ -153,9 +162,11 @@ describe('progress.ts', () => {
     });
 
     it('should return default progress when localStorage access throws', () => {
-      const getItemSpy = vi.spyOn(localStorage, 'getItem').mockImplementation(() => {
-        throw new Error('Storage disabled');
-      });
+      const getItemSpy = vi
+        .spyOn(localStorage, 'getItem')
+        .mockImplementation(() => {
+          throw new Error('Storage disabled');
+        });
 
       const progress = getProgress();
 
@@ -179,14 +190,14 @@ describe('progress.ts', () => {
         quizCompleted: true,
         quizScore: 90,
       };
-      
+
       saveProgress(progress);
       // Flush debounced save to ensure it's written immediately
       flushProgressSave();
-      
+
       const stored = localStorage.getItem('prompt-anatomy-progress');
       expect(stored).toBeTruthy();
-      
+
       const parsed = JSON.parse(stored!);
       expect(parsed.version).toBe(2);
       expect(parsed.completedModules).toEqual([1, 2]);
@@ -203,23 +214,27 @@ describe('progress.ts', () => {
         quizCompleted: false,
         quizScore: null,
       };
-      
+
       saveProgress(initialProgress);
       flushProgressSave();
-      const firstSave = JSON.parse(localStorage.getItem('prompt-anatomy-progress')!);
+      const firstSave = JSON.parse(
+        localStorage.getItem('prompt-anatomy-progress')!
+      );
       const createdAt = firstSave.createdAt;
-      
+
       // Small delay
       const startTime = Date.now();
       while (Date.now() - startTime < 10) {
         // Wait 10ms
       }
-      
+
       // Save again
       saveProgress({ ...initialProgress, completedModules: [1, 2] });
       flushProgressSave();
-      const secondSave = JSON.parse(localStorage.getItem('prompt-anatomy-progress')!);
-      
+      const secondSave = JSON.parse(
+        localStorage.getItem('prompt-anatomy-progress')!
+      );
+
       expect(secondSave.createdAt).toBe(createdAt);
       // Both should be defined
       expect(secondSave.createdAt).toBeDefined();
@@ -235,11 +250,11 @@ describe('progress.ts', () => {
         quizCompleted: false,
         quizScore: null,
       };
-      
+
       saveProgress(progress);
       flushProgressSave();
       expect(localStorage.getItem('prompt-anatomy-progress')).toBeTruthy();
-      
+
       resetProgress();
       expect(localStorage.getItem('prompt-anatomy-progress')).toBeNull();
     });
@@ -253,9 +268,9 @@ describe('progress.ts', () => {
         quizCompleted: true,
         quizScore: 85,
       };
-      
+
       const v2 = migrateV1ToV2(v1);
-      
+
       expect(v2.version).toBe(2);
       expect(v2.completedModules).toEqual([1, 2]);
       expect(v2.completedTasks).toEqual({ 1: [1] });
@@ -275,92 +290,110 @@ describe('progress.ts', () => {
         quizCompleted: true,
         quizScore: 90,
       };
-      
+
       expect(validateProgress(valid)).toBe(true);
     });
 
     it('should reject invalid completedModules', () => {
-      expect(validateProgress({
-        completedModules: 'not array',
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: 'not array',
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
 
     it('should reject invalid completedTasks', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: 'not object',
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: 'not object',
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
 
     it('should reject invalid quizCompleted', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: 'not boolean',
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: 'not boolean',
+          quizScore: null,
+        })
+      ).toBe(false);
     });
 
     it('should reject invalid quizScore', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: 'not number or null',
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: 'not number or null',
+        })
+      ).toBe(false);
     });
 
     it('should accept null quizScore', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(true);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(true);
     });
 
     it('should reject non-number items in completedModules', () => {
-      expect(validateProgress({
-        completedModules: [1, 'not number', 2],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [1, 'not number', 2],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
 
     it('should reject non-number items in completedTasks arrays', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: { 1: [1, 'not number'] },
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: { 1: [1, 'not number'] },
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
   });
 
   describe('isProgressV1', () => {
     it('should identify v1 format', () => {
-      expect(isProgressV1({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(true);
+      expect(
+        isProgressV1({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(true);
     });
 
     it('should reject v2 format', () => {
-      expect(isProgressV1({
-        version: 2,
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        isProgressV1({
+          version: 2,
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
   });
 
@@ -401,44 +434,64 @@ describe('progress.ts', () => {
     });
 
     it('should reject moduleTestScores with non-number value', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-        moduleTestScores: { 5: 'not a number' },
-      })).toBe(false);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+          moduleTestScores: { 5: 'not a number' },
+        })
+      ).toBe(false);
     });
 
     it('should accept valid moduleTestScores with multiple entries', () => {
-      expect(validateProgress({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-        moduleTestScores: { 2: 90, 5: 75, 8: 60 },
-      })).toBe(true);
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+          moduleTestScores: { 2: 90, 5: 75, 8: 60 },
+        })
+      ).toBe(true);
+    });
+
+    it('should accept moduleJourneyFocus with stable choice ids', () => {
+      expect(
+        validateProgress({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+          moduleJourneyFocus: { 7: 'pardavimai' },
+        })
+      ).toBe(true);
     });
   });
 
   describe('isProgressV2', () => {
     it('should identify v2 format', () => {
-      expect(isProgressV2({
-        version: 2,
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(true);
+      expect(
+        isProgressV2({
+          version: 2,
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(true);
     });
 
     it('should reject v1 format', () => {
-      expect(isProgressV2({
-        completedModules: [],
-        completedTasks: {},
-        quizCompleted: false,
-        quizScore: null,
-      })).toBe(false);
+      expect(
+        isProgressV2({
+          completedModules: [],
+          completedTasks: {},
+          quizCompleted: false,
+          quizScore: null,
+        })
+      ).toBe(false);
     });
   });
 });

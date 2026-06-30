@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useMemo,
   Suspense,
   type ReactNode,
   type ReactElement,
@@ -262,11 +263,7 @@ import type {
   GlossaryContent,
   M9Character,
 } from '../types/modules';
-import m9CharactersData from '@m9-characters-data';
-
-const M9_CHARACTERS: M9Character[] = (
-  m9CharactersData as { characters: M9Character[] }
-).characters;
+import { getM9Characters } from '../data/m9CharactersLoader';
 
 export interface PracticeScenarioSlideInfo {
   slideIndex: number;
@@ -300,7 +297,7 @@ interface SlideContentProps {
   /** M9 įvade: paspaudus veikėją – atidaryti hub su tuo veikėju (characterIndex 0–3) */
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
   /** Modulio 7: išsaugoti kelionės fokuso etiketę (juostai modulyje) */
-  onJourneyFocusChoice?: (moduleId: number, choiceLabel: string) => void;
+  onJourneyFocusChoice?: (moduleId: number, choiceId: string) => void;
 }
 
 /** Context passed to each slide type renderer in the registry */
@@ -328,11 +325,13 @@ export interface SlideRenderContext {
   onNavigateToSlideById?: (slideId: number) => void;
   initialHubLevel1?: number | null;
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
-  onJourneyFocusChoice?: (moduleId: number, choiceLabel: string) => void;
+  onJourneyFocusChoice?: (moduleId: number, choiceId: string) => void;
   /** DS v0.2 E5 — modulio identitetas skaidrėms */
   moduleAccent: ModuleAccent;
   identityIcon?: LucideIcon;
   levelLabel: string;
+  locale: 'lt' | 'en';
+  m9Characters: M9Character[];
 }
 
 export default function SlideContent({
@@ -467,6 +466,11 @@ export default function SlideContent({
     </div>
   );
 
+  const m9Characters = useMemo(
+    () => getM9Characters(locale === 'en' ? 'en' : 'lt'),
+    [locale]
+  );
+
   const ctx: SlideRenderContext = {
     slide,
     moduleId,
@@ -490,6 +494,8 @@ export default function SlideContent({
     moduleAccent,
     identityIcon,
     levelLabel,
+    locale: locale === 'en' ? 'en' : 'lt',
+    m9Characters,
   };
 
   const renderer = slideRegistry[slide.type];
@@ -536,19 +542,20 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   },
   'action-intro-journey': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
-    const saved = ctx.progress.moduleJourneyFocus?.[ctx.moduleId] ?? null;
+    const savedFocusId =
+      ctx.progress.moduleJourneyFocus?.[ctx.moduleId] ?? null;
     return (
       <LazyActionIntroJourneySlide
         content={ctx.slide.content as ActionIntroJourneyContent}
         onJourneyComplete={() => ctx.handleTaskComplete(ctx.slide.id)}
-        savedFocusLabel={saved}
+        savedFocusId={savedFocusId}
         taskCompleted={
           ctx.progress.completedTasks[ctx.moduleId]?.includes(ctx.slide.id) ??
           false
         }
         onJourneyFocusSave={
           ctx.onJourneyFocusChoice
-            ? (choice) => ctx.onJourneyFocusChoice!(ctx.moduleId, choice.label)
+            ? (choice) => ctx.onJourneyFocusChoice!(ctx.moduleId, choice.id)
             : undefined
         }
       />
@@ -812,7 +819,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   'practice-scenario': (ctx) => {
     const character =
       ctx.moduleId === 9 && ctx.slide.characterId != null
-        ? M9_CHARACTERS.find((c) => c.id === ctx.slide.characterId)
+        ? ctx.m9Characters.find((c) => c.id === ctx.slide.characterId)
         : undefined;
     return (
       <LazyPracticeScenarioSlide

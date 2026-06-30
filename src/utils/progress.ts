@@ -1,4 +1,5 @@
 import { logError, logWarning, logInfo } from './logger';
+import { migrateModuleJourneyFocusLabelsToIds } from './moduleJourneyFocus';
 
 export interface Progress {
   completedModules: number[];
@@ -8,8 +9,8 @@ export interface Progress {
   /** Modulio testo rezultatas (procentais), pvz. Moduliai 2 ir 5 */
   moduleTestScores?: Record<number, number>;
   /**
-   * Modulio 7 action-intro-journey: išsaugotas orientacinio fokuso pavadinimas (pvz. „Pardavimai“).
-   * Raktas – moduleId, reikšmė – rodoma etiketė.
+   * Modulio 7 action-intro-journey: stable choice id (pvz. „pardavimai“).
+   * Raktas – moduleId; rodoma etiketė iš modules JSON pagal locale.
    */
   moduleJourneyFocus?: Record<number, string>;
 }
@@ -200,13 +201,26 @@ function migrateModule5SlideIds(
 function v2ToProgress(v2: ProgressV2): Progress {
   let completedTasks = migrateModule3SlideIds(v2.completedTasks);
   completedTasks = migrateModule5SlideIds(completedTasks);
+  const moduleJourneyFocus = migrateModuleJourneyFocusLabelsToIds(
+    v2.moduleJourneyFocus
+  );
+  if (
+    moduleJourneyFocus &&
+    v2.moduleJourneyFocus &&
+    moduleJourneyFocus !== v2.moduleJourneyFocus
+  ) {
+    logInfo('Migrated moduleJourneyFocus labels to choice ids', {
+      before: v2.moduleJourneyFocus,
+      after: moduleJourneyFocus,
+    });
+  }
   return {
     completedModules: v2.completedModules,
     completedTasks,
     quizCompleted: v2.quizCompleted,
     quizScore: v2.quizScore,
     moduleTestScores: v2.moduleTestScores,
-    moduleJourneyFocus: v2.moduleJourneyFocus,
+    moduleJourneyFocus,
   };
 }
 
@@ -242,7 +256,19 @@ export const getProgress = (): Progress => {
         resetProgress();
         return getDefaultProgress();
       }
-      return v2ToProgress(parsed);
+      const progress = v2ToProgress(parsed);
+      const migratedFocus = progress.moduleJourneyFocus;
+      if (
+        parsed.moduleJourneyFocus &&
+        migratedFocus &&
+        Object.entries(parsed.moduleJourneyFocus).some(
+          ([k, v]) => migratedFocus[Number(k)] !== v
+        )
+      ) {
+        saveProgress(progress);
+        flushProgressSave();
+      }
+      return progress;
     }
 
     // Unknown format - try to validate as Progress (for backward compatibility)

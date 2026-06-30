@@ -15,11 +15,13 @@ import {
 } from '../modulesLoader';
 import type { ModulesData, Module } from '../../types/modules';
 
-function minimalModule(overrides: Partial<Module> & { id: number; title: string }): Module {
+function minimalModule(
+  overrides: Partial<Module> & { id: number; title: string }
+): Module {
   return {
     subtitle: '',
     description: '',
-    icon: 'Target',
+    icon: 'BookOpen',
     level: 'learn',
     duration: '',
     slides: [],
@@ -61,6 +63,39 @@ const fakeModulesDataWith6: ModulesData = {
     minimalModule({ id: 4, title: 'M4' }),
     minimalModule({ id: 5, title: 'M5' }),
     minimalModule({ id: 6, title: 'M6' }),
+  ],
+  quiz: fakeModulesData.quiz,
+};
+
+/** Base with modules 7–9 so loadModules("en") can merge modules-en-m7-m9.json */
+const fakeModulesDataWith9: ModulesData = {
+  modules: [
+    ...fakeModulesDataWith6.modules,
+    minimalModule({
+      id: 7,
+      title: 'Duomenų analizė su DI',
+      subtitle: 'LT subtitle',
+      slides: [
+        {
+          id: 70,
+          title: 'Duomenų analizės kelias',
+          subtitle: 'LT',
+          type: 'action-intro-journey',
+          content: {
+            journeyChoices: [
+              {
+                id: 'pardavimai',
+                branchIds: ['viz'],
+                label: 'Pardavimai',
+                subtitle: 'LT',
+              },
+            ],
+          },
+        },
+      ],
+    }),
+    minimalModule({ id: 8, title: 'Modulio 8 testas', slides: [] }),
+    minimalModule({ id: 9, title: 'Modulio 9 projektas', slides: [] }),
   ],
   quiz: fakeModulesData.quiz,
 };
@@ -212,8 +247,13 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     mockDataHolder.data = fakeModulesDataWith6;
     __clearCacheForTesting();
     const data = await loadModules('en', 'en-lt');
-    const introSlide = data.modules[3]?.slides?.find((slide) => slide.id === 38);
-    expect((introSlide?.content as { unstructuredPrompt?: string })?.unstructuredPrompt).toBe("Write me a report on Lithuania's GDP trends.");
+    const introSlide = data.modules[3]?.slides?.find(
+      (slide) => slide.id === 38
+    );
+    expect(
+      (introSlide?.content as { unstructuredPrompt?: string })
+        ?.unstructuredPrompt
+    ).toBe("Write me a report on Lithuania's GDP trends.");
   }, 20000);
 
   it('loadModules("en", "en-us") applies US overrides on top of base EN', async () => {
@@ -226,15 +266,34 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     const m4Content = m4Intro?.content as { unstructuredPrompt?: string };
     expect(m1Content?.structuredPrompt).toContain('Budget 50k USD');
     expect(m1Content?.structuredPrompt).toContain('Target market: US');
-    expect(m4Content?.unstructuredPrompt).toBe('Write me a report on US GDP trends.');
+    expect(m4Content?.unstructuredPrompt).toBe(
+      'Write me a report on US GDP trends.'
+    );
   }, 20000);
 
   it('US variant falls back to base EN where override is not provided', async () => {
     mockDataHolder.data = fakeModulesDataWith6;
     __clearCacheForTesting();
     const data = await loadModules('en', 'en-us');
-    const deepResearchSlide = data.modules[3]?.slides?.find((slide) => slide.id === 65);
+    const deepResearchSlide = data.modules[3]?.slides?.find(
+      (slide) => slide.id === 65
+    );
     expect(deepResearchSlide?.title).toBe('Practical tasks: prompt sequences');
+  }, 20000);
+
+  it('loadModules("en") merges EN content for M7–M9 when present', async () => {
+    mockDataHolder.data = fakeModulesDataWith9;
+    __clearCacheForTesting();
+    const data = await loadModules('en');
+    const m7 = data.modules.find((m) => m.id === 7);
+    expect(m7?.title).toBe('Data analysis with AI');
+    const slide70 = m7?.slides.find((s) => s.id === 70);
+    expect(slide70?.title).toBe('Data Analysis path');
+    const choice = (
+      slide70?.content as { journeyChoices?: { id: string; label: string }[] }
+    )?.journeyChoices?.[0];
+    expect(choice?.id).toBe('pardavimai');
+    expect(choice?.label).toBe('Sales');
   }, 20000);
 
   it('keeps separate cache entries for en-lt and en-us', async () => {
@@ -247,9 +306,19 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     expect(enLt).not.toBe(enUs);
     expect(getModulesDataSync('en', 'en-lt')).toBe(enLt);
     expect(getModulesDataSync('en', 'en-us')).toBe(enUs);
-    expect((getModulesDataSync('en', 'en-lt')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content as { unstructuredPrompt?: string })?.unstructuredPrompt)
-      .toBe("Write me a report on Lithuania's GDP trends.");
-    expect((getModulesDataSync('en', 'en-us')?.modules[3]?.slides?.find((slide) => slide.id === 38)?.content as { unstructuredPrompt?: string })?.unstructuredPrompt)
-      .toBe('Write me a report on US GDP trends.');
+    expect(
+      (
+        getModulesDataSync('en', 'en-lt')?.modules[3]?.slides?.find(
+          (slide) => slide.id === 38
+        )?.content as { unstructuredPrompt?: string }
+      )?.unstructuredPrompt
+    ).toBe("Write me a report on Lithuania's GDP trends.");
+    expect(
+      (
+        getModulesDataSync('en', 'en-us')?.modules[3]?.slides?.find(
+          (slide) => slide.id === 38
+        )?.content as { unstructuredPrompt?: string }
+      )?.unstructuredPrompt
+    ).toBe('Write me a report on US GDP trends.');
   }, 20000);
 });

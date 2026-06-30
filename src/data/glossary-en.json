@@ -224,6 +224,41 @@
       "term": "Tool Use",
       "definition": "The AI uses external tools – search, API calls, calculations, retrieval from a database; needed for agentic prompts and RAG.",
       "moduleId": 4
+    },
+    {
+      "term": "Dashboard",
+      "definition": "Single-screen report with key metrics, charts, and trends – status at a glance. AI can help generate dashboard structure or copy.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data analysis pipeline",
+      "definition": "Sequential data path: collection → preparation → exploratory analysis → models → visualization → publishing. Each step has its own AI prompts.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data cleaning",
+      "definition": "Data preparation: remove duplicates, fill missing values, unify formats. Required before analysis; AI can suggest cleaning steps and prompts.",
+      "moduleId": 7
+    },
+    {
+      "term": "EDA",
+      "definition": "Exploratory data analysis – first step before models: see what is in the data, patterns, outliers. AI can help with stats, correlations, and hypotheses.",
+      "moduleId": 7
+    },
+    {
+      "term": "Synthesis",
+      "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
+      "moduleId": 7
+    },
+    {
+      "term": "Source citation",
+      "definition": "Prompt section listing data or information sources (pages, reports, official data). Reduces errors and improves answer grounding.",
+      "moduleId": 7
+    },
+    {
+      "term": "Visualization",
+      "definition": "Presenting data in charts, tables, or diagrams – to understand trends and conclusions. AI can generate visualization specs or code.",
+      "moduleId": 7
     }
   ]
 }

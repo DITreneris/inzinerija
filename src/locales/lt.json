@@ -293,7 +293,9 @@
     "phaseMasterPrompt": "MASTER",
     "phaseVisualization": "Vizualizacija",
     "m7JourneyFocus": "Tavo fokusas: {{label}}",
-    "m7JourneyFocusAria": "Modulio 7 orientacinis fokusas"
+    "m7JourneyFocusAria": "Modulio 7 orientacinis fokusas",
+    "enPartialContentNotice": "Ši skaidrė dar ne visiškai išversta. Branduolio kelias anglų kalba; kai kurios šakos ar papildomas turinys gali likti lietuviškai.",
+    "enPartialContentDismiss": "Slėpti pranešimą"
   },
   "quiz": {
     "title": "Apklausa",

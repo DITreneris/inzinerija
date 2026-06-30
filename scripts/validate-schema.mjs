@@ -44,7 +44,26 @@ function validateModules() {
     return false;
   }
   console.log('modules.json: OK');
-  return true;
+  return validateModuleIconIdentitySync(data, 'modules.json');
+}
+
+/** DS v0.3.1: icon must match identityIcon when identityIcon is set. */
+function validateModuleIconIdentitySync(data, label) {
+  if (!Array.isArray(data.modules)) return true;
+  let ok = true;
+  for (const mod of data.modules) {
+    if (!mod.identityIcon) continue;
+    if (mod.icon !== mod.identityIcon) {
+      console.error(
+        `${label} validation failed:\n  M${mod.id}: icon "${mod.icon}" !== identityIcon "${mod.identityIcon}"`
+      );
+      ok = false;
+    }
+  }
+  if (ok && data.modules.some((m) => m.identityIcon)) {
+    console.log(`${label}: icon/identityIcon sync OK`);
+  }
+  return ok;
 }
 
 function validateCoreModules() {
@@ -71,7 +90,7 @@ function validateCoreModules() {
     return false;
   }
   console.log('modules-m1-m6.json: OK');
-  return true;
+  return validateModuleIconIdentitySync(data, 'modules-m1-m6.json');
 }
 
 /**
@@ -102,7 +121,7 @@ function validateCorporateModules() {
     return false;
   }
   console.log('modules-m1-m9.json: OK');
-  return true;
+  return validateModuleIconIdentitySync(data, 'modules-m1-m9.json');
 }
 
 function validateCorporateGlossary() {
@@ -222,6 +241,83 @@ function validateModulesEnM1012() {
   return true;
 }
 
+function validateModulesEnM79() {
+  /** Partial EN overrides merged by id – not full module documents (see modulesLoader deepMerge). */
+  const partialSchema = {
+    type: 'object',
+    required: ['modules'],
+    additionalProperties: false,
+    properties: {
+      modules: {
+        type: 'array',
+        minItems: 3,
+        maxItems: 3,
+        items: {
+          type: 'object',
+          required: ['id'],
+          additionalProperties: true,
+          properties: {
+            id: { type: 'number', enum: [7, 8, 9] },
+            title: { type: 'string' },
+            subtitle: { type: 'string' },
+            description: { type: 'string' },
+            duration: { type: 'string' },
+            slides: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['id'],
+                additionalProperties: true,
+                properties: {
+                  id: { type: 'number' },
+                  title: { type: 'string' },
+                  subtitle: { type: 'string' },
+                  type: { type: 'string' },
+                  content: { type: 'object' },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+  const dataPath = join(dataDir, 'modules-en-m7-m9.json');
+  if (!existsSync(dataPath)) {
+    console.log('modules-en-m7-m9.json: SKIP (optional EN overlay, file not present)');
+    return true;
+  }
+  let data;
+  try {
+    data = JSON.parse(readFileSync(dataPath, 'utf8'));
+  } catch (e) {
+    console.error(`Failed to read ${dataPath}:`, e.message);
+    return false;
+  }
+  if (!Array.isArray(data.modules) || data.modules.length === 0) {
+    console.log('modules-en-m7-m9.json: OK (empty stub until full EN overlay)');
+    return true;
+  }
+  const validate = ajv.compile(partialSchema);
+  const valid = validate(data);
+  if (!valid) {
+    console.error('modules-en-m7-m9.json validation failed:\n');
+    validate.errors.forEach((err) => {
+      const p = err.instancePath || '/';
+      console.error(`  ${p}: ${err.message}`);
+      if (err.params?.allowedValues) console.error(`    (allowed: ${err.params.allowedValues.join(', ')})`);
+    });
+    return false;
+  }
+  const ids = data.modules.map((m) => m.id);
+  if (!ids.includes(7) || !ids.includes(8) || !ids.includes(9)) {
+    console.error('modules-en-m7-m9.json: expected modules id 7, 8, 9');
+    return false;
+  }
+  console.log('modules-en-m7-m9.json: OK');
+  return true;
+}
+
 function validateModulesEnM46() {
   const schemaPath = join(__dirname, 'schemas', 'modules.schema.json');
   const fullSchema = loadJson(schemaPath);
@@ -254,7 +350,7 @@ function validateModulesEnM46() {
     return false;
   }
   console.log('modules-en-m4-m6.json: OK');
-  return true;
+  return validateModuleIconIdentitySync(data, 'modules-en-m4-m6.json');
 }
 
 function validatePromptLibrary() {
@@ -372,6 +468,7 @@ function main() {
     && validateCorporateModules()
     && validateModulesEnM46()
     && validateModulesEnM1012()
+    && validateModulesEnM79()
     && validatePromptLibrary()
     && validateGlossary()
     && validateCoreGlossary()

@@ -1,0 +1,40 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Jūratė",
+      "age": 28,
+      "profession": "Business analyst",
+      "experience": "4 years in customer and market analysis",
+      "hobby": "Digital photography",
+      "imagePath": "/characters/veikejas-1.png"
+    },
+    {
+      "id": 2,
+      "name": "Martynas",
+      "age": 34,
+      "profession": "Data analyst",
+      "experience": "7 years in EDA and risk assessment",
+      "hobby": "Running, marathons",
+      "imagePath": "/characters/veikejas-2.png"
+    },
+    {
+      "id": 3,
+      "name": "Giedrė",
+      "age": 31,
+      "profession": "Business consultant (CFO/HR)",
+      "experience": "5 years in finance and HR analysis",
+      "hobby": "Books, travel",
+      "imagePath": "/characters/veikejas-3.png"
+    },
+    {
+      "id": 4,
+      "name": "Lukas",
+      "age": 26,
+      "profession": "Visualization and BI specialist",
+      "experience": "3 years in Power BI, Python, data storytelling",
+      "hobby": "Music, guitar",
+      "imagePath": "/characters/veikejas-4.png"
+    }
+  ]
+}

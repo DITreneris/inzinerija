@@ -1,5 +1,5 @@
 /**
- * Glossary loader by locale (LT full, EN modules 1–6).
+ * Glossary loader by locale (LT full, EN overlay for modules 1–9+).
  */
 import type { ModulesLocale } from './modulesLoader';
 import glossaryLt from '@glossary-data';

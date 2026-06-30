@@ -45,6 +45,7 @@ import {
 } from '../../../utils/m6HandoutPdf';
 import { getM6HandoutContent } from '../../../data/handoutContentLoader';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { findJourneyChoiceByStored } from '../../../utils/moduleJourneyFocus';
 import {
   CopyButton,
   TemplateBlock,
@@ -192,8 +193,8 @@ const JOURNEY_ICONS: Record<
 export interface ActionIntroJourneySlideProps {
   content: ActionIntroJourneyContent;
   onJourneyComplete?: () => void;
-  /** Išsaugotas fokusas (progresas) – atkurti būseną grįžus prie skaidrės */
-  savedFocusLabel?: string | null;
+  /** Išsaugotas fokusas (progresas) – stable choice id, atkurti būseną grįžus prie skaidrės */
+  savedFocusId?: string | null;
   /** Užduotis jau pažymėta – rodyti patvirtinimą be pakartotinio paspaudimo */
   taskCompleted?: boolean;
   /** Išsaugoti pasirinktą sritį (rodoma juostoje modulyje) */
@@ -203,7 +204,7 @@ export interface ActionIntroJourneySlideProps {
 export function ActionIntroJourneySlide({
   content,
   onJourneyComplete,
-  savedFocusLabel = null,
+  savedFocusId = null,
   taskCompleted = false,
   onJourneyFocusSave,
 }: ActionIntroJourneySlideProps) {
@@ -219,13 +220,14 @@ export function ActionIntroJourneySlide({
   const ctaContinue = content.ctaContinue ?? t('journeyStartCta');
 
   useEffect(() => {
-    if (!taskCompleted || !savedFocusLabel) return;
-    const match = content.journeyChoices.find(
-      (c) => c.label === savedFocusLabel
+    if (!taskCompleted || !savedFocusId) return;
+    const match = findJourneyChoiceByStored(
+      content.journeyChoices,
+      savedFocusId
     );
     if (match) setSelected(match);
     setConfirmed(true);
-  }, [taskCompleted, savedFocusLabel, content.journeyChoices]);
+  }, [taskCompleted, savedFocusId, content.journeyChoices]);
 
   const handleConfirm = () => {
     if (selected) onJourneyFocusSave?.(selected);

@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { spacingClasses, radiusClasses } from '../design-tokens';
 import { Progress } from '../utils/progress';
+import { findJourneyChoiceByStored } from '../utils/moduleJourneyFocus';
+import { isSlideLikelyUntranslatedForEn } from '../utils/enPartialCoverage';
 import { getModulesSync, preloadModules } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import {
@@ -171,7 +173,7 @@ interface ModuleViewProps {
     testScore?: number
   ) => void;
   /** Modulio 7: išsaugoti kelionės fokusą (juostai virš skaidrės) */
-  onJourneyFocusChoice?: (moduleId: number, choiceLabel: string) => void;
+  onJourneyFocusChoice?: (moduleId: number, choiceId: string) => void;
   onContinueToNext: (currentModuleId: number) => void;
   onGoToModule?: (
     moduleId: number,
@@ -293,6 +295,8 @@ function ModuleView({
   const [resumeDecided, setResumeDecided] = useState(false);
   const [resumeImmediate, setResumeImmediate] = useState(false);
   const [fastTrack, setFastTrack] = useState(() => getFastTrack());
+  const [enPartialNoticeDismissed, setEnPartialNoticeDismissed] =
+    useState(false);
 
   /**
    * Lygis B (M7 keliai): aktyvios teminės šakos pagal pasirinktą fokusą.
@@ -301,17 +305,34 @@ function ModuleView({
    */
   const activeBranchIds = useMemo<string[] | null>(() => {
     if (!module) return null;
-    const focusLabel = progress.moduleJourneyFocus?.[moduleId];
-    if (!focusLabel) return null;
+    const storedFocus = progress.moduleJourneyFocus?.[moduleId];
+    if (!storedFocus) return null;
     const journeySlide = module.slides.find(
       (s) => s.type === 'action-intro-journey'
     );
     const choices = (
       journeySlide?.content as ActionIntroJourneyContent | undefined
     )?.journeyChoices;
-    const choice = choices?.find((c) => c.label === focusLabel);
+    const choice = choices
+      ? findJourneyChoiceByStored(choices, storedFocus)
+      : undefined;
     return choice?.branchIds ?? [];
   }, [module, progress.moduleJourneyFocus, moduleId]);
+
+  const m7JourneyFocusLabel = useMemo(() => {
+    if (moduleId !== 7 || !module) return null;
+    const storedFocus = progress.moduleJourneyFocus?.[7];
+    if (!storedFocus) return null;
+    const journeySlide = module.slides.find(
+      (s) => s.type === 'action-intro-journey'
+    );
+    const choices = (
+      journeySlide?.content as ActionIntroJourneyContent | undefined
+    )?.journeyChoices;
+    return choices
+      ? (findJourneyChoiceByStored(choices, storedFocus)?.label ?? storedFocus)
+      : storedFocus;
+  }, [module, moduleId, progress.moduleJourneyFocus]);
 
   /** MVP Analytics: slide_view / slide_complete with time_on_slide */
   const slideEnterTimeRef = useRef<number>(Date.now());
@@ -345,6 +366,19 @@ function ModuleView({
     skipOptional: fastTrack,
     activeBranchIds,
   });
+
+  useEffect(() => {
+    setEnPartialNoticeDismissed(false);
+  }, [currentSlideData?.id]);
+
+  const showEnPartialNotice = useMemo(() => {
+    if (locale !== 'en' || enPartialNoticeDismissed) return false;
+    if (moduleId < 7 || moduleId > 9 || !currentSlideData) return false;
+    return isSlideLikelyUntranslatedForEn(
+      currentSlideData.title,
+      currentSlideData.subtitle
+    );
+  }, [locale, moduleId, currentSlideData, enPartialNoticeDismissed]);
 
   const toggleFastTrack = useCallback(() => {
     setFastTrack((prev) => {
@@ -1052,14 +1086,14 @@ function ModuleView({
                 }}
               />
             </div>
-            {moduleId === 7 && progress.moduleJourneyFocus?.[7] && (
+            {moduleId === 7 && m7JourneyFocusLabel && (
               <div
                 className="px-3 py-2 text-center text-xs sm:text-sm font-medium text-brand-800 dark:text-brand-200 bg-brand-50/90 dark:bg-brand-950/50 border-t border-brand-100 dark:border-brand-900/60"
                 role="status"
                 aria-label={t('module:m7JourneyFocusAria')}
               >
                 {t('module:m7JourneyFocus', {
-                  label: progress.moduleJourneyFocus[7],
+                  label: m7JourneyFocusLabel,
                 })}
               </div>
             )}
@@ -1105,6 +1139,21 @@ function ModuleView({
                 <LoadingSpinner size="md" text={t('module:slideShort')} />
               }
             >
+              {showEnPartialNotice && (
+                <div
+                  className="mb-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 px-4 py-3 text-sm text-amber-900 dark:text-amber-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                  role="status"
+                >
+                  <p>{t('module:enPartialContentNotice')}</p>
+                  <button
+                    type="button"
+                    onClick={() => setEnPartialNoticeDismissed(true)}
+                    className="text-xs font-semibold underline shrink-0 self-end sm:self-center"
+                  >
+                    {t('module:enPartialContentDismiss')}
+                  </button>
+                </div>
+              )}
               <SlideContent
                 slide={currentSlideData}
                 moduleId={moduleId}
@@ -1140,7 +1189,7 @@ function ModuleView({
 
           {moduleId === 7 &&
             currentSlideData?.type === 'summary' &&
-            progress.moduleJourneyFocus?.[7] && (
+            m7JourneyFocusLabel && (
               <div className="mt-6 rounded-2xl border-2 border-dashed border-brand-300 dark:border-brand-700 bg-brand-50/60 dark:bg-brand-900/20 p-5 sm:p-6 text-center">
                 <p className="text-sm sm:text-base font-medium text-gray-800 dark:text-gray-200 mb-3">
                   {t('module:rerunHint')}

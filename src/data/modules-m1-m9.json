@@ -5,7 +5,7 @@
       "title": "6 Blokų Sistema",
       "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
       "description": "6 promptų struktūros blokai, vienas nuoseklus mokymas – sistema nuo A iki Z.",
-      "icon": "Target",
+      "icon": "BookOpen",
       "level": "learn",
       "duration": "25 min",
       "slides": [
@@ -911,7 +911,7 @@
       "title": "Žinių Patikrinimas",
       "subtitle": "15 atsitiktinių klausimų iš nuolat atnaujinamo banko.",
       "description": "15 klausimų 5 tipais: pasirinkimas, porų sujungimas, rikiavimas, tiesa/netiesa ir scenarijai.",
-      "icon": "Brain",
+      "icon": "ClipboardList",
       "level": "test",
       "duration": "10 min",
       "slides": [
@@ -1401,7 +1401,7 @@
       "title": "Praktinis Pritaikymas",
       "subtitle": "6 verslo scenarijai su 6 blokais",
       "description": "6 skirtingi scenarijai – sukurkite savo promptus ir sukurkite šablonų biblioteką.",
-      "icon": "Settings",
+      "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",
       "slides": [
@@ -2036,7 +2036,7 @@
       "title": "Konteksto inžinerija",
       "subtitle": "Šaltiniai, tokenai, manipuliacijos, haliucinacijos",
       "description": "Šaltiniai (RAG), gilusis tyrimas ir tokenai – kaip valdyti kontekstą ir gauti tikslesnius atsakymus.",
-      "icon": "Target",
+      "icon": "Brain",
       "level": "learn",
       "duration": "30–35 min",
       "slides": [
@@ -5420,7 +5420,7 @@
       "title": "Prezentacijos sprintas",
       "subtitle": "15 min prezentacijos draftas + mini suvokimo testas",
       "description": "15 min prezentacijos draftas + mini testas. Brief → struktūra → skaidrės. ≥70% rekomenduojama prieš Modulį 6.",
-      "icon": "Brain",
+      "icon": "ClipboardCheck",
       "level": "test",
       "duration": "15–18 min",
       "slides": [
@@ -5881,7 +5881,7 @@
       "title": "Projekto kūrimas",
       "subtitle": "Praktika: tyrimo ataskaita arba Custom GPT projektas",
       "description": "Vienas pilnas projektas su 6 blokais: tyrimo ataskaita (su šaltiniais) arba Custom GPT kūrimas pagal schemą.",
-      "icon": "Settings",
+      "icon": "Rocket",
       "level": "practice",
       "duration": "25–35 min",
       "slides": [

@@ -293,7 +293,9 @@
     "phaseMasterPrompt": "Master prompt",
     "phaseVisualization": "Visualization",
     "m7JourneyFocus": "Your focus: {{label}}",
-    "m7JourneyFocusAria": "Module 7 orientation focus"
+    "m7JourneyFocusAria": "Module 7 orientation focus",
+    "enPartialContentNotice": "This slide is not fully translated yet. Core path slides are in English; some branch or optional content may still appear in Lithuanian.",
+    "enPartialContentDismiss": "Dismiss notice"
   },
   "quiz": {
     "title": "Quiz",

@@ -11,7 +11,7 @@
 | **Moduliai 1–6**                          | ✅ Pilnai                | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Full SOT: `modules.json`; MVP profilis: `modules-m1-m6.json`; EN: `modules-en.json` (M1–M3), `modules-en-m4-m6.json` (M4–M6).                 |
 | **Moduliai 7–9**                          | ✅ Korporatyvinis bundle | Duomenų analizės kelias; `*-m1-m9.json`; `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`).                                                                                                          |
 | **Moduliai 10–12**                        | ✅ Turinys full kataloge | Agentų kelias: taksonomija (10.45), workflow šablonai (10.48), M11 testas, M12 capstone; EN partial overlay `modules-en-m10-m12.json`.                                                                    |
-| **LT/EN (i18n)**                          | ✅ UI + M1–M12 turinys   | Kalbos perjungiklis; modulių turinys per loader merge; M10–12 EN tik kai kataloge `maxModuleId >= 10`.                                                                                                    |
+| **LT/EN (i18n)**                          | ✅ UI + M1–M12 turinys   | Kalbos perjungiklis; modulių turinys per loader merge; M7–9 EN overlay `modules-en-m7-m9.json` (lean + expansion); M10–12 EN kai `maxModuleId >= 10`.                                                     |
 | **Žodynėlis**                             | ✅                       | `glossary.json` / `glossary-en.json`, `getGlossary(locale)`. Path-step žodynėlio atrakinimas (M7+).                                                                                                       |
 | **Apklausa**                              | ✅                       | Klausimai iš `modules.json` (M2) + `questionPool` / `questionPool-en`; `selectQuestions(locale)`.                                                                                                         |
 | **Sertifikatai**                          | ✅                       | Tier 1 (po 3 mod.), tier 2 (po 6 + quiz ≥70%), tier 3 (po 7–9 + M8 testas ≥70%). PDF: `certificatePdf.ts`, NotoSans.                                                                                      |
@@ -38,6 +38,7 @@
 | `modules-m1-m9.json`                       | Korporatyvinis `1–9` build (`VITE_MAX_BUILD_MODULE=9`)               | LT                                                    |
 | `modules-en.json`                          | M1–M3 pilnas turinys EN                                              | `locale === 'en'`                                     |
 | `modules-en-m4-m6.json`                    | M4–M6 pilnas turinys EN                                              | `locale === 'en'`                                     |
+| `modules-en-m7-m9.json`                    | M7–M9 EN deep-merge overlay (lean + branch/scenario expansion)       | `locale === 'en'`, merge jei `maxModuleId >= 7`       |
 | `modules-en-m10-m12.json`                  | M10–M12 EN deep-merge overlay (body pilnas)                          | `locale === 'en'`, merge jei `maxModuleId >= 10`      |
 | `glossary.json` / `glossary-en.json`       | Full žodynėlio terminai                                              | `getGlossary(locale)`                                 |
 | `glossary-m1-m6.json`                      | MVP žodynėlio profilis                                               | LT                                                    |
@@ -60,7 +61,7 @@
 
 - **Namespace (16):** common, nav, home, module, quiz, glossary, modulesPage, certificate, stepper, testPractice, vaizdoGen, contentSlides, diagrams, toolsPage, promptLibrary, aiDetectors.
 - **Komponentai naudoja `useLocale()` / `useTranslation()`:** App, AppNav, HomePage, ModulesPage, ModuleView, QuizPage, GlossaryPage, CertificateScreen, ModuleCompleteScreen, SlideContent, ContentSlides (DiModalitiesSlide, block slides, …), TestPracticeSlides, VaizdoGeneratoriusSlide, AiDetectorsSlide, ProcessStepper, visi diagramų/blokų komponentai (LlmArch, Schema3, ContextEngineeringPipeline, …), VeiksmoIntroBlock.
-- **Liko ne visur:** Kai kurios skaidrės moduliuose 7–15 turi tik LT turinį; VaizdoGeneratoriusSlide body tekstai – vaizdoGen namespace (jau EN). Pilnas P2 i18n likusioms skaidrėms – atskira užduotis.
+- **Liko ne visur:** Moduliai 13–15 turi tik LT turinį; VaizdoGeneratoriusSlide body tekstai – vaizdoGen namespace (jau EN). M7–9 EN overlay padengia branduolį, šakas ir M9 scenarijus (`npm run audit:en-coverage-m7-m9`).
 
 ---
 

@@ -5,7 +5,7 @@
       "title": "6-Block System",
       "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
       "description": "Six prompt structure blocks in one clear course – the full system from A to Z.",
-      "icon": "Target",
+      "icon": "BookOpen",
       "level": "learn",
       "duration": "25 min",
       "slides": [
@@ -911,7 +911,7 @@
       "title": "Knowledge check",
       "subtitle": "15 random questions from an updated question bank.",
       "description": "Five formats: multiple choice, matching, ordering, true/false, and scenario-based questions.",
-      "icon": "Brain",
+      "icon": "ClipboardList",
       "level": "test",
       "duration": "10 min",
       "slides": [
@@ -1401,7 +1401,7 @@
       "title": "Practical application",
       "subtitle": "6 business scenarios with 6 blocks",
       "description": "6 different scenarios – create your prompts and build a template library.",
-      "icon": "Settings",
+      "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",
       "slides": [
