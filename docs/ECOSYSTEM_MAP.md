@@ -16,7 +16,11 @@
 | Hub, checkout, training (`/anatomy/`) | `promptanatomy.app`                                      |
 | Spin-off kit'ai                       | `promptanatomy.{cloud,info,space,help,ceo,pro,blog,lol}` |
 
-**Blog deep links:** `https://www.promptanatomy.blog/articles/{slug}/?utm_source=training&utm_medium=spinoff&utm_campaign=m{module}_{touchpoint}`
+**UTM (kodo sluoksnis):** programinės ekosistemos nuorodos naudoja `buildEcosystemUrl()` / `blogArticleUrl()` iš [`ecosystemUrls.ts`](../src/constants/ecosystemUrls.ts) – `utm_source=training`, `utm_medium=spinoff|handout`, `utm_campaign=m{module}_{touchpoint}`. Hash target'ai (`#ecosystem`, `#anatomizer`) lieka po query.
+
+**Blog deep links:** `https://www.promptanatomy.blog/articles/{slug}/?utm_source=training&utm_medium=spinoff&utm_campaign=m{module}_{touchpoint}`. PDF handout'ai naudoja tą pačią kampanijų logiką, bet `utm_medium=handout`.
+
+**Likęs darbas (SHOULD):** JSON `spinoffCta.url` (M4 section-break info/space/map) dar gali būti be UTM – render sluoksnis arba JSON sync.
 
 ---
 
@@ -39,6 +43,7 @@
 | ------------------- | --------------- | ----------------- | --------------------------------- | ----------------------------------- | ----------------------------------------------- |
 | Gate                | Hub + Enter     | app, cloud        | AccessGateScreen                  | `#pricing`, cloud                   | `pricing_click`, `spinoff_enter`                |
 | M1                  | Enter           | cloud, anatomizer | ModuleCompleteScreen (secondary)  | cloud, site#anatomizer              | `spinoff_enter`, `spinoff_anatomizer`           |
+| M1 handout          | First win       | none              | ModuleCompleteScreen (download)   | value-only PDF, be outbound         | `m1_handout_pdf`                                |
 | M2                  | Deepen          | blog              | QuizResultsView (score &lt; 70 %) | blog (homepage)                     | `spinoff_deepen`                                |
 | M3                  | Use + Hub       | info, help, app   | ModuleComplete + upsell           | info, help, `#pricing`              | `spinoff_use`, `spinoff_hire`, `pricing_click`  |
 | M4 §4.1 (40.5)      | Use             | info              | section-break                     | info `/lt/` \| `/en/`               | `spinoff_use`                                   |
@@ -58,6 +63,7 @@
 | M7      | section-break `66.9`   | Deepen                | `grounding-ai-outputs`                               | `spinoff_deepen`                                  |
 | M8      | test-results fail      | Deepen                | `rag-in-production`                                  | `spinoff_deepen`                                  |
 | M9      | ModuleComplete         | Deepen + Decide + Map | `ai-workflow-canvas-template`, pro, site#ecosystem   | `spinoff_deepen`, `spinoff_decide`, `spinoff_map` |
+| M9      | PDF handout            | Deepen + Decide + Map | `ai-workflow-canvas-template`, pro, site#ecosystem   | `m79_handout_pdf`; URL `utm_medium=handout`       |
 | M10     | section-break `10.481` | Deepen                | `how-to-design-an-ai-agent-workflow`                 | `spinoff_deepen`                                  |
 | M10     | section-break `10.151` | Deepen                | `choosing-workflow-automation-ai-pipelines`          | `spinoff_deepen`                                  |
 | M10     | ModuleComplete         | Deepen + Map          | `agent-orchestrator-operating-model`, site#ecosystem | `spinoff_deepen`, `spinoff_map`                   |

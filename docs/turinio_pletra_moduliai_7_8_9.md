@@ -811,6 +811,14 @@ Vienas aiškus 8 žingsnių ciklas – nuo duomenų surinkimo iki dashboard atva
 
 **Sandbox principas:** Parametrai, spalvos, grafikų pavadinimai ir jų dinamika nurodomi prompte; mažai rankinio kodo, daug aišių instrukcijų DI.
 
+#### 10.0.1a DA kelio PDF atmintinė (po Modulio 9)
+
+**Tikslas:** Po Modulio 9 dalyvis gali parsisiųsti trumpą 2 puslapių PDF atmintinę. Ji nėra pilnas skaidrių eksportas – tai darbo lapas, kurį galima laikyti šalia atliekant kitą analizę.
+
+**Turinio branduolys:** 1 puslapis – 6 žingsnių pipeline (§2.2), 8 žingsnių MASTER PROMPTAS (§5.14), 8 žingsnių Modulio 9 workflow (§10.0) ir 48 val. refleksija. 2 puslapis – vienas pagrindinis grįžimo veiksmas į `ai-workflow-canvas-template` blogo šabloną ir dvi antrinės nuorodos: Decide (`promptanatomy.pro`) ir ekosistemos žemėlapis (`promptanatomy.site#ecosystem`).
+
+**UI vietos:** Modulio 9 santraukos skaidrė (92) ir Modulio 9 užbaigimo ekranas. Sertifikatas lieka atskiras artefaktas: jis priklauso nuo M7–9 užbaigimo ir Modulio 8 testo ≥70 %, o atmintinė prieinama po M9 kaip praktinis darbo lapas.
+
 #### 10.0.1 Pagalbiniai promptai (CopyButton) – kiekvienam žingsniui
 
 **Žingsnis 1 – Duomenų surinkimas:**
