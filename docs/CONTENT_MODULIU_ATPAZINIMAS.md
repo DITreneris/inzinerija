@@ -149,4 +149,4 @@ Dėl to **4.1–4.7** faile `turinio_pletra_moduliai_4_5_6.md` visada reiškia *
 
 **13.1–13.11 (Modulio 13):** Faile `docs/turinio_pletra_moduliai_13_14_15.md` skaidrės **13.1 … 13.11** (ir įvado id 130) visada reiškia **tik Modulio 13** (Turinio inžinerija). Įskaitant 13.10 (Verslas ir rizikos), 13.11 (Workflow). Oficiali skaidrių eilė – [docs/MODULIO_13_SKAIDRIU_EILES.md](MODULIO_13_SKAIDRIU_EILES.md). M14 skaidrės 140–142, M15 skaidrės 150–153, 158.
 
-**Duomenų analizės kelias (7–9):** Geriausios praktikos, interaktyvūs mokymų pavyzdžiai ir pritaikymas – [docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md](development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md); šis dokumentas naudojamas kuriant turinio SOT moduliams 7–9.
+| **Duomenų analizės kelias (7–9):** Geriausios praktikos – [`docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md`](development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md) (stub; redaguoti [`docs/turinio_pletra_moduliai_7_8_9.md`](turinio_pletra_moduliai_7_8_9.md)).

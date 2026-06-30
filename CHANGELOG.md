@@ -33,7 +33,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 47+ failai, 298 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
+- **Testai:** 53 failai, 323 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.1** (2026-06-30). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8).
 
 ---
@@ -41,6 +41,39 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 ## [Unreleased]
 
 _Įrašai po 1.4.1 release._
+
+### Changed – Dokumentacijos sinchronizacija (post-audit 2026-06-30)
+
+- **M7–9 production:** `DOCUMENTATION_INDEX.md` §3 – pašalinta „ateities turinys“ klaida; pridėtas tier 9 / `build:production` kontekstas.
+- **Trūkstamas SOT stub:** `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` – nuorodų stubas → `turinio_pletra_moduliai_7_8_9.md`.
+- **Lean branduolys:** `LEAN_INDEX.md` – M7–9, m1-m9 profiliai, handout PDF, 2026-06-30.
+- **Kas įgyvendinta:** `CODEBASE_WHAT_IS_DONE.md` – 1.4.1, M1/M79 handout, 53/323 testai, navigacija ✅.
+- **Release QA:** `RELEASE_QA_CHECKLIST.md` §5d – M1 PDF rankinė + test guard; §5b – SCHEME_AGENT (be LLM_DIAGRAMOS nuorodos).
+- **Versija:** `VERSION_ANALIZE.md` → 1.4.1.
+- **Deploy:** `DEPLOYMENT.md` – base path politika (`/anatomy/` vs `/inzinerija/`); `.env.example` – production vs demo komentarai.
+- **Registry:** `sot_index.json` – `productionRuntimeProfile` (\*-m1-m9.json).
+
+### Changed – Leader repo best practices pilot
+
+- **Ecosystem UTM:** pridėtas `buildEcosystemUrl()` ir pritaikytas bare ekosistemos nuorodoms (Gate, quiz fail, M5 test results, ModuleComplete) – `utm_source=training`, `utm_medium=spinoff`, `utm_campaign=m{module}_{touchpoint}`.
+- **PDF atsisiuntimo klaidos:** M1/M5/M6/M7–9 atmintinių mygtukai dabar turi `try/catch`, `logError` kontekstą ir LT/EN inline žinutę „Nepavyko sukurti PDF. Bandyk dar kartą.“.
+- **M1 output-shape pilot:** skaidrėje „Gero Prompto Šablonas“ pridėta `LAUKIAMO ATSAKO FORMA` / `EXPECTED OUTPUT SHAPE` eilutė kopijuojamam šablonui ir pilnam pavyzdžiui.
+- **SOT sinchronizacija:** `turinio_pletra.md`, `modules-en.json`; po M1 keitimo – `generate:core-data`.
+- **Testai:** `QuizPage.test.tsx` href su UTM; `ModuleCompleteScreen.test.tsx` – PDF reject + `logError`; `ecosystemUrls.test.ts` – `buildEcosystemUrl`.
+- **Scope:** JSON `spinoffCta` (M4 section-break info/space/map) – ne MUST batch; likęs SHOULD darbas.
+
+### Added – PDF atmintinių serija
+
+- **M1 first-win PDF:** pridėta Modulio 1 value-only atmintinė su 6 blokų šablonu, checklist ir starter promptu; mygtukas rodomas Modulio 1 užbaigimo ekrane be outbound CTA.
+- **Bendras maketo kit:** M1/M5/M6/M7–9 atmintinės naudoja bendrą `handoutPdfKit` header, footer, tipografijos, sekcijų ir `textWithLink` helperių sluoksnį.
+- **UI nuoseklumas:** M1/M5/M6/M7–9 atmintinių mygtukai naudoja bendrą `HandoutDownloadButton` komponentą su vienodu Download icon, `aria-label` ir focus stiliumi.
+- **Testai ir QA:** pridėti M1 turinio pariteto ir PDF smoke testai, atnaujinti M5/M6/M7–9 PDF testai po bendro maketo refaktoringo; patikros praėjo per tikslinius testus, lint, typecheck ir schema validation.
+
+### Added – M7–9 DA kelio PDF atmintinė
+
+- **M9 handout PDF:** pridėta Duomenų analizės kelio (M7–9) 2 puslapių atmintinė: pipeline, MASTER PROMPTAS, M9 8 žingsnių workflow, 48 val. refleksija ir ekosistemos grįžimo CTA (`utm_medium=handout`).
+- **UI touchpoints:** mygtukas „Parsisiųsti DA kelio atmintinę (PDF)“ rodomas M9 santraukos skaidrėje (92) ir Modulio 9 užbaigimo ekrane; atmintinė nepriklauso nuo tier 3 sertifikato slenksčio.
+- **Testai ir dokumentacija:** pridėtas `m79HandoutPdf` unit testas, M9 completion komponento testas, M79 LT/EN turinio pariteto drift guard (`m79HandoutContent.test.ts`), atnaujinti PDF testavimo, ecosystem ir release QA dokumentai.
 
 ---
 

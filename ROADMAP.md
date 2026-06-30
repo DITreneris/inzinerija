@@ -37,7 +37,7 @@
 
 ### Testai ir kokybė
 
-- **43 testų failai, 266 testai:** unit, component, integration, a11y smoke, gate tier 9.
+- **53 testų failai, 323 testai:** unit, component, integration, a11y smoke, gate tier 9, handout PDF.
 - **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
 - **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
 

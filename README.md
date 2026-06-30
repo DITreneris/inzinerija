@@ -42,7 +42,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
   - Tier 1 – po modulių 1–3.
   - Tier 2 – po modulių 1–6 ir apklausos ≥ 70 %.
   - Tier 3 – po kelio 7–9 ir Modulio 8 testo ≥ 70 %.
-- **PDF atmintinės:** M5 ir M6 (LT/EN).
+- **PDF atmintinės:** M1 (first-win, value-only), M5, M6 ir M7–9 DA kelio atmintinė (LT/EN); bendras maketas `handoutPdfKit.ts`. Žr. `docs/development/PDF_DOWNLOAD_TESTING.md`.
 - **Progreso sekimas:** localStorage, versijavimas, autosave.
 - **Prieigos lygiai (access tier):** magic link tier **3** (M1–3), **6** (M1–6), **9** (M1–9) per `api/verify-access.ts`.
 - **Ekosistema M1–12:** spinoff nuorodos, blog deepen (žr. `docs/ECOSYSTEM_MAP.md`).

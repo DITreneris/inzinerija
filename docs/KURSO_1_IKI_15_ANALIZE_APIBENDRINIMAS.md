@@ -2,19 +2,20 @@
 
 > **Paskirtis:** Vienas dokumentas – kas gerai, kas negerai, ko trūksta, ko per daug, SWOT, pasiūlymai ir rekomendacijos kiekvienai mokymų daliai, low-hanging fruits.  
 > **Šaltiniai:** DOCUMENTATION*INDEX, CONTENT_MODULIU_ATPAZINIMAS, modules.json, turinio_pletra\*.md, ANALIZE_MODULIAI*\*\_UI_UX_USABILITY, USER_JOURNEY ataskaitos, VARTOTOJU_ATSILIEPIMAI_BENDRAS, ROADMAP, MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS, CURRICULUM_AGENT, GOLDEN_STANDARD.  
-> **Data:** 2026-02-15
+> **Data:** 2026-02-15  
+> **Būklės atnaujinimas (2026-06-30):** M7–9 **production bundle** (`npm run build:production`, tier 9, release 1.4.0+). Žr. `DOCUMENTATION_INDEX.md` §3, `CODEBASE_WHAT_IS_DONE.md`. Likusios rekomendacijos (lean M7, M8 scenarijai) – turinio tobulinimas, ne deploy blokas.
 
 ---
 
 ## 1. Kurso struktūra (1–15) – santrauka
 
-| Dalys                          | Moduliai   | Turinys                                                                         | Būklė                                                                   |
-| ------------------------------ | ---------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **Bazinė triada**              | 1, 2, 3    | 6 blokų sistema → Žinių patikrinimas → Praktika (6 scenarijai)                  | Produkcijoje, stipri                                                    |
-| **Pažangusis blokas**          | 4, 5, 6    | Konteksto inžinerija → Prezentacijos sprintas + mini testas → Projektas         | Produkcijoje; M4 trintis, M5/M6 pataisyta                               |
-| **Kelias: Duomenų analizė**    | 7, 8, 9    | Teorija (pipeline, MASTER PROMPT) → Testas → Finalinis projektas (16 scenarijų) | Duomenyse (modules.json) yra; dokumentuota kaip planuojama / tobulinama |
-| **Kelias: Agentų inžinerija**  | 10, 11, 12 | Teorija (ciklas, įrankiai) → Testas → Projektas (3 lab'ai + 4 scenarijai)       | Produkcijoje                                                            |
-| **Kelias: Turinio inžinerija** | 13, 14, 15 | Vaizdai, video, muzika → Testas → Projektas (3 scenarijai)                      | Produkcijoje                                                            |
+| Dalys                          | Moduliai   | Turinys                                                                         | Būklė                                                                |
+| ------------------------------ | ---------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **Bazinė triada**              | 1, 2, 3    | 6 blokų sistema → Žinių patikrinimas → Praktika (6 scenarijai)                  | Produkcijoje, stipri                                                 |
+| **Pažangusis blokas**          | 4, 5, 6    | Konteksto inžinerija → Prezentacijos sprintas + mini testas → Projektas         | Produkcijoje; M4 trintis, M5/M6 pataisyta                            |
+| **Kelias: Duomenų analizė**    | 7, 8, 9    | Teorija (pipeline, MASTER PROMPT) → Testas → Finalinis projektas (16 scenarijų) | **Production** (tier 9); turinio lean/overwhelm – tobulinimo backlog |
+| **Kelias: Agentų inžinerija**  | 10, 11, 12 | Teorija (ciklas, įrankiai) → Testas → Projektas (3 lab'ai + 4 scenarijai)       | Produkcijoje                                                         |
+| **Kelias: Turinio inžinerija** | 13, 14, 15 | Vaizdai, video, muzika → Testas → Projektas (3 scenarijai)                      | Produkcijoje                                                         |
 
 **Įėjimo logika:** 1→2→3 privaloma; 4 atrakinamas po 3; 5 po 4; 6 po 5 (optional ≥70 % M5). Keliai 7–9, 10–12, 13–15 – hybrid (vienas kelias privalomas arba atrakinami po completion).
 
@@ -101,15 +102,15 @@
 
 ### 7.3 Moduliai 7–9 (Duomenų analizės kelias)
 
-| Pasiūlymas                          | Prioritetas | Veiksmas                                                                                       |
-| ----------------------------------- | ----------- | ---------------------------------------------------------------------------------------------- |
-| M7 lean branduolys                  | Aukštas     | Sumažinti iki ~18–20 skaidrių; DA_4 vizualizaciją – optional arba atskiras modulis.            |
-| „Kur pritaikyti?“ prie 5–7 skaidrių | Aukštas     | Pridėti use-case pavyzdžius (pipeline, MASTER PROMPT, 4 analizės tipai).                       |
-| M9 scenarijų prioritizavimas        | Aukštas     | 4 rekomenduojami (1, 2, 11, 16) – `recommended: true`; kiti „Papildomai“.                      |
-| M8 klausimai – scenarijų tipas      | Vidutinis   | „Duoti atsiliepimai – kuris promptas geriausias?“ – pritaikymo, ne tik prisiminimo.            |
-| M8 BONUS (801, 802)                 | Vidutinis   | Įdiegti logiką po testo – Screenshot + Vizualizacija praktiškai.                               |
-| M7 „Fast track“ optional            | Žemas       | UI: pasirinkimas „tik branduolys“ tiems, kurie nori trumpesnio kelio.                          |
-| Būklės aiškumas                     | Vidutinis   | Sutapatinti DOCUMENTATION_INDEX ir modules.json – ar M7–9 produkcijoje, ar ne; atnaujinti SOT. |
+| Pasiūlymas                          | Prioritetas   | Veiksmas                                                                                         |
+| ----------------------------------- | ------------- | ------------------------------------------------------------------------------------------------ |
+| M7 lean branduolys                  | Aukštas       | Sumažinti iki ~18–20 skaidrių; DA_4 vizualizaciją – optional arba atskiras modulis.              |
+| „Kur pritaikyti?“ prie 5–7 skaidrių | Aukštas       | Pridėti use-case pavyzdžius (pipeline, MASTER PROMPT, 4 analizės tipai).                         |
+| M9 scenarijų prioritizavimas        | Aukštas       | 4 rekomenduojami (1, 2, 11, 16) – `recommended: true`; kiti „Papildomai“.                        |
+| M8 klausimai – scenarijų tipas      | Vidutinis     | „Duoti atsiliepimai – kuris promptas geriausias?“ – pritaikymo, ne tik prisiminimo.              |
+| M8 BONUS (801, 802)                 | Vidutinis     | Įdiegti logiką po testo – Screenshot + Vizualizacija praktiškai.                                 |
+| M7 „Fast track“ optional            | Žemas         | UI: pasirinkimas „tik branduolys“ tiems, kurie nori trumpesnio kelio.                            |
+| Būklės aiškumas                     | ✅ 2026-06-30 | M7–9 production – `DOCUMENTATION_INDEX` §3, `build:production`. Likę: turinio lean (M7 apimtis). |
 
 ### 7.4 Moduliai 10–12 (Agentų inžinerija)
 

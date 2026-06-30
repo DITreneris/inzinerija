@@ -1,7 +1,7 @@
 # Dokumentacijos indeksas – kur kuo remtis
 
 > **Tikslas:** Agentai ir žmonės žino, kuris dokumentas yra tiesa (SOT), kas aktyvus, o kas archyvuota.  
-> **Atnaujinta:** 2026-03-11 (architektūra A)
+> **Atnaujinta:** 2026-06-30 (tier 9 production, release 1.4.1)
 >
 > **Agentams (lean, prieinama):** pirmiausia **`docs/DOCUMENTATION_QUICK_REF.md`** (SOT + keliai); **`docs/LEAN_INDEX.md`** – minimalus branduolys (~20 failų). Pilnas sąrašas ir archyvas žemiau.
 
@@ -11,18 +11,19 @@
 
 Šiuose failuose – **vienintelė** tiesa savo srityje. Konfliktų atveju laimėti šie.
 
-| Sritis                                                                                     | Failas                                                                                                                                                                          | Pastaba                                                                                                                                  |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Turinys Moduliai 1–3**                                                                   | `turinio_pletra.md` (root)                                                                                                                                                      | Pedagogika, terminologija, struktūra                                                                                                     |
-| **Turinys Moduliai 4–6**                                                                   | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                         | Teorija (4), testas (5), projektas (6)                                                                                                   |
-| **Turinys Moduliai 10–12**                                                                 | `docs/turinio_pletra_moduliai_10_11_12.md`                                                                                                                                      | Agentų inžinerija: teorija (10), testas (11), projektas (12)                                                                             |
-| **Turinys Moduliai 13–15**                                                                 | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                                                                                      | Turinio inžinerija: teorija (13), testas (14), projektas (15)                                                                            |
-| **Kur kalbama apie kurį modulį**                                                           | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                           | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13                                                          |
-| **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                           | Vienas etalonas visiems moduliams (v2.3.0: §3.4c skiriamoji/apibendrinimo; §3.4d path-step kelio žingsnis, badge, žodynėlio atrakinimas) |
-| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                      | Istorinis baseline v1.3.0; dabartinis release **v1.4.0** – žr. `CHANGELOG.md` `[1.4.0]`; atnaujina QA_AGENT po didelių refaktorų         |
-| **Duomenys**                                                                               | `src/data/modules.json`, `src/data/modules-m1-m6.json`, `promptLibrary.json`, `glossary.json`, `glossary-m1-m6.json`, `tools.json`, `tools-m1-m6.json`, `hallucinationRates.ts` | `modules.json` / `glossary.json` / `tools.json` = full redagavimo SOT; `*-m1-m6.json` = core build/runtime profilis                      |
-| **Vartotojo atsiliepimai**                                                                 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                                                                                                        | Gyvas testavimas, V1/V2, segmentai                                                                                                       |
-| **Klaidos ir sprendimai**                                                                  | `docs/development/TEST_REPORT.md`                                                                                                                                               | QA_AGENT priima klaidas čia                                                                                                              |
+| Sritis                                                                                     | Failas                                                                                                                                | Pastaba                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Turinys Moduliai 1–3**                                                                   | `turinio_pletra.md` (root)                                                                                                            | Pedagogika, terminologija, struktūra                                                                                                                                         |
+| **Turinys Moduliai 4–6**                                                                   | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                               | Teorija (4), testas (5), projektas (6)                                                                                                                                       |
+| **Turinys Moduliai 7–9**                                                                   | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                               | Duomenų analizės kelias; production bundle (`build:production`, tier 9). DA praktikos stub: `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md`                      |
+| **Turinys Moduliai 10–12**                                                                 | `docs/turinio_pletra_moduliai_10_11_12.md`                                                                                            | Agentų inžinerija: teorija (10), testas (11), projektas (12)                                                                                                                 |
+| **Turinys Moduliai 13–15**                                                                 | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                                            | Turinio inžinerija: teorija (13), testas (14), projektas (15)                                                                                                                |
+| **Kur kalbama apie kurį modulį**                                                           | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                 | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13                                                                                              |
+| **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                 | Vienas etalonas visiems moduliams (v2.3.0: §3.4c skiriamoji/apibendrinimo; §3.4d path-step kelio žingsnis, badge, žodynėlio atrakinimas)                                     |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                            | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.1** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                   |
+| **Duomenys**                                                                               | `src/data/modules.json`, `*-m1-m6.json`, `*-m1-m9.json`, `promptLibrary.json`, `glossary.json`, `tools.json`, `hallucinationRates.ts` | Full SOT: `modules.json` / `glossary.json` / `tools.json`. Build profiliai: `*-m1-m6.json` (MVP), `*-m1-m9.json` (**production**). Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` |
+| **Vartotojo atsiliepimai**                                                                 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                                                              | Gyvas testavimas, V1/V2, segmentai                                                                                                                                           |
+| **Klaidos ir sprendimai**                                                                  | `docs/development/TEST_REPORT.md`                                                                                                     | QA_AGENT priima klaidas čia                                                                                                                                                  |
 
 ---
 
@@ -135,17 +136,19 @@
 
 ---
 
-## 3. Moduliai 7–8–9 (ateities turinys)
+## 3. Moduliai 7–8–9 (Duomenų analizės kelias – production)
 
-Produkcijoje **nėra** modulių 7–8–9. Šie dokumentai – planavimui ir būsimam turiniui.
+**Produkcijoje (Vercel, tier 9):** moduliai 7–9 įtraukti per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9` → `*-m1-m9.json`). **Ne** production bundle: M10–15 (authoring kataloge).
 
-| Failas                                                     | Paskirtis                                                                                                                        |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `docs/turinio_pletra_moduliai_7_8_9.md`                    | Turinio SOT moduliams 7–9 (planuojamas)                                                                                          |
-| `docs/development/MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS.md` | Gili analizė ir verdiktas (2026-02-14)                                                                                           |
-| `docs/MODULIO_7_SKAIDRIU_EILES.md`                         | Skaidrių eilė Moduliui 7; path-step ids 71.1–71.5, įterpimo vietos tarp teorijos (žr. SOT turinio_pletra_moduliai_7_8_9.md §8.2) |
+| Failas                                                      | Paskirtis                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `docs/turinio_pletra_moduliai_7_8_9.md`                     | Turinio SOT M7–M9 (pipeline, MASTER, M8 testas, M9 capstone)                   |
+| `docs/MODULIO_7_SKAIDRIU_EILES.md`                          | Skaidrių eilė Moduliui 7; path-step ids 71.1–71.5 (žr. SOT §8.2)               |
+| `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` | DA praktikos **nuorodų stubas** → redaguoti `turinio_pletra_moduliai_7_8_9.md` |
+| `05_marketingo_memo_tier9_vienas_build.md`                  | Production env, tier 9, vienas build                                           |
+| `docs/development/MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS.md`  | Istorinė analizė (2026-02-14) – dalis išvados nebevalidi po release 1.4.0      |
 
-Visi kiti **M7/M8/M9** analizės, planai ir ataskaitos – **docs/archive/moduliai_7_8_9/** (žr. `docs/archive/README.md`, lokaliai).
+Vienkartinės **M7/M8/M9** analizės – `docs/development/analysis/` arba lokaliai `docs/archive/moduliai_7_8_9/` (jei turite archyvą).
 
 ---
 

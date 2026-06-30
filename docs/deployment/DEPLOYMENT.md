@@ -9,6 +9,18 @@ Detalios instrukcijos yra `README.md`:
 
 ---
 
+## Base path politika (vienas šaltinis)
+
+| Scenarijus                                    | `VITE_BASE_PATH` | Pastaba                                                                                                                                |
+| --------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Production monorepo** (promptanatomy.app)   | `/anatomy/`      | Canonical SPA kelias. Senas `/anatomija/` – tik **301 redirect** (ne naudoti naujose nuorodose). Žr. `MARKETING_HANDOFF_CHECKLIST.md`. |
+| **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | `vite.config.ts` default production be env.                                                                                            |
+| **Lokalus dev**                               | `/` (tuščia)     | `npm run dev`                                                                                                                          |
+
+**Magic link URL (prod):** `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...`
+
+---
+
 ## Production (moduliai 1–9, vienas build)
 
 **Vercel (promptanatomy.app / marketing monorepo):**

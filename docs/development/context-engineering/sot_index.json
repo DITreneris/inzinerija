@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Promptų anatomija – SOT and module registry",
-  "description": "Single registry for modules, SOT paths, gating, and next-step routing. Architektūra A: full authoring SOT remains in src/data/modules.json, while core 1-6 runtime/build uses dedicated *-m1-m6.json files.",
+  "description": "Single registry for modules, SOT paths, gating, and next-step routing. Architektūra A: full authoring SOT in src/data/modules.json; core 1-6 (VITE_MVP_MODE=1) and production 1-9 (VITE_MAX_BUILD_MODULE=9) runtime profiles.",
   "version": "1.0.0",
   "contentSOT": {
     "moduliai_1_3": {
@@ -33,18 +33,22 @@
     "modules": {
       "path": "src/data/modules.json",
       "role": "full authoring SOT",
-      "coreRuntimeProfile": "src/data/modules-m1-m6.json"
+      "coreRuntimeProfile": "src/data/modules-m1-m6.json",
+      "productionRuntimeProfile": "src/data/modules-m1-m9.json",
+      "productionBuildEnv": "VITE_MAX_BUILD_MODULE=9 (npm run build:production)"
     },
     "promptLibrary": "src/data/promptLibrary.json",
     "glossary": {
       "path": "src/data/glossary.json",
       "role": "full authoring SOT",
-      "coreRuntimeProfile": "src/data/glossary-m1-m6.json"
+      "coreRuntimeProfile": "src/data/glossary-m1-m6.json",
+      "productionRuntimeProfile": "src/data/glossary-m1-m9.json"
     },
     "tools": {
       "path": "src/data/tools.json",
       "role": "full authoring SOT",
-      "coreRuntimeProfile": "src/data/tools-m1-m6.json"
+      "coreRuntimeProfile": "src/data/tools-m1-m6.json",
+      "productionRuntimeProfile": "src/data/tools-m1-m9.json"
     },
     "hallucinationRates": "src/data/hallucinationRates.ts",
     "modulesEnM1012": {

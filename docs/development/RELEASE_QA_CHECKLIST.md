@@ -65,16 +65,20 @@
 > **Įtraukta:** 2026-02-14. Schemų vizualinę kokybę pagal dizainą tikrina **CODE_REVIEW_AGENT**, ne QA_AGENT. QA čia tik primena vykdyti šį žingsnį.
 
 - [ ] **Po bet kokio SCHEME_AGENT darbo:** Įsitikinti, kad **CODE_REVIEW_AGENT** atliko schemų vizualinę patikrą (`docs/development/SCHEME_AGENT.md` §5 – rodyklės kraštas į kraštą, proporcijos, path nekerta blokų). Jei ne – prašyti atlikti: „Atlik CODE_REVIEW pagal SCHEME_AGENT.md §5“.
-- [ ] **Schemų geriausios praktikos (QA primena):** Jei keista flowchart/diagrama – priminti patikrinti pagal SCHEME_AGENT.md §3.11: ar tekstas telpa į blokus, ar schema centre (ne „pavažiavusi“), ar lygmenys nesuspausti, ar vertikalus tarpas protingas. Referencas: `docs/development/LLM_DIAGRAMOS_VIZUALUS_VERTINIMAS.md`.
+- [ ] **Schemų geriausios praktikos (QA primena):** Jei keista flowchart/diagrama – priminti patikrinti pagal `docs/development/SCHEME_AGENT.md` §3.11 ir §5 (vizualinė patikra): ar tekstas telpa į blokus, ar schema centre, ar rodyklės kraštas į kraštą.
 
 ---
 
-## 5d. M5 / M6 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
+## 5d. M1 / M5 / M6 / M7–9 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
 
 > **Įtraukta:** 2026-03-11. P1 release užduotys – rankinė patikra, kurią atlieka žmogus.
 
+- [ ] **M1 PDF:** Modulio 1 → ModuleCompleteScreen → „Parsisiųsti Modulio 1 atmintinę (PDF)“ → atsidaryti PDF: 6 blokai, checklist, starter promptas; **be** outbound nuorodų (value-only); lietuviškos raidės (NotoSans). EN locale – DI→AI terminologija. Žr. PDF_DOWNLOAD_TESTING.md §M1.
 - [ ] **M5 PDF:** Modulio 5 → baigti testą → „Parsisiųsti Modulio 5 atmintinę (PDF)“ → atsidaryti PDF: lietuviškos raidės (ą, ė, į, š, ų, ū, ž) rodomos teisingai (NotoSans). Žr. PDF_DOWNLOAD_TESTING.md, §5.
 - [ ] **M6 PDF:** Modulio 6 → atlikti praktiką → ModuleCompleteScreen → parsisiųsti PDF – lietuviškos raidės, turinys atitinka.
+- [ ] **M7–9 DA kelio PDF:** Modulis 9 → skaidrė 92 arba ModuleCompleteScreen → „Parsisiųsti DA kelio atmintinę (PDF)“ → atsidaryti PDF: 2 puslapiai, lietuviškos raidės, spaudžiamos nuorodos į blog / Decide / Map su `utm_medium=handout`.
+- [ ] **M7–9 PDF automatinis guard:** jei keistas M79 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m79HandoutContent.test.ts src/utils/__tests__/m79HandoutPdf.test.ts`.
+- [ ] **M1 PDF automatinis guard:** jei keistas M1 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m1HandoutContent.test.ts src/utils/__tests__/m1HandoutPdf.test.ts`.
 - [ ] **M4 skaidrė 56 (RAG: kas tai ir pabandyk):** navigacija, LlmArch tabai, kopijuojamas promptas, „Peržiūrėti pilname dydyje“ – veikia, turinys skaitomas.
 - [ ] **M6 skaidrė 64 (Pagalbinis promptas: duomenų tvarkymo sistema):** Kopijuoti mygtukas, lietuviškos raidės, turinys atitinka.
 

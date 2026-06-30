@@ -1,7 +1,7 @@
 # Gold Legacy Standard – Promptų anatomija v1.3.0
 
-> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.0 (2026-06-30)** – žr. `CHANGELOG.md` `[1.4.0]`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); tolimesni pakeitimai vertinami ir CHANGELOG, ir šio standarto kontekste.  
-> **Apimtis:** Visa kodo bazė, išskyrus modulių 7–15 turinį (jie yra `modules.json`, bet dar neplėtojami).  
+> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.1 (2026-06-30)** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); **nedubliuoja** tier 9 / M7–9 production modelio.  
+> **Apimtis:** Kodo bazė iki v1.3.0 deploy; moduliai 7–15 – `modules.json`, bet šiame doc neaprašyti. Dabartinei architektūrai – **CODEBASE_WHAT_IS_DONE.md**.  
 > **Versija:** 1.1.0  
 > **Data:** 2026-03-14  
 > **1.1.0:** Production hardening – pridėti husky, lint-staged, prettier, rollup-plugin-visualizer; .nvmrc, .husky/, public/ brand assets (favicon.svg, apple-touch-icon.png, og-image.png, robots.txt); NPM skriptai typecheck/prepare/analyze; CI pipeline typecheck žingsnis; Tailwind `gold` spalva; Global CSS `--brand-gold`, `btn-hero-cta` auksinis gradientas, `prefers-reduced-motion`, dark mode `#0d0d0d` fonas.  
