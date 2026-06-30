@@ -12,7 +12,10 @@ export type EyebrowAccent =
   | 'slate'
   | 'emerald'
   | 'violet'
-  | 'cyan';
+  | 'cyan'
+  | 'sky'
+  | 'fuchsia'
+  | 'rose';
 
 const accentClasses: Record<EyebrowAccent, string> = {
   brand: 'text-brand-700 dark:text-brand-300',
@@ -21,6 +24,9 @@ const accentClasses: Record<EyebrowAccent, string> = {
   emerald: 'text-emerald-700 dark:text-emerald-300',
   violet: 'text-violet-700 dark:text-violet-300',
   cyan: 'text-cyan-700 dark:text-cyan-300',
+  sky: 'text-sky-700 dark:text-sky-300',
+  fuchsia: 'text-fuchsia-700 dark:text-fuchsia-300',
+  rose: 'text-rose-700 dark:text-rose-300',
 };
 
 interface EyebrowProps {

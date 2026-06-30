@@ -4,6 +4,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { McqQuestion } from '../McqQuestion';
+import type { ConfidenceLevel } from '../ConfidenceSelector';
 import { LocaleProvider } from '../../../../../contexts/LocaleContext';
 
 const baseQuestion = {
@@ -14,7 +15,7 @@ const baseQuestion = {
   explanation: 'Meta blokas.',
 };
 
-function renderMcq(confidence?: 1 | 2 | 3) {
+function renderMcq(confidence?: ConfidenceLevel) {
   const onAnswer = vi.fn();
   render(
     <LocaleProvider>
