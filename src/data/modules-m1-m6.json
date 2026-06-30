@@ -704,7 +704,7 @@
           "type": "full-example",
           "practicalTask": {
             "title": "Sukurk savo pilną promptą",
-            "motivation": "💼 Panaudokite ją savo darbe – sukurkite struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
+            "motivation": "💼 Panaudok ją savo darbe – sukurk struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
             "inputHint": "Įvesk visą promptą į lauką žemiau – visus blokus (META, INPUT, OUTPUT ir kt.) su savo žodžiais, ne tik pavienius žodžius iš placeholderių.",
             "placeholder": "META: Tu esi...\n\nINPUT: Duomenys...\n\nOUTPUT: Formatas...\n\nREASONING: Mąstymo seka...\n\nQUALITY: Kriterijai...\n\nADVANCED: Parametrai...",
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
@@ -1400,7 +1400,7 @@
       "id": 3,
       "title": "Praktinis Pritaikymas",
       "subtitle": "6 verslo scenarijai su 6 blokais",
-      "description": "6 skirtingi scenarijai – sukurkite savo promptus ir sukurkite šablonų biblioteką.",
+      "description": "6 skirtingi scenarijai – sukurk savo promptus ir sukurk šablonų biblioteką.",
       "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",
@@ -1468,42 +1468,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
                   "hint": "Rolė: vadovas. Tikslas: strateginė ataskaita. Auditorija: valdyba.",
                   "partialSolution": "META:\nTu esi vyresnysis vadovas su 10+ metų patirtimi strateginiuose sprendimuose. Tavo tikslas – parengti ketvirčio rezultatų apžvalgą valdybai."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
+                  "title": "INPUT blokas - Surink duomenis",
                   "description": "Išskirk KPI, rizikas ir apribojimus",
                   "hint": "Duomenys: pajamos, marža, projekto būsena, prioritetai. Apribojimai: 5 dienos, 4 nariai.",
                   "partialSolution": "INPUT:\nQ2 2024: pajamos 1.2M EUR (+8% vs Q1), marža 23%. Projekto „X“ būsena: 70% atlikta, rizika – vėlavimas 2 savaites. Top 3 prioritetai Q3: pardavimų augimas, restruktūrizacija, nauja CRM.\n\nApribojimai: 5 dienos, 4 valdybos nariai, max 2 puslapiai."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk struktūrą ir KPI dashboard",
                   "hint": "Formatas: Executive Summary. Struktūra: KPI, rizikos, 3 prioritetai.",
                   "partialSolution": "OUTPUT:\nFormatas: Executive Summary (1–2 puslapiai). Struktūra: 1) KPI dashboard, 2) Rizikos ir projekto būsena, 3) 3 prioritetai su rekomendacijomis. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite analizės ir prioritetizavimo logiką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk analizės ir prioritetizavimo logiką",
                   "hint": "CoT: 1) KPI apibendrinimas, 2) Rizikų įvertinimas, 3) Prioritetų rekomendacijos.",
                   "partialSolution": "REASONING (CoT):\n1) Apibendrinti KPI ir tendencijas\n2) Įvertinti rizikas ir projektų būseną\n3) Prioritetizuoti ir suformuluoti rekomendacijas"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Skaičiai tikslūs, rizikos identifikuotos, rekomendacijos aiškios.",
                   "partialSolution": "QUALITY:\n✓ Skaičiai tikslūs ✓ Rizikos identifikuotos ✓ Rekomendacijos aiškios ✓ Ilgis 1–2 psl."
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.3 (faktinis tonas).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.3 (faktinis tonas), Format: verslo dokumentas"
@@ -1536,50 +1536,50 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
-                  "hint": "Rolė: marketingo vadovas. Tikslas: Q1 2025 marketingo planas. Auditorija: generalinis direktorius.",
-                  "partialSolution": "META:\nTu esi marketingo vadovas su 10+ metų B2B patirtimi. Tavo tikslas – parengti Q1 2025 marketingo strateginį planą generaliniam direktoriui, kuris priims biudžeto sprendimus."
+                  "hint": "Rolė: pardavimų analitikas. Tikslas: Q3 pardavimų analizė ir veiksmų planas. Auditorija: vadovybė.",
+                  "partialSolution": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite konkretūs skaičiai, metrikos ir apribojimai",
-                  "hint": "Duomenys: Q4 rezultatai, CAC, konversija, konkurentai. Apribojimai: 2 savaitės, 3 žmonės komanda, B2B prioritetas.",
-                  "partialSolution": "INPUT:\nQ4 2024 rezultatai: 45 nauji klientai, CAC 6500 EUR, konversija 2.8%. Konkurentų augimas: +25% ir +18%. Planuojamas Q1 biudžetas: 300k EUR.\n\nApribojimai: Planas turi būti parengtas per 2 savaites. Komanda: 3 žmonės. Prioritetas – B2B segmentas."
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk konkrečius skaičius, metrikas ir apribojimus",
+                  "hint": "Duomenys: Q3 pajamos vs planas, segmentai B2B/B2C, vidutinis čekis. Apribojimai: 1 savaitė, 2 analitikai, 5 veiksmai.",
+                  "partialSolution": "INPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk, kokį dokumentą nori gauti",
-                  "hint": "Formatas: strateginis dokumentas. Struktūra: veiksmų planas + KPI. Kalba: lietuvių, verslo tonas.",
-                  "partialSolution": "OUTPUT:\nFormatas: Strateginis dokumentas (5-7 puslapių). Struktūra: 1) Situacijos analizė, 2) Q1 tikslai ir KPI, 3) Veiksmų planas pagal kanalus, 4) Biudžeto paskirstymas, 5) Rizikos ir prielaidos. Kalba: lietuvių, profesionalus verslo tonas."
+                  "hint": "Formatas: analizė + 5 veiksmai. Struktūra: KPI, segmentai, priežastys, veiksmai. Kalba: lietuvių, verslo tonas.",
+                  "partialSolution": "OUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite, kaip DI turi mąstyti prieš kuriant planą",
-                  "hint": "Naudok CoT (Chain of Thought) - viena loginė seka. 1) Analizuoti Q4 rezultatus, 2) Įvertinti konkurentų grėsmę, 3) Nustatyti Q1 tikslus, 4) Suformuluoti strategiją.",
-                  "partialSolution": "REASONING (CoT):\n1) Išanalizuoti Q4 2024 rezultatus ir identifikuoti stipriąsias/silpnąsias puses\n2) Įvertinti konkurentų augimo grėsmę ir rinkos tendencijas\n3) Nustatyti Q1 2025 tikslus pagal biudžetą (300k EUR) ir B2B prioritetą\n4) Suformuluoti konkretų veiksmų planą su KPI ir biudžeto paskirstymu"
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk, kaip DI turi mąstyti prieš kuriant analizę",
+                  "hint": "Naudok CoT. 1) KPI vs planas, 2) Segmentų palyginimas, 3) B2B kritimo priežastys, 4) 5 prioritetiniai veiksmai.",
+                  "partialSolution": "REASONING (CoT):\n1) Apibendrinti Q3 KPI ir palyginti su planu (350k)\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n4) Suformuluoti 5 prioritetinius veiksmus su atsakingais ir terminais"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
-                  "description": "Apibrėžkite, kaip patikrinti rezultato kokybę",
-                  "hint": "Tikrinimo kriterijai: konkretūs KPI, biudžeto paskirstymas, B2B orientacija, įgyvendinamumas.",
-                  "partialSolution": "QUALITY:\n✓ Visi KPI konkretūs ir matuojami\n✓ Biudžetas (300k EUR) paskirstytas pagal kanalus\n✓ Planas orientuotas į B2B segmentą\n✓ Veiksmai įgyvendinami per 2 savaites su 3 žmonių komanda\n✓ Dokumentas tinkamas generaliniam direktoriui (strateginis lygis)"
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
+                  "description": "Apibrėžk, kaip patikrinti rezultato kokybę",
+                  "hint": "Tikrinimo kriterijai: skaičių tikslumas, segmentų analizė, 5 veiksmai su terminais ir atsakingais.",
+                  "partialSolution": "QUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Pasirink modelio parametrus (jei reikia)",
-                  "hint": "Temperature: 0.4-0.5 (strateginis, bet kūrybiškas). Reasoning: normalus arba extended.",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strateginis mąstymas su kūrybiškumu)\nReasoning: extended (reikia gilesnės analizės)\nFormat: struktūruotas verslo dokumentas"
+                  "hint": "Temperature: 0.3–0.4 (faktinis, analitinis tonas).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.35 (faktinis, analitinis tonas)\nFormat: struktūruota pardavimų analizė"
                 }
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi marketingo vadovas su 10+ metų B2B patirtimi. Tavo tikslas – parengti Q1 2025 marketingo strateginį planą generaliniam direktoriui, kuris priims biudžeto sprendimus.\n\nINPUT:\nQ4 2024 rezultatai: 45 nauji klientai, CAC 6500 EUR, konversija 2.8%. Konkurentų augimas: +25% ir +18%. Planuojamas Q1 biudžetas: 300k EUR.\n\nApribojimai: Planas turi būti parengtas per 2 savaites. Komanda: 3 žmonės. Prioritetas – B2B segmentas.\n\nOUTPUT:\nFormatas: Strateginis dokumentas (5-7 puslapių). Struktūra: 1) Situacijos analizė, 2) Q1 tikslai ir KPI, 3) Veiksmų planas pagal kanalus, 4) Biudžeto paskirstymas, 5) Rizikos ir prielaidos. Kalba: lietuvių, profesionalus verslo tonas.\n\nREASONING (CoT):\n1) Išanalizuoti Q4 2024 rezultatus ir identifikuoti stipriąsias/silpnąsias puses\n2) Įvertinti konkurentų augimo grėsmę ir rinkos tendencijas\n3) Nustatyti Q1 2025 tikslus pagal biudžetą (300k EUR) ir B2B prioritetą\n4) Suformuluoti konkretų veiksmų planą su KPI ir biudžeto paskirstymu\n\nQUALITY:\n✓ Visi KPI konkretūs ir matuojami\n✓ Biudžetas (300k EUR) paskirstytas pagal kanalus\n✓ Planas orientuotas į B2B segmentą\n✓ Veiksmai įgyvendinami per 2 savaites su 3 žmonių komanda\n✓ Dokumentas tinkamas generaliniam direktoriui (strateginis lygis)\n\nADVANCED:\nTemperature: 0.4 (strateginis mąstymas su kūrybiškumu)\nReasoning: extended (reikia gilesnės analizės)\nFormat: struktūruotas verslo dokumentas"
+            "template": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei.\n\nINPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais.\n\nOUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas.\n\nREASONING (CoT):\n1) Apibendrinti Q3 KPI ir palyginti su planu\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n4) Suformuluoti 5 prioritetinius veiksmus su atsakingais ir terminais\n\nQUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda\n\nADVANCED:\nTemperature: 0.35 (faktinis, analitinis tonas)\nFormat: struktūruota pardavimų analizė"
           },
           "content": {
             "footer": "Toliau – skaidrė 5: Marketingo kampanijos planas"
@@ -1606,50 +1606,50 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
-                  "hint": "Rolė: HR vadovas. Tikslas: apklausos analizė ir rekomendacijos. Auditorija: vadovybė.",
-                  "partialSolution": "META:\nTu esi HR vadovas su 8+ metų patirtimi darbuotojų patirties valdyme. Tavo tikslas – išanalizuoti metinės darbuotojų apklausos rezultatus ir pateikti konkrečias rekomendacijas vadovybei, kuri priims veiksmų plano sprendimus."
+                  "hint": "Rolė: produkto marketingo vadovas. Tikslas: SmartFlow kampanijos planas Q2 2025. Auditorija: marketingo komanda ir vadovybė.",
+                  "partialSolution": "META:\nTu esi produkto marketingo vadovas su 7+ metų B2B IT patirtimi. Tavo tikslas – parengti Q2 2025 „SmartFlow“ produkto kampanijos planą su kanalais, KPI ir biudžeto paskirstymu."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite konkretūs skaičiai, metrikos ir apribojimai",
-                  "hint": "Duomenys: dalyvavimas, pasitenkinimas, problemos sritys, stipriosios pusės. Apribojimai: biudžetas 50k EUR, konkrečius veiksmų planas.",
-                  "partialSolution": "INPUT:\nDalyvavo 156/180 darbuotojų (87%). Bendras pasitenkinimas: 7.2/10 (+0.4 vs praėjusių metų). Probleminės sritys: karjeros galimybės (5.8), darbo/asmeninio gyvenimo balansas (6.1). Stipriosios pusės: komandinis darbas (8.4), vadovų palaikymas (7.9).\n\nApribojimai: Vadovybė nori konkrečių veiksmų plano. Biudžetas iniciatyvoms: 50k EUR. Konfidencialumas: neatskleisti individualių atsakymų."
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk konkrečius skaičius, metrikas ir apribojimus",
+                  "hint": "Duomenys: produktas SmartFlow, biudžetas 45k EUR, IT vadovai, kanalai, konkurentai. Apribojimai: 2 savaitės, 2 žmonės, KPI planas.",
+                  "partialSolution": "INPUT:\nKampanija: naujas produktas „SmartFlow“. Biudžetas: 45k EUR. Tikslinė auditorija: IT vadovai (100–500 darbuotojų įmonės). Kanalai: LinkedIn, renginiai, el. paštas. Konkurentai: 2 pagrindiniai. Laikotarpis: Q2 2025.\n\nApribojimai: Planas per 2 savaites. Komanda: 2 žmonės. Reikia KPI ir matavimo plano."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk, kokį dokumentą nori gauti",
-                  "hint": "Formatas: ataskaita. Struktūra: analizė + vizualizacijos + veiksmų planas. Kalba: lietuvių, jautrus tonas.",
-                  "partialSolution": "OUTPUT:\nFormatas: Ataskaita su vizualizacijomis (6-8 puslapių). Struktūra: 1) Bendras apžvalga, 2) Probleminių sričių analizė, 3) Stipriųjų pusių išryškinimas, 4) Konkretus veiksmų planas su biudžeto paskirstymu, 5) Tikėtini rezultatai. Kalba: lietuvių, profesionalus, bet jautrus tonas."
+                  "hint": "Formatas: strateginis kampanijos dokumentas. Struktūra: auditorija, kanalai, KPI, biudžetas, grafikas.",
+                  "partialSolution": "OUTPUT:\nFormatas: Strateginis kampanijos dokumentas (4–6 puslapių). Struktūra: 1) Auditorijos profilis, 2) Kanalų strategija (LinkedIn, renginiai, el. paštas), 3) KPI ir matavimo planas, 4) Biudžeto paskirstymas (45k EUR), 5) Laiko grafikas Q2 2025. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite, kaip DI turi mąstyti prieš kuriant analizę",
-                  "hint": "Naudok CoT (Chain of Thought). 1) Analizuoti problemines sritis, 2) Įvertinti priežastis, 3) Suformuluoti sprendimus, 4) Paskirstyti biudžetą.",
-                  "partialSolution": "REASONING (CoT):\n1) Išanalizuoti problemines sritis (karjeros galimybės 5.8, darbo/asmeninio gyvenimo balansas 6.1) ir jų priežastis\n2) Įvertinti, kodėl stipriosios pusės veikia gerai (komandinis darbas 8.4, vadovų palaikymas 7.9)\n3) Suformuluoti konkrečius, įgyvendinamus sprendimus kiekvienai probleminei sričiai\n4) Paskirstyti biudžetą (50k EUR) pagal prioritetus ir tikėtiną poveikį"
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk, kaip DI turi mąstyti prieš kuriant planą",
+                  "hint": "Naudok CoT. 1) Auditorijos poreikiai, 2) Kanalų ir biudžeto paskirstymas, 3) KPI, 4) Q2 grafikas.",
+                  "partialSolution": "REASONING (CoT):\n1) Apibrėžti IT vadovų auditorijos poreikius ir komunikacijos kanalus\n2) Paskirstyti biudžetą (45k EUR) pagal kanalus ir tikėtiną ROI\n3) Nustatyti matuojamus KPI kiekvienam kanalui\n4) Suformuluoti Q2 2025 veiksmų grafiką su konkrečiais etapais"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
-                  "description": "Apibrėžkite, kaip patikrinti rezultato kokybę",
-                  "hint": "Tikrinimo kriterijai: jautrumas duomenims, konkretūs veiksmai, biudžeto paskirstymas, įgyvendinamumas.",
-                  "partialSolution": "QUALITY:\n✓ Jautrus požiūris į darbuotojų duomenis (konfidencialumas)\n✓ Konkretūs, įgyvendinami veiksmai kiekvienai probleminei sričiai\n✓ Biudžetas (50k EUR) paskirstytas pagal prioritetus\n✓ Veiksmų planas turi aiškius terminus ir atsakingus asmenis\n✓ Dokumentas tinkamas vadovybei (strateginis lygis su detaliais veiksmais)"
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
+                  "description": "Apibrėžk, kaip patikrinti rezultato kokybę",
+                  "hint": "Tikrinimo kriterijai: biudžeto paskirstymas, matuojami KPI, auditorija, įgyvendinamumas per 2 savaites.",
+                  "partialSolution": "QUALITY:\n✓ Biudžetas (45k EUR) paskirstytas pagal kanalus\n✓ KPI konkretūs ir matuojami\n✓ Auditorija aiškiai apibrėžta (IT vadovai, 100–500 darbuotojų)\n✓ Planas įgyvendinamas per 2 savaites su 2 žmonių komanda"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Pasirink modelio parametrus (jei reikia)",
-                  "hint": "Temperature: 0.3-0.4 (jautrus, bet profesionalus). Reasoning: extended (reikia gilesnės analizės).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (jautrus, profesionalus tonas)\nReasoning: extended (reikia gilesnės analizės ir empatijos)\nFormat: struktūruotas HR dokumentas su vizualizacijomis"
+                  "hint": "Temperature: 0.4 (strateginis su kūrybiškumu kampanijai).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strateginis su kūrybiškumu kampanijai)\nFormat: struktūruotas marketingo dokumentas"
                 }
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi HR vadovas su 8+ metų patirtimi darbuotojų patirties valdyme. Tavo tikslas – išanalizuoti metinės darbuotojų apklausos rezultatus ir pateikti konkrečias rekomendacijas vadovybei, kuri priims veiksmų plano sprendimus.\n\nINPUT:\nDalyvavo 156/180 darbuotojų (87%). Bendras pasitenkinimas: 7.2/10 (+0.4 vs praėjusių metų). Probleminės sritys: karjeros galimybės (5.8), darbo/asmeninio gyvenimo balansas (6.1). Stipriosios pusės: komandinis darbas (8.4), vadovų palaikymas (7.9).\n\nApribojimai: Vadovybė nori konkrečių veiksmų plano. Biudžetas iniciatyvoms: 50k EUR. Konfidencialumas: neatskleisti individualių atsakymų.\n\nOUTPUT:\nFormatas: Ataskaita su vizualizacijomis (6-8 puslapių). Struktūra: 1) Bendras apžvalga, 2) Probleminių sričių analizė, 3) Stipriųjų pusių išryškinimas, 4) Konkretus veiksmų planas su biudžeto paskirstymu, 5) Tikėtini rezultatai. Kalba: lietuvių, profesionalus, bet jautrus tonas.\n\nREASONING (CoT):\n1) Išanalizuoti problemines sritis (karjeros galimybės 5.8, darbo/asmeninio gyvenimo balansas 6.1) ir jų priežastis\n2) Įvertinti, kodėl stipriosios pusės veikia gerai (komandinis darbas 8.4, vadovų palaikymas 7.9)\n3) Suformuluoti konkrečius, įgyvendinamus sprendimus kiekvienai probleminei sričiai\n4) Paskirstyti biudžetą (50k EUR) pagal prioritetus ir tikėtiną poveikį\n\nQUALITY:\n✓ Jautrus požiūris į darbuotojų duomenis (konfidencialumas)\n✓ Konkretūs, įgyvendinami veiksmai kiekvienai probleminei sričiai\n✓ Biudžetas (50k EUR) paskirstytas pagal prioritetus\n✓ Veiksmų planas turi aiškius terminus ir atsakingus asmenis\n✓ Dokumentas tinkamas vadovybei (strateginis lygis su detaliais veiksmais)\n\nADVANCED:\nTemperature: 0.3 (jautrus, profesionalus tonas)\nReasoning: extended (reikia gilesnės analizės ir empatijos)\nFormat: struktūruotas HR dokumentas su vizualizacijomis"
+            "template": "META:\nTu esi produkto marketingo vadovas su 7+ metų B2B IT patirtimi. Tavo tikslas – parengti Q2 2025 „SmartFlow“ produkto kampanijos planą su kanalais, KPI ir biudžeto paskirstymu.\n\nINPUT:\nKampanija: naujas produktas „SmartFlow“. Biudžetas: 45k EUR. Tikslinė auditorija: IT vadovai (100–500 darbuotojų įmonės). Kanalai: LinkedIn, renginiai, el. paštas. Konkurentai: 2 pagrindiniai. Laikotarpis: Q2 2025.\n\nApribojimai: Planas per 2 savaites. Komanda: 2 žmonės. Reikia KPI ir matavimo plano.\n\nOUTPUT:\nFormatas: Strateginis kampanijos dokumentas (4–6 puslapių). Struktūra: 1) Auditorijos profilis, 2) Kanalų strategija (LinkedIn, renginiai, el. paštas), 3) KPI ir matavimo planas, 4) Biudžeto paskirstymas (45k EUR), 5) Laiko grafikas Q2 2025. Kalba: lietuvių, verslo tonas.\n\nREASONING (CoT):\n1) Apibrėžti IT vadovų auditorijos poreikius ir komunikacijos kanalus\n2) Paskirstyti biudžetą (45k EUR) pagal kanalus ir tikėtiną ROI\n3) Nustatyti matuojamus KPI kiekvienam kanalui\n4) Suformuluoti Q2 2025 veiksmų grafiką su konkrečiais etapais\n\nQUALITY:\n✓ Biudžetas (45k EUR) paskirstytas pagal kanalus\n✓ KPI konkretūs ir matuojami\n✓ Auditorija aiškiai apibrėžta (IT vadovai, 100–500 darbuotojų)\n✓ Planas įgyvendinamas per 2 savaites su 2 žmonių komanda\n\nADVANCED:\nTemperature: 0.4 (strateginis su kūrybiškumu kampanijai)\nFormat: struktūruotas marketingo dokumentas"
           },
           "content": {
             "footer": "Toliau – skaidrė 6: Vidaus komunikacijos dokumentas"
@@ -1676,42 +1676,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas tekstas",
                   "hint": "Rolė: vidaus komunikacijos vadovas. Tikslas: pranešimas darbuotojams. Auditorija: visi darbuotojai.",
                   "partialSolution": "META:\nTu esi vidaus komunikacijos vadovas. Tavo tikslas – parengti aiškų pranešimą darbuotojams apie pokyčius organizacijoje, mažinant nerimą ir pasipriešinimą."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite: kas keičiasi, kodėl, kada, dažniausi klausimai",
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk: kas keičiasi, kodėl, kada, dažniausi klausimai",
                   "hint": "Duomenys: CRM pakeitimai, 6 savaitės, 120 darbuotojų, mokymai. Klausimas: „Ar neprarasime darbo?“",
                   "partialSolution": "INPUT:\nĮmonė pereina prie naujos CRM. Pakeitimai per 6 savaites. 120 darbuotojų – mokymai. Dažniausias klausimas: „Ar neprarasime darbo?“ Apribojimai: 3 dienos, max 500 žodžių, tonas rūpestingas."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Vidinis pranešimas su Q&A",
                   "hint": "Formatas: el. laiškas 300–500 žodžių. Structūra: kas keičiasi, kodėl, ką daryti toliau, Q&A.",
                   "partialSolution": "OUTPUT:\nFormatas: Vidinis pranešimas (300–500 žodžių). Struktūra: 1) Kas keičiasi, 2) Kodėl, 3) Kada ir ką daryti, 4) Q&A skyrius. Tonas: rūpestingas, skaidrus."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Tonas, aiškumas, pasipriešinimo mažinimas",
                   "hint": "CoT: 1) Kuo aiškiai paaiškinti, 2) Kaip atsakyti į baimę, 3) Ką darbuotojai turi žinoti.",
                   "partialSolution": "REASONING (CoT):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Adresuoti baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkrečius žingsnius ir Q&A"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Tonas rūpestingas, aiškumas, Q&A skyrius, ilgis 300–500 žodžių.",
                   "partialSolution": "QUALITY:\n✓ Tonas rūpestingas ir skaidrus ✓ Q&A skyrius įtrauktas ✓ Ilgis 300–500 žodžių ✓ Mažina nerimą"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.4 (empatingas, bet profesionalus).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.4 (empatingas tonas), Format: vidinis pranešimas"
@@ -1746,42 +1746,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
                   "hint": "Rolė: HR vadovas. Tikslas: apklausos analizė. Auditorija: vadovybė.",
                   "partialSolution": "META:\nTu esi HR vadovas. Tavo tikslas – išanalizuoti apklausos rezultatus ir pateikti veiksmų planą vadovybei."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite apklausos rezultatus ir apribojimai",
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk apklausos rezultatus ir apribojimus",
                   "hint": "Duomenys: dalyvavimas, pasitenkinimas, problemos sritys, biudžetas.",
                   "partialSolution": "INPUT:\nDalyvavo 156/180 (87%). Pasitenkinimas 7.2/10 (+0.4). Probleminės: karjeros 5.8, balansas 6.1. Stipriosios: komanda 8.4, vadovai 7.9. Biudžetas: 50k EUR."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Ataskaita su veiksmų planu",
                   "hint": "Formatas: ataskaita. Struktūra: analizė + veiksmų planas.",
                   "partialSolution": "OUTPUT:\nFormatas: Ataskaita (6-8 psl.). Struktūra: 1) Apžvalga, 2) Probleminės sritys, 3) Stipriosios pusės, 4) Veiksmų planas su biudžetu. Kalba: lietuvių, jautrus tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Duomenų interpretacija, prioritetai",
                   "hint": "CoT: 1) Analizuoti problemas, 2) Įvertinti priežastis, 3) Suformuluoti sprendimus.",
                   "partialSolution": "REASONING (CoT):\n1) Išanalizuoti problemines sritis ir priežastis\n2) Suformuluoti konkrečius sprendimus\n3) Paskirstyti biudžetą pagal prioritetus"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Jautrumas, konkretūs veiksmai, biudžeto paskirstymas.",
                   "partialSolution": "QUALITY:\n✓ Jautrus požiūris ✓ Konkretūs veiksmai ✓ Biudžetas paskirstytas ✓ Konfidencialumas"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.3 (jautrus, profesionalus).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.3, Format: HR ataskaita"
@@ -1816,42 +1816,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas",
                   "hint": "Rolė: klientų aptarnavimo vadovas. Tikslas: atsakymas + vidinis planas.",
                   "partialSolution": "META:\nTu esi klientų aptarnavimo vadovas. Tavo tikslas – parengti empatišką atsakymą klientui ir vidinį veiksmų planą problemai spręsti."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
+                  "title": "INPUT blokas - Surink duomenis",
                   "description": "Skundo aprašymas, istorija, kliento tipas",
                   "hint": "Duomenys: vėlavimas, komunikacija, B2B, 3 metai, reputacinė rizika.",
                   "partialSolution": "INPUT:\nSkundas: vėlavimas 2 savaites, neaiški komunikacija. Klientas: B2B, ilgalaikis (3 metai). Reputacinė rizika. Apribojimai: 24 val., empatiškas tonas."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Atsakymas klientui + vidinis planas",
                   "hint": "Formatas: el. laiškas klientui + 3–5 punktų vidinis planas.",
                   "partialSolution": "OUTPUT:\nFormatas: 1) El. laiškas klientui (empatiškas, atsakingas), 2) Vidinio plano 3–5 punktai. Kalba: lietuvių."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Empatija, atsakomybė, sprendimo struktūra",
                   "hint": "CoT: 1) Pripažinti problemą, 2) Pateikti sprendimą, 3) Vidinis planas.",
                   "partialSolution": "REASONING (CoT):\n1) Pripažinti problemą ir atsakyti empatiškai\n2) Pateikti konkretų sprendimą klientui\n3) Suformuluoti vidinį veiksmų planą (3–5 punktai)"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Empatija, atsakomybė, konkretūs veiksmai.",
                   "partialSolution": "QUALITY:\n✓ Empatiškas tonas ✓ Atsakomybė pripažinta ✓ Konkretūs veiksmai ✓ Vidinio plano 3–5 punktai"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.4 (empatiškas, bet kontroliuojamas).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.4, Format: klientų aptarnavimo dokumentas"
@@ -4404,7 +4404,7 @@
               },
               {
                 "heading": "🔽 Nuorodos: NotebookLM, NoteLM, Trello",
-                "body": "**NotebookLM** – Google DI įrankis darbui su dokumentų rinkiniais (PDF, Docs, Slides) ir RAG tarp šaltinių. Nuoroda: [notebooklm.google](https://notebooklm.google/). **NoteLM** – AI užrašų ir video įrankis, jei patogiau dirbti per užrašų ekosistemą. Nuoroda: [notelm.app](https://www.notelm.app/). **Trello** – lentos ir kortelės; galima aprašyti užduotis kaip kontekstą RAG promptui. Nuoroda: [trello.com](https://trello.com/).",
+                "body": "**NotebookLM** – Google DI įrankis darbui su dokumentų rinkiniais (PDF, Docs, Slides) ir RAG tarp šaltinių. Nuoroda: [notebooklm.google](https://notebooklm.google/). **NoteLM** – DI užrašų ir video įrankis, jei patogiau dirbti per užrašų ekosistemą. Nuoroda: [notelm.app](https://www.notelm.app/). **Trello** – lentos ir kortelės; galima aprašyti užduotis kaip kontekstą RAG promptui. Nuoroda: [trello.com](https://trello.com/).",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true

@@ -152,11 +152,7 @@
     {
       "term": "Master promptas",
       "definition": "Personalizuotas promptas apie vartotoją ar organizaciją (kas esi, ką darai, tikslai, stilius, auditorija), suteikiantis DI kontekstą; skiriasi nuo sisteminio prompto, kuris apibrėžia, kaip DI turi veikti.",
-      "moduleId": 4,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 71.2
-      }
+      "moduleId": 4
     },
     {
       "term": "Mašininis mokymasis (ML)",
