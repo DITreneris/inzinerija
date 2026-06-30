@@ -6,7 +6,7 @@
  */
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -187,6 +187,10 @@ function validateModulesEnM1012() {
     },
   };
   const dataPath = join(dataDir, 'modules-en-m10-m12.json');
+  if (!existsSync(dataPath)) {
+    console.log('modules-en-m10-m12.json: SKIP (optional EN overlay, file not present)');
+    return true;
+  }
   let data;
   try {
     data = JSON.parse(readFileSync(dataPath, 'utf8'));
