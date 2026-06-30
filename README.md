@@ -1,7 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.4.0 (2026-06-30). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md) (`[1.4.0]`).
+**Versija:** 1.4.1 (2026-06-30). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md) (`[1.4.1]`).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
 UI ir turinys palaiko **LT / EN** (M1–M12; M10–12 EN kai kataloge `maxModuleId >= 10`).

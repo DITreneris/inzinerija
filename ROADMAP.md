@@ -1,7 +1,7 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
 > **Atnaujinta:** 2026-06-30 | **Roadmap dokumento versija:** 2.4 (ne `package.json` semver)  
-> **App release:** 1.4.0 (2026-06-30) – žr. `CHANGELOG.md` `[1.4.0]`.
+> **App release:** 1.4.1 (2026-06-30) – žr. `CHANGELOG.md` `[1.4.1]`.
 > **Principas:** Stabilumas ir turinys pirmiausia; produkcija paleista ([www.promptanatomy.app](https://www.promptanatomy.app)) – post-deploy monitoring, iteracijos ir release QA.  
 > **Production audit (2026-06):** **CONDITIONAL GO** — M1–6 shippable; monetizacija ~45% ready. Prioritetai: `TODO.md` §1.1 MON-\*; santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
 
@@ -13,7 +13,7 @@
 
 | Sritis                                                                  | Būsena                | Pastabos                                                                                                                              |
 | ----------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Produkcija (Vercel)**                                                 | ✅ Veikia             | [www.promptanatomy.app](https://www.promptanatomy.app) – submodulis; `npm run build:production` (M1–9). Žr. `CHANGELOG.md` `[1.4.0]`. |
+| **Produkcija (Vercel)**                                                 | ✅ Veikia             | [www.promptanatomy.app](https://www.promptanatomy.app) – submodulis; `npm run build:production` (M1–9). Žr. `CHANGELOG.md` `[1.4.1]`. |
 | **Moduliai 1–6**                                                        | ✅ Pilnai             | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`. |
 | **Moduliai 7–9**                                                        | ✅ Production bundle  | Duomenų analizės kelias; tier 9; `modules-m1-m9.json`; `build:production`.                                                            |
 | **Moduliai 10–12**                                                      | ✅ Authoring kataloge | Agentų kelias; ne production bundle; EN `modules-en-m10-m12.json`. Monetizacija M10+ – Deferred.                                      |

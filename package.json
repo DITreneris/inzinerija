@@ -1,6 +1,6 @@
 {
   "name": "prompt-anatomy-training",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Interaktyvus DI promptų mokymas: MVP M1–6, production M1–9 (tier 9), full authoring katalogas M1–15. Praktika, apklausa, sertifikatai.",
   "type": "module",
   "scripts": {

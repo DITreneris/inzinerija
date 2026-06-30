@@ -150,6 +150,16 @@ Po training repo tag **`v1.4.0`**:
 
 ---
 
+## 8.1. Release 1.4.1 – patch (2026-06-30)
+
+Po training repo tag **`v1.4.1`** (LT/EN audit gates, Tu-forma, diagram i18n, M7–9 data sync):
+
+1. **Submodule pin:** `apps/prompt-anatomy` → commit su tag `v1.4.1`.
+2. **Build:** `npm run build:production`; release gate `npm run audit:m49`.
+3. **Smoke:** M4 EN (be LT leak), M7 `m7_data_story_cycle` LT/EN, Tu-forma M1/M3.
+
+---
+
 ## 9. Nuorodos
 
 | Dokumentas                | Kelias                                                                                     |

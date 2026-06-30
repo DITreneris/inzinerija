@@ -6,7 +6,7 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.0]**, **[1.3.0]**, **[1.2.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.0]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.1]** release.                                       |
+| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).     |
 | **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel. |
 | **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                  |
 | **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                    |
@@ -32,29 +33,36 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 47 failai, 288 testai (unit, component, integration, a11y). Validacija: prebuild schema.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.0** (2026-06-30). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8).
+- **Testai:** 47+ failai, 298 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.1** (2026-06-30). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.0 release._
+_Įrašai po 1.4.1 release._
 
-### Changed (2026-06-30) – M7 stubų ir viz šakos užpildymas
+---
+
+## [1.4.1] – 2026-06-30
+
+Post-1.4.0 patch: Production M1–9 LT/EN audit gates (`audit:m49`), Tu-form harmonization, shared diagram locale, M7–9 data sync.
+
+### Changed – M7 stubų ir viz šakos užpildymas
 
 - **`modules.json` / `modules-en-m7-m9.json` (M7):** skaidrės 76, 78 ir 98 išplėstos iš plonų/stub blokų į pilnas mokymo skaidres su CopyButton promptais; 98 nebėra roadmap tekstas.
 - **M7 viz šaka 100–106:** pilnai užpildytas DA_4 turinys (data storytelling, 10/20/80, Geštalto principai, dashboard'ai, super promptas, alternatyvos); 100 prijungta nauja interaktyvi `m7_data_story_cycle` schema.
 - **Dokumentacija:** suderinti `docs/turinio_pletra_moduliai_7_8_9.md` ir `docs/MODULIO_7_SKAIDRIU_EILES.md`; pridėtas lokalizacijos testas naujai M7 diagramai.
 
-### Added (2026-06-30) – M4–6 EN kalbos audit tooling + M1–9 taisyklių apjungimas
+### Added – M4–6 EN kalbos audit tooling + M1–9 taisyklių apjungimas
 
 - **`npm run audit:m46`:** `audit:en-coverage-m4-m6` (skaidrių ID paritetas + LT diakritikų liekanos po merge) + `audit:en-language-m4-m6` (hybrid tokenai, LT žodžiai, DI→AI, LT „tu“ forma). Nauji skriptai [`scripts/audit-en-coverage-m4-m6.mjs`](scripts/audit-en-coverage-m4-m6.mjs), [`scripts/audit-en-language-m4-m6.mjs`](scripts/audit-en-language-m4-m6.mjs).
 - **`npm run audit:m49`:** `audit:m46` + `audit:m79` – bendras Production M1–9 EN/LT kalbos vartas.
 - **`scripts/lib/m79-language-rules.mjs`:** `auditLtString` nebeapribota M7–9 (apima M1–9, modulių apimtį valdo `auditLtModules`); pridėti LT-žodžių šablonai (`Rezultatas`, `Kada naudoti`, `Metodinis/Agentinis promptas`); leidžiamas LT „DI (AI)“ gloss; praleidžiami išorinių šaltinių pavadinimai (`sources[N].title`).
 - **Ataskaita:** [`docs/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md`](docs/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md).
+- **Docs:** `AGENTS.md`, `RELEASE_QA_CHECKLIST.md` §5c – `audit:m46` / `audit:m49`.
 
-### Fixed (2026-06-30) – M1/M4–6 LT/EN kalba (audit follow-up)
+### Fixed – M1/M4–6 LT/EN kalba (audit follow-up)
 
 - **`modules-en-m4-m6.json` (M4):** EN locale rodė LT likučius (deep-merge spragos) – slide 43 `Promptas`→`Prompt`; slide 54 lentelė (`Metodinis/Agentinis promptas`, `Įrankiai`, `Rezultatas`, `Kada naudoti`)→EN; slide 61 – pridėta trūkusi 4-a EN sekcija („Where else to apply this?“).
 - **`modules.json` (M4 slide 60):** „NoteLM – **AI** užrašų“ → „**DI** užrašų“ (LT terminologija).
@@ -62,7 +70,7 @@ _Įrašai po 1.4.0 release._
 - **`src/locales/lt.json`:** `m5IntroBodyDefault` mišrus Jūs/Tu → Tu (`Tu ką tik atlikai … sukūrei`).
 - **Core profiliai:** `npm run generate:core-data` (`modules-m1-m6.json`, `modules-m1-m9.json`).
 
-### Fixed (2026-06-30) – Modulis 3: Tu forma ir scenarijų šablonai
+### Fixed – Modulis 3: Tu forma ir scenarijų šablonai
 
 - **`modules.json` (M3):** visų 6 scenarijų žingsnių antraštės ir aprašymai – **Tu** forma (`Pradėk`, `Surink`, `Apibrėžk`, ne `Pradėkite`); modulio `description` – `sukurk` (ne `sukurkite`).
 - **Scenarijai 32–33:** pataisyti `template`, `hint` ir `partialSolution` – pardavimų Q3 analizė (ne marketingo Q1) ir SmartFlow kampanija (ne HR apklausa); duomenys atitinka `scenario.data`.
@@ -71,81 +79,26 @@ _Įrašai po 1.4.0 release._
 - **`lt.json`:** navigacija – `Atlik praktinę užduotį…`, `Naudok ← → klavišus`, `Pabaik mini testą…`.
 - **Core profiliai:** `npm run generate:core-data` – `modules-m1-m6.json`, `modules-m1-m9.json`.
 
+### Fixed – M7–9 žodynėlis, įrankiai ir LT/EN kalba
+
 - **`glossary.json`:** pašalintas klaidingas `Master promptas` → `unlockedBy` M7:71.2 (M4 terminas lieka tik Modulyje 4).
 - **`modules.json` / `modules-en-m7-m9.json`:** path-step 71.2 – `unlockedGlossaryTerms` tik `Deep research`; M7:75, M8 testas, M9:9226 – „Master prompt“ → **MASTER PROMPTAS**; M7:74 – vienas sakinys, kad tai ne M4 Master promptas.
 - **`modules.json` (M7 LT):** pirmo karto gloss – pipeline, dashboard, data storytelling, workflow (skaidrės 71, 73, 891).
 - **`tools.json` / `tools-en-m1-m9.json`:** 4 M7 įrankiai (Julius AI, Echobase, DataLab, Power BI); ChatGPT ir kt. lieka Modulyje 1 – pilnas sąrašas vis tiek skaidrėje 70.
+- **`modules.json` / `modules-en-m7-m9.json` (M7–9):** LT „tu“ forma; M9 EN overlay daliniai pataisymai.
 
-### Added (2026-06-30) – M7–9 EN kalbos audit tooling
-
-- **`npm run audit:en-language-m7-m9`:** merged EN overlay – hybrid tokenai, LT liekanos, DI→AI; LT `modules.json` M7–9 – neformalus „tu“ (ne `jūsų` / `galite` / `Paspauskite` ir pan.).
-- **`npm run audit:m79`:** `audit:en-coverage-m7-m9` + `audit:en-language-m7-m9` vienu paleidimu.
-- **Skriptai:** [`scripts/audit-en-language-m7-m9.mjs`](scripts/audit-en-language-m7-m9.mjs), [`scripts/lib/m79-language-rules.mjs`](scripts/lib/m79-language-rules.mjs), [`scripts/lib/audit-en-merge.mjs`](scripts/lib/audit-en-merge.mjs); allowlist [`scripts/fixtures/m79-en-language-allowlist.json`](scripts/fixtures/m79-en-language-allowlist.json).
-
-### Fixed (2026-06-30) – M7–9 LT/EN kalba (audit follow-up)
-
-- **`src/data/modules.json` (M7–9):** LT tekstai – „tu“ forma vietoj formalios (`jūsų`, `galite`, `Paspauskite`, …).
-- **`src/data/modules-en-m7-m9.json` (M9):** daliniai EN pataisymai (scenarijų/hub overlay); po rankinio rewrite – nepergeneruoti per `build:modules-en-m7-m9`.
-
-### Fixed (2026-06-30) – schemų LT/EN lokalizacija (3 diagramos)
+### Fixed – schemų LT/EN lokalizacija
 
 - **Problema:** EN režime 3 aktyvios diagramos rodė hardcoded LT tekstą (blokų pavadinimai, aria, antraštės), nors blokų apvalkalas jau buvo lokalizuotas.
 - **M10.2** [`AgentWorkflowDiagram`](src/components/slides/shared/AgentWorkflowDiagram.tsx) + [`AgentWorkflowBlock`](src/components/slides/shared/AgentWorkflowBlock.tsx): naujas [`agentWorkflowContent.ts`](src/components/slides/shared/agentWorkflowContent.ts) (`getAgentWorkflowLabels`, `getAgentWorkflowStepExplanations`); `locale` prop + `useLocale()`.
 - **M4 s43** [`StrukturuotasProcesasDiagram`](src/components/slides/shared/StrukturuotasProcesasDiagram.tsx): `getStrukturuotasProcesasDiagramLabels()` [`strukturuotasProcesasStepExplanations.ts`](src/components/slides/shared/strukturuotasProcesasStepExplanations.ts) – diagramos blokai (title + items) LT/EN.
 - **M13 s13.11** [`TurinioWorkflowDiagram`](src/components/slides/shared/TurinioWorkflowDiagram.tsx): `getTurinioWorkflowDiagramLabels()` [`stepExplanations.ts`](src/components/slides/shared/stepExplanations.ts) – 7 žingsnių label/desc, title, hint, aria LT/EN.
-- **Testai:** [`DiagramLocalization.test.tsx`](src/components/slides/shared/__tests__/DiagramLocalization.test.tsx) – 8 testai (LT/EN render, interaktyvumo badge).
+- **M7** [`M7DataStoryCycleDiagram`](src/components/slides/shared/M7DataStoryCycleDiagram.tsx) – nauja lokalizuota schema.
+- **Testai:** [`DiagramLocalization.test.tsx`](src/components/slides/shared/__tests__/DiagramLocalization.test.tsx) – 11 testų (LT/EN render, interaktyvumo badge).
 
-### Changed (2026-06-30) – AgentWorkflow interaktyvumas (M10.2 pilotas)
+### Gate
 
-- [`AgentWorkflowBlock`](src/components/slides/shared/AgentWorkflowBlock.tsx): iš statinės diagramos → interaktyvus blokas (SCHEME_AGENT §3.6) – „Tu esi čia“ badge, žingsnių mygtukai 1–5, paaiškinimai apačioje; clickable SVG rect su a11y (`aria-label`, `role`, `tabIndex`, `onKeyDown`).
-- [`AgentWorkflowDiagram`](src/components/slides/shared/AgentWorkflowDiagram.tsx): `currentStep` / `onStepClick`, aktyvaus žingsnio paryškinimas.
-
-### Chore (2026-06-30) – archyvuotų schemų higiena
-
-- [`ContentSlides.tsx`](src/components/slides/types/ContentSlides.tsx): pašalintos negyvos routing šakos `agent_orchestrator`, `schema3` (nėra atitinkamų `modules.json` image raktų).
-- [`index.ts`](src/components/slides/shared/index.ts): pašalinti archyvuotų komponentų eksportai (Schema3/4, ContextFlow, AgentOrchestrator).
-- 8 failai pažymėti `@deprecated` (Schema3Interactive, Schema4, ContextFlow, AgentOrchestrator + Block).
-- **Docs:** [`SCHEME_AGENT.md`](docs/development/SCHEME_AGENT.md) §2/§5.5 – schema3 archyvuota, slide 56 = `llm_arch_diagram`; [`.cursor/skills/scheme-agent/lessons.md`](.cursor/skills/scheme-agent/lessons.md) – 2 naujos pamokos.
-
-### Fixed / Chore (2026-06-30) – typecheck + repo švara
-
-- **Typecheck:** M7 journey testo fixture papildytas privalomais `ActionIntroJourneyContent` laukais `heroStat` + `heroText` ([`modulesLoader.test.ts`](src/data/__tests__/modulesLoader.test.ts)); `tsc --noEmit` žalias.
-- **Chore:** [`.gitignore`](.gitignore) – vienkartinio M7–M9 EN vertimo pipeline scratch (`scripts/_*`, `*m79*`, `*part2*`, `rebuild-final-map`, `translate-role-blocks`) nebetrackinama; keeper scriptai (`build-en-m7-m9`, `audit-en-coverage-m7-m9`, `m7-m9-en-*`, `sync-module-icons`) lieka repo.
-- **Gate:** `npm run lint`, `npm run typecheck`, `npm run test:run` (288 testų), `npm run build:production` – visi žali.
-
-### Changed (2026-06-30) – Brand mark vieningas `BrandMark` (DS v0.3.1)
-
-- **Komponentas:** naujas [`BrandMark`](src/components/ui/BrandMark.tsx) (`Zap` + gold ant `brand-900`); nav/hero/footer naudoja vieną ženklą. Footer migravo iš `Sparkles` + gradiento (vienintelis vizualus pokytis; dydžiai nekeisti — be layout shift). Wire: [`AppNav.tsx`](src/components/AppNav.tsx), [`HomePage.tsx`](src/components/HomePage.tsx), [`App.tsx`](src/App.tsx).
-- **Konstantos:** [`src/constants/brand.ts`](src/constants/brand.ts) (`BRAND`, `brandName`) — wordmark, domain, `trainingPath=/anatomy/`, brand spalvos; minimalus fallback [`certificatePdf.ts`](src/utils/certificatePdf.ts).
-- **Favicon:** [`public/favicon.svg`](public/favicon.svg) sinchronizuotas su hub (gradientas `#050d14→#103b5a`, žaibas `#fbd304`).
-- **Docs:** [`BRAND_MARK_SPEC.md`](docs/development/BRAND_MARK_SPEC.md), [`PACKAGES_BRAND_CONTRACT.md`](docs/development/PACKAGES_BRAND_CONTRACT.md) (Phase 2 frozen API), DESIGN_SYSTEM §4a, DS_V0_2 backlog B12.
-- **Deployment docs:** canonical training kelias `/anatomy/` (senas `/anatomija/` → 301) — MARKETING_HANDOFF, DEPLOYMENT, ECOSYSTEM_MAP, memo 05.
-- **Polish:** [`index.html`](index.html) `theme-color` → `#102a43` (brand-navy, sutampa su favicon); `build:production` per `cross-env` (cross-platform — veikia ir Windows PowerShell).
-- **Testai:** [`BrandMark.test.tsx`](src/components/ui/__tests__/BrandMark.test.tsx) (6 testai — glifas, dydžiai, a11y).
-
-### Fixed (2026-06-30) – ModulesPage unikalios ikonos M1–M6 (DS v0.3.1)
-
-- **Duomenys:** `module.icon` = `module.identityIcon` M1–M6 — nebe dubliuojasi Target/Brain/Settings ciklas 2×3 tinklelyje ([`modules.json`](src/data/modules.json), EN overlay, core profiliai per `generate:core-data`).
-- **Tipai:** `ModuleIcon` = `ModuleIdentityIcon`; [`moduleIdentity.ts`](src/utils/moduleIdentity.ts) — vienas `MODULE_IDENTITY_ICON_MAP`.
-- **Validacija:** `icon` enum schema + `validate:schema` hard fail kai `icon !== identityIcon`.
-- **Skriptas:** [`scripts/sync-module-icons.mjs`](scripts/sync-module-icons.mjs) (`--dry-run`).
-
-### Added (2026-06-30) – M7–M9 English UI (lean + expansion)
-
-- **EN overlay:** `modules-en-m7-m9.json` – 78 skaidrės (M7: 51 incl. `pathBranch`, M8: 5, M9: 22 incl. visi scenarijai); deep-merge kai `locale === 'en'` ir `maxModuleId >= 7` ([`modulesLoader.ts`](src/data/modulesLoader.ts)).
-- **Build / audit:** `npm run build:modules-en-m7-m9`, `npm run audit:en-coverage-m7-m9` (lean + `--full`); manifest [`scripts/m7-m9-en-manifest.mjs`](scripts/m7-m9-en-manifest.mjs), vertimo pipeline [`scripts/build-en-m7-m9.mjs`](scripts/build-en-m7-m9.mjs) + `m7-m9-en-string-map.json`.
-- **Schema:** `validateModulesEnM79()` – partial overlay validacija [`scripts/validate-schema.mjs`](scripts/validate-schema.mjs).
-- **Glossary EN:** +7 M7 terminai [`glossary-en.json`](src/data/glossary-en.json) (Dashboard, pipeline, EDA, …).
-- **M9 veikėjai:** [`m9Characters-en.json`](src/data/m9Characters-en.json) + [`m9CharactersLoader.ts`](src/data/m9CharactersLoader.ts); locale-aware [`SlideContent.tsx`](src/components/SlideContent.tsx).
-- **UX:** Partial EN pranešimas moduliuose 7–9, kai skaidrės antraštėje dar lieka LT diakritika ([`enPartialCoverage.ts`](src/utils/enPartialCoverage.ts), `module:enPartialContentNotice`).
-- **Testai:** `moduleJourneyFocus.test.ts`, `enPartialCoverage.test.ts`, `modulesLoader` M7–9 EN merge test.
-- **Docs:** README, CODEBASE_WHAT_IS_DONE, RELEASE_QA §5c M7–9 EN, AGENTS.md validation table, DATA_AGENT skill.
-
-### Fixed (2026-06-30) – M7 journey focus (locale-safe)
-
-- **`moduleJourneyFocus`** saugo stabilų `journeyChoices[].id` (pvz. `pardavimai`), ne rodomą etiketę – EN/LT perjungimas nebe lūžta šakų filtravime.
-- Migracija legacy LT etikečių → id on load ([`moduleJourneyFocus.ts`](src/utils/moduleJourneyFocus.ts), [`progress.ts`](src/utils/progress.ts)).
-- Atnaujinta: [`App.tsx`](src/App.tsx), [`ModuleView.tsx`](src/components/ModuleView.tsx), [`SlideContent.tsx`](src/components/SlideContent.tsx), [`ActionIntroJourneySlide`](src/components/slides/types/ContentSlides.tsx) – banner rodo locale etiketę pagal id.
+- `npm run validate:schema`, `npm run audit:m49`, `npm run lint`, `npm run test:run` (298 testų), `npm run build:production` – žali prieš release.
 
 ---
 
