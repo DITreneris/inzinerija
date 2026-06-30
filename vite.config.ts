@@ -97,7 +97,7 @@ export default defineConfig({
       ),
       // Vaizdo generatorius – M15 turinys; nereikalingas core (1–6) nei korporatyviniam (1–9) build'ui.
       '@vaizdo-generatorius-slide': resolvePath(
-        isCoreBuild || isCorporateBuild
+        isCoreBuild || isProductionBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/VaizdoGeneratoriusSlide.tsx'
       ),
