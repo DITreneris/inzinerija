@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * Build src/data/modules-en-m7-m9.json – EN overlay for modules 7–9 (lean + phase 6 expansion).
+ * WARNING: Overwrites manual EN edits in modules-en-m7-m9.json. After CONTENT rankinis rewrite,
+ * do NOT run this without restoring from git or re-applying fixes.
  * Run: node scripts/build-en-m7-m9.mjs [--lean]
  */
 import { readFileSync, writeFileSync } from 'fs';

@@ -1031,7 +1031,7 @@
                   },
                   {
                     "chain": ["GPT", "Google Veo3"],
-                    "flow": ["Promptas", "Video"],
+                    "flow": ["Prompt", "Video"],
                     "tag": "Video",
                     "expandInput": "Text prompt or script",
                     "expandOutput": "Generated video"
@@ -1377,11 +1377,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Aspect",
-                    "Metodinis promptas",
-                    "Agentinis promptas"
-                  ],
+                  "headers": ["Aspect", "Method prompt", "Agentic prompt"],
                   "rows": [
                     [
                       "In short",
@@ -1394,17 +1390,17 @@
                       "Acts as agent: uses search, tools"
                     ],
                     [
-                      "Įrankiai",
+                      "Tools",
                       "Not needed – works without search",
                       "Needed: Browse, Search, API (ChatGPT, Claude, Gemini)"
                     ],
                     [
-                      "Rezultatas",
+                      "Result",
                       "Structured report, analysis",
                       "Gathered data, lists, facts from the web"
                     ],
                     [
-                      "Kada naudoti",
+                      "When to use",
                       "When you have data and need analysis / structure",
                       "When you need **to find new information** in real time"
                     ]
@@ -2458,6 +2454,11 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
+              },
+              {
+                "heading": "📍 Where else to apply this? (Data analysis path)",
+                "body": "The same research tools are used on the **Data analysis path (Modules 7–9)**: Deep research for source gathering and 4× parallel research (M9 workflow, path steps 71.3–71.4). If you take that path – come back to this slide as a tools cheat sheet.",
+                "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 25: Data prep for RAG"
