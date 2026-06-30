@@ -1,46 +1,38 @@
-/**
- * Agentų ciklo diagramos blokas (M10.2) – interaktyvi diagrama + paaiškinimai apačioje.
- * „Tu esi čia" badge, žingsnių mygtukai, stabili paaiškinimo struktūra (SCHEME_AGENT §3.6).
- * Lokalizuota per useLocale() ir agentWorkflowContent getterius.
- */
-import { useTranslation } from 'react-i18next';
 import { useLocale } from '../../../contexts/LocaleContext';
-import EnlargeableDiagram from './EnlargeableDiagram';
-import AgentWorkflowDiagram from './AgentWorkflowDiagram';
-import { getAgentWorkflowStepExplanations } from './agentWorkflowContent';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
+import EnlargeableDiagram from './EnlargeableDiagram';
+import M7DataStoryCycleDiagram from './M7DataStoryCycleDiagram';
+import { getM7DataStoryCycleExplanations } from './m7DiagramContent';
 
-const BLOCK_LABELS = {
+const LABELS = {
   lt: {
-    regionAria: 'Agentų ciklas: 5 žingsniai su paaiškinimais',
+    regionAria: 'Duomenų istorijos ciklas',
     youAreHere: 'Tu esi čia:',
-    clickHint:
-      'Paspausk žingsnį diagramoje arba skaičių 1–5 – paaiškinimas rodomas apačioje.',
-    navAria: 'Žingsnio pasirinkimas',
+    navAria: 'Duomenų istorijos ciklo žingsniai',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
+    enlargeLabel: 'Modulis 7 – duomenų istorijos ciklas',
   },
   en: {
-    regionAria: 'Agent cycle: 5 steps with explanations',
+    regionAria: 'Data story cycle',
     youAreHere: 'You are here:',
-    clickHint:
-      'Click a step in the diagram or number 1–5 – explanation shown below.',
-    navAria: 'Step selection',
+    navAria: 'Data story cycle steps',
     stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,
+    enlargeLabel: 'Module 7 – data story cycle',
   },
 } as const;
 
-export default function AgentWorkflowBlock() {
-  const { t } = useTranslation('diagrams');
+export default function M7DataStoryCycleBlock() {
   const { locale } = useLocale();
   const loc = locale === 'en' ? 'en' : 'lt';
-  const explanations = getAgentWorkflowStepExplanations(loc);
-  const labels = BLOCK_LABELS[loc];
+  const explanations = getM7DataStoryCycleExplanations(loc);
+  const labels = LABELS[loc];
   const { currentStep, setCurrentStep, step, totalSteps } =
     useStepDiagram(explanations);
 
   return (
     <EnlargeableDiagram
+      mobileBehavior="reflow"
       renderContent={() => (
         <div className="space-y-4" role="region" aria-label={labels.regionAria}>
           <div className="flex flex-wrap items-center gap-2">
@@ -52,21 +44,17 @@ export default function AgentWorkflowBlock() {
                 className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
                 aria-hidden
               />
-              {labels.youAreHere} {currentStep + 1}. {step.title}
+              {labels.youAreHere} {step.title}
             </span>
             <span className="text-xs text-gray-500 dark:text-gray-400">
               {currentStep + 1} / {totalSteps}
             </span>
           </div>
 
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            {labels.clickHint}
-          </p>
-
-          <AgentWorkflowDiagram
-            locale={loc}
+          <M7DataStoryCycleDiagram
             currentStep={currentStep}
             onStepClick={setCurrentStep}
+            locale={loc}
           />
 
           <nav
@@ -81,7 +69,7 @@ export default function AgentWorkflowBlock() {
                 aria-current={currentStep === idx ? 'step' : undefined}
                 aria-label={labels.stepAria(idx, s.title)}
                 className={`
-                  flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all
+                  flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold transition-all
                   focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
                   ${
                     currentStep === idx
@@ -107,7 +95,7 @@ export default function AgentWorkflowBlock() {
           </div>
         </div>
       )}
-      enlargeLabel={t('agentWorkflowEnlargeLabel')}
+      enlargeLabel={labels.enlargeLabel}
     />
   );
 }

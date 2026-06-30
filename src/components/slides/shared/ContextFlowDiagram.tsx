@@ -1,4 +1,5 @@
 /**
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides; skaidrė 44 naudoja llm_autoregressive. Nešalinti be QA.
  * Konteksto veikimo schema: Tu nurodai (vaidmuo, formatas, ribos) → DI → Geresnis rezultatas.
  * Naudojama skaidrėje id 44 (Konteksto inžinerija). SCHEME_AGENT: geometrija iš konstantų, rodyklės kraštas į kraštą.
  * Turinys pagal locale per contextFlowDiagramLabels.

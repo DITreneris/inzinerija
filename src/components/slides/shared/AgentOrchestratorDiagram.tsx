@@ -1,4 +1,5 @@
 /**
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides; modules.json neturi „agent_orchestrator" rakto. M12 120.5 – text-only. Nešalinti be QA.
  * Agentų orkestratoriaus diagrama (Router + agentai + pipeline + SOT).
  * Statinė schema iš public/agent_orchestrator_v2.svg – tas pats turinys skaidrėje ir modale (EnlargeableDiagram).
  * Alt tekstas lokalizuotas per diagrams.agentOrchestratorAlt.
@@ -7,7 +8,11 @@ import { useTranslation } from 'react-i18next';
 
 const ORCHESTRATOR_SVG = `${import.meta.env.BASE_URL || '/'}agent_orchestrator_v2.svg`;
 
-export default function AgentOrchestratorDiagram({ className = '' }: { className?: string }) {
+export default function AgentOrchestratorDiagram({
+  className = '',
+}: {
+  className?: string;
+}) {
   const { t } = useTranslation('diagrams');
   return (
     <img

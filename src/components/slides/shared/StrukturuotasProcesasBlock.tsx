@@ -16,16 +16,28 @@ export default function StrukturuotasProcesasBlock() {
   const { locale } = useLocale();
   const explanations = getStrukturuotasProcesasStepExplanations(locale);
   const blockLabels = getStrukturuotasProcesasBlockLabels(locale);
-  const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
+  const {
+    currentStep,
+    setCurrentStep,
+    step,
+    totalSteps: TOTAL_STEPS,
+  } = useStepDiagram(explanations);
 
   return (
-    <div className="space-y-4" role="region" aria-label={blockLabels.regionAria}>
+    <div
+      className="space-y-4"
+      role="region"
+      aria-label={blockLabels.regionAria}
+    >
       <div className="flex flex-wrap items-center gap-2">
         <span
           className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1.5 text-sm font-semibold text-brand-700 dark:text-brand-300"
           aria-live="polite"
         >
-          <span className="h-2 w-2 rounded-full bg-brand-500 shrink-0" aria-hidden />
+          <span
+            className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
+            aria-hidden
+          />
           {blockLabels.youAreHere} {currentStep + 1}. {step.title}
         </span>
         <span className="text-xs text-gray-500 dark:text-gray-400">
@@ -43,11 +55,15 @@ export default function StrukturuotasProcesasBlock() {
           <StrukturuotasProcesasDiagram
             currentStep={currentStep}
             onStepClick={setCurrentStep}
+            locale={locale}
           />
         )}
       />
 
-      <nav className="flex flex-wrap justify-center gap-1.5" aria-label={blockLabels.navAria}>
+      <nav
+        className="flex flex-wrap justify-center gap-1.5"
+        aria-label={blockLabels.navAria}
+      >
         {explanations.map((s, idx) => (
           <button
             key={idx}
@@ -75,7 +91,9 @@ export default function StrukturuotasProcesasBlock() {
         role="status"
         aria-live="polite"
       >
-        <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">{step.title}</p>
+        <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">
+          {step.title}
+        </p>
         <p>{renderBold(step.body)}</p>
       </div>
     </div>

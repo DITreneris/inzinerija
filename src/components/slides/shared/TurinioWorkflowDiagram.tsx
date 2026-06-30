@@ -4,6 +4,10 @@
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import {
+  getTurinioWorkflowDiagramLabels,
+  type StepExplanationsLocale,
+} from './stepExplanations';
 
 const BOX_H = 48;
 const GAP = 20;
@@ -35,30 +39,24 @@ function getStepBoxes(
   ];
 }
 
-const STEPS: { label: string; desc: string }[] = [
-  { label: 'Brief', desc: 'Kam, tikslas, auditorija' },
-  { label: 'Prompt', desc: 'Brand consistency' },
-  { label: 'Variantai', desc: '3–5 vaizdų' },
-  { label: 'Iteracija', desc: 'Gerinimas pagal atsiliepimus' },
-  { label: 'Adaptacija', desc: 'Platformos, formatai' },
-  { label: 'Testavimas', desc: 'A/B, KPI' },
-  { label: 'Optimizacija', desc: 'Rezultatai → ciklas' },
-];
-
 interface TurinioWorkflowDiagramProps {
   currentStep?: number;
   onStepClick?: (index: number) => void;
   className?: string;
+  locale?: StepExplanationsLocale;
 }
 
 export default function TurinioWorkflowDiagram({
   currentStep = 0,
   onStepClick,
   className = '',
+  locale = 'lt',
 }: TurinioWorkflowDiagramProps) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
   const isInteractive = typeof onStepClick === 'function';
+  const labels = getTurinioWorkflowDiagramLabels(locale);
+  const STEPS = labels.steps;
   const STEP_ACTIVE_OPACITY = 1;
   const STEP_INACTIVE_OPACITY = 0.5;
   const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : DESKTOP_VIEWBOX_W;
@@ -75,7 +73,7 @@ export default function TurinioWorkflowDiagram({
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
-      aria-label={`Turinio workflow: nuo brief iki optimizacijos.${isInteractive ? ' Paspausk žingsnį, kad pamatytum paaiškinimą.' : ''}`}
+      aria-label={`${labels.ariaBase}${isInteractive ? ` ${labels.ariaInteractiveSuffix}` : ''}`}
     >
       <defs>
         <linearGradient
@@ -139,7 +137,7 @@ export default function TurinioWorkflowDiagram({
         fontWeight="800"
         fill="#102a43"
       >
-        Nuo brief iki publikacijos
+        {labels.title}
       </text>
       <text
         x={cx}
@@ -150,7 +148,7 @@ export default function TurinioWorkflowDiagram({
         fontWeight="500"
         fill="#334e68"
       >
-        {isInteractive ? 'Paspausk žingsnį – paaiškinimas apačioje' : ''}
+        {isInteractive ? labels.hint : ''}
       </text>
 
       {stepBoxes.map((box, i) => {
@@ -206,7 +204,7 @@ export default function TurinioWorkflowDiagram({
                 fill="transparent"
                 cursor="pointer"
                 onClick={() => onStepClick?.(i)}
-                aria-label={`Žingsnis ${i + 1}: ${STEPS[i].label}. Paspausk paaiškinimui.`}
+                aria-label={labels.stepAria(i, STEPS[i].label)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {

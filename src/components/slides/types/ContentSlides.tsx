@@ -55,8 +55,6 @@ import {
   InstructGptQualityBlock,
   RlProcessBlock,
   AgentWorkflowBlock,
-  AgentOrchestratorBlock,
-  Schema3InteractiveBlock,
   LlmArchDiagramBlock,
   StrukturuotasProcesasBlock,
   WorkflowChainsBlock,
@@ -64,6 +62,7 @@ import {
   M9DataWorkflowBlock,
   M7AnalysisTypesBlock,
   M7DataPrepWorkflowBlock,
+  M7DataStoryCycleBlock,
   M7ThreeAgentsBlock,
   M10TriggerFlowBlock,
   M10ThreeAStrategyBlock,
@@ -1054,15 +1053,6 @@ export function ContentBlockSlide({
                           </p>
                         )}
                       </div>
-                    ) : section.image.includes('agent_orchestrator') ? (
-                      <div className="my-4">
-                        <AgentOrchestratorBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
                     ) : section.image.includes('rl_process_diagram') ? (
                       <div className="my-4">
                         <RlProcessBlock
@@ -1106,6 +1096,15 @@ export function ContentBlockSlide({
                     ) : section.image.includes('m7_data_prep_workflow') ? (
                       <div className="my-4">
                         <M7DataPrepWorkflowBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
+                    ) : section.image.includes('m7_data_story_cycle') ? (
+                      <div className="my-4">
+                        <M7DataStoryCycleBlock />
                         {section.body && (
                           <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
                             {renderBodyWithBold(section.body)}
@@ -1268,15 +1267,6 @@ export function ContentBlockSlide({
                             {renderBodyWithBold(section.body)}
                           </p>
                         )}
-                      </div>
-                    ) : section.image?.includes('schema3') ? (
-                      <div className="my-4">
-                        {section.body && (
-                          <p className="mb-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                        <Schema3InteractiveBlock />
                       </div>
                     ) : (
                       <figure className="my-4">

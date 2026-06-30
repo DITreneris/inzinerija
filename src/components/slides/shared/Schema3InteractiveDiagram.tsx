@@ -1,4 +1,5 @@
 /**
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides; modules.json neturi „schema3" rakto; skaidrė 56 naudoja llm_arch_diagram. Nešalinti be QA.
  * Schema 3: LLM su RAG ir įrankiais – interaktyvi sisteminė diagrama.
  * Sluoksniai: Control, Execution, Data. Spalvinė semantika. Paspaudus mazgą – paaiškinimas apačioje.
  */
@@ -32,12 +33,29 @@ const STORAGE_STROKE = '#475569';
 const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
 
 const NODE_INDEX: Record<string, number> = {
-  input: 0, model: 1, output: 2, toolUse: 3, retrieval: 4, storage: 5,
+  input: 0,
+  model: 1,
+  output: 2,
+  toolUse: 3,
+  retrieval: 4,
+  storage: 5,
 };
 
-function getNodeStyle(nodeId: string, isActive: boolean): { stroke: string; strokeWidth: number; activeOverlay?: string } {
-  const stroke = nodeId === 'storage' ? STORAGE_STROKE : (['toolUse', 'retrieval'].includes(nodeId) ? BRAND_LIGHT : BRAND);
-  return { stroke, strokeWidth: 1, activeOverlay: isActive ? 'rgba(212,165,32,0.12)' : undefined };
+function getNodeStyle(
+  nodeId: string,
+  isActive: boolean
+): { stroke: string; strokeWidth: number; activeOverlay?: string } {
+  const stroke =
+    nodeId === 'storage'
+      ? STORAGE_STROKE
+      : ['toolUse', 'retrieval'].includes(nodeId)
+        ? BRAND_LIGHT
+        : BRAND;
+  return {
+    stroke,
+    strokeWidth: 1,
+    activeOverlay: isActive ? 'rgba(212,165,32,0.12)' : undefined,
+  };
 }
 
 interface Schema3InteractiveDiagramProps {
@@ -67,30 +85,89 @@ export default function Schema3InteractiveDiagram({
       aria-label={`${t('schema3Aria')}${isInteractive ? t('schema3InteractiveHint') : ''}`}
     >
       <defs>
-        <linearGradient id={`s3i-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          id={`s3i-bg-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor={BG_LIGHT} />
           <stop offset="100%" stopColor={BG_LIGHT_END} />
         </linearGradient>
-        <linearGradient id={`s3i-control-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id={`s3i-control-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#3d5a73" />
           <stop offset="100%" stopColor={BRAND} />
         </linearGradient>
-        <linearGradient id={`s3i-exec-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id={`s3i-exec-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#5c7589" />
           <stop offset="100%" stopColor={BRAND_LIGHT} />
         </linearGradient>
-        <marker id={`s3i-arrow-${uid}`} markerWidth="8" markerHeight="6" refX={ARROW_MARKER_LEN} refY="3" orient="auto">
-          <path d="M0 0 L8 3 L0 6 Z" fill={BRAND} stroke={BRAND} strokeWidth="0.2" />
+        <marker
+          id={`s3i-arrow-${uid}`}
+          markerWidth="8"
+          markerHeight="6"
+          refX={ARROW_MARKER_LEN}
+          refY="3"
+          orient="auto"
+        >
+          <path
+            d="M0 0 L8 3 L0 6 Z"
+            fill={BRAND}
+            stroke={BRAND}
+            strokeWidth="0.2"
+          />
         </marker>
-        <marker id={`s3i-arrow-rev-${uid}`} markerWidth="8" markerHeight="6" refX={ARROW_MARKER_LEN} refY="3" orient="auto-start-reverse">
-          <path d="M0 0 L8 3 L0 6 Z" fill={BRAND} stroke={BRAND} strokeWidth="0.2" />
+        <marker
+          id={`s3i-arrow-rev-${uid}`}
+          markerWidth="8"
+          markerHeight="6"
+          refX={ARROW_MARKER_LEN}
+          refY="3"
+          orient="auto-start-reverse"
+        >
+          <path
+            d="M0 0 L8 3 L0 6 Z"
+            fill={BRAND}
+            stroke={BRAND}
+            strokeWidth="0.2"
+          />
         </marker>
-        <marker id={`s3i-arrow-dashed-${uid}`} markerWidth="8" markerHeight="6" refX={ARROW_MARKER_LEN} refY="3" orient="auto">
-          <path d="M0 0 L8 3 L0 6 Z" fill={STORAGE_STROKE} stroke={STORAGE_STROKE} strokeWidth="0.2" />
+        <marker
+          id={`s3i-arrow-dashed-${uid}`}
+          markerWidth="8"
+          markerHeight="6"
+          refX={ARROW_MARKER_LEN}
+          refY="3"
+          orient="auto"
+        >
+          <path
+            d="M0 0 L8 3 L0 6 Z"
+            fill={STORAGE_STROKE}
+            stroke={STORAGE_STROKE}
+            strokeWidth="0.2"
+          />
         </marker>
       </defs>
       <g transform={`translate(${PAD_TRANSFORM}, ${PAD_TRANSFORM})`}>
-        <rect width={INNER_W} height={INNER_H} fill={`url(#s3i-bg-${uid})`} rx="8" />
+        <rect
+          width={INNER_W}
+          height={INNER_H}
+          fill={`url(#s3i-bg-${uid})`}
+          rx="8"
+        />
         {LAYER_BOUNDS.map((b, i) => (
           <rect
             key={i}
@@ -99,15 +176,44 @@ export default function Schema3InteractiveDiagram({
             width={INNER_W - 32}
             height={b.h + 16}
             rx="8"
-            fill={i === 0 ? 'rgba(51,78,104,0.05)' : i === 1 ? 'rgba(72,101,129,0.04)' : 'rgba(100,116,139,0.05)'}
+            fill={
+              i === 0
+                ? 'rgba(51,78,104,0.05)'
+                : i === 1
+                  ? 'rgba(72,101,129,0.04)'
+                  : 'rgba(100,116,139,0.05)'
+            }
           />
         ))}
-        <rect width={INNER_W} height={INNER_H} fill="none" stroke={BORDER} strokeWidth="1" rx="8" />
-        <text x={INNER_W / 2} y={TITLE_Y} textAnchor="middle" fontFamily={FONT} fontSize="14" fontWeight="700" fill={TEXT_DARK}>
+        <rect
+          width={INNER_W}
+          height={INNER_H}
+          fill="none"
+          stroke={BORDER}
+          strokeWidth="1"
+          rx="8"
+        />
+        <text
+          x={INNER_W / 2}
+          y={TITLE_Y}
+          textAnchor="middle"
+          fontFamily={FONT}
+          fontSize="14"
+          fontWeight="700"
+          fill={TEXT_DARK}
+        >
           {diagramTitles.title}
         </text>
         {isInteractive && (
-          <text x={INNER_W / 2} y={42} textAnchor="middle" fontFamily={FONT} fontSize="11" fontWeight="500" fill={BRAND}>
+          <text
+            x={INNER_W / 2}
+            y={42}
+            textAnchor="middle"
+            fontFamily={FONT}
+            fontSize="11"
+            fontWeight="500"
+            fill={BRAND}
+          >
             {diagramTitles.subtitle}
           </text>
         )}
@@ -152,8 +258,18 @@ export default function Schema3InteractiveDiagram({
           const isActive = currentStep === idx;
           const style = getNodeStyle(node.id, isActive);
           const [line1, line2] = nodeLabels[node.id] ?? ['', undefined];
-          const gradId = node.layer === 'control' ? `s3i-control-${uid}` : node.layer === 'execution' ? `s3i-exec-${uid}` : null;
-          const fill = node.id === 'storage' ? STORAGE_FILL : gradId ? `url(#${gradId})` : STORAGE_FILL;
+          const gradId =
+            node.layer === 'control'
+              ? `s3i-control-${uid}`
+              : node.layer === 'execution'
+                ? `s3i-exec-${uid}`
+                : null;
+          const fill =
+            node.id === 'storage'
+              ? STORAGE_FILL
+              : gradId
+                ? `url(#${gradId})`
+                : STORAGE_FILL;
           const rx = 8;
 
           return (
@@ -183,8 +299,16 @@ export default function Schema3InteractiveDiagram({
                 y={node.y + (line2 ? 18 : node.h / 2 + 4)}
                 textAnchor="middle"
                 fontFamily={FONT}
-                fontSize={node.id === 'model' ? 13 : node.id === 'toolUse' ? 9 : 10}
-                fontWeight={node.id === 'model' ? '700' : node.id === 'storage' ? '500' : '600'}
+                fontSize={
+                  node.id === 'model' ? 13 : node.id === 'toolUse' ? 9 : 10
+                }
+                fontWeight={
+                  node.id === 'model'
+                    ? '700'
+                    : node.id === 'storage'
+                      ? '500'
+                      : '600'
+                }
                 fill="white"
               >
                 {line1}
