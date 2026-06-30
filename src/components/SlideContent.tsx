@@ -847,6 +847,8 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         content={summaryContent}
         completedScenarioCount={completedScenarioCount}
         totalScenarioCount={totalScenarioCount}
+        moduleId={ctx.moduleId}
+        slideId={ctx.slide.id}
       />
     );
   },

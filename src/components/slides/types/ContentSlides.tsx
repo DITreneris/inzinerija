@@ -29,7 +29,6 @@ import {
   Users,
   Briefcase,
   Compass,
-  Download,
   Settings,
   User,
   MapPin,
@@ -38,12 +37,18 @@ import {
   Music,
 } from 'lucide-react';
 import { track, trackSpinoffClick } from '../../../utils/analytics';
+import { logError } from '../../../utils/logger';
 import { getSpinoffCtaIdFromUrl } from '../../../constants/ecosystemUrls';
 import {
   downloadM6HandoutPdf,
   type M6HandoutContent,
 } from '../../../utils/m6HandoutPdf';
-import { getM6HandoutContent } from '../../../data/handoutContentLoader';
+import { downloadM79HandoutPdf } from '../../../utils/m79HandoutPdf';
+import {
+  getM6HandoutContent,
+  getM79HandoutContent,
+  type M79HandoutContent,
+} from '../../../data/handoutContentLoader';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { findJourneyChoiceByStored } from '../../../utils/moduleJourneyFocus';
 import {
@@ -79,6 +84,7 @@ import {
   RagDuomenuRuosimasBlock,
   ContextEngineeringPipelineDiagram,
 } from '../shared';
+import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { getColorClasses } from '../utils/colorStyles';
 import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
 import SectionDivider from '../../ui/SectionDivider';
@@ -422,6 +428,7 @@ export function ContentBlockSlide({
   const [showCorrectPromptSolution, setShowCorrectPromptSolution] =
     useState(false);
   const [correctPromptUserText, setCorrectPromptUserText] = useState('');
+  const [handoutError, setHandoutError] = useState(false);
   const sectionsList = content.sections ?? [];
   const collapsibleSections = sectionsList.filter(
     (s) => Boolean(s.collapsible) && !isShortContent(s)
@@ -489,12 +496,24 @@ export function ContentBlockSlide({
   };
 
   const handleM6HandoutDownload = useCallback(async () => {
-    await downloadM6HandoutPdf(
-      getM6HandoutContent(locale) as M6HandoutContent,
-      undefined,
-      locale
-    );
-  }, [locale]);
+    try {
+      setHandoutError(false);
+      await downloadM6HandoutPdf(
+        getM6HandoutContent(locale) as M6HandoutContent,
+        undefined,
+        locale
+      );
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId: 6,
+        slideId: slide?.id,
+        locale,
+        surface: 'content_slide',
+      });
+      setHandoutError(true);
+    }
+  }, [locale, slide?.id]);
 
   useEffect(() => {
     if (selectedToolRowIndex == null) return;
@@ -1859,15 +1878,20 @@ export function ContentBlockSlide({
           role="region"
           aria-label={t('pdfHandoutAria')}
         >
-          <button
-            type="button"
+          <HandoutDownloadButton
+            label={content.handoutDownloadLabel}
             onClick={handleM6HandoutDownload}
             className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
-            aria-label={content.handoutDownloadLabel}
-          >
-            <Download className="w-4 h-4 shrink-0" aria-hidden />
-            {content.handoutDownloadLabel}
-          </button>
+            iconClassName="w-4 h-4 shrink-0"
+          />
+          {handoutError && (
+            <p
+              className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+              role="alert"
+            >
+              {tCommon('handoutPdfError')}
+            </p>
+          )}
         </div>
       )}
       {m9SkipToSummaryHandler && (
@@ -6435,14 +6459,19 @@ export interface PracticeSummarySlideProps {
   /** M9: rodyti „Užbaigta X iš N scenarijų“ (N iš practiceScenarioSlides) */
   completedScenarioCount?: number;
   totalScenarioCount?: number;
+  moduleId?: number;
+  slideId?: number;
 }
 export function PracticeSummarySlide({
   content: contentProp,
   completedScenarioCount,
   totalScenarioCount,
+  moduleId,
+  slideId,
 }: PracticeSummarySlideProps) {
   useTranslation();
   const t = getT('contentSlides');
+  const tCommon = getT('common');
   const { locale } = useLocale();
   const isEn = locale === 'en';
   const localDefault = isEn
@@ -6475,11 +6504,36 @@ export function PracticeSummarySlide({
   const displayTaglineSub = isDefault
     ? t('practiceSummaryDefaultTaglineSub')
     : (c.taglineSub ?? '');
+  const [handoutError, setHandoutError] = useState(false);
   const hasSections = (c.sections?.length ?? 0) > 0;
   const showScenarioProgress =
     completedScenarioCount != null &&
     totalScenarioCount != null &&
     totalScenarioCount > 0;
+  const handleM79HandoutDownload = useCallback(async () => {
+    if (moduleId !== 9) return;
+    try {
+      setHandoutError(false);
+      const content = getM79HandoutContent(locale) as M79HandoutContent;
+      await downloadM79HandoutPdf(content, { locale });
+      track('cta_click', {
+        module_id: moduleId,
+        slide_id: slideId,
+        cta_id: 'm79_handout_pdf',
+        cta_label: c.handoutDownloadLabel ?? t('m79HandoutCtaLabel'),
+        destination: 'download',
+      });
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId,
+        slideId,
+        locale,
+        surface: 'practice_summary_slide',
+      });
+      setHandoutError(true);
+    }
+  }, [c.handoutDownloadLabel, locale, moduleId, slideId, t]);
 
   return (
     <div className="space-y-6">
@@ -6601,6 +6655,28 @@ export function PracticeSummarySlide({
           <p className="text-sm text-gray-700 dark:text-gray-300">
             {(c as { nextStepCTA: string }).nextStepCTA}
           </p>
+        </div>
+      )}
+      {moduleId === 9 && c.handoutDownloadLabel && (
+        <div
+          className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4 text-center"
+          role="region"
+          aria-label={t('pdfHandoutAria')}
+        >
+          <HandoutDownloadButton
+            label={c.handoutDownloadLabel}
+            onClick={handleM79HandoutDownload}
+            className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+            iconClassName="w-4 h-4 shrink-0"
+          />
+          {handoutError && (
+            <p
+              className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+              role="alert"
+            >
+              {tCommon('handoutPdfError')}
+            </p>
+          )}
         </div>
       )}
       {((c as { tagline?: string }).tagline ??

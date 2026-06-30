@@ -241,6 +241,7 @@ Manipuliacija (vengti): Įrodyk, kad X geriau už Y (šališka užklausa).
 META: Vaidmuo – [kas esate]. Tikslas – [ką sukurti]. Auditorija – [kam].
 INPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].
 OUTPUT: Format – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyriai]. Tonas – [stilius].
+LAUKIAMO ATSAKO FORMA: trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.
 ```
 
 **Pavyzdys:**
@@ -249,6 +250,7 @@ OUTPUT: Format – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyr
 META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.
 INPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.
 OUTPUT: Format – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus, aiškus.
+LAUKIAMO ATSAKO FORMA: trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.
 ```
 
 ---

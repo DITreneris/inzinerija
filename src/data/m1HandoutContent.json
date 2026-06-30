@@ -1,0 +1,45 @@
+{
+  "title": "Modulio 1 atmintinė. 6 blokų prompto šablonas.",
+  "subtitle": "Pirmas laimėjimas: viena aiški struktūra, kurią gali naudoti su bet kuriuo DI įrankiu.",
+  "coreBlocks": [
+    {
+      "label": "META",
+      "meaning": "Kas tu esi, koks tikslas ir kam skirtas rezultatas."
+    },
+    {
+      "label": "INPUT",
+      "meaning": "Kokius faktus, kontekstą ir apribojimus duodi DI."
+    },
+    {
+      "label": "OUTPUT",
+      "meaning": "Kokio formato, ilgio, tono ir struktūros tikiesi."
+    },
+    {
+      "label": "REASONING",
+      "meaning": "Kokiais žingsniais DI turi galvoti arba tikrinti sprendimą."
+    },
+    {
+      "label": "QUALITY",
+      "meaning": "Pagal kokius kriterijus atsakymas laikomas geru."
+    },
+    {
+      "label": "ADVANCED",
+      "meaning": "Papildomi nustatymai: kūrybiškumas, alternatyvos, ribos."
+    }
+  ],
+  "firstWinChecklist": [
+    "Įrašyk vaidmenį, tikslą ir auditoriją.",
+    "Pridėk 2–3 faktus arba realų kontekstą.",
+    "Pasakyk formatą: sąrašas, lentelė, planas ar laiškas.",
+    "Paprašyk 3 punktų kokybės patikros.",
+    "Jei atsakymas per bendras, papildyk INPUT konkrečia detale."
+  ],
+  "starterPrompt": "META: Tu esi mano verslo asistentas. Tikslas – padėti susidėlioti 3 aiškius šios savaitės darbus. Auditorija – aš pats.\nINPUT: Mano kontekstas: [įrašyk sritį, projektą ar situaciją]. Apribojimai: turiu mažai laiko, todėl reikia praktiško plano.\nOUTPUT: Pateik 3 numeruotus darbus. Kiekvienam parašyk: ką daryti, kodėl tai svarbu ir pirmą mažą veiksmą.\nQUALITY: Patikrink, ar kiekvienas darbas konkretus, įgyvendinamas per savaitę ir nepriklauso nuo neaiškių prielaidų.",
+  "qualityCheck": [
+    "Ar yra aiškus tikslas?",
+    "Ar DI gavo pakankamai konteksto?",
+    "Ar atsakymo formatas nurodytas prieš generuojant?",
+    "Ar yra bent vienas kokybės kriterijus?"
+  ],
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

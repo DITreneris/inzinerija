@@ -51,12 +51,14 @@ import {
   downloadM5HandoutPdf,
   type M5HandoutContent,
 } from '../../../utils/m5HandoutPdf';
+import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { saveSlidePosition } from '../../../utils/useSlideNavigation';
 import { selectQuestionsByCategory } from '../../../utils/questionPoolSelector';
 import { trackSpinoffClick } from '../../../utils/analytics';
+import { logError } from '../../../utils/logger';
 import {
-  ECOSYSTEM_URLS,
   BLOG_ARTICLE_SLUGS,
+  buildEcosystemUrl,
   blogArticleUrl,
 } from '../../../constants/ecosystemUrls';
 import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
@@ -1090,10 +1092,12 @@ export function TestResultsSlide({
 }) {
   useTranslation();
   const t = getT('testPractice');
+  const tCommon = getT('common');
   const { locale } = useLocale();
   const rawScore = progress.moduleTestScores?.[moduleId] ?? 0;
   const passed = rawScore >= PASS_THRESHOLD;
   const animatedScore = useCountUp(rawScore, 1500, 300);
+  const [handoutError, setHandoutError] = useState(false);
 
   const handleDeepLink = useCallback(
     (slideId: number) => {
@@ -1111,11 +1115,22 @@ export function TestResultsSlide({
   );
 
   const handleM5HandoutPdf = useCallback(async () => {
-    await downloadM5HandoutPdf(
-      getM5HandoutContent(locale) as M5HandoutContent,
-      undefined,
-      locale
-    );
+    try {
+      setHandoutError(false);
+      await downloadM5HandoutPdf(
+        getM5HandoutContent(locale) as M5HandoutContent,
+        undefined,
+        locale
+      );
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId: 5,
+        locale,
+        surface: 'test_results_slide',
+      });
+      setHandoutError(true);
+    }
   }, [locale]);
 
   const radarData: RadarDataPoint[] = RADAR_CATEGORIES.map((cat) => ({
@@ -1126,6 +1141,10 @@ export function TestResultsSlide({
 
   // Module 5 results (content-driven from slide 514 when available)
   if (moduleId === 5 && rawScore > 0) {
+    const manageHref = buildEcosystemUrl('manage', {
+      moduleId: 5,
+      touchpoint: 'test_results',
+    });
     const m5Module = getModulesSync(locale)?.find((m) => m.id === 5);
     const m5ResultsSlide = m5Module?.slides?.find((s) => s.id === 514);
     const m5TestSectionIndex =
@@ -1231,15 +1250,11 @@ export function TestResultsSlide({
               </div>
             )}
             <div className="flex flex-wrap gap-3 justify-center items-center">
-              <button
-                type="button"
+              <HandoutDownloadButton
+                label={handoutDownloadLabel}
                 onClick={handleM5HandoutPdf}
                 className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
-                aria-label={handoutDownloadLabel}
-              >
-                <Download className="w-5 h-5" aria-hidden="true" />
-                {handoutDownloadLabel}
-              </button>
+              />
               {onNextSlide && (
                 <button
                   type="button"
@@ -1252,6 +1267,14 @@ export function TestResultsSlide({
                 </button>
               )}
             </div>
+            {handoutError && (
+              <p
+                className="text-sm text-rose-700 dark:text-rose-300 text-center"
+                role="alert"
+              >
+                {tCommon('handoutPdfError')}
+              </p>
+            )}
           </>
         ) : (
           <>
@@ -1263,15 +1286,11 @@ export function TestResultsSlide({
                 {failedMessage}
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
-                <button
-                  type="button"
+                <HandoutDownloadButton
+                  label={handoutDownloadLabel}
                   onClick={handleM5HandoutPdf}
                   className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
-                  aria-label={handoutDownloadLabel}
-                >
-                  <Download className="w-5 h-5" aria-hidden="true" />
-                  {handoutDownloadLabel}
-                </button>
+                />
                 {onGoToModule && (
                   <button
                     type="button"
@@ -1304,6 +1323,14 @@ export function TestResultsSlide({
                   </button>
                 )}
               </div>
+              {handoutError && (
+                <p
+                  className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+                  role="alert"
+                >
+                  {tCommon('handoutPdfError')}
+                </p>
+              )}
             </div>
             {/* Ką pakartoti: nuorodos į skaidres pagal MODULIO_5_INTERAKTYVUMO_ANALIZE §5.3 */}
             {onGoToModule && (
@@ -1393,13 +1420,13 @@ export function TestResultsSlide({
             {getT('quiz')('ceoSpinoffDescription')}
           </p>
           <a
-            href={ECOSYSTEM_URLS.manage}
+            href={manageHref}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
               trackSpinoffClick({
                 module_id: 5,
-                url: ECOSYSTEM_URLS.manage,
+                url: manageHref,
                 cta_id: 'spinoff_manage',
                 cta_label: getT('quiz')('ceoSpinoffLabel'),
               })

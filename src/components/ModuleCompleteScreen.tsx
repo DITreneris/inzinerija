@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CheckCircle,
@@ -14,30 +14,35 @@ import {
 import CircularProgress from './CircularProgress';
 import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
+import { logError } from '../utils/logger';
+import {
+  downloadM1HandoutPdf,
+  type M1HandoutContent,
+} from '../utils/m1HandoutPdf';
 import {
   downloadM6HandoutPdf,
   type M6HandoutContent,
 } from '../utils/m6HandoutPdf';
-import { getM6HandoutContent } from '../data/handoutContentLoader';
+import { downloadM79HandoutPdf } from '../utils/m79HandoutPdf';
+import {
+  getM1HandoutContent,
+  getM6HandoutContent,
+  getM79HandoutContent,
+  type M79HandoutContent,
+} from '../data/handoutContentLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import type { Module } from '../types/modules';
 import type { Progress } from '../utils/progress';
 import { canRequestCertificateTier3 } from '../utils/certificateEligibility';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
 import { EcosystemOutboundLink } from './EcosystemOutboundLink';
-import {
-  ECOSYSTEM_URLS,
-  blogArticleUrl,
-  ecosystemLocaleUrl,
-} from '../constants/ecosystemUrls';
+import { buildEcosystemUrl, blogArticleUrl } from '../constants/ecosystemUrls';
 import {
   MODULE_ECOSYSTEM_COMPLETE,
   MODULE_ECOSYSTEM_INTRO_KEYS,
   type ModuleEcosystemLinkSpec,
 } from '../constants/moduleEcosystemComplete';
-
-/** Pricing/upsell destination (marketing landing). Mirrors AccessGateScreen. */
-const PRICING_URL = 'https://www.promptanatomy.app/#pricing';
+import { HandoutDownloadButton } from './HandoutDownloadButton';
 
 function resolveEcosystemHref(
   spec: ModuleEcosystemLinkSpec,
@@ -46,28 +51,55 @@ function resolveEcosystemHref(
 ): string {
   switch (spec.hrefKey) {
     case 'enter':
-      return ECOSYSTEM_URLS.enter;
+      return buildEcosystemUrl('enter', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'anatomizer':
-      return ECOSYSTEM_URLS.anatomizer;
+      return buildEcosystemUrl('anatomizer', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'use':
-      return ecosystemLocaleUrl('use', locale);
+      return buildEcosystemUrl(locale === 'en' ? 'useEn' : 'useLt', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'hire':
-      return ECOSYSTEM_URLS.hire;
+      return buildEcosystemUrl('hire', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'decide':
-      return ECOSYSTEM_URLS.decide;
+      return buildEcosystemUrl('decide', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'play':
-      return ECOSYSTEM_URLS.play;
+      return buildEcosystemUrl('play', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'map':
-      return ECOSYSTEM_URLS.map;
+      return buildEcosystemUrl('map', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'manage':
-      return ECOSYSTEM_URLS.manage;
+      return buildEcosystemUrl('manage', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
     case 'deepenBlog':
       return blogArticleUrl(spec.blogSlug ?? '', {
         moduleId,
         touchpoint: spec.touchpoint,
       });
     default:
-      return ECOSYSTEM_URLS.map;
+      return buildEcosystemUrl('map', {
+        moduleId,
+        touchpoint: spec.touchpoint,
+      });
   }
 }
 
@@ -100,6 +132,7 @@ export function ModuleCompleteScreen({
 }: ModuleCompleteScreenProps) {
   const { t } = useTranslation(['module', 'common']);
   const { locale } = useLocale();
+  const [handoutError, setHandoutError] = useState(false);
   const canRequestTier1 =
     progress.completedModules.includes(1) &&
     progress.completedModules.includes(2) &&
@@ -120,6 +153,14 @@ export function ModuleCompleteScreen({
   const showM3Upsell = module.id === 3 && getMaxAccessibleModuleId() < 6;
   // CONV-5: po Modulio 6 – upsell į Duomenų analizės kelią (M7–9), kai tier < 9.
   const showM6Upsell = module.id === 6 && getMaxAccessibleModuleId() < 9;
+  const pricingUrl = buildEcosystemUrl('hubPricing', {
+    moduleId: module.id,
+    touchpoint: module.id === 6 ? 'complete_tier9_upsell' : 'complete_pricing',
+  });
+  const courseUrl = buildEcosystemUrl('hub', {
+    moduleId: module.id,
+    touchpoint: 'certificate_course_link',
+  });
   const activeCertificateTier: 1 | 2 | 3 | null = showCertTier1
     ? 1
     : showCertTier2
@@ -129,17 +170,76 @@ export function ModuleCompleteScreen({
         : null;
   const ecosystemLinks = MODULE_ECOSYSTEM_COMPLETE[module.id];
   const ecosystemIntroKey = MODULE_ECOSYSTEM_INTRO_KEYS[module.id];
+  const handleM1HandoutDownload = useCallback(async () => {
+    try {
+      setHandoutError(false);
+      const content = getM1HandoutContent(locale) as M1HandoutContent;
+      await downloadM1HandoutPdf(content, undefined, locale);
+      const lastSlide = module.slides?.[module.slides.length - 1];
+      track('cta_click', {
+        module_id: module.id,
+        slide_id: lastSlide?.id ?? undefined,
+        cta_id: 'm1_handout_pdf',
+        cta_label: t('module:m1HandoutCtaLabel'),
+        destination: 'download',
+      });
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId: 1,
+        locale,
+        surface: 'module_complete',
+      });
+      setHandoutError(true);
+    }
+  }, [module.id, module.slides, locale, t]);
+
   const handleM6HandoutDownload = useCallback(async () => {
-    const content = getM6HandoutContent(locale) as M6HandoutContent;
-    await downloadM6HandoutPdf(content, undefined, locale);
-    const lastSlide = module.slides?.[module.slides.length - 1];
-    track('cta_click', {
-      module_id: module.id,
-      slide_id: lastSlide?.id ?? undefined,
-      cta_id: 'm6_handout_pdf',
-      cta_label: t('module:handoutCtaLabel'),
-      destination: 'download',
-    });
+    try {
+      setHandoutError(false);
+      const content = getM6HandoutContent(locale) as M6HandoutContent;
+      await downloadM6HandoutPdf(content, undefined, locale);
+      const lastSlide = module.slides?.[module.slides.length - 1];
+      track('cta_click', {
+        module_id: module.id,
+        slide_id: lastSlide?.id ?? undefined,
+        cta_id: 'm6_handout_pdf',
+        cta_label: t('module:handoutCtaLabel'),
+        destination: 'download',
+      });
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId: 6,
+        locale,
+        surface: 'module_complete',
+      });
+      setHandoutError(true);
+    }
+  }, [module.id, module.slides, locale, t]);
+
+  const handleM79HandoutDownload = useCallback(async () => {
+    try {
+      setHandoutError(false);
+      const content = getM79HandoutContent(locale) as M79HandoutContent;
+      await downloadM79HandoutPdf(content, { locale });
+      const lastSlide = module.slides?.[module.slides.length - 1];
+      track('cta_click', {
+        module_id: module.id,
+        slide_id: lastSlide?.id ?? undefined,
+        cta_id: 'm79_handout_pdf',
+        cta_label: t('module:m79HandoutCtaLabel'),
+        destination: 'download',
+      });
+    } catch (error) {
+      logError(error instanceof Error ? error : new Error(String(error)), {
+        feature: 'handout_pdf',
+        moduleId: 9,
+        locale,
+        surface: 'module_complete',
+      });
+      setHandoutError(true);
+    }
   }, [module.id, module.slides, locale, t]);
 
   return (
@@ -280,18 +380,33 @@ export function ModuleCompleteScreen({
             <ArrowLeft className="w-5 h-5" />
             {t('module:backToModules')}
           </button>
+          {module.id === 1 && (
+            <HandoutDownloadButton
+              label={t('module:m1HandoutCtaLabel')}
+              onClick={handleM1HandoutDownload}
+            />
+          )}
           {module.id === 6 && (
-            <button
-              type="button"
+            <HandoutDownloadButton
+              label={t('module:handoutCtaLabel')}
               onClick={handleM6HandoutDownload}
-              className="btn-secondary flex items-center justify-center gap-2"
-              aria-label={t('module:handoutCtaLabel')}
-            >
-              <Download className="w-5 h-5" aria-hidden />
-              {t('module:handoutCtaLabel')}
-            </button>
+            />
+          )}
+          {module.id === 9 && (
+            <HandoutDownloadButton
+              label={t('module:m79HandoutCtaLabel')}
+              onClick={handleM79HandoutDownload}
+            />
           )}
         </div>
+        {handoutError && (
+          <p
+            className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+            role="alert"
+          >
+            {t('common:handoutPdfError')}
+          </p>
+        )}
 
         {/* „Kur pritaikyti?“ – use-case blokas (M1, M3, M6 Faze 3 – M6 kompaktiškai) */}
         {(module.id === 1 || module.id === 3 || module.id === 6) && (
@@ -391,7 +506,7 @@ export function ModuleCompleteScreen({
               {t('module:upsellM3Body')}
             </p>
             <a
-              href={PRICING_URL}
+              href={pricingUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -433,7 +548,7 @@ export function ModuleCompleteScreen({
               {t('module:upsellM6Body')}
             </p>
             <a
-              href={PRICING_URL}
+              href={pricingUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -456,7 +571,7 @@ export function ModuleCompleteScreen({
         {activeCertificateTier != null && (
           <p className="mt-4 text-center">
             <a
-              href="https://www.promptanatomy.app/"
+              href={courseUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-brand-600 dark:text-brand-400 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 rounded px-1 py-0.5"

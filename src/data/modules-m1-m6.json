@@ -403,8 +403,8 @@
                 "example": "Formatas – lentelė. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus."
               }
             ],
-            "template": "META: Vaidmuo – [kas esi]. Tikslas – [ką sukurti]. Auditorija – [kam].\nINPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].\nOUTPUT: Formatas – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyriai]. Tonas – [stilius].",
-            "example": "META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.\nINPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.\nOUTPUT: Formatas – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus, aiškus.",
+            "template": "META: Vaidmuo – [kas esi]. Tikslas – [ką sukurti]. Auditorija – [kam].\nINPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].\nOUTPUT: Formatas – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyriai]. Tonas – [stilius].\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
+            "example": "META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.\nINPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.\nOUTPUT: Formatas – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus, aiškus.\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
             "footer": "Toliau – skaidrė 8: Ko jau išmokome?"
           }
         },

@@ -403,8 +403,8 @@
                 "example": "Format – table. Structure – S/W/O/T, 3 points each. Tone – professional."
               }
             ],
-            "template": "META: Role – [who you are]. Goal – [what to create]. Audience – [who for].\nINPUT: Data – [facts/numbers]. Constraints – [time/budget].\nOUTPUT: Format – [table/list/document]. Structure – [points/sections]. Tone – [style].",
-            "example": "META: Role – marketing lead. Goal – prepare SWOT analysis. Audience – leadership.\nINPUT: Data – product \"EcoBox\", goal retail. Constraints – 1 page.\nOUTPUT: Format – table with bullets. Structure – S/W/O/T, 3 points each. Tone – professional, clear.",
+            "template": "META: Role – [who you are]. Goal – [what to create]. Audience – [who for].\nINPUT: Data – [facts/numbers]. Constraints – [time/budget].\nOUTPUT: Format – [table/list/document]. Structure – [points/sections]. Tone – [style].\nEXPECTED OUTPUT SHAPE: Short bullets, clear sections, owner and deadline where relevant.",
+            "example": "META: Role – marketing lead. Goal – prepare SWOT analysis. Audience – leadership.\nINPUT: Data – product \"EcoBox\", goal retail. Constraints – 1 page.\nOUTPUT: Format – table with bullets. Structure – S/W/O/T, 3 points each. Tone – professional, clear.\nEXPECTED OUTPUT SHAPE: Short bullets, clear sections, owner and deadline where relevant.",
             "footer": "Next – slide 8: What you've learned so far"
           }
         },

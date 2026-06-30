@@ -1,0 +1,43 @@
+{
+  "title": "Data analytics path handout (modules 7–9)",
+  "subtitle": "Pipeline, MASTER prompt and the 8-step project – print it or keep it nearby while you work.",
+  "pipelineSteps": [
+    "Data collection – name the sources, topic and context.",
+    "Data preparation – clean formats, missing values and duplicates.",
+    "Exploratory analysis (EDA) – check patterns, outliers and questions worth testing.",
+    "Models and methods – choose the analysis method based on the question.",
+    "Visualisation – choose charts and metrics a manager can understand.",
+    "Publishing – turn insights into a clear report or decision."
+  ],
+  "masterPromptSteps": [
+    "Data sources – state where the information comes from.",
+    "Data structure – describe tables, fields or documents.",
+    "Cleaning – remove duplicates, align formats and mark gaps.",
+    "Exploratory analysis (EDA) – ask for patterns, anomalies and hypotheses.",
+    "Visualisations – ask for chart ideas and what each one should show.",
+    "Insights – explain what the data means for the business or team.",
+    "Forecasts – name possible scenarios and risks.",
+    "Recommendations – ask for 3–5 concrete actions."
+  ],
+  "workflowSteps": [
+    "Collect data sources about the company, sector or question.",
+    "Prepare the methodology prompt: what to analyse and which metrics to use.",
+    "Prepare a deep research prompt that works across several AI tools.",
+    "Run the same research in 2–4 AI tools and save the outputs.",
+    "Clean the outputs: remove duplicates and align dates and numbers.",
+    "Merge the outputs into one structured document.",
+    "Ask for a visualisation specification: charts, colours and metrics.",
+    "Generate a simple dashboard or a clear executive summary."
+  ],
+  "reflectionSummary": "Within 48 hours, repeat the 8 steps with another topic. Ask yourself: what did I create, what does it mean for my work and what is the next single action?",
+  "nextPageHeading": "What to do within 48 hours",
+  "nextPageIntro": "One workflow cycle = one finished project. Next, deepen the template or choose the next step in the Prompt Anatomy ecosystem.",
+  "primaryCtaLabel": "Workflow canvas template (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Decide your next step",
+    "map": "View the ecosystem map"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Course and more: promptanatomy.app",
+  "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+}

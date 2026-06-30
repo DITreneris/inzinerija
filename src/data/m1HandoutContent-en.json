@@ -1,0 +1,45 @@
+{
+  "title": "Module 1 handout. The 6-block prompt template.",
+  "subtitle": "First win: one clear structure you can use with any AI tool.",
+  "coreBlocks": [
+    {
+      "label": "META",
+      "meaning": "Who you are, what the goal is, and who the result is for."
+    },
+    {
+      "label": "INPUT",
+      "meaning": "Which facts, context, and constraints you give to AI."
+    },
+    {
+      "label": "OUTPUT",
+      "meaning": "Which format, length, tone, and structure you expect."
+    },
+    {
+      "label": "REASONING",
+      "meaning": "Which steps AI should use to think through or check the answer."
+    },
+    {
+      "label": "QUALITY",
+      "meaning": "Which criteria make the answer good enough to use."
+    },
+    {
+      "label": "ADVANCED",
+      "meaning": "Extra settings: creativity, alternatives, and boundaries."
+    }
+  ],
+  "firstWinChecklist": [
+    "Write the role, goal, and audience.",
+    "Add 2–3 facts or real context.",
+    "Name the format: list, table, plan, or email.",
+    "Ask for a 3-point quality check.",
+    "If the answer is too generic, add one concrete detail to INPUT."
+  ],
+  "starterPrompt": "META: You are my business assistant. The goal is to help me choose 3 clear tasks for this week. The audience is me.\nINPUT: My context: [write your area, project, or situation]. Constraints: I have limited time, so I need a practical plan.\nOUTPUT: Give me 3 numbered tasks. For each task, write: what to do, why it matters, and the first small action.\nQUALITY: Check that each task is concrete, doable this week, and does not depend on unclear assumptions.",
+  "qualityCheck": [
+    "Is the goal clear?",
+    "Did AI get enough context?",
+    "Was the answer format defined before generation?",
+    "Is there at least one quality criterion?"
+  ],
+  "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+}

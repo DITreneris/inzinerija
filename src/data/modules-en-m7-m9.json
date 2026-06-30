@@ -3661,7 +3661,8 @@
             ],
             "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step workflow and at least one scenario).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers give 1 concrete tip.",
             "tagline": "One workflow cycle = one ready project.",
-            "nextStepCTA": "Within 48 hours, repeat the 8 steps for another topic or try an extra scenario."
+            "nextStepCTA": "Within 48 hours, repeat the 8 steps for another topic or try an extra scenario.",
+            "handoutDownloadLabel": "Download Data analytics path handout (PDF)"
           }
         }
       ],

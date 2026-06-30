@@ -1426,6 +1426,8 @@ export interface PracticeSummaryContent {
   tagline?: string;
   /** M9: kitas žingsnis CTA (pvz. „Pritaikyk per 48 val.…“) */
   nextStepCTA?: string;
+  /** M9: mygtuko „Parsisiųsti atmintinę (PDF)“ etiketė */
+  handoutDownloadLabel?: string;
 }
 
 /** M9 užduoties rėmas – vienas sakinys (Užduotis) ir konkretus output (Užbaigta, kai) */
