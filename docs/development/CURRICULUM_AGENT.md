@@ -23,15 +23,19 @@
 
 ## 2. Source of Truth (SOT)
 
-| Sritis                                   | SOT / failas                                                                   |
-| ---------------------------------------- | ------------------------------------------------------------------------------ |
-| Turinys (Moduliai 1–3)                   | `turinio_pletra.md`                                                            |
-| Turinys (Moduliai 4–6)                   | `docs/turinio_pletra_moduliai_4_5_6.md`                                        |
-| Modulių/skaidrių atpažinimas             | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                          |
-| Santraukos skaidrės struktūra (5 blokai) | `docs/development/SUMMARY_SLIDE_SPEC.md`                                       |
-| Faktinė skaidrių/modulių struktūra       | `src/data/modules.json` (full redagavimo SOT, tik skaityti; keičia DATA_AGENT) |
+| Sritis                                   | SOT / failas                                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------------------- |
+| Turinys (Moduliai 1–3)                   | `turinio_pletra.md`                                                                    |
+| Turinys (Moduliai 4–6)                   | `docs/turinio_pletra_moduliai_4_5_6.md`                                                |
+| Turinys (Moduliai 7–9)                   | `docs/turinio_pletra_moduliai_7_8_9.md`                                                |
+| Turinys (Moduliai 10–12)                 | `docs/turinio_pletra_moduliai_10_11_12.md`; seka – `docs/MODULIO_10_SKAIDRIU_EILES.md` |
+| Modulių/skaidrių atpažinimas             | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                  |
+| Santraukos skaidrės struktūra (5 blokai) | `docs/development/SUMMARY_SLIDE_SPEC.md`                                               |
+| Faktinė skaidrių/modulių struktūra       | `src/data/modules.json` (full redagavimo SOT, tik skaityti; keičia DATA_AGENT)         |
 
-**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`; core `src/data/modules-m1-m6.json` yra build/runtime profilis. CURRICULUM_AGENT nekeičia nei vieno iš jų tiesiogiai.
+**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`; core profiliai `*-m1-m6.json` (MVP) ir `*-m1-m9.json` (korporatyvinis) yra build/runtime failai. CURRICULUM_AGENT nekeičia nei vieno iš jų tiesiogiai.
+
+**M10 precedentas (2026-06):** taksonomija ir workflow šablonai (10.45, 10.48) **prieš** workflow terminų skaidrę (10.15); M11 remediation nurodo slide IDs 10.45 ir 10.48. Dešimtainės skaidrės ID leidžiamos be naujo slide tipo.
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 

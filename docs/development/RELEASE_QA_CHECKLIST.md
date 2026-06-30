@@ -89,6 +89,7 @@
 - [ ] **Terminologija EN:** Vartotojui matomi EN tekstai naudoja „AI“ (ne „DI“). Žr. glossary-en.json ir CONTENT_MODULIU_ATPAZINIMAS; detalės – jei turite lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
 - [ ] **Moduliai 1–3 EN:** Jei `modules-en.json` naudojamas – skaidrių pavadinimai ir turinys anglų kalba; jei dar WIP – dokumentuota (pvz. EN_UI_UX_LANGUAGE_AUDIT.md).
 - [ ] **Moduliai 4–6 EN:** Jei `modules-en-m4-m6.json` naudojamas – M4, M5, M6 skaidrės ir meta anglų kalba; loader merge’ina į `modules[3]`,`[4]`,`[5]`.
+- [ ] **Moduliai 10–12 EN:** `modules-en-m10-m12.json` — deep-merge overlay (failas partial struktūra, body pilnas); merge tik kai kataloge `maxModuleId >= 10`. Patikra: `npm run audit:en-coverage-m10-12`; validacija – `validateModulesEnM1012()` per `npm run validate:schema`.
 - [ ] **Glossary EN (M4–6):** `glossary-en.json` turi terminus su `moduleId` 4, 5, 6 (ai, ne DI; žr. CONTENT_MODULIU_ATPAZINIMAS). Detalės – lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
 - [ ] **Quiz EN:** Kai `locale === 'en'`, loaderis įkelia `quiz-en.json` – pavadinimas „Final Quiz“, 20 klausimų anglų kalba; jei failas nėra – rodomas LT quiz.
 - [ ] **Automatiniai EN testai:** Prieš release paleisti `npm run test:run` – EN kelias padengtas: `src/data/__tests__/modulesLoader.test.ts` (loadModules('en') merge M1–M6), `src/utils/__tests__/questionPoolSelector.test.ts` (selectQuestions('en'/'lt')), `src/data/__tests__/glossaryLoader.test.ts` (getGlossary('en'/'lt')), `src/components/__tests__/App.quiz.integration.test.tsx` (describe „App – EN locale smoke“).
@@ -103,6 +104,22 @@
 - [ ] **OG URL:** `og:url` / `og:image` – teisingas origin (`promptanatomy.app` monorepo arba `ditreneris.github.io` GH Pages), ne pasenęs hardcoded kelias be env.
 - [ ] **`npm run export:seo-snippets`:** Sukuria `public/seo-public-snippets.json` – tik `id`, `title`, `subtitle`, `description`, `duration`, `level`; nėra `slides` / `copyable`.
 - [ ] **Marketingo root** (jei deploy per monorepo): root `robots.txt` disallow app subpath – patvirtinta integratoriaus.
+
+---
+
+## 5f. Ekosistemos outbound smoke (~2 min)
+
+> **Įtraukta:** 2026-06-29. Spin-off touchpoints M1–M6 MVP. SOT: `docs/ECOSYSTEM_MAP.md`, `src/constants/ecosystemUrls.ts`. Agent spine: `AGENTS.md` §Ecosystem, `sot_index.json` → `ecosystem`.
+
+- [ ] **Gate:** secondary link → `promptanatomy.cloud` (LT/EN jei taikoma).
+- [ ] **Footer „Ekosistema“:** → `promptanatomy.site/#ecosystem`.
+- [ ] **M1 complete:** Enter + Anatomizer (info).
+- [ ] **M3 complete:** Use + Hire.
+- [ ] **M4:** bent vienas section-break spinoff (space / blog / site#ecosystem).
+- [ ] **M2 quiz `<70%`:** Deepen (blog); `≥70%`: nėra spinoff.
+- [ ] **M5 test:** CEO spinoff rezultatuose (`TestResultsSlide`).
+- [ ] **M6 complete:** Decide + Play + Map.
+- [ ] **DevTools / PostHog:** `cta_id` prasideda `spinoff_`; `destination: spin-off`.
 
 ---
 
@@ -140,6 +157,7 @@
 
 - [ ] **Aktyvūs doc'ai nurodo į esamus failus:** `docs/DOCUMENTATION_INDEX.md` – SOT ir aktyvūs dokumentai be nuorodų į neegzistuojančius kelius. Nuorodos į archyvą – pvz. `docs/archive/...` arba `docs/archive/development/...`.
 - [ ] **README ir docs/README:** Nuorodos į DOCUMENTATION_INDEX, turinio SOT, RELEASE_QA_CHECKLIST – teisingos.
+- [x] **Footeriai M10 (2026-06-29):** `AUDIT_MODULES=10 node scripts/audit-footer-numbers.mjs` PASS; EN `--locale=en` merge PASS; ilgis `audit-footer-length.mjs` OK. Skaidrės 10.45 (→6), 10.48 (→7).
 - [ ] **Footeriai (optional):** Jei naujai pridedamas „Toliau – skaidrė N“ / „Next – slide N“ footer – ilgis rekomenduojama ≤ 55 simb. Žr. GOLDEN_STANDARD §3.6, [analysis/FOOTER_NEXT_SLIDE_ANALIZE.md](analysis/FOOTER_NEXT_SLIDE_ANALIZE.md).
 
 ---

@@ -6,13 +6,12 @@ import {
   Trophy,
   RefreshCw,
   ArrowRight,
-  ExternalLink,
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import { useCountUp } from '../utils/useCountUp';
+import { ECOSYSTEM_URLS } from '../constants/ecosystemUrls';
+import { EcosystemDeepenBlock } from './EcosystemDeepenBlock';
 import type { QuizQuestion } from '../types/modules';
-
-const CEO_SPINOFF_URL = 'https://www.promptanatomy.ceo/';
 
 export interface QuizResultsViewProps {
   questions: QuizQuestion[];
@@ -21,6 +20,8 @@ export interface QuizResultsViewProps {
   firstWrongIndex: number;
   onRestart: () => void;
   onBack: () => void;
+  /** Standalone quiz (M2 bank): Deepen spin-off when score &lt; 70 %. */
+  quizContext?: 'm2';
 }
 
 export function QuizResultsView({
@@ -30,6 +31,7 @@ export function QuizResultsView({
   firstWrongIndex,
   onRestart,
   onBack,
+  quizContext,
 }: QuizResultsViewProps) {
   const { t } = useTranslation('quiz');
   const resultsReviewRef = useRef<HTMLDivElement>(null);
@@ -73,6 +75,7 @@ export function QuizResultsView({
   }, [firstWrongIndex, hasWrong]);
 
   const passed = score >= 70;
+  const showDeepenSpinoff = quizContext === 'm2' && !passed;
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
@@ -213,22 +216,17 @@ export function QuizResultsView({
           </button>
         </div>
 
-        {/* Hidden treasure: nuoroda į DI Operacinį centrą (Spin-off Nr. 5, CEO) */}
-        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-            {t('ceoSpinoffDescription')}
-          </p>
-          <a
-            href={CEO_SPINOFF_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
-            aria-label={t('ceoSpinoffAria')}
-          >
-            <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden />
-            {t('ceoSpinoffLabel')}
-          </a>
-        </div>
+        {showDeepenSpinoff && (
+          <div className="mt-6">
+            <EcosystemDeepenBlock
+              href={ECOSYSTEM_URLS.deepen}
+              label={t('ecosystemDeepenLabel')}
+              description={t('ecosystemDeepenDescription')}
+              ariaLabel={t('ecosystemDeepenAria')}
+              moduleId={2}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

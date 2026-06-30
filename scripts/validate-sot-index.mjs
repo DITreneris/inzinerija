@@ -70,5 +70,10 @@ if (index.dataSOT) {
   });
 }
 
+if (index.ecosystem) {
+  if (index.ecosystem.sot && !checkPath(index.ecosystem.sot, 'ecosystem.sot')) ok = false;
+  if (index.ecosystem.urls && !checkPath(index.ecosystem.urls, 'ecosystem.urls')) ok = false;
+}
+
 if (!ok) process.exit(1);
 console.log(`CE-4: sot_index.json validus (${index.modules.length} moduliai, keliai egzistuoja).`);

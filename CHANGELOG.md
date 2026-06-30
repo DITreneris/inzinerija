@@ -6,18 +6,19 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.3.0]**, **[1.2.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.0]**, **[1.3.0]**, **[1.2.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
 ### Versijų antraštės (turinio medis)
 
-| Skiltis                     | Ką rasite                                                                                     |
-| --------------------------- | --------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | Pakeitimai, dar neįtraukti į pažymėtą release (įskaitant veiklą po **[1.3.0]**).              |
-| **[1.3.0] – 2026-03-16**    | Paskutinis žurnale fiksuotas release, sutampantis su `README.md` ir `package.json` `version`. |
-| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                         |
-| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                     |
+| Skiltis                     | Ką rasite                                                                |
+| --------------------------- | ------------------------------------------------------------------------ |
+| **[Unreleased]**            | Pakeitimai po **[1.4.0]** release.                                       |
+| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel. |
+| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                  |
+| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                    |
+| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                |
 
 ---
 
@@ -26,16 +27,25 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 **Gilaus analizės dokumentas:** [docs/development/CODEBASE_WHAT_IS_DONE.md](docs/development/CODEBASE_WHAT_IS_DONE.md)
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
-- **LT/EN (i18n):** Pilnas UI ir turinys M1–M6; 16 namespace; schemos/diagramos, VeiksmoIntroBlock, AiDetectorsSlide – lokalizuoti. Sisteminis EN kokybės pataisymas: ~170+ hardcoded LT eilučių pašalinta iš komponentų, PDF utils ir duomenų failų.
-- **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas, access tier:** Įgyvendinta; **tier 3** – Duomenų analizės kelias (moduliai 7–9, Modulio 8 testas ≥ 70 %), CTA po Modulio 9 (`[Unreleased]`).
-- **Testai:** ~30 failų, ~218 testų (unit, component, integration, a11y). Validacija: prebuild schema.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel diegimas, integracija kaip pagrindinės svetainės **submodulis**; stabili eksploatacija (~14+ dienų, žr. [Unreleased] pastabą).
+- **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`).
+- **Moduliai 10–12:** Turinys full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`.
+- **LT/EN (i18n):** Pilnas UI ir turinys M1–M12; 16 namespace; schemos/diagramos lokalizuoti.
+- **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
+- **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
+- **Testai:** 43 failai, 266 testai (unit, component, integration, a11y). Validacija: prebuild schema.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.0** (2026-06-30). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po Design System v0.2.0 release._
+_Įrašai po 1.4.0 release._
+
+---
+
+## [1.4.0] – 2026-06-30
+
+Corporate path (M7–9), access tier 9, production build M1–9, M10–12 authoring catalog, ecosystem M7–12, conversion funnel (CONV-1–5), M7 adaptive paths (Lygis B).
 
 ### Added (2026-06-30) – Tier 9 vienas production build + marketing memo
 

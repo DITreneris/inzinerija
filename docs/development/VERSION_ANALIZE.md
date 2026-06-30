@@ -1,7 +1,7 @@
 # Versijavimo analizė – ar galima identifikuoti ir keisti versiją?
 
-> **Data:** 2026-03-12  
-> **Klausimas:** Ar kodo bazėje galima vienareikšmiškai identifikuoti versiją ir ją pakeisti, ar dar per anksti?
+> **Data:** 2026-06-30 (atnaujinta release 1.4.0)  
+> **Klausimas:** Ar kodo bazėje galima vienareikšmiškai identifikuoti versiją ir ją pakeisti?
 
 ---
 
@@ -9,58 +9,39 @@
 
 | Vieta            | Dabartinė reikšmė                                        | Paskirtis                                                                              |
 | ---------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **package.json** | `"version": "1.3.0"`                                     | NPM/projekto versija; vienintelis vieta, kurią build/tools gali skaityti automatiškai. |
-| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.3.0] – 2026-03-16` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                         |
+| **package.json** | `"version": "1.4.0"`                                     | NPM/projekto versija; vienintelis vieta, kurią build/tools gali skaityti automatiškai. |
+| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.4.0] – 2026-06-30` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                         |
 | **progress.ts**  | `CURRENT_SCHEMA_VERSION = 2`                             | Tik localStorage progreso schema (v1 vs v2), ne produkto versija.                      |
-| **Kiti doc**     | Pvz. „Versija 1.0“, „GOLDEN_STANDARD 2.3.5“              | Dokumentų ar modulių vidinė versija, ne release versija.                               |
+| **Kiti doc**     | Pvz. „GOLDEN_STANDARD 2.3.5“, DS v0.2.0                  | Dokumentų ar modulių vidinė versija, ne release versija.                               |
 
-**Išvada:** Versiją galima vienareikšmiškai identifikuoti: **produkto release versija = `package.json` `version`**. CHANGELOG tik atspindi, kas į kokią versiją įeina.
+**Išvada:** Versiją galima vienareikšmiškai identifikuoti: **produkto release versija = `package.json` `version`**. CHANGELOG atspindi, kas į kokią versiją įeina.
 
 ---
 
 ## 2. Dabartinė būsena
 
-- **Release versija:** **1.3.0** (atitinka CHANGELOG `[1.3.0] – 2026-03-16`). Production release: deploy, integruoti mokėjimai, pirmas pirkimas.
-- **Nepaskelbta (Unreleased):** būsimi pakeitimai – žr. CHANGELOG viršų.
+- **Release versija:** **1.4.0** (2026-06-30). Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12.
+- **Ankstesnis release:** **1.3.0** (2026-03-16) – deploy, mokėjimai, pirmas pirkimas.
+- **Nepaskelbta (Unreleased):** pakeitimai po 1.4.0 – žr. CHANGELOG viršų.
 
-Ankstesni 2026-03-12–16 pakeitimai įtraukti į **1.3.0**. Pagal Semver tolesnis žingsnis – **1.3.0 → 1.3.1** (patch) arba **1.4.0** (minor).
-
----
-
-## 3. Ar galima pakeisti versiją dabar?
-
-**Taip – techniškai galima.**
-
-- Versija aiškiai apibrėžta `package.json`.
-- CHANGELOG jau paruoštas: pakanka įvesti naują release bloką ir perkelti į jį „Unreleased“ turinį.
-- Semver taisyklės laikomasi; 1.3.0 atitiktų dabartinius pakeitimus.
-
-**Procedūra, jei sprendi daryti release:**
-
-1. **package.json:** `"version": "1.3.0"` – **atnaujinta 2026-03-16**.
-2. **CHANGELOG.md:** `## [1.3.0] – 2026-03-16` – **atnaujinta**; Unreleased turinys perkeltas po 1.3.0.
-3. (Rekomenduotina) CI žalias, commit + tag `v1.3.0` + push.
+Kitas žingsnis pagal Semver: **1.4.1** (patch) arba **1.5.0** (minor).
 
 ---
 
-## 4. Kada būtų „dar anksti“
+## 3. Release procedūra
 
-Versiją **keisti būtų per anksti**, jei:
-
-- **CI nesėkmingas** – testai ar lint failina (pvz. dar neįdiegtas ResizeObserver fix).
-- **Nepilna QA** – norima prieš 1.3.0 dar kartą patikrinti deploy, PNG, EN, mobile.
-- **Sąmoningai laikomi „Unreleased“** – planuojami dar pakeitimai tą pačią „sąnaudą“ įtraukti į 1.3.0.
-
-T. y. „versijos keitimas“ nėra per anksti; **release datos / žymės (tag) per anksti** – tik jei dar nepatenkinti kokybės / QA kriterijai.
+1. **package.json:** `"version": "X.Y.Z"`.
+2. **CHANGELOG.md:** perkelti `[Unreleased]` turinį į `## [X.Y.Z] – DATA`; palikti tuščią `[Unreleased]`.
+3. **README.md:** versijos eilutė sutampa su package.json.
+4. CI žalias: `validate:schema`, `lint`, `test:run`, `build:production`.
+5. Commit + tag `vX.Y.Z` (+ marketing submodule pin).
 
 ---
 
-## 5. Santrauka
+## 4. Santrauka
 
-| Klausimas                            | Atsakymas                                                         |
-| ------------------------------------ | ----------------------------------------------------------------- |
-| Ar galima **identifikuoti** versiją? | Taip – **package.json `version`** (dabar **1.3.0**).              |
-| Ar galima ją **pakeisti**?           | Taip – atnaujinta į **1.3.0** (2026-03-16).                       |
-| Ar **dar anksti**?                   | **Ne** – 1.3.0 išleista (production, mokėjimai, pirmas pirkimas). |
-
-**Rekomendacija:** Versija **1.3.0** užfiksuota. Tolesni release – 1.3.1 (patch) arba 1.4.0 (minor) pagal pakeitimų tipą.
+| Klausimas                            | Atsakymas                                    |
+| ------------------------------------ | -------------------------------------------- |
+| Ar galima **identifikuoti** versiją? | Taip – **package.json `version`** (1.4.0).   |
+| Ar **dar anksti** release 1.4.0?     | Ne – išleista 2026-06-30 (žr. CHANGELOG).    |
+| **Kitas release**                    | 1.4.1 (patch) arba 1.5.0 (minor) pagal tipą. |

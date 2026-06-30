@@ -135,7 +135,20 @@ Vienas Vercel production deploy – **be atskiro corporate** projekto.
 
 ---
 
-## 8. Nuorodos
+## 8. Release 1.4.0 – marketing submodule pin (MON-8)
+
+Po training repo tag **`v1.4.0`**:
+
+1. **Submodule:** marketing monorepo `apps/prompt-anatomy` → commit su tag `v1.4.0`.
+2. **Vercel env:** nuimti `VITE_MVP_MODE`; `VITE_MAX_BUILD_MODULE=9`; build komanda `npm run build:production`.
+3. **Preview smoke** (memo 05 §8): tier 0 gate, tier 6 locked M7, tier 9 M7 open, curl `access_tier=9` → 200.
+4. **Prod deploy** po žalių preview; patikrinti submodule SHA build log'e.
+
+Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) §11.
+
+---
+
+## 9. Nuorodos
 
 | Dokumentas                | Kelias                                                                                     |
 | ------------------------- | ------------------------------------------------------------------------------------------ |

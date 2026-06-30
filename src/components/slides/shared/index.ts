@@ -33,6 +33,7 @@ export { default as M7DataPrepWorkflowBlock } from './M7DataPrepWorkflowBlock';
 export { default as M7ThreeAgentsBlock } from './M7ThreeAgentsBlock';
 export { default as M10TriggerFlowBlock } from './M10TriggerFlowBlock';
 export { default as M10ThreeAStrategyBlock } from './M10ThreeAStrategyBlock';
+export { default as M10AgentTaxonomyBlock } from './M10AgentTaxonomyBlock';
 export { default as M10ToolDecisionTreeBlock } from './M10ToolDecisionTreeBlock';
 export { default as M10SpecIncidentBlock } from './M10SpecIncidentBlock';
 export { default as M13AecFunnelBlock } from './M13AecFunnelBlock';

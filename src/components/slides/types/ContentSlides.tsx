@@ -37,7 +37,8 @@ import {
   Video,
   Music,
 } from 'lucide-react';
-import { track } from '../../../utils/analytics';
+import { track, trackSpinoffClick } from '../../../utils/analytics';
+import { getSpinoffCtaIdFromUrl } from '../../../constants/ecosystemUrls';
 import {
   downloadM6HandoutPdf,
   type M6HandoutContent,
@@ -65,6 +66,7 @@ import {
   M7ThreeAgentsBlock,
   M10TriggerFlowBlock,
   M10ThreeAStrategyBlock,
+  M10AgentTaxonomyBlock,
   M10ToolDecisionTreeBlock,
   M10SpecIncidentBlock,
   M13AecFunnelBlock,
@@ -281,7 +283,14 @@ export function ActionIntroJourneySlide({
               <button
                 key={choice.id}
                 type="button"
-                onClick={() => setSelected(choice)}
+                onClick={() => {
+                  setSelected(choice);
+                  // Lygis B rerun: leisti perrinkti fokusą net kai jau patvirtinta –
+                  // pasirinkus kitą kortelę vėl parodomas patvirtinimo CTA.
+                  if (confirmed && choice.id !== selected?.id) {
+                    setConfirmed(false);
+                  }
+                }}
                 aria-pressed={isSelected}
                 className={`relative flex flex-col items-start text-left p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
                   isSelected
@@ -342,8 +351,8 @@ export function ActionIntroJourneySlide({
           />
           <p className="text-sm font-medium text-emerald-800 dark:text-emerald-200">
             {isEn
-              ? 'Journey selected. You can move to the next slide.'
-              : 'Kelionė pasirinkta. Gali pereiti prie kitos skaidrės.'}
+              ? 'Journey selected. You can move to the next slide — or pick another card for a different focus.'
+              : 'Kelionė pasirinkta. Gali pereiti prie kitos skaidrės – arba pasirink kitą kortelę kitam fokusui.'}
           </p>
         </div>
       )}
@@ -1146,6 +1155,15 @@ export function ContentBlockSlide({
                           </p>
                         )}
                       </div>
+                    ) : section.image.includes('m10_agent_taxonomy') ? (
+                      <div className="my-4">
+                        <M10AgentTaxonomyBlock />
+                        {section.body && (
+                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                            {renderBodyWithBold(section.body)}
+                          </p>
+                        )}
+                      </div>
                     ) : section.image.includes('m10_tool_decision_tree') ? (
                       <div className="my-4">
                         <M10ToolDecisionTreeBlock />
@@ -1921,12 +1939,16 @@ const sectionBreakColorMap = {
 export function SectionBreakSlide({
   content,
   moduleAccent,
+  moduleId,
+  slideId,
   onGoToGlossaryTerm,
   onNextSlide,
 }: {
   content?: SectionBreakContent | null;
   /** DS v0.2 E5 — sectionNumber badge only; hero lieka heroColorKey. */
   moduleAccent?: ModuleAccent;
+  moduleId?: number;
+  slideId?: number | string;
   onGoToGlossaryTerm?: (term: string) => void;
   /** Modulio vaizdas: „Toliau – skaidrė N…“ juosta veda į kitą skaidrę (kaip „Tęsti“). */
   onNextSlide?: () => void;
@@ -2329,6 +2351,17 @@ export function SectionBreakSlide({
             href={content.spinoffCta.url}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              if (moduleId != null) {
+                trackSpinoffClick({
+                  module_id: moduleId,
+                  slide_id: slideId,
+                  url: content.spinoffCta!.url,
+                  cta_id: getSpinoffCtaIdFromUrl(content.spinoffCta!.url),
+                  cta_label: content.spinoffCta!.label,
+                });
+              }
+            }}
             className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
             aria-label={`${content.spinoffCta.label} (atidaroma naujame lange)`}
           >

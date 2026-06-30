@@ -46,25 +46,14 @@
       "role": "full authoring SOT",
       "coreRuntimeProfile": "src/data/tools-m1-m6.json"
     },
-    "hallucinationRates": "src/data/hallucinationRates.ts"
+    "hallucinationRates": "src/data/hallucinationRates.ts",
+    "modulesEnM1012": {
+      "path": "src/data/modules-en-m10-m12.json",
+      "role": "EN deep-merge overlay modules 10-12",
+      "mergeCondition": "maxModuleId >= 10 in full catalog build"
+    }
   },
-  "publicModules": [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15
-  ],
+  "publicModules": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   "unlocksAfter": {
     "2": 1,
     "3": 2,
@@ -157,19 +146,19 @@
       "id": 10,
       "title": "Agentų inžinerija su DI",
       "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
-      "description": "Learn: agentų ciklas, įrankiai, promptai"
+      "description": "Learn: DI agent taxonomy L0–L3, 4 roles, 5 workflow patterns, no-code automation"
     },
     {
       "id": 11,
       "title": "Žinių patikrinimas (Agentų kelias)",
       "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
-      "description": "Test: agentų ciklas, promptai, įrankiai"
+      "description": "Test: taxonomy, multi-agent prompts, tools (remediation 10.45, 10.48)"
     },
     {
       "id": 12,
       "title": "Finalinis projektas (Agentų kelias)",
       "sotPath": "docs/turinio_pletra_moduliai_10_11_12.md",
-      "description": "Practice: agentų/automatizacijos scenarijai"
+      "description": "Practice: business multi-agent capstone (coordinator + 2 specialists)"
     },
     {
       "id": 13,
@@ -189,5 +178,21 @@
       "sotPath": "docs/turinio_pletra_moduliai_13_14_15.md",
       "description": "Practice: vaizdas, video arba muzika"
     }
-  ]
+  ],
+  "ecosystem": {
+    "sot": "docs/ECOSYSTEM_MAP.md",
+    "urls": "src/constants/ecosystemUrls.ts",
+    "blogCurriculum": "docs/development/BLOG_CURRICULUM_LINKS.yaml",
+    "scope": "M1-M12 outbound",
+    "externalBrandSot": "DITreneris/site (reference only, not copied)",
+    "touchpoints": [
+      "AccessGateScreen",
+      "ModuleCompleteScreen",
+      "SectionBreakSlide",
+      "QuizResultsView",
+      "TestResultsSlide",
+      "App footer"
+    ],
+    "analytics": "src/utils/analytics.ts trackSpinoffClick"
+  }
 }

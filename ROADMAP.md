@@ -1,7 +1,9 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-04-11 | **Versija:** 2.2  
-> **Principas:** Stabilumas ir turinys pirmiausia; produkcija paleista ([www.promptanatomy.app](https://www.promptanatomy.app)) – post-deploy monitoring, iteracijos ir release QA.
+> **Atnaujinta:** 2026-06-30 | **Roadmap dokumento versija:** 2.4 (ne `package.json` semver)  
+> **App release:** 1.4.0 (2026-06-30) – žr. `CHANGELOG.md` `[1.4.0]`.
+> **Principas:** Stabilumas ir turinys pirmiausia; produkcija paleista ([www.promptanatomy.app](https://www.promptanatomy.app)) – post-deploy monitoring, iteracijos ir release QA.  
+> **Production audit (2026-06):** **CONDITIONAL GO** — M1–6 shippable; monetizacija ~45% ready. Prioritetai: `TODO.md` §1.1 MON-\*; santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
 
 ---
 
@@ -9,30 +11,33 @@
 
 ### Kas įgyvendinta ir stabilu
 
-| Sritis                                                                  | Būsena               | Pastabos                                                                                                                                                                   |
-| ----------------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Produkcija (Vercel)**                                                 | ✅ Veikia            | [www.promptanatomy.app](https://www.promptanatomy.app) – mokymo app kaip **git submodulis** marketingo repo; diegimas per Vercel. Žr. `CHANGELOG.md` [Unreleased] → Notes. |
-| **Moduliai 1–6**                                                        | ✅ Pilnai            | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`.                                      |
-| **LT/EN (i18n)**                                                        | ✅ Pilnas UI + M1–M6 | 16 namespace; loaderiai merge pagal locale; schemos, AiDetectorsSlide, ProcessStepper – lokalizuoti.                                                                       |
-| **Žodynėlis, apklausa, sertifikatai, PDF (M5/M6), įrankiai, progresas** | ✅                   | Path-step žodynėlio atrakinimas (M7); certificate + handout PDF su NotoSans.                                                                                               |
-| **Access tier ir MVP režimas**                                          | ✅                   | `accessTier.ts`: DEV→sessionStorage→URL→env→VITE_MVP_MODE; magic link `api/verify-access.ts`; užrakinimas modulių.                                                         |
-| **Build ir CI**                                                         | ✅                   | `prebuild` → `validate:schema`; test.yml: lint, test:run, VITE_MVP_MODE=1 build; Node 18/20.                                                                               |
-| **Dokumentacija**                                                       | ✅                   | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                                                                    |
+| Sritis                                                                  | Būsena                | Pastabos                                                                                                                              |
+| ----------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Produkcija (Vercel)**                                                 | ✅ Veikia             | [www.promptanatomy.app](https://www.promptanatomy.app) – submodulis; `npm run build:production` (M1–9). Žr. `CHANGELOG.md` `[1.4.0]`. |
+| **Moduliai 1–6**                                                        | ✅ Pilnai             | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`. |
+| **Moduliai 7–9**                                                        | ✅ Production bundle  | Duomenų analizės kelias; tier 9; `modules-m1-m9.json`; `build:production`.                                                            |
+| **Moduliai 10–12**                                                      | ✅ Authoring kataloge | Agentų kelias; ne production bundle; EN `modules-en-m10-m12.json`. Monetizacija M10+ – Deferred.                                      |
+| **LT/EN (i18n)**                                                        | ✅ UI + M1–M12        | 16 namespace; loaderiai merge pagal locale; M10–12 EN kai `maxModuleId >= 10`.                                                        |
+| **Žodynėlis, apklausa, sertifikatai, PDF (M5/M6), įrankiai, progresas** | ✅                    | Path-step žodynėlio atrakinimas (M7); certificate + handout PDF su NotoSans.                                                          |
+| **Access tier ir MVP režimas**                                          | ✅                    | Magic link tier 3 / 6 / 9; `build:production` M1–9; MVP `VITE_MVP_MODE=1` M1–6.                                                       |
+| **Build ir CI**                                                         | ✅                    | `prebuild` → `validate:schema`; test.yml: lint, test:run, `VITE_MAX_BUILD_MODULE=9` build; Node 18/20.                                |
+| **Dokumentacija**                                                       | ✅                    | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                               |
 
 ### Žinomi trūkumai / sprendžiami
 
-| Sritis                        | Kas                                                                                                                                                                                                                                 | Prioritetas              |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **Navigacija (Pirmyn/Atgal)** | ✅ Įgyvendinta – viena sticky juosta viršuje, primary „Tęsti“, Atgal ghost (CHANGELOG 2026-02-26, 2026-02-28). Papildomai: in-content CTA į kitą skaidrę – `news-portal` `ctaBlock`, `section-break` footer (CHANGELOG 2026-03-28). | —                        |
-| **GitHub Pages deploy**       | `.github/workflows/deploy.yml` build su `VITE_MVP_MODE=1` – **moduliai 1–6**, bet komentaras sako „1–3“; production 1–6 reikalauja env arba monorepo.                                                                               | Patikrinti / sutapatinti |
-| **M5/M6 PDF**                 | Rankinė lietuviškų raidžių ir parsisiuntimo patikra; NotoSans production.                                                                                                                                                           | Prieš release            |
-| **Footer numeriai M4**        | 65.8, 66.9 – prieš release pagal `footer-slide-numbers.mdc`.                                                                                                                                                                        | Release gate             |
-| **E2E**                       | Nėra; kritiniai flow (registracija → M1 → M3 → apklausa) – rekomenduojama 1–2 testai.                                                                                                                                               | Aukštas (post-MVP)       |
-| **Monitoring**                | Sentry/GA4/PostHog neįdiegti; analytics eventai aprašyti (ANALYTICS_EVENT_TAXONOMY, ANALYTICS_DASHBOARD_MVP).                                                                                                                       | Post-deploy              |
+| Sritis                        | Kas                                                                                                                                                                                                                                 | Prioritetas                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **Navigacija (Pirmyn/Atgal)** | ✅ Įgyvendinta – viena sticky juosta viršuje, primary „Tęsti“, Atgal ghost (CHANGELOG 2026-02-26, 2026-02-28). Papildomai: in-content CTA į kitą skaidrę – `news-portal` `ctaBlock`, `section-break` footer (CHANGELOG 2026-03-28). | —                             |
+| **GitHub Pages deploy**       | `.github/workflows/deploy.yml` build su `VITE_MVP_MODE=1` — **M1–6** statinis preview `/inzinerija/`. **Rizika:** viešas demo gali rodyti pilną turinį be auth, jei gate neaktyvus — žr. `AUDIT_2026-06_SUMMARY.md`.                | Patikrinti gate / demo policy |
+| **Paywall scope**             | Home, quiz, tools pasiekiami kai `maxAccessible === 0`; moduliai gated. Client-side bundle – dokumentuota (MON-6 ✅).                                                                                                               | —                             |
+| **M5/M6 PDF**                 | Rankinė lietuviškų raidžių ir parsisiuntimo patikra; NotoSans production.                                                                                                                                                           | Prieš release (TODO #1–#2)    |
+| **Footer numeriai M4**        | 65.8, 66.9 – prieš release pagal `footer-slide-numbers.mdc`.                                                                                                                                                                        | Release gate                  |
+| **E2E**                       | Gate smoke vitest (`gate.smoke.test.tsx`) ✅; Playwright – roadmap.                                                                                                                                                                 | P1 (post MON-\*)              |
+| **Monitoring**                | PostHog/GA4 neįdiegti production; eventai aprašyti. **P0 prieš mokamą srautą** — TODO MON-4.                                                                                                                                        | P0 (MON-4)                    |
 
 ### Testai ir kokybė
 
-- **~26 testų failų:** unit (loaders, progress, PDF, accessTier), component (QuizPage, CertificateScreen, ToolsPage, ErrorBoundary), integration (App.quiz, progress), a11y smoke (axe-core), mvp.gating.
+- **43 testų failai, 266 testai:** unit, component, integration, a11y smoke, gate tier 9.
 - **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
 - **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
 
@@ -78,12 +83,12 @@
 
 ### 3.2 Production scenarijai
 
-| Scenarijus                       | Env                                                   | Rezultatas                                                                                                    |
-| -------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **GitHub Pages (dabartinis)**    | VITE_MVP_MODE=1                                       | Core profilis: buildinami tik moduliai 1–6. Base path: `/anatomija/` (arba repo nustatymas).                  |
-| **Vercel / marketingo monorepo** | VITE_BASE_PATH, VITE_MVP_MODE, VITE_VERIFY_ACCESS_URL | Tas pats turinys; verify-access API – marketingo atsakomybė; SPA fallback po `/academy` (arba kitas path).    |
-| **Demo (visi 1–6 be pirkimo)**   | VITE_MAX_ACCESSIBLE_MODULE=6                          | Visi 1–6 atrakinti be magic link.                                                                             |
-| **Magic link (apmokėjimas)**     | —                                                     | Redirect į `?access_tier=6&expires=...&token=...`; frontend kreipiasi į `/api/verify-access`; sessionStorage. |
+| Scenarijus                       | Env                                                                                       | Rezultatas                                                                             |
+| -------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **GitHub Pages (demo preview)**  | VITE_MVP_MODE=1                                                                           | Core profilis M1–6. Base path `/inzinerija/`.                                          |
+| **Vercel / marketingo monorepo** | `VITE_MAX_BUILD_MODULE=9`, `build:production`, `VITE_BASE_PATH`, `VITE_VERIFY_ACCESS_URL` | Production M1–9; verify-access API – marketingo atsakomybė.                            |
+| **Demo (visi 1–6 be pirkimo)**   | VITE_MAX_ACCESSIBLE_MODULE=6                                                              | **Tik staging/demo.** Production build neturi šio env.                                 |
+| **Magic link (apmokėjimas)**     | —                                                                                         | `access_tier=3` \| `6` \| `9`; frontend → `/api/verify-access`; tier → `localStorage`. |
 
 ### 3.3 Veiksmai deploy metu
 
@@ -96,41 +101,56 @@
 
 ## 4. Post-deploy
 
-### 4.1 Pirmos 1–2 savaites
+### 4.1 P0 prieš mokamą srautą (MON-\*)
 
-| #   | Užduotis                           | Tikslas                                                                                                                                                        |
-| --- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **Monitoring įdiegimas**           | Sentry (klaidos) arba PostHog/GA4 (funnel, completion, drop-off). Žr. ANALYTICS_EVENT_TAXONOMY.md, ANALYTICS_DASHBOARD_MVP.md.                                 |
-| 2   | **Verify-access (jei naudojamas)** | Įsitikinti, kad magic link ir API veikia production; testuoti 200/401/400.                                                                                     |
-| 3   | **Smoke**                          | Kasdien arba po kiekvieno deploy: pagrindinis kelias (Home → Moduliai → 1 skaidrė → Apklausa) atsidaro, nėra konsolės klaidų.                                  |
-| 4   | **Dokumentacijos atnaujinimas**    | `CHANGELOG.md` (įsk. [Unreleased]), `README.md`, `ROADMAP.md` – sinchronas su produkcijos URL ir deploy keliu; `INTEGRATION_OVERVIEW` – jei keičiasi monorepo. |
+| #   | Užduotis                           | Tikslas                                                                  | TODO ID      |
+| --- | ---------------------------------- | ------------------------------------------------------------------------ | ------------ |
+| 1   | **PostHog / GA4 production**       | Funnel, completion, drop-off; dashboard pagal ANALYTICS_DASHBOARD_MVP.md | MON-4        |
+| 2   | **Verify-access production smoke** | Magic link + API 200/401; tier unlock                                    | MON-3        |
+| 3   | **Env audit (marketing)**          | No `VITE_MAX_ACCESSIBLE_MODULE=6`; correct `VITE_VERIFY_ACCESS_URL`      | MON-1, MON-2 |
+| 4   | **Gate regression**                | Unpaid → AccessGateScreen                                                | MON-5        |
 
-### 4.2 Po 2–4 savaičių (duomenų surinkimas)
+Žr. `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md`.
 
-| #   | Užduotis                        | Šaltinis                                                                        |
-| --- | ------------------------------- | ------------------------------------------------------------------------------- |
-| 5   | **Baseline metrikos**           | M1/M3 completion, drop-off taškai, CTA conversion (ANALYTICS_DASHBOARD_MVP §2). |
-| 6   | **Target ranges**               | Koreguoti KPI interpretacijas pagal realius skaičius.                           |
-| 7   | **Vartotojų grįžtamasis ryšys** | Surenkamas į VARTOTOJU_ATSILIEPIMAI_BENDRAS.md; prioritetai į TODO.md.          |
+### 4.2 Pirmos 1–2 savaites (po P0)
 
-### 4.3 Tolesni roadmap etapai (realistiškai)
+| #   | Užduotis                        | Tikslas                                                                    |
+| --- | ------------------------------- | -------------------------------------------------------------------------- |
+| 5   | **Smoke**                       | Po deploy: Home → Moduliai (gate arba tier) → 1 skaidrė; konsolės klaidos. |
+| 6   | **Dokumentacijos atnaujinimas** | CHANGELOG, README, ROADMAP sinchronas su production URL.                   |
+| 7   | **Sentry (optional)**           | Production klaidų sekimas — jei PostHog neužtenka operaciniam debug.       |
 
-| Etapas                     | Ką darome                                                                                                             | Prioritetas |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **Stabilumas**             | E2E 1–2 kritiniams flow; modulių užrakinimo įjungimas (DISABLE_MODULE_LOCK tik dev/localhost – jau taip).             | Aukštas     |
-| **Turinys ir duomenys**    | Modulių 4–6 turinio sinchronas (JSON ↔ SOT); „Kur pritaikyti?“ blokas (MUST M5); 6 blokų structure check (SHOULD S1). | Aukštas     |
-| **UX poliravimas**         | Sertifikato/PDF kokybė; a11y axe-core; Optional → „Fast track“ (S4); Starter lygio įvardijimas (S5).                  | Vidutinis   |
-| **Pedagogika**             | Sandbox pranešimas, diagnostinis quiz feedback, modulių pabaigos „kūrinys“ (PEDAGOGINES_IZVALGOS_ROADMAP).            | Vidutinis   |
-| **B2B / marketing**        | B2B pitch 1 psl. arba PDF (S6).                                                                                       | Žemas       |
-| **Pasirinktinai (vėliau)** | PWA, DI grįžtamasis ryšys praktikoms, moduliai 7–15 pilnai, role-first.                                               | Žemas       |
+### 4.3 Po 2–4 savaičių (duomenų surinkimas)
 
-**Ko dabar nedaryti:** Backend/auth (per anksti), advanced gamification. LT/EN – įdiegta; tolesni žingsniai – papildomi EN turinio/vertimo darbai pagal poreikį.
+| #   | Užduotis                        | Šaltinis                                                                             |
+| --- | ------------------------------- | ------------------------------------------------------------------------------------ |
+| 8   | **Baseline metrikos**           | M1/M3 completion, drop-off, CTA conversion (ANALYTICS_DASHBOARD_MVP §2). TODO MON-7. |
+| 9   | **Target ranges**               | Koreguoti KPI interpretacijas pagal realius skaičius.                                |
+| 10  | **Vartotojų grįžtamasis ryšys** | VARTOTOJU_ATSILIEPIMAI_BENDRAS.md; prioritetai → TODO.md.                            |
+
+### 4.4 Tolesni roadmap etapai (realistiškai)
+
+| Etapas                        | Ką darome                                                                       | Prioritetas      |
+| ----------------------------- | ------------------------------------------------------------------------------- | ---------------- |
+| **Monetization pilot**        | €39–€99 / €149 tier 9; CONV-1..5 ✅ in-app upsell; marketing funnel (MON-8 env) | P0–P1            |
+| **Stabilumas**                | Gate smoke vitest ✅ (CONV-3).                                                  | P1               |
+| **Turinys ir duomenys**       | M4–6 JSON ↔ SOT; Release QA PDF (#1–#2).                                        | P1               |
+| **UX poliravimas**            | Sertifikato/PDF; a11y; mobile UX-1.                                             | P2               |
+| **Pedagogika**                | Sandbox, quiz feedback (PEDAGOGINES_IZVALGOS_ROADMAP).                          | P2               |
+| **B2B / marketing**           | B2B pitch; homepage CRO (TODO §3).                                              | P3               |
+| **Korporatyvinis kelias 7–9** | M7–9 + `build:production` (tier 9) — **release 1.4.0** (2026-06-30).            | **Aktyvu**       |
+| **M10–12 authoring**          | Turinys full kataloge; monetizacija tier 12+ – Deferred.                        | Aktyvu (turinys) |
+| **Pasirinktinai (vėliau)**    | PWA; M13–15 pilnas release; monetizacija M10+ po MON-\* + baseline.             | Deferred         |
+
+**Ko dabar nedaryti:** M13–15 pilnas release brandumas; backend rewrite; advanced gamification.
 
 ---
 
 ## 5. Turinio plėtra: moduliai 7–15
 
-**Trys keliai:** Duomenų analizė (7–9), Agentų inžinerija (10–12), Turinio inžinerija (13–15). Pamatas 1–6; vienas privalomas kelias + kiti atrakinami po completion.
+> **Gate monetizacijai M10+:** po MON-\* (P0) ir baseline (MON-7). **7–9 aktyvu** (tier 9, `build:production`). **M10–12 turinys** – authoring kataloge (release 1.4.0); **monetizacija M10+** – vis dar Deferred (`TODO.md` §1.5 DEF-1b).
+
+**Trys keliai:** Duomenų analizė (7–9) — **aktyvu production (tier 9)**; Agentų inžinerija (10–12) — **turinys authoring kataloge**; Turinio inžinerija (13–15) — Deferred monetizacijai.
 
 **SOT:** `docs/turinio_pletra_moduliai_7_8_9.md`, `docs/turinio_pletra_moduliai_10_11_12.md`, `docs/turinio_pletra_moduliai_13_14_15.md`.  
 **Įgyvendinimas:** CONTENT_AGENT (SOT semantika) → DATA_AGENT (modules.json id 7–15, atrakinimo logika) → CODING_AGENT (navigacija, hybrid). Skaidrių eilės: MODULIO_7_SKAIDRIU_EILES.md, MODULIO_10_SKAIDRIU_EILES.md, MODULIO_13_SKAIDRIU_EILES.md.
@@ -148,7 +168,9 @@
 | Deploy, env, monorepo                  | docs/deployment/DEPLOYMENT.md, docs/deployment/INTEGRATION_OVERVIEW.md                    |
 | Kas įgyvendinta, changelog             | docs/development/CODEBASE_WHAT_IS_DONE.md, CHANGELOG.md, README.md (startas)              |
 | Analytics MVP                          | docs/development/ANALYTICS_EVENT_TAXONOMY.md, docs/development/ANALYTICS_DASHBOARD_MVP.md |
+| Production audit (2026-06)             | docs/development/AUDIT_2026-06_SUMMARY.md                                                 |
+| Marketing handoff                      | docs/deployment/MARKETING_HANDOFF_CHECKLIST.md                                            |
 
 ---
 
-**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Paskutinė sinchronizacija su README / CHANGELOG – 2026-04-11.
+**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Paskutinė sinchronizacija su TODO / audit — 2026-06-29.

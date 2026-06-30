@@ -1,0 +1,143 @@
+# Blog ↔ training curriculum registry (training repo SOT)
+# Slugs match promptanatomy.blog/articles/{slug}/
+# Code mirror: src/constants/ecosystemUrls.ts BLOG_ARTICLE_SLUGS
+
+links:
+  - module_id: 4
+    touchpoint: section-break
+    slide_id: 65.8
+    slug: rag-in-production
+    label_lt: "Gilesni skaitiniai: RAG ir kontekstas (EN)"
+    label_en: "Deep reads: RAG in production"
+    description_lt: "Papildomas skaitymas po RAG ir tokenų skyriaus."
+    description_en: "Additional reading after the RAG and tokens section."
+    cluster: rag
+
+  - module_id: 7
+    touchpoint: section-break
+    slide_id: 66.9
+    slug: grounding-ai-outputs
+    label_lt: "Gilesni skaitiniai: patikrumas ir RAG (EN)"
+    label_en: "Deep reads: grounding and RAG"
+    description_lt: "Papildomas skaitymas po pipeline – prieš etikos ir patikimumo bloką."
+    description_en: "Additional reading before the ethics and reliability block."
+    cluster: hallucination
+
+  - module_id: 8
+    touchpoint: test-fail
+    slide_id: null
+    slug: rag-in-production
+    label_lt: "Gilesni skaitiniai: RAG gamyboje (EN)"
+    label_en: "Deep reads: RAG in production"
+    description_lt: "Rekomenduojame peržiūrėti Modulį 7 ir pasinerti giliau."
+    description_en: "Review Module 7 and go deeper on governed retrieval."
+    cluster: rag
+
+  - module_id: 9
+    touchpoint: module-complete
+    slide_id: null
+    slug: ai-workflow-canvas-template
+    label_lt: "DI workflow drobė (EN)"
+    label_en: "AI workflow canvas"
+    description_lt: "Projektas baigtas – dokumentuok workflow ir toliau ekosistemoje."
+    description_en: "Project complete – document your workflow and explore the ecosystem."
+    cluster: templates
+    cta_id: spinoff_deepen
+
+  - module_id: 9
+    touchpoint: module-complete
+    slide_id: null
+    slug: null
+    url: https://www.promptanatomy.pro/
+    label_lt: "Vadovų sprendimų rinkinys"
+    label_en: "Executive decision kit"
+    cluster: null
+    cta_id: spinoff_decide
+
+  - module_id: 9
+    touchpoint: module-complete
+    slide_id: null
+    slug: null
+    url: https://promptanatomy.site/#ecosystem
+    label_lt: "Visa ekosistemos map"
+    label_en: "Full ecosystem map"
+    cluster: ecosystem_properties
+    cta_id: spinoff_map
+
+  - module_id: 10
+    touchpoint: section-break
+    slide_id: 10.481
+    slug: how-to-design-an-ai-agent-workflow
+    label_lt: "Gilesni skaitiniai: agentų workflow (EN)"
+    label_en: "Deep reads: designing agent workflows"
+    description_lt: "Po multi-agent šablonų – kaip projektuoti agentų sistemą."
+    description_en: "After multi-agent patterns – how to design agent systems."
+    cluster: orchestration_frameworks
+
+  - module_id: 10
+    touchpoint: section-break
+    slide_id: 10.151
+    slug: choosing-workflow-automation-ai-pipelines
+    label_lt: "Gilesni skaitiniai: automatizavimo įrankiai (EN)"
+    label_en: "Deep reads: workflow automation platforms"
+    description_lt: "Po workflow sąvokų – platformų pasirinkimas verslui."
+    description_en: "After workflow terms – choosing platforms for business."
+    cluster: workflow_platforms
+
+  - module_id: 11
+    touchpoint: test-fail
+    slide_id: null
+    slug: evaluating-agents-with-clear
+    label_lt: "Gilesni skaitiniai: agentų vertinimas (EN)"
+    label_en: "Deep reads: evaluating agents with CLEAR"
+    description_lt: "Rekomenduojame peržiūrėti Modulį 10 ir pasinerti giliau."
+    description_en: "Review Module 10 and go deeper on agent evaluation."
+    cluster: eval
+
+  - module_id: 10
+    touchpoint: module-complete
+    slide_id: null
+    slug: agent-orchestrator-operating-model
+    label_lt: "Agentų orkestratoriaus modelis (EN)"
+    label_en: "Agent orchestrator operating model"
+    cluster: orchestration_frameworks
+    cta_id: spinoff_deepen
+
+  - module_id: 12
+    touchpoint: module-complete
+    slide_id: null
+    slug: audit-trails-for-ai-workflows
+    label_lt: "Audit trail agentų workflow (EN)"
+    label_en: "Audit trails for AI workflows"
+    cluster: mcp_integration
+    cta_id: spinoff_deepen
+
+  - module_id: 12
+    touchpoint: module-complete
+    slide_id: null
+    slug: null
+    url: https://www.promptanatomy.ceo/
+    label_lt: "DI Operacinis centras"
+    label_en: "AI Operations Center"
+    cta_id: spinoff_manage
+
+  - module_id: 12
+    touchpoint: module-complete
+    slide_id: null
+    slug: null
+    url: https://promptanatomy.site/#ecosystem
+    label_lt: "Visa ekosistemos map"
+    label_en: "Full ecosystem map"
+    cta_id: spinoff_map
+
+# Document-only (optional collapsible readings – not wired in UI v1)
+optional_readings:
+  - module_id: 7
+    theme: data-scraping
+    slug: ai-bot-for-research-scraping
+  - module_id: 7
+    theme: data-boundaries
+    slug: data-boundaries-for-ai-agents
+  - module_id: 10
+    theme: mcp
+    slug: model-context-protocol-enterprise

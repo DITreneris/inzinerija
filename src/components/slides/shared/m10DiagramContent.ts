@@ -102,6 +102,47 @@ export function getM10ToolTreeLabels(locale: M10Locale) {
   };
 }
 
+export function getM10AgentTaxonomyLabels(locale: M10Locale) {
+  if (locale === 'en') {
+    return {
+      title: 'Agent taxonomy: depth + roles',
+      ladderTitle: 'Depth levels L0–L3',
+      rolesTitle: 'Multi-agent roles',
+      l0: 'L0 Chat',
+      l0Sub: 'Single Q&A',
+      l1: 'L1 Agent',
+      l1Sub: 'Steps + tools',
+      l2: 'L2 Team',
+      l2Sub: 'Roles + handoffs',
+      l3: 'L3 Flow',
+      l3Sub: 'Trigger → actions',
+      router: 'Router',
+      coordinator: 'Coordinator',
+      specialist: 'Specialist',
+      evaluator: 'Evaluator',
+      aria: 'Agent taxonomy: L0 to L3 depth ladder and four multi-agent roles with handoffs',
+    };
+  }
+  return {
+    title: 'Agentų taksonomija: gylis + rolės',
+    ladderTitle: 'Gylio lygiai L0–L3',
+    rolesTitle: 'Multi-agent rolės',
+    l0: 'L0 Pokalbis',
+    l0Sub: 'Vienas Q&A',
+    l1: 'L1 Agentas',
+    l1Sub: 'Žingsniai + įrankiai',
+    l2: 'L2 Komanda',
+    l2Sub: 'Rolės + perdavimai',
+    l3: 'L3 Srautas',
+    l3Sub: 'Trigger → veiksmai',
+    router: 'Maršrutizatorius',
+    coordinator: 'Koordinatorius',
+    specialist: 'Specialistas',
+    evaluator: 'Vertintojas',
+    aria: 'Agentų taksonomija: L0–L3 gylio ladder ir keturios multi-agent rolės su perdavimais',
+  };
+}
+
 export function getM10SpecIncidentLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {

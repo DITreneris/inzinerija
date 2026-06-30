@@ -17,6 +17,11 @@ export default {
     'bg-violet-50', 'bg-violet-50/80', 'bg-violet-100', 'bg-violet-500', 'bg-violet-600', 'bg-violet-700', 'bg-violet-800', 'dark:bg-violet-400', 'dark:bg-violet-800/50', 'dark:bg-violet-900', 'dark:bg-violet-900/20', 'dark:bg-violet-900/30', 'dark:bg-violet-900/40',
     'bg-cyan-50', 'dark:bg-cyan-900/20',
     'bg-fuchsia-50', 'dark:bg-fuchsia-900/20',
+    // DS v0.3 module track accents (M7-15): sky (DA), fuchsia (Agentai), rose (Turinys)
+    'bg-sky-100', 'bg-sky-500', 'dark:bg-sky-900/40', 'text-sky-700', 'dark:text-sky-300',
+    'border-sky-200', 'dark:border-sky-800',
+    'bg-fuchsia-100', 'bg-fuchsia-500', 'dark:bg-fuchsia-900/40', 'border-fuchsia-200', 'dark:border-fuchsia-800',
+    'dark:bg-rose-900/40', 'dark:border-rose-800',
     'bg-accent-50', 'bg-accent-100', 'dark:bg-accent-900/20', 'dark:bg-accent-900/30',
     'bg-slate-50', 'bg-slate-100', 'bg-slate-200', 'dark:bg-slate-800/50', 'dark:bg-slate-800/60', 'border-slate-200', 'border-slate-400', 'dark:border-slate-600', 'dark:border-slate-700',
     // Text colors - only specific shades used

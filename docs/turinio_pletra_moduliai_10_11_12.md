@@ -3,7 +3,7 @@
 > **Autorinė mokymo medžiaga © 2026**  
 > Šis dokumentas yra **turínio SOT** Agentų inžinerijos keliui (Moduliai 10–12). Papildo `turinio_pletra.md` ir modulius 1–9.  
 > **Source of truth:** turinio semantika – šis failas; full redagavimo duomenų struktūra – `src/data/modules.json` po sinchronizacijos.  
-> **Auditorija:** softo inžinieriai. **Įėjimui būtini** Moduliai 4–6 (Konteksto inžinerija). Žr. [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6, [ROADMAP.md](../ROADMAP.md).
+> **Auditorija:** verslo specialistai ir inžinieriai. **Įėjimui būtini** Moduliai 4–6 (Konteksto inžinerija). Žr. [docs/CONTENT_MODULIU_ATPAZINIMAS.md](CONTENT_MODULIU_ATPAZINIMAS.md) §6, [ROADMAP.md](../ROADMAP.md).
 
 ---
 
@@ -15,9 +15,9 @@
 | ------------------------------------------ | ------------------------------------ | ------------------------------------------------------ |
 | 6 blokų sistema, konteksto inžinerija, RAG | Duomenų analizės kelias              | **Agentų inžinerija** – DI kaip agentų sistemų kūrėjas |
 | Teorija → Testas → Projektas (M4–M6)       | Teorija → Testas → Projektas (M7–M9) | Teorija (M10) → Testas (M11) → Projektas (M12)         |
-| Bendras pamatas                            | Analitikai                           | **Softo inžinieriai**                                  |
+| Bendras pamatas                            | Analitikai                           | **Verslo specialistai ir inžinieriai**                 |
 
-**Prielaida:** Dalyvis baigė **Modulius 4–6** (konteksto inžinerija, RAG, žinių patikrinimas). Moduliai 10–12 fokusas: **agentų projektavimas, vykdymas, integracijos** – įrankiai, promptai, sistemos.
+**Prielaida:** Dalyvis baigė **Modulius 4–6** (konteksto inžinerija, RAG, žinių patikrinimas). Moduliai 10–12 fokusas: **agentų projektavimas, vykdymas, integracijos** – verslo use case'ai, DI agentų rolės, no-code įrankiai, promptai.
 
 ### 1.2 Mokymosi tikslai (po modulių 10–12)
 
@@ -26,6 +26,8 @@
 - **Įrankiai ir integracijos:** Suprasti, kaip DI gali naudoti įrankius (paieška, API, failai, skaičiuoklės); kada projektavime rinktis „agentas su įrankiais“ vs „vienas promptas“.
 - **Promptų architektūra agentams:** Mokėti struktūruotai formuluoti sisteminius ir vartotojo promptus agentų sistemoms (rolė, apribojimai, žingsnių seka, klaidos tvarkymas).
 - **Projektavimo gairės:** Žinoti, kada agentas padeda (sudėtingos užduotys, kelios veiklos, išoriniai duomenys) ir kada per daug (paprastas Q&A).
+- **Agentų taksonomija:** Suprasti DI agentų gylio lygius (L0–L3) ir roles multi-agent sistemoje: koordinatorius, specialistas, vertintojas, maršrutizatorius.
+- **Multi-agent koordinacija:** Žinoti 5 workflow šablonus verslo kalba ir kada jų nenaudoti; handoff = perduoti kitam vaidmeniui.
 - **Testas (M11):** Patikrinti įsisavinimą prieš finalinį Agentų inžinerijos projekto modulį (M12).
 - **Projektas (M12):** Sukurti vieną paruoštą agentų / automatizacijos artefaktą arba scenarijų (pvz. workflow su įrankiais, integracijos eskizas).
 
@@ -123,6 +125,80 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 **Taisyklė 80/15/5** – optimali vertės ir saugumo proporcija: didžioji dalis – paprasta automatizacija, maža dalis – žmogaus + DI, mažiausia – pilnai autonomiški agentai su žmogaus priežiūra.
 
 **Kur pritaikyti:** Planuojant verslo automatizavimą – kurių procesų pakanka tik taisyklėms (80), kuriems reikia žmogaus patvirtinimo (15), kur galima leisti agentui veikti su ribomis (5).
+
+---
+
+## 3b2. DI agentų tipai ir rolės (skaidrė 10.45)
+
+**Tikslas:** Verslo taksonomija – gylio lygiai ir multi-agent rolės be programavimo.
+
+**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → Lentelės (brand) → 3A susiejimas (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Optional (terms, collapsible).
+
+**A. Gylio lygiai (L0–L3):**
+
+| Lygis | Pavadinimas              | Kada                         | Verslo pavyzdys                        |
+| ----- | ------------------------ | ---------------------------- | -------------------------------------- |
+| L0    | Pokalbis su DI           | Vienas klausimas–atsakymas   | El. laiško formulavimas                |
+| L1    | Vienas DI agentas        | Keli žingsniai + įrankiai    | Tyrimas + santrauka                    |
+| L2    | DI komanda (multi-agent) | Skirtingos rolės, perdavimai | RFP: tyrėjas → rašytojas → tikrintojas |
+| L3    | Automatizuotas srautas   | Trigger → veiksmai           | Forma → CRM → laiškas                  |
+
+**B. Rolės (multi-agent):**
+
+| Rolė                 | Atsakomybė                                                   | Verslo metafora          |
+| -------------------- | ------------------------------------------------------------ | ------------------------ |
+| **Koordinatorius**   | Skaido užduotį, deleguoja, sujungia rezultatus               | Komandos vadovas         |
+| **Specialistas**     | Vykdo vieną siaurą darbą (paieška, juodraštis, skaičiavimas) | Srities ekspertas        |
+| **Vertintojas**      | QC, taisyklės, grąžina pataisymui                            | Redaktorius / compliance |
+| **Maršrutizatorius** | Nukreipia pagal tipą / kategoriją                            | Registratūra / triažas   |
+
+**3A susiejimas:** Automatize (80 %) → L3; Augment (15 %) → L1 + HITL; Autonomize (5 %) → L2 su vertintoju ir ribomis.
+
+**CopyButton promptas:**
+
+```
+Apibrėžk savo procesui [X] tris roles:
+1) Koordinatorius – ką planuoja ir kam deleguoja
+2) Specialistas – ką konkrečiai daro
+3) Vertintojas – ką tikrina prieš pateikiant rezultatą
+Kiekvienai rolei – vienas sakinys + įvestis + išvestis.
+```
+
+**Optional (collapsible):** „Kada NENAUDOTI multi-agent“ – vienas agentas užtenka; per sudėtinga be HITL; nėra aiškaus „baigta“ kriterijaus.
+
+---
+
+### Papildomas skaitymas (blog)
+
+- **Skaidrė 10.48b (section-break, po 10.48):** `spinoffCta` → blog `how-to-design-an-ai-agent-workflow`.
+- **Skaidrė 10.15b (section-break, po 10.15):** `spinoffCta` → blog `choosing-workflow-automation-ai-pipelines`.
+- **M11 testas nepavyko:** UI deepen → blog `evaluating-agents-with-clear`.
+- **M10 / M12 ModuleComplete:** secondary ecosystem links (blog + map / manage). Žr. `docs/ECOSYSTEM_MAP.md` § Moduliai 7–12.
+
+## 3b3. 5 workflow šablonai verslui (skaidrė 10.48)
+
+**Tikslas:** Composable patterns verslo kalba (be SDK) – kada taikyti kiekvieną šabloną.
+
+| #   | Šablonas                          | Verslo pavyzdys                                         |
+| --- | --------------------------------- | ------------------------------------------------------- |
+| 1   | **Grandinė**                      | Užklausa → klasifikacija → juodraštis → siuntimas       |
+| 2   | **Maršrutizavimas**               | Skundas / užklausa / pasiūlymas → skirtingos šakos      |
+| 3   | **Lygiagretus darbas**            | CRM + el. paštas vienu metu → sujungimas                |
+| 4   | **Koordinatorius + specialistai** | Savaitės ataskaita: duomenys + tendencijos → 1 puslapis |
+| 5   | **Generatorius + vertintojas**    | Juodraštis → QC → pataisa                               |
+
+**Collapsible (terms):** „Kada NENAUDOTI multi-agent“ – vienas agentas užtenka; per sudėtinga be HITL; nėra aiškaus „baigta“ kriterijaus.
+
+**CopyButton – koordinatoriaus promptas:**
+
+```
+Tu esi koordinatorius. Užduotis: [APRAŠYK].
+Suskaidyk į 2–3 sub-užduotis. Kiekvienai paskirk rolę (specialistas / vertintojas),
+įvestį, išvestį ir perdavimo taisyklę (kada perduoti kitam vaidmeniui).
+Pateik planą kaip numeruotą sąrašą.
+```
+
+**Nuoroda:** Išsamiau apie vieną agentą – skaidrė **10.5**; workflow sąvokos – **10.15**.
 
 ---
 
@@ -287,6 +363,10 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 | **Action**               | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM).                        |
 | **Condition**            | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €).                               |
 | **Webhook**              | Realaus laiko duomenų perdavimas tarp sistemų (įvykis → API kvietimas).                    |
+| **Koordinatorius**       | Multi-agent rolė – skaido užduotį, deleguoja specialistams, sujungia rezultatus.           |
+| **Vertintojas**          | Multi-agent rolė – tikrina kokybę, taisykles; gali grąžinti pataisymui (QC).               |
+| **Maršrutizatorius**     | Multi-agent rolė – nukreipia užklausą tinkamai rolei ar srautui pagal tipą.                |
+| **ReAct**                | Ciklas: suprasti → pasirinkti įrankį → vykdyti → stebėti rezultatą → kartoti arba baigti.  |
 
 ---
 
@@ -294,15 +374,32 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md):
 
-| #   | Blokas               | Turinys                                                                                                                                                   |
-| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Celebration Hero     | „Ką išmokote“ – Agentų ciklas, įrankiai, promptų architektūra, ribos. 3 statistikos: pvz. „1 ciklas“, „3 promptų šablonai“, „4 „Kur pritaikyti?“ taškai“. |
-| 2   | Žinių kortelės       | Max 3: (1) Agentų ciklas ir įrankiai, (2) Rolė ir sisteminis promptas, (3) Kada agentas, kada paprastas promptas.                                         |
-| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                      |
-| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                  |
-| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“                                                                       |
+| #   | Blokas               | Turinys                                                                                                                                                                             |
+| --- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Celebration Hero     | „Ką išmokote“ – Agentų ciklas, taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, promptai, ribos. 3 statistikos: pvz. „4 gylio lygiai“, „5 workflow šablonai“, „4 agentų rolės“. |
+| 2   | Žinių kortelės       | Max 3: (1) Taksonomija ir multi-agent rolės, (2) 5 workflow šablonai + 3A, (3) Promptai, įrankiai, klaidos tvarkymas.                                                               |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                                                |
+| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                                            |
+| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“                                                                                                 |
 
 **Pirmas veiksmas po modulio:** Šiandien atidaryk vieną DI įrankį su įjungtais įrankiais (paieška arba Tools) ir užduok vieną agentinę užklausą su „Naudok paiešką ir pateik šaltinius“.
+
+**Use case katalogas (12 eilučių – santraukoje matomas grid):**
+
+| Sritis         | Trigger → veiksmai → rizika → KPI                                                            |
+| -------------- | -------------------------------------------------------------------------------------------- |
+| **Pardavimai** | Lead forma → CRM → laiškas → rizika: dublikatai → KPI: konversija                            |
+| **Pardavimai** | Savaitės pipeline → DI suvestinė → rizika: pasenę duomenys → KPI: laikas vadovui             |
+| **Pardavimai** | RFP gavimas → tyrimas + santrauka → rizika: praleisti kriterijus → KPI: atsakymo laikas      |
+| **HR**         | CV gavimas → filtras → recruiter HITL → rizika: bias → KPI: atrankos laikas                  |
+| **HR**         | Naujas darbuotojas → onboarding checklist → rizika: praleisti žingsnį → KPI: completion rate |
+| **HR**         | Kandidato profilis → atitikimo score → rizika: PII → KPI: shortlist tikslumas                |
+| **Finansai**   | Sąskaita → OCR → tikrinimas → rizika: klaidingi skaičiai → KPI: apdorojimo laikas            |
+| **Finansai**   | Mėnesio closinimas → DI santrauka → rizika: nepatvirtinti skaičiai → KPI: uždarymo dienos    |
+| **Finansai**   | Biudžeto variance → alert → rizika: per daug triukšmo → KPI: tikslūs įspėjimai               |
+| **Support**    | Skundas → triažas → juodraštis → rizika: netinkamas tonas → KPI: first response time         |
+| **Support**    | Atsiliepimas → sentiment → eskalacija → rizika: per anksti autonomiškai → KPI: ticket SLA    |
+| **Support**    | FAQ užklausa → juodraštis → vertintojas → rizika: klaidingas faktas → KPI: self-service rate |
 
 ---
 
@@ -312,14 +409,17 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).
 - **duration:** ~10–12 min.
-- **firstActionCTA:** Atsakyk į 8 klausimus – dalis su trumpa situacija; temos: agentų ciklas, įrankiai, promptai, workflow.
+- **firstActionCTA:** Atsakyk į 8 klausimus – dalis su trumpa situacija; temos: agentų ciklas, taksonomija, multi-agent, workflow, 3A.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad esi pasiruošęs projektuoti agentus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 12 (projektas). &lt;70 % – peržiūrėk rekomenduojamas skaidres (remediation pagal klausimą).
 
 ### 7.2 test-section ir test-results
 
-- **Klausimai:** 8 MCQ – šeši žinių klausimai ir du situaciniai (pvz. forma→Sheets→paštas; Augment su žmogaus patvirtinimu). Remediation – `relatedSlideId` į M10 skaidrę.
-- **test-results:** passedMessage, failedMessage, **useCaseBlock** („Kur pritaikyti?“ – accent): pvz. „Agentų žinias gali pritaikyti: tyrimų automatizavimas, ataskaitų generavimas iš kelių šaltinių, įrankių naudojimas (paieška, API).“ thresholdExplanation: „Pasiekę ≥70 % parodėte, kad suprantate agentų ciklą ir promptus – galite pereiti prie projekto. &lt;70 % – rekomenduojame dar kartą peržiūrėti Modulio 10 skaidres.“
+- **Klausimai:** 8 MCQ – šeši žinių klausimai ir du situaciniai. **Pakeisti 3 silpniausius** (q3, q5, q6) į taksonomijos ir multi-agent klausimus:
+  - **m11-q3 (naujas):** Kuo vertintojas skiriasi nuo specialisto? → `relatedSlideId: 10.45`
+  - **m11-q5 (naujas):** Kas yra maršrutizatorius multi-agent sistemoje? → `relatedSlideId: 10.45`
+  - **m11-q6 (naujas):** Situacinis RFP tyrimas – koordinatorius + tyrėjas + rašytojas; kuris workflow šablonas? → `relatedSlideId: 10.48`
+- **test-results:** failedMessage naudoja **slide ID** (10.2, 10.15, 10.25, 10.45, 10.48, 10.3–10.6), ne UI numerius.
 
 ---
 
@@ -344,7 +444,36 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Bendri artefaktai visiems lab'ams:** workflow schema (1 pusl.), laukų mappingas, test cases (min. 2), logų/screenshot'ai. Detalus aprašymas ir šablonai – [docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.
 
-**Rekomenduojami scenarijai (SHOULD – stiprina vertę),** jei laiko: Tyrimo agentas, Ataskaitos generatorius, Įrankių naudojimas, Klaidos tvarkymas ir ribos (taskFrame, scenario, template, instructions). Scenarijai įgyvendinami kaip **practice-scenario** skaidrės; 3 lab'ai – prioritetas (MUST), 4 scenarijai – papildomai (SHOULD).
+**Rekomenduojami scenarijai (SHOULD – stiprina vertę),** jei laiko: Tyrimo agentas, Ataskaitos generatorius, Įrankių naudojimas, Klaidos tvarkymas ir ribos, **Koordinatorius + 2 specialistai (124.5)**. Scenarijai įgyvendinami kaip **practice-scenario** skaidrės; 3 lab'ai – prioritetas (MUST), 4+1 scenarijai – papildomai (SHOULD).
+
+### 8.2a Verslo multi-agent schema (skaidrė 120.5 – privaloma)
+
+**Pavadinimas:** Verslo multi-agent schema (ne meta AGENTS.md).
+
+**Turinys:** Įvestis → Maršrutizatorius → 2–3 specialistai → Vertintojas → Išvestis (+ HITL vartas prieš siuntimą).
+
+**whyBenefit:** Suprasi, kada vienam DI neužtenka ir kaip padalinti darbą be programavimo – 3–5 min skaitymo, praktika – skaidrė **124.5**.
+
+**optional:** false (privaloma).
+
+### 8.2b Naujas scenarijus 124.5 – Koordinatorius + 2 specialistai
+
+**Kontekstas:** Savaitės pardavimų ataskaitos paketas arba RFP tyrimas.
+
+**3 CopyButton promptai:**
+
+1. Koordinatorius – suskaido užduotį, paskiria roles
+2. Tyrėjas / specialistas – renka duomenis arba rašo juodraštį
+3. Vertintojas – tikrina kokybę, ar atsakyta į kriterijus
+
+**Instrukcija:** Vykdyti rankiniu pipeline (3 atskiri DI pokalbiai + handoff taisyklės).
+
+**Artefaktai:** schema + 3 promptai + 1 test case.
+
+### 8.2c Lab #2 ir #3 sustiprinimas
+
+- **122 (Augment):** pridėti vertintojo promptą prie HITL srauto (tonas, faktai, rizika).
+- **123 (Autonomize):** rolės etiketės schemoje: Klasifikatorius → Sentiment specialistas → Eskalacijos koordinatorius.
 
 ### 8.3 practice-summary
 

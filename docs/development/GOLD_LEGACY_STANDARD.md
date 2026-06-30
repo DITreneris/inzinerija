@@ -1,6 +1,6 @@
 # Gold Legacy Standard – Promptų anatomija v1.3.0
 
-> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). Šis dokumentas yra **atskaitos taškas** – sistema veikia, moduliai 1–6 deployed, ir bet kokie tolimesni pakeitimai turi būti vertinami šio standarto kontekste.  
+> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.0 (2026-06-30)** – žr. `CHANGELOG.md` `[1.4.0]`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); tolimesni pakeitimai vertinami ir CHANGELOG, ir šio standarto kontekste.  
 > **Apimtis:** Visa kodo bazė, išskyrus modulių 7–15 turinį (jie yra `modules.json`, bet dar neplėtojami).  
 > **Versija:** 1.1.0  
 > **Data:** 2026-03-14  
@@ -198,19 +198,20 @@ prompt-anatomy-training/
 
 Sistema naudoja **dviejų profilių** architektūrą, valdomą per `VITE_MVP_MODE` env kintamąjį:
 
-| Profilis              | Aprašymas                                           | Aktyvavimas                      |
-| --------------------- | --------------------------------------------------- | -------------------------------- |
-| **Full (authoring)**  | Visi moduliai 1–15, pilnas žodynėlis, visi įrankiai | Numatytasis (be `VITE_MVP_MODE`) |
-| **Core (production)** | Tik moduliai 1–6, filtruotas žodynėlis ir įrankiai  | `VITE_MVP_MODE=1`                |
+| Profilis             | Aprašymas                                           | Aktyvavimas                                           |
+| -------------------- | --------------------------------------------------- | ----------------------------------------------------- |
+| **Full (authoring)** | Visi moduliai 1–15, pilnas žodynėlis, visi įrankiai | Numatytasis (be `VITE_MVP_MODE`)                      |
+| **Core MVP**         | Tik moduliai 1–6                                    | `VITE_MVP_MODE=1`                                     |
+| **Corporate 1–9**    | Moduliai 1–9 (Duomenų analizės kelias)              | `VITE_MAX_BUILD_MODULE=9` (`npm run build:corporate`) |
 
 Aliasai `vite.config.ts` persijungia failų kelius:
 
-| Aliasas                      | Full build                    | Core build                   |
-| ---------------------------- | ----------------------------- | ---------------------------- |
-| `@modules-data`              | `modules.json`                | `modules-m1-m6.json`         |
-| `@glossary-data`             | `glossary.json`               | `glossary-m1-m6.json`        |
-| `@tools-data`                | `tools.json`                  | `tools-m1-m6.json`           |
-| `@tools-en-data`             | `tools-en.json`               | `tools-en-m1-m6.json`        |
+| Aliasas                      | Full build                    | Core MVP (`VITE_MVP_MODE=1`) | Corporate (`VITE_MAX_BUILD_MODULE=9`) |
+| ---------------------------- | ----------------------------- | ---------------------------- | ------------------------------------- |
+| `@modules-data`              | `modules.json`                | `modules-m1-m6.json`         | `modules-m1-m9.json`                  |
+| `@glossary-data`             | `glossary.json`               | `glossary-m1-m6.json`        | `glossary-m1-m9.json`                 |
+| `@tools-data`                | `tools.json`                  | `tools-m1-m6.json`           | `tools-m1-m9.json`                    |
+| `@tools-en-data`             | `tools-en.json`               | `tools-en-m1-m6.json`        | `tools-en-m1-m9.json`                 |
 | `@m9-characters-data`        | `m9Characters.json`           | `m9Characters-empty.json`    |
 | `@ai-detectors-slide`        | `AiDetectorsSlide.tsx`        | `UnavailableModuleSlide.tsx` |
 | `@vaizdo-generatorius-slide` | `VaizdoGeneratoriusSlide.tsx` | `UnavailableModuleSlide.tsx` |
@@ -529,23 +530,24 @@ Kiekvienas duomenų tipas turi dedikuotą loaderį su:
 - **Deep merge** – EN duomenys merginami ant LT bazės pagal `id` lauką
 - **Lazy init** – kraunama tik kai reikia
 
-| Loaderis                      | SOT failas                                       | EN failas                                                                                     | Eksportai                                                                                |
-| ----------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `modulesLoader.ts`            | `@modules-data`                                  | `modules-en.json` + `modules-en-m4-m6.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache` |
-| `glossaryLoader.ts`           | `@glossary-data`                                 | `glossary-en.json`                                                                            | `getGlossary`                                                                            |
-| `toolsLoader.ts`              | `@tools-data`                                    | `@tools-en-data`                                                                              | `getTools`                                                                               |
-| `promptLibraryLoader.ts`      | `promptLibrary.json`                             | `promptLibrary-en.json`                                                                       | `getPromptLibrary`                                                                       |
-| `certificateContentLoader.ts` | `certificateContent.json`                        | `certificateContent-en.json`                                                                  | `getCertificateContent`                                                                  |
-| `handoutContentLoader.ts`     | `m5HandoutContent.json`, `m6HandoutContent.json` | `*-en.json`                                                                                   | `getM5HandoutContent`, `getM6HandoutContent`                                             |
-| `introPiePdfContentLoader.ts` | `introPiePdfContent.json`                        | `introPiePdfContent-en.json`                                                                  | `getIntroPiePdfContent`                                                                  |
+| Loaderis                      | SOT failas                                       | EN failas                                                                                                                 | Eksportai                                                                                |
+| ----------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `modulesLoader.ts`            | `@modules-data`                                  | `modules-en.json` + `modules-en-m4-m6.json` + `modules-en-m10-m12.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache` |
+| `glossaryLoader.ts`           | `@glossary-data`                                 | `glossary-en.json`                                                                                                        | `getGlossary`                                                                            |
+| `toolsLoader.ts`              | `@tools-data`                                    | `@tools-en-data`                                                                                                          | `getTools`                                                                               |
+| `promptLibraryLoader.ts`      | `promptLibrary.json`                             | `promptLibrary-en.json`                                                                                                   | `getPromptLibrary`                                                                       |
+| `certificateContentLoader.ts` | `certificateContent.json`                        | `certificateContent-en.json`                                                                                              | `getCertificateContent`                                                                  |
+| `handoutContentLoader.ts`     | `m5HandoutContent.json`, `m6HandoutContent.json` | `*-en.json`                                                                                                               | `getM5HandoutContent`, `getM6HandoutContent`                                             |
+| `introPiePdfContentLoader.ts` | `introPiePdfContent.json`                        | `introPiePdfContent-en.json`                                                                                              | `getIntroPiePdfContent`                                                                  |
 
 ### 9.2 EN turinio merge strategija (modulesLoader)
 
 1. Bazė: `@modules-data` (LT)
 2. Overlay 1: `modules-en.json` (M1–M3 EN)
 3. Overlay 2: `modules-en-m4-m6.json` (M4–M6 EN)
-4. Overlay 3: `quiz-en.json` (EN apklausa)
-5. Overlay 4 (tik `en-us` variantas): `modules-en-us-overrides.json`
+4. Overlay 3: `modules-en-m10-m12.json` (M10–M12 EN) — **tik jei** kataloge `maxModuleId >= 10` (`modulesLoader.ts`)
+5. Overlay 4: `quiz-en.json` (EN apklausa)
+6. Overlay 5 (tik `en-us` variantas): `modules-en-us-overrides.json`
 
 Deep merge pagal `id` – masyvai merginami pagal elementų `id` lauką.
 

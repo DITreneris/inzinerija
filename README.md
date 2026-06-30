@@ -1,10 +1,20 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
-**6 promptų struktūros blokai, pilnas interaktyvus mokymas (moduliai 1–6) – sistema nuo A iki Z.**  
-**Versija:** 1.3.0 (2026-03-16). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Naujausi deploy ir UX pataisymai – [CHANGELOG.md](CHANGELOG.md) (`[Unreleased]`).
+**6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
+**Versija:** 1.4.0 (2026-06-30). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md) (`[1.4.0]`).
 
-Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti 6 moduliai** (6 blokų sistema, žinių testas, praktika, konteksto inžinerija, pažangus testas, projektas) su progresu, sertifikatais ir PDF atmintinėmis. Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus** – mokoma kurti promptus ir scenarijus, ne tik suprasti teoriją.  
-UI ir turinys palaiko **LT / EN** (moduliams 1–6), kalba pasirenkama programėlėje.
+Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
+UI ir turinys palaiko **LT / EN** (M1–M12; M10–12 EN kai kataloge `maxModuleId >= 10`).
+
+## Produkto modelis (3 build sluoksniai)
+
+| Sluoksnis               | Build komanda                   | Moduliai         | Paskirtis                 |
+| ----------------------- | ------------------------------- | ---------------- | ------------------------- |
+| **Demo / GitHub Pages** | `VITE_MVP_MODE=1 npm run build` | M1–6             | Preview `/inzinerija/`    |
+| **Production (Vercel)** | `npm run build:production`      | M1–9             | Tier 3 / 6 / 9 magic link |
+| **Dev / authoring**     | `npm run build`                 | M1–15 (full SOT) | Turinio redagavimas       |
+
+Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md).
 
 ## 🎯 Apie projektą
 
@@ -23,26 +33,20 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 
 ## ✨ Pagrindinės funkcijos
 
-- **Pilnas 1–6 modulių kelias:**
-  1. 6 Blokų Sistema (teorija) → 2) Žinių Patikrinimas (testas) → 3) Praktinis Pritaikymas (6 scenarijų) → 4) Konteksto inžinerija (pažangi teorija) → 5) Pažangus testas / prezentacijos sprintas → 6) Projekto kūrimas (praktika).  
-     Moduliai 7–15 – rezervuoti ateities turiniui (plėtra aprašyta dokumentacijoje).
+- **Pamatinis kelias M1–6:** 6 Blokų Sistema → Žinių patikrinimas → Praktika → Konteksto inžinerija → Pažangus testas → Projekto kūrimas.
+- **Duomenų analizės kelias M7–9:** tier 9, production bundle (`build:production`); adaptuotos šakos Modulyje 7.
+- **Agentų kelias M10–12:** turinys full authoring kataloge (ne production bundle); taksonomija 10.45, workflow 10.48.
 - **6 blokų sistema** su workflow, technikomis ir mąstymo modeliais (CoT, ToT, konteksto inžinerijos schemos).
-- **Praktiniai verslo scenarijai** (Modulis 3) ir **vienas integruotas projektas** (Modulis 6).
-- **Žodynėlis** (terminai) ir **Įrankių puslapis** (DI įrankių katalogas pagal modulius).
-- **Apklausa** – bendras žinių patikrinimas po mokymų.
-- **Promptų biblioteka** pagrindiniame puslapyje su kopijavimo funkcija.
-- **Sertifikatai:**
-  - Po 3 modulių (1–3) – pirmas lygis.
-  - Po 6 modulių (1–6) ir ≥70 % pažangaus testo – antras lygis.  
-    Sertifikatai generuojami kaip PDF (Roboto TTF per `pdfNotoFont`, LT diakritika; žr. `public/fonts/README.md`).
-- **PDF atmintinės:** M5 ir M6 turi atskiras atsisiunčiamas atmintines (LT/EN).
-- **Progreso sekimas:** localStorage, versijavimas, automatinis išsaugojimas (baigti moduliai, užduotys, testų rezultatai).
-- **Prieigos lygiai (access tier):**
-  - Pilna versija (1–6) per magic link (`api/verify-access.ts`).
-  - Core production profilis – buildina ir rodo tik modulius 1–6 (testuotojams / demo).
-- **LT/EN kalbos palaikymas** moduliams 1–6, žodynėliui, promptų bibliotekai, įrankiams ir pagrindiniam UI.
-- **Responsive dizainas**, tamsusis/šviesusis režimas, klaviatūros navigacija.
-- **Lazy loading** komponentų, **Error Boundary**, **SEO** (`react-helmet-async`).
+- **Žodynėlis**, **Įrankių puslapis**, **Apklausa**, **Promptų biblioteka**.
+- **Sertifikatai (PDF):**
+  - Tier 1 – po modulių 1–3.
+  - Tier 2 – po modulių 1–6 ir apklausos ≥ 70 %.
+  - Tier 3 – po kelio 7–9 ir Modulio 8 testo ≥ 70 %.
+- **PDF atmintinės:** M5 ir M6 (LT/EN).
+- **Progreso sekimas:** localStorage, versijavimas, autosave.
+- **Prieigos lygiai (access tier):** magic link tier **3** (M1–3), **6** (M1–6), **9** (M1–9) per `api/verify-access.ts`.
+- **Ekosistema M1–12:** spinoff nuorodos, blog deepen (žr. `docs/ECOSYSTEM_MAP.md`).
+- **LT/EN**, responsive, dark/light, klaviatūros navigacija, lazy loading, Error Boundary, SEO (`react-helmet-async`).
 
 ## 🚀 Greitas startas
 
@@ -64,22 +68,28 @@ Aplikacija bus prieinama: `http://localhost:3000`
 
 ### Build produkcijai
 
-Prieš build automatiškai vykdoma JSON schemų validacija (`npm run validate:schema` per `prebuild`). Komandos:
+Prieš build automatiškai vykdoma JSON schemų validacija (`npm run validate:schema` per `prebuild`).
 
 ```bash
-npm run build
+npm run build:production   # Production M1–9 (Vercel)
 npm run preview
 ```
 
-**Production (moduliai 1–6):** Jei norite tik core `1–6` profilio, naudokite `VITE_MVP_MODE=1` build metu. Tada aliasai krauna `modules-m1-m6.json`, `glossary-m1-m6.json` ir `tools-m1-m6.json`. Jei norite pilno katalogo su `1–15` duomenimis ir tier valdymu ateičiai, nenaudokite `VITE_MVP_MODE`. Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) skyrių „Production (moduliai 1–6)“.
-
-**Core build** (buildina tik modulius 1–6):
+**Demo / core M1–6:**
 
 ```bash
 VITE_MVP_MODE=1 npm run build
 ```
 
-**Windows (PowerShell):** Jei `&&` neveikia, naudokite `;` arba `cmd /c "cd anatomija && npm run build"`.
+**Full authoring katalogas (dev):**
+
+```bash
+npm run build
+```
+
+**Windows (PowerShell):** env kintamiesiems naudokite `$env:VITE_MVP_MODE="1"; npm run build` arba `$env:VITE_MAX_BUILD_MODULE="9"; npm run build`.
+
+Pilnas aprašas: [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md) skyrius „Production (moduliai 1–9)“.
 
 ### Testavimas
 
@@ -89,133 +99,65 @@ npm run test:run      # Vienkartinis paleidimas
 npm run test:coverage # Su coverage report
 ```
 
-Testai apima duomenų loaderius (LT/EN), progresą, EN/LT apklausą, sertifikatų ir PDF generavimą, prieigos ribojimą, MVP režimą, a11y „smoke“ ir pagrindines naudotojo keliones.
-
 ## 📚 Modulių struktūra
 
-| Modulis | Pavadinimas                                  | Turinys                                                                                                                 |
-| ------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 1       | **6 Blokų Sistema**                          | Teorija: promptų struktūra, workflow, technikos, kiekvienas blokas (Meta, Input, Output, Reasoning, Quality, Advanced). |
-| 2       | **Žinių Patikrinimas**                       | Testas: klausimai su paaiškinimais; sertifikatas nuo 70 %.                                                              |
-| 3       | **Praktinis Pritaikymas**                    | 6 verslo scenarijų su žingsniais ir pavyzdiniais sprendimais.                                                           |
-| 4       | **Konteksto inžinerija**                     | Pažangus teorija: RAG, deep research, tokenų ekonomika, manipuliacijos, žinių patikrinimas.                             |
-| 5       | **Pažangus testas / prezentacijos sprintas** | Pažangus suvokimo testas + prezentacijos struktūros rėmelis. ≥70 % rekomenduojama prieš Modulį 6.                       |
-| 6       | **Projekto kūrimas**                         | Vienas integruotas projektas (capstone) su 6 blokų sistema ir pažangiomis temomis.                                      |
+| Modulis | Pavadinimas             | Turinys                                                                   |
+| ------- | ----------------------- | ------------------------------------------------------------------------- |
+| 1–6     | Pamatinis kelias        | 6 blokų sistema, testai, praktika, RAG, projektas (žr. ankstesnę lentelę) |
+| 7–9     | Duomenų analizės kelias | Pipeline, vizualizacija, M8 testas, M9 capstone (production tier 9)       |
+| 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (authoring; ne prod bundle)       |
+| 13–15   | Turinio inžinerija      | Planavimas / authoring SOT                                                |
 
-**Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Apklausa.  
-**Duomenų architektūra:** `src/data/modules.json` yra full `1–15` redagavimo SOT. Core production profilis naudoja `src/data/modules-m1-m6.json`, o EN turinys sujungiamas per `modules-en.json` ir `modules-en-m4-m6.json`.
+**Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Apklausa.
+
+**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m10-m12.json`.
 
 ## ⚙️ Konfigūracija
 
 ### Modulių duomenų keitimas
 
-- **Moduliai ir skaidrės:** `src/data/modules.json` yra pagrindinis full `1–15` redagavimo failas. Jame laikomi moduliai, skaidrės, Modulio 2/5 klausimai ir apklausa. EN turiniui – `src/data/modules-en.json` (M1–M3) ir `src/data/modules-en-m4-m6.json` (M4–M6).
-- **Core production profilis:** `src/data/modules-m1-m6.json` nėra pagrindinis authoring failas. Jis naudojamas core `1–6` build/runtime keliui, kai `VITE_MVP_MODE=1`.
-- **Žodynėlis:** `src/data/glossary.json` yra full redagavimo failas, `src/data/glossary-m1-m6.json` – core build/runtime failas, o `src/data/glossary-en.json` – EN turinys.
-- **Promptų biblioteka:** `src/data/promptLibrary.json`.
-- **Įrankiai:** `src/data/tools.json` yra full redagavimo failas, `src/data/tools-m1-m6.json` ir `src/data/tools-en-m1-m6.json` – core build/runtime failai.
-- **Sertifikatų tekstai:** `src/data/certificateContent.json` ir `certificateContent-en.json`.
-- **PDF atmintinės:** `src/data/m5HandoutContent*.json`, `src/data/m6HandoutContent*.json`.
-- Duomenys įkraunami per loaderius (`modulesLoader.ts`, `glossaryLoader.ts`, `handoutContentLoader.ts`, `certificateContentLoader.ts`, `questionPoolSelector.ts`) su cache ir validacija. **Paprasti turinio pakeitimai** – pirmiausia redaguokite full SOT failus, o ne core profilio išvestinius failus.
+- **Full SOT:** `modules.json`, `glossary.json`, `tools.json` – redaguokite čia.
+- **Core profiliai:** `*-m1-m6.json`, `*-m1-m9.json` – generuojami per `npm run generate:core-data`.
+- **EN overlay:** `modules-en*.json`, `glossary-en.json`, `tools-en-*.json`.
+- Loaderiai: `modulesLoader.ts`, `glossaryLoader.ts`, ir kt. – žr. [docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md](docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md).
 
 ### Spalvų schema
 
-Spalvos konfigūruojamos `tailwind.config.js` (brand – navy/slate, accent – auksinė):
-
-```javascript
-// theme.extend.colors
-brand: { 500: '#627d98', 600: '#486581', ... },  // Navy / slate mėlyna
-accent: { 500: '#d4a520', 600: '#b8860b', ... }  // Auksinė
-```
-
-Pilna paletė (50–950) ir papildomos spalvos (slate, di-visata) – žr. `tailwind.config.js`.
+Spalvos – `tailwind.config.js` (brand navy/slate, accent auksinė). Pilna paletė – faile.
 
 ## 🌐 Deployment
 
-### GitHub Pages (demo / statinis preview)
+### GitHub Pages (demo)
 
-1. GitHub repo: Settings → Pages
-2. Source: pasirinkite "GitHub Actions"
-3. Push į `main` automatiškai deployina
+Push į `main` → GitHub Actions deploy. Prieiga: `https://ditreneris.github.io/inzinerija/` (MVP M1–6).
 
-Prieiga: `https://ditreneris.github.io/inzinerija/`
+### Production (Vercel)
 
-**Pastaba:** tai yra statinis preview kelias. Base path turi atitikti repo pavadinimą (šiame repozitorijuje – `inzinerija`). GitHub Pages neturi marketingo repo autentifikacijos ir `verify-access` API sluoksnio, todėl jo nereikėtų laikyti pilnu production deployment modeliu.
+- [www.promptanatomy.app](https://www.promptanatomy.app) – git submodulis marketingo monorepo
+- Build: `npm run build:production`; env – [MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md)
 
-### Production (rekomenduojama)
+Pilnas aprašas: [INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md), [DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
 
-- **Mokymo aplikacija (dabartinis kelias):** [https://www.promptanatomy.app](https://www.promptanatomy.app)
-- **Hostingas:** Vercel; repo integruotas kaip **git submodulis** (`www`) didesniame marketingo monorepo
-- **Alternatyvus kelias po domenu:** kartais naudojamas subpath (pvz. `/academy` arba `/anatomija`) – priklauso nuo monorepo nustatymų; žr. `VITE_BASE_PATH` ir `INTEGRATION_OVERVIEW.md`
-
-Pilnas production aprašas: [docs/deployment/INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md) ir [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
-
-**SEO / crawlers:** Mokymų app kelias (`/anatomija/` ir pan.) – **neindeksuojamas** (`noindex`). Organinis SEO ir GEO – marketingo LP; submodulio politika – [docs/deployment/SEO_SUBMODULE.md](docs/deployment/SEO_SUBMODULE.md). Viešoms santraukoms: `npm run export:seo-snippets`.
-
-**Pastaba:** `vite.config.ts` production default base path – `/inzinerija/` (GitHub Pages). Monorepo: `VITE_BASE_PATH=/anatomija/`, `VITE_PUBLIC_SITE_URL=https://www.promptanatomy.app`.
-
-### Kiti variantai
-
-- **Vercel**: `vercel`
-- **Netlify**: Build `npm run build`, publish `dist`
+**SEO:** mokymų app – `noindex`; [SEO_SUBMODULE.md](docs/deployment/SEO_SUBMODULE.md).
 
 ## 🛠️ Technologijos
 
-| Technologija                   | Paskirtis                                                                                |
-| ------------------------------ | ---------------------------------------------------------------------------------------- |
-| React 18                       | UI biblioteka (lazy loading, Suspense)                                                   |
-| TypeScript                     | Tipai (`src/types/modules.ts`)                                                           |
-| Vite                           | Build ir dev serveris                                                                    |
-| Tailwind CSS                   | Styling (brand, accent, dark mode)                                                       |
-| Vitest + React Testing Library | Unit ir integraciniai testai                                                             |
-| react-helmet-async             | Meta (title, description, noindex, OG URL pagal puslapį)                                 |
-| lucide-react                   | Ikonos; recharts – diagramos (pvz. haliucinacijų rodikliai); canvas-confetti – šventimas |
-
-## 📁 Projekto struktūra
-
-```
-src/
-├── components/       # React komponentai
-│   ├── slides/       # Skaidrės: types/ (AllSlides, ContentSlides, BlockSlides, TestPracticeSlides), shared/ (CopyButton, PracticalTask, ProcessStepper, EnlargeableImage, …), utils/
-│   ├── ui/           # ErrorBoundary, LoadingSpinner
-│   ├── HomePage.tsx, ModulesPage.tsx, ModuleView.tsx, QuizPage.tsx, GlossaryPage.tsx, ToolsPage.tsx
-│   ├── AppNav.tsx, ModuleCompleteScreen.tsx, QuizResultsView.tsx, CircularProgress.tsx
-│   ├── SlideContent.tsx, PromptLibrary.tsx, Celebration.tsx, HallucinationRatesDashboard.tsx
-│   └── __tests__/    # progress.integration, App.quiz.integration, QuizPage, ErrorBoundary, a11y.smoke, mvp.gating
-├── data/             # modules.json (full SOT), modules-m1-m6.json (core profilis), glossary/tools analogai, loaderiai
-├── types/            # modules.ts (tipai moduliams, skaidrėms, quiz)
-├── utils/            # progress.ts, useAutoSave.ts, useQuizState.ts, useSlideNavigation.ts, useTheme.ts, logger.ts + __tests__
-└── test/             # Vitest setup
-```
+React 18, TypeScript, Vite, Tailwind CSS, Vitest + RTL, react-helmet-async, lucide-react.
 
 ## 📖 Dokumentacija
 
-- **README.md** – šis failas (projekto aprašymas ir startas).
-- **Integracija į kitą repo:** jei integruojate šį app į marketingo monorepo kaip subproject, pradėkite nuo [docs/deployment/INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md).
-- **docs/DOCUMENTATION_QUICK_REF.md** – greita nuoroda: SOT, agentai, kritiniai keliai.
-- **docs/DOCUMENTATION_INDEX.md** – pilnas dokumentacijos indeksas: SOT, aktyvūs dokumentai, archyvas (pirmiausia atsidarykite čia, jei reikia gilesnio konteksto).
-- **turinio_pletra.md** – turinio planas (Moduliai 1–3, SOT).
-- **docs/turinio_pletra_moduliai_4_5_6.md** – turinio planas Moduliams 4–6 (SOT).
-- **docs/development/CODEBASE_WHAT_IS_DONE.md** – kodo bazės santrauka: kas įgyvendinta (duomenys, i18n, testai, access tier).
-- **docs/development/RELEASE_QA_CHECKLIST.md** – 5 min sanity prieš release (nuorodos, mobilus, tamsus režimas, lietuviškos raidės, EN).
-- **TODO.md** – dabartinės užduotys.
-- **ROADMAP.md** – plėtros prioritetai, deploy / post-deploy, nuorodos į dokumentaciją.
-- **CHANGELOG.md** – versijų ir svarbių pakeitimų žurnalas (įsk. produkcijos pastabos `[Unreleased]`).
-- **docs/README.md** – dokumentacijos struktūra; pasenę dokumentai – `docs/archive/` (lokaliai, žr. `docs/archive/README.md`).
+- [docs/DOCUMENTATION_QUICK_REF.md](docs/DOCUMENTATION_QUICK_REF.md) – SOT, agentai, kritiniai keliai
+- [docs/development/CODEBASE_WHAT_IS_DONE.md](docs/development/CODEBASE_WHAT_IS_DONE.md) – kas įgyvendinta
+- [TODO.md](TODO.md), [ROADMAP.md](ROADMAP.md), [CHANGELOG.md](CHANGELOG.md)
 
 ## 📄 Licencija
 
-**Mokymo turinys:** © 2026 Tomas Staniulis. Visos teisės saugomos.
-
-**Programinė įranga:** MIT License
+**Mokymo turinys:** © 2026 Tomas Staniulis. **Programinė įranga:** MIT License.
 
 ## 📧 Kontaktai
 
 - **Svetainė:** [promptanatomy.app](https://www.promptanatomy.app/)
-- **Autorius:** Tomas Staniulis
 - **GitHub:** [DITreneris](https://github.com/DITreneris)
-- **Klausimai:** Sukurkite issue GitHub repozitorijoje
-- **Bendruomenė (CTA):** [Vieša Telegram grupė](https://t.me/prompt_anatomy) – diskusijos apie promptus, atnaujimai, pasiūlymai toliau (Modulis 4 ir kt.)
 
 ---
 
@@ -224,7 +166,5 @@ src/
 **Promptų anatomija** - Interaktyvus DI Mokymas
 
 Autorinė mokymo medžiaga © 2026 Tomas Staniulis
-
-_Sukurta verslo problemų sprendimui su DI_ 🎯
 
 </div>

@@ -34,14 +34,16 @@
 | **Moduliai 1–3**                          | `turinio_pletra.md`                                         | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
 | **Moduliai 4–6**                          | `docs/turinio_pletra_moduliai_4_5_6.md`                     | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
 | **Moduliai 7–9**                          | `docs/turinio_pletra_moduliai_7_8_9.md`                     | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **Moduliai 10–12**                        | `docs/turinio_pletra_moduliai_10_11_12.md`                  | Turinio kūrimas; verslo multi-agent taksonomija, workflow šablonai, capstone scenarijai                                                                        |
+| **Skaidrių eilė M10**                     | `docs/MODULIO_10_SKAIDRIU_EILES.md`                         | **Privaloma** prieš keičiant M10 skaidrių seką                                                                                                                 |
 | **Modulių atpažinimas**                   | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                       | **Privaloma** naudoti – vienoda numeracija (4.1–4.7 = tik Modulio 4)                                                                                           |
 | **Santraukos skaidrės**                   | `docs/development/SUMMARY_SLIDE_SPEC.md`                    | Tekstai pagal 5 blokų struktūrą                                                                                                                                |
 | **Duomenų analizės geriausios praktikos** | `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` | Moduliams 7–9 turinio semantika                                                                                                                                |
 | **GOLDEN STANDARD (privaloma)**           | `docs/development/GOLDEN_STANDARD.md`                       | Vienas etalonas – šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas, modulio identitetas. **Privaloma** prieš rašant ar redaguojant turinį. |
 
-**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json`. Core `*-m1-m6.json` failai naudojami build/runtime profiliui ir nėra pagrindinis CONTENT_AGENT authoring taikinys.
+**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json`. Core profiliai `*-m1-m6.json` (MVP) ir `*-m1-m9.json` (korporatyvinis) naudojami build/runtime; CONTENT_AGENT **never** edits JSON.
 
-**Konfliktų tvarka:** 1) Pirmiausia atnaujink SOT (semantika, terminai, pavyzdžiai). 2) Duomenys – DATA_AGENT sinchronuoja full failus (`modules.json`, o jei reikia ir core profilį). 3) UI – CODING_AGENT.
+**Konfliktų tvarka:** 1) Pirmiausia atnaujink SOT (semantika, terminai, pavyzdžiai). 2) Duomenys – DATA_AGENT sinchronuoja full failus (`modules.json`, EN overlay jei reikia). 3) UI – CODING_AGENT.
 
 ---
 
@@ -58,6 +60,20 @@
 - **DI**, ne „AI“ (išskyrus citatas ar produktų pavadinimus kaip ChatGPT, Claude).
 - **Lietuviškos raidės:** ž, ė, ą, ų, ū, š, č, į – visur. Dažnos klaidos: `perziureti`→`peržiūrėti`, `Ziniu`→`Žinių`, `zemelapis`→`žemėlapis`, `Ka ismokote`→`Ką išmokote`, `ypac`→`ypač`, `role`→`rolė`, `struktura`→`struktūra`.
 - Angliški terminai – **TERM** (paprastas paaiškinimas vienu sakiniu), jei būtina.
+
+### 3.1.1 Moduliai 10–12 (Agentų kelias)
+
+- **Auditorija:** verslo specialistai ir inžinieriai — ne tik no-code automation; praktiniai promptai ir use case katalogas.
+- **Dešimtainės skaidrės ID** (`10.45`, `10.48`) — leidžiamos be naujo slide tipo; seka dokumentuota `MODULIO_10_SKAIDRIU_EILES.md`.
+- **M12 capstone:** verslo multi-agent scenarijai (coordinator + specialistai); **draudžiama** meta-dokumentacija learner UI (pvz. `AGENTS.md` turinys skaidrėse).
+- **Santrauka 10.8:** use case katalogas per `sections[]` struktūrą JSON — ne atskiras custom laukas (`SummarySlide` renderina tik `sections`).
+
+### 3.1.2 EN vertimas M10+ (handoff DATA_AGENT)
+
+- LT SOT → DATA sinchronizuoja `modules.json` → EN per `modules-en-m10-m12.json` arba `npm run build:modules-en-m10-m12`.
+- **LT** vartotojui — **DI**; **EN locale** — **AI** (`PAPRASTOS_KALBOS_GAIRES.md` §4).
+- Po EN keitimo: `npm run audit:en-coverage-m10-12`, `npm run validate:schema`.
+- **Žinoma spraga:** slide 10.7 glossary terminai EN overlay faile ≠ globalus `glossary-en.json` (glossary page gali rodyti LT).
 
 ### 3.2 Antraštės ir trumpa santrauka (Trumpai)
 

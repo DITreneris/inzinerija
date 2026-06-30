@@ -16,7 +16,7 @@ Ką skaityti pirmiausia ir kaip laikytis tokenų biudžeto:
 5. **Konteksto biudžetas:** `docs/development/context-engineering/context_budget.md` – kada ką krauti, max dydžiai, load-only-when.
 6. **Registras:** `docs/development/context-engineering/sot_index.json` – moduliai, SOT keliai, gating, nextStep.
 
-**Pastaba:** Dabartinis produktas = 6 moduliai; sot_index.json registry palaiko 7–9 (ateities plėtra).
+**Pastaba:** Produktas – 3 build profiliai (MVP M1–6, production M1–9, full SOT M1–15). `sot_index.json` registry – M1–12 (ecosystem).
 
 ---
 
@@ -41,14 +41,15 @@ Ką skaityti pirmiausia ir kaip laikytis tokenų biudžeto:
 
 ## 3. Load-only-when triggers
 
-| Trigger                          | Load                                                         |
-| -------------------------------- | ------------------------------------------------------------ |
-| "Which file owns module N?"      | sot_index.json (or orchestrator SOT table).                  |
-| "Edit content for Moduliai 1–3"  | turinio_pletra.md (or relevant section).                     |
-| "Edit content for Moduliai 4–6"  | docs/turinio_pletra_moduliai_4_5_6.md.                       |
-| "Change JSON (slides, glossary)" | src/data/modules.json (or promptLibrary, glossary) + schema. |
-| "Modulis vs skaidrė numbering"   | docs/CONTENT_MODULIU_ATPAZINIMAS.md.                         |
-| "Summary slide practices"        | docs/development/SUMMARY_SLIDE_SPEC.md.                      |
+| Trigger                            | Load                                                                       |
+| ---------------------------------- | -------------------------------------------------------------------------- |
+| "Which file owns module N?"        | sot_index.json (or orchestrator SOT table).                                |
+| "Edit content for Moduliai 1–3"    | turinio_pletra.md (or relevant section).                                   |
+| "Edit content for Moduliai 4–6"    | docs/turinio_pletra_moduliai_4_5_6.md.                                     |
+| "Change JSON (slides, glossary)"   | src/data/modules.json (or promptLibrary, glossary) + schema.               |
+| "Modulis vs skaidrė numbering"     | docs/CONTENT_MODULIU_ATPAZINIMAS.md.                                       |
+| "Summary slide practices"          | docs/development/SUMMARY_SLIDE_SPEC.md.                                    |
+| ecosystem / spinoff / outbound URL | sot_index.json → ECOSYSTEM_MAP.md (~150 lines) + ecosystemUrls.ts (small). |
 
 ---
 

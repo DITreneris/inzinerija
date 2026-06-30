@@ -237,7 +237,60 @@ describe('QuizPage', () => {
     expect(screen.getByText(/Because A is correct/)).toBeInTheDocument();
   });
 
-  it('shows CEO hidden-treasure link on results screen', async () => {
+  it('shows Deepen spin-off on results when score below 70%', async () => {
+    const dataWithOneQuestion: ModulesData = {
+      modules: [],
+      quiz: {
+        title: 'Testas',
+        description: '',
+        passingScore: 70,
+        questions: [
+          {
+            id: 1,
+            question: 'Q?',
+            options: ['A', 'B'],
+            correct: 0,
+            explanation: 'Because A is correct',
+          },
+        ],
+      },
+    };
+    vi.mocked(getModulesDataSync).mockReturnValue(dataWithOneQuestion);
+    renderWithProviders(
+      <QuizPage
+        onBack={onBack}
+        progress={defaultProgress}
+        onQuizComplete={onQuizComplete}
+      />
+    );
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', {
+          name: /Pasirink atsakymą: B|Select answer: B/i,
+        })
+      );
+    });
+    await act(async () => {
+      await userEvent.click(
+        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+      );
+    });
+    const deepenLink = screen.getByRole('link', {
+      name: /Prompt Anatomy blog|promptanatomy\.blog/i,
+    });
+    expect(deepenLink).toBeInTheDocument();
+    expect(deepenLink).toHaveAttribute(
+      'href',
+      'https://www.promptanatomy.blog/'
+    );
+    expect(
+      screen.queryByRole('link', {
+        name: /DI Operacinį centrą|AI Operations Centre|Operations Centre/i,
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  it('does not show ecosystem spin-off when quiz passed', async () => {
     const dataWithOneQuestion: ModulesData = {
       modules: [],
       quiz: {
@@ -275,12 +328,10 @@ describe('QuizPage', () => {
         screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
       );
     });
-    const ceoLink = screen.getByRole('link', {
-      name: /DI Operacinį centrą|AI Operations Centre|Operations Centre/i,
-    });
-    expect(ceoLink).toBeInTheDocument();
-    expect(ceoLink).toHaveAttribute('href', 'https://www.promptanatomy.ceo/');
-    expect(ceoLink).toHaveAttribute('target', '_blank');
-    expect(ceoLink).toHaveAttribute('rel', expect.stringMatching(/noopener/));
+    expect(
+      screen.queryByRole('link', {
+        name: /Gilesni skaitiniai|Deep reads|DI Operacinį|Operations Centre/i,
+      })
+    ).not.toBeInTheDocument();
   });
 });

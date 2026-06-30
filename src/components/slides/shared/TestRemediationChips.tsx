@@ -63,6 +63,18 @@ const LINKS_M11: LinkSpec[] = [
     labelLt: '3A strategija',
     labelEn: '3A strategy',
   },
+  {
+    targetModuleId: 10,
+    slideId: 10.45,
+    labelLt: 'Taksonomija',
+    labelEn: 'Taxonomy',
+  },
+  {
+    targetModuleId: 10,
+    slideId: 10.48,
+    labelLt: 'Workflow šablonai',
+    labelEn: 'Workflow patterns',
+  },
   { targetModuleId: 10, slideId: 10.4, labelLt: 'Įrankiai', labelEn: 'Tools' },
   {
     targetModuleId: 10,

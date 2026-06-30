@@ -481,8 +481,10 @@
 | B6  | Sukurti `SlideShell` primitive ir migrate visus 25 tipų                                    | Refactor scope; v0.3 kandidatas.                                 |
 | B7  | Pre-commit gate iš `audit-design-tokens.mjs`                                               | Užblokuos legitimius case'us (PDF generation, certificate).      |
 | B8  | Modulio identity diagramose                                                                | Susilpnins rule §5 (vienas accent per skaidrę).                  |
-| B9  | Microcopy trimming M1/M4/M6                                                                | Pažeidžia rule §2 (turinio neliečimo).                           |
-| B10 | `practice` vs `test` semantinis level diferenciavimas (po accent)                          | Ant accent virš level — perpildo identitetą.                     |
+
+> **DS v0.3 (2026-06-29) — modulių takų stilistika.** Backlog'o sprendimas „M7–M15 palieka tuščia" (§8 E5.2) sąmoningai pakeistas: M7–15 gavo `accent` per **taką** (sky=Duomenų analizė M7-9, fuchsia=Agentai M10-12, rose=Turinys M13-15) + `identityIcon`. Modelis „spalva=takas, lygis=ikona/gradientas". Pakeisti: `ModuleAccent`/`ModuleIcon`/`ModuleIdentityIcon` tipai, `moduleIdentity.ts` (+`MODULE_ICON_MAP`), `Eyebrow`/`SectionDivider`, safelist, schema, `modules.json`. Pakeliui pataisytos M10 (`Cpu`)/M13 (`Image`) tuščios kortelių ikonos. B8 (identity diagramose) — toliau NEpaliestas.
+> | B9 | Microcopy trimming M1/M4/M6 | Pažeidžia rule §2 (turinio neliečimo). |
+> | B10 | `practice` vs `test` semantinis level diferenciavimas (po accent) | Ant accent virš level — perpildo identitetą. |
 
 ---
 

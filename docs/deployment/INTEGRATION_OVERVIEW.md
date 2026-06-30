@@ -11,7 +11,7 @@ Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, supp
 
 ## Kas yra šis repo
 
-Šis repozitorijus – **mokymo turinio ir UI šaltinis** (Promptų anatomija): moduliai 1–6, skaidrės, žodynėlis, įrankiai, apklausa, sertifikatai, PDF atmintinės. Turinys ir duomenys – čia (`src/data/*`, JSON).
+Šis repozitorijus – **mokymo turinio ir UI šaltinis** (Promptų anatomija): **M1–6** MVP, **production M1–9** (tier 9), **full authoring M1–15**; skaidrės, žodynėlis, įrankiai, apklausa, sertifikatai, PDF atmintinės. Turinys ir duomenys – čia (`src/data/*`, JSON).
 
 **Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `glossary.json`, `tools.json`. Jei integracijos build naudoja `VITE_MVP_MODE=1`, runtime persijungia į `*-m1-m6.json` failus, bet tai nėra atskiras authoring modelis.
 

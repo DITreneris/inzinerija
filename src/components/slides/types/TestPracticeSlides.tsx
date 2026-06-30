@@ -53,6 +53,13 @@ import {
 } from '../../../utils/m5HandoutPdf';
 import { saveSlidePosition } from '../../../utils/useSlideNavigation';
 import { selectQuestionsByCategory } from '../../../utils/questionPoolSelector';
+import { trackSpinoffClick } from '../../../utils/analytics';
+import {
+  ECOSYSTEM_URLS,
+  BLOG_ARTICLE_SLUGS,
+  blogArticleUrl,
+} from '../../../constants/ecosystemUrls';
+import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
 
 /** Category scores from the last test attempt (session-lived, not persisted) */
 export interface CategoryScore {
@@ -1381,6 +1388,29 @@ export function TestResultsSlide({
             )}
           </>
         )}
+        <div className="pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+            {getT('quiz')('ceoSpinoffDescription')}
+          </p>
+          <a
+            href={ECOSYSTEM_URLS.manage}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              trackSpinoffClick({
+                module_id: 5,
+                url: ECOSYSTEM_URLS.manage,
+                cta_id: 'spinoff_manage',
+                cta_label: getT('quiz')('ceoSpinoffLabel'),
+              })
+            }
+            className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            aria-label={getT('quiz')('ceoSpinoffAria')}
+          >
+            <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden />
+            {getT('quiz')('ceoSpinoffLabel')}
+          </a>
+        </div>
       </div>
     );
   }
@@ -1475,6 +1505,16 @@ export function TestResultsSlide({
                 onGoToModule={onGoToModule}
               />
             )}
+            <EcosystemDeepenBlock
+              href={blogArticleUrl(BLOG_ARTICLE_SLUGS.ragInProduction, {
+                moduleId: 8,
+                touchpoint: 'test_fail',
+              })}
+              label={getT('quiz')('ecosystemDeepenM8Label')}
+              description={getT('quiz')('ecosystemDeepenM8Description')}
+              ariaLabel={getT('quiz')('ecosystemDeepenM8Aria')}
+              moduleId={8}
+            />
           </>
         )}
       </div>
@@ -1619,6 +1659,16 @@ export function TestResultsSlide({
                 onGoToModule={onGoToModule}
               />
             )}
+            <EcosystemDeepenBlock
+              href={blogArticleUrl(BLOG_ARTICLE_SLUGS.agentEvalClear, {
+                moduleId: 11,
+                touchpoint: 'test_fail',
+              })}
+              label={getT('quiz')('ecosystemDeepenM11Label')}
+              description={getT('quiz')('ecosystemDeepenM11Description')}
+              ariaLabel={getT('quiz')('ecosystemDeepenM11Aria')}
+              moduleId={11}
+            />
           </>
         )}
       </div>

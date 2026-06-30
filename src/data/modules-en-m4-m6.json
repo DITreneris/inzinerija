@@ -1143,7 +1143,7 @@
               "When to let AI search the web and use tools."
             ],
             "spinoffCta": {
-              "label": "Try the 8-prompt library (~30 min)",
+              "label": "Try the 8-prompt organisation library (~30 min)",
               "url": "https://www.promptanatomy.info/en/"
             },
             "recap": {
@@ -1784,8 +1784,8 @@
             ],
             "footer": "Next – slide 19: What do you use AI for most?",
             "spinoffCta": {
-              "label": "Content AI system for marketing managers (~45 min)",
-              "url": "https://ditreneris.github.io/marketingas/"
+              "label": "10 marketing prompt kit (~30 min)",
+              "url": "https://www.promptanatomy.space/en/"
             },
             "heroColorKey": "emerald"
           }
@@ -2897,6 +2897,10 @@
                 "COMBO"
               ],
               "progressTotal": 7
+            },
+            "spinoffCta": {
+              "label": "Deep reads: RAG in production",
+              "url": "https://www.promptanatomy.blog/articles/rag-in-production/?utm_source=training&utm_medium=spinoff&utm_campaign=m4_65_8"
             }
           }
         },
@@ -3268,6 +3272,10 @@
                 "Token"
               ],
               "progressTotal": 7
+            },
+            "spinoffCta": {
+              "label": "Explore the full ecosystem",
+              "url": "https://promptanatomy.site/#ecosystem"
             }
           }
         },

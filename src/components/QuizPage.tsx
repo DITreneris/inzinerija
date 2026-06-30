@@ -43,7 +43,9 @@ export default function QuizPage({
       const indices = originalOptions.map((_, idx) => idx);
       const shuffledIndices = shuffleArray(indices);
       const newCorrectIndex = shuffledIndices.indexOf(originalCorrect);
-      const shuffledOptions = shuffledIndices.map((idx) => originalOptions[idx]);
+      const shuffledOptions = shuffledIndices.map(
+        (idx) => originalOptions[idx]
+      );
       return {
         ...q,
         options: shuffledOptions,
@@ -104,6 +106,7 @@ export default function QuizPage({
         firstWrongIndex={firstWrongIndex}
         onRestart={handleRestart}
         onBack={onBack}
+        quizContext="m2"
       />
     );
   }
@@ -113,7 +116,11 @@ export default function QuizPage({
   if (!currentQ) {
     return (
       <div className="max-w-2xl mx-auto space-y-6 animate-fade-in">
-        <button onClick={onBack} className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400" aria-label={t('backToHomeAria')}>
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400"
+          aria-label={t('backToHomeAria')}
+        >
           <ArrowLeft className="w-5 h-5" />
           {t('backToHome')}
         </button>
@@ -141,7 +148,9 @@ export default function QuizPage({
           </button>
           {progress.completedModules.length > 0 && (
             <span className="text-xs text-gray-500 dark:text-gray-400">
-              {t('quiz:completedModulesCount')}: {progress.completedModules.length}/{modulesData?.modules?.length ?? 6}
+              {t('quiz:completedModulesCount')}:{' '}
+              {progress.completedModules.length}/
+              {modulesData?.modules?.length ?? 6}
             </span>
           )}
         </div>
@@ -153,7 +162,9 @@ export default function QuizPage({
             showPercentage={false}
           />
           <div className="text-right">
-            <p className="text-xs text-gray-500 dark:text-gray-400">{t('quiz:questionLabel')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {t('quiz:questionLabel')}
+            </p>
             <p className="text-lg font-bold text-brand-600 dark:text-brand-400">
               {currentQuestion + 1}/{questions.length}
             </p>
@@ -174,7 +185,7 @@ export default function QuizPage({
             </div>
           </div>
         </div>
-        
+
         {/* Question */}
         <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
           {currentQ.question}
@@ -220,7 +231,9 @@ export default function QuizPage({
                       </>
                     )}
                   </div>
-                  <span className="text-gray-800 dark:text-gray-200 font-medium">{option}</span>
+                  <span className="text-gray-800 dark:text-gray-200 font-medium">
+                    {option}
+                  </span>
                 </div>
               </button>
             );
@@ -229,11 +242,13 @@ export default function QuizPage({
 
         {/* Explanation – rodomas visada, kai klausimas jau atsakytas (įsk. grįžus atgal), kad neprarastų grįžtamojo ryšio (vartotojo testavimas) */}
         {selectedAnswers[currentQ.id] !== undefined && currentQ.explanation && (
-          <div className={`mt-6 p-4 rounded-xl border-l-4 ${
-            selectedAnswers[currentQ.id] === currentQ.correct
-              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500'
-              : 'bg-amber-50 dark:bg-amber-900/20 border-amber-500'
-          } animate-fade-in`}>
+          <div
+            className={`mt-6 p-4 rounded-xl border-l-4 ${
+              selectedAnswers[currentQ.id] === currentQ.correct
+                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-500'
+                : 'bg-amber-50 dark:bg-amber-900/20 border-amber-500'
+            } animate-fade-in`}
+          >
             <div className="flex items-start gap-3">
               {selectedAnswers[currentQ.id] === currentQ.correct ? (
                 <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -241,18 +256,24 @@ export default function QuizPage({
                 <XCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
               )}
               <div>
-                <p className={`text-sm font-semibold mb-1 ${
-                  selectedAnswers[currentQ.id] === currentQ.correct
-                    ? 'text-emerald-800 dark:text-emerald-200'
-                    : 'text-amber-800 dark:text-amber-200'
-                }`}>
-                  {selectedAnswers[currentQ.id] === currentQ.correct ? t('correctLabel') : t('incorrectLabel')}
+                <p
+                  className={`text-sm font-semibold mb-1 ${
+                    selectedAnswers[currentQ.id] === currentQ.correct
+                      ? 'text-emerald-800 dark:text-emerald-200'
+                      : 'text-amber-800 dark:text-amber-200'
+                  }`}
+                >
+                  {selectedAnswers[currentQ.id] === currentQ.correct
+                    ? t('correctLabel')
+                    : t('incorrectLabel')}
                 </p>
-                <p className={`text-sm ${
-                  selectedAnswers[currentQ.id] === currentQ.correct
-                    ? 'text-emerald-700 dark:text-emerald-300'
-                    : 'text-amber-700 dark:text-amber-300'
-                }`}>
+                <p
+                  className={`text-sm ${
+                    selectedAnswers[currentQ.id] === currentQ.correct
+                      ? 'text-emerald-700 dark:text-emerald-300'
+                      : 'text-amber-700 dark:text-amber-300'
+                  }`}
+                >
                   {currentQ.explanation}
                 </p>
               </div>
@@ -263,13 +284,20 @@ export default function QuizPage({
         {/* Navigation */}
         <div className="mt-8 flex flex-col gap-3">
           {!hasAnswer && (
-            <p id="quiz-next-hint" className="text-sm text-gray-500 dark:text-gray-400" role="status" aria-live="polite">
+            <p
+              id="quiz-next-hint"
+              className="text-sm text-gray-500 dark:text-gray-400"
+              role="status"
+              aria-live="polite"
+            >
               {t('selectAnswerHint')}
             </p>
           )}
           <div className="flex justify-between gap-4">
             <button
-              onClick={() => setCurrentQuestion(Math.max(0, currentQuestion - 1))}
+              onClick={() =>
+                setCurrentQuestion(Math.max(0, currentQuestion - 1))
+              }
               disabled={currentQuestion === 0}
               className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation"
               aria-label={t('prevQuestionAria')}

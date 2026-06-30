@@ -601,6 +601,8 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
       <LazySectionBreakSlide
         content={ctx.slide.content as SectionBreakContent}
         moduleAccent={ctx.moduleAccent}
+        moduleId={ctx.moduleId}
+        slideId={ctx.slide.id}
         onGoToGlossaryTerm={ctx.onGoToGlossaryTerm}
         onNextSlide={ctx.onNextSlide}
       />
