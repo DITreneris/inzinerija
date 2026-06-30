@@ -82,6 +82,8 @@ const fakeModulesDataWith9: ModulesData = {
           subtitle: 'LT',
           type: 'action-intro-journey',
           content: {
+            heroStat: 'LT',
+            heroText: 'LT',
             journeyChoices: [
               {
                 id: 'pardavimai',
