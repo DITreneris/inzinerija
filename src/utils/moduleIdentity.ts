@@ -4,16 +4,22 @@
  */
 import type { LucideIcon } from 'lucide-react';
 import {
+  BarChart3,
   BookOpen,
   Brain,
   Briefcase,
   ClipboardCheck,
   ClipboardList,
+  Cpu,
+  Image,
   Rocket,
+  Settings,
+  Target,
 } from 'lucide-react';
 import type {
   Module,
   ModuleAccent,
+  ModuleIcon,
   ModuleIdentityIcon,
   ModuleLevel,
 } from '../types/modules';
@@ -25,7 +31,27 @@ export const IDENTITY_ICON_MAP: Record<ModuleIdentityIcon, LucideIcon> = {
   Brain,
   ClipboardCheck,
   Rocket,
+  BarChart3,
+  Cpu,
+  Image,
 };
+
+/** ModulesPage kortelės ikonos žemėlapis (`module.icon`). DS v0.3 — keičia hardcoded if grandinę. */
+export const MODULE_ICON_MAP: Record<ModuleIcon, LucideIcon> = {
+  Target,
+  Brain,
+  Settings,
+  BarChart3,
+  ClipboardCheck,
+  Rocket,
+  Cpu,
+  Image,
+};
+
+export function resolveModuleIcon(name?: ModuleIcon): LucideIcon | undefined {
+  if (!name) return undefined;
+  return MODULE_ICON_MAP[name];
+}
 
 const LEVEL_ACCENT_FALLBACK: Record<ModuleLevel, ModuleAccent> = {
   learn: 'brand',
@@ -56,6 +82,9 @@ export const accentTopBarClasses: Record<ModuleAccent, string> = {
   violet: 'bg-violet-500',
   cyan: 'bg-cyan-500',
   accent: 'bg-accent-500',
+  sky: 'bg-sky-500',
+  fuchsia: 'bg-fuchsia-500',
+  rose: 'bg-rose-500',
 };
 
 /** Section-break sectionNumber badge only (E5.6). */
@@ -69,4 +98,8 @@ export const sectionBreakBadgeByAccent: Record<ModuleAccent, string> = {
   cyan: 'bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300',
   accent:
     'bg-accent-100 dark:bg-accent-900/40 text-accent-700 dark:text-accent-300',
+  sky: 'bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300',
+  fuchsia:
+    'bg-fuchsia-100 dark:bg-fuchsia-900/40 text-fuchsia-700 dark:text-fuchsia-300',
+  rose: 'bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300',
 };

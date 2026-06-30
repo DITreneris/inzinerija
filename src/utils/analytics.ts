@@ -1,6 +1,6 @@
 /**
  * MVP Analytics – anonymous event tracking for completion/drop-off funnel.
- * Events: slide_view, slide_complete, practice_start, practice_complete, cta_click, collapse_open.
+ * Events: slide_view, slide_complete, practice_start, practice_complete, cta_click, collapse_open, pricing_click.
  * Dedupe per session where specified. Optional PostHog backend via env.
  * @see docs/development/ANALYTICS_EVENT_TAXONOMY.md
  */
@@ -19,7 +19,8 @@ export type AnalyticsEventName =
   | 'practice_complete'
   | 'cta_click'
   | 'collapse_open'
-  | 'rl_step_click';
+  | 'rl_step_click'
+  | 'pricing_click';
 
 export interface AnalyticsProperties {
   module_id: number;
@@ -45,7 +46,10 @@ export interface AnalyticsProperties {
 const dedupeKeysSeen = new Set<string>();
 
 function generateUuid(): string {
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+  if (
+    typeof crypto !== 'undefined' &&
+    typeof crypto.randomUUID === 'function'
+  ) {
     return crypto.randomUUID();
   }
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -89,7 +93,10 @@ function getUtmParams(): { utm_source?: string; utm_medium?: string } {
 }
 
 /** Build dedupe key for 1x-per-session events */
-function dedupeKey(eventName: string, props: Record<string, unknown>): string | null {
+function dedupeKey(
+  eventName: string,
+  props: Record<string, unknown>
+): string | null {
   if (eventName === 'slide_view' || eventName === 'slide_complete') {
     const mid = props.module_id;
     const sid = props.slide_id ?? props.slide_index;
@@ -112,7 +119,10 @@ function dedupeKey(eventName: string, props: Record<string, unknown>): string | 
 }
 
 /** Whether we should skip this event (already sent this session) */
-function shouldDedupe(eventName: string, props: Record<string, unknown>): boolean {
+function shouldDedupe(
+  eventName: string,
+  props: Record<string, unknown>
+): boolean {
   const key = dedupeKey(eventName, props);
   if (!key) return false;
   if (dedupeKeysSeen.has(key)) return true;
@@ -121,14 +131,34 @@ function shouldDedupe(eventName: string, props: Record<string, unknown>): boolea
 }
 
 /** Send to PostHog if configured (anonymous) */
-function sendToPostHog(eventName: string, properties: Record<string, unknown>): void {
-  const key = typeof import.meta !== 'undefined' && (import.meta as { env?: Record<string, string> }).env?.VITE_POSTHOG_KEY;
-  if (!key || typeof window === 'undefined' || !(window as unknown as { posthog?: { capture: (e: string, p?: Record<string, unknown>) => void } }).posthog) {
+function sendToPostHog(
+  eventName: string,
+  properties: Record<string, unknown>
+): void {
+  const key =
+    typeof import.meta !== 'undefined' &&
+    (import.meta as { env?: Record<string, string> }).env?.VITE_POSTHOG_KEY;
+  if (
+    !key ||
+    typeof window === 'undefined' ||
+    !(
+      window as unknown as {
+        posthog?: { capture: (e: string, p?: Record<string, unknown>) => void };
+      }
+    ).posthog
+  ) {
     return;
   }
-  const posthog = (window as unknown as { posthog?: { capture: (e: string, p?: Record<string, unknown>) => void } }).posthog;
+  const posthog = (
+    window as unknown as {
+      posthog?: { capture: (e: string, p?: Record<string, unknown>) => void };
+    }
+  ).posthog;
   if (posthog) {
-    posthog.capture(eventName, { ...properties, $process_person_profile: false });
+    posthog.capture(eventName, {
+      ...properties,
+      $process_person_profile: false,
+    });
   }
 }
 
@@ -158,7 +188,10 @@ export function track(
 
   sendToPostHog(eventName, full);
 
-  if (typeof window !== 'undefined' && (window as unknown as { __DEBUG_ANALYTICS?: boolean }).__DEBUG_ANALYTICS) {
+  if (
+    typeof window !== 'undefined' &&
+    (window as unknown as { __DEBUG_ANALYTICS?: boolean }).__DEBUG_ANALYTICS
+  ) {
     console.debug('[analytics]', eventName, full);
   }
 }
@@ -171,4 +204,21 @@ export function getAnonId(): string {
 /** Get current session_id. */
 export function getSessionId(): string {
   return getOrCreateSessionId();
+}
+
+/** Track outbound ecosystem / spin-off link (cta_click, destination spin-off). */
+export function trackSpinoffClick(params: {
+  module_id: number;
+  slide_id?: number | string;
+  url: string;
+  cta_id: string;
+  cta_label?: string;
+}): void {
+  track('cta_click', {
+    module_id: params.module_id,
+    slide_id: typeof params.slide_id === 'number' ? params.slide_id : undefined,
+    cta_id: params.cta_id,
+    cta_label: params.cta_label,
+    destination: 'spin-off',
+  });
 }
