@@ -12,6 +12,9 @@ const borderClasses: Record<EyebrowAccent, string> = {
   emerald: 'border-emerald-200 dark:border-emerald-800',
   violet: 'border-violet-200 dark:border-violet-800',
   cyan: 'border-cyan-200 dark:border-cyan-800',
+  sky: 'border-sky-200 dark:border-sky-800',
+  fuchsia: 'border-fuchsia-200 dark:border-fuchsia-800',
+  rose: 'border-rose-200 dark:border-rose-800',
 };
 
 const labelTextClasses: Record<EyebrowAccent, string> = {
@@ -21,6 +24,9 @@ const labelTextClasses: Record<EyebrowAccent, string> = {
   emerald: 'text-emerald-700 dark:text-emerald-300',
   violet: 'text-violet-700 dark:text-violet-300',
   cyan: 'text-cyan-700 dark:text-cyan-300',
+  sky: 'text-sky-700 dark:text-sky-300',
+  fuchsia: 'text-fuchsia-700 dark:text-fuchsia-300',
+  rose: 'text-rose-700 dark:text-rose-300',
 };
 
 interface SectionDividerProps {
