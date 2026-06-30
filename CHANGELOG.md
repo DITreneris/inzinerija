@@ -27,9 +27,9 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 **Gilaus analizės dokumentas:** [docs/development/CODEBASE_WHAT_IS_DONE.md](docs/development/CODEBASE_WHAT_IS_DONE.md)
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
-- **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`).
+- **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); **EN overlay** `modules-en-m7-m9.json` (branduolys + šakos + M8 testas + M9 scenarijai).
 - **Moduliai 10–12:** Turinys full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`.
-- **LT/EN (i18n):** Pilnas UI ir turinys M1–M12; 16 namespace; schemos/diagramos lokalizuoti.
+- **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
 - **Testai:** 43 failai, 266 testai (unit, component, integration, a11y). Validacija: prebuild schema.
@@ -40,6 +40,40 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 ## [Unreleased]
 
 _Įrašai po 1.4.0 release._
+
+### Changed (2026-06-30) – Brand mark vieningas `BrandMark` (DS v0.3.1)
+
+- **Komponentas:** naujas [`BrandMark`](src/components/ui/BrandMark.tsx) (`Zap` + gold ant `brand-900`); nav/hero/footer naudoja vieną ženklą. Footer migravo iš `Sparkles` + gradiento (vienintelis vizualus pokytis; dydžiai nekeisti — be layout shift). Wire: [`AppNav.tsx`](src/components/AppNav.tsx), [`HomePage.tsx`](src/components/HomePage.tsx), [`App.tsx`](src/App.tsx).
+- **Konstantos:** [`src/constants/brand.ts`](src/constants/brand.ts) (`BRAND`, `brandName`) — wordmark, domain, `trainingPath=/anatomy/`, brand spalvos; minimalus fallback [`certificatePdf.ts`](src/utils/certificatePdf.ts).
+- **Favicon:** [`public/favicon.svg`](public/favicon.svg) sinchronizuotas su hub (gradientas `#050d14→#103b5a`, žaibas `#fbd304`).
+- **Docs:** [`BRAND_MARK_SPEC.md`](docs/development/BRAND_MARK_SPEC.md), [`PACKAGES_BRAND_CONTRACT.md`](docs/development/PACKAGES_BRAND_CONTRACT.md) (Phase 2 frozen API), DESIGN_SYSTEM §4a, DS_V0_2 backlog B12.
+- **Deployment docs:** canonical training kelias `/anatomy/` (senas `/anatomija/` → 301) — MARKETING_HANDOFF, DEPLOYMENT, ECOSYSTEM_MAP, memo 05.
+- **Polish:** [`index.html`](index.html) `theme-color` → `#102a43` (brand-navy, sutampa su favicon); `build:production` per `cross-env` (cross-platform — veikia ir Windows PowerShell).
+- **Testai:** [`BrandMark.test.tsx`](src/components/ui/__tests__/BrandMark.test.tsx) (6 testai — glifas, dydžiai, a11y).
+
+### Fixed (2026-06-30) – ModulesPage unikalios ikonos M1–M6 (DS v0.3.1)
+
+- **Duomenys:** `module.icon` = `module.identityIcon` M1–M6 — nebe dubliuojasi Target/Brain/Settings ciklas 2×3 tinklelyje ([`modules.json`](src/data/modules.json), EN overlay, core profiliai per `generate:core-data`).
+- **Tipai:** `ModuleIcon` = `ModuleIdentityIcon`; [`moduleIdentity.ts`](src/utils/moduleIdentity.ts) — vienas `MODULE_IDENTITY_ICON_MAP`.
+- **Validacija:** `icon` enum schema + `validate:schema` hard fail kai `icon !== identityIcon`.
+- **Skriptas:** [`scripts/sync-module-icons.mjs`](scripts/sync-module-icons.mjs) (`--dry-run`).
+
+### Added (2026-06-30) – M7–M9 English UI (lean + expansion)
+
+- **EN overlay:** `modules-en-m7-m9.json` – 78 skaidrės (M7: 51 incl. `pathBranch`, M8: 5, M9: 22 incl. visi scenarijai); deep-merge kai `locale === 'en'` ir `maxModuleId >= 7` ([`modulesLoader.ts`](src/data/modulesLoader.ts)).
+- **Build / audit:** `npm run build:modules-en-m7-m9`, `npm run audit:en-coverage-m7-m9` (lean + `--full`); manifest [`scripts/m7-m9-en-manifest.mjs`](scripts/m7-m9-en-manifest.mjs), vertimo pipeline [`scripts/build-en-m7-m9.mjs`](scripts/build-en-m7-m9.mjs) + `m7-m9-en-string-map.json`.
+- **Schema:** `validateModulesEnM79()` – partial overlay validacija [`scripts/validate-schema.mjs`](scripts/validate-schema.mjs).
+- **Glossary EN:** +7 M7 terminai [`glossary-en.json`](src/data/glossary-en.json) (Dashboard, pipeline, EDA, …).
+- **M9 veikėjai:** [`m9Characters-en.json`](src/data/m9Characters-en.json) + [`m9CharactersLoader.ts`](src/data/m9CharactersLoader.ts); locale-aware [`SlideContent.tsx`](src/components/SlideContent.tsx).
+- **UX:** Partial EN pranešimas moduliuose 7–9, kai skaidrės antraštėje dar lieka LT diakritika ([`enPartialCoverage.ts`](src/utils/enPartialCoverage.ts), `module:enPartialContentNotice`).
+- **Testai:** `moduleJourneyFocus.test.ts`, `enPartialCoverage.test.ts`, `modulesLoader` M7–9 EN merge test.
+- **Docs:** README, CODEBASE_WHAT_IS_DONE, RELEASE_QA §5c M7–9 EN, AGENTS.md validation table, DATA_AGENT skill.
+
+### Fixed (2026-06-30) – M7 journey focus (locale-safe)
+
+- **`moduleJourneyFocus`** saugo stabilų `journeyChoices[].id` (pvz. `pardavimai`), ne rodomą etiketę – EN/LT perjungimas nebe lūžta šakų filtravime.
+- Migracija legacy LT etikečių → id on load ([`moduleJourneyFocus.ts`](src/utils/moduleJourneyFocus.ts), [`progress.ts`](src/utils/progress.ts)).
+- Atnaujinta: [`App.tsx`](src/App.tsx), [`ModuleView.tsx`](src/components/ModuleView.tsx), [`SlideContent.tsx`](src/components/SlideContent.tsx), [`ActionIntroJourneySlide`](src/components/slides/types/ContentSlides.tsx) – banner rodo locale etiketę pagal id.
 
 ---
 

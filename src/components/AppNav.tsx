@@ -5,7 +5,6 @@ import {
   ClipboardCheck,
   Moon,
   Sun,
-  Zap,
   Menu,
   X,
   BookMarked,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
+import { BrandMark } from './ui';
 
 export type NavPage =
   | 'home'
@@ -80,9 +80,7 @@ export function AppNav({
             aria-label={t('appTitle')}
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
-            <div className="rounded-xl bg-brand-900/95 dark:bg-brand-950/90 p-2.5 shadow-sm shadow-brand-900/10 ring-1 ring-brand-700/15 dark:ring-white/10">
-              <Zap className="w-5 h-5 text-gold" strokeWidth={1.5} />
-            </div>
+            <BrandMark variant="nav" />
             <span className="text-xl font-bold text-gray-900 dark:text-white">
               <span className="lg:hidden">{t('appTitleShort')}</span>
               <span className="hidden lg:inline">{t('appTitle')}</span>

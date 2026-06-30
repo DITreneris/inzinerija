@@ -1,4 +1,7 @@
-/** Default origin when VITE_PUBLIC_SITE_URL is unset (monorepo prod). */
+/**
+ * Default origin when VITE_PUBLIC_SITE_URL is unset (monorepo prod).
+ * Keep in sync with BRAND.domain (src/constants/brand.ts).
+ */
 const DEFAULT_PUBLIC_SITE_ORIGIN = 'https://www.promptanatomy.app';
 
 function normalizeBasePath(base: string): string {

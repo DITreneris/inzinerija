@@ -5,6 +5,7 @@
  */
 
 import { jsPDF } from 'jspdf';
+import { brandName } from '../constants/brand';
 import {
   getPdfUnicodeFontBase64,
   loadPdfUnicodeFont,
@@ -142,9 +143,7 @@ export async function downloadCertificatePdf(
   });
   const authorBy = options?.authorBy ?? '';
   const authorProduct = options?.authorProduct ?? '';
-  const programTitle =
-    options?.programTitle ??
-    (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija');
+  const programTitle = options?.programTitle ?? brandName(locale);
   const certificateLabel =
     options?.certificateLabel ??
     (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS');

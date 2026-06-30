@@ -10,11 +10,11 @@
 
 ## URL politika
 
-| Paskirtis                               | Domenas                                                  |
-| --------------------------------------- | -------------------------------------------------------- |
-| Ekosistemos map, Anatomizer, SEO        | `promptanatomy.site`                                     |
-| Hub, checkout, training (`/anatomija/`) | `promptanatomy.app`                                      |
-| Spin-off kit'ai                         | `promptanatomy.{cloud,info,space,help,ceo,pro,blog,lol}` |
+| Paskirtis                             | Domenas                                                  |
+| ------------------------------------- | -------------------------------------------------------- |
+| Ekosistemos map, Anatomizer, SEO      | `promptanatomy.site`                                     |
+| Hub, checkout, training (`/anatomy/`) | `promptanatomy.app`                                      |
+| Spin-off kit'ai                       | `promptanatomy.{cloud,info,space,help,ceo,pro,blog,lol}` |
 
 **Blog deep links:** `https://www.promptanatomy.blog/articles/{slug}/?utm_source=training&utm_medium=spinoff&utm_campaign=m{module}_{touchpoint}`
 

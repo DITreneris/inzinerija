@@ -21,13 +21,13 @@
 
 ## 2. Vercel env pakeitimas (kritinis)
 
-| Kintamasis               | Sena reikšmė    | Nauja reikšmė                  |
-| ------------------------ | --------------- | ------------------------------ |
-| `VITE_MVP_MODE`          | `1`             | **Pašalinti / ne nustatyti**   |
-| `VITE_MAX_BUILD_MODULE`  | –               | **`9`**                        |
-| Build komanda            | `npm run build` | **`npm run build:production`** |
-| `VITE_BASE_PATH`         | `/anatomija/`   | Be pakeitimų                   |
-| `VITE_VERIFY_ACCESS_URL` | domain root     | Be pakeitimų                   |
+| Kintamasis               | Sena reikšmė    | Nauja reikšmė                         |
+| ------------------------ | --------------- | ------------------------------------- |
+| `VITE_MVP_MODE`          | `1`             | **Pašalinti / ne nustatyti**          |
+| `VITE_MAX_BUILD_MODULE`  | –               | **`9`**                               |
+| Build komanda            | `npm run build` | **`npm run build:production`**        |
+| `VITE_BASE_PATH`         | `/anatomy/`     | Canonical (senas `/anatomija/` → 301) |
+| `VITE_VERIFY_ACCESS_URL` | domain root     | Be pakeitimų                          |
 
 **Draudžiama production:**
 
@@ -58,7 +58,7 @@ curl -s "https://www.promptanatomy.app/api/verify-access?access_tier=9&expires=E
 **URL pavyzdys:**
 
 ```
-https://www.promptanatomy.app/anatomija/?access_tier=9&expires=UNIX_TIMESTAMP&token=BASE64URL_HMAC
+https://www.promptanatomy.app/anatomy/?access_tier=9&expires=UNIX_TIMESTAMP&token=BASE64URL_HMAC
 ```
 
 | Parametras    | Reikšmė                                              |
@@ -114,7 +114,7 @@ Stripe tier 9 **neblokuoja** paleidimo. Kol nėra Stripe produktų:
 
 ## 8. Smoke test checklist
 
-- [ ] **Gate tier 0:** `/anatomija/` incognito → „Prieiga ribota“, ne modulių kortelės.
+- [ ] **Gate tier 0:** `/anatomy/` incognito → „Prieiga ribota“, ne modulių kortelės.
 - [ ] **Tier 6:** validus link → 6 moduliai atrakinti; M7 kortelė matoma, bet locked.
 - [ ] **Tier 9 curl:** `access_tier=9` → 200 `{"access_tier":9}`.
 - [ ] **Tier 9 browser:** validus link → M7 atsidaro; `localStorage verified_access_tier` = `"9"`.
@@ -134,7 +134,7 @@ Stripe tier 9 **neblokuoja** paleidimo. Kol nėra Stripe produktų:
 ## 10. Ko NELIESTI
 
 - **`ACCESS_TOKEN_SECRET`** – tik jūsų serveryje; SPA jo nenaudoja.
-- **Maršrutas `/anatomija/`** – SPA fallback be pakeitimų.
+- **Maršrutas `/anatomy/`** (senas `/anatomija/` → 301) – SPA fallback be pakeitimų.
 - **Tier 3 ir 6 srautai** – lieka kaip Phase 1; tier 9 yra papildymas.
 
 ---

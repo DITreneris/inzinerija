@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Sparkles } from 'lucide-react';
 import Celebration from './components/Celebration';
 import { AppNav } from './components/AppNav';
-import { ErrorBoundary, LoadingSpinner } from './components/ui';
+import { BrandMark, ErrorBoundary, LoadingSpinner } from './components/ui';
 import { getProgress, saveProgress, flushProgressSave } from './utils/progress';
 import {
   logLearningEvent,
@@ -337,12 +336,12 @@ function App() {
   };
 
   const handleModuleJourneyFocus = useCallback(
-    (moduleId: number, choiceLabel: string) => {
+    (moduleId: number, choiceId: string) => {
       setProgress((prev) => ({
         ...prev,
         moduleJourneyFocus: {
           ...(prev.moduleJourneyFocus ?? {}),
-          [moduleId]: choiceLabel,
+          [moduleId]: choiceId,
         },
       }));
     },
@@ -613,9 +612,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-2">
-              <div className="bg-gradient-to-r from-brand-500 to-accent-500 p-1.5 rounded-lg">
-                <Sparkles className="w-3.5 h-3.5 text-white" />
-              </div>
+              <BrandMark variant="footer" />
               <span className="font-medium text-gray-700 dark:text-gray-300">
                 {t('footer:brandName')}
               </span>

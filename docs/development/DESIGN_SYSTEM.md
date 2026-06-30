@@ -34,6 +34,7 @@ Canonical JSX komponentai: `src/components/ui/`. Dublikatų žemėlapis: [`analy
 | **Eyebrow** (E4)        | Maža uppercase antraštė, 6 accent               | Proof: ModulesPage, ActionIntroSlide       |
 | **IconChip** (E4)       | Apvali piktograma, 5 role, 3 size               | Proof: ModuleCompleteScreen                |
 | **SectionDivider** (E4) | Skiriamoji linija su/be label                   | Proof: SummarySlide                        |
+| **BrandMark** (v0.3.1)  | Ženklas (`Zap` + gold ant `brand-900`)          | nav / hero / footer; § 4a                  |
 
 Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
@@ -41,24 +42,39 @@ Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
 ## 4. Modulio identitetas (v0.2 — pilna)
 
-**Duomenys (M1–M6):** `module.accent`, `module.identityIcon` — `src/data/modules.json` (optional schema laukai).
+**Duomenys (M1–M6):** `module.accent`, `module.identityIcon`, `module.icon` — `src/data/modules.json`. **DS v0.3.1:** `module.icon` = `module.identityIcon` (unikali ModulesPage kortelės ikona); modulio **lygis** (`learn` / `test` / `practice`) diferencijuojamas per gradientą ir Eyebrow badge, ne per `icon`.
 
-| Modulis | `accent`  | `identityIcon`   |
-| ------- | --------- | ---------------- |
-| M1      | `brand`   | `BookOpen`       |
-| M2      | `slate`   | `ClipboardList`  |
-| M3      | `emerald` | `Briefcase`      |
-| M4      | `violet`  | `Brain`          |
-| M5      | `cyan`    | `ClipboardCheck` |
-| M6      | `accent`  | `Rocket`         |
+| Modulis | `accent`  | `identityIcon` / `icon` |
+| ------- | --------- | ----------------------- |
+| M1      | `brand`   | `BookOpen`              |
+| M2      | `slate`   | `ClipboardList`         |
+| M3      | `emerald` | `Briefcase`             |
+| M4      | `violet`  | `Brain`                 |
+| M5      | `cyan`    | `ClipboardCheck`        |
+| M6      | `accent`  | `Rocket`                |
 
-**3 UI vietos (v0.2):**
+**3 UI vietos (v0.2 + v0.3.1):**
 
-1. **ModulesPage** — kortelės viršutinė juosta (`accentTopBarClasses`)
+1. **ModulesPage** — kortelės viršutinė juosta (`accentTopBarClasses`) + didelė ikona (`resolveModuleIcon(module.icon)`)
 2. **ActionIntroSlide** — `<Eyebrow>` virš hero
 3. **SectionBreakSlide** — tik `sectionNumber` badge (`sectionBreakBadgeByAccent`); hero lieka `heroColorKey`
 
 Helpers: `src/utils/moduleIdentity.ts`. Vizualinė patikra: [`analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`](analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md).
+
+---
+
+## 4a. Brand mark (v0.3.1)
+
+Vienas ženklo komponentas — [`src/components/ui/BrandMark.tsx`](../../src/components/ui/BrandMark.tsx). Glifas: Lucide `Zap` (gold) ant `brand-900` badge; atitinka hub favicon. Iki v0.3.1 nav/hero naudojo `Zap`, footer — `Sparkles` + gradientą (nenuoseklu); nuo v0.3.1 visos trys vietos naudoja `BrandMark`.
+
+| Variantas   | Vieta           | Badge / glifas (nekeičiamas dydis)     |
+| ----------- | --------------- | -------------------------------------- |
+| `nav`       | `AppNav`        | `rounded-xl p-2.5` / `w-5`             |
+| `hero`      | `HomePage` hero | `rounded-3xl p-6` / `w-16` (+ animate) |
+| `footer`    | `App` footer    | `rounded-lg p-1.5` / `w-3.5`           |
+| `icon-only` | bendras         | `rounded-lg p-1.5` / `w-5`             |
+
+Konstantos: [`src/constants/brand.ts`](../../src/constants/brand.ts) (`BRAND`, `brandName`). Spec: [`BRAND_MARK_SPEC.md`](BRAND_MARK_SPEC.md). Phase 2 (`packages/brand`) extract kontraktas: [`PACKAGES_BRAND_CONTRACT.md`](PACKAGES_BRAND_CONTRACT.md). A11y: be `aria-label` — dekoratyvus (`aria-hidden`); su `aria-label` — `role="img"`. `ActionIntroSlide` CTA `Zap` (veiksmo semantika) **lieka** atskirai.
 
 ---
 

@@ -482,9 +482,12 @@
 | B7  | Pre-commit gate iš `audit-design-tokens.mjs`                                               | Užblokuos legitimius case'us (PDF generation, certificate).      |
 | B8  | Modulio identity diagramose                                                                | Susilpnins rule §5 (vienas accent per skaidrę).                  |
 
-> **DS v0.3 (2026-06-29) — modulių takų stilistika.** Backlog'o sprendimas „M7–M15 palieka tuščia" (§8 E5.2) sąmoningai pakeistas: M7–15 gavo `accent` per **taką** (sky=Duomenų analizė M7-9, fuchsia=Agentai M10-12, rose=Turinys M13-15) + `identityIcon`. Modelis „spalva=takas, lygis=ikona/gradientas". Pakeisti: `ModuleAccent`/`ModuleIcon`/`ModuleIdentityIcon` tipai, `moduleIdentity.ts` (+`MODULE_ICON_MAP`), `Eyebrow`/`SectionDivider`, safelist, schema, `modules.json`. Pakeliui pataisytos M10 (`Cpu`)/M13 (`Image`) tuščios kortelių ikonos. B8 (identity diagramose) — toliau NEpaliestas.
+> **DS v0.3 (2026-06-29) — modulių takų stilistika.** Backlog'o sprendimas „M7–M15 palieka tuščia" (§8 E5.2) sąmoningai pakeistas: M7–15 gavo `accent` per **taką** (sky=Duomenų analizė M7-9, fuchsia=Agentai M10-12, rose=Turinys M13-15) + `identityIcon`. Modelis „spalva=takas, lygis=gradientas+badge". Pakeisti: `ModuleAccent`/`ModuleIcon`/`ModuleIdentityIcon` tipai, `moduleIdentity.ts` (+`MODULE_ICON_MAP`), `Eyebrow`/`SectionDivider`, safelist, schema, `modules.json`. Pakeliui pataisytos M10 (`Cpu`)/M13 (`Image`) tuščios kortelių ikonos. B8 (identity diagramose) — toliau NEpaliestas.
+> **DS v0.3.1 (2026-06-30) — `module.icon` = `identityIcon`.** M1–M6 kortelių ikonos suvienodintos su `identityIcon` (nebe learn/test/practice ciklas Target/Brain/Settings). `ModuleIcon` tipas = `ModuleIdentityIcon`; `validate:schema` tikrina sutapimą. Sync: `node scripts/sync-module-icons.mjs`.
+> **DS v0.3.1 (2026-06-30) — brand mark.** Nav/hero/footer ženklas suvienodintas į `BrandMark` (`Zap` + gold ant `brand-900`; footer migravo iš `Sparkles`+gradiento). Konstantos `src/constants/brand.ts`; spec `BRAND_MARK_SPEC.md`; favicon sinchronizuotas su hub (`#050d14→#103b5a`, `#fbd304`).
 > | B9 | Microcopy trimming M1/M4/M6 | Pažeidžia rule §2 (turinio neliečimo). |
 > | B10 | `practice` vs `test` semantinis level diferenciavimas (po accent) | Ant accent virš level — perpildo identitetą. |
+> | B12 | `packages/brand` extract (BrandMark + brand.ts + favicon) į promptanatomy monorepo, hub `Navbar` import | Phase 2 — atskiras PR; kontraktas `PACKAGES_BRAND_CONTRACT.md`. |
 
 ---
 

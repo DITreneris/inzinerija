@@ -4,7 +4,6 @@ import {
   BookOpen,
   ClipboardCheck,
   ArrowRight,
-  Zap,
   Sparkles,
   CheckCircle,
   Copy,
@@ -19,6 +18,7 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
+import { BrandMark } from './ui';
 
 const QUICK_PROMPTS_LT = [
   {
@@ -119,9 +119,7 @@ export default function HomePage({
 
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="rounded-3xl bg-brand-900/95 dark:bg-brand-950/90 p-6 shadow-md shadow-brand-900/8 dark:shadow-black/20 ring-1 ring-brand-700/15 dark:ring-white/10 hover:shadow-lg hover:shadow-brand-900/12 dark:hover:shadow-black/30 hover:scale-[1.02] transition-transform duration-300 animate-bounce-in">
-                <Zap className="w-16 h-16 text-gold" strokeWidth={1.5} />
-              </div>
+              <BrandMark variant="hero" />
               <div className="absolute -top-2 -right-2 rounded-xl bg-gold px-2.5 py-1.5 shadow-sm shadow-gold/15 ring-1 ring-white/40">
                 <span className="text-xs font-semibold text-gray-900">
                   {t('home:durationBadge')}

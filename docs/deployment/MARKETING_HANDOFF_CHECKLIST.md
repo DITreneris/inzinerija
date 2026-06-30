@@ -7,12 +7,14 @@
 
 ---
 
+> **Canonical training kelias:** `/anatomy/` (prod monorepo, `vercel.json`). Senas `/anatomija/` veikia tik per **301 redirect** — naujose nuorodose nebenaudoti.
+
 ## 1. Stripe → magic link redirect
 
 Po sėkmingo apmokėjimo nukreipti vartotoją į mokymo app URL su query parametrais:
 
 ```
-https://www.promptanatomy.app/anatomija/?access_tier=6&expires=UNIX_TIMESTAMP&token=BASE64URL_HMAC
+https://www.promptanatomy.app/anatomy/?access_tier=6&expires=UNIX_TIMESTAMP&token=BASE64URL_HMAC
 ```
 
 | Parametras    | Reikšmė                                                                            |
@@ -31,7 +33,7 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 
 | Reikalavimas       | Detalė                                                           |
 | ------------------ | ---------------------------------------------------------------- |
-| **Endpoint**       | `GET /api/verify-access` — **domain root**, ne po `/anatomija/`  |
+| **Endpoint**       | `GET /api/verify-access` — **domain root**, ne po `/anatomy/`    |
 | **Secret**         | Env `ACCESS_TOKEN_SECRET` (min. 16 simbolių; rekomenduojama ≥32) |
 | **Leidžiami tier** | `3`, `6`, `9` (Phase 2)                                          |
 | **Responses**      | 200 `{ access_tier }`, 400, 401, 500 — pagal kontraktą           |
@@ -42,7 +44,7 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 
 | Kintamasis               | Production reikšmė                                                          | Pastaba                                   |
 | ------------------------ | --------------------------------------------------------------------------- | ----------------------------------------- |
-| `VITE_BASE_PATH`         | `/anatomija/`                                                               | Atitinka SPA base path                    |
+| `VITE_BASE_PATH`         | `/anatomy/`                                                                 | Atitinka SPA base path (prod monorepo)    |
 | `VITE_VERIFY_ACCESS_URL` | `https://www.promptanatomy.app` arba tuščia (relative `/api/verify-access`) | Frontend: `App.tsx`                       |
 | `VITE_MAX_BUILD_MODULE`  | **`9`**                                                                     | Vienas production build – M1–9 bundle     |
 | Build komanda            | **`npm run build:production`**                                              | Ne `VITE_MVP_MODE=1`                      |
@@ -109,7 +111,7 @@ curl -s "https://www.promptanatomy.app/api/verify-access?access_tier=9&expires=E
 
 ### 7.2 Browser
 
-1. Atidaryti `https://www.promptanatomy.app/anatomija/` **be** query — tikėtina: **AccessGateScreen** (užrakinimas), ne modulių kortelės.
+1. Atidaryti `https://www.promptanatomy.app/anatomy/` **be** query — tikėtina: **AccessGateScreen** (užrakinimas), ne modulių kortelės.
 2. Atidaryti su validžiu magic link tier 6 — moduliai 1–6 atrakinti; **M7–9 kortelės matomos, užrakintos**.
 3. Atidaryti su validžiu magic link tier 9 — moduliai 1–9 atrakinti; URL params išvalyti po verify.
 4. Moduliai → M1 → bent 1 skaidrė; LT/EN perjungimas.

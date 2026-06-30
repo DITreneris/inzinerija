@@ -3,6 +3,8 @@ export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as Card } from './Card';
 export { default as CTAButton } from './CTAButton';
 export { default as Banner } from './Banner';
+export { default as BrandMark } from './BrandMark';
+export type { BrandMarkVariant, BrandMarkProps } from './BrandMark';
 export { default as Eyebrow } from './Eyebrow';
 export type { EyebrowAccent } from './Eyebrow';
 export { default as IconChip } from './IconChip';
