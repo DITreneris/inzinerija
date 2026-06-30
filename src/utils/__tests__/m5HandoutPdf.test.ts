@@ -14,8 +14,10 @@ const mockFill = vi.fn();
 const mockAddFileToVFS = vi.fn();
 const mockAddFont = vi.fn();
 const mockAddPage = vi.fn();
+const mockSetPage = vi.fn();
 const mockSplitTextToSize = vi.fn((text: string) => [text]);
 const mockGetTextWidth = vi.fn((_text: string) => 50);
+const mockGetNumberOfPages = vi.fn(() => 1);
 
 vi.mock('jspdf', () => ({
   jsPDF: vi.fn().mockImplementation(() => ({
@@ -30,8 +32,12 @@ vi.mock('jspdf', () => ({
     addFileToVFS: mockAddFileToVFS,
     addFont: mockAddFont,
     addPage: mockAddPage,
+    setPage: mockSetPage,
     splitTextToSize: mockSplitTextToSize,
     getTextWidth: mockGetTextWidth,
+    internal: {
+      getNumberOfPages: mockGetNumberOfPages,
+    },
   })),
 }));
 
@@ -40,6 +46,7 @@ beforeEach(() => {
   clearPdfUnicodeFontCache();
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false }));
   mockSplitTextToSize.mockImplementation((text: string) => [text]);
+  mockGetNumberOfPages.mockReturnValue(1);
 });
 
 const minimal: M5HandoutContent = {
