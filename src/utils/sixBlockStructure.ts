@@ -15,7 +15,7 @@ export type BlockName = (typeof SIX_BLOCKS)[number];
 
 /** Vieno sakinio pavyzdžiai trūkstamiems blokams (rodomi UI) */
 export const BLOCK_EXAMPLES: Record<BlockName, string> = {
-  META: 'META: Jūsų rolė, tikslas ir auditorija.',
+  META: 'META: Tavo rolė, tikslas ir auditorija.',
   INPUT: 'INPUT: Duomenys, skaičiai, apribojimai.',
   OUTPUT: 'OUTPUT: Formatas, struktūra, kalba.',
   REASONING: 'REASONING: Žingsniai arba mąstymo būdas.',
