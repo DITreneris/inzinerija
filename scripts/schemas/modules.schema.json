@@ -32,7 +32,21 @@
         "title": { "type": "string" },
         "subtitle": { "type": "string" },
         "description": { "type": "string", "maxLength": 120 },
-        "icon": { "type": "string" },
+        "icon": {
+          "type": "string",
+          "enum": [
+            "BookOpen",
+            "ClipboardList",
+            "Briefcase",
+            "Brain",
+            "ClipboardCheck",
+            "Rocket",
+            "BarChart3",
+            "Cpu",
+            "Image"
+          ],
+          "description": "ModulesPage kortelės ikona (Lucide). Privalo sutapti su identityIcon, kai pastarasis nurodytas (DS v0.3.1)."
+        },
         "level": { "enum": ["learn", "test", "practice"] },
         "duration": { "type": "string" },
         "slides": {

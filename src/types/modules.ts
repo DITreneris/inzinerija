@@ -1287,15 +1287,8 @@ export type ModuleIdentityIcon =
   | 'Cpu'
   | 'Image';
 
-export type ModuleIcon =
-  | 'Target'
-  | 'Brain'
-  | 'Settings'
-  | 'BarChart3'
-  | 'ClipboardCheck'
-  | 'Rocket'
-  | 'Cpu'
-  | 'Image';
+/** ModulesPage card icon — same Lucide set as identityIcon (DS v0.3.1). */
+export type ModuleIcon = ModuleIdentityIcon;
 
 export interface Module {
   id: number;

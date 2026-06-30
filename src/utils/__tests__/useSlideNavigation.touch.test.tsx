@@ -13,7 +13,7 @@ const moduleData: Module = {
   title: 'Test module',
   subtitle: 'Subtitle',
   description: '',
-  icon: 'Target',
+  icon: 'BookOpen',
   level: 'learn',
   duration: '5 min',
   slides: [slide(1), slide(2), slide(3)],

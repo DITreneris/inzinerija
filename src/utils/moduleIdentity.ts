@@ -13,8 +13,6 @@ import {
   Cpu,
   Image,
   Rocket,
-  Settings,
-  Target,
 } from 'lucide-react';
 import type {
   Module,
@@ -24,33 +22,29 @@ import type {
   ModuleLevel,
 } from '../types/modules';
 
-export const IDENTITY_ICON_MAP: Record<ModuleIdentityIcon, LucideIcon> = {
-  BookOpen,
-  ClipboardList,
-  Briefcase,
-  Brain,
-  ClipboardCheck,
-  Rocket,
-  BarChart3,
-  Cpu,
-  Image,
-};
+/** Lucide map for module.icon and module.identityIcon (DS v0.3.1 — unified). */
+export const MODULE_IDENTITY_ICON_MAP: Record<ModuleIdentityIcon, LucideIcon> =
+  {
+    BookOpen,
+    ClipboardList,
+    Briefcase,
+    Brain,
+    ClipboardCheck,
+    Rocket,
+    BarChart3,
+    Cpu,
+    Image,
+  };
 
-/** ModulesPage kortelės ikonos žemėlapis (`module.icon`). DS v0.3 — keičia hardcoded if grandinę. */
-export const MODULE_ICON_MAP: Record<ModuleIcon, LucideIcon> = {
-  Target,
-  Brain,
-  Settings,
-  BarChart3,
-  ClipboardCheck,
-  Rocket,
-  Cpu,
-  Image,
-};
+/** @deprecated Use MODULE_IDENTITY_ICON_MAP */
+export const IDENTITY_ICON_MAP = MODULE_IDENTITY_ICON_MAP;
+
+/** @deprecated Use MODULE_IDENTITY_ICON_MAP */
+export const MODULE_ICON_MAP = MODULE_IDENTITY_ICON_MAP;
 
 export function resolveModuleIcon(name?: ModuleIcon): LucideIcon | undefined {
   if (!name) return undefined;
-  return MODULE_ICON_MAP[name];
+  return MODULE_IDENTITY_ICON_MAP[name];
 }
 
 const LEVEL_ACCENT_FALLBACK: Record<ModuleLevel, ModuleAccent> = {
@@ -63,7 +57,7 @@ export function resolveModuleIdentityIcon(
   name?: ModuleIdentityIcon
 ): LucideIcon | undefined {
   if (!name) return undefined;
-  return IDENTITY_ICON_MAP[name];
+  return MODULE_IDENTITY_ICON_MAP[name];
 }
 
 export function resolveModuleAccent(
