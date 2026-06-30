@@ -919,12 +919,12 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 **Turinys (GOLDEN_STANDARD §3.2):**
 
 1. **Trumpai** – accent: „Per 2–3 minutes nukopijuok promptą ir paleisk DI – gausi 3 konkrečius savaitės tikslus. Tai parodo, kaip META + INPUT + OUTPUT jau pagerina rezultatą.“
-2. **Daryk dabar** – brand: „🔘 Nukopijuok promptą (žemiau) ir įklijuok į bet kurį DI įrankį – ChatGPT, Claude ar Copilot. Per 1 minutę gausite 3 verslo tikslus šiai savaitei.“
+2. **Daryk dabar** – brand: „🔘 Nukopijuok promptą (žemiau) ir įklijuok į bet kurį DI įrankį – ChatGPT, Claude ar Copilot. Per 1 minutę gausi 3 verslo tikslus šiai savaitei.“
 3. **Kopijuojamas promptas** (vienas blokas):
    - META: rolė (verslo asistentas), tikslas (3 tikslai šiai savaitei).
    - INPUT: kontekstas (pvz. „darbas su klientais, projektų terminai“) – dalyvis gali pakeisti.
    - OUTPUT: formatas (3 numeruoti tikslai, kiekvienas 1–2 sakiniai).
-4. **Quality check** (accent): „Jei gavote 3 konkrečius tikslus – puiku. Jei atsakymas per bendras – pridėkite INPUT bloke savo rolę ar sritį.“
+4. **Quality check** (accent): „Jei gavai 3 konkrečius tikslus – puiku. Jei atsakymas per bendras – pridėk INPUT bloke savo rolę ar sritį.“
 
 **whyBenefit:** „Per 2–3 minutes išmoksi, kaip net trumpas struktūruotas promptas duoda konkretų rezultatą – be sudėtingo konteksto.“
 
@@ -984,16 +984,16 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 
 Prieš „Kontekstas / Duomenys / Apribojimai / Rezultatas“ skirtukus rodomas blokas **Situacija**: persona, problema, kontekstas – žmogui suprantama forma.
 
-- **Scenarijus 1:** Jūs esate vadovas ir turite per kelias dienas parengti ketvirčio rezultatų apžvalgą valdybai. Valdyba priims sprendimus dėl kitų ketvirčių prioritetų, todėl jums reikia aiškiai apibendrinti skaičius, rizikas ir pasiūlyti konkrečius žingsnius.
-- **Scenarijus 2:** Pardavimai nepakilo iki plano, o vadovybė nori greitai suprasti priežastis ir gauti konkrečių veiksmų sąrašą. Jūs turite duomenis pagal segmentus ir laikotarpius – reikia iš jų išvesti įžvalgas ir rekomendacijas su atsakingais asmenimis ir terminais.
-- **Scenarijus 3:** Jūs planuojate naujos kampanijos ar produkto pristatymą rinkoje ir turite ribotą biudžetą bei laikotarpį. Reikia suformuluoti planą: kam skirta kampanija, kokiais kanalais pasieksite auditoriją ir kaip matysite, ar tikslai pasiekti.
-- **Scenarijus 4:** Organizacijoje įvyksta dideli pokyčiai – perėjimas prie naujos sistemos ar restruktūrizacija – ir darbuotojai nerimauja. Jūsų užduotis – parengti pranešimą, kuris aiškiai paaiškina, kas keičiasi, kodėl ir ką daryti toliau, bei atsakyti į dažniausius klausimus.
-- **Scenarijus 5:** Metinė darbuotojų apklausa atlikta – matote, kur srityse pasitenkinimas silpnesnis, o kur stipresnis. Vadovybė nori ne tik skaičių, bet ir konkrečių priemonių: ką pradėti daryti, su kokiu biudžetu ir laikotarpiu.
-- **Scenarijus 6:** Klientas skundžiasi vėlavimu ir neaiškia komunikacija – yra reputacinė rizika ir reikia greitai reaguoti. Jūs turite parengti dviejų dalių sprendimą: empatišką atsakymą klientui ir vidinį planą komandai – ką pakeisti, kad to nepasikartotų.
+- **Scenarijus 1:** Tu esi vadovas ir turi per kelias dienas parengti ketvirčio rezultatų apžvalgą valdybai. Valdyba priims sprendimus dėl kitų ketvirčių prioritetų, todėl tau reikia aiškiai apibendrinti skaičius, rizikas ir pasiūlyti konkrečius žingsnius.
+- **Scenarijus 2:** Pardavimai nepakilo iki plano, o vadovybė nori greitai suprasti priežastis ir gauti konkrečių veiksmų sąrašą. Tu turi duomenis pagal segmentus ir laikotarpius – reikia iš jų išvesti įžvalgas ir rekomendacijas su atsakingais asmenimis ir terminais.
+- **Scenarijus 3:** Tu planuoji naujos kampanijos ar produkto pristatymą rinkoje ir turi ribotą biudžetą bei laikotarpį. Reikia suformuluoti planą: kam skirta kampanija, kokiais kanalais pasieksi auditoriją ir kaip matysi, ar tikslai pasiekti.
+- **Scenarijus 4:** Organizacijoje įvyksta dideli pokyčiai – perėjimas prie naujos sistemos ar restruktūrizacija – ir darbuotojai nerimauja. Tavo užduotis – parengti pranešimą, kuris aiškiai paaiškina, kas keičiasi, kodėl ir ką daryti toliau, bei atsakyti į dažniausius klausimus.
+- **Scenarijus 5:** Metinė darbuotojų apklausa atlikta – matai, kur srityse pasitenkinimas silpnesnis, o kur stipresnis. Vadovybė nori ne tik skaičių, bet ir konkrečių priemonių: ką pradėti daryti, su kokiu biudžetu ir laikotarpiu.
+- **Scenarijus 6:** Klientas skundžiasi vėlavimu ir neaiškia komunikacija – yra reputacinė rizika ir reikia greitai reaguoti. Tu turi parengti dviejų dalių sprendimą: empatišką atsakymą klientui ir vidinį planą komandai – ką pakeisti, kad to nepasikartotų.
 
 ### Kiekvieno Scenarijaus Struktūra
 
-1. **Kontekstas** - Kas jūs esate ir ką darote
+1. **Kontekstas** - Kas tu esi ir ką darai
 2. **Duomenys** - Konkretūs skaičiai ir faktai
 3. **Apribojimai** - Laikas, biudžetas, komanda
 4. **Laukiamas formatas** - Ką reikia sukurti

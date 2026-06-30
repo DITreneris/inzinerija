@@ -7,12 +7,10 @@
  * Interaktyvus režimas: currentStep + onStepClick – clickable kortelės, a11y.
  */
 import { Fragment, useId } from 'react';
-
-const STEPS: { title: string; items: string[] }[] = [
-  { title: 'Įvestis', items: ['Tekstinės užklausos', 'Pradiniai duomenys', 'Kontekstas'] },
-  { title: 'Apdorojimas', items: ['Analizė ir sintezė', 'Struktūros kūrimas', 'Optimizavimas'] },
-  { title: 'Rezultatas', items: ['Vizualizacija', 'Prezentacija', 'Galutinis produktas'] },
-];
+import {
+  getStrukturuotasProcesasDiagramLabels,
+  type StrukturuotasProcesasLocale,
+} from './strukturuotasProcesasStepExplanations';
 
 /** Jungtis – linija nuo bloko krašto iki kito bloko krašto; antgalio smailė liečia viewBox dešinį kraštą (SCHEME_AGENT §3.2). */
 const VIEWBOX_W = 48;
@@ -21,8 +19,17 @@ const ARROW_REFX = 5; // marker tip offset; line ends at VIEWBOX_W, marker (refX
 function Connector() {
   const uid = useId().replace(/:/g, '');
   return (
-    <div className="hidden lg:flex flex-shrink-0 w-12 items-center -translate-y-1" aria-hidden>
-      <svg width="100%" height="12" viewBox={`0 0 ${VIEWBOX_W} 12`} className="text-gray-400 dark:text-gray-500 shrink-0" fill="none">
+    <div
+      className="hidden lg:flex flex-shrink-0 w-12 items-center -translate-y-1"
+      aria-hidden
+    >
+      <svg
+        width="100%"
+        height="12"
+        viewBox={`0 0 ${VIEWBOX_W} 12`}
+        className="text-gray-400 dark:text-gray-500 shrink-0"
+        fill="none"
+      >
         <defs>
           <marker
             id={`arrow-${uid}`}
@@ -57,20 +64,24 @@ export interface StrukturuotasProcesasDiagramProps {
   currentStep?: number;
   /** Callback paspaudus žingsnį. Kai nurodyta – kortelės clickable. */
   onStepClick?: (index: number) => void;
+  locale?: StrukturuotasProcesasLocale;
 }
 
 export default function StrukturuotasProcesasDiagram({
   className = '',
   currentStep = 0,
   onStepClick,
+  locale = 'lt',
 }: StrukturuotasProcesasDiagramProps) {
   const isInteractive = typeof onStepClick === 'function';
+  const labels = getStrukturuotasProcesasDiagramLabels(locale);
+  const STEPS = labels.steps;
 
   return (
     <div
       className={`rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 p-4 lg:p-6 shadow-sm ${className}`}
       role="region"
-      aria-label="Proceso schema: Įvestis, Apdorojimas, Rezultatas – kiekvieną užduotį galima suskirstyti į šiuos 3 žingsnius."
+      aria-label={labels.regionAria}
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-0 overflow-visible">
         {STEPS.map((step, i) => (
@@ -87,8 +98,9 @@ export default function StrukturuotasProcesasDiagram({
                 ? {
                     role: 'button' as const,
                     tabIndex: 0,
-                    'aria-label': `Žingsnis ${i + 1}: ${step.title}`,
-                    'aria-current': currentStep === i ? ('step' as const) : undefined,
+                    'aria-label': labels.stepAria(i, step.title),
+                    'aria-current':
+                      currentStep === i ? ('step' as const) : undefined,
                     onClick: () => onStepClick?.(i),
                     onKeyDown: (e: React.KeyboardEvent) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -109,7 +121,9 @@ export default function StrukturuotasProcesasDiagram({
                   >
                     {i + 1}
                   </span>
-                  <h3 className="font-bold text-base text-gray-900 dark:text-white">{step.title}</h3>
+                  <h3 className="font-bold text-base text-gray-900 dark:text-white">
+                    {step.title}
+                  </h3>
                 </div>
                 <ul className="space-y-1.5 pl-0 list-none" role="list">
                   {step.items.map((item, j) => (
@@ -117,7 +131,10 @@ export default function StrukturuotasProcesasDiagram({
                       key={j}
                       className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
                     >
-                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand-400 dark:bg-brand-500" aria-hidden />
+                      <span
+                        className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand-400 dark:bg-brand-500"
+                        aria-hidden
+                      />
                       <span>{item}</span>
                     </li>
                   ))}

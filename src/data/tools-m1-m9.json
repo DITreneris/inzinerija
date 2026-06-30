@@ -50,11 +50,25 @@
       "category": "Pokalbių DI"
     },
     {
+      "name": "DataLab (DataCamp)",
+      "url": "https://www.datacamp.com/datalab",
+      "description": "Analitikoje: SQL + Python, notebook aplinka, enterprise – duomenų tyrimai ir kodas vienoje vietoje.",
+      "moduleId": 7,
+      "category": "Duomenų analizė"
+    },
+    {
       "name": "DeepSeek",
       "url": "https://chat.deepseek.com",
       "description": "Stiprus kodavimui, matematikai ir logikai – puikus kainos ir kokybės santykis.",
       "moduleId": 1,
       "category": "Pokalbių DI"
+    },
+    {
+      "name": "Echobase",
+      "url": "https://www.echobase.ai",
+      "description": "Analitikoje: DI agentai, failų sinchronizacija – automatizuotas duomenų darbas su kontekstu.",
+      "moduleId": 7,
+      "category": "Duomenų analizė"
     },
     {
       "name": "Elicit",
@@ -113,6 +127,13 @@
       "category": "DI turinio detektoriai"
     },
     {
+      "name": "Julius AI",
+      "url": "https://julius.ai",
+      "description": "Analitikoje: NLP analizė, paprasta naudoti – greita eksploracinė duomenų analizė be sudėtingo setup.",
+      "moduleId": 7,
+      "category": "Duomenų analizė"
+    },
+    {
       "name": "MyDetector.ai",
       "url": "https://mydetector.ai/",
       "description": "Greitas nemokamas DI teksto detektorius be registracijos, palaiko daug kalbų.",
@@ -153,6 +174,13 @@
       "description": "DI paieška su šaltiniais – akademinės užklausos, literatūros apžvalgos, faktų tikrinimas.",
       "moduleId": 4,
       "category": "RAG / tyrimai"
+    },
+    {
+      "name": "Power BI",
+      "url": "https://www.microsoft.com/power-platform/products/power-bi",
+      "description": "Analitikoje: vizualizacijos, integracijos, enterprise – verslo ataskaitos ir dashboard iš struktūruotų duomenų.",
+      "moduleId": 7,
+      "category": "Duomenų analizė"
     },
     {
       "name": "Prezent.ai",

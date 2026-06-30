@@ -1,4 +1,5 @@
 /**
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides (nėra „agent_orchestrator" image rakto). Nešalinti be QA.
  * Agentų orkestratoriaus diagramos blokas – statinė schema + „Peržiūrėti visą dydį“ per EnlargeableDiagram.
  * Tas pats React turinys (AgentOrchestratorDiagram) skaidrėje ir modale (SCHEME_AGENT, AGENT_VERIFICATION_NE_MELUOTI).
  */

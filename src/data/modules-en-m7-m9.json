@@ -170,7 +170,7 @@
         },
         {
           "id": 72,
-          "title": "Strateginis pamatas",
+          "title": "Strategic foundation",
           "subtitle": "Data = decision system",
           "type": "content-block",
           "content": {
@@ -286,7 +286,7 @@
                     "value": "~90%",
                     "tooltip": {
                       "explanation": "About 90% of employees use AI tools without an official company license.",
-                      "trend": "Shadow AI auga greihereu nei official projektai."
+                      "trend": "Shadow AI is growing faster than official projects."
                     }
                   },
                   {
@@ -310,7 +310,7 @@
                     "value": "50–70%",
                     "tooltip": {
                       "explanation": "Half or more AI investment goes to marketing ir sales.",
-                      "trend": "„Wow“ efekto siekiama, any onlyroji return kitur."
+                      "trend": "Chasing the \"wow\" effect; real returns come elsewhere."
                     }
                   }
                 ]
@@ -482,7 +482,7 @@
                 "Strategic problem"
               ]
             },
-            "footer": "Source: MIT Sloan Management Review / MIT CISR, 2025. Numwithoutrs apiwithoutndrinami from 52 organizations, 300+ projects research.",
+            "footer": "Source: MIT Sloan Management Review / MIT CISR, 2025. Numbers aggregated from 52 organizations, 300+ projects research.",
             "onGoToGlossaryTerm": "AI paradox",
             "sources": [
               {
@@ -496,7 +496,7 @@
         },
         {
           "id": 726,
-          "title": "Problem statement: why AI does not create value ir what do",
+          "title": "Problem statement: why AI does not create value and what to do",
           "subtitle": "Investment direction, pilot traps, data culture",
           "type": "content-block",
           "content": {
@@ -692,7 +692,7 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Ar pasirinkai correct analysis type pagal question (What happened? / Why? / What may? / How to act?)?\n• Ar nukopijavai matching prompt, ne kito tipo?\n• Ar rezultatas atitinka to tipo goal?\n\nJei at least 2 „ne“ → go back prie 2️⃣, pasirink type ir copy correct prompt.",
+                "body": "• Did you pick the correct analysis type for the question (What happened? / Why? / What may? / How to act?)?\n• Did you copy the matching prompt, not another type?\n• Does the result match that type's goal?\n\nIf at least 2 \"no\" → go back to 2️⃣, pick the type and copy the correct prompt.",
                 "blockVariant": "accent"
               },
               {
@@ -705,7 +705,7 @@
         },
         {
           "id": 732,
-          "title": "Sentiment analysis – verslo lygio OUTPUT",
+          "title": "Sentiment analysis – business-grade output",
           "subtitle": "5-point structure – topics, intensity, actions",
           "type": "content-block",
           "content": {
@@ -717,7 +717,7 @@
               },
               {
                 "heading": "2️⃣ What to do",
-                "body": "Upload reviews (teksthat arba file) to AI. Copy prompt (withoutlow), paste. You will get: sentiment structure, topics, intensity, kritinius complaints, 3 prioritetinius actions.\n\n🔘 Copy prompt (withoutlow)",
+                "body": "Upload reviews (text or file) to AI. Copy the prompt below, paste it in. You will get: sentiment structure, topics, intensity, critical complaints, and 3 priority actions.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand"
               },
               {
@@ -728,7 +728,7 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Ar rezultatas have **5 punktus** (structure, topics, intensity, complaints, veiksmai)?\n• Ar you got prioritetinius actions, ne tik percentages?\n• Ar prompt buvo pilnas (ROLE, TASK, CONTEXT, OUTPUT)?\n\nJei at least 2 „ne“ → go back prie 3️⃣, copy prompt ir paleisk AI from naujo su reviewss.",
+                "body": "• Does the result have **5 parts** (structure, topics, intensity, complaints, actions)?\n• Did you get priority actions, not just percentages?\n• Was the prompt complete (ROLE, TASK, CONTEXT, OUTPUT)?\n\nIf at least 2 \"no\" → go back to 3️⃣, copy the prompt and run AI again with your reviews.",
                 "blockVariant": "accent"
               }
             ]
@@ -793,12 +793,54 @@
             "sections": [
               {
                 "heading": "1️⃣ Why here?",
-                "body": "**Six domains** show which data to include in analysis after finance. Next **DB structure** and **KPI** (relationship analysis, forecasts) rely on knowing your domain fields – customers, supply, sales, marketing, processes, competitors.",
+                "body": "**Six domains** help you see that analysis is not only finance. When you know where data is created in your business, it becomes easier to design database structure, key metrics and strong prompts in the next slides.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Traditional vs extended approach",
-                "body": "Beyond cost, revenue and profit – **6 business data domains:** customer behavior, supply chain, sales dynamics, CRM/marketing, process efficiency, competitive analysis. These domains – potential AI analysis modules."
+                "body": "| Traditional view | Expanded view |\n| --- | --- |\n| Costs | Customer behavior |\n| Revenue | Supply chain |\n| Profit | Sales dynamics |\n|  | Customer relationship and marketing data |\n|  | Process efficiency |\n|  | Competitive analysis |\n\nEach domain can become a separate AI analysis module."
+              },
+              {
+                "heading": "3️⃣ Customer behavior",
+                "body": "Purchases, repeat visits, reviews and product usage. Use this when asking who buys, why they return and where satisfaction drops.",
+                "copyable": "ROLE: You are a business data analyst.\nTASK: Analyze customer behavior data.\nINPUT: [paste purchase, review or usage data]\nOUTPUT: 1) 3 customer groups 2) What matters to each group 3) Where the risk is 4) What to do next week."
+              },
+              {
+                "heading": "4️⃣ Supply chain",
+                "body": "Suppliers, delivery time, stock, delays and price changes. Use this to find bottlenecks and risks before they become problems.",
+                "copyable": "ROLE: You are a supply chain analyst.\nTASK: Find weak spots in supply data.\nINPUT: [paste supplier, delivery or stock data]\nOUTPUT: 1) 3 biggest risks 2) Where data is missing 3) What to monitor weekly 4) Which action to take first."
+              },
+              {
+                "heading": "5️⃣ Sales dynamics",
+                "body": "Sales by time, region, product and channel. Use this to see growth, seasonality, drops and where to focus attention.",
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Explain sales changes by time, region and product.\nINPUT: [paste sales table]\nOUTPUT: 1) What grew 2) What declined 3) Possible causes 4) 3 recommended actions."
+              },
+              {
+                "heading": "6️⃣ Customer relationships and marketing",
+                "body": "Campaigns, emails, inquiries, customer journey and surveys. Use this to understand what attracts attention and where customers get lost.",
+                "copyable": "ROLE: You are a customer relationship and marketing analyst.\nTASK: Evaluate which marketing actions are connected to customer response.\nINPUT: [paste campaign, inquiry or survey data]\nOUTPUT: 1) What works 2) What does not work 3) Which customer questions repeat 4) What to test next."
+              },
+              {
+                "heading": "7️⃣ Process efficiency",
+                "body": "Time, errors, handoffs between teams and repeated work. Use this to find where a process gets stuck and what is worth automating.",
+                "copyable": "ROLE: You are a process analyst.\nTASK: Find 3 places where a process gets stuck or repeats.\nINPUT: [describe the process or paste time / error data]\nOUTPUT: 1) Weak spot 2) Why it costs time 3) What can be simplified 4) What AI could take over."
+              },
+              {
+                "heading": "8️⃣ Competitive analysis",
+                "body": "Prices, offers, public reviews, product features and communication. Use this to understand where you are stronger or weaker than alternatives.",
+                "copyable": "ROLE: You are a competitive analysis specialist.\nTASK: Compare us with 3 competitors using public data.\nINPUT: [paste competitor links, prices, features or reviews]\nOUTPUT: 1) Strengths 2) Weaknesses 3) Opportunities 4) What to change in offer or messaging."
+              },
+              {
+                "heading": "9️⃣ Do now",
+                "body": "Choose 3 domains that have the most data or the most uncertainty in your work. Then ask AI for a first analysis plan.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are a business data analyst.\nTASK: Help me choose the 3 most important analysis domains.\nCONTEXT: My business / team: [describe briefly]. Available data: [list]. Decisions I need to make: [write].\nOUTPUT: 1) 3 most important domains 2) Why they matter 3) Which data to collect 4) First analysis question for each domain."
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "The next step is the slide about data types and collection strategy. A domain answers **what we analyze**, while a data type answers **which format we have it in**.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -812,7 +854,7 @@
             "sections": [
               {
                 "heading": "1. Quantitative",
-                "body": "Numwithoutrs, whennos, kiekiai.",
+                "body": "Numbers, dates, quantities.",
                 "copyable": "Extract all quantitative metrics and calculate their means and variance."
               },
               {
@@ -890,31 +932,48 @@
         },
         {
           "id": 71.2,
-          "title": "Sisteminis promptas ir gilaus tyrimo tema",
+          "title": "System prompt and deep research topic",
           "subtitle": "Data Analysis path – step 2",
           "type": "path-step",
           "content": {
-            "title": "Sisteminis promptas ir gilaus tyrimo tema",
+            "title": "System prompt and deep research topic",
             "stepNumber": 2,
             "stepTotal": 5,
             "body": "Create a system prompt (role, principles) and pick a deep research topic. Prepare one deep research prompt to use in parallel across several tools.",
-            "unlockedGlossaryTerms": ["Deep research", "MASTER PROMPT"]
+            "unlockedGlossaryTerms": ["Deep research"]
           }
         },
         {
           "id": 78,
           "title": "AI role in business analysis",
-          "subtitle": "Skirtumas tradicinei analizei ir what AI gali",
+          "subtitle": "Traditional analysis vs what AI can do",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "Essential difference",
-                "body": "**Traditional:** manual work, limited models, human interpretation, low flexibility. **With AI:** automation, complex methods, data-driven decisions, adaptive. AI = analyst + automator + forecaster."
+                "heading": "1️⃣ In short",
+                "body": "AI does not replace your decision, but it speeds up the path to it: it helps collect, explain, compare, visualize and check data. Think of AI as analyst + automator + forecaster.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "What AI can do in business analyst role",
-                "body": "Explain methods; perform statistical analysis; generate visualizations; forecast; model scenarios. Bridge to next slides: role, DB structure, relationships, visualizations, forecast."
+                "heading": "2️⃣ Traditional analysis vs analysis with AI",
+                "body": "| Traditional analysis | Analysis with AI |\n| --- | --- |\n| A lot of manual work | AI prepares the first draft, table or code |\n| Limited models | It can compare several methods and explain differences |\n| A human interprets alone | AI proposes hypotheses, but a human checks the logic |\n| Low flexibility | You can quickly rewrite the same question for another context |"
+              },
+              {
+                "heading": "3️⃣ What AI can do in an analyst role",
+                "body": "**Explain methods** – what correlation, forecasting or data cleaning means. **Run exploratory analysis** – find patterns, anomalies and missing values. **Generate visualizations** – suggest a chart, Power BI steps or Python code. **Forecast** – create scenarios and risk ranges. **Model decisions** – compare several action options."
+              },
+              {
+                "heading": "4️⃣ Do now",
+                "body": "Before moving to role activation, describe one real analysis task and ask AI where it can help.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are an experienced business data analyst.\nTASK: Show how AI can help in my analysis task.\nCONTEXT: Task: [write]. Available data: [write]. Decision I need to make: [write].\nOUTPUT: 1) What AI can do on its own 2) What a human must check 3) What data still needs collecting 4) First prompt to start with."
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "Next you will move to role, data structure and visualization slides. This slide is the bridge: it explains **why** you should activate an analyst role before asking AI to calculate or create a chart.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -987,7 +1046,7 @@
               },
               {
                 "heading": "2️⃣ What to do",
-                "body": "Paste savo data structure (description arba schema) to prompt below. Copy, pakeisk [paste], paleisk AI. You will get: relationships, duplication rizikas, bottlenecks, 5 KPI.\n\n🔘 Copy prompt (below)",
+                "body": "Paste your data structure (description or schema) into the prompt below. Copy it, replace [PASTE], and run AI. You will get: relationships, duplication risks, bottlenecks, and 5 KPIs.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand"
               },
               {
@@ -1018,7 +1077,7 @@
               },
               {
                 "heading": "2️⃣ What to do",
-                "body": "Paste sales duomenis (arba URL) to prompt below. Copy, pakeisk [duomenys], paleisk AI. You will get: trends chart, segments comparison, profitability analysis, 3 insights. Jei data neenough – AI nurodys, ko missing.\n\n🔘 Copy prompt (below)",
+                "body": "Paste sales data (or URL) into the prompt below. Copy it, replace [DATA], and run AI. You will get: trends chart, segments comparison, profitability analysis, and 3 insights. If data is insufficient – AI will say what is missing.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand"
               },
               {
@@ -1079,7 +1138,7 @@
               },
               {
                 "heading": "2️⃣ What to do",
-                "body": "Paste sales ar kito rodiklio story (arba URL) to viethat **[duomenys]**. Copy prompt withoutlow, paleisk AI.\n\n🔘 Copy prompt (withoutlow)",
+                "body": "Paste sales or another metric history (or URL) where **[DATA]** is shown. Copy the prompt below and run AI.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand"
               },
               {
@@ -1202,7 +1261,7 @@
               },
               {
                 "heading": "2️⃣ What to do",
-                "body": "Before analysis: copy cleaning prompt (withoutlow), paste to AI su its own duomenimis. Apply checklist (anonymization, formats, duplicates, missingmos values, types, tags). Gauk cleaning report ir suggested actions.\n\n🔘 Copy prompt (for cleaning)",
+                "body": "Before analysis: copy the cleaning prompt below and paste it into AI with your data. Apply the checklist (anonymization, formats, duplicates, missing values, types, tags). Get a cleaning report and suggested actions.\n\n🔘 Copy prompt (for cleaning)",
                 "blockVariant": "brand"
               },
               {
@@ -1238,7 +1297,7 @@
             "celebrationText": "Good! Pipeline, prompts and data preparation – already completed in this part. Now – reliability and ethics in analysis.",
             "nextSteps": [
               "Prompt manipulation – bias, leading questions, neutral promptai.",
-              "Security – prompts injection ir boundary bypass; gynybos principai.",
+              "Security – prompt injection and boundary bypass; defense principles.",
               "Hallucinations – what they are, how to reduce, reliability template.",
               "Knowledge verification – sources ir „don't know“ rule.",
               "AI content detectors – practical use (optional).",
@@ -1335,12 +1394,12 @@
             "sections": [
               {
                 "heading": "1️⃣ In brief (30 s)",
-                "body": "Practice: provideds prompt have manipulation potags. Your task – recognize, what is wrong, ir rewrite neutral variant. Below – biased example ir corrected variantas.",
+                "body": "Practice: the provided prompt has manipulation cues. Your task – recognize what is wrong and rewrite a neutral variant. Below – a biased example and a corrected variant.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Biased prompt",
-                "body": "Next provideds prompt have manipulation potags. Your task – recognize, what is wrong, ir rewrite neutral variant.",
+                "body": "The next provided prompt has manipulation cues. Your task – recognize what is wrong and rewrite a neutral variant.",
                 "blockVariant": "brand"
               },
               {
@@ -1370,7 +1429,7 @@
         {
           "id": 67.5,
           "title": "Saugumas: prompt injection ir jailbreak",
-          "subtitle": "Takoskyra nuo verslo manipuliacijos; OWASP LLM #1 – gynybos principai",
+          "subtitle": "Distinct from business manipulation; OWASP LLM #1 – defense principles",
           "shortTitle": "Prompts injection ir boundary bypass",
           "type": "content-block",
           "content": {
@@ -1496,13 +1555,13 @@
         {
           "id": 68,
           "title": "Knowledge verification",
-          "subtitle": "Sources, cross-check, „don't know“ rule; whenp onlyrinti answers",
+          "subtitle": "Sources, cross-check, \"don't know\" rule; when to verify answers",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In brief (30 s)",
-                "body": "Knowledge verification = sources (ar AI nurodo from kur?), cross-check (compare su paonlyimais sourcess), „don't know“ rule. How to verify answers – withoutlow. Link su Quality bloku.",
+                "body": "Knowledge verification = sources (does AI state where information comes from?), cross-check (compare with reliable sources), \"don't know\" rule. How to verify answers – below. Links to the Quality block.",
                 "blockVariant": "accent"
               },
               {
@@ -1720,7 +1779,7 @@
               {
                 "heading": "3a. BI plan",
                 "body": "Provide a 4-step plan per BI schema. Replace [X] with topic.",
-                "copyable": "Based on topic [X], provide 4 steps BI plan:\n1. Collect – kokius data sources use\n2. Analyze – kokius EDA ir insights steps performti\n3. Report – whenp vizualizuoti ir provideti for leadership\n4. Forecast – what forecast ir kokius scenario"
+                "copyable": "Based on topic [X], provide a 4-step BI plan:\n1. Collect – which data sources to use\n2. Analyze – which EDA and insight steps to perform\n3. Report – when to visualize and present to leadership\n4. Forecast – what to forecast and which scenarios"
               },
               {
                 "heading": "3b. Market trends",
@@ -1729,7 +1788,7 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Does picwhen matching prompt (BI planas vs market trends)?\n• Does planas / result apima visus 4 steps (Collect, Analyze, Report, Forecast)?\n• Does pakeitei [X] to concrete topic ar sector?\n\nJei at least 2 „ne“ → go back prie 2️⃣ arba 3️⃣, pick prompt ir copy from naujo.",
+                "body": "• Did you pick the matching prompt (BI plan vs market trends)?\n• Does the plan / result cover all 4 steps (Collect, Analyze, Report, Forecast)?\n• Did you replace [X] with a concrete topic or sector?\n\nIf at least 2 \"no\" → go back to 2️⃣ or 3️⃣, pick the prompt and copy again.",
                 "blockVariant": "accent"
               },
               {
@@ -1806,7 +1865,7 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Does picwhen correct agenthat (Data Research / EDA / Insight) pagal task?\n• Does nukopijavai matching prompt?\n• Does result atitinka to agento type (sources vs analysis vs insights)?\n\nJei at least 2 „ne“ → go back prie 2️⃣, pick agenthat ir copy correct prompt.",
+                "body": "• Did you pick the correct agent (Data Research / EDA / Insight) for the task?\n• Did you copy the matching prompt?\n• Does the result match that agent type (sources vs analysis vs insights)?\n\nIf at least 2 \"no\" → go back to 2️⃣, pick the agent and copy the correct prompt.",
                 "blockVariant": "accent"
               }
             ]
@@ -1904,13 +1963,39 @@
         {
           "id": 98,
           "title": "Weak spots – what to add",
-          "subtitle": "Optional: models, datasets, validation",
+          "subtitle": "Optional: deeper practice – models, data, validation",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "Recommended expansion",
-                "body": "Models (regression, classification) – conceptual or 1 slide max. Real data examples (datasets, links). Automation layer (description). Validation methodology – how to verify AI output (link to Module 7 Hallucinations, Knowledge verification). Priority – prompts."
+                "heading": "1️⃣ Why here?",
+                "body": "This optional slide shows where the basic AI analysis path ends and deeper practice begins. If you want to work more professionally, you need model logic, real data, automation and validation.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Models: forecast or classification?",
+                "body": "**Forecasting** helps answer what may happen (for example, next month sales). **Classification** helps assign a record to a group (for example, risky customer / not risky). You do not need mathematics here – the key is knowing which decision the model supports.",
+                "copyable": "ROLE: You are a data analysis teacher.\nTASK: Explain simply whether my task needs forecasting or classification.\nCONTEXT: My task: [write]. Available data: [write].\nOUTPUT: 1) Which model type fits 2) Why 3) Which column is needed as the target 4) What not to do at this stage."
+              },
+              {
+                "heading": "3️⃣ Real data",
+                "body": "For practice, use public and reliable sources: Eurostat, open data portals, data catalogs and exports from your CRM or accounting tools. Before analysis, record the source, date and what each column means."
+              },
+              {
+                "heading": "4️⃣ Automation",
+                "body": "Automation means repeated steps follow a clear rule: collect, clean, merge, create a report. Start not with code, but with process places where manual work repeats.",
+                "copyable": "ROLE: You are a process analyst.\nTASK: Find 3 places where my analysis process can be automated.\nCONTEXT: My process: [describe steps]. What repeats: [write]. Tools I use: [write].\nOUTPUT: 1) Automation point 2) Why it is worth it 3) Simplest first step 4) Risk."
+              },
+              {
+                "heading": "5️⃣ Validation",
+                "body": "Validation means checking whether the AI answer is based on data, not guessing. Link to hallucinations and knowledge-check slides: ask for sources, compare with the original table, check numbers and mark unclear places.",
+                "copyable": "ROLE: You are a data quality checker.\nTASK: Check the AI analysis answer using an anti-hallucination checklist.\nINPUT: [paste AI answer and, if available, original data]\nOUTPUT: 1) Where the answer is based on data 2) Where it may be guessing 3) Which numbers must be recalculated 4) What to fix before showing leadership."
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "These topics are the deeper level. If today you are only learning the path, remember the principle: **a model helps decide**, **data must be clear**, **automation starts with process**, and **validation protects against wrong conclusions**.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -1925,7 +2010,7 @@
             "sections": [
               {
                 "heading": "1️⃣ What is this for?",
-                "body": "**MASTER PROMPT** – one prompt for full business analysis: 8 steps from data sources to strategic recommendations. This is the M9 (final project) template and module core: one place, one action – replace [X], copy, run AI.",
+                "body": "**MASTER PROMPT** – one prompt for full business analysis: 8 steps from data sources to strategic recommendations. This is the M9 (final project) template and module core: one place, one action – replace [X], copy, run AI. This is **not** the Module 4 Master prompt about your context – here it is the full analysis template.",
                 "blockVariant": "accent"
               },
               {
@@ -1935,7 +2020,7 @@
               },
               {
                 "heading": "Interactive 8-step schema",
-                "body": "Same sequence whenp Module 9 workflow – here MASTER kontekste. Click step.",
+                "body": "Same sequence as Module 9 workflow – here in MASTER context. Click a step.",
                 "blockVariant": "brand",
                 "image": "m7_master_workflow",
                 "imageAlt": "MASTER: eight analysis steps"
@@ -1994,17 +2079,37 @@
         {
           "id": 100,
           "title": "Extra: visualization – positioning and cycle",
-          "subtitle": "Before summary – data storytelling + AI; vizualizacija = istorijos share",
+          "subtitle": "Before summary – data storytelling + AI; visualization as part of the story",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "Pozicionavimas",
-                "body": "Not a technical course on charts – **stories from data + AI introduction**. Visualization = part of the story, decision tool; AI = speed catalyst."
+                "heading": "1️⃣ Why here?",
+                "body": "Visualization is not just a nice chart. It is a way to quickly show **what data means for a decision**. AI speeds up the work, but the story logic is still controlled by the human.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Data cycle",
-                "body": "Collection → Preparation → Vizualizacija → Analysis → Istorija. Link su pipeline (§2.2)."
+                "heading": "2️⃣ Interactive data story cycle",
+                "body": "Click a step and see what it means. This cycle uses the same pipeline, but here the focus is how a table becomes a story for leadership.",
+                "blockVariant": "brand",
+                "image": "m7_data_story_cycle",
+                "imageAlt": "Data story cycle: collection, preparation, visualization, analysis, story"
+              },
+              {
+                "heading": "3️⃣ Link to the pipeline",
+                "body": "In the pipeline slide you saw 6 stages from collection to publishing. Here we compress them into a story chain: collect → prepare → visualize → explain → suggest action."
+              },
+              {
+                "heading": "4️⃣ Do now",
+                "body": "Apply the cycle to one of your topics. Do not ask AI to “create a chart” first – ask what story is worth showing.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are a data story builder.\nTASK: Apply the 5-step cycle to my topic.\nCONTEXT: Topic: [write]. Available data: [write]. Audience: [leadership / team / customers].\nOUTPUT: 1) What to collect 2) What to prepare 3) Which visualization to choose 4) Which insight to test 5) Which story to tell."
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "A good chart starts not with colors, but with the question: **what should the person looking at this data understand?** If there is no answer, return to the analysis question first.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -2017,12 +2122,58 @@
           "content": {
             "sections": [
               {
-                "heading": "Psychology – why visualization works",
-                "body": "**10%** of what you hear. **20%** of what you read. **80%** of what you **see and experience**. The case for interactive reports, dashboards, visual stories."
+                "heading": "1️⃣ Why here?",
+                "body": "People understand visuals faster than a long table. A good visualization does not decorate analysis – it helps you see a relationship, risk or change faster.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Visual grouping principles (8) – Gestalt",
-                "body": "**Proximity** – grouping by distance. **Similarity** – color or shape shows connection. **Separation** – focus. **Connection** – lines create links. **Continuity** – eye follows direction. **Closure** – complete contours. **Figure–ground** – what matters most. **Common fate** – direction = connection."
+                "heading": "2️⃣ 10 / 20 / 80 principle",
+                "body": "**10%** – what a person only hears. **20%** – what they read. **80%** – what they see and experience. The numbers are directional, but the lesson is clear: if you want a decision, show data in a way people understand quickly.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Proximity",
+                "body": "Elements close to each other look related. Use spacing so the viewer sees which metrics belong to the same group."
+              },
+              {
+                "heading": "4️⃣ Similarity",
+                "body": "Similar color, shape or size shows a relationship. Do not use the same color for different meanings."
+              },
+              {
+                "heading": "5️⃣ Emphasis",
+                "body": "One highlighted element becomes the focus. Use emphasis for the key insight, not for everything at once."
+              },
+              {
+                "heading": "6️⃣ Connection",
+                "body": "Lines and arrows show relationships between elements. They should help follow the process, not cover text."
+              },
+              {
+                "heading": "7️⃣ Continuity",
+                "body": "The eye follows direction. If a chart has a sequence, place elements so a person naturally reads from start to conclusion."
+              },
+              {
+                "heading": "8️⃣ Closure",
+                "body": "People tend to complete unfinished shapes. Use simple outlines and avoid half-finished elements that may confuse."
+              },
+              {
+                "heading": "9️⃣ Figure and ground",
+                "body": "The most important element must clearly stand out from the background. If the background is too strong, the viewer loses the main insight."
+              },
+              {
+                "heading": "🔟 Common fate",
+                "body": "Elements moving or pointing in the same direction look related. Use consistent direction to show trends and sequence."
+              },
+              {
+                "heading": "Do now",
+                "body": "Check one of your dashboards or charts using these principles.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are a visual clarity auditor.\nTASK: Check my dashboard or chart description using 8 visual grouping principles.\nINPUT: [paste dashboard description, screenshot text or chart list]\nOUTPUT: 1) What is clear 2) Where confusion may happen 3) Which principle I break 4) 5 specific fixes."
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "If you are preparing for the Module 8 test, remember two things: the visualization type must match the question, and design principles help the audience see the answer faster.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -2035,22 +2186,27 @@
           "content": {
             "sections": [
               {
-                "heading": "1. Visualization type selection",
+                "heading": "1️⃣ Why here?",
+                "body": "These four prompts turn a vague request like “make a chart” into a clear task: pick the type, create the story, give Power BI steps or generate a Python example.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2. Visualization type selection",
                 "body": "Role + TASK + CONTEXT + AUDIENCE + OUTPUT + TONE.",
-                "copyable": "ROLE: You are senior data visualization expert ir UX dizaineris.\nTASK: Pick optimal visualization type.\nCONTEXT: I have sales data by regions and months. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (pvz. misleading interpretation)\nTONE: Strategic, clear."
+                "copyable": "ROLE: You are a senior data visualization expert and UX designer.\nTASK: Pick the optimal visualization type.\nCONTEXT: I have sales data by region and month. The goal is to show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear."
               },
               {
-                "heading": "2. Story creation from data",
+                "heading": "3. Story creation from data",
                 "body": "Data storyteller – narrative with insight, conflict, action.",
-                "copyable": "ROLE: Data storyteller.\nTASK: Create a narrative from the provided data.\nCONTEXT: Sales grew 20%, bet 2 regions declined.\nOUTPUT: 1) Main insight 2) Conflict / tension 3) What this means for business 4) Recommended action"
+                "copyable": "ROLE: Data storyteller.\nTASK: Create a narrative from the provided data.\nCONTEXT: Sales grew 20%, but 2 regions declined.\nOUTPUT: 1) Main insight 2) Conflict / tension 3) What this means for business 4) Recommended action"
               },
               {
-                "heading": "3. Power BI step generation",
+                "heading": "4. Power BI step generation",
                 "body": "Upload, data structure in tables, visualizations, year-over-year calculation (DAX), visual clarity principles.",
-                "copyable": "ROLE: Power BI specialist.\nTASK: Provide tikslius veiksmus.\nCONTEXT: CSV failas su stulpeliais: Date, Region, Sales, Category.\nOUTPUT: 1) Data upload 2) Data structure check 3) Visualization creation 4) DAX formula for YOY growth 5) Design recommendations (visual grouping principles)"
+                "copyable": "ROLE: Power BI specialist.\nTASK: Provide exact steps.\nCONTEXT: CSV file with columns: Date, Region, Sales, Category.\nOUTPUT: 1) Data upload 2) Data structure check 3) Visualization creation 4) DAX formula for year-over-year growth 5) Design recommendations (visual grouping principles)"
               },
               {
-                "heading": "4. Python visualization code",
+                "heading": "5. Python visualization code",
                 "body": "Dataset, bar + line chart, seaborn, annotations.",
                 "copyable": "Write Python code that: 1) Generates a sales dataset 2) Plots: bar chart by region, line trend over time 3) Uses seaborn 4) Adds annotations with key insights"
               }
@@ -2065,12 +2221,34 @@
           "content": {
             "sections": [
               {
-                "heading": "Data→Story model",
-                "body": "**Numbers** – credibility. **Graphics** – clarity. **Narrative** – emotional connection. **Story** – basis for decisions."
+                "heading": "1️⃣ Why here?",
+                "body": "Leadership often does not need another table. It needs to understand what is changing, why it matters and what to do. That is why data must become a story.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Good dashboards (Netflix, BBC)",
-                "body": "Key metrics on top; trend; grouping; filters. BBC example: context, visual hierarchy, clear legend."
+                "heading": "2️⃣ Data → Story model",
+                "body": "| Stage | Meaning |\n| --- | --- |\n| Data | Credibility: numbers, sources, time period |\n| Graphic | Clarity: what a person sees in 5 seconds |\n| Narrative | Connection: why the change matters |\n| Decision | Action: what to do next |\n| Story | One message: fact → meaning → action |"
+              },
+              {
+                "heading": "3️⃣ Good dashboard",
+                "body": "In a good report, key metrics are on top, the trend is visible immediately, data is grouped, and filters help answer the next question. The first screen should not say “there is a lot of data”; it should say “this is the key insight”.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "4️⃣ BBC / Netflix principle",
+                "body": "**BBC style:** context, visual hierarchy, clear legend. **Netflix style:** quick comparison, segments, filters and recommendation. Both remind us: the visual should guide the viewer from question to decision."
+              },
+              {
+                "heading": "5️⃣ Do now",
+                "body": "Ask AI not only to create a chart, but also to critique your dashboard logic.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are a dashboard and data story critic.\nTASK: Evaluate my dashboard structure.\nINPUT: [paste dashboard description, metrics or screenshot text]\nOUTPUT: 1) What the main story is 2) Whether top metrics are clear 3) Where context is missing 4) Where the audience may misunderstand 5) 5 fixes before showing leadership."
+              },
+              {
+                "heading": "🔽 Pro level",
+                "body": "When you want to go deeper, add analysis of bad visualizations, color psychology, interactivity principles and a method for choosing key metrics. In this module, the base is enough: clear story, clear hierarchy, clear action.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -2083,12 +2261,41 @@
           "content": {
             "sections": [
               {
-                "heading": "4 areas",
-                "body": "Idea generation; code generation; visualization guidelines; contextual analysis. **Super prompt:** Role: analyst + visualization designer + business strategist. OUTPUT: summary (3 insights), suggested charts, Power BI instructions, Python code, story text for leadership (max 200 words), recommended action."
+                "heading": "1️⃣ Why here?",
+                "body": "AI can speed up visualization work, but it needs a clear task: what data, who will see it and which decision is needed. This slide combines ideas, code, guidance and alternative tools.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Alternatives",
-                "body": "**Julius AI** – NLP analysis, easy to use. **Echobase** – agents, file sync. **DataLab (DataCamp)** – SQL + Python, notebook, enterprise. **Power BI** – visualizations, integrations, enterprise."
+                "heading": "2️⃣ Idea generation",
+                "body": "AI can suggest which chart to choose, which questions to ask and which story to look for. This is useful at the start, when you do not yet know what matters most in the data."
+              },
+              {
+                "heading": "3️⃣ Code generation",
+                "body": "AI can prepare examples for Python, SQL or Power BI formulas. Always check whether the code matches your column names and whether the result matches the original data."
+              },
+              {
+                "heading": "4️⃣ Visualization guidance",
+                "body": "AI can suggest rules for colors, grouping, metrics and legends. Use this as a checklist, not as the final design decision."
+              },
+              {
+                "heading": "5️⃣ Contextual analysis",
+                "body": "AI can explain what a chart means for the audience: leadership, team or customers. The same chart can tell a different story to different people."
+              },
+              {
+                "heading": "6️⃣ Super prompt",
+                "body": "Run this prompt when you have a CSV or at least a clear data description and want one analysis package.\n\n🔘 Copy prompt (below)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: You are a data analyst + visualization designer + business strategist.\nTASK: Create a full analysis package from the provided data.\nCONTEXT: CSV file or table with data: [describe columns, time period and audience].\nOUTPUT:\n1) Data summary (3 key insights)\n2) Suggested charts\n3) Power BI instruction\n4) Python code direction or example\n5) Story text for leadership (up to 200 words)\n6) Recommended business action."
+              },
+              {
+                "heading": "7️⃣ Alternatives",
+                "body": "| Tool | When to use |\n| --- | --- |\n| Julius AI | When you want to analyze a table quickly without many technical steps |\n| Echobase | When a team needs agents and file synchronization |\n| DataLab (DataCamp) | When you need SQL, Python and notebook-style work |\n| Power BI | When you need business reports, integrations and many visualizations |"
+              },
+              {
+                "heading": "🔽 Want to understand more?",
+                "body": "The full visualization and data story path is planned for later modules. The main takeaway here: AI speeds up the work, but you still control the question, audience and decision.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -2100,7 +2307,7 @@
           "type": "summary",
           "content": {
             "introHeading": "What you learned",
-            "introBody": "Congratulations! You now know the data analysis pipeline (6 steps), operational concepts and the Master prompt – you can use AI as a business analyst from data structure to visualizations and forecasts.",
+            "introBody": "Congratulations! You now know the data analysis pipeline (6 steps), operational concepts and MASTER PROMPT – you can use AI as a business analyst from data structure to visualizations and forecasts.",
             "stats": [
               {
                 "label": "Pipeline steps",
@@ -2137,7 +2344,7 @@
                   "Role",
                   "DB structure",
                   "Relationships",
-                  "Vizualizacijos",
+                  "Visualizations",
                   "Forecast"
                 ]
               },
@@ -2157,7 +2364,7 @@
               }
             ],
             "reflectionPrompt": "META: You are a training reflection assistant. Goal – help consolidate knowledge after Module 7.\nINPUT: I just finished the Data Analysis path theory – pipeline, role activation, DB structure, EDA, BI schema and MASTER PROMPT.\nOUTPUT: Ask 3 questions: (1) Which prompt or technique could I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers give 1 concrete tip on how to start.",
-            "reflectionTitle": "Refleksija",
+            "reflectionTitle": "Reflection",
             "tagline": "Data → Insights → Decisions"
           }
         }
@@ -2218,7 +2425,7 @@
               "id": "m8-q2",
               "type": "mcq",
               "question": "Which BI schema step is responsible for \"what to show leadership\"?",
-              "options": ["Surink", "Analyze", "Report", "Forecast"],
+              "options": ["Collect", "Analyze", "Report", "Forecast"],
               "correct": 2,
               "explanation": "Report includes visualization and conclusions – how to show leadership.",
               "bloomLevel": 2,
@@ -2244,11 +2451,11 @@
               "options": [
                 "OUTPUT only: \"Provide % positive, neutral, negative\"",
                 "OUTPUT with 5 points: sentiment structure, topics (with frequency), intensity, critical complaints, 3 priority actions",
-                "Tik META: „Tu esi analitikas“",
+                "META only: \"You are an analyst\"",
                 "INPUT only: \"I upload reviews\""
               ],
               "correct": 1,
-              "explanation": "Business value – topics, intensity, priorities ir actions recommendations; OUTPUT have apimti structured rezultathat su with these pointss.",
+              "explanation": "Business value comes from topics, intensity, priorities and action recommendations; OUTPUT must cover a structured result with these points.",
               "bloomLevel": 3,
               "category": "output",
               "relatedSlideId": 732
@@ -2256,7 +2463,7 @@
             {
               "id": "m8-q5",
               "type": "scenario",
-              "scenarioContext": "Leadership klausia: „Why Q3 sales krito?“ ir „How to act next?“",
+              "scenarioContext": "Leadership asks: \"Why did Q3 sales drop?\" and \"How should we act next?\"",
               "question": "Which two analysis types match these two questions?",
               "options": [
                 "Both – descriptive analysis",
@@ -2278,7 +2485,7 @@
               "options": [
                 "\"Make a pretty chart\"",
                 "Specify data, goal (trends, segments, profitability), audience (leadership) and ask for insights below the chart",
-                "Ask for all possible charts types from karto",
+                "Ask for all possible chart types at once",
                 "Ask for only tables without visualizations"
               ],
               "correct": 1,
@@ -2293,9 +2500,9 @@
               "scenarioContext": "Before running descriptive and diagnostic analysis with AI, you must prepare the data. What must be included in the preparation stage?",
               "question": "What goes into the data cleaning checklist before analysis?",
               "options": [
-                "Anonymization only ir duplicates removal",
+                "Anonymization and duplicate removal only",
                 "Anonymization, format standardization, duplicate removal, missing value identification, data type validation, time/region tags",
-                "Tik vizualizacijos parinkimas",
+                "Visualization type selection only",
                 "MASTER PROMPT entry only"
               ],
               "correct": 1,
@@ -2309,7 +2516,7 @@
               "type": "mcq",
               "question": "What is the correct prompt sequence (workflow) order for business analysis?",
               "options": [
-                "Vizualizacija → Collect → Clean → 4 analysis types",
+                "Visualization → Collect → Clean → 4 analysis types",
                 "Collect → Clean → Metadata → Descriptive → Diagnostic → Predictive → Prescriptive → Action plan",
                 "MASTER PROMPT → Result (no gaps)",
                 "Report → Forecast → Collect"
@@ -2326,10 +2533,10 @@
               "scenarioContext": "CFO asks for help: need to assess EBITDA, margin, cash flow and debt level, and identify 3 financial risks and 3 optimization opportunities.",
               "question": "Which prompt type best matches this business need?",
               "options": [
-                "Role only aktyvavimas: „You are verslo analionlyas“",
+                "Role activation only: \"You are a business analyst\"",
                 "Role (CFO assistant) + concrete OUTPUT points: EBITDA, margin, cash flow, debt, 3 risks, 3 optimization opportunities",
-                "Tik MASTER PROMPTAS be konteksto",
-                "Tik vizualizacijos generavimo promptas"
+                "MASTER PROMPT only without context",
+                "Visualization generation prompt only"
               ],
               "correct": 1,
               "explanation": "Business analysis needs a clear role (CFO assistant) and structured OUTPUT – what exactly AI must output (metrics, risks, opportunities).",
@@ -2341,14 +2548,14 @@
         },
         {
           "id": 82,
-          "title": "Testo rezultatai",
-          "subtitle": "Toliau – projektas (Module 9)",
+          "title": "Test results",
+          "subtitle": "Next – project (Module 9)",
           "type": "test-results"
         },
         {
           "id": 801,
           "title": "Bonus: Screenshot analysis with AI",
-          "subtitle": "Practice: upload dashboard, table ar schema – get structured assessment",
+          "subtitle": "Practice: upload dashboard, table or chart – get structured assessment",
           "type": "content-block",
           "content": {
             "whyBenefit": "After the test – extra practice. Upload any screenshot, copy the prompt and in minutes get structured analysis.",
@@ -2359,14 +2566,14 @@
                 "blockVariant": "brand"
               },
               {
-                "heading": "Promptas – nukopijuok ir naudok",
-                "body": "Upload nuotrauwhat to AI (ChatGPT, Claude ir kt.), paste the prompt below ir paleisk.",
+                "heading": "Prompt – copy and use",
+                "body": "Upload the screenshot to AI (ChatGPT, Claude, etc.), paste the prompt below and run.",
                 "copyable": "Analyze this screenshot.\n\n1. Identify main elements\n2. Name possible problems\n3. Suggest optimizations\n4. Provide structured analysis:\n   - Function\n   - Risk\n   - Possible improvement\n   - Priority (Low / Medium / High)",
                 "blockVariant": "accent"
               }
             ],
             "practicalTask": {
-              "templateLabel": "Praktika: ekrano nuotraukos analysis",
+              "templateLabel": "Practice: screenshot analysis",
               "template": "Analyze this screenshot.\n\n1. Identify main elements\n2. Name possible problems\n3. Suggest optimizations\n4. Provide structured analysis: Function, Risk, Possible improvement, Priority (Low / Medium / High)\n\n[Upload image to AI and paste this prompt.]"
             }
           }
@@ -2380,20 +2587,20 @@
             "whyBenefit": "Second bonus: visualization practice. Replace CONTEXT with your data – get 3 visualization variants and explanations.",
             "sections": [
               {
-                "heading": "Vizualizacijos tipo parinkimas",
+                "heading": "Choosing a visualization type",
                 "body": "Business level: AI will suggest several options, explain why each fits and name risks (e.g. misleading interpretation). Audience – leadership.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Promptas – nukopijuok ir pritaikyk",
+                "heading": "Prompt – copy and adapt",
                 "body": "Replace CONTEXT: describe your data (columns, goal). Copy into AI and run.",
-                "copyable": "ROLE: You are senior data visualization expert ir UX dizaineris.\nTASK: Pick optimal visualization type.\nCONTEXT: I have sales data by regions and months. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (pvz. misleading interpretation)\nTONE: Strategic, clear.",
+                "copyable": "ROLE: You are a senior data visualization expert and UX designer.\nTASK: Pick optimal visualization type.\nCONTEXT: I have sales data by regions and months. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear.",
                 "blockVariant": "accent"
               }
             ],
             "practicalTask": {
-              "templateLabel": "Praktika: vizualizacijos tipo parinkimas",
-              "template": "ROLE: You are senior data visualization expert ir UX dizaineris.\nTASK: Pick optimal visualization type.\nCONTEXT: [Describe your data – stulpeliai, tikslas, auditorija.]\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks\nTONE: Strategic, clear."
+              "templateLabel": "Practice: choosing visualization type",
+              "template": "ROLE: You are a senior data visualization expert and UX designer.\nTASK: Pick optimal visualization type.\nCONTEXT: [Describe your data – columns, goal, audience.]\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks\nTONE: Strategic, clear."
             }
           }
         }
@@ -2490,12 +2697,12 @@
               {
                 "heading": "Step 2 – Metodikos prompt",
                 "body": "Prepare an analysis methodology template – structure, metrics.",
-                "copyable": "ROLE: You are business analyst, kuris prepares analysis methodology.\nTASK: Prepare analysis methodology template for topic [X].\nCONTEXT: Need clear structure – what to analyze, which metrics to use.\nOUTPUT: Table structure with columns – Source, Metric, Period, Note. Add 5–7 concrete metrics ir 3 sources with links."
+                "copyable": "ROLE: You are a business analyst who prepares analysis methodology.\nTASK: Prepare an analysis methodology template for topic [X].\nCONTEXT: Need a clear structure – what to analyze, which metrics to use.\nOUTPUT: Table structure with columns – Source, Metric, Period, Note. Add 5–7 concrete metrics and 3 sources with links."
               },
               {
                 "heading": "Step 3–4 – Deep research (shared for 4 tools)",
-                "body": "Run the same prompt in ChatGPT, Gemini, DeepSeek, Grok – rezultatus later sujungsime.",
-                "copyable": "ROLE: You are senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research (deep research) temoje: [YOUR TOPIC – company, sector or business question].\nTask: Analyze trends, key metrics, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the 3 biggest risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write „I don't know“, do not guess.\nRun the same prompt in ChatGPT, Gemini, DeepSeek ir Grok (arba prigoesmus from these) – results will later without merged into one document."
+                "body": "Run the same prompt in ChatGPT, Gemini, DeepSeek, and Grok – we will merge the results later.",
+                "copyable": "ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [YOUR TOPIC – company, sector, or business question].\nAnalyze trends, key metrics, risks, and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the 3 biggest risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write \"I don't know\", do not guess.\nRun the same prompt in ChatGPT, Gemini, DeepSeek, and Grok (or whichever you have access to) – we will merge results into one document later."
               },
               {
                 "heading": "Step 5 – Data cleaning",
@@ -2508,12 +2715,12 @@
                 "copyable": "Merge these 4 research fragments (from ChatGPT, Gemini, DeepSeek, Grok) into one document.\nRequirements: one markdown structure with sections (1. Summary, 2. Facts and metrics, 3. Risks, 4. Sources). Each fact tagged [source: ChatGPT/Gemini/DeepSeek/Grok]. Remove all duplicates – keep only unique points. Add an overall conclusions section (max 5 sentences)."
               },
               {
-                "heading": "Step 7 – Atvaizdavimas (sandbox: colors, charts names)",
+                "heading": "Step 7 – Visualization (sandbox: colors, chart names)",
                 "body": "Specify parameters – colors (hex), axes, legend, 2 chart types, KPI blocks.",
-                "copyable": "ROLE: You are data visualization expert. Little code – many clear instructions.\nTASK: Prepare visualization specification from these integrated data.\nCONTEXT: I have one summary document (collected + cleaned + merged from 4 AI research studies). Goal – dashboard for leadership.\nOUTPUT – specify parameters:\n1. Colors: primary (hex), secondary (hex), accent for warnings/positive (hex).\n2. Chart titles: X axis, Y axis, chart title, legend – specifically for my data.\n3. Dynamics: which 2 charts would you recommend? (e.g. time series, comparison by category.) Tipas: bar / line / pie.\n4. KPI blocks: which 3–4 numwithoutrs to show on top?\nProvide concrete text, which galiu nukopijuoti to Claude arba ChatGPT ir get .html dashboard code."
+                "copyable": "ROLE: You are a data visualization expert. Little code – many clear instructions.\nTASK: Prepare a visualization specification from this integrated data.\nCONTEXT: I have one summary document (collected, cleaned, and merged from 4 AI research studies). Goal – a dashboard for leadership.\nOUTPUT – specify parameters:\n1. Colors: primary (hex), secondary (hex), accent for warnings/positive (hex).\n2. Chart titles: X axis, Y axis, chart title, legend – specifically for my data.\n3. Dynamics: which 2 charts would you recommend? (e.g. time series, comparison by category.) Type: bar / line / pie.\n4. KPI blocks: which 3–4 numbers to show on top?\nProvide concrete text I can copy into Claude or ChatGPT to get .html dashboard code."
               },
               {
-                "heading": "Step 8 – .html dashboard (instrukcija AI)",
+                "heading": "Step 8 – .html dashboard (AI instructions)",
                 "body": "Full .html – copy to Notepad, save, open in browser.",
                 "copyable": "Generate one full .html file with embedded CSS and, if needed, minimal JavaScript (e.g. Chart.js via CDN) that displays a dashboard for topic: [X].\nRequirements: title, 2–3 KPI blocks (numbers or placeholder), 1–2 charts (bar or line). Code must be complete – so I can copy to Notepad, save as .html and open in browser without extra files. Use colors and names I specify [or: primary #2563eb, secondary #64748b, accent #10b981]. Comment in file: \"Module 9 example – you can change data and colors.\""
               }
@@ -2553,7 +2760,7 @@
                 {
                   "targetSlideId": 101,
                   "title": "Sentiment analysis",
-                  "description": "Temos, intensyvumas, prioritetai, veiksmai."
+                  "description": "Topics, intensity, priorities, actions."
                 },
                 {
                   "targetSlideId": 102,
@@ -2562,12 +2769,12 @@
                 },
                 {
                   "targetSlideId": 103,
-                  "title": "Metaduomenys",
+                  "title": "Metadata",
                   "description": "3 types – context, schema, rights."
                 },
                 {
                   "targetSlideId": 104,
-                  "title": "Pilnas workflow",
+                  "title": "Full workflow",
                   "description": "8-step business cycle."
                 }
               ],
@@ -2580,12 +2787,12 @@
                 {
                   "targetSlideId": 106,
                   "title": "Risk forecasting",
-                  "description": "Risk matrix, 3 scenarijai."
+                  "description": "Risk matrix, 3 scenarios."
                 },
                 {
                   "targetSlideId": 107,
-                  "title": "Monitoring socialiniuose tinkluose",
-                  "description": "Topics, sentiment, influential people (many followers)."
+                  "title": "Social media monitoring",
+                  "description": "Topics, sentiment, influential people (high follower count)."
                 },
                 {
                   "targetSlideId": 108,
@@ -2602,7 +2809,7 @@
                 {
                   "targetSlideId": 110,
                   "title": "Competitor analysis",
-                  "description": "strengths, weaknesses, opportunities, 30 d. planas."
+                  "description": "Strengths, weaknesses, opportunities, 30-day plan."
                 },
                 {
                   "targetSlideId": 111,
@@ -2612,14 +2819,14 @@
                 {
                   "targetSlideId": 112,
                   "title": "Training ROI assessment",
-                  "description": "Training ROI, group split, topics."
+                  "description": "Does training pay off, group split, topics."
                 }
               ],
               [
                 {
                   "targetSlideId": 113,
-                  "title": "Vizualizacijos tipas",
-                  "description": "3 variants, risks, audience."
+                  "title": "Visualization type",
+                  "description": "3 options, risks, audience."
                 },
                 {
                   "targetSlideId": 114,
@@ -2633,8 +2840,8 @@
                 },
                 {
                   "targetSlideId": 116,
-                  "title": "Python vizualizacijos",
-                  "description": "seaborn, bar and line chart."
+                  "title": "Python visualizations",
+                  "description": "seaborn, bar and line charts."
                 }
               ]
             ]
@@ -2643,14 +2850,14 @@
         {
           "id": 101,
           "title": "Scenario: Sentiment analysis",
-          "subtitle": "Temos, intensyvumas, prioritetai",
+          "subtitle": "Topics, intensity, priorities",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Sentiment analysis – whenp do teisingai",
+            "scenarioTitle": "Sentiment analysis – how to do it right",
             "scenarioDescription": "Business value: topic classification, emotion intensity, action recommendations.",
             "taskFrame": {
               "task": "Prepare a sentiment analysis summary for customer reviews.",
-              "doneWhen": "You have a 1-page summary with sentiment structure, topics and 3–5 insights, or you copied the prompt and got an answer from AI."
+              "doneWhen": "You have a 1-page summary with sentiment structure, topics, and 3–5 insights, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
@@ -2658,15 +2865,15 @@
             "context": "A simple prompt only gives the surface. Business level – topics, intensity, critical complaints, priority actions.",
             "data": "Customer product reviews.",
             "constraints": "Analytical tone, concrete, no generalities.",
-            "expectedFormat": "Sentiment structure (%), topics, intensity, top 5 skundai, 3 actions.",
-            "narrativeLead": "This week Jurate atlieka sentiment analysis customer reviews."
+            "expectedFormat": "Sentiment structure (%), topics, intensity, top 5 complaints, 3 actions.",
+            "narrativeLead": "This week Jurate runs sentiment analysis on customer reviews."
           },
           "practicalTask": {
-            "template": "ROLE: You are market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities.",
+            "template": "ROLE: You are a market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Implement",
-            "placeholder": "Paste prompt ir reviews, enter result.",
+            "placeholder": "Paste the prompt and reviews, then enter your result.",
             "allowMarkWithoutAnswer": true,
             "feedbackPrompt": "Ask me one question: What did I get from AI doing this scenario and what will I apply next time? After my answer give one concrete tip.",
             "instructions": {
@@ -2675,21 +2882,21 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – copyable prompt. Copy ir paste to AI; add its own reviews.",
-                  "hint": "Add its own atsiliepimus.",
+                  "description": "Below is a copyable prompt. Copy and paste it into AI, then add your reviews.",
+                  "hint": "Add your reviews.",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
                   "title": "Provide the result",
-                  "description": "Save insights (summary or table) and enter below.",
-                  "hint": "Summary arba table.",
+                  "description": "Save your insights (summary or table) and enter them below.",
+                  "hint": "Summary or table.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: You are market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities.",
+          "template": "ROLE: You are a market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities.",
           "recommended": true
         },
         {
@@ -2702,12 +2909,12 @@
             "scenarioDescription": "Anonymization, formats, duplicate removal, missing values.",
             "taskFrame": {
               "task": "Prepare a data cleaning checklist before analysis.",
-              "doneWhen": "You have checklist (anonymization, formats, duplicate removal, missingmos values) arba nukopijavai prompt ir you got answer from AI."
+              "doneWhen": "You have a checklist (anonymization, formats, duplicate removal, missing values), or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Before any any analysis – checklist. Link su 4.2b (data preparation RAG).",
+            "context": "Before any analysis – use a checklist. Links to slide 4.2b (data preparation for RAG).",
             "data": "Raw collected data.",
             "constraints": "Data type validation, timestamps, region tags.",
             "expectedFormat": "Cleaned data with metadata.",
@@ -2716,8 +2923,8 @@
           "practicalTask": {
             "template": "Checklist before analysis: Anonymization; Format standardization; Duplicate removal; Missing value identification; Data type validation; Timestamps; Region tags.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
-            "title": "Pritaikyk checklist",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
+            "title": "Apply the checklist",
             "placeholder": "Enter your data source and what was cleaned.",
             "instructions": {
               "title": "Steps",
@@ -2725,8 +2932,8 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and adapt it",
-                  "description": "Below – checklist prompt. Copy to AI; mark which points you applied to your data.",
-                  "hint": "E.g. duplicates removal.",
+                  "description": "Below is the checklist prompt. Copy it into AI and mark which points you applied to your data.",
+                  "hint": "E.g. duplicate removal.",
                   "partialSolution": ""
                 }
               ]
@@ -2737,30 +2944,30 @@
         },
         {
           "id": 103,
-          "title": "Scenarijus: Metaduomenys",
+          "title": "Scenario: Metadata",
           "subtitle": "3 types – context, schema, rights",
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Metadata – why it matters",
             "scenarioDescription": "Descriptive, structural, administrative.",
             "taskFrame": {
-              "task": "Add metadata prie data datasets (descriptive, structural, administrative).",
-              "doneWhen": "You have metadata description arba nukopijavai prompt ir you got answer from AI."
+              "task": "Add metadata to datasets (descriptive, structural, administrative).",
+              "doneWhen": "You have a metadata description, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Without metadata AI analysis becomes shallow. Integrate into workflow before 4 analysis types.",
+            "context": "Without metadata, AI analysis becomes shallow. Integrate into your workflow before the 4 analysis types.",
             "data": "Dataset or source.",
-            "constraints": "Add source, date, topics tags.",
+            "constraints": "Add source, date, and topic tags.",
             "expectedFormat": "Metadata for each block.",
-            "narrativeLead": "This week Jurate prideda metadata prie data datasets."
+            "narrativeLead": "This week Jurate adds metadata to datasets."
           },
           "practicalTask": {
             "template": "3 metadata types: Descriptive (context); Structural (schema); Administrative (rights, security). Add to my data: source, date, topic.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
-            "title": "Add metaduomenis",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
+            "title": "Add metadata",
             "placeholder": "Describe which metadata you will use.",
             "instructions": {
               "title": "Step",
@@ -2768,8 +2975,8 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – metadata prompt. Copy, add source, date, topic – paleisk AI.",
-                  "hint": "Context – who data is for.",
+                  "description": "Below is the metadata prompt. Copy it, add source, date, and topic – then run it in AI.",
+                  "hint": "Context – who the data is for.",
                   "partialSolution": ""
                 }
               ]
@@ -2779,45 +2986,45 @@
         },
         {
           "id": 104,
-          "title": "Scenarijus: Pilnas workflow",
+          "title": "Scenario: Full workflow",
           "subtitle": "8-step business cycle",
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Full workflow – business cycle",
-            "scenarioDescription": "Collect → clean → metadata → 4 analysis → actions planas.",
+            "scenarioDescription": "Collect → clean → metadata → 4 analyses → action plan.",
             "taskFrame": {
-              "task": "Run full 8-step workflow for one topic (from collection to dashboard).",
-              "doneWhen": "You have summary document arba dashboard specification arba nukopijavai prompts ir you got atsakymus from AI."
+              "task": "Run the full 8-step workflow for one topic (from collection to dashboard).",
+              "doneWhen": "You have a summary document or dashboard specification, or you copied the prompts and got answers from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "M9 final project: complete the full cycle for one topic (sales, reviews) using the Master prompt.",
+            "context": "M9 final project: complete the full cycle for one topic (sales, reviews) using MASTER PROMPT.",
             "data": "Pick a topic.",
             "constraints": "8-step sequence.",
             "expectedFormat": "Report or plan with 8 blocks.",
-            "narrativeLead": "This week Jurate koordinuoja full 8 steps workflow vienai temai."
+            "narrativeLead": "This week Jurate coordinates the full 8-step workflow for one topic."
           },
           "practicalTask": {
             "template": "Role: Experienced data analyst.\nTask: Perform full data analysis on [YOUR_TOPIC].\nStructure: 1. Data sources 2. Data structure 3. Cleaning 4. EDA 5. Visualizations 6. Insights 7. Forecasts 8. Recommendations",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Implement full cycle",
-            "placeholder": "Enter MASTER PROMPT ir rezultathat.",
+            "placeholder": "Enter the MASTER PROMPT and result.",
             "instructions": {
               "title": "Steps",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – MASTER PROMPT template. Replace [its own topic] (e.g. sales Q3), copy ir paleisk AI.",
-                  "hint": "Replace [YOUR TOPIC].",
+                  "description": "Below is the MASTER PROMPT template. Replace [YOUR_TOPIC] (e.g. sales Q3), copy and run in AI.",
+                  "hint": "Replace [YOUR_TOPIC].",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
                   "title": "Provide the result",
-                  "description": "Enter gauthat report arba plan su 8 blockss.",
+                  "description": "Enter the report or plan with 8 blocks you received.",
                   "hint": "ChatGPT, Claude.",
                   "partialSolution": ""
                 }
@@ -2836,8 +3043,8 @@
             "scenarioTitle": "4 analysis types – the real power",
             "scenarioDescription": "What happened? Why? What may happen? How to act?",
             "taskFrame": {
-              "task": "Apply 4 analysis tipus (descriptive, diagnostic, predictive, prescriptive) sales duomenims.",
-              "doneWhen": "You have atsakymus pagal 4 tipus arba nukopijavai prompts ir you got atsakymus from AI."
+              "task": "Apply the 4 analysis types (descriptive, diagnostic, predictive, prescriptive) to sales data.",
+              "doneWhen": "You have answers for all 4 types, or you copied the prompts and got answers from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
@@ -2846,7 +3053,7 @@
             "data": "Sales data or your own domain.",
             "constraints": "4 separate prompts.",
             "expectedFormat": "4 answer blocks.",
-            "narrativeLead": "This week Martynas taiko 4 analysis tipus sales duomenims.",
+            "narrativeLead": "This week Martynas applies the 4 analysis types to sales data.",
             "branching": {
               "question": "Which analysis would you run first in this situation?",
               "choices": [
@@ -2868,9 +3075,9 @@
           "practicalTask": {
             "template": "Descriptive: Summarize sales – top 5 products, regions, seasonality. Diagnostic: Why Q3 drop? Predictive: Forecast Q4. Prescriptive: How much to increase stock? Raise price?",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Use all 4 types",
-            "placeholder": "Pasteite po one prompt ir result.",
+            "placeholder": "Paste one prompt at a time and the result.",
             "allowMarkWithoutAnswer": true,
             "feedbackPrompt": "Ask me one question: What did I get from AI doing this scenario and what will I apply next time? After my answer give one concrete tip.",
             "instructions": {
@@ -2879,7 +3086,7 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – 4 analysis types prompt. Copy ir paleisk AI su its own sales duomenimis.",
+                  "description": "Below is the 4 analysis types prompt. Copy and run in AI with your sales data.",
                   "hint": "4 types: descriptive, diagnostic, predictive, prescriptive.",
                   "partialSolution": ""
                 }
@@ -2892,28 +3099,28 @@
         {
           "id": 106,
           "title": "Scenario: Risk forecasting",
-          "subtitle": "Risk matrix, 3 scenarijai",
+          "subtitle": "Risk matrix, 3 scenarios",
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Risk forecasting",
             "scenarioDescription": "Matrix: risk, probability, impact, prevention.",
             "taskFrame": {
-              "task": "Create risk matrix ir 3 scenario (optimistinis, realus, pesimistinis).",
-              "doneWhen": "You have risks matrix ir scenario arba nukopijavai prompt ir you got answer from AI."
+              "task": "Create a risk matrix and 3 scenarios (optimistic, realistic, pessimistic).",
+              "doneWhen": "You have a risk matrix and scenarios, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Risk matrix su columnss. 3 scenarijai: optimistinis, realus, pesimistinis.",
-            "data": "Verslo sritis arba projektas.",
-            "constraints": "Columns: Rizika, Probability (%), Impact, Period, Prevention, Alternative.",
+            "context": "Risk matrix with columns. 3 scenarios: optimistic, realistic, pessimistic.",
+            "data": "Business domain or project.",
+            "constraints": "Columns: Risk, Probability (%), Impact, Timeframe, Prevention, Alternative.",
             "expectedFormat": "Table + 3 scenarios.",
-            "narrativeLead": "This week Martynas sudaro risk matrix ir 3 scenario."
+            "narrativeLead": "This week Martynas builds a risk matrix and 3 scenarios."
           },
           "practicalTask": {
-            "template": "Create risks matrix. Columns: Rizika | Probability (%) | Impact (finansinis) | Period | Prevencijos veiksmas | Alternatyvus planas. Additionally: 3 scenarijai (optimistinis / realus / pesimistinis).",
+            "template": "Create a risk matrix. Columns: Risk | Probability (%) | Impact (financial) | Timeframe | Prevention action | Alternative plan. Additionally: 3 scenarios (optimistic / realistic / pessimistic).",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Create matrix",
             "placeholder": "Enter your risks or AI output.",
             "instructions": {
@@ -2922,26 +3129,26 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – risks matrix prompt. Copy, add its own context – paleisk AI ir get matrix.",
-                  "hint": "Add its own konteksthat.",
+                  "description": "Below is the risk matrix prompt. Copy, add your context – run in AI and get the matrix.",
+                  "hint": "Add your context.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "Create risks matrix. Columns: Rizika | Probability (%) | Impact (finansinis) | Period | Prevencijos veiksmas | Alternatyvus planas. Additionally: 3 scenarijai (optimistinis / realus / pesimistinis)."
+          "template": "Create a risk matrix. Columns: Risk | Probability (%) | Impact (financial) | Timeframe | Prevention action | Alternative plan. Additionally: 3 scenarios (optimistic / realistic / pessimistic)."
         },
         {
           "id": 107,
-          "title": "Scenario: Monitoring socialiniuose tinkluose",
+          "title": "Scenario: Social media monitoring",
           "subtitle": "Topics, sentiment, influential people",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Monitoring socialiniuose tinkluose",
+            "scenarioTitle": "Social media monitoring",
             "scenarioDescription": "Main topics, sentiment (%), influential people (many followers), reputation risk.",
             "taskFrame": {
-              "task": "Monitor social channels – topics, sentiment, reputation risk, atsako strategija.",
-              "doneWhen": "You have a summary with topics, sentiment and 2-week strategy, or you copied the prompt and got an answer from AI."
+              "task": "Monitor social channels – topics, sentiment, reputation risk, response strategy.",
+              "doneWhen": "You have a summary with topics, sentiment, and a 2-week strategy, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
@@ -2955,17 +3162,17 @@
           "practicalTask": {
             "template": "1. Extract top 10 topics 2. Assess sentiment (%) 3. Identify influential people (many followers) 4. Determine reputation risk 5. Prepare 2-week response strategy",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Prepare a monitoring plan",
-            "placeholder": "Enter topics arba AI answer.",
+            "placeholder": "Enter topics or AI answer.",
             "instructions": {
               "title": "Step",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – socialinio monitoringo prompt (5 points). Copy, add its own kanalus – paleisk AI.",
-                  "hint": "Add its own kanalus.",
+                  "description": "Below is the social monitoring prompt (5 points). Copy, add your channels – run in AI.",
+                  "hint": "Add your channels.",
                   "partialSolution": ""
                 }
               ]
@@ -2975,7 +3182,7 @@
         },
         {
           "id": 108,
-          "title": "Scenarijus: Kombinuotas super promptas",
+          "title": "Scenario: Combined super prompt",
           "subtitle": "Analyst + visualization + strategist",
           "type": "practice-scenario",
           "content": {
@@ -2983,7 +3190,7 @@
             "scenarioDescription": "Full package: 3 insights, charts, Power BI, Python, story for leadership.",
             "taskFrame": {
               "task": "Use a combined super prompt (analyst + visualization + business strategist).",
-              "doneWhen": "You have a summary, suggested charts and recommended action, or you copied the prompt and got an answer from AI."
+              "doneWhen": "You have a summary, suggested charts, and recommended action, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
@@ -2991,36 +3198,36 @@
             "context": "Analyst + visualization designer + business strategist. OUTPUT: summary, charts, Power BI instructions, Python code, story (max 200 words), action.",
             "data": "Your data domain.",
             "constraints": "See §7A.7 CopyButton.",
-            "expectedFormat": "Summary, suggested grafiwhen, instructions, kodas, text.",
-            "narrativeLead": "This week Martynas naudoja kombinuothat super prompthat (analionlyas + visualization)."
+            "expectedFormat": "Summary, suggested charts, instructions, code, text.",
+            "narrativeLead": "This week Martynas uses the combined super prompt (analyst + visualization)."
           },
           "practicalTask": {
-            "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words.); recommended action.",
+            "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words); recommended action.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Implement package",
-            "placeholder": "Enter topic ir rezultathat.",
+            "placeholder": "Enter topic and result.",
             "instructions": {
               "title": "Steps",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – super prompt template. Replace [X] to its own topic (e.g. sales Q4), copy ir paleisk AI.",
-                  "hint": "Pvz. pardavimai Q4.",
+                  "description": "Below is the super prompt template. Replace [X] with your topic (e.g. sales Q4), copy and run in AI.",
+                  "hint": "E.g. sales Q4.",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
                   "title": "Provide the result",
-                  "description": "Enter result pakethat (insights, grafiwhen, instructions).",
+                  "description": "Enter the package you received (insights, charts, instructions).",
                   "hint": "Follow-up may be needed.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words.); recommended action."
+          "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words); recommended action."
         },
         {
           "id": 109,
@@ -3029,7 +3236,7 @@
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Data creation – structured example",
-            "scenarioDescription": "Columns, formulas, regionai, seasonality.",
+            "scenarioDescription": "Columns, formulas, regions, seasonality.",
             "taskFrame": {
               "task": "Create structured sales data examples (columns, formulas, regions).",
               "doneWhen": "You have a 20-row example with columns and formulas, or you copied the prompt and got an answer from AI."
@@ -3044,10 +3251,10 @@
             "narrativeLead": "This week Giedre creates structured data examples for business."
           },
           "practicalTask": {
-            "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Kaina*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas.",
+            "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Price*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
-            "title": "Sugeneruok duomenis",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
+            "title": "Generate data",
             "placeholder": "Paste AI output or your table.",
             "instructions": {
               "title": "Step",
@@ -3055,23 +3262,23 @@
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – data creation prompt. Copy and run in AI – get 20 rows of sample data.",
+                  "description": "Below is the data creation prompt. Copy and run in AI – get 20 rows of sample data.",
                   "hint": "Get 20 rows.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Kaina*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas."
+          "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Price*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas."
         },
         {
           "id": 110,
           "title": "Scenario: Competitor analysis",
-          "subtitle": "strengths, weaknesses, opportunities, 30 d. planas",
+          "subtitle": "Strengths, weaknesses, opportunities, 30-day plan",
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Competitor analysis – strategy",
-            "scenarioDescription": "Socialiniai tinklai, SEO, kainodara, skundai, finansai.",
+            "scenarioDescription": "Social media, SEO, pricing, complaints, finance.",
             "taskFrame": {
               "task": "Perform competitor analysis – strengths, weaknesses, opportunities, 30-day plan.",
               "doneWhen": "You have an analysis table and 30-day strategy, or you copied the prompt and got an answer from AI."
@@ -3083,21 +3290,21 @@
             "data": "Competitor list or market.",
             "constraints": "Analyze: social media, SEO, pricing, complaints, finance.",
             "expectedFormat": "Analysis table (strengths, weaknesses, opportunities, threats), weak spots, opportunities, 30-day strategy.",
-            "narrativeLead": "This week Giedre atlieka competitors analysis – strengths, weaknesses, opportunities ir 30 d. planas."
+            "narrativeLead": "This week Giedre performs competitor analysis – strengths, weaknesses, opportunities, and a 30-day plan."
           },
           "practicalTask": {
             "template": "ROLE: Strategic business analyst. TASK: Perform competitor analysis. Analyze: 1) Social media activity 2) SEO strategy 3) Product pricing 4) Most common customer complaints 5) Financial metrics. OUTPUT: Table (strengths, weaknesses, opportunities, threats); 3 competitor weak spots; 3 our opportunities; Quick entry strategy (30-day plan).",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Perform analysis",
-            "placeholder": "Enter competitors ir rezultathat.",
+            "placeholder": "Enter competitors and result.",
             "instructions": {
               "title": "Steps",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – competitors analysis prompt. Copy, nurodyk competitors arba rinwhat – paleisk AI.",
+                  "description": "Below is the competitor analysis prompt. Copy, specify competitors or market – run in AI.",
                   "hint": "Add to CONTEXT.",
                   "partialSolution": ""
                 }
@@ -3115,7 +3322,7 @@
             "scenarioTitle": "Finance insights (key metrics)",
             "scenarioDescription": "Key profit metrics, margin, cash flow, debt; 3 risks, 3 opportunities.",
             "taskFrame": {
-              "task": "Prepare a finance analysis – key metrics, margin, risks, optimization ideas.",
+              "task": "Prepare a financial analysis – key metrics, margin, risks, optimization ideas.",
               "doneWhen": "You have a financial summary with 3 risks and 3 opportunities, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
@@ -3124,29 +3331,29 @@
             "context": "Finance assistant. Assess key metrics, identify risks and optimization opportunities.",
             "data": "Financial data or company.",
             "constraints": "Key profit metrics, margin, cash flows, debt level.",
-            "expectedFormat": "Assessment + 3 risks + 3 opportunities + price potencialas (%).",
-            "narrativeLead": "This week Giedre prepares financial analysis – main metrics, margin, risks."
+            "expectedFormat": "Assessment + 3 risks + 3 opportunities + price increase potential (%).",
+            "narrativeLead": "This week Giedre prepares a financial analysis – key metrics, margin, and risks."
           },
           "practicalTask": {
-            "template": "ROLE: Finance assistant. Assess: key profit metrics, margin, cash flow, debt level. Identify: 3 financial risks; 3 optimization opportunities; Price increase potential (%).",
+            "template": "ROLE: You are a finance assistant. Assess: key profit metrics (EBITDA), margin, cash flow, debt level. Identify: 3 financial risks; 3 optimization opportunities; price increase potential (%).",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Prepare a financial insight",
-            "placeholder": "Enter metrics arba AI answer.",
+            "placeholder": "Enter your metrics or AI answer.",
             "instructions": {
               "title": "Step",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – finance analysis prompt. Copy, add its own finansinius duomenis – paleisk AI.",
+                  "description": "Below is the financial analysis prompt. Copy it, add your financial data, and run it in AI.",
                   "hint": "E.g. revenue, margin.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Finance assistant. Assess: key profit metrics (EBITDA), margin, cash flow, debt level. Identify: 3 financial risks; 3 optimization opportunities; Price increase potential (%).",
+          "template": "ROLE: You are a finance assistant. Assess: key profit metrics (EBITDA), margin, cash flow, debt level. Identify: 3 financial risks; 3 optimization opportunities; price increase potential (%).",
           "recommended": true
         },
         {
@@ -3173,16 +3380,16 @@
           "practicalTask": {
             "template": "1. Assess training ROI: return = (productivity gain – training cost) / training cost. 2. Split employees: High impact / Medium / Zero. 3. Identify: which topics worked, which did not. 4. Suggest: what to stop, expand, test.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
-            "title": "Assess mokymus",
-            "placeholder": "Enter training ir produktyvumo duomenis.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
+            "title": "Assess training",
+            "placeholder": "Enter training and productivity data.",
             "instructions": {
               "title": "Steps",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – training naudingumo prompt. Copy, add costs ir productivity duomenis – paleisk AI.",
+                  "description": "Below is the training ROI prompt. Copy, add costs and productivity data – run in AI.",
                   "hint": "Numbers or description.",
                   "partialSolution": ""
                 }
@@ -3193,45 +3400,45 @@
         },
         {
           "id": 113,
-          "title": "Scenarijus: Vizualizacijos tipas",
-          "subtitle": "3 variants, risks, audience",
+          "title": "Scenario: Visualization type",
+          "subtitle": "3 options, risks, audience",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Vizualizacijos tipo parinkimas (DA_4)",
-            "scenarioDescription": "Business lygis: 3 variantai, why tinka, risks, leadership.",
+            "scenarioTitle": "Choosing a visualization type (DA_4)",
+            "scenarioDescription": "Business level: 3 options, why it fits, risks, leadership.",
             "taskFrame": {
-              "task": "Pick the optimal visualization type for leadership (3 variants, explanations, risks).",
+              "task": "Pick the optimal visualization type for leadership (3 options, explanations, risks).",
               "doneWhen": "You have 3 visualization options with explanations, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "ROLE: senior visualization expert + UX. OUTPUT: 3 variantai, explanations, risks. TONE: strategic.",
+            "context": "ROLE: senior visualization expert + UX. OUTPUT: 3 options, explanations, risks. TONE: strategic.",
             "data": "Data or report purpose.",
             "constraints": "See §7A.4 (1).",
-            "expectedFormat": "3 visualization variants with rationale and risks.",
+            "expectedFormat": "3 visualization options with rationale and risks.",
             "narrativeLead": "This week Lukas picks the optimal visualization type for leadership."
           },
           "practicalTask": {
-            "template": "ROLE: You are senior visualization expert ir UX specialistas. TASK: Suggest visualization for this data. OUTPUT: 3 variants (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic.",
+            "template": "ROLE: You are a senior visualization expert and UX specialist. TASK: Suggest a visualization for this data. OUTPUT: 3 options (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Pick a visualization",
-            "placeholder": "Enter data ir pickthat variant.",
+            "placeholder": "Enter data and chosen option.",
             "instructions": {
               "title": "Step",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – visualization type suggestion prompt. Copy, add your data – get 3 options.",
+                  "description": "Below is the visualization type prompt. Copy, add your data – get 3 options.",
                   "hint": "What will be shown?",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: You are senior visualization expert ir UX specialistas. TASK: Suggest visualization for this data. OUTPUT: 3 variants (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic."
+          "template": "ROLE: You are a senior visualization expert and UX specialist. TASK: Suggest a visualization for this data. OUTPUT: 3 options (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic."
         },
         {
           "id": 114,
@@ -3242,38 +3449,38 @@
             "scenarioTitle": "Story creation from data (DA_4)",
             "scenarioDescription": "Narrative from numbers: insight, tension, recommended action.",
             "taskFrame": {
-              "task": "Create data story – insight, tension, what means for business, veiksmas.",
+              "task": "Create a data story – insight, tension, what it means for business, action.",
               "doneWhen": "You have a 4-point narrative (insight, conflict/tension, meaning, action), or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
             "context": "Data storyteller. CONTEXT e.g. sales +20% but down in 2 regions. OUTPUT: 4 points.",
-            "data": "Verslo rodikliai arba tendencijos.",
+            "data": "Business metrics or trends.",
             "constraints": "See §7A.4 (2).",
-            "expectedFormat": "Insight, conflict/tension, what means for business, action.",
-            "narrativeLead": "This week Lukas kuria data story – insight, tension, veiksmas."
+            "expectedFormat": "Insight, conflict/tension, what it means for business, action.",
+            "narrativeLead": "This week Lukas creates a data story – insight, tension, action."
           },
           "practicalTask": {
-            "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, any 2 regions declined]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means verslui 4) Recommended action. Max 200 words.",
+            "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, but down in 2 regions]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means for business 4) Recommended action. Max 200 words.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Create story",
-            "placeholder": "Enter data ir istorijos teksthat.",
+            "placeholder": "Enter data and story text.",
             "instructions": {
               "title": "Step",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – data storytelling prompt. Replace CONTEXT to its own duomenis (e.g. sales +20%, any 2 regions decreased) – paleisk AI.",
+                  "description": "Below is the data storytelling prompt. Replace CONTEXT with your data (e.g. sales +20%, but down in 2 regions) – run in AI.",
                   "hint": "Conflict or trend.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, any 2 regions declined]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means verslui 4) Recommended action. Max 200 words."
+          "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, but down in 2 regions]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means for business 4) Recommended action. Max 200 words."
         },
         {
           "id": 115,
@@ -3284,109 +3491,109 @@
             "scenarioTitle": "Power BI step generation (DA_4)",
             "scenarioDescription": "CSV upload, data structure, visualizations, Power BI formulas (YOY growth), design recommendations.",
             "taskFrame": {
-              "task": "Generate Power BI steps (CSV, data structure, formulas, design principai).",
-              "doneWhen": "You have steps list arba instruction arba nukopijavai prompt ir you got answer from AI."
+              "task": "Generate Power BI steps (CSV, data structure, formulas, design principles).",
+              "doneWhen": "You have a step list or instructions, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Columns pvz. Date, Region, Sales, Category. Gestalt principles dizaine.",
+            "context": "Columns e.g. Date, Region, Sales, Category. Gestalt principles in design.",
             "data": "CSV structure or table.",
             "constraints": "See §7A.4 (3).",
             "expectedFormat": "Steps: upload, model, visualizations, DAX, design.",
-            "narrativeLead": "This week Lukas generuoja Power BI steps (CSV, data structure, formulas, design)."
+            "narrativeLead": "This week Lukas generates Power BI steps (CSV, data structure, formulas, design)."
           },
           "practicalTask": {
-            "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Apimk: data upload, data structure, vizualizacijas, Power BI formulas YOY augimui, design rekomendacijas.",
+            "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Cover: data upload, data model, visualizations, DAX formulas for YOY growth, design recommendations.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Get Power BI plan",
-            "placeholder": "Enter columns description ir AI answer.",
+            "placeholder": "Enter column description and AI answer.",
             "instructions": {
               "title": "Step",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – Power BI steps prompt. Copy, nurodyk savo columns schema (e.g. Date, Region, Sales) – paleisk AI.",
+                  "description": "Below is the Power BI steps prompt. Copy, specify your column schema (e.g. Date, Region, Sales) – run in AI.",
                   "hint": "Date, Region, Sales...",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Apimk: data upload, data structure (model), vizualizacijas, Power BI formulas YOY augimui, design rekomendacijas."
+          "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Cover: data upload, data model, visualizations, DAX formulas for YOY growth, design recommendations."
         },
         {
           "id": 116,
-          "title": "Scenarijus: Python vizualizacijos",
-          "subtitle": "seaborn, bar and line chart",
+          "title": "Scenario: Python visualizations",
+          "subtitle": "seaborn, bar and line charts",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Python vizualizacijos kodas (DA_4)",
+            "scenarioTitle": "Python visualization code (DA_4)",
             "scenarioDescription": "Dataset, bar + line chart, seaborn, annotations with insights.",
             "taskFrame": {
               "task": "Prepare Python visualization code (seaborn, annotations, insights).",
-              "doneWhen": "You have code arba specification arba nukopijavai prompt ir you got answer from AI."
+              "doneWhen": "You have code or a specification, or you copied the prompt and got an answer from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Dataset generation, seaborn, annotations. 1 slide max code – task description or fragment.",
+            "context": "Dataset generation, seaborn, annotations. One slide max for code – task description or fragment.",
             "data": "Data name or schema.",
             "constraints": "See §7A.4 (4).",
-            "expectedFormat": "Python kodas arba instrukcijos.",
-            "narrativeLead": "This week Lukas writes Python visualizations code (seaborn, annotations)."
+            "expectedFormat": "Python code or instructions.",
+            "narrativeLead": "This week Lukas writes Python visualization code (seaborn, annotations)."
           },
           "practicalTask": {
-            "template": "ROLE: Python data visualization expert. TASK: Generate seaborn code – bar and line chart, annotations with insights. Duomenys: [describe columns]. Use seaborn, matplotlib annotations.",
+            "template": "ROLE: You are a Python data visualization expert. TASK: Generate seaborn code – bar and line charts, annotations with insights. Data: [describe columns]. Use seaborn and matplotlib annotations.",
             "templateLabel": "Prompt for this scenario – copy to AI",
-            "motivation": "Your task: copy the prompt withoutlow to AI, perform task ir enter result.",
+            "motivation": "Your task: copy the prompt below into AI, complete the task, and enter your result.",
             "title": "Get Python code",
-            "placeholder": "Enter data description arba code.",
+            "placeholder": "Enter your data description or code.",
             "instructions": {
               "title": "Steps",
               "steps": [
                 {
                   "step": 1,
                   "title": "Copy the prompt below and paste into AI",
-                  "description": "Below – Python visualization prompt. Copy, describe columns or data – get seaborn code.",
-                  "hint": "Pvz. date, sales.",
+                  "description": "Below is the Python visualization prompt. Copy it, describe your columns or data, and get seaborn code.",
+                  "hint": "E.g. date, sales.",
                   "partialSolution": ""
                 }
               ]
             }
           },
-          "template": "ROLE: Python data visualization expert. TASK: Generate seaborn code – bar and line chart, annotations with insights. Duomenys: [describe columns]. Use seaborn, matplotlib annotations.",
+          "template": "ROLE: You are a Python data visualization expert. TASK: Generate seaborn code – bar and line charts, annotations with insights. Data: [describe columns]. Use seaborn and matplotlib annotations.",
           "recommended": true
         },
         {
           "id": 117,
-          "title": "Scenarijus: Data scraping su Python skriptu",
-          "subtitle": "Data scraping – AI generates script, you run it",
+          "title": "Scenario: Data scraping with a Python script",
+          "subtitle": "Data scraping – AI generates the script, you run it",
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Data scraping – simple Python script",
             "scenarioDescription": "Copy the prompt into AI, get a script – pip install, python scrape.py, CSV result. See Module 7 slide 7.7a.",
             "taskFrame": {
-              "task": "Collect duomenis from website – AI paraxes Python script, tu paleisi ir you will get CSV.",
-              "doneWhen": "You have CSV file su collecttais duomenimis arba nukopijavai prompt ir you got script from AI."
+              "task": "Collect data from a website – AI writes a Python script, you run it and get a CSV.",
+              "doneWhen": "You have a CSV file with collected data, or you copied the prompt and got a script from AI."
             },
             "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate the Data scraping scenario experience.\nINPUT: I just completed the Data scraping scenario – data collection with an AI-generated Python script.\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
           },
           "scenario": {
-            "context": "Data Analysis path data collection step. AI generates Python script (requests, BeautifulSoup); participant runs – pip install, python scrape.py.",
+            "context": "Data Analysis path data collection step. AI generates a Python script (requests, BeautifulSoup); you run it – pip install, python scrape.py.",
             "data": "Website link and what to extract (table, list, prices).",
-            "constraints": "Public only duomenys. Bibliotekos: requests, BeautifulSoup arba pandas.read_html.",
-            "expectedFormat": "CSV file with UTF-8. Optional: simple chart from collected data.",
-            "narrativeLead": "Jurate collects data from a website – AI writes the script, she runs it and gets CSV."
+            "constraints": "Public data only. Libraries: requests, BeautifulSoup, or pandas.read_html.",
+            "expectedFormat": "CSV file with UTF-8 encoding. Optional: simple chart from collected data.",
+            "narrativeLead": "Jurate collects data from a website – AI writes the script, she runs it and gets a CSV."
           },
           "practicalTask": {
             "template": "ROLE: You are a Python developer who writes simple data scraping scripts.\nTASK: Write a Python script that:\n1. Opens this page: [KEEP_WEBSITE_URL]\n2. Extracts [WHAT_TO_EXTRACT – e.g. a table with prices, product list, names and prices]\n3. Saves the result to a CSV file (UTF-8 encoding)\n\nRequirements:\n- Use requests and BeautifulSoup (or pandas.read_html if it is a table).\n- Script should be short, with comments in English.\n- At the end print: how many records collected and the file name.\nProvide the full script – so I can copy to a file and run: pip install requests beautifulsoup4, python scrape.py",
-            "templateLabel": "Prompt skriptui generuoti – copy to AI",
-            "motivation": "Tavo task: copy the prompt below to AI, enter website URL ir what nori collect – AI provides Python script. Tada: pip install requests beautifulsoup4, python scrape.py – result CSV.",
+            "templateLabel": "Prompt to generate script – copy to AI",
+            "motivation": "Your task: copy the prompt below into AI, enter the website URL and what you want to collect – AI will provide a Python script. Then run: pip install requests beautifulsoup4, python scrape.py – result is a CSV file.",
             "title": "Get Python script and collect data",
-            "placeholder": "Enter website URL, what collectai arba AI answer.",
+            "placeholder": "Enter the website URL, what you collected, or the AI answer.",
             "instructions": {
               "title": "Steps",
               "steps": [
@@ -3394,13 +3601,13 @@
                   "step": 1,
                   "title": "Copy the prompt, enter the URL and what to collect – get a script from AI",
                   "description": "Replace [KEEP_WEBSITE_URL] and [WHAT_TO_EXTRACT]. AI will provide a script – copy it to scrape.py.",
-                  "hint": "E.g. table su prices.",
+                  "hint": "E.g. a table with prices.",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
                   "title": "Run the script",
-                  "description": "Terminale: pip install requests beautifulsoup4 (one time). Tada: python scrape.py.",
+                  "description": "In the terminal: pip install requests beautifulsoup4 (one time). Then: python scrape.py.",
                   "hint": "Result – CSV in the same folder.",
                   "partialSolution": ""
                 }
@@ -3412,12 +3619,12 @@
         },
         {
           "id": 92,
-          "title": "Projekto santrauka",
+          "title": "Project summary",
           "subtitle": "What next?",
           "type": "practice-summary",
           "content": {
             "introHeading": "What you learned",
-            "introBody": "Congratulations! If you completed the 8-step workflow – you have a summary, visualization specification or .html draft and can repeat the same process for another topic. If you also tried scenarios – you have separate templates too.",
+            "introBody": "Congratulations! If you completed the 8-step workflow, you have a summary, visualization spec, or .html draft — and you can repeat the same process for another topic. If you also tried the extra scenarios, you have separate templates too.",
             "stats": [
               {
                 "label": "Main path",
@@ -3425,7 +3632,7 @@
               },
               {
                 "label": "Additional scenarios",
-                "value": "iki 17"
+                "value": "up to 17"
               },
               {
                 "label": "Artifact",
@@ -3434,27 +3641,27 @@
             ],
             "sections": [
               {
-                "heading": "Sveikiname!",
-                "body": "8-step cycle is already a full project: sources, multi-AI synthesis, cleaning, integration, dashboard. If you want – return to hub and try one of up to 17 extra scenarios with CopyButton."
+                "heading": "Congratulations!",
+                "body": "The 8-step cycle is already a full project: sources, multi-AI synthesis, cleaning, integration, dashboard. If you want, return to the hub and try one of up to 17 extra scenarios with CopyButton."
               },
               {
                 "heading": "Example result (workflow)",
-                "body": "Good result: consolidated document with sources, deduplicated entries, clear KPIs or charts, .html or clear spec for leadership. If you used MASTER PROMPT from Module 7 – structure should be similar: sources, structure, cleaning, insights, recommendations.",
+                "body": "A good result: a consolidated document with sources, deduplicated entries, clear KPIs or charts, .html or a clear spec for leadership. If you used the MASTER PROMPT from Module 7, the structure should be similar: sources, structure, cleaning, insights, recommendations.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "What next?",
-                "body": "Within 48 h repeat workflow for another topic or open an extra scenario. Return to module list – next module or certificate.",
+                "body": "Within 48 hours, repeat the workflow for another topic or open an extra scenario. Return to the module list — next module or certificate.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Refleksija",
+                "heading": "Reflection",
                 "body": "What did you do? (What) — What does it mean for you or the team? (So What) — What will you do next? (Now What). Answer briefly to yourself or use the prompt below in AI."
               }
             ],
             "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step workflow and at least one scenario).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers give 1 concrete tip.",
             "tagline": "One workflow cycle = one ready project.",
-            "nextStepCTA": "Within 48 h repeat 8 steps for another topic or try an extra scenario."
+            "nextStepCTA": "Within 48 hours, repeat the 8 steps for another topic or try an extra scenario."
           }
         }
       ],

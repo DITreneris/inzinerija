@@ -1,4 +1,5 @@
 /**
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides; skaidrė 44 naudoja llm_autoregressive. Nešalinti be QA.
  * Konteksto veikimo schemos blokas – skaidrėje su „Peržiūrėti visą dydį“.
  * Naudojama skaidrėje id 44 (Konteksto inžinerija: kaip valdyti DI).
  */

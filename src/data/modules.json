@@ -704,7 +704,7 @@
           "type": "full-example",
           "practicalTask": {
             "title": "Sukurk savo pilną promptą",
-            "motivation": "💼 Panaudokite ją savo darbe – sukurkite struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
+            "motivation": "💼 Panaudok ją savo darbe – sukurk struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
             "inputHint": "Įvesk visą promptą į lauką žemiau – visus blokus (META, INPUT, OUTPUT ir kt.) su savo žodžiais, ne tik pavienius žodžius iš placeholderių.",
             "placeholder": "META: Tu esi...\n\nINPUT: Duomenys...\n\nOUTPUT: Formatas...\n\nREASONING: Mąstymo seka...\n\nQUALITY: Kriterijai...\n\nADVANCED: Parametrai...",
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
@@ -1400,7 +1400,7 @@
       "id": 3,
       "title": "Praktinis Pritaikymas",
       "subtitle": "6 verslo scenarijai su 6 blokais",
-      "description": "6 skirtingi scenarijai – sukurkite savo promptus ir sukurkite šablonų biblioteką.",
+      "description": "6 skirtingi scenarijai – sukurk savo promptus ir sukurk šablonų biblioteką.",
       "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",
@@ -1468,42 +1468,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
                   "hint": "Rolė: vadovas. Tikslas: strateginė ataskaita. Auditorija: valdyba.",
                   "partialSolution": "META:\nTu esi vyresnysis vadovas su 10+ metų patirtimi strateginiuose sprendimuose. Tavo tikslas – parengti ketvirčio rezultatų apžvalgą valdybai."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
+                  "title": "INPUT blokas - Surink duomenis",
                   "description": "Išskirk KPI, rizikas ir apribojimus",
                   "hint": "Duomenys: pajamos, marža, projekto būsena, prioritetai. Apribojimai: 5 dienos, 4 nariai.",
                   "partialSolution": "INPUT:\nQ2 2024: pajamos 1.2M EUR (+8% vs Q1), marža 23%. Projekto „X“ būsena: 70% atlikta, rizika – vėlavimas 2 savaites. Top 3 prioritetai Q3: pardavimų augimas, restruktūrizacija, nauja CRM.\n\nApribojimai: 5 dienos, 4 valdybos nariai, max 2 puslapiai."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk struktūrą ir KPI dashboard",
                   "hint": "Formatas: Executive Summary. Struktūra: KPI, rizikos, 3 prioritetai.",
                   "partialSolution": "OUTPUT:\nFormatas: Executive Summary (1–2 puslapiai). Struktūra: 1) KPI dashboard, 2) Rizikos ir projekto būsena, 3) 3 prioritetai su rekomendacijomis. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite analizės ir prioritetizavimo logiką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk analizės ir prioritetizavimo logiką",
                   "hint": "CoT: 1) KPI apibendrinimas, 2) Rizikų įvertinimas, 3) Prioritetų rekomendacijos.",
                   "partialSolution": "REASONING (CoT):\n1) Apibendrinti KPI ir tendencijas\n2) Įvertinti rizikas ir projektų būseną\n3) Prioritetizuoti ir suformuluoti rekomendacijas"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Skaičiai tikslūs, rizikos identifikuotos, rekomendacijos aiškios.",
                   "partialSolution": "QUALITY:\n✓ Skaičiai tikslūs ✓ Rizikos identifikuotos ✓ Rekomendacijos aiškios ✓ Ilgis 1–2 psl."
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.3 (faktinis tonas).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.3 (faktinis tonas), Format: verslo dokumentas"
@@ -1536,50 +1536,50 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
-                  "hint": "Rolė: marketingo vadovas. Tikslas: Q1 2025 marketingo planas. Auditorija: generalinis direktorius.",
-                  "partialSolution": "META:\nTu esi marketingo vadovas su 10+ metų B2B patirtimi. Tavo tikslas – parengti Q1 2025 marketingo strateginį planą generaliniam direktoriui, kuris priims biudžeto sprendimus."
+                  "hint": "Rolė: pardavimų analitikas. Tikslas: Q3 pardavimų analizė ir veiksmų planas. Auditorija: vadovybė.",
+                  "partialSolution": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite konkretūs skaičiai, metrikos ir apribojimai",
-                  "hint": "Duomenys: Q4 rezultatai, CAC, konversija, konkurentai. Apribojimai: 2 savaitės, 3 žmonės komanda, B2B prioritetas.",
-                  "partialSolution": "INPUT:\nQ4 2024 rezultatai: 45 nauji klientai, CAC 6500 EUR, konversija 2.8%. Konkurentų augimas: +25% ir +18%. Planuojamas Q1 biudžetas: 300k EUR.\n\nApribojimai: Planas turi būti parengtas per 2 savaites. Komanda: 3 žmonės. Prioritetas – B2B segmentas."
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk konkrečius skaičius, metrikas ir apribojimus",
+                  "hint": "Duomenys: Q3 pajamos vs planas, segmentai B2B/B2C, vidutinis čekis. Apribojimai: 1 savaitė, 2 analitikai, 5 veiksmai.",
+                  "partialSolution": "INPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk, kokį dokumentą nori gauti",
-                  "hint": "Formatas: strateginis dokumentas. Struktūra: veiksmų planas + KPI. Kalba: lietuvių, verslo tonas.",
-                  "partialSolution": "OUTPUT:\nFormatas: Strateginis dokumentas (5-7 puslapių). Struktūra: 1) Situacijos analizė, 2) Q1 tikslai ir KPI, 3) Veiksmų planas pagal kanalus, 4) Biudžeto paskirstymas, 5) Rizikos ir prielaidos. Kalba: lietuvių, profesionalus verslo tonas."
+                  "hint": "Formatas: analizė + 5 veiksmai. Struktūra: KPI, segmentai, priežastys, veiksmai. Kalba: lietuvių, verslo tonas.",
+                  "partialSolution": "OUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite, kaip DI turi mąstyti prieš kuriant planą",
-                  "hint": "Naudok CoT (Chain of Thought) - viena loginė seka. 1) Analizuoti Q4 rezultatus, 2) Įvertinti konkurentų grėsmę, 3) Nustatyti Q1 tikslus, 4) Suformuluoti strategiją.",
-                  "partialSolution": "REASONING (CoT):\n1) Išanalizuoti Q4 2024 rezultatus ir identifikuoti stipriąsias/silpnąsias puses\n2) Įvertinti konkurentų augimo grėsmę ir rinkos tendencijas\n3) Nustatyti Q1 2025 tikslus pagal biudžetą (300k EUR) ir B2B prioritetą\n4) Suformuluoti konkretų veiksmų planą su KPI ir biudžeto paskirstymu"
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk, kaip DI turi mąstyti prieš kuriant analizę",
+                  "hint": "Naudok CoT. 1) KPI vs planas, 2) Segmentų palyginimas, 3) B2B kritimo priežastys, 4) 5 prioritetiniai veiksmai.",
+                  "partialSolution": "REASONING (CoT):\n1) Apibendrinti Q3 KPI ir palyginti su planu (350k)\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n4) Suformuluoti 5 prioritetinius veiksmus su atsakingais ir terminais"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
-                  "description": "Apibrėžkite, kaip patikrinti rezultato kokybę",
-                  "hint": "Tikrinimo kriterijai: konkretūs KPI, biudžeto paskirstymas, B2B orientacija, įgyvendinamumas.",
-                  "partialSolution": "QUALITY:\n✓ Visi KPI konkretūs ir matuojami\n✓ Biudžetas (300k EUR) paskirstytas pagal kanalus\n✓ Planas orientuotas į B2B segmentą\n✓ Veiksmai įgyvendinami per 2 savaites su 3 žmonių komanda\n✓ Dokumentas tinkamas generaliniam direktoriui (strateginis lygis)"
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
+                  "description": "Apibrėžk, kaip patikrinti rezultato kokybę",
+                  "hint": "Tikrinimo kriterijai: skaičių tikslumas, segmentų analizė, 5 veiksmai su terminais ir atsakingais.",
+                  "partialSolution": "QUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Pasirink modelio parametrus (jei reikia)",
-                  "hint": "Temperature: 0.4-0.5 (strateginis, bet kūrybiškas). Reasoning: normalus arba extended.",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strateginis mąstymas su kūrybiškumu)\nReasoning: extended (reikia gilesnės analizės)\nFormat: struktūruotas verslo dokumentas"
+                  "hint": "Temperature: 0.3–0.4 (faktinis, analitinis tonas).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.35 (faktinis, analitinis tonas)\nFormat: struktūruota pardavimų analizė"
                 }
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi marketingo vadovas su 10+ metų B2B patirtimi. Tavo tikslas – parengti Q1 2025 marketingo strateginį planą generaliniam direktoriui, kuris priims biudžeto sprendimus.\n\nINPUT:\nQ4 2024 rezultatai: 45 nauji klientai, CAC 6500 EUR, konversija 2.8%. Konkurentų augimas: +25% ir +18%. Planuojamas Q1 biudžetas: 300k EUR.\n\nApribojimai: Planas turi būti parengtas per 2 savaites. Komanda: 3 žmonės. Prioritetas – B2B segmentas.\n\nOUTPUT:\nFormatas: Strateginis dokumentas (5-7 puslapių). Struktūra: 1) Situacijos analizė, 2) Q1 tikslai ir KPI, 3) Veiksmų planas pagal kanalus, 4) Biudžeto paskirstymas, 5) Rizikos ir prielaidos. Kalba: lietuvių, profesionalus verslo tonas.\n\nREASONING (CoT):\n1) Išanalizuoti Q4 2024 rezultatus ir identifikuoti stipriąsias/silpnąsias puses\n2) Įvertinti konkurentų augimo grėsmę ir rinkos tendencijas\n3) Nustatyti Q1 2025 tikslus pagal biudžetą (300k EUR) ir B2B prioritetą\n4) Suformuluoti konkretų veiksmų planą su KPI ir biudžeto paskirstymu\n\nQUALITY:\n✓ Visi KPI konkretūs ir matuojami\n✓ Biudžetas (300k EUR) paskirstytas pagal kanalus\n✓ Planas orientuotas į B2B segmentą\n✓ Veiksmai įgyvendinami per 2 savaites su 3 žmonių komanda\n✓ Dokumentas tinkamas generaliniam direktoriui (strateginis lygis)\n\nADVANCED:\nTemperature: 0.4 (strateginis mąstymas su kūrybiškumu)\nReasoning: extended (reikia gilesnės analizės)\nFormat: struktūruotas verslo dokumentas"
+            "template": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei.\n\nINPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais.\n\nOUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas.\n\nREASONING (CoT):\n1) Apibendrinti Q3 KPI ir palyginti su planu\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n4) Suformuluoti 5 prioritetinius veiksmus su atsakingais ir terminais\n\nQUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda\n\nADVANCED:\nTemperature: 0.35 (faktinis, analitinis tonas)\nFormat: struktūruota pardavimų analizė"
           },
           "content": {
             "footer": "Toliau – skaidrė 5: Marketingo kampanijos planas"
@@ -1606,50 +1606,50 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
-                  "hint": "Rolė: HR vadovas. Tikslas: apklausos analizė ir rekomendacijos. Auditorija: vadovybė.",
-                  "partialSolution": "META:\nTu esi HR vadovas su 8+ metų patirtimi darbuotojų patirties valdyme. Tavo tikslas – išanalizuoti metinės darbuotojų apklausos rezultatus ir pateikti konkrečias rekomendacijas vadovybei, kuri priims veiksmų plano sprendimus."
+                  "hint": "Rolė: produkto marketingo vadovas. Tikslas: SmartFlow kampanijos planas Q2 2025. Auditorija: marketingo komanda ir vadovybė.",
+                  "partialSolution": "META:\nTu esi produkto marketingo vadovas su 7+ metų B2B IT patirtimi. Tavo tikslas – parengti Q2 2025 „SmartFlow“ produkto kampanijos planą su kanalais, KPI ir biudžeto paskirstymu."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite konkretūs skaičiai, metrikos ir apribojimai",
-                  "hint": "Duomenys: dalyvavimas, pasitenkinimas, problemos sritys, stipriosios pusės. Apribojimai: biudžetas 50k EUR, konkrečius veiksmų planas.",
-                  "partialSolution": "INPUT:\nDalyvavo 156/180 darbuotojų (87%). Bendras pasitenkinimas: 7.2/10 (+0.4 vs praėjusių metų). Probleminės sritys: karjeros galimybės (5.8), darbo/asmeninio gyvenimo balansas (6.1). Stipriosios pusės: komandinis darbas (8.4), vadovų palaikymas (7.9).\n\nApribojimai: Vadovybė nori konkrečių veiksmų plano. Biudžetas iniciatyvoms: 50k EUR. Konfidencialumas: neatskleisti individualių atsakymų."
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk konkrečius skaičius, metrikas ir apribojimus",
+                  "hint": "Duomenys: produktas SmartFlow, biudžetas 45k EUR, IT vadovai, kanalai, konkurentai. Apribojimai: 2 savaitės, 2 žmonės, KPI planas.",
+                  "partialSolution": "INPUT:\nKampanija: naujas produktas „SmartFlow“. Biudžetas: 45k EUR. Tikslinė auditorija: IT vadovai (100–500 darbuotojų įmonės). Kanalai: LinkedIn, renginiai, el. paštas. Konkurentai: 2 pagrindiniai. Laikotarpis: Q2 2025.\n\nApribojimai: Planas per 2 savaites. Komanda: 2 žmonės. Reikia KPI ir matavimo plano."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk, kokį dokumentą nori gauti",
-                  "hint": "Formatas: ataskaita. Struktūra: analizė + vizualizacijos + veiksmų planas. Kalba: lietuvių, jautrus tonas.",
-                  "partialSolution": "OUTPUT:\nFormatas: Ataskaita su vizualizacijomis (6-8 puslapių). Struktūra: 1) Bendras apžvalga, 2) Probleminių sričių analizė, 3) Stipriųjų pusių išryškinimas, 4) Konkretus veiksmų planas su biudžeto paskirstymu, 5) Tikėtini rezultatai. Kalba: lietuvių, profesionalus, bet jautrus tonas."
+                  "hint": "Formatas: strateginis kampanijos dokumentas. Struktūra: auditorija, kanalai, KPI, biudžetas, grafikas.",
+                  "partialSolution": "OUTPUT:\nFormatas: Strateginis kampanijos dokumentas (4–6 puslapių). Struktūra: 1) Auditorijos profilis, 2) Kanalų strategija (LinkedIn, renginiai, el. paštas), 3) KPI ir matavimo planas, 4) Biudžeto paskirstymas (45k EUR), 5) Laiko grafikas Q2 2025. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
-                  "description": "Nurodykite, kaip DI turi mąstyti prieš kuriant analizę",
-                  "hint": "Naudok CoT (Chain of Thought). 1) Analizuoti problemines sritis, 2) Įvertinti priežastis, 3) Suformuluoti sprendimus, 4) Paskirstyti biudžetą.",
-                  "partialSolution": "REASONING (CoT):\n1) Išanalizuoti problemines sritis (karjeros galimybės 5.8, darbo/asmeninio gyvenimo balansas 6.1) ir jų priežastis\n2) Įvertinti, kodėl stipriosios pusės veikia gerai (komandinis darbas 8.4, vadovų palaikymas 7.9)\n3) Suformuluoti konkrečius, įgyvendinamus sprendimus kiekvienai probleminei sričiai\n4) Paskirstyti biudžetą (50k EUR) pagal prioritetus ir tikėtiną poveikį"
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
+                  "description": "Nurodyk, kaip DI turi mąstyti prieš kuriant planą",
+                  "hint": "Naudok CoT. 1) Auditorijos poreikiai, 2) Kanalų ir biudžeto paskirstymas, 3) KPI, 4) Q2 grafikas.",
+                  "partialSolution": "REASONING (CoT):\n1) Apibrėžti IT vadovų auditorijos poreikius ir komunikacijos kanalus\n2) Paskirstyti biudžetą (45k EUR) pagal kanalus ir tikėtiną ROI\n3) Nustatyti matuojamus KPI kiekvienam kanalui\n4) Suformuluoti Q2 2025 veiksmų grafiką su konkrečiais etapais"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
-                  "description": "Apibrėžkite, kaip patikrinti rezultato kokybę",
-                  "hint": "Tikrinimo kriterijai: jautrumas duomenims, konkretūs veiksmai, biudžeto paskirstymas, įgyvendinamumas.",
-                  "partialSolution": "QUALITY:\n✓ Jautrus požiūris į darbuotojų duomenis (konfidencialumas)\n✓ Konkretūs, įgyvendinami veiksmai kiekvienai probleminei sričiai\n✓ Biudžetas (50k EUR) paskirstytas pagal prioritetus\n✓ Veiksmų planas turi aiškius terminus ir atsakingus asmenis\n✓ Dokumentas tinkamas vadovybei (strateginis lygis su detaliais veiksmais)"
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
+                  "description": "Apibrėžk, kaip patikrinti rezultato kokybę",
+                  "hint": "Tikrinimo kriterijai: biudžeto paskirstymas, matuojami KPI, auditorija, įgyvendinamumas per 2 savaites.",
+                  "partialSolution": "QUALITY:\n✓ Biudžetas (45k EUR) paskirstytas pagal kanalus\n✓ KPI konkretūs ir matuojami\n✓ Auditorija aiškiai apibrėžta (IT vadovai, 100–500 darbuotojų)\n✓ Planas įgyvendinamas per 2 savaites su 2 žmonių komanda"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Pasirink modelio parametrus (jei reikia)",
-                  "hint": "Temperature: 0.3-0.4 (jautrus, bet profesionalus). Reasoning: extended (reikia gilesnės analizės).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (jautrus, profesionalus tonas)\nReasoning: extended (reikia gilesnės analizės ir empatijos)\nFormat: struktūruotas HR dokumentas su vizualizacijomis"
+                  "hint": "Temperature: 0.4 (strateginis su kūrybiškumu kampanijai).",
+                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strateginis su kūrybiškumu kampanijai)\nFormat: struktūruotas marketingo dokumentas"
                 }
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi HR vadovas su 8+ metų patirtimi darbuotojų patirties valdyme. Tavo tikslas – išanalizuoti metinės darbuotojų apklausos rezultatus ir pateikti konkrečias rekomendacijas vadovybei, kuri priims veiksmų plano sprendimus.\n\nINPUT:\nDalyvavo 156/180 darbuotojų (87%). Bendras pasitenkinimas: 7.2/10 (+0.4 vs praėjusių metų). Probleminės sritys: karjeros galimybės (5.8), darbo/asmeninio gyvenimo balansas (6.1). Stipriosios pusės: komandinis darbas (8.4), vadovų palaikymas (7.9).\n\nApribojimai: Vadovybė nori konkrečių veiksmų plano. Biudžetas iniciatyvoms: 50k EUR. Konfidencialumas: neatskleisti individualių atsakymų.\n\nOUTPUT:\nFormatas: Ataskaita su vizualizacijomis (6-8 puslapių). Struktūra: 1) Bendras apžvalga, 2) Probleminių sričių analizė, 3) Stipriųjų pusių išryškinimas, 4) Konkretus veiksmų planas su biudžeto paskirstymu, 5) Tikėtini rezultatai. Kalba: lietuvių, profesionalus, bet jautrus tonas.\n\nREASONING (CoT):\n1) Išanalizuoti problemines sritis (karjeros galimybės 5.8, darbo/asmeninio gyvenimo balansas 6.1) ir jų priežastis\n2) Įvertinti, kodėl stipriosios pusės veikia gerai (komandinis darbas 8.4, vadovų palaikymas 7.9)\n3) Suformuluoti konkrečius, įgyvendinamus sprendimus kiekvienai probleminei sričiai\n4) Paskirstyti biudžetą (50k EUR) pagal prioritetus ir tikėtiną poveikį\n\nQUALITY:\n✓ Jautrus požiūris į darbuotojų duomenis (konfidencialumas)\n✓ Konkretūs, įgyvendinami veiksmai kiekvienai probleminei sričiai\n✓ Biudžetas (50k EUR) paskirstytas pagal prioritetus\n✓ Veiksmų planas turi aiškius terminus ir atsakingus asmenis\n✓ Dokumentas tinkamas vadovybei (strateginis lygis su detaliais veiksmais)\n\nADVANCED:\nTemperature: 0.3 (jautrus, profesionalus tonas)\nReasoning: extended (reikia gilesnės analizės ir empatijos)\nFormat: struktūruotas HR dokumentas su vizualizacijomis"
+            "template": "META:\nTu esi produkto marketingo vadovas su 7+ metų B2B IT patirtimi. Tavo tikslas – parengti Q2 2025 „SmartFlow“ produkto kampanijos planą su kanalais, KPI ir biudžeto paskirstymu.\n\nINPUT:\nKampanija: naujas produktas „SmartFlow“. Biudžetas: 45k EUR. Tikslinė auditorija: IT vadovai (100–500 darbuotojų įmonės). Kanalai: LinkedIn, renginiai, el. paštas. Konkurentai: 2 pagrindiniai. Laikotarpis: Q2 2025.\n\nApribojimai: Planas per 2 savaites. Komanda: 2 žmonės. Reikia KPI ir matavimo plano.\n\nOUTPUT:\nFormatas: Strateginis kampanijos dokumentas (4–6 puslapių). Struktūra: 1) Auditorijos profilis, 2) Kanalų strategija (LinkedIn, renginiai, el. paštas), 3) KPI ir matavimo planas, 4) Biudžeto paskirstymas (45k EUR), 5) Laiko grafikas Q2 2025. Kalba: lietuvių, verslo tonas.\n\nREASONING (CoT):\n1) Apibrėžti IT vadovų auditorijos poreikius ir komunikacijos kanalus\n2) Paskirstyti biudžetą (45k EUR) pagal kanalus ir tikėtiną ROI\n3) Nustatyti matuojamus KPI kiekvienam kanalui\n4) Suformuluoti Q2 2025 veiksmų grafiką su konkrečiais etapais\n\nQUALITY:\n✓ Biudžetas (45k EUR) paskirstytas pagal kanalus\n✓ KPI konkretūs ir matuojami\n✓ Auditorija aiškiai apibrėžta (IT vadovai, 100–500 darbuotojų)\n✓ Planas įgyvendinamas per 2 savaites su 2 žmonių komanda\n\nADVANCED:\nTemperature: 0.4 (strateginis su kūrybiškumu kampanijai)\nFormat: struktūruotas marketingo dokumentas"
           },
           "content": {
             "footer": "Toliau – skaidrė 6: Vidaus komunikacijos dokumentas"
@@ -1676,42 +1676,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas tekstas",
                   "hint": "Rolė: vidaus komunikacijos vadovas. Tikslas: pranešimas darbuotojams. Auditorija: visi darbuotojai.",
                   "partialSolution": "META:\nTu esi vidaus komunikacijos vadovas. Tavo tikslas – parengti aiškų pranešimą darbuotojams apie pokyčius organizacijoje, mažinant nerimą ir pasipriešinimą."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite: kas keičiasi, kodėl, kada, dažniausi klausimai",
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk: kas keičiasi, kodėl, kada, dažniausi klausimai",
                   "hint": "Duomenys: CRM pakeitimai, 6 savaitės, 120 darbuotojų, mokymai. Klausimas: „Ar neprarasime darbo?“",
                   "partialSolution": "INPUT:\nĮmonė pereina prie naujos CRM. Pakeitimai per 6 savaites. 120 darbuotojų – mokymai. Dažniausias klausimas: „Ar neprarasime darbo?“ Apribojimai: 3 dienos, max 500 žodžių, tonas rūpestingas."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Vidinis pranešimas su Q&A",
                   "hint": "Formatas: el. laiškas 300–500 žodžių. Structūra: kas keičiasi, kodėl, ką daryti toliau, Q&A.",
                   "partialSolution": "OUTPUT:\nFormatas: Vidinis pranešimas (300–500 žodžių). Struktūra: 1) Kas keičiasi, 2) Kodėl, 3) Kada ir ką daryti, 4) Q&A skyrius. Tonas: rūpestingas, skaidrus."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Tonas, aiškumas, pasipriešinimo mažinimas",
                   "hint": "CoT: 1) Kuo aiškiai paaiškinti, 2) Kaip atsakyti į baimę, 3) Ką darbuotojai turi žinoti.",
                   "partialSolution": "REASONING (CoT):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Adresuoti baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkrečius žingsnius ir Q&A"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Tonas rūpestingas, aiškumas, Q&A skyrius, ilgis 300–500 žodžių.",
                   "partialSolution": "QUALITY:\n✓ Tonas rūpestingas ir skaidrus ✓ Q&A skyrius įtrauktas ✓ Ilgis 300–500 žodžių ✓ Mažina nerimą"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.4 (empatingas, bet profesionalus).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.4 (empatingas tonas), Format: vidinis pranešimas"
@@ -1746,42 +1746,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
                   "hint": "Rolė: HR vadovas. Tikslas: apklausos analizė. Auditorija: vadovybė.",
                   "partialSolution": "META:\nTu esi HR vadovas. Tavo tikslas – išanalizuoti apklausos rezultatus ir pateikti veiksmų planą vadovybei."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
-                  "description": "Išskirkite apklausos rezultatus ir apribojimai",
+                  "title": "INPUT blokas - Surink duomenis",
+                  "description": "Išskirk apklausos rezultatus ir apribojimus",
                   "hint": "Duomenys: dalyvavimas, pasitenkinimas, problemos sritys, biudžetas.",
                   "partialSolution": "INPUT:\nDalyvavo 156/180 (87%). Pasitenkinimas 7.2/10 (+0.4). Probleminės: karjeros 5.8, balansas 6.1. Stipriosios: komanda 8.4, vadovai 7.9. Biudžetas: 50k EUR."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Ataskaita su veiksmų planu",
                   "hint": "Formatas: ataskaita. Struktūra: analizė + veiksmų planas.",
                   "partialSolution": "OUTPUT:\nFormatas: Ataskaita (6-8 psl.). Struktūra: 1) Apžvalga, 2) Probleminės sritys, 3) Stipriosios pusės, 4) Veiksmų planas su biudžetu. Kalba: lietuvių, jautrus tonas."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Duomenų interpretacija, prioritetai",
                   "hint": "CoT: 1) Analizuoti problemas, 2) Įvertinti priežastis, 3) Suformuluoti sprendimus.",
                   "partialSolution": "REASONING (CoT):\n1) Išanalizuoti problemines sritis ir priežastis\n2) Suformuluoti konkrečius sprendimus\n3) Paskirstyti biudžetą pagal prioritetus"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Jautrumas, konkretūs veiksmai, biudžeto paskirstymas.",
                   "partialSolution": "QUALITY:\n✓ Jautrus požiūris ✓ Konkretūs veiksmai ✓ Biudžetas paskirstytas ✓ Konfidencialumas"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.3 (jautrus, profesionalus).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.3, Format: HR ataskaita"
@@ -1816,42 +1816,42 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "META blokas - Pradėkite nuo rolės",
+                  "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas",
                   "hint": "Rolė: klientų aptarnavimo vadovas. Tikslas: atsakymas + vidinis planas.",
                   "partialSolution": "META:\nTu esi klientų aptarnavimo vadovas. Tavo tikslas – parengti empatišką atsakymą klientui ir vidinį veiksmų planą problemai spręsti."
                 },
                 {
                   "step": 2,
-                  "title": "INPUT blokas - Surinkite duomenis",
+                  "title": "INPUT blokas - Surink duomenis",
                   "description": "Skundo aprašymas, istorija, kliento tipas",
                   "hint": "Duomenys: vėlavimas, komunikacija, B2B, 3 metai, reputacinė rizika.",
                   "partialSolution": "INPUT:\nSkundas: vėlavimas 2 savaites, neaiški komunikacija. Klientas: B2B, ilgalaikis (3 metai). Reputacinė rizika. Apribojimai: 24 val., empatiškas tonas."
                 },
                 {
                   "step": 3,
-                  "title": "OUTPUT blokas - Apibrėžkite formatą",
+                  "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Atsakymas klientui + vidinis planas",
                   "hint": "Formatas: el. laiškas klientui + 3–5 punktų vidinis planas.",
                   "partialSolution": "OUTPUT:\nFormatas: 1) El. laiškas klientui (empatiškas, atsakingas), 2) Vidinio plano 3–5 punktai. Kalba: lietuvių."
                 },
                 {
                   "step": 4,
-                  "title": "REASONING blokas - Nustatykite mąstymo seką",
+                  "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Empatija, atsakomybė, sprendimo struktūra",
                   "hint": "CoT: 1) Pripažinti problemą, 2) Pateikti sprendimą, 3) Vidinis planas.",
                   "partialSolution": "REASONING (CoT):\n1) Pripažinti problemą ir atsakyti empatiškai\n2) Pateikti konkretų sprendimą klientui\n3) Suformuluoti vidinį veiksmų planą (3–5 punktai)"
                 },
                 {
                   "step": 5,
-                  "title": "QUALITY blokas - Nustatykite kokybės kriterijus",
+                  "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Tikrinimo kriterijai",
                   "hint": "Empatija, atsakomybė, konkretūs veiksmai.",
                   "partialSolution": "QUALITY:\n✓ Empatiškas tonas ✓ Atsakomybė pripažinta ✓ Konkretūs veiksmai ✓ Vidinio plano 3–5 punktai"
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED blokas - Nustatykite parametrus",
+                  "title": "ADVANCED blokas - Nustatyk parametrus",
                   "description": "Modelio parametrai",
                   "hint": "Temperature: 0.4 (empatiškas, bet kontroliuojamas).",
                   "partialSolution": "ADVANCED:\nTemperature: 0.4, Format: klientų aptarnavimo dokumentas"
@@ -4404,7 +4404,7 @@
               },
               {
                 "heading": "🔽 Nuorodos: NotebookLM, NoteLM, Trello",
-                "body": "**NotebookLM** – Google DI įrankis darbui su dokumentų rinkiniais (PDF, Docs, Slides) ir RAG tarp šaltinių. Nuoroda: [notebooklm.google](https://notebooklm.google/). **NoteLM** – AI užrašų ir video įrankis, jei patogiau dirbti per užrašų ekosistemą. Nuoroda: [notelm.app](https://www.notelm.app/). **Trello** – lentos ir kortelės; galima aprašyti užduotis kaip kontekstą RAG promptui. Nuoroda: [trello.com](https://trello.com/).",
+                "body": "**NotebookLM** – Google DI įrankis darbui su dokumentų rinkiniais (PDF, Docs, Slides) ir RAG tarp šaltinių. Nuoroda: [notebooklm.google](https://notebooklm.google/). **NoteLM** – DI užrašų ir video įrankis, jei patogiau dirbti per užrašų ekosistemą. Nuoroda: [notelm.app](https://www.notelm.app/). **Trello** – lentos ir kortelės; galima aprašyti užduotis kaip kontekstą RAG promptui. Nuoroda: [trello.com](https://trello.com/).",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -6445,7 +6445,7 @@
             "sections": [
               {
                 "heading": "Ką išmoksi šiame modulyje",
-                "body": "✔️ Kaip suformuluoti užklausą, kad DI pateiktų tikrus duomenis, ne nuomonę\n✔️ Kaip gauti ataskaitą, grafikus ir prognozę vienu prašymu\n✔️ Kaip sujungti lenteles, ryšius ir rodiklius\n✔️ Kaip naudoti vieną **MASTER PROMPTAS**, kuris tiks 80 % verslo situacijų\n✔️ Kaip trumpai ir aiškiai papasakoti istoriją iš skaičių („data storytelling“)"
+                "body": "✔️ Kaip suformuluoti užklausą, kad DI pateiktų tikrus duomenis, ne nuomonę\n✔️ Kaip gauti ataskaitą, grafikus ir prognozę vienu prašymu\n✔️ Kaip sujungti lenteles, ryšius ir rodiklius\n✔️ Kaip naudoti vieną **MASTER PROMPTAS**, kuris tiks 80 % verslo situacijų\n✔️ Kaip trumpai ir aiškiai papasakoti istoriją iš skaičių – duomenų pasakojimas (data storytelling)"
               },
               {
                 "heading": "Kodėl tai svarbu?",
@@ -6934,12 +6934,12 @@
             "sections": [
               {
                 "heading": "1️⃣ Kam tai?",
-                "body": "**6 žingsnių pipeline** – nuo žalių duomenų iki sprendimo: rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas. „Raw → insight → decision“. Kai planuoji naują analizę ar ataskaitą – kiekvienam etapui yra atitinkamas DI promptas.",
+                "body": "**Duomenų analizės pipeline (6 žingsnių kelias nuo rinkimo iki sprendimo)** – nuo žalių duomenų iki sprendimo: rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas. „Raw → insight → decision“. Kai planuoji naują analizę ar ataskaitą – kiekvienam etapui yra atitinkamas DI promptas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "📍 Kur pritaikyti?",
-                "body": "Kai ruoši ketvirčio ataskaitą, naują dashboard'ą ar pristatymą vadovybei – pereik pipeline nuo rinkimo iki publikavimo ir kiekvienam etapui naudok atitinkamą promptą. Taip nepraleisi nė vieno žingsnio.",
+                "body": "Kai ruoši ketvirčio ataskaitą, naują vieno ekrano ataskaitą (dashboard) ar pristatymą vadovybei – pereik pipeline nuo rinkimo iki publikavimo ir kiekvienam etapui naudok atitinkamą promptą. Taip nepraleisi nė vieno žingsnio.",
                 "blockVariant": "terms"
               },
               {
@@ -7168,12 +7168,54 @@
             "sections": [
               {
                 "heading": "1️⃣ Kodėl čia?",
-                "body": "**Šeši domenai** parodo, kokius duomenis verta įtraukti į analizę po finansų. Toliau **DB struktūra** ir **KPI** (ryšių analizė, prognozės) remiasi tuo, kad žinai savo srities laukus – klientai, tiekimas, pardavimai, rinkodara, procesai, konkurentai.",
+                "body": "**Šeši domenai** padeda pamatyti, kad analizė nėra vien finansai. Kai žinai, kur tavo versle gimsta duomenys, lengviau kurti DB struktūrą, pagrindinius rodiklius ir gerus promptus kitose skaidrėse.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Tradicinis vs išplėstinis požiūris",
-                "body": "Be sąnaudų, pajamų ir pelno – **6 verslo duomenų domenai:** klientų elgsena, tiekimo grandinė, pardavimų dinamika, CRM/marketingas, procesų efektyvumas, konkurencinė analizė. Šie domenai – potencialūs DI analizės moduliai."
+                "body": "| Tradicinis požiūris | Išplėstinis požiūris |\n| --- | --- |\n| Sąnaudos | Klientų elgsena |\n| Pajamos | Tiekimo grandinė |\n| Pelnas | Pardavimų dinamika |\n|  | Klientų ryšių ir rinkodaros duomenys |\n|  | Procesų efektyvumas |\n|  | Konkurencinė analizė |\n\nKiekvienas domenas gali tapti atskiru DI analizės moduliu."
+              },
+              {
+                "heading": "3️⃣ Klientų elgsena",
+                "body": "Duomenys apie pirkimus, grįžimą, atsiliepimus, naudojimąsi produktu. Tinka klausimams „kas perka?“, „kodėl grįžta?“ ir „kur krenta pasitenkinimas?“.",
+                "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Išanalizuok klientų elgsenos duomenis.\nINPUT: [įklijuok pirkimų, atsiliepimų ar naudojimo duomenis]\nOUTPUT: 1) 3 klientų grupės 2) Kas kiekvienai grupei svarbu 3) Kur yra rizika 4) Ką daryti kitą savaitę."
+              },
+              {
+                "heading": "4️⃣ Tiekimo grandinė",
+                "body": "Tiekėjai, pristatymo laikas, likučiai, vėlavimai ir kainų pokyčiai. Tinka ieškoti butelio kakliukų ir rizikų prieš jos tampa problema.",
+                "copyable": "ROLE: Tu esi tiekimo grandinės analitikas.\nTASK: Rask silpnas vietas tiekimo duomenyse.\nINPUT: [įklijuok tiekėjų, pristatymo ar atsargų duomenis]\nOUTPUT: 1) 3 didžiausios rizikos 2) Kur trūksta duomenų 3) Ką stebėti kas savaitę 4) Kokių veiksmų imtis pirmiausia."
+              },
+              {
+                "heading": "5️⃣ Pardavimų dinamika",
+                "body": "Pardavimai pagal laiką, regioną, produktą ir kanalą. Tinka matyti augimą, sezoniškumą, kritimus ir tai, kur verta nukreipti dėmesį.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paaiškink pardavimų pokyčius pagal laiką, regioną ir produktą.\nINPUT: [įklijuok pardavimų lentelę]\nOUTPUT: 1) Kas augo 2) Kas krito 3) Galimos priežastys 4) 3 rekomenduojami veiksmai."
+              },
+              {
+                "heading": "6️⃣ Klientų ryšiai ir rinkodara",
+                "body": "Kampanijos, laiškai, užklausos, klientų kelias ir apklausos. Tinka suprasti, kas pritraukia dėmesį ir kur klientas pasimeta.",
+                "copyable": "ROLE: Tu esi klientų ryšių ir rinkodaros analitikas.\nTASK: Įvertink, kurie rinkodaros veiksmai susiję su klientų reakcija.\nINPUT: [įklijuok kampanijų, užklausų ar apklausų duomenis]\nOUTPUT: 1) Kas veikia 2) Kas neveikia 3) Kokie klientų klausimai kartojasi 4) Ką testuoti kitą kartą."
+              },
+              {
+                "heading": "7️⃣ Procesų efektyvumas",
+                "body": "Laikas, klaidos, perdavimai tarp komandų, pakartotiniai darbai. Tinka rasti, kur procesas stringa ir ką verta automatizuoti.",
+                "copyable": "ROLE: Tu esi procesų analitikas.\nTASK: Rask 3 vietas, kur procesas stringa arba kartojasi.\nINPUT: [aprašyk procesą arba įklijuok laiko / klaidų duomenis]\nOUTPUT: 1) Silpna vieta 2) Kodėl ji kainuoja laiką 3) Ką galima supaprastinti 4) Ką galėtų perimti DI."
+              },
+              {
+                "heading": "8️⃣ Konkurencinė analizė",
+                "body": "Kainos, pasiūlymai, vieši atsiliepimai, produktų savybės ir komunikacija. Tinka suprasti, kur esi stipresnis ar silpnesnis už alternatyvas.",
+                "copyable": "ROLE: Tu esi konkurencinės analizės specialistas.\nTASK: Palygink mus su 3 konkurentais pagal viešus duomenis.\nINPUT: [įklijuok konkurentų nuorodas, kainas, savybes ar atsiliepimus]\nOUTPUT: 1) Stiprybės 2) Silpnybės 3) Galimybės 4) Ką keisti pasiūlyme ar komunikacijoje."
+              },
+              {
+                "heading": "9️⃣ Daryk dabar",
+                "body": "Pasirink 3 domenus, kurie tavo darbe turi daugiausia duomenų arba daugiausia neaiškumo. Tada paprašyk DI pasiūlyti pirmą analizės planą.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Padėk man pasirinkti 3 svarbiausius analizės domenus.\nCONTEXT: Mano veikla / komanda: [aprašyk trumpai]. Turimi duomenys: [išvardink]. Sprendimai, kuriuos turiu priimti: [įrašyk].\nOUTPUT: 1) 3 svarbiausi domenai 2) Kodėl jie svarbūs 3) Kokius duomenis rinkti 4) Pirmas analizės klausimas kiekvienam domenui."
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Kitas žingsnis – skaidrė apie duomenų tipus ir rinkimo strategiją. Domenas atsako į klausimą **ką analizuojame**, o duomenų tipas atsako į klausimą **kokiu formatu tai turime**.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -7275,7 +7317,7 @@
             "stepNumber": 2,
             "stepTotal": 5,
             "body": "Sukurk sisteminį promptą (rolė, principai) ir pasirink gilaus tyrimo temą. Paruošk vieną gilaus tyrimo promptą, kurį vėliau naudosi keliuose įrankiuose lygiagrečiai.",
-            "unlockedGlossaryTerms": ["Deep research", "MASTER PROMPTAS"]
+            "unlockedGlossaryTerms": ["Deep research"]
           }
         },
         {
@@ -7286,12 +7328,29 @@
           "content": {
             "sections": [
               {
-                "heading": "Esminis skirtumas",
-                "body": "**Tradicinė:** rankinis darbas, riboti modeliai, žmogaus interpretacija, mažas lankstumas. **Su DI:** automatizacija, kompleksiniai metodai, duomenimis grįsti sprendimai, prisitaikantis. DI = analitikas + automatizatorius + prognozuotojas."
+                "heading": "1️⃣ Trumpai",
+                "body": "DI nepakeičia tavo sprendimo, bet pagreitina kelią iki jo: padeda surinkti, paaiškinti, palyginti, pavaizduoti ir patikrinti duomenis. Galvok apie DI kaip apie analitiką + automatizatorių + prognozuotoją.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Ką DI gali verslo analitiko vaidmenyje",
-                "body": "Paaiškinti metodus; atlikti statistinę analizę; generuoti vizualizacijas; prognozuoti; modeliuoti scenarijus. Tiltelis į tolesnes skaidres: rolė, DB struktūra, ryšiai, vizualizacijos, prognozė."
+                "heading": "2️⃣ Tradicinė analizė vs analizė su DI",
+                "body": "| Tradicinė analizė | Analizė su DI |\n| --- | --- |\n| Daug rankinio darbo | DI paruošia pirmą juodraštį, lentelę ar kodą |\n| Riboti modeliai | Gali palyginti kelis metodus ir paaiškinti skirtumus |\n| Žmogus vienas interpretuoja | DI pasiūlo hipotezes, bet žmogus patikrina logiką |\n| Mažas lankstumas | Tą patį klausimą gali greitai perrašyti kitam kontekstui |"
+              },
+              {
+                "heading": "3️⃣ Ką DI gali analitiko vaidmenyje",
+                "body": "**Paaiškinti metodus** – ką reiškia koreliacija, prognozė ar duomenų valymas. **Atlikti tiriamąją analizę** – rasti dėsningumus, anomalijas ir trūkstamas reikšmes. **Generuoti vizualizacijas** – pasiūlyti grafiką, Power BI veiksmus ar Python kodą. **Prognozuoti** – sukurti scenarijus ir rizikų intervalus. **Modeliuoti sprendimus** – palyginti kelis veiksmų variantus."
+              },
+              {
+                "heading": "4️⃣ Daryk dabar",
+                "body": "Prieš pereidamas prie rolės aktyvavimo, aprašyk vieną realią analizės užduotį ir paprašyk DI parodyti, kur jis gali padėti.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi patyręs verslo duomenų analitikas.\nTASK: Parodyk, kaip DI gali padėti mano analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti."
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Toliau pereisi prie skaidrių apie rolę, duomenų struktūrą ir vizualizacijas. Ši skaidrė yra tiltas: ji paaiškina, **kodėl** verta aktyvuoti analitiko rolę prieš prašant DI skaičiuoti ar kurti grafiką.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -7571,7 +7630,7 @@
         },
         {
           "id": 891,
-          "title": "Duomenų paruošimas ir verslo analizės workflow",
+          "title": "Duomenų paruošimas ir verslo analizės darbo eiga (workflow)",
           "subtitle": "Valymas, metaduomenys ir teisinga žingsnių seka",
           "type": "content-block",
           "content": {
@@ -8299,15 +8358,41 @@
           "id": 98,
           "pathBranch": ["technika"],
           "title": "Silpnosios vietos – ką pridėti",
-          "subtitle": "Optional: modeliai, datasetai, validacija",
+          "subtitle": "Optional: gilesnė praktika – modeliai, duomenys, validacija",
           "optional": true,
           "badgeVariant": "optional",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "Rekomenduojama plėtra",
-                "body": "Modeliai (regresija, klasifikacija) – konceptualiai arba 1 skaidrė max. Realūs duomenų pavyzdžiai (datasetai, nuorodos). Automatizavimo sluoksnis (aprašymas). Validacijos metodika – kaip tikrinti DI išvestį (ryšys su Modulio 7 Haliucinacijos, Žinių patikrinimas). Prioritetas – promptams."
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "Ši papildoma skaidrė parodo, kur baigiasi bazinis DI analizės kelias ir kur prasideda gilesnė praktika. Jei nori dirbti profesionaliau, tau reikės modelių logikos, realių duomenų, automatizavimo ir validacijos.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Modeliai: prognozė ar klasifikacija?",
+                "body": "**Prognozė** padeda atsakyti „kas gali įvykti?“ (pvz. pardavimai kitą mėnesį). **Klasifikacija** padeda priskirti įrašą grupei (pvz. rizikingas klientas / nerizikingas). Čia nereikia matematikos – svarbu suprasti, kokį sprendimą modelis padeda priimti.",
+                "copyable": "ROLE: Tu esi duomenų analizės mokytojas.\nTASK: Paprastai paaiškink, ar mano užduočiai reikia prognozės, ar klasifikacijos.\nCONTEXT: Mano užduotis: [įrašyk]. Turimi duomenys: [įrašyk].\nOUTPUT: 1) Kuris modelio tipas tinka 2) Kodėl 3) Kokio stulpelio reikia kaip tikslo 4) Ko nereikia daryti šiame etape."
+              },
+              {
+                "heading": "3️⃣ Realūs duomenys",
+                "body": "Praktikai verta naudoti viešus ir patikimus šaltinius: Eurostat, Lietuvos atvirų duomenų portalą, duomenų katalogus, organizacijos eksportus iš CRM ar apskaitos. Prieš analizę užfiksuok šaltinį, datą ir ką tiksliai reiškia kiekvienas stulpelis."
+              },
+              {
+                "heading": "4️⃣ Automatizavimas",
+                "body": "Automatizavimas reiškia, kad pasikartojantys žingsniai vyksta pagal aiškią taisyklę: surinkti, išvalyti, sujungti, sukurti ataskaitą. Pradėk ne nuo kodo, o nuo proceso vietų, kur rankinis darbas kartojasi.",
+                "copyable": "ROLE: Tu esi procesų analitikas.\nTASK: Rask 3 vietas, kur mano analizės procesą galima automatizuoti.\nCONTEXT: Mano procesas: [aprašyk žingsnius]. Kas kartojasi: [įrašyk]. Kokius įrankius naudoju: [įrašyk].\nOUTPUT: 1) Automatizavimo vieta 2) Kodėl verta 3) Koks būtų paprasčiausias pirmas žingsnis 4) Kokia rizika."
+              },
+              {
+                "heading": "5️⃣ Validacija",
+                "body": "Validacija = patikra, ar DI atsakymas remiasi duomenimis, o ne spėjimu. Ryšys su skaidrėmis apie haliucinacijas ir žinių patikrinimą: prašyk šaltinių, lygink su originalia lentele, tikrink skaičius ir pažymėk neaiškias vietas.",
+                "copyable": "ROLE: Tu esi duomenų kokybės tikrintojas.\nTASK: Patikrink DI analizės atsakymą pagal anti-haliucinacinį sąrašą.\nINPUT: [įklijuok DI atsakymą ir, jei turi, originalius duomenis]\nOUTPUT: 1) Kur atsakymas remiasi duomenimis 2) Kur gali būti spėjimas 3) Kokius skaičius reikia perskaičiuoti 4) Ką pataisyti prieš rodant vadovybei."
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Šios temos yra gilesnis lygis. Jei šiandien tik mokaisi kelio, užtenka suprasti principą: **modelis padeda spręsti**, **duomenys turi būti aiškūs**, **automatizavimas turi prasidėti nuo proceso**, o **validacija saugo nuo klaidingų išvadų**.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -8322,7 +8407,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Kam tai?",
-                "body": "**MASTER PROMPTAS** – vienas promptas pilnai verslo analizei: 8 žingsnių nuo duomenų šaltinių iki strateginių rekomendacijų. Tai M9 (finalinio projekto) šablono ir viso modulio branduolys: viena vietą, vienas veiksmas – pakeiti [X], nukopijuoti, paleisti DI.",
+                "body": "**MASTER PROMPTAS** – vienas promptas pilnai verslo analizei: 8 žingsnių nuo duomenų šaltinių iki strateginių rekomendacijų. Tai M9 (finalinio projekto) šablono ir viso modulio branduolys: viena vietą, vienas veiksmas – pakeiti [X], nukopijuoti, paleisti DI. Tai **ne** Modulyje 4 mokytas Master promptas apie tavo kontekstą – čia pilnos analizės šablonas.",
                 "blockVariant": "accent"
               },
               {
@@ -8399,12 +8484,32 @@
           "content": {
             "sections": [
               {
-                "heading": "Pozicionavimas",
-                "body": "Ne techninis kursas apie grafikus – **istorijos iš duomenų + DI įvadas**. Vizualizacija = istorijos dalis, sprendimų įrankis; DI = greičio katalizatorius."
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "Vizualizacija nėra tik gražus grafikas. Tai būdas greitai parodyti, **ką duomenys reiškia sprendimui**. DI pagreitina darbą, bet istorijos logiką vis tiek turi valdyti žmogus.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Duomenų ciklas",
-                "body": "Surinkimas → Paruošimas → Vizualizacija → Analizė → Istorija. Ryšys su pipeline (§2.2)."
+                "heading": "2️⃣ Interaktyvus duomenų istorijos ciklas",
+                "body": "Paspausk žingsnį ir matysi, ką jis reiškia. Šis ciklas remiasi tuo pačiu pipeline, bet čia akcentas – kaip iš lentelės gimsta istorija vadovybei.",
+                "blockVariant": "brand",
+                "image": "m7_data_story_cycle",
+                "imageAlt": "Duomenų istorijos ciklas: surinkimas, paruošimas, vizualizacija, analizė, istorija"
+              },
+              {
+                "heading": "3️⃣ Ryšys su pipeline",
+                "body": "Skaidrėje apie pipeline matei 6 etapus nuo rinkimo iki publikavimo. Čia juos suspaudžiame į istorijos kūrimo grandinę: surinkti → paruošti → pavaizduoti → paaiškinti → pasiūlyti veiksmą."
+              },
+              {
+                "heading": "4️⃣ Daryk dabar",
+                "body": "Pritaikyk ciklą vienai savo temai. Neprašyk DI „sukurk grafiką“ – pirma paprašyk paaiškinti, kokią istoriją verta parodyti.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi duomenų istorijos kūrėjas.\nTASK: Pritaikyk 5 žingsnių ciklą mano temai.\nCONTEXT: Tema: [įrašyk]. Turimi duomenys: [įrašyk]. Auditorija: [vadovybė / komanda / klientai].\nOUTPUT: 1) Ką surinkti 2) Ką paruošti 3) Kokią vizualizaciją rinktis 4) Kokią įžvalgą tikrinti 5) Kokią istoriją pasakyti."
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Geras grafikas prasideda ne nuo spalvų, o nuo klausimo: **ką turi suprasti žmogus, kuris žiūrės į šiuos duomenis?** Jei atsakymo nėra, pirma grįžk prie analizės klausimo.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -8420,12 +8525,58 @@
           "content": {
             "sections": [
               {
-                "heading": "Psichologija – kodėl vizualizacija veikia",
-                "body": "**10 %** to, ką girdi. **20 %** to, ką perskaito. **80 %** to, ką **mato ir patiria**. Argumentas už interaktyvias ataskaitas, dashboard'us, grafines istorijas."
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "Žmonės greičiau supranta vaizdą nei ilgą lentelę. Todėl gera vizualizacija padeda ne „papuošti“ analizę, o greičiau pamatyti ryšį, riziką ar pokytį.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Vizualinio grupavimo principai (8) – Geštaltas",
-                "body": "**Artumas** – grupavimas pagal atstumą. **Panašumas** – spalva ar forma rodo ryšį. **Išskyrimas** – fokusas. **Sujungimas** – linijos kuria ryšį. **Tęstinumas** – akis seka kryptį. **Uždarymas** – užbaigti kontūrai. **Figūra–fonas** – kas svarbiausia. **Bendras judėjimas** – kryptis = ryšys."
+                "heading": "2️⃣ 10 / 20 / 80 principas",
+                "body": "**10 %** – ką žmogus tik girdi. **20 %** – ką perskaito. **80 %** – ką mato ir patiria. Skaičiai yra orientaciniai, bet pamoka aiški: jei nori sprendimo, parodyk duomenis taip, kad žmogus juos greitai suprastų.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Artumas",
+                "body": "Elementai, esantys arti vienas kito, atrodo susiję. Naudok tarpus, kad vartotojas matytų, kurie rodikliai priklauso tai pačiai grupei."
+              },
+              {
+                "heading": "4️⃣ Panašumas",
+                "body": "Panaši spalva, forma ar dydis rodo ryšį. Nenaudok tos pačios spalvos skirtingoms reikšmėms."
+              },
+              {
+                "heading": "5️⃣ Išskyrimas",
+                "body": "Vienas paryškintas elementas tampa fokusu. Naudok išskyrimą svarbiausiai įžvalgai, ne viskam iš karto."
+              },
+              {
+                "heading": "6️⃣ Sujungimas",
+                "body": "Linijos ir rodyklės rodo ryšį tarp elementų. Jos turi padėti sekti procesą, o ne uždengti tekstą."
+              },
+              {
+                "heading": "7️⃣ Tęstinumas",
+                "body": "Akis seka kryptį. Jei grafikas turi aiškią eigą, dėk elementus taip, kad žmogus natūraliai skaitytų nuo pradžios iki išvados."
+              },
+              {
+                "heading": "8️⃣ Uždarymas",
+                "body": "Žmogus linkęs užbaigti nebaigtas formas. Naudok paprastus kontūrus ir venk pusiau užbaigtų elementų, kurie gali klaidinti."
+              },
+              {
+                "heading": "9️⃣ Figūra ir fonas",
+                "body": "Svarbiausias elementas turi aiškiai atsiskirti nuo fono. Jei fonas per stiprus, vartotojas pameta pagrindinę įžvalgą."
+              },
+              {
+                "heading": "🔟 Bendras judėjimas",
+                "body": "Elementai, judantys ar nukreipti ta pačia kryptimi, atrodo susiję. Naudok vienodą kryptį trendams ir sekai parodyti."
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Patikrink vieną savo dashboard'ą arba grafiką pagal šiuos principus.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi vizualinio skaidrumo auditorius.\nTASK: Patikrink mano dashboard'ą ar grafiko aprašymą pagal 8 vizualinio grupavimo principus.\nINPUT: [įklijuok dashboard'o aprašymą, ekrano nuotraukos tekstą arba grafikų sąrašą]\nOUTPUT: 1) Kas aišku 2) Kur gali kilti painiava 3) Kurį principą pažeidžiu 4) 5 konkretūs pataisymai."
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Jei ruošiesi M8 testui, prisimink du dalykus: vizualizacijos tipas turi atitikti klausimą, o dizaino principai padeda auditorijai greičiau pamatyti atsakymą.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -8441,22 +8592,27 @@
           "content": {
             "sections": [
               {
-                "heading": "1. Vizualizacijos tipo parinkimas",
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "Šie keturi promptai paverčia neaiškų prašymą „padaryk grafiką“ į aiškų darbą: parink tipą, sukurk istoriją, duok Power BI žingsnius arba sugeneruok Python pavyzdį.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2. Vizualizacijos tipo parinkimas",
                 "body": "Rolė + TASK + CONTEXT + AUDIENCE + OUTPUT + TONE.",
                 "copyable": "ROLE: Tu esi senior duomenų vizualizacijos ekspertas ir UX dizaineris.\nTASK: Parink optimalų vizualizacijos tipą.\nCONTEXT: Turiu pardavimų duomenis pagal regionus ir mėnesius. Tikslas – parodyti augimo tendenciją ir regionų skirtumus.\nAUDIENCE: Vadovybė (ne analitikai).\nOUTPUT: 1) Pasiūlyk 3 variantus 2) Paaiškink kodėl kiekvienas tiktų 3) Įvardink rizikas (pvz. klaidinanti interpretacija)\nTONE: Strateginis, aiškus."
               },
               {
-                "heading": "2. Istorijos kūrimas iš duomenų",
+                "heading": "3. Istorijos kūrimas iš duomenų",
                 "body": "Data storyteller – naratyvas su įžvalga, konfliktu, veiksmu.",
                 "copyable": "ROLE: Data storyteller.\nTASK: Sukurk naratyvą iš pateiktų duomenų.\nCONTEXT: Pardavimai augo 20%, bet 2 regionuose mažėjo.\nOUTPUT: 1) Pagrindinė įžvalga 2) Konfliktas / įtampa 3) Ką tai reiškia verslui 4) Rekomenduojamas veiksmas"
               },
               {
-                "heading": "3. Power BI žingsnių generavimas",
+                "heading": "4. Power BI žingsnių generavimas",
                 "body": "Įkėlimas, duomenų struktūra lentelėse, vizualizacijos, metų-prieš-metus skaičiavimas (DAX), vizualinio skaidrumo principai.",
                 "copyable": "ROLE: Power BI specialistas.\nTASK: Pateik tikslius veiksmus.\nCONTEXT: CSV failas su stulpeliais: Date, Region, Sales, Category.\nOUTPUT: 1) Duomenų įkėlimas 2) Duomenų struktūros patikra 3) Vizualizacijos kūrimas 4) DAX formulė YOY augimui 5) Dizaino rekomendacijos (vizualinio grupavimo principai)"
               },
               {
-                "heading": "4. Python vizualizacijos kodas",
+                "heading": "5. Python vizualizacijos kodas",
                 "body": "Dataset, stulpelinė + linijinė, seaborn, anotacijos.",
                 "copyable": "Parašyk Python kodą, kuris: 1) Sugeneruoja pardavimų dataset 2) Nubraižo: stulpelinę diagramą regionams, linijinę tendenciją per laiką 3) Naudoja seaborn 4) Prideda anotacijas su pagrindinėmis įžvalgomis"
               }
@@ -8474,12 +8630,34 @@
           "content": {
             "sections": [
               {
-                "heading": "Duomenys→Istorija modelis",
-                "body": "**Skaičiai** – patikimumas. **Grafika** – aiškumas. **Naratyvas** – emocinis ryšys. **Istorija** – sprendimų pagrindas."
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "Vadovybei dažnai nereikia dar vienos lentelės. Jai reikia suprasti: kas keičiasi, kodėl tai svarbu ir ką daryti. Todėl duomenys turi virsti istorija.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Geri dashboard'ai (Netflix, BBC)",
-                "body": "Pagrindiniai rodikliai viršuje; tendencija; skirstymas į grupes; filtrai. BBC pavyzdys: kontekstas, vizualinė hierarchija, aiški legenda."
+                "heading": "2️⃣ Duomenys → Istorija modelis",
+                "body": "| Etapas | Reikšmė |\n| --- | --- |\n| Duomenys | Patikimumas: skaičiai, šaltiniai, laikotarpis |\n| Grafika | Aiškumas: ką žmogus pamato per 5 sekundes |\n| Naratyvas | Ryšys: kodėl pokytis svarbus |\n| Sprendimas | Veiksmas: ką daryti toliau |\n| Istorija | Vientisa žinutė: faktas → prasmė → veiksmas |"
+              },
+              {
+                "heading": "3️⃣ Geras dashboard'as",
+                "body": "Geroje ataskaitoje pagrindiniai rodikliai yra viršuje, tendencija matoma iš karto, duomenys suskirstyti į grupes, o filtrai padeda atsakyti į kitą klausimą. Pirmas ekranas turi pasakyti ne „čia daug duomenų“, o „čia svarbiausia įžvalga“.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "4️⃣ BBC / Netflix principas",
+                "body": "**BBC stilius:** kontekstas, vizualinė hierarchija, aiški legenda. **Netflix stilius:** greitas palyginimas, segmentai, filtrai ir rekomendacija. Abu pavyzdžiai primena: vizualas turi vesti žmogų nuo klausimo iki sprendimo."
+              },
+              {
+                "heading": "5️⃣ Daryk dabar",
+                "body": "Paprašyk DI ne tik sukurti grafiką, bet ir sukritikuoti tavo dashboard'o logiką.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi dashboard'o ir duomenų istorijos kritikas.\nTASK: Įvertink mano dashboard'o struktūrą.\nINPUT: [įklijuok dashboard'o aprašymą, rodiklius arba ekrano nuotraukos tekstą]\nOUTPUT: 1) Kokia pagrindinė istorija 2) Ar rodikliai viršuje aiškūs 3) Kur trūksta konteksto 4) Kur auditorija gali suklysti 5) 5 pataisymai prieš rodant vadovybei."
+              },
+              {
+                "heading": "🔽 Pro lygis",
+                "body": "Kai norėsi eiti giliau, pridėk blogų vizualizacijų analizę, spalvų psichologiją, interaktyvumo principus ir pagrindinių rodiklių pasirinkimo metodiką. Šiame modulyje pakanka bazės: aiški istorija, aiški hierarchija, aiškus veiksmas.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -8495,12 +8673,41 @@
           "content": {
             "sections": [
               {
-                "heading": "4 sritys",
-                "body": "Idėjų generavimas; kodų generavimas; vizualizacijos gairės; kontekstinė analizė. **Super promptas:** Rolė: analitikas + vizualizacijos dizaineris + verslo strategas. OUTPUT: santrauka (3 įžvalgos), siūlomi grafikai, Power BI instrukcija, Python kodas, istorijos tekstas vadovybei (max 200 žodž.), rekomenduojamas veiksmas."
+                "heading": "1️⃣ Kodėl čia?",
+                "body": "DI gali pagreitinti vizualizacijos darbą, bet turi gauti aiškią užduotį: kokie duomenys, kam rodoma ir kokio sprendimo reikia. Ši skaidrė sujungia idėjas, kodą, gaires ir alternatyvius įrankius.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Alternatyvos",
-                "body": "**Julius AI** – NLP analizė, paprasta naudoti. **Echobase** – agentai, failų sinchronizacija. **DataLab (DataCamp)** – SQL + Python, notebook, enterprise. **Power BI** – vizualizacijos, integracijos, enterprise."
+                "heading": "2️⃣ Idėjų generavimas",
+                "body": "DI gali pasiūlyti, kokį grafiką rinktis, kokius klausimus kelti ir kokios istorijos ieškoti. Tai naudinga pradžioje, kai dar neaišku, kas duomenyse svarbiausia."
+              },
+              {
+                "heading": "3️⃣ Kodo generavimas",
+                "body": "DI gali paruošti Python, SQL ar Power BI formulių pavyzdžius. Visada patikrink, ar kodas atitinka tavo stulpelių pavadinimus ir ar rezultatas sutampa su originaliais duomenimis."
+              },
+              {
+                "heading": "4️⃣ Vizualizacijos gairės",
+                "body": "DI gali pasiūlyti spalvų, grupavimo, rodiklių ir legendos taisykles. Naudok tai kaip kontrolinį sąrašą, ne kaip galutinį dizaino sprendimą."
+              },
+              {
+                "heading": "5️⃣ Kontekstinė analizė",
+                "body": "DI gali paaiškinti, ką grafikas reiškia auditorijai: vadovybei, komandai ar klientui. Tas pats grafikas gali turėti skirtingą istoriją skirtingam žmogui."
+              },
+              {
+                "heading": "6️⃣ Super promptas",
+                "body": "Paleisk šį promptą, kai turi CSV ar bent aiškų duomenų aprašymą ir nori vieno analizės paketo.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "blockVariant": "brand",
+                "copyable": "ROLE: Tu esi duomenų analitikas + vizualizacijos dizaineris + verslo strategas.\nTASK: Iš pateiktų duomenų sukurk pilną analizės paketą.\nCONTEXT: CSV failas arba lentelė su duomenimis: [aprašyk stulpelius, laikotarpį ir auditoriją].\nOUTPUT:\n1) Duomenų santrauka (3 pagrindinės įžvalgos)\n2) Siūlomi grafikai\n3) Power BI instrukcija\n4) Python kodo kryptis arba pavyzdys\n5) Istorijos tekstas vadovybei (iki 200 žodžių)\n6) Rekomenduojamas verslo veiksmas."
+              },
+              {
+                "heading": "7️⃣ Alternatyvos",
+                "body": "| Įrankis | Kada naudoti |\n| --- | --- |\n| Julius AI | Kai nori greitai analizuoti lentelę be daug techninių žingsnių |\n| Echobase | Kai reikia komandai dirbančių agentų ir failų sinchronizavimo |\n| DataLab (DataCamp) | Kai reikia SQL, Python ir notebook tipo darbo aplinkos |\n| Power BI | Kai reikia verslo ataskaitų, integracijų ir daug vizualizacijų |"
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "Pilnas vizualizacijos ir duomenų istorijos kelias planuojamas vėlesniuose moduliuose. Čia svarbiausia išsinešti principą: DI greitina darbą, bet tu vis tiek valdai klausimą, auditoriją ir sprendimą.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -8512,7 +8719,7 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokote",
-            "introBody": "Sveikiname! Dabar žinai duomenų analizės pipeline (6 žingsnių), operacines sąvokas ir Master promptą – gali naudoti DI kaip verslo analitiką nuo duomenų struktūros iki vizualizacijų ir prognozių.",
+            "introBody": "Sveikiname! Dabar žinai duomenų analizės pipeline (6 žingsnių), operacines sąvokas ir MASTER PROMPTAS – gali naudoti DI kaip verslo analitiką nuo duomenų struktūros iki vizualizacijų ir prognozių.",
             "stats": [
               {
                 "label": "Pipeline žingsnių",
@@ -8605,7 +8812,7 @@
           "content": {
             "whyBenefit": "Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9).",
             "duration": "~15 min",
-            "firstActionCTA": "Atsakyk į klausimus – temos: pipeline, BI schema, MASTER promptas, analizės tipai, sentimentų analizė.",
+            "firstActionCTA": "Atsakyk į klausimus – temos: pipeline, BI schema, MASTER PROMPTAS, analizės tipai, sentimentų analizė.",
             "microWinPhrase": "Kiekvienas teisingas atsakymas parodo, kad seki Duomenų analizės kelią.",
             "thresholds": {
               "pass": 70,
@@ -8921,7 +9128,7 @@
               {
                 "heading": "Žingsnis 3–4 – Deep research (bendras 4 įrankiams)",
                 "body": "Tą patį promptą paleisk ChatGPT, Gemini, DeepSeek, Grok – rezultatus vėliau sujungsime.",
-                "copyable": "ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [JŪSŲ TEMA – įmonė, sektorius arba verslo klausimas].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\nTą patį promptą paleisk ChatGPT, Gemini, DeepSeek ir Grok (arba prieinamus iš šių) – rezultatus vėliau sujungsime į vieną dokumentą."
+                "copyable": "ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [TAVO TEMA – įmonė, sektorius arba verslo klausimas].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\nTą patį promptą paleisk ChatGPT, Gemini, DeepSeek ir Grok (arba prieinamus iš šių) – rezultatus vėliau sujungsime į vieną dokumentą."
               },
               {
                 "heading": "Žingsnis 5 – Duomenų valymas",
@@ -9223,15 +9430,15 @@
             "reflectionPromptAfter": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti vieno Modulio 9 scenarijaus patirtį.\nINPUT: Ką tik atlikau vieną Duomenų analizės kelio scenarijų (verslo analizė su DI).\nOUTPUT: Užduok man vieną klausimą: ką šis scenarijus man davė ir ką pritaikysiu kitą kartą? Po mano atsakymo duok 1 konkretų patarimą."
           },
           "scenario": {
-            "context": "M9 galutinis projektas: atlikti visą ciklą vienai temai (pardavimai, atsiliepimai) naudojant Master promptą.",
+            "context": "M9 galutinis projektas: atlikti visą ciklą vienai temai (pardavimai, atsiliepimai) naudojant MASTER PROMPTAS.",
             "data": "Pasirink temą.",
             "constraints": "8 žingsnių seka.",
             "expectedFormat": "Ataskaita arba planas su 8 blokais.",
             "narrativeLead": "Šią savaitę Jūratė koordinuoja pilną 8 žingsnių workflow vienai temai."
           },
-          "template": "Rolė: Patyręs duomenų analitikas.\nUžduotis: Atlik pilną duomenų analizę [JŪSŲ TEMA].\nStruktūra: 1. Duomenų šaltiniai 2. Duomenų struktūra 3. Valymas 4. EDA 5. Vizualizacijos 6. Įžvalgos 7. Prognozės 8. Rekomendacijos",
+          "template": "Rolė: Patyręs duomenų analitikas.\nUžduotis: Atlik pilną duomenų analizę [TAVO TEMA].\nStruktūra: 1. Duomenų šaltiniai 2. Duomenų struktūra 3. Valymas 4. EDA 5. Vizualizacijos 6. Įžvalgos 7. Prognozės 8. Rekomendacijos",
           "practicalTask": {
-            "template": "Rolė: Patyręs duomenų analitikas.\nUžduotis: Atlik pilną duomenų analizę [JŪSŲ TEMA].\nStruktūra: 1. Duomenų šaltiniai 2. Duomenų struktūra 3. Valymas 4. EDA 5. Vizualizacijos 6. Įžvalgos 7. Prognozės 8. Rekomendacijos",
+            "template": "Rolė: Patyręs duomenų analitikas.\nUžduotis: Atlik pilną duomenų analizę [TAVO TEMA].\nStruktūra: 1. Duomenų šaltiniai 2. Duomenų struktūra 3. Valymas 4. EDA 5. Vizualizacijos 6. Įžvalgos 7. Prognozės 8. Rekomendacijos",
             "templateLabel": "Promptas šiam scenarijui – nukopijuok į DI",
             "motivation": "Tavo užduotis: nukopijuok žemiau esantį promptą į DI, atlik užduotį ir įrašyk rezultatą.",
             "title": "Įgyvendink pilną ciklą",
@@ -9243,7 +9450,7 @@
                   "step": 1,
                   "title": "Nukopijuok žemiau esantį promptą ir įklijuok į DI",
                   "description": "Žemiau – MASTER PROMPTAS šablonas. Pakeisk [savo temą] (pvz. pardavimai Q3), nukopijuok ir paleisk DI.",
-                  "hint": "Pakeisk [JŪSŲ TEMA].",
+                  "hint": "Pakeisk [TAVO TEMA].",
                   "partialSolution": ""
                 },
                 {

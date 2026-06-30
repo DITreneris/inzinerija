@@ -5,6 +5,11 @@
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import {
+  getAgentWorkflowLabels,
+  type AgentWorkflowLocale,
+  type AgentWorkflowStep,
+} from './agentWorkflowContent';
 
 const DESKTOP_VIEWBOX_W = 860;
 const DESKTOP_VIEWBOX_H = 330;
@@ -40,30 +45,15 @@ const BORDER = '#bcccdc';
 const BG_LIGHT = '#f0f4f8';
 const TEXT_DARK = '#102a43';
 
-const STEP_LABELS = [
-  { title: 'Agentas', desc: 'DI sistema' },
-  { title: 'Planavimas', desc: 'žingsniai' },
-  { title: 'Įrankiai', desc: 'paieška, API' },
-  { title: 'Aplinka', desc: 'kontekstas' },
-  { title: 'Rezultatas', desc: 'išvestis' },
-];
-
-const FORWARD_LABELS = [
-  'užduotis',
-  'žingsniai',
-  'įrankiai',
-  'kontekstas',
-] as const;
-const FEEDBACK_LABEL = 'grįžtamasis ryšys';
-
 function buildSteps(
+  stepLabels: AgentWorkflowStep[],
   startX: number,
   rowY: number,
   boxW: number,
   boxH: number,
   gap: number
 ) {
-  return STEP_LABELS.map((step, index) => ({
+  return stepLabels.map((step, index) => ({
     ...step,
     x: startX + (boxW + gap) * index,
     y: rowY,
@@ -73,13 +63,14 @@ function buildSteps(
 }
 
 function buildVerticalSteps(
+  stepLabels: AgentWorkflowStep[],
   startX: number,
   rowY: number,
   boxW: number,
   boxH: number,
   gap: number
 ) {
-  return STEP_LABELS.map((step, index) => ({
+  return stepLabels.map((step, index) => ({
     ...step,
     x: startX,
     y: rowY + (boxH + gap) * index,
@@ -90,13 +81,24 @@ function buildVerticalSteps(
 
 export default function AgentWorkflowDiagram({
   className = '',
+  locale = 'lt',
+  currentStep = 0,
+  onStepClick,
 }: {
   className?: string;
+  locale?: AgentWorkflowLocale;
+  /** Pasirinktas žingsnis (0–4). Naudojama interaktyviame režime. */
+  currentStep?: number;
+  /** Callback paspaudus žingsnį. Kai nurodyta – blokai clickable. */
+  onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const labels = getAgentWorkflowLabels(locale);
+  const isInteractive = typeof onStepClick === 'function';
   const steps = isCompactDiagram
     ? buildVerticalSteps(
+        labels.steps,
         COMPACT_START_X,
         COMPACT_ROW_Y,
         COMPACT_BOX_W,
@@ -104,6 +106,7 @@ export default function AgentWorkflowDiagram({
         COMPACT_GAP
       )
     : buildSteps(
+        labels.steps,
         DESKTOP_START_X,
         DESKTOP_ROW_Y,
         DESKTOP_BOX_W,
@@ -147,7 +150,7 @@ export default function AgentWorkflowDiagram({
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
-      aria-label="Agentų ciklas: Agentas, Planavimas, Įrankiai, Aplinka, Rezultatas ir grįžtamasis ryšys"
+      aria-label={labels.ariaLabel}
     >
       <defs>
         <linearGradient id={`aw-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -199,7 +202,7 @@ export default function AgentWorkflowDiagram({
         fontWeight="800"
         fill={TEXT_DARK}
       >
-        Agentų ciklas
+        {labels.diagramTitle}
       </text>
 
       {steps.map((step, i) => {
@@ -213,45 +216,75 @@ export default function AgentWorkflowDiagram({
         const fromX = rightEdge + ARROW_GAP_FWD;
         const fromY = step.y + step.h + ARROW_GAP_FWD;
         const toY = next ? next.y - ARROW_MARKER_LEN : 0;
+        const isActive = currentStep === i;
+        const dimOpacity = isInteractive && !isActive ? 0.55 : 1;
 
         return (
           <g key={i}>
-            <rect
-              x={step.x}
-              y={step.y}
-              width={step.w}
-              height={step.h}
-              rx="10"
-              fill={`url(#aw-step-${uid})`}
-              stroke={BRAND}
-              strokeWidth="1.5"
-            />
-            <text
-              x={centerX}
-              y={step.y + 27}
-              textAnchor="middle"
-              fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-              fontSize="13"
-              fontWeight="700"
-              fill="white"
+            <g
+              opacity={dimOpacity}
+              style={{ transition: 'opacity 0.2s ease' }}
+              aria-hidden={isInteractive ? true : undefined}
             >
-              {step.title}
-            </text>
-            <text
-              x={centerX}
-              y={step.y + 46}
-              textAnchor="middle"
-              fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-              fontSize="11"
-              fontWeight="500"
-              fill="rgba(255,255,255,0.95)"
-            >
-              {step.desc}
-            </text>
+              <rect
+                x={step.x}
+                y={step.y}
+                width={step.w}
+                height={step.h}
+                rx="10"
+                fill={`url(#aw-step-${uid})`}
+                stroke={isInteractive && isActive ? TEXT_DARK : BRAND}
+                strokeWidth={isInteractive && isActive ? 2.5 : 1.5}
+              />
+              <text
+                x={centerX}
+                y={step.y + 27}
+                textAnchor="middle"
+                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontSize="13"
+                fontWeight="700"
+                fill="white"
+              >
+                {step.title}
+              </text>
+              <text
+                x={centerX}
+                y={step.y + 46}
+                textAnchor="middle"
+                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontSize="11"
+                fontWeight="500"
+                fill="rgba(255,255,255,0.95)"
+              >
+                {step.desc}
+              </text>
+            </g>
+
+            {isInteractive && (
+              <rect
+                x={step.x}
+                y={step.y}
+                width={step.w}
+                height={step.h}
+                rx="10"
+                fill="transparent"
+                cursor="pointer"
+                onClick={() => onStepClick?.(i)}
+                aria-label={labels.stepAria(i, step.title)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onStepClick?.(i);
+                  }
+                }}
+              />
+            )}
 
             {next && (
               <g
-                aria-label={`${step.title} → ${next.title}: ${FORWARD_LABELS[i]}`}
+                aria-label={`${step.title} → ${next.title}: ${labels.forwardLabels[i]}`}
               >
                 {isCompactDiagram ? (
                   <>
@@ -273,7 +306,7 @@ export default function AgentWorkflowDiagram({
                       fontWeight="700"
                       fill={TEXT_DARK}
                     >
-                      {FORWARD_LABELS[i]}
+                      {labels.forwardLabels[i]}
                     </text>
                   </>
                 ) : (
@@ -296,7 +329,7 @@ export default function AgentWorkflowDiagram({
                       fontWeight="700"
                       fill={TEXT_DARK}
                     >
-                      {FORWARD_LABELS[i]}
+                      {labels.forwardLabels[i]}
                     </text>
                   </>
                 )}
@@ -323,7 +356,7 @@ export default function AgentWorkflowDiagram({
         strokeLinejoin="round"
         strokeLinecap="round"
       >
-        <title>Grįžtamasis ryšys: rezultatas grįžta į agentą</title>
+        <title>{labels.feedbackTitle}</title>
       </path>
       <polygon
         points={
@@ -345,7 +378,7 @@ export default function AgentWorkflowDiagram({
         fontWeight="600"
         fill={ACCENT_DARK}
       >
-        {FEEDBACK_LABEL}
+        {labels.feedbackLabel}
       </text>
     </svg>
   );

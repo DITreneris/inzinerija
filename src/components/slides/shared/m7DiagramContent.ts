@@ -185,3 +185,76 @@ export function getM7AgentShortLabels(
     { title: 'Insight', sub: 'Įžvalgos vadovybei' },
   ];
 }
+
+/** 5 žingsnių duomenų istorijos ciklas – skaidrė 100 */
+const M7_DATA_STORY_CYCLE_LT = [
+  { label: 'Surinkimas', desc: 'Šaltiniai' },
+  { label: 'Paruošimas', desc: 'Tvarka' },
+  { label: 'Vizualizacija', desc: 'Vaizdas' },
+  { label: 'Analizė', desc: 'Prasmė' },
+  { label: 'Istorija', desc: 'Veiksmas' },
+];
+
+const M7_DATA_STORY_CYCLE_EN = [
+  { label: 'Collection', desc: 'Sources' },
+  { label: 'Preparation', desc: 'Structure' },
+  { label: 'Visualization', desc: 'Visual' },
+  { label: 'Analysis', desc: 'Meaning' },
+  { label: 'Story', desc: 'Action' },
+];
+
+export function getM7DataStoryCycleSteps(locale: M7Locale) {
+  return locale === 'en' ? M7_DATA_STORY_CYCLE_EN : M7_DATA_STORY_CYCLE_LT;
+}
+
+export function getM7DataStoryCycleExplanations(
+  locale: M7Locale
+): StepExplanation[] {
+  if (locale === 'en') {
+    return [
+      {
+        title: '1. Collection',
+        body: 'Choose **reliable sources** and record where each dataset came from. The story is only as strong as the data behind it.',
+      },
+      {
+        title: '2. Preparation',
+        body: 'Clean formats, missing values and duplicates so the chart does not tell a misleading story.',
+      },
+      {
+        title: '3. Visualization',
+        body: 'Pick the chart that answers the question: trend, comparison, share, distribution or relationship.',
+      },
+      {
+        title: '4. Analysis',
+        body: 'Explain what the visual shows: what changed, where the risk is and which pattern needs attention.',
+      },
+      {
+        title: '5. Story',
+        body: 'Turn the insight into a decision message: fact → meaning → recommended action.',
+      },
+    ];
+  }
+
+  return [
+    {
+      title: '1. Surinkimas',
+      body: 'Pasirink **patikimus šaltinius** ir užfiksuok, iš kur paimtas kiekvienas duomenų rinkinys. Istorija stipri tik tiek, kiek stiprūs jos duomenys.',
+    },
+    {
+      title: '2. Paruošimas',
+      body: 'Sutvarkyk formatus, trūkstamas reikšmes ir dublius, kad grafikas nepasakotų klaidinančios istorijos.',
+    },
+    {
+      title: '3. Vizualizacija',
+      body: 'Parink grafiką pagal klausimą: tendencija, palyginimas, dalis, pasiskirstymas ar ryšys.',
+    },
+    {
+      title: '4. Analizė',
+      body: 'Paaiškink, ką rodo vaizdas: kas pasikeitė, kur rizika ir kuriam dėsningumui reikia dėmesio.',
+    },
+    {
+      title: '5. Istorija',
+      body: 'Paversk įžvalgą sprendimo žinute: faktas → prasmė → rekomenduojamas veiksmas.',
+    },
+  ];
+}
