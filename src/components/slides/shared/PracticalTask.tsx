@@ -25,6 +25,7 @@ import {
 } from '../../../utils/sixBlockStructure';
 import { PracticalTask as PracticalTaskType } from '../../../types/modules';
 import { useLocale } from '../../../contexts/LocaleContext';
+import CTAButton from '../../ui/CTAButton';
 import CopyButton from './CopyButton';
 
 interface PracticalTaskProps {
@@ -465,7 +466,8 @@ export default function PracticalTask({
               : 'Atsakymas automatiškai išsaugomas'}
           </p>
           <div className="flex flex-wrap gap-2 order-1 sm:order-2">
-            <button
+            <CTAButton
+              variant="secondary"
               onClick={async () => {
                 if (answer?.trim()) {
                   try {
@@ -478,7 +480,7 @@ export default function PracticalTask({
                 }
               }}
               disabled={!answer?.trim()}
-              className="btn-secondary flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="disabled:cursor-not-allowed disabled:opacity-50"
               aria-label={
                 locale === 'en' ? 'Copy draft' : 'Kopijuoti juodraštį'
               }
@@ -495,20 +497,21 @@ export default function PracticalTask({
                 : locale === 'en'
                   ? 'Copy'
                   : 'Kopijuoti'}
-            </button>
-            <button
+            </CTAButton>
+            <CTAButton
+              variant="primary"
               onClick={handleSubmit}
               disabled={!answer?.trim()}
-              className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[44px]"
+              className="disabled:cursor-not-allowed disabled:opacity-50"
             >
               <CheckCircle className="w-5 h-5" />
               {locale === 'en' ? 'Save task' : 'Išsaugoti užduotį'}
-            </button>
+            </CTAButton>
             {task.allowMarkWithoutAnswer && (
               <button
                 type="button"
                 onClick={handleMarkWithoutAnswer}
-                className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-gray-600 underline-offset-4 transition-colors hover:text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-brand-300 dark:focus-visible:ring-offset-gray-900"
                 aria-label={
                   locale === 'en'
                     ? 'Mark task done without text'

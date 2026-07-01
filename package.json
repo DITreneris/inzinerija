@@ -1,6 +1,6 @@
 {
   "name": "prompt-anatomy-training",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Interaktyvus DI promptų mokymas: MVP M1–6, production M1–9 (tier 9), full authoring katalogas M1–15. Praktika, apklausa, sertifikatai.",
   "type": "module",
   "scripts": {
@@ -27,6 +27,7 @@
     "audit:en-coverage-m7-m9": "node scripts/audit-en-coverage-m7-m9.mjs",
     "audit:en-language-m7-m9": "node scripts/audit-en-language-m7-m9.mjs",
     "audit:m79": "npm run audit:en-coverage-m7-m9 && npm run audit:en-language-m7-m9",
+    "audit:m7-pathbranch": "node scripts/audit-m7-pathbranch.mjs",
     "audit:m49": "npm run audit:m46 && npm run audit:m79",
     "extract:modules-en-m10-m12": "node scripts/extract-modules-m10-m12.mjs",
     "build:modules-en-m10-m12": "node scripts/build-en-m10-m12.mjs",

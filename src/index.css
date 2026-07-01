@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,6 +36,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   /* Senesni Safari (iPhone): nekeisti teksto dydžio savavališkai – mažina „per didelio“ vaizdo ir nukarpytų žodžių riziką */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

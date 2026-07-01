@@ -7,6 +7,8 @@
  * Locale-aware: node labels, mode labels, UI strings – getPipelineNodes(locale), getModeLabels(locale), getDiagramUiLabels(locale).
  */
 
+import { DIAGRAM_TOKENS } from './diagramTokens';
+
 export type Locale = 'lt' | 'en';
 
 /* ═══ SVG Viewbox ═══ */
@@ -18,7 +20,7 @@ export const BOX_W = 300;
 export const BOX_H = 62;
 export const BOX_R = 10;
 export const BOX_X = (VB_WIDTH - BOX_W) / 2; // = 80
-export const CX = VB_WIDTH / 2;               // = 230
+export const CX = VB_WIDTH / 2; // = 230
 
 /* ═══ Vertical layout ═══ */
 /** Gap between consecutive boxes */
@@ -29,7 +31,7 @@ export const FIRST_NODE_Y = 62;
 /** Computed Y start positions for all 6 nodes */
 export const NODE_Y: readonly number[] = Array.from(
   { length: 6 },
-  (_, i) => FIRST_NODE_Y + i * (BOX_H + NODE_GAP),
+  (_, i) => FIRST_NODE_Y + i * (BOX_H + NODE_GAP)
 );
 // NODE_Y = [62, 138, 214, 290, 366, 442]
 // Last node bottom: 442 + 56 = 498; legend: 512
@@ -53,20 +55,64 @@ export interface PipelineNode {
 }
 
 const PIPELINE_NODES_LT: readonly PipelineNode[] = [
-  { id: 'goal', label: '1. Vartotojo tikslas', sub: 'ko siekiame', mode: 'both' },
-  { id: 'prompt', label: '2. Prompt', sub: 'aiški instrukcija modeliui', mode: 'both' },
-  { id: 'context', label: '3. Kontekstas', sub: 'dokumentai, CRM, taisyklės', mode: 'context', badgeContext: '+ papildomas kontekstas' },
+  {
+    id: 'goal',
+    label: '1. Vartotojo tikslas',
+    sub: 'ko siekiame',
+    mode: 'both',
+  },
+  {
+    id: 'prompt',
+    label: '2. Prompt',
+    sub: 'aiški instrukcija modeliui',
+    mode: 'both',
+  },
+  {
+    id: 'context',
+    label: '3. Kontekstas',
+    sub: 'dokumentai, CRM, taisyklės',
+    mode: 'context',
+    badgeContext: '+ papildomas kontekstas',
+  },
   { id: 'llm', label: '4. LLM', sub: 'planuoja ir generuoja', mode: 'both' },
-  { id: 'tools', label: '5. Įrankiai / Duomenys', sub: 'paieška, DB, API', mode: 'context', badgeTools: '+ papildomi įrankiai' },
-  { id: 'output', label: '6. Output ✓', sub: 'paruoštas rezultatas', mode: 'both' },
+  {
+    id: 'tools',
+    label: '5. Įrankiai / Duomenys',
+    sub: 'paieška, DB, API',
+    mode: 'context',
+    badgeTools: '+ papildomi įrankiai',
+  },
+  {
+    id: 'output',
+    label: '6. Output ✓',
+    sub: 'paruoštas rezultatas',
+    mode: 'both',
+  },
 ];
 
 const PIPELINE_NODES_EN: readonly PipelineNode[] = [
   { id: 'goal', label: '1. User goal', sub: 'what we want', mode: 'both' },
-  { id: 'prompt', label: '2. Prompt', sub: 'clear instruction to model', mode: 'both' },
-  { id: 'context', label: '3. Context', sub: 'documents, CRM, rules', mode: 'context', badgeContext: '+ extra context' },
+  {
+    id: 'prompt',
+    label: '2. Prompt',
+    sub: 'clear instruction to model',
+    mode: 'both',
+  },
+  {
+    id: 'context',
+    label: '3. Context',
+    sub: 'documents, CRM, rules',
+    mode: 'context',
+    badgeContext: '+ extra context',
+  },
   { id: 'llm', label: '4. LLM', sub: 'plans and generates', mode: 'both' },
-  { id: 'tools', label: '5. Tools / Data', sub: 'search, DB, API', mode: 'context', badgeTools: '+ tools' },
+  {
+    id: 'tools',
+    label: '5. Tools / Data',
+    sub: 'search, DB, API',
+    mode: 'context',
+    badgeTools: '+ tools',
+  },
   { id: 'output', label: '6. Output ✓', sub: 'ready result', mode: 'both' },
 ];
 
@@ -80,22 +126,22 @@ export const PIPELINE_NODES = PIPELINE_NODES_LT;
 
 /* ═══ Colors ═══ */
 export const COLORS = {
-  brand: '#334e68',
+  brand: DIAGRAM_TOKENS.colors.brand,
   brandStart: '#5a6d7d',
   brandDarker: '#2a3f54',
   emerald: '#4f8f80',
   emeraldLight: '#6ca999',
   emeraldDarker: '#3a7568',
   emeraldGlow: '#90c7b8',
-  neutral: '#64748b',
+  neutral: DIAGRAM_TOKENS.colors.flow,
   neutralLight: '#94a3b8',
-  border: '#bcccdc',
-  bgStart: '#f0f4f8',
+  border: DIAGRAM_TOKENS.colors.border,
+  bgStart: DIAGRAM_TOKENS.colors.bgStart,
   bgEnd: '#e8eef4',
-  textDark: '#102a43',
-  textMuted: '#64748b',
+  textDark: DIAGRAM_TOKENS.colors.brandDark,
+  textMuted: DIAGRAM_TOKENS.colors.flow,
   textWhite: '#ffffff',
-  arrow: '#6b7c8c',
+  arrow: DIAGRAM_TOKENS.colors.flow,
   arrowContext: '#4f8f80',
 } as const;
 
@@ -115,24 +161,32 @@ const MODE_LABELS_EN: Record<PipelineActiveMode, string> = {
 export const MODE_LABELS = MODE_LABELS_LT;
 
 /** Locale-aware mode names (toggle buttons, aria). */
-export function getModeLabels(locale: Locale): Record<PipelineActiveMode, string> {
+export function getModeLabels(
+  locale: Locale
+): Record<PipelineActiveMode, string> {
   return locale === 'en' ? MODE_LABELS_EN : MODE_LABELS_LT;
 }
 
 const MODE_CONSEQUENCE_LT: Record<PipelineActiveMode, string> = {
-  prompt: 'Prompt engineering: promptas eina tiesiai į modelį. Kontekstas ir įrankiai nedalyvauja.',
-  context: '✓ Promptas ir kontekstas sudaro įvestį, o LLM su įrankiais dirba iteratyviai.',
+  prompt:
+    'Prompt engineering: promptas eina tiesiai į modelį. Kontekstas ir įrankiai nedalyvauja.',
+  context:
+    '✓ Promptas ir kontekstas sudaro įvestį, o LLM su įrankiais dirba iteratyviai.',
 };
 
 const MODE_CONSEQUENCE_EN: Record<PipelineActiveMode, string> = {
-  prompt: 'Prompt engineering: the prompt goes straight to the model. Context and tools are not used.',
-  context: '✓ Prompt and context form the input; the LLM works iteratively with tools.',
+  prompt:
+    'Prompt engineering: the prompt goes straight to the model. Context and tools are not used.',
+  context:
+    '✓ Prompt and context form the input; the LLM works iteratively with tools.',
 };
 
 export const MODE_CONSEQUENCE = MODE_CONSEQUENCE_LT;
 
 /** Locale-aware consequence line text. */
-export function getModeConsequence(locale: Locale): Record<PipelineActiveMode, string> {
+export function getModeConsequence(
+  locale: Locale
+): Record<PipelineActiveMode, string> {
   return locale === 'en' ? MODE_CONSEQUENCE_EN : MODE_CONSEQUENCE_LT;
 }
 

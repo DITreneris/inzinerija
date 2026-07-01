@@ -54,38 +54,17 @@ import { findJourneyChoiceByStored } from '../../../utils/moduleJourneyFocus';
 import {
   CopyButton,
   TemplateBlock,
-  ProcessStepper,
-  DiPrezentacijosWorkflowBlock,
   FigmaEmbed,
   InstructGptQualityBlock,
-  RlProcessBlock,
   AgentWorkflowBlock,
-  LlmArchDiagramBlock,
-  StrukturuotasProcesasBlock,
   WorkflowChainsBlock,
   TurinioWorkflowBlock,
-  M9DataWorkflowBlock,
-  M7AnalysisTypesBlock,
-  M7DataPrepWorkflowBlock,
-  M7DataStoryCycleBlock,
-  M7ThreeAgentsBlock,
-  M10TriggerFlowBlock,
-  M10ThreeAStrategyBlock,
-  M10AgentTaxonomyBlock,
-  M10ToolDecisionTreeBlock,
-  M10SpecIncidentBlock,
-  M13AecFunnelBlock,
-  M13PromptStackBlock,
-  M13RuleOfThirdsBlock,
-  M12ThreeLabsBlock,
-  M15PracticeLoopBlock,
-  LlmAutoregressiveBlock,
   WorkflowComparisonInteractiveBlock,
-  RagDuomenuRuosimasBlock,
   ContextEngineeringPipelineDiagram,
 } from '../shared';
 import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { getColorClasses } from '../utils/colorStyles';
+import { getContentBlockVariantClasses } from '../utils/blockVariantClasses';
 import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
 import SectionDivider from '../../ui/SectionDivider';
 import type { ModuleAccent } from '../../../types/modules';
@@ -134,8 +113,33 @@ import {
   IntroActionPieSlide,
   type IntroActionPieSlideProps,
 } from './content/IntroActionPieSlide';
+import { renderDiagramSection } from './content/diagramRenderers';
 export { ActionIntroSlide, type ActionIntroSlideProps };
 export { IntroActionPieSlide, type IntroActionPieSlideProps };
+
+const PREMIUM_DIAGRAM_IMAGE_KEYS = [
+  'm7_analysis_types',
+  'm7_data_prep_workflow',
+  'm7_data_story_cycle',
+  'm7_three_agents_flow',
+  'm7_master_workflow',
+  'm9_data_workflow',
+  'da_pipeline_6',
+  'da_bi_schema_4',
+  'rl_process_diagram',
+] as const;
+
+function isPremiumDiagramSection(image?: string) {
+  if (!image) return false;
+  const normalized = image.replace(/^\//, '').toLowerCase();
+  return PREMIUM_DIAGRAM_IMAGE_KEYS.some(
+    (key) =>
+      normalized === key ||
+      normalized === `${key}.svg` ||
+      normalized.endsWith(`/${key}`) ||
+      normalized.endsWith(`/${key}.svg`)
+  );
+}
 
 /* ─── StatWithTooltip – skaičius su custom hover/focus tooltip (DI paradoksas) ─── */
 function StatWithTooltip({
@@ -248,10 +252,10 @@ export function ActionIntroJourneySlide({
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-black leading-none select-none">
+          <div className="absolute top-3 right-5 text-8xl sm:text-9xl font-black leading-none select-none">
             ?
           </div>
-          <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-black leading-none select-none">
+          <div className="absolute bottom-3 left-5 text-8xl sm:text-9xl font-black leading-none select-none">
             !
           </div>
         </div>
@@ -898,26 +902,19 @@ export function ContentBlockSlide({
           const variant = section.blockVariant || 'default';
           const isBottomLine = isDiVisata && variant === 'accent';
           const isRlDiagramSection = section.image === 'rl_process_diagram';
+          const isInteractiveDiagram = isPremiumDiagramSection(section.image);
           const isCollapsible =
             Boolean(section.collapsible) && !isShortContent(section);
           const isOpen = isCollapsible ? Boolean(openSections[i]) : true;
           const contentId = `content-section-${i}`;
           const sectionPadding = isRlDiagramSection ? 'p-4' : 'p-4 lg:p-5';
-          const blockClasses = isOptional
-            ? 'bg-gray-50 dark:bg-gray-800/70 p-4 lg:p-5 rounded-xl border-l-4 border-gray-300 dark:border-gray-600 border border-gray-200 dark:border-gray-700'
-            : isBottomLine
-              ? 'bg-white/90 dark:bg-gray-800/90 p-4 lg:p-5 rounded-xl border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40 shadow-md'
-              : variant === 'accent'
-                ? 'bg-accent-50 dark:bg-accent-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
-                : variant === 'brand'
-                  ? `bg-brand-50 dark:bg-brand-900/20 ${sectionPadding} rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800`
-                  : variant === 'terms'
-                    ? 'bg-slate-50 dark:bg-slate-800/60 p-4 lg:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
-                    : variant === 'emerald'
-                      ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
-                      : variant === 'violet'
-                        ? 'bg-violet-50 dark:bg-violet-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
-                        : 'bg-white dark:bg-gray-800 p-4 lg:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+          const blockClasses = getContentBlockVariantClasses({
+            variant,
+            isOptional,
+            isBottomLine,
+            isInteractiveDiagram,
+            sectionPadding,
+          });
           return (
             <Fragment key={i}>
               <div className={blockClasses}>
@@ -1063,31 +1060,14 @@ export function ContentBlockSlide({
                       )}
                     </figure>
                   ) : section.image ? (
-                    section.image.includes('agent_workflow') ? (
+                    (renderDiagramSection(section.image, section.body, {
+                      moduleId,
+                      slideId: slide?.id,
+                      imageAlt: section.imageAlt ?? section.heading ?? '',
+                    }) ??
+                    (section.image.includes('agent_workflow') ? (
                       <div className="my-4">
                         <AgentWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('rl_process_diagram') ? (
-                      <div className="my-4">
-                        <RlProcessBlock
-                          moduleId={moduleId}
-                          slideId={slide?.id}
-                          showHero={false}
-                        />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('di_prezentacijos_workflow') ? (
-                      <div className="my-4">
-                        <DiPrezentacijosWorkflowBlock />
                         {section.body && (
                           <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
                             {renderBodyWithBold(section.body)}
@@ -1097,190 +1077,6 @@ export function ContentBlockSlide({
                     ) : section.image.includes('turinio_workflow') ? (
                       <div className="my-4">
                         <TurinioWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m7_analysis_types') ? (
-                      <div className="my-4">
-                        <M7AnalysisTypesBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m7_data_prep_workflow') ? (
-                      <div className="my-4">
-                        <M7DataPrepWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m7_data_story_cycle') ? (
-                      <div className="my-4">
-                        <M7DataStoryCycleBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m7_three_agents_flow') ? (
-                      <div className="my-4">
-                        <M7ThreeAgentsBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m7_master_workflow') ? (
-                      <div className="my-4">
-                        <M9DataWorkflowBlock context="m7_master" />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m9_data_workflow') ? (
-                      <div className="my-4">
-                        <M9DataWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m10_trigger_flow') ? (
-                      <div className="my-4">
-                        <M10TriggerFlowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m10_three_a_strategy') ? (
-                      <div className="my-4">
-                        <M10ThreeAStrategyBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m10_agent_taxonomy') ? (
-                      <div className="my-4">
-                        <M10AgentTaxonomyBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m10_tool_decision_tree') ? (
-                      <div className="my-4">
-                        <M10ToolDecisionTreeBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m10_spec_incident') ? (
-                      <div className="my-4">
-                        <M10SpecIncidentBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m13_aec_funnel') ? (
-                      <div className="my-4">
-                        <M13AecFunnelBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m13_prompt_stack') ? (
-                      <div className="my-4">
-                        <M13PromptStackBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m13_rule_of_thirds') ? (
-                      <div className="my-4">
-                        <M13RuleOfThirdsBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m12_three_labs') ? (
-                      <div className="my-4">
-                        <M12ThreeLabsBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('m15_practice_loop') ? (
-                      <div className="my-4">
-                        <M15PracticeLoopBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('rag_duomenu_ruosimas') ? (
-                      <div className="my-4">
-                        <RagDuomenuRuosimasBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('custom_gpt_process') ? (
-                      <div className="my-4">
-                        <ProcessStepper />
-                      </div>
-                    ) : section.image.includes('strukturuotas_procesas') ? (
-                      <div className="my-4">
-                        {section.body && (
-                          <p className="mb-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                        <StrukturuotasProcesasBlock />
-                      </div>
-                    ) : section.image?.includes('llm_arch') ? (
-                      <div className="my-4">
-                        {section.body && (
-                          <p className="mb-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                        <LlmArchDiagramBlock />
-                      </div>
-                    ) : section.image?.includes('llm_autoregressive') ? (
-                      <div className="my-4">
-                        <LlmAutoregressiveBlock />
                         {section.body && (
                           <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
                             {renderBodyWithBold(section.body)}
@@ -1310,7 +1106,7 @@ export function ContentBlockSlide({
                           {t('openInNewTabLabel')}
                         </a>
                       </figure>
-                    )
+                    )))
                   ) : null}
                   {!section.image &&
                     !section.presentationToolsBlock &&
@@ -1436,10 +1232,10 @@ export function ContentBlockSlide({
                                     key={j}
                                     className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
                                       isComparison
-                                        ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : 'bg-slate-200 dark:bg-slate-800/50'}`
+                                        ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
                                         : isSolutionMatrix
-                                          ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : ''}`
-                                          : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)]' : ''}`
+                                          ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
+                                          : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
                                     }`}
                                   >
                                     {h}
@@ -1503,7 +1299,7 @@ export function ContentBlockSlide({
                                           key={ci}
                                           className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
                                             isFirstCol
-                                              ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-[2px_0_4px_-2px_rgba(0,0,0,0.08)] ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
+                                              ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-sm ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
                                               : isPriceCol
                                                 ? 'text-gray-500 dark:text-gray-400'
                                                 : isThirdCol
@@ -2098,7 +1894,7 @@ export function SectionBreakSlide({
           )}
           {content.celebrationText && (
             <div
-              className={`mt-1 relative flex flex-col sm:flex-row items-center justify-center gap-2 rounded-[20px] border-2 ${colors.heroBorder} ${colors.heroBg} pl-4 pr-36 sm:pr-32 py-4 text-left w-full`}
+              className={`mt-1 relative flex flex-col sm:flex-row items-center justify-center gap-2 rounded-2xl border-2 ${colors.heroBorder} ${colors.heroBg} pl-4 pr-36 sm:pr-32 py-4 text-left w-full`}
               role="region"
               aria-label={t('sectionCompleteAria')}
             >
@@ -2148,16 +1944,15 @@ export function SectionBreakSlide({
                   const pct = total > 0 ? (current / total) * 100 : 0;
                   return (
                     <div
-                      className="absolute top-4 right-5 flex flex-col items-center justify-center rounded-[14px] border border-[#DCE3EA] dark:border-slate-600 bg-[#F5F7FA] dark:bg-slate-800/90 px-3.5 pt-2.5 pb-0 min-w-[5.5rem] leading-[1.35] overflow-hidden shadow-[0_14px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.18)]"
+                      className="absolute top-4 right-5 flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-3.5 pt-2.5 pb-0 min-w-[5.5rem] leading-[1.35] overflow-hidden shadow-md dark:border-slate-600 dark:bg-slate-800/90 dark:shadow-lg"
                       role="status"
                       aria-label={`${current} ${isEn ? 'of' : 'iš'} ${total}`}
                     >
-                      <span className="text-[1.25rem] font-semibold tabular-nums text-brand-700 dark:text-brand-300 tracking-[-0.02em]">
+                      <span className="text-xl font-semibold tabular-nums text-brand-700 dark:text-brand-300 tracking-[-0.02em]">
                         {current}/{total}
                       </span>
                       <div
-                        className="w-full mt-2 rounded-full overflow-hidden bg-gray-200 dark:bg-slate-500"
-                        style={{ height: '4px' }}
+                        className="w-full mt-2 h-1 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-500"
                         role="presentation"
                       >
                         <div
@@ -2860,10 +2655,10 @@ export function DefinitionsSlide({
             className="absolute inset-0 opacity-[0.05] pointer-events-none"
             aria-hidden="true"
           >
-            <div className="absolute top-2 right-4 text-[80px] font-black leading-none select-none">
+            <div className="absolute top-2 right-4 text-7xl font-black leading-none select-none">
               💬
             </div>
-            <div className="absolute bottom-2 left-4 text-[80px] font-black leading-none select-none">
+            <div className="absolute bottom-2 left-4 text-7xl font-black leading-none select-none">
               🔧
             </div>
           </div>
@@ -3058,7 +2853,7 @@ export function DefinitionsSlide({
                 </p>
                 <div className="bg-white dark:bg-gray-900/50 p-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
                   <div className="flex items-center justify-between gap-1 mb-1">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">
                       {t('example')}
                     </p>
                     <CopyButton text={aspect.example} size="sm" />
@@ -3180,7 +2975,7 @@ function DiModalityCard({
             )}
             {ex.recommended && (
               <span
-                className="inline-flex items-center gap-0.5 px-2 py-1 rounded-md text-[10px] font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap min-h-[28px] items-center"
+                className="inline-flex items-center gap-0.5 px-2 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 whitespace-nowrap min-h-[28px] items-center"
                 title={t('recommendedToolAria')}
                 aria-label={t('recommendedToolAria')}
               >
@@ -3683,7 +3478,7 @@ export function PromptTechniquesSlide({
             >
               <div className="flex items-center gap-2 mb-2">
                 {isAntiPattern && (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-200 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700 flex-shrink-0">
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-200 dark:bg-rose-900/40 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700 flex-shrink-0">
                     {t('promptTechniquesAvoidLabel')}
                   </span>
                 )}

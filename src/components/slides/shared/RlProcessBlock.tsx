@@ -9,6 +9,7 @@ import RlProcessDiagram from './RlProcessDiagram';
 import { getRlStepExplanations } from './stepExplanations';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
+import { InteractiveDiagramShell } from './diagramKit';
 
 const RL_BLOCK_LABELS = {
   lt: {
@@ -46,24 +47,39 @@ export interface RlProcessBlockProps {
   showHero?: boolean;
 }
 
-export default function RlProcessBlock({ moduleId: _moduleId, slideId: _slideId, showHero = true }: RlProcessBlockProps = {}) {
+export default function RlProcessBlock({
+  moduleId: _moduleId,
+  slideId: _slideId,
+  showHero = true,
+}: RlProcessBlockProps = {}) {
   const { locale } = useLocale();
   const explanations = getRlStepExplanations(locale);
   const labels = RL_BLOCK_LABELS[locale];
-  const { currentStep, setCurrentStep, step, totalSteps: TOTAL_STEPS } = useStepDiagram(explanations);
+  const {
+    currentStep,
+    setCurrentStep,
+    step,
+    totalSteps: TOTAL_STEPS,
+  } = useStepDiagram(explanations);
   const explanationRef = useRef<HTMLDivElement>(null);
 
-  const handleStepClick = useCallback((index: number) => {
-    setCurrentStep(index);
-  }, [setCurrentStep]);
+  const handleStepClick = useCallback(
+    (index: number) => {
+      setCurrentStep(index);
+    },
+    [setCurrentStep]
+  );
 
   const handleStartFirstStep = () => {
     setCurrentStep(0);
-    explanationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    explanationRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
   };
 
   return (
-    <div className="space-y-4" role="region" aria-label={labels.regionAria}>
+    <div className="space-y-4">
       {showHero && (
         <div className="rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 px-4 py-2">
           <p className="text-sm font-semibold text-gray-900 dark:text-white mb-0.5">
@@ -83,64 +99,40 @@ export default function RlProcessBlock({ moduleId: _moduleId, slideId: _slideId,
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-2">
-        <span
-          className="inline-flex items-center gap-1 rounded-full bg-brand-100 dark:bg-brand-900/40 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:text-brand-300 whitespace-nowrap"
-          aria-live="polite"
+      <div ref={explanationRef}>
+        <InteractiveDiagramShell
+          regionAria={labels.regionAria}
+          statusLabel={`${labels.youAreHere} ${currentStep + 1}.`}
+          currentStep={currentStep}
+          totalSteps={TOTAL_STEPS}
+          currentTitle={step.title}
+          navAria={labels.navAria}
+          steps={explanations}
+          onStepSelect={handleStepClick}
+          stepAria={labels.stepAria}
+          explanationTitle={step.title}
+          explanation={<p>{renderBold(step.body)}</p>}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-500 shrink-0" aria-hidden />
-          {labels.youAreHere} {currentStep + 1}. {step.title}
-        </span>
-        <span className="text-xs text-gray-500 dark:text-gray-400">{currentStep + 1} / {TOTAL_STEPS}</span>
-      </div>
-
-      <div className="my-4">
-        <EnlargeableDiagram
-          enlargeLabel={labels.enlargeLabel}
-          renderContent={() => (
-            <RlProcessDiagram
-              currentStep={currentStep}
-              onStepClick={handleStepClick}
-              className="max-w-5xl"
+          <div className="my-4">
+            <EnlargeableDiagram
+              enlargeLabel={labels.enlargeLabel}
+              renderContent={() => (
+                <RlProcessDiagram
+                  currentStep={currentStep}
+                  onStepClick={handleStepClick}
+                  className="max-w-5xl"
+                />
+              )}
             />
-          )}
-        />
-      </div>
+          </div>
 
-      <p className="text-center text-base font-medium text-brand-700 dark:text-brand-300" aria-label={labels.mentalModelAria}>
-        {labels.mentalModelText}
-      </p>
-
-      <nav className="flex flex-wrap justify-center gap-1.5" aria-label={labels.navAria}>
-        {explanations.map((s, idx) => (
-          <button
-            key={idx}
-            type="button"
-            onClick={() => handleStepClick(idx)}
-            aria-current={currentStep === idx ? 'step' : undefined}
-            aria-label={labels.stepAria(idx, s.title)}
-            className={`
-              flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all min-h-[44px] min-w-[44px]
-              focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
-              ${currentStep === idx
-                ? 'border-brand-500 bg-brand-500 text-white shadow-md'
-                : 'border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/30'}
-            `}
+          <p
+            className="text-center text-base font-medium text-brand-700 dark:text-brand-300"
+            aria-label={labels.mentalModelAria}
           >
-            {idx + 1}
-          </button>
-        ))}
-      </nav>
-
-      {/* Paaiškinimas – atsidaro paspaudus bloką */}
-      <div
-        ref={explanationRef}
-        className="rounded-xl border-l-4 border-l-brand-500 bg-brand-50 dark:bg-brand-900/20 p-4 text-gray-700 dark:text-gray-300 leading-relaxed"
-        role="status"
-        aria-live="polite"
-      >
-        <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">{step.title}</p>
-        <p>{renderBold(step.body)}</p>
+            {labels.mentalModelText}
+          </p>
+        </InteractiveDiagramShell>
       </div>
     </div>
   );

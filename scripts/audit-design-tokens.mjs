@@ -16,8 +16,9 @@
  *
  * Detekcija:
  *   - hex          → /#[0-9a-fA-F]{3,8}\b/ (CSS-style hex)
- *   - inlineStyle  → style={{ ... color|background|boxShadow|fill|stroke ... }}
- *   - svgFill      → fill="#..."  arba stroke="#..."
+ *   - inlineStyle    → style={{ ... color|background|boxShadow|fill|stroke ... }}
+ *   - svgFill        → fill="#..."  arba stroke="#..."
+ *   - arbitraryClass → Tailwind arbitrary styling such as bg-[#...], border-[#...], shadow-[...]
  *
  * Praleidžia: testai (*.test.tsx), tipų failai (*.d.ts), node_modules.
  * Tinka:      visus .tsx ir .ts src/components/ ir src/utils/ paviršiuje.
@@ -45,6 +46,7 @@ const HEX_FALSE_POSITIVE = /^#(fff|000|ffffff|000000)$/i; // jei nori taikyti ba
 const HEX_RE = /#[0-9a-fA-F]{3,8}\b/g;
 const SVG_COLOR_RE = /(?:fill|stroke)="(#[0-9a-fA-F]{3,8})"/g;
 const INLINE_STYLE_RE = /style=\{\{[^}]*?(?:color|background|backgroundImage|boxShadow|fill|stroke)[^}]*?\}\}/g;
+const ARBITRARY_CLASS_RE = /\b(?:bg|border|text|shadow|fill|stroke)-\[[^\]]+\]/g;
 
 function walk(dir, files = []) {
   let entries;
@@ -74,7 +76,7 @@ function walk(dir, files = []) {
 function scanFile(absPath) {
   const content = readFileSync(absPath, 'utf8');
   const lines = content.split('\n');
-  const findings = { hex: [], inlineStyle: [], svgFill: [] };
+  const findings = { hex: [], inlineStyle: [], svgFill: [], arbitraryClass: [] };
 
   // hex: line-by-line, kad turėtume line number ir context
   for (let i = 0; i < lines.length; i++) {
@@ -89,6 +91,14 @@ function scanFile(absPath) {
     const svgMatches = [...line.matchAll(SVG_COLOR_RE)];
     for (const sm of svgMatches) {
       findings.svgFill.push({ line: i + 1, value: sm[1], preview: line.trim().slice(0, 100) });
+    }
+    const arbitraryClassMatches = [...line.matchAll(ARBITRARY_CLASS_RE)];
+    for (const am of arbitraryClassMatches) {
+      findings.arbitraryClass.push({
+        line: i + 1,
+        value: am[0],
+        preview: line.trim().slice(0, 100),
+      });
     }
   }
 
@@ -115,11 +125,16 @@ function summarize(report) {
     hex: report.reduce((s, r) => s + r.findings.hex.length, 0),
     inlineStyle: report.reduce((s, r) => s + r.findings.inlineStyle.length, 0),
     svgFill: report.reduce((s, r) => s + r.findings.svgFill.length, 0),
+    arbitraryClass: report.reduce((s, r) => s + r.findings.arbitraryClass.length, 0),
   };
   const ranked = report
     .map((r) => ({
       file: r.file,
-      total: r.findings.hex.length + r.findings.inlineStyle.length + r.findings.svgFill.length,
+      total:
+        r.findings.hex.length +
+        r.findings.inlineStyle.length +
+        r.findings.svgFill.length +
+        r.findings.arbitraryClass.length,
       ...r.findings,
     }))
     .filter((r) => r.total > 0)
@@ -134,11 +149,12 @@ function printText(summary) {
   console.log(`  hex literals:    ${counts.hex}`);
   console.log(`  inline styles:   ${counts.inlineStyle}`);
   console.log(`  svg fill/stroke: ${counts.svgFill}`);
-  console.log(`  TOTAL findings:  ${counts.hex + counts.inlineStyle + counts.svgFill}`);
+  console.log(`  arbitrary class: ${counts.arbitraryClass}`);
+  console.log(`  TOTAL findings:  ${counts.hex + counts.inlineStyle + counts.svgFill + counts.arbitraryClass}`);
   console.log(`\nTop ${FLAGS.topN} „dirtiest“ failai:`);
   for (const r of ranked.slice(0, FLAGS.topN)) {
     const rel = relative(root, r.file);
-    console.log(`  ${rel}  →  total ${r.total}  (hex: ${r.hex.length}, inline: ${r.inlineStyle.length}, svg: ${r.svgFill.length})`);
+    console.log(`  ${rel}  →  total ${r.total}  (hex: ${r.hex.length}, inline: ${r.inlineStyle.length}, svg: ${r.svgFill.length}, arbitrary: ${r.arbitraryClass.length})`);
   }
   console.log('\nNote: warn-only baseline. SOT — docs/development/DESIGN_SYSTEM_V0_2.md §5.');
   console.log('Hex „false positives“: #fff, #000, #ffffff, #000000 (praleisti).');
@@ -157,6 +173,9 @@ function printVerbose(ranked) {
     }
     for (const f of r.svgFill) {
       console.log(`${rel}:${f.line}  [svg]       ${f.value}  ${f.preview}`);
+    }
+    for (const f of r.arbitraryClass) {
+      console.log(`${rel}:${f.line}  [arbitrary] ${f.value}  ${f.preview}`);
     }
   }
 }

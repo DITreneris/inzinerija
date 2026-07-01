@@ -10,6 +10,8 @@ import {
   setCertificateName,
 } from '../utils/certificateStorage';
 import { track } from '../utils/analytics';
+import Card from './ui/Card';
+import CTAButton from './ui/CTAButton';
 
 const WEBSITE_URL = 'https://www.promptanatomy.app/';
 
@@ -76,16 +78,16 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         <p className="text-gray-600 dark:text-gray-400">
           {t('contentNotFound')}
         </p>
-        <button onClick={onBack} className="btn-secondary mt-4">
+        <CTAButton variant="secondary" onClick={onBack} className="mt-4">
           {t('back')}
-        </button>
+        </CTAButton>
       </div>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <div className="card p-6 lg:p-8">
+      <Card className="p-6 lg:p-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
           {t('title')}
         </h1>
@@ -95,14 +97,10 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
 
         {/* Maketo peržiūra (HTML preview) – atitinka premium PDF maketą; accent border (GOLDEN §2) */}
         <div
-          className="mx-auto mb-8 rounded-xl border border-gray-200 dark:border-gray-700 border-l-4 border-l-accent-500 bg-white dark:bg-gray-800 p-8 shadow-sm"
-          style={{ maxWidth: '400px' }}
+          className="mx-auto mb-8 max-w-sm rounded-xl border border-gray-200 dark:border-gray-700 border-l-4 border-l-accent-500 bg-white dark:bg-gray-800 p-8 shadow-sm"
           aria-hidden="true"
         >
-          <p
-            className="text-center text-sm font-medium mb-1"
-            style={{ color: '#222' }}
-          >
+          <p className="text-center text-sm font-medium text-gray-900 mb-1">
             {certificateContent.programTitle ??
               (locale === 'en' ? 'Prompt Anatomy' : 'Promptų anatomija')}
           </p>
@@ -117,8 +115,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
             {name.trim() || t('yourNamePlaceholder')}
           </p>
           <div
-            className="w-16 h-0.5 mx-auto mb-3 rounded-full"
-            style={{ backgroundColor: '#d4a520' }}
+            className="w-16 h-0.5 mx-auto mb-3 rounded-full bg-accent-500"
             aria-hidden="true"
           />
           <p className="text-center text-sm text-gray-700 dark:text-gray-300 mb-1">
@@ -128,8 +125,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
             {content.programName}
           </p>
           <div
-            className="w-16 h-0.5 mx-auto mt-4 rounded-full"
-            style={{ backgroundColor: '#d4a520' }}
+            className="w-16 h-0.5 mx-auto mt-4 rounded-full bg-accent-500"
             aria-hidden="true"
           />
           <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
@@ -157,24 +153,20 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            type="button"
-            onClick={onBack}
-            className="btn-secondary flex items-center justify-center gap-2"
-          >
+          <CTAButton variant="secondary" onClick={onBack}>
             <ArrowLeft className="w-5 h-5" />
             {t('back')}
-          </button>
-          <button
-            type="button"
+          </CTAButton>
+          <CTAButton
+            variant="primary"
             onClick={handleSaveAndDownload}
             disabled={!name.trim() || isDownloading}
-            className="btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label={t('saveAndDownloadAria')}
           >
             <Download className="w-5 h-5" aria-hidden />
             {isDownloading ? t('preparing') : t('saveAndDownloadButton')}
-          </button>
+          </CTAButton>
         </div>
 
         {downloadSuccess && (
@@ -220,7 +212,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
             {certificateContent.websiteCta || t('websiteCta')}
           </a>
         </p>
-      </div>
+      </Card>
     </div>
   );
 }

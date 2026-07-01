@@ -23,6 +23,8 @@ export { default as TurinioWorkflowBlock } from './TurinioWorkflowBlock';
 export { default as M9DataWorkflowDiagram } from './M9DataWorkflowDiagram';
 export { default as M9DataWorkflowBlock } from './M9DataWorkflowBlock';
 export { default as M7AnalysisTypesBlock } from './M7AnalysisTypesBlock';
+export { default as M7BiSchemaBlock } from './M7BiSchemaBlock';
+export { default as M7DaPipelineBlock } from './M7DaPipelineBlock';
 export { default as M7DataPrepWorkflowBlock } from './M7DataPrepWorkflowBlock';
 export { default as M7DataStoryCycleBlock } from './M7DataStoryCycleBlock';
 export { default as M7ThreeAgentsBlock } from './M7ThreeAgentsBlock';
@@ -44,3 +46,12 @@ export { default as WorkflowComparisonDiagram } from './WorkflowComparisonDiagra
 export { default as WorkflowComparisonInteractiveBlock } from './WorkflowComparisonInteractiveBlock';
 export { default as RagDuomenuRuosimasBlock } from './RagDuomenuRuosimasBlock';
 export { default as ContextEngineeringPipelineDiagram } from './ContextEngineeringPipelineDiagram';
+export {
+  DiagramStepHitArea,
+  DiagramImageFrame,
+  DiagramExplanation,
+  DiagramStatusBadge,
+  DiagramStepNav,
+  InteractiveDiagramShell,
+} from './diagramKit';
+export { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';

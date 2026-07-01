@@ -8055,7 +8055,7 @@
                   "Vengti konkrečių klausimų"
                 ],
                 "correct": 0,
-                "explanation": "Haliucinacijų mažinimo trijų žingsnių principas: (1) prašykite šaltinių ir nuorodų; (2) kryžminkite su nepriklausomais šaltiniais; (3) leiskite DI pasakyti „Nežinau“. Taip pat RAG sumažina riziką, nes DI remiasi duomenimis."
+                "explanation": "Haliucinacijų mažinimo trijų žingsnių principas: (1) prašyk šaltinių ir nuorodų; (2) kryžmink su nepriklausomais šaltiniais; (3) leisk DI pasakyti „Nežinau“. Taip pat RAG sumažina riziką, nes DI remiasi duomenimis."
               }
             ],
             "footer": "Toliau – skaidrė 35: Tiriamoji analizė (EDA)"
@@ -9398,7 +9398,7 @@
             "templateLabel": "Promptas šiam scenarijui – nukopijuok į DI",
             "motivation": "Tavo užduotis: nukopijuok žemiau esantį promptą į DI, atlik užduotį ir įrašyk rezultatą.",
             "title": "Pridėk metaduomenis",
-            "placeholder": "Aprašykite, kokius metaduomenis naudosite.",
+            "placeholder": "Aprašyk, kokius metaduomenis naudosi.",
             "instructions": {
               "title": "Žingsnis",
               "steps": [
@@ -9510,7 +9510,7 @@
             "templateLabel": "Promptas šiam scenarijui – nukopijuok į DI",
             "motivation": "Tavo užduotis: nukopijuok žemiau esantį promptą į DI, atlik užduotį ir įrašyk rezultatą.",
             "title": "Panaudok 4 tipus",
-            "placeholder": "Įklijuokite po vieną promptą ir rezultatą.",
+            "placeholder": "Įklijuok po vieną promptą ir rezultatą.",
             "allowMarkWithoutAnswer": true,
             "feedbackPrompt": "Užduok man vieną klausimą: Ką gavau iš DI atlikdamas šį scenarijų ir ką pritaikysiu kitą kartą? Po mano atsakymo duok vieną konkretų patarimą.",
             "instructions": {
@@ -9691,7 +9691,7 @@
             "templateLabel": "Promptas šiam scenarijui – nukopijuok į DI",
             "motivation": "Tavo užduotis: nukopijuok žemiau esantį promptą į DI, atlik užduotį ir įrašyk rezultatą.",
             "title": "Sugeneruok duomenis",
-            "placeholder": "Įklijuokite DI išvestį arba savo lentelę.",
+            "placeholder": "Įklijuok DI išvestį arba savo lentelę.",
             "instructions": {
               "title": "Žingsnis",
               "steps": [

@@ -15,7 +15,22 @@ _TBD v0.3 — žr. [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §1–§2 (šrifta
 
 ## 2. Tokenai ir auditas
 
-_TBD v0.3 — žr. [`analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md), `npm run audit:design-tokens`._
+Canonical sluoksniai:
+
+- `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
+- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking ir z-index class helperiai.
+- `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės.
+- `src/utils/useDiagramPalette.ts` — dark/light SVG paletės parinkimas React diagramoms.
+
+Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](analysis/DESIGN_TOKENS_BASELINE_2026-07.md). Vykdymo tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
+
+```bash
+npm run audit:design-tokens
+```
+
+Auditas yra warn-only. Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tailwind arbitrary styling (`bg-[#...]`, `border-[#...]`, `shadow-[...]`).
+
+2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). `LlmArchDiagramDiagram.tsx` radiniai sąmoningai palikti B3 trackui, ne bendram hotspot sprintui.
 
 ---
 
@@ -86,7 +101,21 @@ _TBD v0.3 — žr. `GOLDEN_STANDARD.md` §3–§4, `docs/SKAIDRIU_TIPU_ANALIZE.m
 
 ## 6. Diagramos ir schemos
 
-_TBD v0.3 — žr. `SCHEME_AGENT.md`, backlog B1 (`diagramTokens.ts`)._
+Canonical interaktyvių diagramų kelias: `DIAGRAM_KIT_STANDARD.md`.
+
+- Klaviatūros kelias: HTML `DiagramStepNav`.
+- SVG hit zones: `DiagramStepHitArea` tik pointer sąveikai, be `role="button"` ir be `tabIndex`.
+- Dark mode: `useDiagramPalette()` SVG fonui, rėmui, flow linijoms ir tekstui.
+- Wrapper: `InteractiveDiagramShell` su status badge, step nav ir explanation bloku.
+
+`RlProcessBlock` yra pirmas legacy pilotas šiame 2026-07 remonte: shell perkelta į `InteractiveDiagramShell`, SVG keyboard path pašalintas, dark SVG fonas saugomas testu.
+
+2026-07 leftovers pass:
+
+- `DiPrezentacijosWorkflowDiagram`, `TurinioWorkflowDiagram`, `AgentWorkflowDiagram` ir `CustomGptProcessDiagram` SVG hit zonos perkeltos į pointer-only `DiagramStepHitArea`; keyboard kelias lieka HTML `nav button`.
+- Sudėtingi spatial/mode komponentai (`WorkflowComparisonDiagram`, `ContextEngineeringPipelineDiagram`) kol kas dokumentuoti kaip atskiro review kandidatai.
+- `LlmArch` refaktorius laikomas atskiru B3 tracku: [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).
+- M10+ vizualinė kokybė sekama atskiru backlog: [`analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
 
 ---
 
@@ -105,7 +134,7 @@ _TBD v0.3 — žr. `SCHEME_AGENT.md`, backlog B1 (`diagramTokens.ts`)._
 ```bash
 npm run lint && npm run typecheck && npm run test:run && npm run build
 npm run validate:schema
-npm run audit:design-tokens   # TOTAL <= 480 (baseline)
+npm run audit:design-tokens   # warn-only, lyginti su 2026-07 baseline
 node scripts/audit-footer-length.mjs
 ```
 

@@ -68,4 +68,27 @@ describe('M7–M9 EN language audit', () => {
     const hybrid = report.counts.en_hybrid_token ?? 0;
     expect(hybrid).toBe(0);
   });
+
+  it('worst-risk M7 and M9 slides have no EN language audit findings', () => {
+    if (!existsSync(enOverlay)) return;
+    const report = runLanguageAudit();
+    const m7Hits = findingsForSlides(
+      report,
+      7,
+      [85, 861, 87, 88, 89, 891, 90, 91, 94, 75]
+    );
+    const m9Hits = findingsForSlides(report, 9, [90]);
+    expect(
+      [...m7Hits, ...m9Hits],
+      JSON.stringify([...m7Hits, ...m9Hits], null, 2)
+    ).toEqual([]);
+  });
+
+  it('LT token and broken phrase counts stay at zero in EN overlay', () => {
+    if (!existsSync(enOverlay)) return;
+    const report = runLanguageAudit();
+    expect(report.counts.en_lt_token ?? 0).toBe(0);
+    expect(report.counts.en_broken_phrase ?? 0).toBe(0);
+    expect(report.counts.en_lt_heading ?? 0).toBe(0);
+  });
 });

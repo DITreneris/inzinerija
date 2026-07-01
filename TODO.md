@@ -1,7 +1,9 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P0 = monetizacija / integracija (blokuoja mokamą srautą), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-06-30 (tier 9 vienas build; žr. `05_marketingo_memo_tier9_vienas_build.md`).
+**Legenda:** P0 = monetizacija / integracija (blokuoja mokamą srautą), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-01.
+
+**Dabartinis fokusas:** **M1–9 production** + **MON P0** monetizacijos unlock. **M10+ – ne prioritetas** (authoring kataloge, Deferred monetizacijai). Vykdymo planas: `docs/deployment/MON_P0_EXECUTION_PLAN.md`.
 
 **Release vartai (apibrėžimai):**
 
@@ -12,18 +14,27 @@
 
 ## 1. Aktualus pipeline (kas toliau)
 
-### §1.1 P0 – Monetizacija ir integracija (top priority)
+### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
-| ID            | Užduotis                                                                                                                                                                             | Savininkas         | Repo                       | Pastaba                                                           |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ | -------------------------- | ----------------------------------------------------------------- |
-| **MON-1**     | Production env audit: **nėra** `VITE_MAX_ACCESSIBLE_MODULE=6` promptanatomy.app; `VITE_VERIFY_ACCESS_URL` → domain root `/api/verify-access`                                         | DevOps             | Marketing                  | `docs/deployment/DEPLOYMENT.md`, `MARKETING_HANDOFF_CHECKLIST.md` |
-| **MON-2**     | Submodule pin: dokumentuoti reikalaujamą inzinerija commit (gate fix, be MVP tier fallback) marketing deploy runbook                                                                 | DevOps             | Marketing                  | `03_anatomija-paid-content-open-analysis.md`                      |
-| **MON-3**     | Verify-access smoke: magic link → `GET /api/verify-access` → 200 → SPA `verified_access_tier` → M1 atrakinta (**+ tier 9**)                                                          | QA                 | Abu                        | `api/verify-access.ts`, `App.tsx`                                 |
-| **MON-4**     | PostHog (arba GA4) production: `VITE_POSTHOG_KEY`, snippet marketing shell; funnel dashboard pagal `ANALYTICS_DASHBOARD_MVP.md`                                                      | CODING / QA        | Marketing shell + šis repo | Buvęs Post-release #1                                             |
-| **MON-5**     | Gate regression: neapmokėtas `/anatomy/` → `AccessGateScreen`, ne modulių sąrašas                                                                                                    | QA                 | Šis repo                   | `ModulesPage.tsx`                                                 |
-| ~~**MON-6**~~ | ~~Dokumentuoti client-side paywall limitą (localStorage bypass, JSON bundle) kaip priimtą MVP riziką~~ ✅ 2026-06-29 (`AUDIT_2026-06_SUMMARY.md` skyrius „Client-side paywall riba") | QA                 | Šis repo docs              | —                                                                 |
-| **MON-7**     | Po 2–4 sav. duomenų: baseline (M1/M3 completion, drop-off), koreguoti KPI (ANALYTICS_DASHBOARD_MVP §2)                                                                               | QA / Product       | —                          | Buvęs Post-release #3                                             |
-| **MON-8**     | Marketing prod env: nuimti `VITE_MVP_MODE`, `VITE_MAX_BUILD_MODULE=9`, `build:production`; marketing API tier 9; preview smoke                                                       | DevOps / Marketing | Marketing                  | `05_marketingo_memo_tier9_vienas_build.md`, MARKETING_HANDOFF §3  |
+| Kas                                           | Būsena     | Pastaba                          |
+| --------------------------------------------- | ---------- | -------------------------------- |
+| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped | CHANGELOG `[1.4.2]`              |
+| Lint + test (367) + `build:production`        | ✅         | CI lokaliai                      |
+| Diagram browser smoke (B2.5)                  | ⏳ Pending | Release QA #6; neblokuoja commit |
+| Submodule pin marketing (MON-2)               | ⏳ Next    | Po push → marketing repo         |
+
+### §1.1 P0 – Monetizacija ir integracija (top priority – **kitas sprintas**)
+
+| ID            | Užduotis                                                                                                                                                                             | Status | Savininkas         | Repo                       | Pastaba                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------------ | -------------------------- | ----------------------------------------------------------------- |
+| **MON-1**     | Production env audit: **nėra** `VITE_MAX_ACCESSIBLE_MODULE=6` promptanatomy.app; `VITE_VERIFY_ACCESS_URL` → domain root `/api/verify-access`                                         | [ ]    | DevOps             | Marketing                  | `docs/deployment/DEPLOYMENT.md`, `MARKETING_HANDOFF_CHECKLIST.md` |
+| **MON-2**     | Submodule pin: dokumentuoti reikalaujamą inzinerija commit (**1.4.2**); gate fix, be MVP tier fallback; marketing deploy runbook                                                     | [ ]    | DevOps             | Marketing                  | `MON_P0_EXECUTION_PLAN.md` §Savaitė 1                             |
+| **MON-3**     | Verify-access smoke: magic link → `GET /api/verify-access` → 200 → SPA `verified_access_tier` → M1 atrakinta (**+ tier 9**)                                                          | [ ]    | QA                 | Abu                        | `api/verify-access.ts`, `App.tsx`                                 |
+| **MON-4**     | PostHog (arba GA4) production: `VITE_POSTHOG_KEY`, snippet marketing shell; funnel dashboard pagal `ANALYTICS_DASHBOARD_MVP.md`                                                      | [ ]    | CODING / QA        | Marketing shell + šis repo | Buvęs Post-release #1                                             |
+| **MON-5**     | Gate regression: neapmokėtas `/anatomy/` → `AccessGateScreen`, ne modulių sąrašas                                                                                                    | [ ]    | QA                 | Šis repo                   | `ModulesPage.tsx`; auto: `gate.smoke.test.tsx`                    |
+| ~~**MON-6**~~ | ~~Dokumentuoti client-side paywall limitą (localStorage bypass, JSON bundle) kaip priimtą MVP riziką~~ ✅ 2026-06-29 (`AUDIT_2026-06_SUMMARY.md` skyrius „Client-side paywall riba") | ✅     | QA                 | Šis repo docs              | —                                                                 |
+| **MON-7**     | Po 2–4 sav. duomenų (po MON-4): baseline (M1/M3 completion, drop-off), koreguoti KPI (ANALYTICS_DASHBOARD_MVP §2)                                                                    | [ ]    | QA / Product       | —                          | Buvęs Post-release #3; **po MON P0**                              |
+| **MON-8**     | Marketing prod env: nuimti `VITE_MVP_MODE`, `VITE_MAX_BUILD_MODULE=9`, `build:production`; marketing API tier 9; preview smoke                                                       | [ ]    | DevOps / Marketing | Marketing                  | `05_marketingo_memo_tier9_vienas_build.md`, MARKETING_HANDOFF §3  |
 
 ### §1.2 P1 – Release QA (kokybė)
 
@@ -61,7 +72,9 @@
 
 > **Taisyklė:** nepradėti, kol MON-\* (P0) užbaigti **ir** ≥5 mokamų konversijų (M4 upsell pilotas). Audit: M7–15 ne core build; plėtra prieš M4 monetizacijos validaciją.
 >
-> **Atnaujinta 2026-06-29:** korporatyvinis klientas (50 licencijų) įsigijo **kelią 7–9 (tier 9)** → Deferred vartas **M7–9 turiniui praeitas**. M7–9 dabar aktyvus track'as (žr. CHANGELOG [Unreleased] 2026-06-29); M10–15 lieka Deferred iki tolimesnės monetizacijos validacijos.
+> **Atnaujinta 2026-06-29:** korporatyvinis klientas (50 licencijų) įsigijo **kelią 7–9 (tier 9)** → Deferred vartas **M7–9 turiniui praeitas**. M7–9 dabar aktyvus production track (release 1.4.0–1.4.2).
+>
+> **M10–15 – ne prioritetas:** turinys authoring kataloge; monetizacija ir vizualinis polish – **Deferred** iki MON P0 + baseline (MON-7).
 
 | ID     | Užduotis                                                                                                           | Buvęs prioritetas | Būsena                                                                |
 | ------ | ------------------------------------------------------------------------------------------------------------------ | ----------------- | --------------------------------------------------------------------- |
@@ -69,7 +82,7 @@
 | M13-2  | M13 footerių release QA                                                                                            | P2                | Deferred                                                              |
 | M13-3  | `slidePhaseConfig.test.ts` M13 regresija                                                                           | P2 optional       | Deferred                                                              |
 | DEF-1a | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3           | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9   |
-| DEF-1b | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog   | Deferred                                                              |
+| DEF-1b | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog   | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)      |
 | DEF-2  | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                | Dalinai (M4 slide 48 padaryta 2026-06-29; collapsible likučiai lieka) |
 
 ### P2 – darbai eilėje
@@ -124,6 +137,7 @@
 - **M1-M6 bug bundle (2026-03-14):** Shared locale leak'ai ir mobile diagramų politika sutvarkyti sistemiškai: `CustomGptProcessDiagram` locale + compact mobile layout, `ProcessStepper` reflow, `ContentSlides` M1 EN helper label cleanup, `InstructGptQualityBlock` / `WorkflowChainsBlock` / `FigmaEmbed` locale fix, nauji smoke testai `ProcessStepper.locale.test.tsx` ir `ContentSlides.locale.test.tsx`, audit matrica `docs/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`. Liko rankinis browser spot-check ir PDF entry point patikra (#6, #7).
 - **Design System v0.2 (2026-05-19):** E1–E7 ✅ — Eyebrow, IconChip, SectionDivider, module.accent/identityIcon M1–M6, audit-design-tokens (baseline 480), DESIGN_SYSTEM.md, CHANGELOG `[v0.2.0]`. Detalus DS-E\* sąrašas: `docs/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`.
 - **TODO/ROADMAP audit sync (2026-06-29):** P0 MON-_ monetizacijos track, CONV-_ konversija, Deferred M13/M7–15; `AUDIT_2026-06_SUMMARY.md`, `MARKETING_HANDOFF_CHECKLIST.md`.
+- **Release 1.4.2 + MON P0 planas (2026-07-01):** DiagramKit M1–9, design tokens, M7–9 EN sweep, startup fix; 367 testai; `MON_P0_EXECUTION_PLAN.md`; TODO/ROADMAP v2.5 sinchronas. **Kitas sprintas:** MON-1…8 (marketing + QA).
 
 ---
 
@@ -180,6 +194,6 @@
 | MVP Analytics                                     | `docs/development/ANALYTICS_EVENT_TAXONOMY.md`, `docs/development/ANALYTICS_DASHBOARD_MVP.md`                                |
 | Production audit (2026-06)                        | `docs/development/AUDIT_2026-06_SUMMARY.md`                                                                                  |
 | Integracija (subproject, Vercel, marketingo repo) | `docs/deployment/INTEGRATION_OVERVIEW.md`, `docs/deployment/DEPLOYMENT.md`, `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md` |
-| Monetizacija / roadmap                            | `ROADMAP.md` §4.1 (MON-\*), `docs/marketing_plan.md`                                                                         |
+| Monetizacija / roadmap                            | `ROADMAP.md` §4.1 (MON-\*), `docs/deployment/MON_P0_EXECUTION_PLAN.md`, `docs/marketing_plan.md`                             |
 
 _Naujos klaidos → TEST_REPORT.md; QA_AGENT atnaujina prioritetus čia._

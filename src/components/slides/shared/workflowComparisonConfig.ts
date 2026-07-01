@@ -6,6 +6,8 @@
  * Locale-aware: use getWorkflowModes(locale), getOutputTypes(locale), etc. for EN/LT.
  */
 
+import { DIAGRAM_TOKENS } from './diagramTokens';
+
 export type Locale = 'lt' | 'en';
 export type WorkflowMode = 'basic' | 'workflow';
 
@@ -54,21 +56,26 @@ const WORKFLOW_MODES_EN: Record<WorkflowMode, WorkflowModeConfig> = {
     noteText: 'Limited control – AI guesses what you want.',
     noteIcon: '⚠',
     outputTitle: 'Answer (free form)',
-    outputExample: 'AI responds at its discretion – format, length and content depend on the AI.',
+    outputExample:
+      'AI responds at its discretion – format, length and content depend on the AI.',
   },
   workflow: {
     label: 'Workflow',
     desc: 'Prompt + Data → Structured result',
-    consequenceLine: 'Result will be structured – according to your instructions.',
+    consequenceLine:
+      'Result will be structured – according to your instructions.',
     diagramTitle: 'AI as a work tool',
     noteText: 'According to your plan.',
     noteIcon: '✓',
     outputTitle: 'Document / Plan / Analysis',
-    outputExample: 'Clear format, structure and content – according to your instructions and provided data.',
+    outputExample:
+      'Clear format, structure and content – according to your instructions and provided data.',
   },
 };
 
-export function getWorkflowModes(locale: Locale): Record<WorkflowMode, WorkflowModeConfig> {
+export function getWorkflowModes(
+  locale: Locale
+): Record<WorkflowMode, WorkflowModeConfig> {
   return locale === 'en' ? WORKFLOW_MODES_EN : WORKFLOW_MODES;
 }
 
@@ -76,7 +83,10 @@ export function getWorkflowModes(locale: Locale): Record<WorkflowMode, WorkflowM
 export const FRAMING_SENTENCE =
   'Skirtumas paprastas: Pokalbis = laisvas atsakymas. Workflow = struktūruotas rezultatas.';
 
-export const DECISION_BLOCK: { whenPokalbis: string[]; whenWorkflow: string[] } = {
+export const DECISION_BLOCK: {
+  whenPokalbis: string[];
+  whenWorkflow: string[];
+} = {
   whenPokalbis: [
     'Kai reikia idėjos',
     'Kai reikia paaiškinimo',
@@ -93,10 +103,9 @@ export const MICRO_TASK_LABEL =
   'Mini užduotis: sugalvok vieną situaciją, kur naudotum Pokalbį, ir vieną – Workflow.';
 
 /** Vienas CTA po schema (Kiss/Marry/Kill) */
-export const CTA_SENTENCE =
-  'Paspausk Workflow – pamatysi skirtumą.';
+export const CTA_SENTENCE = 'Paspausk Workflow – pamatysi skirtumą.';
 
-const CTA_SENTENCE_EN = 'Click Workflow – you\'ll see the difference.';
+const CTA_SENTENCE_EN = "Click Workflow – you'll see the difference.";
 
 export function getCtaSentence(locale: Locale): string {
   return locale === 'en' ? CTA_SENTENCE_EN : CTA_SENTENCE;
@@ -217,7 +226,9 @@ const OUTPUT_TYPES_EN: Record<OutputType, OutputTypeConfig> = {
   },
 };
 
-export function getOutputTypes(locale: Locale): Record<OutputType, OutputTypeConfig> {
+export function getOutputTypes(
+  locale: Locale
+): Record<OutputType, OutputTypeConfig> {
   return locale === 'en' ? OUTPUT_TYPES_EN : OUTPUT_TYPES;
 }
 
@@ -232,7 +243,10 @@ const INPUT_PLACEHOLDERS_EN = {
   data: 'E.g.: Target market – retail, budget – 50,000 €...',
 } as const;
 
-export function getInputPlaceholders(locale: Locale): { prompt: string; data: string } {
+export function getInputPlaceholders(locale: Locale): {
+  prompt: string;
+  data: string;
+} {
   return locale === 'en' ? INPUT_PLACEHOLDERS_EN : INPUT_PLACEHOLDERS;
 }
 
@@ -252,19 +266,47 @@ export const LLM_INFO: Record<WorkflowMode, LlmInfoConfig> = {
   basic: {
     title: 'LLM pokalbio režime',
     items: [
-      { label: 'Temperatūra', value: 'Aukštesnė – kūrybiškesni, bet mažiau tikslūs atsakymai', icon: '🌡' },
+      {
+        label: 'Temperatūra',
+        value: 'Aukštesnė – kūrybiškesni, bet mažiau tikslūs atsakymai',
+        icon: '🌡',
+      },
       { label: 'Atmintis', value: 'Tik šio pokalbio istorija', icon: '🧠' },
-      { label: 'Žinių bazė', value: 'Nenaudojama – atsakymas iš LLM treniravimo duomenų', icon: '📚' },
-      { label: 'Struktūra', value: 'Nėra – DI sprendžia formatą pats', icon: '📐' },
+      {
+        label: 'Žinių bazė',
+        value: 'Nenaudojama – atsakymas iš LLM treniravimo duomenų',
+        icon: '📚',
+      },
+      {
+        label: 'Struktūra',
+        value: 'Nėra – DI sprendžia formatą pats',
+        icon: '📐',
+      },
     ],
   },
   workflow: {
     title: 'LLM workflow režime',
     items: [
-      { label: 'Temperatūra', value: 'Žemesnė – tikslesni, nuoseklesni rezultatai', icon: '🌡' },
-      { label: 'Atmintis', value: 'Kontekstas iš tavo pateiktų duomenų', icon: '🧠' },
-      { label: 'Žinių bazė', value: 'Galima naudoti RAG – jungtis prie tavo dokumentų', icon: '📚' },
-      { label: 'Struktūra', value: 'Aiški – formatas, sekcijos ir tonas pagal nurodymus', icon: '📐' },
+      {
+        label: 'Temperatūra',
+        value: 'Žemesnė – tikslesni, nuoseklesni rezultatai',
+        icon: '🌡',
+      },
+      {
+        label: 'Atmintis',
+        value: 'Kontekstas iš tavo pateiktų duomenų',
+        icon: '🧠',
+      },
+      {
+        label: 'Žinių bazė',
+        value: 'Galima naudoti RAG – jungtis prie tavo dokumentų',
+        icon: '📚',
+      },
+      {
+        label: 'Struktūra',
+        value: 'Aiški – formatas, sekcijos ir tonas pagal nurodymus',
+        icon: '📐',
+      },
     ],
   },
 };
@@ -273,34 +315,70 @@ const LLM_INFO_EN: Record<WorkflowMode, LlmInfoConfig> = {
   basic: {
     title: 'LLM in chat mode',
     items: [
-      { label: 'Temperature', value: 'Higher – more creative, less precise answers', icon: '🌡' },
+      {
+        label: 'Temperature',
+        value: 'Higher – more creative, less precise answers',
+        icon: '🌡',
+      },
       { label: 'Memory', value: 'This conversation only', icon: '🧠' },
-      { label: 'Knowledge base', value: 'Not used – answer from LLM training data', icon: '📚' },
+      {
+        label: 'Knowledge base',
+        value: 'Not used – answer from LLM training data',
+        icon: '📚',
+      },
       { label: 'Structure', value: 'None – AI decides format', icon: '📐' },
     ],
   },
   workflow: {
     title: 'LLM in workflow mode',
     items: [
-      { label: 'Temperature', value: 'Lower – more precise, consistent results', icon: '🌡' },
+      {
+        label: 'Temperature',
+        value: 'Lower – more precise, consistent results',
+        icon: '🌡',
+      },
       { label: 'Memory', value: 'Context from your provided data', icon: '🧠' },
-      { label: 'Knowledge base', value: 'RAG possible – connect your documents', icon: '📚' },
-      { label: 'Structure', value: 'Clear – format, sections and tone per instructions', icon: '📐' },
+      {
+        label: 'Knowledge base',
+        value: 'RAG possible – connect your documents',
+        icon: '📚',
+      },
+      {
+        label: 'Structure',
+        value: 'Clear – format, sections and tone per instructions',
+        icon: '📐',
+      },
     ],
   },
 };
 
-export function getLlmInfo(locale: Locale): Record<WorkflowMode, LlmInfoConfig> {
+export function getLlmInfo(
+  locale: Locale
+): Record<WorkflowMode, LlmInfoConfig> {
   return locale === 'en' ? LLM_INFO_EN : LLM_INFO;
 }
 
 /* ═══ Diagram labels (SVG text) – locale-aware ═══ */
 export interface WorkflowDiagramLabels {
-  basic: { inputMain: string; inputSub: string; llmSub: string; outputMain: string; outputSub: string };
+  basic: {
+    inputMain: string;
+    inputSub: string;
+    llmSub: string;
+    outputMain: string;
+    outputSub: string;
+  };
   workflow: {
-    promptMain: string; promptSub: string; dataMain: string; dataSub: string;
-    llmSub: string; outputDefaultLabel: string; outputDefaultSub: string;
-    bottomNoteBasic: string; bottomNoteWorkflow: string; llmClickAria: string; llmHint: string;
+    promptMain: string;
+    promptSub: string;
+    dataMain: string;
+    dataSub: string;
+    llmSub: string;
+    outputDefaultLabel: string;
+    outputDefaultSub: string;
+    bottomNoteBasic: string;
+    bottomNoteWorkflow: string;
+    llmClickAria: string;
+    llmHint: string;
   };
 }
 
@@ -321,7 +399,8 @@ const DIAGRAM_LABELS_LT: WorkflowDiagramLabels = {
     outputDefaultLabel: 'Dokumentas',
     outputDefaultSub: 'struktūruotas',
     bottomNoteBasic: '⚠ Ribota kontrolė – DI spėlioja, ką norite',
-    bottomNoteWorkflow: '✓ Struktūruotas rezultatas – DI dirba pagal tavo planą',
+    bottomNoteWorkflow:
+      '✓ Struktūruotas rezultatas – DI dirba pagal tavo planą',
     llmClickAria: 'LLM informacija – paspausk daugiau',
     llmHint: 'ℹ Paspausk LLM – daugiau info',
   },
@@ -416,9 +495,9 @@ export const WF_OUTPUT_H = 108;
 
 /* ═══ Colors ═══ */
 export const COLORS = {
-  brand: '#334e68',
-  brandLight: '#486581',
-  brandStart: '#5a6d7d',
+  brand: DIAGRAM_TOKENS.colors.brand,
+  brandLight: DIAGRAM_TOKENS.colors.brandTop,
+  brandStart: DIAGRAM_TOKENS.colors.brandTop,
   /** ~10% darker for LLM center block emphasis */
   brandDarker: '#2a3f54',
   emerald: '#059669',
@@ -426,13 +505,13 @@ export const COLORS = {
   emeraldGlow: '#34d399',
   /** ~10% darker for LLM center block emphasis */
   emeraldDarker: '#047857',
-  neutral: '#64748b',
+  neutral: DIAGRAM_TOKENS.colors.flow,
   neutralLight: '#94a3b8',
-  border: '#bcccdc',
-  bgStart: '#f0f4f8',
-  bgEnd: '#e8eef4',
-  textDark: '#102a43',
-  textMuted: '#64748b',
-  textWhite: '#ffffff',
-  arrow: '#475569',
+  border: DIAGRAM_TOKENS.colors.border,
+  bgStart: DIAGRAM_TOKENS.colors.bgStart,
+  bgEnd: DIAGRAM_TOKENS.colors.bgEnd,
+  textDark: DIAGRAM_TOKENS.colors.brandDark,
+  textMuted: DIAGRAM_TOKENS.colors.flow,
+  textWhite: DIAGRAM_TOKENS.colors.whiteText,
+  arrow: DIAGRAM_TOKENS.colors.slate,
 } as const;

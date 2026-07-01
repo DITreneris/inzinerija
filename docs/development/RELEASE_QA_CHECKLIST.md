@@ -30,6 +30,7 @@
 
 - [ ] **Perjungimas:** Tema (light ↔ dark) perjungiama – išsaugoma (refresh išlieka).
 - [ ] **Skaidrė:** Bent viena skaidrė (pvz. Modulio 1 ar 4) – tekstas skaitomas, kontrastas pakankamas, nėra baltų „dėmių“.
+- [ ] **Diagramos:** Bent viena `useDiagramPalette()` diagrama (pvz. M7/M9 arba RL) naudoja tamsų SVG foną, ne šviesų rėmą dark mode aplinkoje.
 
 ---
 
@@ -37,6 +38,8 @@
 
 - [ ] **Skip link:** Tab nuo puslapio pradžios → matomas „Praleisti į turinį“ (arba panašus) → Enter – fokusas pereina į main turinį.
 - [ ] **Klaviatūra:** Skaidrių navigacija veikia rodyklių klavišais (← →).
+- [ ] **Touch/focus:** Slide dots, diagramų step nav, testų pasirinkimai ir modal close turi matomą `focus-visible` ring ir ne mažesnį nei 44px interaktyvų taikinį.
+- [ ] **Sticky po AppNav:** Sticky elementai po AppNav naudoja `top-[var(--app-nav-height,4rem)]`; `sticky top-0` leidžiamas tik pačiam AppNav arba modalinio turinio viduje.
 
 ---
 
@@ -66,6 +69,8 @@
 
 - [ ] **Po bet kokio SCHEME_AGENT darbo:** Įsitikinti, kad **CODE_REVIEW_AGENT** atliko schemų vizualinę patikrą (`docs/development/SCHEME_AGENT.md` §5 – rodyklės kraštas į kraštą, proporcijos, path nekerta blokų). Jei ne – prašyti atlikti: „Atlik CODE_REVIEW pagal SCHEME_AGENT.md §5“.
 - [ ] **Schemų geriausios praktikos (QA primena):** Jei keista flowchart/diagrama – priminti patikrinti pagal `docs/development/SCHEME_AGENT.md` §3.11 ir §5 (vizualinė patikra): ar tekstas telpa į blokus, ar schema centre, ar rodyklės kraštas į kraštą.
+- [ ] **Diagram kit a11y:** Migruotos interaktyvios diagramos turi HTML `nav button` keyboard kelią ir neturi dubliuotų `svg [role="button"]` / `svg [tabindex="0"]` taikinių.
+- [ ] **Design-token baseline:** Paleisti `npm run audit:design-tokens`; nauji hardcoded hex / arbitrary class atvejai turi būti sumažinti arba dokumentuoti kaip išimtis `DESIGN_TOKENS_BASELINE_2026-07.md` kontekste.
 
 ---
 

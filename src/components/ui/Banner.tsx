@@ -25,18 +25,20 @@ interface BannerProps {
   variant?: BannerVariant;
   children: ReactNode;
   className?: string;
+  ariaLabel?: string;
 }
 
 export default function Banner({
   variant = 'info',
   children,
   className = '',
+  ariaLabel,
 }: BannerProps) {
   return (
     <div
       className={`rounded-r-xl p-4 ${variantClasses[variant]} ${className}`.trim()}
-      role="region"
-      aria-label={`${variant} pranešimas`}
+      role="note"
+      aria-label={ariaLabel}
     >
       {children}
     </div>

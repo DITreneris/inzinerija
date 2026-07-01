@@ -41,6 +41,40 @@ export const spacingClasses = {
   sectionGap: 'space-y-8' as const,
 } as const;
 
+/** Touch target classes from GOLDEN_STANDARD.md §7 */
+export const touchTargetClasses = {
+  /** Minimum interactive target: 44x44px */
+  minimum: 'min-h-[44px] min-w-[44px]' as const,
+  /** Minimum height when width is content-driven */
+  minimumHeight: 'min-h-[44px]' as const,
+} as const;
+
+/** Focus ring classes from GOLDEN_STANDARD.md §7 */
+export const focusRingClasses = {
+  brand:
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2' as const,
+  brandOnWhite:
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900' as const,
+  amberOnWhite:
+    'focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900' as const,
+} as const;
+
+/** Sticky stacking classes from GOLDEN_STANDARD.md §5.5 */
+export const stickyClasses = {
+  appNav: 'sticky top-0 z-40' as const,
+  belowAppNav: 'sticky top-[var(--app-nav-height,4rem)] z-20' as const,
+  belowAppNavLow: 'sticky top-[var(--app-nav-height,4rem)] z-10' as const,
+  modalLocal: 'sticky top-0' as const,
+} as const;
+
+/** Global z-index ladder from GOLDEN_STANDARD.md §5.5 */
+export const zIndexClasses = {
+  slideChrome: 'z-20' as const,
+  bottomNav: 'z-30' as const,
+  appNav: 'z-40' as const,
+  overlay: 'z-50' as const,
+} as const;
+
 /** Border-radius vertės (px) – atitinka Tailwind */
 export const radius = {
   /** 8px – rounded-lg */

@@ -32,5 +32,9 @@ describe('ProcessStepper locale and mobile layout', () => {
     );
     expect(compactDiagram).toBeTruthy();
     expect(container.querySelector('[data-slide-swipe-lock]')).toBeTruthy();
+    expect(container.querySelectorAll('nav button')).toHaveLength(8);
+    expect(
+      container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+    ).toHaveLength(0);
   });
 });

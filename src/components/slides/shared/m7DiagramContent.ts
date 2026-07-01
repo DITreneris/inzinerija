@@ -135,6 +135,150 @@ export function getM7DataPrepExplanations(locale: M7Locale): StepExplanation[] {
   ];
 }
 
+/** 6 žingsnių duomenų analizės pipeline – skaidrė 70 */
+const M7_DA_PIPELINE_STEPS_LT = [
+  { label: 'Rinkimas', desc: 'Šaltiniai' },
+  { label: 'Paruošimas', desc: 'Tvarka' },
+  { label: 'EDA', desc: 'Apžvalga' },
+  { label: 'Modeliai', desc: 'Skaičiavimai' },
+  { label: 'Vizualizacija', desc: 'Vaizdas' },
+  { label: 'Publikavimas', desc: 'Sprendimas' },
+];
+
+const M7_DA_PIPELINE_STEPS_EN = [
+  { label: 'Collection', desc: 'Sources' },
+  { label: 'Preparation', desc: 'Structure' },
+  { label: 'EDA', desc: 'Overview' },
+  { label: 'Models', desc: 'Calculations' },
+  { label: 'Visualization', desc: 'Visuals' },
+  { label: 'Publishing', desc: 'Decision' },
+];
+
+export function getM7DaPipelineSteps(locale: M7Locale) {
+  return locale === 'en' ? M7_DA_PIPELINE_STEPS_EN : M7_DA_PIPELINE_STEPS_LT;
+}
+
+export function getM7DaPipelineExplanations(
+  locale: M7Locale
+): StepExplanation[] {
+  if (locale === 'en') {
+    return [
+      {
+        title: '1. Collection',
+        body: 'Collect the right **sources** first: files, systems, public data or internal tables.',
+      },
+      {
+        title: '2. Preparation',
+        body: 'Clean formats, missing values and duplicates so the next steps use the same structure.',
+      },
+      {
+        title: '3. EDA',
+        body: 'Explore what the data says: totals, outliers, segments and first hypotheses.',
+      },
+      {
+        title: '4. Models',
+        body: 'Apply calculations or forecasts only after the data shape is clear.',
+      },
+      {
+        title: '5. Visualization',
+        body: 'Choose visuals that answer the question: trend, comparison, share or relationship.',
+      },
+      {
+        title: '6. Publishing',
+        body: 'Turn the result into a decision-ready message: what changed, why it matters and what to do.',
+      },
+    ];
+  }
+
+  return [
+    {
+      title: '1. Rinkimas',
+      body: 'Pirmiausia surink tinkamus **šaltinius**: failus, sistemas, viešus duomenis ar vidines lenteles.',
+    },
+    {
+      title: '2. Paruošimas',
+      body: 'Sutvarkyk formatus, trūkstamas reikšmes ir dublius, kad kiti žingsniai remtųsi ta pačia struktūra.',
+    },
+    {
+      title: '3. EDA',
+      body: 'Peržiūrėk, ką duomenys rodo: sumas, išskirtis, segmentus ir pirmas hipotezes.',
+    },
+    {
+      title: '4. Modeliai',
+      body: 'Skaičiavimus ar prognozes taikyk tik tada, kai duomenų forma jau aiški.',
+    },
+    {
+      title: '5. Vizualizacija',
+      body: 'Parink vaizdą pagal klausimą: tendencija, palyginimas, dalis ar ryšys.',
+    },
+    {
+      title: '6. Publikavimas',
+      body: 'Paversk rezultatą sprendimo žinute: kas pasikeitė, kodėl svarbu ir ką daryti.',
+    },
+  ];
+}
+
+/** 4 žingsnių BI schema – skaidrė 71.3 */
+const M7_BI_SCHEMA_STEPS_LT = [
+  { label: 'Surink', desc: 'Duomenys' },
+  { label: 'Analizuok', desc: 'Įžvalgos' },
+  { label: 'Ataskaita', desc: 'Vadovybei' },
+  { label: 'Prognozė', desc: 'Toliau' },
+];
+
+const M7_BI_SCHEMA_STEPS_EN = [
+  { label: 'Collect', desc: 'Data' },
+  { label: 'Analyze', desc: 'Insights' },
+  { label: 'Report', desc: 'Leadership' },
+  { label: 'Forecast', desc: 'Next' },
+];
+
+export function getM7BiSchemaSteps(locale: M7Locale) {
+  return locale === 'en' ? M7_BI_SCHEMA_STEPS_EN : M7_BI_SCHEMA_STEPS_LT;
+}
+
+export function getM7BiSchemaExplanations(locale: M7Locale): StepExplanation[] {
+  if (locale === 'en') {
+    return [
+      {
+        title: '1. Collect',
+        body: 'Bring together the sources that answer the business question: sales, costs, customers or operations.',
+      },
+      {
+        title: '2. Analyze',
+        body: 'Look for patterns and causes: what changed, where it changed and which segment explains it.',
+      },
+      {
+        title: '3. Report',
+        body: 'Show the answer in a clear report for leadership: one message, a few visuals, a recommended action.',
+      },
+      {
+        title: '4. Forecast',
+        body: 'Use the pattern to estimate what may happen next and which decision should be prepared.',
+      },
+    ];
+  }
+
+  return [
+    {
+      title: '1. Surink',
+      body: 'Sujunk šaltinius, kurie atsako į verslo klausimą: pardavimus, sąnaudas, klientus ar operacijas.',
+    },
+    {
+      title: '2. Analizuok',
+      body: 'Ieškok dėsningumų ir priežasčių: kas pasikeitė, kur pasikeitė ir kuris segmentas tai paaiškina.',
+    },
+    {
+      title: '3. Ataskaita',
+      body: 'Parodyk atsakymą vadovybei aiškiai: viena žinutė, keli vaizdai, rekomenduojamas veiksmas.',
+    },
+    {
+      title: '4. Prognozė',
+      body: 'Panaudok dėsningumą įvertinti, kas gali vykti toliau ir kokį sprendimą verta pasiruošti.',
+    },
+  ];
+}
+
 /** 3 agentai – skaidrė 94 */
 export function getM7AgentExplanations(locale: M7Locale): StepExplanation[] {
   if (locale === 'en') {

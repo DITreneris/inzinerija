@@ -2,6 +2,7 @@ import { Lock, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { track, trackSpinoffClick } from '../utils/analytics';
 import { buildEcosystemUrl } from '../constants/ecosystemUrls';
+import Card from './ui/Card';
 
 const PRICING_URL = buildEcosystemUrl('hubPricing', {
   moduleId: 0,
@@ -17,7 +18,7 @@ export default function AccessGateScreen() {
 
   return (
     <div className="flex items-center justify-center min-h-[60vh] animate-fade-in">
-      <div className="card max-w-md w-full p-8 text-center">
+      <Card className="max-w-md w-full p-8 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-brand-100 to-accent-100 dark:from-brand-900/30 dark:to-accent-900/30 mb-6">
           <Lock
             className="w-8 h-8 text-brand-600 dark:text-brand-400"
@@ -66,7 +67,7 @@ export default function AccessGateScreen() {
             {t('gateFreeLesson')}
           </a>
         </p>
-      </div>
+      </Card>
     </div>
   );
 }

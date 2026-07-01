@@ -19,7 +19,12 @@ import {
   RotateCcw,
   Sparkles,
 } from 'lucide-react';
-import { spacingClasses, radiusClasses } from '../design-tokens';
+import {
+  focusRingClasses,
+  radiusClasses,
+  spacingClasses,
+  touchTargetClasses,
+} from '../design-tokens';
 import { Progress } from '../utils/progress';
 import { findJourneyChoiceByStored } from '../utils/moduleJourneyFocus';
 import { isSlideLikelyUntranslatedForEn } from '../utils/enPartialCoverage';
@@ -1353,9 +1358,7 @@ function ModuleView({
           <div className="flex gap-1 lg:gap-2 flex-nowrap justify-start min-w-max mx-auto">
             {module.slides.map((_, idx) => {
               const isLongModule = module.slides.length > 24;
-              const sizeClass = isLongModule
-                ? 'min-w-[36px] min-h-[36px]'
-                : 'min-w-[44px] min-h-[44px]';
+              const sizeClass = touchTargetClasses.minimum;
               const dotShape =
                 idx === currentSlide
                   ? isLongModule
@@ -1377,7 +1380,7 @@ function ModuleView({
                     setCurrentSlide(idx);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`relative inline-flex items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${sizeClass} touch-manipulation ${
+                  className={`relative inline-flex items-center justify-center rounded-full transition-all duration-300 ${focusRingClasses.brand} ${sizeClass} touch-manipulation ${
                     idx === currentSlide
                       ? 'bg-brand-50 dark:bg-brand-900/30'
                       : 'hover:bg-gray-100 dark:hover:bg-gray-800/60'

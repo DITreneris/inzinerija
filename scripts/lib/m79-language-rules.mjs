@@ -35,6 +35,55 @@ export const EN_HYBRID_TOKENS = [
   'Pasteite',
 ];
 
+/** LT tokens without diacritics that otherwise pass the diacritic-based coverage audit. */
+export const EN_LT_TOKENS = [
+  'atsiliepimus',
+  'dubliavimas',
+  'duomenimis',
+  'duomenis',
+  'duomenys',
+  'eilutes',
+  'eksportas',
+  'generavimas',
+  'identifikavimas',
+  'kitimui',
+  'kopijuok',
+  'metai',
+  'pagrindines',
+  'pakeisk',
+  'papildomus',
+  'Priskirk',
+  'rekomendacijas',
+  'Rinkimas',
+  'rinkinius',
+  'savo',
+  'scenarijai',
+  'segmentai',
+  'Segmentavimas',
+  'stulpelius',
+  'stulpeliai',
+  'Tinka',
+  'topici',
+  'Validacija',
+  'Vidurkis',
+];
+
+/** Broken mixed-language phrases produced by partial string-map translation. */
+export const EN_BROKEN_PHRASES = [
+  'Based on with',
+  'collectti',
+  'data rinkinius',
+  'instead ofe',
+  'ir rekomendacijas',
+  'segmenthat',
+  'sistopic',
+  'su links',
+  'teisinga steps',
+  'when rgoia',
+];
+
+export const EN_LT_HEADINGS = [/Nori suprasti detaliau\??/i];
+
 /** LT words that should not appear in merged EN user-facing strings. */
 export const EN_LT_WORD_PATTERNS = [
   /\bScenarijus\b/i,
@@ -92,6 +141,7 @@ export function shouldSkipPath(path) {
   if (path.endsWith('.id') || path === 'id') return true;
   // External citations / research source titles keep their original (English) wording.
   if (/\.sources\[\d+\]\.title$/.test(path)) return true;
+  if (/\.unlockedGlossaryTerms\[\d+\]$/.test(path)) return true;
   if (/\bjourneyChoices\[\d+\]\.id\b/.test(path)) return true;
   if (/\btestQuestions\[\d+\]\.id\b/.test(path)) return true;
   if (/\bcheck-[\w-]+\.id\b/.test(path)) return true;
@@ -114,6 +164,22 @@ const LT_AI_PRODUCT_ALLOWLIST = [
 export function findEnHybridTokenViolations(value) {
   const lower = value.toLowerCase();
   return EN_HYBRID_TOKENS.filter((t) => lower.includes(t.toLowerCase()));
+}
+
+export function findEnLtTokenViolations(value) {
+  return EN_LT_TOKENS.filter((token) => {
+    const re = new RegExp(`\\b${escapeRegExp(token)}\\b`, 'i');
+    return re.test(value);
+  });
+}
+
+export function findEnBrokenPhraseViolations(value) {
+  const lower = value.toLowerCase();
+  return EN_BROKEN_PHRASES.filter((phrase) => lower.includes(phrase.toLowerCase()));
+}
+
+export function findEnLtHeadingViolations(value) {
+  return EN_LT_HEADINGS.filter((re) => re.test(value)).map((re) => re.source);
 }
 
 export function findEnLtWordViolations(value) {
@@ -175,12 +241,19 @@ export function auditEnString(path, value, allowlist = []) {
   };
 
   for (const t of findEnHybridTokenViolations(value)) add('en_hybrid_token', t);
+  for (const t of findEnLtTokenViolations(value)) add('en_lt_token', t);
+  for (const p of findEnBrokenPhraseViolations(value)) add('en_broken_phrase', p);
+  for (const h of findEnLtHeadingViolations(value)) add('en_lt_heading', h);
   for (const p of findEnLtWordViolations(value)) add('en_lt_word', p);
   for (const _ of findEnDiacriticViolations(value)) add('en_lt_diacritics', 'diacritics');
   for (const _ of findEnDiViolations(value, path)) add('en_must_ai', 'DI');
   for (const t of findEnTitleLtPrefix(value)) add('en_title_lt_prefix', t);
 
   return findings;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 export function auditLtString(path, value, moduleId) {

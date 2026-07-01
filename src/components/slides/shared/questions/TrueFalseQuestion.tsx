@@ -76,7 +76,7 @@ export function TrueFalseQuestion({
           onClick={() => handleSelect(1)}
           disabled={answerDisabled}
           aria-label={en ? 'True' : 'Tiesa'}
-          className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold ${
+          className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
             showResults
               ? correctValue === 1
                 ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
@@ -97,7 +97,7 @@ export function TrueFalseQuestion({
           onClick={() => handleSelect(0)}
           disabled={answerDisabled}
           aria-label={en ? 'False' : 'Netiesa'}
-          className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold ${
+          className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all min-h-[56px] font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
             showResults
               ? correctValue === 0
                 ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
@@ -134,7 +134,7 @@ export function TrueFalseQuestion({
         userAnswer !== correctValue && (
           <button
             onClick={() => onRequestHint(question.id)}
-            className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
+            className="mt-3 inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-sm text-amber-600 transition-colors hover:text-amber-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-offset-gray-900"
             aria-label={en ? 'Get hint' : 'Gauti užuominą'}
           >
             <Lightbulb className="w-4 h-4" />

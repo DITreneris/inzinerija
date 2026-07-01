@@ -2,12 +2,20 @@
  * Modulio 7 – 3 DI agentų tipai (horizontalus srautas).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7AgentShortLabels, type M7Locale } from './m7DiagramContent';
+import {
+  DIAGRAM_TOKENS,
+  DIAGRAM_TONE_COLORS,
+  type DiagramTone,
+} from './diagramTokens';
+import { DiagramStepHitArea } from './diagramKit';
 
 const BOX_H = 78;
 const GAP = 28;
-const ARROW_MARKER_LEN = 6;
+const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const AGENT_TONES: DiagramTone[] = ['slate', 'brand', 'emerald'];
 
 export default function M7ThreeAgentsDiagram({
   currentStep = 0,
@@ -22,13 +30,15 @@ export default function M7ThreeAgentsDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const labels = getM7AgentShortLabels(locale);
+  const typography = DIAGRAM_TOKENS.typography;
 
   const n = 3;
-  const viewW = isCompactDiagram ? 300 : 560;
+  const viewW = isCompactDiagram ? 320 : 560;
   const viewH = isCompactDiagram ? 200 : 220;
-  const boxW = isCompactDiagram ? 84 : 150;
+  const boxW = isCompactDiagram ? 92 : 150;
   const gap = isCompactDiagram ? 12 : GAP;
   const totalW = n * boxW + (n - 1) * gap;
   const startX = (viewW - totalW) / 2;
@@ -55,49 +65,72 @@ export default function M7ThreeAgentsDiagram({
       <defs>
         <marker
           id={`m7-ag-arrow-${uid}`}
-          markerWidth="10"
-          markerHeight="6"
-          refX="6"
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={ARROW_MARKER_LEN}
           refY="3"
           orient="auto"
         >
           <path
-            d="M0 0 L6 3 L0 6 Z"
-            fill="#334e68"
-            stroke="#334e68"
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={palette.flow}
+            stroke={palette.flow}
             strokeWidth="0.5"
           />
         </marker>
         <linearGradient
-          id={`m7-ag-box-${uid}`}
+          id={`m7-ag-bg-${uid}`}
           x1="0%"
           y1="0%"
-          x2="0%"
+          x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
+        {AGENT_TONES.map((tone) => {
+          const colors = DIAGRAM_TONE_COLORS[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`m7-ag-box-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
       </defs>
 
-      <rect width={viewW} height={viewH} fill="#f0f4f8" rx="12" />
+      <rect
+        width={viewW}
+        height={viewH}
+        fill={`url(#m7-ag-bg-${uid})`}
+        rx={DIAGRAM_TOKENS.radius.frame}
+      />
       <rect
         width={viewW}
         height={viewH}
         fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="12"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={viewW / 2}
         y="28"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="15"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram ? typography.title.compact : typography.title.desktop
+        }
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
       >
         {title}
       </text>
@@ -105,10 +138,14 @@ export default function M7ThreeAgentsDiagram({
         x={viewW / 2}
         y="44"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="10"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram
+            ? typography.subtitle.compact
+            : typography.subtitle.desktop
+        }
         fontWeight="500"
-        fill="#334e68"
+        fill={palette.muted}
       >
         {isInteractive ? hint : ''}
       </text>
@@ -126,8 +163,8 @@ export default function M7ThreeAgentsDiagram({
             y1={ym}
             x2={x2}
             y2={ym}
-            stroke="#334e68"
-            strokeWidth="2.5"
+            stroke={palette.flow}
+            strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
             markerEnd={`url(#m7-ag-arrow-${uid})`}
             aria-hidden
           />
@@ -137,12 +174,11 @@ export default function M7ThreeAgentsDiagram({
       {labels.map((lb, i) => {
         const x = startX + i * (boxW + gap);
         const isActive = currentStep === i;
-        const opacity = isActive ? 1 : 0.48;
-        const ariaStep =
-          locale === 'en'
-            ? `Role ${i + 1}: ${lb.title}. Press for explanation.`
-            : `Rolė ${i + 1}: ${lb.title}. Paspausk paaiškinimui.`;
-
+        const opacity = isActive
+          ? DIAGRAM_TOKENS.opacity.active
+          : DIAGRAM_TOKENS.opacity.inactive;
+        const tone = AGENT_TONES[i];
+        const colors = DIAGRAM_TONE_COLORS[tone];
         return (
           <g key={i}>
             <g
@@ -155,19 +191,27 @@ export default function M7ThreeAgentsDiagram({
                 y={y}
                 width={boxW}
                 height={BOX_H}
-                rx="10"
-                fill={`url(#m7-ag-box-${uid})`}
-                stroke={isActive ? '#102a43' : '#334e68'}
-                strokeWidth={isActive ? 2.5 : 1.5}
+                rx={DIAGRAM_TOKENS.radius.box}
+                fill={`url(#m7-ag-box-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : colors.stroke}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={cxMid(i)}
                 y={y + 30}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 9 : 11}
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepLabel.compact
+                    : typography.stepLabel.desktop
+                }
                 fontWeight="700"
-                fill="white"
+                fill={colors.text}
               >
                 {lb.title}
               </text>
@@ -175,33 +219,26 @@ export default function M7ThreeAgentsDiagram({
                 x={cxMid(i)}
                 y={y + 48}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 8 : 9}
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepSub.compact
+                    : typography.stepSub.desktop
+                }
                 fontWeight="500"
-                fill="rgba(255,255,255,0.9)"
+                fill={palette.whiteText}
               >
                 {lb.sub}
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={x}
                 y={y}
                 width={boxW}
                 height={BOX_H}
-                rx="10"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={ariaStep}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={DIAGRAM_TOKENS.radius.box}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
           </g>

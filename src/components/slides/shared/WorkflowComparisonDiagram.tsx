@@ -34,6 +34,7 @@ import {
   getOutputTypes,
   getDiagramLabels,
 } from './workflowComparisonConfig';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 interface Props {
   locale?: Locale;
@@ -158,15 +159,15 @@ export default function WorkflowComparisonDiagram({
         width={VB_WIDTH}
         height={VB_HEIGHT}
         fill={`url(#wf-bg-${uid})`}
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
         width={VB_WIDTH}
         height={VB_HEIGHT}
         fill="none"
         stroke={COLORS.border}
-        strokeWidth="1"
-        rx="12"
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       {/* Title */}
@@ -199,7 +200,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-neutral-${uid})`}
           stroke={COLORS.neutral}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_INPUT + BOX_W / 2}
@@ -232,7 +233,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-brand-llm-${uid})`}
           stroke={COLORS.brandDarker}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_LLM + BOX_W / 2}
@@ -265,7 +266,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-neutral-${uid})`}
           stroke={COLORS.neutral}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_OUTPUT + BOX_W / 2}
@@ -319,7 +320,7 @@ export default function WorkflowComparisonDiagram({
           x2={COL_LLM - ARROW_MARKER_LEN}
           y2={basicCenterY}
           stroke={COLORS.arrow}
-          strokeWidth="2"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
           strokeLinecap="round"
           markerEnd={`url(#wf-arr-${uid})`}
         />
@@ -331,7 +332,7 @@ export default function WorkflowComparisonDiagram({
           x2={COL_OUTPUT - ARROW_MARKER_LEN}
           y2={basicCenterY}
           stroke={COLORS.arrow}
-          strokeWidth="2"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
           strokeLinecap="round"
           markerEnd={`url(#wf-arr-${uid})`}
         />
@@ -354,7 +355,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-brand-${uid})`}
           stroke={COLORS.brand}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_INPUT + BOX_W / 2}
@@ -387,7 +388,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-brand-${uid})`}
           stroke={COLORS.brand}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_INPUT + BOX_W / 2}
@@ -437,7 +438,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-emerald-llm-${uid})`}
           stroke={COLORS.emeraldDarker}
-          strokeWidth="2"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
         />
         <text
           x={COL_LLM + BOX_W / 2}
@@ -494,7 +495,7 @@ export default function WorkflowComparisonDiagram({
           rx={BOX_R}
           fill={`url(#wf-g-emerald-${uid})`}
           stroke={COLORS.emeraldLight}
-          strokeWidth="1.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
         />
         <text
           x={COL_OUTPUT + BOX_W / 2}
@@ -530,7 +531,7 @@ export default function WorkflowComparisonDiagram({
           x2={COL_LLM - ARROW_MARKER_LEN}
           y2={WF_LLM_Y + WF_LLM_H * 0.3}
           stroke={COLORS.emerald}
-          strokeWidth="2"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
           strokeLinecap="round"
           strokeDasharray="8 4"
           markerEnd={`url(#wf-arr-em-${uid})`}
@@ -550,7 +551,7 @@ export default function WorkflowComparisonDiagram({
           x2={COL_LLM - ARROW_MARKER_LEN}
           y2={WF_LLM_Y + WF_LLM_H * 0.7}
           stroke={COLORS.emerald}
-          strokeWidth="2"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
           strokeLinecap="round"
           strokeDasharray="8 4"
           markerEnd={`url(#wf-arr-em-${uid})`}
@@ -570,7 +571,7 @@ export default function WorkflowComparisonDiagram({
           x2={COL_OUTPUT - ARROW_MARKER_LEN}
           y2={wfOutputCenterY}
           stroke={COLORS.emerald}
-          strokeWidth="2.5"
+          strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
           strokeLinecap="round"
           strokeDasharray="10 4"
           markerEnd={`url(#wf-arr-em-${uid})`}

@@ -5,6 +5,7 @@ import { getGlossary } from '../data/glossaryLoader';
 import { getModulesSync } from '../data/modulesLoader';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
+import { stickyClasses } from '../design-tokens';
 import type { Progress } from '../utils/progress';
 
 export interface GlossaryTerm {
@@ -15,7 +16,10 @@ export interface GlossaryTerm {
   unlockedBy?: { moduleId: number; slideId: number };
 }
 
-function getModuleLabels(t: (key: string, opts?: { n?: number }) => string, locale: 'lt' | 'en'): Record<number, string> {
+function getModuleLabels(
+  t: (key: string, opts?: { n?: number }) => string,
+  locale: 'lt' | 'en'
+): Record<number, string> {
   const modules = getModulesSync(locale);
   const labels: Record<number, string> = {};
   if (modules?.length) {
@@ -38,14 +42,21 @@ export interface GlossaryPageProps {
   progress?: Progress;
 }
 
-function isTermUnlocked(term: GlossaryTerm, progress: Progress | undefined): boolean {
+function isTermUnlocked(
+  term: GlossaryTerm,
+  progress: Progress | undefined
+): boolean {
   if (!term.unlockedBy) return true;
   if (!progress?.completedTasks) return false;
   const completed = progress.completedTasks[term.unlockedBy.moduleId];
   return Boolean(completed?.includes(term.unlockedBy.slideId));
 }
 
-export default function GlossaryPage({ highlightTerm, onBackToModule, progress }: GlossaryPageProps) {
+export default function GlossaryPage({
+  highlightTerm,
+  onBackToModule,
+  progress,
+}: GlossaryPageProps) {
   const { t } = useTranslation('glossary');
   const { locale } = useLocale();
   const MODULE_LABELS = useMemo(() => getModuleLabels(t, locale), [t, locale]);
@@ -53,17 +64,18 @@ export default function GlossaryPage({ highlightTerm, onBackToModule, progress }
   const rawTerms = getGlossary(locale) as GlossaryTerm[];
   const isMvpMode = getIsMvpMode();
   const terms = useMemo(
-    () => (isMvpMode ? rawTerms.filter(t => t.moduleId <= 6) : rawTerms),
+    () => (isMvpMode ? rawTerms.filter((t) => t.moduleId <= 6) : rawTerms),
     [rawTerms, isMvpMode]
   );
 
   const filtered = useMemo(() => {
-    const list = filter === 'all' ? terms : terms.filter(t => t.moduleId === filter);
+    const list =
+      filter === 'all' ? terms : terms.filter((t) => t.moduleId === filter);
     return [...list].sort((a, b) => a.term.localeCompare(b.term, locale));
   }, [terms, filter, locale]);
 
   const moduleIds = useMemo(() => {
-    const ids = new Set(terms.map(t => t.moduleId));
+    const ids = new Set(terms.map((t) => t.moduleId));
     return Array.from(ids).sort((a, b) => a - b);
   }, [terms]);
 
@@ -107,10 +119,15 @@ export default function GlossaryPage({ highlightTerm, onBackToModule, progress }
         </div>
       </div>
       <div className="flex items-center gap-2 flex-wrap">
-        <Filter className="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0" aria-hidden />
+        <Filter
+          className="w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0"
+          aria-hidden
+        />
         <select
           value={filter}
-          onChange={(e) => setFilter(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+          onChange={(e) =>
+            setFilter(e.target.value === 'all' ? 'all' : Number(e.target.value))
+          }
           className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 min-h-[44px]"
           aria-label={t('filterByModule')}
         >
@@ -128,7 +145,9 @@ export default function GlossaryPage({ highlightTerm, onBackToModule, progress }
   return (
     <div className="space-y-8 animate-fade-in">
       {onBackToModule ? (
-        <div className="sticky top-0 z-10 py-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div
+          className={`${stickyClasses.belowAppNavLow} py-2 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700`}
+        >
           {headerInner}
         </div>
       ) : (
@@ -139,42 +158,52 @@ export default function GlossaryPage({ highlightTerm, onBackToModule, progress }
         {filtered.map((item, i) => {
           const locked = !isTermUnlocked(item, progress);
           return (
-          <div key={`${item.term}-${item.moduleId}-${i}`}>
-            <article
-              id={termToId(item.term)}
-              className={`p-6 rounded-xl border-2 transition-colors ${
-                locked
-                  ? 'bg-slate-100 dark:bg-gray-800/60 border-slate-200 dark:border-gray-700 opacity-80'
-                  : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-brand-200 dark:hover:border-brand-800'
-              }`}
-              aria-busy={locked}
-              aria-describedby={locked ? `lock-desc-${termToId(item.term)}` : undefined}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
-                <h2 className={`text-lg font-bold ${locked ? 'text-gray-500 dark:text-gray-400' : 'text-brand-700 dark:text-brand-300'}`}>
-                  {item.term}
-                </h2>
-                <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 w-fit">
-                  {MODULE_LABELS[item.moduleId] ?? (locale === 'en' ? `Module ${item.moduleId}` : `Modulis ${item.moduleId}`)}
-                </span>
-              </div>
-              {locked && item.unlockedBy ? (
-                <p id={`lock-desc-${termToId(item.term)}`} className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2 mt-1">
-                  <Lock className="w-4 h-4 shrink-0" aria-hidden />
-                  {t('unlockByStep', { id: item.unlockedBy.moduleId })}
-                </p>
-              ) : (
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {item.definition}
-                </p>
-              )}
-            </article>
-            {onBackToModule && highlightTerm && item.term === highlightTerm && (
-              <div className="mt-4">
-                {backButtonJsx}
-              </div>
-            )}
-          </div>
+            <div key={`${item.term}-${item.moduleId}-${i}`}>
+              <article
+                id={termToId(item.term)}
+                className={`p-6 rounded-xl border-2 transition-colors ${
+                  locked
+                    ? 'bg-slate-100 dark:bg-gray-800/60 border-slate-200 dark:border-gray-700 opacity-80'
+                    : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-brand-200 dark:hover:border-brand-800'
+                }`}
+                aria-busy={locked}
+                aria-describedby={
+                  locked ? `lock-desc-${termToId(item.term)}` : undefined
+                }
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                  <h2
+                    className={`text-lg font-bold ${locked ? 'text-gray-500 dark:text-gray-400' : 'text-brand-700 dark:text-brand-300'}`}
+                  >
+                    {item.term}
+                  </h2>
+                  <span className="text-xs font-medium px-2.5 py-1 rounded-lg bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 w-fit">
+                    {MODULE_LABELS[item.moduleId] ??
+                      (locale === 'en'
+                        ? `Module ${item.moduleId}`
+                        : `Modulis ${item.moduleId}`)}
+                  </span>
+                </div>
+                {locked && item.unlockedBy ? (
+                  <p
+                    id={`lock-desc-${termToId(item.term)}`}
+                    className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-2 mt-1"
+                  >
+                    <Lock className="w-4 h-4 shrink-0" aria-hidden />
+                    {t('unlockByStep', { id: item.unlockedBy.moduleId })}
+                  </p>
+                ) : (
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {item.definition}
+                  </p>
+                )}
+              </article>
+              {onBackToModule &&
+                highlightTerm &&
+                item.term === highlightTerm && (
+                  <div className="mt-4">{backButtonJsx}</div>
+                )}
+            </div>
           );
         })}
       </div>

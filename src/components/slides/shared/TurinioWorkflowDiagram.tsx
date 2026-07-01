@@ -8,6 +8,7 @@ import {
   getTurinioWorkflowDiagramLabels,
   type StepExplanationsLocale,
 } from './stepExplanations';
+import { DiagramStepHitArea } from './diagramKit';
 
 const BOX_H = 48;
 const GAP = 20;
@@ -195,24 +196,13 @@ export default function TurinioWorkflowDiagram({
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={box[0]}
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={labels.stepAria(i, STEPS[i].label)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={10}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
             {i < stepBoxes.length - 1 && (

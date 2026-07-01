@@ -9,6 +9,27 @@
     <meta http-equiv="expires" content="0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=optional"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=optional"
+    />
+    <script>
+      (function () {
+        try {
+          var storedTheme = localStorage.getItem('theme');
+          var isDark =
+            storedTheme === 'dark' ||
+            (storedTheme !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) document.documentElement.classList.add('dark');
+        } catch (error) {}
+      })();
+    </script>
     <title>Promptų anatomija - Interaktyvus Mokymas</title>
     <meta name="description" content="6 promptų struktūros blokai, vienas nuoseklus mokymas – sistema nuo A iki Z. Interaktyvus DI mokymas su moduliais, praktika ir apklausa." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

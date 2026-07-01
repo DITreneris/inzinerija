@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.1]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.2]** release.                                       |
+| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.       |
 | **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).     |
 | **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel. |
 | **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                  |
@@ -33,14 +34,64 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 53 failai, 323 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.1** (2026-06-30). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8).
+- **Testai:** 57 failai, 367 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.2** (2026-07-01). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8); vykdymo planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.1 release._
+_Įrašai po 1.4.2 release._
+
+---
+
+## [1.4.2] – 2026-07-01
+
+M1–9 DiagramKit, design system revision, M7–9 EN editorial sweep, app startup stabilumas. **Prioritetas:** M1–9; M10+ vizualinis polish – atidėtas.
+
+### Gate
+
+- `npm run validate:schema`, `npm run lint`, `npm run test:run` (367 testų), `npm run build:production` – žali.
+- Rankinis diagramų browser smoke: `pending manual` (RELEASE_QA §5d, TODO QA #6).
+
+### Changed – Design system revision
+
+- **A11y/sticky remontas:** sticky elementai po AppNav pervesti į `--app-nav-height` offsetą, o slide dots, diagramų step nav, testų pasirinkimai ir modal close keliai suvienodinti pagal 44px / `focus-visible` standartą.
+- **Token ownership:** `src/design-tokens.ts` papildytas touch target, focus ring, sticky ir z-index helperiais; `ContentSlides` blockVariant klasės pradėtos kelti į bendrą `blockVariantClasses` helperį.
+- **UI primityvų pilotas:** `PracticalTask` pradėjo naudoti `CTAButton` su aiškesne primary / secondary / tertiary veiksmų hierarchija; `Banner` nebeturi LT hardcoded `aria-label`, o `Table` default stilius pagerintas pagal lentelių skaitomumo standartą.
+- **Leftovers sprintas:** `AccessGateScreen` ir `CertificateScreen` pradėjo naudoti `Card` / `CTAButton` pilotus, o sertifikato HTML preview atsisakė dalies inline style tokenų.
+- **Diagram kit pilotas:** `RlProcessBlock` pervestas į `InteractiveDiagramShell`, `RlProcessDiagram` SVG paspaudžiamos zonos tapo pointer-only per `DiagramStepHitArea`, o dark SVG fonas tikrinamas testu.
+- **SVG keyboard migracija:** `DiPrezentacijosWorkflowDiagram`, `TurinioWorkflowDiagram`, `AgentWorkflowDiagram` ir `CustomGptProcessDiagram` hit zonos perkeltos į pointer-only `DiagramStepHitArea`; HTML `nav button` liko vienintelis klaviatūros kelias ir papildytas testų guard'ais.
+- **Premium diagramų polish:** M7 analizės tipų schema gavo roles-hub skaitomumo tokenus, didesnę tipografiją, dark-aware tonus ir aiškesnį active ring/glow; `DiagramKit` status badge, step nav ir explanation panel sustiprinti kaip nuoseklus product chrome, o interaktyvių diagramų slide shell nebenaudoja dominuojančios kairės linijos.
+- **Auditai ir QA:** `audit-design-tokens` papildytas Tailwind arbitrary class radiniais; pridėti 2026-07 design-token baseline ir release QA vartai sticky, focus, diagramų dark mode ir SVG keyboard trap patikrai; `ContentSlides` targeted cleanup ir primitive pilotai sumažino arbitrary class radinius `80 → 66`, inline style `13 → 12`, total `539 → 521`.
+- **Backlog'ai:** `LlmArch` patvirtintas kaip atskiras B3 DOM-matavimo trackas, o M10+ diagramoms pridėtas premium SaaS vizualinės kokybės backlog.
+
+### Fixed – App starto stabilumas
+
+- **Pirmo vaizdo mirgėjimas:** stabilizuotas app startas – rezervuojama scrollbar vieta (`scrollbar-gutter: stable`), dark mode klasė pritaikoma prieš React užsikrovimą, o Google Fonts perkeltas iš CSS `@import` į `index.html` su `display=optional`, kad sumažėtų teksto reflow ir vaizdo poslinkis į kairę.
+- **Starto fallback:** app lygio `Suspense` spinneris gauna aukštesnį pradinį konteinerį (`min-h-[60vh]`), todėl perėjimas iš loading būsenos į pagrindinį puslapį nebeatrodo kaip staigus vertikalus šuolis.
+- **Regresijos apsauga:** pridėti `themeInit` ir startup guard testai, saugantys ankstyvą `.dark` pritaikymą, scrollbar stabilizaciją ir fontų krovimo kontraktą.
+
+### Changed – M1–M9 schemų suvienodinimas
+
+- **DiagramKit MVP:** pridėtas bendras interaktyvių schemų karkasas (`status badge`, žingsnių navigacija, paaiškinimo kortelė) ir bendri diagramų tokenai.
+- **M7–M9 A grupė:** M7 analizės tipai, duomenų paruošimas, trys agentai, duomenų istorijos ciklas ir M9 workflow naudoja nuoseklesnį wrapperį; roles/hub schemos gavo semantinius tonus, o duomenų istorijos schema – aiškų ciklo grįžtamąjį ryšį.
+- **M7 statiniai SVG:** `/da_pipeline_6.svg` ir `/da_bi_schema_4.svg` per registry renderina interaktyvius React pakaitalus (`M7DaPipelineBlock`, `M7BiSchemaBlock`) su LT/EN paaiškinimais ir žingsnių navigacija.
+- **B1 token sprint:** `RlProcessDiagram`, `LlmAutoregressiveDiagram` ir context engineering pipeline config naudoja bendrus `diagramTokens` brand/bg/border/text/flow/radius/opacity reikšmėms, nekeičiant layout ar interaktyvumo; lint, typecheck, targeted diagram testai ir `git diff --check` praėjo.
+- **B2 schemų sistema:** `StrukturuotasProcesasBlock` naudoja `InteractiveDiagramShell`, `WorkflowComparison` shared chrome tokenizuotas, M10/M12/M13/M15 diagramos perkeltos į registry, o `/da_schema_entity_example.svg` gauna bendrą statinės iliustracijos rėmą.
+- **B2.5 visual guard:** pridėtas `diagramRenderers` registry test guard known keys, unknown fallback, body placement ir static illustration frame kontraktams; rankinis naršyklinis smoke pažymėtas `pending manual` audite.
+- **B2.6 M7–M9 geometry & semantics:** M7/M9 vertikalios 5/6/8 žingsnių schemos naudoja bendrą `verticalFlowGeometry` helperį, `M7DataStoryCycleDiagram` gavo aiškesnį desktop feedback ciklą, o M7 roles-hub schemos suvienodintos per `diagramTokens` font/marker kontraktus; M10 kokybės remontas sąmoningai atidėtas atskiram trackui.
+- **M7–M9 UI/UX polish:** M7/M9 interaktyvios diagramos naudoja bendrą pointer-only `DiagramStepHitArea`, klaviatūros navigaciją palieka `DiagramStepNav`, gauna dark-mode SVG paletę per `useDiagramPalette`, o registry ir M7 `pathBranch` invariantai papildyti automatiniais guard'ais.
+- **LlmArch B3 planas:** pridėtas atskiras `docs/development/LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`, nes schema remiasi DOM matavimu (`ResizeObserver`, `getBoundingClientRect`) ir turi būti refaktoruojama izoliuotai.
+- **Routing:** M1–M9 diagramų registry sluoksnis aptarnauja aktyvius M1–M9 raktus; dubliuotos `ContentSlides.tsx` fallback šakos tiems raktams pašalintos.
+- **Auditas:** pridėtas `docs/development/DIAGRAMU_M1_M9_AUDITAS.md` su inventoriaus matrica, patternų taksonomija, statinių SVG sprendimo kriterijais ir QA vartais.
+
+### Fixed – M7–9 EN/LT editorial sweep
+
+- **M7–9 EN overlay:** `modules-en-m7-m9.json` pilnai peržiūrėtas pagal hardened auditą – pašalinti hybrid LT/EN likučiai (`duomenis`, `generavimas`, `pakeisk`, `Tinka`, `Nori suprasti detaliau?`, `rgoia`, `segmenthat` ir pan.) M7 branduolyje, šakose ir M9 intro.
+- **Audit rules:** `scripts/lib/m79-language-rules.mjs` papildytas `en_lt_token`, `en_broken_phrase`, `en_lt_heading` patikromis ir `unlockedGlossaryTerms` skip'u; `m79EnLanguageAudit.test.ts` prisega rizikingas M7/M9 skaidres ir nulinius LT tokenų / broken phrase / LT heading skaitiklius.
+- **Source map sync:** `scripts/m7-m9-en-string-map.json` ir `scripts/m79-part2-manual.json` sutvarkyti, kad rebuild'ai negrąžintų žinomų M7–9 EN šiukšlių.
+- **LT Tu forma:** `modules.json` M7 haliucinacijų savitikros paaiškinimas ir M9 scenarijų 103/105/109 placeholderiai perrašyti į Tu formą; `npm run generate:core-data` pergeneravo core profilius.
 
 ### Changed – Dokumentacijos sinchronizacija (post-audit 2026-06-30)
 

@@ -496,7 +496,11 @@ function App() {
           )}
           {!(requiresModulesData && !modulesData && modulesLoadError) && (
             <Suspense
-              fallback={<LoadingSpinner size="lg" text={t('loading')} />}
+              fallback={
+                <div className="flex min-h-[60vh] items-center justify-center">
+                  <LoadingSpinner size="lg" text={t('loading')} />
+                </div>
+              }
             >
               {currentPage === 'home' && (
                 <HomePage

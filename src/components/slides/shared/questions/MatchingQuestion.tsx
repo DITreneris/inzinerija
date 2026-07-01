@@ -179,7 +179,7 @@ export function MatchingQuestion({
                 onClick={() => handleLeftClick(leftIdx)}
                 disabled={isChecked}
                 aria-label={`${en ? 'Left side' : 'Kairė pusė'}: ${pair.left}`}
-                className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm font-medium ${
+                className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
                   isChecked
                     ? isCorrectMatch
                       ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
@@ -224,7 +224,7 @@ export function MatchingQuestion({
                 onClick={() => handleRightClick(rightIdx)}
                 disabled={isChecked}
                 aria-label={`${en ? 'Right side' : 'Dešinė pusė'}: ${rightText}`}
-                className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm ${
+                className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
                   isChecked
                     ? isCorrectMatch
                       ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
@@ -274,7 +274,7 @@ export function MatchingQuestion({
       {!showHint && question.hint && !isChecked && allMatched && (
         <button
           onClick={() => onRequestHint(question.id)}
-          className="mt-2 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
+          className="mt-2 inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-sm text-amber-600 transition-colors hover:text-amber-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-offset-gray-900"
           aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />

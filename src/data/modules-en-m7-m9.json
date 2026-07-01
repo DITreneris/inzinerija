@@ -197,7 +197,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**W. Deming principles for data management:**\n1. **Constancy of purpose** – data serves long-term goals, not short-term KPI pressure.\n2. **Management by system** – results = product of the system; data reveals system limits.\n3. **Understanding variation** – do not control natural variation; look for special cause.\n4. **Evidence-based decisions** – opinion without data – hypothesis.\n5. **Continuous improvement (PDCA)** – Plan → Do → Check → Act; data is the \"Check\" backbone.",
                 "blockVariant": "brand",
                 "collapsible": true
@@ -614,7 +614,7 @@
                 "blockVariant": "brand"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**Where will you use it?** When planning a new analysis or report – from data sources to leadership presentation. You can copy the matching prompt for each stage. **Pipeline schema:** 1) Collection 2) Preparation 3) EDA 4) Models 5) Visualization 6) Publishing.",
                 "blockVariant": "brand",
                 "image": "/da_pipeline_6.svg",
@@ -696,7 +696,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**Where will you use it?** When leadership asks \"What happened?\" or \"Why?\" – pick the matching analysis type and copy the prompt. Four types cover the full cycle from description to action plan. Learn before Test – this slide prepares Module 8 questions on analysis types.",
                 "blockVariant": "brand"
               }
@@ -777,7 +777,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "Templates fit Module 9 scenarios: data creation – when you need sample rows; competitor analysis – for strategic decisions; CFO – for financial report and optimization ideas.",
                 "blockVariant": "brand"
               }
@@ -1035,7 +1035,7 @@
         {
           "id": 85,
           "title": "Data relationship analysis",
-          "subtitle": "Relationships, dubliavimas, bottlenecks, KPI",
+          "subtitle": "Relationships, duplication, bottlenecks, KPI",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1051,7 +1051,7 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "body": "Paste savo structure vietoje [paste].",
+                "body": "Paste your structure instead of [PASTE].",
                 "blockVariant": "terms",
                 "copyable": "Here is my data structure:\n[PASTE]\n\n1. Explain main relationships\n2. Where can data duplication occur?\n3. Where are bottlenecks possible?\n4. What 5 KPIs can be derived from this structure?"
               },
@@ -1065,8 +1065,8 @@
         },
         {
           "id": 86,
-          "title": "visualizations generavimas",
-          "subtitle": "Trends, segmentai, profitability, insights",
+          "title": "Visualization generation",
+          "subtitle": "Trends, segments, profitability, insights",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1082,9 +1082,9 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "body": "Paste your duomenis instead ofe [duomenys].",
+                "body": "Paste your data instead of [DATA].",
                 "blockVariant": "terms",
-                "copyable": "Based on with these sales duomenimis:\n[duomenys]\n\nGenerate:\n1. Revenue trends chart\n2. Customer segments comparison\n3. Products profitability analysis\n4. 3 main insights"
+                "copyable": "Based on these sales data:\n[DATA]\n\nGenerate:\n1. Revenue trends chart\n2. Customer segment comparison\n3. Product profitability analysis\n4. 3 main insights"
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1103,17 +1103,17 @@
             "sections": [
               {
                 "heading": "1. Bar chart (for comparison)",
-                "body": "Tinka categories palyginimui (regionai, products, metai).",
-                "copyable": "I have duomenis: [paste columns: category, meaning]. Suggest bar chart: categories X axis, values Y axis. Add brief insight (top 3)."
+                "body": "Use this for comparing categories (regions, products, years).",
+                "copyable": "I have data: [paste columns: category, value]. Suggest a bar chart: categories on the X axis, values on the Y axis. Add a brief insight (top 3)."
               },
               {
                 "heading": "2. Line chart (for trends)",
-                "body": "Tinka time seriesms ir other metrics kitimui.",
+                "body": "Use this for time series and changes in other metrics.",
                 "copyable": "I have time series data: [dates / period, metric]. Suggest a line chart – trend over time. Specify the main trend and 1–2 insights."
               },
               {
                 "heading": "3. Pie chart (parts of whole)",
-                "body": "Tinka rodyti proporcijas (e.g. % pagal segmenthat).",
+                "body": "Use this to show proportions (for example, % by segment).",
                 "copyable": "I have proportion data: [category, share % or value]. Suggest a pie chart. Add a legend and one main insight."
               },
               {
@@ -1126,7 +1126,7 @@
         },
         {
           "id": 87,
-          "title": "Prognozavimas",
+          "title": "Forecasting",
           "subtitle": "6 mo. forecast, seasonality, scenarios",
           "type": "content-block",
           "content": {
@@ -1143,7 +1143,7 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "body": "Paste to AI; pakeisk [duomenys] to savo duomenis ar description.",
+                "body": "Paste into AI; replace [DATA] with your data or description.",
                 "blockVariant": "terms",
                 "copyable": "Based on 24 months of sales history:\n[DATA or link]\n\n1. Forecast revenue for the next 6 months\n2. Specify seasonality impact\n3. Provide optimistic and pessimistic scenarios\n4. Specify main risks"
               },
@@ -1157,7 +1157,7 @@
         },
         {
           "id": 88,
-          "title": "Research prompts sistopic",
+          "title": "Research prompt system",
           "subtitle": "Brand, loyalty, sales",
           "type": "content-block",
           "content": {
@@ -1175,7 +1175,7 @@
               {
                 "heading": "3. Sales research",
                 "body": "Create sales research plan: segmentation, ABC analysis, seasonality, correlations, forecasts model.",
-                "copyable": "Create sales research plan:\n- Segmentavimas\n- ABC analysis\n- Seasonality\n- Correlations\n- Forecasts model"
+                "copyable": "Create a sales research plan:\n- Segmentation\n- ABC analysis\n- Seasonality\n- Correlations\n- Forecast model"
               }
             ]
           }
@@ -1183,7 +1183,7 @@
         {
           "id": 89,
           "title": "5-step algorithm",
-          "subtitle": "Sources → structure → collectti → cleaning → eksportas",
+          "subtitle": "Sources → structure → collect → cleaning → export",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1211,8 +1211,8 @@
               },
               {
                 "heading": "3a. Identify sources",
-                "body": "Create public data sources list su links.",
-                "copyable": "Create 20 public data sources in Lithuania [X] topici list su links."
+                "body": "Create a list of public data sources with links.",
+                "copyable": "Create a list of 20 public data sources in Lithuania for topic [X], with links."
               },
               {
                 "heading": "3b. Create structure",
@@ -1221,8 +1221,8 @@
               },
               {
                 "heading": "3c. Collect data",
-                "body": "Priskirk rinkinius kategorijoms.",
-                "copyable": "Assign these data rinkinius categories."
+                "body": "Assign datasets to categories.",
+                "copyable": "Assign these datasets to categories."
               },
               {
                 "heading": "3d. Cleaning",
@@ -1240,7 +1240,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "The algorithm helps avoid chaos: sources and structure first, then collection, cleaning and only then export. Use step by step, especially when there is a lot of data.",
                 "blockVariant": "brand"
               }
@@ -1250,7 +1250,7 @@
         {
           "id": 891,
           "title": "Data preparation and business analysis workflow",
-          "subtitle": "Cleaning, metadata ir teisinga steps seka",
+          "subtitle": "Cleaning, metadata, and the correct step sequence",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1266,7 +1266,7 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt (cleaning)",
-                "body": "Paste to AI before analysis – su savo duomenimis.",
+                "body": "Paste into AI before analysis, together with your data.",
                 "blockVariant": "terms",
                 "copyable": "Before analysis, check this data:\n1. Is anonymization needed?\n2. Are formats standardized (dates, numbers)?\n3. Are duplicates removed?\n4. Where are values missing and how to fill them?\n5. Are column types correct?\n6. Are time and region tags added?\nProvide a cleaning report and suggested actions."
               },
@@ -1276,7 +1276,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**Cleaning checklist:** Anonymization; format standardization; duplicate removal; missing value identification; data type validation; timestamps; region tags.\n\n**Metadata – 3 types:** **Descriptive** – context (source, date, scope). **Structural** – schema, column types, relationships. **Administrative** – rights, security, accountability. Without metadata AI analysis becomes shallow.",
                 "blockVariant": "brand",
                 "collapsible": true
@@ -1697,7 +1697,7 @@
               },
               {
                 "heading": "3a. Statistical analysis",
-                "body": "Vidurkis, mediana, IQR, standartinis nuokrypis.",
+                "body": "Mean, median, IQR, standard deviation.",
                 "copyable": "Provide mean, median, IQR and standard deviation for this data."
               },
               {
@@ -1726,7 +1726,7 @@
         {
           "id": 91,
           "title": "Table creation methodology",
-          "subtitle": "Goal → Columns → Examples → Validacija",
+          "subtitle": "Goal → Columns → Examples → Validation",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1742,9 +1742,9 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "body": "Paste goal ir stulpelius.",
+                "body": "Paste the goal and columns.",
                 "blockVariant": "terms",
-                "copyable": "Create table:\nGoal: [X] analysis\nColumns: [enter]\n\nAdd: 5 sample eilutes, 2 papildomus metrics, brief interpretation."
+                "copyable": "Create a table:\nGoal: [X] analysis\nColumns: [enter]\n\nAdd: 5 sample rows, 2 additional metrics, and a brief interpretation."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1797,7 +1797,7 @@
                 "blockVariant": "brand"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**BI schema (visual):** 4 steps – Collect (data sources), Analyze (EDA, insights), Report (visualization, conclusions for leadership), Forecast. Links to pipeline (§2.2) and MASTER PROMPT – same thinking, different detail.",
                 "blockVariant": "brand",
                 "image": "/da_bi_schema_4.svg",
@@ -1833,10 +1833,10 @@
               },
               {
                 "heading": "Agent schema",
-                "body": "Three roles – nuo sources iki insights for leadership. Click ir review.",
+                "body": "Three roles – from sources to insights for leadership. Click and review.",
                 "blockVariant": "brand",
                 "image": "m7_three_agents_flow",
-                "imageAlt": "Trys agentai: Data Research, EDA, Insight"
+                "imageAlt": "Three agents: Data Research, EDA, Insight"
               },
               {
                 "heading": "2️⃣ What to do",
@@ -1850,18 +1850,18 @@
               },
               {
                 "heading": "3a. Data Research Agent",
-                "body": "Sources identifikavimas, data structure, cleaning.",
+                "body": "Source identification, data structure, cleaning.",
                 "copyable": "Identify 10 data sources for [X] topic. Provide structure: source, URL, update frequency."
               },
               {
                 "heading": "3b. EDA Agent",
-                "body": "Statistical analysis, visualizations generavimas.",
+                "body": "Statistical analysis and visualization generation.",
                 "copyable": "Perform exploratory analysis of this data: statistics, correlation, anomalies, 3 hypotheses."
               },
               {
                 "heading": "3c. Insight Agent",
-                "body": "Recommendations, forecasts, insights leadership.",
-                "copyable": "Based on with these duomenimis, provide 3 pagrindines insights ir rekomendacijas leadership."
+                "body": "Recommendations, forecasts, insights for leadership.",
+                "copyable": "Based on this data, provide 3 key insights and recommendations for leadership."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1909,7 +1909,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**Data schema example:** entities (e.g. Customer, Order, Product), 1-N, N-N relationships. Normalization issues and e-commerce optimization – AI can explain the schema and suggest improvements.",
                 "blockVariant": "brand",
                 "image": "/da_schema_entity_example.svg",
@@ -1952,7 +1952,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**Context: Lithuania.** In many organizations intuition and \"we always did it this way\" still dominate – building measurement habits matters. **Quote:** \"In God we trust, all others bring data.\" (W. Edwards Deming). **Broader theoretical base** (data and variation, improve the system) – on the \"Strategic foundation\" slide.",
                 "blockVariant": "brand",
                 "collapsible": true
@@ -2042,7 +2042,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
+                "heading": "🔽 Want to understand more?",
                 "body": "**8-step quick reminder:** 1) Data sources – where to get them. 2) Data structure – columns, tables. 3) Cleaning – missing values, format. 4) EDA – patterns, anomalies. 5) Visualization suggestions – charts. 6) Insights – what it means for business. 7) Forecasts – what may happen. 8) Strategic recommendations – what to do. In Module 9 project use this prompt as a base.",
                 "blockVariant": "brand",
                 "collapsible": true
@@ -2328,12 +2328,12 @@
                 "icon": "Layers",
                 "color": "brand",
                 "items": [
-                  "Rinkimas",
+                  "Collection",
                   "Preparation",
                   "EDA",
-                  "Modeliai",
-                  "Vizualizacija",
-                  "Publikavimas"
+                  "Models",
+                  "Visualization",
+                  "Publishing"
                 ]
               },
               {
@@ -2632,7 +2632,7 @@
             "whyBenefit": "After the project you will have one ready business analysis artifact and templates for daily work with AI.",
             "primaryPathIntro": "Main path – **8-step data management cycle** (next two slides): schema and copyable prompts. Press \"Continue\" and go in order – from sources and multi-AI research to summary and simple .html dashboard. Enough to consider the module complete.",
             "meaningParagraph": "Here you finish what you started in Modules 7 and 8. First complete the full cycle on two slides (workflow + prompts); later, if you want, try additional scenarios or the character hub.",
-            "taskOneLiner": "Continue → 8 steps (2 slide) → kopijuok prompts to AI. Additional scenarijai – tik jei nori daugiau sample.",
+            "taskOneLiner": "Continue → 8 steps (2 slides) → copy prompts into AI. Additional scenarios are optional if you want more examples.",
             "duration": "~25–35 min",
             "audience": "For those who completed Modules 7 and 8 (data analysis path) and want to go through the full analysis process with AI once.",
             "recommendedStart": "After main path: sentiment analysis, data cleaning, finance insights, Python visualization, data scraping – below in \"Additional\" section. Each scenario slide – prompt with CopyButton.",
@@ -2643,7 +2643,7 @@
             ],
             "storyBlock": "Team \"Data path\" – 4 specialists, 17 additional tasks (4×4 + data scraping). Hub and cards – only if you want more practice after main workflow.",
             "characterMeaning": "Characters help pick **topic** in additional scenarios: Jurate – customers and data management; Martynas – analysis types and risks; Giedre – finance and employee training assessment; Lukas – visualization and BI.",
-            "useCaseBlock": "Apply, when rgoia: prepare quarterly report for the board; analyze customer atsiliepimus ir surveys; sales tables ar risks matrix; visualizations leadership.",
+            "useCaseBlock": "Apply when you need to prepare a quarterly board report, analyze customer reviews and surveys, work with sales tables or risk matrices, or prepare leadership visualizations.",
             "recommendedSlideIds": [101, 102, 111, 116, 117]
           }
         },

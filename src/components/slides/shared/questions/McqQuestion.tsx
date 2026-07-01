@@ -73,7 +73,7 @@ export function McqQuestion({
               onClick={() => onAnswer(question.id, idx)}
               disabled={answerDisabled}
               aria-label={`${en ? 'Option' : 'Pasirinkimas'}: ${option}`}
-              className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] ${
+              className={`w-full text-left p-3 rounded-lg border-2 transition-all min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
                 showResults
                   ? isCorrectOption
                     ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-900/30'
@@ -135,7 +135,7 @@ export function McqQuestion({
         userAnswer !== question.correct && (
           <button
             onClick={() => onRequestHint(question.id)}
-            className="mt-3 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
+            className="mt-3 inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-sm text-amber-600 transition-colors hover:text-amber-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-offset-gray-900"
             aria-label={en ? 'Get hint' : 'Gauti užuominą'}
           >
             <Lightbulb className="w-4 h-4" />
@@ -179,7 +179,7 @@ export function McqQuestion({
                     question.ifWrongSee!.slideId
                   )
                 }
-                className="mt-3 flex items-center gap-1.5 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 hover:underline"
+                className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-brand-600 hover:text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-brand-400 dark:hover:text-brand-300 dark:focus-visible:ring-offset-gray-900"
                 aria-label={
                   en
                     ? `View slide: ${question.ifWrongSee!.label}`

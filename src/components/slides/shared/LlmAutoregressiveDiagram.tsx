@@ -26,15 +26,16 @@ import {
   getInputTextPositions,
   getCenterTextPosition,
 } from './llmAutoregressiveLayout';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
-const STEP_ACTIVE_OPACITY = 1;
-const STEP_INACTIVE_OPACITY = 0.55;
+const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
+const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactiveSoft;
 
 // Spalvos (ne geometrija – čia)
-const TEXT_DARK = '#0f172a';
-const TEXT_MUTED = '#475569';
-const GRAY_FLOW = '#64748b';
-const BORDER = '#4a5568';
+const TEXT_DARK = DIAGRAM_TOKENS.colors.brandDark;
+const TEXT_MUTED = DIAGRAM_TOKENS.colors.slate;
+const GRAY_FLOW = DIAGRAM_TOKENS.colors.flow;
+const BORDER = DIAGRAM_TOKENS.colors.slate;
 const INPUT_BG = '#e2eef9';
 const INPUT_BORDER = '#2b5a8e';
 const LLM_BG = '#5a6575';
@@ -146,44 +147,133 @@ export default function LlmAutoregressiveDiagram({
       aria-label={`${L.ariaDiagram}${isInteractive ? L.ariaClick : ''}`}
     >
       <defs>
-        <linearGradient id={`llm-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f8fafc" />
-          <stop offset="100%" stopColor="#f1f5f9" />
+        <linearGradient
+          id={`llm-bg-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
+          <stop offset="0%" stopColor={DIAGRAM_TOKENS.colors.bgEnd} />
+          <stop offset="100%" stopColor={DIAGRAM_TOKENS.colors.bgStart} />
         </linearGradient>
-        <marker id={`llm-arrow-fwd-${uid}`} markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
-          <path d="M0 0 L6 2.5 L0 5 Z" fill={BORDER} stroke={BORDER} strokeWidth="0.4" />
+        <marker
+          id={`llm-arrow-fwd-${uid}`}
+          markerWidth="6"
+          markerHeight="5"
+          refX="5"
+          refY="2.5"
+          orient="auto"
+        >
+          <path
+            d="M0 0 L6 2.5 L0 5 Z"
+            fill={BORDER}
+            stroke={BORDER}
+            strokeWidth="0.4"
+          />
         </marker>
-        <linearGradient id={`llm-step-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id={`llm-step-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor={LLM_BG} />
           <stop offset="100%" stopColor={LLM_BG_BOTTOM} />
         </linearGradient>
-        <filter id={`llm-shadow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#334e68" floodOpacity="0.25" />
+        <filter
+          id={`llm-shadow-${uid}`}
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feDropShadow
+            dx="0"
+            dy="2"
+            stdDeviation="3"
+            floodColor={DIAGRAM_TOKENS.colors.brand}
+            floodOpacity="0.25"
+          />
         </filter>
-        <filter id={`active-glow-${uid}`} x="-30%" y="-30%" width="160%" height="160%">
+        <filter
+          id={`active-glow-${uid}`}
+          x="-30%"
+          y="-30%"
+          width="160%"
+          height="160%"
+        >
           <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
           <feFlood floodColor={ACTIVE_GLOW} floodOpacity="0.4" result="glow" />
           <feComposite in="glow" in2="blur" operator="in" result="soft" />
-          <feMerge><feMergeNode in="soft" /><feMergeNode in="SourceGraphic" /></feMerge>
+          <feMerge>
+            <feMergeNode in="soft" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
         </filter>
       </defs>
 
-      <rect width={VIEWBOX_W} height={VIEWBOX_H} fill={`url(#llm-bg-${uid})`} rx="12" />
-      <rect width={VIEWBOX_W} height={VIEWBOX_H} fill="none" stroke="#cbd5e1" strokeWidth="1" rx="12" />
+      <rect
+        width={VIEWBOX_W}
+        height={VIEWBOX_H}
+        fill={`url(#llm-bg-${uid})`}
+        rx={DIAGRAM_TOKENS.radius.frame}
+      />
+      <rect
+        width={VIEWBOX_W}
+        height={VIEWBOX_H}
+        fill="none"
+        stroke={DIAGRAM_TOKENS.colors.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
+      />
 
-      <text x={VIEWBOX_W / 2} y="36" textAnchor="middle" fontFamily={FONT} fontSize={SIZE_H1} fontWeight="600" fill={TEXT_DARK}>
+      <text
+        x={VIEWBOX_W / 2}
+        y="36"
+        textAnchor="middle"
+        fontFamily={FONT}
+        fontSize={SIZE_H1}
+        fontWeight="600"
+        fill={TEXT_DARK}
+      >
         {L.title}
       </text>
-      <text x={VIEWBOX_W / 2} y="58" textAnchor="middle" fontFamily={FONT} fontSize={SIZE_MICRO} fontWeight="400" fill={TEXT_MUTED}>
+      <text
+        x={VIEWBOX_W / 2}
+        y="58"
+        textAnchor="middle"
+        fontFamily={FONT}
+        fontSize={SIZE_MICRO}
+        fontWeight="400"
+        fill={TEXT_MUTED}
+      >
         {L.subtitle}
       </text>
 
       {/* Row N */}
-      <text x="24" y={ROW_N.labelY} fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="500" fill={BORDER}>
+      <text
+        x="24"
+        y={ROW_N.labelY}
+        fontFamily={FONT}
+        fontSize={SIZE_SCHEMA_LABEL}
+        fontWeight="500"
+        fill={BORDER}
+      >
         {L.rowN}
       </text>
       {ARROWS_ROW_N.map(([x1, y, x2], i) => (
-        <line key={i} x1={x1} y1={y} x2={x2} y2={y} stroke={BORDER} strokeWidth="2" markerEnd={`url(#llm-arrow-fwd-${uid})`} />
+        <line
+          key={i}
+          x1={x1}
+          y1={y}
+          x2={x2}
+          y2={y}
+          stroke={BORDER}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+          markerEnd={`url(#llm-arrow-fwd-${uid})`}
+        />
       ))}
       {(() => {
         const inputPos = getTwoLineTextPositions(ROW_N.input);
@@ -192,39 +282,214 @@ export default function LlmAutoregressiveDiagram({
         const llmPos = getCenterTextPosition(ROW_N.llm);
         return (
           <>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(0, 0) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N.input[0]} y={ROW_N.input[1]} width={ROW_N.input[2]} height={ROW_N.input[3]} rx="12" fill={INPUT_BG} stroke={isBlockActive(0, 0) ? ACTIVE_GLOW : INPUT_BORDER} strokeWidth={isBlockActive(0, 0) ? 2 : 1.5} filter={isBlockActive(0, 0) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={inputPos.line1.x} y={inputPos.line1.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="600" fill={INPUT_BORDER}>{L.input}</text>
-              <text x={inputPos.line2.x} y={inputPos.line2.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY} fontWeight="400" fill={TEXT_DARK} style={{ letterSpacing: '0.01em' }}>{L.inputLine1}</text>
-            </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(0, 1) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N.llm[0]} y={ROW_N.llm[1]} width={ROW_N.llm[2]} height={ROW_N.llm[3]} rx="12" fill={`url(#llm-step-${uid})`} stroke={isBlockActive(0, 1) ? ACTIVE_GLOW : BORDER} strokeWidth={isBlockActive(0, 1) ? 2 : 1.5} filter={`url(#llm-shadow-${uid})`} />
-              <text x={llmPos.x} y={llmPos.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill="white">LLM</text>
-            </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(0, 2) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N.output[0]} y={ROW_N.output[1]} width={ROW_N.output[2]} height={ROW_N.output[3]} rx="12" fill={OUTPUT_BG} stroke={isBlockActive(0, 2) ? ACTIVE_GLOW : OUTPUT_BORDER} strokeWidth={1.5} filter={isBlockActive(0, 2) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={outputPos.title.x} y={outputPos.title.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill={OUTPUT_LABEL}>{L.output}</text>
-              <text x={outputPos.label.x} y={outputPos.label.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="500" fill={TEXT_MUTED} style={{ letterSpacing: '0.01em' }}>{L.tokenProbs}</text>
-              <text x={outputPos.body.x} y={outputPos.body.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY_OUTPUT} fontWeight="400" fill={TEXT_DARK} style={{ letterSpacing: '0.01em' }}>
-                <tspan x={outputPos.body.x} dy="0">{L.outputN}</tspan>
-                <tspan x={outputPos.body2.x} dy={20}>{L.outputNLine2}</tspan>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(0, 0)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N.input[0]}
+                y={ROW_N.input[1]}
+                width={ROW_N.input[2]}
+                height={ROW_N.input[3]}
+                rx="12"
+                fill={INPUT_BG}
+                stroke={isBlockActive(0, 0) ? ACTIVE_GLOW : INPUT_BORDER}
+                strokeWidth={isBlockActive(0, 0) ? 2 : 1.5}
+                filter={
+                  isBlockActive(0, 0) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={inputPos.line1.x}
+                y={inputPos.line1.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_SCHEMA_LABEL}
+                fontWeight="600"
+                fill={INPUT_BORDER}
+              >
+                {L.input}
+              </text>
+              <text
+                x={inputPos.line2.x}
+                y={inputPos.line2.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY}
+                fontWeight="400"
+                fill={TEXT_DARK}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                {L.inputLine1}
               </text>
             </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(0, 3) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N.pasirinkta[0]} y={ROW_N.pasirinkta[1]} width={ROW_N.pasirinkta[2]} height={ROW_N.pasirinkta[3]} rx="12" fill={PASIRINKTA_BG} stroke={isBlockActive(0, 3) ? ACTIVE_GLOW : PASIRINKTA_TEXT} strokeWidth={isBlockActive(0, 3) ? 2 : 1.5} filter={isBlockActive(0, 3) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={pasirinktaPos.line1.x} y={pasirinktaPos.line1.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill={PASIRINKTA_TEXT}>{L.chosen}</text>
-              <text x={pasirinktaPos.line2.x} y={pasirinktaPos.line2.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY} fontWeight="600" fill={PASIRINKTA_TEXT}>{L.chosenN}</text>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(0, 1)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N.llm[0]}
+                y={ROW_N.llm[1]}
+                width={ROW_N.llm[2]}
+                height={ROW_N.llm[3]}
+                rx="12"
+                fill={`url(#llm-step-${uid})`}
+                stroke={isBlockActive(0, 1) ? ACTIVE_GLOW : BORDER}
+                strokeWidth={isBlockActive(0, 1) ? 2 : 1.5}
+                filter={`url(#llm-shadow-${uid})`}
+              />
+              <text
+                x={llmPos.x}
+                y={llmPos.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill="white"
+              >
+                LLM
+              </text>
+            </g>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(0, 2)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N.output[0]}
+                y={ROW_N.output[1]}
+                width={ROW_N.output[2]}
+                height={ROW_N.output[3]}
+                rx="12"
+                fill={OUTPUT_BG}
+                stroke={isBlockActive(0, 2) ? ACTIVE_GLOW : OUTPUT_BORDER}
+                strokeWidth={1.5}
+                filter={
+                  isBlockActive(0, 2) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={outputPos.title.x}
+                y={outputPos.title.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill={OUTPUT_LABEL}
+              >
+                {L.output}
+              </text>
+              <text
+                x={outputPos.label.x}
+                y={outputPos.label.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_SCHEMA_LABEL}
+                fontWeight="500"
+                fill={TEXT_MUTED}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                {L.tokenProbs}
+              </text>
+              <text
+                x={outputPos.body.x}
+                y={outputPos.body.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY_OUTPUT}
+                fontWeight="400"
+                fill={TEXT_DARK}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                <tspan x={outputPos.body.x} dy="0">
+                  {L.outputN}
+                </tspan>
+                <tspan x={outputPos.body2.x} dy={20}>
+                  {L.outputNLine2}
+                </tspan>
+              </text>
+            </g>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(0, 3)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N.pasirinkta[0]}
+                y={ROW_N.pasirinkta[1]}
+                width={ROW_N.pasirinkta[2]}
+                height={ROW_N.pasirinkta[3]}
+                rx="12"
+                fill={PASIRINKTA_BG}
+                stroke={isBlockActive(0, 3) ? ACTIVE_GLOW : PASIRINKTA_TEXT}
+                strokeWidth={isBlockActive(0, 3) ? 2 : 1.5}
+                filter={
+                  isBlockActive(0, 3) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={pasirinktaPos.line1.x}
+                y={pasirinktaPos.line1.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill={PASIRINKTA_TEXT}
+              >
+                {L.chosen}
+              </text>
+              <text
+                x={pasirinktaPos.line2.x}
+                y={pasirinktaPos.line2.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY}
+                fontWeight="600"
+                fill={PASIRINKTA_TEXT}
+              >
+                {L.chosenN}
+              </text>
             </g>
           </>
         );
       })()}
 
       {/* Row N+1 */}
-      <text x="24" y={ROW_N1.labelY} fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="500" fill={BORDER}>
+      <text
+        x="24"
+        y={ROW_N1.labelY}
+        fontFamily={FONT}
+        fontSize={SIZE_SCHEMA_LABEL}
+        fontWeight="500"
+        fill={BORDER}
+      >
         {L.rowN1}
       </text>
       {ARROWS_ROW_N1.map(([x1, y, x2], i) => (
-        <line key={i} x1={x1} y1={y} x2={x2} y2={y} stroke={BORDER} strokeWidth="2" markerEnd={`url(#llm-arrow-fwd-${uid})`} />
+        <line
+          key={i}
+          x1={x1}
+          y1={y}
+          x2={x2}
+          y2={y}
+          stroke={BORDER}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+          markerEnd={`url(#llm-arrow-fwd-${uid})`}
+        />
       ))}
       {(() => {
         const inputPosN1 = getInputTextPositions(ROW_N1.input);
@@ -233,36 +498,213 @@ export default function LlmAutoregressiveDiagram({
         const llmPos = getCenterTextPosition(ROW_N1.llm);
         return (
           <>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(1, 0) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N1.input[0]} y={ROW_N1.input[1]} width={ROW_N1.input[2]} height={ROW_N1.input[3]} rx="12" fill={INPUT_BG} stroke={isBlockActive(1, 0) ? ACTIVE_GLOW : INPUT_BORDER} strokeWidth={isBlockActive(1, 0) ? 2 : 1.5} filter={isBlockActive(1, 0) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={inputPosN1.label.x} y={inputPosN1.label.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="600" fill={INPUT_BORDER}>{L.input}</text>
-              <text x={inputPosN1.content1.x} y={inputPosN1.content1.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY} fontWeight="400" fill={TEXT_DARK} style={{ letterSpacing: '0.01em' }}>{L.inputLine1}</text>
-              <text x={inputPosN1.content2.x} y={inputPosN1.content2.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY} fontWeight="400" fill={TEXT_DARK} style={{ letterSpacing: '0.01em' }}>{L.inputLine2}</text>
-            </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(1, 1) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N1.llm[0]} y={ROW_N1.llm[1]} width={ROW_N1.llm[2]} height={ROW_N1.llm[3]} rx="12" fill={`url(#llm-step-${uid})`} stroke={isBlockActive(1, 1) ? ACTIVE_GLOW : BORDER} strokeWidth={isBlockActive(1, 1) ? 2 : 1.5} filter={`url(#llm-shadow-${uid})`} />
-              <text x={llmPos.x} y={llmPos.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill="white">LLM</text>
-            </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(1, 2) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N1.output[0]} y={ROW_N1.output[1]} width={ROW_N1.output[2]} height={ROW_N1.output[3]} rx="12" fill={OUTPUT_BG} stroke={isBlockActive(1, 2) ? ACTIVE_GLOW : OUTPUT_BORDER} strokeWidth={1.5} filter={isBlockActive(1, 2) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={outputPos.title.x} y={outputPos.title.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill={OUTPUT_LABEL}>{L.output}</text>
-              <text x={outputPos.label.x} y={outputPos.label.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_SCHEMA_LABEL} fontWeight="500" fill={TEXT_MUTED} style={{ letterSpacing: '0.01em' }}>{L.tokenProbs}</text>
-              <text x={outputPos.body.x} y={outputPos.body.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY_OUTPUT} fontWeight="400" fill={TEXT_DARK} style={{ letterSpacing: '0.01em' }}>
-                <tspan x={outputPos.body.x} dy="0">{L.outputN1}</tspan>
-                <tspan x={outputPos.body2.x} dy={20}>{L.outputN1Line2}</tspan>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(1, 0)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N1.input[0]}
+                y={ROW_N1.input[1]}
+                width={ROW_N1.input[2]}
+                height={ROW_N1.input[3]}
+                rx="12"
+                fill={INPUT_BG}
+                stroke={isBlockActive(1, 0) ? ACTIVE_GLOW : INPUT_BORDER}
+                strokeWidth={isBlockActive(1, 0) ? 2 : 1.5}
+                filter={
+                  isBlockActive(1, 0) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={inputPosN1.label.x}
+                y={inputPosN1.label.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_SCHEMA_LABEL}
+                fontWeight="600"
+                fill={INPUT_BORDER}
+              >
+                {L.input}
+              </text>
+              <text
+                x={inputPosN1.content1.x}
+                y={inputPosN1.content1.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY}
+                fontWeight="400"
+                fill={TEXT_DARK}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                {L.inputLine1}
+              </text>
+              <text
+                x={inputPosN1.content2.x}
+                y={inputPosN1.content2.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY}
+                fontWeight="400"
+                fill={TEXT_DARK}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                {L.inputLine2}
               </text>
             </g>
-            <g style={{ transition: 'opacity 0.2s ease' }} opacity={isBlockActive(1, 3) ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY}>
-              <rect x={ROW_N1.pasirinkta[0]} y={ROW_N1.pasirinkta[1]} width={ROW_N1.pasirinkta[2]} height={ROW_N1.pasirinkta[3]} rx="12" fill={PASIRINKTA_BG} stroke={isBlockActive(1, 3) ? ACTIVE_GLOW : PASIRINKTA_TEXT} strokeWidth={isBlockActive(1, 3) ? 2 : 1.5} filter={isBlockActive(1, 3) ? `url(#active-glow-${uid})` : undefined} />
-              <text x={pasirinktaPos.line1.x} y={pasirinktaPos.line1.y} textAnchor="middle" fontFamily={FONT} fontSize="18" fontWeight="500" fill={PASIRINKTA_TEXT}>{L.chosen}</text>
-              <text x={pasirinktaPos.line2.x} y={pasirinktaPos.line2.y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_BODY} fontWeight="600" fill={PASIRINKTA_TEXT}>2024</text>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(1, 1)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N1.llm[0]}
+                y={ROW_N1.llm[1]}
+                width={ROW_N1.llm[2]}
+                height={ROW_N1.llm[3]}
+                rx="12"
+                fill={`url(#llm-step-${uid})`}
+                stroke={isBlockActive(1, 1) ? ACTIVE_GLOW : BORDER}
+                strokeWidth={isBlockActive(1, 1) ? 2 : 1.5}
+                filter={`url(#llm-shadow-${uid})`}
+              />
+              <text
+                x={llmPos.x}
+                y={llmPos.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill="white"
+              >
+                LLM
+              </text>
+            </g>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(1, 2)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N1.output[0]}
+                y={ROW_N1.output[1]}
+                width={ROW_N1.output[2]}
+                height={ROW_N1.output[3]}
+                rx="12"
+                fill={OUTPUT_BG}
+                stroke={isBlockActive(1, 2) ? ACTIVE_GLOW : OUTPUT_BORDER}
+                strokeWidth={1.5}
+                filter={
+                  isBlockActive(1, 2) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={outputPos.title.x}
+                y={outputPos.title.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill={OUTPUT_LABEL}
+              >
+                {L.output}
+              </text>
+              <text
+                x={outputPos.label.x}
+                y={outputPos.label.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_SCHEMA_LABEL}
+                fontWeight="500"
+                fill={TEXT_MUTED}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                {L.tokenProbs}
+              </text>
+              <text
+                x={outputPos.body.x}
+                y={outputPos.body.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY_OUTPUT}
+                fontWeight="400"
+                fill={TEXT_DARK}
+                style={{ letterSpacing: '0.01em' }}
+              >
+                <tspan x={outputPos.body.x} dy="0">
+                  {L.outputN1}
+                </tspan>
+                <tspan x={outputPos.body2.x} dy={20}>
+                  {L.outputN1Line2}
+                </tspan>
+              </text>
+            </g>
+            <g
+              style={{ transition: 'opacity 0.2s ease' }}
+              opacity={
+                isBlockActive(1, 3)
+                  ? STEP_ACTIVE_OPACITY
+                  : STEP_INACTIVE_OPACITY
+              }
+            >
+              <rect
+                x={ROW_N1.pasirinkta[0]}
+                y={ROW_N1.pasirinkta[1]}
+                width={ROW_N1.pasirinkta[2]}
+                height={ROW_N1.pasirinkta[3]}
+                rx="12"
+                fill={PASIRINKTA_BG}
+                stroke={isBlockActive(1, 3) ? ACTIVE_GLOW : PASIRINKTA_TEXT}
+                strokeWidth={isBlockActive(1, 3) ? 2 : 1.5}
+                filter={
+                  isBlockActive(1, 3) ? `url(#active-glow-${uid})` : undefined
+                }
+              />
+              <text
+                x={pasirinktaPos.line1.x}
+                y={pasirinktaPos.line1.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize="18"
+                fontWeight="500"
+                fill={PASIRINKTA_TEXT}
+              >
+                {L.chosen}
+              </text>
+              <text
+                x={pasirinktaPos.line2.x}
+                y={pasirinktaPos.line2.y}
+                textAnchor="middle"
+                fontFamily={FONT}
+                fontSize={SIZE_BODY}
+                fontWeight="600"
+                fill={PASIRINKTA_TEXT}
+              >
+                2024
+              </text>
             </g>
           </>
         );
       })()}
 
       {/* Feedback path: Pasirinkta N → Įvestis N+1 */}
-      <circle cx={FEEDBACK.startCircle.cx} cy={FEEDBACK.startCircle.cy} r="2.5" fill={GRAY_FLOW} stroke="#64748b" strokeWidth="0.4" />
+      <circle
+        cx={FEEDBACK.startCircle.cx}
+        cy={FEEDBACK.startCircle.cy}
+        r="2.5"
+        fill={GRAY_FLOW}
+        stroke={GRAY_FLOW}
+        strokeWidth="0.4"
+      />
       <path
         d={FEEDBACK.pathD}
         fill="none"
@@ -275,15 +717,31 @@ export default function LlmAutoregressiveDiagram({
       <polygon
         points={`${FEEDBACK.arrowTip.x},${FEEDBACK.arrowBaseY} ${FEEDBACK.arrowTip.x - FEEDBACK.arrowHalfW},${FEEDBACK.arrowTip.y} ${FEEDBACK.arrowTip.x + FEEDBACK.arrowHalfW},${FEEDBACK.arrowTip.y}`}
         fill={GRAY_FLOW}
-        stroke="#64748b"
+        stroke={GRAY_FLOW}
         strokeWidth="0.4"
         strokeLinejoin="round"
       />
-      <text x={FEEDBACK.labelX} y={FEEDBACK.labelY} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_MICRO} fontWeight="500" fill={TEXT_MUTED}>
+      <text
+        x={FEEDBACK.labelX}
+        y={FEEDBACK.labelY}
+        textAnchor="middle"
+        fontFamily={FONT}
+        fontSize={SIZE_MICRO}
+        fontWeight="500"
+        fill={TEXT_MUTED}
+      >
         {L.feedback}
       </text>
 
-      <text x={VIEWBOX_W / 2} y={SOURCE_LABEL_Y} textAnchor="middle" fontFamily={FONT} fontSize={SIZE_MICRO} fontStyle="italic" fill={TEXT_MUTED}>
+      <text
+        x={VIEWBOX_W / 2}
+        y={SOURCE_LABEL_Y}
+        textAnchor="middle"
+        fontFamily={FONT}
+        fontSize={SIZE_MICRO}
+        fontStyle="italic"
+        fill={TEXT_MUTED}
+      >
         {L.source}
       </text>
 
@@ -293,7 +751,14 @@ export default function LlmAutoregressiveDiagram({
           {[0, 1, 2, 3].map((blockIndex) => {
             const stepIndex = blockIndex;
             const row = ROW_N;
-            const rect = blockIndex === 0 ? row.input : blockIndex === 1 ? row.llm : blockIndex === 2 ? row.output : row.pasirinkta;
+            const rect =
+              blockIndex === 0
+                ? row.input
+                : blockIndex === 1
+                  ? row.llm
+                  : blockIndex === 2
+                    ? row.output
+                    : row.pasirinkta;
             return (
               <rect
                 key={stepIndex}
@@ -307,14 +772,26 @@ export default function LlmAutoregressiveDiagram({
                 aria-label={`${L.stepLabels[stepIndex]}${L.ariaStep}`}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(stepIndex); } }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onStepClick(stepIndex);
+                  }
+                }}
               />
             );
           })}
           {[0, 1, 2, 3].map((blockIndex) => {
             const stepIndex = 4 + blockIndex;
             const row = ROW_N1;
-            const rect = blockIndex === 0 ? row.input : blockIndex === 1 ? row.llm : blockIndex === 2 ? row.output : row.pasirinkta;
+            const rect =
+              blockIndex === 0
+                ? row.input
+                : blockIndex === 1
+                  ? row.llm
+                  : blockIndex === 2
+                    ? row.output
+                    : row.pasirinkta;
             return (
               <rect
                 key={stepIndex}
@@ -328,7 +805,12 @@ export default function LlmAutoregressiveDiagram({
                 aria-label={`${L.stepLabels[stepIndex]}${L.ariaStep}`}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onStepClick(stepIndex); } }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onStepClick(stepIndex);
+                  }
+                }}
               />
             );
           })}

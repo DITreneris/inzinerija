@@ -33,7 +33,8 @@ export function ConfidenceSelector({
   const { locale } = useLocale();
   const labels = getConfidenceLabels(locale);
   const levels: ConfidenceLevel[] = ['sure', 'guess', 'unsure'];
-  const resolvedAriaLabel = ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?');
+  const resolvedAriaLabel =
+    ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?');
 
   return (
     <div className="mb-4" role="group" aria-label={resolvedAriaLabel}>
@@ -52,7 +53,7 @@ export function ConfidenceSelector({
               disabled={disabled}
               aria-pressed={isSelected}
               aria-label={labels[level]}
-              className={`inline-flex items-center gap-1.5 rounded-lg border-2 transition-all min-h-[44px] ${
+              className={`inline-flex items-center gap-1.5 rounded-lg border-2 transition-all min-h-[44px] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
                 compact ? 'px-2 py-1.5 text-sm' : 'px-3 py-2'
               } ${
                 disabled && !isSelected
@@ -62,7 +63,10 @@ export function ConfidenceSelector({
                     : 'border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-amber-300 dark:hover:border-amber-600'
               }`}
             >
-              <Icon className={compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} aria-hidden />
+              <Icon
+                className={compact ? 'w-3.5 h-3.5' : 'w-4 h-4'}
+                aria-hidden
+              />
               <span>{labels[level]}</span>
             </button>
           );

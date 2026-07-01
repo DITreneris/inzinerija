@@ -2,19 +2,27 @@
  * Modulio 7 – 4 analizės tipai (2×2, interaktyvu).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7AnalysisShortLabels, type M7Locale } from './m7DiagramContent';
+import {
+  DIAGRAM_TOKENS,
+  getDiagramToneColors,
+  type DiagramTone,
+} from './diagramTokens';
+import { DiagramStepHitArea } from './diagramKit';
 
-const BOX_W = 200;
-const BOX_H = 100;
-const GAP = 24;
+const BOX_W = 214;
+const BOX_H = 108;
+const GAP = 26;
+const ANALYSIS_TONES: DiagramTone[] = ['brand', 'slate', 'emerald', 'amber'];
 
 function boxesForGrid(compact: boolean): [number, number, number, number][] {
-  const bw = compact ? 132 : BOX_W;
-  const bh = compact ? 88 : BOX_H;
+  const bw = compact ? 138 : BOX_W;
+  const bh = compact ? 92 : BOX_H;
   const g = compact ? 14 : GAP;
-  const x0 = compact ? 20 : 48;
-  const y0 = compact ? 72 : 88;
+  const x0 = compact ? 18 : 54;
+  const y0 = compact ? 72 : 86;
   return [
     [x0, y0, bw, bh],
     [x0 + bw + g, y0, bw, bh],
@@ -36,12 +44,16 @@ export default function M7AnalysisTypesDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const labels = getM7AnalysisShortLabels(locale);
   const stepBoxes = boxesForGrid(isCompactDiagram);
-  const viewW = isCompactDiagram ? 320 : 520;
-  const viewH = isCompactDiagram ? 340 : 380;
+  const viewW = isCompactDiagram ? 324 : 562;
+  const viewH = isCompactDiagram ? 346 : 386;
   const cx = viewW / 2;
+  const typography = DIAGRAM_TOKENS.typography.rolesHub;
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDarkPalette);
 
   const title =
     locale === 'en' ? 'Four analysis types' : 'Keturi analizės tipai';
@@ -57,41 +69,78 @@ export default function M7AnalysisTypesDiagram({
   return (
     <svg
       viewBox={`0 0 ${viewW} ${viewH}`}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
+      className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
       aria-label={`${ariaIntro}${isInteractive ? ` ${hint}` : ''}`}
     >
       <defs>
         <linearGradient
-          id={`m7-an-box-${uid}`}
+          id={`m7-an-bg-${uid}`}
           x1="0%"
           y1="0%"
-          x2="0%"
+          x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
+        {ANALYSIS_TONES.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`m7-an-box-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
+        <filter
+          id={`m7-an-active-${uid}`}
+          x="-16%"
+          y="-16%"
+          width="132%"
+          height="132%"
+        >
+          <feDropShadow
+            dx="0"
+            dy="2"
+            stdDeviation="3"
+            floodColor={palette.brand}
+            floodOpacity={isDarkPalette ? '0.45' : '0.28'}
+          />
+        </filter>
       </defs>
 
-      <rect width={viewW} height={viewH} fill="#f0f4f8" rx="12" />
+      <rect
+        width={viewW}
+        height={viewH}
+        fill={`url(#m7-an-bg-${uid})`}
+        rx={DIAGRAM_TOKENS.radius.frame}
+      />
       <rect
         width={viewW}
         height={viewH}
         fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="12"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
-
       <text
         x={cx}
         y="32"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="16"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram ? typography.title.compact : typography.title.desktop
+        }
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
       >
         {title}
       </text>
@@ -99,23 +148,26 @@ export default function M7AnalysisTypesDiagram({
         x={cx}
         y="50"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="10"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram
+            ? typography.subtitle.compact
+            : typography.subtitle.desktop
+        }
         fontWeight="500"
-        fill="#334e68"
+        fill={palette.muted}
       >
         {isInteractive ? hint : ''}
       </text>
 
       {stepBoxes.map((box, i) => {
         const isActive = currentStep === i;
-        const opacity = isActive ? 1 : 0.5;
+        const opacity = isActive
+          ? DIAGRAM_TOKENS.opacity.active
+          : DIAGRAM_TOKENS.opacity.selectableInactive;
         const lb = labels[i];
-        const ariaStep =
-          locale === 'en'
-            ? `${lb.title}: ${lb.sub}. Press for explanation.`
-            : `${lb.title}: ${lb.sub}. Paspausk paaiškinimui.`;
-
+        const tone = ANALYSIS_TONES[i];
+        const colors = toneColors[tone];
         return (
           <g key={i}>
             <g
@@ -128,53 +180,51 @@ export default function M7AnalysisTypesDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
-                fill={`url(#m7-an-box-${uid})`}
-                stroke={isActive ? '#102a43' : '#334e68'}
-                strokeWidth={isActive ? 2.5 : 1.5}
+                rx={DIAGRAM_TOKENS.radius.box}
+                fill={`url(#m7-an-box-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : colors.stroke}
+                strokeWidth={isActive ? 3 : DIAGRAM_TOKENS.stroke.inactive}
+                filter={isActive ? `url(#m7-an-active-${uid})` : undefined}
               />
               <text
                 x={box[0] + box[2] / 2}
-                y={box[1] + 28}
+                y={box[1] + (isCompactDiagram ? 31 : 34)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 10 : 12}
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.label.compact
+                    : typography.label.desktop
+                }
                 fontWeight="700"
-                fill="white"
+                fill={colors.text}
               >
                 {lb.title}
               </text>
               <text
                 x={box[0] + box[2] / 2}
-                y={box[1] + 46}
+                y={box[1] + (isCompactDiagram ? 50 : 56)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 9 : 10}
-                fontWeight="500"
-                fill="rgba(255,255,255,0.92)"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.sub.compact
+                    : typography.sub.desktop
+                }
+                fontWeight="600"
+                fill={palette.whiteText}
               >
                 {lb.sub}
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={box[0]}
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={ariaStep}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={DIAGRAM_TOKENS.radius.box}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
           </g>

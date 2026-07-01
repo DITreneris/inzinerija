@@ -30,6 +30,7 @@ import {
   TestRemediationChips,
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
+import { stickyClasses } from '../../../design-tokens';
 import {
   McqQuestion,
   TrueFalseQuestion,
@@ -815,7 +816,9 @@ export function TestSectionSlide({
     <div className="space-y-6">
       {/* Sticky mini-progress: 5/15 format virš klausimo (Faze 3 M2) */}
       {!showResults && (
-        <div className="sticky top-0 z-10 py-3 mb-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 -mt-2">
+        <div
+          className={`${stickyClasses.belowAppNavLow} py-3 mb-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 -mt-2`}
+        >
           <div className="flex items-center justify-between gap-3">
             <span
               className="text-base font-bold tabular-nums text-gray-800 dark:text-gray-200"

@@ -3,43 +3,38 @@
  * Geometrija: vertikalus srautas; rodyklės kraštas į kraštą (SCHEME_AGENT §3.2).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM9DataWorkflowSteps } from './m9DataWorkflowContent';
+import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DiagramStepHitArea } from './diagramKit';
+import { resolveVerticalFlowGeometry } from './verticalFlowGeometry';
 
 const BOX_H = 46;
 const GAP = 14;
-const ARROW_MARKER_LEN = 6;
+const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 const STEP_COUNT = 8;
 
-const DESKTOP_VIEWBOX_W = 560;
-const DESKTOP_VIEWBOX_H = 640;
-const DESKTOP_COLS_X = 80;
-const DESKTOP_COLS_W = 400;
-const DESKTOP_CX = 280;
-
-const COMPACT_VIEWBOX_W = 320;
-const COMPACT_VIEWBOX_H = 640;
-const COMPACT_COLS_X = 28;
-const COMPACT_COLS_W = 264;
-const COMPACT_CX = 160;
-
-function getStepBoxes(
-  colsX: number,
-  colsW: number,
-  count: number
-): [number, number, number, number][] {
-  const startY = 72;
-  return Array.from(
-    { length: count },
-    (_, i) =>
-      [colsX, startY + (BOX_H + GAP) * i, colsW, BOX_H] as [
-        number,
-        number,
-        number,
-        number,
-      ]
-  );
-}
+const FLOW_GEOMETRY = {
+  stepCount: STEP_COUNT,
+  boxHeight: BOX_H,
+  gap: GAP,
+  startY: 72,
+  desktop: {
+    viewBoxWidth: 560,
+    viewBoxHeight: 640,
+    colsX: 80,
+    colsW: 400,
+    cx: 280,
+  },
+  compact: {
+    viewBoxWidth: 320,
+    viewBoxHeight: 640,
+    colsX: 28,
+    colsW: 264,
+    cx: 160,
+  },
+};
 
 interface M9DataWorkflowDiagramProps {
   currentStep?: number;
@@ -59,18 +54,12 @@ export default function M9DataWorkflowDiagram({
 }: M9DataWorkflowDiagramProps) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const stepsMeta = getM9DataWorkflowSteps(locale);
-  const STEP_ACTIVE_OPACITY = 1;
-  const STEP_INACTIVE_OPACITY = 0.48;
-  const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : DESKTOP_VIEWBOX_W;
-  const viewBoxHeight = isCompactDiagram
-    ? COMPACT_VIEWBOX_H
-    : DESKTOP_VIEWBOX_H;
-  const cx = isCompactDiagram ? COMPACT_CX : DESKTOP_CX;
-  const stepBoxes = isCompactDiagram
-    ? getStepBoxes(COMPACT_COLS_X, COMPACT_COLS_W, STEP_COUNT)
-    : getStepBoxes(DESKTOP_COLS_X, DESKTOP_COLS_W, STEP_COUNT);
+  const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
+    resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
+  const typography = DIAGRAM_TOKENS.typography;
 
   const title =
     diagramContext === 'm7_master'
@@ -109,21 +98,21 @@ export default function M9DataWorkflowDiagram({
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#f0f4f8" />
-          <stop offset="100%" stopColor="#f1f5f9" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
         <marker
           id={`m9-wf-arrow-${uid}`}
-          markerWidth="8"
-          markerHeight="6"
-          refX="6"
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={ARROW_MARKER_LEN}
           refY="3"
           orient="auto"
         >
           <path
-            d="M0 0 L6 3 L0 6 Z"
-            fill="#334e68"
-            stroke="#334e68"
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={palette.brand}
+            stroke={palette.brand}
             strokeWidth="0.5"
           />
         </marker>
@@ -134,8 +123,8 @@ export default function M9DataWorkflowDiagram({
           x2="0%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={palette.brandTop} />
+          <stop offset="100%" stopColor={palette.brand} />
         </linearGradient>
       </defs>
 
@@ -143,25 +132,27 @@ export default function M9DataWorkflowDiagram({
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill={`url(#m9-wf-bg-${uid})`}
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="12"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={cx}
         y="34"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="17"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram ? typography.title.compact : typography.title.desktop
+        }
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
       >
         {title}
       </text>
@@ -169,24 +160,25 @@ export default function M9DataWorkflowDiagram({
         x={cx}
         y="52"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="11"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram
+            ? typography.subtitle.compact
+            : typography.subtitle.desktop
+        }
         fontWeight="500"
-        fill="#334e68"
+        fill={palette.muted}
       >
         {isInteractive ? hint : ''}
       </text>
 
       {stepBoxes.map((box, i) => {
         const isActive = currentStep === i;
-        const opacity = isActive ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
+        const opacity = isActive
+          ? DIAGRAM_TOKENS.opacity.active
+          : DIAGRAM_TOKENS.opacity.inactive;
         const st = stepsMeta[i];
         const stepLabel = `${i + 1} · ${st.label}`;
-        const ariaStep =
-          locale === 'en'
-            ? `Step ${i + 1}: ${st.label}. Press for explanation.`
-            : `Žingsnis ${i + 1}: ${st.label}. Paspausk paaiškinimui.`;
-
         return (
           <g key={i}>
             <g
@@ -199,17 +191,25 @@ export default function M9DataWorkflowDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
+                rx={DIAGRAM_TOKENS.radius.box}
                 fill={`url(#m9-wf-step-${uid})`}
-                stroke={isActive ? '#102a43' : '#334e68'}
-                strokeWidth={isActive ? 2.5 : 1.5}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={cx}
                 y={box[1] + 19}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="12"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepLabel.compact
+                    : typography.stepLabel.desktop
+                }
                 fontWeight="700"
                 fill="white"
               >
@@ -219,33 +219,26 @@ export default function M9DataWorkflowDiagram({
                 x={cx}
                 y={box[1] + 36}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="10"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepSub.compact
+                    : typography.stepSub.desktop
+                }
                 fontWeight="500"
-                fill="rgba(255,255,255,0.9)"
+                fill={palette.whiteText}
               >
                 {st.desc}
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={box[0]}
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={ariaStep}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={DIAGRAM_TOKENS.radius.box}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
             {i < stepBoxes.length - 1 && (
@@ -254,8 +247,8 @@ export default function M9DataWorkflowDiagram({
                 y1={box[1] + box[3]}
                 x2={cx}
                 y2={stepBoxes[i + 1][1] - ARROW_MARKER_LEN}
-                stroke="#334e68"
-                strokeWidth="2"
+                stroke={palette.brand}
+                strokeWidth={DIAGRAM_TOKENS.stroke.flow}
                 markerEnd={`url(#m9-wf-arrow-${uid})`}
               />
             )}

@@ -1,5 +1,11 @@
 import { useState, useCallback, useMemo } from 'react';
-import { ArrowUp, ArrowDown, CheckCircle, Lightbulb, GripVertical } from 'lucide-react';
+import {
+  ArrowUp,
+  ArrowDown,
+  CheckCircle,
+  Lightbulb,
+  GripVertical,
+} from 'lucide-react';
 import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
@@ -34,22 +40,29 @@ export function OrderingQuestion({
   void _showResults;
   const { locale } = useLocale();
   const en = locale === 'en';
-  const correctOrder = useMemo(() => question.correctOrder || [], [question.correctOrder]);
-  const initialItems = question.items || [...correctOrder].sort(() => Math.random() - 0.5);
+  const correctOrder = useMemo(
+    () => question.correctOrder || [],
+    [question.correctOrder]
+  );
+  const initialItems =
+    question.items || [...correctOrder].sort(() => Math.random() - 0.5);
 
   const [items, setItems] = useState<string[]>(initialItems);
   const [isChecked, setIsChecked] = useState(false);
 
-  const moveItem = useCallback((fromIdx: number, direction: 'up' | 'down') => {
-    if (isChecked) return;
-    const toIdx = direction === 'up' ? fromIdx - 1 : fromIdx + 1;
-    if (toIdx < 0 || toIdx >= items.length) return;
-    setItems((prev) => {
-      const next = [...prev];
-      [next[fromIdx], next[toIdx]] = [next[toIdx], next[fromIdx]];
-      return next;
-    });
-  }, [isChecked, items.length]);
+  const moveItem = useCallback(
+    (fromIdx: number, direction: 'up' | 'down') => {
+      if (isChecked) return;
+      const toIdx = direction === 'up' ? fromIdx - 1 : fromIdx + 1;
+      if (toIdx < 0 || toIdx >= items.length) return;
+      setItems((prev) => {
+        const next = [...prev];
+        [next[fromIdx], next[toIdx]] = [next[toIdx], next[fromIdx]];
+        return next;
+      });
+    },
+    [isChecked, items.length]
+  );
 
   const handleCheck = useCallback(() => {
     setIsChecked(true);
@@ -57,7 +70,8 @@ export function OrderingQuestion({
     items.forEach((item, idx) => {
       if (item === correctOrder[idx]) correctCount++;
     });
-    const score = correctOrder.length > 0 ? correctCount / correctOrder.length : 0;
+    const score =
+      correctOrder.length > 0 ? correctCount / correctOrder.length : 0;
     onComplete(question.id, score);
   }, [items, correctOrder, onComplete, question.id]);
 
@@ -77,7 +91,9 @@ export function OrderingQuestion({
           <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
             {en ? 'Order' : 'Surikiuok'}
           </span>
-          <p className="font-bold text-gray-900 dark:text-white mt-1">{question.question}</p>
+          <p className="font-bold text-gray-900 dark:text-white mt-1">
+            {question.question}
+          </p>
         </div>
       </div>
 
@@ -112,13 +128,15 @@ export function OrderingQuestion({
               }`}
             >
               {/* Position number */}
-              <span className={`w-7 h-7 flex items-center justify-center rounded-full text-sm font-bold flex-shrink-0 ${
-                isChecked
-                  ? isCorrectPosition
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-rose-500 text-white'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
-              }`}>
+              <span
+                className={`w-7 h-7 flex items-center justify-center rounded-full text-sm font-bold flex-shrink-0 ${
+                  isChecked
+                    ? isCorrectPosition
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-rose-500 text-white'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                }`}
+              >
                 {idx + 1}
               </span>
 
@@ -136,16 +154,20 @@ export function OrderingQuestion({
                   <button
                     onClick={() => moveItem(idx, 'up')}
                     disabled={idx === 0}
-                    aria-label={en ? `Move up: ${item}` : `Perkelti aukštyn: ${item}`}
-                    className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    aria-label={
+                      en ? `Move up: ${item}` : `Perkelti aukštyn: ${item}`
+                    }
+                    className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded hover:bg-gray-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30 dark:hover:bg-gray-700 dark:focus-visible:ring-offset-gray-900"
                   >
                     <ArrowUp className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                   </button>
                   <button
                     onClick={() => moveItem(idx, 'down')}
                     disabled={idx === items.length - 1}
-                    aria-label={en ? `Move down: ${item}` : `Perkelti žemyn: ${item}`}
-                    className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                    aria-label={
+                      en ? `Move down: ${item}` : `Perkelti žemyn: ${item}`
+                    }
+                    className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded hover:bg-gray-200 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30 dark:hover:bg-gray-700 dark:focus-visible:ring-offset-gray-900"
                   >
                     <ArrowDown className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                   </button>
@@ -183,7 +205,9 @@ export function OrderingQuestion({
         <div className="mt-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800">
           <div className="flex items-start gap-2">
             <Lightbulb className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-amber-800 dark:text-amber-200">{question.hint}</p>
+            <p className="text-sm text-amber-800 dark:text-amber-200">
+              {question.hint}
+            </p>
           </div>
         </div>
       )}
@@ -191,7 +215,7 @@ export function OrderingQuestion({
       {!showHint && question.hint && !isChecked && (
         <button
           onClick={() => onRequestHint(question.id)}
-          className="mt-2 text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-1 transition-colors"
+          className="mt-2 inline-flex min-h-[44px] items-center gap-1 rounded-lg px-2 text-sm text-amber-600 transition-colors hover:text-amber-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 dark:text-amber-400 dark:hover:text-amber-300 dark:focus-visible:ring-offset-gray-900"
           aria-label={en ? 'Get hint' : 'Gauti užuominą'}
         >
           <Lightbulb className="w-4 h-4" />
@@ -204,12 +228,15 @@ export function OrderingQuestion({
           {confidence != null && (
             <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
               {en ? 'Confidence:' : 'Pasitikėjimas:'}{' '}
-              <span className="font-medium text-gray-700 dark:text-gray-300">{confidenceLabel(confidence, locale)}</span>
+              <span className="font-medium text-gray-700 dark:text-gray-300">
+                {confidenceLabel(confidence, locale)}
+              </span>
             </p>
           )}
           <div className="mt-4 p-3 rounded-lg bg-brand-50 dark:bg-brand-900/20">
             <p className="text-sm text-brand-800 dark:text-brand-200">
-              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong> {question.explanation}
+              <strong>{en ? 'Explanation:' : 'Paaiškinimas:'}</strong>{' '}
+              {question.explanation}
             </p>
           </div>
         </>

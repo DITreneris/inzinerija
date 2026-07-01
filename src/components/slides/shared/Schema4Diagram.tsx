@@ -1,5 +1,5 @@
 /**
- * @deprecated Archyvuota (2026-06): nebewired ContentSlides; skaidrė naudoja statinį /da_bi_schema_4.svg. Nešalinti be QA.
+ * @deprecated Archyvuota (2026-06): nebewired ContentSlides; /da_bi_schema_4.svg dabar perimtas M7BiSchemaBlock registry keliu. Nešalinti be QA.
  * Schema 4: multimodalinė įvestis ir atmintis.
  * Logika pagal skaidrės body (modules.json): pagrindinis srautas; Įrankiai; atminties skaitymas
  * (saugykla → informacijos gavimas → kontekstas Į modelį); pasirinktinis įrašymas (modelis ⇢ saugykla, punktyrinė).

@@ -5,6 +5,7 @@
 import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import { DiagramStepHitArea } from './diagramKit';
 
 const STEP_ACTIVE_OPACITY = 1;
 const STEP_INACTIVE_OPACITY = 0.45;
@@ -101,10 +102,6 @@ export default function CustomGptProcessDiagram({
     t('diagramStep7Detail'),
     t('diagramStep8Detail'),
   ];
-  const getStepAria = (i: number) =>
-    i >= 0 && i < titles.length
-      ? t('stepButtonAria', { id: i + 1, title: titles[i] })
-      : '';
   const centerX = layout.centerX;
   const rightMarginX = layout.width - 18;
 
@@ -269,24 +266,13 @@ export default function CustomGptProcessDiagram({
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={box[0]}
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="12"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(index)}
-                aria-label={getStepAria(index)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(index);
-                  }
-                }}
+                radius={12}
+                onActivate={() => onStepClick?.(index)}
               />
             )}
             {index < 5 && (

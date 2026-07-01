@@ -4,7 +4,11 @@
  */
 import { useId } from 'react';
 import type { Locale } from './diPrezentacijosWorkflowConfig';
-import { getDiPrezentacijosDiagramContent, getDiPrezentacijosSteps } from './diPrezentacijosWorkflowConfig';
+import {
+  getDiPrezentacijosDiagramContent,
+  getDiPrezentacijosSteps,
+} from './diPrezentacijosWorkflowConfig';
+import { DiagramStepHitArea } from './diagramKit';
 
 const VIEWBOX = '0 0 560 520';
 const STEP_ACTIVE_OPACITY = 1;
@@ -51,26 +55,73 @@ export default function DiPrezentacijosWorkflowDiagram({
       aria-label={`${content.ariaLabel}${isInteractive ? content.interactiveHint : ''}`}
     >
       <defs>
-        <linearGradient id={`di-prez-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          id={`di-prez-bg-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#f0f4f8" />
           <stop offset="100%" stopColor="#f1f5f9" />
         </linearGradient>
-        <marker id={`di-prez-arrow-${uid}`} markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
-          <path d="M0 0 L6 3 L0 6 Z" fill="#334e68" stroke="#334e68" strokeWidth="0.5" />
+        <marker
+          id={`di-prez-arrow-${uid}`}
+          markerWidth="8"
+          markerHeight="6"
+          refX="6"
+          refY="3"
+          orient="auto"
+        >
+          <path
+            d="M0 0 L6 3 L0 6 Z"
+            fill="#334e68"
+            stroke="#334e68"
+            strokeWidth="0.5"
+          />
         </marker>
-        <linearGradient id={`di-prez-step-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <linearGradient
+          id={`di-prez-step-${uid}`}
+          x1="0%"
+          y1="0%"
+          x2="0%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#486581" />
           <stop offset="100%" stopColor="#334e68" />
         </linearGradient>
       </defs>
 
       <rect width="560" height="520" fill={`url(#di-prez-bg-${uid})`} rx="12" />
-      <rect width="560" height="520" fill="none" stroke="#bcccdc" strokeWidth="1" rx="12" />
+      <rect
+        width="560"
+        height="520"
+        fill="none"
+        stroke="#bcccdc"
+        strokeWidth="1"
+        rx="12"
+      />
 
-      <text x={CX} y="36" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="20" fontWeight="800" fill="#102a43">
+      <text
+        x={CX}
+        y="36"
+        textAnchor="middle"
+        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+        fontSize="20"
+        fontWeight="800"
+        fill="#102a43"
+      >
         {content.title}
       </text>
-      <text x={CX} y="56" textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="13" fontWeight="500" fill="#334e68">
+      <text
+        x={CX}
+        y="56"
+        textAnchor="middle"
+        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+        fontSize="13"
+        fontWeight="500"
+        fill="#334e68"
+      >
         {content.subtitle}
       </text>
 
@@ -79,7 +130,11 @@ export default function DiPrezentacijosWorkflowDiagram({
         const opacity = isActive ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
         return (
           <g key={i}>
-            <g opacity={opacity} style={{ transition: 'opacity 0.2s ease' }} aria-hidden>
+            <g
+              opacity={opacity}
+              style={{ transition: 'opacity 0.2s ease' }}
+              aria-hidden
+            >
               <rect
                 x={box[0]}
                 y={box[1]}
@@ -90,32 +145,37 @@ export default function DiPrezentacijosWorkflowDiagram({
                 stroke={isActive ? '#102a43' : '#334e68'}
                 strokeWidth={isActive ? 2.5 : 1.5}
               />
-              <text x={CX} y={box[1] + 24} textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="14" fontWeight="700" fill="white">
+              <text
+                x={CX}
+                y={box[1] + 24}
+                textAnchor="middle"
+                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontSize="14"
+                fontWeight="700"
+                fill="white"
+              >
                 {i + 1} · {steps[i].label}
               </text>
-              <text x={CX} y={box[1] + 44} textAnchor="middle" fontFamily="'Plus Jakarta Sans', system-ui, sans-serif" fontSize="12" fontWeight="500" fill="rgba(255,255,255,0.9)">
+              <text
+                x={CX}
+                y={box[1] + 44}
+                textAnchor="middle"
+                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontSize="12"
+                fontWeight="500"
+                fill="rgba(255,255,255,0.9)"
+              >
                 {steps[i].desc}
               </text>
             </g>
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={box[0]}
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="12"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick(i)}
-                aria-label={content.stepAria(i, steps[i].label)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick(i);
-                  }
-                }}
+                radius={12}
+                onActivate={() => onStepClick(i)}
               />
             )}
             {i < STEP_BOXES.length - 1 && (

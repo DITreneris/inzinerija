@@ -2,14 +2,17 @@
  * Modulio 7 – duomenų istorijos ciklas (interaktyvu).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7DataStoryCycleSteps, type M7Locale } from './m7DiagramContent';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
+import { DiagramStepHitArea } from './diagramKit';
 
 const STEP_COUNT = 5;
-const ARROW_MARKER_LEN = 8;
+const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 
 const DESKTOP_VIEWBOX_W = 640;
-const DESKTOP_VIEWBOX_H = 280;
+const DESKTOP_VIEWBOX_H = 330;
 const DESKTOP_BOX_W = 108;
 const DESKTOP_BOX_H = 72;
 const DESKTOP_GAP = 16;
@@ -64,6 +67,7 @@ export default function M7DataStoryCycleDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM7DataStoryCycleSteps(locale);
   const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : DESKTOP_VIEWBOX_W;
@@ -72,6 +76,14 @@ export default function M7DataStoryCycleDiagram({
     : DESKTOP_VIEWBOX_H;
   const boxes = isCompactDiagram ? getCompactBoxes() : getDesktopBoxes();
   const cx = viewBoxWidth / 2;
+  const firstBox = boxes[0];
+  const lastBox = boxes[boxes.length - 1];
+  const feedbackY = DESKTOP_ROW_Y + DESKTOP_BOX_H + 76;
+  const feedbackR = 18;
+  const firstCx = firstBox[0] + firstBox[2] / 2;
+  const lastCx = lastBox[0] + lastBox[2] / 2;
+  const firstBottom = firstBox[1] + firstBox[3];
+  const lastBottom = lastBox[1] + lastBox[3];
 
   const title =
     locale === 'en' ? 'Data story cycle' : 'Duomenų istorijos ciklas';
@@ -83,6 +95,12 @@ export default function M7DataStoryCycleDiagram({
     locale === 'en'
       ? 'Five-step data story cycle: collection, preparation, visualization, analysis, story.'
       : 'Penkių žingsnių duomenų istorijos ciklas: surinkimas, paruošimas, vizualizacija, analizė, istorija.';
+  const feedbackLabel =
+    locale === 'en'
+      ? 'Story informs the next cycle'
+      : 'Istorija pradeda kitą ciklą';
+  const feedbackColors = DIAGRAM_TONE_COLORS.amber;
+  const typography = DIAGRAM_TOKENS.typography;
 
   return (
     <svg
@@ -99,8 +117,8 @@ export default function M7DataStoryCycleDiagram({
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#f0f4f8" />
-          <stop offset="100%" stopColor="#f8fafc" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
         <linearGradient
           id={`m7-story-box-${uid}`}
@@ -109,21 +127,36 @@ export default function M7DataStoryCycleDiagram({
           x2="0%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={palette.brandTop} />
+          <stop offset="100%" stopColor={palette.brand} />
         </linearGradient>
         <marker
           id={`m7-story-arrow-${uid}`}
-          markerWidth="10"
-          markerHeight="8"
-          refX="8"
-          refY="4"
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={ARROW_MARKER_LEN}
+          refY="3"
           orient="auto"
         >
           <path
-            d="M0 0 L8 4 L0 8 Z"
-            fill="#627d98"
-            stroke="#627d98"
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={palette.flow}
+            stroke={palette.flow}
+            strokeWidth="0.5"
+          />
+        </marker>
+        <marker
+          id={`m7-story-feedback-${uid}`}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={ARROW_MARKER_LEN}
+          refY="3"
+          orient="auto"
+        >
+          <path
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={DIAGRAM_TOKENS.colors.amber}
+            stroke={DIAGRAM_TOKENS.colors.amber}
             strokeWidth="0.5"
           />
         </marker>
@@ -133,25 +166,27 @@ export default function M7DataStoryCycleDiagram({
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill={`url(#m7-story-bg-${uid})`}
-        rx="14"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="14"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={cx}
         y="34"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="18"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram ? typography.title.compact : typography.title.desktop
+        }
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
       >
         {title}
       </text>
@@ -159,23 +194,71 @@ export default function M7DataStoryCycleDiagram({
         x={cx}
         y="54"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="11"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram
+            ? typography.subtitle.compact
+            : typography.subtitle.desktop
+        }
         fontWeight="500"
-        fill="#334e68"
+        fill={palette.muted}
       >
         {isInteractive ? hint : ''}
       </text>
+
+      {!isCompactDiagram && (
+        <g aria-hidden>
+          <circle
+            cx={lastCx}
+            cy={lastBottom + 10}
+            r="4.5"
+            fill={feedbackColors.stroke}
+            opacity="0.9"
+          />
+          <path
+            d={`M ${lastCx} ${lastBottom + 10}
+              L ${lastCx} ${feedbackY - feedbackR}
+              Q ${lastCx} ${feedbackY}, ${lastCx - feedbackR} ${feedbackY}
+              L ${firstCx + feedbackR} ${feedbackY}
+              Q ${firstCx} ${feedbackY}, ${firstCx} ${feedbackY - feedbackR}
+              L ${firstCx} ${firstBottom + 2}`}
+            fill="none"
+            stroke={feedbackColors.stroke}
+            strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+            strokeDasharray="7 5"
+            markerEnd={`url(#m7-story-feedback-${uid})`}
+            opacity="0.88"
+          />
+          <rect
+            x={cx - 104}
+            y={feedbackY + 9}
+            width="208"
+            height="22"
+            rx="11"
+            fill={feedbackColors.soft}
+            opacity="0.92"
+          />
+          <text
+            x={cx}
+            y={feedbackY + 24}
+            textAnchor="middle"
+            fontFamily={DIAGRAM_TOKENS.font}
+            fontSize={typography.subtitle.desktop}
+            fontWeight="700"
+            fill={feedbackColors.stroke}
+          >
+            {feedbackLabel}
+          </text>
+        </g>
+      )}
 
       {boxes.map((box, i) => {
         const [x, y, w, h] = box;
         const isActive = currentStep === i;
         const step = steps[i];
-        const ariaStep =
-          locale === 'en'
-            ? `Step ${i + 1}: ${step.label}. Press for explanation.`
-            : `Žingsnis ${i + 1}: ${step.label}. Paspausk paaiškinimui.`;
-        const opacity = isActive ? 1 : 0.5;
+        const opacity = isActive
+          ? DIAGRAM_TOKENS.opacity.active
+          : DIAGRAM_TOKENS.opacity.inactiveSoft;
 
         return (
           <g key={i}>
@@ -189,17 +272,25 @@ export default function M7DataStoryCycleDiagram({
                 y={y}
                 width={w}
                 height={h}
-                rx="12"
+                rx={DIAGRAM_TOKENS.radius.box}
                 fill={`url(#m7-story-box-${uid})`}
-                stroke={isActive ? '#102a43' : '#334e68'}
-                strokeWidth={isActive ? 2.5 : 1.5}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={x + w / 2}
                 y={y + (isCompactDiagram ? 22 : 26)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 11 : 12}
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepLabel.compact
+                    : typography.stepLabel.desktop
+                }
                 fontWeight="800"
                 fill="white"
               >
@@ -209,34 +300,27 @@ export default function M7DataStoryCycleDiagram({
                 x={x + w / 2}
                 y={y + (isCompactDiagram ? 40 : 48)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize={isCompactDiagram ? 9 : 10}
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepSub.compact
+                    : typography.stepSub.desktop
+                }
                 fontWeight="500"
-                fill="rgba(255,255,255,0.9)"
+                fill={palette.whiteText}
               >
                 {step.desc}
               </text>
             </g>
 
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={x}
                 y={y}
                 width={w}
                 height={h}
-                rx="12"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={ariaStep}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={DIAGRAM_TOKENS.radius.box}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
 
@@ -247,8 +331,8 @@ export default function M7DataStoryCycleDiagram({
                   y1={y + h}
                   x2={x + w / 2}
                   y2={boxes[i + 1][1] - ARROW_MARKER_LEN}
-                  stroke="#627d98"
-                  strokeWidth="2.5"
+                  stroke={palette.flow}
+                  strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
                   markerEnd={`url(#m7-story-arrow-${uid})`}
                 />
               ) : (
@@ -257,8 +341,8 @@ export default function M7DataStoryCycleDiagram({
                   y1={y + h / 2}
                   x2={boxes[i + 1][0] - ARROW_MARKER_LEN}
                   y2={y + h / 2}
-                  stroke="#627d98"
-                  strokeWidth="2.5"
+                  stroke={palette.flow}
+                  strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
                   markerEnd={`url(#m7-story-arrow-${uid})`}
                 />
               ))}

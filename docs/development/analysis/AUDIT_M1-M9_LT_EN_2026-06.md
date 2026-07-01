@@ -90,6 +90,22 @@ LT Tu-kreipinys M4–6: švarus (nėra `jūsų`/`galite`/`Paspauskite`/`Įrašyk
 - [ ] M8 test klausimai EN
 - [ ] M9 workflow 93–94, hub 99
 
+### 2.4 Follow-up sweep (2026-06-30)
+
+Po rankinio EN UI bug'o skaidrėje 86 išplėstas M7–9 auditas, nes senas `audit:m79` neaptiko ASCII LT likučių be diakritikų. Naujos taisyklės gaudo `en_lt_token`, `en_broken_phrase` ir `en_lt_heading`.
+
+| Patikra                                                             | Rezultatas |
+| ------------------------------------------------------------------- | ---------- |
+| `node scripts/audit-en-language-m7-m9.mjs --full --json` po taisymo | 0 findings |
+| Grep sweep `modules-en-m7-m9.json` pagal hybrid tokenų sąrašą       | 0 matches  |
+| `src/data/__tests__/m79EnLanguageAudit.test.ts`                     | 6/6 passed |
+
+Pataisyta:
+
+- **M7 EN:** skaidrės 85, 861, 87, 88, 89, 891, 90, 91, 94, 75 ir likę `🔽 Nori suprasti detaliau?` heading'ai – pilna EN kopija, placeholderiai suderinti (`[DATA]`, `[PASTE]`).
+- **M9 EN:** slide 90 intro (`taskOneLiner`, `useCaseBlock`) – pilna EN, be LT fragmentų.
+- **LT Tu:** M9 scenarijų 103/105/109 placeholderiai ir M7 haliucinacijų savitikros paaiškinimas perrašyti į Tu formą.
+
 ---
 
 ## 3. M1–3 (lengva regresija)
@@ -122,7 +138,8 @@ Nėra. Schema, merge, EN coverage – švaru.
 
 - [x] `modules.json` M4 slide 60 `body` – „NoteLM – AI“ → „DI“ (LT terminologija)
 - [x] `modules.json` M1 slide 12 `motivation` – Jūs-imperatyvai → Tu
-- [ ] (palikta, neblokuoja) `-kite` imperatyvai placeholderiuose/tooltipuose (M4 2573/3466; M9 9194/9306/9487; M7 7999) – ne projekto targeted Tu-rule apimtyje; stilistinis darbas atskirai
+- [x] M7–9 P2 `-kite` imperatyvai iš šio audito scope pataisyti: M9 103/105/109 placeholderiai ir M7 haliucinacijų savitikros paaiškinimas.
+- [ ] (palikta, neblokuoja) M4 2573/3466 tooltipų `-kite` imperatyvai – ne M7–9 sweep scope.
 
 ### Manual smoke (reikia žmogaus/naršyklės)
 

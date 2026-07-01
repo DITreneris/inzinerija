@@ -10,6 +10,7 @@ import {
   type AgentWorkflowLocale,
   type AgentWorkflowStep,
 } from './agentWorkflowContent';
+import { DiagramStepHitArea } from './diagramKit';
 
 const DESKTOP_VIEWBOX_W = 860;
 const DESKTOP_VIEWBOX_H = 330;
@@ -261,24 +262,13 @@ export default function AgentWorkflowDiagram({
             </g>
 
             {isInteractive && (
-              <rect
+              <DiagramStepHitArea
                 x={step.x}
                 y={step.y}
                 width={step.w}
                 height={step.h}
-                rx="10"
-                fill="transparent"
-                cursor="pointer"
-                onClick={() => onStepClick?.(i)}
-                aria-label={labels.stepAria(i, step.title)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick?.(i);
-                  }
-                }}
+                radius={10}
+                onActivate={() => onStepClick?.(i)}
               />
             )}
 
