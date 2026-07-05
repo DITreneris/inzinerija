@@ -29,6 +29,7 @@
     "audit:m79": "npm run audit:en-coverage-m7-m9 && npm run audit:en-language-m7-m9",
     "audit:m7-pathbranch": "node scripts/audit-m7-pathbranch.mjs",
     "audit:m49": "npm run audit:m46 && npm run audit:m79",
+    "audit:release-preflight": "npm run validate:schema && npm run lint && npm run audit:m49 && npm run audit:m7-pathbranch && npm run test:run",
     "extract:modules-en-m10-m12": "node scripts/extract-modules-m10-m12.mjs",
     "build:modules-en-m10-m12": "node scripts/build-en-m10-m12.mjs",
     "build:modules-en-m7-m9": "node scripts/build-en-m7-m9.mjs",

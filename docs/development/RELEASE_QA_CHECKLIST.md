@@ -8,6 +8,8 @@
 
 **Vykdymo gidas (rankinė + automatinė):** Žr. `docs/development/RELEASE_QA_RUN.md` – automatinės patikros rezultatai ir žingsnis po žingsnio 0.1, 0.2, 0.4.
 
+**Automatinis preflight (viena komanda):** `npm run audit:release-preflight` – schema, lint, M1–9 EN/LT auditai (`audit:m49`), M7 pathBranch guard ir pilnas `test:run`. Paleisti prieš kiekvieną deploy; rankinės patikros (§§ žemiau ir MON-5 gate check `RELEASE_QA_RUN.md`) lieka žmogui.
+
 ---
 
 ## 1. Broken links (~2 min)

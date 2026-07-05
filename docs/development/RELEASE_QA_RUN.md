@@ -7,13 +7,13 @@
 
 ## Automatinės patikros rezultatai (2026-03-11)
 
-| § | Patikra | Rezultatas | Pastaba |
-|---|---------|------------|---------|
-| **§1 Skip link** | `href="#main-content"` ir `<main id="main-content">` | ✅ | App.tsx: skip link su `t('skipToContent')` („Praleisti į turinį“), main id="main-content", role="main". |
-| **§1 LT/EN skip** | Tekstas LT/EN | ✅ | lt.json: „Praleisti į turinį“; en.json: „Skip to content“. |
-| **§4 Rodyklės** | Skaidrių navigacija ← → | ✅ | useSlideNavigation.ts: ArrowLeft/ArrowRight/ArrowUp/ArrowDown – nextSlide/prevSlide; ModuleView naudoja useSlideNavigation. |
-| **§5 Lietuviškos (grep)** | Tipinių klaidų nebuvimas | ✅ | Grep `perziureti|Ziniu|zemelapis|Ka ismokote|ypac|reiskia` src – nerasta. |
-| **Footer ≤55** | scripts/audit-footer-length.mjs | ✅ | Vykdyta anksčiau – „all ≤55 chars OK“. |
+| §                         | Patikra                                              | Rezultatas | Pastaba                                                                                                                     |
+| ------------------------- | ---------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------- | ----- | --------- | ----------- | ---- | ----------------------- |
+| **§1 Skip link**          | `href="#main-content"` ir `<main id="main-content">` | ✅         | App.tsx: skip link su `t('skipToContent')` („Praleisti į turinį“), main id="main-content", role="main".                     |
+| **§1 LT/EN skip**         | Tekstas LT/EN                                        | ✅         | lt.json: „Praleisti į turinį“; en.json: „Skip to content“.                                                                  |
+| **§4 Rodyklės**           | Skaidrių navigacija ← →                              | ✅         | useSlideNavigation.ts: ArrowLeft/ArrowRight/ArrowUp/ArrowDown – nextSlide/prevSlide; ModuleView naudoja useSlideNavigation. |
+| **§5 Lietuviškos (grep)** | Tipinių klaidų nebuvimas                             | ✅         | Grep `perziureti                                                                                                            | Ziniu | zemelapis | Ka ismokote | ypac | reiskia` src – nerasta. |
+| **Footer ≤55**            | scripts/audit-footer-length.mjs                      | ✅         | Vykdyta anksčiau – „all ≤55 chars OK“.                                                                                      |
 
 **Kas reikalauja rankinės:** §1 (Tab → Enter skip link veikimas), §2 mobile, §3 dark mode, §5 lietuviškos (vizualinė 1 skaidrė/modulis), §5a paprasta kalba, §5d M5/M6 PDF ir M4/M6 skaidrės.
 
@@ -112,13 +112,27 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 ---
 
+## MON-5 – Production gate check (rankinė, prieš mokamą srautą)
+
+> **Tikslas:** patvirtinti, kad neapmokėtas lankytojas production mato `AccessGateScreen`, o magic link atrakina tik apmokėtą tier. Automatinė dalis: `src/components/__tests__/gate.smoke.test.tsx` (tier 0/3/6/9, EN locale, `pricing_click`).
+
+1. **Neapmokėtas (tier 0):** incognito langas → `https://www.promptanatomy.app/anatomy/` → matomas „Prieiga ribota“ (AccessGateScreen), **ne** modulių sąrašas. CTA „Įsigyti prieigą“ veda į kainodarą (domain root).
+2. **Tier 6 magic link:** atidaryti tier 6 nuorodą → M1–M6 kortelės atidaromos, M7–M9 užrakintos (tier lock), M10–12 nerodomos.
+3. **Tier 9 magic link:** M1–M9 atidaromos; M10–12 rodomos tik kaip neaktyvios „Ruošiama“ kortelės (be nuorodų).
+4. **Refresh:** po atrakinimo perkrauti puslapį – tier išlieka (`verified_access_tier` localStorage), gate negrįžta.
+5. **Klaidingas token:** magic link su pasibaigusiu/netikru token → gate lieka, konsolėje 401 iš `/api/verify-access` (ne `/anatomy/api/...`).
+
+**Rezultatą įrašyti:** lentelė žemiau arba `TEST_REPORT.md`. Susiję: `TODO.md` §1.1 MON-5, `docs/deployment/MON_P0_EXECUTION_PLAN.md` §Savaitė 1.
+
+---
+
 ## Paskutinio vykdymo rezultatai
 
-*(Čia žmogus įrašo, kai atliko rankinę.)*
+_(Čia žmogus įrašo, kai atliko rankinę.)_
 
-| Data | Vykdytojas | 0.1 M5 PDF | 0.1 M6 PDF | 0.2 M4 sk.56 | 0.2 M6 sk.64 | §1 | §2 | §3 | §4 | §5 | §5a | §6 (jei taikoma) |
-|------|-------------|------------|------------|--------------|--------------|----|----|----|----|-----|-----|-------------------|
-| —    | —           | —          | —          | —            | —            | —  | —  | —  | —  | —   | —   | —                 |
+| Data | Vykdytojas | 0.1 M5 PDF | 0.1 M6 PDF | 0.2 M4 sk.56 | 0.2 M6 sk.64 | §1  | §2  | §3  | §4  | §5  | §5a | §6 (jei taikoma) |
+| ---- | ---------- | ---------- | ---------- | ------------ | ------------ | --- | --- | --- | --- | --- | --- | ---------------- |
+| —    | —          | —          | —          | —            | —            | —   | —   | —   | —   | —   | —   | —                |
 
 ---
 

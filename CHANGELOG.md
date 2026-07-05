@@ -57,6 +57,12 @@ _Įrašai po 1.4.2 release._
 
 - **M10 EN section-break overlay:** `modules-en-m10-m12.json` papildytas trūkstamomis skaidrėmis `10.481` ir `10.151`; `npm run audit:en-coverage-m10-12` vėl PASS.
 
+### Added – MON P0 hardening (2026-07-05)
+
+- **Gate smoke išplėtimas (MON-5/MON-3/MON-4 auto dalis):** `gate.smoke.test.tsx` +5 testai – tier 6 matrica (M6 open / M7 locked), tier 9 „Ruošiama“ kortelės be interaktyvių elementų, tier 3 be coming-soon sekcijos, EN locale gate, `pricing_click` su `cta_id: access_gate_pricing`. Testas simuliuoja production M1–9 bundle (getModulesSync filtras).
+- **`npm run audit:release-preflight`:** viena komanda prieš deploy – `validate:schema` + `lint` + `audit:m49` + `audit:m7-pathbranch` + `test:run`; aprašyta `RELEASE_QA_CHECKLIST.md`.
+- **MON-5 rankinis gate check:** naujas skyrius `RELEASE_QA_RUN.md` (tier 0/6/9 production smoke, refresh, klaidingas token); `TODO.md` MON-5 auto dalis pažymėta.
+
 ### Gate (M10–12 ROI)
 
 - `npm run validate:schema`, `npm run lint`, `npm run audit:en-coverage-m10-12`, `npm run test:run` (371 testai), `npm run build` – žali (2026-07-05).
