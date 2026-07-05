@@ -7159,6 +7159,67 @@
           }
         },
         {
+          "id": 734,
+          "title": "Sprendimų filtrai",
+          "subtitle": "Kaip analizę paversti veiksmu – 5 grupės",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ Kam tai?",
+                "body": "4 analizės tipai atsakė į „Kas įvyko? Kodėl? Kas gali įvykti? Kaip veikti?“. Bet „Kaip veikti?“ dažnai nutrūksta pusiaukelėje – gauni ilgą sąrašą pastebėjimų, ne sprendimą. Čia – **penki trumpi filtrai**, kurie priverčia rezultatą baigtis konkrečiu veiksmu: taisyti, prioritetą nustatyti, atmesti, testuoti arba plėsti.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "📍 5 grupės – pasirink pagal situaciją",
+                "body": "| Grupė | Klausimas | Metodas |\n| --- | --- | --- |\n| **A. Tinka / Netinka** | Priimti ar atmesti? | OK / Fail patikra |\n| **B. Kas svarbiausia?** | Ką daryti pirmiausia? | Būtina / Svarbu / Norima / Ne dabar |\n| **C. Greiti laimėjimai** | Kur mažai pastangų, greitas rezultatas? | Low-hanging fruit |\n| **D. Testuok / Investuok / Atmesk** | Ką testuoti, kur investuoti, ką atmesti? | Kiss-Marry-Kill |\n| **E. Jau moki šiuos** | Stiprybės/silpnybės? Kas duoda daugiausia? Kodėl neveikia? Rizika ir nauda? | SWOT, 80/20, „Kodėl?“, Rizika/Nauda |",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "2️⃣ Ką daryti",
+                "body": "Pasirink situaciją iš lentelės viršuje → nukopijuok atitinkamą promptą (žemiau) → įklijuok į DI su savo duomenimis ar idėjų sąrašu.\n\n🔘 Kopijuoti promptą (pasirink grupę)",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Kopijuojami promptai (4 grupės)",
+                "body": "Įklijuok į DI pagal savo situaciją.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "3a. Tinka / Netinka (OK / Fail patikra)",
+                "body": "Greiti kokybės vartai: priimti ar atmesti.",
+                "copyable": "Įvertink šiuos duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk verslą, duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų."
+              },
+              {
+                "heading": "3b. Kas svarbiausia? (Būtina / Svarbu / Norima / Ne dabar)",
+                "body": "Prioritetų sistema – kai idėjų ar užduočių daug.",
+                "copyable": "Suskirstyk šį sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar (šis metodas kartais vadinamas MoSCoW).\n\nKontekstas: [tikslas / projektas]\nSąrašas: [užduotys, funkcijos, idėjos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis verslui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali."
+              },
+              {
+                "heading": "3c. Greiti laimėjimai (Low-hanging fruit)",
+                "body": "Kur mažai pastangų duoda greitą, matomą rezultatą.",
+                "copyable": "Rask greitus laimėjimus šiuose duomenyse.\n\nTikslas: [ką norime pagerinti]\nDuomenys: [problemos, galimybės, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada galima patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias."
+              },
+              {
+                "heading": "3d. Testuok / Investuok / Atmesk (Kiss-Marry-Kill)",
+                "body": "Portfelio sprendimas – produktai, kanalai, klientai, idėjos.",
+                "copyable": "Įvertink šiuos variantus principu Testuok / Investuok / Atmesk (Kiss-Marry-Kill).\n\nKontekstas: [tikslas, biudžetas, terminas]\nVariantai: [produktai, kanalai, klientai, idėjos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža, blaškantis arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į verslo rezultatą."
+              },
+              {
+                "heading": "4️⃣ Patikra (1 min)",
+                "body": "• Ar pasirinkai filtrą pagal savo situaciją (tinka/netinka, prioritetas, greiti laimėjimai, portfelis)?\n• Ar rezultatas baigiasi **konkrečiu veiksmu**, ne tik lentele?\n• Ar žinai, kur ieškoti SWOT, 80/20 ar Rizikos/Naudos, kai jų reikia (žemiau)?\n\nJei bent 2 „ne“ → grįžk prie 2️⃣, pasirink teisingą grupę.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "**ICE balas** – jei prioritetų grupės neužtenka ir reikia skaičiaus, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padauginki (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi.\n\n**Šiuos jau moki:** SWOT (stiprybės/silpnybės/galimybės/grėsmės) – skaidrė „Konkurentų analizė“; 80/20 principas (kas duoda daugiausia) – skaidrė „Aprašomoji“ (pajamų koncentracija); priežasčių gilinimas „Kodėl?“ – skaidrė „Diagnostinė“; Rizika ir nauda – skaidrė „CFO“ ir MASTER PROMPTAS.\n\n**Kur pritaikysi M9 projekte:** konkurentų analizė = SWOT; mokymų naudingumas = Testuok/Investuok/Atmesk; rizikų matrica = Rizika/Nauda.",
+                "blockVariant": "brand",
+                "collapsible": true
+              }
+            ]
+          }
+        },
+        {
           "id": 76,
           "pathBranch": ["strategija"],
           "title": "Verslo duomenų išplėtimas",

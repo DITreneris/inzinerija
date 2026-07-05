@@ -7159,6 +7159,67 @@
           }
         },
         {
+          "id": 734,
+          "title": "Sprendimų filtrai",
+          "subtitle": "Kaip analizę paversti veiksmu – 5 grupės",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "1️⃣ Kam tai?",
+                "body": "4 analizės tipai atsakė į „Kas įvyko? Kodėl? Kas gali įvykti? Kaip veikti?“. Bet „Kaip veikti?“ dažnai nutrūksta pusiaukelėje – gauni ilgą sąrašą pastebėjimų, ne sprendimą. Čia – **penki trumpi filtrai**, kurie priverčia rezultatą baigtis konkrečiu veiksmu: taisyti, prioritetą nustatyti, atmesti, testuoti arba plėsti.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "📍 5 grupės – pasirink pagal situaciją",
+                "body": "| Grupė | Klausimas | Metodas |\n| --- | --- | --- |\n| **A. Tinka / Netinka** | Priimti ar atmesti? | OK / Fail patikra |\n| **B. Kas svarbiausia?** | Ką daryti pirmiausia? | Būtina / Svarbu / Norima / Ne dabar |\n| **C. Greiti laimėjimai** | Kur mažai pastangų, greitas rezultatas? | Low-hanging fruit |\n| **D. Testuok / Investuok / Atmesk** | Ką testuoti, kur investuoti, ką atmesti? | Kiss-Marry-Kill |\n| **E. Jau moki šiuos** | Stiprybės/silpnybės? Kas duoda daugiausia? Kodėl neveikia? Rizika ir nauda? | SWOT, 80/20, „Kodėl?“, Rizika/Nauda |",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "2️⃣ Ką daryti",
+                "body": "Pasirink situaciją iš lentelės viršuje → nukopijuok atitinkamą promptą (žemiau) → įklijuok į DI su savo duomenimis ar idėjų sąrašu.\n\n🔘 Kopijuoti promptą (pasirink grupę)",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Kopijuojami promptai (4 grupės)",
+                "body": "Įklijuok į DI pagal savo situaciją.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "3a. Tinka / Netinka (OK / Fail patikra)",
+                "body": "Greiti kokybės vartai: priimti ar atmesti.",
+                "copyable": "Įvertink šiuos duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk verslą, duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų."
+              },
+              {
+                "heading": "3b. Kas svarbiausia? (Būtina / Svarbu / Norima / Ne dabar)",
+                "body": "Prioritetų sistema – kai idėjų ar užduočių daug.",
+                "copyable": "Suskirstyk šį sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar (šis metodas kartais vadinamas MoSCoW).\n\nKontekstas: [tikslas / projektas]\nSąrašas: [užduotys, funkcijos, idėjos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis verslui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali."
+              },
+              {
+                "heading": "3c. Greiti laimėjimai (Low-hanging fruit)",
+                "body": "Kur mažai pastangų duoda greitą, matomą rezultatą.",
+                "copyable": "Rask greitus laimėjimus šiuose duomenyse.\n\nTikslas: [ką norime pagerinti]\nDuomenys: [problemos, galimybės, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada galima patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias."
+              },
+              {
+                "heading": "3d. Testuok / Investuok / Atmesk (Kiss-Marry-Kill)",
+                "body": "Portfelio sprendimas – produktai, kanalai, klientai, idėjos.",
+                "copyable": "Įvertink šiuos variantus principu Testuok / Investuok / Atmesk (Kiss-Marry-Kill).\n\nKontekstas: [tikslas, biudžetas, terminas]\nVariantai: [produktai, kanalai, klientai, idėjos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža, blaškantis arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į verslo rezultatą."
+              },
+              {
+                "heading": "4️⃣ Patikra (1 min)",
+                "body": "• Ar pasirinkai filtrą pagal savo situaciją (tinka/netinka, prioritetas, greiti laimėjimai, portfelis)?\n• Ar rezultatas baigiasi **konkrečiu veiksmu**, ne tik lentele?\n• Ar žinai, kur ieškoti SWOT, 80/20 ar Rizikos/Naudos, kai jų reikia (žemiau)?\n\nJei bent 2 „ne“ → grįžk prie 2️⃣, pasirink teisingą grupę.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "🔽 Nori suprasti detaliau?",
+                "body": "**ICE balas** – jei prioritetų grupės neužtenka ir reikia skaičiaus, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padauginki (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi.\n\n**Šiuos jau moki:** SWOT (stiprybės/silpnybės/galimybės/grėsmės) – skaidrė „Konkurentų analizė“; 80/20 principas (kas duoda daugiausia) – skaidrė „Aprašomoji“ (pajamų koncentracija); priežasčių gilinimas „Kodėl?“ – skaidrė „Diagnostinė“; Rizika ir nauda – skaidrė „CFO“ ir MASTER PROMPTAS.\n\n**Kur pritaikysi M9 projekte:** konkurentų analizė = SWOT; mokymų naudingumas = Testuok/Investuok/Atmesk; rizikų matrica = Rizika/Nauda.",
+                "blockVariant": "brand",
+                "collapsible": true
+              }
+            ]
+          }
+        },
+        {
           "id": 76,
           "pathBranch": ["strategija"],
           "title": "Verslo duomenų išplėtimas",
@@ -11113,41 +11174,6 @@
               ]
             }
           },
-          "content": {
-            "scenarioTitle": "1 praktika: Automatize (80 %)",
-            "scenarioDescription": "Taisyklėmis paremti srautai. Sukurk workflow: Form (Google Forms / Typeform) → Sheets arba CRM → personalizuotas laiškas → Slack/Teams. Įrankis: Zapier arba Make. Artefaktai: workflow schema (1 p.), laukų mappingas, min. 2 test cases, logų/screenshot'ai.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Pasirink formą ir paskirties vietas (Sheets/CRM, el. paštas, Slack arba Teams). Sukurk workflow ir užfiksuok artefaktus."
-            },
-            "template": "Trigger: naujas formos pateikimas. Actions: (1) Įrašyti į Sheets/CRM su laukų mapinimu, (2) išsiųsti personalizuotą laišką, (3) pranešti komandai Slack/Teams. Error handling: ką daryti, jei API neatsako.",
-            "templateLabel": "Workflow specifikacija – šablonas",
-            "instructions": {
-              "title": "Žingsniai ir artefaktai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Sukurk workflow Zapier arba Make (Form → Sheets/CRM → Email → Slack/Teams)",
-                  "description": "Naudok nemokamą paskyros lygį."
-                },
-                {
-                  "step": 2,
-                  "title": "Užpildyk 1-puslapio workflow specifikaciją",
-                  "description": "Trigger, input schema, condition, actions, output, error handling (žr. AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18)."
-                },
-                {
-                  "step": 3,
-                  "title": "Laukų mappingas: formos laukas → CRM/Sheets stulpelis",
-                  "description": "Trumpa lentelė arba sąrašas."
-                },
-                {
-                  "step": 4,
-                  "title": "Parašyk min. 2 test cases ir padaryk logų/screenshot'ų",
-                  "description": "Sėkmingas run + vienas klaidos atvejis."
-                }
-              ]
-            }
-          },
           "recommended": true
         },
         {
@@ -11193,36 +11219,6 @@
                   "description": "Sėkmingas kelias + vienas edge case.",
                   "hint": "Sėkmingas kelias + vienas edge case.",
                   "partialSolution": "Sėkmingas kelias + vienas edge case."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "2 praktika: Augment (15 %)",
-            "scenarioDescription": "Žmogus sprendžia, DI padeda. Srautas: gautas laiškas → DI santrauka (pvz. ChatGPT/Make DI modulis) → žmogaus patvirtinimas prieš siuntimą → išsiuntimas. Artefaktai: workflow schema, santraukos prompto šablonas, approval žingsnio aprašymas, 1–2 test cases.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Sukurk workflow su DI santraukos žingsniu ir žmogaus patvirtinimu. Užfiksuok promptą ir taisykles."
-            },
-            "template": "Santraukos promptas: Iš šio laiško ištrauk: (1) siuntėjas ir data, (2) pagrindinė tema vienu sakiniumi, (3) 3–5 punktai. Human-in-the-loop: prieš siuntimą žmogus patvirtina arba taiso.\n\nVERTINTOJO PROMPTAS: Patikrink santrauką: (1) tonas tinkamas klientui, (2) faktai atitinka originalą, (3) nėra PII pertekliaus. Jei ne – grąžink pataisymų sąrašą.",
-            "templateLabel": "Santraukos šablonas ir approval taisyklė",
-            "instructions": {
-              "title": "Žingsniai ir artefaktai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Sukurk workflow: trigger (naujas laiškas) → DI santrauka → approval žingsnis → siuntimas",
-                  "description": "Naudok Make arba Zapier su DI moduliu."
-                },
-                {
-                  "step": 2,
-                  "title": "Užrašyk santraukos prompto šablonas ir approval žingsnio aprašymą",
-                  "description": "Kas mato, kas patvirtina, ką daryti atsisakius."
-                },
-                {
-                  "step": 3,
-                  "title": "Parašyk 1–2 test cases ir workflow schema (1 p.)",
-                  "description": "Sėkmingas kelias + vienas edge case."
                 }
               ]
             }
@@ -11276,36 +11272,6 @@
               ]
             }
           },
-          "content": {
-            "scenarioTitle": "3 praktika: Autonomize (5 %)",
-            "scenarioDescription": "DI agentų rolės: **Klasifikatorius** → **Sentiment specialistas** → **Eskalacijos koordinatorius** → ticket/užduotis. Atsiliepimai (CRM/forma) → sentiment DI → eskalacija → ticket (Jira, Trello, Teams).",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Sukurk sentiment-based eskalacijos workflow. Apibrėžk slenksčius ir ką daryti incidento atveju."
-            },
-            "template": "Sentiment slenksčiai: jei < 3 žvaigždutės arba negatyvus – sukurti ticket ir pranešti komandai. Eskalacijos taisyklė: ticket laukas „sentiment“, „original_text“ (trumpas). Incident playbook: žr. AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.",
-            "templateLabel": "Sentiment ir eskalacijos taisyklės",
-            "instructions": {
-              "title": "Žingsniai ir artefaktai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Sukurk workflow: atsiliepimai → sentiment DI → condition (jei < slenksčio) → ticket/užduotis",
-                  "description": "Naudok Make, n8n arba Zapier su DI moduliu."
-                },
-                {
-                  "step": 2,
-                  "title": "Apibrėžk sentiment slenksčius ir eskalacijos taisyklės",
-                  "description": "Kada kurti ticket, kokius laukus užpildyti."
-                },
-                {
-                  "step": 3,
-                  "title": "Užrašyk workflow schema (1 p.) ir nuorodą į incident playbook (5 žingsniai)",
-                  "description": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti."
-                }
-              ]
-            }
-          },
           "recommended": true
         },
         {
@@ -11337,26 +11303,6 @@
                   "description": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
                   "hint": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
                   "partialSolution": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "Tyrimo agentas",
-            "scenarioDescription": "Užduotis: paieška + santrauka + šaltiniai. Nukopijuok promptą į DI ir atlik su savo tema.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Pasirink tema ir naudok žemiau esantį promptą su paieška ir šaltiniais."
-            },
-            "template": "Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius šaltinius, (3) parašyti santrauką lietuvių kalba su nuorodomis. Jei nerandi – parašyk „Nerasta“ ir kodėl.",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Nukopijuok promptą ir įklijuok į DI su įjungta paieška",
-                  "description": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius."
                 }
               ]
             }
@@ -11404,13 +11350,6 @@
               ]
             }
           },
-          "content": {
-            "scenarioTitle": "Koordinatorius + 2 specialistai",
-            "scenarioDescription": "3 CopyButton promptai: koordinatorius, specialistas, vertintojas. Vykdyti rankiniu pipeline. Artefaktai: schema + 3 promptai + 1 test case.",
-            "taskFrame": "Užduotis",
-            "template": "KOORDINATORIUS: Tu esi koordinatorius. Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk roles, handoff taisykles.\n\nSPECIALISTAS: Tu esi [tyrėjas/rašytojas]. Įvestis: [nuo koordinatoriaus]. Atlik [X]. Išvestis: [formatas].\n\nVERTINTOJAS: Patikrink ar atsakyta į visus kriterijus. Jei ne – grąžink pataisymui su konkrečiais punktais.",
-            "templateLabel": "3 promptai – koordinatorius, specialistas, vertintojas"
-          },
           "recommended": false
         },
         {
@@ -11441,26 +11380,6 @@
                   "description": "Gauk 1 puslapio ataskaitą.",
                   "hint": "Gauk 1 puslapio ataskaitą.",
                   "partialSolution": "Gauk 1 puslapio ataskaitą."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "Ataskaitos generatorius",
-            "scenarioDescription": "Užduotis: kelios veiklos (duomenys → analizė → 1 puslapio ataskaita). Naudok META + INPUT + OUTPUT.",
-            "taskFrame": "Užduotis",
-            "scenario": {
-              "narrativeLead": "Užpildyk META, INPUT, OUTPUT ir gauk vieną puslapį struktūrizuotos ataskaitos."
-            },
-            "template": "META: [ROLĖ]. INPUT: [DUOMENYS]. OUTPUT: 1 puslapis, 3–5 punktai, lietuvių kalba.",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Užpildyk META, INPUT, OUTPUT ir paleisk DI",
-                  "description": "Gauk 1 puslapio ataskaitą."
                 }
               ]
             }
@@ -11499,23 +11418,6 @@
               ]
             }
           },
-          "content": {
-            "scenarioTitle": "Įrankių naudojimas",
-            "scenarioDescription": "Užduotis: naudoti paiešką ir skaičiuoklę (arba vieną įrankį). Rezultatas su paaiškinimu.",
-            "taskFrame": "Užduotis",
-            "template": "Naudok [įrankį – paieška arba skaičiuoklę] ir pateik rezultatą su trumpu paaiškinimu. Užduotis: [APRAŠYK].",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Įjunk įrankį platformoje ir paleisk promptą",
-                  "description": "Patikrink, ar DI panaudojo įrankį."
-                }
-              ]
-            }
-          },
           "recommended": false
         },
         {
@@ -11546,23 +11448,6 @@
                   "description": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą.",
                   "hint": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą.",
                   "partialSolution": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "Klaidos tvarkymas ir ribos",
-            "scenarioDescription": "Užduotis: sisteminis promptas su ribomis; testuoti, ką DI atsako, kai duomenų nėra.",
-            "taskFrame": "Užduotis",
-            "template": "Jei užduoties atlikti negalima: parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Neverk tuščio atsakymo.",
-            "templateLabel": "Pridėk prie sisteminio prompto",
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Pridėk šį tekstą prie sisteminio prompto ir bandyk užduotį be duomenų",
-                  "description": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą."
                 }
               ]
             }

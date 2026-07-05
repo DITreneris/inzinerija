@@ -36,6 +36,11 @@
       "moduleId": 5
     },
     {
+      "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
+      "definition": "Prioritetų sistema – užduotys ar idėjos skirstomos į 4 grupes pagal svarbą ir skubą; padeda nuspręsti, ką daryti pirmiausia.",
+      "moduleId": 7
+    },
+    {
       "term": "Chunk (fragmentas)",
       "definition": "Logiškas teksto gabalas, į kurį suskaidomas dokumentas RAG sistemai – padeda DI rasti ir naudoti tik aktualią informaciją.",
       "moduleId": 4
@@ -131,6 +136,11 @@
       "moduleId": 4
     },
     {
+      "term": "Greiti laimėjimai (Low-hanging fruit)",
+      "definition": "Galimybės, kurios reikalauja mažai pastangų ir kainos, bet duoda greitą, matomą rezultatą.",
+      "moduleId": 7
+    },
+    {
       "term": "Haliucinacija",
       "definition": "DI sugeneruotas turinys, kuris atrodo įtikinamai, bet yra faktu nepagrįstas, netikslus arba išgalvotas; modelis „užpildo spragas“ tikimybėmis.",
       "moduleId": 4
@@ -214,6 +224,11 @@
       "term": "Neuroniniai tinklai",
       "definition": "Skaičiavimo modelis, įkvėptas smegenų neuronų – pagrindas giliam mokymuisi ir šiuolaikiniams DI modeliams.",
       "moduleId": 4
+    },
+    {
+      "term": "OK / Fail patikra",
+      "definition": "Greiti kokybės vartai: kas aiškiai tinka, kas aiškiai netinka, kas neaišku, galutinis verdiktas (Tinka / Netinka / Tinka su sąlygomis).",
+      "moduleId": 7
     },
     {
       "term": "OUTPUT blokas",
@@ -319,6 +334,11 @@
       "moduleId": 1
     },
     {
+      "term": "Sprendimų filtras",
+      "definition": "Trumpas metodas, kuris analizės rezultatą paverčia veiksmu (taisyti, prioritetą nustatyti, atmesti, testuoti, plėsti) – ne tik aprašymu.",
+      "moduleId": 7
+    },
+    {
       "term": "Šaltinių nurodymas",
       "definition": "Prompto dalis, kur nurodomi naudojami duomenų ar informacijos šaltiniai (puslapiai, ataskaitos, oficialūs duomenys). Sumažina klaidas ir pagerina atsakymų pagrįstumą.",
       "moduleId": 7,
@@ -326,6 +346,11 @@
         "moduleId": 7,
         "slideId": 71.3
       }
+    },
+    {
+      "term": "Testuok / Investuok / Atmesk (Kiss-Marry-Kill)",
+      "definition": "Portfelio sprendimas apie variantus (produktus, kanalus, idėjas): kurį tik testuoti, kurį rimtai plėtoti, kurio atsisakyti.",
+      "moduleId": 7
     },
     {
       "term": "Tokenas",

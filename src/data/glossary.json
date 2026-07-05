@@ -71,6 +71,11 @@
       "moduleId": 13
     },
     {
+      "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
+      "definition": "Prioritetų sistema – užduotys ar idėjos skirstomos į 4 grupes pagal svarbą ir skubą; padeda nuspręsti, ką daryti pirmiausia.",
+      "moduleId": 7
+    },
+    {
       "term": "Chunk (fragmentas)",
       "definition": "Logiškas teksto gabalas, į kurį suskaidomas dokumentas RAG sistemai – padeda DI rasti ir naudoti tik aktualią informaciją.",
       "moduleId": 4
@@ -194,6 +199,11 @@
       "term": "Grandinė",
       "definition": "Nuosekli įrankių ar žingsnių seka (pvz. Claude → ChatGPT → Gamma). Workflow grandinė – kai keli DI įrankiai naudojami vienas po kito siekiant vieno rezultato.",
       "moduleId": 4
+    },
+    {
+      "term": "Greiti laimėjimai (Low-hanging fruit)",
+      "definition": "Galimybės, kurios reikalauja mažai pastangų ir kainos, bet duoda greitą, matomą rezultatą.",
+      "moduleId": 7
     },
     {
       "term": "Haliucinacija",
@@ -321,6 +331,11 @@
       "moduleId": 13
     },
     {
+      "term": "OK / Fail patikra",
+      "definition": "Greiti kokybės vartai: kas aiškiai tinka, kas aiškiai netinka, kas neaišku, galutinis verdiktas (Tinka / Netinka / Tinka su sąlygomis).",
+      "moduleId": 7
+    },
+    {
       "term": "OUTPUT blokas",
       "definition": "Formatas, struktūra ir reikalavimai – ko norite gauti (lentelė, sąrašas, tonas).",
       "moduleId": 1
@@ -439,6 +454,11 @@
       "moduleId": 1
     },
     {
+      "term": "Sprendimų filtras",
+      "definition": "Trumpas metodas, kuris analizės rezultatą paverčia veiksmu (taisyti, prioritetą nustatyti, atmesti, testuoti, plėsti) – ne tik aprašymu.",
+      "moduleId": 7
+    },
+    {
       "term": "Stilius (vizualas/garso)",
       "definition": "Vizualus ar garso išvaizdos tipas (fotorealistiškas, akrilas, pop, akustinė).",
       "moduleId": 13
@@ -451,6 +471,11 @@
         "moduleId": 7,
         "slideId": 71.3
       }
+    },
+    {
+      "term": "Testuok / Investuok / Atmesk (Kiss-Marry-Kill)",
+      "definition": "Portfelio sprendimas apie variantus (produktus, kanalus, idėjas): kurį tik testuoti, kurį rimtai plėtoti, kurio atsisakyti.",
+      "moduleId": 7
     },
     {
       "term": "Tokenas",
