@@ -56,7 +56,6 @@ import {
   TemplateBlock,
   FigmaEmbed,
   InstructGptQualityBlock,
-  AgentWorkflowBlock,
   WorkflowChainsBlock,
   TurinioWorkflowBlock,
   WorkflowComparisonInteractiveBlock,
@@ -1065,16 +1064,7 @@ export function ContentBlockSlide({
                       slideId: slide?.id,
                       imageAlt: section.imageAlt ?? section.heading ?? '',
                     }) ??
-                    (section.image.includes('agent_workflow') ? (
-                      <div className="my-4">
-                        <AgentWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : section.image.includes('turinio_workflow') ? (
+                    (section.image.includes('turinio_workflow') ? (
                       <div className="my-4">
                         <TurinioWorkflowBlock />
                         {section.body && (
@@ -6510,6 +6500,9 @@ export function PathStepSlide({
   const { locale } = useLocale();
   const isEn = locale === 'en';
   const hasSections = (content.sections?.length ?? 0) > 0;
+  const pathLabel =
+    content.pathLabel ??
+    (isEn ? 'Data analysis path' : 'Duomenų analizės kelias');
   return (
     <div className="max-w-3xl mx-auto space-y-6 px-4 py-6">
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 px-4 py-3">
@@ -6519,7 +6512,7 @@ export function PathStepSlide({
             aria-hidden
           />
           <span className="text-sm font-semibold text-brand-800 dark:text-brand-200">
-            {isEn ? 'Data analysis path' : 'Duomenų analizės kelias'}
+            {pathLabel}
           </span>
         </div>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-100 dark:bg-accent-900/40 text-accent-800 dark:text-accent-200 text-sm font-medium">
@@ -6554,6 +6547,11 @@ export function PathStepSlide({
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 {sec.body}
               </p>
+              {sec.copyable && (
+                <div className="mt-3">
+                  <CopyButton text={sec.copyable} size="sm" />
+                </div>
+              )}
             </div>
           ))}
         </div>

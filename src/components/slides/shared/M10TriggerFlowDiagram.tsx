@@ -2,6 +2,7 @@
  * M10 – Trigger → Condition → Action + Webhook → Trigger (SCHEME_AGENT: rodyklės kraštas į kraštą).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM10TriggerFlowLabels, type M10Locale } from './m10DiagramContent';
 
 const W = 640;
@@ -23,6 +24,7 @@ export default function M10TriggerFlowDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
+  const palette = useDiagramPalette();
   const L = getM10TriggerFlowLabels(locale);
   const x1 = X0;
   const x2 = x1 + BOX_W + GAP;
@@ -67,7 +69,7 @@ export default function M10TriggerFlowDiagram({
         textAnchor="middle"
         fontSize="15"
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.title}
@@ -86,7 +88,7 @@ export default function M10TriggerFlowDiagram({
             height={BOX_H}
             rx="10"
             fill={i === 0 ? '#486581' : '#334e68'}
-            stroke="#102a43"
+            stroke={palette.brandDark}
             strokeWidth="1.2"
           />
           <text

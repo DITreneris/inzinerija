@@ -144,11 +144,26 @@ export function getM10AgentTaxonomyLabels(locale: M10Locale) {
 }
 
 export function getM10SpecIncidentLabels(locale: M10Locale) {
+  const spec = getM10WorkflowSpecLabels(locale);
+  const incident = getM10IncidentPlaybookLabels(locale);
+
+  return {
+    titleSpec: spec.title,
+    titleIncident: incident.title,
+    specBlocks: spec.blocks,
+    incidentSteps: incident.steps,
+    aria:
+      locale === 'en'
+        ? 'Workflow specification eight blocks and incident response five steps'
+        : 'Workflow specifikacija aštuoni blokai ir incidentų playbook penki žingsniai',
+  };
+}
+
+export function getM10WorkflowSpecLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {
-      titleSpec: 'One-page workflow spec (8 blocks)',
-      titleIncident: 'Incident playbook (5 steps)',
-      specBlocks: [
+      title: 'One-page workflow spec (8 blocks)',
+      blocks: [
         'Trigger',
         'Input',
         'Condition',
@@ -158,14 +173,12 @@ export function getM10SpecIncidentLabels(locale: M10Locale) {
         'Errors',
         'Audit',
       ],
-      incidentSteps: ['Stop', 'Log', 'Scope', 'Notify', 'Fix'],
-      aria: 'Workflow specification eight blocks and incident response five steps',
+      aria: 'One-page workflow specification: Trigger, Input, Condition, Actions, Output, SLA, Errors and Audit',
     };
   }
   return {
-    titleSpec: 'Vieno puslapio spec (8 blokų)',
-    titleIncident: 'Incident playbook (5 žingsniai)',
-    specBlocks: [
+    title: 'Vieno puslapio spec (8 blokų)',
+    blocks: [
       'Trigger',
       'Input',
       'Condition',
@@ -175,7 +188,21 @@ export function getM10SpecIncidentLabels(locale: M10Locale) {
       'Klaidos',
       'Audit',
     ],
-    incidentSteps: ['Stabdyti', 'Fiksuoti', 'Apimtis', 'Pranešti', 'Ištaisyti'],
-    aria: 'Workflow specifikacija aštuoni blokai ir incidentų playbook penki žingsniai',
+    aria: 'Vieno puslapio workflow specifikacija: Trigger, Input, Condition, Actions, Output, SLA, Klaidos ir Audit',
+  };
+}
+
+export function getM10IncidentPlaybookLabels(locale: M10Locale) {
+  if (locale === 'en') {
+    return {
+      title: 'Incident playbook (5 steps)',
+      steps: ['Stop', 'Log', 'Scope', 'Notify', 'Fix'],
+      aria: 'Incident playbook: Stop, Log, Scope, Notify and Fix',
+    };
+  }
+  return {
+    title: 'Incident playbook (5 žingsniai)',
+    steps: ['Stabdyti', 'Fiksuoti', 'Apimtis', 'Pranešti', 'Ištaisyti'],
+    aria: 'Incidentų playbook: Stabdyti, Fiksuoti, Apimtis, Pranešti ir Ištaisyti',
   };
 }

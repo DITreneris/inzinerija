@@ -5,6 +5,7 @@
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import {
   getAgentWorkflowLabels,
   type AgentWorkflowLocale,
@@ -42,9 +43,6 @@ const BRAND_LIGHT = '#486581';
 const ACCENT = '#b8860b';
 const ACCENT_DARK = '#7a5807';
 const GREY_FORWARD = '#7B8794';
-const BORDER = '#bcccdc';
-const BG_LIGHT = '#f0f4f8';
-const TEXT_DARK = '#102a43';
 
 function buildSteps(
   stepLabels: AgentWorkflowStep[],
@@ -95,6 +93,7 @@ export default function AgentWorkflowDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const labels = getAgentWorkflowLabels(locale);
   const isInteractive = typeof onStepClick === 'function';
   const steps = isCompactDiagram
@@ -155,8 +154,8 @@ export default function AgentWorkflowDiagram({
     >
       <defs>
         <linearGradient id={`aw-bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={BG_LIGHT} />
-          <stop offset="100%" stopColor="#f1f5f9" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
         <marker
           id={`aw-arrow-${uid}`}
@@ -189,7 +188,7 @@ export default function AgentWorkflowDiagram({
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill="none"
-        stroke={BORDER}
+        stroke={palette.border}
         strokeWidth="1"
         rx="12"
       />
@@ -201,7 +200,7 @@ export default function AgentWorkflowDiagram({
         fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
         fontSize="18"
         fontWeight="800"
-        fill={TEXT_DARK}
+        fill={palette.brandDark}
       >
         {labels.diagramTitle}
       </text>
@@ -234,7 +233,7 @@ export default function AgentWorkflowDiagram({
                 height={step.h}
                 rx="10"
                 fill={`url(#aw-step-${uid})`}
-                stroke={isInteractive && isActive ? TEXT_DARK : BRAND}
+                stroke={isInteractive && isActive ? palette.brandDark : BRAND}
                 strokeWidth={isInteractive && isActive ? 2.5 : 1.5}
               />
               <text
@@ -294,7 +293,7 @@ export default function AgentWorkflowDiagram({
                       fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
                       fontSize="10"
                       fontWeight="700"
-                      fill={TEXT_DARK}
+                      fill={palette.brandDark}
                     >
                       {labels.forwardLabels[i]}
                     </text>
@@ -317,7 +316,7 @@ export default function AgentWorkflowDiagram({
                       fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
                       fontSize="10"
                       fontWeight="700"
-                      fill={TEXT_DARK}
+                      fill={palette.brandDark}
                     >
                       {labels.forwardLabels[i]}
                     </text>

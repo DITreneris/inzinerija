@@ -1,3 +1,4 @@
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
 
@@ -11,6 +12,7 @@ export default function M12ThreeLabsDiagram({
   locale?: M10Locale;
   className?: string;
 }) {
+  const palette = useDiagramPalette();
   const L = getM12ThreeLabsLabels(locale);
   const rowH = 52;
   const gap = 14;
@@ -37,7 +39,7 @@ export default function M12ThreeLabsDiagram({
         textAnchor="middle"
         fontSize="14"
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.title}
@@ -54,7 +56,7 @@ export default function M12ThreeLabsDiagram({
               height={rowH}
               rx="10"
               fill={r.fill}
-              stroke="#102a43"
+              stroke={palette.brandDark}
               strokeWidth="1.2"
             />
             <text

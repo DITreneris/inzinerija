@@ -1,4 +1,5 @@
 /**
+ * @deprecated Replaced by `M10WorkflowSpecDiagram` + `M10IncidentPlaybookDiagram`. Kept for reference only.
  * M10 – 8 blokų spec + 5 incident žingsniai (viena diagrama).
  */
 import { useId } from 'react';

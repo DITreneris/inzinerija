@@ -44,11 +44,11 @@
 
 Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.1:
 
-| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                          |
-| ------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **10**  | action-intro (pirmoji) | Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo ir įrankių iki integracijų ir promptų architektūros. |
-| **11**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).                         |
-| **12**  | practice-intro         | Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui.                |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                            |
+| ------- | ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| **10**  | action-intro (pirmoji) | Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo, įrankių ir konteksto iki integracijų. |
+| **11**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).           |
+| **12**  | practice-intro         | Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui.  |
 
 ---
 
@@ -57,8 +57,9 @@ Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.
 **Skaidrė: Kelio apžvalga (10.1)**
 
 - **Trumpai:** Tik **kelio žemėlapis** – ką modulyje rasite ir kokia tvarka. Išsamūs workflow terminai (trigger, action, condition, webhook ir kt.) – **tik skaidrėje 10.15**; čia jų **nebekartoti** (vengti dublio su 10.15).
+- **Micro-win (60 sek.):** prieš gilią teoriją duoti vieną mažą CopyButton užduotį: „Paaiškink vienu sakiniu, kuo DI agentas skiriasi nuo paprasto klausimo–atsakymo. Pateik vieną mano darbo pavyzdį, kur reikėtų agento.“ Tikslas – ne pilna praktika, o greitas orientyras prieš 10.2.
 - **Įrankiai:** Kokius įrankius DI gali naudoti (paieška, skaičiuoklės, API, failai); populiarios platformos (ChatGPT, Claude, Gemini – agentinės funkcijos).
-- **Promptai:** Kaip rašyti sisteminius ir vartotojo promptus agentams (rolė, žingsniai, klaidos tvarkymas).
+- **Kontekstas agentams:** Kaip M4–M6 konteksto inžineriją perkelti į agentus: rolė, žingsniai, įrankiai, klaidos tvarkymas.
 - **Sistemos:** Agentų ciklas (Steigti → Gauti įvestį → Vykdyti → Įrankiai → Grąžtamasis ryšys → Rezultatas).
 - **Projektavimas:** Kada rinktis agentą, kada – paprastą promptą.
 - **Vykdymas:** Kaip vykdomi žingsniai ir kaip apriboti rizikas.
@@ -84,6 +85,20 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 **Vizualizacija:** Proceso diagrama (React komponentas pagal [docs/development/SCHEME_AGENT.md](development/SCHEME_AGENT.md)) – pvz. Agent → Planavimas → Įrankiai → Aplinka → Rezultatas → Grįžtamasis ryšys. „Peržiūrėti pilname dydyje“ – tas pats React per EnlargeableDiagram.
 
 **CopyButton:** **ne** dubliuoti ankstesnio „Trumpai“ paragrafo. Naudoti **užduotį DI**, pvz.: „Paaiškink savo žodžiais 4 žingsniais, kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“
+
+---
+
+## 3A0. Agentų kelio checkpoint'ai (path-step, pramaišyti su teorija)
+
+**Tikslas:** perkelti M7 gerąją praktiką į M10 – teorija ir veiksmas eina kartu. Checkpoint'ai yra trumpi `path-step` tipo žingsniai, kurie pažymimi „Pažymėjau kaip atliktą“ ir neužkrauna ilgo lab'o.
+
+| ID     | Vieta    | Žingsnis | Turinys                                                                                                       |
+| ------ | -------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| 10.21  | po 10.2  | 1 / 3    | „Agentų ciklas“ – dalyvis įvykdo 1 agentinę užklausą ir patikrina, ar yra žingsniai + įrankiai.               |
+| 10.451 | po 10.45 | 2 / 3    | „Rolės“ – dalyvis apibrėžia koordinatoriaus, specialisto ir vertintojo įvestis / išvestis.                    |
+| 10.51  | po 10.5  | 3 / 3    | „Agentinis promptas“ – dalyvis turi 5 dalių šabloną ir 1 puslapio workflow spec juodraštį prieš M12 praktiką. |
+
+**Badge:** `pathLabel` = „Agentų inžinerijos kelias“. M7 default lieka „Duomenų analizės kelias“.
 
 ---
 
@@ -202,6 +217,49 @@ Pateik planą kaip numeruotą sąrašą.
 
 ---
 
+## 3b4. Uždaro mokymosi ciklas: taisyklės, įgūdžiai, pamokos (skaidrė 10.49)
+
+**Tikslas:** parodyti, kad agentų sistema ne tik įvykdo vieną užduotį, bet ir gerėja tarp užduočių: klaidos virsta taisyklėmis, geri sprendimai – pakartotinai naudojamais įgūdžiais.
+
+**Vieta sekoje:** po 10.481 („Multi-agent → workflow“) ir prieš 10.3 („Rolės ir sisteminio prompto šablonas“). Dalyvis jau žino roles ir workflow šablonus, todėl gali suprasti platesnę sistemą.
+
+**Trumpai:** Agentas ne tik vykdo užduotį. Gera sistema kaupia veiksmų istoriją, tikrina rezultatą, iš klaidų ištraukia pamokas ir atnaujina taisykles arba įgūdžius kitam kartui.
+
+**Schema:** du blokai:
+
+| Dalis               | Blokai                                                                                     | Paprastas paaiškinimas                                        |
+| ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| **Vykdymo sistema** | Užduotis → Taisyklės → Koordinatorius → Specialistai / vertintojas → Įgūdžiai → Rezultatas | Kaip viena užduotis pereina per roles, taisykles ir įrankius. |
+| **Mokymosi ciklas** | Veiksmų istorija → Patikra → Pamokos → Atnaujinimas                                        | Kaip po užduoties sistema pagerinama kitam kartui.            |
+
+**Terminai skaidrėje:**
+
+| Terminas             | Apibrėžimas                                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Taisyklės**        | Ribos, principai ir numatyti sprendimai: ko DI nedaro, kada klausia žmogaus.                                 |
+| **Koordinatorius**   | Skaido užduotį, parenka roles, stebi perdavimus.                                                             |
+| **Įgūdžiai**         | Pakartotinai naudojami gebėjimai: paieška, rašymas, tikrinimas arba vienas „Įgūdžio paketas“ su instrukcija. |
+| **Veiksmų istorija** | Užduotis, žingsniai, klaidos, žmogaus pastabos.                                                              |
+| **Patikra**          | Testas ar vertinimas: ar rezultatas atitiko kriterijus.                                                      |
+| **Pamokos**          | Trumpas įrašas: kas nepavyko, ką keisti, kur taisyklę ar įgūdį atnaujinti.                                   |
+| **Atnaujinimas**     | Pakeista taisyklė, promptas, įgūdžio aprašas arba numatytas pasirinkimas kitam kartui.                       |
+
+**Daryk dabar:** po vieno mažo scenarijaus užrašyk vieną pamoką: kas nepavyko, kokia taisyklė ar įgūdis tai pataiso, kur ta pataisa bus naudojama kitą kartą.
+
+**CopyButton:**
+
+```
+Pamoka po agento bandymo:
+1) Kas nutiko?
+2) Kokia priežastis?
+3) Ką atnaujinu: taisyklę, promptą, įgūdį ar testą?
+4) Kaip patikrinsiu kitą kartą?
+```
+
+**Patikra:** gera pamoka pakeičia kitą bandymą. Jei tik aprašai faktą („nepavyko“), bet nepakeiti taisyklės, įgūdžio ar testo – mokymosi ciklas neužsidaro.
+
+---
+
 ## 3c. Verslo automatizavimo įrankiai (skaidrė 10.35)
 
 **Skirtingi tipiniai srautai kiekvienam įrankiui** – vengti to paties „forma → CRM → laiškas → Slack“ kartojimo su 10.25 / 10.15.
@@ -217,6 +275,8 @@ Pateik planą kaip numeruotą sąrašą.
 ---
 
 ## 3d. Workflow specifikacija, testavimas, saugumas, įrankių medis (skaidrė 10.65)
+
+**Vizualizacija:** dvi atskiros React schemos, ne viena tanki kombinacija: `m10_workflow_spec` (8 blokų workflow specifikacija) ir `m10_incident_playbook` (5 incidentų žingsniai). „Peržiūrėti pilname dydyje“ atidaro tą patį React vaizdą modale.
 
 **Standartinė workflow specifikacija (1 puslapis)** – kiekvienam lab'ui rekomenduojama vieno puslapio specifikacija:
 
@@ -262,6 +322,8 @@ Neišsivaizduok duomenų – jei reikia faktų, naudok paiešką arba parašyk �
 
 **Kur pritaikyti:** Bet kur, kur reikia ne tik vieno atsakymo, bet ir paieškos, skaičiavimų ar išorinių duomenų.
 
+**Ryšys su konteksto inžinerija:** M4–M6 mokė, ką DI turi žinoti. Čia tą patį principą taikai agentui: nurodai rolę, ribas, įrankius, išvestį ir ką daryti, kai duomenų trūksta.
+
 ### 4.2 Įrankių pasirinkimas ir apribojimai (10.4)
 
 **Trumpai:** Ne visi DI įrankiai turi tuos pačius įrankius. ChatGPT – Browse, DALL·E, skaičiuoklė; Claude – Tools; Gemini – paieška, „Workspace“. Nurodyk vartotojui, ką gali naudoti.
@@ -281,7 +343,7 @@ Naudok paiešką, kad rastum naujausią informaciją. Jei randi šaltinius – n
 
 ### 4.3 Kada rinktis agentą, kada – paprastą promptą (10.5)
 
-**Trumpai:** Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių.
+**Trumpai:** Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių. Tai yra konteksto inžinerijos taikymas agentams: prieš vykdymą aiškiai nusprendi, kokios informacijos, įrankių ir ribų DI reikės.
 
 **Daryk dabar:** Prieš rašant promptą, paklausk: „Ar reikia paieškos, failų ar kelių žingsnių?“ Jei taip – formuluok kaip agentinę užduotį (žingsniai, įrankiai). Jei ne – pakanka 6 blokų (META, INPUT, OUTPUT).
 
@@ -294,6 +356,20 @@ Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius š
 **Patikra:** Jei gavai tik vieną pastraipą be šaltinių – peržiūrėk, ar užduotyje aiškiai nurodai „ieškoti“ ir „pateikti šaltinius“.
 
 **Kur pritaikyti:** Sudėtingesni tyrimai, ataskaitos iš kelių šaltinių, automatizacija.
+
+**Workflow specifikacija (CopyButton – matoma pagrindiniame kelyje):** trumpas 1 puslapio šablonas turi būti šioje skaidrėje arba 10.6, kad delivery-first dalyvis nepraeitų pro MUST turinį vien dėl to, kad 10.65 optional. Pilnas testavimas ir saugumas lieka 10.65.
+
+```
+Workflow specifikacija:
+1) Trigger – kas paleidžia srautą.
+2) Input schema – kokie laukai privalomi.
+3) Condition – kokia sąlyga keičia eigą.
+4) Actions – 3–5 veiksmai su įrankiais.
+5) Output – koks rezultatas turi būti sukurtas.
+6) Error handling – ką daryti, jei žingsnis nepavyksta.
+7) Audit log – ką fiksuoti: laikas, žingsnis, rezultatas.
+8) HITL – kur reikalingas žmogaus patvirtinimas.
+```
 
 ### 4.3a Agentinio prompto šablonas ir taisyklės (aiškiai apibrėžta)
 
@@ -326,6 +402,8 @@ Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius š
 **Kopijuojamas pilnas šablonas (CopyButton):** žr. skaidrė **10.5** – sekcija „Agentinio prompto šablonas (5 dalių)“.
 
 **Sekcija „Taisyklės ir patarimai“ (skaidrė 10.5):** JSON – `collapsible: true`, `collapsedByDefault: true` (ilgas tekstas pagal nutylėjimą suskleistas).
+
+**Checkpoint 10.51 – privaloma viena auksinė patikra:** prieš M12 dalyvis patikrina savo agentinį promptą su 1 kraštiniu atveju (pvz. trūksta privalomo lauko arba API neatsako). Tikslas: DI turi grąžinti aiškų „Nepavyko: [priežastis]“ ir pasiūlyti, ką pataisyti. Tai mažas „golden test“ – vienas testas, kuris turi praeiti prieš praktiką.
 
 ### 4.4 Klaidos tvarkymas ir ribos (10.6)
 
@@ -374,13 +452,13 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 
 Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md):
 
-| #   | Blokas               | Turinys                                                                                                                                                                             |
-| --- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Celebration Hero     | „Ką išmokote“ – Agentų ciklas, taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, promptai, ribos. 3 statistikos: pvz. „4 gylio lygiai“, „5 workflow šablonai“, „4 agentų rolės“. |
-| 2   | Žinių kortelės       | Max 3: (1) Taksonomija ir multi-agent rolės, (2) 5 workflow šablonai + 3A, (3) Promptai, įrankiai, klaidos tvarkymas.                                                               |
-| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                                                |
-| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                                            |
-| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“                                                                                                 |
+| #   | Blokas               | Turinys                                                                                                                                                                                              |
+| --- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Celebration Hero     | „Ką išmokote“ – Agentų ciklas, taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, mokymosi ciklas, promptai, ribos. 3 statistikos: pvz. „4 gylio lygiai“, „5 workflow šablonai“, „4 agentų rolės“. |
+| 2   | Žinių kortelės       | Max 3: (1) Taksonomija ir multi-agent rolės, (2) 5 workflow šablonai + 3A + mokymosi ciklas, (3) Promptai, įrankiai, klaidos tvarkymas.                                                              |
+| 3   | Refleksijos promptas | Copyable; 3 klausimai (Apply, Analyze, Create) – kur pritaikysi agentą, kas buvo naujausia, ką išbandysi pirmiausia.                                                                                 |
+| 4   | Kitas žingsnis CTA   | „Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)“ – testas prieš projektą.                                                                                                             |
+| 5   | Motyvacinis footer   | Tagline: „Agentas = žingsniai + įrankiai + ribos – jūsų pagrindas automatizacijai.“                                                                                                                  |
 
 **Pirmas veiksmas po modulio:** Šiandien atidaryk vieną DI įrankį su įjungtais įrankiais (paieška arba Tools) ir užduok vieną agentinę užklausą su „Naudok paiešką ir pateik šaltinius“.
 
@@ -409,17 +487,31 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).
 - **duration:** ~10–12 min.
-- **firstActionCTA:** Atsakyk į 8 klausimus – dalis su trumpa situacija; temos: agentų ciklas, taksonomija, multi-agent, workflow, 3A.
+- **firstActionCTA:** Atsakyk į 9 klausimus – dalis su trumpa situacija; temos: agentų ciklas, taksonomija, multi-agent, workflow, 3A ir mokymosi ciklas.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad esi pasiruošęs projektuoti agentus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 12 (projektas). &lt;70 % – peržiūrėk rekomenduojamas skaidres (remediation pagal klausimą).
 
 ### 7.2 test-section ir test-results
 
-- **Klausimai:** 8 MCQ – šeši žinių klausimai ir du situaciniai. **Pakeisti 3 silpniausius** (q3, q5, q6) į taksonomijos ir multi-agent klausimus:
+- **Klausimai:** 9 MCQ – daugiau situacinių klausimų, mažiau atminties tikrinimo. **Pakeisti silpniausius** (q1, q3, q5, q6) į diagnostikos, taksonomijos ir multi-agent klausimus; **q9** padengia 10.49 uždaro mokymosi ciklą:
+  - **m11-q1 (naujas):** DI atsako užtikrintai, bet be šaltinių; ką pirmiausia pataisyti? → `relatedSlideId: 10.3`
   - **m11-q3 (naujas):** Kuo vertintojas skiriasi nuo specialisto? → `relatedSlideId: 10.45`
+  - **m11-q9 (naujas):** Ką daryti po netikslaus agento rezultato, kad mokymosi ciklas užsidarytų? → `relatedSlideId: 10.49`
   - **m11-q5 (naujas):** Kas yra maršrutizatorius multi-agent sistemoje? → `relatedSlideId: 10.45`
   - **m11-q6 (naujas):** Situacinis RFP tyrimas – koordinatorius + tyrėjas + rašytojas; kuris workflow šablonas? → `relatedSlideId: 10.48`
 - **test-results:** failedMessage naudoja **slide ID** (10.2, 10.15, 10.25, 10.45, 10.48, 10.3–10.6), ne UI numerius.
+
+### 7.3 Bonus mini-praktika po testo (113)
+
+**Tikslas:** kaip M8 bonus precedentui – po testo duoti 5 min praktinį laimėjimą, nepriklausomai nuo to, ar dalyvis iškart eina į M12.
+
+**Skaidrė 113 – „Bonus: agento pipeline per 5 min“**
+
+- **Tipas:** `content-block`, `optional: true`, `badgeVariant: bonus`.
+- **Trumpai:** 3 atskiri DI pokalbiai: koordinatorius → specialistas → vertintojas.
+- **Daryk dabar:** pasirink vieną mažą procesą (pvz. RFP santrauka, savaitės pardavimai, kliento skundas) ir paleisk 3 promptus.
+- **CopyButton:** trumpas promptų rinkinys koordinatoriaus, specialisto ir vertintojo rolėms.
+- **Patikra:** ar turi aiškų handoff ir 1 test case, kai trūksta duomenų?
 
 ---
 
@@ -427,10 +519,13 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ### 8.1 practice-intro
 
-- **whyBenefit:** Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui. **Delivery-first:** 3 privalomi lab'ai (Automatize / Augment / Autonomize) su artefaktais.
-- **duration:** ~20–30 min (vienam lab'ui); visiems 3 lab'ams – planuoti daugiau laiko.
-- **firstActionCTA:** Pradėk dabar: pasirink **Lab #1, #2 arba #3** (arba vieną iš 4 papildomų scenarijų) ir atlik su artefaktais (workflow schema, laukų mappingas, test cases, logų screenshot'ai).
-- **Projekto apžvalga:** **MUST** – 3 lab'ai (Lab #1 Form→CRM→Email→Slack, Lab #2 Laiškas→DI santrauka→approve→siuntimas, Lab #3 Atsiliepimai→sentiment→eskalacija→ticket). **SHOULD** – 4 papildomi scenarijai (Tyrimo agentas, Ataskaitos generatorius, Įrankių naudojimas, Klaidos tvarkymas) + galimybė savo temos.
+- **whyBenefit:** Po projekto turėsi vieną paruoštą agentų arba automatizacijos scenarijų ir šablonus tolesniam darbui. **Delivery-first:** pilnas kelias – 3 privalomi lab'ai (Automatize / Augment / Autonomize) su artefaktais; greitas startas – prompt-only pipeline 124.5 be Zapier/Make.
+- **duration:** ~20–30 min minimalus prompt-first startas arba vienas lab'as; ~60–90 min, jei atliekami visi 3 lab'ai.
+- **primaryPathIntro:** Jei neturi Zapier / Make arba nori greito starto, pirmiausia atlik **Koordinatorius + 2 specialistai (124.5)**: 3 atskiri DI pokalbiai, schema ir 1 test case. Tai sumažina įrankių barjerą ir paruošia 3 pilniems lab'ams.
+- **taskOneLiner:** Pradėk nuo 124.5 → sukurk rankinį multi-agent pipeline → tada rinkis Lab #1, #2 arba #3 pilnam delivery-first darbui.
+- **firstActionCTA:** Pradėk nuo **124.5 Koordinatorius + 2 specialistai**, jei nori prompt-only kelio; jei turi automatizavimo įrankį, eik į Lab #1, #2 arba #3 ir atlik su artefaktais (workflow schema, laukų mappingas, test cases, logų screenshot'ai).
+- **Projekto apžvalga:** **MUST pilnam delivery-first keliui** – 3 lab'ai (Lab #1 Form→CRM→Email→Slack, Lab #2 Laiškas→DI santrauka→approve→siuntimas, Lab #3 Atsiliepimai→sentiment→eskalacija→ticket). **SHOULD / greitas startas** – 124.5 Koordinatorius + 2 specialistai, Tyrimo agentas ir viena neprivaloma M10 pakartojimo skaidrė su 3 promptais (ataskaita, įrankis, klaidos tvarkymas).
+- **Grąža iš investicijų (ROI):** practice-intro turi duoti mini skaičiuoklę: (užduotys per savaitę × minutės užduočiai × valandos kaina) − įrankio kaina. Dalyvis užpildo 3 scenarijus: dabar, po 3 mėn., po 12 mėn.
 
 ### 8.2 Delivery-first: 3 privalomi lab'ai (MUST) + rekomenduojami scenarijai
 
@@ -444,7 +539,17 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Bendri artefaktai visiems lab'ams:** workflow schema (1 pusl.), laukų mappingas, test cases (min. 2), logų/screenshot'ai. Detalus aprašymas ir šablonai – [docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.
 
-**Rekomenduojami scenarijai (SHOULD – stiprina vertę),** jei laiko: Tyrimo agentas, Ataskaitos generatorius, Įrankių naudojimas, Klaidos tvarkymas ir ribos, **Koordinatorius + 2 specialistai (124.5)**. Scenarijai įgyvendinami kaip **practice-scenario** skaidrės; 3 lab'ai – prioritetas (MUST), 4+1 scenarijai – papildomai (SHOULD).
+**Rekomenduojami scenarijai (SHOULD – stiprina vertę),** jei laiko: **Koordinatorius + 2 specialistai (124.5)** kaip pirmas prompt-only startas, tada Tyrimo agentas ir viena neprivaloma M10 pakartojimo skaidrė. 124.5 ir Tyrimo agentas įgyvendinami kaip **practice-scenario** skaidrės; M10 pakartojimas – kaip **content-block** su 3 kopijuojamais promptais. 3 lab'ai – prioritetas pilnam delivery-first keliui, 124.5 – mažo barjero startas.
+
+### 8.2c Papildomai: M10 pakartojimas (skaidrė 125 – neprivaloma)
+
+**Tikslas:** vietoje trijų plonų papildomų scenarijų (ataskaita, įrankis, klaidos tvarkymas) dalyvis gauna vieną trumpą pasirinkimą: pakartoti vieną M10 principą savo temai.
+
+**Struktūra:** content-block su 3 `copyable` sekcijomis:
+
+1. Ataskaitos generatorius – META + INPUT + OUTPUT.
+2. Įrankių naudojimas – paieška arba skaičiuoklė su įrankio pėdsaku.
+3. Klaidos tvarkymas ir ribos – aiškus „Nepavyko: [priežastis]“ atsakymas.
 
 ### 8.2a Verslo multi-agent schema (skaidrė 120.5 – privaloma)
 
@@ -468,7 +573,20 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Instrukcija:** Vykdyti rankiniu pipeline (3 atskiri DI pokalbiai + handoff taisyklės).
 
-**Artefaktai:** schema + 3 promptai + 1 test case.
+**Artefaktai:** schema + 3 promptai + 1 test case + **Įgūdžio paketas** (pakartotinai naudojamas aprašas: pavadinimas, kada naudoti, rolė, žingsniai, ribos, patikra).
+
+**Įgūdžio paketo šablonas (pridedamas prie CopyButton):**
+
+```
+Įgūdžio paketas:
+Pavadinimas: [pvz. RFP santraukos pipeline]
+Kada naudoti: [kokiai užduočiai]
+Rolės: koordinatorius, specialistas, vertintojas
+Žingsniai: [1–5]
+Ribos: ko DI nedaro / kada klausia žmogaus
+Patikra: 1 test case + laukiamas atsakymas
+Pamoka po bandymo: ką atnaujinti kitam kartui
+```
 
 ### 8.2c Lab #2 ir #3 sustiprinimas
 
@@ -477,7 +595,7 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ### 8.3 practice-summary
 
-- 5 blokų modelis: Celebration Hero, žinių kortelės (ką išmokote M12), refleksijos promptas, **Kitas žingsnis** („Pirmas veiksmas per 24–48 val.“ – pvz. pritaikyk vieną scenarijų savo projekte).
+- 5 blokų modelis: Celebration Hero, žinių kortelės (max 3: 3A praktikos; prompt-only + Įgūdžio paketas; pamoka + atnaujinimas), refleksijos promptas, **Kitas žingsnis** („Pirmas veiksmas per 24–48 val.“ – pvz. pritaikyk vieną scenarijų savo projekte).
 - **useCaseBlock:** „Kur pritaikyti?“ – tyrimai, ataskaitos, įrankių naudojimas, ribų nustatymas.
 - **reflectionPrompt:** Copyable; 3 klausimai (Apply, Analyze, Create) + 1 patarimas.
 
@@ -485,8 +603,8 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ## 9. User Journey – pastabos (įtrauktos į SOT)
 
-- **Energija:** M10 pradžioje – hook (whyBenefit, firstActionCTA). Viduryje – content-block su CopyButton (micro-win). Santraukoje – „Kur pritaikyti?“ ir „Pirmas veiksmas po modulio“.
-- **firstActionCTA (M10):** „Pasirink DI įrankį su įjungtais įrankiais (paieška arba Tools) ir per 1–2 min užduok vieną agentinę užklausą – pvz. ‚Ieškok [tema] ir pateik santrauką su šaltiniais‘.“
+- **Energija:** M10 pradžioje – hook (whyBenefit, firstActionCTA) + 10.1 micro-win; viduryje – content-block su CopyButton; santraukoje – „Kur pritaikyti?“ ir „Pirmas veiksmas po modulio“.
+- **firstActionCTA (M10):** intro neturi per anksti išvesti dalyvio į ilgą darbą kitame įrankyje. Pirmas veiksmas: „Tęsk iki pirmos praktinės užduoties; skaidrėje 10.1 per 60 sek. patikrinsi, kuo agentas skiriasi nuo paprasto prompto.“
 - **48 val. testas:** Po M10 – dalyvis atidaro DI įrankį ir atlieka vieną agentinę užklausą su šaltiniais. Po M12 – dalyvis pritaiko vieną scenarijų savo temai.
 
 ---
@@ -518,13 +636,13 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 
-| Elementas                              | Vieta                                                              | Pastaba                                                                                                                                 |
-| -------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **ROI skaičiuoklės šablonas**          | **M12** practice-intro arba ref. doc                               | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22. |
-| **Use case katalogas (20 pvz.)**       | Ref. doc; M10.1 arba santraukoje – nuoroda                         | Pardavimai, HR, finansai, klientų aptarnavimas, gamyba, e-komercija. Kiekvienam: trigger → actions → rizika → KPI. Ref.: §23.           |
-| **Duomenų modeliavimas non-tech**      | **M10** – optional skaidrė arba collapsible; ref. doc              | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24.                                    |
-| **Observability**                      | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                             |
-| **Promptų standartas automatizacijai** | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                 |
+| Elementas                                | Vieta                                                              | Pastaba                                                                                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Grąžos iš investicijų (ROI) šablonas** | **M12** practice-intro (skaidrė 120) + ref. doc                    | (Užduotys per savaitę) × (laikas) × (valandos kaina) – (įrankio kaina + priežiūra). 3 scenarijai: dabar / +3 mėn. / +12 mėn. Ref.: §22. |
+| **Use case katalogas (20 pvz.)**         | Ref. doc; M10.1 arba santraukoje – nuoroda                         | Pardavimai, HR, finansai, klientų aptarnavimas, gamyba, e-komercija. Kiekvienam: trigger → actions → rizika → KPI. Ref.: §23.           |
+| **Duomenų modeliavimas non-tech**        | **M10** – optional skaidrė arba collapsible; ref. doc              | Kas yra laukas, rekordas, ID, ryšiai; kodėl be ID atsiranda dublikatai (lab'o klaida #1). Ref.: §24.                                    |
+| **Observability**                        | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                             |
+| **Promptų standartas automatizacijai**   | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                 |
 
 ### WANT (galima vėlesniam išplėtimui)
 

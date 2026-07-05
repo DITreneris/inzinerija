@@ -60,12 +60,48 @@ describe('diagramRenderers registry contract', () => {
     );
     expect(promptStack.textContent).toContain('Prompt stack body');
     expect(promptStack.querySelector('img')).toBeNull();
+
+    const { container: learningLoop } = renderDiagram(
+      'm10_learning_loop',
+      'Learning loop body'
+    );
+    expect(learningLoop.textContent).toContain('Learning loop body');
+    expect(learningLoop.querySelector('img')).toBeNull();
+
+    const { container: agentWorkflow } = renderDiagram(
+      'agent_workflow_diagram',
+      'Agent workflow body'
+    );
+    expect(agentWorkflow.textContent).toContain('Agent workflow body');
+    expect(agentWorkflow.querySelector('img')).toBeNull();
+
+    const { container: workflowSpec } = renderDiagram(
+      'm10_workflow_spec',
+      'Workflow spec body'
+    );
+    expect(workflowSpec.textContent).toContain('Workflow spec body');
+    expect(workflowSpec.querySelector('img')).toBeNull();
+
+    const { container: incidentPlaybook } = renderDiagram(
+      'm10_incident_playbook',
+      'Incident playbook body'
+    );
+    expect(incidentPlaybook.textContent).toContain('Incident playbook body');
+    expect(incidentPlaybook.querySelector('img')).toBeNull();
+
+    const { container: m12MultiAgent } = renderDiagram(
+      'm12_multi_agent_schema',
+      'M12 multi-agent body'
+    );
+    expect(m12MultiAgent.textContent).toContain('M12 multi-agent body');
+    expect(m12MultiAgent.querySelector('img')).toBeNull();
   });
 
   it('returns null for unknown image keys so ContentSlides fallback can handle them', () => {
     expect(
       renderDiagramSection('unknown_legacy_image.svg', 'Body', {})
     ).toBeNull();
+    expect(renderDiagramSection('m10_spec_incident', 'Body', {})).toBeNull();
   });
 
   it('preserves body placement before, after, and none', () => {

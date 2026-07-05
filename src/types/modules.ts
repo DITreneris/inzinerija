@@ -652,13 +652,15 @@ export interface WarmUpQuizContent {
 /** path-step (kelio žingsnis) – Duomenų analizės kelias pramaišytas su teorija; badge atrakina žodynėlio terminus */
 export interface PathStepContent {
   title: string;
+  /** Optional: kelio pavadinimas badge'e (pvz. „Agentų inžinerijos kelias“); jei nėra – M7 default */
+  pathLabel?: string;
   stepNumber: number;
   /** Optional: bendras žingsnių skaičius – rodoma „Žingsnis N / M“ (pvz. M7 kelias 1–5) */
   stepTotal?: number;
   /** Trumpas aprašymas – ką daryti */
   body?: string;
   /** Arba sekcijos (heading + body) – content-block panašūs blokai */
-  sections?: { heading?: string; body: string }[];
+  sections?: { heading?: string; body: string; copyable?: string }[];
   /** Terminų pavadinimai – atrakinti žodynėlyje po „Pažymėjau kaip atliktą“ */
   unlockedGlossaryTerms?: string[];
   footer?: string;

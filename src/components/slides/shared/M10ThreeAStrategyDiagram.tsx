@@ -2,6 +2,7 @@
  * M10 – 3A strategija: vizualiai proporcingos juostos (80 / 15 / 5).
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM10ThreeALabels, type M10Locale } from './m10DiagramContent';
 
 const W = 400;
@@ -21,6 +22,7 @@ export default function M10ThreeAStrategyDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
+  const palette = useDiagramPalette();
   const L = getM10ThreeALabels(locale);
   let y = 40;
 
@@ -81,7 +83,7 @@ export default function M10ThreeAStrategyDiagram({
         textAnchor="middle"
         fontSize="14"
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.title}
@@ -99,7 +101,7 @@ export default function M10ThreeAStrategyDiagram({
               height={r.h}
               rx="8"
               fill={r.fill}
-              stroke="#102a43"
+              stroke={palette.brandDark}
               strokeWidth="1"
             />
             <text

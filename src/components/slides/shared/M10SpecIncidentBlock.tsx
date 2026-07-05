@@ -1,3 +1,4 @@
+/** @deprecated Replaced by `M10WorkflowSpecBlock` + `M10IncidentPlaybookBlock` (slide 10.65). Not wired in `diagramRenderers`. */
 import { useLocale } from '../../../contexts/LocaleContext';
 import EnlargeableDiagram from './EnlargeableDiagram';
 import M10SpecIncidentDiagram from './M10SpecIncidentDiagram';

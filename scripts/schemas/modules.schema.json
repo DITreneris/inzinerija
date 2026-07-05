@@ -487,6 +487,10 @@
                 "description": "Kelio žingsnis – Duomenų analizės kelias pramaišytas su teorija; badge atrakina žodynėlio terminus",
                 "properties": {
                   "title": { "type": "string" },
+                  "pathLabel": {
+                    "type": "string",
+                    "description": "Kelio pavadinimas badge'e; jei nėra, UI naudoja M7 default"
+                  },
                   "stepNumber": { "type": "number", "minimum": 1 },
                   "stepTotal": {
                     "type": "number",
@@ -500,7 +504,8 @@
                       "type": "object",
                       "properties": {
                         "heading": { "type": "string" },
-                        "body": { "type": "string" }
+                        "body": { "type": "string" },
+                        "copyable": { "type": "string" }
                       }
                     }
                   },

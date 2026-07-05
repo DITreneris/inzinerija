@@ -6,6 +6,8 @@
 
 M10+ diagram routing is already guarded through `diagramRenderers.tsx`, and the active blocks use `EnlargeableDiagram` with `mobileBehavior="reflow"`. The remaining risk is visual quality, not routing correctness.
 
+**Automated gates (2026-07-05):** `validate:schema`, `lint`, 48 diagram tests (`diagramRenderers` + `DiagramLocalization`), `audit:en-coverage-m10-12`, `typecheck` – PASS. **Rankinė browser smoke** (10.2, 10.45, 10.49, 10.65, 120.5; LT/EN; light/dark; modal) – Release QA #6, neblokuoja commit.
+
 ## Premium SaaS Rubric
 
 | Area         | Check                                                                                   |
@@ -18,18 +20,20 @@ M10+ diagram routing is already guarded through `diagramRenderers.tsx`, and the 
 
 ## Backlog Matrix
 
-| Priority | Diagram                          | Current status                                                                       | Next action                                                                                                        |
-| -------- | -------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| Done     | `M10ToolDecisionTreeDiagram.tsx` | SVG interaction kept as a spatial exception; selected state and keyboard path exist. | Focus-visible equivalent added with a separate gold dashed outline so keyboard focus is visible before activation. |
-| P1       | `M10AgentTaxonomyDiagram.tsx`    | Highest M10+ token count in current audit; likely local palette-heavy.               | Token/readability pass after M1–M9 keyboard work is stable.                                                        |
-| P1       | `M10SpecIncidentDiagram.tsx`     | Workflow/playbook comparison can become dense in slide view.                         | Screenshot-level font/contrast audit in light and dark modes.                                                      |
-| P1       | `M10TriggerFlowDiagram.tsx`      | Static workflow chain; lower a11y risk, still local SVG palette.                     | Align frame/background/stroke with `diagramTokens` if visual parity holds.                                         |
-| P2       | `M10ThreeAStrategyDiagram.tsx`   | Static strategy layout; likely safe visual-only polish.                              | Check 80/15/5 label hierarchy and mobile reflow.                                                                   |
-| P2       | `M12ThreeLabsDiagram.tsx`        | Static three-part model.                                                             | Verify full-size modal readability and dark mode.                                                                  |
-| P2       | `M13AecFunnelDiagram.tsx`        | Static funnel.                                                                       | Check small label contrast and funnel segment spacing.                                                             |
-| P2       | `M13PromptStackDiagram.tsx`      | Static stack.                                                                        | Check text density and whether `diagramTokens` can replace local palette.                                          |
-| P2       | `M13RuleOfThirdsDiagram.tsx`     | Static grid.                                                                         | Check grid line contrast in dark mode.                                                                             |
-| P2       | `M15PracticeLoopDiagram.tsx`     | Static loop.                                                                         | Check cycle arrows, active emphasis, and mobile readability.                                                       |
+| Priority | Diagram                                                         | Current status                                                                       | Next action                                                                                                        |
+| -------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Done     | `M10ToolDecisionTreeDiagram.tsx`                                | SVG interaction kept as a spatial exception; selected state and keyboard path exist. | Focus-visible equivalent added with a separate gold dashed outline so keyboard focus is visible before activation. |
+| Done     | `M10AgentTaxonomyDiagram.tsx`                                   | Layout SOT added; role edges now use directed marker arrows and palette chrome.      | Manual light/dark smoke before release.                                                                            |
+| Done     | `M10WorkflowSpecDiagram.tsx` + `M10IncidentPlaybookDiagram.tsx` | Former dense spec/incident combination split into two readable diagrams.             | Manual light/dark smoke before release.                                                                            |
+| Done     | `M10LearningLoopDiagram.tsx`                                    | Layout SOT + 4-step `InteractiveDiagramShell`; dark-mode chrome via palette.         | 9-node step nav remains deferred in `TODO.md`.                                                                     |
+| Done     | `M12MultiAgentSchemaDiagram.tsx`                                | Output box widened; 6-step `InteractiveDiagramShell`; SVG hit zones pointer-only.    | Evaluator feedback loop remains deferred in `TODO.md`.                                                             |
+| Done     | `M10TriggerFlowDiagram.tsx`                                     | Static workflow chain; title/box chrome now uses palette.                            | Optional webhook polygon remains deferred in `TODO.md`.                                                            |
+| P2       | `M10ThreeAStrategyDiagram.tsx`                                  | Static strategy layout; likely safe visual-only polish.                              | Check 80/15/5 label hierarchy and mobile reflow.                                                                   |
+| P2       | `M12ThreeLabsDiagram.tsx`                                       | Static three-part model.                                                             | Verify full-size modal readability and dark mode.                                                                  |
+| P2       | `M13AecFunnelDiagram.tsx`                                       | Static funnel.                                                                       | Check small label contrast and funnel segment spacing.                                                             |
+| P2       | `M13PromptStackDiagram.tsx`                                     | Static stack.                                                                        | Check text density and whether `diagramTokens` can replace local palette.                                          |
+| P2       | `M13RuleOfThirdsDiagram.tsx`                                    | Static grid.                                                                         | Check grid line contrast in dark mode.                                                                             |
+| P2       | `M15PracticeLoopDiagram.tsx`                                    | Static loop.                                                                         | Check cycle arrows, active emphasis, and mobile readability.                                                       |
 
 ## Guardrails
 

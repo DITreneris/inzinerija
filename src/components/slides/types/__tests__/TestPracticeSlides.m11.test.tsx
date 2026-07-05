@@ -15,7 +15,7 @@ function calculateScore(correctCount: number, total: number): number {
 }
 
 describe('TestPracticeSlides M11 data contract', () => {
-  it('keeps the M11 test at 8 questions with a 70 percent pass threshold', () => {
+  it('keeps the M11 test at 9 questions with a 70 percent pass threshold', () => {
     const m11 = modules.find((module) => module.id === 11);
     const intro = m11?.slides.find((slide) => slide.id === 110);
     const questions = getM11Questions();
@@ -29,12 +29,13 @@ describe('TestPracticeSlides M11 data contract', () => {
       'm11-q6',
       'm11-q7',
       'm11-q8',
+      'm11-q9',
     ]);
     expect(
       (intro?.content as { thresholds?: { pass?: number } })?.thresholds
     ).toMatchObject({ pass: 70 });
-    expect(calculateScore(6, questions.length)).toBeGreaterThanOrEqual(70);
-    expect(calculateScore(5, questions.length)).toBeLessThan(70);
+    expect(calculateScore(7, questions.length)).toBeGreaterThanOrEqual(70);
+    expect(calculateScore(6, questions.length)).toBeLessThan(70);
   });
 
   it('keeps taxonomy and multi-agent remediation links pointed at M10 source slides', () => {
@@ -47,5 +48,6 @@ describe('TestPracticeSlides M11 data contract', () => {
     expect(questionsById.get('m11-q6')?.relatedSlideId).toBe(10.48);
     expect(questionsById.get('m11-q7')?.relatedSlideId).toBe(10.15);
     expect(questionsById.get('m11-q8')?.relatedSlideId).toBe(10.25);
+    expect(questionsById.get('m11-q9')?.relatedSlideId).toBe(10.49);
   });
 });

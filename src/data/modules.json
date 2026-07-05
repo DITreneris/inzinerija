@@ -10199,17 +10199,17 @@
           "subtitle": "Įrankiai, promptai, sistemos",
           "type": "action-intro",
           "content": {
-            "whyBenefit": "Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo ir įrankių iki integracijų ir promptų architektūros.",
+            "whyBenefit": "Po šio modulio suprasi, kaip projektuoti DI agentus – nuo ciklo, įrankių ir konteksto iki integracijų.",
             "heroStat": "Jau moki 6 blokus ir konteksto inžineriją.",
             "heroText": "Dabar – agentų inžinerija.",
-            "heroSubText": "Projektuosi agentus savo procesams – taksonomija, multi-agent koordinacija, no-code įrankiai. Kontekstas – Modulyje 4.",
-            "firstActionCTA": "Pasirink DI įrankį su įjungtais įrankiais (paieška arba Tools) ir per 1–2 min užduok vieną agentinę užklausą – pvz. „Ieškok [tema] ir pateik santrauką su šaltiniais“.",
+            "heroSubText": "Projektuosi agentus savo procesams – taksonomija, multi-agent koordinacija, no-code įrankiai. M4–M6 konteksto inžineriją čia taikysi agentams.",
+            "firstActionCTA": "Tęsk iki pirmos praktinės užduoties: skaidrėje „Agentų inžinerijos kelias“ per 60 sek. patikrinsi, kuo DI agentas skiriasi nuo paprasto klausimo–atsakymo.",
             "outcomes": [
               "Suprasi agentų taksonomiją (L0–L3) ir multi-agent roles",
-              "Naudosi 5 workflow šablonus ir sisteminius promptus",
+              "Naudosi 5 workflow šablonus ir konteksto taisykles agentams",
               "Žinosi, kaip pasirinkti įrankius ir apriboti rizikas"
             ],
-            "duration": "~20–25 min",
+            "duration": "~25–30 min",
             "audience": "Skirta verslo specialistams ir inžinieriams, baigusiems Modulius 4–6 (Konteksto inžinerija)."
           }
         },
@@ -10222,17 +10222,22 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Šiame modulyje eilės tvarka: **agentų ciklas** (diagrama), **workflow sąvokos** (trigger, sąlyga, veiksmas, webhook ir kt. – visa lentelė ir pavyzdžiai kitoje skaidrėje), **3A strategija**, **DI agentų tipai ir rolės**, **5 workflow šablonai**, **rolė ir sisteminis promptas**, **DI įrankių pasirinkimas**, **verslo automatizavimo platformos** (Zapier, Make, n8n, Power Automate), **kada rinktis agentą**, **klaidos ir ribos**. Neprivaloma: spec ir testavimas; žodynėlis; santrauka.\n\nČia **nebekartojame** sąvokų apibrėžimų – juos rasite skaidrėje **Pagrindinės sąvokos**.",
+                "body": "Šiame modulyje eilės tvarka: **agentų ciklas** (diagrama), **3A strategija**, **DI agentų tipai ir rolės**, **5 workflow šablonai**, **rolė ir sisteminis promptas**, **DI įrankių pasirinkimas**, **kada rinktis agentą**, **klaidos ir ribos**, **workflow sąvokos** (trigger, sąlyga, veiksmas, webhook), **verslo automatizavimo platformos** (Zapier, Make, n8n, Power Automate). Neprivaloma: gilesnė spec ir testavimas; žodynėlis; santrauka.\n\nČia **nebekartojame** sąvokų apibrėžimų – juos rasite skaidrėje **Pagrindinės sąvokos**.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Ką rasite (eilė)",
-                "body": "**Agentų ciklas** → **3A strategija** → **DI agentų tipai ir rolės** → **5 workflow šablonai** → **Rolė ir sisteminis promptas** → **Įrankių pasirinkimas** → **Kada agentas** → **Klaidos ir ribos** → **Workflow sąvokos** → **Verslo automatizavimo įrankiai** → neprivaloma: spec/testai; **Žodynėlis**; **santrauka**.",
-                "blockVariant": "brand"
+                "heading": "Micro-win per 60 sek.",
+                "body": "Prieš gilesnę teoriją atlik vieną mažą patikrą: ar jau gali atskirti agentą nuo paprasto klausimo–atsakymo?",
+                "blockVariant": "accent"
               },
               {
-                "heading": "Daryk dabar",
-                "body": "Kitoje skaidrėje atidaryk **Agentų ciklas ir architektūra** – ten proceso diagrama ir ciklo paaiškinimas.",
+                "heading": "Kopijuojamas promptas",
+                "body": "Nukopijuok į DI ir pakeisk pavyzdį pagal savo darbą.",
+                "copyable": "Paaiškink vienu sakiniu, kuo DI agentas skiriasi nuo paprasto klausimo–atsakymo. Pateik vieną mano darbo pavyzdį, kur reikėtų agento, o ne vieno paprasto prompto."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Jei atsakyme nėra kelių žingsnių arba įrankių, vadinasi tai dar paprastas promptas. Kitoje skaidrėje pamatysi visą agento ciklą.",
                 "blockVariant": "accent"
               }
             ]
@@ -10271,7 +10276,33 @@
                 "body": "Užduotis DI (įklijuok į pokalbį): „Paaiškink savo žodžiais **keturiais žingsniais**, kaip veikia DI agentas, ir **vienu sakiniu** – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“",
                 "copyable": "Paaiškink savo žodžiais keturiais žingsniais, kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių."
               }
-            ]
+            ],
+            "footer": "Toliau – checkpoint: agentų ciklas"
+          }
+        },
+        {
+          "id": 10.21,
+          "title": "Checkpoint: agentų ciklas",
+          "subtitle": "Agentų inžinerijos kelias – žingsnis 1",
+          "type": "path-step",
+          "content": {
+            "title": "Agentų ciklas – atlikau 1 agentinę užklausą",
+            "pathLabel": "Agentų inžinerijos kelias",
+            "stepNumber": 1,
+            "stepTotal": 3,
+            "body": "Paleisk trumpą agentinę užklausą su paieška arba įrankiu. Pažymėk šį žingsnį, kai atsakyme matai ne tik tekstą, bet ir aiškius žingsnius, šaltinius arba įrankio pėdsaką.",
+            "sections": [
+              {
+                "heading": "Ką patikrinti",
+                "body": "Ar atsakyme yra bent 2 žingsniai? Ar nurodyta, kokį įrankį DI naudojo arba kodėl jo nenaudojo?",
+                "copyable": "Užduotis: [APRAŠYK]. Naudok paiešką arba įrankį, jei reikia. Pateik atsakymą 3 žingsniais: ką darei, kokį įrankį naudojai, koks rezultatas. Jei įrankio nenaudojai – paaiškink kodėl."
+              },
+              {
+                "heading": "Jei nepavyko",
+                "body": "Papildyk užduotį sakiniais: „naudok paiešką“, „pateik šaltinius“, „jei nerandi – parašyk Nerasta“."
+              }
+            ],
+            "unlockedGlossaryTerms": ["Agentas (DI)", "Įrankis (tool)", "ReAct"]
           }
         },
         {
@@ -10356,7 +10387,36 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 6: 5 workflow šablonai"
+            "footer": "Toliau – checkpoint: rolės ir handoff"
+          }
+        },
+        {
+          "id": 10.451,
+          "title": "Checkpoint: rolės ir handoff",
+          "subtitle": "Agentų inžinerijos kelias – žingsnis 2",
+          "type": "path-step",
+          "content": {
+            "title": "Rolės – apibrėžiau įvestis ir išvestis",
+            "pathLabel": "Agentų inžinerijos kelias",
+            "stepNumber": 2,
+            "stepTotal": 3,
+            "body": "Pasirink vieną procesą ir užrašyk 3 roles: koordinatorius, specialistas, vertintojas. Pažymėk žingsnį, kai kiekviena rolė turi aiškią įvestį ir išvestį.",
+            "sections": [
+              {
+                "heading": "Ką patikrinti",
+                "body": "Ar aišku, kada specialistas perduoda darbą vertintojui? Ar vertintojas turi pabaigos kriterijų?",
+                "copyable": "Procesas: [APRAŠYK]. Aprašyk 3 roles: koordinatorius, specialistas, vertintojas. Kiekvienai rolei nurodyk: įvestį, išvestį ir handoff taisyklę – kada darbas perduodamas kitai rolei."
+              },
+              {
+                "heading": "Jei per sudėtinga",
+                "body": "Sumažink iki L1: vienas agentas, vienas įrankis, vienas rezultatas."
+              }
+            ],
+            "unlockedGlossaryTerms": [
+              "Koordinatorius",
+              "Vertintojas",
+              "Maršrutizatorius"
+            ]
           }
         },
         {
@@ -10399,7 +10459,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 7: Skyrius – multi-agent ir workflow"
+            "footer": "Toliau – skaidrė 9: Skyrius – multi-agent ir workflow"
           }
         },
         {
@@ -10409,11 +10469,12 @@
           "type": "section-break",
           "content": {
             "title": "Skyrius: Multi-agent → workflow",
-            "subtitle": "Toliau: rolė, sisteminis promptas, įrankiai ir klaidos tvarkymas.",
+            "subtitle": "Toliau: uždaro mokymosi ciklas, rolė, įrankiai ir klaidos tvarkymas.",
             "sectionNumber": "M10",
-            "footer": "Toliau – skaidrė 8: Rolė ir sisteminis promptas",
+            "footer": "Toliau – skaidrė 10: Uždaro mokymosi ciklas",
             "celebrationText": "Puiku! Taksonomija ir 5 workflow šablonai – jau tavo arsenale.",
             "nextSteps": [
+              "Uždaro mokymosi ciklas – kaip klaidos tampa taisyklėmis ir įgūdžiais.",
               "Rolė ir sisteminis promptas – kaip nustatyti agento ribas.",
               "Įrankių pasirinkimas – paieška, API, platformos.",
               "Kada agentas, kada paprastas promptas.",
@@ -10436,6 +10497,48 @@
           }
         },
         {
+          "id": 10.49,
+          "title": "Uždaro mokymosi ciklas",
+          "subtitle": "Taisyklės, įgūdžiai, veiksmų istorija, patikra ir pamokos",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Agentas ne tik vykdo užduotį. Gera sistema kaupia veiksmų istoriją, tikrina rezultatą, iš klaidų ištraukia pamokas ir atnaujina taisykles arba įgūdžius kitam kartui.",
+                "image": "m10_learning_loop",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Du sistemos sluoksniai",
+                "body": "**Vykdymo sistema:** užduotis → taisyklės → koordinatorius → specialistai / vertintojas → įgūdžiai → rezultatas.\n\n**Mokymosi ciklas:** veiksmų istorija → patikra → pamokos → atnaujinimas. Taip vieno bandymo klaidos tampa geresniu kitu bandymu.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Blokai paprastai",
+                "body": "**Taisyklės** – ribos ir principai: ko DI nedaro, kada klausia žmogaus.\n\n**Įgūdžiai** – pakartotinai naudojami gebėjimai: paieška, rašymas, tikrinimas arba vienas Įgūdžio paketas su instrukcija.\n\n**Veiksmų istorija** – užduotis, žingsniai, klaidos, žmogaus pastabos.\n\n**Patikra** – testas ar vertinimas: ar rezultatas atitiko kriterijus.\n\n**Pamokos** – trumpas įrašas: kas nepavyko, ką keisti, kur taisyklę ar įgūdį atnaujinti.\n\n**Atnaujinimas** – pakeista taisyklė, promptas, įgūdžio aprašas arba testas kitam kartui.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Po vieno mažo scenarijaus užrašyk vieną pamoką: kas nepavyko, kokia taisyklė ar įgūdis tai pataiso, kur ta pataisa bus naudojama kitą kartą.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Kopijuojamas pamokos šablonas",
+                "body": "Naudok po M12 scenarijaus arba po bet kurio agento bandymo.",
+                "copyable": "Pamoka po agento bandymo:\n1) Kas nutiko?\n2) Kokia priežastis?\n3) Ką atnaujinu: taisyklę, promptą, įgūdį ar testą?\n4) Kaip patikrinsiu kitą kartą?"
+              },
+              {
+                "heading": "Patikra",
+                "body": "Gera pamoka pakeičia kitą bandymą. Jei tik aprašai faktą („nepavyko“), bet nepakeiti taisyklės, įgūdžio ar testo – mokymosi ciklas neužsidaro.",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Toliau – skaidrė 11: Rolė ir sisteminis promptas"
+          }
+        },
+        {
           "id": 10.3,
           "title": "Rolės ir sisteminio prompto šablonas",
           "subtitle": "Kaip nustatyti rolę ir ribas agentui",
@@ -10444,7 +10547,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai.",
+                "body": "Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas yra konteksto inžinerijos dalis: čia nurodai rolę, ribas, įrankius ir ką daryti, kai duomenų trūksta.",
                 "blockVariant": "accent"
               },
               {
@@ -10520,7 +10623,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių.\n\n**Multi-agent šablonai** (grandinė, maršrutizavimas ir kt.) – skaidrė **10.48**.",
+                "body": "Agentas – kai užduotis sudėtinga (kelios veiklos, išoriniai duomenys, įrankiai). Paprastas promptas – kai vienas klausimas, vienas atsakymas, be išorinių įrankių.\n\nTai M4–M6 konteksto inžinerijos tęsinys: prieš vykdymą nusprendi, kokios informacijos, įrankių ir ribų DI reikės.\n\n**Multi-agent šablonai** (grandinė, maršrutizavimas ir kt.) – skaidrė **10.48**.",
                 "blockVariant": "accent"
               },
               {
@@ -10546,7 +10649,47 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
+              },
+              {
+                "heading": "Workflow specifikacija (1 puslapis)",
+                "body": "Kai agentas jungiasi su forma, CRM, el. paštu ar kitu įrankiu, prieš paleidimą užrašyk vieno puslapio specifikaciją. Pilnas testavimas ir saugumas – neprivalomoje skaidrėje „Workflow, testavimas ir saugumas“.",
+                "blockVariant": "brand",
+                "copyable": "Workflow specifikacija:\n1) Trigger – kas paleidžia srautą.\n2) Input schema – kokie laukai privalomi.\n3) Condition – kokia sąlyga keičia eigą.\n4) Actions – 3–5 veiksmai su įrankiais.\n5) Output – koks rezultatas turi būti sukurtas.\n6) Error handling – ką daryti, jei žingsnis nepavyksta.\n7) Audit log – ką fiksuoti: laikas, žingsnis, rezultatas.\n8) HITL – kur reikalingas žmogaus patvirtinimas."
               }
+            ],
+            "footer": "Toliau – checkpoint: agentinis promptas"
+          }
+        },
+        {
+          "id": 10.51,
+          "title": "Checkpoint: agentinis promptas",
+          "subtitle": "Agentų inžinerijos kelias – žingsnis 3",
+          "type": "path-step",
+          "content": {
+            "title": "Agentinis promptas – turiu šabloną prieš praktiką",
+            "pathLabel": "Agentų inžinerijos kelias",
+            "stepNumber": 3,
+            "stepTotal": 3,
+            "body": "Prieš M12 praktiką turėk vieną 5 dalių agentinį promptą, 1 puslapio workflow specifikacijos juodraštį ir 1 auksinę patikrą (kraštinį atvejį). Tai bus tavo startas Koordinatorius + 2 specialistai scenarijui.",
+            "sections": [
+              {
+                "heading": "Minimalus artefaktas",
+                "body": "Rolė, užduotis žingsniais, įrankiai, išvesties formatas, klaidos tvarkymas + Trigger, Actions, Output, HITL."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Jei trūksta klaidos tvarkymo arba žmogaus patvirtinimo rizikingoje vietoje, papildyk prieš eidamas toliau."
+              },
+              {
+                "heading": "Auksinė patikra",
+                "body": "Patikrink promptą su 1 kraštiniu atveju: trūksta privalomo lauko, šaltinio nėra arba API neatsako. Geras rezultatas – DI grąžina aiškų „Nepavyko: [priežastis]“ ir pasiūlo, ką pataisyti.",
+                "copyable": "Patikrink šį agentinį promptą su kraštiniu atveju: [ĮKLIJUOK PROMPTĄ]. Testo situacija: [trūksta privalomo lauko / šaltinio nėra / API neatsako]. Įvertink, ar atsakymas turi „Nepavyko: [priežastis]“ ir aiškų pasiūlymą, ką pataisyti."
+              }
+            ],
+            "unlockedGlossaryTerms": [
+              "Sisteminis promptas",
+              "Klaidos tvarkymas",
+              "Trigger"
             ]
           }
         },
@@ -10615,7 +10758,7 @@
             "title": "Skyrius: Workflow → automatizavimas",
             "subtitle": "Toliau: Zapier, Make, n8n, Power Automate ir optional spec/testavimas.",
             "sectionNumber": "M10",
-            "footer": "Toliau – skaidrė 14: Verslo automatizavimo įrankiai",
+            "footer": "Toliau – skaidrė 18: Verslo automatizavimo įrankiai",
             "celebrationText": "Gerai! Workflow grandinė ir pagrindinės sąvokos – aiškios.",
             "nextSteps": [
               "Verslo automatizavimo įrankiai – kada Zapier, Make, n8n ar Power Automate.",
@@ -10682,9 +10825,15 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Spec ir incident playbook (diagrama)",
-                "body": "Viršuje – **8 spec blokai** (vieno puslapio struktūra). Apačioje – **5 incidentų žingsniai** (saugumas). Tekstas išsamiau – sekcijose žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
-                "image": "m10_spec_incident",
+                "heading": "Workflow specifikacija (diagrama)",
+                "body": "**8 spec blokai** kaip viena seka: nuo trigger iki audit log. Tekstas išsamiau – sekcijoje žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "image": "m10_workflow_spec",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Incident playbook (diagrama)",
+                "body": "**5 incidentų žingsniai** saugumui: sustabdyti, fiksuoti, įvertinti apimtį, pranešti ir ištaisyti. Tekstas išsamiau – saugumo sekcijoje žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "image": "m10_incident_playbook",
                 "blockVariant": "brand"
               },
               {
@@ -10802,7 +10951,7 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokote",
-            "introBody": "Sveikiname! Esminiai laimėjimai: agentų taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, DI ir no-code įrankiai, promptai ir klaidų tvarkymas.",
+            "introBody": "Sveikiname! Esminiai laimėjimai: agentų taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, uždaro mokymosi ciklas, DI ir no-code įrankiai, promptai ir klaidų tvarkymas.",
             "stats": [
               {
                 "label": "Gylio lygiai + rolės",
@@ -10829,38 +10978,27 @@
                 ]
               },
               {
-                "heading": "3A ir automatizacija",
+                "heading": "3A, mokymosi ciklas ir saugumas",
                 "icon": "Workflow",
                 "color": "brand",
                 "items": [
                   "Automatize 80 % / Augment 15 % / Autonomize 5 %",
-                  "Trigger → Condition → Action",
-                  "Zapier, Make, n8n, Power Automate"
+                  "Uždaro mokymosi ciklas: istorija → patikra → pamokos → atnaujinimas",
+                  "HITL, klaidos tvarkymas ir DI agento QC testai"
                 ]
               },
               {
-                "heading": "Use case katalogas",
-                "icon": "Briefcase",
-                "color": "slate",
-                "items": [
-                  "Pardavimai: lead→CRM; pipeline; RFP",
-                  "HR: CV filtras; onboarding; score",
-                  "Finansai: OCR; closinimas; alert",
-                  "Support: triažas; sentiment; FAQ+QC"
-                ]
-              },
-              {
-                "heading": "Promptai ir saugumas",
+                "heading": "Promptai ir use case katalogas",
                 "icon": "Target",
                 "color": "accent",
                 "items": [
                   "5 dalių agentinis šablonas",
-                  "Klaidos tvarkymas ir HITL",
-                  "DI agento QC testai"
+                  "Pardavimai: lead→CRM; pipeline; RFP",
+                  "HR, finansai ir support: nuo santraukos iki eskalacijos"
                 ]
               }
             ],
-            "reflectionPrompt": "Esi mokymų refleksijos asistentas. Ką tik baigiau mokymą apie DI agentus – taksonomija, multi-agent, workflow, promptai. Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "Esi mokymų refleksijos asistentas. Ką tik baigiau mokymą apie DI agentus – taksonomija, multi-agent, workflow, uždaro mokymosi ciklas, promptai. Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kokią pamoką po bandymo norėčiau fiksuoti? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas",
             "tagline": "Agentas = žingsniai + įrankiai + ribos – tavo pagrindas automatizacijai.",
             "nextStepCTA": "Pereikite prie Modulio 11: Žinių patikrinimas (Agentų kelias)",
@@ -10899,7 +11037,7 @@
           "content": {
             "whyBenefit": "Po šio testo žinosi, ar esi pasiruošęs finaliniam Agentų inžinerijos projektui (Modulis 12).",
             "duration": "~10–12 min",
-            "firstActionCTA": "Atsakyk į 8 klausimus – temos: agentų ciklas, taksonomija, multi-agent, workflow, 3A.",
+            "firstActionCTA": "Atsakyk į 9 klausimus – temos: agentų ciklas, taksonomija, multi-agent, workflow, 3A ir mokymosi ciklas.",
             "microWinPhrase": "Kiekvienas teisingas atsakymas parodo, kad esi pasiruošęs projektuoti agentus.",
             "thresholds": {
               "pass": 70,
@@ -10917,11 +11055,17 @@
             {
               "id": "m11-q1",
               "type": "mcq",
-              "question": "Kiek pagrindinių žingsnių turi agentų ciklas?",
-              "options": ["3", "4", "5", "6"],
-              "correct": 1,
-              "explanation": "Agentas: gauna užduotį, planuoja žingsnius, naudoja įrankius, grąžina rezultatą. Papildomai – grįžtamasis ryšys.",
-              "relatedSlideId": 10.2
+              "bloomLevel": 3,
+              "question": "Situacija: DI agentas pateikia užtikrintą atsakymą, bet nenurodo šaltinių, nors užduotyje reikėjo naujausių faktų. Ką pirmiausia verta pataisyti?",
+              "options": [
+                "Aiškiai nurodyti įrankį ir taisyklę: naudok paiešką, pateik šaltinius, jei nerandi – parašyk „Nerasta“",
+                "Padidinti atsakymo ilgį iki 2000 žodžių",
+                "Ištrinti klaidos tvarkymo sakinį",
+                "Palikti tą patį promptą ir tiesiog paklausti dar kartą"
+              ],
+              "correct": 0,
+              "explanation": "Agentui reikia aiškaus konteksto: kokį įrankį naudoti, kada pateikti šaltinius ir ką grąžinti, kai šaltinių nėra. Tai mažina išgalvotų faktų riziką.",
+              "relatedSlideId": 10.3
             },
             {
               "id": "m11-q2",
@@ -11023,6 +11167,21 @@
               "correct": 0,
               "explanation": "Augment – žmogus lieka sprendime, DI padeda (santrauka, klasifikacija). Human-in-the-loop prieš siuntimą sumažina riziką.",
               "relatedSlideId": 10.25
+            },
+            {
+              "id": "m11-q9",
+              "type": "mcq",
+              "bloomLevel": 3,
+              "question": "Situacija: agentas atliko užduotį, bet rezultatas buvo netikslus. Po klaidos analizės pastebi priežastį. Ką reikia padaryti, kad mokymosi ciklas užsidarytų, o ne tik apibūdintum problemą?",
+              "options": [
+                "Atnaujinti taisyklę, promptą, įgūdį arba testą pagal rastą priežastį – ne tik užrašyti, kas nutiko",
+                "Užrašyti pastabą sąraše ir tęsti su tuo pačiu promptu",
+                "Padidinti agento atsakymo ilgį",
+                "Paleisti tą pačią užklausą dar kartą be pakeitimų"
+              ],
+              "correct": 0,
+              "explanation": "Mokymosi ciklas užsidaro tik tada, kai pamoka virsta konkrečiu atnaujinimu: taisykle, promptu, įgūdžiu arba testu. Vien fakto konstatavimas ciklo neužbaigia.",
+              "relatedSlideId": 10.49
             }
           ]
         },
@@ -11040,6 +11199,39 @@
               "body": "Taksonomija, multi-agent, workflow (trigger, action), 3A ir įrankiai – tyrimai, ataskaitos, support triažas, RFP analizė.",
               "blockVariant": "accent"
             }
+          }
+        },
+        {
+          "id": 113,
+          "title": "Bonus: agento pipeline per 5 min",
+          "subtitle": "Koordinatorius → specialistas → vertintojas",
+          "type": "content-block",
+          "optional": true,
+          "badgeVariant": "bonus",
+          "content": {
+            "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Po testo gali per 5 min išbandyti mini agentų pipeline be Zapier ar Make: 3 atskiri DI pokalbiai, aiškus perdavimas ir viena kokybės patikra.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Pasirink mažą procesą: RFP santrauka, savaitės pardavimai arba kliento skundas. Paleisk žemiau esantį promptų rinkinį ir užfiksuok, ką perduodi iš vienos rolės kitai.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Kopijuojamas promptų rinkinys",
+                "body": "Naudok 3 atskiruose DI pokalbiuose.",
+                "copyable": "KOORDINATORIUS: Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk specialistą ir vertintoją. Nurodyk įvestį, išvestį ir handoff taisyklę.\n\nSPECIALISTAS: Įvestis: [KOORDINATORIAUS PLANAS]. Atlik paskirtą darbą. Išvestis: trumpa santrauka, faktai, neaiškumai.\n\nVERTINTOJAS: Patikrink specialisto išvestį pagal kriterijus: faktai, aiškumas, rizika. Jei trūksta duomenų – grąžink pataisymų sąrašą."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar turi aiškų handoff ir 1 test case, kai trūksta duomenų? Jei taip – esi pasiruošęs M12 prompt-first startui (124.5).",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Toliau – Modulis 12: Agentų projektas"
           }
         }
       ],
@@ -11061,7 +11253,7 @@
       "description": "Sukurk vieną agentų arba automatizacijos scenarijų – M10 ir M11 (Agentų kelias) tęsinys.",
       "icon": "Rocket",
       "level": "practice",
-      "duration": "20–30 min",
+      "duration": "20–30 min startas / 60–90 min pilnas kelias",
       "unlocksAfter": 11,
       "accent": "fuchsia",
       "identityIcon": "Rocket",
@@ -11069,15 +11261,23 @@
         {
           "id": 120,
           "title": "Agentų inžinerijos projektas",
-          "subtitle": "3 privalomos praktikos (trigger → veiksmas → artefaktai) + 4 papildomi scenarijai",
+          "subtitle": "Prompt-first startas + 3 pilnos praktikos su artefaktais",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "Po projekto turėsi paruoštus artefaktus: workflow schema (trigger, sąlyga, veiksmai), laukų susiejimą, testų atvejus, logų įrodymus. Trys privalomos praktikos pagal 3A: Automatize (80 %), Augment (15 %), Autonomize (5 %). Vertės santrauka: sutaupytas laikas ≈ (valandos rankiniu × dažnumas) − (valandos su automatika × dažnumas); išsamus ROI šablonas – dokumente „Automatizavimo įrankiai verslui“, §22.",
-            "duration": "~20–30 min vienai praktikai",
+            "whyBenefit": "Po projekto turėsi paruoštus artefaktus: prompt-only multi-agent schemą arba pilną workflow (trigger, sąlyga, veiksmai), laukų susiejimą, testų atvejus, logų įrodymus ir vieną Įgūdžio paketą pakartotiniam naudojimui. Greitas startas – Koordinatorius + 2 specialistai (124.5); pilnas delivery-first kelias – 3 praktikos pagal 3A.",
+            "duration": "~20–30 min startas; ~60–90 min visi 3 lab’ai",
             "minScenariosToComplete": 3,
-            "firstActionCTA": "Pasirink 1 praktiką (forma→CRM→el. paštas→Slack/Teams), 2 praktiką (laiškas→DI santrauka→patvirtinimas) arba 3 praktiką (atsiliepimai→sentimentas→eskalacija) ir užbaik su artefaktais.",
-            "recommendedStart": "Privaloma: 1–3 praktikos (Automatize, Augment, Autonomize). Rekomenduojama: Koordinatorius + 2 specialistai (124.5), Tyrimo agentas, Ataskaitos generatorius.",
-            "recommendedSlideIds": [120.25, 120.5, 121, 122, 123, 124.5]
+            "firstActionCTA": "Pradėk nuo 124.5 Koordinatorius + 2 specialistai, jei nori prompt-only kelio; jei turi automatizavimo įrankį, eik į Lab #1, #2 arba #3 ir atlik su artefaktais.",
+            "recommendedStart": "Pirmas startas: Koordinatorius + 2 specialistai (124.5). Pilnas kelias: 1–3 praktikos (Automatize, Augment, Autonomize). Papildomai: Tyrimo agentas ir M10 pakartojimo scenarijai.",
+            "recommendedSlideIds": [124.5, 120.25, 120.5, 121, 122, 123],
+            "primaryPathIntro": "Jei neturi Zapier / Make arba nori greito starto, pirmiausia atlik Koordinatorius + 2 specialistai (124.5): 3 atskiri DI pokalbiai, schema ir 1 test case. Tai sumažina įrankių barjerą ir paruošia 3 pilniems lab’ams.",
+            "meaningParagraph": "Čia užbaigi Agentų kelią. Pirmiausia gali susikurti rankinį promptų pipeline be papildomų įrankių; tada, jei turi automatizavimo platformą, pereik prie 3 pilnų lab’ų su realiais artefaktais.\n\nPrieš rinkdamasis procesą, įsivertink grąžą iš investicijų (ROI): (užduotys per savaitę × minutės užduočiai × valandos kaina) − įrankio kaina. Užpildyk 3 scenarijus: dabar, po 3 mėn., po 12 mėn.",
+            "taskOneLiner": "Pradėk nuo 124.5 → sukurk rankinį multi-agent pipeline → tada rinkis Lab #1, #2 arba #3 pilnam delivery-first darbui.",
+            "roiTemplate": {
+              "heading": "Grąžos iš investicijų (ROI) mini skaičiuoklė",
+              "body": "Prieš rinkdamasis procesą, įsivertink naudą paprastai: (užduotys per savaitę × minutės užduočiai × valandos kaina) − įrankio kaina. Užpildyk 3 scenarijus: dabar, po 3 mėn., po 12 mėn.",
+              "copyable": "Grąžos iš investicijų (ROI) skaičiavimas:\nProcesas: [pvz. RFP santrauka]\nUžduotys per savaitę: [skaičius]\nMinutės vienai užduočiai dabar: [skaičius]\nValandos kaina: [€]\nĮrankio ir priežiūros kaina per mėn.: [€]\n\nDabar: [sutaupymas]\nPo 3 mėn.: [sutaupymas]\nPo 12 mėn.: [sutaupymas]\n\nSprendimas: ar verta automatizuoti / augmentuoti / palikti rankiniu būdu?"
+            }
           }
         },
         {
@@ -11109,6 +11309,7 @@
               {
                 "heading": "Verslo multi-agent schema",
                 "body": "**1. Įvestis** – užduotis, duomenys, apribojimai.\n\n**2. Maršrutizatorius** (optional) – klasifikuoja tipą, nukreipia.\n\n**3. Koordinatorius** – suskaido, paskiria 2–3 specialistus.\n\n**4. Specialistai** – vykdo siaurus darbus (tyrimas, juodraštis, skaičiavimas).\n\n**5. Vertintojas** – QC, taisyklės, grąžina pataisymui.\n\n**6. Išvestis** – su **HITL vartu** prieš siuntimą klientui ar vadovui.",
+                "image": "m12_multi_agent_schema",
                 "blockVariant": "brand"
               },
               {
@@ -11117,7 +11318,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 5: 1 praktika Automatize"
+            "footer": "Toliau – skaidrė 4: 1 praktika Automatize"
           }
         },
         {
@@ -11315,19 +11516,19 @@
           "subtitle": "Multi-agent prompt pipeline be kodo",
           "type": "practice-scenario",
           "scenario": {
-            "narrativeLead": "Vykdyti rankiniu pipeline: 3 atskiri DI pokalbiai su handoff taisyklėmis. Kontekstas: savaitės pardavimų suvestinė arba RFP tyrimas.",
-            "situation": "SHOULD: multi-agent praktika verslo kalba – koordinatorius, specialistas, vertintojas.",
+            "narrativeLead": "Pradėk čia, jei nori greito prompt-only kelio: vykdyk rankiniu pipeline su 3 atskirais DI pokalbiais ir handoff taisyklėmis.",
+            "situation": "Rekomenduojamas startas: multi-agent praktika verslo kalba – koordinatorius, specialistas, vertintojas – be Zapier/Make.",
             "context": "Pasirink temą (pardavimų suvestinė arba RFP). Naudok 3 promptus atskiruose pokalbiuose. Užfiksuok schemą ir 1 test case.",
-            "data": "Artefaktai: schema (roles + handoff), 3 promptai, 1 test case (pvz. trūksta duomenų).",
+            "data": "Artefaktai: schema (roles + handoff), 3 promptai, 1 test case (pvz. trūksta duomenų), Įgūdžio paketas pakartotiniam naudojimui.",
             "constraints": "Be Zapier/Make – tik promptų orkestravimas. HITL prieš galutinį siuntimą.",
-            "expectedFormat": "Schema + 3 nukopijuoti promptai + test case aprašymas."
+            "expectedFormat": "Schema + 3 nukopijuoti promptai + test case aprašymas + Įgūdžio paketas."
           },
           "practicalTask": {
             "title": "Multi-agent prompt pipeline",
-            "placeholder": "Įklijuok schemą, 3 promptus ir test case santrauką…",
+            "placeholder": "Įklijuok schemą, 3 promptus, test case santrauką ir Įgūdžio paketą…",
             "templateLabel": "3 promptai – koordinatorius, specialistas, vertintojas",
-            "template": "KOORDINATORIUS: Tu esi koordinatorius. Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk roles, handoff taisykles.\n\nSPECIALISTAS: Tu esi [tyrėjas/rašytojas]. Įvestis: [nuo koordinatoriaus]. Atlik [X]. Išvestis: [formatas].\n\nVERTINTOJAS: Patikrink ar atsakyta į visus kriterijus. Jei ne – grąžink pataisymui su konkrečiais punktais.",
-            "explanation": "Rankinis pipeline paruošia multi-agent mąstymui be framework.",
+            "template": "KOORDINATORIUS: Tu esi koordinatorius. Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk roles, handoff taisykles.\n\nSPECIALISTAS: Tu esi [tyrėjas/rašytojas]. Įvestis: [nuo koordinatoriaus]. Atlik [X]. Išvestis: [formatas].\n\nVERTINTOJAS: Patikrink ar atsakyta į visus kriterijus. Jei ne – grąžink pataisymui su konkrečiais punktais.\n\nĮGŪDŽIO PAKETAS:\nPavadinimas: [pvz. RFP santraukos pipeline]\nKada naudoti: [kokiai užduočiai]\nRolės: koordinatorius, specialistas, vertintojas\nŽingsniai: [1–5]\nRibos: ko DI nedaro / kada klausia žmogaus\nPatikra: 1 test case + laukiamas atsakymas\nPamoka po bandymo: ką atnaujinti kitam kartui",
+            "explanation": "Rankinis pipeline paruošia multi-agent mąstymui be papildomų platformų; vėliau tą pačią logiką gali perkelti į Zapier, Make ar n8n.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
               "title": "Žingsniai",
@@ -11346,113 +11547,46 @@
                   "step": 3,
                   "title": "Paleisk vertintojo promptą",
                   "description": "Patikrink ir užfiksuok 1 test case."
+                },
+                {
+                  "step": 4,
+                  "title": "Surašyk Įgūdžio paketą",
+                  "description": "Sujunk 3 promptus į vieną pakartotinai naudojamą aprašą: pavadinimas, kada naudoti, rolės, žingsniai, ribos, patikra ir pamoka."
                 }
               ]
             }
           },
-          "recommended": false
+          "recommended": true
         },
         {
           "id": 125,
-          "title": "Scenarijus: Ataskaitos generatorius",
-          "subtitle": "Kelios veiklos – duomenys → analizė → ataskaita",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Užpildyk META, INPUT, OUTPUT ir gauk vieną puslapį struktūrizuotos ataskaitos.",
-            "situation": "Papildomas scenarijus: kelios veiklos – duomenys → analizė → vieno puslapio ataskaita su DI.",
-            "context": "Naudok struktūruotą promptą su rolė, įvestimi ir norima išvestimi.",
-            "data": "Užduotis: kelios veiklos (duomenys → analizė → 1 puslapio ataskaita). Naudok META + INPUT + OUTPUT blokus.",
-            "constraints": "Kalba: lietuvių. 3–5 punktai, aiškiai atskirti.",
-            "expectedFormat": "Artefaktas: 1 puslapio ataskaita arba jos juodraštis su naudotu promptu."
-          },
-          "practicalTask": {
-            "title": "Sugeneruok ataskaitą pagal šabloną",
-            "placeholder": "Įklijuok gautą ataskaitą arba santrauką, ką pateikė DI…",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "template": "META: [ROLĖ]. INPUT: [DUOMENYS]. OUTPUT: 1 puslapis, 3–5 punktai, lietuvių kalba.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Užpildyk META, INPUT, OUTPUT ir paleisk DI",
-                  "description": "Gauk 1 puslapio ataskaitą.",
-                  "hint": "Gauk 1 puslapio ataskaitą.",
-                  "partialSolution": "Gauk 1 puslapio ataskaitą."
-                }
-              ]
-            }
-          },
-          "recommended": false
-        },
-        {
-          "id": 126,
-          "title": "Scenarijus: Įrankių naudojimas",
-          "subtitle": "Naudok paiešką arba skaičiuoklę",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Įjunk įrankį platformoje ir patikrink, ar DI jį panaudojo atsakyme.",
-            "situation": "Papildomas scenarijus: DI naudoja įrankį (paiešką arba skaičiuoklę) tavo užduotyje.",
-            "context": "Užduotis: naudoti paiešką ir skaičiuoklę (arba vieną įrankį). Rezultatas su paaiškinimu.",
-            "data": "Užpildyk [įrankį] ir [APRAŠYK] pagal savo poreikį.",
-            "constraints": "Jei platforma nepalaiko įrankio – pasirink kitą DI aplinką arba pažymėk, kas trukdė.",
-            "expectedFormat": "Artefaktas: atsakymas su įrankio pėdsaku (šaltiniai, skaičiai) arba trumpa diagnozė, kodėl nepavyko."
-          },
-          "practicalTask": {
-            "title": "Patikrink įrankio naudojimą",
-            "placeholder": "Aprašyk, kokį įrankį naudojai ir ką gavai…",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "template": "Naudok [įrankį – paieška arba skaičiuoklę] ir pateik rezultatą su trumpu paaiškinimu. Užduotis: [APRAŠYK].",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Įjunk įrankį platformoje ir paleisk promptą",
-                  "description": "Patikrink, ar DI panaudojo įrankį.",
-                  "hint": "Patikrink, ar DI panaudojo įrankį.",
-                  "partialSolution": "Patikrink, ar DI panaudojo įrankį."
-                }
-              ]
-            }
-          },
-          "recommended": false
-        },
-        {
-          "id": 127,
-          "title": "Scenarijus: Klaidos tvarkymas ir ribos",
-          "subtitle": "Sisteminis promptas su ribomis",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Pridėk šį tekstą prie sisteminio prompto ir bandyk užduotį be duomenų.",
-            "situation": "Papildomas scenarijus: ribos ir klaidos – DI turi aiškiai pasakyti, kai negali atlikti užduoties.",
-            "context": "Užduotis: sisteminis promptas su ribomis; testuoti, ką DI atsako, kai duomenų nėra.",
-            "data": "Naudok pateiktą sakinį apie „Nepavyko“ ir priežastį. Bandyk sąmoningai pateikti tuščią arba netinkamą įvestį.",
-            "constraints": "Neverk tuščio atsakymo – turi būti aiški žinutė vartotojui.",
-            "expectedFormat": "Artefaktas: ekrano santrauka arba nukopijuotas DI atsakymas su „Nepavyko“ logika."
-          },
-          "practicalTask": {
-            "title": "Išbandyk klaidos tvarkymą",
-            "placeholder": "Įrašyk, ką atsakė DI, kai trūko duomenų…",
-            "templateLabel": "Pridėk prie sisteminio prompto",
-            "template": "Jei užduoties atlikti negalima: parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Neverk tuščio atsakymo.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Pridėk šį tekstą prie sisteminio prompto ir bandyk užduotį be duomenų",
-                  "description": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą.",
-                  "hint": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą.",
-                  "partialSolution": "Patikrink, ar DI grąžina aiškų „Nepavyko“ pranešimą."
-                }
-              ]
-            }
-          },
-          "recommended": false
+          "title": "Papildomai: pakartok M10 (neprivaloma)",
+          "subtitle": "Ataskaitos, įrankiai, klaidų tvarkymas – pasirink vieną",
+          "type": "content-block",
+          "optional": true,
+          "content": {
+            "whyBenefit": "Šie 3 promptai kartoja Modulio 10 pagrindus kitame kontekste. Pasirink vieną, kuris tau aktualiausias – neprivaloma atlikti visų.",
+            "sections": [
+              {
+                "heading": "Ataskaitos generatorius",
+                "body": "META + INPUT + OUTPUT – kelios veiklos: duomenys → analizė → 1 puslapio ataskaita.",
+                "copyable": "META: [ROLĖ]. INPUT: [DUOMENYS]. OUTPUT: 1 puslapis, 3–5 punktai, lietuvių kalba.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Įrankių naudojimas",
+                "body": "Įjunk paiešką arba skaičiuoklę platformoje ir patikrink, ar DI panaudojo įrankį atsakyme.",
+                "copyable": "Naudok [įrankį – paieška arba skaičiuoklę] ir pateik rezultatą su trumpu paaiškinimu. Užduotis: [APRAŠYK].",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Klaidos tvarkymas ir ribos",
+                "body": "Pridėk prie sisteminio prompto ir bandyk užduotį be duomenų – DI turi aiškiai pasakyti, kai negali atlikti užduoties.",
+                "copyable": "Jei užduoties atlikti negalima: parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Neverk tuščio atsakymo.",
+                "blockVariant": "terms"
+              }
+            ]
+          }
         },
         {
           "id": 128,
@@ -11461,7 +11595,7 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokote",
-            "introBody": "Sveikiname! Užbaigei bent vieną iš 3 privalomų praktikų (Automatize / Augment / Autonomize) arba papildomų scenarijų. Turi workflow schemą, artefaktus ir šablonus tolesniam darbui.",
+            "introBody": "Sveikiname! Užbaigei Agentų kelio projektą: prompt-only multi-agent startą arba pilną 3 praktikų delivery-first kelią. Turi workflow schemą, promptus, test case, Įgūdžio paketą ir šablonus tolesniam darbui.",
             "stats": [
               {
                 "label": "Privalomos praktikos",
@@ -11469,11 +11603,11 @@
               },
               {
                 "label": "Scenarijai",
-                "value": "4"
+                "value": "3"
               },
               {
                 "label": "Artefaktai",
-                "value": "schema + testai"
+                "value": "schema + įgūdis"
               }
             ],
             "sections": [
@@ -11489,48 +11623,39 @@
                 ]
               },
               {
-                "heading": "Papildomi scenarijai",
+                "heading": "Prompt-only ir Įgūdžio paketas",
                 "icon": "Zap",
                 "color": "brand",
                 "items": [
-                  "Forma → CRM → el. paštas, laiškas → santrauka → patvirtinimas",
-                  "Atsiliepimai → sentimentas → ticket, tyrimas / ataskaita su įrankiais",
+                  "Koordinatorius + 2 specialistai – greitas startas be kodo",
+                  "Įgūdžio paketas – pavadinimas, kada naudoti, rolės, žingsniai, ribos",
                   "Sisteminis promptas su ribomis ir aiškiais „Nepavyko“ pranešimais"
                 ]
               },
               {
-                "heading": "Kur pritaikyti?",
+                "heading": "Pamoka ir atnaujinimas",
                 "icon": "Target",
                 "color": "amber",
                 "items": [
-                  "Automatizavimas: forma, CRM, pranešimai",
-                  "Augmentacija: santraukos, juodraščiai su žmogaus patvirtinimu",
-                  "Autonomija: sentimentas, eskalacija, ribotos užduotys",
-                  "Tyrimai, vidinės ataskaitos, integracijos su Zapier / Make / n8n"
-                ]
-              },
-              {
-                "heading": "Kitas Žingsnis",
-                "icon": "ArrowRight",
-                "color": "emerald",
-                "items": [
-                  "Pereik prie Modulio 13: Turinio inžinerija su DI (vaizdai, video, muzika) – trečiasis pažangus kelias.",
-                  "Arba grįžk į modulių sąrašą ir kartok agentų projektą su kita forma ar procesu."
+                  "Po bandymo užrašyk, kas nepavyko ir kodėl",
+                  "Atnaujink taisyklę, promptą, įgūdį arba testą",
+                  "Pakartok su tuo pačiu kraštiniu atveju",
+                  "Pritaikyk pasirinktą scenarijų per 24–48 val."
                 ]
               }
             ],
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Agentų inžinerijos projekto rezultatus.\nINPUT: Ką tik baigiau Modulį 12: bent viena iš 3 privalomų praktikų (Automatize / Augment / Autonomize) ir gal papildomi scenarijai – turiu workflow schemą ir artefaktus.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento ar workflow žingsnį pritaikysiu per 24 val.? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia su tikru procesu? Po mano atsakymų duok vieną konkretų patarimą.",
-            "tagline": "3 praktikos + artefaktai = pirmiausia veikiantis rezultatas.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Agentų inžinerijos projekto rezultatus.\nINPUT: Ką tik baigiau Modulį 12: prompt-only multi-agent startą arba pilną 3 praktikų delivery-first kelią. Turiu schemą, promptus, bent 1 test case ir Įgūdžio paketą.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento ar workflow žingsnį pritaikysiu per 24 val.? (2) Kokią pamoką fiksuoju po pirmo bandymo? (3) Ką atnaujinsiu: taisyklę, promptą, įgūdį ar testą? Po mano atsakymų duok vieną konkretų patarimą.",
+            "tagline": "3 praktikos + artefaktai + pamoka = rezultatas, kuris gerėja kitą kartą.",
             "nextStepCTA": "Pereik prie Modulio 13: Turinio inžinerija su DI",
-            "firstAction24h": "Per 24–48 val. paleisk vieną workflow savo projekte (Zapier / Make / DI su įrankiais) arba pakartok tą patį scenarijų su kita forma."
+            "firstAction24h": "Per 24–48 val. pakartok 124.5 prompt-only pipeline su tikru procesu arba paleisk vieną workflow savo projekte (Zapier / Make / DI su įrankiais)."
           }
         }
       ],
       "businessExamples": [
         {
           "title": "Automatizacijos scenarijai",
-          "description": "3 privalomos praktikos + 4 papildomi scenarijai"
+          "description": "3 privalomos praktikos + 3 papildomi scenarijai"
         },
         {
           "title": "Capstone – Agentų kelias",

@@ -2,10 +2,49 @@
  * M10 – Agent taxonomy: L0–L3 depth ladder + multi-agent roles.
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import { getM10AgentTaxonomyLabels, type M10Locale } from './m10DiagramContent';
+import {
+  getCircleEdgePoints,
+  getRoleNode,
+  M10_TAXONOMY_EDGES,
+  M10_TAXONOMY_LADDER,
+  M10_TAXONOMY_LEVELS,
+  M10_TAXONOMY_ROLES,
+  M10_TAXONOMY_VIEWBOX,
+  type M10TaxonomyRoleNode,
+} from './m10TaxonomyLayout';
 
-const W = 520;
-const H = 300;
+const LEVEL_FILLS = {
+  brand: '#334e68',
+  slate: '#64748b',
+  teal: '#0d9488',
+  violet: '#7c3aed',
+} as const;
+
+const ROLE_FILLS = {
+  slate: '#64748b',
+  teal: '#0d9488',
+  violet: '#7c3aed',
+  amber: '#b8860b',
+} as const;
+
+function roleLabelLines(label: string) {
+  if (label.length <= 12) return [label];
+  const midpoint = Math.ceil(label.length / 2);
+  return [label.slice(0, midpoint), label.slice(midpoint)];
+}
+
+function roleLabelFor(
+  role: M10TaxonomyRoleNode,
+  labels: ReturnType<typeof getM10AgentTaxonomyLabels>
+) {
+  if (role.id === 'router') return labels.router;
+  if (role.id === 'coordinator') return labels.coordinator;
+  if (role.id === 'specialist') return labels.specialist;
+  return labels.evaluator;
+}
 
 export default function M10AgentTaxonomyDiagram({
   locale = 'lt',
@@ -15,108 +54,107 @@ export default function M10AgentTaxonomyDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
+  const palette = useDiagramPalette();
   const L = getM10AgentTaxonomyLabels(locale);
 
-  const ladderX = 24;
-  const ladderW = 200;
-  const rolesX = 280;
-  const baseY = 260;
-
   const levels = [
-    { id: 'L0', h: 36, fill: '#94a3b8', label: L.l0, sub: L.l0Sub },
-    { id: 'L1', h: 52, fill: '#0d9488', label: L.l1, sub: L.l1Sub },
-    { id: 'L2', h: 68, fill: '#7c3aed', label: L.l2, sub: L.l2Sub },
-    { id: 'L3', h: 84, fill: '#334e68', label: L.l3, sub: L.l3Sub },
+    { id: 'L0', label: L.l0, sub: L.l0Sub },
+    { id: 'L1', label: L.l1, sub: L.l1Sub },
+    { id: 'L2', label: L.l2, sub: L.l2Sub },
+    { id: 'L3', label: L.l3, sub: L.l3Sub },
   ];
 
-  let stackY = baseY;
-  const bars = levels.map((lv) => {
-    stackY -= lv.h + 6;
-    return { ...lv, y: stackY };
+  let stackY = M10_TAXONOMY_LADDER.baseY;
+  const bars = M10_TAXONOMY_LEVELS.map((lv, index) => {
+    stackY -= lv.height + M10_TAXONOMY_LADDER.gap;
+    return {
+      ...lv,
+      ...levels[index],
+      y: stackY,
+    };
   });
-
-  const cx = rolesX + 110;
-  const cy = 150;
-  const roleR = 36;
-
-  const roles = [
-    { key: 'router', label: L.router, x: cx, y: 72, fill: '#64748b' },
-    { key: 'coord', label: L.coordinator, x: cx, y: cy, fill: '#7c3aed' },
-    {
-      key: 'spec',
-      label: L.specialist,
-      x: cx - 72,
-      y: cy + 72,
-      fill: '#0d9488',
-    },
-    {
-      key: 'eval',
-      label: L.evaluator,
-      x: cx + 72,
-      y: cy + 72,
-      fill: '#b8860b',
-    },
-  ];
 
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-lg mx-auto block ${className}`}
+      viewBox={`0 0 ${M10_TAXONOMY_VIEWBOX.width} ${M10_TAXONOMY_VIEWBOX.height}`}
+      className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
     >
+      <defs>
+        <marker
+          id={`m10-tax-flow-${uid}`}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={DIAGRAM_TOKENS.arrow.markerLen}
+          refY="3"
+          orient="auto"
+        >
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
+        </marker>
+        <marker
+          id={`m10-tax-feedback-${uid}`}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={DIAGRAM_TOKENS.arrow.markerLen}
+          refY="3"
+          orient="auto"
+        >
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill="#b8860b" />
+        </marker>
+      </defs>
       <text
-        x={W / 2}
-        y={22}
+        x={M10_TAXONOMY_VIEWBOX.width / 2}
+        y={24}
         textAnchor="middle"
-        fontSize="13"
+        fontSize={DIAGRAM_TOKENS.typography.title.compact}
         fontWeight="800"
-        fill="#102a43"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={palette.brandDark}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
 
       <text
-        x={ladderX + ladderW / 2}
-        y={44}
+        x={M10_TAXONOMY_LADDER.x + M10_TAXONOMY_LADDER.width / 2}
+        y={48}
         textAnchor="middle"
         fontSize="11"
         fontWeight="700"
-        fill="#486581"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={palette.muted}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.ladderTitle}
       </text>
       {bars.map((b) => (
         <g key={b.id}>
           <rect
-            x={ladderX}
+            x={M10_TAXONOMY_LADDER.x}
             y={b.y}
-            width={ladderW}
-            height={b.h}
+            width={M10_TAXONOMY_LADDER.width}
+            height={b.height}
             rx="6"
-            fill={b.fill}
-            stroke="#102a43"
+            fill={LEVEL_FILLS[b.tone]}
+            stroke={palette.brandDark}
             strokeWidth="0.75"
           />
           <text
-            x={ladderX + 10}
+            x={M10_TAXONOMY_LADDER.x + 12}
             y={b.y + 16}
             fill="white"
             fontSize="10"
             fontWeight="700"
-            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+            fontFamily={DIAGRAM_TOKENS.font}
           >
             {b.label}
           </text>
-          {b.h >= 44 && (
+          {b.height >= 44 && (
             <text
-              x={ladderX + 10}
-              y={b.y + b.h - 8}
+              x={M10_TAXONOMY_LADDER.x + 12}
+              y={b.y + b.height - 8}
               fill="rgba(255,255,255,0.9)"
               fontSize="8.5"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {b.sub}
             </text>
@@ -125,88 +163,68 @@ export default function M10AgentTaxonomyDiagram({
       ))}
 
       <text
-        x={rolesX + 110}
-        y={44}
+        x={410}
+        y={48}
         textAnchor="middle"
         fontSize="11"
         fontWeight="700"
-        fill="#486581"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={palette.muted}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.rolesTitle}
       </text>
 
-      <line
-        x1={roles[0].x}
-        y1={roles[0].y + roleR}
-        x2={roles[1].x}
-        y2={roles[1].y - roleR}
-        stroke="#64748b"
-        strokeWidth="1.5"
-        markerEnd={`url(#m10-tax-arrow-${uid})`}
-      />
-      <line
-        x1={roles[1].x}
-        y1={roles[1].y + roleR}
-        x2={roles[2].x}
-        y2={roles[2].y - roleR}
-        stroke="#64748b"
-        strokeWidth="1.5"
-      />
-      <line
-        x1={roles[1].x}
-        y1={roles[1].y + roleR}
-        x2={roles[3].x}
-        y2={roles[3].y - roleR}
-        stroke="#64748b"
-        strokeWidth="1.5"
-      />
-      <line
-        x1={roles[3].x}
-        y1={roles[3].y - roleR}
-        x2={roles[1].x + roleR * 0.6}
-        y2={roles[1].y}
-        stroke="#b8860b"
-        strokeWidth="1.25"
-        strokeDasharray="4 3"
-      />
-
-      <defs>
-        <marker
-          id={`m10-tax-arrow-${uid}`}
-          markerWidth="6"
-          markerHeight="6"
-          refX="5"
-          refY="3"
-          orient="auto"
-        >
-          <path d="M0,0 L6,3 L0,6 Z" fill="#64748b" />
-        </marker>
-      </defs>
-
-      {roles.map((r) => (
-        <g key={r.key}>
-          <circle
-            cx={r.x}
-            cy={r.y}
-            r={roleR}
-            fill={r.fill}
-            stroke="#102a43"
-            strokeWidth="0.75"
+      {M10_TAXONOMY_EDGES.map((edge) => {
+        const from = getRoleNode(edge.from);
+        const to = getRoleNode(edge.to);
+        const points = getCircleEdgePoints(from, to);
+        const color = edge.tone === 'feedback' ? '#b8860b' : palette.flow;
+        return (
+          <line
+            key={edge.id}
+            {...points}
+            stroke={color}
+            strokeWidth={edge.tone === 'feedback' ? 1.5 : 1.75}
+            strokeDasharray={edge.dashed ? '4 3' : undefined}
+            markerEnd={`url(#${
+              edge.tone === 'feedback'
+                ? `m10-tax-feedback-${uid}`
+                : `m10-tax-flow-${uid}`
+            })`}
           />
-          <text
-            x={r.x}
-            y={r.y + 4}
-            textAnchor="middle"
-            fill="white"
-            fontSize="8"
-            fontWeight="700"
-            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-          >
-            {r.label}
-          </text>
-        </g>
-      ))}
+        );
+      })}
+
+      {M10_TAXONOMY_ROLES.map((role) => {
+        const lines = roleLabelLines(roleLabelFor(role, L));
+        return (
+          <g key={role.id}>
+            <circle
+              cx={role.x}
+              cy={role.y}
+              r={role.r}
+              fill={ROLE_FILLS[role.tone]}
+              stroke={palette.brandDark}
+              strokeWidth="0.75"
+            />
+            <text
+              x={role.x}
+              y={role.y - (lines.length - 1) * 6 + 4}
+              textAnchor="middle"
+              fill="white"
+              fontSize="10"
+              fontWeight="700"
+              fontFamily={DIAGRAM_TOKENS.font}
+            >
+              {lines.map((line, index) => (
+                <tspan key={line} x={role.x} dy={index === 0 ? 0 : 12}>
+                  {line}
+                </tspan>
+              ))}
+            </text>
+          </g>
+        );
+      })}
     </svg>
   );
 }

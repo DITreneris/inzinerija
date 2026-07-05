@@ -9,6 +9,8 @@ import M7DataPrepWorkflowBlock from '../M7DataPrepWorkflowBlock';
 import M7DataStoryCycleBlock from '../M7DataStoryCycleBlock';
 import M7ThreeAgentsBlock from '../M7ThreeAgentsBlock';
 import M9DataWorkflowBlock from '../M9DataWorkflowBlock';
+import M10LearningLoopBlock from '../M10LearningLoopBlock';
+import M12MultiAgentSchemaBlock from '../M12MultiAgentSchemaBlock';
 import RlProcessBlock from '../RlProcessBlock';
 import StrukturuotasProcesasBlock from '../StrukturuotasProcesasBlock';
 import TurinioWorkflowBlock from '../TurinioWorkflowBlock';
@@ -129,6 +131,39 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
         ).toHaveLength(0);
       }
     );
+  });
+
+  describe('M10+ interactive diagram shell contracts', () => {
+    it.each([
+      ['M10 learning loop', () => <M10LearningLoopBlock />, 4],
+      ['M12 multi-agent schema', () => <M12MultiAgentSchemaBlock />, 6],
+    ])(
+      'keeps keyboard interaction in %s HTML nav only',
+      (_name, renderComponent, expectedButtons) => {
+        setLocale('lt');
+
+        const { container } = renderWithProviders(renderComponent());
+
+        expect(container.querySelectorAll('nav button')).toHaveLength(
+          expectedButtons
+        );
+        expect(
+          container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+        ).toHaveLength(0);
+      }
+    );
+
+    it('uses the dark diagram palette in M12 multi-agent chrome', () => {
+      setLocale('en');
+      setDarkTheme();
+
+      const { container } = renderWithProviders(<M12MultiAgentSchemaBlock />);
+
+      expect(container.querySelector('svg rect')).toHaveAttribute(
+        'fill',
+        '#0f172a'
+      );
+    });
   });
 
   describe('M7DataStoryCycleBlock (M7 slide 100)', () => {

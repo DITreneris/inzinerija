@@ -2,13 +2,17 @@ import type { ReactNode } from 'react';
 import {
   DiagramImageFrame,
   DiPrezentacijosWorkflowBlock,
+  AgentWorkflowBlock,
   LlmArchDiagramBlock,
   LlmAutoregressiveBlock,
   M10AgentTaxonomyBlock,
-  M10SpecIncidentBlock,
+  M10IncidentPlaybookBlock,
+  M10LearningLoopBlock,
   M10ThreeAStrategyBlock,
   M10ToolDecisionTreeBlock,
   M10TriggerFlowBlock,
+  M10WorkflowSpecBlock,
+  M12MultiAgentSchemaBlock,
   M12ThreeLabsBlock,
   M13AecFunnelBlock,
   M13PromptStackBlock,
@@ -121,6 +125,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     render: () => <LlmAutoregressiveBlock />,
   },
   {
+    key: 'agent_workflow_diagram',
+    bodyPlacement: 'after',
+    render: () => <AgentWorkflowBlock />,
+  },
+  {
     key: 'm10_trigger_flow',
     bodyPlacement: 'after',
     render: () => <M10TriggerFlowBlock />,
@@ -136,19 +145,34 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     render: () => <M10AgentTaxonomyBlock />,
   },
   {
+    key: 'm10_learning_loop',
+    bodyPlacement: 'after',
+    render: () => <M10LearningLoopBlock />,
+  },
+  {
     key: 'm10_tool_decision_tree',
     bodyPlacement: 'after',
     render: () => <M10ToolDecisionTreeBlock />,
   },
   {
-    key: 'm10_spec_incident',
+    key: 'm10_workflow_spec',
     bodyPlacement: 'after',
-    render: () => <M10SpecIncidentBlock />,
+    render: () => <M10WorkflowSpecBlock />,
+  },
+  {
+    key: 'm10_incident_playbook',
+    bodyPlacement: 'after',
+    render: () => <M10IncidentPlaybookBlock />,
   },
   {
     key: 'm12_three_labs',
     bodyPlacement: 'after',
     render: () => <M12ThreeLabsBlock />,
+  },
+  {
+    key: 'm12_multi_agent_schema',
+    bodyPlacement: 'after',
+    render: () => <M12MultiAgentSchemaBlock />,
   },
   {
     key: 'm13_aec_funnel',

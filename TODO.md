@@ -16,12 +16,12 @@
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
-| Kas                                           | Būsena     | Pastaba                          |
-| --------------------------------------------- | ---------- | -------------------------------- |
-| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped | CHANGELOG `[1.4.2]`              |
-| Lint + test (367) + `build:production`        | ✅         | CI lokaliai                      |
-| Diagram browser smoke (B2.5)                  | ⏳ Pending | Release QA #6; neblokuoja commit |
-| Submodule pin marketing (MON-2)               | ⏳ Next    | Po push → marketing repo         |
+| Kas                                           | Būsena     | Pastaba                                                                                   |
+| --------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------- |
+| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped | CHANGELOG `[1.4.2]`                                                                       |
+| Lint + test (367) + `build:production`        | ✅         | CI lokaliai                                                                               |
+| Diagram browser smoke (B2.5)                  | ⏳ Pending | M10 sprint auto gates ✅ 2026-07-05; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6 |
+| Submodule pin marketing (MON-2)               | ⏳ Next    | Po push → marketing repo                                                                  |
 
 ### §1.1 P0 – Monetizacija ir integracija (top priority – **kitas sprintas**)
 
@@ -76,14 +76,18 @@
 >
 > **M10–15 – ne prioritetas:** turinys authoring kataloge; monetizacija ir vizualinis polish – **Deferred** iki MON P0 + baseline (MON-7).
 
-| ID     | Užduotis                                                                                                           | Buvęs prioritetas | Būsena                                                                |
-| ------ | ------------------------------------------------------------------------------------------------------------------ | ----------------- | --------------------------------------------------------------------- |
-| M13-1  | M13–M14 EN sinchronas                                                                                              | P2                | Deferred                                                              |
-| M13-2  | M13 footerių release QA                                                                                            | P2                | Deferred                                                              |
-| M13-3  | `slidePhaseConfig.test.ts` M13 regresija                                                                           | P2 optional       | Deferred                                                              |
-| DEF-1a | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3           | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9   |
-| DEF-1b | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog   | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)      |
-| DEF-2  | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                | Dalinai (M4 slide 48 padaryta 2026-06-29; collapsible likučiai lieka) |
+| ID         | Užduotis                                                                                                           | Buvęs prioritetas  | Būsena                                                                |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------------- |
+| M13-1      | M13–M14 EN sinchronas                                                                                              | P2                 | Deferred                                                              |
+| M13-2      | M13 footerių release QA                                                                                            | P2                 | Deferred                                                              |
+| M13-3      | `slidePhaseConfig.test.ts` M13 regresija                                                                           | P2 optional        | Deferred                                                              |
+| DEF-1a     | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3            | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9   |
+| DEF-1b     | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog    | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)      |
+| M10-DIA-01 | M11 `TestKnowledgeScopeDiagram` clickable bubbles → M10 skaidrės deep-link + sync su `TestRemediationChips`        | P3 / schema UX     | Deferred – mažesnis ROI nei M12 120.5 interaktyvumas                  |
+| M10-DIA-02 | M10 Learning Loop pilnas 9-node step nav                                                                           | P3 / schema UX     | Deferred – 4 makro žingsniai pakanka 10.49                            |
+| M10-DIA-03 | M12 evaluator→coordinator feedback vizualizacija                                                                   | P3 / schema UX     | Deferred – SOT neprivaloma, geometrija sudėtingesnė                   |
+| M10-DIA-04 | P2 polish: TriggerFlow webhook polygon, ThreeA 5% sub, ThreeLabs connectors                                        | P3 / visual polish | Deferred – po P1 schemų split/interaktyvumo                           |
+| DEF-2      | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                 | Dalinai (M4 slide 48 padaryta 2026-06-29; collapsible likučiai lieka) |
 
 ### P2 – darbai eilėje
 
@@ -163,7 +167,7 @@
 - **A1** Moduliai 7+ Jūs vs tu (atskira eiga: GOLDEN_STANDARD §4.2 + grep).
 - **A2** Footer „Toliau – skaidrė X“ – **M10 ✅ release QA** (2026-06-29: 10.45/10.48 numeriai OK, EN footers); likusiems moduliams – globali patikra prieš release pagal `.cursor/rules/footer-slide-numbers.mdc`.
 - **A3** blockVariant – likusios sekcijos (accent/brand/terms).
-- ~~**Orch** Agentų orkestratoriaus schema į kursą~~ ✅ 2026-06-29 dalinai – M12 **120.5** verslo multi-agent schema (ne meta AGENTS.md); optional React diagrama `agent_orchestrator_v2` pašalinta. ~~Likęs SCHEME darbas – optional vizualizacija M10 10.45.~~ ✅ **10.45** `M10AgentTaxonomyDiagram` (L0–L3 + rolės).
+- ~~**Orch** Agentų orkestratoriaus schema į kursą~~ ✅ 2026-07-05 – M12 **120.5** verslo multi-agent schema (ne meta AGENTS.md) turi React diagramą `m12_multi_agent_schema`; legacy `agent_orchestrator_v2` lieka neaktyvus. ~~Likęs SCHEME darbas – optional vizualizacija M10 10.45.~~ ✅ **10.45** `M10AgentTaxonomyDiagram` (L0–L3 + rolės).
 - **Arch-B** Jei kada nors bus reikalingas modelis B – atskiri `modules-m1-m6.json` + `modules-m7-m15.json` kaip authoring failai ir agreguotas `modules.json` – tai daryti tik kaip atskirą architektūrinį projektą (scripts, validacija, loaderiai, testai, docs), ne šioje iteracijoje.
 - **N-DS3** Dizaino gidas → Gamma/Figma. **CE-7, CE-8** gating iš sot_index; eval_rubric heuristikas CI.
 - **9a** Favicon. **10** Block skaidrės content-driven. **11** „Kaip naudoti modulį“ M4/M6. **12** Žodynėlis M4 (8–10 terminų). **13** Alternatyvūs kontekstai M6. **14** Monitoring, PWA, Eksportas, Sertifikatas, Multi-language. **15** M2 F3-2–F3-5. **UJ-4, UJ-5** 5 principai: checkbox, collapse.

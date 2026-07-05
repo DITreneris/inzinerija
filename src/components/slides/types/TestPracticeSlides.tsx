@@ -84,9 +84,9 @@ function getWhyBenefit(slide: Slide | undefined): string | undefined {
 
 function getPracticeIntroContent(slide: Slide | undefined): {
   whyBenefit?: string;
-  /** M9: viena dominuojanti mintis (ką darysi + ką gausi) */
+  /** M9 / M12: viena dominuojanti mintis (ką darysi + ką gausi) */
   meaningParagraph?: string;
-  /** Modulio 9: viena aiški užduotis vienu sakiniu */
+  /** M9 / M12: viena aiški užduotis vienu sakiniu */
   taskOneLiner?: string;
   duration?: string;
   audience?: string;
@@ -99,8 +99,14 @@ function getPracticeIntroContent(slide: Slide | undefined): {
   characterMeaning?: string;
   /** Modulio 9: „Kur pritaikyti?“ blokas */
   useCaseBlock?: string;
-  /** M9: pagrindinis kelias – 8 žingsnių workflow (93–94), rodomas viršuje */
+  /** M9 / M12: pagrindinis kelias, rodomas viršuje */
   primaryPathIntro?: string;
+  /** M12: grąžos iš investicijų mini skaičiuoklė */
+  roiTemplate?: {
+    heading?: string;
+    body?: string;
+    copyable?: string;
+  };
   /** Modulio 9: rekomenduojamų scenarijų slide id sąrašas */
   recommendedSlideIds?: number[];
   /** M3: bent kiek scenarijų privaloma užbaigti (jei nurodyta – rodoma „Pasirinkite bent N“) */
@@ -129,6 +135,16 @@ function getPracticeIntroContent(slide: Slide | undefined): {
         primaryPathIntro:
           typeof c.primaryPathIntro === 'string'
             ? c.primaryPathIntro
+            : undefined,
+        roiTemplate:
+          c.roiTemplate &&
+          typeof c.roiTemplate === 'object' &&
+          !Array.isArray(c.roiTemplate)
+            ? (c.roiTemplate as {
+                heading?: string;
+                body?: string;
+                copyable?: string;
+              })
             : undefined,
         recommendedSlideIds: Array.isArray(c.recommendedSlideIds)
           ? (c.recommendedSlideIds as number[])
@@ -2766,6 +2782,7 @@ export function PracticeIntroSlide({
 
   const isM9 = moduleId === 9;
   const isM12 = moduleId === 12;
+  const usesGuidedIntro = isM9 || isM12;
   const recommendedIds = introContent.recommendedSlideIds ?? [];
   /** M9 / M12: rekomenduojami scenarijai pirmi (MUST lab'ai prieš SHOULD) */
   const displayScenarioSlides =
@@ -2801,7 +2818,7 @@ export function PracticeIntroSlide({
   return (
     <div className="space-y-6">
       <div className={coverClasses}>
-        {isM9 && introContent.meaningParagraph && (
+        {usesGuidedIntro && introContent.meaningParagraph && (
           <p
             className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed"
             role="region"
@@ -2810,14 +2827,18 @@ export function PracticeIntroSlide({
             {introContent.meaningParagraph}
           </p>
         )}
-        {isM9 && introContent.primaryPathIntro && (
+        {usesGuidedIntro && introContent.primaryPathIntro && (
           <div
             className="mb-4 p-4 rounded-xl border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40"
             role="region"
             aria-label={t('m9PrimaryPathAria')}
           >
             <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-2">
-              {t('m9PrimaryPathHeading')}
+              {isM12
+                ? locale === 'en'
+                  ? 'Recommended start'
+                  : 'Rekomenduojamas startas'
+                : t('m9PrimaryPathHeading')}
             </h4>
             <p
               className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed"
@@ -2828,21 +2849,39 @@ export function PracticeIntroSlide({
                 ),
               }}
             />
+            {isM12 && onNavigateToSlideById && (
+              <button
+                type="button"
+                onClick={() => onNavigateToSlideById(124.5)}
+                className="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600"
+                aria-label={
+                  locale === 'en'
+                    ? 'Start with Coordinator plus two specialists'
+                    : 'Pradėk nuo Koordinatorius ir du specialistai skaidrės'
+                }
+              >
+                {locale === 'en'
+                  ? 'Start here: Coordinator + 2 specialists'
+                  : 'Pradėk čia: Koordinatorius + 2 specialistai'}
+              </button>
+            )}
           </div>
         )}
-        {isM9 && whyBenefit && (
-          <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300 text-center max-w-2xl mx-auto">
-            {whyBenefit}
-          </p>
-        )}
-        {!isM9 && whyBenefit && (
+        {usesGuidedIntro &&
+          (introContent.meaningParagraph || introContent.primaryPathIntro) &&
+          whyBenefit && (
+            <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300 text-center max-w-2xl mx-auto">
+              {whyBenefit}
+            </p>
+          )}
+        {!usesGuidedIntro && whyBenefit && (
           <p
             className={`text-sm font-medium mb-3 ${isMod3 ? 'text-emerald-700 dark:text-emerald-300' : 'text-accent-700 dark:text-accent-300'}`}
           >
             {whyBenefit}
           </p>
         )}
-        {isM9 &&
+        {usesGuidedIntro &&
           !introContent.meaningParagraph &&
           !introContent.primaryPathIntro &&
           whyBenefit && (
@@ -2850,7 +2889,7 @@ export function PracticeIntroSlide({
               {whyBenefit}
             </p>
           )}
-        {isM9 && introContent.taskOneLiner && (
+        {usesGuidedIntro && introContent.taskOneLiner && (
           <div
             className="mb-3 p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30 border-2 border-brand-400 dark:border-brand-600"
             role="region"
@@ -2901,17 +2940,19 @@ export function PracticeIntroSlide({
             </p>
           </div>
         )}
-        {!isM9 && introContent.recommendedStart && (
-          <div
-            className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
-            role="region"
-            aria-label={t('recommendedStartAria')}
-          >
-            <p className="text-sm text-amber-800 dark:text-amber-200">
-              {introContent.recommendedStart}
-            </p>
-          </div>
-        )}
+        {!isM9 &&
+          (!isM12 || !introContent.primaryPathIntro) &&
+          introContent.recommendedStart && (
+            <div
+              className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
+              role="region"
+              aria-label={t('recommendedStartAria')}
+            >
+              <p className="text-sm text-amber-800 dark:text-amber-200">
+                {introContent.recommendedStart}
+              </p>
+            </div>
+          )}
         {recommendedNote && (
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 rounded-lg bg-gray-100 dark:bg-gray-800/60 px-3 py-2 border-l-4 border-accent-500">
             {recommendedNote}
@@ -2930,6 +2971,45 @@ export function PracticeIntroSlide({
               {introContent.firstActionCTA}
             </p>
           </div>
+        )}
+        {isM12 && introContent.roiTemplate && (
+          <details className="group mb-3 overflow-hidden rounded-xl border-2 border-brand-200 bg-white/80 dark:border-brand-800 dark:bg-gray-900/40">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 font-bold text-gray-900 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset dark:text-white dark:hover:bg-brand-900/20">
+              <span className="flex items-center gap-2">
+                <BarChart2
+                  className="h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+                {introContent.roiTemplate.heading ??
+                  (locale === 'en'
+                    ? 'Return on investment mini calculator'
+                    : 'Grąžos iš investicijų mini skaičiuoklė')}
+              </span>
+              <ChevronRight
+                className="h-5 w-5 shrink-0 text-gray-500 transition-transform group-open:rotate-90 dark:text-gray-400"
+                aria-hidden
+              />
+            </summary>
+            <div className="space-y-3 border-t border-brand-100 px-4 pb-4 pt-3 dark:border-brand-800/60">
+              {introContent.roiTemplate.body && (
+                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                  {introContent.roiTemplate.body}
+                </p>
+              )}
+              {introContent.roiTemplate.copyable && (
+                <CopyButton
+                  text={introContent.roiTemplate.copyable}
+                  size="sm"
+                  ariaLabel={
+                    locale === 'en'
+                      ? 'Copy return on investment template'
+                      : 'Kopijuoti grąžos iš investicijų šabloną'
+                  }
+                />
+              )}
+            </div>
+          </details>
         )}
         {introContent.learningOutcomes &&
           introContent.learningOutcomes.length > 0 && (
