@@ -43,6 +43,24 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po 1.4.2 release._
 
+### Added
+
+- **M7 skaidrė 734 „Sprendimų filtrai“:** naujas branduolio (core) turinys – 5 sprendimų filtrų grupės (Tinka/Netinka, Būtina/Svarbu/Norima/Ne dabar, Greiti laimėjimai, Testuok/Investuok/Atmesk, nuorodos į SWOT/80-20/„Kodėl?“/Rizika-Nauda) su 4 CopyButton promptais. SOT: `docs/turinio_pletra_moduliai_7_8_9.md` §8.1a; seka: `docs/MODULIO_7_SKAIDRIU_EILES.md` (branduolys 27→28); žodynėlis +4 terminai (`glossary.json`, `glossary-m1-m9.json`); M9 scenarijų 6/7 kontekstas susietas su 734.
+- **M10–12 ROI track:** pridėtas marketingo turinio panaudojimo brief (`docs/development/analysis/M10_12_CONTENT_REUSE_BRIEF.md`), `comingSoonModules.ts` + neaktyvios M10–12 „Ruošiama“ kortelės tier-9 bundle (kai realūs M10–12 moduliai nėra įkelti), ir M11/M12 regresijos testai (`TestPracticeSlides.m11/m12.test.tsx`) agentų kelio klausimų bei praktikos vartams.
+
+### Changed
+
+- **M12 praktikos duomenys:** pašalinti nenaudojami `content.*` dublikatai iš M12 practice-scenario skaidrių 121–127 ir 124.5; renderinimas remiasi root `scenario` / `practicalTask` (scoped M12-only cleanup, ne viso katalogo dedupe).
+- **M10 įrankių medis:** `M10ToolDecisionTreeDiagram` gavo atskirą klaviatūros fokusavimo kontūrą (SVG paliktas; focus ring atskirtas nuo `isSel`), o `M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md` pažymėjo P0 a11y sprendimą kaip užbaigtą.
+
+### Fixed
+
+- **M10 EN section-break overlay:** `modules-en-m10-m12.json` papildytas trūkstamomis skaidrėmis `10.481` ir `10.151`; `npm run audit:en-coverage-m10-12` vėl PASS.
+
+### Gate (M10–12 ROI)
+
+- `npm run validate:schema`, `npm run lint`, `npm run audit:en-coverage-m10-12`, `npm run test:run` (371 testai), `npm run build` – žali (2026-07-05).
+
 ---
 
 ## [1.4.2] – 2026-07-01

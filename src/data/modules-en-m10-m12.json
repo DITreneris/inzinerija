@@ -181,6 +181,38 @@
           }
         },
         {
+          "id": 10.481,
+          "title": "Section: Multi-agent → workflow",
+          "subtitle": "5 patterns completed – next, agent design in practice.",
+          "content": {
+            "title": "Section: Multi-agent → workflow",
+            "subtitle": "Next: role, system prompt, tools, and error handling.",
+            "sectionNumber": "M10",
+            "footer": "Next – slide 8: Role and system prompt",
+            "celebrationText": "Great! Taxonomy and 5 workflow patterns are now in your toolkit.",
+            "nextSteps": [
+              "Role and system prompt – how to set agent limits.",
+              "Tool selection – search, API, platforms.",
+              "When to use an agent and when to use a simple prompt.",
+              "Error handling – a clear “failed” message."
+            ],
+            "recap": {
+              "heading": "What do you already know?",
+              "lead": "The agent engineering path now has a multi-agent foundation.",
+              "items": [
+                "L0–L3 taxonomy – when one agent is enough and when you need several.",
+                "Coordinator, specialist, evaluator, router – clear roles.",
+                "5 workflow patterns – chain, routing, parallel work, and more."
+              ],
+              "itemGlossaryTerms": ["DI agentas", "Multi-agent", "Workflow"]
+            },
+            "spinoffCta": {
+              "label": "Deep reads: agent workflows (EN)",
+              "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
+            }
+          }
+        },
+        {
           "id": 10.3,
           "title": "Role and system prompt template",
           "subtitle": "How to set role and limits for an agent",
@@ -320,6 +352,37 @@
                 "body": "Write down **one real trigger** from your work (e.g. “new lead in form”) and **two actions** you would want to run automatically next."
               }
             ]
+          }
+        },
+        {
+          "id": 10.151,
+          "title": "Section: Workflow → automation",
+          "subtitle": "Trigger, action, webhook – completed. Next: platforms and testing.",
+          "content": {
+            "title": "Section: Workflow → automation",
+            "subtitle": "Next: Zapier, Make, n8n, Power Automate, and optional spec/testing.",
+            "sectionNumber": "M10",
+            "footer": "Next – slide 14: Business automation tools",
+            "celebrationText": "Good! The workflow chain and key concepts are clear.",
+            "nextSteps": [
+              "Business automation tools – when to choose Zapier, Make, n8n, or Power Automate.",
+              "Optional: workflow spec, testing, and security.",
+              "Module summary and test (Module 11)."
+            ],
+            "recap": {
+              "heading": "What do you already know?",
+              "lead": "Agent cycle and prompts now have a workflow layer.",
+              "items": [
+                "Trigger → Condition → Action – the core sequence.",
+                "Webhook – real-time data between systems.",
+                "Integration, API, error handling, and logs – for audit and debugging."
+              ],
+              "itemGlossaryTerms": ["Trigger", "Webhook", "Integracija"]
+            },
+            "spinoffCta": {
+              "label": "Deep reads: workflow automation platforms (EN)",
+              "url": "https://www.promptanatomy.blog/articles/choosing-workflow-automation-ai-pipelines/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_15b"
+            }
           }
         },
         {

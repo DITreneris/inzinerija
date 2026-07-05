@@ -10,6 +10,7 @@ import {
   PartyPopper,
 } from 'lucide-react';
 import { Progress } from '../utils/progress';
+import { COMING_SOON_MODULES } from '../data/comingSoonModules';
 import { getModulesSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
@@ -118,6 +119,15 @@ function ModulesPage({
     (typeof window !== 'undefined' && window.location.hostname === 'localhost');
 
   const maxAccessible = getMaxAccessibleModuleId();
+  const localeKey = locale === 'en' ? 'en' : 'lt';
+
+  const comingSoonModules = useMemo(() => {
+    if (!modules || getIsMvpMode() || maxAccessible < 9) return [];
+    const loadedModuleIds = new Set(modules.map((module) => module.id));
+    return COMING_SOON_MODULES.filter(
+      (module) => !loadedModuleIds.has(module.id)
+    );
+  }, [modules, maxAccessible]);
 
   // Memoize locked modules (sequential: N locked until N-1 completed)
   const lockedModules = useMemo(() => {
@@ -464,6 +474,84 @@ function ModulesPage({
           );
         })}
       </div>
+
+      {comingSoonModules.length > 0 && (
+        <section
+          className="space-y-4"
+          aria-labelledby="coming-soon-modules-title"
+        >
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-xs font-semibold uppercase tracking-wide text-fuchsia-700 dark:text-fuchsia-300 mb-2">
+              {t('comingSoonEyebrow')}
+            </p>
+            <h2
+              id="coming-soon-modules-title"
+              className="text-2xl font-bold text-gray-900 dark:text-white"
+            >
+              {t('comingSoonTitle')}
+            </h2>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              {t('comingSoonSubtitle')}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {comingSoonModules.map((module) => {
+              const styles = levelStyles[module.level];
+              const ModuleIconCmp = resolveModuleIcon(module.icon);
+              const topStripeClass = accentTopBarClasses[module.accent];
+
+              return (
+                <article
+                  key={module.id}
+                  className="card relative overflow-hidden opacity-80"
+                  aria-label={t('comingSoonCardAria', {
+                    title: module.title[localeKey],
+                  })}
+                >
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1.5 ${topStripeClass}`}
+                  />
+                  <div className="p-6">
+                    <div className="flex items-start justify-between gap-3 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
+                        >
+                          {ModuleIconCmp && (
+                            <ModuleIconCmp
+                              className="w-6 h-6 text-white"
+                              strokeWidth={1.5}
+                            />
+                          )}
+                        </div>
+                        <div>
+                          <span className="inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-full bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-700 dark:text-fuchsia-300">
+                            {t('comingSoonBadge')}
+                          </span>
+                          <h3 className="mt-2 text-lg font-bold text-gray-900 dark:text-white">
+                            {module.title[localeKey]}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                      {module.subtitle[localeKey]}
+                    </p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed min-h-[4.5rem]">
+                      {module.description[localeKey]}
+                    </p>
+                    <div className="mt-5 rounded-xl border border-dashed border-fuchsia-300 dark:border-fuchsia-700 bg-fuchsia-50/70 dark:bg-fuchsia-900/20 px-4 py-3 text-sm text-fuchsia-800 dark:text-fuchsia-200">
+                      {t('comingSoonNote')}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Completion message */}
       {completedCount === totalModules && (

@@ -1,7 +1,7 @@
 /**
  * M10 – įrankių pasirinkimo medis (interaktyvus).
  */
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import {
   getM10ToolTreeLeaves,
   getM10ToolTreeLabels,
@@ -27,6 +27,7 @@ export default function M10ToolDecisionTreeDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
   const L = getM10ToolTreeLabels(locale);
   const leaves = getM10ToolTreeLeaves(locale);
   const interactive = typeof onSelect === 'function';
@@ -95,7 +96,9 @@ export default function M10ToolDecisionTreeDiagram({
         const leafTop = rowY;
         const midY = rootY + ROOT_H + (leafTop - (rootY + ROOT_H)) / 2;
         const isSel = selectedIndex === i;
-        const dim = interactive && selectedIndex >= 0 && !isSel ? 0.42 : 1;
+        const isFocused = focusedIndex === i;
+        const dim =
+          interactive && selectedIndex >= 0 && !isSel && !isFocused ? 0.42 : 1;
 
         return (
           <g key={leaf.id} opacity={dim}>
@@ -116,6 +119,20 @@ export default function M10ToolDecisionTreeDiagram({
               stroke={isSel ? '#102a43' : '#bcccdc'}
               strokeWidth={isSel ? 2 : 1}
             />
+            {isFocused && (
+              <rect
+                x={x - 4}
+                y={leafTop - 4}
+                width={LEAF_W + 8}
+                height={LEAF_H + 8}
+                rx="10"
+                fill="none"
+                stroke="#d4a520"
+                strokeWidth="3"
+                strokeDasharray="5 3"
+                pointerEvents="none"
+              />
+            )}
             <text
               x={cx}
               y={leafTop + 18}
@@ -152,6 +169,8 @@ export default function M10ToolDecisionTreeDiagram({
                 tabIndex={0}
                 aria-pressed={isSel}
                 aria-label={`${leaf.condition} → ${leaf.tool}`}
+                onFocus={() => setFocusedIndex(i)}
+                onBlur={() => setFocusedIndex(null)}
                 onClick={() => onSelect?.(i)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
