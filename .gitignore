@@ -47,6 +47,12 @@ test_coverage_test.txt
 *.tmp
 *.temp
 
+# Local EN audit run outputs (not SOT)
+audit-m1012.json
+audit-m1012-direct.json
+audit-m79-full.json
+audit-m79-full-direct.json
+
 # One-off M7-M9 EN translation pipeline scratch (not repo deliverables).
 # Keepers stay tracked: scripts/build-en-m7-m9.mjs, scripts/audit-en-coverage-m7-m9.mjs,
 # scripts/m7-m9-en-*, scripts/sync-module-icons.mjs.

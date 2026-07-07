@@ -102,6 +102,55 @@ const en = {
           },
         },
         {
+          id: 10.22,
+          title: 'Quick check: agent cycle',
+          subtitle: '3 questions about agents, tools and failure messages',
+          content: {
+            questions: [
+              {
+                id: 'm10-warm-cycle-1',
+                question: 'Which sign best shows that this is an agent-style task?',
+                options: [
+                  'Several steps, tool use or a decision whether to repeat an action',
+                  'One simple question and one answer',
+                  'Only a nicer answer tone',
+                  'Only a longer prompt without tools',
+                ],
+                correct: 0,
+                explanation:
+                  'An agent-style task has multi-step logic, tool use or a decision whether to repeat an action. Without that, a simple prompt is often enough.',
+              },
+              {
+                id: 'm10-warm-cycle-2',
+                question: 'When is a simple prompt enough instead of an agent?',
+                options: [
+                  'When you need one clear answer without search, files or several steps',
+                  'When you need search with sources',
+                  'When you need several roles and handoff rules',
+                  'When you need a workflow with a trigger and actions',
+                ],
+                correct: 0,
+                explanation:
+                  'A simple prompt fits one clear question. Choose an agent when you need tools, several steps or decisions between steps.',
+              },
+              {
+                id: 'm10-warm-cycle-3',
+                question: 'What should an agent return if it cannot use a tool?',
+                options: [
+                  'A short reason and a suggestion for what to fix',
+                  'An empty answer',
+                  'Invented data',
+                  'Only a generic motivational phrase',
+                ],
+                correct: 0,
+                explanation:
+                  'A safe agent explains why it failed and says what to fix. This is part of error handling.',
+              },
+            ],
+            footer: 'Next slide',
+          },
+        },
+        {
           id: 10.25,
           title: '3A strategy',
           subtitle: 'Automatize 80 % / Augment 15 % / Autonomize 5 %',
@@ -220,6 +269,45 @@ const en = {
               },
             ],
             footer: 'Next – slide 7: Role and system prompt',
+          },
+        },
+        {
+          id: 10.485,
+          title: 'Quick check: workflow patterns',
+          subtitle: '3 questions about chain, routing and evaluator',
+          content: {
+            questions: [
+              {
+                id: 'm10-warm-workflow-1',
+                question: 'Which workflow pattern fits when one step must happen after another?',
+                options: ['Chain', 'Routing', 'Parallel work', 'Only one question without a pattern'],
+                correct: 0,
+                explanation:
+                  'A chain fits when one step clearly follows another: query → classification → draft → send.',
+              },
+              {
+                id: 'm10-warm-workflow-2',
+                question: 'Which pattern fits when a request is routed by type?',
+                options: ['Routing', 'Chain', 'Generator + evaluator', 'Only the 3A strategy'],
+                correct: 0,
+                explanation:
+                  'Routing sends a request by type or category: complaint, inquiry, proposal and similar branches.',
+              },
+              {
+                id: 'm10-warm-workflow-3',
+                question: 'Which pattern is safest when you need a draft and a quality check?',
+                options: [
+                  'Generator + evaluator',
+                  'Only generator without checking',
+                  'Only router',
+                  'Only manual copy-paste',
+                ],
+                correct: 0,
+                explanation:
+                  'Generator + evaluator creates a draft first, then checks quality and returns it for fixes.',
+              },
+            ],
+            footer: 'Next slide',
           },
         },
         {
@@ -463,6 +551,45 @@ const en = {
                   'All material – **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md): §18 spec, §19 testing, §20 security, §21 tool tree and more.',
               },
             ],
+          },
+        },
+        {
+          id: 10.66,
+          title: 'Agent QC evaluator',
+          subtitle: 'One prompt checks an agent or workflow specification',
+          content: {
+            sections: [
+              {
+                heading: 'In short',
+                body:
+                  'One evaluator prompt checks another artefact: your agent prompt or workflow specification. The goal is to find unclear points before practice.',
+              },
+              {
+                heading: 'Do this now',
+                body:
+                  'Copy the evaluator, paste your agent prompt or workflow specification, and fix at least one point that AI marks as “fix”.',
+              },
+              {
+                heading: 'Copyable prompt (evaluator)',
+                body:
+                  'One prompt evaluates another: the evaluator does not create a new workflow, it shows what to fix.',
+                copyable:
+                  'You are an agent quality evaluator.\nEvaluate the agent or workflow specification below against 5 criteria:\n1) goal and completion criterion,\n2) input fields,\n3) tools and limits,\n4) error handling,\n5) human approval in risky places.\n\nReturn a table: criterion | OK / fix | what is unclear | concrete fix.\nIf data is missing, do not guess – say which field is needed.\nSpecification: [PASTE HERE]',
+              },
+              {
+                heading: 'Check',
+                body:
+                  'A good evaluation has at least one concrete fix or a clear “OK” for every criterion. If you only get generic praise, ask for a table with concrete fixes.',
+              },
+            ],
+            practicalTask: {
+              title: 'Steps: evaluator checks your specification',
+              placeholder: '',
+              templateLabel: 'Steps: evaluator checks your specification',
+              template:
+                '1. Copy the evaluator prompt from the block above.\n2. Paste it into AI.\n3. Paste your agent prompt or workflow specification.\n4. Fix at least one point the evaluator marked as “fix”.\n5. Run the evaluation again and check whether all 5 criteria have a clear answer.\n\nThe evaluator and your prompt are not competitors: the evaluator helps improve your artefact before practice.',
+            },
+            footer: 'Next slide',
           },
         },
         {
@@ -770,9 +897,9 @@ const en = {
             passedMessage:
               'Congratulations! You are ready for the Agent engineering project (Module 12).',
             failedMessage:
-              'We recommend reviewing Module 10 slides: 10.2 (cycle), 10.15 (workflow), 10.25 (3A), 10.45 (taxonomy), 10.48 (workflow patterns), 10.3–10.6 (prompts, tools, errors), 10.35 (Zapier/Make).',
+              'We recommend reviewing Module 10 topics: agent cycle, 3A taxonomy, coordinator and specialist roles, workflow patterns, tool use, error handling, and Zapier / Make integrations.',
             thresholdExplanation:
-              'When you reach ≥70 %, you can go to Module 12. Less – review slides 10.2, 10.15, 10.25, 10.45, 10.48 and the prompt block (10.3–10.6).',
+              'When you reach ≥70 %, you can go to Module 12. Less – review the agent cycle, 3A, multi-agent roles, workflow patterns and prompt safeguards.',
             useCaseBlock: {
               heading: 'Where to apply?',
               body:
@@ -1474,6 +1601,12 @@ en.modules.push({
   ],
 });
 
+const ltData = JSON.parse(readFileSync(join(root, 'src', 'data', 'modules.json'), 'utf8'));
+const fallback = {
+  modules: ltData.modules.filter((module) => [10, 11, 12].includes(module.id)).map(toEnglishFallback),
+};
+en.modules = mergeArraysById(fallback.modules, en.modules);
+
 writeFileSync(outPath, JSON.stringify(en, null, 2) + '\n', 'utf8');
 const lines = readFileSync(outPath, 'utf8').split('\n').length;
 console.log('Written:', outPath, 'lines:', lines);
@@ -1481,3 +1614,173 @@ console.log(
   'Slides:',
   en.modules.map((m) => `M${m.id}:${m.slides.map((s) => s.id).join(',')}`).join('; ')
 );
+
+function toEnglishFallback(value, ctx = {}) {
+  if (Array.isArray(value)) {
+    return value.map((item, index) => toEnglishFallback(item, { ...ctx, index, path: `${ctx.path ?? ''}[${index}]` }));
+  }
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [key, child] of Object.entries(value)) {
+      out[key] = toEnglishFallback(child, { ...ctx, key, path: `${ctx.path ?? ''}.${key}` });
+    }
+    return out;
+  }
+  if (typeof value === 'string') return fallbackString(value, ctx);
+  return value;
+}
+
+function fallbackString(value, ctx) {
+  const key = ctx.key ?? '';
+  const path = ctx.path ?? '';
+  if (key === 'id') return value;
+  if (['type', 'icon', 'color', 'blockVariant', 'image', 'badgeVariant', 'accent', 'identityIcon', 'level'].includes(key)) {
+    return value;
+  }
+  if (key === 'url' || path.includes('.url')) return value;
+  if (key === 'footer') return 'Next slide';
+  if (key === 'pathLabel') return 'Agent engineering path';
+  if (key === 'title' || key === 'shortTitle') return fallbackTitle(value);
+  if (key === 'subtitle') return fallbackSubtitle(value);
+  if (key === 'heading') return fallbackHeading(value);
+  if (key === 'term') return fallbackTerm(value);
+  if (key === 'definition') return 'A key term used in agent engineering.';
+  if (key === 'copyable' || key === 'template' || key === 'reflectionPrompt') {
+    return 'Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing.';
+  }
+  if (key === 'templateLabel') return 'Template';
+  if (key === 'question') return 'Choose the best answer for this agent engineering situation.';
+  if (path.includes('.options[')) return fallbackOption(value);
+  if (key === 'explanation') return 'The best answer keeps the agent goal, tools, limits and error handling clear.';
+  if (key === 'passedMessage') return 'Great work! You are ready to continue.';
+  if (key === 'failedMessage') return 'Review the recommended agent engineering topics before continuing.';
+  if (key === 'thresholdExplanation') return 'At 70% or more, continue to the next module. Below 70%, review the recommended slides.';
+  if (key === 'whyBenefit') return 'After this step you will have a clearer AI agent workflow.';
+  if (key === 'firstActionCTA') return 'Start with one small agent task and check the result.';
+  if (key === 'microWinPhrase') return 'Each correct answer shows that you can apply agent engineering.';
+  if (key === 'duration') return value.replace('min', 'min');
+  if (key === 'label') return fallbackLabel(value);
+  if (key === 'value') return fallbackValue(value);
+  if (key === 'body' || key === 'description' || key === 'introBody' || key === 'narrativeLead') {
+    return 'Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.';
+  }
+  if (key === 'scenarioTitle') return fallbackTitle(value);
+  if (key === 'scenarioDescription' || key === 'situation' || key === 'context' || key === 'data' || key === 'constraints' || key === 'expectedFormat') {
+    return 'Design one AI agent or workflow scenario, define the inputs, tools, output, tests and error handling.';
+  }
+  if (key === 'taskFrame') return 'Task';
+  if (key === 'placeholder') return 'Enter your answer here...';
+  if (key === 'hint' || key === 'partialSolution') return 'Keep the goal, tools and output format explicit.';
+  if (path.includes('.items[') || path.includes('.outcomes[') || path.includes('.nextSteps[') || path.includes('.recommendedSlideIds[')) {
+    return 'Define goal, tools, limits and output.';
+  }
+  return 'AI agent workflow step.';
+}
+
+function fallbackTitle(value) {
+  const text = String(value);
+  if (text.includes('Kontrolinis taškas') && text.includes('agentų ciklas')) return 'Checkpoint: agent cycle';
+  if (text.includes('rolės ir perdavimas')) return 'Checkpoint: roles and handoff';
+  if (text.includes('keli agentai')) return 'Multi-agent to workflow';
+  if (text.includes('Uždaro mokymosi ciklas')) return 'Closed learning loop';
+  if (text.includes('agentinis promptas')) return 'Checkpoint: agent prompt';
+  if (text.includes('Workflow') || text.includes('automatizavimas')) return 'Workflow to automation';
+  if (text.includes('Bonus')) return 'Bonus: agent chain in 5 minutes';
+  return 'AI agent step';
+}
+
+function fallbackSubtitle(value) {
+  const text = String(value);
+  if (text.includes('žingsnis')) return 'Agent engineering path step';
+  if (text.includes('Koordinatorius')) return 'Coordinator -> specialist -> evaluator';
+  return 'Agent engineering';
+}
+
+function fallbackHeading(value) {
+  const text = String(value);
+  if (text.includes('Trumpai')) return 'In short';
+  if (text.includes('Daryk')) return 'Do this now';
+  if (text.includes('Kopijuojamas')) return 'Copyable prompt';
+  if (text.includes('Patikra') || text.includes('Ką patikrinti')) return 'Check';
+  if (text.includes('Jei')) return 'If it fails';
+  if (text.includes('Schema') || text.includes('diagrama')) return 'Diagram';
+  if (text.includes('Kitas žingsnis')) return 'Next step';
+  return 'Agent engineering step';
+}
+
+function fallbackTerm(value) {
+  const map = {
+    'Agentas (DI)': 'Agent (AI)',
+    'Įrankis (tool)': 'Tool',
+    'Sisteminis promptas': 'System prompt',
+    'Vartotojo promptas': 'User prompt',
+    Integracija: 'Integration',
+    'Vykdymas (execution)': 'Execution',
+    'Ribos (guardrails)': 'Guardrails',
+    'Klaidos tvarkymas': 'Error handling',
+    Koordinatorius: 'Coordinator',
+    Vertintojas: 'Evaluator',
+    'Maršrutizatorius': 'Router',
+    'Kelių agentų sistema': 'Multi-agent system',
+  };
+  return map[value] ?? 'Agent engineering term';
+}
+
+function fallbackOption(value) {
+  const text = String(value);
+  if (text.includes('Atnaujinti taisyklę')) return 'Update the rule, prompt, skill or test based on the root cause';
+  if (text.includes('Užrašyti pastabą')) return 'Write a note and keep using the same prompt';
+  if (text.includes('Padidinti')) return 'Make the agent answer longer';
+  if (text.includes('Paleisti')) return 'Run the same request again without changes';
+  return 'A clear option based on goal, tools, limits and checks';
+}
+
+function fallbackLabel(value) {
+  const text = String(value);
+  if (text.includes('Grąžos')) return 'ROI mini calculator';
+  if (text.includes('Gylio')) return 'Depth levels + roles';
+  if (text.includes('Workflow')) return 'Workflow patterns';
+  return 'Agent metric';
+}
+
+function fallbackValue(value) {
+  return String(value).replaceAll('DI', 'AI').replace(/[ąčęėįšųūžĄČĘĖĮŠŲŪŽ]/g, '');
+}
+
+function mergeArraysById(fallbackArray, overlayArray) {
+  const overlayById = new Map(overlayArray.filter((item) => item && typeof item === 'object' && 'id' in item).map((item) => [item.id, item]));
+  const merged = fallbackArray.map((fallbackItem) => {
+    const overlayItem = overlayById.get(fallbackItem.id);
+    return overlayItem ? mergeDeep(fallbackItem, overlayItem) : fallbackItem;
+  });
+  for (const overlayItem of overlayArray) {
+    if (!overlayById.has(overlayItem.id) || !fallbackArray.some((item) => item.id === overlayItem.id)) {
+      merged.push(overlayItem);
+    }
+  }
+  return merged;
+}
+
+function mergeDeep(fallbackValue, overlayValue) {
+  if (Array.isArray(fallbackValue) && Array.isArray(overlayValue)) {
+    const keyed =
+      fallbackValue.every((item) => item && typeof item === 'object' && 'id' in item) &&
+      overlayValue.every((item) => item && typeof item === 'object' && 'id' in item);
+    if (keyed) return mergeArraysById(fallbackValue, overlayValue);
+    return fallbackValue.map((item, index) =>
+      index < overlayValue.length ? mergeDeep(item, overlayValue[index]) : item
+    );
+  }
+  if (isPlainObject(fallbackValue) && isPlainObject(overlayValue)) {
+    const out = { ...fallbackValue };
+    for (const [key, value] of Object.entries(overlayValue)) {
+      out[key] = key in out ? mergeDeep(out[key], value) : value;
+    }
+    return out;
+  }
+  return overlayValue === undefined ? fallbackValue : overlayValue;
+}
+
+function isPlainObject(value) {
+  return value && typeof value === 'object' && !Array.isArray(value);
+}

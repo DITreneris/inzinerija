@@ -53,6 +53,7 @@ export const EN_LT_TOKENS = [
   'pakeisk',
   'papildomus',
   'Priskirk',
+  'promptai',
   'rekomendacijas',
   'Rinkimas',
   'rinkinius',
@@ -73,12 +74,20 @@ export const EN_BROKEN_PHRASES = [
   'Based on with',
   'collectti',
   'data rinkinius',
+  'ir contracts',
+  'ir sales',
   'instead ofe',
+  'ko avoid',
+  'pagal task',
   'ir rekomendacijas',
   'segmenthat',
   'sistopic',
+  'sources ir',
+  'su columnss',
   'su links',
   'teisinga steps',
+  'Tool sequence ir',
+  'vedantys questions',
   'when rgoia',
 ];
 
@@ -96,8 +105,10 @@ export const EN_LT_WORD_PATTERNS = [
   /\bTesto rezultatai\b/i,
   /\bProjekto santrauka\b/i,
   /\bverslo lygio\b/i,
-  /\bSkyrius:\b/i,
-  /\bSaugumas:\b/i,
+  /(^|\s)Skyrius:/i,
+  /(^|\s)Saugumas:/i,
+  /(^|\s)Savitikra:/i,
+  /(^|\s)Praktika:/i,
   /\bSisteminis promptas\b/i,
   /\bteisingai\b/i,
   /\bveiksmas\b/i,
@@ -112,7 +123,7 @@ export const EN_LT_WORD_PATTERNS = [
   /\bAgentinis promptas\b/i,
 ];
 
-export const EN_TITLE_LT_PREFIX = /^(Scenarijus:|Projekto santrauka|Testo rezultatai)/;
+export const EN_TITLE_LT_PREFIX = /^(Scenarijus:|Skyrius:|Saugumas:|Savitikra:|Praktika:|Projekto santrauka|Testo rezultatai)/;
 
 /** Paths where LT/technical ids are allowed (not user-facing copy). */
 export const SKIP_PATH_SUFFIXES = [

@@ -69,6 +69,14 @@ describe('M7–M9 EN language audit', () => {
     expect(hybrid).toBe(0);
   });
 
+  it('M7 slides 734 and 66.9 have no EN fallback or LT prefix findings', () => {
+    if (!existsSync(enOverlay)) return;
+    const report = runLanguageAudit();
+    const hits = findingsForSlides(report, 7, [734, 66.9]);
+    expect(hits, JSON.stringify(hits, null, 2)).toEqual([]);
+    expect(report.counts.en_title_lt_prefix ?? 0).toBe(0);
+  });
+
   it('worst-risk M7 and M9 slides have no EN language audit findings', () => {
     if (!existsSync(enOverlay)) return;
     const report = runLanguageAudit();

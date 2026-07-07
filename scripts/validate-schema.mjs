@@ -462,12 +462,90 @@ function validateCertificateContent() {
   return true;
 }
 
+function validateModulesEnM1315() {
+  /** Partial EN overrides merged by id – not full module documents (see modulesLoader deepMerge). */
+  const partialSchema = {
+    type: 'object',
+    required: ['modules'],
+    additionalProperties: false,
+    properties: {
+      modules: {
+        type: 'array',
+        minItems: 3,
+        maxItems: 3,
+        items: {
+          type: 'object',
+          required: ['id'],
+          additionalProperties: true,
+          properties: {
+            id: { type: 'number', enum: [13, 14, 15] },
+            title: { type: 'string' },
+            subtitle: { type: 'string' },
+            description: { type: 'string' },
+            duration: { type: 'string' },
+            slides: {
+              type: 'array',
+              items: {
+                type: 'object',
+                required: ['id'],
+                additionalProperties: true,
+                properties: {
+                  id: { type: 'number' },
+                  title: { type: 'string' },
+                  subtitle: { type: 'string' },
+                  type: { type: 'string' },
+                  content: { type: 'object' },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+  const dataPath = join(dataDir, 'modules-en-m13-m15.json');
+  if (!existsSync(dataPath)) {
+    console.log('modules-en-m13-m15.json: SKIP (optional EN overlay, file not present)');
+    return true;
+  }
+  let data;
+  try {
+    data = JSON.parse(readFileSync(dataPath, 'utf8'));
+  } catch (e) {
+    console.error(`Failed to read ${dataPath}:`, e.message);
+    return false;
+  }
+  if (!Array.isArray(data.modules) || data.modules.length === 0) {
+    console.log('modules-en-m13-m15.json: OK (empty stub until full EN overlay)');
+    return true;
+  }
+  const validate = ajv.compile(partialSchema);
+  const valid = validate(data);
+  if (!valid) {
+    console.error('modules-en-m13-m15.json validation failed:\n');
+    validate.errors.forEach((err) => {
+      const p = err.instancePath || '/';
+      console.error(`  ${p}: ${err.message}`);
+      if (err.params?.allowedValues) console.error(`    (allowed: ${err.params.allowedValues.join(', ')})`);
+    });
+    return false;
+  }
+  const ids = data.modules.map((m) => m.id);
+  if (!ids.includes(13) || !ids.includes(14) || !ids.includes(15)) {
+    console.error('modules-en-m13-m15.json: expected modules id 13, 14, 15');
+    return false;
+  }
+  console.log('modules-en-m13-m15.json: OK');
+  return true;
+}
+
 function main() {
   let ok = validateModules()
     && validateCoreModules()
     && validateCorporateModules()
     && validateModulesEnM46()
     && validateModulesEnM1012()
+    && validateModulesEnM1315()
     && validateModulesEnM79()
     && validatePromptLibrary()
     && validateGlossary()
