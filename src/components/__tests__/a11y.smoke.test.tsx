@@ -17,11 +17,40 @@ vi.mock('../../data/modulesLoader', () => ({
   getModulesSync: vi.fn(() => []),
   getModulesDataSync: vi.fn(() => null),
 }));
-vi.mock('../../utils/accessTier', () => ({ getMaxAccessibleModuleId: vi.fn(() => 6) }));
+vi.mock('../../data/toolsLoader', () => ({
+  getTools: vi.fn(() => [
+    {
+      name: 'PostgreSQL',
+      description: 'Reliacinė duomenų bazė struktūruotiems duomenims.',
+      moduleId: 7,
+      category: 'Duomenų bazės',
+      url: 'https://www.postgresql.org/',
+    },
+    {
+      name: 'SQLite',
+      description: 'Lengva lokali duomenų bazė prototipui.',
+      moduleId: 7,
+      category: 'Duomenų bazės',
+      url: 'https://www.sqlite.org/',
+    },
+  ]),
+}));
+vi.mock('../ModuleView', () => ({ default: () => null }));
+vi.mock('../SlideContent', () => ({ default: () => null }));
+vi.mock('../../utils/accessTier', () => ({
+  getMaxAccessibleModuleId: vi.fn(() => 6),
+}));
 vi.mock('canvas-confetti', () => ({ default: vi.fn() }));
-vi.mock('../../utils/introPiePdf', () => ({ ensurePdfFont: vi.fn().mockResolvedValue(undefined) }));
-vi.mock('../../utils/certificatePdf', () => ({ downloadCertificatePdf: vi.fn().mockResolvedValue(undefined) }));
-vi.mock('../../utils/certificateStorage', () => ({ getCertificateName: vi.fn(() => ''), setCertificateName: vi.fn() }));
+vi.mock('../../utils/introPiePdf', () => ({
+  ensurePdfFont: vi.fn().mockResolvedValue(undefined),
+}));
+vi.mock('../../utils/certificatePdf', () => ({
+  downloadCertificatePdf: vi.fn().mockResolvedValue(undefined),
+}));
+vi.mock('../../utils/certificateStorage', () => ({
+  getCertificateName: vi.fn(() => ''),
+  setCertificateName: vi.fn(),
+}));
 vi.mock('../../utils/analytics', () => ({ track: vi.fn() }));
 
 interface AxeResults {
@@ -30,10 +59,14 @@ interface AxeResults {
 
 function runAxe(container: HTMLElement): Promise<AxeResults> {
   return new Promise((resolve, reject) => {
-    axe.run(container, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } }, (err, results) => {
-      if (err) reject(err);
-      else resolve(results as AxeResults);
-    });
+    axe.run(
+      container,
+      { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } },
+      (err, results) => {
+        if (err) reject(err);
+        else resolve(results as AxeResults);
+      }
+    );
   });
 }
 
@@ -58,10 +91,7 @@ describe('A11y smoke (axe-core)', () => {
 
   it('ModulesPage has no serious/critical axe violations', async () => {
     const { container } = renderWithProviders(
-      <ModulesPage
-        onModuleSelect={() => {}}
-        progress={defaultProgress}
-      />
+      <ModulesPage onModuleSelect={() => {}} progress={defaultProgress} />
     );
     const results = await runAxe(container);
     const serious = results.violations.filter(

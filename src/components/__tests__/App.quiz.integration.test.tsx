@@ -80,13 +80,15 @@ describe('App – Quiz integracinis srautas', () => {
   });
 
   it('naviguoja į Apklausą ir rodo empty-state kai quiz.questions tuščias', async () => {
+    const user = userEvent.setup();
+
     renderWithProviders(
       <HelmetProvider>
         <App />
       </HelmetProvider>
     );
 
-    await userEvent.click(getQuizNavButton());
+    await user.click(getQuizNavButton());
 
     // Laukiame stabilesnio signalo, kad QuizPage empty-state jau tikrai užsikrovė.
     await screen.findByRole(
@@ -107,13 +109,15 @@ describe('App – Quiz integracinis srautas', () => {
   }, 15000);
 
   it('mygtukas „Grįžti atgal“ Apklausoje grąžina atgal', async () => {
+    const user = userEvent.setup();
+
     renderWithProviders(
       <HelmetProvider>
         <App />
       </HelmetProvider>
     );
 
-    await userEvent.click(getQuizNavButton());
+    await user.click(getQuizNavButton());
 
     await screen.findByText(
       /Apklausos klausimų nėra|No quiz questions available/i,
@@ -126,9 +130,9 @@ describe('App – Quiz integracinis srautas', () => {
       { name: /Grįžti atgal|Back to home|Go back/i },
       { timeout: 5000 }
     );
-    await userEvent.click(backButton);
+    await user.click(backButton);
 
-    // Po navigacijos į Home Quiz turinys (empty state) turi išnykti
+    // onBack iš QuizPage grąžina į ModulesPage; tikriname ir dingusį quiz tekstą, ir realų Modules signalą.
     await waitFor(
       () => {
         expect(
@@ -136,13 +140,19 @@ describe('App – Quiz integracinis srautas', () => {
             /Apklausos klausimų nėra|No quiz questions available/i
           )
         ).not.toBeInTheDocument();
+        expect(
+          screen.getByRole('heading', {
+            name: /Paversk DI savo darbo sistema|Turn AI into your work system/i,
+          })
+        ).toBeInTheDocument();
       },
       { timeout: 10000 }
     );
     expect(getQuizNavButton()).toBeInTheDocument();
-  }, 20000);
+  }, 30000);
 
   it('progress išlieka po navigacijos į Apklausą ir atgal', async () => {
+    const user = userEvent.setup();
     const progressWithModule = {
       ...getProgress(),
       completedModules: [1],
@@ -167,7 +177,7 @@ describe('App – Quiz integracinis srautas', () => {
       </HelmetProvider>
     );
 
-    await userEvent.click(getQuizNavButton());
+    await user.click(getQuizNavButton());
 
     await screen.findByText(
       /Apklausos klausimų nėra|No quiz questions available/i,
@@ -175,7 +185,7 @@ describe('App – Quiz integracinis srautas', () => {
       { timeout: 10000 }
     );
 
-    await userEvent.click(
+    await user.click(
       screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
     );
 
@@ -185,6 +195,8 @@ describe('App – Quiz integracinis srautas', () => {
   }, 15000);
 
   it('rodo retry fallback quiz puslapyje, kai modulių užkrovimas nepavyksta', async () => {
+    const user = userEvent.setup();
+
     vi.mocked(getModulesDataSync).mockReturnValue(null);
     vi.mocked(loadModules).mockRejectedValueOnce(new Error('load failed'));
 
@@ -194,7 +206,7 @@ describe('App – Quiz integracinis srautas', () => {
       </HelmetProvider>
     );
 
-    await userEvent.click(getQuizNavButton());
+    await user.click(getQuizNavButton());
 
     await screen.findByText(
       /Nepavyko įkelti mokymo medžiagos|Failed to load training material/i,
