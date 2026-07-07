@@ -1,6 +1,15 @@
 {
   "terms": [
     {
+      "term": "3NF",
+      "definition": "Trečioji normalios formos taisyklė – duomenų bazės struktūra, kuri mažina dubliavimą ir padeda aiškiau susieti lenteles.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Advanced Parameters",
       "definition": "Modelio nustatymai: temperature, reasoning gylis, atsakymo ilgis, pasikartojimų kontrolė.",
       "moduleId": 1
@@ -39,6 +48,15 @@
       "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
       "definition": "Prioritetų sistema – užduotys ar idėjos skirstomos į 4 grupes pagal svarbą ir skubą; padeda nuspręsti, ką daryti pirmiausia.",
       "moduleId": 7
+    },
+    {
+      "term": "Cache sluoksnis",
+      "definition": "Greitas laikinas duomenų sluoksnis sesijoms, eilėms ar spartai. Dažniausiai tai papildymas prie pagrindinės duomenų bazės, ne pagrindinė saugykla.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Chunk (fragmentas)",
@@ -116,6 +134,15 @@
       }
     },
     {
+      "term": "ER modelis",
+      "definition": "Entity-Relationship modelis – lentelių ir jų ryšių (pvz. 1-N, N-N) logikos aprašas, padedantis suprasti duomenų struktūrą.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Few-shot",
       "definition": "Užklausa su keliais pavyzdžiais, kad DI perimtų stilių ar formatą.",
       "moduleId": 1
@@ -181,6 +208,15 @@
       "moduleId": 4
     },
     {
+      "term": "KPI",
+      "definition": "Pagrindinis veiklos rodiklis – ką matuoji, kad suprastum, ar verslo procesas veikia gerai.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Leading questions",
       "definition": "Vedantys klausimai – suformuluoti taip, kad nukreiptų atsakymą į norimą pusę; promptų manipuliacijos atvejis, ko vengti.",
       "moduleId": 4
@@ -219,6 +255,15 @@
       "term": "Multimodalumas",
       "definition": "DI gebėjimas dirbti su keliais formatais vienu metu – tekstas, vaizdai, garsas, vaizdo įrašai; pvz. įkelti nuotrauką ir gauti aprašymą.",
       "moduleId": 4
+    },
+    {
+      "term": "NoSQL",
+      "definition": "Duomenų bazės principas be griežtos lentelių schemos. Tinka dokumentams, lankstesnei struktūrai ir greitiems MVP.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Neuroniniai tinklai",
@@ -337,6 +382,15 @@
       "term": "Sprendimų filtras",
       "definition": "Trumpas metodas, kuris analizės rezultatą paverčia veiksmu (taisyti, prioritetą nustatyti, atmesti, testuoti, plėsti) – ne tik aprašymu.",
       "moduleId": 7
+    },
+    {
+      "term": "SQL duomenų bazė",
+      "definition": "Lentelėmis ir ryšiais paremta duomenų bazė. Tinka struktūruotiems verslo duomenims, užklausoms ir ataskaitoms.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Šaltinių nurodymas",

@@ -16,6 +16,11 @@
       "moduleId": 4
     },
     {
+      "term": "AI agent",
+      "definition": "A system that performs tasks in steps and can use tools such as search, APIs or files. Unlike a simple chat, it can take several actions and use external sources.",
+      "moduleId": 10
+    },
+    {
       "term": "Agentic prompt",
       "definition": "Asks the AI to take action – search, use tools (Browse, Search, API), gather data; the AI acts as an agent; requires a platform with tool/search support (e.g. “find and list TOP10”).",
       "moduleId": 4
@@ -81,6 +86,11 @@
       "moduleId": 4
     },
     {
+      "term": "Coordinator",
+      "definition": "A multi-agent role that breaks down a task, assigns specialists and merges their outputs.",
+      "moduleId": 10
+    },
+    {
       "term": "Custom GPT",
       "definition": "A ChatGPT project with rules, instructions, and files – a personal or team assistant for a specific task.",
       "moduleId": 4
@@ -134,6 +144,11 @@
       "term": "Methodological prompt",
       "definition": "Specifies how to do the task – role, steps, format; the model produces an answer from the method without needing external search or tools (e.g. an analysis report).",
       "moduleId": 4
+    },
+    {
+      "term": "Multi-agent",
+      "definition": "A system where several roles, such as coordinator, specialist and evaluator, work together and pass clear inputs and outputs to each other.",
+      "moduleId": 10
     },
     {
       "term": "Multimodality",
@@ -201,6 +216,11 @@
       "moduleId": 4
     },
     {
+      "term": "ReAct",
+      "definition": "An agent loop principle: understand the task, choose a tool, act, observe the result and decide whether to repeat or finish.",
+      "moduleId": 10
+    },
+    {
       "term": "RL",
       "definition": "Reinforcement Learning – the AI learns from trial and error by receiving a numeric reward (without human scoring).",
       "moduleId": 4
@@ -209,6 +229,11 @@
       "term": "RLHF",
       "definition": "Reinforcement Learning from Human Feedback – reinforcement learning with human feedback; used to shape “better” answer behaviour in AI models.",
       "moduleId": 4
+    },
+    {
+      "term": "Router",
+      "definition": "A multi-agent role that classifies a request and sends it to the right specialist or workflow.",
+      "moduleId": 10
     },
     {
       "term": "SFT (Supervised Fine-Tuning)",
@@ -221,9 +246,32 @@
       "moduleId": 4
     },
     {
+      "term": "Tool",
+      "definition": "A function the AI can call, such as search, a spreadsheet, file reading or an API. Not all platforms provide the same tools.",
+      "moduleId": 10
+    },
+    {
       "term": "Tool Use",
       "definition": "The AI uses external tools – search, API calls, calculations, retrieval from a database; needed for agentic prompts and RAG.",
       "moduleId": 4
+    },
+    {
+      "term": "3NF",
+      "definition": "Third normal form – a database structure rule that reduces duplication and helps connect tables more clearly.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "Cache layer",
+      "definition": "A fast temporary data layer for sessions, queues, or speed. Usually an addition to the main database, not the main storage.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Dashboard",
@@ -246,6 +294,52 @@
       "moduleId": 7
     },
     {
+      "term": "ER model",
+      "definition": "Entity-Relationship model – a description of tables and their relationships, such as 1-N or N-N, that helps understand data structure.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "Evaluator",
+      "definition": "A multi-agent role that checks output against criteria, rules and risks; it can return work for revision.",
+      "moduleId": 10
+    },
+    {
+      "term": "Integration",
+      "definition": "A connection between AI and external data or services such as APIs, databases, email or CRM. Required for agents and workflow automation.",
+      "moduleId": 10
+    },
+    {
+      "term": "KPI",
+      "definition": "Key performance indicator – what you measure to see whether a business process is working well.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "NoSQL",
+      "definition": "A database approach without a strict table schema. Useful for documents, flexible structure, and fast MVPs.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "SQL database",
+      "definition": "A database based on tables and relationships. Useful for structured business data, queries, and reports.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Synthesis",
       "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
       "moduleId": 7
@@ -259,6 +353,21 @@
       "term": "Visualization",
       "definition": "Presenting data in charts, tables, or diagrams – to understand trends and conclusions. AI can generate visualization specs or code.",
       "moduleId": 7
+    },
+    {
+      "term": "Trigger",
+      "definition": "An event that starts a workflow, such as a new email, form submission or uploaded file.",
+      "moduleId": 10
+    },
+    {
+      "term": "Webhook",
+      "definition": "Real-time data transfer between systems: an event immediately sends data to a specified address, usually through an API call.",
+      "moduleId": 10
+    },
+    {
+      "term": "Workflow",
+      "definition": "A sequence of steps or tools with a clear output. It can connect several AI tools or business systems into one flow.",
+      "moduleId": 10
     }
   ]
 }

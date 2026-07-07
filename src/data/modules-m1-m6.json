@@ -22,6 +22,7 @@
             "ctaText": "Pamatyk skirtumą per 30 sekundžių!",
             "unstructuredPrompt": "Parašyk man marketingo planą.",
             "structuredPrompt": "META: Tu esi marketingo strategas su 10 metų B2B patirtimi.\nTikslas: parengti Q1 marketingo planą.\nAuditorija: CMO ir vadovybė.\n\nINPUT: Biudžetas 50k EUR. Tikslinė rinka: Baltijos šalys.\nKonkurentai: 3 pagrindiniai žaidėjai.\n\nOUTPUT: Strateginis dokumentas, 2-3 puslapiai.\nStruktūra: tikslai → kanalai → biudžetas → KPI.\nTonas: profesionalus, su konkrečiais skaičiais.",
+            "firstActionCTA": "Nukopijuok žalią struktūruotą promptą ir pakeisk tik temą, auditoriją ir biudžetą pagal savo situaciją. Tai pirmas tavo 6 blokų sistemos bandymas.",
             "aboutText": "Šiuose mokymuose išmoksi 6 blokų sistemą – nuo chaotiško klausimo iki profesionalaus rezultato.",
             "sandboxMessage": "Tai treniruoklis – gali bandyti, klysti ir grįžti atgal. Rezultatai čia nesaugomi; svarbiausia – išmokti.",
             "outcomes": [
@@ -200,7 +201,32 @@
                 "url": "https://www.nber.org/papers/w31161"
               }
             ],
-            "footer": "Toliau – skaidrė 3: Promptas ir Promptų Inžinerija"
+            "footer": "Toliau – skaidrė 3: Pirmas 6 blokų bandymas"
+          }
+        },
+        {
+          "id": 1.1,
+          "title": "Pirmas 6 blokų bandymas",
+          "subtitle": "Micro-win: nukopijuok struktūruotą promptą ir pakeisk 3 laukus",
+          "type": "path-step",
+          "content": {
+            "title": "Pirmas bandymas – struktūruotas promptas",
+            "pathLabel": "6 blokų kelias",
+            "stepNumber": 1,
+            "stepTotal": 2,
+            "body": "Nukopijuok struktūruotą promptą iš įvado ir pakeisk tik 3 dalykus: temą, auditoriją ir vieną apribojimą. Tai mažas veiksmas, kuris iš karto parodo, kaip struktūra keičia DI atsakymą.",
+            "sections": [
+              {
+                "heading": "Ką pakeisti",
+                "body": "1) Tema: apie ką turi būti rezultatas. 2) Auditorija: kam skirtas atsakymas. 3) Apribojimas: biudžetas, laikas, apimtis arba formatas.",
+                "copyable": "META: Tu esi [vaidmuo]. Tikslas – parengti [tema]. Auditorija – [kam].\n\nINPUT: Turiu [duomenys arba situacija]. Apribojimas – [laikas / biudžetas / apimtis].\n\nOUTPUT: Pateik [formatas]. Struktūra: [punktai / lentelė / planas]. Tonas – [stilius]."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar pakeitei visus 3 laukus? Jei taip – jau turi pirmą 6 blokų sistemos bandymą, kurį galėsi plėsti toliau."
+              }
+            ],
+            "footer": "Toliau – skaidrė 4: Promptas ir Promptų Inžinerija"
           }
         },
         {
@@ -247,7 +273,7 @@
                 "url": "https://docs.anthropic.com/claude/docs/prompt-engineering"
               }
             ],
-            "footer": "Toliau – skaidrė 4: Workflow Samprata"
+            "footer": "Toliau – skaidrė 5: Workflow Samprata"
           }
         },
         {
@@ -291,7 +317,7 @@
                 "prompt": "Tu esi mokymų kūrėjas.\nSukurk 5 punktų paaiškinimą apie promptų inžineriją.\nFormatas: numeruotas sąrašas.\nTonas: profesionalus.\nMaks. 120 žodžių."
               }
             ],
-            "footer": "Toliau – skaidrė 5: Pagrindiniai Promptų Tipai",
+            "footer": "Toliau – skaidrė 6: Pagrindiniai Promptų Tipai",
             "interactive": {
               "enabled": true,
               "defaultMode": "basic"
@@ -328,7 +354,7 @@
               }
             ],
             "practicalTip": "Kombinuok visus tris promptų tipus viename užklausime, kad gautum maksimaliai tikslų ir verslo poreikius atitinkantį rezultatą. Tai ypač svarbu ruošiant strateginius dokumentus ar analizes.",
-            "footer": "Toliau – skaidrė 6: Prompting'o Technikos"
+            "footer": "Toliau – skaidrė 7: Prompting'o Technikos"
           }
         },
         {
@@ -377,7 +403,7 @@
                 "example": "Įrodyk, kad X geriau už Y."
               }
             ],
-            "footer": "Toliau – skaidrė 7: Gero Prompto Šablonas"
+            "footer": "Toliau – skaidrė 8: Gero Prompto Šablonas"
           }
         },
         {
@@ -405,7 +431,55 @@
             ],
             "template": "META: Vaidmuo – [kas esi]. Tikslas – [ką sukurti]. Auditorija – [kam].\nINPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].\nOUTPUT: Formatas – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyriai]. Tonas – [stilius].\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
             "example": "META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.\nINPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.\nOUTPUT: Formatas – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus, aiškus.\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
-            "footer": "Toliau – skaidrė 8: Ko jau išmokome?"
+            "footer": "Toliau – skaidrė 9: Savitikra: META / INPUT / OUTPUT"
+          }
+        },
+        {
+          "id": 16.5,
+          "title": "Savitikra: META / INPUT / OUTPUT",
+          "shortTitle": "Savitikra: 3 blokai",
+          "subtitle": "3 klausimai prieš pereinant prie Reasoning, Quality ir Advanced",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m1-warm-mio-1",
+                "question": "Kuri prompto dalis geriausiai priklauso META blokui?",
+                "options": [
+                  "Tu esi marketingo strategas, tikslas – parengti Q1 planą vadovybei",
+                  "Biudžetas 50k EUR, tikslinė rinka – Baltijos šalys",
+                  "Pateik lentelę su kanalais, biudžetu ir KPI",
+                  "Naudok profesionalų toną ir trumpus punktus"
+                ],
+                "correct": 0,
+                "explanation": "META blokas apibrėžia rolę, tikslą ir auditoriją. Duomenys bei apribojimai keliauja į INPUT, o formatas – į OUTPUT."
+              },
+              {
+                "id": "m1-warm-mio-2",
+                "question": "Kuri eilutė yra INPUT blokas?",
+                "options": [
+                  "Produktas EcoBox, rinka – mažmena, apribojimas – 1 puslapis",
+                  "Tu esi produkto vadovas",
+                  "Pateik SWOT lentelę",
+                  "Tonas – aiškus ir profesionalus"
+                ],
+                "correct": 0,
+                "explanation": "INPUT yra tai, ką DI turi naudoti: faktai, duomenys, rinka, apribojimai ir kita situacijos informacija."
+              },
+              {
+                "id": "m1-warm-mio-3",
+                "question": "Kuris sakinys geriausiai aprašo OUTPUT bloką?",
+                "options": [
+                  "Rezultatą pateik 5 punktų sąrašu, su aiškiomis antraštėmis ir trumpu tonu",
+                  "Tu esi HR konsultantas",
+                  "Turiu 20 darbuotojų apklausos atsakymų",
+                  "Tikslas – suprasti komandos nuotaiką"
+                ],
+                "correct": 0,
+                "explanation": "OUTPUT nurodo, kaip turi atrodyti atsakymas: formatas, struktūra, ilgis, tonas ir pateikimo tvarka."
+              }
+            ],
+            "footer": "Toliau – skaidrė 10: Ko jau išmokome?"
           }
         },
         {
@@ -427,7 +501,7 @@
             ],
             "note": "Sudėtingoms užduotims reikia ne tik aiškumo, bet ir validavimo.",
             "takeaway": "Nuo 3 blokų iki 6 blokų = nuo užduoties prie kontrolės.",
-            "footer": "Toliau – skaidrė 9: Hierarchinė Struktūra"
+            "footer": "Toliau – skaidrė 11: Hierarchinė Struktūra"
           }
         },
         {
@@ -483,7 +557,7 @@
               }
             ],
             "tip": "Pabandyk sukurti promptą be struktūros (kaip paprastai darai). Išsaugok – palyginsime su struktūruota versija pabaigoje.",
-            "footer": "Toliau – skaidrė 10: 1️⃣ Meta Blokas"
+            "footer": "Toliau – skaidrė 12: 1️⃣ Meta Blokas"
           }
         },
         {
@@ -530,7 +604,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 14: 4️⃣ Reasoning Blokas"
+            "footer": "Toliau – skaidrė 16: 4️⃣ Reasoning Blokas"
           }
         },
         {
@@ -555,7 +629,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 15: 5️⃣ Quality Control Blokas"
+            "footer": "Toliau – skaidrė 17: 5️⃣ Quality Control Blokas"
           }
         },
         {
@@ -679,7 +753,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 17: 6️⃣ Advanced Parameters (II)"
+            "footer": "Toliau – skaidrė 19: 6️⃣ Advanced Parameters (II)"
           }
         },
         {
@@ -694,7 +768,7 @@
               "darykDabar": "**Ką daryti:** Pasirink vieną parametrą žemiau (Max Tokens, Top-p, Frequency arba Presence). Nukopijuok pavyzdį, įrašyk savo užduotį, paleisk DI. 🔘 Pavyzdžiai po kiekvienu parametru.",
               "patikra": "Ar atsakymo ilgis atitiko lūkesčius? Ar pasikartojimų mažiau (arba daugiau naujų idėjų)? Jei ne – pakeisk parametro reikšmę ir paleisk dar kartą."
             },
-            "footer": "Toliau – skaidrė 18: Pilnas Prompto Pavyzdys"
+            "footer": "Toliau – skaidrė 20: Pilnas Prompto Pavyzdys"
           }
         },
         {
@@ -710,7 +784,7 @@
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
           },
           "content": {
-            "footer": "Toliau – skaidrė 19: Prieš vs Po"
+            "footer": "Toliau – skaidrė 21: Prieš vs Po"
           }
         },
         {
@@ -740,7 +814,7 @@
               "rightPct": 85,
               "lessEditsPct": 60
             },
-            "footer": "Toliau – skaidrė 20: Žodynėlis"
+            "footer": "Toliau – skaidrė 22: Žodynėlis"
           }
         },
         {
@@ -815,7 +889,7 @@
                 "definition": "Modelio nustatymai: temperature, reasoning gylis, atsakymo ilgis, pasikartojimų kontrolė."
               }
             ],
-            "footer": "Toliau – skaidrė 21: Modulio Santrauka"
+            "footer": "Toliau – skaidrė 23: Modulio Santrauka"
           }
         },
         {
@@ -2982,7 +3056,7 @@
               },
               {
                 "heading": "Papildomai: Geras vs blogas proceso promptas",
-                "body": "",
+                "body": "Blogas promptas palieka DI spėlioti. Geras promptas duoda rolę, kontekstą, struktūrą ir aiškų rezultatą.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
@@ -3002,7 +3076,8 @@
                       "Nėra išvesties gairių",
                       "Formatas: lentelė. Kiekvienam etapui: tikslas, pagrindiniai rodikliai (KPI), terminai."
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]
@@ -5189,7 +5264,7 @@
               },
               {
                 "heading": "Pavyzdžiai: blogas vs geras (pagal geriausias praktikas)",
-                "body": "",
+                "body": "Neigiamas promptas nepasako, kaip vertinti rezultatą. Geras promptas nurodo rolę, tikslą, kontekstą ir formatą.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": [
@@ -5213,7 +5288,8 @@
                       "„Ar mūsų produktas geriausias?“",
                       "„Palygink [mūsų produktas] su 2 konkurentais pagal [kriterijai]. Pateik lentelę su stiprybėmis ir silpnybėmis. Rolė: nepriklausomas analitikas.“"
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]

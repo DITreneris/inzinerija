@@ -947,7 +947,7 @@
               },
               {
                 "heading": "Optional: Good vs bad process prompt",
-                "body": "",
+                "body": "A bad prompt leaves AI guessing. A good prompt gives a role, context, structure and a clear result.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
@@ -964,7 +964,8 @@
                       "No output guidance",
                       "Format: table. For each stage: goal, key indicators (KPI), deadlines."
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]
@@ -3144,7 +3145,7 @@
               },
               {
                 "heading": "Examples: bad vs good (best practices)",
-                "body": "",
+                "body": "A negative prompt does not say how to judge the result. A good prompt names the role, goal, context and format.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": ["❌ Negative (no) prompt", "✅ Good prompt"],
@@ -3165,7 +3166,8 @@
                       "\"Is our product the best?\"",
                       "\"Compare [our product] with 2 competitors on [criteria]. Give a table with strengths and weaknesses. Role: independent analyst.\""
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]

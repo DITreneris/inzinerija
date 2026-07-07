@@ -268,9 +268,9 @@ testSection.testQuestions[5] = {
 
 const testResults = m11.slides.find((s) => s.id === 112);
 testResults.content.failedMessage =
-  'Rekomenduojame peržiūrėti Modulio 10 skaidres: 10.2 (ciklas), 10.15 (workflow), 10.25 (3A), 10.45 (taksonomija), 10.48 (workflow šablonai), 10.3–10.6 (promptai, įrankiai, klaidos), 10.35 (Zapier/Make).';
+  'Rekomenduojame peržiūrėti Modulio 10 temas: agento ciklą, 3A taksonomiją, koordinatoriaus ir specialistų roles, workflow šablonus, įrankių naudojimą, klaidų tvarkymą ir Zapier / Make integracijas.';
 testResults.content.thresholdExplanation =
-  'Kai pasieksi ≥70 %, gali pereiti prie Modulio 12. Mažiau – peržiūrėk skaidres 10.2, 10.15, 10.25, 10.45, 10.48 ir promptų bloką (10.3–10.6).';
+  'Kai pasieksi ≥70 %, gali pereiti prie Modulio 12. Mažiau – peržiūrėk agento ciklą, 3A, multi-agent roles, workflow šablonus ir promptų saugiklius.';
 testResults.content.useCaseBlock.body =
   'Taksonomija, multi-agent, workflow (trigger, action), 3A ir įrankiai – tyrimai, ataskaitos, support triažas, RFP analizė.';
 
@@ -278,7 +278,7 @@ testResults.content.useCaseBlock.body =
 const practiceIntro = m12.slides.find((s) => s.id === 120);
 practiceIntro.content.recommendedSlideIds = [120.25, 120.5, 121, 122, 123, 124.5];
 practiceIntro.content.recommendedStart =
-  'Privaloma: 1–3 praktikos (Automatize, Augment, Autonomize). Rekomenduojama: Koordinatorius + 2 specialistai (124.5), Tyrimo agentas, Ataskaitos generatorius.';
+  'Greitas startas: Koordinatorius + 2 specialistai (124.5). Privalomas kelias: 3 praktikos (Automatize, Augment, Autonomize). Papildomai: Tyrimo agentas ir M10 pakartojimo scenarijai.';
 
 const s1205 = m12.slides.find((s) => s.id === 120.5);
 delete s1205.optional;

@@ -22,6 +22,7 @@
             "ctaText": "Pamatyk skirtumą per 30 sekundžių!",
             "unstructuredPrompt": "Parašyk man marketingo planą.",
             "structuredPrompt": "META: Tu esi marketingo strategas su 10 metų B2B patirtimi.\nTikslas: parengti Q1 marketingo planą.\nAuditorija: CMO ir vadovybė.\n\nINPUT: Biudžetas 50k EUR. Tikslinė rinka: Baltijos šalys.\nKonkurentai: 3 pagrindiniai žaidėjai.\n\nOUTPUT: Strateginis dokumentas, 2-3 puslapiai.\nStruktūra: tikslai → kanalai → biudžetas → KPI.\nTonas: profesionalus, su konkrečiais skaičiais.",
+            "firstActionCTA": "Nukopijuok žalią struktūruotą promptą ir pakeisk tik temą, auditoriją ir biudžetą pagal savo situaciją. Tai pirmas tavo 6 blokų sistemos bandymas.",
             "aboutText": "Šiuose mokymuose išmoksi 6 blokų sistemą – nuo chaotiško klausimo iki profesionalaus rezultato.",
             "sandboxMessage": "Tai treniruoklis – gali bandyti, klysti ir grįžti atgal. Rezultatai čia nesaugomi; svarbiausia – išmokti.",
             "outcomes": [
@@ -200,7 +201,32 @@
                 "url": "https://www.nber.org/papers/w31161"
               }
             ],
-            "footer": "Toliau – skaidrė 3: Promptas ir Promptų Inžinerija"
+            "footer": "Toliau – skaidrė 3: Pirmas 6 blokų bandymas"
+          }
+        },
+        {
+          "id": 1.1,
+          "title": "Pirmas 6 blokų bandymas",
+          "subtitle": "Micro-win: nukopijuok struktūruotą promptą ir pakeisk 3 laukus",
+          "type": "path-step",
+          "content": {
+            "title": "Pirmas bandymas – struktūruotas promptas",
+            "pathLabel": "6 blokų kelias",
+            "stepNumber": 1,
+            "stepTotal": 2,
+            "body": "Nukopijuok struktūruotą promptą iš įvado ir pakeisk tik 3 dalykus: temą, auditoriją ir vieną apribojimą. Tai mažas veiksmas, kuris iš karto parodo, kaip struktūra keičia DI atsakymą.",
+            "sections": [
+              {
+                "heading": "Ką pakeisti",
+                "body": "1) Tema: apie ką turi būti rezultatas. 2) Auditorija: kam skirtas atsakymas. 3) Apribojimas: biudžetas, laikas, apimtis arba formatas.",
+                "copyable": "META: Tu esi [vaidmuo]. Tikslas – parengti [tema]. Auditorija – [kam].\n\nINPUT: Turiu [duomenys arba situacija]. Apribojimas – [laikas / biudžetas / apimtis].\n\nOUTPUT: Pateik [formatas]. Struktūra: [punktai / lentelė / planas]. Tonas – [stilius]."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar pakeitei visus 3 laukus? Jei taip – jau turi pirmą 6 blokų sistemos bandymą, kurį galėsi plėsti toliau."
+              }
+            ],
+            "footer": "Toliau – skaidrė 4: Promptas ir Promptų Inžinerija"
           }
         },
         {
@@ -247,7 +273,7 @@
                 "url": "https://docs.anthropic.com/claude/docs/prompt-engineering"
               }
             ],
-            "footer": "Toliau – skaidrė 4: Workflow Samprata"
+            "footer": "Toliau – skaidrė 5: Workflow Samprata"
           }
         },
         {
@@ -291,7 +317,7 @@
                 "prompt": "Tu esi mokymų kūrėjas.\nSukurk 5 punktų paaiškinimą apie promptų inžineriją.\nFormatas: numeruotas sąrašas.\nTonas: profesionalus.\nMaks. 120 žodžių."
               }
             ],
-            "footer": "Toliau – skaidrė 5: Pagrindiniai Promptų Tipai",
+            "footer": "Toliau – skaidrė 6: Pagrindiniai Promptų Tipai",
             "interactive": {
               "enabled": true,
               "defaultMode": "basic"
@@ -328,7 +354,7 @@
               }
             ],
             "practicalTip": "Kombinuok visus tris promptų tipus viename užklausime, kad gautum maksimaliai tikslų ir verslo poreikius atitinkantį rezultatą. Tai ypač svarbu ruošiant strateginius dokumentus ar analizes.",
-            "footer": "Toliau – skaidrė 6: Prompting'o Technikos"
+            "footer": "Toliau – skaidrė 7: Prompting'o Technikos"
           }
         },
         {
@@ -377,7 +403,7 @@
                 "example": "Įrodyk, kad X geriau už Y."
               }
             ],
-            "footer": "Toliau – skaidrė 7: Gero Prompto Šablonas"
+            "footer": "Toliau – skaidrė 8: Gero Prompto Šablonas"
           }
         },
         {
@@ -405,7 +431,55 @@
             ],
             "template": "META: Vaidmuo – [kas esi]. Tikslas – [ką sukurti]. Auditorija – [kam].\nINPUT: Duomenys – [faktai/skaičiai]. Apribojimai – [laikas/biudžetas].\nOUTPUT: Formatas – [lentelė/sąrašas/dokumentas]. Struktūra – [punktai/skyriai]. Tonas – [stilius].\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
             "example": "META: Vaidmuo – marketingo vadovas. Tikslas – paruošti SWOT analizę. Auditorija – vadovybė.\nINPUT: Duomenys – produktas „EcoBox“, tikslas mažmeninė prekyba. Apribojimai – 1 puslapis.\nOUTPUT: Formatas – lentelė su punktais. Struktūra – S/W/O/T po 3 punktus. Tonas – profesionalus, aiškus.\nLAUKIAMO ATSAKO FORMA: Trumpi punktai, aiškios sekcijos, kur tinka – atsakingas asmuo ir terminas.",
-            "footer": "Toliau – skaidrė 8: Ko jau išmokome?"
+            "footer": "Toliau – skaidrė 9: Savitikra: META / INPUT / OUTPUT"
+          }
+        },
+        {
+          "id": 16.5,
+          "title": "Savitikra: META / INPUT / OUTPUT",
+          "shortTitle": "Savitikra: 3 blokai",
+          "subtitle": "3 klausimai prieš pereinant prie Reasoning, Quality ir Advanced",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m1-warm-mio-1",
+                "question": "Kuri prompto dalis geriausiai priklauso META blokui?",
+                "options": [
+                  "Tu esi marketingo strategas, tikslas – parengti Q1 planą vadovybei",
+                  "Biudžetas 50k EUR, tikslinė rinka – Baltijos šalys",
+                  "Pateik lentelę su kanalais, biudžetu ir KPI",
+                  "Naudok profesionalų toną ir trumpus punktus"
+                ],
+                "correct": 0,
+                "explanation": "META blokas apibrėžia rolę, tikslą ir auditoriją. Duomenys bei apribojimai keliauja į INPUT, o formatas – į OUTPUT."
+              },
+              {
+                "id": "m1-warm-mio-2",
+                "question": "Kuri eilutė yra INPUT blokas?",
+                "options": [
+                  "Produktas EcoBox, rinka – mažmena, apribojimas – 1 puslapis",
+                  "Tu esi produkto vadovas",
+                  "Pateik SWOT lentelę",
+                  "Tonas – aiškus ir profesionalus"
+                ],
+                "correct": 0,
+                "explanation": "INPUT yra tai, ką DI turi naudoti: faktai, duomenys, rinka, apribojimai ir kita situacijos informacija."
+              },
+              {
+                "id": "m1-warm-mio-3",
+                "question": "Kuris sakinys geriausiai aprašo OUTPUT bloką?",
+                "options": [
+                  "Rezultatą pateik 5 punktų sąrašu, su aiškiomis antraštėmis ir trumpu tonu",
+                  "Tu esi HR konsultantas",
+                  "Turiu 20 darbuotojų apklausos atsakymų",
+                  "Tikslas – suprasti komandos nuotaiką"
+                ],
+                "correct": 0,
+                "explanation": "OUTPUT nurodo, kaip turi atrodyti atsakymas: formatas, struktūra, ilgis, tonas ir pateikimo tvarka."
+              }
+            ],
+            "footer": "Toliau – skaidrė 10: Ko jau išmokome?"
           }
         },
         {
@@ -427,7 +501,7 @@
             ],
             "note": "Sudėtingoms užduotims reikia ne tik aiškumo, bet ir validavimo.",
             "takeaway": "Nuo 3 blokų iki 6 blokų = nuo užduoties prie kontrolės.",
-            "footer": "Toliau – skaidrė 9: Hierarchinė Struktūra"
+            "footer": "Toliau – skaidrė 11: Hierarchinė Struktūra"
           }
         },
         {
@@ -483,7 +557,7 @@
               }
             ],
             "tip": "Pabandyk sukurti promptą be struktūros (kaip paprastai darai). Išsaugok – palyginsime su struktūruota versija pabaigoje.",
-            "footer": "Toliau – skaidrė 10: 1️⃣ Meta Blokas"
+            "footer": "Toliau – skaidrė 12: 1️⃣ Meta Blokas"
           }
         },
         {
@@ -530,7 +604,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 14: 4️⃣ Reasoning Blokas"
+            "footer": "Toliau – skaidrė 16: 4️⃣ Reasoning Blokas"
           }
         },
         {
@@ -555,7 +629,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 15: 5️⃣ Quality Control Blokas"
+            "footer": "Toliau – skaidrė 17: 5️⃣ Quality Control Blokas"
           }
         },
         {
@@ -679,7 +753,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 17: 6️⃣ Advanced Parameters (II)"
+            "footer": "Toliau – skaidrė 19: 6️⃣ Advanced Parameters (II)"
           }
         },
         {
@@ -694,7 +768,7 @@
               "darykDabar": "**Ką daryti:** Pasirink vieną parametrą žemiau (Max Tokens, Top-p, Frequency arba Presence). Nukopijuok pavyzdį, įrašyk savo užduotį, paleisk DI. 🔘 Pavyzdžiai po kiekvienu parametru.",
               "patikra": "Ar atsakymo ilgis atitiko lūkesčius? Ar pasikartojimų mažiau (arba daugiau naujų idėjų)? Jei ne – pakeisk parametro reikšmę ir paleisk dar kartą."
             },
-            "footer": "Toliau – skaidrė 18: Pilnas Prompto Pavyzdys"
+            "footer": "Toliau – skaidrė 20: Pilnas Prompto Pavyzdys"
           }
         },
         {
@@ -710,7 +784,7 @@
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
           },
           "content": {
-            "footer": "Toliau – skaidrė 19: Prieš vs Po"
+            "footer": "Toliau – skaidrė 21: Prieš vs Po"
           }
         },
         {
@@ -740,7 +814,7 @@
               "rightPct": 85,
               "lessEditsPct": 60
             },
-            "footer": "Toliau – skaidrė 20: Žodynėlis"
+            "footer": "Toliau – skaidrė 22: Žodynėlis"
           }
         },
         {
@@ -815,7 +889,7 @@
                 "definition": "Modelio nustatymai: temperature, reasoning gylis, atsakymo ilgis, pasikartojimų kontrolė."
               }
             ],
-            "footer": "Toliau – skaidrė 21: Modulio Santrauka"
+            "footer": "Toliau – skaidrė 23: Modulio Santrauka"
           }
         },
         {
@@ -2982,7 +3056,7 @@
               },
               {
                 "heading": "Papildomai: Geras vs blogas proceso promptas",
-                "body": "",
+                "body": "Blogas promptas palieka DI spėlioti. Geras promptas duoda rolę, kontekstą, struktūrą ir aiškų rezultatą.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
@@ -3002,7 +3076,8 @@
                       "Nėra išvesties gairių",
                       "Formatas: lentelė. Kiekvienam etapui: tikslas, pagrindiniai rodikliai (KPI), terminai."
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]
@@ -5189,7 +5264,7 @@
               },
               {
                 "heading": "Pavyzdžiai: blogas vs geras (pagal geriausias praktikas)",
-                "body": "",
+                "body": "Neigiamas promptas nepasako, kaip vertinti rezultatą. Geras promptas nurodo rolę, tikslą, kontekstą ir formatą.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": [
@@ -5213,7 +5288,8 @@
                       "„Ar mūsų produktas geriausias?“",
                       "„Palygink [mūsų produktas] su 2 konkurentais pagal [kriterijai]. Pateik lentelę su stiprybėmis ir silpnybėmis. Rolė: nepriklausomas analitikas.“"
                     ]
-                  ]
+                  ],
+                  "comparisonStyle": true
                 }
               }
             ]
@@ -6369,7 +6445,7 @@
       "id": 7,
       "title": "Duomenų analizė su DI",
       "subtitle": "Pipeline, promptų architektūra, MASTER PROMPTAS",
-      "description": "Duomenų analizės kelias: nuo strateginio pamato iki vizualizacijų ir finalinio projekto. DI kaip analitikas.",
+      "description": "2 sesijų DA kelias: pipeline, MASTER PROMPTAS, vizualizacija ir finalinis projektas. DI kaip analitikas.",
       "icon": "BarChart3",
       "level": "learn",
       "duration": "45–60 min",
@@ -6434,6 +6510,114 @@
             ],
             "confirmMessage": "Tavo fokusas: {label}. Toliau naudok tuos pačius promptus – tik įterpk savo srities kontekstą (nišą, duomenis, auditoriją).",
             "ctaContinue": "Pradėti kelionę"
+          }
+        },
+        {
+          "id": 70.5,
+          "title": "Koks tavo analitiko profilis?",
+          "subtitle": "Greitas apšilimas: kur dažniausiai dirbi su duomenimis?",
+          "type": "intro-action-pie",
+          "content": {
+            "question": "Koks tavo analitiko profilis šiandien?",
+            "introHook": "Pasirink artimiausią vaidmenį – po pasirinkimo pamatysi, į ką šiame modulyje verta atkreipti dėmesį.",
+            "ctaReveal": "Parodyk, ką tai reiškia",
+            "footer": "Toliau – skaidrė 3: Duomenų analizės kelias",
+            "segments": [
+              {
+                "label": "Sprendimų analitikas",
+                "value": 30,
+                "colorKey": "brand"
+              },
+              {
+                "label": "Duomenų tvarkytojas",
+                "value": 24,
+                "colorKey": "emerald"
+              },
+              {
+                "label": "Rinkos tyrėjas",
+                "value": 18,
+                "colorKey": "orange"
+              },
+              {
+                "label": "Vizualizacijų kūrėjas",
+                "value": 16,
+                "colorKey": "violet"
+              },
+              {
+                "label": "Automatizavimo kūrėjas",
+                "value": 12,
+                "colorKey": "rose"
+              }
+            ],
+            "cards": [
+              {
+                "icon": "Target",
+                "title": "Sprendimų analitikas",
+                "description": "vadovybei reikia aiškių išvadų ir veiksmų"
+              },
+              {
+                "icon": "Database",
+                "title": "Duomenų tvarkytojas",
+                "description": "pirma sutvarkai šaltinius, lenteles ir kokybę"
+              },
+              {
+                "icon": "Search",
+                "title": "Rinkos tyrėjas",
+                "description": "ieškai tendencijų, šaltinių ir palyginimų"
+              },
+              {
+                "icon": "BarChart3",
+                "title": "Vizualizacijų kūrėjas",
+                "description": "grafikai, dashboard'ai ir istorija iš skaičių"
+              },
+              {
+                "icon": "Workflow",
+                "title": "Automatizavimo kūrėjas",
+                "description": "srautai, agentai ir pasikartojantys žingsniai"
+              }
+            ],
+            "revealInsights": [
+              {
+                "segmentPhrase": "sprendimų analitiko",
+                "insight": "Tau svarbiausia, kad analizė baigtųsi sprendimu, ne tik gražia ataskaita.",
+                "question": "ar kiekvienoje analizėje įvardiji, ką daryti toliau?",
+                "line1": "Tavo profilis: Sprendimų analitikas.",
+                "line2": "Modulyje ypač stebėk sprendimų filtrus, BI schemą ir MASTER PROMPTĄ.",
+                "ctaLabel": "Eiti į sprendimų analizės kelią"
+              },
+              {
+                "segmentPhrase": "duomenų tvarkytojo",
+                "insight": "Tau svarbiausia, kad duomenys būtų švarūs, patikimi ir paruošti analizei.",
+                "question": "ar prieš išvadas tikrini šaltinius, formatus ir trūkstamas reikšmes?",
+                "line1": "Tavo profilis: Duomenų tvarkytojas.",
+                "line2": "Modulyje ypač stebėk pipeline, duomenų tipus, paruošimą ir metaduomenis.",
+                "ctaLabel": "Eiti į duomenų paruošimo kelią"
+              },
+              {
+                "segmentPhrase": "rinkos tyrėjo",
+                "insight": "Tau svarbiausia rasti šaltinius, palyginti informaciją ir išskirti tendencijas.",
+                "question": "ar tyrime atskiri faktus nuo prielaidų?",
+                "line1": "Tavo profilis: Rinkos tyrėjas.",
+                "line2": "Modulyje ypač stebėk tyrimų promptus, šaltinių patikrinimą ir rinkos tendencijų pavyzdžius.",
+                "ctaLabel": "Eiti į tyrimų promptų kelią"
+              },
+              {
+                "segmentPhrase": "vizualizacijų kūrėjo",
+                "insight": "Tau svarbu ne tik skaičiai, bet ir aiški istorija, kurią supranta auditorija.",
+                "question": "ar grafikas turi vieną aiškią žinutę?",
+                "line1": "Tavo profilis: Vizualizacijų kūrėjas.",
+                "line2": "Modulyje ypač stebėk vizualizacijos šaką, Geštalto principus ir istorijos modelį.",
+                "ctaLabel": "Eiti į vizualizacijų kelią"
+              },
+              {
+                "segmentPhrase": "automatizavimo kūrėjo",
+                "insight": "Tau svarbiausia kartojamus analizės žingsnius paversti patikimu procesu.",
+                "question": "ar žinai, kur žmogus turi patvirtinti rezultatą?",
+                "line1": "Tavo profilis: Automatizavimo kūrėjas.",
+                "line2": "Modulyje ypač stebėk pipeline, DI agentų koncepciją ir klaidų patikrą.",
+                "ctaLabel": "Eiti į automatizavimo kelią"
+              }
+            ]
           }
         },
         {
@@ -6991,8 +7175,55 @@
                 "heading": "🔽 Nori suprasti detaliau?",
                 "body": "**Kur panaudosi?** Kai planuoji naują analizę ar ataskaitą – nuo duomenų šaltinių iki vadovų pristatymo. Kiekvienam etapui gali nukopijuoti atitinkamą promptą. **Pipeline schema:** 1) Rinkimas 2) Paruošimas 3) EDA 4) Modeliai 5) Vizualizacija 6) Publikavimas.",
                 "blockVariant": "brand",
-                "image": "/da_pipeline_6.svg",
+                "image": "m7_da_pipeline",
                 "imageAlt": "Duomenų analizės pipeline – 6 žingsniai"
+              }
+            ]
+          }
+        },
+        {
+          "id": 73.5,
+          "title": "Savitikra: Duomenų analizės pipeline",
+          "shortTitle": "Savitikra: Pipeline",
+          "subtitle": "Patikrink 6 žingsnių kelią nuo duomenų iki sprendimo",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m7-warm-pipeline-1",
+                "question": "Kiek etapų turi 6 žingsnių duomenų analizės pipeline?",
+                "options": [
+                  "6: rinkimas, paruošimas, EDA, modeliai, vizualizacija, publikavimas",
+                  "4: aprašomoji, diagnostinė, nuspėjamoji, nurodomoji",
+                  "5: šaltiniai, struktūra, surinkti, valymas, eksportas",
+                  "8: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos"
+                ],
+                "correct": 0,
+                "explanation": "Čia tikrinamas 6 žingsnių pipeline. 4 yra analizės tipai, 5 – duomenų paruošimo algoritmas, 8 – MASTER PROMPTAS. Jei supainiojai, grįžk į skaidrę „Pipeline ir operacinė lentelė“."
+              },
+              {
+                "id": "m7-warm-pipeline-2",
+                "question": "Kuris pipeline etapas atsako į klausimą „ką galiu suprasti iš duomenų prieš modelius ir sprendimus?“",
+                "options": [
+                  "EDA – tiriamoji duomenų analizė",
+                  "Duomenų rinkimas",
+                  "Publikavimas",
+                  "Duomenų eksportas"
+                ],
+                "correct": 0,
+                "explanation": "EDA reiškia tiriamąją duomenų analizę: prieš sprendimus peržiūri dėsningumus, ryšius, išskirtis ir hipotezes. Jei neaišku, žiūrėk pipeline etapų paaiškinimą skaidrėje 73."
+              },
+              {
+                "id": "m7-warm-pipeline-3",
+                "question": "Ruoši ketvirčio ataskaitą vadovybei. Kuris pipeline etapas pabaigoje paverčia įžvalgas aiškiu sprendimo tekstu?",
+                "options": [
+                  "Publikavimas – ataskaita, išvados ir rekomendacijos vadovybei",
+                  "Rinkimas – duomenų šaltinių sąrašas",
+                  "Paruošimas – formatų ir dublių tvarkymas",
+                  "Modeliai – prognozės formulė"
+                ],
+                "correct": 0,
+                "explanation": "Pipeline pabaigoje svarbu ne tik turėti grafiką, bet ir pateikti aiškų sprendimą. Publikavimas = ataskaita, išvados ir rekomendacijos žmogui, kuris priima sprendimą."
               }
             ]
           }
@@ -7073,6 +7304,53 @@
                 "heading": "🔽 Nori suprasti detaliau?",
                 "body": "**Kur panaudosi?** Kai vadovybė klausia „Kas įvyko?“ arba „Kodėl?“ – pasirink atitinkamą analizės tipą ir nukopijuok promptą. Keturi tipai padengia visą ciklą nuo aprašymo iki veiksmų plano. Learn prieš Test – ši skaidrė paruošia Modulio 8 klausimus apie analizės tipus.",
                 "blockVariant": "brand"
+              }
+            ]
+          }
+        },
+        {
+          "id": 731.5,
+          "title": "Savitikra: 4 analizės tipai",
+          "shortTitle": "Savitikra: 4 tipai",
+          "subtitle": "Kas įvyko? Kodėl? Kas gali įvykti? Kaip veikti?",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m7-warm-types-1",
+                "question": "Vadovas klausia: „Kas įvyko per paskutinį ketvirtį?“ Kurį analizės tipą renkiesi?",
+                "options": [
+                  "Aprašomąją analizę",
+                  "Diagnostinę analizę",
+                  "Nuspėjamąją analizę",
+                  "Nurodomąją analizę"
+                ],
+                "correct": 0,
+                "explanation": "Aprašomoji analizė atsako „kas įvyko?“ – top produktai, regionai, tendencijos, koncentracija. Tai pirmas žingsnis prieš klausimą „kodėl?“."
+              },
+              {
+                "id": "m7-warm-types-2",
+                "question": "Kuris analizės tipas geriausiai tinka klausimui „Kodėl Q3 pardavimai krito?“",
+                "options": [
+                  "Diagnostinė analizė",
+                  "Aprašomoji analizė",
+                  "Nuspėjamoji analizė",
+                  "Nurodomoji analizė"
+                ],
+                "correct": 0,
+                "explanation": "Diagnostinė analizė ieško priežasčių: kainos, sezoniškumo, marketingo, tiekimo ar kitų veiksnių. Jei klaidingai – grįžk į skaidrę „4 analizės tipai“."
+              },
+              {
+                "id": "m7-warm-types-3",
+                "question": "Vadovybė klausia: „Kodėl krito pardavimai ir ką daryti toliau?“ Kokia pora tinkamiausia?",
+                "options": [
+                  "Diagnostinė + nurodomoji analizė",
+                  "Aprašomoji + aprašomoji analizė",
+                  "Nuspėjamoji + aprašomoji analizė",
+                  "Tik nuspėjamoji analizė"
+                ],
+                "correct": 0,
+                "explanation": "„Kodėl?“ = diagnostinė analizė. „Ką daryti?“ = nurodomoji analizė. Ši pora paverčia pastebėjimus veiksmų planu."
               }
             ]
           }
@@ -7301,7 +7579,7 @@
               },
               {
                 "heading": "3. Struktūruoti",
-                "body": "Excel, SQL, ERP.",
+                "body": "Excel, SQL, ERP. SQL tipui – PostgreSQL arba MySQL; lankščiai schemai – MongoDB; prototipui – SQLite. Detalus įrankių žemėlapis – skaidrė „Duomenų struktūros kūrimas (DB)“.",
                 "copyable": "Normalizuok lentelę pagal 3NF principus."
               },
               {
@@ -7452,20 +7730,27 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**Nauda:** Vienas promptas – gauni lentelių struktūrą, ryšius (ER) ir KPI sąrašą. Pakeisk [X] į savo nišą (pvz. maisto pristatymas, elektronika)."
+                "body": "**Nauda:** Vienas promptas – gauni lentelių struktūrą, ryšius (ER) ir pagrindinius veiklos rodiklius (KPI). Po to gali pasirinkti, kur tokius duomenis laikyti: SQL DB, NoSQL ar greitą cache sluoksnį. Redis / Valkey dažniausiai nėra pagrindinė DB – tai greičio sluoksnis."
               },
               {
-                "heading": "2️⃣ Daryk dabar (3–5 min)",
+                "heading": "2️⃣ Kokį DB įrankį rinktis?",
+                "body": "| Įrankis | Kam naudoti praktiškai |\n| --- | --- |\n| **PostgreSQL** | Nauji web/SaaS, analitika, sudėtingos užklausos, JSON, pgvector / DI funkcijos. |\n| **MySQL** | Hostingai, WordPress, e-commerce, paprastos CRUD sistemos. |\n| **SQLite** | Prototipai, mobilės apps, CLI įrankiai, testai – be serverio. |\n| **MongoDB** | NoSQL dokumentai, kai struktūra lanksti: katalogai, eventai, content apps, greitas MVP. |\n| **Redis / Valkey** | Cache, sesijos, eilės, rate limit, real-time funkcijos – ne pagrindinė DB. |\n| **Supabase** | Greitas MVP backend: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos. |\n\nJei neaišku, rinkis pagal situaciją: struktūruoti verslo duomenys – PostgreSQL; paprastas hostingas – MySQL; prototipas – SQLite; lanksti schema – MongoDB; greitis ir sesijos – Redis / Valkey; greitas MVP backend – Supabase.",
+                "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Pasiūlyk tinkamiausią DB įrankį mano atvejui.\nCONTEXT: Verslas: [X]. Duomenų tipas: [lentelės / JSON / real-time]. Apimtis: [MVP / didelė].\nOUTPUT: 1) Rekomenduotas įrankis 2) Kodėl ne kiti 2 variantai 3) Ką DI gali padėti su schema 4) Pirmas žingsnis.",
+                "blockVariant": "terms",
+                "collapsible": true
+              },
+              {
+                "heading": "3️⃣ Daryk dabar (3–5 min)",
                 "body": "**Ką daryti:** Pakeisk [X] į savo verslo nišą, nukopijuok promptą žemiau ir paleisk DI. **Ką gausi:** Lentelių sąrašas, ryšių aprašymas, KPI, kuriuos verta stebėti."
               },
               {
-                "heading": "3️⃣ Kopijuojamas promptas",
+                "heading": "4️⃣ Kopijuojamas promptas",
                 "body": "Įklijuok į DI; pakeisk [X] į nišą.",
                 "copyable": "Turiu e-commerce verslą (niša: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Klientų lentelės 2. Užsakymų 3. Produktų 4. Marketing 5. Grąžinimų 6. Lojalumo\nPateik: struktūra, ryšiai (ER), KPI."
               },
               {
-                "heading": "4️⃣ Patikra (1 min)",
-                "body": "Ar pateiktos **lentelės** (ne tik sąvokos)? Ar **ryšiai** tarp jų aiškūs (1-N, N-N)? Ar **KPI** susieti su verslo klausimais? Ar gali naudoti šią struktūrą kaip pagrindą tolesnei analizei? Jei bent 2 „ne“ → grįžk prie prompto, papildyk kontekstą (niša, apimtis)."
+                "heading": "5️⃣ Patikra (1 min)",
+                "body": "Ar pateiktos **lentelės** (ne tik sąvokos)? Ar **ryšiai** tarp jų aiškūs (1-N, N-N)? Ar **KPI** susieti su verslo klausimais? Ar pasirinktas įrankis atitinka kontekstą (MVP, hostingas, lanksti schema ar greičio sluoksnis)? Ar gali naudoti šią struktūrą kaip pagrindą tolesnei analizei? Jei bent 2 „ne“ → grįžk prie prompto, papildyk kontekstą (niša, apimtis, duomenų tipas)."
               }
             ]
           }
@@ -7727,6 +8012,53 @@
           }
         },
         {
+          "id": 891.5,
+          "title": "Savitikra: Duomenų paruošimas",
+          "shortTitle": "Savitikra: Paruošimas",
+          "subtitle": "Valymas, metaduomenys ir teisinga seka prieš analizę",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m7-warm-prep-1",
+                "question": "Kuris teiginys geriausiai apibūdina 5 žingsnių duomenų paruošimo algoritmą?",
+                "options": [
+                  "Šaltiniai → struktūra → surinkti → valymas → eksportas",
+                  "Rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas",
+                  "Aprašomoji → diagnostinė → nuspėjamoji → nurodomoji",
+                  "Šaltiniai → struktūra → valymas → EDA → rekomendacijos"
+                ],
+                "correct": 0,
+                "explanation": "Čia tikrinamas 5 žingsnių paruošimo algoritmas. 6 žingsnių pipeline yra platesnis kelias, o 4 analizės tipai – klausimų kategorijos. Jei supainiojai, grįžk į skaidrę apie duomenų paruošimą."
+              },
+              {
+                "id": "m7-warm-prep-2",
+                "question": "Kodėl metaduomenys svarbūs prieš leidžiant DI analizuoti duomenis?",
+                "options": [
+                  "Jie paaiškina stulpelių reikšmes, šaltinį, datą ir ribas, todėl DI mažiau spėlioja",
+                  "Jie pakeičia pačius duomenis",
+                  "Jie reikalingi tik gražesnei vizualizacijai",
+                  "Jie automatiškai pašalina visas klaidas"
+                ],
+                "correct": 0,
+                "explanation": "Metaduomenys yra kontekstas apie duomenis: ką reiškia stulpeliai, iš kur jie paimti, kada atnaujinti ir kokios ribos. Be jų DI gali interpretuoti paviršutiniškai."
+              },
+              {
+                "id": "m7-warm-prep-3",
+                "question": "Įkėlei lentelę į DI, bet matai skirtingus datos formatus, dublius ir tuščius laukus. Ką daryti pirmiausia?",
+                "options": [
+                  "Atlikti valymo checklist: formatai, dubliai, trūkstamos reikšmės, stulpelių tipai",
+                  "Iš karto prašyti galutinės vadovybės ataskaitos",
+                  "Kurti vizualizaciją be patikros",
+                  "Naudoti MASTER PROMPTĄ ir ignoruoti duomenų klaidas"
+                ],
+                "correct": 0,
+                "explanation": "Prieš analizę pirmiausia sutvarkai duomenis. Valymas saugo nuo klaidingų išvadų: jei lentelė netvarkinga, net geras promptas duos silpną rezultatą."
+              }
+            ]
+          }
+        },
+        {
           "id": 66.9,
           "title": "Skyrius: Patikrumas ir etika",
           "subtitle": "Duomenų paruošimas ir workflow – įveikti. Toliau: patikimumas ir etika; po jų – vėl analitika (EDA, lentelės, BI schema, MASTER PROMPTAS).",
@@ -7735,7 +8067,7 @@
             "title": "Skyrius: Patikrumas ir etika",
             "subtitle": "Pirmiausia šiame skyriuje: manipuliacijos, saugumas, haliucinacijos, žinių patikrinimas (optional – benchmark ir detektoriai). Po to grįžtame prie pipeline tęsinio: EDA praktiškai, lentelių metodika, BI schema, agentai, MASTER PROMPTAS.",
             "sectionNumber": "M7",
-            "footer": "Toliau – skaidrė 26: Promptų manipuliacijos",
+            "footer": "Toliau – skaidrė 31: Promptų manipuliacijos",
             "celebrationText": "Gerai! Pipeline, promptai ir duomenų paruošimas – šioje dalyje jau įveikti. Dabar – patikimumas ir etika analizėje.",
             "nextSteps": [
               "Promptų manipuliacijos – šališkumas, vedantys klausimai, neutralūs promptai.",
@@ -7823,7 +8155,7 @@
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Toliau – skaidrė 27: Pataisyk promptą"
+            "footer": "Toliau – skaidrė 32: Pataisyk promptą"
           }
         },
         {
@@ -7866,7 +8198,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 28: Promptų injekcija ir ribų apėjimas"
+            "footer": "Toliau – skaidrė 33: Promptų injekcija ir ribų apėjimas"
           }
         },
         {
@@ -7928,7 +8260,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 29: 5 žingsniai"
+            "footer": "Toliau – skaidrė 34: 5 žingsniai"
           }
         },
         {
@@ -7939,7 +8271,7 @@
           "subtitle": "Proceso schema – 5 žingsniai",
           "type": "hallucination-pipeline",
           "content": {
-            "footer": "Toliau – skaidrė 30: Haliucinacijos"
+            "footer": "Toliau – skaidrė 35: Haliucinacijos"
           }
         },
         {
@@ -7994,7 +8326,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 31: Žinių patikrinimas"
+            "footer": "Toliau – skaidrė 36: Žinių patikrinimas"
           }
         },
         {
@@ -8034,7 +8366,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 32: Haliucinacijų rodikliai"
+            "footer": "Toliau – skaidrė 37: Haliucinacijų rodikliai"
           }
         },
         {
@@ -8046,7 +8378,7 @@
           "type": "hallucination-dashboard",
           "optional": true,
           "content": {
-            "footer": "Toliau – skaidrė 33: DI turinio detektoriai"
+            "footer": "Toliau – skaidrė 38: DI turinio detektoriai"
           }
         },
         {
@@ -8058,12 +8390,11 @@
           "type": "ai-detectors",
           "optional": true,
           "content": {
-            "footer": "Toliau – skaidrė 34: Savitikra"
+            "footer": "Toliau – skaidrė 39: Savitikra"
           }
         },
         {
           "id": 68.5,
-          "pathBranch": ["etika-plus"],
           "title": "Savitikra: Manipuliacijos ir haliucinacijos",
           "shortTitle": "Savitikra",
           "subtitle": "Patikrink, ar supratai pagrindines sąvokas",
@@ -8119,9 +8450,8 @@
                 "explanation": "Haliucinacijų mažinimo trijų žingsnių principas: (1) prašyk šaltinių ir nuorodų; (2) kryžmink su nepriklausomais šaltiniais; (3) leisk DI pasakyti „Nežinau“. Taip pat RAG sumažina riziką, nes DI remiasi duomenimis."
               }
             ],
-            "footer": "Toliau – skaidrė 35: Tiriamoji analizė (EDA)"
-          },
-          "optional": true
+            "footer": "Toliau – skaidrė 40: Tiriamoji analizė (EDA)"
+          }
         },
         {
           "id": 90,
@@ -8252,7 +8582,7 @@
                 "heading": "🔽 Nori suprasti detaliau?",
                 "body": "**BI schema (vaizdas):** 4 žingsniai – Surink (duomenų šaltiniai), Analizuok (EDA, įžvalgos), Ataskaita (vizualizacija, išvados vadovui), Prognozė. Ryšys su pipeline (§2.2) ir MASTER PROMPTAS – tas pats mąstymas, skirtingas detalumas.",
                 "blockVariant": "brand",
-                "image": "/da_bi_schema_4.svg",
+                "image": "m7_bi_schema",
                 "imageAlt": "BI schema: Surink → Analizuok → Ataskaita → Prognozė"
               }
             ]
@@ -8509,6 +8839,53 @@
           }
         },
         {
+          "id": 74.5,
+          "title": "Savitikra: MASTER PROMPTAS",
+          "shortTitle": "Savitikra: MASTER",
+          "subtitle": "8 žingsnių pilnos analizės šablonas prieš M9 projektą",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m7-warm-master-1",
+                "question": "Kiek žingsnių turi M7 MASTER PROMPTAS pilnai duomenų analizei?",
+                "options": [
+                  "8 žingsnius – nuo šaltinių iki strateginių rekomendacijų",
+                  "6 žingsnius – kaip bendras pipeline",
+                  "5 žingsnius – kaip duomenų paruošimo algoritmas",
+                  "4 žingsnius – kaip analizės tipai"
+                ],
+                "correct": 0,
+                "explanation": "MASTER PROMPTAS turi 8 žingsnius: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos. Tai pilnos analizės karkasas."
+              },
+              {
+                "id": "m7-warm-master-2",
+                "question": "Ką būtina pakeisti prieš paleidžiant MASTER PROMPTĄ?",
+                "options": [
+                  "[X] temą – į konkrečią darbo ar projekto analizės temą",
+                  "Tik DI modelio pavadinimą",
+                  "Tik atsakymo kalbą",
+                  "Nieko – visada paleisti be pakeitimų"
+                ],
+                "correct": 0,
+                "explanation": "MASTER PROMPTAS veikia tada, kai [X] pakeiti konkrečia tema: Q4 pardavimai, klientų sėkmė, rinkos tendencijos ar M9 projekto tema."
+              },
+              {
+                "id": "m7-warm-master-3",
+                "question": "Kada rinktis MASTER PROMPTĄ, o ne vieną pipeline etapo promptą?",
+                "options": [
+                  "Kai reikia pilnos analizės nuo šaltinių iki rekomendacijų",
+                  "Kai reikia tik sutvarkyti datas ir dublius",
+                  "Kai reikia tik vieno grafiko pasiūlymo",
+                  "Kai reikia tik vieno aprašomojo atsakymo"
+                ],
+                "correct": 0,
+                "explanation": "MASTER PROMPTAS skirtas pilnam keliui. Jei reikia tik vieno žingsnio – valymo, EDA ar vizualizacijos – naudok konkretaus etapo promptą."
+              }
+            ]
+          }
+        },
+        {
           "id": 71.4,
           "title": "4× tyrimų sintetinimas ir RAG",
           "subtitle": "Duomenų analizės kelias – žingsnis 4",
@@ -8532,6 +8909,32 @@
             "stepTotal": 5,
             "body": "Paruošk duomenų masyvą (lentelė arba struktūruotas failas) iš sintezės. **Pilnas kelias:** atvaizduok rezultatą įrankyje su lentelėmis/grafikais ir užfiksuok ekrano vaizdą. **Lengvesnis kelias:** išsaugok galutinę DI lentelę ar santrauką faile ir įkelk ją į tą patį ar kitą DI – pakanka tolesnei analizei.",
             "unlockedGlossaryTerms": ["Vizualizacija", "Dashboard"]
+          }
+        },
+        {
+          "id": 99.9,
+          "pathBranch": ["viz"],
+          "title": "Papildomas blokas: vizualizacija ir data storytelling",
+          "subtitle": "Jei pasirinkai pardavimus, rinkodarą arba nori gilesnio vizualaus rezultato",
+          "type": "section-break",
+          "optional": true,
+          "badgeVariant": "optional",
+          "content": {
+            "title": "Vizualizacija ir duomenų istorija",
+            "subtitle": "Branduolį jau turi: pipeline, patikimumas ir MASTER PROMPTAS. Toliau – neprivalomas vizualizacijos blokas, kai reikia parodyti įžvalgą vadovybei ar komandai.",
+            "sectionNumber": "Papildoma",
+            "recap": {
+              "heading": "Ką jau turi",
+              "items": [
+                "6 žingsnių analizės pipeline",
+                "MASTER PROMPTĄ pilnai analizei",
+                "Patikimumo ir šaltinių patikros taisykles"
+              ]
+            },
+            "nextSteps": [
+              "Eik toliau, jei nori išmokti paversti lentelę aiškia istorija.",
+              "Praleisk, jei šiandien užtenka pasiruošti M8 testui ir M9 projektui."
+            ]
           }
         },
         {
@@ -8779,8 +9182,8 @@
           "subtitle": "Ką toliau? – Testas (Modulis 8), Projektas (Modulis 9)",
           "type": "summary",
           "content": {
-            "introHeading": "Ką išmokote",
-            "introBody": "Sveikiname! Dabar žinai duomenų analizės pipeline (6 žingsnių), operacines sąvokas ir MASTER PROMPTAS – gali naudoti DI kaip verslo analitiką nuo duomenų struktūros iki vizualizacijų ir prognozių.",
+            "introHeading": "Ką išmokai",
+            "introBody": "Sveikiname! Branduolį baigei: žinai 6 žingsnių pipeline, patikimumo taisykles ir MASTER PROMPTĄ. Vizualizacijos blokas buvo papildomas – jį rinkis tada, kai reikia įžvalgą parodyti vadovybei ar komandai.",
             "stats": [
               {
                 "label": "Pipeline žingsnių",
@@ -8834,11 +9237,22 @@
                 "items": [
                   "Pereik prie Modulio 8 (žinių testas) arba Modulio 9 (finalinis projektas)."
                 ]
+              },
+              {
+                "heading": "Kur pritaikyti?",
+                "icon": "Briefcase",
+                "color": "brand",
+                "items": [
+                  "Naudok MASTER PROMPTĄ ketvirčio ataskaitai, klientų atsiliepimams ar pardavimų suvestinei.",
+                  "Jei reikia pristatymo vadovybei, grįžk į vizualizacijos bloką ir paversk lentelę aiškia istorija."
+                ]
               }
             ],
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7.\nINPUT: Ką tik baigiau Duomenų analizės kelio teoriją – pipeline, rolės aktyvavimas, DB struktūra, EDA, BI schema ir MASTER PROMPTAS.\nOUTPUT: Užduok 3 klausimus: (1) Kurį promptą ar techniką galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia ar netikėčiausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
             "reflectionTitle": "Refleksija",
-            "tagline": "Duomenys → Įžvalgos → Sprendimai"
+            "tagline": "Duomenys → Įžvalgos → Sprendimai",
+            "nextStepCTA": "Pereik prie Modulio 8: Žinių patikrinimas (Duomenų analizės kelias)",
+            "firstAction24h": "Per 24–48 val. paleisk MASTER PROMPTĄ su viena tikra darbo tema ir išsaugok gautą suvestinę."
           }
         }
       ],
@@ -8879,7 +9293,7 @@
               "pass": 70,
               "fail": 0
             },
-            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 9 (projektas). Jei mažiau – rekomenduojame peržiūrėk Modulio 7 skaidres."
+            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 9 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 7 skaidres."
           }
         },
         {
@@ -9102,7 +9516,7 @@
       "id": 9,
       "title": "Finalinis projektas (DA kelias)",
       "subtitle": "Vienas pilnas projektas (DA kelias)",
-      "description": "8 žingsnių kelias iki dashboard; papildomai iki 17 scenarijų. Duomenų analizės kelio (M7–M8) tęsinys.",
+      "description": "8 žingsnių DA projektas iki suvestinės ar dashboard. Papildomi scenarijai – tik jei nori giliau.",
       "icon": "Rocket",
       "level": "practice",
       "duration": "25–35 min",
@@ -10127,7 +10541,7 @@
           "subtitle": "Ką toliau?",
           "type": "practice-summary",
           "content": {
-            "introHeading": "Ką išmokote",
+            "introHeading": "Ką išmokai",
             "introBody": "Sveikiname! Jei perėjai 8 žingsnių workflow – turi suvestinę, vizualizacijos specifikaciją arba .html juodraštį ir gali pakartoti tą patį procesą kitai temai. Jei papildomai bandei scenarijus – turi ir atskirus šablonus.",
             "stats": [
               {
@@ -10166,6 +10580,7 @@
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Duomenų analizės kelio projekto rezultatus.\nINPUT: Ką tik baigiau Modulio 9 projektą – verslo analizę su DI (8 žingsnių workflow ir bent vienas scenarijus).\nOUTPUT: Užduok 3 klausimus: (1) Ką padariau šiame projekte ir kur tai pritaikysiu? (2) Ką tai reiškia man ar komandai? (3) Ką darysiu per artimiausias 24–48 val.? Po mano atsakymų duok 1 konkretų patarimą.",
             "tagline": "Vienas workflow ciklas = vienas paruoštas projektas.",
             "nextStepCTA": "Per 48 val. pakartok 8 žingsnius kitai temai arba pabandyk papildomą scenarijų.",
+            "firstAction24h": "Per 24–48 val. paimk vieną tikrą darbo temą ir pakartok 8 žingsnių workflow bent iki suvestinės.",
             "handoutDownloadLabel": "Parsisiųsti DA kelio atmintinę (PDF)"
           }
         }

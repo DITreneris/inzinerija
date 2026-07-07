@@ -14,11 +14,13 @@
 📚 MODULIS 1: "6 Blokų Sistema" (MOKYMASIS) - 25 min
    ├── 1. Įvadas į Promptų Inžineriją (su DI įrankiais bloku) ✅
    ├── 1.5. Generatyvaus DI Poveikis Produktyvumui (infografikas su statistika) ✅
+   ├── 1.6. Pirmas 6 blokų bandymas (path-step micro-win) ✅
    ├── 2. Ką Reiškia "Promptas"? (apibrėžimai, 3 aspektai) ✅
    ├── 3. Workflow Samprata (2 schemos + 2 promptų pavyzdžiai) ✅
    ├── 4. Pagrindiniai Promptų Tipai (sisteminiai, kontekstiniai, vaidmens) ✅
    ├── 5. Prompting'o Technikos (6 technikos + kopijuojami pavyzdžiai) ✅
    ├── 6. Gero Prompto Šablonas (META + INPUT + OUTPUT) ✅
+   ├── 6.5. Savitikra: META / INPUT / OUTPUT (3 klausimai) ✅
    ├── 7. Ko jau išmokome? (3→6 blokų perėjimas) ✅
    ├── 8. Hierarchinė Struktūra (6 blokų apžvalga)
    ├── 9. 1️⃣ Meta Blokas (rolė, kontekstas, tikslas)
@@ -92,6 +94,36 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 | Analitikas       | Pardavimų ar kitų duomenų analizė su konkrečiais veiksmais – naudok scenarijų „skaičiai → įžvalgos → veiksmai“ ir pakeisk duomenis (Input) pagal savo atvejį. |
 
 **Implementacija:** Tekstai laikomi i18n (module.useCaseHeading; module.useCaseM1_1 … useCaseM1_4; module.useCaseM3_1 … useCaseM3_4). UI: `ModuleCompleteScreen.tsx` – blokas rodomas, kai `module.id === 1` arba `module.id === 3`.
+
+---
+
+### Micro-win M1 pradžioje (skaidrė 1)
+
+**Tikslas:** Per pirmą minutę dalyvis turi ne tik pamatyti skirtumą tarp chaotiško ir struktūruoto prompto, bet ir atlikti mažą veiksmą.
+
+**Vieta:** Modulis 1, skaidrė 1 (`action-intro`), po blogo/gero prompto atskleidimo.
+
+**Matomas veiksmas:** „Nukopijuok žalią struktūruotą promptą ir pakeisk tik temą, auditoriją ir biudžetą pagal savo situaciją. Tai pirmas tavo 6 blokų sistemos bandymas.“
+
+---
+
+### M1 interaktyvumo baseline (2026-07-07)
+
+**Tikslas:** M1 turi du aiškius „ar supratau?“ momentus, kad pirmas modulis nebūtų tik peržiūra prieš testą. Tai uždaro `audit:slide-interactivity` M1 įspėjimą: learn moduliai su 15+ skaidrių turi turėti bent 2 formative momentus (`warm-up-quiz` arba `path-step`).
+
+**Skaidrė 1.6 – Pirmas 6 blokų bandymas (`path-step`):**
+
+- **Vieta:** po produktyvumo infografiko, prieš pagrindinius apibrėžimus.
+- **Mokymosi tikslas:** dalyvis per pirmą minutę ne tik pamato gero prompto pavyzdį, bet ir nukopijuoja struktūruotą promptą bei pakeičia 3 laukus pagal savo situaciją.
+- **Patikra:** ar pakeista tema, auditorija ir bent vienas apribojimas.
+- **Kopijuojamas promptas:** paimamas iš įvado logikos: META + INPUT + OUTPUT su savo tema, auditorija ir biudžetu.
+
+**Skaidrė 6.5 – Savitikra: META / INPUT / OUTPUT (`warm-up-quiz`):**
+
+- **Vieta:** po „Gero prompto šablonas“, prieš „Ko jau išmokome?“.
+- **Mokymosi tikslas:** atpažinti, kuris tekstas priklauso META, INPUT ir OUTPUT blokams.
+- **Klausimų kryptys:** (1) rolė + tikslas = META, (2) faktai + apribojimai = INPUT, (3) formatas + tonas = OUTPUT.
+- **Patikra:** 3 trumpi klausimai su paaiškinimais, kad dalyvis pasiruoštų Reasoning, Quality ir Advanced blokams.
 
 ---
 

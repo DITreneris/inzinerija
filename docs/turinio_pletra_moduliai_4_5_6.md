@@ -1462,6 +1462,8 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
 
 **Įrankių logika (47 ir 47.5):** 47 – tik struktūra ir brief. 47.5 – dvi fazės: 1) DI (ChatGPT, Claude, Gemini, Copilot) – pilnas turinys; 2) Prezentacijų įrankiai (Gamma, Canva ir kt.) – įklijuok turinį. Visi 6 prezentacijų įrankiai skaidrėje 47.5.
 
+**Artefakto atsisiuntimo sprendimas (2026-07):** Skaidrė 47 lieka **copy-first** sprinto vieta: dalyvis kopijuoja 8 skaidrių struktūrą ir Master promptą tiesiai iš skaidrės. Modulio 5 atsisiunčiamas artefaktas yra **Modulio 5 atmintinė (PDF)** rezultatų skaidrėje **514** (`handoutDownloadLabel`). Jei ateityje reikės atskiro `.txt` šablono skaidrėje 47, tai turi būti naujas data-driven laukas ir renderis, ne hardcoded `slide.id === 47`.
+
 ### 3.1 Modulio 5 įvado ir rezultatų ekranų turinys (SOT)
 
 **Implementacija:** Modulio 5 `test-intro` ir `test-results` turinys atitinka šį SOT. Rodymas – `src/components/slides/types/AllSlides.tsx` (TestIntroSlide, TestResultsSlide, `moduleId === 5`). DATA_AGENT: jei pereinama prie content-driven UI – įvesti šiuos tekstus į `modules.json` slide `content`.

@@ -211,11 +211,25 @@
       "category": "Image generation"
     },
     {
+      "name": "MongoDB",
+      "url": "https://www.mongodb.com",
+      "description": "NoSQL document database for flexible data structures: catalogues, events, content apps, and fast MVPs.",
+      "moduleId": 7,
+      "category": "Databases"
+    },
+    {
       "name": "Mubert",
       "url": "https://mubert.com",
       "description": "Background and stock video music – licenses for commercial use.",
       "moduleId": 13,
       "category": "Music generation"
+    },
+    {
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Widely used database in web hosting, WordPress, e-commerce, and simple CRUD systems.",
+      "moduleId": 7,
+      "category": "Databases"
     },
     {
       "name": "n8n",
@@ -274,11 +288,25 @@
       "category": "Business automation"
     },
     {
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org",
+      "description": "Universal choice for new web/SaaS projects, analytics, complex queries, JSON, and pgvector / AI features.",
+      "moduleId": 7,
+      "category": "Databases"
+    },
+    {
       "name": "Prezent.ai",
       "url": "https://prezent.ai",
       "description": "For business – brand, Story Builder, narrative; corporate presentations.",
       "moduleId": 4,
       "category": "Presentations"
+    },
+    {
+      "name": "Redis / Valkey",
+      "url": "https://valkey.io",
+      "description": "Cache, sessions, queues, rate limiting, and real-time features. Often a speed layer, not the main database.",
+      "moduleId": 7,
+      "category": "Databases"
     },
     {
       "name": "Runway",
@@ -309,6 +337,13 @@
       "category": "Video generation"
     },
     {
+      "name": "SQLite",
+      "url": "https://www.sqlite.org",
+      "description": "Local database for prototypes, mobile apps, CLI tools, and tests; no separate server needed.",
+      "moduleId": 7,
+      "category": "Databases"
+    },
+    {
       "name": "Soundraw",
       "url": "https://soundraw.io",
       "description": "Music generation and editing – melodies, tempo, mood.",
@@ -328,6 +363,13 @@
       "description": "Music generation from description – songs, instrumental, various styles.",
       "moduleId": 13,
       "category": "Music generation"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com",
+      "description": "Fast MVP backend: PostgreSQL + Auth + API + storage + real-time with less DevOps overhead.",
+      "moduleId": 7,
+      "category": "Databases"
     },
     {
       "name": "Synthesia",

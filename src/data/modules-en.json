@@ -22,6 +22,7 @@
             "ctaText": "See the difference in 30 seconds!",
             "unstructuredPrompt": "Write me a marketing plan.",
             "structuredPrompt": "META: You are a marketing strategist with 10 years of B2B experience.\nGoal: prepare a Q1 marketing plan.\nAudience: CMO and leadership.\n\nINPUT: Budget 50k EUR. Target market: Baltic countries.\nCompetitors: 3 main players.\n\nOUTPUT: Strategic document, 2–3 pages.\nStructure: goals → channels → budget → key indicators.\nTone: professional, with concrete numbers.",
+            "firstActionCTA": "Copy the green structured prompt and change only the topic, audience and budget for your situation. This is your first try with the 6-block system.",
             "aboutText": "In this course you'll learn the 6-block system – from a messy question to a professional result.",
             "sandboxMessage": "This is a sandbox – you can try, make mistakes, and go back. Results aren't saved here; what matters is learning.",
             "outcomes": [
@@ -200,7 +201,32 @@
                 "url": "https://www.nber.org/papers/w31161"
               }
             ],
-            "footer": "Next – slide 3: Prompt and prompt engineering"
+            "footer": "Next – slide 3: First 6-block try"
+          }
+        },
+        {
+          "id": 1.1,
+          "title": "First 6-block try",
+          "subtitle": "Micro-win: copy the structured prompt and change 3 fields",
+          "type": "path-step",
+          "content": {
+            "title": "First try – structured prompt",
+            "pathLabel": "6-block path",
+            "stepNumber": 1,
+            "stepTotal": 2,
+            "body": "Copy the structured prompt from the intro and change only 3 things: topic, audience, and one constraint. This small action immediately shows how structure changes the AI answer.",
+            "sections": [
+              {
+                "heading": "What to change",
+                "body": "1) Topic: what the result should be about. 2) Audience: who the answer is for. 3) Constraint: budget, time, scope, or format.",
+                "copyable": "META: You are [role]. Goal – prepare [topic]. Audience – [who for].\n\nINPUT: I have [data or situation]. Constraint – [time / budget / scope].\n\nOUTPUT: Provide [format]. Structure: [bullets / table / plan]. Tone – [style]."
+              },
+              {
+                "heading": "Check",
+                "body": "Did you change all 3 fields? If yes, you already have your first try with the 6-block system and can expand it later."
+              }
+            ],
+            "footer": "Next – slide 4: Prompt and prompt engineering"
           }
         },
         {
@@ -247,7 +273,7 @@
                 "url": "https://docs.anthropic.com/claude/docs/prompt-engineering"
               }
             ],
-            "footer": "Next – slide 4: Workflow concept"
+            "footer": "Next – slide 5: Workflow concept"
           }
         },
         {
@@ -291,7 +317,7 @@
                 "prompt": "You are a training designer.\nCreate a 5-point explanation of prompt engineering.\nFormat: numbered list.\nTone: professional.\nMax 120 words."
               }
             ],
-            "footer": "Next – slide 5: Main prompt types",
+            "footer": "Next – slide 6: Main prompt types",
             "interactive": {
               "enabled": true,
               "defaultMode": "basic"
@@ -328,7 +354,7 @@
               }
             ],
             "practicalTip": "Combine all three prompt types in one request to get the most precise, business-ready result. Especially important for strategy documents or analysis.",
-            "footer": "Next – slide 6: Prompting techniques"
+            "footer": "Next – slide 7: Prompting techniques"
           }
         },
         {
@@ -377,7 +403,7 @@
                 "example": "Prove that X is better than Y."
               }
             ],
-            "footer": "Next – slide 7: Good prompt template"
+            "footer": "Next – slide 8: Good prompt template"
           }
         },
         {
@@ -405,7 +431,55 @@
             ],
             "template": "META: Role – [who you are]. Goal – [what to create]. Audience – [who for].\nINPUT: Data – [facts/numbers]. Constraints – [time/budget].\nOUTPUT: Format – [table/list/document]. Structure – [points/sections]. Tone – [style].\nEXPECTED OUTPUT SHAPE: Short bullets, clear sections, owner and deadline where relevant.",
             "example": "META: Role – marketing lead. Goal – prepare SWOT analysis. Audience – leadership.\nINPUT: Data – product \"EcoBox\", goal retail. Constraints – 1 page.\nOUTPUT: Format – table with bullets. Structure – S/W/O/T, 3 points each. Tone – professional, clear.\nEXPECTED OUTPUT SHAPE: Short bullets, clear sections, owner and deadline where relevant.",
-            "footer": "Next – slide 8: What you've learned so far"
+            "footer": "Next – slide 9: Quick check: META / INPUT / OUTPUT"
+          }
+        },
+        {
+          "id": 16.5,
+          "title": "Quick check: META / INPUT / OUTPUT",
+          "shortTitle": "Quick check: 3 blocks",
+          "subtitle": "3 questions before Reasoning, Quality, and Advanced",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m1-warm-mio-1",
+                "question": "Which prompt part best belongs in the META block?",
+                "options": [
+                  "You are a marketing strategist, goal – prepare a Q1 plan for leadership",
+                  "Budget 50k EUR, target market – Baltic countries",
+                  "Provide a table with channels, budget, and KPIs",
+                  "Use a professional tone and short bullets"
+                ],
+                "correct": 0,
+                "explanation": "The META block defines role, goal, and audience. Data and constraints go to INPUT, while format goes to OUTPUT."
+              },
+              {
+                "id": "m1-warm-mio-2",
+                "question": "Which line is the INPUT block?",
+                "options": [
+                  "Product EcoBox, market – retail, constraint – 1 page",
+                  "You are a product lead",
+                  "Provide a SWOT table",
+                  "Tone – clear and professional"
+                ],
+                "correct": 0,
+                "explanation": "INPUT is what AI should use: facts, data, market, constraints, and other situation information."
+              },
+              {
+                "id": "m1-warm-mio-3",
+                "question": "Which sentence best describes the OUTPUT block?",
+                "options": [
+                  "Present the result as a 5-bullet list, with clear headings and a concise tone",
+                  "You are an HR consultant",
+                  "I have 20 employee survey answers",
+                  "Goal – understand team sentiment"
+                ],
+                "correct": 0,
+                "explanation": "OUTPUT specifies what the answer should look like: format, structure, length, tone, and order."
+              }
+            ],
+            "footer": "Next – slide 10: What you've learned so far"
           }
         },
         {
@@ -427,7 +501,7 @@
             ],
             "note": "Complex tasks need more than clarity – they need validation.",
             "takeaway": "From 3 blocks to 6 blocks = from task to control.",
-            "footer": "Next – slide 9: Hierarchical structure"
+            "footer": "Next – slide 11: Hierarchical structure"
           }
         },
         {
@@ -483,7 +557,7 @@
               }
             ],
             "tip": "Try creating a prompt without structure (as you usually would). Save it – we'll compare with the structured version at the end.",
-            "footer": "Next – slide 10: 1 Meta block"
+            "footer": "Next – slide 12: 1 Meta block"
           }
         },
         {
@@ -530,7 +604,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Next – slide 14: 4 Reasoning block"
+            "footer": "Next – slide 16: 4 Reasoning block"
           }
         },
         {
@@ -555,7 +629,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Next – slide 15: 5 Quality Control block"
+            "footer": "Next – slide 17: 5 Quality Control block"
           }
         },
         {
@@ -679,7 +753,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Next – slide 17: 6 Advanced Parameters (II)"
+            "footer": "Next – slide 19: 6 Advanced Parameters (II)"
           }
         },
         {
@@ -694,7 +768,7 @@
               "darykDabar": "**What to do:** Pick one parameter below (Max Tokens, Top-p, Frequency, or Presence). Copy the example, add your task, run AI. Examples under each parameter.",
               "patikra": "Did response length match expectations? Fewer repetitions (or more new ideas)? If not – change the parameter value and run again."
             },
-            "footer": "Next – slide 18: Full prompt example"
+            "footer": "Next – slide 20: Full prompt example"
           }
         },
         {
@@ -710,7 +784,7 @@
             "explanation": "Use the template above and build a full prompt for your real task. Remember: each block adds to the next and creates clear context for the AI model."
           },
           "content": {
-            "footer": "Next – slide 19: Before vs After"
+            "footer": "Next – slide 21: Before vs After"
           }
         },
         {
@@ -740,7 +814,7 @@
               "rightPct": 85,
               "lessEditsPct": 60
             },
-            "footer": "Next – slide 20: Glossary"
+            "footer": "Next – slide 22: Glossary"
           }
         },
         {
@@ -815,7 +889,7 @@
                 "definition": "Model settings: temperature, reasoning depth, response length, repetition control."
               }
             ],
-            "footer": "Next – slide 21: Module summary"
+            "footer": "Next – slide 23: Module summary"
           }
         },
         {

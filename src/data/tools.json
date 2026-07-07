@@ -232,11 +232,25 @@
       "category": "Vaizdų generavimas"
     },
     {
+      "name": "MongoDB",
+      "url": "https://www.mongodb.com",
+      "description": "NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps ir greiti MVP.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "Mubert",
       "url": "https://mubert.com",
       "description": "Foninė ir kilnojamųjų vaizdų muzika – licencijos komerciniam naudojimui.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
+    },
+    {
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "n8n",
@@ -302,11 +316,25 @@
       "category": "Duomenų analizė"
     },
     {
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org",
+      "description": "Universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "Prezent.ai",
       "url": "https://prezent.ai",
       "description": "Verslui – brand, Story Builder, naratyvas; korporatyvinės prezentacijos.",
       "moduleId": 4,
       "category": "Prezentacijos"
+    },
+    {
+      "name": "Redis / Valkey",
+      "url": "https://valkey.io",
+      "description": "Cache, sesijos, eilės, rate limit ir real-time funkcijos. Dažnai tai greičio sluoksnis, ne pagrindinė DB.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "Runway",
@@ -344,6 +372,13 @@
       "category": "Video generavimas"
     },
     {
+      "name": "SQLite",
+      "url": "https://www.sqlite.org",
+      "description": "Lokali DB prototipams, mobilioms apps, CLI įrankiams ir testams; nereikia atskiro serverio.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "Soundraw",
       "url": "https://soundraw.io",
       "description": "Muzikos generavimas ir redagavimas – melodijos, tempo, nuotaika.",
@@ -363,6 +398,13 @@
       "description": "Muzikos generavimas iš aprašymo – dainos, instrumentinė muzika, įvairūs stiliai.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com",
+      "description": "Greitas backend MVP: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "Trello",

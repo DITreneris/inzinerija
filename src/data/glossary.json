@@ -1,6 +1,15 @@
 {
   "terms": [
     {
+      "term": "3NF",
+      "definition": "Trečioji normalios formos taisyklė – duomenų bazės struktūra, kuri mažina dubliavimą ir padeda aiškiau susieti lenteles.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "A/B testavimas",
       "definition": "Dviejų ar daugiau variantų (vaizdas, antraštė) palyginimas – kuris geriau veikia; reikalauja hipotezės ir KPI (CTR, CVR).",
       "moduleId": 13
@@ -74,6 +83,15 @@
       "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
       "definition": "Prioritetų sistema – užduotys ar idėjos skirstomos į 4 grupes pagal svarbą ir skubą; padeda nuspręsti, ką daryti pirmiausia.",
       "moduleId": 7
+    },
+    {
+      "term": "Cache sluoksnis",
+      "definition": "Greitas laikinas duomenų sluoksnis sesijoms, eilėms ar spartai. Dažniausiai tai papildymas prie pagrindinės duomenų bazės, ne pagrindinė saugykla.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Chunk (fragmentas)",
@@ -176,6 +194,15 @@
       }
     },
     {
+      "term": "ER modelis",
+      "definition": "Entity-Relationship modelis – lentelių ir jų ryšių (pvz. 1-N, N-N) logikos aprašas, padedantis suprasti duomenų struktūrą.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Few-shot",
       "definition": "Užklausa su keliais pavyzdžiais, kad DI perimtų stilių ar formatą.",
       "moduleId": 1
@@ -236,6 +263,11 @@
       "moduleId": 13
     },
     {
+      "term": "Kelių agentų sistema",
+      "definition": "Sistema, kurioje kelios rolės (pvz. koordinatorius, specialistas, vertintojas) dirba kartu ir perduoda viena kitai aiškias įvestis bei išvestis.",
+      "moduleId": 10
+    },
+    {
       "term": "Klaidos tvarkymas",
       "definition": "Ką grąžinti vartotojui, kai užduotis nepavyksta (trūksta duomenų, timeout, neleistinas veiksmas). Nurodoma prompte – pvz. „parašyk Nepavyko ir priežastį“.",
       "moduleId": 10
@@ -266,6 +298,20 @@
       "moduleId": 4
     },
     {
+      "term": "Koordinatorius",
+      "definition": "Kelių agentų rolė, kuri suskaido užduotį, paskiria specialistus ir sujungia jų rezultatus.",
+      "moduleId": 10
+    },
+    {
+      "term": "KPI",
+      "definition": "Pagrindinis veiklos rodiklis – ką matuoji, kad suprastum, ar verslo procesas veikia gerai.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Leading questions",
       "definition": "Vedantys klausimai – suformuluoti taip, kad nukreiptų atsakymą į norimą pusę; promptų manipuliacijos atvejis, ko vengti.",
       "moduleId": 4
@@ -279,6 +325,11 @@
       "term": "LLM",
       "definition": "Large Language Model – didelis kalbos modelis; technologinė DI pagrindas, apdoroja tekstą ir gali naudoti įrankius (Tool Use), atmintį (Retrieval).",
       "moduleId": 4
+    },
+    {
+      "term": "Maršrutizatorius",
+      "definition": "Kelių agentų rolė, kuri klasifikuoja užklausą ir nukreipia ją tinkamam specialistui arba darbo eigai.",
+      "moduleId": 10
     },
     {
       "term": "Master promptas",
@@ -319,6 +370,15 @@
       "term": "Neigiamas promptas",
       "definition": "Ko vengti vaizde ar rezultate – nurodoma DI prompte (pvz. „be teksto vaize“); sumažina nežėlimus rezultatus.",
       "moduleId": 13
+    },
+    {
+      "term": "NoSQL",
+      "definition": "Duomenų bazės principas be griežtos lentelių schemos. Tinka dokumentams, lankstesnei struktūrai ir greitiems MVP.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Neuroniniai tinklai",
@@ -405,6 +465,11 @@
       }
     },
     {
+      "term": "ReAct",
+      "definition": "Agentų ciklo principas: suprasti užduotį, pasirinkti įrankį, vykdyti veiksmą, stebėti rezultatą ir nuspręsti, ar kartoti, ar baigti.",
+      "moduleId": 10
+    },
+    {
       "term": "Reasoning blokas",
       "definition": "Nurodo, kokią sprendimo logiką DI taikyti prieš atsakymą (CoT arba ToT).",
       "moduleId": 1
@@ -457,6 +522,15 @@
       "term": "Sprendimų filtras",
       "definition": "Trumpas metodas, kuris analizės rezultatą paverčia veiksmu (taisyti, prioritetą nustatyti, atmesti, testuoti, plėsti) – ne tik aprašymu.",
       "moduleId": 7
+    },
+    {
+      "term": "SQL duomenų bazė",
+      "definition": "Lentelėmis ir ryšiais paremta duomenų bazė. Tinka struktūruotiems verslo duomenims, užklausoms ir ataskaitoms.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Stilius (vizualas/garso)",
@@ -515,6 +589,11 @@
     {
       "term": "Vartotojo promptas",
       "definition": "Užduotis ar klausimas, kurį įveda vartotojas – matomas DI kaip įvestis; skiriasi nuo sisteminio prompto (nustatymai „kas esi“).",
+      "moduleId": 10
+    },
+    {
+      "term": "Vertintojas",
+      "definition": "Kelių agentų rolė, kuri tikrina rezultatą pagal kriterijus, taisykles ir rizikas; prireikus grąžina pataisymui.",
       "moduleId": 10
     },
     {

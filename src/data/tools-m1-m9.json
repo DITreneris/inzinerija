@@ -141,6 +141,20 @@
       "category": "DI turinio detektoriai"
     },
     {
+      "name": "MongoDB",
+      "url": "https://www.mongodb.com",
+      "description": "NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps ir greiti MVP.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "NotebookLM (Google)",
       "url": "https://notebooklm.google.com",
       "description": "Google įrankis, kuris leidžia įkelti dokumentus ir „kalbėtis“ su jais – asmeninis RAG iš savo failų, podcastų generavimas.",
@@ -183,11 +197,25 @@
       "category": "Duomenų analizė"
     },
     {
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org",
+      "description": "Universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "Prezent.ai",
       "url": "https://prezent.ai",
       "description": "Verslui – brand, Story Builder, naratyvas; korporatyvinės prezentacijos.",
       "moduleId": 4,
       "category": "Prezentacijos"
+    },
+    {
+      "name": "Redis / Valkey",
+      "url": "https://valkey.io",
+      "description": "Cache, sesijos, eilės, rate limit ir real-time funkcijos. Dažnai tai greičio sluoksnis, ne pagrindinė DB.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "Scite",
@@ -202,6 +230,20 @@
       "description": "Tekstas → skaidrės keliais paspaudimais. Google Slides integracija.",
       "moduleId": 4,
       "category": "Prezentacijos"
+    },
+    {
+      "name": "SQLite",
+      "url": "https://www.sqlite.org",
+      "description": "Lokali DB prototipams, mobilioms apps, CLI įrankiams ir testams; nereikia atskiro serverio.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
+      "name": "Supabase",
+      "url": "https://supabase.com",
+      "description": "Greitas backend MVP: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "Trello",
