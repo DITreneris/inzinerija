@@ -191,7 +191,7 @@
 
 **Paskirtis:** Savitikra prieš testą – 3 klausimai su diagnostiniu feedback (pvz. „Čia stipru“, „Jei supainiojote – prisiminkite“). Ne ta pati kaip apšilimas – warm-up-quiz = quiz; apšilimas = content-block praktinis pavyzdys.
 
-**Vieta:** M4 po temų (pvz. id 63.5, 65.7, 66.5, 68.5).
+**Vieta:** M4 po temų (pvz. id 63.5, 65.7, 66.5). M7 ilgame learn kelyje – branduolio savitikros po pagrindinių konceptų (id 73.5, 731.5, 891.5, 68.5, 74.5).
 
 **Turinio schema:** `WarmUpQuizContent` – klausimai, teisingi atsakymai, explanations (diagnostinis tonas).
 

@@ -1,7 +1,7 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean branduolys:** `docs/LEAN_INDEX.md`. Pilnas sąrašas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-06-30 (tier 9 production build, memo 05)
+> **Atnaujinta:** 2026-07-06 (release 1.4.2 + Unreleased docs sync)
 
 ---
 
@@ -15,6 +15,7 @@
 | Turinys M10–12                                                     | `docs/turinio_pletra_moduliai_10_11_12.md`; M10 seka – `docs/MODULIO_10_SKAIDRIU_EILES.md`                                                                                                                                                                                                                                       |
 | Modulių/skaidrių numeracija                                        | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                                                                                                                            |
 | Dizainas (šriftai, skaidrės)                                       | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                                                                                                                            |
+| Skaidrių UX / interaktyvumas M1–15 (bangos, audit)                 | `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`, `npm run audit:slide-interactivity`                                                                                                                                                                                                                                    |
 | Techninė atspirties būsena (architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                                                                                                                       |
 | Duomenys                                                           | Full SOT: `modules.json`, `glossary.json`, `tools.json`. Build profiliai: `*-m1-m6.json` (MVP/demo), `*-m1-m9.json` (**production** `build:production`). EN overlay: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`. Žr. `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`. |
 | Ekosistema (M1–12 touchpoints, URL, analytics)                     | `docs/ECOSYSTEM_MAP.md`, `docs/development/BLOG_CURRICULUM_LINKS.yaml`, `src/constants/ecosystemUrls.ts`; agent spine: `AGENTS.md` §Ecosystem, `sot_index.json` → `ecosystem`                                                                                                                                                    |
@@ -23,6 +24,8 @@
 **Konfliktas:** 1) Turinio SOT → 2) JSON sinchronas → 3) UI.
 
 **Architektūra A:** `src/data/modules.json` lieka full `1–15` redagavimo SOT. Build profiliai: `*-m1-m6.json` (`VITE_MVP_MODE=1`, demo) ir `*-m1-m9.json` (**production** `npm run build:production`). Marketing memo tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](../05_marketingo_memo_tier9_vienas_build.md).
+
+**Release / audit vartai:** prieš deploy naudoti `npm run audit:release-preflight` (schema, lint, M4–M9 EN auditai, M7 pathBranch ir `test:run`). Po M10–12 LT/EN pakeitimų paleisti `npm run audit:m1012`.
 
 ---
 

@@ -6,19 +6,19 @@
 
 ## 1. 5 blokų tvarka
 
-| # | Blokas | Turinys |
-|---|--------|---------|
-| 1 | **Celebration Hero** | Gradient brand→accent, introHeading „Ką išmokote“, intro body, 3 statistikos |
-| 2 | **Žinių kortelės** | Max 3 kortelės; ikona + heading + items su CheckCircle |
-| 3 | **Refleksijos promptas** | Copyable; 3 klausimai (Apply, Analyze, Create) |
-| 4 | **Kitas žingsnis CTA** | Konkretus tekstas (pvz. „Pereikite prie Modulio 2“) |
-| 5 | **Motyvacinis footer** | Tagline, formulė |
+| #   | Blokas                   | Turinys                                                                     |
+| --- | ------------------------ | --------------------------------------------------------------------------- |
+| 1   | **Celebration Hero**     | Gradient brand→accent, introHeading „Ką išmokai“, intro body, 3 statistikos |
+| 2   | **Žinių kortelės**       | Max 3 kortelės; ikona + heading + items su CheckCircle                      |
+| 3   | **Refleksijos promptas** | Copyable; 3 klausimai (Apply, Analyze, Create)                              |
+| 4   | **Kitas žingsnis CTA**   | Konkretus tekstas (pvz. „Pereikite prie Modulio 2“)                         |
+| 5   | **Motyvacinis footer**   | Tagline, formulė                                                            |
 
 ---
 
 ## 2. Laukai (summary skaidrėse)
 
-- **introHeading** – pvz. „Ką išmokote“.
+- **introHeading** – pvz. „Ką išmokai“.
 - **stats** – 3 statistikos (Celebration Hero).
 - **sections** – žinių kortelės (max 3).
 - **reflectionPrompt** – refleksijos tekste 3 klausimai + CopyButton.
@@ -30,7 +30,7 @@
 ## 3. Refleksijos prompto šablonas
 
 - **Struktūra:** 3 klausimai (Apply, Analyze, Create) + 1 patarimas.
-- **Stilius:** „What – So What – Now What“ (ką išmokote, ką tai reiškia, ką daryti toliau).
+- **Stilius:** „What – So What – Now What“ (ką išmokai, ką tai reiškia, ką daryti toliau).
 - **Copy mygtukas:** Prominent; feedback „Nukopijuota!“.
 
 ---

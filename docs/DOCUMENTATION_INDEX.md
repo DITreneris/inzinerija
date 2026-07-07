@@ -1,7 +1,7 @@
 # Dokumentacijos indeksas – kur kuo remtis
 
 > **Tikslas:** Agentai ir žmonės žino, kuris dokumentas yra tiesa (SOT), kas aktyvus, o kas archyvuota.  
-> **Atnaujinta:** 2026-06-30 (tier 9 production, release 1.4.1)
+> **Atnaujinta:** 2026-07-06 (tier 9 production, release 1.4.2 + Unreleased docs sync)
 >
 > **Agentams (lean, prieinama):** pirmiausia **`docs/DOCUMENTATION_QUICK_REF.md`** (SOT + keliai); **`docs/LEAN_INDEX.md`** – minimalus branduolys (~20 failų). Pilnas sąrašas ir archyvas žemiau.
 
@@ -20,7 +20,7 @@
 | **Turinys Moduliai 13–15**                                                                 | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                                            | Turinio inžinerija: teorija (13), testas (14), projektas (15)                                                                                                                |
 | **Kur kalbama apie kurį modulį**                                                           | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                 | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13                                                                                              |
 | **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                 | Vienas etalonas visiems moduliams (v2.3.0: §3.4c skiriamoji/apibendrinimo; §3.4d path-step kelio žingsnis, badge, žodynėlio atrakinimas)                                     |
-| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                            | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.1** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                   |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                            | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.2** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                   |
 | **Duomenys**                                                                               | `src/data/modules.json`, `*-m1-m6.json`, `*-m1-m9.json`, `promptLibrary.json`, `glossary.json`, `tools.json`, `hallucinationRates.ts` | Full SOT: `modules.json` / `glossary.json` / `tools.json`. Build profiliai: `*-m1-m6.json` (MVP), `*-m1-m9.json` (**production**). Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` |
 | **Vartotojo atsiliepimai**                                                                 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                                                              | Gyvas testavimas, V1/V2, segmentai                                                                                                                                           |
 | **Klaidos ir sprendimai**                                                                  | `docs/development/TEST_REPORT.md`                                                                                                     | QA_AGENT priima klaidas čia                                                                                                                                                  |
@@ -37,11 +37,13 @@
 | ------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline, kokybės vartai                                                            |
 | `docs/development/GOLD_LEGACY_STANDARD.md`             | Techninė atspirties dokumentacija (inventorius, failai, testai, CI); savininkas QA_AGENT      |
+| `docs/development/DOCS_SYNC_CHECKLIST.md`              | Docs sync vartas po release / didelio Unreleased sprinto                                      |
 | `docs/development/PLAN_AGENTAI_DARBAI.md`              | Kas, seka, Modulio 4 MUST/SHOULD                                                              |
 | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`     | Pedagoginės įžvalgos, Must/Should/Want                                                        |
 | `docs/development/CONTENT_AGENT.md`                    | CONTENT_AGENT spec                                                                            |
 | `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika, Bloom, santraukos                                                                 |
 | `docs/development/SCHEME_AGENT.md`                     | Schemų/diagramų gairės                                                                        |
+| `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`         | Aktyvus M7–M12 schemų routing, test coverage ir image key registry                            |
 | `docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`    | Diagramų praktikos                                                                            |
 | `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`    | Verifikacija, „padaryta“ vs tikrovė                                                           |
 | `docs/development/UI_UX_AGENT.md`                      | UI/UX gairės                                                                                  |

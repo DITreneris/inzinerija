@@ -1,6 +1,6 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-07-01 | **Roadmap dokumento versija:** 2.5 (ne `package.json` semver)  
+> **Atnaujinta:** 2026-07-06 | **Roadmap dokumento versija:** 2.5 (ne `package.json` semver)  
 > **App release:** 1.4.2 (2026-07-01) – žr. `CHANGELOG.md` `[1.4.2]`.
 > **Principas:** **M1–9 production pirmiausia**; M10+ – authoring kataloge, **ne dabartinis prioritetas**. Post-deploy: **MON P0** monetizacijos unlock (`MON_P0_EXECUTION_PLAN.md`).  
 > **Production audit (2026-06):** **CONDITIONAL GO** — M1–9 shippable; monetizacija ~45–55% ready. Prioritetai: `TODO.md` §1.1 MON-\*; santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
@@ -38,7 +38,7 @@
 
 ### Testai ir kokybė
 
-- **57 testų failai, 367 testai:** unit, component, integration, a11y smoke, gate tier 9, handout PDF, diagram registry guards.
+- **60 testų failų, 403 testai (2026-07-06 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF, diagram registry guards, M10–12 EN/data-contract guards. 1.4.2 tag metu buvo 57 failai / 367 testai.
 - **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
 - **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
 
@@ -72,7 +72,7 @@
 - Diagram browser smoke M1–9 (390px, light/dark) – TODO QA #6; neblokuoja 1.4.2 tag.
 - Pirmyn/Atgal – jau viena sticky juosta (viršuje); tolesnis poliravimas pagal atsiliepimus.
 - A11y axe-core automatizacija kelioms skaidrėms (SHOULD S2).
-- M10+ diagram visual polish – **Deferred** (`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`).
+- M10+ diagram visual polish – **Deferred** (`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`). Jei M10–12 authoring leidžiamas ar syncinamas, papildomas vartas: `npm run audit:m1012`.
 
 ---
 
@@ -175,4 +175,4 @@
 
 ---
 
-**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Paskutinė sinchronizacija su TODO / audit — **2026-07-01** (1.4.2 + MON P0 planas).
+**Roadmap atnaujinimas:** Kas mėnesį – prioritetų peržiūra; po release – įgyvendintų punktų pažymėjimas. Paskutinė sinchronizacija su TODO / audit — **2026-07-06** (1.4.2 + Unreleased docs sync baseline).

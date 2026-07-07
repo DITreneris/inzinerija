@@ -42,6 +42,8 @@
 | **Statinis SVG (atsarginė kopija)**                             | `public/schema3_llm_rag.svg` – nuoroda leidžiama kaip atsarginė; **geometrijos tiesa – React** (`Schema3InteractiveDiagram`). Pilname dydyje pagrindinis būdas – modalas su React per `EnlargeableDiagram`.                                                                                                                                                                                                                                                                                                                                                                                                         |
 | **Projekto vizualinė paletė**                                   | `tailwind.config.js` (brand, accent, slate); diagramose – brand (#334e68 ir pan.), accent grįžtamajam ryšiui.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
+Aktyvus M7-M12 schemų inventorius, image key policy ir test coverage būsena: `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`.
+
 Konfliktas: jei turinys (žingsnių pavadinimai, skaičius) keičiasi – pirmiausia CONTENT_AGENT / turinio SOT, tada SCHEME_AGENT atnaujina schemos struktūrą ir geometriją.
 
 ### 2.2 M10 naujos diagramos checklist

@@ -160,6 +160,22 @@ Po training repo tag **`v1.4.1`** (LT/EN audit gates, Tu-forma, diagram i18n, M7
 
 ---
 
+## 8.2. Release 1.4.2 – DiagramKit + M7–9 EN (2026-07-01)
+
+Po training repo tag **`v1.4.2`** (DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas):
+
+1. **Submodule pin:** `apps/prompt-anatomy` → commit su tag `v1.4.2`.
+2. **Build:** `npm run build:production`; production env be `VITE_MVP_MODE`, su `VITE_MAX_BUILD_MODULE=9`.
+3. **Smoke:** tier 0 gate, tier 6 M7 locked, tier 9 M1–9 open; `gate.smoke.test.tsx` dengia tier 0/3/6/9 auto dalį.
+
+---
+
+## 8.3. Unreleased po 1.4.2 – M7–12 schema sprint (2026-07-06)
+
+Kol nėra naujo tag (`v1.4.3` arba `v1.5.0`), MON-2 submodule pin turi remtis konkrečiu **HEAD SHA**, ne tik `v1.4.2` tag. Šiame HEAD yra M7–12 schema-consistency, `audit:m1012`, M10–12 diagramų ir release QA docs pakeitimai – žr. `CHANGELOG.md` `[Unreleased]`.
+
+---
+
 ## 9. Nuorodos
 
 | Dokumentas                | Kelias                                                                                     |

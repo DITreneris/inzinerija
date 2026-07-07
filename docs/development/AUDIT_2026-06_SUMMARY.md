@@ -9,7 +9,7 @@
 ## 3 stipriausi argumentai
 
 1. **Moduliai 1–6 pilnai įgyvendinti** — teorija, testai, praktika, sertifikatai, LT/EN, CI (schema + lint + test + build).
-2. **Inžinerinė disciplina** — Architecture A, JSON schema prebuild, ~38 testų failų, ErrorBoundary, integracijos docs.
+2. **Inžinerinė disciplina** — Architecture A, JSON schema prebuild, ErrorBoundary, integracijos docs. 2026-06 audito metu buvo ~38 testų failų; dabartinis 2026-07-06 HEAD baseline – 60 testų failų / 403 testai (`RELEASE_QA_RUN.md`).
 3. **Monetizacijos kabliukai egzistuoja** — tier pricing, HMAC magic link (`api/verify-access.ts`), `AccessGateScreen`, marketing funnel docs.
 
 ---

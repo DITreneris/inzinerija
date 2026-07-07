@@ -6,7 +6,7 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.2]**, **[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.2]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.3]** release.                                       |
+| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.          |
 | **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.       |
 | **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).     |
 | **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel. |
@@ -34,17 +35,37 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 57 failai, 367 testai (unit, component, integration, a11y). Validacija: prebuild schema; release gate `npm run audit:m49` (M1–9 EN/LT).
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.2** (2026-07-01). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8); vykdymo planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
+- **Testai:** 60 failų, 410 testų (2026-07-07). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.3** (2026-07-07). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8); vykdymo planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.2 release._
+_Įrašai po 1.4.3 release._
+
+---
+
+## [1.4.3] – 2026-07-07
+
+UX Banga 1 (M1/M7/M10/M13 interaktyvumas), M13–15 Turinio inžinerijos kelias su EN overlay, M7–M12 LT/EN consistency ir kelių navigacija, audit toolchain (M10–15 + slide interactivity).
+
+### Gate
+
+- `npm run validate:schema`, `npm run audit:m49`, `npm run audit:m1012`, `npm run audit:m1315`, `npm run audit:slide-interactivity`, `npm run lint`, `npm run test:run` (410 testų) – žali (2026-07-07).
 
 ### Added
 
+- **M1–15 skaidrių UX / interaktyvumo planas:** `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md` – bangos M7/M10/M13 (P0), practice path-step (P1), M4 etalonas; prioritetas virš MON full sprint.
+- **Interaktyvumo audit:** `scripts/audit-slide-interactivity.mjs`, `npm run audit:slide-interactivity` – warm-up/path-step skaičiai, content-block streak, learn modulių įspėjimai.
+- **M7 warm-up savitikros:** pridėtos 4 branduolio `warm-up-quiz` skaidrės (73.5, 731.5, 891.5, 74.5) su LT/EN turiniu, o 68.5 perkelta iš `etika-plus` šakos į bendrą branduolį. M7 dabar turi 5 warm-up ir branch-aware content-block streak 7.
+- **M13–15 Turinio inžinerijos kelias:** M13 papildytas image → video grandine, kameros prompto bloku ir 3 kriterijų vertinimo rubrika; M14 išplėstas iki 8 klausimų su scenarijų MCQ; M15 gavo quick start skaidrę 150.5 ir optional pilną mini kampanijos kelią (hero vaizdas → video → muzika).
+- **M13–15 EN overlay ir vartai:** pridėtas `modules-en-m13-m15.json`, `build:modules-en-m13-m15`, `extract:modules-en-m13-m15` ir `audit:m1315` (coverage + language), o `modulesLoader.ts` merge'ina EN M13–15, kai kataloge yra 13+ modulių.
+- **M7 DB įrankių matrica:** skaidrė 84 papildyta PostgreSQL, MySQL, SQLite, MongoDB, Redis / Valkey ir Supabase pasirinkimo lentele bei CopyButton promptu; žodynėlis papildytas ER / 3NF / KPI ir SQL / NoSQL / cache sąvokomis, o įrankių kataloge pridėta kategorija „Duomenų bazės“ (LT/EN + M1–9 core sync).
+- **M7–12 schemų registry:** pridėtas `DIAGRAMU_M7_M12_REGISTRY.md` su image key policy, pattern taksonomija, shell/layout/test coverage matrica ir M7–12 priėmimo vartais; `SCHEME_AGENT.md` nukreipia į registry kaip aktyvų inventorių.
+- **M10/M12 schemų testų tvora:** `DiagramLocalization.test.tsx` papildytas M10 taxonomy, trigger flow, 3A, workflow spec, incident playbook, tool decision tree ir M12 three labs LT/EN bei dark-palette kontraktais; M10 tool tree dokumentuotas kaip spatial SVG keyboard exception.
+- **M7 step-count pedagoginė diagnozė:** pridėtas `M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`, rekomenduojantis M7 schemų skaičius aiškinti kaip skirtingus mokymosi sluoksnius (6 pipeline, 5 mini-procesai, 4 tipai, 8 MASTER), ne suvienodinti priverstinai.
+- **M10–12 LT/EN kalbos vartai:** pridėtas `audit:en-language-m10-12` ir bendras `audit:m1012` (coverage + language), su M10–12 taisyklių moduliu ir regresijos testu `m1012EnLanguageAudit.test.ts`; vartai tikrina EN LT reliktus, DI→AI terminologiją, LT `tu` formą ir matomus EN reliktus.
 - **M10–12 schemų P1 sprintas:** pridėti `m10_workflow_spec` ir `m10_incident_playbook` React diagramų blokai; `m10TaxonomyLayout.ts` + `m10LearningLoopLayout.ts` geometrijos SOT; `M10LearningLoopBlock` – 4 makro žingsniai per `InteractiveDiagramShell`; `M12MultiAgentSchemaBlock` – 6 žingsnių interaktyvus kelias su HTML nav ir pointer-only SVG hit zonomis; `diagramRenderers.test.tsx` + `DiagramLocalization.test.tsx` regresija naujiems raktams.
 - **M10–12 Max-ROI agentų kelio atnaujinimas:** M10 papildytas uždaro mokymosi ciklo skaidre ir React diagrama (`m10_learning_loop`), o M12 prompt-first kelias papildytas Įgūdžio paketu ir grąžos iš investicijų (ROI) mini skaičiuokle. M11 `m11-q1` pakeistas į diagnostinį situacinį klausimą apie šaltinių / įrankių taisykles.
 - **M7 skaidrė 734 „Sprendimų filtrai“:** naujas branduolio (core) turinys – 5 sprendimų filtrų grupės (Tinka/Netinka, Būtina/Svarbu/Norima/Ne dabar, Greiti laimėjimai, Testuok/Investuok/Atmesk, nuorodos į SWOT/80-20/„Kodėl?“/Rizika-Nauda) su 4 CopyButton promptais. SOT: `docs/turinio_pletra_moduliai_7_8_9.md` §8.1a; seka: `docs/MODULIO_7_SKAIDRIU_EILES.md` (branduolys 27→28); žodynėlis +4 terminai (`glossary.json`, `glossary-m1-m9.json`); M9 scenarijų 6/7 kontekstas susietas su 734.
@@ -53,9 +74,27 @@ _Įrašai po 1.4.2 release._
 - **M11 bonus mini-praktika:** po testo pridėta optional bonus skaidrė „agento pipeline per 5 min“ (koordinatorius → specialistas → vertintojas), su promptų rinkiniu ir pasiruošimu M12 prompt-first startui.
 - **M12 120.5 React diagrama:** `M12MultiAgentSchemaDiagram` + `M12MultiAgentSchemaBlock` + `m12MultiAgentSchemaContent.ts`; registruota per `diagramRenderers.tsx` (`m12_multi_agent_schema`); skaidrė 120.5 LT/EN – `sections[].image`.
 - **M11 9-as klausimas:** `m11-q9` apie uždaro mokymosi ciklą (10.49); intro CTA „8“→„9“ klausimai (LT/EN).
+- **UX Banga 1 M7/M10/M13:** M7 gavo `intro-action-pie` 70.5, M10 – 2 `warm-up-quiz` skaidres ir `evaluator-prompt-block`, M13 – 2 `warm-up-quiz` skaidres ir `recognitionExercise`; sinchronizuoti SOT dokumentai, EN overlay, core M1–9 profilis ir footer auditai.
+- **M1 interaktyvumo baseline:** Modulis 1 papildytas `path-step` 1.1 („Pirmas 6 blokų bandymas“) ir `warm-up-quiz` 16.5 („META / INPUT / OUTPUT“); LT/EN ir core profiliai sinchronizuoti, kad `audit:slide-interactivity` nebeturėtų M1 warning.
 
 ### Changed
 
+- **M7–M12 LT/EN kalbos auditas:** M7 EN overlay papildytas trūkusia 734 skaidre „Decision filters“, sutvarkyti 66.9 ir senieji M7 EN hibridai (`Skyrius:`, `promptai`, `vedantys questions`, `su columnss` ir kt.), M8/M11 LT threshold tekstai suvienodinti į `tu` formą; `m7-m9-en-manifest.mjs`, `m79-language-rules.mjs` ir regresijos testas papildyti, kad `audit:m79` tikrintų 734, warm-up branduolio skaidres ir LT prefix regresijas.
+- **M15 praktikos schema:** `m15_practice_loop` dabar rodo du režimus – greitą kelią iki vieno artefakto ir optional pilną kelią per vaizdą, video, muziką, QA; pridėta LT/EN diagramos lokalizacijos regresija.
+- **Interaktyvumo audito streak skaičiavimas:** `audit:slide-interactivity` dabar skaičiuoja content-block streak pagal matomą branduolio kelią ir ignoruoja `pathBranch` šakines skaidres, kurios M7 navigacijoje nerodomos kartu.
+- **Vitest pilno rinkinio stabilumas:** `vitest.config.ts` pervestas į `forks` pool su 30 s test/hook timeout ir ribotu worker skaičiumi; `App.quiz.integration.test.tsx` sutvirtintas lokaliu `userEvent.setup()` ir teigiamu `ModulesPage` grįžimo assert'u; `a11y.smoke.test.tsx` izoliuoja sunkius preload importus ir naudoja mažą tools fixture, kad pilnas `npm run test:run` nebekristų per worker RPC timeout'us.
+- **Docs sync baseline:** `README`, `CODEBASE_WHAT_IS_DONE`, dokumentacijos indeksai, roadmap, marketing handoff, versijavimo analizė, M7–12 diagramų registry ir legacy techninis indeksas suderinti su 1.4.2 + Unreleased HEAD baseline (60 testų failų / 403 testai); pridėtas `DOCS_SYNC_CHECKLIST.md`.
+- **M7–12 schema-consistency sprintas:** `AgentWorkflowBlock` pervestas į bendrą `InteractiveDiagramShell`, paliekant `AgentWorkflowDiagram` geometriją ir pointer-only hit zonas; `M10ToolDecisionTreeDiagram` paliktas spatial exception, bet title/rodyklės/tekstas remiasi dark-aware `useDiagramPalette()`.
+- **M8 test scope deep-link:** `TestKnowledgeScopeDiagram` M8 režime, kai perduotas `onGoToModule`, rodo native HTML mygtukus į M7 remediation skaidres; M11/M14 lieka statiški scope vaizdai.
+- **M7 canonical image keys:** full SOT ir EN/core data naudoja `m7_da_pipeline` ir `m7_bi_schema`; `diagramRenderers.tsx` palaiko naujus raktus ir legacy `/da_pipeline_6.svg`, `/da_bi_schema_4.svg` aliasus.
+- **M10 schema backlog statusas:** `TODO.md` pažymi M7–12 schema-consistency kaip patvirtintą išimtį nuo bendro M10+ Deferred monetizacijos backlog'o, o M10-DIA-01..04 perkelti į aktyvų schema backlog'ą.
+- **M10–12 LT/EN UI/UX suderinimas:** M10/M11/M12 full SOT ir `modules.json` perrašyti taip, kad LT režime matomuose heading/body/footer/praktikos laukuose neliktų nereikalingų EN reliktų (`handoff`, `test case`, `prompt-only`, `delivery-first`, `Human-in-the-loop`); EN overlay coverage išlaikytas, o M10/M12 glossary terminai papildyti LT/EN.
+- **M10 progress fazės ir M12 i18n:** M10 progreso juostoje LT `Multi-agent` / `Optional` pakeista į „Keli agentai“ / „Neprivaloma“, EN lokalizacija lieka `Multi-agent` / `Optional`; M12 privalomo kelio tekstas LT paaiškina 3A praktikas.
+- **Santraukų `tu` forma ir M10–12 LT copy:** `SUMMARY_SLIDE_SPEC.md` ir full SOT suvienodinti į „Ką išmokai“; M10 kontroliniai taškai, M11 rezultatų žinutės, M12 startas su promptais ir LT ecosystem copy perrašyti be vartotojui matomų EN reliktų (`Micro-win`, `checkpoint`, `prompt-only`, `delivery-first`, `audit trail`).
+- **M12 practice-intro hierarchija:** M12 įvade pridėtas atskiras privalomo kelio blokas („Privalomas kelias“), kuris aiškiai atskiria 121–123 praktikas nuo 124.5 greito starto su promptais.
+- **M7–M12 consistency sprintas:** `ModulesPage` sugrupuotas į bazės, Duomenų analizės, Agentų ir Turinio kelius; `unlocksAfter` dabar naudojamas užrakinime, todėl M10 gali būti pasirenkamas po M6 pagal SOT. M6 completion ekranas rodo tier-aware kelio pasirinkimą, M7/M9/M10/M12 aprašymai ir summary/practice copy suvienodinti pagal „vienas privalomas kelias + optional“ modelį.
+- **M7 production trintis:** prieš vizualizacijos šaką pridėta optional `section-break` skaidrė 99.9, M7 santrauka paaiškina, kad branduolys baigtas, o vizualizacija yra papildoma šaka; M7/M9 EN overlay sinchronizuotas.
+- **M10–M12 navigation and remediation:** M10 progress fazės suskaidytos į ciklą, multi-agent, promptus/saugumą, integracijas, optional ir santrauką; M11 failedMessage perrašytas žmogiškomis temomis; M12 intro aiškiau aprašo 3 pagrindines praktikas kaip privalomą užbaigimo kelią.
 - **M10+ diagramų routing ir dark-mode chrome:** `agent_workflow_diagram` perkeltas iš `ContentSlides.tsx` special-case į `diagramRenderers.tsx`; M10.65 vietoje vienos tankios `m10_spec_incident` schemos – dvi sekcijos (`m10_workflow_spec`, `m10_incident_playbook`); `M10AgentTaxonomyDiagram`, `M10TriggerFlowDiagram`, `M10ThreeAStrategyDiagram`, `M12ThreeLabsDiagram`, `AgentWorkflowDiagram` – title/border/bg per `useDiagramPalette()` (semantinės tone spalvos lokaliai).
 - **M12 uodegos konsolidacija (B-a):** scenarijai 125–127 sujungti į vieną neprivalomą `content-block` skaidrę 125 („Papildomai: pakartok M10“) su 3 CopyButton sekcijomis; `practice-scenario` kortelių tinklelis sumažėjo nuo 8 iki 5; intro `recommendedStart` ir santraukos 128 stats/businessExamples atnaujinti (3 scenarijai); SOT: `docs/turinio_pletra_moduliai_10_11_12.md` §8.2c, `docs/MODULIO_10_SKAIDRIU_EILES.md`.
 - **M12 prompt-first intro render:** `practice-intro` dabar rodo jau paruoštą `primaryPathIntro`, `taskOneLiner`, grąžos iš investicijų (ROI) skaičiuoklę ir „Pradėk čia“ šuolį į 124.5; `path-step` checkpoint'ai palaiko CopyButton promptus (LT/EN).
@@ -67,6 +106,10 @@ _Įrašai po 1.4.2 release._
 
 ### Fixed
 
+- **M8 scope deep-link testų stabilumas:** `TestKnowledgeScopeDiagram` slide index lookup turi `modules.json` fallback'ą, todėl isolated component testuose M8 burbulai naviguoja į M7 skaidrę net kai `modulesLoader` cache dar neužpildytas.
+- **M10 legacy schemų triukšmas:** pašalinti neaktyvūs `AgentOrchestratorBlock` / `AgentOrchestratorDiagram` ir po split'o nebewired `M10SpecIncidentBlock` / `M10SpecIncidentDiagram`; barrel exportas išvalytas, o registry testas toliau saugo, kad `m10_spec_incident` negrįžtų kaip aktyvus raktas.
+- **M10–12 kalbos audito aklos zonos:** `audit:en-language-m10-12` dabar tikrina `reflectionPrompt`, `template` ir matomus instruction laukus, o ne tik pagrindinius body tekstus; pridėtos taisyklės `Human-in-the-loop`, `prompt-first`, `prompt-only`, `delivery-first`, `edge case`, `error handling`, `test case(s)`.
+- **M10–12 LT/EN reliktai:** sutvarkyti M10/M12 diagramų LT hibridai (`gali būti trigger`, `Handoff`, `multi-agent`), EN overlay glossary leak `DI agentas` → `AI agent`, M10 įrankių medžio LT tekstai ir M12 privalomo kelio regresijos testas.
 - **M10+ schemų sprinto regresijos:** `AgentWorkflowDiagram` palette pass paliko `TEXT_DARK` referencas (runtime + testai) – pakeista į `palette.brandDark`; `m12MultiAgentSchemaContent.ts` – `M12MultiAgentSchemaLabels` su `DiagramLabelPair` tuple tipu (typecheck TS2322).
 - **M10+ sprinto užbaigimas (2026-07-05):** `M10SpecIncidentBlock` / `Diagram` pažymėti `@deprecated`; automated gates (schema, lint, 48 diagram testai, EN audit, typecheck, build) – PASS; rankinė browser smoke – Release QA #6.
 - **M12 footer 120.5 po B-a:** po 126/127 pašalinimo footer numeris „5“→„4“ (121 Automatize); `AUDIT_MODULES=12 node scripts/audit-footer-numbers.mjs` (+ `--locale=en`) PASS.

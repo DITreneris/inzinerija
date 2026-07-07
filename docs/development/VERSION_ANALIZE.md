@@ -1,6 +1,6 @@
 # Versijavimo analizė – ar galima identifikuoti ir keisti versiją?
 
-> **Data:** 2026-06-30 (atnaujinta release **1.4.1**)  
+> **Data:** 2026-07-06 (atnaujinta release **1.4.2**)  
 > **Klausimas:** Ar kodo bazėje galima vienareikšmiškai identifikuoti versiją ir ją pakeisti?
 
 ---
@@ -9,8 +9,8 @@
 
 | Vieta            | Dabartinė reikšmė                                        | Paskirtis                                                                              |
 | ---------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **package.json** | `"version": "1.4.1"`                                     | NPM/projekto versija; vienintelis vieta, kurią build/tools gali skaityti automatiškai. |
-| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.4.1] – 2026-06-30` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                         |
+| **package.json** | `"version": "1.4.2"`                                     | NPM/projekto versija; vienintelis vieta, kurią build/tools gali skaityti automatiškai. |
+| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.4.2] – 2026-07-01` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                         |
 | **progress.ts**  | `CURRENT_SCHEMA_VERSION = 2`                             | Tik localStorage progreso schema (v1 vs v2), ne produkto versija.                      |
 | **Kiti doc**     | Pvz. „GOLDEN_STANDARD 2.3.5“, DS v0.2.0                  | Dokumentų ar modulių vidinė versija, ne release versija.                               |
 
@@ -20,12 +20,13 @@
 
 ## 2. Dabartinė būsena
 
-- **Release versija:** **1.4.1** (2026-06-30). Patch po 1.4.0: audit gates M1–9, handout serija, LT/EN fixes.
+- **Release versija:** **1.4.2** (2026-07-01). Patch po 1.4.1: DiagramKit M1–9, design tokens, M7–9 EN sweep ir startup stabilumas.
+- **Ankstesnis release:** **1.4.1** (2026-06-30) – M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync.
 - **Ankstesnis release:** **1.4.0** (2026-06-30) – tier 9, production M1–9, M10–12 authoring.
 - **Ankstesnis release:** **1.3.0** (2026-03-16) – deploy, mokėjimai, pirmas pirkimas.
-- **Nepaskelbta (Unreleased):** pakeitimai po 1.4.1 – žr. CHANGELOG viršų.
+- **Nepaskelbta (Unreleased):** pakeitimai po 1.4.2 – žr. CHANGELOG viršų.
 
-Kitas žingsnis pagal Semver: **1.4.2** (patch) arba **1.5.0** (minor).
+Kitas žingsnis pagal Semver: **1.4.3** (patch) arba **1.5.0** (minor, jei M10–12 schema sprintas leidžiamas kaip feature).
 
 ---
 
@@ -43,6 +44,6 @@ Kitas žingsnis pagal Semver: **1.4.2** (patch) arba **1.5.0** (minor).
 
 | Klausimas                            | Atsakymas                                    |
 | ------------------------------------ | -------------------------------------------- |
-| Ar galima **identifikuoti** versiją? | Taip – **package.json `version`** (1.4.1).   |
-| Ar **dar anksti** release 1.4.1?     | Ne – išleista 2026-06-30 (žr. CHANGELOG).    |
-| **Kitas release**                    | 1.4.2 (patch) arba 1.5.0 (minor) pagal tipą. |
+| Ar galima **identifikuoti** versiją? | Taip – **package.json `version`** (1.4.2).   |
+| Ar **dar anksti** release 1.4.2?     | Ne – išleista 2026-07-01 (žr. CHANGELOG).    |
+| **Kitas release**                    | 1.4.3 (patch) arba 1.5.0 (minor) pagal tipą. |

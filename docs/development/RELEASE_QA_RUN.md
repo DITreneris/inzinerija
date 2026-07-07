@@ -128,7 +128,16 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 ## Paskutinio vykdymo rezultatai
 
-_(Čia žmogus įrašo, kai atliko rankinę.)_
+### 2026-07-06 agento automatinė patikra
+
+| Patikra                           | Rezultatas | Įrodymas                                                                                                                                 |
+| --------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run audit:release-preflight` | ✅         | Schema, lint, M4–M9 EN auditai, M7 pathBranch guard ir `test:run` praėjo. Galutinis rezultatas: 60 testų failų, 402 testai, exit code 0. |
+| `npm run test:run`                | ✅         | Docs sync baseline 2026-07-06: 60 testų failų, 403 testai, exit code 0.                                                                  |
+| M5/M6 PDF guard testai            | ✅         | `m5HandoutPdf.test.ts`, `m6HandoutPdf.test.ts`, `ModuleCompleteScreen.test.tsx` praėjo: 3 failai, 20 testų, exit code 0.                 |
+| M5/M6 PDF vizualinis atidarymas   | ⏳ Ranka   | Terminalo testai patvirtina PDF generatorių ir mygtukų guard'us, bet realų PDF atidarymą ir diakritikų vaizdą turi pažymėti žmogus.      |
+
+_(Žmogus įrašo, kai atliko rankinę naršyklės/PDF peržiūrą.)_
 
 | Data | Vykdytojas | 0.1 M5 PDF | 0.1 M6 PDF | 0.2 M4 sk.56 | 0.2 M6 sk.64 | §1  | §2  | §3  | §4  | §5  | §5a | §6 (jei taikoma) |
 | ---- | ---------- | ---------- | ---------- | ------------ | ------------ | --- | --- | --- | --- | --- | --- | ---------------- |

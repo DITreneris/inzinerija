@@ -1,7 +1,7 @@
 # Lean dokumentacijos branduolys (agentams)
 
 > **Tikslas:** Minimalus dokumentų rinkinys – pakanka ~90% užduočių. Visa kita – krauk tik kai užduotis liečia konkretų modulį/analizę; žr. `docs/DOCUMENTATION_INDEX.md`. Vienkartinės analizės – `docs/development/analysis/` (ne SOT).  
-> **Atnaujinta:** 2026-06-30
+> **Atnaujinta:** 2026-07-06
 
 ---
 
@@ -24,7 +24,8 @@
 | `docs/turinio_pletra_moduliai_7_8_9.md`                                      | Turinys M7–9 (Duomenų analizės kelias; **production** tier 9)             |
 | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                        | Modulių/skaidrių numeracija (4.1 = Modulio 4, ne 6)                       |
 | `docs/development/GOLDEN_STANDARD.md`                                        | Dizainas, skaidrių išdėstymas, content-block                              |
-| `docs/development/CODEBASE_WHAT_IS_DONE.md`                                  | Kas įgyvendinta – architektūra, duomenys, i18n, testai (1.4.1)            |
+| `docs/development/CODEBASE_WHAT_IS_DONE.md`                                  | Kas įgyvendinta – architektūra, duomenys, i18n, testai (1.4.2; 60/403)    |
+| `docs/development/DOCS_SYNC_CHECKLIST.md`                                    | Docs sync vartas po release / didelio Unreleased sprinto                  |
 | `docs/development/GOLD_LEGACY_STANDARD.md`                                   | Istorinis M1–6 techninis snapshot (v1.3.0) – ne dabartinio production SOT |
 | `src/data/modules.json`, `glossary.json`, `promptLibrary.json`, `tools.json` | Full redagavimo SOT                                                       |
 | `src/data/modules-m1-m6.json`, `glossary-m1-m6.json`, `tools-m1-m6.json`     | Demo/MVP profilis (`VITE_MVP_MODE=1`)                                     |

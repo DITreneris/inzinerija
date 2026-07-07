@@ -1,6 +1,6 @@
 # Gold Legacy Standard – Promptų anatomija v1.3.0
 
-> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.1 (2026-06-30)** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); **nedubliuoja** tier 9 / M7–9 production modelio.  
+> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.2 (2026-07-01)** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); **nedubliuoja** tier 9 / M7–9 production modelio.  
 > **Apimtis:** Kodo bazė iki v1.3.0 deploy; moduliai 7–15 – `modules.json`, bet šiame doc neaprašyti. Dabartinei architektūrai – **CODEBASE_WHAT_IS_DONE.md**.  
 > **Versija:** 1.1.0  
 > **Data:** 2026-03-14  
@@ -490,7 +490,8 @@ Kiekviena diagrama naudoja **Block + Diagram** šabloną:
 | DI prezentacijos workflow    | `DiPrezentacijosWorkflowBlock.tsx`       | `DiPrezentacijosWorkflowDiagram.tsx`                  | `diPrezentacijosWorkflowConfig.ts`                                                |
 | RL procesas                  | `RlProcessBlock.tsx`                     | `RlProcessDiagram.tsx`                                | `stepExplanations.ts`                                                             |
 | Agentų workflow              | `AgentWorkflowBlock.tsx`                 | `AgentWorkflowDiagram.tsx`                            | –                                                                                 |
-| Agentų orkestratorius        | `AgentOrchestratorBlock.tsx`             | `AgentOrchestratorDiagram.tsx`                        | –                                                                                 |
+| Agentų orkestratorius        | `AgentOrchestratorBlock.tsx`             | `AgentOrchestratorDiagram.tsx`                        | `@deprecated`, nebewired; aktyvi M12 schema – `m12_multi_agent_schema`            |
+| M12 multi-agent schema       | `M12MultiAgentSchemaBlock.tsx`           | `M12MultiAgentSchemaDiagram.tsx`                      | `m12MultiAgentSchemaContent.ts`; aktyvus M12 120.5 rendereris                     |
 | Schema 3 (LLM RAG)           | `Schema3InteractiveBlock.tsx`            | `Schema3Diagram.tsx`, `Schema3InteractiveDiagram.tsx` | `schema3Layout.ts`, `schema3Labels.ts`, `schema3StepExplanations.ts`              |
 | Schema 4 (Multimodal)        | –                                        | `Schema4Diagram.tsx`                                  | `schema4Layout.ts`                                                                |
 | LLM architektūra             | `LlmArchDiagramBlock.tsx`                | `LlmArchDiagramDiagram.tsx`                           | `llmArchLayout.ts`                                                                |

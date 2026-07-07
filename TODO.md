@@ -1,9 +1,9 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P0 = monetizacija / integracija (blokuoja mokamą srautą), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-01.
+**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-07.
 
-**Dabartinis fokusas:** **M1–9 production** + **MON P0** monetizacijos unlock. **M10+ – ne prioritetas** (authoring kataloge, Deferred monetizacijai). Vykdymo planas: `docs/deployment/MON_P0_EXECUTION_PLAN.md`.
+**Dabartinis fokusas:** **M1–15 mokymų UX / interaktyvumas** (platiname esamus skaidrių pattern'us). Planas: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. Audit: `npm run audit:slide-interactivity`. **MON P0** – release guardrail (15 min smoke prieš marketing submodule), ne atskiras blokeris – pardavimai marketingo repo.
 
 **Release vartai (apibrėžimai):**
 
@@ -14,14 +14,35 @@
 
 ## 1. Aktualus pipeline (kas toliau)
 
+### §1.0a P0 – M1–15 mokymų UX / interaktyvumas (**dabartinis fokusas**)
+
+> **Planas:** [docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md](docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md)  
+> **Audit:** `npm run audit:slide-interactivity` (dabartinė būklė 2026-07-07 po Bangos 1 + M1 baseline: 258 skaidrės; warm-up=14, path=9, intro-action-pie=2, evaluator=2, embed=7). M1 įspėjimas uždarytas.
+
+| ID         | Banga | Užduotis                                                            | Status |
+| ---------- | ----- | ------------------------------------------------------------------- | ------ |
+| **UX-0**   | 0     | Planas + audit skriptas + TODO sync                                 | [x]    |
+| **UX-1.1** | 1     | M7: +4 `warm-up-quiz` (73.5, 731.5, 891.5, 74.5) + 68.5 į branduolį | [x]    |
+| **UX-1.2** | 1     | M7: 1× `intro-action-pie` po 70 journey                             | [x]    |
+| **UX-1.3** | 1     | M10: +2 `warm-up-quiz`                                              | [x]    |
+| **UX-1.4** | 1     | M10: 1× `evaluator-prompt-block`                                    | [x]    |
+| **UX-1.5** | 1     | M13: +2 `warm-up-quiz`                                              | [x]    |
+| **UX-1.6** | 1     | M13: 1× `recognitionExercise`                                       | [x]    |
+| **UX-2**   | 2     | M6/M12/M15 path-step; M5 warm-up; M6 correctPromptPractice          | [ ]    |
+| **UX-3**   | 3     | M1 micro-win ✅; M2 bonus; M11/M14 scenario share                   | [ ]    |
+| **UX-4**   | 4     | GOLDEN_STANDARD §3.8; EN overlay sync Banga 1–2                     | [ ]    |
+
+**Pipeline:** CURRICULUM → CONTENT → DATA → `validate:schema` → EN audit (M10+) → QA.
+
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
-| Kas                                           | Būsena     | Pastaba                                                                                   |
-| --------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------- |
-| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped | CHANGELOG `[1.4.2]`                                                                       |
-| Lint + test (367) + `build:production`        | ✅         | CI lokaliai                                                                               |
-| Diagram browser smoke (B2.5)                  | ⏳ Pending | M10 sprint auto gates ✅ 2026-07-05; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6 |
-| Submodule pin marketing (MON-2)               | ⏳ Next    | Po push → marketing repo                                                                  |
+| Kas                                           | Būsena        | Pastaba                                                                                                        |
+| --------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------- |
+| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped    | CHANGELOG `[1.4.2]`                                                                                            |
+| Lint + test (367) + `build:production`        | ✅            | CI lokaliai                                                                                                    |
+| M7–12 schema-consistency sprint               | ✅ 2026-07-06 | `DIAGRAMU_M7_M12_REGISTRY.md`, M10 shell/testai, M8 scope deep-link, legacy cleanup                            |
+| Diagram browser smoke (B2.5)                  | ⏳ Pending    | M10–12 LT/EN audit + UI/UX sync auto gates ✅ 2026-07-06; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6 |
+| Submodule pin marketing (MON-2)               | ⏳ Next       | Po push → marketing repo                                                                                       |
 
 ### §1.1 P0 – Monetizacija ir integracija (top priority – **kitas sprintas**)
 
@@ -60,13 +81,13 @@
 
 ### §1.4 P2 – Turinys, UX, backlog (aktyvu)
 
-| #    | Užduotis                                                                                                         | Agentas / pastaba |
-| ---- | ---------------------------------------------------------------------------------------------------------------- | ----------------- |
-| 14   | **Likusių `ContentSlides` locale fallback salų sweep** – LT `aria-label` / fallback už M1–M6 ribų.               | CODING + QA       |
-| UX-1 | **UX audito planas** – mobile „Dabar“ blokas; `AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` §5.                   | CODING + DATA     |
-| 15   | **RAG optional (žr. §3)** – id 61, 63/63.7.                                                                      | CONTENT + DATA    |
-| 16   | **PDF doc** – PDF_GENERATION_AGENT_MEMORY.md sinchronas. Ranks – M5/M6 (#1, #2).                                 | QA_AGENT          |
-| 17   | **Micro-win M1** – M1 skaidrės 1–2 copy/paste arba vienas klausimas (SOT / modules.json). Buvęs Post-release #2. | CONTENT + DATA    |
+| #        | Užduotis                                                                                                                                                                                                                                  | Agentas / pastaba |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| 14       | **Likusių `ContentSlides` locale fallback salų sweep** – LT `aria-label` / fallback už M1–M6 ribų.                                                                                                                                        | CODING + QA       |
+| UX-MOB-1 | **UX audito planas** – mobile „Dabar“ blokas; `AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md` §5.                                                                                                                                            | CODING + DATA     |
+| 15       | **RAG optional (žr. §3)** – id 61, 63/63.7.                                                                                                                                                                                               | CONTENT + DATA    |
+| 16       | **PDF doc** – PDF_GENERATION_AGENT_MEMORY.md sinchronas. Ranks – M5/M6 (#1, #2).                                                                                                                                                          | QA_AGENT          |
+| ~~17~~   | ~~**Micro-win M1** – M1 skaidrės 1–2 copy/paste arba vienas klausimas (SOT / modules.json). Buvęs Post-release #2.~~ ✅ 2026-07-07 – M1 pridėta `path-step` 1.1 ir `warm-up-quiz` 16.5; `audit:slide-interactivity` M1 warning uždarytas. | CONTENT + DATA    |
 
 ### §1.5 Atidėta iki revenue test (Deferred)
 
@@ -74,20 +95,20 @@
 >
 > **Atnaujinta 2026-06-29:** korporatyvinis klientas (50 licencijų) įsigijo **kelią 7–9 (tier 9)** → Deferred vartas **M7–9 turiniui praeitas**. M7–9 dabar aktyvus production track (release 1.4.0–1.4.2).
 >
-> **M10–15 – ne prioritetas:** turinys authoring kataloge; monetizacija ir vizualinis polish – **Deferred** iki MON P0 + baseline (MON-7).
+> **M10–15 turinys/monetizacija – ne prioritetas:** authoring katalogas ir monetizacijos plėtra lieka **Deferred** iki MON P0 + baseline (MON-7). **Išimtis:** M7–12 schema-consistency darbai aktyvūs, nes saugo esamų schemų priežiūrą ir testų vartus.
 
-| ID         | Užduotis                                                                                                           | Buvęs prioritetas  | Būsena                                                                |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ | --------------------------------------------------------------------- |
-| M13-1      | M13–M14 EN sinchronas                                                                                              | P2                 | Deferred                                                              |
-| M13-2      | M13 footerių release QA                                                                                            | P2                 | Deferred                                                              |
-| M13-3      | `slidePhaseConfig.test.ts` M13 regresija                                                                           | P2 optional        | Deferred                                                              |
-| DEF-1a     | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3            | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9   |
-| DEF-1b     | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog    | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)      |
-| M10-DIA-01 | M11 `TestKnowledgeScopeDiagram` clickable bubbles → M10 skaidrės deep-link + sync su `TestRemediationChips`        | P3 / schema UX     | Deferred – mažesnis ROI nei M12 120.5 interaktyvumas                  |
-| M10-DIA-02 | M10 Learning Loop pilnas 9-node step nav                                                                           | P3 / schema UX     | Deferred – 4 makro žingsniai pakanka 10.49                            |
-| M10-DIA-03 | M12 evaluator→coordinator feedback vizualizacija                                                                   | P3 / schema UX     | Deferred – SOT neprivaloma, geometrija sudėtingesnė                   |
-| M10-DIA-04 | P2 polish: TriggerFlow webhook polygon, ThreeA 5% sub, ThreeLabs connectors                                        | P3 / visual polish | Deferred – po P1 schemų split/interaktyvumo                           |
-| DEF-2      | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                 | Dalinai (M4 slide 48 padaryta 2026-06-29; collapsible likučiai lieka) |
+| ID         | Užduotis                                                                                                           | Buvęs prioritetas  | Būsena                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ | ---------------------------------------------------------------------- |
+| ~~M13-1~~  | ~~M13–M14 EN sinchronas~~                                                                                          | P2                 | ✅ 2026-07-06 – M13–15 `modules-en-m13-m15.json` + `audit:m1315`       |
+| ~~M13-2~~  | ~~M13 footerių release QA~~                                                                                        | P2                 | ✅ 2026-07-06 – M13 LT/EN footer audit gate paleistas                  |
+| ~~M13-3~~  | ~~`slidePhaseConfig.test.ts` M13 regresija~~                                                                       | P2 optional        | ✅ 2026-07-06 – M13 fazių LT/EN regresijos testai                      |
+| DEF-1a     | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3            | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9    |
+| DEF-1b     | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog    | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)       |
+| M10-DIA-01 | M11 `TestKnowledgeScopeDiagram` clickable bubbles → M10 skaidrės deep-link + sync su `TestRemediationChips`        | P3 / schema UX     | Aktyvus backlog – M8 analogas įgyvendintas 2026-07-06                  |
+| M10-DIA-02 | M10 Learning Loop pilnas 9-node step nav                                                                           | P3 / schema UX     | Aktyvus backlog – 4 makro žingsniai palikti kaip dabartinis kontraktas |
+| M10-DIA-03 | M12 evaluator→coordinator feedback vizualizacija                                                                   | P3 / schema UX     | Aktyvus backlog – reikia SOT / geometrijos sprendimo                   |
+| M10-DIA-04 | P2 polish: TriggerFlow webhook polygon, ThreeA 5% sub, ThreeLabs connectors                                        | P3 / visual polish | Aktyvus backlog – po schema-consistency testų vartų                    |
+| DEF-2      | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                 | Dalinai (M4 slide 48 padaryta 2026-06-29; collapsible likučiai lieka)  |
 
 ### P2 – darbai eilėje
 
@@ -104,15 +125,15 @@
 
 ### P3 – žemesnis prioritetas
 
-| #   | Užduotis                                                                                                                                                                        | Agentai                    |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------- |
-| 1   | ~~**Savitikros M4** (4.2-check, 4.3-check, 4.4-check) – „Jei klaidingai – žr. skaidrę X“~~ ✓ 2026-06-29 (patikrinta – remediation pilna visose savitikrose)                     | CONTENT + DATA             |
-| 2   | ~~**CoVe, chunk, bridžinė, „Pataisyk promptą“** – sinchronas su SOT/modules.json~~ ✓ 2026-06-29 (patikrinta – CoVe pilna M7 67.8 + nuoroda; chunk M4 62; Pataisyk promptą M7)   | CONTENT + DATA             |
-| 3   | **Schemų vizualinė patikra** (SCHEME_AGENT §5) – custom_gpt_process, RAG, žinių patikrinimas; tik patikra                                                                       | CODE_REVIEW / SCHEME_AGENT |
-| 4   | **Savitikra 68.5** – 1–2 klausimai apie DI detektorius (po skaidrės 201)                                                                                                        | CONTENT + DATA             |
-| 5   | **Mobile P3** – pilnas mobile audit (1–2 skaidrės/modulį); LlmArchDiagram 375px. MOBILE_UI_UX_AUDIT §6 P3.                                                                      | UI_UX / CODE_REVIEW        |
-| 6   | **ProcessStepper duomenys** – optional: perkelti CUSTOM_GPT_STEPS / CUSTOM_GPT_STEPS_EN į bendrą duomenų failą arba i18n, kad vengti dubliavimo struktūroje.                    | DATA_AGENT / CODING        |
-| 7   | **Microcopy v0.3 backlog** – sutrumpinti perteklinius content-block tekstus M1/M4/M6 (footers OK); žr. `docs/development/analysis/MICROCOPY_LENGTHS_2026-05.md` (CONTENT_AGENT) | CONTENT_AGENT              | → **DEF-2** (Deferred) |
+| #     | Užduotis                                                                                                                                                                               | Agentai                    |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------- |
+| 1     | ~~**Savitikros M4** (4.2-check, 4.3-check, 4.4-check) – „Jei klaidingai – žr. skaidrę X“~~ ✓ 2026-06-29 (patikrinta – remediation pilna visose savitikrose)                            | CONTENT + DATA             |
+| 2     | ~~**CoVe, chunk, bridžinė, „Pataisyk promptą“** – sinchronas su SOT/modules.json~~ ✓ 2026-06-29 (patikrinta – CoVe pilna M7 67.8 + nuoroda; chunk M4 62; Pataisyk promptą M7)          | CONTENT + DATA             |
+| 3     | **Schemų vizualinė patikra** (SCHEME_AGENT §5) – custom_gpt_process, RAG, žinių patikrinimas; tik patikra                                                                              | CODE_REVIEW / SCHEME_AGENT |
+| ~~4~~ | ~~**Savitikra 68.5** – 1–2 klausimai apie DI detektorius (po skaidrės 201)~~ ✅ 2026-07-07 – 68.5 dabar M7 branduolio warm-up su 4 klausimais; žr. `docs/MODULIO_7_SKAIDRIU_EILES.md`. | CONTENT + DATA             |
+| 5     | **Mobile P3** – pilnas mobile audit (1–2 skaidrės/modulį); LlmArchDiagram 375px. MOBILE_UI_UX_AUDIT §6 P3.                                                                             | UI_UX / CODE_REVIEW        |
+| 6     | **ProcessStepper duomenys** – optional: perkelti CUSTOM_GPT_STEPS / CUSTOM_GPT_STEPS_EN į bendrą duomenų failą arba i18n, kad vengti dubliavimo struktūroje.                           | DATA_AGENT / CODING        |
+| 7     | **Microcopy v0.3 backlog** – sutrumpinti perteklinius content-block tekstus M1/M4/M6 (footers OK); žr. `docs/development/analysis/MICROCOPY_LENGTHS_2026-05.md` (CONTENT_AGENT)        | CONTENT_AGENT              | → **DEF-2** (Deferred) |
 
 ---
 
@@ -142,6 +163,7 @@
 - **Design System v0.2 (2026-05-19):** E1–E7 ✅ — Eyebrow, IconChip, SectionDivider, module.accent/identityIcon M1–M6, audit-design-tokens (baseline 480), DESIGN_SYSTEM.md, CHANGELOG `[v0.2.0]`. Detalus DS-E\* sąrašas: `docs/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`.
 - **TODO/ROADMAP audit sync (2026-06-29):** P0 MON-_ monetizacijos track, CONV-_ konversija, Deferred M13/M7–15; `AUDIT_2026-06_SUMMARY.md`, `MARKETING_HANDOFF_CHECKLIST.md`.
 - **Release 1.4.2 + MON P0 planas (2026-07-01):** DiagramKit M1–9, design tokens, M7–9 EN sweep, startup fix; 367 testai; `MON_P0_EXECUTION_PLAN.md`; TODO/ROADMAP v2.5 sinchronas. **Kitas sprintas:** MON-1…8 (marketing + QA).
+- **M7 warm-up banga (2026-07-07):** +4 branduolio `warm-up-quiz` (73.5, 731.5, 891.5, 74.5), 68.5 perkelta į branduolį, LT/EN overlay ir footeriai suderinti, `generate:core-data` paleistas, `audit:slide-interactivity` skaičiuoja branch-aware streak. Žr. `CHANGELOG.md`, `docs/MODULIO_7_SKAIDRIU_EILES.md`.
 
 ---
 
@@ -172,9 +194,9 @@
 - **N-DS3** Dizaino gidas → Gamma/Figma. **CE-7, CE-8** gating iš sot_index; eval_rubric heuristikas CI.
 - **9a** Favicon. **10** Block skaidrės content-driven. **11** „Kaip naudoti modulį“ M4/M6. **12** Žodynėlis M4 (8–10 terminų). **13** Alternatyvūs kontekstai M6. **14** Monitoring, PWA, Eksportas, Sertifikatas, Multi-language. **15** M2 F3-2–F3-5. **UJ-4, UJ-5** 5 principai: checkbox, collapse.
 
-- [ ] **Reflection prompts M7–M15:** Atnaujinti visų modulių (7, 8, 9, 10, 11, 12, 13, 14, 15) `reflectionPrompt` laukus į META + INPUT + OUTPUT formatą (`modules.json`, `modules-en.json`). M1–M6 jau atnaujinti (id 14, 37, 38).
+- [ ] **Reflection prompts M8–M15:** Atnaujinti likusių modulių (8, 9, 10, 11, 12, 13, 14, 15) `reflectionPrompt` laukus į META + INPUT + OUTPUT formatą (`modules.json`, EN overlay pagal modulį). M7 santrauka atnaujinta 2026-07-05; M1–M6 jau atnaujinti (id 14, 37, 38).
 
-**Peržiūrai (netraukti):** M7 lean branduolys (~18–20 skaidrių); vizualinis triukšmas (GOLDEN_STANDARD – 2–3 spalvos).
+**Peržiūrai (netraukti):** M7 branduolys dabar 33 skaidrės + 5 warm-up savitikros; kryptis – sąmoningas interaktyvumo ritmas, ne lean-only mažinimas. Vizualinis triukšmas (GOLDEN_STANDARD – 2–3 spalvos) lieka atskiras peržiūros kriterijus.
 
 ---
 
