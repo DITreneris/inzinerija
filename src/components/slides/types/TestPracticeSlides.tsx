@@ -219,9 +219,15 @@ function getTestIntroContent(slide: Slide): {
 export function TestIntroSlide({
   slide,
   moduleId,
+  onGoToModule,
 }: {
   slide: Slide;
   moduleId: number;
+  onGoToModule?: (
+    moduleId: number,
+    slideIndex?: number,
+    fromRemediationSourceModuleId?: number
+  ) => void;
 }) {
   useTranslation();
   const t = getT('testPractice');
@@ -402,6 +408,10 @@ export function TestIntroSlide({
           <TestKnowledgeScopeDiagram
             moduleId={moduleId as 8 | 11 | 14}
             locale={locale === 'en' ? 'en' : 'lt'}
+            onGoToModule={
+              moduleId === 8 || moduleId === 11 ? onGoToModule : undefined
+            }
+            sourceModuleId={moduleId}
           />
         )}
         <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
@@ -2865,6 +2875,20 @@ export function PracticeIntroSlide({
                   : 'Pradėk čia: Koordinatorius + 2 specialistai'}
               </button>
             )}
+          </div>
+        )}
+        {isM12 && usesGuidedIntro && introContent.primaryPathIntro && (
+          <div
+            className="mb-4 p-4 rounded-xl border-2 border-accent-400 dark:border-accent-600 bg-accent-50/90 dark:bg-accent-900/20"
+            role="region"
+            aria-label={t('m12RequiredPathAria')}
+          >
+            <h4 className="font-bold text-accent-900 dark:text-accent-100 text-sm mb-2">
+              {t('m12RequiredPathHeading')}
+            </h4>
+            <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+              {t('m12RequiredPathBody')}
+            </p>
           </div>
         )}
         {usesGuidedIntro &&

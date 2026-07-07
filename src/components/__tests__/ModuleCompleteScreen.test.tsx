@@ -8,6 +8,12 @@ import { downloadM1HandoutPdf } from '../../utils/m1HandoutPdf';
 import { downloadM79HandoutPdf } from '../../utils/m79HandoutPdf';
 import { logError } from '../../utils/logger';
 
+const mockGetMaxAccessibleModuleId = vi.hoisted(() => vi.fn(() => 6));
+
+vi.mock('../../utils/accessTier', () => ({
+  getMaxAccessibleModuleId: mockGetMaxAccessibleModuleId,
+}));
+
 vi.mock('../../utils/m1HandoutPdf', () => ({
   downloadM1HandoutPdf: vi.fn().mockResolvedValue(undefined),
 }));
@@ -63,6 +69,7 @@ describe('ModuleCompleteScreen', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockGetMaxAccessibleModuleId.mockReturnValue(6);
     localStorage.setItem(storageKey, 'lt');
   });
 
@@ -173,6 +180,38 @@ describe('ModuleCompleteScreen', () => {
     expect(
       screen.getByRole('button', { name: /atmintinę/i })
     ).toBeInTheDocument();
+  });
+
+  it('shows M6 path choice cards and routes their CTAs', () => {
+    mockGetMaxAccessibleModuleId.mockReturnValue(12);
+
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={allModules[5]}
+        moduleIndex={5}
+        totalModules={9}
+        modules={modulesThrough9}
+        progress={defaultProgress({ completedModules: [1, 2, 3, 4, 5, 6] })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+
+    expect(
+      screen.getByText(/Pasirink kitą mokymosi kelią/i)
+    ).toBeInTheDocument();
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Duomenų analizės kelią/i })
+    );
+    expect(onContinueToNext).toHaveBeenCalledWith(6);
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Agentų inžinerijos kelią/i })
+    );
+    expect(onBack).toHaveBeenCalledTimes(1);
   });
 
   it('does NOT show tier 2 certificate when quiz score < 70%', () => {

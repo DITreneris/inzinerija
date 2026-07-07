@@ -122,6 +122,8 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm7_data_story_cycle',
   'm7_three_agents_flow',
   'm7_master_workflow',
+  'm7_da_pipeline',
+  'm7_bi_schema',
   'm9_data_workflow',
   'da_pipeline_6',
   'da_bi_schema_4',
@@ -1100,7 +1102,8 @@ export function ContentBlockSlide({
                   ) : null}
                   {!section.image &&
                     !section.presentationToolsBlock &&
-                    section.body && (
+                    section.body &&
+                    section.table?.comparisonStyle !== true && (
                       <div
                         className={
                           isOptional
@@ -1157,7 +1160,7 @@ export function ContentBlockSlide({
                                       : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
                                   }`}
                                   aria-pressed={isSelected}
-                                  aria-label={`${choice.label}${isSelected ? ', pasirinkta' : ''}`}
+                                  aria-label={`${choice.label}${isSelected ? (isEn ? ', selected' : ', pasirinkta') : ''}`}
                                 >
                                   {choice.label}
                                 </button>
@@ -1207,126 +1210,133 @@ export function ContentBlockSlide({
                       };
                       const isTermsTable = section.blockVariant === 'terms';
                       return (
-                        <div
-                          className={`overflow-x-auto my-3 rounded-lg ${isComparison ? 'border border-gray-100 dark:border-gray-700' : 'border border-gray-200 dark:border-gray-600'} ${isTermsTable ? 'bg-white dark:bg-slate-900/40 border-l-4 border-slate-400 dark:border-slate-500' : ''}`}
-                          role="region"
-                          aria-label={ariaLabel}
-                        >
-                          <table
-                            className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
+                        <>
+                          <div
+                            className={`overflow-x-auto my-3 rounded-lg ${isComparison ? 'border border-gray-100 dark:border-gray-700' : 'border border-gray-200 dark:border-gray-600'} ${isTermsTable ? 'bg-white dark:bg-slate-900/40 border-l-4 border-slate-400 dark:border-slate-500' : ''}`}
+                            role="region"
+                            aria-label={ariaLabel}
                           >
-                            <thead>
-                              <tr>
-                                {(section.table.headers ?? []).map((h, j) => (
-                                  <th
-                                    key={j}
-                                    className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
-                                      isComparison
-                                        ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
-                                        : isSolutionMatrix
-                                          ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
-                                          : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
-                                    }`}
-                                  >
-                                    {h}
-                                  </th>
-                                ))}
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {tableRows.map((row, ri) => {
-                                const isLastRow = ri === tableRows.length - 1;
-                                const meta = hasRowMeta
-                                  ? rowMeta[ri]
-                                  : undefined;
-                                const isHighlighted =
-                                  section.toolChoiceBar &&
-                                  selectedToolRowIndex === ri;
-                                const isWarningRow = meta?.isWarning === true;
-                                const zebraClass = isSolutionMatrix
-                                  ? 'even:bg-gray-100 dark:even:bg-gray-700/50'
-                                  : !isComparison
-                                    ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
-                                    : '';
-                                return (
-                                  <tr
-                                    key={ri}
-                                    ref={(el) => {
-                                      if (section.toolChoiceBar)
-                                        tableRowRefs.current[ri] = el;
-                                    }}
-                                    className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''}`}
-                                  >
-                                    {row.map((cell, ci) => {
-                                      const isFirstCol = ci === 0;
-                                      const isStrengthCol = ci === 1;
-                                      const isPriceCol =
-                                        numCols >= 4 && ci === numCols - 1;
-                                      const isThirdCol =
-                                        numCols === 3 && ci === 2;
-                                      const cellContent =
-                                        typeof cell === 'string'
-                                          ? renderBodyWithBold(cell)
-                                          : cell;
-                                      const cellPadding = isSolutionMatrix
-                                        ? 'px-4 py-5'
-                                        : isComparison
-                                          ? 'px-5 py-5'
-                                          : 'px-4 py-3.5';
-                                      const stickyFirstCellBg = isFirstCol
-                                        ? isComparison && isLastRow
-                                          ? 'bg-brand-50/50 dark:bg-brand-900/20'
+                            <table
+                              className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
+                            >
+                              <thead>
+                                <tr>
+                                  {(section.table.headers ?? []).map((h, j) => (
+                                    <th
+                                      key={j}
+                                      className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
+                                        isComparison
+                                          ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
                                           : isSolutionMatrix
-                                            ? ri % 2 === 1
-                                              ? 'bg-gray-100 dark:bg-gray-700/50'
-                                              : 'bg-white dark:bg-gray-900'
-                                            : ri % 2 === 1
-                                              ? 'bg-gray-50 dark:bg-gray-800/30'
-                                              : 'bg-white dark:bg-gray-900'
-                                        : '';
-                                      return (
-                                        <td
-                                          key={ci}
-                                          className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
-                                            isFirstCol
-                                              ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-sm ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
-                                              : isPriceCol
-                                                ? 'text-gray-500 dark:text-gray-400'
-                                                : isThirdCol
-                                                  ? 'text-gray-600 dark:text-gray-400 min-w-[12rem] sm:min-w-[14rem]'
-                                                  : `text-gray-700 dark:text-gray-300 ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : ''} ${numCols === 2 && !isSolutionMatrix && ci === 1 ? 'min-w-[10rem]' : ''} ${hasRowMeta && isStrengthCol ? 'font-semibold' : ''}`
-                                          }`}
-                                        >
-                                          {isFirstCol &&
-                                          meta?.bestFor != null ? (
-                                            <div className="space-y-0.5">
-                                              <span className="block text-base font-semibold text-gray-900 dark:text-white">
-                                                {cellContent}
+                                            ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
+                                            : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
+                                      }`}
+                                    >
+                                      {h}
+                                    </th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {tableRows.map((row, ri) => {
+                                  const isLastRow = ri === tableRows.length - 1;
+                                  const meta = hasRowMeta
+                                    ? rowMeta[ri]
+                                    : undefined;
+                                  const isHighlighted =
+                                    section.toolChoiceBar &&
+                                    selectedToolRowIndex === ri;
+                                  const isWarningRow = meta?.isWarning === true;
+                                  const zebraClass = isSolutionMatrix
+                                    ? 'even:bg-gray-100 dark:even:bg-gray-700/50'
+                                    : !isComparison
+                                      ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
+                                      : '';
+                                  return (
+                                    <tr
+                                      key={ri}
+                                      ref={(el) => {
+                                        if (section.toolChoiceBar)
+                                          tableRowRefs.current[ri] = el;
+                                      }}
+                                      className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''}`}
+                                    >
+                                      {row.map((cell, ci) => {
+                                        const isFirstCol = ci === 0;
+                                        const isStrengthCol = ci === 1;
+                                        const isPriceCol =
+                                          numCols >= 4 && ci === numCols - 1;
+                                        const isThirdCol =
+                                          numCols === 3 && ci === 2;
+                                        const cellContent =
+                                          typeof cell === 'string'
+                                            ? renderBodyWithBold(cell)
+                                            : cell;
+                                        const cellPadding = isSolutionMatrix
+                                          ? 'px-4 py-5'
+                                          : isComparison
+                                            ? 'px-5 py-5'
+                                            : 'px-4 py-3.5';
+                                        const stickyFirstCellBg = isFirstCol
+                                          ? isComparison && isLastRow
+                                            ? 'bg-brand-50/50 dark:bg-brand-900/20'
+                                            : isSolutionMatrix
+                                              ? ri % 2 === 1
+                                                ? 'bg-gray-100 dark:bg-gray-700/50'
+                                                : 'bg-white dark:bg-gray-900'
+                                              : ri % 2 === 1
+                                                ? 'bg-gray-50 dark:bg-gray-800/30'
+                                                : 'bg-white dark:bg-gray-900'
+                                          : '';
+                                        return (
+                                          <td
+                                            key={ci}
+                                            className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
+                                              isFirstCol
+                                                ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-sm ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
+                                                : isPriceCol
+                                                  ? 'text-gray-500 dark:text-gray-400'
+                                                  : isThirdCol
+                                                    ? 'text-gray-600 dark:text-gray-400 min-w-[12rem] sm:min-w-[14rem]'
+                                                    : `text-gray-700 dark:text-gray-300 ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : ''} ${numCols === 2 && !isSolutionMatrix && ci === 1 ? 'min-w-[10rem]' : ''} ${hasRowMeta && isStrengthCol ? 'font-semibold' : ''}`
+                                            }`}
+                                          >
+                                            {isFirstCol &&
+                                            meta?.bestFor != null ? (
+                                              <div className="space-y-0.5">
+                                                <span className="block text-base font-semibold text-gray-900 dark:text-white">
+                                                  {cellContent}
+                                                </span>
+                                                <span className="block text-xs text-gray-500 dark:text-gray-400">
+                                                  {meta.bestFor}
+                                                </span>
+                                              </div>
+                                            ) : isStrengthCol &&
+                                              meta?.strengthBadge != null ? (
+                                              <span
+                                                className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
+                                                aria-label={`${isEn ? 'Strength' : 'Stiprybė'}: ${meta.strengthBadge}`}
+                                              >
+                                                {meta.strengthBadge}
                                               </span>
-                                              <span className="block text-xs text-gray-500 dark:text-gray-400">
-                                                {meta.bestFor}
-                                              </span>
-                                            </div>
-                                          ) : isStrengthCol &&
-                                            meta?.strengthBadge != null ? (
-                                            <span
-                                              className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
-                                              aria-label={`Stiprybė: ${meta.strengthBadge}`}
-                                            >
-                                              {meta.strengthBadge}
-                                            </span>
-                                          ) : (
-                                            cellContent
-                                          )}
-                                        </td>
-                                      );
-                                    })}
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                        </div>
+                                            ) : (
+                                              cellContent
+                                            )}
+                                          </td>
+                                        );
+                                      })}
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          </div>
+                          {isComparison && section.body && (
+                            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                              {renderBodyWithBold(section.body)}
+                            </p>
+                          )}
+                        </>
                       );
                     })()}
                   {(section.heading === 'Įrankiai' ||
@@ -2164,7 +2174,7 @@ export function SectionBreakSlide({
               }
             }}
             className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border-2 border-accent-400 dark:border-accent-500 bg-transparent text-accent-700 dark:text-accent-300 font-semibold text-sm shadow-sm hover:bg-accent-50 dark:hover:bg-accent-900/20 hover:border-accent-500 dark:hover:border-accent-400 hover:shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
-            aria-label={`${content.spinoffCta.label} (atidaroma naujame lange)`}
+            aria-label={`${content.spinoffCta.label} (${isEn ? 'opens in a new tab' : 'atidaroma naujame lange'})`}
           >
             <Sparkles className="w-4 h-4 flex-shrink-0" aria-hidden />
             <ExternalLink className="w-4 h-4 flex-shrink-0" aria-hidden />
@@ -6439,6 +6449,16 @@ export function PracticeSummarySlide({
           </p>
           <p className="text-sm text-gray-700 dark:text-gray-300">
             {(c as { nextStepCTA: string }).nextStepCTA}
+          </p>
+        </div>
+      )}
+      {c.firstAction24h && (
+        <div className="bg-accent-50 dark:bg-accent-900/20 border-2 border-accent-200 dark:border-accent-700 rounded-xl p-4 text-center">
+          <p className="font-bold text-accent-800 dark:text-accent-200 mb-1">
+            {isEn ? 'First action in 24–48h' : 'Pirmas veiksmas per 24–48 val.'}
+          </p>
+          <p className="text-sm text-gray-700 dark:text-gray-300">
+            {c.firstAction24h}
           </p>
         </div>
       )}

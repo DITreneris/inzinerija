@@ -1428,6 +1428,8 @@ export interface PracticeSummaryContent {
   tagline?: string;
   /** M9: kitas žingsnis CTA (pvz. „Pritaikyk per 48 val.…“) */
   nextStepCTA?: string;
+  /** M9/M12: pirmas praktinis veiksmas per 24–48 val. */
+  firstAction24h?: string;
   /** M9: mygtuko „Parsisiųsti atmintinę (PDF)“ etiketė */
   handoutDownloadLabel?: string;
 }

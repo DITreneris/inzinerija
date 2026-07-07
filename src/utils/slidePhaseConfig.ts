@@ -49,6 +49,12 @@ const phaseLabelsEn: Record<string, string> = {
   'Analizė ir BI': 'Analysis & BI',
   MASTER: 'Master prompt',
   Vizualizacija: 'Visualization',
+  'Įvadas / Kelias': 'Intro / path',
+  Ciklas: 'Cycle',
+  'Keli agentai': 'Multi-agent',
+  'Promptai ir saugumas': 'Prompts & safety',
+  Integracijos: 'Integrations',
+  Neprivaloma: 'Optional',
 };
 
 function localizePhase(label: string, locale: PhaseLocale): string {
@@ -96,7 +102,8 @@ export function getPhaseLabel(
       lt = 'Kelias';
     else if (slideId === 74 || slideId === 71.4 || slideId === 71.5)
       lt = 'MASTER';
-    else if (slideId >= 100 && slideId <= 106) lt = 'Vizualizacija';
+    else if (slideId === 99.9 || (slideId >= 100 && slideId <= 106))
+      lt = 'Vizualizacija';
     else if (slideId === 75) lt = 'Santrauka';
     return localizePhase(lt, locale);
   }
@@ -131,12 +138,32 @@ export function getPhaseLabel(
     return localizePhase(lt, locale);
   }
 
-  // Module 10: Įvadas → Kelias → Teorija → Santrauka (MODULIO_10_SKAIDRIU_EILES)
+  // Module 10: granular phases from MODULIO_10_SKAIDRIU_EILES.
   if (moduleId === 10) {
-    let lt = 'Teorija';
+    let lt = 'Promptai ir saugumas';
     if (slideId != null) {
-      if (slideId === 100) lt = 'Įvadas';
-      else if (slideId === 10.1) lt = 'Kelias';
+      if (slideId === 100 || slideId === 10.1) lt = 'Įvadas / Kelias';
+      else if (slideId === 10.2 || slideId === 10.21) lt = 'Ciklas';
+      else if (
+        slideId === 10.25 ||
+        slideId === 10.45 ||
+        slideId === 10.451 ||
+        slideId === 10.48 ||
+        slideId === 10.481
+      )
+        lt = 'Keli agentai';
+      else if (
+        slideId === 10.49 ||
+        slideId === 10.3 ||
+        slideId === 10.4 ||
+        slideId === 10.5 ||
+        slideId === 10.51 ||
+        slideId === 10.6
+      )
+        lt = 'Promptai ir saugumas';
+      else if (slideId === 10.15 || slideId === 10.151 || slideId === 10.35)
+        lt = 'Integracijos';
+      else if (slideId === 10.65 || slideId === 10.7) lt = 'Neprivaloma';
       else if (slideId === 10.8) lt = 'Santrauka';
     }
     return localizePhase(lt, locale);

@@ -129,14 +129,19 @@ function ModulesPage({
     );
   }, [modules, maxAccessible]);
 
-  // Memoize locked modules (sequential: N locked until N-1 completed)
+  // Memoize locked modules. Prefer module.unlocksAfter so parallel learning paths
+  // (M7 and M10 after M6) match the data SOT instead of the array order.
   const lockedModules = useMemo(() => {
     if (DISABLE_MODULE_LOCK || !modules) return new Set<number>();
     const locked = new Set<number>();
     modules.forEach((module, index) => {
       if (index === 0) return;
       const previousModuleId = modules[index - 1]?.id;
-      if (!progress.completedModules.includes(previousModuleId)) {
+      const requiredModuleId = module.unlocksAfter ?? previousModuleId;
+      if (
+        requiredModuleId != null &&
+        !progress.completedModules.includes(requiredModuleId)
+      ) {
         locked.add(module.id);
       }
     });
@@ -150,9 +155,62 @@ function ModulesPage({
       (m, i) =>
         m.id <= maxAccessible &&
         !progress.completedModules.includes(m.id) &&
-        (i === 0 || progress.completedModules.includes(modules[i - 1]?.id ?? 0))
+        (() => {
+          if (i === 0) return true;
+          const requiredModuleId = m.unlocksAfter ?? modules[i - 1]?.id;
+          return (
+            requiredModuleId != null &&
+            progress.completedModules.includes(requiredModuleId)
+          );
+        })()
     );
   }, [modules, progress.completedModules, maxAccessible]);
+
+  const moduleGridItems = useMemo(() => {
+    if (!modules) return [];
+    const moduleEntries = modules.map((module, index) => ({ module, index }));
+    const groups = [
+      {
+        id: 'base',
+        title: t('trackBaseTitle'),
+        subtitle: t('trackBaseSubtitle'),
+        moduleIds: [1, 2, 3, 4, 5, 6],
+      },
+      {
+        id: 'data',
+        title: t('trackDataTitle'),
+        subtitle: t('trackDataSubtitle'),
+        moduleIds: [7, 8, 9],
+      },
+      {
+        id: 'agents',
+        title: t('trackAgentsTitle'),
+        subtitle: t('trackAgentsSubtitle'),
+        moduleIds: [10, 11, 12],
+      },
+      {
+        id: 'content',
+        title: t('trackContentTitle'),
+        subtitle: t('trackContentSubtitle'),
+        moduleIds: [13, 14, 15],
+      },
+    ];
+
+    return groups.flatMap((group) => {
+      const groupModules = moduleEntries.filter(({ module }) =>
+        group.moduleIds.includes(module.id)
+      );
+      if (groupModules.length === 0) return [];
+      return [
+        { type: 'section' as const, ...group },
+        ...groupModules.map(({ module, index }) => ({
+          type: 'module' as const,
+          module,
+          index,
+        })),
+      ];
+    });
+  }, [modules, t]);
 
   // Show loading if modules not yet loaded
   if (!modules) {
@@ -222,7 +280,27 @@ function ModulesPage({
 
       {/* Modules grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {modules.map((module, index) => {
+        {moduleGridItems.map((item) => {
+          if (item.type === 'section') {
+            return (
+              <section
+                key={`section-${item.id}`}
+                className="lg:col-span-3 pt-2"
+                aria-label={item.title}
+              >
+                <div className="rounded-2xl border border-brand-200 dark:border-brand-800 bg-brand-50/70 dark:bg-brand-900/20 px-5 py-4">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {item.title}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {item.subtitle}
+                  </p>
+                </div>
+              </section>
+            );
+          }
+
+          const { module, index } = item;
           const moduleNumber = index + 1;
           const moduleProgress = getModuleProgress(module.id);
           const isCompleted = progress.completedModules.includes(module.id);

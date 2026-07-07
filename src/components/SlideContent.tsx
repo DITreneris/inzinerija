@@ -772,7 +772,11 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     );
   },
   'test-intro': (ctx) => (
-    <LazyTestIntroSlide slide={ctx.slide} moduleId={ctx.moduleId} />
+    <LazyTestIntroSlide
+      slide={ctx.slide}
+      moduleId={ctx.moduleId}
+      onGoToModule={ctx.onGoToModule}
+    />
   ),
   'test-section': (ctx) => (
     <LazyTestSectionSlide

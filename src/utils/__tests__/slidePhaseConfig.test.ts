@@ -57,6 +57,44 @@ describe('slidePhaseConfig', () => {
     });
   });
 
+  describe('getPhaseLabel – Module 10', () => {
+    it('returns granular labels from the official M10 sequence', () => {
+      expect(getPhaseLabel(10, 100)).toBe('Įvadas / Kelias');
+      expect(getPhaseLabel(10, 10.2)).toBe('Ciklas');
+      expect(getPhaseLabel(10, 10.45)).toBe('Keli agentai');
+      expect(getPhaseLabel(10, 10.49)).toBe('Promptai ir saugumas');
+      expect(getPhaseLabel(10, 10.15)).toBe('Integracijos');
+      expect(getPhaseLabel(10, 10.65)).toBe('Neprivaloma');
+      expect(getPhaseLabel(10, 10.8)).toBe('Santrauka');
+    });
+
+    it('localizes M10 phase labels in EN', () => {
+      expect(getPhaseLabel(10, 100, undefined, 'en')).toBe('Intro / path');
+      expect(getPhaseLabel(10, 10.49, undefined, 'en')).toBe(
+        'Prompts & safety'
+      );
+      expect(getPhaseLabel(10, 10.45, undefined, 'en')).toBe('Multi-agent');
+      expect(getPhaseLabel(10, 10.65, undefined, 'en')).toBe('Optional');
+    });
+  });
+
+  describe('getPhaseLabel – Module 13', () => {
+    it('returns official M13 content phases by slide id', () => {
+      expect(getPhaseLabel(13, 130)).toBe('Įvadas');
+      expect(getPhaseLabel(13, 13.2)).toBe('Vaizdai');
+      expect(getPhaseLabel(13, 13.4)).toBe('Video');
+      expect(getPhaseLabel(13, 13.6)).toBe('Muzika');
+      expect(getPhaseLabel(13, 13.101)).toBe('Verslas');
+      expect(getPhaseLabel(13, 13.9)).toBe('Santrauka');
+    });
+
+    it('localizes M13 phase labels in EN', () => {
+      expect(getPhaseLabel(13, 130, undefined, 'en')).toBe('Intro');
+      expect(getPhaseLabel(13, 13.4, undefined, 'en')).toBe('Video');
+      expect(getPhaseLabel(13, 13.101, undefined, 'en')).toBe('Business');
+    });
+  });
+
   describe('getPhaseLabel – generic (by type)', () => {
     it('returns Teorija for content-block', () => {
       expect(getPhaseLabel(0, undefined, 'content-block')).toBe('Teorija');
@@ -77,7 +115,10 @@ describe('slidePhaseConfig', () => {
 
   describe('buildSlideGroups', () => {
     it('returns 3 groups for Module 5 with >= 8 slides', () => {
-      const slides = Array.from({ length: 10 }, (_, i) => ({ type: 'content-block', id: 500 + i }));
+      const slides = Array.from({ length: 10 }, (_, i) => ({
+        type: 'content-block',
+        id: 500 + i,
+      }));
       const groups = buildSlideGroups(slides, 5);
       expect(groups).toHaveLength(3);
       expect(groups[0].label).toBe('Sprintas');
@@ -97,7 +138,10 @@ describe('slidePhaseConfig', () => {
     });
 
     it('returns single Testas group for Module 11', () => {
-      const slides = [{ type: 'test-section', id: 1101 }, { type: 'test-section', id: 1102 }];
+      const slides = [
+        { type: 'test-section', id: 1101 },
+        { type: 'test-section', id: 1102 },
+      ];
       const groups = buildSlideGroups(slides, 11);
       expect(groups).toHaveLength(1);
       expect(groups[0].label).toBe('Testas');
@@ -118,6 +162,31 @@ describe('slidePhaseConfig', () => {
       expect(groups[0].label).toBe('Įvadas');
       expect(groups[1].label).toBe('RAG');
       expect(groups[groups.length - 1].label).toBe('Santrauka');
+    });
+
+    it('groups Module 10 slides into multiple official phases', () => {
+      const slides = [
+        { type: 'action-intro', id: 100 },
+        { type: 'content-block', id: 10.1 },
+        { type: 'content-block', id: 10.2 },
+        { type: 'path-step', id: 10.21 },
+        { type: 'content-block', id: 10.45 },
+        { type: 'content-block', id: 10.48 },
+        { type: 'content-block', id: 10.49 },
+        { type: 'content-block', id: 10.15 },
+        { type: 'content-block', id: 10.65 },
+        { type: 'summary', id: 10.8 },
+      ];
+      const groups = buildSlideGroups(slides, 10);
+      expect(groups.map((group) => group.label)).toEqual([
+        'Įvadas / Kelias',
+        'Ciklas',
+        'Keli agentai',
+        'Promptai ir saugumas',
+        'Integracijos',
+        'Neprivaloma',
+        'Santrauka',
+      ]);
     });
 
     it('returns single empty-label group when <= 6 slides and generic module', () => {

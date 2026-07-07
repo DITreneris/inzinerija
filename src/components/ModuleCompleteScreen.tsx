@@ -7,7 +7,9 @@ import {
   Download,
   Award,
   BookOpen,
+  BarChart3,
   Briefcase,
+  Cpu,
   Sparkles,
   ExternalLink,
 } from 'lucide-react';
@@ -149,10 +151,12 @@ export function ModuleCompleteScreen({
     module.id === 9 &&
     canRequestCertificateTier3(progress) &&
     onRequestCertificate;
+  const maxAccessibleModuleId = getMaxAccessibleModuleId();
   // CONV-1: po Modulio 3 – upsell į kainodarą, kai dar neatrakinti moduliai 4–6.
-  const showM3Upsell = module.id === 3 && getMaxAccessibleModuleId() < 6;
+  const showM3Upsell = module.id === 3 && maxAccessibleModuleId < 6;
   // CONV-5: po Modulio 6 – upsell į Duomenų analizės kelią (M7–9), kai tier < 9.
-  const showM6Upsell = module.id === 6 && getMaxAccessibleModuleId() < 9;
+  const showM6Upsell = module.id === 6 && maxAccessibleModuleId < 9;
+  const showM6PathChoice = module.id === 6 && maxAccessibleModuleId >= 9;
   const pricingUrl = buildEcosystemUrl('hubPricing', {
     moduleId: module.id,
     touchpoint: module.id === 6 ? 'complete_tier9_upsell' : 'complete_pricing',
@@ -452,6 +456,93 @@ export function ModuleCompleteScreen({
                 </>
               )}
             </ul>
+          </section>
+        )}
+
+        {showM6PathChoice && (
+          <section
+            className="mb-8 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/40 p-5 lg:p-6 text-left"
+            aria-labelledby="path-choice-heading"
+          >
+            <h3
+              id="path-choice-heading"
+              className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2"
+            >
+              {t('module:pathChoiceTitle')}
+            </h3>
+            <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
+              {t('module:pathChoiceBody')}
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <article className="rounded-xl border border-sky-200 dark:border-sky-800 bg-sky-50 dark:bg-sky-900/20 p-4">
+                <div className="flex items-start gap-3">
+                  <IconChip icon={BarChart3} role="info" size="md" />
+                  <div>
+                    <h4 className="font-semibold text-sky-900 dark:text-sky-100">
+                      {t('module:pathDataTitle')}
+                    </h4>
+                    <p className="mt-1 text-sm text-sky-800 dark:text-sky-200">
+                      {t('module:pathDataBody')}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const lastSlide = module.slides?.[module.slides.length - 1];
+                    track('cta_click', {
+                      module_id: module.id,
+                      slide_id: lastSlide?.id ?? undefined,
+                      cta_id: 'm6_path_data_start',
+                      cta_label: t('module:pathDataCta'),
+                      destination: 'internal',
+                    });
+                    onContinueToNext(module.id);
+                  }}
+                  className="mt-4 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                  aria-label={t('module:pathDataAria')}
+                >
+                  {t('module:pathDataCta')}
+                  <ArrowRight className="w-4 h-4" aria-hidden />
+                </button>
+              </article>
+
+              {maxAccessibleModuleId >= 12 && (
+                <article className="rounded-xl border border-fuchsia-200 dark:border-fuchsia-800 bg-fuchsia-50 dark:bg-fuchsia-900/20 p-4">
+                  <div className="flex items-start gap-3">
+                    <IconChip icon={Cpu} role="info" size="md" />
+                    <div>
+                      <h4 className="font-semibold text-fuchsia-900 dark:text-fuchsia-100">
+                        {t('module:pathAgentsTitle')}
+                      </h4>
+                      <p className="mt-1 text-sm text-fuchsia-800 dark:text-fuchsia-200">
+                        {t('module:pathAgentsBody')}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const lastSlide =
+                        module.slides?.[module.slides.length - 1];
+                      track('cta_click', {
+                        module_id: module.id,
+                        slide_id: lastSlide?.id ?? undefined,
+                        cta_id: 'm6_path_agents_modules',
+                        cta_label: t('module:pathAgentsCta'),
+                        destination: 'internal',
+                      });
+                      onBack();
+                    }}
+                    className="mt-4 inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-fuchsia-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                    aria-label={t('module:pathAgentsAria')}
+                  >
+                    {t('module:pathAgentsCta')}
+                    <ArrowRight className="w-4 h-4" aria-hidden />
+                  </button>
+                </article>
+              )}
+            </div>
           </section>
         )}
 
