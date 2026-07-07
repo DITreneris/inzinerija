@@ -121,6 +121,21 @@ Proporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tek
 
 **Įrankių pozicionavimas (cheat sheet, optional):** DALL·E 3 – balansas (tikroviški + koncepciniai, gera teksto integracija, ChatGPT); Midjourney – aukštas meninis lygis, daug stilių, Discord; Leonardo.ai – creator/pro, fotorealizmas, galima mokyti modelius, žaidimų/produktų dizainas; Ideogram – labai geras tekstas vaizduose (logo, plakatai, LinkedIn); Stable Diffusion (DreamStudio) – atviras, lankstus; Adobe Firefly – korporacinė integracija (CC, Generative Fill), „teisiškai saugi“ šaltiniai, mažesnė autorinių teisių rizika. Google (Imagen 3 / „Nano Banana“): objektų išlaikymas per scenas, išplėstinis redagavimas tekstu, SynthID atsekamumas, stiprūs saugumo filtrai – tinka saugiai reklamai, katalogams.
 
+### 3.2a Savitikra: stilius ir proporcijos (13.31)
+
+**Tikslas:** Trumpas „ar supratau?“ momentas po 13.3, prieš kompozicijos skaidrę. Dalyvis patikrina, ar atskiria stilių, proporcijas ir prekės ženklo pastovumą.
+
+**Klausimai (warm-up-quiz):**
+
+1. **Ką geriausia nurodyti vaizdo prompte, jei nori kvadratinio socialinio įrašo?**  
+   Teisinga: proporcijas 1:1.
+2. **Kuris žodis ar frazė labiausiai valdo vaizdo išvaizdą?**  
+   Teisinga: stilius, pvz. fotorealistiškas, 3D arba minimalistinė vektorinė grafika.
+3. **Kaip sumažinti atsitiktinį „chaotiško brando“ rezultatą?**  
+   Teisinga: nurodyti spalvas, toną, tipografijos kryptį ir švarų vizualinį identitetą.
+
+**Remediation:** Jei klysti – grįžk į 13.3 ir perrašyk vieną promptą taip, kad jame būtų subjektas, stilius ir proporcijos.
+
 ### 3.3 Kompozicija ir kadras (neprivaloma, 13.3 optional)
 
 **Trumpai:** Kompozicija ir kadravimas pakelia rezultatą į „profi“ lygį: kur dėti pagrindinį objektą, kokį kadrą ir kameros kampą nurodyti. **Ryšys su video:** tie patys principai kaip trumpo vaizdo įrašo skaidrėje – čia pritaikymas **statinio vaizdo** promptui (modules.json – vienas sakinys „Trumpai“).
@@ -146,6 +161,33 @@ Konceptas: [mitologija / fantastika / istorinė epocha] susietas su [moderni apl
 Pavyzdys: [pvz. „Senovės dievas kavos puoduko scenoje, minimalistinė kompozicija“ arba „Lietuviška pasaka – miškas ir būdelė – bet stilius: film noir“].
 Stilius: [nurodyk]. Proporcijos: 16:9.
 ```
+
+**Kamera prompte (optional):** Jei nori labiau kinematografinio rezultato, pridėk 1–2 kameros detales. Pvz. „85mm lens“ (portretinis kadras), „f/1.8“ (minkštas fonas), „soft studio light“ (švelnus apšvietimas), „cinematic rim light“ (šviesa iš nugaros, kontūras), „wide establishing shot“ (platus aplinkos kadras). Venk tuščių kokybės žodžių kaip „8K masterpiece“ – geriau aprašyk realią šviesą, kadrą ir nuotaiką.
+
+**Kopijuojamas kameros pavyzdys:**
+
+```
+Vaizdas: [OBJEKTAS] [APLINKA].
+Kamera: 85mm lens, f/1.8, soft studio light, shallow depth of field.
+Kompozicija: pagrindinis objektas dešinėje trečdalio sankirtoje, švarus fonas, vieta antraštei kairėje.
+Stilius: [nurodyk]. Proporcijos: 16:9.
+```
+
+### 3.3a Praktika: atpažink stilių ir proporcijas (13.34)
+
+**Tikslas:** Viena atpažinimo užduotis po kompozicijos skaidrės. Dalyvis turi ne kurti naują promptą, o atpažinti, kokio lauko trūksta ar koks formatas tinkamiausias.
+
+**Užduotis (recognitionExercise):** Perskaityk 5 trumpas situacijas ir pasirink tinkamiausią atsakymą: stilius, proporcijos, kompozicija arba prekės ženklo pastovumas.
+
+**Pavyzdžiai:**
+
+1. „Reikia kvadratinio LinkedIn įrašo su produkto nuotrauka.“ → **Proporcijos: 1:1**
+2. „Tas pats produktas turi atrodyti kaip premium katalogo nuotrauka.“ → **Stilius**
+3. „Hero vaizde reikia palikti vietos antraštei kairėje.“ → **Kompozicija**
+4. „Visi kampanijos vaizdai turi naudoti tas pačias spalvas ir toną.“ → **Prekės ženklo pastovumas**
+5. „Stories formatui reikia vertikalaus kadro.“ → **Proporcijos: 9:16**
+
+**Tikslas dalyviui:** Prieš pereidamas prie generatoriaus, jis atskiria, ką valdo stilius, ką valdo proporcijos, ir kada reikia kompozicijos ar prekės ženklo taisyklės.
 
 ### 3.4 DI vaizdų generavimo workflow (5 žingsniai, optional)
 
@@ -227,6 +269,8 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 **Trumpai:** Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, kokiu tonu (dramatiškas, ramus, informatyvus). Kadravimas ir kameros kampas (lygus akims, iš viršaus, iš apačios, POV) keičia emociją – nurodyk prompte, jei nori kontroliuoti išvaizdą. DI gali generuoti vaizdo įrašą iš teksto arba kadrų aprašymo.
 
+**Image → video grandinė (MUST, be naujos skaidrės):** 2026 praktikoje trumpą video dažnai saugiau pradėti nuo vieno gero kadro. Pirma sugeneruok hero vaizdą / keyframe, tada naudok jį kaip pradžios kadrą image-to-video įrankyje (pvz. Runway, Kling, Veo ar panašiai), galiausiai pridėk paprastą foninę muziką arba garsą, jei reikia. Tai ne „lygiagretus ciklas“ – tai viena aiški seka, kuri mažina atsitiktinumą ir padeda išlaikyti tą patį stilių.
+
 **Daryk dabar:** Parašyk 2–3 sakinius: kas matoma vaizdo įraše, nuo pradžios iki pabaigos. Nukopijuok žemiau esantį šabloną į vaizdo generavimo įrankį.
 
 **Kopijuojamas promptas (CopyButton):**
@@ -237,9 +281,20 @@ Scenarijus: [APRAŠYK – pvz. „Atidaroma duris, įėjimas į šviesų biurą.
 Tonas: [profesionalus / dinamiškas / ramus]. Be garso arba paprasta foninė muzika.
 ```
 
+**Kopijuojama grandinė – vaizdas → video (CopyButton):**
+
+```
+1) Sukurk hero vaizdą: [OBJEKTAS], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos 16:9, be teksto vaizde.
+2) Animacija iš šio vaizdo: 5–8 sekundės. Kamera juda [lėtai į priekį / šonu / stabiliai], objektas [ką daro], nuotaika [rami / dinamiška / profesionali]. Išlaikyk tą patį stilių ir spalvas.
+```
+
 **Patikra:** Ar įrankis palaiko vaizdo generavimą? Ar trukmė ir kadrai atitinka aprašymą? Jei ne – sutrumpink scenarijų arba pasirink kitą įrankį.
 
+**Patikra image → video grandinei:** Ar video pradžia atpažįstamai panaši į hero vaizdą? Ar spalvos, personažas / objektas ir aplinka neišsikraipė? Jei ne – grįžk į hero vaizdą, supaprastink sceną arba nurodyk „same character, same style, same color palette“.
+
 **Kur pritaikyti:** Trumpi reklaminiai vaizdo įrašai, socialinio turinio vaizdeliai, pristatymų intros.
+
+**Optional – ta pati išvaizda keliuose kadruose:** Jei reikia kelių klipų su tuo pačiu žmogumi, produktu ar stiliumi, naudok tą patį reference vaizdą ir trumpą taisyklę: „same character / same product / same style“. Venk realių žmonių veidų ar balsų be sutikimo – tai vertinama 13.10 „Verslas ir rizikos“ skaidrėje.
 
 ### 4.2 Įrankiai ir formatas (13.5)
 
@@ -261,6 +316,21 @@ Formatas: [horizontalus 16:9 / vertikalus 9:16]. Trukmė: 5–10 sek. Stilius: [
 **Įrankiai (tools.json, category: „Video generavimas“, moduleId: 13):** Sora (OpenAI) – aukšta kokybė, realistinė judesio fizika; Runway, Pika, Luma Dream Machine, Synthesia (avatarai), InVideo (šablonai, socialiniam turiniui). **Google Veo 3:** 1080p, kinematografinė kokybė, tikroviškas apšvietimas, dinamiškas judesys – tinka prototipams, trumpiems reklaminiams klipams, architektūrinei vizualizacijai; reikia tikslių užklausų, sudėtinga >1 min scenoms.
 
 **Video prompt .json šablonas (optional, pipeline/agentams):** Laukai: id, use_case, tags, mode, duration_s, genre, mood, main_subject, scene, visual_style, camera_movement, lighting, composition. Papildomai galima: aspect_ratio, fps, seed, negative, audio, text_overlay, brand_guidelines, safety_flags, deliverables. Struktūruota – lengva versijuoti ir naudoti automatiškai.
+
+### 4.2a Savitikra: video promptas ir formatas (13.51)
+
+**Tikslas:** Trumpa patikra po 13.5, prieš muzikos skyrių. Dalyvis pasitikrina, ar video promptas turi scenarijų, formatą ir naudojimo teisių patikrą.
+
+**Klausimai (warm-up-quiz):**
+
+1. **Kas būtina trumpam vaizdo promptui?**  
+   Teisinga: scenarijus, trukmė, formatas ir tonas.
+2. **Kada rinktis 9:16 formatą?**  
+   Teisinga: kai kuriamas vertikalus Stories, Reels ar TikTok tipo klipas.
+3. **Ką patikrinti prieš publikuojant sugeneruotą video viešai?**  
+   Teisinga: naudojimo teises, veidų / balsų sutikimą ir ar rezultatas atitinka prekės ženklą.
+
+**Remediation:** Jei klysti – grįžk į 13.4–13.5 ir sutrumpink promptą iki vienos aiškios scenos su formatu bei trukme.
 
 ---
 
@@ -395,6 +465,17 @@ Metrika: CTR (arba CVR, scroll stop). Trukmė: [pvz. 7 dienos]. Auditorija: [kam
 
 Patikrink: (1) Tekstas vaize be klaidų ir keistų šriftų. (2) Brand spalvos ir tonas atitinka. (3) Teisingas formatas (proporcijos, platforma). (4) Aiški žinutė – atitinka kampanijos tikslą. (5) Nėra rizikingo ar netinkamo turinio (brand safety). (6) Naudojimo teisės ir teisės riskai įvertinti (§5a.2).
 
+**Vertinimo rubrika (MUST):** Prieš publikuodamas įvertink rezultatą pagal 3 kriterijus: (1) brand atitikimas – ar spalvos, tonas ir stilius dera su prekės ženklu; (2) žinutės aiškumas – ar per 2–3 sekundes suprantama, ką nori pasakyti; (3) platformos tinkamumas – ar formatas, teksto kiekis ir pirmas kadras tinka pasirinktai platformai. Tai paprastas „generatorius + vertintojas“ principas: sugeneruoji, tada paprašai DI įvertinti pagal taisykles.
+
+**Kopijuojamas vertintojo promptas:**
+
+```
+Įvertink šį turinio artefaktą pagal 3 kriterijus: brand atitikimas, žinutės aiškumas, platformos tinkamumas.
+Kontekstas: [kampanijos tikslas, auditorija, platforma].
+Artefaktas / aprašymas: [įklijuok promptą arba aprašyk gautą rezultatą].
+Grąžink lentelę: kriterijus, balas 1–5, kas gerai, 1–2 konkretūs pataisymai.
+```
+
 ### 5a.5 Versijavimas
 
 Failų naming ir versijavimas: V1, V2, V3 + viena eilutė „kas pasikeitė prompte“ (pvz. „V2: pridėtas aukso valandos apšvietimas“). Tai palengvina A/B analizę ir pakartotinį naudojimą.
@@ -421,6 +502,8 @@ Failų naming ir versijavimas: V1, V2, V3 + viena eilutė „kas pasikeitė prom
 6. **Testavimas** – A/B, hipotezė, KPI (CTR, CVR, scroll stop).
 7. **Optimizacija** – remiantis rezultatais, pakartoti ciklą.
 
+Jei dirbi komandoje, vaizdas, scenarijus ir muzika gali būti ruošiami vienu metu, bet tik tada, kai visi remiasi tuo pačiu brief ir brand taisyklėmis.
+
 **Kopijuojamas šablonas – brief į promptą:**
 
 ```
@@ -439,12 +522,14 @@ Brand: [1–2 sakiniai – spalvos, tipografija, nuotaika]. Variantų skaičius:
 | **9**  | **Automation**                 | Integracijos: GPT → Canva → Zapier → Ads manager; variantų generavimas masiškai. Marketingui svarbus mastelis.                                                                                                         |
 | **10** | **Storyselling**               | Vaizdas integruojamas su antrašte, hook'u, CTA – ne izoliuotas nuo copywriting. Mokymas: kaip vaizdas „parduoda“ kartu su tekstu.                                                                                      |
 
+**Sutrumpintas blokas UI:** šiuos SHOULD elementus geriausia rodyti kaip vieną collapsible sekciją: „Platforma, funnel ir tekstas kartu“. Viduje – TOFU/MOFU/BOFU paprastai: atpažįstamumas, svarstymas, veiksmas; ir priminimas, kad vizualas turi derėti su antrašte, hook'u ir CTA.
+
 ---
 
 ## 5c. Modulio 14 testas (LT, modules.json)
 
-- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“ (galininkas mot. g. dgs.); `firstActionCTA` – 6 klausimai apie vaizdus, video, muziką, **rizikas ir workflow**.
-- **Klausimai (141):** Vietoj pasikartojančio „kur pritaikyti“ – **m14-q5** apie veidą/balsą ir teises (`relatedSlideId`: **13.101**); **m14-q6** – logiškas žingsnis po brief (`relatedSlideId`: **13.11**).
+- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“ (galininkas mot. g. dgs.); `firstActionCTA` – 8 klausimai apie vaizdus, video, muziką, **rizikas, workflow ir image → video grandinę**.
+- **Klausimai (141):** Vietoj pasikartojančio „kur pritaikyti“ – **m14-q5** apie veidą/balsą ir teises (`relatedSlideId`: **13.101**); **m14-q6** – logiškas žingsnis po brief (`relatedSlideId`: **13.11**); **m14-q7** – conversion vizualas Instagram 9:16 (`relatedSlideId`: **13.1** / **13.3**); **m14-q8** – kada rinktis image → video grandinę (`relatedSlideId`: **13.4**).
 - **Rezultatai (142):** `useCaseBlock` – **„Kitas žingsnis: Modulis 15“** (ne trečias „Kur pritaikyti?“ kartojimas); `thresholdExplanation` suderinta su „tu“ tonu.
 
 ---
@@ -494,14 +579,14 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 ### 8.1 test-intro
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).
-- **duration:** ~10–12 min.
-- **firstActionCTA:** Atsakyk į 6–8 klausimus – apie vaizdų, video ir muzikos promptus, įrankius ir „Kur pritaikyti?“.
+- **duration:** ~12–15 min.
+- **firstActionCTA:** Atsakyk į 8 klausimus – apie vaizdų, video ir muzikos promptus, įrankius, rizikas, workflow ir image → video grandinę.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad moki formuluoti turinio promptus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 15 (projektas). &lt;70 % – peržiūrėk rekomenduojamas M13 skaidres (remediation pagal klausimą).
 
 ### 8.2 test-section ir test-results
 
-- **Klausimai:** 6–8 klausimų – MCQ ir/ar scenarijų tipas („Duota situacija – kuris promptas tinkamiausias vaizdui / vaizdo įrašui / muzikai?“). Remediation – nuoroda į konkretų M13 slide id.
+- **Klausimai:** 8 klausimai – MCQ ir scenarijų tipas („Duota situacija – kuris promptas tinkamiausias vaizdui / vaizdo įrašui / muzikai?“). Remediation – nuoroda į konkretų M13 slide id. Nauji klausimai: **m14-q7** apie conversion vizualą Instagram 9:16 (`relatedSlideId`: 13.1 arba 13.3); **m14-q8** apie image → video grandinę (`relatedSlideId`: 13.4).
 - **test-results:** passedMessage, failedMessage, **useCaseBlock** („Kur pritaikyti?“ – accent): „Turinio inžinerijos žinias gali pritaikyti: rinkodaros vizualai, socialinio turinio vaizdai ir vaizdo įrašai, foninė muzika projektams.“ thresholdExplanation: „Pasiekę ≥70 % galite pereiti prie Modulio 15 (projektas). Jei mažiau – rekomenduojame peržiūrėti Modulio 13 skaidres.“
 
 ---
@@ -511,8 +596,24 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 ### 9.1 practice-intro
 
 - **whyBenefit:** Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui.
-- **duration:** ~20–40 min (vienam scenarijui); planuoti daugiau laiko, jei atliekami visi trys tipai (vaizdas, video, muzika).
-- **firstActionCTA:** Pradėk dabar: pasirink **vaizdą**, **vaizdo įrašą** arba **muziką** ir sukurk vieną artefaktą su naudotu promptu (nukopijuok promptą ir įrašyk, ką gavai).
+- **duration:** ~20 min greitas startas / ~60–90 min pilnas kelias.
+- **firstActionCTA:** Pradėk nuo greito starto: sukurk vieną hero vaizdą su naudotu promptu. Jei nori pilno kelio – tęsk į video iš to vaizdo ir foninę muziką.
+- **minScenariosToComplete:** 1.
+- **primaryPathIntro:** Greitas startas – vienas hero vaizdas (150.5). Pilnas kelias – hero vaizdas (151) → trumpas video iš to vaizdo (152) → foninė muzika arba garsas (153). Pilnas kelias neprivalomas, bet paruošia mini kampanijos paketą.
+
+### 9.1a Greitas startas: vienas hero vaizdas (150.5)
+
+**Tikslas:** Per ~20 min turėti vieną hero vaizdą, naudotą promptą ir 2 eilučių brief. Tai privalomas minimumas M15 užbaigimui.
+
+**Artefaktas:** Hero vaizdas + promptas + trumpas brief (tikslas, auditorija, platforma).
+
+**Kopijuojamas promptas:**
+
+```
+Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur bus naudojama].
+Sukurk hero vaizdą: [OBJEKTAS ir veiksmas], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos [1:1 / 16:9 / 9:16].
+Brand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vaizde, jei jo nereikia.
+```
 
 ### 9.2 Scenarijai (practice-scenario)
 
@@ -525,6 +626,10 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 | **3** | Muzikos fragmentas    | Aprašyk nuotaiką ir stilių, sugeneruok 30–60 sek. muzikos arba garsą.                                        | Muzikos / garsų failas arba nuoroda + promptas.     |
 
 **Delivery-first:** Dalyvis turi turėti bent **vieną** iš trijų artefaktų (vaizdas arba video arba muzika) ir **naudotą promptą** (kopijuojamas į praktinę užduotį arba įrašytas atskirai).
+
+**Pilnas mini kampanijos kelias (optional):** Jei turi daugiau laiko, atlik seka: (1) sukurk hero vaizdą / keyframe, (2) naudok jį trumpam 5–10 sek. video, (3) pridėk 30–60 sek. foninę muziką arba garsą, (4) užrašyk V1/V2 skirtumą ir 1 sakinį apie naudojimo teises. Tai pilnas kelias, bet ne privalomas minimumas.
+
+**Delivery checklist:** Prieš laikydamas projektą baigtu, turėk: brief (tikslas, auditorija, platforma), bent vieną promptą, rezultatą arba nuorodą, jei darei pilną kelią – V1/V2 pokytį, ir vieną sakinį apie naudojimo teises.
 
 ### 9.3 practice-summary
 

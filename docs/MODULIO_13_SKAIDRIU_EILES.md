@@ -13,12 +13,15 @@
 | 2    | **13.15**                   | **Skyrius: Vaizdo generavimas (section-break)**  | Skiriamoji skaidrė – vizualiai atskiria skyrių „Vaizdai“; apžvelgia: vaizdo promptai (objektas, kontekstas, stilius), proporcijos, brand, įrankiai (DALL·E, Midjourney, Ideogram).                                    |
 | 3    | 13.2                        | Vaizdo prompto pagrindai                         | Content-block: Trumpai, **vienas** blokas „Formulė ir trys sluoksniai“ + diagrama, minimalūs reikalavimai; Daryk dabar → CopyButton → Patikra; collapsible „Kodėl tai veikia“.                                        |
 | 4    | 13.3                        | Stilius ir proporcijos (vaizdai)                 | Content-block; CopyButton – stilius, aspect ratio; **Brand consistency (MUST);** collapsible „Kuris įrankis kam“ (įrankių pozicionavimas).                                                                            |
-| 4a   | **13.33**                   | **Kompozicija ir kadras (optional)**             | Optional: tie patys kadravimo principai kaip video skaidrėje – čia pritaikymas **statinio vaizdo** promptui; trečdalių taisyklė, kameros kampas; collapsible naratyvinis vaizdas.                                     |
-| 4b   | **13.35**                   | **Workflow ir MASTER šablonai (optional)**       | Viršuje – „Kaip naudotis šia skaidre“ (vienas MASTER arba vienas ready); 5 žingsnių workflow, #1000Books, MASTER, 3 ready + collapsible „Visi 8“; 13.11 tekste – nuoroda į šią skaidrę kaip į techninį pipeline.      |
-| 4c   | **13.37**                   | **Vaizdo generatorius (interaktyvus)**           | Interaktyvus generatorius; LT `vaizdoGen.tldr` siejamas su optional MASTER (13.35). Įrankių tinklelis.                                                                                                                |
+| 4a   | **13.31**                   | **Savitikra: stilius ir proporcijos**            | Warm-up po 13.3; 3 klausimai apie proporcijas, stilių ir prekės ženklo pastovumą. Padeda prieš kompozicijos ir generatoriaus dalį.                                                                                    |
+| 4b   | **13.33**                   | **Kompozicija ir kadras (optional)**             | Optional: tie patys kadravimo principai kaip video skaidrėje – čia pritaikymas **statinio vaizdo** promptui; trečdalių taisyklė, kameros kampas; collapsible naratyvinis vaizdas.                                     |
+| 4c   | **13.34**                   | **Praktika: atpažink stilių ir proporcijas**     | Recognition pratimas: 5 situacijos, kur dalyvis atskiria stilių, proporcijas, kompoziciją ir prekės ženklo pastovumą.                                                                                                 |
+| 4d   | **13.35**                   | **Workflow ir MASTER šablonai (optional)**       | Viršuje – „Kaip naudotis šia skaidre“ (vienas MASTER arba vienas ready); 5 žingsnių workflow, #1000Books, MASTER, 3 ready + collapsible „Visi 8“; 13.11 tekste – nuoroda į šią skaidrę kaip į techninį pipeline.      |
+| 4e   | **13.37**                   | **Vaizdo generatorius (interaktyvus)**           | Interaktyvus generatorius; LT `vaizdoGen.tldr` siejamas su optional MASTER (13.35). Įrankių tinklelis.                                                                                                                |
 | 5    | **13.36**                   | **Skyrius: Video generavimas (section-break)**   | Skiriamoji skaidrė – skyrius „Video“; apžvelgia: scenarijus, kadravimas, formatas, kodėl DI video verta dėmesio, įrankiai (Sora, Runway, Veo 3).                                                                      |
-| 6    | 13.4                        | Scenarijus trumpam vaizdo įrašui                 | Content-block; Kadravimas ir kameros kampas (brand); CopyButton – video scenarijus.                                                                                                                                   |
+| 6    | 13.4                        | Scenarijus trumpam vaizdo įrašui                 | Content-block; Kadravimas ir kameros kampas (brand); CopyButton – video scenarijus; **image → video** grandinė (hero vaizdas / keyframe → trumpas video → optional garsas).                                           |
 | 7    | 13.5                        | Video įrankiai ir formatas                       | Vienas accent „Kodėl verta ir ką nurodyti“; ilgas įrankių sąrašas – **collapsible** „Visi video įrankiai“; collapsible „Video prompt laukai“.                                                                         |
+| 7a   | **13.51**                   | **Savitikra: video promptas ir formatas**        | Warm-up po 13.5; 3 klausimai apie scenarijų, formatą ir viešo naudojimo patikrą prieš muzikos skyrių.                                                                                                                 |
 | 8    | **13.56**                   | **Skyrius: Muzikos generavimas (section-break)** | Skiriamoji skaidrė – skyrius „Muzika“; apžvelgia: nuotaika, stilius, tempo, foninė muzika, naudojimo teisės, įrankiai (Suno, Udio, Soundraw).                                                                         |
 | 9    | 13.6                        | Muzikos aprašymas                                | LT trumpai (be „demokratizacijos“ žargono); **Angliškas MASTER** su LT paaiškinimu; collapsible „Papildomi pavyzdžiai…“; CopyButton – lietuviškas fragmentas.                                                         |
 | 10   | 13.7                        | Muzikos garsai ir naudojimo teisės               | Content-block; CopyButton – garsų efektai; licencija.                                                                                                                                                                 |
@@ -31,24 +34,25 @@
 
 ## Modulis 14 (testas) – skaidrių eilė
 
-| Eilė | ID  | Skaidrė / tipas | Kodėl čia?                                                                                                                 |
-| ---- | --- | --------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 0    | 140 | test-intro      | firstActionCTA apima ir rizikas/workflow; `thresholdExplanation` – „peržiūrėti“ (ne maišyti su imperatyvu).                |
-| 1    | 141 | test-section    | 6 MCQ; tarp jų – veidas/balsas ir rizikos (**13.101**), workflow po brief (**13.11**); remediation `relatedSlideId` į M13. |
-| 2    | 142 | test-results    | **useCaseBlock** – „Kitas žingsnis: Modulis 15“ (ne trečias „Kur pritaikyti?“ kartojimas).                                 |
+| Eilė | ID  | Skaidrė / tipas | Kodėl čia?                                                                                                                                                              |
+| ---- | --- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0    | 140 | test-intro      | firstActionCTA apima ir rizikas/workflow/image → video; `thresholdExplanation` – „peržiūrėti“ (ne maišyti su imperatyvu).                                               |
+| 1    | 141 | test-section    | 8 MCQ/scenario; tarp jų – veidas/balsas ir rizikos (**13.101**), workflow po brief (**13.11**), conversion vizualas, image → video; remediation `relatedSlideId` į M13. |
+| 2    | 142 | test-results    | **useCaseBlock** – „Kitas žingsnis: Modulis 15“ (ne trečias „Kur pritaikyti?“ kartojimas).                                                                              |
 
 ---
 
 ## Modulis 15 (praktika) – skaidrių eilė
 
-| Eilė (UI 1…N) | ID     | Skaidrė / tipas   | Kodėl čia?                                                                                                                                               |
-| ------------- | ------ | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1             | 150    | practice-intro    | whyBenefit, duration ~20–40 min, firstActionCTA, `recommendedSlideIds` (įskaitant 150.25). Bent vienas artefaktas (vaizdas / video / muzika) + promptas. |
-| 2             | 150.25 | content-block     | Projekto ciklas (šaka + iteracija) – schema `m15_practice_loop`. Footer: „Toliau – skaidrė 3“ → 151.                                                     |
-| 3             | 151    | practice-scenario | Scenarijus 1: Vaizdas – stilius, proporcijos, promptas.                                                                                                  |
-| 4             | 152    | practice-scenario | Scenarijus 2: Trumpas vaizdo įrašas – scenarijus, formatas.                                                                                              |
-| 5             | 153    | practice-scenario | Scenarijus 3: Muzikos fragmentas – nuotaika, stilius, naudojimo teisės.                                                                                  |
-| 6             | 158    | summary           | 5 blokų santrauka (`SummarySlide`): hero, kortelės (vaizdas / video / muzika / kitas žingsnis), refleksijos promptas.                                    |
+| Eilė (UI 1…N) | ID     | Skaidrė / tipas   | Kodėl čia?                                                                                                                                            |
+| ------------- | ------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1             | 150    | practice-intro    | whyBenefit, duration ~20 min quick / ~60–90 min full, `minScenariosToComplete: 1`, firstActionCTA, `recommendedSlideIds` (įskaitant 150.5 ir 150.25). |
+| 2             | 150.5  | practice-scenario | **Greitas startas:** vienas hero vaizdas + promptas + trumpas brief. Tai privalomas minimumas M15 užbaigimui.                                         |
+| 3             | 150.25 | content-block     | Projekto ciklas (quick + optional full path) – schema `m15_practice_loop`. Footer: „Toliau – skaidrė 4“ → 151.                                        |
+| 4             | 151    | practice-scenario | Pilno kelio scenarijus 1: Hero vaizdas / keyframe – stilius, proporcijos, promptas.                                                                   |
+| 5             | 152    | practice-scenario | Pilno kelio scenarijus 2: Trumpas vaizdo įrašas iš 151 keyframe – scenarijus, formatas.                                                               |
+| 6             | 153    | practice-scenario | Pilno kelio scenarijus 3: Muzikos fragmentas – nuotaika, stilius, naudojimo teisės.                                                                   |
+| 7             | 158    | summary           | 5 blokų santrauka (`SummarySlide`): quick/full rezultatas, checklist, kortelės (vaizdas / video / muzika / kitas žingsnis), refleksijos promptas.     |
 
 ---
 
@@ -57,10 +61,12 @@
 - **130 (action-intro) visada pirmas** – whyBenefit, hook, firstActionCTA.
 - **13.15, 13.36, 13.56** – section-break skaidrės (Vaizdai / Video / Muzika); vizualiai skiria modulio skyrius; turi title, subtitle, sectionNumber, footer.
 - **13.2–13.7, 13.101 (Verslas), 13.11** – content-block schema: Trumpai (accent) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Optional (terms). Verslas = KPI/A/B + Legal + QA su collapsible grupėmis; 13.11 = Workflow + SHOULD.
+- **13.31 ir 13.51** – `warm-up-quiz` savitikros; kiekviena turi 3 klausimus ir trumpas remediation nuorodas į ankstesnes skaidres.
+- **13.34** – `content-block` su `recognitionExercise`; tikslas – atpažinimas, ne naujo prompto kūrimas.
 - **13.37** – interaktyvus vaizdo generatorius (type: `vaizdo-generatorius`); atskiras React komponentas su forma ir generuojamu promptu; po 13.35 MASTER, prieš 13.36 Video.
 - **13.9 santrauka** – 5 blokų modelis pagal SUMMARY_SLIDE_SPEC.md.
 - **M14** – test-results `useCaseBlock`: „Kitas žingsnis: Modulis 15“ (accent); intro CTA atitinka 6 klausimų turinį.
-- **M15** – MUST: bent vienas artefaktas (vaizdas / video / muzika) + naudotas promptas; po įvado – optional schema **150.25**; 3 practice-scenario (151–153), tada 158 summary.
+- **M15** – MUST: greitas startas **150.5** (bent vienas hero vaizdas + naudotas promptas + trumpas brief); po jo – schema **150.25**; optional pilnas kelias 151–153 (hero → video iš keyframe → muzika), tada 158 summary.
 
 ---
 
