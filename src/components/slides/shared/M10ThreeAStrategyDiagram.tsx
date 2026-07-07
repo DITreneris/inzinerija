@@ -125,6 +125,18 @@ export default function M10ThreeAStrategyDiagram({
                 {r.sub}
               </text>
             )}
+            {r.h < 36 && (
+              <text
+                x={BAR_X + 14}
+                y={rowY + r.h + 14}
+                fill={palette.brandDark}
+                fontSize="9"
+                fontWeight="600"
+                fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              >
+                {r.sub}
+              </text>
+            )}
           </g>
         );
       })}

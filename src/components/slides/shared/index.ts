@@ -35,7 +35,6 @@ export { default as M10LearningLoopBlock } from './M10LearningLoopBlock';
 export { default as M10ToolDecisionTreeBlock } from './M10ToolDecisionTreeBlock';
 export { default as M10WorkflowSpecBlock } from './M10WorkflowSpecBlock';
 export { default as M10IncidentPlaybookBlock } from './M10IncidentPlaybookBlock';
-export { default as M10SpecIncidentBlock } from './M10SpecIncidentBlock';
 export { default as M12MultiAgentSchemaBlock } from './M12MultiAgentSchemaBlock';
 export { default as M13AecFunnelBlock } from './M13AecFunnelBlock';
 export { default as M13PromptStackBlock } from './M13PromptStackBlock';

@@ -1,4 +1,5 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { fireEvent } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../test/test-utils';
 import AgentWorkflowBlock from '../AgentWorkflowBlock';
 import DiPrezentacijosWorkflowBlock from '../DiPrezentacijosWorkflowBlock';
@@ -9,10 +10,19 @@ import M7DataPrepWorkflowBlock from '../M7DataPrepWorkflowBlock';
 import M7DataStoryCycleBlock from '../M7DataStoryCycleBlock';
 import M7ThreeAgentsBlock from '../M7ThreeAgentsBlock';
 import M9DataWorkflowBlock from '../M9DataWorkflowBlock';
+import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
+import M10IncidentPlaybookBlock from '../M10IncidentPlaybookBlock';
 import M10LearningLoopBlock from '../M10LearningLoopBlock';
+import M10ThreeAStrategyBlock from '../M10ThreeAStrategyBlock';
+import M10ToolDecisionTreeBlock from '../M10ToolDecisionTreeBlock';
+import M10TriggerFlowBlock from '../M10TriggerFlowBlock';
+import M10WorkflowSpecBlock from '../M10WorkflowSpecBlock';
 import M12MultiAgentSchemaBlock from '../M12MultiAgentSchemaBlock';
+import M12ThreeLabsBlock from '../M12ThreeLabsBlock';
+import M15PracticeLoopBlock from '../M15PracticeLoopBlock';
 import RlProcessBlock from '../RlProcessBlock';
 import StrukturuotasProcesasBlock from '../StrukturuotasProcesasBlock';
+import TestKnowledgeScopeDiagram from '../TestKnowledgeScopeDiagram';
 import TurinioWorkflowBlock from '../TurinioWorkflowBlock';
 
 const storageKey = 'prompt-anatomy-locale';
@@ -29,6 +39,11 @@ function setDarkTheme() {
 function expectDarkDiagramBackground(container: HTMLElement) {
   const firstStop = container.querySelector('stop');
   expect(firstStop).toHaveAttribute('stop-color', '#1e293b');
+}
+
+function expectDarkPaletteTitle(container: HTMLElement) {
+  const title = container.querySelector('svg text');
+  expect(title).toHaveAttribute('fill', '#e2e8f0');
 }
 
 describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWorkflow)', () => {
@@ -111,6 +126,25 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     });
   });
 
+  describe('M15PracticeLoopBlock (M15 slide 150.25)', () => {
+    it('renders English quick and full path labels when locale is en', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<M15PracticeLoopBlock />);
+      expect(container.textContent).toContain('Quick path');
+      expect(container.textContent).toContain('Full path (optional)');
+      expect(container.textContent).toContain('QA');
+      expect(container.textContent).not.toContain('Greitas kelias');
+    });
+
+    it('renders Lithuanian quick and full path labels when locale is lt', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M15PracticeLoopBlock />);
+      expect(container.textContent).toContain('Greitas kelias');
+      expect(container.textContent).toContain('Pilnas kelias (optional)');
+      expect(container.textContent).toContain('Koreguok, kol tinka');
+    });
+  });
+
   describe('Legacy SVG keyboard migration batch 1', () => {
     it.each([
       ['DI presentation workflow', () => <DiPrezentacijosWorkflowBlock />, 5],
@@ -163,6 +197,188 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
         'fill',
         '#0f172a'
       );
+    });
+  });
+
+  describe('M10-M12 static diagram localization and palette contracts', () => {
+    it('renders M10 agent taxonomy in both locales', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M10AgentTaxonomyBlock />);
+      expect(en.textContent).toContain('Agent taxonomy: depth + roles');
+      expect(en.textContent).toContain('Multi-agent roles');
+      expect(en.textContent).not.toContain('Agentų taksonomija');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(<M10AgentTaxonomyBlock />);
+      expect(lt.textContent).toContain('Agentų taksonomija: gylis + rolės');
+      expect(lt.textContent).toContain('Kelių agentų rolės');
+    });
+
+    it('renders M10 trigger flow in both locales', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M10TriggerFlowBlock />);
+      expect(en.textContent).toContain('Workflow chain');
+      expect(en.textContent).toContain('starts the flow');
+      expect(en.textContent).not.toContain('paleidžia srautą');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(<M10TriggerFlowBlock />);
+      expect(lt.textContent).toContain('Workflow grandinė');
+      expect(lt.textContent).toContain('paleidžia srautą');
+    });
+
+    it('renders M10 3A strategy in both locales', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M10ThreeAStrategyBlock />);
+      expect(en.textContent).toContain('3A strategy (80 / 15 / 5)');
+      expect(en.textContent).toContain('Rule-based flows');
+      expect(en.textContent).not.toContain('Taisyklėmis paremti srautai');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(<M10ThreeAStrategyBlock />);
+      expect(lt.textContent).toContain('3A strategija (80 / 15 / 5)');
+      expect(lt.textContent).toContain('Taisyklėmis paremti srautai');
+    });
+
+    it('renders M10 workflow spec and incident playbook in both locales', () => {
+      setLocale('en');
+      const { container: specEn } = renderWithProviders(
+        <M10WorkflowSpecBlock />
+      );
+      expect(specEn.textContent).toContain('One-page workflow spec (8 blocks)');
+      expect(specEn.textContent).toContain('Audit');
+
+      const { container: incidentEn } = renderWithProviders(
+        <M10IncidentPlaybookBlock />
+      );
+      expect(incidentEn.textContent).toContain('Incident playbook (5 steps)');
+      expect(incidentEn.textContent).toContain('Notify');
+
+      setLocale('lt');
+      const { container: specLt } = renderWithProviders(
+        <M10WorkflowSpecBlock />
+      );
+      expect(specLt.textContent).toContain(
+        'Vieno puslapio specifikacija (8 blokai)'
+      );
+      expect(specLt.textContent).toContain('Auditas');
+
+      const { container: incidentLt } = renderWithProviders(
+        <M10IncidentPlaybookBlock />
+      );
+      expect(incidentLt.textContent).toContain(
+        'Incidentų planas (5 žingsniai)'
+      );
+      expect(incidentLt.textContent).toContain('Pranešti');
+    });
+
+    it('renders M12 three labs in both locales', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M12ThreeLabsBlock />);
+      expect(en.textContent).toContain('Three mandatory labs (3A)');
+      expect(en.textContent).toContain('Human approves');
+      expect(en.textContent).not.toContain('Trys privalomos praktikos');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(<M12ThreeLabsBlock />);
+      expect(lt.textContent).toContain('Trys privalomos praktikos (3A)');
+      expect(lt.textContent).toContain('Žmogus patvirtina');
+    });
+
+    it.each([
+      ['M10 agent taxonomy', () => <M10AgentTaxonomyBlock />],
+      ['M10 trigger flow', () => <M10TriggerFlowBlock />],
+      ['M10 3A strategy', () => <M10ThreeAStrategyBlock />],
+      ['M10 workflow spec', () => <M10WorkflowSpecBlock />],
+      ['M10 incident playbook', () => <M10IncidentPlaybookBlock />],
+      ['M12 three labs', () => <M12ThreeLabsBlock />],
+    ])('uses the dark text palette in %s title', (_name, renderComponent) => {
+      setLocale('lt');
+      setDarkTheme();
+
+      const { container } = renderWithProviders(renderComponent());
+
+      expectDarkPaletteTitle(container);
+    });
+  });
+
+  describe('M10 tool decision tree spatial exception', () => {
+    it('renders localized decision tree copy and selected branch output', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(
+        <M10ToolDecisionTreeBlock />
+      );
+      expect(en.textContent).toContain('Tool choice (workflow)');
+      expect(en.textContent).toContain('Tap a branch');
+      expect(en.textContent).toContain('Power Automate');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(
+        <M10ToolDecisionTreeBlock />
+      );
+      expect(lt.textContent).toContain('Įrankio pasirinkimas (workflow)');
+      expect(lt.textContent).toContain('Paspausk šaką');
+    });
+
+    it('keeps its documented SVG keyboard path for spatial tree branches', () => {
+      setLocale('lt');
+
+      const { container } = renderWithProviders(<M10ToolDecisionTreeBlock />);
+
+      expect(container.querySelectorAll('nav button')).toHaveLength(0);
+      expect(container.querySelectorAll('svg [role="button"]')).toHaveLength(5);
+      expect(container.querySelectorAll('svg [tabindex="0"]')).toHaveLength(5);
+    });
+
+    it('uses the dark text palette in the decision tree title', () => {
+      setLocale('lt');
+      setDarkTheme();
+
+      const { container } = renderWithProviders(<M10ToolDecisionTreeBlock />);
+
+      expectDarkPaletteTitle(container);
+    });
+  });
+
+  describe('M8 test scope deep links', () => {
+    it('turns M8 scope bubbles into theory review buttons when navigation is available', () => {
+      const onGoToModule = vi.fn();
+      setLocale('lt');
+
+      const { getByRole } = renderWithProviders(
+        <TestKnowledgeScopeDiagram
+          moduleId={8}
+          locale="lt"
+          onGoToModule={onGoToModule}
+          sourceModuleId={8}
+        />
+      );
+
+      fireEvent.click(
+        getByRole('button', { name: 'Peržiūrėti teoriją: Pipeline' })
+      );
+
+      expect(onGoToModule).toHaveBeenCalledWith(7, expect.any(Number), 8);
+    });
+
+    it('turns M11 scope bubbles into M10 theory review buttons when navigation is available', () => {
+      const onGoToModule = vi.fn();
+      setLocale('lt');
+
+      const { getByRole } = renderWithProviders(
+        <TestKnowledgeScopeDiagram
+          moduleId={11}
+          locale="lt"
+          onGoToModule={onGoToModule}
+          sourceModuleId={11}
+        />
+      );
+
+      fireEvent.click(
+        getByRole('button', { name: 'Peržiūrėti teoriją: Agentų ciklas' })
+      );
+
+      expect(onGoToModule).toHaveBeenCalledWith(10, expect.any(Number), 11);
     });
   });
 

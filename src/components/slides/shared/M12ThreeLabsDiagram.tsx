@@ -46,6 +46,9 @@ export default function M12ThreeLabsDiagram({
       </text>
       {rows.map((r, i) => {
         const yy = y;
+        const mainRight = x0 + w0 * 0.72;
+        const humanX = mainRight + 8;
+        const humanW = w0 * 0.26;
         y += rowH + gap;
         return (
           <g key={i}>
@@ -58,6 +61,15 @@ export default function M12ThreeLabsDiagram({
               fill={r.fill}
               stroke={palette.brandDark}
               strokeWidth="1.2"
+            />
+            <line
+              x1={mainRight}
+              y1={yy + rowH / 2}
+              x2={humanX}
+              y2={yy + rowH / 2}
+              stroke={palette.brandDark}
+              strokeWidth="1.5"
+              strokeDasharray="4 3"
             />
             <text
               x={x0 + 12}
@@ -79,9 +91,9 @@ export default function M12ThreeLabsDiagram({
               {r.sub}
             </text>
             <rect
-              x={x0 + w0 * 0.72 + 8}
+              x={humanX}
               y={yy}
-              width={w0 * 0.26}
+              width={humanW}
               height={rowH}
               rx="10"
               fill="#fef3c7"
@@ -89,7 +101,7 @@ export default function M12ThreeLabsDiagram({
               strokeWidth="1"
             />
             <text
-              x={x0 + w0 * 0.72 + 8 + (w0 * 0.26) / 2}
+              x={humanX + humanW / 2}
               y={yy + rowH / 2 + 4}
               textAnchor="middle"
               fill="#713f12"

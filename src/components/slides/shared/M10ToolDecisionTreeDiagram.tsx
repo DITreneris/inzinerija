@@ -2,6 +2,7 @@
  * M10 – įrankių pasirinkimo medis (interaktyvus).
  */
 import { useId, useState } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import {
   getM10ToolTreeLeaves,
   getM10ToolTreeLabels,
@@ -28,6 +29,7 @@ export default function M10ToolDecisionTreeDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+  const palette = useDiagramPalette();
   const L = getM10ToolTreeLabels(locale);
   const leaves = getM10ToolTreeLeaves(locale);
   const interactive = typeof onSelect === 'function';
@@ -54,7 +56,7 @@ export default function M10ToolDecisionTreeDiagram({
           refY="3"
           orient="auto"
         >
-          <path d="M0 0 L6 3 L0 6 Z" fill="#7B8794" />
+          <path d="M0 0 L6 3 L0 6 Z" fill={palette.flow} />
         </marker>
       </defs>
       <text
@@ -63,7 +65,7 @@ export default function M10ToolDecisionTreeDiagram({
         textAnchor="middle"
         fontSize="14"
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.title}
@@ -105,7 +107,7 @@ export default function M10ToolDecisionTreeDiagram({
             <path
               d={`M ${rootCx} ${rootY + ROOT_H} L ${rootCx} ${midY} L ${cx} ${midY} L ${cx} ${leafTop}`}
               fill="none"
-              stroke="#7B8794"
+              stroke={palette.flow}
               strokeWidth="2"
               markerEnd={`url(#m10tree-arr-${uid})`}
             />
@@ -137,7 +139,7 @@ export default function M10ToolDecisionTreeDiagram({
               x={cx}
               y={leafTop + 18}
               textAnchor="middle"
-              fill={isSel ? 'white' : '#334e68'}
+              fill={isSel ? 'white' : palette.brand}
               fontSize="9"
               fontWeight="600"
               fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
@@ -150,7 +152,7 @@ export default function M10ToolDecisionTreeDiagram({
               x={cx}
               y={leafTop + 40}
               textAnchor="middle"
-              fill={isSel ? 'rgba(255,255,255,0.95)' : '#102a43'}
+              fill={isSel ? 'rgba(255,255,255,0.95)' : palette.brandDark}
               fontSize="11"
               fontWeight="800"
               fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"

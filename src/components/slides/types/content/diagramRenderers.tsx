@@ -48,6 +48,16 @@ interface DiagramRenderer {
 
 const DIAGRAM_RENDERERS: DiagramRenderer[] = [
   {
+    key: 'm7_da_pipeline',
+    bodyPlacement: 'after',
+    render: () => <M7DaPipelineBlock />,
+  },
+  {
+    key: 'm7_bi_schema',
+    bodyPlacement: 'after',
+    render: () => <M7BiSchemaBlock />,
+  },
+  {
     key: 'da_pipeline_6',
     bodyPlacement: 'after',
     render: () => <M7DaPipelineBlock />,

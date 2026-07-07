@@ -46,17 +46,17 @@ export function getM12MultiAgentSchemaLabels(
   }
 
   return {
-    title: 'Verslo multi-agent srautas',
+    title: 'Verslo kelių agentų srautas',
     input: pair('Įvestis', 'užduotis + duomenys'),
     router: pair('Maršrutizatorius', 'pasirenkama'),
     coordinator: pair('Koordinatorius', 'padalina darbą'),
     specialistA: pair('Specialistas A', 'tyrimas / juodraštis'),
     specialistB: pair('Specialistas B', 'skaičiavimas / patikra'),
     evaluator: pair('Vertintojas', 'kokybė + grąžinimas'),
-    output: pair('Išvestis', 'HITL vartai'),
+    output: pair('Išvestis', 'žmogaus patvirtinimas'),
     handoff: 'aiškus perdavimas',
     hitl: 'žmogus patvirtina',
-    aria: 'Verslo multi-agent srautas: įvestis, pasirenkamas maršrutizatorius, koordinatorius, du specialistai, vertintojas ir išvestis su žmogaus patvirtinimu',
+    aria: 'Verslo kelių agentų srautas: įvestis, pasirenkamas maršrutizatorius, koordinatorius, du specialistai, vertintojas ir išvestis su žmogaus patvirtinimu',
   };
 }
 
@@ -114,7 +114,7 @@ export function getM12MultiAgentStepExplanations(
       body: 'Vertintojas patikrina kokybę, taisykles ir spragas prieš perduodant rezultatą toliau.',
     },
     {
-      title: 'Išvestis + HITL',
+      title: 'Išvestis + žmogaus patvirtinimas',
       body: 'Galutinis rezultatas pereina žmogaus patvirtinimo vartą prieš siunčiant klientui ar vadovui.',
     },
   ];

@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from '@testing-library/react';
+import { act, fireEvent, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import modulesData from '../../../../data/modules.json';
 import { renderWithProviders } from '../../../../test/test-utils';
@@ -13,6 +13,10 @@ const modules = modulesData.modules as Module[];
 
 function getM12Slides(): Slide[] {
   return modules.find((module) => module.id === 12)?.slides ?? [];
+}
+
+function getM15Slides(): Slide[] {
+  return modules.find((module) => module.id === 15)?.slides ?? [];
 }
 
 function getM10Slides(): Slide[] {
@@ -91,7 +95,18 @@ describe('TestPracticeSlides M12 practice contract', () => {
     expect(screen.getByText('Rekomenduojamas startas')).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Pradėk nuo 124\.5 → sukurk rankinį multi-agent pipeline/
+        /Privalomas kelias – 3 pagrindinės praktikos \(121–123\)/
+      )
+    ).toBeInTheDocument();
+    const requiredPath = screen.getByRole('region', {
+      name: 'Privalomas Modulio 12 kelias',
+    });
+    expect(
+      within(requiredPath).getByText('Privalomas kelias')
+    ).toBeInTheDocument();
+    expect(
+      within(requiredPath).getByText(
+        /Modulis laikomas baigtu, kai atliksi 3 pagrindines 3A praktikas/
       )
     ).toBeInTheDocument();
     fireEvent.click(
@@ -135,5 +150,30 @@ describe('TestPracticeSlides M12 practice contract', () => {
     expect(writeText).toHaveBeenCalledWith(
       expect.stringContaining('Užduotis: [APRAŠYK]. Naudok paiešką arba įrankį')
     );
+  });
+});
+
+describe('TestPracticeSlides M15 practice contract', () => {
+  it('keeps the M15 intro completion gate aligned with the quick start', () => {
+    const intro = getM15Slides().find((slide) => slide.id === 150);
+    const content = intro?.content as
+      | { minScenariosToComplete?: number; recommendedSlideIds?: number[] }
+      | undefined;
+
+    expect(content?.minScenariosToComplete).toBe(1);
+    expect(content?.recommendedSlideIds).toEqual(
+      expect.arrayContaining([150.5, 150.25, 151, 152, 153])
+    );
+  });
+
+  it('keeps the M15 quick start before the optional full path', () => {
+    const ids = getM15Slides().map((slide) => slide.id);
+    expect(ids.slice(0, 6)).toEqual([150, 150.5, 150.25, 151, 152, 153]);
+
+    const quickStart = getM15Slides().find((slide) => slide.id === 150.5);
+    expect(quickStart).toMatchObject({
+      type: 'practice-scenario',
+      recommended: true,
+    });
   });
 });

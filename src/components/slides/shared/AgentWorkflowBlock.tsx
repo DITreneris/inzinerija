@@ -10,11 +10,12 @@ import AgentWorkflowDiagram from './AgentWorkflowDiagram';
 import { getAgentWorkflowStepExplanations } from './agentWorkflowContent';
 import { renderBold } from '../../../utils/renderBold';
 import { useStepDiagram } from '../../../utils/useStepDiagram';
+import { InteractiveDiagramShell } from './diagramKit';
 
 const BLOCK_LABELS = {
   lt: {
     regionAria: 'Agentų ciklas: 5 žingsniai su paaiškinimais',
-    youAreHere: 'Tu esi čia:',
+    statusLabel: 'Tu esi čia:',
     clickHint:
       'Paspausk žingsnį diagramoje arba skaičių 1–5 – paaiškinimas rodomas apačioje.',
     navAria: 'Žingsnio pasirinkimas',
@@ -22,7 +23,7 @@ const BLOCK_LABELS = {
   },
   en: {
     regionAria: 'Agent cycle: 5 steps with explanations',
-    youAreHere: 'You are here:',
+    statusLabel: 'You are here:',
     clickHint:
       'Click a step in the diagram or number 1–5 – explanation shown below.',
     navAria: 'Step selection',
@@ -42,70 +43,28 @@ export default function AgentWorkflowBlock() {
   return (
     <EnlargeableDiagram
       renderContent={() => (
-        <div className="space-y-4" role="region" aria-label={labels.regionAria}>
-          <div className="flex flex-wrap items-center gap-2">
-            <span
-              className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1.5 text-sm font-semibold text-brand-700 dark:text-brand-300"
-              aria-live="polite"
-            >
-              <span
-                className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
-                aria-hidden
-              />
-              {labels.youAreHere} {currentStep + 1}. {step.title}
-            </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
-              {currentStep + 1} / {totalSteps}
-            </span>
-          </div>
-
+        <InteractiveDiagramShell
+          regionAria={labels.regionAria}
+          statusLabel={labels.statusLabel}
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+          currentTitle={step.title}
+          navAria={labels.navAria}
+          steps={explanations}
+          onStepSelect={setCurrentStep}
+          stepAria={labels.stepAria}
+          explanationTitle={step.title}
+          explanation={<p>{renderBold(step.body)}</p>}
+        >
           <p className="text-xs text-gray-500 dark:text-gray-400">
             {labels.clickHint}
           </p>
-
           <AgentWorkflowDiagram
             locale={loc}
             currentStep={currentStep}
             onStepClick={setCurrentStep}
           />
-
-          <nav
-            className="flex flex-wrap justify-center gap-1.5"
-            aria-label={labels.navAria}
-          >
-            {explanations.map((s, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setCurrentStep(idx)}
-                aria-current={currentStep === idx ? 'step' : undefined}
-                aria-label={labels.stepAria(idx, s.title)}
-                className={`
-                  flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all
-                  focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
-                  ${
-                    currentStep === idx
-                      ? 'border-brand-500 bg-brand-500 text-white shadow-md'
-                      : 'border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/30'
-                  }
-                `}
-              >
-                {idx + 1}
-              </button>
-            ))}
-          </nav>
-
-          <div
-            className="rounded-xl border-l-4 border-l-brand-500 bg-brand-50 dark:bg-brand-900/20 p-4 text-gray-700 dark:text-gray-300 leading-relaxed"
-            role="status"
-            aria-live="polite"
-          >
-            <p className="font-semibold text-brand-800 dark:text-brand-200 mb-2">
-              {step.title}
-            </p>
-            <p>{renderBold(step.body)}</p>
-          </div>
-        </div>
+        </InteractiveDiagramShell>
       )}
       enlargeLabel={t('agentWorkflowEnlargeLabel')}
     />

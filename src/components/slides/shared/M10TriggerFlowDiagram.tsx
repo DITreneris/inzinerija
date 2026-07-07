@@ -15,6 +15,7 @@ const X0 = 36;
 const GREY = '#7B8794';
 const ACCENT = '#b8860b';
 const ARROW = 8;
+const WEBHOOK_NOTCH = 14;
 
 export default function M10TriggerFlowDiagram({
   locale = 'lt',
@@ -134,12 +135,8 @@ export default function M10TriggerFlowDiagram({
         markerEnd={`url(#m10tf-fwd-${uid})`}
       />
 
-      <rect
-        x={whX}
-        y={whY}
-        width={BOX_W}
-        height={BOX_H}
-        rx="10"
+      <path
+        d={`M${whX + 10} ${whY} H${whX + BOX_W - WEBHOOK_NOTCH} L${whX + BOX_W} ${whY + BOX_H / 2} L${whX + BOX_W - WEBHOOK_NOTCH} ${whY + BOX_H} H${whX + 10} Q${whX} ${whY + BOX_H} ${whX} ${whY + BOX_H - 10} V${whY + 10} Q${whX} ${whY} ${whX + 10} ${whY} Z`}
         fill="#fef3c7"
         stroke={ACCENT}
         strokeWidth="1.5"

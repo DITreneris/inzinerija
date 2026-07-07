@@ -2,8 +2,8 @@ import { useId } from 'react';
 import { getM15PracticeLoopLabels } from './m15PracticeLoopContent';
 import type { M10Locale } from './m10DiagramContent';
 
-const W = 520;
-const H = 260;
+const W = 620;
+const H = 320;
 
 export default function M15PracticeLoopDiagram({
   locale = 'lt',
@@ -15,16 +15,23 @@ export default function M15PracticeLoopDiagram({
   const uid = useId().replace(/:/g, '');
   const L = getM15PracticeLoopLabels(locale);
   const cx = W / 2;
-  const yTop = 44;
-  const boxW = 100;
-  const boxH = 40;
-  const row2Y = 118;
-  const loopY = 190;
-
-  const branches = [
-    { x: cx - 160, label: L.img },
-    { x: cx - 50, label: L.vid },
-    { x: cx + 60, label: L.mus },
+  const boxH = 38;
+  const quickY = 62;
+  const fullY = 190;
+  const boxW = 82;
+  const quickSteps = [
+    { x: 76, w: 74, t: L.brief },
+    { x: 172, w: 88, t: L.pick },
+    { x: 282, w: 88, t: L.prompt },
+    { x: 392, w: 88, t: L.result },
+    { x: 502, w: 76, t: L.fix },
+  ];
+  const fullSteps = [
+    { x: 110, w: boxW, t: L.img },
+    { x: 225, w: boxW, t: L.vid },
+    { x: 340, w: boxW, t: L.mus },
+    { x: 455, w: 70, t: L.qa },
+    { x: 545, w: 58, t: L.done },
   ];
 
   return (
@@ -59,78 +66,52 @@ export default function M15PracticeLoopDiagram({
       </text>
       <text
         x={cx}
-        y={yTop - 6}
+        y={44}
         textAnchor="middle"
         fontSize="10"
         fill="#64748b"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
-        {L.pick}
+        {L.quick}
       </text>
-      {branches.map((b, i) => (
-        <g key={i}>
+      {quickSteps.map((b, i) => (
+        <g key={`q-${i}`}>
           <rect
             x={b.x}
-            y={yTop}
-            width={boxW}
-            height={boxH}
-            rx="8"
-            fill="#486581"
-            stroke="#102a43"
-            strokeWidth="1"
-          />
-          <text
-            x={b.x + boxW / 2}
-            y={yTop + 26}
-            textAnchor="middle"
-            fill="white"
-            fontSize="11"
-            fontWeight="700"
-            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-          >
-            {b.label}
-          </text>
-          <line
-            x1={b.x + boxW / 2}
-            y1={yTop + boxH}
-            x2={cx}
-            y2={row2Y - 4}
-            stroke="#7B8794"
-            strokeWidth="2"
-          />
-        </g>
-      ))}
-      {[
-        { x: cx - 130, w: 100, t: L.prompt },
-        { x: cx - 50, w: 100, t: L.result },
-        { x: cx + 30, w: 100, t: L.fix },
-      ].map((b, i) => (
-        <g key={i}>
-          <rect
-            x={b.x}
-            y={row2Y}
+            y={quickY}
             width={b.w}
             height={boxH}
             rx="8"
-            fill={i === 1 ? '#0d9488' : '#334e68'}
+            fill={i === 3 ? '#0d9488' : '#486581'}
             stroke="#102a43"
             strokeWidth="1"
           />
           <text
             x={b.x + b.w / 2}
-            y={row2Y + 26}
+            y={quickY + 25}
             textAnchor="middle"
             fill="white"
-            fontSize="11"
+            fontSize="10"
             fontWeight="700"
             fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
           >
             {b.t}
           </text>
+          {i < quickSteps.length - 1 && (
+            <line
+              x1={b.x + b.w}
+              y1={quickY + boxH / 2}
+              x2={quickSteps[i + 1].x - 6}
+              y2={quickY + boxH / 2}
+              stroke="#7B8794"
+              strokeWidth="2"
+              markerEnd={`url(#m15lp-${uid})`}
+            />
+          )}
         </g>
       ))}
       <path
-        d={`M ${cx + 80} ${row2Y + boxH / 2} Q ${cx + 120} ${loopY} ${cx} ${loopY} Q ${cx - 120} ${loopY} ${cx - 130} ${row2Y + boxH / 2}`}
+        d="M 548 100 Q 584 136 470 136 Q 300 136 290 100"
         fill="none"
         stroke="#b8860b"
         strokeWidth="2"
@@ -139,14 +120,70 @@ export default function M15PracticeLoopDiagram({
       />
       <text
         x={cx}
-        y={loopY + 28}
+        y={156}
         textAnchor="middle"
         fontSize="9"
         fill="#7a5807"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
-        {locale === 'en' ? 'Repeat until good enough' : 'Kartok, kol tinka'}
+        {L.repeat}
       </text>
+      <text
+        x={cx}
+        y={176}
+        textAnchor="middle"
+        fontSize="10"
+        fill="#64748b"
+        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+      >
+        {L.full}
+      </text>
+      {fullSteps.map((b, i) => (
+        <g key={`f-${i}`}>
+          <rect
+            x={b.x}
+            y={fullY}
+            width={b.w}
+            height={boxH}
+            rx="8"
+            fill={i === 3 ? '#0d9488' : '#334e68'}
+            stroke="#102a43"
+            strokeWidth="1"
+          />
+          <text
+            x={b.x + b.w / 2}
+            y={fullY + 25}
+            textAnchor="middle"
+            fill="white"
+            fontSize="10"
+            fontWeight="700"
+            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+          >
+            {b.t}
+          </text>
+          {i < fullSteps.length - 1 && (
+            <line
+              x1={b.x + b.w}
+              y1={fullY + boxH / 2}
+              x2={fullSteps[i + 1].x - 6}
+              y2={fullY + boxH / 2}
+              stroke="#7B8794"
+              strokeWidth="2"
+              markerEnd={`url(#m15lp-${uid})`}
+            />
+          )}
+        </g>
+      ))}
+      <line
+        x1={150}
+        y1={quickY + boxH}
+        x2={150}
+        y2={fullY - 8}
+        stroke="#b8860b"
+        strokeWidth="2"
+        strokeDasharray="5 4"
+        markerEnd={`url(#m15lp-${uid})`}
+      />
     </svg>
   );
 }

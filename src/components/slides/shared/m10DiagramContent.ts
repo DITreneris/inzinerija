@@ -28,8 +28,8 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
     actionSub: 'veiksmas sistemoje',
     webhook: 'Webhook',
     webhookSub: 'realaus laiko įvykis',
-    arrowToTrigger: 'gali būti trigger',
-    aria: 'Workflow: Trigger, Condition, Action; Webhook gali veikti kaip trigger',
+    arrowToTrigger: 'gali veikti kaip paleidiklis',
+    aria: 'Workflow: Trigger, Condition, Action; Webhook gali veikti kaip paleidiklis',
   };
 }
 
@@ -78,10 +78,10 @@ export function getM10ToolTreeLeaves(locale: M10Locale): M10ToolLeaf[] {
   }
   return [
     { id: 'm365', condition: 'Office 365 kasdien', tool: 'Power Automate' },
-    { id: 'quick', condition: 'Non-tech, greitai', tool: 'Zapier' },
+    { id: 'quick', condition: 'Netechninė komanda, greitai', tool: 'Zapier' },
     { id: 'logic', condition: 'Sudėtinga logika + kaina', tool: 'Make.com' },
     { id: 'host', condition: 'Savihost / duomenys pas mus', tool: 'n8n' },
-    { id: 'ent', condition: 'Enterprise governance', tool: 'Workato' },
+    { id: 'ent', condition: 'Didelės įmonės valdymas', tool: 'Workato' },
   ];
 }
 
@@ -126,7 +126,7 @@ export function getM10AgentTaxonomyLabels(locale: M10Locale) {
   return {
     title: 'Agentų taksonomija: gylis + rolės',
     ladderTitle: 'Gylio lygiai L0–L3',
-    rolesTitle: 'Multi-agent rolės',
+    rolesTitle: 'Kelių agentų rolės',
     l0: 'L0 Pokalbis',
     l0Sub: 'Vienas Q&A',
     l1: 'L1 Agentas',
@@ -139,7 +139,7 @@ export function getM10AgentTaxonomyLabels(locale: M10Locale) {
     coordinator: 'Koordinatorius',
     specialist: 'Specialistas',
     evaluator: 'Vertintojas',
-    aria: 'Agentų taksonomija: L0–L3 gylio ladder ir keturios multi-agent rolės su perdavimais',
+    aria: 'Agentų taksonomija: L0–L3 gylio kopėčios ir keturios kelių agentų rolės su perdavimais',
   };
 }
 
@@ -155,7 +155,7 @@ export function getM10SpecIncidentLabels(locale: M10Locale) {
     aria:
       locale === 'en'
         ? 'Workflow specification eight blocks and incident response five steps'
-        : 'Workflow specifikacija aštuoni blokai ir incidentų playbook penki žingsniai',
+        : 'Workflow specifikacija aštuoni blokai ir incidentų planas penki žingsniai',
   };
 }
 
@@ -177,18 +177,18 @@ export function getM10WorkflowSpecLabels(locale: M10Locale) {
     };
   }
   return {
-    title: 'Vieno puslapio spec (8 blokų)',
+    title: 'Vieno puslapio specifikacija (8 blokai)',
     blocks: [
       'Trigger',
-      'Input',
+      'Įvestis',
       'Condition',
-      'Actions',
-      'Output',
+      'Veiksmai',
+      'Išvestis',
       'SLA',
       'Klaidos',
-      'Audit',
+      'Auditas',
     ],
-    aria: 'Vieno puslapio workflow specifikacija: Trigger, Input, Condition, Actions, Output, SLA, Klaidos ir Audit',
+    aria: 'Vieno puslapio workflow specifikacija: Trigger, Įvestis, Condition, Veiksmai, Išvestis, SLA, Klaidos ir Auditas',
   };
 }
 
@@ -201,8 +201,8 @@ export function getM10IncidentPlaybookLabels(locale: M10Locale) {
     };
   }
   return {
-    title: 'Incident playbook (5 žingsniai)',
+    title: 'Incidentų planas (5 žingsniai)',
     steps: ['Stabdyti', 'Fiksuoti', 'Apimtis', 'Pranešti', 'Ištaisyti'],
-    aria: 'Incidentų playbook: Stabdyti, Fiksuoti, Apimtis, Pranešti ir Ištaisyti',
+    aria: 'Incidentų planas: Stabdyti, Fiksuoti, Apimtis, Pranešti ir Ištaisyti',
   };
 }
