@@ -19,8 +19,7 @@ Canonical sluoksniai:
 
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
 - `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`) class helperiai.
-- `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės.
-- `src/utils/useDiagramPalette.ts` — dark/light SVG paletės parinkimas React diagramoms.
+- `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės ir `getDiagramPalette()` / `getDiagramToneColors()` dark/light parinkimas.
 
 Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](analysis/DESIGN_TOKENS_BASELINE_2026-07.md). Vykdymo tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
 
@@ -32,7 +31,7 @@ npm run audit:module-identity      # M1–15 accent + identityIcon
 
 Auditas yra warn-only (be `:gate`). Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tailwind arbitrary styling (`bg-[#...]`, `border-[#...]`, `shadow-[...]`).
 
-2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). **DS hardening (2026-07-08):** `<Banner>` ≥10 production naudojimų, `<CTAButton>` ≥15, `SlideWorkspace` M4/M10 pilotas, `surfaceGlass.shell` sticky sluoksniuose. Likęs backlog: likę `border-l-4` callout'ai BlockSlides / TestPracticeSlides → `<Banner>` (fazė 4, ne blokeris).
+2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). **DS hardening (2026-07-08):** `<Banner>` ≥35 production naudojimų, `<CTAButton>` ≥30, `SlideWorkspace` M1/M4/M7/M10/M13, `surfaceGlass.shell` sticky sluoksniuose. **DS Next Waves W7–W10:** auditas sumažintas iki `417` radinių (`59` arbitrary class), o `audit:release-preflight` vykdo `audit:design-tokens:gate` + `audit:module-identity`.
 
 ---
 
@@ -70,6 +69,15 @@ Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 | M4      | `violet`  | `Brain`                 |
 | M5      | `cyan`    | `ClipboardCheck`        |
 | M6      | `accent`  | `Rocket`                |
+| M7      | `sky`     | `BarChart3`             |
+| M8      | `sky`     | `ClipboardCheck`        |
+| M9      | `sky`     | `Rocket`                |
+| M10     | `fuchsia` | `Cpu`                   |
+| M11     | `fuchsia` | `ClipboardCheck`        |
+| M12     | `fuchsia` | `Rocket`                |
+| M13     | `rose`    | `Image`                 |
+| M14     | `rose`    | `ClipboardCheck`        |
+| M15     | `rose`    | `Rocket`                |
 
 **3 UI vietos (v0.2 + v0.3.1):**
 
@@ -108,7 +116,7 @@ Canonical interaktyvių diagramų kelias: `DIAGRAM_KIT_STANDARD.md`.
 
 - Klaviatūros kelias: HTML `DiagramStepNav`.
 - SVG hit zones: `DiagramStepHitArea` tik pointer sąveikai, be `role="button"` ir be `tabIndex`.
-- Dark mode: `useDiagramPalette()` SVG fonui, rėmui, flow linijoms ir tekstui.
+- Dark mode: `diagramTokens.ts` `getDiagramPalette()` / `getDiagramToneColors()` arba SVG `dark:` klasės fonui, rėmui, flow linijoms ir tekstui.
 - Wrapper: `InteractiveDiagramShell` su status badge, step nav ir explanation bloku.
 
 `RlProcessBlock` yra pirmas legacy pilotas šiame 2026-07 remonte: shell perkelta į `InteractiveDiagramShell`, SVG keyboard path pašalintas, dark SVG fonas saugomas testu.
@@ -138,6 +146,8 @@ Canonical interaktyvių diagramų kelias: `DIAGRAM_KIT_STANDARD.md`.
 npm run lint && npm run typecheck && npm run test:run && npm run build
 npm run validate:schema
 npm run audit:design-tokens   # warn-only, lyginti su 2026-07 baseline
+npm run audit:design-tokens:gate
+npm run audit:module-identity
 node scripts/audit-footer-length.mjs
 ```
 

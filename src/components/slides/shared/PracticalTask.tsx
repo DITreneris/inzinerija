@@ -511,7 +511,8 @@ export default function PracticalTask({
           {/* Redaguoti + Kopijuoti – visiems moduliams (įsk. Modulį 3 practice-scenario) */}
           {!isEditing ? (
             <div className="flex flex-wrap gap-2">
-              <button
+              <CTAButton
+                variant="secondary"
                 onClick={async () => {
                   if (answer?.trim()) {
                     try {
@@ -524,7 +525,7 @@ export default function PracticalTask({
                   }
                 }}
                 disabled={!answer?.trim()}
-                className="btn-secondary flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label={t('practicalCopyPrompt')}
               >
                 {copied ? (
@@ -533,35 +534,36 @@ export default function PracticalTask({
                   <Copy className="w-4 h-4" />
                 )}
                 {copied ? t('practicalCopied') : t('practicalCopy')}
-              </button>
-              <button
+              </CTAButton>
+              <CTAButton
+                variant="secondary"
                 onClick={() => setIsEditing(true)}
-                className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
                 aria-label={t('practicalEditPromptAria')}
               >
                 <Pencil className="w-4 h-4" />
                 {t('practicalEdit')}
-              </button>
+              </CTAButton>
             </div>
           ) : (
             <div className="flex gap-2">
-              <button
+              <CTAButton
+                variant="secondary"
                 onClick={() => {
                   setAnswer(lastSavedRef.current);
                   setIsEditing(false);
                 }}
-                className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
               >
                 {t('practicalCancel')}
-              </button>
-              <button
+              </CTAButton>
+              <CTAButton
+                variant="primary"
                 onClick={handleSaveEdits}
                 disabled={!answer?.trim()}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[44px]"
+                className="disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <CheckCircle className="w-5 h-5" />
                 {t('practicalSaveChanges')}
-              </button>
+              </CTAButton>
             </div>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { getM13ThirdsLabels } from './m13DiagramContent';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import type { M10Locale } from './m10DiagramContent';
 
 const W = 360;
@@ -33,8 +34,9 @@ export default function M13RuleOfThirdsDiagram({
         textAnchor="middle"
         fontSize="13"
         fontWeight="800"
-        fill="#102a43"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill="currentColor"
+        className="text-brand-950 dark:text-slate-100"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -44,8 +46,9 @@ export default function M13RuleOfThirdsDiagram({
         width={FW}
         height={FH}
         rx="8"
-        fill="#f8fafc"
-        stroke="#334e68"
+        fill="currentColor"
+        stroke="currentColor"
+        className="text-slate-50 dark:text-slate-900 stroke-brand-700 dark:stroke-slate-300"
         strokeWidth="2"
       />
       <line
@@ -53,7 +56,8 @@ export default function M13RuleOfThirdsDiagram({
         y1={M + 28}
         x2={x1}
         y2={M + 28 + FH}
-        stroke="#94a3b8"
+        stroke="currentColor"
+        className="text-slate-400 dark:text-slate-500"
         strokeWidth="1"
         strokeDasharray="4 3"
       />
@@ -62,7 +66,8 @@ export default function M13RuleOfThirdsDiagram({
         y1={M + 28}
         x2={x2}
         y2={M + 28 + FH}
-        stroke="#94a3b8"
+        stroke="currentColor"
+        className="text-slate-400 dark:text-slate-500"
         strokeWidth="1"
         strokeDasharray="4 3"
       />
@@ -71,7 +76,8 @@ export default function M13RuleOfThirdsDiagram({
         y1={y1}
         x2={M + FW}
         y2={y1}
-        stroke="#94a3b8"
+        stroke="currentColor"
+        className="text-slate-400 dark:text-slate-500"
         strokeWidth="1"
         strokeDasharray="4 3"
       />
@@ -80,7 +86,8 @@ export default function M13RuleOfThirdsDiagram({
         y1={y2}
         x2={M + FW}
         y2={y2}
-        stroke="#94a3b8"
+        stroke="currentColor"
+        className="text-slate-400 dark:text-slate-500"
         strokeWidth="1"
         strokeDasharray="4 3"
       />
@@ -95,8 +102,9 @@ export default function M13RuleOfThirdsDiagram({
           cx={px}
           cy={py}
           r="5"
-          fill="#b8860b"
-          stroke="#713f12"
+          fill="currentColor"
+          stroke="currentColor"
+          className="text-accent-600 dark:text-accent-300 stroke-amber-900 dark:stroke-accent-300"
           strokeWidth="1"
         />
       ))}
@@ -105,8 +113,9 @@ export default function M13RuleOfThirdsDiagram({
         y={H - 6}
         textAnchor="middle"
         fontSize="9"
-        fill="#64748b"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill="currentColor"
+        className="text-slate-500 dark:text-slate-300"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.sub}
       </text>

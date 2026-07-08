@@ -51,6 +51,7 @@ _Įrašai po 1.4.3 release._
 
 ### Changed
 
+- **DS Next Waves W7–W10:** `BlockSlides`, `TestPracticeSlides`, `AdvancedBlockSlide`, `ActionIntroSlide` ir `RecognitionExerciseBlock` callout'ai migruoti į `<Banner>`; `SlideWorkspace` išplėstas į M1/M7/M13 ir `evaluator-prompt-block`; TestPractice / shell CTA migruoti į `<CTAButton>`, o shell kortelės į `<Card>`; M13/M15 diagramų P2 paletės ir dark-mode polish; `audit:release-preflight` papildytas DS vartais, design-token baseline sumažintas iki 417 (`arbitraryClass` 59).
 - **Design tokens:** targeted arbitrary-class cleanup (`text-[11px]` → `text-xs` VaizdoGeneratoriusSlide); blockVariant sekcijos per bendrą helperį vietoj inline ternary.
 - **DS W6 QA closure:** sticky offset baseline sinchronizuotas (GlossaryPage, TestPracticeSlides); automated gates žali (lint, 416 testai, audit total 469, module-identity 15/15); TODO §1.0c W6–W10 planas.
 

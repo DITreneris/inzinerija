@@ -165,14 +165,14 @@ export function InputBlockSlide({
   ];
   return (
     <div className="space-y-6">
-      <div className="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 p-6 rounded-xl">
+      <Banner variant="warning" className="p-6 rounded-xl">
         <h3 className="font-bold text-xl mb-3 text-orange-900 dark:text-orange-100">
           {t('blockInputQuestion')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
           {t('blockInputBody')}
         </p>
-      </div>
+      </Banner>
 
       <div className="space-y-4">
         <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border-2 border-gray-200 dark:border-gray-700">
@@ -253,14 +253,14 @@ export function OutputBlockSlide({
   ];
   return (
     <div className="space-y-6">
-      <div className="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 p-6 rounded-xl">
+      <Banner variant="warning" className="p-6 rounded-xl">
         <h3 className="font-bold text-xl mb-3 text-orange-900 dark:text-orange-100">
           {t('blockOutputQuestion')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
           {t('blockOutputBody')}
         </p>
-      </div>
+      </Banner>
 
       <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border-2 border-gray-200 dark:border-gray-700">
         <h4 className="font-bold mb-4 text-gray-900 dark:text-white">
@@ -534,14 +534,14 @@ export function ReasoningModelsSlide({
 
       <OptionalWhySections slide={slide} />
 
-      <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl border-l-4 border-amber-500 flex flex-wrap items-center gap-3">
+      <Banner variant="warning" className="flex flex-wrap items-center gap-3">
         <span className="text-lg" aria-hidden="true">
           ⚠️
         </span>
         <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
           {t('blockReasoningModelsWarning')}
         </p>
-      </div>
+      </Banner>
 
       {onRenderTask()}
     </div>
@@ -730,7 +730,10 @@ export function ReasoningBlockSlide({
           </span>
         </summary>
         <div className="px-5 pb-5 space-y-4">
-          <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-lg border-l-4 border-violet-500">
+          <Banner
+            variant="info"
+            className="rounded-lg !bg-violet-50 dark:!bg-violet-900/20 !border-violet-500"
+          >
             <div className="flex justify-between items-start mb-2">
               <span className="text-xs font-semibold text-violet-700 dark:text-violet-300">
                 {t('blockReasoningExample1Label')}
@@ -740,8 +743,11 @@ export function ReasoningBlockSlide({
             <pre className="text-xs text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-mono bg-white dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
               {example1}
             </pre>
-          </div>
-          <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-lg border-l-4 border-violet-500">
+          </Banner>
+          <Banner
+            variant="info"
+            className="rounded-lg !bg-violet-50 dark:!bg-violet-900/20 !border-violet-500"
+          >
             <div className="flex justify-between items-start mb-2">
               <span className="text-xs font-semibold text-violet-700 dark:text-violet-300">
                 {t('blockReasoningExample2Label')}
@@ -751,7 +757,7 @@ export function ReasoningBlockSlide({
             <pre className="text-xs text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-mono bg-white dark:bg-gray-800 p-3 rounded-lg overflow-x-auto">
               {example2}
             </pre>
-          </div>
+          </Banner>
         </div>
       </details>
 
@@ -760,7 +766,7 @@ export function ReasoningBlockSlide({
         template={fullTemplate}
       />
 
-      <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl border-l-4 border-amber-500">
+      <Banner variant="warning">
         <div className="flex items-start gap-2">
           <span className="text-lg shrink-0" aria-hidden="true">
             ⚠️
@@ -774,7 +780,7 @@ export function ReasoningBlockSlide({
             </p>
           </div>
         </div>
-      </div>
+      </Banner>
 
       <OptionalWhySections slide={slide} />
       {onRenderTask()}
@@ -1047,11 +1053,11 @@ export function QualityBlockSlide({
         </div>
       </div>
 
-      <div className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 p-4 rounded-xl">
+      <Banner variant="success">
         <p className="text-sm text-gray-700 dark:text-gray-300">
           {t('blockQualitySafetyBelt')}
         </p>
-      </div>
+      </Banner>
 
       <OptionalWhySections slide={slide} />
       {onRenderTask()}
@@ -1080,7 +1086,7 @@ export function AdvancedParameters2Slide({
   return (
     <div className="space-y-6">
       {intro && <VeiksmoIntroBlock content={intro} />}
-      <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 p-6 rounded-xl">
+      <Banner variant="info" className="p-6 rounded-xl">
         <h3 className="font-bold text-xl mb-3 text-brand-900 dark:text-brand-100">
           {t('blockAdvanced2Title')}
         </h3>
@@ -1095,7 +1101,7 @@ export function AdvancedParameters2Slide({
             {t('blockAdvanced2Warning2')}
           </p>
         </div>
-      </div>
+      </Banner>
 
       <details
         open
@@ -1162,7 +1168,7 @@ export function AdvancedParameters2Slide({
               </tbody>
             </table>
           </div>
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border-l-4 border-emerald-500 mb-3">
+          <Banner variant="success" className="rounded-lg mb-3">
             <p className="font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
               {t('blockAdvanced2BusinessExample')}
             </p>
@@ -1181,13 +1187,16 @@ export function AdvancedParameters2Slide({
                 <div>{t('blockAdvanced2MaxExampleTask')}</div>
               </div>
             </div>
-          </div>
-          <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border-l-4 border-red-500">
+          </Banner>
+          <Banner
+            variant="warning"
+            className="p-3 rounded-lg !bg-red-50 dark:!bg-red-900/20 !border-red-500"
+          >
             <p className="text-sm text-red-800 dark:text-red-200">
               <span className="font-semibold">❌ </span>
               {t('blockAdvanced2MaxError')}
             </p>
-          </div>
+          </Banner>
         </div>
       </details>
 
@@ -1210,23 +1219,26 @@ export function AdvancedParameters2Slide({
             {t('blockAdvanced2TopPControls')}
           </p>
           <div className="space-y-3 mb-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border-l-4 border-blue-500">
+            <Banner
+              variant="info"
+              className="!bg-blue-50 dark:!bg-blue-900/20 !border-blue-500"
+            >
               <p className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
                 {t('blockAdvanced2TopP1')}
               </p>
-            </div>
-            <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border-l-4 border-emerald-500">
+            </Banner>
+            <Banner variant="success">
               <p className="font-semibold text-emerald-900 dark:text-emerald-100 mb-1">
                 {t('blockAdvanced2TopP2')}
               </p>
-            </div>
-            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+            </Banner>
+            <Banner variant="warning">
               <p className="font-semibold text-orange-900 dark:text-orange-100 mb-1">
                 {t('blockAdvanced2TopP3')}
               </p>
-            </div>
+            </Banner>
           </div>
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border-l-4 border-emerald-500 mb-3">
+          <Banner variant="success" className="rounded-lg mb-3">
             <p className="font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
               {t('blockAdvanced2BusinessExample')}
             </p>
@@ -1245,13 +1257,16 @@ export function AdvancedParameters2Slide({
                 <div>{t('blockAdvanced2TopPExampleTask')}</div>
               </div>
             </div>
-          </div>
-          <div className="bg-violet-50 dark:bg-violet-900/20 p-3 rounded-lg border-l-4 border-violet-500">
+          </Banner>
+          <Banner
+            variant="info"
+            className="p-3 rounded-lg !bg-violet-50 dark:!bg-violet-900/20 !border-violet-500"
+          >
             <p className="text-sm text-violet-800 dark:text-violet-200">
               <span className="font-semibold">🧠 </span>
               {t('blockAdvanced2TopPRule')}
             </p>
-          </div>
+          </Banner>
         </div>
       </details>
 
@@ -1275,18 +1290,18 @@ export function AdvancedParameters2Slide({
                 {t('blockAdvanced2Freq1')}
               </p>
             </div>
-            <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl border-l-4 border-amber-500">
+            <Banner variant="warning">
               <p className="font-semibold text-amber-900 dark:text-amber-100 mb-1">
                 {t('blockAdvanced2Freq2')}
               </p>
-            </div>
-            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+            </Banner>
+            <Banner variant="warning">
               <p className="font-semibold text-orange-900 dark:text-orange-100 mb-1">
                 {t('blockAdvanced2Freq3')}
               </p>
-            </div>
+            </Banner>
           </div>
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border-l-4 border-emerald-500 mb-3">
+          <Banner variant="success" className="rounded-lg mb-3">
             <p className="font-semibold text-emerald-900 dark:text-emerald-100 mb-2">
               {t('blockAdvanced2BusinessExample')}
             </p>
@@ -1305,8 +1320,8 @@ export function AdvancedParameters2Slide({
                 <div>{t('blockAdvanced2FreqExampleTask')}</div>
               </div>
             </div>
-          </div>
-          <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border-l-4 border-amber-500">
+          </Banner>
+          <Banner variant="warning" className="p-3 rounded-lg">
             <p className="text-sm text-amber-800 dark:text-amber-200 font-semibold mb-2">
               📌 {t('blockAdvanced2FreqUseful')}
             </p>
@@ -1315,7 +1330,7 @@ export function AdvancedParameters2Slide({
               <li>{t('blockAdvanced2FreqUseful2')}</li>
               <li>{t('blockAdvanced2FreqUseful3')}</li>
             </ul>
-          </div>
+          </Banner>
         </div>
       </details>
 
@@ -1338,23 +1353,29 @@ export function AdvancedParameters2Slide({
             {t('blockAdvanced2PresenceControls')}
           </p>
           <div className="space-y-3 mb-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border-l-4 border-blue-500">
+            <Banner
+              variant="info"
+              className="!bg-blue-50 dark:!bg-blue-900/20 !border-blue-500"
+            >
               <p className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
                 {t('blockAdvanced2Presence1')}
               </p>
-            </div>
-            <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border-l-4 border-emerald-500">
+            </Banner>
+            <Banner variant="success">
               <p className="font-semibold text-emerald-900 dark:text-emerald-100 mb-1">
                 {t('blockAdvanced2Presence2')}
               </p>
-            </div>
-            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border-l-4 border-orange-500">
+            </Banner>
+            <Banner variant="warning">
               <p className="font-semibold text-orange-900 dark:text-orange-100 mb-1">
                 {t('blockAdvanced2Presence3')}
               </p>
-            </div>
+            </Banner>
           </div>
-          <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500 mb-3">
+          <Banner
+            variant="warning"
+            className="rounded-lg mb-3 !bg-red-50 dark:!bg-red-900/20 !border-red-500"
+          >
             <p className="text-sm text-red-800 dark:text-red-200 font-semibold mb-2">
               🚫 {t('blockAdvanced2DontUse')}
             </p>
@@ -1363,8 +1384,8 @@ export function AdvancedParameters2Slide({
               <li>{t('blockAdvanced2Dont2')}</li>
               <li>{t('blockAdvanced2Dont3')}</li>
             </ul>
-          </div>
-          <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-lg border-l-4 border-emerald-500 mb-3">
+          </Banner>
+          <Banner variant="success" className="rounded-lg mb-3">
             <p className="text-sm text-emerald-800 dark:text-emerald-200 font-semibold mb-2">
               ✅ {t('blockAdvanced2Fits')}
             </p>
@@ -1373,16 +1394,19 @@ export function AdvancedParameters2Slide({
               <li>{t('blockAdvanced2Fits2')}</li>
               <li>{t('blockAdvanced2Fits3')}</li>
             </ul>
-          </div>
-          <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border-l-4 border-blue-500">
+          </Banner>
+          <Banner
+            variant="info"
+            className="p-3 rounded-lg !bg-blue-50 dark:!bg-blue-900/20 !border-blue-500"
+          >
             <p className="text-sm text-blue-800 dark:text-blue-200">
               {t('blockAdvanced2PresenceRule')}
             </p>
-          </div>
+          </Banner>
         </div>
       </details>
 
-      <div className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 p-6 rounded-xl">
+      <Banner variant="success" className="p-6 rounded-xl">
         <h4 className="font-bold text-lg mb-3 text-emerald-900 dark:text-emerald-100">
           {t('blockAdvanced2SafeDefault')}
         </h4>
@@ -1413,9 +1437,12 @@ export function AdvancedParameters2Slide({
         <div className="mt-3 text-sm text-gray-700 dark:text-gray-300">
           <p className="font-semibold mb-2">📌 {t('blockAdvanced2SafeNote')}</p>
         </div>
-      </div>
+      </Banner>
 
-      <div className="bg-violet-50 dark:bg-violet-900/20 border-l-4 border-violet-500 p-6 rounded-xl">
+      <Banner
+        variant="info"
+        className="p-6 rounded-xl !bg-violet-50 dark:!bg-violet-900/20 !border-violet-500"
+      >
         <h4 className="font-bold text-lg mb-3 text-violet-900 dark:text-violet-100">
           {t('blockAdvanced2OneRule')}
         </h4>
@@ -1424,7 +1451,7 @@ export function AdvancedParameters2Slide({
             {t('blockAdvanced2OneRuleText')}
           </p>
         </div>
-      </div>
+      </Banner>
 
       <TemplateBlock
         label={t('blockAdvanced2TemplateLabel')}

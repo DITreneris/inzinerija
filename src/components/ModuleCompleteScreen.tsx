@@ -14,6 +14,8 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
+import Card from './ui/Card';
+import CTAButton from './ui/CTAButton';
 import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
 import { logError } from '../utils/logger';
@@ -248,7 +250,7 @@ export function ModuleCompleteScreen({
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
-      <div className="card p-8 lg:p-12 text-center">
+      <Card className="p-8 lg:p-12 text-center">
         <div className="mb-6">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 border-2 border-emerald-200 dark:border-emerald-700">
             <CheckCircle className="w-10 h-10 text-emerald-500 dark:text-emerald-400" />
@@ -308,8 +310,8 @@ export function ModuleCompleteScreen({
                   ? t('module:unlockCertBodyTier2')
                   : t('module:unlockCertBodyTier3')}
             </p>
-            <button
-              type="button"
+            <CTAButton
+              variant="primary"
               onClick={() => {
                 const lastSlide = module.slides?.[module.slides.length - 1];
                 track('cta_click', {
@@ -321,7 +323,7 @@ export function ModuleCompleteScreen({
                 });
                 onRequestCertificate!(activeCertificateTier);
               }}
-              className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white border-0 shadow-md hover:shadow-lg transition-all"
+              className="px-6 py-3 min-h-[48px] bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white border-0 shadow-md hover:shadow-lg transition-all"
               aria-label={
                 t('module:unlockCertCta') +
                 ' ' +
@@ -334,12 +336,13 @@ export function ModuleCompleteScreen({
             >
               <Download className="w-5 h-5" aria-hidden />
               {t('module:unlockCertCta')}
-            </button>
+            </CTAButton>
           </div>
         )}
 
         <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-          <button
+          <CTAButton
+            variant="primary"
             onClick={() => {
               const lastSlide = module.slides?.[module.slides.length - 1];
               track('cta_click', {
@@ -353,7 +356,7 @@ export function ModuleCompleteScreen({
               });
               onContinueToNext(module.id);
             }}
-            className="btn-primary flex items-center justify-center gap-2 order-first"
+            className="order-first"
           >
             {isLastModule ? (
               <>
@@ -366,8 +369,9 @@ export function ModuleCompleteScreen({
                 <ArrowRight className="w-5 h-5" />
               </>
             )}
-          </button>
-          <button
+          </CTAButton>
+          <CTAButton
+            variant="secondary"
             onClick={() => {
               const lastSlide = module.slides?.[module.slides.length - 1];
               track('cta_click', {
@@ -379,11 +383,10 @@ export function ModuleCompleteScreen({
               });
               onBack();
             }}
-            className="btn-secondary flex items-center justify-center gap-2"
           >
             <ArrowLeft className="w-5 h-5" />
             {t('module:backToModules')}
-          </button>
+          </CTAButton>
           {module.id === 1 && (
             <HandoutDownloadButton
               label={t('module:m1HandoutCtaLabel')}
@@ -686,18 +689,18 @@ export function ModuleCompleteScreen({
 
         {module.id === 3 && onViewPart1Summary && (
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <button
-              type="button"
+            <CTAButton
+              variant="secondary"
               onClick={onViewPart1Summary}
-              className="btn-secondary inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2 text-sm font-medium"
+              className="px-4 py-2 text-sm font-medium"
               aria-label={t('module:viewPart1SummaryAria')}
             >
               <BookOpen className="w-4 h-4 shrink-0" aria-hidden />
               {t('module:viewPart1SummaryLabel')}
-            </button>
+            </CTAButton>
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 }

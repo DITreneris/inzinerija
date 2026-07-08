@@ -3,6 +3,7 @@ import { Check, X } from 'lucide-react';
 import { renderBodyWithBold } from './renderBody';
 import { useLocale } from '../../../../contexts/LocaleContext';
 import type { ContentBlockContent } from '../../../../types/modules';
+import Banner from '../../../ui/Banner';
 
 export function RecognitionExerciseBlock({
   exercise,
@@ -26,15 +27,12 @@ export function RecognitionExerciseBlock({
     });
   };
 
-  const borderAccent = useAiAccent
-    ? 'border-l-4 border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40'
-    : 'border-l-4 border-l-accent-500 border border-accent-200 dark:border-accent-800';
-  const bgAccent = useAiAccent
-    ? 'bg-di-visata-ai-cool/80 dark:bg-gray-800/80'
-    : 'bg-accent-50 dark:bg-accent-900/20';
+  const exerciseFrameClasses = useAiAccent
+    ? 'mt-6 p-6 rounded-xl !bg-di-visata-ai-cool/80 dark:!bg-gray-800/80 !border-l-di-visata-ai-accent border border-blue-200/60 dark:border-blue-800/40'
+    : 'mt-6 p-6 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-l-accent-500 border border-accent-200 dark:border-accent-800';
 
   return (
-    <div className={`mt-6 p-6 rounded-xl ${borderAccent} ${bgAccent}`}>
+    <Banner variant="warning" className={exerciseFrameClasses}>
       <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-3">
         {exercise.title}
       </h4>
@@ -124,6 +122,6 @@ export function RecognitionExerciseBlock({
         </span>
         {renderBodyWithBold(exercise.goal)}
       </p>
-    </div>
+    </Banner>
   );
 }

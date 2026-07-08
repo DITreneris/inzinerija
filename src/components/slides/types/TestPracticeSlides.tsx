@@ -64,6 +64,7 @@ import {
 } from '../../../constants/ecosystemUrls';
 import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
 import Banner from '../../ui/Banner';
+import CTAButton from '../../ui/CTAButton';
 
 /** Category scores from the last test attempt (session-lived, not persisted) */
 export interface CategoryScore {
@@ -383,11 +384,14 @@ export function TestIntroSlide({
             </p>
           )}
           {testIntro.firstActionCTA && (
-            <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-4 rounded-lg mb-3">
+            <Banner
+              variant="warning"
+              className="rounded-lg mb-3 !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+            >
               <p className="text-sm font-medium text-accent-900 dark:text-accent-100">
                 {testIntro.firstActionCTA}
               </p>
-            </div>
+            </Banner>
           )}
           {testIntro.microWinPhrase && (
             <p className="text-sm text-emerald-700 dark:text-emerald-300 font-medium bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-lg mb-3">
@@ -1257,10 +1261,10 @@ export function TestResultsSlide({
               />
             </div>
             {thresholdExplanation && (
-              <div
-                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
-                role="region"
-                aria-label={t('resultMeaningAria')}
+              <Banner
+                variant="warning"
+                className="p-5 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+                ariaLabel={t('resultMeaningAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('resultMeaningHeading')}
@@ -1268,13 +1272,13 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {thresholdExplanation}
                 </p>
-              </div>
+              </Banner>
             )}
             {useCaseBlock && (
-              <div
-                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
-                role="region"
-                aria-label={t('whereToApplyAria')}
+              <Banner
+                variant="warning"
+                className="p-5 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+                ariaLabel={t('whereToApplyAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whereToApplyHeading')}
@@ -1282,7 +1286,7 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {useCaseBlock}
                 </p>
-              </div>
+              </Banner>
             )}
             <div className="flex flex-wrap gap-3 justify-center items-center">
               <HandoutDownloadButton
@@ -1291,15 +1295,15 @@ export function TestResultsSlide({
                 className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
               />
               {onNextSlide && (
-                <button
-                  type="button"
+                <CTAButton
+                  variant="primary"
                   onClick={onNextSlide}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  className="px-6 py-3"
                   aria-label={passedCtaLabel}
                 >
                   <ChevronRight className="w-5 h-5" />
                   {passedCtaLabel}
-                </button>
+                </CTAButton>
               )}
             </div>
             {handoutError && (
@@ -1327,35 +1331,35 @@ export function TestResultsSlide({
                   className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
                 />
                 {onGoToModule && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="secondary"
                     onClick={() => onGoToModule(4)}
-                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('viewModule4Aria')}
                   >
                     {failedCtaReview}
-                  </button>
+                  </CTAButton>
                 )}
                 {onGoToModule && m5TestSectionIndex >= 0 && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="primary"
                     onClick={handleRetryM5Test}
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('retryMiniTestAria')}
                   >
                     {failedCtaRetry}
-                  </button>
+                  </CTAButton>
                 )}
                 {onNextSlide && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="secondary"
                     onClick={onNextSlide}
-                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={failedCtaContinue}
                   >
                     <ChevronRight className="w-4 h-4" />
                     {failedCtaContinue}
-                  </button>
+                  </CTAButton>
                 )}
               </div>
               {handoutError && (
@@ -1499,15 +1503,15 @@ export function TestResultsSlide({
             </div>
             {onNextSlide && (
               <div className="flex justify-center">
-                <button
-                  type="button"
+                <CTAButton
+                  variant="primary"
                   onClick={onNextSlide}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  className="px-6 py-3"
                   aria-label={t('m8ContinueToModule9')}
                 >
                   <ChevronRight className="w-5 h-5" />
                   {t('m8ContinueToModule9')}
-                </button>
+                </CTAButton>
               </div>
             )}
           </>
@@ -1522,24 +1526,24 @@ export function TestResultsSlide({
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {onGoToModule && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="secondary"
                     onClick={() => onGoToModule(7)}
-                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('m8ViewModule7')}
                   >
                     {t('m8ViewModule7')}
-                  </button>
+                  </CTAButton>
                 )}
                 {onNextSlide && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="primary"
                     onClick={onNextSlide}
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
                     {t('m8TryTestAgain')}
-                  </button>
+                  </CTAButton>
                 )}
               </div>
             </div>
@@ -1620,10 +1624,10 @@ export function TestResultsSlide({
               </p>
             </div>
             {thresholdExplanation && (
-              <div
-                className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl"
-                role="region"
-                aria-label={t('resultMeaningAria')}
+              <Banner
+                variant="terms"
+                className="p-5 rounded-xl !border-slate-400"
+                ariaLabel={t('resultMeaningAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whatItMeansHeading')}
@@ -1631,13 +1635,13 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {thresholdExplanation}
                 </p>
-              </div>
+              </Banner>
             )}
             {useCaseBody && (
-              <div
-                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
-                role="region"
-                aria-label={t('whereToApplyShortAria')}
+              <Banner
+                variant="warning"
+                className="p-5 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+                ariaLabel={t('whereToApplyShortAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {useCaseHeading}
@@ -1645,19 +1649,19 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {useCaseBody}
                 </p>
-              </div>
+              </Banner>
             )}
             {onNextSlide && (
               <div className="flex justify-center">
-                <button
-                  type="button"
+                <CTAButton
+                  variant="primary"
                   onClick={onNextSlide}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  className="px-6 py-3"
                   aria-label={t('startModule12Aria')}
                 >
                   <ChevronRight className="w-5 h-5" />
                   {t('startModule12Aria')}
-                </button>
+                </CTAButton>
               </div>
             )}
           </>
@@ -1672,28 +1676,28 @@ export function TestResultsSlide({
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {onGoToModule && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="secondary"
                     onClick={() => onGoToModule(10)}
-                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('viewModule10Aria')}
                   >
                     {locale === 'en'
                       ? 'View Module 10'
                       : 'Peržiūrėti Modulį 10'}
-                  </button>
+                  </CTAButton>
                 )}
                 {onNextSlide && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="primary"
                     onClick={onNextSlide}
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
                     {locale === 'en'
                       ? 'Try test again'
                       : 'Bandyti testą dar kartą'}
-                  </button>
+                  </CTAButton>
                 )}
               </div>
             </div>
@@ -1774,10 +1778,10 @@ export function TestResultsSlide({
               </p>
             </div>
             {thresholdExplanation && (
-              <div
-                className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-5 rounded-xl"
-                role="region"
-                aria-label={t('resultMeaningAria')}
+              <Banner
+                variant="terms"
+                className="p-5 rounded-xl !border-slate-400"
+                ariaLabel={t('resultMeaningAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whatItMeansHeading')}
@@ -1785,13 +1789,13 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {thresholdExplanation}
                 </p>
-              </div>
+              </Banner>
             )}
             {useCaseBody && (
-              <div
-                className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-5 rounded-xl"
-                role="region"
-                aria-label={t('whereToApplyShortAria')}
+              <Banner
+                variant="warning"
+                className="p-5 rounded-xl !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+                ariaLabel={t('whereToApplyShortAria')}
               >
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {useCaseHeading}
@@ -1799,19 +1803,19 @@ export function TestResultsSlide({
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
                   {useCaseBody}
                 </p>
-              </div>
+              </Banner>
             )}
             {onNextSlide && (
               <div className="flex justify-center">
-                <button
-                  type="button"
+                <CTAButton
+                  variant="primary"
                   onClick={onNextSlide}
-                  className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                  className="px-6 py-3"
                   aria-label={t('startModule15Aria')}
                 >
                   <ChevronRight className="w-5 h-5" />
                   {t('startModule15Aria')}
-                </button>
+                </CTAButton>
               </div>
             )}
           </>
@@ -1826,28 +1830,28 @@ export function TestResultsSlide({
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {onGoToModule && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="secondary"
                     onClick={() => onGoToModule(13)}
-                    className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('viewModule13Aria')}
                   >
                     {locale === 'en'
                       ? 'View Module 13'
                       : 'Peržiūrėti Modulį 13'}
-                  </button>
+                  </CTAButton>
                 )}
                 {onNextSlide && (
-                  <button
-                    type="button"
+                  <CTAButton
+                    variant="primary"
                     onClick={onNextSlide}
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+                    className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
                     {locale === 'en'
                       ? 'Try test again'
                       : 'Bandyti testą dar kartą'}
-                  </button>
+                  </CTAButton>
                 )}
               </div>
             </div>
@@ -1968,24 +1972,24 @@ export function TestResultsSlide({
       {/* Navigation buttons */}
       <div className="flex flex-wrap gap-3 justify-center">
         {!passed && onGoToModule && (
-          <button
-            type="button"
+          <CTAButton
+            variant="secondary"
             onClick={() => onGoToModule(1)}
-            className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+            className="px-6 py-3"
             aria-label={t('viewModule1Aria')}
           >
             {locale === 'en' ? 'View Module 1' : 'Peržiūrėti Modulį 1'}
-          </button>
+          </CTAButton>
         )}
         {passed && onGoToModule && (
-          <button
-            type="button"
+          <CTAButton
+            variant="primary"
             onClick={() => onGoToModule(3)}
-            className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
+            className="px-6 py-3"
             aria-label={t('startModule3Aria')}
           >
             <ChevronRight className="w-5 h-5" /> {t('startModule3Aria')}
-          </button>
+          </CTAButton>
         )}
       </div>
     </div>
@@ -2111,29 +2115,29 @@ function RemediationRetryBlock({
         );
       })}
       {!showResults && (
-        <button
-          type="button"
+        <CTAButton
+          variant="primary"
           onClick={handleCheck}
           disabled={!allAnswered}
-          className="btn-primary inline-flex items-center justify-center min-h-[44px] px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={t('checkAnswersAria')}
         >
           {t('checkShort')}
-        </button>
+        </CTAButton>
       )}
       {showResults && (
         <div className="flex items-center justify-between pt-2 border-t border-gray-200 dark:border-gray-700">
           <span className="font-semibold text-gray-900 dark:text-white">
             {t('resultLabel')}: {score}%
           </span>
-          <button
-            type="button"
+          <CTAButton
+            variant="secondary"
             onClick={onClose}
-            className="btn-secondary px-3 py-2 min-h-[44px] text-sm"
+            className="px-3 py-2 text-sm"
             aria-label={t('backToResultAria')}
           >
             {t('backToResultAria')}
-          </button>
+          </CTAButton>
         </div>
       )}
     </div>
@@ -2497,10 +2501,10 @@ export function PracticeIntroSlide({
           </div>
         )}
         {introContent.handoutPromise && (
-          <div
-            className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4"
-            role="region"
-            aria-label={t('pdfHandoutAria')}
+          <Banner
+            variant="terms"
+            className="rounded-xl !border-slate-400"
+            ariaLabel={t('pdfHandoutAria')}
           >
             <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug flex items-center gap-2">
               <Download
@@ -2509,7 +2513,7 @@ export function PracticeIntroSlide({
               />
               {introContent.handoutPromise}
             </p>
-          </div>
+          </Banner>
         )}
         {hasM6Progress && m6ScenarioTotal > 0 && (
           <p className="text-center text-sm font-semibold text-violet-700 dark:text-violet-300">
@@ -2929,10 +2933,10 @@ export function PracticeIntroSlide({
           </p>
         )}
         {isM9 && introContent.useCaseBlock && (
-          <div
-            className="bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500 rounded-r-xl p-3 mb-3"
-            role="region"
-            aria-label={t('whereToApplyQAria')}
+          <Banner
+            variant="success"
+            className="p-3 mb-3"
+            ariaLabel={t('whereToApplyQAria')}
           >
             <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-1">
               {locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}
@@ -2940,7 +2944,7 @@ export function PracticeIntroSlide({
             <p className="text-sm text-gray-700 dark:text-gray-300">
               {introContent.useCaseBlock}
             </p>
-          </div>
+          </Banner>
         )}
         {!isM9 && introContent.duration && (
           <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
@@ -2948,33 +2952,36 @@ export function PracticeIntroSlide({
           </p>
         )}
         {isMod3 && introContent.optionalInstruction && (
-          <div
-            className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
-            role="region"
-            aria-label={t('optionalPracticeAria')}
+          <Banner
+            variant="warning"
+            className="p-3 mb-3"
+            ariaLabel={t('optionalPracticeAria')}
           >
             <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
               {introContent.optionalInstruction}
             </p>
-          </div>
+          </Banner>
         )}
         {!isM9 &&
           (!isM12 || !introContent.primaryPathIntro) &&
           introContent.recommendedStart && (
-            <div
-              className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3 mb-3"
-              role="region"
-              aria-label={t('recommendedStartAria')}
+            <Banner
+              variant="warning"
+              className="p-3 mb-3"
+              ariaLabel={t('recommendedStartAria')}
             >
               <p className="text-sm text-amber-800 dark:text-amber-200">
                 {introContent.recommendedStart}
               </p>
-            </div>
+            </Banner>
           )}
         {recommendedNote && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 rounded-lg bg-gray-100 dark:bg-gray-800/60 px-3 py-2 border-l-4 border-accent-500">
+          <Banner
+            variant="warning"
+            className="mb-3 rounded-lg bg-gray-100 dark:bg-gray-800/60 !border-accent-500 px-3 py-2"
+          >
             {recommendedNote}
-          </p>
+          </Banner>
         )}
         {introContent.firstActionCTA && (
           <div
@@ -3135,26 +3142,26 @@ export function PracticeIntroSlide({
           </summary>
           <div className="px-4 pb-4 pt-0 border-t border-gray-200 dark:border-gray-700 space-y-4">
             {introContent.recommendedStart && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-r-xl p-3">
+              <Banner variant="warning" className="p-3">
                 <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-1">
                   {t('m9RecommendedAfterWorkflow')}
                 </h4>
                 <p className="text-sm text-amber-800 dark:text-amber-200">
                   {introContent.recommendedStart}
                 </p>
-              </div>
+              </Banner>
             )}
             {(introContent.storyBlock || introContent.characterMeaning) && (
               <div role="region" aria-label={t('storyBlockAria')}>
                 {introContent.storyBlock && (
-                  <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 rounded-r-xl p-4 mb-3">
+                  <Banner variant="info" className="mb-3">
                     <h4 className="font-bold text-brand-900 dark:text-brand-100 text-sm mb-2">
                       {t('storyBlockHeading')}
                     </h4>
                     <p className="text-sm text-gray-700 dark:text-gray-300">
                       {introContent.storyBlock}
                     </p>
-                  </div>
+                  </Banner>
                 )}
                 {introContent.characterMeaning && (
                   <p

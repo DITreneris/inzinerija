@@ -23,4 +23,17 @@ describe('Banner', () => {
     );
     expect(container.firstChild).toHaveClass('border-slate-500');
   });
+
+  it('allows accent class overrides for migrated callouts', () => {
+    const { container } = render(
+      <Banner
+        variant="warning"
+        className="!bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
+      >
+        Pirmas veiksmas.
+      </Banner>
+    );
+
+    expect(container.firstChild).toHaveClass('!border-accent-500');
+  });
 });

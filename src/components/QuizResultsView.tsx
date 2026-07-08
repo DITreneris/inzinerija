@@ -8,6 +8,8 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
+import Card from './ui/Card';
+import CTAButton from './ui/CTAButton';
 import { useCountUp } from '../utils/useCountUp';
 import { buildEcosystemUrl } from '../constants/ecosystemUrls';
 import { EcosystemDeepenBlock } from './EcosystemDeepenBlock';
@@ -87,7 +89,7 @@ export function QuizResultsView({
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
-      <div className="card p-4 sm:p-6 lg:p-12 text-center">
+      <Card className="p-4 sm:p-6 lg:p-12 text-center">
         <div className="mb-6">
           <div
             className={`inline-flex items-center justify-center w-24 h-24 rounded-full ${
@@ -208,20 +210,14 @@ export function QuizResultsView({
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={onRestart}
-            className="btn-secondary flex items-center justify-center gap-2"
-          >
+          <CTAButton variant="secondary" onClick={onRestart}>
             <RefreshCw className="w-5 h-5" />
             {t('btnRestart')}
-          </button>
-          <button
-            onClick={onBack}
-            className="btn-primary flex items-center justify-center gap-2"
-          >
+          </CTAButton>
+          <CTAButton variant="primary" onClick={onBack}>
             {t('btnBack')}
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </CTAButton>
         </div>
 
         {showDeepenSpinoff && (
@@ -235,7 +231,7 @@ export function QuizResultsView({
             />
           </div>
         )}
-      </div>
+      </Card>
     </div>
   );
 }

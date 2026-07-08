@@ -60,13 +60,13 @@
 | ID      | Banga            | Užduotis                                                         | Status |
 | ------- | ---------------- | ---------------------------------------------------------------- | ------ |
 | **W6**  | QA closure       | DS smoke docs + sticky baseline sync + commit checkpoint         | [x]    |
-| **W7a** | Banner           | BlockSlides batch (~15 callout'ų)                                | [ ]    |
-| **W7b** | Banner           | TestPracticeSlides likutis                                       | [ ]    |
-| **W7c** | Banner           | AdvancedBlockSlide + ActionIntroSlide + RecognitionExerciseBlock | [ ]    |
+| **W7a** | Banner           | BlockSlides batch (~15 callout'ų)                                | [x]    |
+| **W7b** | Banner           | TestPracticeSlides likutis                                       | [x]    |
+| **W7c** | Banner           | AdvancedBlockSlide + ActionIntroSlide + RecognitionExerciseBlock | [x]    |
 | **W7d** | Banner           | ContentSlides mažais batch'ais (optional)                        | [ ]    |
-| **W8**  | SlideWorkspace   | M1/M7/M13 + evaluator-prompt-block                               | [ ]    |
-| **W9**  | Primitives       | CTAButton/Card TestPractice + shell + HomePage                   | [ ]    |
-| **W10** | Diagrams + gates | M13/M15 P2 + baseline 469 + release-preflight                    | [ ]    |
+| **W8**  | SlideWorkspace   | M1/M7/M13 + evaluator-prompt-block                               | [x]    |
+| **W9**  | Primitives       | CTAButton/Card TestPractice + shell + HomePage                   | [x]    |
+| **W10** | Diagrams + gates | M13/M15 P2 + baseline 417 + release-preflight                    | [x]    |
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 

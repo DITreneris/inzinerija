@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { getM13PromptStackLabels } from './m13DiagramContent';
 import type { M10Locale } from './m10DiagramContent';
 
@@ -19,6 +20,7 @@ export default function M13PromptStackDiagram({
   const cx = W / 2;
   const bw = 260;
   const x0 = (W - bw) / 2;
+  const tone = DIAGRAM_TONE_COLORS.brand;
   let y = 36;
 
   const rows = [
@@ -36,8 +38,8 @@ export default function M13PromptStackDiagram({
     >
       <defs>
         <linearGradient id={`pst-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={tone.top} />
+          <stop offset="100%" stopColor={tone.bottom} />
         </linearGradient>
       </defs>
       <text
@@ -46,8 +48,8 @@ export default function M13PromptStackDiagram({
         textAnchor="middle"
         fontSize="12"
         fontWeight="800"
-        fill="#102a43"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={DIAGRAM_TOKENS.colors.brandDark}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -63,7 +65,7 @@ export default function M13PromptStackDiagram({
               height={BOX_H}
               rx="10"
               fill={`url(#pst-${uid})`}
-              stroke="#102a43"
+              stroke={tone.stroke}
               strokeWidth="1.2"
               opacity={1 - i * 0.06}
             />
@@ -74,7 +76,7 @@ export default function M13PromptStackDiagram({
               fill="white"
               fontSize="12"
               fontWeight="700"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {r.title}
             </text>
@@ -82,9 +84,9 @@ export default function M13PromptStackDiagram({
               x={cx}
               y={yy + 44}
               textAnchor="middle"
-              fill="rgba(255,255,255,0.9)"
+              fill={DIAGRAM_TOKENS.colors.whiteText}
               fontSize="10"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {r.sub}
             </text>

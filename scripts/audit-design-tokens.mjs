@@ -44,11 +44,11 @@ const FLAGS = {
 
 /** Baseline from docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md (2026-07 repair pass). */
 const BASELINE = {
-  hex: 343,
+  hex: 295,
   inlineStyle: 12,
-  svgFill: 100,
-  arbitraryClass: 66,
-  total: 521,
+  svgFill: 51,
+  arbitraryClass: 59,
+  total: 417,
 };
 
 /** Reikšmės, kurios NETURI būti laikomos „hex'ais“ (legitimūs base64 fragmentai, regex bait'ai). */

@@ -73,7 +73,7 @@
 - [ ] **Schemų geriausios praktikos (QA primena):** Jei keista flowchart/diagrama – priminti patikrinti pagal `docs/development/SCHEME_AGENT.md` §3.11 ir §5 (vizualinė patikra): ar tekstas telpa į blokus, ar schema centre, ar rodyklės kraštas į kraštą.
 - [ ] **Diagram kit a11y:** Migruotos interaktyvios diagramos turi HTML `nav button` keyboard kelią ir neturi dubliuotų `svg [role="button"]` / `svg [tabindex="0"]` taikinių.
 - [ ] **Design-token baseline:** Paleisti `npm run audit:design-tokens`; nauji hardcoded hex / arbitrary class atvejai turi būti sumažinti arba dokumentuoti kaip išimtis `DESIGN_TOKENS_BASELINE_2026-07.md` kontekste.
-- [ ] **Design-token regression gate (DS hardening):** `npm run audit:design-tokens:gate` – exit 0 (ne didesnis nei 2026-07 baseline: total 521, arbitrary 66).
+- [ ] **Design-token regression gate (DS hardening):** `npm run audit:design-tokens:gate` – exit 0 (ne didesnis nei DS Next Waves baseline: total 417, arbitrary 59).
 - [ ] **Module identity gate:** `npm run audit:module-identity` – visi M1–15 moduliai turi `accent` + `identityIcon` (`modules.json`).
 
 ---
@@ -161,7 +161,7 @@
 > **Įtraukta:** 2026-05-19 (Design System v0.2, E2.3). **SOT:** [`docs/development/DESIGN_SYSTEM_V0_2.md §5`](DESIGN_SYSTEM_V0_2.md). **Baseline:** [`docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md). **Skriptas:** `node scripts/audit-design-tokens.mjs` (warn-only, exit 0).
 
 - [ ] **Paleisti audit'ą:** `node scripts/audit-design-tokens.mjs` (arba `node scripts/audit-design-tokens.mjs --json` JSON formatu) – skenuoja `src/components/**` ir `src/utils/**`, suskaičiuoja hex literal'us, inline `style={{ ... }}` ir SVG `fill`/`stroke` atvejus.
-- [ ] **Palyginti su baseline (2026-05-19):** TOTAL findings **≤ 480** (hex ≤ 351, inline ≤ 13, svg ≤ 116). **Tendencija turi būti ↓ arba lygi.** Jei skaičius **padidėjo** – patikrinti, ar naujas hex'as turi paaiškinimo komentarą (pvz. `// v0.2 — module identity` arba `// jspdf RGB`); kitaip rollback'as task'ui, kuris pridėjo naują hex'ą (žr. plano §10 E7.4).
+- [ ] **Palyginti su baseline (DS Next Waves, 2026-07-08):** TOTAL findings **≤ 417** (hex ≤ 295, inline ≤ 12, svg ≤ 51, arbitrary ≤ 59). **Tendencija turi būti ↓ arba lygi.** Jei skaičius **padidėjo** – patikrinti, ar naujas hex'as turi paaiškinimo komentarą (pvz. `// v0.2 — module identity` arba `// jspdf RGB`); kitaip rollback'as task'ui, kuris pridėjo naują hex'ą (žr. plano §10 E7.4).
 - [ ] **Top-5 „dirtiest" failai – nepakitę:** Pirmieji 5 (`CustomGptProcessDiagram`, `LlmArchDiagramDiagram`, `M10SpecIncidentDiagram`, `LlmAutoregressiveDiagram`, `M13RuleOfThirdsDiagram`) – pagal v0.3 backlog'ą **B1**, jų konsolidavimas planuojamas vėliau; v0.2 metu jie **nesikeičia**.
 - [ ] **Jei `audit:design-tokens` `package.json` script'as pridėtas (E2.1 baigta):** vietoj `node scripts/...` galima naudoti `npm run audit:design-tokens` (žr. plano §5 E2.1 exit-kriterijus).
 

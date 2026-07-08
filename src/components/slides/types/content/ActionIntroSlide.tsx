@@ -12,6 +12,7 @@ import {
   Download,
 } from 'lucide-react';
 import { CopyButton } from '../../shared';
+import Banner from '../../../ui/Banner';
 import Eyebrow from '../../../ui/Eyebrow';
 import type { LucideIcon } from 'lucide-react';
 import type {
@@ -237,10 +238,10 @@ export function ActionIntroSlide({
             </div>
           )}
           {revealed && content.handoutPromise && (
-            <div
-              className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4 animate-fade-in"
-              role="region"
-              aria-label={t('pdfHandoutAria')}
+            <Banner
+              variant="terms"
+              className="rounded-xl !border-slate-400 animate-fade-in"
+              ariaLabel={t('pdfHandoutAria')}
             >
               <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug flex items-center gap-2">
                 <Download
@@ -249,26 +250,26 @@ export function ActionIntroSlide({
                 />
                 {content.handoutPromise}
               </p>
-            </div>
+            </Banner>
           )}
           {content.sandboxMessage && (
-            <div
-              className="bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4 rounded-xl animate-fade-in mb-4"
-              role="region"
-              aria-label={t('sandboxMessageAria')}
+            <Banner
+              variant="terms"
+              className="rounded-xl !border-slate-400 animate-fade-in mb-4"
+              ariaLabel={t('sandboxMessageAria')}
             >
               <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 {content.sandboxMessage}
               </p>
-            </div>
+            </Banner>
           )}
           <div
             className={`grid grid-cols-1 ${content.audience || content.duration || content.firstActionCTA ? 'sm:grid-cols-2' : ''} gap-6 ${hasReveal ? 'animate-fade-in' : ''}`}
           >
-            <div
-              className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 p-5 rounded-xl"
-              role="region"
-              aria-label={content.outcomesHeading || t('outcomesRegionAria')}
+            <Banner
+              variant="info"
+              className="p-5 rounded-xl"
+              ariaLabel={content.outcomesHeading || t('outcomesRegionAria')}
             >
               {content.outcomesHeading && (
                 <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3">
@@ -313,7 +314,7 @@ export function ActionIntroSlide({
                   </span>
                 </button>
               )}
-            </div>
+            </Banner>
 
             <div className="flex flex-col gap-3">
               {!hasReveal && content.firstActionCTA && (
@@ -388,10 +389,10 @@ export function ActionIntroSlide({
           {content.howToUseModule &&
             (content.howToUseModule.items?.length ||
               content.howToUseModule.body) && (
-              <div
-                className="rounded-xl bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400 p-4 animate-fade-in"
-                role="region"
-                aria-label={
+              <Banner
+                variant="terms"
+                className="rounded-xl !border-slate-400 animate-fade-in"
+                ariaLabel={
                   content.howToUseModule.heading || 'Kaip naudoti modulį'
                 }
               >
@@ -413,7 +414,7 @@ export function ActionIntroSlide({
                       ))}
                     </ul>
                   )}
-              </div>
+              </Banner>
             )}
           {content.tools && content.tools.length > 0 && (
             <div className="animate-fade-in border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">

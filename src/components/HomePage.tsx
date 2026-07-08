@@ -294,7 +294,7 @@ export default function HomePage({
         </Card>
       </div>
 
-      <div className="card p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
+      <Card className="p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
         <div className="text-center mb-10">
           <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             {t('home:sectionTitle')}
@@ -431,7 +431,7 @@ export default function HomePage({
             </>
           )}
         </div>
-      </div>
+      </Card>
 
       <section className="animate-fade-in">
         <div className="bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-2xl p-6 mb-8">

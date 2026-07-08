@@ -5,7 +5,7 @@ import { Progress } from '../utils/progress';
 import { getModulesDataSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { useQuizState } from '../utils/useQuizState';
-import { LoadingSpinner } from './ui';
+import { Card, CTAButton, LoadingSpinner } from './ui';
 import CircularProgress from './CircularProgress';
 import { QuizResultsView } from './QuizResultsView';
 
@@ -88,11 +88,11 @@ export default function QuizPage({
           <ArrowLeft className="w-5 h-5" />
           {t('backToHome')}
         </button>
-        <div className="card p-4 sm:p-6 lg:p-8 text-center">
+        <Card className="p-4 sm:p-6 lg:p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300">
             {t('emptyState')} {t('emptyStateHint')}
           </p>
-        </div>
+        </Card>
       </div>
     );
   }
@@ -124,9 +124,9 @@ export default function QuizPage({
           <ArrowLeft className="w-5 h-5" />
           {t('backToHome')}
         </button>
-        <div className="card p-4 sm:p-6 lg:p-8 text-center">
+        <Card className="p-4 sm:p-6 lg:p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300">{t('emptyState')}</p>
-        </div>
+        </Card>
       </div>
     );
   }
@@ -173,7 +173,7 @@ export default function QuizPage({
       </div>
 
       {/* Question card */}
-      <div className="card p-4 sm:p-6 lg:p-8">
+      <Card className="p-4 sm:p-6 lg:p-8">
         {/* Progress bar */}
         <div className="mb-6">
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
@@ -294,46 +294,49 @@ export default function QuizPage({
             </p>
           )}
           <div className="flex justify-between gap-4">
-            <button
+            <CTAButton
+              variant="secondary"
               onClick={() =>
                 setCurrentQuestion(Math.max(0, currentQuestion - 1))
               }
               disabled={currentQuestion === 0}
-              className="btn-secondary disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] touch-manipulation"
+              className="disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
               aria-label={t('prevQuestionAria')}
             >
               {t('common:back')}
-            </button>
+            </CTAButton>
 
             {isLastQuestion ? (
-              <button
+              <CTAButton
+                variant="primary"
                 onClick={handleSubmit}
                 disabled={!hasAnswer}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-h-[44px] touch-manipulation"
+                className="disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                 aria-label={t('finishQuizAria')}
                 aria-describedby={!hasAnswer ? 'quiz-next-hint' : undefined}
               >
                 {t('submit')}
                 <CheckCircle className="w-5 h-5" />
-              </button>
+              </CTAButton>
             ) : (
-              <button
+              <CTAButton
+                variant="primary"
                 onClick={() => {
                   setCurrentQuestion((prev) => prev + 1);
                   setShowExplanation(false);
                 }}
                 disabled={!hasAnswer}
-                className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 min-h-[44px] touch-manipulation"
+                className="disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                 aria-label={t('nextQuestionAria')}
                 aria-describedby={!hasAnswer ? 'quiz-next-hint' : undefined}
               >
                 {t('nextQuestion')}
                 <ArrowRight className="w-5 h-5" />
-              </button>
+              </CTAButton>
             )}
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

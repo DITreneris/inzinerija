@@ -26,6 +26,8 @@ import AiDetectorsSlide from '@ai-detectors-slide';
 import VaizdoGeneratoriusSlide from '@vaizdo-generatorius-slide';
 import SlideWorkspace from './slides/shared/SlideWorkspace';
 
+const slideWorkspaceModules = new Set([1, 4, 7, 10, 13]);
+
 /* Lazy by group (B): ContentSlides, BlockSlides, TestPracticeSlides – separate chunks.
    lazyWithRetry retries up to 3× on chunk load failure (mobile networks). */
 const LazyActionIntroSlide = lazyWithRetry(() =>
@@ -588,7 +590,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         onGoToSummary={m9SkipSummary}
       />
     );
-    if (ctx.moduleId === 4 || ctx.moduleId === 10) {
+    if (slideWorkspaceModules.has(ctx.moduleId)) {
       return <SlideWorkspace>{slide}</SlideWorkspace>;
     }
     return slide;
@@ -597,7 +599,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
     const m9SkipSummary =
       ctx.moduleId === 9 && ctx.slide.id === 94 ? ctx.onGoToSummary : undefined;
-    return (
+    const slide = (
       <LazyContentBlockSlide
         content={ctx.slide.content as ContentBlockContent}
         slide={ctx.slide}
@@ -606,6 +608,10 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         onGoToSummary={m9SkipSummary}
       />
     );
+    if (slideWorkspaceModules.has(ctx.moduleId)) {
+      return <SlideWorkspace>{slide}</SlideWorkspace>;
+    }
+    return slide;
   },
   'section-break': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();

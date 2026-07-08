@@ -46,7 +46,7 @@ Trend: total findings `539 → 521`; arbitrary class findings `80 → 66`; inlin
 
 ## DS Hardening Stamp (2026-07-08)
 
-Phase 0–5 pilot complete. Regression gate: `npm run audit:design-tokens:gate` (baseline total **521**, arbitrary **66**). **Post-hardening run (2026-07-08):** total **469** (hex 324, inline 12, svg 74, arbitrary **59**) — gate PASS. Primitive adoption: `<Banner>` production usages ≥10, `<CTAButton>` ≥15. Ongoing backlog: remaining inline `border-l-4` callouts in BlockSlides / TestPracticeSlides → `<Banner>` (not a release blocker).
+Phase 0–5 pilot complete. Regression gate: `npm run audit:design-tokens:gate` now tracks the DS Next Waves W7–W10 baseline (total **417**, arbitrary **59**). **Post-wave run (2026-07-08):** total **417** (hex 295, inline 12, svg 51, arbitrary **59**) — gate PASS. Primitive adoption: `<Banner>` production usages ≥35, `<CTAButton>` ≥30. Ongoing backlog: optional ContentSlides `border-l-4` batch (W7d), plus specialized out-of-scope controls such as `HandoutDownloadButton`.
 
 ## Main Drift Categories
 

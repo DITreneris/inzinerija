@@ -36,7 +36,7 @@
     "audit:nav-labels": "node scripts/audit-nav-labels.mjs",
     "audit:m7-pathbranch": "node scripts/audit-m7-pathbranch.mjs",
     "audit:m49": "npm run audit:m46 && npm run audit:m79",
-    "audit:release-preflight": "npm run validate:schema && npm run lint && npm run audit:m49 && npm run audit:nav-labels && npm run audit:m7-pathbranch && npm run test:run",
+    "audit:release-preflight": "npm run validate:schema && npm run lint && npm run audit:design-tokens:gate && npm run audit:module-identity && npm run audit:m49 && npm run audit:nav-labels && npm run audit:m7-pathbranch && npm run test:run",
     "extract:modules-en-m10-m12": "node scripts/extract-modules-m10-m12.mjs",
     "build:modules-en-m10-m12": "node scripts/build-en-m10-m12.mjs",
     "extract:modules-en-m13-m15": "node scripts/extract-modules-m13-m15.mjs",

@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import { getM15PracticeLoopLabels } from './m15PracticeLoopContent';
 import type { M10Locale } from './m10DiagramContent';
 
@@ -50,7 +51,23 @@ export default function M15PracticeLoopDiagram({
           refY="3"
           orient="auto"
         >
-          <path d="M0 0 L6 3 L0 6 Z" fill="#334e68" />
+          <path
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={DIAGRAM_TOKENS.colors.brand}
+          />
+        </marker>
+        <marker
+          id={`m15fb-${uid}`}
+          markerWidth="7"
+          markerHeight="6"
+          refX="6"
+          refY="3"
+          orient="auto"
+        >
+          <path
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={DIAGRAM_TOKENS.colors.amber}
+          />
         </marker>
       </defs>
       <text
@@ -59,8 +76,8 @@ export default function M15PracticeLoopDiagram({
         textAnchor="middle"
         fontSize="13"
         fontWeight="800"
-        fill="#102a43"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={DIAGRAM_TOKENS.colors.brandDark}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -69,8 +86,8 @@ export default function M15PracticeLoopDiagram({
         y={44}
         textAnchor="middle"
         fontSize="10"
-        fill="#64748b"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={DIAGRAM_TOKENS.colors.slate}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.quick}
       </text>
@@ -82,8 +99,12 @@ export default function M15PracticeLoopDiagram({
             width={b.w}
             height={boxH}
             rx="8"
-            fill={i === 3 ? '#0d9488' : '#486581'}
-            stroke="#102a43"
+            fill={
+              i === 3
+                ? DIAGRAM_TOKENS.colors.emerald
+                : DIAGRAM_TOKENS.colors.brandTop
+            }
+            stroke={DIAGRAM_TOKENS.colors.brandDark}
             strokeWidth="1"
           />
           <text
@@ -93,7 +114,7 @@ export default function M15PracticeLoopDiagram({
             fill="white"
             fontSize="10"
             fontWeight="700"
-            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+            fontFamily={DIAGRAM_TOKENS.font}
           >
             {b.t}
           </text>
@@ -103,7 +124,7 @@ export default function M15PracticeLoopDiagram({
               y1={quickY + boxH / 2}
               x2={quickSteps[i + 1].x - 6}
               y2={quickY + boxH / 2}
-              stroke="#7B8794"
+              stroke={DIAGRAM_TOKENS.colors.flow}
               strokeWidth="2"
               markerEnd={`url(#m15lp-${uid})`}
             />
@@ -113,18 +134,18 @@ export default function M15PracticeLoopDiagram({
       <path
         d="M 548 100 Q 584 136 470 136 Q 300 136 290 100"
         fill="none"
-        stroke="#b8860b"
+        stroke={DIAGRAM_TOKENS.colors.amber}
         strokeWidth="2"
         strokeDasharray="5 4"
-        markerEnd={`url(#m15lp-${uid})`}
+        markerEnd={`url(#m15fb-${uid})`}
       />
       <text
         x={cx}
         y={156}
         textAnchor="middle"
         fontSize="9"
-        fill="#7a5807"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={DIAGRAM_TOKENS.colors.amber}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.repeat}
       </text>
@@ -133,8 +154,8 @@ export default function M15PracticeLoopDiagram({
         y={176}
         textAnchor="middle"
         fontSize="10"
-        fill="#64748b"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fill={DIAGRAM_TOKENS.colors.slate}
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.full}
       </text>
@@ -146,8 +167,12 @@ export default function M15PracticeLoopDiagram({
             width={b.w}
             height={boxH}
             rx="8"
-            fill={i === 3 ? '#0d9488' : '#334e68'}
-            stroke="#102a43"
+            fill={
+              i === 3
+                ? DIAGRAM_TOKENS.colors.emerald
+                : DIAGRAM_TOKENS.colors.brand
+            }
+            stroke={DIAGRAM_TOKENS.colors.brandDark}
             strokeWidth="1"
           />
           <text
@@ -157,7 +182,7 @@ export default function M15PracticeLoopDiagram({
             fill="white"
             fontSize="10"
             fontWeight="700"
-            fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+            fontFamily={DIAGRAM_TOKENS.font}
           >
             {b.t}
           </text>
@@ -167,7 +192,7 @@ export default function M15PracticeLoopDiagram({
               y1={fullY + boxH / 2}
               x2={fullSteps[i + 1].x - 6}
               y2={fullY + boxH / 2}
-              stroke="#7B8794"
+              stroke={DIAGRAM_TOKENS.colors.flow}
               strokeWidth="2"
               markerEnd={`url(#m15lp-${uid})`}
             />
@@ -179,10 +204,10 @@ export default function M15PracticeLoopDiagram({
         y1={quickY + boxH}
         x2={150}
         y2={fullY - 8}
-        stroke="#b8860b"
+        stroke={DIAGRAM_TOKENS.colors.amber}
         strokeWidth="2"
         strokeDasharray="5 4"
-        markerEnd={`url(#m15lp-${uid})`}
+        markerEnd={`url(#m15fb-${uid})`}
       />
     </svg>
   );
