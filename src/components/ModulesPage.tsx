@@ -16,7 +16,7 @@ import { useLocale } from '../contexts/LocaleContext';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
-import { LoadingSpinner } from './ui';
+import { LoadingSpinner, Card, CTAButton } from './ui';
 import Eyebrow from './ui/Eyebrow';
 import type { ModuleAccent } from '../types/modules';
 import {
@@ -352,10 +352,12 @@ function ModulesPage({
               });
 
           return (
-            <div
+            <Card
               key={module.id}
-              className={`card relative overflow-hidden transition-all duration-300 animate-fade-in ${
-                locked ? 'opacity-60 cursor-not-allowed' : 'card-hover'
+              className={`relative overflow-hidden transition-all duration-300 animate-fade-in ${
+                locked
+                  ? 'opacity-60 cursor-not-allowed'
+                  : 'hover:shadow-lg hover:-translate-y-0.5'
               } ${isRecommendedNext ? 'ring-2 ring-accent-500 ring-offset-2 dark:ring-offset-gray-900 shadow-lg shadow-accent-500/20' : ''}`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => !locked && onModuleSelect(module.id)}
@@ -548,7 +550,7 @@ function ModulesPage({
                   )}
                 </button>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>
@@ -648,14 +650,15 @@ function ModulesPage({
             {t('allCompleteSubtitle')}
           </p>
           {onGoToQuiz && (
-            <button
+            <CTAButton
+              variant="primary"
               onClick={onGoToQuiz}
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold group"
+              className="px-6 py-3 rounded-xl font-semibold group"
               aria-label={t('goToQuiz')}
             >
               {t('goToQuiz')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </CTAButton>
           )}
         </div>
       )}

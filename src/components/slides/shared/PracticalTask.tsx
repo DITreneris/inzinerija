@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   CheckCircle,
   Sparkles,
@@ -44,6 +45,8 @@ export default function PracticalTask({
   progress,
 }: PracticalTaskProps) {
   const { locale } = useLocale();
+  const { t } = useTranslation('testPractice');
+  const blockLocale = locale.startsWith('en') ? 'en' : 'lt';
   const autoSaveKey = `task-draft-${moduleId}-${slideId}`;
   const completedContentKey = `task-completed-${moduleId}-${slideId}`;
   const isTaskCompleted =
@@ -189,9 +192,7 @@ export default function PracticalTask({
           aria-live="polite"
         >
           <CheckCircle className="w-5 h-5 shrink-0" />
-          <span className="font-medium">
-            {locale === 'en' ? 'Well done!' : 'Gerai padirbėta!'}
-          </span>
+          <span className="font-medium">{t('practicalWellDone')}</span>
         </div>
       )}
 
@@ -208,8 +209,7 @@ export default function PracticalTask({
         <div className="mb-4 bg-white dark:bg-gray-800 border-2 border-accent-200 dark:border-accent-800 rounded-xl p-4 relative group">
           <div className="flex items-start justify-between gap-3 mb-2">
             <p className="text-sm font-semibold text-accent-800 dark:text-accent-200">
-              {task.templateLabel ||
-                (locale === 'en' ? 'Copy prompt' : 'Kopijuoti promptą')}
+              {task.templateLabel || t('practicalCopyPrompt')}
             </p>
             <CopyButton text={task.template} />
           </div>
@@ -237,9 +237,9 @@ export default function PracticalTask({
               </h4>
               {task.instructions.steps.length > 0 && (
                 <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                  {locale === 'en'
-                    ? `${task.instructions.steps.length} steps`
-                    : `${task.instructions.steps.length} žingsnių`}
+                  {t('practicalStepsCount', {
+                    count: task.instructions.steps.length,
+                  })}
                 </span>
               )}
             </div>
@@ -280,11 +280,9 @@ export default function PracticalTask({
                             <span
                               className="inline-flex text-gray-500 dark:text-gray-400 hover:text-brand-600 dark:hover:text-brand-400"
                               title={step.hint}
-                              aria-label={
-                                locale === 'en'
-                                  ? `Hint: ${step.hint}`
-                                  : `Užuomina: ${step.hint}`
-                              }
+                              aria-label={t('practicalHintAria', {
+                                hint: step.hint,
+                              })}
                             >
                               <HelpCircle className="w-4 h-4 shrink-0" />
                             </span>
@@ -310,7 +308,7 @@ export default function PracticalTask({
                             className="w-3.5 h-3.5"
                             strokeWidth={1.5}
                           />
-                          {locale === 'en' ? 'Tip:' : 'Patarimas:'}
+                          {t('practicalTipLabel')}
                         </p>
                         <p className="text-sm text-amber-700 dark:text-amber-300">
                           {step.hint}
@@ -324,9 +322,7 @@ export default function PracticalTask({
                               className="w-3.5 h-3.5"
                               strokeWidth={1.5}
                             />
-                            {locale === 'en'
-                              ? 'Partial solution (copy):'
-                              : 'Tarpinis sprendimas (kopijuoti):'}
+                            {t('practicalPartialSolutionLabel')}
                           </p>
                           <CopyButton text={step.partialSolution} />
                         </div>
@@ -356,11 +352,7 @@ export default function PracticalTask({
             <div
               className="mb-3"
               role="status"
-              aria-label={
-                locale === 'en'
-                  ? 'Block completion progress'
-                  : 'Blokų užpildymo progresas'
-              }
+              aria-label={t('practicalBlockProgressAria')}
             >
               <div className="flex flex-wrap gap-2">
                 {(
@@ -398,17 +390,10 @@ export default function PracticalTask({
               </div>
               {missing.length > 0 && answer?.trim() && (
                 <p className="mt-2 text-xs text-amber-700 dark:text-amber-300">
-                  {locale === 'en' ? (
-                    <>
-                      Missing blocks: {missing.join(', ')}. E.g.:{' '}
-                      {getBlockExample(missing[0], 'en')}
-                    </>
-                  ) : (
-                    <>
-                      Trūksta blokų: {missing.join(', ')}. Pvz.:{' '}
-                      {getBlockExample(missing[0], 'lt')}
-                    </>
-                  )}
+                  {t('practicalMissingBlocks', {
+                    blocks: missing.join(', '),
+                    example: getBlockExample(missing[0], blockLocale),
+                  })}
                 </p>
               )}
             </div>
@@ -418,10 +403,7 @@ export default function PracticalTask({
       {/* Aiški instrukcija, ką vesti – sumažina painiavą „tik skliausteliai“ vs „visas promptas“ (TEST_REPORT #2) */}
       {(task.inputHint || task.template) && (
         <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-          {task.inputHint ??
-            (locale === 'en'
-              ? 'Enter the full prompt in the field below. If the template shows [brackets] – replace them with your own words.'
-              : 'Įvesk visą promptą į lauką žemiau. Jei šablone matai [skliaustelius] – įrašyk savo žodžius vietoje jų.')}
+          {task.inputHint ?? t('practicalInputHintDefault')}
         </p>
       )}
 
@@ -433,15 +415,13 @@ export default function PracticalTask({
           onChange={(e) => setAnswer(e.target.value)}
           onFocus={trackPracticeStartIfNeeded}
           disabled={isTaskCompleted && !isEditing}
-          aria-label={
-            locale === 'en' ? 'Task answer field' : 'Užduoties atsakymo laukas'
-          }
+          aria-label={t('practicalTaskAnswerAria')}
         />
         {/* Flash indicator on save */}
         {showSavedFlash && (
           <div className="absolute bottom-4 right-4 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded-lg animate-fade-in">
             <CheckCircle className="w-3 h-3" />
-            <span>{locale === 'en' ? 'Saved' : 'Išsaugota'}</span>
+            <span>{t('practicalSaved')}</span>
           </div>
         )}
       </div>
@@ -450,20 +430,14 @@ export default function PracticalTask({
       {hasDraft && !showSavedFlash && (
         <div className="flex items-center gap-1.5 mt-1 text-xs text-brand-600 dark:text-brand-400">
           <Save className="w-3 h-3" />
-          <span>
-            {locale === 'en'
-              ? 'Draft saved – you can come back anytime'
-              : 'Juodraštis išsaugotas – gali grįžti bet kada'}
-          </span>
+          <span>{t('practicalDraftSaved')}</span>
         </div>
       )}
 
       {!isTaskCompleted ? (
         <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
           <p className="text-xs text-gray-500 dark:text-gray-400 order-2 sm:order-1">
-            {locale === 'en'
-              ? 'Answer is auto-saved'
-              : 'Atsakymas automatiškai išsaugomas'}
+            {t('practicalAutosaved')}
           </p>
           <div className="flex flex-wrap gap-2 order-1 sm:order-2">
             <CTAButton
@@ -481,22 +455,14 @@ export default function PracticalTask({
               }}
               disabled={!answer?.trim()}
               className="disabled:cursor-not-allowed disabled:opacity-50"
-              aria-label={
-                locale === 'en' ? 'Copy draft' : 'Kopijuoti juodraštį'
-              }
+              aria-label={t('practicalCopyDraftAria')}
             >
               {copied ? (
                 <CheckCircle className="w-4 h-4 text-emerald-600" />
               ) : (
                 <Copy className="w-4 h-4" />
               )}
-              {copied
-                ? locale === 'en'
-                  ? 'Copied!'
-                  : 'Nukopijuota!'
-                : locale === 'en'
-                  ? 'Copy'
-                  : 'Kopijuoti'}
+              {copied ? t('practicalCopied') : t('practicalCopy')}
             </CTAButton>
             <CTAButton
               variant="primary"
@@ -505,21 +471,17 @@ export default function PracticalTask({
               className="disabled:cursor-not-allowed disabled:opacity-50"
             >
               <CheckCircle className="w-5 h-5" />
-              {locale === 'en' ? 'Save task' : 'Išsaugoti užduotį'}
+              {t('practicalSaveTask')}
             </CTAButton>
             {task.allowMarkWithoutAnswer && (
               <button
                 type="button"
                 onClick={handleMarkWithoutAnswer}
                 className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-gray-600 underline-offset-4 transition-colors hover:text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-brand-300 dark:focus-visible:ring-offset-gray-900"
-                aria-label={
-                  locale === 'en'
-                    ? 'Mark task done without text'
-                    : 'Pažymėti užduotį atlikta be teksto'
-                }
+                aria-label={t('practicalMarkDoneWithoutTextAria')}
               >
                 <CheckCircle className="w-4 h-4" />
-                {locale === 'en' ? 'Marked as done' : 'Pažymėjau kaip atliktą'}
+                {t('practicalMarkedDone')}
               </button>
             )}
           </div>
@@ -528,17 +490,13 @@ export default function PracticalTask({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
           <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/30 px-4 py-3 rounded-xl animate-fade-in">
             <CheckCircle className="w-5 h-5 shrink-0" />
-            <span className="font-semibold">
-              {locale === 'en' ? 'Task completed! 🎉' : 'Užduotis atlikta! 🎉'}
-            </span>
+            <span className="font-semibold">{t('practicalTaskCompleted')}</span>
           </div>
           {/* W2: po atliktos užduoties – feedback promptas (kopijuojamas) */}
           {task.feedbackPrompt && (
             <div className="mt-4 p-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/50 dark:bg-amber-900/10">
               <p className="text-xs font-semibold text-amber-800 dark:text-amber-200 mb-2">
-                {locale === 'en'
-                  ? 'What did you get from AI?'
-                  : 'Ką gavai iš DI?'}
+                {t('practicalFeedbackHeading')}
               </p>
               <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap mb-2">
                 {task.feedbackPrompt}
@@ -546,11 +504,7 @@ export default function PracticalTask({
               <CopyButton
                 text={task.feedbackPrompt}
                 size="sm"
-                ariaLabel={
-                  locale === 'en'
-                    ? 'Copy feedback prompt'
-                    : 'Nukopijuoti atsiliepimo promptą'
-                }
+                ariaLabel={t('practicalCopyFeedbackAria')}
               />
             </div>
           )}
@@ -571,32 +525,22 @@ export default function PracticalTask({
                 }}
                 disabled={!answer?.trim()}
                 className="btn-secondary flex items-center justify-center gap-2 min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label={
-                  locale === 'en' ? 'Copy prompt' : 'Kopijuoti promptą'
-                }
+                aria-label={t('practicalCopyPrompt')}
               >
                 {copied ? (
                   <CheckCircle className="w-4 h-4 text-emerald-600" />
                 ) : (
                   <Copy className="w-4 h-4" />
                 )}
-                {copied
-                  ? locale === 'en'
-                    ? 'Copied!'
-                    : 'Nukopijuota!'
-                  : locale === 'en'
-                    ? 'Copy'
-                    : 'Kopijuoti'}
+                {copied ? t('practicalCopied') : t('practicalCopy')}
               </button>
               <button
                 onClick={() => setIsEditing(true)}
                 className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
-                aria-label={
-                  locale === 'en' ? 'Edit prompt' : 'Redaguoti promptą'
-                }
+                aria-label={t('practicalEditPromptAria')}
               >
                 <Pencil className="w-4 h-4" />
-                {locale === 'en' ? 'Edit' : 'Redaguoti'}
+                {t('practicalEdit')}
               </button>
             </div>
           ) : (
@@ -608,7 +552,7 @@ export default function PracticalTask({
                 }}
                 className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
               >
-                {locale === 'en' ? 'Cancel' : 'Atšaukti'}
+                {t('practicalCancel')}
               </button>
               <button
                 onClick={handleSaveEdits}
@@ -616,7 +560,7 @@ export default function PracticalTask({
                 className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[44px]"
               >
                 <CheckCircle className="w-5 h-5" />
-                {locale === 'en' ? 'Save changes' : 'Išsaugoti pakeitimus'}
+                {t('practicalSaveChanges')}
               </button>
             </div>
           )}

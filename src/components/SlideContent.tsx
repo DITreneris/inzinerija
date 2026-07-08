@@ -24,6 +24,7 @@ import HallucinationRatesDashboard from './HallucinationRatesDashboard';
 import HallucinationPipelineSlide from './HallucinationPipelineSlide';
 import AiDetectorsSlide from '@ai-detectors-slide';
 import VaizdoGeneratoriusSlide from '@vaizdo-generatorius-slide';
+import SlideWorkspace from './slides/shared/SlideWorkspace';
 
 /* Lazy by group (B): ContentSlides, BlockSlides, TestPracticeSlides – separate chunks.
    lazyWithRetry retries up to 3× on chunk load failure (mobile networks). */
@@ -520,7 +521,7 @@ export default function SlideContent({
     main
   );
   return (
-    <Suspense fallback={<LoadingSpinner size="sm" text="Kraunama..." />}>
+    <Suspense fallback={<LoadingSpinner size="sm" text={t('loading')} />}>
       {content}
     </Suspense>
   );
@@ -578,7 +579,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
     const m9SkipSummary =
       ctx.moduleId === 9 && ctx.slide.id === 94 ? ctx.onGoToSummary : undefined;
-    return (
+    const slide = (
       <LazyContentBlockSlide
         content={ctx.slide.content as ContentBlockContent}
         slide={ctx.slide}
@@ -587,6 +588,10 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         onGoToSummary={m9SkipSummary}
       />
     );
+    if (ctx.moduleId === 4 || ctx.moduleId === 10) {
+      return <SlideWorkspace>{slide}</SlideWorkspace>;
+    }
+    return slide;
   },
   'evaluator-prompt-block': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();

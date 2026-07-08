@@ -30,7 +30,7 @@ import {
   TestRemediationChips,
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
-import { stickyClasses } from '../../../design-tokens';
+import { stickyClasses, surfaceGlass } from '../../../design-tokens';
 import {
   McqQuestion,
   TrueFalseQuestion,
@@ -46,7 +46,7 @@ import { getT } from '../../../i18n';
 import { useCountUp } from '../../../utils/useCountUp';
 import { getModulesSync } from '../../../data/modulesLoader';
 import { useLocale } from '../../../contexts/LocaleContext';
-import m9CharactersData from '@m9-characters-data';
+import { getM9Characters } from '../../../data/m9CharactersLoader';
 import { getM5HandoutContent } from '../../../data/handoutContentLoader';
 import {
   downloadM5HandoutPdf,
@@ -63,6 +63,7 @@ import {
   blogArticleUrl,
 } from '../../../constants/ecosystemUrls';
 import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
+import Banner from '../../ui/Banner';
 
 /** Category scores from the last test attempt (session-lived, not persisted) */
 export interface CategoryScore {
@@ -72,10 +73,6 @@ export interface CategoryScore {
 }
 let lastCategoryScores: Record<string, CategoryScore> = {};
 let lastMaxStreak = 0;
-
-const M9_CHARACTERS: M9Character[] = (
-  m9CharactersData as { characters: M9Character[] }
-).characters;
 
 function getWhyBenefit(slide: Slide | undefined): string | undefined {
   const c = slide?.content as { whyBenefit?: string } | undefined;
@@ -276,7 +273,10 @@ export function TestIntroSlide({
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 border border-brand-200 dark:border-brand-800 p-5 rounded-xl">
+          <Banner
+            variant="info"
+            className="p-5 rounded-xl border border-brand-200 dark:border-brand-800"
+          >
             <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
               <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
                 <ListChecks
@@ -301,8 +301,11 @@ export function TestIntroSlide({
                 {locale === 'en' ? '• No time limit' : '• Nėra laiko limito'}
               </li>
             </ul>
-          </div>
-          <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800 p-5 rounded-xl">
+          </Banner>
+          <Banner
+            variant="info"
+            className="p-5 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500 border border-accent-200 dark:border-accent-800"
+          >
             <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
               <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
                 <Target
@@ -329,7 +332,7 @@ export function TestIntroSlide({
                   : '• ≥70% = rekomenduojama į praktiką'}
               </li>
             </ul>
-          </div>
+          </Banner>
         </div>
         <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
           <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
@@ -350,9 +353,7 @@ export function TestIntroSlide({
   }
 
   if (useContentDriven) {
-    const title =
-      (slide.title as string) ||
-      (locale === 'en' ? 'Knowledge check' : 'Žinių patikrinimas');
+    const title = (slide.title as string) || t('knowledgeCheckDefault');
     return (
       <div className="space-y-6">
         <div className="bg-gradient-to-r from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-900/30 p-6 rounded-xl border-2 border-brand-200 dark:border-brand-800">
@@ -407,7 +408,7 @@ export function TestIntroSlide({
         {[8, 11, 14].includes(moduleId) && (
           <TestKnowledgeScopeDiagram
             moduleId={moduleId as 8 | 11 | 14}
-            locale={locale === 'en' ? 'en' : 'lt'}
+            locale={locale.startsWith('en') ? 'en' : 'lt'}
             onGoToModule={
               moduleId === 8 || moduleId === 11 ? onGoToModule : undefined
             }
@@ -426,8 +427,7 @@ export function TestIntroSlide({
               />
             </span>
             <span>
-              <strong>{locale === 'en' ? 'Tip:' : 'Patarimas:'}</strong>{' '}
-              {t('tipUnknownAnswer')}
+              <strong>{t('tipLabel')}</strong> {t('tipUnknownAnswer')}
             </span>
           </p>
         </div>
@@ -459,7 +459,10 @@ export function TestIntroSlide({
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-brand-50 dark:bg-brand-900/20 border-l-4 border-brand-500 border border-brand-200 dark:border-brand-800 p-5 rounded-xl">
+        <Banner
+          variant="info"
+          className="p-5 rounded-xl border border-brand-200 dark:border-brand-800"
+        >
           <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
             <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
               <ListChecks
@@ -491,8 +494,11 @@ export function TestIntroSlide({
                 : '• Kiekvienas turi paaiškinimą ir užuominą'}
             </li>
           </ul>
-        </div>
-        <div className="bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800 p-5 rounded-xl">
+        </Banner>
+        <Banner
+          variant="info"
+          className="p-5 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500 border border-accent-200 dark:border-accent-800"
+        >
           <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
             <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
               <Target
@@ -520,7 +526,7 @@ export function TestIntroSlide({
             </li>
             <li>{locale === 'en' ? '• ≥70% = success' : '• ≥70% = sėkmė'}</li>
           </ul>
-        </div>
+        </Banner>
       </div>
       <div className="bg-brand-50 dark:bg-brand-900/20 p-5 rounded-xl">
         <p className="text-brand-800 dark:text-brand-200 text-sm flex items-start gap-2.5">
@@ -843,7 +849,7 @@ export function TestSectionSlide({
       {/* Sticky mini-progress: 5/15 format virš klausimo (Faze 3 M2) */}
       {!showResults && (
         <div
-          className={`${stickyClasses.belowAppNavLow} py-3 mb-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 -mt-2`}
+          className={`${stickyClasses.belowAppNavLow} py-3 mb-4 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 -mt-2 ${surfaceGlass.shell}`}
         >
           <div className="flex items-center justify-between gap-3">
             <span
@@ -1473,14 +1479,8 @@ export function TestResultsSlide({
 
   // Module 8 (Duomenų analizės kelias) results – analogiškai M11
   if (moduleId === 8 && rawScore > 0) {
-    const passedMessage =
-      locale === 'en'
-        ? 'Congratulations! You are ready for the Data Analytics path project (Module 9).'
-        : 'Sveikiname! Esate pasiruošę Duomenų analizės kelio projektui (Modulis 9).';
-    const failedMessage =
-      locale === 'en'
-        ? 'We recommend reviewing Module 7 slides again – pipeline, MASTER prompt, data prep, visualisation.'
-        : 'Rekomenduojame dar kartą peržiūrėti Modulio 7 skaidres – pipeline, MASTER promptą, duomenų paruošimą, vizualizaciją.';
+    const passedMessage = t('m8PassedMessage');
+    const failedMessage = t('m8FailedMessage');
 
     return (
       <div className="space-y-6">
@@ -1503,16 +1503,10 @@ export function TestResultsSlide({
                   type="button"
                   onClick={onNextSlide}
                   className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
-                  aria-label={
-                    locale === 'en'
-                      ? 'Continue to Module 9'
-                      : 'Tęsti į Modulį 9'
-                  }
+                  aria-label={t('m8ContinueToModule9')}
                 >
                   <ChevronRight className="w-5 h-5" />
-                  {locale === 'en'
-                    ? 'Continue to Module 9'
-                    : 'Tęsti į Modulį 9'}
+                  {t('m8ContinueToModule9')}
                 </button>
               </div>
             )}
@@ -1532,11 +1526,9 @@ export function TestResultsSlide({
                     type="button"
                     onClick={() => onGoToModule(7)}
                     className="btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
-                    aria-label={
-                      locale === 'en' ? 'View Module 7' : 'Peržiūrėti Modulį 7'
-                    }
+                    aria-label={t('m8ViewModule7')}
                   >
-                    {locale === 'en' ? 'View Module 7' : 'Peržiūrėti Modulį 7'}
+                    {t('m8ViewModule7')}
                   </button>
                 )}
                 {onNextSlide && (
@@ -1546,9 +1538,7 @@ export function TestResultsSlide({
                     className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px]"
                     aria-label={t('retryTestAria')}
                   >
-                    {locale === 'en'
-                      ? 'Try test again'
-                      : 'Bandyti testą dar kartą'}
+                    {t('m8TryTestAgain')}
                   </button>
                 )}
               </div>
@@ -1557,7 +1547,7 @@ export function TestResultsSlide({
               <TestRemediationChips
                 testModuleId={8}
                 sourceModuleId={8}
-                locale={locale === 'en' ? 'en' : 'lt'}
+                locale={locale.startsWith('en') ? 'en' : 'lt'}
                 onGoToModule={onGoToModule}
               />
             )}
@@ -2311,6 +2301,10 @@ export function PracticeIntroSlide({
   useTranslation();
   const t = getT('testPractice');
   const { locale } = useLocale();
+  const m9Characters = useMemo(
+    () => getM9Characters(locale.startsWith('en') ? 'en' : 'lt'),
+    [locale]
+  );
   const whyBenefit = getWhyBenefit(slide);
   const recommendedNote = getRecommendedNote(slide);
   const [selfAssessment, setSelfAssessment] = useState<
@@ -3177,7 +3171,7 @@ export function PracticeIntroSlide({
                   {t('pressCharacterHint')}
                 </p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                  {M9_CHARACTERS.map((ch) => (
+                  {m9Characters.map((ch) => (
                     <CharacterCard
                       key={ch.id}
                       character={ch}

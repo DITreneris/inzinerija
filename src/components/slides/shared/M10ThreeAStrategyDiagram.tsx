@@ -3,6 +3,7 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
+import { DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { getM10ThreeALabels, type M10Locale } from './m10DiagramContent';
 
 const W = 400;
@@ -65,16 +66,16 @@ export default function M10ThreeAStrategyDiagram({
     >
       <defs>
         <linearGradient id={`m10-3a-a-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#334e68" />
-          <stop offset="100%" stopColor="#486581" />
+          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.brand.top} />
+          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.brand.bottom} />
         </linearGradient>
         <linearGradient id={`m10-3a-b-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#0d9488" />
-          <stop offset="100%" stopColor="#14b8a6" />
+          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.emerald.top} />
+          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.emerald.bottom} />
         </linearGradient>
         <linearGradient id={`m10-3a-c-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#b8860b" />
-          <stop offset="100%" stopColor="#d4a017" />
+          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.amber.top} />
+          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.amber.bottom} />
         </linearGradient>
       </defs>
       <text

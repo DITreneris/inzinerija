@@ -1,4 +1,5 @@
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
+import { DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
 
@@ -21,9 +22,24 @@ export default function M12ThreeLabsDiagram({
   let y = 40;
 
   const rows = [
-    { title: L.l1, sub: L.l1Sub, hum: L.l1Human, fill: '#334e68' },
-    { title: L.l2, sub: L.l2Sub, hum: L.l2Human, fill: '#0d9488' },
-    { title: L.l3, sub: L.l3Sub, hum: L.l3Human, fill: '#b8860b' },
+    {
+      title: L.l1,
+      sub: L.l1Sub,
+      hum: L.l1Human,
+      fill: DIAGRAM_TONE_COLORS.brand.stroke,
+    },
+    {
+      title: L.l2,
+      sub: L.l2Sub,
+      hum: L.l2Human,
+      fill: DIAGRAM_TONE_COLORS.emerald.stroke,
+    },
+    {
+      title: L.l3,
+      sub: L.l3Sub,
+      hum: L.l3Human,
+      fill: DIAGRAM_TONE_COLORS.amber.stroke,
+    },
   ];
 
   return (

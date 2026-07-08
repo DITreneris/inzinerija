@@ -4140,7 +4140,49 @@
                 "body": "**Back to module list** – choose another module or view your certificate. **Advanced paths** (Modules 7–15) – deepen your knowledge of AI use and context engineering.",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "footer": "Next – slide 8: Data checklist"
+          }
+        },
+        {
+          "id": 65.5,
+          "title": "Data handling checklist",
+          "subtitle": "Project completion path – step 1",
+          "type": "path-step",
+          "content": {
+            "title": "Data handling checklist",
+            "pathLabel": "Project completion path",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Before the full handout, quickly check whether you understand the 5 data and prompt handling points. Mark this done when you can apply at least one point within 24 hours.",
+            "sections": [
+              {
+                "heading": "1. Personal prompt library",
+                "body": "Save working prompts in one place so you do not have to search old chats."
+              },
+              {
+                "heading": "2. Prompt versioning",
+                "body": "When you change a prompt, save a copy with a date or version so you can later see what worked better."
+              },
+              {
+                "heading": "3. Documentation",
+                "body": "Add 2–3 sentences to an important template: what it is for, what to paste, and what result to expect."
+              },
+              {
+                "heading": "4. Processes",
+                "body": "For repeatable work, write a short flow: from input to result and check."
+              },
+              {
+                "heading": "5. Data sets",
+                "body": "Keep a small sample data set so you can quickly check whether a new prompt works."
+              },
+              {
+                "heading": "Check",
+                "body": "Which point will you start today – library or versioning?"
+              }
+            ],
+            "unlockedGlossaryTerms": ["Prompt library", "Prompt versioning"],
+            "footer": "Next – slide 9: Data handling"
           }
         },
         {

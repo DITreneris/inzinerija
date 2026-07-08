@@ -66,6 +66,7 @@ import { getColorClasses } from '../utils/colorStyles';
 import { getContentBlockVariantClasses } from '../utils/blockVariantClasses';
 import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
 import SectionDivider from '../../ui/SectionDivider';
+import Banner from '../../ui/Banner';
 import type { ModuleAccent } from '../../../types/modules';
 import type {
   ActionIntroJourneyContent,
@@ -1594,20 +1595,20 @@ export function ContentBlockSlide({
           >
             {t('correctPromptPracticeHeading')}
           </h2>
-          <div className="p-4 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800">
+          <Banner variant="warning" className="p-4">
             <p className="text-sm text-gray-800 dark:text-gray-200">
               {practice.intro}
             </p>
-          </div>
-          <div className="p-4 rounded-xl border-l-4 border-slate-400 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+          </Banner>
+          <Banner variant="terms" className="p-4">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
               {t('badExample')}
             </h3>
             <p className="text-sm text-gray-700 dark:text-gray-300 font-mono whitespace-pre-wrap">
               {practice.badPrompt}
             </p>
-          </div>
-          <div className="p-4 rounded-xl border-l-4 border-l-brand-500 bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800">
+          </Banner>
+          <Banner variant="info" className="p-4">
             <label
               htmlFor="correct-prompt-textarea"
               className="block font-semibold text-gray-900 dark:text-white mb-2"
@@ -1623,7 +1624,7 @@ export function ContentBlockSlide({
               className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent min-h-[44px]"
               aria-label={t('correctPromptTextareaAria')}
             />
-          </div>
+          </Banner>
           <div>
             <button
               type="button"
@@ -1790,25 +1791,11 @@ export function SectionBreakSlide({
           : [Layers, Settings, User, Repeat];
   const recapIcons = recapIconList;
 
-  const pillLabels = ['Sisteminis', 'Master', 'Procesas'] as const;
+  const pillLabels = t('sectionBreakPillLabels3').split('|');
   const pillIcons = [Settings, User, Repeat] as const;
-  const pillLabels5 = [
-    'Sisteminis',
-    'Master',
-    'Procesas',
-    'Metodinis',
-    'Agentinis',
-  ] as const;
+  const pillLabels5 = t('sectionBreakPillLabels5').split('|');
   const pillIcons5 = [Settings, User, Repeat, Wrench, Cpu] as const;
-  const pillLabels7 = [
-    'Sisteminis',
-    'Master',
-    'Procesas',
-    'Metodinis',
-    'Agentinis',
-    'RAG promptai',
-    'Combo promptai',
-  ] as const;
+  const pillLabels7 = t('sectionBreakPillLabels7').split('|');
   const pillIcons7 = [
     Settings,
     User,
@@ -2047,9 +2034,10 @@ export function SectionBreakSlide({
           </div>
         )}
 
-        <section
-          className="rounded-r-lg border-l-4 border-emerald-500 bg-slate-100 dark:bg-slate-800/60 pl-4 pr-3 py-3 text-left"
-          aria-label={content.recap?.heading ?? ''}
+        <Banner
+          variant="success"
+          className="pl-4 pr-3 py-3 text-left bg-slate-100 dark:bg-slate-800/60 border-emerald-500"
+          ariaLabel={content.recap?.heading ?? ''}
         >
           <h3 className="font-bold text-sm mb-1.5 text-gray-900 dark:text-white">
             {content.recap?.heading}
@@ -2131,12 +2119,13 @@ export function SectionBreakSlide({
               );
             })}
           </ul>
-        </section>
+        </Banner>
 
         {showKasToliau && (
-          <section
-            className={`pl-3 py-2 border-l-4 ${colors.kasToliau} text-left`}
-            aria-label={isEn ? 'What\u2019s next' : 'Kas toliau'}
+          <Banner
+            variant="info"
+            className={`py-2 pl-3 border-l-4 ${colors.kasToliau}`}
+            ariaLabel={isEn ? 'What\u2019s next' : 'Kas toliau'}
           >
             <h3 className="font-bold text-sm mb-1 text-gray-900 dark:text-white">
               {isEn ? 'What\u2019s next' : 'Kas toliau'}
@@ -2152,7 +2141,7 @@ export function SectionBreakSlide({
                 {content.subtitle}
               </p>
             )}
-          </section>
+          </Banner>
         )}
 
         {footerNavBlock}
@@ -4895,7 +4884,7 @@ export function DiParadoxInfographicSlide({
                 {content.sourceBox.title}
               </div>
               {content.sourceBox.meta && (
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 italic">
+                <div className="text-xs text-slate-500 dark:text-slate-400 italic">
                   {content.sourceBox.meta}
                 </div>
               )}
@@ -4989,7 +4978,7 @@ export function DiParadoxInfographicSlide({
           <div className="space-y-3">
             {(content.shadowSection.bars ?? []).map((bar, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <div className="text-[11px] text-slate-400 w-44 flex-shrink-0">
+                <div className="text-xs text-slate-400 w-44 flex-shrink-0">
                   {bar.label}
                 </div>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
@@ -5128,7 +5117,7 @@ export function DiParadoxInfographicSlide({
                 <div className="font-bold text-gray-900 dark:text-white text-sm mb-1">
                   {step.name}
                 </div>
-                <div className="text-[11px] text-slate-600 dark:text-slate-400 leading-snug">
+                <div className="text-xs text-slate-600 dark:text-slate-400 leading-snug">
                   {step.description}
                 </div>
                 {idx < (content.solutionSection!.pipeline?.length ?? 0) - 1 && (
@@ -5205,7 +5194,7 @@ export function DiParadoxInfographicSlide({
                   {content.conclusionSection.chips.map((chip, idx) => (
                     <span
                       key={idx}
-                      className="text-[11px] font-medium text-slate-300 dark:text-slate-400 bg-white/10 border border-white/15 px-3 py-1 rounded"
+                      className="text-xs font-medium text-slate-300 dark:text-slate-400 bg-white/10 border border-white/15 px-3 py-1 rounded"
                     >
                       {chip}
                     </span>
@@ -5275,7 +5264,7 @@ export function DiParadoxInfographicSlide({
                         href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
+                        className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-xs font-medium"
                       >
                         {t('viewStudyLabel')}
                       </a>
@@ -5450,7 +5439,7 @@ export function ProductivityInfographicSlide({
                               href={source.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-[11px] font-medium"
+                              className="mt-1.5 inline-flex items-center gap-1 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 text-xs font-medium"
                             >
                               {t('viewStudyLabel')}
                             </a>
@@ -6374,15 +6363,10 @@ export function PracticeSummarySlide({
           {c.sections!.map((section, i) => (
             <div
               key={i}
-              className={`p-5 rounded-xl border ${
-                section.blockVariant === 'accent'
-                  ? 'bg-accent-50 dark:bg-accent-900/20 border-accent-200 dark:border-accent-800'
-                  : section.blockVariant === 'emerald'
-                    ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
-                    : section.blockVariant === 'violet'
-                      ? 'bg-violet-50 dark:bg-violet-900/20 border-violet-200 dark:border-violet-800'
-                      : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
-              }`}
+              className={getContentBlockVariantClasses({
+                variant: section.blockVariant || 'default',
+                sectionPadding: 'p-5',
+              })}
             >
               <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                 {section.heading}

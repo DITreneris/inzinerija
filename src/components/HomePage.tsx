@@ -18,7 +18,7 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
-import { BrandMark } from './ui';
+import { BrandMark, Card, CTAButton } from './ui';
 
 const QUICK_PROMPTS_LT = [
   {
@@ -176,7 +176,8 @@ export default function HomePage({
             </p>
           )}
 
-          <button
+          <CTAButton
+            variant="hero"
             onClick={
               modulesCompleted === totalModules &&
               totalModules > 0 &&
@@ -188,7 +189,7 @@ export default function HomePage({
                   ? onGoToQuiz
                   : onStart
             }
-            className="btn-primary btn-hero-cta text-xl px-10 inline-flex items-center gap-3 group"
+            className="text-xl px-10 group"
             aria-label={
               modulesCompleted === totalModules &&
               totalModules > 0 &&
@@ -213,13 +214,13 @@ export default function HomePage({
                   ? t('home:ctaContinue')
                   : t('home:ctaStartNow')}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </CTAButton>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div
-          className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50"
+        <Card
+          className="p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50 hover:shadow-lg hover:-translate-y-0.5 transition-all"
           style={{ animationDelay: '0.1s' }}
         >
           <div className="flex items-center gap-4">
@@ -240,10 +241,10 @@ export default function HomePage({
               </p>
             </div>
           </div>
-        </div>
+        </Card>
 
-        <div
-          className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50"
+        <Card
+          className="p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50 hover:shadow-lg hover:-translate-y-0.5 transition-all"
           style={{ animationDelay: '0.2s' }}
         >
           <div className="flex items-center gap-4">
@@ -259,10 +260,10 @@ export default function HomePage({
               </p>
             </div>
           </div>
-        </div>
+        </Card>
 
-        <div
-          className="card-hover p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50"
+        <Card
+          className="p-6 animate-fade-in shadow-lg shadow-gray-200/50 dark:shadow-gold/5 border border-gray-100/80 dark:border-gray-700/50 hover:shadow-lg hover:-translate-y-0.5 transition-all"
           style={{ animationDelay: '0.3s' }}
         >
           <div className="flex items-center gap-4">
@@ -290,7 +291,7 @@ export default function HomePage({
               )}
             </div>
           </div>
-        </div>
+        </Card>
       </div>
 
       <div className="card p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
@@ -387,9 +388,10 @@ export default function HomePage({
         </div>
 
         <div className="mt-12 pt-10 border-t border-gray-200 dark:border-gray-700 text-center">
-          <button
+          <CTAButton
+            variant="primary"
             onClick={onStart}
-            className="btn-primary text-xl px-10 py-5 rounded-2xl inline-flex items-center gap-3 group w-full sm:w-auto justify-center mb-4"
+            className="text-xl px-10 py-5 rounded-2xl w-full sm:w-auto justify-center mb-4"
             aria-label={
               modulesCompleted === totalModules &&
               totalModules > 0 &&
@@ -409,7 +411,7 @@ export default function HomePage({
               </>
             )}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </CTAButton>
           {!(
             modulesCompleted === totalModules &&
             totalModules > 0 &&
@@ -464,9 +466,9 @@ export default function HomePage({
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {quickPrompts.map((item) => (
-            <div
+            <Card
               key={item.id}
-              className="card-hover p-6 flex flex-col relative shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50"
+              className="p-6 flex flex-col relative shadow-lg shadow-gray-200/50 dark:shadow-gray-900/30 border border-gray-100/80 dark:border-gray-700/50 hover:shadow-lg hover:-translate-y-0.5 transition-all"
             >
               <h3 className="font-bold text-gray-900 dark:text-white mb-3 text-lg">
                 {item.title}
@@ -523,7 +525,7 @@ export default function HomePage({
                   {t('common:copiedExclaim')}
                 </div>
               )}
-            </div>
+            </Card>
           ))}
         </div>
       </section>

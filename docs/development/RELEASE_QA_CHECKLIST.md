@@ -73,6 +73,8 @@
 - [ ] **Schemų geriausios praktikos (QA primena):** Jei keista flowchart/diagrama – priminti patikrinti pagal `docs/development/SCHEME_AGENT.md` §3.11 ir §5 (vizualinė patikra): ar tekstas telpa į blokus, ar schema centre, ar rodyklės kraštas į kraštą.
 - [ ] **Diagram kit a11y:** Migruotos interaktyvios diagramos turi HTML `nav button` keyboard kelią ir neturi dubliuotų `svg [role="button"]` / `svg [tabindex="0"]` taikinių.
 - [ ] **Design-token baseline:** Paleisti `npm run audit:design-tokens`; nauji hardcoded hex / arbitrary class atvejai turi būti sumažinti arba dokumentuoti kaip išimtis `DESIGN_TOKENS_BASELINE_2026-07.md` kontekste.
+- [ ] **Design-token regression gate (DS hardening):** `npm run audit:design-tokens:gate` – exit 0 (ne didesnis nei 2026-07 baseline: total 521, arbitrary 66).
+- [ ] **Module identity gate:** `npm run audit:module-identity` – visi M1–15 moduliai turi `accent` + `identityIcon` (`modules.json`).
 
 ---
 
@@ -100,7 +102,7 @@
 - [ ] **Terminologija EN:** Vartotojui matomi EN tekstai naudoja „AI“ (ne „DI“). Žr. glossary-en.json ir CONTENT_MODULIU_ATPAZINIMAS; detalės – jei turite lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
 - [ ] **Moduliai 1–3 EN:** Jei `modules-en.json` naudojamas – skaidrių pavadinimai ir turinys anglų kalba; jei dar WIP – dokumentuota (pvz. EN_UI_UX_LANGUAGE_AUDIT.md).
 - [ ] **Moduliai 4–6 EN:** Jei `modules-en-m4-m6.json` naudojamas – M4, M5, M6 skaidrės ir meta anglų kalba; loader merge’ina į `modules[3]`,`[4]`,`[5]`. Patikra: `npm run audit:m46` (coverage: skaidrių ID paritetas + LT diakritikų liekanos po merge; language: hybrid tokenai, LT žodžiai, DI→AI, LT „tu“ forma). Bendras M4–9 vartas: `npm run audit:m49`.
-- [ ] **Moduliai 7–9 EN (lean + expansion):** `modules-en-m7-m9.json` — deep-merge overlay; merge kai `maxModuleId >= 7`. Patikra: `npm run audit:m79` (arba atskirai `npm run audit:en-coverage-m7-m9` lean/`--full` + `npm run audit:en-language-m7-m9`); validacija – `validateModulesEnM79()` per `npm run validate:schema`. Rankinė: M7 slide 70 journey EN, M8 test klausimai EN, M9 workflow 93–94 + hub 99. Po rankinių EN pataisymų overlay **ne** regeneruoti per `build:modules-en-m7-m9`.
+- [ ] **Moduliai 7–9 EN (lean + expansion):** `modules-en-m7-m9.json` — deep-merge overlay; merge kai `maxModuleId >= 7`. Patikra: `npm run audit:m79` (arba atskirai `npm run audit:en-coverage-m7-m9` lean/`--full` + `npm run audit:en-language-m7-m9`) ir `npm run audit:nav-labels` (next CTA `Continue: ...` / `Tęsti: ...` kalbos nuoseklumas); validacija – `validateModulesEnM79()` per `npm run validate:schema`. Rankinė: M7 slide 70 journey EN, M8 test klausimai EN, M9 workflow 93–94 + hub 99. Po rankinių EN pataisymų overlay **ne** regeneruoti per `build:modules-en-m7-m9`.
 - [ ] **Moduliai 10–12 EN:** `modules-en-m10-m12.json` — deep-merge overlay (failas partial struktūra, body pilnas); merge tik kai kataloge `maxModuleId >= 10`. Patikra: `npm run audit:m1012`; validacija – `validateModulesEnM1012()` per `npm run validate:schema`.
 - [ ] **Moduliai 13–15 EN:** `modules-en-m13-m15.json` — deep-merge overlay (body pilnas); merge tik kai kataloge `maxModuleId >= 13`. Patikra: `npm run audit:m1315` (coverage + language). Rankinė: M13 image→video 13.4, M14 8 klausimai, M15 quick start 150.5 ir schema 150.25 LT/EN.
 - [ ] **Glossary EN (M4–6):** `glossary-en.json` turi terminus su `moduleId` 4, 5, 6 (ai, ne DI; žr. CONTENT_MODULIU_ATPAZINIMAS). Detalės – lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
@@ -150,6 +152,7 @@
 
 - [ ] **Vienas modulis per release pagal rubric:** Prieš release atlikti vieną rankinį perbėgimą pagal eval_rubric (bent vienas modulis + HomePage arba vienas CTA kelias). Rezultatą įrašyti į TEST_REPORT arba changelog (pvz. „Modulis X – visos dimensijos ≥2, 4/5 = 3“).
 - [ ] **Pirmyn/Atgal CTA (desktop):** Modulio skaidrė – viršutinė juosta sticky (scroll’inant lieka matoma); „Pirmyn“ – vienintelis ryškus CTA (didesnis mygtukas, brand, shadow, hover lift); „Atgal“ – ghost (be fono); dešinėje prie „Pirmyn“ rodomas progresas „Skaidrė X / N“. Klaviatūra ← → veikia. Žr. CHANGELOG 2026-02-26 (ModuleView Pirmyn/Atgal).
+- [ ] **DS visual smoke (post-hardening):** M1 HomePage (`Card`/`CTAButton`), M4 section-break (`Banner`), M7 ModulesPage accent bar, M10 content-block (`SlideWorkspace`), M13 warm-up – light + dark, mobile 375px; sticky `surfaceGlass.shell` be double-blur artefaktų.
 
 ---
 

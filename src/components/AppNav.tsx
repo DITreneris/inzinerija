@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
+import { surfaceGlass } from '../design-tokens';
 import { BrandMark } from './ui';
 
 export type NavPage =
@@ -67,7 +68,7 @@ export function AppNav({
   return (
     <nav
       ref={navRef}
-      className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-gray-200/50 dark:border-gray-800"
+      className={`${surfaceGlass.shell} shadow-sm sticky top-0 z-40 border-b`}
       aria-label={t('ariaLabel')}
     >
       <h1 className="sr-only">{t('appTitle')}</h1>

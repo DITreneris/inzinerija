@@ -22,12 +22,8 @@ const minimalContent: IntroActionPieContent = {
   question: 'Kur tu dažniausiai naudoji DI?',
   subtitle: 'Pasirink vieną – palyginsi su 2026 m. duomenimis.',
   ctaReveal: 'Parodyk 2026 duomenis',
-  segments: [
-    { label: 'Rašymas', value: 40, colorKey: 'brand' },
-  ],
-  cards: [
-    { icon: 'Pen', title: 'Rašymui', description: 'laiškai, tekstai' },
-  ],
+  segments: [{ label: 'Rašymas', value: 40, colorKey: 'brand' }],
+  cards: [{ icon: 'Pen', title: 'Rašymui', description: 'laiškai, tekstai' }],
   revealInsights: [
     { insight: 'Tu patenki į 40% segmentą.', question: 'Klausimas tau?' },
   ],
@@ -49,13 +45,17 @@ describe('IntroActionPieSlide – Eksportuok PDF', () => {
     const user = userEvent.setup();
     renderWithProviders(<IntroActionPieSlide content={minimalContent} />);
 
-    const radiogroup = screen.getByRole('radiogroup', { name: /Kur tu dažniausiai naudoji DI/i });
+    const radiogroup = screen.getByRole('radiogroup', {
+      name: /Kur tu dažniausiai naudoji DI/i,
+    });
     const firstOption = within(radiogroup).getByLabelText(/Rašymui/i);
     await act(async () => {
       await user.click(firstOption);
     });
 
-    const ctaReveal = screen.getByRole('button', { name: /Parodyk 2026 duomenis/i });
+    const ctaReveal = screen.getByRole('button', {
+      name: /Parodyk 2026 duomenis/i,
+    });
     await act(async () => {
       await user.click(ctaReveal);
     });
@@ -78,5 +78,42 @@ describe('IntroActionPieSlide – Eksportuok PDF', () => {
       undefined,
       'lt'
     );
+  });
+
+  it('does not show PDF actions when hidePdfActions is enabled', async () => {
+    const user = userEvent.setup();
+    renderWithProviders(
+      <IntroActionPieSlide
+        content={{
+          ...minimalContent,
+          chartHeading: 'Profilių pasiskirstymas',
+          hidePdfActions: true,
+        }}
+      />
+    );
+
+    const radiogroup = screen.getByRole('radiogroup', {
+      name: /Kur tu dažniausiai naudoji DI/i,
+    });
+    const firstOption = within(radiogroup).getByLabelText(/Rašymui/i);
+    await act(async () => {
+      await user.click(firstOption);
+    });
+
+    const ctaReveal = screen.getByRole('button', {
+      name: /Parodyk 2026 duomenis/i,
+    });
+    await act(async () => {
+      await user.click(ctaReveal);
+    });
+
+    expect(screen.getByText('Profilių pasiskirstymas')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /Eksportuok PDF/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /Generuok patarimus sau/i })
+    ).not.toBeInTheDocument();
+    expect(introPiePdf.downloadIntroPiePdf).not.toHaveBeenCalled();
   });
 });

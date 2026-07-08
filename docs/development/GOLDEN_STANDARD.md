@@ -50,14 +50,18 @@
 
 ### 2.2 blockVariant – sekcijų spalvų logika
 
-| blockVariant | Tailwind klasės                                                   | Kada naudoti                                    |
-| ------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
-| **accent**   | `bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500` | CTA, „daryk dabar“, takeaway, pirmas žingsnis   |
-| **brand**    | `bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500`  | Pagrindinė info, proceso žingsniai, kontekstas  |
-| **terms**    | `bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400`    | Šalutinė info, žodynėlis, collapsible, nuorodos |
-| **default**  | `border-l-4 border-brand-200`                                     | Kai variantas nenurodytas                       |
+| blockVariant | Tailwind klasės                                                      | Kada naudoti                                                          |
+| ------------ | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **accent**   | `bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500`    | CTA, „daryk dabar“, takeaway, pirmas žingsnis                         |
+| **brand**    | `bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500`     | Pagrindinė info, proceso žingsniai, kontekstas                        |
+| **terms**    | `bg-slate-50 dark:bg-slate-800/60 border-l-4 border-slate-400`       | Šalutinė info, žodynėlis, collapsible, nuorodos                       |
+| **default**  | `border-l-4 border-brand-200`                                        | Kai variantas nenurodytas                                             |
+| **emerald**  | `bg-emerald-50 dark:bg-emerald-900/20 border-l-4 border-emerald-500` | Modulio track semantika (M3 praktika); skaičiuojasi į accent biudžetą |
+| **violet**   | `bg-violet-50 dark:bg-violet-900/20 border-l-4 border-violet-500`    | Modulio track semantika (M4 teorija); skaičiuojasi į accent biudžetą  |
 
-**Taisyklė:** Vienoje skaidrėje – max 2 semantinės + 1 CTA. CTA ir „daryk dabar“ – accent; pagrindinė info – brand; papildoma – terms.
+**Taisyklė:** Vienoje skaidrėje – max 2 semantinės + 1 CTA. CTA ir „daryk dabar“ – accent; pagrindinė info – brand; papildoma – terms. **`emerald` / `violet`** – leidžiami tik modulio track kontekste; **nestackinti** su tuo pačiu modulio `accent` toje pačioje skaidrėje (pvz. M3 modulyje su `accent: emerald` nenaudoti `blockVariant: emerald` papildomai).
+
+**Implementacija:** `src/components/slides/utils/blockVariantClasses.ts` → `getContentBlockVariantClasses()`. Schema: `scripts/schemas/modules.schema.json` (`accent`, `brand`, `terms`, `emerald`, `violet`, `default`).
 
 ### 2.3 Semantinės spalvos (ribotas naudojimas)
 
@@ -437,14 +441,35 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 
 ## 6. Modulio identitetas (badge ir akcentai)
 
-| Modulis      | Badge                                | CTA / akcentas              |
-| ------------ | ------------------------------------ | --------------------------- |
-| 1 (Mokymas)  | brand                                | brand → accent gradient     |
-| 2 (Testas)   | slate                                | brand mygtukai, ramus tonas |
-| 3 (Praktika) | slate                                | accent tik 1–2 CTA          |
-| 4–6          | brand (learn), slate (test/practice) | Pagal modulio tipą          |
+**Duomenys:** `module.accent`, `module.identityIcon` — `src/data/modules.json`. Helpers: `src/utils/moduleIdentity.ts`.
 
-**Bendras principas:** Vienas akcentas per kontekstą; neutralūs fonai (slate/gray).
+**UI touchpoints (tik 3 vietos):**
+
+1. **ModulesPage** — kortelės viršutinė juosta (`accentTopBarClasses`) + ikona (`resolveModuleIcon`).
+2. **ActionIntroSlide** — `<Eyebrow icon={identityIcon} accent={moduleAccent}>` virš H1.
+3. **SectionBreakSlide** — tik `sectionNumber` badge (`sectionBreakBadgeByAccent`); hero lieka `heroColorKey`.
+
+| Modulis | Pavadinimas (trumpai) | `accent`  | `identityIcon`   |
+| ------- | --------------------- | --------- | ---------------- |
+| M1      | 6 Blokų Sistema       | `brand`   | `BookOpen`       |
+| M2      | Žinių Patikrinimas    | `slate`   | `ClipboardList`  |
+| M3      | Praktinis Pritaikymas | `emerald` | `Briefcase`      |
+| M4      | Konteksto inžinerija  | `violet`  | `Brain`          |
+| M5      | Pažangus testas       | `cyan`    | `ClipboardCheck` |
+| M6      | Projekto kūrimas      | `accent`  | `Rocket`         |
+| M7      | Duomenų analizė su DI | `sky`     | `BarChart3`      |
+| M8      | DA testas             | `sky`     | `ClipboardCheck` |
+| M9      | DA praktika           | `sky`     | `Briefcase`      |
+| M10     | Agentų inžinerija     | `fuchsia` | `Cpu`            |
+| M11     | Agentų testas         | `fuchsia` | `ClipboardCheck` |
+| M12     | Agentų praktika       | `fuchsia` | `Rocket`         |
+| M13     | Turinio inžinerija    | `rose`    | `Image`          |
+| M14     | Turinio testas        | `rose`    | `ClipboardCheck` |
+| M15     | Turinio praktika      | `rose`    | `Briefcase`      |
+
+**Track accent logika (M7–15):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias).
+
+**Bendras principas:** Vienas akcentas per kontekstą; neutralūs fonai (slate/gray). Modulio identity **NIEKUR kitur** — ne diagramose, ne CTA mygtukuose, ne body callout'uose (CTA lieka GOLDEN §2.2 accent/brand).
 
 ---
 

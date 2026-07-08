@@ -207,7 +207,11 @@
     {
       "term": "Promptų biblioteka",
       "definition": "Asmeninė ar komandinė šablonų saugykla – surūšiuoti promptai pagal užduotis ir naudojimo atvejus, kad nereikėtų rašyti iš naujo.",
-      "moduleId": 6
+      "moduleId": 6,
+      "unlockedBy": {
+        "moduleId": 6,
+        "slideId": 65.5
+      }
     },
     {
       "term": "Promptų inžinerija",
@@ -227,7 +231,11 @@
     {
       "term": "Promptų versijavimas",
       "definition": "Promptų sekimas versijomis (v1, v2, v3) – kas veikė, kas ne, ką pakeitei; padeda tobulinti ir nekartoti klaidų.",
-      "moduleId": 6
+      "moduleId": 6,
+      "unlockedBy": {
+        "moduleId": 6,
+        "slideId": 65.5
+      }
     },
     {
       "term": "Quality blokas",

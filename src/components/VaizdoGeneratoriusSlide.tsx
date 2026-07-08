@@ -13,6 +13,7 @@ import {
   Lightbulb,
 } from 'lucide-react';
 import { useLocale } from '../contexts/LocaleContext';
+import Banner from './ui/Banner';
 import { getTools } from '../data/toolsLoader';
 
 const PLATFORMS_LT = [
@@ -173,7 +174,7 @@ function SectionHeader({
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="block text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5">
+    <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5">
       {children}
     </label>
   );
@@ -375,11 +376,14 @@ export default function VaizdoGeneratoriusSlide() {
   return (
     <div className="space-y-8">
       {/* TL;DR – accent */}
-      <div className="rounded-xl p-4 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+      <Banner
+        variant="info"
+        className="p-4 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500"
+      >
         <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
           {t('tldr')}
         </p>
-      </div>
+      </Banner>
 
       {/* Žingsnių indikatorius */}
       <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-full border border-slate-200 dark:border-slate-700 w-fit">

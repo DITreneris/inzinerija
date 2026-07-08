@@ -95,15 +95,14 @@ function HorizontalBarChartViz({
   highlightIndex,
   getIcon,
   iconBg,
-  locale = 'lt',
 }: {
   segments: PieChartSegment[];
   highlightIndex?: number | null;
   getIcon: (index: number) => LucideIcon | null;
   iconBg: (colorKey?: string) => string;
-  locale?: 'lt' | 'en';
 }) {
-  const isEn = locale === 'en';
+  useTranslation();
+  const t = getT('contentSlides');
   const maxVal = Math.max(...segments.map((s) => s.value), 1);
   const sorted = segments
     .map((seg, originalIndex) => ({ seg, originalIndex }))
@@ -112,11 +111,7 @@ function HorizontalBarChartViz({
   return (
     <ul
       className="space-y-3 w-full max-w-xl mx-auto"
-      aria-label={
-        isEn
-          ? '2026 distribution by category'
-          : '2026 m. pasiskirstymas pagal kategorijas'
-      }
+      aria-label={t('introPieDistributionAria')}
     >
       {sorted.map(({ seg, originalIndex }) => {
         const isHighlight = originalIndex === highlightIndex;
@@ -164,8 +159,8 @@ function HorizontalBarChartViz({
               {isHighlight && (
                 <span
                   className="flex items-center gap-1 flex-shrink-0 rounded-full px-2 py-0.5 bg-brand-200/80 dark:bg-brand-800/50 text-brand-800 dark:text-brand-200 text-xs font-semibold"
-                  aria-label={isEn ? 'Your selection' : 'Tavo pasirinkimas'}
-                  title={isEn ? 'Your selection' : 'Tavo pasirinkimas'}
+                  aria-label={t('introPieYourSelection')}
+                  title={t('introPieYourSelection')}
                 >
                   <Check
                     className="w-3.5 h-3.5 shrink-0"
@@ -173,7 +168,7 @@ function HorizontalBarChartViz({
                     aria-hidden="true"
                   />
                   <span className="hidden sm:inline">
-                    {isEn ? 'Your selection' : 'Tavo pasirinkimas'}
+                    {t('introPieYourSelection')}
                   </span>
                 </span>
               )}
@@ -271,7 +266,6 @@ function IntroActionPieActions({
           toolsByName={toolsByName}
           glossaryByTerm={glossaryByTerm}
           onClose={() => setShowModal(false)}
-          locale={locale}
         />
       )}
     </>
@@ -283,15 +277,14 @@ function IntroActionPieTipsModal({
   toolsByName,
   glossaryByTerm,
   onClose,
-  locale = 'lt',
 }: {
   pdfSegment: IntroActionPiePdfSegment;
   toolsByName: Map<string, ToolInfo>;
   glossaryByTerm: Map<string, GlossaryTermInfo>;
   onClose: () => void;
-  locale?: 'lt' | 'en';
 }) {
-  const isEn = locale === 'en';
+  useTranslation();
+  const t = getT('contentSlides');
   const mainTool = toolsByName.get(pdfSegment.mainToolName);
 
   return (
@@ -307,13 +300,13 @@ function IntroActionPieTipsModal({
             id="intro-pie-modal-title"
             className="text-lg font-bold text-brand-700 dark:text-brand-300"
           >
-            {isEn ? 'Prompt Anatomy' : 'Promptų anatomija'} – {pdfSegment.title}
+            {t('introPiePdfTitle')} – {pdfSegment.title}
           </h2>
           <button
             type="button"
             onClick={onClose}
             className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-800"
-            aria-label={isEn ? 'Close' : 'Uždaryti'}
+            aria-label={t('introPieClose')}
           >
             <X className="w-5 h-5" />
           </button>
@@ -321,7 +314,7 @@ function IntroActionPieTipsModal({
         <div className="p-6 space-y-6 text-sm">
           <section>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              {isEn ? '1. Top 5 tips' : '1. Top 5 patarimai'}
+              {t('introPieTop5Tips')}
             </h3>
             <ol className="list-decimal list-inside space-y-1.5 text-gray-700 dark:text-gray-300">
               {pdfSegment.top5Tips.map((tip, i) => (
@@ -331,11 +324,11 @@ function IntroActionPieTipsModal({
           </section>
           <section>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              {isEn ? '2. Tools' : '2. Įrankiai'}
+              {t('introPieTools')}
             </h3>
             {mainTool && (
               <p className="text-gray-700 dark:text-gray-300 mb-2">
-                <strong>{isEn ? 'Primary:' : 'Pagrindinis:'}</strong>{' '}
+                <strong>{t('introPiePrimary')}</strong>{' '}
                 <a
                   href={mainTool.url}
                   target="_blank"
@@ -376,7 +369,7 @@ function IntroActionPieTipsModal({
           </section>
           <section>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              {isEn ? '4. Key concepts' : '4. Svarbios sąvokos'}
+              {t('introPieKeyConcepts')}
             </h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
               {pdfSegment.glossaryTermNames.map((termName) => {
@@ -391,7 +384,7 @@ function IntroActionPieTipsModal({
           </section>
           <section>
             <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              {isEn ? '5. System prompt' : '5. Sisteminis promptas'}
+              {t('introPieSystemPrompt')}
             </h3>
             <p className="text-gray-700 dark:text-gray-300 italic">
               {pdfSegment.systemPrompt}
@@ -399,7 +392,7 @@ function IntroActionPieTipsModal({
           </section>
           <section className="rounded-xl bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 p-4">
             <p className="font-semibold text-accent-800 dark:text-accent-200 mb-1">
-              {isEn ? 'Encouragement' : 'Palinkėjimas'}
+              {t('introPieEncouragement')}
             </p>
             <p className="text-gray-700 dark:text-gray-300">
               {pdfSegment.motivationWish}
@@ -416,20 +409,21 @@ export interface IntroActionPieSlideProps {
 }
 
 export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
+  useTranslation();
+  const t = getT('contentSlides');
   const { locale } = useLocale();
-  const isEn = locale === 'en';
   const pdfContent = useMemo(() => getIntroPiePdfContent(locale), [locale]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
   const segments = content.segments ?? [];
-  const ctaLabel =
-    content.ctaReveal ?? (isEn ? 'Show 2026 data' : 'Parodyk 2026 duomenis');
+  const ctaLabel = content.ctaReveal ?? t('introPieShowData');
+  const chartHeading = content.chartHeading ?? t('introPieChartHeading');
   const ctaEnabled = selectedIndex !== null;
 
   if (segments.length === 0) {
     return (
       <div className="p-6 text-center text-gray-600 dark:text-gray-400">
-        {isEn ? 'No slide data available.' : 'Skaidrės duomenų nėra.'}
+        {t('introPieNoData')}
       </div>
     );
   }
@@ -598,7 +592,7 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
           aria-live="polite"
         >
           <p className="text-sm font-medium text-brand-800 dark:text-brand-200">
-            {isEn ? 'You selected:' : 'Tu pasirinkai:'}{' '}
+            {t('introPieYouSelected')}{' '}
             <span className="font-bold">{displayLabel}</span>
           </p>
         </div>
@@ -607,14 +601,13 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
       {/* Grafikas – balta kortelė, trumpas pavadinimas */}
       <div className="rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-md p-4 sm:p-5">
         <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 text-center">
-          {isEn ? '2026 distribution' : '2026 m. pasiskirstymas'}
+          {chartHeading}
         </h3>
         <HorizontalBarChartViz
           segments={segments}
           highlightIndex={selectedIdx}
           getIcon={getBarIcon}
           iconBg={getIconBg}
-          locale={locale}
         />
       </div>
 
@@ -655,19 +648,21 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
           ) : (
             <>
               <p className="font-semibold text-gray-900 dark:text-white text-sm">
-                Ką tai reiškia tau?
+                {t('introPieLegacyMeaningHeading')}
               </p>
               <p className="text-gray-700 dark:text-gray-300 text-sm">
-                Tu patenki į{' '}
-                <span className="font-semibold">{selectedSegment.value}%</span>{' '}
-                {insight.segmentPhrase ?? selectedSegment.label.toLowerCase()}{' '}
-                segmentą.
+                {t('introPieLegacySegment', {
+                  value: selectedSegment.value,
+                  segment:
+                    insight.segmentPhrase ??
+                    selectedSegment.label.toLowerCase(),
+                })}
               </p>
               <p className="text-gray-700 dark:text-gray-300 text-sm">
                 {insight.insight}
               </p>
               <p className="text-gray-800 dark:text-gray-200 text-sm">
-                👉 Klausimas tau: {insight.question}
+                {t('introPieLegacyQuestion', { question: insight.question })}
               </p>
             </>
           )}
@@ -675,7 +670,7 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
       )}
 
       {/* Action mygtukai po insight */}
-      {selectedIdx !== null && (
+      {selectedIdx !== null && !content.hidePdfActions && (
         <IntroActionPieActions
           segmentIndex={selectedIdx}
           pdfSegment={pdfContent.segments[selectedIdx]}

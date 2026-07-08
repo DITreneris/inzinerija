@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM13AecLabels } from './m13DiagramContent';
 import type { M10Locale } from './m10DiagramContent';
 
@@ -13,6 +14,7 @@ export default function M13AecFunnelDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
+  const palette = useDiagramPalette();
   const L = getM13AecLabels(locale);
   const cx = W / 2;
 
@@ -35,7 +37,7 @@ export default function M13AecFunnelDiagram({
         textAnchor="middle"
         fontSize="13"
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.title}
@@ -56,7 +58,7 @@ export default function M13AecFunnelDiagram({
               rx="10"
               fill={`url(#aec-${uid})`}
               opacity={1 - i * 0.08}
-              stroke="#102a43"
+              stroke={palette.brandDark}
               strokeWidth="1.2"
             />
             <text

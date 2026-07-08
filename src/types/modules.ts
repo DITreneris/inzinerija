@@ -192,6 +192,10 @@ export interface IntroActionPieContent {
   ctaReveal?: string;
   /** „Toliau – skaidrė X“ (jei nėra – nerodoma) */
   footer?: string;
+  /** Grafiko antraštė po pasirinkimo; jei nėra, naudojamas 2026 m. pasiskirstymo tekstas */
+  chartHeading?: string;
+  /** Paslepia M4 segmentams skirtus modal/PDF veiksmus, kai skaidrė naudoja kitus segmentus */
+  hidePdfActions?: boolean;
   /** Segmentai naudojami ir pasirinkimams, ir grafikui */
   segments: PieChartSegment[];
   /** Kortų deck Fazėje 1: ikonos, antraštės, aprašai (eilė = segments); jei nėra – rodomi tik segmentų label */

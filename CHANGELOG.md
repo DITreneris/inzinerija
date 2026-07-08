@@ -44,6 +44,21 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po 1.4.3 release._
 
+### Added
+
+- **M6 UX-2.1 path-step:** pridėta skaidrė 65.5 „Duomenų tvarkymo checklist“ tarp Modulio 6 refleksijos ir Duomenų tvarkymo atmintinės; žingsnis atrakina „Promptų biblioteka“ ir „Promptų versijavimas“ terminus žodynėlyje.
+- **Design System hardening (DS v0.3 pilot):** `surfaceGlass` tokenai (`shell`/`panel`/`overlay`) AppNav, ModuleView ir TestPracticeSlides sticky sluoksniuose; `<Banner>` migracija ContentSlides, BlockSlides, TestPracticeSlides ir VaizdoGeneratoriusSlide; `<CTAButton>` / `<Card>` HomePage, ModulesPage, ModuleView; `SlideWorkspace` wrapper M4+M10 `content-block` pilotas; `getContentBlockVariantClasses()` ContentSlides; `audit:design-tokens:gate` (regresija vs 2026-07 baseline) ir `audit:module-identity` (M1–15 `accent` + `identityIcon`); GOLDEN_STANDARD §2.2 `emerald`/`violet` + §6 pilna modulių identiteto lentelė; diagramų P2 (M10ThreeAStrategy, M12ThreeLabs, M13AecFunnel).
+
+### Changed
+
+- **Design tokens:** targeted arbitrary-class cleanup (`text-[11px]` → `text-xs` VaizdoGeneratoriusSlide); blockVariant sekcijos per bendrą helperį vietoj inline ternary.
+- **DS W6 QA closure:** sticky offset baseline sinchronizuotas (GlossaryPage, TestPracticeSlides); automated gates žali (lint, 416 testai, audit total 469, module-identity 15/15); TODO §1.0c W6–W10 planas.
+
+### Fixed
+
+- **M7–M9 LT/EN locale maišymo apsauga:** `ModuleView` next CTA logika iškelta į `navLabel` helperį su EN fallback, pridėtas `audit:nav-labels` release gate, M9 praktikos CTA ir M8→M9 rezultatų mygtukai perkelti į i18n raktus; pataisyti M7 EN reliability bloko footer numeriai.
+- **M7 intro-action-pie closure:** skaidrė 70.5 dabar slepia M4 segmentams skirtus „Generuok patarimus sau“ / „Eksportuok PDF“ veiksmus ir naudoja „Profilių pasiskirstymas“ grafiko antraštę; M7 branduolio dokumentacija atnaujinta iki 34 skaidrių.
+
 ---
 
 ## [1.4.3] – 2026-07-07

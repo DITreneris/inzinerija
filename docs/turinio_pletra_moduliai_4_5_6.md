@@ -1525,11 +1525,11 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
 
 ### 4.0 Projekto tikslai, savęs vertinimas, refleksija ir etapai (SOT)
 
-**Implementacija:** Modulio 6 `practice-intro` rodo Projekto tikslus, Savęs vertinimo kortelę ir Projekto etapus. Rodymas – `AllSlides.tsx` PracticeIntroSlide (`moduleId === 6`). COMBO, **Pavyzdys iš praktikos: HTML tinklalapio grandinė** (veiksmo skaidrė, id 67.8 – workflowChains, golden standard kaip Modulyje 4), Vieno puslapio HTML (id 68), SUPER PROMPTAI, Refleksija, Duomenų tvarkymas – `modules.json` skaidrės (content-block).
+**Implementacija:** Modulio 6 `practice-intro` rodo Projekto tikslus, Savęs vertinimo kortelę ir Projekto etapus. Rodymas – `AllSlides.tsx` PracticeIntroSlide (`moduleId === 6`). COMBO, **Pavyzdys iš praktikos: HTML tinklalapio grandinė** (veiksmo skaidrė, id 67.8 – workflowChains, golden standard kaip Modulyje 4), Vieno puslapio HTML (id 68), SUPER PROMPTAI, Refleksija, Duomenų tvarkymo checklist (path-step, id 65.5), Duomenų tvarkymas – `modules.json` skaidrės.
 
-**Rekomenduojama skaidrių eilė (User Journey):** practice-intro (60) → **61 Tyrimo ataskaita** (pirmas ne-optional veiksmas) → 62 COMBO → 67.8 HTML grandinė → 68 Vieno puslapio HTML → 63 SUPER PROMPTAI → **65 Refleksija** → **64 Duomenų tvarkymas**. Optional skaidrės 66 (Custom GPT schema) ir 67 (Custom GPT scenarijus) – **alternatyvus projektas**; rodyti po 61 arba modulio gale, aiškiai pažymint „Rekomenduojame pradėti nuo Tyrimo ataskaitos; Custom GPT – jei norite kurti asistentą“.
+**Rekomenduojama skaidrių eilė (User Journey):** practice-intro (60) → **61 Tyrimo ataskaita** (pirmas ne-optional veiksmas) → 62 COMBO → 67.8 HTML grandinė → 68 Vieno puslapio HTML → 63 SUPER PROMPTAI → **65 Refleksija** → **65.5 Duomenų tvarkymo checklist (path-step)** → **64 Duomenų tvarkymas**. Optional skaidrės 66 (Custom GPT schema) ir 67 (Custom GPT scenarijus) – **alternatyvus projektas**; rodyti po 61 arba modulio gale, aiškiai pažymint „Rekomenduojame pradėti nuo Tyrimo ataskaitos; Custom GPT – jei norite kurti asistentą“.
 
-**Privalomas turinys Modulio 6 skaidrėse (JSON/UI):** Į `modules.json` ir rodymą būtina įtraukti: (1) **Projekto tikslai** (įvado skaidrėje arba atskirai), (2) **Auditorija** (vienas sakinys: kam skirtas modulis), (3) **Trukmė** rodoma įvado skaidrėje (~25–35 min), (4) **Pirmas veiksmas (CTA):** „Pradėk dabar: atidaryk scenarijų ‚Projektas: Tyrimo ataskaita su DI‘ ir užpildyk META bloką (rolė + tikslas).“ (5) **Savęs vertinimo kortelė** (checklist, prieš arba po projekto), (6) **Projekto etapai** (6 žingsniai su galimybe sustoti), (7) **Praktika: COMBO**, (8) **Veiksmo skaidrė: HTML tinklalapio grandinė**, (9) **SUPER PROMPTAI**, (10) **Refleksija** (prieš Duomenų tvarkymą), (11) **Duomenų tvarkymas** (5 punktų atmintinė). Refleksijos skaidrė – prieš Duomenų tvarkymą; galutinė eilė: SUPER PROMPTAI → Refleksija → Duomenų tvarkymas.
+**Privalomas turinys Modulio 6 skaidrėse (JSON/UI):** Į `modules.json` ir rodymą būtina įtraukti: (1) **Projekto tikslai** (įvado skaidrėje arba atskirai), (2) **Auditorija** (vienas sakinys: kam skirtas modulis), (3) **Trukmė** rodoma įvado skaidrėje (~25–35 min), (4) **Pirmas veiksmas (CTA):** „Pradėk dabar: atidaryk scenarijų ‚Projektas: Tyrimo ataskaita su DI‘ ir užpildyk META bloką (rolė + tikslas).“ (5) **Savęs vertinimo kortelė** (checklist, prieš arba po projekto), (6) **Projekto etapai** (6 žingsniai su galimybe sustoti), (7) **Praktika: COMBO**, (8) **Veiksmo skaidrė: HTML tinklalapio grandinė**, (9) **SUPER PROMPTAI**, (10) **Refleksija** (prieš Duomenų tvarkymą), (10a) **Duomenų tvarkymo checklist** (path-step, trumpa 5 punktų savitikra), (11) **Duomenų tvarkymas** (5 punktų atmintinė). Refleksijos skaidrė – prieš Duomenų tvarkymo checklist; galutinė eilė: SUPER PROMPTAI → Refleksija → Duomenų tvarkymo checklist → Duomenų tvarkymas.
 
 **Projekto įvado skaidrė – „Projekto tikslai“ (rodomi pradžioje):**
 
@@ -1556,6 +1556,14 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
 - Klausimai dalyviui: (1) Kas buvo sunkiausia projekte? (2) Kurį įgūdį naudosite pirmiausia darbe? (3) Ką dar norėtumėte išmokti apie DI? Galima laisvo teksto arba tik skaidrėje – sau atsakyti. Nukopijuok refleksijos promptą ir naudok su DI (aiškiai pažymėti „Nukopijuok ir naudok su DI“).
 - **Modulio rezultatas (blokas prieš ar po Refleksijos):** „Dabar turite: paruoštą tyrimo ataskaitą arba Custom GPT instrukcijas; 6 blokų šabloną; RAG pavyzdį. Išsaugokite juos savo bibliotekoje (žr. Duomenų tvarkymas).“
 - **Pirmas veiksmas per 24–48 val. (CTA):** Pridėti vieną sakinį, pvz. „Rytoj: atidaryk savo DI įrankį ir įrašyk vieną promptą iš šio modulio į savo biblioteką“ arba „Panaudok tą pačią 6 blokų struktūrą kitai temai.“
+
+**Duomenų tvarkymo checklist (path-step, id 65.5) – prieš skaidrę 64:**
+
+- **Paskirtis:** trumpa savitikra prieš pilną Duomenų tvarkymo atmintinę ir PDF. Dalyvis pažymi žingsnį atliktu, kai gali pasirinkti bent vieną punktą, kurį pritaikys per 24 val.
+- **Kelio etiketė:** „Projekto užbaigimo kelias“; `stepNumber: 1`, `stepTotal: 1`.
+- **5 trumpos sekcijos:** Asmeninė promptų biblioteka, Promptų versijavimas, Dokumentacija, Procesai, Duomenų rinkiniai. Kiekvienai – tik vienas praktinis sakinys; pilni paaiškinimai lieka skaidrėje 64.
+- **Patikra:** „Kurį punktą pradėsi šiandien – biblioteką ar versijavimą?“
+- **Žodynėlis:** atlikus žingsnį atrakinti terminus „Promptų biblioteka“ ir „Promptų versijavimas“.
 
 **Projekto etapai (scaffolding) – 6 žingsniai su galimybe sustoti:**
 
@@ -1691,7 +1699,7 @@ Pradiniame plane numatyta **dvi atskiros skaidrės:** (1) **4.6a Haliucinacijos*
      Saugokite mažus, reprezentatyvius duomenų rinkinių pavyzdžius (testiniai fragmentai), kad galėtumėte greitai išbandyti naujus promptus ar workflows be būtinybės apdoroti visą duomenų bazę. Praktiškai: mažas pavyzdys – pakeitėte promptą ir per 1 min patikrinate rezultatą.
 - **Takeaway:** gera **duomenų ir promptų higiena** = mažiau chaoso, lengvesnis testavimas ir greitesnis perėjimas nuo „vienkartinių eksperimentų“ prie tvaraus DI naudojimo versle.
 - **Pagalbinis kopijuojamas promptas:** Skaidrėje būtina įtraukti **vieną copyable promptą**, kurį dalyvis gali nukopijuoti ir paleisti su DI – „Padėk man susitvarkyti mano duomenis; pasiūlyk duomenų tvarkymo ir archyvavimo sistemą pagal geriausias praktikas.“ Promptas turi prašyti: (1) 5–6 konkrečių žingsnių pritaikyti dalyviui (biblioteka, versijavimas, dokumentacija, procesai, testiniai duomenys), (2) kur pradėti šiandien (1–2 veiksmai), (3) kokių įrankių/struktūrų naudoti (paprastai). Kontekstui – laukas [ką dažniausiai darau su DI; ar vienas, ar komandoje].
-- **Pastaba UI:** ši skaidrė – **paskutinė Modulio 6 skaidrė** (po Refleksijos); vizualiai – 5 numeruoti punktai + TIP + **blokas „Pagalbinis promptas: duomenų tvarkymo sistema“** (copyable) + CTA „Pirmas veiksmas per 24 val.“
+- **Pastaba UI:** ši skaidrė – **paskutinė Modulio 6 privaloma skaidrė** (po Refleksijos ir Duomenų tvarkymo checklist path-step); vizualiai – 5 numeruoti punktai + TIP + **blokas „Pagalbinis promptas: duomenų tvarkymo sistema“** (copyable) + CTA „Pirmas veiksmas per 24 val.“
 
 ### Integracija su Moduliu 3 (Modulis 6 ↔ Modulis 3)
 

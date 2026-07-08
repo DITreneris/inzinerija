@@ -188,7 +188,11 @@
     {
       "term": "Prompt library",
       "definition": "A personal or team store of templates – prompts organised by task and use case so you don’t have to write from scratch.",
-      "moduleId": 6
+      "moduleId": 6,
+      "unlockedBy": {
+        "moduleId": 6,
+        "slideId": 65.5
+      }
     },
     {
       "term": "Prompt manipulation",
@@ -198,7 +202,11 @@
     {
       "term": "Prompt versioning",
       "definition": "Keeping prompts in versions (v1, v2, v3) – what worked, what didn’t, what you changed; helps improve and avoid repeating mistakes.",
-      "moduleId": 6
+      "moduleId": 6,
+      "unlockedBy": {
+        "moduleId": 6,
+        "slideId": 65.5
+      }
     },
     {
       "term": "Quality block",

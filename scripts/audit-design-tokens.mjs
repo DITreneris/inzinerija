@@ -5,8 +5,8 @@
  * būti tokens (tailwind.config.js arba src/design-tokens.ts).
  *
  * SOT: docs/development/DESIGN_SYSTEM_V0_2.md §5 (Etapas E2 — Token inventory).
- * Naudojimas: node scripts/audit-design-tokens.mjs [--json] [--top=N] [--verbose]
- * Exit code: VISADA 0 (warn-only — baseline'ui, ne pre-commit gate).
+ * Naudojimas: node scripts/audit-design-tokens.mjs [--json] [--top=N] [--verbose] [--fail-on-regression]
+ * Exit code: 0 (warn-only) | 1 (--fail-on-regression && totals exceed baseline)
  *
  * Flag'ai:
  *   --json       JSON output (summary + ranked top-N).
@@ -35,10 +35,20 @@ const SKIP_PATTERNS = [/\.test\.tsx?$/, /\.d\.ts$/, /\bnode_modules\b/];
 const FLAGS = {
   json: process.argv.includes('--json'),
   verbose: process.argv.includes('--verbose'),
+  failOnRegression: process.argv.includes('--fail-on-regression'),
   topN: (() => {
     const arg = process.argv.find((a) => a.startsWith('--top='));
     return arg ? parseInt(arg.split('=')[1], 10) || 5 : 5;
   })(),
+};
+
+/** Baseline from docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md (2026-07 repair pass). */
+const BASELINE = {
+  hex: 343,
+  inlineStyle: 12,
+  svgFill: 100,
+  arbitraryClass: 66,
+  total: 521,
 };
 
 /** Reikšmės, kurios NETURI būti laikomos „hex'ais“ (legitimūs base64 fragmentai, regex bait'ai). */
@@ -184,16 +194,52 @@ function main() {
   const allFiles = SCAN_DIRS.flatMap((d) => walk(join(root, d)));
   const report = allFiles.map((f) => ({ file: f, findings: scanFile(f) }));
   const summary = summarize(report);
+  const total =
+    summary.counts.hex +
+    summary.counts.inlineStyle +
+    summary.counts.svgFill +
+    summary.counts.arbitraryClass;
 
   if (FLAGS.json) {
-    console.log(JSON.stringify({ summary: summary.counts, ranked: summary.ranked.slice(0, FLAGS.topN) }, null, 2));
+    console.log(
+      JSON.stringify(
+        { summary: summary.counts, total, baseline: BASELINE, ranked: summary.ranked.slice(0, FLAGS.topN) },
+        null,
+        2
+      )
+    );
   } else {
     printText(summary);
     if (FLAGS.verbose) {
       printVerbose(summary.ranked);
     }
   }
-  // warn-only: ALWAYS exit 0
+
+  if (FLAGS.failOnRegression) {
+    const regressions = [];
+    if (total > BASELINE.total) regressions.push(`total ${total} > baseline ${BASELINE.total}`);
+    if (summary.counts.hex > BASELINE.hex)
+      regressions.push(`hex ${summary.counts.hex} > baseline ${BASELINE.hex}`);
+    if (summary.counts.inlineStyle > BASELINE.inlineStyle)
+      regressions.push(
+        `inlineStyle ${summary.counts.inlineStyle} > baseline ${BASELINE.inlineStyle}`
+      );
+    if (summary.counts.svgFill > BASELINE.svgFill)
+      regressions.push(`svgFill ${summary.counts.svgFill} > baseline ${BASELINE.svgFill}`);
+    if (summary.counts.arbitraryClass > BASELINE.arbitraryClass)
+      regressions.push(
+        `arbitraryClass ${summary.counts.arbitraryClass} > baseline ${BASELINE.arbitraryClass}`
+      );
+    if (regressions.length > 0) {
+      console.error('\n=== Design tokens REGRESSION (fail-on-regression) ===');
+      for (const r of regressions) console.error(`  FAIL: ${r}`);
+      process.exit(1);
+    }
+    if (!FLAGS.json) {
+      console.log('\nRegression gate: PASS (at or below baseline).');
+    }
+  }
+
   process.exit(0);
 }
 

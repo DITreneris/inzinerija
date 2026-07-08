@@ -82,14 +82,14 @@ Test moduliai: `warm-up-quiz` optional prieš `test-intro`. Practice: `practice-
 
 ### Banga 2 – Practice ir vidutiniai learn (1–2 sav.)
 
-| ID     | Modulis | Veiksmas                                                       |
-| ------ | ------- | -------------------------------------------------------------- |
-| UX-2.1 | M6      | 1× `path-step` prieš capstone (duomenų tvarkymo checklist)     |
-| UX-2.2 | M12     | 1× `path-step` po 120.5 (multi-agent schema patikra)           |
-| UX-2.3 | M15     | 1× `path-step` po 150.25 (practice loop patvirtinimas)         |
-| UX-2.4 | M5      | +1 `warm-up-quiz` prieš test-section                           |
-| UX-2.5 | M8      | optional `warm-up-quiz` (3 klausimai, remediation → M7)        |
-| UX-2.6 | M6      | `correctPromptPractice` 1× content-block (projekto prompt fix) |
+| ID     | Modulis | Veiksmas                                                                        |
+| ------ | ------- | ------------------------------------------------------------------------------- |
+| UX-2.1 | M6      | ✅ 2026-07-08 – 1× `path-step` 65.5 prieš capstone (duomenų tvarkymo checklist) |
+| UX-2.2 | M12     | 1× `path-step` po 120.5 (multi-agent schema patikra)                            |
+| UX-2.3 | M15     | 1× `path-step` po 150.25 (practice loop patvirtinimas)                          |
+| UX-2.4 | M5      | +1 `warm-up-quiz` prieš test-section                                            |
+| UX-2.5 | M8      | optional `warm-up-quiz` (3 klausimai, remediation → M7)                         |
+| UX-2.6 | M6      | `correctPromptPractice` 1× content-block (projekto prompt fix)                  |
 
 ### Banga 3 – MVP ir testų moduliai (1 sav.)
 

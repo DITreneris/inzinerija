@@ -44,6 +44,10 @@ Result after targeted `ContentSlides.tsx` arbitrary-class cleanup:
 
 Trend: total findings `539 → 521`; arbitrary class findings `80 → 66`; inline style findings `13 → 12`. `diagramTokens.ts` remains the top file by count because it intentionally centralizes diagram palette literals.
 
+## DS Hardening Stamp (2026-07-08)
+
+Phase 0–5 pilot complete. Regression gate: `npm run audit:design-tokens:gate` (baseline total **521**, arbitrary **66**). **Post-hardening run (2026-07-08):** total **469** (hex 324, inline 12, svg 74, arbitrary **59**) — gate PASS. Primitive adoption: `<Banner>` production usages ≥10, `<CTAButton>` ≥15. Ongoing backlog: remaining inline `border-l-4` callouts in BlockSlides / TestPracticeSlides → `<Banner>` (not a release blocker).
+
 ## Main Drift Categories
 
 | Category                | Evidence                                                                                                                                                                                                              | Risk                                                                                                       |
@@ -57,13 +61,13 @@ Trend: total findings `539 → 521`; arbitrary class findings `80 → 66`; inlin
 
 Expected pattern after AppNav: `top-[var(--app-nav-height,4rem)]`.
 
-| File                                                          | Current finding                                | Action                                              |
-| ------------------------------------------------------------- | ---------------------------------------------- | --------------------------------------------------- |
-| `src/components/AppNav.tsx`                                   | `sticky top-0 z-40`                            | OK. AppNav owns the top layer.                      |
-| `src/components/ModuleView.tsx`                               | `sticky top-[var(--app-nav-height,4rem)] z-20` | OK. Reference implementation.                       |
-| `src/components/GlossaryPage.tsx`                             | `sticky top-0 z-10`                            | Fix in Phase 1. This sticky sits below AppNav.      |
-| `src/components/slides/types/TestPracticeSlides.tsx`          | `sticky top-0 z-10`                            | Fix in Phase 1. This sticky sits below AppNav.      |
-| `src/components/slides/types/content/IntroActionPieSlide.tsx` | modal-local `sticky top-0`                     | Keep. It is inside a modal panel, not under AppNav. |
+| File                                                          | Current finding                                                       | Action                                              |
+| ------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------- |
+| `src/components/AppNav.tsx`                                   | `sticky top-0 z-40` + `surfaceGlass.shell`                            | OK. AppNav owns the top layer.                      |
+| `src/components/ModuleView.tsx`                               | `sticky top-[var(--app-nav-height,4rem)] z-20` + `surfaceGlass.shell` | OK. Reference implementation.                       |
+| `src/components/GlossaryPage.tsx`                             | `stickyClasses.belowAppNavLow`                                        | OK. Fixed 2026-07 (DS Phase 1).                     |
+| `src/components/slides/types/TestPracticeSlides.tsx`          | `stickyClasses.belowAppNavLow` + `surfaceGlass.shell`                 | OK. Fixed 2026-07 (DS Phase 1).                     |
+| `src/components/slides/types/content/IntroActionPieSlide.tsx` | modal-local `sticky top-0`                                            | Keep. It is inside a modal panel, not under AppNav. |
 
 ## SVG Keyboard Baseline
 

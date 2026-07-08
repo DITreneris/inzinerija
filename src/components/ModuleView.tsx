@@ -23,11 +23,14 @@ import {
   focusRingClasses,
   radiusClasses,
   spacingClasses,
+  surfaceGlass,
   touchTargetClasses,
 } from '../design-tokens';
+import CTAButton from './ui/CTAButton';
 import { Progress } from '../utils/progress';
 import { findJourneyChoiceByStored } from '../utils/moduleJourneyFocus';
 import { isSlideLikelyUntranslatedForEn } from '../utils/enPartialCoverage';
+import { computeNextSlideContextLabel } from '../utils/navLabel';
 import { getModulesSync, preloadModules } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import {
@@ -654,34 +657,13 @@ function ModuleView({
     if (!module || isLastSlide || currentSlide + 1 >= module.slides.length)
       return null;
     const next = module.slides[currentSlide + 1];
-    const raw = (next.shortTitle ?? next.title ?? '').trim();
-    if (!raw) return null;
-    const text = raw
-      .replace(
-        /^[\p{Emoji_Presentation}\p{Extended_Pictographic}\u{FE0F}\u{20E3}]+\s*/u,
-        ''
-      )
-      .replace(
-        /^(Papildoma|Praktika|Skyrius|Savitikra|Projektas|Pavyzdys iš praktikos)[:\s]+/i,
-        ''
-      )
-      .replace(/\s*\([^)]*\)?\s*/g, ' ')
-      .trim();
-    const words = text.split(/\s+/).slice(0, 3);
-    const TRAIL_LT =
-      /^(ir|su|iš|ar|be|per|po|nuo|dėl|apie|kaip|savo|kurios|kodėl|tai)$/i;
-    const TRAIL_EN =
-      /^(and|with|from|for|the|to|or|of|in|on|a|an|by|at|into|as)$/i;
-    const TRAIL = locale === 'en' ? TRAIL_EN : TRAIL_LT;
-    while (words.length > 1 && TRAIL.test(words[words.length - 1])) words.pop();
-    let label = words
-      .join(' ')
-      .replace(/[,:;\u2013\u2014?!\u2026.]+$/, '')
-      .trim();
-    if (label.length < 3 && text.length > 0)
-      label = text.split(/\s+/).slice(0, 2).join(' ');
-    if (label.length > 20) return t('continueShort');
-    return t('module:nextContinueWith', { label });
+    const result = computeNextSlideContextLabel(
+      next.shortTitle ?? next.title,
+      locale === 'en' ? 'en' : 'lt'
+    );
+    if (result.kind === 'none') return null;
+    if (result.kind === 'fallback') return t('continueShort');
+    return t('module:nextContinueWith', { label: result.label });
   }, [nextSlideLabel, module, isLastSlide, currentSlide, t, locale]);
 
   const nextButtonLabel = nextSlideLabel ?? nextSlideContextLabel;
@@ -839,20 +821,21 @@ function ModuleView({
             {t('module:resumeModuleLabel')} {module.title}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <button
+            <CTAButton
               onClick={handleResumeFromSaved}
-              className="btn-primary flex items-center justify-center gap-2 min-h-[48px] px-6"
+              className="min-h-[48px] px-6"
             >
               <Play className="w-5 h-5" />
               {t('module:resumeContinueFrom', { n: savedSlidePosition + 1 })}
-            </button>
-            <button
+            </CTAButton>
+            <CTAButton
+              variant="secondary"
               onClick={handleStartFromBeginning}
-              className="btn-secondary flex items-center justify-center gap-2 min-h-[48px] px-6"
+              className="min-h-[48px] px-6"
             >
               <RotateCcw className="w-5 h-5" />
               {t('module:resumeStartOver')}
-            </button>
+            </CTAButton>
           </div>
         </div>
       </div>
@@ -886,15 +869,15 @@ function ModuleView({
               moduleId: remediationFrom.sourceModuleId,
             })}
           </p>
-          <button
+          <CTAButton
             type="button"
             onClick={onReturnToRemediation}
-            className="btn-primary flex items-center gap-2 shrink-0 px-4 py-2 min-h-[44px]"
+            className="shrink-0 px-4 py-2"
             aria-label={t('backToTestResult')}
           >
             <ArrowLeft className="w-4 h-4" />
             {t('backToTestResult')}
-          </button>
+          </CTAButton>
         </div>
       )}
 
@@ -1012,7 +995,7 @@ function ModuleView({
 
           {/* Sticky nav bar: mobile = compact counter + progress line only; desktop (lg+) = full Atgal/counter/Tęsti */}
           <nav
-            className="sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm"
+            className={`sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b shadow-sm ${surfaceGlass.shell}`}
             aria-label={t('slideNavBarAria')}
           >
             {/* Mobile: compact counter only (buttons are in bottom nav) */}
@@ -1032,16 +1015,17 @@ function ModuleView({
             </div>
             {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
             <div className="hidden lg:flex items-center justify-between gap-3 py-2">
-              <button
+              <CTAButton
                 type="button"
                 onClick={prevSlide}
                 disabled={isFirstSlide}
-                className="shrink-0 flex items-center gap-1.5 px-2.5 py-2.5 rounded-lg text-sm font-medium min-h-[44px] min-w-[44px] whitespace-nowrap bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                variant="secondary"
+                className="shrink-0 rounded-lg text-sm font-medium min-w-[44px] whitespace-nowrap bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed border-0 shadow-none"
                 aria-label={t('prevSlide')}
               >
                 <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
                 <span>{t('backShort')}</span>
-              </button>
+              </CTAButton>
               <span
                 className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
                 aria-label={t('slideOf', {
@@ -1051,12 +1035,13 @@ function ModuleView({
               >
                 {visiblePosition}/{visibleSlideCount}
               </span>
-              <button
+              <CTAButton
                 type="button"
                 onClick={handleNextOrCompleteClick}
                 disabled={isNextDisabled}
                 title={nextSlideContextLabel ?? undefined}
-                className="flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-medium min-h-[48px] bg-brand-600 dark:bg-brand-500 text-white hover:bg-brand-700 dark:hover:bg-brand-600 shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+                variant="primary"
+                className="px-5 py-3 rounded-xl text-sm min-h-[48px] shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:hover:translate-y-0"
                 aria-label={
                   isLastSlide
                     ? t('completeAria')
@@ -1077,7 +1062,7 @@ function ModuleView({
                 {isLastSlide && (
                   <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />
                 )}
-              </button>
+              </CTAButton>
             </div>
             <div
               className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
@@ -1125,16 +1110,16 @@ function ModuleView({
                   type: {currentSlideData.type ?? '—'})
                 </p>
                 <div className="flex gap-3">
-                  <button
+                  <CTAButton
+                    variant="secondary"
                     onClick={() => window.location.reload()}
-                    className="btn-secondary flex items-center gap-2"
                   >
                     <RefreshCw className="w-4 h-4" />
                     {t('module:refresh')}
-                  </button>
-                  <button onClick={nextSlide} className="btn-primary">
+                  </CTAButton>
+                  <CTAButton onClick={nextSlide}>
                     {t('module:nextSlide')}
-                  </button>
+                  </CTAButton>
                 </div>
               </div>
             }
@@ -1213,7 +1198,9 @@ function ModuleView({
       </div>
 
       {/* Mobile: Bottom Navigation Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-800 shadow-lg z-30 safe-area-inset-bottom">
+      <div
+        className={`lg:hidden fixed bottom-0 left-0 right-0 border-t shadow-lg z-30 safe-area-inset-bottom ${surfaceGlass.shell}`}
+      >
         <div className={`max-w-7xl mx-auto ${mobileBottomShellClass}`}>
           <div className="flex items-center justify-between gap-3">
             <button

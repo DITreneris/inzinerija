@@ -18,7 +18,7 @@ _TBD v0.3 — žr. [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §1–§2 (šrifta
 Canonical sluoksniai:
 
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
-- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking ir z-index class helperiai.
+- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`) class helperiai.
 - `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės.
 - `src/utils/useDiagramPalette.ts` — dark/light SVG paletės parinkimas React diagramoms.
 
@@ -26,11 +26,13 @@ Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](analysis/DESIGN_TOKENS_
 
 ```bash
 npm run audit:design-tokens
+npm run audit:design-tokens:gate   # exit 1 jei regresija vs 2026-07 baseline
+npm run audit:module-identity      # M1–15 accent + identityIcon
 ```
 
-Auditas yra warn-only. Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tailwind arbitrary styling (`bg-[#...]`, `border-[#...]`, `shadow-[...]`).
+Auditas yra warn-only (be `:gate`). Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tailwind arbitrary styling (`bg-[#...]`, `border-[#...]`, `shadow-[...]`).
 
-2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). `LlmArchDiagramDiagram.tsx` radiniai sąmoningai palikti B3 trackui, ne bendram hotspot sprintui.
+2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). **DS hardening (2026-07-08):** `<Banner>` ≥10 production naudojimų, `<CTAButton>` ≥15, `SlideWorkspace` M4/M10 pilotas, `surfaceGlass.shell` sticky sluoksniuose. Likęs backlog: likę `border-l-4` callout'ai BlockSlides / TestPracticeSlides → `<Banner>` (fazė 4, ne blokeris).
 
 ---
 
@@ -38,18 +40,19 @@ Auditas yra warn-only. Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tai
 
 Canonical JSX komponentai: `src/components/ui/`. Dublikatų žemėlapis: [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md).
 
-| Komponentas             | Paskirtis                                       | Pastaba                                    |
-| ----------------------- | ----------------------------------------------- | ------------------------------------------ |
-| `Card`                  | Kortelės fonas / rėmelis                        | `@deprecated` `.card` CSS — migracija v0.3 |
-| `CTAButton`             | Primary / secondary / accent mygtukai           | Naudoja `.btn-*` kaip backend              |
-| `Banner`                | Callout (`info`, `success`, `warning`, `terms`) |                                            |
-| `Table`                 | Lentelės subkomponentai                         |                                            |
-| `LoadingSpinner`        | Krautuvas                                       |                                            |
-| `ErrorBoundary`         | Klaidų riba                                     |                                            |
-| **Eyebrow** (E4)        | Maža uppercase antraštė, 6 accent               | Proof: ModulesPage, ActionIntroSlide       |
-| **IconChip** (E4)       | Apvali piktograma, 5 role, 3 size               | Proof: ModuleCompleteScreen                |
-| **SectionDivider** (E4) | Skiriamoji linija su/be label                   | Proof: SummarySlide                        |
-| **BrandMark** (v0.3.1)  | Ženklas (`Zap` + gold ant `brand-900`)          | nav / hero / footer; § 4a                  |
+| Komponentas                       | Paskirtis                                       | Pastaba                                    |
+| --------------------------------- | ----------------------------------------------- | ------------------------------------------ |
+| `Card`                            | Kortelės fonas / rėmelis                        | `@deprecated` `.card` CSS — migracija v0.3 |
+| `CTAButton`                       | Primary / secondary / accent mygtukai           | Naudoja `.btn-*` kaip backend              |
+| `Banner`                          | Callout (`info`, `success`, `warning`, `terms`) |                                            |
+| `Table`                           | Lentelės subkomponentai                         |                                            |
+| `LoadingSpinner`                  | Krautuvas                                       |                                            |
+| `ErrorBoundary`                   | Klaidų riba                                     |                                            |
+| **Eyebrow** (E4)                  | Maža uppercase antraštė, 6 accent               | Proof: ModulesPage, ActionIntroSlide       |
+| **IconChip** (E4)                 | Apvali piktograma, 5 role, 3 size               | Proof: ModuleCompleteScreen                |
+| **SectionDivider** (E4)           | Skiriamoji linija su/be label                   | Proof: SummarySlide                        |
+| **BrandMark** (v0.3.1)            | Ženklas (`Zap` + gold ant `brand-900`)          | nav / hero / footer; § 4a                  |
+| **SlideWorkspace** (DS hardening) | Vieningas `content-block` vertikalus tarpas     | Pilotas M4 + M10 per `SlideContent.tsx`    |
 
 Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 

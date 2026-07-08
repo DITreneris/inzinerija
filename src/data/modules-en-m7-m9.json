@@ -75,6 +75,8 @@
             "question": "What is your analyst profile today?",
             "introHook": "Choose the closest role – after your choice you will see what to pay attention to in this module.",
             "ctaReveal": "Show what this means",
+            "chartHeading": "Profile distribution",
+            "hidePdfActions": true,
             "footer": "Next – slide 3: Data analysis path",
             "segments": [
               {
@@ -1610,7 +1612,7 @@
             "title": "Section: Reliability and ethics",
             "subtitle": "First in this section: manipulation, security, hallucinations, knowledge verification (optional – benchmark and detectors). Then we return to pipeline continuation: EDA in practice, table methodology, BI schema, agents, MASTER PROMPT.",
             "sectionNumber": "M7",
-            "footer": "Next – slide 30: Prompt manipulation",
+            "footer": "Next – slide 31: Prompt manipulation",
             "celebrationText": "Good! Pipeline, prompts and data preparation – already completed in this part. Now – reliability and ethics in analysis.",
             "nextSteps": [
               "Prompt manipulation – bias, leading questions, neutral prompts.",
@@ -1698,7 +1700,7 @@
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Next – slide 31: Fix the prompt"
+            "footer": "Next – slide 32: Fix the prompt"
           }
         },
         {
@@ -1740,7 +1742,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 32: Prompt injection and boundary bypass"
+            "footer": "Next – slide 33: Prompt injection and boundary bypass"
           }
         },
         {
@@ -1801,7 +1803,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 33: 5 steps"
+            "footer": "Next – slide 34: 5 steps"
           }
         },
         {
@@ -1811,7 +1813,7 @@
           "shortTitle": "5 steps",
           "type": "hallucination-pipeline",
           "content": {
-            "footer": "Next – slide 34: Hallucinations"
+            "footer": "Next – slide 35: Hallucinations"
           }
         },
         {
@@ -1866,7 +1868,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 35: Knowledge verification"
+            "footer": "Next – slide 36: Knowledge verification"
           }
         },
         {
@@ -1906,7 +1908,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 36: Hallucination rates"
+            "footer": "Next – slide 37: Hallucination rates"
           }
         },
         {
@@ -1916,7 +1918,7 @@
           "shortTitle": "Hallucination rates",
           "type": "hallucination-dashboard",
           "content": {
-            "footer": "Next – slide 37: AI content detectors"
+            "footer": "Next – slide 38: AI content detectors"
           }
         },
         {
@@ -1926,7 +1928,7 @@
           "shortTitle": "AI content detectors",
           "type": "ai-detectors",
           "content": {
-            "footer": "Next – slide 38: Self-check"
+            "footer": "Next – slide 39: Self-check"
           }
         },
         {
@@ -1986,7 +1988,7 @@
                 "explanation": "Three-step principle for reducing hallucinations: (1) ask for sources and references; (2) cross-check with independent sources; (3) let AI say \"I don't know\". RAG also reduces risk because AI relies on data."
               }
             ],
-            "footer": "Next – slide 39: Exploratory data analysis (EDA)"
+            "footer": "Next – slide 40: Exploratory data analysis (EDA)"
           }
         },
         {

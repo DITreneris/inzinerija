@@ -6265,7 +6265,52 @@
                 "body": "**Grįžti į modulių sąrašą** – pasirink kitą modulį arba peržiūrėk sertifikatą. **Pažangūs keliai** (Moduliai 7–15) – gilinti žinias apie DI pritaikymą ir konteksto inžineriją.",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "footer": "Toliau – skaidrė 8: Duomenų checklist"
+          }
+        },
+        {
+          "id": 65.5,
+          "title": "Duomenų tvarkymo checklist",
+          "subtitle": "Projekto užbaigimo kelias – žingsnis 1",
+          "type": "path-step",
+          "content": {
+            "title": "Duomenų tvarkymo checklist",
+            "pathLabel": "Projekto užbaigimo kelias",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Prieš pilną atmintinę greitai pasitikrink, ar supranti 5 duomenų ir promptų tvarkymo punktus. Pažymėk atlikta, kai bent vieną punktą gali pritaikyti per 24 val.",
+            "sections": [
+              {
+                "heading": "1. Asmeninė promptų biblioteka",
+                "body": "Išsaugok veikiančius promptus vienoje vietoje, kad jų nereikėtų ieškoti senuose pokalbiuose."
+              },
+              {
+                "heading": "2. Promptų versijavimas",
+                "body": "Kai pakeiti promptą, išsaugok kopiją su data arba versija, kad vėliau matytum, kas veikė geriau."
+              },
+              {
+                "heading": "3. Dokumentacija",
+                "body": "Prie svarbaus šablono pridėk 2–3 sakinius: kam jis skirtas, ką įklijuoti ir kokio rezultato tikėtis."
+              },
+              {
+                "heading": "4. Procesai",
+                "body": "Pasikartojančiam darbui užrašyk trumpą eigą: nuo įvesties iki rezultato ir patikros."
+              },
+              {
+                "heading": "5. Duomenų rinkiniai",
+                "body": "Turėk mažą testinį pavyzdį, kad galėtum greitai patikrinti, ar naujas promptas veikia."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Kurį punktą pradėsi šiandien – biblioteką ar versijavimą?"
+              }
+            ],
+            "unlockedGlossaryTerms": [
+              "Promptų biblioteka",
+              "Promptų versijavimas"
+            ],
+            "footer": "Toliau – skaidrė 9: Duomenų tvarkymas"
           }
         },
         {
@@ -6521,6 +6566,8 @@
             "question": "Koks tavo analitiko profilis šiandien?",
             "introHook": "Pasirink artimiausią vaidmenį – po pasirinkimo pamatysi, į ką šiame modulyje verta atkreipti dėmesį.",
             "ctaReveal": "Parodyk, ką tai reiškia",
+            "chartHeading": "Profilių pasiskirstymas",
+            "hidePdfActions": true,
             "footer": "Toliau – skaidrė 3: Duomenų analizės kelias",
             "segments": [
               {

@@ -132,7 +132,7 @@ export function getPhaseLabel(
         lt = 'COMBO ir HTML';
       else if (slideId === 63) lt = 'SUPER';
       else if (slideId === 65) lt = 'Refleksija';
-      else if (slideId === 64) lt = 'Duomenų tvarkymas';
+      else if (slideId === 65.5 || slideId === 64) lt = 'Duomenų tvarkymas';
       else if (slideId === 66 || slideId === 67) lt = 'Custom GPT';
     }
     return localizePhase(lt, locale);

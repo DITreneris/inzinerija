@@ -309,6 +309,70 @@
         },
         {
           "if": {
+            "properties": { "type": { "const": "intro-action-pie" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["content"],
+            "properties": {
+              "content": {
+                "type": "object",
+                "required": ["question", "segments"],
+                "properties": {
+                  "question": { "type": "string" },
+                  "subtitle": { "type": "string" },
+                  "introHook": { "type": "string" },
+                  "ctaReveal": { "type": "string" },
+                  "chartHeading": { "type": "string" },
+                  "hidePdfActions": { "type": "boolean" },
+                  "footer": { "type": "string" },
+                  "segments": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "required": ["label", "value"],
+                      "properties": {
+                        "label": { "type": "string" },
+                        "value": { "type": "number" },
+                        "colorKey": { "type": "string" }
+                      }
+                    }
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["icon", "title"],
+                      "properties": {
+                        "icon": { "type": "string" },
+                        "title": { "type": "string" },
+                        "description": { "type": "string" }
+                      }
+                    }
+                  },
+                  "revealInsights": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "segmentPhrase": { "type": "string" },
+                        "insight": { "type": "string" },
+                        "question": { "type": "string" },
+                        "line1": { "type": "string" },
+                        "line2": { "type": "string" },
+                        "ctaLabel": { "type": "string" },
+                        "ctaHref": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
             "properties": { "type": { "const": "practice-scenario-hub" } },
             "required": ["type"]
           },

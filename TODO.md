@@ -1,7 +1,7 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-07.
+**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-08.
 
 **Dabartinis fokusas:** **M1–15 mokymų UX / interaktyvumas** (platiname esamus skaidrių pattern'us). Planas: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. Audit: `npm run audit:slide-interactivity`. **MON P0** – release guardrail (15 min smoke prieš marketing submodule), ne atskiras blokeris – pardavimai marketingo repo.
 
@@ -19,20 +19,54 @@
 > **Planas:** [docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md](docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md)  
 > **Audit:** `npm run audit:slide-interactivity` (dabartinė būklė 2026-07-07 po Bangos 1 + M1 baseline: 258 skaidrės; warm-up=14, path=9, intro-action-pie=2, evaluator=2, embed=7). M1 įspėjimas uždarytas.
 
-| ID         | Banga | Užduotis                                                            | Status |
-| ---------- | ----- | ------------------------------------------------------------------- | ------ |
-| **UX-0**   | 0     | Planas + audit skriptas + TODO sync                                 | [x]    |
-| **UX-1.1** | 1     | M7: +4 `warm-up-quiz` (73.5, 731.5, 891.5, 74.5) + 68.5 į branduolį | [x]    |
-| **UX-1.2** | 1     | M7: 1× `intro-action-pie` po 70 journey                             | [x]    |
-| **UX-1.3** | 1     | M10: +2 `warm-up-quiz`                                              | [x]    |
-| **UX-1.4** | 1     | M10: 1× `evaluator-prompt-block`                                    | [x]    |
-| **UX-1.5** | 1     | M13: +2 `warm-up-quiz`                                              | [x]    |
-| **UX-1.6** | 1     | M13: 1× `recognitionExercise`                                       | [x]    |
-| **UX-2**   | 2     | M6/M12/M15 path-step; M5 warm-up; M6 correctPromptPractice          | [ ]    |
-| **UX-3**   | 3     | M1 micro-win ✅; M2 bonus; M11/M14 scenario share                   | [ ]    |
-| **UX-4**   | 4     | GOLDEN_STANDARD §3.8; EN overlay sync Banga 1–2                     | [ ]    |
+| ID         | Banga | Užduotis                                                               | Status |
+| ---------- | ----- | ---------------------------------------------------------------------- | ------ |
+| **UX-0**   | 0     | Planas + audit skriptas + TODO sync                                    | [x]    |
+| **UX-1.1** | 1     | M7: +4 `warm-up-quiz` (73.5, 731.5, 891.5, 74.5) + 68.5 į branduolį    | [x]    |
+| **UX-1.2** | 1     | M7: 1× `intro-action-pie` po 70 journey; PDF bleed closure             | [x]    |
+| **UX-1.3** | 1     | M10: +2 `warm-up-quiz`                                                 | [x]    |
+| **UX-1.4** | 1     | M10: 1× `evaluator-prompt-block`                                       | [x]    |
+| **UX-1.5** | 1     | M13: +2 `warm-up-quiz`                                                 | [x]    |
+| **UX-1.6** | 1     | M13: 1× `recognitionExercise`                                          | [x]    |
+| **UX-2**   | 2     | M6/M12/M15 path-step; M5 warm-up; M6 correctPromptPractice (UX-2.1 ✅) | [ ]    |
+| **UX-3**   | 3     | M1 micro-win ✅; M2 bonus; M11/M14 scenario share                      | [ ]    |
+| **UX-4**   | 4     | GOLDEN_STANDARD §3.8; EN overlay sync Banga 1–2                        | [ ]    |
 
 **Pipeline:** CURRICULUM → CONTENT → DATA → `validate:schema` → EN audit (M10+) → QA.
+
+### §1.0b Design System hardening ✅ (2026-07-08)
+
+> **Planas:** `.cursor/plans/design_system_hardening_b6c90015.plan.md` (nekeisti). **Baseline:** `docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md`.
+
+| ID              | Fazė | Užduotis                                                              | Status |
+| --------------- | ---- | --------------------------------------------------------------------- | ------ |
+| **DS-0-sot**    | 0    | GOLDEN_STANDARD §2.2/§6, `surfaceGlass`, audit regression gate        | [x]    |
+| **DS-1-shell**  | 1    | `surfaceGlass.shell` AppNav / ModuleView / TestPracticeSlides         | [x]    |
+| **DS-1-block**  | 1    | ContentSlides blockVariant → `getContentBlockVariantClasses()`        | [x]    |
+| **DS-1-banner** | 1    | Banner pilot ContentSlides + BlockSlides + TestPracticeSlides (≥10)   | [x]    |
+| **DS-1-prim**   | 1    | Card/CTAButton HomePage, ModulesPage, ModuleView                      | [x]    |
+| **DS-1-arb**    | 1    | Targeted `text-[11px]` cleanup; audit ≤521 baseline                   | [x]    |
+| **DS-2-id**     | 2    | `audit:module-identity`; diagram P2 (M10/M12/M13)                     | [x]    |
+| **DS-3-ws**     | 3    | `SlideWorkspace` + M4/M10 content-block pilot                         | [x]    |
+| **DS-4-exp**    | 4    | Banner batch BlockSlides + TestPracticeSlides (ongoing backlog likęs) | [x]    |
+| **DS-5-qa**     | 5    | CHANGELOG, DESIGN_SYSTEM, RELEASE_QA #6 smoke docs                    | [x]    |
+
+**Vartai:** `npm run audit:design-tokens`, `npm run audit:design-tokens:gate`, `npm run audit:module-identity`, `npm run lint`, `npm run test:run`.
+
+### §1.0c DS Next Waves (W6–W10)
+
+> **Planas:** `.cursor/plans/ds_next_waves_0ac88414.plan.md` (nekeisti). **W6 smoke:** RELEASE_QA §7 DS visual smoke (M1/M4/M7/M10/M13).
+
+| ID      | Banga            | Užduotis                                                         | Status |
+| ------- | ---------------- | ---------------------------------------------------------------- | ------ |
+| **W6**  | QA closure       | DS smoke docs + sticky baseline sync + commit checkpoint         | [x]    |
+| **W7a** | Banner           | BlockSlides batch (~15 callout'ų)                                | [ ]    |
+| **W7b** | Banner           | TestPracticeSlides likutis                                       | [ ]    |
+| **W7c** | Banner           | AdvancedBlockSlide + ActionIntroSlide + RecognitionExerciseBlock | [ ]    |
+| **W7d** | Banner           | ContentSlides mažais batch'ais (optional)                        | [ ]    |
+| **W8**  | SlideWorkspace   | M1/M7/M13 + evaluator-prompt-block                               | [ ]    |
+| **W9**  | Primitives       | CTAButton/Card TestPractice + shell + HomePage                   | [ ]    |
+| **W10** | Diagrams + gates | M13/M15 P2 + baseline 469 + release-preflight                    | [ ]    |
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
@@ -196,7 +230,7 @@
 
 - [ ] **Reflection prompts M8–M15:** Atnaujinti likusių modulių (8, 9, 10, 11, 12, 13, 14, 15) `reflectionPrompt` laukus į META + INPUT + OUTPUT formatą (`modules.json`, EN overlay pagal modulį). M7 santrauka atnaujinta 2026-07-05; M1–M6 jau atnaujinti (id 14, 37, 38).
 
-**Peržiūrai (netraukti):** M7 branduolys dabar 33 skaidrės + 5 warm-up savitikros; kryptis – sąmoningas interaktyvumo ritmas, ne lean-only mažinimas. Vizualinis triukšmas (GOLDEN_STANDARD – 2–3 spalvos) lieka atskiras peržiūros kriterijus.
+**Peržiūrai (netraukti):** M7 branduolys dabar 34 skaidrės + 5 warm-up savitikros; kryptis – sąmoningas interaktyvumo ritmas, ne lean-only mažinimas. Vizualinis triukšmas (GOLDEN_STANDARD – 2–3 spalvos) lieka atskiras peržiūros kriterijus.
 
 ---
 

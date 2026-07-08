@@ -3,7 +3,7 @@
  * Kortelė su variantais pagal DESIGN_GUIDE §4.
  * Naudojimas: skaidrės blokai, Summary kortelės, palyginimai.
  */
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export type CardVariant = 'default' | 'brand' | 'accent';
 
@@ -16,15 +16,23 @@ const variantClasses: Record<CardVariant, string> = {
     'bg-accent-50 dark:bg-accent-900/20 rounded-2xl shadow-md border border-accent-200 dark:border-accent-800',
 };
 
-interface CardProps {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
   children: ReactNode;
   className?: string;
 }
 
-export default function Card({ variant = 'default', children, className = '' }: CardProps) {
+export default function Card({
+  variant = 'default',
+  children,
+  className = '',
+  ...props
+}: CardProps) {
   return (
-    <div className={`${variantClasses[variant]} ${className}`.trim()}>
+    <div
+      className={`${variantClasses[variant]} ${className}`.trim()}
+      {...props}
+    >
       {children}
     </div>
   );

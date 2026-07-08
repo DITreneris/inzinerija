@@ -89,6 +89,18 @@ export const radius = {
   full: 9999,
 } as const;
 
+/** Glass / frosted surface recipes — Design System hardening (2026-07). Max 3 opacity steps. */
+export const surfaceGlass = {
+  /** AppNav, ModuleView sticky nav, mobile bottom nav */
+  shell:
+    'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-gray-200/50 dark:border-gray-800' as const,
+  /** Celebration panels, preview blocks */
+  panel: 'bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm' as const,
+  /** Modal overlays on gradient heroes */
+  overlay:
+    'bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-white/20' as const,
+} as const;
+
 /** Tailwind radius klasės pagal elementą (Design Guide 4.4) */
 export const radiusClasses = {
   /** Kortelė, didesnis blokas */

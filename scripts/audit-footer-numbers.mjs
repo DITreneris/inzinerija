@@ -4,7 +4,7 @@
  * SOT: .cursor/rules/footer-slide-numbers.mdc, GOLDEN_STANDARD §3.6.
  * Usage: node scripts/audit-footer-numbers.mjs [--modules=10,11,12]
  *        Or: AUDIT_MODULES=10 node scripts/audit-footer-numbers.mjs
- *        --locale=en merges modules-en-m10-m12.json for M10–12 EN footers
+ *        --locale=en merges EN overlay files before checking EN footers
  * Exit 0 = all OK, 1 = at least one mismatch.
  */
 import { readFileSync } from 'fs';
@@ -47,15 +47,24 @@ let data = JSON.parse(readFileSync(dataPath, 'utf8'));
 
 if (useEn) {
   try {
-    const enM1012 = JSON.parse(readFileSync(join(dataDir, 'modules-en-m10-m12.json'), 'utf8'));
-    data = {
-      modules: data.modules.map((m) => {
-        const enMod = enM1012.modules?.find((x) => x.id === m.id);
-        return enMod ? deepMerge(m, enMod) : m;
-      }),
-    };
+    const overlayFiles = [
+      'modules-en.json',
+      'modules-en-m4-m6.json',
+      'modules-en-m7-m9.json',
+      'modules-en-m10-m12.json',
+      'modules-en-m13-m15.json',
+    ];
+    for (const file of overlayFiles) {
+      const overlay = JSON.parse(readFileSync(join(dataDir, file), 'utf8'));
+      data = {
+        modules: data.modules.map((m) => {
+          const enMod = overlay.modules?.find((x) => x.id === m.id);
+          return enMod ? deepMerge(m, enMod) : m;
+        }),
+      };
+    }
   } catch (e) {
-    console.error('Failed to load EN M10–12 for merge:', e.message);
+    console.error('Failed to load EN overlays for merge:', e.message);
     process.exit(1);
   }
 }
