@@ -281,8 +281,8 @@
 
 | Sąlyga                   | Pavyzdys (dabartinis)                                                                                                     |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: moduliai 1–9.                                                       |
-| **Papildoma (optional)** | Baigiamoji apklausa ≥70 % – tier 2; kelio testas (pvz. Modulio 8 testas ≥70 %) – tier 3.                                  |
+| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: kelias 7–9; Tier 4: kelias 10–12; Tier 5: kelias 13–15.             |
+| **Papildoma (optional)** | Baigiamoji apklausa ≥70 % – tier 2; kelio testas: M8 ≥70 % – tier 3, M11 ≥70 % – tier 4, M14 ≥70 % – tier 5.              |
 | **Vieta mygtuko**        | `completionArtifacts.json` nurodo `unlockOnModuleId`; ModuleCompleteScreen tik perskaito registry ir eligibility helperį. |
 
 **Receptas naujam moduliui:** Nuspręsti, po kurio modulio išduodamas sertifikatas; ar reikia quiz ribos; pridėti tier į `certificateContent*.json`, `certificateEligibility.ts` ir `completionArtifacts.json`. UI neturi gauti naujos `module.id === N` šakos vien dėl sertifikato.
@@ -335,7 +335,7 @@
 `src/data/completionArtifacts.json` yra vienas artefaktų routing sluoksnis:
 
 - `handouts[]` aprašo, kada handout uždirbamas (`earnOnModuleIds`), kur rodomas (`surfaces`), kokį i18n label naudoti (`ctaI18nKey`) ir kokį analytics ID siųsti (`analyticsCtaId`).
-- `certificates[]` aprašo tier unlock vietą (`unlockOnModuleId`) ir eligibility raktą (`tier1`, `tier2`, `tier3`).
+- `certificates[]` aprašo tier unlock vietą (`unlockOnModuleId`) ir eligibility raktą (`tier1`, `tier2`, `tier3`, `tier4`, `tier5`).
 - Funkcijų map'as lieka TypeScript faile (`handoutArtifactActions.ts`), nes JSON negali laikyti PDF download funkcijų.
 - `validate:schema` validuoja registry ir visų handout content JSON struktūrą.
 

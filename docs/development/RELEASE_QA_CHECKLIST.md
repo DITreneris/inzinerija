@@ -78,7 +78,7 @@
 
 ---
 
-## 5d. M1 / M4 / M5 / M6 / M7–9 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
+## 5d. M1 / M4 / M5 / M6 / M7–9 / M10–12 / M13–15 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
 
 > **Įtraukta:** 2026-03-11. P1 release užduotys – rankinė patikra, kurią atlieka žmogus.
 
@@ -87,7 +87,11 @@
 - [ ] **M5 PDF:** Modulio 5 → baigti testą → „Parsisiųsti Modulio 5 atmintinę (PDF)“ → atsidaryti PDF: lietuviškos raidės (ą, ė, į, š, ų, ū, ž) rodomos teisingai (NotoSans). Žr. PDF_DOWNLOAD_TESTING.md, §5.
 - [ ] **M6 PDF:** Modulio 6 → atlikti praktiką → ModuleCompleteScreen → parsisiųsti PDF – lietuviškos raidės, turinys atitinka.
 - [ ] **M7–9 DA kelio PDF:** Modulis 9 → skaidrė 92 arba ModuleCompleteScreen → „Parsisiųsti DA kelio atmintinę (PDF)“ → atsidaryti PDF: 2 puslapiai, lietuviškos raidės, spaudžiamos nuorodos į blog / Decide / Map su `utm_medium=handout`.
+- [ ] **M10–12 Agentų kelio PDF:** Modulis 12 → ModuleCompleteScreen arba „Mano medžiaga“ → „Parsisiųsti Agentų kelio atmintinę (PDF)“ → atsidaryti PDF: agento ciklas, 3A, darbo eigos žingsniai, promptų šablonai, 2 psl. funnel, spaudžiamos nuorodos su `utm_medium=handout`. EN locale – AI terminologija.
+- [ ] **M13–15 Turinio kelio PDF:** Modulis 15 → ModuleCompleteScreen arba „Mano medžiaga“ → „Parsisiųsti Turinio kelio atmintinę (PDF)“ → atsidaryti PDF: vaizdo / video / muzikos šablonai, teisių patikra, delivery checklist, funnel nuorodos su `utm_medium=handout`. EN locale – AI terminologija.
 - [ ] **M7–9 PDF automatinis guard:** jei keistas M79 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m79HandoutContent.test.ts src/utils/__tests__/m79HandoutPdf.test.ts`.
+- [ ] **M10–12 PDF automatinis guard:** jei keistas M1012 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m1012HandoutContent.test.ts src/utils/__tests__/m1012HandoutPdf.test.ts`.
+- [ ] **M13–15 PDF automatinis guard:** jei keistas M1315 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m1315HandoutContent.test.ts src/utils/__tests__/m1315HandoutPdf.test.ts`.
 - [ ] **M1 PDF automatinis guard:** jei keistas M1 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m1HandoutContent.test.ts src/utils/__tests__/m1HandoutPdf.test.ts`.
 - [ ] **M4 PDF automatinis guard:** jei keistas M4 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m4HandoutContent.test.ts src/utils/__tests__/m4HandoutPdf.test.ts`.
 - [ ] **PDF / sertifikatų registry guard:** jei keistas `completionArtifacts.json`, handout schema arba `downloadHandout.ts`, paleisti `npm run validate:schema` ir `npm run test:run -- src/data/__tests__/completionArtifacts.test.ts src/components/__tests__/ModuleCompleteScreen.test.tsx src/components/__tests__/ModulesPage.materials.test.tsx`.

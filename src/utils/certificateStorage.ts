@@ -8,7 +8,7 @@ import { generateSerialNumber } from './certificatePdf';
 const STORAGE_KEY = 'prompt-anatomy-certificate-name';
 const SERIALS_STORAGE_KEY = 'prompt-anatomy-certificate-serials';
 
-type CertificateTier = 1 | 2 | 3;
+type CertificateTier = 1 | 2 | 3 | 4 | 5;
 type CertificateSerials = Partial<Record<CertificateTier, string>>;
 
 export function getCertificateName(): string {

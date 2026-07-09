@@ -46,6 +46,7 @@ _Įrašai po 1.4.3 release._
 
 ### Added
 
+- **PDF / sertifikatų P2 M10–15 artefaktai:** pridėti tier 4 / tier 5 sertifikatai (Agentų kelias M10–12 su M11 ≥70 %, Turinio kelias M13–15 su M14 ≥70 %) ir naujos PDF atmintinės `m1012` / `m1315` su LT/EN content JSON, schemomis, PDF utilais, registry įrašais ir guard testais.
 - **PDF / handout / sertifikatų P1 registry:** pridėtas `completionArtifacts.json` registry su schema ir guard testu, 5 handout content JSON schemos prijungtos prie `validate:schema`, o `downloadHandout.ts` centralizuoja M1/M4/M5/M6/M7–9 atmintinių atsisiuntimą, analytics ir klaidų log'inimą.
 - **M4 PDF atmintinė ir „Mano medžiaga“:** pridėta Modulio 4 value-only PDF atmintinė (`m4HandoutContent*.json`, `m4HandoutPdf.ts`) su RAG, giliojo tyrimo, tokenų, haliucinacijų ir patikros checklist santrauka; Modulio 4 užbaigimo ekranas rodo atsisiuntimo mygtuką, o `ModulesPage` gavo „Mano medžiaga“ bloką pakartotiniam M1/M4/M5/M6/M7–9 atmintinių ir uždirbtų sertifikatų atsisiuntimui.
 - **UX Banga 4 (etalonų dokumentacija ir EN sync) užbaigta:** `GOLDEN_STANDARD.md` papildytas §3.8 „Modulio interaktyvumo ritmas“, `MODULIO_4_SKAIDRIU_EILES.md` gavo M4 pattern katalogą, pridėtas `UX_BANGA_1_2_EN_SYNC.md` su Banga 1–2 EN overlay sign-off, o `audit:slide-interactivity` papildytas informaciniu `--embed-catalog` režimu (`npm run audit:embed-catalog`).

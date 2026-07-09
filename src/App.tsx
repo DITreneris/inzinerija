@@ -90,7 +90,7 @@ function App() {
   const [glossaryHighlightTerm, setGlossaryHighlightTerm] = useState<
     string | null
   >(null);
-  const [certificateTier, setCertificateTier] = useState<1 | 2 | 3>(1);
+  const [certificateTier, setCertificateTier] = useState<1 | 2 | 3 | 4 | 5>(1);
   /** Incremented after magic link verification so getMaxAccessibleModuleId() re-reads localStorage. */
   const [, setAccessTierRefresh] = useState(0);
 
@@ -290,7 +290,7 @@ function App() {
   );
 
   /** A-M3: return to test-results slide of the module we came from (e.g. Module 2). */
-  const handleRequestCertificate = useCallback((tier: 1 | 2 | 3) => {
+  const handleRequestCertificate = useCallback((tier: 1 | 2 | 3 | 4 | 5) => {
     setCertificateTier(tier);
     setCurrentPage('certificate');
     window.scrollTo({ top: 0, behavior: 'smooth' });

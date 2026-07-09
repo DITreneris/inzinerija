@@ -1,0 +1,40 @@
+{
+  "title": "Agentų inžinerijos kelio atmintinė (moduliai 10–12)",
+  "subtitle": "Agento ciklas, 3A modelis ir darbo eigos šablonas – naudok planuodamas vieną agentinį procesą.",
+  "agentCycleSteps": [
+    "Tikslas – įvardyk, kokį rezultatą agentas turi paruošti ir kada klausti žmogaus.",
+    "Kontekstas – pateik duomenis, šaltinius, ribas ir kokybės kriterijus.",
+    "Veiksmai – suskaidyk darbą į aiškius žingsnius: planuoti, atlikti, patikrinti, pataisyti.",
+    "Stebėjimas – žymėk, kas nepavyko, kokių duomenų trūko ir kur reikėjo žmogaus sprendimo.",
+    "Atnaujinimas – po bandymo pataisyk taisyklę, promptą, įgūdį arba testą."
+  ],
+  "threeAModel": [
+    "Automatize – taisyklėmis paremtas srautas, kai dauguma žingsnių kartojasi.",
+    "Augment – DI padeda žmogui, bet žmogus patvirtina svarbius sprendimus.",
+    "Autonomize – ribotos autonomijos agentas veikia pats, bet turi aiškias ribas ir eskalaciją."
+  ],
+  "workflowSteps": [
+    "Trigger – kas pradeda procesą: forma, laiškas, lentelė, failas arba rankinis veiksmas.",
+    "Action – ką sistema padaro: surenka informaciją, paruošia santrauką, sukuria užduotį.",
+    "Tool – kokį įrankį naudoja: paiešką, API, skaičiuoklę, CRM, Teams ar Slack.",
+    "Human gate – kur žmogus patvirtina, atmeta arba paprašo pataisyti.",
+    "Log – kur saugomas rezultatas, klaida ir pamoka kitam kartui."
+  ],
+  "promptPatterns": [
+    "Koordinatorius: suskaidyk užduotį į roles, žingsnius ir perdavimo taisykles.",
+    "Specialistas: atlik vieną aiškią dalį, naudok pateiktus šaltinius ir nespėliok, jei trūksta duomenų.",
+    "Vertintojas: patikrink faktus, rizikas, toną ir ar atsakyta į kriterijus.",
+    "Nepavyko taisyklė: jei trūksta duomenų arba įrankis neveikia, parašyk „Nepavyko“ ir nurodyk priežastį."
+  ],
+  "reflectionSummary": "Per 24–48 val. pasirink vieną procesą ir paleisk mažą agentų grandinę: koordinatorius → specialistas → vertintojas. Užrašyk vieną pamoką ir atnaujink promptą.",
+  "nextPageHeading": "Ką daryti per 48 val.",
+  "nextPageIntro": "Agentų kelias baigtas tada, kai turi vieną procesą, kurį gali pakartoti: schema, promptai, bandymo atvejis ir aiški žmogaus patvirtinimo vieta.",
+  "primaryCtaLabel": "Workflow canvas šablonas (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Nuspręsk kitą žingsnį (Decide)",
+    "map": "Peržiūrėk ekosistemos žemėlapį (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Kursas ir daugiau: promptanatomy.app",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

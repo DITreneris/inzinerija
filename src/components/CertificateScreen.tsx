@@ -17,7 +17,7 @@ import CTAButton from './ui/CTAButton';
 const WEBSITE_URL = 'https://www.promptanatomy.app/';
 
 export interface CertificateScreenProps {
-  tier: 1 | 2 | 3;
+  tier: 1 | 2 | 3 | 4 | 5;
   onBack: () => void;
 }
 

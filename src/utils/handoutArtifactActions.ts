@@ -5,11 +5,15 @@ import {
   getM5HandoutContent,
   getM6HandoutContent,
   getM79HandoutContent,
+  getM1012HandoutContent,
+  getM1315HandoutContent,
   type M1HandoutContent,
   type M4HandoutContent,
   type M5HandoutContent,
   type M6HandoutContent,
   type M79HandoutContent,
+  type M1012HandoutContent,
+  type M1315HandoutContent,
 } from '../data/handoutContentLoader';
 import type { HandoutArtifactKey } from '../data/completionArtifactsLoader';
 import { downloadM1HandoutPdf } from './m1HandoutPdf';
@@ -17,6 +21,8 @@ import { downloadM4HandoutPdf } from './m4HandoutPdf';
 import { downloadM5HandoutPdf } from './m5HandoutPdf';
 import { downloadM6HandoutPdf } from './m6HandoutPdf';
 import { downloadM79HandoutPdf } from './m79HandoutPdf';
+import { downloadM1012HandoutPdf } from './m1012HandoutPdf';
+import { downloadM1315HandoutPdf } from './m1315HandoutPdf';
 
 export interface HandoutArtifactAction {
   getContent: (locale: ModulesLocale) => unknown;
@@ -51,6 +57,16 @@ export const HANDOUT_ARTIFACT_ACTIONS: Record<
     getContent: getM79HandoutContent,
     download: (content, locale) =>
       downloadM79HandoutPdf(content as M79HandoutContent, { locale }),
+  },
+  m1012: {
+    getContent: getM1012HandoutContent,
+    download: (content, locale) =>
+      downloadM1012HandoutPdf(content as M1012HandoutContent, { locale }),
+  },
+  m1315: {
+    getContent: getM1315HandoutContent,
+    download: (content, locale) =>
+      downloadM1315HandoutPdf(content as M1315HandoutContent, { locale }),
   },
 };
 

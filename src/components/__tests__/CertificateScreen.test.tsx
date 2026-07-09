@@ -40,6 +40,14 @@ describe('CertificateScreen', () => {
     ).toBeInTheDocument();
   });
 
+  it('renders certificate content for tier 4 and tier 5', () => {
+    renderWithProviders(<CertificateScreen tier={4} onBack={onBack} />);
+    expect(screen.getByText(/Agentų inžinerijos kelias/i)).toBeInTheDocument();
+
+    renderWithProviders(<CertificateScreen tier={5} onBack={onBack} />);
+    expect(screen.getByText(/Turinio inžinerijos kelias/i)).toBeInTheDocument();
+  });
+
   it('shows LT program title and certificate label in preview by default', () => {
     renderWithProviders(<CertificateScreen tier={1} onBack={onBack} />);
     expect(screen.getByText('Promptų anatomija')).toBeInTheDocument();

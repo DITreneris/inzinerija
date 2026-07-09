@@ -23,7 +23,10 @@
         ],
         "additionalProperties": false,
         "properties": {
-          "key": { "type": "string", "enum": ["m1", "m4", "m5", "m6", "m79"] },
+          "key": {
+            "type": "string",
+            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315"]
+          },
           "earnOnModuleIds": {
             "type": "array",
             "minItems": 1,
@@ -56,7 +59,7 @@
           },
           "schemaKey": {
             "type": "string",
-            "enum": ["m1", "m4", "m5", "m6", "m79"]
+            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315"]
           },
           "ctaI18nKey": {
             "type": "string",
@@ -71,18 +74,18 @@
     },
     "certificates": {
       "type": "array",
-      "minItems": 3,
-      "maxItems": 3,
+      "minItems": 5,
+      "maxItems": 5,
       "items": {
         "type": "object",
         "required": ["tier", "unlockOnModuleId", "eligibilityKey"],
         "additionalProperties": false,
         "properties": {
-          "tier": { "type": "integer", "enum": [1, 2, 3] },
+          "tier": { "type": "integer", "enum": [1, 2, 3, 4, 5] },
           "unlockOnModuleId": { "type": "integer", "minimum": 1 },
           "eligibilityKey": {
             "type": "string",
-            "enum": ["tier1", "tier2", "tier3"]
+            "enum": ["tier1", "tier2", "tier3", "tier4", "tier5"]
           }
         }
       }

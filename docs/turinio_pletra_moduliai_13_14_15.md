@@ -636,6 +636,7 @@ Brand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vai
 - 5 blokų modelis: Celebration Hero, žinių kortelės (ką išmokote M15), refleksijos promptas, **Kitas žingsnis** („Pirmas veiksmas per 24–48 val.“ – pvz. panaudok vieną promptą savo projekte).
 - **useCaseBlock:** „Kur pritaikyti?“ – rinkodaros vizualai, socialinis turinys, foninė muzika, garsų efektai.
 - **reflectionPrompt:** Copyable; 3 klausimai (Apply, Analyze, Create) + 1 patarimas.
+- **Completion artefaktai (P2):** po Modulio 15 vartotojas uždirba **Turinio kelio atmintinę (PDF)** ir, jei Modulio 14 testas ≥70 %, **tier 5 sertifikatą – „Turinio inžinerijos kelias“**. Atmintinė turi apimti vaizdo, video ir muzikos promptų šablonus, teisių patikrą, delivery checklist ir 24–48 val. veiksmą. Sertifikatas aprašo tik M13–15 kelią, ne visą 15 modulių programą.
 
 ---
 

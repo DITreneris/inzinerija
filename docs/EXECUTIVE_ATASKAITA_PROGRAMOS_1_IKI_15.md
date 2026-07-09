@@ -301,7 +301,7 @@ _Vienas pilnas agentų arba automatizacijos scenarijus_
 
 **Ką darai:** Vienas paruoštas agentų arba automatizacijos artefaktas/scenarijus – pvz. workflow su įrankiais, integracijos eskizas; 3 lab'ai + 4 scenarijai.
 
-**Rezultatas:** Vienas paruoštas agentų/automatizacijos scenarijus ir šablonai tolesniam darbui.
+**Rezultatas:** Vienas paruoštas agentų/automatizacijos scenarijus, Agentų kelio PDF atmintinė po M12 ir tier 4 sertifikatas, jei M11 testas ≥70 %.
 
 ---
 
@@ -351,19 +351,19 @@ _Vaizdas, video arba muzika – vienas artefaktas_
 
 **Ką darai:** Bent vienas paruoštas vizualų ar garso artefaktas – vaizdas, trumpas vaizdo įrašas arba muzikos fragmentas – su naudotu promptu; 3 scenarijai.
 
-**Rezultatas:** Vienas paruoštas vizualų/garso artefaktas ir promptų šablonai tolesniam darbui.
+**Rezultatas:** Vienas paruoštas vizualų/garso artefaktas, Turinio kelio PDF atmintinė po M15 ir tier 5 sertifikatas, jei M14 testas ≥70 %.
 
 ---
 
 ## 7. Santrauka: ką gauna klientas / partneris
 
-| Blokas                 | Moduliai   | Trukmė (orientacinė) | Pagrindinis rezultatas                                      |
-| ---------------------- | ---------- | -------------------- | ----------------------------------------------------------- |
-| **Bazinė triada**      | 1, 2, 3    | ~55 min              | 6 blokų sistema + testas + 6 verslo scenarijai              |
-| **Pažangusis**         | 4, 5, 6    | ~50–60 min           | Kontekstas, RAG, haliucinacijos, sprintas, vienas projektas |
-| **Duomenų analizė**    | 7, 8, 9    | ~60+ min             | Pipeline, MASTER PROMPT, testas, finalinis DA projektas     |
-| **Agentų inžinerija**  | 10, 11, 12 | ~45–60 min           | Agentų ciklas, įrankiai, testas, finalinis agentų projektas |
-| **Turinio inžinerija** | 13, 14, 15 | ~45–60 min           | Vaizdai, video, muzika, testas, finalinis turinio projektas |
+| Blokas                 | Moduliai   | Trukmė (orientacinė) | Pagrindinis rezultatas                                                               |
+| ---------------------- | ---------- | -------------------- | ------------------------------------------------------------------------------------ |
+| **Bazinė triada**      | 1, 2, 3    | ~55 min              | 6 blokų sistema + testas + 6 verslo scenarijai                                       |
+| **Pažangusis**         | 4, 5, 6    | ~50–60 min           | Kontekstas, RAG, haliucinacijos, sprintas, vienas projektas                          |
+| **Duomenų analizė**    | 7, 8, 9    | ~60+ min             | Pipeline, MASTER PROMPT, testas, finalinis DA projektas                              |
+| **Agentų inžinerija**  | 10, 11, 12 | ~45–60 min           | Agentų ciklas, įrankiai, testas, finalinis agentų projektas + PDF atmintinė + tier 4 |
+| **Turinio inžinerija** | 13, 14, 15 | ~45–60 min           | Vaizdai, video, muzika, testas, finalinis turinio projektas + PDF atmintinė + tier 5 |
 
 **Bendras pobūdis:** Kiekvienas kelias (7–9, 10–12, 13–15) gali būti naudojamas atskirai arba kartu; po bazinės triadės ir pažangaus bloko dalyvis renkasi vieną ar daugiau kelių pagal rolę (analitikas, inžinierius, rinkodara). Visur – kopijuojami promptai (CopyButton), refleksija, santraukos 5 blokų modelis ir aiški seka: **Mokymasis → Žinių patikrinimas → Praktika**. Programoje: **97** žodyno terminai, **57** DI įrankiai, **~115** paruoštų promptų (100 moduliuose + 15 promptų bibliotekoje).
 

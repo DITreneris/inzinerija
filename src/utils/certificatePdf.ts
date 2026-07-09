@@ -1,5 +1,5 @@
 /**
- * Sertifikatų PDF generavimas – 3 lygiai (po 3, 6, 9 modulio).
+ * Sertifikatų PDF generavimas – 5 lygiai (M3, M6, M9, M12, M15).
  * Maketas pagal docs/development/PDF_MAKETO_GAIRES.md ir premium planą (rėmelis, linijos, etiketės).
  * Lietuviškos raidės: naudoti ensurePdfFont() (introPiePdf) prieš pirmą kvietimą arba loadPdfUnicodeFont (pdfNotoFont).
  */
@@ -34,7 +34,7 @@ const RULE_WIDTH = 25;
 const RULE_HEIGHT_MM = 0.6;
 
 export interface CertificateTierContent {
-  tier: 1 | 2 | 3;
+  tier: 1 | 2 | 3 | 4 | 5;
   introLine: string;
   completionLine: string;
   programName: string;
@@ -117,7 +117,7 @@ function drawAccentRule(doc: jsPDF, centerY: number): void {
  * UI prieš kvietimą gali kviesti ensurePdfFont() iš introPiePdf – tada lietuviškos raidės garantuotos.
  */
 export async function downloadCertificatePdf(
-  tier: 1 | 2 | 3,
+  tier: 1 | 2 | 3 | 4 | 5,
   content: CertificateTierContent,
   learnerName: string,
   options?: DownloadCertificateOptions

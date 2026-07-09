@@ -652,6 +652,7 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 - 5 blokų modelis: pasveikinimo blokas, žinių kortelės (max 3: 3A praktikos; promptai + Įgūdžio paketas; pamoka + atnaujinimas), refleksijos promptas, **Kitas žingsnis** („Pirmas veiksmas per 24–48 val.“ – pvz. pritaikyk vieną scenarijų savo projekte).
 - **useCaseBlock:** „Kur pritaikyti?“ – tyrimai, ataskaitos, įrankių naudojimas, ribų nustatymas.
 - **reflectionPrompt:** Copyable; 3 klausimai (Apply, Analyze, Create) + 1 patarimas.
+- **Completion artefaktai (P2):** po Modulio 12 vartotojas uždirba **Agentų kelio atmintinę (PDF)** ir, jei Modulio 11 testas ≥70 %, **tier 4 sertifikatą – „Agentų inžinerijos kelias“**. Atmintinė turi apimti agento ciklą, 3A modelį, darbo eigos žingsnius, koordinatoriaus + specialistų promptus ir 24–48 val. veiksmą. Sertifikatas aprašo tik M10–12 kelią, ne visą 15 modulių programą.
 
 ---
 

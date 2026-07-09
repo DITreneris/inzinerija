@@ -32,6 +32,22 @@
       "programName": "Prompt Anatomy – Data analytics path (modules 7–9, capstone project; Module 8 test ≥ 70%)",
       "label": "Data analytics path",
       "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+    },
+    {
+      "tier": 4,
+      "introLine": "This document certifies that",
+      "completionLine": "has successfully completed the Agent engineering path (modules 10–12)",
+      "programName": "Prompt Anatomy – Agent engineering path (modules 10–12, capstone project; Module 11 test ≥ 70%)",
+      "label": "Agent engineering path",
+      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+    },
+    {
+      "tier": 5,
+      "introLine": "This document certifies that",
+      "completionLine": "has successfully completed the Content engineering path (modules 13–15)",
+      "programName": "Prompt Anatomy – Content engineering path (modules 13–15, capstone project; Module 14 test ≥ 70%)",
+      "label": "Content engineering path",
+      "footerText": "Prompt Anatomy – prompt structure training. © Course material."
     }
   ]
 }

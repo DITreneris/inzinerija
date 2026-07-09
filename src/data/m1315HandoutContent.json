@@ -1,0 +1,37 @@
+{
+  "title": "Turinio inžinerijos kelio atmintinė (moduliai 13–15)",
+  "subtitle": "DI vaizdas, video, muzika ir teisių patikra – naudok kaip mini kampanijos kontrolinį lapą.",
+  "modalityChecklist": [
+    "Vaizdas – kai reikia hero vizualo, prezentacijos kadro arba socialinio įrašo.",
+    "Video – kai reikia parodyti judesį, procesą arba 5–10 sek. sceną iš jau sukurto vaizdo.",
+    "Muzika arba garsas – kai reikia nuotaikos, fono arba trumpų garso efektų.",
+    "Jei abejoji, pradėk nuo vieno hero vaizdo ir tik tada tęsk į video ar muziką."
+  ],
+  "imagePromptTemplate": "Brief: tikslas [Awareness / Engagement / Conversion], auditorija [kam], platforma [kur]. Sukurk hero vaizdą: [objektas ir veiksmas], aplinka [kontekstas], stilius [stilius], proporcijos [1:1 / 16:9 / 9:16]. Brand: spalvos [X], tonas [draugiškas / profesionalus / premium]. Be teksto vaizde, jei jo nereikia.",
+  "videoPromptTemplate": "Paversk šį hero vaizdą 5–10 sek. video scena. Judesys: [kas juda]. Kamera: [lėtas priartėjimas / šoninis judesys / statinis kadras]. Išlaikyk tą patį stilių, spalvas ir pagrindinį objektą. Nepakeisk brand elementų.",
+  "musicPromptTemplate": "Sukurk 30–60 sek. foninės muzikos aprašą: nuotaika [rami / energinga / premium], tempas [lėtas / vidutinis / greitas], instrumentai [2–3], naudojimas [video / podcast / reklama]. Be vokalo, jei tekstas trukdytų.",
+  "rightsChecklist": [
+    "Patikrink įrankio naudojimo teises: ar leidžiama komercinė paskirtis?",
+    "Nenaudok svetimų logotipų, veidų ar prekės ženklų be leidimo.",
+    "Jei turinys bus viešas, išsaugok promptą, įrankį, datą ir licencijos nuorodą.",
+    "Jei vaizdas ar garsas panašus į realų žmogų ar kūrinį, rinkis saugesnę alternatyvą."
+  ],
+  "deliveryChecklist": [
+    "Brief: tikslas, auditorija, platforma.",
+    "Bent vienas promptas ir sugeneruotas rezultatas arba nuoroda.",
+    "Jei darei pilną kelią – V1/V2 pokytis ir kodėl pasirinkai finalą.",
+    "Vienas sakinys apie naudojimo teises.",
+    "Pirmas realus panaudojimas per 24–48 val."
+  ],
+  "reflectionSummary": "Per 24–48 val. panaudok vieną promptą tikrame projekte. Užrašyk: kas pavyko, ką koregavai V2 ir kokią teisių patikrą atlikai.",
+  "nextPageHeading": "Ką daryti per 48 val.",
+  "nextPageIntro": "Turinio kelias baigtas tada, kai turi ne tik gražų rezultatą, bet ir promptą, brief, teisių patikrą ir aiškų pirmą panaudojimą.",
+  "primaryCtaLabel": "Workflow canvas šablonas (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Nuspręsk kitą žingsnį (Decide)",
+    "map": "Peržiūrėk ekosistemos žemėlapį (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Kursas ir daugiau: promptanatomy.app",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

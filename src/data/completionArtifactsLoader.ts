@@ -4,12 +4,26 @@ import {
   canRequestCertificateTier1,
   canRequestCertificateTier2,
   canRequestCertificateTier3,
+  canRequestCertificateTier4,
+  canRequestCertificateTier5,
 } from '../utils/certificateEligibility';
 
-export type HandoutArtifactKey = 'm1' | 'm4' | 'm5' | 'm6' | 'm79';
+export type HandoutArtifactKey =
+  | 'm1'
+  | 'm4'
+  | 'm5'
+  | 'm6'
+  | 'm79'
+  | 'm1012'
+  | 'm1315';
 export type HandoutSurfaceType = 'module_complete' | 'test_results';
-export type CertificateEligibilityKey = 'tier1' | 'tier2' | 'tier3';
-export type CertificateTier = 1 | 2 | 3;
+export type CertificateEligibilityKey =
+  | 'tier1'
+  | 'tier2'
+  | 'tier3'
+  | 'tier4'
+  | 'tier5';
+export type CertificateTier = 1 | 2 | 3 | 4 | 5;
 
 export interface HandoutSurface {
   type: HandoutSurfaceType;
@@ -48,6 +62,8 @@ const certificateEligibilityChecks: Record<
   tier1: canRequestCertificateTier1,
   tier2: canRequestCertificateTier2,
   tier3: canRequestCertificateTier3,
+  tier4: canRequestCertificateTier4,
+  tier5: canRequestCertificateTier5,
 };
 
 export function getHandoutArtifacts(): HandoutArtifact[] {

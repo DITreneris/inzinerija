@@ -106,8 +106,8 @@ export interface ModuleCompleteScreenProps {
   isLastModule: boolean;
   /** Po Modulio 3: grįžti į „1 dalies santraukos“ skaidrę (be „grįžti du kartus“). */
   onViewPart1Summary?: () => void;
-  /** Hidden treasure: parsisiųsti sertifikatą. Tier 1 po 3 mod., tier 2 po 6 mod. + apklausa ≥70%, tier 3 po 7–9 + M8 testas ≥70%. */
-  onRequestCertificate?: (tier: 1 | 2 | 3) => void;
+  /** Hidden treasure: parsisiųsti sertifikatą pagal completionArtifacts registry. */
+  onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
 }
 
 export function ModuleCompleteScreen({
@@ -216,11 +216,7 @@ export function ModuleCompleteScreen({
               {t('module:unlockCertTitle')}
             </h3>
             <p className="text-sm text-accent-700 dark:text-accent-300 mb-4">
-              {activeCertificateTier === 1
-                ? t('module:unlockCertBodyTier1')
-                : activeCertificateTier === 2
-                  ? t('module:unlockCertBodyTier2')
-                  : t('module:unlockCertBodyTier3')}
+              {t(`module:unlockCertBodyTier${activeCertificateTier}`)}
             </p>
             <CTAButton
               variant="primary"
@@ -239,11 +235,7 @@ export function ModuleCompleteScreen({
               aria-label={
                 t('module:unlockCertCta') +
                 ' ' +
-                (activeCertificateTier === 1
-                  ? t('module:certAriaPart1')
-                  : activeCertificateTier === 2
-                    ? t('module:certAriaPart2')
-                    : t('module:certAriaPart3'))
+                t(`module:certAriaPart${activeCertificateTier}`)
               }
             >
               <Download className="w-5 h-5" aria-hidden />

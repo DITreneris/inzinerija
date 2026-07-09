@@ -194,8 +194,8 @@ interface ModuleViewProps {
   /** A-M3: when set, show "Grįžti į testo rezultatą" and call onReturnToRemediation to go back */
   remediationFrom?: { sourceModuleId: number } | null;
   onReturnToRemediation?: () => void;
-  /** Hidden treasure: parsisiųsti sertifikatą (tier 1 po 3 mod., tier 2 po 6 mod. + apklausa ≥70%, tier 3 po 7–9 + M8 testas ≥70%). */
-  onRequestCertificate?: (tier: 1 | 2 | 3) => void;
+  /** Hidden treasure: parsisiųsti sertifikatą pagal completionArtifacts registry. */
+  onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
   progress: Progress;
   totalModules: number;
 }

@@ -30,6 +30,8 @@ describe('completionArtifacts registry', () => {
       'm5',
       'm6',
       'm79',
+      'm1012',
+      'm1315',
     ]);
     for (const artifact of artifacts) {
       expect(hasHandoutArtifactAction(artifact.key), artifact.key).toBe(true);
@@ -37,9 +39,11 @@ describe('completionArtifacts registry', () => {
   });
 
   it('keeps earned handout modules aligned with current product behavior', () => {
-    expect(getEarnedHandoutModuleIds([1, 2, 3, 4, 5, 6, 7, 8, 9])).toEqual([
-      1, 4, 5, 6, 9,
-    ]);
+    expect(
+      getEarnedHandoutModuleIds([
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+      ])
+    ).toEqual([1, 4, 5, 6, 9, 12, 15]);
     expect(getEarnedHandoutArtifacts([1, 2, 3, 4]).map((a) => a.key)).toEqual([
       'm1',
       'm4',
@@ -52,12 +56,14 @@ describe('completionArtifacts registry', () => {
     expect(getHandoutForModuleComplete(5)).toBeNull();
     expect(getHandoutForModuleComplete(6)?.key).toBe('m6');
     expect(getHandoutForModuleComplete(9)?.key).toBe('m79');
+    expect(getHandoutForModuleComplete(12)?.key).toBe('m1012');
+    expect(getHandoutForModuleComplete(15)?.key).toBe('m1315');
   });
 
   it('keeps certificate tiers and eligibility aligned with current rules', () => {
     expect(
       getCertificateArtifacts().map((certificate) => certificate.tier)
-    ).toEqual([1, 2, 3]);
+    ).toEqual([1, 2, 3, 4, 5]);
     expect(
       getEarnedCertificateTiers(progress({ completedModules: [1, 2, 3] }))
     ).toEqual([1]);
@@ -71,5 +77,21 @@ describe('completionArtifacts registry', () => {
         })
       )
     ).toEqual([1, 2, 3]);
+    expect(
+      getEarnedCertificateTiers(
+        progress({
+          completedModules: [10, 11, 12],
+          moduleTestScores: { 11: 70 },
+        })
+      )
+    ).toEqual([4]);
+    expect(
+      getEarnedCertificateTiers(
+        progress({
+          completedModules: [13, 14, 15],
+          moduleTestScores: { 14: 70 },
+        })
+      )
+    ).toEqual([5]);
   });
 });

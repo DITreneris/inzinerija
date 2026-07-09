@@ -54,7 +54,18 @@ function makeModule(id: number): Module {
 
 const allModules = [1, 2, 3, 4, 5, 6].map(makeModule);
 const module9 = makeModule(9);
+const module12 = makeModule(12);
+const module15 = makeModule(15);
 const modulesThrough9 = [...allModules, makeModule(7), makeModule(8), module9];
+const modulesThrough15 = [
+  ...modulesThrough9,
+  makeModule(10),
+  makeModule(11),
+  module12,
+  makeModule(13),
+  makeModule(14),
+  module15,
+];
 
 function defaultProgress(overrides: Partial<Progress> = {}): Progress {
   return {
@@ -345,6 +356,56 @@ describe('ModuleCompleteScreen', () => {
     await waitFor(() => {
       expect(downloadM79HandoutPdf).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it('shows tier 4 certificate button on module 12 when path 10–12 done and M11 test >= 70%', () => {
+    const idx = modulesThrough15.findIndex((m) => m.id === 12);
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={module12}
+        moduleIndex={idx}
+        totalModules={modulesThrough15.length}
+        modules={modulesThrough15}
+        progress={defaultProgress({
+          completedModules: [10, 11, 12],
+          moduleTestScores: { 11: 72 },
+        })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+    expect(
+      screen.getByRole('button', {
+        name: /sertifikatą.*Agentų inžinerijos kelias 10–12/i,
+      })
+    ).toBeInTheDocument();
+  });
+
+  it('shows tier 5 certificate button on module 15 when path 13–15 done and M14 test >= 70%', () => {
+    const idx = modulesThrough15.findIndex((m) => m.id === 15);
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={module15}
+        moduleIndex={idx}
+        totalModules={modulesThrough15.length}
+        modules={modulesThrough15}
+        progress={defaultProgress({
+          completedModules: [13, 14, 15],
+          moduleTestScores: { 14: 75 },
+        })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={true}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+    expect(
+      screen.getByRole('button', {
+        name: /sertifikatą.*Turinio inžinerijos kelias 13–15/i,
+      })
+    ).toBeInTheDocument();
   });
 
   it('logs and shows retry message when M7-9 handout generation fails', async () => {

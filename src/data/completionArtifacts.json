@@ -49,11 +49,33 @@
       "schemaKey": "m79",
       "ctaI18nKey": "module:m79HandoutCtaLabel",
       "analyticsCtaId": "m79_handout_pdf"
+    },
+    {
+      "key": "m1012",
+      "earnOnModuleIds": [12],
+      "surfaces": [{ "type": "module_complete", "moduleId": 12 }],
+      "contentLt": "m1012HandoutContent.json",
+      "contentEn": "m1012HandoutContent-en.json",
+      "schemaKey": "m1012",
+      "ctaI18nKey": "module:m1012HandoutCtaLabel",
+      "analyticsCtaId": "m1012_handout_pdf"
+    },
+    {
+      "key": "m1315",
+      "earnOnModuleIds": [15],
+      "surfaces": [{ "type": "module_complete", "moduleId": 15 }],
+      "contentLt": "m1315HandoutContent.json",
+      "contentEn": "m1315HandoutContent-en.json",
+      "schemaKey": "m1315",
+      "ctaI18nKey": "module:m1315HandoutCtaLabel",
+      "analyticsCtaId": "m1315_handout_pdf"
     }
   ],
   "certificates": [
     { "tier": 1, "unlockOnModuleId": 3, "eligibilityKey": "tier1" },
     { "tier": 2, "unlockOnModuleId": 6, "eligibilityKey": "tier2" },
-    { "tier": 3, "unlockOnModuleId": 9, "eligibilityKey": "tier3" }
+    { "tier": 3, "unlockOnModuleId": 9, "eligibilityKey": "tier3" },
+    { "tier": 4, "unlockOnModuleId": 12, "eligibilityKey": "tier4" },
+    { "tier": 5, "unlockOnModuleId": 15, "eligibilityKey": "tier5" }
   ]
 }

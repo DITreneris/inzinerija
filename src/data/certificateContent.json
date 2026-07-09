@@ -32,6 +32,22 @@
       "programName": "Promptų anatomija – Duomenų analizės kelias (moduliai 7–9, baigiamasis projektas; Modulio 8 testas ≥ 70 %)",
       "label": "Duomenų analizės kelias",
       "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+    },
+    {
+      "tier": 4,
+      "introLine": "Šiuo dokumentu patvirtinama, kad",
+      "completionLine": "sėkmingai baigė Agentų inžinerijos kelią (moduliai 10–12)",
+      "programName": "Promptų anatomija – Agentų inžinerijos kelias (moduliai 10–12, finalinis projektas; Modulio 11 testas ≥ 70 %)",
+      "label": "Agentų inžinerijos kelias",
+      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+    },
+    {
+      "tier": 5,
+      "introLine": "Šiuo dokumentu patvirtinama, kad",
+      "completionLine": "sėkmingai baigė Turinio inžinerijos kelią (moduliai 13–15)",
+      "programName": "Promptų anatomija – Turinio inžinerijos kelias (moduliai 13–15, finalinis projektas; Modulio 14 testas ≥ 70 %)",
+      "label": "Turinio inžinerijos kelias",
+      "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
     }
   ]
 }

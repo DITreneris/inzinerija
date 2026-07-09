@@ -38,7 +38,7 @@ interface ModulesPageProps {
   onModuleSelect: (moduleId: number) => void;
   onGoToQuiz?: () => void;
   progress: Progress;
-  onRequestCertificate?: (tier: 1 | 2 | 3) => void;
+  onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
 }
 
 // Level colors for modules based on type: learn, test, practice (business-oriented)

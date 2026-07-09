@@ -1,0 +1,37 @@
+{
+  "title": "Content engineering path handout (modules 13–15)",
+  "subtitle": "AI image, video, music, and rights check – use this as a mini-campaign checklist.",
+  "modalityChecklist": [
+    "Image – when you need a hero visual, presentation frame, or social post.",
+    "Video – when you need movement, a process, or a 5–10 second scene from an existing image.",
+    "Music or sound – when you need mood, background, or short sound effects.",
+    "When unsure, start with one hero image and only then continue to video or music."
+  ],
+  "imagePromptTemplate": "Brief: goal [Awareness / Engagement / Conversion], audience [who], platform [where]. Create a hero image: [object and action], environment [context], style [style], ratio [1:1 / 16:9 / 9:16]. Brand: colors [X], tone [friendly / professional / premium]. No text in the image unless needed.",
+  "videoPromptTemplate": "Turn this hero image into a 5–10 second video scene. Motion: [what moves]. Camera: [slow zoom / side movement / static frame]. Keep the same style, colors, and main object. Do not change brand elements.",
+  "musicPromptTemplate": "Create a 30–60 second background music brief: mood [calm / energetic / premium], tempo [slow / medium / fast], instruments [2–3], usage [video / podcast / ad]. No vocals if words would distract.",
+  "rightsChecklist": [
+    "Check the tool's usage rights: is commercial use allowed?",
+    "Do not use other people's logos, faces, or trademarks without permission.",
+    "If the content will be public, save the prompt, tool, date, and license link.",
+    "If an image or sound resembles a real person or work, choose a safer alternative."
+  ],
+  "deliveryChecklist": [
+    "Brief: goal, audience, platform.",
+    "At least one prompt and a generated result or link.",
+    "If you did the full path – V1/V2 change and why you chose the final.",
+    "One sentence about usage rights.",
+    "First real use within 24–48 hours."
+  ],
+  "reflectionSummary": "Within 24–48 hours, use one prompt in a real project. Write down what worked, what you adjusted in V2, and which rights check you performed.",
+  "nextPageHeading": "What to do within 48 hours",
+  "nextPageIntro": "The Content path is complete when you have not just a good result, but also a prompt, brief, rights check, and clear first use.",
+  "primaryCtaLabel": "Workflow canvas template (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Decide your next step (Decide)",
+    "map": "View the ecosystem map (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Course and more: promptanatomy.app",
+  "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+}

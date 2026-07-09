@@ -1,0 +1,40 @@
+{
+  "title": "Agent engineering path handout (modules 10–12)",
+  "subtitle": "Agent cycle, 3A model, and workflow template – use it when planning one agentic process.",
+  "agentCycleSteps": [
+    "Goal – define what result the agent must produce and when it must ask a human.",
+    "Context – provide data, sources, boundaries, and quality criteria.",
+    "Actions – split the work into clear steps: plan, act, check, improve.",
+    "Observation – record what failed, what data was missing, and where human judgment was needed.",
+    "Update – after a test, improve the rule, prompt, skill, or test case."
+  ],
+  "threeAModel": [
+    "Automatize – a rule-based flow when most steps repeat.",
+    "Augment – AI helps the human, but the human approves important decisions.",
+    "Autonomize – a limited-autonomy agent acts on its own, but has clear boundaries and escalation."
+  ],
+  "workflowSteps": [
+    "Trigger – what starts the process: form, email, table, file, or manual action.",
+    "Action – what the system does: gathers information, prepares a summary, creates a task.",
+    "Tool – which tool it uses: search, API, spreadsheet, CRM, Teams, or Slack.",
+    "Human gate – where the human approves, rejects, or asks for a revision.",
+    "Log – where the result, error, and lesson for next time are stored."
+  ],
+  "promptPatterns": [
+    "Coordinator: split the task into roles, steps, and handoff rules.",
+    "Specialist: do one clear part, use the provided sources, and do not guess when data is missing.",
+    "Evaluator: check facts, risks, tone, and whether the criteria were answered.",
+    "Failure rule: if data is missing or a tool fails, write \"Failed\" and state the reason."
+  ],
+  "reflectionSummary": "Within 24–48 hours, choose one process and run a small agent chain: coordinator → specialist → evaluator. Record one lesson and update the prompt.",
+  "nextPageHeading": "What to do within 48 hours",
+  "nextPageIntro": "The Agent path is complete when you have one repeatable process: a diagram, prompts, a test case, and a clear human approval point.",
+  "primaryCtaLabel": "Workflow canvas template (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Decide your next step (Decide)",
+    "map": "View the ecosystem map (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Course and more: promptanatomy.app",
+  "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+}
