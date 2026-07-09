@@ -208,7 +208,7 @@
                 "heading": "How do LLMs work?",
                 "body": "Large language models (LLMs) generate text **word by word**: input → LLM → probabilities for the next word → chosen token. Each word depends on **all previous context** – so a well-shaped prompt (role, sources, format) cuts errors and hallucination risk.",
                 "blockVariant": "brand",
-                "image": "/llm_autoregressive_rytas_zalgiris.svg",
+                "image": "llm_autoregressive",
                 "imageAlt": "Autoregressive language model sketch: step N (input \"Rockets became\", output with percentages: champions, 2024, etc., chosen \"champions\") and N+1 (input \"Rockets became champions\", chosen \"2024\"); example Rockets, NBA"
               },
               {
@@ -988,7 +988,7 @@
                 "heading": "Schema: from request to result.",
                 "body": "Take any of your tasks and break it into these 3 steps.",
                 "blockVariant": "terms",
-                "image": "strukturuotas_procesas_3_zingsniai"
+                "image": "strukturuotas_procesas"
               },
               {
                 "heading": "Examples from practice",
@@ -2092,7 +2092,7 @@
               {
                 "heading": "Agent view",
                 "body": "Switch between modes: Basic (input → AI → output), RAG (with database), Tools. Shows how AI uses your sources.",
-                "image": "llm_arch_diagram",
+                "image": "llm_arch",
                 "imageAlt": "AI agent system: Basic, RAG, Tools modes",
                 "blockVariant": "emerald"
               },

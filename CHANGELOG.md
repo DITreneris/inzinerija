@@ -37,7 +37,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 71 failas, 465 testai (2026-07-09). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
+- **Testai:** 71 failas, 476 testai (2026-07-09). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.4** (2026-07-09). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
@@ -45,6 +45,11 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 ## [Unreleased]
 
 _Įrašai po 1.4.4 release._
+
+### Fixed
+
+- **M4/44 LLM diagram routing:** skaidrės 44 sekcija „Kaip veikia LLM?“ naudoja kanoninį `image: llm_autoregressive` (vietoj legacy `/llm_autoregressive_rytas_zalgiris.svg`), kad `diagramRenderers` registry vėl rodytų interaktyvų `LlmAutoregressiveBlock` (8 žingsniai, EN/LT), o ne statinį LT SVG fallback su „Open in new tab“. Sinchronizuoti `modules-m1-m6.json`, `modules-m1-m9.json`, `modules-en-m4-m6.json`; regresija: `diagramRenderers.test.tsx`, `DiagramLocalization.test.tsx`.
+- **M4/43 ir M4/56 diagram routing:** kanoniniai raktai `strukturuotas_procesas` ir `llm_arch` (vietoj `strukturuotas_procesas_3_zingsniai`, `llm_arch_diagram`) – atkurti `StrukturuotasProcesasBlock` ir `LlmArchDiagramBlock`; sisteminis vartas `diagramRenderers.test.tsx` tikrina visus M1–15 `section.image` prieš registry.
 
 ---
 

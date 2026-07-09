@@ -6,12 +6,12 @@
 
 ## 1. Santrauka
 
-| Vieta | Failas | Būsena | Veiksmas |
-|-------|--------|--------|----------|
-| Diagrama (SVG tekstai) | `LlmAutoregressiveDiagram.tsx` | Hardcoded LT | Pridėti `locale` prop; EN: „Rockets became“, „champions“, „Rockets, NBA“ |
-| Žingsnių paaiškinimai | `stepExplanations.ts` | Tik LT masyvas | Pridėti `LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN` arba locale-based pasirinkimą |
-| Blokas (aria, mygtukai) | `LlmAutoregressiveBlock.tsx` | Hardcoded LT | Perduoti locale; EN: „Step“, „Input“, „Output“, „Chosen“, „Previous“ / „Next“ |
-| EN modulių JSON | `modules-en-m4-m6.json` | imageAlt su „Rytas“, LKL | Pakeisti imageAlt į EN pavyzdį: Rockets, NBA |
+| Vieta                   | Failas                         | Būsena                   | Veiksmas                                                                        |
+| ----------------------- | ------------------------------ | ------------------------ | ------------------------------------------------------------------------------- |
+| Diagrama (SVG tekstai)  | `LlmAutoregressiveDiagram.tsx` | Hardcoded LT             | Pridėti `locale` prop; EN: „Rockets became“, „champions“, „Rockets, NBA“        |
+| Žingsnių paaiškinimai   | `stepExplanations.ts`          | Tik LT masyvas           | Pridėti `LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN` arba locale-based pasirinkimą |
+| Blokas (aria, mygtukai) | `LlmAutoregressiveBlock.tsx`   | Hardcoded LT             | Perduoti locale; EN: „Step“, „Input“, „Output“, „Chosen“, „Previous“ / „Next“   |
+| EN modulių JSON         | `modules-en-m4-m6.json`        | imageAlt su „Rytas“, LKL | Pakeisti imageAlt į EN pavyzdį: Rockets, NBA                                    |
 
 ---
 
@@ -21,17 +21,17 @@
 
 Visi tekstai lietuviški, **nėra `locale` / `useLocale()`**.
 
-| Eilutė (apytiksliai) | Dabartinis tekstas (LT) | EN turinys (Rockets) |
-|---------------------|-------------------------|----------------------|
-| 52–59 | `STEP_LABELS`: Žingsnis 1: Įvestis (N), … | Step 1: Input (N), … |
-| 115–116 | „Autoregresinis LLM: Žingsnis N → Žingsnis N+1“ | „Autoregressive LLM: Step N → Step N+1“ |
-| 117–119 | „Pavyzdys: Rytas, LKL · Paspausk bloką…“ | „Example: Rockets, NBA · Click block or buttons 1–8“ |
-| 136, 137 | „Įvestis“, „Rytas tapo“ | „Input“, „Rockets became“ |
-| 146, 148–149 | „Išvestis“, „Tokenų tikimybės:“, „čemp. 25% · 2024 20%“, „m. 18%“ | „Output“, „Token probabilities:“, „champ. 25% · 2024 20%“, „e.g. 18%“ |
-| 155–156 | „Pasirinkta“, „čempionais“ | „Chosen“, „champions“ |
-| 164, 178–181 | „Žingsnis N+1“, „Įvestis“, „Rytas tapo“, „čempionais“ | „Step N+1“, „Input“, „Rockets became“, „champions“ |
-| 190–191 | „Tokenų tikimybės:“, „2024 22% · m. 20%“, „LKL 15%“ | „Token probabilities:“, „2024 22% · e.g. 20%“, „NBA 15%“ |
-| 197, 228 | „Pasirinkta“, „2024“, „Šaltinis: RBC Borealis…“ | „Chosen“, „2024“, „Source: RBC Borealis…“ (galima palikti) |
+| Eilutė (apytiksliai) | Dabartinis tekstas (LT)                                           | EN turinys (Rockets)                                                  |
+| -------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------- |
+| 52–59                | `STEP_LABELS`: Žingsnis 1: Įvestis (N), …                         | Step 1: Input (N), …                                                  |
+| 115–116              | „Autoregresinis LLM: Žingsnis N → Žingsnis N+1“                   | „Autoregressive LLM: Step N → Step N+1“                               |
+| 117–119              | „Pavyzdys: Rytas, LKL · Paspausk bloką…“                          | „Example: Rockets, NBA · Click block or buttons 1–8“                  |
+| 136, 137             | „Įvestis“, „Rytas tapo“                                           | „Input“, „Rockets became“                                             |
+| 146, 148–149         | „Išvestis“, „Tokenų tikimybės:“, „čemp. 25% · 2024 20%“, „m. 18%“ | „Output“, „Token probabilities:“, „champ. 25% · 2024 20%“, „e.g. 18%“ |
+| 155–156              | „Pasirinkta“, „čempionais“                                        | „Chosen“, „champions“                                                 |
+| 164, 178–181         | „Žingsnis N+1“, „Įvestis“, „Rytas tapo“, „čempionais“             | „Step N+1“, „Input“, „Rockets became“, „champions“                    |
+| 190–191              | „Tokenų tikimybės:“, „2024 22% · m. 20%“, „LKL 15%“               | „Token probabilities:“, „2024 22% · e.g. 20%“, „NBA 15%“              |
+| 197, 228             | „Pasirinkta“, „2024“, „Šaltinis: RBC Borealis…“                   | „Chosen“, „2024“, „Source: RBC Borealis…“ (galima palikti)            |
 
 **Rekomendacija:** Pridėti `locale?: 'lt' | 'en'` į `LlmAutoregressiveDiagramProps` (arba `useLocale()` iš konteksto) ir naudoti dviejų kalbų tekstų objektą diagramos viduje.
 
@@ -82,7 +82,7 @@ Jei `public/` yra vienas SVG failas su įšalusiais tekstais „Rytas“, „če
 - **Variantas A:** EN build naudoja tą patį SVG (imageAlt jau aprašo EN turinį) – pakanka pakeisti tik **imageAlt** ir **React diagramos + step explanations** į Rockets/EN.
 - **Variantas B:** Turėti du SVG: pvz. `llm_autoregressive_rytas_zalgiris.svg` (LT) ir `llm_autoregressive_rockets_nba.svg` (EN), o `modules-en-m4-m6.json` nurodo EN SVG – tada ir `image` laukas turi būti EN failas.
 
-Dabar `modules-en-m4-m6.json` naudoja tą patį kelią `/llm_autoregressive_rytas_zalgiris.svg`, todėl minimalus žingsnis: **bent imageAlt EN (Rockets, NBA)**; jei reikia ir vizualiai EN – atskiras SVG arba dinaminiai tekstai tik React diagramoje.
+Dabar `modules-en-m4-m6.json` naudoja kanoninį `image: llm_autoregressive` (kaip LT SOT); EN diagramos tekstai – per `LlmAutoregressiveDiagram` locale. Minimalus žingsnis atliktas: **imageAlt EN (Rockets, NBA)**; vizualiai EN – React diagrama, ne statinis SVG.
 
 ---
 
@@ -98,18 +98,18 @@ Dabar `modules-en-m4-m6.json` naudoja tą patį kelią `/llm_autoregressive_ryta
 
 ## 5. Atitikmenų lentelė (greitam pakeitimui)
 
-| LT | EN (Rockets) |
-|----|----------------|
-| Rytas | Rockets |
-| Rytas tapo | Rockets became |
-| čempionais | champions |
+| LT                    | EN (Rockets)             |
+| --------------------- | ------------------------ |
+| Rytas                 | Rockets                  |
+| Rytas tapo            | Rockets became           |
+| čempionais            | champions                |
 | Rytas tapo čempionais | Rockets became champions |
-| LKL | NBA |
-| Pavyzdys: Rytas, LKL | Example: Rockets, NBA |
-| Žingsnis | Step |
-| Įvestis | Input |
-| Išvestis | Output |
-| Pasirinkta | Chosen |
-| Tokenų tikimybės: | Token probabilities: |
+| LKL                   | NBA                      |
+| Pavyzdys: Rytas, LKL  | Example: Rockets, NBA    |
+| Žingsnis              | Step                     |
+| Įvestis               | Input                    |
+| Išvestis              | Output                   |
+| Pasirinkta            | Chosen                   |
+| Tokenų tikimybės:     | Token probabilities:     |
 
 Šis dokumentas gali būti naudojamas kaip EN UI Rytas→Rockets pakeitimų SOT ir checklist.

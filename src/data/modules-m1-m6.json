@@ -2300,7 +2300,7 @@
                 "heading": "Kaip veikia LLM?",
                 "body": "Dideli kalbos modeliai (LLM) generuoja tekstą **žodis po žodžio**: įvestis → LLM → tikimybės kitam žodžiui → pasirinktas tokenas. Kiekvienas žodis priklauso nuo **viso ankstesnio konteksto** – todėl gerai suformuotas promptas (vaidmuo, šaltiniai, formatas) sumažina klaidas ir haliucinacijų riziką.",
                 "blockVariant": "brand",
-                "image": "/llm_autoregressive_rytas_zalgiris.svg",
+                "image": "llm_autoregressive",
                 "imageAlt": "Autoregresinio kalbos modelio schema: žingsnis N (įvestis „Rytas tapo“, išvestis su procentais: čempionais, 2024, m. ir t.t., pasirinkta „čempionais“) ir N+1 (įvestis „Rytas tapo čempionais“, pasirinkta „2024“); pavyzdys Rytas, LKL"
               },
               {
@@ -3087,7 +3087,7 @@
                 "heading": "Schema: nuo užklausos iki rezultato.",
                 "body": "Paimk bet kurią savo užduotį ir suskirstyk ją į šiuos 3 žingsnius.",
                 "blockVariant": "terms",
-                "image": "strukturuotas_procesas_3_zingsniai"
+                "image": "strukturuotas_procesas"
               },
               {
                 "heading": "Pavyzdžiai iš praktikos",
@@ -4204,7 +4204,7 @@
               {
                 "heading": "Agentinė vizualizacija",
                 "body": "Perejimas tarp režimų: Bazinis (įvestis → DI → išvestis), RAG (su duomenų baze), Įrankiai. Parodo, kaip DI naudoja tavo šaltinius.",
-                "image": "llm_arch_diagram",
+                "image": "llm_arch",
                 "imageAlt": "DI agentinė sistema: režimai Bazinis, RAG, Įrankiai",
                 "blockVariant": "emerald"
               },

@@ -10,6 +10,8 @@ import M7DataPrepWorkflowBlock from '../M7DataPrepWorkflowBlock';
 import M7DataStoryCycleBlock from '../M7DataStoryCycleBlock';
 import M7ThreeAgentsBlock from '../M7ThreeAgentsBlock';
 import M9DataWorkflowBlock from '../M9DataWorkflowBlock';
+import LlmArchDiagramBlock from '../LlmArchDiagramBlock';
+import LlmAutoregressiveBlock from '../LlmAutoregressiveBlock';
 import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
 import M10IncidentPlaybookBlock from '../M10IncidentPlaybookBlock';
 import M10LearningLoopBlock from '../M10LearningLoopBlock';
@@ -520,6 +522,66 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
         ).toHaveLength(0);
       }
     );
+  });
+
+  describe('LlmArchDiagramBlock (M4 slide 56)', () => {
+    it('renders Lithuanian mode tabs when locale is lt', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
+      expect(container.textContent).toContain('Bazinis');
+      expect(container.textContent).toContain('Įrankiai');
+      expect(container.textContent).not.toContain('Basic');
+    });
+
+    it('renders English mode tabs when locale is en', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
+      expect(container.textContent).toContain('Basic');
+      expect(container.textContent).toContain('Tools');
+      expect(container.textContent).not.toContain('Bazinis');
+    });
+
+    it('is interactive: three mode tabs with aria-pressed', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
+      expect(container.querySelectorAll('button[aria-pressed]').length).toBe(3);
+    });
+  });
+
+  describe('LlmAutoregressiveBlock (M4 slide 44)', () => {
+    it('renders English copy when locale is en', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<LlmAutoregressiveBlock />);
+      expect(container.textContent).toContain('You are here:');
+      expect(container.textContent).toContain('Rockets became');
+      expect(container.textContent).not.toContain('Rytas tapo');
+      expect(container.textContent).not.toContain('Tu esi čia:');
+    });
+
+    it('renders Lithuanian copy when locale is lt', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<LlmAutoregressiveBlock />);
+      expect(container.textContent).toContain('Tu esi čia:');
+      expect(container.textContent).toContain('Rytas tapo');
+      expect(container.textContent).not.toContain('Rockets became');
+      expect(container.textContent).not.toContain('You are here:');
+    });
+
+    it('is interactive: shows step buttons 1–8 (en)', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<LlmAutoregressiveBlock />);
+      expect(container.textContent).toContain('You are here:');
+      const stepButtons = container.querySelectorAll('nav button');
+      expect(stepButtons.length).toBe(10);
+    });
+
+    it('is interactive: shows step buttons 1–8 (lt)', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<LlmAutoregressiveBlock />);
+      expect(container.textContent).toContain('Tu esi čia:');
+      const stepButtons = container.querySelectorAll('nav button');
+      expect(stepButtons.length).toBe(10);
+    });
   });
 
   describe('RlProcessBlock diagram kit migration', () => {

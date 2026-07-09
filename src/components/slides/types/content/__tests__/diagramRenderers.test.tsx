@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { screen, within } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../test/test-utils';
+import modulesData from '../../../../../data/modules.json';
 import {
   getDiagramRendererKeys,
   renderDiagramSection,
 } from '../diagramRenderers';
+
+/** ContentSlides.tsx special-case when registry returns null */
+const CONTENT_SLIDES_SPECIAL_IMAGES = ['turinio_workflow'];
 
 function renderDiagram(
   image: string,
@@ -102,6 +106,49 @@ describe('diagramRenderers registry contract', () => {
       renderDiagramSection('unknown_legacy_image.svg', 'Body', {})
     ).toBeNull();
     expect(renderDiagramSection('m10_spec_incident', 'Body', {})).toBeNull();
+    expect(
+      renderDiagramSection('/llm_autoregressive_rytas_zalgiris.svg', 'Body', {})
+    ).toBeNull();
+  });
+
+  it('renders M4/44 llm_autoregressive through LlmAutoregressiveBlock (not static img)', () => {
+    expect(
+      renderDiagramSection('llm_autoregressive', 'LLM body', {})
+    ).not.toBeNull();
+
+    const { container } = renderDiagram('llm_autoregressive', 'LLM body');
+    expect(container.textContent).toContain('LLM body');
+    expect(container.textContent).toContain('Tu esi čia:');
+    expect(container.querySelector('img')).toBeNull();
+    expect(container.querySelectorAll('nav button').length).toBeGreaterThan(0);
+  });
+
+  it('renders M4/43 strukturuotas_procesas through StrukturuotasProcesasBlock', () => {
+    expect(
+      renderDiagramSection('strukturuotas_procesas', 'Process body', {})
+    ).not.toBeNull();
+    expect(
+      renderDiagramSection('strukturuotas_procesas_3_zingsniai', 'Body', {})
+    ).toBeNull();
+
+    const { container } = renderDiagram(
+      'strukturuotas_procesas',
+      'Process body'
+    );
+    expect(container.textContent).toContain('Process body');
+    expect(container.textContent).toContain('Tu esi čia:');
+    expect(container.querySelector('img')).toBeNull();
+  });
+
+  it('renders M4/56 llm_arch through LlmArchDiagramBlock (not broken static img)', () => {
+    expect(renderDiagramSection('llm_arch', 'Arch body', {})).not.toBeNull();
+    expect(renderDiagramSection('llm_arch_diagram', 'Body', {})).toBeNull();
+
+    const { container } = renderDiagram('llm_arch', 'Arch body');
+    expect(container.textContent).toContain('Arch body');
+    expect(container.textContent).toContain('Bazinis');
+    expect(container.querySelector('img')).toBeNull();
+    expect(container.querySelectorAll('button[aria-pressed]').length).toBe(3);
   });
 
   it('preserves body placement before, after, and none', () => {
@@ -159,5 +206,41 @@ describe('diagramRenderers registry contract', () => {
     expect(image.compareDocumentPosition(body)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING
     );
+  });
+
+  it('resolves every modules.json section.image (M1–15) via registry or known specials', () => {
+    const broken: {
+      moduleId: number;
+      slideId: number | string;
+      image: string;
+    }[] = [];
+
+    for (const mod of modulesData.modules) {
+      if (mod.id > 15) continue;
+      for (const slide of mod.slides ?? []) {
+        const content = slide.content;
+        if (!content || !('sections' in content)) continue;
+        const sections = content.sections;
+        if (!Array.isArray(sections)) continue;
+        for (const section of sections) {
+          if (!('image' in section) || typeof section.image !== 'string')
+            continue;
+          const image = section.image;
+          const isSpecial = CONTENT_SLIDES_SPECIAL_IMAGES.some((key) =>
+            image.includes(key)
+          );
+          if (isSpecial) continue;
+          if (renderDiagramSection(image, undefined, {}) === null) {
+            broken.push({
+              moduleId: mod.id,
+              slideId: slide.id,
+              image,
+            });
+          }
+        }
+      }
+    }
+
+    expect(broken).toEqual([]);
   });
 });
