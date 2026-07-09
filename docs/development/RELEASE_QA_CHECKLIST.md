@@ -52,7 +52,9 @@
 - [ ] **Prioritetinės vietos:** HomePage, Testo Rezultatai skaidrė, QuizPage, modulių skaidrės, žodynėlis.
 - [ ] **Dažnos klaidos:** `perziureti` → `peržiūrėti`, `Moduli` → `Modulį`, `Ziniu` → `Žinių`, `zemelapis` → `žemėlapis`, `Skaidre` → `Skaidrė`, `Ka ismokai` → `Ką išmokai`, `ypac` → `ypač`, `bloku` → `blokų`, `role` → `rolė`, `struktura` → `struktūra`, `parametru` → `parametrų`, `reiskia` → `reiškia`.
 - [ ] **Greitas patikrinimas:** Peržiūrėti bent 1 skaidrę iš kiekvieno modulio + Testo Rezultatus + Pagrindinį – ar nėra „išlindusių“ ASCII raidžių vietoj ž, ė, ą, ų, ū, š, č, į.
-- [ ] **Sertifikato PDF (jei įdiegta):** Baigus 3. modulį → „Parsisiųsti sertifikatą“ → įrašyti vardą su diakritika (pvz. „Jonas Žilinskas“) → parsisiųsti PDF – atsidaryti PDF ir patikrinti, kad vardas ir tekstas („Užbaigė 1 dalį“, „Promptų anatomija“) rodomi su lietuviškomis raidėmis (ž, ė, ų ir kt.). Žr. `public/fonts/README.md` – NotoSans turi būti įdiegtas.
+- [ ] **Sertifikato PDF (tier 1 smoke):** Baigus 3. modulį → „Parsisiųsti sertifikatą“ → įrašyti vardą su diakritika (pvz. „Jonas Žilinskas“) → parsisiųsti PDF – atsidaryti PDF ir patikrinti, kad vardas ir tekstas („Užbaigė 1 dalį“, „Promptų anatomija“) rodomi su lietuviškomis raidėmis (ž, ė, ų ir kt.). Žr. `public/fonts/README.md` – NotoSans turi būti įdiegtas.
+- [ ] **Tier 4 sertifikatas (full catalog):** Baigti M10, M11, M12; M11 testas ≥70 % → Modulio 12 užbaigimo ekranas → CertificateScreen → PDF turi rodyti Agentų inžinerijos kelio tekstą, ne visos 15 modulių programos copy. Pakartotinis atsisiuntimas per „Mano medžiaga“ turi rodyti tą patį serial numerį.
+- [ ] **Tier 5 sertifikatas (full catalog):** Baigti M13, M14, M15; M14 testas ≥70 % → Modulio 15 užbaigimo ekranas → CertificateScreen → PDF turi rodyti Turinio inžinerijos kelio tekstą, ne visos 15 modulių programos copy. Pakartotinis atsisiuntimas per „Mano medžiaga“ turi rodyti tą patį serial numerį.
 
 ---
 

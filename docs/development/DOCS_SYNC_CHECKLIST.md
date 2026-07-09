@@ -2,12 +2,32 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.2 + Unreleased  
-**Testai:** 60 failų / 403 testai  
-**Data:** 2026-07-06  
+**Baseline:** 1.4.3 + Unreleased P2 artefaktai  
+**Testai:** 71 failas / 465 testai  
+**Data:** 2026-07-09  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`.
 
 ## Sync lentelė
+
+### P2 artefaktų sync – 2026-07-09
+
+| #   | Failas                                                                                             | Laukas                             | Buvo                                | Turi būti                                                              | Done |
+| --- | -------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------------- | ---------------------------------------------------------------------- | ---- |
+| 1   | `README.md`                                                                                        | versija / funkcijos                | 1.4.2, tier 1–3, PDF iki M7–9       | 1.4.3 + Unreleased, tier 1–5, PDF M1/M4/M5/M6/M7–9/M10–12/M13–15       | [x]  |
+| 2   | `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                        | release / testai / artefaktai      | 2026-07-06, 60/403                  | 2026-07-09, 71/465, tier 4/5 + m1012/m1315                             | [x]  |
+| 3   | `docs/DOCUMENTATION_QUICK_REF.md`                                                                  | vartai / data SOT                  | be `audit:m1315` artefaktų SOT      | `audit:m1012`, `audit:m1315`, completion/certificate/handout SOT       | [x]  |
+| 4   | `docs/LEAN_INDEX.md`                                                                               | codebase summary / PDF eilutė      | 1.4.2, 60/403, PDF iki M7–9         | 1.4.3 + Unreleased, 71/465, PDF iki M13–15                             | [x]  |
+| 5   | `CHANGELOG.md`                                                                                     | viršutinė santrauka / Unreleased   | tier 3, 60/410                      | tier 1–5, 71/465, docs sync įrašas                                     | [x]  |
+| 6   | `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`                                                              | duomenų failų apžvalga / trigeriai | nėra completion/certificate/handout | artefaktų registry, tier 1–5 copy, m1012/m1315 handout taisyklės       | [x]  |
+| 7   | `context-engineering/sot_index.json`                                                               | dataSOT                            | tik modules/tools/glossary/M1012 EN | completionArtifacts, certificateContent, m1012/m1315 + M1315 EN        | [x]  |
+| 8   | `GOLD_LEGACY_STANDARD.md`                                                                          | istorinis techninis inventorius    | certificate tier1–3, handout iki M6 | P2 artefaktų pastaba, tier1–5, completion/m1012/m1315 loaderiai        | [x]  |
+| 9   | `PDF_DOWNLOAD_TESTING.md`                                                                          | PDF testavimo gidas                | M1/M5/M6/M7–9                       | M1/M4/M5/M6/M7–9/M10–12/M13–15 + drift guards                          | [x]  |
+| 10  | `PDF_MAKETO_GAIRES.md`                                                                             | atmintinių serija                  | M1/M4/M5/M6/M7–9                    | M1/M4/M5/M6/M7–9/M10–12/M13–15                                         | [x]  |
+| 11  | `RELEASE_QA_CHECKLIST.md`                                                                          | sertifikatų smoke                  | tier 1 pavyzdys                     | tier 4 M12 ir tier 5 M15 smoke + serial stabilumas                     | [x]  |
+| 12  | `.cursor/skills/{data,qa,coding,content-agent}/SKILL.md`                                           | agentų pamokos                     | M79 / tier 3 pattern                | registry-driven M1012/M1315, tier 4/5, `audit:m1315`, handout JSON SOT | [x]  |
+| 13  | `ROADMAP.md`, `TODO.md`, `DOCUMENTATION_INDEX.md`, `RELEASE_QA_RUN.md`, `AUDIT_2026-06_SUMMARY.md` | ops closure                        | 1.4.2 / 403 baseline                | 1.4.3 + Unreleased P2, 71/465, docs sync closed                        | [x]  |
+
+### 1.4.2 + Unreleased docs sync – 2026-07-06
 
 | #   | Failas                                           | Laukas                             | Buvo                                   | Turi būti                                                | Done |
 | --- | ------------------------------------------------ | ---------------------------------- | -------------------------------------- | -------------------------------------------------------- | ---- |

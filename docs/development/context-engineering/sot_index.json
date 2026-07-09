@@ -55,6 +55,30 @@
       "path": "src/data/modules-en-m10-m12.json",
       "role": "EN deep-merge overlay modules 10-12",
       "mergeCondition": "maxModuleId >= 10 in full catalog build"
+    },
+    "modulesEnM1315": {
+      "path": "src/data/modules-en-m13-m15.json",
+      "role": "EN deep-merge overlay modules 13-15",
+      "mergeCondition": "maxModuleId >= 13 in full catalog build"
+    },
+    "completionArtifacts": {
+      "path": "src/data/completionArtifacts.json",
+      "role": "handout and certificate entry-point registry"
+    },
+    "certificateContent": {
+      "path": "src/data/certificateContent.json",
+      "role": "certificate PDF copy for tiers 1-5",
+      "enOverlay": "src/data/certificateContent-en.json"
+    },
+    "m1012HandoutContent": {
+      "path": "src/data/m1012HandoutContent.json",
+      "role": "M10-12 Agent path PDF handout content",
+      "enOverlay": "src/data/m1012HandoutContent-en.json"
+    },
+    "m1315HandoutContent": {
+      "path": "src/data/m1315HandoutContent.json",
+      "role": "M13-15 Content path PDF handout content",
+      "enOverlay": "src/data/m1315HandoutContent-en.json"
     }
   },
   "publicModules": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
@@ -195,6 +219,7 @@
       "SectionBreakSlide",
       "QuizResultsView",
       "TestResultsSlide",
+      "ModulesPage",
       "App footer"
     ],
     "analytics": "src/utils/analytics.ts trackSpinoffClick"

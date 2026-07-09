@@ -1,10 +1,10 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.4.2 (2026-07-01). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md) (`[1.4.2]`; naujesni HEAD pakeitimai – `[Unreleased]`).
+**Versija:** 1.4.3 (2026-07-07) + `[Unreleased]`. **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
-UI ir turinys palaiko **LT / EN** (M1–M12; M10–12 EN kai kataloge `maxModuleId >= 10`).
+UI ir turinys palaiko **LT / EN** (M1–M15; M10–12 EN kai kataloge `maxModuleId >= 10`, M13–15 EN kai `maxModuleId >= 13`).
 
 ## Produkto modelis (3 build sluoksniai)
 
@@ -36,13 +36,16 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 - **Pamatinis kelias M1–6:** 6 Blokų Sistema → Žinių patikrinimas → Praktika → Konteksto inžinerija → Pažangus testas → Projekto kūrimas.
 - **Duomenų analizės kelias M7–9:** tier 9, production bundle (`build:production`); adaptuotos šakos Modulyje 7.
 - **Agentų kelias M10–12:** turinys full authoring kataloge (ne production bundle); taksonomija 10.45, workflow 10.48.
+- **Turinio kelias M13–15:** full authoring katalogas; vaizdai, video, muzika, testas ir finalinis kūrybinis projektas.
 - **6 blokų sistema** su workflow, technikomis ir mąstymo modeliais (CoT, ToT, konteksto inžinerijos schemos).
 - **Žodynėlis**, **Įrankių puslapis**, **Apklausa**, **Promptų biblioteka**.
 - **Sertifikatai (PDF):**
   - Tier 1 – po modulių 1–3.
   - Tier 2 – po modulių 1–6 ir apklausos ≥ 70 %.
   - Tier 3 – po kelio 7–9 ir Modulio 8 testo ≥ 70 %.
-- **PDF atmintinės:** M1 (first-win, value-only), M5, M6 ir M7–9 DA kelio atmintinė (LT/EN); bendras maketas `handoutPdfKit.ts`. Žr. `docs/development/PDF_DOWNLOAD_TESTING.md`.
+  - Tier 4 – po kelio 10–12 ir Modulio 11 testo ≥ 70 %.
+  - Tier 5 – po kelio 13–15 ir Modulio 14 testo ≥ 70 %.
+- **PDF atmintinės:** M1 (first-win, value-only), M4, M5, M6, M7–9 DA kelio, M10–12 Agentų kelio ir M13–15 Turinio kelio atmintinės (LT/EN); bendras maketas `handoutPdfKit.ts`, registry `completionArtifacts.json`, pakartotinis atsisiuntimas – `ModulesPage` „Mano medžiaga“. Žr. `docs/development/PDF_DOWNLOAD_TESTING.md`.
 - **Progreso sekimas:** localStorage, versijavimas, autosave.
 - **Prieigos lygiai (access tier):** magic link tier **3** (M1–3), **6** (M1–6), **9** (M1–9) per `api/verify-access.ts`.
 - **Ekosistema M1–12:** spinoff nuorodos, blog deepen (žr. `docs/ECOSYSTEM_MAP.md`).

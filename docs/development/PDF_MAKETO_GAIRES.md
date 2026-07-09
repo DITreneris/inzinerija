@@ -1,17 +1,17 @@
 # PDF maketo gairės – atmintinių serija ir intro-action-pie PDF
 
-> **Paskirtis:** Vienas etalonas atsisiunčiamiems PDF: M1/M4/M5/M6/M7–9 atmintinių serijai ir 7 asmeninių intro-action-pie PDF („Generuok patarimus sau“ / „Eksportuok PDF“) maketui. Implementaciją atlieka CODING_AGENT pagal šias gaires. Šaltinis spalvų: [GOLDEN_STANDARD.md](GOLDEN_STANDARD.md) §2.1.
+> **Paskirtis:** Vienas etalonas atsisiunčiamiems PDF: M1/M4/M5/M6/M7–9/M10–12/M13–15 atmintinių serijai ir 7 asmeninių intro-action-pie PDF („Generuok patarimus sau“ / „Eksportuok PDF“) maketui. Implementaciją atlieka CODING_AGENT pagal šias gaires. Šaltinis spalvų: [GOLDEN_STANDARD.md](GOLDEN_STANDARD.md) §2.1.
 
 ---
 
 ## 1. Tikslas ir auditorija
 
-- **Tikslas (atmintinių serija):** M1, M4, M5, M6 ir M7–9 PDF turi atrodyti kaip vienas rinkinys: tas pats brand header, tipografija, sekcijų border, footer ir mygtukų kalba. Turinys skiriasi pagal mokymosi momentą.
-- **Pakopinis CTA modelis:** M1/M4 = value-only (be outbound nuorodų); M5/M6 = minimalus website footer; M7–9 = pilnas 2 psl. funnel su `utm_medium=handout`.
+- **Tikslas (atmintinių serija):** M1, M4, M5, M6, M7–9, M10–12 ir M13–15 PDF turi atrodyti kaip vienas rinkinys: tas pats brand header, tipografija, sekcijų border, footer ir mygtukų kalba. Turinys skiriasi pagal mokymosi momentą.
+- **Pakopinis CTA modelis:** M1/M4 = value-only (be outbound nuorodų); M5/M6 = minimalus website footer; M7–9/M10–12/M13–15 = pilnas 2 psl. funnel su `utm_medium=handout`.
 - **Tikslas (intro-action-pie):** Kiekvienas iš 7 segmentų (Rašymas, Praktiniai patarimai, Informacijos paieška, Techninė pagalba, Multimedija, Kita/Nežinoma, Saviraiška) turi savo PDF – vienas atsisiunčiamas failas su Top 5 patarimais, įrankiais, workflow, 5 sąvokomis, sisteminiu promptu ir palinkėjimu.
 - **Auditorija:** Vartotojas, kuris nori išsaugoti praktinę medžiagą po modulio arba pasirinktą asmeninį intro-action-pie segmentą.
 - **Implementacija:** [src/utils/introPiePdf.ts](../../src/utils/introPiePdf.ts) (jsPDF).
-- **Atmintinių serijos implementacija:** bendras maketo branduolys [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts); konkretūs util'ai – `m1HandoutPdf.ts`, `m4HandoutPdf.ts`, `m5HandoutPdf.ts`, `m6HandoutPdf.ts`, `m79HandoutPdf.ts`.
+- **Atmintinių serijos implementacija:** bendras maketo branduolys [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts); konkretūs util'ai – `m1HandoutPdf.ts`, `m4HandoutPdf.ts`, `m5HandoutPdf.ts`, `m6HandoutPdf.ts`, `m79HandoutPdf.ts`, `m1012HandoutPdf.ts`, `m1315HandoutPdf.ts`.
 - **Žinomas ribotumas:** Jei `public/fonts/Roboto-Regular.ttf` (pageidautina) ir atsarginis `NotoSans-Regular.ttf` neįkelti, PDF naudoja Helvetica – lietuviškos diakritikos gali būti neteisingos. Šriftų kelias ir registracija: [pdfNotoFont.ts](../../src/utils/pdfNotoFont.ts); atsisiuntimas: `scripts/download-noto-font.ps1`.
 
 ---
@@ -30,7 +30,7 @@ Viena šriftų šeima (custom font su lietuviškais simboliais). Skiriasi **dydi
 
 - **Tarp eilutės:** apie 1,2–1,4× fonto dydis (line height).
 - **Tarp pastraipų / sąrašo punktų:** mažiausiai 3–4 mm.
-- **Atmintinių serija:** bazinė skalė valdoma `handoutPdfKit.ts` (`regular`); tankiam 2 psl. M7–9 PDF leidžiama `compact`, bet header, footer ir spalvos lieka tos pačios.
+- **Atmintinių serija:** bazinė skalė valdoma `handoutPdfKit.ts` (`regular`); tankiems 2 psl. M7–9/M10–12/M13–15 PDF leidžiama `compact`, bet header, footer ir spalvos lieka tos pačios.
 
 ---
 

@@ -2,7 +2,7 @@
 
 > Testų infrastruktūra skirta PDF atsisiuntimo funkcijai (intro-action-pie skaidrė) ir kitose skaidrėse naudojimui.
 
-**Būsena (2026-02-21):** Vitest run – 16 testų failų, 111 testų praeina. IntroActionPieSlide PDF komponento testas vykdomas su `act()` (React state atnaujimai apgaubti) – be act() įspėjimų.
+**Būsena (2026-07-09):** Pilnas `npm run test:run` – 71 testų failas, 465 testai praeina. PDF serija dengia intro-action-pie, M1/M4/M5/M6/M7–9/M10–12/M13–15 atmintines, completion artefaktų registry ir sertifikatų atsisiuntimo smoke testus.
 
 ---
 
@@ -47,8 +47,8 @@
 
 ## Atmintinių serijos bendras maketas
 
-- **Kit:** [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts) valdo M1/M5/M6/M7–9 PDF header, tipografiją, sekcijų border, footer, `textWithLink` ir UTM helperius.
-- **CTA pakopos:** M1 – value-only be outbound; M5/M6 – minimalus website footer; M7–9 – 2 psl. ekosistemos funnel su `utm_medium=handout`.
+- **Kit:** [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts) valdo M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF header, tipografiją, sekcijų border, footer, `textWithLink` ir UTM helperius.
+- **CTA pakopos:** M1/M4 – value-only be outbound; M5/M6 – minimalus website footer; M7–9/M10–12/M13–15 – 2 psl. ekosistemos funnel su `utm_medium=handout`.
 - **UI:** Completion ir skaidrių mygtukams naudoti [src/components/HandoutDownloadButton.tsx](../../src/components/HandoutDownloadButton.tsx), kad PDF atmintinių serija turėtų vienodą Download ikoną, `aria-label` ir focus stilių.
 
 ## Modulio 1 atmintinė (PDF)
@@ -77,22 +77,46 @@
 - **Drift guard:** pakeitus [src/data/m79HandoutContent.json](../../src/data/m79HandoutContent.json) arba [src/data/m79HandoutContent-en.json](../../src/data/m79HandoutContent-en.json), privalo praeiti [src/data/**tests**/m79HandoutContent.test.ts](../../src/data/__tests__/m79HandoutContent.test.ts) (LT/EN struktūra, masyvų ilgiai, DI/AI terminologija) ir [src/utils/**tests**/m79HandoutPdf.test.ts](../../src/utils/__tests__/m79HandoutPdf.test.ts) (LT/EN smoke, filename, `textWithLink`, `utm_medium=handout`, `utm_campaign=m9_handout`).
 - **Testai:** [src/components/**tests**/ModuleCompleteScreen.test.tsx](../../src/components/__tests__/ModuleCompleteScreen.test.tsx) tikrina M9 completion mygtuką. CI naujus M79 testus dengia per bendrą `npm run test:run`.
 
+## Modulių 10–12 Agentų kelio atmintinė (PDF)
+
+- **Vieta:** Modulio 12 užbaigimo ekranas ir `ModulesPage` blokas „Mano medžiaga“ – mygtukas „Parsisiųsti Agentų kelio atmintinę (PDF)“. Tai praktinis agentų darbo lapas, atskiras nuo tier 4 sertifikato.
+- **API:** [src/utils/m1012HandoutPdf.ts](../../src/utils/m1012HandoutPdf.ts) – `downloadM1012HandoutPdf(content, { locale }, filename?)`. Duomenys – [src/data/m1012HandoutContent.json](../../src/data/m1012HandoutContent.json) ir [src/data/m1012HandoutContent-en.json](../../src/data/m1012HandoutContent-en.json).
+- **Ekosistema:** 2 puslapis turi funnel CTA ir spaudžiamas nuorodas su `utm_source=training`, `utm_medium=handout`, `utm_campaign=m1012_*`.
+- **Drift guard:** pakeitus [src/data/m1012HandoutContent.json](../../src/data/m1012HandoutContent.json) arba [src/data/m1012HandoutContent-en.json](../../src/data/m1012HandoutContent-en.json), privalo praeiti [src/data/**tests**/m1012HandoutContent.test.ts](../../src/data/__tests__/m1012HandoutContent.test.ts) ir [src/utils/**tests**/m1012HandoutPdf.test.ts](../../src/utils/__tests__/m1012HandoutPdf.test.ts).
+- **Testai:** [src/components/**tests**/ModuleCompleteScreen.test.tsx](../../src/components/__tests__/ModuleCompleteScreen.test.tsx) tikrina M12 completion paviršių; [src/components/**tests**/ModulesPage.materials.test.tsx](../../src/components/__tests__/ModulesPage.materials.test.tsx) tikrina uždirbtos atmintinės pakartotinį atsisiuntimą.
+
+## Modulių 13–15 Turinio kelio atmintinė (PDF)
+
+- **Vieta:** Modulio 15 užbaigimo ekranas ir `ModulesPage` blokas „Mano medžiaga“ – mygtukas „Parsisiųsti Turinio kelio atmintinę (PDF)“. Tai praktinis vaizdo, video ir muzikos kūrimo darbo lapas, atskiras nuo tier 5 sertifikato.
+- **API:** [src/utils/m1315HandoutPdf.ts](../../src/utils/m1315HandoutPdf.ts) – `downloadM1315HandoutPdf(content, { locale }, filename?)`. Duomenys – [src/data/m1315HandoutContent.json](../../src/data/m1315HandoutContent.json) ir [src/data/m1315HandoutContent-en.json](../../src/data/m1315HandoutContent-en.json).
+- **Ekosistema:** 2 puslapis turi funnel CTA ir spaudžiamas nuorodas su `utm_source=training`, `utm_medium=handout`, `utm_campaign=m1315_*`.
+- **Drift guard:** pakeitus [src/data/m1315HandoutContent.json](../../src/data/m1315HandoutContent.json) arba [src/data/m1315HandoutContent-en.json](../../src/data/m1315HandoutContent-en.json), privalo praeiti [src/data/**tests**/m1315HandoutContent.test.ts](../../src/data/__tests__/m1315HandoutContent.test.ts) ir [src/utils/**tests**/m1315HandoutPdf.test.ts](../../src/utils/__tests__/m1315HandoutPdf.test.ts).
+- **Testai:** [src/components/**tests**/ModuleCompleteScreen.test.tsx](../../src/components/__tests__/ModuleCompleteScreen.test.tsx) tikrina M15 completion paviršių; [src/components/**tests**/ModulesPage.materials.test.tsx](../../src/components/__tests__/ModulesPage.materials.test.tsx) tikrina uždirbtos atmintinės pakartotinį atsisiuntimą.
+
 ---
 
 ## Susiję failai
 
-| Failas                                                                                             | Paskirtis                                                                                                                                |
-| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [src/utils/introPiePdf.ts](../../src/utils/introPiePdf.ts)                                         | API: `ensurePdfFont()`, `downloadIntroPiePdf(segment, toolsByName, glossaryByTerm, filename?)`                                           |
-| [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts)                                     | Bendras M1/M5/M6/M7–9 PDF atmintinių maketo branduolys                                                                                   |
-| [src/utils/m1HandoutPdf.ts](../../src/utils/m1HandoutPdf.ts)                                       | Modulio 1 first-win PDF atmintinė: `downloadM1HandoutPdf(content, filename?, locale?)`                                                   |
-| [src/utils/m5HandoutPdf.ts](../../src/utils/m5HandoutPdf.ts)                                       | Modulio 5 PDF atmintinė: `downloadM5HandoutPdf(content, filename?, locale?)`                                                             |
-| [src/utils/m6HandoutPdf.ts](../../src/utils/m6HandoutPdf.ts)                                       | Modulio 6 PDF atmintinė: `downloadM6HandoutPdf(content, filename?, locale?)`                                                             |
-| [src/utils/m79HandoutPdf.ts](../../src/utils/m79HandoutPdf.ts)                                     | Modulių 7–9 PDF atmintinė: `downloadM79HandoutPdf(content, { locale }, filename?)`                                                       |
-| [src/data/introPiePdfContent.json](../../src/data/introPiePdfContent.json)                         | 7 segmentų turinys (validuojamas [scripts/schemas/introPiePdfContent.schema.json](../../scripts/schemas/introPiePdfContent.schema.json)) |
-| [src/data/m1HandoutContent.json](../../src/data/m1HandoutContent.json)                             | M1 first-win atmintinės turinys (6 blokai, checklist, starter promptas)                                                                  |
-| [src/data/m5HandoutContent.json](../../src/data/m5HandoutContent.json)                             | M5 atmintinės turinys (sveikinimas, įrankiai, promptai, sekos, savokos)                                                                  |
-| [src/data/m79HandoutContent.json](../../src/data/m79HandoutContent.json)                           | M7–9 DA kelio atmintinės turinys (pipeline, MASTER, workflow, CTA)                                                                       |
-| [src/data/**tests**/m1HandoutContent.test.ts](../../src/data/__tests__/m1HandoutContent.test.ts)   | M1 LT/EN handout turinio pariteto testas                                                                                                 |
-| [src/data/**tests**/m79HandoutContent.test.ts](../../src/data/__tests__/m79HandoutContent.test.ts) | M7–9 LT/EN handout turinio pariteto testas                                                                                               |
-| [docs/development/PDF_MAKETO_GAIRES.md](PDF_MAKETO_GAIRES.md)                                      | PDF maketo gairės (tipografija, spalvos, sekcijos)                                                                                       |
+| Failas                                                                                                 | Paskirtis                                                                                                                                |
+| ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [src/utils/introPiePdf.ts](../../src/utils/introPiePdf.ts)                                             | API: `ensurePdfFont()`, `downloadIntroPiePdf(segment, toolsByName, glossaryByTerm, filename?)`                                           |
+| [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts)                                         | Bendras M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF atmintinių maketo branduolys                                                                  |
+| [src/utils/m1HandoutPdf.ts](../../src/utils/m1HandoutPdf.ts)                                           | Modulio 1 first-win PDF atmintinė: `downloadM1HandoutPdf(content, filename?, locale?)`                                                   |
+| [src/utils/m5HandoutPdf.ts](../../src/utils/m5HandoutPdf.ts)                                           | Modulio 5 PDF atmintinė: `downloadM5HandoutPdf(content, filename?, locale?)`                                                             |
+| [src/utils/m6HandoutPdf.ts](../../src/utils/m6HandoutPdf.ts)                                           | Modulio 6 PDF atmintinė: `downloadM6HandoutPdf(content, filename?, locale?)`                                                             |
+| [src/utils/m79HandoutPdf.ts](../../src/utils/m79HandoutPdf.ts)                                         | Modulių 7–9 PDF atmintinė: `downloadM79HandoutPdf(content, { locale }, filename?)`                                                       |
+| [src/utils/m1012HandoutPdf.ts](../../src/utils/m1012HandoutPdf.ts)                                     | Modulių 10–12 PDF atmintinė: `downloadM1012HandoutPdf(content, { locale }, filename?)`                                                   |
+| [src/utils/m1315HandoutPdf.ts](../../src/utils/m1315HandoutPdf.ts)                                     | Modulių 13–15 PDF atmintinė: `downloadM1315HandoutPdf(content, { locale }, filename?)`                                                   |
+| [src/utils/downloadHandout.ts](../../src/utils/downloadHandout.ts)                                     | Bendras handout atsisiuntimo veiksmas: content loader + PDF util + analytics + error logging                                             |
+| [src/data/introPiePdfContent.json](../../src/data/introPiePdfContent.json)                             | 7 segmentų turinys (validuojamas [scripts/schemas/introPiePdfContent.schema.json](../../scripts/schemas/introPiePdfContent.schema.json)) |
+| [src/data/m1HandoutContent.json](../../src/data/m1HandoutContent.json)                                 | M1 first-win atmintinės turinys (6 blokai, checklist, starter promptas)                                                                  |
+| [src/data/m5HandoutContent.json](../../src/data/m5HandoutContent.json)                                 | M5 atmintinės turinys (sveikinimas, įrankiai, promptai, sekos, savokos)                                                                  |
+| [src/data/m79HandoutContent.json](../../src/data/m79HandoutContent.json)                               | M7–9 DA kelio atmintinės turinys (pipeline, MASTER, workflow, CTA)                                                                       |
+| [src/data/m1012HandoutContent.json](../../src/data/m1012HandoutContent.json)                           | M10–12 Agentų kelio atmintinės turinys                                                                                                   |
+| [src/data/m1315HandoutContent.json](../../src/data/m1315HandoutContent.json)                           | M13–15 Turinio kelio atmintinės turinys                                                                                                  |
+| [src/data/completionArtifacts.json](../../src/data/completionArtifacts.json)                           | Handout ir sertifikatų entry point registry                                                                                              |
+| [src/data/**tests**/m1HandoutContent.test.ts](../../src/data/__tests__/m1HandoutContent.test.ts)       | M1 LT/EN handout turinio pariteto testas                                                                                                 |
+| [src/data/**tests**/m79HandoutContent.test.ts](../../src/data/__tests__/m79HandoutContent.test.ts)     | M7–9 LT/EN handout turinio pariteto testas                                                                                               |
+| [src/data/**tests**/m1012HandoutContent.test.ts](../../src/data/__tests__/m1012HandoutContent.test.ts) | M10–12 LT/EN handout turinio pariteto testas                                                                                             |
+| [src/data/**tests**/m1315HandoutContent.test.ts](../../src/data/__tests__/m1315HandoutContent.test.ts) | M13–15 LT/EN handout turinio pariteto testas                                                                                             |
+| [docs/development/PDF_MAKETO_GAIRES.md](PDF_MAKETO_GAIRES.md)                                          | PDF maketo gairės (tipografija, spalvos, sekcijos)                                                                                       |

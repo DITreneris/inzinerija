@@ -1,6 +1,6 @@
 # Gold Legacy Standard – Promptų anatomija v1.3.0
 
-> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.2 (2026-07-01)** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); **nedubliuoja** tier 9 / M7–9 production modelio.  
+> **Paskirtis:** Išsami kodo bazės dokumentacija, fiksuojanti production deploy būseną (v1.3.0, 2026-03-16). **Dabartinis app release: v1.4.3 + Unreleased P2 artefaktai (2026-07-09)** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`, `README.md`. Šis dokumentas yra **istorinis atskaitos taškas** (M1–6 deployed snapshot); **nedubliuoja** pilno dabartinio M1–15 artefaktų modelio.  
 > **Apimtis:** Kodo bazė iki v1.3.0 deploy; moduliai 7–15 – `modules.json`, bet šiame doc neaprašyti. Dabartinei architektūrai – **CODEBASE_WHAT_IS_DONE.md**.  
 > **Versija:** 1.1.0  
 > **Data:** 2026-03-14  
@@ -220,18 +220,21 @@ Aliasai `vite.config.ts` persijungia failų kelius:
 
 #### Pagrindiniai SOT failai (redagavimo šaltiniai)
 
-| Failas                             | Aprašymas                                                       | Turinys                                                         |
-| ---------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `src/data/modules.json`            | **Pagrindinis SOT** – visi moduliai, skaidrės, testas, apklausa | ~12,000 eilučių; `{ modules: Module[], quiz: Quiz }`            |
-| `src/data/glossary.json`           | Žodynėlis (pilnas)                                              | `{ terms: GlossaryTerm[] }` – 97 terminai                       |
-| `src/data/tools.json`              | Įrankių katalogas (pilnas)                                      | `{ tools: ToolItem[] }` – ~57 įrankiai                          |
-| `src/data/promptLibrary.json`      | Promptų biblioteka                                              | `{ sections: PromptLibrarySection[] }` – 6 sekcijos             |
-| `src/data/certificateContent.json` | Sertifikatų PDF tekstai (LT)                                    | `{ tiers: [tier1, tier2, tier3], websiteUrl, websiteCta, ... }` |
-| `src/data/m5HandoutContent.json`   | M5 atmintinės turinys (LT)                                      | `{ title, toolsBullets, sequenceSteps, ... }`                   |
-| `src/data/m6HandoutContent.json`   | M6 atmintinės turinys (LT)                                      | `{ title, projectSteps, dataManagementPoints, ... }`            |
-| `src/data/introPiePdfContent.json` | Intro-action-pie PDF (LT)                                       | `{ segments: IntroActionPiePdfSegment[7] }`                     |
-| `src/data/hallucinationRates.ts`   | Haliucinacijų rodikliai                                         | 9 modelių duomenys (GPT-4, Gemini, Llama, etc.)                 |
-| `src/data/aiDetectors.ts`          | DI detektorių duomenys                                          | Detektorių sąrašas su statistika                                |
+| Failas                              | Aprašymas                                                       | Turinys                                                                       |
+| ----------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `src/data/modules.json`             | **Pagrindinis SOT** – visi moduliai, skaidrės, testas, apklausa | ~12,000 eilučių; `{ modules: Module[], quiz: Quiz }`                          |
+| `src/data/glossary.json`            | Žodynėlis (pilnas)                                              | `{ terms: GlossaryTerm[] }` – 97 terminai                                     |
+| `src/data/tools.json`               | Įrankių katalogas (pilnas)                                      | `{ tools: ToolItem[] }` – ~57 įrankiai                                        |
+| `src/data/promptLibrary.json`       | Promptų biblioteka                                              | `{ sections: PromptLibrarySection[] }` – 6 sekcijos                           |
+| `src/data/certificateContent.json`  | Sertifikatų PDF tekstai (LT)                                    | `{ tiers: [tier1, tier2, tier3, tier4, tier5], websiteUrl, websiteCta, ... }` |
+| `src/data/completionArtifacts.json` | Handout ir sertifikatų entry point registry                     | `{ handouts: [...], certificates: [...] }`                                    |
+| `src/data/m5HandoutContent.json`    | M5 atmintinės turinys (LT)                                      | `{ title, toolsBullets, sequenceSteps, ... }`                                 |
+| `src/data/m6HandoutContent.json`    | M6 atmintinės turinys (LT)                                      | `{ title, projectSteps, dataManagementPoints, ... }`                          |
+| `src/data/m1012HandoutContent.json` | M10–12 Agentų kelio atmintinės turinys (LT)                     | `{ title, sections, promptTemplates, ecosystemCta, ... }`                     |
+| `src/data/m1315HandoutContent.json` | M13–15 Turinio kelio atmintinės turinys (LT)                    | `{ title, sections, promptTemplates, ecosystemCta, ... }`                     |
+| `src/data/introPiePdfContent.json`  | Intro-action-pie PDF (LT)                                       | `{ segments: IntroActionPiePdfSegment[7] }`                                   |
+| `src/data/hallucinationRates.ts`    | Haliucinacijų rodikliai                                         | 9 modelių duomenys (GPT-4, Gemini, Llama, etc.)                               |
+| `src/data/aiDetectors.ts`           | DI detektorių duomenys                                          | Detektorių sąrašas su statistika                                              |
 
 #### EN vertimo failai (merge overlay)
 
@@ -247,6 +250,8 @@ Aliasai `vite.config.ts` persijungia failų kelius:
 | `src/data/certificateContent-en.json`   | EN sertifikatų tekstai                          |
 | `src/data/m5HandoutContent-en.json`     | EN M5 atmintinė                                 |
 | `src/data/m6HandoutContent-en.json`     | EN M6 atmintinė                                 |
+| `src/data/m1012HandoutContent-en.json`  | EN M10–12 Agentų kelio atmintinė                |
+| `src/data/m1315HandoutContent-en.json`  | EN M13–15 Turinio kelio atmintinė               |
 | `src/data/introPiePdfContent-en.json`   | EN intro-action-pie PDF                         |
 
 #### Core profilio failai (generuojami iš SOT)
@@ -531,15 +536,16 @@ Kiekvienas duomenų tipas turi dedikuotą loaderį su:
 - **Deep merge** – EN duomenys merginami ant LT bazės pagal `id` lauką
 - **Lazy init** – kraunama tik kai reikia
 
-| Loaderis                      | SOT failas                                       | EN failas                                                                                                                 | Eksportai                                                                                |
-| ----------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `modulesLoader.ts`            | `@modules-data`                                  | `modules-en.json` + `modules-en-m4-m6.json` + `modules-en-m10-m12.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache` |
-| `glossaryLoader.ts`           | `@glossary-data`                                 | `glossary-en.json`                                                                                                        | `getGlossary`                                                                            |
-| `toolsLoader.ts`              | `@tools-data`                                    | `@tools-en-data`                                                                                                          | `getTools`                                                                               |
-| `promptLibraryLoader.ts`      | `promptLibrary.json`                             | `promptLibrary-en.json`                                                                                                   | `getPromptLibrary`                                                                       |
-| `certificateContentLoader.ts` | `certificateContent.json`                        | `certificateContent-en.json`                                                                                              | `getCertificateContent`                                                                  |
-| `handoutContentLoader.ts`     | `m5HandoutContent.json`, `m6HandoutContent.json` | `*-en.json`                                                                                                               | `getM5HandoutContent`, `getM6HandoutContent`                                             |
-| `introPiePdfContentLoader.ts` | `introPiePdfContent.json`                        | `introPiePdfContent-en.json`                                                                                              | `getIntroPiePdfContent`                                                                  |
+| Loaderis                       | SOT failas                                       | EN failas                                                                                                                                             | Eksportai                                                                                                                                                              |
+| ------------------------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modulesLoader.ts`             | `@modules-data`                                  | `modules-en.json` + `modules-en-m4-m6.json` + `modules-en-m10-m12.json` + `modules-en-m13-m15.json` + `quiz-en.json` + `modules-en-us-overrides.json` | `loadModules`, `getModule`, `getModulesSync`, `preloadModules`, `invalidateModulesCache`                                                                               |
+| `glossaryLoader.ts`            | `@glossary-data`                                 | `glossary-en.json`                                                                                                                                    | `getGlossary`                                                                                                                                                          |
+| `toolsLoader.ts`               | `@tools-data`                                    | `@tools-en-data`                                                                                                                                      | `getTools`                                                                                                                                                             |
+| `promptLibraryLoader.ts`       | `promptLibrary.json`                             | `promptLibrary-en.json`                                                                                                                               | `getPromptLibrary`                                                                                                                                                     |
+| `certificateContentLoader.ts`  | `certificateContent.json`                        | `certificateContent-en.json`                                                                                                                          | `getCertificateContent`                                                                                                                                                |
+| `completionArtifactsLoader.ts` | `completionArtifacts.json`                       | i18n labels per locale JSON                                                                                                                           | `getCompletionArtifacts`                                                                                                                                               |
+| `handoutContentLoader.ts`      | `m1/m4/m5/m6/m79/m1012/m1315HandoutContent.json` | `*-en.json`                                                                                                                                           | `getM1HandoutContent`, `getM4HandoutContent`, `getM5HandoutContent`, `getM6HandoutContent`, `getM79HandoutContent`, `getM1012HandoutContent`, `getM1315HandoutContent` |
+| `introPiePdfContentLoader.ts`  | `introPiePdfContent.json`                        | `introPiePdfContent-en.json`                                                                                                                          | `getIntroPiePdfContent`                                                                                                                                                |
 
 ### 9.2 EN turinio merge strategija (modulesLoader)
 
@@ -547,8 +553,9 @@ Kiekvienas duomenų tipas turi dedikuotą loaderį su:
 2. Overlay 1: `modules-en.json` (M1–M3 EN)
 3. Overlay 2: `modules-en-m4-m6.json` (M4–M6 EN)
 4. Overlay 3: `modules-en-m10-m12.json` (M10–M12 EN) — **tik jei** kataloge `maxModuleId >= 10` (`modulesLoader.ts`)
-5. Overlay 4: `quiz-en.json` (EN apklausa)
-6. Overlay 5 (tik `en-us` variantas): `modules-en-us-overrides.json`
+5. Overlay 4: `modules-en-m13-m15.json` (M13–M15 EN) — **tik jei** kataloge `maxModuleId >= 13` (`modulesLoader.ts`)
+6. Overlay 5: `quiz-en.json` (EN apklausa)
+7. Overlay 6 (tik `en-us` variantas): `modules-en-us-overrides.json`
 
 Deep merge pagal `id` – masyvai merginami pagal elementų `id` lauką.
 
