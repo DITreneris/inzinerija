@@ -70,26 +70,26 @@
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
-| Kas                                           | Būsena        | Pastaba                                                                                                        |
-| --------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------- |
-| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped    | CHANGELOG `[1.4.2]`                                                                                            |
-| Lint + test (367) + `build:production`        | ✅            | CI lokaliai                                                                                                    |
-| M7–12 schema-consistency sprint               | ✅ 2026-07-06 | `DIAGRAMU_M7_M12_REGISTRY.md`, M10 shell/testai, M8 scope deep-link, legacy cleanup                            |
-| Diagram browser smoke (B2.5)                  | ⏳ Pending    | M10–12 LT/EN audit + UI/UX sync auto gates ✅ 2026-07-06; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6 |
-| Submodule pin marketing (MON-2)               | ⏳ Next       | Po push → marketing repo                                                                                       |
+| Kas                                           | Būsena        | Pastaba                                                                                                             |
+| --------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
+| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped    | CHANGELOG `[1.4.2]`                                                                                                 |
+| Lint + test (367) + `build:production`        | ✅            | CI lokaliai                                                                                                         |
+| M7–12 schema-consistency sprint               | ✅ 2026-07-06 | `DIAGRAMU_M7_M12_REGISTRY.md`, M10 shell/testai, M8 scope deep-link, legacy cleanup                                 |
+| Diagram browser smoke (B2.5)                  | ⏳ Pending    | M10–12 LT/EN audit + UI/UX sync auto gates ✅ 2026-07-06; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6      |
+| Submodule pin marketing (MON-2)               | ⏳ Runbook    | [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md) – vykdyti promptanatomy repo |
 
 ### §1.1 P0 – Monetizacija ir integracija (top priority – **kitas sprintas**)
 
-| ID            | Užduotis                                                                                                                                                                             | Status | Savininkas         | Repo                       | Pastaba                                                                                                            |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **MON-1**     | Production env audit: **nėra** `VITE_MAX_ACCESSIBLE_MODULE=6` promptanatomy.app; `VITE_VERIFY_ACCESS_URL` → domain root `/api/verify-access`                                         | [ ]    | DevOps             | Marketing                  | `docs/deployment/DEPLOYMENT.md`, `MARKETING_HANDOFF_CHECKLIST.md`                                                  |
-| **MON-2**     | Submodule pin: dokumentuoti reikalaujamą inzinerija commit (**1.4.2**); gate fix, be MVP tier fallback; marketing deploy runbook                                                     | [ ]    | DevOps             | Marketing                  | `MON_P0_EXECUTION_PLAN.md` §Savaitė 1                                                                              |
-| **MON-3**     | Verify-access smoke: magic link → `GET /api/verify-access` → 200 → SPA `verified_access_tier` → M1 atrakinta (**+ tier 9**)                                                          | [ ]    | QA                 | Abu                        | `api/verify-access.ts`, `App.tsx`                                                                                  |
-| **MON-4**     | PostHog (arba GA4) production: `VITE_POSTHOG_KEY`, snippet marketing shell; funnel dashboard pagal `ANALYTICS_DASHBOARD_MVP.md`                                                      | [ ]    | CODING / QA        | Marketing shell + šis repo | Buvęs Post-release #1                                                                                              |
-| **MON-5**     | Gate regression: neapmokėtas `/anatomy/` → `AccessGateScreen`, ne modulių sąrašas                                                                                                    | [ ]    | QA                 | Šis repo                   | Auto ✅ 2026-07-05: `gate.smoke.test.tsx` tier 0/3/6/9 + EN + `pricing_click`; rankinė: `RELEASE_QA_RUN.md` §MON-5 |
-| ~~**MON-6**~~ | ~~Dokumentuoti client-side paywall limitą (localStorage bypass, JSON bundle) kaip priimtą MVP riziką~~ ✅ 2026-06-29 (`AUDIT_2026-06_SUMMARY.md` skyrius „Client-side paywall riba") | ✅     | QA                 | Šis repo docs              | —                                                                                                                  |
-| **MON-7**     | Po 2–4 sav. duomenų (po MON-4): baseline (M1/M3 completion, drop-off), koreguoti KPI (ANALYTICS_DASHBOARD_MVP §2)                                                                    | [ ]    | QA / Product       | —                          | Buvęs Post-release #3; **po MON P0**                                                                               |
-| **MON-8**     | Marketing prod env: nuimti `VITE_MVP_MODE`, `VITE_MAX_BUILD_MODULE=9`, `build:production`; marketing API tier 9; preview smoke                                                       | [ ]    | DevOps / Marketing | Marketing                  | `05_marketingo_memo_tier9_vienas_build.md`, MARKETING_HANDOFF §3                                                   |
+| ID            | Užduotis                                                                                                                                                                             | Status | Savininkas         | Repo                       | Pastaba                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------------ | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **MON-1**     | Production env audit: **nėra** `VITE_MAX_ACCESSIBLE_MODULE=6` promptanatomy.app; `VITE_VERIFY_ACCESS_URL` → domain root `/api/verify-access`                                         | [ ]    | DevOps             | Marketing                  | Rankinė Vercel grep; build script OK (`vercel-build.sh`)                                                     |
+| **MON-2**     | Submodule pin: dokumentuoti reikalaujamą inzinerija commit (**v1.4.4**); gate fix, be MVP tier fallback; marketing deploy runbook                                                    | [ ]    | DevOps             | Marketing                  | Runbook ✅ [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md); commit ⏳ |
+| **MON-3**     | Verify-access smoke: magic link → `GET /api/verify-access` → 200 → SPA `verified_access_tier` → M1 atrakinta (**+ tier 9**)                                                          | ⏳     | QA                 | Abu                        | API prod ✅ 2026-07-09 (400/401); Stripe+Supabase browser ⏳ `RELEASE_QA_RUN.md` §MON-5                      |
+| **MON-4**     | PostHog (arba GA4) production: `VITE_POSTHOG_KEY`, snippet marketing shell; funnel dashboard pagal `ANALYTICS_DASHBOARD_MVP.md`                                                      | [ ]    | CODING / QA        | Marketing shell + šis repo | Checklist ✅ [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md)                            |
+| **MON-5**     | Gate regression: neapmokėtas `/anatomy/` → `AccessGateScreen`, ne modulių sąrašas                                                                                                    | ⏳     | QA                 | Šis repo                   | Auto ✅ `gate.smoke.test.tsx`; prod API ✅ 2026-07-09; browser tier 0 ⏳ `RELEASE_QA_RUN.md` §MON-5          |
+| ~~**MON-6**~~ | ~~Dokumentuoti client-side paywall limitą (localStorage bypass, JSON bundle) kaip priimtą MVP riziką~~ ✅ 2026-06-29 (`AUDIT_2026-06_SUMMARY.md` skyrius „Client-side paywall riba") | ✅     | QA                 | Šis repo docs              | —                                                                                                            |
+| **MON-7**     | Po 2–4 sav. duomenų (po MON-4): baseline (M1/M3 completion, drop-off), koreguoti KPI (ANALYTICS_DASHBOARD_MVP §2)                                                                    | [ ]    | QA / Product       | —                          | Buvęs Post-release #3; **po MON P0**                                                                         |
+| **MON-8**     | Marketing prod env: nuimti `VITE_MVP_MODE`, `VITE_MAX_BUILD_MODULE=9`, `build:production`; marketing API tier 9; preview smoke                                                       | ⏳     | DevOps / Marketing | Marketing                  | `vercel-build.sh` ✅ M1–9; Vercel env rankinė ⏳; smoke ⏳                                                   |
 
 ### §1.2 P1 – Release QA (kokybė)
 
@@ -114,6 +114,13 @@
 | ~~**CONV-5**~~ | ~~M6 completion upsell tier 9 (Duomenų analizės kelias)~~ ✅ 2026-06-30 (`ModuleCompleteScreen.tsx`, `upsellM6*`, `m6_upsell_tier9`)                                                        | `ModuleCompleteScreen.tsx`, `locales/*.json`                     | Tier 9 funnel                           |
 
 ### §1.4 P2 – Turinys, UX, backlog (aktyvu)
+
+#### P2 artefaktai ir docs sync ✅ (2026-07-09)
+
+| ID         | Užduotis                                                                | Status |
+| ---------- | ----------------------------------------------------------------------- | ------ |
+| **ART-P2** | Tier 4/5 sertifikatai + `m1012` / `m1315` atmintinės (commit `2096923`) | [x]    |
+| **DOC-P2** | Post-P2 docs sync: agentų įėjimai, DATA registry, PDF QA, skills        | [x]    |
 
 | #        | Užduotis                                                                                                                                                                                                                                  | Agentas / pastaba |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |

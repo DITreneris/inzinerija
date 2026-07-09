@@ -6,7 +6,7 @@ Visi reikšmingi pakeitimai šiame projekte dokumentuojami šiame faile.
 
 ### Kaip naršyti šį failą
 
-Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.2]**, **[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
+Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda skiltyje **[Unreleased]**; toliau eina **pažymėti leidimai** nuo naujausių (**[1.4.3]**, **[1.4.2]**, **[1.4.1]**, **[1.4.0]**, **[1.3.0]**). **Failo pabaigoje** paliktas ankstesnis **2.x** ir **1.0.0** žymėjimas – tai istorinis sluoksnis iš ankstesnės kūrimo fazės (prieš dabartinę **1.x** produkcijos liniją; žr. poskyrį _Ankstesnis versijų žymėjimas (2.x ir 1.0.0)_).
 
 **Greita paieška:** redaktoriuje ieškokite `## [` – atsiras visos versijų antraštės.
 
@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.3]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.4]** release.                                       |
+| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.    |
 | **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.          |
 | **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.       |
 | **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).     |
@@ -31,18 +32,25 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
 - **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); **EN overlay** `modules-en-m7-m9.json` (branduolys + šakos + M8 testas + M9 scenarijai).
-- **Moduliai 10–12:** Turinys full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`.
-- **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
-- **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
+- **Moduliai 10–12:** Agentų kelias full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė ir tier 4 sertifikatas.
+- **Moduliai 13–15:** Turinio inžinerijos kelias full authoring kataloge; EN overlay `modules-en-m13-m15.json`; P2 artefaktai – `m1315` atmintinė ir tier 5 sertifikatas.
+- **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
+- **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 60 failų, 410 testų (2026-07-07). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.3** (2026-07-07). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8); vykdymo planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
+- **Testai:** 71 failas, 465 testai (2026-07-09). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.4** (2026-07-09). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.3 release._
+_Įrašai po 1.4.4 release._
+
+---
+
+## [1.4.4] – 2026-07-09
+
+P2 PDF/sertifikatų artefaktai, DS Next Waves W7–W10, cross-repo pre-launch vartai ir dokumentacija (inzinerija + promptanatomy marketing monorepo).
 
 ### Added
 
@@ -58,6 +66,7 @@ _Įrašai po 1.4.3 release._
 ### Changed
 
 - **Sertifikatų serial numeriai:** CertificateScreen dabar perduoda stabilų per-tier serial numerį iš localStorage, todėl pakartotinai atsisiųstas tas pats sertifikato tier rodo tą patį `PA-2026-...` numerį.
+- **Docs sync po P2 artefaktų:** agentų įėjimo dokumentai, DATA registry, PDF testavimo gairės ir skills sinchronizuoti su tier 4/5 sertifikatais bei `m1012` / `m1315` atmintinėmis.
 - **DS Next Waves W7–W10:** `BlockSlides`, `TestPracticeSlides`, `AdvancedBlockSlide`, `ActionIntroSlide` ir `RecognitionExerciseBlock` callout'ai migruoti į `<Banner>`; `SlideWorkspace` išplėstas į M1/M7/M13 ir `evaluator-prompt-block`; TestPractice / shell CTA migruoti į `<CTAButton>`, o shell kortelės į `<Card>`; M13/M15 diagramų P2 paletės ir dark-mode polish; `audit:release-preflight` papildytas DS vartais, design-token baseline sumažintas iki 417 (`arbitraryClass` 59).
 - **Design tokens:** targeted arbitrary-class cleanup (`text-[11px]` → `text-xs` VaizdoGeneratoriusSlide); blockVariant sekcijos per bendrą helperį vietoj inline ternary.
 - **DS W6 QA closure:** sticky offset baseline sinchronizuotas (GlossaryPage, TestPracticeSlides); automated gates žali (lint, 416 testai, audit total 469, module-identity 15/15); TODO §1.0c W6–W10 planas.
@@ -68,6 +77,10 @@ _Įrašai po 1.4.3 release._
 - **M12 EN footer numeris (120.5):** ištaisytas pre-existing neatitikimas – EN overlay footer rodė „slide 5“ vietoj teisingos pozicijos; po `path-step` 120.55 įterpimo LT/EN footeriai perskaičiuoti ir `AUDIT_MODULES=12 audit-footer-numbers --locale=en` praeina.
 - **M7–M9 LT/EN locale maišymo apsauga:** `ModuleView` next CTA logika iškelta į `navLabel` helperį su EN fallback, pridėtas `audit:nav-labels` release gate, M9 praktikos CTA ir M8→M9 rezultatų mygtukai perkelti į i18n raktus; pataisyti M7 EN reliability bloko footer numeriai.
 - **M7 intro-action-pie closure:** skaidrė 70.5 dabar slepia M4 segmentams skirtus „Generuok patarimus sau“ / „Eksportuok PDF“ veiksmus ir naudoja „Profilių pasiskirstymas“ grafiko antraštę; M7 branduolio dokumentacija atnaujinta iki 34 skaidrių.
+
+### Docs
+
+- **Cross-repo pre-launch:** `INTEGRATION_OVERVIEW.md` – Supabase→`generate-access-link` tiltas; `MARKETING_SUBMODULE_PIN_1.4.4.md`, `MON-4_POSTHOG_DEPLOY.md`; `RELEASE_QA_RUN.md` – pilnas preflight + prod API smoke (2026-07-09); `TODO.md` / `AUDIT_2026-06_SUMMARY.md` – monetizacija live per marketing repo.
 
 ---
 

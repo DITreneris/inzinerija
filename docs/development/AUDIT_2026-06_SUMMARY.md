@@ -1,24 +1,24 @@
 # Production audit santrauka (2026-06)
 
-> **Verdict:** **CONDITIONAL GO** — M1–6 produktas realus ir deployintas; monetizacija reikalauja P0 integracijos ir analytics.  
+> **Verdict:** **CONDITIONAL GO** — M1–9 produktas live per marketing monorepo (Stripe M1–6, Supabase M7–9); likę: MON-4 analytics, rankinė QA, submodule pin v1.4.4.  
 > **Confidence:** Medium–High  
-> **Pilna ataskaita:** Cursor chat audit 2026-06-29 (business-technical due diligence).
+> **Atnaujinta:** 2026-07-09 (cross-repo pre-launch).
 
 ---
 
 ## 3 stipriausi argumentai
 
 1. **Moduliai 1–6 pilnai įgyvendinti** — teorija, testai, praktika, sertifikatai, LT/EN, CI (schema + lint + test + build).
-2. **Inžinerinė disciplina** — Architecture A, JSON schema prebuild, ErrorBoundary, integracijos docs. 2026-06 audito metu buvo ~38 testų failų; dabartinis 2026-07-06 HEAD baseline – 60 testų failų / 403 testai (`RELEASE_QA_RUN.md`).
-3. **Monetizacijos kabliukai egzistuoja** — tier pricing, HMAC magic link (`api/verify-access.ts`), `AccessGateScreen`, marketing funnel docs.
+2. **Inžinerinė disciplina** — Architecture A, JSON schema prebuild, ErrorBoundary, integracijos docs. 2026-06 audito metu buvo ~38 testų failų; dabartinis 2026-07-09 HEAD baseline po P2 artefaktų – 71 testų failas / 465 testai (`RELEASE_QA_RUN.md`).
+3. **Monetizacijos kabliukai veikia production** — Stripe checkout → tier 6; Supabase `user_access` → `generate-access-link` → tier 9; HMAC `verify-access` (marketing `api/*.js`).
 
 ---
 
 ## 3 didžiausi blockeriai
 
 1. **Client-side paywall** — JSON bundle + `localStorage` tier; techninis bypass įmanomas (MON-6 — priimta MVP rizika, žr. žemiau).
-2. **Auth/Stripe ne šiame repo** — priklausomybė nuo marketing monorepo (MON-1–MON-3).
-3. **PostHog/GA4 ne production** — negalima matuoti konversijos (MON-4).
+2. **Auth env audit nepatvirtintas** — `VITE_MAX_ACCESSIBLE_MODULE` Vercel grep (MON-1) rankinė.
+3. **PostHog/GA4 ne production** — negalima matuoti konversijos (MON-4); checklist paruoštas.
 
 ---
 
@@ -37,8 +37,8 @@
 
 | Metrika                                    | %    |
 | ------------------------------------------ | ---- |
-| Launch readiness (free lead magnet + gate) | ~75% |
-| Monetization readiness (paid M4+ scale)    | ~45% |
+| Launch readiness (free lead magnet + gate) | ~85% |
+| Monetization readiness (paid M4+ scale)    | ~65% |
 
 ---
 

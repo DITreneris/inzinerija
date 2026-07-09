@@ -176,6 +176,20 @@ Kol nėra naujo tag (`v1.4.3` arba `v1.5.0`), MON-2 submodule pin turi remtis ko
 
 ---
 
+## 8.4. Release 1.4.4 – P2 artefaktai + cross-repo pre-launch (2026-07-09)
+
+Po training repo tag **`v1.4.4`**:
+
+1. **Submodule pin:** `apps/prompt-anatomy` → commit su tag `v1.4.4` (SHA žr. inzinerija `git rev-parse v1.4.4`).
+2. **Runbook:** [MARKETING_SUBMODULE_PIN_1.4.4.md](MARKETING_SUBMODULE_PIN_1.4.4.md) – pilnas preview→prod flow.
+3. **Build:** `npm run build:vercel`; env be `VITE_MVP_MODE`, su `VITE_MAX_BUILD_MODULE=9` (build script).
+4. **Smoke:** tier 0 gate, Stripe tier 6, Supabase `generate-access-link` tier 9 – žr. [RELEASE_QA_RUN.md](../development/RELEASE_QA_RUN.md) §MON-5 (2026-07-09).
+5. **PostHog:** [MON-4_POSTHOG_DEPLOY.md](MON-4_POSTHOG_DEPLOY.md) – atskiras checklist.
+
+**Marketing README:** atnaujinti lentelę „Training app“ → **M1–9 production** (ne tik 6 moduliai).
+
+---
+
 ## 9. Nuorodos
 
 | Dokumentas                | Kelias                                                                                     |

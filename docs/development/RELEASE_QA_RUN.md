@@ -128,6 +128,50 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 ## Paskutinio vykdymo rezultatai
 
+### 2026-07-09 Cross-repo pre-launch (Faze 0 + dalinė Faze 3)
+
+| Patikra                                  | Rezultatas | Įrodymas                                                                                                                        |
+| ---------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run audit:release-preflight`        | ✅         | Schema, lint, DS gate (417/59), module-identity 15/15, audit:m49, nav-labels, m7-pathbranch, **71 failai / 465 testai**, exit 0 |
+| `npm run audit:slide-interactivity`      | ✅         | 262 skaidrės; warm-up=15, path=12; no warnings                                                                                  |
+| `npm run audit:embed-catalog`            | ✅         | 10 embedded pattern'ai (M2/M4/M5/M6/M13)                                                                                        |
+| `npm run audit:test-scenario-share`      | ✅         | M11 33%, M14 38% scenario share                                                                                                 |
+| **Prod** `/anatomy/` HTTP                | ✅         | 200                                                                                                                             |
+| **Prod** `verify-access` invalid token   | ✅         | `{"error":"Link expired"}` (endpoint gyvas)                                                                                     |
+| **Prod** `verify-access` be param        | ✅         | 400                                                                                                                             |
+| **Prod** `generate-access-link` be email | ✅         | 400                                                                                                                             |
+| **Prod** tier 0 gate (browser)           | ⏳ Ranka   | Incognito → AccessGateScreen – reikia žmogaus                                                                                   |
+| **Prod** Stripe tier 6 unlock            | ⏳ Ranka   | Checkout → magic link → M1–6                                                                                                    |
+| **Prod** Supabase tier 9 unlock          | ⏳ Ranka   | Email → generate-access-link → M1–9                                                                                             |
+
+### 2026-07-09 Rankinė QA (Faze 4) – reikia žmogaus prod `/anatomy/`
+
+| ID   | Patikra                   | Tier | Rezultatas | Pastaba                             |
+| ---- | ------------------------- | ---- | ---------- | ----------------------------------- |
+| QA-1 | M5 PDF lietuviškos raidės | 6    | ⏳         | Test complete → PDF → ą/ė/į/š/ų/ū/ž |
+| QA-2 | M6 PDF lietuviškos raidės | 6    | ⏳         | ModuleComplete → PDF                |
+| QA-4 | M4 sk. 56 RAG             | 6    | ⏳         | Tabai, copy, fullscreen             |
+| QA-5 | M6 sk. 64 copyable        | 6    | ⏳         | Kopijuoti mygtukas                  |
+| QA-6 | Mobile 390px M1/M4/M6     | 6+9  | ⏳         | LT/EN, light/dark                   |
+
+**Vykdymo instrukcijos:** §0.1, §0.2, `RELEASE_QA_CHECKLIST.md` §2–5g. Rezultatą įrašyti į lentelę žemiau.
+
+### 2026-07-09 MON-5 prod smoke (browser) – reikia žmogaus
+
+| #   | Scenarijus                                 | Rezultatas | Pastaba                         |
+| --- | ------------------------------------------ | ---------- | ------------------------------- |
+| 1   | Incognito `/anatomy/` → AccessGateScreen   | ⏳         |                                 |
+| 2   | Tier 6 magic link → M1–6 open, M7–9 locked | ⏳         | Stripe kelias                   |
+| 3   | Tier 9 magic link → M1–9 open              | ⏳         | Supabase → generate-access-link |
+| 4   | Refresh – tier išlieka localStorage        | ⏳         |                                 |
+| 5   | Invalid token → 401, gate lieka            | ✅ API     | curl 2026-07-09                 |
+
+### 2026-07-09 P2 artefaktų docs sync baseline
+
+| Patikra            | Rezultatas | Įrodymas                                                                                                    |
+| ------------------ | ---------- | ----------------------------------------------------------------------------------------------------------- |
+| `npm run test:run` | ✅         | Post-P2 baseline: 71 testų failas, 465 testai, exit code 0. Dengia tier 4/5 eligibility ir M1012/M1315 PDF. |
+
 ### 2026-07-06 agento automatinė patikra
 
 | Patikra                           | Rezultatas | Įrodymas                                                                                                                                 |
@@ -150,4 +194,7 @@ _(Žmogus įrašo, kai atliko rankinę naršyklės/PDF peržiūrą.)_
 - **Checklist:** `docs/development/RELEASE_QA_CHECKLIST.md`
 - **PDF testai:** `docs/development/PDF_DOWNLOAD_TESTING.md`, `docs/development/PDF_MAKETO_GAIRES.md`
 - **Paprasta kalba:** `docs/development/PAPRASTOS_KALBOS_GAIRES.md`
+- **Marketing submodule pin:** `docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md`
+- **PostHog MON-4:** `docs/deployment/MON-4_POSTHOG_DEPLOY.md`
+- **Integracija:** `docs/deployment/INTEGRATION_OVERVIEW.md`
 - **Planas:** `.cursor/plans/vartotojui_paruošta_įrankis_cfe90c31.plan.md`

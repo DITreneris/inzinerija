@@ -1,13 +1,29 @@
 # Integracijos apžvalga: mokymo app kaip subproject (Vercel + marketingo repo)
 
 > **Tikslas:** Išoriniams agentams ir integratoriams – viena vieta suprasti, kas yra šis repo, kur production, kaip integruoti į marketingo monorepo ir ką marketingo pusė turi įgyvendinti.  
-> **Atnaujinta:** 2026-06-30
+> **Atnaujinta:** 2026-07-09
+
+---
+
+## Production architektūra (2026-07-09)
+
+**Production valdo marketing monorepo:** [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy). Mokymų SPA – submodule `apps/prompt-anatomy/` (šis inzinerija repo).
+
+| Kanalas             | Marketing API                                                               | Training unlock                                                                              |
+| ------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **M1–6 (Stripe)**   | `api/success-redirect.js` → magic link `access_tier=3\|6`                   | [`App.tsx`](../src/App.tsx) → `GET /api/verify-access` → `localStorage.verified_access_tier` |
+| **M7–9 (Supabase)** | `api/generate-access-link.js` (email → Supabase `user_access` → magic link) | Tas pats verify kelias; `highest_plan` mapinamas į `access_tier` (pvz. 12→9)                 |
+| **Gate (tier 0)**   | —                                                                           | [`AccessGateScreen`](../src/components/AccessGateScreen.tsx)                                 |
+
+**Svarbu:** Supabase **neatrakina** training app tiesiogiai. Korporatyviniai klientai: Supabase upsert + vartotojas naudoja „Patikrink prieigą“ / `generate-access-link` → redirect su HMAC token.
+
+**Build prod:** marketing `scripts/vercel-build.sh` – `VITE_MAX_BUILD_MODULE=9`, `VITE_BASE_PATH=/anatomy/`, be `VITE_MVP_MODE`.
 
 ---
 
 ## Marketingo repo handoff
 
-Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, support): **[MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)**. Tier 9 / vienas build: **[05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)**. TODO ID: MON-1–MON-8 (`TODO.md` §1.1).
+Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, support): **[MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)**. Tier 9 / vienas build: **[05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)**. Submodule pin 1.4.4: **[MARKETING_SUBMODULE_PIN_1.4.4.md](MARKETING_SUBMODULE_PIN_1.4.4.md)**. PostHog: **[MON-4_POSTHOG_DEPLOY.md](MON-4_POSTHOG_DEPLOY.md)**. TODO ID: MON-1–MON-8 (`TODO.md` §1.1).
 
 ## Kas yra šis repo
 
@@ -50,11 +66,12 @@ Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, supp
 
 ## Kas reikalinga iš marketingo repo
 
-| Užduotis                         | Aprašymas                                                                                                                                                   |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Servuoti training statiką**    | Po pasirinktu path (pvz. `/academy`). SPA fallback: `/academy` ir `/academy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
-| **Eksponuoti verify-access API** | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Rekomenduojama – **domain root** `/api/verify-access`, ne po `/academy`.                             |
-| **Magic link redirect**          | Po sėkmingo Stripe / magic link nukreipti vartotoją į training URL su query: `https://promptanatomy.app/academy?access_tier=6&expires=...&token=...`.       |
+| Užduotis                              | Aprašymas                                                                                                                                                   |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Servuoti training statiką**         | Po pasirinktu path (pvz. `/academy`). SPA fallback: `/academy` ir `/academy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
+| **Eksponuoti verify-access API**      | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Domain root `/api/verify-access`.                                                                    |
+| **Supabase → magic link (M7–9)**      | `GET /api/generate-access-link?email=...` – tikrina `user_access`, generuoja redirect su HMAC token.                                                        |
+| **Magic link redirect (Stripe M1–6)** | Po Stripe checkout: `api/success-redirect.js` → training URL `access_tier=3\|6`.                                                                            |
 
 **Auth ir verify-access atsakomybė – marketingo app.** Šiame repo – tik kontrakto aprašas ir reference kodas.
 
