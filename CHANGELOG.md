@@ -46,6 +46,17 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po 1.4.4 release._
 
+### Added
+
+- **M7 lentelių migracija (6 sekcijos):** Markdown pipes `body` → canonical `section.table` skaidrėse 734 (sprendimų filtrai + `toolChoiceBar`), 78, 84, 76, 104, 106; EN overlay `modules-en-m7-m9.json` sinchronizuotas; `npm run audit:markdown-tables` prevencijos vartas; `LENTELIU_STANDARTAS.md` §2/§5 atnaujinti.
+- **Turinys + DS backlog sprint (Banga 0–4):** L1 lentelių checklist `TEST_REPORT.md`; M5 sk.47 `artifactDownload` + `DownloadTemplateButton.tsx` (.txt šablonas LT/EN); M4 sk.61 `optional: true` (RAG įrankiai) + sk.63.7 „Papildomas skaitymas“; refleksijos META/INPUT/OUTPUT M8 sk.82, M10.8, M11 sk.112, M13.9, M14 sk.142 (`TestResultsReflectionBlock`); M14 `TestKnowledgeScopeDiagram` deep-link į M13; `ContentSlides` i18n (`tableComparisonAria`, `choiceSelected`, `strengthBadge`); UX-MOB-1 `scrollToFirstAction` išplėtimas; W7d `getContentBlockVariantClasses` help tabs / whyBenefit.
+- **Backlog sprint 2 (DIA-04, Mobile P2, DEF-2, RAG):** M10 `ThreeAStrategy` 5% juosta, `ThreeLabs` connector rodyklės + `diagramTokens`; `TriggerFlow` webhook polish; `RadarChart` i18n aria + 375px; M1 sk.8–11 „Kodėl tai veikia“ sutrumpinta; RAG sk.61 → M7 **71.35** (optional), M4:61 stub nukreipimas; M8:82 EN reflection overlay.
+
+### Changed
+
+- **Microcopy (DEF-2 dalinai):** M4 sk.61 Trumpai/Patarimai sutrumpinti; M6 sk.68 schema body sutrumpintas; M4 sk.63.7 papildomas skaitymas atskirtas nuo branduolio.
+- **EN overlay sinchronas:** `modules-en-m4-m6.json` (sk.61 optional, 63.7, 47 artifactDownload); `modules-en-m10-m12.json` (M11:112 reflection); `modules-en-m13-m15.json` (M14:142 reflection).
+
 ### Fixed
 
 - **M4/44 LLM diagram routing:** skaidrės 44 sekcija „Kaip veikia LLM?“ naudoja kanoninį `image: llm_autoregressive` (vietoj legacy `/llm_autoregressive_rytas_zalgiris.svg`), kad `diagramRenderers` registry vėl rodytų interaktyvų `LlmAutoregressiveBlock` (8 žingsniai, EN/LT), o ne statinį LT SVG fallback su „Open in new tab“. Sinchronizuoti `modules-m1-m6.json`, `modules-m1-m9.json`, `modules-en-m4-m6.json`; regresija: `diagramRenderers.test.tsx`, `DiagramLocalization.test.tsx`.

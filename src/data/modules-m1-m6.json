@@ -598,7 +598,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "DI ne „mąsto“ savarankiškai kaip žmogus – jis seka tavo instrukcijas. Kai nurodai mąstymo seką (CoT arba ToT), modelis išveda žingsnis po žingsnio arba palygina variantus pagal nurodytas taisykles. Todėl teisingas modelio pasirinkimas ir aiški struktūra prompte lemia geresnius ir labiau nuspėjamus rezultatus.",
+                "body": "DI seka tavo nurodytą mąstymo seką. CoT – žingsnis po žingsnio; ToT – variantų palyginimas. Aiški struktūra – nuspėjamesni rezultatai.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -623,7 +623,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "DI ne „galvoja“ savarankiškai – jis seka instrukcijas. Kai nurodai mąstymo seką (CoT arba ToT), modelis išveda žingsnis po žingsnio arba palygina variantus. Tai sumažina klaidas ir pagerina atsakymų logiką.",
+                "body": "Reasoning blokas nurodo DI mąstymo seką. Žingsnis po žingsnio arba variantų palyginimas – mažiau spėjimų, geresnė logika.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -648,7 +648,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "Kai nurodai kokybės kriterijus (pvz. „pažymėk prielaidas“, „įvardyk ribotumus“), DI atsakyme išskiria, kas pagrįsta faktais, o kas – spėjimas. Tai padeda vartotojui kritiškai vertinti atsakymą ir mažina klaidingą pasitikėjimą.",
+                "body": "QC kriterijai liepia DI atskirti faktus nuo spėjimų. Pažymėtos prielaidos ir ribotumai – saugesnis sprendimas.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -747,7 +747,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "Temperature ir reasoning gylis keičia, kaip modelis generuoja atsakymus: mažesnė temperature – tiksliau ir nuosekliau; didesnė – daugiau variacijų. Nurodydamas parametrus prompte ar įrankio nustatymuose, geriau suderini rezultatą su savo tikslu.",
+                "body": "Temperature valdo variacijas, reasoning – mąstymo gylį. Parametrai prompte suderina atsakymą su užduotimi.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -4478,95 +4478,25 @@
         {
           "id": 61,
           "title": "Papildoma: DI įrankiai informacijos paieškai",
-          "shortTitle": "DI įrankiai informacijos paieškai",
-          "subtitle": "DI įrankiai – nuo paieškos iki sintezės.",
+          "shortTitle": "DI įrankiai (Modulyje 7)",
+          "subtitle": "Atmintinė perkelta į Duomenų analizės kelią",
           "type": "content-block",
+          "optional": true,
           "content": {
-            "whyBenefit": "Bet kokį tyrimą gali atlikti per 30–45 min – įvesk klausimą ar įkelk PDF, gauk atsakymus su šaltiniais.",
-            "toolsIntro": "Įvesk klausimą ar įkėlk PDF – gausi atsakymus su šaltiniais.",
-            "tools": [
-              {
-                "name": "Perplexity",
-                "url": "https://perplexity.ai",
-                "description": "Paieška su šaltiniais. Vietoj valandos googlinimo – įvesk klausimą, gauk atsakymą su nuorodomis.",
-                "useCases": [
-                  "Verslo tyrimas",
-                  "Rinkos analizė",
-                  "Faktų tikrinimas"
-                ]
-              },
-              {
-                "name": "PaperGuide",
-                "url": "https://paperguide.ai",
-                "description": "Kalbėk su PDF. Įkelk ataskaitą ar tyrimą – gausi santrauką, išvadas, pagrindines mintis.",
-                "useCases": [
-                  "Ataskaitų analizė",
-                  "Greitas dokumento skenavimas"
-                ]
-              },
-              {
-                "name": "Scite",
-                "url": "https://scite.ai",
-                "description": "Ar šaltinis tikrai palaiko tavo teiginį? Rodo, kaip tyrimas cituojamas – palaiko ar prieštarauja.",
-                "useCases": ["Citavimo tikrinimas", "Argumentų stiprinimas"]
-              },
-              {
-                "name": "Elicit",
-                "url": "https://elicit.com",
-                "description": "Suranda ir apibendrina tyrimus pagal temą. Įvesk klausimą – gauk tendencijas, rizikas, pavyzdžius.",
-                "useCases": ["Sintezė", "Tendencijų paieška"]
-              },
-              {
-                "name": "Consensus",
-                "url": "https://consensus.app",
-                "description": "Ieško tik moksliniuose straipsniuose ir atsako „ką sako mokslas?“ – parodo, ar tyrimai palaiko ar prieštarauja teiginiui.",
-                "useCases": [
-                  "Health / tech / policy teiginių validavimas",
-                  "AI Act interpretacijos",
-                  "Rizikų pagrindimas",
-                  "Mokslinių argumentų stiprinimas"
-                ]
-              },
-              {
-                "name": "Connected Papers",
-                "url": "https://www.connectedpapers.com",
-                "description": "Parodo, kaip tyrimai susiję tarpusavyje ir kokie susiformavę „research clusters“, padeda rasti svarbiausius (seminal) darbus.",
-                "useCases": [
-                  "Tyrimų tinklo analizė",
-                  "Technologinių krypčių analizė",
-                  "Seminal darbų paieška"
-                ]
-              }
-            ],
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (20 s)",
-                "body": "DI įrankiai informacijos paieškai ir sintezei: Perplexity (paieška su šaltiniais), PaperGuide (PDF), Scite (citavimo tikrinimas), Elicit (tyrimų sintezė) ir du moksliniai įrankiai – Consensus ir Connected Papers. Tipinė eiga – 30–45 min.",
+                "body": "Ši įrankių atmintinė perkelta į **Duomenų analizės kelią (Modulis 7)** – skaidrė **71.35** po lygiagrečių tyrimų (71.3). Ten rasite Perplexity, PaperGuide, Scite, Elicit ir kitus įrankius.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Patarimai kaip naudoti",
-                "body": "**Perplexity:** Web režimas – naujienoms ir verslui; prašyk nuorodų („Pateik šaltinius prie kiekvieno teiginio“); būk konkretus (pvz. „Kokios 2024 m. tendencijos X rinkoje?“).\n\n**PaperGuide:** Įkelk PDF (ataskaitą, tyrimą), pateik konkretų klausimą; duomenų ištraukimas – lentelėms iš PDF.\n\n**Scite:** Įvesk straipsnio nuorodą arba pavadinimą; žiūrėk „Supported“ (palaiko) vs „Contradicted“ (prieštarauja); patikrink, ar citata tikrai atitinka.\n\n**Elicit:** Pradėk nuo aiškaus klausimo; duomenų ištraukimas iš kelių PDF į lentelę; prašyk „Pateik tendencijas ir rizikas“.\n\n**Consensus:** Kai reikia „ką sako mokslas?“ – naudok health/tech/policy teiginiams; žiūrėk, ar tyrimai palaiko ar prieštarauja.\n\n**Connected Papers:** Kai nori matyti tyrimų tinklą ir klasterius – naudok planuodamas gilų tyrimą ar technologijų kryptis.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "Tipinė eiga (30–45 min)",
-                "body": "**4 įrankiai = pilna eiga:**\n\n**1.** Šaltiniai (Perplexity) – 5–10 min: įvesk klausimą, surink pradinius šaltinius.\n\n**2.** PDF analizė (PaperGuide / Elicit) – 10–15 min: įkelk dokumentus (ataskaitas, tyrimus), gauk santraukas ir išvadas.\n\n**3.** Citavimo patikrinimas (Scite) – ~5 min: patikrink, ar šaltiniai palaiko tavo teiginius.\n\n**4.** Sintezė (Elicit) – 10–15 min: apibendrink tendencijas, rizikas ir pavyzdžius.\n\n**Pilna eiga vienai temai** dažnai 30–45 min.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "📍 Kur dar pritaikyti? (Duomenų analizės kelias)",
-                "body": "Tie patys tyrimų įrankiai naudojami **Duomenų analizės kelyje (Moduliai 7–9)**: Deep research šaltinių rinkimui ir 4× lygiagrečiam tyrimui (M9 workflow, kelio žingsniai 71.3–71.4). Jei eisi tuo keliu – grįžk prie šios skaidrės kaip įrankių atmintinės.",
+                "heading": "Kur rasti?",
+                "body": "Atidaryk **Modulį 7** → skaidrė **„DI įrankiai informacijos paieškai“** (neprivaloma, po kelio žingsnio 71.3). Jei eisi Duomenų analizės keliu – naudok ją kartu su Deep research ir MASTER promptu.",
                 "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – skaidrė 25: Pradinis duomenų paruošimas RAG"
-          },
-          "optional": true
+          }
         },
         {
           "id": 62,
@@ -4673,6 +4603,13 @@
               {
                 "heading": "🔽 Tokenų valdymas (nori žinoti daugiau?)",
                 "body": "COMBO promptai gali būti ilgi – gerbk tokenų limitą (promptas + atsakymas); planuok max_tokens arba skaidyk į kelis promptus. Jei atsakymas pertrūksta – skaidyk į kelias užklausas su aiškia seka.\n\nRyšys su Modulio 4 tokenų ekonomika (4.4) – daugiau apie tokenus ir konteksto langą.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "📎 Papildomas skaitymas",
+                "body": "DI įrankiai informacijos paieškai (Perplexity, PaperGuide, Scite, Elicit ir kt.) – **neprivaloma** skaidrė modulyje. Jei nori gilintis, atidaryk skaidrę „DI įrankiai informacijos paieškai“ per modulio meniu.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -5535,6 +5472,11 @@
               "correct": 1,
               "explanation": "Pilnas brief (tema, auditorija, tikslas, apimtis, tonas) leidžia DI greitai ir tiksliai sugeneruoti struktūrą. Be to DI „spėlioja“ ir pateikia bendrybes."
             },
+            "artifactDownload": {
+              "filename": "prezentacijos-8-skaidriu-sablonas.txt",
+              "source": "copyable",
+              "sectionHeading": "8 skaidrių struktūra"
+            },
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
@@ -6126,7 +6068,7 @@
               },
               {
                 "heading": "Prieš kurdami: konteksto inžinerijos schema (Modulio 4)",
-                "body": "Taikant **konteksto inžineriją**, prieš generuojant HTML naudinga paruošti kontekstą – tada 6 blokų promptas gauna „inžinerintą“ įvestį. **1)** Konteksto rinkinys – surink informaciją apie temą naudojant **RAG** (šaltiniai, savo dokumentai) arba paiešką (pvz. ChatGPT Browse, Perplexity) → faktai, turinys, CTA į INPUT. **2)** Vizualus kontekstas – paruošk maketą (pvz. Figma): išdėstymas, spalvos, CTA vieta → papildo INPUT. **3)** HTML generavimas – naudok 6 blokų promptą su surinktu kontekstu ir generuok HTML (pvz. Claude, ChatGPT arba kitas DI). Ryšys su Moduliu 4: konteksto inžinerija = valdyti, ką tiekiama DI; RAG = atsakymas iš šaltinių.",
+                "body": "Prieš HTML generavimą paruošk kontekstą: **1)** RAG arba paieška – faktai į INPUT. **2)** Vizualus maketas (pvz. Figma) – papildo INPUT. **3)** 6 blokų promptas su surinktu kontekstu. Konteksto inžinerija = valdai, ką tieki DI.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true

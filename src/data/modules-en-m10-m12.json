@@ -1167,7 +1167,9 @@
               "heading": "Where to apply?",
               "body": "Taxonomy, multi-agent, workflow (trigger, action), 3A and tools – research, reports, support triage, RFP analysis.",
               "blockVariant": "accent"
-            }
+            },
+            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate what you learned after the Agent path test.\nINPUT: I just finished Module 11 knowledge check – agent cycle, 3A, workflow patterns, tools and prompt safeguards.\nOUTPUT: Ask 3 questions: (1) Which agent step will I apply in 24 hours? (2) What was newest? (3) What do I want to try in Module 12? After my answers, give one concrete tip.",
+            "reflectionTitle": "Reflection prompt"
           }
         },
         {

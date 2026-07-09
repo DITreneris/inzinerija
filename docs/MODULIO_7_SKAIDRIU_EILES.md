@@ -84,7 +84,7 @@
 
 > **Mechanizmas (2026-06):** M7 turi **vieną branduolį visiems** + **teminės šakos**, filtruojamos pagal skaidrėje 70 pasirinktą fokusą. Filtravimas vyksta **navigacijos sluoksnyje** (`useSlideNavigation.ts` `isSlideHiddenForNav` + `getAdjacentVisibleIndex`), identiškai Fast track logikai – pilnas `slides` masyvas nekeičiamas, indeksai stabilūs (M8 remediation deep-link'ai nelūžta). Skaidrė matoma, jei ji **branduolys** (neturi `pathBranch`) **arba** jos `pathBranch` sutampa su pasirinkto fokuso `branchIds` (`modules.json` skaidrė 70 `journeyChoices`). Fokusas nepasirinktas (`activeBranchIds == null`) → rodomos visos. Fast track papildomai paslepia `optional: true`.
 
-**Branduolys (34, visada matomas – be `pathBranch`):** 70, **70.5**, 71, 72, 73, **73.5**, 71.1, 731, **731.5**, 732, 733, **734**, 71.2, 78, 83, 84, 86, 87, 89, 891, **891.5**, 66.9, 67, 67.8, 68, **68.5**, 90, 92, 71.3, 74, **74.5**, 71.4, 71.5, 75. Apima visus M8 remediation taikinius (73, 74, 86, 92, 731, 732, 733, 891), intro-action-pie (70.5), 5 path-step (71.1–71.5), intro (70), MASTER (74), 5 warm-up savitikras (73.5, 731.5, 891.5, 68.5, 74.5), minimalią etiką (66.9, 67, 67.8, 68), sprendimų filtrus (**734**, 2026-07) ir santrauką (75).
+**Branduolys (35, visada matomas – be `pathBranch`):** 70, **70.5**, 71, 72, 73, **73.5**, 71.1, 731, **731.5**, 732, 733, **734**, 71.2, 78, 83, 84, 86, 87, 89, 891, **891.5**, 66.9, 67, 67.8, 68, **68.5**, 90, 92, 71.3, **71.35** (optional, DI įrankiai – perkelta iš M4:61), 74, **74.5**, 71.4, 71.5, 75.
 
 **Teminės šakos (`pathBranch`, 23 skaidrės):**
 

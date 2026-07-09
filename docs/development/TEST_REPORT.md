@@ -48,6 +48,47 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 ---
 
+## Mobile P2 – RadarChart / CharacterCard (2026-07-09)
+
+**Šaltinis:** backlog sprint; `RadarChart.tsx`, `CharacterCard.tsx`, `TestPracticeSlides.tsx` (M2 test-results, M9 hub).
+
+| Komponentas       | Modulis / vieta    | 375px vertinimas   | Kodo pataisymai                                                                           |
+| ----------------- | ------------------ | ------------------ | ----------------------------------------------------------------------------------------- |
+| **RadarChart**    | M2 test-results    | OK (kodo peržiūra) | `radarChartAria` i18n; `size=280`; `max-w-[min(280px,100%)]`; label `fontSize` 8 @ ≤260px |
+| **CharacterCard** | M9 hub (clickable) | OK (kodo peržiūra) | `min-h-[44px] touch-manipulation` jau yra; `grid-cols-1` explicit 375px                   |
+
+**Pastaba:** Pilnas browser smoke (DevTools 375px) – Release QA backlog; struktūriniai P2 reikalavimai įgyvendinti kode.
+
+---
+
+## Banga 0–1: Lentelių L1 checklist (2026-07-09)
+
+**Baseline auditai:** `audit:slide-interactivity` PASS (262 skaidrės); `audit:design-tokens:gate` PASS (417); `audit-microcopy` M1/M4/M6/M7 – fiksuota.
+
+| Modulis | Skaidrė | Heading                   | Stulp. | comparisonStyle | Statusas | Veiksmas                   |
+| ------- | ------- | ------------------------- | ------ | --------------- | -------- | -------------------------- |
+| M4      | 54.5    | Sisteminis vs Master      | 3      | ne              | OK       | 3 stulp. – bendras stilius |
+| M4      | 55      | Geras vs blogas proceso   | 2      | taip            | OK       | L2 atlikta                 |
+| M4      | 54      | Metodinis vs Agentinis    | 3      | ne              | OK       | 3 stulp. – N/A             |
+| M4      | 48      | RL vs RLHF                | 2      | taip            | OK       | L2+L3 atlikta              |
+| M4      | 53      | Įrankių palyginimas       | 4      | ne              | OK       | 4 stulp. – įrankių lentelė |
+| M4      | 59      | Pavyzdžiai                | 3      | ne              | OK       | collapsible                |
+| M4      | 60      | Sprendimo matrica         | 3      | solutionMatrix  | OK       | solutionMatrixStyle        |
+| M4      | 66      | Modelių kontekstas        | 3      | ne              | OK       | reference lentelė          |
+| M4      | 66.25   | Strateginis planavimas    | 3      | ne              | OK       | 3 stulp.                   |
+| M4      | 66.6    | Blogas vs geras           | 2      | taip            | OK       | L2 atlikta                 |
+| M6      | 68      | 6 blokų struktūra         | 2      | ne              | OK       | reference, ne palyginimas  |
+| M7      | 734     | 5 grupės filtrai          | 3      | solutionMatrix  | OK       | toolChoiceBar              |
+| M7      | 76      | Tradicinis vs išplėstinis | 2      | taip            | OK       | L2 atlikta                 |
+| M7      | 78      | Tradicinė vs DI analizė   | 2      | taip            | OK       | L2 atlikta                 |
+| M7      | 84      | DB įrankiai               | 2      | ne              | OK       | rowMeta badge              |
+| M7      | 104     | Duomenys → Istorija       | 2      | solutionMatrix  | OK       | optional šaka              |
+| M7      | 106     | Alternatyvos              | 2      | ne              | OK       | įrankių sąrašas            |
+
+**Išvada:** 17 lentelių – 100% peržiūrėta; 2 stulpelių palyginimai turi `comparisonStyle` + body; `ContentSlides` comparison režimas su `min-w-[36rem]`.
+
+---
+
 ## Nauji įrašai
 
 **2026-06-11 – Modulio 2 ir test-section regresija (sisteminis fix):** Vartotojai negalėjo atsakyti (pilki variantai), submit likdavo disabled nors atsakyta, M2 EN rodė LT klausimus, resume iš senos pozicijos sukeldavo loading loop. **Root cause:** (1) F3-1 confidence gate MCQ/T/F/Scenario; (2) Matching reikalavo rankinio „Patikrinti poras“; (3) `poolRef` neatsinaujindavo keičiant locale; (4) `handleResumeFromSaved` be clamp. **Fix:** confidence gate off (submit lieka gated), Matching auto-check, `useMemo(selectQuestions(locale))`, `clampSlideIndex`. **Moduliai:** M2 (visi fix), M5/M8/M11/M14 (Fix 1, 4, 5). QuizPage neliestas. **Gate:** `npm run lint`, `npm test`.

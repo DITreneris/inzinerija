@@ -17,7 +17,7 @@
 | Žinių testas + vienas projektas (M4–M6)                        | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
 | Learn → Test → Practice                                        | Ta pati seka, auditorija: analitikai                         |
 
-**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys (pvz. M4 skaidrė id 61 – DI įrankiai informacijos paieškai) gali būti integruotas į Duomenų analizės kelio aprašymą arba „Papildomas skaitymas“.
+**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys (**M7 skaidrė id 71.35**, optional, po kelio žingsnio 71.3) – perkeltas iš M4 id 61; M4 sk.61 lieka trumpu nukreipimu į Modulį 7.
 
 ### 1.2 Mokymosi tikslai (po modulių 7–9)
 

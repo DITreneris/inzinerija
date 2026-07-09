@@ -9,13 +9,13 @@
 
 ## 1. Atsakomybė
 
-| Agentas | Atsakomybė |
-|---------|------------|
-| **UI_UX_AGENT** | Lentelių vizualinė hierarchija, skaitomumas, padding, border, palyginimo režimo stilius (header fonai, min-width). Gairės: šis dokumentas + `UI_UX_AGENT.md` §3.6. |
-| **DATA_AGENT** | `modules.json` – sekcijos su `table` (headers, rows), optional `comparisonStyle`, `body` (micro-UX po lentele). Tipai: `ContentBlockTable` (`src/types/modules.ts`). |
-| **CODING_AGENT** | Renderinimas `ContentSlides.tsx`: sąlyginis stilius pagal `comparisonStyle`, Tailwind klasės, wrapper `overflow-x-auto`. |
-| **CONTENT_AGENT** | Turinys ląstelėse (tekstas, verslo kalba); ne struktūra. |
-| **CODE_REVIEW_AGENT** | Patikra: ar lentelė nesuspausta, ar header skiriasi, ar body rodomas po lentele. |
+| Agentas               | Atsakomybė                                                                                                                                                           |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **UI_UX_AGENT**       | Lentelių vizualinė hierarchija, skaitomumas, padding, border, palyginimo režimo stilius (header fonai, min-width). Gairės: šis dokumentas + `UI_UX_AGENT.md` §3.6.   |
+| **DATA_AGENT**        | `modules.json` – sekcijos su `table` (headers, rows), optional `comparisonStyle`, `body` (micro-UX po lentele). Tipai: `ContentBlockTable` (`src/types/modules.ts`). |
+| **CODING_AGENT**      | Renderinimas `ContentSlides.tsx`: sąlyginis stilius pagal `comparisonStyle`, Tailwind klasės, wrapper `overflow-x-auto`.                                             |
+| **CONTENT_AGENT**     | Turinys ląstelėse (tekstas, verslo kalba); ne struktūra.                                                                                                             |
+| **CODE_REVIEW_AGENT** | Patikra: ar lentelė nesuspausta, ar header skiriasi, ar body rodomas po lentele.                                                                                     |
 
 **SOT:** Duomenų struktūra – `src/types/modules.ts` (`ContentBlockTable`). Vizualinės gairės – `docs/development/UI_UX_AGENT.md` §3.6 ir šis dokumentas.
 
@@ -27,6 +27,7 @@
 - **Lygiavimas:** Visi langeliai `align-top`.
 - **Paryškinimas:** Langeliuose **tekstas** renderinamas per `renderBodyWithBold`, ne žalia eilutė su `**`.
 - **Nesuspaudžiama:** Lentelė turi turėti minimalų plotį arba stulpelių min-width, kad tekstas per daug nelūžtų; siaurame ekrane – horizontalus slinkimas (`overflow-x-auto`), ne suspaudimas.
+- **Draudžiama Markdown pipes `body` lauke:** Nenaudoti `| Stulpelis | ... |` sintaksės `section.body` – `renderBodyWithBold` jos neparseina. Visada naudoti `section.table` (headers + rows). Prevencija: `npm run audit:markdown-tables`.
 
 ---
 
@@ -58,14 +59,14 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 ## 4. Audito kriterijai (lentelėms)
 
-| Kriterijus | Klausimas |
-|------------|-----------|
-| Skaitomumas | Ar text-base, leading-relaxed/loose, pakankamas padding? |
-| Nesuspausta | Ar lentelė turi min-width arba stulpeliai min-width (palyginimui)? Ar nėra per siauro pirmo stulpelio be reikalo? |
-| Hierarchija (palyginimas) | Jei 2 stulpeliai palyginimui – ar header fonai skirtingi (brand / slate)? |
-| Micro-UX | Jei palyginimas – ar yra trumpas body po lentele? |
-| Bold | Ar **tekstas** ląstelėse renderinamas per renderBodyWithBold? |
-| A11y | Ar lentelė turi aria-label (pvz. „Palyginimo lentelė: RL ir RLHF“)? |
+| Kriterijus                | Klausimas                                                                                                         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Skaitomumas               | Ar text-base, leading-relaxed/loose, pakankamas padding?                                                          |
+| Nesuspausta               | Ar lentelė turi min-width arba stulpeliai min-width (palyginimui)? Ar nėra per siauro pirmo stulpelio be reikalo? |
+| Hierarchija (palyginimas) | Jei 2 stulpeliai palyginimui – ar header fonai skirtingi (brand / slate)?                                         |
+| Micro-UX                  | Jei palyginimas – ar yra trumpas body po lentele?                                                                 |
+| Bold                      | Ar **tekstas** ląstelėse renderinamas per renderBodyWithBold?                                                     |
+| A11y                      | Ar lentelė turi aria-label (pvz. „Palyginimo lentelė: RL ir RLHF“)?                                               |
 
 ---
 
@@ -73,19 +74,25 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas – `ContentSlides.tsx` (vienas bendras blokas `section.table && !section.workflowChains`).
 
-| Skaidrė / kontekstas | Heading (trumpai) | Stulpeliai | comparisonStyle | Pastabos |
-|----------------------|-------------------|------------|-----------------|----------|
-| M4 | Sisteminis vs Master promptas | 3 | ne | Palyginimas 3 stulpeliais |
-| M4 | ❌ Blogas / ✅ Geras | 2 | ne | Collapsible + table |
-| M4 | Metodinis vs Agentinis | 3 | ne | Aspektas + 2 stulpeliai |
-| M4 | 4️⃣ RL vs RLHF – palyginimas | 2 | **taip** | Verslo kalba, body micro-UX |
-| M4 | Įrankių palyginimas | 4 | ne | Įrankis, Stiprybė, Kam, Kaina |
-| M? | Modelių konteksto langai | 3 | ne | |
-| M? | Iteracija / strateginis planavimas | 3 | ne | |
-| M? | Blogas vs geras promptas | 2 | ne | |
-| M? | 6 blokų struktūra | 2 | ne | Blokas, Nurodymas |
+| Skaidrė / kontekstas | Heading (trumpai)                  | Stulpeliai | comparisonStyle | Pastabos                                      |
+| -------------------- | ---------------------------------- | ---------- | --------------- | --------------------------------------------- |
+| M4                   | Sisteminis vs Master promptas      | 3          | ne              | Palyginimas 3 stulpeliais                     |
+| M4                   | ❌ Blogas / ✅ Geras               | 2          | ne              | Collapsible + table                           |
+| M4                   | Metodinis vs Agentinis             | 3          | ne              | Aspektas + 2 stulpeliai                       |
+| M4                   | 4️⃣ RL vs RLHF – palyginimas        | 2          | **taip**        | Verslo kalba, body micro-UX                   |
+| M4                   | Įrankių palyginimas                | 4          | ne              | Įrankis, Stiprybė, Kam, Kaina                 |
+| M?                   | Modelių konteksto langai           | 3          | ne              |                                               |
+| M?                   | Iteracija / strateginis planavimas | 3          | ne              |                                               |
+| M?                   | Blogas vs geras promptas           | 2          | ne              |                                               |
+| M?                   | 6 blokų struktūra                  | 2          | ne              | Blokas, Nurodymas                             |
+| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D) |
+| M7 / 78              | Tradicinė vs DI analizė            | 2          | **taip**        | Branduolys                                    |
+| M7 / 84              | DB įrankiai                        | 2          | ne              | `rowMeta` badge'ai, collapsible               |
+| M7 / 76              | Tradicinis vs išplėstinis          | 2          | **taip**        | `pathBranch: strategija`                      |
+| M7 / 104             | Duomenys → Istorija                | 2          | ne              | `solutionMatrixStyle`, optional viz šaka      |
+| M7 / 106             | Alternatyvos (viz įrankiai)        | 2          | ne              | optional viz šaka                             |
 
-**Patobulinimai (žr. TODO.md):** Kurioms lentelėms pritaikyti `comparisonStyle` (2 stulpelių palyginimas); ar kitoms 2 stulpelių lentelėms reikia micro-UX body; auditas „nesuspausta / skaitomumas“.
+**Patobulinimai (žr. TODO.md):** M4 2 stulpelių lentelėms be `comparisonStyle` – L2; auditas „nesuspausta / skaitomumas“ – L1–L4.
 
 ---
 

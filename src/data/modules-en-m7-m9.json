@@ -1002,8 +1002,48 @@
               },
               {
                 "heading": "📍 5 groups – pick by situation",
-                "body": "| Group | Question | Method |\n| --- | --- | --- |\n| **A. OK / Fail** | Accept or reject? | OK / Fail check |\n| **B. What matters most?** | What should go first? | Must / Important / Wanted / Not now |\n| **C. Quick wins** | Where is effort low and result fast? | Low-hanging fruit |\n| **D. Test / Invest / Drop** | What to test, invest in, or stop? | Kiss-Marry-Kill |\n| **E. You already know these** | Strengths/weaknesses? What gives most value? Why does it fail? Risk and benefit? | SWOT, 80/20, \"Why?\", Risk/Benefit |",
-                "blockVariant": "terms"
+                "body": "Pick the filter for your situation – you will find the matching prompt below.",
+                "blockVariant": "terms",
+                "toolChoiceBar": {
+                  "question": "What is your situation?",
+                  "choices": [
+                    { "label": "OK / Fail", "rowIndex": 0 },
+                    { "label": "Priorities", "rowIndex": 1 },
+                    { "label": "Quick wins", "rowIndex": 2 },
+                    { "label": "Portfolio", "rowIndex": 3 }
+                  ]
+                },
+                "table": {
+                  "headers": ["Group", "Question", "Method"],
+                  "rows": [
+                    [
+                      "**A. OK / Fail**",
+                      "Accept or reject?",
+                      "OK / Fail check"
+                    ],
+                    [
+                      "**B. What matters most?**",
+                      "What should go first?",
+                      "Must / Important / Wanted / Not now"
+                    ],
+                    [
+                      "**C. Quick wins**",
+                      "Where is effort low and result fast?",
+                      "Low-hanging fruit"
+                    ],
+                    [
+                      "**D. Test / Invest / Drop**",
+                      "What to test, invest in, or stop?",
+                      "Kiss-Marry-Kill"
+                    ],
+                    [
+                      "**E. You already know these**",
+                      "Strengths/weaknesses? What gives most value?",
+                      "SWOT, 80/20, \"Why?\", Risk/Benefit"
+                    ]
+                  ],
+                  "solutionMatrixStyle": true
+                }
               },
               {
                 "heading": "2️⃣ What to do",
@@ -1063,7 +1103,20 @@
               },
               {
                 "heading": "2️⃣ Traditional vs extended approach",
-                "body": "| Traditional view | Expanded view |\n| --- | --- |\n| Costs | Customer behavior |\n| Revenue | Supply chain |\n| Profit | Sales dynamics |\n|  | Customer relationship and marketing data |\n|  | Process efficiency |\n|  | Competitive analysis |\n\nEach domain can become a separate AI analysis module."
+                "body": "Each domain can become a separate AI analysis module.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Traditional view", "Expanded view"],
+                  "rows": [
+                    ["Costs", "Customer behavior"],
+                    ["Revenue", "Supply chain"],
+                    ["Profit", "Sales dynamics"],
+                    ["", "Customer relationship and marketing data"],
+                    ["", "Process efficiency"],
+                    ["", "Competitive analysis"]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
                 "heading": "3️⃣ Customer behavior",
@@ -1222,7 +1275,30 @@
               },
               {
                 "heading": "2️⃣ Traditional analysis vs analysis with AI",
-                "body": "| Traditional analysis | Analysis with AI |\n| --- | --- |\n| A lot of manual work | AI prepares the first draft, table or code |\n| Limited models | It can compare several methods and explain differences |\n| A human interprets alone | AI proposes hypotheses, but a human checks the logic |\n| Low flexibility | You can quickly rewrite the same question for another context |"
+                "body": "AI does not replace your decision, but it speeds up the path to it.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Traditional analysis", "Analysis with AI"],
+                  "rows": [
+                    [
+                      "A lot of manual work",
+                      "AI prepares the first draft, table or code"
+                    ],
+                    [
+                      "Limited models",
+                      "It can compare several methods and explain differences"
+                    ],
+                    [
+                      "A human interprets alone",
+                      "AI proposes hypotheses, but a human checks the logic"
+                    ],
+                    [
+                      "Low flexibility",
+                      "You can quickly rewrite the same question for another context"
+                    ]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
                 "heading": "3️⃣ What AI can do in an analyst role",
@@ -1283,10 +1359,47 @@
               },
               {
                 "heading": "2️⃣ Which DB tool should you choose?",
-                "body": "| Tool | Practical use |\n| --- | --- |\n| **PostgreSQL** | New web/SaaS projects, analytics, complex queries, JSON, pgvector / AI features. |\n| **MySQL** | Hosting, WordPress, e-commerce, simple CRUD systems. |\n| **SQLite** | Prototypes, mobile apps, CLI tools, tests – no server needed. |\n| **MongoDB** | NoSQL documents when structure is flexible: catalogues, events, content apps, fast MVPs. |\n| **Redis / Valkey** | Cache, sessions, queues, rate limiting, real-time features – not the main database. |\n| **Supabase** | Fast MVP backend: PostgreSQL + Auth + API + storage + real-time with less DevOps overhead. |\n\nIf unsure, choose by situation: structured business data – PostgreSQL; simple hosting – MySQL; prototype – SQLite; flexible schema – MongoDB; speed and sessions – Redis / Valkey; fast MVP backend – Supabase.",
+                "body": "If unsure, choose by situation: structured business data – PostgreSQL; simple hosting – MySQL; prototype – SQLite; flexible schema – MongoDB; speed and sessions – Redis / Valkey; fast MVP backend – Supabase.",
                 "copyable": "ROLE: You are a business data analyst.\nTASK: Recommend the best DB tool for my case.\nCONTEXT: Business: [X]. Data type: [tables / JSON / real-time]. Scope: [MVP / large].\nOUTPUT: 1) Recommended tool 2) Why not 2 other options 3) How AI can help with the schema 4) First step.",
                 "blockVariant": "terms",
-                "collapsible": true
+                "collapsible": true,
+                "table": {
+                  "headers": ["Tool", "Practical use"],
+                  "rows": [
+                    [
+                      "**PostgreSQL**",
+                      "New web/SaaS projects, analytics, complex queries, JSON, pgvector / AI features."
+                    ],
+                    [
+                      "**MySQL**",
+                      "Hosting, WordPress, e-commerce, simple CRUD systems."
+                    ],
+                    [
+                      "**SQLite**",
+                      "Prototypes, mobile apps, CLI tools, tests – no server needed."
+                    ],
+                    [
+                      "**MongoDB**",
+                      "NoSQL documents when structure is flexible: catalogues, events, content apps, fast MVPs."
+                    ],
+                    [
+                      "**Redis / Valkey**",
+                      "Cache, sessions, queues, rate limiting, real-time features – not the main database."
+                    ],
+                    [
+                      "**Supabase**",
+                      "Fast MVP backend: PostgreSQL + Auth + API + storage + real-time with less DevOps overhead."
+                    ]
+                  ],
+                  "rowMeta": [
+                    { "strengthBadge": "SQL", "badgeVariant": "blue" },
+                    { "strengthBadge": "Hosting", "badgeVariant": "green" },
+                    { "strengthBadge": "Prototype", "badgeVariant": "violet" },
+                    { "strengthBadge": "NoSQL", "badgeVariant": "yellow" },
+                    { "strengthBadge": "Cache", "badgeVariant": "orange" },
+                    { "strengthBadge": "MVP", "badgeVariant": "green" }
+                  ]
+                }
               },
               {
                 "heading": "3️⃣ Do now (3–5 min)",
@@ -2139,6 +2252,97 @@
           }
         },
         {
+          "id": 71.35,
+          "title": "AI tools for information search",
+          "shortTitle": "AI tools for information search",
+          "subtitle": "Data analysis path – optional cheat sheet",
+          "type": "content-block",
+          "optional": true,
+          "content": {
+            "whyBenefit": "You can do any research in 30–45 min – enter a question or upload a PDF, get answers with sources.",
+            "toolsIntro": "Enter a question or upload a PDF – you'll get answers with sources. Use with path step 71.3.",
+            "tools": [
+              {
+                "name": "Perplexity",
+                "url": "https://perplexity.ai",
+                "description": "Search with sources. Instead of an hour of googling – enter a question, get an answer with links.",
+                "useCases": [
+                  "Business research",
+                  "Market analysis",
+                  "Fact-checking"
+                ]
+              },
+              {
+                "name": "PaperGuide",
+                "url": "https://paperguide.ai",
+                "description": "Talk to your PDF. Upload a report or study – get summary, conclusions, main points.",
+                "useCases": ["Report analysis", "Quick document scan"]
+              },
+              {
+                "name": "Scite",
+                "url": "https://scite.ai",
+                "description": "Does the source really support your claim? Shows how the study is cited – supports or contradicts.",
+                "useCases": ["Citation check", "Strengthening arguments"]
+              },
+              {
+                "name": "Elicit",
+                "url": "https://elicit.com",
+                "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
+                "useCases": ["Synthesis", "Trend search"]
+              },
+              {
+                "name": "Consensus",
+                "url": "https://consensus.app",
+                "description": "Searches only in research papers and answers \"what does science say?\" – shows if studies support or contradict a claim.",
+                "useCases": [
+                  "Health / tech / policy claim validation",
+                  "AI Act interpretation",
+                  "Risk grounding",
+                  "Strengthening scientific arguments"
+                ]
+              },
+              {
+                "name": "Connected Papers",
+                "url": "https://www.connectedpapers.com",
+                "description": "Shows how papers connect and which \"research clusters\" exist; helps find key (seminal) work.",
+                "useCases": [
+                  "Paper network analysis",
+                  "Technology trend analysis",
+                  "Finding seminal work"
+                ]
+              }
+            ],
+            "sections": [
+              {
+                "heading": "1️⃣ In short (20 s)",
+                "body": "Optional cheat sheet: 6 AI tools for search and synthesis – use with path step **71.3** (parallel research). Typical run – 30–45 min.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Usage tips",
+                "body": "**Perplexity:** web mode, ask for sources, be specific.\n**PaperGuide:** upload PDF, ask a concrete question.\n**Scite:** check \"Supported\" vs \"Contradicted\".\n**Elicit:** clear question, trends and risks.\n**Consensus / Connected Papers:** scientific claims and paper networks.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Typical run (30–45 min)",
+                "body": "**4 tools = full run:**\n\n**1.** Sources (Perplexity) – 5–10 min.\n\n**2.** PDF analysis (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citation check (Scite) – ~5 min.\n\n**4.** Synthesis (Elicit) – 10–15 min.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Link to RAG (Module 4)",
+                "body": "RAG theory and data prep – in **Module 4**. This slide is the practical research tools cheat sheet on the Data analysis path (Deep research, M9 workflow).",
+                "blockVariant": "brand"
+              }
+            ],
+            "footer": "Next – slide: MASTER PROMPT"
+          },
+          "optional": true
+        },
+        {
           "id": 94,
           "title": "AI agent concept",
           "subtitle": "Data Research, EDA, Insight – 3 CopyButton",
@@ -2616,7 +2820,19 @@
               },
               {
                 "heading": "2️⃣ Data → Story model",
-                "body": "| Stage | Meaning |\n| --- | --- |\n| Data | Credibility: numbers, sources, time period |\n| Graphic | Clarity: what a person sees in 5 seconds |\n| Narrative | Connection: why the change matters |\n| Decision | Action: what to do next |\n| Story | One message: fact → meaning → action |"
+                "body": "",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Stage", "Meaning"],
+                  "rows": [
+                    ["Data", "Credibility: numbers, sources, time period"],
+                    ["Graphic", "Clarity: what a person sees in 5 seconds"],
+                    ["Narrative", "Connection: why the change matters"],
+                    ["Decision", "Action: what to do next"],
+                    ["Story", "One message: fact → meaning → action"]
+                  ],
+                  "solutionMatrixStyle": true
+                }
               },
               {
                 "heading": "3️⃣ Good dashboard",
@@ -2678,7 +2894,29 @@
               },
               {
                 "heading": "7️⃣ Alternatives",
-                "body": "| Tool | When to use |\n| --- | --- |\n| Julius AI | When you want to analyze a table quickly without many technical steps |\n| Echobase | When a team needs agents and file synchronization |\n| DataLab (DataCamp) | When you need SQL, Python and notebook-style work |\n| Power BI | When you need business reports, integrations and many visualizations |"
+                "body": "",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Tool", "When to use"],
+                  "rows": [
+                    [
+                      "Julius AI",
+                      "When you want to analyze a table quickly without many technical steps"
+                    ],
+                    [
+                      "Echobase",
+                      "When a team needs agents and file synchronization"
+                    ],
+                    [
+                      "DataLab (DataCamp)",
+                      "When you need SQL, Python and notebook-style work"
+                    ],
+                    [
+                      "Power BI",
+                      "When you need business reports, integrations and many visualizations"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "🔽 Want to understand more?",
@@ -2996,7 +3234,11 @@
           "id": 82,
           "title": "Test results",
           "subtitle": "Next – project (Module 9)",
-          "type": "test-results"
+          "type": "test-results",
+          "content": {
+            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate knowledge after the Data analysis path test.\nINPUT: I just finished Module 8 knowledge check – pipeline, MASTER prompt, BI, sentiment and 4 analysis types.\nOUTPUT: Ask 3 questions: (1) Which M7 prompt will I apply at work? (2) What was hardest? (3) What do I want to repeat in Module 9? After my answers, give 1 concrete tip.",
+            "reflectionTitle": "Reflection prompt"
+          }
         },
         {
           "id": 801,

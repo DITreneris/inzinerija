@@ -2379,86 +2379,20 @@
         {
           "id": 61,
           "title": "Optional: AI tools for information search",
-          "shortTitle": "AI tools for information search",
-          "subtitle": "AI tools – from search to synthesis.",
+          "shortTitle": "AI tools (in Module 7)",
+          "subtitle": "Cheat sheet moved to Data analysis path",
           "type": "content-block",
+          "optional": true,
           "content": {
-            "whyBenefit": "You can do any research in 30–45 min – enter a question or upload a PDF, get answers with sources.",
-            "toolsIntro": "Enter a question or upload a PDF – you'll get answers with sources.",
-            "tools": [
-              {
-                "name": "Perplexity",
-                "url": "https://perplexity.ai",
-                "description": "Search with sources. Instead of an hour of googling – enter a question, get an answer with links.",
-                "useCases": [
-                  "Business research",
-                  "Market analysis",
-                  "Fact-checking"
-                ]
-              },
-              {
-                "name": "PaperGuide",
-                "url": "https://paperguide.ai",
-                "description": "Talk to your PDF. Upload a report or study – get summary, conclusions, main points.",
-                "useCases": ["Report analysis", "Quick document scan"]
-              },
-              {
-                "name": "Scite",
-                "url": "https://scite.ai",
-                "description": "Does the source really support your claim? Shows how the study is cited – supports or contradicts.",
-                "useCases": ["Citation check", "Strengthening arguments"]
-              },
-              {
-                "name": "Elicit",
-                "url": "https://elicit.com",
-                "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
-                "useCases": ["Synthesis", "Trend search"]
-              },
-              {
-                "name": "Consensus",
-                "url": "https://consensus.app",
-                "description": "Searches only in research papers and answers \"what does science say?\" – shows if studies support or contradict a claim.",
-                "useCases": [
-                  "Health / tech / policy claim validation",
-                  "AI Act interpretation",
-                  "Risk grounding",
-                  "Strengthening scientific arguments"
-                ]
-              },
-              {
-                "name": "Connected Papers",
-                "url": "https://www.connectedpapers.com",
-                "description": "Shows how papers connect and which \"research clusters\" exist; helps find key (seminal) work.",
-                "useCases": [
-                  "Paper network analysis",
-                  "Technology trend analysis",
-                  "Finding seminal work"
-                ]
-              }
-            ],
             "sections": [
               {
                 "heading": "1️⃣ In short (20 s)",
-                "body": "AI tools for information search and synthesis: Perplexity (search with sources), PaperGuide (PDF), Scite (citation check), Elicit (research synthesis), and two research tools – Consensus and Connected Papers. Typical run – 30–45 min.",
+                "body": "This tools cheat sheet moved to the **Data analysis path (Module 7)** – slide **71.35** after parallel research (71.3). You'll find Perplexity, PaperGuide, Scite, Elicit and more there.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Usage tips",
-                "body": "**Perplexity:** Web mode – for news and business; ask for links (\"Give sources for each claim\"); be specific (e.g. \"What 2024 trends in X market?\").\n\n**PaperGuide:** Upload PDF (report, study), give a concrete question; data extraction – for tables from PDF.\n\n**Scite:** Enter article link or title; check \"Supported\" vs \"Contradicted\"; verify the citation matches.\n\n**Elicit:** Start with a clear question; extract data from several PDFs into a table; ask \"Give trends and risks\".\n\n**Consensus:** When you need \"what does science say?\" – use for health/tech/policy claims; see if research supports or contradicts.\n\n**Connected Papers:** When you want to see the paper network and clusters – use when planning deep research or tech directions.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "Typical run (30–45 min)",
-                "body": "**4 tools = full run:**\n\n**1.** Sources (Perplexity) – 5–10 min: enter question, gather initial sources.\n\n**2.** PDF analysis (PaperGuide / Elicit) – 10–15 min: upload documents (reports, studies), get summaries and conclusions.\n\n**3.** Citation check (Scite) – ~5 min: check if sources support your claims.\n\n**4.** Synthesis (Elicit) – 10–15 min: summarise trends, risks, and examples.\n\n**Full run on one topic** often 30–45 min.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "📍 Where else to apply this? (Data analysis path)",
-                "body": "The same research tools are used on the **Data analysis path (Modules 7–9)**: Deep research for source gathering and 4× parallel research (M9 workflow, path steps 71.3–71.4). If you take that path – come back to this slide as a tools cheat sheet.",
+                "heading": "Where to find it?",
+                "body": "Open **Module 7** → slide **\"AI tools for information search\"** (optional, after path step 71.3). Use it with Deep research and the MASTER prompt on the Data analysis path.",
                 "blockVariant": "brand"
               }
             ],
@@ -2571,6 +2505,13 @@
               {
                 "heading": "🔽 Token management (want to know more?)",
                 "body": "COMBO prompts can be long – respect the token limit (prompt + answer); plan max_tokens or split into several prompts. If the answer gets cut off – split into several queries with a clear sequence.\n\nLink to Module 4 token economy (4.4) – more on tokens and context window.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "📎 Additional reading",
+                "body": "AI tools for information search (Perplexity, PaperGuide, Scite, Elicit, etc.) – **optional** slide in the module. To go deeper, open \"AI tools for information search\" from the module menu.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -3425,6 +3366,11 @@
               ],
               "correct": 1,
               "explanation": "A full brief (topic, audience, goal, scope, tone) lets AI generate the structure quickly and accurately. Without it, AI guesses and gives generic output."
+            },
+            "artifactDownload": {
+              "filename": "presentation-8-slide-template.txt",
+              "source": "copyable",
+              "sectionHeading": "8-slide structure"
             },
             "sections": [
               {

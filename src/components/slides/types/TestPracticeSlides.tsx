@@ -28,6 +28,7 @@ import {
   CopyButton,
   TestKnowledgeScopeDiagram,
   TestRemediationChips,
+  TestResultsReflectionBlock,
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
 import { stickyClasses, surfaceGlass } from '../../../design-tokens';
@@ -409,7 +410,9 @@ export function TestIntroSlide({
             moduleId={moduleId as 8 | 11 | 14}
             locale={locale.startsWith('en') ? 'en' : 'lt'}
             onGoToModule={
-              moduleId === 8 || moduleId === 11 ? onGoToModule : undefined
+              moduleId === 8 || moduleId === 11 || moduleId === 14
+                ? onGoToModule
+                : undefined
             }
             sourceModuleId={moduleId}
           />
@@ -1470,6 +1473,11 @@ export function TestResultsSlide({
   if (moduleId === 8 && rawScore > 0) {
     const passedMessage = t('m8PassedMessage');
     const failedMessage = t('m8FailedMessage');
+    const m8Module = getModulesSync(locale)?.find((m) => m.id === 8);
+    const m8ReflectionContent = m8Module?.slides?.find((s) => s.id === 82)
+      ?.content as
+      | { reflectionPrompt?: string; reflectionTitle?: string }
+      | undefined;
 
     return (
       <div className="space-y-6">
@@ -1551,6 +1559,12 @@ export function TestResultsSlide({
               moduleId={8}
             />
           </>
+        )}
+        {m8ReflectionContent?.reflectionPrompt && (
+          <TestResultsReflectionBlock
+            reflectionPrompt={m8ReflectionContent.reflectionPrompt}
+            reflectionTitle={m8ReflectionContent.reflectionTitle}
+          />
         )}
       </div>
     );
@@ -1706,6 +1720,16 @@ export function TestResultsSlide({
             />
           </>
         )}
+        {typeof m11Content?.reflectionPrompt === 'string' && (
+          <TestResultsReflectionBlock
+            reflectionPrompt={m11Content.reflectionPrompt}
+            reflectionTitle={
+              typeof m11Content.reflectionTitle === 'string'
+                ? m11Content.reflectionTitle
+                : undefined
+            }
+          />
+        )}
       </div>
     );
   }
@@ -1850,6 +1874,16 @@ export function TestResultsSlide({
             )}
           </>
         )}
+        {typeof m14Content?.reflectionPrompt === 'string' && (
+          <TestResultsReflectionBlock
+            reflectionPrompt={m14Content.reflectionPrompt}
+            reflectionTitle={
+              typeof m14Content.reflectionTitle === 'string'
+                ? m14Content.reflectionTitle
+                : undefined
+            }
+          />
+        )}
       </div>
     );
   }
@@ -1911,7 +1945,7 @@ export function TestResultsSlide({
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
             {t('radarDesc')}
           </p>
-          <RadarChart data={radarData} size={300} />
+          <RadarChart data={radarData} size={280} />
         </div>
       )}
 
@@ -3162,7 +3196,7 @@ export function PracticeIntroSlide({
                 <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
                   {t('pressCharacterHint')}
                 </p>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {m9Characters.map((ch) => (
                     <CharacterCard
                       key={ch.id}

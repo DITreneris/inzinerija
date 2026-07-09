@@ -3,6 +3,7 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
+import { DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { getM10TriggerFlowLabels, type M10Locale } from './m10DiagramContent';
 
 const W = 640;
@@ -13,7 +14,6 @@ const GAP = 22;
 const Y_MAIN = 48;
 const X0 = 36;
 const GREY = '#7B8794';
-const ACCENT = '#b8860b';
 const ARROW = 8;
 const WEBHOOK_NOTCH = 14;
 
@@ -27,6 +27,10 @@ export default function M10TriggerFlowDiagram({
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
   const L = getM10TriggerFlowLabels(locale);
+  const webhookFill = DIAGRAM_TONE_COLORS.amber.soft;
+  const webhookStroke = DIAGRAM_TONE_COLORS.amber.stroke;
+  const webhookText = DIAGRAM_TONE_COLORS.amber.stroke;
+  const webhookSubText = palette.muted;
   const x1 = X0;
   const x2 = x1 + BOX_W + GAP;
   const x3 = x2 + BOX_W + GAP;
@@ -61,7 +65,7 @@ export default function M10TriggerFlowDiagram({
           refY="3.5"
           orient="auto"
         >
-          <path d={`M0 0 L${ARROW} 3.5 L0 7 Z`} fill={ACCENT} />
+          <path d={`M0 0 L${ARROW} 3.5 L0 7 Z`} fill={webhookStroke} />
         </marker>
       </defs>
       <text
@@ -137,16 +141,15 @@ export default function M10TriggerFlowDiagram({
 
       <path
         d={`M${whX + 10} ${whY} H${whX + BOX_W - WEBHOOK_NOTCH} L${whX + BOX_W} ${whY + BOX_H / 2} L${whX + BOX_W - WEBHOOK_NOTCH} ${whY + BOX_H} H${whX + 10} Q${whX} ${whY + BOX_H} ${whX} ${whY + BOX_H - 10} V${whY + 10} Q${whX} ${whY} ${whX + 10} ${whY} Z`}
-        fill="#fef3c7"
-        stroke={ACCENT}
+        fill={webhookFill}
+        stroke={webhookStroke}
         strokeWidth="1.5"
-        strokeDasharray="4 3"
       />
       <text
         x={cx(whX)}
         y={whY + 22}
         textAnchor="middle"
-        fill="#713f12"
+        fill={webhookText}
         fontSize="12"
         fontWeight="700"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
@@ -157,7 +160,7 @@ export default function M10TriggerFlowDiagram({
         x={cx(whX)}
         y={whY + 38}
         textAnchor="middle"
-        fill="#92400e"
+        fill={webhookSubText}
         fontSize="9"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
@@ -169,7 +172,7 @@ export default function M10TriggerFlowDiagram({
         y1={whY}
         x2={cx(x1)}
         y2={yB - 2}
-        stroke={ACCENT}
+        stroke={webhookStroke}
         strokeWidth="2"
         strokeDasharray="5 4"
         markerEnd={`url(#m10tf-dash-${uid})`}
@@ -177,7 +180,7 @@ export default function M10TriggerFlowDiagram({
       <text
         x={cx(x1) + 68}
         y={whY + BOX_H / 2}
-        fill="#7a5807"
+        fill={webhookText}
         fontSize="9"
         fontWeight="600"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"

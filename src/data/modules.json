@@ -598,7 +598,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "DI ne „mąsto“ savarankiškai kaip žmogus – jis seka tavo instrukcijas. Kai nurodai mąstymo seką (CoT arba ToT), modelis išveda žingsnis po žingsnio arba palygina variantus pagal nurodytas taisykles. Todėl teisingas modelio pasirinkimas ir aiški struktūra prompte lemia geresnius ir labiau nuspėjamus rezultatus.",
+                "body": "DI seka tavo nurodytą mąstymo seką. CoT – žingsnis po žingsnio; ToT – variantų palyginimas. Aiški struktūra – nuspėjamesni rezultatai.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -623,7 +623,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "DI ne „galvoja“ savarankiškai – jis seka instrukcijas. Kai nurodai mąstymo seką (CoT arba ToT), modelis išveda žingsnis po žingsnio arba palygina variantus. Tai sumažina klaidas ir pagerina atsakymų logiką.",
+                "body": "Reasoning blokas nurodo DI mąstymo seką. Žingsnis po žingsnio arba variantų palyginimas – mažiau spėjimų, geresnė logika.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -648,7 +648,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "Kai nurodai kokybės kriterijus (pvz. „pažymėk prielaidas“, „įvardyk ribotumus“), DI atsakyme išskiria, kas pagrįsta faktais, o kas – spėjimas. Tai padeda vartotojui kritiškai vertinti atsakymą ir mažina klaidingą pasitikėjimą.",
+                "body": "QC kriterijai liepia DI atskirti faktus nuo spėjimų. Pažymėtos prielaidos ir ribotumai – saugesnis sprendimas.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -747,7 +747,7 @@
             "sections": [
               {
                 "heading": "Kodėl tai veikia",
-                "body": "Temperature ir reasoning gylis keičia, kaip modelis generuoja atsakymus: mažesnė temperature – tiksliau ir nuosekliau; didesnė – daugiau variacijų. Nurodydamas parametrus prompte ar įrankio nustatymuose, geriau suderini rezultatą su savo tikslu.",
+                "body": "Temperature valdo variacijas, reasoning – mąstymo gylį. Parametrai prompte suderina atsakymą su užduotimi.",
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "blockVariant": "terms"
@@ -4478,89 +4478,20 @@
         {
           "id": 61,
           "title": "Papildoma: DI įrankiai informacijos paieškai",
-          "shortTitle": "DI įrankiai informacijos paieškai",
-          "subtitle": "DI įrankiai – nuo paieškos iki sintezės.",
+          "shortTitle": "DI įrankiai (Modulyje 7)",
+          "subtitle": "Atmintinė perkelta į Duomenų analizės kelią",
           "type": "content-block",
+          "optional": true,
           "content": {
-            "whyBenefit": "Bet kokį tyrimą gali atlikti per 30–45 min – įvesk klausimą ar įkelk PDF, gauk atsakymus su šaltiniais.",
-            "toolsIntro": "Įvesk klausimą ar įkėlk PDF – gausi atsakymus su šaltiniais.",
-            "tools": [
-              {
-                "name": "Perplexity",
-                "url": "https://perplexity.ai",
-                "description": "Paieška su šaltiniais. Vietoj valandos googlinimo – įvesk klausimą, gauk atsakymą su nuorodomis.",
-                "useCases": [
-                  "Verslo tyrimas",
-                  "Rinkos analizė",
-                  "Faktų tikrinimas"
-                ]
-              },
-              {
-                "name": "PaperGuide",
-                "url": "https://paperguide.ai",
-                "description": "Kalbėk su PDF. Įkelk ataskaitą ar tyrimą – gausi santrauką, išvadas, pagrindines mintis.",
-                "useCases": [
-                  "Ataskaitų analizė",
-                  "Greitas dokumento skenavimas"
-                ]
-              },
-              {
-                "name": "Scite",
-                "url": "https://scite.ai",
-                "description": "Ar šaltinis tikrai palaiko tavo teiginį? Rodo, kaip tyrimas cituojamas – palaiko ar prieštarauja.",
-                "useCases": ["Citavimo tikrinimas", "Argumentų stiprinimas"]
-              },
-              {
-                "name": "Elicit",
-                "url": "https://elicit.com",
-                "description": "Suranda ir apibendrina tyrimus pagal temą. Įvesk klausimą – gauk tendencijas, rizikas, pavyzdžius.",
-                "useCases": ["Sintezė", "Tendencijų paieška"]
-              },
-              {
-                "name": "Consensus",
-                "url": "https://consensus.app",
-                "description": "Ieško tik moksliniuose straipsniuose ir atsako „ką sako mokslas?“ – parodo, ar tyrimai palaiko ar prieštarauja teiginiui.",
-                "useCases": [
-                  "Health / tech / policy teiginių validavimas",
-                  "AI Act interpretacijos",
-                  "Rizikų pagrindimas",
-                  "Mokslinių argumentų stiprinimas"
-                ]
-              },
-              {
-                "name": "Connected Papers",
-                "url": "https://www.connectedpapers.com",
-                "description": "Parodo, kaip tyrimai susiję tarpusavyje ir kokie susiformavę „research clusters“, padeda rasti svarbiausius (seminal) darbus.",
-                "useCases": [
-                  "Tyrimų tinklo analizė",
-                  "Technologinių krypčių analizė",
-                  "Seminal darbų paieška"
-                ]
-              }
-            ],
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (20 s)",
-                "body": "DI įrankiai informacijos paieškai ir sintezei: Perplexity (paieška su šaltiniais), PaperGuide (PDF), Scite (citavimo tikrinimas), Elicit (tyrimų sintezė) ir du moksliniai įrankiai – Consensus ir Connected Papers. Tipinė eiga – 30–45 min.",
+                "body": "Ši įrankių atmintinė perkelta į **Duomenų analizės kelią (Modulis 7)** – skaidrė **71.35** po lygiagrečių tyrimų (71.3). Ten rasite Perplexity, PaperGuide, Scite, Elicit ir kitus įrankius.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Patarimai kaip naudoti",
-                "body": "**Perplexity:** Web režimas – naujienoms ir verslui; prašyk nuorodų („Pateik šaltinius prie kiekvieno teiginio“); būk konkretus (pvz. „Kokios 2024 m. tendencijos X rinkoje?“).\n\n**PaperGuide:** Įkelk PDF (ataskaitą, tyrimą), pateik konkretų klausimą; duomenų ištraukimas – lentelėms iš PDF.\n\n**Scite:** Įvesk straipsnio nuorodą arba pavadinimą; žiūrėk „Supported“ (palaiko) vs „Contradicted“ (prieštarauja); patikrink, ar citata tikrai atitinka.\n\n**Elicit:** Pradėk nuo aiškaus klausimo; duomenų ištraukimas iš kelių PDF į lentelę; prašyk „Pateik tendencijas ir rizikas“.\n\n**Consensus:** Kai reikia „ką sako mokslas?“ – naudok health/tech/policy teiginiams; žiūrėk, ar tyrimai palaiko ar prieštarauja.\n\n**Connected Papers:** Kai nori matyti tyrimų tinklą ir klasterius – naudok planuodamas gilų tyrimą ar technologijų kryptis.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "Tipinė eiga (30–45 min)",
-                "body": "**4 įrankiai = pilna eiga:**\n\n**1.** Šaltiniai (Perplexity) – 5–10 min: įvesk klausimą, surink pradinius šaltinius.\n\n**2.** PDF analizė (PaperGuide / Elicit) – 10–15 min: įkelk dokumentus (ataskaitas, tyrimus), gauk santraukas ir išvadas.\n\n**3.** Citavimo patikrinimas (Scite) – ~5 min: patikrink, ar šaltiniai palaiko tavo teiginius.\n\n**4.** Sintezė (Elicit) – 10–15 min: apibendrink tendencijas, rizikas ir pavyzdžius.\n\n**Pilna eiga vienai temai** dažnai 30–45 min.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "📍 Kur dar pritaikyti? (Duomenų analizės kelias)",
-                "body": "Tie patys tyrimų įrankiai naudojami **Duomenų analizės kelyje (Moduliai 7–9)**: Deep research šaltinių rinkimui ir 4× lygiagrečiam tyrimui (M9 workflow, kelio žingsniai 71.3–71.4). Jei eisi tuo keliu – grįžk prie šios skaidrės kaip įrankių atmintinės.",
+                "heading": "Kur rasti?",
+                "body": "Atidaryk **Modulį 7** → skaidrė **„DI įrankiai informacijos paieškai“** (neprivaloma, po kelio žingsnio 71.3). Jei eisi Duomenų analizės keliu – naudok ją kartu su Deep research ir MASTER promptu.",
                 "blockVariant": "brand"
               }
             ],
@@ -4673,6 +4604,13 @@
               {
                 "heading": "🔽 Tokenų valdymas (nori žinoti daugiau?)",
                 "body": "COMBO promptai gali būti ilgi – gerbk tokenų limitą (promptas + atsakymas); planuok max_tokens arba skaidyk į kelis promptus. Jei atsakymas pertrūksta – skaidyk į kelias užklausas su aiškia seka.\n\nRyšys su Modulio 4 tokenų ekonomika (4.4) – daugiau apie tokenus ir konteksto langą.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "📎 Papildomas skaitymas",
+                "body": "DI įrankiai informacijos paieškai (Perplexity, PaperGuide, Scite, Elicit ir kt.) – **neprivaloma** skaidrė modulyje. Jei nori gilintis, atidaryk skaidrę „DI įrankiai informacijos paieškai“ per modulio meniu.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -5535,6 +5473,11 @@
               "correct": 1,
               "explanation": "Pilnas brief (tema, auditorija, tikslas, apimtis, tonas) leidžia DI greitai ir tiksliai sugeneruoti struktūrą. Be to DI „spėlioja“ ir pateikia bendrybes."
             },
+            "artifactDownload": {
+              "filename": "prezentacijos-8-skaidriu-sablonas.txt",
+              "source": "copyable",
+              "sectionHeading": "8 skaidrių struktūra"
+            },
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
@@ -6126,7 +6069,7 @@
               },
               {
                 "heading": "Prieš kurdami: konteksto inžinerijos schema (Modulio 4)",
-                "body": "Taikant **konteksto inžineriją**, prieš generuojant HTML naudinga paruošti kontekstą – tada 6 blokų promptas gauna „inžinerintą“ įvestį. **1)** Konteksto rinkinys – surink informaciją apie temą naudojant **RAG** (šaltiniai, savo dokumentai) arba paiešką (pvz. ChatGPT Browse, Perplexity) → faktai, turinys, CTA į INPUT. **2)** Vizualus kontekstas – paruošk maketą (pvz. Figma): išdėstymas, spalvos, CTA vieta → papildo INPUT. **3)** HTML generavimas – naudok 6 blokų promptą su surinktu kontekstu ir generuok HTML (pvz. Claude, ChatGPT arba kitas DI). Ryšys su Moduliu 4: konteksto inžinerija = valdyti, ką tiekiama DI; RAG = atsakymas iš šaltinių.",
+                "body": "Prieš HTML generavimą paruošk kontekstą: **1)** RAG arba paieška – faktai į INPUT. **2)** Vizualus maketas (pvz. Figma) – papildo INPUT. **3)** 6 blokų promptas su surinktu kontekstu. Konteksto inžinerija = valdai, ką tieki DI.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -7492,8 +7435,48 @@
               },
               {
                 "heading": "📍 5 grupės – pasirink pagal situaciją",
-                "body": "| Grupė | Klausimas | Metodas |\n| --- | --- | --- |\n| **A. Tinka / Netinka** | Priimti ar atmesti? | OK / Fail patikra |\n| **B. Kas svarbiausia?** | Ką daryti pirmiausia? | Būtina / Svarbu / Norima / Ne dabar |\n| **C. Greiti laimėjimai** | Kur mažai pastangų, greitas rezultatas? | Low-hanging fruit |\n| **D. Testuok / Investuok / Atmesk** | Ką testuoti, kur investuoti, ką atmesti? | Kiss-Marry-Kill |\n| **E. Jau moki šiuos** | Stiprybės/silpnybės? Kas duoda daugiausia? Kodėl neveikia? Rizika ir nauda? | SWOT, 80/20, „Kodėl?“, Rizika/Nauda |",
-                "blockVariant": "terms"
+                "body": "Pasirink filtrą pagal savo situaciją – žemiau rasi atitinkamą promptą.",
+                "blockVariant": "terms",
+                "toolChoiceBar": {
+                  "question": "Kokia tavo situacija?",
+                  "choices": [
+                    { "label": "Tinka / Netinka", "rowIndex": 0 },
+                    { "label": "Prioritetai", "rowIndex": 1 },
+                    { "label": "Greiti laimėjimai", "rowIndex": 2 },
+                    { "label": "Portfelis", "rowIndex": 3 }
+                  ]
+                },
+                "table": {
+                  "headers": ["Grupė", "Klausimas", "Metodas"],
+                  "rows": [
+                    [
+                      "**A. Tinka / Netinka**",
+                      "Priimti ar atmesti?",
+                      "OK / Fail patikra"
+                    ],
+                    [
+                      "**B. Kas svarbiausia?**",
+                      "Ką daryti pirmiausia?",
+                      "Būtina / Svarbu / Norima / Ne dabar"
+                    ],
+                    [
+                      "**C. Greiti laimėjimai**",
+                      "Kur mažai pastangų, greitas rezultatas?",
+                      "Low-hanging fruit"
+                    ],
+                    [
+                      "**D. Testuok / Investuok / Atmesk**",
+                      "Ką testuoti, kur investuoti, ką atmesti?",
+                      "Kiss-Marry-Kill"
+                    ],
+                    [
+                      "**E. Jau moki šiuos**",
+                      "Stiprybės/silpnybės? Kas duoda daugiausia?",
+                      "SWOT, 80/20, „Kodėl?“, Rizika/Nauda"
+                    ]
+                  ],
+                  "solutionMatrixStyle": true
+                }
               },
               {
                 "heading": "2️⃣ Ką daryti",
@@ -7554,7 +7537,20 @@
               },
               {
                 "heading": "2️⃣ Tradicinis vs išplėstinis požiūris",
-                "body": "| Tradicinis požiūris | Išplėstinis požiūris |\n| --- | --- |\n| Sąnaudos | Klientų elgsena |\n| Pajamos | Tiekimo grandinė |\n| Pelnas | Pardavimų dinamika |\n|  | Klientų ryšių ir rinkodaros duomenys |\n|  | Procesų efektyvumas |\n|  | Konkurencinė analizė |\n\nKiekvienas domenas gali tapti atskiru DI analizės moduliu."
+                "body": "Kiekvienas domenas gali tapti atskiru DI analizės moduliu.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Tradicinis požiūris", "Išplėstinis požiūris"],
+                  "rows": [
+                    ["Sąnaudos", "Klientų elgsena"],
+                    ["Pajamos", "Tiekimo grandinė"],
+                    ["Pelnas", "Pardavimų dinamika"],
+                    ["", "Klientų ryšių ir rinkodaros duomenys"],
+                    ["", "Procesų efektyvumas"],
+                    ["", "Konkurencinė analizė"]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
                 "heading": "3️⃣ Klientų elgsena",
@@ -7715,7 +7711,30 @@
               },
               {
                 "heading": "2️⃣ Tradicinė analizė vs analizė su DI",
-                "body": "| Tradicinė analizė | Analizė su DI |\n| --- | --- |\n| Daug rankinio darbo | DI paruošia pirmą juodraštį, lentelę ar kodą |\n| Riboti modeliai | Gali palyginti kelis metodus ir paaiškinti skirtumus |\n| Žmogus vienas interpretuoja | DI pasiūlo hipotezes, bet žmogus patikrina logiką |\n| Mažas lankstumas | Tą patį klausimą gali greitai perrašyti kitam kontekstui |"
+                "body": "DI nepakeičia tavo sprendimo, bet pagreitina kelią iki jo.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Tradicinė analizė", "Analizė su DI"],
+                  "rows": [
+                    [
+                      "Daug rankinio darbo",
+                      "DI paruošia pirmą juodraštį, lentelę ar kodą"
+                    ],
+                    [
+                      "Riboti modeliai",
+                      "Gali palyginti kelis metodus ir paaiškinti skirtumus"
+                    ],
+                    [
+                      "Žmogus vienas interpretuoja",
+                      "DI pasiūlo hipotezes, bet žmogus patikrina logiką"
+                    ],
+                    [
+                      "Mažas lankstumas",
+                      "Tą patį klausimą gali greitai perrašyti kitam kontekstui"
+                    ]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
                 "heading": "3️⃣ Ką DI gali analitiko vaidmenyje",
@@ -7776,10 +7795,47 @@
               },
               {
                 "heading": "2️⃣ Kokį DB įrankį rinktis?",
-                "body": "| Įrankis | Kam naudoti praktiškai |\n| --- | --- |\n| **PostgreSQL** | Nauji web/SaaS, analitika, sudėtingos užklausos, JSON, pgvector / DI funkcijos. |\n| **MySQL** | Hostingai, WordPress, e-commerce, paprastos CRUD sistemos. |\n| **SQLite** | Prototipai, mobilės apps, CLI įrankiai, testai – be serverio. |\n| **MongoDB** | NoSQL dokumentai, kai struktūra lanksti: katalogai, eventai, content apps, greitas MVP. |\n| **Redis / Valkey** | Cache, sesijos, eilės, rate limit, real-time funkcijos – ne pagrindinė DB. |\n| **Supabase** | Greitas MVP backend: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos. |\n\nJei neaišku, rinkis pagal situaciją: struktūruoti verslo duomenys – PostgreSQL; paprastas hostingas – MySQL; prototipas – SQLite; lanksti schema – MongoDB; greitis ir sesijos – Redis / Valkey; greitas MVP backend – Supabase.",
+                "body": "Jei neaišku, rinkis pagal situaciją: struktūruoti verslo duomenys – PostgreSQL; paprastas hostingas – MySQL; prototipas – SQLite; lanksti schema – MongoDB; greitis ir sesijos – Redis / Valkey; greitas MVP backend – Supabase.",
                 "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Pasiūlyk tinkamiausią DB įrankį mano atvejui.\nCONTEXT: Verslas: [X]. Duomenų tipas: [lentelės / JSON / real-time]. Apimtis: [MVP / didelė].\nOUTPUT: 1) Rekomenduotas įrankis 2) Kodėl ne kiti 2 variantai 3) Ką DI gali padėti su schema 4) Pirmas žingsnis.",
                 "blockVariant": "terms",
-                "collapsible": true
+                "collapsible": true,
+                "table": {
+                  "headers": ["Įrankis", "Kam naudoti praktiškai"],
+                  "rows": [
+                    [
+                      "**PostgreSQL**",
+                      "Nauji web/SaaS, analitika, sudėtingos užklausos, JSON, pgvector / DI funkcijos."
+                    ],
+                    [
+                      "**MySQL**",
+                      "Hostingai, WordPress, e-commerce, paprastos CRUD sistemos."
+                    ],
+                    [
+                      "**SQLite**",
+                      "Prototipai, mobilės apps, CLI įrankiai, testai – be serverio."
+                    ],
+                    [
+                      "**MongoDB**",
+                      "NoSQL dokumentai, kai struktūra lanksti: katalogai, eventai, content apps, greitas MVP."
+                    ],
+                    [
+                      "**Redis / Valkey**",
+                      "Cache, sesijos, eilės, rate limit, real-time funkcijos – ne pagrindinė DB."
+                    ],
+                    [
+                      "**Supabase**",
+                      "Greitas MVP backend: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos."
+                    ]
+                  ],
+                  "rowMeta": [
+                    { "strengthBadge": "SQL", "badgeVariant": "blue" },
+                    { "strengthBadge": "Hosting", "badgeVariant": "green" },
+                    { "strengthBadge": "Prototipas", "badgeVariant": "violet" },
+                    { "strengthBadge": "NoSQL", "badgeVariant": "yellow" },
+                    { "strengthBadge": "Cache", "badgeVariant": "orange" },
+                    { "strengthBadge": "MVP", "badgeVariant": "green" }
+                  ]
+                }
               },
               {
                 "heading": "3️⃣ Daryk dabar (3–5 min)",
@@ -8644,6 +8700,100 @@
           }
         },
         {
+          "id": 71.35,
+          "title": "DI įrankiai informacijos paieškai",
+          "shortTitle": "DI įrankiai informacijos paieškai",
+          "subtitle": "Duomenų analizės kelias – papildoma atmintinė",
+          "type": "content-block",
+          "optional": true,
+          "content": {
+            "whyBenefit": "Bet kokį tyrimą gali atlikti per 30–45 min – įvesk klausimą ar įkelk PDF, gauk atsakymus su šaltiniais.",
+            "toolsIntro": "Įvesk klausimą ar įkėlk PDF – gausi atsakymus su šaltiniais. Naudok kartu su kelio žingsniu 71.3.",
+            "tools": [
+              {
+                "name": "Perplexity",
+                "url": "https://perplexity.ai",
+                "description": "Paieška su šaltiniais. Vietoj valandos googlinimo – įvesk klausimą, gauk atsakymą su nuorodomis.",
+                "useCases": [
+                  "Verslo tyrimas",
+                  "Rinkos analizė",
+                  "Faktų tikrinimas"
+                ]
+              },
+              {
+                "name": "PaperGuide",
+                "url": "https://paperguide.ai",
+                "description": "Kalbėk su PDF. Įkelk ataskaitą ar tyrimą – gausi santrauką, išvadas, pagrindines mintis.",
+                "useCases": [
+                  "Ataskaitų analizė",
+                  "Greitas dokumento skenavimas"
+                ]
+              },
+              {
+                "name": "Scite",
+                "url": "https://scite.ai",
+                "description": "Ar šaltinis tikrai palaiko tavo teiginį? Rodo, kaip tyrimas cituojamas – palaiko ar prieštarauja.",
+                "useCases": ["Citavimo tikrinimas", "Argumentų stiprinimas"]
+              },
+              {
+                "name": "Elicit",
+                "url": "https://elicit.com",
+                "description": "Suranda ir apibendrina tyrimus pagal temą. Įvesk klausimą – gauk tendencijas, rizikas, pavyzdžius.",
+                "useCases": ["Sintezė", "Tendencijų paieška"]
+              },
+              {
+                "name": "Consensus",
+                "url": "https://consensus.app",
+                "description": "Ieško tik moksliniuose straipsniuose ir atsako „ką sako mokslas?“ – parodo, ar tyrimai palaiko ar prieštarauja teiginiui.",
+                "useCases": [
+                  "Health / tech / policy teiginių validavimas",
+                  "AI Act interpretacijos",
+                  "Rizikų pagrindimas",
+                  "Mokslinių argumentų stiprinimas"
+                ]
+              },
+              {
+                "name": "Connected Papers",
+                "url": "https://www.connectedpapers.com",
+                "description": "Parodo, kaip tyrimai susiję tarpusavyje ir kokie susiformavę „research clusters“, padeda rasti svarbiausius (seminal) darbus.",
+                "useCases": [
+                  "Tyrimų tinklo analizė",
+                  "Technologinių krypčių analizė",
+                  "Seminal darbų paieška"
+                ]
+              }
+            ],
+            "sections": [
+              {
+                "heading": "1️⃣ Trumpai (20 s)",
+                "body": "Neprivaloma atmintinė: 6 DI įrankiai paieškai ir sintezei – naudok su kelio žingsniu **71.3** (lygiagretūs tyrimai). Tipinė eiga – 30–45 min.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Patarimai kaip naudoti",
+                "body": "**Perplexity:** web režimas, prašyk šaltinių, būk konkretus.\n**PaperGuide:** įkelk PDF, duok tikslų klausimą.\n**Scite:** tikrink „Supported“ vs „Contradicted“.\n**Elicit:** aiškus klausimas, tendencijos ir rizikos.\n**Consensus / Connected Papers:** moksliniai teiginiai ir tyrimų tinklas.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Tipinė eiga (30–45 min)",
+                "body": "**4 įrankiai = pilna eiga:**\n\n**1.** Šaltiniai (Perplexity) – 5–10 min.\n\n**2.** PDF analizė (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citavimo patikrinimas (Scite) – ~5 min.\n\n**4.** Sintezė (Elicit) – 10–15 min.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Ryšys su RAG (Modulis 4)",
+                "body": "RAG teorija ir duomenų paruošimas – **Modulyje 4**. Ši skaidrė – praktiniai tyrimų įrankiai Duomenų analizės kelyje (Deep research, M9 workflow).",
+                "blockVariant": "brand"
+              }
+            ],
+            "footer": "Toliau – skaidrė: MASTER PROMPTAS"
+          },
+          "optional": true
+        },
+        {
           "id": 94,
           "pathBranch": ["technika"],
           "title": "DI agentų koncepcija",
@@ -9142,7 +9292,22 @@
               },
               {
                 "heading": "2️⃣ Duomenys → Istorija modelis",
-                "body": "| Etapas | Reikšmė |\n| --- | --- |\n| Duomenys | Patikimumas: skaičiai, šaltiniai, laikotarpis |\n| Grafika | Aiškumas: ką žmogus pamato per 5 sekundes |\n| Naratyvas | Ryšys: kodėl pokytis svarbus |\n| Sprendimas | Veiksmas: ką daryti toliau |\n| Istorija | Vientisa žinutė: faktas → prasmė → veiksmas |"
+                "body": "",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Etapas", "Reikšmė"],
+                  "rows": [
+                    [
+                      "Duomenys",
+                      "Patikimumas: skaičiai, šaltiniai, laikotarpis"
+                    ],
+                    ["Grafika", "Aiškumas: ką žmogus pamato per 5 sekundes"],
+                    ["Naratyvas", "Ryšys: kodėl pokytis svarbus"],
+                    ["Sprendimas", "Veiksmas: ką daryti toliau"],
+                    ["Istorija", "Vientisa žinutė: faktas → prasmė → veiksmas"]
+                  ],
+                  "solutionMatrixStyle": true
+                }
               },
               {
                 "heading": "3️⃣ Geras dashboard'as",
@@ -9207,7 +9372,29 @@
               },
               {
                 "heading": "7️⃣ Alternatyvos",
-                "body": "| Įrankis | Kada naudoti |\n| --- | --- |\n| Julius AI | Kai nori greitai analizuoti lentelę be daug techninių žingsnių |\n| Echobase | Kai reikia komandai dirbančių agentų ir failų sinchronizavimo |\n| DataLab (DataCamp) | Kai reikia SQL, Python ir notebook tipo darbo aplinkos |\n| Power BI | Kai reikia verslo ataskaitų, integracijų ir daug vizualizacijų |"
+                "body": "",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Įrankis", "Kada naudoti"],
+                  "rows": [
+                    [
+                      "Julius AI",
+                      "Kai nori greitai analizuoti lentelę be daug techninių žingsnių"
+                    ],
+                    [
+                      "Echobase",
+                      "Kai reikia komandai dirbančių agentų ir failų sinchronizavimo"
+                    ],
+                    [
+                      "DataLab (DataCamp)",
+                      "Kai reikia SQL, Python ir notebook tipo darbo aplinkos"
+                    ],
+                    [
+                      "Power BI",
+                      "Kai reikia verslo ataskaitų, integracijų ir daug vizualizacijų"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
@@ -9530,7 +9717,11 @@
           "id": 82,
           "title": "Testo rezultatai",
           "subtitle": "Toliau – projektas (Modulis 9)",
-          "type": "test-results"
+          "type": "test-results",
+          "content": {
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Duomenų analizės kelio testo.\nINPUT: Ką tik baigiau Modulio 8 žinių patikrinimą – pipeline, MASTER promptas, BI, sentimentas ir 4 analizės tipai.\nOUTPUT: Užduok 3 klausimus: (1) Kurį M7 promptą pritaikysiu darbe? (2) Kas buvo sudėtingiausia? (3) Ką pakartoti Modulyje 9? Po mano atsakymų duok 1 konkretų patarimą.",
+            "reflectionTitle": "Refleksijos promptas"
+          }
         },
         {
           "id": 801,
@@ -11640,7 +11831,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "Esi mokymų refleksijos asistentas. Ką tik baigiau mokymą apie DI agentus – taksonomiją, kelių agentų darbą, darbo eigas, uždaro mokymosi ciklą ir promptus. Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kokią pamoką po bandymo norėčiau fiksuoti? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 10.\nINPUT: Ką tik baigiau mokymą apie DI agentus – taksonomiją (L0–L3), kelių agentų darbą, 5 workflow šablonus, 3A, uždaro mokymosi ciklą ir promptus.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kokią pamoką po bandymo norėčiau fiksuoti? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas",
             "tagline": "Agentas = žingsniai + įrankiai + ribos – tavo pagrindas automatizacijai.",
             "nextStepCTA": "Pereik prie Modulio 11: Žinių patikrinimas (Agentų kelias)",
@@ -11843,7 +12034,9 @@
               "heading": "Kur pritaikyti?",
               "body": "Taksonomija, kelių agentų darbas, workflow (trigger, action), 3A ir įrankiai – tyrimai, ataskaitos, klientų aptarnavimo triažas, RFP analizė.",
               "blockVariant": "accent"
-            }
+            },
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Agentų kelio testo.\nINPUT: Ką tik baigiau Modulio 11 žinių patikrinimą – agentų ciklą, 3A, workflow šablonus, įrankius ir promptų saugiklius.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento žingsnį pritaikysiu per 24 val.? (2) Kas buvo naujausia? (3) Ką noriu išbandyti Modulyje 12? Po mano atsakymų duok 1 konkretų patarimą.",
+            "reflectionTitle": "Refleksijos promptas"
           }
         },
         {
@@ -13215,7 +13408,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "Esi mokymų refleksijos asistentas. Ką tik baigiau mokymą apie turinio inžineriją – vaizdai, video, muzika su DI. Užduok 3 klausimus: (1) Kurį turinio tipą galėčiau pritaikyti šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 13.\nINPUT: Ką tik baigiau mokymą apie turinio inžineriją – vaizdų, video ir muzikos promptai su DI, stilius, proporcijos ir naudojimo teisės.\nOUTPUT: Užduok 3 klausimus: (1) Kurį turinio tipą galėčiau pritaikyti šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas",
             "tagline": "Vaizdas + video + muzika = vienas kelias turinio inžinerijai.",
             "nextStepCTA": "Pereik prie Modulio 14: Žinių patikrinimas (Turinio kelias)",
@@ -13399,7 +13592,9 @@
               "heading": "Kitas žingsnis: Modulis 15",
               "body": "Paruošk bent vieną artefaktą – vaizdą, trumpą vaizdo įrašą arba muzikos fragmentą – su naudotu promptu. Įrankių nuorodos ir aprašymai – skiltyje „Įrankiai“ (Modulis 13) ir tiesiai praktinėje užduotyje Modulyje 15.",
               "blockVariant": "accent"
-            }
+            },
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Turinio kelio testo.\nINPUT: Ką tik baigiau Modulio 14 žinių patikrinimą – vaizdų, video ir muzikos promptus, KPI/A-B ir naudojimo teises.\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą kursiu Modulyje 15? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok 1 konkretų patarimą.",
+            "reflectionTitle": "Refleksijos promptas"
           }
         }
       ],

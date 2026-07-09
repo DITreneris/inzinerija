@@ -141,12 +141,54 @@ function bubblesForModule(
   }
   const t = locale === 'en';
   return [
-    { x: 24, y: 44, w: 88, t: t ? 'Image' : 'Vaizdas' },
-    { x: 118, y: 44, w: 88, t: t ? 'Video' : 'Video' },
-    { x: 212, y: 44, w: 88, t: t ? 'Music' : 'Muzika' },
-    { x: 306, y: 44, w: 88, t: 'KPI / A-B' },
-    { x: 400, y: 44, w: 92, t: t ? 'Rights' : 'Teisės' },
-    { x: 200, y: 92, w: 120, t: t ? 'Brief → publish' : 'Brief → publikacija' },
+    {
+      x: 24,
+      y: 44,
+      w: 88,
+      t: t ? 'Image' : 'Vaizdas',
+      targetModuleId: 13,
+      slideId: 13.1,
+    },
+    {
+      x: 118,
+      y: 44,
+      w: 88,
+      t: t ? 'Video' : 'Video',
+      targetModuleId: 13,
+      slideId: 13.4,
+    },
+    {
+      x: 212,
+      y: 44,
+      w: 88,
+      t: t ? 'Music' : 'Muzika',
+      targetModuleId: 13,
+      slideId: 13.6,
+    },
+    {
+      x: 306,
+      y: 44,
+      w: 88,
+      t: 'KPI / A-B',
+      targetModuleId: 13,
+      slideId: 13.101,
+    },
+    {
+      x: 400,
+      y: 44,
+      w: 92,
+      t: t ? 'Rights' : 'Teisės',
+      targetModuleId: 13,
+      slideId: 13.8,
+    },
+    {
+      x: 200,
+      y: 92,
+      w: 120,
+      t: t ? 'Brief → publish' : 'Brief → publikacija',
+      targetModuleId: 13,
+      slideId: 13.2,
+    },
   ];
 }
 
@@ -181,7 +223,8 @@ export default function TestKnowledgeScopeDiagram({
   const bubbles = bubblesForModule(moduleId, locale);
   const title = titleFor(moduleId, locale);
   const canDeepLink =
-    (moduleId === 8 || moduleId === 11) && typeof onGoToModule === 'function';
+    (moduleId === 8 || moduleId === 11 || moduleId === 14) &&
+    typeof onGoToModule === 'function';
 
   const go = (bubble: BubbleSpec) => {
     if (!onGoToModule || bubble.targetModuleId == null) return;

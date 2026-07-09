@@ -620,6 +620,13 @@ export interface ContentBlockContent {
   };
   /** Modulio 6 skaidrė 64: mygtuko „Parsisiųsti atmintinę (PDF)“ etiketė */
   handoutDownloadLabel?: string;
+  /** Inline .txt šablono atsisiuntimas (pvz. M5 sk. 47 – 8 skaidrių struktūra) */
+  artifactDownload?: {
+    filename: string;
+    source: 'copyable' | 'practicalTask';
+    /** Sekcijos heading, iš kurios imti copyable (source: copyable) */
+    sectionHeading?: string;
+  };
 }
 
 /** Skyriaus riba / milestone (Modulio 4 ir kt.) – paprasta skaidrė su antrašte. Optional recap – įsiminimo/kartojimo blokas. */

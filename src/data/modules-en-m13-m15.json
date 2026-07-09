@@ -880,7 +880,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "Use the module template, fill the brackets, then check the result and improve one detail.",
+            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate what you learned after Module 13.\nINPUT: I just finished training on content engineering – image, video, and music prompts with AI, style, aspect ratios, and usage rights.\nOUTPUT: Ask 3 questions: (1) Which content type could I apply today? (2) What was newest? (3) What do I want to try first? After my answers, give one concrete tip.",
             "reflectionTitle": "Reflection prompt",
             "tagline": "Image + video + music = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
@@ -1062,9 +1062,11 @@
             "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.",
             "useCaseBlock": {
               "heading": "Next step: Module 15",
-              "body": "Use your result to decide whether to review Module 13 or continue to the project.",
+              "body": "Prepare at least one artefact – image, short video, or music clip – with the prompt you used. Tool links and descriptions are in the Tools section (Module 13) and in the Module 15 practice task.",
               "blockVariant": "accent"
-            }
+            },
+            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate knowledge after the Content path test.\nINPUT: I just finished Module 14 knowledge check – image, video and music prompts, KPI/A-B and usage rights.\nOUTPUT: Ask 3 questions: (1) Which artefact will I create in Module 15? (2) What was newest? (3) What do I want to try first? After my answers, give 1 concrete tip.",
+            "reflectionTitle": "Reflection prompt"
           }
         }
       ],

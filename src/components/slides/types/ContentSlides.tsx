@@ -53,6 +53,7 @@ import { useLocale } from '../../../contexts/LocaleContext';
 import { findJourneyChoiceByStored } from '../../../utils/moduleJourneyFocus';
 import {
   CopyButton,
+  DownloadTemplateButton,
   TemplateBlock,
   FigmaEmbed,
   InstructGptQualityBlock,
@@ -528,17 +529,44 @@ export function ContentBlockSlide({
   }, [selectedToolRowIndex]);
 
   const scrollToFirstAction = useCallback(() => {
-    const el = slideContainerRef.current?.querySelector?.(
-      '[data-action="copy"]'
-    );
-    if (el instanceof HTMLElement)
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const root = slideContainerRef.current;
+    if (!root) return;
+    const targets = [
+      '[data-action="copy"]',
+      '#practical-task-heading',
+      '[data-brief-check]',
+      '[data-pre-copy-check]',
+      '[data-section-variant="brand"]',
+    ];
+    for (const selector of targets) {
+      const el = root.querySelector(selector);
+      if (el instanceof HTMLElement) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+    }
   }, []);
+
+  const hasCopyableSection = sectionsList.some(
+    (s) => (s.copyable ?? '').trim().length > 0
+  );
+  const hasBrandActionSection = sectionsList.some(
+    (s) => s.blockVariant === 'brand'
+  );
+  const hasActionContent =
+    hasCopyableSection ||
+    Boolean(content.practicalTask) ||
+    Boolean(content.briefCheckBlock) ||
+    Boolean(content.preCopyCheckBlock) ||
+    Boolean(content.firstActionCTA) ||
+    hasBrandActionSection;
 
   const showGotoActionButton =
     !isTabsMode &&
-    sectionsList.length > 3 &&
-    sectionsList.some((s) => (s.copyable ?? '').trim().length > 0);
+    (sectionsList.length > 2 ||
+      Boolean(content.firstActionCTA) ||
+      Boolean(content.practicalTask)) &&
+    hasActionContent;
 
   const m9SkipToSummaryHandler =
     moduleId === 9 && slide?.id === 94 ? onGoToSummary : undefined;
@@ -585,7 +613,7 @@ export function ContentBlockSlide({
       )}
       {content.whyBenefit && (
         <div
-          className="rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-4 border border-accent-200 dark:border-accent-800"
+          className={getContentBlockVariantClasses({ variant: 'accent' })}
           role="region"
           aria-label={t('whyBenefitAria')}
         >
@@ -654,7 +682,10 @@ export function ContentBlockSlide({
         </div>
       )}
       {content.briefCheckBlock && (
-        <div className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10">
+        <div
+          data-brief-check
+          className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
+        >
           <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
             <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
               <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
@@ -713,7 +744,10 @@ export function ContentBlockSlide({
         </div>
       )}
       {content.preCopyCheckBlock && (
-        <div className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10">
+        <div
+          data-pre-copy-check
+          className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
+        >
           <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
             <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
               <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
@@ -819,18 +853,7 @@ export function ContentBlockSlide({
           {tabSections.map((tab, idx) => {
             if (idx !== activeTabIdx) return null;
             const variant = tab.blockVariant || 'default';
-            const blockClasses =
-              variant === 'accent'
-                ? 'bg-accent-50 dark:bg-accent-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-accent-500 border border-accent-200 dark:border-accent-800'
-                : variant === 'brand'
-                  ? 'bg-brand-50 dark:bg-brand-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800'
-                  : variant === 'terms'
-                    ? 'bg-slate-50 dark:bg-slate-800/60 p-4 lg:p-5 rounded-xl border-l-4 border-slate-500 dark:border-slate-600 border border-slate-300 dark:border-slate-700'
-                    : variant === 'emerald'
-                      ? 'bg-emerald-50 dark:bg-emerald-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-emerald-500 border border-emerald-200 dark:border-emerald-800'
-                      : variant === 'violet'
-                        ? 'bg-violet-50 dark:bg-violet-900/20 p-4 lg:p-5 rounded-xl border-l-4 border-violet-500 border border-violet-200 dark:border-violet-800'
-                        : 'bg-white dark:bg-gray-800 p-4 lg:p-5 rounded-xl border-l-4 border-brand-200 dark:border-brand-800 border border-gray-200 dark:border-gray-700';
+            const blockClasses = getContentBlockVariantClasses({ variant });
             return (
               <div
                 key={idx}
@@ -919,7 +942,12 @@ export function ContentBlockSlide({
           });
           return (
             <Fragment key={i}>
-              <div className={blockClasses}>
+              <div
+                className={blockClasses}
+                {...(variant === 'brand'
+                  ? { 'data-section-variant': 'brand' }
+                  : {})}
+              >
                 {section.heading && !isCollapsible && (
                   <h3
                     className={
@@ -1161,7 +1189,7 @@ export function ContentBlockSlide({
                                       : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
                                   }`}
                                   aria-pressed={isSelected}
-                                  aria-label={`${choice.label}${isSelected ? (isEn ? ', selected' : ', pasirinkta') : ''}`}
+                                  aria-label={`${choice.label}${isSelected ? t('choiceSelectedSuffix') : ''}`}
                                 >
                                   {choice.label}
                                 </button>
@@ -1186,18 +1214,24 @@ export function ContentBlockSlide({
                       const numCols = section.table.headers?.length ?? 0;
                       const ariaLabel =
                         numCols === 2
-                          ? `${isEn ? 'Comparison table' : 'Palyginimo lentelė'}: ${(section.table.headers ?? []).join(isEn ? ' and ' : ' ir ')}`
+                          ? t('tableComparisonAria', {
+                              headers: (section.table.headers ?? []).join(
+                                isEn ? ' and ' : ' ir '
+                              ),
+                            })
                           : numCols === 3 &&
                               (section.heading?.includes('Sprendimo matrica') ??
                                 section.heading?.includes('Decision matrix') ??
                                 false)
-                            ? (section.heading ??
-                              (isEn ? 'Decision matrix' : 'Sprendimo matrica'))
+                            ? (section.heading ?? t('tableDecisionMatrixAria'))
                             : numCols >= 3
-                              ? `${isEn ? 'Table' : 'Lentelė'}: ${section.heading ?? section.table.headers?.join(', ') ?? (isEn ? 'in content' : 'turinyje')}`
-                              : isEn
-                                ? 'Tool comparison table'
-                                : 'Įrankių palyginimo lentelė';
+                              ? t('tableGenericAria', {
+                                  heading:
+                                    section.heading ??
+                                    section.table.headers?.join(', ') ??
+                                    t('tableInContentFallback'),
+                                })
+                              : t('tableToolComparisonAria');
                       const toolBadgeClasses: Record<string, string> = {
                         blue: 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200',
                         green:
@@ -1316,7 +1350,12 @@ export function ContentBlockSlide({
                                               meta?.strengthBadge != null ? (
                                               <span
                                                 className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
-                                                aria-label={`${isEn ? 'Strength' : 'Stiprybė'}: ${meta.strengthBadge}`}
+                                                aria-label={t(
+                                                  'strengthBadgeAria',
+                                                  {
+                                                    badge: meta.strengthBadge,
+                                                  }
+                                                )}
                                               >
                                                 {meta.strengthBadge}
                                               </span>
@@ -1424,7 +1463,9 @@ export function ContentBlockSlide({
                                 <button
                                   type="button"
                                   className="relative inline-flex rounded-md p-1.5 min-h-[44px] min-w-[44px] items-center justify-center hover:bg-brand-100 dark:hover:bg-brand-900/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
-                                  aria-label={`${isEn ? 'Additional information' : 'Papildoma informacija'}: ${img.label}`}
+                                  aria-label={t('additionalInfoAria', {
+                                    label: img.label,
+                                  })}
                                   aria-describedby={`workflow-tooltip-${j}`}
                                 >
                                   <Info
@@ -1563,6 +1604,35 @@ export function ContentBlockSlide({
           useAiAccent={isDiVisata}
         />
       )}
+      {content.artifactDownload &&
+        (() => {
+          const ad = content.artifactDownload;
+          let templateText = '';
+          if (
+            ad.source === 'practicalTask' &&
+            content.practicalTask?.template
+          ) {
+            templateText = content.practicalTask.template;
+          } else if (ad.source === 'copyable') {
+            const match = sectionsList.find((s) =>
+              ad.sectionHeading
+                ? s.heading === ad.sectionHeading
+                : Boolean((s.copyable ?? '').trim())
+            );
+            templateText = match?.copyable ?? '';
+          }
+          if (!templateText.trim()) return null;
+          return (
+            <div className="flex justify-end">
+              <DownloadTemplateButton
+                text={templateText}
+                filename={ad.filename}
+                label={t('downloadTemplateLabel')}
+                ariaLabel={t('downloadTemplateAria')}
+              />
+            </div>
+          );
+        })()}
       {content.practicalTask && (
         <section
           className={

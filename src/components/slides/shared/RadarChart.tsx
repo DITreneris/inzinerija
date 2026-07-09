@@ -4,6 +4,7 @@
  * Supports dark mode via Tailwind classes.
  */
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface RadarDataPoint {
   label: string;
@@ -16,10 +17,11 @@ interface RadarChartProps {
   size?: number;
 }
 
-export default function RadarChart({ data, size = 300 }: RadarChartProps) {
+export default function RadarChart({ data, size = 280 }: RadarChartProps) {
+  const { t } = useTranslation('testPractice');
   const center = size / 2;
   const radius = size * 0.34;
-  const labelRadius = size * 0.46;
+  const labelRadius = size * 0.44;
   const n = data.length;
   const angleStep = (2 * Math.PI) / n;
   const startAngle = -Math.PI / 2; // Start from top
@@ -92,12 +94,14 @@ export default function RadarChart({ data, size = 300 }: RadarChartProps) {
 
   if (n < 3) return null;
 
+  const labelFontSize = size <= 260 ? 8 : 10;
+
   return (
     <svg
       viewBox={`0 0 ${size} ${size}`}
-      className="w-full max-w-[280px] mx-auto"
+      className="w-full max-w-[min(280px,100%)] mx-auto"
       role="img"
-      aria-label="Žinių radaras pagal kategorijas"
+      aria-label={t('radarChartAria')}
     >
       {/* Grid polygons */}
       {gridPolygons.map((points, idx) => (
@@ -192,7 +196,7 @@ export default function RadarChart({ data, size = 300 }: RadarChartProps) {
           y={lbl.y}
           textAnchor={lbl.anchor}
           dominantBaseline="central"
-          fontSize={10}
+          fontSize={labelFontSize}
           fontWeight={600}
           fill="#374151"
           className="dark:fill-gray-300"

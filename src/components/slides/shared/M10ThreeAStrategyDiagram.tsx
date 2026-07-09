@@ -12,7 +12,7 @@ const BAR_X = 48;
 const BAR_W = 304;
 const H80 = 120;
 const H15 = 36;
-const H5 = 18;
+const H5 = 22;
 const GAP = 10;
 
 export default function M10ThreeAStrategyDiagram({
@@ -60,7 +60,7 @@ export default function M10ThreeAStrategyDiagram({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-md mx-auto block ${className}`}
+      className={`w-full max-w-[min(28rem,100%)] mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
     >
@@ -109,7 +109,7 @@ export default function M10ThreeAStrategyDiagram({
               x={BAR_X + 14}
               y={ty}
               fill="white"
-              fontSize={r.h < 28 ? 9 : 12}
+              fontSize={r.h < 26 ? 10 : 12}
               fontWeight="700"
               fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
             >
@@ -126,13 +126,12 @@ export default function M10ThreeAStrategyDiagram({
                 {r.sub}
               </text>
             )}
-            {r.h < 36 && (
+            {r.h >= 22 && r.h < 36 && (
               <text
                 x={BAR_X + 14}
-                y={rowY + r.h + 14}
-                fill={palette.brandDark}
-                fontSize="9"
-                fontWeight="600"
+                y={rowY + r.h - 6}
+                fill="rgba(255,255,255,0.88)"
+                fontSize="8"
                 fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
               >
                 {r.sub}

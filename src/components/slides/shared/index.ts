@@ -1,5 +1,7 @@
 export { default as CharacterCard } from './CharacterCard';
 export { default as CopyButton } from './CopyButton';
+export { default as DownloadTemplateButton } from './DownloadTemplateButton';
+export { TestResultsReflectionBlock } from './TestResultsReflectionBlock';
 export { default as TemplateBlock } from './TemplateBlock';
 export { default as PracticalTask } from './PracticalTask';
 export { default as ProcessStepper } from './ProcessStepper';

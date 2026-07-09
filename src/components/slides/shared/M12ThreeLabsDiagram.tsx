@@ -1,10 +1,12 @@
+import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TONE_COLORS } from './diagramTokens';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
 
 const W = 640;
 const H = 220;
+const ARROW = DIAGRAM_TOKENS.arrow.markerLen;
 
 export default function M12ThreeLabsDiagram({
   locale = 'lt',
@@ -13,12 +15,16 @@ export default function M12ThreeLabsDiagram({
   locale?: M10Locale;
   className?: string;
 }) {
+  const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
   const L = getM12ThreeLabsLabels(locale);
   const rowH = 52;
   const gap = 14;
   const x0 = 24;
   const w0 = W - 48;
+  const humanFill = DIAGRAM_TONE_COLORS.amber.soft;
+  const humanStroke = DIAGRAM_TONE_COLORS.amber.stroke;
+  const humanText = DIAGRAM_TONE_COLORS.amber.stroke;
   let y = 40;
 
   const rows = [
@@ -49,6 +55,18 @@ export default function M12ThreeLabsDiagram({
       role="img"
       aria-label={L.aria}
     >
+      <defs>
+        <marker
+          id={`m12tl-conn-${uid}`}
+          markerWidth={ARROW + 2}
+          markerHeight={7}
+          refX={ARROW}
+          refY="3.5"
+          orient="auto"
+        >
+          <path d={`M0 0 L${ARROW} 3.5 L0 7 Z`} fill={palette.brandDark} />
+        </marker>
+      </defs>
       <text
         x={W / 2}
         y={24}
@@ -63,8 +81,9 @@ export default function M12ThreeLabsDiagram({
       {rows.map((r, i) => {
         const yy = y;
         const mainRight = x0 + w0 * 0.72;
-        const humanX = mainRight + 8;
+        const humanX = mainRight + 12;
         const humanW = w0 * 0.26;
+        const midY = yy + rowH / 2;
         y += rowH + gap;
         return (
           <g key={i}>
@@ -80,12 +99,13 @@ export default function M12ThreeLabsDiagram({
             />
             <line
               x1={mainRight}
-              y1={yy + rowH / 2}
-              x2={humanX}
-              y2={yy + rowH / 2}
+              y1={midY}
+              x2={humanX - ARROW}
+              y2={midY}
               stroke={palette.brandDark}
               strokeWidth="1.5"
               strokeDasharray="4 3"
+              markerEnd={`url(#m12tl-conn-${uid})`}
             />
             <text
               x={x0 + 12}
@@ -112,15 +132,15 @@ export default function M12ThreeLabsDiagram({
               width={humanW}
               height={rowH}
               rx="10"
-              fill="#fef3c7"
-              stroke="#b8860b"
-              strokeWidth="1"
+              fill={humanFill}
+              stroke={humanStroke}
+              strokeWidth="1.2"
             />
             <text
               x={humanX + humanW / 2}
               y={yy + rowH / 2 + 4}
               textAnchor="middle"
-              fill="#713f12"
+              fill={humanText}
               fontSize="9"
               fontWeight="700"
               fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
