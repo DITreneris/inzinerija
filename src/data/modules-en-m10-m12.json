@@ -1020,13 +1020,19 @@
           "testQuestions": [
             {
               "id": "m11-q1",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "How many main steps does the agent cycle have?",
-              "options": ["3", "4", "5", "6"],
-              "correct": 1,
-              "explanation": "Agent: receives task, plans steps, uses tools, returns result. Plus – feedback.",
-              "relatedSlideId": 10.2
+              "scenarioContext": "An AI agent gives a confident answer but does not cite sources, even though the task required up-to-date facts.",
+              "question": "What should be fixed first?",
+              "options": [
+                "Clearly state the tool and rule: use search, cite sources, and if none are found, write “Not found”",
+                "Increase answer length to 2000 words",
+                "Remove the error-handling sentence",
+                "Keep the same prompt and just ask again"
+              ],
+              "correct": 0,
+              "explanation": "The agent needs clear context: which tool to use, when to cite sources and what to return when sources are not found. This reduces invented-fact risk.",
+              "relatedSlideId": 10.3
             },
             {
               "id": "m11-q2",
@@ -1086,9 +1092,10 @@
             },
             {
               "id": "m11-q6",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "Scenario: you receive an RFP document and want: researcher gathers facts, writer prepares summary, evaluator checks criteria. Which workflow pattern fits best?",
+              "scenarioContext": "You receive an RFP document and want: researcher gathers facts, writer prepares summary, evaluator checks criteria.",
+              "question": "Which workflow pattern fits best?",
               "options": [
                 "Coordinator + specialists (or chain with roles)",
                 "Only one prompt without role",
@@ -1116,9 +1123,10 @@
             },
             {
               "id": "m11-q8",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "Scenario: you get a long complaint by email. You want AI to briefly summarise it, but you write and send the final reply to the client only after you review it. Which option best matches Augment (15 %)?",
+              "scenarioContext": "You get a long complaint by email. You want AI to briefly summarise it, but you write and send the final reply to the client only after you review it.",
+              "question": "Which option best matches Augment (15 %)?",
               "options": [
                 "Flow: email → AI summary → you review / edit → then send to client",
                 "AI automatically replies to client without your step",
@@ -1133,15 +1141,15 @@
               "id": "m11-q9",
               "type": "mcq",
               "bloomLevel": 3,
-              "question": "Choose the best answer for this agent engineering situation.",
+              "question": "Situation: an agent completed the task, but the result was inaccurate. After the error review, you found the root cause. What should you do so the learning loop closes instead of only describing the problem?",
               "options": [
-                "Update the rule, prompt, skill or test based on the root cause",
+                "Update the rule, prompt, skill or test based on the root cause, not just the incident note",
                 "Write a note and keep using the same prompt",
                 "Make the agent answer longer",
                 "Run the same request again without changes"
               ],
               "correct": 0,
-              "explanation": "The best answer keeps the agent goal, tools, limits and error handling clear.",
+              "explanation": "The learning loop closes only when the lesson becomes a concrete update: a rule, prompt, skill or test. Logging the issue alone does not improve the next run.",
               "relatedSlideId": 10.49
             }
           ]
@@ -1277,6 +1285,36 @@
                 "heading": "Handoff",
                 "body": "Passing to the next role – clear rule: “When specialist finishes X, pass to evaluator in Y format.” Without handoff multi-agent becomes chaotic.",
                 "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 4: Checkpoint: multi-agent schema"
+          }
+        },
+        {
+          "id": 120.55,
+          "title": "Checkpoint: multi-agent schema",
+          "shortTitle": "Checkpoint",
+          "subtitle": "Agent practice path – check the schema before practice",
+          "type": "path-step",
+          "content": {
+            "title": "Do you understand the multi-agent schema?",
+            "pathLabel": "Agent practice path",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Before starting the 3A practices, quickly check that you understand the division of work. Mark done when you can name which role does what and where the human approval is needed.",
+            "sections": [
+              {
+                "heading": "What to check",
+                "body": "Can you name the chain: **Input → Coordinator → 2 specialists → Evaluator → Output**? Do you know where the **human approval (HITL) gate** kicks in?"
+              },
+              {
+                "heading": "Mini test (1 min)",
+                "body": "Copy the prompt and run one coordinator + specialist pair on your topic.",
+                "copyable": "You are the coordinator. Task: [DESCRIBE]. 1) Split into 2 parts. 2) Write a separate specialist prompt for each part. 3) State how the specialist passes the result to the evaluator (format). 4) Add one human approval point before the final output."
+              },
+              {
+                "heading": "If unclear",
+                "body": "Go back to the previous slide “Business multi-agent schema” (120.5) and review the handoff rule again."
               }
             ],
             "footer": "Next – slide 5: Practice 1 – Automatize"

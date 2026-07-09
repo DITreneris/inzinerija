@@ -462,6 +462,43 @@ function validateCertificateContent() {
   return true;
 }
 
+function validateCompletionArtifacts() {
+  const schema = loadJson(join(__dirname, 'schemas', 'completionArtifacts.schema.json'));
+  const validate = ajv.compile(schema);
+  const data = loadJson(join(dataDir, 'completionArtifacts.json'));
+  if (!validate(data)) {
+    console.error('completionArtifacts.json validation failed:\n');
+    validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+    return false;
+  }
+  console.log('completionArtifacts.json: OK');
+  return true;
+}
+
+function validateHandoutContents() {
+  const handoutSchemaPairs = [
+    ['m1HandoutContent.schema.json', ['m1HandoutContent.json', 'm1HandoutContent-en.json']],
+    ['m4HandoutContent.schema.json', ['m4HandoutContent.json', 'm4HandoutContent-en.json']],
+    ['m5HandoutContent.schema.json', ['m5HandoutContent.json', 'm5HandoutContent-en.json']],
+    ['m6HandoutContent.schema.json', ['m6HandoutContent.json', 'm6HandoutContent-en.json']],
+    ['m79HandoutContent.schema.json', ['m79HandoutContent.json', 'm79HandoutContent-en.json']],
+  ];
+  for (const [schemaFile, files] of handoutSchemaPairs) {
+    const schema = loadJson(join(__dirname, 'schemas', schemaFile));
+    const validate = ajv.compile(schema);
+    for (const file of files) {
+      const data = loadJson(join(dataDir, file));
+      if (!validate(data)) {
+        console.error(`${file} validation failed:\n`);
+        validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+        return false;
+      }
+      console.log(`${file}: OK`);
+    }
+  }
+  return true;
+}
+
 function validateModulesEnM1315() {
   /** Partial EN overrides merged by id – not full module documents (see modulesLoader deepMerge). */
   const partialSchema = {
@@ -555,7 +592,9 @@ function main() {
     && validateCoreTools()
     && validateCorporateTools()
     && validateIntroPiePdfContent()
-    && validateCertificateContent();
+    && validateCertificateContent()
+    && validateCompletionArtifacts()
+    && validateHandoutContents();
   if (!ok) process.exit(1);
   console.log('Schema validation passed.');
 }

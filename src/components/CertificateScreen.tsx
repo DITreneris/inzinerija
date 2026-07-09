@@ -7,6 +7,7 @@ import { ensurePdfFont } from '../utils/introPiePdf';
 import { downloadCertificatePdf } from '../utils/certificatePdf';
 import {
   getCertificateName,
+  getOrCreateCertificateSerial,
   setCertificateName,
 } from '../utils/certificateStorage';
 import { track } from '../utils/analytics';
@@ -54,6 +55,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         authorByLabel: certificateContent.authorByLabel,
         authorProductLabel: certificateContent.authorProductLabel,
         serialLabel: certificateContent.serialLabel,
+        serialNumber: getOrCreateCertificateSerial(tier),
         websiteUrl: certificateContent.websiteUrl ?? WEBSITE_URL,
         websiteCta: certificateContent.websiteCta,
       });

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "m1HandoutContent.json / m1HandoutContent-en.json",
+  "type": "object",
+  "required": [
+    "title",
+    "subtitle",
+    "coreBlocks",
+    "firstWinChecklist",
+    "starterPrompt",
+    "qualityCheck",
+    "footerText"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "subtitle": { "type": "string", "minLength": 1 },
+    "coreBlocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["label", "meaning"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string", "minLength": 1 },
+          "meaning": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "firstWinChecklist": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "starterPrompt": { "type": "string", "minLength": 1 },
+    "qualityCheck": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "footerText": { "type": "string", "minLength": 1 }
+  }
+}

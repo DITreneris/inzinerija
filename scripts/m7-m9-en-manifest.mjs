@@ -42,7 +42,7 @@ export const LEAN_M7_SLIDE_IDS = [
   891.5, 66.9, 67, 67.8, 68, 68.5, 90, 92, 71.3, 74, 74.5, 71.4, 71.5, 75,
 ];
 
-export const LEAN_M8_SLIDE_IDS = [80, 81, 82, 801, 802];
+export const LEAN_M8_SLIDE_IDS = [80, 80.5, 81, 82, 801, 802];
 
 export const LEAN_M9_SLIDE_IDS = [90, 93, 94, 92, 99, 101, 102, 111, 116, 117];
 

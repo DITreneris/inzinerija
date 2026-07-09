@@ -50,4 +50,19 @@ describe('TestPracticeSlides M11 data contract', () => {
     expect(questionsById.get('m11-q8')?.relatedSlideId).toBe(10.25);
     expect(questionsById.get('m11-q9')?.relatedSlideId).toBe(10.49);
   });
+
+  it('keeps at least 30 percent of M11 questions as rendered scenarios', () => {
+    const scenarioQuestions = getM11Questions().filter(
+      (question) => question.type === 'scenario' && question.scenarioContext
+    );
+
+    expect(scenarioQuestions.map((question) => question.id)).toEqual([
+      'm11-q1',
+      'm11-q6',
+      'm11-q8',
+    ]);
+    expect(
+      scenarioQuestions.length / getM11Questions().length
+    ).toBeGreaterThanOrEqual(0.3);
+  });
 });

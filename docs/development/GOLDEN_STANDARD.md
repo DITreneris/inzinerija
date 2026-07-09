@@ -1,8 +1,9 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.8  
-> **Data:** 2026-04-09  
+> **Versija:** 2.3.9  
+> **Data:** 2026-07-09  
+> **2.3.9:** §3.8 – pridėtas modulio interaktyvumo ritmas: kas 6–8 teorijos skaidres įterpti savitikrą, kelio žingsnį arba embed micro-check; M4 pattern katalogas ir EN sync vartai susieti su `audit:slide-interactivity`.  
 > **2.3.8:** §3.2, §3.2a – LT content-block: vartotojui matomoje antraštėje **„Trumpai“** be anglų santrumpų (`modules.json`, `lt.json`); schema žymėjimas Trumpai (LT) / In short (EN). Žr. `docs/development/PAPRASTOS_KALBOS_GAIRES.md` §2.  
 > **2.3.7:** §2.1 Paletė – pridėta `gold: #f3cc30` spalva (brand žaibas, hero CTA, dark mode glow). Centralizuota per `tailwind.config.js` ir CSS custom property `--brand-gold`. Sync su promptanatomy.app.  
 > **2.3.6:** Haliucinacijų ir žinių patikrinimo tema – **Modulyje 7** (blokas „Patikrumas ir etika“, skaidrės Haliucinacijos 67.8, Žinių patikrinimas 68). Skaidrėse ir SOT nuorodos į šią temą turi rodyti į Modulį 7, ne į Modulio 4 (4.6). Žr. `docs/MODULIO_7_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_7_8_9.md`.  
@@ -278,13 +279,13 @@
 
 #### 3.7.1 Kada išduoti sertifikatą
 
-| Sąlyga                   | Pavyzdys (dabartinis)                                                                                                                                                                   |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: moduliai 1–9.                                                                                                                     |
-| **Papildoma (optional)** | Testas išlaikytas (pvz. Modulio 5 quiz ≥70%) – tier 2.                                                                                                                                  |
-| **Vieta mygtuko**        | ModuleCompleteScreen – mygtukas „Parsisiųsti sertifikatą“ rodomas **tik** kai atitinka modulį (pvz. `module.id === 3` arba `module.id === 6`) ir sąlygas (completedModules, quizScore). |
+| Sąlyga                   | Pavyzdys (dabartinis)                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: moduliai 1–9.                                                       |
+| **Papildoma (optional)** | Baigiamoji apklausa ≥70 % – tier 2; kelio testas (pvz. Modulio 8 testas ≥70 %) – tier 3.                                  |
+| **Vieta mygtuko**        | `completionArtifacts.json` nurodo `unlockOnModuleId`; ModuleCompleteScreen tik perskaito registry ir eligibility helperį. |
 
-**Receptas naujam moduliui:** Nuspręsti, po kurio modulio išduodamas sertifikatas; ar reikia quiz ribos; pridėti sąlygą ModuleCompleteScreen (pvz. `module.id === 9` ir `canRequestTier3`).
+**Receptas naujam moduliui:** Nuspręsti, po kurio modulio išduodamas sertifikatas; ar reikia quiz ribos; pridėti tier į `certificateContent*.json`, `certificateEligibility.ts` ir `completionArtifacts.json`. UI neturi gauti naujos `module.id === N` šakos vien dėl sertifikato.
 
 ---
 
@@ -329,28 +330,94 @@
 
 ---
 
-#### 3.7.4 UI (atkartojamas)
+#### 3.7.4 completionArtifacts registry
 
-| Vieta                    | Kas                                                                                                                                                                                                   |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **ModuleCompleteScreen** | Kai modulis atitinka (pvz. id 3, 6, 9) ir sąlygos tenkinamos – mygtukas „Parsisiųsti sertifikatą“ (aria-label su lygio aprašymu). Po mygtukų – nuoroda „Kursas: promptanatomy.app“ (websiteUrl).      |
-| **CertificateScreen**    | Gauna `tier` (1                                                                                                                                                                                       | 2   | 3   | …). Rodo maketo peržiūrą, vardo lauką, mygtukus „Grįžti“ ir „Išsaugoti ir parsisiųsti PDF“. Po mygtukų – nuoroda su websiteCta ir ExternalLink ikona. |
-| **Navigacija**           | Sertifikatas pasiekiamas tik per ModuleCompleteScreen (hidden treasure) arba tiesiogiai per route `/certificate?tier=N` – nėra atskiro meniu punkto.                                                  |
-| **Lokalizacija**         | `certificate.*` (lt.json, en.json): title, introText, nameLabel, namePlaceholder, nameHint, saveAndDownloadButton, back, preparing, contentNotFound, websiteCta, websiteCtaAria, yourNamePlaceholder. |
+`src/data/completionArtifacts.json` yra vienas artefaktų routing sluoksnis:
 
-**Hidden treasure pattern:** Hidden treasure rodomas kaip **Unlock kortelė** – accent blokas (antraštė, body tekstas pagal tier, vienas dominuojantis CTA). Įgyvendinimas: `ModuleCompleteScreen.tsx` (Unlock kortelė, accent blokas, CTA).
+- `handouts[]` aprašo, kada handout uždirbamas (`earnOnModuleIds`), kur rodomas (`surfaces`), kokį i18n label naudoti (`ctaI18nKey`) ir kokį analytics ID siųsti (`analyticsCtaId`).
+- `certificates[]` aprašo tier unlock vietą (`unlockOnModuleId`) ir eligibility raktą (`tier1`, `tier2`, `tier3`).
+- Funkcijų map'as lieka TypeScript faile (`handoutArtifactActions.ts`), nes JSON negali laikyti PDF download funkcijų.
+- `validate:schema` validuoja registry ir visų handout content JSON struktūrą.
 
-**Naujam moduliui:** Pridėti ModuleCompleteScreen sąlygą (pvz. `showCertTier3 && module.id === 9`) ir mygtuką su atitinkamu tier; CertificateScreen jau veikia su bet kuriuo tier iš `certificateContent.tiers`.
+**Naujam handout:** pridėti content JSON LT/EN, PDF utilą, schema failą, registry įrašą ir action map eilutę. ModuleCompleteScreen / ModulesPage turi perskaityti registry, ne gauti naują hardcoded sąlygą.
 
 ---
 
-#### 3.7.5 Privaloma nuoroda ir CTA (visi artefaktai)
+#### 3.7.5 UI (atkartojamas)
+
+| Vieta                    | Kas                                                                                                                                                                                                                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ModuleCompleteScreen** | Registry randa handout pagal `module_complete` surface ir sertifikatą pagal `unlockOnModuleId`; jei sąlygos tenkinamos – rodomi atitinkami mygtukai. Po mygtukų – nuoroda „Kursas: promptanatomy.app“ (websiteUrl). |
+| **CertificateScreen**    | Gauna `tier` (1                                                                                                                                                                                                     | 2   | 3   | …). Rodo maketo peržiūrą, vardo lauką, mygtukus „Grįžti“ ir „Išsaugoti ir parsisiųsti PDF“. Po mygtukų – nuoroda su websiteCta ir ExternalLink ikona. |
+| **Navigacija**           | Sertifikatas pasiekiamas tik per ModuleCompleteScreen (hidden treasure) arba tiesiogiai per route `/certificate?tier=N` – nėra atskiro meniu punkto.                                                                |
+| **Lokalizacija**         | `certificate.*` (lt.json, en.json): title, introText, nameLabel, namePlaceholder, nameHint, saveAndDownloadButton, back, preparing, contentNotFound, websiteCta, websiteCtaAria, yourNamePlaceholder.               |
+
+**Hidden treasure pattern:** Hidden treasure rodomas kaip **Unlock kortelė** – accent blokas (antraštė, body tekstas pagal tier, vienas dominuojantis CTA). Įgyvendinimas: `ModuleCompleteScreen.tsx` (Unlock kortelė, accent blokas, CTA).
+
+**Naujam moduliui:** Pirmiausia pildyti registry + eligibility helperį; CertificateScreen jau veikia su bet kuriuo tier iš `certificateContent.tiers`.
+
+---
+
+#### 3.7.6 Privaloma nuoroda ir CTA (visi artefaktai)
 
 Kiekvienas išvesties dokumentas (sertifikatas, PDF handout ir pan.) **privalo** turėti:
 
 - **websiteUrl** ir **websiteCta** – root lygyje duomenyse; rodomi PDF footeryje ir atitinkamame UI (nuoroda po atsisiuntimo mygtuko).
 
 **SOT:** `docs/development/CERTIFICATE_CONTENT_SOT.md` (titulai, tonas, websiteUrl, websiteCta, UI vietos).
+
+---
+
+### 3.8 Modulio interaktyvumo ritmas
+
+**Paskirtis:** Ilguose moduliuose mokymasis turi kvėpuoti: žmogus perskaito kelias teorijos skaidres, tada gauna trumpą „ar supratau?“ momentą. Pirmiausia platiname esamus pattern'us (`warm-up-quiz`, `path-step`, `intro-action-pie`, `evaluator-prompt-block`, embedded sub-laukus), o naują skaidrės tipą kuriame tik tada, kai to paties poreikio reikia keliuose moduliuose.
+
+**Target ritmas learn moduliuose:**
+
+```text
+action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-step | embed] → section-break → … → summary
+```
+
+**Formative check taisyklė:** Learn moduliuose tikslas – bent vienas savitikros arba veiksmo momentas kas **6–8 teorijos skaidres**. M4 yra etalonas: po teminių blokų eina `warm-up-quiz`, `section-break` su recap arba embedded micro-check. `audit:slide-interactivity` saugo, kad ilgiausias content-block streak nebūtų didesnis nei 8.
+
+| Situacija                         | Pattern                                               | Naudoti kai                                                                                       |
+| --------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Ilgas teorijos kelias             | `warm-up-quiz` (§3.4a)                                | Reikia 2–5 klausimų su diagnostiniu feedback po koncepto bloko.                                   |
+| Practice arba capstone checkpoint | `path-step` (§3.4d)                                   | Vartotojas turi pažymėti aiškų žingsnį ir pereiti į kitą darbo etapą.                             |
+| Įvadas su segmentais              | `intro-action-pie` (§3.2c)                            | Pirmiausia norime, kad vartotojas pasirinktų savo profilį, tada pamatytų statistiką.              |
+| Vienas promptas vertina kitą      | `evaluator-prompt-block` (§3.2b)                      | Praktika yra kokybės patikra: vertintojas randa, ką taisyti.                                      |
+| Micro-check be naujos skaidrės    | Embedded sub-laukas (§3.8.1)                          | Skaidrė jau turi stiprų turinį, bet reikia vieno trumpo patikrinimo ar interaktyvaus pasirinkimo. |
+| Test modulis                      | `warm-up-quiz` prieš `test-intro`; scenario klausimai | Prieš vertinamą testą reikia nevertinamos savitikros arba realių situacijų.                       |
+
+#### 3.8.1 Embedded sub-laukai
+
+Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toje pačioje skaidrėje. Jis neturi tapti antra pilna skaidre viduje: vienas aiškus veiksmas, trumpas feedback ir vienas dominuojantis CTA.
+
+| Laukas                  | Paskirtis                                       | Etalonas                               |
+| ----------------------- | ----------------------------------------------- | -------------------------------------- |
+| `briefCheckBlock`       | Trumpas brief / tono / užduoties patikrinimas.  | M2 sk. 51, M5 sk. 510                  |
+| `preCopyCheckBlock`     | Patikra prieš kopijuojamą promptą.              | M5 sk. 47                              |
+| `correctPromptPractice` | Blogo prompto taisymas į gerą.                  | M4 sk. 49, M6 sk. 68                   |
+| `recognitionExercise`   | Atpažinimo pratimas su pasirinkimais.           | M4 sk. 39.5, M13 sk. 13.34             |
+| `interactivePipeline`   | Interaktyvus proceso / pipeline pasirinkimas.   | M4 sk. 45                              |
+| `instructGptQuality`    | Tyrimo įrodymo ir kokybės principų mikroblokas. | M4 sk. 44                              |
+| `toolChoiceBar`         | Įrankio pasirinkimas pagal užduotį.             | M4 sk. 53 (`sections[].toolChoiceBar`) |
+
+**Modulių tipų taisyklės:**
+
+- **Learn moduliai** (pvz. M4, M7, M10, M13): stebėti ritmą, kad teorija nebūtų ilga be veiksmo.
+- **Test moduliai** (pvz. M2, M5, M8, M11, M14): prieš testą galima dėti nevertinamą savitikrą; realūs `scenario` klausimai turi aiškų `scenarioContext`.
+- **Practice moduliai** (pvz. M3, M6, M9, M12, M15): `path-step` tinka tarp darbo etapų, o micro-check – prieš kopijuojamą promptą ar rezultatų taisymą.
+
+**DoD prieš uždarant naują interaktyvumo pakeitimą:**
+
+- `npm run audit:slide-interactivity` praeina be įspėjimų.
+- Jei keistas M1–6 turinys – paleistas `npm run generate:core-data`.
+- Jei keistas M7–9 EN overlay – patikrintas `scripts/m7-m9-en-manifest.mjs` manifestas, kai naujas slide ID patenka į lean build.
+- Jei keistas M10+ turinys – praeina atitinkamas EN auditas (`audit:m1012` arba `audit:m1315`).
+- Footeriai naudoja 1-based skaidrės numerį, ne slide `id` (§3.6).
+
+**Nuorodos:** Planas ir metrikos – `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`; M4 pattern katalogas – `docs/MODULIO_4_SKAIDRIU_EILES.md`; informacinis katalogas – `npm run audit:embed-catalog`.
 
 ---
 

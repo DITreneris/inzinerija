@@ -1,0 +1,35 @@
+{
+  "title": "Module 4 handout. Context, sources, and checks.",
+  "subtitle": "RAG, deep research, tokens, hallucinations, and neutral prompts in one worksheet.",
+  "coreTopics": [
+    {
+      "title": "1. RAG: answer from sources",
+      "meaning": "When you need facts, give AI documents, data, or official sources and ask it to cite what it uses."
+    },
+    {
+      "title": "2. Deep research: split the question into stages",
+      "meaning": "Turn a large topic into 2–4 smaller questions: search, compare, synthesize, and conclude."
+    },
+    {
+      "title": "3. Tokens and context window",
+      "meaning": "AI can only see a limited amount of text, so shorten long material, split it, and repeat the most important context."
+    },
+    {
+      "title": "4. Hallucinations: check before you trust",
+      "meaning": "If there is no source, date, or clear basis, treat the answer as a draft and verify it before use."
+    },
+    {
+      "title": "5. Prompt manipulation: avoid leading questions",
+      "meaning": "Do not ask in a way that only confirms your view; ask for arguments for, against, and what is unclear."
+    }
+  ],
+  "checklist": [
+    "Does the answer include a source or clearly say that no source is available?",
+    "Is the date, period, or document version visible?",
+    "Did AI get enough context so it does not guess?",
+    "Is the prompt not leading toward one desired answer?",
+    "For long text, did you add a summary or clear sections?"
+  ],
+  "starterPrompt": "META: You are my source and reliability checker.\nINPUT: I will paste an AI answer or my prompt below: [paste text].\nOUTPUT: Check 5 things: (1) whether there are sources, (2) whether the date / version is clear, (3) where there may be a guess, (4) whether the question is leading, (5) what to fix before using it at work.\nQUALITY: If something cannot be checked, clearly write \"I don't know\" and suggest which source is needed.",
+  "footerText": "Prompt Anatomy – prompt structure training. © Course material."
+}

@@ -44,15 +44,16 @@
 
 ## Modulis 15 (praktika) – skaidrių eilė
 
-| Eilė (UI 1…N) | ID     | Skaidrė / tipas   | Kodėl čia?                                                                                                                                            |
-| ------------- | ------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1             | 150    | practice-intro    | whyBenefit, duration ~20 min quick / ~60–90 min full, `minScenariosToComplete: 1`, firstActionCTA, `recommendedSlideIds` (įskaitant 150.5 ir 150.25). |
-| 2             | 150.5  | practice-scenario | **Greitas startas:** vienas hero vaizdas + promptas + trumpas brief. Tai privalomas minimumas M15 užbaigimui.                                         |
-| 3             | 150.25 | content-block     | Projekto ciklas (quick + optional full path) – schema `m15_practice_loop`. Footer: „Toliau – skaidrė 4“ → 151.                                        |
-| 4             | 151    | practice-scenario | Pilno kelio scenarijus 1: Hero vaizdas / keyframe – stilius, proporcijos, promptas.                                                                   |
-| 5             | 152    | practice-scenario | Pilno kelio scenarijus 2: Trumpas vaizdo įrašas iš 151 keyframe – scenarijus, formatas.                                                               |
-| 6             | 153    | practice-scenario | Pilno kelio scenarijus 3: Muzikos fragmentas – nuotaika, stilius, naudojimo teisės.                                                                   |
-| 7             | 158    | summary           | 5 blokų santrauka (`SummarySlide`): quick/full rezultatas, checklist, kortelės (vaizdas / video / muzika / kitas žingsnis), refleksijos promptas.     |
+| Eilė (UI 1…N) | ID         | Skaidrė / tipas   | Kodėl čia?                                                                                                                                                  |
+| ------------- | ---------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1             | 150        | practice-intro    | whyBenefit, duration ~20 min quick / ~60–90 min full, `minScenariosToComplete: 1`, firstActionCTA, `recommendedSlideIds` (įskaitant 150.5 ir 150.25).       |
+| 2             | 150.5      | practice-scenario | **Greitas startas:** vienas hero vaizdas + promptas + trumpas brief. Tai privalomas minimumas M15 užbaigimui.                                               |
+| 3             | 150.25     | content-block     | Projekto ciklas (quick + optional full path) – schema `m15_practice_loop`. Footer → 150.26.                                                                 |
+| 4             | **150.26** | path-step         | **NAUJA (UX-2.3, 2026-07-08):** Kontrolinis taškas „projekto kelias“ – patvirtink quick vs full kelią prieš scenarijus. Footer: „Toliau – skaidrė 5“ → 151. |
+| 5             | 151        | practice-scenario | Pilno kelio scenarijus 1: Hero vaizdas / keyframe – stilius, proporcijos, promptas.                                                                         |
+| 6             | 152        | practice-scenario | Pilno kelio scenarijus 2: Trumpas vaizdo įrašas iš 151 keyframe – scenarijus, formatas.                                                                     |
+| 7             | 153        | practice-scenario | Pilno kelio scenarijus 3: Muzikos fragmentas – nuotaika, stilius, naudojimo teisės.                                                                         |
+| 8             | 158        | summary           | 5 blokų santrauka (`SummarySlide`): quick/full rezultatas, checklist, kortelės (vaizdas / video / muzika / kitas žingsnis), refleksijos promptas.           |
 
 ---
 

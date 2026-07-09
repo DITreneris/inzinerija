@@ -1349,6 +1349,17 @@
           "type": "content-block",
           "content": {
             "whyBenefit": "Įveikei žinių patikrinimą – štai premija: įgūdis, kurį turi mažai kas. Tonas, stilius, auditorija – vienu sakiniu, nuspėjamu rezultatu.",
+            "briefCheckBlock": {
+              "question": "Kuris tono ir stiliaus nurodymas geriausiai tinka formaliai sutarčiai?",
+              "options": [
+                "Teisinis tonas, formalus stilius, aiškūs punktai: šalys, objektas, kaina, terminai",
+                "Draugiškas tonas, daug emocijų ir įkvepianti istorija",
+                "Kuo trumpiau, be punktų ir be auditorijos",
+                "Humoristinis tonas, kad tekstas būtų lengvesnis"
+              ],
+              "correct": 0,
+              "explanation": "Formali sutartis reikalauja aiškaus teisinio tono, struktūros ir konkrečių punktų. Vien „parašyk gražiai“ nepasako nei formato, nei kokybės kriterijų."
+            },
             "sections": [
               {
                 "heading": "Kas padarys tavo promptus išskirtinius",
@@ -1408,43 +1419,19 @@
             "sections": [
               {
                 "heading": "1. Įvairių stilių ir formatų tekstų kūrimas",
-                "body": "Oficialus kvietimas, formali sutartis, entuziastingas skelbimas – trys skirtingi stiliai. Nukopijuok ir pritaikyk.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Oficialus kvietimas",
-                "body": "*(oficialus / formalus stilius)*",
-                "copyable": "META: Tu esi verslo komunikacijos specialistas. Tikslas – parengti kvietimą.\nINPUT: Renginys – [tavo verslo renginys]. Data – [kitas mėnuo]. Auditorija – partneriai ir klientai.\nOUTPUT: Oficialus kvietimo tekstas, 1 puslapis, formalus tonas."
-              },
-              {
-                "heading": "Formali sutartis",
-                "body": "*(formalus / teisinis stilius)*",
-                "copyable": "META: Tu esi teisės specialistas. Tikslas – parengti sutarties projektą.\nINPUT: Produktas – [įrašyk produktą]. Šalys – pardavėjas ir klientas. Apribojimai – 1–2 puslapiai.\nOUTPUT: Formali sutartis su punktais: šalys, objektas, kaina, terminai. Teisinis tonas."
-              },
-              {
-                "heading": "Darbuotojo skelbimas",
-                "body": "*(entuziastingas / įtraukiantis stilius)*",
-                "copyable": "META: Tu esi personalo specialistas. Tikslas – pritraukti kandidatus.\nINPUT: Pozicija – [įrašyk poziciją]. Įmonė – [įrašyk įmonę]. Privalumai – lankstus grafikas, komanda.\nOUTPUT: Darbo skelbimas, 150–200 žodžių, entuziastingas ir įtraukiantis tonas."
+                "body": "Oficialus kvietimas, formali sutartis, entuziastingas skelbimas – trys skirtingi stiliai. Išskleisk, nukopijuok vieną rinkinį ir pritaikyk.",
+                "copyable": "OFICIALUS KVIETIMAS\nMETA: Tu esi verslo komunikacijos specialistas. Tikslas – parengti kvietimą.\nINPUT: Renginys – [tavo verslo renginys]. Data – [kitas mėnuo]. Auditorija – partneriai ir klientai.\nOUTPUT: Oficialus kvietimo tekstas, 1 puslapis, formalus tonas.\n\nFORMALI SUTARTIS\nMETA: Tu esi teisės specialistas. Tikslas – parengti sutarties projektą.\nINPUT: Produktas – [įrašyk produktą]. Šalys – pardavėjas ir klientas. Apribojimai – 1–2 puslapiai.\nOUTPUT: Formali sutartis su punktais: šalys, objektas, kaina, terminai. Teisinis tonas.\n\nDARBUOTOJO SKELBIMAS\nMETA: Tu esi personalo specialistas. Tikslas – pritraukti kandidatus.\nINPUT: Pozicija – [įrašyk poziciją]. Įmonė – [įrašyk įmonę]. Privalumai – lankstus grafikas, komanda.\nOUTPUT: Darbo skelbimas, 150–200 žodžių, entuziastingas ir įtraukiantis tonas.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "2. Atsakymai į klientų el. laiškus",
-                "body": "Mandagus, profesionalus, pagarbus – trys skirtingos tonacijos. Nukopijuok ir pritaikyk.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Atsiprašomas atsakymas",
-                "body": "*(mandagus, atsiprašantis, problemų sprendimas)*",
-                "copyable": "META: Tu esi klientų aptarnavimo specialistas. Tikslas – išlaikyti klientą.\nINPUT: Situacija – klientas skundžiasi dėl pavėluoto pristatymo. Tonas – mandagus, atsiprašantis.\nOUTPUT: El. laiško atsakymas, 80–120 žodžių, su konkrečiu sprendimu ir atsiprašymu."
-              },
-              {
-                "heading": "Informacinis atsakymas",
-                "body": "*(profesionalus, informatyvus)*",
-                "copyable": "META: Tu esi pardavimų vadybininkas. Tikslas – pateikti informaciją ir paskatinti pirkti.\nINPUT: Klientas klausia apie paslaugų kainas ir nuolaidas. Paslaugos – [įrašyk paslaugas].\nOUTPUT: Profesionalus atsakymas, 100–150 žodžių, su kainų struktūra ir kvietimu susisiekti."
-              },
-              {
-                "heading": "Grąžinimo politika",
-                "body": "*(pagarbas, aiškiai aprašanti politiką)*",
-                "copyable": "META: Tu esi e-komercijos klientų aptarnavimo specialistas. Tikslas – aiškiai paaiškinti politiką.\nINPUT: Klientas domisi grąžinimo politika. Parduotuvė – [įrašyk parduotuvę]. Terminas – 14 dienų.\nOUTPUT: Pagarbas atsakymas, 80–120 žodžių, su grąžinimo žingsniais ir sąlygomis."
+                "body": "Mandagus, profesionalus, pagarbus – trys skirtingos tonacijos. Išskleisk ir pasirink situaciją.",
+                "copyable": "ATSIPRAŠOMAS ATSAKYMAS\nMETA: Tu esi klientų aptarnavimo specialistas. Tikslas – išlaikyti klientą.\nINPUT: Situacija – klientas skundžiasi dėl pavėluoto pristatymo. Tonas – mandagus, atsiprašantis.\nOUTPUT: El. laiško atsakymas, 80–120 žodžių, su konkrečiu sprendimu ir atsiprašymu.\n\nINFORMACINIS ATSAKYMAS\nMETA: Tu esi pardavimų vadybininkas. Tikslas – pateikti informaciją ir paskatinti pirkti.\nINPUT: Klientas klausia apie paslaugų kainas ir nuolaidas. Paslaugos – [įrašyk paslaugas].\nOUTPUT: Profesionalus atsakymas, 100–150 žodžių, su kainų struktūra ir kvietimu susisiekti.\n\nGRĄŽINIMO POLITIKA\nMETA: Tu esi e-komercijos klientų aptarnavimo specialistas. Tikslas – aiškiai paaiškinti politiką.\nINPUT: Klientas domisi grąžinimo politika. Parduotuvė – [įrašyk parduotuvę]. Terminas – 14 dienų.\nOUTPUT: Pagarbus atsakymas, 80–120 žodžių, su grąžinimo žingsniais ir sąlygomis.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Pritaikyk savo verslui",
@@ -5470,7 +5457,7 @@
               },
               {
                 "heading": "4. Parsisiųsti Modulio 4 santrauką (PDF)",
-                "body": "Jei įjungta – parsisiųsk modulio santraukos PDF į savo įrenginį.",
+                "body": "Baigęs modulį, užbaigimo ekrane parsisiųsk Modulio 4 atmintinę: RAG, gilusis tyrimas, tokenai, haliucinacijos ir patikros checklist.",
                 "blockVariant": "terms"
               }
             ],
@@ -6188,6 +6175,14 @@
                 "blockVariant": "terms"
               }
             ],
+            "correctPromptPractice": {
+              "intro": "Praktika: toliau pateiktas HTML prompto variantas pažeidžia 6 blokų sistemą. Atpažink, kurių blokų trūksta, ir perrašyk – arba paspausk „Parodyti sprendimą“ ir palygink.",
+              "badPrompt": "„Padaryk man gražų tinklalapį apie sporto klubą su visais dalykais, kad atrodytų profesionaliai ir būtų viskas ko reikia.“",
+              "revealButtonLabel": "Parodyti sprendimą",
+              "solutionAnalysis": "1) **META** – nėra rolės ir tikslo (kas kuria, koks rezultatas). 2) **OUTPUT** – neaiškus formatas (ar vienas .html failas su CSS? be komentarų?). 3) **REASONING** – nėra sekcijų sekos (pristatymas → turinys → kontaktai/CTA). 4) **QUALITY** – „gražu“ ir „profesionaliai“ yra abstrakcijos, ne mobilus/skaitomas/validus kodas. 5) **ADVANCED** – nenurodyta „tik validus HTML+CSS, be markdown“.",
+              "solutionCopyable": "META: Tavo rolė – patyręs front-end programuotojas ir UX/UI dizaineris. Tikslas – vieno puslapio .html tinklalapis sporto klubui.\nINPUT: Turinys – klubo pristatymas, treniruotės, kontaktai. CTA – lankytojas užpildo kontaktinę formą.\nOUTPUT: Pilnas HTML su įterptu CSS viename faile, be komentarų.\nREASONING: 1) Pristatymo blokas, 2) Treniruočių sekcija, 3) Kontaktai ir forma – logiška seka.\nQUALITY: Tonas modernus, aiškus, draugiškas; mobilus, lengvai skaitomas.\nADVANCED: Tik validus HTML+CSS kodas, be markdown žymų.",
+              "solutionSummary": "Aiški rolė ir tikslas (META), konkretus formatas (OUTPUT – vienas .html failas), logiška sekcijų seka (REASONING), matuojama kokybė (QUALITY – mobilus, skaitomas) ir tikslus techninis apribojimas (ADVANCED). Gali šį variantą nukopijuoti ir paleisti."
+            },
             "footer": "Toliau – skaidrė 6: SUPER PROMPTAI"
           }
         },
@@ -9344,6 +9339,52 @@
           }
         },
         {
+          "id": 80.5,
+          "title": "Pasiruošimo savitikra",
+          "subtitle": "3 klausimai apie pipeline, MASTER PROMPTĄ ir analizės tipus – nevertinama",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m8-warm-1",
+                "question": "Kiek žingsnių turi duomenų analizės pipeline?",
+                "options": [
+                  "6 žingsniai: rinkimas, paruošimas, EDA, modeliai, vizualizacija, publikavimas",
+                  "3 žingsniai: surink, analizuok, pateik",
+                  "8 žingsniai – tiek pat, kiek MASTER PROMPTAS",
+                  "4 žingsniai: klausimas, duomenys, grafikas, išvada"
+                ],
+                "correct": 0,
+                "explanation": "Pipeline turi 6 žingsnius (rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas). MASTER PROMPTAS – atskiras 8 žingsnių šablonas. Jei klaidingai – žr. Modulio 7 skaidrę „Duomenų analizės pipeline“ (73)."
+              },
+              {
+                "id": "m8-warm-2",
+                "question": "Kiek žingsnių turi MASTER PROMPTAS pilnai duomenų analizei?",
+                "options": [
+                  "8 žingsniai: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos",
+                  "6 žingsniai – tiek pat, kiek pipeline",
+                  "3 žingsniai: rolė, užduotis, formatas",
+                  "5 žingsniai: META, INPUT, OUTPUT, REASONING, QUALITY"
+                ],
+                "correct": 0,
+                "explanation": "MASTER PROMPTAS – 8 žingsnių pilnas šablonas, platesnis nei vienas pipeline etapas. Jei klaidingai – žr. Modulio 7 skaidrę „MASTER PROMPTAS“ (74)."
+              },
+              {
+                "id": "m8-warm-3",
+                "question": "Vadovas klausia „Kodėl Q3 pardavimai krito?“ ir „Kaip veikti toliau?“ – kokie du analizės tipai atitinka?",
+                "options": [
+                  "Diagnostinė (Kodėl?) ir nurodomoji (Kaip veikti?)",
+                  "Abu – aprašomoji analizė (Kas įvyko?)",
+                  "Nuspėjamoji ir aprašomoji",
+                  "Abu – nurodomoji analizė"
+                ],
+                "correct": 0,
+                "explanation": "4 analizės tipai: aprašomoji (Kas įvyko?), diagnostinė (Kodėl?), nuspėjamoji (Kas gali įvykti?), nurodomoji (Kaip veikti?). Jei klaidingai – žr. Modulio 7 skaidrę „4 analizės tipai“ (731)."
+              }
+            ]
+          }
+        },
+        {
           "id": 81,
           "title": "Klausimai",
           "subtitle": "Pipeline, BI schema, MASTER PROMPTAS",
@@ -11655,9 +11696,10 @@
           "testQuestions": [
             {
               "id": "m11-q1",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "Situacija: DI agentas pateikia užtikrintą atsakymą, bet nenurodo šaltinių, nors užduotyje reikėjo naujausių faktų. Ką pirmiausia verta pataisyti?",
+              "scenarioContext": "DI agentas pateikia užtikrintą atsakymą, bet nenurodo šaltinių, nors užduotyje reikėjo naujausių faktų.",
+              "question": "Ką pirmiausia verta pataisyti?",
               "options": [
                 "Aiškiai nurodyti įrankį ir taisyklę: naudok paiešką, pateik šaltinius, jei nerandi – parašyk „Nerasta“",
                 "Padidinti atsakymo ilgį iki 2000 žodžių",
@@ -11726,9 +11768,10 @@
             },
             {
               "id": "m11-q6",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "Situacija: gaunate RFP dokumentą ir norite: tyrėjas surinktų faktus, rašytojas paruoštų santrauką, vertintojas patikrintų kriterijus. Kuris workflow šablonas geriausiai tinka?",
+              "scenarioContext": "Gaunate RFP dokumentą ir norite: tyrėjas surinktų faktus, rašytojas paruoštų santrauką, vertintojas patikrintų kriterijus.",
+              "question": "Kuris workflow šablonas geriausiai tinka?",
               "options": [
                 "Koordinatorius + specialistai (arba grandinė su rolėmis)",
                 "Tik vienas promptas be rolės",
@@ -11756,9 +11799,10 @@
             },
             {
               "id": "m11-q8",
-              "type": "mcq",
+              "type": "scenario",
               "bloomLevel": 3,
-              "question": "Situacija: gauni ilgą skundą el. paštu. Nori, kad DI trumpai santrauktų esmę, bet galutinį atsakymą klientui parašyti ir išsiųsti tik tu, peržiūręs tekstą. Kuris variantas geriausiai atitinka Augment (15 %) kryptį?",
+              "scenarioContext": "Gauni ilgą skundą el. paštu. Nori, kad DI trumpai santrauktų esmę, bet galutinį atsakymą klientui parašyti ir išsiųsti tik tu, peržiūrėjęs tekstą.",
+              "question": "Kuris variantas geriausiai atitinka Augment (15 %) kryptį?",
               "options": [
                 "Srautas: laiškas → DI santrauka → tu peržiūri / taisai → tik tada siuntimas klientui",
                 "DI automatiškai atsako klientui be tavo žingsnio",
@@ -11919,7 +11963,37 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 4: 1 praktika Automatize"
+            "footer": "Toliau – skaidrė 4: Kontrolinis taškas: multi-agent schema"
+          }
+        },
+        {
+          "id": 120.55,
+          "title": "Kontrolinis taškas: multi-agent schema",
+          "shortTitle": "Kontrolinis taškas",
+          "subtitle": "Agentų praktikos kelias – patikrink schemą prieš praktiką",
+          "type": "path-step",
+          "content": {
+            "title": "Ar supranti kelių agentų schemą?",
+            "pathLabel": "Agentų praktikos kelias",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Prieš pradedant 3A praktikas greitai pasitikrink, ar supranti darbo padalinimą. Pažymėk atlikta, kai gali įvardyti, kuris vaidmuo ką daro ir kur reikia žmogaus patvirtinimo.",
+            "sections": [
+              {
+                "heading": "Ką patikrinti",
+                "body": "Ar gali įvardyti grandinę: **Įvestis → Koordinatorius → 2 specialistai → Vertintojas → Išvestis**? Ar žinai, kuriame taške įsijungia **žmogaus patvirtinimo vartas**?"
+              },
+              {
+                "heading": "Mini bandymas (1 min)",
+                "body": "Nukopijuok promptą ir paleisk vieną koordinatoriaus + specialisto porą savo temai.",
+                "copyable": "Tu esi koordinatorius. Užduotis: [APRAŠYK]. 1) Suskaidyk į 2 dalis. 2) Kiekvienai daliai parašyk atskirą specialisto promptą. 3) Nurodyk, kaip specialistas perduoda rezultatą vertintojui (formatas). 4) Pridėk vieną žmogaus patvirtinimo tašką prieš galutinę išvestį."
+              },
+              {
+                "heading": "Jei neaišku",
+                "body": "Grįžk į ankstesnę skaidrę „Verslo kelių agentų schema“ (120.5) ir dar kartą peržiūrėk perdavimo taisyklę."
+              }
+            ],
+            "footer": "Toliau – skaidrė 5: 1 praktika Automatize"
           }
         },
         {
@@ -13253,8 +13327,9 @@
             },
             {
               "id": "m14-q5",
-              "type": "mcq",
-              "question": "Ką svarbu įvertinti prieš naudojant DI sukurtą veidą ar balsą viešoje kampanijoje?",
+              "type": "scenario",
+              "scenarioContext": "Planuoji viešą kampaniją, kurioje DI sukurtas veidas arba balsas atrodys kaip realus žmogus.",
+              "question": "Ką svarbu įvertinti prieš publikavimą?",
               "options": [
                 "Tik vaizdo ryškumą",
                 "Sutikimą, autorių teises ir deepfake riziką – žr. skaidrę Verslas ir rizikos",
@@ -13414,7 +13489,36 @@
                 "imageAlt": "Turinio projekto ciklas: greitas kelias ir pilnas mini kampanijos kelias"
               }
             ],
-            "footer": "Toliau – skaidrė 4: Scenarijus: Vaizdas"
+            "footer": "Toliau – skaidrė 4: Kontrolinis taškas: projekto kelias"
+          }
+        },
+        {
+          "id": 150.26,
+          "title": "Kontrolinis taškas: projekto kelias",
+          "shortTitle": "Kontrolinis taškas",
+          "subtitle": "Turinio kelias – patvirtink kelią prieš scenarijus",
+          "type": "path-step",
+          "content": {
+            "title": "Ar aiškus tavo projekto kelias?",
+            "pathLabel": "Turinio projekto kelias",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Prieš pradedant scenarijus pasitikrink, kurį kelią renkiesi. Pažymėk atlikta, kai gali įvardyti savo pirmą artefaktą ir kitą žingsnį.",
+            "sections": [
+              {
+                "heading": "Greitas kelias (privalomas)",
+                "body": "Vienas **hero vaizdas** su naudotu promptu ir 2 eilučių brief. To pakanka M15 užbaigti (skaidrė 150.5)."
+              },
+              {
+                "heading": "Pilnas kelias (neprivalomas)",
+                "body": "Hero vaizdas → **video** iš to vaizdo → foninė **muzika** → QA checklist. Mini kampanijos paketas (skaidrės 151–153)."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Kurį kelią renkiesi šiandien – greitą ar pilną? Koks bus tavo pirmas artefaktas?"
+              }
+            ],
+            "footer": "Toliau – skaidrė 5: Scenarijus: Vaizdas"
           }
         },
         {

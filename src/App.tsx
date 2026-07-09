@@ -514,6 +514,7 @@ function App() {
                   onModuleSelect={handleModuleSelect}
                   onGoToQuiz={() => setCurrentPage('quiz')}
                   progress={progress}
+                  onRequestCertificate={handleRequestCertificate}
                 />
               )}
               {currentPage === 'module' &&

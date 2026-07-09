@@ -992,16 +992,17 @@
             },
             {
               "id": "m14-q5",
-              "type": "mcq",
-              "question": "What should you check before using an AI-made face or voice in a public campaign?",
+              "type": "scenario",
+              "scenarioContext": "You are planning a public campaign where an AI-made face or voice looks or sounds like a real person.",
+              "question": "What should you check before publishing?",
               "options": [
-                "Only one narrow detail",
+                "Only image sharpness",
                 "Consent, rights and deepfake risk",
-                "Only one narrow detail",
-                "Only one narrow detail"
+                "Only the color palette",
+                "Only the social media algorithm"
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "Faces and voices in public campaigns raise ethics and legal questions: consent, likeness rights, tool rules and deepfake risk.",
               "relatedSlideId": 13.101
             },
             {
@@ -1021,31 +1022,31 @@
             {
               "id": "m14-q7",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
+              "scenarioContext": "Your goal is a conversion ad for Instagram Stories. You need a hero image with a clear product and space for a headline.",
               "question": "Which prompt best fits this situation?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "A vertical 9:16 product hero image with brand colors and space for a headline",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Create a beautiful image that catches people's attention.",
+                "Create a vertical 9:16 product hero image: [product] in the foreground, clean background, brand colors [X], space for a headline at the top, clear call-to-action area at the bottom, no random text inside the image.",
+                "Create any 1:1 image with many details and a lot of text.",
+                "Create an artistic image without the product; only the mood matters."
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "A conversion visual needs a clear format, product, brand rules and space for text. Pure emotion or abstract beauty fits awareness better.",
               "relatedSlideId": 13.1
             },
             {
               "id": "m14-q8",
               "type": "scenario",
-              "scenarioContext": "Read the situation and choose the best next step.",
+              "scenarioContext": "You want a short 5–8 second clip that keeps the same product look and colors as the campaign hero visual.",
               "question": "What is the safest workflow here?",
               "options": [
-                "A clear, specific option based on goal, format and checks",
-                "Generate a hero image first, then use it in an image-to-video tool",
-                "A clear, specific option based on goal, format and checks",
-                "A clear, specific option based on goal, format and checks"
+                "Write only a broad text-to-video prompt and hope the style matches.",
+                "Generate the hero image / keyframe first, then use it in an image-to-video tool and ask it to keep the same style and colors.",
+                "Start from the music and create the video without a script.",
+                "Generate a 1-minute video with one prompt, because longer is always better."
               ],
               "correct": 1,
-              "explanation": "The best answer uses a clear goal, context, format and quality check.",
+              "explanation": "The image → video chain helps preserve the same style, object and colors. A long video in one prompt is safer as short, clear scenes.",
               "relatedSlideId": 13.4
             }
           ]
@@ -1154,6 +1155,35 @@
               }
             ],
             "footer": "Next slide"
+          }
+        },
+        {
+          "id": 150.26,
+          "title": "Checkpoint: project path",
+          "shortTitle": "Checkpoint",
+          "subtitle": "Content path – confirm your path before the scenarios",
+          "type": "path-step",
+          "content": {
+            "title": "Is your project path clear?",
+            "pathLabel": "Content project path",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Before starting the scenarios, check which path you choose. Mark done when you can name your first artefact and next step.",
+            "sections": [
+              {
+                "heading": "Quick path (required)",
+                "body": "One **hero image** with the prompt you used and a 2-line brief. That is enough to complete M15 (slide 150.5)."
+              },
+              {
+                "heading": "Full path (optional)",
+                "body": "Hero image -> **video** from it -> background **music** -> QA checklist. A mini campaign package (slides 151-153)."
+              },
+              {
+                "heading": "Check",
+                "body": "Which path do you choose today – quick or full? What will your first artefact be?"
+              }
+            ],
+            "footer": "Next – slide 5: Scenario: Hero image"
           }
         },
         {

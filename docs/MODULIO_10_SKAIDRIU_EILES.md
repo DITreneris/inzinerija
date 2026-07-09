@@ -54,10 +54,11 @@
 | ------------- | ------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | 1             | 120                 | practice-intro                    | whyBenefit; startas su promptais 124.5; pilnas pristatymo kelias – 3 lab'ai.                                                 |
 | 2             | 120.25              | content-block                     | Trys praktikos (3A) – schema `m12_three_labs`. Footer → 120.5.                                                               |
-| 3             | 120.5               | content-block                     | **Privaloma:** Verslo multi-agent schema (ne meta AGENTS.md). Footer → 121.                                                  |
-| 4–6           | 121–123             | practice-scenario                 | MUST lab'ai: Automatize, Augment (+ vertintojo promptas), Autonomize (+ rolės etiketės).                                     |
-| 7–9           | 124, **124.5**, 125 | practice-scenario + content-block | SHOULD: 2 scenarijai + 1 sujungta M10 pakartojimo skaidrė; **124.5 Koordinatorius + 2 specialistai** – startas su promptais. |
-| 10            | 128                 | summary                           | 5 blokų santrauka.                                                                                                           |
+| 3             | 120.5               | content-block                     | **Privaloma:** Verslo multi-agent schema (ne meta AGENTS.md). Footer → 120.55.                                               |
+| 4             | **120.55**          | path-step                         | **NAUJA (UX-2.2, 2026-07-08):** Kontrolinis taškas „multi-agent schema“ – formative check prieš 3A praktikas. Footer → 121.  |
+| 5–7           | 121–123             | practice-scenario                 | MUST lab'ai: Automatize, Augment (+ vertintojo promptas), Autonomize (+ rolės etiketės).                                     |
+| 8–10          | 124, **124.5**, 125 | practice-scenario + content-block | SHOULD: 2 scenarijai + 1 sujungta M10 pakartojimo skaidrė; **124.5 Koordinatorius + 2 specialistai** – startas su promptais. |
+| 11            | 128                 | summary                           | 5 blokų santrauka.                                                                                                           |
 
 ---
 

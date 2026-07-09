@@ -33,7 +33,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); **EN overlay** `modules-en-m7-m9.json` (branduolys + šakos + M8 testas + M9 scenarijai).
 - **Moduliai 10–12:** Turinys full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`.
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M9 ir M10–M12 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
-- **Sertifikatai, PDF atmintinės (M5/M6), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
+- **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikato tier 3 po M7–9 + M8 testas ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
 - **Testai:** 60 failų, 410 testų (2026-07-07). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis; release **1.4.3** (2026-07-07). Marketing env: žr. [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md) (MON-8); vykdymo planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
@@ -46,17 +46,25 @@ _Įrašai po 1.4.3 release._
 
 ### Added
 
+- **PDF / handout / sertifikatų P1 registry:** pridėtas `completionArtifacts.json` registry su schema ir guard testu, 5 handout content JSON schemos prijungtos prie `validate:schema`, o `downloadHandout.ts` centralizuoja M1/M4/M5/M6/M7–9 atmintinių atsisiuntimą, analytics ir klaidų log'inimą.
+- **M4 PDF atmintinė ir „Mano medžiaga“:** pridėta Modulio 4 value-only PDF atmintinė (`m4HandoutContent*.json`, `m4HandoutPdf.ts`) su RAG, giliojo tyrimo, tokenų, haliucinacijų ir patikros checklist santrauka; Modulio 4 užbaigimo ekranas rodo atsisiuntimo mygtuką, o `ModulesPage` gavo „Mano medžiaga“ bloką pakartotiniam M1/M4/M5/M6/M7–9 atmintinių ir uždirbtų sertifikatų atsisiuntimui.
+- **UX Banga 4 (etalonų dokumentacija ir EN sync) užbaigta:** `GOLDEN_STANDARD.md` papildytas §3.8 „Modulio interaktyvumo ritmas“, `MODULIO_4_SKAIDRIU_EILES.md` gavo M4 pattern katalogą, pridėtas `UX_BANGA_1_2_EN_SYNC.md` su Banga 1–2 EN overlay sign-off, o `audit:slide-interactivity` papildytas informaciniu `--embed-catalog` režimu (`npm run audit:embed-catalog`).
+- **UX Banga 3 (M1/M2/M11/M14) užbaigta:** M1 micro-win patvirtintas (`path-step` 1.1 + `warm-up-quiz` 16.5), M2 bonus skaidrės 51–52 sutrauktos mobile UX (sk.51 `briefCheckBlock`, sk.52 dvi collapsible copy grupės), M11/M14 testuose pasiektas ≥30 % scenario klausimų share (M11 3/9, M14 3/8). Pridėtas `audit:test-scenario-share` gate ir M14 data-contract testas.
+- **UX Banga 2 (M5/M6/M8/M12/M15) užbaigta:** pridėti formative check'ai per esamus skaidrių tipus (be naujo React kodo). **M8** – `warm-up-quiz` 80.5 (3 klausimai: pipeline / MASTER / analizės tipai; remediation → M7 73/74/731). **M12** – `path-step` 120.55 „Kontrolinis taškas: multi-agent schema“ po 120.5, prieš 3A praktikas. **M15** – `path-step` 150.26 „Kontrolinis taškas: projekto kelias“ po 150.25, prieš scenarijus. **M6** – `correctPromptPractice` skaidrėje 68 (HTML 6 blokų prompto pataisymo praktika). Visi su LT/EN overlay; M6 sinchronizuotas su core M1–6/M1–9 profiliais. UX-2.4 patvirtinta kaip jau įgyvendinta (M5 warm-up 511). Interaktyvumo metrikos: warm-up 15, path-step 12, embedded 8.
 - **M6 UX-2.1 path-step:** pridėta skaidrė 65.5 „Duomenų tvarkymo checklist“ tarp Modulio 6 refleksijos ir Duomenų tvarkymo atmintinės; žingsnis atrakina „Promptų biblioteka“ ir „Promptų versijavimas“ terminus žodynėlyje.
 - **Design System hardening (DS v0.3 pilot):** `surfaceGlass` tokenai (`shell`/`panel`/`overlay`) AppNav, ModuleView ir TestPracticeSlides sticky sluoksniuose; `<Banner>` migracija ContentSlides, BlockSlides, TestPracticeSlides ir VaizdoGeneratoriusSlide; `<CTAButton>` / `<Card>` HomePage, ModulesPage, ModuleView; `SlideWorkspace` wrapper M4+M10 `content-block` pilotas; `getContentBlockVariantClasses()` ContentSlides; `audit:design-tokens:gate` (regresija vs 2026-07 baseline) ir `audit:module-identity` (M1–15 `accent` + `identityIcon`); GOLDEN_STANDARD §2.2 `emerald`/`violet` + §6 pilna modulių identiteto lentelė; diagramų P2 (M10ThreeAStrategy, M12ThreeLabs, M13AecFunnel).
 
 ### Changed
 
+- **Sertifikatų serial numeriai:** CertificateScreen dabar perduoda stabilų per-tier serial numerį iš localStorage, todėl pakartotinai atsisiųstas tas pats sertifikato tier rodo tą patį `PA-2026-...` numerį.
 - **DS Next Waves W7–W10:** `BlockSlides`, `TestPracticeSlides`, `AdvancedBlockSlide`, `ActionIntroSlide` ir `RecognitionExerciseBlock` callout'ai migruoti į `<Banner>`; `SlideWorkspace` išplėstas į M1/M7/M13 ir `evaluator-prompt-block`; TestPractice / shell CTA migruoti į `<CTAButton>`, o shell kortelės į `<Card>`; M13/M15 diagramų P2 paletės ir dark-mode polish; `audit:release-preflight` papildytas DS vartais, design-token baseline sumažintas iki 417 (`arbitraryClass` 59).
 - **Design tokens:** targeted arbitrary-class cleanup (`text-[11px]` → `text-xs` VaizdoGeneratoriusSlide); blockVariant sekcijos per bendrą helperį vietoj inline ternary.
 - **DS W6 QA closure:** sticky offset baseline sinchronizuotas (GlossaryPage, TestPracticeSlides); automated gates žali (lint, 416 testai, audit total 469, module-identity 15/15); TODO §1.0c W6–W10 planas.
 
 ### Fixed
 
+- **M11/M14 EN scenario polish:** M11 q9 ir M14 q7/q8 EN overlay tekstai pakeisti iš generic placeholder copy į konkrečias situacijas, kurios atitinka LT mokymosi ciklo, conversion hero vizualo ir image→video grandinės semantiką.
+- **M12 EN footer numeris (120.5):** ištaisytas pre-existing neatitikimas – EN overlay footer rodė „slide 5“ vietoj teisingos pozicijos; po `path-step` 120.55 įterpimo LT/EN footeriai perskaičiuoti ir `AUDIT_MODULES=12 audit-footer-numbers --locale=en` praeina.
 - **M7–M9 LT/EN locale maišymo apsauga:** `ModuleView` next CTA logika iškelta į `navLabel` helperį su EN fallback, pridėtas `audit:nav-labels` release gate, M9 praktikos CTA ir M8→M9 rezultatų mygtukai perkelti į i18n raktus; pataisyti M7 EN reliability bloko footer numeriai.
 - **M7 intro-action-pie closure:** skaidrė 70.5 dabar slepia M4 segmentams skirtus „Generuok patarimus sau“ / „Eksportuok PDF“ veiksmus ir naudoja „Profilių pasiskirstymas“ grafiko antraštę; M7 branduolio dokumentacija atnaujinta iki 34 skaidrių.
 

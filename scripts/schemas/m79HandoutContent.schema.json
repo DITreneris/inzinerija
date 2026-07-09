@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "m79HandoutContent.json / m79HandoutContent-en.json",
+  "type": "object",
+  "required": [
+    "title",
+    "subtitle",
+    "pipelineSteps",
+    "masterPromptSteps",
+    "workflowSteps",
+    "reflectionSummary",
+    "nextPageHeading",
+    "nextPageIntro",
+    "primaryCtaLabel",
+    "secondaryCtaLabels",
+    "websiteUrl",
+    "websiteCta",
+    "footerText"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "subtitle": { "type": "string", "minLength": 1 },
+    "pipelineSteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "masterPromptSteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "workflowSteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "reflectionSummary": { "type": "string", "minLength": 1 },
+    "nextPageHeading": { "type": "string", "minLength": 1 },
+    "nextPageIntro": { "type": "string", "minLength": 1 },
+    "primaryCtaLabel": { "type": "string", "minLength": 1 },
+    "secondaryCtaLabels": {
+      "type": "object",
+      "required": ["decide", "map"],
+      "additionalProperties": false,
+      "properties": {
+        "decide": { "type": "string", "minLength": 1 },
+        "map": { "type": "string", "minLength": 1 }
+      }
+    },
+    "websiteUrl": { "type": "string", "format": "uri" },
+    "websiteCta": { "type": "string", "minLength": 1 },
+    "footerText": { "type": "string", "minLength": 1 }
+  }
+}

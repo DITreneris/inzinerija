@@ -6,6 +6,8 @@
 import type { ModulesLocale } from './modulesLoader';
 import m1Lt from './m1HandoutContent.json';
 import m1En from './m1HandoutContent-en.json';
+import m4Lt from './m4HandoutContent.json';
+import m4En from './m4HandoutContent-en.json';
 import m5Lt from './m5HandoutContent.json';
 import m5En from './m5HandoutContent-en.json';
 import m6Lt from './m6HandoutContent.json';
@@ -25,6 +27,20 @@ export interface M1HandoutContent {
   firstWinChecklist: string[];
   starterPrompt: string;
   qualityCheck: string[];
+  footerText: string;
+}
+
+export interface M4HandoutCoreTopic {
+  title: string;
+  meaning: string;
+}
+
+export interface M4HandoutContent {
+  title: string;
+  subtitle: string;
+  coreTopics: M4HandoutCoreTopic[];
+  checklist: string[];
+  starterPrompt: string;
   footerText: string;
 }
 
@@ -78,6 +94,8 @@ export interface M79HandoutContent {
 
 const m1LtData = m1Lt as M1HandoutContent;
 const m1EnData = m1En as M1HandoutContent;
+const m4LtData = m4Lt as M4HandoutContent;
+const m4EnData = m4En as M4HandoutContent;
 const m5LtData = m5Lt as M5HandoutContent;
 const m5EnData = m5En as M5HandoutContent;
 const m6LtData = m6Lt as M6HandoutContent;
@@ -87,6 +105,10 @@ const m79EnData = m79En as M79HandoutContent;
 
 export function getM1HandoutContent(locale: ModulesLocale): M1HandoutContent {
   return locale === 'en' ? m1EnData : m1LtData;
+}
+
+export function getM4HandoutContent(locale: ModulesLocale): M4HandoutContent {
+  return locale === 'en' ? m4EnData : m4LtData;
 }
 
 export function getM5HandoutContent(locale: ModulesLocale): M5HandoutContent {

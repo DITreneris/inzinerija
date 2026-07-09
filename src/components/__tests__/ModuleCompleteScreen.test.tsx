@@ -5,6 +5,7 @@ import { ModuleCompleteScreen } from '../ModuleCompleteScreen';
 import type { Module } from '../../types/modules';
 import type { Progress } from '../../utils/progress';
 import { downloadM1HandoutPdf } from '../../utils/m1HandoutPdf';
+import { downloadM4HandoutPdf } from '../../utils/m4HandoutPdf';
 import { downloadM79HandoutPdf } from '../../utils/m79HandoutPdf';
 import { logError } from '../../utils/logger';
 
@@ -16,6 +17,10 @@ vi.mock('../../utils/accessTier', () => ({
 
 vi.mock('../../utils/m1HandoutPdf', () => ({
   downloadM1HandoutPdf: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock('../../utils/m4HandoutPdf', () => ({
+  downloadM4HandoutPdf: vi.fn().mockResolvedValue(undefined),
 }));
 
 vi.mock('../../utils/m6HandoutPdf', () => ({
@@ -115,6 +120,31 @@ describe('ModuleCompleteScreen', () => {
 
     await waitFor(() => {
       expect(downloadM1HandoutPdf).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('shows Module 4 handout button on module 4 completion', async () => {
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={allModules[3]}
+        moduleIndex={3}
+        totalModules={6}
+        modules={allModules}
+        progress={defaultProgress({ completedModules: [1, 2, 3, 4] })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+
+    const handoutButton = screen.getByRole('button', {
+      name: /Modulio 4 atmintinę/i,
+    });
+    fireEvent.click(handoutButton);
+
+    await waitFor(() => {
+      expect(downloadM4HandoutPdf).toHaveBeenCalledTimes(1);
     });
   });
 

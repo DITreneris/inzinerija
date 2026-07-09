@@ -168,7 +168,7 @@ describe('TestPracticeSlides M15 practice contract', () => {
 
   it('keeps the M15 quick start before the optional full path', () => {
     const ids = getM15Slides().map((slide) => slide.id);
-    expect(ids.slice(0, 6)).toEqual([150, 150.5, 150.25, 151, 152, 153]);
+    expect(ids.slice(0, 6)).toEqual([150, 150.5, 150.25, 150.26, 151, 152]);
 
     const quickStart = getM15Slides().find((slide) => slide.id === 150.5);
     expect(quickStart).toMatchObject({

@@ -1,0 +1,35 @@
+{
+  "title": "Modulio 4 atmintinė. Kontekstas, šaltiniai ir patikra.",
+  "subtitle": "RAG, gilusis tyrimas, tokenai, haliucinacijos ir neutralūs promptai viename darbo lape.",
+  "coreTopics": [
+    {
+      "title": "1. RAG: atsakymas iš šaltinių",
+      "meaning": "Kai reikia faktų, duok DI dokumentus, duomenis ar oficialius šaltinius ir paprašyk cituoti, kuo remiasi."
+    },
+    {
+      "title": "2. Gilusis tyrimas: klausimą skaidyk etapais",
+      "meaning": "Didelę temą paversk 2–4 mažesniais klausimais: paieška, palyginimas, sintezė ir išvada."
+    },
+    {
+      "title": "3. Tokenai ir konteksto langas",
+      "meaning": "DI mato tik ribotą teksto kiekį, todėl ilgą medžiagą trumpink, skaidyk ir pakartok svarbiausią kontekstą."
+    },
+    {
+      "title": "4. Haliucinacijos: tikrink, o ne tikėk",
+      "meaning": "Jei nėra šaltinio, datos ar aiškaus pagrindimo, laikyk atsakymą juodraščiu ir patikrink prieš naudodamas."
+    },
+    {
+      "title": "5. Promptų manipuliacijos: venk vedančių klausimų",
+      "meaning": "Neklausk taip, kad DI tik pritartų tavo nuomonei; prašyk argumentų už, prieš ir neaiškumų."
+    }
+  ],
+  "checklist": [
+    "Ar atsakyme yra šaltinis arba aiškiai nurodyta, kad šaltinio nėra?",
+    "Ar matoma data, laikotarpis arba dokumento versija?",
+    "Ar DI gavo pakankamai konteksto, kad nespėliotų?",
+    "Ar promptas nėra vedantis į vieną norimą atsakymą?",
+    "Ar ilgam tekstui pridėjai santrauką arba aiškius skyrius?"
+  ],
+  "starterPrompt": "META: Tu esi mano šaltinių ir patikimumo tikrintojas.\nINPUT: Žemiau įklijuosiu DI atsakymą arba savo promptą: [įklijuok tekstą].\nOUTPUT: Patikrink 5 dalykus: (1) ar yra šaltiniai, (2) ar aiški data / versija, (3) kur gali būti spėjimas, (4) ar klausimas nėra vedantis, (5) ką pataisyti prieš naudojant darbe.\nQUALITY: Jei ko nors neįmanoma patikrinti, aiškiai parašyk „nežinau“ ir pasiūlyk, kokio šaltinio reikia.",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

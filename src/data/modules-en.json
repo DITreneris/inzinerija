@@ -1349,6 +1349,17 @@
           "type": "content-block",
           "content": {
             "whyBenefit": "You passed the knowledge check – here's a bonus: a skill few have. Tone, style, audience – in one sentence, predictable result.",
+            "briefCheckBlock": {
+              "question": "Which tone and style instruction best fits a formal agreement?",
+              "options": [
+                "Legal tone, formal style, clear sections: parties, subject, price, terms",
+                "Friendly tone, lots of emotion and an inspiring story",
+                "As short as possible, without sections and without audience",
+                "Humorous tone so the text feels lighter"
+              ],
+              "correct": 0,
+              "explanation": "A formal agreement needs a clear legal tone, structure and concrete sections. Just saying “write nicely” does not define the format or quality criteria."
+            },
             "sections": [
               {
                 "heading": "What will make your prompts stand out",
@@ -1408,43 +1419,19 @@
             "sections": [
               {
                 "heading": "1. Creating texts in different styles and formats",
-                "body": "Official invitation, formal agreement, enthusiastic announcement – three different styles. Copy and adapt.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Official invitation",
-                "body": "(official / formal style)",
-                "copyable": "META: You are a business communications specialist. Goal – prepare an invitation.\nINPUT: Event – [your business event]. Date – [next month]. Audience – partners and clients.\nOUTPUT: Official invitation text, 1 page, formal tone."
-              },
-              {
-                "heading": "Formal agreement",
-                "body": "(formal / legal style)",
-                "copyable": "META: You are a legal specialist. Goal – draft an agreement.\nINPUT: Product – [enter product]. Parties – seller and client. Constraints – 1–2 pages.\nOUTPUT: Formal agreement with sections: parties, subject, price, terms. Legal tone."
-              },
-              {
-                "heading": "Job posting",
-                "body": "(enthusiastic / inclusive style)",
-                "copyable": "META: You are an HR specialist. Goal – attract candidates.\nINPUT: Position – [enter position]. Company – [enter company]. Benefits – flexible schedule, team.\nOUTPUT: Job posting, 150–200 words, enthusiastic and engaging tone."
+                "body": "Official invitation, formal agreement, enthusiastic announcement – three different styles. Expand, copy one set and adapt it.",
+                "copyable": "OFFICIAL INVITATION\nMETA: You are a business communications specialist. Goal – prepare an invitation.\nINPUT: Event – [your business event]. Date – [next month]. Audience – partners and clients.\nOUTPUT: Official invitation text, 1 page, formal tone.\n\nFORMAL AGREEMENT\nMETA: You are a legal specialist. Goal – draft an agreement.\nINPUT: Product – [enter product]. Parties – seller and client. Constraints – 1–2 pages.\nOUTPUT: Formal agreement with sections: parties, subject, price, terms. Legal tone.\n\nJOB POSTING\nMETA: You are an HR specialist. Goal – attract candidates.\nINPUT: Position – [enter position]. Company – [enter company]. Benefits – flexible schedule, team.\nOUTPUT: Job posting, 150–200 words, enthusiastic and engaging tone.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "2. Replies to customer emails",
-                "body": "Polite, professional, respectful – three different tones. Copy and adapt.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Apology reply",
-                "body": "(polite, apologetic, problem-solving)",
-                "copyable": "META: You are a customer service specialist. Goal – retain the customer.\nINPUT: Situation – customer complains about late delivery. Tone – polite, apologetic.\nOUTPUT: Email reply, 80–120 words, with a concrete solution and apology."
-              },
-              {
-                "heading": "Informative reply",
-                "body": "(professional, informative)",
-                "copyable": "META: You are a sales manager. Goal – provide information and encourage purchase.\nINPUT: Customer asks about service prices and discounts. Services – [enter services].\nOUTPUT: Professional reply, 100–150 words, with pricing structure and call to action."
-              },
-              {
-                "heading": "Returns policy",
-                "body": "(respectful, clearly describing policy)",
-                "copyable": "META: You are an e-commerce customer service specialist. Goal – clearly explain the policy.\nINPUT: Customer asks about returns policy. Store – [enter store]. Deadline – 14 days.\nOUTPUT: Respectful reply, 80–120 words, with return steps and conditions."
+                "body": "Polite, professional, respectful – three different tones. Expand and choose the situation.",
+                "copyable": "APOLOGY REPLY\nMETA: You are a customer service specialist. Goal – retain the customer.\nINPUT: Situation – customer complains about late delivery. Tone – polite, apologetic.\nOUTPUT: Email reply, 80–120 words, with a concrete solution and apology.\n\nINFORMATIVE REPLY\nMETA: You are a sales manager. Goal – provide information and encourage purchase.\nINPUT: Customer asks about service prices and discounts. Services – [enter services].\nOUTPUT: Professional reply, 100–150 words, with pricing structure and call to action.\n\nRETURNS POLICY\nMETA: You are an e-commerce customer service specialist. Goal – clearly explain the policy.\nINPUT: Customer asks about returns policy. Store – [enter store]. Deadline – 14 days.\nOUTPUT: Respectful reply, 80–120 words, with return steps and conditions.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Adapt to your business",

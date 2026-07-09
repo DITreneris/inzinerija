@@ -47,16 +47,11 @@ import { useCountUp } from '../../../utils/useCountUp';
 import { getModulesSync } from '../../../data/modulesLoader';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { getM9Characters } from '../../../data/m9CharactersLoader';
-import { getM5HandoutContent } from '../../../data/handoutContentLoader';
-import {
-  downloadM5HandoutPdf,
-  type M5HandoutContent,
-} from '../../../utils/m5HandoutPdf';
+import { downloadHandout } from '../../../utils/downloadHandout';
 import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { saveSlidePosition } from '../../../utils/useSlideNavigation';
 import { selectQuestionsByCategory } from '../../../utils/questionPoolSelector';
 import { trackSpinoffClick } from '../../../utils/analytics';
-import { logError } from '../../../utils/logger';
 import {
   BLOG_ARTICLE_SLUGS,
   buildEcosystemUrl,
@@ -1156,18 +1151,8 @@ export function TestResultsSlide({
   const handleM5HandoutPdf = useCallback(async () => {
     try {
       setHandoutError(false);
-      await downloadM5HandoutPdf(
-        getM5HandoutContent(locale) as M5HandoutContent,
-        undefined,
-        locale
-      );
-    } catch (error) {
-      logError(error instanceof Error ? error : new Error(String(error)), {
-        feature: 'handout_pdf',
-        moduleId: 5,
-        locale,
-        surface: 'test_results_slide',
-      });
+      await downloadHandout(5, locale, { surface: 'test_results' });
+    } catch {
       setHandoutError(true);
     }
   }, [locale]);

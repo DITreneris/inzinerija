@@ -18,26 +18,14 @@ import Card from './ui/Card';
 import CTAButton from './ui/CTAButton';
 import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
-import { logError } from '../utils/logger';
 import {
-  downloadM1HandoutPdf,
-  type M1HandoutContent,
-} from '../utils/m1HandoutPdf';
-import {
-  downloadM6HandoutPdf,
-  type M6HandoutContent,
-} from '../utils/m6HandoutPdf';
-import { downloadM79HandoutPdf } from '../utils/m79HandoutPdf';
-import {
-  getM1HandoutContent,
-  getM6HandoutContent,
-  getM79HandoutContent,
-  type M79HandoutContent,
-} from '../data/handoutContentLoader';
+  getHandoutForModuleComplete,
+  getUnlockedCertificateTierForModule,
+} from '../data/completionArtifactsLoader';
+import { downloadHandout } from '../utils/downloadHandout';
 import { useLocale } from '../contexts/LocaleContext';
 import type { Module } from '../types/modules';
 import type { Progress } from '../utils/progress';
-import { canRequestCertificateTier3 } from '../utils/certificateEligibility';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
 import { EcosystemOutboundLink } from './EcosystemOutboundLink';
 import { buildEcosystemUrl, blogArticleUrl } from '../constants/ecosystemUrls';
@@ -137,22 +125,7 @@ export function ModuleCompleteScreen({
   const { t } = useTranslation(['module', 'common']);
   const { locale } = useLocale();
   const [handoutError, setHandoutError] = useState(false);
-  const canRequestTier1 =
-    progress.completedModules.includes(1) &&
-    progress.completedModules.includes(2) &&
-    progress.completedModules.includes(3);
-  const canRequestTier2 =
-    progress.completedModules.length >= 6 &&
-    progress.quizCompleted &&
-    (progress.quizScore ?? 0) >= 70;
-  const showCertTier1 =
-    module.id === 3 && canRequestTier1 && onRequestCertificate;
-  const showCertTier2 =
-    module.id === 6 && canRequestTier2 && onRequestCertificate;
-  const showCertTier3 =
-    module.id === 9 &&
-    canRequestCertificateTier3(progress) &&
-    onRequestCertificate;
+  const moduleCompleteHandout = getHandoutForModuleComplete(module.id);
   const maxAccessibleModuleId = getMaxAccessibleModuleId();
   // CONV-1: po Modulio 3 – upsell į kainodarą, kai dar neatrakinti moduliai 4–6.
   const showM3Upsell = module.id === 3 && maxAccessibleModuleId < 6;
@@ -167,86 +140,25 @@ export function ModuleCompleteScreen({
     moduleId: module.id,
     touchpoint: 'certificate_course_link',
   });
-  const activeCertificateTier: 1 | 2 | 3 | null = showCertTier1
-    ? 1
-    : showCertTier2
-      ? 2
-      : showCertTier3
-        ? 3
-        : null;
+  const activeCertificateTier = onRequestCertificate
+    ? getUnlockedCertificateTierForModule(module.id, progress)
+    : null;
   const ecosystemLinks = MODULE_ECOSYSTEM_COMPLETE[module.id];
   const ecosystemIntroKey = MODULE_ECOSYSTEM_INTRO_KEYS[module.id];
-  const handleM1HandoutDownload = useCallback(async () => {
+  const handleModuleHandoutDownload = useCallback(async () => {
+    if (!moduleCompleteHandout) return;
     try {
       setHandoutError(false);
-      const content = getM1HandoutContent(locale) as M1HandoutContent;
-      await downloadM1HandoutPdf(content, undefined, locale);
       const lastSlide = module.slides?.[module.slides.length - 1];
-      track('cta_click', {
-        module_id: module.id,
-        slide_id: lastSlide?.id ?? undefined,
-        cta_id: 'm1_handout_pdf',
-        cta_label: t('module:m1HandoutCtaLabel'),
-        destination: 'download',
-      });
-    } catch (error) {
-      logError(error instanceof Error ? error : new Error(String(error)), {
-        feature: 'handout_pdf',
-        moduleId: 1,
-        locale,
+      await downloadHandout(module.id, locale, {
         surface: 'module_complete',
+        slideId: lastSlide?.id ?? undefined,
+        ctaLabel: t(moduleCompleteHandout.ctaI18nKey),
       });
+    } catch {
       setHandoutError(true);
     }
-  }, [module.id, module.slides, locale, t]);
-
-  const handleM6HandoutDownload = useCallback(async () => {
-    try {
-      setHandoutError(false);
-      const content = getM6HandoutContent(locale) as M6HandoutContent;
-      await downloadM6HandoutPdf(content, undefined, locale);
-      const lastSlide = module.slides?.[module.slides.length - 1];
-      track('cta_click', {
-        module_id: module.id,
-        slide_id: lastSlide?.id ?? undefined,
-        cta_id: 'm6_handout_pdf',
-        cta_label: t('module:handoutCtaLabel'),
-        destination: 'download',
-      });
-    } catch (error) {
-      logError(error instanceof Error ? error : new Error(String(error)), {
-        feature: 'handout_pdf',
-        moduleId: 6,
-        locale,
-        surface: 'module_complete',
-      });
-      setHandoutError(true);
-    }
-  }, [module.id, module.slides, locale, t]);
-
-  const handleM79HandoutDownload = useCallback(async () => {
-    try {
-      setHandoutError(false);
-      const content = getM79HandoutContent(locale) as M79HandoutContent;
-      await downloadM79HandoutPdf(content, { locale });
-      const lastSlide = module.slides?.[module.slides.length - 1];
-      track('cta_click', {
-        module_id: module.id,
-        slide_id: lastSlide?.id ?? undefined,
-        cta_id: 'm79_handout_pdf',
-        cta_label: t('module:m79HandoutCtaLabel'),
-        destination: 'download',
-      });
-    } catch (error) {
-      logError(error instanceof Error ? error : new Error(String(error)), {
-        feature: 'handout_pdf',
-        moduleId: 9,
-        locale,
-        surface: 'module_complete',
-      });
-      setHandoutError(true);
-    }
-  }, [module.id, module.slides, locale, t]);
+  }, [module.id, module.slides, moduleCompleteHandout, locale, t]);
 
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
@@ -387,22 +299,10 @@ export function ModuleCompleteScreen({
             <ArrowLeft className="w-5 h-5" />
             {t('module:backToModules')}
           </CTAButton>
-          {module.id === 1 && (
+          {moduleCompleteHandout && (
             <HandoutDownloadButton
-              label={t('module:m1HandoutCtaLabel')}
-              onClick={handleM1HandoutDownload}
-            />
-          )}
-          {module.id === 6 && (
-            <HandoutDownloadButton
-              label={t('module:handoutCtaLabel')}
-              onClick={handleM6HandoutDownload}
-            />
-          )}
-          {module.id === 9 && (
-            <HandoutDownloadButton
-              label={t('module:m79HandoutCtaLabel')}
-              onClick={handleM79HandoutDownload}
+              label={t(moduleCompleteHandout.ctaI18nKey)}
+              onClick={handleModuleHandoutDownload}
             />
           )}
         </div>

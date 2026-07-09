@@ -1,7 +1,7 @@
 # Executive ataskaita: „Promptų anatomijos“ programa (Moduliai 1–15)
 
 > **Paskirtis:** Pilna programos apžvalga klientams ir partneriams – temos nuodugniai ir konkrečiai, visi 15 modulių.  
-> **Šaltiniai:** DOCUMENTATION_INDEX, CONTENT_MODULIU_ATPAZINIMAS, turinio_pletra*.md, modules.json, KURSO_1_IKI_15_ANALIZE_APIBENDRINIMAS.  
+> **Šaltiniai:** DOCUMENTATION_INDEX, CONTENT_MODULIU_ATPAZINIMAS, turinio_pletra\*.md, modules.json, KURSO_1_IKI_15_ANALIZE_APIBENDRINIMAS.  
 > **Data:** 2026-03-08
 
 ---
@@ -15,32 +15,33 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 **Struktūra pagal dalis:**
 
-| Dalis | Moduliai | Turinys | Auditorija |
-|-------|----------|---------|------------|
-| **Bazinė triada** | 1, 2, 3 | 6 blokų sistema → Testas → 6 verslo scenarijai | Visi |
-| **Pažangusis blokas** | 4, 5, 6 | Konteksto inžinerija → Sprintas + testas → Projektas | Po 1–3 |
-| **Kelias: Duomenų analizė** | 7, 8, 9 | Pipeline, MASTER PROMPT → Testas → Finalinis projektas | Analitikai |
-| **Kelias: Agentų inžinerija** | 10, 11, 12 | Agentai, įrankiai, integracijos → Testas → Projektas | Softo inžinieriai |
-| **Kelias: Turinio inžinerija** | 13, 14, 15 | Vaizdai, video, muzika → Testas → Projektas | Rinkodara, komunikacija |
+| Dalis                          | Moduliai   | Turinys                                                | Auditorija              |
+| ------------------------------ | ---------- | ------------------------------------------------------ | ----------------------- |
+| **Bazinė triada**              | 1, 2, 3    | 6 blokų sistema → Testas → 6 verslo scenarijai         | Visi                    |
+| **Pažangusis blokas**          | 4, 5, 6    | Konteksto inžinerija → Sprintas + testas → Projektas   | Po 1–3                  |
+| **Kelias: Duomenų analizė**    | 7, 8, 9    | Pipeline, MASTER PROMPT → Testas → Finalinis projektas | Analitikai              |
+| **Kelias: Agentų inžinerija**  | 10, 11, 12 | Agentai, įrankiai, integracijos → Testas → Projektas   | Softo inžinieriai       |
+| **Kelias: Turinio inžinerija** | 13, 14, 15 | Vaizdai, video, muzika → Testas → Projektas            | Rinkodara, komunikacija |
 
 **Įėjimo logika:** Moduliai 1→2→3 privalomi. Modulis 4 atrakintas po 3; 5 po 4; 6 po 5 (rekomenduojama ≥70 % M5 teste). Keliai 7–9, 10–12, 13–15 – vienas kelias privalomas arba atrakinti po ankstesnio užbaigimo (hybrid modelis).
 
 **Programos apimtis (skaičiais):**
 
-| Metrika | Skaičius |
-|--------|----------|
-| Žodyno terminai | 97 |
-| DI įrankiai (su nuorodomis ir aprašymais) | 57 |
-| Paruošti promptų šablonai (promptų bibliotekoje) | 15 |
-| Kopijuojami promptai moduliuose (CopyButton) | 100 |
-| **Iš viso paruoštų promptų** | **~115** |
+| Metrika                                          | Skaičius |
+| ------------------------------------------------ | -------- |
+| Žodyno terminai                                  | 97       |
+| DI įrankiai (su nuorodomis ir aprašymais)        | 57       |
+| Paruošti promptų šablonai (promptų bibliotekoje) | 15       |
+| Kopijuojami promptai moduliuose (CopyButton)     | 100      |
+| **Iš viso paruoštų promptų**                     | **~115** |
 
 ---
 
 ## 2. Moduliai 1–3: Bazinė triada
 
-### Modulis 1: 6 Blokų Sistema  
-*Meta, Input, Output, Reasoning, Quality, Advanced • ~25 min*
+### Modulis 1: 6 Blokų Sistema
+
+_Meta, Input, Output, Reasoning, Quality, Advanced • ~25 min_
 
 **Ką išmoksti:** Vieną nuoseklią sistemą – nuo chaotiško klausimo iki profesionalaus rezultato. 6 promptų struktūros blokai veikia bet kuriame DI įrankyje.
 
@@ -54,13 +55,13 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 6. **Gero prompto šablonas** – META (vaidmuo, tikslas, auditorija) + INPUT (duomenys, apribojimai) + OUTPUT (formatas, struktūra, tonas).
 7. **Nuo 3 iki 6 blokų** – kodėl pridedami REASONING, QUALITY, ADVANCED.
 8. **Hierarchinė struktūra** – 6 blokų eilė ir paskirtis.
-9. **1–6 blokai išsamiai:**  
-   - **Meta** – rolė, kontekstas, tikslas.  
-   - **Input** – faktai, duomenys, apribojimai.  
-   - **Output** – formatas, struktūra, reikalavimai.  
-   - **Mąstymo modeliai** – CoT (grandinė) vs ToT (medis); kada ką rinktis.  
-   - **Reasoning** – mąstymo seka, logika, verslo pavyzdžiai.  
-   - **Quality Control** – kokybės kriterijai, patikrinimas.  
+9. **1–6 blokai išsamiai:**
+   - **Meta** – rolė, kontekstas, tikslas.
+   - **Input** – faktai, duomenys, apribojimai.
+   - **Output** – formatas, struktūra, reikalavimai.
+   - **Mąstymo modeliai** – CoT (grandinė) vs ToT (medis); kada ką rinktis.
+   - **Reasoning** – mąstymo seka, logika, verslo pavyzdžiai.
+   - **Quality Control** – kokybės kriterijai, patikrinimas.
    - **Advanced Parameters** – temperature, atsakymo ilgis, fokusas, pasikartojimai.
 10. **Pilnas pavyzdys ir „Prieš vs Po“** – visi 6 blokai kartu; palyginimas.
 11. **Modulio santrauka** – pagrindinės idėjos, refleksija, kiti žingsniai.
@@ -69,8 +70,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 2: Žinių Patikrinimas  
-*15 atsitiktinių klausimų iš nuolat atnaujinamo banko • ~10 min*
+### Modulis 2: Žinių Patikrinimas
+
+_15 atsitiktinių klausimų iš nuolat atnaujinamo banko • ~10 min_
 
 **Ką tikrini:** Įsisavinimą 6 blokų sistemos, workflow ir technikų.
 
@@ -92,8 +94,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 3: Praktinis Pritaikymas  
-*6 verslo scenarijai su 6 blokais • ~20 min*
+### Modulis 3: Praktinis Pritaikymas
+
+_6 verslo scenarijai su 6 blokais • ~20 min_
 
 **Ką darai:** Pritaikai 6 blokų sistemą realiems verslo užduočių tipams.
 
@@ -119,8 +122,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 4: Konteksto inžinerija  
-*Šaltiniai, tokenai, manipuliacijos, haliucinacijos • ~30–35 min*
+### Modulis 4: Konteksto inžinerija
+
+_Šaltiniai, tokenai, manipuliacijos, haliucinacijos • ~30–35 min_
 
 **Ką išmoksti:** Kaip „valdyti“ DI per kontekstą; RAG, gilusis tyrimas, tokenų ekonomika, manipuliacijų atpažinimas, haliucinacijų mažinimas.
 
@@ -149,14 +153,15 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 21. **Promptų sekos** – seka, grandinė (CoT), idėjų medis (ToT).
 22. **Tokenų ekonomika** – tokenai, konteksto langas, max_tokens, kainos; konteksto degradacija (Lost in the Middle).
 23. **Žodynėlis** – RAG, Deep research, tokenas, konteksto langas, haliucinacija, Quality blokas, CoT, ToT, RLHF, Master prompt, System prompt ir kt.
-24. **Užbaigimas** – konteksto inžinerijos atspaudas, 3 klausimai sau, pasirinkimas: M5 testas / RAG pakartojimas / M6 projektas / M4 PDF.
+24. **Užbaigimas** – konteksto inžinerijos atspaudas, 3 klausimai sau, pasirinkimas: M5 testas / RAG pakartojimas / M6 projektas / Modulio 4 PDF atmintinė.
 
 **Rezultatas:** Mažiau klaidų ir haliucinacijų; gebėjimas kontroliuoti šaltinius ir patikrinimą; paruošimas Modulio 6 projektui.
 
 ---
 
-### Modulis 5: Prezentacijos sprintas  
-*15 min prezentacijos draftas + mini suvokimo testas*
+### Modulis 5: Prezentacijos sprintas
+
+_15 min prezentacijos draftas + mini suvokimo testas_
 
 **Ką darai:** Per 15 min su DI sukuri 8 skaidrių prezentacijos draftą; tada mini testas (3–5 klausimai) – Brief, struktūra, įrankis, kokybė.
 
@@ -173,8 +178,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 6: Projekto kūrimas  
-*Praktika: tyrimo ataskaita arba Custom GPT projektas*
+### Modulis 6: Projekto kūrimas
+
+_Praktika: tyrimo ataskaita arba Custom GPT projektas_
 
 **Ką darai:** Vienas pilnas projektas – tyrimo ataskaita su DI arba Custom GPT asistentas.
 
@@ -200,8 +206,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 7: Duomenų analizė su DI  
-*Pipeline, promptų architektūra, MASTER PROMPTAS*
+### Modulis 7: Duomenų analizė su DI
+
+_Pipeline, promptų architektūra, MASTER PROMPTAS_
 
 **Ką išmoksti:** DI kaip verslo analitiką – nuo duomenų struktūros iki MASTER PROMPT ir vizualizacijų.
 
@@ -230,8 +237,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 8: Žinių patikrinimas (DA kelias)  
-*Testas: pipeline, promptai, vizualizacija*
+### Modulis 8: Žinių patikrinimas (DA kelias)
+
+_Testas: pipeline, promptai, vizualizacija_
 
 **Ką tikrini:** Įsisavinimą Duomenų analizės kelio temų – pipeline, promptų architektūra, vizualizacija, MASTER PROMPT.
 
@@ -239,8 +247,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 9: Finalinis projektas (DA kelias)  
-*Vienas pilnas projektas – Duomenų analizės kelias*
+### Modulis 9: Finalinis projektas (DA kelias)
+
+_Vienas pilnas projektas – Duomenų analizės kelias_
 
 **Ką darai:** Vienas pilnas verslo analizės ar duomenimis pagrįsto sprendimo projektas – 6 blokų sistema, šio kelio promptų architektūra, MASTER PROMPT; 16 praktinių scenarijų (įskaitant vizualizaciją ir data storytelling).
 
@@ -254,8 +263,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 10: Agentų inžinerija su DI  
-*Įrankiai, promptai, sistemos – projektavimas ir vykdymas*
+### Modulis 10: Agentų inžinerija su DI
+
+_Įrankiai, promptai, sistemos – projektavimas ir vykdymas_
 
 **Ką išmoksti:** Kaip projektuoti DI agentus – nuo ciklo ir įrankių iki integracijų ir promptų architektūros.
 
@@ -275,8 +285,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 11: Žinių patikrinimas (Agentų kelias)  
-*Testas: agentų ciklas, promptai, įrankiai*
+### Modulis 11: Žinių patikrinimas (Agentų kelias)
+
+_Testas: agentų ciklas, promptai, įrankiai_
 
 **Ką tikrini:** Įsisavinimą Agentų inžinerijos temų – ciklas, promptai, įrankiai, projektavimas.
 
@@ -284,8 +295,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 12: Finalinis projektas (Agentų kelias)  
-*Vienas pilnas agentų arba automatizacijos scenarijus*
+### Modulis 12: Finalinis projektas (Agentų kelias)
+
+_Vienas pilnas agentų arba automatizacijos scenarijus_
 
 **Ką darai:** Vienas paruoštas agentų arba automatizacijos artefaktas/scenarijus – pvz. workflow su įrankiais, integracijos eskizas; 3 lab'ai + 4 scenarijai.
 
@@ -299,8 +311,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 13: Turinio inžinerija su DI  
-*Vaizdai, video, muzika – įrankiai ir promptai*
+### Modulis 13: Turinio inžinerija su DI
+
+_Vaizdai, video, muzika – įrankiai ir promptai_
 
 **Ką išmoksti:** Kurti vaizdus, trumpus vaizdo įrašus ir muziką su DI – nuo promptų iki įrankių ir kokybės patikros.
 
@@ -322,8 +335,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 14: Žinių patikrinimas (Turinio kelias)  
-*Testas: vaizdai, video, muzika*
+### Modulis 14: Žinių patikrinimas (Turinio kelias)
+
+_Testas: vaizdai, video, muzika_
 
 **Ką tikrini:** Įsisavinimą Turinio inžinerijos temų – vaizdai, video, muzika, įrankiai, verslas.
 
@@ -331,8 +345,9 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ---
 
-### Modulis 15: Finalinis projektas (Turinio kelias)  
-*Vaizdas, video arba muzika – vienas artefaktas*
+### Modulis 15: Finalinis projektas (Turinio kelias)
+
+_Vaizdas, video arba muzika – vienas artefaktas_
 
 **Ką darai:** Bent vienas paruoštas vizualų ar garso artefaktas – vaizdas, trumpas vaizdo įrašas arba muzikos fragmentas – su naudotu promptu; 3 scenarijai.
 
@@ -342,16 +357,16 @@ kaip formuluoti užklausas (promptus) taip, kad atsakymas būtų aiškus, nuspė
 
 ## 7. Santrauka: ką gauna klientas / partneris
 
-| Blokas | Moduliai | Trukmė (orientacinė) | Pagrindinis rezultatas |
-|--------|----------|----------------------|-------------------------|
-| **Bazinė triada** | 1, 2, 3 | ~55 min | 6 blokų sistema + testas + 6 verslo scenarijai |
-| **Pažangusis** | 4, 5, 6 | ~50–60 min | Kontekstas, RAG, haliucinacijos, sprintas, vienas projektas |
-| **Duomenų analizė** | 7, 8, 9 | ~60+ min | Pipeline, MASTER PROMPT, testas, finalinis DA projektas |
-| **Agentų inžinerija** | 10, 11, 12 | ~45–60 min | Agentų ciklas, įrankiai, testas, finalinis agentų projektas |
-| **Turinio inžinerija** | 13, 14, 15 | ~45–60 min | Vaizdai, video, muzika, testas, finalinis turinio projektas |
+| Blokas                 | Moduliai   | Trukmė (orientacinė) | Pagrindinis rezultatas                                      |
+| ---------------------- | ---------- | -------------------- | ----------------------------------------------------------- |
+| **Bazinė triada**      | 1, 2, 3    | ~55 min              | 6 blokų sistema + testas + 6 verslo scenarijai              |
+| **Pažangusis**         | 4, 5, 6    | ~50–60 min           | Kontekstas, RAG, haliucinacijos, sprintas, vienas projektas |
+| **Duomenų analizė**    | 7, 8, 9    | ~60+ min             | Pipeline, MASTER PROMPT, testas, finalinis DA projektas     |
+| **Agentų inžinerija**  | 10, 11, 12 | ~45–60 min           | Agentų ciklas, įrankiai, testas, finalinis agentų projektas |
+| **Turinio inžinerija** | 13, 14, 15 | ~45–60 min           | Vaizdai, video, muzika, testas, finalinis turinio projektas |
 
 **Bendras pobūdis:** Kiekvienas kelias (7–9, 10–12, 13–15) gali būti naudojamas atskirai arba kartu; po bazinės triadės ir pažangaus bloko dalyvis renkasi vieną ar daugiau kelių pagal rolę (analitikas, inžinierius, rinkodara). Visur – kopijuojami promptai (CopyButton), refleksija, santraukos 5 blokų modelis ir aiški seka: **Mokymasis → Žinių patikrinimas → Praktika**. Programoje: **97** žodyno terminai, **57** DI įrankiai, **~115** paruoštų promptų (100 moduliuose + 15 promptų bibliotekoje).
 
 ---
 
-*Dokumentas parengtas pagal projekto SOT: DOCUMENTATION_INDEX.md, CONTENT_MODULIU_ATPAZINIMAS.md, turinio_pletra*.md, src/data/modules.json.*
+_Dokumentas parengtas pagal projekto SOT: DOCUMENTATION_INDEX.md, CONTENT_MODULIU_ATPAZINIMAS.md, turinio_pletra_.md, src/data/modules.json.\*

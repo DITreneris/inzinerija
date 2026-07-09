@@ -1349,6 +1349,17 @@
           "type": "content-block",
           "content": {
             "whyBenefit": "Įveikei žinių patikrinimą – štai premija: įgūdis, kurį turi mažai kas. Tonas, stilius, auditorija – vienu sakiniu, nuspėjamu rezultatu.",
+            "briefCheckBlock": {
+              "question": "Kuris tono ir stiliaus nurodymas geriausiai tinka formaliai sutarčiai?",
+              "options": [
+                "Teisinis tonas, formalus stilius, aiškūs punktai: šalys, objektas, kaina, terminai",
+                "Draugiškas tonas, daug emocijų ir įkvepianti istorija",
+                "Kuo trumpiau, be punktų ir be auditorijos",
+                "Humoristinis tonas, kad tekstas būtų lengvesnis"
+              ],
+              "correct": 0,
+              "explanation": "Formali sutartis reikalauja aiškaus teisinio tono, struktūros ir konkrečių punktų. Vien „parašyk gražiai“ nepasako nei formato, nei kokybės kriterijų."
+            },
             "sections": [
               {
                 "heading": "Kas padarys tavo promptus išskirtinius",
@@ -1408,43 +1419,19 @@
             "sections": [
               {
                 "heading": "1. Įvairių stilių ir formatų tekstų kūrimas",
-                "body": "Oficialus kvietimas, formali sutartis, entuziastingas skelbimas – trys skirtingi stiliai. Nukopijuok ir pritaikyk.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Oficialus kvietimas",
-                "body": "*(oficialus / formalus stilius)*",
-                "copyable": "META: Tu esi verslo komunikacijos specialistas. Tikslas – parengti kvietimą.\nINPUT: Renginys – [tavo verslo renginys]. Data – [kitas mėnuo]. Auditorija – partneriai ir klientai.\nOUTPUT: Oficialus kvietimo tekstas, 1 puslapis, formalus tonas."
-              },
-              {
-                "heading": "Formali sutartis",
-                "body": "*(formalus / teisinis stilius)*",
-                "copyable": "META: Tu esi teisės specialistas. Tikslas – parengti sutarties projektą.\nINPUT: Produktas – [įrašyk produktą]. Šalys – pardavėjas ir klientas. Apribojimai – 1–2 puslapiai.\nOUTPUT: Formali sutartis su punktais: šalys, objektas, kaina, terminai. Teisinis tonas."
-              },
-              {
-                "heading": "Darbuotojo skelbimas",
-                "body": "*(entuziastingas / įtraukiantis stilius)*",
-                "copyable": "META: Tu esi personalo specialistas. Tikslas – pritraukti kandidatus.\nINPUT: Pozicija – [įrašyk poziciją]. Įmonė – [įrašyk įmonę]. Privalumai – lankstus grafikas, komanda.\nOUTPUT: Darbo skelbimas, 150–200 žodžių, entuziastingas ir įtraukiantis tonas."
+                "body": "Oficialus kvietimas, formali sutartis, entuziastingas skelbimas – trys skirtingi stiliai. Išskleisk, nukopijuok vieną rinkinį ir pritaikyk.",
+                "copyable": "OFICIALUS KVIETIMAS\nMETA: Tu esi verslo komunikacijos specialistas. Tikslas – parengti kvietimą.\nINPUT: Renginys – [tavo verslo renginys]. Data – [kitas mėnuo]. Auditorija – partneriai ir klientai.\nOUTPUT: Oficialus kvietimo tekstas, 1 puslapis, formalus tonas.\n\nFORMALI SUTARTIS\nMETA: Tu esi teisės specialistas. Tikslas – parengti sutarties projektą.\nINPUT: Produktas – [įrašyk produktą]. Šalys – pardavėjas ir klientas. Apribojimai – 1–2 puslapiai.\nOUTPUT: Formali sutartis su punktais: šalys, objektas, kaina, terminai. Teisinis tonas.\n\nDARBUOTOJO SKELBIMAS\nMETA: Tu esi personalo specialistas. Tikslas – pritraukti kandidatus.\nINPUT: Pozicija – [įrašyk poziciją]. Įmonė – [įrašyk įmonę]. Privalumai – lankstus grafikas, komanda.\nOUTPUT: Darbo skelbimas, 150–200 žodžių, entuziastingas ir įtraukiantis tonas.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "2. Atsakymai į klientų el. laiškus",
-                "body": "Mandagus, profesionalus, pagarbus – trys skirtingos tonacijos. Nukopijuok ir pritaikyk.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Atsiprašomas atsakymas",
-                "body": "*(mandagus, atsiprašantis, problemų sprendimas)*",
-                "copyable": "META: Tu esi klientų aptarnavimo specialistas. Tikslas – išlaikyti klientą.\nINPUT: Situacija – klientas skundžiasi dėl pavėluoto pristatymo. Tonas – mandagus, atsiprašantis.\nOUTPUT: El. laiško atsakymas, 80–120 žodžių, su konkrečiu sprendimu ir atsiprašymu."
-              },
-              {
-                "heading": "Informacinis atsakymas",
-                "body": "*(profesionalus, informatyvus)*",
-                "copyable": "META: Tu esi pardavimų vadybininkas. Tikslas – pateikti informaciją ir paskatinti pirkti.\nINPUT: Klientas klausia apie paslaugų kainas ir nuolaidas. Paslaugos – [įrašyk paslaugas].\nOUTPUT: Profesionalus atsakymas, 100–150 žodžių, su kainų struktūra ir kvietimu susisiekti."
-              },
-              {
-                "heading": "Grąžinimo politika",
-                "body": "*(pagarbas, aiškiai aprašanti politiką)*",
-                "copyable": "META: Tu esi e-komercijos klientų aptarnavimo specialistas. Tikslas – aiškiai paaiškinti politiką.\nINPUT: Klientas domisi grąžinimo politika. Parduotuvė – [įrašyk parduotuvę]. Terminas – 14 dienų.\nOUTPUT: Pagarbas atsakymas, 80–120 žodžių, su grąžinimo žingsniais ir sąlygomis."
+                "body": "Mandagus, profesionalus, pagarbus – trys skirtingos tonacijos. Išskleisk ir pasirink situaciją.",
+                "copyable": "ATSIPRAŠOMAS ATSAKYMAS\nMETA: Tu esi klientų aptarnavimo specialistas. Tikslas – išlaikyti klientą.\nINPUT: Situacija – klientas skundžiasi dėl pavėluoto pristatymo. Tonas – mandagus, atsiprašantis.\nOUTPUT: El. laiško atsakymas, 80–120 žodžių, su konkrečiu sprendimu ir atsiprašymu.\n\nINFORMACINIS ATSAKYMAS\nMETA: Tu esi pardavimų vadybininkas. Tikslas – pateikti informaciją ir paskatinti pirkti.\nINPUT: Klientas klausia apie paslaugų kainas ir nuolaidas. Paslaugos – [įrašyk paslaugas].\nOUTPUT: Profesionalus atsakymas, 100–150 žodžių, su kainų struktūra ir kvietimu susisiekti.\n\nGRĄŽINIMO POLITIKA\nMETA: Tu esi e-komercijos klientų aptarnavimo specialistas. Tikslas – aiškiai paaiškinti politiką.\nINPUT: Klientas domisi grąžinimo politika. Parduotuvė – [įrašyk parduotuvę]. Terminas – 14 dienų.\nOUTPUT: Pagarbus atsakymas, 80–120 žodžių, su grąžinimo žingsniais ir sąlygomis.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Pritaikyk savo verslui",
@@ -5470,7 +5457,7 @@
               },
               {
                 "heading": "4. Parsisiųsti Modulio 4 santrauką (PDF)",
-                "body": "Jei įjungta – parsisiųsk modulio santraukos PDF į savo įrenginį.",
+                "body": "Baigęs modulį, užbaigimo ekrane parsisiųsk Modulio 4 atmintinę: RAG, gilusis tyrimas, tokenai, haliucinacijos ir patikros checklist.",
                 "blockVariant": "terms"
               }
             ],
@@ -6188,6 +6175,14 @@
                 "blockVariant": "terms"
               }
             ],
+            "correctPromptPractice": {
+              "intro": "Praktika: toliau pateiktas HTML prompto variantas pažeidžia 6 blokų sistemą. Atpažink, kurių blokų trūksta, ir perrašyk – arba paspausk „Parodyti sprendimą“ ir palygink.",
+              "badPrompt": "„Padaryk man gražų tinklalapį apie sporto klubą su visais dalykais, kad atrodytų profesionaliai ir būtų viskas ko reikia.“",
+              "revealButtonLabel": "Parodyti sprendimą",
+              "solutionAnalysis": "1) **META** – nėra rolės ir tikslo (kas kuria, koks rezultatas). 2) **OUTPUT** – neaiškus formatas (ar vienas .html failas su CSS? be komentarų?). 3) **REASONING** – nėra sekcijų sekos (pristatymas → turinys → kontaktai/CTA). 4) **QUALITY** – „gražu“ ir „profesionaliai“ yra abstrakcijos, ne mobilus/skaitomas/validus kodas. 5) **ADVANCED** – nenurodyta „tik validus HTML+CSS, be markdown“.",
+              "solutionCopyable": "META: Tavo rolė – patyręs front-end programuotojas ir UX/UI dizaineris. Tikslas – vieno puslapio .html tinklalapis sporto klubui.\nINPUT: Turinys – klubo pristatymas, treniruotės, kontaktai. CTA – lankytojas užpildo kontaktinę formą.\nOUTPUT: Pilnas HTML su įterptu CSS viename faile, be komentarų.\nREASONING: 1) Pristatymo blokas, 2) Treniruočių sekcija, 3) Kontaktai ir forma – logiška seka.\nQUALITY: Tonas modernus, aiškus, draugiškas; mobilus, lengvai skaitomas.\nADVANCED: Tik validus HTML+CSS kodas, be markdown žymų.",
+              "solutionSummary": "Aiški rolė ir tikslas (META), konkretus formatas (OUTPUT – vienas .html failas), logiška sekcijų seka (REASONING), matuojama kokybė (QUALITY – mobilus, skaitomas) ir tikslus techninis apribojimas (ADVANCED). Gali šį variantą nukopijuoti ir paleisti."
+            },
             "footer": "Toliau – skaidrė 6: SUPER PROMPTAI"
           }
         },

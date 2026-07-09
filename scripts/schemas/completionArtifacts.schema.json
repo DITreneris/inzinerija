@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "completionArtifacts.json",
+  "description": "Registry for module completion handouts and certificate unlock points.",
+  "type": "object",
+  "required": ["handouts", "certificates"],
+  "additionalProperties": false,
+  "properties": {
+    "handouts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "earnOnModuleIds",
+          "surfaces",
+          "contentLt",
+          "contentEn",
+          "schemaKey",
+          "ctaI18nKey",
+          "analyticsCtaId"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "key": { "type": "string", "enum": ["m1", "m4", "m5", "m6", "m79"] },
+          "earnOnModuleIds": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "integer", "minimum": 1 }
+          },
+          "surfaces": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["type", "moduleId"],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["module_complete", "test_results"]
+                },
+                "moduleId": { "type": "integer", "minimum": 1 },
+                "slideId": { "type": "number" }
+              }
+            }
+          },
+          "contentLt": {
+            "type": "string",
+            "pattern": "HandoutContent\\.json$"
+          },
+          "contentEn": {
+            "type": "string",
+            "pattern": "HandoutContent-en\\.json$"
+          },
+          "schemaKey": {
+            "type": "string",
+            "enum": ["m1", "m4", "m5", "m6", "m79"]
+          },
+          "ctaI18nKey": {
+            "type": "string",
+            "pattern": "^[a-zA-Z]+:[a-zA-Z0-9]+$"
+          },
+          "analyticsCtaId": {
+            "type": "string",
+            "pattern": "^m[0-9]+_handout_pdf$"
+          }
+        }
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["tier", "unlockOnModuleId", "eligibilityKey"],
+        "additionalProperties": false,
+        "properties": {
+          "tier": { "type": "integer", "enum": [1, 2, 3] },
+          "unlockOnModuleId": { "type": "integer", "minimum": 1 },
+          "eligibilityKey": {
+            "type": "string",
+            "enum": ["tier1", "tier2", "tier3"]
+          }
+        }
+      }
+    }
+  }
+}

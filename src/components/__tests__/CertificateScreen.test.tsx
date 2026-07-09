@@ -20,6 +20,7 @@ vi.mock('../../utils/analytics', () => ({
 
 vi.mock('../../utils/certificateStorage', () => ({
   getCertificateName: vi.fn(() => ''),
+  getOrCreateCertificateSerial: vi.fn(() => '#PA-2026-TEST1234'),
   setCertificateName: vi.fn(),
 }));
 
@@ -83,6 +84,7 @@ describe('CertificateScreen', () => {
     expect(options).toMatchObject({
       programTitle: 'Promptų anatomija',
       certificateLabel: 'SERTIFIKATAS',
+      serialNumber: '#PA-2026-TEST1234',
       websiteUrl: expect.any(String),
       websiteCta: expect.any(String),
     });

@@ -164,6 +164,22 @@ Modulis 4 – **„Konteksto inžinerija“** (level: `learn`). Trukmė: ~30–3
 
 **Oficiali skaidrių eilė ir motyvacija:** Pilna rekomenduojama seka su „Kodėl čia?“ – žr. `docs/MODULIO_4_SKAIDRIU_EILES.md`.
 
+### 2.1 Modulio 4 PDF atmintinė (turinys)
+
+**Paskirtis:** Trumpa parsisiunčiama atmintinė (PDF) po Modulio 4 – kad dalyvis viename puslapyje turėtų svarbiausias konteksto inžinerijos taisykles: RAG, gilųjį tyrimą, tokenus, konteksto langą, haliucinacijas ir promptų manipuliacijas. Tai nėra pilnas skaidrių eksportas; tai darbo lapas prieš Modulio 5 testą ir Modulio 6 projektą.
+
+**UI vieta:** Modulio 4 užbaigimo ekranas (`ModuleCompleteScreen`, kai `module.id === 4`). Skaidrė 66.99 lieka pasirinkimų skaidrė ir paaiškina, kad PDF prieinamas modulio pabaigoje.
+
+**Turinio struktūra (1–5):**
+
+1. **Antraštė** – H1/H2: „Modulio 4 atmintinė. Kontekstas, šaltiniai ir patikra.“
+2. **Pagrindinės temos (5 punktai)** – RAG, gilusis tyrimas, tokenai ir konteksto langas, haliucinacijos, promptų manipuliacijos; kiekvienai temai vienas praktinis sakinys „ką tai reiškia darbe“.
+3. **Patikros checklist** – 5 klausimai prieš pasitikint DI atsakymu: ar yra šaltinis, ar aiški data, ar pakanka konteksto, ar atsakymas ne per ilgas, ar nėra vedančio prompto.
+4. **Starter promptas** – trumpas šaltinių ir patikimumo tikrinimo promptas, kurį dalyvis gali naudoti su DI.
+5. **Footer** – „Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga.“
+
+**Implementacija:** Duomenys – `src/data/m4HandoutContent.json` ir `src/data/m4HandoutContent-en.json`; generavimas – `src/utils/m4HandoutPdf.ts` (jsPDF, NotoSans, bendras `handoutPdfKit.ts`). Parsisiuntimo mygtukas – `ModuleCompleteScreen`, kai `module.id === 4`; mygtuko label – `module:m4HandoutCtaLabel`.
+
 ### 2.1a Modulio 4 žodynėlis (SOT)
 
 Viena vieta – 8–10 terminų su vieno sakinio apibrėžimu. UI: viena skaidrė „Žodynėlis“ (pvz. prieš 4.7 arba kaip 4.7 dalis) arba collapsible.

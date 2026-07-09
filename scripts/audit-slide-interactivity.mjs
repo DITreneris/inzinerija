@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Audit: slide interactivity patterns across modules.json (M1–15).
- * Usage: node scripts/audit-slide-interactivity.mjs [--json]
+ * Usage: node scripts/audit-slide-interactivity.mjs [--json] [--embed-catalog]
  */
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -74,6 +74,39 @@ function countPatterns(slides) {
   return { interactive, embed, byType };
 }
 
+function collectEmbedCatalog(data) {
+  const rows = [];
+  for (const mod of data.modules) {
+    for (const slide of mod.slides ?? []) {
+      const content = slide.content;
+      if (!content || typeof content !== 'object') continue;
+
+      for (const key of EMBED_KEYS) {
+        if (content[key]) {
+          rows.push({
+            moduleId: mod.id,
+            slideId: slide.id,
+            title: slide.title,
+            key,
+          });
+        }
+      }
+
+      for (const [index, section] of (content.sections ?? []).entries()) {
+        if (section?.toolChoiceBar) {
+          rows.push({
+            moduleId: mod.id,
+            slideId: slide.id,
+            title: slide.title,
+            key: `sections[${index}].toolChoiceBar`,
+          });
+        }
+      }
+    }
+  }
+  return rows;
+}
+
 const data = JSON.parse(readFileSync(modulesPath, 'utf8'));
 const report = {
   generatedAt: new Date().toISOString().slice(0, 10),
@@ -129,8 +162,17 @@ for (const mod of data.modules) {
 }
 
 const jsonOut = process.argv.includes('--json');
+const embedCatalogOut = process.argv.includes('--embed-catalog');
 if (jsonOut) {
+  if (embedCatalogOut) report.embedCatalog = collectEmbedCatalog(data);
   console.log(JSON.stringify(report, null, 2));
+} else if (embedCatalogOut) {
+  console.log('Embedded pattern catalog (M1–15)\n');
+  for (const row of collectEmbedCatalog(data)) {
+    console.log(
+      `M${row.moduleId} slide ${row.slideId}: ${row.key} – ${row.title}`
+    );
+  }
 } else {
   console.log('Slide interactivity audit (M1–15)\n');
   console.log(`Total slides: ${report.totalSlides}`);

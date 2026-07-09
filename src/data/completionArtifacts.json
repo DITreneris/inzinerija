@@ -1,0 +1,59 @@
+{
+  "handouts": [
+    {
+      "key": "m1",
+      "earnOnModuleIds": [1],
+      "surfaces": [{ "type": "module_complete", "moduleId": 1 }],
+      "contentLt": "m1HandoutContent.json",
+      "contentEn": "m1HandoutContent-en.json",
+      "schemaKey": "m1",
+      "ctaI18nKey": "module:m1HandoutCtaLabel",
+      "analyticsCtaId": "m1_handout_pdf"
+    },
+    {
+      "key": "m4",
+      "earnOnModuleIds": [4],
+      "surfaces": [{ "type": "module_complete", "moduleId": 4 }],
+      "contentLt": "m4HandoutContent.json",
+      "contentEn": "m4HandoutContent-en.json",
+      "schemaKey": "m4",
+      "ctaI18nKey": "module:m4HandoutCtaLabel",
+      "analyticsCtaId": "m4_handout_pdf"
+    },
+    {
+      "key": "m5",
+      "earnOnModuleIds": [5],
+      "surfaces": [{ "type": "test_results", "moduleId": 5, "slideId": 514 }],
+      "contentLt": "m5HandoutContent.json",
+      "contentEn": "m5HandoutContent-en.json",
+      "schemaKey": "m5",
+      "ctaI18nKey": "testPractice:handoutDownloadLabelDefault",
+      "analyticsCtaId": "m5_handout_pdf"
+    },
+    {
+      "key": "m6",
+      "earnOnModuleIds": [6],
+      "surfaces": [{ "type": "module_complete", "moduleId": 6 }],
+      "contentLt": "m6HandoutContent.json",
+      "contentEn": "m6HandoutContent-en.json",
+      "schemaKey": "m6",
+      "ctaI18nKey": "module:handoutCtaLabel",
+      "analyticsCtaId": "m6_handout_pdf"
+    },
+    {
+      "key": "m79",
+      "earnOnModuleIds": [9],
+      "surfaces": [{ "type": "module_complete", "moduleId": 9 }],
+      "contentLt": "m79HandoutContent.json",
+      "contentEn": "m79HandoutContent-en.json",
+      "schemaKey": "m79",
+      "ctaI18nKey": "module:m79HandoutCtaLabel",
+      "analyticsCtaId": "m79_handout_pdf"
+    }
+  ],
+  "certificates": [
+    { "tier": 1, "unlockOnModuleId": 3, "eligibilityKey": "tier1" },
+    { "tier": 2, "unlockOnModuleId": 6, "eligibilityKey": "tier2" },
+    { "tier": 3, "unlockOnModuleId": 9, "eligibilityKey": "tier3" }
+  ]
+}

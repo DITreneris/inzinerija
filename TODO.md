@@ -1,9 +1,9 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-08.
+**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-09.
 
-**Dabartinis fokusas:** **M1–15 mokymų UX / interaktyvumas** (platiname esamus skaidrių pattern'us). Planas: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. Audit: `npm run audit:slide-interactivity`. **MON P0** – release guardrail (15 min smoke prieš marketing submodule), ne atskiras blokeris – pardavimai marketingo repo.
+**Dabartinis fokusas:** **MON P0 + release QA**, nes M1–15 mokymų UX / interaktyvumo bangos 0–4 uždarytos. UX planas lieka priežiūros SOT: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. Audit: `npm run audit:slide-interactivity`, `npm run audit:embed-catalog`. **MON P0** – release guardrail (15 min smoke prieš marketing submodule), ne atskiras blokeris – pardavimai marketingo repo.
 
 **Release vartai (apibrėžimai):**
 
@@ -17,20 +17,20 @@
 ### §1.0a P0 – M1–15 mokymų UX / interaktyvumas (**dabartinis fokusas**)
 
 > **Planas:** [docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md](docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md)  
-> **Audit:** `npm run audit:slide-interactivity` (dabartinė būklė 2026-07-07 po Bangos 1 + M1 baseline: 258 skaidrės; warm-up=14, path=9, intro-action-pie=2, evaluator=2, embed=7). M1 įspėjimas uždarytas.
+> **Audit:** `npm run audit:slide-interactivity` (dabartinė būklė 2026-07-09 po Bangos 1–4: 262 skaidrės; warm-up=15, path=12, intro-action-pie=2, evaluator=2, embed=9). M1 įspėjimas uždarytas. Pattern katalogas: `npm run audit:embed-catalog`.
 
-| ID         | Banga | Užduotis                                                               | Status |
-| ---------- | ----- | ---------------------------------------------------------------------- | ------ |
-| **UX-0**   | 0     | Planas + audit skriptas + TODO sync                                    | [x]    |
-| **UX-1.1** | 1     | M7: +4 `warm-up-quiz` (73.5, 731.5, 891.5, 74.5) + 68.5 į branduolį    | [x]    |
-| **UX-1.2** | 1     | M7: 1× `intro-action-pie` po 70 journey; PDF bleed closure             | [x]    |
-| **UX-1.3** | 1     | M10: +2 `warm-up-quiz`                                                 | [x]    |
-| **UX-1.4** | 1     | M10: 1× `evaluator-prompt-block`                                       | [x]    |
-| **UX-1.5** | 1     | M13: +2 `warm-up-quiz`                                                 | [x]    |
-| **UX-1.6** | 1     | M13: 1× `recognitionExercise`                                          | [x]    |
-| **UX-2**   | 2     | M6/M12/M15 path-step; M5 warm-up; M6 correctPromptPractice (UX-2.1 ✅) | [ ]    |
-| **UX-3**   | 3     | M1 micro-win ✅; M2 bonus; M11/M14 scenario share                      | [ ]    |
-| **UX-4**   | 4     | GOLDEN_STANDARD §3.8; EN overlay sync Banga 1–2                        | [ ]    |
+| ID         | Banga | Užduotis                                                                        | Status |
+| ---------- | ----- | ------------------------------------------------------------------------------- | ------ |
+| **UX-0**   | 0     | Planas + audit skriptas + TODO sync                                             | [x]    |
+| **UX-1.1** | 1     | M7: +4 `warm-up-quiz` (73.5, 731.5, 891.5, 74.5) + 68.5 į branduolį             | [x]    |
+| **UX-1.2** | 1     | M7: 1× `intro-action-pie` po 70 journey; PDF bleed closure                      | [x]    |
+| **UX-1.3** | 1     | M10: +2 `warm-up-quiz`                                                          | [x]    |
+| **UX-1.4** | 1     | M10: 1× `evaluator-prompt-block`                                                | [x]    |
+| **UX-1.5** | 1     | M13: +2 `warm-up-quiz`                                                          | [x]    |
+| **UX-1.6** | 1     | M13: 1× `recognitionExercise`                                                   | [x]    |
+| **UX-2**   | 2     | M6/M12/M15 path-step; M5 warm-up; M6 correctPromptPractice (visi ✅ 2026-07-08) | [x]    |
+| **UX-3**   | 3     | M1 micro-win ✅; M2 bonus collapsible + M11/M14 scenario share ✅ 2026-07-08    | [x]    |
+| **UX-4**   | 4     | GOLDEN_STANDARD §3.8; M4 pattern katalogas; EN overlay sync Banga 1–2           | [x]    |
 
 **Pipeline:** CURRICULUM → CONTENT → DATA → `validate:schema` → EN audit (M10+) → QA.
 

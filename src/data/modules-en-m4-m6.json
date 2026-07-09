@@ -3348,7 +3348,7 @@
               },
               {
                 "heading": "4. Download Module 4 summary (PDF)",
-                "body": "If enabled – download the module summary PDF to your device.",
+                "body": "After you finish the module, download the Module 4 handout from the completion screen: RAG, deep research, tokens, hallucinations, and a reliability checklist.",
                 "blockVariant": "terms"
               }
             ],
@@ -4063,6 +4063,14 @@
                 "blockVariant": "terms"
               }
             ],
+            "correctPromptPractice": {
+              "intro": "Practice: the HTML prompt below violates the 6-block system. Spot which blocks are missing and rewrite it – or press “Show solution” and compare.",
+              "badPrompt": "“Make me a nice website about a sports club with everything so it looks professional and has all it needs.”",
+              "revealButtonLabel": "Show solution",
+              "solutionAnalysis": "1) **META** – no role or goal (who builds it, what result). 2) **OUTPUT** – unclear format (one .html file with CSS? no comments?). 3) **REASONING** – no section order (intro → content → contacts/CTA). 4) **QUALITY** – “nice” and “professional” are abstractions, not mobile/readable/valid code. 5) **ADVANCED** – no “valid HTML+CSS only, no markdown”.",
+              "solutionCopyable": "META: Your role – experienced front-end developer and UX/UI designer. Goal – a single-page .html website for a sports club.\nINPUT: Content – club intro, training, contacts. CTA – visitor fills a contact form.\nOUTPUT: Full HTML with embedded CSS in one file, no comments.\nREASONING: 1) Intro block, 2) Training section, 3) Contacts and form – logical flow.\nQUALITY: Tone modern, clear, friendly; mobile-friendly, easy to read.\nADVANCED: Valid HTML+CSS only, no markdown.",
+              "solutionSummary": "Clear role and goal (META), concrete format (OUTPUT – one .html file), logical section flow (REASONING), measurable quality (QUALITY – mobile, readable) and a precise technical constraint (ADVANCED). You can copy this version and run it."
+            },
             "footer": "Next – slide 6: SUPER PROMPTS"
           }
         },

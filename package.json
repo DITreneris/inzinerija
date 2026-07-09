@@ -17,6 +17,8 @@
     "validate:schema": "node scripts/validate-schema.mjs",
     "generate:core-data": "node scripts/generate-core-data.mjs",
     "audit:slide-interactivity": "node scripts/audit-slide-interactivity.mjs",
+    "audit:embed-catalog": "node scripts/audit-slide-interactivity.mjs --embed-catalog",
+    "audit:test-scenario-share": "node scripts/audit-test-scenario-share.mjs",
     "audit:collapsible": "node scripts/audit-collapsible-sections.mjs",
     "audit:long-no-collapsible": "node scripts/audit-long-without-collapsible.mjs",
     "audit:heading-time": "node scripts/audit-heading-time-ambiguity.mjs",

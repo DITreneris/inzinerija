@@ -78,16 +78,20 @@
 
 ---
 
-## 5d. M1 / M5 / M6 / M7–9 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
+## 5d. M1 / M4 / M5 / M6 / M7–9 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)
 
 > **Įtraukta:** 2026-03-11. P1 release užduotys – rankinė patikra, kurią atlieka žmogus.
 
 - [ ] **M1 PDF:** Modulio 1 → ModuleCompleteScreen → „Parsisiųsti Modulio 1 atmintinę (PDF)“ → atsidaryti PDF: 6 blokai, checklist, starter promptas; **be** outbound nuorodų (value-only); lietuviškos raidės (NotoSans). EN locale – DI→AI terminologija. Žr. PDF_DOWNLOAD_TESTING.md §M1.
+- [ ] **M4 PDF:** Modulio 4 → ModuleCompleteScreen arba „Mano medžiaga“ → „Parsisiųsti Modulio 4 atmintinę (PDF)“ → atsidaryti PDF: RAG, gilusis tyrimas, tokenai, haliucinacijos, patikros checklist; **be** outbound nuorodų (value-only); lietuviškos raidės (NotoSans). EN locale – DI→AI terminologija.
 - [ ] **M5 PDF:** Modulio 5 → baigti testą → „Parsisiųsti Modulio 5 atmintinę (PDF)“ → atsidaryti PDF: lietuviškos raidės (ą, ė, į, š, ų, ū, ž) rodomos teisingai (NotoSans). Žr. PDF_DOWNLOAD_TESTING.md, §5.
 - [ ] **M6 PDF:** Modulio 6 → atlikti praktiką → ModuleCompleteScreen → parsisiųsti PDF – lietuviškos raidės, turinys atitinka.
 - [ ] **M7–9 DA kelio PDF:** Modulis 9 → skaidrė 92 arba ModuleCompleteScreen → „Parsisiųsti DA kelio atmintinę (PDF)“ → atsidaryti PDF: 2 puslapiai, lietuviškos raidės, spaudžiamos nuorodos į blog / Decide / Map su `utm_medium=handout`.
 - [ ] **M7–9 PDF automatinis guard:** jei keistas M79 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m79HandoutContent.test.ts src/utils/__tests__/m79HandoutPdf.test.ts`.
 - [ ] **M1 PDF automatinis guard:** jei keistas M1 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m1HandoutContent.test.ts src/utils/__tests__/m1HandoutPdf.test.ts`.
+- [ ] **M4 PDF automatinis guard:** jei keistas M4 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m4HandoutContent.test.ts src/utils/__tests__/m4HandoutPdf.test.ts`.
+- [ ] **PDF / sertifikatų registry guard:** jei keistas `completionArtifacts.json`, handout schema arba `downloadHandout.ts`, paleisti `npm run validate:schema` ir `npm run test:run -- src/data/__tests__/completionArtifacts.test.ts src/components/__tests__/ModuleCompleteScreen.test.tsx src/components/__tests__/ModulesPage.materials.test.tsx`.
+- [ ] **Sertifikato serial stabilumas:** tą patį tier sertifikatą atsisiųsti 2 kartus per CertificateScreen / „Mano medžiaga“ – PDF turi rodyti tą patį `PA-2026-...` numerį; naujam tier gali būti kitas numeris.
 - [ ] **M4 skaidrė 56 (RAG: kas tai ir pabandyk):** navigacija, LlmArch tabai, kopijuojamas promptas, „Peržiūrėti pilname dydyje“ – veikia, turinys skaitomas.
 - [ ] **M6 skaidrė 64 (Pagalbinis promptas: duomenų tvarkymo sistema):** Kopijuoti mygtukas, lietuviškos raidės, turinys atitinka.
 
@@ -135,6 +139,21 @@
 - [ ] **M5 test:** CEO spinoff rezultatuose (`TestResultsSlide`).
 - [ ] **M6 complete:** Decide + Play + Map.
 - [ ] **DevTools / PostHog:** `cta_id` prasideda `spinoff_`; `destination: spin-off`.
+
+---
+
+## 5g. UX pattern smoke po interaktyvumo bangų (~5 min)
+
+> **Įtraukta:** 2026-07-09. SOT: `docs/development/GOLDEN_STANDARD.md` §3.8, `docs/MODULIO_4_SKAIDRIU_EILES.md` pattern katalogas, `docs/development/UX_BANGA_1_2_EN_SYNC.md`.
+
+- [ ] **Automatiniai vartai:** `npm run audit:slide-interactivity`, `npm run audit:embed-catalog`, `npm run audit:test-scenario-share` – praeina.
+- [ ] **M4 sk. 49:** `correctPromptPractice` – pataisymo pasirinkimas, feedback ir copy mygtukai veikia 390px.
+- [ ] **M4 sk. 53:** `toolChoiceBar` – pasirinkimas pagal užduoties tipą, tekstas neperpildo 390px.
+- [ ] **M6 sk. 68:** `correctPromptPractice` – HTML 6 blokų prompto taisymas veikia LT/EN.
+- [ ] **M7 sk. 70.5:** `intro-action-pie` – profilis pasirenkamas, grafikas atsiskleidžia, nėra M4 PDF veiksmų.
+- [ ] **M10 sk. 10.66:** `evaluator-prompt-block` – evaluator promptas kopijuojamas, practicalTask aiškus LT/EN.
+- [ ] **M13 sk. 13.34:** `recognitionExercise` – pasirinkimai, feedback ir 390px reflow veikia LT/EN.
+- [ ] **M11/M14 scenario EN:** M11 q9 ir M14 q7/q8 turi konkrečius EN situacijų tekstus, ne placeholder copy.
 
 ---
 

@@ -2805,6 +2805,52 @@
           }
         },
         {
+          "id": 80.5,
+          "title": "Readiness self-check",
+          "subtitle": "3 questions on pipeline, MASTER prompt and analysis types – not graded",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m8-warm-1",
+                "question": "How many steps does the data analysis pipeline have?",
+                "options": [
+                  "6 steps: collection, preparation, EDA, models, visualization, publishing",
+                  "3 steps: collect, analyze, present",
+                  "8 steps – same as the MASTER prompt",
+                  "4 steps: question, data, chart, conclusion"
+                ],
+                "correct": 0,
+                "explanation": "The pipeline has 6 steps (collection → preparation → EDA → models → visualization → publishing). The MASTER prompt is a separate 8-step template. If wrong – see Module 7 slide “Data analysis pipeline” (73)."
+              },
+              {
+                "id": "m8-warm-2",
+                "question": "How many steps does the MASTER prompt for full data analysis have?",
+                "options": [
+                  "8 steps: sources, structure, cleaning, EDA, visualizations, insights, forecasts, recommendations",
+                  "6 steps – same as the pipeline",
+                  "3 steps: role, task, format",
+                  "5 steps: META, INPUT, OUTPUT, REASONING, QUALITY"
+                ],
+                "correct": 0,
+                "explanation": "The MASTER prompt is an 8-step full template, broader than a single pipeline stage. If wrong – see Module 7 slide “MASTER prompt” (74)."
+              },
+              {
+                "id": "m8-warm-3",
+                "question": "A manager asks “Why did Q3 sales drop?” and “How do we act next?” – which two analysis types match?",
+                "options": [
+                  "Diagnostic (Why?) and prescriptive (How to act?)",
+                  "Both – descriptive analysis (What happened?)",
+                  "Predictive and descriptive",
+                  "Both – prescriptive analysis"
+                ],
+                "correct": 0,
+                "explanation": "The 4 analysis types: descriptive (What happened?), diagnostic (Why?), predictive (What may happen?), prescriptive (How to act?). If wrong – see Module 7 slide “4 analysis types” (731)."
+              }
+            ]
+          }
+        },
+        {
           "id": 81,
           "title": "Questions",
           "subtitle": "Pipeline, BI schema, MASTER PROMPT",

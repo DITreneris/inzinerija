@@ -1,4 +1,4 @@
-import { useMemo, memo, useEffect } from 'react';
+import { useMemo, memo, useEffect, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CheckCircle,
@@ -8,9 +8,14 @@ import {
   ClipboardList,
   Briefcase,
   PartyPopper,
+  Award,
 } from 'lucide-react';
 import { Progress } from '../utils/progress';
 import { COMING_SOON_MODULES } from '../data/comingSoonModules';
+import {
+  getEarnedCertificateTiers,
+  getEarnedHandoutArtifacts,
+} from '../data/completionArtifactsLoader';
 import { getModulesSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
@@ -18,6 +23,8 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
 import { LoadingSpinner, Card, CTAButton } from './ui';
 import Eyebrow from './ui/Eyebrow';
+import { HandoutDownloadButton } from './HandoutDownloadButton';
+import { downloadHandout } from '../utils/downloadHandout';
 import type { ModuleAccent } from '../types/modules';
 import {
   accentTopBarClasses,
@@ -31,6 +38,7 @@ interface ModulesPageProps {
   onModuleSelect: (moduleId: number) => void;
   onGoToQuiz?: () => void;
   progress: Progress;
+  onRequestCertificate?: (tier: 1 | 2 | 3) => void;
 }
 
 // Level colors for modules based on type: learn, test, practice (business-oriented)
@@ -69,11 +77,18 @@ function ModulesPage({
   onModuleSelect,
   onGoToQuiz,
   progress,
+  onRequestCertificate,
 }: ModulesPageProps) {
-  const { t } = useTranslation('modulesPage');
+  const { t } = useTranslation([
+    'modulesPage',
+    'module',
+    'testPractice',
+    'common',
+  ]);
   const { locale } = useLocale();
   const levelStyles = useLevelStyles(t);
   const modules = getModulesSync(locale);
+  const [materialsError, setMaterialsError] = useState(false);
 
   // Preload ModuleView and SlideContent for faster navigation when user selects a module
   useEffect(() => {
@@ -211,6 +226,37 @@ function ModulesPage({
       ];
     });
   }, [modules, t]);
+
+  const earnedHandoutArtifacts = useMemo(
+    () => getEarnedHandoutArtifacts(progress.completedModules),
+    [progress.completedModules]
+  );
+
+  const earnedCertificateTiers = useMemo(
+    () => getEarnedCertificateTiers(progress),
+    [progress]
+  );
+
+  const hasMaterials =
+    earnedHandoutArtifacts.length > 0 ||
+    (Boolean(onRequestCertificate) && earnedCertificateTiers.length > 0);
+
+  const handleMaterialHandoutDownload = useCallback(
+    async (moduleId: number) => {
+      try {
+        setMaterialsError(false);
+        const artifact = earnedHandoutArtifacts.find((candidate) =>
+          candidate.earnOnModuleIds.includes(moduleId)
+        );
+        await downloadHandout(moduleId, locale, {
+          ctaLabel: artifact ? t(artifact.ctaI18nKey) : undefined,
+        });
+      } catch {
+        setMaterialsError(true);
+      }
+    },
+    [earnedHandoutArtifacts, locale, t]
+  );
 
   // Show loading if modules not yet loaded
   if (!modules) {
@@ -554,6 +600,71 @@ function ModulesPage({
           );
         })}
       </div>
+
+      {hasMaterials && (
+        <section
+          className="card p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
+          aria-labelledby="my-materials-title"
+        >
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4">
+            <div>
+              <h2
+                id="my-materials-title"
+                className="text-xl font-bold text-gray-900 dark:text-white"
+              >
+                {t('myMaterialsTitle')}
+              </h2>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {t('myMaterialsSubtitle')}
+              </p>
+            </div>
+            {earnedCertificateTiers.length > 0 && onRequestCertificate && (
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
+                <Award className="w-3.5 h-3.5" aria-hidden />
+                {t('myMaterialsCertificatesBadge')}
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            {earnedHandoutArtifacts.map((artifact) => {
+              const moduleId =
+                artifact.earnOnModuleIds[artifact.earnOnModuleIds.length - 1];
+              return (
+                <HandoutDownloadButton
+                  key={`handout-${artifact.key}`}
+                  label={t(artifact.ctaI18nKey)}
+                  onClick={() => handleMaterialHandoutDownload(moduleId)}
+                  className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
+                  iconClassName="w-4 h-4"
+                />
+              );
+            })}
+            {onRequestCertificate &&
+              earnedCertificateTiers.map((tier) => (
+                <CTAButton
+                  key={`certificate-${tier}`}
+                  variant="secondary"
+                  onClick={() => onRequestCertificate(tier)}
+                  className="min-h-[44px]"
+                  aria-label={t(`certificateTier${tier}Aria`)}
+                >
+                  <Award className="w-4 h-4" aria-hidden />
+                  {t(`certificateTier${tier}`)}
+                </CTAButton>
+              ))}
+          </div>
+
+          {materialsError && (
+            <p
+              className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+              role="alert"
+            >
+              {t('common:handoutPdfError')}
+            </p>
+          )}
+        </section>
+      )}
 
       {comingSoonModules.length > 0 && (
         <section
