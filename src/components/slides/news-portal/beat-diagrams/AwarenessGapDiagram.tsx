@@ -66,13 +66,7 @@ export default function AwarenessGapDiagram({
         trackX={trackX}
       />
 
-      <text
-        x={trackX}
-        y={gapY}
-        fill={accent}
-        fontSize="22"
-        fontWeight="800"
-      >
+      <text x={trackX} y={gapY} fill={accent} fontSize="22" fontWeight="800">
         {labels.gapStat}
       </text>
       <text

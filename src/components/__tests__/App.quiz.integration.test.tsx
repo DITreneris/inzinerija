@@ -1,5 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { screen, waitForElementToBeRemoved, within } from '@testing-library/react';
+import {
+  screen,
+  waitForElementToBeRemoved,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HelmetProvider } from 'react-helmet-async';
 import { renderWithProviders } from '../../test/test-utils';
@@ -134,9 +138,12 @@ describe('App – Quiz integracinis srautas', () => {
     );
     await user.click(backButton);
 
-    await waitForElementToBeRemoved(() => screen.queryByText(emptyQuizMessage), {
-      timeout: 15000,
-    });
+    await waitForElementToBeRemoved(
+      () => screen.queryByText(emptyQuizMessage),
+      {
+        timeout: 15000,
+      }
+    );
 
     await screen.findByRole(
       'heading',
@@ -180,7 +187,11 @@ describe('App – Quiz integracinis srautas', () => {
       screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
     );
 
-    await screen.findByRole('heading', { name: modulesHeading }, { timeout: 15000 });
+    await screen.findByRole(
+      'heading',
+      { name: modulesHeading },
+      { timeout: 15000 }
+    );
 
     const progressAfter = getProgress();
     expect(progressAfter.completedModules).toContain(1);

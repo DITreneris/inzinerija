@@ -246,7 +246,10 @@
                                 "required": ["label", "rowIndex"],
                                 "properties": {
                                   "label": { "type": "string" },
-                                  "rowIndex": { "type": "integer", "minimum": 0 }
+                                  "rowIndex": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                  }
                                 }
                               }
                             }

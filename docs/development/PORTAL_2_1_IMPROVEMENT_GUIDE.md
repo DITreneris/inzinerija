@@ -8,23 +8,23 @@
 
 ## 1. Preservation list (neliesti)
 
-| Kas | Kodėl |
-|-----|-------|
-| Storyboard eilė | `NEWS_PORTAL_SLIDE_53_5.md` — fiksuotas UX ritmas |
-| `awareness-gap` golden pattern | Caption virš juostos, border-l-4, HTML šaltinis |
-| `portalSurfaces.ts` surface matrix | Editorial vs card — vienas SOT |
-| Immersive `ModuleView` | Slepiamas course chrome |
-| Lead gradient, 4 KPI, banneriai, Satori PNG | Deprecated — negrąžinti |
+| Kas                                         | Kodėl                                             |
+| ------------------------------------------- | ------------------------------------------------- |
+| Storyboard eilė                             | `NEWS_PORTAL_SLIDE_53_5.md` — fiksuotas UX ritmas |
+| `awareness-gap` golden pattern              | Caption virš juostos, border-l-4, HTML šaltinis   |
+| `portalSurfaces.ts` surface matrix          | Editorial vs card — vienas SOT                    |
+| Immersive `ModuleView`                      | Slepiamas course chrome                           |
+| Lead gradient, 4 KPI, banneriai, Satori PNG | Deprecated — negrąžinti                           |
 
 ---
 
 ## 2. Wave planas
 
-| Wave | Laikas | Prioritetas | Agentai | DoD |
-|------|--------|-------------|---------|-----|
-| **Wave 4** | 48h | P0–P1 | CODING → UI_UX → QA | Masthead fix + section label + 48h retest paruošta |
-| **Wave 5** | 1 sav | P2 | CODING → CONTENT? | DataBrief + ticker + navDecor token |
-| **Wave 6** | 2 sav | P3 | CODING → SCHEME | Bar row token + EN spot-check |
+| Wave       | Laikas | Prioritetas | Agentai             | DoD                                                |
+| ---------- | ------ | ----------- | ------------------- | -------------------------------------------------- |
+| **Wave 4** | 48h    | P0–P1       | CODING → UI_UX → QA | Masthead fix + section label + 48h retest paruošta |
+| **Wave 5** | 1 sav  | P2          | CODING → CONTENT?   | DataBrief + ticker + navDecor token                |
+| **Wave 6** | 2 sav  | P3          | CODING → SCHEME     | Bar row token + EN spot-check                      |
 
 ---
 
@@ -36,12 +36,14 @@
 **Failas:** `src/components/slides/news-portal/PortalMastheadNav.tsx`
 
 **Veiksmas:**
+
 ```tsx
 // Prieš (eil. ~93):
-className="hover:text-brand-600 dark:hover:text-brand-400 cursor-default"
+className = 'hover:text-brand-600 dark:hover:text-brand-400 cursor-default';
 
 // Po:
-className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
+className =
+  'text-gray-500 dark:text-gray-400 cursor-default pointer-events-none';
 ```
 
 **Alternatyva (švelnesnė):** palikti `pointer-events-none` tik ant `<span>`, nav wrapper palikti su `aria-label="Dekoratyvi portalo navigacija"`.
@@ -59,9 +61,10 @@ className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
 **Failas:** `src/components/slides/news-portal/portalSurfaces.ts`
 
 **Veiksmas:**
+
 ```ts
 // SECTION_LABEL.break:
-'text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300'
+'text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300';
 ```
 
 **Agentas:** CODING → UI_UX (375px dark smoke)  
@@ -93,11 +96,11 @@ className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
 
 **Papildomi 3 hipotezės retestui:**
 
-| # | Klausimas | Tikėtinas PASS |
-|---|-----------|----------------|
-| 8 | Ar supratai skirtumą tarp viršutinės navigacijos (dekoratyvios) ir „Duomenys · Giliau · Santrauka“? | ≥60% taip |
-| 9 | Ar dekoratyvūs portalo meniu punktai atrodė paspaudžiami? | ≤40% taip (po Wave 4 fix) |
-| 10 | Ar skyrių antraštės (DUOMENYS TRUMPAI ir pan.) matomos be zoom? | ≥70% taip |
+| #   | Klausimas                                                                                           | Tikėtinas PASS            |
+| --- | --------------------------------------------------------------------------------------------------- | ------------------------- |
+| 8   | Ar supratai skirtumą tarp viršutinės navigacijos (dekoratyvios) ir „Duomenys · Giliau · Santrauka“? | ≥60% taip                 |
+| 9   | Ar dekoratyvūs portalo meniu punktai atrodė paspaudžiami?                                           | ≤40% taip (po Wave 4 fix) |
+| 10  | Ar skyrių antraštės (DUOMENYS TRUMPAI ir pan.) matomos be zoom?                                     | ≥70% taip                 |
 
 ---
 
@@ -109,6 +112,7 @@ className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
 **Failas:** `src/components/slides/news-portal/PortalDataBriefRow.tsx`
 
 **Veiksmas:**
+
 ```tsx
 // eil. ~179:
 <p className={`mt-1.5 ${PORTAL_TEXT.bodySm} text-gray-500 dark:text-gray-400`}>
@@ -125,9 +129,10 @@ className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
 **Failas:** `src/components/slides/news-portal/PortalBreakingTicker.tsx`
 
 **Veiksmas:**
+
 ```tsx
 // wrapper className pridėti:
-'hidden sm:block ...'
+'hidden sm:block ...';
 ```
 
 **Agentas:** CODING → USER_JOURNEY (retest #3 „per daug informacijos“)  
@@ -142,6 +147,7 @@ className="text-gray-500 dark:text-gray-400 cursor-default pointer-events-none"
 **Failas:** `portalSurfaces.ts` + `PortalMastheadNav.tsx`
 
 **Veiksmas:**
+
 ```ts
 // portalSurfaces.ts PORTAL_TEXT:
 navDecor: 'text-sm text-gray-500 dark:text-gray-400',
@@ -163,6 +169,7 @@ className={`flex flex-wrap gap-x-4 gap-y-1 ${PORTAL_TEXT.navDecor}`}
 **Failai:** `PortalMastheadNav.tsx`, `PortalChapterNav.tsx`
 
 **Veiksmas:**
+
 - Dekoratyvus: `navDecor`, be hover, `opacity-80`
 - Funkcinis: `getPortalSectionLabelClasses('nav')` + `min-h-[44px]` — jau OK; pridėti `border-t border-gray-100 dark:border-gray-800 pt-3 mt-2` atskyrimui nuo hero
 
@@ -206,16 +213,16 @@ className={`flex flex-wrap gap-x-4 gap-y-1 ${PORTAL_TEXT.navDecor}`}
 
 ## 6. Agentų maršrutų lentelė
 
-| Užduotis | UI_UX | CODING | SCHEME | CONTENT | DATA | QA |
-|----------|-------|--------|--------|---------|------|-----|
-| Masthead hover fix | audit | impl | — | — | — | smoke |
-| Section label contrast | audit | impl | — | — | — | dark 375px |
-| DataBrief source | rekomenduoja | impl | — | — | — | — |
-| Ticker mobile | rekomenduoja | impl | — | — | — | retest |
-| navDecor token | spec | impl | — | — | — | — |
-| 48h retest | — | — | — | — | — | vykdo |
-| Bar row token | spec | impl | — | — | — | — |
-| Beat EN mobile | — | — | — | — | — | spot-check |
+| Užduotis               | UI_UX        | CODING | SCHEME | CONTENT | DATA | QA         |
+| ---------------------- | ------------ | ------ | ------ | ------- | ---- | ---------- |
+| Masthead hover fix     | audit        | impl   | —      | —       | —    | smoke      |
+| Section label contrast | audit        | impl   | —      | —       | —    | dark 375px |
+| DataBrief source       | rekomenduoja | impl   | —      | —       | —    | —          |
+| Ticker mobile          | rekomenduoja | impl   | —      | —       | —    | retest     |
+| navDecor token         | spec         | impl   | —      | —       | —    | —          |
+| 48h retest             | —            | —      | —      | —       | —    | vykdo      |
+| Bar row token          | spec         | impl   | —      | —       | —    | —          |
+| Beat EN mobile         | —            | —      | —      | —       | —    | spot-check |
 
 ---
 
@@ -232,13 +239,14 @@ className={`flex flex-wrap gap-x-4 gap-y-1 ${PORTAL_TEXT.navDecor}`}
 
 ## 8. Regresijos guardrails (po kiekvieno wave)
 
-| Po Wave | Patikrinti |
-|---------|------------|
-| 4 | awareness-gap SVG 375px; chapter labels matomi; portalNav nebehover |
-| 5 | DataBrief 3 stat surface; ticker mobile; retest #1 portal ≥70% |
-| 6 | `npm run lint` + `test:run`; `audit:m46`; browser gate 10/10 |
+| Po Wave | Patikrinti                                                          |
+| ------- | ------------------------------------------------------------------- |
+| 4       | awareness-gap SVG 375px; chapter labels matomi; portalNav nebehover |
+| 5       | DataBrief 3 stat surface; ticker mobile; retest #1 portal ≥70%      |
+| 6       | `npm run lint` + `test:run`; `audit:m46`; browser gate 10/10        |
 
 **Automatiniai vartai:**
+
 ```bash
 npm run lint
 npm run test:run

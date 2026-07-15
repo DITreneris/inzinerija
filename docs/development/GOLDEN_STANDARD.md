@@ -178,20 +178,20 @@
 
 **Surface matrix:**
 
-| Surface | Komponentai | Implementacija |
-| ------- | ----------- | -------------- |
+| Surface       | Komponentai                                                            | Implementacija                                                   |
+| ------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **editorial** | takeaway, beats, `PortalDataBriefRow`, promo ribbons, `PortalSlideCta` | `getPortalEditorialSurfaceClasses()` – `border-l-4` + light tint |
-| **card** | secondary cards, ranking, youth KPI, insight | `PortalBlockShell` → `getPortalCardShellClasses()` |
-| **chrome** | masthead, ticker, sidebar, chapter breaks, footer | neutral; masthead fallback (be nav) – accent box |
+| **card**      | secondary cards, ranking, youth KPI, insight                           | `PortalBlockShell` → `getPortalCardShellClasses()`               |
+| **chrome**    | masthead, ticker, sidebar, chapter breaks, footer                      | neutral; masthead fallback (be nav) – accent box                 |
 
 **Spalvų biudžeto išimtis (Portal 2.1):** GOLDEN §2.2 taikoma **per chapter act viewport**, ne per visą skaidrę (4 acts ilgame scroll):
 
-| Act | Leidžiamos semantinės | CTA |
-| --- | --------------------- | --- |
-| Lead | brand + accent | — |
-| Data | brand + emerald | — |
-| Depth | brand + violet | — |
-| Close | terms/slate + violet | accent (1 CTA) |
+| Act   | Leidžiamos semantinės | CTA            |
+| ----- | --------------------- | -------------- |
+| Lead  | brand + accent        | —              |
+| Data  | brand + emerald       | —              |
+| Depth | brand + violet        | —              |
+| Close | terms/slate + violet  | accent (1 CTA) |
 
 **Metric scale** (`portalSurfaces.ts`): `PORTAL_HEADING.hero` (immersive H1) · `inline` (secondary cards, DataBrief stat 2–3) · `chapter` (DataBrief pirmas stat, pvz. 32,7%). Vienas dominuojantis skaičius per viewport. DataBrief: 98% IT – violet skaičius, ES stat'ai – brand.
 
@@ -297,14 +297,14 @@
 
 **Principas:** Vartotojas mato skaidrės numerį kaip **nuoseklų sveikąjį skaičių modulyje** (1, 2, 3, …) – atitinka UI „Skaidrė 1/N“, „Skaidrė 2/N“. Footeryje **nenaudojame** skaidrės `id` (kuris gali būti dešimtainis, pvz. 40.8, 63.7).
 
-| Taisyklė                 | Aprašymas                                                                                                                                                                                                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Formatas**             | `"footer": "Toliau – skaidrė N: [kitos skaidrės pavadinimas]"`, kur **N** = kitos skaidrės **1-based pozicija** modulyje (ne `id`).                                                                                                                                   |
+| Taisyklė                 | Aprašymas                                                                                                                                                                                                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Formatas**             | `"footer": "Toliau – skaidrė N: [kitos skaidrės pavadinimas]"`, kur **N** = kitos skaidrės **1-based pozicija** modulyje (ne `id`).                                                                                                                                           |
 | **Ilgis**                | Rekomenduojama: visas footer tekstas **iki 55 simbolių** (viena eilutė tipiniame ekrane). Jei skaidrė turi `shortTitle`, naudoti jį footeryje; jei vis tiek per ilga – sutrumpinti tik pavadinimo dalį. Žr. `docs/archive/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`. |
-| **Kur pridedame**        | `content.footer` – skaidrėse, kurios turi `content` objektą. Paskutinė modulio skaidrė (santrauka, rezultatai) – be „Toliau“ arba su CTA, ne su skaidrės numeriu.                                                                                                     |
-| **Pavyzdys teisingas**   | „Toliau – skaidrė 5: DI įrankiai pagal formą“ (5 = penkta skaidrė modulyje).                                                                                                                                                                                          |
-| **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių).                                                                                                                                                                                    |
-| **Kitos formos**         | Šaltinio / nuorodos footeriai (pvz. „Šaltinis: MIT…“) – be skaidrės numerio; nekoreguojami.                                                                                                                                                                           |
+| **Kur pridedame**        | `content.footer` – skaidrėse, kurios turi `content` objektą. Paskutinė modulio skaidrė (santrauka, rezultatai) – be „Toliau“ arba su CTA, ne su skaidrės numeriu.                                                                                                             |
+| **Pavyzdys teisingas**   | „Toliau – skaidrė 5: DI įrankiai pagal formą“ (5 = penkta skaidrė modulyje).                                                                                                                                                                                                  |
+| **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių).                                                                                                                                                                                            |
+| **Kitos formos**         | Šaltinio / nuorodos footeriai (pvz. „Šaltinis: MIT…“) – be skaidrės numerio; nekoreguojami.                                                                                                                                                                                   |
 
 **Kai skaidrė perkeliama arba keičiama eilė:** Privaloma perskaičiuoti ir atnaujinti visus footerių numerius modulyje – N turi atitikti faktinę 1-based poziciją. Žr. **`.cursor/rules/footer-slide-numbers.mdc`** ir **`.cursor/skills/orchestrator/SKILL.md`** (Special cases).
 
@@ -432,15 +432,15 @@ action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-
 
 Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toje pačioje skaidrėje. Jis neturi tapti antra pilna skaidre viduje: vienas aiškus veiksmas, trumpas feedback ir vienas dominuojantis CTA.
 
-| Laukas                  | Paskirtis                                       | Etalonas                               |
-| ----------------------- | ----------------------------------------------- | -------------------------------------- |
-| `briefCheckBlock`       | Trumpas brief / tono / užduoties patikrinimas.  | M2 sk. 51, M5 sk. 510                  |
-| `preCopyCheckBlock`     | Patikra prieš kopijuojamą promptą.              | M5 sk. 47                              |
-| `correctPromptPractice` | Blogo prompto taisymas į gerą.                  | M4 sk. 49, M6 sk. 68                   |
-| `recognitionExercise`   | Atpažinimo pratimas su pasirinkimais.           | M4 sk. 39.5, M13 sk. 13.34             |
-| `interactivePipeline`   | Interaktyvus proceso / pipeline pasirinkimas.   | M4 sk. 45                              |
-| `instructGptQuality`    | Tyrimo įrodymo ir kokybės principų mikroblokas. | M4 sk. 44                              |
-| `toolChoiceBar`         | Įrankio / filtro pasirinkimas pagal užduotį.     | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`) |
+| Laukas                  | Paskirtis                                       | Etalonas                                                                     |
+| ----------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
+| `briefCheckBlock`       | Trumpas brief / tono / užduoties patikrinimas.  | M2 sk. 51, M5 sk. 510                                                        |
+| `preCopyCheckBlock`     | Patikra prieš kopijuojamą promptą.              | M5 sk. 47                                                                    |
+| `correctPromptPractice` | Blogo prompto taisymas į gerą.                  | M4 sk. 49, M6 sk. 68                                                         |
+| `recognitionExercise`   | Atpažinimo pratimas su pasirinkimais.           | M4 sk. 39.5, M13 sk. 13.34                                                   |
+| `interactivePipeline`   | Interaktyvus proceso / pipeline pasirinkimas.   | M4 sk. 45                                                                    |
+| `instructGptQuality`    | Tyrimo įrodymo ir kokybės principų mikroblokas. | M4 sk. 44                                                                    |
+| `toolChoiceBar`         | Įrankio / filtro pasirinkimas pagal užduotį.    | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)         |
 | `linkedRowIndex`        | Rodo tik susietą copyable sekciją (filtras).    | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`) |
 
 **`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.

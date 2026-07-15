@@ -520,9 +520,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<M9DataWorkflowBlock />);
 
       expect(container.querySelector('[role="img"]')).toBeTruthy();
-      expect(container.querySelectorAll('[role="button"]').length).toBeGreaterThan(
-        0
-      );
+      expect(
+        container.querySelectorAll('[role="button"]').length
+      ).toBeGreaterThan(0);
     });
 
     it.each([

@@ -228,6 +228,7 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 **Phase 2 (2026-07-15) – optional šaka „Vidiniai duomenys“:** `journeyChoices` id `vidiniai` skaidrėje 70; **papildoma** skaidrė **78.5** (`pathBranch: ["vidiniai"]`) – Excel/CRM eksportas ir valymo plano promptas. Branduolio skaidrės 78, 84, 891 lieka visiems; sk. 78 ir 891 turi cross-link tekstą vidinių duomenų kontekstui.
 
 **Operacinis polish (2026-07-15) – ne pilnas turinio rewrite:** UX iteracijos fiksuojamos operaciniame SOT: [`docs/development/TEST_REPORT.md`](development/TEST_REPORT.md) §P2, [`docs/development/M79_PATCH_REGISTRY.md`](development/M79_PATCH_REGISTRY.md), [`docs/development/07_08_09_backlog.md`](development/07_08_09_backlog.md) §12. Santrauka:
+
 - M7 etika (sk. 67, 67.5, 67.8, 67.3, 68): collapsible, dedup, Patikra
 - Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
 - M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99

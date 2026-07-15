@@ -117,16 +117,16 @@
 
 ### Task E2.2 — paleisti audit ir sukurti baseline dokumentą
 
-|                     |                                                                                                                                                           |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agentas**         | QA_AGENT                                                                                                                                                  |
-| **Inputas**         | `node scripts/audit-design-tokens.mjs` output                                                                                                             |
-| **Outputas**        | `docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md` — lentelė „failas → hex skaičius → inline style skaičius“ + top-5 „dirtiest“ failai.        |
-| **Token bud.**      | ~5K                                                                                                                                                       |
-| **Sudėtingumas**    | S                                                                                                                                                         |
-| **Priklausomybės**  | E2.1                                                                                                                                                      |
-| **Exit-kriterijai** | 1. Lentelėje matoma ≥15 failų (lūkestis pagal auditą — ~19). 2. Yra „Top-5 dirtiest“ skyrius. 3. Pridėta nuoroda į šį planą (`DESIGN_SYSTEM_V0_2.md §5`). |
-| **Rollback**        | `git rm` — vienas naujas docs failas.                                                                                                                     |
+|                     |                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agentas**         | QA_AGENT                                                                                                                                                   |
+| **Inputas**         | `node scripts/audit-design-tokens.mjs` output                                                                                                              |
+| **Outputas**        | `docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md` — lentelė „failas → hex skaičius → inline style skaičius“ + top-5 „dirtiest“ failai. |
+| **Token bud.**      | ~5K                                                                                                                                                        |
+| **Sudėtingumas**    | S                                                                                                                                                          |
+| **Priklausomybės**  | E2.1                                                                                                                                                       |
+| **Exit-kriterijai** | 1. Lentelėje matoma ≥15 failų (lūkestis pagal auditą — ~19). 2. Yra „Top-5 dirtiest“ skyrius. 3. Pridėta nuoroda į šį planą (`DESIGN_SYSTEM_V0_2.md §5`).  |
+| **Rollback**        | `git rm` — vienas naujas docs failas.                                                                                                                      |
 
 ### Task E2.3 — `npm run audit:design-tokens` integracija į RELEASE_QA_CHECKLIST
 
@@ -155,7 +155,7 @@
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------ | ---------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------- |
 | **Agentas**             | CODE_REVIEW_AGENT                                                                                                       |
 | **Inputas (read-only)** | `src/index.css`, `src/components/ui/*.tsx`, `src/components/ui/index.ts`                                                |
-| **Outputas**            | `docs/archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md` — lentelė: „Koncepcija                                  | CSS klase / failas | JSX primitive / failas | Canonical (šiame v0.2) | Naudotojų skaičius (apytiksliai)“. **Min. 5 įrašai:** Card, Button (CTA), Badge, Banner/Callout, Input. |
+| **Outputas**            | `docs/archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md` — lentelė: „Koncepcija                          | CSS klase / failas | JSX primitive / failas | Canonical (šiame v0.2) | Naudotojų skaičius (apytiksliai)“. **Min. 5 įrašai:** Card, Button (CTA), Badge, Banner/Callout, Input. |
 | **Token bud.**          | ~4K                                                                                                                     |
 | **Sudėtingumas**        | S                                                                                                                       |
 | **Priklausomybės**      | nė vienos                                                                                                               |
@@ -349,16 +349,16 @@
 
 ### Task E5.7 — Vizualinis regress + dark mode patikra
 
-|                     |                                                                                                                                                                                                                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agentas**         | QA_AGENT                                                                                                                                                                                                                                                                           |
-| **Inputas**         | E5.4–E5.6 pakeitimai; `npm run dev` arba preview build                                                                                                                                                                                                                             |
+|                     |                                                                                                                                                                                                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Agentas**         | QA_AGENT                                                                                                                                                                                                                                                                                   |
+| **Inputas**         | E5.4–E5.6 pakeitimai; `npm run dev` arba preview build                                                                                                                                                                                                                                     |
 | **Outputas**        | `docs/archive/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md` — 12 screenshot'ų (6 moduliai × 2 vietos: ModulesPage card + intro skaidrė) light + dark mode. **Privaloma:** patikrinta GOLDEN_STANDARD §2.2 — vienoje skaidrėje max 2 semantinės + 1 CTA accent (rule §5). |
-| **Token bud.**      | ~3K                                                                                                                                                                                                                                                                                |
-| **Sudėtingumas**    | S                                                                                                                                                                                                                                                                                  |
-| **Priklausomybės**  | E5.4, E5.5, E5.6                                                                                                                                                                                                                                                                   |
-| **Exit-kriterijai** | 1. Visi 12 screenshot'ų. 2. Kontrasto patikra (WCAG AA) — accent text ant 50 bg, accent text ant 900/20 bg dark mode. 3. Rule §5 patvirtinta.                                                                                                                                      |
-| **Rollback**        | Nereikia (tik dokumentas).                                                                                                                                                                                                                                                         |
+| **Token bud.**      | ~3K                                                                                                                                                                                                                                                                                        |
+| **Sudėtingumas**    | S                                                                                                                                                                                                                                                                                          |
+| **Priklausomybės**  | E5.4, E5.5, E5.6                                                                                                                                                                                                                                                                           |
+| **Exit-kriterijai** | 1. Visi 12 screenshot'ų. 2. Kontrasto patikra (WCAG AA) — accent text ant 50 bg, accent text ant 900/20 bg dark mode. 3. Rule §5 patvirtinta.                                                                                                                                              |
+| **Rollback**        | Nereikia (tik dokumentas).                                                                                                                                                                                                                                                                 |
 
 **Etapo E5 exit-kriterijai.** Schema papildyta, M1–M6 data laukai pridėti (3 JSON failuose), 3 UI vietos (card, intro, section-break) naudoja modulio identitetą, vizualinis regress dokumentuotas. **Diagramose, CTA, body — accent NEnaudojama.**
 
@@ -370,42 +370,42 @@
 
 ### Task E6.1 — `scripts/audit-footer-length.mjs` jau egzistuoja, tik patikrinti
 
-|                     |                                                                                                                                                                   |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agentas**         | QA_AGENT                                                                                                                                                          |
-| **Inputas**         | `scripts/audit-footer-length.mjs` (jau yra)                                                                                                                       |
+|                     |                                                                                                                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agentas**         | QA_AGENT                                                                                                                                                                  |
+| **Inputas**         | `scripts/audit-footer-length.mjs` (jau yra)                                                                                                                               |
 | **Outputas**        | Paleisti `node scripts/audit-footer-length.mjs`; rezultatas užregistruotas `docs/archive/development/analysis/MICROCOPY_LENGTHS_2026-05.md` skyriuje „Footers >55 chars“. |
-| **Token bud.**      | ~2K                                                                                                                                                               |
-| **Sudėtingumas**    | XS                                                                                                                                                                |
-| **Priklausomybės**  | nė vienos                                                                                                                                                         |
-| **Exit-kriterijai** | Dokumente yra sąrašas (gali būti tuščias — tai irgi rezultatas).                                                                                                  |
-| **Rollback**        | `git rm`.                                                                                                                                                         |
+| **Token bud.**      | ~2K                                                                                                                                                                       |
+| **Sudėtingumas**    | XS                                                                                                                                                                        |
+| **Priklausomybės**  | nė vienos                                                                                                                                                                 |
+| **Exit-kriterijai** | Dokumente yra sąrašas (gali būti tuščias — tai irgi rezultatas).                                                                                                          |
+| **Rollback**        | `git rm`.                                                                                                                                                                 |
 
 ### Task E6.2 — Manualinis microcopy pass M1, M4, M6
 
-|                     |                                                                                                                                                                                                                                                                                                  |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Agentas**         | QA_AGENT + CONTENT_AGENT (read-only)                                                                                                                                                                                                                                                             |
-| **Inputas**         | `src/data/modules.json` M1, M4, M6 skaidrės; GOLDEN_STANDARD §4.4 (trumpi sakiniai iki ~20 žodžių, max 2 eilutės content-block sekcijoje)                                                                                                                                                        |
+|                     |                                                                                                                                                                                                                                                                                                          |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agentas**         | QA_AGENT + CONTENT_AGENT (read-only)                                                                                                                                                                                                                                                                     |
+| **Inputas**         | `src/data/modules.json` M1, M4, M6 skaidrės; GOLDEN_STANDARD §4.4 (trumpi sakiniai iki ~20 žodžių, max 2 eilutės content-block sekcijoje)                                                                                                                                                                |
 | **Outputas**        | `docs/archive/development/analysis/MICROCOPY_LENGTHS_2026-05.md` skyriai: „M1 — pertekliniai tekstai“, „M4 — pertekliniai tekstai“, „M6 — pertekliniai tekstai“. **Tik sąrašas su lokacijomis** (skaidrė ID + sekcijos heading + dabartinis tekstas), **be pasiūlymų**. CONTENT_AGENT'as nuspręs vėliau. |
-| **Token bud.**      | ~6K                                                                                                                                                                                                                                                                                              |
-| **Sudėtingumas**    | M                                                                                                                                                                                                                                                                                                |
-| **Priklausomybės**  | E6.1                                                                                                                                                                                                                                                                                             |
-| **Exit-kriterijai** | 1. Kiekvienam moduliui (M1/M4/M6) ≥3 įrašai (arba „nieko nerasta“ aiškiai parašyta). 2. Jokių JSON pakeitimų.                                                                                                                                                                                    |
-| **Rollback**        | `git rm`.                                                                                                                                                                                                                                                                                        |
+| **Token bud.**      | ~6K                                                                                                                                                                                                                                                                                                      |
+| **Sudėtingumas**    | M                                                                                                                                                                                                                                                                                                        |
+| **Priklausomybės**  | E6.1                                                                                                                                                                                                                                                                                                     |
+| **Exit-kriterijai** | 1. Kiekvienam moduliui (M1/M4/M6) ≥3 įrašai (arba „nieko nerasta“ aiškiai parašyta). 2. Jokių JSON pakeitimų.                                                                                                                                                                                            |
+| **Rollback**        | `git rm`.                                                                                                                                                                                                                                                                                                |
 
 ### Task E6.3 — Microcopy backlog'as TODO.md'e
 
-|                     |                                                                                                                                                                            |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agentas**         | QA_AGENT                                                                                                                                                                   |
-| **Inputas**         | E6.2 dokumentas                                                                                                                                                            |
+|                     |                                                                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agentas**         | QA_AGENT                                                                                                                                                                           |
+| **Inputas**         | E6.2 dokumentas                                                                                                                                                                    |
 | **Outputas**        | `TODO.md` „P3 — žemesnis prioritetas“ skyriuje pridėta eilutė „**Microcopy v0.3 backlog** — žr. `docs/archive/development/analysis/MICROCOPY_LENGTHS_2026-05.md` (CONTENT_AGENT)“. |
-| **Token bud.**      | ~1K                                                                                                                                                                        |
-| **Sudėtingumas**    | XS                                                                                                                                                                         |
-| **Priklausomybės**  | E6.2                                                                                                                                                                       |
-| **Exit-kriterijai** | TODO.md turi naują eilutę.                                                                                                                                                 |
-| **Rollback**        | StrReplace.                                                                                                                                                                |
+| **Token bud.**      | ~1K                                                                                                                                                                                |
+| **Sudėtingumas**    | XS                                                                                                                                                                                 |
+| **Priklausomybės**  | E6.2                                                                                                                                                                               |
+| **Exit-kriterijai** | TODO.md turi naują eilutę.                                                                                                                                                         |
+| **Rollback**        | StrReplace.                                                                                                                                                                        |
 
 **Etapo E6 exit-kriterijai.** Backlog'as paruoštas, JOKIO turinio nepakeista, CONTENT_AGENT'as turi sąrašą v0.3 ar vėlesniam etapui.
 
@@ -415,16 +415,16 @@
 
 ### Task E7.1 — Vizualinis screenshot rinkinys
 
-|                     |                                                                                                                                                                       |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agentas**         | UI_UX_AGENT (manualinis)                                                                                                                                              |
-| **Inputas**         | `npm run dev` + browser screenshot                                                                                                                                    |
+|                     |                                                                                                                                                                               |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agentas**         | UI_UX_AGENT (manualinis)                                                                                                                                                      |
+| **Inputas**         | `npm run dev` + browser screenshot                                                                                                                                            |
 | **Outputas**        | `docs/archive/development/analysis/DESIGN_SYSTEM_V0_2_VISUAL_DIFF/` — 8 screenshot'ai: ModulesPage prieš/po, M1 intro prieš/po, M4 intro prieš/po, M6 section-break prieš/po. |
-| **Token bud.**      | ~1K (file references)                                                                                                                                                 |
-| **Sudėtingumas**    | M (manualinis, ne agent'inis)                                                                                                                                         |
-| **Priklausomybės**  | E5 baigta                                                                                                                                                             |
-| **Exit-kriterijai** | 8 PNG failai, kiekvienas <500KB.                                                                                                                                      |
-| **Rollback**        | `rm -rf` folder.                                                                                                                                                      |
+| **Token bud.**      | ~1K (file references)                                                                                                                                                         |
+| **Sudėtingumas**    | M (manualinis, ne agent'inis)                                                                                                                                                 |
+| **Priklausomybės**  | E5 baigta                                                                                                                                                                     |
+| **Exit-kriterijai** | 8 PNG failai, kiekvienas <500KB.                                                                                                                                              |
+| **Rollback**        | `rm -rf` folder.                                                                                                                                                              |
 
 ### Task E7.2 — `docs/development/DESIGN_SYSTEM.md` skelet'o sukūrimas
 
@@ -493,16 +493,16 @@
 
 ## 12. Sėkmės metrikos
 
-| Metrika                                   | Baseline (v0.1)               | Tikslas (v0.2)                                | Matavimas                         |
-| ----------------------------------------- | ----------------------------- | --------------------------------------------- | --------------------------------- |
-| Hex'ų skaičius `src/components/**/*.tsx`  | ~250+ (apytiksliai, bus E2.2) | ≤ baseline                                    | `scripts/audit-design-tokens.mjs` |
-| Stylinių dublikatų (Card vs .card ir co.) | 5+                            | 0 (visi turi canonical sprendimą)             | E3.1 lentelė                      |
-| UI primitivų katalogo dydis               | 6                             | 9 (+3)                                        | `src/components/ui/index.ts`      |
-| Modulių su identity'iu (accent + icon)    | 0                             | 6 (M1–M6)                                     | `modules.json`                    |
-| Vietos UI'e su modulio identity           | 0                             | 3 (card, intro, section-break)                | E5.4–E5.6 commit'ai               |
-| Audit skriptų skaičius                    | 4                             | 5 (+1: design-tokens)                         | `scripts/audit-*.mjs`             |
-| Cursor rules count                        | 9                             | 10 (+1: design-system-v02)                    | `.cursor/rules/*.mdc`             |
-| Backlog'ų dokumentų                       | 0                             | 2 (DESIGN_TOKENS_BASELINE, MICROCOPY_LENGTHS) | `docs/archive/development/analysis/`      |
+| Metrika                                   | Baseline (v0.1)               | Tikslas (v0.2)                                | Matavimas                            |
+| ----------------------------------------- | ----------------------------- | --------------------------------------------- | ------------------------------------ |
+| Hex'ų skaičius `src/components/**/*.tsx`  | ~250+ (apytiksliai, bus E2.2) | ≤ baseline                                    | `scripts/audit-design-tokens.mjs`    |
+| Stylinių dublikatų (Card vs .card ir co.) | 5+                            | 0 (visi turi canonical sprendimą)             | E3.1 lentelė                         |
+| UI primitivų katalogo dydis               | 6                             | 9 (+3)                                        | `src/components/ui/index.ts`         |
+| Modulių su identity'iu (accent + icon)    | 0                             | 6 (M1–M6)                                     | `modules.json`                       |
+| Vietos UI'e su modulio identity           | 0                             | 3 (card, intro, section-break)                | E5.4–E5.6 commit'ai                  |
+| Audit skriptų skaičius                    | 4                             | 5 (+1: design-tokens)                         | `scripts/audit-*.mjs`                |
+| Cursor rules count                        | 9                             | 10 (+1: design-system-v02)                    | `.cursor/rules/*.mdc`                |
+| Backlog'ų dokumentų                       | 0                             | 2 (DESIGN_TOKENS_BASELINE, MICROCOPY_LENGTHS) | `docs/archive/development/analysis/` |
 
 ---
 

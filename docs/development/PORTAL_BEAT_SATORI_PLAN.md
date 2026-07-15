@@ -8,17 +8,17 @@
 
 ## OK/FAIL auditas (dabartiniai AI-generated PNG)
 
-| Kriterijus | Target | Dabartinė būsena | Verdict |
-|----------|--------|------------------|---------|
-| Failo dydis | ≤150 KB / beat (mobile scroll) | 1523–2608 KB | **FAIL** |
-| Aspect ratio | 16:9 (`aspect-video`) | 16:9 (tikėtina) | OK |
-| Brand paletė | `#627d98`, `#d4a520`, slate | Generinė AI paletė | **FAIL** |
-| Tekstas ant vaizdo | Neprivalomas (copy JSON) | Dažnai miglotas / anglų | **FAIL** |
-| Lietuviškos raidės | Jei tekstas – ž, ė, ą, ų… | Nėra garantijos | **FAIL** |
-| Atkartojamumas | `npm run generate:portal-beats` | Rankinis AI gen, be manifest | **FAIL** |
-| Redakcinis tonas | Verslo humoras / diagrama | Stock meme jausmas | **FAIL** |
-| A11y `alt` | Atitinka JSON `image.alt` | Alt JSON OK, vizualas generic | Dalinai OK |
-| Lazy load | Beškai 2–3 | Per dideli failai lėtina LCP | **FAIL** |
+| Kriterijus         | Target                          | Dabartinė būsena              | Verdict    |
+| ------------------ | ------------------------------- | ----------------------------- | ---------- |
+| Failo dydis        | ≤150 KB / beat (mobile scroll)  | 1523–2608 KB                  | **FAIL**   |
+| Aspect ratio       | 16:9 (`aspect-video`)           | 16:9 (tikėtina)               | OK         |
+| Brand paletė       | `#627d98`, `#d4a520`, slate     | Generinė AI paletė            | **FAIL**   |
+| Tekstas ant vaizdo | Neprivalomas (copy JSON)        | Dažnai miglotas / anglų       | **FAIL**   |
+| Lietuviškos raidės | Jei tekstas – ž, ė, ą, ų…       | Nėra garantijos               | **FAIL**   |
+| Atkartojamumas     | `npm run generate:portal-beats` | Rankinis AI gen, be manifest  | **FAIL**   |
+| Redakcinis tonas   | Verslo humoras / diagrama       | Stock meme jausmas            | **FAIL**   |
+| A11y `alt`         | Atitinka JSON `image.alt`       | Alt JSON OK, vizualas generic | Dalinai OK |
+| Lazy load          | Beškai 2–3                      | Per dideli failai lėtina LCP  | **FAIL**   |
 
 **Išvada:** Dabartiniai PNG tinka kaip **laikinas placeholder**, ne production. Perėjimas į **Satori + resvg** (kaip [blog](https://github.com/DITreneris/blog)) – rekomenduojamas P1.
 
@@ -28,15 +28,15 @@
 
 ### [blog](https://github.com/DITreneris/blog) – pagrindinis SOT
 
-| Blog failas | Mūsų adaptacija |
-|-------------|-----------------|
-| `scripts/lib/render.mjs` | `scripts/satori/lib/render.mjs` – satori → SVG → resvg PNG |
-| `scripts/fetch_og_fonts.mjs` | `scripts/fetch-satori-fonts.mjs` – Inter WOFF |
-| `scripts/generate_satori_images.mjs` | `scripts/generate-portal-beats.mjs` – CLI |
-| `data/illustrations.yaml` | `data/satori/portal-beats.yaml` – manifest |
-| `data/og/templates/*.mjs` | `scripts/satori/templates/editorial-beat.mjs` |
-| `data/og/brand.mjs` | `scripts/satori/brand.mjs` – **training** tokenai |
-| `--check`, `--dry-run`, `--id` | Tas pats CLI pattern |
+| Blog failas                          | Mūsų adaptacija                                            |
+| ------------------------------------ | ---------------------------------------------------------- |
+| `scripts/lib/render.mjs`             | `scripts/satori/lib/render.mjs` – satori → SVG → resvg PNG |
+| `scripts/fetch_og_fonts.mjs`         | `scripts/fetch-satori-fonts.mjs` – Inter WOFF              |
+| `scripts/generate_satori_images.mjs` | `scripts/generate-portal-beats.mjs` – CLI                  |
+| `data/illustrations.yaml`            | `data/satori/portal-beats.yaml` – manifest                 |
+| `data/og/templates/*.mjs`            | `scripts/satori/templates/editorial-beat.mjs`              |
+| `data/og/brand.mjs`                  | `scripts/satori/brand.mjs` – **training** tokenai          |
+| `--check`, `--dry-run`, `--id`       | Tas pats CLI pattern                                       |
 
 ### [site](https://github.com/DITreneris/site) – ko **nenaudoti** Satori beats
 
@@ -69,11 +69,11 @@ public/di_portal_meme_*.png       # output (overwrite)
 
 ## 3 beat šablonai (Satori variant)
 
-| ID | Variant | Vizualinė idėja |
-|----|---------|-----------------|
-| `awareness-gap` | `split-compare` | 86% naudoja vs 38% suvokia – suvokimo spraga |
-| `lithuania-context` | `stat-ribbon` | 69% LT vs 32,7% ES – virš vidurkio |
-| `next-step-prompt` | `prompt-flow` | Statistika → Promptas → Veiksmas (be CTA mygtuko) |
+| ID                  | Variant         | Vizualinė idėja                                   |
+| ------------------- | --------------- | ------------------------------------------------- |
+| `awareness-gap`     | `split-compare` | 86% naudoja vs 38% suvokia – suvokimo spraga      |
+| `lithuania-context` | `stat-ribbon`   | 69% LT vs 32,7% ES – virš vidurkio                |
+| `next-step-prompt`  | `prompt-flow`   | Statistika → Promptas → Veiksmas (be CTA mygtuko) |
 
 Tekstas ant vaizdo – **trumpas LT** (1 headline + 2 bullet), sinchronizuotas su `modules.json` `editorialBeats[].title`.
 

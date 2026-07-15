@@ -29,7 +29,9 @@ export default function PortalHeroSidebar({
       className="min-w-0 border-t lg:border-t-0 lg:border-l border-gray-200 dark:border-gray-700 pt-4 lg:pt-0 lg:pl-5"
       aria-label={heading}
     >
-      <p className={`${getPortalSectionLabelClasses('break')} mb-3`}>{heading}</p>
+      <p className={`${getPortalSectionLabelClasses('break')} mb-3`}>
+        {heading}
+      </p>
       <ul className="space-y-4 lg:space-y-3" role="list">
         {teasers.map((teaser, idx) => (
           <li

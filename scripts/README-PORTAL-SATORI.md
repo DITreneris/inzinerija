@@ -40,11 +40,11 @@ After YAML change, regenerate PNG and visually check M4 sk. 53.5.
 
 ## Target quality
 
-| Metric | Target |
-|--------|--------|
-| Size | ≤150 KB per PNG |
-| Dimensions | 1280×720 (16:9) |
-| Brand | `#627d98`, `#d4a520`, light portal shell |
+| Metric     | Target                                   |
+| ---------- | ---------------------------------------- |
+| Size       | ≤150 KB per PNG                          |
+| Dimensions | 1280×720 (16:9)                          |
+| Brand      | `#627d98`, `#d4a520`, light portal shell |
 
 ## vs AI-generated placeholders
 

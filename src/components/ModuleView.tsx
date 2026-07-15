@@ -1087,112 +1087,112 @@ function ModuleView({
               </div>
             </>
           ) : (
-          <nav
-            className={`sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b shadow-sm ${surfaceGlass.shell}`}
-            aria-label={t('slideNavBarAria')}
-          >
-            {/* Mobile: compact counter only (buttons are in bottom nav) */}
-            <div
-              className={`lg:hidden flex items-center justify-center ${mobileCounterClass}`}
+            <nav
+              className={`sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b shadow-sm ${surfaceGlass.shell}`}
+              aria-label={t('slideNavBarAria')}
             >
-              <span
-                className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
-                aria-label={t('slideOf', {
-                  current: visiblePosition,
-                  total: visibleSlideCount,
-                })}
-              >
-                {t('moduleLabel', { n: moduleId })}
-                {m7MacroBlockLabel ? ` · ${m7MacroBlockLabel}` : ''} ·{' '}
-                {visiblePosition}/{visibleSlideCount}
-              </span>
-            </div>
-            {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
-            <div className="hidden lg:flex items-center justify-between gap-3 py-2">
-              <CTAButton
-                type="button"
-                onClick={prevSlide}
-                disabled={isFirstSlide}
-                variant="secondary"
-                className="shrink-0 rounded-lg text-sm font-medium min-w-[44px] whitespace-nowrap bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed border-0 shadow-none"
-                aria-label={t('prevSlide')}
-              >
-                <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
-                <span>{t('backShort')}</span>
-              </CTAButton>
-              <span
-                className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
-                aria-label={t('slideOf', {
-                  current: visiblePosition,
-                  total: visibleSlideCount,
-                })}
-              >
-                {m7MacroBlockLabel ? (
-                  <span className="text-gray-500 dark:text-gray-400 mr-1.5">
-                    {m7MacroBlockLabel} ·
-                  </span>
-                ) : null}
-                {visiblePosition}/{visibleSlideCount}
-              </span>
-              <CTAButton
-                type="button"
-                onClick={handleNextOrCompleteClick}
-                disabled={isNextDisabled}
-                title={nextSlideContextLabel ?? undefined}
-                variant="primary"
-                className="px-5 py-3 rounded-xl text-sm min-h-[48px] shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:hover:translate-y-0"
-                aria-label={
-                  isLastSlide
-                    ? t('completeAria')
-                    : (nextButtonLabel ?? t('nextSlide'))
-                }
+              {/* Mobile: compact counter only (buttons are in bottom nav) */}
+              <div
+                className={`lg:hidden flex items-center justify-center ${mobileCounterClass}`}
               >
                 <span
-                  className="truncate"
-                  title={nextSlideContextLabel ?? undefined}
+                  className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
+                  aria-label={t('slideOf', {
+                    current: visiblePosition,
+                    total: visibleSlideCount,
+                  })}
                 >
-                  {isLastSlide
-                    ? t('complete')
-                    : (nextButtonLabel ?? t('continueShort'))}
+                  {t('moduleLabel', { n: moduleId })}
+                  {m7MacroBlockLabel ? ` · ${m7MacroBlockLabel}` : ''} ·{' '}
+                  {visiblePosition}/{visibleSlideCount}
                 </span>
-                {!isLastSlide && (
-                  <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />
-                )}
-                {isLastSlide && (
-                  <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />
-                )}
-              </CTAButton>
-            </div>
-            <div
-              className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
-              role="progressbar"
-              aria-valuenow={visiblePosition}
-              aria-valuemin={1}
-              aria-valuemax={visibleSlideCount}
-              aria-label={t('slideOf', {
-                current: visiblePosition,
-                total: visibleSlideCount,
-              })}
-            >
-              <div
-                className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
-                style={{
-                  width: `${visibleSlideCount > 0 ? (visiblePosition / visibleSlideCount) * 100 : 0}%`,
-                }}
-              />
-            </div>
-            {moduleId === 7 && m7JourneyFocusLabel && (
-              <div
-                className="px-3 py-2 text-center text-xs sm:text-sm font-medium text-brand-800 dark:text-brand-200 bg-brand-50/90 dark:bg-brand-950/50 border-t border-brand-100 dark:border-brand-900/60"
-                role="status"
-                aria-label={t('module:m7JourneyFocusAria')}
-              >
-                {t('module:m7JourneyFocus', {
-                  label: m7JourneyFocusLabel,
-                })}
               </div>
-            )}
-          </nav>
+              {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
+              <div className="hidden lg:flex items-center justify-between gap-3 py-2">
+                <CTAButton
+                  type="button"
+                  onClick={prevSlide}
+                  disabled={isFirstSlide}
+                  variant="secondary"
+                  className="shrink-0 rounded-lg text-sm font-medium min-w-[44px] whitespace-nowrap bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed border-0 shadow-none"
+                  aria-label={t('prevSlide')}
+                >
+                  <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
+                  <span>{t('backShort')}</span>
+                </CTAButton>
+                <span
+                  className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
+                  aria-label={t('slideOf', {
+                    current: visiblePosition,
+                    total: visibleSlideCount,
+                  })}
+                >
+                  {m7MacroBlockLabel ? (
+                    <span className="text-gray-500 dark:text-gray-400 mr-1.5">
+                      {m7MacroBlockLabel} ·
+                    </span>
+                  ) : null}
+                  {visiblePosition}/{visibleSlideCount}
+                </span>
+                <CTAButton
+                  type="button"
+                  onClick={handleNextOrCompleteClick}
+                  disabled={isNextDisabled}
+                  title={nextSlideContextLabel ?? undefined}
+                  variant="primary"
+                  className="px-5 py-3 rounded-xl text-sm min-h-[48px] shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                  aria-label={
+                    isLastSlide
+                      ? t('completeAria')
+                      : (nextButtonLabel ?? t('nextSlide'))
+                  }
+                >
+                  <span
+                    className="truncate"
+                    title={nextSlideContextLabel ?? undefined}
+                  >
+                    {isLastSlide
+                      ? t('complete')
+                      : (nextButtonLabel ?? t('continueShort'))}
+                  </span>
+                  {!isLastSlide && (
+                    <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />
+                  )}
+                  {isLastSlide && (
+                    <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />
+                  )}
+                </CTAButton>
+              </div>
+              <div
+                className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
+                role="progressbar"
+                aria-valuenow={visiblePosition}
+                aria-valuemin={1}
+                aria-valuemax={visibleSlideCount}
+                aria-label={t('slideOf', {
+                  current: visiblePosition,
+                  total: visibleSlideCount,
+                })}
+              >
+                <div
+                  className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
+                  style={{
+                    width: `${visibleSlideCount > 0 ? (visiblePosition / visibleSlideCount) * 100 : 0}%`,
+                  }}
+                />
+              </div>
+              {moduleId === 7 && m7JourneyFocusLabel && (
+                <div
+                  className="px-3 py-2 text-center text-xs sm:text-sm font-medium text-brand-800 dark:text-brand-200 bg-brand-50/90 dark:bg-brand-950/50 border-t border-brand-100 dark:border-brand-900/60"
+                  role="status"
+                  aria-label={t('module:m7JourneyFocusAria')}
+                >
+                  {t('module:m7JourneyFocus', {
+                    label: m7JourneyFocusLabel,
+                  })}
+                </div>
+              )}
+            </nav>
           )}
 
           <ErrorBoundary

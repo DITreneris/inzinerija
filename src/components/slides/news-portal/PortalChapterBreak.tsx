@@ -27,9 +27,7 @@ export default function PortalChapterBreak({
       aria-hidden={isLandmark ? undefined : true}
     >
       <p className={getPortalSectionLabelClasses('break')}>{label}</p>
-      {subtitle && (
-        <p className={`mt-1 ${PORTAL_TEXT.muted}`}>{subtitle}</p>
-      )}
+      {subtitle && <p className={`mt-1 ${PORTAL_TEXT.muted}`}>{subtitle}</p>}
     </div>
   );
 }

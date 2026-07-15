@@ -6,7 +6,10 @@ interface PortalCardHeaderProps {
 }
 
 /** Vienas card antraštės pattern visiems PortalBlockShell blokams */
-export default function PortalCardHeader({ label, title }: PortalCardHeaderProps) {
+export default function PortalCardHeader({
+  label,
+  title,
+}: PortalCardHeaderProps) {
   return (
     <>
       <div className={`${getPortalKickerClasses('neutral')} mb-1`}>{label}</div>

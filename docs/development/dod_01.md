@@ -20,14 +20,14 @@
 
 Etapas laikomas baigtu **tik** kai perdavimo sąlyga įvykdyta. Pipeline tvarka – `AGENT_ORCHESTRATOR.md` §4.
 
-| Etapas                      | „Padaryta“ = ką privaloma perduoti kitam                                                                               |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **CURRICULUM** (jei reikia) | Struktūros vertinimas / rekomendacijos (tikslai, seka, 5 blokai) – **ne** galutinė kopija. → CONTENT                   |
+| Etapas                      | „Padaryta“ = ką privaloma perduoti kitam                                                                                                                                                                                                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CURRICULUM** (jei reikia) | Struktūros vertinimas / rekomendacijos (tikslai, seka, 5 blokai) – **ne** galutinė kopija. → CONTENT                                                                                                                                                                                                                      |
 | **CONTENT**                 | Turinio **SOT atnaujintas** (`turinio_pletra*.md`) **arba** (UX polish iteracijoms) operacinis įrašas `TEST_REPORT` + [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md) be pilno turinio rewrite – žr. [`DOCS_MAINTENANCE.md`](DOCS_MAINTENANCE.md) §2. Tekstai paruošti su tiksliomis vietomis (modulis, skaidrė). → DATA |
-| **DATA**                    | JSON sinchronizuotas su SOT; atsakyta į full vs `*-m1-m6` klausimą; schema validacija praėjo. → CODING                 |
-| **CODING**                  | Render veikia; tipai (`src/types/modules.ts`) nepažeisti; lint be naujų klaidų. → CODE_REVIEW                          |
-| **CODE_REVIEW**             | Diagnozė + rizikos + rekomendacija (OK arba kuris agentas taiso ką). → QA                                              |
-| **QA**                      | Dokumentacija suderinta (CHANGELOG, TODO, TEST_REPORT pagal apimtį). → vartotojas                                      |
+| **DATA**                    | JSON sinchronizuotas su SOT; atsakyta į full vs `*-m1-m6` klausimą; schema validacija praėjo. → CODING                                                                                                                                                                                                                    |
+| **CODING**                  | Render veikia; tipai (`src/types/modules.ts`) nepažeisti; lint be naujų klaidų. → CODE_REVIEW                                                                                                                                                                                                                             |
+| **CODE_REVIEW**             | Diagnozė + rizikos + rekomendacija (OK arba kuris agentas taiso ką). → QA                                                                                                                                                                                                                                                 |
+| **QA**                      | Dokumentacija suderinta (CHANGELOG, TODO, TEST_REPORT pagal apimtį). → vartotojas                                                                                                                                                                                                                                         |
 
 ---
 

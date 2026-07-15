@@ -42,11 +42,11 @@ Masthead (PortalMastheadNav: brand + nav + utility)
 
 Vienintelis vizualinis šaltinis: [`portalSurfaces.ts`](../../src/components/slides/news-portal/portalSurfaces.ts).
 
-| Surface | Komponentai | Vizualas |
-|---------|-------------|----------|
+| Surface       | Komponentai                                                            | Vizualas                                                       |
+| ------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **editorial** | takeaway, promo ribbons, beats, `PortalDataBriefRow`, `PortalSlideCta` | `border-l-4` + light tint (`getPortalEditorialSurfaceClasses`) |
-| **card** | secondary, tools, youth, insight | `PortalBlockShell` → `getPortalCardShellClasses()` |
-| **chrome** | masthead (+ fallback be nav), ticker, sidebar, chapter breaks, footer | neutral / accent fallback |
+| **card**      | secondary, tools, youth, insight                                       | `PortalBlockShell` → `getPortalCardShellClasses()`             |
+| **chrome**    | masthead (+ fallback be nav), ticker, sidebar, chapter breaks, footer  | neutral / accent fallback                                      |
 
 **Metric scale:** `PORTAL_HEADING.hero` (H1) · `chapter` (DataBrief 1-as stat, 3xl) · `inline` (DataBrief stat 2–3, secondary cards; 98% IT – violet). **Spacing:** `PORTAL_SPACING` — chapter `mt-8`, block `space-y-6`, `gapGrid`/`gapCards`.
 
@@ -54,18 +54,18 @@ Vienintelis vizualinis šaltinis: [`portalSurfaces.ts`](../../src/components/sli
 
 **Typography tokens (Typography Wave T1–T6):**
 
-| Rolė | Token | Klasė |
-|------|-------|-------|
-| Skyriaus break | `getPortalSectionLabelClasses('break')` | xs bold UPPERCASE |
-| Chapter nav | `getPortalSectionLabelClasses('nav')` | xs semibold sentence |
-| Beat H2 | `PORTAL_HEADING.beat` | lg/xl bold |
-| Ribbon / pull-quote | `PORTAL_HEADING.pullQuote` | lg/xl semibold |
-| Card H3 | `PORTAL_TEXT.cardTitle` | base semibold |
-| Body | `PORTAL_TEXT.body` | sm → lg base |
-| Hero subline | `PORTAL_TEXT.bodySm` | sm |
-| Takeaway | `takeawayBold` base + `takeawayCta` base medium | — |
-| Rubric (TYRIMAS…) | `getPortalKickerClasses('hero'|'neutral')` | xs |
-| SVG caption | `AWARENESS_ROW.captionSize` | ≥12px |
+| Rolė                | Token                                           | Klasė                |
+| ------------------- | ----------------------------------------------- | -------------------- | --- |
+| Skyriaus break      | `getPortalSectionLabelClasses('break')`         | xs bold UPPERCASE    |
+| Chapter nav         | `getPortalSectionLabelClasses('nav')`           | xs semibold sentence |
+| Beat H2             | `PORTAL_HEADING.beat`                           | lg/xl bold           |
+| Ribbon / pull-quote | `PORTAL_HEADING.pullQuote`                      | lg/xl semibold       |
+| Card H3             | `PORTAL_TEXT.cardTitle`                         | base semibold        |
+| Body                | `PORTAL_TEXT.body`                              | sm → lg base         |
+| Hero subline        | `PORTAL_TEXT.bodySm`                            | sm                   |
+| Takeaway            | `takeawayBold` base + `takeawayCta` base medium | —                    |
+| Rubric (TYRIMAS…)   | `getPortalKickerClasses('hero'                  | 'neutral')`          | xs  |
+| SVG caption         | `AWARENESS_ROW.captionSize`                     | ≥12px                |
 
 Taip pat: `PORTAL_BULLET`, `PORTAL_SOURCE_FOOTER`, `PORTAL_TEXT` / `PORTAL_FOOTER`. Deprecated: `getPortalKickerClasses('chapter'|'rail')` → naudoti `sectionBreak`.
 
@@ -77,12 +77,12 @@ Taip pat: `PORTAL_BULLET`, `PORTAL_SOURCE_FOOTER`, `PORTAL_TEXT` / `PORTAL_FOOTE
 
 **Leidžiami image slotai (max 4):**
 
-| Slot | Failas |
-|------|--------|
-| `heroImageVertical` | `di_portal_hero_vertical.png` |
-| `secondaryCards[0].imageVertical` | `di_portal_youth_vertical.png` |
-| `secondaryCards[1].imageVertical` | `di_portal_section03_vertical.png` |
-| `insightCard.illustrationHorizontal` | `di_portal_insight_strip.png` |
+| Slot                                 | Failas                             |
+| ------------------------------------ | ---------------------------------- |
+| `heroImageVertical`                  | `di_portal_hero_vertical.png`      |
+| `secondaryCards[0].imageVertical`    | `di_portal_youth_vertical.png`     |
+| `secondaryCards[1].imageVertical`    | `di_portal_section03_vertical.png` |
+| `insightCard.illustrationHorizontal` | `di_portal_insight_strip.png`      |
 
 **Negrąžinti:** `bannerImageHorizontal`, `bannerBetweenKpiAndSections`, 4 KPI, meme/Satori beat PNG, trijų kolonų hero grid.
 
@@ -94,12 +94,12 @@ Taip pat: `PORTAL_BULLET`, `PORTAL_SOURCE_FOOTER`, `PORTAL_TEXT` / `PORTAL_FOOTE
 - **H1:** tik portalo `headline` (`NewsPortalInfographicSlide`)
 - **AppNav** (Promptų anatomija) – lieka
 
-| Kas slepiama immersive | Desktop | Mobile |
-|------------------------|---------|--------|
-| Modulio badge + course H1 | taip | taip |
-| Sticky Atgal | taip | ne (bottom nav) |
-| Skaitiklis N/M | taip | taip (top sticky) |
-| Progress bar + Tęsti | ne | ne (bottom Tęsti) |
+| Kas slepiama immersive    | Desktop | Mobile            |
+| ------------------------- | ------- | ----------------- |
+| Modulio badge + course H1 | taip    | taip              |
+| Sticky Atgal              | taip    | ne (bottom nav)   |
+| Skaitiklis N/M            | taip    | taip (top sticky) |
+| Progress bar + Tęsti      | ne      | ne (bottom Tęsti) |
 
 ## Anti-PPT taisyklės (2026-07)
 
@@ -114,11 +114,11 @@ Taip pat: `PORTAL_BULLET`, `PORTAL_SOURCE_FOOTER`, `PORTAL_TEXT` / `PORTAL_FOOTE
 
 **Paskirtis:** Vienos skaidrės viduje peršokti iš hero į sekciją (ne kita modulio skaidrė, ne hash routing).
 
-| Trigger | Target `id` | Turinys |
-|---------|-------------|---------|
-| `PortalChapterNav` (Duomenys · Giliau · Santrauka) | `portal-section-data` / `-depth` / `-close` | Chapter break landmark |
-| `heroSidebarTeasers[].scrollTarget` | JSON enum | Sidebar „Svarbiausia“ teaser → sekcija |
-| `portalNav` rubrikos | — | **Dekoratyvios** (ne jump) |
+| Trigger                                            | Target `id`                                 | Turinys                                |
+| -------------------------------------------------- | ------------------------------------------- | -------------------------------------- |
+| `PortalChapterNav` (Duomenys · Giliau · Santrauka) | `portal-section-data` / `-depth` / `-close` | Chapter break landmark                 |
+| `heroSidebarTeasers[].scrollTarget`                | JSON enum                                   | Sidebar „Svarbiausia“ teaser → sekcija |
+| `portalNav` rubrikos                               | —                                           | **Dekoratyvios** (ne jump)             |
 
 **Implementacija:** [`portalSectionAnchors.ts`](../../src/components/slides/news-portal/portalSectionAnchors.ts) — `scrollToPortalSection()` + `PORTAL_SCROLL_TARGET` (`scroll-margin` sticky offset). Triggeriai — `<button>`, ne `href="#..."`.
 
@@ -128,28 +128,28 @@ Taip pat: `PORTAL_BULLET`, `PORTAL_SOURCE_FOOTER`, `PORTAL_TEXT` / `PORTAL_FOOTE
 
 **Chapter map (4 acts):**
 
-| Act | Blokai | Vizualinis tonas |
-|-----|--------|------------------|
-| **Lead** | Masthead + Hero foto + takeaway + Beat1 | Editorial + brand/accent |
-| **Data** | DataBriefRow + Ribbon + Secondary×2 + Beat2 | brand + emerald (Lietuva secondary = brand) |
-| **Depth** | Tools + Youth + Ribbon2 | brand ranking + violet hero KPI; ribbon2 **brand** (ne accent) |
-| **Close** | Insight + Beat3 + CTA + Footer | terms/summary + accent CTA |
+| Act       | Blokai                                      | Vizualinis tonas                                               |
+| --------- | ------------------------------------------- | -------------------------------------------------------------- |
+| **Lead**  | Masthead + Hero foto + takeaway + Beat1     | Editorial + brand/accent                                       |
+| **Data**  | DataBriefRow + Ribbon + Secondary×2 + Beat2 | brand + emerald (Lietuva secondary = brand)                    |
+| **Depth** | Tools + Youth + Ribbon2                     | brand ranking + violet hero KPI; ribbon2 **brand** (ne accent) |
+| **Close** | Insight + Beat3 + CTA + Footer              | terms/summary + accent CTA                                     |
 
 ## JSON laukai
 
-| Laukas | Paskirtis |
-|--------|-----------|
-| `portalMeta` | byline, publishedAt, readMinutes – redakcinis metadata |
-| `portalNav` | Dekoratyvi navigacija (max 7) |
-| `breakingTicker` | „Dabar:“ aktualijų juosta |
-| `heroSidebarTeasers` | Hero dešinė – 3 „svarbiausios“ eilutės |
-| `immersive` | Slėpti course chrome ModuleView |
-| `editorialBeats[]` | Redakcinės pauzės (max 3); `placement`: `afterHero`, `afterKpi`, `afterSections`, `beforeCta` |
-| `promoRibbons[]` | Promo juostos; `placement`: `afterKpi`, `beforeInsight` |
-| `mainInsightBlock` | **Duomenys trumpai** eilėje (32,7%) – ne Lead gradient Portal 2.1 |
-| `featured` | **Duomenys trumpai** eilėje (98%) – ne hero inline Portal 2.1 |
-| `heroImageVertical` | Hero foto (aspect 16/9 crop, mažesnis aukštis) |
-| `insightCard.illustrationHorizontal` | Santraukos strip (optional) |
+| Laukas                               | Paskirtis                                                                                     |
+| ------------------------------------ | --------------------------------------------------------------------------------------------- |
+| `portalMeta`                         | byline, publishedAt, readMinutes – redakcinis metadata                                        |
+| `portalNav`                          | Dekoratyvi navigacija (max 7)                                                                 |
+| `breakingTicker`                     | „Dabar:“ aktualijų juosta                                                                     |
+| `heroSidebarTeasers`                 | Hero dešinė – 3 „svarbiausios“ eilutės                                                        |
+| `immersive`                          | Slėpti course chrome ModuleView                                                               |
+| `editorialBeats[]`                   | Redakcinės pauzės (max 3); `placement`: `afterHero`, `afterKpi`, `afterSections`, `beforeCta` |
+| `promoRibbons[]`                     | Promo juostos; `placement`: `afterKpi`, `beforeInsight`                                       |
+| `mainInsightBlock`                   | **Duomenys trumpai** eilėje (32,7%) – ne Lead gradient Portal 2.1                             |
+| `featured`                           | **Duomenys trumpai** eilėje (98%) – ne hero inline Portal 2.1                                 |
+| `heroImageVertical`                  | Hero foto (aspect 16/9 crop, mažesnis aukštis)                                                |
+| `insightCard.illustrationHorizontal` | Santraukos strip (optional)                                                                   |
 
 Su editorial: **nenaudoti** `bannerImageHorizontal`, `bannerBetweenKpiAndSections`. **`mainInsightBlock` + iki 4 foto slotų leidžiami** (Rich Portal 2.0).
 
@@ -157,17 +157,17 @@ Su editorial: **nenaudoti** `bannerImageHorizontal`, `bannerBetweenKpiAndSection
 
 Kiekviena metrika turi **vieną primary zoną** – kitur tik trumpa nuoroda arba nebekartojama.
 
-| Metrika | Primary zona | Secondary |
-|---------|--------------|-----------|
-| 32,7% ES | `PortalDataBriefRow` (Duomenys trumpai) | insight point 01 |
-| 98% IT | `PortalDataBriefRow` | sidebar teaser be skaičiaus (tendencija) |
-| 20% ES įmonės | `PortalDataBriefRow` + ribbon subline | — |
-| 56% produktyvumas | ribbon subline / toolsInsight | ne atskira KPI kortelė editorial |
-| 69% LT | lithuania-context diagrama (+36,3 pp) | SecondaryCard 02 / insight 03 |
-| 63,8% jaunimas | SecondaryCard 01 | insight point 02 |
-| 9,8% LT įmonės | SecondaryCard 02 | — |
-| ~15,8% darbe | Darbuotojai 04 hero KPI | insight point 02 |
-| 86/38/48 (illustracija) | awareness-gap diagrama | — (softinta: „illustracinė suvokimo spraga“, šaltinis – tendencijos, ne tikslūs faktai) |
+| Metrika                 | Primary zona                            | Secondary                                                                               |
+| ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------- |
+| 32,7% ES                | `PortalDataBriefRow` (Duomenys trumpai) | insight point 01                                                                        |
+| 98% IT                  | `PortalDataBriefRow`                    | sidebar teaser be skaičiaus (tendencija)                                                |
+| 20% ES įmonės           | `PortalDataBriefRow` + ribbon subline   | —                                                                                       |
+| 56% produktyvumas       | ribbon subline / toolsInsight           | ne atskira KPI kortelė editorial                                                        |
+| 69% LT                  | lithuania-context diagrama (+36,3 pp)   | SecondaryCard 02 / insight 03                                                           |
+| 63,8% jaunimas          | SecondaryCard 01                        | insight point 02                                                                        |
+| 9,8% LT įmonės          | SecondaryCard 02                        | —                                                                                       |
+| ~15,8% darbe            | Darbuotojai 04 hero KPI                 | insight point 02                                                                        |
+| 86/38/48 (illustracija) | awareness-gap diagrama                  | — (softinta: „illustracinė suvokimo spraga“, šaltinis – tendencijos, ne tikslūs faktai) |
 
 **InsightCard:** tag `Santrauka`; 3 punktai; optional `illustrationHorizontal` (Rich Portal 2.0).
 
@@ -188,11 +188,11 @@ Kiekviena metrika turi **vieną primary zoną** – kitur tik trumpa nuoroda arb
 
 ## Asset brief (React SVG beats)
 
-| beat.id | Diagrama | Turinys |
-|---------|----------|---------|
-| `awareness-gap` | AwarenessGapDiagram | Juostos 86/38, inline 48 proc. punktų, HTML šaltinis |
-| `lithuania-context` | LithuaniaContextDiagram | LT 69% vs ES 32,7% |
-| `next-step-prompt` | PortalNextStepPromptBlock | 2 eil. tiltas + copyable prompt (be SVG 3-box) |
+| beat.id             | Diagrama                  | Turinys                                              |
+| ------------------- | ------------------------- | ---------------------------------------------------- |
+| `awareness-gap`     | AwarenessGapDiagram       | Juostos 86/38, inline 48 proc. punktų, HTML šaltinis |
+| `lithuania-context` | LithuaniaContextDiagram   | LT 69% vs ES 32,7%                                   |
+| `next-step-prompt`  | PortalNextStepPromptBlock | 2 eil. tiltas + copyable prompt (be SVG 3-box)       |
 
 Specifikacija: `PORTAL_BEAT_DIAGRAMS.md`. **Deprecated:** Satori PNG (`di_portal_meme_01–03.png`, `PORTAL_BEAT_SATORI_PLAN.md`).
 
@@ -209,14 +209,14 @@ JSON `iconKey`: `globe`, `trending-up`, `building-2`, `map-pin` – render per `
 
 ## 48h user test (5 mobile)
 
-| Metrika | Pass |
-|---------|------|
-| „Atrodė kaip straipsnis / portalas“ | ≥70% |
-| „Atrodė kaip PowerPoint / prezentacija“ | ≤30% |
-| „Per daug informacijos“ | ≤30% |
-| 3s test: apie ką skaidrė? | 1 sakinys su DI + kontekstu |
-| Scroll completion (pasiekia CTA) | ≥60% |
-| Suprato 86/38/48 (awareness-gap) | ≥70% |
+| Metrika                                 | Pass                        |
+| --------------------------------------- | --------------------------- |
+| „Atrodė kaip straipsnis / portalas“     | ≥70%                        |
+| „Atrodė kaip PowerPoint / prezentacija“ | ≤30%                        |
+| „Per daug informacijos“                 | ≤30%                        |
+| 3s test: apie ką skaidrė?               | 1 sakinys su DI + kontekstu |
+| Scroll completion (pasiekia CTA)        | ≥60%                        |
+| Suprato 86/38/48 (awareness-gap)        | ≥70%                        |
 
 **Protokolas:** 5 dalyviai, mobile 375px, M4 iki sk. 53.5; po sesijos – klausimai (taip/ne + 1–5 + laisvas 3s atsakymas). Rezultatus įrašyti į `TEST_REPORT.md` § M4 sk. 53.5 anti-PPT.
 

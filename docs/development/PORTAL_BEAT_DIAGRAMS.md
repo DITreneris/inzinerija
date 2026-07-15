@@ -21,11 +21,11 @@ src/components/slides/news-portal/beat-diagrams/
 
 **Maršrutizavimas pagal `beat.id`:**
 
-| id | Komponentas | Vizualas |
-|----|-------------|----------|
-| `awareness-gap` | AwarenessGapDiagram | Proporcingos juostos 86/38, inline 48 proc. punktų, HTML šaltinis |
-| `lithuania-context` | LithuaniaContextDiagram | Proporcingos juostos 69/32,7, inline +36,3 proc. punktų, HTML šaltinis |
-| `next-step-prompt` | PortalNextStepPromptBlock | 2 eil. tiltas į sk. 43 + copyable promptas (be SVG 3-box) |
+| id                  | Komponentas               | Vizualas                                                               |
+| ------------------- | ------------------------- | ---------------------------------------------------------------------- |
+| `awareness-gap`     | AwarenessGapDiagram       | Proporcingos juostos 86/38, inline 48 proc. punktų, HTML šaltinis      |
+| `lithuania-context` | LithuaniaContextDiagram   | Proporcingos juostos 69/32,7, inline +36,3 proc. punktų, HTML šaltinis |
+| `next-step-prompt`  | PortalNextStepPromptBlock | 2 eil. tiltas į sk. 43 + copyable promptas (be SVG 3-box)              |
 
 ---
 
@@ -53,7 +53,7 @@ src/components/slides/news-portal/beat-diagrams/
 
 - **next-step-prompt:** `PortalNextStepPromptBlock` — 2 eil. tiltas (sk. 43) + copyable promptas komandos santraukai; **be** `PromptFlowDiagram` SVG.
 - **Copy SOT:** `portalBeatContent.ts` → `nextStepPrompt` (bridgeLine1/2, promptLabel, promptTemplate); JSON title/body nekeičiamas.
-- **PromptFlowDiagram.tsx** — pašalintas; `portalBeatLayout.ts` FLOW_* konstantos pašalintos.
+- **PromptFlowDiagram.tsx** — pašalintas; `portalBeatLayout.ts` FLOW\_\* konstantos pašalintos.
 - **Visi 3 beats:** stacked layout (title → body → vizualas), ne zig-zag.
 
 ---
@@ -73,11 +73,11 @@ Ankstesnis `npm run generate:portal-beats` + `di_portal_meme_01–03.png` – **
 
 ## SCHEME §5 checklist (beats)
 
-| Punktas | Statusas |
-|---------|----------|
-| Model/view atskirtas (`portalBeatLayout.ts` vs `*Diagram.tsx`) | OK (SVG beats); next-step = HTML |
-| Be headline dubliavimo | OK |
-| Dark mode – SVG label/caption/track | `PORTAL_BEAT_SVG` + `portalBeatBarRow` | OK (2026-07-14 Bang L) |
+| Punktas                                                        | Statusas                               |
+| -------------------------------------------------------------- | -------------------------------------- | ---------------------- |
+| Model/view atskirtas (`portalBeatLayout.ts` vs `*Diagram.tsx`) | OK (SVG beats); next-step = HTML       |
+| Be headline dubliavimo                                         | OK                                     |
+| Dark mode – SVG label/caption/track                            | `PORTAL_BEAT_SVG` + `portalBeatBarRow` | OK (2026-07-14 Bang L) |
 
 ---
 

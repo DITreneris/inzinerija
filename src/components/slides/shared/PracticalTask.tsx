@@ -47,8 +47,7 @@ export default function PracticalTask({
   const { locale } = useLocale();
   const { t } = useTranslation('testPractice');
   const motivationText =
-    task.motivation ??
-    (moduleId === 9 ? t('m9DefaultMotivation') : undefined);
+    task.motivation ?? (moduleId === 9 ? t('m9DefaultMotivation') : undefined);
   const blockLocale = locale.startsWith('en') ? 'en' : 'lt';
   const autoSaveKey = `task-draft-${moduleId}-${slideId}`;
   const completedContentKey = `task-completed-${moduleId}-${slideId}`;

@@ -175,7 +175,9 @@ describe('TestPracticeSlides M9 scenario defaults', () => {
       />
     );
 
-    expect(screen.getByText(/META: Tu esi mokymų refleksijos asistentas/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/META: Tu esi mokymų refleksijos asistentas/)
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Nukopijuoti refleksijos promptą' })
     ).toBeInTheDocument();

@@ -18,11 +18,7 @@ export type PortalKpiIconKey =
   | 'building-2'
   | 'map-pin';
 
-export type PortalToolIconKey =
-  | 'shield'
-  | 'message-circle'
-  | 'bot'
-  | 'search';
+export type PortalToolIconKey = 'shield' | 'message-circle' | 'bot' | 'search';
 
 const KPI_ICONS: Record<PortalKpiIconKey, LucideIcon> = {
   globe: Globe,
@@ -39,7 +35,7 @@ const TOOL_ICONS: Record<PortalToolIconKey, LucideIcon> = {
 };
 
 export function resolvePortalKpiIcon(
-  card: Pick<NewsPortalKpiCard, 'iconKey' | 'icon'>,
+  card: Pick<NewsPortalKpiCard, 'iconKey' | 'icon'>
 ): LucideIcon {
   if (card.iconKey && card.iconKey in KPI_ICONS) {
     return KPI_ICONS[card.iconKey as PortalKpiIconKey];

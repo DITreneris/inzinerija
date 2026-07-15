@@ -113,11 +113,17 @@ export default function M9DataWorkflowDiagram({
               : 'bg-brand-50 text-brand-600 dark:bg-brand-900/30 dark:text-brand-300',
           ].join(' ')}
         >
-          <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={1.5} aria-hidden />
+          <Icon
+            className="h-6 w-6 md:h-7 md:w-7"
+            strokeWidth={1.5}
+            aria-hidden
+          />
         </div>
         <h3
           className={`text-center text-sm font-semibold leading-tight md:text-base ${
-            isActive ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+            isActive
+              ? 'text-gray-900 dark:text-white'
+              : 'text-gray-700 dark:text-gray-200'
           }`}
         >
           {stepLabel}
@@ -140,12 +146,17 @@ export default function M9DataWorkflowDiagram({
           {title}
         </h4>
         {isInteractive && (
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{hint}</p>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            {hint}
+          </p>
         )}
       </div>
 
       <div className="relative overflow-x-auto rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/80 via-white to-accent-50/40 p-4 shadow-sm dark:border-gray-700 dark:from-brand-950/40 dark:via-gray-900 dark:to-accent-950/20 md:p-6">
-        <div className="flex flex-col items-stretch gap-2 lg:hidden" role="list">
+        <div
+          className="flex flex-col items-stretch gap-2 lg:hidden"
+          role="list"
+        >
           {stepsMeta.map((_, i) => (
             <Fragment key={i}>
               {i > 0 && (

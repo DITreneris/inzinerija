@@ -13,7 +13,9 @@ interface PortalChapterNavProps {
 const CHAPTER_JUMP_BTN =
   'min-h-[44px] px-2 py-1.5 -mx-2 rounded-md hover:text-brand-600 dark:hover:text-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 transition-colors';
 
-export default function PortalChapterNav({ isEn = false }: PortalChapterNavProps) {
+export default function PortalChapterNav({
+  isEn = false,
+}: PortalChapterNavProps) {
   const ariaLabel = isEn ? 'Slide contents' : 'Skaidrės turinys';
 
   const items = isEn
@@ -36,7 +38,10 @@ export default function PortalChapterNav({ isEn = false }: PortalChapterNavProps
       {items.map((item, idx) => (
         <span key={item.target} className="inline-flex items-center gap-x-1">
           {idx > 0 && (
-            <span className="text-gray-300 dark:text-gray-600 px-0.5" aria-hidden>
+            <span
+              className="text-gray-300 dark:text-gray-600 px-0.5"
+              aria-hidden
+            >
               ·
             </span>
           )}

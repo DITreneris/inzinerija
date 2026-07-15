@@ -51,7 +51,7 @@ export function hasEditorialScrollLayout(
 ): boolean {
   return Boolean(
     (content.editorialBeats?.length ?? 0) > 0 ||
-      (content.promoRibbons?.length ?? 0) > 0
+    (content.promoRibbons?.length ?? 0) > 0
   );
 }
 

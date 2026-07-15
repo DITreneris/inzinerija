@@ -1193,46 +1193,45 @@ export function ContentBlockSlide({
                     !section.presentationToolsBlock && (
                       <WorkflowChainsBlock chains={section.workflowChains} />
                     )}
-                  {section.toolChoiceBar &&
-                    !section.presentationToolsBlock && (
-                      <div
-                        className="mb-4 space-y-3"
-                        role="region"
-                        aria-label={t('chooseTaskTypeAria')}
-                      >
-                        {section.toolChoiceBar.question && (
-                          <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                            {section.toolChoiceBar.question}
-                          </p>
+                  {section.toolChoiceBar && !section.presentationToolsBlock && (
+                    <div
+                      className="mb-4 space-y-3"
+                      role="region"
+                      aria-label={t('chooseTaskTypeAria')}
+                    >
+                      {section.toolChoiceBar.question && (
+                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                          {section.toolChoiceBar.question}
+                        </p>
+                      )}
+                      <div className="flex flex-wrap gap-2">
+                        {(section.toolChoiceBar.choices ?? []).map(
+                          (choice, idx) => {
+                            const isSelected =
+                              selectedToolRowIndex === choice.rowIndex;
+                            return (
+                              <button
+                                key={idx}
+                                type="button"
+                                onClick={() =>
+                                  setSelectedToolRowIndex(choice.rowIndex)
+                                }
+                                className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
+                                  isSelected
+                                    ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
+                                    : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
+                                }`}
+                                aria-pressed={isSelected}
+                                aria-label={`${choice.label}${isSelected ? t('choiceSelectedSuffix') : ''}`}
+                              >
+                                {choice.label}
+                              </button>
+                            );
+                          }
                         )}
-                        <div className="flex flex-wrap gap-2">
-                          {(section.toolChoiceBar.choices ?? []).map(
-                            (choice, idx) => {
-                              const isSelected =
-                                selectedToolRowIndex === choice.rowIndex;
-                              return (
-                                <button
-                                  key={idx}
-                                  type="button"
-                                  onClick={() =>
-                                    setSelectedToolRowIndex(choice.rowIndex)
-                                  }
-                                  className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
-                                    isSelected
-                                      ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
-                                      : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
-                                  }`}
-                                  aria-pressed={isSelected}
-                                  aria-label={`${choice.label}${isSelected ? t('choiceSelectedSuffix') : ''}`}
-                                >
-                                  {choice.label}
-                                </button>
-                              );
-                            }
-                          )}
-                        </div>
                       </div>
-                    )}
+                    </div>
+                  )}
                   {!section.workflowChains?.length &&
                     section.table &&
                     !section.presentationToolsBlock &&
@@ -1672,24 +1671,25 @@ export function ContentBlockSlide({
           content.practicalTask.template,
           sectionsList
         ) && (
-        <section
-          className={
-            isDiVisata
-              ? 'mt-8 rounded-xl border-l-4 border-l-di-visata-ai-accent bg-di-visata-ai-cool/80 dark:bg-gray-800/80 p-6'
-              : 'mt-8 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-6'
-          }
-          aria-labelledby="practical-task-heading"
-          role="region"
-        >
-          <TemplateBlock
-            id="practical-task-heading"
-            label={
-              content.practicalTask.templateLabel || t('blockMetaTemplateLabel')
+          <section
+            className={
+              isDiVisata
+                ? 'mt-8 rounded-xl border-l-4 border-l-di-visata-ai-accent bg-di-visata-ai-cool/80 dark:bg-gray-800/80 p-6'
+                : 'mt-8 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 p-6'
             }
-            template={content.practicalTask.template}
-          />
-        </section>
-      )}
+            aria-labelledby="practical-task-heading"
+            role="region"
+          >
+            <TemplateBlock
+              id="practical-task-heading"
+              label={
+                content.practicalTask.templateLabel ||
+                t('blockMetaTemplateLabel')
+              }
+              template={content.practicalTask.template}
+            />
+          </section>
+        )}
 
       {practice && (
         <section
@@ -5568,7 +5568,6 @@ export function ProductivityInfographicSlide({
 
 /* ─── News-portal infographic – see src/components/slides/news-portal/ ─── */
 export { NewsPortalInfographicSlide } from '../news-portal/NewsPortalInfographicSlide';
-
 
 const DEFAULT_PRACTICE_SUMMARY_LT: PracticeSummaryContent = {
   title: 'Mokymas Baigtas!',

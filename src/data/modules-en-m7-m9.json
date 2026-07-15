@@ -21,56 +21,42 @@
             "journeyChoices": [
               {
                 "id": "pardavimai",
-                "branchIds": [
-                  "viz"
-                ],
+                "branchIds": ["viz"],
                 "label": "Sales",
                 "subtitle": "Data analyst – KPI, trends, forecasts",
                 "icon": "TrendingUp"
               },
               {
                 "id": "rinkodara",
-                "branchIds": [
-                  "viz"
-                ],
+                "branchIds": ["viz"],
                 "label": "Marketing",
                 "subtitle": "Content and channel analysis",
                 "icon": "Image"
               },
               {
                 "id": "it-inzinerija",
-                "branchIds": [
-                  "technika",
-                  "etika-plus"
-                ],
+                "branchIds": ["technika", "etika-plus"],
                 "label": "IT and engineering",
                 "subtitle": "Pipeline and data structures",
                 "icon": "Cpu"
               },
               {
                 "id": "personalas",
-                "branchIds": [
-                  "strategija"
-                ],
+                "branchIds": ["strategija"],
                 "label": "People / HR",
                 "subtitle": "HR – hiring, reviews, data management",
                 "icon": "Users"
               },
               {
                 "id": "vadyba",
-                "branchIds": [
-                  "strategija",
-                  "etika-plus"
-                ],
+                "branchIds": ["strategija", "etika-plus"],
                 "label": "Leaders and specialists",
                 "subtitle": "Management – reports, decision support",
                 "icon": "Briefcase"
               },
               {
                 "id": "vidiniai",
-                "branchIds": [
-                  "vidiniai"
-                ],
+                "branchIds": ["vidiniai"],
                 "label": "Internal data",
                 "subtitle": "Excel, CRM, ERP – cleaning and analysis",
                 "icon": "Database"
@@ -780,10 +766,7 @@
             "stepNumber": 1,
             "stepTotal": 5,
             "body": "Pick a tool sequence for data analysis (e.g. ChatGPT → Claude → Gemini). Define workflow: what is first step, what is second – from data collection to visualization. This is the path's first landmark.",
-            "unlockedGlossaryTerms": [
-              "Data analysis pipeline",
-              "EDA"
-            ]
+            "unlockedGlossaryTerms": ["Data analysis pipeline", "EDA"]
           }
         },
         {
@@ -1049,11 +1032,7 @@
                   ]
                 },
                 "table": {
-                  "headers": [
-                    "Group",
-                    "Question",
-                    "Method"
-                  ],
+                  "headers": ["Group", "Question", "Method"],
                   "rows": [
                     [
                       "**A. OK / Fail**",
@@ -1144,35 +1123,14 @@
                 "body": "Each domain can become a separate AI analysis module.",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Traditional view",
-                    "Expanded view"
-                  ],
+                  "headers": ["Traditional view", "Expanded view"],
                   "rows": [
-                    [
-                      "Costs",
-                      "Customer behavior"
-                    ],
-                    [
-                      "Revenue",
-                      "Supply chain"
-                    ],
-                    [
-                      "Profit",
-                      "Sales dynamics"
-                    ],
-                    [
-                      "",
-                      "Customer relationship and marketing data"
-                    ],
-                    [
-                      "",
-                      "Process efficiency"
-                    ],
-                    [
-                      "",
-                      "Competitive analysis"
-                    ]
+                    ["Costs", "Customer behavior"],
+                    ["Revenue", "Supply chain"],
+                    ["Profit", "Sales dynamics"],
+                    ["", "Customer relationship and marketing data"],
+                    ["", "Process efficiency"],
+                    ["", "Competitive analysis"]
                   ],
                   "comparisonStyle": true
                 }
@@ -1211,11 +1169,7 @@
                   ]
                 },
                 "table": {
-                  "headers": [
-                    "Domain",
-                    "When to use",
-                    "Question"
-                  ],
+                  "headers": ["Domain", "When to use", "Question"],
                   "rows": [
                     [
                       "Customer behavior",
@@ -1482,9 +1436,7 @@
             "stepNumber": 2,
             "stepTotal": 5,
             "body": "Create a system prompt (role, principles) and pick a deep research topic. Prepare one deep research prompt to use in parallel across several tools.",
-            "unlockedGlossaryTerms": [
-              "Deep research"
-            ]
+            "unlockedGlossaryTerms": ["Deep research"]
           }
         },
         {
@@ -1504,10 +1456,7 @@
                 "body": "AI does not replace your decision, but it speeds up the path to it.",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Traditional analysis",
-                    "Analysis with AI"
-                  ],
+                  "headers": ["Traditional analysis", "Analysis with AI"],
                   "rows": [
                     [
                       "A lot of manual work",
@@ -1622,10 +1571,7 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "table": {
-                  "headers": [
-                    "Tool",
-                    "Practical use"
-                  ],
+                  "headers": ["Tool", "Practical use"],
                   "rows": [
                     [
                       "**PostgreSQL**",
@@ -2642,10 +2588,7 @@
             "stepNumber": 3,
             "stepTotal": 5,
             "body": "Prepare a system prompt and deep research topic. **Full path:** paste the same prompt into 2–4 tools (e.g. with deep research mode) if you have access. **Easier path:** run the same prompt in two different AI tools and compare summaries – enough to start.",
-            "unlockedGlossaryTerms": [
-              "RAG",
-              "Source citation"
-            ]
+            "unlockedGlossaryTerms": ["RAG", "Source citation"]
           }
         },
         {
@@ -2673,28 +2616,19 @@
                 "name": "PaperGuide",
                 "url": "https://paperguide.ai",
                 "description": "Talk to your PDF. Upload a report or study – get summary, conclusions, main points.",
-                "useCases": [
-                  "Report analysis",
-                  "Quick document scan"
-                ]
+                "useCases": ["Report analysis", "Quick document scan"]
               },
               {
                 "name": "Scite",
                 "url": "https://scite.ai",
                 "description": "Does the source really support your claim? Shows how the study is cited – supports or contradicts.",
-                "useCases": [
-                  "Citation check",
-                  "Strengthening arguments"
-                ]
+                "useCases": ["Citation check", "Strengthening arguments"]
               },
               {
                 "name": "Elicit",
                 "url": "https://elicit.com",
                 "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
-                "useCases": [
-                  "Synthesis",
-                  "Trend search"
-                ]
+                "useCases": ["Synthesis", "Trend search"]
               },
               {
                 "name": "Consensus",
@@ -3014,10 +2948,7 @@
             "stepNumber": 4,
             "stepTotal": 5,
             "body": "**If you have several studies:** merge them into one document or project and ask AI to synthesize insights and correlations (RAG or long context). **Easier path:** from two answers ask AI for one table \"what matches / what differs\" and 3 action recommendations – without RAG.",
-            "unlockedGlossaryTerms": [
-              "Sintetinimas",
-              "Data cleaning"
-            ]
+            "unlockedGlossaryTerms": ["Sintetinimas", "Data cleaning"]
           }
         },
         {
@@ -3030,10 +2961,7 @@
             "stepNumber": 5,
             "stepTotal": 5,
             "body": "Prepare a data array (table or structured file) from synthesis. **Full path:** display result in a tool with tables/charts and capture a screenshot. **Easier path:** save the final AI table or summary in a file and upload to the same or another AI – enough for further analysis.",
-            "unlockedGlossaryTerms": [
-              "Vizualizacija",
-              "Dashboard"
-            ]
+            "unlockedGlossaryTerms": ["Vizualizacija", "Dashboard"]
           }
         },
         {
@@ -3190,31 +3118,13 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Stage",
-                    "Meaning"
-                  ],
+                  "headers": ["Stage", "Meaning"],
                   "rows": [
-                    [
-                      "Data",
-                      "Credibility: numbers, sources, time period"
-                    ],
-                    [
-                      "Graphic",
-                      "Clarity: what a person sees in 5 seconds"
-                    ],
-                    [
-                      "Narrative",
-                      "Connection: why the change matters"
-                    ],
-                    [
-                      "Decision",
-                      "Action: what to do next"
-                    ],
-                    [
-                      "Story",
-                      "One message: fact → meaning → action"
-                    ]
+                    ["Data", "Credibility: numbers, sources, time period"],
+                    ["Graphic", "Clarity: what a person sees in 5 seconds"],
+                    ["Narrative", "Connection: why the change matters"],
+                    ["Decision", "Action: what to do next"],
+                    ["Story", "One message: fact → meaning → action"]
                   ],
                   "solutionMatrixStyle": true
                 }
@@ -3282,10 +3192,7 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": [
-                    "Tool",
-                    "When to use"
-                  ],
+                  "headers": ["Tool", "When to use"],
                   "rows": [
                     [
                       "Julius AI",
@@ -3367,10 +3274,7 @@
                 "heading": "MASTER PROMPT",
                 "icon": "Zap",
                 "color": "amber",
-                "items": [
-                  "8-step analysis",
-                  "M9 template"
-                ]
+                "items": ["8-step analysis", "M9 template"]
               },
               {
                 "heading": "Next Step",
@@ -3489,12 +3393,7 @@
               "id": "m8-q1",
               "type": "mcq",
               "question": "How many steps does the data analysis pipeline have?",
-              "options": [
-                "4",
-                "5",
-                "6",
-                "8"
-              ],
+              "options": ["4", "5", "6", "8"],
               "correct": 2,
               "explanation": "Pipeline has 6 steps: collection, preparation, EDA, models, visualization, publishing.",
               "bloomLevel": 1,
@@ -3505,12 +3404,7 @@
               "id": "m8-q2",
               "type": "mcq",
               "question": "Which BI schema step is responsible for \"what to show leadership\"?",
-              "options": [
-                "Collect",
-                "Analyze",
-                "Report",
-                "Forecast"
-              ],
+              "options": ["Collect", "Analyze", "Report", "Forecast"],
               "correct": 2,
               "explanation": "Report includes visualization and conclusions – how to show leadership.",
               "bloomLevel": 2,
@@ -3521,12 +3415,7 @@
               "id": "m8-q3",
               "type": "mcq",
               "question": "How many steps does MASTER PROMPT have for full data analysis?",
-              "options": [
-                "5",
-                "6",
-                "7",
-                "8"
-              ],
+              "options": ["5", "6", "7", "8"],
               "correct": 3,
               "explanation": "MASTER PROMPT has 8 steps: sources, structure, cleaning, EDA, visualizations, insights, forecasts, recommendations.",
               "bloomLevel": 1,
@@ -3747,13 +3636,7 @@
             ],
             "storyBlock": "4 characters, up to 17 optional tasks – not required; use the hub (slide 99).",
             "useCaseBlock": "• Quarterly report for leadership\n• Customer feedback and surveys",
-            "recommendedSlideIds": [
-              101,
-              102,
-              111,
-              116,
-              117
-            ]
+            "recommendedSlideIds": [101, 102, 111, 116, 117]
           }
         },
         {

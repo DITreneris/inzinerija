@@ -300,6 +300,8 @@ const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
   },
 ];
 
-export function getM9WorkflowPrompts(locale: 'lt' | 'en'): M9WorkflowPromptStep[] {
+export function getM9WorkflowPrompts(
+  locale: 'lt' | 'en'
+): M9WorkflowPromptStep[] {
   return locale === 'en' ? M9_WORKFLOW_PROMPTS_EN : M9_WORKFLOW_PROMPTS_LT;
 }
