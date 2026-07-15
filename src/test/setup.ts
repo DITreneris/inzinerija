@@ -144,14 +144,13 @@ if (typeof HTMLCanvasElement !== 'undefined') {
     clearRect: noop,
     canvas: { width: 0, height: 0 },
   });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HTMLCanvasElement.prototype.getContext = function (
     this: HTMLCanvasElement,
     contextId: string
-  ): any {
+  ) {
     if (contextId === '2d') return create2DContextMock();
     return null;
-  };
+  } as typeof HTMLCanvasElement.prototype.getContext;
 }
 
 // Note: jsdom environment should provide document and window automatically via vitest
