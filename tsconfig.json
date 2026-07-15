@@ -21,7 +21,9 @@
       "@tools-en-data": ["src/data/tools-en.json"],
       "@m9-characters-data": ["src/data/m9Characters.json"],
       "@ai-detectors-slide": ["src/components/AiDetectorsSlide.tsx"],
-      "@vaizdo-generatorius-slide": ["src/components/VaizdoGeneratoriusSlide.tsx"]
+      "@vaizdo-generatorius-slide": [
+        "src/components/VaizdoGeneratoriusSlide.tsx"
+      ]
     },
 
     /* Linting */
@@ -30,6 +32,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/**/*.test.ts", "src/**/*.test.tsx", "vite-env.d.ts"],
+  "include": [
+    "src",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test/vitest-env.d.ts",
+    "vite-env.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

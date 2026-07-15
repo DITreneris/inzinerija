@@ -47,6 +47,10 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po 1.4.5 release._
 
+### Fixed
+
+- **CI typecheck:** `@testing-library/jest-dom` pridėtas kaip devDependency; Vitest matcher tipai (`toBeInTheDocument`, `toHaveAttribute`, …) per `src/test/vitest-env.d.ts` – `npm run typecheck` praeina švarioje `npm ci` aplinkoje.
+
 ---
 
 ## [1.4.5] – 2026-07-15

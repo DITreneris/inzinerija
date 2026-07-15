@@ -1,16 +1,20 @@
 // Ensure process.on exists before any imports (avoids "Cannot read properties of undefined (reading 'on')" in jsdom/vitest).
 // Do not read `process` here – it may be undefined in some runners.
 const processStub = {
-  on: function () { return processStub; },
+  on: function () {
+    return processStub;
+  },
   env: {} as Record<string, string | undefined>,
   cwd: () => '.',
 };
 (function () {
-  if (typeof globalThis !== 'undefined') (globalThis as Record<string, unknown>).process = processStub;
-  if (typeof global !== 'undefined') (global as Record<string, unknown>).process = processStub;
+  if (typeof globalThis !== 'undefined')
+    (globalThis as Record<string, unknown>).process = processStub;
+  if (typeof global !== 'undefined')
+    (global as Record<string, unknown>).process = processStub;
 })();
 
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
@@ -119,7 +123,9 @@ vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).ResizeObserver = ResizeObserverMock;
 if (typeof window !== 'undefined') {
-  (window as unknown as { ResizeObserver: typeof ResizeObserverMock }).ResizeObserver = ResizeObserverMock;
+  (
+    window as unknown as { ResizeObserver: typeof ResizeObserverMock }
+  ).ResizeObserver = ResizeObserverMock;
 }
 if (typeof global !== 'undefined') {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -130,12 +136,19 @@ if (typeof global !== 'undefined') {
 if (typeof HTMLCanvasElement !== 'undefined') {
   const noop = () => {};
   const create2DContextMock = () => ({
-    getImageData: () => ({ data: new Uint8ClampedArray(0), width: 0, height: 0 }),
+    getImageData: () => ({
+      data: new Uint8ClampedArray(0),
+      width: 0,
+      height: 0,
+    }),
     clearRect: noop,
     canvas: { width: 0, height: 0 },
   });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  HTMLCanvasElement.prototype.getContext = function (this: HTMLCanvasElement, contextId: string): any {
+  HTMLCanvasElement.prototype.getContext = function (
+    this: HTMLCanvasElement,
+    contextId: string
+  ): any {
     if (contextId === '2d') return create2DContextMock();
     return null;
   };
