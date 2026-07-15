@@ -1,7 +1,7 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
 > **Atnaujinta:** 2026-07-09 | **Roadmap dokumento versija:** 2.7 (ne `package.json` semver)  
-> **App release:** 1.4.4 (2026-07-09) – žr. `CHANGELOG.md`.  
+> **App release:** 1.4.5 (2026-07-15) – žr. `CHANGELOG.md`.  
 > **Principas:** **M1–9 production** per [promptanatomy](https://github.com/DITreneris/promptanatomy) monorepo; Stripe M1–6, Supabase→magic link M7–9. M10+ – authoring kataloge.  
 > **Production audit:** **CONDITIONAL GO** — training shippable; monetizacija live (Stripe+Supabase), analytics (MON-4) ir rankinė QA likę. Santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
 
@@ -39,7 +39,7 @@
 
 ### Testai ir kokybė
 
-- **71 testų failas, 465 testai (2026-07-09 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry guards, M10–15 EN/data-contract guards. 1.4.2 tag metu buvo 57 failai / 367 testai.
+- **71 testų failas, 465 testai (2026-07-09 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry guards, M10–15 EN/data-contract guards. **Dabartinis HEAD: 72 failai / 482 testai (2026-07-15).**
 - **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
 - **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
 

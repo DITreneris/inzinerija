@@ -1,6 +1,6 @@
 # USER_JOURNEY_AGENT – vartotojo kelionės ir MVP modulio diagnostikas
 
-> Specializuotas diagnostikas: analizuoja modulį kaip realaus vartotojo kelionę – trintis, energijos kritimas, aiškumas, konversija. **Nekeičia** kodo ar JSON – tik analizuoja ir pateikia prioritetizuotą taisymų planą. Kai naudoti – žr. `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md` (lokaliai archyve, jei naudojate).
+> Specializuotas diagnostikas: analizuoja modulį kaip realaus vartotojo kelionę – trintis, energijos kritimas, aiškumas, konversija. **Nekeičia** kodo ar JSON – tik analizuoja ir pateikia prioritetizuotą taisymų planą. Sekos kontekstas (archyvas, ne SOT): `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
 
 ## Agent contract (EN)
 
@@ -180,4 +180,4 @@ USER_JOURNEY_AGENT išvestis naudojama:
 - **DATA_AGENT** – skaidrių eilė, intro laukai, whenToProceed, refleksijos blokai (jei rekomenduota).
 - **CODING_AGENT / UI_UX_AGENT** – UI elementai (progress bar, checklist, žingsnių rodymas).
 
-**Nuoroda į seką:** `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md` (lokaliai archyve, jei naudojate).
+**Nuoroda į seką (archyvas):** `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.

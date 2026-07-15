@@ -38,6 +38,12 @@ export default function HallucinationRatesDashboard() {
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
+      <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+        {locale === 'en'
+          ? 'What to do with these numbers? Choose a model for reliability, not popularity.'
+          : 'Ką daryti su šiais skaičiais? Rinkis modelį pagal patikimumą, ne populiarumą.'}
+      </p>
+      <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/80 via-white to-accent-50/40 p-4 shadow-sm dark:border-gray-700 dark:from-brand-950/40 dark:via-gray-900 dark:to-accent-950/20 md:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white">
           {locale === 'en'
@@ -99,15 +105,29 @@ export default function HallucinationRatesDashboard() {
                   title={entry.model}
                 >
                   {entry.model}
+                  {entry.lowAnswerRate && (
+                    <span
+                      className="ml-0.5 text-amber-600 dark:text-amber-400"
+                      title={
+                        locale === 'en'
+                          ? 'Answer rate below 95% in Vectara benchmark'
+                          : 'Vectara benchmarke atsakymų aprėptis < 95 %'
+                      }
+                    >
+                      *
+                    </span>
+                  )}
                 </span>
                 <div className="flex-1 flex items-center min-w-0">
                   <div
-                    className="h-5 rounded-md bg-brand-500 dark:bg-brand-600 transition-all duration-200 flex items-center justify-end pr-1"
+                    className={`h-5 rounded-md bg-brand-500 dark:bg-brand-600 transition-all duration-200 flex items-center justify-end pr-1${
+                      isHighlight
+                        ? ' outline outline-2 outline-red-600 outline-offset-2'
+                        : ''
+                    }`}
                     style={{
                       width: `${Math.max(widthPercent, 8)}%`,
                       minWidth: 32,
-                      outline: isHighlight ? '2px solid #dc2626' : undefined,
-                      outlineOffset: 2,
                       boxShadow: isHover
                         ? '0 2px 8px rgba(0,0,0,0.15)'
                         : undefined,
@@ -115,7 +135,7 @@ export default function HallucinationRatesDashboard() {
                     title={`${entry.ratePercent}%`}
                   >
                     {widthPercent > 15 && (
-                      <span className="text-[10px] font-bold text-white drop-shadow-sm">
+                      <span className="text-xs font-bold text-white drop-shadow-sm">
                         {entry.ratePercent}%
                       </span>
                     )}
@@ -143,7 +163,7 @@ export default function HallucinationRatesDashboard() {
           </div>
         )}
 
-        <p className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-600 text-[11px] text-gray-500 dark:text-gray-400">
+        <p className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-600 text-xs text-gray-500 dark:text-gray-400">
           {locale === 'en' ? 'Source:' : 'Šaltinis:'}{' '}
           <a
             href={HALLUCINATION_RATES_SOURCE.url}
@@ -153,11 +173,23 @@ export default function HallucinationRatesDashboard() {
           >
             {HALLUCINATION_RATES_SOURCE.name} by {HALLUCINATION_RATES_SOURCE.by}
           </a>
+          {HALLUCINATION_RATES_SOURCE.asOfDate
+            ? ` (${locale === 'en' ? 'as of' : 'atnaujinta'} ${HALLUCINATION_RATES_SOURCE.asOfDate})`
+            : ''}
           .{' '}
           {locale === 'en'
             ? 'Rates may vary depending on evaluation date and methodology.'
             : 'Rodikliai gali skirtis priklausomai nuo vertinimo datos ir metodologijos.'}
+          {HALLUCINATION_RATES.some((e) => e.lowAnswerRate) && (
+            <>
+              {' '}
+              {locale === 'en'
+                ? '* Models with answer rate below 95% in the benchmark.'
+                : '* Modeliai su atsakymų aprėptimi < 95 % benchmarke.'}
+            </>
+          )}
         </p>
+      </div>
       </div>
     </div>
   );

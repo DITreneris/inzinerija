@@ -17,7 +17,7 @@
 | Žinių testas + vienas projektas (M4–M6)                        | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
 | Learn → Test → Practice                                        | Ta pati seka, auditorija: analitikai                         |
 
-**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys (**M7 skaidrė id 71.35**, optional, po kelio žingsnio 71.3) – perkeltas iš M4 id 61; M4 sk.61 lieka trumpu nukreipimu į Modulį 7.
+**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys: **M4 skaidrė id 61** (optional, 4.2a-academic) ir **M7 skaidrė id 71.35** (optional, po kelio žingsnio 71.3) – ta pati atmintinė; M4 = RAG kontekstas, M7 = Duomenų analizės kelias.
 
 ### 1.2 Mokymosi tikslai (po modulių 7–9)
 
@@ -224,6 +224,14 @@ _Ryšys su pipeline (§2.2) ir 7.6–7 (Duomenų tipai ir rinkimo strategija). S
 _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų architektūra (V)._
 
 **Įgyvendinta JSON (2026-06-30):** skaidrė 78 sujungia 7.8+7.9: 1️⃣ trumpas DI vaidmens paaiškinimas, tradicinė vs DI analizė lentelėje, 5 DI gebėjimų sąrašas, „Daryk dabar“ CopyButton ir optional tiltas į rolės/DB/vizualizacijos skaidres. EN overlay sinchronizuotas.
+
+**Phase 2 (2026-07-15) – optional šaka „Vidiniai duomenys“:** `journeyChoices` id `vidiniai` skaidrėje 70; **papildoma** skaidrė **78.5** (`pathBranch: ["vidiniai"]`) – Excel/CRM eksportas ir valymo plano promptas. Branduolio skaidrės 78, 84, 891 lieka visiems; sk. 78 ir 891 turi cross-link tekstą vidinių duomenų kontekstui.
+
+**Operacinis polish (2026-07-15) – ne pilnas turinio rewrite:** UX iteracijos fiksuojamos operaciniame SOT: [`docs/development/TEST_REPORT.md`](development/TEST_REPORT.md) §P2, [`docs/development/M79_PATCH_REGISTRY.md`](development/M79_PATCH_REGISTRY.md), [`docs/development/07_08_09_backlog.md`](development/07_08_09_backlog.md) §12. Santrauka:
+- M7 etika (sk. 67, 67.5, 67.8, 67.3, 68): collapsible, dedup, Patikra
+- Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
+- M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99
+- Optional šakos + sk. 200 dashboard intro (UI komponentas)
 
 ---
 
@@ -785,7 +793,7 @@ _Skaidrių skaičius gali būti sumažintas sujungiant pvz. 7.3+7.4, 7.6+7.7, 7.
 | **68.5**  | Po žinių patikrinimo / prieš EDA        | **Patikimumas ir etika**              | Manipuliacijos, injection / jailbreak, haliucinacijos, šaltinių patikra. Tai branduolio warm-up, matomas visiems fokusams. |
 | **74.5**  | Po 7.26 / prieš 71.4–71.5 ir santrauką  | **8 žingsnių MASTER**                 | Kiek žingsnių, ką pakeisti `[X]`, kada naudoti MASTER, o kada atskirą pipeline promptą.                                    |
 
-**Svarbi taisyklė:** klausimuose visada įvardyti, apie kurį modelį kalbama – **6 pipeline**, **4 analizės tipai**, **5 paruošimas**, **8 MASTER**. Taip išvengiama skaičių painiavos, kuri identifikuota `docs/development/analysis/M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`.
+**Svarbi taisyklė:** klausimuose visada įvardyti, apie kurį modelį kalbama – **6 pipeline**, **4 analizės tipai**, **5 paruošimas**, **8 MASTER**. Taip išvengiama skaičių painiavos, kuri identifikuota `docs/archive/development/analysis/M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`.
 
 ### 8.1a Sprendimų filtrai (7.4d skaidrė) – kaip analizę paversti veiksmu
 
@@ -981,6 +989,8 @@ Vienas aiškus 8 žingsnių ciklas – nuo duomenų surinkimo iki dashboard atva
 | 8   | **Dashboard / demonstracija**             | Rezultatas: .html snippet, kurį galima išsaugoti per Notepad ir atidaryti naršyklėje; informatyvus, ne per sudėtingas. Pavyzdys: `public/m9_dashboard_snippet.html` – galite atsidaryti ir redaguoti pagal savo duomenis. |
 
 **Sandbox principas:** Parametrai, spalvos, grafikų pavadinimai ir jų dinamika nurodomi prompte; mažai rankinio kodo, daug aišių instrukcijų DI.
+
+**Phase 2 (2026-07-15) – verifiable praktika:** Pagrindinis kelias 93–94 papildytas dviem `practice-scenario` skaidrėmis **93.1** (viešų šaltinių katalogas, `doneWhen`: lentelė su URL/formatu/dažniu) ir **93.2** (CSV/Excel įkėlimas į DI + valymo promptas). Skaidrė 93 – workflow schema; praktikos turinys perkeltas į 93.1–93.2.
 
 #### 10.0.1a DA kelio PDF atmintinė (po Modulio 9)
 

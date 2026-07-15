@@ -8,7 +8,7 @@
 > **2.3.7:** §2.1 Paletė – pridėta `gold: #f3cc30` spalva (brand žaibas, hero CTA, dark mode glow). Centralizuota per `tailwind.config.js` ir CSS custom property `--brand-gold`. Sync su promptanatomy.app.  
 > **2.3.6:** Haliucinacijų ir žinių patikrinimo tema – **Modulyje 7** (blokas „Patikrumas ir etika“, skaidrės Haliucinacijos 67.8, Žinių patikrinimas 68). Skaidrėse ir SOT nuorodos į šią temą turi rodyti į Modulį 7, ne į Modulio 4 (4.6). Žr. `docs/MODULIO_7_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_7_8_9.md`.  
 > **2.3.5:** §5.5 Sticky stacking – AppNav nustato `--app-nav-height` CSS kintamąjį (ResizeObserver); visi sticky elementai po AppNav naudoja `top-[var(--app-nav-height,4rem)]`, ne hardcoded `top-16`. Z-index hierarchija dokumentuota.  
-> **2.3.4:** §3.6 Footerių ilgis – įgyvendinta rekomendacija ≤55 simb.; visi „Toliau – skaidrė N“ / „Next – slide N“ footeriai sutrumpinti (shortTitle arba rankinis sutrumpinimas). Žr. `docs/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`.  
+> **2.3.4:** §3.6 Footerių ilgis – įgyvendinta rekomendacija ≤55 simb.; visi „Toliau – skaidrė N“ / „Next – slide N“ footeriai sutrumpinti (shortTitle arba rankinis sutrumpinimas). Žr. `docs/archive/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`.  
 > **2.3.3:** §3.7 Sertifikatai moduliuose – atkartojamas golden standard (kada išduoti, duomenys, PDF maketas, UI); privaloma websiteUrl/websiteCta; receptas naujiems moduliams; §9, §10 atnaujinti.  
 > **2.3.2:** §3.2 Peržiūrėti pilname dydyje (enlarge) – kada reikia, kada ne; palyginimo vaizdai, section.image fallback, workflowImages, paprastos diagramos – paprastas img (ne EnlargeableImage).  
 > **2.3.1:** §8.5 Skaidrių navigacijos taškai – viena eilutė, horizontalus scroll ilgiems moduliams (ne 4+ eilės wrap).  
@@ -172,6 +172,43 @@
 
 **SOT:** `docs/turinio_pletra_moduliai_4_5_6.md` § „Kam žmonės naudoja GPT?“ (intro action).
 
+### 3.2d infographic news-portal Portal 2.1 (M4 sk. 53.5)
+
+**Paskirtis:** Ilgas editorial scroll – straipsnio / portalo ritmas, ne dashboard. Token SOT: `src/components/slides/news-portal/portalSurfaces.ts` + `portalCardShell.ts`. Storyboard: `docs/development/NEWS_PORTAL_SLIDE_53_5.md`.
+
+**Surface matrix:**
+
+| Surface | Komponentai | Implementacija |
+| ------- | ----------- | -------------- |
+| **editorial** | takeaway, beats, `PortalDataBriefRow`, promo ribbons, `PortalSlideCta` | `getPortalEditorialSurfaceClasses()` – `border-l-4` + light tint |
+| **card** | secondary cards, ranking, youth KPI, insight | `PortalBlockShell` → `getPortalCardShellClasses()` |
+| **chrome** | masthead, ticker, sidebar, chapter breaks, footer | neutral; masthead fallback (be nav) – accent box |
+
+**Spalvų biudžeto išimtis (Portal 2.1):** GOLDEN §2.2 taikoma **per chapter act viewport**, ne per visą skaidrę (4 acts ilgame scroll):
+
+| Act | Leidžiamos semantinės | CTA |
+| --- | --------------------- | --- |
+| Lead | brand + accent | — |
+| Data | brand + emerald | — |
+| Depth | brand + violet | — |
+| Close | terms/slate + violet | accent (1 CTA) |
+
+**Metric scale** (`portalSurfaces.ts`): `PORTAL_HEADING.hero` (immersive H1) · `inline` (secondary cards, DataBrief stat 2–3) · `chapter` (DataBrief pirmas stat, pvz. 32,7%). Vienas dominuojantis skaičius per viewport. DataBrief: 98% IT – violet skaičius, ES stat'ai – brand.
+
+**Typography ladder (Typography Wave T1–T6, 2026-07-14):** `getPortalSectionLabelClasses('break'|'nav')` – skyriaus etiketės (xs); `PORTAL_HEADING.beat` (lg/xl bold) · `pullQuote` (lg/xl semibold) · `cardTitle` (base semibold); `PORTAL_TEXT.body` (`text-sm lg:text-base`, GOLDEN §1); hero subline `bodySm`; takeawayCta ≥ takeawayBold dydis; SVG caption floor 12px (`AWARENESS_ROW.captionSize`). `getPortalKickerClasses('chapter'|'rail')` – deprecated alias.
+
+**Depth act:** Ribbon2 (`beforeInsight`) – `variant: brand` (ne accent); leidžiamos semantinės: brand + violet **duomenų sluoksnyje** (metric, segment bars, kicker). Card shell abiem Depth blokams – `PORTAL_DEPTH_CARD_VARIANT` (`brand`) per `PortalRankingBlock` + `PortalHeroKpiBlock`; violet **ne** ant kortelės konteinerio.
+
+**Beat SVG (Bang L, 2026-07-14):** label/caption/track — `PORTAL_BEAT_SVG` (`dark:fill-gray-100/300`); semantinės bar spalvos lieka hex (`PORTAL_BEAT_COLORS`).
+
+**next-step-prompt (B+C hybrid, 2026-07-14):** 2 eil. tiltas į sk. 43 + copyable promptas komandos santraukai (`PortalNextStepPromptBlock`); be SVG 3-box flow.
+
+**CTA:** pilno pločio editorial accent blokas (`PortalSlideCta`) – ne `CTAButton` pill; atitinka takeaway surface.
+
+**In-page anchors:** sidebar teaser + `PortalChapterNav` → `scrollToPortalSection()` (`portalSectionAnchors.ts`); target `id` + `scroll-mt`; trigger `<button>`, ne URL hash. `portalNav` lieka dekoratyvus.
+
+**Diagramos:** React SVG; `PORTAL_BEAT_COLORS` – lokalūs token'ai (v0.3 bridge į CSS vars).
+
 ### 3.3 summary (santrauka)
 
 **5 blokų modelis** (SOT: `docs/development/SUMMARY_SLIDE_SPEC.md`):
@@ -252,7 +289,9 @@
 - **test-section, test-results:** Žr. GOLD_STANDARD §4 (testas).
 - **practice-scenario:** Kontekstas, Duomenys, Apribojimai, Formatas, Užduotis.
 - **glossary, definitions:** Terminai su vieno sakinio apibrėžimu.
-- **infographic (variant: news-portal):** DI galimybės praktiškai – naujienų portalo stiliumi (ne ataskaita, kvietimas veikti). **Masthead:** optional portalBrand (pvz. „Next Level AI“) + „Žiniasklaida“ – rekiantis prekės ženklas. Struktūra: eyebrow, headline, subline; **takeaway** (viena eilutė, accent – žmogus + rezultatas); featured (hero skaičius + label); optional heroImageVertical; optional horizontal banneriai; KPI strip; section cards (optional imageVertical); tools + youth (optional youthImageVertical); insight kortelė (optional illustrationHorizontal); **ctaBlock** (vienas CTA – accent, pvz. „Toliau: Metodinis ir agentinis promptas“); footer + šaltiniai. Spalvos: brand, accent (CTA, takeaway), slate + semantinės. Iliustracijų slotai: **NEWS_PORTAL_INFOGRAFIC_UI_UX_ANALIZE.md** §4. Duomenų šaltinis – lokaliai archyve (portalas.txt); turinys įkeliamas į `modules.json`.
+- **infographic (variant: news-portal):** DI galimybės praktiškai – naujienų portalo stiliumi (ne ataskaita, kvietimas veikti). **Masthead:** optional portalBrand (pvz. „Next Level AI“) + „Žiniasklaida“ – rekiantis prekės ženklas. Struktūra: eyebrow, headline, subline; **takeaway** (viena eilutė, accent – žmogus + rezultatas); featured (hero skaičius + label); optional heroImageVertical; KPI strip; section cards (optional imageVertical); tools + youth (optional youthImageVertical); insight kortelė (optional illustrationHorizontal); **ctaBlock** (vienas CTA – accent, pvz. „Toliau: Metodinis ir agentinis promptas“); footer + šaltiniai. Spalvos: brand, accent (CTA, takeaway), slate + semantinės. Iliustracijų slotai: **NEWS_PORTAL_INFOGRAFIC_UI_UX_ANALIZE.md** §4. Duomenų šaltinis – lokaliai archyve (portalas.txt); turinys įkeliamas į `modules.json`.
+
+**Editorial scroll (M4 sk. 53.5):** Pilna specifikacija – **§3.2d**. Storyboard: **NEWS_PORTAL_SLIDE_53_5.md**. Rich Portal 2.0 Lead gradient – deprecated.
 
 ### 3.6 Footeriai („Toliau – skaidrė N“)
 
@@ -261,7 +300,7 @@
 | Taisyklė                 | Aprašymas                                                                                                                                                                                                                                                             |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Formatas**             | `"footer": "Toliau – skaidrė N: [kitos skaidrės pavadinimas]"`, kur **N** = kitos skaidrės **1-based pozicija** modulyje (ne `id`).                                                                                                                                   |
-| **Ilgis**                | Rekomenduojama: visas footer tekstas **iki 55 simbolių** (viena eilutė tipiniame ekrane). Jei skaidrė turi `shortTitle`, naudoti jį footeryje; jei vis tiek per ilga – sutrumpinti tik pavadinimo dalį. Žr. `docs/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`. |
+| **Ilgis**                | Rekomenduojama: visas footer tekstas **iki 55 simbolių** (viena eilutė tipiniame ekrane). Jei skaidrė turi `shortTitle`, naudoti jį footeryje; jei vis tiek per ilga – sutrumpinti tik pavadinimo dalį. Žr. `docs/archive/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md`. |
 | **Kur pridedame**        | `content.footer` – skaidrėse, kurios turi `content` objektą. Paskutinė modulio skaidrė (santrauka, rezultatai) – be „Toliau“ arba su CTA, ne su skaidrės numeriu.                                                                                                     |
 | **Pavyzdys teisingas**   | „Toliau – skaidrė 5: DI įrankiai pagal formą“ (5 = penkta skaidrė modulyje).                                                                                                                                                                                          |
 | **Pavyzdys neteisingas** | „Toliau – skaidrė 40.8: InstructGPT“ (40.8 = id; vartotojas nematė tokių numerių).                                                                                                                                                                                    |
@@ -401,7 +440,10 @@ Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toj
 | `recognitionExercise`   | Atpažinimo pratimas su pasirinkimais.           | M4 sk. 39.5, M13 sk. 13.34             |
 | `interactivePipeline`   | Interaktyvus proceso / pipeline pasirinkimas.   | M4 sk. 45                              |
 | `instructGptQuality`    | Tyrimo įrodymo ir kokybės principų mikroblokas. | M4 sk. 44                              |
-| `toolChoiceBar`         | Įrankio pasirinkimas pagal užduotį.             | M4 sk. 53 (`sections[].toolChoiceBar`) |
+| `toolChoiceBar`         | Įrankio / filtro pasirinkimas pagal užduotį.     | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`) |
+| `linkedRowIndex`        | Rodo tik susietą copyable sekciją (filtras).    | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`) |
+
+**`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.
 
 **Modulių tipų taisyklės:**
 

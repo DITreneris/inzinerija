@@ -835,7 +835,7 @@
           "subtitle": "What you learned and what to do next",
           "type": "summary",
           "content": {
-            "introHeading": "Ka ismokai",
+            "introHeading": "What you learned",
             "introBody": "You learned the core image, video and music prompt patterns.",
             "stats": [
               {
@@ -1275,7 +1275,7 @@
           "subtitle": "What next?",
           "type": "summary",
           "content": {
-            "introHeading": "Ka ismokai",
+            "introHeading": "What you learned",
             "introBody": "You now have a prompt and at least one usable content artefact.",
             "stats": [
               {

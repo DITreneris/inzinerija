@@ -229,7 +229,30 @@
                           "type": "string",
                           "description": "Figma embed URL – rodomas kaip iframe"
                         },
-                        "table": { "type": "object" }
+                        "table": { "type": "object" },
+                        "linkedRowIndex": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "description": "Susieti copyable sekciją su toolChoiceBar eilute"
+                        },
+                        "toolChoiceBar": {
+                          "type": "object",
+                          "properties": {
+                            "question": { "type": "string" },
+                            "choices": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": ["label", "rowIndex"],
+                                "properties": {
+                                  "label": { "type": "string" },
+                                  "rowIndex": { "type": "integer", "minimum": 0 }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "presentationToolsBlock": { "type": "boolean" }
                       }
                     }
                   },
@@ -396,6 +419,117 @@
                   "portalBrand": {
                     "type": "string",
                     "description": "Optional masthead brand (e.g. Next Level AI) – portal feel"
+                  },
+                  "portalMeta": {
+                    "type": "object",
+                    "description": "Editorial metadata – byline, date, read time (Portal 2.1)",
+                    "properties": {
+                      "byline": { "type": "string" },
+                      "publishedAt": { "type": "string" },
+                      "readMinutes": { "type": "number", "minimum": 1 }
+                    }
+                  },
+                  "portalNav": {
+                    "type": "array",
+                    "description": "Decorative portal nav links (max 7 recommended)",
+                    "maxItems": 7,
+                    "items": {
+                      "type": "object",
+                      "required": ["label"],
+                      "properties": {
+                        "label": { "type": "string" }
+                      }
+                    }
+                  },
+                  "breakingTicker": {
+                    "type": "string",
+                    "description": "Optional breaking news ticker (Portal 2.1)"
+                  },
+                  "heroSidebarTeasers": {
+                    "type": "array",
+                    "description": "Hero sidebar story teasers (3 recommended)",
+                    "maxItems": 5,
+                    "items": {
+                      "type": "object",
+                      "required": ["headline"],
+                      "properties": {
+                        "eyebrow": { "type": "string" },
+                        "headline": { "type": "string" },
+                        "readMinutes": { "type": "number", "minimum": 1 },
+                        "scrollTarget": {
+                          "type": "string",
+                          "enum": [
+                            "portal-section-data",
+                            "portal-beat-awareness",
+                            "portal-beat-lithuania",
+                            "portal-section-depth",
+                            "portal-section-close"
+                          ],
+                          "description": "In-page scroll target for sidebar teaser jump (M4 sk. 53.5)"
+                        }
+                      }
+                    }
+                  },
+                  "immersive": {
+                    "type": "boolean",
+                    "description": "When true, ModuleView hides course H1/badge for portal immersion"
+                  },
+                  "editorialBeats": {
+                    "type": "array",
+                    "description": "Editorial pauses between data blocks (no CTA); max 3 recommended",
+                    "items": {
+                      "type": "object",
+                      "required": ["id", "title", "body", "placement"],
+                      "properties": {
+                        "id": { "type": "string" },
+                        "title": { "type": "string" },
+                        "body": { "type": "string" },
+                        "image": { "$ref": "#/$defs/portalImageSlot" },
+                        "side": { "type": "string", "enum": ["left", "right"] },
+                        "accentKey": {
+                          "type": "string",
+                          "enum": ["brand", "accent", "violet", "emerald"]
+                        },
+                        "placement": {
+                          "type": "string",
+                          "enum": [
+                            "afterHero",
+                            "afterKpi",
+                            "afterSections",
+                            "beforeCta"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "promoRibbons": {
+                    "type": "array",
+                    "description": "Promo ribbon strips (eyebrow + one message)",
+                    "items": {
+                      "type": "object",
+                      "required": ["eyebrow", "title", "placement"],
+                      "properties": {
+                        "eyebrow": { "type": "string" },
+                        "title": { "type": "string" },
+                        "subline": { "type": "string" },
+                        "stat": {
+                          "type": "object",
+                          "required": ["value", "label"],
+                          "properties": {
+                            "value": { "type": "string" },
+                            "label": { "type": "string" }
+                          }
+                        },
+                        "variant": {
+                          "type": "string",
+                          "enum": ["brand", "accent"]
+                        },
+                        "placement": {
+                          "type": "string",
+                          "enum": ["afterKpi", "beforeInsight"]
+                        }
+                      }
+                    }
                   },
                   "ctaBlock": {
                     "type": "object",

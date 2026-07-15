@@ -579,6 +579,10 @@
     "pressCharacterHint": "Click a character – their 4 tasks will open:",
     "m9PrimaryPathAria": "Main path – 8-step workflow",
     "m9PrimaryPathHeading": "Main path (start here)",
+    "m9StartPracticeCta": "Start here: slide 93.1 (source catalog)",
+    "m9StartPracticeAria": "Start with practice slide 93.1",
+    "m9OptionalPathAria": "Optional path – main workflow",
+    "hubSkipToSummary": "Skip hub – go to summary",
     "m12RequiredPathAria": "Required Module 12 path",
     "m12RequiredPathHeading": "Required path",
     "m12RequiredPathBody": "The module is complete when you finish the 3 core practices: 121 Automatize, 122 Augment and 123 Autonomize.",
@@ -676,7 +680,9 @@
     "practicalEditPromptAria": "Edit prompt",
     "practicalEdit": "Edit",
     "practicalCancel": "Cancel",
-    "practicalSaveChanges": "Save changes"
+    "practicalSaveChanges": "Save changes",
+    "m9DefaultReflectionAfter": "META: You are a training reflection assistant. Goal – consolidate one Module 9 scenario experience.\nINPUT: I just completed one Data Analysis path scenario (business analysis with AI).\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip.",
+    "m9DefaultMotivation": "Your task: copy the prompt below to AI, complete the task, and enter the result."
   },
   "vaizdoGen": {
     "tldr": "In short: Fill in the fields below – the system will build the image prompt. Copy and paste into any image generation tool.",

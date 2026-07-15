@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { screen, waitFor, within } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HelmetProvider } from 'react-helmet-async';
 import { renderWithProviders } from '../../test/test-utils';
@@ -52,6 +52,10 @@ function getQuizNavButton() {
   return within(nav).getByRole('button', { name: /Apklausa|Quiz/i });
 }
 
+const emptyQuizMessage = /Apklausos klausimų nėra|No quiz questions available/i;
+const modulesHeading =
+  /Paversk DI savo darbo sistema|Turn AI into your work system/i;
+
 describe('App – Quiz integracinis srautas', () => {
   const storageKey = 'prompt-anatomy-locale';
 
@@ -76,7 +80,11 @@ describe('App – Quiz integracinis srautas', () => {
   afterEach(() => {
     flushProgressSave();
     resetProgress();
-    vi.restoreAllMocks();
+    vi.clearAllMocks();
+    vi.mocked(getModulesDataSync).mockReturnValue(fixtureEmptyQuiz);
+    vi.mocked(loadModules).mockResolvedValue(fixtureEmptyQuiz);
+    vi.mocked(getModulesSync).mockReturnValue([]);
+    vi.mocked(preloadModules).mockImplementation(() => {});
   });
 
   it('naviguoja į Apklausą ir rodo empty-state kai quiz.questions tuščias', async () => {
@@ -98,9 +106,7 @@ describe('App – Quiz integracinis srautas', () => {
     );
 
     expect(
-      screen.getByText((content) =>
-        /Apklausos klausimų nėra|No quiz questions available/i.test(content)
-      )
+      screen.getByText((content) => emptyQuizMessage.test(content))
     ).toBeInTheDocument();
 
     expect(
@@ -119,11 +125,7 @@ describe('App – Quiz integracinis srautas', () => {
 
     await user.click(getQuizNavButton());
 
-    await screen.findByText(
-      /Apklausos klausimų nėra|No quiz questions available/i,
-      {},
-      { timeout: 10000 }
-    );
+    await screen.findByText(emptyQuizMessage, {}, { timeout: 10000 });
 
     const backButton = await screen.findByRole(
       'button',
@@ -132,21 +134,14 @@ describe('App – Quiz integracinis srautas', () => {
     );
     await user.click(backButton);
 
-    // onBack iš QuizPage grąžina į ModulesPage; tikriname ir dingusį quiz tekstą, ir realų Modules signalą.
-    await waitFor(
-      () => {
-        expect(
-          screen.queryByText(
-            /Apklausos klausimų nėra|No quiz questions available/i
-          )
-        ).not.toBeInTheDocument();
-        expect(
-          screen.getByRole('heading', {
-            name: /Paversk DI savo darbo sistema|Turn AI into your work system/i,
-          })
-        ).toBeInTheDocument();
-      },
-      { timeout: 10000 }
+    await waitForElementToBeRemoved(() => screen.queryByText(emptyQuizMessage), {
+      timeout: 15000,
+    });
+
+    await screen.findByRole(
+      'heading',
+      { name: modulesHeading },
+      { timeout: 15000 }
     );
     expect(getQuizNavButton()).toBeInTheDocument();
   }, 30000);
@@ -179,15 +174,13 @@ describe('App – Quiz integracinis srautas', () => {
 
     await user.click(getQuizNavButton());
 
-    await screen.findByText(
-      /Apklausos klausimų nėra|No quiz questions available/i,
-      {},
-      { timeout: 10000 }
-    );
+    await screen.findByText(emptyQuizMessage, {}, { timeout: 10000 });
 
     await user.click(
       screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
     );
+
+    await screen.findByRole('heading', { name: modulesHeading }, { timeout: 15000 });
 
     const progressAfter = getProgress();
     expect(progressAfter.completedModules).toContain(1);
@@ -251,7 +244,11 @@ describe('App – EN locale smoke', () => {
   afterEach(() => {
     flushProgressSave();
     localStorage.removeItem(storageKey);
-    vi.restoreAllMocks();
+    vi.clearAllMocks();
+    vi.mocked(getModulesDataSync).mockReturnValue(fixtureEmptyQuiz);
+    vi.mocked(loadModules).mockResolvedValue(fixtureEmptyQuiz);
+    vi.mocked(getModulesSync).mockReturnValue([]);
+    vi.mocked(preloadModules).mockImplementation(() => {});
   });
 
   it('shows EN nav strings when locale is en', async () => {

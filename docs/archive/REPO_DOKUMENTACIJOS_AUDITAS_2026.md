@@ -1,6 +1,7 @@
 # Repo dokumentacijos auditas – 2026
 
 > **Data:** 2026-03-11  
+> **ARCHIVED:** 2026-07-14 – įgyvendintas archyvo sutvarkymas; žr. `docs/archive/README.md` ir `CHANGELOG.md` [Unreleased] 2026-07-14.  
 > **Tikslas:** Švarus, aiškus repo dokumentacijos paveldas – pašalinti pasenusias analizes, nutrūkusias nuorodas ir perteklinę dokumentaciją; tinkama struktūra tolimesniam AI mokymų ir SaaS vystymui.
 
 ---
@@ -50,7 +51,7 @@ Sąrašas: failas → kodėl pasenęs → rekomendacija.
 | `docs/development/ANALIZE_MODULIAI_1_6_NUOSEKLUMAS.md` | Nuoseklumo analizė – vienkartinė. | **Archyvuoti** → `docs/archive/development/`. |
 | `docs/development/LT_EN_UI_KOKYBES_VERSTIMO_RIZIKOS_ANALIZE.md` | LT/EN vertimo rizikos – referencui naudinga. | **Palikti** arba **archyvuoti** jei superseded. |
 
-**Bendras principas:** Vienkartinės analizės, kurios nebe naudojamos kaip SOT ir neįeina į agentų specą → perkelti į `docs/archive/development/` tik lokaliai (archive ne repo); arba laikyti `docs/development/analysis/` repo.
+**Bendras principas:** Vienkartinės analizės, kurios nebe naudojamos kaip SOT ir neįeina į agentų specą → perkelti į `docs/archive/development/` tik lokaliai (archive ne repo); arba laikyti `docs/archive/development/analysis/` repo.
 
 ---
 
@@ -220,4 +221,4 @@ repo root
 
 ---
 
-**Audito pabaiga.** **Įgyvendinta (2026-03):** (1) archive lieka lokalus; ARCHIVE_README → README visur, (2) nutrūkusios nuorodos pataisytos, (3) sukurti CERTIFICATE_CONTENT_SOT.md, SUMMARY_SLIDE_SPEC.md; M4_BADGE nuoroda → ModuleCompleteScreen, (4) DOCUMENTATION_INDEX §4 – disclaimer „archyvas ne repo“. Toliau: pasirinktinai perkelti vienkartines analizes į docs/development/analysis/ (repo).
+**Audito pabaiga.** **Įgyvendinta (2026-03):** (1) archive lieka lokalus; ARCHIVE_README → README visur, (2) nutrūkusios nuorodos pataisytos, (3) sukurti CERTIFICATE_CONTENT_SOT.md, SUMMARY_SLIDE_SPEC.md; M4_BADGE nuoroda → ModuleCompleteScreen, (4) DOCUMENTATION_INDEX §4 – disclaimer „archyvas ne repo“. Toliau: pasirinktinai perkelti vienkartines analizes į docs/archive/development/analysis/ (repo).

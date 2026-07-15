@@ -181,3 +181,12 @@ export const DIAGRAM_TONE_COLORS_DARK: Record<
 export function getDiagramToneColors(isDark: boolean) {
   return isDark ? DIAGRAM_TONE_COLORS_DARK : DIAGRAM_TONE_COLORS;
 }
+
+/** M4 sk. 53.5 portal beat SVG fills — re-exports diagram palette (SCHEME_AGENT SOT). */
+export const PORTAL_BEAT_COLORS = {
+  brand: DIAGRAM_TOKENS.colors.flow,
+  accent: DIAGRAM_TONE_COLORS.amber.top,
+  // v0.2 — portal beat only; consolidate in v0.3 diagram tone palette
+  violet: '#7c3aed',
+  emerald: DIAGRAM_TONE_COLORS.emerald.bottom,
+} as const;

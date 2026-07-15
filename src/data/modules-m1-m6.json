@@ -703,13 +703,37 @@
               }
             ],
             "cheatSheetTitle": "Kada ką naudoti? (Business cheat sheet)",
-            "cheatSheetHeaders": ["Užduotis", "Temperature", "Reasoning"],
+            "cheatSheetHeaders": [
+              "Užduotis",
+              "Temperature",
+              "Reasoning"
+            ],
             "cheatSheetRows": [
-              ["Ataskaitos, analizė", "0.1–0.3", "Gilus"],
-              ["SOP, instrukcijos", "0.1–0.2", "Normalus"],
-              ["El. laiškai, HR", "0.4–0.5", "Normalus"],
-              ["Marketingas, tekstai", "0.6–0.8", "Normalus"],
-              ["Strategija, idėjos", "0.5–0.6", "Gilus"]
+              [
+                "Ataskaitos, analizė",
+                "0.1–0.3",
+                "Gilus"
+              ],
+              [
+                "SOP, instrukcijos",
+                "0.1–0.2",
+                "Normalus"
+              ],
+              [
+                "El. laiškai, HR",
+                "0.4–0.5",
+                "Normalus"
+              ],
+              [
+                "Marketingas, tekstai",
+                "0.6–0.8",
+                "Normalus"
+              ],
+              [
+                "Strategija, idėjos",
+                "0.5–0.6",
+                "Gilus"
+              ]
             ],
             "safeDefaultBadge": "80% verslo atvejų",
             "safeDefaultValue": "Temperature: <strong>0.4–0.6</strong> · Reasoning: <strong>Normal</strong>",
@@ -1065,7 +1089,12 @@
               "id": "q4",
               "type": "mcq",
               "question": "Nori gauti 5 punktų sąrašą lietuviškai. Kurį bloką turi nurodyti?",
-              "options": ["Output", "Meta", "Input", "Quality Control"],
+              "options": [
+                "Output",
+                "Meta",
+                "Input",
+                "Quality Control"
+              ],
               "correct": 0,
               "explanation": "Formatas (sąrašas, 5 punktai, kalba) – tai Output bloko atsakomybė.",
               "hint": "Kuris blokas nustato rezultato formatą ir struktūrą?",
@@ -1228,7 +1257,12 @@
               "id": "q11",
               "type": "mcq",
               "question": "Kiek blokų turi pilnas struktūruotas promptas?",
-              "options": ["3", "4", "5", "6"],
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
               "correct": 3,
               "explanation": "6 blokai: Meta, Input, Output, Reasoning, Quality, Advanced.",
               "hint": "Prisimink: M-I-O-R-Q-A sistema.",
@@ -2276,7 +2310,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 3: Konteksto inžinerija"
+            "footer": "Toliau – Konteksto inžinerija"
           }
         },
         {
@@ -2490,7 +2524,7 @@
               "insight": "1,3B InstructGPT modelis vertintojų vertinamas geriau nei 175B GPT-3 – tai rodo, kad lygiavimo strategija, ne parametrų skaičius, yra pagrindinis žmogaus suvokiamos kokybės veiksnys.",
               "scaleNote": "Vertintojų įvertinimai lyginant modelių išvestis. Aukščiau = geresnis instrukcijų laikymasis."
             },
-            "footer": "Toliau – skaidrė 4: DI įrankiai pagal formą"
+            "footer": "Toliau – DI įrankiai pagal formą"
           }
         },
         {
@@ -2754,7 +2788,10 @@
                   "examplePrompt": "Paruošk 5 marketingo idėjas logistikos įmonei Lietuvoje.",
                   "withoutContext": "Atsakymas bendrinis, nes nežino verslo situacijos.",
                   "withContext": "Atsakymas orientuotas į konkretų tikslą ir auditoriją.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "prompt",
@@ -2764,7 +2801,10 @@
                   "examplePrompt": "Sukurk 5 idėjas. Kiekvienai parašyk pavadinimą, kanalą ir trumpą paaiškinimą.",
                   "withoutContext": "Idėjos universalios, dažnai panašios į bendrus šablonus.",
                   "withContext": "Promptas remiasi papildoma informacija, todėl pasiūlymai tikslesni.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "context",
@@ -2774,7 +2814,9 @@
                   "examplePrompt": "Kontekstas: B2B logistika, 40 darbuotojų, tikslas – nauji klientai Klaipėdoje, biudžetas 1500 EUR/mėn.",
                   "withoutContext": "Modelis nežino tavo realios situacijos ir siūlo „visiems tinkamus“ variantus.",
                   "withContext": "Modelis parenka idėjas pagal tavo duomenis, ribas ir prioritetus.",
-                  "availableInModes": ["context"]
+                  "availableInModes": [
+                    "context"
+                  ]
                 },
                 {
                   "id": "llm",
@@ -2784,7 +2826,10 @@
                   "examplePrompt": "Pateik atsakymą lentele: idėja | kodėl tinka logistikai | pirmas žingsnis.",
                   "withoutContext": "Rezultatas sklandus, bet mažiau praktiškas realiam darbui.",
                   "withContext": "Rezultatas labiau pritaikomas, su aiškesniais veiksmais.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "tools",
@@ -2794,7 +2839,9 @@
                   "examplePrompt": "Patikrink paskutinių 3 mėn. pardavimų CSV ir pasiūlyk idėjas pagal TOP klientų segmentą.",
                   "withoutContext": "Nėra patikros su realiais duomenimis, todėl atsakymas gali būti per abstraktus.",
                   "withContext": "Atsakymas remiasi realiais skaičiais ir tampa patikimesnis.",
-                  "availableInModes": ["context"]
+                  "availableInModes": [
+                    "context"
+                  ]
                 },
                 {
                   "id": "output",
@@ -2804,7 +2851,10 @@
                   "examplePrompt": "Pabaigoje pridėk 3 veiksmus, kuriuos galime atlikti šią savaitę.",
                   "withoutContext": "Geras startui, bet dažnai reikia daug rankinio tikslinimo.",
                   "withContext": "Greičiau pritaikoma praktikoje, mažiau papildomų taisymų.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 }
               ]
             },
@@ -2918,7 +2968,11 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": ["", "Sisteminis promptas", "Master promptas"],
+                  "headers": [
+                    "",
+                    "Sisteminis promptas",
+                    "Master promptas"
+                  ],
                   "rows": [
                     [
                       "Ką apibrėžia",
@@ -3048,13 +3102,19 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": ["❌ Blogas", "✅ Geras"],
+                  "headers": [
+                    "❌ Blogas",
+                    "✅ Geras"
+                  ],
                   "rows": [
                     [
                       "„Sukurk man strategiją.“",
                       "„Rolė: verslo strategas. Kontekstas: mažmeninė prekyba, 50 darbuotojų, Lietuvos rinka.“"
                     ],
-                    ["Nėra konteksto", "Nurodytas sektorius, dydis, rinka"],
+                    [
+                      "Nėra konteksto",
+                      "Nurodytas sektorius, dydis, rinka"
+                    ],
                     [
                       "Nėra struktūros",
                       "3 etapai: įvestis → apdorojimas → rezultatas"
@@ -3095,7 +3155,11 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": ["ChatGPT", "Claude AI", "Gamma App"],
+                    "chain": [
+                      "ChatGPT",
+                      "Claude AI",
+                      "Gamma App"
+                    ],
                     "flow": [
                       "Pradinis užklausa",
                       "Apdorojimas",
@@ -3106,42 +3170,77 @@
                     "expandOutput": "Struktūruota prezentacija (Gamma)"
                   },
                   {
-                    "chain": ["GPT", "Figma"],
-                    "flow": ["Idėjos", "Dizainas"],
+                    "chain": [
+                      "GPT",
+                      "Figma"
+                    ],
+                    "flow": [
+                      "Idėjos",
+                      "Dizainas"
+                    ],
                     "tag": "Dizainas",
                     "expandInput": "Aprašymas ar moodboard",
                     "expandOutput": "Maketai, UI skeleto"
                   },
                   {
-                    "chain": ["GPT", "Gamma"],
-                    "flow": ["Turinys", "Skaidrės"],
+                    "chain": [
+                      "GPT",
+                      "Gamma"
+                    ],
+                    "flow": [
+                      "Turinys",
+                      "Skaidrės"
+                    ],
                     "tag": "Turinys",
                     "expandInput": "Tema ir struktūra",
                     "expandOutput": "Paruoštos skaidrės su dizainu"
                   },
                   {
-                    "chain": ["Gemini", "Calendar"],
-                    "flow": ["Planavimas", "Renginiai"],
+                    "chain": [
+                      "Gemini",
+                      "Calendar"
+                    ],
+                    "flow": [
+                      "Planavimas",
+                      "Renginiai"
+                    ],
                     "tag": "Planavimas",
                     "expandInput": "Data, laikas, aprašymas",
                     "expandOutput": "Įrašai kalendoriuje"
                   },
                   {
-                    "chain": ["GPT", "Zapier", "Gmail"],
-                    "flow": ["Automatizavimas", "Siuntimas"],
+                    "chain": [
+                      "GPT",
+                      "Zapier",
+                      "Gmail"
+                    ],
+                    "flow": [
+                      "Automatizavimas",
+                      "Siuntimas"
+                    ],
                     "tag": "Automatizacija",
                     "expandInput": "Trigger + šablonas",
                     "expandOutput": "Išsiųstas laiškas pagal taisyklę"
                   },
                   {
-                    "chain": ["GPT", "Google Veo3"],
-                    "flow": ["Promptas", "Video"],
+                    "chain": [
+                      "GPT",
+                      "Google Veo3"
+                    ],
+                    "flow": [
+                      "Promptas",
+                      "Video"
+                    ],
                     "tag": "Video",
                     "expandInput": "Tekstinis promptas arba scenarijus",
                     "expandOutput": "Sugeneruotas vaizdo įrašas"
                   },
                   {
-                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
+                    "chain": [
+                      "ChatGPT / Perplexity",
+                      "Figma",
+                      "Claude"
+                    ],
                     "flow": [
                       "Konteksto rinkinys (RAG)",
                       "Vizualus maketas",
@@ -3178,7 +3277,7 @@
                 "collapsible": true
               }
             ],
-            "footer": "Toliau – skaidrė 9: Praktika: DI visata"
+            "footer": "Toliau – Praktika: DI visata"
           }
         },
         {
@@ -3216,7 +3315,13 @@
                 "Gilusis mokymasis",
                 "Generatyvinis DI"
               ],
-              "correctAnswers": [0, 1, 3, 2, 4],
+              "correctAnswers": [
+                0,
+                1,
+                3,
+                2,
+                4
+              ],
               "explanations": [
                 "Veikia pagal iš anksto parašytas taisykles, ne mokosi iš duomenų – tai bendresnė DI (AI) sritis.",
                 "Sistema mokosi iš duomenų (istorinių transakcijų) ir atpažįsta anomalijas – tipinis mašininio mokymo uždavinys.",
@@ -3226,7 +3331,7 @@
               ],
               "goal": "Suprasti, kad **ne visi DI sprendimai yra generatyviniai** ir kad ChatGPT yra tik **vienas konkretus sluoksnis** visoje DI visatoje."
             },
-            "footer": "Toliau – skaidrė 10: Promptų tipai ir principai"
+            "footer": "Toliau – Promptų tipai ir principai"
           }
         },
         {
@@ -3275,67 +3380,137 @@
           "type": "infographic",
           "content": {
             "variant": "news-portal",
+            "immersive": true,
             "portalBrand": "Next Level AI",
-            "eyebrow": "Tendencijos 2025–2026",
-            "headline": "Dirbtinis intelektas: nuo eksperimento iki kasdienybės",
-            "subline": "2025",
-            "takeaway": "Eurostat skelbia: kas trečias europietis ir kas penkta įmonė jau naudoja DI.",
-            "takeawayCta": "Ar tarp jų esi tu?",
+            "portalMeta": {
+              "byline": "Redakcija · Promptų anatomija",
+              "publishedAt": "2026-07-14",
+              "readMinutes": 6
+            },
+            "portalNav": [
+              {
+                "label": "Naujienos"
+              },
+              {
+                "label": "Verslas"
+              },
+              {
+                "label": "Technologijos"
+              },
+              {
+                "label": "DI praktika"
+              },
+              {
+                "label": "Tyrimai"
+              },
+              {
+                "label": "Nuomonės"
+              },
+              {
+                "label": "Mokymai"
+              }
+            ],
+            "breakingTicker": "ES DI aktas · OpenAI · Lietuvos DI rinka · Agentai",
+            "heroSidebarTeasers": [
+              {
+                "eyebrow": "Tendencija",
+                "headline": "IT specialistai DI naudoja dažniau nei manytumėte",
+                "readMinutes": 4,
+                "scrollTarget": "portal-beat-awareness"
+              },
+              {
+                "eyebrow": "Duomenys",
+                "headline": "Kas penkta ES įmonė naudoja DI technologijas",
+                "readMinutes": 3,
+                "scrollTarget": "portal-section-data"
+              },
+              {
+                "eyebrow": "Analizė",
+                "headline": "Lietuva virš ES vidurkio – 69 % gyventojų naudoja DI",
+                "readMinutes": 7,
+                "scrollTarget": "portal-beat-lithuania"
+              }
+            ],
+            "eyebrow": "Tyrimas",
+            "headline": "DI jau tapo kasdieniu darbo įrankiu: kas trečias europietis jį naudoja",
+            "subline": "Ką verslas, darbuotojai ir jaunimas turi žinoti apie DI šiandien – skaičiais ir kontekstu",
+            "takeaway": "Eurostat: kas trečias europietis ir kas penkta įmonė jau naudoja generatyvų DI.",
+            "takeawayCta": "Ką šie skaičiai reiškia darbuotojams ir verslui?",
             "featured": {
               "bigNumber": "98%",
-              "label": "IT specialistų naudojo DI įrankius savo darbe",
+              "label": "IT specialistų naudojo DI įrankius darbe",
               "source": "MIT tyrimas, 2025"
             },
             "heroImageVertical": {
               "src": "di_portal_hero_vertical.png",
               "alt": "Asmuo naudojantis DI kasdien – nuo eksperimento iki kasdienybės"
             },
-            "bannerImageHorizontal": {
-              "src": "di_portal_banner_hero_kpi.png",
-              "alt": "Skyrių skirstytuvas: nuo konteksto prie pagrindinių skaičių"
+            "mainInsightBlock": {
+              "bigNumber": "32,7%",
+              "label": "ES gyventojų naudojo generatyvius DI įrankius",
+              "source": "Eurostat, 2025"
             },
-            "bannerBetweenKpiAndSections": {
-              "src": "di_portal_banner_sections.png",
-              "alt": "Skirstytuvas tarp rodiklių ir teminių kortelių"
-            },
-            "kpiCards": [
+            "editorialBeats": [
               {
-                "icon": "🌍",
-                "value": "32,7%",
-                "desc": "Europiečių naudojo generatyvius DI įrankius",
-                "source": "Eurostat, 2025",
-                "colorKey": "brand"
+                "id": "awareness-gap",
+                "title": "DI naudojame dažniau, nei jį atpažįstame",
+                "body": "Problema ne ta, kad DI dar neatėjo – dažnai jo nepastebime.",
+                "side": "left",
+                "accentKey": "accent",
+                "placement": "afterHero"
               },
               {
-                "icon": "👤",
+                "id": "lithuania-context",
+                "title": "Lietuva virš ES vidurkio",
+                "body": "69% gyventojų naudoja DI – virš ES vidurkio; klausimas, ar verslas ir darbuotojai pasiruošę.",
+                "side": "right",
+                "accentKey": "brand",
+                "placement": "afterSections"
+              },
+              {
+                "id": "next-step-prompt",
+                "title": "Kitas žingsnis – promptas, ne statistika",
+                "body": "Skaičiai duoda įvestį — rezultatą duosi tu, kai parašysi promptą.",
+                "side": "left",
+                "accentKey": "violet",
+                "placement": "beforeCta"
+              }
+            ],
+            "promoRibbons": [
+              {
+                "eyebrow": "ES kontekstas",
+                "title": "Dauguma DI vartotojų jau jaučia produktyvumo augimą",
+                "subline": "MIT: 56 % — bet darbe licencijuotus DI naudoja tik ~15,8 %.",
+                "variant": "brand",
+                "placement": "afterKpi"
+              },
+              {
+                "eyebrow": "Pagrindinė žinutė",
+                "title": "DI jau čia – klausimas ne ar, o kaip greitai pritaikysi.",
+                "subline": "Jaunimas naudoja dažniau; verslas vis dar atsilieka.",
+                "variant": "brand",
+                "placement": "beforeInsight"
+              }
+            ],
+            "kpiCards": [
+              {
+                "iconKey": "trending-up",
                 "value": "56%",
                 "desc": "vartotojų pastebi išaugusį produktyvumą",
                 "source": "MIT tyrimas, 2025",
                 "colorKey": "emerald"
               },
               {
-                "icon": "🏢",
+                "iconKey": "building-2",
                 "value": "20%",
                 "desc": "ES įmonių (10+ darb.) naudoja DI technologijas",
                 "source": "Eurostat, 2025",
                 "colorKey": "brand"
-              },
-              {
-                "icon": "🇱🇹",
-                "value": "69%",
-                "desc": "Lietuvos gyventojų naudoja DI įrankius",
-                "source": "Stat.gov.lt, 2025",
-                "colorKey": "emerald"
               }
             ],
-            "mainInsightBlock": {
-              "bigNumber": "32,7%",
-              "label": "ES ir įmonės – skaičiais.",
-              "source": "Eurostat, 2025"
-            },
             "secondaryCards": [
               {
-                "sectionLabel": "01 — Jaunimas",
+                "sectionLabel": "Jaunimas",
                 "title": "Jaunesnė karta – DI pionieriai",
                 "value": "63,8%",
                 "label": "Jaunimo naudoja DI kasdien",
@@ -3347,12 +3522,12 @@
                 }
               },
               {
-                "sectionLabel": "02 — Lietuva",
+                "sectionLabel": "Lietuva",
                 "title": "Lietuvos įmonės naudoja DI",
                 "value": "9,8%",
-                "label": "Lietuvos įmonės naudoja DI 9,8%",
+                "label": "Įmonių lygis (ne gyventojų naudojimas)",
                 "source": "EK tyrimas, 2025",
-                "colorKey": "emerald",
+                "colorKey": "brand",
                 "imageVertical": {
                   "src": "di_portal_section03_vertical.png",
                   "alt": "Lietuvos DI adopcija – įmonės"
@@ -3360,34 +3535,41 @@
               }
             ],
             "toolsAndYouth": {
-              "toolsLabel": "04 — Įrankiai",
+              "toolsLabel": "Populiariausi įrankiai",
               "toolsTitle": "Populiariausi DI įrankiai",
+              "toolsInsight": "Spam filtrai (78%) – dažniausias nematomas DI; darbe licencijuotus naudoja tik ~15,8% – 16 pp skirtumas.",
               "tools": [
                 {
                   "name": "Spam filtrai",
                   "pct": "78%",
+                  "iconKey": "shield",
                   "colorKey": "rose"
                 },
                 {
                   "name": "Chatbot'ai",
                   "pct": "62%",
+                  "iconKey": "message-circle",
                   "colorKey": "amber"
                 },
                 {
                   "name": "Virtualūs asistentai",
                   "pct": "61%",
+                  "iconKey": "bot",
                   "colorKey": "violet"
                 },
                 {
                   "name": "DI paieška",
                   "pct": "60%",
+                  "iconKey": "search",
                   "colorKey": "brand"
                 }
               ],
-              "youthLabel": "05 — Darbuotojai",
-              "youthTitle": "Tiktai 40% naudoja licencijuotus DI įrankius",
-              "youthBigNum": "40%",
-              "youthLabelText": "Darbuotojų naudojimas licencijuotais DI įrankiais",
+              "youthLabel": "Darbuotojai ir DI",
+              "youthTitle": "Darbe licencijuotus DI naudoja mažuma",
+              "youthBigNum": "~15,8%",
+              "youthLabelText": "Darbuotojų, naudojančių licencijuotus DI įrankius darbe",
+              "youthSegmentsLabel": "Kur naudoja?",
+              "youthClosingInsight": "Asmeniniams ir mokymuisi – virš 80%; darbe – mažuma.",
               "youthBars": [
                 {
                   "name": "Asmeniniams tikslams",
@@ -3404,36 +3586,27 @@
                   "pct": "~15,8%",
                   "colorKey": "slate"
                 }
-              ],
-              "youthFootnote": "",
-              "youthImageVertical": {
-                "src": "di_portal_section02_vertical.png",
-                "alt": "Jaunimas ir technologijos"
-              }
+              ]
             },
             "insightCard": {
-              "tag": "Pagrindinė žinutė",
-              "headline": "Pagrindinės išvados: ES, verslas, jaunimas, Lietuva.",
+              "tag": "Santrauka",
+              "headline": "Ką verta prisiminti iš šio portalo.",
               "illustrationHorizontal": {
                 "src": "di_portal_insight_strip.png",
-                "alt": "Pagrindinė žinutė – ES, verslas, jaunimas, Lietuva"
+                "alt": "Santrauka – ES, verslas, jaunimas, Lietuva"
               },
               "points": [
                 {
                   "num": "01",
-                  "text": "**~33% europiečių** naudojo generatyvius DI 2025 m.; jaunimas beveik 2× dažniau (žr. viršuje)."
+                  "text": "**ES ir verslas:** žr. Duomenys trumpai (32,7% · 20%) — verslas vis dar atsilieka."
                 },
                 {
                   "num": "02",
-                  "text": "**Verslas:** 20% įmonių naudoja DI; augimas +6,5 pp; didelės įmonės 55%."
+                  "text": "**Jaunimas ir darbuotojai:** jaunimas naudoja dažniau; darbe licencijuotus DI – tik ~15,8%."
                 },
                 {
                   "num": "03",
-                  "text": "**Jaunimas:** daugiausia asmeniniams ir mokymuisi; darbe – panašiai kaip vyresnieji."
-                },
-                {
-                  "num": "04",
-                  "text": "**Lietuva:** 69% gyventojų naudoja DI (Stat.gov.lt); Eurostat ES palyginime 36,9% – virš vidurkio (32,7%). Įmonių augimas 2× per metus."
+                  "text": "**Lietuva:** 69% gyventojų naudoja DI – virš ES vidurkio; įmonių adopcija auga, bet vis dar žema (9,8% — ne 69%)."
                 }
               ]
             },
@@ -3441,8 +3614,8 @@
               "label": "Toliau: Metodinis ir agentinis promptas – kaip rašyti, kad DI veiktų",
               "subline": "Pirmyn →"
             },
-            "footerBrand": "🤖 DI Tendencijos · 2025–2026",
-            "footerSub": "Verslo mokymų medžiaga",
+            "footerBrand": "DI Tendencijos · 2025–2026",
+            "footerSub": "Atnaujinta 2026-07 · Promptų anatomija",
             "sources": [
               {
                 "title": "Eurostat",
@@ -3454,6 +3627,14 @@
               },
               {
                 "title": "Stat.gov.lt",
+                "year": "2025"
+              },
+              {
+                "title": "MIT",
+                "year": "2025"
+              },
+              {
+                "title": "Europos Komisija",
                 "year": "2025"
               }
             ]
@@ -3551,7 +3732,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 13: Custom GPT kūrimo procesas"
+            "footer": "Toliau – Custom GPT kūrimo procesas"
           }
         },
         {
@@ -3579,7 +3760,7 @@
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Toliau – skaidrė 14: Gerai ir blogai",
+            "footer": "Toliau – Gerai ir blogai",
             "practicalTask": {
               "title": "Ką daryti dabar (1 žingsnis)",
               "templateLabel": "Kopijuoti Custom GPT pirmo žingsnio šabloną",
@@ -3613,7 +3794,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 15: Tavo promptas geras?"
+            "footer": "Toliau – Tavo promptas geras?"
           },
           "optional": true
         },
@@ -3702,7 +3883,10 @@
                     "RLHF (optimizuoja kokybę)"
                   ],
                   "rows": [
-                    ["Mokosi iš skaičių ir KPI", "Mokosi iš žmonių vertinimo"],
+                    [
+                      "Mokosi iš skaičių ir KPI",
+                      "Mokosi iš žmonių vertinimo"
+                    ],
                     [
                       "Tikslas – geresni rezultatai",
                       "Tikslas – geresnė komunikacija"
@@ -3748,7 +3932,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 17: Parametrų laukas"
+            "footer": "Toliau – Parametrų laukas"
           }
         },
         {
@@ -4169,12 +4353,26 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": ["Claude", "ChatGPT", "Gamma"],
-                    "flow": ["Analizė", "Strategija", "Skaidrės"]
+                    "chain": [
+                      "Claude",
+                      "ChatGPT",
+                      "Gamma"
+                    ],
+                    "flow": [
+                      "Analizė",
+                      "Strategija",
+                      "Skaidrės"
+                    ]
                   },
                   {
-                    "chain": ["Gemini", "ChatGPT"],
-                    "flow": ["Tyrimas + vaizdai", "Formulavimas"]
+                    "chain": [
+                      "Gemini",
+                      "ChatGPT"
+                    ],
+                    "flow": [
+                      "Tyrimas + vaizdai",
+                      "Formulavimas"
+                    ]
                   }
                 ]
               },
@@ -4184,7 +4382,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 21: RAG: kas tai ir pabandyk"
+            "footer": "Toliau – RAG: kas tai ir pabandyk"
           }
         },
         {
@@ -4236,7 +4434,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 22: Atviros duomenų bazės ir RAG"
+            "footer": "Toliau – Atviros duomenų bazės ir RAG"
           }
         },
         {
@@ -4334,7 +4532,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 23: RAG atmintis ir šaltiniai"
+            "footer": "Toliau – RAG atmintis ir šaltiniai"
           }
         },
         {
@@ -4472,30 +4670,106 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 24: DI įrankiai informacijos paieškai"
+            "footer": "Toliau – DI įrankiai informacijos paieškai"
           }
         },
         {
           "id": 61,
           "title": "Papildoma: DI įrankiai informacijos paieškai",
-          "shortTitle": "DI įrankiai (Modulyje 7)",
-          "subtitle": "Atmintinė perkelta į Duomenų analizės kelią",
+          "shortTitle": "DI įrankiai informacijos paieškai",
+          "subtitle": "DI įrankiai – nuo paieškos iki sintezės",
           "type": "content-block",
           "optional": true,
           "content": {
+            "whyBenefit": "Bet kokį tyrimą gali atlikti per 30–45 min – įvesk klausimą ar įkelk PDF, gauk atsakymus su šaltiniais.",
+            "toolsIntro": "Įvesk klausimą ar įkėlk PDF – gausi atsakymus su šaltiniais. Naudinga RAG šaltinių paieškai ir Deep research užduotims.",
+            "tools": [
+              {
+                "name": "Perplexity",
+                "url": "https://perplexity.ai",
+                "description": "Paieška su šaltiniais. Vietoj valandos googlinimo – įvesk klausimą, gauk atsakymą su nuorodomis.",
+                "useCases": [
+                  "Verslo tyrimas",
+                  "Rinkos analizė",
+                  "Faktų tikrinimas"
+                ]
+              },
+              {
+                "name": "PaperGuide",
+                "url": "https://paperguide.ai",
+                "description": "Kalbėk su PDF. Įkelk ataskaitą ar tyrimą – gausi santrauką, išvadas, pagrindines mintis.",
+                "useCases": [
+                  "Ataskaitų analizė",
+                  "Greitas dokumento skenavimas"
+                ]
+              },
+              {
+                "name": "Scite",
+                "url": "https://scite.ai",
+                "description": "Ar šaltinis tikrai palaiko tavo teiginį? Rodo, kaip tyrimas cituojamas – palaiko ar prieštarauja.",
+                "useCases": [
+                  "Citavimo tikrinimas",
+                  "Argumentų stiprinimas"
+                ]
+              },
+              {
+                "name": "Elicit",
+                "url": "https://elicit.com",
+                "description": "Suranda ir apibendrina tyrimus pagal temą. Įvesk klausimą – gauk tendencijas, rizikas, pavyzdžius.",
+                "useCases": [
+                  "Sintezė",
+                  "Tendencijų paieška"
+                ]
+              },
+              {
+                "name": "Consensus",
+                "url": "https://consensus.app",
+                "description": "Ieško tik moksliniuose straipsniuose ir atsako „ką sako mokslas?“ – parodo, ar tyrimai palaiko ar prieštarauja teiginiui.",
+                "useCases": [
+                  "Health / tech / policy teiginių validavimas",
+                  "AI Act interpretacijos",
+                  "Rizikų pagrindimas",
+                  "Mokslinių argumentų stiprinimas"
+                ]
+              },
+              {
+                "name": "Connected Papers",
+                "url": "https://www.connectedpapers.com",
+                "description": "Parodo, kaip tyrimai susiję tarpusavyje ir kokie susiformavę „research clusters“, padeda rasti svarbiausius (seminal) darbus.",
+                "useCases": [
+                  "Tyrimų tinklo analizė",
+                  "Technologinių krypčių analizė",
+                  "Seminal darbų paieška"
+                ]
+              }
+            ],
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (20 s)",
-                "body": "Ši įrankių atmintinė perkelta į **Duomenų analizės kelią (Modulis 7)** – skaidrė **71.35** po lygiagrečių tyrimų (71.3). Ten rasite Perplexity, PaperGuide, Scite, Elicit ir kitus įrankius.",
+                "body": "Neprivaloma atmintinė: 6 DI įrankiai paieškai ir sintezei – naudok kartu su RAG šaltiniais. Tipinė eiga – 30–45 min.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Kur rasti?",
-                "body": "Atidaryk **Modulį 7** → skaidrė **„DI įrankiai informacijos paieškai“** (neprivaloma, po kelio žingsnio 71.3). Jei eisi Duomenų analizės keliu – naudok ją kartu su Deep research ir MASTER promptu.",
+                "heading": "Patarimai kaip naudoti",
+                "body": "**Perplexity:** web režimas, prašyk šaltinių, būk konkretus.\n**PaperGuide:** įkelk PDF, duok tikslų klausimą.\n**Scite:** tikrink „Supported“ vs „Contradicted“.\n**Elicit:** aiškus klausimas, tendencijos ir rizikos.\n**Consensus / Connected Papers:** moksliniai teiginiai ir tyrimų tinklas.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Tipinė eiga (30–45 min)",
+                "body": "**4 įrankiai = pilna eiga:**\n\n**1.** Šaltiniai (Perplexity) – 5–10 min.\n\n**2.** PDF analizė (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citavimo patikrinimas (Scite) – ~5 min.\n\n**4.** Sintezė (Elicit) – 10–15 min.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Kur pritaikyti?",
+                "body": "Naudok po to, kai nurodai šaltinius prompte (RAG) arba ruoši dokumentus tyrimui. Vėliau modulyje – **Deep research** (4.3).",
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Toliau – skaidrė 25: Pradinis duomenų paruošimas RAG"
+            "footer": "Toliau – Pradinis duomenų paruošimas RAG"
           }
         },
         {
@@ -4530,7 +4804,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 26: 4 strategijos"
+            "footer": "Toliau – 4 strategijos"
           }
         },
         {
@@ -4575,7 +4849,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 27: Praktika: COMBO"
+            "footer": "Toliau – Praktika: COMBO"
           }
         },
         {
@@ -4619,7 +4893,7 @@
               "templateLabel": "📋 COMBO pavyzdys (verslo lygis, copy-paste)",
               "template": "Elkis kaip verslo strategijos konsultantas B2B (verslas verslui) sektoriuje.\n\nPateik žingsnis po žingsnio analizę, kodėl mūsų pardavimai stagnuoja 12 mėn. laikotarpiu.\n\nĮvertink 3 galimas kryptis:\n– kainos mažinimas\n– naujas produktas\n– nauja rinka\n\nPalygink jas pagal:\n• riziką\n• investicijų poreikį\n• pelningumo potencialą\n\nGaliausiai pateik:\n– rekomenduojamą kryptį\n– 90 dienų veiksmų planą\n– 3 didžiausias rizikas"
             },
-            "footer": "Toliau – skaidrė 28: Savitikra: RAG"
+            "footer": "Toliau – Savitikra: RAG"
           }
         },
         {
@@ -4740,7 +5014,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 30: Praktinės užduotys: promptų sekos"
+            "footer": "Toliau – Praktinės užduotys: promptų sekos"
           }
         },
         {
@@ -4784,7 +5058,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 31: Jungiamoji praktika"
+            "footer": "Toliau – Jungiamoji praktika"
           }
         },
         {
@@ -4823,7 +5097,7 @@
                 "collapsible": true
               }
             ],
-            "footer": "Toliau – skaidrė 32: Savitikra: Deep research"
+            "footer": "Toliau – Savitikra: Deep research"
           }
         },
         {
@@ -4998,8 +5272,16 @@
                       "iki 1M tokenų",
                       "≈ 750 000 žodžių / ~1 500 puslapių"
                     ],
-                    ["Copilot", "16k–128k tokenų", "≈ 12 000–96 000 žodžių"],
-                    ["DeepSeek", "64k–128k tokenų", "≈ 48 000–96 000 žodžių"]
+                    [
+                      "Copilot",
+                      "16k–128k tokenų",
+                      "≈ 12 000–96 000 žodžių"
+                    ],
+                    [
+                      "DeepSeek",
+                      "64k–128k tokenų",
+                      "≈ 48 000–96 000 žodžių"
+                    ]
                   ]
                 }
               },
@@ -5014,7 +5296,7 @@
                 "blockVariant": "terms"
               }
             ],
-            "footer": "Toliau – skaidrė 35: Konteksto degradacija"
+            "footer": "Toliau – Konteksto degradacija"
           }
         },
         {
@@ -5039,7 +5321,11 @@
                 "body": "Kaip ilgame pokalbyje prarandamas svarbus prioritetas – ir kokia rizika verslui.",
                 "blockVariant": "brand",
                 "table": {
-                  "headers": ["Iteracija", "Veiksmas", "Konteksto būsena"],
+                  "headers": [
+                    "Iteracija",
+                    "Veiksmas",
+                    "Konteksto būsena"
+                  ],
                   "rows": [
                     [
                       "**1-oji**",
@@ -5077,7 +5363,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 36: Savitikra: Tokenai"
+            "footer": "Toliau – Savitikra: Tokenai"
           }
         },
         {
@@ -5362,7 +5648,7 @@
                 "blockVariant": "emerald"
               }
             ],
-            "footer": "Toliau – skaidrė 41: Pasirink tolesnį žingsnį"
+            "footer": "Toliau – Pasirink tolesnį žingsnį"
           }
         },
         {
@@ -6033,7 +6319,11 @@
                 "blockVariant": "emerald",
                 "workflowChains": [
                   {
-                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
+                    "chain": [
+                      "ChatGPT / Perplexity",
+                      "Figma",
+                      "Claude"
+                    ],
                     "flow": [
                       "Konteksto rinkinys (RAG)",
                       "Vizualus maketas",
@@ -6077,7 +6367,10 @@
                 "heading": "6 blokų struktūra",
                 "body": "",
                 "table": {
-                  "headers": ["Blokas", "Nurodymas"],
+                  "headers": [
+                    "Blokas",
+                    "Nurodymas"
+                  ],
                   "rows": [
                     [
                       "#1 META",
@@ -6480,7 +6773,12 @@
       {
         "id": 5,
         "question": "Nori gauti 5 punktų sąrašą lietuviškai. Kurį bloką turi nurodyti?",
-        "options": ["Meta", "Output", "Input", "Quality Control"],
+        "options": [
+          "Meta",
+          "Output",
+          "Input",
+          "Quality Control"
+        ],
         "correct": 1,
         "explanation": "Formatas (sąrašas, 5 punktai, kalba) – tai Output bloko atsakomybė. Pavyzdys: \\\"OUTPUT: Formatas – numeruotas sąrašas, 5 punktai. Kalba: lietuvių.\\\" Meta nustato rolę, Input – duomenis, bet formatas visada Output bloke."
       },
@@ -6523,7 +6821,12 @@
       {
         "id": 9,
         "question": "Kiek blokų turi pilnas struktūruotas promptas?",
-        "options": ["3", "4", "5", "6"],
+        "options": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
         "correct": 3,
         "explanation": "6 blokai: Meta, Input, Output, Reasoning, Quality, Advanced. Pavyzdys: 1) Meta (rolė, tikslas) 2) Input (duomenys) 3) Output (formatas) 4) Reasoning (mąstymo seka) 5) Quality (kriterijai) 6) Advanced (temperature, parametrai)."
       },
@@ -6554,7 +6857,12 @@
       {
         "id": 12,
         "question": "Kuri technika naudoja pavyzdžius?",
-        "options": ["Zero-shot", "Few-shots", "Manipuliacija", "Reasoning"],
+        "options": [
+          "Zero-shot",
+          "Few-shots",
+          "Manipuliacija",
+          "Reasoning"
+        ],
         "correct": 1,
         "explanation": "Few-shots pateikia 1–2 pavyzdžius, po to prašo naujų. Pavyzdys: \\\"Pavyzdžiai: 1) 'Mažiau streso, daugiau energijos.' 2) 'Tavo sveikata – tavo planas.' Sukurk dar 3 panašaus stiliaus šūkius.\\\" Zero-shot – be pavyzdžių, tiesiog prašymas."
       },
@@ -6645,7 +6953,12 @@
       {
         "id": 20,
         "question": "Kuris blokas yra neprivalomas, bet labai naudingas sudėtingoms užduotims?",
-        "options": ["Meta", "Input", "Advanced Parameters", "Output"],
+        "options": [
+          "Meta",
+          "Input",
+          "Advanced Parameters",
+          "Output"
+        ],
         "correct": 2,
         "explanation": "Advanced Parameters yra neprivalomas, bet labai naudingas blokas. Jis leidžia tiksliai kontroliuoti DI elgesį: Temperature (kūrybiškumas), Reasoning depth (analizės gylis), Max tokens (ilgis), penalties (pasikartojimai). Meta, Input, Output yra privalomi minimaliam promptui."
       }

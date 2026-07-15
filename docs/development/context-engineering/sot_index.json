@@ -20,6 +20,10 @@
       "path": "docs/CONTENT_MODULIU_ATPAZINIMAS.md",
       "description": "Where 'Modulis 1'…'Modulis 6' and skaidrė numbers (e.g. 4.1–4.7) are defined to avoid confusion"
     },
+    "m4_sk_53_5_news_portal": {
+      "path": "docs/development/NEWS_PORTAL_SLIDE_53_5.md",
+      "description": "M4 sk. 53.5 news-portal editorial scroll; beat diagrams PORTAL_BEAT_DIAGRAMS.md; session retrospective M4_SK_53_5_SESSION_RETROSPECTIVE.md; UI audit PORTAL_2_1_UI_AUDIT.md; improvement guide PORTAL_2_1_IMPROVEMENT_GUIDE.md"
+    },
     "moduliai_10_12": {
       "path": "docs/turinio_pletra_moduliai_10_11_12.md",
       "description": "Content truth for Moduliai 10–12 (Agentų inžinerija)"
@@ -27,6 +31,14 @@
     "moduliai_13_15": {
       "path": "docs/turinio_pletra_moduliai_13_14_15.md",
       "description": "Content truth for Moduliai 13-15 (Turinio inzinerija)"
+    },
+    "m79_patch_registry": {
+      "path": "docs/development/M79_PATCH_REGISTRY.md",
+      "description": "M7-M9 idempotent patch scripts registry; EN overlay full-section mirror rule; operational SOT for UX polish iterations"
+    },
+    "docs_maintenance": {
+      "path": "docs/development/DOCS_MAINTENANCE.md",
+      "description": "Long-term documentation governance: layers, dual SOT, release sync cadence"
     }
   },
   "dataSOT": {

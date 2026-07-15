@@ -21,7 +21,7 @@ Canonical sluoksniai:
 - `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`) class helperiai.
 - `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės ir `getDiagramPalette()` / `getDiagramToneColors()` dark/light parinkimas.
 
-Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](analysis/DESIGN_TOKENS_BASELINE_2026-07.md). Vykdymo tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
+Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md). Vykdymo tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
 
 ```bash
 npm run audit:design-tokens
@@ -37,7 +37,7 @@ Auditas yra warn-only (be `:gate`). Jis skaičiuoja hex, inline style, SVG fill/
 
 ## 3. Primitivai (v0.2 — pilna)
 
-Canonical JSX komponentai: `src/components/ui/`. Dublikatų žemėlapis: [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md).
+Canonical JSX komponentai: `src/components/ui/`. Dublikatų žemėlapis: [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](../archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md).
 
 | Komponentas                       | Paskirtis                                       | Pastaba                                    |
 | --------------------------------- | ----------------------------------------------- | ------------------------------------------ |
@@ -85,7 +85,7 @@ Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 2. **ActionIntroSlide** — `<Eyebrow>` virš hero
 3. **SectionBreakSlide** — tik `sectionNumber` badge (`sectionBreakBadgeByAccent`); hero lieka `heroColorKey`
 
-Helpers: `src/utils/moduleIdentity.ts`. Vizualinė patikra: [`analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`](analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md).
+Helpers: `src/utils/moduleIdentity.ts`. Vizualinė patikra: [`analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`](../archive/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md).
 
 ---
 
@@ -126,7 +126,7 @@ Canonical interaktyvių diagramų kelias: `DIAGRAM_KIT_STANDARD.md`.
 - `DiPrezentacijosWorkflowDiagram`, `TurinioWorkflowDiagram`, `AgentWorkflowDiagram` ir `CustomGptProcessDiagram` SVG hit zonos perkeltos į pointer-only `DiagramStepHitArea`; keyboard kelias lieka HTML `nav button`.
 - Sudėtingi spatial/mode komponentai (`WorkflowComparisonDiagram`, `ContextEngineeringPipelineDiagram`) kol kas dokumentuoti kaip atskiro review kandidatai.
 - `LlmArch` refaktorius laikomas atskiru B3 tracku: [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).
-- M10+ vizualinė kokybė sekama atskiru backlog: [`analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
+- M10+ vizualinė kokybė sekama atskiru backlog: [`analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
 
 ---
 

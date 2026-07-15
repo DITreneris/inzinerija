@@ -168,5 +168,5 @@ CURRICULUM (ritmas, kas 6–8 skaidrės) → CONTENT (copy, klausimai) → DATA 
 - Skaidrių tipai registry: `src/components/SlideContent.tsx`
 - Content-block sub-laukai: `src/types/modules.ts` (`ContentBlockContent`)
 - M4 etalonas: `docs/turinio_pletra_moduliai_4_5_6.md`, `docs/MODULIO_4_SKAIDRIU_EILES.md`
-- UX auditai: `docs/UX_AUDIT_MICRO_IMPROVEMENTS.md`, `docs/AUDITO_ATASKAITA_MODULIAI_1_6_UI_UX_LEARNING.md`
+- UX auditai: `docs/archive/UX_AUDIT_MICRO_IMPROVEMENTS.md`, `docs/archive/audits/AUDITO_ATASKAITA_MODULIAI_1_6_UI_UX_LEARNING.md`
 - Release guardrail: `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md` §7

@@ -24,6 +24,7 @@ export { default as TurinioWorkflowDiagram } from './TurinioWorkflowDiagram';
 export { default as TurinioWorkflowBlock } from './TurinioWorkflowBlock';
 export { default as M9DataWorkflowDiagram } from './M9DataWorkflowDiagram';
 export { default as M9DataWorkflowBlock } from './M9DataWorkflowBlock';
+export { default as M9WorkflowStepCopyBlock } from './M9WorkflowStepCopyBlock';
 export { default as M7AnalysisTypesBlock } from './M7AnalysisTypesBlock';
 export { default as M7BiSchemaBlock } from './M7BiSchemaBlock';
 export { default as M7DaPipelineBlock } from './M7DaPipelineBlock';

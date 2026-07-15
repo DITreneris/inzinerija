@@ -101,6 +101,8 @@ Merge grandinė (`modulesLoader.ts`, `locale === 'en'`):
 
 **Skriptai:** `scripts/build-en-m10-m12.mjs`, `extract-modules-m10-m12.mjs`, `audit-en-coverage-m10-12.mjs`, `sync-m10-12-multi-agent.mjs`; M13–15 – `npm run build:modules-en-m13-m15`, `npm run audit:m1315`.
 
+**M7–M9 EN overlay (`modules-en-m7-m9.json`):** merge pagal **sekcijų indeksą**. Keičiant `content.sections` — perrašyti **visą** `sections[]` masyvą EN overlay (ne partial `body`). Žr. [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md) §2. Patch workflow: [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md) + `scripts/patch-m79-*.mjs`.
+
 ---
 
 ## 3.2 Dažnos klaidos (universalios taisyklės)

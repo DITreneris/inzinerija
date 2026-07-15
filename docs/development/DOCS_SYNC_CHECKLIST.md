@@ -2,12 +2,43 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.3 + Unreleased P2 artefaktai  
-**Testai:** 71 failas / 465 testai  
-**Data:** 2026-07-09  
-**Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`.
+**Baseline:** 1.4.5 (tag release)  
+**Testai:** 72 failai / 482 testai  
+**Data:** 2026-07-15  
+**Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Release 1.4.5 tag – 2026-07-15
+
+| #   | Failas                              | Laukas                    | Buvo           | Turi būti                         | Done |
+| --- | ----------------------------------- | ------------------------- | -------------- | --------------------------------- | ---- |
+| 1   | `package.json`                      | version                   | 1.4.4          | 1.4.5                             | [x]  |
+| 2   | `CHANGELOG.md`                      | [1.4.5] blokas            | [Unreleased]   | Gate fixes + sprinto turinys      | [x]  |
+| 3   | `docs/development/CODEBASE_WHAT_IS_DONE.md` | release data        | 1.4.4          | 1.4.5, preflight green            | [x]  |
+| 4   | `ROADMAP.md`                        | App release               | 1.4.4          | 1.4.5                             | [x]  |
+| 5   | `docs/development/TEST_REPORT.md`   | flaky quiz + tag smoke    | `nauja`        | `išspręsta` + 1.4.5 smoke įrašas  | [x]  |
+| 6   | `src/data/modules-m1-m6.json`       | core profilis             | stale          | `generate:core-data` sync         | [x]  |
+| 7   | `src/data/modules-m1-m9.json`       | corporate profilis        | stale          | `generate:core-data` sync         | [x]  |
+| 8   | Release vartai                      | audit:release-preflight   | FAIL (tokens)  | exit 0, 482/482                   | [x]  |
+
+### Docs maintenance catch-up – 2026-07-15
+
+| #   | Failas                                                                                             | Laukas                             | Buvo                                | Turi būti                                                              | Done |
+| --- | -------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------------- | ---------------------------------------------------------------------- | ---- |
+| 1   | `docs/development/DOCS_MAINTENANCE.md`                                                             | naujas governance doc              | —                                   | Sluoksniai, dual SOT, release vartas                                   | [x]  |
+| 2   | `docs/development/M79_PATCH_REGISTRY.md`                                                           | patch registry                     | —                                   | M79 skriptai + EN merge taisyklė                                       | [x]  |
+| 3   | `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                        | testai / data                      | 71/465, 2026-07-09                  | 72/482, 2026-07-15, M7–M9 P2                                           | [x]  |
+| 4   | `ROADMAP.md`                                                                                       | testų metrika                      | 71/465                              | 72/482 HEAD                                                            | [x]  |
+| 5   | `CHANGELOG.md`                                                                                     | santrauka §Kas įgyvendinta         | 71/476                              | 72/482                                                                 | [x]  |
+| 6   | `docs/LEAN_INDEX.md`                                                                               | testai / docs maintenance          | 71/465, 2026-07-14                  | 72/482, DOCS_MAINTENANCE, M79 registry                                 | [x]  |
+| 7   | `docs/DOCUMENTATION_QUICK_REF.md`                                                                   | data / M79 / M4 portal             | 2026-07-14                          | 2026-07-15, M79_PATCH_REGISTRY, portal retrospective                   | [x]  |
+| 8   | `docs/DOCUMENTATION_INDEX.md`                                                                      | atnaujinimo data                   | 2026-07-14                          | 2026-07-15 + DOCS_MAINTENANCE                                          | [x]  |
+| 9   | `docs/development/RELEASE_QA_RUN.md`                                                             | preflight eilutė                   | 71/465                              | 72/482 (2026-07-15)                                                    | [x]  |
+| 10  | `docs/development/07_08_09_backlog.md`                                                            | §12 P2 DoD, §4.6 resolved          | diagnozė 2026-07-14                 | honest state 2026-07-15                                                | [x]  |
+| 11  | `context-engineering/sot_index.json`                                                               | m79_patch_registry, docs_maintenance | —                                 | Nauji registry įrašai                                                  | [x]  |
+| 12  | `docs/development/dod_01.md`                                                                       | §2 dual SOT išimtis                | tik turinio_pletra                  | UX polish → operacinis SOT                                             | [x]  |
+| 13  | `.cursor/skills/qa-agent/SKILL.md`                                                                 | context loading                    | be DOCS_MAINTENANCE                 | Pirmas žingsnis release sync                                           | [x]  |
 
 ### P2 artefaktų sync – 2026-07-09
 
@@ -57,5 +88,5 @@
 | Tema                                                | Kodėl                                                                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `CHANGELOG.md` `[1.4.2]` Gate eilutė su 367 testais | Tai istorinė release 1.4.2 būsena. Dabartinis HEAD skaičius fiksuojamas santraukoje ir Unreleased įraše. |
-| Archyvinės analizės `docs/development/analysis/*`   | Jos aprašo konkrečios dienos auditą, ne dabartinį runtime SOT.                                           |
+| Archyvinės analizės `docs/archive/development/analysis/*` | Vienkartinės dienos auditai – ne runtime SOT; žr. `docs/archive/README.md`.                               |
 | `package-lock.json` versija                         | Tai npm artefaktas; keisti tik per versijavimo / install žingsnį, ne docs sync rankiniu edit'u.          |

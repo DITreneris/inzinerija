@@ -579,6 +579,10 @@
     "pressCharacterHint": "Paspausk veikėją – atsidarys jo 4 užduotys:",
     "m9PrimaryPathAria": "Pagrindinis kelias – 8 žingsnių workflow",
     "m9PrimaryPathHeading": "Pagrindinis kelias (pradėk čia)",
+    "m9StartPracticeCta": "Pradėk čia: sk. 93.1 (šaltinių katalogas)",
+    "m9StartPracticeAria": "Pradėti nuo praktikos skaidrės 93.1",
+    "m9OptionalPathAria": "Neprivalomas kelias – pagrindinis workflow",
+    "hubSkipToSummary": "Praleisti hub – eiti į santrauką",
     "m12RequiredPathAria": "Privalomas Modulio 12 kelias",
     "m12RequiredPathHeading": "Privalomas kelias",
     "m12RequiredPathBody": "Modulis laikomas baigtu, kai atliksi 3 pagrindines 3A praktikas: 121 Automatize (automatizuoti), 122 Augment (papildyti žmogaus darbą) ir 123 Autonomize (ribotai autonomizuoti).",
@@ -676,7 +680,9 @@
     "practicalEditPromptAria": "Redaguoti promptą",
     "practicalEdit": "Redaguoti",
     "practicalCancel": "Atšaukti",
-    "practicalSaveChanges": "Išsaugoti pakeitimus"
+    "practicalSaveChanges": "Išsaugoti pakeitimus",
+    "m9DefaultReflectionAfter": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti vieno Modulio 9 scenarijaus patirtį.\nINPUT: Ką tik atlikau vieną Duomenų analizės kelio scenarijų (verslo analizė su DI).\nOUTPUT: Užduok man vieną klausimą: ką šis scenarijus man davė ir ką pritaikysiu kitą kartą? Po mano atsakymo duok 1 konkretų patarimą.",
+    "m9DefaultMotivation": "Tavo užduotis: nukopijuok žemiau esantį promptą į DI, atlik užduotį ir įrašyk rezultatą."
   },
   "vaizdoGen": {
     "tldr": "Trumpai: Užpildyk laukus žemiau – sistema automatiškai sudės vaizdo promptą (tai patogu po neprivalomos skaidrės „Workflow ir MASTER šablonai“, kur viską pildai ranka). Nukopijuok ir įklijuok į bet kurį vaizdų generavimo įrankį.",

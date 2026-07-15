@@ -1,6 +1,6 @@
 {
   "name": "prompt-anatomy-training",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Interaktyvus DI promptų mokymas: MVP M1–6, production M1–9 (tier 9), full authoring katalogas M1–15. Praktika, apklausa, sertifikatai.",
   "type": "module",
   "scripts": {
@@ -49,6 +49,8 @@
     "audit:design-tokens:gate": "node scripts/audit-design-tokens.mjs --fail-on-regression",
     "audit:module-identity": "node scripts/audit-module-identity.mjs",
     "export:seo-snippets": "node scripts/export-public-seo-snippets.mjs",
+    "fonts:satori": "node scripts/fetch-satori-fonts.mjs",
+    "generate:portal-beats": "node scripts/generate-portal-beats.mjs",
     "typecheck": "tsc --noEmit",
     "analyze": "cross-env ANALYZE=true vite build",
     "prebuild": "npm run validate:schema",
@@ -65,7 +67,8 @@
     "react-i18next": "^16.5.6"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
+    "@fontsource/inter": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/canvas-confetti": "^1.9.0",
@@ -87,11 +90,13 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^9.1.7",
+    "js-yaml": "^4.1.0",
     "jsdom": "^23.0.1",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.32",
     "prettier": "^3.8.1",
     "rollup-plugin-visualizer": "^6.0.11",
+    "satori": "^0.12.2",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",

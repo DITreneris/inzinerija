@@ -46,6 +46,9 @@ export default function PracticalTask({
 }: PracticalTaskProps) {
   const { locale } = useLocale();
   const { t } = useTranslation('testPractice');
+  const motivationText =
+    task.motivation ??
+    (moduleId === 9 ? t('m9DefaultMotivation') : undefined);
   const blockLocale = locale.startsWith('en') ? 'en' : 'lt';
   const autoSaveKey = `task-draft-${moduleId}-${slideId}`;
   const completedContentKey = `task-completed-${moduleId}-${slideId}`;
@@ -196,10 +199,10 @@ export default function PracticalTask({
         </div>
       )}
 
-      {task.motivation && (
+      {motivationText && (
         <div className="mb-4 bg-gradient-to-r from-brand-50 to-accent-50 dark:from-brand-900/20 dark:to-accent-900/20 p-4 rounded-lg border border-brand-200 dark:border-brand-700">
           <p className="text-sm font-semibold text-brand-800 dark:text-brand-200">
-            {task.motivation}
+            {motivationText}
           </p>
         </div>
       )}

@@ -22,7 +22,7 @@ This revision continues the existing `DESIGN_SYSTEM_V0_2.md` / v0.3 direction:
 
 ## Baseline
 
-Current metrics live in `docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md`.
+Current metrics live in `docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md`.
 
 Key starting points:
 

@@ -432,6 +432,8 @@ export interface ContentBlockSection {
   /** Pasirenkama lentelė – rodoma po antraštės (pvz. RL vs RLHF palyginimas) */
   table?: ContentBlockTable;
   /** Pasirenkama: pasirinkimo juosta virš lentelės „Ką darai dabar?“ – rowIndex atitinka table.rows eilutę (skaidrė 53) */
+  /** Pasirenkama: susieti copyable sekciją su toolChoiceBar table eilute (sk. 76) */
+  linkedRowIndex?: number;
   toolChoiceBar?: {
     /** Klausimas virš mygtukų (pvz. „Ką darai dabar?“) */
     question?: string;
@@ -921,7 +923,10 @@ export interface DiParadoxInfographicContent {
 
 /** News-portal infographic (DI galimybės praktiškai) – KPI kortelė */
 export interface NewsPortalKpiCard {
-  icon: string;
+  /** Lucide icon key (preferred over legacy emoji `icon`) */
+  iconKey?: 'globe' | 'trending-up' | 'building-2' | 'map-pin';
+  /** @deprecated Legacy emoji – use iconKey */
+  icon?: string;
   value: string;
   desc: string;
   source: string;
@@ -986,21 +991,31 @@ export type NewsPortalSectionCard =
 export interface NewsPortalToolsAndYouth {
   toolsLabel: string;
   toolsTitle: string;
+  /** Derived insight po 03 juostomis (viena eilutė) */
+  toolsInsight?: string;
   tools: {
     name: string;
     pct: string;
+    iconKey?: 'shield' | 'message-circle' | 'bot' | 'search';
     colorKey?: 'rose' | 'amber' | 'violet' | 'brand';
   }[];
   youthLabel: string;
   youthTitle: string;
   youthBigNum: string;
   youthLabelText: string;
+  /** Antrašte virš segmentų juostų (pvz. „Kur naudoja?“) */
+  youthSegmentsLabel?: string;
+  /** @deprecated Variant B – hero = youthBigNum; naudoti youthClosingInsight */
+  youthHeroInsight?: string;
+  /** Uždarymo insight po 04 segmentais */
+  youthClosingInsight?: string;
   youthBars: {
     name: string;
     pct: string;
     colorKey?: 'violet' | 'amber' | 'slate';
   }[];
   youthFootnote?: string;
+  /** @deprecated Pašalinta sk. 53.5 – 04 stacked hero be foto */
   youthImageVertical?: NewsPortalImageSlot;
 }
 
@@ -1037,10 +1052,74 @@ export interface NewsPortalSecondaryCard {
   imageVertical?: NewsPortalImageSlot;
 }
 
+/** Editorial beat between data blocks (leader MemeMoment pattern – no CTA) */
+export type NewsPortalEditorialPlacement =
+  | 'afterHero'
+  | 'afterKpi'
+  | 'afterSections'
+  | 'beforeCta';
+
+export interface NewsPortalEditorialBeat {
+  id: string;
+  title: string;
+  body: string;
+  image?: NewsPortalImageSlot;
+  side?: 'left' | 'right';
+  accentKey?: 'brand' | 'accent' | 'violet' | 'emerald';
+  placement: NewsPortalEditorialPlacement;
+}
+
+export type NewsPortalPromoRibbonPlacement = 'afterKpi' | 'beforeInsight';
+
+/** Promo ribbon – eyebrow + one message (leader HighlightStrip band) */
+export interface NewsPortalPromoRibbon {
+  eyebrow: string;
+  title: string;
+  subline?: string;
+  stat?: { value: string; label: string };
+  variant?: 'brand' | 'accent';
+  placement: NewsPortalPromoRibbonPlacement;
+}
+
+export interface NewsPortalMeta {
+  byline?: string;
+  publishedAt?: string;
+  readMinutes?: number;
+}
+
+export interface NewsPortalNavLink {
+  label: string;
+}
+
+export type PortalScrollTarget =
+  | 'portal-section-data'
+  | 'portal-beat-awareness'
+  | 'portal-beat-lithuania'
+  | 'portal-section-depth'
+  | 'portal-section-close';
+
+export interface NewsPortalHeroSidebarTeaser {
+  eyebrow?: string;
+  headline: string;
+  readMinutes?: number;
+  /** In-page scroll target (M4 sk. 53.5 editorial anchors) */
+  scrollTarget?: PortalScrollTarget;
+}
+
 export interface NewsPortalInfographicContent {
   variant: 'news-portal';
+  /** Hide course H1/badge in ModuleView; portal headline is sole H1 */
+  immersive?: boolean;
   /** Optional "shouting" masthead brand (e.g. "Next Level AI") – editorial portal feel */
   portalBrand?: string;
+  /** Optional editorial metadata (byline, date, read time) */
+  portalMeta?: NewsPortalMeta;
+  /** Decorative portal nav links (max 7 recommended) */
+  portalNav?: NewsPortalNavLink[];
+  /** Optional breaking news ticker line */
+  breakingTicker?: string;
+  /** Hero sidebar teasers – portal “choice” signal (3 recommended) */
+  heroSidebarTeasers?: NewsPortalHeroSidebarTeaser[];
   eyebrow: string;
   headline: string;
   subline: string;
@@ -1071,6 +1150,10 @@ export interface NewsPortalInfographicContent {
   insightCard: NewsPortalInsightCard;
   /** Optional single CTA block (accent) – "invitation to act", not dashboard */
   ctaBlock?: NewsPortalCtaBlock;
+  /** Editorial pauses between scroll chapters (max 3 recommended) */
+  editorialBeats?: NewsPortalEditorialBeat[];
+  /** Promo ribbons between KPI and insight */
+  promoRibbons?: NewsPortalPromoRibbon[];
   footerBrand: string;
   footerSub?: string;
   sources?: {
@@ -1189,6 +1272,8 @@ export interface PracticeScenarioHubChoiceLevel2 {
 
 /** Content skaidrei type 'practice-scenario-hub' – 4×4 scenarijų medis */
 export interface PracticeScenarioHubContent {
+  /** Neprivalomo kelio banneris hub viršuje (M9 sk. 99) */
+  optionalPathNote?: string;
   level1Choices: PracticeScenarioHubChoiceLevel1[];
   level2Choices: PracticeScenarioHubChoiceLevel2[][];
 }

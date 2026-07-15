@@ -29,8 +29,8 @@
     "Paprašyk vizualizacijos specifikacijos: grafikai, spalvos, rodikliai.",
     "Sugeneruok paprastą dashboard arba aiškią vadovybės santrauką."
   ],
-  "reflectionSummary": "Per 48 val. pakartok 8 žingsnius su kita tema. Atsakyk sau: ką padarei, ką tai reiškia tavo darbui ir koks vienas kitas veiksmas?",
-  "nextPageHeading": "Ką daryti per 48 val.",
+  "reflectionSummary": "Pakartok 8 žingsnius su kita tema. Atsakyk sau: ką padarei, ką tai reiškia tavo darbui ir koks vienas kitas veiksmas?",
+  "nextPageHeading": "Kitas žingsnis",
   "nextPageIntro": "Vienas workflow ciklas = vienas paruoštas projektas. Toliau gilink šabloną arba pasirink kitą žingsnį Promptų anatomijos ekosistemoje.",
   "primaryCtaLabel": "Workflow canvas šablonas (blog)",
   "secondaryCtaLabels": {

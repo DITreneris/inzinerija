@@ -301,6 +301,9 @@ interface SlideContentProps {
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
   /** Modulio 7: išsaugoti kelionės fokuso etiketę (juostai modulyje) */
   onJourneyFocusChoice?: (moduleId: number, choiceId: string) => void;
+  /** M7 footer variant B: visible path position in slide footer */
+  visiblePosition?: number;
+  visibleSlideCount?: number;
 }
 
 /** Context passed to each slide type renderer in the registry */
@@ -354,6 +357,8 @@ export default function SlideContent({
   initialHubLevel1,
   onNavigateToHubWithCharacter,
   onJourneyFocusChoice,
+  visiblePosition,
+  visibleSlideCount,
 }: SlideContentProps) {
   const { t } = useTranslation('module');
   const { t: tModulesPage } = useTranslation('modulesPage');
@@ -517,6 +522,17 @@ export default function SlideContent({
       {main}
       <div className="flex flex-wrap items-center justify-between gap-4 py-4 mt-6 border-t border-slate-200 dark:border-slate-700 text-[11px] text-slate-500 dark:text-slate-400 italic">
         <span>{footer}</span>
+        {moduleId === 7 &&
+        visiblePosition != null &&
+        visibleSlideCount != null &&
+        visibleSlideCount > 0 ? (
+          <span
+            className="tabular-nums not-italic text-slate-400 dark:text-slate-500 shrink-0"
+            aria-hidden
+          >
+            {visiblePosition}/{visibleSlideCount}
+          </span>
+        ) : null}
       </div>
     </>
   ) : (
@@ -839,6 +855,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     return (
       <LazyPracticeScenarioSlide
         slide={ctx.slide}
+        moduleId={ctx.moduleId}
         onRenderTask={ctx.PracticalTaskSection}
         onGoToSummary={ctx.onGoToSummary}
         character={character}

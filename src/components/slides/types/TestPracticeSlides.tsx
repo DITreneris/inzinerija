@@ -2892,6 +2892,16 @@ export function PracticeIntroSlide({
                   : 'Pradėk čia: Koordinatorius + 2 specialistai'}
               </button>
             )}
+            {isM9 && onNavigateToSlideById && (
+              <button
+                type="button"
+                onClick={() => onNavigateToSlideById(93.1)}
+                className="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600"
+                aria-label={t('m9StartPracticeAria')}
+              >
+                {t('m9StartPracticeCta')}
+              </button>
+            )}
           </div>
         )}
         {isM12 && usesGuidedIntro && introContent.primaryPathIntro && (
@@ -3692,6 +3702,17 @@ export function PracticeScenarioHubSlide({
 
   return (
     <div className="space-y-6">
+      {content?.optionalPathNote && (
+        <div
+          className="p-4 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700"
+          role="note"
+          aria-label={t('m9OptionalPathAria')}
+        >
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            {content.optionalPathNote}
+          </p>
+        </div>
+      )}
       <div className="bg-gradient-to-r from-accent-50 to-brand-50 dark:from-accent-900/20 dark:to-brand-900/20 p-6 rounded-xl border-2 border-accent-200 dark:border-accent-800">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
@@ -3706,10 +3727,10 @@ export function PracticeScenarioHubSlide({
             <button
               type="button"
               onClick={onGoToSummary}
-              className="shrink-0 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-3 py-2 touch-manipulation"
+              className="shrink-0 min-h-[44px] inline-flex items-center justify-center rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600 touch-manipulation"
               aria-label={t('goToSummaryAria')}
             >
-              {t('hubFinishGoToSummary')}
+              {t('hubSkipToSummary')}
             </button>
           )}
         </div>
@@ -3828,19 +3849,21 @@ type ScenarioTabId = 'context' | 'data' | 'constraints' | 'result';
 
 export function PracticeScenarioSlide({
   slide,
+  moduleId,
   onRenderTask,
   onGoToSummary,
   character,
 }: {
   slide: Slide;
+  /** Modulio 9: default reflectionPromptAfter iš i18n, jei JSON neoverride */
+  moduleId?: number;
   onRenderTask: () => JSX.Element | null;
   /** Modulio 3: pereiti į santrauką (grįžti prie išsaugoto darbo kitą kartą) */
   onGoToSummary?: () => void;
   /** Modulio 9 role-quest: veikėjas, atliekantis šį scenarijų – rodoma asmens kortelė */
   character?: M9Character;
 }) {
-  useTranslation();
-  const t = getT('testPractice');
+  const { t } = useTranslation('testPractice');
   const { locale } = useLocale();
   const SCENARIO_TABS = locale === 'en' ? SCENARIO_TABS_EN : SCENARIO_TABS_LT;
   const [activeTab, setActiveTab] = useState<ScenarioTabId>('context');
@@ -3861,9 +3884,12 @@ export function PracticeScenarioSlide({
   };
   const isDataTab = activeTab === 'data';
 
-  const reflectionPromptAfter = (
+  const reflectionOverride = (
     slide.content as { reflectionPromptAfter?: string } | undefined
   )?.reflectionPromptAfter;
+  const reflectionPromptAfter =
+    reflectionOverride ??
+    (moduleId === 9 ? t('m9DefaultReflectionAfter') : undefined);
   const taskFrame = (
     slide.content as
       | { taskFrame?: { task: string; doneWhen: string } }
@@ -3873,7 +3899,7 @@ export function PracticeScenarioSlide({
   return (
     <div className="space-y-6">
       {character && <CharacterCard character={character} />}
-      {slide.scenario?.narrativeLead && (
+      {moduleId !== 9 && slide.scenario?.narrativeLead && (
         <p
           className="text-brand-700 dark:text-brand-300 italic text-sm border-l-4 border-brand-400 dark:border-brand-600 pl-3 py-1"
           role="complementary"

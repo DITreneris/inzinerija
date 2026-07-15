@@ -25,6 +25,7 @@ import {
   M7DataStoryCycleBlock,
   M7ThreeAgentsBlock,
   M9DataWorkflowBlock,
+  M9WorkflowStepCopyBlock,
   ProcessStepper,
   RagDuomenuRuosimasBlock,
   RlProcessBlock,
@@ -108,6 +109,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     key: 'm9_data_workflow',
     bodyPlacement: 'after',
     render: () => <M9DataWorkflowBlock />,
+  },
+  {
+    key: 'm9_workflow_step_prompts',
+    bodyPlacement: 'after',
+    render: () => <M9WorkflowStepCopyBlock />,
   },
   {
     key: 'rag_duomenu_ruosimas',

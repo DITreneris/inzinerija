@@ -134,7 +134,7 @@ E3.3 task'as papildys `<Banner />` 4-tu variantu `terms` (slate paletė) — ati
 | ---------------------- | ----------------------------------------------------------------------------------------------- |
 | Planas (SOT)           | `docs/development/DESIGN_SYSTEM_V0_2.md` §6 (E3 etapas)                                         |
 | Cursor rule            | `.cursor/rules/design-system-v02.mdc`                                                           |
-| Baseline (E2.2)        | `docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`                                   |
+| Baseline (E2.2)        | `docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`                                   |
 | GOLDEN_STANDARD §2.2   | `docs/development/GOLDEN_STANDARD.md`                                                           |
 | Canonical primitive'ai | `src/components/ui/Card.tsx`, `src/components/ui/CTAButton.tsx`, `src/components/ui/Banner.tsx` |
 | Backlog v0.3           | `docs/development/DESIGN_SYSTEM_V0_2.md` §11 (B6 — `SlideShell`)                                |

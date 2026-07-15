@@ -29,8 +29,8 @@
     "Ask for a visualisation specification: charts, colours and metrics.",
     "Generate a simple dashboard or a clear executive summary."
   ],
-  "reflectionSummary": "Within 48 hours, repeat the 8 steps with another topic. Ask yourself: what did I create, what does it mean for my work and what is the next single action?",
-  "nextPageHeading": "What to do within 48 hours",
+  "reflectionSummary": "Repeat the 8 steps with another topic. Ask yourself: what did I create, what does it mean for my work and what is the next single action?",
+  "nextPageHeading": "Next step",
   "nextPageIntro": "One workflow cycle = one finished project. Next, deepen the template or choose the next step in the Prompt Anatomy ecosystem.",
   "primaryCtaLabel": "Workflow canvas template (blog)",
   "secondaryCtaLabels": {

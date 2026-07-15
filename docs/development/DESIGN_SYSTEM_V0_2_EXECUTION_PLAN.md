@@ -29,9 +29,9 @@
 | Task    | Outputas                                                                                                   |
 | ------- | ---------------------------------------------------------------------------------------------------------- |
 | DS-E2.1 | `package.json` → `audit:design-tokens`; `scripts/audit-design-tokens.mjs` → `--verbose`                    |
-| DS-E2.2 | [`analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md) — TOTAL **480** |
+| DS-E2.2 | [`analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md) — TOTAL **480** |
 | DS-E2.3 | [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) §8                                                    |
-| DS-E3.1 | [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md)             |
+| DS-E3.1 | [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](../archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md)             |
 | DS-E3.2 | `src/index.css` — 8× `/* @deprecated v0.2 */`                                                              |
 | DS-E3.3 | `src/components/ui/Banner.tsx` — variantas `terms`                                                         |
 
@@ -161,7 +161,7 @@ flowchart TB
 
 | Task    | Agentas | Outputas                                                                                                                                             |
 | ------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| DS-E5.7 | QA      | `docs/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md` — 12 screenshot'ų (6 moduliai × ModulesPage + intro); WCAG AA; rule §5 patikra |
+| DS-E5.7 | QA      | `docs/archive/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md` — 12 screenshot'ų (6 moduliai × ModulesPage + intro); WCAG AA; rule §5 patikra |
 
 ---
 
@@ -216,8 +216,8 @@ npm run validate:schema        # po DATA pakeitimų
 | Kas             | Kur                                                                                            |
 | --------------- | ---------------------------------------------------------------------------------------------- |
 | SOT planas      | [`DESIGN_SYSTEM_V0_2.md`](DESIGN_SYSTEM_V0_2.md)                                               |
-| Token baseline  | [`analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md)     |
-| Dublikatai      | [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md) |
+| Token baseline  | [`analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md)     |
+| Dublikatai      | [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](../archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md) |
 | Release QA §8   | [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md)                                           |
 | TODO sinchronas | [`TODO.md`](../../TODO.md) — skyrius „P1 — Design System v0.2“                                 |
 | Golden standard | [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md)                                                     |

@@ -85,7 +85,8 @@ Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas
 | M?                   | Iteracija / strateginis planavimas | 3          | ne              |                                               |
 | M?                   | Blogas vs geras promptas           | 2          | ne              |                                               |
 | M?                   | 6 blokų struktūra                  | 2          | ne              | Blokas, Nurodymas                             |
-| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D) |
+| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D); `linkedRowIndex` copyable filtras (be lentelės) |
+| M7 / 731, 733, 77    | Copyable promptų filtrai           | —          | ne              | `toolChoiceBar` + `linkedRowIndex` (vienas aktyvus promptas) |
 | M7 / 78              | Tradicinė vs DI analizė            | 2          | **taip**        | Branduolys                                    |
 | M7 / 84              | DB įrankiai                        | 2          | ne              | `rowMeta` badge'ai, collapsible               |
 | M7 / 76              | Tradicinis vs išplėstinis          | 2          | **taip**        | `pathBranch: strategija`                      |

@@ -128,6 +128,14 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 ## Paskutinio vykdymo rezultatai
 
+### 2026-07-15 Docs maintenance catch-up
+
+| Patikra                                  | Rezultatas | Įrodymas                                                                                                                        |
+| ---------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run test:run`                       | ✅         | **72 testų failai / 482 testai**, exit 0 (M7–M9 P2 + linkedRowIndex test)                                                       |
+| `node scripts/validate-sot-index.mjs`    | ✅         | `m79_patch_registry`, `docs_maintenance` registry įrašai                                                                        |
+| Docs meta sync                           | ✅         | `DOCS_MAINTENANCE.md`, `M79_PATCH_REGISTRY.md`, `CODEBASE_WHAT_IS_DONE`, `ROADMAP`, `LEAN_INDEX`, `DOCS_SYNC_CHECKLIST`       |
+
 ### 2026-07-09 Cross-repo pre-launch (Faze 0 + dalinė Faze 3)
 
 | Patikra                                  | Rezultatas | Įrodymas                                                                                                                        |

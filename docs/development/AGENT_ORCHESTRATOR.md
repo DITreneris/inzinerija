@@ -71,7 +71,7 @@ Jei užduotyje minimi **bent 2 iš 3**: (1) turinys/mokymai/terminai, (2) JSON, 
 4. **CODE_REVIEW_AGENT** – patikra, rizikos.
 5. **QA_AGENT** – dokumentacija, galutinis suvedimas.
 
-**Jei užduotis apima vartotojo kelionės / MVP modulio analizę arba modulio patobulinimą iš vartotojo patirties:** pirmiausia **USER_JOURNEY_AGENT** (diagnozė, 5 zonos, Top 5, micro-win, 48h testas); tolesnė seka – CONTENT_AGENT → DATA_AGENT → CODING_AGENT → CODE_REVIEW_AGENT → QA_AGENT. Išvestį naudoja CONTENT/DATA/CODING. Sekos aprašas – lokaliai archyve (jei naudojate): `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
+**Jei užduotis apima vartotojo kelionės / MVP modulio analizę arba modulio patobulinimą iš vartotojo patirties:** pirmiausia **USER_JOURNEY_AGENT** (diagnozė, 5 zonos, Top 5, micro-win, 48h testas); tolesnė seka – CONTENT_AGENT → DATA_AGENT → CODING_AGENT → CODE_REVIEW_AGENT → QA_AGENT. Išvestį naudoja CONTENT/DATA/CODING. Sekos aprašas (archyvas, ne SOT): `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
 
 **Schema šiame kontekste** = skaidrėse rodoma proceso/diagramos vizualizacija (React/SVG komponentai), **ne** JSON schema (`modules.schema.json`). **Diagramų/schemos failai** (vizualinė): `CustomGptProcessDiagram.tsx`, `RlProcessDiagram.tsx`, `ProcessStepper.tsx`, `DiPrezentacijosWorkflowDiagram.tsx`, `StrukturuotasProcesasDiagram.tsx` ir pan. – žr. `docs/development/SCHEME_AGENT.md`.
 
@@ -166,7 +166,7 @@ Naudok šiuos promptus kaip „personą“, kai atlieki atitinkamą rolę. **Pil
 ### USER_JOURNEY_AGENT
 
 **Rolė:** Vartotojo kelionės ir MVP modulio diagnostikas; 5 zonos, 6 punktų išvestis. Įgyvendinimą atlieka CONTENT/DATA/CODING.
-**Pilna spec:** `docs/development/USER_JOURNEY_AGENT.md`; seka – lokaliai archyve (jei naudojate) `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
+**Pilna spec:** `docs/development/USER_JOURNEY_AGENT.md`; seka (archyvas): `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
 
 ### QA_AGENT
 

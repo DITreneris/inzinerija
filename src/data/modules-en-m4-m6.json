@@ -662,7 +662,10 @@
                   "examplePrompt": "Prepare 5 marketing ideas for a logistics company in Lithuania.",
                   "withoutContext": "Answer is generic – it doesn't know your business situation.",
                   "withContext": "Answer is aimed at a clear goal and audience.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "prompt",
@@ -672,7 +675,10 @@
                   "examplePrompt": "Create 5 ideas. For each give a title, channel, and short explanation.",
                   "withoutContext": "Ideas are generic, often like common templates.",
                   "withContext": "Prompt uses extra information, so suggestions are more targeted.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "context",
@@ -682,7 +688,9 @@
                   "examplePrompt": "Context: B2B logistics, 40 staff, goal – new clients in the region, budget 1500 EUR/month.",
                   "withoutContext": "Model doesn't know your real situation and suggests \"one size fits all\" options.",
                   "withContext": "Model picks ideas to match your data, limits, and priorities.",
-                  "availableInModes": ["context"]
+                  "availableInModes": [
+                    "context"
+                  ]
                 },
                 {
                   "id": "llm",
@@ -692,7 +700,10 @@
                   "examplePrompt": "Give the answer in a table: idea | why it fits logistics | first step.",
                   "withoutContext": "Result is smooth but less practical for real work.",
                   "withContext": "Result is more actionable, with clearer next steps.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 },
                 {
                   "id": "tools",
@@ -702,7 +713,9 @@
                   "examplePrompt": "Check the last 3 months' sales CSV and suggest ideas for the TOP client segment.",
                   "withoutContext": "No check against real data, so the answer can be too abstract.",
                   "withContext": "Answer is based on real numbers and more reliable.",
-                  "availableInModes": ["context"]
+                  "availableInModes": [
+                    "context"
+                  ]
                 },
                 {
                   "id": "output",
@@ -712,7 +725,10 @@
                   "examplePrompt": "At the end add 3 actions we can do this week.",
                   "withoutContext": "Good to start, but often needs a lot of manual tweaking.",
                   "withContext": "Easier to use in practice, fewer fixes.",
-                  "availableInModes": ["prompt", "context"]
+                  "availableInModes": [
+                    "prompt",
+                    "context"
+                  ]
                 }
               ]
             },
@@ -826,7 +842,11 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": ["", "System prompt", "Master prompt"],
+                  "headers": [
+                    "",
+                    "System prompt",
+                    "Master prompt"
+                  ],
                   "rows": [
                     [
                       "What it defines",
@@ -843,7 +863,11 @@
                       "\"Answer in English. If you don't know – say I don't know. Format – bullet list.\"",
                       "\"I'm a startup founder, work with B2B clients, 10 years' experience. Audience – managers.\""
                     ],
-                    ["Who sets it", "Creator / administrator", "User (you)"],
+                    [
+                      "Who sets it",
+                      "Creator / administrator",
+                      "User (you)"
+                    ],
                     [
                       "When it applies",
                       "From session start, for all answers",
@@ -952,14 +976,23 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": ["❌ Bad", "✅ Good"],
+                  "headers": [
+                    "❌ Bad",
+                    "✅ Good"
+                  ],
                   "rows": [
                     [
                       "\"Create a strategy for me.\"",
                       "\"Role: business strategist. Context: retail, 50 employees, UK market.\""
                     ],
-                    ["No context", "Sector, size, market specified"],
-                    ["No structure", "3 stages: input → processing → result"],
+                    [
+                      "No context",
+                      "Sector, size, market specified"
+                    ],
+                    [
+                      "No structure",
+                      "3 stages: input → processing → result"
+                    ],
                     [
                       "No output guidance",
                       "Format: table. For each stage: goal, key indicators (KPI), deadlines."
@@ -996,49 +1029,92 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": ["ChatGPT", "Claude AI", "Gamma App"],
-                    "flow": ["Initial request", "Processing", "Presentation"],
+                    "chain": [
+                      "ChatGPT",
+                      "Claude AI",
+                      "Gamma App"
+                    ],
+                    "flow": [
+                      "Initial request",
+                      "Processing",
+                      "Presentation"
+                    ],
                     "tag": "Content",
                     "expandInput": "Request and context",
                     "expandOutput": "Structured presentation (Gamma)"
                   },
                   {
-                    "chain": ["GPT", "Figma"],
-                    "flow": ["Ideas", "Dizainas"],
+                    "chain": [
+                      "GPT",
+                      "Figma"
+                    ],
+                    "flow": [
+                      "Ideas",
+                      "Dizainas"
+                    ],
                     "tag": "Dizainas",
                     "expandInput": "Description or moodboard",
                     "expandOutput": "Mockups, UI skeleton"
                   },
                   {
-                    "chain": ["GPT", "Gamma"],
-                    "flow": ["Turinys", "Slides"],
+                    "chain": [
+                      "GPT",
+                      "Gamma"
+                    ],
+                    "flow": [
+                      "Turinys",
+                      "Slides"
+                    ],
                     "tag": "Turinys",
                     "expandInput": "Topic and structure",
                     "expandOutput": "Ready slides with design"
                   },
                   {
-                    "chain": ["Gemini", "Calendar"],
-                    "flow": ["Planavimas", "Renginiai"],
+                    "chain": [
+                      "Gemini",
+                      "Calendar"
+                    ],
+                    "flow": [
+                      "Planavimas",
+                      "Renginiai"
+                    ],
                     "tag": "Planavimas",
                     "expandInput": "Date, time, description",
                     "expandOutput": "Calendar entries"
                   },
                   {
-                    "chain": ["GPT", "Zapier", "Gmail"],
-                    "flow": ["Automatizavimas", "Siuntimas"],
+                    "chain": [
+                      "GPT",
+                      "Zapier",
+                      "Gmail"
+                    ],
+                    "flow": [
+                      "Automatizavimas",
+                      "Siuntimas"
+                    ],
                     "tag": "Automatizacija",
                     "expandInput": "Trigger + template",
                     "expandOutput": "Email sent by rule"
                   },
                   {
-                    "chain": ["GPT", "Google Veo3"],
-                    "flow": ["Prompt", "Video"],
+                    "chain": [
+                      "GPT",
+                      "Google Veo3"
+                    ],
+                    "flow": [
+                      "Prompt",
+                      "Video"
+                    ],
                     "tag": "Video",
                     "expandInput": "Text prompt or script",
                     "expandOutput": "Generated video"
                   },
                   {
-                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
+                    "chain": [
+                      "ChatGPT / Perplexity",
+                      "Figma",
+                      "Claude"
+                    ],
                     "flow": [
                       "Context set (RAG)",
                       "Visual mock-up",
@@ -1113,7 +1189,13 @@
                 "Deep learning",
                 "Generative AI"
               ],
-              "correctAnswers": [0, 1, 3, 2, 4],
+              "correctAnswers": [
+                0,
+                1,
+                3,
+                2,
+                4
+              ],
               "explanations": [
                 "Works by fixed rules, doesn't learn from data – that's the broader AI field.",
                 "System learns from data (e.g. past transactions) and spots anomalies – typical machine learning.",
@@ -1172,12 +1254,62 @@
           "type": "infographic",
           "content": {
             "variant": "news-portal",
+            "immersive": true,
             "portalBrand": "Next Level AI",
-            "eyebrow": "Trends 2025–2026",
-            "headline": "Artificial intelligence: from experiment to everyday use",
-            "subline": "2025",
-            "takeaway": "Eurostat: one in three Europeans and one in five companies already use AI.",
-            "takeawayCta": "Are you one of them?",
+            "portalMeta": {
+              "byline": "Editorial · Prompt Anatomy",
+              "publishedAt": "2026-07-14",
+              "readMinutes": 6
+            },
+            "portalNav": [
+              {
+                "label": "News"
+              },
+              {
+                "label": "Business"
+              },
+              {
+                "label": "Technology"
+              },
+              {
+                "label": "AI in practice"
+              },
+              {
+                "label": "Research"
+              },
+              {
+                "label": "Opinion"
+              },
+              {
+                "label": "Training"
+              }
+            ],
+            "breakingTicker": "EU AI Act · OpenAI · Lithuania AI market · Agents",
+            "heroSidebarTeasers": [
+              {
+                "eyebrow": "Trend",
+                "headline": "IT professionals use AI more often than you might think",
+                "readMinutes": 4,
+                "scrollTarget": "portal-beat-awareness"
+              },
+              {
+                "eyebrow": "Data",
+                "headline": "One in five EU companies use AI technologies",
+                "readMinutes": 3,
+                "scrollTarget": "portal-section-data"
+              },
+              {
+                "eyebrow": "Analysis",
+                "headline": "Lithuania above EU average – 69% of residents use AI",
+                "readMinutes": 7,
+                "scrollTarget": "portal-beat-lithuania"
+              }
+            ],
+            "eyebrow": "Research",
+            "headline": "AI is now an everyday work tool: one in three Europeans uses it",
+            "subline": "What business, workers, and young professionals need to know about AI today – in numbers and context",
+            "takeaway": "Eurostat: one in three Europeans and one in five companies already use generative AI.",
+            "takeawayCta": "What do these numbers mean for workers and business?",
             "featured": {
               "bigNumber": "98%",
               "label": "IT professionals used AI tools at work",
@@ -1185,54 +1317,74 @@
             },
             "heroImageVertical": {
               "src": "di_portal_hero_vertical.png",
-              "alt": "Person using AI every day – from experiment to everyday use"
+              "alt": "Person using AI in everyday life – from experiment to daily use"
             },
-            "bannerImageHorizontal": {
-              "src": "di_portal_banner_hero_kpi.png",
-              "alt": "Section splitter: from context to key metrics"
+            "mainInsightBlock": {
+              "bigNumber": "32.7%",
+              "label": "EU residents used generative AI tools",
+              "source": "Eurostat, 2025"
             },
-            "bannerBetweenKpiAndSections": {
-              "src": "di_portal_banner_sections.png",
-              "alt": "Splitter between metrics and topic cards"
-            },
-            "kpiCards": [
+            "editorialBeats": [
               {
-                "icon": "🌍",
-                "value": "32,7%",
-                "desc": "Europeans used generative AI tools",
-                "source": "Eurostat, 2025",
-                "colorKey": "brand"
+                "id": "awareness-gap",
+                "title": "We use AI more often than we recognise it",
+                "body": "The issue isn't that AI hasn't arrived yet – we often don't notice it.",
+                "side": "left",
+                "accentKey": "accent",
+                "placement": "afterHero"
               },
               {
-                "icon": "👤",
+                "id": "lithuania-context",
+                "title": "Lithuania above the EU average",
+                "body": "69% of residents use AI – above the EU average; the question is whether business and workers are ready.",
+                "side": "right",
+                "accentKey": "brand",
+                "placement": "afterSections"
+              },
+              {
+                "id": "next-step-prompt",
+                "title": "Next step – a prompt, not a statistic",
+                "body": "Numbers give you input — you deliver the result when you write the prompt.",
+                "side": "left",
+                "accentKey": "violet",
+                "placement": "beforeCta"
+              }
+            ],
+            "promoRibbons": [
+              {
+                "eyebrow": "EU context",
+                "title": "Most AI users already feel productivity gains",
+                "subline": "MIT: 56% — but only ~15.8% use licensed AI at work.",
+                "variant": "brand",
+                "placement": "afterKpi"
+              },
+              {
+                "eyebrow": "Main message",
+                "title": "AI is already here – the question is not if, but how fast you'll apply it.",
+                "subline": "Young people use AI more often; business still lags.",
+                "variant": "brand",
+                "placement": "beforeInsight"
+              }
+            ],
+            "kpiCards": [
+              {
+                "iconKey": "trending-up",
                 "value": "56%",
                 "desc": "users notice increased productivity",
                 "source": "MIT study, 2025",
                 "colorKey": "emerald"
               },
               {
-                "icon": "🏢",
+                "iconKey": "building-2",
                 "value": "20%",
                 "desc": "EU companies (10+ employees) use AI technologies",
                 "source": "Eurostat, 2025",
                 "colorKey": "brand"
-              },
-              {
-                "icon": "🇱🇹",
-                "value": "69%",
-                "desc": "Lithuania's population use AI tools",
-                "source": "Stat.gov.lt, 2025",
-                "colorKey": "emerald"
               }
             ],
-            "mainInsightBlock": {
-              "bigNumber": "32,7%",
-              "label": "EU and business in numbers.",
-              "source": "Eurostat, 2025"
-            },
             "secondaryCards": [
               {
-                "sectionLabel": "01 — Youth",
+                "sectionLabel": "Youth",
                 "title": "Younger generation – AI pioneers",
                 "value": "63,8%",
                 "label": "Youth use AI daily",
@@ -1244,47 +1396,54 @@
                 }
               },
               {
-                "sectionLabel": "02 — Lithuania",
+                "sectionLabel": "Lithuania",
                 "title": "Lithuanian companies use AI",
                 "value": "9,8%",
-                "label": "9.8% of Lithuanian companies use AI",
+                "label": "Company adoption (not resident usage)",
                 "source": "EC study, 2025",
-                "colorKey": "emerald",
+                "colorKey": "brand",
                 "imageVertical": {
                   "src": "di_portal_section03_vertical.png",
-                  "alt": "Lithuania's AI adoption – companies"
+                  "alt": "Lithuanian AI adoption – companies"
                 }
               }
             ],
             "toolsAndYouth": {
-              "toolsLabel": "04 — Tools",
+              "toolsLabel": "Most popular tools",
               "toolsTitle": "Most popular AI tools",
+              "toolsInsight": "Spam filters (78%) – most common invisible AI; only ~15.8% use licensed tools at work – a 16 pp gap.",
               "tools": [
                 {
                   "name": "Spam filters",
                   "pct": "78%",
+                  "iconKey": "shield",
                   "colorKey": "rose"
                 },
                 {
                   "name": "Chatbots",
                   "pct": "62%",
+                  "iconKey": "message-circle",
                   "colorKey": "amber"
                 },
                 {
                   "name": "Virtual assistants",
                   "pct": "61%",
+                  "iconKey": "bot",
                   "colorKey": "violet"
                 },
                 {
                   "name": "AI search",
                   "pct": "60%",
+                  "iconKey": "search",
                   "colorKey": "brand"
                 }
               ],
-              "youthLabel": "05 — Employees",
-              "youthTitle": "Only 40% use licensed AI tools",
-              "youthBigNum": "40%",
-              "youthLabelText": "Employees' use of licensed AI tools",
+              "youthLabel": "Employees and AI",
+              "youthTitle": "A minority use licensed AI at work",
+              "youthBigNum": "~15.8%",
+              "youthLabelText": "Employees using licensed AI tools at work",
+              "youthSegmentsLabel": "Where do they use it?",
+              "youthClosingInsight": "Personal and learning – over 80%; at work – a minority.",
               "youthBars": [
                 {
                   "name": "For personal use",
@@ -1301,36 +1460,27 @@
                   "pct": "~15,8%",
                   "colorKey": "slate"
                 }
-              ],
-              "youthFootnote": "",
-              "youthImageVertical": {
-                "src": "di_portal_section02_vertical.png",
-                "alt": "Youth and technology"
-              }
+              ]
             },
             "insightCard": {
-              "tag": "Key message",
-              "headline": "Main takeaways: EU, business, youth, Lithuania.",
+              "tag": "Summary",
+              "headline": "What to remember from this portal.",
               "illustrationHorizontal": {
                 "src": "di_portal_insight_strip.png",
-                "alt": "Key message – EU, business, youth, Lithuania"
+                "alt": "Summary – EU, business, youth, Lithuania"
               },
               "points": [
                 {
                   "num": "01",
-                  "text": "**~33% of Europeans** used generative AI in 2025; youth almost 2× more often (see above)."
+                  "text": "**EU and business:** see Data at a glance (32.7% · 20%) — business still lags."
                 },
                 {
                   "num": "02",
-                  "text": "**Business:** 20% of companies use AI; growth +6.5 pp; large companies 55%."
+                  "text": "**Youth and workers:** young people use AI more often; only ~15.8% use licensed AI at work."
                 },
                 {
                   "num": "03",
-                  "text": "**Youth:** mostly for personal use and learning; at work – similar to older users."
-                },
-                {
-                  "num": "04",
-                  "text": "**Lithuania:** 69% of population use AI (Stat.gov.lt); Eurostat EU comparison 36.9% – above average (32.7%). Company adoption 2× per year."
+                  "text": "**Lithuania:** 69% of residents use AI – above the EU average; company adoption is growing but still low (9.8% — not 69%)."
                 }
               ]
             },
@@ -1338,8 +1488,8 @@
               "label": "Next: Method vs agent prompt – how to write so AI delivers",
               "subline": "Continue →"
             },
-            "footerBrand": "🤖 AI Trends · 2025–2026",
-            "footerSub": "Business training material",
+            "footerBrand": "AI Trends · 2025–2026",
+            "footerSub": "Updated 2026-07 · Prompt Anatomy",
             "sources": [
               {
                 "title": "Eurostat",
@@ -1351,6 +1501,14 @@
               },
               {
                 "title": "Stat.gov.lt",
+                "year": "2025"
+              },
+              {
+                "title": "MIT",
+                "year": "2025"
+              },
+              {
+                "title": "European Commission",
                 "year": "2025"
               }
             ]
@@ -1378,7 +1536,11 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": ["Aspect", "Method prompt", "Agentic prompt"],
+                  "headers": [
+                    "Aspect",
+                    "Method prompt",
+                    "Agentic prompt"
+                  ],
                   "rows": [
                     [
                       "In short",
@@ -1599,7 +1761,10 @@
                       "Learns from numbers and KPI",
                       "Learns from human ratings"
                     ],
-                    ["Goal – better results", "Goal – better communication"],
+                    [
+                      "Goal – better results",
+                      "Goal – better communication"
+                    ],
                     [
                       "Maximises conversion, profit, speed",
                       "Improves tone, clarity, experience"
@@ -1978,7 +2143,12 @@
                   ]
                 },
                 "table": {
-                  "headers": ["Tool", "Strength", "Best for", "Price (2026)"],
+                  "headers": [
+                    "Tool",
+                    "Strength",
+                    "Best for",
+                    "Price (2026)"
+                  ],
                   "rows": [
                     [
                       "ChatGPT (OpenAI)",
@@ -2057,12 +2227,26 @@
                 "blockVariant": "brand",
                 "workflowChains": [
                   {
-                    "chain": ["Claude", "ChatGPT", "Gamma"],
-                    "flow": ["Analysis", "Strategy", "Slides"]
+                    "chain": [
+                      "Claude",
+                      "ChatGPT",
+                      "Gamma"
+                    ],
+                    "flow": [
+                      "Analysis",
+                      "Strategy",
+                      "Slides"
+                    ]
                   },
                   {
-                    "chain": ["Gemini", "ChatGPT"],
-                    "flow": ["Research + images", "Wording"]
+                    "chain": [
+                      "Gemini",
+                      "ChatGPT"
+                    ],
+                    "flow": [
+                      "Research + images",
+                      "Wording"
+                    ]
                   }
                 ]
               },
@@ -2277,7 +2461,11 @@
                 "collapsible": true,
                 "collapsedByDefault": true,
                 "table": {
-                  "headers": ["Situation", "Recommended", "Why?"],
+                  "headers": [
+                    "Situation",
+                    "Recommended",
+                    "Why?"
+                  ],
                   "rows": [
                     [
                       "Need general business context",
@@ -2379,26 +2567,101 @@
         {
           "id": 61,
           "title": "Optional: AI tools for information search",
-          "shortTitle": "AI tools (in Module 7)",
-          "subtitle": "Cheat sheet moved to Data analysis path",
+          "shortTitle": "AI tools for information search",
+          "subtitle": "AI tools – from search to synthesis",
           "type": "content-block",
           "optional": true,
           "content": {
+            "whyBenefit": "You can do any research in 30–45 min – enter a question or upload a PDF, get answers with sources.",
+            "toolsIntro": "Enter a question or upload a PDF – you'll get answers with sources. Useful for RAG source search and Deep research tasks.",
+            "tools": [
+              {
+                "name": "Perplexity",
+                "url": "https://perplexity.ai",
+                "description": "Search with sources. Instead of an hour of googling – enter a question, get an answer with links.",
+                "useCases": [
+                  "Business research",
+                  "Market analysis",
+                  "Fact-checking"
+                ]
+              },
+              {
+                "name": "PaperGuide",
+                "url": "https://paperguide.ai",
+                "description": "Talk to your PDF. Upload a report or study – get summary, conclusions, main points.",
+                "useCases": [
+                  "Report analysis",
+                  "Quick document scan"
+                ]
+              },
+              {
+                "name": "Scite",
+                "url": "https://scite.ai",
+                "description": "Does the source really support your claim? Shows how the study is cited – supports or contradicts.",
+                "useCases": [
+                  "Citation check",
+                  "Strengthening arguments"
+                ]
+              },
+              {
+                "name": "Elicit",
+                "url": "https://elicit.com",
+                "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
+                "useCases": [
+                  "Synthesis",
+                  "Trend search"
+                ]
+              },
+              {
+                "name": "Consensus",
+                "url": "https://consensus.app",
+                "description": "Searches only in research papers and answers \"what does science say?\" – shows if studies support or contradict a claim.",
+                "useCases": [
+                  "Health / tech / policy claim validation",
+                  "AI Act interpretation",
+                  "Risk grounding",
+                  "Strengthening scientific arguments"
+                ]
+              },
+              {
+                "name": "Connected Papers",
+                "url": "https://www.connectedpapers.com",
+                "description": "Shows how papers connect and which \"research clusters\" exist; helps find key (seminal) work.",
+                "useCases": [
+                  "Paper network analysis",
+                  "Technology trend analysis",
+                  "Finding seminal work"
+                ]
+              }
+            ],
             "sections": [
               {
                 "heading": "1️⃣ In short (20 s)",
-                "body": "This tools cheat sheet moved to the **Data analysis path (Module 7)** – slide **71.35** after parallel research (71.3). You'll find Perplexity, PaperGuide, Scite, Elicit and more there.",
+                "body": "Optional cheat sheet: 6 AI tools for search and synthesis – use with RAG sources. Typical run – 30–45 min.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Where to find it?",
-                "body": "Open **Module 7** → slide **\"AI tools for information search\"** (optional, after path step 71.3). Use it with Deep research and the MASTER prompt on the Data analysis path.",
+                "heading": "Usage tips",
+                "body": "**Perplexity:** web mode, ask for sources, be specific.\n**PaperGuide:** upload PDF, ask a concrete question.\n**Scite:** check \"Supported\" vs \"Contradicted\".\n**Elicit:** clear question, trends and risks.\n**Consensus / Connected Papers:** scientific claims and paper networks.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Typical run (30–45 min)",
+                "body": "**4 tools = full run:**\n\n**1.** Sources (Perplexity) – 5–10 min.\n\n**2.** PDF analysis (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citation check (Scite) – ~5 min.\n\n**4.** Synthesis (Elicit) – 10–15 min.",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Where to apply?",
+                "body": "Use after you cite sources in your prompt (RAG) or prepare documents for research. Later in the module – **Deep research** (4.3).",
                 "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 25: Data prep for RAG"
-          },
-          "optional": true
+          }
         },
         {
           "id": 62,
@@ -2879,7 +3142,11 @@
                 "body": "",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": ["Model", "Context window", "Roughly…"],
+                  "headers": [
+                    "Model",
+                    "Context window",
+                    "Roughly…"
+                  ],
                   "rows": [
                     [
                       "ChatGPT (GPT-4o)",
@@ -2896,8 +3163,16 @@
                       "up to 1M tokens",
                       "≈ 750,000 words / ~1,500 pages"
                     ],
-                    ["Copilot", "16k–128k tokens", "≈ 12,000–96,000 words"],
-                    ["DeepSeek", "64k–128k tokens", "≈ 48,000–96,000 words"]
+                    [
+                      "Copilot",
+                      "16k–128k tokens",
+                      "≈ 12,000–96,000 words"
+                    ],
+                    [
+                      "DeepSeek",
+                      "64k–128k tokens",
+                      "≈ 48,000–96,000 words"
+                    ]
                   ]
                 }
               },
@@ -2937,7 +3212,11 @@
                 "body": "How an important priority gets lost in a long conversation – and what risk that is for the business.",
                 "blockVariant": "brand",
                 "table": {
-                  "headers": ["Iteration", "Action", "Context state"],
+                  "headers": [
+                    "Iteration",
+                    "Action",
+                    "Context state"
+                  ],
                   "rows": [
                     [
                       "**1st**",
@@ -3089,7 +3368,10 @@
                 "body": "A negative prompt does not say how to judge the result. A good prompt names the role, goal, context and format.",
                 "blockVariant": "terms",
                 "table": {
-                  "headers": ["❌ Negative (no) prompt", "✅ Good prompt"],
+                  "headers": [
+                    "❌ Negative (no) prompt",
+                    "✅ Good prompt"
+                  ],
                   "rows": [
                     [
                       "\"Help with a report.\"",
@@ -3925,7 +4207,11 @@
                 "blockVariant": "emerald",
                 "workflowChains": [
                   {
-                    "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
+                    "chain": [
+                      "ChatGPT / Perplexity",
+                      "Figma",
+                      "Claude"
+                    ],
                     "flow": [
                       "Context set (RAG)",
                       "Visual mock-up",
@@ -3969,7 +4255,10 @@
                 "heading": "6-block structure",
                 "body": "",
                 "table": {
-                  "headers": ["Block", "Instruction"],
+                  "headers": [
+                    "Block",
+                    "Instruction"
+                  ],
                   "rows": [
                     [
                       "#1 META",
@@ -4135,7 +4424,10 @@
                 "body": "Which point will you start today – library or versioning?"
               }
             ],
-            "unlockedGlossaryTerms": ["Prompt library", "Prompt versioning"],
+            "unlockedGlossaryTerms": [
+              "Prompt library",
+              "Prompt versioning"
+            ],
             "footer": "Next – slide 9: Data handling"
           }
         },

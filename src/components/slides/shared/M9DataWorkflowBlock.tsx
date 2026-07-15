@@ -51,7 +51,7 @@ export default function M9DataWorkflowBlock({
   context?: 'm9' | 'm7_master';
 }) {
   const { locale } = useLocale();
-  const explanations = getM9DataWorkflowStepExplanations(locale);
+  const explanations = getM9DataWorkflowStepExplanations(locale, context);
   const loc = locale === 'en' ? 'en' : 'lt';
   const labels = BLOCK_LABELS[context][loc];
   const {

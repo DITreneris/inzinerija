@@ -1,0 +1,45 @@
+# M4 sk. 53.5 editorial beat PNG manifest (Satori → public/)
+# Sync with modules.json editorialBeats[].id
+
+beats:
+  - id: awareness-gap
+    template: editorial-beat
+    variant: split-compare
+    output: di_portal_meme_01_awareness.png
+    accentKey: accent
+    eyebrow: Redakcinė pauzė
+    headline: DI jau čia – ar tu tai matai?
+    leftTitle: Naudoja DI
+    rightTitle: Suvokia kaip DI
+    leftStat: "86%"
+    rightStat: "38%"
+    leftCaption: kasdien – filtrai, orai, korekcija
+    rightCaption: žino, kad tai DI įrankis
+    gapLabel: Suvokimo spraga
+
+  - id: lithuania-context
+    template: editorial-beat
+    variant: stat-ribbon
+    output: di_portal_meme_02_lithuania.png
+    accentKey: brand
+    eyebrow: Lietuvos kontekstas
+    headline: Lietuva virš ES vidurkio
+    heroStat: "69%"
+    heroLabel: Lietuvos gyventojų naudoja DI įrankius
+    compareStat: "32,7%"
+    compareLabel: ES vidurkis (Eurostat)
+
+  - id: next-step-prompt
+    template: editorial-beat
+    variant: prompt-flow
+    output: di_portal_meme_03_next_step.png
+    accentKey: violet
+    eyebrow: Tiltas į praktiką
+    headline: Kitas žingsnis – promptas
+    steps:
+      - label: Kontekstas
+        sub: skaičiai ir tendencijos
+      - label: Promptas
+        sub: metodinis / agentinis
+      - label: Veiksmas
+        sub: DI atlieka darbą

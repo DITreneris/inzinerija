@@ -31,11 +31,13 @@ import { Progress } from '../utils/progress';
 import { findJourneyChoiceByStored } from '../utils/moduleJourneyFocus';
 import { isSlideLikelyUntranslatedForEn } from '../utils/enPartialCoverage';
 import { computeNextSlideContextLabel } from '../utils/navLabel';
+import { getM7MacroBlockLabel } from '../utils/m7MacroBlocks';
 import { getModulesSync, preloadModules } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import {
   useSlideNavigation,
   clampSlideIndex,
+  getVisiblePosition,
 } from '../utils/useSlideNavigation';
 import { useCompactViewport } from '../utils/useCompactViewport';
 import { LoadingSpinner } from './ui';
@@ -44,7 +46,12 @@ import ErrorBoundary from './ui/ErrorBoundary';
 import { selectQuestions } from '../utils/questionPoolSelector';
 import { buildSlideGroups, type SlideGroup } from '../utils/slidePhaseConfig';
 import { track } from '../utils/analytics';
-import type { Slide, ActionIntroJourneyContent } from '../types/modules';
+import type {
+  Slide,
+  ActionIntroJourneyContent,
+  NewsPortalInfographicContent,
+} from '../types/modules';
+import { isNewsPortalImmersive } from './slides/news-portal/portalUtils';
 import SlideContent from './SlideContent';
 
 const FAST_TRACK_KEY = 'prompt-anatomy-fast-track';
@@ -388,6 +395,21 @@ function ModuleView({
     );
   }, [locale, moduleId, currentSlideData, enPartialNoticeDismissed]);
 
+  const m7MacroBlockLabel = useMemo(() => {
+    if (moduleId !== 7 || !currentSlideData) return null;
+    const lang = locale === 'en' ? 'en' : 'lt';
+    return getM7MacroBlockLabel(currentSlideData.id, lang);
+  }, [moduleId, currentSlideData, locale]);
+
+  const isImmersiveNewsPortal = useMemo(() => {
+    if (!currentSlideData || currentSlideData.type !== 'infographic') {
+      return false;
+    }
+    return isNewsPortalImmersive(
+      currentSlideData.content as NewsPortalInfographicContent | undefined
+    );
+  }, [currentSlideData]);
+
   const toggleFastTrack = useCallback(() => {
     setFastTrack((prev) => {
       const next = !prev;
@@ -426,6 +448,24 @@ function ModuleView({
   // Show resume prompt if user has saved position > 0 (skip when opening via F2-3 deep link)
   const showResumePrompt =
     !resumeDecided && savedSlidePosition > 0 && initialSlideIndex == null;
+
+  /** Resume modal: tas pats skaitiklis kaip navigacijoje (filtruotas kelias), ne pilnas slides[] */
+  const resumeSlideLabel = useMemo(() => {
+    if (!module?.slides?.length) return { n: 1, total: 1 };
+    return {
+      n: getVisiblePosition(module.slides, savedSlidePosition, {
+        skipOptional: fastTrack,
+        activeBranchIds,
+      }),
+      total: visibleSlideCount,
+    };
+  }, [
+    module?.slides,
+    savedSlidePosition,
+    fastTrack,
+    activeBranchIds,
+    visibleSlideCount,
+  ]);
 
   const handleResumeFromSaved = useCallback(() => {
     setResumeImmediate(true);
@@ -813,8 +853,8 @@ function ModuleView({
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-2 max-w-md">
             {t('module:resumeFromSlide', {
-              n: savedSlidePosition + 1,
-              total: module.slides.length,
+              n: resumeSlideLabel.n,
+              total: resumeSlideLabel.total,
             })}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
@@ -826,7 +866,7 @@ function ModuleView({
               className="min-h-[48px] px-6"
             >
               <Play className="w-5 h-5" />
-              {t('module:resumeContinueFrom', { n: savedSlidePosition + 1 })}
+              {t('module:resumeContinueFrom', { n: resumeSlideLabel.n })}
             </CTAButton>
             <CTAButton
               variant="secondary"
@@ -928,7 +968,7 @@ function ModuleView({
       {/* Slide Content (desktop: single column; mobile: full width, bottom nav) */}
       <div className="grid grid-cols-1">
         <div
-          className={`card ${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y ${radiusClasses.card}`}
+          className={`${isImmersiveNewsPortal ? 'bg-transparent shadow-none border-0 p-0 lg:p-2 lg:pb-24' : 'card'} ${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y ${isImmersiveNewsPortal ? '' : radiusClasses.card}`}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchCancel}
@@ -936,6 +976,7 @@ function ModuleView({
           aria-label={t('slideNavAria')}
         >
           {currentSlideData.type !== 'action-intro' &&
+            !isImmersiveNewsPortal &&
             !(
               currentSlideData.type === 'section-break' &&
               currentSlideData.content &&
@@ -993,7 +1034,59 @@ function ModuleView({
               </div>
             )}
 
-          {/* Sticky nav bar: mobile = compact counter + progress line only; desktop (lg+) = full Atgal/counter/Tęsti */}
+          {/* Immersive: slim progress (desktop) + floating FAB; mobile uses bottom nav only */}
+          {isImmersiveNewsPortal ? (
+            <>
+              <div
+                className="hidden lg:block sticky top-[var(--app-nav-height,4rem)] z-20 h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
+                role="progressbar"
+                aria-valuenow={visiblePosition}
+                aria-valuemin={1}
+                aria-valuemax={visibleSlideCount}
+                aria-label={t('slideOf', {
+                  current: visiblePosition,
+                  total: visibleSlideCount,
+                })}
+              >
+                <div
+                  className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
+                  style={{
+                    width: `${visibleSlideCount > 0 ? (visiblePosition / visibleSlideCount) * 100 : 0}%`,
+                  }}
+                />
+              </div>
+              <div className="hidden lg:block fixed bottom-6 right-6 z-30">
+                <CTAButton
+                  type="button"
+                  onClick={handleNextOrCompleteClick}
+                  disabled={isNextDisabled}
+                  title={nextSlideContextLabel ?? undefined}
+                  variant="primary"
+                  className="px-5 py-3 rounded-xl text-sm min-h-[48px] shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 disabled:hover:translate-y-0"
+                  aria-label={
+                    isLastSlide
+                      ? t('completeAria')
+                      : (nextButtonLabel ?? t('nextSlide'))
+                  }
+                >
+                  <span
+                    className="truncate"
+                    title={nextSlideContextLabel ?? undefined}
+                  >
+                    {isLastSlide
+                      ? t('complete')
+                      : (nextButtonLabel ?? t('continueShort'))}
+                  </span>
+                  {!isLastSlide && (
+                    <ChevronRight className="w-5 h-5 shrink-0" aria-hidden />
+                  )}
+                  {isLastSlide && (
+                    <CheckCircle className="w-5 h-5 shrink-0" aria-hidden />
+                  )}
+                </CTAButton>
+              </div>
+            </>
+          ) : (
           <nav
             className={`sticky top-[var(--app-nav-height,4rem)] z-20 flex flex-col mb-4 border-b shadow-sm ${surfaceGlass.shell}`}
             aria-label={t('slideNavBarAria')}
@@ -1009,8 +1102,9 @@ function ModuleView({
                   total: visibleSlideCount,
                 })}
               >
-                {t('moduleLabel', { n: moduleId })} · {visiblePosition}/
-                {visibleSlideCount}
+                {t('moduleLabel', { n: moduleId })}
+                {m7MacroBlockLabel ? ` · ${m7MacroBlockLabel}` : ''} ·{' '}
+                {visiblePosition}/{visibleSlideCount}
               </span>
             </div>
             {/* Desktop (lg+): full nav with Atgal / counter / Tęsti */}
@@ -1033,6 +1127,11 @@ function ModuleView({
                   total: visibleSlideCount,
                 })}
               >
+                {m7MacroBlockLabel ? (
+                  <span className="text-gray-500 dark:text-gray-400 mr-1.5">
+                    {m7MacroBlockLabel} ·
+                  </span>
+                ) : null}
                 {visiblePosition}/{visibleSlideCount}
               </span>
               <CTAButton
@@ -1066,8 +1165,14 @@ function ModuleView({
             </div>
             <div
               className="h-0.5 w-full bg-gray-200 dark:bg-gray-700 overflow-hidden"
-              role="presentation"
-              aria-hidden
+              role="progressbar"
+              aria-valuenow={visiblePosition}
+              aria-valuemin={1}
+              aria-valuemax={visibleSlideCount}
+              aria-label={t('slideOf', {
+                current: visiblePosition,
+                total: visibleSlideCount,
+              })}
             >
               <div
                 className="h-full bg-brand-500 dark:bg-brand-400 transition-all duration-500 ease-out"
@@ -1088,6 +1193,7 @@ function ModuleView({
               </div>
             )}
           </nav>
+          )}
 
           <ErrorBoundary
             key={currentSlideData.id}
@@ -1173,6 +1279,8 @@ function ModuleView({
                   moduleId === 9 ? onNavigateToHubWithCharacter : undefined
                 }
                 onJourneyFocusChoice={onJourneyFocusChoice}
+                visiblePosition={visiblePosition}
+                visibleSlideCount={visibleSlideCount}
               />
             </Suspense>
           </ErrorBoundary>

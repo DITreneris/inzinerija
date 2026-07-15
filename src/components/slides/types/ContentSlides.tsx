@@ -98,7 +98,6 @@ import type {
   ProductivityInfographicContent,
   DiParadoxInfographicContent,
   DiParadoxStatTooltip,
-  NewsPortalInfographicContent,
   NewsPortalKpiCard as _NewsPortalKpiCard,
   NewsPortalSectionCard as _NewsPortalSectionCard,
   NewsPortalToolsAndYouth as _NewsPortalToolsAndYouth,
@@ -127,6 +126,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm7_da_pipeline',
   'm7_bi_schema',
   'm9_data_workflow',
+  'm9_workflow_step_prompts',
   'da_pipeline_6',
   'da_bi_schema_4',
   'rl_process_diagram',
@@ -404,6 +404,21 @@ function isShortContent(section: {
   return false;
 }
 
+/** Jei practicalTask.template sutampa su copyable sekcija – nerodyti antro bloko (M8 801–802). */
+function isDuplicateOfSectionCopyable(
+  template: string,
+  sections: { copyable?: string }[]
+): boolean {
+  const norm = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase();
+  const nt = norm(template);
+  if (!nt) return false;
+  return sections.some((sec) => {
+    const nc = norm(sec.copyable ?? '');
+    if (!nc) return false;
+    return nt === nc || nt.startsWith(nc) || nc.startsWith(nt);
+  });
+}
+
 export function ContentBlockSlide({
   content,
   slide,
@@ -456,6 +471,10 @@ export function ContentBlockSlide({
   const [selectedToolRowIndex, setSelectedToolRowIndex] = useState<
     number | null
   >(null);
+  const toolChoiceSection = sectionsList.find((s) => s.toolChoiceBar);
+  const hasLinkedCopySections = sectionsList.some(
+    (s) => s.linkedRowIndex !== undefined
+  );
   const tableRowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
   const slideContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -527,6 +546,14 @@ export function ContentBlockSlide({
     const el = tableRowRefs.current[selectedToolRowIndex];
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, [selectedToolRowIndex]);
+
+  useEffect(() => {
+    if (!toolChoiceSection?.toolChoiceBar || selectedToolRowIndex !== null)
+      return;
+    const defaultRow =
+      toolChoiceSection.toolChoiceBar.choices?.[0]?.rowIndex ?? 0;
+    setSelectedToolRowIndex(defaultRow);
+  }, [toolChoiceSection, selectedToolRowIndex]);
 
   const scrollToFirstAction = useCallback(() => {
     const root = slideContainerRef.current;
@@ -921,6 +948,14 @@ export function ContentBlockSlide({
 
       {!isTabsMode &&
         sectionsList.map((section, i) => {
+          if (
+            hasLinkedCopySections &&
+            section.linkedRowIndex !== undefined &&
+            selectedToolRowIndex !== null &&
+            section.linkedRowIndex !== selectedToolRowIndex
+          ) {
+            return null;
+          }
           const isOptional = section.heading
             ?.toLowerCase()
             .includes('(optional)');
@@ -1159,7 +1194,6 @@ export function ContentBlockSlide({
                       <WorkflowChainsBlock chains={section.workflowChains} />
                     )}
                   {section.toolChoiceBar &&
-                    section.table &&
                     !section.presentationToolsBlock && (
                       <div
                         className="mb-4 space-y-3"
@@ -1633,7 +1667,11 @@ export function ContentBlockSlide({
             </div>
           );
         })()}
-      {content.practicalTask && (
+      {content.practicalTask &&
+        !isDuplicateOfSectionCopyable(
+          content.practicalTask.template,
+          sectionsList
+        ) && (
         <section
           className={
             isDiVisata
@@ -5528,745 +5566,9 @@ export function ProductivityInfographicSlide({
   );
 }
 
-/* ─── News-portal infographic (DI galimybės praktiškai) – data from docs/archive/root/portalas.txt ─── */
-function parsePercent(s: string): number {
-  const normalized = String(s)
-    .replace(',', '.')
-    .replace(/[^\d.]/g, '');
-  const n = parseFloat(normalized);
-  return Number.isFinite(n) ? Math.min(100, Math.max(0, n)) : 0;
-}
+/* ─── News-portal infographic – see src/components/slides/news-portal/ ─── */
+export { NewsPortalInfographicSlide } from '../news-portal/NewsPortalInfographicSlide';
 
-const NUM_COLORS: Record<string, string> = {
-  brand: 'text-brand-600 dark:text-brand-400',
-  violet: 'text-violet-600 dark:text-violet-400',
-  emerald: 'text-emerald-600 dark:text-emerald-400',
-  amber: 'text-amber-600 dark:text-amber-400',
-  rose: 'text-rose-600 dark:text-rose-400',
-  slate: 'text-slate-600 dark:text-slate-400',
-};
-
-const BAR_COLORS: Record<string, string> = {
-  brand: 'bg-brand-500 dark:bg-brand-400',
-  violet: 'bg-violet-500 dark:bg-violet-400',
-  emerald: 'bg-emerald-500 dark:bg-emerald-400',
-  amber: 'bg-amber-500 dark:bg-amber-400',
-  rose: 'bg-rose-500 dark:bg-rose-400',
-  slate: 'bg-slate-300 dark:bg-slate-500',
-};
-
-const PORTAL_BASE_URL = import.meta.env.BASE_URL || '/';
-function portalImageSrc(src: string): string {
-  if (src.startsWith('http') || src.startsWith('/')) return src;
-  return `${PORTAL_BASE_URL}${src.replace(/^\//, '')}`;
-}
-
-export function NewsPortalInfographicSlide({
-  content,
-  onNextSlide,
-}: {
-  content?: NewsPortalInfographicContent;
-  /** Kai yra (modulio vaizdas), apačios CTA blokas veda į kitą skaidrę – kaip „Tęsti“. */
-  onNextSlide?: () => void;
-}) {
-  useTranslation();
-  const t = getT('contentSlides');
-  const { locale } = useLocale();
-  const isEn = locale === 'en';
-  const [showSources, setShowSources] = useState(false);
-  if (!content) return null;
-
-  const {
-    portalBrand,
-    eyebrow,
-    headline,
-    subline,
-    takeaway,
-    takeawayCta,
-    featured,
-    heroImageVertical,
-    bannerImageHorizontal,
-    bannerBetweenKpiAndSections,
-    kpiCards,
-    sectionCards,
-    mainInsightBlock,
-    secondaryCards,
-    toolsAndYouth,
-    insightCard,
-    ctaBlock,
-    footerBrand,
-    footerSub,
-    sources,
-  } = content;
-
-  const useTwoLevelLayout = Boolean(
-    mainInsightBlock && secondaryCards && secondaryCards.length === 2
-  );
-
-  const hasHeroImage = Boolean(heroImageVertical?.src);
-
-  return (
-    <div className="w-full max-w-6xl mx-auto space-y-6 lg:space-y-8">
-      {/* Portal masthead – "shouting" brand (Next Level AI), not report header */}
-      {portalBrand && (
-        <div className="flex items-center gap-3 border-b border-accent-200 dark:border-accent-800 py-4 bg-accent-50 dark:bg-accent-900/10 px-1 -mx-1 rounded-lg">
-          <span
-            className="text-xl lg:text-2xl font-extrabold text-accent-700 dark:text-accent-300 tracking-tight"
-            aria-label={`${isEn ? 'Editorial' : 'Redakcija'}: ${portalBrand}`}
-          >
-            {portalBrand}
-          </span>
-          <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-            {isEn ? 'Media' : 'Žiniasklaida'}
-          </span>
-        </div>
-      )}
-      {/* Header: optional vertical image | eyebrow + headline + subline + takeaway | hero stat */}
-      <div
-        className={`grid gap-6 items-center ${hasHeroImage ? 'grid-cols-1 lg:grid-cols-[minmax(200px,280px)_1fr_minmax(200px,280px)]' : 'grid-cols-1 lg:grid-cols-[1fr_minmax(200px,280px)]'}`}
-      >
-        {hasHeroImage && (
-          <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 shrink-0 shadow-sm">
-            <div className="p-3 bg-gray-50/50 dark:bg-gray-900/30">
-              <img
-                src={portalImageSrc(heroImageVertical!.src)}
-                alt={heroImageVertical!.alt}
-                className="block w-full h-auto object-cover max-h-72 rounded-lg"
-              />
-            </div>
-          </div>
-        )}
-        <div className="min-w-0">
-          <div className="inline-flex items-center gap-2 bg-brand-500 dark:bg-brand-600 text-white text-xs font-semibold uppercase tracking-wider px-3.5 py-2 rounded-full mb-3">
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse"
-              aria-hidden
-            />
-            {eyebrow}
-          </div>
-          <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white leading-tight">
-            {headline}
-          </h2>
-          <p className="mt-2 text-base text-gray-600 dark:text-gray-300 max-w-xl">
-            {subline}
-          </p>
-          {(takeaway || takeawayCta) && (
-            <div
-              className="mt-4 max-w-xl border-l-4 border-accent-400 dark:border-accent-600 pl-3"
-              role="complementary"
-              aria-label={t('mainTakeawaySummaryAria')}
-            >
-              {takeaway && (
-                <p className="text-base font-bold text-accent-700 dark:text-accent-300">
-                  {takeaway}
-                </p>
-              )}
-              {takeawayCta && (
-                <p className="mt-2 text-base lg:text-lg font-extrabold bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 dark:from-accent-500 dark:via-accent-600 dark:to-accent-700 bg-clip-text text-transparent">
-                  {takeawayCta}
-                </p>
-              )}
-            </div>
-          )}
-        </div>
-        <div className="bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white rounded-2xl p-5 text-center min-w-[200px] shadow-lg">
-          <div className="text-3xl lg:text-4xl font-extrabold">
-            {featured.bigNumber}
-          </div>
-          <div className="mt-2 text-xs lg:text-sm opacity-95 leading-snug">
-            {featured.labelStrong && (
-              <strong className="block">{featured.labelStrong}</strong>
-            )}
-            {featured.label}
-          </div>
-          {featured.source && (
-            <div className="mt-3 text-xs opacity-60">{featured.source}</div>
-          )}
-        </div>
-      </div>
-
-      {bannerImageHorizontal?.src && (
-        <div className="w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 aspect-[21/9] max-h-40">
-          <div className="p-2 h-full">
-            <img
-              src={portalImageSrc(bannerImageHorizontal.src)}
-              alt={bannerImageHorizontal.alt}
-              className="block w-full h-full object-cover rounded-lg"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* KPI strip – vienoda border (brand) mažesniam vizualiniam triukšmui; skaičiai spalvoti (NUM_COLORS) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {(kpiCards ?? []).map((card, idx) => (
-          <div
-            key={idx}
-            className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 border-t-4 border-t-brand-500 dark:border-t-brand-400 animate-fade-in`}
-            style={{ animationDelay: `${idx * 80}ms` }}
-          >
-            <div className="text-xl mb-1">{card.icon}</div>
-            <div
-              className={`text-2xl font-extrabold ${NUM_COLORS[card.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}
-            >
-              {card.value}
-            </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-snug">
-              {card.desc}
-            </div>
-            <div className="text-xs text-gray-500 dark:text-gray-500 mt-1.5">
-              {card.source}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {bannerBetweenKpiAndSections?.src && (
-        <div className="w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 aspect-[21/9] max-h-40">
-          <div className="p-2 h-full">
-            <img
-              src={portalImageSrc(bannerBetweenKpiAndSections.src)}
-              alt={bannerBetweenKpiAndSections.alt}
-              className="block w-full h-full object-cover rounded-lg"
-            />
-          </div>
-        </div>
-      )}
-
-      {useTwoLevelLayout ? (
-        <>
-          {/* Level 1: full-width main insight block */}
-          {mainInsightBlock && (
-            <div
-              className="rounded-xl p-6 lg:p-8 bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white flex flex-col sm:flex-row items-center gap-6 shadow-lg"
-              role="region"
-              aria-label={t('mainTakeawayAria')}
-            >
-              {mainInsightBlock.imageVertical?.src && (
-                <div className="w-full sm:w-48 shrink-0 rounded-xl overflow-hidden border border-white/20">
-                  <div className="p-2">
-                    <img
-                      src={portalImageSrc(mainInsightBlock.imageVertical.src)}
-                      alt={mainInsightBlock.imageVertical.alt}
-                      className="block w-full h-auto object-cover max-h-40 rounded-lg"
-                    />
-                  </div>
-                </div>
-              )}
-              <div className="flex-1 min-w-0 text-center sm:text-left">
-                <div className="text-4xl lg:text-5xl font-extrabold">
-                  {mainInsightBlock.bigNumber}
-                </div>
-                <p className="mt-3 text-lg lg:text-xl font-semibold opacity-95">
-                  {mainInsightBlock.label}
-                </p>
-                {mainInsightBlock.source && (
-                  <p className="mt-2 text-sm opacity-75">
-                    {mainInsightBlock.source}
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-          {/* Level 2: 2 smaller KPI cards */}
-          {secondaryCards && secondaryCards.length === 2 && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              {secondaryCards.map((card, idx) => (
-                <div
-                  key={idx}
-                  className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm animate-fade-in ${card.imageVertical?.src ? 'grid grid-cols-1 sm:grid-cols-[minmax(100px,140px)_1fr] gap-4 items-stretch' : ''}`}
-                  style={{ animationDelay: `${idx * 80}ms` }}
-                >
-                  {card.imageVertical?.src && (
-                    <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-                      <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
-                        <img
-                          src={portalImageSrc(card.imageVertical.src)}
-                          alt={card.imageVertical.alt}
-                          className="block w-full h-auto object-cover max-h-36 rounded-lg"
-                        />
-                      </div>
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-                      {card.sectionLabel}
-                    </div>
-                    <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
-                      {card.title}
-                    </h3>
-                    <div
-                      className={`text-3xl font-extrabold ${NUM_COLORS[card.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}
-                    >
-                      {card.value}
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 break-normal">
-                      {card.label}
-                    </p>
-                    {card.source && (
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1.5">
-                        {card.source}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </>
-      ) : (
-        /* Legacy: 3 section cards */
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-5 items-stretch">
-          {(sectionCards ?? []).map((card, idx) => {
-            const sectionImage =
-              'imageVertical' in card ? card.imageVertical : undefined;
-            const hasSectionImage = Boolean(sectionImage?.src);
-            return (
-              <div
-                key={idx}
-                className={`bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm min-h-0 animate-fade-in ${hasSectionImage ? 'grid grid-cols-1 sm:grid-cols-[minmax(80px,120px)_minmax(260px,1fr)]' : ''}`}
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                {hasSectionImage && (
-                  <div className="min-w-0 w-full max-w-[120px] rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 sm:max-w-none">
-                    <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
-                      <img
-                        src={portalImageSrc(sectionImage!.src)}
-                        alt={sectionImage!.alt}
-                        className="block w-full h-auto object-cover max-h-48 rounded-lg"
-                      />
-                    </div>
-                  </div>
-                )}
-                <div className="p-4 min-w-0 min-h-0 overflow-x-auto">
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-                    {card.sectionLabel}
-                  </div>
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
-                    {card.title}
-                  </h3>
-                  {'type' in card && card.type === 'split' && (
-                    <>
-                      <div className="grid grid-cols-2 gap-2 mb-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
-                        <div className="text-center min-w-0">
-                          <div
-                            className={`text-2xl font-extrabold ${NUM_COLORS.brand}`}
-                          >
-                            {card.leftNum}
-                          </div>
-                          <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">
-                            {card.leftLabel}
-                          </div>
-                        </div>
-                        <div className="text-center border-l border-gray-200 dark:border-gray-700 min-w-0">
-                          <div
-                            className={`text-2xl font-extrabold ${NUM_COLORS.rose}`}
-                          >
-                            {card.rightNum}
-                          </div>
-                          <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">
-                            {card.rightLabel}
-                          </div>
-                        </div>
-                      </div>
-                      {card.gapLabel && (
-                        <p className="text-center text-xs text-gray-500 dark:text-gray-400 mb-3">
-                          {card.gapLabel}
-                        </p>
-                      )}
-                      <div className="space-y-2">
-                        {card.bars.map((bar, i) => (
-                          <div key={i}>
-                            <div className="flex justify-between text-xs mb-0.5 gap-2">
-                              <span className="text-gray-600 dark:text-gray-400 break-normal min-w-0">
-                                {bar.name}
-                              </span>
-                              <span
-                                className={`font-bold shrink-0 whitespace-nowrap ${NUM_COLORS[bar.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}
-                              >
-                                {bar.pct}
-                              </span>
-                            </div>
-                            <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'brand'] ?? BAR_COLORS.brand}`}
-                                style={{ width: `${parsePercent(bar.pct)}%` }}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                  {'type' in card && card.type === 'business' && (
-                    <>
-                      <div className="grid grid-cols-2 gap-2 mb-3">
-                        {card.sectorTiles.map((tile, i) => {
-                          const bgMap: Record<string, string> = {
-                            brand: 'bg-brand-50 dark:bg-brand-900/20',
-                            violet: 'bg-violet-50 dark:bg-violet-900/20',
-                            emerald: 'bg-emerald-50 dark:bg-emerald-900/20',
-                            amber: 'bg-amber-50 dark:bg-amber-900/20',
-                          };
-                          return (
-                            <div
-                              key={i}
-                              className={`flex items-center gap-2 p-2 rounded-xl min-w-0 ${bgMap[tile.colorKey ?? 'brand'] ?? bgMap.brand}`}
-                            >
-                              <span className="text-lg shrink-0">
-                                {tile.icon}
-                              </span>
-                              <div className="min-w-0 overflow-hidden">
-                                <div
-                                  className={`text-lg font-extrabold whitespace-nowrap ${NUM_COLORS[tile.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}
-                                >
-                                  {tile.pct}
-                                </div>
-                                <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">
-                                  {tile.name}
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="flex items-start gap-3 p-3 bg-brand-50 dark:bg-brand-900/20 rounded-xl min-w-0">
-                        <span className="text-2xl font-extrabold text-brand-600 dark:text-brand-400 shrink-0 whitespace-nowrap">
-                          {card.calloutValue}
-                        </span>
-                        <div className="text-xs text-gray-600 dark:text-gray-400 min-w-0 break-normal space-y-1.5">
-                          {card.calloutText.includes('**Pagal dydį:**') ? (
-                            (() => {
-                              const [first, ...rest] =
-                                card.calloutText.split(/\*\*Pagal dydį:\*\*/);
-                              const second = rest
-                                .join('**Pagal dydį:**')
-                                .trim();
-                              const toHtml = (s: string) =>
-                                s.replace(
-                                  /\*\*(.*?)\*\*/g,
-                                  '<strong>$1</strong>'
-                                );
-                              return (
-                                <>
-                                  <p
-                                    dangerouslySetInnerHTML={{
-                                      __html: toHtml(first.trim()),
-                                    }}
-                                  />
-                                  {second ? (
-                                    <p
-                                      dangerouslySetInnerHTML={{
-                                        __html:
-                                          '<strong>Pagal dydį:</strong> ' +
-                                          toHtml(second),
-                                      }}
-                                    />
-                                  ) : null}
-                                </>
-                              );
-                            })()
-                          ) : (
-                            <p
-                              dangerouslySetInnerHTML={{
-                                __html: card.calloutText.replace(
-                                  /\*\*(.*?)\*\*/g,
-                                  '<strong>$1</strong>'
-                                ),
-                              }}
-                            />
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  {'type' in card && card.type === 'lithuania' && (
-                    <>
-                      <div className="grid grid-cols-2 gap-2 mb-3">
-                        {card.stats.map((stat, i) => (
-                          <div
-                            key={i}
-                            className="p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl text-center min-w-0"
-                          >
-                            <div
-                              className={`text-2xl font-extrabold whitespace-nowrap ${NUM_COLORS[stat.colorKey ?? 'emerald'] ?? NUM_COLORS.emerald}`}
-                            >
-                              {stat.value}
-                            </div>
-                            <div className="text-xs text-gray-600 dark:text-gray-400 break-normal">
-                              {stat.sub}
-                            </div>
-                            {stat.badge && (
-                              <span className="inline-block mt-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded whitespace-nowrap">
-                                {stat.badge}
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                      <div className="space-y-2">
-                        {card.bars.map((bar, i) => (
-                          <div key={i}>
-                            <div className="flex justify-between text-xs mb-0.5 gap-2">
-                              <span className="text-gray-600 dark:text-gray-400 break-normal min-w-0">
-                                {bar.name}
-                              </span>
-                              <span
-                                className={`font-bold shrink-0 whitespace-nowrap ${NUM_COLORS[bar.colorKey ?? 'slate'] ?? NUM_COLORS.slate}`}
-                              >
-                                {bar.pct}
-                              </span>
-                            </div>
-                            <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'slate'] ?? BAR_COLORS.slate}`}
-                                style={{ width: `${parsePercent(bar.pct)}%` }}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Row 2 → Variant C: 3 atskiros zonos (Įrankiai | Jaunimas | Pagrindinė žinutė) – vertikali seka, 8pt grid: space-y-5 */}
-      <div className="space-y-5">
-        {toolsAndYouth && (
-          <>
-            {/* Zona 1: Įrankiai – pilno pločio kortelė */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-                {toolsAndYouth.toolsLabel}
-              </div>
-              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
-                {toolsAndYouth.toolsTitle}
-              </h3>
-              <div className="space-y-2 max-w-2xl">
-                {(toolsAndYouth.tools ?? []).map((t, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-sm shrink-0">
-                      {t.name.slice(0, 1)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-xs text-gray-600 dark:text-gray-400 truncate">
-                        {t.name}
-                      </div>
-                      <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div
-                          className={`h-full rounded-full ${BAR_COLORS[t.colorKey ?? 'brand'] ?? BAR_COLORS.brand}`}
-                          style={{ width: `${parsePercent(t.pct)}%` }}
-                        />
-                      </div>
-                    </div>
-                    <span
-                      className={`text-xs font-bold shrink-0 ${NUM_COLORS[t.colorKey ?? 'brand'] ?? NUM_COLORS.brand}`}
-                    >
-                      {t.pct}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Zona 2: Jaunimas – pilno pločio kortelė */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4">
-              <div
-                className={`grid grid-cols-1 ${toolsAndYouth.youthImageVertical?.src ? 'lg:grid-cols-[minmax(140px,200px)_1fr]' : ''} gap-4 items-stretch`}
-              >
-                {toolsAndYouth.youthImageVertical?.src && (
-                  <div className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-                    <div className="p-2 bg-gray-50/50 dark:bg-gray-900/30">
-                      <img
-                        src={portalImageSrc(
-                          toolsAndYouth.youthImageVertical.src
-                        )}
-                        alt={toolsAndYouth.youthImageVertical.alt}
-                        className="block w-full h-auto object-cover max-h-52 rounded-lg"
-                      />
-                    </div>
-                  </div>
-                )}
-                <div className="min-w-0">
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-                    {toolsAndYouth.youthLabel}
-                  </div>
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
-                    {toolsAndYouth.youthTitle}
-                  </h3>
-                  <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl text-center mb-3 inline-block">
-                    <div className="text-3xl font-extrabold text-violet-600 dark:text-violet-400">
-                      {toolsAndYouth.youthBigNum}
-                    </div>
-                    <div
-                      className="text-xs text-gray-600 dark:text-gray-400 mt-1"
-                      dangerouslySetInnerHTML={{
-                        __html: toolsAndYouth.youthLabelText.replace(
-                          /<br\s*\/?>/g,
-                          '<br />'
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className="space-y-2 mt-4">
-                    {(toolsAndYouth.youthBars ?? []).map((bar, i) => (
-                      <div key={i}>
-                        <div className="flex justify-between text-xs mb-0.5">
-                          <span className="text-gray-600 dark:text-gray-400">
-                            {bar.name}
-                          </span>
-                          <span
-                            className={`font-bold ${NUM_COLORS[bar.colorKey ?? 'slate'] ?? NUM_COLORS.slate}`}
-                          >
-                            {bar.pct}
-                          </span>
-                        </div>
-                        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${BAR_COLORS[bar.colorKey ?? 'slate'] ?? BAR_COLORS.slate}`}
-                            style={{ width: `${parsePercent(bar.pct)}%` }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  {toolsAndYouth.youthFootnote && (
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-                      {toolsAndYouth.youthFootnote}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-        {insightCard && (
-          /* Zona 3: Pagrindinė žinutė – pilno pločio blokas */
-          <div className="bg-gradient-to-br from-brand-600 to-brand-700 dark:from-brand-700 dark:to-brand-800 text-white rounded-xl p-5 flex flex-col">
-            <div className="text-xs font-bold uppercase tracking-wider opacity-75 mb-2">
-              {insightCard.tag}
-            </div>
-            <h3 className="text-base font-bold leading-snug mb-4 flex-1">
-              {insightCard.headline}
-            </h3>
-            <ul className="space-y-2">
-              {(insightCard.points ?? []).map((p, i) => (
-                <li key={i} className="flex gap-2 text-sm opacity-95">
-                  <span className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center text-xs font-bold shrink-0">
-                    {p.num}
-                  </span>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: p.text.replace(
-                        /\*\*(.*?)\*\*/g,
-                        '<strong class="opacity-100">$1</strong>'
-                      ),
-                    }}
-                  />
-                </li>
-              ))}
-            </ul>
-            {insightCard.illustrationHorizontal?.src && (
-              <div className="mt-4 w-full rounded-xl overflow-hidden border border-white/20 max-h-20 aspect-[3/1] shrink-0">
-                <div className="p-2 h-full">
-                  <img
-                    src={portalImageSrc(insightCard.illustrationHorizontal.src)}
-                    alt={insightCard.illustrationHorizontal.alt}
-                    className="block w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Single CTA block – invitation to act; su onNextSlide = tikras perėjimas (ne tik dekoratyvinis tekstas) */}
-      {ctaBlock?.label &&
-        (onNextSlide ? (
-          <button
-            type="button"
-            onClick={onNextSlide}
-            className="group w-full text-left rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm transition-colors hover:bg-accent-100/90 dark:hover:bg-accent-900/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 cursor-pointer min-h-[44px]"
-            aria-label={`${ctaBlock.label}${ctaBlock.subline ? `. ${ctaBlock.subline}` : ''}`}
-          >
-            <span className="block text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
-              {ctaBlock.label}
-            </span>
-            {ctaBlock.subline && (
-              <span className="mt-2 block text-sm font-semibold text-accent-700 dark:text-accent-300 underline-offset-2 group-hover:underline">
-                {ctaBlock.subline}
-              </span>
-            )}
-          </button>
-        ) : (
-          <div
-            className="rounded-xl p-5 lg:p-6 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500 shadow-sm"
-            role="region"
-            aria-label={t('whatToDoNextAria')}
-          >
-            <p className="text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug">
-              {ctaBlock.label}
-            </p>
-            {ctaBlock.subline && (
-              <p className="mt-2 text-sm font-semibold text-accent-700 dark:text-accent-300">
-                {ctaBlock.subline}
-              </p>
-            )}
-          </div>
-        ))}
-
-      {/* Footer */}
-      <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-wrap justify-between items-center gap-3">
-        <div>
-          <div className="font-bold text-gray-900 dark:text-white">
-            {footerBrand}
-          </div>
-          {footerSub && (
-            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-              {footerSub}
-            </div>
-          )}
-        </div>
-        {sources && sources.length > 0 ? (
-          <div>
-            <button
-              type="button"
-              onClick={() => setShowSources(!showSources)}
-              aria-label={t('showSourcesAria')}
-              aria-expanded={showSources}
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2.5 text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded-lg"
-            >
-              {t('showSourcesAria')} ({sources.length}){' '}
-              {showSources ? '▲' : '▼'}
-            </button>
-            {showSources && (
-              <ul
-                className="mt-2 text-xs text-gray-500 dark:text-gray-400 space-y-1"
-                role="list"
-              >
-                {sources.map((s, i) => {
-                  const name = s.title ?? s.label ?? s.institution ?? '';
-                  const y = (s as { year?: string }).year;
-                  return <li key={i}>{y ? `${name} (${y})` : name}</li>;
-                })}
-              </ul>
-            )}
-          </div>
-        ) : (
-          <div className="text-xs text-gray-500 dark:text-gray-400 text-right">
-            {t('sourcesLabel')}: KPMG · McKinsey · Eurostat · Stat.gov.lt ·
-            AIPRM
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 const DEFAULT_PRACTICE_SUMMARY_LT: PracticeSummaryContent = {
   title: 'Mokymas Baigtas!',

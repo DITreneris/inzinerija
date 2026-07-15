@@ -24,7 +24,7 @@
 
 - [ ] **Viewport:** DevTools → Mobile (375×667 arba iPhone SE) – puslapis nesusilūžęs.
 - [ ] **Modulio skaidrė:** Pirmas modulis → 1 skaidrė – tekstas skaitomas, mygtukai paspaudžiami, navigacija (← / →) veikia.
-- [ ] **Moduliai 2 ir 3 (rekomenduojama):** Modulis 2 – bent test-intro arba test-results (radaras, kategorijų mygtukai); Modulis 3 – practice-intro arba practice-scenario (tab’ai, praktinė užduotis). Išsami mobile patikra – žr. [docs/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md](../AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md). Detalės (MOBILE_UI_UX_AUDIT, EN_LANGUAGE_STANDARD) – jei turite lokaliai docs/archive/development/.
+- [ ] **Moduliai 2 ir 3 (rekomenduojama):** Modulis 2 – bent test-intro arba test-results (radaras, kategorijų mygtukai); Modulis 3 – practice-intro arba practice-scenario (tab’ai, praktinė užduotis). Išsami mobile patikra – žr. [docs/archive/audits/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md](../archive/audits/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md). Detalės (MOBILE_UI_UX_AUDIT, EN_LANGUAGE_STANDARD) – archyvas: `docs/archive/development/MOBILE_UI_UX_AUDIT.md`, `EN_LANGUAGE_STANDARD.md`.
 
 ---
 
@@ -109,13 +109,13 @@
 
 - [ ] **Perjungimas į EN:** AppNav → EN → visi UI stringai (nav, home, moduliai, žodynėlis, apklausa) – anglų kalba. Nėra maišytos LT/EN viename vaizde.
 - [ ] **Raktų paritetas:** `src/locales/lt.json` ir `src/locales/en.json` – tie patys raktai (common, nav, home, module, quiz, glossary, modulesPage); nėra tuščių ar placeholder EN vertimų prieš release.
-- [ ] **Terminologija EN:** Vartotojui matomi EN tekstai naudoja „AI“ (ne „DI“). Žr. glossary-en.json ir CONTENT_MODULIU_ATPAZINIMAS; detalės – jei turite lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
+- [ ] **Terminologija EN:** Vartotojui matomi EN tekstai naudoja „AI“ (ne „DI“). Žr. glossary-en.json ir CONTENT_MODULIU_ATPAZINIMAS; detalės – `docs/archive/development/EN_LANGUAGE_STANDARD.md`.
 - [ ] **Moduliai 1–3 EN:** Jei `modules-en.json` naudojamas – skaidrių pavadinimai ir turinys anglų kalba; jei dar WIP – dokumentuota (pvz. EN_UI_UX_LANGUAGE_AUDIT.md).
 - [ ] **Moduliai 4–6 EN:** Jei `modules-en-m4-m6.json` naudojamas – M4, M5, M6 skaidrės ir meta anglų kalba; loader merge’ina į `modules[3]`,`[4]`,`[5]`. Patikra: `npm run audit:m46` (coverage: skaidrių ID paritetas + LT diakritikų liekanos po merge; language: hybrid tokenai, LT žodžiai, DI→AI, LT „tu“ forma). Bendras M4–9 vartas: `npm run audit:m49`.
 - [ ] **Moduliai 7–9 EN (lean + expansion):** `modules-en-m7-m9.json` — deep-merge overlay; merge kai `maxModuleId >= 7`. Patikra: `npm run audit:m79` (arba atskirai `npm run audit:en-coverage-m7-m9` lean/`--full` + `npm run audit:en-language-m7-m9`) ir `npm run audit:nav-labels` (next CTA `Continue: ...` / `Tęsti: ...` kalbos nuoseklumas); validacija – `validateModulesEnM79()` per `npm run validate:schema`. Rankinė: M7 slide 70 journey EN, M8 test klausimai EN, M9 workflow 93–94 + hub 99. Po rankinių EN pataisymų overlay **ne** regeneruoti per `build:modules-en-m7-m9`.
 - [ ] **Moduliai 10–12 EN:** `modules-en-m10-m12.json` — deep-merge overlay (failas partial struktūra, body pilnas); merge tik kai kataloge `maxModuleId >= 10`. Patikra: `npm run audit:m1012`; validacija – `validateModulesEnM1012()` per `npm run validate:schema`.
 - [ ] **Moduliai 13–15 EN:** `modules-en-m13-m15.json` — deep-merge overlay (body pilnas); merge tik kai kataloge `maxModuleId >= 13`. Patikra: `npm run audit:m1315` (coverage + language). Rankinė: M13 image→video 13.4, M14 8 klausimai, M15 quick start 150.5 ir schema 150.25 LT/EN.
-- [ ] **Glossary EN (M4–6):** `glossary-en.json` turi terminus su `moduleId` 4, 5, 6 (ai, ne DI; žr. CONTENT_MODULIU_ATPAZINIMAS). Detalės – lokaliai docs/archive/development/EN_LANGUAGE_STANDARD.md.
+- [ ] **Glossary EN (M4–6):** `glossary-en.json` turi terminus su `moduleId` 4, 5, 6 (ai, ne DI; žr. CONTENT_MODULIU_ATPAZINIMAS). Detalės – `docs/archive/development/EN_LANGUAGE_STANDARD.md`.
 - [ ] **Quiz EN:** Kai `locale === 'en'`, loaderis įkelia `quiz-en.json` – pavadinimas „Final Quiz“, 20 klausimų anglų kalba; jei failas nėra – rodomas LT quiz.
 - [ ] **Automatiniai EN testai:** Prieš release paleisti `npm run test:run` – EN kelias padengtas: `src/data/__tests__/modulesLoader.test.ts` (loadModules('en') merge M1–M6), `src/utils/__tests__/questionPoolSelector.test.ts` (selectQuestions('en'/'lt')), `src/data/__tests__/glossaryLoader.test.ts` (getGlossary('en'/'lt')), `src/components/__tests__/App.quiz.integration.test.tsx` (describe „App – EN locale smoke“).
 
@@ -183,7 +183,7 @@
 
 ## 8. Design tokens baseline regression (~1 min, automatinis)
 
-> **Įtraukta:** 2026-05-19 (Design System v0.2, E2.3). **SOT:** [`docs/development/DESIGN_SYSTEM_V0_2.md §5`](DESIGN_SYSTEM_V0_2.md). **Baseline:** [`docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](analysis/DESIGN_TOKENS_BASELINE_2026-05.md). **Skriptas:** `node scripts/audit-design-tokens.mjs` (warn-only, exit 0).
+> **Įtraukta:** 2026-05-19 (Design System v0.2, E2.3). **SOT:** [`docs/development/DESIGN_SYSTEM_V0_2.md §5`](DESIGN_SYSTEM_V0_2.md). **Baseline:** [`docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md). **Skriptas:** `node scripts/audit-design-tokens.mjs` (warn-only, exit 0).
 
 - [ ] **Paleisti audit'ą:** `node scripts/audit-design-tokens.mjs` (arba `node scripts/audit-design-tokens.mjs --json` JSON formatu) – skenuoja `src/components/**` ir `src/utils/**`, suskaičiuoja hex literal'us, inline `style={{ ... }}` ir SVG `fill`/`stroke` atvejus.
 - [ ] **Palyginti su baseline (DS Next Waves, 2026-07-08):** TOTAL findings **≤ 417** (hex ≤ 295, inline ≤ 12, svg ≤ 51, arbitrary ≤ 59). **Tendencija turi būti ↓ arba lygi.** Jei skaičius **padidėjo** – patikrinti, ar naujas hex'as turi paaiškinimo komentarą (pvz. `// v0.2 — module identity` arba `// jspdf RGB`); kitaip rollback'as task'ui, kuris pridėjo naują hex'ą (žr. plano §10 E7.4).
@@ -199,7 +199,21 @@
 - [ ] **Aktyvūs doc'ai nurodo į esamus failus:** `docs/DOCUMENTATION_INDEX.md` – SOT ir aktyvūs dokumentai be nuorodų į neegzistuojančius kelius. Nuorodos į archyvą – pvz. `docs/archive/...` arba `docs/archive/development/...`.
 - [ ] **README ir docs/README:** Nuorodos į DOCUMENTATION_INDEX, turinio SOT, RELEASE_QA_CHECKLIST – teisingos.
 - [x] **Footeriai M10 (2026-06-29):** `AUDIT_MODULES=10 node scripts/audit-footer-numbers.mjs` PASS; EN `--locale=en` merge PASS; ilgis `audit-footer-length.mjs` OK. Skaidrės 10.45 (→6), 10.48 (→7).
-- [ ] **Footeriai (optional):** Jei naujai pridedamas „Toliau – skaidrė N“ / „Next – slide N“ footer – ilgis rekomenduojama ≤ 55 simb. Žr. GOLDEN_STANDARD §3.6, [analysis/FOOTER_NEXT_SLIDE_ANALIZE.md](analysis/FOOTER_NEXT_SLIDE_ANALIZE.md).
+- [ ] **Footeriai (optional):** Jei naujai pridedamas „Toliau – skaidrė N“ / „Next – slide N“ footer – ilgis rekomenduojama ≤ 55 simb. Žr. GOLDEN_STANDARD §3.6, [analysis/FOOTER_NEXT_SLIDE_ANALIZE.md](../archive/development/analysis/FOOTER_NEXT_SLIDE_ANALIZE.md).
+
+---
+
+## Docs sync (prieš tag)
+
+> **Vadovas:** [`DOCS_MAINTENANCE.md`](DOCS_MAINTENANCE.md) · **Konkretūs diff'ai:** [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md)
+
+- [ ] `npm run test:run` → užfiksuoti N failų / M testų (`CODEBASE_WHAT_IS_DONE`, `ROADMAP`, `CHANGELOG` santrauka)
+- [ ] `DOCS_SYNC_CHECKLIST` nauja lentelė (data, N/M, Unreleased scope)
+- [ ] `CHANGELOG [Unreleased]` paruoštas `[1.4.x]` release blokui
+- [ ] `TEST_REPORT` – nėra `nauja` be statuso
+- [ ] `node scripts/validate-sot-index.mjs`
+- [ ] Dual SOT: struktūriniai pakeitimai atspindėti `turinio_pletra*` (UX polish – pakanka operacinio SOT)
+- [ ] Broken links spot-check (§1)
 
 ---
 

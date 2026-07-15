@@ -64,6 +64,6 @@
 - `docs/development/TEST_REPORT.md`
 - `docs/AUDITO_ATASKAITA_MODULIAI_1_6_MOBILE_UX.md`
 - `docs/AUDITO_ATASKAITA_MODULIAI_1_6_UI_UX_LEARNING.md`
-- `docs/development/analysis/CTA_AUDIT_M1_M4.md`
-- `docs/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md`
-- `docs/development/analysis/LT_EN_UI_KOKYBES_VERSTIMO_RIZIKOS_ANALIZE.md`
+- `docs/archive/development/analysis/CTA_AUDIT_M1_M4.md`
+- `docs/archive/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md`
+- `docs/archive/development/analysis/LT_EN_UI_KOKYBES_VERSTIMO_RIZIKOS_ANALIZE.md`

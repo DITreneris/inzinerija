@@ -6,6 +6,7 @@ import type { Module, PathStepContent, Slide } from '../../../../types/modules';
 import { PathStepSlide } from '../ContentSlides';
 import {
   PracticeIntroSlide,
+  PracticeScenarioSlide,
   type PracticeScenarioSlideInfo,
 } from '../TestPracticeSlides';
 
@@ -21,6 +22,10 @@ function getM15Slides(): Slide[] {
 
 function getM10Slides(): Slide[] {
   return modules.find((module) => module.id === 10)?.slides ?? [];
+}
+
+function getM9Slides(): Slide[] {
+  return modules.find((module) => module.id === 9)?.slides ?? [];
 }
 
 function getM12ScenarioSlides(): PracticeScenarioSlideInfo[] {
@@ -150,6 +155,53 @@ describe('TestPracticeSlides M12 practice contract', () => {
     expect(writeText).toHaveBeenCalledWith(
       expect.stringContaining('Užduotis: [APRAŠYK]. Naudok paiešką arba įrankį')
     );
+  });
+});
+
+describe('TestPracticeSlides M9 scenario defaults', () => {
+  it('uses i18n default reflection when JSON omits reflectionPromptAfter', () => {
+    const scenario = getM9Slides().find((slide) => slide.id === 101);
+    expect(scenario?.type).toBe('practice-scenario');
+    expect(
+      (scenario?.content as { reflectionPromptAfter?: string } | undefined)
+        ?.reflectionPromptAfter
+    ).toBeUndefined();
+
+    renderWithProviders(
+      <PracticeScenarioSlide
+        slide={scenario!}
+        moduleId={9}
+        onRenderTask={() => null}
+      />
+    );
+
+    expect(screen.getByText(/META: Tu esi mokymų refleksijos asistentas/)).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Nukopijuoti refleksijos promptą' })
+    ).toBeInTheDocument();
+  });
+
+  it('does not render narrativeLead for M9 even when present on scenario', () => {
+    const scenario = getM9Slides().find((slide) => slide.id === 101);
+    const withLead = {
+      ...scenario!,
+      scenario: {
+        ...scenario!.scenario!,
+        narrativeLead: 'Test flavor lead that should stay hidden for M9.',
+      },
+    };
+
+    renderWithProviders(
+      <PracticeScenarioSlide
+        slide={withLead}
+        moduleId={9}
+        onRenderTask={() => null}
+      />
+    );
+
+    expect(
+      screen.queryByText('Test flavor lead that should stay hidden for M9.')
+    ).not.toBeInTheDocument();
   });
 });
 

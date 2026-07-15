@@ -4,7 +4,7 @@
 > **Apimtis:** Moduliai 1–6 (6 Blokų sistema, Žinių patikrinimas, Praktika, Moduliai 4–6 – teorija, testas, projektas).  
 > **Fokusas:** Tik mobilus naudojimas; mokymosi ir užduoties atlikimo greitis; didžiausio poveikio patobulinimai.  
 > **Versija:** 1.0 | **Data:** 2026-03-11  
-> **Šaltiniai:** `docs/UX_AUDIT_MICRO_IMPROVEMENTS.md`, `docs/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md`, `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `src/components/ModuleView.tsx`, `AppNav.tsx`, `ModulesPage.tsx`, `ContentSlides.tsx`.
+> **Šaltiniai:** `docs/UX_AUDIT_MICRO_IMPROVEMENTS.md`, `docs/archive/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md`, `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, `src/components/ModuleView.tsx`, `AppNav.tsx`, `ModulesPage.tsx`, `ContentSlides.tsx`.
 
 ---
 
@@ -118,7 +118,7 @@
 | Dokumentas                                                  | Paskirtis                          |
 | ----------------------------------------------------------- | ---------------------------------- |
 | `docs/UX_AUDIT_MICRO_IMPROVEMENTS.md`                       | Pilnas micro-UX auditas, 30 punktų |
-| `docs/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md` | Fazių planas, Faze 1–4             |
+| `docs/archive/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md` | Fazių planas, Faze 1–4             |
 | `docs/development/GOLDEN_STANDARD.md`                       | Dizaino SOT, skaidrių schemos      |
 | `docs/development/UI_UX_AGENT.md`                           | UI/UX checklist                    |
 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                    | Donato, 20260220 mobile testas     |
@@ -144,5 +144,5 @@
 **NEXT:**
 
 - Įgyvendinti „Dabar“ bloko punktus (4 užduotys).
-- Atnaujinti `docs/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md` – pridėti skyrių „Mobile-specific“ arba nuorodą į šį auditą.
+- Atnaujinti `docs/archive/development/analysis/UX_AUDIT_IMPLEMENTATION_PLAN.md` – pridėti skyrių „Mobile-specific“ arba nuorodą į šį auditą.
 - Pakartoti mobile QA (Samsung / iPhone) su šio audito checklist.

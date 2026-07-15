@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.4]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.5]** release.                                       |
+| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.      |
 | **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.    |
 | **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.          |
 | **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.       |
@@ -37,25 +38,124 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 71 failas, 476 testai (2026-07-09). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.4** (2026-07-09). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** 72 failai, 482 testai (2026-07-15). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.5** (2026-07-15). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.4 release._
+_Įrašai po 1.4.5 release._
+
+---
+
+## [1.4.5] – 2026-07-15
+
+### Fixed
+
+- **Release gate – design tokens (2026-07-15):** `PORTAL_BEAT_COLORS` perkeltas į `diagramTokens.ts` (re-export per `portalBeatLayout.ts`); `HallucinationRatesDashboard` ir `M9DataWorkflowDiagram` – pašalinti hardcoded hex / arbitrary klasės. **Vartas:** `audit:design-tokens:gate` ✅ (406 ≤ 417).
+
+- **Release gate – flaky quiz test (2026-07-15):** `App.quiz.integration` – `waitForElementToBeRemoved` + stabilūs Modules heading assert'ai; mock'ų cleanup per `clearAllMocks`. **Vartas:** `test:run` 482/482 ✅ · `audit:release-preflight` ✅.
+
+- **M13–15 EN summary heading (2026-07-15):** `modules-en-m13-m15.json` – „Ka ismokai“ → „What you learned“ (2× summary).
+
+### Changed
+
+- **Release 1.4.5 tag:** `generate:core-data` sinchronizuotas po `modules.json` pakeitimų; `audit:m79` + `audit:m46` ✅; `npm run build` ✅.
+
+_Žemiau – Unreleased sprinto turinys (M7–M9 polish, M4 portal), įtrauktas į šį release._
+
+- **M4 sk. 61 – įrankių atmintinė grąžinta (2026-07-15):** Pašalintas stub „perkelta į Modulį 7“; atkurtas pilnas optional turinys (6 įrankiai, whyBenefit, patarimai, tipinė eiga) pagal SOT 4.2a-academic. MVP 1–6 vartotojai vėl turi atmintinę RAG bloke. M7 sk. 71.35 lieka kontekstinė kopija; cross-ref atnaujintas abiejose pusėse. **Failai:** `modules.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `turinio_pletra_moduliai_7_8_9.md` §1.1.
+
+- **M7–M9 P2 UX polish (2026-07-15):** Antras polish sluoksnis po Top 5 — **Iter 1** M7 etika (sk. 67, 67.5, 67.8, 67.3, 68: collapsible, dedup, Patikra); **Iter 2** copyable filtrai (`toolChoiceBar` + `linkedRowIndex`) sk. 734, 731, 733, 77; `ContentSlides` leidžia bar be `table`; **Iter 3** M9 sk. 93 bookends, sk. 94 Patikra, scenarijai 101/102/111/116/117, hub 99; **Iter 4** optional šakos sk. 77.5, 90, 861, 88, M7 sk. 101; **Iter 5** sk. 200 dashboard intro (`HallucinationRatesDashboard`), sk. 74 MASTER schema copy. Skriptai `patch-m79-p2-polish.mjs` + `patch-m79-p2-polish-en.mjs`. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `lint` ✅ · `test:run` 482/482 ✅.
+
+- **M7–M9 UX polish Top 5 (2026-07-15):** Sumažintas scroll ir promptų siena — M9 sk. **93** (be tekstinio 8 žingsnių dubliavimo, collapsible pavyzdys), sk. **94** (`M9WorkflowStepCopyBlock` + `m9_workflow_step_prompts` — vienas aktyvus promptas per žingsnį), M7 sk. **76** (`toolChoiceBar` + `linkedRowIndex` filtras), sk. **89**/**73** (collapsible 3a–3e, pipeline diagrama viršuje), M9 sk. **99**/**90** (neprivalomo kelio banneris, CTA → 93.1); GOLDEN §3.2 sk. **77**/**861**/**88**/**801**/**802**; hub accent CTA „Praleisti hub“. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `lint` ✅ · `test:run` 480/480 ✅.
+
+- **M7–M9 Phase 2 polish (2026-07-15):** Po M79 iteracijų — Patikra de-boilerplate (19 M7 skaidrių, 0× „grįžk prie 2️⃣“); M8 warm-up be naked `M7 sk.` refs; M7 macro map 59/59 (`m7MacroBlocks.ts`); sk. **78.5** vidinių duomenų šaka; M9 **93.1** (šaltinių katalogas) ir **93.2** (CSV valymas) `practice-scenario`; footer variant B (visible N/M slide footer M7); EN overlay sync. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `lint` ✅ · `test:run` 478/478 ✅.
+
+- **M7–M9 tobulinimo iteracijos 1–5 (2026-07-14):** Įgyvendintas M79 planas — cross-ref rewrite (725/726 dedup, be naked id), M7 footer be skaičių (variantas A), microcopy (sk. 72, 97, 67, 71.35), kelio žemėlapis sk. 71, decision tree sk. 74/89, optional „Vidiniai duomenys“ šaka, M9 praktika (i)(ii), PDF evergreen (be 48 val.), `M9DataWorkflowDiagram` horizontal card layout, M7 macro-block etiketė `ModuleView`, EN overlay sync. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `lint` ✅ · `test:run` 478/478 ✅ · `audit:m79` ✅.
+
+- **M4 sk. 53.5 Bang L Readability – dark mode SVG (2026-07-14):** Beat diagramų etiketės/caption dark fone beveik nematomos (`PORTAL_BEAT_COLORS.ink` #111827) — pataisyta per `PORTAL_BEAT_SVG` (`dark:fill-gray-100/300`) ir bendrą `portalBeatBarRow.tsx`; secondary tekstai (`muted`, kicker, source footer) → `dark:text-gray-300`. **Vartai:** `lint` ✅ · `test:run` 478/478 ✅. JSON nekeistas. Žr. `PORTAL_BEAT_DIAGRAMS.md`, `TEST_REPORT.md` § Bang L smoke.
+
+- **M4 sk. 53.5 Portal 2.1 Wave 4–5 UI polish (2026-07-14):\*\*** Post-audit pataisymai – dekoratyvus `portalNav` be fake hover (`PortalMastheadNav`: `navDecor`, `aria-hidden`, `pointer-events-none`); chapter label dark kontrastas (`getPortalSectionLabelClasses('break')` → `dark:text-gray-300`); funkcinis `PortalChapterNav` atskirtas `border-t`; DataBrief šaltiniai skaitomesni (`bodySm`); breaking ticker paslėptas mobile (`hidden sm:block`). JSON nekeistas. Žr. `PORTAL_2_1_IMPROVEMENT_GUIDE.md` §3–4.
+
+### Changed
+
+- **Dokumentacijos maintenance governance (2026-07-15):** Nauji `DOCS_MAINTENANCE.md` (sluoksniai, dual SOT, release cadence) ir `M79_PATCH_REGISTRY.md` (patch skriptai, EN index-merge taisyklė). Meta sync: testai **72/482** (`CODEBASE_WHAT_IS_DONE`, `ROADMAP`, `LEAN_INDEX`, `DOCS_SYNC_CHECKLIST`, `RELEASE_QA_RUN`). `modules.schema.json` – `toolChoiceBar`, `linkedRowIndex`; GOLDEN + LENTELIU M7 pavyzdžiai. Backlog §12 P2 DoD; `RELEASE_QA_CHECKLIST` §Docs sync. **Vartai:** `validate-sot-index` ✅.
+
+- **M7 sk. 74 / M9 workflow paaiškinimai – be „skaidrė 94“ (2026-07-14):** `m9DataWorkflowContent.ts` — context-aware tekstai M7 MASTER vs M9; pašalinti naked id (`94`, `7.16a`); `modules.json` sk. 93–94 + EN overlay. **SCHEME modernizacija** — backlog M79-23. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `lint` ✅ · `test:run` 66/66 (DiagramLocalization) ✅.
+
+- **M7 sk. 200 haliucinacijų benchmark duomenys (2026-07-14):** `hallucinationRates.ts` atnaujintas iš Vectara LLM Hallucination Leaderboard (top-10, HHEM-2.x) — seni GPT-4/GPT-3.5 modeliai pakeisti 2026 modeliais (Finix S1 32B, GPT-5.4 Nano, Gemini 2.5 Flash-Lite ir kt.); šaltinio URL → `vectara/leaderboard`; `asOfDate: 2026-07-14`; dashboard rodo \* žemai atsakymų aprėptį (Phi-4, Snowflake Arctic). **Vartai:** `lint` ✅ · `test:run` 478/478 ✅.
+  `PORTAL_TEXT.body` / `bodySm` light → `gray-700`; `PortalDataBriefRow` source per `PORTAL_TEXT.mutedXs` (be hardcoded override). Papildoma Bang L dalis — žr. Fixed (SVG dark).
+
+- **M4 sk. 53.5 Bang J+K polish (2026-07-14):** `sources[]` + MIT/Europos Komisija; ~15,8% sync; `portal-beat-awareness` anchor + teaser dedup; LT 69%/9,8% aiškintojas; ribbon/insight dedup; next-step beat body sutrumpintas; P3 masthead + bar row token. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m46` ✅ · `lint` ✅ · `test:run` 478/478 ✅. 48h retest – ⬜.
+
+- **M4 sk. 53.5 next-step-prompt B+C hybrid (2026-07-14):** `next-step-prompt` beat — 2 eil. tiltas į sk. 43 + copyable promptas (verslo analitikas → 5 punktų komandos santrauka); naujas `PortalNextStepPromptBlock.tsx`; `PromptFlowDiagram.tsx` pašalintas; copy SOT `portalBeatContent.ts` → `nextStepPrompt`. JSON title/body nekeistas. Žr. `PORTAL_BEAT_DIAGRAMS.md`.
+
+- **M4 sk. 53.5 Portal 2.1 UI audit + tobulinimo gairės (2026-07-14):** `PORTAL_2_1_UI_AUDIT.md`, `PORTAL_2_1_IMPROVEMENT_GUIDE.md`, skill `portal-21-audit.md`; Wave 4–5 implementuota (žr. Fixed). 48h retest – ⬜.
+
+- **M4 sk. 53.5 Typography Wave T1–T6 (2026-07-14):\*\*** Tipografijos suvienodinimas pagal gilaus audito planą – pašalinta „padrika“ hierarchija (tos pačios rolės skirtingi dydžiai). **SOT:** `portalSurfaces.ts` – naujas `getPortalSectionLabelClasses('break'|'nav')` (xs; break = UPPERCASE bold, nav = sentence semibold); `getPortalKickerClasses('chapter'|'rail')` deprecated alias. **T1** skyriaus etiketės: `PortalChapterBreak`, `PortalChapterNav`, `PortalHeroSidebar` („Svarbiausia“). **T2** `pullQuote` → `text-lg lg:text-xl font-semibold` (ribbon nebe „nukritusi“ po beat). **T3** hero subline `bodySm`; `takeawayCta` `text-base` (klausimas ne mažesnis už takeaway). **T4** `PortalHorizontalBarRow` – visi label `bodySm`, #1 tik semibold. **T5** `PORTAL_TEXT.body` `text-sm lg:text-base` (GOLDEN §1); `PORTAL_FOOTER.brand` size token. **T6** `PortalDataBriefRow` – 1-as stat (32,7%) `chapter` 3xl, likę `inline` 2xl. JSON nekeistas. Žr. GOLDEN §3.2d, `NEWS_PORTAL_SLIDE_53_5.md` § Typography, `M4_SK_53_5_SESSION_RETROSPECTIVE.md`, `TEST_REPORT.md` § Typography smoke (375px ⬜).
+
+- **M4 sk. 53.5 in-page anchors (2026-07-14):** `PortalChapterNav` (Duomenys · Giliau · Santrauka); sidebar „Svarbiausia“ teaser jump per `scrollTarget`; `portalSectionAnchors.ts`. Žr. NEWS_PORTAL § In-page anchors.
+
+- **M4 sk. 53.5 PromptFlow A+C hybrid (2026-07-14):** _(superseded B+C hybrid)_ Įvestis → Promptas → Rezultatas SVG; pakeista `PortalNextStepPromptBlock`. Žr. PORTAL_BEAT_DIAGRAMS.
+
+- **M4 sk. 53.5 Portal 2.1 wave 3 (2026-07-14):** Depth act – abu card'ai `PORTAL_DEPTH_CARD_VARIANT` (brand); violet tik metric/segment/kicker. Žr. GOLDEN §3.2d, PORTAL_BEAT_DIAGRAMS.
+
+- **M4 sk. 53.5 Portal 2.1 consistency polish wave 2 (2026-07-14):** Ribbon2 variant brand (Depth act budget); DataBrief inline metric + 98% violet; token'ai masthead/bullet/source footer/gap spacing; bar row tipografija; pašalintas `PortalFeaturedStat`, supaprastintas `NewsPortalPromoRibbon`; `metric.hero` removed. Žr. GOLDEN §3.2d.
+
+- **M4 sk. 53.5 Portal 2.1 DS consistency (2026-07-14):** promo ribbons + CTA → editorial surface (`getPortalEditorialSurfaceClasses`); nauji `PortalSlideCta`, `PortalInsightCard`, `portalCardShell.ts`; `portalSurfaces.ts` – `PORTAL_HEADING`, `PORTAL_FOOTER`, `getPortalInteractiveCtaClasses`; tipografijos migracija beats/sidebar/hero KPI; GOLDEN §3.2d; spalvų biudžeto išimtis per chapter act. Žr. `NEWS_PORTAL_SLIDE_53_5.md` § Portal Surface System.
+
+- **M4 sk. 53.5 Portal 2.1 surface polish (2026-07-14):** `portalSurfaces.ts` (editorial vs card surface, metric scale, spacing); `PortalImageFrame` unified foto; legacy render kelias pašalintas; `PortalBlockShell` be `readable` override; tipografijos cap youth KPI; Lietuva secondary `brand`; sidebar teaser be 98% dubliavimo; tools/youth labels be 03/04; redakcinis footerSub. Žr. `NEWS_PORTAL_SLIDE_53_5.md` § Portal Surface System.
+
+- **M4 sk. 53.5 Portal 2.1 (2026-07-14):** portalo signalai – `PortalMastheadNav`, `breakingTicker`, `heroSidebarTeasers`, `portalMeta`; hero be inline 98%; Lead gradient pašalintas; `PortalDataBriefRow` (32,7% · 20% · 98%); ribbon pull-quote; secondary foto viršuje; CONTENT redakcinis tonas. Žr. `NEWS_PORTAL_SLIDE_53_5.md` § Portal 2.1.
+
+- **M4 sk. 53.5 Rich Portal 2.0 (2026-07-14):** selective restore – 4 foto slotai (`heroImageVertical`, secondary×2, `insightCard.illustrationHorizontal`); 2-col hero editorial + gradient 32,7% virš fold; beats flat shell; editorial + React SVG + hybrid sticky lieka. Žr. `NEWS_PORTAL_SLIDE_53_5.md` § Rich Portal 2.0. _(Lead gradient superseded Portal 2.1.)_
+
+- **M4 sk. 53.5 hybrid recovery (2026-07-14):** anti-PPT over-correction fix – immersive nav be tuščios sticky juostos (slim progress + desktop FAB „Tęsti“); tipografijos floor (caption 12px, chapter/source gray-600); `mainInsightBlock` 32,7% gradient atstatytas editorial režime; ribbon `afterKpi` be stat dedup; EN overlay sinchronizuotas. Žr. TEST_REPORT regresija 8→2.
+
+- **M7–M9 mikrocopy trumpinimas (3 sprintai, 2026-07-14):** `modules.json` – sutrumpinti intro/branduolys/viz šaka tekstai; trumpas „4 Patikra“ šablonas; M9 sk. 90 intro; M9 scenarijų `reflectionPromptAfter` / `motivation` / `narrativeLead` perkelti į UI (`TestPracticeSlides` + `PracticalTask` i18n `m9Default*`); M8 801–802 bonus prompt dedupe; EN overlay sinchronizuotas per `scripts/patch-en-m7-m9-microcopy.mjs` (index-align sk. 73, 74, 92, 97, 101); migracija `scripts/migrate-m7-m9-microcopy.mjs`; **`npm run audit:m79` OK**.
+
+- **Dokumentacijos archyvas (2026-07-14):** vienkartinės analizės perkeltos į `docs/archive/development/analysis/`; UX/mobile auditai → `docs/archive/audits/`; atnaujinti `DOCUMENTATION_INDEX.md`, `DOCUMENTATION_QUICK_REF.md`, `LEAN_INDEX.md`, `docs/README.md`, `docs/archive/README.md`; nuorodos iš aktyvių doc pataisytos; `docs/development/analysis/README.md` – redirect į archyvą.
 
 ### Added
 
+- **M4 sk. 53.5 React SVG editorial beats:** `beat-diagrams/` (AwarenessGap, LithuaniaContext, `portalBeatBarRow`, `PortalNextStepPromptBlock` + `portalBeatLayout.ts` / `PORTAL_BEAT_SVG`); KPI strip – Lucide `IconChip` + JSON `iconKey`; docs `PORTAL_BEAT_DIAGRAMS.md`, `PORTAL_2_1_UI_AUDIT.md`.
+- **M4 sk. 53.5 anti-PPT komponentai:** `PortalBlockShell` + `portalBlockShellUtils` (DS `blockVariantClasses`); `PortalChapterBreak`; `PortalFeaturedStat` (inline hero stat).
+- **M4 sk. 53.5 Satori beat pipeline:** `scripts/generate-portal-beats.mjs`, `data/satori/portal-beats.yaml`, 3 editorial templates; planas `PORTAL_BEAT_SATORI_PLAN.md`.
+- **M4 sk. 53.5 news-portal editorial scroll:** `immersive` režimas (ModuleView slepia course H1/badge); `editorialBeats` (3) + `promoRibbons` (2); nauji komponentai `NewsPortalEditorialBeat`, `NewsPortalPromoRibbon`, refactor į `src/components/slides/news-portal/`; 3 meme PNG (`di_portal_meme_01–03`); storyboard docs `NEWS_PORTAL_SLIDE_53_5.md`; GOLDEN_STANDARD §3.5 papildymas.
 - **M7 lentelių migracija (6 sekcijos):** Markdown pipes `body` → canonical `section.table` skaidrėse 734 (sprendimų filtrai + `toolChoiceBar`), 78, 84, 76, 104, 106; EN overlay `modules-en-m7-m9.json` sinchronizuotas; `npm run audit:markdown-tables` prevencijos vartas; `LENTELIU_STANDARTAS.md` §2/§5 atnaujinti.
 - **Turinys + DS backlog sprint (Banga 0–4):** L1 lentelių checklist `TEST_REPORT.md`; M5 sk.47 `artifactDownload` + `DownloadTemplateButton.tsx` (.txt šablonas LT/EN); M4 sk.61 `optional: true` (RAG įrankiai) + sk.63.7 „Papildomas skaitymas“; refleksijos META/INPUT/OUTPUT M8 sk.82, M10.8, M11 sk.112, M13.9, M14 sk.142 (`TestResultsReflectionBlock`); M14 `TestKnowledgeScopeDiagram` deep-link į M13; `ContentSlides` i18n (`tableComparisonAria`, `choiceSelected`, `strengthBadge`); UX-MOB-1 `scrollToFirstAction` išplėtimas; W7d `getContentBlockVariantClasses` help tabs / whyBenefit.
 - **Backlog sprint 2 (DIA-04, Mobile P2, DEF-2, RAG):** M10 `ThreeAStrategy` 5% juosta, `ThreeLabs` connector rodyklės + `diagramTokens`; `TriggerFlow` webhook polish; `RadarChart` i18n aria + 375px; M1 sk.8–11 „Kodėl tai veikia“ sutrumpinta; RAG sk.61 → M7 **71.35** (optional), M4:61 stub nukreipimas; M8:82 EN reflection overlay.
 
 ### Changed
 
+- **M4 sk. 53.5 anti-PPT overhaul (P0+P1):** `PortalBlockShell` visiems storyboard blokams; redakcinis hero (`PortalFeaturedStat`, pašalintas `heroImageVertical`); immersive sticky nav (desktop: progress + Tęsti; mobile: be top counter); `PortalChapterBreak` (Duomenys/Giliau/Santrauka); KPI strip 4→2 (56% + 20%); metric dedup (32,7% ribbon, ne KPI); secondary 02 be foto; `NEWS_PORTAL_SLIDE_53_5.md` Anti-PPT taisyklės.
+- **M4 sk. 53.5 03/04 component split (Variant B):** `PortalRankingBlock` + `PortalHeroKpiBlock`; hero ~15,8% darbe; `youthSegmentsLabel` + `youthClosingInsight`; insight point 02 atnaujintas; EN overlay sinchronizuotas.
+- **M4 sk. 53.5 03/04 polish:** `toolsInsight` + `youthHeroInsight` derived insights; 04 stacked hero be foto; `PortalHorizontalBarRow` komponentas.
+- **M4 sk. 53.5 pilnas slide polish (2026-07-13):** beats 2–3 golden pattern (lithuania horizontal bars +36,3 pp, next-step be pageBg); SecondaryCards/Tools/Darbuotojai/InsightCard `border-l-4` + IconChip tools; copy dedup, insight Santrauka 3 punktai, footer be emoji.
+- **M4 sk. 53.5 awareness-gap polish:** SVG row geometry (caption virš juostos), `border-l-4` beat shell, pašalintas vidinis diagram chrome, inline 48 proc. punktų, HTML šaltinio footer, body dedup.
+- **M4 sk. 53.5 CONTENT softinimas (2026-07-14):** awareness-gap 86/38/48 – „illustracinė suvokimo spraga“, tendencijų disclaimer; EN `gapUnit` → `pp`.
+- **M4 sk. 53.5 beats:** PNG/Satori → React SVG; pašalinti `editorialBeats[].image` ir KPI emoji; Satori planas pažymėtas deprecated.
 - **Microcopy (DEF-2 dalinai):** M4 sk.61 Trumpai/Patarimai sutrumpinti; M6 sk.68 schema body sutrumpintas; M4 sk.63.7 papildomas skaitymas atskirtas nuo branduolio.
 - **EN overlay sinchronas:** `modules-en-m4-m6.json` (sk.61 optional, 63.7, 47 artifactDownload); `modules-en-m10-m12.json` (M11:112 reflection); `modules-en-m13-m15.json` (M14:142 reflection).
+
+### Docs / lessons learned (M4 sk. 53.5, 2026-07-13)
+
+- **Typography Wave (2026-07-14):** pilna tipografijos matrica `NEWS_PORTAL_SLIDE_53_5.md`; GOLDEN §3.2d ladder + metric `chapter` naudojimas; regresijos guardrail – min matomas tekstas ≥12px, section label kontrastas gray-600.
+- **Bang L Readability (2026-07-14):** `PORTAL_BEAT_SVG` dark-aware fill; secondary text floor; `M4_SK_53_5_SESSION_RETROSPECTIVE.md` Bang L.
+- **Retrospektyva:\*\*** `docs/development/M4_SK_53_5_SESSION_RETROSPECTIVE.md` – 3 bangos (editorial scroll → React SVG → user-test polish), failų mapa, atviri darbai, DoD.
+- **Anti-PPT sesija (2026-07-13):** testuotojo audit (LMS rėmas + ad-hoc kortelės + trijų kolonų hero) → P0+P1 planas; `NEWS_PORTAL_SLIDE_53_5.md` §Anti-PPT; `TEST_REPORT.md` §48h anti-PPT protokolas (portal ≥70%, PPT ≤30%).
+- **Agentų pamokos:** atnaujinti `.cursor/skills/{orchestrator,ui-ux-agent,user-journey-agent,coding-agent,content-agent,data-agent,qa-agent,code-review-agent}/lessons.md` (2026-07-13 anti-PPT).
+- **TEST_REPORT:** awareness-gap round 1–2 + anti-PPT 48h protokolas (verdict ⬜ pending; pre-retest baseline 2026-07-14).
+- **TODO:** §1.0d – CONTENT softinimas ✅; PNG cleanup ✅; 48h retest ⬜ paruošta.
+- **sot_index.json:** `m4_sk_53_5_news_portal` content SOT entry.
+- **AGENTS.md:** nuoroda į news-portal feature docs ir mixed-task pipeline šiam slide.
+
+### Removed
+
+- **M4 sk. 53.5 PromptFlowDiagram (2026-07-14):** `PromptFlowDiagram.tsx` — pakeistas `PortalNextStepPromptBlock` (B+C hybrid).
+- **M4 sk. 53.5 deprecated Satori PNG:\*\*** pašalinti `public/di_portal_meme_01–03.png` (pakeisti React SVG `beat-diagrams/`).
 
 ### Fixed
 
@@ -123,7 +223,7 @@ UX Banga 1 (M1/M7/M10/M13 interaktyvumas), M13–15 Turinio inžinerijos kelias 
 - **M10–12 schemų P1 sprintas:** pridėti `m10_workflow_spec` ir `m10_incident_playbook` React diagramų blokai; `m10TaxonomyLayout.ts` + `m10LearningLoopLayout.ts` geometrijos SOT; `M10LearningLoopBlock` – 4 makro žingsniai per `InteractiveDiagramShell`; `M12MultiAgentSchemaBlock` – 6 žingsnių interaktyvus kelias su HTML nav ir pointer-only SVG hit zonomis; `diagramRenderers.test.tsx` + `DiagramLocalization.test.tsx` regresija naujiems raktams.
 - **M10–12 Max-ROI agentų kelio atnaujinimas:** M10 papildytas uždaro mokymosi ciklo skaidre ir React diagrama (`m10_learning_loop`), o M12 prompt-first kelias papildytas Įgūdžio paketu ir grąžos iš investicijų (ROI) mini skaičiuokle. M11 `m11-q1` pakeistas į diagnostinį situacinį klausimą apie šaltinių / įrankių taisykles.
 - **M7 skaidrė 734 „Sprendimų filtrai“:** naujas branduolio (core) turinys – 5 sprendimų filtrų grupės (Tinka/Netinka, Būtina/Svarbu/Norima/Ne dabar, Greiti laimėjimai, Testuok/Investuok/Atmesk, nuorodos į SWOT/80-20/„Kodėl?“/Rizika-Nauda) su 4 CopyButton promptais. SOT: `docs/turinio_pletra_moduliai_7_8_9.md` §8.1a; seka: `docs/MODULIO_7_SKAIDRIU_EILES.md` (branduolys 27→28); žodynėlis +4 terminai (`glossary.json`, `glossary-m1-m9.json`); M9 scenarijų 6/7 kontekstas susietas su 734.
-- **M10–12 ROI track:** pridėtas marketingo turinio panaudojimo brief (`docs/development/analysis/M10_12_CONTENT_REUSE_BRIEF.md`), `comingSoonModules.ts` + neaktyvios M10–12 „Ruošiama“ kortelės tier-9 bundle (kai realūs M10–12 moduliai nėra įkelti), ir M11/M12 regresijos testai (`TestPracticeSlides.m11/m12.test.tsx`) agentų kelio klausimų bei praktikos vartams.
+- **M10–12 ROI track:** pridėtas marketingo turinio panaudojimo brief (`docs/archive/development/analysis/M10_12_CONTENT_REUSE_BRIEF.md`), `comingSoonModules.ts` + neaktyvios M10–12 „Ruošiama“ kortelės tier-9 bundle (kai realūs M10–12 moduliai nėra įkelti), ir M11/M12 regresijos testai (`TestPracticeSlides.m11/m12.test.tsx`) agentų kelio klausimų bei praktikos vartams.
 - **M10 agentų kelio checkpoint'ai:** pridėti 3 `path-step` micro-win žingsniai (agentų ciklas, rolės / handoff, agentinis promptas) ir `pathLabel` palaikymas, kad M10 rodytų „Agentų inžinerijos kelias“, o M7 default liktų nepakitęs.
 - **M11 bonus mini-praktika:** po testo pridėta optional bonus skaidrė „agento pipeline per 5 min“ (koordinatorius → specialistas → vertintojas), su promptų rinkiniu ir pasiruošimu M12 prompt-first startui.
 - **M12 120.5 React diagrama:** `M12MultiAgentSchemaDiagram` + `M12MultiAgentSchemaBlock` + `m12MultiAgentSchemaContent.ts`; registruota per `diagramRenderers.tsx` (`m12_multi_agent_schema`); skaidrė 120.5 LT/EN – `sections[].image`.
@@ -283,7 +383,7 @@ Post-1.4.0 patch: Production M1–9 LT/EN audit gates (`audit:m49`), Tu-form har
 - **`npm run audit:m46`:** `audit:en-coverage-m4-m6` (skaidrių ID paritetas + LT diakritikų liekanos po merge) + `audit:en-language-m4-m6` (hybrid tokenai, LT žodžiai, DI→AI, LT „tu“ forma). Nauji skriptai [`scripts/audit-en-coverage-m4-m6.mjs`](scripts/audit-en-coverage-m4-m6.mjs), [`scripts/audit-en-language-m4-m6.mjs`](scripts/audit-en-language-m4-m6.mjs).
 - **`npm run audit:m49`:** `audit:m46` + `audit:m79` – bendras Production M1–9 EN/LT kalbos vartas.
 - **`scripts/lib/m79-language-rules.mjs`:** `auditLtString` nebeapribota M7–9 (apima M1–9, modulių apimtį valdo `auditLtModules`); pridėti LT-žodžių šablonai (`Rezultatas`, `Kada naudoti`, `Metodinis/Agentinis promptas`); leidžiamas LT „DI (AI)“ gloss; praleidžiami išorinių šaltinių pavadinimai (`sources[N].title`).
-- **Ataskaita:** [`docs/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md`](docs/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md).
+- **Ataskaita:** [`docs/archive/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md`](docs/archive/development/analysis/AUDIT_M1-M9_LT_EN_2026-06.md).
 - **Docs:** `AGENTS.md`, `RELEASE_QA_CHECKLIST.md` §5c – `audit:m46` / `audit:m49`.
 
 ### Fixed – M1/M4–6 LT/EN kalba (audit follow-up)
@@ -555,7 +655,7 @@ _(Palikta būsimiems pataisymams — žr. git istoriją virš [v0.2.0].)_
 - **`ModulesPage.tsx`** (E5.4): top stripe iš `module.accent`; `practice` level → emerald; Eyebrow naudoja `moduleAccent`.
 - **`SlideContent.tsx` + `ActionIntroSlide.tsx`** (E5.5): Eyebrow virš intro hero su modulio ikona ir accent.
 - **`ContentSlides.tsx` `SectionBreakSlide`** (E5.6): `sectionNumber` badge iš `moduleAccent`; hero/spinoff nepakeisti.
-- **`docs/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`** (E5.7): 12 screenshot checklist + WCAG / GOLDEN_STANDARD §2.2 patikra.
+- **`docs/archive/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`** (E5.7): 12 screenshot checklist + WCAG / GOLDEN_STANDARD §2.2 patikra.
 - **Helper:** `scripts/sync-module-identity-fields.mjs` — JSON sinchronas (pakartotiniems atnaujinimams).
 
 ### Added (2026-05-19) – Design System v0.2 – Etapas E4 (Component normalization)
@@ -576,9 +676,9 @@ _(Palikta būsimiems pataisymams — žr. git istoriją virš [v0.2.0].)_
 
 - **`scripts/audit-design-tokens.mjs`** (E2.1, CODING_AGENT): pridėtas `--verbose` flag'as – atspausdina per-finding eilutes formatu `path:line  [category]  preview` (atitinka plano §5 E2.1 exit-kriterijų #2). Skripto detekcija nepakitusi (hex `#abc`/`#abcdef`/`#aabbccdd`, inline `style={{ color/background/boxShadow/fill/stroke }}`, SVG `fill="#..."`/`stroke="#..."`); warn-only (`exit 0`); skenuoja `src/components/**` ir `src/utils/**`, praleidžia `*.test.tsx`, `*.d.ts`.
 - **`package.json`** (E2.1): pridėtas `"audit:design-tokens": "node scripts/audit-design-tokens.mjs"` script alias – aktyvuoja `RELEASE_QA §8` paskutinę checkbox eilutę (`npm run audit:design-tokens`).
-- **`docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`** (E2.2, QA_AGENT, naujas): užfiksuotas v0.2 pradinės būklės token inventory – **TOTAL 480 findings** (351 hex + 13 inline style + 116 SVG fill/stroke) **164 failuose**, **41 failas** su radiniais > 0. Pagal direktorijas: `slides/shared/` 91.7 % (440/480), `slides/types/` 4.2 %, `components/` 2.1 %, `utils/` 2.1 %. Top-5 „dirtiest" failai: `CustomGptProcessDiagram.tsx` (42), `LlmArchDiagramDiagram.tsx` (25), `M10SpecIncidentDiagram.tsx` (24), `LlmAutoregressiveDiagram.tsx` (23), `M13RuleOfThirdsDiagram.tsx` (20) – sudaro 27.9 % visų radinių; konsolidacija planuojama v0.3 (Backlog **B1** – `diagramTokens.ts`). Dokumentas naudojamas **E7.4** release regression patikrai.
+- **`docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-05.md`** (E2.2, QA_AGENT, naujas): užfiksuotas v0.2 pradinės būklės token inventory – **TOTAL 480 findings** (351 hex + 13 inline style + 116 SVG fill/stroke) **164 failuose**, **41 failas** su radiniais > 0. Pagal direktorijas: `slides/shared/` 91.7 % (440/480), `slides/types/` 4.2 %, `components/` 2.1 %, `utils/` 2.1 %. Top-5 „dirtiest" failai: `CustomGptProcessDiagram.tsx` (42), `LlmArchDiagramDiagram.tsx` (25), `M10SpecIncidentDiagram.tsx` (24), `LlmAutoregressiveDiagram.tsx` (23), `M13RuleOfThirdsDiagram.tsx` (20) – sudaro 27.9 % visų radinių; konsolidacija planuojama v0.3 (Backlog **B1** – `diagramTokens.ts`). Dokumentas naudojamas **E7.4** release regression patikrai.
 - **`docs/development/RELEASE_QA_CHECKLIST.md`** (E2.3, QA_AGENT): pridėtas naujas **§8 „Design tokens baseline regression"** (~1 min, automatinis) – 4 checkbox eilutės (paleisti audit'ą, palyginti su baseline ≤480, top-5 nepakitę, npm script alternatyva). Nuoroda į `DESIGN_TOKENS_BASELINE_2026-05.md`. Skriptas warn-only – NEblokuoja `npm run build` ar CI.
-- **`docs/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`** (E3.1, CODE_REVIEW_AGENT, naujas): 5 dublikatų lentelė su canonical sprendimais – Kortelė (`<Card />`), CTA mygtukas (`<CTAButton />`), Badge (CSS kol kas, JSX primitive – v0.3 backlog'as), Banner/Callout (`<Banner />`, po E3.3 – 4 variantai), Input (CSS kol kas, 1 naudotojas). Naudotojų skaičiaus apytiksliai (`rg`-based, reproducibilumo komandos pateikiamos): `card-hover` ×5, `btn-primary` ~26, `btn-secondary` ~27, `badge-{brand,accent,success,slate}` ~9, inline `border-l-4` 161 atvejis 28 failuose, `.input` 1 atvejis. **Esminis radinys:** visi 3 JSX primitive'ai (`<Card />`, `<CTAButton />`, `<Banner />`) šiandien turi **0 vartotojų** – v0.2 yra konsolidacijos pradžia, ne pabaiga; migracija – v0.3.
+- **`docs/archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`** (E3.1, CODE_REVIEW_AGENT, naujas): 5 dublikatų lentelė su canonical sprendimais – Kortelė (`<Card />`), CTA mygtukas (`<CTAButton />`), Badge (CSS kol kas, JSX primitive – v0.3 backlog'as), Banner/Callout (`<Banner />`, po E3.3 – 4 variantai), Input (CSS kol kas, 1 naudotojas). Naudotojų skaičiaus apytiksliai (`rg`-based, reproducibilumo komandos pateikiamos): `card-hover` ×5, `btn-primary` ~26, `btn-secondary` ~27, `badge-{brand,accent,success,slate}` ~9, inline `border-l-4` 161 atvejis 28 failuose, `.input` 1 atvejis. **Esminis radinys:** visi 3 JSX primitive'ai (`<Card />`, `<CTAButton />`, `<Banner />`) šiandien turi **0 vartotojų** – v0.2 yra konsolidacijos pradžia, ne pabaiga; migracija – v0.3.
 - **`src/index.css`** (E3.2, CODING_AGENT): 8 utility'ams pridėti `/* @deprecated v0.2 — ... */` komentarai – `.btn-primary`, `.btn-secondary`, `.btn-accent` (canonical: `<CTAButton variant="..." />`; klasės **lieka kaip canonical primitive bekendas** – `CTAButton.tsx` vidiniai per `variantClasses` jas naudoja); `.card`, `.card-hover` (canonical: `<Card />`); `.badge`, `.badge-brand`, `.badge-accent` (canonical: laukti Badge primitivo v0.3 arba inline Tailwind). **Kodas NEšalinamas** – egzistuojantys ~50+ `.btn-*` ir `.card*` naudotojai veikia toliau. NEpalietama: `.glass-card`, `.hover-card`, `.input`, `.badge-success`, `.badge-slate`, `.mono`, `.btn-hero-cta`.
 - **`src/components/ui/Banner.tsx`** (E3.3, UI_UX_AGENT): `BannerVariant` papildytas opt-in `terms` variantu (slate paletė: `bg-slate-50 dark:bg-slate-900/20 border-l-4 border-slate-500 text-slate-900 dark:text-slate-100`) – atitinka GOLDEN_STANDARD §2.2 blockVariant `terms`. Egzistuojantys 3 variantai (`info`/`success`/`warning`) nepakeisti. JSDoc pažymėtas `@since v0.2`. NEbūtina taikyti existing slide'uose (opt-in); pre-flight `rg "BannerVariant"` patvirtino, kad nėra exhaustive switch'ų, kurie sulaužytų TS strict.
 - **Patikra (Iter 1 + Iter 2):** `npm run lint` OK; `npm run typecheck` OK; `npm run test:run` 30 file/218 testai ✓; `npm run build` sėkmingas; `npm run audit:design-tokens` TOTAL=480 (nepakitęs po visų pakeitimų – CSS komentarai ir TS tipo praplėtimas neprideda hex/inline/svg literalų); `npm run validate:schema` OK (13 JSON failų). Fail-safe rule §1 (≤5 failų): Iter 1 = 3 failai, Iter 2 = 2 failai. Rule §2 (turinio neliečimo): jokių `modules.json`/`lt.json`/`en.json`/`turinio_pletra*.md` keitimų. Rule §6 (veikia—nelaužti): `summary`, `section-break recap`, `Diagram+Block`, `lazyWithRetry`, `validate:schema` neliečiama.
@@ -778,7 +878,7 @@ Po skaidrės 67.5 (Saugumas), prieš 67.8 (Haliucinacijos) – vizuali 5 žingsn
 **LT locale ir susiję šaltiniai: Input blokas (KONKREČIUS), Quality hero, praktikos hint**
 
 - **`src/locales/lt.json`:** `blockInputBody` – **KONKRETIUS** → **KONKREČIUS** (galininkas prie „duomenis“); `blockQualityHero3` – **nuodyti** → **nurodyti**; `practiceTasksHint` – sutvarkytas linksnių derinimas ir **generatyvinio** → **generatyvinį** (prie „įrankį“).
-- **`docs/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md`:** citata sinchronizuota su **KONKREČIUS**.
+- **`docs/archive/development/analysis/MODULIO_1_EN_UI_DIAGNOZE.md`:** citata sinchronizuota su **KONKREČIUS**.
 - **`scripts/block_slides_extract.txt`:** ekstrakte **KONKREČIUS** (sinchronas su UI).
 
 ### Fixed (2026-03-22)
@@ -924,7 +1024,7 @@ Uždarytas sisteminis M1-M6 bug bundle, kuris taiso ne pavienes skaidres, o bend
 - **`src/components/slides/types/ContentSlides.tsx` (2 banga):** Papildomai išvalyti likę locale fallback tekstai bendruose `content` rendererio keliuose: `Choose your journey`, `Expand all`, `Collapse all`, `When and how to use`, `Open in new tab`, `View tools`, `Practice: fix the prompt`, `Your corrected version`, `Context engineering pipeline diagram`.
 - **`src/components/slides/shared/InstructGptQualityBlock.tsx`, `WorkflowChainsBlock.tsx`, `FigmaEmbed.tsx`:** Uždaryti likę shared locale leak'ai, įskaitant `aria-label` ir fallback tekstus.
 - **`src/locales/lt.json`, `src/locales/en.json`:** Pridėti nauji raktai `stepper` ir `contentSlides` namespace'ams (`diagramTitle`, `diagramStep*`, `promptTypesHeroTitle`, `promptTechniquesLogicTitle`, `figmaDiagramTitle`, `mainTakeawaySummaryAria`, `journeyHeading`, `expandAllLabel`, `presentationToolsHint`, `openInNewTabLabel`, `viewToolsLabel` ir kt.).
-- **`docs/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`:** Nauja M1-M6 audit coverage matrica su `audited / partial / missing` būsena ir po-bundle snapshot.
+- **`docs/archive/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`:** Nauja M1-M6 audit coverage matrica su `audited / partial / missing` būsena ir po-bundle snapshot.
 - **`docs/development/TEST_REPORT.md`:** Dokumentuotas bug bundle rezultatas ir automatinės patikros įrodymai.
 
 ### Added (2026-03-14)
@@ -1388,7 +1488,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 - **ProcessStepper.tsx:** CUSTOM_GPT_STEPS LT – visi description, tip ir actionChecklist pereiti į Tu formą (Nuspręskite→Nuspręsk, Įveskite/įklijuokite/parašykite→Įvesk/įklijuok/parašyk, Pridėkite/įkelkite/prijunkite→Pridėk/įkelk/prijunk, Išbandykite/Užduokite/publikuokite→Išbandyk/Užduok/publikuok, Naudokite/stebėkite/tobulinkite→Naudok/stebėk/tobulink).
 - **stepExplanations.ts:** DI_PREZENTACIJOS_STEP_EXPLANATIONS LT – Apibrėžkite, Naudokite, nukopijuokite, Įveskite, Pridėkite, patikrinkite pakeisti į vienaskaitos 2-as asmuo.
 - **Locale (lt.json, en.json):** vaizdoGen.checkText (grįžkite/pakeiskite→grįžk/pakeisk), testPractice.passedMessageDefault (Galite→Gali), selfAssessmentDesc (pažymėkite, pritaikėte→pažymėk, pritaikei), naujas testPractice.tipUnknownAnswer (LT/EN).
-- **TestPracticeSlides.tsx:** Patarimo tekstas per t('testPractice:tipUnknownAnswer'); „Jūsų pasirinkimas“ per t('testPractice:yourChoiceLabel'). Planas: docs/development/PLAN_JUS_TU_DI_AI_SLIDES.md.
+- **TestPracticeSlides.tsx:** Patarimo tekstas per t('testPractice:tipUnknownAnswer'); „Jūsų pasirinkimas“ per t('testPractice:yourChoiceLabel'). Planas: docs/archive/development/PLAN_JUS_TU_DI_AI_SLIDES.md.
 
 ### Added (2026-03-10)
 
@@ -1407,7 +1507,7 @@ Vartotojas EN režime matė dešimtis lietuviškų žodžių skaidrėse, teste, 
 
 **Planas Jūs→Tu ir DI/AI skaidrėse**
 
-- **docs/development/PLAN_JUS_TU_DI_AI_SLIDES.md:** Konkretus planas – konfigų failai (workflowComparisonConfig, stepExplanations, diagramų aria ir kt.) in-place pakeitimai; ProcessStepper CUSTOM_GPT_STEPS lentelė; nauji/pataisyti locale raktai (stepper, testPractice, contentSlides, celebration); komponentai (ContentSlides, TestPracticeSlides, TrueFalseQuestion/McqQuestion/ScenarioQuestion, Celebration, PracticalTask); įgyvendinimo fazės ir grep patikra. Pagal PAPRASTOS_KALBOS_GAIRES §4.
+- **docs/archive/development/PLAN_JUS_TU_DI_AI_SLIDES.md:** Konkretus planas – konfigų failai (workflowComparisonConfig, stepExplanations, diagramų aria ir kt.) in-place pakeitimai; ProcessStepper CUSTOM_GPT_STEPS lentelė; nauji/pataisyti locale raktai (stepper, testPractice, contentSlides, celebration); komponentai (ContentSlides, TestPracticeSlides, TrueFalseQuestion/McqQuestion/ScenarioQuestion, Celebration, PracticalTask); įgyvendinimo fazės ir grep patikra. Pagal PAPRASTOS_KALBOS_GAIRES §4.
 
 **Įgyvendinta (Fazės 1–4):** Fazė 1 – konfigai (workflowComparisonConfig, stepExplanations, ragDuomenuRuosimasLayout, diPrezentacijosWorkflowConfig, LlmAutoregressiveDiagram, TurinioWorkflowDiagram, RlProcessDiagram, MatchingQuestion, ProcessStepper CUSTOM*GPT_STEPS LT). Fazė 2 – locale (stepper, testPractice, contentSlides, celebration) lt.json/en.json. Fazė 3 – komponentai (ContentSlides, TestPracticeSlides, quiz/Celebration/PracticalTask). Fazė 4 – grep patikra. **Detalus įrašas:** žr. \_Changed (2026-03-10) – LT kreipinys Jūs→Tu* aukščiau.
 
@@ -3141,7 +3241,7 @@ Remiantis vartotojų testais su 2 dalyviais (Moduliai 1-3): `20260209_user_tests
 
 **2026-02-09 (Modulio 1 Advanced skaidrės – veiksmo intro)**
 
-- **Variantas B įgyvendintas:** Skaidrėms 11 (Advanced Parameters) ir 18 (Advanced Parameters II) pridėtas viršutinis veiksmo blokas (Trumpai, Daryk dabar, Patikra) iš JSON. Tipai: `AdvancedVeiksmoIntro`, `AdvancedVeiksmoIntroContent` (`modules.ts`). `content.veiksmoIntro` skaidrėms 11 ir 18 – `modules.json`. `BlockSlides.tsx`: `VeiksmoIntroBlock`, abu Advanced komponentai priima `slide` ir rodo intro viršuje; esamas turinys (lentelės, pavyzdžiai, details) nepakeistas. Analizė: `docs/MODULIO_1_ADVANCED_SKAIDRIU_VEIKSMO_PRAKTIKOS_ANALIZE.md`.
+- **Variantas B įgyvendintas:** Skaidrėms 11 (Advanced Parameters) ir 18 (Advanced Parameters II) pridėtas viršutinis veiksmo blokas (Trumpai, Daryk dabar, Patikra) iš JSON. Tipai: `AdvancedVeiksmoIntro`, `AdvancedVeiksmoIntroContent` (`modules.ts`). `content.veiksmoIntro` skaidrėms 11 ir 18 – `modules.json`. `BlockSlides.tsx`: `VeiksmoIntroBlock`, abu Advanced komponentai priima `slide` ir rodo intro viršuje; esamas turinys (lentelės, pavyzdžiai, details) nepakeistas. Analizė: `docs/archive/MODULIO_1_ADVANCED_SKAIDRIU_VEIKSMO_PRAKTIKOS_ANALIZE.md`.
 
 **2026-02-09 (Dar 3 skaidrės – veiksmo modelis: 49, 65.5, 58)**
 

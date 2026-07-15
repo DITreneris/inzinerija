@@ -26,7 +26,7 @@ Papildomai (rankinė patikra): **section-break** `sectionNumber` badge — `modu
 
 ## Screenshot checklist (12 + dark)
 
-Įkelti į `docs/development/analysis/screenshots/module-identity-2026-05/`:
+Įkelti į `docs/archive/development/analysis/screenshots/module-identity-2026-05/`:
 
 | #   | Modulis | Vieta                | Light                  | Dark                  |
 | --- | ------- | -------------------- | ---------------------- | --------------------- |

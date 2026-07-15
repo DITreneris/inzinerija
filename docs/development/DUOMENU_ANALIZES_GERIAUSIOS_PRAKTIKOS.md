@@ -36,4 +36,4 @@ Ankstesnis atskiras dokumentas aprašė Duomenų analizės kelio pedagogiką (02
 
 ## Istorinis šaltinis
 
-Detalės iš seno atskiro failo (jei reikia) – lokaliai `docs/archive/development/` (ne repo). **Nenaudoti** kaip SOT.
+Detalės iš seno atskiro failo (jei reikia) – `docs/archive/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md`. **Nenaudoti** kaip SOT.

@@ -1,9 +1,10 @@
 ﻿# Mokymų kurso (Moduliai 1–15) analizė ir apibendrinimas
 
 > **Paskirtis:** Vienas dokumentas – kas gerai, kas negerai, ko trūksta, ko per daug, SWOT, pasiūlymai ir rekomendacijos kiekvienai mokymų daliai, low-hanging fruits.  
-> **Šaltiniai:** DOCUMENTATION*INDEX, CONTENT_MODULIU_ATPAZINIMAS, modules.json, turinio_pletra\*.md, ANALIZE_MODULIAI*\*\_UI_UX_USABILITY, USER_JOURNEY ataskaitos, VARTOTOJU_ATSILIEPIMAI_BENDRAS, ROADMAP, MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS, CURRICULUM_AGENT, GOLDEN_STANDARD.  
+> **Šaltiniai:** DOCUMENTATION_INDEX, CONTENT_MODULIU_ATPAZINIMAS, modules.json, turinio_pletra\*.md, USER_JOURNEY ataskaitos (archyvas), VARTOTOJU_ATSILIEPIMAI_BENDRAS, ROADMAP, `docs/archive/development/MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS.md` (istorinė), CURRICULUM_AGENT, GOLDEN_STANDARD.  
 > **Data:** 2026-02-15  
 > **Būklės atnaujinimas (2026-06-30):** M7–9 **production bundle** (`npm run build:production`, tier 9, release 1.4.0+). Žr. `DOCUMENTATION_INDEX.md` §3, `CODEBASE_WHAT_IS_DONE.md`. Likusios rekomendacijos (lean M7, M8 scenarijai) – turinio tobulinimas, ne deploy blokas.
+> **Būklės atnaujinimas (2026-07-15):** M7–9 production tier 9 patvirtintas; Phase 2 + P2 UX polish įgyvendinti (`07_08_09_backlog.md` §11–12). Likęs gap: M7 apimties lean (turinys), rankinis 375px smoke – ne deploy blokeris.
 
 ---
 
@@ -69,10 +70,10 @@
 
 ## 6. SWOT
 
-|             | Stiprybės                                                                                                                                                                                                              | Silpnybės                                                                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Viduje**  | Aiški 6 blokų ir Learn→Test→Practice struktūra; stiprus SOT ir dokumentacija; CopyButton ir praktiniai šablonai; trys diferencijuoti keliai (DA, Agentai, Turinys); santraukos 5 blokai ir refleksija.                 | M4 Custom GPT ir RAG trintis; M7 per didelė apimtis; „Kur pritaikyti?“ ir sandbox dar ne visur; vizualinis triukšmas; M7–9 būklė (produkcija vs planuojama) neaiški. |
-| **Išorėje** | **Galimybės:** B2B mokymai (56 m. vadovas, struktūra); video/micro formatas (25–35 m.); „Kur pritaikyti?“ ir role-first – diferenciacija; automatizavimo įrankiai (AUTOMATIZAVIMO_IRANKIAI_VERSLUI) – papildoma vertė. | **Gresmės:** Konkurencija nuo „greito rezultato“ formatų; overwhelm iš per daug turinio (M7); segmentas „tingi skaityti“ – drop-off.                                 |
+|             | Stiprybės                                                                                                                                                                                                              | Silpnybės                                                                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Viduje**  | Aiški 6 blokų ir Learn→Test→Practice struktūra; stiprus SOT ir dokumentacija; CopyButton ir praktiniai šablonai; trys diferencijuoti keliai (DA, Agentai, Turinys); santraukos 5 blokai ir refleksija.                 | M4 Custom GPT ir RAG trintis; M7 per didelė apimtis; „Kur pritaikyti?“ ir sandbox dar ne visur; vizualinis triukšmas. _(M7–9 production: ✅ 2026-07-15)_ |
+| **Išorėje** | **Galimybės:** B2B mokymai (56 m. vadovas, struktūra); video/micro formatas (25–35 m.); „Kur pritaikyti?“ ir role-first – diferenciacija; automatizavimo įrankiai (AUTOMATIZAVIMO_IRANKIAI_VERSLUI) – papildoma vertė. | **Gresmės:** Konkurencija nuo „greito rezultato“ formatų; overwhelm iš per daug turinio (M7); segmentas „tingi skaityti“ – drop-off.                     |
 
 ---
 
@@ -167,7 +168,7 @@
 - **Stipru:** Struktūra (6 blokai, Learn→Test→Practice), SOT, CopyButton, santraukos 5 blokai, trys keliai, integruoti atsiliepimai.
 - **Silpnu:** M4 trintis (Custom GPT, RAG energija), M7 apimtis ir M9 prioritetai, „Kur pritaikyti?“ ir sandbox dar ne visur, vizualinis triukšmas, kai kurie content-block/santraukų spragos.
 - **Prioritetai:** (1) Low-hanging 1–5; (2) M4 Custom GPT step-by-step ir santraukos „Pirmas veiksmas“ + „Kur pritaikyti?“; (3) M7 lean + M9 prioritetai + „Kur pritaikyti?“; (4) M13 Kampanijos tikslai ir brand consistency; (5) Sandbox ir diagnostinis feedback.
-- **Rizikos:** M7–9 būklė (duomenys vs dokumentacija); overwhelm M7; segmentas 25–35 m. – drop-off be trumpesnio formato.
+- **Rizikos:** M7 overwhelm (turinio lean); segmentas 25–35 m. – drop-off be trumpesnio formato. _(M7–9 deploy būklė: ✅ production tier 9, 2026-07-15)_
 
 ---
 

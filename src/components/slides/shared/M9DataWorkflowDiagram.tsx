@@ -1,40 +1,33 @@
 /**
  * Modulio 9 – 8 žingsnių duomenų valdymo ciklas (interaktyvi diagrama).
- * Geometrija: vertikalus srautas; rodyklės kraštas į kraštą (SCHEME_AGENT §3.2).
+ * Horizontal card flow (desktop) / vertical stack (mobile) – M79-23.
  */
-import { useId } from 'react';
-import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { useCompactViewport } from '../../../utils/useCompactViewport';
+import { Fragment } from 'react';
+import {
+  Database,
+  FileSpreadsheet,
+  Search,
+  Layers,
+  Sparkles,
+  Merge,
+  BarChart3,
+  LayoutDashboard,
+  MoveRight,
+  ChevronDown,
+  type LucideIcon,
+} from 'lucide-react';
 import { getM9DataWorkflowSteps } from './m9DataWorkflowContent';
-import { DIAGRAM_TOKENS } from './diagramTokens';
-import { DiagramStepHitArea } from './diagramKit';
-import { resolveVerticalFlowGeometry } from './verticalFlowGeometry';
 
-const BOX_H = 46;
-const GAP = 14;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
-const STEP_COUNT = 8;
-
-const FLOW_GEOMETRY = {
-  stepCount: STEP_COUNT,
-  boxHeight: BOX_H,
-  gap: GAP,
-  startY: 72,
-  desktop: {
-    viewBoxWidth: 560,
-    viewBoxHeight: 640,
-    colsX: 80,
-    colsW: 400,
-    cx: 280,
-  },
-  compact: {
-    viewBoxWidth: 320,
-    viewBoxHeight: 640,
-    colsX: 28,
-    colsW: 264,
-    cx: 160,
-  },
-};
+const STEP_ICONS: LucideIcon[] = [
+  Database,
+  FileSpreadsheet,
+  Search,
+  Layers,
+  Sparkles,
+  Merge,
+  BarChart3,
+  LayoutDashboard,
+];
 
 interface M9DataWorkflowDiagramProps {
   currentStep?: number;
@@ -52,14 +45,8 @@ export default function M9DataWorkflowDiagram({
   diagramContext = 'm9',
   className = '',
 }: M9DataWorkflowDiagramProps) {
-  const uid = useId().replace(/:/g, '');
-  const { isCompactDiagram } = useCompactViewport();
-  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const stepsMeta = getM9DataWorkflowSteps(locale);
-  const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
-    resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
-  const typography = DIAGRAM_TOKENS.typography;
 
   const title =
     diagramContext === 'm7_master'
@@ -83,178 +70,113 @@ export default function M9DataWorkflowDiagram({
         ? 'Module 9 workflow: eight steps from collection to HTML dashboard.'
         : 'Modulio 9 workflow: aštuoni žingsniai nuo surinkimo iki .html dashboard.';
 
+  const renderStep = (i: number, compact: boolean) => {
+    const isActive = currentStep === i;
+    const Icon = STEP_ICONS[i] ?? Database;
+    const st = stepsMeta[i];
+    const stepLabel = `${i + 1}. ${st.label}`;
+
+    return (
+      <div
+        key={i}
+        className={[
+          'relative flex w-full flex-col items-center rounded-2xl border p-4 shadow-sm transition-all duration-200',
+          compact ? 'max-w-none' : 'max-w-[9.5rem] md:max-w-[10.5rem]',
+          isActive
+            ? 'border-accent-500 bg-accent-50/90 ring-2 ring-accent-400/30 dark:border-accent-500/60 dark:bg-accent-900/25'
+            : 'border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800/80',
+          isInteractive
+            ? 'cursor-pointer hover:border-brand-400 focus-within:ring-2 focus-within:ring-brand-500'
+            : '',
+        ].join(' ')}
+        role={isInteractive ? 'button' : undefined}
+        tabIndex={isInteractive ? 0 : undefined}
+        aria-pressed={isInteractive ? isActive : undefined}
+        aria-label={`${stepLabel}: ${st.desc}`}
+        onClick={isInteractive ? () => onStepClick(i) : undefined}
+        onKeyDown={
+          isInteractive
+            ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onStepClick(i);
+                }
+              }
+            : undefined
+        }
+      >
+        <div
+          className={[
+            'mb-3 rounded-xl p-2.5 transition-colors',
+            isActive
+              ? 'bg-accent-100 text-accent-800 dark:bg-accent-900/40 dark:text-accent-200'
+              : 'bg-brand-50 text-brand-600 dark:bg-brand-900/30 dark:text-brand-300',
+          ].join(' ')}
+        >
+          <Icon className="h-6 w-6 md:h-7 md:w-7" strokeWidth={1.5} aria-hidden />
+        </div>
+        <h3
+          className={`text-center text-sm font-semibold leading-tight md:text-base ${
+            isActive ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+          }`}
+        >
+          {stepLabel}
+        </h3>
+        <p className="mt-1 text-center text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          {st.desc}
+        </p>
+      </div>
+    );
+  };
+
   return (
-    <svg
-      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
+    <div
+      className={`w-full max-w-6xl mx-auto ${className}`}
       role="img"
       aria-label={`${ariaIntro}${isInteractive ? ` ${hint}` : ''}`}
     >
-      <defs>
-        <linearGradient
-          id={`m9-wf-bg-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="100%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
-        </linearGradient>
-        <marker
-          id={`m9-wf-arrow-${uid}`}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
-          orient="auto"
-        >
-          <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
-            fill={palette.brand}
-            stroke={palette.brand}
-            strokeWidth="0.5"
-          />
-        </marker>
-        <linearGradient
-          id={`m9-wf-step-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
-      </defs>
+      <div className="mb-4 text-center">
+        <h4 className="text-lg font-bold text-brand-800 dark:text-brand-200 md:text-xl">
+          {title}
+        </h4>
+        {isInteractive && (
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{hint}</p>
+        )}
+      </div>
 
-      <rect
-        width={viewBoxWidth}
-        height={viewBoxHeight}
-        fill={`url(#m9-wf-bg-${uid})`}
-        rx={DIAGRAM_TOKENS.radius.frame}
-      />
-      <rect
-        width={viewBoxWidth}
-        height={viewBoxHeight}
-        fill="none"
-        stroke={palette.border}
-        strokeWidth={DIAGRAM_TOKENS.stroke.border}
-        rx={DIAGRAM_TOKENS.radius.frame}
-      />
+      <div className="relative overflow-x-auto rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/80 via-white to-accent-50/40 p-4 shadow-sm dark:border-gray-700 dark:from-brand-950/40 dark:via-gray-900 dark:to-accent-950/20 md:p-6">
+        <div className="flex flex-col items-stretch gap-2 lg:hidden" role="list">
+          {stepsMeta.map((_, i) => (
+            <Fragment key={i}>
+              {i > 0 && (
+                <div className="flex justify-center py-0.5 text-gray-300 dark:text-gray-600">
+                  <ChevronDown className="h-5 w-5" aria-hidden />
+                </div>
+              )}
+              {renderStep(i, true)}
+            </Fragment>
+          ))}
+        </div>
 
-      <text
-        x={cx}
-        y="34"
-        textAnchor="middle"
-        fontFamily={DIAGRAM_TOKENS.font}
-        fontSize={
-          isCompactDiagram ? typography.title.compact : typography.title.desktop
-        }
-        fontWeight="800"
-        fill={palette.brandDark}
-      >
-        {title}
-      </text>
-      <text
-        x={cx}
-        y="52"
-        textAnchor="middle"
-        fontFamily={DIAGRAM_TOKENS.font}
-        fontSize={
-          isCompactDiagram
-            ? typography.subtitle.compact
-            : typography.subtitle.desktop
-        }
-        fontWeight="500"
-        fill={palette.muted}
-      >
-        {isInteractive ? hint : ''}
-      </text>
-
-      {stepBoxes.map((box, i) => {
-        const isActive = currentStep === i;
-        const opacity = isActive
-          ? DIAGRAM_TOKENS.opacity.active
-          : DIAGRAM_TOKENS.opacity.inactive;
-        const st = stepsMeta[i];
-        const stepLabel = `${i + 1} · ${st.label}`;
-        return (
-          <g key={i}>
-            <g
-              opacity={opacity}
-              style={{ transition: 'opacity 0.2s ease' }}
-              aria-hidden
-            >
-              <rect
-                x={box[0]}
-                y={box[1]}
-                width={box[2]}
-                height={box[3]}
-                rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#m9-wf-step-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
-                strokeWidth={
-                  isActive
-                    ? DIAGRAM_TOKENS.stroke.active
-                    : DIAGRAM_TOKENS.stroke.inactive
-                }
-              />
-              <text
-                x={cx}
-                y={box[1] + 19}
-                textAnchor="middle"
-                fontFamily={DIAGRAM_TOKENS.font}
-                fontSize={
-                  isCompactDiagram
-                    ? typography.stepLabel.compact
-                    : typography.stepLabel.desktop
-                }
-                fontWeight="700"
-                fill="white"
-              >
-                {stepLabel}
-              </text>
-              <text
-                x={cx}
-                y={box[1] + 36}
-                textAnchor="middle"
-                fontFamily={DIAGRAM_TOKENS.font}
-                fontSize={
-                  isCompactDiagram
-                    ? typography.stepSub.compact
-                    : typography.stepSub.desktop
-                }
-                fontWeight="500"
-                fill={palette.whiteText}
-              >
-                {st.desc}
-              </text>
-            </g>
-            {isInteractive && (
-              <DiagramStepHitArea
-                x={box[0]}
-                y={box[1]}
-                width={box[2]}
-                height={box[3]}
-                radius={DIAGRAM_TOKENS.radius.box}
-                onActivate={() => onStepClick?.(i)}
-              />
-            )}
-            {i < stepBoxes.length - 1 && (
-              <line
-                x1={cx}
-                y1={box[1] + box[3]}
-                x2={cx}
-                y2={stepBoxes[i + 1][1] - ARROW_MARKER_LEN}
-                stroke={palette.brand}
-                strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-                markerEnd={`url(#m9-wf-arrow-${uid})`}
-              />
-            )}
-          </g>
-        );
-      })}
-    </svg>
+        <div
+          className="hidden lg:flex lg:items-center lg:justify-start lg:gap-1 xl:justify-center xl:gap-2"
+          role="list"
+        >
+          {stepsMeta.map((_, i) => (
+            <Fragment key={i}>
+              {i > 0 && (
+                <div className="relative flex shrink-0 items-center px-0.5">
+                  <MoveRight
+                    className="h-5 w-5 text-brand-400 dark:text-brand-500"
+                    aria-hidden
+                  />
+                </div>
+              )}
+              {renderStep(i, false)}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

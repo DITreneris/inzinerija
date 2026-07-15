@@ -10,6 +10,7 @@ import M7DataPrepWorkflowBlock from '../M7DataPrepWorkflowBlock';
 import M7DataStoryCycleBlock from '../M7DataStoryCycleBlock';
 import M7ThreeAgentsBlock from '../M7ThreeAgentsBlock';
 import M9DataWorkflowBlock from '../M9DataWorkflowBlock';
+import M9WorkflowStepCopyBlock from '../M9WorkflowStepCopyBlock';
 import LlmArchDiagramBlock from '../LlmArchDiagramBlock';
 import LlmAutoregressiveBlock from '../LlmAutoregressiveBlock';
 import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
@@ -482,6 +483,21 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(container.querySelectorAll('nav button').length).toBe(8);
     });
 
+    it('renders M9 step-copy panel in Lithuanian with one active prompt', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M9WorkflowStepCopyBlock />);
+      expect(container.textContent).toContain('Duomenų surinkimas');
+      expect(container.textContent).toContain('Išvardink 10–15');
+      expect(container.querySelectorAll('nav button').length).toBe(8);
+    });
+
+    it('renders M9 step-copy panel in English', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<M9WorkflowStepCopyBlock />);
+      expect(container.textContent).toContain('Data collection');
+      expect(container.textContent).toContain('List 10–15');
+    });
+
     it.each([
       ['M7 data prep', () => <M7DataPrepWorkflowBlock />],
       ['M7 analysis roles', () => <M7AnalysisTypesBlock />],
@@ -489,7 +505,6 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       ['M7 data pipeline', () => <M7DaPipelineBlock />],
       ['M7 data story cycle', () => <M7DataStoryCycleBlock />],
       ['M7 three agents', () => <M7ThreeAgentsBlock />],
-      ['M9 workflow', () => <M9DataWorkflowBlock />],
     ])('renders %s with dark SVG background', (_name, renderComponent) => {
       setLocale('lt');
       setDarkTheme();
@@ -497,6 +512,17 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(renderComponent());
 
       expectDarkDiagramBackground(container);
+    });
+
+    it('renders M9 workflow with horizontal card layout', () => {
+      setLocale('lt');
+
+      const { container } = renderWithProviders(<M9DataWorkflowBlock />);
+
+      expect(container.querySelector('[role="img"]')).toBeTruthy();
+      expect(container.querySelectorAll('[role="button"]').length).toBeGreaterThan(
+        0
+      );
     });
 
     it.each([
