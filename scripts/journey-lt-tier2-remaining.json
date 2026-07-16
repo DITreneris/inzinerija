@@ -1,0 +1,82 @@
+{
+  "83": {
+    "role-activation": {
+      "pardavimai": "Tavo rolė – vyresnysis pardavimų duomenų analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži pardavimų duomenimis, ne intuicija.",
+      "rinkodara": "Tavo rolė – vyresnysis rinkodaros analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži kampanijų ir kanalų duomenimis, ne intuicija.",
+      "it-inzinerija": "Tavo rolė – vyresnysis duomenų inžinierius.\nMąstai sisteminiu principu.\nSprendimus grindži duomenų kokybe ir pipeline faktais, ne intuicija.",
+      "personalas": "Tavo rolė – vyresnysis HR analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži žmonių duomenimis, ne intuicija.",
+      "vadyba": "Tavo rolė – vyresnysis strateginis verslo analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži KPI ir rizika, ne intuicija.",
+      "kita": "Tavo rolė – vyresnysis verslo duomenų analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži duomenimis apie [X], ne intuicija."
+    }
+  },
+  "84": {
+    "db-structure": {
+      "pardavimai": "Turiu e-commerce / pardavimų verslą (niša: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Klientų lentelės 2. Užsakymų 3. Produktų 4. Marketing 5. Grąžinimų 6. Lojalumo\nPateik: struktūra, ryšiai (ER), KPI.",
+      "rinkodara": "Turiu rinkodaros / kampanijų duomenis (niša: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Kampanijos 2. Kanalai 3. Auditorijos 4. Kūriniai 5. Konversijos 6. Biudžetas\nPateik: struktūra, ryšiai (ER), KPI.",
+      "it-inzinerija": "Turiu duomenų platformą / pipeline (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Šaltiniai 2. Staging 3. Transformacijos 4. Kokybės logai 5. Dimension/fact 6. SLA\nPateik: struktūra, ryšiai (ER), kokybės metriks.",
+      "personalas": "Turiu HR / žmonių duomenis (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Darbuotojai 2. Įdarbinimas 3. Pareigos 4. Apklausos 5. Atskirimai 6. Mokymasis\nPateik: struktūra, ryšiai (ER), HR KPI.",
+      "vadyba": "Turiu vadovybės ataskaitų duomenis (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. KPI 2. Padaliniai 3. Tikslai 4. Rizikos 5. Projektai 6. Biudžetas\nPateik: struktūra, ryšiai (ER), executive KPI.",
+      "kita": "Turiu vidinius duomenis apie [X].\nPadėk sukurti idealią duomenų bazės struktūrą:\n1–6 pagrindines lenteles pagal [X]\nPateik: struktūra, ryšiai (ER), KPI."
+    }
+  },
+  "86": {
+    "viz-prompt": {
+      "pardavimai": "Remdamasis šiais pardavimų duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Pajamų tendencijos grafiką\n2. Klientų segmentų palyginimą\n3. Produktų pelningumo analizę\n4. 3 pagrindines įžvalgas",
+      "rinkodara": "Remdamasis šiais rinkodaros duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Kanalų efektyvumo grafiką\n2. Kampanijų palyginimą\n3. Engagement / konversijų analizę\n4. 3 pagrindines įžvalgas",
+      "it-inzinerija": "Remdamasis šiais pipeline / kokybės duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Apkrovos / vėlavimų tendenciją\n2. Klaidų kategorijų palyginimą\n3. SLA atitikties analizę\n4. 3 pagrindines įžvalgas",
+      "personalas": "Remdamasis šiais HR duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Headcount / įdarbinimo tendenciją\n2. Padalinių palyginimą\n3. Retention / atrition analizę\n4. 3 pagrindines įžvalgas",
+      "vadyba": "Remdamasis šiais vadovybės KPI duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Tikslų vs faktų grafiką\n2. Padalinių palyginimą\n3. Rizikų / prioritetų analizę\n4. 3 pagrindines įžvalgas",
+      "kita": "Remdamasis šiais [X] duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Pagrindinę tendenciją\n2. Segmentų palyginimą\n3. Rizikų / galimybių analizę\n4. 3 pagrindines įžvalgas"
+    }
+  },
+  "87": {
+    "forecast-prompt": {
+      "pardavimai": "Remiantis 24 mėn. pardavimų istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. pajamas\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+      "rinkodara": "Remiantis 24 mėn. rinkodaros metrikų istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. reach / konversijas\n2. Nurodyk sezoniškumo ir kampanijų įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+      "it-inzinerija": "Remiantis 24 mėn. sistemos / apkrovos istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. apkrovą / klaidų lygį\n2. Nurodyk sezoniškumo / piko įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+      "personalas": "Remiantis 24 mėn. HR rodiklių istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. headcount / atrition\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+      "vadyba": "Remiantis 24 mėn. verslo KPI istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. pagrindinius KPI\n2. Nurodyk išorinių veiksnių įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+      "kita": "Remiantis 24 mėn. [X] istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. [X]\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas"
+    }
+  },
+  "89": {
+    "algo-sources": {
+      "pardavimai": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje pardavimų / rinkos [X] temai sąrašą su nuorodomis (statistika, kainos, konkurentai).",
+      "rinkodara": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje rinkodaros / auditorijos [X] temai sąrašą su nuorodomis (socialiniai, reklama, tendencijos).",
+      "it-inzinerija": "Sudaryk 20 viešų duomenų / API / atvirų registrų šaltinių Lietuvoje [X] temai sąrašą su nuorodomis (formatas, atnaujinimas, licencija).",
+      "personalas": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje darbo rinkos / HR [X] temai sąrašą su nuorodomis (atlyginimai, užimtumas, įgūdžiai).",
+      "vadyba": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje strateginei / verslo [X] temai sąrašą su nuorodomis (makro, sektorius, rizika).",
+      "kita": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje [X] temai sąrašą su nuorodomis."
+    }
+  },
+  "891": {
+    "prep-clean": {
+      "pardavimai": "Prieš pardavimų analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (pajamos, kiekiai, klientai)?",
+      "rinkodara": "Prieš rinkodaros analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, kanalai, valiutos)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (impressions, clicks, spend)?",
+      "it-inzinerija": "Prieš pipeline analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija / PII maskavimas?\n2. Ar formatai suvienodinti (datos, encoding)?\n3. Ar pašalinti dubliavimai / idempotencija?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar schema / tipai atitinka sutartį?",
+      "personalas": "Prieš HR analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija (asmeniniai duomenys)?\n2. Ar formatai suvienodinti (datos, padaliniai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (statusas, tenure)?",
+      "vadyba": "Prieš vadovybės ataskaitą patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, vienetai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar KPI apibrėžimai sutampa tarp padalinių?",
+      "kita": "Prieš analizę patikrink šiuos [X] duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi?"
+    }
+  },
+  "90": {
+    "eda-stats": {
+      "pardavimai": "Pateik šių pardavimų duomenų vidurkį, medianą, IQR ir standartinį nuokrypį (pajamos, kiekiai, kaina).",
+      "rinkodara": "Pateik šių rinkodaros metrikų vidurkį, medianą, IQR ir standartinį nuokrypį (CTR, CPC, konversijos).",
+      "it-inzinerija": "Pateik šių pipeline metrikų vidurkį, medianą, IQR ir standartinį nuokrypį (vėlavimas, klaidos, eilės ilgis).",
+      "personalas": "Pateik šių HR rodiklių vidurkį, medianą, IQR ir standartinį nuokrypį (tenure, atlygis, eNPS).",
+      "vadyba": "Pateik šių verslo KPI vidurkį, medianą, IQR ir standartinį nuokrypį (pajamos, marža, tikslų %).",
+      "kita": "Pateik šių [X] duomenų vidurkį, medianą, IQR ir standartinį nuokrypį."
+    }
+  },
+  "92": {
+    "bi-plan": {
+      "pardavimai": "Remiantis pardavimų tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius pardavimų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti kitam ketvirčiui",
+      "rinkodara": "Remiantis rinkodaros tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius kanalų / kampanijų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti rinkodaros vadovui\n4. Prognozė – ką prognozuoti kitai kampanijai",
+      "it-inzinerija": "Remiantis duomenų platformos tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius sistemos / logų šaltinius naudoti\n2. Analizuok – kokius EDA ir kokybės žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti SLA / riziką\n4. Prognozė – ką stebėti kitą sprintą",
+      "personalas": "Remiantis HR tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius HRIS / apklausų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti (headcount / retention)",
+      "vadyba": "Remiantis strategine tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius KPI šaltinius naudoti\n2. Analizuok – kokius EDA ir rizikos žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti executive santrauką\n4. Prognozė – ką prognozuoti sprendimui",
+      "kita": "Remiantis tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius duomenų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti toliau"
+    }
+  }
+}

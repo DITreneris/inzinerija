@@ -1,7 +1,7 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-07-09 | **Roadmap dokumento versija:** 2.7 (ne `package.json` semver)  
-> **App release:** 1.4.5 (2026-07-15) – žr. `CHANGELOG.md`.  
+> **Atnaujinta:** 2026-07-16 | **Roadmap dokumento versija:** 2.7 (ne `package.json` semver)  
+> **App release:** 1.4.5 (2026-07-15) – žr. `CHANGELOG.md`. **Unreleased:** M7 Lygis C launch consistency (overlay indeksai, LT viz split, journey preflight gates) – 2026-07-16.  
 > **Principas:** **M1–9 production** per [promptanatomy](https://github.com/DITreneris/promptanatomy) monorepo; Stripe M1–6, Supabase→magic link M7–9. M10+ – authoring kataloge.  
 > **Production audit:** **CONDITIONAL GO** — training shippable; monetizacija live (Stripe+Supabase), analytics (MON-4) ir rankinė QA likę. Santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
 
@@ -33,13 +33,14 @@
 | **Paywall scope**             | Home, quiz, tools pasiekiami kai `maxAccessible === 0`; moduliai gated. Client-side bundle – dokumentuota (MON-6 ✅).                                                                                                               | —                               |
 | **PDF / sertifikatų rankinė** | M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF ir tier 4/5 sertifikatai turi rankinę diakritikų, nuorodų ir serial stabilumo patikrą prieš release.                                                                                             | Prieš monetizaciją / release QA |
 | **Diagram browser smoke**     | B2.5 registry + M7–9 interaktyvios schemos – rankinis 390px/light/dark (`DIAGRAMU_M1_M9_AUDITAS.md`).                                                                                                                               | P1 (TODO QA #6)                 |
+| **Icon system (P0–P2)**       | ✅ 2026-07-15 — `src/icons/` registry, `audit:slide-icons`, emoji→Lucide, M9 scenario-hub; DESIGN_SYSTEM §4b.                                                                                                                       | Done                            |
 | **Footer numeriai M4**        | 65.8, 66.9 – ✅ 2026-03-11 (TODO #3).                                                                                                                                                                                               | —                               |
 | **E2E**                       | Gate smoke vitest (`gate.smoke.test.tsx`) ✅; Playwright – roadmap.                                                                                                                                                                 | P1 (post MON-\*)                |
 | **Monitoring**                | PostHog/GA4 neįdiegti production; eventai aprašyti kode. **P0** – MON-4 checklist [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md).                                                                             | P0 (MON-4)                      |
 
 ### Testai ir kokybė
 
-- **71 testų failas, 465 testai (2026-07-09 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry guards, M10–15 EN/data-contract guards. **Dabartinis HEAD: 72 failai / 482 testai (2026-07-15).**
+- **71 testų failas, 465 testai (2026-07-09 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry guards, M10–15 EN/data-contract guards. **Dabartinis HEAD: 74 failai / 512 testai (2026-07-16).**
 - **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
 - **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
 

@@ -17,6 +17,12 @@ import {
 import { Progress } from '../utils/progress';
 import { logWarning } from '../utils/logger';
 import { track } from '../utils/analytics';
+import {
+  applyJourneyOverlayToContentBlock,
+  applyJourneyOverlayToPathStep,
+  applyJourneyOverlayToSummary,
+} from '../utils/resolveJourneyCopy';
+import { normalizeModuleJourneyFocusId } from '../utils/moduleJourneyFocus';
 import { lazyWithRetry } from '../utils/lazyWithRetry';
 import { PracticalTask } from './slides';
 import { LoadingSpinner } from './ui';
@@ -338,6 +344,8 @@ export interface SlideRenderContext {
   levelLabel: string;
   locale: 'lt' | 'en';
   m9Characters: M9Character[];
+  /** M7 Lygis C — slide 70 journey choice id from progress */
+  journeyFocusId: string | null;
 }
 
 export default function SlideContent({
@@ -479,6 +487,11 @@ export default function SlideContent({
     [locale]
   );
 
+  const journeyFocusId = useMemo(() => {
+    const stored = progress.moduleJourneyFocus?.[moduleId];
+    return stored ? normalizeModuleJourneyFocusId(stored) : null;
+  }, [progress.moduleJourneyFocus, moduleId]);
+
   const ctx: SlideRenderContext = {
     slide,
     moduleId,
@@ -504,6 +517,7 @@ export default function SlideContent({
     levelLabel,
     locale: locale === 'en' ? 'en' : 'lt',
     m9Characters,
+    journeyFocusId,
   };
 
   const renderer = slideRegistry[slide.type];
@@ -597,9 +611,17 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
     const m9SkipSummary =
       ctx.moduleId === 9 && ctx.slide.id === 94 ? ctx.onGoToSummary : undefined;
+    const rawContent = ctx.slide.content as ContentBlockContent;
+    const content = applyJourneyOverlayToContentBlock(
+      ctx.slide.id,
+      rawContent,
+      ctx.moduleId,
+      ctx.journeyFocusId,
+      ctx.locale
+    );
     const slide = (
       <LazyContentBlockSlide
-        content={ctx.slide.content as ContentBlockContent}
+        content={content}
         slide={ctx.slide}
         moduleId={ctx.moduleId}
         onGoToTools={ctx.onGoToTools}
@@ -615,9 +637,17 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
     const m9SkipSummary =
       ctx.moduleId === 9 && ctx.slide.id === 94 ? ctx.onGoToSummary : undefined;
+    const rawContent = ctx.slide.content as ContentBlockContent;
+    const content = applyJourneyOverlayToContentBlock(
+      ctx.slide.id,
+      rawContent,
+      ctx.moduleId,
+      ctx.journeyFocusId,
+      ctx.locale
+    );
     const slide = (
       <LazyContentBlockSlide
-        content={ctx.slide.content as ContentBlockContent}
+        content={content}
         slide={ctx.slide}
         moduleId={ctx.moduleId}
         onGoToTools={ctx.onGoToTools}
@@ -650,9 +680,16 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   },
   'path-step': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
+    const content = applyJourneyOverlayToPathStep(
+      ctx.slide.id,
+      ctx.slide.content as PathStepContent,
+      ctx.moduleId,
+      ctx.journeyFocusId,
+      ctx.locale
+    );
     return (
       <LazyPathStepSlide
-        content={ctx.slide.content as PathStepContent}
+        content={content}
         isCompleted={ctx.isTaskCompleted}
         onMarkComplete={() => ctx.handleTaskComplete(ctx.slide.id)}
       />
@@ -791,12 +828,15 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   ),
   summary: (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
-    return (
-      <LazySummarySlide
-        content={ctx.slide.content as SummaryContent}
-        onNextStep={ctx.onNextSlide}
-      />
+    const rawContent = ctx.slide.content as SummaryContent;
+    const content = applyJourneyOverlayToSummary(
+      ctx.slide.id,
+      rawContent,
+      ctx.moduleId,
+      ctx.journeyFocusId,
+      ctx.locale
     );
+    return <LazySummarySlide content={content} onNextStep={ctx.onNextSlide} />;
   },
   'test-intro': (ctx) => (
     <LazyTestIntroSlide

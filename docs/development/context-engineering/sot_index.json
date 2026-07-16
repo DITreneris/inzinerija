@@ -34,7 +34,7 @@
     },
     "m79_patch_registry": {
       "path": "docs/development/M79_PATCH_REGISTRY.md",
-      "description": "M7-M9 idempotent patch scripts registry; EN overlay full-section mirror rule; operational SOT for UX polish iterations"
+      "description": "M7-M9 idempotent patch scripts registry (incl. patch-m79-plain-w4-w5); EN overlay full-section mirror rule; operational SOT for UX polish + A-C residual"
     },
     "docs_maintenance": {
       "path": "docs/development/DOCS_MAINTENANCE.md",
@@ -91,6 +91,15 @@
       "path": "src/data/m1315HandoutContent.json",
       "role": "M13-15 Content path PDF handout content",
       "enOverlay": "src/data/m1315HandoutContent-en.json"
+    },
+    "iconRegistry": {
+      "allowlist": "src/icons/types.ts",
+      "registry": "src/icons/registry.ts",
+      "resolver": "src/icons/resolveIcon.ts",
+      "sizes": "src/icons/iconSizes.ts",
+      "audit": "npm run audit:slide-icons",
+      "docs": "docs/development/ICON_SYSTEM.md",
+      "description": "Lucide icon keys for slide JSON (icon, iconKey) and module identity; CI gate on modules.json icon fields"
     }
   },
   "publicModules": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],

@@ -4,9 +4,10 @@
  * @see docs/development/DESIGN_SYSTEM_V0_2.md §7
  */
 import type { LucideIcon } from 'lucide-react';
+import { iconSizeClasses, type IconSize } from '../../icons/iconSizes';
 
 export type IconChipRole = 'cta' | 'info' | 'warn' | 'success' | 'error';
-export type IconChipSize = 'sm' | 'md' | 'lg';
+export type IconChipSize = IconSize;
 
 const roleClasses: Record<IconChipRole, string> = {
   cta: 'bg-accent-100 text-accent-700 dark:bg-accent-900/30 dark:text-accent-300',
@@ -17,11 +18,7 @@ const roleClasses: Record<IconChipRole, string> = {
   error: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
 };
 
-const sizeClasses: Record<IconChipSize, { box: string; icon: string }> = {
-  sm: { box: 'w-7 h-7', icon: 'w-3.5 h-3.5' },
-  md: { box: 'w-9 h-9', icon: 'w-4 h-4' },
-  lg: { box: 'w-11 h-11', icon: 'w-5 h-5' },
-};
+const sizeClasses = iconSizeClasses;
 
 interface IconChipProps {
   icon: LucideIcon;

@@ -38,7 +38,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 16 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 72 failai, 482 testai (2026-07-15). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
+- **Testai:** 74 failai, 512 testai (2026-07-16 HEAD). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
 - **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.5** (2026-07-15). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
@@ -47,8 +47,50 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 _Įrašai po 1.4.5 release._
 
+### Added
+
+- **M8/M9 artumas kasdieniam darbui (M79-51…55, 2026-07-16):** M9 sk. 90 – 6 use-case + fork (i) šaltiniai / (ii) CSV; 93.1 sektoriai pagal M7 kelią; 93.2 įrankiai + 6× stulpeliai + `content.sampleFile` download; `public/m9_sample_internal.csv`; hub 99 level1 aprašymai; M8 warm-up (+1) ir vignette (CRM/Excel). UI: `PracticeScenarioSlide` sample nuoroda. Skriptai: `patch-m79-everyday-closeness*.mjs`. SOT §10.
+- **M7 Lygis C RC-1 (M79-32–34):** `modules-journey-m7.json` overlay — 14 Tier 1 laukų × 6 keliai (sk. 731, 733, 74, 734, 75). `resolveJourneyCopy.ts` + `m7JourneyCopyRegistry.ts`; UI integracija `SlideContent.tsx`. Validacija: `validate:journey-m7`, `audit:m7-journey-coverage`. Registry: `docs/development/M7_JOURNEY_COPY_REGISTRY.md`.
+- **M7 LT/EN parity banga (RC-2–RC-4 dalinis):** `modules-journey-en-m7.json` — Tier 1 (84× AI) + Tier 2 dalinis (73, 732, 78, 78.5). Locale-aware resolver (`locale: 'lt' | 'en'`). Validacija: `validate:journey-en-m7`, `audit:m7-journey-coverage:en`.
+- **M7 viz split (M79-40):** `viz` → `viz-sales` / `viz-mkt`; sk. 70 `branchIds`, pathBranch žemėlapis (100/103 → mkt, 104 → sales). Spec: `docs/development/M7_VIZ_BRANCH_SPLIT.md`.
+- **M7 sk. 70 framing:** LT+EN `heroSubText` / `confirmMessage` — aiškina, kad promptai pritaikomi keliui.
+
+### Added
+
+- **Icon system P1 (central registry):** `src/icons/` — `types.ts`, `registry.ts`, `resolveIcon.ts`, `iconSizes.ts`, `SlideLucideIcon.tsx`; `npm run audit:slide-icons` + release-preflight vartas; DESIGN_SYSTEM §4b.
+
+### Added
+
+- **M7 Lygis C RC-4 (2026-07-16):** Tier 2 likę (sk. 83/84/86/87/89/891/90/92) + path-step **71.1–71.5** `step-task` × 6 keliai LT/EN; `applyJourneyOverlayToPathStep`; `audit:m7-journey-coverage` 31×6; M79-35…39.
+
 ### Fixed
 
+- **M7 Lygis C launch consistency (2026-07-16):** `M7_CONTENT_BLOCK_FIELD_INDICES` off-by-one (sk. 74 MASTER, 733 templates, 734 filters, 78 role) — overlay dabar taikomas teisingoms `copyable` sekcijoms; `Database` pridėtas į `JOURNEY_ICONS` (sk. 70 `vidiniai`); LT M79-40 viz split užbaigtas (`viz-sales`/`viz-mkt` sk. 70 + pathBranch 861/99.9/100–106) + `generate:core-data`; nauji vartai `audit:m7-journey-indices` + pathBranch orphan check; journey validate/coverage įtraukti į `audit:release-preflight`.
+- **M7 sk. 67 UX (2026-07-15):** 11 blokų siena → interaktyvus micro-win: `toolChoiceBar` (įrėminimas/kontekstas/rolė) + `linkedRowIndex` + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` + „Verslas vs saugumas“; subtitle be jailbreak; pašalintas „Praktika: kur daryti“. EN overlay ta pati struktūra (AI). `ContentSlides` — `preCopyCheckBlock` po linked sekcijų, optional `heading`.
+- **M7 sk. 76 UX (2026-07-15):** „domenas“ → „sritis“; pašalinta klaidinanti `comparisonStyle` lentelė virš fold; `toolChoiceBar` be dubliuojančios lentelės; 6 sričių žemėlapis collapsible; EN overlay `area` terminologija. `ContentSlides` — scroll į `linkedRowIndex` promptą, klikuojamos lentelės eilutės, hint po bar.
+- **SCHEME vertical flow connectors (2026-07-15):** `verticalFlowGeometry.ts` — `getVerticalFlowConnector`, `VERTICAL_FLOW_MIN_GAP=24`, stem gate testai; M7 pipeline/prep (`GAP` 14→24), M7 BI/story compact (`GAP` 22), M13 `TurinioWorkflowDiagram` — `palette.flow` + `flowStrong`; `diagramTokens.verticalFlow`.
+- **Icon system P0:** `SectionIcon` — `Workflow`→Lucide Workflow (ne Repeat); pridėti `Repeat`, `Briefcase`, `Users`; intro-pie fallback → `HelpCircle` (ne raw tekstas).
+- **M7 sk. 70.5 warm-up ikonos:** centralizuotas `resolveIcon('introPie')` — `Target`, `Database`, `BarChart3`, `Workflow`.
+
+### Changed
+
+- **Docs sync A–C residual (2026-07-16):** `07_08_09_backlog.md` §13 DoD; `M79_PATCH_REGISTRY` + `patch-m79-plain-w4-w5.mjs`; `DOCUMENTATION_QUICK_REF` / `DOCS_SYNC_CHECKLIST` / `CODEBASE_WHAT_IS_DONE` / `LEAN_INDEX` / `ROADMAP` / `TODO` – 74/512 HEAD; `sot_index` m79_patch_registry.
+
+- **Icon system P2:** Emoji `icon` laukai M1/M4/M7 infographics → Lucide raktai; `SlideLucideIcon` renderers; M9 `practice-scenario-hub` level1Choices ikonos; `IconChip` dydžiai iš `iconSizes.ts`; schema enum intro-pie / scenario-hub; `sync-module-icons` apima `modules-m1-m6.json` ir `modules-m1-m9.json`.
+- **Icon system docs/agents:** `docs/development/ICON_SYSTEM.md` (checklist); `AGENTS.md` + data/coding skills + `sot_index.json` → `iconRegistry`; `audit:slide-icons` data-validate kontrakte.
+
+- **M7–M9 plain language W1–W2 (M79-41b, M79-42):** Pašalintos JSON skaidrių id nuorodos (`sk. 93.1` ir pan.) iš M9 intro (sk. 90), hub (sk. 99) ir M7 santraukos (sk. 75) – vietoje temų pavadinimų (Šaltinių katalogas, CSV valymas ir t. t.). Modulių metadata M7–M9 LT+EN: plain language subtitle/description (duomenų kelias, pilnas analizės šablonas; ne „pipeline / MASTER PROMPT“ hub kortelėje).
+
+- **M7–M9 plain language W3 (M79-43):** Antraštės ir intro microcopy M7–M8 (sk. 70, 73, 73.5, 733, 84, 85, 66.9, 80, 80.5, 81) – žargonas (`pipeline`, `MASTER PROMPT`, `KPI`, `CFO`, `HR`, `BI`) pakeistas plain language pagal `PAPRASTOS_KALBOS_GAIRES.md` §2–§4; LT+EN overlay sinchronizuotas. Ne scope: quiz klausimai, body (W5), sk. 66.9 `content.subtitle` (W4).
+
+- **M7 plain language W4–W5 + sk. 97 (M79-44, M79-45, 2026-07-16):** Sk. **97** collapsible – inline 4 Deming principai, be „Strateginis pamatas“ meta-nav (LT+EN). Sk. **66.9** W4: `subtitle` / `content.subtitle` / `celebrationText` / `recap` – „analizės eiga“, „pilnas analizės šablonas“. W5 body batch (70, 71, 73, 74, 78, 78.5, 84, 89, 92 + 66.9): pipeline→eiga, MASTER→šablonas, KPI/BI gloss. Skriptas: `scripts/patch-m79-plain-w4-w5.mjs`.
+
+- **M79-50 smoke protokolas:** `TEST_REPORT.md` S1–S7 lentelė (kodo ✅; browser ⬜ savininkas); backlog §12.
+
+- **M7 Lygis C epic (planavimas):** Patvirtinti sprendimai M79-32–40 — 6 adaptuoti branduolio promptų rinkiniai; fallback į bendrinį pardavimų tekstą; warm-up ne 6×; M79-40 viz split tas pats epic, release po Faze 1. Spec: `docs/development/M7_LYGIS_C_JOURNEY_EPIC.md`; backlog §P0.
+
+- **M7 kelionės pasirinkimas (6 keliai):** Skaidrė 70 – pašalintas atskiras 7-as kelias „Vidiniai duomenys“; semantika sujungta į „Kita sritis ar vidiniai duomenys“. Sk. **78.5** perkelta į branduolį (matoma visiems fokusams). Sk. 78 cross-link išvalytas (forward hint į 78.5). Progreso migracija `vidiniai` → `kita` (`moduleJourneyFocus.ts`). EN overlay sinchronizuotas.
+- **M4 sk. 45 pipeline diagrama:** `ContextEngineeringPipelineDiagram` – rodyklės nebekerta blokų (L-forma Prompt→LLM dešinėje, pašalinta LLM→Output per Tools); etiketės (Įvestis, LLM↔Tools) perkeltos į dešinę overlay; LT toggle „Promptų inžinerija“ / „Konteksto inžinerija“ (`contextEngineeringPipelineConfig.ts`, `modules.json` sk. 45).
 - **CI typecheck:** `@testing-library/jest-dom` pridėtas kaip devDependency; Vitest matcher tipai (`toBeInTheDocument`, `toHaveAttribute`, …) per `src/test/vitest-env.d.ts` – `npm run typecheck` praeina švarioje `npm ci` aplinkoje.
 
 ---

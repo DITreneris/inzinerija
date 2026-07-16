@@ -3,17 +3,7 @@
  * @see docs/development/DESIGN_SYSTEM_V0_2.md §8
  */
 import type { LucideIcon } from 'lucide-react';
-import {
-  BarChart3,
-  BookOpen,
-  Brain,
-  Briefcase,
-  ClipboardCheck,
-  ClipboardList,
-  Cpu,
-  Image,
-  Rocket,
-} from 'lucide-react';
+import { LUCIDE_REGISTRY } from '../icons/registry';
 import type {
   Module,
   ModuleAccent,
@@ -21,20 +11,13 @@ import type {
   ModuleIdentityIcon,
   ModuleLevel,
 } from '../types/modules';
+import { MODULE_ICONS } from '../icons/types';
 
 /** Lucide map for module.icon and module.identityIcon (DS v0.3.1 — unified). */
 export const MODULE_IDENTITY_ICON_MAP: Record<ModuleIdentityIcon, LucideIcon> =
-  {
-    BookOpen,
-    ClipboardList,
-    Briefcase,
-    Brain,
-    ClipboardCheck,
-    Rocket,
-    BarChart3,
-    Cpu,
-    Image,
-  };
+  Object.fromEntries(
+    MODULE_ICONS.map((name) => [name, LUCIDE_REGISTRY[name]])
+  ) as Record<ModuleIdentityIcon, LucideIcon>;
 
 /** @deprecated Use MODULE_IDENTITY_ICON_MAP */
 export const IDENTITY_ICON_MAP = MODULE_IDENTITY_ICON_MAP;

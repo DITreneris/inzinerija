@@ -1,0 +1,52 @@
+{
+  "71.1": {
+    "step-task": {
+      "pardavimai": "ROLE: You are a sales analyst.\nTASK: Design a 3-step tool sequence for sales analysis.\nCONTEXT: Data from CRM / e-commerce about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (KPI table).",
+      "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Design a 3-step tool sequence for channel analysis.\nCONTEXT: Campaign / social data about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (channel comparison).",
+      "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Design a 3-step tool sequence for a data pipeline.\nCONTEXT: DB / API / logs about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (schema + quality).",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Design a 3-step tool sequence for people analytics.\nCONTEXT: HRIS / surveys about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (retention KPIs).",
+      "vadyba": "ROLE: You are a strategic analyst.\nTASK: Design a 3-step tool sequence for an executive report.\nCONTEXT: KPI / unit data about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (executive summary).",
+      "kita": "ROLE: You are a business analyst.\nTASK: Design a 3-step tool sequence for [X] analysis.\nCONTEXT: Internal data about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result."
+    }
+  },
+  "71.2": {
+    "step-task": {
+      "pardavimai": "ROLE: You are a sales researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to compare sales drivers in market [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.",
+      "rinkodara": "ROLE: You are a market researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to understand channel / content performance for [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.",
+      "it-inzinerija": "ROLE: You are a data platform researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to assess data quality / ETL practices for [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.",
+      "personalas": "ROLE: You are an HR researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to understand retention / hiring drivers for [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.",
+      "vadyba": "ROLE: You are a strategic researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to ground decision [X] in data.\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.",
+      "kita": "ROLE: You are a business researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to research [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer."
+    }
+  },
+  "71.3": {
+    "step-task": {
+      "pardavimai": "ROLE: You are a sales analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – sales / market [X].\nOUTPUT: Table: source | type (public/internal) | what it gives | why it matters.",
+      "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – channels / audience [X].\nOUTPUT: Table: source | type | what it gives | why it matters.",
+      "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – data systems / quality [X].\nOUTPUT: Table: source | type | what it gives | why it matters.",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – labor market / people [X].\nOUTPUT: Table: source | type | what it gives | why it matters.",
+      "vadyba": "ROLE: You are a strategic analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – decision / risk [X].\nOUTPUT: Table: source | type | what it gives | why it matters.",
+      "kita": "ROLE: You are a business analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – [X].\nOUTPUT: Table: source | type | what it gives | why it matters."
+    }
+  },
+  "71.4": {
+    "step-task": {
+      "pardavimai": "ROLE: You are a sales analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – sales [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 actions for the sales team.",
+      "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – channels [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 actions for the marketing team.",
+      "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – pipeline [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 technical actions.",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – people [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 HR actions.",
+      "vadyba": "ROLE: You are a strategic analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – decision [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 leadership actions.",
+      "kita": "ROLE: You are a business analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 actions."
+    }
+  },
+  "71.5": {
+    "step-task": {
+      "pardavimai": "ROLE: You are a sales analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about sales [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 KPIs I will calculate next.",
+      "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about channels [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 KPIs I will calculate next.",
+      "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about pipeline [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 quality metrics next.",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about people [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 HR KPIs next.",
+      "vadyba": "ROLE: You are a strategic analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about decision [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 executive KPIs next.",
+      "kita": "ROLE: You are a business analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 KPIs next."
+    }
+  }
+}

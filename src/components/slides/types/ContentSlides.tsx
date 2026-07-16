@@ -5,7 +5,6 @@ import {
   CheckCircle,
   Sparkles,
   MessageCircle,
-  Languages,
   Lightbulb,
   Target,
   Layers,
@@ -16,25 +15,18 @@ import {
   Info,
   ExternalLink,
   ArrowRight,
-  Zap,
   Copy,
   Wrench,
   BookMarked,
   BookOpen,
   Rocket,
   Trophy,
-  TrendingUp,
-  Image,
   Cpu,
-  Users,
-  Briefcase,
   Compass,
   Settings,
   User,
   MapPin,
   FileSearch,
-  Video,
-  Music,
 } from 'lucide-react';
 import { track, trackSpinoffClick } from '../../../utils/analytics';
 import { logError } from '../../../utils/logger';
@@ -66,6 +58,9 @@ import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { getColorClasses } from '../utils/colorStyles';
 import { getContentBlockVariantClasses } from '../utils/blockVariantClasses';
 import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
+import { resolveLucideIcon } from '../../../icons/resolveIcon';
+import { slideCardIconClasses } from '../../../icons/iconSizes';
+import { SlideLucideIcon } from '../../../icons/SlideLucideIcon';
 import SectionDivider from '../../ui/SectionDivider';
 import Banner from '../../ui/Banner';
 import type { ModuleAccent } from '../../../types/modules';
@@ -189,18 +184,6 @@ function StatWithTooltip({
 /* ActionIntroSlide exported from ./content/ActionIntroSlide */
 
 /* ─── Action Intro Journey (Modulio 7) – pasirink savo kelionę, tada CTA tęsti ─── */
-const JOURNEY_ICONS: Record<
-  string,
-  React.ComponentType<{ className?: string }>
-> = {
-  TrendingUp,
-  Image,
-  Cpu,
-  Users,
-  Briefcase,
-  Compass,
-  Sparkles,
-};
 
 export interface ActionIntroJourneySlideProps {
   content: ActionIntroJourneyContent;
@@ -291,7 +274,7 @@ export function ActionIntroJourneySlide({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {content.journeyChoices.map((choice) => {
             const IconComponent =
-              (choice.icon && JOURNEY_ICONS[choice.icon]) || Compass;
+              resolveLucideIcon(choice.icon, 'journey') ?? Compass;
             const isSelected = selected?.id === choice.id;
             return (
               <button
@@ -314,9 +297,12 @@ export function ActionIntroJourneySlide({
               >
                 <span className="flex items-center gap-3 mb-2">
                   <span
-                    className={`flex items-center justify-center w-10 h-10 rounded-xl ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'}`}
+                    className={`flex items-center justify-center rounded-xl ${slideCardIconClasses.box} ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'}`}
                   >
-                    <IconComponent className="w-5 h-5" aria-hidden="true" />
+                    <IconComponent
+                      className={slideCardIconClasses.icon}
+                      aria-hidden="true"
+                    />
                   </span>
                   <span className="font-bold text-gray-900 dark:text-white">
                     {choice.label}
@@ -476,6 +462,7 @@ export function ContentBlockSlide({
     (s) => s.linkedRowIndex !== undefined
   );
   const tableRowRefs = useRef<(HTMLTableRowElement | null)[]>([]);
+  const linkedCopySectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const slideContainerRef = useRef<HTMLDivElement | null>(null);
 
   const sectionsSignatureRef = useRef<string | null>(null);
@@ -543,8 +530,15 @@ export function ContentBlockSlide({
 
   useEffect(() => {
     if (selectedToolRowIndex == null) return;
+    const linkedEl = linkedCopySectionRefs.current[selectedToolRowIndex];
+    if (linkedEl?.scrollIntoView) {
+      linkedEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     const el = tableRowRefs.current[selectedToolRowIndex];
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (el?.scrollIntoView) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }, [selectedToolRowIndex]);
 
   useEffect(() => {
@@ -559,6 +553,8 @@ export function ContentBlockSlide({
     const root = slideContainerRef.current;
     if (!root) return;
     const targets = [
+      '[data-linked-copy] [data-action="copy"]',
+      '[data-linked-copy]',
       '[data-action="copy"]',
       '#practical-task-heading',
       '[data-brief-check]',
@@ -597,6 +593,70 @@ export function ContentBlockSlide({
 
   const m9SkipToSummaryHandler =
     moduleId === 9 && slide?.id === 94 ? onGoToSummary : undefined;
+
+  const renderPreCopyCheck = () => {
+    if (!content.preCopyCheckBlock) return null;
+    return (
+      <div
+        data-pre-copy-check
+        className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
+      >
+        <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+          <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
+            <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
+          </span>
+          {content.preCopyCheckBlock.heading ?? t('preCopyCheckHeading')}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          {content.preCopyCheckBlock.question}
+        </p>
+        <div className="space-y-2">
+          {content.preCopyCheckBlock.options.map((opt, idx) => {
+            const isSelected = preCopyCheckAnswer === idx;
+            const isCorrect = idx === content.preCopyCheckBlock!.correct;
+            const showResult = preCopyCheckAnswer !== null;
+            const showAsCorrect = showResult && isCorrect;
+            const showAsWrong = showResult && isSelected && !isCorrect;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() =>
+                  preCopyCheckAnswer === null && setPreCopyCheckAnswer(idx)
+                }
+                disabled={preCopyCheckAnswer !== null}
+                className={`w-full text-left p-3 rounded-lg border-2 min-h-[44px] transition-colors ${
+                  showResult
+                    ? showAsCorrect
+                      ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
+                      : showAsWrong
+                        ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/20'
+                        : 'border-gray-200 dark:border-gray-700'
+                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
+                }`}
+              >
+                <span className="text-gray-700 dark:text-gray-300">{opt}</span>
+                {showAsCorrect && (
+                  <CheckCircle className="w-4 h-4 inline ml-2 text-emerald-600" />
+                )}
+                {showAsWrong && <span className="ml-2 text-rose-600">✗</span>}
+              </button>
+            );
+          })}
+        </div>
+        {preCopyCheckAnswer !== null && (
+          <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+            <strong>
+              {preCopyCheckAnswer === content.preCopyCheckBlock!.correct
+                ? tQuiz('correctLabel')
+                : tQuiz('incorrectLabel')}
+            </strong>{' '}
+            {content.preCopyCheckBlock!.explanation}
+          </p>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div
@@ -770,68 +830,7 @@ export function ContentBlockSlide({
           )}
         </div>
       )}
-      {content.preCopyCheckBlock && (
-        <div
-          data-pre-copy-check
-          className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
-        >
-          <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-            <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
-              <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
-            </span>
-            {t('preCopyCheckHeading')}
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-            {content.preCopyCheckBlock.question}
-          </p>
-          <div className="space-y-2">
-            {content.preCopyCheckBlock.options.map((opt, idx) => {
-              const isSelected = preCopyCheckAnswer === idx;
-              const isCorrect = idx === content.preCopyCheckBlock!.correct;
-              const showResult = preCopyCheckAnswer !== null;
-              const showAsCorrect = showResult && isCorrect;
-              const showAsWrong = showResult && isSelected && !isCorrect;
-              return (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() =>
-                    preCopyCheckAnswer === null && setPreCopyCheckAnswer(idx)
-                  }
-                  disabled={preCopyCheckAnswer !== null}
-                  className={`w-full text-left p-3 rounded-lg border-2 min-h-[44px] transition-colors ${
-                    showResult
-                      ? showAsCorrect
-                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
-                        : showAsWrong
-                          ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/20'
-                          : 'border-gray-200 dark:border-gray-700'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
-                  }`}
-                >
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {opt}
-                  </span>
-                  {showAsCorrect && (
-                    <CheckCircle className="w-4 h-4 inline ml-2 text-emerald-600" />
-                  )}
-                  {showAsWrong && <span className="ml-2 text-rose-600">✗</span>}
-                </button>
-              );
-            })}
-          </div>
-          {preCopyCheckAnswer !== null && (
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
-              <strong>
-                {preCopyCheckAnswer === content.preCopyCheckBlock!.correct
-                  ? tQuiz('correctLabel')
-                  : tQuiz('incorrectLabel')}
-              </strong>{' '}
-              {content.preCopyCheckBlock!.explanation}
-            </p>
-          )}
-        </div>
-      )}
+      {!hasLinkedCopySections && renderPreCopyCheck()}
 
       {isTabsMode && tabSections.length > 0 && (
         <div className="space-y-6">
@@ -975,13 +974,30 @@ export function ContentBlockSlide({
             isInteractiveDiagram,
             sectionPadding,
           });
+          const isLinkedCopySection = section.linkedRowIndex !== undefined;
+          const isActiveLinkedCopy =
+            isLinkedCopySection &&
+            selectedToolRowIndex !== null &&
+            section.linkedRowIndex === selectedToolRowIndex;
+          const isFirstCollapsible =
+            Boolean(section.collapsible) &&
+            !sectionsList.slice(0, i).some((s) => s.collapsible);
           return (
             <Fragment key={i}>
+              {isFirstCollapsible &&
+                hasLinkedCopySections &&
+                renderPreCopyCheck()}
               <div
                 className={blockClasses}
+                ref={(el) => {
+                  if (section.linkedRowIndex !== undefined) {
+                    linkedCopySectionRefs.current[section.linkedRowIndex] = el;
+                  }
+                }}
                 {...(variant === 'brand'
                   ? { 'data-section-variant': 'brand' }
                   : {})}
+                {...(isActiveLinkedCopy ? { 'data-linked-copy': '' } : {})}
               >
                 {section.heading && !isCollapsible && (
                   <h3
@@ -1230,6 +1246,11 @@ export function ContentBlockSlide({
                           }
                         )}
                       </div>
+                      {hasLinkedCopySections && (
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          {t('toolChoiceLinkedCopyHint')}
+                        </p>
+                      )}
                     </div>
                   )}
                   {!section.workflowChains?.length &&
@@ -1320,6 +1341,9 @@ export function ContentBlockSlide({
                                     : !isComparison
                                       ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
                                       : '';
+                                  const isToolChoiceRow = Boolean(
+                                    section.toolChoiceBar
+                                  );
                                   return (
                                     <tr
                                       key={ri}
@@ -1327,7 +1351,29 @@ export function ContentBlockSlide({
                                         if (section.toolChoiceBar)
                                           tableRowRefs.current[ri] = el;
                                       }}
-                                      className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''}`}
+                                      role={
+                                        isToolChoiceRow ? 'button' : undefined
+                                      }
+                                      tabIndex={isToolChoiceRow ? 0 : undefined}
+                                      onClick={
+                                        isToolChoiceRow
+                                          ? () => setSelectedToolRowIndex(ri)
+                                          : undefined
+                                      }
+                                      onKeyDown={
+                                        isToolChoiceRow
+                                          ? (e) => {
+                                              if (
+                                                e.key === 'Enter' ||
+                                                e.key === ' '
+                                              ) {
+                                                e.preventDefault();
+                                                setSelectedToolRowIndex(ri);
+                                              }
+                                            }
+                                          : undefined
+                                      }
+                                      className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''} ${isToolChoiceRow ? 'cursor-pointer hover:bg-accent-50/50 dark:hover:bg-accent-900/20' : ''}`}
                                     >
                                       {row.map((cell, ci) => {
                                         const isFirstCol = ci === 0;
@@ -1524,6 +1570,9 @@ export function ContentBlockSlide({
             </Fragment>
           );
         })}
+      {hasLinkedCopySections &&
+        !sectionsList.some((s) => s.collapsible) &&
+        renderPreCopyCheck()}
       {content.tools &&
         content.tools.length > 0 &&
         (() => {
@@ -2730,15 +2779,8 @@ export function DefinitionsSlide({
   const bothRevealed = showPrompt && showEngineering;
 
   const getAspectIcon = (iconName: string) => {
-    const icons: Record<string, JSX.Element> = {
-      MessageCircle: <MessageCircle className="w-6 h-6" />,
-      Languages: <Languages className="w-6 h-6" />,
-      Lightbulb: <Lightbulb className="w-6 h-6" />,
-      Target: <Target className="w-6 h-6" />,
-      Layers: <Layers className="w-6 h-6" />,
-      Repeat: <Repeat className="w-6 h-6" />,
-    };
-    return icons[iconName] || <Sparkles className="w-6 h-6" />;
+    const Icon = resolveLucideIcon(iconName, 'aspect') ?? Sparkles;
+    return <Icon className="w-6 h-6" />;
   };
 
   const aspectColors = ['violet', 'brand', 'accent'];
@@ -4434,32 +4476,8 @@ function SectionIcon({
   name?: string;
   className?: string;
 }) {
-  switch (name) {
-    case 'Layers':
-      return <Layers className={className} />;
-    case 'Workflow':
-      return <Repeat className={className} />;
-    case 'Lightbulb':
-      return <Lightbulb className={className} />;
-    case 'ArrowRight':
-      return <ArrowRight className={className} />;
-    case 'Target':
-      return <Target className={className} />;
-    case 'Sparkles':
-      return <Sparkles className={className} />;
-    case 'Zap':
-      return <Zap className={className} />;
-    case 'Compass':
-      return <Compass className={className} />;
-    case 'Image':
-      return <Image className={className} />;
-    case 'Video':
-      return <Video className={className} />;
-    case 'Music':
-      return <Music className={className} />;
-    default:
-      return <CheckCircle className={className} />;
-  }
+  const Icon = resolveLucideIcon(name, 'summary') ?? CheckCircle;
+  return <Icon className={className} />;
 }
 
 /** Spalvų žemėlapis sekcijų kortelėms */
@@ -5041,7 +5059,9 @@ export function DiParadoxInfographicSlide({
               <span className="absolute -top-3 left-5 bg-accent-500 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded">
                 {card.number}
               </span>
-              <div className="text-2xl mb-2">{card.icon}</div>
+              <div className="text-2xl mb-2">
+                <SlideLucideIcon name={card.icon} context="infographic" />
+              </div>
               <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-2">
                 {card.title}
               </h4>
@@ -5221,7 +5241,9 @@ export function DiParadoxInfographicSlide({
                 <div className="text-[10px] font-extrabold uppercase tracking-wider text-accent-600 dark:text-accent-400 mb-1">
                   {step.num}
                 </div>
-                <div className="text-2xl mb-2">{step.icon}</div>
+                <div className="text-2xl mb-2">
+                  <SlideLucideIcon name={step.icon} context="infographic" />
+                </div>
                 <div className="font-bold text-gray-900 dark:text-white text-sm mb-1">
                   {step.name}
                 </div>
@@ -5276,8 +5298,12 @@ export function DiParadoxInfographicSlide({
       {/* Conclusion */}
       {content.conclusionSection && (
         <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 lg:p-6 flex gap-4 items-start">
-          <div className="text-4xl opacity-80" aria-hidden="true">
-            {content.conclusionSection.icon}
+          <div className="opacity-80 shrink-0" aria-hidden="true">
+            <SlideLucideIcon
+              name={content.conclusionSection.icon}
+              context="infographic"
+              className="w-10 h-10 text-white"
+            />
           </div>
           <div>
             <h3 className="font-extrabold text-white text-lg mb-2">
@@ -5458,7 +5484,13 @@ export function ProductivityInfographicSlide({
                   key={idx}
                   className="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 border-t-4 border-brand-500 dark:border-brand-400"
                 >
-                  <div className="text-3xl mb-2">{card.icon}</div>
+                  <div className="text-3xl mb-2">
+                    <SlideLucideIcon
+                      name={card.icon}
+                      context="infographic"
+                      className="w-8 h-8"
+                    />
+                  </div>
                   <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-3">
                     {card.title}
                   </h3>

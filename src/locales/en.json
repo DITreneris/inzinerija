@@ -759,6 +759,7 @@
     "sectionBreakPillLabels7": "System|Master|Process|Method|Agent|RAG prompts|Combo prompts",
     "presentationToolsHint": "When and how to use - click to expand:",
     "chooseTaskTypeAria": "Choose task type",
+    "toolChoiceLinkedCopyHint": "Your prompt appears below after you choose",
     "solutionAria": "Solution",
     "pdfHandoutAria": "PDF handout",
     "m79HandoutCtaLabel": "Download Data analytics path handout (PDF)",

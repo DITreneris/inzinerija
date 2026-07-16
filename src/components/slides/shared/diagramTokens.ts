@@ -97,6 +97,10 @@ export const DIAGRAM_TOKENS = {
     markerHeight: 6,
     markerPath: 'M0 0 L6 3 L0 6 Z',
   },
+  verticalFlow: {
+    minGap: 24,
+    minStem: 12,
+  },
 } as const;
 
 export type DiagramPalette = Record<

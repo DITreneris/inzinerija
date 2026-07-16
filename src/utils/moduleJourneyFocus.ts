@@ -23,6 +23,10 @@ export const M7_JOURNEY_LABEL_TO_ID: Record<string, M7JourneyChoiceId> = {
   Personalas: 'personalas',
   'Vadovai ir specialistai': 'vadyba',
   'Kita sritis': 'kita',
+  'Kita sritis ar vidiniai duomenys': 'kita',
+  'Vidiniai duomenys': 'kita',
+  'Internal data': 'kita',
+  'Other area or internal data': 'kita',
 };
 
 export function isM7JourneyChoiceId(value: string): value is M7JourneyChoiceId {
@@ -31,6 +35,7 @@ export function isM7JourneyChoiceId(value: string): value is M7JourneyChoiceId {
 
 /** Normalize stored progress value (legacy label or id) to choice id. */
 export function normalizeModuleJourneyFocusId(stored: string): string {
+  if (stored === 'vidiniai') return 'kita';
   if (isM7JourneyChoiceId(stored)) return stored;
   return M7_JOURNEY_LABEL_TO_ID[stored] ?? stored;
 }

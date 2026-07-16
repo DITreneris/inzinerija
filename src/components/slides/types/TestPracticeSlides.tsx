@@ -16,11 +16,15 @@ import {
   AlertCircle,
   Briefcase,
   Download,
+  User,
 } from 'lucide-react';
+import { resolveLucideIcon } from '../../../icons/resolveIcon';
+import { slideCardIconClasses } from '../../../icons/iconSizes';
 import type {
   Slide,
   TestQuestion,
   PracticeScenarioHubContent,
+  PracticeScenarioSlideContent,
   M9Character,
 } from '../../../types/modules';
 import {
@@ -3792,6 +3796,23 @@ export function PracticeScenarioHubSlide({
                 title: choice?.title ?? t('characterN', { n: index + 1 }),
               })}
             >
+              {choice?.icon && (
+                <span
+                  className={`inline-flex items-center justify-center rounded-xl mb-2 ${slideCardIconClasses.box} bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300`}
+                  aria-hidden="true"
+                >
+                  {(() => {
+                    const IconC =
+                      resolveLucideIcon(choice.icon, 'scenarioHub') ?? User;
+                    return (
+                      <IconC
+                        className={slideCardIconClasses.icon}
+                        strokeWidth={2}
+                      />
+                    );
+                  })()}
+                </span>
+              )}
               <span className="font-semibold text-gray-900 dark:text-white">
                 {choice?.title ?? t('characterN', { n: index + 1 })}
               </span>
@@ -3884,17 +3905,15 @@ export function PracticeScenarioSlide({
   };
   const isDataTab = activeTab === 'data';
 
-  const reflectionOverride = (
-    slide.content as { reflectionPromptAfter?: string } | undefined
-  )?.reflectionPromptAfter;
+  const practiceContent = slide.content as
+    | PracticeScenarioSlideContent
+    | undefined;
+  const reflectionOverride = practiceContent?.reflectionPromptAfter;
   const reflectionPromptAfter =
     reflectionOverride ??
     (moduleId === 9 ? t('m9DefaultReflectionAfter') : undefined);
-  const taskFrame = (
-    slide.content as
-      | { taskFrame?: { task: string; doneWhen: string } }
-      | undefined
-  )?.taskFrame;
+  const taskFrame = practiceContent?.taskFrame;
+  const sampleFile = practiceContent?.sampleFile;
 
   return (
     <div className="space-y-6">
@@ -3923,6 +3942,17 @@ export function PracticeScenarioSlide({
             {taskFrame.doneWhen}
           </p>
         </div>
+      )}
+      {sampleFile?.href && sampleFile.label && (
+        <a
+          href={sampleFile.href}
+          download
+          className="inline-flex items-center gap-2 rounded-lg border border-brand-300 dark:border-brand-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-semibold text-brand-800 dark:text-brand-200 shadow-sm hover:bg-brand-50 dark:hover:bg-brand-950/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 min-h-[44px]"
+          aria-label={sampleFile.label}
+        >
+          <Download className="h-4 w-4 shrink-0" aria-hidden />
+          {sampleFile.label}
+        </a>
       )}
 
       {/* W1: šakotas scenarijus – pirmiausia pasirinkimas */}

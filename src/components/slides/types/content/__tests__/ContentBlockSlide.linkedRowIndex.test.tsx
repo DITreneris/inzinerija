@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { fireEvent } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../test/test-utils';
 import { ContentBlockSlide } from '../../ContentSlides';
 import type { ContentBlockContent } from '../../../../../types/modules';
@@ -7,7 +8,7 @@ const linkedRowContent: ContentBlockContent = {
   sections: [
     {
       heading: '1️⃣ Trumpai',
-      body: 'Pick one domain.',
+      body: 'Pick one area.',
       blockVariant: 'accent',
     },
     {
@@ -54,5 +55,41 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
 
     expect(container.textContent).toContain('Kuris?');
     expect(container.querySelector('button[aria-pressed="true"]')).toBeTruthy();
+  });
+
+  it('marks the active linked copy section with data-linked-copy', () => {
+    const { container } = renderWithProviders(
+      <ContentBlockSlide content={linkedRowContent} />
+    );
+
+    expect(container.querySelector('[data-linked-copy]')).toBeTruthy();
+    expect(
+      container.querySelector('[data-linked-copy]')?.textContent
+    ).toContain('PROMPT_A_ONLY');
+  });
+
+  it('shows toolChoiceBar hint when linked copy sections exist', () => {
+    const { container } = renderWithProviders(
+      <ContentBlockSlide content={linkedRowContent} />
+    );
+
+    expect(container.textContent).toContain(
+      'Pasirinkus – žemiau parodomas tavo promptas'
+    );
+  });
+
+  it('switches visible linked prompt when another bar choice is selected', () => {
+    const { container, getByRole } = renderWithProviders(
+      <ContentBlockSlide content={linkedRowContent} />
+    );
+
+    const choiceB = getByRole('button', { name: /B/ });
+    fireEvent.click(choiceB);
+
+    expect(container.textContent).toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
+    expect(container.textContent).not.toContain('PROMPT_A_ONLY');
+    expect(
+      container.querySelector('[data-linked-copy]')?.textContent
+    ).toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
   });
 });

@@ -104,6 +104,28 @@ Konstantos: [`src/constants/brand.ts`](../../src/constants/brand.ts) (`BRAND`, `
 
 ---
 
+## 4b. Icons (v0.3 — slide JSON + Lucide)
+
+**SOT:** [`src/icons/types.ts`](../../src/icons/types.ts) (allowlist pagal kontekstą), [`src/icons/registry.ts`](../../src/icons/registry.ts) (named Lucide imports), [`src/icons/resolveIcon.ts`](../../src/icons/resolveIcon.ts) (resolver).
+
+| Konvencija     | Kur                                                           | Pavyzdys                         |
+| -------------- | ------------------------------------------------------------- | -------------------------------- |
+| PascalCase     | slide JSON (`journeyChoices`, `cards`, `sections`, `aspects`) | `Target`, `Workflow`, `Repeat`   |
+| kebab-case     | news-portal `iconKey`                                         | `trending-up`, `building-2`      |
+| emoji (legacy) | `insights[].emoji` tik                                        | ne `icon` lauke — naudoti Lucide |
+
+**Semantika:** `Workflow` = proceso/srauto glifas; `Repeat` = iteracijos ciklas — **atskiri raktai**, ne sinonimai.
+
+**Fallback:** nežinomas Lucide raktas → `HelpCircle` (ne raw tekstas). Dev: `console.warn` per `resolveIcon`.
+
+**Dydžiai:** [`src/icons/iconSizes.ts`](../../src/icons/iconSizes.ts) — `sm`/`md`/`lg`; `IconChip` ir slide kortelės naudoja tą patį SOT.
+
+**CI:** `npm run audit:slide-icons` — tikrina `modules.json` icon raktus pagal slide tipą. Release: `audit:release-preflight`.
+
+**UI helper:** [`SlideLucideIcon`](../../src/icons/SlideLucideIcon.tsx) infographics / paradox / pipeline.
+
+---
+
 ## 5. Skaidrių tipai ir layout
 
 _TBD v0.3 — žr. `GOLDEN_STANDARD.md` §3–§4, `docs/SKAIDRIU_TIPU_ANALIZE.md`._

@@ -3,42 +3,44 @@
  * Interaktyvus: currentStep, onStepClick – paspaudus žingsnį, rodomas paaiškinimas apačioje.
  */
 import { useId } from 'react';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import {
   getTurinioWorkflowDiagramLabels,
   type StepExplanationsLocale,
 } from './stepExplanations';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import {
+  getVerticalFlowConnector,
+  resolveVerticalFlowGeometry,
+  VERTICAL_FLOW_MIN_GAP,
+} from './verticalFlowGeometry';
 
+const STEP_COUNT = 7;
 const BOX_H = 48;
-const GAP = 20;
-const ARROW_MARKER_LEN = 6;
-const DESKTOP_VIEWBOX_W = 560;
-const DESKTOP_VIEWBOX_H = 620;
-const DESKTOP_COLS_X = 80;
-const DESKTOP_COLS_W = 400;
-const DESKTOP_CX = 280;
+const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 
-const COMPACT_VIEWBOX_W = 320;
-const COMPACT_VIEWBOX_H = 620;
-const COMPACT_COLS_X = 28;
-const COMPACT_COLS_W = 264;
-const COMPACT_CX = 160;
-
-function getStepBoxes(
-  colsX: number,
-  colsW: number
-): [number, number, number, number][] {
-  return [
-    [colsX, 72, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 1, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 2, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 3, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 4, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 5, colsW, BOX_H],
-    [colsX, 72 + (BOX_H + GAP) * 6, colsW, BOX_H],
-  ];
-}
+const FLOW_GEOMETRY = {
+  stepCount: STEP_COUNT,
+  boxHeight: BOX_H,
+  gap: VERTICAL_FLOW_MIN_GAP,
+  startY: 72,
+  desktop: {
+    viewBoxWidth: 560,
+    viewBoxHeight: 620,
+    colsX: 80,
+    colsW: 400,
+    cx: 280,
+  },
+  compact: {
+    viewBoxWidth: 320,
+    viewBoxHeight: 620,
+    colsX: 28,
+    colsW: 264,
+    cx: 160,
+  },
+};
 
 interface TurinioWorkflowDiagramProps {
   currentStep?: number;
@@ -55,19 +57,15 @@ export default function TurinioWorkflowDiagram({
 }: TurinioWorkflowDiagramProps) {
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
   const labels = getTurinioWorkflowDiagramLabels(locale);
   const STEPS = labels.steps;
   const STEP_ACTIVE_OPACITY = 1;
   const STEP_INACTIVE_OPACITY = 0.5;
-  const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : DESKTOP_VIEWBOX_W;
-  const viewBoxHeight = isCompactDiagram
-    ? COMPACT_VIEWBOX_H
-    : DESKTOP_VIEWBOX_H;
-  const cx = isCompactDiagram ? COMPACT_CX : DESKTOP_CX;
-  const stepBoxes = isCompactDiagram
-    ? getStepBoxes(COMPACT_COLS_X, COMPACT_COLS_W)
-    : getStepBoxes(DESKTOP_COLS_X, DESKTOP_COLS_W);
+  const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
+    resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
+  const typography = DIAGRAM_TOKENS.typography;
 
   return (
     <svg
@@ -84,21 +82,21 @@ export default function TurinioWorkflowDiagram({
           x2="100%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#f0f4f8" />
-          <stop offset="100%" stopColor="#f1f5f9" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
         <marker
           id={`tur-wf-arrow-${uid}`}
-          markerWidth="8"
-          markerHeight="6"
-          refX="6"
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={ARROW_MARKER_LEN}
           refY="3"
           orient="auto"
         >
           <path
-            d="M0 0 L6 3 L0 6 Z"
-            fill="#334e68"
-            stroke="#334e68"
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={palette.flow}
+            stroke={palette.flow}
             strokeWidth="0.5"
           />
         </marker>
@@ -109,8 +107,8 @@ export default function TurinioWorkflowDiagram({
           x2="0%"
           y2="100%"
         >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
+          <stop offset="0%" stopColor={palette.brandTop} />
+          <stop offset="100%" stopColor={palette.brand} />
         </linearGradient>
       </defs>
 
@@ -118,25 +116,27 @@ export default function TurinioWorkflowDiagram({
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill={`url(#tur-wf-bg-${uid})`}
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="12"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={cx}
         y="36"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="18"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram ? typography.title.compact : typography.title.desktop
+        }
         fontWeight="800"
-        fill="#102a43"
+        fill={palette.brandDark}
       >
         {labels.title}
       </text>
@@ -144,10 +144,14 @@ export default function TurinioWorkflowDiagram({
         x={cx}
         y="54"
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="12"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          isCompactDiagram
+            ? typography.subtitle.compact
+            : typography.subtitle.desktop
+        }
         fontWeight="500"
-        fill="#334e68"
+        fill={palette.muted}
       >
         {isInteractive ? labels.hint : ''}
       </text>
@@ -167,17 +171,25 @@ export default function TurinioWorkflowDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="10"
+                rx={DIAGRAM_TOKENS.radius.box}
                 fill={`url(#tur-wf-step-${uid})`}
-                stroke={isActive ? '#102a43' : '#334e68'}
-                strokeWidth={isActive ? 2.5 : 1.5}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={cx}
                 y={box[1] + 20}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="13"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepLabel.compact
+                    : typography.stepLabel.desktop
+                }
                 fontWeight="700"
                 fill="white"
               >
@@ -187,10 +199,14 @@ export default function TurinioWorkflowDiagram({
                 x={cx}
                 y={box[1] + 38}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="11"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={
+                  isCompactDiagram
+                    ? typography.stepSub.compact
+                    : typography.stepSub.desktop
+                }
                 fontWeight="500"
-                fill="rgba(255,255,255,0.9)"
+                fill={palette.whiteText}
               >
                 {STEPS[i].desc}
               </text>
@@ -201,21 +217,31 @@ export default function TurinioWorkflowDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                radius={10}
+                radius={DIAGRAM_TOKENS.radius.box}
                 onActivate={() => onStepClick?.(i)}
               />
             )}
-            {i < stepBoxes.length - 1 && (
-              <line
-                x1={cx}
-                y1={box[1] + box[3]}
-                x2={cx}
-                y2={stepBoxes[i + 1][1] - ARROW_MARKER_LEN}
-                stroke="#334e68"
-                strokeWidth="2"
-                markerEnd={`url(#tur-wf-arrow-${uid})`}
-              />
-            )}
+            {i < stepBoxes.length - 1 &&
+              (() => {
+                const conn = getVerticalFlowConnector(
+                  box,
+                  stepBoxes[i + 1],
+                  cx,
+                  ARROW_MARKER_LEN
+                );
+                return (
+                  <line
+                    x1={conn.x1}
+                    y1={conn.y1}
+                    x2={conn.x2}
+                    y2={conn.y2}
+                    stroke={palette.flow}
+                    strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                    markerEnd={`url(#tur-wf-arrow-${uid})`}
+                    aria-hidden
+                  />
+                );
+              })()}
           </g>
         );
       })}

@@ -74,24 +74,25 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas – `ContentSlides.tsx` (vienas bendras blokas `section.table && !section.workflowChains`).
 
-| Skaidrė / kontekstas | Heading (trumpai)                  | Stulpeliai | comparisonStyle | Pastabos                                                                                       |
-| -------------------- | ---------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------- |
-| M4                   | Sisteminis vs Master promptas      | 3          | ne              | Palyginimas 3 stulpeliais                                                                      |
-| M4                   | ❌ Blogas / ✅ Geras               | 2          | ne              | Collapsible + table                                                                            |
-| M4                   | Metodinis vs Agentinis             | 3          | ne              | Aspektas + 2 stulpeliai                                                                        |
-| M4                   | 4️⃣ RL vs RLHF – palyginimas        | 2          | **taip**        | Verslo kalba, body micro-UX                                                                    |
-| M4                   | Įrankių palyginimas                | 4          | ne              | Įrankis, Stiprybė, Kam, Kaina                                                                  |
-| M?                   | Modelių konteksto langai           | 3          | ne              |                                                                                                |
-| M?                   | Iteracija / strateginis planavimas | 3          | ne              |                                                                                                |
-| M?                   | Blogas vs geras promptas           | 2          | ne              |                                                                                                |
-| M?                   | 6 blokų struktūra                  | 2          | ne              | Blokas, Nurodymas                                                                              |
-| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D); `linkedRowIndex` copyable filtras (be lentelės) |
-| M7 / 731, 733, 77    | Copyable promptų filtrai           | —          | ne              | `toolChoiceBar` + `linkedRowIndex` (vienas aktyvus promptas)                                   |
-| M7 / 78              | Tradicinė vs DI analizė            | 2          | **taip**        | Branduolys                                                                                     |
-| M7 / 84              | DB įrankiai                        | 2          | ne              | `rowMeta` badge'ai, collapsible                                                                |
-| M7 / 76              | Tradicinis vs išplėstinis          | 2          | **taip**        | `pathBranch: strategija`                                                                       |
-| M7 / 104             | Duomenys → Istorija                | 2          | ne              | `solutionMatrixStyle`, optional viz šaka                                                       |
-| M7 / 106             | Alternatyvos (viz įrankiai)        | 2          | ne              | optional viz šaka                                                                              |
+| Skaidrė / kontekstas | Heading (trumpai)                  | Stulpeliai | comparisonStyle | Pastabos                                                                                                         |
+| -------------------- | ---------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
+| M4                   | Sisteminis vs Master promptas      | 3          | ne              | Palyginimas 3 stulpeliais                                                                                        |
+| M4                   | ❌ Blogas / ✅ Geras               | 2          | ne              | Collapsible + table                                                                                              |
+| M4                   | Metodinis vs Agentinis             | 3          | ne              | Aspektas + 2 stulpeliai                                                                                          |
+| M4                   | 4️⃣ RL vs RLHF – palyginimas        | 2          | **taip**        | Verslo kalba, body micro-UX                                                                                      |
+| M4                   | Įrankių palyginimas                | 4          | ne              | Įrankis, Stiprybė, Kam, Kaina                                                                                    |
+| M?                   | Modelių konteksto langai           | 3          | ne              |                                                                                                                  |
+| M?                   | Iteracija / strateginis planavimas | 3          | ne              |                                                                                                                  |
+| M?                   | Blogas vs geras promptas           | 2          | ne              |                                                                                                                  |
+| M?                   | 6 blokų struktūra                  | 2          | ne              | Blokas, Nurodymas                                                                                                |
+| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D); `linkedRowIndex` copyable filtras (be lentelės)                   |
+| M7 / 731, 733, 77    | Copyable promptų filtrai           | —          | ne              | `toolChoiceBar` + `linkedRowIndex` (vienas aktyvus promptas)                                                     |
+| M7 / 78              | Tradicinė vs DI analizė            | 2          | **taip**        | Branduolys                                                                                                       |
+| M7 / 84              | DB įrankiai                        | 2          | ne              | `rowMeta` badge'ai, collapsible                                                                                  |
+| M7 / 76              | Pasirink sritį + promptas          | 3          | ne              | `toolChoiceBar` + `linkedRowIndex`; **ne** `comparisonStyle` poravimui – žemėlapis collapsible                   |
+| M7 / 67              | Manipuliacijos tipai + patikra     | 2–3        | **taip**        | `toolChoiceBar` + `linkedRowIndex`; `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` + verslas vs saugumas |
+| M7 / 104             | Duomenys → Istorija                | 2          | ne              | `solutionMatrixStyle`, optional viz šaka                                                                         |
+| M7 / 106             | Alternatyvos (viz įrankiai)        | 2          | ne              | optional viz šaka                                                                                                |
 
 **Patobulinimai (žr. TODO.md):** M4 2 stulpelių lentelėms be `comparisonStyle` – L2; auditas „nesuspausta / skaitomumas“ – L1–L4.
 

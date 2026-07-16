@@ -1,6 +1,7 @@
 import { BarChart2 } from 'lucide-react';
 import { CopyButton, TemplateBlock } from '../../shared';
 import Banner from '../../../ui/Banner';
+import { SlideLucideIcon } from '../../../../icons/SlideLucideIcon';
 import type { Slide, AdvancedSlideContent } from '../../../../types/modules';
 import { VeiksmoIntroBlock } from './VeiksmoIntroBlock';
 
@@ -279,8 +280,15 @@ export function AdvancedBlockSlide({
                   variant="info"
                   className={`rounded-lg ${s.bg} ${s.border}`}
                 >
-                  <p className={`font-semibold text-sm ${s.text} mb-2`}>
-                    {ex.icon} {ex.label}
+                  <p
+                    className={`font-semibold text-sm ${s.text} mb-2 flex items-center gap-2`}
+                  >
+                    <SlideLucideIcon
+                      name={ex.icon}
+                      context="infographic"
+                      className="w-4 h-4 shrink-0"
+                    />
+                    {ex.label}
                   </p>
                   <div className="bg-white dark:bg-gray-800 p-3 rounded text-sm font-mono text-gray-800 dark:text-gray-200 relative group/copy">
                     <CopyButton

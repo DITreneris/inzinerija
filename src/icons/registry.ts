@@ -1,0 +1,108 @@
+/**
+ * Central Lucide icon registry – named imports only (tree-shaking safe).
+ */
+import type { LucideIcon } from 'lucide-react';
+import {
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  Bot,
+  Brain,
+  Briefcase,
+  Building2,
+  ClipboardCheck,
+  ClipboardList,
+  Code,
+  Compass,
+  Cpu,
+  Database,
+  Globe,
+  Headphones,
+  HelpCircle,
+  Image,
+  Key,
+  Languages,
+  Layers,
+  Lightbulb,
+  Link,
+  MapPin,
+  Megaphone,
+  MessageCircle,
+  Music,
+  Pen,
+  Repeat,
+  Rocket,
+  Search,
+  Shield,
+  Sparkles,
+  Target,
+  TrendingUp,
+  User,
+  Users,
+  Video,
+  Workflow,
+  Wrench,
+  Zap,
+} from 'lucide-react';
+
+/** All Lucide components keyed by PascalCase name */
+export const LUCIDE_REGISTRY: Record<string, LucideIcon> = {
+  ArrowRight,
+  BarChart3,
+  BookOpen,
+  Bot,
+  Brain,
+  Briefcase,
+  Building2,
+  ClipboardCheck,
+  ClipboardList,
+  Code,
+  Compass,
+  Cpu,
+  Database,
+  Globe,
+  Headphones,
+  HelpCircle,
+  Image,
+  Key,
+  Languages,
+  Layers,
+  Lightbulb,
+  Link,
+  MapPin,
+  Megaphone,
+  MessageCircle,
+  Music,
+  Pen,
+  Repeat,
+  Rocket,
+  Search,
+  Shield,
+  Sparkles,
+  Target,
+  TrendingUp,
+  User,
+  Users,
+  Video,
+  Workflow,
+  Wrench,
+  Zap,
+};
+
+/** Portal KPI – kebab-case keys */
+export const PORTAL_KPI_REGISTRY: Record<string, LucideIcon> = {
+  globe: Globe,
+  'trending-up': TrendingUp,
+  'building-2': Building2,
+  'map-pin': MapPin,
+};
+
+/** Portal tools – kebab-case keys */
+export const PORTAL_TOOL_REGISTRY: Record<string, LucideIcon> = {
+  shield: Shield,
+  'message-circle': MessageCircle,
+  bot: Bot,
+  search: Search,
+};
+
+export const DEFAULT_FALLBACK_ICON: LucideIcon = HelpCircle;

@@ -1,53 +1,22 @@
-import {
-  Bot,
-  Building2,
-  Globe,
-  MapPin,
-  MessageCircle,
-  Search,
-  Shield,
-  TrendingUp,
-  type LucideIcon,
-} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { IconChipRole } from '../../ui/IconChip';
 import type { NewsPortalKpiCard } from '../../../types/modules';
+import {
+  resolvePortalKpiLucideIcon,
+  resolvePortalToolLucideIcon,
+} from '../../../icons/resolveIcon';
+import type { PortalKpiIconKey, PortalToolIconKey } from '../../../icons/types';
 
-export type PortalKpiIconKey =
-  | 'globe'
-  | 'trending-up'
-  | 'building-2'
-  | 'map-pin';
-
-export type PortalToolIconKey = 'shield' | 'message-circle' | 'bot' | 'search';
-
-const KPI_ICONS: Record<PortalKpiIconKey, LucideIcon> = {
-  globe: Globe,
-  'trending-up': TrendingUp,
-  'building-2': Building2,
-  'map-pin': MapPin,
-};
-
-const TOOL_ICONS: Record<PortalToolIconKey, LucideIcon> = {
-  shield: Shield,
-  'message-circle': MessageCircle,
-  bot: Bot,
-  search: Search,
-};
+export type { PortalKpiIconKey, PortalToolIconKey };
 
 export function resolvePortalKpiIcon(
   card: Pick<NewsPortalKpiCard, 'iconKey' | 'icon'>
 ): LucideIcon {
-  if (card.iconKey && card.iconKey in KPI_ICONS) {
-    return KPI_ICONS[card.iconKey as PortalKpiIconKey];
-  }
-  return Globe;
+  return resolvePortalKpiLucideIcon(card.iconKey);
 }
 
 export function resolvePortalToolIcon(iconKey?: string): LucideIcon {
-  if (iconKey && iconKey in TOOL_ICONS) {
-    return TOOL_ICONS[iconKey as PortalToolIconKey];
-  }
-  return Bot;
+  return resolvePortalToolLucideIcon(iconKey);
 }
 
 export function portalKpiIconRole(colorKey?: string): IconChipRole {

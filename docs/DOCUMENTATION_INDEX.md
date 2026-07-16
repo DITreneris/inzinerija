@@ -1,7 +1,7 @@
 # Dokumentacijos indeksas – kur kuo remtis
 
 > **Tikslas:** Agentai ir žmonės žino, kuris dokumentas yra tiesa (SOT), kas aktyvus, o kas archyvuota.  
-> **Atnaujinta:** 2026-07-15 (docs maintenance governance; M7–M9 P2 polish catch-up)
+> **Atnaujinta:** 2026-07-16 (A–C residual docs; docs maintenance; M7–M9 P2 + Lygis C)
 >
 > **Agentams (lean, prieinama):** pirmiausia **`docs/DOCUMENTATION_QUICK_REF.md`** (SOT + keliai); **`docs/LEAN_INDEX.md`** – minimalus branduolys (~20 failų). Pilnas sąrašas ir archyvas žemiau.
 

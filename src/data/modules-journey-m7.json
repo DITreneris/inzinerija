@@ -1,0 +1,298 @@
+{
+  "moduleId": 7,
+  "version": 1,
+  "fields": {
+    "73": {
+      "pipeline-overview": {
+        "pardavimai": "Išvardink 10 galimų pardavimų duomenų šaltinių [X] temai (CRM, ERP, e-commerce).",
+        "rinkodara": "Išvardink 10 galimų rinkodaros duomenų šaltinių [X] temai (kampanijos, socialiniai tinklai, web analytics).",
+        "it-inzinerija": "Išvardink 10 galimų duomenų sistemos šaltinių [X] temai (DB, API, logai, failai).",
+        "personalas": "Išvardink 10 galimų HR duomenų šaltinių [X] temai (HRIS, apklausos, įdarbinimo portalai).",
+        "vadyba": "Išvardink 10 galimų verslo KPI šaltinių [X] temai (finansai, operacijos, CRM).",
+        "kita": "Išvardink 10 galimų duomenų šaltinių [X] temai."
+      }
+    },
+    "74": {
+      "master-prompt": {
+        "pardavimai": "Rolė: Patyręs duomenų analitikas (pardavimai).\nUžduotis: Atlik pilną pardavimų analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai (CRM, ERP, e-commerce)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (top produktai, regionai, tendencijos)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (Q4, atsargos)\n8. Strateginės rekomendacijos",
+        "rinkodara": "Rolė: Rinkos analitikas (rinkodara).\nUžduotis: Atlik pilną rinkodaros analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai (kampanijos, socialiniai tinklai, web)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (kanalai, turinys, sentimentas)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (reach, konversija)\n8. Strateginės rekomendacijos",
+        "it-inzinerija": "Rolė: Duomenų inžinierius (IT).\nUžduotis: Atlik pilną duomenų sistemos analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai (DB, API, failai)\n2. Duomenų struktūra (schema)\n3. Valymas ir normalizavimas\n4. EDA (apimtys, klaidos, vėlavimai)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (apkrova, ETL)\n8. Automatizavimo rekomendacijos",
+        "personalas": "Rolė: HR analitikas (personalas).\nUžduotis: Atlik pilną darbuotojų analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai (HRIS, apklausos)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (įdarbinimas, atskyrimas, retention)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (headcount, rizika)\n8. Strateginės rekomendacijos",
+        "vadyba": "Rolė: Strateginis verslo analitikas (vadyba).\nUžduotis: Atlik pilną verslo analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai (KPI, finansai, operacijos)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (rodikliai, tendencijos, rizikos)\n5. Vizualizacijos pasiūlymai (executive dashboard)\n6. Įžvalgos\n7. Prognozės (scenarijai)\n8. Sprendimų rekomendacijos",
+        "kita": "Rolė: Duomenų analitikas.\nUžduotis: Atlik pilną duomenų analizę [X] temoje.\n\nStruktūra:\n1. Duomenų šaltiniai\n2. Duomenų struktūra\n3. Valymas\n4. EDA\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės\n8. Strateginės rekomendacijos"
+      }
+    },
+    "75": {
+      "reflection": {
+        "pardavimai": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7 (pardavimų kelias).\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS, pardavimų analizė).\nOUTPUT: Užduok 3 klausimus: (1) Kurį pardavimų promptą galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia apie KPI ir prognozes? (3) Ką noriu išbandyti pirmiausia su Q4 duomenimis? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+        "rinkodara": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7 (rinkodaros kelias).\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS, kanalų ir turinio analizė).\nOUTPUT: Užduok 3 klausimus: (1) Kurį rinkodaros promptą galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia apie sentimentą ir kanalus? (3) Ką noriu išbandyti pirmiausia su kampanijų duomenimis? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+        "it-inzinerija": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7 (IT kelias).\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS, duomenų inžinerija).\nOUTPUT: Užduok 3 klausimus: (1) Kurį IT promptą galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia apie ETL ir duomenų kokybę? (3) Ką noriu išbandyti pirmiausia su savo duomenų šaltiniu? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+        "personalas": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7 (personalas kelias).\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS, HR analizė).\nOUTPUT: Užduok 3 klausimus: (1) Kurį HR promptą galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia apie retention ir įdarbinimą? (3) Ką noriu išbandyti pirmiausia su komandos duomenimis? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+        "vadyba": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7 (vadybos kelias).\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS, verslo analizė).\nOUTPUT: Užduok 3 klausimus: (1) Kurį sprendimų promptą galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia apie rizikas ir prioritetus? (3) Ką noriu pristatyti vadovybei pirmiausia? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti.",
+        "kita": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 7.\nINPUT: Ką tik baigiau Modulio 7 teoriją (pipeline, MASTER PROMPTAS).\nOUTPUT: Užduok 3 klausimus: (1) Kurį promptą ar techniką galėčiau pritaikyti su [X] duomenimis šiandien? (2) Kas buvo naujausia ar netikėčiausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok 1 konkretų patarimą, kaip pradėti."
+      },
+      "first-action-24h": {
+        "pardavimai": "Per 24–48 val. paleisk MASTER PROMPTĄ su viena tikra pardavimų tema (pvz. Q4 suvestinė) ir išsaugok gautą suvestinę.",
+        "rinkodara": "Per 24–48 val. paleisk MASTER PROMPTĄ su viena tikra rinkodaros tema (pvz. kampanijos rezultatai) ir išsaugok gautą suvestinę.",
+        "it-inzinerija": "Per 24–48 val. paleisk MASTER PROMPTĄ su vienu tikru duomenų šaltiniu (pvz. ETL metrikos) ir išsaugok gautą suvestinę.",
+        "personalas": "Per 24–48 val. paleisk MASTER PROMPTĄ su viena tikra HR tema (pvz. įdarbinimo funnel) ir išsaugok gautą suvestinę.",
+        "vadyba": "Per 24–48 val. paleisk MASTER PROMPTĄ su vienu verslo KPI (pvz. ketvirčio rodikliai) ir paruošk 1 puslapio executive santrauką vadovybei.",
+        "kita": "Per 24–48 val. paleisk MASTER PROMPTĄ su viena tikra [X] tema ir išsaugok gautą suvestinę."
+      }
+    },
+    "78": {
+      "di-role-prompt": {
+        "pardavimai": "ROLE: Tu esi patyręs pardavimų duomenų analitikas.\nTASK: Parodyk, kaip DI gali padėti mano pardavimų analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.",
+        "rinkodara": "ROLE: Tu esi patyręs rinkodaros analitikas.\nTASK: Parodyk, kaip DI gali padėti mano rinkodaros analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.",
+        "it-inzinerija": "ROLE: Tu esi patyręs duomenų inžinierius.\nTASK: Parodyk, kaip DI gali padėti mano duomenų pipeline užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.",
+        "personalas": "ROLE: Tu esi patyręs HR analitikas.\nTASK: Parodyk, kaip DI gali padėti mano darbuotojų analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.",
+        "vadyba": "ROLE: Tu esi patyręs strateginis verslo analitikas.\nTASK: Parodyk, kaip DI gali padėti mano vadovų sprendimo užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.",
+        "kita": "ROLE: Tu esi patyręs verslo duomenų analitikas.\nTASK: Parodyk, kaip DI gali padėti mano [X] analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti."
+      }
+    },
+    "83": {
+      "role-activation": {
+        "pardavimai": "Tavo rolė – vyresnysis pardavimų duomenų analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži pardavimų duomenimis, ne intuicija.",
+        "rinkodara": "Tavo rolė – vyresnysis rinkodaros analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži kampanijų ir kanalų duomenimis, ne intuicija.",
+        "it-inzinerija": "Tavo rolė – vyresnysis duomenų inžinierius.\nMąstai sisteminiu principu.\nSprendimus grindži duomenų kokybe ir pipeline faktais, ne intuicija.",
+        "personalas": "Tavo rolė – vyresnysis HR analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži žmonių duomenimis, ne intuicija.",
+        "vadyba": "Tavo rolė – vyresnysis strateginis verslo analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži KPI ir rizika, ne intuicija.",
+        "kita": "Tavo rolė – vyresnysis verslo duomenų analitikas.\nMąstai sisteminiu principu.\nSprendimus grindži duomenimis apie [X], ne intuicija."
+      }
+    },
+    "84": {
+      "db-structure": {
+        "pardavimai": "Turiu e-commerce / pardavimų verslą (niša: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Klientų lentelės 2. Užsakymų 3. Produktų 4. Marketing 5. Grąžinimų 6. Lojalumo\nPateik: struktūra, ryšiai (ER), KPI.",
+        "rinkodara": "Turiu rinkodaros / kampanijų duomenis (niša: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Kampanijos 2. Kanalai 3. Auditorijos 4. Kūriniai 5. Konversijos 6. Biudžetas\nPateik: struktūra, ryšiai (ER), KPI.",
+        "it-inzinerija": "Turiu duomenų platformą / pipeline (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Šaltiniai 2. Staging 3. Transformacijos 4. Kokybės logai 5. Dimension/fact 6. SLA\nPateik: struktūra, ryšiai (ER), kokybės metriks.",
+        "personalas": "Turiu HR / žmonių duomenis (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. Darbuotojai 2. Įdarbinimas 3. Pareigos 4. Apklausos 5. Atskirimai 6. Mokymasis\nPateik: struktūra, ryšiai (ER), HR KPI.",
+        "vadyba": "Turiu vadovybės ataskaitų duomenis (domenas: [X]).\nPadėk sukurti idealią duomenų bazės struktūrą:\n1. KPI 2. Padaliniai 3. Tikslai 4. Rizikos 5. Projektai 6. Biudžetas\nPateik: struktūra, ryšiai (ER), executive KPI.",
+        "kita": "Turiu vidinius duomenis apie [X].\nPadėk sukurti idealią duomenų bazės struktūrą:\n1–6 pagrindines lenteles pagal [X]\nPateik: struktūra, ryšiai (ER), KPI."
+      }
+    },
+    "86": {
+      "viz-prompt": {
+        "pardavimai": "Remdamasis šiais pardavimų duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Pajamų tendencijos grafiką\n2. Klientų segmentų palyginimą\n3. Produktų pelningumo analizę\n4. 3 pagrindines įžvalgas",
+        "rinkodara": "Remdamasis šiais rinkodaros duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Kanalų efektyvumo grafiką\n2. Kampanijų palyginimą\n3. Engagement / konversijų analizę\n4. 3 pagrindines įžvalgas",
+        "it-inzinerija": "Remdamasis šiais pipeline / kokybės duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Apkrovos / vėlavimų tendenciją\n2. Klaidų kategorijų palyginimą\n3. SLA atitikties analizę\n4. 3 pagrindines įžvalgas",
+        "personalas": "Remdamasis šiais HR duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Headcount / įdarbinimo tendenciją\n2. Padalinių palyginimą\n3. Retention / atrition analizę\n4. 3 pagrindines įžvalgas",
+        "vadyba": "Remdamasis šiais vadovybės KPI duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Tikslų vs faktų grafiką\n2. Padalinių palyginimą\n3. Rizikų / prioritetų analizę\n4. 3 pagrindines įžvalgas",
+        "kita": "Remdamasis šiais [X] duomenimis:\n[duomenys]\n\nSugeneruok:\n1. Pagrindinę tendenciją\n2. Segmentų palyginimą\n3. Rizikų / galimybių analizę\n4. 3 pagrindines įžvalgas"
+      }
+    },
+    "87": {
+      "forecast-prompt": {
+        "pardavimai": "Remiantis 24 mėn. pardavimų istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. pajamas\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+        "rinkodara": "Remiantis 24 mėn. rinkodaros metrikų istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. reach / konversijas\n2. Nurodyk sezoniškumo ir kampanijų įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+        "it-inzinerija": "Remiantis 24 mėn. sistemos / apkrovos istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. apkrovą / klaidų lygį\n2. Nurodyk sezoniškumo / piko įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+        "personalas": "Remiantis 24 mėn. HR rodiklių istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. headcount / atrition\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+        "vadyba": "Remiantis 24 mėn. verslo KPI istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. pagrindinius KPI\n2. Nurodyk išorinių veiksnių įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas",
+        "kita": "Remiantis 24 mėn. [X] istorija:\n[duomenys arba nuoroda]\n\n1. Prognozuok kitų 6 mėn. [X]\n2. Nurodyk sezoniškumo įtaką\n3. Pateik optimistinį ir pesimistinį scenarijų\n4. Nurodyk pagrindines rizikas"
+      }
+    },
+    "89": {
+      "algo-sources": {
+        "pardavimai": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje pardavimų / rinkos [X] temai sąrašą su nuorodomis (statistika, kainos, konkurentai).",
+        "rinkodara": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje rinkodaros / auditorijos [X] temai sąrašą su nuorodomis (socialiniai, reklama, tendencijos).",
+        "it-inzinerija": "Sudaryk 20 viešų duomenų / API / atvirų registrų šaltinių Lietuvoje [X] temai sąrašą su nuorodomis (formatas, atnaujinimas, licencija).",
+        "personalas": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje darbo rinkos / HR [X] temai sąrašą su nuorodomis (atlyginimai, užimtumas, įgūdžiai).",
+        "vadyba": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje strateginei / verslo [X] temai sąrašą su nuorodomis (makro, sektorius, rizika).",
+        "kita": "Sudaryk 20 viešų duomenų šaltinių Lietuvoje [X] temai sąrašą su nuorodomis."
+      }
+    },
+    "90": {
+      "eda-stats": {
+        "pardavimai": "Pateik šių pardavimų duomenų vidurkį, medianą, IQR ir standartinį nuokrypį (pajamos, kiekiai, kaina).",
+        "rinkodara": "Pateik šių rinkodaros metrikų vidurkį, medianą, IQR ir standartinį nuokrypį (CTR, CPC, konversijos).",
+        "it-inzinerija": "Pateik šių pipeline metrikų vidurkį, medianą, IQR ir standartinį nuokrypį (vėlavimas, klaidos, eilės ilgis).",
+        "personalas": "Pateik šių HR rodiklių vidurkį, medianą, IQR ir standartinį nuokrypį (tenure, atlygis, eNPS).",
+        "vadyba": "Pateik šių verslo KPI vidurkį, medianą, IQR ir standartinį nuokrypį (pajamos, marža, tikslų %).",
+        "kita": "Pateik šių [X] duomenų vidurkį, medianą, IQR ir standartinį nuokrypį."
+      }
+    },
+    "92": {
+      "bi-plan": {
+        "pardavimai": "Remiantis pardavimų tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius pardavimų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti kitam ketvirčiui",
+        "rinkodara": "Remiantis rinkodaros tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius kanalų / kampanijų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti rinkodaros vadovui\n4. Prognozė – ką prognozuoti kitai kampanijai",
+        "it-inzinerija": "Remiantis duomenų platformos tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius sistemos / logų šaltinius naudoti\n2. Analizuok – kokius EDA ir kokybės žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti SLA / riziką\n4. Prognozė – ką stebėti kitą sprintą",
+        "personalas": "Remiantis HR tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius HRIS / apklausų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti (headcount / retention)",
+        "vadyba": "Remiantis strategine tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius KPI šaltinius naudoti\n2. Analizuok – kokius EDA ir rizikos žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti executive santrauką\n4. Prognozė – ką prognozuoti sprendimui",
+        "kita": "Remiantis tema [X], pateik 4 žingsnių BI planą:\n1. Surink – kokius duomenų šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir pateikti vadovybei\n4. Prognozė – ką prognozuoti toliau"
+      }
+    },
+    "731": {
+      "types-descriptive": {
+        "pardavimai": "Apibendrink šiuos pardavimo duomenis:\n- Top 5 produktai pagal pajamas\n- Regionai su didžiausiu augimu\n- Sezoniškumo tendencijos\n- Pajamų koncentracija (% nuo top 20% klientų)",
+        "rinkodara": "Apibendrink šiuos rinkodaros duomenis:\n- Top 5 kanalai pagal konversiją\n- Turinio tipai su didžiausiu engagement\n- Kampanijų rezultatų tendencijos\n- Auditorijos koncentracija (% nuo top 20% segmentų)",
+        "it-inzinerija": "Apibendrink šiuos duomenų sistemos rodiklius:\n- Top 5 lentelės pagal apimtį\n- Šaltiniai su didžiausiu augimu\n- Duomenų srauto tendencijos\n- Klaidų koncentracija (% nuo top 20% įrašų)",
+        "personalas": "Apibendrink šiuos HR duomenis:\n- Top 5 skyriai pagal įdarbinimą\n- Pozicijos su didžiausiu atsakymų srautu\n- Atskyrimo tendencijos per laikotarpį\n- Darbuotojų koncentracija (% nuo top 20% komandų)",
+        "vadyba": "Apibendrink šiuos verslo rodiklius:\n- Top 5 KPI pagal poveikį tikslui\n- Sritys su didžiausiu augimu\n- Veiklos tendencijos per ketvirtį\n- Pajamų koncentracija (% nuo top 20% produktų ar klientų)",
+        "kita": "Apibendrink šiuos [X] duomenis:\n- Top 5 kategorijos pagal svarbą\n- Sritys su didžiausiu pokyčiu\n- Tendencijos per laikotarpį\n- Koncentracija (% nuo top 20% vienetų)"
+      },
+      "types-diagnostic": {
+        "pardavimai": "Remiantis pardavimų kritimu Q3:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su kainų pokyčiu\n- Ar įtaką turėjo sezoniškumas?\n- Ar sumažėjo marketingo aktyvumas?",
+        "rinkodara": "Remiantis kampanijos rezultatų kritimu Q3:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su turinio pokyčiu\n- Ar įtaką turėjo kanalo algoritmo pasikeitimas?\n- Ar sumažėjo biudžetas ar dažnis?",
+        "it-inzinerija": "Remiantis duomenų kokybės pablogėjimu Q3:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su šaltinio pokyčiu\n- Ar įtaką turėjo ETL klaidos ar vėlavimai?\n- Ar pasikeitė schemos struktūra?",
+        "personalas": "Remiantis atskyrių augimui Q3:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su konkrečiais skyriais\n- Ar įtaką turėjo įdarbinimo sustabdymas?\n- Ar pasikeitė darbo krūvis ar vadovavimas?",
+        "vadyba": "Remiantis verslo rodiklių kritimu Q3:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su rinkos pokyčiu\n- Ar įtaką turėjo vidiniai procesai?\n- Ar pasikeitė resursų paskirstymas?",
+        "kita": "Remiantis [X] rodiklių pokyčiu:\n- Identifikuok galimas priežastis\n- Patikrink ar tai susiję su duomenų šaltiniu\n- Ar įtaką turėjo išoriniai veiksniai?\n- Ar pasikeitė matavimo metodika?"
+      },
+      "types-predictive": {
+        "pardavimai": "Remiantis 3 metų duomenimis:\n- Prognozuok Q4 pardavimus\n- Įvertink atsargų poreikį\n- Nurodyk riziką (% tikimybė)",
+        "rinkodara": "Remiantis 3 mėnesių kampanijų duomenimis:\n- Prognozuok Q4 reach ir konversiją\n- Įvertink biudžeto poreikį pagal kanalą\n- Nurodyk riziką (% tikimybė)",
+        "it-inzinerija": "Remiantis 3 mėnesių pipeline metrikomis:\n- Prognozuok Q4 duomenų apimtį\n- Įvertink infrastruktūros poreikį\n- Nurodyk riziką (% tikimybė)",
+        "personalas": "Remiantis 3 mėnesių HR duomenimis:\n- Prognozuok Q4 headcount pokyčius\n- Įvertink įdarbinimo poreikį pagal skyrių\n- Nurodyk riziką (% tikimybė)",
+        "vadyba": "Remiantis 3 ketvirčių verslo duomenimis:\n- Prognozuok Q4 pagrindinius KPI\n- Įvertink resursų poreikį\n- Nurodyk riziką (% tikimybė)",
+        "kita": "Remiantis 3 laikotarpių [X] duomenimis:\n- Prognozuok kitą periodą\n- Įvertink resursų poreikį\n- Nurodyk riziką (% tikimybė)"
+      },
+      "types-prescriptive": {
+        "pardavimai": "Remiantis prognoze:\n- Kiek didinti atsargas?\n- Ar kelti kainą?\n- Ar intensyvinti reklamą?\n- Kuriuos produktus fokusuoti?",
+        "rinkodara": "Remiantis prognoze:\n- Kurį kanalą stiprinti?\n- Ar keisti turinio formatą?\n- Ar didinti biudžetą?\n- Kurias auditorijas fokusuoti?",
+        "it-inzinerija": "Remiantis prognoze:\n- Ką automatizuoti pirmiausia?\n- Ar plėsti saugyklą?\n- Ar keisti ETL grafiką?\n- Kurias lenteles optimizuoti?",
+        "personalas": "Remiantis prognoze:\n- Kur didinti įdarbinimą?\n- Ar keisti retention programą?\n- Ar peržiūrėti atlyginimus?\n- Kurias komandas stiprinti?",
+        "vadyba": "Remiantis prognoze:\n- Ką finansuoti pirmiausia?\n- Ar keisti strategiją?\n- Ar sustabdyti silpnus projektus?\n- Kurias sritis fokusuoti?",
+        "kita": "Remiantis prognoze:\n- Ką daryti pirmiausia?\n- Ar keisti procesą?\n- Ar didinti resursus?\n- Kurias sritis fokusuoti [X] kontekste?"
+      }
+    },
+    "732": {
+      "sentiment-prompt": {
+        "pardavimai": "ROLE: Tu esi pardavimų įžvalgų analitikas.\nTASK: Atlik sentimentų analizę klientų atsiliepimuose.\nCONTEXT: Įkeliu klientų atsiliepimus apie produktą ir pardavimų patirtį.\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritiniai skundai (top 5 pagal pajamų riziką)\n5. 3 prioritetiniai veiksmai pardavimų komandai\n\nTONE: Analitinis, konkretus, be bendrybių.",
+        "rinkodara": "ROLE: Tu esi rinkos analitikas.\nTASK: Atlik sentimentų analizę.\nCONTEXT: Įkeliu klientų atsiliepimus apie produktą ir kampanijas.\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritiniai skundai (top 5 pagal reputacijos riziką)\n5. 3 prioritetiniai veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių.",
+        "it-inzinerija": "ROLE: Tu esi duomenų kokybės analitikas.\nTASK: Atlik sentimentų tipo analizę sistemos atsiliepimų loguose.\nCONTEXT: Įkeliu klaidų ir vartotojų atsiliepimus apie duomenų pipeline.\n\nOUTPUT:\n1. Problemų kategorijų struktūra (% kritinių / įspėjimų / info)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Sunkumo intensyvumas (žemas / vidutinis / aukštas)\n4. Kritinės problemos (top 5 pagal sistemos riziką)\n5. 3 prioritetiniai taisymai\n\nTONE: Analitinis, konkretus, be bendrybių.",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Atlik pulse/sentimentų analizę darbuotojų atsiliepimuose.\nCONTEXT: Įkeliu darbuotojų apklausų ir atsiliepimų duomenis.\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritinės problemos (top 5 pagal retention riziką)\n5. 3 prioritetiniai HR veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių.",
+        "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Atlik sentimentų analizę suinteresuotų šalių atsiliepimuose.\nCONTEXT: Įkeliu vadovybės ir klientų atsiliepimus apie sprendimus.\n\nOUTPUT:\n1. Bendra struktūra (% palaikančių / neutralių / susirūpinusių)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Intensyvumas (žemas / vidutinis / aukštas)\n4. Kritinės rizikos (top 5 pagal verslo poveikį)\n5. 3 prioritetiniai vadovų veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių.",
+        "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Atlik sentimentų analizę.\nCONTEXT: Įkeliu atsiliepimų duomenis apie [X].\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritinės problemos (top 5 pagal riziką)\n5. 3 prioritetiniai veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių."
+      }
+    },
+    "733": {
+      "template-data": {
+        "pardavimai": "ROLE: Duomenų analitikas.\nSukurk 20 eilučių pardavimo duomenų.\nStulpeliai: ID (AB0001), Vardas, Pavardė, Užsakymo data, Produktas, Kiekis, Vieneto kaina, Savikaina (Kaina*0.76), Viso suma (Kiekis*Kaina), Pelnas.\nPridėk: 3 regionus, sezoniškumą, realistiškas kainas.",
+        "rinkodara": "ROLE: Rinkodaros analitikas.\nSukurk 20 eilučių kampanijų duomenų.\nStulpeliai: ID (KM0001), Kampanija, Kanalas, Data, Pasiekiamumas, Paspaudimai, Konversijos, Išlaidos, CPA, ROAS.\nPridėk: 3 kanalus, sezoniškumą, realistiškas metrikas.",
+        "it-inzinerija": "ROLE: Duomenų inžinierius.\nSukurk 20 eilučių įvykių logų.\nStulpeliai: ID (LOG0001), Timestamp, Šaltinis, Lentelė, Operacija, Eilučių_skaičius, Trukmė_ms, Statusas, Klaidos_kodas, Vartotojas.\nPridėk: 3 šaltinius, realistiškus laikus, 2–3 klaidas.",
+        "personalas": "ROLE: HR analitikas.\nSukurk 20 eilučių darbuotojų įrašų.\nStulpeliai: ID (HR0001), Vardas, Skyrius, Pareigos, Įdarbinimo_data, Atlyginimas, Vertinimas, Būsena, Vadovas, Vieta.\nPridėk: 3 skyrius, realistiškas datas, 2–3 atskyrimus.",
+        "vadyba": "ROLE: Verslo analitikas.\nSukurk 20 eilučių KPI suvestinės.\nStulpeliai: ID (KPI0001), Rodiklis, Skyrius, Tikslas, Faktas, Skirtumas_%, Periodas, Tendencija, Rizika, Savininkas.\nPridėk: 3 skyrius, realistiškas tikslus, 2–3 rizikingus rodiklius.",
+        "kita": "ROLE: Duomenų analitikas.\nSukurk 20 eilučių [X] duomenų.\nStulpeliai: ID, Kategorija, Data, Metrika_1, Metrika_2, Metrika_3, Statusas, Pastabos.\nPridėk: 3 kategorijas, realistiškas reikšmes, 2–3 išimtis."
+      },
+      "template-competitors": {
+        "pardavimai": "ROLE: Strateginis verslo analitikas. TASK: Atlik konkurentų analizę.\nIšanalizuok: 1) Socialinių tinklų aktyvumą 2) SEO strategiją 3) Produktų kainodarą 4) Dažniausius klientų skundus 5) Finansinius rodiklius\nOUTPUT: SWOT lentelė, 3 konkurentų silpnos vietos, 3 mūsų galimybės, greito įėjimo strategija (30 dienų planas).",
+        "rinkodara": "ROLE: Rinkodaros strategas. TASK: Atlik konkurentų kanalų analizę.\nIšanalizuok: 1) Turinio strategiją 2) Kanalų pasiskirstymą 3) Kampanijų dažnį 4) Auditorijos reakcijas 5) Biudžeto signalus\nOUTPUT: SWOT lentelė, 3 konkurentų silpnos vietos, 3 mūsų galimybės, 30 dienų kanalų planas.",
+        "it-inzinerija": "ROLE: Technologijų analitikas. TASK: Atlik stack palyginimą.\nIšanalizuok: 1) Duomenų architektūrą 2) ETL įrankius 3) Saugyklos sprendimus 4) Integracijų apimtį 5) Techninę skolą\nOUTPUT: SWOT lentelė, 3 silpnos vietos, 3 mūsų galimybės, 30 dienų migracijos planas.",
+        "personalas": "ROLE: HR strategas. TASK: Atlik talentų rinkos analizę.\nIšanalizuok: 1) Atlyginimų lygius 2) Įdarbinimo greitį 3) Employer brand 4) Atskyrimo tendencijas 5) Populiarias pozicijas\nOUTPUT: SWOT lentelė, 3 konkurentų silpnos vietos, 3 mūsų galimybės, 30 dienų įdarbinimo planas.",
+        "vadyba": "ROLE: Strateginis verslo analitikas. TASK: Atlik rinkos pozicijos analizę.\nIšanalizuok: 1) Rinkos dalį 2) Augimo tempą 3) Klientų lojalumą 4) Strateginius partnerius 5) Rizikas\nOUTPUT: SWOT lentelė, 3 konkurentų silpnos vietos, 3 mūsų galimybės, 30 dienų strategijos planas.",
+        "kita": "ROLE: Verslo analitikas. TASK: Atlik [X] palyginimą.\nIšanalizuok: 1) Pagrindinius rodiklius 2) Stiprybes 3) Silpnybes 4) Galimybes 5) Grėsmes\nOUTPUT: SWOT lentelė, 3 silpnos vietos, 3 galimybės, 30 dienų veiksmų planas."
+      },
+      "template-cfo": {
+        "pardavimai": "ROLE: CFO asistentas.\nĮvertink: EBITDA, maržą, pinigų srautą, skolos lygį.\nIdentifikuok: 3 finansines rizikas, 3 optimizavimo galimybes, kainų didinimo potencialą (%).",
+        "rinkodara": "ROLE: Rinkodaros finansų analitikas.\nĮvertink: ROAS, CAC, LTV, kanalų efektyvumą.\nIdentifikuok: 3 biudžeto rizikas, 3 optimizavimo galimybes, biudžeto perskirstymo potencialą (%).",
+        "it-inzinerija": "ROLE: IT finansų analitikas.\nĮvertink: Infra kaštus, licencijas, cloud išlaidas, techninę skolą.\nIdentifikuok: 3 kaštų rizikas, 3 optimizavimo galimybes, automatizacijos sutaupymo potencialą (%).",
+        "personalas": "ROLE: HR finansų analitikas.\nĮvertink: Darbo užmokesčio fondą, įdarbinimo kaštus, atskyrimo kaštus, produktyvumą.\nIdentifikuok: 3 HR finansines rizikas, 3 optimizavimo galimybes, atlyginimų optimizacijos potencialą (%).",
+        "vadyba": "ROLE: CFO asistentas.\nĮvertink: EBITDA, maržą, pinigų srautą, investicijų grąžą.\nIdentifikuok: 3 strategines finansines rizikas, 3 optimizavimo galimybes, investicijų perskirstymo potencialą (%).",
+        "kita": "ROLE: Finansų analitikas.\nĮvertink: Pagrindinius [X] finansinius rodiklius.\nIdentifikuok: 3 rizikas, 3 optimizavimo galimybes, kaštų mažinimo potencialą (%)."
+      }
+    },
+    "734": {
+      "filter-ok-fail": {
+        "pardavimai": "Įvertink šiuos pardavimų duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk verslą, pardavimų duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.",
+        "rinkodara": "Įvertink šiuos rinkodaros duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk kampaniją, kanalus, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.",
+        "it-inzinerija": "Įvertink šiuos duomenų pipeline rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk šaltinį, ETL, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.",
+        "personalas": "Įvertink šiuos HR duomenis/procesą OK / Fail logika.\n\nKontekstas: [aprašyk skyrių, HR procesą, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.",
+        "vadyba": "Įvertink šiuos verslo sprendimo variantus OK / Fail logika.\n\nKontekstas: [aprašyk sprendimą, KPI, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.",
+        "kita": "Įvertink šiuos [X] duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk temą, duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų."
+      },
+      "filter-priority": {
+        "pardavimai": "Suskirstyk šį pardavimų užduočių sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [pardavimų tikslas / ketvirtis]\nSąrašas: [užduotys, produktai, regionai]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis pajamoms\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.",
+        "rinkodara": "Suskirstyk šį rinkodaros užduočių sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [kampanijos tikslas / ketvirtis]\nSąrašas: [kanalai, turinys, kampanijos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis reach/konversijai\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.",
+        "it-inzinerija": "Suskirstyk šį IT užduočių sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [pipeline / infrastruktūros tikslas]\nSąrašas: [ETL, automatizacija, optimizacija]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis duomenų kokybei\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.",
+        "personalas": "Suskirstyk šį HR užduočių sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [įdarbinimo / retention tikslas]\nSąrašas: [įdarbinimas, mokymai, procesai]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis komandai\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.",
+        "vadyba": "Suskirstyk šį verslo sprendimų sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [strateginis tikslas / ketvirtis]\nSąrašas: [projektai, investicijos, iniciatyvos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis verslui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.",
+        "kita": "Suskirstyk šį [X] sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar.\n\nKontekstas: [tikslas / projektas]\nSąrašas: [užduotys, funkcijos, idėjos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis rezultatui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali."
+      },
+      "filter-quick-wins": {
+        "pardavimai": "Rask greitus laimėjimus pardavimų duomenyse.\n\nTikslas: [ką norime pagerinti pardavimuose]\nDuomenys: [produktai, regionai, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą pajamų rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.",
+        "rinkodara": "Rask greitus laimėjimus rinkodaros duomenyse.\n\nTikslas: [ką norime pagerinti kampanijose]\nDuomenys: [kanalai, turinys, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą reach/konversijos rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.",
+        "it-inzinerija": "Rask greitus laimėjimus duomenų pipeline.\n\nTikslas: [ką norime pagerinti ETL/duomenyse]\nDuomenys: [šaltiniai, klaidos, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą kokybės rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.",
+        "personalas": "Rask greitus laimėjimus HR procesuose.\n\nTikslas: [ką norime pagerinti komandoje]\nDuomenys: [įdarbinimas, retention, apklausos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą komandos rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.",
+        "vadyba": "Rask greitus laimėjimus verslo sprendimuose.\n\nTikslas: [ką norime pagerinti strategijoje]\nDuomenys: [KPI, projektai, rizikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą verslo rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.",
+        "kita": "Rask greitus laimėjimus [X] duomenyse.\n\nTikslas: [ką norime pagerinti]\nDuomenys: [problemos, galimybės, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias."
+      },
+      "filter-portfolio": {
+        "pardavimai": "Įvertink šiuos pardavimų variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [pardavimų tikslas, biudžetas, terminas]\nVariantai: [produktai, regionai, kainodara, kanalai]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į pajamų rezultatą.",
+        "rinkodara": "Įvertink šiuos rinkodaros variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [kampanijos tikslas, biudžetas, terminas]\nVariantai: [kanalai, turinys, auditorijos, formatai]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į reach/konversijos rezultatą.",
+        "it-inzinerija": "Įvertink šiuos IT variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [pipeline tikslas, biudžetas, terminas]\nVariantai: [įrankiai, automatizacija, migracijos, integracijos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į duomenų kokybės rezultatą.",
+        "personalas": "Įvertink šiuos HR variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [įdarbinimo tikslas, biudžetas, terminas]\nVariantai: [programos, kanalai, pozicijos, procesai]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į komandos rezultatą.",
+        "vadyba": "Įvertink šiuos verslo variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [strateginis tikslas, biudžetas, terminas]\nVariantai: [projektai, investicijos, partneriai, iniciatyvos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į verslo rezultatą.",
+        "kita": "Įvertink šiuos [X] variantus principu Testuok / Investuok / Atmesk.\n\nKontekstas: [tikslas, biudžetas, terminas]\nVariantai: [produktai, kanalai, procesai, idėjos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į rezultatą."
+      }
+    },
+    "891": {
+      "prep-clean": {
+        "pardavimai": "Prieš pardavimų analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (pajamos, kiekiai, klientai)?",
+        "rinkodara": "Prieš rinkodaros analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, kanalai, valiutos)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (impressions, clicks, spend)?",
+        "it-inzinerija": "Prieš pipeline analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija / PII maskavimas?\n2. Ar formatai suvienodinti (datos, encoding)?\n3. Ar pašalinti dubliavimai / idempotencija?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar schema / tipai atitinka sutartį?",
+        "personalas": "Prieš HR analizę patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija (asmeniniai duomenys)?\n2. Ar formatai suvienodinti (datos, padaliniai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi (statusas, tenure)?",
+        "vadyba": "Prieš vadovybės ataskaitą patikrink šiuos duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, vienetai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar KPI apibrėžimai sutampa tarp padalinių?",
+        "kita": "Prieš analizę patikrink šiuos [X] duomenis:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip jų užpildymą?\n5. Ar stulpelių tipai teisingi?"
+      }
+    },
+    "78.5": {
+      "excel-clean-prompt": {
+        "pardavimai": "ROLE: Tu esi duomenų analitikas.\nTASK: Paruošk pardavimų eksporto valymo planą.\nCONTEXT: Turiu CSV/Excel iš [CRM / ERP / e-commerce – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis pardavimų analizei.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 KPI, kuriuos galima skaičiuoti iš šių pardavimų duomenų\nTONE: Konkretus, verslo kalba.",
+        "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Paruošk kampanijų eksporto valymo planą.\nCONTEXT: Turiu CSV/Excel iš [reklamos platformos / CRM / web – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis kanalų analizei.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 KPI, kuriuos galima skaičiuoti iš šių rinkodaros duomenų\nTONE: Konkretus, verslo kalba.",
+        "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Paruošk pipeline eksporto valymo planą.\nCONTEXT: Turiu CSV/Excel/logus iš [DB / API / failų – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis ETL analizei.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 kokybės metrikos, kurias galima skaičiuoti\nTONE: Konkretus, verslo kalba.",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Paruošk HR eksporto valymo planą.\nCONTEXT: Turiu CSV/Excel iš [HRIS / apklausų – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis darbuotojų analizei.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 HR KPI, kuriuos galima skaičiuoti\nTONE: Konkretus, verslo kalba.",
+        "vadyba": "ROLE: Tu esi verslo analitikas.\nTASK: Paruošk vadovų ataskaitų valymo planą.\nCONTEXT: Turiu CSV/Excel iš [finansų / operacijų / CRM – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis vadovybės ataskaitai.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 executive KPI, kuriuos galima skaičiuoti\nTONE: Konkretus, verslo kalba.",
+        "kita": "ROLE: Tu esi duomenų analitikas.\nTASK: Paruošk vidinių duomenų valymo planą.\nCONTEXT: Turiu CSV/Excel iš [CRM / ERP / Excel – įrašyk]. Stulpeliai: [įrašyk]. Tikslas – paruošti duomenis analizei.\nOUTPUT:\n1. Stulpelių tipai ir galimos problemos ( datos, trūkstamos reikšmės, dubliavimas)\n2. 5 žingsnių valymo checklist\n3. 3 KPI, kuriuos galima skaičiuoti iš šių duomenų\nTONE: Konkretus, verslo kalba."
+      }
+    },
+    "71.1": {
+      "step-task": {
+        "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką pardavimų analizei.\nCONTEXT: Duomenys iš CRM / e-commerce apie [X].\nOUTPUT: 1) Įrankis 1 + kąslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (KPI lentelė).",
+        "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką kanalų analizei.\nCONTEXT: Kampanijų / socialinių duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (kanalų palyginimas).",
+        "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Sudaryk 3 žingsnių įrankių seką duomenų pipeline.\nCONTEXT: DB / API / logai apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (schema + kokybė).",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką žmonių duomenų analizei.\nCONTEXT: HRIS / apklausos apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (retention KPI).",
+        "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką vadovybės ataskaitai.\nCONTEXT: KPI / padalinių duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (executive santrauka).",
+        "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką [X] analizei.\nCONTEXT: Vidiniai duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas."
+      }
+    },
+    "71.2": {
+      "step-task": {
+        "pardavimai": "ROLE: Tu esi pardavimų tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu palyginti pardavimų veiksnius [X] rinkoje.\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+        "rinkodara": "ROLE: Tu esi rinkos tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu suprasti kanalų / turinio efektyvumą [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+        "it-inzinerija": "ROLE: Tu esi duomenų platformos tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu įvertinti duomenų kokybę / ETL praktikas [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+        "personalas": "ROLE: Tu esi HR tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu suprasti retention / įdarbinimo veiksnius [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+        "vadyba": "ROLE: Tu esi strateginis tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu pagrįsti sprendimą [X] duomenimis.\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+        "kita": "ROLE: Tu esi verslo tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu ištirti [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą."
+      }
+    },
+    "71.3": {
+      "step-task": {
+        "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – pardavimai / rinka [X].\nOUTPUT: Lentelė: šaltinis | tipas (viešas/vidinis) | ką duoda | kodėl svarbu.",
+        "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – kanalai / auditorija [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+        "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – duomenų sistemos / kokybė [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – darbo rinka / žmonės [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+        "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – sprendimas / rizika [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+        "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu."
+      }
+    },
+    "71.4": {
+      "step-task": {
+        "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pardavimai [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai pardavimų komandai.",
+        "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – kanalai [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai rinkodaros komandai.",
+        "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pipeline [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 techniniai veiksmai.",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – žmonės [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 HR veiksmai.",
+        "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – sprendimas [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 vadovų veiksmai.",
+        "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai."
+      }
+    },
+    "71.5": {
+      "step-task": {
+        "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pardavimus [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.",
+        "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie kanalus [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.",
+        "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pipeline [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 kokybės metrikos toliau.",
+        "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie žmones [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 HR KPI toliau.",
+        "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie sprendimą [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 executive KPI toliau.",
+        "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI toliau."
+      }
+    }
+  }
+}

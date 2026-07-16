@@ -7,11 +7,15 @@ import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7DaPipelineSteps, type M7Locale } from './m7DiagramContent';
 import { DIAGRAM_TOKENS } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
-import { resolveVerticalFlowGeometry } from './verticalFlowGeometry';
+import {
+  getVerticalFlowConnector,
+  resolveVerticalFlowGeometry,
+  VERTICAL_FLOW_MIN_GAP,
+} from './verticalFlowGeometry';
 
 const STEP_COUNT = 6;
 const BOX_H = 46;
-const GAP = 14;
+const GAP = VERTICAL_FLOW_MIN_GAP;
 const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 
 const FLOW_GEOMETRY = {
@@ -94,8 +98,8 @@ export default function M7DaPipelineDiagram({
         >
           <path
             d={DIAGRAM_TOKENS.arrow.markerPath}
-            fill={palette.brand}
-            stroke={palette.brand}
+            fill={palette.flow}
+            stroke={palette.flow}
             strokeWidth="0.5"
           />
         </marker>
@@ -224,18 +228,27 @@ export default function M7DaPipelineDiagram({
                 onActivate={() => onStepClick?.(i)}
               />
             )}
-            {i < stepBoxes.length - 1 && (
-              <line
-                x1={cx}
-                y1={y + h}
-                x2={cx}
-                y2={stepBoxes[i + 1][1] - ARROW_MARKER_LEN}
-                stroke={palette.brand}
-                strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-                markerEnd={`url(#m7-da-pipeline-arrow-${uid})`}
-                aria-hidden
-              />
-            )}
+            {i < stepBoxes.length - 1 &&
+              (() => {
+                const conn = getVerticalFlowConnector(
+                  box,
+                  stepBoxes[i + 1],
+                  cx,
+                  ARROW_MARKER_LEN
+                );
+                return (
+                  <line
+                    x1={conn.x1}
+                    y1={conn.y1}
+                    x2={conn.x2}
+                    y2={conn.y2}
+                    stroke={palette.flow}
+                    strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                    markerEnd={`url(#m7-da-pipeline-arrow-${uid})`}
+                    aria-hidden
+                  />
+                );
+              })()}
           </g>
         );
       })}

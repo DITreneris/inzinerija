@@ -4,16 +4,16 @@
 
 ## Vertinimo kriterijai
 
-| Kriterijus            | Klausimas                                                             | Kokybes riba                                                                        |
-| --------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Mokymosi aiskumas     | Ar per 5-10 s aisku, ka schema paaiskina?                             | Pavadinimas + pirmas vizualus srautas turi atsakyti i klausima.                     |
-| Vizualine hierarchija | Ar matosi pagrindinis srautas, aktyvus zingsnis ir salutiniai rysiai? | Aktyvus elementas ryskesnis, bet neuzgozia teksto.                                  |
-| Readability           | Ar tekstas telpa, nera per mazas, nera perkrovos?                     | SVG tekstas >= 10 px, pagrindiniai labeliai >= 12 px.                               |
-| Geometrija            | Ar rodykles eina krastas-i-krasta ir nekerta bloku?                   | Markerio ilgis sutampa su path skaiciavimu.                                         |
-| Interaktyvumas        | Ar clickable schema turi orientacija ir keyboard kelia?               | `Tu esi cia`, step nav, `aria-label`, `role`, `tabIndex`, Enter/Space.              |
-| Consistency           | Ar vienodi frame, spalvos, spacing, active/inactive busenos?          | Bendras `DiagramKit` wrapperis ir `diagramTokens`.                                  |
-| Mobile                | Ar schema turi nuoseklu reflow/scroll sprendima?                      | `mobileBehavior=\"reflow\"` arba `MobileDiagramScroller`, ne atsitiktinis overflow. |
-| Prieziura             | Ar yra layout SOT arba aiskios konstantos?                            | Koordinates vienoje vietoje, be dubliuotu magic numbers view'e.                     |
+| Kriterijus            | Klausimas                                                             | Kokybes riba                                                                                  |
+| --------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Mokymosi aiskumas     | Ar per 5-10 s aisku, ka schema paaiskina?                             | Pavadinimas + pirmas vizualus srautas turi atsakyti i klausima.                               |
+| Vizualine hierarchija | Ar matosi pagrindinis srautas, aktyvus zingsnis ir salutiniai rysiai? | Aktyvus elementas ryskesnis, bet neuzgozia teksto.                                            |
+| Readability           | Ar tekstas telpa, nera per mazas, nera perkrovos?                     | SVG tekstas >= 10 px, pagrindiniai labeliai >= 12 px.                                         |
+| Geometrija            | Ar rodykles eina krastas-i-krasta ir nekerta bloku?                   | Markerio ilgis sutampa su path skaiciavimu; vertikalus stem >= 12px (`verticalFlowGeometry`). |
+| Interaktyvumas        | Ar clickable schema turi orientacija ir keyboard kelia?               | `Tu esi cia`, step nav, `aria-label`, `role`, `tabIndex`, Enter/Space.                        |
+| Consistency           | Ar vienodi frame, spalvos, spacing, active/inactive busenos?          | Bendras `DiagramKit` wrapperis ir `diagramTokens`.                                            |
+| Mobile                | Ar schema turi nuoseklu reflow/scroll sprendima?                      | `mobileBehavior=\"reflow\"` arba `MobileDiagramScroller`, ne atsitiktinis overflow.           |
+| Prieziura             | Ar yra layout SOT arba aiskios konstantos?                            | Koordinates vienoje vietoje, be dubliuotu magic numbers view'e.                               |
 
 ## Aktyviu schemu inventorius
 

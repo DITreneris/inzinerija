@@ -22,7 +22,7 @@
 ### 1.2 Mokymosi tikslai (po modulių 7–9)
 
 - **Strateginis pamatas:** Suprasti, kad duomenų analizė = rinkimas + tvarkymas + interpretavimas → sprendimai; duomenys > nuomonė; variacija egzistuoja; tobulinti sistemą, ne kaltinti žmones (governance ir procesinis mąstymas).
-- **Verslo duomenų plotis:** Žinoti išplėstinius verslo duomenų domenus (ne tik finansai): klientų elgsena, tiekimo grandinė, pardavimų dinamika, CRM/marketingas, procesų efektyvumas, konkurencinė analizė.
+- **Verslo duomenų plotis:** Žinoti 6 verslo analizės sritis (ne tik finansai): klientų elgsena, tiekimo grandinė, pardavimų dinamika, CRM/marketingas, procesų efektyvumas, konkurencinė analizė.
 - **DI vaidmuo analizėje:** Suprasti, kaip DI keičia analizę (automatizacija, kompleksiniai metodai, duomenimis grįsti sprendimai, prisitaikymas); mokėti aktyvuoti DI verslo analitiko rolėje.
 - **Sisteminė promptų architektūra:** Mokėti struktūruotai naudoti promptus: rolės aktyvavimas, duomenų/DB struktūros kūrimas, ryšių analizė, vizualizacijų generavimas, prognozavimas – su CopyButton šablonais.
 - **Pipeline ir operacinės sąvokos:** Žinoti duomenų analizės pipeline (rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas) ir ką kiekvienas etapas reiškia versle + atitinkami DI promptai (02_DA I–II).
@@ -51,11 +51,11 @@
 
 Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas aiškus naudos sakinys pirmoje kiekvieno modulio skaidrėje:
 
-| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                  |
-| ------- | ---------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **7**   | action-intro (pirmoji) | Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki MASTER PROMPT ir vizualizacijų. |
-| **8**   | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9).              |
-| **9**   | practice-intro         | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.             |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                                        |
+| ------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **7**   | action-intro (pirmoji) | Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki pilno analizės šablono (8 žingsnių) ir vizualizacijų. |
+| **8**   | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9).                                    |
+| **9**   | practice-intro         | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.                                   |
 
 ---
 
@@ -146,22 +146,39 @@ _Skaidrėje – lentelė su CopyButton kiekvienam promptui; laukas [X] – tema.
 
 ## 3. Verslo duomenų išplėtimas (II) – Ne tik finansai
 
-**Tikslas:** Parodyti 6 duomenų domenus, kuriuos galima paversti DI analizės moduliais.
+**Tikslas:** Parodyti 6 verslo analizės sritis, iš kurių galima rinkti duomenis ir kurti DI analizę.
 
-### 3.1 Tradicinis vs išplėstinis požiūris
+**Terminologija (LT):** vartotojui matomas žodis – **sritis** (ne „domenas“). Apibrėžimas: _Sritis = kurioje veiklos dalyje kaupiasi duomenys ir priimami sprendimai._
 
-| Tradicinis požiūris | Išplėstinis požiūris (6 domenai) |
-| ------------------- | -------------------------------- |
-| Sąnaudos            | **Klientų elgsena**              |
-| Pajamos             | **Tiekimo grandinė**             |
-| Pelnas              | **Pardavimų dinamika**           |
-|                     | **CRM / marketing duomenys**     |
-|                     | **Procesų efektyvumas**          |
-|                     | **Konkurencinė analizė**         |
+### 3.1 Skaidrės 76 struktūra (GOLDEN §3.2)
 
-**Skaidrėje:** Dvi kortelės arba lentelė; paaiškinimas – „Šie 6 domenai – potencialūs DI analizės moduliai“; ryšys su tolesnėmis skaidrėmis (DB struktūra, KPI, vizualizacijos).
+| Blokas               | Turinys                                                  |
+| -------------------- | -------------------------------------------------------- |
+| 1️⃣ Trumpai           | Instrukcija: pasirink sritį → gauk kopijuojamą promptą   |
+| 2️⃣ Pasirink sritį    | `toolChoiceBar` (6 mygtukai) – **be lentelės** virš fold |
+| Kopijuojami promptai | 6 šablonai su `linkedRowIndex` 0–5                       |
+| 9️⃣ Daryk dabar       | 3 sričių auditas                                         |
+| 4️⃣ Patikra           | Savęs tikrinimas                                         |
+| 🔽 Collapsible       | Finansų kontrastas + 6 sričių žemėlapis (optional depth) |
 
-**Įgyvendinta JSON (2026-06-30):** skaidrė 76 turi 1️⃣ „Kodėl čia?“, tradicinio vs išplėstinio požiūrio lentelę, 6 domenų blokus su CopyButton ir vieną „Daryk dabar“ domain-audit promptą. EN overlay sinchronizuotas `modules-en-m7-m9.json`.
+### 3.1a Ne tik finansai (collapsible – optional depth)
+
+**Finansinė santrauka (siaurai):** sąnaudos, pajamos, pelnas.
+
+**6 papildomos analizės sritys:**
+
+- Klientų elgsena
+- Tiekimo grandinė
+- Pardavimų dinamika
+- CRM / marketing duomenys
+- Procesų efektyvumas
+- Konkurencinė analizė
+
+**Svarbu:** tai **ne 1:1 atitikmenys** – dešinė pusė rodo platesnį žvilgsnį, ne finansų eilučių pakaitalą. **Nenaudoti** `comparisonStyle` eilučių poravimo.
+
+**6 sričių žemėlapis (lentelė collapsible bloke):** Sritis | Kada naudoti | Klausimas.
+
+**Įgyvendinta JSON (2026-07-15):** skaidrė 76 – `pathBranch: strategija`; 1️⃣ Trumpai, 2️⃣ `toolChoiceBar` be lentelės, `linkedRowIndex` promptai, collapsible su finansų kontrastu ir sričių žemėlapiu. EN overlay – `modules-en-m7-m9.json` (terminas _area_, ne _domain_).
 
 ### 3.2 Duomenų tipai (02_DA III)
 
@@ -225,11 +242,16 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 
 **Įgyvendinta JSON (2026-06-30):** skaidrė 78 sujungia 7.8+7.9: 1️⃣ trumpas DI vaidmens paaiškinimas, tradicinė vs DI analizė lentelėje, 5 DI gebėjimų sąrašas, „Daryk dabar“ CopyButton ir optional tiltas į rolės/DB/vizualizacijos skaidres. EN overlay sinchronizuotas.
 
-**Phase 2 (2026-07-15) – optional šaka „Vidiniai duomenys“:** `journeyChoices` id `vidiniai` skaidrėje 70; **papildoma** skaidrė **78.5** (`pathBranch: ["vidiniai"]`) – Excel/CRM eksportas ir valymo plano promptas. Branduolio skaidrės 78, 84, 891 lieka visiems; sk. 78 ir 891 turi cross-link tekstą vidinių duomenų kontekstui.
+**Phase 2 (2026-07-15) – vidiniai duomenys branduolyje:** skaidrė **78.5** (Excel/CRM eksportas ir valymo plano promptas) – **branduolio** dalis, matoma visiems fokusams. Skaidrėje 70 lieka **6** `journeyChoices` (rolės + sujungta „Kita sritis ar vidiniai duomenys“); atskiras 7-as kelias pašalintas (2026-07-15 UX peržiūra). Branduolio skaidrės 78, 84, 891 lieka visiems.
+
+**Lygis C RC-1 (įgyvendinta 2026-07-15, M79-32–34):** Tier 1 overlay `modules-journey-m7.json` — sk. **731, 733, 74, 734, 75** turi 6× `copyable` / refleksiją pagal `journeyId` (slide 70). Resolver `resolveJourneyCopy.ts`; fallback: aktyvus kelias → `pardavimai` overlay → `modules.json` bazė. Registry: [`docs/development/M7_JOURNEY_COPY_REGISTRY.md`](development/M7_JOURNEY_COPY_REGISTRY.md). Spec: [`docs/development/M7_LYGIS_C_JOURNEY_EPIC.md`](development/M7_LYGIS_C_JOURNEY_EPIC.md).
+
+**Lygis C RC-4 (įgyvendinta 2026-07-16, M79-35–39):** Tier 2 likę (sk. **83, 84, 86, 87, 89, 891, 90, 92** — 1 primary `copyable` × 6) + path-step **71.1–71.5** `step-task` × 6; EN overlay; `applyJourneyOverlayToPathStep`; `audit:m7-journey-coverage` 31×6.
 
 **Operacinis polish (2026-07-15) – ne pilnas turinio rewrite:** UX iteracijos fiksuojamos operaciniame SOT: [`docs/development/TEST_REPORT.md`](development/TEST_REPORT.md) §P2, [`docs/development/M79_PATCH_REGISTRY.md`](development/M79_PATCH_REGISTRY.md), [`docs/development/07_08_09_backlog.md`](development/07_08_09_backlog.md) §12. Santrauka:
 
 - M7 etika (sk. 67, 67.5, 67.8, 67.3, 68): collapsible, dedup, Patikra
+- **M7 sk. 67 (2026-07-15):** interaktyvus UX – `toolChoiceBar` (3 tipai) + `linkedRowIndex` (blogas/geras promptas) + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` santrauka + „Verslas vs saugumas“ (jailbreak → sk. 67.5); subtitle be jailbreak; micro-win visiems fokusams (ne tik `etika-plus` → 67.3)
 - Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
 - M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99
 - Optional šakos + sk. 200 dashboard intro (UI komponentas)
@@ -902,7 +924,7 @@ Jei bent 2 „ne“ → grįžk į lentelę viršuje, pasirink teisingą grupę.
 
 ### Papildomas skaitymas (blog)
 
-- **Skaidrė 66.9 (section-break):** `spinoffCta` → blog `grounding-ai-outputs` (EN skaitinys; patikrumas, haliucinacijos, RAG). Žr. `docs/development/BLOG_CURRICULUM_LINKS.yaml`.
+- **Skaidrė 66.9 (section-break):** `spinoffCta` → blog `grounding-ai-outputs` (EN skaitinys; patikrumas, haliucinacijos, RAG). Žr. `docs/development/BLOG_CURRICULUM_LINKS.yaml`. **Plain language (M79-45 W4/W5, 2026-07-16):** UI copy vartoja „analizės eiga“ / „pilnas analizės šablonas“ (ne nepaaiškintą pipeline/MASTER); sk. 97 collapsible – 4 principai inline (M79-44).
 - **M8 testas nepavyko (`<70%`):** UI deepen → blog `rag-in-production`; vidinė remediation lieka `TestRemediationChips` → M7 skaidrės.
 - **M9 ModuleComplete:** secondary links – blog `ai-workflow-canvas-template`, `promptanatomy.pro`, `promptanatomy.site#ecosystem`.
 
@@ -992,6 +1014,43 @@ Vienas aiškus 8 žingsnių ciklas – nuo duomenų surinkimo iki dashboard atva
 **Sandbox principas:** Parametrai, spalvos, grafikų pavadinimai ir jų dinamika nurodomi prompte; mažai rankinio kodo, daug aišių instrukcijų DI.
 
 **Phase 2 (2026-07-15) – verifiable praktika:** Pagrindinis kelias 93–94 papildytas dviem `practice-scenario` skaidrėmis **93.1** (viešų šaltinių katalogas, `doneWhen`: lentelė su URL/formatu/dažniu) ir **93.2** (CSV/Excel įkėlimas į DI + valymo promptas). Skaidrė 93 – workflow schema; praktikos turinys perkeltas į 93.1–93.2.
+
+**M79-51…55 (2026-07-16) – artumas kasdieniam darbui:** M9 intro (90) + praktikos 93.1/93.2 susietos su 6 M7 keliais ir įrankiais; sample CSV; hub 99 aprašymai; M8 vignette. Backlog: `docs/development/07_08_09_backlog.md`.
+
+##### Sk. 90 practice-intro – fork ir 6 use-case
+
+- **Fork:** (i) šaltinių katalogas – kai nėra vidinių duomenų; (ii) savo CSV/Excel – kai turi CRM/Excel eksportą arba sample failą.
+- **useCaseBlock (6 eilutės):** pardavimai → Q3 Excel/CRM; rinkodara → kampanijų/kanalų CSV; IT → logai/ETL; personalas → retention/pulse; vadyba → executive KPI lentelė; kita → bet koks vidinis Excel.
+- Be naked skaidrių id – temų pavadinimai.
+
+##### Sk. 93.1 – šaltinių katalogas
+
+- Sektoriaus pavyzdžiai pagal M7 kelią (6× `[sektorius]` instructions).
+- Įrankiai: DI chat (ChatGPT / Claude / Gemini); optional Sheets eksportui.
+- `doneWhen`: lentelė su URL, formatu, dažniu, aprašymu.
+
+##### Sk. 93.2 – CSV/Excel + sample
+
+- Įrankiai: ChatGPT · Claude · Gemini (failas) · Excel / Google Sheets → CSV.
+- Jei neturi failo: `public/m9_sample_internal.csv` (pardavimų default) arba 6× stulpelių CONTEXT:
+  - pardavimai: date, region, product, revenue, units
+  - rinkodara: date, channel, campaign, spend, clicks, conversions
+  - it-inzinerija: timestamp, source_system, rows_in, rows_out, error_count
+  - personalas: month, hired, left, dept, eNPS
+  - vadyba: period, kpi_name, actual, target, owner
+  - kita: col_a, col_b, col_c (`[X]`)
+- `content.sampleFile`: `{ href, label }` – UI download nuoroda.
+- Ryšys su M7 Duomenų paruošimu – be naked id.
+
+##### Hub 99 – level1 description
+
+Trumpa kasdienė nauda (1 sakinys / veikėjas), ne `Neprivaloma · .`.
+
+##### M8 (M79-53) – vignette
+
+- Warm-up 80.5: kada šaltinių katalogas vs savo Excel/CRM.
+- Testo scenarijai: CRM→Excel su maišytomis datomis; CSV be stulpelių tipų → pirmiausia valymas.
+- whyBenefit: testas ruošia M9 praktiką su savo arba sample duomenimis.
 
 #### 10.0.1a DA kelio PDF atmintinė (po Modulio 9)
 

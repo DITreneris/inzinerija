@@ -759,6 +759,7 @@
     "sectionBreakPillLabels7": "Sisteminis|Master|Procesas|Metodinis|Agentinis|RAG promptai|Combo promptai",
     "presentationToolsHint": "Kam ir kada naudoti – paspausk, kad atidarytum:",
     "chooseTaskTypeAria": "Pasirink užduoties tipą",
+    "toolChoiceLinkedCopyHint": "Pasirinkus – žemiau parodomas tavo promptas",
     "solutionAria": "Sprendimas",
     "pdfHandoutAria": "PDF atmintinė",
     "m79HandoutCtaLabel": "Parsisiųsti DA kelio atmintinę (PDF)",

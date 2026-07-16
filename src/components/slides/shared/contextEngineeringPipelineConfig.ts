@@ -33,11 +33,35 @@ export const NODE_Y: readonly number[] = Array.from(
   { length: 6 },
   (_, i) => FIRST_NODE_Y + i * (BOX_H + NODE_GAP)
 );
-// NODE_Y = [62, 138, 214, 290, 366, 442]
-// Last node bottom: 442 + 56 = 498; legend: 512
+// NODE_Y = [62, 148, 234, 320, 406, 492]
 
 /* ═══ Arrow ═══ */
 export const ARROW_MARKER_LEN = 8;
+
+/* ═══ Annotation / bypass routing (SCHEME: path nekerta blokų) ═══ */
+/** Dešinysis koridorius papildomoms rodyklėms ir etiketėms – ne ant stubos x=CX */
+export const ROUTE_X_RIGHT = BOX_X + BOX_W + 18;
+/** Etiketės (INPUT, LLM↔Tools) – dešinėje laisvoje zonoje */
+export const ANNOTATION_LANE_X = BOX_X + BOX_W + 10;
+
+/** INPUT grupės etiketės Y – vertikaliai centre Prompt+Kontekstas zonoje */
+export function getInputLabelY(): number {
+  return (NODE_Y[1] + NODE_Y[2] + BOX_H) / 2 + 4;
+}
+
+/** LLM↔Tools etiketės Y – centre tarpe tarp LLM ir Tools */
+export function getLlmToolsLabelY(): number {
+  return (NODE_Y[3] + BOX_H + NODE_Y[4]) / 2 + 4;
+}
+
+/** L-forma Prompt → LLM (context mode): dešinėn, apeina Kontekstas bloką */
+export function getPromptToLlmPath(): string {
+  const startX = BOX_X + BOX_W;
+  const startY = NODE_Y[1] + BOX_H / 2;
+  const entryY = NODE_Y[3] - ARROW_MARKER_LEN;
+  const endY = NODE_Y[3];
+  return `M ${startX} ${startY} H ${ROUTE_X_RIGHT} V ${entryY} H ${CX} V ${endY}`;
+}
 
 /* ═══ Node definitions ═══ */
 export type PipelineMode = 'both' | 'context';
@@ -149,7 +173,7 @@ export const COLORS = {
 export type PipelineActiveMode = 'prompt' | 'context';
 
 const MODE_LABELS_LT: Record<PipelineActiveMode, string> = {
-  prompt: 'Prompt engineering',
+  prompt: 'Promptų inžinerija',
   context: 'Konteksto inžinerija',
 };
 
@@ -169,7 +193,7 @@ export function getModeLabels(
 
 const MODE_CONSEQUENCE_LT: Record<PipelineActiveMode, string> = {
   prompt:
-    'Prompt engineering: promptas eina tiesiai į modelį. Kontekstas ir įrankiai nedalyvauja.',
+    'Promptų inžinerija: promptas eina tiesiai į modelį. Kontekstas ir įrankiai nedalyvauja.',
   context:
     '✓ Promptas ir kontekstas sudaro įvestį, o LLM su įrankiais dirba iteratyviai.',
 };
@@ -210,7 +234,7 @@ const UI_LABELS_LT: ContextPipelineUiLabels = {
   compareLabel: 'Palygink:',
   modeLabel: 'Režimas:',
   ariaGroup: 'Pipeline režimas',
-  inputPromptContext: 'INPUT: Prompt + Kontekstas',
+  inputPromptContext: 'Įvestis: promptas + kontekstas',
   llmToolsLabel: 'LLM ↔ Tools',
   stepDetailAria: 'Žingsnio detalė',
   keyRuleLabel: 'Svarbiausia taisyklė',
@@ -238,4 +262,4 @@ export function getDiagramUiLabels(locale: Locale): ContextPipelineUiLabels {
 }
 
 /** VB_HEIGHT sutrumpintas – legenda perkelta į HTML (consequence line) */
-export const VB_HEIGHT_INTERACTIVE = NODE_Y[5] + BOX_H + 10; // = 508
+export const VB_HEIGHT_INTERACTIVE = NODE_Y[5] + BOX_H + 10;

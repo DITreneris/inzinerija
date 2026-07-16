@@ -6587,7 +6587,7 @@
           "subtitle": "Pasirink savo kelionę – asmeninis fokusas modulyje",
           "type": "action-intro-journey",
           "content": {
-            "whyBenefit": "Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki MASTER PROMPTAS ir vizualizacijų.",
+            "whyBenefit": "Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki pilno analizės šablono ir vizualizacijų.",
             "heroStat": "Jau moki 6 blokus ir RAG.",
             "heroText": "Dabar – duomenų analizė su DI.",
             "heroSubText": "Pasirink sritį – toliau tie patys šablonai, pritaikyk savo kontekstui.",
@@ -6595,14 +6595,14 @@
             "journeyChoices": [
               {
                 "id": "pardavimai",
-                "branchIds": ["viz"],
+                "branchIds": ["viz-sales"],
                 "label": "Pardavimai",
                 "subtitle": "Duomenų analitikas – KPI, tendencijos, prognozės",
                 "icon": "TrendingUp"
               },
               {
                 "id": "rinkodara",
-                "branchIds": ["viz"],
+                "branchIds": ["viz-mkt"],
                 "label": "Rinkodara",
                 "subtitle": "Turinio ir kanalų analizė",
                 "icon": "Image"
@@ -6756,12 +6756,12 @@
             "sections": [
               {
                 "heading": "Kelio žemėlapis (4 blokai)",
-                "body": "**1. Pamatas** – principai ir kontekstas (strateginis pamatas, kelio žingsniai).\n**2. Rinkimas** – pipeline, analizės tipai, šaltiniai.\n**3. Paruošimas** – 5 žingsnių algoritmas, valymas, metaduomenys.\n**4. Analizė ir MASTER** – EDA, vizualizacija, DI agentai, 8 žingsnių MASTER PROMPTAS.\n\n**Dabar esi:** žiūrėk navigacijos juostą viršuje – rodomas makro-blokas (Pamatas / Rinkimas / Paruošimas / Analizė) ir pozicija modulyje.",
+                "body": "**1. Pamatas** – principai ir kontekstas (strateginis pamatas, kelio žingsniai).\n**2. Rinkimas** – analizės eiga (pipeline), analizės tipai, šaltiniai.\n**3. Paruošimas** – 5 žingsnių algoritmas, valymas, metaduomenys.\n**4. Analizė ir šablonas** – tiriamoji analizė, vizualizacija, DI agentai, 8 žingsnių pilnas analizės šablonas (MASTER PROMPTAS).\n\n**Dabar esi:** žiūrėk navigacijos juostą viršuje – rodomas makro-blokas (Pamatas / Rinkimas / Paruošimas / Analizė) ir pozicija modulyje.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Ką išmoksi šiame modulyje",
-                "body": "✔️ Kaip suformuluoti užklausą, kad DI pateiktų tikrus duomenis, ne nuomonę\n✔️ Kaip gauti ataskaitą, grafikus ir prognozę vienu prašymu\n✔️ Kaip sujungti lenteles, ryšius ir rodiklius\n✔️ Kaip naudoti vieną **MASTER PROMPTAS**, kuris tiks 80 % verslo situacijų\n✔️ Kaip trumpai ir aiškiai papasakoti istoriją iš skaičių – duomenų pasakojimas (data storytelling)"
+                "body": "✔️ Kaip suformuluoti užklausą, kad DI pateiktų tikrus duomenis, ne nuomonę\n✔️ Kaip gauti ataskaitą, grafikus ir prognozę vienu prašymu\n✔️ Kaip sujungti lenteles, ryšius ir rodiklius\n✔️ Kaip naudoti vieną **pilną analizės šabloną** (MASTER PROMPTAS), kuris tiks 80 % verslo situacijų\n✔️ Kaip trumpai ir aiškiai papasakoti istoriją iš skaičių – duomenų pasakojimas (data storytelling)"
               },
               {
                 "heading": "Kodėl tai svarbu?",
@@ -7209,7 +7209,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Kam tai?",
-                "body": "**6 žingsnių pipeline** – nuo duomenų iki sprendimo. Pasirink **vieną** etapą – kiekvienam promptas žemiau.",
+                "body": "**6 žingsnių analizės eiga** (pipeline) – nuo duomenų iki sprendimo. Pasirink **vieną** etapą – kiekvienam promptas žemiau.",
                 "blockVariant": "accent"
               },
               {
@@ -7221,7 +7221,7 @@
               },
               {
                 "heading": "2️⃣ Ką daryti",
-                "body": "Pasirink **vieną** pipeline etapą: rinkimas, paruošimas, EDA, vizualizacija arba publikavimas. Nukopijuok promptą ir įklijuok į DI.",
+                "body": "Pasirink **vieną** analizės eigos etapą: rinkimas, paruošimas, EDA, vizualizacija arba publikavimas. Nukopijuok promptą ir įklijuok į DI.",
                 "blockVariant": "brand"
               },
               {
@@ -7261,12 +7261,12 @@
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
-                "body": "• Ar pasirinkai tinkamą pipeline etapą?",
+                "body": "• Ar pasirinkai tinkamą analizės eigos etapą?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "**Kur panaudosi?** Kai planuoji naują analizę ar ataskaitą – nuo duomenų šaltinių iki vadovų pristatymo. Kiekvienam etapui gali nukopijuoti atitinkamą promptą. **Pipeline schema:** 1) Rinkimas 2) Paruošimas 3) EDA 4) Modeliai 5) Vizualizacija 6) Publikavimas.",
+                "body": "**Kur panaudosi?** Kai planuoji naują analizę ar ataskaitą – nuo duomenų šaltinių iki vadovų pristatymo. Kiekvienam etapui gali nukopijuoti atitinkamą promptą. **Analizės eigos schema:** 1) Rinkimas 2) Paruošimas 3) EDA 4) Modeliai 5) Vizualizacija 6) Publikavimas.",
                 "blockVariant": "brand"
               }
             ]
@@ -7329,7 +7329,14 @@
             "stepNumber": 1,
             "stepTotal": 5,
             "body": "Pasirink įrankių seką duomenų analizei (pvz. ChatGPT → Claude → Gemini). Apibrėžk workflow: kas bus pirmas žingsnis, kas antras – nuo duomenų rinkimo iki vizualizacijos. Tai kelio pirmasis orientyras.",
-            "unlockedGlossaryTerms": ["Duomenų analizės pipeline", "EDA"]
+            "unlockedGlossaryTerms": ["Duomenų analizės pipeline", "EDA"],
+            "sections": [
+              {
+                "heading": "Užduotis pagal tavo kelią",
+                "body": "Nukopijuok užduotį pagal savo kelią – tai pirmas praktinis žingsnis.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką pardavimų analizei.\nCONTEXT: Duomenys iš CRM / e-commerce apie [X].\nOUTPUT: 1) Įrankis 1 + kąslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (KPI lentelė)."
+              }
+            ]
           }
         },
         {
@@ -7673,38 +7680,21 @@
           "id": 76,
           "pathBranch": ["strategija"],
           "title": "Verslo duomenų išplėtimas",
-          "subtitle": "6 domenai – ne tik finansai",
+          "subtitle": "6 sritys – ne tik finansai",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Kodėl čia?",
-                "body": "**Šeši domenai** padeda pamatyti, kad analizė nėra vien finansai. Kai žinai, kur tavo versle gimsta duomenys, lengviau kurti DB struktūrą, pagrindinius rodiklius ir gerus promptus kitose skaidrėse.",
+                "heading": "1️⃣ Trumpai",
+                "body": "**6 verslo sritys**, iš kurių renkami duomenys. Pasirink vieną – žemiau gausi kopijuojamą promptą.\n\n**Sritis** = kurioje veiklos dalyje kaupiasi duomenys ir priimami sprendimai.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Tradicinis vs išplėstinis požiūris",
-                "body": "Kiekvienas domenas gali tapti atskiru DI analizės moduliu.",
-                "blockVariant": "terms",
-                "table": {
-                  "headers": ["Tradicinis požiūris", "Išplėstinis požiūris"],
-                  "rows": [
-                    ["Sąnaudos", "Klientų elgsena"],
-                    ["Pajamos", "Tiekimo grandinė"],
-                    ["Pelnas", "Pardavimų dinamika"],
-                    ["", "Klientų ryšių ir rinkodaros duomenys"],
-                    ["", "Procesų efektyvumas"],
-                    ["", "Konkurencinė analizė"]
-                  ],
-                  "comparisonStyle": true
-                }
-              },
-              {
-                "heading": "3️⃣ Pasirink domeną",
-                "body": "Pasirink **vieną** domeną – matysi kada naudoti ir kopijuojamą promptą.",
+                "heading": "2️⃣ Pasirink sritį",
+                "body": "Pasirink sritį pagal savo darbą – žemiau rasi kopijuojamą promptą.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
-                  "question": "Kuris domenas tau aktualus?",
+                  "question": "Kuri sritis tau aktualiausia?",
                   "choices": [
                     {
                       "label": "Klientai",
@@ -7730,41 +7720,6 @@
                       "label": "Konkurentai",
                       "rowIndex": 5
                     }
-                  ]
-                },
-                "table": {
-                  "headers": ["Domenas", "Kada naudoti", "Klausimas"],
-                  "rows": [
-                    [
-                      "Klientų elgsena",
-                      "Pirkimai, grįžimas, atsiliepimai, naudojimasis",
-                      "Kas perka? Kodėl grįžta?"
-                    ],
-                    [
-                      "Tiekimo grandinė",
-                      "Tiekėjai, pristatymas, likučiai, vėlavimai",
-                      "Kur butelio kakliukas?"
-                    ],
-                    [
-                      "Pardavimų dinamika",
-                      "Laikas, regionas, produktas, kanalas",
-                      "Kas auga / krenta?"
-                    ],
-                    [
-                      "Klientų ryšiai ir rinkodara",
-                      "Kampanijos, laiškai, apklausos, klientų kelias",
-                      "Kas pritraukia dėmesį?"
-                    ],
-                    [
-                      "Procesų efektyvumas",
-                      "Laikas, klaidos, perdavimai, pakartotiniai darbai",
-                      "Kur stringa procesas?"
-                    ],
-                    [
-                      "Konkurencinė analizė",
-                      "Kainos, pasiūlymai, atsiliepimai, komunikacija",
-                      "Kur stipresni / silpnesni?"
-                    ]
                   ]
                 }
               },
@@ -7812,18 +7767,59 @@
               },
               {
                 "heading": "9️⃣ Daryk dabar",
-                "body": "Pasirink 3 domenus, kurie tavo darbe turi daugiausia duomenų arba daugiausia neaiškumo. Tada paprašyk DI pasiūlyti pirmą analizės planą.\n\n🔘 Kopijuoti promptą (žemiau)",
+                "body": "Pasirink 3 sritis, kurios tavo darbe turi daugiausia duomenų arba daugiausia neaiškumo. Tada paprašyk DI pasiūlyti pirmą analizės planą.\n\n🔘 Kopijuoti promptą (žemiau)",
                 "blockVariant": "brand",
-                "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Padėk man pasirinkti 3 svarbiausius analizės domenus.\nCONTEXT: Mano veikla / komanda: [aprašyk trumpai]. Turimi duomenys: [išvardink]. Sprendimai, kuriuos turiu priimti: [įrašyk].\nOUTPUT: 1) 3 svarbiausi domenai 2) Kodėl jie svarbūs 3) Kokius duomenis rinkti 4) Pirmas analizės klausimas kiekvienam domenui."
+                "copyable": "ROLE: Tu esi verslo duomenų analitikas.\nTASK: Padėk man pasirinkti 3 svarbiausias analizės sritis.\nCONTEXT: Mano veikla / komanda: [aprašyk trumpai]. Turimi duomenys: [išvardink]. Sprendimai, kuriuos turiu priimti: [įrašyk].\nOUTPUT: 1) 3 svarbiausios sritys 2) Kodėl jos svarbios 3) Kokius duomenis rinkti 4) Pirmas analizės klausimas kiekvienai sričiai."
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
-                "body": "• Ar pasirinkai domeną ir gavai konkretų analizės planą?\n• Ar prompto OUTPUT turi aiškius punktus?",
+                "body": "• Ar pasirinkai sritį ir gavai konkretų analizės planą?\n• Ar prompto OUTPUT turi aiškius punktus?",
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Nori suprasti detaliau?",
-                "body": "Kitas žingsnis – skaidrė apie duomenų tipus ir rinkimo strategiją. Domenas atsako į klausimą **ką analizuojame**, o duomenų tipas atsako į klausimą **kokiu formatu tai turime**.",
+                "heading": "🔽 Ne tik finansai – nori suprasti plačiau?",
+                "body": "Dažnai žiūrime tik finansus: **sąnaudos, pajamos, pelnas**. Bet duomenys gimsta ir kitose veiklos dalyse. Tai **ne tas pats dalykas** – žemiau platesnis žvilgsnis.\n\n**6 papildomos sritys:** klientų elgsena, tiekimo grandinė, pardavimų dinamika, klientų ryšiai ir rinkodara, procesų efektyvumas, konkurencinė analizė.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "table": {
+                  "headers": ["Sritis", "Kada naudoti", "Klausimas"],
+                  "rows": [
+                    [
+                      "Klientų elgsena",
+                      "Pirkimai, grįžimas, atsiliepimai, naudojimasis",
+                      "Kas perka? Kodėl grįžta?"
+                    ],
+                    [
+                      "Tiekimo grandinė",
+                      "Tiekėjai, pristatymas, likučiai, vėlavimai",
+                      "Kur butelio kakliukas?"
+                    ],
+                    [
+                      "Pardavimų dinamika",
+                      "Laikas, regionas, produktas, kanalas",
+                      "Kas auga / krenta?"
+                    ],
+                    [
+                      "Klientų ryšiai ir rinkodara",
+                      "Kampanijos, laiškai, apklausos, klientų kelias",
+                      "Kas pritraukia dėmesį?"
+                    ],
+                    [
+                      "Procesų efektyvumas",
+                      "Laikas, klaidos, perdavimai, pakartotiniai darbai",
+                      "Kur stringa procesas?"
+                    ],
+                    [
+                      "Konkurencinė analizė",
+                      "Kainos, pasiūlymai, atsiliepimai, komunikacija",
+                      "Kur stipresni / silpnesni?"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "🔽 Kitas žingsnis",
+                "body": "Kitas žingsnis – skaidrė apie duomenų tipus ir rinkimo strategiją. Sritis atsako į klausimą **ką analizuojame**, o duomenų tipas atsako į klausimą **kokiu formatu tai turime**.",
                 "blockVariant": "terms",
                 "collapsible": true
               }
@@ -8002,7 +7998,14 @@
             "stepNumber": 2,
             "stepTotal": 5,
             "body": "Sukurk sisteminį promptą (rolė, principai) ir pasirink gilaus tyrimo temą. Paruošk vieną gilaus tyrimo promptą, kurį vėliau naudosi keliuose įrankiuose lygiagrečiai.",
-            "unlockedGlossaryTerms": ["Deep research"]
+            "unlockedGlossaryTerms": ["Deep research"],
+            "sections": [
+              {
+                "heading": "Užduotis pagal tavo kelią",
+                "body": "Nukopijuok sisteminį promptą ir tyrimo temą pagal savo kelią.",
+                "copyable": "ROLE: Tu esi pardavimų tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu palyginti pardavimų veiksnius [X] rinkoje.\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą."
+              }
+            ]
           }
         },
         {
@@ -8046,7 +8049,7 @@
               },
               {
                 "heading": "3️⃣ Ką DI gali analitiko vaidmenyje",
-                "body": "**Paaiškinti metodus** – ką reiškia koreliacija, prognozė ar duomenų valymas. **Atlikti tiriamąją analizę** – rasti dėsningumus, anomalijas ir trūkstamas reikšmes. **Generuoti vizualizacijas** – pasiūlyti grafiką, Power BI veiksmus ar Python kodą. **Prognozuoti** – sukurti scenarijus ir rizikų intervalus. **Modeliuoti sprendimus** – palyginti kelis veiksmų variantus."
+                "body": "**Paaiškinti metodus** – ką reiškia koreliacija, prognozė ar duomenų valymas. **Atlikti tiriamąją analizę** – rasti dėsningumus, anomalijas ir trūkstamas reikšmes. **Generuoti vizualizacijas** – pasiūlyti grafiką, Power BI (verslo ataskaitų įrankis) veiksmus ar Python kodą. **Prognozuoti** – sukurti scenarijus ir rizikų intervalus. **Modeliuoti sprendimus** – palyginti kelis veiksmų variantus."
               },
               {
                 "heading": "4️⃣ Daryk dabar",
@@ -8088,7 +8091,7 @@
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
-                "body": "• Ar gavai checklist su bent 4 punktais?\n• Ar įvardijai bent 2 KPI, susietus su verslo klausimu?"
+                "body": "• Ar gavai checklist su bent 4 punktais?\n• Ar įvardijai bent 2 pagrindinius rodiklius (KPI), susietus su verslo klausimu?"
               }
             ]
           }
@@ -8123,7 +8126,7 @@
         {
           "id": 84,
           "title": "Duomenų struktūros kūrimas (DB)",
-          "subtitle": "E-commerce, ER modelis, KPI",
+          "subtitle": "E-commerce, ER modelis, pagrindiniai rodikliai (KPI)",
           "type": "content-block",
           "content": {
             "sections": [
@@ -8195,7 +8198,7 @@
               },
               {
                 "heading": "3️⃣ Daryk dabar (3–5 min)",
-                "body": "**Ką daryti:** Pakeisk [X] į savo verslo nišą, nukopijuok promptą žemiau ir paleisk DI. **Ką gausi:** Lentelių sąrašas, ryšių aprašymas, KPI, kuriuos verta stebėti."
+                "body": "**Ką daryti:** Pakeisk [X] į savo verslo nišą, nukopijuok promptą žemiau ir paleisk DI. **Ką gausi:** Lentelių sąrašas, ryšių aprašymas, pagrindinius rodiklius (KPI), kuriuos verta stebėti."
               },
               {
                 "heading": "4️⃣ Kopijuojamas promptas",
@@ -8274,7 +8277,7 @@
         },
         {
           "id": 861,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-sales", "viz-mkt"],
           "title": "Paprastos vizualizacijos – promptai pagal tipą",
           "subtitle": "Stulpelinė, linijinė, skritulinė, lentelė – CopyButton",
           "type": "content-block",
@@ -8509,7 +8512,7 @@
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "Algoritmas padeda išvengti chaoso: pirmiausia šaltiniai ir struktūra, tada surinkimas, valymas ir tik tada eksportas.\n\n**Naudok, kai:** turi nešvarius arba skirtingų formatų duomenis; reikia sistemingai surinkti viešus šaltinius; ruoiesi analizei ir nori checklist prieš EDA.\n\n**Nenaudok, kai:** reikia tik vieno greito atsakymo; jau turi paruoštą, švarų CSV; reikia pilnos analizės nuo A iki Z – tada rinkis 6 žingsnių pipeline arba MASTER PROMPTĄ.\n\n**Skirtumas:** 6 pipeline = visas kelias; 5 algoritmas = tik paruošimas; 8 MASTER = pilna analizė su rekomendacijomis.",
+                "body": "Algoritmas padeda išvengti chaoso: pirmiausia šaltiniai ir struktūra, tada surinkimas, valymas ir tik tada eksportas.\n\n**Naudok, kai:** turi nešvarius arba skirtingų formatų duomenis; reikia sistemingai surinkti viešus šaltinius; ruoiesi analizei ir nori checklist prieš EDA.\n\n**Nenaudok, kai:** reikia tik vieno greito atsakymo; jau turi paruoštą, švarų CSV; reikia pilnos analizės nuo A iki Z – tada rinkis 6 žingsnių analizės eigą arba pilną analizės šabloną (MASTER PROMPTĄ).\n\n**Skirtumas:** 6 žingsnių eiga = visas kelias; 5 algoritmas = tik paruošimas; 8 žingsnių šablonas = pilna analizė su rekomendacijomis.",
                 "blockVariant": "brand"
               }
             ]
@@ -8602,14 +8605,14 @@
         {
           "id": 66.9,
           "title": "Skyrius: Patikrumas ir etika",
-          "subtitle": "Patikimumas ir etika – po to grįžtame prie EDA ir MASTER PROMPTAS.",
+          "subtitle": "Patikimumas ir etika – po to grįžtame prie tiriamosios analizės ir pilno analizės šablono.",
           "type": "section-break",
           "content": {
             "title": "Skyrius: Patikrumas ir etika",
-            "subtitle": "Pirmiausia šiame skyriuje: manipuliacijos, saugumas, haliucinacijos, žinių patikrinimas (optional – benchmark ir detektoriai). Po to grįžtame prie pipeline tęsinio: EDA praktiškai, lentelių metodika, BI schema, agentai, MASTER PROMPTAS.",
+            "subtitle": "Pirmiausia šiame skyriuje: manipuliacijos, saugumas, haliucinacijos, žinių patikrinimas (optional – benchmark ir detektoriai). Po to grįžtame prie tiriamosios analizės, lentelių, ataskaitų schemos, agentų ir pilno analizės šablono.",
             "sectionNumber": "Patikrumas",
             "footer": "Toliau – Promptų manipuliacijos",
-            "celebrationText": "Gerai! Pipeline, promptai ir duomenų paruošimas – šioje dalyje jau įveikti. Dabar – patikimumas ir etika analizėje.",
+            "celebrationText": "Gerai! Analizės eiga, promptai ir duomenų paruošimas – šioje dalyje jau įveikti. Dabar – patikimumas ir etika analizėje.",
             "nextSteps": [
               "Promptų manipuliacijos – šališkumas ir neutralūs promptai.",
               "Haliucinacijos – kaip mažinti ir tikrinti.",
@@ -8619,7 +8622,7 @@
               "heading": "Ką jau žinai?",
               "lead": "Duomenų analizės kelias – šie pagrindai jau praeiti.",
               "items": [
-                "Pipeline ir operaciniai promptai – nuo duomenų rinkimo iki publikavimo.",
+                "Analizės eiga ir operaciniai promptai – nuo duomenų rinkimo iki publikavimo.",
                 "Verslo promptų architektūra – rolė, struktūra, vizualizacijos, prognozės.",
                 "Duomenų paruošimas – valymo checklist ir metaduomenys prieš analizę."
               ],
@@ -8638,75 +8641,132 @@
         {
           "id": 67,
           "title": "Promptų manipuliacijos",
-          "subtitle": "Šališkos užklausos, vedantys klausimai, jailbreak – ko vengti, kaip atpažinti",
+          "subtitle": "Šališkos užklausos ir vedantys klausimai – ko vengti",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "Manipuliacija = strategiškai suformuluotos užklausos, siekiant paveikti DI atsakymus (įrėminimas, leading questions). Versle ir viešajame valdyme svarbu atpažinti ir vengti – neutralūs promptai yra praktinė apsauga.",
+                "body": "**Manipuliacija** = promptas, kuris stumia DI į norimą atsakymą. Pasirink tipą žemiau – pamatysi blogą ir gerą pavyzdį.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Kas yra promptų manipuliacija?",
-                "body": "Strategiškai suformuluotos užklausos, siekiant paveikti DI atsakymus – įrėminimas, vedantys klausimai, rolės šališkumas. Versle svarbu atpažinti ir vengti.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Didžiausi iššūkiai",
-                "body": "**1. Etika ir saugumas** – netiksli informacija, šališkumas, kenkėjiškas turinys; apie 60–70 % DI incidentų susiję su netinkamu promptų naudojimu – neutralūs promptai yra praktinė apsauga. **2. Skaidrumas** – verslai turės atskleisti, kaip naudoja DI ir manipuliacijas (reklama, rekomendacijos); svarbu aiškiai atskirti „žmogaus“ ir „DI“ sprendimus. **3. Patikimumas** – jei DI atsakymus lengva manipuliuoti, kris pasitikėjimas technologija.",
+                "heading": "2️⃣ Pasirink tipą",
+                "body": "Pasirink – žemiau palygins blogą ir gerą promptą.",
                 "blockVariant": "brand",
-                "collapsible": true,
-                "collapsedByDefault": true
+                "toolChoiceBar": {
+                  "question": "Kuris manipuliacijos tipas tau aktualiausias?",
+                  "choices": [
+                    {
+                      "label": "Įrėminimas",
+                      "rowIndex": 0
+                    },
+                    {
+                      "label": "Kontekstas",
+                      "rowIndex": 1
+                    },
+                    {
+                      "label": "Rolė",
+                      "rowIndex": 2
+                    }
+                  ]
+                }
               },
               {
-                "heading": "Savitikra: 2 klausimai",
-                "body": "1) Kuris iš šių promptų yra labiau neutralus? Šališkas: „Įrodyk, kad X yra geriausias.“ Neutralus: „Įvertink X stiprybes ir silpnybes.“ 2) Kodėl svarbu vengti leading questions (vedančiųjų klausimų) verslo analizėje? Kad gautume objektyvų įvertinimą, o ne „norimą“ atsakymą.",
-                "blockVariant": "accent"
-              },
-              {
-                "heading": "Tipiniai atvejai",
-                "body": "Šališkos užklausos – vienpusis kontekstas ar rolė (pvz. „įrodyk, kad mūsų kampanija buvo sėkmė“). Leading questions – vedantys klausimai, nukreipiantys atsakymą į norimą pusę. Jailbreak – bandymas apeiti DI saugumo ar naudojimo ribas. Visų reikia vengti.",
+                "heading": "Blogas vs geras – Įrėminimas",
+                "body": "**Blogas:** „Parodyk, kodėl mūsų Q3 kampanija buvo sėkmė“",
+                "copyable": "Įvertink Q3 kampanijos stiprybes ir silpnybes. Pateik argumentus už ir prieš.",
+                "linkedRowIndex": 0,
                 "blockVariant": "terms"
               },
               {
-                "heading": "Ko vengti",
-                "body": "Įrėminimo į vieną išvadą; konteksto parinkimo (tik teigiami atsiliepimai); vaidmens su šališkumu („tu esi mūsų vadovas, įrodyk…“); vienpusių klausimų („Ar sutinki, kad…“).",
-                "blockVariant": "accent"
+                "heading": "Blogas vs geras – Kontekstas",
+                "body": "**Blogas:** „Remkis tik teigiamais atsiliepimais“",
+                "copyable": "Remkis įvairiais atsiliepimais. Pateik subalansuotą vertinimą.",
+                "linkedRowIndex": 1,
+                "blockVariant": "terms"
               },
               {
-                "heading": "4 technikos – verslo pavyzdžiai",
-                "body": "**1. Įrėminimas:** manipuliacinis – „Parodyk, kodėl mūsų Q3 kampanija buvo sėkmė“ → neutralus – „Įvertink Q3 kampanijos stiprybes ir silpnybes, argumentus už ir prieš.“ **2. Kontekstas:** manipuliacinis – „Remkis tik šiais teigiamais atsiliepimais“ → neutralus – „Remkis įvairiais atsiliepimais ir pateik subalansuotą vertinimą.“ **3. Vaidmuo:** manipuliacinis – „Tu esi mūsų vadovas, įrodyk, kad kainų didinimas geriausias“ → neutralus – „Rolė – nepriklausomas analitikas. Įvertink kainų didinimo ir nedidinimo scenarijus.“ **4. Įvertinimas:** manipuliacinis – „Įvertink strategijas tik pagal trumpalaikes pajamas“ → neutralus – „Įvertink pagal 4 kriterijus: pajamos, reputacija, klientai, rizika.“",
+                "heading": "Blogas vs geras – Rolė",
+                "body": "**Blogas:** „Tu esi mūsų vadovas, įrodyk, kad kainų didinimas geriausias“",
+                "copyable": "Rolė: nepriklausomas analitikas. Palygink kainų didinimo ir nedidinimo scenarijus.",
+                "linkedRowIndex": 2,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "🔽 Nori suprasti plačiau?",
+                "body": "Santrauka visiems tipams. Daugiau apie saugumą (prompt injection, jailbreak) – skaidrė **Saugumas**.",
                 "blockVariant": "terms",
                 "collapsible": true,
-                "collapsedByDefault": true
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": ["❌ Šališkas promptas", "✅ Neutralus promptas"],
+                  "rows": [
+                    [
+                      "„Parodyk, kodėl mūsų Q3 kampanija buvo sėkmė“",
+                      "„Įvertink Q3 kampanijos stiprybes ir silpnybes. Pateik argumentus už ir prieš.“"
+                    ],
+                    [
+                      "„Remkis tik teigiamais atsiliepimais“",
+                      "„Remkis įvairiais atsiliepimais. Pateik subalansuotą vertinimą.“"
+                    ],
+                    [
+                      "„Tu esi mūsų vadovas, įrodyk, kad kainų didinimas geriausias“",
+                      "„Rolė: nepriklausomas analitikas. Palygink kainų didinimo ir nedidinimo scenarijus.“"
+                    ],
+                    [
+                      "„Įvertink strategijas tik pagal trumpalaikes pajamas“",
+                      "„Įvertink pagal 4 kriterijus: pajamos, reputacija, klientai, rizika.“"
+                    ],
+                    [
+                      "„Ar mūsų produktas geriausias?“",
+                      "„Palygink produktus pagal [kriterijus]. Rolė: nepriklausomas analitikas.“"
+                    ]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
-                "heading": "Neutralūs promptai – pavyzdžiai",
-                "body": "Subalansuota analizė: „Pateik ir argumentus už, ir prieš [tema]. Nekreipk į vieną pusę.“ Nepriklausoma rolė: „Rolė – nepriklausomas analitikas. Atlik objektyvią [sektoriaus] analizę.“ Neutralūs klausimai: vietoj „Ar mūsų produktas geriausias?“ – „Palygink pagrindinius [kategorijos] produktus pagal [kriterijus].“",
+                "heading": "🔽 Verslas vs saugumas",
+                "body": "Skaidrėje **Saugumas** – injection ir jailbreak (kita tema). Čia – verslo manipuliacija.",
                 "blockVariant": "terms",
                 "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "Pagalvok apie savo patirtį",
-                "body": "Prisimink situaciją, kai DI atsakymas atrodė labai įtikinamas, bet vėliau pasirodė netikslus ar vienpusis. Kas galėjo būti ne taip? Galbūt klausimas buvo suformuluotas šališkai (pvz., „Įrodyk, kad mūsų sprendimas geriausias“ vietoj „Palygink variantus pagal kriterijus“). Kitą kartą – pabandyk tą patį klausimą užduoti neutraliai ir palygink atsakymus.",
-                "blockVariant": "accent",
-                "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "Praktika: kur daryti",
-                "body": "Visą praktiką (šališkas promptas → kas negerai → neutralus variantas) rasite **kitoje skaidrėje**. Paspausk **Tęsti: Pataisyk promptą**.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "4️⃣ Patikra (1 min)",
-                "body": "• Ar promptas neutralus? Jei bent 2 manipuliacijos požymiai – perrašyk.",
-                "blockVariant": "accent"
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": [
+                    "Tema",
+                    "Versle (šališkumas)",
+                    "Saugumas (kita skaidrė)"
+                  ],
+                  "rows": [
+                    ["Įrėminimas", "Vedantys klausimai, išvada iš anksto", "–"],
+                    [
+                      "Kontekstas",
+                      "Tik teigiami duomenys, atrinktas kontekstas",
+                      "–"
+                    ],
+                    [
+                      "Ribų apėjimas",
+                      "–",
+                      "Prompt injection, jailbreak (skaidrė Saugumas)"
+                    ]
+                  ]
+                }
               }
             ],
-            "footer": "Toliau – Pataisyk promptą"
+            "footer": "Toliau – Pataisyk promptą",
+            "preCopyCheckBlock": {
+              "heading": "3️⃣ Patikra",
+              "question": "Kuris promptas labiau neutralus verslo analizei?",
+              "options": [
+                "Įrodyk, kad X yra geriausias sprendimas.",
+                "Įvertink X stiprybes ir silpnybes pagal 3 kriterijus.",
+                "Tu esi mūsų vadovas – paruošk ataskaitą.",
+                "Ignoruok neigiamus atsiliepimus."
+              ],
+              "correct": 1,
+              "explanation": "Neutralus promptas neįrašo išvados iš anksto ir prašo įvertinti abi puses."
+            }
           }
         },
         {
@@ -9132,7 +9192,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Kam tai?",
-                "body": "**BI schema** – Surink → Analizuok → Ataskaita → Prognozė. Du praktiniai promptai žemiau.",
+                "body": "**Ataskaitų schema** (BI) – Surink → Analizuok → Ataskaita → Prognozė. Du praktiniai promptai žemiau.",
                 "blockVariant": "accent"
               },
               {
@@ -9157,7 +9217,7 @@
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "**BI schema (vaizdas):** 4 žingsniai – Surink (duomenų šaltiniai), Analizuok (EDA, įžvalgos), Ataskaita (vizualizacija, išvados vadovui), Prognozė. Ryšys su pipeline (§2.2) ir MASTER PROMPTAS – tas pats mąstymas, skirtingas detalumas.",
+                "body": "**Ataskaitų schema (vaizdas):** 4 žingsniai – Surink (duomenų šaltiniai), Analizuok (EDA, įžvalgos), Ataskaita (vizualizacija, išvados vadovui), Prognozė. Ryšys su analizės eiga ir pilnu analizės šablonu – tas pats mąstymas, skirtingas detalumas.",
                 "blockVariant": "brand",
                 "image": "m7_bi_schema",
                 "imageAlt": "BI schema: Surink → Analizuok → Ataskaita → Prognozė"
@@ -9175,7 +9235,14 @@
             "stepNumber": 3,
             "stepTotal": 5,
             "body": "Paruošk sisteminį promptą ir gilaus tyrimo temą. **Pilnas kelias:** tą patį promptą įklijuok į 2–4 įrankius (pvz. su gilaus tyrimo režimu), jei turi prieigą. **Lengvesnis kelias:** paleisk tą patį promptą dviejuose skirtinguose DI įrankiuose ir palygink santraukas – užtenka pradžiai.",
-            "unlockedGlossaryTerms": ["RAG", "Šaltinių nurodymas"]
+            "unlockedGlossaryTerms": ["RAG", "Šaltinių nurodymas"],
+            "sections": [
+              {
+                "heading": "Užduotis pagal tavo kelią",
+                "body": "Nukopijuok 2–4 šaltinių užduotį pagal savo kelią.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – pardavimai / rinka [X].\nOUTPUT: Lentelė: šaltinis | tipas (viešas/vidinis) | ką duoda | kodėl svarbu."
+              }
+            ]
           }
         },
         {
@@ -9392,7 +9459,7 @@
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "**Kontekstas: Lietuva.** Daugelyje organizacijų vis dar dominuoja intuicija ir „taip visada darėme“ – svarbu įdiegti matavimo įpročius. **Citata:** „In God we trust, all others bring data.“ (W. Edwards Deming). **Platesnis teorinis pamatas** (duomenys ir variacija, tobulinti sistemą) – skaidrėje apie strateginį pamatą modulio pradžioje.",
+                "body": "**Kontekstas: Lietuva.** Daugelyje organizacijų vis dar dominuoja intuicija ir „taip visada darėme“ – svarbu įdiegti matavimo įpročius. **Citata:** „In God we trust, all others bring data.“ (W. Edwards Deming). **Prisimink 4 principus:** duomenys > nuomonė; variacija egzistuoja; tobulinti sistemą, ne kaltinti žmones; analizė tarnauja sprendimui.",
                 "blockVariant": "brand",
                 "collapsible": true
               }
@@ -9452,19 +9519,19 @@
             "sections": [
               {
                 "heading": "1️⃣ Kam tai?",
-                "body": "**MASTER PROMPTAS** – vienas kopijuojamas šablonas pilnai analizei (8 žingsniai). Tinka, kai reikia visko nuo šaltinių iki rekomendacijų vienai temai.",
+                "body": "**Pilnas 8 žingsnių šablonas** (MASTER PROMPTAS) – vienas kopijuojamas šablonas visai analizei. Tinka, kai reikia visko nuo šaltinių iki rekomendacijų vienai temai.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Interaktyvi 8 žingsnių schema",
-                "body": "Tai ta pati 8 žingsnių seka kaip Modulio 9 workflow – čia MASTER kontekste. Spausk žingsnį.",
+                "body": "Tai ta pati 8 žingsnių seka kaip Modulio 9 workflow – čia pilno šablono kontekste. Spausk žingsnį.",
                 "blockVariant": "brand",
                 "image": "m7_master_workflow",
                 "imageAlt": "MASTER: aštuoni analizės žingsniai"
               },
               {
                 "heading": "Kada ką rinktis?",
-                "body": "**6 žingsnių pipeline** – planuoji etapus (rinkimas → publikavimas); naudok atskirus promptus kiekvienam etapui.\n\n**5 žingsnių paruošimas** – tik duomenų tvarkymas prieš analizę (šaltiniai → eksportas).\n\n**8 žingsnių MASTER** – viena tema, pilnas ciklas; Modulio 9 projekto šablonas.\n\n**4 analizės tipai** – klausimo kategorija (aprašomoji, diagnostinė, nuspėjamoji, nurodomoji), ne workflow.",
+                "body": "**6 žingsnių analizės eiga** – planuoji etapus (rinkimas → publikavimas); naudok atskirus promptus kiekvienam etapui.\n\n**5 žingsnių paruošimas** – tik duomenų tvarkymas prieš analizę (šaltiniai → eksportas).\n\n**8 žingsnių pilnas šablonas** – viena tema, pilnas ciklas; Modulio 9 projekto šablonas.\n\n**4 analizės tipai** – klausimo kategorija (aprašomoji, diagnostinė, nuspėjamoji, nurodomoji), ne workflow.",
                 "blockVariant": "terms"
               },
               {
@@ -9543,7 +9610,14 @@
             "stepNumber": 4,
             "stepTotal": 5,
             "body": "**Jei turi kelis tyrimus:** sujunk juos į vieną dokumentą ar projektą ir prašyk DI sintetizuoti įžvalgas bei koreliacijas (RAG arba ilgas kontekstas). **Lengvesnis kelias:** iš dviejų gautų atsakymų prašyk DI vienos lentelės „kas sutampa / kas skiriasi“ ir 3 veiksmų rekomendacijų – be RAG.",
-            "unlockedGlossaryTerms": ["Sintetinimas", "Duomenų valymas"]
+            "unlockedGlossaryTerms": ["Sintetinimas", "Duomenų valymas"],
+            "sections": [
+              {
+                "heading": "Užduotis pagal tavo kelią",
+                "body": "Nukopijuok sintezės užduotį pagal savo kelią.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pardavimai [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai pardavimų komandai."
+              }
+            ]
           }
         },
         {
@@ -9556,12 +9630,19 @@
             "stepNumber": 5,
             "stepTotal": 5,
             "body": "Paruošk duomenų masyvą (lentelė arba struktūruotas failas) iš sintezės. **Pilnas kelias:** atvaizduok rezultatą įrankyje su lentelėmis/grafikais ir užfiksuok ekrano vaizdą. **Lengvesnis kelias:** išsaugok galutinę DI lentelę ar santrauką faile ir įkelk ją į tą patį ar kitą DI – pakanka tolesnei analizei.",
-            "unlockedGlossaryTerms": ["Vizualizacija", "Dashboard"]
+            "unlockedGlossaryTerms": ["Vizualizacija", "Dashboard"],
+            "sections": [
+              {
+                "heading": "Užduotis pagal tavo kelią",
+                "body": "Nukopijuok duomenų masyvo užduotį pagal savo kelią.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pardavimus [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau."
+              }
+            ]
           }
         },
         {
           "id": 99.9,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-sales", "viz-mkt"],
           "title": "Papildomas blokas: vizualizacija ir data storytelling",
           "subtitle": "Jei pasirinkai pardavimus, rinkodarą arba nori gilesnio vizualaus rezultato",
           "type": "section-break",
@@ -9587,7 +9668,7 @@
         },
         {
           "id": 100,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-mkt"],
           "title": "Papildoma: vizualizacija – pozicionavimas ir ciklas",
           "subtitle": "Prieš santrauką – data storytelling + DI; vizualizacija = istorijos dalis",
           "type": "content-block",
@@ -9624,7 +9705,7 @@
         },
         {
           "id": 101,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-sales", "viz-mkt"],
           "title": "Papildoma: vizualizacijos pagrindai – psichologija ir grupavimas",
           "subtitle": "Kodėl vizualizacija veikia (10/20/80) ir 8 vizualinio skaidrumo principai",
           "type": "content-block",
@@ -9672,7 +9753,7 @@
         },
         {
           "id": 103,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-mkt"],
           "title": "Papildoma: sustiprinti vizualizacijos promptai",
           "subtitle": "4 CopyButton – suderinta su SOT",
           "type": "content-block",
@@ -9710,7 +9791,7 @@
         },
         {
           "id": 104,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-sales"],
           "title": "Papildoma: istorijos modelis ir geri dashboard'ai",
           "subtitle": "Duomenys→Istorija + KPI, tendencija, hierarchija",
           "type": "content-block",
@@ -9768,7 +9849,7 @@
         },
         {
           "id": 106,
-          "pathBranch": ["viz"],
+          "pathBranch": ["viz-sales", "viz-mkt"],
           "title": "Papildoma: DI pagalba + super promptas + alternatyvos",
           "subtitle": "4 sritys; Julius AI, Echobase, DataLab, Power BI",
           "type": "content-block",
@@ -9947,7 +10028,7 @@
           "subtitle": "Duomenų analizės kelio žinios",
           "type": "test-intro",
           "content": {
-            "whyBenefit": "Modulis 8 patikrina Modulio 7 kelią: pipeline (6 žingsnių), paruošimą, MASTER PROMPTĄ ir etiką. Makro blokai (Pamatas / Rinkimas / Paruošimas / Analizė) padeda orientuotis – jei klaidingai, grįžk į atitinkamą M7 temą.",
+            "whyBenefit": "Po testo žinosi, ar esi pasiruošęs Modulio 9 praktikai – su savo Excel/CRM failu arba kurso sample duomenimis. Makro blokai (Pamatas / Rinkimas / Paruošimas / Analizė) padeda orientuotis – jei klaidingai, grįžk į atitinkamą M7 temą.",
             "duration": "~15 min",
             "firstActionCTA": "Atsakyk – pipeline, MASTER, BI, tipai, sentimentai.",
             "microWinPhrase": "Kiekvienas teisingas atsakymas parodo, kad seki Duomenų analizės kelią.",
@@ -9961,33 +10042,33 @@
         {
           "id": 80.5,
           "title": "Pasiruošimo savitikra",
-          "subtitle": "3 klausimai apie pipeline, MASTER PROMPTĄ ir analizės tipus – nevertinama",
+          "subtitle": "4 klausimai apie analizės eigą, pilną šabloną, tipus ir M9 praktiką – nevertinama",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
               {
                 "id": "m8-warm-1",
-                "question": "Kiek žingsnių turi duomenų analizės pipeline?",
+                "question": "Kiek žingsnių turi duomenų analizės eiga (pipeline)?",
                 "options": [
                   "6 žingsniai: rinkimas, paruošimas, EDA, modeliai, vizualizacija, publikavimas",
                   "3 žingsniai: surink, analizuok, pateik",
-                  "8 žingsniai – tiek pat, kiek MASTER PROMPTAS",
+                  "8 žingsniai – tiek pat, kiek pilnas analizės šablonas",
                   "4 žingsniai: klausimas, duomenys, grafikas, išvada"
                 ],
                 "correct": 0,
-                "explanation": "Pipeline – 6 žingsnių modelis (rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas). MASTER PROMPTAS – atskiras 8 žingsnių šablonas pilnai analizei."
+                "explanation": "Analizės eiga – 6 žingsniai (rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas). Pilnas analizės šablonas – atskiras 8 žingsnių modelis."
               },
               {
                 "id": "m8-warm-2",
-                "question": "Kiek žingsnių turi MASTER PROMPTAS pilnai duomenų analizei?",
+                "question": "Kiek žingsnių turi pilnas analizės šablonas (vienai temai)?",
                 "options": [
                   "8 žingsniai: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos",
-                  "6 žingsniai – tiek pat, kiek pipeline",
+                  "6 žingsniai – tiek pat, kiek analizės eiga",
                   "3 žingsniai: rolė, užduotis, formatas",
                   "5 žingsniai: META, INPUT, OUTPUT, REASONING, QUALITY"
                 ],
                 "correct": 0,
-                "explanation": "MASTER PROMPTAS – 8 žingsnių šablonas: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos."
+                "explanation": "Pilnas analizės šablonas – 8 žingsniai: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos."
               },
               {
                 "id": "m8-warm-3",
@@ -10000,6 +10081,18 @@
                 ],
                 "correct": 0,
                 "explanation": "„Kodėl?“ atitinka diagnostinę analizę; „Ką daryti?“ – nurodomąją. Žr. skaidrę „4 analizės tipai“."
+              },
+              {
+                "id": "m8-warm-4",
+                "question": "Modulyje 9 turi dvi praktikas. Kada rinktis šaltinių katalogą, o kada – savo CSV/Excel?",
+                "options": [
+                  "Šaltinių katalogas – kai neturi vidinių duomenų; CSV/Excel – kai turi CRM/Excel eksportą arba sample failą",
+                  "Visada tik šaltinių katalogas – CSV nereikia",
+                  "Visada tik savo failas – vieši šaltiniai nepriklauso kursui",
+                  "Abi praktikos tik po hub scenarijų"
+                ],
+                "correct": 0,
+                "explanation": "Be vidinių duomenų pradėk nuo viešų šaltinių katalogo. Jei turi Excel/CRM (arba kurso sample CSV) – valymo praktika su failu DI chate."
               }
             ]
           }
@@ -10012,14 +10105,20 @@
           "testQuestions": [
             {
               "id": "m8-q1",
-              "type": "mcq",
-              "question": "Kiek žingsnių turi duomenų analizės pipeline?",
-              "options": ["4", "5", "6", "8"],
-              "correct": 2,
-              "explanation": "Pipeline turi 6 žingsnius: rinkimas, paruošimas, EDA, modeliai, vizualizacija, publikavimas.",
-              "bloomLevel": 1,
-              "category": "workflow",
-              "relatedSlideId": 73
+              "type": "scenario",
+              "question": "Kolega atsiuntė CSV be aiškių stulpelių tipų (datos kaip tekstas, tuščios eilutės). Ką daryti pirma prieš analizę?",
+              "options": [
+                "Iškart paleisti pilną analizės šabloną",
+                "Pirmiausia valymas: tipai, datos, dubliai, trūkstamos reikšmės – tada analizė",
+                "Iškart piešti grafiką vadovybei",
+                "Praleisti failą ir naudoti tik viešus šaltinius"
+              ],
+              "correct": 1,
+              "explanation": "Be valymo DI ir grafikai klaidina. Pirma – tipai, datos, dubliai, trūkstamos reikšmės; tada analizės eiga ar pilnas šablonas.",
+              "bloomLevel": 2,
+              "category": "data_quality",
+              "relatedSlideId": 891,
+              "scenarioContext": "Kolega atsiuntė CSV eksportą iš senos sistemos – stulpelių tipai neaiškūs, datos maišytos."
             },
             {
               "id": "m8-q2",
@@ -10097,16 +10196,16 @@
             {
               "id": "m8-q7",
               "type": "scenario",
-              "scenarioContext": "Prieš paleisdamas DI aprašomąją ir diagnostinę analizę, turi paruošti duomenis. Ką būtina įtraukti į paruošimo etapą?",
+              "scenarioContext": "Eksportavai CRM kontaktus ir sandorius į Excel. Datos maišytos (DD/MM ir MM/DD), yra dublių. Prieš aprašomąją ir diagnostinę analizę turi paruošti duomenis.",
               "question": "Kas įeina į duomenų valymo checklist prieš analizę?",
               "options": [
                 "Tik anonimizacija ir dublių šalinimas",
                 "Anonimizacija, formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas, data type validacija, laiko/regiono žymės",
                 "Tik vizualizacijos parinkimas",
-                "Tik MASTER PROMPTAS įvedimas"
+                "Tik pilnas analizės šablonas be valymo"
               ],
               "correct": 1,
-              "explanation": "Valymo checklist apima anonimizaciją, formatus, dublius, trūkstamas reikšmes, validaciją ir žymes – prieš bet kurią analizę.",
+              "explanation": "Valymo checklist apima anonimizaciją, formatus, dublius, trūkstamas reikšmes, validaciją ir žymes – prieš bet kurią analizę. Logika ta pati kaip Duomenų paruošime.",
               "bloomLevel": 2,
               "category": "data_quality",
               "relatedSlideId": 891
@@ -10251,21 +10350,21 @@
         {
           "id": 90,
           "title": "Duomenų analizės kelio projektas",
-          "subtitle": "Pirmiausia – 8 žingsnių workflow; scenarijai papildomai",
+          "subtitle": "Pirmiausia – dvi praktikos ir 8 žingsnių ciklas; hub scenarijai papildomai",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.",
-            "primaryPathIntro": "**8 žingsnių ciklas** (sk. 93–94) + **dvi praktikos** (sk. 93.1–93.2): schema, kopijuojami promptai ir verifiable mini-projektai. Užtenka moduliui užbaigti.",
+            "whyBenefit": "Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI – su savo Excel/CRM arba sample failu.",
+            "primaryPathIntro": "**Dvi praktikos** (šaltinių katalogas arba savo CSV/Excel) + **8 žingsnių ciklas**: schema, kopijuojami promptai ir patikrinami mini-projektai. Užtenka moduliui užbaigti.",
             "duration": "~25–35 min",
             "audience": "Baigei M7–M8 ir nori vieną kartą praeiti pilną analizę su DI.",
-            "recommendedStart": "Pradėk nuo sk. 93.1 (šaltinių katalogas) – tada 93.2, schema (93) ir promptai (94). Papildomi scenarijai: sk. 99 (neprivaloma).",
+            "recommendedStart": "**(i)** Neturi vidinių duomenų → šaltinių katalogas. **(ii)** Turi Excel/CRM (arba sample CSV) → savo failo valymas. Tada schema ir pagalbiniai promptai. Papildomi scenarijai – hub (neprivaloma).",
             "firstActionCTA": "Spausk „Tęsti“ → praktika ir schema.",
             "learningOutcomes": [
-              "Atliksi 8 žingsnių ciklą su kopijuojamais promptais.",
-              "Turėsi suvestinę arba .html dashboard; scenarijai – neprivalomi."
+              "Atliksi bent vieną praktiką (katalogas arba CSV) ir 8 žingsnių ciklą su kopijuojamais promptais.",
+              "Turėsi suvestinę arba .html dashboard; hub scenarijai – neprivalomi."
             ],
             "storyBlock": "Modulis 7 davė metodą; Modulis 8 patikrino; čia pritaikai su savo tema. 4 veikėjai, iki 17 papildomų užduočių – neprivaloma, per hub.",
-            "useCaseBlock": "• Ketvirčio ataskaita valdybai\n• Klientų atsiliepimai ir apklausos",
+            "useCaseBlock": "• **Pardavimai** – Q3 Excel / CRM eksportas → valymas → KPI\n• **Rinkodara** – kampanijų / kanalų CSV → sentimentas ir ROAS\n• **IT** – logai / ETL eksportas → klaidos ir apimtys\n• **Personalas** – retention / pulse lentelė → funnel\n• **Vadyba** – executive KPI lentelė → santrauka valdybai\n• **Kita / vidiniai** – bet koks Excel → universalūs stulpeliai",
             "recommendedSlideIds": [101, 102, 111, 116, 117]
           }
         },
@@ -10323,15 +10422,15 @@
           "characterId": 1,
           "content": {
             "scenarioTitle": "Viešų šaltinių katalogas",
-            "scenarioDescription": "Kai neturi vidinių duomenų – sistemingai surink oficialius ir viešus šaltinius savo sektoriui.",
+            "scenarioDescription": "Kai neturi vidinių duomenų – sistemingai surink oficialius ir viešus šaltinius savo sektoriui. Paleisk DI chat (ChatGPT, Claude, Gemini); lentelę gali vėliau įklijuoti į Sheets.",
             "taskFrame": {
               "task": "Sudaryk 10–15 viešų duomenų šaltinių lentelę savo sektoriui ar įmonei.",
               "doneWhen": "Lentelė turi stulpelius: šaltinis, URL, formatas (CSV/API/ataskaita), atnaujinimo dažnis ir 1 sakinio aprašymą kiekvienam įrašui."
             }
           },
           "scenario": {
-            "context": "Naudok, kai pradedi analizę iš išorės – rinkos, sektoriaus ar konkurentų duomenys.",
-            "data": "Tavo tema: [įmonė / sektorius / produktas].",
+            "context": "Naudok, kai pradedi analizę iš išorės – rinkos, sektoriaus ar konkurentų duomenys. Jei turi savo Excel/CRM – eik į CSV/Excel praktiką.",
+            "data": "Tavo tema pagal M7 kelią: [įmonė / sektorius / produktas].",
             "constraints": "Tik oficialūs ar patikimi vieši šaltiniai; jei nežinai – „Nežinau“.",
             "expectedFormat": "Lentelė su 10–15 eilučių ir 5 stulpeliais."
           },
@@ -10347,13 +10446,20 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "Nukopijuok promptą ir paleisk DI",
-                  "description": "Pakeisk [įmonės / sektoriaus] į savo temą. Paleisk DI ir gauk pradinę lentelę.",
-                  "hint": "Pridėk bent 2 oficialius šaltinius (pvz. Statistikos departamentas, Eurostat).",
+                  "title": "Pasirink sektorių pagal M7 kelią",
+                  "description": "Pardavimai → e-commerce / mažmena LT; Rinkodara → skaitmeninė reklama LT; IT → SaaS / duomenų platformos; Personalas → Lietuvos HR / įdarbinimas; Vadyba → SMB valdymas LT; Kita → tavo sritis [X].",
+                  "hint": "Įrašyk sektorių į promptą vietoj [įmonės / sektoriaus].",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
+                  "title": "Nukopijuok promptą ir paleisk DI",
+                  "description": "ChatGPT, Claude ar Gemini – be failo. Paleisk ir gauk pradinę lentelę. Optional: įklijuok į Google Sheets.",
+                  "hint": "Pridėk bent 2 oficialius šaltinius (pvz. Statistikos departamentas, Eurostat).",
+                  "partialSolution": ""
+                },
+                {
+                  "step": 3,
                   "title": "Patikrink stulpelius",
                   "description": "Ar yra URL, formatas ir atnaujinimo dažnis? Jei trūksta – papildyk OUTPUT prompte.",
                   "hint": "Minimalus tikslas – 10 eilučių.",
@@ -10372,21 +10478,25 @@
           "characterId": 1,
           "content": {
             "scenarioTitle": "Vidinių duomenų valymas su DI",
-            "scenarioDescription": "Platforma neuploadina failų už tave – naudok DI chat su failų palaikymu (ChatGPT, Claude, Gemini).",
+            "scenarioDescription": "Platforma neuploadina failų už tave. Įrankiai: ChatGPT · Claude · Gemini (failas) · Excel / Google Sheets (eksportas → CSV). Jei neturi failo – atsisiųsk sample arba nukopijuok stulpelius.",
             "taskFrame": {
-              "task": "Įkelk CSV ar Excel failą į DI ir paleisk valymo promptą.",
+              "task": "Įkelk CSV ar Excel failą į DI (arba sample) ir paleisk valymo promptą.",
               "doneWhen": "DI identifikavo dublius, datas, trūkstamas reikšmes ir pateikė valymo ataskaitą su siūlomais veiksmais."
+            },
+            "sampleFile": {
+              "href": "/m9_sample_internal.csv",
+              "label": "Atsisiųsti sample CSV (pardavimai)"
             }
           },
           "scenario": {
-            "context": "Tinka vidiniams duomenims – pardavimai, CRM, sandėlis. Jei neturi failo – naudok mokymų pavyzdį arba stulpelių aprašymą.",
-            "data": "Tavo failas arba stulpelių sąrašas.",
+            "context": "Tinka vidiniams duomenims – pardavimai, CRM, sandėlis. Logika ta pati kaip Duomenų paruošime. Jei neturi failo – sample CSV (pardavimų default) arba stulpelių sąrašas žemiau.",
+            "data": "Stulpeliai pagal M7 kelią (nukopijuok į DI, jei neturi failo):\n• Pardavimai: date, region, product, revenue, units\n• Rinkodara: date, channel, campaign, spend, clicks, conversions\n• IT: timestamp, source_system, rows_in, rows_out, error_count\n• Personalas: month, hired, left, dept, eNPS\n• Vadyba: period, kpi_name, actual, target, owner\n• Kita: col_a, col_b, col_c ([X])",
             "constraints": "Anonimizuok asmeninius duomenis prieš įkeliant.",
             "expectedFormat": "Valymo ataskaita: problemos + siūlomi veiksmai."
           },
-          "template": "Štai mano duomenų failas (CSV/Excel). Užduotis:\n1. Identifikuok stulpelių tipus ir galimas klaidas ( datos, dubliavimas, trūkstamos reikšmės).\n2. Pateik 5 žingsnių valymo checklist.\n3. Pasiūlyk 3 KPI, kuriuos galima skaičiuoti po valymo.\nChecklist: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas.",
+          "template": "Štai mano duomenų failas (CSV/Excel) arba stulpeliai: date, region, product, revenue, units (pardavimų pavyzdys).\nUžduotis:\n1. Identifikuok stulpelių tipus ir galimas klaidas (datos, dubliavimas, trūkstamos reikšmės).\n2. Pateik 5 žingsnių valymo checklist.\n3. Pasiūlyk 3 KPI, kuriuos galima skaičiuoti po valymo.\nChecklist: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas.",
           "practicalTask": {
-            "template": "Štai mano duomenų failas (CSV/Excel). Užduotis:\n1. Identifikuok stulpelių tipus ir galimas klaidas ( datos, dubliavimas, trūkstamos reikšmės).\n2. Pateik 5 žingsnių valymo checklist.\n3. Pasiūlyk 3 KPI, kuriuos galima skaičiuoti po valymo.\nChecklist: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas.",
+            "template": "Štai mano duomenų failas (CSV/Excel) arba stulpeliai: date, region, product, revenue, units (pardavimų pavyzdys).\nUžduotis:\n1. Identifikuok stulpelių tipus ir galimas klaidas (datos, dubliavimas, trūkstamos reikšmės).\n2. Pateik 5 žingsnių valymo checklist.\n3. Pasiūlyk 3 KPI, kuriuos galima skaičiuoti po valymo.\nChecklist: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas.",
             "templateLabel": "Valymo promptas – nukopijuok į DI su failu",
             "title": "Išvalyk savo duomenis",
             "placeholder": "Įrašyk DI valymo ataskaitą arba pagrindines išvadas.",
@@ -10396,16 +10506,23 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "Įkelk failą į DI",
-                  "description": "ChatGPT, Claude ar Gemini – naudok chat su failų palaikymu. Įkelk CSV ar Excel.",
-                  "hint": "Jei neturi failo – aprašyk stulpelius tekstu.",
+                  "title": "Pasirink failą arba sample",
+                  "description": "Savo Excel/CRM → eksportuok CSV. Neturi failo → atsisiųsk sample CSV (pardavimai) arba nukopijuok savo kelio stulpelius iš skirtuko „Duomenys“.",
+                  "hint": "Sample turi tyčinių klaidų: tuščios revenue, dublis Enterprise eilutė.",
                   "partialSolution": ""
                 },
                 {
                   "step": 2,
+                  "title": "Įkelk į DI chat",
+                  "description": "ChatGPT, Claude ar Gemini – chat su failų palaikymu. Excel / Sheets: eksportuok CSV ir įkelk.",
+                  "hint": "Be failo – įklijuok stulpelių eilutes į promptą.",
+                  "partialSolution": ""
+                },
+                {
+                  "step": 3,
                   "title": "Nukopijuok valymo promptą",
-                  "description": "Įklijuok promptą žemiau ir paleisk su įkeltu failu.",
-                  "hint": "Logika ta pati kaip Modulyje 7 – Duomenų paruošimas ir workflow.",
+                  "description": "Įklijuok promptą žemiau ir paleisk su failu. Po valymo – 3 KPI savo keliui.",
+                  "hint": "Ta pati logika kaip M7 Duomenų paruošime – be papildomo kodo.",
                   "partialSolution": ""
                 }
               ]
@@ -10448,22 +10565,22 @@
               {
                 "id": 0,
                 "title": "Jūratė – Sentimentai ir duomenų valdymas",
-                "description": "Neprivaloma · ."
+                "description": "Neprivaloma · Atsiliepimai ir valymas prieš analizę."
               },
               {
                 "id": 1,
                 "title": "Martynas – 4 analizės tipai ir rizikos",
-                "description": "Neprivaloma · ."
+                "description": "Neprivaloma · Kas / kodėl / kas bus / ką daryti + rizikos."
               },
               {
                 "id": 2,
                 "title": "Giedrė – Verslo taikymas",
-                "description": "Neprivaloma · ."
+                "description": "Neprivaloma · Finansai, konkurentai, HR praktiniai šablonai."
               },
               {
                 "id": 3,
                 "title": "Lukas – Vizualizacija ir istorija",
-                "description": "Neprivaloma · ."
+                "description": "Neprivaloma · Grafikai ir istorija vadovybei."
               }
             ],
             "level2Choices": [

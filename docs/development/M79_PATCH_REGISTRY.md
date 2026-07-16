@@ -2,24 +2,27 @@
 
 > **Tikslas:** Vienas sąrašas idempotentinių M79 patch skriptų, paleidimo tvarka ir EN overlay taisyklės.
 > **Operacinis SOT:** iteraciniai UX polish pakeitimai fiksuojami čia + [`TEST_REPORT.md`](TEST_REPORT.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
-> **Atnaujinta:** 2026-07-15
+> **Atnaujinta:** 2026-07-16
 
 ---
 
 ## 1. Skriptų lentelė
 
-| Skriptas                       | Paskirtis                                                     | Kada paleisti             | Priklausomybės          |
-| ------------------------------ | ------------------------------------------------------------- | ------------------------- | ----------------------- |
-| `patch-m79-iterations.mjs`     | Ankstyvos M79 iteracijos (cross-ref, footer, kelio žemėlapis) | Vienkartinis / legacy     | `modules.json`          |
-| `patch-m79-en-overlay.mjs`     | EN overlay bazinis sync                                       | Po didelių LT pakeitimų   | `modules-en-m7-m9.json` |
-| `patch-m79-patikra-batch2.mjs` | M7 Patikra de-boilerplate (batch 2)                           | Vienkartinis              | `modules.json`          |
-| `patch-m79-phase2.mjs`         | Phase 2 LT (78.5, 93.1/93.2, footer B, macro)                 | Vienkartinis              | `modules.json`          |
-| `patch-m79-phase2-en.mjs`      | Phase 2 EN overlay                                            | Po `patch-m79-phase2.mjs` | `modules-en-m7-m9.json` |
-| `patch-m79-phase2-audit.mjs`   | Phase 2 audit batch (M8/M9/M7 targeted)                       | Po phase2                 | Abu JSON                |
-| `patch-m79-ux-polish.mjs`      | Top 5 UX polish LT (93, 94, 76, 89/73, 99/90)                 | Vienkartinis              | `modules.json`          |
-| `patch-m79-ux-polish-en.mjs`   | Top 5 EN overlay                                              | Po ux-polish LT           | `modules-en-m7-m9.json` |
-| `patch-m79-p2-polish.mjs`      | P2 polish LT (etika, filtrai, M9, optional, sk. 74)           | Vienkartinis              | `modules.json`          |
-| `patch-m79-p2-polish-en.mjs`   | P2 polish EN overlay                                          | Po p2-polish LT           | `modules-en-m7-m9.json` |
+| Skriptas                              | Paskirtis                                                                  | Kada paleisti                          | Priklausomybės                                    |
+| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------- |
+| `patch-m79-iterations.mjs`            | Ankstyvos M79 iteracijos (cross-ref, footer, kelio žemėlapis)              | Vienkartinis / legacy                  | `modules.json`                                    |
+| `patch-m79-en-overlay.mjs`            | EN overlay bazinis sync                                                    | Po didelių LT pakeitimų                | `modules-en-m7-m9.json`                           |
+| `patch-m79-patikra-batch2.mjs`        | M7 Patikra de-boilerplate (batch 2)                                        | Vienkartinis                           | `modules.json`                                    |
+| `patch-m79-phase2.mjs`                | Phase 2 LT (78.5, 93.1/93.2, footer B, macro)                              | Vienkartinis                           | `modules.json`                                    |
+| `patch-m79-phase2-en.mjs`             | Phase 2 EN overlay                                                         | Po `patch-m79-phase2.mjs`              | `modules-en-m7-m9.json`                           |
+| `patch-m79-phase2-audit.mjs`          | Phase 2 audit batch (M8/M9/M7 targeted)                                    | Po phase2                              | Abu JSON                                          |
+| `patch-m79-ux-polish.mjs`             | Top 5 UX polish LT (93, 94, 76, 89/73, 99/90)                              | Vienkartinis                           | `modules.json`                                    |
+| `patch-m79-ux-polish-en.mjs`          | Top 5 EN overlay                                                           | Po ux-polish LT                        | `modules-en-m7-m9.json`                           |
+| `patch-m79-p2-polish.mjs`             | P2 polish LT (etika, filtrai, M9, optional, sk. 74)                        | Vienkartinis                           | `modules.json`                                    |
+| `patch-m79-p2-polish-en.mjs`          | P2 polish EN overlay                                                       | Po p2-polish LT                        | `modules-en-m7-m9.json`                           |
+| `patch-m79-plain-w4-w5.mjs`           | A–C: sk. 97 inline principai + W4 (66.9) + W5 body batch (M79-44/45) LT+EN | Vienkartinis (jau paleista 2026-07-16) | Abu JSON; ne paleisti pakartotinai be diff review |
+| `patch-m79-everyday-closeness.mjs`    | M79-51…54 LT: M9 90/93.1/93.2/99 + M8 warm-up/vignette + sampleFile        | Vienkartinis (jau paleista 2026-07-16) | `modules.json`; `public/m9_sample_internal.csv`   |
+| `patch-m79-everyday-closeness-en.mjs` | M79-51…54 EN overlay veidrodis                                             | Po LT patch                            | `modules-en-m7-m9.json`                           |
 
 **Paleidimo tvarka (jei reikia iš naujo):** LT patch → `npm run validate:schema` → EN patch → `npm run audit:m79` → `npm run generate:core-data` (jei M1–9 core).
 
@@ -54,6 +57,7 @@ npm run audit:m79
 | ---------------------------------- | -------------------------------------------------------- | -------------------------------- |
 | `toolChoiceBar` + `linkedRowIndex` | `ContentSlides.tsx`                                      | M7: 734, 731, 733, 77; Top 5: 76 |
 | `M9WorkflowStepCopyBlock`          | `diagramRenderers.tsx`                                   | M9 sk. 94                        |
+| `content.sampleFile` download      | `TestPracticeSlides` PracticeScenarioSlide               | M9 sk. 93.2                      |
 | Bar be `table`                     | `ContentSlides` – bar render be `presentationToolsBlock` | 734, 731, 733, 77                |
 
 Žr. [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §3.8.1, [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md).
@@ -73,6 +77,7 @@ npm run audit:m79
 
 ## 5. Nuorodos
 
-- Backlog DoD: [`07_08_09_backlog.md`](07_08_09_backlog.md) §11 (Phase 2), §12 (P2 polish)
+- Backlog DoD: [`07_08_09_backlog.md`](07_08_09_backlog.md) §11 (Phase 2), §12 (P2 polish), §13 (A–C residual)
+- Smoke: [`TEST_REPORT.md`](TEST_REPORT.md) §2026-07-16 M79-50
 - Priežiūra: [`DOCS_MAINTENANCE.md`](DOCS_MAINTENANCE.md)
 - DATA gairės: [`DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`](DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md) §3.1 M7–M9 EN

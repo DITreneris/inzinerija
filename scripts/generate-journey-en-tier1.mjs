@@ -1,0 +1,243 @@
+#!/usr/bin/env node
+/**
+ * Generates journey-en-tier1.json from LT SOT with English translations.
+ * Run: node scripts/generate-journey-en-tier1.mjs
+ */
+import { readFileSync, writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ltPath = join(__dirname, '..', 'src', 'data', 'modules-journey-m7.json');
+const outPath = join(__dirname, 'journey-en-tier1.json');
+
+const TIER1_SLIDES = ['731', '733', '74', '734', '75'];
+
+const lt = JSON.parse(readFileSync(ltPath, 'utf8'));
+const enTier1 = {};
+
+/** Journey-aware EN templates keyed by field + journey */
+const EN = {
+  '731': {
+    'types-descriptive': {
+      pardavimai:
+        'Summarize this sales data:\n- Top 5 products by revenue\n- Regions with highest growth\n- Seasonality trends\n- Revenue concentration (% from top 20% customers)',
+      rinkodara:
+        'Summarize this marketing data:\n- Top 5 channels by conversion\n- Content types with highest engagement\n- Campaign performance trends\n- Audience concentration (% from top 20% segments)',
+      'it-inzinerija':
+        'Summarize these data system metrics:\n- Top 5 tables by volume\n- Sources with highest growth\n- Data flow trends\n- Error concentration (% from top 20% records)',
+      personalas:
+        'Summarize this HR data:\n- Top 5 departments by hiring\n- Roles with highest applicant flow\n- Turnover trends over the period\n- Employee concentration (% from top 20% teams)',
+      vadyba:
+        'Summarize these business metrics:\n- Top 5 KPIs by goal impact\n- Areas with highest growth\n- Performance trends per quarter\n- Revenue concentration (% from top 20% products or customers)',
+      kita:
+        'Summarize this [X] data:\n- Top 5 categories by importance\n- Areas with largest change\n- Trends over the period\n- Concentration (% from top 20% units)',
+    },
+    'types-diagnostic': {
+      pardavimai:
+        'Given the Q3 sales decline:\n- Identify possible causes\n- Check if linked to price changes\n- Did seasonality play a role?\n- Did marketing activity decrease?',
+      rinkodara:
+        'Given the Q3 campaign performance decline:\n- Identify possible causes\n- Check if linked to content changes\n- Did channel algorithm changes play a role?\n- Did budget or frequency decrease?',
+      'it-inzinerija':
+        'Given the Q3 data quality decline:\n- Identify possible causes\n- Check if linked to source changes\n- Did ETL errors or delays play a role?\n- Did schema structure change?',
+      personalas:
+        'Given the Q3 turnover increase:\n- Identify possible causes\n- Check if linked to specific departments\n- Did hiring freeze play a role?\n- Did workload or management change?',
+      vadyba:
+        'Given the Q3 business metric decline:\n- Identify possible causes\n- Check if linked to market changes\n- Did internal processes play a role?\n- Did resource allocation change?',
+      kita:
+        'Given the change in [X] metrics:\n- Identify possible causes\n- Check if linked to data source\n- Did external factors play a role?\n- Did measurement methodology change?',
+    },
+    'types-predictive': {
+      pardavimai:
+        'Based on 3 years of data:\n- Forecast Q4 sales\n- Estimate inventory needs\n- State risk (% probability)',
+      rinkodara:
+        'Based on 3 months of campaign data:\n- Forecast Q4 reach and conversion\n- Estimate budget needs by channel\n- State risk (% probability)',
+      'it-inzinerija':
+        'Based on 3 months of pipeline metrics:\n- Forecast Q4 data volume\n- Estimate infrastructure needs\n- State risk (% probability)',
+      personalas:
+        'Based on 3 months of HR data:\n- Forecast Q4 headcount changes\n- Estimate hiring needs by department\n- State risk (% probability)',
+      vadyba:
+        'Based on 3 quarters of business data:\n- Forecast Q4 main KPIs\n- Estimate resource needs\n- State risk (% probability)',
+      kita:
+        'Based on 3 periods of [X] data:\n- Forecast next period\n- Estimate resource needs\n- State risk (% probability)',
+    },
+    'types-prescriptive': {
+      pardavimai:
+        'Based on the forecast:\n- How much to increase inventory?\n- Raise prices?\n- Intensify advertising?\n- Which products to focus on?',
+      rinkodara:
+        'Based on the forecast:\n- Which channel to strengthen?\n- Change content format?\n- Increase budget?\n- Which audiences to focus on?',
+      'it-inzinerija':
+        'Based on the forecast:\n- What to automate first?\n- Expand storage?\n- Change ETL schedule?\n- Which tables to optimize?',
+      personalas:
+        'Based on the forecast:\n- Where to increase hiring?\n- Change retention program?\n- Review compensation?\n- Which teams to strengthen?',
+      vadyba:
+        'Based on the forecast:\n- What to fund first?\n- Change strategy?\n- Pause weak projects?\n- Which areas to focus on?',
+      kita:
+        'Based on the forecast:\n- What to do first?\n- Change the process?\n- Increase resources?\n- Which areas to focus on in [X] context?',
+    },
+  },
+  '733': {
+    'template-data': {
+      pardavimai:
+        'ROLE: Data analyst.\nCreate 20 rows of sales data.\nColumns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (Price*0.76), Total (Qty*Price), Profit.\nAdd: 3 regions, seasonality, realistic prices.',
+      rinkodara:
+        'ROLE: Marketing analyst.\nCreate 20 rows of campaign data.\nColumns: ID (KM0001), Campaign, Channel, Date, Reach, Clicks, Conversions, Spend, CPA, ROAS.\nAdd: 3 channels, seasonality, realistic metrics.',
+      'it-inzinerija':
+        'ROLE: Data engineer.\nCreate 20 rows of event logs.\nColumns: ID (LOG0001), Timestamp, Source, Table, Operation, Row_count, Duration_ms, Status, Error_code, User.\nAdd: 3 sources, realistic times, 2–3 errors.',
+      personalas:
+        'ROLE: HR analyst.\nCreate 20 rows of employee records.\nColumns: ID (HR0001), Name, Department, Role, Hire_date, Salary, Rating, Status, Manager, Location.\nAdd: 3 departments, realistic dates, 2–3 departures.',
+      vadyba:
+        'ROLE: Business analyst.\nCreate 20 rows of KPI summary.\nColumns: ID (KPI0001), Metric, Department, Target, Actual, Gap_%, Period, Trend, Risk, Owner.\nAdd: 3 departments, realistic targets, 2–3 at-risk metrics.',
+      kita:
+        'ROLE: Data analyst.\nCreate 20 rows of [X] data.\nColumns: ID, Category, Date, Metric_1, Metric_2, Metric_3, Status, Notes.\nAdd: 3 categories, realistic values, 2–3 outliers.',
+    },
+    'template-competitors': {
+      pardavimai:
+        'ROLE: Strategic business analyst. TASK: Run competitor analysis.\nAnalyze: 1) Social media activity 2) SEO strategy 3) Product pricing 4) Top customer complaints 5) Financial indicators\nOUTPUT: SWOT table, 3 competitor weaknesses, 3 our opportunities, quick-entry strategy (30-day plan).',
+      rinkodara:
+        'ROLE: Marketing strategist. TASK: Run competitor channel analysis.\nAnalyze: 1) Content strategy 2) Channel mix 3) Campaign frequency 4) Audience reactions 5) Budget signals\nOUTPUT: SWOT table, 3 competitor weaknesses, 3 our opportunities, 30-day channel plan.',
+      'it-inzinerija':
+        'ROLE: Technology analyst. TASK: Run stack comparison.\nAnalyze: 1) Data architecture 2) ETL tools 3) Storage solutions 4) Integration scope 5) Technical debt\nOUTPUT: SWOT table, 3 weaknesses, 3 our opportunities, 30-day migration plan.',
+      personalas:
+        'ROLE: HR strategist. TASK: Run talent market analysis.\nAnalyze: 1) Salary levels 2) Hiring speed 3) Employer brand 4) Turnover trends 5) Popular roles\nOUTPUT: SWOT table, 3 competitor weaknesses, 3 our opportunities, 30-day hiring plan.',
+      vadyba:
+        'ROLE: Strategic business analyst. TASK: Run market position analysis.\nAnalyze: 1) Market share 2) Growth rate 3) Customer loyalty 4) Strategic partners 5) Risks\nOUTPUT: SWOT table, 3 competitor weaknesses, 3 our opportunities, 30-day strategy plan.',
+      kita:
+        'ROLE: Business analyst. TASK: Run [X] comparison.\nAnalyze: 1) Key metrics 2) Strengths 3) Weaknesses 4) Opportunities 5) Threats\nOUTPUT: SWOT table, 3 weaknesses, 3 opportunities, 30-day action plan.',
+    },
+    'template-cfo': {
+      pardavimai:
+        'ROLE: CFO assistant.\nAssess: EBITDA, margin, cash flow, debt level.\nIdentify: 3 financial risks, 3 optimization opportunities, price increase potential (%).',
+      rinkodara:
+        'ROLE: Marketing finance analyst.\nAssess: ROAS, CAC, LTV, channel efficiency.\nIdentify: 3 budget risks, 3 optimization opportunities, budget reallocation potential (%).',
+      'it-inzinerija':
+        'ROLE: IT finance analyst.\nAssess: Infra costs, licenses, cloud spend, technical debt.\nIdentify: 3 cost risks, 3 optimization opportunities, automation savings potential (%).',
+      personalas:
+        'ROLE: HR finance analyst.\nAssess: Payroll, hiring costs, turnover costs, productivity.\nIdentify: 3 HR financial risks, 3 optimization opportunities, compensation optimization potential (%).',
+      vadyba:
+        'ROLE: CFO assistant.\nAssess: EBITDA, margin, cash flow, return on investment.\nIdentify: 3 strategic financial risks, 3 optimization opportunities, investment reallocation potential (%).',
+      kita:
+        'ROLE: Finance analyst.\nAssess: Main [X] financial metrics.\nIdentify: 3 risks, 3 optimization opportunities, cost reduction potential (%).',
+    },
+  },
+  '74': {
+    'master-prompt': {
+      pardavimai:
+        'Role: Experienced data analyst (sales).\nTask: Run a full sales analysis on topic [X].\n\nStructure:\n1. Data sources (CRM, ERP, e-commerce)\n2. Data structure\n3. Cleaning\n4. EDA (top products, regions, trends)\n5. Visualization suggestions\n6. Insights\n7. Forecasts (Q4, inventory)\n8. Strategic recommendations',
+      rinkodara:
+        'Role: Market analyst (marketing).\nTask: Run a full marketing analysis on topic [X].\n\nStructure:\n1. Data sources (campaigns, social, web)\n2. Data structure\n3. Cleaning\n4. EDA (channels, content, sentiment)\n5. Visualization suggestions\n6. Insights\n7. Forecasts (reach, conversion)\n8. Strategic recommendations',
+      'it-inzinerija':
+        'Role: Data engineer (IT).\nTask: Run a full data system analysis on topic [X].\n\nStructure:\n1. Data sources (DB, API, files)\n2. Data structure (schema)\n3. Cleaning and normalization\n4. EDA (volumes, errors, delays)\n5. Visualization suggestions\n6. Insights\n7. Forecasts (load, ETL)\n8. Automation recommendations',
+      personalas:
+        'Role: HR analyst (people ops).\nTask: Run a full employee analysis on topic [X].\n\nStructure:\n1. Data sources (HRIS, surveys)\n2. Data structure\n3. Cleaning\n4. EDA (hiring, turnover, retention)\n5. Visualization suggestions\n6. Insights\n7. Forecasts (headcount, risk)\n8. Strategic recommendations',
+      vadyba:
+        'Role: Strategic business analyst (leadership).\nTask: Run a full business analysis on topic [X].\n\nStructure:\n1. Data sources (KPI, finance, operations)\n2. Data structure\n3. Cleaning\n4. EDA (metrics, trends, risks)\n5. Visualization suggestions (executive dashboard)\n6. Insights\n7. Forecasts (scenarios)\n8. Decision recommendations',
+      kita:
+        'Role: Data analyst.\nTask: Run a full data analysis on topic [X].\n\nStructure:\n1. Data sources\n2. Data structure\n3. Cleaning\n4. EDA\n5. Visualization suggestions\n6. Insights\n7. Forecasts\n8. Strategic recommendations',
+    },
+  },
+  '734': {
+    'filter-ok-fail': {
+      pardavimai:
+        'Evaluate this sales data/result with OK / Fail logic.\n\nContext: [describe business, sales data, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+      rinkodara:
+        'Evaluate this marketing data/result with OK / Fail logic.\n\nContext: [describe campaign, channels, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+      'it-inzinerija':
+        'Evaluate this data pipeline result with OK / Fail logic.\n\nContext: [describe source, ETL, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+      personalas:
+        'Evaluate this HR data/process with OK / Fail logic.\n\nContext: [describe department, HR process, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+      vadyba:
+        'Evaluate these business decision options with OK / Fail logic.\n\nContext: [describe decision, KPI, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+      kita:
+        'Evaluate this [X] data/result with OK / Fail logic.\n\nContext: [describe topic, data, goal]\nData: [paste]\n\nAnswer:\n1. What clearly fits (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. Likely cause of each Fail?\n5. What to fix first?\n6. Final verdict: Pass / Fail / Pass with conditions.\n\nBe critical – do not soften weak spots.',
+    },
+    'filter-priority': {
+      pardavimai:
+        'Sort this sales task list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [sales goal / quarter]\nList: [tasks, products, regions]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on revenue\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+      rinkodara:
+        'Sort this marketing task list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [campaign goal / quarter]\nList: [channels, content, campaigns]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on reach/conversion\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+      'it-inzinerija':
+        'Sort this IT task list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [pipeline / infra goal]\nList: [ETL, automation, optimization]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on data quality\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+      personalas:
+        'Sort this HR task list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [hiring / retention goal]\nList: [hiring, training, processes]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on the team\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+      vadyba:
+        'Sort this business decision list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [strategic goal / quarter]\nList: [projects, investments, initiatives]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on the business\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+      kita:
+        'Sort this [X] list into 4 groups: Must / Important / Nice / Not now.\n\nContext: [goal / project]\nList: [tasks, features, ideas]\n\nFor each item write:\n1. Why it belongs in that group\n2. Impact on outcome\n3. Risk if we skip it\n4. Recommended next step\n\nBe ruthless on scope – the Not now group must be real.',
+    },
+    'filter-quick-wins': {
+      pardavimai:
+        'Find quick wins in sales data.\n\nGoal: [what we want to improve in sales]\nData: [products, regions, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible revenue impact\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+      rinkodara:
+        'Find quick wins in marketing data.\n\nGoal: [what we want to improve in campaigns]\nData: [channels, content, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible reach/conversion impact\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+      'it-inzinerija':
+        'Find quick wins in the data pipeline.\n\nGoal: [what we want to improve in ETL/data]\nData: [sources, errors, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible quality impact\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+      personalas:
+        'Find quick wins in HR processes.\n\nGoal: [what we want to improve in the team]\nData: [hiring, retention, surveys]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible team impact\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+      vadyba:
+        'Find quick wins in business decisions.\n\nGoal: [what we want to improve in strategy]\nData: [KPI, projects, risks]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible business impact\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+      kita:
+        'Find quick wins in [X] data.\n\nGoal: [what we want to improve]\nData: [problems, opportunities, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Deliver visible results\n\nFor each: action, expected impact, effort level, when to check, risk, how we measure success.\n\nPick the top 5.',
+    },
+    'filter-portfolio': {
+      pardavimai:
+        'Evaluate these sales options with Test / Invest / Reject.\n\nContext: [sales goal, budget, timeline]\nOptions: [products, regions, pricing, channels]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on revenue outcome.',
+      rinkodara:
+        'Evaluate these marketing options with Test / Invest / Reject.\n\nContext: [campaign goal, budget, timeline]\nOptions: [channels, content, audiences, formats]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on reach/conversion outcome.',
+      'it-inzinerija':
+        'Evaluate these IT options with Test / Invest / Reject.\n\nContext: [pipeline goal, budget, timeline]\nOptions: [tools, automation, migrations, integrations]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on data quality outcome.',
+      personalas:
+        'Evaluate these HR options with Test / Invest / Reject.\n\nContext: [hiring goal, budget, timeline]\nOptions: [programs, channels, roles, processes]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on team outcome.',
+      vadyba:
+        'Evaluate these business options with Test / Invest / Reject.\n\nContext: [strategic goal, budget, timeline]\nOptions: [projects, investments, partners, initiatives]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on business outcome.',
+      kita:
+        'Evaluate these [X] options with Test / Invest / Reject.\n\nContext: [goal, budget, timeline]\nOptions: [products, channels, processes, ideas]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for major commitment\n3. Reject – weak return or too risky\n\nExplain: 1) why that bucket 2) evidence for/against 3) what would change your mind 4) next step 5) how we measure success.\n\nBe direct, focus on outcome.',
+    },
+  },
+  '75': {
+    reflection: {
+      pardavimai:
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7 (sales path).\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT, sales analysis).\nOUTPUT: Ask 3 questions: (1) Which sales prompt could I apply at work today? (2) What was newest about KPI and forecasts? (3) What do I want to try first with Q4 data? After my answers, give 1 concrete tip on how to start.',
+      rinkodara:
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7 (marketing path).\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT, channel and content analysis).\nOUTPUT: Ask 3 questions: (1) Which marketing prompt could I apply at work today? (2) What was newest about sentiment and channels? (3) What do I want to try first with campaign data? After my answers, give 1 concrete tip on how to start.',
+      'it-inzinerija':
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7 (IT path).\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT, data engineering).\nOUTPUT: Ask 3 questions: (1) Which IT prompt could I apply at work today? (2) What was newest about ETL and data quality? (3) What do I want to try first with my data source? After my answers, give 1 concrete tip on how to start.',
+      personalas:
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7 (HR path).\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT, HR analysis).\nOUTPUT: Ask 3 questions: (1) Which HR prompt could I apply at work today? (2) What was newest about retention and hiring? (3) What do I want to try first with team data? After my answers, give 1 concrete tip on how to start.',
+      vadyba:
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7 (leadership path).\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT, business analysis).\nOUTPUT: Ask 3 questions: (1) Which decision prompt could I apply at work today? (2) What was newest about risks and priorities? (3) What do I want to present to leadership first? After my answers, give 1 concrete tip on how to start.',
+      kita:
+        'META: You are a training reflection assistant. Goal – help consolidate learning after Module 7.\nINPUT: I just finished Module 7 theory (pipeline, MASTER PROMPT).\nOUTPUT: Ask 3 questions: (1) Which prompt or technique could I apply with [X] data today? (2) What was newest or surprising? (3) What do I want to try first? After my answers, give 1 concrete tip on how to start.',
+    },
+    'first-action-24h': {
+      pardavimai:
+        'Within 24–48 hours, run the MASTER PROMPT on one real sales topic (e.g. Q4 summary) and save the output.',
+      rinkodara:
+        'Within 24–48 hours, run the MASTER PROMPT on one real marketing topic (e.g. campaign results) and save the output.',
+      'it-inzinerija':
+        'Within 24–48 hours, run the MASTER PROMPT on one real data source (e.g. ETL metrics) and save the output.',
+      personalas:
+        'Within 24–48 hours, run the MASTER PROMPT on one real HR topic (e.g. hiring funnel) and save the output.',
+      vadyba:
+        'Within 24–48 hours, run the MASTER PROMPT on one business KPI (e.g. quarterly metrics) and prepare a 1-page executive summary for leadership.',
+      kita:
+        'Within 24–48 hours, run the MASTER PROMPT on one real [X] topic and save the output.',
+    },
+  },
+};
+
+for (const slideId of TIER1_SLIDES) {
+  const ltSlide = lt.fields[slideId];
+  const enSlide = EN[slideId];
+  if (!ltSlide || !enSlide) {
+    console.error(`Missing slide ${slideId}`);
+    process.exit(1);
+  }
+  enTier1[slideId] = {};
+  for (const fieldKey of Object.keys(ltSlide)) {
+    enTier1[slideId][fieldKey] = enSlide[fieldKey] ?? ltSlide[fieldKey];
+  }
+}
+
+writeFileSync(outPath, `${JSON.stringify(enTier1, null, 2)}\n`);
+console.log('journey-en-tier1.json: OK');

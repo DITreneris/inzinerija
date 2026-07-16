@@ -11,6 +11,10 @@ import {
   type DiagramTone,
 } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import {
+  getVerticalFlowConnector,
+  type DiagramBox,
+} from './verticalFlowGeometry';
 
 const STEP_COUNT = 4;
 const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
@@ -27,7 +31,7 @@ const COMPACT_VIEWBOX_W = 320;
 const COMPACT_VIEWBOX_H = 360;
 const COMPACT_BOX_W = 248;
 const COMPACT_BOX_H = 54;
-const COMPACT_GAP = 14;
+const COMPACT_GAP = 22;
 const COMPACT_START_X = 36;
 const COMPACT_START_Y = 74;
 
@@ -261,16 +265,26 @@ export default function M7BiSchemaDiagram({
             )}
             {i < boxes.length - 1 &&
               (isCompactDiagram ? (
-                <line
-                  x1={x + w / 2}
-                  y1={y + h}
-                  x2={x + w / 2}
-                  y2={boxes[i + 1][1] - ARROW_MARKER_LEN}
-                  stroke={palette.flow}
-                  strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
-                  markerEnd={`url(#m7-bi-arrow-${uid})`}
-                  aria-hidden
-                />
+                (() => {
+                  const conn = getVerticalFlowConnector(
+                    box as DiagramBox,
+                    boxes[i + 1],
+                    x + w / 2,
+                    ARROW_MARKER_LEN
+                  );
+                  return (
+                    <line
+                      x1={conn.x1}
+                      y1={conn.y1}
+                      x2={conn.x2}
+                      y2={conn.y2}
+                      stroke={palette.flow}
+                      strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                      markerEnd={`url(#m7-bi-arrow-${uid})`}
+                      aria-hidden
+                    />
+                  );
+                })()
               ) : (
                 <line
                   x1={x + w}

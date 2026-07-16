@@ -1,0 +1,52 @@
+{
+  "71.1": {
+    "step-task": {
+      "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką pardavimų analizei.\nCONTEXT: Duomenys iš CRM / e-commerce apie [X].\nOUTPUT: 1) Įrankis 1 + kąslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (KPI lentelė).",
+      "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką kanalų analizei.\nCONTEXT: Kampanijų / socialinių duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (kanalų palyginimas).",
+      "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Sudaryk 3 žingsnių įrankių seką duomenų pipeline.\nCONTEXT: DB / API / logai apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (schema + kokybė).",
+      "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką žmonių duomenų analizei.\nCONTEXT: HRIS / apklausos apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (retention KPI).",
+      "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką vadovybės ataskaitai.\nCONTEXT: KPI / padalinių duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (executive santrauka).",
+      "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką [X] analizei.\nCONTEXT: Vidiniai duomenys apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas."
+    }
+  },
+  "71.2": {
+    "step-task": {
+      "pardavimai": "ROLE: Tu esi pardavimų tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu palyginti pardavimų veiksnius [X] rinkoje.\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+      "rinkodara": "ROLE: Tu esi rinkos tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu suprasti kanalų / turinio efektyvumą [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+      "it-inzinerija": "ROLE: Tu esi duomenų platformos tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu įvertinti duomenų kokybę / ETL praktikas [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+      "personalas": "ROLE: Tu esi HR tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu suprasti retention / įdarbinimo veiksnius [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+      "vadyba": "ROLE: Tu esi strateginis tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu pagrįsti sprendimą [X] duomenimis.\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.",
+      "kita": "ROLE: Tu esi verslo tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu ištirti [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą."
+    }
+  },
+  "71.3": {
+    "step-task": {
+      "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – pardavimai / rinka [X].\nOUTPUT: Lentelė: šaltinis | tipas (viešas/vidinis) | ką duoda | kodėl svarbu.",
+      "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – kanalai / auditorija [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+      "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – duomenų sistemos / kokybė [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+      "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – darbo rinka / žmonės [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+      "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – sprendimas / rizika [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu.",
+      "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – [X].\nOUTPUT: Lentelė: šaltinis | tipas | ką duoda | kodėl svarbu."
+    }
+  },
+  "71.4": {
+    "step-task": {
+      "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pardavimai [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai pardavimų komandai.",
+      "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – kanalai [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai rinkodaros komandai.",
+      "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pipeline [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 techniniai veiksmai.",
+      "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – žmonės [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 HR veiksmai.",
+      "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – sprendimas [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 vadovų veiksmai.",
+      "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai."
+    }
+  },
+  "71.5": {
+    "step-task": {
+      "pardavimai": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pardavimus [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.",
+      "rinkodara": "ROLE: Tu esi rinkodaros analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie kanalus [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.",
+      "it-inzinerija": "ROLE: Tu esi duomenų inžinierius.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pipeline [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 kokybės metrikos toliau.",
+      "personalas": "ROLE: Tu esi HR analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie žmones [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 HR KPI toliau.",
+      "vadyba": "ROLE: Tu esi strateginis analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie sprendimą [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 executive KPI toliau.",
+      "kita": "ROLE: Tu esi verslo analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI toliau."
+    }
+  }
+}

@@ -2,12 +2,26 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.5 (tag release)  
-**Testai:** 72 failai / 482 testai  
-**Data:** 2026-07-15  
+**Baseline:** 1.4.5 (tag release) + Unreleased A–C residual  
+**Testai:** 74 failai / 512 testai (HEAD 2026-07-16)  
+**Data:** 2026-07-16  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### M79 A–C residual (Unreleased) – 2026-07-16
+
+| #   | Failas                                      | Laukas                      | Buvo                  | Turi būti                    | Done |
+| --- | ------------------------------------------- | --------------------------- | --------------------- | ---------------------------- | ---- |
+| 1   | `CHANGELOG.md`                              | Unreleased W4–W5 / M79-50   | W3 tik                | M79-44/45/50 įrašai          | [x]  |
+| 2   | `docs/development/07_08_09_backlog.md`      | §4.6 #4–5, §6, §12–§13      | open / be A–C         | ✅ + M79-44/45/50 + §13 DoD  | [x]  |
+| 3   | `docs/development/M79_PATCH_REGISTRY.md`    | `patch-m79-plain-w4-w5.mjs` | be skripto            | Registruotas + §13 nuoroda   | [x]  |
+| 4   | `docs/development/TEST_REPORT.md`           | M79-50 S1–S7                | —                     | Kodo ✅ / browser ⬜         | [x]  |
+| 5   | `docs/turinio_pletra_moduliai_7_8_9.md`     | sk. 66.9 pastaba            | tik spinoff           | W4/W5 + M79-44 pastaba       | [x]  |
+| 6   | `docs/DOCUMENTATION_QUICK_REF.md`           | M7–M9 operacinis SOT        | §12 tik               | §12–§13 + TEST_REPORT M79-50 | [x]  |
+| 7   | `docs/development/CODEBASE_WHAT_IS_DONE.md` | M7–9 / testai               | P2 2026-07-15, 72/482 | A–C 2026-07-16, 74/512       | [x]  |
+| 8   | `docs/LEAN_INDEX.md` / `ROADMAP.md`         | testų metrika               | 72/482                | 74/512 HEAD                  | [x]  |
+| 9   | Browser smoke                               | S1–S7 @375px                | ⬜                    | Savininkas prieš release     | [ ]  |
 
 ### Release 1.4.5 tag – 2026-07-15
 

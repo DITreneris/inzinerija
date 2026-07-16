@@ -1,0 +1,42 @@
+{
+  "73": {
+    "pipeline-overview": {
+      "pardavimai": "List 10 possible sales data sources for topic [X] (CRM, ERP, e-commerce).",
+      "rinkodara": "List 10 possible marketing data sources for topic [X] (campaigns, social media, web analytics).",
+      "it-inzinerija": "List 10 possible data system sources for topic [X] (DB, API, logs, files).",
+      "personalas": "List 10 possible HR data sources for topic [X] (HRIS, surveys, hiring portals).",
+      "vadyba": "List 10 possible business KPI sources for topic [X] (finance, operations, CRM).",
+      "kita": "List 10 possible data sources for topic [X]."
+    }
+  },
+  "732": {
+    "sentiment-prompt": {
+      "pardavimai": "ROLE: You are a sales insights analyst.\nTASK: Run sentiment analysis on customer feedback.\nCONTEXT: I am uploading customer reviews about the product and sales experience.\n\nOUTPUT:\n1. Overall sentiment split (% positive / neutral / negative)\n2. Top themes (with frequency)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by revenue risk)\n5. 3 priority actions for the sales team\n\nTONE: Analytical, specific, no filler.",
+      "rinkodara": "ROLE: You are a market analyst.\nTASK: Run sentiment analysis.\nCONTEXT: I am uploading customer reviews about the product and campaigns.\n\nOUTPUT:\n1. Overall sentiment split (% positive / neutral / negative)\n2. Top themes (with frequency)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, specific, no filler.",
+      "it-inzinerija": "ROLE: You are a data quality analyst.\nTASK: Run sentiment-style analysis on system feedback logs.\nCONTEXT: I am uploading error and user feedback about the data pipeline.\n\nOUTPUT:\n1. Issue category split (% critical / warnings / info)\n2. Top themes (with frequency)\n3. Severity intensity (low / medium / high)\n4. Critical issues (top 5 by system risk)\n5. 3 priority fixes\n\nTONE: Analytical, specific, no filler.",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Run pulse/sentiment analysis on employee feedback.\nCONTEXT: I am uploading employee survey and feedback data.\n\nOUTPUT:\n1. Overall sentiment split (% positive / neutral / negative)\n2. Top themes (with frequency)\n3. Emotion intensity (low / medium / high)\n4. Critical issues (top 5 by retention risk)\n5. 3 priority HR actions\n\nTONE: Analytical, specific, no filler.",
+      "vadyba": "ROLE: You are a strategic analyst.\nTASK: Run sentiment analysis on stakeholder feedback.\nCONTEXT: I am uploading leadership and customer feedback about decisions.\n\nOUTPUT:\n1. Overall split (% supportive / neutral / concerned)\n2. Top themes (with frequency)\n3. Intensity (low / medium / high)\n4. Critical risks (top 5 by business impact)\n5. 3 priority leadership actions\n\nTONE: Analytical, specific, no filler.",
+      "kita": "ROLE: You are a business analyst.\nTASK: Run sentiment analysis.\nCONTEXT: I am uploading feedback data about [X].\n\nOUTPUT:\n1. Overall sentiment split (% positive / neutral / negative)\n2. Top themes (with frequency)\n3. Emotion intensity (low / medium / high)\n4. Critical issues (top 5 by risk)\n5. 3 priority actions\n\nTONE: Analytical, specific, no filler."
+    }
+  },
+  "78": {
+    "di-role-prompt": {
+      "pardavimai": "ROLE: You are an experienced sales data analyst.\nTASK: Show how AI can help with my sales analysis task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with.",
+      "rinkodara": "ROLE: You are an experienced marketing analyst.\nTASK: Show how AI can help with my marketing analysis task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with.",
+      "it-inzinerija": "ROLE: You are an experienced data engineer.\nTASK: Show how AI can help with my data pipeline task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with.",
+      "personalas": "ROLE: You are an experienced HR analyst.\nTASK: Show how AI can help with my employee analysis task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with.",
+      "vadyba": "ROLE: You are an experienced strategic business analyst.\nTASK: Show how AI can help with my leadership decision task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with.",
+      "kita": "ROLE: You are an experienced business data analyst.\nTASK: Show how AI can help with my [X] analysis task.\nCONTEXT: Task: [enter]. Available data: [enter]. Decision I need to make: [enter].\nOUTPUT: 1) What AI can do alone 2) What a human must verify 3) What data still needs collecting 4) First prompt to start with."
+    }
+  },
+  "78.5": {
+    "excel-clean-prompt": {
+      "pardavimai": "ROLE: You are a data analyst.\nTASK: Prepare a sales export cleaning plan.\nCONTEXT: I have CSV/Excel from [CRM / ERP / e-commerce – enter]. Columns: [enter]. Goal – prepare data for sales analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 KPIs you can calculate from this sales data\nTONE: Specific, business language.",
+      "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Prepare a campaign export cleaning plan.\nCONTEXT: I have CSV/Excel from [ad platform / CRM / web – enter]. Columns: [enter]. Goal – prepare data for channel analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 KPIs you can calculate from this marketing data\nTONE: Specific, business language.",
+      "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Prepare a pipeline export cleaning plan.\nCONTEXT: I have CSV/Excel/logs from [DB / API / files – enter]. Columns: [enter]. Goal – prepare data for ETL analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 quality metrics you can calculate\nTONE: Specific, business language.",
+      "personalas": "ROLE: You are an HR analyst.\nTASK: Prepare an HR export cleaning plan.\nCONTEXT: I have CSV/Excel from [HRIS / surveys – enter]. Columns: [enter]. Goal – prepare data for employee analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 HR KPIs you can calculate\nTONE: Specific, business language.",
+      "vadyba": "ROLE: You are a business analyst.\nTASK: Prepare an executive report cleaning plan.\nCONTEXT: I have CSV/Excel from [finance / operations / CRM – enter]. Columns: [enter]. Goal – prepare data for a leadership report.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 executive KPIs you can calculate\nTONE: Specific, business language.",
+      "kita": "ROLE: You are a data analyst.\nTASK: Prepare an internal data cleaning plan.\nCONTEXT: I have CSV/Excel from [CRM / ERP / Excel – enter]. Columns: [enter]. Goal – prepare data for analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 KPIs you can calculate from this data\nTONE: Specific, business language."
+    }
+  }
+}

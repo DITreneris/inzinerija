@@ -2,9 +2,9 @@
 /**
  * M7 pathBranch invariant audit.
  *
- * M8 remediation deep-link targets must stay in the M7 core path. If any of
- * these slides gets `pathBranch`, it can become hidden after a journey focus is
- * selected and remediation links can land on an unreachable slide.
+ * 1) M8 remediation deep-link targets must stay in the M7 core path.
+ * 2) Every pathBranch token must appear in slide 70 journeyChoices.branchIds
+ *    (no orphan viz vs viz-sales/viz-mkt drift).
  */
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
@@ -34,7 +34,9 @@ if (!module7) {
   process.exit(1);
 }
 
-const violations = (module7.slides ?? [])
+const errors = [];
+
+const protectedViolations = (module7.slides ?? [])
   .filter((slide) => PROTECTED_M7_SLIDE_IDS.has(slide.id))
   .filter((slide) => Array.isArray(slide.pathBranch) && slide.pathBranch.length > 0)
   .map((slide) => ({
@@ -43,16 +45,69 @@ const violations = (module7.slides ?? [])
     pathBranch: slide.pathBranch,
   }));
 
-if (violations.length > 0) {
-  console.error('M7 pathBranch audit failed: protected remediation targets have pathBranch.');
-  for (const violation of violations) {
-    console.error(
-      `- slide ${violation.id} "${violation.title}": ${violation.pathBranch.join(', ')}`
+for (const violation of protectedViolations) {
+  errors.push(
+    `protected remediation target slide ${violation.id} "${violation.title}" has pathBranch: ${violation.pathBranch.join(', ')}`
+  );
+}
+
+const slide70 = (module7.slides ?? []).find((s) => s.id === 70);
+const choices = slide70?.content?.journeyChoices ?? [];
+if (!slide70 || choices.length === 0) {
+  errors.push('slide 70 journeyChoices missing');
+}
+
+const knownBranchIds = new Set();
+for (const choice of choices) {
+  for (const branchId of choice.branchIds ?? []) {
+    knownBranchIds.add(branchId);
+  }
+}
+
+const usesVizSales = knownBranchIds.has('viz-sales');
+const usesVizMkt = knownBranchIds.has('viz-mkt');
+const usesLegacyViz = knownBranchIds.has('viz');
+
+if ((usesVizSales || usesVizMkt) && usesLegacyViz) {
+  errors.push(
+    'slide 70 mixes legacy "viz" with viz-sales/viz-mkt in journeyChoices.branchIds'
+  );
+}
+
+const slidesWithBranch = (module7.slides ?? []).filter(
+  (slide) => Array.isArray(slide.pathBranch) && slide.pathBranch.length > 0
+);
+
+for (const slide of slidesWithBranch) {
+  for (const token of slide.pathBranch) {
+    if (!knownBranchIds.has(token)) {
+      errors.push(
+        `slide ${slide.id} pathBranch token "${token}" is not referenced by any slide 70 branchIds`
+      );
+    }
+  }
+}
+
+if (usesVizSales || usesVizMkt) {
+  const legacyVizSlides = slidesWithBranch.filter((s) =>
+    (s.pathBranch ?? []).includes('viz')
+  );
+  for (const slide of legacyVizSlides) {
+    errors.push(
+      `slide ${slide.id} still uses legacy pathBranch "viz" while choices use viz-sales/viz-mkt`
     );
+  }
+}
+
+if (errors.length > 0) {
+  console.error(`M7 pathBranch audit FAILED (${errors.length}):`);
+  for (const err of errors) {
+    console.error(`  - ${err}`);
   }
   process.exit(1);
 }
 
 console.log(
-  `M7 pathBranch audit passed: ${PROTECTED_M7_SLIDE_IDS.size} protected remediation targets are core slides.`
+  `M7 pathBranch audit passed: ${PROTECTED_M7_SLIDE_IDS.size} protected core slides; ` +
+    `${knownBranchIds.size} known branchIds; ${slidesWithBranch.length} branched slides.`
 );

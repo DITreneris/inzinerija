@@ -1,9 +1,9 @@
 # TODO – Promptų anatomija
 
 **Tikslas:** Vienas working failas – prioritetai, pipeline, nuorodos. SOT: `docs/DOCUMENTATION_INDEX.md`. Agentai: `docs/development/AGENT_ORCHESTRATOR.md`.  
-**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-15.
+**Legenda:** P0 = produkto / monetizacija (top), P1 = aukštas (release/kokybė), P2 = vidutinis, P3 = žemas. **Atnaujinta:** 2026-07-16.
 
-**Dabartinis fokusas:** **MON P0 + release QA**, nes M1–15 mokymų UX / interaktyvumo bangos 0–4 uždarytos. UX planas lieka priežiūros SOT: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. Audit: `npm run audit:slide-interactivity`, `npm run audit:embed-catalog`. **Docs sync prieš release:** `docs/development/DOCS_MAINTENANCE.md` + `DOCS_SYNC_CHECKLIST.md`.
+**Dabartinis fokusas:** **MON P0 + release QA**. M7 Lygis C launch blockers (overlay indeksai, LT viz split, `Database` journey icon, journey preflight gates) uždaryti 2026-07-16 — lieka rankinis browser smoke + MON-1/3/5/8. UX planas: `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`. **Docs sync prieš release:** `docs/development/DOCS_MAINTENANCE.md` + `DOCS_SYNC_CHECKLIST.md`.
 
 **Release vartai (apibrėžimai):**
 
@@ -235,6 +235,9 @@
 - **M13–M14 LT tobulinimas (2026-04-12):** Mažesnis turinio dubliavimas ir perkrova (collapsible, vienas accent 13.5), santraukos statistika, M14 rezultatų „Kitas žingsnis: M15“, testo klausimai (rizikos/workflow), „Verslas ir rizikos“ techninis **`id: 13.101`** (JSON 13.10 ↔ JS 13.1 kolizija). Žr. CHANGELOG [Unreleased] Changed (2026-04-12); `docs/MODULIO_13_SKAIDRIU_EILES.md`, `docs/turinio_pletra_moduliai_13_14_15.md`. EN/footer QA → **§1.5 Deferred** (M13-1, M13-2).
 - **M1-M6 bug bundle (2026-03-14):** Shared locale leak'ai ir mobile diagramų politika sutvarkyti sistemiškai: `CustomGptProcessDiagram` locale + compact mobile layout, `ProcessStepper` reflow, `ContentSlides` M1 EN helper label cleanup, `InstructGptQualityBlock` / `WorkflowChainsBlock` / `FigmaEmbed` locale fix, nauji smoke testai `ProcessStepper.locale.test.tsx` ir `ContentSlides.locale.test.tsx`, audit matrica `docs/archive/development/analysis/M1_M6_BUG_BUNDLE_AUDIT_MATRIX.md`. Liko rankinis browser spot-check ir PDF entry point patikra (#6, #7).
 - **Design System v0.2 (2026-05-19):** E1–E7 ✅ — Eyebrow, IconChip, SectionDivider, module.accent/identityIcon M1–M6, audit-design-tokens (baseline 480), DESIGN_SYSTEM.md, CHANGELOG `[v0.2.0]`. Detalus DS-E\* sąrašas: `docs/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`.
+- **Icon system P0–P2 (2026-07-15):** ✅ `src/icons/` registry + `audit:slide-icons` + emoji→Lucide migracija + M9 scenario-hub ikonos — žr. DESIGN_SYSTEM §4b, CHANGELOG [Unreleased].
+- **M7–M9 A–C residual (2026-07-16):** ✅ M79-44 (sk. 97), M79-45 (W4/W5 plain), M79-50 smoke protokolas (kodo ✅). Docs: backlog §13, `M79_PATCH_REGISTRY`, `TEST_REPORT`. **Liko:** S1–S7 browser @375px prieš release.
+- **M8/M9 kasdienis darbas (2026-07-16):** ✅ M79-51…55 — M9 90/93.1/93.2/99 + sample CSV + M8 vignette; EN sync; `audit:m79` PASS. **Liko:** browser E1–E6 @375px.
 - **TODO/ROADMAP audit sync (2026-06-29):** P0 MON-_ monetizacijos track, CONV-_ konversija, Deferred M13/M7–15; `AUDIT_2026-06_SUMMARY.md`, `MARKETING_HANDOFF_CHECKLIST.md`.
 - **Release 1.4.2 + MON P0 planas (2026-07-01):** DiagramKit M1–9, design tokens, M7–9 EN sweep, startup fix; 367 testai; `MON_P0_EXECUTION_PLAN.md`; TODO/ROADMAP v2.5 sinchronas. **Kitas sprintas:** MON-1…8 (marketing + QA).
 - **M7 warm-up banga (2026-07-07):** +4 branduolio `warm-up-quiz` (73.5, 731.5, 891.5, 74.5), 68.5 perkelta į branduolį, LT/EN overlay ir footeriai suderinti, `generate:core-data` paleistas, `audit:slide-interactivity` skaičiuoja branch-aware streak. Žr. `CHANGELOG.md`, `docs/MODULIO_7_SKAIDRIU_EILES.md`.

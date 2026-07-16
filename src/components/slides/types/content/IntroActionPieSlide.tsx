@@ -5,18 +5,13 @@ import { useLocale } from '../../../../contexts/LocaleContext';
 import {
   ArrowRight,
   Check,
-  Pen,
-  Wrench,
-  Search,
-  Code,
-  Image,
-  HelpCircle,
-  Brain,
   FileDown,
   Sparkles,
   X,
   type LucideIcon,
 } from 'lucide-react';
+import { resolveLucideIcon } from '../../../../icons/resolveIcon';
+import { slideCardIconClasses } from '../../../../icons/iconSizes';
 import type {
   IntroActionPieContent,
   IntroActionPiePdfSegment,
@@ -31,17 +26,6 @@ import {
   type ToolInfo,
   type GlossaryTermInfo,
 } from '../../../../utils/introPiePdf';
-
-/** Lucide ikonos „Kam žmonės naudoja GPT?“ kortoms ir sąrašui – vektorinės, ne emoji */
-const INTRO_PIE_ICONS: Record<string, LucideIcon> = {
-  Pen,
-  Wrench,
-  Search,
-  Code,
-  Image,
-  HelpCircle,
-  Brain,
-};
 
 /** Segmento colorKey → Tailwind fonas ikonos dėžutei */
 const ICON_BG: Record<string, string> = {
@@ -180,10 +164,8 @@ function HorizontalBarChartViz({
   );
 }
 
-/** Grąžina Lucide komponentą pagal icon key arba null (tada rodyti emoji fallback) */
-function getIntroPieIcon(iconKey: string | undefined): LucideIcon | null {
-  if (!iconKey) return null;
-  return INTRO_PIE_ICONS[iconKey] ?? null;
+function getIntroPieIcon(iconKey: string | undefined): LucideIcon {
+  return resolveLucideIcon(iconKey, 'introPie')!;
 }
 
 const toolsList = (
@@ -479,20 +461,16 @@ export function IntroActionPieSlide({ content }: IntroActionPieSlideProps) {
                 {useCardDeck && card ? (
                   <>
                     <span
-                      className={`flex-shrink-0 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${ICON_BG[segments[idx]?.colorKey ?? 'brand'] ?? ICON_BG.brand}`}
+                      className={`flex-shrink-0 flex items-center justify-center rounded-xl ${slideCardIconClasses.box} ${ICON_BG[segments[idx]?.colorKey ?? 'brand'] ?? ICON_BG.brand}`}
                       aria-hidden="true"
                     >
                       {(() => {
                         const IconC = getIntroPieIcon(card.icon);
-                        return IconC ? (
+                        return (
                           <IconC
-                            className="w-5 h-5 sm:w-6 sm:h-6"
+                            className={slideCardIconClasses.icon}
                             strokeWidth={2}
                           />
-                        ) : (
-                          <span className="text-xl sm:text-2xl leading-none">
-                            {card.icon}
-                          </span>
                         );
                       })()}
                     </span>

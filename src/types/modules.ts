@@ -154,7 +154,7 @@ export interface PieChartContent {
 
 /** Viena kortelė intro-action-pie Fazėje 1 (kortų deck) – icon, title, description; eilė atitinka segments */
 export interface IntroActionPieCard {
-  /** Lucide ikonos pavadinimas (Pen, Wrench, Search, Code, Image, HelpCircle, Brain) – vektorinė ikona; arba emoji fallback */
+  /** Lucide ikonos pavadinimas (Pen, Wrench, Search, Code, Image, HelpCircle, Brain, Target, Database, BarChart3, Workflow) – vektorinė ikona; arba emoji fallback */
   icon: string;
   /** Kortelės antraštė (pvz. „Rašymui“) */
   title: string;
@@ -592,6 +592,8 @@ export interface ContentBlockContent {
   };
   /** Mini checkpoint prieš copy-paste (skaidrė 47) – 1 klausimas, ar suprato brief */
   preCopyCheckBlock?: {
+    /** Optional heading (pvz. sk. 67 „3️⃣ Patikra“); default – locale preCopyCheckHeading */
+    heading?: string;
     question: string;
     options: string[];
     correct: number;
@@ -1278,6 +1280,21 @@ export interface PracticeScenarioHubContent {
   level2Choices: PracticeScenarioHubChoiceLevel2[][];
 }
 
+/** Optional sample file download on practice-scenario (M9 sk. 93.2) */
+export interface PracticeScenarioSampleFile {
+  href: string;
+  label: string;
+}
+
+/** Content fields used by practice-scenario slides (partial; other keys allowed) */
+export interface PracticeScenarioSlideContent {
+  scenarioTitle?: string;
+  scenarioDescription?: string;
+  taskFrame?: { task: string; doneWhen: string };
+  sampleFile?: PracticeScenarioSampleFile;
+  reflectionPromptAfter?: string;
+}
+
 export type SlideContent =
   | ActionIntroContent
   | ActionIntroJourneyContent
@@ -1306,6 +1323,7 @@ export type SlideContent =
   | SummaryContent
   | PracticeSummaryContent
   | PracticeScenarioHubContent
+  | PracticeScenarioSlideContent
   | AdvancedVeiksmoIntroContent
   | AdvancedSlideContent;
 

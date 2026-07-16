@@ -14,6 +14,8 @@ const TARGET_FILES = [
   'modules.json',
   'modules-en.json',
   'modules-en-m4-m6.json',
+  'modules-m1-m6.json',
+  'modules-m1-m9.json',
 ];
 
 function patchModulesFile(relativePath) {

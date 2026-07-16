@@ -1,6 +1,6 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-07-15
+> **Atnaujinta:** 2026-07-16
 
 > **Tikslas:** Minimalus dokumentų rinkinys – pakanka ~90% užduočių. Vienkartinės analizės – `docs/archive/development/analysis/` (ne SOT). Žr. `docs/DOCUMENTATION_INDEX.md`.
 
@@ -25,7 +25,7 @@
 | `docs/turinio_pletra_moduliai_7_8_9.md`                                                  | Turinys M7–9 (Duomenų analizės kelias; **production** tier 9)                           |
 | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                    | Modulių/skaidrių numeracija (4.1 = Modulio 4, ne 6)                                     |
 | `docs/development/GOLDEN_STANDARD.md`                                                    | Dizainas, skaidrių išdėstymas, content-block                                            |
-| `docs/development/CODEBASE_WHAT_IS_DONE.md`                                              | Kas įgyvendinta – architektūra, duomenys, i18n, testai (1.4.4 + Unreleased; **72/482**) |
+| `docs/development/CODEBASE_WHAT_IS_DONE.md`                                              | Kas įgyvendinta – architektūra, duomenys, i18n, testai (1.4.5 + Unreleased; **74/512**) |
 | `docs/development/DOCS_MAINTENANCE.md`                                                   | Ilgalaikė dokumentacijos priežiūra, dual SOT, release sync                              |
 | `docs/development/DOCS_SYNC_CHECKLIST.md`                                                | Docs sync vartas po release / didelio Unreleased sprinto                                |
 | `docs/development/M79_PATCH_REGISTRY.md`                                                 | M7–M9 patch skriptai ir EN overlay taisyklės                                            |

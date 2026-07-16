@@ -11,6 +11,9 @@ describe('moduleJourneyFocus', () => {
   it('normalizes legacy LT labels to choice ids', () => {
     expect(normalizeModuleJourneyFocusId('Pardavimai')).toBe('pardavimai');
     expect(normalizeModuleJourneyFocusId('pardavimai')).toBe('pardavimai');
+    expect(normalizeModuleJourneyFocusId('vidiniai')).toBe('kita');
+    expect(normalizeModuleJourneyFocusId('Vidiniai duomenys')).toBe('kita');
+    expect(normalizeModuleJourneyFocusId('Internal data')).toBe('kita');
   });
 
   it('isM7JourneyChoiceId recognizes stable ids', () => {
@@ -22,7 +25,7 @@ describe('moduleJourneyFocus', () => {
     const enChoices: JourneyChoice[] = [
       {
         id: 'pardavimai',
-        branchIds: ['viz'],
+        branchIds: ['viz-sales'],
         label: 'Sales',
         subtitle: 'EN',
         icon: 'TrendingUp',
@@ -41,5 +44,12 @@ describe('moduleJourneyFocus', () => {
       7: 'Rinkodara',
     });
     expect(migrated).toEqual({ 7: 'rinkodara' });
+  });
+
+  it('migrateModuleJourneyFocusLabelsToIds maps retired vidiniai id to kita', () => {
+    const migrated = migrateModuleJourneyFocusLabelsToIds({
+      7: 'vidiniai',
+    });
+    expect(migrated).toEqual({ 7: 'kita' });
   });
 });

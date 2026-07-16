@@ -1,0 +1,23 @@
+date,region,product,revenue,units
+2025-01-05,Vilnius,Starter Plan,1200,40
+2025-01-12,Kaunas,Starter Plan,980,32
+2025-01-18,Vilnius,Pro Plan,2450,25
+2025-01-25,Klaipeda,Starter Plan,,28
+2025-02-02,Vilnius,Pro Plan,2600,26
+2025-02-09,Kaunas,Enterprise,5200,8
+2025-02-09,Kaunas,Enterprise,5200,8
+2025-02-16,Vilnius,Starter Plan,1350,45
+2025-02-23,Panevezys,Starter Plan,720,24
+2025-03-02,Vilnius,Pro Plan,2750,27
+2025-03-09,Kaunas,Starter Plan,1100,36
+2025-03-16,Klaipeda,Pro Plan,2100,21
+2025-03-23,Vilnius,Enterprise,6100,9
+2025-03-30,Kaunas,Starter Plan,1050,
+2025-04-06,Vilnius,Pro Plan,2900,29
+2025-04-13,Panevezys,Starter Plan,680,22
+2025-04-20,Kaunas,Pro Plan,2300,23
+2025-04-27,Vilnius,Starter Plan,1420,47
+2025-05-04,Klaipeda,Enterprise,4800,7
+2025-05-11,Vilnius,Pro Plan,3050,30
+2025-05-18,Kaunas,Starter Plan,1180,39
+2025-05-25,Vilnius,Starter Plan,1500,50

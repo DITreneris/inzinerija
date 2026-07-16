@@ -14,6 +14,78 @@
     "quiz": { "$ref": "#/$defs/quiz" }
   },
   "$defs": {
+    "journeyIconKey": {
+      "type": "string",
+      "enum": [
+        "TrendingUp",
+        "Image",
+        "Cpu",
+        "Users",
+        "Briefcase",
+        "Compass",
+        "Sparkles",
+        "Database"
+      ]
+    },
+    "introPieIconKey": {
+      "type": "string",
+      "enum": [
+        "Pen",
+        "Wrench",
+        "Search",
+        "Code",
+        "Image",
+        "HelpCircle",
+        "Brain",
+        "Target",
+        "Database",
+        "BarChart3",
+        "Workflow"
+      ]
+    },
+    "summaryIconKey": {
+      "type": "string",
+      "enum": [
+        "Layers",
+        "Workflow",
+        "Repeat",
+        "Lightbulb",
+        "ArrowRight",
+        "Target",
+        "Sparkles",
+        "Zap",
+        "Compass",
+        "Image",
+        "Video",
+        "Music",
+        "Briefcase",
+        "Users"
+      ]
+    },
+    "scenarioHubIconKey": {
+      "type": "string",
+      "enum": ["User", "Users", "Briefcase", "Bot", "BarChart3", "Image"]
+    },
+    "infographicIconKey": {
+      "type": "string",
+      "enum": [
+        "Pen",
+        "Code",
+        "Headphones",
+        "Search",
+        "Megaphone",
+        "Wrench",
+        "Zap",
+        "Users",
+        "Target",
+        "BarChart3",
+        "Database",
+        "Link",
+        "ClipboardList",
+        "Bot",
+        "Key"
+      ]
+    },
     "module": {
       "type": "object",
       "required": [
@@ -371,7 +443,7 @@
                       "type": "object",
                       "required": ["icon", "title"],
                       "properties": {
-                        "icon": { "type": "string" },
+                        "icon": { "$ref": "#/$defs/introPieIconKey" },
                         "title": { "type": "string" },
                         "description": { "type": "string" }
                       }
@@ -738,7 +810,7 @@
               "id": { "type": "number" },
               "title": { "type": "string" },
               "description": { "type": "string" },
-              "icon": { "type": "string" }
+              "icon": { "$ref": "#/$defs/scenarioHubIconKey" }
             }
           }
         },

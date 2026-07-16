@@ -1,0 +1,82 @@
+{
+  "83": {
+    "role-activation": {
+      "pardavimai": "Your role – senior sales data analyst.\nThink in systems.\nBase decisions on sales data, not intuition.",
+      "rinkodara": "Your role – senior marketing analyst.\nThink in systems.\nBase decisions on campaign and channel data, not intuition.",
+      "it-inzinerija": "Your role – senior data engineer.\nThink in systems.\nBase decisions on data quality and pipeline facts, not intuition.",
+      "personalas": "Your role – senior HR analyst.\nThink in systems.\nBase decisions on people data, not intuition.",
+      "vadyba": "Your role – senior strategic business analyst.\nThink in systems.\nBase decisions on KPIs and risk, not intuition.",
+      "kita": "Your role – senior business data analyst.\nThink in systems.\nBase decisions on data about [X], not intuition."
+    }
+  },
+  "84": {
+    "db-structure": {
+      "pardavimai": "I run an e-commerce / sales business (niche: [X]).\nHelp design an ideal database structure:\n1. Customers 2. Orders 3. Products 4. Marketing 5. Returns 6. Loyalty\nDeliver: structure, relationships (ER), KPIs.",
+      "rinkodara": "I have marketing / campaign data (niche: [X]).\nHelp design an ideal database structure:\n1. Campaigns 2. Channels 3. Audiences 4. Creatives 5. Conversions 6. Budget\nDeliver: structure, relationships (ER), KPIs.",
+      "it-inzinerija": "I have a data platform / pipeline (domain: [X]).\nHelp design an ideal database structure:\n1. Sources 2. Staging 3. Transforms 4. Quality logs 5. Dimension/fact 6. SLA\nDeliver: structure, relationships (ER), quality metrics.",
+      "personalas": "I have HR / people data (domain: [X]).\nHelp design an ideal database structure:\n1. Employees 2. Hiring 3. Roles 4. Surveys 5. Attrition 6. Learning\nDeliver: structure, relationships (ER), HR KPIs.",
+      "vadyba": "I have executive reporting data (domain: [X]).\nHelp design an ideal database structure:\n1. KPIs 2. Units 3. Goals 4. Risks 5. Projects 6. Budget\nDeliver: structure, relationships (ER), executive KPIs.",
+      "kita": "I have internal data about [X].\nHelp design an ideal database structure:\n1–6 core tables for [X]\nDeliver: structure, relationships (ER), KPIs."
+    }
+  },
+  "86": {
+    "viz-prompt": {
+      "pardavimai": "Based on this sales data:\n[data]\n\nGenerate:\n1. Revenue trend chart\n2. Customer segment comparison\n3. Product profitability analysis\n4. 3 key insights",
+      "rinkodara": "Based on this marketing data:\n[data]\n\nGenerate:\n1. Channel performance chart\n2. Campaign comparison\n3. Engagement / conversion analysis\n4. 3 key insights",
+      "it-inzinerija": "Based on this pipeline / quality data:\n[data]\n\nGenerate:\n1. Load / latency trend\n2. Error category comparison\n3. SLA compliance analysis\n4. 3 key insights",
+      "personalas": "Based on this HR data:\n[data]\n\nGenerate:\n1. Headcount / hiring trend\n2. Department comparison\n3. Retention / attrition analysis\n4. 3 key insights",
+      "vadyba": "Based on this executive KPI data:\n[data]\n\nGenerate:\n1. Target vs actual chart\n2. Unit comparison\n3. Risk / priority analysis\n4. 3 key insights",
+      "kita": "Based on this [X] data:\n[data]\n\nGenerate:\n1. Main trend\n2. Segment comparison\n3. Risk / opportunity analysis\n4. 3 key insights"
+    }
+  },
+  "87": {
+    "forecast-prompt": {
+      "pardavimai": "Based on 24 months of sales history:\n[data or link]\n\n1. Forecast next 6 months of revenue\n2. Note seasonality impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks",
+      "rinkodara": "Based on 24 months of marketing metrics:\n[data or link]\n\n1. Forecast next 6 months of reach / conversions\n2. Note seasonality and campaign impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks",
+      "it-inzinerija": "Based on 24 months of system / load history:\n[data or link]\n\n1. Forecast next 6 months of load / error rate\n2. Note seasonality / peak impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks",
+      "personalas": "Based on 24 months of HR metrics:\n[data or link]\n\n1. Forecast next 6 months of headcount / attrition\n2. Note seasonality impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks",
+      "vadyba": "Based on 24 months of business KPIs:\n[data or link]\n\n1. Forecast next 6 months of core KPIs\n2. Note external factor impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks",
+      "kita": "Based on 24 months of [X] history:\n[data or link]\n\n1. Forecast next 6 months of [X]\n2. Note seasonality impact\n3. Provide optimistic and pessimistic scenarios\n4. List key risks"
+    }
+  },
+  "89": {
+    "algo-sources": {
+      "pardavimai": "List 20 public data sources in Lithuania for sales / market topic [X] with links (stats, prices, competitors).",
+      "rinkodara": "List 20 public data sources in Lithuania for marketing / audience topic [X] with links (social, ads, trends).",
+      "it-inzinerija": "List 20 public data / API / open registry sources in Lithuania for topic [X] with links (format, refresh, license).",
+      "personalas": "List 20 public data sources in Lithuania for labor market / HR topic [X] with links (salaries, employment, skills).",
+      "vadyba": "List 20 public data sources in Lithuania for strategic / business topic [X] with links (macro, sector, risk).",
+      "kita": "List 20 public data sources in Lithuania for topic [X] with links."
+    }
+  },
+  "891": {
+    "prep-clean": {
+      "pardavimai": "Before sales analysis, check this data:\n1. Is anonymization needed?\n2. Are formats unified (dates, numbers)?\n3. Are duplicates removed?\n4. Where are missing values and how to fill them?\n5. Are column types correct (revenue, quantity, customers)?",
+      "rinkodara": "Before marketing analysis, check this data:\n1. Is anonymization needed?\n2. Are formats unified (dates, channels, currencies)?\n3. Are duplicates removed?\n4. Where are missing values and how to fill them?\n5. Are column types correct (impressions, clicks, spend)?",
+      "it-inzinerija": "Before pipeline analysis, check this data:\n1. Is anonymization / PII masking needed?\n2. Are formats unified (dates, encoding)?\n3. Are duplicates removed / idempotent?\n4. Where are missing values and how to fill them?\n5. Do schema / types match the contract?",
+      "personalas": "Before HR analysis, check this data:\n1. Is anonymization needed (personal data)?\n2. Are formats unified (dates, departments)?\n3. Are duplicates removed?\n4. Where are missing values and how to fill them?\n5. Are column types correct (status, tenure)?",
+      "vadyba": "Before an executive report, check this data:\n1. Is anonymization needed?\n2. Are formats unified (dates, units)?\n3. Are duplicates removed?\n4. Where are missing values and how to fill them?\n5. Do KPI definitions match across units?",
+      "kita": "Before analysis, check this [X] data:\n1. Is anonymization needed?\n2. Are formats unified (dates, numbers)?\n3. Are duplicates removed?\n4. Where are missing values and how to fill them?\n5. Are column types correct?"
+    }
+  },
+  "90": {
+    "eda-stats": {
+      "pardavimai": "Provide mean, median, IQR and standard deviation for this sales data (revenue, quantity, price).",
+      "rinkodara": "Provide mean, median, IQR and standard deviation for these marketing metrics (CTR, CPC, conversions).",
+      "it-inzinerija": "Provide mean, median, IQR and standard deviation for these pipeline metrics (latency, errors, queue length).",
+      "personalas": "Provide mean, median, IQR and standard deviation for these HR metrics (tenure, pay, eNPS).",
+      "vadyba": "Provide mean, median, IQR and standard deviation for these business KPIs (revenue, margin, goal %).",
+      "kita": "Provide mean, median, IQR and standard deviation for this [X] data."
+    }
+  },
+  "92": {
+    "bi-plan": {
+      "pardavimai": "For sales topic [X], provide a 4-step BI plan:\n1. Collect – which sales sources to use\n2. Analyze – which EDA and insight steps to run\n3. Report – how to visualize for leadership\n4. Forecast – what to forecast next quarter",
+      "rinkodara": "For marketing topic [X], provide a 4-step BI plan:\n1. Collect – which channel / campaign sources to use\n2. Analyze – which EDA and insight steps to run\n3. Report – how to visualize for the marketing lead\n4. Forecast – what to forecast for the next campaign",
+      "it-inzinerija": "For data platform topic [X], provide a 4-step BI plan:\n1. Collect – which system / log sources to use\n2. Analyze – which EDA and quality steps to run\n3. Report – how to visualize SLA / risk\n4. Forecast – what to watch next sprint",
+      "personalas": "For HR topic [X], provide a 4-step BI plan:\n1. Collect – which HRIS / survey sources to use\n2. Analyze – which EDA and insight steps to run\n3. Report – how to visualize for leadership\n4. Forecast – what to forecast (headcount / retention)",
+      "vadyba": "For strategic topic [X], provide a 4-step BI plan:\n1. Collect – which KPI sources to use\n2. Analyze – which EDA and risk steps to run\n3. Report – how to visualize an executive summary\n4. Forecast – what to forecast for the decision",
+      "kita": "For topic [X], provide a 4-step BI plan:\n1. Collect – which data sources to use\n2. Analyze – which EDA and insight steps to run\n3. Report – how to visualize for leadership\n4. Forecast – what to forecast next"
+    }
+  }
+}

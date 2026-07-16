@@ -140,6 +140,50 @@ _Rankinis browser 375px (M4 portal, M7 sk. 93–94) – ⬜; ne tag blocker paga
 
 _Rankinis browser smoke (localhost, 375px) – rekomenduojama prieš release; automatiniai vartai green._
 
+**2026-07-16 – M79-51…55 kasdienis darbas (M8/M9):** Implementacija – M9 90/93.1/93.2/99 + sample CSV + M8 warm-up/vignette; EN sync. **Vartai:** `validate:schema` · `audit:m79` · `generate:core-data` · lint (CODING).
+
+| #   | Kelias    | Tikslas                                    | Kodo/JSON | Browser |
+| --- | --------- | ------------------------------------------ | --------- | ------- |
+| E1  | M9 sk. 90 | 6 use-case + (i)/(ii) fork be naked id     | ✅        | ⬜      |
+| E2  | M9 93.1   | Sektorius pagal M7 kelią; DI chat be failo | ✅        | ⬜      |
+| E3  | M9 93.2   | sample CSV download + 6 stulpelių CONTEXT  | ✅        | ⬜      |
+| E4  | M9 hub 99 | level1 description ≠ `Neprivaloma · .`     | ✅        | ⬜      |
+| E5  | M8 80.5   | warm-up #4: katalogas vs CSV               | ✅        | ⬜      |
+| E6  | M8 q1/q7  | Excel/CRM vignette                         | ✅        | ⬜      |
+
+**2026-07-16 – M79-50 smoke protokolas (A–C wave):** Vykdoma lentelė S1–S7. **Kodo/JSON stulpelis** užpildytas agentu; **browser** – savininko sesija prieš release.
+
+| #   | Kelias          | Patikra                | Kodo ✅ | Browser | Pastabos                                                  |
+| --- | --------------- | ---------------------- | ------- | ------- | --------------------------------------------------------- |
+| S1  | M7 `vadyba`     | 70→731→74→71.1→67→67.3 | ✅      | ⬜      | `branchIds` incl. `etika-plus`; overlay `731`/`74`/`71.1` |
+| S2  | M7 `personalas` | 70→731→71.1→67→67.8    | ✅      | ⬜      | `personalas` be `etika-plus`; 67.3 `pathBranch`           |
+| S3  | M7 EN           | kaip S1                | ✅      | ⬜      | EN 67 subtitle be jailbreak; journey-en overlay           |
+| S4  | M7 sk. 76       | bar→prompt             | ✅      | ⬜      | `toolChoiceBar` + 6× `linkedRowIndex`                     |
+| S5  | M7 sk. 67       | tipas→MCQ              | ✅      | ⬜      | subtitle be jailbreak; `preCopyCheckBlock`                |
+| S6  | M9 @375px       | 90→93.1→93.2→99        | ✅      | ⬜      | 0× `sk. 93.x` naked id JSON                               |
+| S7  | Footer 66.9→67  | be „skaidrė N“         | ✅      | ⬜      | footer: „Toliau – Promptų manipuliacijos“                 |
+
+**Statusas:** `kodo verifikacija atlikta` — §12/§13 checkbox uždaromas po savininko browser eilutės (arba kai S1–S7 browser ✅).
+
+**Susiję (A–C, 2026-07-16):** M79-44 (sk. 97) + M79-45 (W4/W5 plain) – `atlikta` JSON; žr. `07_08_09_backlog.md` §13, `CHANGELOG` [Unreleased].
+
+**2026-07-16 – M7 Lygis C launch consistency (pre-release):** Overlay indeksų off-by-one (74/733/734/78) → silent no-op/cross-wire; LT viz split nebuvo deploy'intas (EN `viz-sales`/`viz-mkt` vs LT `viz`); `Database` ne journey allowlist. **Fix:** `m7JourneyCopyRegistry.ts` indeksai; LT pathBranch + sk. 70; `JOURNEY_ICONS` + `Database`; `audit:m7-journey-indices` + pathBranch orphan; journey gates į `audit:release-preflight`. **Statusas:** `išspręsta` (kodas); rankinis browser smoke (74 MASTER + 733 rinkodara + EN viz) – prieš deploy.
+
+**2026-07-16 – M7 Lygis C RC-4 (M79-35…39):** Tier 2 likę + path-step journey overlay. **Vartai:** `validate:journey-m7` · `validate:journey-en-m7` · `audit:m7-journey-coverage` (+ `:en`) · `audit:m79` · `generate:core-data` · `lint` · `test:run`. **Statusas:** `išspręsta` (implementacija); rankinis browser smoke – žemiau checklist.
+
+**M79-39 – 6 kelių smoke checklist (heuristinis + kodo peržiūra):**
+
+| journeyId       | Micro-win (60 s)              | 731 copy   | 74 MASTER  | 71.1 step-task            | 67 etikos               |
+| --------------- | ----------------------------- | ---------- | ---------- | ------------------------- | ----------------------- |
+| `pardavimai`    | Pardavimų KPI / Q3 kontekstas | ✅ overlay | ✅ overlay | ✅ „pardavimų analitikas“ | ✅ branduolys micro-win |
+| `rinkodara`     | Kanalai / kampanijos          | ✅         | ✅         | ✅                        | ✅                      |
+| `it-inzinerija` | Pipeline / schema             | ✅         | ✅         | ✅                        | ✅                      |
+| `personalas`    | HR / retention                | ✅         | ✅         | ✅                        | ✅ (→ 67.8 be 67.3)     |
+| `vadyba`        | Executive / rizika            | ✅         | ✅         | ✅                        | ✅ (+ etika-plus 67.3)  |
+| `kita`          | Universalūs `[X]`             | ✅         | ✅         | ✅                        | ✅                      |
+
+**DoD:** kiekvienam keliui – „per 60 s pasakiau savo rolės promptą“ (731 arba 71.1). Rankinis browser (LT+EN) – rekomenduojama prieš release.
+
 **2026-07-14 – M79 iteracijos 1–5 implementacija (QA uždarymas):** Įgyvendintas pilnas M7–M9 tobulinimo planas — cross-ref (725/726, 67, 68, 71.35), footer be skaičių, kelio žemėlapis sk. 71, decision tree sk. 74/89, „Vidiniai duomenys“ šaka, M9 praktika (i)(ii), PDF evergreen, `M9DataWorkflowDiagram` card layout, M7 macro etiketė. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `lint` ✅ · `test:run` 478/478 ✅ · `audit:m79` ✅. **Statusas:** `išspręsta`.
 
 **2026-07-14 – M7 sk. 74 MASTER „Žr. skaidrę 94“ + schema (testuotojas):** **Statusas:** `išspręsta` (M79-24 + M79-23).

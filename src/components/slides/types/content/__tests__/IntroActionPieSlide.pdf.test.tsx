@@ -117,3 +117,75 @@ describe('IntroActionPieSlide – Eksportuok PDF', () => {
     expect(introPiePdf.downloadIntroPiePdf).not.toHaveBeenCalled();
   });
 });
+
+describe('IntroActionPieSlide – M7 profilių ikonos (sk. 70.5)', () => {
+  const m7WarmUpContent: IntroActionPieContent = {
+    question: 'Koks tavo analitiko profilis šiandien?',
+    ctaReveal: 'Parodyk, ką tai reiškia',
+    hidePdfActions: true,
+    segments: [
+      { label: 'Sprendimų analitikas', value: 30, colorKey: 'brand' },
+      { label: 'Duomenų tvarkytojas', value: 24, colorKey: 'emerald' },
+      { label: 'Rinkos tyrėjas', value: 18, colorKey: 'orange' },
+      { label: 'Vizualizacijų kūrėjas', value: 16, colorKey: 'violet' },
+      { label: 'Automatizavimo kūrėjas', value: 12, colorKey: 'rose' },
+    ],
+    cards: [
+      {
+        icon: 'Target',
+        title: 'Sprendimų analitikas',
+        description: 'vadovybei',
+      },
+      {
+        icon: 'Database',
+        title: 'Duomenų tvarkytojas',
+        description: 'šaltiniai',
+      },
+      { icon: 'Search', title: 'Rinkos tyrėjas', description: 'tendencijos' },
+      {
+        icon: 'BarChart3',
+        title: 'Vizualizacijų kūrėjas',
+        description: 'grafikai',
+      },
+      {
+        icon: 'Workflow',
+        title: 'Automatizavimo kūrėjas',
+        description: 'srautai',
+      },
+    ],
+    revealInsights: [
+      { insight: 'a', question: 'q' },
+      { insight: 'b', question: 'q' },
+      { insight: 'c', question: 'q' },
+      { insight: 'd', question: 'q' },
+      { insight: 'e', question: 'q' },
+    ],
+  };
+
+  it('renders Lucide SVG icons instead of raw icon key text', () => {
+    const { container } = renderWithProviders(
+      <IntroActionPieSlide content={m7WarmUpContent} />
+    );
+    const iconBoxes = container.querySelectorAll('[aria-hidden="true"] svg');
+    expect(iconBoxes.length).toBeGreaterThanOrEqual(5);
+    expect(screen.queryByText('Target')).not.toBeInTheDocument();
+    expect(screen.queryByText('Database')).not.toBeInTheDocument();
+    expect(screen.queryByText('BarChart3')).not.toBeInTheDocument();
+    expect(screen.queryByText('Workflow')).not.toBeInTheDocument();
+  });
+
+  it('uses HelpCircle fallback for unknown intro-pie icon keys', () => {
+    const { container } = renderWithProviders(
+      <IntroActionPieSlide
+        content={{
+          ...m7WarmUpContent,
+          cards: [{ icon: 'UnknownIconKey', title: 'Test', description: 'd' }],
+          segments: [{ label: 'Test', value: 100, colorKey: 'brand' }],
+          revealInsights: [{ insight: 'a', question: 'q' }],
+        }}
+      />
+    );
+    expect(container.querySelectorAll('svg').length).toBeGreaterThanOrEqual(1);
+    expect(screen.queryByText('UnknownIconKey')).not.toBeInTheDocument();
+  });
+});
