@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                |
 | --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.5]** release.                                       |
+| **[Unreleased]**            | Pakeitimai po **[1.4.6]** release.                                       |
+| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.        |
 | **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.      |
 | **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.    |
 | **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.          |
@@ -39,13 +40,17 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
 - **Testai:** 74 failai, 512 testai (2026-07-16 HEAD). Validacija: prebuild schema; release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.5** (2026-07-15). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.6** (2026-07-20). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.5 release._
+_Įrašai po 1.4.6 release._
+
+---
+
+## [1.4.6] – 2026-07-20
 
 ### Added
 
@@ -89,6 +94,7 @@ _Įrašai po 1.4.5 release._
 
 ### Fixed
 
+- **M79-31 SOT užbaigtas (2026-07-20):** sk. 70 – pašalintas 7-as kelias `vidiniai` (LT+EN); `kita` = „Kita sritis ar vidiniai duomenys“; sk. **78.5** branduolyje (be `pathBranch`); sk. 78 forward hint į 78.5; LT sk. 70 `heroSubText`/`confirmMessage` – promptai prisitaiko keliui. `audit:m7-pathbranch` – 6 choice + 78.5 core invariantai. Legacy `vidiniai` → `kita` migracija lieka. `generate:core-data`.
 - **M7 Lygis C launch consistency (2026-07-16):** `M7_CONTENT_BLOCK_FIELD_INDICES` off-by-one (sk. 74 MASTER, 733 templates, 734 filters, 78 role) — overlay dabar taikomas teisingoms `copyable` sekcijoms; `Database` pridėtas į `JOURNEY_ICONS` (sk. 70 `vidiniai`); LT M79-40 viz split užbaigtas (`viz-sales`/`viz-mkt` sk. 70 + pathBranch 861/99.9/100–106) + `generate:core-data`; nauji vartai `audit:m7-journey-indices` + pathBranch orphan check; journey validate/coverage įtraukti į `audit:release-preflight`.
 - **M7 sk. 67 UX (2026-07-15):** 11 blokų siena → interaktyvus micro-win: `toolChoiceBar` (įrėminimas/kontekstas/rolė) + `linkedRowIndex` + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` + „Verslas vs saugumas“; subtitle be jailbreak; pašalintas „Praktika: kur daryti“. EN overlay ta pati struktūra (AI). `ContentSlides` — `preCopyCheckBlock` po linked sekcijų, optional `heading`.
 - **M7 sk. 76 UX (2026-07-15):** „domenas“ → „sritis“; pašalinta klaidinanti `comparisonStyle` lentelė virš fold; `toolChoiceBar` be dubliuojančios lentelės; 6 sričių žemėlapis collapsible; EN overlay `area` terminologija. `ContentSlides` — scroll į `linkedRowIndex` promptą, klikuojamos lentelės eilutės, hint po bar.

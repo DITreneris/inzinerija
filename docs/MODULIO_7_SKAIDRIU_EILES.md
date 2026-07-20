@@ -86,29 +86,32 @@
 
 **Branduolys (36, visada matomas – be `pathBranch`):** 70, **70.5**, 71, 72, 73, **73.5**, 71.1, 731, **731.5**, 732, 733, **734**, 71.2, 78, **78.5**, 83, 84, 86, 87, 89, 891, **891.5**, 66.9, 67, 67.8, 68, **68.5**, 90, 92, 71.3, **71.35** (optional, DI įrankiai – perkelta iš M4:61), 74, **74.5**, 71.4, 71.5, 75.
 
-**Teminės šakos (`pathBranch`, 22 skaidrės):**
+**Teminės šakos (`pathBranch`, 24 skaidrės; sk. gali priklausyti kelioms šakoms):**
 
 | Šaka                                           | id         | Skaidrės                      |
 | ---------------------------------------------- | ---------- | ----------------------------- |
-| `viz` – Vizualizacija ir istorija              | viz        | 99.9, 100, 101, 103, 104, 106 |
+| `viz-sales` – Pardavimų viz / storytelling     | viz-sales  | 861, 99.9, 101, 104, 106      |
+| `viz-mkt` – Rinkodaros viz / storytelling      | viz-mkt    | 861, 99.9, 100, 101, 103, 106 |
 | `etika-plus` – Patikimumas ir etika (gilesnis) | etika-plus | 67.3, 67.5, 67.7, 200, 201    |
 | `technika` – Techninis gylis                   | technika   | 77, 77.5, 85, 91, 94, 95, 98  |
 | `strategija` – Strategija ir kultūra           | strategija | 725, 726, 76, 88, 97          |
 
-**Fokusas → šakos (skaidrė 70 `journeyChoices.branchIds`):**
+**Fokusas → šakos (skaidrė 70 – **6** `journeyChoices`; be atskiro `vidiniai`):**
 
 | Fokusas (choice id)                | branchIds                      | Mato (be branduolio) |
 | ---------------------------------- | ------------------------------ | -------------------- |
-| Pardavimai (`pardavimai`)          | `["viz"]`                      | +6                   |
-| Rinkodara (`rinkodara`)            | `["viz"]`                      | +6                   |
+| Pardavimai (`pardavimai`)          | `["viz-sales"]`                | +5                   |
+| Rinkodara (`rinkodara`)            | `["viz-mkt"]`                  | +6                   |
 | IT ir inžinerija (`it-inzinerija`) | `["technika", "etika-plus"]`   | +12                  |
 | Personalas (`personalas`)          | `["strategija"]`               | +5                   |
 | Vadovai/vadyba (`vadyba`)          | `["strategija", "etika-plus"]` | +10                  |
-| Kita (`kita`)                      | `[]`                           | tik branduolys (36)  |
+| Kita / vidiniai (`kita`)           | `[]`                           | tik branduolys (36)  |
+
+**M79-31:** sk. **78.5** – branduolyje (be `pathBranch`); legacy progress `vidiniai` → `kita` (`moduleJourneyFocus.ts`).
 
 **Rerun:** modulio santraukoje (75) rodomas CTA „Grįžk su kitu fokusu" (`ModuleView.handleRerunFocus` → skaidrė 70); `ActionIntroJourneySlide` leidžia perrinkti fokusą net kai užduotis jau atlikta (pasirinkus kitą kortelę vėl rodomas patvirtinimo CTA).
 
-**Lygis C (planuojama, M79-32–40):** 6 adaptuoti branduolio promptų rinkiniai per `modules-journey-m7.json` overlay; fallback į pardavimų bazę. Spec: `docs/development/M7_LYGIS_C_JOURNEY_EPIC.md`.
+**Lygis C (M79-32–40):** 6 adaptuoti branduolio promptų rinkiniai per `modules-journey-m7.json` overlay; fallback į pardavimų bazę. Spec: `docs/development/M7_LYGIS_C_JOURNEY_EPIC.md`.
 
 > **Auditas prieš keičiant šakas:** nei vienas M8 `relatedSlideId` (73, 74, 86, 92, 731, 732, 733, 891) **negali** turėti `pathBranch`. Po `modules.json` keitimo: `npm run validate:schema` + `npm run generate:core-data` (M7 įeina į `modules-m1-m9.json`).
 

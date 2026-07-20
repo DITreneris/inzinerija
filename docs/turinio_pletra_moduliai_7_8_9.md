@@ -242,7 +242,7 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 
 **Įgyvendinta JSON (2026-06-30):** skaidrė 78 sujungia 7.8+7.9: 1️⃣ trumpas DI vaidmens paaiškinimas, tradicinė vs DI analizė lentelėje, 5 DI gebėjimų sąrašas, „Daryk dabar“ CopyButton ir optional tiltas į rolės/DB/vizualizacijos skaidres. EN overlay sinchronizuotas.
 
-**Phase 2 (2026-07-15) – vidiniai duomenys branduolyje:** skaidrė **78.5** (Excel/CRM eksportas ir valymo plano promptas) – **branduolio** dalis, matoma visiems fokusams. Skaidrėje 70 lieka **6** `journeyChoices` (rolės + sujungta „Kita sritis ar vidiniai duomenys“); atskiras 7-as kelias pašalintas (2026-07-15 UX peržiūra). Branduolio skaidrės 78, 84, 891 lieka visiems.
+**Phase 2 / M79-31 (SOT užbaigta 2026-07-20) – vidiniai duomenys branduolyje:** skaidrė **78.5** (Excel/CRM eksportas ir valymo plano promptas) – **branduolio** dalis, matoma visiems fokusams. Skaidrėje 70 – **6** `journeyChoices` (rolės + sujungta „Kita sritis ar vidiniai duomenys“); atskiras 7-as kelias `vidiniai` pašalintas (migracija `vidiniai` → `kita`). Branduolio skaidrės 78, 84, 891 lieka visiems.
 
 **Lygis C RC-1 (įgyvendinta 2026-07-15, M79-32–34):** Tier 1 overlay `modules-journey-m7.json` — sk. **731, 733, 74, 734, 75** turi 6× `copyable` / refleksiją pagal `journeyId` (slide 70). Resolver `resolveJourneyCopy.ts`; fallback: aktyvus kelias → `pardavimai` overlay → `modules.json` bazė. Registry: [`docs/development/M7_JOURNEY_COPY_REGISTRY.md`](development/M7_JOURNEY_COPY_REGISTRY.md). Spec: [`docs/development/M7_LYGIS_C_JOURNEY_EPIC.md`](development/M7_LYGIS_C_JOURNEY_EPIC.md).
 

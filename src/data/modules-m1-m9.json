@@ -6592,7 +6592,7 @@
             "whyBenefit": "Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki pilno analizės šablono ir vizualizacijų.",
             "heroStat": "Jau moki 6 blokus ir RAG.",
             "heroText": "Dabar – duomenų analizė su DI.",
-            "heroSubText": "Pasirink sritį – toliau tie patys šablonai, pritaikyk savo kontekstui.",
+            "heroSubText": "Pasirink sritį – promptai ir pavyzdžiai prisitaikys prie tavo konteksto.",
             "journeyHeading": "Pasirink savo kelionę",
             "journeyChoices": [
               {
@@ -6633,19 +6633,12 @@
               {
                 "id": "kita",
                 "branchIds": [],
-                "label": "Kita sritis",
-                "subtitle": "Bendras kelias – universalūs šablonai ir metodai",
+                "label": "Kita sritis ar vidiniai duomenys",
+                "subtitle": "Excel, CRM, ERP – universalūs šablonai",
                 "icon": "Compass"
-              },
-              {
-                "id": "vidiniai",
-                "branchIds": ["vidiniai"],
-                "label": "Vidiniai duomenys",
-                "subtitle": "Excel, CRM, ERP – tvarkymas ir analizė",
-                "icon": "Database"
               }
             ],
-            "confirmMessage": "Fokusas: {label}. Naudok tuos pačius promptus – įterpk savo kontekstą.",
+            "confirmMessage": "Fokusas: {label}. Promptai ir šablonai atitiks tavo kelią.",
             "ctaContinue": "Pradėti kelionę"
           }
         },
@@ -8020,7 +8013,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai",
-                "body": "DI pagreitina kelią iki sprendimo: surinkti, paaiškinti, palyginti, pavaizduoti, patikrinti. **Jei tavo duomenys vidiniai** (Excel, CRM, ERP) – pasirink „Vidiniai duomenys“ Modulio 7 pradžioje ir sek tolesnę šaką.",
+                "body": "DI pagreitina kelią iki sprendimo: surinkti, paaiškinti, palyginti, pavaizduoti, patikrinti. **Toliau** – praktika su Excel ir CRM eksportu (kopijuojamas valymo plano promptas).",
                 "blockVariant": "accent"
               },
               {
@@ -8074,7 +8067,6 @@
           "title": "Vidiniai duomenys: Excel ir CRM eksportas",
           "subtitle": "Kai šaltinis – tavo sistemos, ne vieši portalai",
           "type": "content-block",
-          "pathBranch": ["vidiniai"],
           "content": {
             "sections": [
               {

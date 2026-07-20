@@ -60,13 +60,6 @@
                 "label": "Other area or internal data",
                 "subtitle": "Excel, CRM, ERP – universal templates",
                 "icon": "Compass"
-              },
-              {
-                "id": "vidiniai",
-                "branchIds": ["vidiniai"],
-                "label": "Internal data",
-                "subtitle": "Excel, CRM, ERP – cleanup and analysis",
-                "icon": "Database"
               }
             ],
             "confirmMessage": "Focus: {label}. Prompts and templates will match your path.",

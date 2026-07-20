@@ -378,18 +378,18 @@ Statusai: `nauja` | `svarstoma` | `vykdoma` | `atlikta` | `atmesta`
 
 ### P2 — Vidiniai duomenys ir praktika
 
-| ID         | Prioritetas | Statusas    | Aprašymas                                                                                    | Agentas              | Failai / vietos                                                       |
-| ---------- | ----------- | ----------- | -------------------------------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------- |
-| M79-06     | P2          | atlikta     | Optional šaka **„Vidiniai duomenys“**: Excel/CRM eksportas → valymas (891) → EDA (90)        | CURRICULUM → CONTENT | `pathBranch` vidiniai + journey choice sk. 70 — **peržiūrėta M79-31** |
-| M79-31     | P2          | atlikta     | **6 kelių sujungimas:** pašalintas 7-as journey choice; 78.5 branduolyje; Kita+vidiniai copy | USER_JOURNEY → DATA  | `modules.json` sk. 70, 78, 78.5; EN overlay; `moduleJourneyFocus.ts`  |
-| M79-07     | P2          | atlikta     | M9 praktika **(i) Šaltinių katalogas**                                                       | CONTENT → DATA       | M9 sk. 93                                                             |
-| M79-08     | P2          | atlikta     | M9 praktika **(ii) Savo failas**                                                             | CONTENT → DATA       | M9 sk. 93                                                             |
-| M79-09     | P2          | atlikta     | Vidinių duomenų thread M7: 78, 84, 891 cross-link                                            | CONTENT              | `modules.json` M7                                                     |
-| **M79-51** | **P1**      | **atlikta** | M9 intro + 93.1/93.2 kasdienio darbo tiltas (6 use-case, fork i/ii, įrankiai, stulpeliai)    | CONTENT → DATA       | sk. 90, 93.1, 93.2; SOT §10                                           |
-| **M79-52** | **P1**      | **atlikta** | Sample CSV + `content.sampleFile` UI download                                                | DATA → CODING        | `public/m9_sample_internal.csv`; `TestPracticeSlides.tsx`             |
-| **M79-53** | **P1**      | **atlikta** | M8 warm-up +2 vignette (Excel/CRM; 93.1 vs 93.2)                                             | CONTENT → DATA       | sk. 80, 80.5, 81                                                      |
-| **M79-54** | **P2**      | **atlikta** | Hub 99 level1 description – kasdienė nauda                                                   | CONTENT → DATA       | sk. 99 LT+EN                                                          |
-| **M79-55** | **P2**      | **atlikta** | SOT / backlog / CHANGELOG / EN sync + vartai                                                 | QA                   | `turinio_pletra_moduliai_7_8_9.md`; TEST_REPORT                       |
+| ID         | Prioritetas | Statusas    | Aprašymas                                                                                    | Agentas              | Failai / vietos                                                                                                                                         |
+| ---------- | ----------- | ----------- | -------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| M79-06     | P2          | atlikta     | Optional šaka **„Vidiniai duomenys“**: Excel/CRM eksportas → valymas (891) → EDA (90)        | CURRICULUM → CONTENT | `pathBranch` vidiniai + journey choice sk. 70 — **peržiūrėta M79-31**                                                                                   |
+| M79-31     | P2          | atlikta     | **6 kelių sujungimas:** pašalintas 7-as journey choice; 78.5 branduolyje; Kita+vidiniai copy | USER_JOURNEY → DATA  | SOT užbaigta 2026-07-20 (`modules.json`/`modules-en-m7-m9.json` sk. 70, 78, 78.5; `audit:m7-pathbranch` invariantai; migracija `moduleJourneyFocus.ts`) |
+| M79-07     | P2          | atlikta     | M9 praktika **(i) Šaltinių katalogas**                                                       | CONTENT → DATA       | M9 sk. 93                                                                                                                                               |
+| M79-08     | P2          | atlikta     | M9 praktika **(ii) Savo failas**                                                             | CONTENT → DATA       | M9 sk. 93                                                                                                                                               |
+| M79-09     | P2          | atlikta     | Vidinių duomenų thread M7: 78, 84, 891 cross-link                                            | CONTENT              | `modules.json` M7                                                                                                                                       |
+| **M79-51** | **P1**      | **atlikta** | M9 intro + 93.1/93.2 kasdienio darbo tiltas (6 use-case, fork i/ii, įrankiai, stulpeliai)    | CONTENT → DATA       | sk. 90, 93.1, 93.2; SOT §10                                                                                                                             |
+| **M79-52** | **P1**      | **atlikta** | Sample CSV + `content.sampleFile` UI download                                                | DATA → CODING        | `public/m9_sample_internal.csv`; `TestPracticeSlides.tsx`                                                                                               |
+| **M79-53** | **P1**      | **atlikta** | M8 warm-up +2 vignette (Excel/CRM; 93.1 vs 93.2)                                             | CONTENT → DATA       | sk. 80, 80.5, 81                                                                                                                                        |
+| **M79-54** | **P2**      | **atlikta** | Hub 99 level1 description – kasdienė nauda                                                   | CONTENT → DATA       | sk. 99 LT+EN                                                                                                                                            |
+| **M79-55** | **P2**      | **atlikta** | SOT / backlog / CHANGELOG / EN sync + vartai                                                 | QA                   | `turinio_pletra_moduliai_7_8_9.md`; TEST_REPORT                                                                                                         |
 
 ### P3 — Stilius ir polish
 
@@ -479,7 +479,7 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] Browser smoke M7–9 dokumentuotas (`TEST_REPORT.md` §2026-07-15)
 - [x] M7 Patikra boilerplate **0** (`Jei ne — grįžk prie 2️⃣`)
 - [x] M7 macro map **59** branduolio slide ids + **78.5** expansion (`m7MacroBlocks.ts`); nav etiketė `ModuleView` (pilnas M7 katalogas = 59 skaidrės su pathBranch filtru)
-- [x] Vidiniai path: sk. **78.5** branduolyje (visi fokusai); 6 `journeyChoices` sk. 70 (M79-31, 2026-07-15)
+- [x] Vidiniai path: sk. **78.5** branduolyje (visi fokusai); 6 `journeyChoices` sk. 70 (M79-31 — SOT užbaigta 2026-07-20 po half-merge `e22a7b8`)
 - [x] M9 **2× `practice-scenario`** (93.1, 93.2) su `taskFrame.doneWhen`
 - [x] M8 warm-up **0** naked `Žr. M7 sk.` refs
 - [x] Sprint D audit batch (`patch-m79-phase2-audit.mjs`) — M8/M9/M7 targeted fixes
