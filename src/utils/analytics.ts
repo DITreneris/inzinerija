@@ -37,6 +37,8 @@ export interface AnalyticsProperties {
   anon_id: string;
   time_on_slide_sec?: number;
   time_to_complete_sec?: number;
+  /** practice_complete: pažymėta be įvesto atsakymo (honesty UX) */
+  marked_without_answer?: boolean;
   utm_source?: string;
   utm_medium?: string;
   timestamp: string;
