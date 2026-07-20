@@ -56,7 +56,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "If the answer has no multiple steps or tools, it is still a simple prompt. On the next slide you will see the full agent cycle.",
                 "blockVariant": "accent"
               }
             ]
@@ -70,6 +70,11 @@
           "content": {
             "sections": [
               {
+                "heading": "In short",
+                "body": "An AI agent runs a cycle: gets a task → plans → uses tools → returns a result with feedback. Unlike a simple chat – the agent **autonomously** chooses steps.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "Process diagram",
                 "body": "Agent cycle: from task to result and feedback. View full size – the same image opens in a modal.",
                 "image": "agent_workflow_diagram",
@@ -77,23 +82,29 @@
               },
               {
                 "heading": "How an agent works",
-                "body": "An AI agent **(1)** receives a task, **(2)** plans steps, **(3)** uses tools (search, API, files – if the platform allows), **(4)** returns a result with feedback.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish. Unlike a simple chat – the agent **autonomously** chooses actions and can call external tools.",
+                "body": "An AI agent **(1)** receives a task, **(2)** plans steps, **(3)** uses tools (search, API, files – if the platform allows), **(4)** returns a result with feedback.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "When to use an agent (brief)",
-                "body": "- You need **several steps**, not one answer.\n- Hard to describe everything with **pure rules**.\n- There is **unstructured data** (text, emails, feedback) that must be interpreted.\n\nA **simple prompt** is enough when one clear question and one answer – no search or external systems.\n\n**More detail** – with examples and an agent template – on **When to choose an agent vs a simple prompt**.",
+                "heading": "When to use an agent",
+                "body": "- You need **several steps**, not one answer.\n- Hard to describe everything with **pure rules**.\n- There is **unstructured data** (text, emails, feedback) that must be interpreted.\n\nA **simple prompt** is enough when one clear question and one answer – no search or external systems.\n\n**More detail** – on **When to choose an agent vs a simple prompt**.",
                 "blockVariant": "terms"
               },
               {
                 "heading": "Do this now",
                 "body": "Copy the task below into AI and run it.",
-                "blockVariant": "accent"
+                "blockVariant": "accent",
+                "copyable": "Explain in your own words in four steps how an AI agent works, and in one sentence – how it differs from a simple prompt."
               },
               {
                 "heading": "Copyable AI task",
                 "body": "Task for AI (paste into chat): “Explain in your own words **in four steps** how an AI agent works, and **in one sentence** – how it differs from one question and one answer without tools.”",
                 "copyable": "Explain in your own words in four steps how an AI agent works, and in one sentence – how it differs from one question and one answer without tools."
+              },
+              {
+                "heading": "Check",
+                "body": "Can you name the **4 cycle steps** in your own words? If you miss one – go back to the diagram and repeat “Do this now”.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next slide"
@@ -102,30 +113,26 @@
         {
           "id": 10.21,
           "title": "Checkpoint: agent cycle",
-          "subtitle": "Agent engineering path step",
+          "subtitle": "Agent engineering path – step 1",
           "type": "path-step",
           "content": {
-            "title": "AI agent step",
+            "title": "Agent cycle – I ran 1 agent request",
             "pathLabel": "Agent engineering path",
             "stepNumber": 1,
             "stepTotal": 3,
-            "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+            "body": "Run a short agent request with search or a tool. Mark this step when the answer shows not only text, but clear steps, sources, or a tool trail.",
             "sections": [
               {
-                "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "heading": "What to check",
+                "body": "Does the answer have at least 2 steps? Does it say which tool the AI used — or why it did not?",
+                "copyable": "Task: [DESCRIBE]. Use search or a tool if needed. Return the answer in 3 steps: what you did, which tool you used, what the result was. If you did not use a tool – explain why."
               },
               {
-                "heading": "If it fails",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "heading": "If it failed",
+                "body": "Add sentences to the task: “use search”, “provide sources”, “if not found – write Not found”."
               }
             ],
-            "unlockedGlossaryTerms": [
-              "AI agent workflow step.",
-              "AI agent workflow step.",
-              "AI agent workflow step."
-            ]
+            "unlockedGlossaryTerms": ["AI agent", "Tool", "ReAct"]
           }
         },
         {
@@ -184,20 +191,41 @@
           "content": {
             "sections": [
               {
+                "heading": "In short",
+                "body": "3A splits automation: **80%** rules (Automatize), **15%** with human approval (Augment), **5%** limited autonomy (Autonomize). Value–safety balance.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "3A strategy (diagram)",
-                "body": "Visually: the largest share – **Automatize (80 %)**, smaller – **Augment (15 %)**, smallest – **Autonomize (5 %)**. Balance of value and safety. **View full size** – same image in a modal.",
+                "body": "Visually: largest – **Automatize (80%)**, smaller – **Augment (15%)**, smallest – **Autonomize (5%)**. **View full size** – same image in a modal.",
                 "image": "m10_three_a_strategy",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Three bands (80 / 15 / 5)",
-                "body": "**AUTOMATIZE (80 %)** – rule-based flows, no human decision. E.g.: form → CRM → email → Slack.\n\n**AUGMENT (15 %)** – human decides, AI helps (summaries, classification, recommendations). E.g.: email → AI summary → human approval → send.\n\n**AUTONOMIZE (5 %)** – AI agents with limits: RAG, quality control, escalation. E.g.: feedback → sentiment AI → escalation → ticket.",
+                "body": "**AUTOMATIZE (80%)** – rule-based flows, no human decision. E.g. form → CRM → email → Slack.\n\n**AUGMENT (15%)** – human decides, AI helps (summaries, classification). E.g. email → AI summary → human approval → send.\n\n**AUTONOMIZE (5%)** – AI agents with limits: quality checks, escalation. E.g. feedback → sentiment → escalation → ticket.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick **one work process** and assign a 3A band. Copy the template into AI or write it down.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Copyable template",
+                "body": "Fill [PROCESS] and choose a band.",
+                "copyable": "Process: [PROCESS]. 3A band: Automatize / Augment / Autonomize. Why this band (1 sentence): [REASON]. Human approval needed: [YES/NO + when]."
+              },
+              {
+                "heading": "Check",
+                "body": "Can you explain why your process is **not** Autonomize (5%) if you chose Automatize or Augment? If not – return to “Three bands”.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Where to apply",
-                "body": "When planning business automation: which processes need only rules (80), which need human approval (15), where an agent can act with limits (5). The 80/15/5 rule – optimal value and safety ratio.",
-                "blockVariant": "brand"
+                "body": "When planning business automation: which processes need only rules (80), which need human approval (15), where limited agent autonomy is OK (5).",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -264,30 +292,26 @@
         {
           "id": 10.451,
           "title": "Checkpoint: roles and handoff",
-          "subtitle": "Agent engineering path step",
+          "subtitle": "Agent engineering path – step 2",
           "type": "path-step",
           "content": {
-            "title": "AI agent step",
+            "title": "Roles – I defined inputs and outputs",
             "pathLabel": "Agent engineering path",
             "stepNumber": 2,
             "stepTotal": 3,
-            "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+            "body": "Pick one process and write 3 roles: coordinator, specialist, evaluator. Mark the step when each role has a clear input and output.",
             "sections": [
               {
-                "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "heading": "What to check",
+                "body": "Is it clear when the specialist hands work to the evaluator? Does the evaluator have a done criterion?",
+                "copyable": "Process: [DESCRIBE]. Describe 3 roles: coordinator, specialist, evaluator. For each role state: input, output, and the handoff rule – when work passes to the next role."
               },
               {
-                "heading": "If it fails",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "heading": "If too complex",
+                "body": "Reduce to L1: one agent, one tool, one result."
               }
             ],
-            "unlockedGlossaryTerms": [
-              "AI agent workflow step.",
-              "AI agent workflow step.",
-              "AI agent workflow step."
-            ]
+            "unlockedGlossaryTerms": ["Coordinator", "Evaluator", "Router"]
           }
         },
         {
@@ -330,14 +354,91 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 10: Quick check: workflow patterns"
+            "footer": "Next – section: multi-agent → workflow"
+          }
+        },
+        {
+          "id": 10.481,
+          "title": "Multi-agent to workflow",
+          "subtitle": "5 templates done – next orchestration, then the learning loop.",
+          "type": "section-break",
+          "content": {
+            "title": "Section: multi-agent → workflow",
+            "subtitle": "Next: orchestration walkthrough, warm-up check, then the closed learning loop and prompt practice.",
+            "sectionNumber": "M10",
+            "footer": "Next – Agent orchestration walkthrough",
+            "celebrationText": "Great! Taxonomy and 5 workflow templates are now in your toolkit.",
+            "nextSteps": [
+              "Agent orchestration walkthrough – router ≠ orchestrator, targeted retry.",
+              "Warm-up: workflow templates and orchestration.",
+              "Closed learning loop – how failures become rules.",
+              "Role, tools, agent prompt, and error handling.",
+              "Error handling – a clear “failed” message."
+            ],
+            "recap": {
+              "heading": "What you already know",
+              "lead": "Agent engineering path – multi-agent foundation.",
+              "items": [
+                "L0–L3 taxonomy – when one agent is enough, when you need several.",
+                "Coordinator, specialist, evaluator, router – clear roles.",
+                "5 workflow templates – chain, routing, parallel work, and more."
+              ],
+              "itemGlossaryTerms": [
+                "AI agent",
+                "Multi-agent system",
+                "Workflow"
+              ]
+            },
+            "spinoffCta": {
+              "label": "Agent metric",
+              "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
+            }
+          }
+        },
+        {
+          "id": 10.482,
+          "title": "Agent orchestration walkthrough",
+          "subtitle": "Router ≠ orchestrator; validation ≠ evaluation; targeted retry",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "The orchestrator does not do specialist work itself – it manages the plan, state and fix cycles. Three distinctions: **Router = WHERE**, **orchestrator = HOW**; **validation** checks format/sources, the **evaluator** decides Approve / Retry / Human; on error – a **targeted** retry, not a full rerun.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Walkthrough",
+                "body": "Scenario: EU AI Act – hiring AI checklist. Step through the 6 macro steps on the diagram.",
+                "image": "m10_agent_orchestrator",
+                "imageAlt": "Agent orchestration flow: input, router, orchestrator, specialists, validation, evaluator, output"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Go through all 6 steps. At step 5 notice the **RETRY** loop – what returns to the orchestrator and why the whole run is not restarted.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you state in one sentence how a **router** differs from an **orchestrator**? Do you know when the evaluator says **Retry** versus **hand off to a human**?",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Three distinctions (deeper)",
+                "body": "**1. Router vs orchestrator** – the router classifies the request before execution; the orchestrator manages the active plan, state and retries.\n\n**2. Agents vs tools** – agents have a role and rules; tools (search, APIs) are an external layer agents call.\n\n**3. Validation vs evaluation** – validation checks format and sources; the evaluator makes the system decision (Approve / Retry / Human).\n\nDifferent from slide **120.5**: here – architecture walkthrough; there – a simple business multi-agent schema without coding.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              }
+            ],
+            "footer": "Next – warm-up: workflow and orchestration"
           }
         },
         {
           "id": 10.485,
-          "title": "Quick check: workflow patterns",
+          "title": "Warm-up: workflow and orchestration",
           "shortTitle": "AI agent step",
-          "subtitle": "3 questions about chain, routing and evaluator",
+          "subtitle": "Questions on templates and orchestration",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
@@ -367,56 +468,18 @@
               },
               {
                 "id": "m10-warm-workflow-3",
-                "question": "Which pattern is safest when you need a draft and a quality check?",
+                "question": "How does a router differ from an orchestrator in an agent system?",
                 "options": [
-                  "Generator + evaluator",
-                  "Only generator without checking",
-                  "Only router",
-                  "Only manual copy-paste"
+                  "Router = where to go; orchestrator = how to manage plan, state and retry",
+                  "They do the same thing – only names differ",
+                  "Orchestrator only classifies type; router manages specialists",
+                  "Router always restarts the whole flow after an error"
                 ],
                 "correct": 0,
-                "explanation": "Generator + evaluator creates a draft first, then checks quality and returns it for fixes."
+                "explanation": "A router directs the request by type (WHERE). An orchestrator manages the active plan, state and targeted retry (HOW) – not a full restart."
               }
             ],
-            "footer": "Next slide"
-          }
-        },
-        {
-          "id": 10.481,
-          "title": "Multi-agent to workflow",
-          "subtitle": "Agent engineering",
-          "type": "section-break",
-          "content": {
-            "title": "Multi-agent to workflow",
-            "subtitle": "Agent engineering",
-            "sectionNumber": "AI agent workflow step.",
-            "footer": "Next slide",
-            "celebrationText": "AI agent workflow step.",
-            "nextSteps": [
-              "Define goal, tools, limits and output.",
-              "Define goal, tools, limits and output.",
-              "Define goal, tools, limits and output.",
-              "Define goal, tools, limits and output.",
-              "Define goal, tools, limits and output."
-            ],
-            "recap": {
-              "heading": "Agent engineering step",
-              "lead": "AI agent workflow step.",
-              "items": [
-                "Define goal, tools, limits and output.",
-                "Define goal, tools, limits and output.",
-                "Define goal, tools, limits and output."
-              ],
-              "itemGlossaryTerms": [
-                "AI agent workflow step.",
-                "AI agent workflow step.",
-                "AI agent workflow step."
-              ]
-            },
-            "spinoffCta": {
-              "label": "Agent metric",
-              "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
-            }
+            "footer": "Next – Closed learning loop"
           }
         },
         {
@@ -428,37 +491,37 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "An agent does more than run one task. A good system keeps an action history, checks the result, extracts lessons from failures, and updates rules or skills for the next run.",
                 "image": "m10_learning_loop",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "heading": "Two system layers",
+                "body": "**Execution system:** task → rules → coordinator → specialists / evaluator → skills → result.\n\n**Learning loop:** action history → check → lessons → update. Failures from one attempt become a better next attempt.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "heading": "Blocks in plain language",
+                "body": "**Rules** – limits and principles: what AI must not do, when to ask a human.\n\n**Skills** – reusable abilities: search, writing, checking, or one Skill pack with instructions.\n\n**Action history** – task, steps, errors, human notes.\n\n**Check** – test or evaluation: did the result meet the criteria.\n\n**Lessons** – a short note: what failed, what to change, where to update a rule or skill.\n\n**Update** – changed rule, prompt, skill description, or test for next time.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "After one small scenario, write one lesson: what failed, which rule or skill fixes it, and where that fix will be used next time.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Copyable prompt",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "heading": "Copyable lesson template",
+                "body": "Use after an M12 scenario or any agent attempt.",
+                "copyable": "Lesson after an agent attempt:\n1) What happened?\n2) What was the cause?\n3) What do I update: rule, prompt, skill, or test?\n4) How will I check next time?"
               },
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "A good lesson changes the next attempt. If you only describe a fact (“it failed”) but do not update a rule, skill, or test – the learning loop does not close.",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next slide"
+            "footer": "Next – Roles and system prompt template"
           }
         },
         {
@@ -504,9 +567,9 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Popular platforms – what they offer",
-                "body": "**ChatGPT** (OpenAI): web search (Browse), image generation (DALL·E), calculator. **Claude** (Anthropic): Tools – can connect search, API, custom functions. **Gemini** (Google): search, Workspace integration (Docs, Sheets, Gmail). Each platform differs – before writing an agent prompt check settings: is search or tools enabled.",
-                "blockVariant": "accent"
+                "heading": "AI platforms – what to check",
+                "body": "Before writing an agent prompt, check your AI tool: is **search**, **files**, **API / Tools** enabled? **ChatGPT**, **Claude** and **Gemini** differ – state clearly what to use (e.g. “Use search and cite sources”).",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
@@ -531,8 +594,10 @@
               },
               {
                 "heading": "Tool selection tree (for workflow tools)",
-                "body": "**Office 365 heavy** (Teams, Outlook, SharePoint daily) → **Power Automate**. **Non-tech team, quick start** → **Zapier**. **Complex logic + good price** → **Make.com**. **Full control, self-host, data on our side** → **n8n**. **Enterprise governance, auditors, compliance** → **Workato**. Full comparison – in “Business automation tools”, §21.",
-                "blockVariant": "brand"
+                "body": "Briefly: Office 365 → **Power Automate**; fast start → **Zapier**; complex logic → **Make**; self-host → **n8n**. Full comparison and “pick your tool” task – slide **Business automation tools**. More in the automation tools doc, §21.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               }
             ]
           }
@@ -546,73 +611,73 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** (chain, routing, etc.) – slide **10.48**.",
+                "body": "Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** – slide **10.48**. Full 5-part template and workflow spec – expandable below; checkpoint – **10.51**.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Do this now",
+                "body": "Copy the example, fill [ROLE] and [X], run AI. Does the answer include error handling and sources?",
+                "blockVariant": "accent",
+                "copyable": "Role: [ROLE]. Task: (1) Search for [X], (2) pick 3–5 key sources, (3) write a short summary with sources. If not found – write “Not found” and why."
+              },
+              {
                 "heading": "Copyable prompt (example)",
-                "body": "Below – agent task example; fill [ROLE] and [X].",
+                "body": "Short agent-task example – fill [ROLE] and [X].",
                 "copyable": "Role: [ROLE]. Task: (1) Search [X], (2) pick 3–5 key sources, (3) write a summary in English with links. If not found – write “Not found” and why."
               },
               {
-                "heading": "Agent prompt template (5 parts)",
-                "body": "A clear agent prompt has 5 parts: (1) Role – who you are, limits; (2) Task in steps – what to do in order; (3) Tools – what to use (search, API); (4) Output format – table, language, sources; (5) Error handling – what to return when it fails. Longer full template – expandable block below.",
-                "blockVariant": "brand"
+                "heading": "Check",
+                "body": "Does your agent prompt include **error handling** and a **tool instruction**? If missing – add them before checkpoint **10.51**.",
+                "blockVariant": "accent",
+                "copyable": "ROLE\nYou are [domain / role]. Your responsibility is [what you do]. You have access to [search / calculator / API].\nTASK\n[Describe the task in steps.]\nTOOLS\nUse [tool] when [condition].\nOUTPUT\n[Format.]\nERRORS\nIf you cannot complete the task: write “Failed: [reason]” and suggest a fix."
               },
               {
-                "heading": "Full template – copy",
-                "body": "Use this template for any agent task. Fill the [ ] fields.",
-                "copyable": "ROLE\nYou are [domain / role]. Your responsibility – [what you do]. You have access to [search / calculator / API]. Do not: [limits, e.g. do not invent data].\n\nTASK (step by step)\n(1) [First step, e.g. search X]\n(2) [Second step, e.g. pick 3–5 sources]\n(3) [Third step, e.g. write summary]\n\nTOOLS\nUse [search / tool] when [when]. If facts needed – use search or write “I don’t know”. List sources at the end.\n\nFORMAT\n[Table / list / report]. Language: English. Sources: cite them.\n\nERROR HANDLING\nIf the task cannot be completed (missing data, timeout): write “Failed: [reason]” and suggest what to fix. Never return an empty answer.",
-                "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "Rules and tips",
-                "body": "Rules: be clear (steps, not just goal); specify tools (“use search”, “provide sources”); error handling required; system prompt ideally up to ~1000 tokens; state limits (what not to do). Tips: before writing list 3–5 steps; if possible add 1 example (few-shot); test when data is missing – does AI return clear “Not found” / “Failed”.",
+                "heading": "Optional: 5-part template, rules, workflow spec",
+                "body": "**5 parts:** (1) Role, (2) Task in steps, (3) Tools, (4) Output format, (5) Error handling.\n\n**Full template** and workflow one-pager live here when you need them. More testing detail – slide **10.65**.",
                 "blockVariant": "terms",
                 "collapsible": true,
-                "collapsedByDefault": true
+                "collapsedByDefault": true,
+                "copyable": "ROLE\nYou are [domain / role]. Responsibility – [what you do]. Access to [search / API]. Do not: [limits].\n\nTASK (steps)\n(1) [First]\n(2) [Second]\n(3) [Third]\n\nTOOLS\nUse [search] when [when]. Cite sources at the end.\n\nFORMAT\n[Table / list]. Language: English.\n\nERROR HANDLING\n“Failed: [reason]” + what to fix."
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "blockVariant": "brand",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "heading": "Section",
+                "body": "When the agent connects to a form, CRM, email or another tool, write a one-page workflow spec before go-live: trigger, input schema, actions, output, error handling, and human approval where needed.",
+                "copyable": "Workflow specification:\n1) Trigger – what starts the flow.\n2) Input schema – which fields are required.\n3) Actions – what the system does.\n4) Output – what the user receives.\n5) Error handling – what happens on failure.\n6) Human approval – when a person must confirm."
               }
             ],
-            "footer": "Next slide"
+            "footer": "Next – Checkpoint: agent prompt"
           }
         },
         {
           "id": 10.51,
           "title": "Checkpoint: agent prompt",
-          "subtitle": "Agent engineering path step",
+          "subtitle": "Agent engineering path – step 3",
           "type": "path-step",
           "content": {
-            "title": "AI agent step",
+            "title": "Agent prompt – I have a template before practice",
             "pathLabel": "Agent engineering path",
             "stepNumber": 3,
             "stepTotal": 3,
-            "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+            "body": "Before Module 12 practice, have one 5-part agent prompt, a 1-page workflow-spec draft, and 1 golden check (edge case). This is your start for the Coordinator + 2 specialists scenario.",
             "sections": [
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "heading": "Minimum artefact",
+                "body": "Role, task in steps, tools, output format, error handling + Trigger, actions, output, human approval."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "body": "If error handling or human approval is missing in a risky place, add it before you continue."
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "heading": "Golden check",
+                "body": "Test the prompt with 1 edge case: a required field is missing, no source exists, or the API does not respond. A good result – AI returns a clear “Failed: [reason]” and suggests what to fix.",
+                "copyable": "Check this agent prompt with an edge case: [PASTE PROMPT]. Test situation: [missing required field / no source / API timeout]. Judge whether the answer has “Failed: [reason]” and a clear fix suggestion."
               }
             ],
             "unlockedGlossaryTerms": [
-              "AI agent workflow step.",
-              "AI agent workflow step.",
-              "AI agent workflow step."
+              "System prompt",
+              "Error handling",
+              "Trigger"
             ]
           }
         },
@@ -643,7 +708,56 @@
                 "body": "Did AI return **“Failed”** (or similar) and **reason**, not an empty answer? If it stays silent – add to prompt: “If you cannot – always say why.”",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "footer": "Next – Warm-up: before workflow terms"
+          }
+        },
+        {
+          "id": 10.61,
+          "title": "Warm-up: before workflow terms",
+          "shortTitle": "Warm-up: safeguards",
+          "subtitle": "3 questions: error handling, agent vs prompt, search",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m10-warm-pre-wf-1",
+                "question": "What is a good result when AI cannot complete the task?",
+                "options": [
+                  "A clear “Failed: [reason]” plus what to fix",
+                  "An empty answer",
+                  "Invented facts so the answer looks complete",
+                  "Only an apology with no reason"
+                ],
+                "correct": 0,
+                "explanation": "Error handling needs a clear failure message and a next step — not an empty or invented answer."
+              },
+              {
+                "id": "m10-warm-pre-wf-2",
+                "question": "When is a simple prompt usually enough?",
+                "options": [
+                  "One question, one answer, no external tools",
+                  "You need search with sources and several steps",
+                  "You need several roles and handoff rules",
+                  "You need a form → CRM → email flow"
+                ],
+                "correct": 0,
+                "explanation": "Without tools and multi-step logic, a simple prompt is enough. Otherwise use an agent template."
+              },
+              {
+                "id": "m10-warm-pre-wf-3",
+                "question": "What should you state clearly if you need web facts?",
+                "options": [
+                  "“Use search and provide sources”",
+                  "“Answer as long as possible”",
+                  "“Do not use any tools”",
+                  "“Guess if you do not know”"
+                ],
+                "correct": 0,
+                "explanation": "Without an explicit tool instruction, AI may answer without sources. “Use search…” reduces that risk."
+              }
+            ],
+            "footer": "Next – Core concepts: trigger, action, condition, webhook"
           }
         },
         {
@@ -654,20 +768,42 @@
           "content": {
             "sections": [
               {
+                "heading": "In short",
+                "body": "Workflow sequence: **Trigger → Condition → Action**. **Webhook** – an event from another system that starts the flow. These 4 concepts are enough to describe your process.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "Workflow chain (diagram)",
-                "body": "Main sequence: **Trigger → Condition → Action**. **Webhook** – event from another system; often **starts** the same type of flow as a trigger (e.g. payment). **View full size** – same image in a modal.",
+                "body": "Core sequence: **Trigger → Condition → Action**. A **Webhook** often starts the same kind of flow as a trigger (e.g. payment). **View full size** – same image in a modal.",
                 "image": "m10_trigger_flow",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Concepts and examples",
-                "body": "**Trigger** – event that starts the workflow (new email, form submission, file in folder, payment).\n\n**Condition** – rule for the next step (e.g. if value > €500 – send to manager; if email valid – write to CRM).\n\n**Action** – action in a system (email, CRM entry, task, table update).\n\n**Webhook** – real-time data transfer: event → call to another system’s URL with data (e.g. PayPal payment → webhook → order update).\n\n**Integration** – how systems connect (Zapier/Make, API, file exchange) so data is not copied by hand.\n\n**API** – agreed way for programs to exchange data over the network. AI agents often call APIs as tools.\n\n**Polling** – periodic check “are there new data yet?” (different from webhook).\n\n**Error handling (workflow)** – what to do when a step fails: retry, notify human, log, stop flow.\n\n**Logs** – what ran, when, success or error (for debugging and audit; more – optional slide on spec and testing).\n\n**Example 1:** form (trigger) → email check (condition) → CRM (action) → email (action) → Slack to team (action).\n\n**Example 2:** payment (webhook) → order update → confirmation to customer.",
-                "blockVariant": "terms"
+                "heading": "Four core concepts",
+                "body": "**Trigger** – the event that starts a workflow (new email, form submit, file in a folder).\n\n**Condition** – a rule for the next step (e.g. if value > 500 – send to manager).\n\n**Action** – a system action (email, CRM record, Slack message).\n\n**Webhook** – real-time data handoff: event → call to another system address (e.g. payment → order update).",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Write down **one real trigger** from your work (e.g. “new lead in form”) and **two actions** you would want to run automatically next.",
+                "body": "Write down **one real trigger** from your work and **two actions** you want automated. Copy the template and fill it.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Copyable template",
+                "body": "Fill the [ ] fields – your first draft workflow schema.",
+                "copyable": "Trigger: [EVENT]. Condition (if needed): [RULE]. Action 1: [ACTION]. Action 2: [ACTION]. Webhook? [YES/NO – from where]."
+              },
+              {
+                "heading": "Check",
+                "body": "Is your trigger an **event** (not a task), and action a **system action**? If mixed up – return to “Four core concepts”.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Extra concepts (if needed)",
+                "body": "**Integration** – how systems connect (Zapier/Make, API, file exchange).\n\n**API** – agreed way for programs to exchange data; AI agents often call APIs as tools.\n\n**Polling** – periodic “any new data?” (unlike webhook).\n\n**Error handling** – what to do when a step fails: retry, alert a human, stop.\n\n**Logs** – what ran, when, success or failure.\n\n**Example:** form (trigger) → email check (condition) → CRM + email + Slack (actions).",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               }
             ]
           }
@@ -680,27 +816,23 @@
           "content": {
             "title": "Workflow to automation",
             "subtitle": "Agent engineering",
-            "sectionNumber": "AI agent workflow step.",
-            "footer": "Next slide",
-            "celebrationText": "AI agent workflow step.",
+            "sectionNumber": "M10",
+            "footer": "Next – Business automation tools",
+            "celebrationText": "Nice! The workflow chain and key concepts are clear.",
             "nextSteps": [
               "Define goal, tools, limits and output.",
               "Define goal, tools, limits and output.",
               "Define goal, tools, limits and output."
             ],
             "recap": {
-              "heading": "Agent engineering step",
-              "lead": "AI agent workflow step.",
+              "heading": "What you already know",
+              "lead": "Agent cycle and prompts – workflow layer added.",
               "items": [
-                "Define goal, tools, limits and output.",
-                "Define goal, tools, limits and output.",
-                "Define goal, tools, limits and output."
+                "Trigger → Condition → Action – the core sequence.",
+                "Webhook – real-time data between systems.",
+                "Integration, API, error handling, and logs – for audit and debugging."
               ],
-              "itemGlossaryTerms": [
-                "AI agent workflow step.",
-                "AI agent workflow step.",
-                "AI agent workflow step."
-              ]
+              "itemGlossaryTerms": ["Trigger", "Webhook", "Integration"]
             },
             "spinoffCta": {
               "label": "Agent metric",
@@ -716,24 +848,36 @@
           "content": {
             "sections": [
               {
-                "heading": "Zapier",
-                "body": "7000+ integrations (Gmail, Slack, Salesforce, Google Workspace). No-code, quick start – fits small teams. **Example:** new meeting (e.g. Calendly) → calendar entry → reminder email to participant. **Strengths:** large integration library, low learning curve. **Weaknesses:** expensive at scale, limited error handling.",
+                "heading": "In short",
+                "body": "Four common tools: **Zapier** – fast start; **Make** – more complex logic; **n8n** – control on your servers; **Power Automate** – Microsoft ecosystem. Pick one for your context.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Make.com",
-                "body": "Visual builder (drag & drop), more complex logic than Zapier – fits mid-size business. **Example:** Shopify order → stock sheet → if stock low → email supplier. **Strengths:** conditions, loops, data transforms; better free tier. **Weaknesses:** learning curve, many scenarios harder to manage.",
+                "heading": "When to pick which",
+                "body": "**Non-tech team, fast start** → **Zapier** (e.g. Calendly → calendar → reminder email).\n\n**Need conditions, loops, better pricing** → **Make.com** (e.g. Shopify order → inventory → supplier alert).\n\n**Tech team, data on your side** → **n8n** (e.g. payment webhook → DB → Slack alert).\n\n**Daily Teams / Outlook / SharePoint** → **Power Automate** (e.g. Outlook PDF → SharePoint → Teams).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick **one** tool for your process. Copy the template and fill it – a decision draft before Module 12 practice.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "n8n",
-                "body": "Open-source, full control, data on your servers. Fits technical teams. **Example:** payment platform webhook → validation and DB entry → on error notify alert channel (Slack). **Strengths:** unlimited workflows, custom code, advanced error handling. **Weaknesses:** IT skills, server administration.",
+                "heading": "Copyable template",
+                "body": "Fill [PROCESS] and the chosen tool.",
+                "copyable": "Process: [PROCESS]. Chosen tool: Zapier / Make / n8n / Power Automate. Why (1 sentence): [REASON]. Trigger → Action (brief): [SCHEMA]."
+              },
+              {
+                "heading": "Check",
+                "body": "Can you explain why you did **not** pick another tool? If not – return to “When to pick which”.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Power Automate",
-                "body": "Microsoft ecosystem – Excel, Teams, Outlook, SharePoint, Office 365. Fits admin, sales, project management. **Example:** Outlook + PDF → SharePoint → Teams → data extraction → Excel. **Strengths:** enterprise security, integrated licensing. **Weaknesses:** limited outside Microsoft ecosystem.",
-                "blockVariant": "accent"
+                "heading": "More detail on each",
+                "body": "**Zapier:** 7000+ integrations; fast start; weakness – cost at scale.\n\n**Make.com:** drag & drop, conditions and loops; weakness – learning curve.\n\n**n8n:** open-source, self-host; weakness – needs IT skills.\n\n**Power Automate:** Microsoft security and licensing; weakness – limited outside Microsoft.\n\nMore in **Business automation tools** doc. Interactive tree – slide **Tool selection and limits**.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               }
             ]
           }
@@ -741,57 +885,59 @@
         {
           "id": 10.65,
           "title": "Workflow, testing and security (optional)",
-          "subtitle": "Specification, 10 test scenarios, security, tool tree – visible content",
+          "subtitle": "Cheat sheet: 5 tests, security, link to QC evaluator",
           "type": "content-block",
           "optional": true,
           "content": {
             "sections": [
               {
-                "heading": "Why here?",
-                "body": "When you build **workflows between systems** (Zapier, Make, n8n) or agents with external data – you need consistent specification, testing and security rules. Below – full visible content; more detail – in **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md).",
+                "heading": "In short",
+                "body": "Before going live – 1-page spec, **5 quick tests**, and a security minimum. Deep QC – next slide **Agent QC evaluator**.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Spec and incident playbook (diagram)",
-                "body": "Top – **8 spec blocks** (one-page structure). Bottom – **5 incident steps** (security). More text – sections below. **View full size** – same image in a modal.",
+                "heading": "Workflow specification (diagram)",
+                "body": "**8 specification blocks** as one sequence: from trigger to audit log. **View full size** – same image in a modal.",
                 "image": "m10_workflow_spec",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Workflow specification (8 blocks)",
-                "body": "**Trigger** – what starts it (event, frequency). **Input schema** – fields, formats, required/optional. **Condition** – rules (e.g. if field X > 500). **Actions** – step list with tools. **Output** – what we get (CRM entry, email, ticket). **SLA, retries, rate limits** – max wait, retry count, API limits. **Error handling** – on failure (retry, alert, human escalation). **Audit log** – what we record (run_id, time, step, result).",
+                "heading": "5 quick tests (before go-live)",
+                "body": "(1) Empty required fields. (2) Invalid email format. (3) Duplicates – same record twice. (4) API timeout. (5) Auth error (401/403).\n\n**Idempotency:** unique request ID – if the record exists, **update**, do not create new.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick **2 tests** from the list for your workflow draft. Then go to **Agent QC evaluator** – paste your spec into the evaluator prompt.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Check",
+                "body": "Do you have at least **trigger + error handling + 1 test case**? If not – add them before the QC evaluator.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Incident playbook (diagram)",
+                "body": "**5 incident steps:** stop, record, assess scope, notify, fix. **View full size** – same image in a modal.",
                 "image": "m10_incident_playbook",
-                "blockVariant": "brand"
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "10 test scenarios (before going live)",
-                "body": "(1) Empty fields (required empty). (2) Invalid email format. (3) Duplicates – same record twice. (4) Timeout – API does not respond in time. (5) Webhook duplicates – same webhook twice. (6) Special characters / long text in fields. (7) Invalid values (non-number where number expected). (8) Missing fields (schema changed). (9) Rate limit hit (429). (10) Auth error (401/403).\n\n**Idempotency (simply):** rules so **the same action does not run twice** from repeated webhook or double click – e.g. unique request ID; if record with that ID exists – **update**, do not create new.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "3 AI agent QC tests (additionally)",
-                "body": "Before launch check the AI agent: (1) empty input – does it return clear “Failed”? (2) false fact – does it not confirm? (3) very long text – does it not break without notice?",
-                "blockVariant": "accent"
-              },
-              {
-                "heading": "Security and compliance",
-                "body": "**PII:** What may be sent to AI, what to mask (name, email – per GDPR and company policy). **Access:** Who can edit workflow (viewer, editor, admin); API keys – not in code, use secrets manager or platform vault. **Incident playbook (5 steps):** (1) Stop workflow / disconnect integration. (2) Record – logs, who, when, what. (3) Assess scope. (4) Notify – DPO, manager, authorities if needed. (5) Fix and deploy safeguards. **Human-in-the-loop:** When human approval is mandatory – e.g. financial ops above amount X, bulk personal data export.",
-                "blockVariant": "accent"
+                "heading": "More detail (spec, 10 tests, security)",
+                "body": "**8-block spec:** Trigger, input schema, Condition, Actions, Output, SLA/limits, error handling, audit log.\n\n**Extra tests:** webhook duplicates, special chars, invalid values, missing fields, rate limit (429).\n\n**3 AI quality tests:** empty input → “Failed”; false fact – does not confirm; long text – does not crash silently.\n\n**Security:** mask personal data, API keys not in code, human approval at risky points.\n\n**Tool tree:** see slide **Tool selection and limits**. Full guide – automation tools doc (§18–21).",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Tool selection tree",
-                "body": "We **do not repeat** the table here – same tree and interactive diagram on **Tool selection and limits (10.4)**. More – in **Business automation tools** (§21).",
-                "blockVariant": "brand"
+                "body": "We **do not repeat** the table here – the same tree and interactive diagram are on the **Tool selection and limits** slide. See that slide for the interactive schema; more detail in the automation tools doc."
               },
               {
                 "heading": "Full guide",
-                "body": "All material – **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md): §18 spec, §19 testing, §20 security, §21 tool tree and more.",
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "blockVariant": "brand"
+                "body": "Full material – **Business automation tools** doc: Zapier / Make / n8n / Power Automate choice, testing, and security."
               }
             ]
           }
@@ -832,7 +978,7 @@
               "templateLabel": "Steps: evaluator checks your specification",
               "template": "1. Copy the evaluator prompt from the block above.\n2. Paste it into AI.\n3. Paste your agent prompt or workflow specification.\n4. Fix at least one point the evaluator marked as “fix”.\n5. Run the evaluation again and check whether all 5 criteria have a clear answer.\n\nThe evaluator and your prompt are not competitors: the evaluator helps improve your artefact before practice."
             },
-            "footer": "Next slide"
+            "footer": "Next – Glossary (optional)"
           }
         },
         {
@@ -964,7 +1110,7 @@
                 ]
               }
             ],
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate what you learned about AI agents.\nINPUT: I just finished training on AI agents – taxonomy, multi-agent, workflow, prompts.\nOUTPUT: Ask 3 questions: (1) Which agent scenario could I apply today? (2) What was newest? (3) What do I want to try first? After my answers, give one concrete tip.",
+            "reflectionPrompt": "**Apply:** Which one agent process will you run in 24–48 hours?\n**Analyze:** Which 3A band is it in and why?\n**Create:** Which one rule or prompt will you update after the first run?\n\nMETA: You are a training reflection assistant. Goal – consolidate what you learned about AI agents.\nINPUT: I just finished training on AI agents – taxonomy, multi-agent, workflow, prompts.\nOUTPUT: Ask 3 questions: (1) Which agent scenario could I apply today? (2) What was newest? (3) What do I want to try first? After my answers, give one concrete tip.",
             "reflectionTitle": "Reflection prompt",
             "tagline": "Agent = steps + tools + limits – your foundation for automation.",
             "nextStepCTA": "Go to Module 11: Knowledge check (Agent path)",
@@ -1009,7 +1155,56 @@
               "pass": 70,
               "fail": 0
             },
-            "thresholdExplanation": "When you reach ≥70 %, you can go to Module 12 (project). If less – we recommend reviewing Module 10 slides."
+            "thresholdExplanation": "When you reach ≥70 %, you can go to Module 12 (project). If less – we recommend reviewing Module 10 slides.",
+            "footer": "Next – Warm-up before the test"
+          }
+        },
+        {
+          "id": 110.5,
+          "title": "Warm-up before the test",
+          "shortTitle": "Warm-up",
+          "subtitle": "3 questions: agent vs prompt, 3A, orchestration",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m11-warm-1",
+                "question": "When should you choose an agent instead of a simple prompt?",
+                "options": [
+                  "When you need several steps, tools, or a decide-whether-to-retry loop",
+                  "When you need one short answer without search",
+                  "When you only want a nicer tone",
+                  "When the prompt is longer than 2 sentences"
+                ],
+                "correct": 0,
+                "explanation": "An agent fits complex tasks with steps and tools. For one clear answer, a simple prompt is often enough."
+              },
+              {
+                "id": "m11-warm-2",
+                "question": "Which 3A band means “human decides, AI assists”?",
+                "options": [
+                  "Augment (15 %)",
+                  "Automatize (80 %)",
+                  "Autonomize (5 %)",
+                  "L0 taxonomy only"
+                ],
+                "correct": 0,
+                "explanation": "Augment keeps the human in the decision; AI drafts summaries or recommendations before approval."
+              },
+              {
+                "id": "m11-warm-3",
+                "question": "How does a router differ from an orchestrator?",
+                "options": [
+                  "Router = where to go; orchestrator = how to manage plan, state and retry",
+                  "They do the same thing",
+                  "The orchestrator only classifies type",
+                  "The router always restarts the whole flow"
+                ],
+                "correct": 0,
+                "explanation": "A router directs by type (WHERE). An orchestrator manages the active plan and targeted retry (HOW)."
+              }
+            ],
+            "footer": "Next – Module 11 questions"
           }
         },
         {
@@ -1183,22 +1378,22 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "After the test you can try a mini agent chain in 5 minutes without Zapier or Make: 3 separate AI chats, a clear handoff, and one quality check.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "Pick a small process: RFP summary, weekly sales, or a customer complaint. Run the prompt pack below and note what you pass from one role to the next.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "body": "Use in 3 separate AI chats.",
+                "copyable": "COORDINATOR: Task: [DESCRIBE]. Split into 2 sub-tasks, assign a specialist and an evaluator. State input, output, and the handoff rule.\n\nSPECIALIST: Input: [COORDINATOR PLAN]. Do the assigned work. Output: short summary, facts, unknowns.\n\nEVALUATOR: Check the specialist output against criteria: facts, clarity, risk. If data is missing – return a fix list."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "Do you have a clear handoff rule and 1 test case when data is missing? If yes – you are ready for the M12 prompt-only quick start (124.5).",
                 "blockVariant": "accent"
               }
             ],
@@ -1235,19 +1430,19 @@
           "subtitle": "3 required practices (trigger → action → artefacts) + 4 optional scenarios",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "After the project you will have ready artefacts: workflow diagram (trigger, condition, actions), field mapping, test cases, log evidence. Three required practices per 3A: Automatize (80 %), Augment (15 %), Autonomize (5 %). Value summary: time saved ≈ (manual hours × frequency) − (automated hours × frequency); full ROI template – in “Business automation tools”, §22.",
+            "whyBenefit": "After the project you will have one ready agent or automation scenario. Quick start comes right after the schema: **124.5 → 124** (prompts only); to complete – **3 practices 121–123** (platform or prompt-only path).",
             "duration": "~20–30 min per practice",
             "minScenariosToComplete": 3,
-            "firstActionCTA": "Pick practice 1 (form→CRM→email→Slack/Teams), practice 2 (email→AI summary→approval) or practice 3 (feedback→sentiment→escalation) and finish with artefacts.",
-            "recommendedStart": "Required: practices 1–3 (Automatize, Augment, Autonomize). Recommended: Coordinator + 2 specialists (124.5), Research agent, Report generator.",
-            "recommendedSlideIds": [120.25, 120.5, 121, 122, 123, 124.5],
-            "primaryPathIntro": "AI agent workflow step.",
-            "meaningParagraph": "AI agent workflow step.",
-            "taskOneLiner": "AI agent workflow step.",
+            "firstActionCTA": "After the schema go to **124.5**, then **124**. The module is complete when you finish **3 practices** (**121–123**) – on a platform or via prompt-only fallback.",
+            "recommendedStart": "Linear path: 124.5 → 124 → 121 → 122 → 123. Quick start – prompts only; required completion – 121–123 (platform or prompt-only). Extra: 125.",
+            "recommendedSlideIds": [124.5, 124, 120.25, 120.5, 121, 122, 123],
+            "primaryPathIntro": "**Two stages (clear sequence):**\n\n1. **Quick start (prompts)** – after the checkpoint go to **124.5 Coordinator + 2 specialists**, then **124 Research agent**. No Zapier/Make.\n2. **Full 3A path (required to complete)** – practices **121 → 122 → 123**. Each allows a **platform path** (Zapier/Make) **or a prompt-only fallback** (spec + test cases without an account).",
+            "meaningParagraph": "Here you finish the Agent path. First build a manual prompt process without extra tools (124.5 and 124); then move to the 3A practices with real artefacts – on a platform or via prompt-only fallback.\n\nBefore choosing a process, estimate ROI: (tasks per week × minutes per task × hourly rate) − tool cost. Fill 3 scenarios: now, +3 months, +12 months.",
+            "taskOneLiner": "124.5 → 124 (quick start) → 121–123 (3A; prompt-only if you lack Zapier/Make).",
             "roiTemplate": {
-              "heading": "Agent engineering step",
-              "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-              "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+              "heading": "ROI mini calculator",
+              "body": "Before you pick a process, estimate value simply: (tasks per week × minutes per task × hourly cost) − tool cost. Fill 3 scenarios: now, after 3 months, after 12 months.",
+              "copyable": "ROI calculation:\nProcess: [e.g. RFP summary]\nTasks per week: [number]\nMinutes per task now: [number]\nHourly cost: [€]\nTool and maintenance cost per month: [€]\n\nNow: [savings]\nAfter 3 months: [savings]\nAfter 12 months: [savings]\n\nDecision: automate / augment / keep manual?"
             }
           }
         },
@@ -1259,14 +1454,30 @@
           "content": {
             "sections": [
               {
-                "heading": "Comparison",
-                "body": "Three labs – different automation levels. Green label – where human approval is usually needed.",
+                "heading": "In short",
+                "body": "Three required practices match 3A: **Automatize** (rules), **Augment** (human + AI), **Autonomize** (limited autonomy). Pick which band fits your process – then go to that practice.",
                 "blockVariant": "accent",
+                "imageAlt": "Three agent practices: Automatize, Augment, Autonomize"
+              },
+              {
+                "heading": "Comparison",
+                "body": "Three labs – different automation levels. Green marker – where human approval is usually needed.",
+                "blockVariant": "brand",
                 "image": "m12_three_labs",
                 "imageAlt": "Three agent practices: Automatize, Augment, Autonomize"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Write down: **which lab** (1 / 2 / 3) best fits one of your processes? Next – quick start (124.5) or go straight to that practice.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Check",
+                "body": "If you do not know which band your process is in – return to Module 10 **3A strategy** and assign a band before practice.",
+                "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 3: Business multi-agent schema"
+            "footer": "Next – Business multi-agent schema"
           }
         },
         {
@@ -1278,18 +1489,29 @@
             "whyBenefit": "Understand when one AI is not enough and how to split work without coding. Practice – Coordinator + 2 specialists slide (124.5).",
             "sections": [
               {
+                "heading": "In short",
+                "body": "When one AI is not enough – split the work: **coordinator → specialists → evaluator**, with a **human approval gate** before sending. Without a clear pass-to-next-role rule, multi-agent work turns chaotic.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "Business multi-agent schema",
-                "body": "**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with **HITL gate** before sending to client or manager.",
+                "body": "**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with **human approval gate** before sending to client or manager.",
                 "image": "m12_multi_agent_schema",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Handoff",
-                "body": "Passing to the next role – clear rule: “When specialist finishes X, pass to evaluator in Y format.” Without handoff multi-agent becomes chaotic.",
+                "heading": "Do this now",
+                "body": "Write one pass-to-next-role rule for your topic. Copy the template and fill it in.",
+                "blockVariant": "brand",
+                "copyable": "When [SPECIALIST] finishes [X], pass to [EVALUATOR] in format: [FORMAT]. Human approval: before [FINAL SEND]."
+              },
+              {
+                "heading": "Check",
+                "body": "Can you say in one sentence **who passes what to whom** and **where** human approval kicks in? If not – walk the schema steps again.",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 4: Checkpoint: multi-agent schema"
+            "footer": "Next – Checkpoint: multi-agent schema"
           }
         },
         {
@@ -1303,7 +1525,7 @@
             "pathLabel": "Agent practice path",
             "stepNumber": 1,
             "stepTotal": 1,
-            "body": "Before starting the 3A practices, quickly check that you understand the division of work. Mark done when you can name which role does what and where the human approval is needed.",
+            "body": "Before the quick start (124.5) and the 3A practices, quickly check that you understand the division of work. Mark done when you can name which role does what and where human approval is needed.",
             "sections": [
               {
                 "heading": "What to check",
@@ -1319,56 +1541,168 @@
                 "body": "Go back to the previous slide “Business multi-agent schema” (120.5) and review the handoff rule again."
               }
             ],
-            "footer": "Next – slide 5: Practice 1 – Automatize"
+            "footer": "Next – Coordinator + 2 specialists (124.5)"
+          }
+        },
+        {
+          "id": 124.5,
+          "title": "Scenario: Coordinator + 2 specialists",
+          "subtitle": "Multi-agent prompt pipeline without code",
+          "type": "practice-scenario",
+          "scenario": {
+            "narrativeLead": "Run manual pipeline: 3 separate AI chats with handoff rules. Context: weekly sales summary or RFP research.",
+            "situation": "SHOULD: multi-agent practice in business terms – coordinator, specialist, evaluator.",
+            "context": "Pick topic (sales summary or RFP). Use 3 prompts in separate chats. Record diagram and 1 test case.",
+            "data": "Artefacts: diagram (roles + handoff), 3 prompts, 1 test case (e.g. missing data).",
+            "constraints": "Without Zapier/Make – only prompt orchestration. HITL before final send.",
+            "expectedFormat": "Diagram + 3 copied prompts + test case description."
+          },
+          "practicalTask": {
+            "title": "Multi-agent prompt pipeline",
+            "placeholder": "Paste diagram, 3 prompts and test case summary…",
+            "templateLabel": "3 prompts – coordinator, specialist, evaluator",
+            "template": "COORDINATOR: You are the coordinator. Task: [DESCRIBE]. Break into 2 sub-tasks, assign roles, handoff rules.\n\nSPECIALIST: You are [researcher/writer]. Input: [from coordinator]. Do [X]. Output: [format].\n\nEVALUATOR: Check all criteria are met. If not – return for revision with specific points.",
+            "explanation": "Manual pipeline prepares multi-agent thinking without a framework. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
+            "allowMarkWithoutAnswer": true,
+            "instructions": {
+              "title": "Steps",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "Run coordinator prompt",
+                  "description": "Get plan with roles and handoff."
+                },
+                {
+                  "step": 2,
+                  "title": "Run specialist prompt",
+                  "description": "Pass coordinator output as input."
+                },
+                {
+                  "step": 3,
+                  "title": "Run evaluator prompt",
+                  "description": "Check and record 1 test case."
+                },
+                {
+                  "step": 4,
+                  "title": "Write a Skill pack",
+                  "description": "Combine the 3 prompts into one reusable description: name, when to use, roles, steps, limits, check, and lesson."
+                }
+              ]
+            }
+          },
+          "recommended": true,
+          "content": {
+            "scenarioTitle": "Coordinator + 2 specialists",
+            "scenarioDescription": "3 CopyButton prompts: coordinator, specialist, evaluator. Run manual pipeline. Artefacts: diagram + 3 prompts + 1 test case.",
+            "taskFrame": "Task",
+            "template": "COORDINATOR: You are the coordinator. Task: [DESCRIBE]. Break into 2 sub-tasks, assign roles, handoff rules.\n\nSPECIALIST: You are [researcher/writer]. Input: [from coordinator]. Do [X]. Output: [format].\n\nEVALUATOR: Check all criteria are met. If not – return for revision with specific points.",
+            "templateLabel": "3 prompts – coordinator, specialist, evaluator",
+            "footer": "Next – Research agent"
+          }
+        },
+        {
+          "id": 124,
+          "title": "Scenario: Research agent",
+          "subtitle": "Search + summary + sources",
+          "type": "practice-scenario",
+          "scenario": {
+            "narrativeLead": "Pick a topic and use the prompt below with search and sources.",
+            "situation": "Optional scenario: research agent – search, summary and sources in one task.",
+            "context": "Task: search + summary + sources. Copy prompt into AI and run with your topic.",
+            "data": "Use AI with search enabled. Fill placeholders ([X], [ROLE]) with your topic.",
+            "constraints": "If no sources – write “Not found” and why. Do not invent links.",
+            "expectedFormat": "Artefact: summary with links or clear “Not found” message."
+          },
+          "practicalTask": {
+            "title": "Complete research agent task",
+            "placeholder": "Paste AI answer summary or your notes on sources…",
+            "templateLabel": "Prompt – copy to AI",
+            "template": "Role: [ROLE]. Task: (1) Search [X], (2) pick 3–5 key sources, (3) write summary in English with links. If not found – write “Not found” and why.",
+            "explanation": "Prepares agent thinking without a full workflow tool. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
+            "allowMarkWithoutAnswer": true,
+            "instructions": {
+              "title": "Steps",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "Copy prompt and paste into AI with search enabled",
+                  "description": "Fill [X] with your topic. Run and review sources.",
+                  "hint": "Fill in [X] with your topic. Run it and review the sources.",
+                  "partialSolution": "Fill in [X] with your topic. Run it and review the sources."
+                }
+              ]
+            }
+          },
+          "recommended": false,
+          "content": {
+            "scenarioTitle": "Research agent",
+            "scenarioDescription": "Task: search + summary + sources. Copy prompt into AI and run with your topic.",
+            "taskFrame": "Task",
+            "scenario": {
+              "narrativeLead": "Pick a topic and use the prompt below with search and sources."
+            },
+            "template": "Role: [ROLE]. Task: (1) Search [X], (2) pick 3–5 key sources, (3) write summary in English with links. If not found – write “Not found” and why.",
+            "templateLabel": "Prompt – copy to AI",
+            "instructions": {
+              "title": "Steps",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "Copy prompt and paste into AI with search enabled",
+                  "description": "Fill [X] with your topic. Run and review sources."
+                }
+              ]
+            },
+            "footer": "Next – Practice 1: Automatize"
           }
         },
         {
           "id": 121,
           "title": "Practice 1: Automatize (80 %)",
-          "subtitle": "Form → Sheets/CRM → Email → Slack/Teams (Zapier or Make)",
+          "subtitle": "Form → CRM → email → Slack (platform or prompt-only)",
           "type": "practice-scenario",
           "scenario": {
             "narrativeLead": "Pick a form and destinations (Sheets/CRM, email, Slack or Teams). Build the workflow and record artefacts.",
             "situation": "Automatize (80 %): rule-based flows – form to CRM, email and team notification without manual decision at each step.",
-            "context": "Build workflow: Form (Google Forms / Typeform) → Sheets or CRM → personalised email → Slack/Teams. Tool: Zapier or Make.",
+            "context": "Build a workflow: form → sheet or CRM → personalized email → Slack / Teams. Tool: Zapier/Make **or** prompt-only spec without a platform.",
             "data": "Rule-based flows. Task: build a working workflow and record artefacts – diagram, field mapping, tests, log evidence.",
-            "constraints": "Use Zapier or Make (free tier is enough). Describe what to do if API does not respond (error handling).",
-            "expectedFormat": "Artefacts: 1-page workflow spec (trigger, input schema, conditions, actions, output, error handling), field mapping, at least 2 test cases, log or screenshot evidence."
+            "constraints": "**Recommended:** Zapier or Make (free tier is enough). **Prompt-only fallback (no account):** describe the same flow as a 1-page spec + 2 test cases in an AI chat – without a live Zapier run. In both paths, describe error handling if the API fails.",
+            "expectedFormat": "Artefacts: 1-page workflow spec (trigger, input schema, conditions, actions, output, error handling), field mapping, at least 2 test cases. **Platform path:** + logs or screenshots. **Prompt-only:** + AI chat excerpt with the filled spec."
           },
           "practicalTask": {
             "title": "Record workflow and artefacts (Automatize)",
             "placeholder": "Enter or paste your workflow description, field mapping and test case summary…",
             "templateLabel": "Workflow specification – template",
             "template": "Trigger: new form submission. Actions: (1) Write to Sheets/CRM with field mapping, (2) send personalised email, (3) notify team Slack/Teams. Error handling: what to do if API does not respond.",
-            "explanation": "Artefacts prove the workflow was built and tested.",
+            "explanation": "Artefacts prove the workflow was built and tested. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
               "title": "Steps and artefacts",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Build workflow in Zapier or Make (Form → Sheets/CRM → Email → Slack/Teams)",
-                  "description": "Use free account tier.",
-                  "hint": "Use free account tier.",
-                  "partialSolution": "Use free account tier."
+                  "title": "Build or describe the flow (platform or prompt-only)",
+                  "description": "Platform: form → sheet / CRM → email → Slack / Teams. Prompt-only: write the same flow in AI + the spec template.",
+                  "hint": "If you lack Zapier/Make – use the prompt-only fallback.",
+                  "partialSolution": "Use a free account tier."
                 },
                 {
                   "step": 2,
-                  "title": "Fill 1-page workflow specification",
-                  "description": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).",
-                  "hint": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).",
-                  "partialSolution": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18)."
+                  "title": "Fill a 1-page workflow specification",
+                  "description": "Trigger, input schema, condition, actions, output, error handling.",
+                  "hint": "Trigger, input schema, condition, actions, output, error handling (see automation tools doc).",
+                  "partialSolution": "Trigger, input schema, condition, actions, output, error handling (see automation tools doc)."
                 },
                 {
                   "step": 3,
-                  "title": "Field mapping: form field → CRM/Sheets column",
-                  "description": "Short table or list.",
-                  "hint": "Short table or list.",
-                  "partialSolution": "Short table or list."
+                  "title": "Field mapping + 2 test cases",
+                  "description": "Form field → CRM / sheet column. Min. 2 test cases. Platform – logs / screenshots; prompt-only – AI answer excerpt.",
+                  "hint": "Successful run + one error case (or their description).",
+                  "partialSolution": "A short table or list."
                 },
                 {
                   "step": 4,
-                  "title": "Write min. 2 test cases and capture logs/screenshots",
+                  "title": "Write at least 2 test cases and capture logs / screenshots",
                   "description": "Successful run + one error case.",
                   "hint": "Successful run + one error case.",
                   "partialSolution": "Successful run + one error case."
@@ -1410,7 +1744,8 @@
                   "description": "Successful run + one error case."
                 }
               ]
-            }
+            },
+            "footer": "Next – Practice 2: Augment"
           }
         },
         {
@@ -1423,37 +1758,37 @@
             "situation": "Augment (15 %): human decides, AI helps – e.g. email → summary → approval before send.",
             "context": "Flow: incoming email → AI summary (e.g. ChatGPT or Make AI module) → human approval before send → send.",
             "data": "Task: build workflow and prepare artefacts – diagram, summary prompt template, approval step description, 1–2 test cases.",
-            "constraints": "Use Make or Zapier with AI module. Clearly describe who sees the summary and who approves.",
-            "expectedFormat": "Artefacts: workflow diagram, summary prompt, approval rule, 1–2 test cases."
+            "constraints": "**Recommended:** Make or Zapier with an AI module. **Prompt-only fallback:** create summary + evaluator prompts and describe the approval step without a live workflow. Clearly state who sees the summary and who approves.",
+            "expectedFormat": "Artefacts: workflow schema (1 p.), summary prompt, approval rule, 1–2 test cases. **Prompt-only:** schema + prompts are enough (no platform logs)."
           },
           "practicalTask": {
             "title": "Record augment workflow and artefacts",
             "placeholder": "Enter workflow summary, summary prompt and approval rules…",
             "templateLabel": "Summary template and approval rule",
             "template": "Summary prompt: From this email extract: (1) sender and date, (2) main topic in one sentence, (3) 3–5 bullet points. Human-in-the-loop: before sending human approves or edits.\n\nEVALUATOR PROMPT: Check the summary: (1) tone suitable for client, (2) facts match original, (3) no excess PII. If not – return list of fixes.",
-            "explanation": "Human approval reduces risk of wrong automatic send.",
+            "explanation": "Human approval reduces risk of wrong automatic send. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
               "title": "Steps and artefacts",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Build workflow: trigger (new email) → AI summary → approval step → send",
-                  "description": "Use Make or Zapier with AI module.",
-                  "hint": "Use Make or Zapier with AI module.",
-                  "partialSolution": "Use Make or Zapier with AI module."
+                  "title": "Build or describe the Augment flow",
+                  "description": "Trigger (new email) → AI summary → approval step → send. On a platform or as a prompts + schema draft.",
+                  "hint": "Prompt-only fallback is allowed without Zapier/Make.",
+                  "partialSolution": "Use Make or Zapier with an AI module."
                 },
                 {
                   "step": 2,
-                  "title": "Write summary prompt template and approval step description",
-                  "description": "Who sees, who approves, what to do if rejected.",
-                  "hint": "Who sees, who approves, what to do if rejected.",
-                  "partialSolution": "Who sees, who approves, what to do if rejected."
+                  "title": "Write summary prompt template and approval step",
+                  "description": "Who sees, who approves, what happens on reject. Copy the template below.",
+                  "hint": "Who sees, who approves, what happens on reject.",
+                  "partialSolution": "Who sees it, who approves, what to do if rejected."
                 },
                 {
                   "step": 3,
-                  "title": "Write 1–2 test cases and workflow diagram (1 p.)",
-                  "description": "Happy path + one edge case.",
+                  "title": "1–2 test cases + schema (1 p.)",
+                  "description": "Happy path + one edge case. Platform – run evidence; prompt-only – AI chat result.",
                   "hint": "Happy path + one edge case.",
                   "partialSolution": "Happy path + one edge case."
                 }
@@ -1489,7 +1824,8 @@
                   "description": "Happy path + one edge case."
                 }
               ]
-            }
+            },
+            "footer": "Next – Practice 3: Autonomize"
           }
         },
         {
@@ -1501,39 +1837,39 @@
             "narrativeLead": "Build sentiment-based escalation workflow. Define thresholds and what to do in an incident.",
             "situation": "Autonomize (5 %): AI agent with limits – feedback, sentiment, escalation to ticket or task.",
             "context": "Flow (roles): **Classifier** → **Sentiment specialist** → **Escalation coordinator** → ticket. Feedback (CRM/form) → sentiment AI → escalation → ticket (Jira, Trello, Teams).",
-            "data": "Task: define thresholds, escalation rules and prepare artefacts – diagram, link to incident playbook.",
-            "constraints": "Use Make, n8n or Zapier with AI module. State when to create ticket and which fields to fill.",
-            "expectedFormat": "Artefacts: workflow diagram (1 p.), sentiment threshold definition, escalation rules, link to incident playbook (5 steps, see doc §20)."
+            "data": "Task: define thresholds, escalation rules and prepare a schema. Incident plan – optional (M10 10.65).",
+            "constraints": "**Recommended:** Make, n8n or Zapier with an AI module. **Prompt-only fallback:** define sentiment thresholds, escalation rules and a 1 p. schema without a platform. State when to create a ticket.",
+            "expectedFormat": "Artefacts: workflow schema (1 p.), sentiment thresholds, escalation rules. **Optional:** link to incident plan (5 steps). **Prompt-only:** schema + thresholds are enough."
           },
           "practicalTask": {
             "title": "Record autonomous workflow and rules",
             "placeholder": "Enter sentiment thresholds, escalation rules and workflow summary…",
             "templateLabel": "Sentiment and escalation rules",
             "template": "Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.",
-            "explanation": "Clear rules prevent wrong mass escalation.",
+            "explanation": "Clear rules prevent wrong mass escalation. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
               "title": "Steps and artefacts",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Build workflow: feedback → sentiment AI → condition (if < threshold) → ticket/task",
-                  "description": "Use Make, n8n or Zapier with AI module.",
-                  "hint": "Use Make, n8n or Zapier with AI module.",
-                  "partialSolution": "Use Make, n8n or Zapier with AI module."
+                  "title": "Build or describe the Autonomize flow",
+                  "description": "Feedback → sentiment with AI → condition → ticket / task. On a platform or as prompts + schema draft.",
+                  "hint": "Prompt-only fallback is allowed without a platform.",
+                  "partialSolution": "Use Make, n8n or Zapier with an AI module."
                 },
                 {
                   "step": 2,
                   "title": "Define sentiment thresholds and escalation rules",
-                  "description": "When to create ticket, which fields to fill.",
-                  "hint": "When to create ticket, which fields to fill.",
-                  "partialSolution": "When to create ticket, which fields to fill."
+                  "description": "When to create a ticket, which fields to fill. Fill the template below.",
+                  "hint": "When to create a ticket, which fields to fill.",
+                  "partialSolution": "When to create a ticket, which fields to fill."
                 },
                 {
                   "step": 3,
-                  "title": "Write workflow diagram (1 p.) and link to incident playbook (5 steps)",
-                  "description": "See doc §20 – stop, record, assess, notify, fix.",
-                  "hint": "See doc §20 – stop, record, assess, notify, fix.",
+                  "title": "Write schema (1 p.) with roles",
+                  "description": "Classifier → Sentiment specialist → Escalation coordinator. Incident plan – optional (see M10 10.65).",
+                  "hint": "Incident plan is optional, not a required artefact.",
                   "partialSolution": "See doc §20 – stop, record, assess, notify, fix."
                 }
               ]
@@ -1568,191 +1904,50 @@
                   "description": "See doc §20 – stop, record, assess, notify, fix."
                 }
               ]
-            }
-          }
-        },
-        {
-          "id": 124,
-          "title": "Scenario: Research agent",
-          "subtitle": "Search + summary + sources",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Pick a topic and use the prompt below with search and sources.",
-            "situation": "Optional scenario: research agent – search, summary and sources in one task.",
-            "context": "Task: search + summary + sources. Copy prompt into AI and run with your topic.",
-            "data": "Use AI with search enabled. Fill placeholders ([X], [ROLE]) with your topic.",
-            "constraints": "If no sources – write “Not found” and why. Do not invent links.",
-            "expectedFormat": "Artefact: summary with links or clear “Not found” message."
-          },
-          "practicalTask": {
-            "title": "Complete research agent task",
-            "placeholder": "Paste AI answer summary or your notes on sources…",
-            "templateLabel": "Prompt – copy to AI",
-            "template": "Role: [ROLE]. Task: (1) Search [X], (2) pick 3–5 key sources, (3) write summary in English with links. If not found – write “Not found” and why.",
-            "explanation": "Prepares agent thinking without a full workflow tool.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy prompt and paste into AI with search enabled",
-                  "description": "Fill [X] with your topic. Run and review sources.",
-                  "hint": "Fill [X] with your topic. Run and review sources.",
-                  "partialSolution": "Fill [X] with your topic. Run and review sources."
-                }
-              ]
-            }
-          },
-          "recommended": false,
-          "content": {
-            "scenarioTitle": "Research agent",
-            "scenarioDescription": "Task: search + summary + sources. Copy prompt into AI and run with your topic.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Pick a topic and use the prompt below with search and sources."
             },
-            "template": "Role: [ROLE]. Task: (1) Search [X], (2) pick 3–5 key sources, (3) write summary in English with links. If not found – write “Not found” and why.",
-            "templateLabel": "Prompt – copy to AI",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy prompt and paste into AI with search enabled",
-                  "description": "Fill [X] with your topic. Run and review sources."
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": 124.5,
-          "title": "Scenario: Coordinator + 2 specialists",
-          "subtitle": "Multi-agent prompt pipeline without code",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Run manual pipeline: 3 separate AI chats with handoff rules. Context: weekly sales summary or RFP research.",
-            "situation": "SHOULD: multi-agent practice in business terms – coordinator, specialist, evaluator.",
-            "context": "Pick topic (sales summary or RFP). Use 3 prompts in separate chats. Record diagram and 1 test case.",
-            "data": "Artefacts: diagram (roles + handoff), 3 prompts, 1 test case (e.g. missing data).",
-            "constraints": "Without Zapier/Make – only prompt orchestration. HITL before final send.",
-            "expectedFormat": "Diagram + 3 copied prompts + test case description."
-          },
-          "practicalTask": {
-            "title": "Multi-agent prompt pipeline",
-            "placeholder": "Paste diagram, 3 prompts and test case summary…",
-            "templateLabel": "3 prompts – coordinator, specialist, evaluator",
-            "template": "COORDINATOR: You are the coordinator. Task: [DESCRIBE]. Break into 2 sub-tasks, assign roles, handoff rules.\n\nSPECIALIST: You are [researcher/writer]. Input: [from coordinator]. Do [X]. Output: [format].\n\nEVALUATOR: Check all criteria are met. If not – return for revision with specific points.",
-            "explanation": "Manual pipeline prepares multi-agent thinking without a framework.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Run coordinator prompt",
-                  "description": "Get plan with roles and handoff."
-                },
-                {
-                  "step": 2,
-                  "title": "Run specialist prompt",
-                  "description": "Pass coordinator output as input."
-                },
-                {
-                  "step": 3,
-                  "title": "Run evaluator prompt",
-                  "description": "Check and record 1 test case."
-                },
-                {
-                  "step": 4,
-                  "title": "AI agent step",
-                  "description": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
-                }
-              ]
-            }
-          },
-          "recommended": true,
-          "content": {
-            "scenarioTitle": "Coordinator + 2 specialists",
-            "scenarioDescription": "3 CopyButton prompts: coordinator, specialist, evaluator. Run manual pipeline. Artefacts: diagram + 3 prompts + 1 test case.",
-            "taskFrame": "Task",
-            "template": "COORDINATOR: You are the coordinator. Task: [DESCRIBE]. Break into 2 sub-tasks, assign roles, handoff rules.\n\nSPECIALIST: You are [researcher/writer]. Input: [from coordinator]. Do [X]. Output: [format].\n\nEVALUATOR: Check all criteria are met. If not – return for revision with specific points.",
-            "templateLabel": "3 prompts – coordinator, specialist, evaluator"
+            "footer": "Next – Extra: revisit M10 (optional)"
           }
         },
         {
           "id": 125,
-          "title": "Scenario: Report generator",
-          "subtitle": "Several steps – data → analysis → report",
+          "title": "Optional: repeat M10",
+          "subtitle": "Report, tools, error handling – pick one",
           "type": "content-block",
           "optional": true,
           "content": {
-            "whyBenefit": "After this step you will have a clearer AI agent workflow.",
+            "whyBenefit": "These 3 prompts repeat Module 10 basics in another context. Pick the one most relevant – you do not need all three.",
             "sections": [
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing.",
-                "blockVariant": "terms"
+                "heading": "In short",
+                "body": "Pick **one** of three: report, tool use, or error handling. Copy, run AI, check the result.",
+                "blockVariant": "accent",
+                "copyable": "META: [ROLE]. INPUT: [DATA]. OUTPUT: 1 page, 3–5 bullets, clear language."
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing.",
-                "blockVariant": "terms"
+                "heading": "Do this now: report generator",
+                "body": "META + INPUT + OUTPUT – data → analysis → 1-page report. Fill [ROLE] and [DATA], run.",
+                "copyable": "META: [ROLE]. INPUT: [DATA]. OUTPUT: 1 page, 3–5 bullet points, English.",
+                "blockVariant": "brand"
               },
               {
-                "heading": "Agent engineering step",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing.",
-                "blockVariant": "terms"
+                "heading": "Do this now: tool usage",
+                "body": "Enable search or calculator on the platform and check whether AI used the tool in the answer.",
+                "copyable": "Use [tool – search or calculator] and provide the result with a short explanation. Task: [DESCRIBE].",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Do this now: error handling",
+                "body": "Add to the system prompt and try a task without data – AI must clearly say when it cannot complete.",
+                "copyable": "If the task cannot be completed: write “Failed: [reason]” and suggest what the user can fix. Never return an empty answer.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "In the chosen prompt result, do you see a concrete output (report, source, or “Failed”)? If not – fix the [ ] fields and run again.",
+                "blockVariant": "accent"
               }
             ],
-            "scenarioTitle": "Report generator",
-            "scenarioDescription": "Task: several steps (data → analysis → 1-page report). Use META + INPUT + OUTPUT.",
-            "taskFrame": "Task",
-            "scenario": {
-              "narrativeLead": "Fill META, INPUT, OUTPUT and get one page of structured report."
-            },
-            "template": "META: [ROLE]. INPUT: [DATA]. OUTPUT: 1 page, 3–5 bullet points, English.",
-            "templateLabel": "Prompt – copy to AI",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Fill META, INPUT, OUTPUT and run AI",
-                  "description": "Get 1-page report."
-                }
-              ]
-            }
-          },
-          "scenario": {
-            "narrativeLead": "Fill META, INPUT, OUTPUT and get one page of structured report.",
-            "situation": "Optional scenario: several steps – data → analysis → one-page report with AI.",
-            "context": "Use structured prompt with role, input and desired output.",
-            "data": "Task: several steps (data → analysis → 1-page report). Use META + INPUT + OUTPUT blocks.",
-            "constraints": "Language: English. 3–5 bullet points, clearly separated.",
-            "expectedFormat": "Artefact: 1-page report or draft with prompt used."
-          },
-          "practicalTask": {
-            "title": "Generate report from template",
-            "placeholder": "Paste report or summary from AI…",
-            "templateLabel": "Prompt – copy to AI",
-            "template": "META: [ROLE]. INPUT: [DATA]. OUTPUT: 1 page, 3–5 bullet points, English.",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Fill META, INPUT, OUTPUT and run AI",
-                  "description": "Get 1-page report.",
-                  "hint": "Get 1-page report.",
-                  "partialSolution": "Get 1-page report."
-                }
-              ]
-            }
+            "footer": "Next – Project summary"
           }
         },
         {
@@ -1762,7 +1957,7 @@
           "type": "summary",
           "content": {
             "introHeading": "What you learned",
-            "introBody": "Congratulations! You completed at least one of 3 required practices (Automatize / Augment / Autonomize) or optional scenarios. You have workflow diagram, artefacts and templates for further work.",
+            "introBody": "Congratulations! You finished the Agent path project. Quick start was **124.5 → 124**; required 3 practices (**121–123**) – on a platform or prompt-only. Optional 125 – extra practice.",
             "stats": [
               {
                 "label": "Required practices",
@@ -1770,7 +1965,7 @@
               },
               {
                 "label": "Scenarios",
-                "value": "4"
+                "value": "3+"
               },
               {
                 "label": "Artefacts",
@@ -1812,113 +2007,17 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Agent engineering project results.\nINPUT: I just finished Module 12: at least one of 3 required practices (Automatize / Augment / Autonomize) and maybe optional scenarios – I have workflow diagram and artefacts.\nOUTPUT: Ask 3 questions: (1) Which agent or workflow step will I apply in 24 hours? (2) What was newest? (3) What do I want to try first with a real process? After my answers, give one concrete tip.",
+            "reflectionPrompt": "**Apply:** Which artefact will I use at work within 48 hours?\n**Analyze:** Which 3A band is my process in – and is security enough?\n**Create:** Which one rule / prompt / test will I update after the run?\n\nMETA: You are a training reflection assistant. Goal – consolidate Agent engineering project results.\nINPUT: I just finished Module 12: at least one of 3 required practices (Automatize / Augment / Autonomize) and maybe optional scenarios – I have workflow diagram and artefacts.\nOUTPUT: Ask 3 questions: (1) Which agent or workflow step will I apply in 24 hours? (2) What was newest? (3) What do I want to try first with a real process? After my answers, give one concrete tip.",
             "tagline": "3 practices + artefacts = working result first.",
             "nextStepCTA": "Go to Module 13: Content engineering with AI",
             "firstAction24h": "In 24–48 hours run one workflow in your project (Zapier / Make / AI with tools) or repeat the same scenario with another form."
-          }
-        },
-        {
-          "id": 126,
-          "title": "Scenario: Tool usage",
-          "subtitle": "Use search or calculator",
-          "scenario": {
-            "narrativeLead": "Enable tool on platform and check whether AI used it in the answer.",
-            "situation": "Optional scenario: AI uses a tool (search or calculator) in your task.",
-            "context": "Task: use search and calculator (or one tool). Result with explanation.",
-            "data": "Fill [tool] and [DESCRIBE] per your need.",
-            "constraints": "If platform does not support tool – pick another AI environment or note what blocked you.",
-            "expectedFormat": "Artefact: answer with tool trace (sources, numbers) or short diagnosis why it failed."
-          },
-          "practicalTask": {
-            "title": "Verify tool usage",
-            "placeholder": "Describe which tool you used and what you got…",
-            "templateLabel": "Prompt – copy to AI",
-            "template": "Use [tool – search or calculator] and provide result with short explanation. Task: [DESCRIBE].",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Enable tool on platform and run prompt",
-                  "description": "Check whether AI used the tool.",
-                  "hint": "Check whether AI used the tool.",
-                  "partialSolution": "Check whether AI used the tool."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "Tool usage",
-            "scenarioDescription": "Task: use search and calculator (or one tool). Result with explanation.",
-            "taskFrame": "Task",
-            "template": "Use [tool – search or calculator] and provide result with short explanation. Task: [DESCRIBE].",
-            "templateLabel": "Prompt – copy to AI",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Enable tool on platform and run prompt",
-                  "description": "Check whether AI used the tool."
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": 127,
-          "title": "Scenario: Error handling and limits",
-          "subtitle": "System prompt with limits",
-          "scenario": {
-            "narrativeLead": "Add this text to system prompt and try a task without data.",
-            "situation": "Optional scenario: limits and errors – AI must clearly say when it cannot complete.",
-            "context": "Task: system prompt with limits; test what AI answers when data is missing.",
-            "data": "Use sentence about “Failed” and reason. Try deliberately empty or invalid input.",
-            "constraints": "Never return empty answer – clear message for user.",
-            "expectedFormat": "Artefact: screen summary or copied AI answer with “Failed” logic."
-          },
-          "practicalTask": {
-            "title": "Test error handling",
-            "placeholder": "Enter what AI answered when data was missing…",
-            "templateLabel": "Add to system prompt",
-            "template": "If the task cannot be completed: write “Failed: [reason]” and suggest what the user can fix. Never return an empty answer.",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Add this text to system prompt and try task without data",
-                  "description": "Check whether AI returns clear “Failed” message.",
-                  "hint": "Check whether AI returns clear “Failed” message.",
-                  "partialSolution": "Check whether AI returns clear “Failed” message."
-                }
-              ]
-            }
-          },
-          "content": {
-            "scenarioTitle": "Error handling and limits",
-            "scenarioDescription": "Task: system prompt with limits; test what AI answers when data is missing.",
-            "taskFrame": "Task",
-            "template": "If the task cannot be completed: write “Failed: [reason]” and suggest what the user can fix. Never return an empty answer.",
-            "templateLabel": "Add to system prompt",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Add this text to system prompt and try task without data",
-                  "description": "Check whether AI returns clear “Failed” message."
-                }
-              ]
-            }
           }
         }
       ],
       "businessExamples": [
         {
           "title": "Automation scenarios",
-          "description": "3 required practices + 4 optional scenarios"
+          "description": "3 required practices + optional scenarios"
         },
         {
           "title": "Capstone – Agent path",

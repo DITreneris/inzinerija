@@ -61,7 +61,7 @@ describe('TestPracticeSlides M12 practice contract', () => {
     );
 
     expect(scenarioSlides.map((slide) => slide.id)).toEqual([
-      121, 122, 123, 124, 124.5,
+      124.5, 124, 121, 122, 123,
     ]);
     expect(rootScenarioSlides.map((slide) => slide.id)).toEqual(
       scenarioSlides.map((slide) => slide.id)
@@ -111,7 +111,7 @@ describe('TestPracticeSlides M12 practice contract', () => {
     ).toBeInTheDocument();
     expect(
       within(requiredPath).getByText(
-        /Modulis laikomas baigtu, kai atliksi 3 pagrindines 3A praktikas/
+        /124\.5 → 124|3 pagrindines 3A praktikas|kelias tik su promptais/
       )
     ).toBeInTheDocument();
     fireEvent.click(

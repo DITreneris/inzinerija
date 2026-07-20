@@ -67,7 +67,8 @@ export function getRoleNode(id: M10TaxonomyRoleId) {
 
 export function getCircleEdgePoints(
   from: M10TaxonomyRoleNode,
-  to: M10TaxonomyRoleNode
+  to: M10TaxonomyRoleNode,
+  markerLen = 0
 ) {
   const dx = to.x - from.x;
   const dy = to.y - from.y;
@@ -78,7 +79,7 @@ export function getCircleEdgePoints(
   return {
     x1: from.x + ux * from.r,
     y1: from.y + uy * from.r,
-    x2: to.x - ux * to.r,
-    y2: to.y - uy * to.r,
+    x2: to.x - ux * (to.r + markerLen),
+    y2: to.y - uy * (to.r + markerLen),
   };
 }

@@ -35,6 +35,7 @@ export { default as M10TriggerFlowBlock } from './M10TriggerFlowBlock';
 export { default as M10ThreeAStrategyBlock } from './M10ThreeAStrategyBlock';
 export { default as M10AgentTaxonomyBlock } from './M10AgentTaxonomyBlock';
 export { default as M10LearningLoopBlock } from './M10LearningLoopBlock';
+export { default as M10OrchestratorBlock } from './M10OrchestratorBlock';
 export { default as M10ToolDecisionTreeBlock } from './M10ToolDecisionTreeBlock';
 export { default as M10WorkflowSpecBlock } from './M10WorkflowSpecBlock';
 export { default as M10IncidentPlaybookBlock } from './M10IncidentPlaybookBlock';

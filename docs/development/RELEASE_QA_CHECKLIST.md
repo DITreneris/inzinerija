@@ -78,6 +78,29 @@
 - [ ] **Design-token regression gate (DS hardening):** `npm run audit:design-tokens:gate` – exit 0 (ne didesnis nei DS Next Waves baseline: total 417, arbitrary 59).
 - [ ] **Module identity gate:** `npm run audit:module-identity` – visi M1–15 moduliai turi `accent` + `identityIcon` (`modules.json`).
 
+### 5b1. M10–12 diagram browser smoke (B2.5)
+
+> **Įtraukta:** 2026-07-17 (P2). Rankinė ~5–8 min full kataloge (`maxModuleId >= 10`). Automatinis baseline: `npm run audit:m1012` + DiagramLocalization testai.
+
+Raktų checklist (po vieną skaidrę / shell):
+
+| Raktas                   | Tipinė skaidrė  | Shell nav count | Dark SVG fonas | Nėra `svg [role=button]` | Enlarge = tas pats React |
+| ------------------------ | --------------- | --------------- | -------------- | ------------------------ | ------------------------ |
+| `agent_workflow_diagram` | 10.2            | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_agent_taxonomy`     | 10.25           | (static OK)     | ✓              | ✓                        | ✓                        |
+| `m10_learning_loop`      | 10.49           | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_agent_orchestrator` | 10.482          | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_tool_decision_tree` | 10.4 / 10.65    | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_trigger_flow`       | 10.15 / related | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_workflow_spec`      | 10.65           | ✓               | ✓              | ✓                        | ✓                        |
+| `m10_incident_playbook`  | 10.65 optional  | ✓               | ✓              | ✓                        | ✓                        |
+| `m12_three_labs`         | 120.25          | (static OK)     | ✓              | ✓                        | ✓                        |
+| `m12_multi_agent_schema` | 120.5           | ✓               | ✓              | ✓                        | ✓                        |
+
+- [x] **P2 code/doc gate (2026-07-17):** stub EN path-steps cleared; `audit:m1012` paleidžiamas prieš release; nėra žinomų blocking diagram bug'ų šiame sprint'e (M10-DIA-02/03 ir full shell ant static comparison – ne P2).
+- [x] **Automated diagram smoke (2026-07-20):** `DiagramLocalization` + `m10m12LayoutGeometry` + `diagramRenderers` – shell nav / no `svg [role=button]` / dark palette contracts for M10–12 keys (įsk. `m10_agent_orchestrator`); path order smoke: M10 `10.51→10.6→10.61→10.15`, M11 `110→110.5→111`, M12 `124.5→124→121–123`.
+- [ ] **Rankinis browser light+dark vizualinė patikra prieš M10–12 release:** užpildyti lentelę aukščiau UI; blokuojančius bug'us fiksuoti TODO, ne naujas features.
+
 ---
 
 ## 5d. M1 / M4 / M5 / M6 / M7–9 / M10–12 / M13–15 PDF ir pasirinktų skaidrių rankinė (prieš release, rekomenduojama)

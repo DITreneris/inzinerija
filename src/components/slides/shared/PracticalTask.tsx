@@ -64,8 +64,10 @@ export default function PracticalTask({
   const [showInstructions, setShowInstructions] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [showEmptyMarkBanner, setShowEmptyMarkBanner] = useState(false);
   const hasDraft = Boolean(answer && answer.trim() && !isTaskCompleted);
   const answerRef = useRef(answer);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const lastSavedRef = useRef(savedCompleted || '');
   const practiceStartTimeRef = useRef<number | null>(null);
   const hasTrackedStartRef = useRef(false);
@@ -147,8 +149,8 @@ export default function PracticalTask({
     }
   };
 
-  /** W2: pažymėti užduotį atlikta be teksto (optional) */
-  const handleMarkWithoutAnswer = () => {
+  /** Pažymėti atlikta be teksto – tuščiam laukui rodomas inline banner (ne window.confirm). */
+  const completeWithoutAnswer = () => {
     trackPracticeStartIfNeeded();
     const timeToCompleteSec = practiceStartTimeRef.current
       ? Math.round((Date.now() - practiceStartTimeRef.current) / 1000)
@@ -158,14 +160,25 @@ export default function PracticalTask({
       slide_id: slideId,
       practice_id: slideId,
       time_to_complete_sec: timeToCompleteSec,
+      marked_without_answer: true,
     });
     saveCompletedContent(completedContentKey, '—');
     lastSavedRef.current = '—';
     setAnswer('—');
+    setShowEmptyMarkBanner(false);
     onTaskComplete(slideId);
     clearAutoSave(autoSaveKey);
     setShowCompleteFeedback(true);
     setTimeout(() => setShowCompleteFeedback(false), 2500);
+  };
+
+  const handleMarkWithoutAnswer = () => {
+    const empty = !answer?.trim() || answer.trim() === '—';
+    if (empty) {
+      setShowEmptyMarkBanner(true);
+      return;
+    }
+    completeWithoutAnswer();
   };
 
   const handleSaveEdits = () => {
@@ -411,10 +424,16 @@ export default function PracticalTask({
 
       <div className="relative">
         <textarea
+          ref={textareaRef}
           className="input min-h-[120px] font-mono text-sm"
           placeholder={task.placeholder}
           value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          onChange={(e) => {
+            setAnswer(e.target.value);
+            if (showEmptyMarkBanner && e.target.value.trim()) {
+              setShowEmptyMarkBanner(false);
+            }
+          }}
           onFocus={trackPracticeStartIfNeeded}
           disabled={isTaskCompleted && !isEditing}
           aria-label={t('practicalTaskAnswerAria')}
@@ -476,15 +495,60 @@ export default function PracticalTask({
               {t('practicalSaveTask')}
             </CTAButton>
             {task.allowMarkWithoutAnswer && (
-              <button
-                type="button"
-                onClick={handleMarkWithoutAnswer}
-                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-gray-600 underline-offset-4 transition-colors hover:text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-brand-300 dark:focus-visible:ring-offset-gray-900"
-                aria-label={t('practicalMarkDoneWithoutTextAria')}
-              >
-                <CheckCircle className="w-4 h-4" />
-                {t('practicalMarkedDone')}
-              </button>
+              <div className="flex w-full flex-col gap-2 sm:w-auto">
+                {!answer?.trim() && !showEmptyMarkBanner && (
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
+                    {t('practicalMarkEmptyHint')}
+                  </p>
+                )}
+                {showEmptyMarkBanner && (
+                  <div
+                    role="alertdialog"
+                    aria-labelledby="practical-empty-mark-title"
+                    aria-describedby="practical-empty-mark-desc"
+                    className="rounded-xl border border-amber-300 bg-amber-50 p-3 dark:border-amber-700 dark:bg-amber-900/30"
+                  >
+                    <p
+                      id="practical-empty-mark-title"
+                      className="text-sm font-semibold text-amber-900 dark:text-amber-100"
+                    >
+                      {t('practicalMarkEmptyTitle')}
+                    </p>
+                    <p
+                      id="practical-empty-mark-desc"
+                      className="mt-1 text-xs text-amber-800 dark:text-amber-200"
+                    >
+                      {t('practicalMarkEmptyWarning')}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <CTAButton
+                        variant="secondary"
+                        onClick={() => {
+                          setShowEmptyMarkBanner(false);
+                          textareaRef.current?.focus();
+                        }}
+                      >
+                        {t('practicalMarkEnterSummary')}
+                      </CTAButton>
+                      <CTAButton
+                        variant="primary"
+                        onClick={completeWithoutAnswer}
+                      >
+                        {t('practicalMarkAnyway')}
+                      </CTAButton>
+                    </div>
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={handleMarkWithoutAnswer}
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-gray-600 underline-offset-4 transition-colors hover:text-brand-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:text-gray-300 dark:hover:text-brand-300 dark:focus-visible:ring-offset-gray-900"
+                  aria-label={t('practicalMarkDoneWithoutTextAria')}
+                >
+                  <CheckCircle className="w-4 h-4" />
+                  {t('practicalMarkedDone')}
+                </button>
+              </div>
             )}
           </div>
         </div>

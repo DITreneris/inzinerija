@@ -475,6 +475,12 @@ Jei užduoties atlikti negalima (trūksta duomenų, neleistinas veiksmas arba ti
 
 **Kur pritaikyti:** Visose agentų sistemose – geresnė vartotojo patirtis ir saugesnis elgesys.
 
+### 4.4a Savitikra prieš workflow sąvokas (10.61)
+
+**Tikslas:** Trumpa formuojanti savitikra po **10.6**, prieš **10.15** – energijos palaikymas, ne 10.15 dubliavimas.
+
+**Klausimai (warm-up-quiz):** Nepavyko pranešimas; kada agentas vs promptas; paieškos / įrankio cue.
+
 ---
 
 ## 5. Žodynėlis (optional skaidrė arba collapsible)
@@ -544,6 +550,12 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 - **firstActionCTA:** Atsakyk į 9 klausimus – dalis su trumpa situacija; temos: agentų ciklas, taksonomija, kelių agentų rolės, darbo eigos šablonai, 3A ir mokymosi ciklas.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad esi pasiruošęs projektuoti agentus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 12 (projektas). &lt;70 % – peržiūrėk rekomenduojamas skaidres (remediation pagal klausimą).
+
+### 7.1a Pre-test warm-up (110.5)
+
+**Tikslas:** Trumpa savitikra po **110**, prieš **111**. Remediacija / deep-link neprivaloma.
+
+**Klausimai:** agentas vs promptas; 3A Augment juosta; router ≠ orkestratorius (10.482 / 10.485).
 
 ### 7.2 test-section ir test-results
 

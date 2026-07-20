@@ -11798,6 +11798,83 @@
           }
         },
         {
+          "id": 10.481,
+          "title": "Skyrius: keli agentai → darbo eiga",
+          "subtitle": "5 šablonai įveikti – toliau agentų projektavimas praktikoje.",
+          "type": "section-break",
+          "content": {
+            "title": "Skyrius: keli agentai → darbo eiga",
+            "subtitle": "Toliau: uždaro mokymosi ciklas, rolė, įrankiai ir klaidos tvarkymas.",
+            "sectionNumber": "M10",
+            "footer": "Toliau – orkestravimo simuliacija",
+            "celebrationText": "Puiku! Taksonomija ir 5 workflow šablonai – jau tavo arsenale.",
+            "nextSteps": [
+              "Uždaro mokymosi ciklas – kaip klaidos tampa taisyklėmis ir įgūdžiais.",
+              "Rolė ir sisteminis promptas – kaip nustatyti agento ribas.",
+              "Įrankių pasirinkimas – paieška, API, platformos.",
+              "Kada agentas, kada paprastas promptas.",
+              "Klaidos tvarkymas – aiškus „nepavyko“ pranešimas."
+            ],
+            "recap": {
+              "heading": "Ką jau žinai?",
+              "lead": "Agentų inžinerijos kelias – kelių agentų pamatas.",
+              "items": [
+                "L0–L3 taksonomija – kada pakanka vieno agento, kada reikia kelių.",
+                "Koordinatorius, specialistas, vertintojas, maršrutizatorius – aiškios rolės.",
+                "5 workflow šablonai – grandinė, maršrutizavimas, lygiagretus darbas ir kt."
+              ],
+              "itemGlossaryTerms": [
+                "Agentas (DI)",
+                "Kelių agentų sistema",
+                "Workflow"
+              ]
+            },
+            "spinoffCta": {
+              "label": "Gilesni skaitiniai: agentų workflow (EN)",
+              "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
+            }
+          }
+        },
+        {
+          "id": 10.482,
+          "title": "Agentų orkestravimo simuliacija",
+          "subtitle": "Router ≠ orkestratorius; tikrinimas ≠ vertinimas; tikslinis retry",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Orkestratorius pats neatlieka specializuoto darbo – jis valdo planą, būseną ir taisymo ciklus. Trys skirtumai: **Router = KUR**, **orkestratorius = KAIP**; **tikrinimas** žiūri formatą/šaltinius, **vertintojas** sprendžia Patvirtinti / Kartoti / Žmogui; klaida → **tikslinis** retry, ne visas paleidimas iš naujo.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Simuliacija",
+                "body": "Scenarijus: ES DI Aktas – įdarbinimo DI kontrolinis sąrašas. Pereik 6 makro žingsnius diagramoje.",
+                "image": "m10_agent_orchestrator",
+                "imageAlt": "Agentų orkestravimo srautas: įvestis, router, orkestratorius, specialistai, tikrinimas, vertintojas, rezultatas"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Pereik visus 6 žingsnius. Žingsnyje 5 pastebėk **KARTOTI** kilpą – kas grįžta į orkestratorių ir kodėl ne paleidžiama viskas iš naujo.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar gali vienu sakiniu pasakyti, kuo **maršrutizatorius** skiriasi nuo **orkestratoriaus**? Ar žinai, kada vertintojas sako **Kartoti**, o kada – **perduoti žmogui**?",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Trys skirtumai (giliau)",
+                "body": "**1. Router prieš orkestratorių** – router klasifikuoja užklausą prieš vykdymą; orkestratorius valdo aktyvų planą, būseną ir bandymus.\n\n**2. Agentai prieš įrankius** – agentai turi rolę ir taisykles; įrankiai (paieška, API) yra išorinis sluoksnis, kurį agentai kviečia.\n\n**3. Tikrinimas prieš vertinimą** – tikrinimas tikrina formatą ir šaltinius; vertintojas priima sisteminį sprendimą (Patvirtinti / Kartoti / Žmogui).\n\nSkirtumas nuo skaidrės **120.5**: čia – architektūros simuliacija; ten – paprasta verslo multi-agent schema be programavimo.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              }
+            ],
+            "footer": "Toliau – savitikra: workflow"
+          }
+        },
+        {
           "id": 10.485,
           "title": "Savitikra: workflow šablonai",
           "shortTitle": "Savitikra: workflow",
@@ -11843,44 +11920,6 @@
               }
             ],
             "footer": "Toliau – skaidrė 11: Keli agentai ir darbo eiga"
-          }
-        },
-        {
-          "id": 10.481,
-          "title": "Skyrius: keli agentai → darbo eiga",
-          "subtitle": "5 šablonai įveikti – toliau agentų projektavimas praktikoje.",
-          "type": "section-break",
-          "content": {
-            "title": "Skyrius: keli agentai → darbo eiga",
-            "subtitle": "Toliau: uždaro mokymosi ciklas, rolė, įrankiai ir klaidos tvarkymas.",
-            "sectionNumber": "M10",
-            "footer": "Toliau – skaidrė 12: Uždaro mokymosi ciklas",
-            "celebrationText": "Puiku! Taksonomija ir 5 workflow šablonai – jau tavo arsenale.",
-            "nextSteps": [
-              "Uždaro mokymosi ciklas – kaip klaidos tampa taisyklėmis ir įgūdžiais.",
-              "Rolė ir sisteminis promptas – kaip nustatyti agento ribas.",
-              "Įrankių pasirinkimas – paieška, API, platformos.",
-              "Kada agentas, kada paprastas promptas.",
-              "Klaidos tvarkymas – aiškus „nepavyko“ pranešimas."
-            ],
-            "recap": {
-              "heading": "Ką jau žinai?",
-              "lead": "Agentų inžinerijos kelias – kelių agentų pamatas.",
-              "items": [
-                "L0–L3 taksonomija – kada pakanka vieno agento, kada reikia kelių.",
-                "Koordinatorius, specialistas, vertintojas, maršrutizatorius – aiškios rolės.",
-                "5 workflow šablonai – grandinė, maršrutizavimas, lygiagretus darbas ir kt."
-              ],
-              "itemGlossaryTerms": [
-                "Agentas (DI)",
-                "Kelių agentų sistema",
-                "Workflow"
-              ]
-            },
-            "spinoffCta": {
-              "label": "Gilesni skaitiniai: agentų workflow (EN)",
-              "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
-            }
           }
         },
         {
@@ -12107,7 +12146,56 @@
                 "body": "Ar DI grąžino **„Nepavyko“** (ar pan.) ir **priežastį**, o ne tuščią atsakymą? Jei nutyli – papildyk promptą: „Jei negali – visada parašyk kodėl.“",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "footer": "Toliau – Savitikra: prieš workflow sąvokas"
+          }
+        },
+        {
+          "id": 10.61,
+          "title": "Savitikra: prieš workflow sąvokas",
+          "shortTitle": "Savitikra: saugikliai",
+          "subtitle": "3 klausimai: klaidos tvarkymas, agentas, paieška",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m10-warm-pre-wf-1",
+                "question": "Koks geras rezultatas, kai DI negali atlikti užduoties?",
+                "options": [
+                  "Aiškus „Nepavyko: [priežastis]“ ir pasiūlymas, ką pataisyti",
+                  "Tuščias atsakymas",
+                  "Išgalvoti faktai, kad atsakymas atrodytų pilnas",
+                  "Tik atsiprašymas be priežasties"
+                ],
+                "correct": 0,
+                "explanation": "Klaidos tvarkymas reikalauja aiškaus „Nepavyko“ pranešimo ir konkretaus kito žingsnio – ne tuščio ar išgalvoto atsakymo."
+              },
+              {
+                "id": "m10-warm-pre-wf-2",
+                "question": "Kada paprastas promptas paprastai užtenka?",
+                "options": [
+                  "Vienas klausimas, vienas atsakymas, be išorinių įrankių",
+                  "Reikia paieškos su šaltiniais ir kelių žingsnių",
+                  "Reikia kelių rolių ir perdavimo taisyklių",
+                  "Reikia formos → CRM → laiško srauto"
+                ],
+                "correct": 0,
+                "explanation": "Jei nėra įrankių ir kelių žingsnių – pakanka paprasto prompto. Kitaip – agentinis šablonas."
+              },
+              {
+                "id": "m10-warm-pre-wf-3",
+                "question": "Ką verta aiškiai parašyti užduotyje, jei reikia faktų iš interneto?",
+                "options": [
+                  "„Naudok paiešką ir pateik šaltinius“",
+                  "„Atsakyk kuo ilgiau“",
+                  "„Nenaudok jokių įrankių“",
+                  "„Spėk, jei nežinai“"
+                ],
+                "correct": 0,
+                "explanation": "Be aiškaus įrankio nurodymo DI gali atsakyti be šaltinių. „Naudok paiešką…“ sumažina tą riziką."
+              }
+            ],
+            "footer": "Toliau – Pagrindinės sąvokos: trigger, action, condition, webhook"
           }
         },
         {
@@ -12469,7 +12557,56 @@
               "pass": 70,
               "fail": 0
             },
-            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 12 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 10 skaidres."
+            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 12 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 10 skaidres.",
+            "footer": "Toliau – Savitikra prieš testą"
+          }
+        },
+        {
+          "id": 110.5,
+          "title": "Savitikra prieš testą",
+          "shortTitle": "Savitikra",
+          "subtitle": "3 klausimai: agentas vs promptas, 3A, orkestravimas",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m11-warm-1",
+                "question": "Kada verta rinktis agentą, o ne paprastą promptą?",
+                "options": [
+                  "Kai reikia kelių žingsnių, įrankių ar sprendimo, ar kartoti veiksmą",
+                  "Kai reikia vieno trumpo atsakymo be paieškos",
+                  "Kai nori tik gražesnio tono",
+                  "Kai promptas ilgesnis nei 2 sakiniai"
+                ],
+                "correct": 0,
+                "explanation": "Agentas tinka sudėtingoms užduotims su žingsniais ir įrankiais. Vienam aiškiam atsakymui dažnai pakanka paprasto prompto."
+              },
+              {
+                "id": "m11-warm-2",
+                "question": "Kuri 3A juosta reiškia „žmogus sprendžia, DI padeda“?",
+                "options": [
+                  "Augment (15 %)",
+                  "Automatize (80 %)",
+                  "Autonomize (5 %)",
+                  "Tik L0 taksonomija"
+                ],
+                "correct": 0,
+                "explanation": "Augment – žmogus lieka sprendime; DI teikia santraukas, rekomendacijas ar juodraščius prieš patvirtinimą."
+              },
+              {
+                "id": "m11-warm-3",
+                "question": "Kuo skiriasi maršrutizatorius (router) nuo orkestratoriaus?",
+                "options": [
+                  "Router = kur eiti; orkestratorius = kaip valdyti planą, būseną ir retry",
+                  "Abu daro tą patį",
+                  "Orkestratorius tik klasifikuoja tipą",
+                  "Router visada paleidžia visą srautą iš naujo"
+                ],
+                "correct": 0,
+                "explanation": "Router nukreipia pagal tipą (KUR). Orkestratorius valdo aktyvų planą ir tikslinį retry (KAIP)."
+              }
+            ],
+            "footer": "Toliau – Modulio 11 klausimai"
           }
         },
         {
@@ -12779,8 +12916,91 @@
                 "body": "Grįžk į ankstesnę skaidrę „Verslo kelių agentų schema“ (120.5) ir dar kartą peržiūrėk perdavimo taisyklę."
               }
             ],
-            "footer": "Toliau – skaidrė 5: 1 praktika Automatize"
+            "footer": "Toliau – Greitas startas: Koordinatorius + 2 specialistai"
           }
+        },
+        {
+          "id": 124.5,
+          "title": "Scenarijus: Koordinatorius + 2 specialistai",
+          "subtitle": "Kelių agentų promptų procesas be kodo",
+          "type": "practice-scenario",
+          "scenario": {
+            "narrativeLead": "Pradėk čia, jei nori greito kelio tik su promptais: vykdyk rankiniu procesu su 3 atskirais DI pokalbiais ir perdavimo taisyklėmis.",
+            "situation": "Rekomenduojamas startas: kelių agentų praktika verslo kalba – koordinatorius, specialistas, vertintojas – be Zapier/Make.",
+            "context": "Pasirink temą (pardavimų suvestinė arba RFP). Naudok 3 promptus atskiruose pokalbiuose. Užfiksuok schemą ir 1 bandymo atvejį.",
+            "data": "Artefaktai: schema (rolės + perdavimas), 3 promptai, 1 bandymo atvejis (pvz. trūksta duomenų), Įgūdžio paketas pakartotiniam naudojimui.",
+            "constraints": "Be Zapier/Make – tik promptų orkestravimas. Žmogaus patvirtinimas prieš galutinį siuntimą.",
+            "expectedFormat": "Schema + 3 nukopijuoti promptai + bandymo atvejo aprašymas + Įgūdžio paketas."
+          },
+          "practicalTask": {
+            "title": "Kelių agentų promptų procesas",
+            "placeholder": "Įklijuok schemą, 3 promptus, bandymo atvejo santrauką ir Įgūdžio paketą…",
+            "templateLabel": "3 promptai – koordinatorius, specialistas, vertintojas",
+            "template": "KOORDINATORIUS: Tu esi koordinatorius. Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk roles ir perdavimo taisykles.\n\nSPECIALISTAS: Tu esi [tyrėjas/rašytojas]. Įvestis: [nuo koordinatoriaus]. Atlik [X]. Išvestis: [formatas].\n\nVERTINTOJAS: Patikrink ar atsakyta į visus kriterijus. Jei ne – grąžink pataisymui su konkrečiais punktais.\n\nĮGŪDŽIO PAKETAS:\nPavadinimas: [pvz. RFP santraukos grandinė]\nKada naudoti: [kokiai užduočiai]\nRolės: koordinatorius, specialistas, vertintojas\nŽingsniai: [1–5]\nRibos: ko DI nedaro / kada klausia žmogaus\nPatikra: 1 bandymo atvejis + laukiamas atsakymas\nPamoka po bandymo: ką atnaujinti kitam kartui",
+            "explanation": "Rankinis procesas paruošia kelių agentų mąstymui be papildomų platformų; vėliau tą pačią logiką gali perkelti į Zapier, Make ar n8n.",
+            "allowMarkWithoutAnswer": true,
+            "instructions": {
+              "title": "Žingsniai",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "Paleisk koordinatoriaus promptą",
+                  "description": "Gauk planą su rolėmis ir perdavimu."
+                },
+                {
+                  "step": 2,
+                  "title": "Paleisk specialisto promptą",
+                  "description": "Perduok koordinatoriaus išvestį kaip įvestį."
+                },
+                {
+                  "step": 3,
+                  "title": "Paleisk vertintojo promptą",
+                  "description": "Patikrink ir užfiksuok 1 bandymo atvejį."
+                },
+                {
+                  "step": 4,
+                  "title": "Surašyk Įgūdžio paketą",
+                  "description": "Sujunk 3 promptus į vieną pakartotinai naudojamą aprašą: pavadinimas, kada naudoti, rolės, žingsniai, ribos, patikra ir pamoka."
+                }
+              ]
+            }
+          },
+          "recommended": true
+        },
+        {
+          "id": 124,
+          "title": "Scenarijus: Tyrimo agentas",
+          "subtitle": "Paieška + santrauka + šaltiniai",
+          "type": "practice-scenario",
+          "scenario": {
+            "narrativeLead": "Pasirink tema ir naudok žemiau esantį promptą su paieška ir šaltiniais.",
+            "situation": "Papildomas scenarijus: tyrimo agentas – paieška, santrauka ir šaltiniai vienoje užduotyje.",
+            "context": "Užduotis: paieška + santrauka + šaltiniai. Nukopijuok promptą į DI ir atlik su savo tema.",
+            "data": "Naudok DI su įjungta paieška. Užpildyk vietos rezervavimo laukus ([X], [ROLĖ]) savo tema.",
+            "constraints": "Jei šaltinių nėra – parašyk „Nerasta“ ir kodėl. Nekurk išgalvotų nuorodų.",
+            "expectedFormat": "Artefaktas: santrauka su nuorodomis arba aiškus „Nerasta“ pranešimas."
+          },
+          "practicalTask": {
+            "title": "Atlik tyrimo agento užduotį",
+            "placeholder": "Įklijuok DI atsakymo santrauką arba savo pastabas apie šaltinius…",
+            "templateLabel": "Promptas – nukopijuok į DI",
+            "template": "Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius šaltinius, (3) parašyti santrauką lietuvių kalba su nuorodomis. Jei nerandi – parašyk „Nerasta“ ir kodėl.",
+            "explanation": "Tai paruošia taikyti agentinį mąstymą be pilno darbo eigos įrankio.",
+            "allowMarkWithoutAnswer": true,
+            "instructions": {
+              "title": "Žingsniai",
+              "steps": [
+                {
+                  "step": 1,
+                  "title": "Nukopijuok promptą ir įklijuok į DI su įjungta paieška",
+                  "description": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
+                  "hint": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
+                  "partialSolution": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius."
+                }
+              ]
+            }
+          },
+          "recommended": false
         },
         {
           "id": 121,
@@ -12930,89 +13150,6 @@
                   "description": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti.",
                   "hint": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti.",
                   "partialSolution": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti."
-                }
-              ]
-            }
-          },
-          "recommended": true
-        },
-        {
-          "id": 124,
-          "title": "Scenarijus: Tyrimo agentas",
-          "subtitle": "Paieška + santrauka + šaltiniai",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Pasirink tema ir naudok žemiau esantį promptą su paieška ir šaltiniais.",
-            "situation": "Papildomas scenarijus: tyrimo agentas – paieška, santrauka ir šaltiniai vienoje užduotyje.",
-            "context": "Užduotis: paieška + santrauka + šaltiniai. Nukopijuok promptą į DI ir atlik su savo tema.",
-            "data": "Naudok DI su įjungta paieška. Užpildyk vietos rezervavimo laukus ([X], [ROLĖ]) savo tema.",
-            "constraints": "Jei šaltinių nėra – parašyk „Nerasta“ ir kodėl. Nekurk išgalvotų nuorodų.",
-            "expectedFormat": "Artefaktas: santrauka su nuorodomis arba aiškus „Nerasta“ pranešimas."
-          },
-          "practicalTask": {
-            "title": "Atlik tyrimo agento užduotį",
-            "placeholder": "Įklijuok DI atsakymo santrauką arba savo pastabas apie šaltinius…",
-            "templateLabel": "Promptas – nukopijuok į DI",
-            "template": "Rolė: [ROLĖ]. Užduotis: (1) Ieškoti [X], (2) išrinkti 3–5 svarbiausius šaltinius, (3) parašyti santrauką lietuvių kalba su nuorodomis. Jei nerandi – parašyk „Nerasta“ ir kodėl.",
-            "explanation": "Tai paruošia taikyti agentinį mąstymą be pilno darbo eigos įrankio.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Nukopijuok promptą ir įklijuok į DI su įjungta paieška",
-                  "description": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
-                  "hint": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius.",
-                  "partialSolution": "Užpildyk [X] savo tema. Paleisk ir peržiūrėk šaltinius."
-                }
-              ]
-            }
-          },
-          "recommended": false
-        },
-        {
-          "id": 124.5,
-          "title": "Scenarijus: Koordinatorius + 2 specialistai",
-          "subtitle": "Kelių agentų promptų procesas be kodo",
-          "type": "practice-scenario",
-          "scenario": {
-            "narrativeLead": "Pradėk čia, jei nori greito kelio tik su promptais: vykdyk rankiniu procesu su 3 atskirais DI pokalbiais ir perdavimo taisyklėmis.",
-            "situation": "Rekomenduojamas startas: kelių agentų praktika verslo kalba – koordinatorius, specialistas, vertintojas – be Zapier/Make.",
-            "context": "Pasirink temą (pardavimų suvestinė arba RFP). Naudok 3 promptus atskiruose pokalbiuose. Užfiksuok schemą ir 1 bandymo atvejį.",
-            "data": "Artefaktai: schema (rolės + perdavimas), 3 promptai, 1 bandymo atvejis (pvz. trūksta duomenų), Įgūdžio paketas pakartotiniam naudojimui.",
-            "constraints": "Be Zapier/Make – tik promptų orkestravimas. Žmogaus patvirtinimas prieš galutinį siuntimą.",
-            "expectedFormat": "Schema + 3 nukopijuoti promptai + bandymo atvejo aprašymas + Įgūdžio paketas."
-          },
-          "practicalTask": {
-            "title": "Kelių agentų promptų procesas",
-            "placeholder": "Įklijuok schemą, 3 promptus, bandymo atvejo santrauką ir Įgūdžio paketą…",
-            "templateLabel": "3 promptai – koordinatorius, specialistas, vertintojas",
-            "template": "KOORDINATORIUS: Tu esi koordinatorius. Užduotis: [APRAŠYK]. Suskaidyk į 2 sub-užduotis, paskirk roles ir perdavimo taisykles.\n\nSPECIALISTAS: Tu esi [tyrėjas/rašytojas]. Įvestis: [nuo koordinatoriaus]. Atlik [X]. Išvestis: [formatas].\n\nVERTINTOJAS: Patikrink ar atsakyta į visus kriterijus. Jei ne – grąžink pataisymui su konkrečiais punktais.\n\nĮGŪDŽIO PAKETAS:\nPavadinimas: [pvz. RFP santraukos grandinė]\nKada naudoti: [kokiai užduočiai]\nRolės: koordinatorius, specialistas, vertintojas\nŽingsniai: [1–5]\nRibos: ko DI nedaro / kada klausia žmogaus\nPatikra: 1 bandymo atvejis + laukiamas atsakymas\nPamoka po bandymo: ką atnaujinti kitam kartui",
-            "explanation": "Rankinis procesas paruošia kelių agentų mąstymui be papildomų platformų; vėliau tą pačią logiką gali perkelti į Zapier, Make ar n8n.",
-            "allowMarkWithoutAnswer": true,
-            "instructions": {
-              "title": "Žingsniai",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Paleisk koordinatoriaus promptą",
-                  "description": "Gauk planą su rolėmis ir perdavimu."
-                },
-                {
-                  "step": 2,
-                  "title": "Paleisk specialisto promptą",
-                  "description": "Perduok koordinatoriaus išvestį kaip įvestį."
-                },
-                {
-                  "step": 3,
-                  "title": "Paleisk vertintojo promptą",
-                  "description": "Patikrink ir užfiksuok 1 bandymo atvejį."
-                },
-                {
-                  "step": 4,
-                  "title": "Surašyk Įgūdžio paketą",
-                  "description": "Sujunk 3 promptus į vieną pakartotinai naudojamą aprašą: pavadinimas, kada naudoti, rolės, žingsniai, ribos, patikra ir pamoka."
                 }
               ]
             }

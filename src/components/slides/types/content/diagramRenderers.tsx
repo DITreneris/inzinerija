@@ -8,6 +8,7 @@ import {
   M10AgentTaxonomyBlock,
   M10IncidentPlaybookBlock,
   M10LearningLoopBlock,
+  M10OrchestratorBlock,
   M10ThreeAStrategyBlock,
   M10ToolDecisionTreeBlock,
   M10TriggerFlowBlock,
@@ -164,6 +165,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     key: 'm10_learning_loop',
     bodyPlacement: 'after',
     render: () => <M10LearningLoopBlock />,
+  },
+  {
+    key: 'm10_agent_orchestrator',
+    bodyPlacement: 'after',
+    render: () => <M10OrchestratorBlock />,
   },
   {
     key: 'm10_tool_decision_tree',

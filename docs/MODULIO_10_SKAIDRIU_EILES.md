@@ -19,14 +19,16 @@
 | 4    | **10.45**  | **DI agentų tipai ir rolės**                             | **NAUJA** – L0–L3 taksonomija; koordinatorius, specialistas, vertintojas, maršrutizatorius; CopyButton.                    |
 | 4a   | **10.451** | **Kontrolinis taškas: rolės ir perdavimas**              | **NAUJA** – path-step; įvestys / išvestys ir perdavimo taisyklė prieš workflow šablonus.                                   |
 | 5    | **10.48**  | **5 workflow šablonai verslui**                          | **NAUJA** – grandinė, maršrutizavimas, lygiagretus, koordinatorius+specialistai, generatorius+vertintojas.                 |
-| 5a   | **10.485** | **Savitikra: workflow šablonai**                         | Warm-up po 10.48; 3 klausimai apie grandinę, maršrutizavimą ir generatorių + vertintoją.                                   |
-| 5b   | **10.481** | **Skyrius: Multi-agent → workflow** (section-break)      | Recap po 10.48; spinoffCta → blog `how-to-design-an-ai-agent-workflow`. (JSON id `10.481`; kurikulo alias 10.48b)          |
-| 5c   | **10.49**  | **Uždaro mokymosi ciklas: taisyklės, įgūdžiai, pamokos** | **NAUJA** – po workflow šablonų parodo visą sistemą: vykdymas → veiksmų istorija → patikra → pamokos → atnaujinimas.       |
+| 5a   | **10.481** | **Skyrius: Multi-agent → workflow** (section-break)      | Recap po 10.48; spinoffCta → blog `how-to-design-an-ai-agent-workflow`.                                                    |
+| 5b   | **10.482** | **Agentų orkestravimo simuliacija**                      | DiagramKit walkthrough (`m10_agent_orchestrator`); Router≠orkestratorius; prieš 10.485.                                    |
+| 5c   | **10.485** | **Savitikra: workflow šablonai**                         | Warm-up po orkestravimo; 3 klausimai (įsk. orkestravimas).                                                                 |
+| 5d   | **10.49**  | **Uždaro mokymosi ciklas: taisyklės, įgūdžiai, pamokos** | Po workflow šablonų: vykdymas → veiksmų istorija → patikra → pamokos → atnaujinimas.                                       |
 | 6    | 10.3       | Rolės ir sisteminio prompto šablonas                     | Content-block: Trumpai → Daryk dabar → CopyButton → Patikra.                                                               |
 | 7    | 10.4       | Įrankių pasirinkimas ir apribojimai                      | DI platformos; įrankių pasirinkimo medis.                                                                                  |
 | 8    | 10.5       | Kada rinktis agentą, kada – paprastą promptą             | Agentinis šablonas (5 dalių); nuoroda į 10.48.                                                                             |
 | 8a   | **10.51**  | **Kontrolinis taškas: agentinis promptas**               | **NAUJA** – path-step; 5 dalių promptas + workflow spec juodraštis prieš M12.                                              |
 | 9    | 10.6       | Klaidos tvarkymas ir ribos                               | CopyButton – „Jei nepavyksta – parašyk kodėl“.                                                                             |
+| 9a   | **10.61**  | **Savitikra: prieš workflow sąvokas**                    | Warm-up po 10.6; 3 klausimai prieš 10.15.                                                                                  |
 | 10   | 10.15      | Pagrindinės sąvokos: trigger, action, condition, webhook | **Perkelta** po agentų mąstymo – workflow terminai.                                                                        |
 | 10b  | **10.151** | **Skyrius: Workflow → automatizavimas** (section-break)  | Recap po 10.15; spinoffCta → blog `choosing-workflow-automation-ai-pipelines`. (JSON id `10.151`; kurikulo alias 10.15b)   |
 | 11   | 10.35      | Verslo automatizavimo įrankiai                           | Zapier, Make, n8n, Power Automate.                                                                                         |
@@ -39,26 +41,29 @@
 
 ## Modulis 11 (testas) – skaidrių eilė
 
-| Eilė | ID  | Skaidrė / tipas | Kodėl čia?                                                                                                                                    |
-| ---- | --- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0    | 110 | test-intro      | whyBenefit, duration ~10–12 min, firstActionCTA, slenksčiai (≥70 % → M12).                                                                    |
-| 1    | 111 | test-section    | 9 MCQ (daugiau situacinių); q1 diagnostika, q3/q5/q6 – taksonomija ir multi-agent, q9 – uždaro mokymosi ciklas; remediation slideIds į M10.   |
-| 2    | 112 | test-results    | failedMessage rodo žmogiškas temas (ciklas, 3A, multi-agent rolės, workflow, įrankiai), o remediation chips išlaiko deep-link į M10 skaidres. |
-| 3    | 113 | bonus content   | 5 min agentų promptų procesas: koordinatorius → specialistas → vertintojas.                                                                   |
+| Eilė | ID        | Skaidrė / tipas | Kodėl čia?                                                                                                                                    |
+| ---- | --------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0    | 110       | test-intro      | whyBenefit, duration ~10–12 min, firstActionCTA, slenksčiai (≥70 % → M12).                                                                    |
+| 0a   | **110.5** | warm-up-quiz    | Pre-test savitikra: agentas vs promptas, 3A juosta, router ≠ orkestratorius.                                                                  |
+| 1    | 111       | test-section    | 9 MCQ (daugiau situacinių); q1 diagnostika, q3/q5/q6 – taksonomija ir multi-agent, q9 – uždaro mokymosi ciklas; remediation slideIds į M10.   |
+| 2    | 112       | test-results    | failedMessage rodo žmogiškas temas (ciklas, 3A, multi-agent rolės, workflow, įrankiai), o remediation chips išlaiko deep-link į M10 skaidres. |
+| 3    | 113       | bonus content   | 5 min agentų promptų procesas: koordinatorius → specialistas → vertintojas.                                                                   |
 
 ---
 
 ## Modulis 12 (praktika) – skaidrių eilė
 
-| Eilė (UI 1…N) | ID                  | Skaidrė / tipas                   | Kodėl čia?                                                                                                                   |
-| ------------- | ------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| 1             | 120                 | practice-intro                    | whyBenefit; startas su promptais 124.5; pilnas pristatymo kelias – 3 lab'ai.                                                 |
-| 2             | 120.25              | content-block                     | Trys praktikos (3A) – schema `m12_three_labs`. Footer → 120.5.                                                               |
-| 3             | 120.5               | content-block                     | **Privaloma:** Verslo multi-agent schema (ne meta AGENTS.md). Footer → 120.55.                                               |
-| 4             | **120.55**          | path-step                         | **NAUJA (UX-2.2, 2026-07-08):** Kontrolinis taškas „multi-agent schema“ – formative check prieš 3A praktikas. Footer → 121.  |
-| 5–7           | 121–123             | practice-scenario                 | MUST lab'ai: Automatize, Augment (+ vertintojo promptas), Autonomize (+ rolės etiketės).                                     |
-| 8–10          | 124, **124.5**, 125 | practice-scenario + content-block | SHOULD: 2 scenarijai + 1 sujungta M10 pakartojimo skaidrė; **124.5 Koordinatorius + 2 specialistai** – startas su promptais. |
-| 11            | 128                 | summary                           | 5 blokų santrauka.                                                                                                           |
+| Eilė (UI 1…N) | ID         | Skaidrė / tipas   | Kodėl čia?                                                                                                |
+| ------------- | ---------- | ----------------- | --------------------------------------------------------------------------------------------------------- |
+| 1             | 120        | practice-intro    | whyBenefit; linijinis greitas startas **124.5 → 124**, tada 3A **121–123** (`minScenariosToComplete: 3`). |
+| 2             | 120.25     | content-block     | Trys praktikos (3A) – schema `m12_three_labs` + Trumpai/Daryk/Patikra. Footer → 120.5.                    |
+| 3             | 120.5      | content-block     | **Privaloma:** Verslo multi-agent schema + GOLDEN. Footer → 120.55.                                       |
+| 4             | **120.55** | path-step         | Kontrolinis taškas prieš greitą startą. Footer → **124.5**.                                               |
+| 5             | **124.5**  | practice-scenario | Greitas startas: Koordinatorius + 2 specialistai (tik promptai). Footer → 124.                            |
+| 6             | **124**    | practice-scenario | Tyrimo agentas (tik promptai). Footer → 121.                                                              |
+| 7–9           | 121–123    | practice-scenario | MUST lab'ai užbaigimui: Automatize, Augment, Autonomize (platforma arba kelias tik su promptais).         |
+| 10            | 125        | content-block     | Optional: M10 pakartojimas.                                                                               |
+| 11            | 128        | summary           | 5 blokų santrauka.                                                                                        |
 
 ---
 

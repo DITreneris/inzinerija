@@ -1,8 +1,10 @@
 /**
- * M10 – įrankių pasirinkimo medis (interaktyvus).
+ * M10 – įrankių pasirinkimo medis (view). Keyboard via DiagramStepNav in Block.
  */
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
+import { DiagramStepHitArea } from './diagramKit';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import {
   getM10ToolTreeLeaves,
   getM10ToolTreeLabels,
@@ -28,7 +30,6 @@ export default function M10ToolDecisionTreeDiagram({
   className?: string;
 }) {
   const uid = useId().replace(/:/g, '');
-  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
   const palette = useDiagramPalette();
   const L = getM10ToolTreeLabels(locale);
   const leaves = getM10ToolTreeLeaves(locale);
@@ -50,23 +51,23 @@ export default function M10ToolDecisionTreeDiagram({
       <defs>
         <marker
           id={`m10tree-arr-${uid}`}
-          markerWidth="7"
-          markerHeight="6"
-          refX="6"
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={DIAGRAM_TOKENS.arrow.markerLen}
           refY="3"
           orient="auto"
         >
-          <path d="M0 0 L6 3 L0 6 Z" fill={palette.flow} />
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
         </marker>
       </defs>
       <text
         x={W / 2}
         y={22}
         textAnchor="middle"
-        fontSize="14"
+        fontSize={DIAGRAM_TOKENS.typography.title.compact}
         fontWeight="800"
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -75,19 +76,19 @@ export default function M10ToolDecisionTreeDiagram({
         y={rootY}
         width={ROOT_W}
         height={ROOT_H}
-        rx="10"
-        fill="#334e68"
-        stroke="#102a43"
-        strokeWidth="1.2"
+        rx={DIAGRAM_TOKENS.radius.box}
+        fill={palette.brand}
+        stroke={palette.brandDark}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border + 0.2}
       />
       <text
         x={rootCx}
         y={rootY + 28}
         textAnchor="middle"
         fill="white"
-        fontSize="13"
+        fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop + 1}
         fontWeight="700"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.root}
       </text>
@@ -98,9 +99,7 @@ export default function M10ToolDecisionTreeDiagram({
         const leafTop = rowY;
         const midY = rootY + ROOT_H + (leafTop - (rootY + ROOT_H)) / 2;
         const isSel = selectedIndex === i;
-        const isFocused = focusedIndex === i;
-        const dim =
-          interactive && selectedIndex >= 0 && !isSel && !isFocused ? 0.42 : 1;
+        const dim = interactive && selectedIndex >= 0 && !isSel ? 0.42 : 1;
 
         return (
           <g key={leaf.id} opacity={dim}>
@@ -108,7 +107,7 @@ export default function M10ToolDecisionTreeDiagram({
               d={`M ${rootCx} ${rootY + ROOT_H} L ${rootCx} ${midY} L ${cx} ${midY} L ${cx} ${leafTop}`}
               fill="none"
               stroke={palette.flow}
-              strokeWidth="2"
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
               markerEnd={`url(#m10tree-arr-${uid})`}
             />
             <rect
@@ -117,24 +116,10 @@ export default function M10ToolDecisionTreeDiagram({
               width={LEAF_W}
               height={LEAF_H}
               rx="8"
-              fill={isSel ? '#486581' : '#f0f4f8'}
-              stroke={isSel ? '#102a43' : '#bcccdc'}
+              fill={isSel ? palette.brandTop : palette.bgStart}
+              stroke={isSel ? palette.brandDark : palette.border}
               strokeWidth={isSel ? 2 : 1}
             />
-            {isFocused && (
-              <rect
-                x={x - 4}
-                y={leafTop - 4}
-                width={LEAF_W + 8}
-                height={LEAF_H + 8}
-                rx="10"
-                fill="none"
-                stroke="#d4a520"
-                strokeWidth="3"
-                strokeDasharray="5 3"
-                pointerEvents="none"
-              />
-            )}
             <text
               x={cx}
               y={leafTop + 18}
@@ -142,7 +127,7 @@ export default function M10ToolDecisionTreeDiagram({
               fill={isSel ? 'white' : palette.brand}
               fontSize="9"
               fontWeight="600"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {leaf.condition.length > 22
                 ? `${leaf.condition.slice(0, 20)}…`
@@ -155,33 +140,20 @@ export default function M10ToolDecisionTreeDiagram({
               fill={isSel ? 'rgba(255,255,255,0.95)' : palette.brandDark}
               fontSize="11"
               fontWeight="800"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {leaf.tool}
             </text>
-            {interactive && (
-              <rect
+            {interactive ? (
+              <DiagramStepHitArea
                 x={x}
                 y={leafTop}
                 width={LEAF_W}
                 height={LEAF_H}
-                fill="transparent"
-                cursor="pointer"
-                role="button"
-                tabIndex={0}
-                aria-pressed={isSel}
-                aria-label={`${leaf.condition} → ${leaf.tool}`}
-                onFocus={() => setFocusedIndex(i)}
-                onBlur={() => setFocusedIndex(null)}
-                onClick={() => onSelect?.(i)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onSelect?.(i);
-                  }
-                }}
+                radius={8}
+                onActivate={() => onSelect?.(i)}
               />
-            )}
+            ) : null}
           </g>
         );
       })}

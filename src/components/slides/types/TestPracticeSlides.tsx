@@ -3122,11 +3122,11 @@ export function PracticeIntroSlide({
               ) : isM12 ? (
                 <>
                   {locale === 'en'
-                    ? 'You will build or adjust a real workflow (e.g. Zapier or Make) and save artefacts: a schema, tests, and logs. Three required practice labs cover Automatize, Augment, and Autonomize; optional scenarios are below.'
-                    : 'Sukursi arba pertvarkysi realų workflow (pvz. Zapier arba Make) ir užfiksuosi artefaktus: schemą, testus, logus. Trys privalomos praktikos – Automatize, Augment ir Autonomize kryptys; žemiau – papildomi scenarijai.'}{' '}
+                    ? 'First the linear quick start 124.5 → 124 (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices 121–123 (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
+                    : 'Pirmiausia linijinis greitas startas 124.5 → 124 (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas 121–123 (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
                   {locale === 'en'
-                    ? 'Pick a lab card and complete the listed artefacts before moving on.'
-                    : 'Pasirink praktikos kortelę ir užbaik nurodytus artefaktus prieš einant toliau.'}
+                    ? 'Follow the linear order on the next slides and save artefacts before marking a practice done.'
+                    : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
                 </>
               ) : (
                 <>

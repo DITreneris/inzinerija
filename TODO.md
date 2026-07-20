@@ -101,13 +101,13 @@
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
-| Kas                                           | Būsena        | Pastaba                                                                                                             |
-| --------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped    | CHANGELOG `[1.4.2]`                                                                                                 |
-| Lint + test (367) + `build:production`        | ✅            | CI lokaliai                                                                                                         |
-| M7–12 schema-consistency sprint               | ✅ 2026-07-06 | `DIAGRAMU_M7_M12_REGISTRY.md`, M10 shell/testai, M8 scope deep-link, legacy cleanup                                 |
-| Diagram browser smoke (B2.5)                  | ⏳ Pending    | M10–12 LT/EN audit + UI/UX sync auto gates ✅ 2026-07-06; rankinė 10.2/10.45/10.49/10.65/120.5 – Release QA #6      |
-| Submodule pin marketing (MON-2)               | ⏳ Runbook    | [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md) – vykdyti promptanatomy repo |
+| Kas                                           | Būsena        | Pastaba                                                                                                                                                |
+| --------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DiagramKit M1–9, design tokens, M7–9 EN sweep | ✅ Shipped    | CHANGELOG `[1.4.2]`                                                                                                                                    |
+| Lint + test (367) + `build:production`        | ✅            | CI lokaliai                                                                                                                                            |
+| M7–12 schema-consistency sprint               | ✅ 2026-07-06 | `DIAGRAMU_M7_M12_REGISTRY.md`, M10 shell/testai, M8 scope deep-link, legacy cleanup                                                                    |
+| Diagram browser smoke (B2.5)                  | ✅ 2026-07-20 | M10–12 P2: automated smoke (DiagramLocalization + layout geometry + path order); RELEASE_QA §5b1; rankinė light+dark vizualinė lentelė – prieš release |
+| Submodule pin marketing (MON-2)               | ⏳ Runbook    | [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md) – vykdyti promptanatomy repo                                    |
 
 ### §1.1 P0 – Monetizacija ir integracija (top priority – **kitas sprintas**)
 

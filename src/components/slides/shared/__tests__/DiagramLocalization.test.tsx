@@ -16,6 +16,7 @@ import LlmAutoregressiveBlock from '../LlmAutoregressiveBlock';
 import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
 import M10IncidentPlaybookBlock from '../M10IncidentPlaybookBlock';
 import M10LearningLoopBlock from '../M10LearningLoopBlock';
+import M10OrchestratorBlock from '../M10OrchestratorBlock';
 import M10ThreeAStrategyBlock from '../M10ThreeAStrategyBlock';
 import M10ToolDecisionTreeBlock from '../M10ToolDecisionTreeBlock';
 import M10TriggerFlowBlock from '../M10TriggerFlowBlock';
@@ -173,6 +174,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   describe('M10+ interactive diagram shell contracts', () => {
     it.each([
       ['M10 learning loop', () => <M10LearningLoopBlock />, 4],
+      ['M10 orchestrator', () => <M10OrchestratorBlock />, 6],
       ['M12 multi-agent schema', () => <M12MultiAgentSchemaBlock />, 6],
     ])(
       'keeps keyboard interaction in %s HTML nav only',
@@ -323,14 +325,15 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(lt.textContent).toContain('Paspausk šaką');
     });
 
-    it('keeps its documented SVG keyboard path for spatial tree branches', () => {
+    it('keeps keyboard interaction in HTML nav / pointer-only SVG hit areas', () => {
       setLocale('lt');
 
       const { container } = renderWithProviders(<M10ToolDecisionTreeBlock />);
 
-      expect(container.querySelectorAll('nav button')).toHaveLength(0);
-      expect(container.querySelectorAll('svg [role="button"]')).toHaveLength(5);
-      expect(container.querySelectorAll('svg [tabindex="0"]')).toHaveLength(5);
+      // Tool tree uses DiagramStepHitArea (pointer-only) – no SVG role=button targets.
+      expect(
+        container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
     });
 
     it('uses the dark text palette in the decision tree title', () => {
