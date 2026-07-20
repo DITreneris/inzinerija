@@ -1,15 +1,54 @@
 # Design System — Promptų anatomija
 
-> **Versija:** 0.2.0 (2026-05-19)  
-> **Tipografija, spalvos, skaidrių išdėstymas:** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) — **nepakartoti** čia.  
-> **Plėtros planas:** [`DESIGN_SYSTEM_V0_2.md`](DESIGN_SYSTEM_V0_2.md)  
-> **UI katalogas (kodas):** [`src/components/ui/README.md`](../../src/components/ui/README.md)
+> **Produktinė DS versija:** **0.2.0 shipped** (2026-05-19) + **0.3.1 dalys** (BrandMark, icon registry, SlideWorkspace, surfaceGlass).  
+> **Paskutinis sync:** 2026-07-20 (DS max-ROI compliance).  
+> **Turinio / layout etalonas (nelaužomas):** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) **2.3.9** — tipografija, paletė, `blockVariant`, skaidrių schemos. **Nekartoti** čia.  
+> **UI katalogas (kodas):** [`src/components/ui/README.md`](../../src/components/ui/README.md)  
+> **v0.2 vykdymo planas (archyvas, ✅ baigtas):** [`DESIGN_SYSTEM_V0_2.md`](DESIGN_SYSTEM_V0_2.md) — ne naujiems darbams; istorinis E1–E7.
+
+---
+
+## 0. Kas yra „tiesa“ (sluoksniai)
+
+| Sluoksnis             | Dokumentas / kodas                                         | Paskirtis                                                                        |
+| --------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Produktinė DS**     | šis failas + `src/components/ui/` + `src/design-tokens.ts` | Primitivai, token helperiai, modulio identitetas, brand mark, ikonos, CI auditai |
+| **GOLDEN (etalonas)** | `GOLDEN_STANDARD.md` 2.3.9                                 | Šriftai, spalvos, blockVariant, content-block schema, footeriai, sticky, a11y    |
+| **Diagramos**         | `DIAGRAM_KIT_STANDARD.md` + `diagramTokens.ts`             | InteractiveDiagramShell, hit zones, dark palette                                 |
+| **Turinys**           | `modules.json` (+ EN overlays)                             | `blockVariant`, accent biudžetas — ne React                                      |
+
+**Nėra atskiros „DS 1.0“ paletės.** Naujas vizualinis darbas = GOLDEN + šio dokumento primitivai. Redesign / nauja paletė = out of scope (v0.3+ backlog).
 
 ---
 
 ## 1. Tipografija ir spalvos
 
-_TBD v0.3 — žr. [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §1–§2 (šriftai, paletė, blockVariant)._
+**SOT:** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §1–§2.
+
+Trumpai (nekartoti klasių čia):
+
+- Sans: Plus Jakarta Sans · Mono: JetBrains Mono
+- Brand `#627d98` · Accent `#d4a520` · Gold `#f3cc30` · Slate neutrals
+- `blockVariant`: `accent` (CTA / Trumpai / Patikra) · `brand` (pagrindinė info / Daryk) · `terms` (šalutinė) · track `emerald` / `violet` tik modulio kontekste
+- Implementacija: `getContentBlockVariantClasses()` → `src/components/slides/utils/blockVariantClasses.ts`
+
+### 1.1 Accent biudžetas (GOLDEN §3.2)
+
+Content-block / evaluator-prompt-block:
+
+| Sekcija                    | `blockVariant`       |
+| -------------------------- | -------------------- |
+| Trumpai / In short         | `accent`             |
+| Patikra / Quality check    | `accent`             |
+| Daryk dabar / Do now / CTA | `brand`              |
+| Kitos                      | `brand` arba `terms` |
+
+Max **2×** `accent` vienoje skaidrėje.
+
+```bash
+npm run audit:accent-budget           # LT modules.json + visi EN overlay (release-preflight)
+npm run audit:accent-budget:m1012     # greitas M10–12
+```
 
 ---
 
@@ -18,177 +57,198 @@ _TBD v0.3 — žr. [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §1–§2 (šrifta
 Canonical sluoksniai:
 
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
-- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`) class helperiai.
-- `src/components/slides/shared/diagramTokens.ts` — SVG diagramų paletė, tipografija, stroke/radius/arrow reikšmės ir `getDiagramPalette()` / `getDiagramToneColors()` dark/light parinkimas.
+- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`).
+- `src/components/slides/shared/diagramTokens.ts` — SVG paletė, tipografija, stroke/radius/arrow; `getDiagramPalette()` / `getDiagramToneColors()`; M10/M12: `DIAGRAM_ROLE_COLORS` / `getDiagramActiveStroke()`.
 
-Baseline: [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md). Vykdymo tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
+Baseline (istorinis startas): [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md).  
+Revision tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
 
 ```bash
-npm run audit:design-tokens
-npm run audit:design-tokens:gate   # exit 1 jei regresija vs 2026-07 baseline
+npm run audit:design-tokens        # warn-only inventory
+npm run audit:design-tokens:gate   # exit 1 jei regresija vs skripto BASELINE
 npm run audit:module-identity      # M1–15 accent + identityIcon
+npm run audit:slide-icons          # Lucide raktų allowlist
+npm run audit:accent-budget        # GOLDEN §3.2
 ```
 
-Auditas yra warn-only (be `:gate`). Jis skaičiuoja hex, inline style, SVG fill/stroke ir Tailwind arbitrary styling (`bg-[#...]`, `border-[#...]`, `shadow-[...]`).
+**Gate baseline** (skripte `scripts/audit-design-tokens.mjs`, 2026-07-20):  
+`hex ≤ 295` · `inlineStyle ≤ 12` · `svgFill ≤ 51` · `arbitraryClass ≤ 59` · `total ≤ 417`.
 
-2026-07 leftovers pass trend: `ContentSlides.tsx` arbitrary-class cleanup ir primitive pilotai sumažino auditą nuo `539` iki `521` radinio (`80 → 66` arbitrary class; `13 → 12` inline style). **DS hardening (2026-07-08):** `<Banner>` ≥35 production naudojimų, `<CTAButton>` ≥30, `SlideWorkspace` M1/M4/M7/M10/M13, `surfaceGlass.shell` sticky sluoksniuose. **DS Next Waves W7–W10:** auditas sumažintas iki `417` radinių (`59` arbitrary class), o `audit:release-preflight` vykdo `audit:design-tokens:gate` + `audit:module-identity`.
-
----
-
-## 3. Primitivai (v0.2 — pilna)
-
-Canonical JSX komponentai: `src/components/ui/`. Dublikatų žemėlapis: [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](../archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md).
-
-| Komponentas                       | Paskirtis                                       | Pastaba                                    |
-| --------------------------------- | ----------------------------------------------- | ------------------------------------------ |
-| `Card`                            | Kortelės fonas / rėmelis                        | `@deprecated` `.card` CSS — migracija v0.3 |
-| `CTAButton`                       | Primary / secondary / accent mygtukai           | Naudoja `.btn-*` kaip backend              |
-| `Banner`                          | Callout (`info`, `success`, `warning`, `terms`) |                                            |
-| `Table`                           | Lentelės subkomponentai                         |                                            |
-| `LoadingSpinner`                  | Krautuvas                                       |                                            |
-| `ErrorBoundary`                   | Klaidų riba                                     |                                            |
-| **Eyebrow** (E4)                  | Maža uppercase antraštė, 6 accent               | Proof: ModulesPage, ActionIntroSlide       |
-| **IconChip** (E4)                 | Apvali piktograma, 5 role, 3 size               | Proof: ModuleCompleteScreen                |
-| **SectionDivider** (E4)           | Skiriamoji linija su/be label                   | Proof: SummarySlide                        |
-| **BrandMark** (v0.3.1)            | Ženklas (`Zap` + gold ant `brand-900`)          | nav / hero / footer; § 4a                  |
-| **SlideWorkspace** (DS hardening) | Vieningas `content-block` vertikalus tarpas     | Pilotas M4 + M10 per `SlideContent.tsx`    |
-
-Detalus API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
+**Trend:** 539 → 417 (W7–W10) → **~344** (max-ROI; `inlineStyle` 12, gate PASS). Daugiausia „hex“ lieka kanoniniame `diagramTokens.ts` ir legacy diagramose (LlmArch, CustomGpt) — ne klaida, o v0.3 backlog.
 
 ---
 
-## 4. Modulio identitetas (v0.2 — pilna)
+## 3. Primitivai (v0.2 + 0.3.1)
 
-**Duomenys (M1–M6):** `module.accent`, `module.identityIcon`, `module.icon` — `src/data/modules.json`. **DS v0.3.1:** `module.icon` = `module.identityIcon` (unikali ModulesPage kortelės ikona); modulio **lygis** (`learn` / `test` / `practice`) diferencijuojamas per gradientą ir Eyebrow badge, ne per `icon`.
+Canonical JSX: `src/components/ui/`. Dublikatų žemėlapis (istorinis): [`analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md`](../archive/development/analysis/DESIGN_SYSTEM_DUPLICATES_2026-05.md).
 
-| Modulis | `accent`  | `identityIcon` / `icon` |
-| ------- | --------- | ----------------------- |
-| M1      | `brand`   | `BookOpen`              |
-| M2      | `slate`   | `ClipboardList`         |
-| M3      | `emerald` | `Briefcase`             |
-| M4      | `violet`  | `Brain`                 |
-| M5      | `cyan`    | `ClipboardCheck`        |
-| M6      | `accent`  | `Rocket`                |
-| M7      | `sky`     | `BarChart3`             |
-| M8      | `sky`     | `ClipboardCheck`        |
-| M9      | `sky`     | `Rocket`                |
-| M10     | `fuchsia` | `Cpu`                   |
-| M11     | `fuchsia` | `ClipboardCheck`        |
-| M12     | `fuchsia` | `Rocket`                |
-| M13     | `rose`    | `Image`                 |
-| M14     | `rose`    | `ClipboardCheck`        |
-| M15     | `rose`    | `Rocket`                |
+| Komponentas      | Paskirtis                                       | Statusas                                              |
+| ---------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| `Card`           | Kortelės fonas / rėmelis                        | Canonical; `.card` CSS `@deprecated` → migracija v0.3 |
+| `CTAButton`      | Primary / secondary / accent                    | Canonical; viduje dar `.btn-*`                        |
+| `Banner`         | Callout (`info`, `success`, `warning`, `terms`) | Canonical; plačiai M1–15                              |
+| `Table`          | Lentelės subkomponentai                         | Canonical                                             |
+| `LoadingSpinner` | Krautuvas                                       | Canonical                                             |
+| `ErrorBoundary`  | Klaidų riba                                     | Canonical                                             |
+| `Eyebrow`        | Uppercase antraštė pagal `module.accent`        | ModulesPage, ActionIntroSlide                         |
+| `IconChip`       | Apvali piktograma (role × size)                 | ModuleCompleteScreen ir kt.                           |
+| `SectionDivider` | Skiriamoji linija                               | SummarySlide                                          |
+| `BrandMark`      | Ženklas (Zap + gold)                            | nav / hero / footer — §4a                             |
+| `SlideWorkspace` | `space-y-6` chrome content-block                | **Visi M1–15** (`SlideContent.tsx`)                   |
 
-**3 UI vietos (v0.2 + v0.3.1):**
-
-1. **ModulesPage** — kortelės viršutinė juosta (`accentTopBarClasses`) + didelė ikona (`resolveModuleIcon(module.icon)`)
-2. **ActionIntroSlide** — `<Eyebrow>` virš hero
-3. **SectionBreakSlide** — tik `sectionNumber` badge (`sectionBreakBadgeByAccent`); hero lieka `heroColorKey`
-
-Helpers: `src/utils/moduleIdentity.ts`. Vizualinė patikra: [`analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md`](../archive/development/analysis/MODULE_IDENTITY_VISUAL_REGRESS_2026-05.md).
+API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
 ---
 
-## 4a. Brand mark (v0.3.1)
+## 4. Modulio identitetas
 
-Vienas ženklo komponentas — [`src/components/ui/BrandMark.tsx`](../../src/components/ui/BrandMark.tsx). Glifas: Lucide `Zap` (gold) ant `brand-900` badge; atitinka hub favicon. Iki v0.3.1 nav/hero naudojo `Zap`, footer — `Sparkles` + gradientą (nenuoseklu); nuo v0.3.1 visos trys vietos naudoja `BrandMark`.
+**Duomenys (M1–M15):** `module.accent`, `module.identityIcon`, `module.icon` — `src/data/modules.json`.  
+`module.icon` = `module.identityIcon` (ModulesPage kortelė). Lygis (`learn` / `test` / `practice`) — gradientas + Eyebrow badge, ne kita ikona.
 
-| Variantas   | Vieta           | Badge / glifas (nekeičiamas dydis)     |
-| ----------- | --------------- | -------------------------------------- |
-| `nav`       | `AppNav`        | `rounded-xl p-2.5` / `w-5`             |
-| `hero`      | `HomePage` hero | `rounded-3xl p-6` / `w-16` (+ animate) |
-| `footer`    | `App` footer    | `rounded-lg p-1.5` / `w-3.5`           |
-| `icon-only` | bendras         | `rounded-lg p-1.5` / `w-5`             |
+| Track        | Moduliai | `accent`                      | Tipinės ikonos                     |
+| ------------ | -------- | ----------------------------- | ---------------------------------- |
+| Foundation   | M1–M3    | `brand` / `slate` / `emerald` | BookOpen, ClipboardList, Briefcase |
+| Theory       | M4–M6    | `violet` / `cyan` / `accent`  | Brain, ClipboardCheck, Rocket      |
+| Data (corp)  | M7–M9    | `sky`                         | BarChart3, ClipboardCheck, Rocket  |
+| Agents       | M10–M12  | `fuchsia`                     | Cpu, ClipboardCheck, Rocket        |
+| Content eng. | M13–M15  | `rose`                        | Image, ClipboardCheck, Rocket      |
 
-Konstantos: [`src/constants/brand.ts`](../../src/constants/brand.ts) (`BRAND`, `brandName`). Spec: [`BRAND_MARK_SPEC.md`](BRAND_MARK_SPEC.md). Phase 2 (`packages/brand`) extract kontraktas: [`PACKAGES_BRAND_CONTRACT.md`](PACKAGES_BRAND_CONTRACT.md). A11y: be `aria-label` — dekoratyvus (`aria-hidden`); su `aria-label` — `role="img"`. `ActionIntroSlide` CTA `Zap` (veiksmo semantika) **lieka** atskirai.
+**3 UI vietos (identity biudžetas):**
+
+1. **ModulesPage** — top juosta (`accentTopBarClasses`) + ikona (`resolveModuleIcon`)
+2. **ActionIntroSlide** — `<Eyebrow>`
+3. **SectionBreakSlide** — `sectionNumber` badge (`sectionBreakBadgeByAccent`)
+
+Papildomai (ne identity “4-ta vieta”, o chrome): **ModuleCompleteScreen** top juosta per `resolveModuleAccent`.
+
+Helpers: [`src/utils/moduleIdentity.ts`](../../src/utils/moduleIdentity.ts).  
+CI: `npm run audit:module-identity`.
 
 ---
 
-## 4b. Icons (v0.3 — slide JSON + Lucide)
+## 4a. Brand mark (0.3.1)
 
-**SOT:** [`src/icons/types.ts`](../../src/icons/types.ts) (allowlist pagal kontekstą), [`src/icons/registry.ts`](../../src/icons/registry.ts) (named Lucide imports), [`src/icons/resolveIcon.ts`](../../src/icons/resolveIcon.ts) (resolver).
+[`src/components/ui/BrandMark.tsx`](../../src/components/ui/BrandMark.tsx) — Lucide `Zap` (gold) ant `brand-900`. Spec: [`BRAND_MARK_SPEC.md`](BRAND_MARK_SPEC.md). Konstantos: [`src/constants/brand.ts`](../../src/constants/brand.ts).
 
-| Konvencija     | Kur                                                           | Pavyzdys                         |
-| -------------- | ------------------------------------------------------------- | -------------------------------- |
-| PascalCase     | slide JSON (`journeyChoices`, `cards`, `sections`, `aspects`) | `Target`, `Workflow`, `Repeat`   |
-| kebab-case     | news-portal `iconKey`                                         | `trending-up`, `building-2`      |
-| emoji (legacy) | `insights[].emoji` tik                                        | ne `icon` lauke — naudoti Lucide |
+| Variantas   | Vieta        | Badge / glifas               |
+| ----------- | ------------ | ---------------------------- |
+| `nav`       | `AppNav`     | `rounded-xl p-2.5` / `w-5`   |
+| `hero`      | `HomePage`   | `rounded-3xl p-6` / `w-16`   |
+| `footer`    | `App` footer | `rounded-lg p-1.5` / `w-3.5` |
+| `icon-only` | bendras      | `rounded-lg p-1.5` / `w-5`   |
 
-**Semantika:** `Workflow` = proceso/srauto glifas; `Repeat` = iteracijos ciklas — **atskiri raktai**, ne sinonimai.
+A11y: be `aria-label` → dekoratyvus; su label → `role="img"`. ActionIntro CTA `Zap` (veiksmo semantika) lieka atskirai.
 
-**Fallback:** nežinomas Lucide raktas → `HelpCircle` (ne raw tekstas). Dev: `console.warn` per `resolveIcon`.
+---
 
-**Dydžiai:** [`src/icons/iconSizes.ts`](../../src/icons/iconSizes.ts) — `sm`/`md`/`lg`; `IconChip` ir slide kortelės naudoja tą patį SOT.
+## 4b. Icons (0.3)
 
-**CI:** `npm run audit:slide-icons` — tikrina `modules.json` icon raktus pagal slide tipą. Release: `audit:release-preflight`.
+SOT: [`src/icons/types.ts`](../../src/icons/types.ts), [`registry.ts`](../../src/icons/registry.ts), [`resolveIcon.ts`](../../src/icons/resolveIcon.ts), [`iconSizes.ts`](../../src/icons/iconSizes.ts).
 
-**UI helper:** [`SlideLucideIcon`](../../src/icons/SlideLucideIcon.tsx) infographics / paradox / pipeline.
+| Konvencija     | Kur                    | Pavyzdys                       |
+| -------------- | ---------------------- | ------------------------------ |
+| PascalCase     | slide JSON             | `Target`, `Workflow`, `Repeat` |
+| kebab-case     | news-portal `iconKey`  | `trending-up`                  |
+| emoji (legacy) | tik `insights[].emoji` | ne `icon` lauke                |
+
+Fallback: nežinomas raktas → `HelpCircle`. CI: `npm run audit:slide-icons`. Helper: [`SlideLucideIcon`](../../src/icons/SlideLucideIcon.tsx).
 
 ---
 
 ## 5. Skaidrių tipai ir layout
 
-_TBD v0.3 — žr. `GOLDEN_STANDARD.md` §3–§4, `docs/SKAIDRIU_TIPU_ANALIZE.md`._
+**SOT:** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) §3–§4 · tipų inventorius: [`docs/SKAIDRIU_TIPU_ANALIZE.md`](../SKAIDRIU_TIPU_ANALIZE.md) · render: `SlideContent.tsx` + `src/components/slides/types/`.
+
+Layout chrome:
+
+- **SlideWorkspace** — visada ant `content-block` / `evaluator-prompt-block` (M1–15).
+- Tarpai: `design-tokens` `spacingClasses.blockGap` (`space-y-6`) — GOLDEN §3.7 / UI_UX §3.7.
+- Sticky: `stickyClasses.belowAppNav` + `--app-nav-height` (GOLDEN §5.5).
 
 ---
 
 ## 6. Diagramos ir schemos
 
-Canonical interaktyvių diagramų kelias: `DIAGRAM_KIT_STANDARD.md`.
+Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 
-- Klaviatūros kelias: HTML `DiagramStepNav`.
-- SVG hit zones: `DiagramStepHitArea` tik pointer sąveikai, be `role="button"` ir be `tabIndex`.
-- Dark mode: `diagramTokens.ts` `getDiagramPalette()` / `getDiagramToneColors()` arba SVG `dark:` klasės fonui, rėmui, flow linijoms ir tekstui.
-- Wrapper: `InteractiveDiagramShell` su status badge, step nav ir explanation bloku.
+- Keyboard: HTML `DiagramStepNav`.
+- SVG hit: `DiagramStepHitArea` (pointer only; be `role="button"` / `tabIndex`).
+- Dark: `getDiagramPalette()` / `getDiagramToneColors()`.
+- Shell: `InteractiveDiagramShell` (status, step nav, explanation).
 
-`RlProcessBlock` yra pirmas legacy pilotas šiame 2026-07 remonte: shell perkelta į `InteractiveDiagramShell`, SVG keyboard path pašalintas, dark SVG fonas saugomas testu.
+**Būsena (2026-07):**
 
-2026-07 leftovers pass:
-
-- `DiPrezentacijosWorkflowDiagram`, `TurinioWorkflowDiagram`, `AgentWorkflowDiagram` ir `CustomGptProcessDiagram` SVG hit zonos perkeltos į pointer-only `DiagramStepHitArea`; keyboard kelias lieka HTML `nav button`.
-- Sudėtingi spatial/mode komponentai (`WorkflowComparisonDiagram`, `ContextEngineeringPipelineDiagram`) kol kas dokumentuoti kaip atskiro review kandidatai.
-- `LlmArch` refaktorius laikomas atskiru B3 tracku: [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).
-- M10+ vizualinė kokybė sekama atskiru backlog: [`analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
+- M1–M9 DiagramKit migracija + leftovers (DiPrezentacijos, Turinio, AgentWorkflow, CustomGpt hit zones) — done / dalinis.
+- M10–M12 process diagramos — shell + layout SOT; vizualinis backlog dauguma **Done**: [`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
+- **v0.3 backlog:** `LlmArch` B3 — [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md); CustomGpt hex; `ContentSlides` arbitrary class.
 
 ---
 
 ## 7. Deprecations ir migracija
 
-| Legacy                                            | Canonical              | Statusas v0.2                       |
-| ------------------------------------------------- | ---------------------- | ----------------------------------- |
-| `.btn-primary` / `.btn-secondary` / `.btn-accent` | `<CTAButton />`        | CSS lieka; `@deprecated` komentaras |
-| `.card` / `.card-hover`                           | `<Card />`             | CSS lieka; migracija v0.3           |
-| `.badge-*`                                        | Badge primitive (v0.3) | CSS lieka                           |
+| Legacy                                            | Canonical                     | Statusas                                      |
+| ------------------------------------------------- | ----------------------------- | --------------------------------------------- |
+| `.btn-primary` / `.btn-secondary` / `.btn-accent` | `<CTAButton />`               | CSS lieka; JSX → CTAButton (dalinė migracija) |
+| `.card` / `.card-hover`                           | `<Card />`                    | CSS lieka; migracija v0.3                     |
+| `.badge-*`                                        | Badge primitive (v0.3)        | CSS lieka                                     |
+| Local SVG `style={{ background }}` ant diagramų   | `<linearGradient>` + `<rect>` | preferuoti (pvz. M10Orchestrator)             |
+
+`@deprecated` ≠ delete. Senas CSS veikia, kol v0.3 cleanup.
 
 ---
 
 ## 8. Kokybės vartai
 
+Lokaliai prieš didesnį DS diff:
+
 ```bash
-npm run lint && npm run typecheck && npm run test:run && npm run build
+npm run lint && npm run typecheck && npm run test:run
 npm run validate:schema
-npm run audit:design-tokens   # warn-only, lyginti su 2026-07 baseline
 npm run audit:design-tokens:gate
 npm run audit:module-identity
+npm run audit:slide-icons
+npm run audit:accent-budget
 node scripts/audit-footer-length.mjs
 ```
 
-Release: [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) (§8 design tokens).
+**Release:** `npm run audit:release-preflight` — įskaitant tokens gate, module-identity, slide-icons, **pilną** accent-budget, slide-titles, M4–9 EN/LT.  
+Checklist: [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) (§8 design tokens, accent budget).
 
 ---
 
-## 9. Changelog ir versijos
+## 9. Versijų istorija
 
-- **v0.2.0** — `CHANGELOG.md` § [v0.2.0]
-- **v0.1** — GOLDEN_STANDARD, pradiniai `Card` / `CTAButton` / `Banner`
+| Versija                     | Kas                                                                                                                |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **0.1**                     | GOLDEN_STANDARD, pradiniai `Card` / `CTAButton` / `Banner`                                                         |
+| **0.2.0**                   | Konsolidacija, Eyebrow/IconChip/SectionDivider, M1–6 identity, `audit:design-tokens` — `CHANGELOG` `[v0.2.0]`      |
+| **0.3.1 dalys**             | BrandMark, icon registry, `module.icon` = identityIcon, M7–15 track accents                                        |
+| **DS hardening / W7–W10**   | Banner/CTAButton/Card pilotai, `surfaceGlass`, SlideWorkspace, tokens gate baseline 417                            |
+| **DS max-ROI (2026-07-20)** | Accent biudžetas M4–M9/M13 + EN; SlideWorkspace all M1–15; Orchestrator be inline bg; preflight full accent-budget |
+
+Detalu: `CHANGELOG.md` `[Unreleased]` · **DS max-ROI compliance**.
 
 ---
 
-## 10. Nuorodos
+## 10. Backlog (v0.3+) — ne ši DS linija
 
-| Dokumentas             | Kelias                                              |
-| ---------------------- | --------------------------------------------------- |
-| SOT v0.2 planas        | `DESIGN_SYSTEM_V0_2.md`                             |
-| Vykdymo planas         | `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`              |
-| Vizualinis diff (E7)   | `analysis/DESIGN_SYSTEM_V0_2_VISUAL_DIFF/README.md` |
-| Microcopy backlog (E6) | `analysis/MICROCOPY_LENGTHS_2026-05.md`             |
+- LlmArch B3 hex/inline migracija
+- `ContentSlides.tsx` arbitrary Tailwind cleanup
+- `.card` / `.btn-*` CSS pašalinimas po pilnos JSX migracijos
+- Badge primitive
+- Nauja paletė / „premium SaaS“ look — **neplanuota** be atskiro produkto sprendimo
+
+---
+
+## 11. Nuorodos
+
+| Dokumentas               | Kelias                                                              |
+| ------------------------ | ------------------------------------------------------------------- |
+| GOLDEN etalonas          | `GOLDEN_STANDARD.md`                                                |
+| UI/UX agentas            | `UI_UX_AGENT.md`                                                    |
+| v0.2 planas (archyvas)   | `DESIGN_SYSTEM_V0_2.md`                                             |
+| v0.2 vykdymas (archyvas) | `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`                              |
+| DiagramKit               | `DIAGRAM_KIT_STANDARD.md`                                           |
+| Brand mark               | `BRAND_MARK_SPEC.md`                                                |
+| Release QA               | `RELEASE_QA_CHECKLIST.md`                                           |
+| Token baseline           | `../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md` |

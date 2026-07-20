@@ -13,6 +13,7 @@ export interface M12MultiAgentSchemaLabels {
   output: DiagramLabelPair;
   handoff: string;
   hitl: string;
+  feedback: string;
   aria: string;
 }
 
@@ -41,7 +42,8 @@ export function getM12MultiAgentSchemaLabels(
       output: pair('Output', 'HITL gate'),
       handoff: 'clear handoff',
       hitl: 'human approves',
-      aria: 'Business multi-agent flow: input, optional router, coordinator, two specialists, evaluator, output with human approval',
+      feedback: 'return to coordinator',
+      aria: 'Business multi-agent flow: input, optional router, coordinator, two specialists, evaluator with return to coordinator, output with human approval',
     };
   }
 
@@ -56,7 +58,8 @@ export function getM12MultiAgentSchemaLabels(
     output: pair('Išvestis', 'žmogaus patvirtinimas'),
     handoff: 'aiškus perdavimas',
     hitl: 'žmogus patvirtina',
-    aria: 'Verslo kelių agentų srautas: įvestis, pasirenkamas maršrutizatorius, koordinatorius, du specialistai, vertintojas ir išvestis su žmogaus patvirtinimu',
+    feedback: 'grąžinimas koordinatoriui',
+    aria: 'Verslo kelių agentų srautas: įvestis, pasirenkamas maršrutizatorius, koordinatorius, du specialistai, vertintojas su grąžinimu koordinatoriui ir išvestis su žmogaus patvirtinimu',
   };
 }
 
@@ -83,7 +86,7 @@ export function getM12MultiAgentStepExplanations(
       },
       {
         title: 'Evaluator',
-        body: 'The evaluator checks quality, rules and gaps before the result moves forward.',
+        body: 'The evaluator checks quality, rules and gaps. If quality fails, work returns to the coordinator (dashed feedback) instead of going to output.',
       },
       {
         title: 'Output + HITL',
@@ -111,7 +114,7 @@ export function getM12MultiAgentStepExplanations(
     },
     {
       title: 'Vertintojas',
-      body: 'Vertintojas patikrina kokybę, taisykles ir spragas prieš perduodant rezultatą toliau.',
+      body: 'Vertintojas patikrina kokybę, taisykles ir spragas. Jei kokybė netinka – darbas grįžta koordinatoriui (punktyrinė feedback rodyklė), o ne į išvestį.',
     },
     {
       title: 'Išvestis + žmogaus patvirtinimas',

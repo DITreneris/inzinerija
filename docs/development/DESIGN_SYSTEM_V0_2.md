@@ -1,6 +1,8 @@
 # Design System v0.2 — Konsolidacija ir modulio identitetas
 
-> **Versija:** 0.2.0 (planavimas) | **Data:** 2026-05-19 | **Status:** Planning → Ready to execute
+> **ARCHYVAS (2026-07-20):** v0.2 **shipped**. Gyvas SOT indeksas → [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md). Tipografija/schemos → [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) 2.3.9. Šis failas – istorinis E1–E7 planas; **ne** naujų task'ų šaltinis.
+>
+> **Versija:** 0.2.0 | **Data:** 2026-05-19 | **Status:** ✅ shipped (E1–E7 baigti; žr. `DESIGN_SYSTEM.md` §9)
 > **Pirminis SOT (nelaužomas):** [`docs/development/GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md)
 > **Auditas (pamatas):** v0.1 → v0.2 audito ataskaita (chat 2026-05-19, „Design System v0.1 → v0.2 auditas — Promptų anatomija (~120 skaidrių)“)
 > **Tech apžvalga:** [`docs/development/GOLD_LEGACY_STANDARD.md`](GOLD_LEGACY_STANDARD.md)

@@ -99,17 +99,17 @@ UI_UX_AGENT geba **patikrinti visas skaidres** ar jos atitinka geriausias prakti
 
 ### 4.2 Checklist (geriausios praktikos)
 
-| Kriterijus               | Klausimas                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Vizualinė hierarchija    | Ar brand/accent/slate blokai naudojami teisingai?                                                                       |
-| Vienas dominuojantis CTA | Ar skaidrėje yra vienas aiškiai dominuojantis CTA (pagal „vienos eilutės“ principą)? Ar antriniai mygtukai antro plano? |
-| A11y                     | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown?                                                   |
-| Touch targets            | Ar min 44px (py-1.5 px-3 badge'ams)?                                                                                    |
-| Dark mode                | Ar visi blokai turi dark: variantus?                                                                                    |
-| Spalvos                  | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)?                                                         |
-| Konsistencija            | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.?                                                         |
-| Skenuojamumas            | Ar antraštės, bullet points, CTA aiškūs?                                                                                |
-| Lentelės                 | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių?   |
+| Kriterijus               | Klausimas                                                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Vizualinė hierarchija    | Ar brand/accent/slate blokai naudojami teisingai? content-block: max 2× accent (Trumpai+Patikra); Daryk = brand (`audit:accent-budget`). |
+| Vienas dominuojantis CTA | Ar skaidrėje yra vienas aiškiai dominuojantis CTA (pagal „vienos eilutės“ principą)? Ar antriniai mygtukai antro plano?                  |
+| A11y                     | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown?                                                                    |
+| Touch targets            | Ar min 44px (py-1.5 px-3 badge'ams)?                                                                                                     |
+| Dark mode                | Ar visi blokai turi dark: variantus?                                                                                                     |
+| Spalvos                  | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)?                                                                          |
+| Konsistencija            | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.?                                                                          |
+| Skenuojamumas            | Ar antraštės, bullet points, CTA aiškūs?                                                                                                 |
+| Lentelės                 | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių?                    |
 
 ### 4.3 Išvesties formatas (audito ataskaita)
 

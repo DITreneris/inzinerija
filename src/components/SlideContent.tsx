@@ -32,8 +32,6 @@ import AiDetectorsSlide from '@ai-detectors-slide';
 import VaizdoGeneratoriusSlide from '@vaizdo-generatorius-slide';
 import SlideWorkspace from './slides/shared/SlideWorkspace';
 
-const slideWorkspaceModules = new Set([1, 4, 7, 10, 13]);
-
 /* Lazy by group (B): ContentSlides, BlockSlides, TestPracticeSlides – separate chunks.
    lazyWithRetry retries up to 3× on chunk load failure (mobile networks). */
 const LazyActionIntroSlide = lazyWithRetry(() =>
@@ -619,19 +617,17 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
       ctx.journeyFocusId,
       ctx.locale
     );
-    const slide = (
-      <LazyContentBlockSlide
-        content={content}
-        slide={ctx.slide}
-        moduleId={ctx.moduleId}
-        onGoToTools={ctx.onGoToTools}
-        onGoToSummary={m9SkipSummary}
-      />
+    return (
+      <SlideWorkspace>
+        <LazyContentBlockSlide
+          content={content}
+          slide={ctx.slide}
+          moduleId={ctx.moduleId}
+          onGoToTools={ctx.onGoToTools}
+          onGoToSummary={m9SkipSummary}
+        />
+      </SlideWorkspace>
     );
-    if (slideWorkspaceModules.has(ctx.moduleId)) {
-      return <SlideWorkspace>{slide}</SlideWorkspace>;
-    }
-    return slide;
   },
   'evaluator-prompt-block': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();
@@ -645,19 +641,17 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
       ctx.journeyFocusId,
       ctx.locale
     );
-    const slide = (
-      <LazyContentBlockSlide
-        content={content}
-        slide={ctx.slide}
-        moduleId={ctx.moduleId}
-        onGoToTools={ctx.onGoToTools}
-        onGoToSummary={m9SkipSummary}
-      />
+    return (
+      <SlideWorkspace>
+        <LazyContentBlockSlide
+          content={content}
+          slide={ctx.slide}
+          moduleId={ctx.moduleId}
+          onGoToTools={ctx.onGoToTools}
+          onGoToSummary={m9SkipSummary}
+        />
+      </SlideWorkspace>
     );
-    if (slideWorkspaceModules.has(ctx.moduleId)) {
-      return <SlideWorkspace>{slide}</SlideWorkspace>;
-    }
-    return slide;
   },
   'section-break': (ctx) => {
     if (ctx.slide.content == null) return ctx.fallbackMissingContent();

@@ -37,9 +37,11 @@ export interface M12MultiAgentEdge {
   id: string;
   from: M12MultiAgentNodeId;
   to: M12MultiAgentNodeId;
-  kind: 'flow' | 'hitl';
+  kind: 'flow' | 'hitl' | 'feedback';
   fromAnchor: M12Anchor;
   toAnchor: M12Anchor;
+  /** Curved path when anchors alone would cross specialist boxes. */
+  path?: string;
 }
 
 export const M12_MULTI_AGENT_VIEWBOX = {
@@ -115,6 +117,16 @@ export const M12_MULTI_AGENT_EDGES_DESKTOP: M12MultiAgentEdge[] = [
     fromAnchor: 'right',
     toAnchor: 'left',
   },
+  {
+    id: 'evaluator-coordinator',
+    from: 'evaluator',
+    to: 'coordinator',
+    kind: 'feedback',
+    fromAnchor: 'bottom',
+    toAnchor: 'bottom',
+    /** Below specialists so the return path does not cross teal boxes. */
+    path: 'M 701 190 C 640 255, 450 255, 388 190',
+  },
 ];
 
 export const M12_MULTI_AGENT_EDGES_COMPACT: M12MultiAgentEdge[] = [
@@ -173,6 +185,16 @@ export const M12_MULTI_AGENT_EDGES_COMPACT: M12MultiAgentEdge[] = [
     kind: 'hitl',
     fromAnchor: 'bottom',
     toAnchor: 'top',
+  },
+  {
+    id: 'evaluator-coordinator',
+    from: 'evaluator',
+    to: 'coordinator',
+    kind: 'feedback',
+    fromAnchor: 'left',
+    toAnchor: 'right',
+    /** Side loop left of the vertical stack. */
+    path: 'M 110 467 C 20 467, 20 257, 110 257',
   },
 ];
 

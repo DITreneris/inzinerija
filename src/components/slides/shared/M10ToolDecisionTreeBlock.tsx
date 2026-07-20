@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { useStepDiagram } from '../../../utils/useStepDiagram';
 import EnlargeableDiagram from './EnlargeableDiagram';
+import { InteractiveDiagramShell } from './diagramKit';
 import M10ToolDecisionTreeDiagram from './M10ToolDecisionTreeDiagram';
 import {
   getM10ToolTreeLeaves,
@@ -12,33 +13,57 @@ const ENLARGE = {
   en: 'Tool decision tree',
 } as const;
 
+const LABELS = {
+  lt: {
+    regionAria: 'Įrankių pasirinkimo medis: 5 šakos',
+    statusLabel: 'Pasirinkta šaka:',
+    navAria: 'Įrankio šakos pasirinkimas',
+    stepAria: (i: number, title: string) => `Šaka ${i + 1}: ${title}`,
+  },
+  en: {
+    regionAria: 'Tool decision tree: 5 branches',
+    statusLabel: 'Selected branch:',
+    navAria: 'Tool branch selection',
+    stepAria: (i: number, title: string) => `Branch ${i + 1}: ${title}`,
+  },
+} as const;
+
 export default function M10ToolDecisionTreeBlock() {
   const { locale } = useLocale();
   const loc = locale === 'en' ? 'en' : 'lt';
-  const [selected, setSelected] = useState(0);
   const leaves = getM10ToolTreeLeaves(loc);
-  const L = getM10ToolTreeLabels(loc);
-  const leaf = leaves[selected];
+  const treeLabels = getM10ToolTreeLabels(loc);
+  const labels = LABELS[loc];
+  const steps = leaves.map((leaf) => ({
+    title: leaf.tool,
+    body: `${treeLabels.pick}: ${leaf.condition}`,
+  }));
+  const { currentStep, setCurrentStep, step, totalSteps } =
+    useStepDiagram(steps);
 
   return (
     <EnlargeableDiagram
       mobileBehavior="reflow"
       renderContent={() => (
-        <div className="space-y-3">
+        <InteractiveDiagramShell
+          regionAria={labels.regionAria}
+          statusLabel={labels.statusLabel}
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+          currentTitle={step.title}
+          navAria={labels.navAria}
+          steps={steps}
+          onStepSelect={setCurrentStep}
+          stepAria={labels.stepAria}
+          explanationTitle={step.title}
+          explanation={<p>{step.body}</p>}
+        >
           <M10ToolDecisionTreeDiagram
             locale={loc}
-            selectedIndex={selected}
-            onSelect={setSelected}
+            selectedIndex={currentStep}
+            onSelect={setCurrentStep}
           />
-          <p className="text-sm text-center text-gray-600 dark:text-gray-400">
-            {L.pick}:{' '}
-            <strong className="text-brand-700 dark:text-brand-300">
-              {leaf.tool}
-            </strong>
-            {' — '}
-            {leaf.condition}
-          </p>
-        </div>
+        </InteractiveDiagramShell>
       )}
       enlargeLabel={ENLARGE[loc]}
     />

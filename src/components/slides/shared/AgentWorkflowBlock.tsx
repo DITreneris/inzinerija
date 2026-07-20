@@ -42,6 +42,7 @@ export default function AgentWorkflowBlock() {
 
   return (
     <EnlargeableDiagram
+      mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
           regionAria={labels.regionAria}

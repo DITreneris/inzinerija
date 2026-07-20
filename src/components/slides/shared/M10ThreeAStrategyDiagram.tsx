@@ -3,7 +3,7 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TONE_COLORS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
 import { getM10ThreeALabels, type M10Locale } from './m10DiagramContent';
 
 const W = 400;
@@ -24,6 +24,8 @@ export default function M10ThreeAStrategyDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10ThreeALabels(locale);
   let y = 40;
 
@@ -65,19 +67,31 @@ export default function M10ThreeAStrategyDiagram({
       aria-label={L.aria}
     >
       <defs>
+        <linearGradient id={`m10-3a-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
+        </linearGradient>
         <linearGradient id={`m10-3a-a-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.brand.top} />
-          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.brand.bottom} />
+          <stop offset="0%" stopColor={tones.brand.top} />
+          <stop offset="100%" stopColor={tones.brand.bottom} />
         </linearGradient>
         <linearGradient id={`m10-3a-b-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.emerald.top} />
-          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.emerald.bottom} />
+          <stop offset="0%" stopColor={tones.emerald.top} />
+          <stop offset="100%" stopColor={tones.emerald.bottom} />
         </linearGradient>
         <linearGradient id={`m10-3a-c-${uid}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor={DIAGRAM_TONE_COLORS.amber.top} />
-          <stop offset="100%" stopColor={DIAGRAM_TONE_COLORS.amber.bottom} />
+          <stop offset="0%" stopColor={tones.amber.top} />
+          <stop offset="100%" stopColor={tones.amber.bottom} />
         </linearGradient>
       </defs>
+      <rect
+        x="0"
+        y="0"
+        width={W}
+        height={H}
+        rx="12"
+        fill={`url(#m10-3a-bg-${uid})`}
+      />
       <text
         x={W / 2}
         y={24}
@@ -85,7 +99,7 @@ export default function M10ThreeAStrategyDiagram({
         fontSize="14"
         fontWeight="800"
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -111,7 +125,7 @@ export default function M10ThreeAStrategyDiagram({
               fill="white"
               fontSize={r.h < 26 ? 10 : 12}
               fontWeight="700"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              fontFamily={DIAGRAM_TOKENS.font}
             >
               {r.title} {r.pct}
             </text>
@@ -121,7 +135,7 @@ export default function M10ThreeAStrategyDiagram({
                 y={rowY + r.h - 10}
                 fill="rgba(255,255,255,0.88)"
                 fontSize="10"
-                fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+                fontFamily={DIAGRAM_TOKENS.font}
               >
                 {r.sub}
               </text>
@@ -132,7 +146,7 @@ export default function M10ThreeAStrategyDiagram({
                 y={rowY + r.h - 6}
                 fill="rgba(255,255,255,0.88)"
                 fontSize="8"
-                fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+                fontFamily={DIAGRAM_TOKENS.font}
               >
                 {r.sub}
               </text>

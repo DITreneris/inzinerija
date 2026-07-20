@@ -186,11 +186,38 @@ export function getDiagramToneColors(isDark: boolean) {
   return isDark ? DIAGRAM_TONE_COLORS_DARK : DIAGRAM_TONE_COLORS;
 }
 
+/**
+ * Semantic role fills for M10/M12 multi-node diagrams (orchestrator, learning loop, taxonomy).
+ * Active selection stroke = brand gold (same as dark amber.stroke).
+ */
+export const DIAGRAM_ROLE_COLORS = {
+  brand: DIAGRAM_TOKENS.colors.brand,
+  brandTop: DIAGRAM_TOKENS.colors.brandTop,
+  teal: '#0d9488',
+  violet: '#7c3aed',
+  amber: DIAGRAM_TOKENS.colors.amber,
+  amberSoft: '#fef3c7',
+  rose: '#e11d48',
+  slate: '#64748b',
+  greyForward: '#7B8794',
+  accentDark: '#7a5807',
+  /** Selected-node stroke — brand gold */
+  activeStroke: DIAGRAM_TONE_COLORS_DARK.amber.stroke,
+} as const;
+
+export function getDiagramRoleColors() {
+  return DIAGRAM_ROLE_COLORS;
+}
+
+export function getDiagramActiveStroke() {
+  return DIAGRAM_ROLE_COLORS.activeStroke;
+}
+
 /** M4 sk. 53.5 portal beat SVG fills — re-exports diagram palette (SCHEME_AGENT SOT). */
 export const PORTAL_BEAT_COLORS = {
   brand: DIAGRAM_TOKENS.colors.flow,
   accent: DIAGRAM_TONE_COLORS.amber.top,
   // v0.2 — portal beat only; consolidate in v0.3 diagram tone palette
-  violet: '#7c3aed',
+  violet: DIAGRAM_ROLE_COLORS.violet,
   emerald: DIAGRAM_TONE_COLORS.emerald.bottom,
 } as const;

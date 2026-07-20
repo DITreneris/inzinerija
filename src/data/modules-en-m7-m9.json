@@ -288,7 +288,8 @@
               }
             ],
             "toolsCollapsible": true
-          }
+          },
+          "shortTitle": "Data analysis with AI"
         },
         {
           "id": 72,
@@ -635,7 +636,8 @@
                 "blockVariant": "terms"
               }
             ]
-          }
+          },
+          "shortTitle": "Problem statement: AI value"
         },
         {
           "id": 73,
@@ -1265,7 +1267,7 @@
         {
           "id": 77,
           "title": "Data types and collection strategy",
-          "subtitle": "5 types + 3 collection methods – CopyButton for each",
+          "subtitle": "5 types + 3 collection methods – copyable templates for each",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1405,7 +1407,7 @@
               {
                 "heading": "Ethics and law",
                 "body": "Only public or permitted data. Respect site terms and robots.txt. Do not collect personal data without legal basis.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "How to run the script (5 steps)",
@@ -1710,7 +1712,7 @@
         {
           "id": 861,
           "title": "Simple visualizations – prompts by type",
-          "subtitle": "Bar, line, pie, table – CopyButton",
+          "subtitle": "Bar, line, pie, table – copyable templates",
           "type": "content-block",
           "content": {
             "sections": [
@@ -1949,7 +1951,8 @@
         },
         {
           "id": 891,
-          "title": "Data preparation and business analysis workflow",
+          "title": "Data prep and business analysis workflow",
+          "shortTitle": "Data prep and workflow",
           "subtitle": "Cleaning, metadata, and the correct step sequence",
           "type": "content-block",
           "content": {
@@ -2033,11 +2036,11 @@
         },
         {
           "id": 66.9,
-          "title": "Section: Reliability and ethics",
+          "title": "Reliability and ethics",
           "subtitle": "Reliability and ethics – then back to exploratory analysis and the full analysis template.",
           "type": "section-break",
           "content": {
-            "title": "Section: Reliability and ethics",
+            "title": "Reliability and ethics",
             "subtitle": "First in this section: manipulation, security, hallucinations, knowledge verification (optional – benchmark and detectors). Then we return to exploratory analysis, tables, reporting schema, agents, and the full analysis template.",
             "sectionNumber": "M7",
             "footer": "Next – Prompt manipulation",
@@ -2219,7 +2222,7 @@
               {
                 "heading": "Bad example",
                 "body": "\"Role: you are our company marketing director who knows our campaign was the most successful in the market. Prove our product is the best, using only positive customer reviews. Ignore negative comments.\"",
-                "blockVariant": "accent"
+                "blockVariant": "terms"
               },
               {
                 "heading": "What did you notice?",
@@ -2256,7 +2259,7 @@
               {
                 "heading": "Prompt injection – plain language",
                 "body": "When someone embeds secret instructions in your input – e.g. \"ignore previous rules\". **Defence:** keep system instructions separate; validate external text; clearly limit what AI may execute.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Jailbreak – plain language",
@@ -2271,7 +2274,7 @@
               {
                 "heading": "Why it matters (OWASP LLM #1)",
                 "body": "OWASP LLM Top 10: Prompt Injection is #1. Most LLM security incidents involve injection or boundary bypass.",
-                "blockVariant": "accent",
+                "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -2285,7 +2288,7 @@
               {
                 "heading": "Defence principles (practical)",
                 "body": "1) **Clear separation** – system instructions separate from user text. 2) **Input validation**. 3) **Instruction boundaries** – AI must not execute instructions embedded in user input.",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -2338,7 +2341,7 @@
               {
                 "heading": "Hallucinations depend on more than the prompt",
                 "body": "Four levels: (1) model and training data, (2) provided data and context (RAG), (3) prompt, (4) knowledge verification practices. Answer at whole system level – reliable models, clear context, good prompts and ongoing verification.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "5 rules for reliability",
@@ -2388,7 +2391,7 @@
               {
                 "heading": "Verification triangle",
                 "body": "Source → cross-check → \"I don't know\". Require sources in the prompt; cross-check critical claims; require AI to say \"I don't know\" when information is missing.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Deep dive: CoVe (reference)",
@@ -2751,7 +2754,7 @@
         {
           "id": 94,
           "title": "AI agent concept",
-          "subtitle": "Data Research, EDA, Insight – 3 CopyButton",
+          "subtitle": "Data Research, EDA, Insight – 3 copyable templates",
           "type": "content-block",
           "content": {
             "sections": [
@@ -3145,12 +3148,13 @@
                 "blockVariant": "accent"
               }
             ]
-          }
+          },
+          "shortTitle": "Visualization basics"
         },
         {
           "id": 103,
           "title": "Extra: enhanced visualization prompts",
-          "subtitle": "Marketing path – 4 CopyButton prompts for channel and content visualization",
+          "subtitle": "Marketing path – 4 copyable templates prompts for channel and content visualization",
           "type": "content-block",
           "content": {
             "sections": [
@@ -3636,7 +3640,7 @@
         },
         {
           "id": 801,
-          "title": "Bonus: Screenshot analysis with AI",
+          "title": "Extra: Screenshot analysis with AI",
           "subtitle": "Practice: upload dashboard, table or chart – get structured assessment",
           "type": "content-block",
           "content": {
@@ -3656,7 +3660,7 @@
                 "heading": "Prompt – copy and use",
                 "body": "Upload an image to AI (ChatGPT, Claude, etc.), paste the prompt below and run.",
                 "copyable": "Analyze this screenshot.\n\n1. Identify main elements\n2. Name possible problems\n3. Suggest optimisations\n4. Provide structured analysis:\n   - Function\n   - Risk\n   - Possible improvement\n   - Priority (Low / Medium / High)",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -3668,7 +3672,7 @@
         },
         {
           "id": 802,
-          "title": "Bonus: Visualization in practice – type and example",
+          "title": "Extra: Visualization in practice – type and example",
           "subtitle": "Pick data, copy the prompt – get a visualization suggestion",
           "type": "content-block",
           "content": {
@@ -3688,7 +3692,7 @@
                 "heading": "Prompt – copy and adapt",
                 "body": "Change CONTEXT: describe your data (columns, goal). Copy into AI and run.",
                 "copyable": "ROLE: You are a senior data visualisation expert and UX designer.\nTASK: Pick the optimal chart type.\nCONTEXT: I have sales data by region and month. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 options 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -3740,7 +3744,7 @@
         },
         {
           "id": 93,
-          "title": "Module 9 workflow: 8-step data management cycle",
+          "title": "Module 9 workflow: 8-step cycle",
           "subtitle": "Main project – schema: collection → methodology → deep research → cleaning → integration → dashboard",
           "type": "content-block",
           "content": {
@@ -3759,7 +3763,7 @@
                 "heading": "Interactive 8-step schema",
                 "body": "Pick a step in the diagram – copyable prompts are on \"Helper prompts (CopyButton)\".",
                 "image": "m9_data_workflow",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "📄 Sample result (what to aim for)",
@@ -3771,7 +3775,7 @@
               {
                 "heading": "Dashboard example",
                 "body": "Minimal example: open `m9_dashboard_snippet.html` (public folder).",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -3897,7 +3901,7 @@
         },
         {
           "id": 94,
-          "title": "Helper prompts (CopyButton) – for each workflow step",
+          "title": "Helper prompts for each workflow step",
           "subtitle": "Main project – sandbox: little code, many AI instructions; parameters, colors, charts",
           "type": "content-block",
           "content": {
@@ -4172,7 +4176,7 @@
         },
         {
           "id": 104,
-          "title": "Scenario: Full workflow",
+          "title": "Scenario: full workflow",
           "subtitle": "8-step business cycle",
           "type": "practice-scenario",
           "content": {

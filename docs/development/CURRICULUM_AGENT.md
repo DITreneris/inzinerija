@@ -35,7 +35,9 @@
 
 **Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`; core profiliai `*-m1-m6.json` (MVP) ir `*-m1-m9.json` (korporatyvinis) yra build/runtime failai. CURRICULUM_AGENT nekeičia nei vieno iš jų tiesiogiai.
 
-**M10 precedentas (2026-06):** taksonomija ir workflow šablonai (10.45, 10.48) **prieš** workflow terminų skaidrę (10.15); M11 remediation nurodo slide IDs 10.45 ir 10.48. Dešimtainės skaidrės ID leidžiamos be naujo slide tipo.
+**M10 precedentas (2026-06 → 2026-07):** taksonomija ir workflow šablonai (10.45, 10.48) **prieš** workflow terminų skaidrę (10.15); M11 remediation nurodo slide IDs 10.45 ir 10.48. Dešimtainės skaidrių ID leidžiamos be naujo slide tipo.
+
+**M10 seka (2026-07-20):** paprastas sisteminis promptas (**10.3**) eina **po 10.25 (3A), prieš 10.45** (taksonomiją) – ne po multi-agent bloko. M12 pasiruošimo MUST: plonas privalomas **10.64** įėjimo bilietas (spec + 3 testai + HITL); dense **10.65** lieka optional. Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `docs/MODULIO_10_SKAIDRIU_EILES.md`.
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 

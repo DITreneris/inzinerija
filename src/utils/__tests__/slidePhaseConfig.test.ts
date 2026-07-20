@@ -61,18 +61,29 @@ describe('slidePhaseConfig', () => {
     it('returns granular labels from the official M10 sequence', () => {
       expect(getPhaseLabel(10, 100)).toBe('Įvadas / Kelias');
       expect(getPhaseLabel(10, 10.2)).toBe('Ciklas');
+      expect(getPhaseLabel(10, 10.22)).toBe('Ciklas');
+      expect(getPhaseLabel(10, 10.25)).toBe('3A ir šablonas');
+      expect(getPhaseLabel(10, 10.3)).toBe('3A ir šablonas');
       expect(getPhaseLabel(10, 10.45)).toBe('Keli agentai');
-      expect(getPhaseLabel(10, 10.49)).toBe('Promptai ir saugumas');
+      expect(getPhaseLabel(10, 10.482)).toBe('Keli agentai');
+      expect(getPhaseLabel(10, 10.485)).toBe('Keli agentai');
+      expect(getPhaseLabel(10, 10.49)).toBe('Keli agentai');
+      expect(getPhaseLabel(10, 10.4)).toBe('Promptai ir saugumas');
+      expect(getPhaseLabel(10, 10.61)).toBe('Promptai ir saugumas');
       expect(getPhaseLabel(10, 10.15)).toBe('Integracijos');
+      expect(getPhaseLabel(10, 10.64)).toBe('Integracijos');
+      expect(getPhaseLabel(10, 10.36)).toBe('Integracijos');
+      expect(getPhaseLabel(10, 10.37)).toBe('Integracijos');
       expect(getPhaseLabel(10, 10.65)).toBe('Neprivaloma');
+      expect(getPhaseLabel(10, 10.66)).toBe('Neprivaloma');
       expect(getPhaseLabel(10, 10.8)).toBe('Santrauka');
     });
 
     it('localizes M10 phase labels in EN', () => {
       expect(getPhaseLabel(10, 100, undefined, 'en')).toBe('Intro / path');
-      expect(getPhaseLabel(10, 10.49, undefined, 'en')).toBe(
-        'Prompts & safety'
-      );
+      expect(getPhaseLabel(10, 10.25, undefined, 'en')).toBe('3A & template');
+      expect(getPhaseLabel(10, 10.49, undefined, 'en')).toBe('Multi-agent');
+      expect(getPhaseLabel(10, 10.4, undefined, 'en')).toBe('Prompts & safety');
       expect(getPhaseLabel(10, 10.45, undefined, 'en')).toBe('Multi-agent');
       expect(getPhaseLabel(10, 10.65, undefined, 'en')).toBe('Optional');
     });
@@ -170,9 +181,12 @@ describe('slidePhaseConfig', () => {
         { type: 'content-block', id: 10.1 },
         { type: 'content-block', id: 10.2 },
         { type: 'path-step', id: 10.21 },
+        { type: 'content-block', id: 10.25 },
+        { type: 'content-block', id: 10.3 },
         { type: 'content-block', id: 10.45 },
         { type: 'content-block', id: 10.48 },
         { type: 'content-block', id: 10.49 },
+        { type: 'content-block', id: 10.4 },
         { type: 'content-block', id: 10.15 },
         { type: 'content-block', id: 10.65 },
         { type: 'summary', id: 10.8 },
@@ -181,6 +195,7 @@ describe('slidePhaseConfig', () => {
       expect(groups.map((group) => group.label)).toEqual([
         'Įvadas / Kelias',
         'Ciklas',
+        '3A ir šablonas',
         'Keli agentai',
         'Promptai ir saugumas',
         'Integracijos',

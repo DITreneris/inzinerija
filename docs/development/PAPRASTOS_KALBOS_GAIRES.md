@@ -35,6 +35,27 @@
 | **data model**                       | Duomenų struktūra (kaip lentelės susijusios). Galima „duomenų struktūra“                                                                                                                                                                                  |
 | **sentimentas**                      | Nuotaika, tonas (teigiamas / neutralus / neigiamas). Gali likti; jei reikia – „nuotaika (sentimentas)“                                                                                                                                                    |
 | **TL;DR**                            | LT sąsajoje naudoti **„Trumpai“** (content-block pirmos sekcijos `heading` ir matoma kopija). Anglų santrumpų vartotojui matomuose tekstuose – vengti (išskyrus citatas ar privalomus produkto terminus). Žr. `docs/development/GOLDEN_STANDARD.md` §3.2. |
+| **workflow**                         | Antraštėse ir navigacijoje – **darbo eiga** / **darbo eigos**. Pirmame paminėjime galima bilingviškai: „darbo eiga (workflow)“. Body ir promptuose loanword gali likti.                                                                                   |
+| **router**                           | **Maršrutizatorius**; mokymo poros su EN: „maršrutizatorius (router)“ – ypač kai aiškinamas skirtumas nuo orkestratoriaus.                                                                                                                                |
+
+---
+
+## 2a. Skaidrės antraštė (title / subtitle)
+
+Vartotojui matoma skaidrės antraštė = **dalyvio rezultatas ar tema**, ne kurso infrastruktūra. CI: `npm run audit:slide-titles`.
+
+1. **Be redakcinės meta:** nenaudoti `Skyrius:`, `Prieš M12`, `bilietas` antraštėje – UI tipas (`section-break`) ir kelio navigacija jau atskiria.
+2. **Be `(neprivaloma)` / `(optional)` antraštėje:** tik `optional: true` + UI badge (`ModuleView`).
+3. **Terminai antraštėse:** **darbo eiga**, ne `workflow`. Subtitle be `HITL`, `Spec`, `CopyButton` – vietoj to paprasta LT (pvz. „kada tvirtina žmogus“, „kopijuojami šablonai“).
+4. **Ilgis:** rekomenduojama title ≤ ~55 simb.; jei ilgesnė – `shortTitle` navigacijai / footeriams.
+5. **EN overlay:** ta pati semantika kaip LT (ne „entry ticket“, jei LT – „aprašymas“ / „brief“).
+
+| Prieš                                    | Po                                                  |
+| ---------------------------------------- | --------------------------------------------------- |
+| `Prieš M12: darbo eigos įėjimo bilietas` | `Minimalus darbo eigos aprašymas`                   |
+| `Skyrius: RAG ir gilusis tyrimas`        | `RAG ir gilusis tyrimas`                            |
+| `Žodynėlis (neprivaloma)`                | `Žodynėlis` (+ `optional: true`)                    |
+| `Spec 1 p. + … HITL` (subtitle)          | `1 psl. schema + 3 bandymai + kada tvirtina žmogus` |
 
 ---
 

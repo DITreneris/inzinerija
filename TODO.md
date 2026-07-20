@@ -69,18 +69,20 @@
 
 > **Planas:** `.cursor/plans/design_system_hardening_b6c90015.plan.md` (nekeisti). **Baseline:** `docs/archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md`.
 
-| ID              | Fazė | Užduotis                                                              | Status |
-| --------------- | ---- | --------------------------------------------------------------------- | ------ |
-| **DS-0-sot**    | 0    | GOLDEN_STANDARD §2.2/§6, `surfaceGlass`, audit regression gate        | [x]    |
-| **DS-1-shell**  | 1    | `surfaceGlass.shell` AppNav / ModuleView / TestPracticeSlides         | [x]    |
-| **DS-1-block**  | 1    | ContentSlides blockVariant → `getContentBlockVariantClasses()`        | [x]    |
-| **DS-1-banner** | 1    | Banner pilot ContentSlides + BlockSlides + TestPracticeSlides (≥10)   | [x]    |
-| **DS-1-prim**   | 1    | Card/CTAButton HomePage, ModulesPage, ModuleView                      | [x]    |
-| **DS-1-arb**    | 1    | Targeted `text-[11px]` cleanup; audit ≤521 baseline                   | [x]    |
-| **DS-2-id**     | 2    | `audit:module-identity`; diagram P2 (M10/M12/M13)                     | [x]    |
-| **DS-3-ws**     | 3    | `SlideWorkspace` + M4/M10 content-block pilot                         | [x]    |
-| **DS-4-exp**    | 4    | Banner batch BlockSlides + TestPracticeSlides (ongoing backlog likęs) | [x]    |
-| **DS-5-qa**     | 5    | CHANGELOG, DESIGN_SYSTEM, RELEASE_QA #6 smoke docs                    | [x]    |
+| ID              | Fazė | Užduotis                                                                      | Status         |
+| --------------- | ---- | ----------------------------------------------------------------------------- | -------------- |
+| **DS-0-sot**    | 0    | GOLDEN_STANDARD §2.2/§6, `surfaceGlass`, audit regression gate                | [x]            |
+| **DS-1-shell**  | 1    | `surfaceGlass.shell` AppNav / ModuleView / TestPracticeSlides                 | [x]            |
+| **DS-1-block**  | 1    | ContentSlides blockVariant → `getContentBlockVariantClasses()`                | [x]            |
+| **DS-1-banner** | 1    | Banner pilot ContentSlides + BlockSlides + TestPracticeSlides (≥10)           | [x]            |
+| **DS-1-prim**   | 1    | Card/CTAButton HomePage, ModulesPage, ModuleView                              | [x]            |
+| **DS-1-arb**    | 1    | Targeted `text-[11px]` cleanup; audit ≤521 baseline                           | [x]            |
+| **DS-2-id**     | 2    | `audit:module-identity`; diagram P2 (M10/M12/M13)                             | [x]            |
+| **DS-3-ws**     | 3    | `SlideWorkspace` + M4/M10 content-block pilot                                 | [x]            |
+| **DS-M1012**    | —    | M10–12 DS audit I1–I5 (accent, phase, shell, tokens, chrome, lint)            | [x] 2026-07-20 |
+| **DS-max-ROI**  | —    | Accent M4–M9/M13 + EN; SlideWorkspace all; tokens gate; full accent preflight | [x] 2026-07-20 |
+| **DS-4-exp**    | 4    | Banner batch BlockSlides + TestPracticeSlides (ongoing backlog likęs)         | [x]            |
+| **DS-5-qa**     | 5    | CHANGELOG, DESIGN_SYSTEM, RELEASE_QA #6 smoke docs                            | [x]            |
 
 **Vartai:** `npm run audit:design-tokens`, `npm run audit:design-tokens:gate`, `npm run audit:module-identity`, `npm run lint`, `npm run test:run`.
 
@@ -98,6 +100,8 @@
 | **W8**  | SlideWorkspace   | M1/M7/M13 + evaluator-prompt-block                               | [x]                                                                                                 |
 | **W9**  | Primitives       | CTAButton/Card TestPractice + shell + HomePage                   | [x]                                                                                                 |
 | **W10** | Diagrams + gates | M13/M15 P2 + baseline 417 + release-preflight                    | [x]                                                                                                 |
+
+**DS backlog (v0.3, ne ši banga):** LlmArch B3 hex/inline; ContentSlides.tsx arbitrary class; .card/.btn-\* pašalinimas.
 
 ### §1.0 Release 1.4.2 ✅ (2026-07-01)
 
@@ -169,18 +173,18 @@
 >
 > **M10–15 turinys/monetizacija – ne prioritetas:** authoring katalogas ir monetizacijos plėtra lieka **Deferred** iki MON P0 + baseline (MON-7). **Išimtis:** M7–12 schema-consistency darbai aktyvūs, nes saugo esamų schemų priežiūrą ir testų vartus.
 
-| ID         | Užduotis                                                                                                           | Buvęs prioritetas  | Būsena                                                                 |
-| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ | ---------------------------------------------------------------------- |
-| ~~M13-1~~  | ~~M13–M14 EN sinchronas~~                                                                                          | P2                 | ✅ 2026-07-06 – M13–15 `modules-en-m13-m15.json` + `audit:m1315`       |
-| ~~M13-2~~  | ~~M13 footerių release QA~~                                                                                        | P2                 | ✅ 2026-07-06 – M13 LT/EN footer audit gate paleistas                  |
-| ~~M13-3~~  | ~~`slidePhaseConfig.test.ts` M13 regresija~~                                                                       | P2 optional        | ✅ 2026-07-06 – M13 fazių LT/EN regresijos testai                      |
-| DEF-1a     | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3            | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9    |
-| DEF-1b     | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog    | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)       |
-| M10-DIA-01 | M11 `TestKnowledgeScopeDiagram` clickable bubbles → M10 skaidrės deep-link + sync su `TestRemediationChips`        | P3 / schema UX     | ✅ 2026-07-09 – M11 M10 deep-links; M14 → M13 deep-links               |
-| M10-DIA-02 | M10 Learning Loop pilnas 9-node step nav                                                                           | P3 / schema UX     | Aktyvus backlog – 4 makro žingsniai palikti kaip dabartinis kontraktas |
-| M10-DIA-03 | M12 evaluator→coordinator feedback vizualizacija                                                                   | P3 / schema UX     | Aktyvus backlog – reikia SOT / geometrijos sprendimo                   |
-| M10-DIA-04 | P2 polish: TriggerFlow webhook polygon, ThreeA 5% sub, ThreeLabs connectors                                        | P3 / visual polish | ✅ 2026-07-09 – ThreeA H5, ThreeLabs markers, TriggerFlow tokens       |
-| DEF-2      | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                 | ✅ 2026-07-09 – M1 sk.8–11 „Kodėl tai veikia“; M4/M6 anksčiau          |
+| ID             | Užduotis                                                                                                           | Buvęs prioritetas  | Būsena                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ | ----------------------------------------------------------------------------------- |
+| ~~M13-1~~      | ~~M13–M14 EN sinchronas~~                                                                                          | P2                 | ✅ 2026-07-06 – M13–15 `modules-en-m13-m15.json` + `audit:m1315`                    |
+| ~~M13-2~~      | ~~M13 footerių release QA~~                                                                                        | P2                 | ✅ 2026-07-06 – M13 LT/EN footer audit gate paleistas                               |
+| ~~M13-3~~      | ~~`slidePhaseConfig.test.ts` M13 regresija~~                                                                       | P2 optional        | ✅ 2026-07-06 – M13 fazių LT/EN regresijos testai                                   |
+| DEF-1a         | **Moduliai 7–9 turinys** (lean M7, Kur pritaikyti?, M8 scenarijai, M9 sample output, reflection META+INPUT+OUTPUT) | P3 / §3            | **Aktyvu / iš esmės padaryta (2026-06-29)** – korporatyvinis tier 9                 |
+| DEF-1b         | Moduliai 10–15 turinys / authoring (Arch-B, Orch schema, Reflection prompts)                                       | P3 / §3 backlog    | **Deferred – ne prioritetas** (M10+ vizualinis backlog atskirai)                    |
+| M10-DIA-01     | M11 `TestKnowledgeScopeDiagram` clickable bubbles → M10 skaidrės deep-link + sync su `TestRemediationChips`        | P3 / schema UX     | ✅ 2026-07-09 – M11 M10 deep-links; M14 → M13 deep-links                            |
+| ~~M10-DIA-02~~ | ~~M10 Learning Loop pilnas 9-node step nav~~                                                                       | P3 / schema UX     | ✅ 2026-07-20 – **4 makro** galutinis kontraktas (ne 9-node); compact `update` node |
+| ~~M10-DIA-03~~ | ~~M12 evaluator→coordinator feedback vizualizacija~~                                                               | P3 / schema UX     | ✅ 2026-07-20 – dashed feedback edge + labels LT/EN (`m12MultiAgentSchemaLayout`)   |
+| M10-DIA-04     | P2 polish: TriggerFlow webhook polygon, ThreeA 5% sub, ThreeLabs connectors                                        | P3 / visual polish | ✅ 2026-07-09 – ThreeA H5, ThreeLabs markers, TriggerFlow tokens                    |
+| DEF-2          | DS v0.3 microcopy backlog (P3 #7)                                                                                  | P3                 | ✅ 2026-07-09 – M1 sk.8–11 „Kodėl tai veikia“; M4/M6 anksčiau                       |
 
 ### P2 – darbai eilėje
 

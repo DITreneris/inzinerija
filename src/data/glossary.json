@@ -40,6 +40,11 @@
       "moduleId": 4
     },
     {
+      "term": "Always-on paleidimas",
+      "definition": "Programa veikia be pertraukos ir klauso įvykių (pvz. Telegram botas). Skirtingai nuo cron (pagal laiką) ar vienkartinio webhook.",
+      "moduleId": 10
+    },
+    {
       "term": "Artefaktas",
       "definition": "Paruoštas galutinis rezultatas – ataskaita, Custom GPT, tinklalapis ar kitas apčiuopiamas produktas, sukurtas naudojant DI.",
       "moduleId": 6
@@ -223,6 +228,11 @@
       "moduleId": 4
     },
     {
+      "term": "GitHub (repo)",
+      "definition": "Vieta, kur saugomas projekto kodas ir versijos. Paleidimo platformos (Railway, Render, Vercel) dažnai jungiasi prie repo ir paleidžia naujausią versiją.",
+      "moduleId": 10
+    },
+    {
       "term": "Grandinė",
       "definition": "Nuosekli įrankių ar žingsnių seka (pvz. Claude → ChatGPT → Gamma). Workflow grandinė – kai keli DI įrankiai naudojami vienas po kito siekiant vieno rezultato.",
       "moduleId": 4
@@ -236,6 +246,11 @@
       "term": "Haliucinacija",
       "definition": "DI sugeneruotas turinys, kuris atrodo įtikinamai, bet yra faktu nepagrįstas, netikslus arba išgalvotas; modelis „užpildo spragas“ tikimybėmis.",
       "moduleId": 4
+    },
+    {
+      "term": "Hostingas (PaaS)",
+      "definition": "Vieta internete, kur programa, API ar DI agentas veikia nuolat (pvz. Railway, Render, Fly.io). Ne tas pats kaip Zapier / n8n – jie sudėlioja eigą; PaaS paleidžia.",
+      "moduleId": 10
     },
     {
       "term": "INPUT blokas",
@@ -496,6 +511,11 @@
       "term": "RLHF",
       "definition": "Reinforcement Learning from Human Feedback – paskatinamasis mokymas su žmogišku grįžtamuoju ryšiu; naudojamas formuoti „geresnių“ atsakymų strategijas DI modeliuose.",
       "moduleId": 4
+    },
+    {
+      "term": "RPA",
+      "definition": "Robotizuota proceso automatizacija – botas spaudo mygtukus UI, kai nėra API (pvz. UiPath). Kai API yra – rinkis workflow, ne RPA.",
+      "moduleId": 10
     },
     {
       "term": "Scenarijus vaizdui",

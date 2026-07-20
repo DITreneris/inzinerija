@@ -278,7 +278,7 @@
         },
         {
           "id": 15,
-          "title": "Workflow Samprata",
+          "title": "Darbo eigos samprata",
           "subtitle": "Nuo paprasto pokalbio iki darbo rezultatų",
           "type": "workflow-summary",
           "content": {
@@ -1290,7 +1290,7 @@
         },
         {
           "id": 28,
-          "title": "Workflow ir Technikos – Testas",
+          "title": "Darbo eiga ir technikos – testas",
           "subtitle": "Klausimai apie darbo seką ir technikas",
           "type": "test-section",
           "testQuestions": [
@@ -2203,7 +2203,8 @@
                 ]
               }
             ]
-          }
+          },
+          "shortTitle": "Kontekstas ir patikimumas"
         },
         {
           "id": 39,
@@ -2316,19 +2317,19 @@
               {
                 "heading": "2️⃣ InstructGPT: įrodymas (iliustracija)",
                 "body": "**Tyrimas iliustruoja:** geresnis kontekstas (vaidmuo, formatas, ribos) = geresni vertintojų įvertinimai. Žemiau – OpenAI eksperimento rezultatai.\n\nVaidmuo + formatas + ribos = dvigubai geresnė suvokiama kokybė. Modeliai, kurie geriau laikosi instrukcijų, duoda aukštesnės kokybės atsakymus – pagrindas RAG ir žinių patikrinimui.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Kas matuota? Rezultatas",
                 "body": "OpenAI vertino modelių išvesties **kokybę** (Likert 1–7 – vertinimo skalė; SFT = mokymas iš žmogaus pavyzdžių). **InstructGPT** žymiai lenkia kitus: mažesnis (1,3B) InstructGPT vertintojų vertinamas geriau nei didesnis (175B) GPT-3 be lygiavimo – rodo, kad **vaidmuo, formatas ir ribos (konteksto inžinerija)** svarbesni už parametrų skaičių. **Modulio 4 išvada:** kai aiškiai nurodai vaidmenį, formatą ir ribas, DI geriau seka nurodymams – ir tai padeda vėliau naudoti RAG ir tikrinti atsakymus.",
-                "blockVariant": "accent",
+                "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": false
               },
               {
                 "heading": "Esmė vienu sakiniu",
                 "body": "**Geras kontekstas → geresni DI sprendimai.** DI yra stiprus, bet be konteksto jis spėlioja.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Kuo tai padeda?",
@@ -2346,7 +2347,7 @@
               {
                 "heading": "Veiksmas: ką daryti",
                 "body": "**Kurdamas promptus – nurodyk vaidmenį, formatą ir ribas.** Pabandyk tolesnėse Modulio 4 skaidrėse arba promptų bibliotekoje.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Šaltiniai",
@@ -2883,7 +2884,7 @@
               {
                 "heading": "2️⃣ 3 užduotys – visas reikia išbandyti",
                 "body": "**1)** Įsikelk System prompt šabloną (žemiau) ir susikurk Sistemą savo DI įrankyje – tipinei auditorijai. **2)** Peržiūrėk Master prompt pavyzdį (apie žmogų) – etalonas 6 blokų principui. **3)** Sukurk savo Master promptą – nukopijuok trečios užduoties promptą, atsakyk į klausimus, gauk paruoštą Master. Mokymai veiks tik išbandžius visas 3.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Užduotis 1: System prompt šablonas (6 blokų)",
@@ -2970,7 +2971,7 @@
               {
                 "heading": "Kodėl verta skirti ~10 min Master Prompt kūrimui",
                 "body": "Sutaupomas laikas, nuoseklesni rezultatai, personalizuoti atsakymai, efektyvesnis darbas nuo pirmos žinutės.",
-                "blockVariant": "accent",
+                "blockVariant": "terms",
                 "collapsible": true
               }
             ],
@@ -3231,11 +3232,11 @@
         },
         {
           "id": 40.5,
-          "title": "Skyrius: Promptų tipai ir principai",
+          "title": "Promptų tipai ir principai",
           "subtitle": "Konteksto pamatai – baigta. Toliau: promptų tipai, 5 taisyklės ir DI mokymasis.",
           "type": "section-break",
           "content": {
-            "title": "Skyrius: Promptų tipai ir principai",
+            "title": "Promptų tipai ir principai",
             "subtitle": "Toliau: kada DI „tik rašo“ – o kada „ieško ir naudoja įrankius“; 5 taisyklės geresniems promptams; kaip DI mokosi iš atsiliepimų; kada naudoti paiešką.",
             "sectionNumber": "4.1",
             "footer": "Toliau – skaidrė 11: DI skaičiai ir kontekstas",
@@ -3610,7 +3611,7 @@
               {
                 "heading": "Kaip rašyti agentinį promptą (pilnas šablonas)",
                 "body": "Pilnas **agentinio prompto šablonas (5 dalių)** – Rolė, Užduotis žingsniais, Įrankiai, Išvesties formatas, Klaidos tvarkymas – ir taisyklės bei patarimai yra **Modulyje 10**, skaidrė „Kada rinktis agentą…“. Ten rasite nukopijuojamą šabloną ir gaires.",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -3624,7 +3625,7 @@
               {
                 "heading": "Esmė",
                 "body": "**Metodinis** = DI rašo pagal tavo instrukcijas.\n**Agentinis** = DI veikia ir ieško už tave.\n\nDaugelis realių užduočių naudoja **abu tipus kartu** – pirmiausia agentinis surenka duomenis, tada metodinis juos analizuoja.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – Custom GPT kūrimo procesas"
@@ -3929,11 +3930,11 @@
         },
         {
           "id": 52.5,
-          "title": "Skyrius: RAG ir gilusis tyrimas",
+          "title": "RAG ir gilusis tyrimas",
           "subtitle": "Toliau: RAG, šaltiniai, gilusis tyrimas ir COMBO.",
           "type": "section-break",
           "content": {
-            "title": "Skyrius: RAG ir gilusis tyrimas",
+            "title": "RAG ir gilusis tyrimas",
             "subtitle": "Toliau: RAG, šaltiniai, gilusis tyrimas ir COMBO.",
             "sectionNumber": "4.2",
             "celebrationText": "Puiku! Pamatai paruošti – dabar atsakymai iš tavo šaltinių ir dokumentų.",
@@ -4237,7 +4238,7 @@
               {
                 "heading": "Kaip rinktis?",
                 "body": "**Taisyklė:** Užduotis → Įrankis → Workflow (ne atvirkščiai).\n\nRašymas / strategija → **ChatGPT**.\nDuomenys / kodas / ilgi dokumentai → **Claude**.\nOffice aplinka → **Copilot**.\nTyrimai / vizualai → **Gemini**.\nSkaidrės / pasiūlymai → **Gamma**.\n\nGalima jungti kelis įrankius vienoje grandinėje. Pvz.: Claude (analizė) → ChatGPT (formulavimas) → Gamma (skaidrės).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Pavyzdinė grandinė (workflow)",
@@ -4257,7 +4258,7 @@
               {
                 "heading": "Praktinė rekomendacija",
                 "body": "**Pro tip:** 80 % atvejų pakanka 1 pagrindinio įrankio + 1 specializuoto. Svarbu ne turėti visus įrankius, o aiškiai žinoti, kurį naudoti kuriame žingsnyje.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – RAG: kas tai ir pabandyk"
@@ -4416,7 +4417,7 @@
         {
           "id": 60,
           "title": "Darbas su RAG: atmintis, išoriniai šaltiniai ir duomenų paruošimas",
-          "shortTitle": "RAG atmintis",
+          "shortTitle": "RAG: atmintis ir šaltiniai",
           "subtitle": "Atmintis, verslo dokumentai, duomenų paruošimas – gairės ir šablonas",
           "type": "content-block",
           "content": {
@@ -4538,7 +4539,7 @@
               {
                 "heading": "Esminė logika",
                 "body": "**Atmintis (Memory)** = kontekstas apie verslą. **Dokumentai** = realūs skaičiai. **Struktūra + citavimas** = sprendimų patikimumas.\n\nBe dokumentų – tai nuomonė. Su dokumentais – tai analizė.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "🔽 Nuorodos: NotebookLM, NoteLM, Trello",
@@ -4872,12 +4873,12 @@
               {
                 "heading": "Kur tai veikia?",
                 "body": "[Perplexity](https://perplexity.ai) (Research režimas), [ChatGPT](https://chat.openai.com) (Browse / Advanced Data Analysis), [Claude](https://claude.ai) (su įrankiais), [Gemini](https://gemini.google.com) (integruota paieška). Akademikai: [Elicit](https://elicit.com), [Consensus](https://consensus.app).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "⚡ Quick win",
                 "body": "Paprasčiausias pradžiai – nukopijuok ir pakeisk [tema]:",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "copyable": "Sukurk promptą giliam tyrimui apie [tema]."
               },
               {
@@ -5045,11 +5046,11 @@
         },
         {
           "id": 65.8,
-          "title": "Skyrius: Tokenai ir technikos",
+          "title": "Tokenai ir technikos",
           "subtitle": "RAG ir gilusis tyrimas – baigta. Toliau: tokenai, konteksto langas ir kodėl modeliai „pamiršta“.",
           "type": "section-break",
           "content": {
-            "title": "Skyrius: Tokenai ir technikos",
+            "title": "Tokenai ir technikos",
             "subtitle": "Toliau: tokenų ekonomika, konteksto langas ir degradacija (kodėl modeliai „pamiršta“), neigiami promptai. Po to – skyrius „Patikrumas ir etika“ (manipuliacijos, haliucinacijos, žinių patikrinimas).",
             "sectionNumber": "4.4",
             "heroColorKey": "emerald",
@@ -5713,7 +5714,7 @@
               {
                 "heading": "2. Paskui: įklijuok turinį į įrankį",
                 "body": "Turinys jau sugeneruotas DI. Dabar pasirink įrankį, įklijuok – gauk paruoštas skaidres.",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -5751,7 +5752,7 @@
               {
                 "heading": "Svarbiausia",
                 "body": "**Geras promptas ir aiški struktūra = 80% prezentacijos.** Įrankis – tik skaidrės formatas.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "🔽 Nori suprasti detaliau? Rezultatas ir tavo kelionė",
@@ -6193,7 +6194,8 @@
               }
             ],
             "footer": "Toliau – skaidrė 5: HTML praktika"
-          }
+          },
+          "shortTitle": "Pavyzdys: HTML tinklalapis"
         },
         {
           "id": 68,
@@ -6336,17 +6338,17 @@
               {
                 "heading": "Modulio rezultatas",
                 "body": "Dabar turi: paruoštą tyrimo ataskaitą arba Custom GPT instrukcijas; 6 blokų šabloną; RAG pavyzdį. Išsaugok juos savo bibliotekoje (žr. Duomenų tvarkymas).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Pirmas veiksmas per 24–48 val.",
                 "body": "Rytoj: atidaryk savo DI įrankį ir įrašyk vieną promptą iš šio modulio į savo biblioteką. Arba: panaudok tą pačią 6 blokų struktūrą kitai temai.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Ką toliau?",
                 "body": "**Grįžti į modulių sąrašą** – pasirink kitą modulį arba peržiūrėk sertifikatą. **Pažangūs keliai** (Moduliai 7–15) – gilinti žinias apie DI pritaikymą ir konteksto inžineriją.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – skaidrė 8: Duomenų checklist"

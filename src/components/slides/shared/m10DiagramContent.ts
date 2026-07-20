@@ -206,3 +206,44 @@ export function getM10IncidentPlaybookLabels(locale: M10Locale) {
     aria: 'Incidentų planas: Stabdyti, Fiksuoti, Apimtis, Pranešti ir Ištaisyti',
   };
 }
+
+/** Shell step explanations – titles from labels; short bodies for walkthrough. */
+export function getM10TriggerFlowStepExplanations(locale: M10Locale) {
+  const L = getM10TriggerFlowLabels(locale);
+  return [
+    { title: L.trigger, body: L.triggerSub },
+    { title: L.condition, body: L.conditionSub },
+    { title: L.action, body: L.actionSub },
+    { title: L.webhook, body: `${L.webhookSub}. ${L.arrowToTrigger}.` },
+  ];
+}
+
+export function getM10WorkflowSpecStepExplanations(locale: M10Locale) {
+  const L = getM10WorkflowSpecLabels(locale);
+  const hint =
+    locale === 'en'
+      ? 'One block of the one-page workflow spec.'
+      : 'Vienas vieno puslapio specifikacijos blokas.';
+  return L.blocks.map((title) => ({ title, body: hint }));
+}
+
+export function getM10IncidentPlaybookStepExplanations(locale: M10Locale) {
+  const L = getM10IncidentPlaybookLabels(locale);
+  const bodies =
+    locale === 'en'
+      ? [
+          'Halt the agent or automation immediately.',
+          'Capture what happened and when.',
+          'Estimate blast radius and affected users.',
+          'Alert the owner / on-call.',
+          'Apply the fix and verify recovery.',
+        ]
+      : [
+          'Iš karto sustabdyk agentą ar automatizaciją.',
+          'Užfiksuok, kas ir kada nutiko.',
+          'Įvertink poveikio apimtį.',
+          'Pranešk savininkui / budinčiajam.',
+          'Ištaisyk ir patikrink atkūrimą.',
+        ];
+  return L.steps.map((title, i) => ({ title, body: bodies[i] ?? title }));
+}

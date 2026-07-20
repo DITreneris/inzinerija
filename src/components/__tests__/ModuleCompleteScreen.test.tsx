@@ -109,6 +109,29 @@ describe('ModuleCompleteScreen', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('renders module accent top bar (fuchsia for Agent track)', () => {
+    const agentModule = {
+      ...makeModule(10),
+      accent: 'fuchsia' as const,
+      identityIcon: 'Cpu' as const,
+    };
+    renderWithProviders(
+      <ModuleCompleteScreen
+        module={agentModule}
+        moduleIndex={9}
+        totalModules={12}
+        modules={[...allModules, agentModule]}
+        progress={defaultProgress({ completedModules: [10] })}
+        onBack={onBack}
+        onContinueToNext={onContinueToNext}
+        isLastModule={false}
+        onRequestCertificate={onRequestCertificate}
+      />
+    );
+    const bar = screen.getByTestId('module-complete-accent-bar');
+    expect(bar.className).toContain('bg-fuchsia-500');
+  });
+
   it('shows first-win handout button on module 1 completion', async () => {
     renderWithProviders(
       <ModuleCompleteScreen

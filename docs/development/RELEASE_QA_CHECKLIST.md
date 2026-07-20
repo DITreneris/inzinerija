@@ -77,6 +77,8 @@
 - [ ] **Design-token baseline:** Paleisti `npm run audit:design-tokens`; nauji hardcoded hex / arbitrary class atvejai turi būti sumažinti arba dokumentuoti kaip išimtis `DESIGN_TOKENS_BASELINE_2026-07.md` kontekste.
 - [ ] **Design-token regression gate (DS hardening):** `npm run audit:design-tokens:gate` – exit 0 (ne didesnis nei DS Next Waves baseline: total 417, arbitrary 59).
 - [ ] **Module identity gate:** `npm run audit:module-identity` – visi M1–15 moduliai turi `accent` + `identityIcon` (`modules.json`).
+- [ ] **Accent budget (full catalog):** `npm run audit:accent-budget` – LT + EN overlays; max 2× accent content-block; Daryk/Do now = brand (GOLDEN §3.2). Greitam M10–12: `audit:accent-budget:m1012`.
+- [ ] **Slide titles:** `npm run audit:slide-titles` – be Skyrius:/(neprivaloma)/bilietas/HITL/CopyButton/workflow LT antraštėse (PAPRASTOS_KALBOS §2a).
 
 ### 5b1. M10–12 diagram browser smoke (B2.5)
 
@@ -84,21 +86,23 @@
 
 Raktų checklist (po vieną skaidrę / shell):
 
-| Raktas                   | Tipinė skaidrė  | Shell nav count | Dark SVG fonas | Nėra `svg [role=button]` | Enlarge = tas pats React |
-| ------------------------ | --------------- | --------------- | -------------- | ------------------------ | ------------------------ |
-| `agent_workflow_diagram` | 10.2            | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_agent_taxonomy`     | 10.25           | (static OK)     | ✓              | ✓                        | ✓                        |
-| `m10_learning_loop`      | 10.49           | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_agent_orchestrator` | 10.482          | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_tool_decision_tree` | 10.4 / 10.65    | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_trigger_flow`       | 10.15 / related | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_workflow_spec`      | 10.65           | ✓               | ✓              | ✓                        | ✓                        |
-| `m10_incident_playbook`  | 10.65 optional  | ✓               | ✓              | ✓                        | ✓                        |
-| `m12_three_labs`         | 120.25          | (static OK)     | ✓              | ✓                        | ✓                        |
-| `m12_multi_agent_schema` | 120.5           | ✓               | ✓              | ✓                        | ✓                        |
+| Raktas                   | Tipinė skaidrė | Shell nav count              | Dark SVG fonas | Nėra `svg [role=button]` | Enlarge = tas pats React |
+| ------------------------ | -------------- | ---------------------------- | -------------- | ------------------------ | ------------------------ |
+| `agent_workflow_diagram` | 10.2           | ✓ (5)                        | ✓              | ✓                        | ✓                        |
+| `m10_three_a_strategy`   | 10.25          | (static OK – comparison)     | ✓              | ✓                        | ✓                        |
+| `m10_tool_decision_tree` | 10.4           | (HitArea + DiagramStepNav 5) | ✓              | ✓                        | ✓                        |
+| `m10_agent_taxonomy`     | 10.45          | (static OK)                  | ✓              | ✓                        | ✓                        |
+| `m10_trigger_flow`       | 10.15          | ✓ (4)                        | ✓              | ✓                        | ✓                        |
+| `m10_agent_orchestrator` | 10.482         | ✓ (6)                        | ✓              | ✓                        | ✓                        |
+| `m10_learning_loop`      | 10.49          | ✓ (4 makro)                  | ✓              | ✓                        | ✓                        |
+| `m10_workflow_spec`      | 10.65          | ✓ (8)                        | ✓              | ✓                        | ✓                        |
+| `m10_incident_playbook`  | 10.65          | ✓ (5)                        | ✓              | ✓                        | ✓                        |
+| `m12_three_labs`         | 120.25         | (static OK – comparison)     | ✓              | ✓                        | ✓                        |
+| `m12_multi_agent_schema` | 120.5          | ✓ (6) + feedback edge        | ✓              | ✓                        | ✓                        |
 
-- [x] **P2 code/doc gate (2026-07-17):** stub EN path-steps cleared; `audit:m1012` paleidžiamas prieš release; nėra žinomų blocking diagram bug'ų šiame sprint'e (M10-DIA-02/03 ir full shell ant static comparison – ne P2).
+- [x] **P2 code/doc gate (2026-07-17):** stub EN path-steps cleared; `audit:m1012` paleidžiamas prieš release; nėra žinomų blocking diagram bug'ų šiame sprint'e.
 - [x] **Automated diagram smoke (2026-07-20):** `DiagramLocalization` + `m10m12LayoutGeometry` + `diagramRenderers` – shell nav / no `svg [role=button]` / dark palette contracts for M10–12 keys (įsk. `m10_agent_orchestrator`); path order smoke: M10 `10.51→10.6→10.61→10.15`, M11 `110→110.5→111`, M12 `124.5→124→121–123`.
+- [x] **M10–12 diagram audit W0–W3 (2026-07-20):** code scorecard + P0/P1 polish (shell trigger/spec/incident, DIA-03 feedback, DIA-02 4-makro closed); ataskaita `docs/archive/audits/AUDITO_ATASKAITA_MODULIAI_10_11_12.md`.
 - [ ] **Rankinis browser light+dark vizualinė patikra prieš M10–12 release:** užpildyti lentelę aukščiau UI; blokuojančius bug'us fiksuoti TODO, ne naujas features.
 
 ---
@@ -200,7 +204,7 @@ Raktų checklist (po vieną skaidrę / shell):
 
 - [ ] **Vienas modulis per release pagal rubric:** Prieš release atlikti vieną rankinį perbėgimą pagal eval_rubric (bent vienas modulis + HomePage arba vienas CTA kelias). Rezultatą įrašyti į TEST_REPORT arba changelog (pvz. „Modulis X – visos dimensijos ≥2, 4/5 = 3“).
 - [ ] **Pirmyn/Atgal CTA (desktop):** Modulio skaidrė – viršutinė juosta sticky (scroll’inant lieka matoma); „Pirmyn“ – vienintelis ryškus CTA (didesnis mygtukas, brand, shadow, hover lift); „Atgal“ – ghost (be fono); dešinėje prie „Pirmyn“ rodomas progresas „Skaidrė X / N“. Klaviatūra ← → veikia. Žr. CHANGELOG 2026-02-26 (ModuleView Pirmyn/Atgal).
-- [ ] **DS visual smoke (post-hardening):** M1 HomePage (`Card`/`CTAButton`), M4 section-break (`Banner`), M7 ModulesPage accent bar, M10 content-block (`SlideWorkspace`), M13 warm-up – light + dark, mobile 375px; sticky `surfaceGlass.shell` be double-blur artefaktų.
+- [ ] **DS visual smoke (post-hardening):** M1 HomePage (`Card`/`CTAButton`), M4 section-break (`Banner`), M7 ModulesPage accent bar, M10–12 content-block (`SlideWorkspace`) + ModuleComplete accent juosta, M13 warm-up – light + dark, mobile 375px; sticky `surfaceGlass.shell` be double-blur artefaktų.
 
 ---
 

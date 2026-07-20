@@ -3,7 +3,7 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_ROLE_COLORS, DIAGRAM_TOKENS } from './diagramTokens';
 import { getM10AgentTaxonomyLabels, type M10Locale } from './m10DiagramContent';
 import {
   getCircleEdgePoints,
@@ -17,17 +17,17 @@ import {
 } from './m10TaxonomyLayout';
 
 const LEVEL_FILLS = {
-  brand: '#334e68',
-  slate: '#64748b',
-  teal: '#0d9488',
-  violet: '#7c3aed',
+  brand: DIAGRAM_ROLE_COLORS.brand,
+  slate: DIAGRAM_ROLE_COLORS.slate,
+  teal: DIAGRAM_ROLE_COLORS.teal,
+  violet: DIAGRAM_ROLE_COLORS.violet,
 } as const;
 
 const ROLE_FILLS = {
-  slate: '#64748b',
-  teal: '#0d9488',
-  violet: '#7c3aed',
-  amber: '#b8860b',
+  slate: DIAGRAM_ROLE_COLORS.slate,
+  teal: DIAGRAM_ROLE_COLORS.teal,
+  violet: DIAGRAM_ROLE_COLORS.violet,
+  amber: DIAGRAM_ROLE_COLORS.amber,
 } as const;
 
 function roleLabelLines(label: string) {
@@ -100,7 +100,10 @@ export default function M10AgentTaxonomyDiagram({
           refY="3"
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill="#b8860b" />
+          <path
+            d={DIAGRAM_TOKENS.arrow.markerPath}
+            fill={DIAGRAM_ROLE_COLORS.amber}
+          />
         </marker>
       </defs>
       <text
@@ -177,8 +180,13 @@ export default function M10AgentTaxonomyDiagram({
       {M10_TAXONOMY_EDGES.map((edge) => {
         const from = getRoleNode(edge.from);
         const to = getRoleNode(edge.to);
-        const points = getCircleEdgePoints(from, to);
-        const color = edge.tone === 'feedback' ? '#b8860b' : palette.flow;
+        const points = getCircleEdgePoints(
+          from,
+          to,
+          DIAGRAM_TOKENS.arrow.markerLen
+        );
+        const color =
+          edge.tone === 'feedback' ? DIAGRAM_ROLE_COLORS.amber : palette.flow;
         return (
           <line
             key={edge.id}

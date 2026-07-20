@@ -120,6 +120,13 @@
       "category": "Visual design"
     },
     {
+      "name": "Fly.io",
+      "url": "https://fly.io",
+      "description": "Cloud hosting – containers close to users in different regions; fits APIs and agents when global response time matters.",
+      "moduleId": 10,
+      "category": "Cloud hosting"
+    },
+    {
       "name": "Gamma",
       "url": "https://gamma.app",
       "description": "Presentation generation – slides, proposals, brochures; interactive web format.",
@@ -132,6 +139,13 @@
       "description": "Integrated with Google services – mail, docs, search in one place.",
       "moduleId": 1,
       "category": "Chat AI"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "description": "Code repository – project versions and collaboration. Railway, Render and similar often deploy apps directly from a GitHub repo.",
+      "moduleId": 10,
+      "category": "Code repository"
     },
     {
       "name": "Google Calendar",
@@ -302,11 +316,25 @@
       "category": "Presentations"
     },
     {
+      "name": "Railway",
+      "url": "https://railway.app",
+      "description": "Cloud hosting – APIs, databases and AI agents from GitHub; fast start without managing servers. Not a workflow tool – it runs your app.",
+      "moduleId": 10,
+      "category": "Cloud hosting"
+    },
+    {
       "name": "Redis / Valkey",
       "url": "https://valkey.io",
       "description": "Cache, sessions, queues, rate limiting, and real-time features. Often a speed layer, not the main database.",
       "moduleId": 7,
       "category": "Databases"
+    },
+    {
+      "name": "Render",
+      "url": "https://render.com",
+      "description": "Cloud hosting – web services, workers, cron and Postgres; simple deploy for agents and APIs.",
+      "moduleId": 10,
+      "category": "Cloud hosting"
     },
     {
       "name": "Runway",

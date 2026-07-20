@@ -102,16 +102,16 @@ Pvz.: PayPal apmokėjimas → webhook → pardavimų sistema
 
 ## 6. Pagrindinės sąvokos
 
-| Sąvoka | Apibrėžimas |
-|--------|-------------|
-| **Trigger** | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
-| **Action** | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM). |
-| **Condition** | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė &gt; 500 €). |
-| **Integration** | Ryšys tarp sistemų – API arba webhook. |
-| **API** | Sistemų sąsaja – programinis būdas duomenims keistis. |
-| **Polling** | Tikrinimas kas X minučių – ar atsirado nauji duomenys. |
-| **Error handling** | Klaidų logika – ką daryti, kai žingsnis nepavyksta. |
-| **Logs / Audit trail** | Veiksmų istorija – kas, kada, ką atliko. |
+| Sąvoka                 | Apibrėžimas                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| **Trigger**            | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
+| **Action**             | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM).            |
+| **Condition**          | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė &gt; 500 €).                |
+| **Integration**        | Ryšys tarp sistemų – API arba webhook.                                         |
+| **API**                | Sistemų sąsaja – programinis būdas duomenims keistis.                          |
+| **Polling**            | Tikrinimas kas X minučių – ar atsirado nauji duomenys.                         |
+| **Error handling**     | Klaidų logika – ką daryti, kai žingsnis nepavyksta.                            |
+| **Logs / Audit trail** | Veiksmų istorija – kas, kada, ką atliko.                                       |
 
 ---
 
@@ -234,11 +234,11 @@ Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel
 
 ## 11. 3A strategija
 
-| Lygis | Dalis | Aprašymas |
-|-------|-------|-----------|
-| **AUTOMATIZE** | 80 % | Taisyklėmis paremti srautai |
-| **AUGMENT** | 15 % | Žmogus sprendžia, DI padeda (santraukos, klasifikacija) |
-| **AUTONOMIZE** | 5 % | DI agentai, RAG, QA kontrolė, eskalacija |
+| Lygis          | Dalis | Aprašymas                                               |
+| -------------- | ----- | ------------------------------------------------------- |
+| **AUTOMATIZE** | 80 %  | Taisyklėmis paremti srautai                             |
+| **AUGMENT**    | 15 %  | Žmogus sprendžia, DI padeda (santraukos, klasifikacija) |
+| **AUTONOMIZE** | 5 %   | DI agentai, RAG, QA kontrolė, eskalacija                |
 
 **Taisyklė 80/15/5** – optimali vertės ir saugumo proporcija.
 
@@ -330,16 +330,16 @@ Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel
 
 Šablonas sujungia §6–7 sąvokas į vieną deliverable. Kiekvienas lab'as turi turėti tokį 1-puslapio aprašą.
 
-| Blokas | Turinys |
-|--------|---------|
-| **Trigger** | Kas paleidžia (įvykis, dažnumas). |
-| **Input schema** | Kokie laukai, formatai, privalomi/optional. |
-| **Condition** | Sąlygos (pvz. jei laukas X &gt; 500). |
-| **Actions** | Žingsnių sąrašas (1, 2, 3…) su įrankiais. |
-| **Output** | Ką gauname (įrašas CRM, laiškas, ticket). |
-| **SLA, retries, rate limits** | Max laukimo laikas, kiek kartų bandyti, API limitai. |
-| **Error handling** | Ką darom fail'o atveju (retry, alert, žmogaus eskalacija). |
-| **Audit log** | Ką log'inam ir kur (run_id, laikas, žingsnis, rezultatas). |
+| Blokas                        | Turinys                                                    |
+| ----------------------------- | ---------------------------------------------------------- |
+| **Trigger**                   | Kas paleidžia (įvykis, dažnumas).                          |
+| **Input schema**              | Kokie laukai, formatai, privalomi/optional.                |
+| **Condition**                 | Sąlygos (pvz. jei laukas X &gt; 500).                      |
+| **Actions**                   | Žingsnių sąrašas (1, 2, 3…) su įrankiais.                  |
+| **Output**                    | Ką gauname (įrašas CRM, laiškas, ticket).                  |
+| **SLA, retries, rate limits** | Max laukimo laikas, kiek kartų bandyti, API limitai.       |
+| **Error handling**            | Ką darom fail'o atveju (retry, alert, žmogaus eskalacija). |
+| **Audit log**                 | Ką log'inam ir kur (run_id, laikas, žingsnis, rezultatas). |
 
 ---
 
@@ -369,6 +369,7 @@ Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel
 **Access kontrolė:** Kas gali redaguoti workflow (rolės: viewer, editor, admin); kaip saugomi API raktai (ne į kode, – secrets manager arba platformos vault).
 
 **Incident playbook – 5 žingsniai**, jei „nusiunčia ne tam“ arba nutekėjo duomenys:
+
 1. Sustabdyti workflow / atjungti integraciją.
 2. Fiksuoti (log'ai, kas, kada, ką).
 3. Įvertinti apimtį (kiek įrašų, kokių duomenų).
@@ -383,13 +384,86 @@ Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel
 
 **Algoritmas (ne tik sąrašas):** Pasirink pagal atsakymus.
 
-| Jei… | Tuomet pasirink |
-|------|------------------|
+| Jei…                                                      | Tuomet pasirink    |
+| --------------------------------------------------------- | ------------------ |
 | **Office 365 heavy** (Teams, Outlook, SharePoint kasdien) | **Power Automate** |
-| **Non-tech komanda + greitai startuoti** | **Zapier** |
-| **Reikia sudėtingos logikos + gera kaina** | **Make.com** |
-| **Reikia pilnos kontrolės + savihost / duomenys pas mus** | **n8n** |
-| **Enterprise governance, auditoriai, compliance** | **Workato** |
+| **Non-tech komanda + greitai startuoti**                  | **Zapier**         |
+| **Reikia sudėtingos logikos + gera kaina**                | **Make.com**       |
+| **Reikia pilnos kontrolės + savihost / duomenys pas mus** | **n8n**            |
+| **Enterprise governance, auditoriai, compliance**         | **Workato**        |
+
+---
+
+## 21b. Paleidimas (PaaS) – sluoksnis po workflow
+
+**Mokymų skaidrė:** M10 **10.36**. Čia – gilesnis referencas be kainų lentelių.
+
+### Keturi sluoksniai
+
+| Sluoksnis         | Pavyzdžiai                        | Klausimas                                 |
+| ----------------- | --------------------------------- | ----------------------------------------- |
+| Workflow (iPaaS)  | Zapier, Make, n8n, Power Automate | Kaip eina duomenys tarp sistemų?          |
+| RPA               | UiPath, Power Automate Desktop    | Kaip spaudo UI, kai nėra API?             |
+| DI agentas        | Modelis + įrankiai / kodas        | Kas analizuoja ir sprendžia?              |
+| Paleidimas (PaaS) | Railway, Render, Fly.io           | Kur programa / API / agentas veikia 24/7? |
+
+**Viena mintis:** n8n / Make sudėlioja eigą; Railway (ir panašūs) duoda vietą, kur agentas, API ar duomenų bazė veikia.
+
+**Analogija:** n8n = proceso vadovas · DI agentas = darbuotojas · PostgreSQL = archyvas · Railway = biuras.
+
+### Trys paleidimo režimai
+
+| Režimas          | Kada                                        | Pavyzdys                            |
+| ---------------- | ------------------------------------------- | ----------------------------------- |
+| Always-on        | Turi klausytis įvykių realiu laiku          | Telegram / Discord botas            |
+| Cron             | Pagal grafiką                               | Kainų ar atsargų tikrinimas         |
+| Webhook + worker | Ilga užduotis; API greitai atsako „priimta“ | PDF analizė, ataskaitos generavimas |
+
+### PaaS orientacija (be kainų)
+
+| Platforma   | Kam geriausia                                                                 |
+| ----------- | ----------------------------------------------------------------------------- |
+| **Railway** | Greitas startas: API + Postgres + worker / agentas viename projekte           |
+| **Render**  | Paprastas web + background worker + cron                                      |
+| **Fly.io**  | Globaliai, arčiau vartotojų; daugiau Docker / sudėtingumo                     |
+| Heroku      | Legacy / enterprise ecosystem – naujiems projektams retai pirmas pasirinkimas |
+
+### Hybrid scenarijus
+
+1. Klientas užpildo formą.
+2. n8n (ar Make) perduoda duomenis DI agentui.
+3. Agentas paruošia pasiūlymą.
+4. Duomenys saugomi PostgreSQL.
+5. Laiškas išsiunčiamas klientui.
+6. Agentas, API ir DB veikia PaaS (pvz. Railway).
+
+### Anti-patternai
+
+1. DI agentas ten, kur užtenka Zapier („Stripe → HubSpot“).
+2. RPA ten, kur yra API (UI botas = priežiūros bomba).
+3. Serverless (pvz. tik Vercel funkcija) Discord / Telegram botui ar ilgam multi-step agentui – reikia always-on proceso.
+
+### GitHub kaip šaltinis
+
+**Mokymų skaidrė:** M10 **10.37** (optional).
+
+**Viena mintis:** GitHub saugo projekto kodą (source of truth); deploy platformos (Railway, Render, Vercel) paima naujausią versiją ir paleidžia internete.
+
+**Eiga (orientacija, ne git pamoka):** lokalus darbas → commit/push → GitHub → auto-deploy → PaaS.
+
+| Platforma | Pagrindinė paskirtis                |
+| --------- | ----------------------------------- |
+| GitHub    | Kodas, versijos, bendradarbiavimas  |
+| Vercel    | Front-end, svetainės                |
+| Railway   | Backend, API, botai, DI agentai, DB |
+| Render    | Web servisai, backend, PostgreSQL   |
+
+**Pastaba:** Replit – greitas prototipas / mokymai, ne lygiavertis production PaaS. No-code (Zapier/Make) dažnai **nereikia** GitHub.
+
+### Nuorodos
+
+- Railway: [Cron / workers / queues](https://docs.railway.com/guides/cron-workers-queues), [AI Discord/Telegram bot](https://docs.railway.com/guides/ai-discord-telegram-bot)
+- Sluoksnių skirtumai: agentas vs RPA vs workflow – skaidrė 10.36; GitHub vs PaaS – 10.37; M10 žodynėlis.
 
 ---
 
@@ -408,7 +482,7 @@ Pagal skyrius: **Pardavimai, HR, Finansai, Klientų aptarnavimas, Gamyba, E-kome
 
 Kiekvienam pavyzdžiui: **trigger → actions → rizika → KPI.** Pvz. Pardavimai: „Naujas lead (form) → CRM įrašas → DI kvalifikacija → pardavimų pranešimas“; rizika – neteisinga kvalifikacija; KPI – laikas iki atsakymo, konversija.
 
-*(Pilnas katalogas gali būti išplėstas atskiru dokumentu arba skaidrėse kaip „Kur pritaikyti“ pavyzdžiai.)*
+_(Pilnas katalogas gali būti išplėstas atskiru dokumentu arba skaidrėse kaip „Kur pritaikyti“ pavyzdžiai.)_
 
 ---
 

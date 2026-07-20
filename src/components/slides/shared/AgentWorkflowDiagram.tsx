@@ -12,6 +12,7 @@ import {
   type AgentWorkflowStep,
 } from './agentWorkflowContent';
 import { DiagramStepHitArea } from './diagramKit';
+import { DIAGRAM_ROLE_COLORS, DIAGRAM_TOKENS } from './diagramTokens';
 
 const DESKTOP_VIEWBOX_W = 860;
 const DESKTOP_VIEWBOX_H = 330;
@@ -33,16 +34,16 @@ const COMPACT_FEEDBACK_X = 34;
 
 const ARROW_GAP_FWD = 5;
 const ARROW_GAP_FB = 12;
-const ARROW_MARKER_LEN = 10;
+const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 const FB_TIP_H = 12;
 const FB_TIP_W = 8;
 const FB_CORNER_R = 14;
 
-const BRAND = '#334e68';
-const BRAND_LIGHT = '#486581';
-const ACCENT = '#b8860b';
-const ACCENT_DARK = '#7a5807';
-const GREY_FORWARD = '#7B8794';
+const BRAND = DIAGRAM_ROLE_COLORS.brand;
+const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
+const ACCENT = DIAGRAM_ROLE_COLORS.amber;
+const ACCENT_DARK = DIAGRAM_ROLE_COLORS.accentDark;
+const GREY_FORWARD = DIAGRAM_ROLE_COLORS.greyForward;
 
 function buildSteps(
   stepLabels: AgentWorkflowStep[],

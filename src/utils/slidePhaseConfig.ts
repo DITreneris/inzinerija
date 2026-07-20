@@ -51,6 +51,7 @@ const phaseLabelsEn: Record<string, string> = {
   Vizualizacija: 'Visualization',
   'Įvadas / Kelias': 'Intro / path',
   Ciklas: 'Cycle',
+  '3A ir šablonas': '3A & template',
   'Keli agentai': 'Multi-agent',
   'Promptai ir saugumas': 'Prompts & safety',
   Integracijos: 'Integrations',
@@ -143,27 +144,38 @@ export function getPhaseLabel(
     let lt = 'Promptai ir saugumas';
     if (slideId != null) {
       if (slideId === 100 || slideId === 10.1) lt = 'Įvadas / Kelias';
-      else if (slideId === 10.2 || slideId === 10.21) lt = 'Ciklas';
+      else if (slideId === 10.2 || slideId === 10.21 || slideId === 10.22)
+        lt = 'Ciklas';
+      else if (slideId === 10.25 || slideId === 10.3) lt = '3A ir šablonas';
       else if (
-        slideId === 10.25 ||
         slideId === 10.45 ||
         slideId === 10.451 ||
         slideId === 10.48 ||
-        slideId === 10.481
+        slideId === 10.481 ||
+        slideId === 10.482 ||
+        slideId === 10.485 ||
+        slideId === 10.49
       )
         lt = 'Keli agentai';
       else if (
-        slideId === 10.49 ||
-        slideId === 10.3 ||
         slideId === 10.4 ||
         slideId === 10.5 ||
         slideId === 10.51 ||
-        slideId === 10.6
+        slideId === 10.6 ||
+        slideId === 10.61
       )
         lt = 'Promptai ir saugumas';
-      else if (slideId === 10.15 || slideId === 10.151 || slideId === 10.35)
+      else if (
+        slideId === 10.15 ||
+        slideId === 10.151 ||
+        slideId === 10.35 ||
+        slideId === 10.36 ||
+        slideId === 10.37 ||
+        slideId === 10.64
+      )
         lt = 'Integracijos';
-      else if (slideId === 10.65 || slideId === 10.7) lt = 'Neprivaloma';
+      else if (slideId === 10.65 || slideId === 10.66 || slideId === 10.7)
+        lt = 'Neprivaloma';
       else if (slideId === 10.8) lt = 'Santrauka';
     }
     return localizePhase(lt, locale);

@@ -24,7 +24,8 @@ export interface M10LearningLoopBox {
 
 export const M10_LEARNING_LOOP_VIEWBOX = {
   desktop: { width: 900, height: 430 },
-  compact: { width: 420, height: 720 },
+  /** Includes update node below lessons (step 3 highlight). */
+  compact: { width: 420, height: 800 },
 } as const;
 
 export const M10_LEARNING_LOOP_STEP_NODE_IDS: M10LearningLoopNodeId[][] = [
@@ -383,6 +384,15 @@ export function getM10LearningLoopCompactBoxes(
       h: 56,
       tone: 'violet',
       label: labels.nodes.lessons,
+    },
+    {
+      id: 'update',
+      x: 110,
+      y: 710,
+      w: 200,
+      h: 56,
+      tone: 'teal',
+      label: labels.nodes.update,
     },
   ];
 }

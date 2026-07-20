@@ -134,6 +134,13 @@
       "category": "Vizualas"
     },
     {
+      "name": "Fly.io",
+      "url": "https://fly.io",
+      "description": "Debesijos paleidimas – konteineriai arti vartotojų skirtinguose regionuose; tinka API ir agentams, kai svarbus globalus atsakymo greitis.",
+      "moduleId": 10,
+      "category": "Debesijos paleidimas"
+    },
+    {
       "name": "Gamma",
       "url": "https://gamma.app",
       "description": "Prezentacijų generavimas – skaidrės, pasiūlymai, brošiūros; interaktyvus web formatas.",
@@ -146,6 +153,13 @@
       "description": "Integruotas su Google paslaugomis – paštas, dokumentai, paieška vienoje vietoje.",
       "moduleId": 1,
       "category": "Pokalbių DI"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "description": "Kodo saugykla – projekto versijos ir bendradarbiavimas. Railway, Render ir pan. dažnai paleidžia programą tiesiai iš GitHub repo.",
+      "moduleId": 10,
+      "category": "Kodo saugykla"
     },
     {
       "name": "Google Calendar",
@@ -330,11 +344,25 @@
       "category": "Prezentacijos"
     },
     {
+      "name": "Railway",
+      "url": "https://railway.app",
+      "description": "Debesijos paleidimas – API, duomenų bazės ir DI agentai iš GitHub; greitas startas be serverių priežiūros. Ne workflow įrankis – paleidžia tavo programą.",
+      "moduleId": 10,
+      "category": "Debesijos paleidimas"
+    },
+    {
       "name": "Redis / Valkey",
       "url": "https://valkey.io",
       "description": "Cache, sesijos, eilės, rate limit ir real-time funkcijos. Dažnai tai greičio sluoksnis, ne pagrindinė DB.",
       "moduleId": 7,
       "category": "Duomenų bazės"
+    },
+    {
+      "name": "Render",
+      "url": "https://render.com",
+      "description": "Debesijos paleidimas – web servisai, worker'iai, cron ir Postgres; paprastas diegimas agentams ir API.",
+      "moduleId": 10,
+      "category": "Debesijos paleidimas"
     },
     {
       "name": "Runway",

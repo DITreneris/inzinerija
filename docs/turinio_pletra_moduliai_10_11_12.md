@@ -125,7 +125,15 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Webhook** – realaus laiko duomenų perdavimas tarp sistemų (įvykis įvyksta → sistema iškviečia kitos sistemos adresą su duomenimis). Pvz.: apmokėjimas atliktas → webhook → pardavimų sistema atnaujina užsakymą.
 
-**UI (GOLDEN_STANDARD §2.2) – skaidrė 10.15:** dauguma sekcijų **`brand`** arba **`terms`**; **`accent`** ne daugiau kaip **1–2** (pvz. vienas CTA arba paryškinimas). Venkti 8+ `accent` juostų iš eilės.
+**Schema (GOLDEN §3.2):** Trumpai (accent) → diagrama (brand) → Keturios pagrindinės sąvokos (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Papildomos sąvokos (terms, collapsible).
+
+**CopyButton:**
+
+```
+Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. Action 2: [VEIKSMAS]. Webhook? [TAIP/NE – iš kur]. Klaidos žingsnis: [ką daryti, jei nepavyksta].
+```
+
+**Patikra:** Ar triggeris yra **įvykis** (ne užduotis), o action – **sistemos veiksmas**? Ar nurodytas klaidos žingsnis?
 
 **Pagrindinės sąvokos (lentelė / sąrašas – skaidrė 10.15):**
 
@@ -134,6 +142,7 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 | **Trigger**            | Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas). |
 | **Action**             | Veiksmas, kurį atlieka sistema (pvz. siųsti laišką, įrašyti į CRM).            |
 | **Condition**          | Sąlyga – kada vykdyti kitą žingsnį (pvz. jei vertė > 500 €).                   |
+| **Webhook**            | Realaus laiko duomenų perdavimas tarp sistemų (įvykis → API kvietimas).        |
 | **Integration**        | Ryšys tarp sistemų – API arba webhook.                                         |
 | **API**                | Sistemų sąsaja – programinis būdas duomenims keistis.                          |
 | **Polling**            | Tikrinimas kas X minučių – ar atsirado nauji duomenys.                         |
@@ -146,6 +155,8 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 ## 3b. 3A strategija (skaidrė 10.25)
 
+**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → diagrama (brand) → Trys juostos (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Kur pritaikyti (terms, collapsible).
+
 | Lygis          | Dalis | Aprašymas                                                                                    |
 | -------------- | ----- | -------------------------------------------------------------------------------------------- |
 | **AUTOMATIZE** | 80 %  | Taisyklėmis paremti srautai – be žmogaus sprendimo (pvz. forma → CRM → laiškas).             |
@@ -154,7 +165,19 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Taisyklė 80/15/5** – optimali vertės ir saugumo proporcija: didžioji dalis – paprasta automatizacija, maža dalis – žmogaus + DI, mažiausia – pilnai autonomiški agentai su žmogaus priežiūra.
 
-**Kur pritaikyti:** Planuojant verslo automatizavimą – kurių procesų pakanka tik taisyklėms (80), kuriems reikia žmogaus patvirtinimo (15), kur galima leisti agentui veikti su ribomis (5).
+**Daryk dabar:** Išrašyk **tris savo darbo procesus** ir kiekvieną priskirk vienai 3A juostai.
+
+**CopyButton:**
+
+```
+Procesas 1: [PROCESAS]. 3A juosta: Automatize / Augment / Autonomize. Kodėl (1 sakinys): [PRIEŽASTIS]. Žmogaus patvirtinimas: [TAIP/NE + kada].
+Procesas 2: …
+Procesas 3: …
+```
+
+**Patikra:** Ar gali paaiškinti, kodėl bent vienas procesas nėra Autonomize (5 %), jei pasirinkai Automatize ar Augment?
+
+**Kur pritaikyti (collapsible):** Planuojant verslo automatizavimą – kurių procesų pakanka tik taisyklėms (80), kuriems reikia žmogaus patvirtinimo (15), kur galima leisti agentui veikti su ribomis (5).
 
 ---
 
@@ -251,7 +274,7 @@ Pateik planą kaip numeruotą sąrašą.
 
 **Tikslas:** parodyti, kad agentų sistema ne tik įvykdo vieną užduotį, bet ir gerėja tarp užduočių: klaidos virsta taisyklėmis, geri sprendimai – pakartotinai naudojamais įgūdžiais.
 
-**Vieta sekoje:** po 10.481 („Keli agentai → darbo eiga“) ir prieš 10.3 („Rolės ir sisteminio prompto šablonas“). Dalyvis jau žino roles ir darbo eigos šablonus, todėl gali suprasti platesnę sistemą.
+**Vieta sekoje:** po 10.481 („Keli agentai → darbo eiga“) ir prieš 10.4 („Įrankių pasirinkimas“). Dalyvis jau žino roles ir darbo eigos šablonus, todėl gali suprasti platesnę sistemą.
 
 **Trumpai:** Agentas ne tik vykdo užduotį. Gera sistema kaupia veiksmų istoriją, tikrina rezultatą, iš klaidų ištraukia pamokas ir atnaujina taisykles arba įgūdžius kitam kartui.
 
@@ -292,23 +315,168 @@ Pamoka po agento bandymo:
 
 ## 3c. Verslo automatizavimo įrankiai (skaidrė 10.35)
 
-**Skirtingi tipiniai srautai kiekvienam įrankiui** – vengti to paties „forma → CRM → laiškas → Slack“ kartojimo su 10.25 / 10.15.
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Kada ką rinktis (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Daugiau apie kiekvieną (terms, collapsible). Accent biudžetas: CTA sekcijos, ne 4× įrankių kortelės.
 
-**Zapier:** 7000+ integracijų (Gmail, Slack, Salesforce, Google Workspace). No-code, greitas startas, idealu mažoms komandoms. **Tipinis workflow (unikalus):** Naujas įrašas kalendoriuje (pvz. Calendly) → įrašas į Google Calendar → priminimo el. laiškas dalyviui. **Stiprybės:** milžiniška integracijų biblioteka, minimalus mokymosi laikas. **Silpnybės:** brangu didelėms apimtims, ribotas klaidų valdymas.
+**Skirtingi tipiniai srautai** – vengti to paties „forma → CRM → laiškas → Slack“ kartojimo su 10.25 / 10.15.
 
-**Make.com:** Drag & drop vizualus kūrimas, sudėtingesnė logika nei Zapier, vidutinio dydžio verslui. **Pavyzdys:** Shopify užsakymas → atsargų lentelė → sąlyga „žema atsarga“ → pranešimas tiekėjui (el. paštas). **Stiprybės:** sąlygos, ciklai, duomenų transformacijos; geresnis nemokamas planas. **Silpnybės:** mokymosi kreivė, sunkiau valdyti daug scenarijų.
+**Kada ką rinktis (matoma lentelė / body):**
 
-**n8n:** Atviro kodo (open-source), pilna kontrolė, duomenų vietos kontrolė. Tinka techninėms komandoms, daug API integracijų. **Pavyzdys:** Mokėjimo platformos webhook → patikra ir įrašas į vidinę DB → klaidos atveju į įspėjimų kanalą (Slack). **Stiprybės:** neriboti workflow, galima rašyti kodą, pažangus error handling. **Silpnybės:** reikia IT žinių, serverių administravimas.
+| Kontekstas                             | Įrankis        | Tipinis pavyzdys                           |
+| -------------------------------------- | -------------- | ------------------------------------------ |
+| Ne techninė komanda, greitas startas   | Zapier         | Calendly → kalendorius → priminimo laiškas |
+| Sąlygos, ciklai, geresnė kaina         | Make.com       | Shopify → atsargos → tiekėjo alertas       |
+| Techninė komanda, duomenys savo pusėje | n8n            | Mokėjimo webhook → DB → Slack              |
+| Teams / Outlook / SharePoint kasdien   | Power Automate | Outlook PDF → SharePoint → Teams           |
 
-**Power Automate:** Microsoft integracija – Excel, Teams, Outlook, SharePoint, Office 365. Tinka administracijai, pardavimams, projektų valdymui. **Pavyzdys:** Outlook + PDF → SharePoint → Teams → duomenų ištraukimas → Excel. **Stiprybės:** enterprise saugumas, integruotas licencijavimas. **Silpnybės:** ribota už Microsoft ekosistemos, priklausomybė nuo MS.
+**Daryk dabar:** Pasirink **vieną** įrankį savo procesui.
+
+**CopyButton:**
+
+```
+Procesas: [PROCESAS]. Pasirinktas įrankis: Zapier / Make / n8n / Power Automate. Kodėl (1 sakinys): [PRIEŽASTIS]. Trigger → Action (trumpai): [SCHEMA].
+```
+
+**Patikra:** Ar gali paaiškinti, kodėl nepasirinkai kito įrankio?
+
+**Collapsible – daugiau apie kiekvieną:** Zapier (7000+ integracijų; silpnybė – kaina); Make (drag & drop; mokymosi kreivė); n8n (open-source; reikia IT); Power Automate (MS saugumas; ribota už MS).
+
+**Tiltas į 10.36:** Trumpai – vienas sakinys: šie įrankiai automatizuoja _procesus_; jei reikia 24/7 programos / API / DI agento paleidimo – kita skaidrė.
 
 ---
 
-## 3d. Workflow specifikacija, testavimas, saugumas, įrankių medis (skaidrė 10.65)
+## 3c1. Paleidimas ir sluoksniai (skaidrė 10.36)
+
+**Vieta:** po 10.35, prieš optional 10.37 / 10.64.
+
+**Tikslas:** Atskirti workflow / RPA / DI agentą / PaaS (Railway tipo). Viena mintis: _workflow sudėlioja veiksmus; PaaS juos paleidžia._
+
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Kada ką (brand, lentelės) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Daugiau (terms, collapsible). Accent biudžetas: max 2× accent (Trumpai + Patikra); Daryk = brand. Be naujos diagramos.
+
+**Trumpai – 4 sluoksniai:**
+
+| Sluoksnis         | Pavyzdžiai                        | Klausimas                        |
+| ----------------- | --------------------------------- | -------------------------------- |
+| Workflow          | Zapier, Make, n8n, Power Automate | Kaip eina duomenys tarp sistemų? |
+| RPA               | UiPath, Power Automate Desktop    | Kaip spaudo UI, kai nėra API?    |
+| DI agentas        | ChatGPT / Claude + įrankiai       | Kas analizuoja ir sprendžia?     |
+| Paleidimas (PaaS) | Railway, Render, Fly.io           | Kur programa veikia 24/7?        |
+
+**Kada ką – dvi plonos lentelės (matoma skaidrėje):**
+
+_Paleidimo režimai (prioritetas):_
+
+| Režimas          | Kada                     | Pavyzdys                 |
+| ---------------- | ------------------------ | ------------------------ |
+| Always-on        | Turi klausytis įvykių    | Telegram / Discord botas |
+| Cron             | Pagal laiką              | Kainų tikrinimas rytą    |
+| Webhook + worker | Ilga užduotis be laukimo | PDF analizė, ataskaita   |
+
+_PaaS orientacija (max 4 eilutės, be kainų):_
+
+| Platforma | Kam geriausia                                |
+| --------- | -------------------------------------------- |
+| Railway   | API + duomenų bazė + agentas greitam startui |
+| Render    | Paprastas web + worker                       |
+| Fly.io    | Kai reikia arti vartotojų skirtingose šalyse |
+
+**Daryk dabar:** Ar mano scenarijui reikia hostingo? Taip / Ne + režimas.
+
+**CopyButton:**
+
+```
+Procesas: [PROCESAS]
+Workflow: Zapier / Make / n8n / Power Automate / nėra
+DI agentas: taip / ne
+RPA (UI be API): taip / ne
+Paleidimas: Railway / Render / Fly.io / nenaudoju
+Režimas: always-on / cron / webhook+worker
+Kodėl (1 sakinys): [ ]
+```
+
+**Patikra:** Ar gali vienu sakiniu atskirti n8n nuo Railway?
+
+**Collapsible:** Hybrid scena (forma → n8n → DI agentas → Postgres; agentas+API+DB = PaaS) + 3 anti-patternai (agentas glue darbui; RPA kai yra API; serverless Discord botui). Analogija: n8n = proceso vadovas, agentas = darbuotojas, Postgres = archyvas, Railway = biuras.
+
+**Tiltas į 10.37:** Trumpai / Copy / collapsible – jei rašai kodą, šaltinis dažnai GitHub; giliau – optional 10.37. Footer (≤55): `Toliau – skaidrė 24: GitHub kaip kodo šaltinis` / EN `Next – slide 24: GitHub as code source`.
+
+**Ref.:** [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) – skyrius „Paleidimas (PaaS)“.
+
+---
+
+## 3c2. GitHub kaip kodo šaltinis (skaidrė 10.37 – neprivaloma)
+
+**Vieta:** po 10.36, prieš 10.64. `optional: true`. Fazė: Integracijos.
+
+**Tikslas B+:** Orientacija – GitHub saugo kodą; PaaS paleidžia. Be git tutorialio, be M11 MCQ, be naujos diagramos.
+
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Kada ką (brand + `section.table`) → Eiga (brand) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Daugiau (terms, collapsible).
+
+**Kada ką – lentelė:**
+
+| Platforma | Pagrindinė paskirtis                                   |
+| --------- | ------------------------------------------------------ |
+| GitHub    | Kodas, versijos, bendradarbiavimas – projekto šaltinis |
+| Vercel    | Front-end, svetainės (pvz. Next.js)                    |
+| Railway   | Backend, API, botai, DI agentai, DB                    |
+| Render    | Web servisai, backend, PostgreSQL                      |
+
+**Eiga (tekstas, ne bash pamoka):** lokalus darbas → commit/push → GitHub → auto-deploy → Railway / Render / Vercel.
+
+**Daryk dabar:** Ar mano scenarijui reikia GitHub repo? Taip / Ne + 1 sakinys.
+
+**CopyButton:**
+
+```
+Procesas: [PROCESAS]
+Kodas GitHub: taip / ne / dar nėra
+Paleidimas: Railway / Render / Vercel / nenaudoju
+Kodėl (1 sakinys): [ ]
+
+---
+Promptas DI:
+Paaiškink skirtumą: GitHub vs Railway. Mano projektas: [APRAŠYMAS].
+Ar man reikia GitHub + auto-deploy, ar užtenka no-code (Zapier/Make)? Atsakyk 5 eilutėmis.
+```
+
+**Patikra:** Ar gali atskirti „saugo kodą“ vs „paleidžia“?
+
+**Collapsible:** tipinė eiga vienoje eilutėje `add → commit → push`; Replit = greitas prototipas (ne lygiavertis Railway); anti-pattern: kodas tik lokaliai be repo, kai reikia deploy.
+
+**Tiltas į 10.64:** Footer (≤55): `Toliau – skaidrė 25: Minimalus aprašymas` / EN `Next – slide 25: Minimum brief`.
+
+**Ref.:** [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §21b – „GitHub kaip šaltinis“.
+
+---
+
+## 3d0. Minimalus darbo eigos aprašymas (skaidrė 10.64 – privaloma)
+
+**Vieta:** po 10.37 (optional), prieš optional 10.65.
+
+**Tikslas:** MUST branduolys pagrindiniame kelyje – be dense optional 10.65. Dalyvis neša tą patį aprašymą į 10.66 QC ir M12 lab'us (121–123).
+
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Minimalus aprašymas (brand) → Daryk dabar (brand) → CopyButton → Patikra (accent).
+
+**Antraštė / subtitle:** `Minimalus darbo eigos aprašymas` / `1 psl. schema + 3 bandymai + kada tvirtina žmogus` (be „bilietas“, „Prieš M12“, HITL antraštėje).
+
+**Minimalus aprašymas:** (A) 1 p. spec (trigger → error handling); (B) 3 bandymo atvejai (happy path, trūksta lauko, API/timeout ar webhook dublikatas); (C) kada tvirtina žmogus.
+
+**CopyButton:** „Minimalus darbo eigos aprašymas“ – 8 punktai (žr. `modules.json` 10.64).
+
+**Patikra:** Ar yra B ir C (ne tik happy path)? Ar žmogaus patvirtinimas nėra „niekada“ finansams / PII?
+
+**Ryšys:** 10.51 – juodraštis + golden; 10.64 – pilnas aprašymas; 10.65 – optional deep; 10.66 – vertina 10.64 artefaktą.
+
+**Tiltas iš 10.37:** Footer `Toliau – skaidrė 25: Minimalus aprašymas` / EN `Next – slide 25: Minimum brief`.
+
+---
+
+## 3d. Darbo eigos testavimas ir saugumas (skaidrė 10.65 – neprivaloma)
+
+**Po 10.64 aprašymo.** Jei aprašymas jau užpildytas – ši skaidrė optional: diagramos, 10 edge-case, incident playbook, saugumas. Antraštė be `(neprivaloma)` – tik `optional: true` + UI badge.
 
 **Vizualizacija:** dvi atskiros React schemos, ne viena tanki kombinacija: `m10_workflow_spec` (8 blokų workflow specifikacija) ir `m10_incident_playbook` (5 incidentų žingsniai). „Peržiūrėti pilname dydyje“ atidaro tą patį React vaizdą modale.
 
-**Standartinė workflow specifikacija (1 puslapis)** – kiekvienam lab'ui rekomenduojama vieno puslapio specifikacija:
+**Standartinė workflow specifikacija (1 puslapis)** – kiekvienam lab'ui rekomenduojama vieno puslapio specifikacija (MUST branduolys – skaidrė **10.64**; čia – išsamus 8 blokų gidas):
 
 | Blokas                        | Turinys                                                      |
 | ----------------------------- | ------------------------------------------------------------ |
@@ -359,7 +527,9 @@ Schema pagal GOLDEN_STANDARD §3.2: Trumpai (accent) → Daryk dabar (brand) →
 
 ### 4.1 Rolės ir sisteminio prompto šablonas (10.3)
 
-**Trumpai:** Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai.
+**Vieta sekoje:** po **10.25** (3A), prieš **10.45** (taksonomija). Pirmiausia – paprastas sisteminis promptas; kelių agentų rolės – 10.45.
+
+**Trumpai:** Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai. Čia – paprastas sisteminis promptas; kelių agentų rolės – skaidrėje 10.45.
 
 **Daryk dabar:** Nukopijuok žemiau esantį promptą į savo DI įrankio „sisteminio nustatymo“ lauką (jei toks yra). Tada užduok vieną agentinę užduotį – pvz. „Ieškok [X] ir pateik santrauką su šaltiniais“.
 
@@ -605,7 +775,25 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Bendri artefaktai visoms praktikoms:** darbo eigos schema (1 pusl.), laukų susiejimas, bandymo atvejai (min. 2), logų arba ekrano nuotraukų įrodymai. Detalus aprašymas ir šablonai – [docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.
 
-**Rekomenduojami scenarijai,** jei turi laiko: **Koordinatorius + 2 specialistai (124.5)** kaip pirmas startas tik su promptais, tada Tyrimo agentas ir viena neprivaloma M10 pakartojimo skaidrė. 124.5 ir Tyrimo agentas įgyvendinami kaip **practice-scenario** skaidrės; M10 pakartojimas – kaip **content-block** su 3 kopijuojamais promptais. 3 praktikos – prioritetas pilnam pristatymo keliui, 124.5 – mažo barjero startas.
+**Rekomenduojami scenarijai,** jei turi laiko: **Koordinatorius + 2 specialistai (124.5)** kaip pirmas startas tik su promptais, tada Tyrimo agentas (124) ir viena neprivaloma M10 pakartojimo skaidrė. 124.5 ir Tyrimo agentas įgyvendinami kaip **practice-scenario** skaidrės; M10 pakartojimas – kaip **content-block** su 3 kopijuojamais promptais. 3 praktikos – prioritetas pilnam pristatymo keliui, 124.5 – mažo barjero startas.
+
+### 8.1a Trys praktikos – orientyras (skaidrė 120.25)
+
+**Tikslas:** tiltas nuo 3A teorijos (10.25) prie M12 lab'ų – ne tuščia diagrama.
+
+**Schema:** Trumpai (accent) → Palyginimas + `m12_three_labs` (brand) → Daryk dabar (accent) → Patikra (accent).
+
+**Daryk dabar:** Užsirašyk, kuri praktika (1 / 2 / 3) geriausiai tinka vienam tavo procesui.
+
+**Patikra:** Jei nežinai juostos – grįžk į 10.25 prieš praktiką.
+
+### 8.2d Scenarijus 124 – Tyrimo agentas (rekomenduojamas)
+
+**Diferenciacija nuo 10.5:** gyvas paleidimas savo tema + **golden test** (šaltinių nėra) + **įrankio pėdsakas** artefakte. Ne tas pats kaip teorijos CopyButton.
+
+**Žingsniai:** (1) Paleisk tyrimo agentą su paieška; (2) golden test su neįmanoma užklausa → „Nerasta: [priežastis]“.
+
+**Artefaktai:** santrauka su nuorodomis + įrankio pėdsakas; golden test atsakymas.
 
 ### 8.2c Papildomai: M10 pakartojimas (skaidrė 125 – neprivaloma)
 
@@ -621,7 +809,21 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 **Pavadinimas:** Verslo kelių agentų schema (ne meta AGENTS.md).
 
+**Schema (GOLDEN §3.2):** Trumpai (accent) → Schema + diagrama (brand) → Perdavimas (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent).
+
 **Turinys:** Įvestis → Maršrutizatorius → 2–3 specialistai → Vertintojas → Išvestis (+ žmogaus patvirtinimo vartas prieš siuntimą).
+
+**CopyButton – perdavimo taisyklė:**
+
+```
+Perdavimo taisyklė:
+Iš: [specialistas / rolė]
+Į: [vertintojas / kita rolė]
+Kada: kai baigta [X]
+Formatas: [Y – pvz. 5 bullet + šaltiniai]
+Jei neatitinka: grąžinti su [ką pataisyti]
+HITL prieš siuntimą: [taip/ne – kada]
+```
 
 **whyBenefit:** Suprasi, kada vienam DI neužtenka ir kaip padalinti darbą be programavimo – 3–5 min skaitymo, praktika – skaidrė **124.5**.
 
@@ -693,13 +895,13 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### MUST (be šito mokymai nėra pilno pristatymo kelias)
 
-| Elementas                                     | Vieta                                                                                                   | Pastaba                                                                                                                                                                                     |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize)                    | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
-| **Standartinė workflow specifikacija (1 p.)** | **M10** – nuoroda skaidrėje 10.4 arba 10.5 (įrankių / kada agentas); pilnas šablonas – ref. doc         | Trigger, input schema, condition, actions, output; SLA, retries, rate limits; error handling; audit log. Ref.: §18 to paties doc.                                                           |
-| **Testavimo rinkinys (minimalus)**            | **M10** – optional skaidrė arba collapsible „Testavimas“ po 10.6; pilnas – ref. doc                     | 10 edge-case scenarijų (tušti laukai, neteisingas email, dublikatai, timeout, webhook duplikatai); idempotency taisyklė. Ref.: §19.                                                         |
-| **Saugumo/atitikties mini-modulis**           | **M10** – viena skaidrė arba collapsible „Saugumas ir atitiktis“ (po 10.6 arba 10.7); pilnas – ref. doc | PII taisyklės (ką siųsti į LLM, ką maskuoti); access kontrolė (kas gali redaguoti workflow); incident playbook (5 žingsniai); kada privalomas „human-in-the-loop“. Ref.: §20.               |
-| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc  | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
+| Elementas                                     | Vieta                                                                                                  | Pastaba                                                                                                                                                                                     |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize)                   | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
+| **Standartinė workflow specifikacija (1 p.)** | **M10** – **skaidrė 10.64** (MUST minimalus aprašymas); Copy ir juodraštis taip pat 10.5 / 10.51       | Trigger, input schema, condition, actions, output; error handling; HITL. Giliau – optional 10.65 + ref. §18.                                                                                |
+| **Testavimo rinkinys (minimalus)**            | **M10** – **10.64** (3 bandymo atvejai MUST); optional 10.65 – 10 edge-case                            | MUST: happy path + trūksta lauko + API/timeout ar webhook dublikatas. Pilnas 10 – ref. §19.                                                                                                 |
+| **Saugumo/atitikties mini-modulis**           | **M10** – HITL eilutė **10.64**; optional 10.65 – PII, access, incident playbook                       | MUST: kada HITL. Deep – optional 10.65 + ref. §20.                                                                                                                                          |
+| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 

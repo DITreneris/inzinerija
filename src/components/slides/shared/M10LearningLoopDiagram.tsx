@@ -11,19 +11,44 @@ import {
   type M10LearningLoopLocale,
 } from './m10LearningLoopContent';
 import {
+  DIAGRAM_ROLE_COLORS,
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+} from './diagramTokens';
+import {
+  getLearningLoopBoxMap,
   getM10LearningLoopCompactBoxes,
   getM10LearningLoopDesktopBoxes,
+  M10_LEARNING_LOOP_EDGES_DESKTOP,
   M10_LEARNING_LOOP_STEP_NODE_IDS,
   M10_LEARNING_LOOP_VIEWBOX,
+  resolveLearningLoopStraight,
   type M10LearningLoopBox,
+  type M10LearningLoopEdge,
 } from './m10LearningLoopLayout';
 
-const BRAND = '#334e68';
-const BRAND_LIGHT = '#486581';
-const TEAL = '#0d9488';
-const VIOLET = '#7c3aed';
-const AMBER = '#b8860b';
-const SLATE = '#64748b';
+const BRAND = DIAGRAM_ROLE_COLORS.brand;
+const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
+const TEAL = DIAGRAM_ROLE_COLORS.teal;
+const VIOLET = DIAGRAM_ROLE_COLORS.violet;
+const AMBER = DIAGRAM_ROLE_COLORS.amber;
+const SLATE = DIAGRAM_ROLE_COLORS.slate;
+const ACTIVE_STROKE = getDiagramActiveStroke();
+
+function edgeColor(kind: M10LearningLoopEdge['kind']) {
+  if (kind === 'record') return VIOLET;
+  if (kind === 'eval') return AMBER;
+  if (kind === 'lessons') return VIOLET;
+  if (
+    kind === 'to-update' ||
+    kind === 'update-rules' ||
+    kind === 'update-skills'
+  ) {
+    return TEAL;
+  }
+  return BRAND;
+}
+
 function toneFill(tone: M10LearningLoopBox['tone']) {
   if (tone === 'teal') return TEAL;
   if (tone === 'violet') return VIOLET;
@@ -54,7 +79,7 @@ function NodeBox({
         height={box.h}
         rx="12"
         fill={toneFill(box.tone)}
-        stroke={active ? '#f3cc30' : stroke}
+        stroke={active ? ACTIVE_STROKE : stroke}
         strokeWidth={active ? 3 : 1}
       />
       <text
@@ -226,7 +251,7 @@ export default function M10LearningLoopDiagram({
           x="10"
           y="525"
           width="400"
-          height="175"
+          height="255"
           rx="18"
           fill={palette.bgStart}
           stroke={palette.border}
@@ -290,8 +315,16 @@ export default function M10LearningLoopDiagram({
           markerId={arrowId}
           color={VIOLET}
         />
+        <Arrow
+          x1={210}
+          y1={681}
+          x2={210}
+          y2={710}
+          markerId={tealArrowId}
+          color={TEAL}
+        />
         <CurvedArrow
-          d="M 230 653 C 365 610, 365 210, 310 174"
+          d="M 210 766 C 365 740, 365 210, 310 174"
           markerId={tealArrowId}
           color={TEAL}
         />
@@ -302,7 +335,7 @@ export default function M10LearningLoopDiagram({
           fontSize="10"
           fill={TEAL}
           fontWeight="700"
-          fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+          fontFamily={DIAGRAM_TOKENS.font}
         >
           {L.improveNextRun}
         </text>
@@ -399,21 +432,39 @@ export default function M10LearningLoopDiagram({
         <NodeBox key={box.id} box={box} {...nodeProps(box)} />
       ))}
 
-      <Arrow x1={195} y1={121} x2={235} y2={121} markerId={arrowId} />
-      <Arrow x1={308} y1={150} x2={265} y2={180} markerId={arrowId} />
-      <Arrow x1={214} y1={238} x2={155} y2={268} markerId={arrowId} />
-      <Arrow x1={276} y1={238} x2={325} y2={268} markerId={arrowId} />
-      <Arrow x1={138} y1={326} x2={207} y2={348} markerId={arrowId} />
-      <Arrow x1={340} y1={326} x2={286} y2={348} markerId={arrowId} />
-      <Arrow
-        x1={330}
-        y1={377}
-        x2={570}
-        y2={121}
-        markerId={arrowId}
-        color={VIOLET}
-        dashed
-      />
+      {(() => {
+        const map = getLearningLoopBoxMap([...execution, ...loop]);
+        return M10_LEARNING_LOOP_EDGES_DESKTOP.map((edge) => {
+          const color = edgeColor(edge.kind);
+          const marker = color === TEAL ? tealArrowId : arrowId;
+          if (edge.desktopPath) {
+            return (
+              <CurvedArrow
+                key={edge.id}
+                d={edge.desktopPath}
+                markerId={marker}
+                color={color}
+                dashed={edge.dashed}
+              />
+            );
+          }
+          const pts = resolveLearningLoopStraight(edge, map);
+          if (!pts) return null;
+          return (
+            <Arrow
+              key={edge.id}
+              x1={pts.x1}
+              y1={pts.y1}
+              x2={pts.x2}
+              y2={pts.y2}
+              markerId={marker}
+              color={color}
+              dashed={edge.dashed}
+            />
+          );
+        });
+      })()}
+
       <text
         x="464"
         y="221"
@@ -421,40 +472,10 @@ export default function M10LearningLoopDiagram({
         fontSize="10"
         fill={palette.muted}
         fontWeight="700"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.record}
       </text>
-
-      <CurvedArrow
-        d="M 755 150 C 842 166, 842 202, 850 226"
-        markerId={arrowId}
-        color={AMBER}
-      />
-      <CurvedArrow
-        d="M 770 256 C 760 292, 732 315, 725 329"
-        markerId={arrowId}
-        color={VIOLET}
-      />
-      <Arrow
-        x1={565}
-        y1={329}
-        x2={630}
-        y2={297}
-        markerId={tealArrowId}
-        color={TEAL}
-      />
-      <CurvedArrow
-        d="M 455 297 C 395 250, 395 168, 380 121"
-        markerId={tealArrowId}
-        color={TEAL}
-      />
-      <CurvedArrow
-        d="M 455 297 C 420 346, 390 354, 340 326"
-        markerId={tealArrowId}
-        color={TEAL}
-        dashed
-      />
 
       <text
         x="408"
@@ -463,7 +484,7 @@ export default function M10LearningLoopDiagram({
         fontSize="10"
         fill={TEAL}
         fontWeight="700"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.updateRules}
       </text>
@@ -474,7 +495,7 @@ export default function M10LearningLoopDiagram({
         fontSize="10"
         fill={TEAL}
         fontWeight="700"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.updateSkills}
       </text>

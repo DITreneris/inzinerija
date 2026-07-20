@@ -9,8 +9,10 @@ import {
 } from '../m12MultiAgentSchemaLayout';
 import {
   getLearningLoopBoxMap,
+  getM10LearningLoopCompactBoxes,
   getM10LearningLoopDesktopBoxes,
   M10_LEARNING_LOOP_EDGES_DESKTOP,
+  M10_LEARNING_LOOP_STEP_NODE_IDS,
   resolveLearningLoopStraight,
 } from '../m10LearningLoopLayout';
 import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
@@ -45,6 +47,17 @@ describe('m12MultiAgentSchemaLayout', () => {
       true
     );
   });
+
+  it('includes evaluator→coordinator feedback edge with path (M10-DIA-03)', () => {
+    const feedback = M12_MULTI_AGENT_EDGES_DESKTOP.find(
+      (e) => e.id === 'evaluator-coordinator'
+    );
+    expect(feedback).toBeDefined();
+    expect(feedback!.kind).toBe('feedback');
+    expect(feedback!.from).toBe('evaluator');
+    expect(feedback!.to).toBe('coordinator');
+    expect(feedback!.path).toBeTruthy();
+  });
 });
 
 describe('m10LearningLoopLayout edges', () => {
@@ -65,6 +78,17 @@ describe('m10LearningLoopLayout edges', () => {
   it('stores curved update paths in layout SOT', () => {
     const curved = M10_LEARNING_LOOP_EDGES_DESKTOP.filter((e) => e.desktopPath);
     expect(curved.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('keeps four macro steps as the intentional contract (M10-DIA-02)', () => {
+    expect(M10_LEARNING_LOOP_STEP_NODE_IDS).toHaveLength(4);
+    expect(M10_LEARNING_LOOP_STEP_NODE_IDS[3]).toContain('update');
+  });
+
+  it('includes update node in compact layout', () => {
+    const labels = getM10LearningLoopLabels('lt');
+    const compact = getM10LearningLoopCompactBoxes(labels);
+    expect(compact.some((b) => b.id === 'update')).toBe(true);
   });
 });
 

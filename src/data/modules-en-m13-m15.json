@@ -227,7 +227,7 @@
         },
         {
           "id": 13.33,
-          "title": "Composition and framing (optional)",
+          "title": "Composition and framing",
           "shortTitle": "Composition and framing (optional)",
           "subtitle": "Rule of thirds, camera angle, shot types",
           "type": "content-block",
@@ -338,7 +338,7 @@
         },
         {
           "id": 13.35,
-          "title": "Workflow and MASTER templates (optional)",
+          "title": "Workflow and MASTER templates",
           "subtitle": "5-step pipeline, #1000Books, ready prompts",
           "type": "content-block",
           "optional": true,
@@ -723,7 +723,7 @@
                 "heading": "Workflow diagram",
                 "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.",
                 "image": "turinio_workflow",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "In short",
@@ -758,7 +758,7 @@
         },
         {
           "id": 13.8,
-          "title": "Glossary (optional)",
+          "title": "Glossary",
           "subtitle": "Content engineering terms",
           "type": "glossary",
           "optional": true,

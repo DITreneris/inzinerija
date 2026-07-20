@@ -109,6 +109,8 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 - **Daryk dabar** – aiškus veiksmas; vienas CTA „🔘 Kopijuoti promptą (žemiau)“.
 - **Quality check** – „Jei bent 2 „ne“ → grįžk prie…“ (vienoda formuluotė).
 - **Optional** – antraštė „🔽 Nori suprasti detaliau? (optional)“; collapsible teorija.
+- **MUST vs optional deep (M10 precedentas 10.64 / 10.65):** jei dense optional skaidrę dalyviai praleidžia, o M12 lab'ai reikalauja branduolio – **neišjunk** viso optional; ištrauk ploną **privalomą** content-block (spec + minimalūs testai + HITL) prieš optional deep. Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`.
+- **Orientacinės skaidrės** (schema / 3A / įrankių katalogas) be Daryk/Copy/Patikra – silpnos; pridėti GOLDEN §3.2 ciklą, ne tik diagramą.
 
 ---
 

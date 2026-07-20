@@ -3,32 +3,48 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+  getDiagramToneColors,
+} from './diagramTokens';
 import {
   getM10IncidentPlaybookLabels,
   type M10Locale,
 } from './m10DiagramContent';
+import { M10_INCIDENT_PLAYBOOK_LAYOUT } from './m10IncidentPlaybookLayout';
+import { DiagramStepHitArea } from './diagramKit';
 
-const W = 720;
-const H = 150;
-const BOX_W = 118;
-const BOX_H = 44;
-const GAP = 18;
-const ROW_Y = 72;
-const ARROW = 7;
+const {
+  width: W,
+  height: H,
+  boxW: BOX_W,
+  boxH: BOX_H,
+  gap: GAP,
+  rowY: ROW_Y,
+} = M10_INCIDENT_PLAYBOOK_LAYOUT;
+const MARKER = DIAGRAM_TOKENS.arrow.markerLen;
 
 export default function M10IncidentPlaybookDiagram({
   locale = 'lt',
   className = '',
+  currentStep = -1,
+  onStepClick,
 }: {
   locale?: M10Locale;
   className?: string;
+  currentStep?: number;
+  onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
+  const amber = tones.amber;
   const L = getM10IncidentPlaybookLabels(locale);
   const totalW = L.steps.length * BOX_W + (L.steps.length - 1) * GAP;
   const startX = (W - totalW) / 2;
+  const interactive = typeof onStepClick === 'function';
 
   return (
     <svg
@@ -38,17 +54,29 @@ export default function M10IncidentPlaybookDiagram({
       aria-label={L.aria}
     >
       <defs>
+        <linearGradient id={`m10-ip-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
+        </linearGradient>
         <marker
           id={`m10-ip-arrow-${uid}`}
-          markerWidth={ARROW + 1}
-          markerHeight="6"
-          refX={ARROW}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={MARKER}
           refY="3"
           orient="auto"
         >
-          <path d={`M0 0 L${ARROW} 3 L0 6 Z`} fill={palette.flow} />
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
         </marker>
       </defs>
+      <rect
+        x="0"
+        y="0"
+        width={W}
+        height={H}
+        rx="12"
+        fill={`url(#m10-ip-bg-${uid})`}
+      />
       <text
         x={W / 2}
         y={26}
@@ -68,7 +96,7 @@ export default function M10IncidentPlaybookDiagram({
             key={`${label}-arrow`}
             x1={x + BOX_W}
             y1={ROW_Y + BOX_H / 2}
-            x2={nextX}
+            x2={nextX - MARKER}
             y2={ROW_Y + BOX_H / 2}
             stroke={palette.flow}
             strokeWidth="2"
@@ -79,29 +107,41 @@ export default function M10IncidentPlaybookDiagram({
       {L.steps.map((label, index) => {
         const x = startX + index * (BOX_W + GAP);
         const cx = x + BOX_W / 2;
+        const active = currentStep === index;
+        const dimmed = currentStep >= 0 && !active;
         return (
-          <g key={label}>
+          <g key={label} opacity={dimmed ? 0.45 : 1}>
             <rect
               x={x}
               y={ROW_Y}
               width={BOX_W}
               height={BOX_H}
               rx="9"
-              fill="#fef3c7"
-              stroke="#b8860b"
-              strokeWidth="1.2"
+              fill={amber.soft}
+              stroke={active ? getDiagramActiveStroke() : amber.stroke}
+              strokeWidth={active ? 3 : 1.2}
             />
             <text
               x={cx}
               y={ROW_Y + 28}
               textAnchor="middle"
-              fill="#713f12"
+              fill={amber.stroke}
               fontSize="11"
               fontWeight="800"
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {index + 1}. {label}
             </text>
+            {interactive ? (
+              <DiagramStepHitArea
+                x={x}
+                y={ROW_Y}
+                width={BOX_W}
+                height={BOX_H}
+                radius={9}
+                onActivate={() => onStepClick(index)}
+              />
+            ) : null}
           </g>
         );
       })}

@@ -111,7 +111,8 @@
                 ]
               }
             ]
-          }
+          },
+          "shortTitle": "Context and reliability"
         },
         {
           "id": 39,
@@ -185,7 +186,8 @@
               }
             ],
             "footer": "Next – slide 3: Context engineering: how to steer AI"
-          }
+          },
+          "shortTitle": "AI and the universe"
         },
         {
           "id": 44,
@@ -224,19 +226,19 @@
               {
                 "heading": "2️⃣ InstructGPT: what the research shows (illustration)",
                 "body": "**What the study shows:** better context (role, format, limits) = better ratings from evaluators. Below – results from OpenAI's experiment.\n\nRole + format + limits = roughly twice the perceived quality. Models that follow instructions better give higher-quality answers – the basis for RAG and fact-checking.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "What was measured? Result",
                 "body": "OpenAI measured **output quality** (Likert 1–7 – rating scale; SFT = learning from human examples). **InstructGPT** clearly leads: smaller (1.3B) InstructGPT is rated better than larger (175B) GPT-3 without alignment – so **role, format, and limits (context engineering)** matter more than model size. **Module 4 takeaway:** when you specify role, format, and limits, AI follows instructions better – and that helps you use RAG and check answers later.",
-                "blockVariant": "accent",
+                "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": false
               },
               {
                 "heading": "In one sentence",
                 "body": "**Good context → better AI decisions.** AI is powerful, but without context it guesses.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "How does that help?",
@@ -254,7 +256,7 @@
               {
                 "heading": "Action: what to do",
                 "body": "**When writing prompts – specify role, format, and limits.** Try it in the next Module 4 slides or in the prompt library.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Sources",
@@ -791,7 +793,7 @@
               {
                 "heading": "2️⃣ 3 tasks – try all of them",
                 "body": "**1)** Load the System prompt template (below) and set up the System in your AI tool – for your typical audience. **2)** Review the Master prompt example (about a person) – reference for the 6-block principle. **3)** Create your own Master prompt – copy the task 3 prompt, answer the questions, get your ready Master. The training works only after you've tried all 3.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Task 1: System prompt template (6 blocks)",
@@ -874,7 +876,7 @@
               {
                 "heading": "Why it's worth spending ~10 min on Master Prompt",
                 "body": "Time saved, more consistent results, personalised answers, more effective work from the first message.",
-                "blockVariant": "accent",
+                "blockVariant": "terms",
                 "collapsible": true
               }
             ],
@@ -1128,11 +1130,11 @@
         },
         {
           "id": 40.5,
-          "title": "Section: Prompt types and principles",
+          "title": "Prompt types and principles",
           "subtitle": "Context basics – done. Next: prompt types, 5 rules, and how AI learns.",
           "type": "section-break",
           "content": {
-            "title": "Section: Prompt types and principles",
+            "title": "Prompt types and principles",
             "subtitle": "Next: when AI \"just writes\" – and when it \"searches and uses tools\"; 5 rules for better prompts; how AI learns from feedback; when to use search.",
             "sectionNumber": "4.1",
             "footer": "Next – slide 11: AI numbers and context at a glance",
@@ -1503,7 +1505,7 @@
               {
                 "heading": "How to write an agentic prompt (full template)",
                 "body": "Full **agentic prompt template (5 parts)** – Role, Task in steps, Tools, Output format, Error handling – and rules and tips are in **Module 10**, slide \"When to choose an agent…\". There you'll find the copyable template and guidelines.",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -1517,7 +1519,7 @@
               {
                 "heading": "In short",
                 "body": "**Methodological** = AI writes from your instructions.\n**Agentic** = AI acts and searches for you.\n\nMany real tasks use **both types together** – first the agentic one gathers data, then the methodological one analyses it.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 13: Custom GPT creation process"
@@ -1822,11 +1824,11 @@
         },
         {
           "id": 52.5,
-          "title": "Section: RAG and deep research",
+          "title": "RAG and deep research",
           "subtitle": "Next: RAG, sources, deep research, and COMBO.",
           "type": "section-break",
           "content": {
-            "title": "Section: RAG and deep research",
+            "title": "RAG and deep research",
             "subtitle": "Next: RAG, sources, deep research, and COMBO.",
             "sectionNumber": "4.2",
             "celebrationText": "Well done! Basics in place – now answers from your sources and documents.",
@@ -2125,7 +2127,7 @@
               {
                 "heading": "How to choose?",
                 "body": "**Rule:** Task → Tool → Workflow (not the other way round).\n\nWriting / strategy → **ChatGPT**.\nData / code / long documents → **Claude**.\nOffice → **Copilot**.\nResearch / visuals → **Gemini**.\nSlides / proposals → **Gamma**.\n\nYou can combine several tools in one chain. E.g.: Claude (analysis) → ChatGPT (wording) → Gamma (slides).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Example chain (workflow)",
@@ -2145,7 +2147,7 @@
               {
                 "heading": "Practical recommendation",
                 "body": "**Pro tip:** In 80% of cases one main tool + one specialised is enough. What matters isn't having all tools – it's knowing clearly which to use at which step.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 21: RAG: what it is and try it"
@@ -2304,7 +2306,7 @@
         {
           "id": 60,
           "title": "Working with RAG: memory, external sources, and data prep",
-          "shortTitle": "RAG memory",
+          "shortTitle": "RAG: memory and sources",
           "subtitle": "Memory, business documents, data prep – guidelines and template",
           "type": "content-block",
           "content": {
@@ -2439,7 +2441,7 @@
               {
                 "heading": "Core logic",
                 "body": "**Memory** = context about the business. **Documents** = real numbers. **Structure + citations** = decision reliability.\n\nWithout documents – it's opinion. With documents – it's analysis.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "🔽 Links: NotebookLM, NoteLM, Trello",
@@ -2770,12 +2772,12 @@
               {
                 "heading": "Where does it work?",
                 "body": "[Perplexity](https://perplexity.ai) (Research mode), [ChatGPT](https://chat.openai.com) (Browse / Advanced Data Analysis), [Claude](https://claude.ai) (with tools), [Gemini](https://gemini.google.com) (built-in search). For academics: [Elicit](https://elicit.com), [Consensus](https://consensus.app).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "⚡ Quick win",
                 "body": "Simplest to start – copy and replace [topic]:",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "copyable": "Create a prompt for deep research on [topic]."
               },
               {
@@ -2943,11 +2945,11 @@
         },
         {
           "id": 65.8,
-          "title": "Section: Tokens and techniques",
+          "title": "Tokens and techniques",
           "subtitle": "RAG and Deep research – done. Next: token economy and degradation.",
           "type": "section-break",
           "content": {
-            "title": "Section: Tokens and techniques",
+            "title": "Tokens and techniques",
             "subtitle": "Next: token economy, context window, and degradation (why models \"forget\"), negative prompts. Then – section \"Reliability and ethics\" (manipulation, hallucinations, fact-checking).",
             "sectionNumber": "4.4",
             "heroColorKey": "emerald",
@@ -3601,7 +3603,7 @@
               {
                 "heading": "2. Then: paste content into a tool",
                 "body": "Content is already generated by AI. Now choose a tool, paste – get ready-made slides.",
-                "blockVariant": "accent",
+                "blockVariant": "brand",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -3639,7 +3641,7 @@
               {
                 "heading": "Bottom line",
                 "body": "**A good prompt and clear structure = 80% of the presentation.** The tool is just the slide format.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "🔽 Want more detail? Result and your journey",
@@ -4081,7 +4083,8 @@
               }
             ],
             "footer": "Next – slide 5: Single-page website (HTML)"
-          }
+          },
+          "shortTitle": "Example: HTML page"
         },
         {
           "id": 68,
@@ -4224,17 +4227,17 @@
               {
                 "heading": "Module outcome",
                 "body": "You now have: a ready research report or Custom GPT instructions; 6-block template; RAG example. Save them in your library (see Data handling).",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "First action within 24–48 hours",
                 "body": "Tomorrow: open your AI tool and add one prompt from this module to your library. Or: use the same 6-block structure for another topic.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "What next?",
                 "body": "**Back to module list** – choose another module or view your certificate. **Advanced paths** (Modules 7–15) – deepen your knowledge of AI use and context engineering.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 8: Data checklist"

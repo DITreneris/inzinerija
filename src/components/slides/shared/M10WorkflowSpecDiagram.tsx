@@ -3,18 +3,29 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+  getDiagramToneColors,
+} from './diagramTokens';
 import { getM10WorkflowSpecLabels, type M10Locale } from './m10DiagramContent';
+import {
+  M10_WORKFLOW_SPEC_LAYOUT,
+  M10_WORKFLOW_SPEC_START_X,
+} from './m10WorkflowSpecLayout';
+import { DiagramStepHitArea } from './diagramKit';
 
-const W = 720;
-const H = 182;
-const BOX_W = 110;
-const BOX_H = 46;
-const GAP = 24;
-const ROW_1_Y = 54;
-const ROW_2_Y = 118;
-const START_X = (W - (4 * BOX_W + 3 * GAP)) / 2;
-const ARROW = 7;
+const {
+  width: W,
+  height: H,
+  boxW: BOX_W,
+  boxH: BOX_H,
+  gap: GAP,
+  row1Y: ROW_1_Y,
+  row2Y: ROW_2_Y,
+} = M10_WORKFLOW_SPEC_LAYOUT;
+const START_X = M10_WORKFLOW_SPEC_START_X;
+const MARKER = DIAGRAM_TOKENS.arrow.markerLen;
 
 function textLines(label: string) {
   if (label.length <= 10) return [label];
@@ -25,13 +36,20 @@ function textLines(label: string) {
 export default function M10WorkflowSpecDiagram({
   locale = 'lt',
   className = '',
+  currentStep = -1,
+  onStepClick,
 }: {
   locale?: M10Locale;
   className?: string;
+  currentStep?: number;
+  onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10WorkflowSpecLabels(locale);
+  const interactive = typeof onStepClick === 'function';
   const boxes = L.blocks.map((label, index) => {
     const isFirstRow = index < 4;
     const col = isFirstRow ? index : 7 - index;
@@ -40,7 +58,7 @@ export default function M10WorkflowSpecDiagram({
       index,
       x: START_X + col * (BOX_W + GAP),
       y: isFirstRow ? ROW_1_Y : ROW_2_Y,
-      fill: isFirstRow ? '#334e68' : '#486581',
+      fill: isFirstRow ? tones.brand.bottom : tones.brand.top,
     };
   });
 
@@ -52,17 +70,29 @@ export default function M10WorkflowSpecDiagram({
       aria-label={L.aria}
     >
       <defs>
+        <linearGradient id={`m10-ws-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
+        </linearGradient>
         <marker
           id={`m10-ws-arrow-${uid}`}
-          markerWidth={ARROW + 1}
-          markerHeight="6"
-          refX={ARROW}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
+          refX={MARKER}
           refY="3"
           orient="auto"
         >
-          <path d={`M0 0 L${ARROW} 3 L0 6 Z`} fill={palette.flow} />
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
         </marker>
       </defs>
+      <rect
+        x="0"
+        y="0"
+        width={W}
+        height={H}
+        rx="12"
+        fill={`url(#m10-ws-bg-${uid})`}
+      />
       <text
         x={W / 2}
         y={24}
@@ -78,21 +108,27 @@ export default function M10WorkflowSpecDiagram({
       {boxes.slice(0, -1).map((box, index) => {
         const next = boxes[index + 1];
         const isVertical = box.x === next.x;
+        const goingRight = box.x < next.x;
+        const x1 = isVertical
+          ? box.x + BOX_W / 2
+          : box.x + (goingRight ? BOX_W : 0);
+        const y1 = isVertical ? box.y + BOX_H : box.y + BOX_H / 2;
+        const x2Raw = isVertical
+          ? next.x + BOX_W / 2
+          : next.x + (goingRight ? 0 : BOX_W);
+        const y2Raw = isVertical ? next.y : next.y + BOX_H / 2;
+        const dx = x2Raw - x1;
+        const dy = y2Raw - y1;
+        const len = Math.hypot(dx, dy) || 1;
+        const x2 = x2Raw - (dx / len) * MARKER;
+        const y2 = y2Raw - (dy / len) * MARKER;
         return (
           <line
             key={`${box.label}-${next.label}`}
-            x1={
-              isVertical
-                ? box.x + BOX_W / 2
-                : box.x + (box.x < next.x ? BOX_W : 0)
-            }
-            y1={isVertical ? box.y + BOX_H : box.y + BOX_H / 2}
-            x2={
-              isVertical
-                ? next.x + BOX_W / 2
-                : next.x + (box.x < next.x ? 0 : BOX_W)
-            }
-            y2={isVertical ? next.y : next.y + BOX_H / 2}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
             stroke={palette.flow}
             strokeWidth="2"
             markerEnd={`url(#m10-ws-arrow-${uid})`}
@@ -102,8 +138,10 @@ export default function M10WorkflowSpecDiagram({
 
       {boxes.map((box) => {
         const lines = textLines(box.label);
+        const active = currentStep === box.index;
+        const dimmed = currentStep >= 0 && !active;
         return (
-          <g key={box.label}>
+          <g key={box.label} opacity={dimmed ? 0.45 : 1}>
             <rect
               x={box.x}
               y={box.y}
@@ -111,8 +149,8 @@ export default function M10WorkflowSpecDiagram({
               height={BOX_H}
               rx="9"
               fill={box.fill}
-              stroke={palette.brandDark}
-              strokeWidth="1"
+              stroke={active ? getDiagramActiveStroke() : palette.brandDark}
+              strokeWidth={active ? 3 : 1}
             />
             <text
               x={box.x + 12}
@@ -143,6 +181,16 @@ export default function M10WorkflowSpecDiagram({
                 </tspan>
               ))}
             </text>
+            {interactive ? (
+              <DiagramStepHitArea
+                x={box.x}
+                y={box.y}
+                width={BOX_W}
+                height={BOX_H}
+                radius={9}
+                onActivate={() => onStepClick(box.index)}
+              />
+            ) : null}
           </g>
         );
       })}

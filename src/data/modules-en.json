@@ -278,7 +278,7 @@
         },
         {
           "id": 15,
-          "title": "Workflow concept",
+          "title": "The idea of a workflow",
           "subtitle": "From simple chat to work results",
           "type": "workflow-summary",
           "content": {
@@ -1290,7 +1290,7 @@
         },
         {
           "id": 28,
-          "title": "Workflow and techniques – Quiz",
+          "title": "Workflow and techniques – test",
           "subtitle": "Questions about workflow and techniques",
           "type": "test-section",
           "testQuestions": [
@@ -1344,7 +1344,7 @@
         },
         {
           "id": 51,
-          "title": "Bonus: Using style in prompts",
+          "title": "Extra: Using style in prompts",
           "subtitle": "Tone, style, audience, language – business tone, formal, compact",
           "type": "content-block",
           "content": {
@@ -1411,7 +1411,7 @@
         },
         {
           "id": 52,
-          "title": "Bonus: Practical tasks",
+          "title": "Extra: Practical tasks",
           "subtitle": "Style texts and email replies",
           "type": "content-block",
           "content": {

@@ -175,6 +175,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it.each([
       ['M10 learning loop', () => <M10LearningLoopBlock />, 4],
       ['M10 orchestrator', () => <M10OrchestratorBlock />, 6],
+      ['M10 trigger flow', () => <M10TriggerFlowBlock />, 4],
+      ['M10 workflow spec', () => <M10WorkflowSpecBlock />, 8],
+      ['M10 incident playbook', () => <M10IncidentPlaybookBlock />, 5],
       ['M12 multi-agent schema', () => <M12MultiAgentSchemaBlock />, 6],
     ])(
       'keeps keyboard interaction in %s HTML nav only',

@@ -94,6 +94,8 @@
 
 **Sekcijų schema:** Trumpai (LT) / In short (EN), accent → Daryk dabar / Do now (brand) → Kopijuojamas promptas / Copy-paste prompt → Patikra / Quality check (accent) → Optional (terms, collapsible).
 
+**Accent biudžetas:** max 2× `accent` (Trumpai + Patikra); Daryk dabar privalo būti `brand`. CI: `npm run audit:accent-budget` (M10–12 – `audit:accent-budget:m1012` release-preflight). **Išimtys (neprivalomas deep / recap):** M10 `10.65`, M12 `125` – gali neturėti pilno GOLDEN ciklo, jei pažymėta optional.
+
 | Sekcija                         | blockVariant | Turinio taisyklė                                     |
 | ------------------------------- | ------------ | ---------------------------------------------------- |
 | 1. Trumpai (LT) / In short (EN) | accent       | 1–2 sakiniai, be perteklius                          |

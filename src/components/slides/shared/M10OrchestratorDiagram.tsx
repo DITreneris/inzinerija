@@ -6,7 +6,11 @@ import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  DIAGRAM_ROLE_COLORS,
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+} from './diagramTokens';
 import {
   getM10OrchestratorLabels,
   type M10OrchestratorLocale,
@@ -28,12 +32,13 @@ import {
   type M10OrchestratorTone,
 } from './m10OrchestratorLayout';
 
-const VIOLET = '#7c3aed';
-const TEAL = '#0d9488';
-const AMBER = '#b8860b';
-const ROSE = '#e11d48';
-const SLATE = '#64748b';
-const BRAND = '#334e68';
+const VIOLET = DIAGRAM_ROLE_COLORS.violet;
+const TEAL = DIAGRAM_ROLE_COLORS.teal;
+const AMBER = DIAGRAM_ROLE_COLORS.amber;
+const ROSE = DIAGRAM_ROLE_COLORS.rose;
+const SLATE = DIAGRAM_ROLE_COLORS.slate;
+const BRAND = DIAGRAM_ROLE_COLORS.brand;
+const ACTIVE_STROKE = getDiagramActiveStroke();
 
 function toneFill(tone: M10OrchestratorTone): string {
   if (tone === 'violet') return VIOLET;
@@ -60,7 +65,7 @@ function NodeBox({
   onActivate?: () => void;
 }) {
   const fill = errorHighlight ? ROSE : toneFill(box.tone);
-  const activeStroke = errorHighlight ? ROSE : '#f3cc30';
+  const activeStroke = errorHighlight ? ROSE : ACTIVE_STROKE;
 
   return (
     <g opacity={dimmed ? 0.42 : 1}>
@@ -197,17 +202,20 @@ export default function M10OrchestratorDiagram({
   const flowColor = palette.flow;
   const mutedFlow = palette.border;
 
+  const bgGradId = `m10-orch-bg-${uid}`;
+
   return (
     <svg
       viewBox={`0 0 ${vb.width} ${vb.height}`}
       className={`w-full max-w-4xl mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
-      style={{
-        background: `linear-gradient(180deg, ${palette.bgStart}, ${palette.bgEnd})`,
-      }}
     >
       <defs>
+        <linearGradient id={bgGradId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
+        </linearGradient>
         <marker
           id={flowMarker}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
@@ -239,6 +247,14 @@ export default function M10OrchestratorDiagram({
           <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={ROSE} />
         </marker>
       </defs>
+      <rect
+        x="0"
+        y="0"
+        width={vb.width}
+        height={vb.height}
+        rx="12"
+        fill={`url(#${bgGradId})`}
+      />
 
       <text
         x={vb.width / 2}

@@ -94,12 +94,13 @@
 
 ### Moduliai 10–12 (Agentų inžinerija)
 
-| Failas                                     | Paskirtis                                                                                                              |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `docs/turinio_pletra_moduliai_10_11_12.md` | Turinio SOT M10–M12                                                                                                    |
-| `docs/MODULIO_10_SKAIDRIU_EILES.md`        | Oficiali M10/M11/M12 skaidrių eilė                                                                                     |
-| `docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md`  | Verslo automatizavimo gidas (papildomas skaitymas M10–12)                                                              |
-| **Archyvas**                               | MODULIO*10_USER_JOURNEY_ANALIZE, ANALIZE*\*\_10_11_12, MODULIAI_10_11_12_TURINIO_SPRAGOS – `docs/archive/development/` |
+| Failas                                         | Paskirtis                                                                                                              |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `docs/turinio_pletra_moduliai_10_11_12.md`     | Turinio SOT M10–M12                                                                                                    |
+| `docs/MODULIO_10_SKAIDRIU_EILES.md`            | Oficiali M10/M11/M12 skaidrių eilė                                                                                     |
+| `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md` | Pedagoginė analizė + max ROI backlog (S/P/N/R)                                                                         |
+| `docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md`      | Verslo automatizavimo gidas (papildomas skaitymas M10–12)                                                              |
+| **Archyvas**                                   | MODULIO*10_USER_JOURNEY_ANALIZE, ANALIZE*\*\_10_11_12, MODULIAI_10_11_12_TURINIO_SPRAGOS – `docs/archive/development/` |
 
 ### Moduliai 13–15 (Turinio inžinerija)
 

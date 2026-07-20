@@ -7,18 +7,24 @@ import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
 import type { M10Locale } from './m10DiagramContent';
 import { getM12MultiAgentSchemaLabels } from './m12MultiAgentSchemaContent';
+import {
+  DIAGRAM_ROLE_COLORS,
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+} from './diagramTokens';
 
 const DESKTOP_W = 930;
 const DESKTOP_H = 330;
 const COMPACT_W = 420;
 const COMPACT_H = 620;
 
-const MUTED = '#486581';
-const SLATE = '#64748b';
-const TEAL = '#0d9488';
-const VIOLET = '#7c3aed';
-const AMBER = '#b8860b';
-const AMBER_BG = '#fef3c7';
+const MUTED = DIAGRAM_ROLE_COLORS.brandTop;
+const SLATE = DIAGRAM_ROLE_COLORS.slate;
+const TEAL = DIAGRAM_ROLE_COLORS.teal;
+const VIOLET = DIAGRAM_ROLE_COLORS.violet;
+const AMBER = DIAGRAM_ROLE_COLORS.amber;
+const AMBER_BG = DIAGRAM_ROLE_COLORS.amberSoft;
+const ACTIVE_STROKE = getDiagramActiveStroke();
 
 interface Box {
   id: string;
@@ -63,10 +69,10 @@ function NodeBox({
         y={box.y}
         width={box.w}
         height={box.h}
-        rx="14"
+        rx={DIAGRAM_TOKENS.radius.box}
         fill={box.fill}
-        stroke={active ? '#f3cc30' : stroke}
-        strokeWidth={active ? 3 : 1}
+        stroke={active ? ACTIVE_STROKE : stroke}
+        strokeWidth={active ? DIAGRAM_TOKENS.stroke.active : 1}
       />
       <text
         x={box.x + box.w / 2}
@@ -75,7 +81,7 @@ function NodeBox({
         fill={textColor}
         fontSize="12"
         fontWeight="800"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[0]}
       </text>
@@ -86,7 +92,7 @@ function NodeBox({
         fill={subColor}
         fontSize="9"
         fontWeight={box.textColor ? '700' : '500'}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[1]}
       </text>
@@ -96,7 +102,7 @@ function NodeBox({
           y={box.y}
           width={box.w}
           height={box.h}
-          radius={14}
+          radius={DIAGRAM_TOKENS.radius.box}
           onActivate={onActivate}
         />
       ) : null}
@@ -135,6 +141,27 @@ function Arrow({
   );
 }
 
+function CurvedArrow({
+  d,
+  markerId,
+  color = VIOLET,
+}: {
+  d: string;
+  markerId: string;
+  color?: string;
+}) {
+  return (
+    <path
+      d={d}
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeDasharray="5 4"
+      markerEnd={`url(#${markerId})`}
+    />
+  );
+}
+
 function HandoffLabel({
   x,
   y,
@@ -154,7 +181,7 @@ function HandoffLabel({
       fill={color}
       fontSize="9"
       fontWeight="700"
-      fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+      fontFamily={DIAGRAM_TOKENS.font}
     >
       {label}
     </text>
@@ -178,7 +205,9 @@ export default function M12MultiAgentSchemaDiagram({
   const L = getM12MultiAgentSchemaLabels(locale);
   const arrowId = `m12-ma-arrow-${uid}`;
   const dashedArrowId = `m12-ma-dashed-${uid}`;
+  const feedbackArrowId = `m12-ma-feedback-${uid}`;
   const activeNodeIds = STEP_NODE_IDS[currentStep] ?? STEP_NODE_IDS[0];
+  const feedbackActive = currentStep === 4; /* evaluator step */
   const stepForNode = (id: string) =>
     STEP_NODE_IDS.findIndex((nodes) => nodes.includes(id));
   const nodeProps = (box: Box) => {
@@ -290,6 +319,16 @@ export default function M12MultiAgentSchemaDiagram({
           >
             <path d="M0,0 L7,3.5 L0,7 Z" fill={AMBER} />
           </marker>
+          <marker
+            id={feedbackArrowId}
+            markerWidth="7"
+            markerHeight="7"
+            refX="7"
+            refY="3.5"
+            orient="auto"
+          >
+            <path d="M0,0 L7,3.5 L0,7 Z" fill={VIOLET} />
+          </marker>
         </defs>
         <rect
           x="10"
@@ -307,7 +346,7 @@ export default function M12MultiAgentSchemaDiagram({
           fontSize="15"
           fontWeight="800"
           fill={palette.brandDark}
-          fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+          fontFamily={DIAGRAM_TOKENS.font}
         >
           {L.title}
         </text>
@@ -329,6 +368,13 @@ export default function M12MultiAgentSchemaDiagram({
           color={AMBER}
           dashed
         />
+        <g opacity={feedbackActive ? 1 : 0.55}>
+          <CurvedArrow
+            d="M 110 467 C 20 467, 20 257, 110 257"
+            markerId={feedbackArrowId}
+          />
+          <HandoffLabel x={48} y={360} label={L.feedback} color={VIOLET} />
+        </g>
         <HandoffLabel x={210} y={317} label={L.handoff} color={palette.muted} />
         <HandoffLabel x={210} y={520} label={L.hitl} color={palette.muted} />
       </svg>
@@ -430,6 +476,16 @@ export default function M12MultiAgentSchemaDiagram({
         >
           <path d="M0,0 L7,3.5 L0,7 Z" fill={AMBER} />
         </marker>
+        <marker
+          id={feedbackArrowId}
+          markerWidth="7"
+          markerHeight="7"
+          refX="7"
+          refY="3.5"
+          orient="auto"
+        >
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={VIOLET} />
+        </marker>
       </defs>
       <rect
         x="14"
@@ -447,7 +503,7 @@ export default function M12MultiAgentSchemaDiagram({
         fontSize="16"
         fontWeight="800"
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>
@@ -469,6 +525,13 @@ export default function M12MultiAgentSchemaDiagram({
         color={AMBER}
         dashed
       />
+      <g opacity={feedbackActive ? 1 : 0.55}>
+        <CurvedArrow
+          d="M 701 190 C 640 255, 450 255, 388 190"
+          markerId={feedbackArrowId}
+        />
+        <HandoffLabel x={545} y={268} label={L.feedback} color={VIOLET} />
+      </g>
       <HandoffLabel x={467} y={127} label={L.handoff} color={palette.muted} />
       <HandoffLabel x={770} y={148} label={L.hitl} color={palette.muted} />
     </svg>

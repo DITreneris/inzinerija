@@ -3,9 +3,14 @@
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  getDiagramActiveStroke,
+  getDiagramToneColors,
+} from './diagramTokens';
 import { getM10TriggerFlowLabels, type M10Locale } from './m10DiagramContent';
 import { M10_TRIGGER_FLOW_LAYOUT } from './m10TriggerFlowLayout';
+import { DiagramStepHitArea } from './diagramKit';
 
 const {
   width: W,
@@ -23,19 +28,24 @@ export default function M10TriggerFlowDiagram({
   locale = 'lt',
   className = '',
   currentStep = -1,
+  onStepClick,
 }: {
   locale?: M10Locale;
   className?: string;
   currentStep?: number;
+  onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10TriggerFlowLabels(locale);
-  const webhookFill = DIAGRAM_TONE_COLORS.amber.soft;
-  const webhookStroke = DIAGRAM_TONE_COLORS.amber.stroke;
-  const webhookText = DIAGRAM_TONE_COLORS.amber.stroke;
+  const webhookFill = tones.amber.soft;
+  const webhookStroke = tones.amber.stroke;
+  const webhookText = tones.amber.stroke;
   const webhookSubText = palette.muted;
   const flowGrey = palette.flow;
+  const interactive = typeof onStepClick === 'function';
   const x1 = X0;
   const x2 = x1 + BOX_W + GAP;
   const x3 = x2 + BOX_W + GAP;
@@ -102,7 +112,9 @@ export default function M10TriggerFlowDiagram({
               rx={DIAGRAM_TOKENS.radius.box}
               fill={b.step === 0 ? palette.brandTop : palette.brand}
               stroke={
-                active && currentStep === b.step ? '#f3cc30' : palette.brandDark
+                active && currentStep === b.step
+                  ? getDiagramActiveStroke()
+                  : palette.brandDark
               }
               strokeWidth={
                 active && currentStep === b.step
@@ -131,6 +143,15 @@ export default function M10TriggerFlowDiagram({
             >
               {b.sub}
             </text>
+            {interactive ? (
+              <DiagramStepHitArea
+                x={b.x}
+                y={Y_MAIN}
+                width={BOX_W}
+                height={BOX_H}
+                onActivate={() => onStepClick(b.step)}
+              />
+            ) : null}
           </g>
         );
       })}
@@ -157,7 +178,7 @@ export default function M10TriggerFlowDiagram({
       <path
         d={`M${whX + 10} ${whY} H${whX + BOX_W - WEBHOOK_NOTCH} L${whX + BOX_W} ${whY + BOX_H / 2} L${whX + BOX_W - WEBHOOK_NOTCH} ${whY + BOX_H} H${whX + 10} Q${whX} ${whY + BOX_H} ${whX} ${whY + BOX_H - 10} V${whY + 10} Q${whX} ${whY} ${whX + 10} ${whY} Z`}
         fill={webhookFill}
-        stroke={currentStep === 3 ? '#f3cc30' : webhookStroke}
+        stroke={currentStep === 3 ? getDiagramActiveStroke() : webhookStroke}
         strokeWidth={
           currentStep === 3
             ? DIAGRAM_TOKENS.stroke.active
@@ -186,6 +207,15 @@ export default function M10TriggerFlowDiagram({
       >
         {L.webhookSub}
       </text>
+      {interactive ? (
+        <DiagramStepHitArea
+          x={whX}
+          y={whY}
+          width={BOX_W}
+          height={BOX_H}
+          onActivate={() => onStepClick(3)}
+        />
+      ) : null}
 
       <line
         x1={cx(x1)}

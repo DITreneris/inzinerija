@@ -1,11 +1,12 @@
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
+import { M12_THREE_LABS_LAYOUT } from './m12ThreeLabsLayout';
 
-const W = 640;
-const H = 220;
+const W = M12_THREE_LABS_LAYOUT.width;
+const H = M12_THREE_LABS_LAYOUT.height;
 const ARROW = DIAGRAM_TOKENS.arrow.markerLen;
 
 export default function M12ThreeLabsDiagram({
@@ -17,14 +18,16 @@ export default function M12ThreeLabsDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
   const L = getM12ThreeLabsLabels(locale);
-  const rowH = 52;
-  const gap = 14;
+  const rowH = M12_THREE_LABS_LAYOUT.rowH;
+  const gap = M12_THREE_LABS_LAYOUT.gap;
   const x0 = 24;
   const w0 = W - 48;
-  const humanFill = DIAGRAM_TONE_COLORS.amber.soft;
-  const humanStroke = DIAGRAM_TONE_COLORS.amber.stroke;
-  const humanText = DIAGRAM_TONE_COLORS.amber.stroke;
+  const humanFill = tones.amber.soft;
+  const humanStroke = tones.amber.stroke;
+  const humanText = tones.amber.stroke;
   let y = 40;
 
   const rows = [
@@ -32,19 +35,19 @@ export default function M12ThreeLabsDiagram({
       title: L.l1,
       sub: L.l1Sub,
       hum: L.l1Human,
-      fill: DIAGRAM_TONE_COLORS.brand.stroke,
+      fill: tones.brand.stroke,
     },
     {
       title: L.l2,
       sub: L.l2Sub,
       hum: L.l2Human,
-      fill: DIAGRAM_TONE_COLORS.emerald.stroke,
+      fill: tones.emerald.stroke,
     },
     {
       title: L.l3,
       sub: L.l3Sub,
       hum: L.l3Human,
-      fill: DIAGRAM_TONE_COLORS.amber.stroke,
+      fill: tones.amber.stroke,
     },
   ];
 
@@ -56,17 +59,29 @@ export default function M12ThreeLabsDiagram({
       aria-label={L.aria}
     >
       <defs>
+        <linearGradient id={`m12tl-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
+        </linearGradient>
         <marker
           id={`m12tl-conn-${uid}`}
-          markerWidth={ARROW + 2}
-          markerHeight={7}
+          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
+          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW}
-          refY="3.5"
+          refY="3"
           orient="auto"
         >
-          <path d={`M0 0 L${ARROW} 3.5 L0 7 Z`} fill={palette.brandDark} />
+          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.brandDark} />
         </marker>
       </defs>
+      <rect
+        x="0"
+        y="0"
+        width={W}
+        height={H}
+        rx="12"
+        fill={`url(#m12tl-bg-${uid})`}
+      />
       <text
         x={W / 2}
         y={24}
@@ -74,7 +89,7 @@ export default function M12ThreeLabsDiagram({
         fontSize="14"
         fontWeight="800"
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}
       </text>

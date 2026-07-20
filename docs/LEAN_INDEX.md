@@ -61,7 +61,8 @@
 | `docs/MODULIO_7_SKAIDRIU_EILES.md`                   | M7 skaidrių eilė, path-step          |
 | `docs/development/07_08_09_backlog.md`               | M7–M9 user test backlog (2026-07-14) |
 | `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` | MUST/SHOULD prioritetai              |
-| `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`          | Pedagoginė analizė                   |
+| `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`          | Pedagoginė analizė M4–6              |
+| `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`       | Pedagoginė analizė M10–12 + max ROI  |
 | `docs/SKAIDRIU_TIPU_ANALIZE.md`                      | Skaidrių tipai                       |
 
 ---
