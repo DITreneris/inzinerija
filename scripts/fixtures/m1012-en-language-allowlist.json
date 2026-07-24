@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "rule": "lt_en_phrase",
+    "path": "M10/slides[10.26].content.sections[0].body",
+    "match": "Human-in-the-loop",
+    "reason": "Curriculum SOT bilingvinis HITL paminėjimas (turinio_pletra §3b1)"
+  },
+  {
+    "rule": "lt_en_phrase",
+    "path": "M10/slides[10.7].content.terms[7].term",
+    "match": "Human-in-the-loop",
+    "reason": "Glossary term SOT – Žmogaus kontrolė (Human-in-the-loop / HITL)"
+  }
+]

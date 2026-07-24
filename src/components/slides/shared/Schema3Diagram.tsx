@@ -5,6 +5,7 @@
  * Srautas: Įvestis (tekstas) → LLM → Išvestis; Tool Use → Generation, Retrieval → Duomenų bazė.
  */
 import { useId } from 'react';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 const VIEWBOX = '0 0 520 220';
 const PAD = 0;
@@ -84,6 +85,7 @@ export default function Schema3Diagram({
         </linearGradient>
         <marker
           id={`s3-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="10"
           markerHeight="8"
           refX={ARROW_MARKER_LEN}

@@ -39,6 +39,8 @@
 
 **M10 seka (2026-07-20):** paprastas sisteminis promptas (**10.3**) eina **po 10.25 (3A), prieš 10.45** (taksonomiją) – ne po multi-agent bloko. M12 pasiruošimo MUST: plonas privalomas **10.64** įėjimo bilietas (spec + 3 testai + HITL); dense **10.65** lieka optional. Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `docs/MODULIO_10_SKAIDRIU_EILES.md`.
 
+**M13–15 seka (2026-07-22):** generative media – **pipeline prieš įrankius**: MUST **13.12** (pipeline) → vaizdai → **13.32** (consistency) → video (trumpi I2V + CPI) → **13.52** (post-prod) → **garsas** (audio-first) → **13.101** provenance/Legal → **13.11** verslo workflow. M15 completion = **150.5** only; optional full **151–154** (montažas). Registruoti naujus ID `MODULIO_13_SKAIDRIU_EILES.md` + `CONTENT_MODULIU_ATPAZINIMAS.md` §6. Žr. `docs/turinio_pletra_moduliai_13_14_15.md`.
+
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 
 ---

@@ -146,7 +146,8 @@ export function getPhaseLabel(
       if (slideId === 100 || slideId === 10.1) lt = 'Įvadas / Kelias';
       else if (slideId === 10.2 || slideId === 10.21 || slideId === 10.22)
         lt = 'Ciklas';
-      else if (slideId === 10.25 || slideId === 10.3) lt = '3A ir šablonas';
+      else if (slideId === 10.25 || slideId === 10.26 || slideId === 10.3)
+        lt = '3A ir šablonas';
       else if (
         slideId === 10.45 ||
         slideId === 10.451 ||

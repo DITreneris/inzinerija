@@ -20,13 +20,14 @@ import {
   ROW_N1,
   ARROWS_ROW_N,
   ARROWS_ROW_N1,
+  ARROW_MARKER_LEN,
   FEEDBACK,
   getOutputTextPositions,
   getTwoLineTextPositions,
   getInputTextPositions,
   getCenterTextPosition,
 } from './llmAutoregressiveLayout';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, DIAGRAM_ROLE_COLORS } from './diagramTokens';
 
 const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
 const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactiveSoft;
@@ -34,7 +35,10 @@ const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactiveSoft;
 // Spalvos (ne geometrija – čia)
 const TEXT_DARK = DIAGRAM_TOKENS.colors.brandDark;
 const TEXT_MUTED = DIAGRAM_TOKENS.colors.slate;
-const GRAY_FLOW = DIAGRAM_TOKENS.colors.flow;
+/** Feedback tip/path – etalon ACCENT_DARK (RlProcess / AgentWorkflow), ne muted flow */
+const FEEDBACK_STROKE = DIAGRAM_ROLE_COLORS.accentDark;
+/** Forward shaft/tip – AgentWorkflow / SCHEME greyForward (ne blyškus slate) */
+const GREY_FORWARD = DIAGRAM_ROLE_COLORS.greyForward;
 const BORDER = DIAGRAM_TOKENS.colors.slate;
 const INPUT_BG = '#e2eef9';
 const INPUT_BORDER = '#2b5a8e';
@@ -157,19 +161,22 @@ export default function LlmAutoregressiveDiagram({
           <stop offset="0%" stopColor={DIAGRAM_TOKENS.colors.bgEnd} />
           <stop offset="100%" stopColor={DIAGRAM_TOKENS.colors.bgStart} />
         </linearGradient>
+        {/* Forward tip: RlProcess etalon – refX=0 (tip past line end), size = ARROW_MARKER_LEN.
+            Tiny 6px tip + stroke.flow 3.5 + refX≈tip → tip buried under shaft (= faint V). */}
         <marker
           id={`llm-arrow-fwd-${uid}`}
-          markerWidth="6"
-          markerHeight="5"
-          refX="5"
-          refY="2.5"
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
+          markerWidth={ARROW_MARKER_LEN}
+          markerHeight={ARROW_MARKER_LEN * 0.9}
+          refX={0}
+          refY={(ARROW_MARKER_LEN * 0.9) / 2}
           orient="auto"
         >
           <path
-            d="M0 0 L6 2.5 L0 5 Z"
-            fill={BORDER}
-            stroke={BORDER}
-            strokeWidth="0.4"
+            d={`M0 0 L${ARROW_MARKER_LEN} ${(ARROW_MARKER_LEN * 0.9) / 2} L0 ${ARROW_MARKER_LEN * 0.9} Z`}
+            fill={GREY_FORWARD}
+            stroke={GREY_FORWARD}
+            strokeWidth="0.5"
           />
         </marker>
         <linearGradient
@@ -263,18 +270,6 @@ export default function LlmAutoregressiveDiagram({
       >
         {L.rowN}
       </text>
-      {ARROWS_ROW_N.map(([x1, y, x2], i) => (
-        <line
-          key={i}
-          x1={x1}
-          y1={y}
-          x2={x2}
-          y2={y}
-          stroke={BORDER}
-          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-          markerEnd={`url(#llm-arrow-fwd-${uid})`}
-        />
-      ))}
       {(() => {
         const inputPos = getTwoLineTextPositions(ROW_N.input);
         const outputPos = getOutputTextPositions(ROW_N.output);
@@ -467,6 +462,19 @@ export default function LlmAutoregressiveDiagram({
           </>
         );
       })()}
+      {/* Forward after boxes – tips stay above box fills (SCHEME paint order) */}
+      {ARROWS_ROW_N.map(([x1, y, x2], i) => (
+        <line
+          key={`fwd-n-${i}`}
+          x1={x1}
+          y1={y}
+          x2={x2}
+          y2={y}
+          stroke={GREY_FORWARD}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+          markerEnd={`url(#llm-arrow-fwd-${uid})`}
+        />
+      ))}
 
       {/* Row N+1 */}
       <text
@@ -479,18 +487,6 @@ export default function LlmAutoregressiveDiagram({
       >
         {L.rowN1}
       </text>
-      {ARROWS_ROW_N1.map(([x1, y, x2], i) => (
-        <line
-          key={i}
-          x1={x1}
-          y1={y}
-          x2={x2}
-          y2={y}
-          stroke={BORDER}
-          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-          markerEnd={`url(#llm-arrow-fwd-${uid})`}
-        />
-      ))}
       {(() => {
         const inputPosN1 = getInputTextPositions(ROW_N1.input);
         const outputPos = getOutputTextPositions(ROW_N1.output);
@@ -695,31 +691,40 @@ export default function LlmAutoregressiveDiagram({
           </>
         );
       })()}
+      {ARROWS_ROW_N1.map(([x1, y, x2], i) => (
+        <line
+          key={`fwd-n1-${i}`}
+          x1={x1}
+          y1={y}
+          x2={x2}
+          y2={y}
+          stroke={GREY_FORWARD}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+          markerEnd={`url(#llm-arrow-fwd-${uid})`}
+        />
+      ))}
 
-      {/* Feedback path: Pasirinkta N → Įvestis N+1 */}
+      {/* Feedback: Pasirinkta N → Įvestis N+1 (RlProcess etalon – tip outside block) */}
       <circle
         cx={FEEDBACK.startCircle.cx}
         cy={FEEDBACK.startCircle.cy}
-        r="2.5"
-        fill={GRAY_FLOW}
-        stroke={GRAY_FLOW}
-        strokeWidth="0.4"
+        r="5"
+        fill={DIAGRAM_TOKENS.colors.amber}
+        stroke={FEEDBACK_STROKE}
+        strokeWidth="1.5"
       />
       <path
         d={FEEDBACK.pathD}
         fill="none"
-        stroke={GRAY_FLOW}
-        strokeWidth="1.2"
-        strokeDasharray="5 3"
+        stroke={FEEDBACK_STROKE}
+        strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+        strokeDasharray="8 4"
         strokeLinejoin="round"
         strokeLinecap="round"
       />
       <polygon
-        points={`${FEEDBACK.arrowTip.x},${FEEDBACK.arrowBaseY} ${FEEDBACK.arrowTip.x - FEEDBACK.arrowHalfW},${FEEDBACK.arrowTip.y} ${FEEDBACK.arrowTip.x + FEEDBACK.arrowHalfW},${FEEDBACK.arrowTip.y}`}
-        fill={GRAY_FLOW}
-        stroke={GRAY_FLOW}
-        strokeWidth="0.4"
-        strokeLinejoin="round"
+        points={`${FEEDBACK.tipX - FEEDBACK.tipW},${FEEDBACK.baseY} ${FEEDBACK.tipX},${FEEDBACK.tipY} ${FEEDBACK.tipX + FEEDBACK.tipW},${FEEDBACK.baseY}`}
+        fill={FEEDBACK_STROKE}
       />
       <text
         x={FEEDBACK.labelX}
@@ -727,8 +732,8 @@ export default function LlmAutoregressiveDiagram({
         textAnchor="middle"
         fontFamily={FONT}
         fontSize={SIZE_MICRO}
-        fontWeight="500"
-        fill={TEXT_MUTED}
+        fontWeight="700"
+        fill={FEEDBACK_STROKE}
       >
         {L.feedback}
       </text>

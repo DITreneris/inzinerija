@@ -10,20 +10,26 @@
 ## 🎨 UI/UX Patikra
 
 ### Pagrindinis Puslapis (HomePage)
+
 - [ ] Puslapis kraunasi be klaidų
 - [ ] Progress indikatoriai rodomi teisingai
 - [ ] Mygtukai veikia
 - [ ] Dark mode veikia
 
 ### Modulių Sąrašas (ModulesPage)
+
 - [ ] Visi moduliai rodomi
 - [ ] Progress bar'ai veikia kiekvienam moduliui
 - [ ] Locked moduliai rodomi teisingai
 - [ ] Spalvos ir stiliai veikia (brand, test, practice)
 - [ ] Mygtukai veikia (Pradėti/Tęsti/Peržiūrėti)
 - [ ] Dark mode veikia
+- [ ] Bazė: po M1–M3 matoma subsection „Kontekstas ir projektas (M4–M6)“
+- [ ] Su uždirbta medžiaga: „Mano medžiaga“ po paskutinio prieinamo modulio (pvz. tier 6 → po M6), **prieš** užrakintus track’us / coming-soon
+- [ ] Be uždirbtų artefaktų: „Mano medžiaga“ nerodoma
 
 ### Modulio Peržiūra (ModuleView)
+
 - [ ] Moduliai kraunasi be klaidų
 - [ ] Skaidrės keičiasi teisingai
 - [ ] Navigacija veikia (← → klavišai)
@@ -31,6 +37,7 @@
 - [ ] Dark mode veikia
 
 ### Testo Puslapis (QuizPage)
+
 - [ ] Klausimai rodomi teisingai
 - [ ] Atsakymų pasirinkimas veikia
 - [ ] Rezultatų skaičiavimas teisingas
@@ -38,6 +45,7 @@
 - [ ] Dark mode veikia
 
 ### Promptų Biblioteka (PromptLibrary)
+
 - [ ] Promptai rodomi
 - [ ] Kopijavimas veikia
 - [ ] Dark mode veikia
@@ -45,22 +53,26 @@
 ## 🧪 Funkcionalumo Testavimas
 
 ### Progreso Sekimas
+
 - [ ] localStorage išsaugo progresą
 - [ ] Progresas atsikrauna po refresh
 - [ ] Modulių atrakinimas veikia (1→2→3)
 - [ ] Testo rezultatai išsaugomi
 
 ### Auto-save
+
 - [ ] Praktinėse užduotyse auto-save veikia
 - [ ] Debounce veikia (ne per daug save)
 - [ ] Duomenys neprarandami
 
 ### Navigacija
+
 - [ ] Klaviatūros navigacija veikia (← →)
 - [ ] Escape grįžta atgal
 - [ ] Mygtukai veikia
 
 ### Dark/Light Mode
+
 - [ ] Perjungimas veikia
 - [ ] Išsaugo pasirinkimą
 - [ ] Visi komponentai atrodo gerai abiejuose režimuose

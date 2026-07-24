@@ -141,16 +141,16 @@
       "category": "DI turinio detektoriai"
     },
     {
-      "name": "MongoDB",
-      "url": "https://www.mongodb.com",
-      "description": "NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps ir greiti MVP.",
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
       "moduleId": 7,
       "category": "Duomenų bazės"
     },
     {
-      "name": "MySQL",
-      "url": "https://www.mysql.com",
-      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
+      "name": "MongoDB",
+      "url": "https://www.mongodb.com",
+      "description": "NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps ir greiti MVP.",
       "moduleId": 7,
       "category": "Duomenų bazės"
     },
@@ -190,18 +190,18 @@
       "category": "RAG / tyrimai"
     },
     {
-      "name": "Power BI",
-      "url": "https://www.microsoft.com/power-platform/products/power-bi",
-      "description": "Analitikoje: vizualizacijos, integracijos, enterprise – verslo ataskaitos ir dashboard iš struktūruotų duomenų.",
-      "moduleId": 7,
-      "category": "Duomenų analizė"
-    },
-    {
       "name": "PostgreSQL",
       "url": "https://www.postgresql.org",
       "description": "Universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms.",
       "moduleId": 7,
       "category": "Duomenų bazės"
+    },
+    {
+      "name": "Power BI",
+      "url": "https://www.microsoft.com/power-platform/products/power-bi",
+      "description": "Analitikoje: vizualizacijos, integracijos, enterprise – verslo ataskaitos ir dashboard iš struktūruotų duomenų.",
+      "moduleId": 7,
+      "category": "Duomenų analizė"
     },
     {
       "name": "Prezent.ai",
@@ -255,7 +255,7 @@
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google vaizdo generavimo modelis – vaizdo įrašų kūrimas iš teksto (prompto).",
+      "description": "Veo 3.1 – kinematografinė kokybė, native audio; prototipai ir trumpi reklaminiai.",
       "moduleId": 4,
       "category": "Vaizdo generavimas"
     },

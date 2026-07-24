@@ -35,7 +35,7 @@ const LABELS_LT: AgentWorkflowLabels = {
     { title: 'Aplinka', desc: 'kontekstas' },
     { title: 'Rezultatas', desc: 'išvestis' },
   ],
-  forwardLabels: ['užduotis', 'žingsniai', 'įrankiai', 'kontekstas'],
+  forwardLabels: ['užduoda', 'sudaro planą', 'kviečia', 'grąžina'],
   feedbackLabel: 'grįžtamasis ryšys',
   diagramTitle: 'Agentų ciklas',
   ariaLabel:
@@ -52,7 +52,7 @@ const LABELS_EN: AgentWorkflowLabels = {
     { title: 'Environment', desc: 'context' },
     { title: 'Result', desc: 'output' },
   ],
-  forwardLabels: ['task', 'steps', 'tools', 'context'],
+  forwardLabels: ['assigns', 'plans', 'calls', 'returns'],
   feedbackLabel: 'feedback loop',
   diagramTitle: 'Agent cycle',
   ariaLabel:

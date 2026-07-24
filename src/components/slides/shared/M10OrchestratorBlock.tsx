@@ -38,6 +38,7 @@ export default function M10OrchestratorBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
           currentStep={currentStep}

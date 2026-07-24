@@ -7,6 +7,7 @@ import {
   LlmAutoregressiveBlock,
   M10AgentTaxonomyBlock,
   M10IncidentPlaybookBlock,
+  M10HumanControlSimulatorBlock,
   M10LearningLoopBlock,
   M10OrchestratorBlock,
   M10ThreeAStrategyBlock,
@@ -16,9 +17,13 @@ import {
   M12MultiAgentSchemaBlock,
   M12ThreeLabsBlock,
   M13AecFunnelBlock,
+  M13ConsistencyLockBlock,
+  M13MediaPipelineBlock,
+  M13PostprodBlock,
   M13PromptStackBlock,
   M13RuleOfThirdsBlock,
   M15PracticeLoopBlock,
+  TurinioWorkflowBlock,
   M7AnalysisTypesBlock,
   M7BiSchemaBlock,
   M7DaPipelineBlock,
@@ -172,6 +177,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     render: () => <M10OrchestratorBlock />,
   },
   {
+    key: 'm10_human_control_simulator',
+    bodyPlacement: 'after',
+    render: () => <M10HumanControlSimulatorBlock />,
+  },
+  {
     key: 'm10_tool_decision_tree',
     bodyPlacement: 'after',
     render: () => <M10ToolDecisionTreeBlock />,
@@ -202,6 +212,21 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     render: () => <M13AecFunnelBlock />,
   },
   {
+    key: 'm13_consistency_lock',
+    bodyPlacement: 'after',
+    render: () => <M13ConsistencyLockBlock />,
+  },
+  {
+    key: 'm13_media_pipeline',
+    bodyPlacement: 'after',
+    render: () => <M13MediaPipelineBlock />,
+  },
+  {
+    key: 'm13_postprod_steps',
+    bodyPlacement: 'after',
+    render: () => <M13PostprodBlock />,
+  },
+  {
     key: 'm13_prompt_stack',
     bodyPlacement: 'after',
     render: () => <M13PromptStackBlock />,
@@ -210,6 +235,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     key: 'm13_rule_of_thirds',
     bodyPlacement: 'after',
     render: () => <M13RuleOfThirdsBlock />,
+  },
+  {
+    key: 'turinio_workflow',
+    bodyPlacement: 'after',
+    render: () => <TurinioWorkflowBlock />,
   },
   {
     key: 'm15_practice_loop',

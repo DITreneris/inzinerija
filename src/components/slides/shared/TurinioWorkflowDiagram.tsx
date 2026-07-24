@@ -6,9 +6,9 @@ import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import {
-  getTurinioWorkflowDiagramLabels,
-  type StepExplanationsLocale,
-} from './stepExplanations';
+  getM13BusinessWorkflowDiagramLabels,
+  type M13BusinessLocale,
+} from './m13BusinessWorkflowContent';
 import { DIAGRAM_TOKENS } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
 import {
@@ -16,10 +16,23 @@ import {
   resolveVerticalFlowGeometry,
   VERTICAL_FLOW_MIN_GAP,
 } from './verticalFlowGeometry';
+import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 const STEP_COUNT = 7;
 const BOX_H = 48;
 const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const DESKTOP_W = 560;
+const DESKTOP_COL_W = 400;
+const DESKTOP_COL = buildVerticalColumnOrigin({
+  viewBoxW: DESKTOP_W,
+  colW: DESKTOP_COL_W,
+});
+const COMPACT_W = 320;
+const COMPACT_COL_W = 264;
+const COMPACT_COL = buildVerticalColumnOrigin({
+  viewBoxW: COMPACT_W,
+  colW: COMPACT_COL_W,
+});
 
 const FLOW_GEOMETRY = {
   stepCount: STEP_COUNT,
@@ -27,18 +40,18 @@ const FLOW_GEOMETRY = {
   gap: VERTICAL_FLOW_MIN_GAP,
   startY: 72,
   desktop: {
-    viewBoxWidth: 560,
+    viewBoxWidth: DESKTOP_W,
     viewBoxHeight: 620,
-    colsX: 80,
-    colsW: 400,
-    cx: 280,
+    colsX: DESKTOP_COL.colsX,
+    colsW: DESKTOP_COL_W,
+    cx: DESKTOP_COL.cx,
   },
   compact: {
-    viewBoxWidth: 320,
+    viewBoxWidth: COMPACT_W,
     viewBoxHeight: 620,
-    colsX: 28,
-    colsW: 264,
-    cx: 160,
+    colsX: COMPACT_COL.colsX,
+    colsW: COMPACT_COL_W,
+    cx: COMPACT_COL.cx,
   },
 };
 
@@ -46,7 +59,7 @@ interface TurinioWorkflowDiagramProps {
   currentStep?: number;
   onStepClick?: (index: number) => void;
   className?: string;
-  locale?: StepExplanationsLocale;
+  locale?: M13BusinessLocale;
 }
 
 export default function TurinioWorkflowDiagram({
@@ -59,7 +72,7 @@ export default function TurinioWorkflowDiagram({
   const { isCompactDiagram } = useCompactViewport();
   const palette = useDiagramPalette();
   const isInteractive = typeof onStepClick === 'function';
-  const labels = getTurinioWorkflowDiagramLabels(locale);
+  const labels = getM13BusinessWorkflowDiagramLabels(locale);
   const STEPS = labels.steps;
   const STEP_ACTIVE_OPACITY = 1;
   const STEP_INACTIVE_OPACITY = 0.5;
@@ -87,6 +100,7 @@ export default function TurinioWorkflowDiagram({
         </linearGradient>
         <marker
           id={`tur-wf-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW_MARKER_LEN}
@@ -135,7 +149,7 @@ export default function TurinioWorkflowDiagram({
         fontSize={
           isCompactDiagram ? typography.title.compact : typography.title.desktop
         }
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
       >
         {labels.title}

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "6 Blokų Sistema",
-      "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
+      "subtitle": "Rolė, duomenys, formatas, mąstymas, kokybė",
       "description": "6 promptų struktūros blokai, vienas nuoseklus mokymas – sistema nuo A iki Z.",
       "icon": "BookOpen",
       "level": "learn",
@@ -969,7 +969,7 @@
       ],
       "businessExamples": [
         {
-          "title": "E-commerce analizė",
+          "title": "El. prekybos analizė",
           "description": "Pardavimų ataskaitos su konkretiais KPI"
         },
         {
@@ -983,7 +983,7 @@
     {
       "id": 2,
       "title": "Žinių Patikrinimas",
-      "subtitle": "15 atsitiktinių klausimų iš nuolat atnaujinamo banko.",
+      "subtitle": "15 atsitiktinių klausimų iš nuolat atnaujinamo banko",
       "description": "15 klausimų 5 tipais: pasirinkimas, porų sujungimas, rikiavimas, tiesa/netiesa ir scenarijai.",
       "icon": "ClipboardList",
       "level": "test",
@@ -1446,7 +1446,7 @@
       ],
       "businessExamples": [
         {
-          "title": "6 blokų sistema ir workflow",
+          "title": "6 blokų sistema ir darbo eiga",
           "description": "Klausimai apie Meta, Input, Output, Reasoning, Quality, Advanced"
         },
         {
@@ -1461,7 +1461,7 @@
       "id": 3,
       "title": "Praktinis Pritaikymas",
       "subtitle": "6 verslo scenarijai su 6 blokais",
-      "description": "6 skirtingi scenarijai – sukurk savo promptus ir sukurk šablonų biblioteką.",
+      "description": "6 verslo scenarijai – savo promptai ir šablonų biblioteka.",
       "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",
@@ -2095,8 +2095,8 @@
     {
       "id": 4,
       "title": "Konteksto inžinerija",
-      "subtitle": "Šaltiniai, tokenai, manipuliacijos, haliucinacijos",
-      "description": "Šaltiniai (RAG), gilusis tyrimas ir tokenai – kaip valdyti kontekstą ir gauti tikslesnius atsakymus.",
+      "subtitle": "Šaltiniai, apimtis, rizikos ir patikimumas",
+      "description": "Išmoksi duoti DI savo šaltinius, valdyti apimtį ir gauti tikslesnius atsakymus.",
       "icon": "Brain",
       "level": "learn",
       "duration": "30–35 min",
@@ -2117,24 +2117,25 @@
             "aboutText": "Kai 6 blokai jau įprasti, RAG (atsakymai iš tavo dokumentų ir šaltinių) ir žinių patikrinimas leidžia dirbti su realiais duomenimis ir mažinti klaidas. Tokenų ekonomika – sutaupyti laiko ir išlaidas; manipuliacijų atpažinimas – etiška ir patikima nauda. Šis modulis paruoš vienam integruotam projektui (Modulis 6).",
             "outcomesHeading": "Po šio modulio galėsi:",
             "outcomes": [
-              "Suprasti, kas yra RAG ir kada jį naudoti; nurodyti šaltinius prompte.",
-              "Žinoti, kas yra Deep research ir kaip struktūruoti multi-step užklausas.",
-              "Suprasti tokenų naudojimą (konteksto langas, max_tokens) ir optimizuoti promptus ilgumai ir kainai.",
-              "Atpažinti promptų manipuliacijas ir formuoti neutralius promptus.",
-              "Atpažinti haliucinacijas ir tikrinti DI atsakymų tikrumą (šaltiniai, cross-check, \"nežinau\"); susieti su Quality bloku.",
-              "Pritaikyti tai viską viename projekte (Modulis 6)."
+              "Duoti DI savo šaltinius ir gauti atsakymus su nuorodomis.",
+              "Struktūruoti gilesnes užklausas keliais žingsniais.",
+              "Trumpinti promptus ir taupyti tokenus bei laiką.",
+              "Tikrinti atsakymus – mažiau spėlionių ir haliucinacijų."
             ],
             "toolsIntro": "Konteksto inžinerijos principai veikia bet kuriame iš šių įrankių. Žemiau – trumpas įvadas ir naudojimo atvejai.",
             "duration": "~30–35 min",
             "audience": "Skirta tiems, kurie jau baigė Modulius 1–3 ir nori dirbti su šaltiniais, RAG ir atsakymų patikrinimu.",
             "firstActionCTA": "Pasirink DI įrankį, kurį šiandien naudosi – žemiau sąrašas (ChatGPT, Claude, Gemini ir kt.). Juo naudosi visame modulyje.",
             "howToUseModule": {
-              "heading": "Kaip naudoti šį modulį",
-              "items": [
-                "Minimalus kelias: 4.1, 4.2, 4.3, 4.5, 4.6, 4.7 (pagrindinės temos).",
-                "Pilnas kelias: visos skaidrės.",
-                "Papildomai (jei nori giliau): 4.2-open (atviros duomenų bazės), 4.3a (promptų sekos), 4.4 praktinės užduotys."
-              ]
+              "heading": "Pasirink kelią",
+              "short": {
+                "label": "Trumpas kelias",
+                "description": "Be papildomų skaidrių – pagrindinės temos."
+              },
+              "full": {
+                "label": "Ilgas kelias",
+                "description": "Visos skaidrės, įskaitant papildomas."
+              }
             },
             "tools": [
               {
@@ -3753,7 +3754,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**RL (Reinforcement Learning)** – DI mokosi iš atlygio: jei rezultatas atitinka tikslą → „pliusas“, jei ne → koreguoja elgesį.\n\n**RLHF (su žmonių grįžtamuoju ryšiu)** – žmonės palygina atsakymus ir nurodo, kuris geresnis; taip modelis išmoksta, kas yra kokybiška. 👉 GPT kokybė – RLHF rezultatas; tavo promptas aktyvuoja tą elgesį.\n\n**Išbandyk:** nukopijuok promptą (5️⃣ ar 6️⃣) ir stebėk, kaip kinta kokybė.",
+                "body": "**RL (Reinforcement Learning)** – DI mokosi iš atlygio: jei rezultatas atitinka tikslą → „pliusas“, jei ne → koreguoja elgesį.\n\n**RLHF (Reinforcement Learning from Human Feedback)** – su žmonių grįžtamuoju ryšiu: žmonės palygina atsakymus ir nurodo, kuris geresnis; taip modelis išmoksta, kas yra kokybiška. 👉 GPT kokybė – RLHF rezultatas; tavo promptas aktyvuoja tą elgesį.\n\n**Išbandyk:** nukopijuok promptą (5️⃣ ar 6️⃣) ir stebėk, kaip kinta kokybė.",
                 "blockVariant": "accent",
                 "collapsible": true,
                 "collapsedByDefault": false
@@ -4279,11 +4280,11 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Agentinė vizualizacija",
-                "body": "Perejimas tarp režimų: Bazinis (įvestis → DI → išvestis), RAG (su duomenų baze), Įrankiai. Parodo, kaip DI naudoja tavo šaltinius.",
+                "heading": "DI sistemos veikimo režimai",
+                "body": "Palygink, kaip veikia bazinis, RAG ir agentinis srautas. Parodo, kaip DI naudoja tavo šaltinius ir įrankius.",
                 "image": "llm_arch",
-                "imageAlt": "DI agentinė sistema: režimai Bazinis, RAG, Įrankiai",
-                "blockVariant": "emerald"
+                "imageAlt": "DI sistemos režimai: Bazinis, RAG, Agentinis",
+                "blockVariant": "default"
               },
               {
                 "heading": "Kas yra RAG (3 žingsniai)",
@@ -4321,6 +4322,7 @@
           "title": "Atviros duomenų bazės ir RAG",
           "subtitle": "Eurostat, data.europa.eu, nacionaliniai portalai – oficialūs šaltiniai",
           "type": "content-block",
+          "optional": true,
           "content": {
             "sections": [
               {
@@ -4896,6 +4898,7 @@
           "shortTitle": "Promptų sekos",
           "subtitle": "Seka • Grandinė (CoT) • Idėjų medis (ToT) – 3 mąstymo šablonai",
           "type": "content-block",
+          "optional": true,
           "content": {
             "sections": [
               {
@@ -5419,7 +5422,7 @@
               },
               {
                 "term": "RLHF",
-                "definition": "Reinforcement Learning with Human Feedback – paskatinamasis mokymas su žmogišku grįžtamuoju ryšiu; naudojamas formuoti „geresnių“ atsakymų strategijas DI modeliuose."
+                "definition": "Reinforcement Learning from Human Feedback – paskatinamasis mokymas su žmogišku grįžtamuoju ryšiu; naudojamas formuoti „geresnių“ atsakymų strategijas DI modeliuose."
               },
               {
                 "term": "Master promptas",
@@ -5551,11 +5554,11 @@
       ],
       "businessExamples": [
         {
-          "title": "RAG, Deep research, tokenai",
+          "title": "Šaltiniai savo duomenyse",
           "description": "Duomenys, šaltiniai, konteksto optimizavimas"
         },
         {
-          "title": "Manipuliacijos ir haliucinacijos",
+          "title": "Kai DI klysta ar bandoma manipuliuoti",
           "description": "Neutralūs promptai, žinių patikrinimas"
         }
       ],
@@ -6032,7 +6035,7 @@
       "id": 6,
       "title": "Projekto kūrimas",
       "subtitle": "Praktika: tyrimo ataskaita arba Custom GPT projektas",
-      "description": "Vienas pilnas projektas su 6 blokais: tyrimo ataskaita (su šaltiniais) arba Custom GPT kūrimas pagal schemą.",
+      "description": "Vienas projektas: tyrimo ataskaita su šaltiniais arba savo Custom GPT žingsnis po žingsnio.",
       "icon": "Rocket",
       "level": "practice",
       "duration": "25–35 min",
@@ -6047,7 +6050,7 @@
             "duration": "~25–35 min",
             "audience": "Skirta tiems, kurie jau baigė Modulius 1–5 ir nori viename projekte pritaikyti 6 blokų sistemą, RAG bei žinių patikrinimą (tyrimo ataskaita arba Custom GPT).",
             "firstActionCTA": "Pradėk dabar: atidaryk scenarijų „Projektas: Tyrimo ataskaita su DI“, užpildyk META bloką (rolė ir tikslas) ir paleisk DI.",
-            "recommendedStart": "Pradėk nuo „Tyrimo ataskaitos“. Jei renkiesi „Custom GPT“, daryk taip: 1) peržiūrėk M4 schemą (4.1a2-viz), 2) atidaryk „Projektas: Custom GPT“, 3) užpildyk tikslą ir rolę.",
+            "recommendedStart": "Patarimas: pradėk nuo tyrimo ataskaitos, nebent tau konkrečiai reikia Custom GPT.",
             "handoutPromise": "Po šio modulio galėsi parsisiųsti Modulio 6 atmintinę (PDF): projekto 6 žingsniai, duomenų tvarkymo 5 punktai ir refleksijos santrauka – atsispausdinsi ir naudosi prie darbo."
           }
         },
@@ -6564,7 +6567,7 @@
           "description": "Realus dokumentas su šaltiniais ir patikrinimu"
         },
         {
-          "title": "Capstone – 6 blokai + RAG",
+          "title": "Pilnas projektas su 6 blokais",
           "description": "Integruotas projektas kaip finalinis pritaikymas"
         }
       ],

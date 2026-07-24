@@ -38,6 +38,7 @@ export default function M10TriggerFlowBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
           currentStep={currentStep}

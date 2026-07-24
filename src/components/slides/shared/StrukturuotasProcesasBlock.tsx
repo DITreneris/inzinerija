@@ -26,6 +26,7 @@ export default function StrukturuotasProcesasBlock() {
 
   return (
     <InteractiveDiagramShell
+      density="hero"
       regionAria={blockLabels.regionAria}
       statusLabel={blockLabels.youAreHere}
       currentStep={currentStep}

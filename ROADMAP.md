@@ -1,9 +1,9 @@
 # 🗺️ Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-07-16 | **Roadmap dokumento versija:** 2.7 (ne `package.json` semver)  
-> **App release:** 1.4.5 (2026-07-15) – žr. `CHANGELOG.md`. **Unreleased:** M7 Lygis C launch consistency (overlay indeksai, LT viz split, journey preflight gates) – 2026-07-16.  
+> **Atnaujinta:** 2026-07-24 | **Roadmap dokumento versija:** 2.8 (ne `package.json` semver)  
+> **App release:** 1.4.6 (2026-07-20) – žr. `CHANGELOG.md`. **Unreleased:** pre-launch auditas (gates/docs/diagram contract) + LMS/schemų polish – 2026-07-24.  
 > **Principas:** **M1–9 production** per [promptanatomy](https://github.com/DITreneris/promptanatomy) monorepo; Stripe M1–6, Supabase→magic link M7–9. M10+ – authoring kataloge.  
-> **Production audit:** **CONDITIONAL GO** — training shippable; monetizacija live (Stripe+Supabase), analytics (MON-4) ir rankinė QA likę. Santrauka: `docs/development/AUDIT_2026-06_SUMMARY.md`.
+> **Production audit (2026-07-24):** **CONDITIONAL GO** — automated gates žali (103/686, preflight ✅); release-ready blokuoja MON-1/3/5 browser; monetization-ready + MON-2/4/8 + PDF rankinė. Žr. `RELEASE_QA_RUN.md` + `TEST_REPORT.md`.
 
 ---
 
@@ -11,18 +11,18 @@
 
 ### Kas įgyvendinta ir stabilu
 
-| Sritis                                                          | Būsena                | Pastabos                                                                                                                                                                                           |
-| --------------------------------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Produkcija (Vercel)**                                         | ✅ Veikia             | [www.promptanatomy.app/anatomy/](https://www.promptanatomy.app/anatomy/) – [promptanatomy](https://github.com/DITreneris/promptanatomy) submodule; Stripe M1–6 + Supabase M7–9. Release **1.4.4**. |
-| **Moduliai 1–6**                                                | ✅ Pilnai             | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`.                                                              |
-| **Moduliai 7–9**                                                | ✅ Production bundle  | Duomenų analizės kelias; tier 9; `modules-m1-m9.json`; `build:production`.                                                                                                                         |
-| **Moduliai 10–12**                                              | ✅ Authoring kataloge | Agentų kelias; **ne production bundle**; EN `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė + tier 4.                                                                                 |
-| **Moduliai 13–15**                                              | ✅ Authoring kataloge | Turinio inžinerijos kelias; EN `modules-en-m13-m15.json`; P2 artefaktai – `m1315` atmintinė + tier 5.                                                                                              |
-| **LT/EN (i18n)**                                                | ✅ UI + M1–M15        | 16 namespace; loaderiai merge pagal locale; M10–12 EN kai `maxModuleId >= 10`, M13–15 EN kai `maxModuleId >= 13`.                                                                                  |
-| **Žodynėlis, apklausa, sertifikatai, PDF, įrankiai, progresas** | ✅                    | Path-step žodynėlio atrakinimas (M7); certificate tier 1–5 + handout PDF M1/M4/M5/M6/M7–9/M10–12/M13–15 su NotoSans.                                                                               |
-| **Access tier ir MVP režimas**                                  | ✅                    | Magic link tier 3 / 6 / 9; `build:production` M1–9; MVP `VITE_MVP_MODE=1` M1–6.                                                                                                                    |
-| **Build ir CI**                                                 | ✅                    | `prebuild` → `validate:schema`; test.yml: lint, test:run, `VITE_MAX_BUILD_MODULE=9` build; Node 18/20.                                                                                             |
-| **Dokumentacija**                                               | ✅                    | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                                                                                            |
+| Sritis                                                          | Būsena                | Pastabos                                                                                                                                                                                                                                      |
+| --------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Produkcija (Vercel)**                                         | ✅ Veikia             | [www.promptanatomy.app/anatomy/](https://www.promptanatomy.app/anatomy/) – [promptanatomy](https://github.com/DITreneris/promptanatomy) submodule; Stripe M1–6 + Supabase M7–9. App release **1.4.6** (marketing pin gali atsilikti – MON-2). |
+| **Moduliai 1–6**                                                | ✅ Pilnai             | Teorija (M1), testas (M2), praktika (M3), pažangus (M4–M6). Duomenys: `modules.json`; EN: `modules-en.json`, `modules-en-m4-m6.json`.                                                                                                         |
+| **Moduliai 7–9**                                                | ✅ Production bundle  | Duomenų analizės kelias; tier 9; `modules-m1-m9.json`; `build:production`.                                                                                                                                                                    |
+| **Moduliai 10–12**                                              | ✅ Authoring kataloge | Agentų kelias; **ne production bundle**; EN `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė + tier 4.                                                                                                                            |
+| **Moduliai 13–15**                                              | ✅ Authoring kataloge | Turinio inžinerijos kelias; **2026-07 curriculum refresh** (pipeline, consistency, audio-first, CPI, C2PA, M15 montažas 154); EN `modules-en-m13-m15.json`; P2 – `m1315` atmintinė + tier 5.                                                  |
+| **LT/EN (i18n)**                                                | ✅ UI + M1–M15        | 16 namespace; loaderiai merge pagal locale; M10–12 EN kai `maxModuleId >= 10`, M13–15 EN kai `maxModuleId >= 13`.                                                                                                                             |
+| **Žodynėlis, apklausa, sertifikatai, PDF, įrankiai, progresas** | ✅                    | Path-step žodynėlio atrakinimas (M7); certificate tier 1–5 + handout PDF M1/M4/M5/M6/M7–9/M10–12/M13–15 su NotoSans.                                                                                                                          |
+| **Access tier ir MVP režimas**                                  | ✅                    | Magic link tier 3 / 6 / 9; `build:production` M1–9; MVP `VITE_MVP_MODE=1` M1–6.                                                                                                                                                               |
+| **Build ir CI**                                                 | ✅                    | `prebuild` → `validate:schema`; test.yml: lint, test:run, `VITE_MAX_BUILD_MODULE=9` build; Node 18/20.                                                                                                                                        |
+| **Dokumentacija**                                               | ✅                    | DOCUMENTATION_QUICK_REF, LEAN_INDEX, DEPLOYMENT, INTEGRATION_OVERVIEW; archyvas išvalytas (pre-launch).                                                                                                                                       |
 
 ### Žinomi trūkumai / sprendžiami
 
@@ -40,9 +40,9 @@
 
 ### Testai ir kokybė
 
-- **71 testų failas, 465 testai (2026-07-09 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry guards, M10–15 EN/data-contract guards. **Dabartinis HEAD: 74 failai / 512 testai (2026-07-16).**
-- **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent, sot_index ir kt. – vykdoma `prebuild`.
-- **Release vartas:** rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7 turinys/UX).
+- **103 testų failai, 686 testai (2026-07-24 HEAD):** unit, component, integration, a11y smoke, gate tier 9, handout PDF M1–M13–15, tier 4/5 eligibility, diagram registry / LMS polish guards, M10–15 EN/data-contract guards. Ankstesnis: 74/512 (2026-07-16).
+- **Validacija:** `validate-schema.mjs` – modules, glossary, tools, certificateContent – `prebuild` + CI. `validate-sot-index.mjs` – docs sync (release). `audit:release-preflight` – lokaliai (platesnis nei CI).
+- **Release vartas:** `audit:release-preflight` + rankinė peržiūra pagal `docs/development/RELEASE_QA_CHECKLIST.md` (§1–5, 5a–5c, §6 MVP, §7) + MON-\* (`RELEASE_QA_RUN.md`).
 
 ---
 
@@ -74,7 +74,8 @@
 - Diagram browser smoke M1–9 (390px, light/dark) – TODO QA #6; neblokuoja 1.4.2 tag.
 - Pirmyn/Atgal – jau viena sticky juosta (viršuje); tolesnis poliravimas pagal atsiliepimus.
 - A11y axe-core automatizacija kelioms skaidrėms (SHOULD S2).
-- M10+ diagram visual polish – **Deferred** (`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`). Jei M10–12 authoring leidžiamas ar syncinamas, papildomas vartas: `npm run audit:m1012`.
+- M10+ diagram visual polish – **LMS 1A complete** – W1–W3 type etalons ✅ + **W4 residual caption tokens** ✅ + **W5 dual-taxonomy** ✅ + **W6 comparison-mode-architecture** (`llm_arch`) ✅ ([`LMS_DIAGRAM_POLISH_10_2.md`](docs/development/LMS_DIAGRAM_POLISH_10_2.md), [`DIAGRAM_KIT_STANDARD.md`](docs/development/DIAGRAM_KIT_STANDARD.md)). Maintenance: tokens inherit. Ne premium SaaS redesign. Archyvas: `M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`. Vartas: `npm run audit:m1012` kai liečia M10–12.
+- M5/M6 schema LMS 1A (2026-07-24) ✅ – `di_prezentacijos_workflow` Shell+W2; `custom_gpt_process` SVG/chrome slim (shared M4/46+M6/66).
 
 ---
 
@@ -134,19 +135,19 @@
 
 ### 4.4 Tolesni roadmap etapai (realistiškai)
 
-| Etapas                        | Ką darome                                                                                           | Prioritetas |
-| ----------------------------- | --------------------------------------------------------------------------------------------------- | ----------- |
-| **Monetization pilot**        | €39–€99 / €149 tier 9; CONV-1..5 ✅ in-app upsell; **MON P0** (MON-1…8) – **dabartinis sprintas**   | **P0**      |
-| **Stabilumas**                | Gate smoke vitest ✅ (CONV-3); release **1.4.2** DiagramKit M1–9 ✅.                                | P1          |
-| **Turinys ir duomenys**       | M4–6 JSON ↔ SOT; Release QA PDF (#1–#2).                                                            | P1          |
-| **UX poliravimas**            | Sertifikato/PDF rankinė QA; a11y; mobile UX-1; diagram manual smoke (#6).                           | P2          |
-| **Pedagogika**                | Sandbox, quiz feedback (PEDAGOGINES_IZVALGOS_ROADMAP).                                              | P2          |
-| **B2B / marketing**           | B2B pitch; homepage CRO (TODO §3) – **po MON-4**.                                                   | P3          |
-| **Korporatyvinis kelias 7–9** | M7–9 + `build:production` (tier 9) — **release 1.4.0–1.4.2**.                                       | **Aktyvu**  |
-| **M10–15 authoring**          | Turinys full kataloge; P2 artefaktai (tier 4/5 + m1012/m1315) baigti; monetizacija M10+ – Deferred. | Deferred    |
-| **Pasirinktinai (vėliau)**    | PWA; M13–15 pilnas release; monetizacija M10+ po MON-\* + baseline.                                 | Deferred    |
+| Etapas                        | Ką darome                                                                                                      | Prioritetas |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **Monetization pilot**        | €39–€99 / €149 tier 9; CONV-1..5 ✅ in-app upsell; **MON P0** (MON-1…8) – **dabartinis sprintas**              | **P0**      |
+| **Stabilumas**                | Gate smoke vitest ✅ (CONV-3); release **1.4.2** DiagramKit M1–9 ✅.                                           | P1          |
+| **Turinys ir duomenys**       | M4–6 JSON ↔ SOT; Release QA PDF (#1–#2).                                                                       | P1          |
+| **UX poliravimas**            | Sertifikato/PDF rankinė QA; a11y; mobile UX-1; diagram manual smoke (#6); **LMS DS DiagramKit promote A→B→C**. | P2          |
+| **Pedagogika**                | Sandbox, quiz feedback (PEDAGOGINES_IZVALGOS_ROADMAP).                                                         | P2          |
+| **B2B / marketing**           | B2B pitch; homepage CRO (TODO §3) – **po MON-4**.                                                              | P3          |
+| **Korporatyvinis kelias 7–9** | M7–9 + `build:production` (tier 9) — **release 1.4.0–1.4.2**.                                                  | **Aktyvu**  |
+| **M10–15 authoring**          | Turinys full kataloge; P2 artefaktai (tier 4/5 + m1012/m1315) baigti; monetizacija M10+ – Deferred.            | Deferred    |
+| **Pasirinktinai (vėliau)**    | PWA; M13–15 pilnas release; monetizacija M10+ po MON-\* + baseline.                                            | Deferred    |
 
-**Ko dabar nedaryti:** M10+ diagram polish; M13–15 pilnas release; backend rewrite; advanced gamification; LlmArch B3 refactor.
+**Ko dabar nedaryti:** M10+ **premium SaaS** diagram redesign (ne LMS polish track); M13–15 pilnas release; backend rewrite; advanced gamification. **LlmArch B3** – atidaryta kaip Type Etalon W6 (`comparison-mode-architecture`) track.
 
 ---
 

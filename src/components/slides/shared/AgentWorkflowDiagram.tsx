@@ -1,7 +1,7 @@
 /**
  * Agentų ciklo diagrama (M10.2) – horizontali schema:
  * Agentas → Planavimas → Įrankiai → Aplinka → Rezultatas + grįžtamasis ryšys.
- * SCHEME_AGENT: viena geometrijos tiesa (§3.1), rodyklės kraštas į kraštą (§3.2), proporcingos (§3.3), feedback path nekerta blokų (§3.4).
+ * I3b: matomi forward kotai, vienakryptis storesnis feedback (RlProcess parity).
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
@@ -9,75 +9,26 @@ import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import {
   getAgentWorkflowLabels,
   type AgentWorkflowLocale,
-  type AgentWorkflowStep,
 } from './agentWorkflowContent';
+import {
+  AGENT_WORKFLOW_ARROW,
+  AGENT_WORKFLOW_FEEDBACK,
+  AGENT_WORKFLOW_GAP,
+  AGENT_WORKFLOW_OPACITY,
+  AGENT_WORKFLOW_TYPE,
+  AGENT_WORKFLOW_VIEWBOX,
+  buildAgentWorkflowCompactBoxes,
+  buildAgentWorkflowDesktopBoxes,
+} from './agentWorkflowLayout';
+import { feedbackUPath } from './cycleFeedbackGeometry';
 import { DiagramStepHitArea } from './diagramKit';
 import { DIAGRAM_ROLE_COLORS, DIAGRAM_TOKENS } from './diagramTokens';
-
-const DESKTOP_VIEWBOX_W = 860;
-const DESKTOP_VIEWBOX_H = 330;
-const DESKTOP_BOX_W = 140;
-const DESKTOP_BOX_H = 72;
-const DESKTOP_GAP = 24;
-const DESKTOP_START_X = 24;
-const DESKTOP_ROW_Y = 82;
-const DESKTOP_FEEDBACK_Y = DESKTOP_ROW_Y + DESKTOP_BOX_H + 56;
-
-const COMPACT_VIEWBOX_W = 360;
-const COMPACT_VIEWBOX_H = 566;
-const COMPACT_BOX_W = 224;
-const COMPACT_BOX_H = 62;
-const COMPACT_START_X = 68;
-const COMPACT_ROW_Y = 64;
-const COMPACT_GAP = 28;
-const COMPACT_FEEDBACK_X = 34;
-
-const ARROW_GAP_FWD = 5;
-const ARROW_GAP_FB = 12;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
-const FB_TIP_H = 12;
-const FB_TIP_W = 8;
-const FB_CORNER_R = 14;
 
 const BRAND = DIAGRAM_ROLE_COLORS.brand;
 const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
 const ACCENT = DIAGRAM_ROLE_COLORS.amber;
 const ACCENT_DARK = DIAGRAM_ROLE_COLORS.accentDark;
 const GREY_FORWARD = DIAGRAM_ROLE_COLORS.greyForward;
-
-function buildSteps(
-  stepLabels: AgentWorkflowStep[],
-  startX: number,
-  rowY: number,
-  boxW: number,
-  boxH: number,
-  gap: number
-) {
-  return stepLabels.map((step, index) => ({
-    ...step,
-    x: startX + (boxW + gap) * index,
-    y: rowY,
-    w: boxW,
-    h: boxH,
-  }));
-}
-
-function buildVerticalSteps(
-  stepLabels: AgentWorkflowStep[],
-  startX: number,
-  rowY: number,
-  boxW: number,
-  boxH: number,
-  gap: number
-) {
-  return stepLabels.map((step, index) => ({
-    ...step,
-    x: startX,
-    y: rowY + (boxH + gap) * index,
-    w: boxW,
-    h: boxH,
-  }));
-}
 
 export default function AgentWorkflowDiagram({
   className = '',
@@ -87,9 +38,7 @@ export default function AgentWorkflowDiagram({
 }: {
   className?: string;
   locale?: AgentWorkflowLocale;
-  /** Pasirinktas žingsnis (0–4). Naudojama interaktyviame režime. */
   currentStep?: number;
-  /** Callback paspaudus žingsnį. Kai nurodyta – blokai clickable. */
   onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
@@ -97,59 +46,78 @@ export default function AgentWorkflowDiagram({
   const palette = useDiagramPalette();
   const labels = getAgentWorkflowLabels(locale);
   const isInteractive = typeof onStepClick === 'function';
-  const steps = isCompactDiagram
-    ? buildVerticalSteps(
-        labels.steps,
-        COMPACT_START_X,
-        COMPACT_ROW_Y,
-        COMPACT_BOX_W,
-        COMPACT_BOX_H,
-        COMPACT_GAP
-      )
-    : buildSteps(
-        labels.steps,
-        DESKTOP_START_X,
-        DESKTOP_ROW_Y,
-        DESKTOP_BOX_W,
-        DESKTOP_BOX_H,
-        DESKTOP_GAP
-      );
-  const first = steps[0];
-  const last = steps[steps.length - 1];
+  const boxes = isCompactDiagram
+    ? buildAgentWorkflowCompactBoxes()
+    : buildAgentWorkflowDesktopBoxes();
+  const gap = isCompactDiagram
+    ? AGENT_WORKFLOW_GAP.compact
+    : AGENT_WORKFLOW_GAP.desktop;
+  const first = boxes[0];
+  const last = boxes[boxes.length - 1];
   const firstCx = first.x + first.w / 2;
   const lastCx = last.x + last.w / 2;
   const firstBottom = first.y + first.h;
   const lastBottom = last.y + last.h;
+  const {
+    tipH: FB_TIP_H,
+    tipW: FB_TIP_W,
+    cornerR: R,
+    gapAboveBlock,
+    arrowGapFb,
+    pathStroke,
+    compactX,
+    startRadius,
+    labelSize: feedbackLabelSize,
+  } = AGENT_WORKFLOW_FEEDBACK;
   const feedbackBase = isCompactDiagram
-    ? COMPACT_FEEDBACK_X
-    : DESKTOP_FEEDBACK_Y;
-  const fbTriBase = firstBottom + FB_TIP_H;
-  const R = FB_CORNER_R;
-  const fbStartY = lastBottom + ARROW_GAP_FB;
+    ? compactX
+    : AGENT_WORKFLOW_FEEDBACK.desktopY();
+  const fbTipY = firstBottom + gapAboveBlock;
+  const fbTriBase = fbTipY + FB_TIP_H;
+  const fbStartY = lastBottom + arrowGapFb;
+  const { markerLen, forwardStroke, gapFwd, gapFwdCompact } =
+    AGENT_WORKFLOW_ARROW;
+  const titleY = isCompactDiagram
+    ? AGENT_WORKFLOW_TYPE.diagramTitleY.compact
+    : AGENT_WORKFLOW_TYPE.diagramTitleY.desktop;
+  /** Desktop: tip at Agent bottom; path ends at tip (unidirectional U). */
   const feedbackPath = isCompactDiagram
     ? `M ${lastCx} ${fbStartY}
        L ${lastCx} ${feedbackBase + R}
        Q ${lastCx} ${feedbackBase}, ${lastCx - R} ${feedbackBase}
-       L ${COMPACT_FEEDBACK_X + R} ${feedbackBase}
-       Q ${COMPACT_FEEDBACK_X} ${feedbackBase}, ${COMPACT_FEEDBACK_X} ${feedbackBase + R}
-       L ${COMPACT_FEEDBACK_X} ${fbTriBase - R}
-       Q ${COMPACT_FEEDBACK_X} ${fbTriBase}, ${COMPACT_FEEDBACK_X + R} ${fbTriBase}
-       L ${firstCx} ${fbTriBase}`
-    : `M ${lastCx} ${fbStartY}
-       L ${lastCx} ${feedbackBase - R}
-       Q ${lastCx} ${feedbackBase}, ${lastCx - R} ${feedbackBase}
-       L ${firstCx + R} ${feedbackBase}
-       Q ${firstCx} ${feedbackBase}, ${firstCx} ${feedbackBase - R}
-       L ${firstCx} ${fbTriBase}`;
-  const viewBoxWidth = isCompactDiagram ? COMPACT_VIEWBOX_W : DESKTOP_VIEWBOX_W;
+       L ${compactX + R} ${feedbackBase}
+       Q ${compactX} ${feedbackBase}, ${compactX} ${feedbackBase + R}
+       L ${compactX} ${fbTriBase - R}
+       Q ${compactX} ${fbTriBase}, ${compactX + R} ${fbTriBase}
+       L ${firstCx} ${fbTipY}`
+    : feedbackUPath({
+        firstCx,
+        lastCx,
+        startY: fbStartY,
+        troughY: feedbackBase,
+        tipY: fbTipY,
+        cornerR: R,
+      });
+  const viewBoxWidth = isCompactDiagram
+    ? AGENT_WORKFLOW_VIEWBOX.compact.width
+    : AGENT_WORKFLOW_VIEWBOX.desktop.width;
   const viewBoxHeight = isCompactDiagram
-    ? COMPACT_VIEWBOX_H
-    : DESKTOP_VIEWBOX_H;
+    ? AGENT_WORKFLOW_VIEWBOX.compact.height
+    : AGENT_WORKFLOW_VIEWBOX.desktop.height;
+  const titleSize = isCompactDiagram
+    ? AGENT_WORKFLOW_TYPE.diagramTitle.compact
+    : AGENT_WORKFLOW_TYPE.diagramTitle.desktop;
+  const nodeTitleSize = isCompactDiagram
+    ? AGENT_WORKFLOW_TYPE.nodeTitle.compact
+    : AGENT_WORKFLOW_TYPE.nodeTitle.desktop;
+  const nodeDescSize = isCompactDiagram
+    ? AGENT_WORKFLOW_TYPE.nodeDesc.compact
+    : AGENT_WORKFLOW_TYPE.nodeDesc.desktop;
 
   return (
     <svg
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-      className={`w-full max-w-3xl mx-auto block ${className}`}
+      className={`w-full max-w-5xl mx-auto block ${className}`}
       role="img"
       aria-label={labels.ariaLabel}
     >
@@ -160,14 +128,15 @@ export default function AgentWorkflowDiagram({
         </linearGradient>
         <marker
           id={`aw-arrow-${uid}`}
-          markerWidth={ARROW_MARKER_LEN + 2}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
+          markerWidth={markerLen + 2}
           markerHeight={8}
-          refX={ARROW_MARKER_LEN}
+          refX={markerLen}
           refY="4"
           orient="auto"
         >
           <path
-            d={`M0 0 L${ARROW_MARKER_LEN} 4 L0 8 Z`}
+            d={`M0 0 L${markerLen} 4 L0 8 Z`}
             fill={GREY_FORWARD}
             stroke={GREY_FORWARD}
             strokeWidth="0.5"
@@ -183,7 +152,7 @@ export default function AgentWorkflowDiagram({
         width={viewBoxWidth}
         height={viewBoxHeight}
         fill={`url(#aw-bg-${uid})`}
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
         width={viewBoxWidth}
@@ -191,34 +160,39 @@ export default function AgentWorkflowDiagram({
         fill="none"
         stroke={palette.border}
         strokeWidth="1"
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={viewBoxWidth / 2}
-        y="28"
+        y={titleY}
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="18"
-        fontWeight="800"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={titleSize}
+        fontWeight={AGENT_WORKFLOW_TYPE.diagramTitleWeight}
         fill={palette.brandDark}
       >
         {labels.diagramTitle}
       </text>
 
-      {steps.map((step, i) => {
-        const rightEdge = step.x + step.w;
-        const centerX = step.x + step.w / 2;
-        const centerY = step.y + step.h / 2;
-        const next = steps[i + 1];
-        const gapCenterX = rightEdge + (isCompactDiagram ? 0 : DESKTOP_GAP / 2);
-        const lblY = step.y - 8;
-        const toX = next ? next.x - ARROW_MARKER_LEN : 0;
-        const fromX = rightEdge + ARROW_GAP_FWD;
-        const fromY = step.y + step.h + ARROW_GAP_FWD;
-        const toY = next ? next.y - ARROW_MARKER_LEN : 0;
+      {boxes.map((box, i) => {
+        const step = labels.steps[i];
+        const rightEdge = box.x + box.w;
+        const centerX = box.x + box.w / 2;
+        const centerY = box.y + box.h / 2;
+        const next = boxes[i + 1];
+        const gapCenterX = rightEdge + (isCompactDiagram ? 0 : gap / 2);
+        const lblY = box.y - 6;
+        const toX = next ? next.x - markerLen : 0;
+        const fromX = rightEdge + gapFwd;
+        const compactGap = gapFwdCompact;
+        const fromY = box.y + box.h + compactGap;
+        const toY = next ? next.y - markerLen : 0;
         const isActive = currentStep === i;
-        const dimOpacity = isInteractive && !isActive ? 0.55 : 1;
+        const dimOpacity =
+          isInteractive && !isActive
+            ? AGENT_WORKFLOW_OPACITY.inactive
+            : AGENT_WORKFLOW_OPACITY.active;
 
         return (
           <g key={i}>
@@ -228,33 +202,35 @@ export default function AgentWorkflowDiagram({
               aria-hidden={isInteractive ? true : undefined}
             >
               <rect
-                x={step.x}
-                y={step.y}
-                width={step.w}
-                height={step.h}
-                rx="10"
+                x={box.x}
+                y={box.y}
+                width={box.w}
+                height={box.h}
+                rx={DIAGRAM_TOKENS.radius.box}
                 fill={`url(#aw-step-${uid})`}
                 stroke={isInteractive && isActive ? palette.brandDark : BRAND}
-                strokeWidth={isInteractive && isActive ? 2.5 : 1.5}
+                strokeWidth={
+                  isInteractive && isActive ? 3 : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={centerX}
-                y={step.y + 27}
+                y={box.y + Math.round(box.h * 0.38)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="13"
-                fontWeight="700"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={nodeTitleSize}
+                fontWeight={AGENT_WORKFLOW_TYPE.nodeTitleWeight}
                 fill="white"
               >
                 {step.title}
               </text>
               <text
                 x={centerX}
-                y={step.y + 46}
+                y={box.y + Math.round(box.h * 0.62)}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="11"
-                fontWeight="500"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={nodeDescSize}
+                fontWeight={AGENT_WORKFLOW_TYPE.nodeDescWeight}
                 fill="rgba(255,255,255,0.95)"
               >
                 {step.desc}
@@ -263,18 +239,18 @@ export default function AgentWorkflowDiagram({
 
             {isInteractive && (
               <DiagramStepHitArea
-                x={step.x}
-                y={step.y}
-                width={step.w}
-                height={step.h}
-                radius={10}
+                x={box.x}
+                y={box.y}
+                width={box.w}
+                height={box.h}
+                radius={DIAGRAM_TOKENS.radius.box}
                 onActivate={() => onStepClick?.(i)}
               />
             )}
 
             {next && (
               <g
-                aria-label={`${step.title} → ${next.title}: ${labels.forwardLabels[i]}`}
+                aria-label={`${step.title} → ${labels.steps[i + 1].title}: ${labels.forwardLabels[i]}`}
               >
                 {isCompactDiagram ? (
                   <>
@@ -284,16 +260,17 @@ export default function AgentWorkflowDiagram({
                       x2={centerX}
                       y2={toY}
                       stroke={GREY_FORWARD}
-                      strokeWidth="3"
+                      strokeWidth={forwardStroke}
+                      strokeLinecap="round"
                       markerEnd={`url(#aw-arrow-${uid})`}
                     />
                     <text
                       x={centerX}
-                      y={step.y + step.h + 18}
+                      y={box.y + box.h + 18}
                       textAnchor="middle"
-                      fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                      fontSize="10"
-                      fontWeight="700"
+                      fontFamily={DIAGRAM_TOKENS.font}
+                      fontSize={AGENT_WORKFLOW_TYPE.edgeLabel}
+                      fontWeight={AGENT_WORKFLOW_TYPE.edgeLabelWeight}
                       fill={palette.brandDark}
                     >
                       {labels.forwardLabels[i]}
@@ -307,16 +284,27 @@ export default function AgentWorkflowDiagram({
                       x2={toX}
                       y2={centerY}
                       stroke={GREY_FORWARD}
-                      strokeWidth="3"
+                      strokeWidth={forwardStroke}
+                      strokeLinecap="round"
                       markerEnd={`url(#aw-arrow-${uid})`}
+                    />
+                    <line
+                      x1={gapCenterX}
+                      y1={lblY + 2}
+                      x2={gapCenterX}
+                      y2={centerY - 2}
+                      stroke={GREY_FORWARD}
+                      strokeWidth="1"
+                      strokeDasharray="2 2"
+                      opacity="0.5"
                     />
                     <text
                       x={gapCenterX}
                       y={lblY}
                       textAnchor="middle"
-                      fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                      fontSize="10"
-                      fontWeight="700"
+                      fontFamily={DIAGRAM_TOKENS.font}
+                      fontSize={AGENT_WORKFLOW_TYPE.edgeLabel}
+                      fontWeight={AGENT_WORKFLOW_TYPE.edgeLabelWeight}
                       fill={palette.brandDark}
                     >
                       {labels.forwardLabels[i]}
@@ -329,18 +317,19 @@ export default function AgentWorkflowDiagram({
         );
       })}
 
+      {/* Start indicator – only under Result (not a second arrowhead) */}
       <circle
         cx={lastCx}
         cy={fbStartY}
-        r={5}
+        r={startRadius}
         fill={ACCENT}
         stroke={ACCENT_DARK}
-        strokeWidth="0.8"
+        strokeWidth="1.5"
       />
       <path
         d={feedbackPath}
-        stroke={ACCENT}
-        strokeWidth="2.5"
+        stroke={ACCENT_DARK}
+        strokeWidth={pathStroke}
         strokeDasharray="8 4"
         fill="none"
         strokeLinejoin="round"
@@ -349,23 +338,20 @@ export default function AgentWorkflowDiagram({
         <title>{labels.feedbackTitle}</title>
       </path>
       <polygon
-        points={
-          isCompactDiagram
-            ? `${firstCx - FB_TIP_W},${fbTriBase} ${firstCx},${firstBottom} ${firstCx + FB_TIP_W},${fbTriBase}`
-            : `${firstCx - FB_TIP_W},${fbTriBase} ${firstCx},${firstBottom} ${firstCx + FB_TIP_W},${fbTriBase}`
-        }
-        fill={ACCENT}
-        stroke={ACCENT_DARK}
-        strokeWidth="0.8"
-        strokeLinejoin="round"
+        points={`${firstCx - FB_TIP_W},${fbTriBase} ${firstCx},${fbTipY} ${firstCx + FB_TIP_W},${fbTriBase}`}
+        fill={ACCENT_DARK}
       />
       <text
-        x={isCompactDiagram ? COMPACT_FEEDBACK_X + 44 : (lastCx + firstCx) / 2}
-        y={isCompactDiagram ? firstBottom + 26 : feedbackBase + 16}
+        x={isCompactDiagram ? compactX + 44 : (lastCx + firstCx) / 2}
+        y={
+          isCompactDiagram
+            ? firstBottom + 28
+            : feedbackBase + AGENT_WORKFLOW_FEEDBACK.labelOffsetY
+        }
         textAnchor={isCompactDiagram ? 'start' : 'middle'}
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize="11"
-        fontWeight="600"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={feedbackLabelSize}
+        fontWeight="700"
         fill={ACCENT_DARK}
       >
         {labels.feedbackLabel}

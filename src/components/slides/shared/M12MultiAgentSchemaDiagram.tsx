@@ -63,7 +63,7 @@ function NodeBox({
   const subColor = box.textColor ? '#713f12' : 'rgba(255,255,255,0.88)';
 
   return (
-    <g opacity={dimmed ? 0.45 : 1}>
+    <g opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}>
       <rect
         x={box.x}
         y={box.y}
@@ -80,7 +80,7 @@ function NodeBox({
         textAnchor="middle"
         fill={textColor}
         fontSize="12"
-        fontWeight="800"
+        fontWeight="700"
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[0]}
@@ -134,7 +134,7 @@ function Arrow({
       x2={x2}
       y2={y2}
       stroke={color}
-      strokeWidth="2"
+      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
       strokeDasharray={dashed ? '5 4' : undefined}
       markerEnd={`url(#${markerId})`}
     />
@@ -144,7 +144,7 @@ function Arrow({
 function CurvedArrow({
   d,
   markerId,
-  color = VIOLET,
+  color = DIAGRAM_ROLE_COLORS.accentDark,
 }: {
   d: string;
   markerId: string;
@@ -155,7 +155,7 @@ function CurvedArrow({
       d={d}
       fill="none"
       stroke={color}
-      strokeWidth="2"
+      strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
       strokeDasharray="5 4"
       markerEnd={`url(#${markerId})`}
     />
@@ -179,8 +179,8 @@ function HandoffLabel({
       y={y}
       textAnchor="middle"
       fill={color}
-      fontSize="9"
-      fontWeight="700"
+      fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+      fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
       fontFamily={DIAGRAM_TOKENS.font}
     >
       {label}
@@ -301,6 +301,7 @@ export default function M12MultiAgentSchemaDiagram({
         <defs>
           <marker
             id={arrowId}
+            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
             markerWidth="7"
             markerHeight="7"
             refX="7"
@@ -311,6 +312,7 @@ export default function M12MultiAgentSchemaDiagram({
           </marker>
           <marker
             id={dashedArrowId}
+            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
             markerWidth="7"
             markerHeight="7"
             refX="7"
@@ -321,13 +323,17 @@ export default function M12MultiAgentSchemaDiagram({
           </marker>
           <marker
             id={feedbackArrowId}
+            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
             markerWidth="7"
             markerHeight="7"
             refX="7"
             refY="3.5"
             orient="auto"
           >
-            <path d="M0,0 L7,3.5 L0,7 Z" fill={VIOLET} />
+            <path
+              d="M0,0 L7,3.5 L0,7 Z"
+              fill={DIAGRAM_ROLE_COLORS.accentDark}
+            />
           </marker>
         </defs>
         <rect
@@ -344,7 +350,7 @@ export default function M12MultiAgentSchemaDiagram({
           y="40"
           textAnchor="middle"
           fontSize="15"
-          fontWeight="800"
+          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
           fill={palette.brandDark}
           fontFamily={DIAGRAM_TOKENS.font}
         >
@@ -458,6 +464,7 @@ export default function M12MultiAgentSchemaDiagram({
       <defs>
         <marker
           id={arrowId}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="7"
           markerHeight="7"
           refX="7"
@@ -468,6 +475,7 @@ export default function M12MultiAgentSchemaDiagram({
         </marker>
         <marker
           id={dashedArrowId}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="7"
           markerHeight="7"
           refX="7"
@@ -478,13 +486,14 @@ export default function M12MultiAgentSchemaDiagram({
         </marker>
         <marker
           id={feedbackArrowId}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="7"
           markerHeight="7"
           refX="7"
           refY="3.5"
           orient="auto"
         >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={VIOLET} />
+          <path d="M0,0 L7,3.5 L0,7 Z" fill={DIAGRAM_ROLE_COLORS.accentDark} />
         </marker>
       </defs>
       <rect
@@ -500,8 +509,8 @@ export default function M12MultiAgentSchemaDiagram({
         x={DESKTOP_W / 2}
         y="30"
         textAnchor="middle"
-        fontSize="16"
-        fontWeight="800"
+        fontSize={DIAGRAM_TOKENS.typography.title.desktop}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >

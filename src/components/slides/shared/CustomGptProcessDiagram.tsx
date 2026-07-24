@@ -1,63 +1,40 @@
 /**
  * Pilna Custom GPT proceso diagrama su paryškinimu: aktyvus žingsnis ryškus, kiti priteminti.
  * Mobile režime schema persidėlioja į siauresnę geometriją, kad nereikėtų horizontalaus scroll.
+ *
+ * LMS 1A (2026-07-24): flat fills, useDiagramPalette, no glow; arrows keep tip≥10 / refX=0.
+ * Branch 7|8 topology unchanged (practice lab, not W2 spine).
+ * Geometry SOT: customGptProcessLayout.ts
  */
 import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
+import {
+  DIAGRAM_ROLE_COLORS,
+  DIAGRAM_TOKENS,
+  DIAGRAM_TONE_COLORS,
+} from './diagramTokens';
+import {
+  COMPACT_LAYOUT,
+  CUSTOM_GPT_ARROW_TIP_LEN,
+  CUSTOM_GPT_FB_GAP,
+  CUSTOM_GPT_FB_TIP_H,
+  CUSTOM_GPT_FB_TIP_W,
+  DESKTOP_LAYOUT,
+} from './customGptProcessLayout';
 
-const STEP_ACTIVE_OPACITY = 1;
-const STEP_INACTIVE_OPACITY = 0.45;
-const ARROW_MARKER_LEN = 6;
-const ARROW_FB_MARKER_LEN = 14;
+const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
+const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactive;
 
-type StepBox = [number, number, number, number];
+/** Dark inactive soft – between frame bgStart and brand. */
+const INACTIVE_SOFT_DARK = '#334155';
 
-interface DiagramLayout {
-  viewBox: string;
-  width: number;
-  height: number;
-  centerX: number;
-  stepBoxes: StepBox[];
-  compact: boolean;
-}
-
-const DESKTOP_LAYOUT: DiagramLayout = {
-  viewBox: '0 0 560 700',
-  width: 560,
-  height: 700,
-  centerX: 280,
-  stepBoxes: [
-    [140, 78, 280, 56],
-    [140, 162, 280, 56],
-    [140, 246, 280, 56],
-    [140, 330, 280, 56],
-    [140, 414, 280, 56],
-    [140, 498, 280, 56],
-    [80, 612, 160, 52],
-    [320, 612, 160, 52],
-  ],
-  compact: false,
-};
-
-const COMPACT_LAYOUT: DiagramLayout = {
-  viewBox: '0 0 360 780',
-  width: 360,
-  height: 780,
-  centerX: 180,
-  stepBoxes: [
-    [30, 70, 300, 52],
-    [30, 144, 300, 52],
-    [30, 218, 300, 52],
-    [30, 292, 300, 52],
-    [30, 366, 300, 52],
-    [30, 440, 300, 52],
-    [30, 552, 300, 52],
-    [30, 626, 300, 52],
-  ],
-  compact: true,
-};
+const ACCENT_FB = DIAGRAM_TOKENS.colors.amber;
+const ACCENT_FB_DARK = DIAGRAM_ROLE_COLORS.accentDark;
+const FLOW_STROKE = DIAGRAM_TOKENS.stroke.flowStrong;
+const FB_STROKE = DIAGRAM_TOKENS.stroke.feedback;
 
 const STEP_TITLES_LT = [
   'Tikslas',
@@ -86,8 +63,14 @@ export default function CustomGptProcessDiagram({
 }: CustomGptProcessDiagramProps) {
   const { t } = useTranslation('stepper');
   const { isCompactDiagram } = useCompactViewport();
+  const palette = useDiagramPalette();
   const uid = useId().replace(/:/g, '');
   const layout = isCompactDiagram ? COMPACT_LAYOUT : DESKTOP_LAYOUT;
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const inactiveSoft = isDarkPalette
+    ? INACTIVE_SOFT_DARK
+    : DIAGRAM_TONE_COLORS.brand.soft;
+  const flowStroke = palette.flow;
   const step = (i: number) =>
     currentStep === i ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
   const isInteractive = typeof onStepClick === 'function';
@@ -104,12 +87,43 @@ export default function CustomGptProcessDiagram({
   ];
   const centerX = layout.centerX;
   const rightMarginX = layout.width - 18;
+  const tipLen = CUSTOM_GPT_ARROW_TIP_LEN;
+  const tipH = tipLen * 0.9;
+  const boxes = layout.stepBoxes;
+  const configBox = boxes[3];
+  const improveBox = boxes[7];
+  const configRight = configBox[0] + configBox[2];
+  const configCy = configBox[1] + configBox[3] / 2;
+  const improveRight = improveBox[0] + improveBox[2];
+  const improveCy = improveBox[1] + improveBox[3] / 2;
+  /** Tip apex just outside Konfigūracija; base further right (path ends at base). */
+  const fbTipX = configRight + CUSTOM_GPT_FB_GAP;
+  const fbTipBaseX = fbTipX + CUSTOM_GPT_FB_TIP_H;
+  const typography = DIAGRAM_TOKENS.typography;
+
+  const forwardLine = (
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    key: string
+  ) => (
+    <line
+      key={key}
+      x1={x1}
+      y1={y1}
+      x2={x2}
+      y2={y2}
+      stroke={flowStroke}
+      strokeWidth={FLOW_STROKE}
+      markerEnd={`url(#arrow-${uid})`}
+    />
+  );
 
   return (
     <svg
       viewBox={layout.viewBox}
-      className={`w-full max-w-2xl mx-auto block ${className}`}
-      aria-hidden="true"
+      className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
       aria-label={
         isInteractive
@@ -119,105 +133,61 @@ export default function CustomGptProcessDiagram({
     >
       <defs>
         <linearGradient id={`bg-${uid}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f0f4f8" />
-          <stop offset="100%" stopColor="#f1f5f9" />
+          <stop offset="0%" stopColor={palette.bgStart} />
+          <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
+        {/* Forward: tip past line end (refX=0). 6px+refX≈tip+stroke 3.5 = buried V. */}
         <marker
           id={`arrow-${uid}`}
-          markerWidth="8"
-          markerHeight="6"
-          refX="6"
-          refY="3"
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
+          markerWidth={tipLen}
+          markerHeight={tipH}
+          refX={0}
+          refY={tipH / 2}
           orient="auto"
         >
           <path
-            d="M0 0 L6 3 L0 6 Z"
-            fill="#334e68"
-            stroke="#334e68"
+            d={`M0 0 L${tipLen} ${tipH / 2} L0 ${tipH} Z`}
+            fill={flowStroke}
+            stroke={flowStroke}
             strokeWidth="0.5"
           />
         </marker>
-        <marker
-          id={`arrow-fb-${uid}`}
-          markerWidth="16"
-          markerHeight="11"
-          refX="14"
-          refY="5.5"
-          orient="auto"
-        >
-          <path
-            d="M0 0 L16 5.5 L0 11 Z"
-            fill="#b8860b"
-            stroke="#7a5807"
-            strokeWidth="0.6"
-          />
-        </marker>
-        <linearGradient
-          id={`step-grad-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor="#486581" />
-          <stop offset="100%" stopColor="#334e68" />
-        </linearGradient>
-        <filter id={`glow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow
-            dx="0"
-            dy="0"
-            stdDeviation="3"
-            floodColor="#334e68"
-            floodOpacity="0.4"
-          />
-        </filter>
       </defs>
 
       <rect
         width={layout.width}
         height={layout.height}
         fill={`url(#bg-${uid})`}
-        rx="12"
-      />
-      <rect
-        width={layout.width}
-        height={layout.height}
-        fill="none"
-        stroke="#bcccdc"
-        strokeWidth="1"
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
       />
 
       <text
         x={centerX}
-        y={layout.compact ? 34 : 37}
+        y={layout.compact ? 30 : 32}
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize={layout.compact ? 19 : 24}
-        fontWeight="800"
-        fill="#102a43"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={
+          layout.compact ? typography.title.compact : typography.title.desktop
+        }
+        fontWeight={typography.titleWeight}
+        fill={palette.brandDark}
       >
         {t('diagramTitle')}
       </text>
-      <text
-        x={centerX}
-        y={layout.compact ? 54 : 60}
-        textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-        fontSize={layout.compact ? 11 : 14}
-        fontWeight="500"
-        fill="#334e68"
-      >
-        {t('diagramSubtitle')}
-      </text>
 
-      {layout.stepBoxes.map((box, index) => {
+      {/* Boxes first – forward tips draw after so they are not under next rect. */}
+      {boxes.map((box, index) => {
         const cx = box[0] + box[2] / 2;
+        const isActive = currentStep === index;
         const titleY = box[1] + (layout.compact ? 21 : 30);
         const detailY =
           box[1] + (layout.compact ? 38 : box[2] <= 180 ? 46 : 52);
         const titleFontSize = layout.compact ? 13 : box[2] <= 180 ? 14 : 15;
         const detailFontSize = layout.compact ? 11 : box[2] <= 180 ? 12 : 13;
+        const fill = isActive ? palette.brand : inactiveSoft;
+        const labelFill = isActive ? palette.whiteText : palette.brandDark;
+        const detailFill = isActive ? palette.whiteText : palette.muted;
         return (
           <g key={index}>
             <g
@@ -230,37 +200,34 @@ export default function CustomGptProcessDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                rx="12"
-                fill={`url(#step-grad-${uid})`}
-                stroke="#334e68"
-                strokeWidth={currentStep === index ? 2.5 : 1.5}
-                filter={currentStep === index ? `url(#glow-${uid})` : undefined}
+                rx={DIAGRAM_TOKENS.radius.box}
+                fill={fill}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={cx}
                 y={titleY}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontFamily={DIAGRAM_TOKENS.font}
                 fontSize={titleFontSize}
                 fontWeight="700"
-                fill="white"
+                fill={labelFill}
               >
-                {`${index + 1} · ${titles[index].toUpperCase()}`}
+                {`${index + 1} · ${titles[index]}`}
               </text>
               <text
                 x={cx}
                 y={detailY}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+                fontFamily={DIAGRAM_TOKENS.font}
                 fontSize={detailFontSize}
                 fontWeight="500"
-                fill={
-                  layout.compact
-                    ? 'rgba(255,255,255,0.92)'
-                    : index >= 6
-                      ? 'rgba(255,255,255,0.95)'
-                      : '#334e68'
-                }
+                fill={detailFill}
               >
                 {details[index]}
               </text>
@@ -271,109 +238,108 @@ export default function CustomGptProcessDiagram({
                 y={box[1]}
                 width={box[2]}
                 height={box[3]}
-                radius={12}
+                radius={DIAGRAM_TOKENS.radius.box}
                 onActivate={() => onStepClick?.(index)}
-              />
-            )}
-            {index < 5 && (
-              <line
-                x1={centerX}
-                y1={box[1] + box[3]}
-                x2={centerX}
-                y2={layout.stepBoxes[index + 1][1] - ARROW_MARKER_LEN}
-                stroke="#334e68"
-                strokeWidth="2"
-                markerEnd={`url(#arrow-${uid})`}
               />
             )}
           </g>
         );
       })}
 
+      {/* Forward spine 1→6 (and compact 6→7→8) – tip reserved below line end. */}
+      {[0, 1, 2, 3, 4].map((index) =>
+        forwardLine(
+          centerX,
+          boxes[index][1] + boxes[index][3],
+          centerX,
+          boxes[index + 1][1] - tipLen,
+          `fwd-${index}`
+        )
+      )}
+
       {layout.compact ? (
         <>
-          <line
-            x1={centerX}
-            y1={layout.stepBoxes[5][1] + layout.stepBoxes[5][3]}
-            x2={centerX}
-            y2={layout.stepBoxes[6][1] - ARROW_MARKER_LEN}
-            stroke="#334e68"
-            strokeWidth="2"
-            markerEnd={`url(#arrow-${uid})`}
-          />
-          <line
-            x1={centerX}
-            y1={layout.stepBoxes[6][1] + layout.stepBoxes[6][3]}
-            x2={centerX}
-            y2={layout.stepBoxes[7][1] - ARROW_MARKER_LEN}
-            stroke="#334e68"
-            strokeWidth="2"
-            markerEnd={`url(#arrow-${uid})`}
-          />
+          {forwardLine(
+            centerX,
+            boxes[5][1] + boxes[5][3],
+            centerX,
+            boxes[6][1] - tipLen,
+            'fwd-5-6'
+          )}
+          {forwardLine(
+            centerX,
+            boxes[6][1] + boxes[6][3],
+            centerX,
+            boxes[7][1] - tipLen,
+            'fwd-6-7'
+          )}
           <path
-            d={`M ${layout.stepBoxes[7][0] + layout.stepBoxes[7][2]} ${layout.stepBoxes[7][1] + layout.stepBoxes[7][3] / 2} L ${rightMarginX} ${layout.stepBoxes[7][1] + layout.stepBoxes[7][3] / 2} L ${rightMarginX} ${layout.stepBoxes[3][1] + layout.stepBoxes[3][3] / 2} L ${layout.stepBoxes[3][0] + layout.stepBoxes[3][2] + ARROW_FB_MARKER_LEN} ${layout.stepBoxes[3][1] + layout.stepBoxes[3][3] / 2}`}
-            stroke="#b8860b"
-            strokeWidth="3"
+            d={`M ${improveRight} ${improveCy} L ${rightMarginX} ${improveCy} L ${rightMarginX} ${configCy} L ${fbTipBaseX} ${configCy}`}
+            stroke={ACCENT_FB}
+            strokeWidth={FB_STROKE}
             fill="none"
             strokeDasharray="10 6"
             strokeLinejoin="round"
             strokeLinecap="round"
-            markerEnd={`url(#arrow-fb-${uid})`}
+          />
+          <polygon
+            points={`${fbTipX},${configCy} ${fbTipBaseX},${configCy - CUSTOM_GPT_FB_TIP_W} ${fbTipBaseX},${configCy + CUSTOM_GPT_FB_TIP_W}`}
+            fill={ACCENT_FB_DARK}
           />
         </>
       ) : (
         <>
+          {/* Branch: 6 → trough → 7 | 8 */}
           <line
             x1={centerX}
-            y1={layout.stepBoxes[5][1] + layout.stepBoxes[5][3]}
+            y1={boxes[5][1] + boxes[5][3]}
             x2={centerX}
-            y2={588}
-            stroke="#334e68"
-            strokeWidth="2"
+            y2={layout.branchY}
+            stroke={flowStroke}
+            strokeWidth={FLOW_STROKE}
           />
           <line
             x1={centerX}
-            y1={588}
+            y1={layout.branchY}
             x2={160}
-            y2={588}
-            stroke="#334e68"
-            strokeWidth="2"
+            y2={layout.branchY}
+            stroke={flowStroke}
+            strokeWidth={FLOW_STROKE}
           />
           <line
             x1={centerX}
-            y1={588}
+            y1={layout.branchY}
             x2={400}
-            y2={588}
-            stroke="#334e68"
-            strokeWidth="2"
+            y2={layout.branchY}
+            stroke={flowStroke}
+            strokeWidth={FLOW_STROKE}
           />
-          <line
-            x1={160}
-            y1={588}
-            x2={160}
-            y2={layout.stepBoxes[6][1] - ARROW_MARKER_LEN}
-            stroke="#334e68"
-            strokeWidth="2"
-            markerEnd={`url(#arrow-${uid})`}
-          />
-          <line
-            x1={400}
-            y1={588}
-            x2={400}
-            y2={layout.stepBoxes[7][1] - ARROW_MARKER_LEN}
-            stroke="#334e68"
-            strokeWidth="2"
-            markerEnd={`url(#arrow-${uid})`}
-          />
+          {forwardLine(
+            160,
+            layout.branchY!,
+            160,
+            boxes[6][1] - tipLen,
+            'branch-7'
+          )}
+          {forwardLine(
+            400,
+            layout.branchY!,
+            400,
+            boxes[7][1] - tipLen,
+            'branch-8'
+          )}
           <path
-            d={`M ${layout.stepBoxes[7][0] + layout.stepBoxes[7][2]} ${layout.stepBoxes[7][1] + layout.stepBoxes[7][3] / 2} L 500 638 L 500 400 L 500 365 Q 500 358 432 358 L ${layout.stepBoxes[3][0] + layout.stepBoxes[3][2] + ARROW_FB_MARKER_LEN + 2} ${layout.stepBoxes[3][1] + layout.stepBoxes[3][3] / 2} L ${layout.stepBoxes[3][0] + layout.stepBoxes[3][2] + ARROW_FB_MARKER_LEN} ${layout.stepBoxes[3][1] + layout.stepBoxes[3][3] / 2}`}
-            stroke="#b8860b"
-            strokeWidth="3"
+            d={`M ${improveRight} ${improveCy} L ${layout.feedbackRailX} ${improveCy} L ${layout.feedbackRailX} ${configCy} L ${fbTipBaseX} ${configCy}`}
+            stroke={ACCENT_FB}
+            strokeWidth={FB_STROKE}
             fill="none"
             strokeDasharray="10 6"
             strokeLinejoin="round"
             strokeLinecap="round"
-            markerEnd={`url(#arrow-fb-${uid})`}
+          />
+          <polygon
+            points={`${fbTipX},${configCy} ${fbTipBaseX},${configCy - CUSTOM_GPT_FB_TIP_W} ${fbTipBaseX},${configCy + CUSTOM_GPT_FB_TIP_W}`}
+            fill={ACCENT_FB_DARK}
           />
         </>
       )}

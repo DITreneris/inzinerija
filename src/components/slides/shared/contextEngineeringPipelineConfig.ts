@@ -7,20 +7,30 @@
  * Locale-aware: node labels, mode labels, UI strings – getPipelineNodes(locale), getModeLabels(locale), getDiagramUiLabels(locale).
  */
 
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
 
 export type Locale = 'lt' | 'en';
 
-/* ═══ SVG Viewbox ═══ */
-export const VB_WIDTH = 460;
+/* ═══ SVG Viewbox (B+1: room for right annotation lane) ═══ */
+export const VB_WIDTH = 580;
 export const VB_HEIGHT = 530;
+/** Hard floors guarded by contextEngineeringPipelineLayout.test.ts */
+export const MIN_ANNOTATION_RIGHT_ROOM = 140;
+export const MAX_BOX_TO_VB_RATIO = 0.48;
+/**
+ * Prompt režime context mazgai (3, 5) = dashed placeholder slots (variant B),
+ * not ghost-filled boxes. Layout keeps 6 fixed NODE_Y positions.
+ * Context režime = full emerald boxes. Badge strings double as slot labels.
+ */
+export const PLACEHOLDER_STROKE_WIDTH = 1.8;
+export const PLACEHOLDER_DASH = '5 4';
 
 /* ═══ Box geometry ═══ */
-export const BOX_W = 300;
+export const BOX_W = 250;
 export const BOX_H = 62;
 export const BOX_R = 10;
-export const BOX_X = (VB_WIDTH - BOX_W) / 2; // = 80
-export const CX = VB_WIDTH / 2; // = 230
+export const BOX_X = (VB_WIDTH - BOX_W) / 2; // = 165
+export const CX = VB_WIDTH / 2; // = 290
 
 /* ═══ Vertical layout ═══ */
 /** Gap between consecutive boxes */
@@ -39,10 +49,12 @@ export const NODE_Y: readonly number[] = Array.from(
 export const ARROW_MARKER_LEN = 8;
 
 /* ═══ Annotation / bypass routing (SCHEME: path nekerta blokų) ═══ */
-/** Dešinysis koridorius papildomoms rodyklėms ir etiketėms – ne ant stubos x=CX */
-export const ROUTE_X_RIGHT = BOX_X + BOX_W + 18;
-/** Etiketės (INPUT, LLM↔Tools) – dešinėje laisvoje zonoje */
-export const ANNOTATION_LANE_X = BOX_X + BOX_W + 10;
+/** L-path vertical stem – closer to boxes, not through label lane */
+export const ROUTE_X_RIGHT = BOX_X + BOX_W + 8;
+/** Etiketės (INPUT, LLM↔Tools) – further right than ROUTE_X_RIGHT */
+export const ANNOTATION_LANE_X = BOX_X + BOX_W + 14;
+/** Right padding so text never clips viewBox edge */
+export const ANNOTATION_RIGHT_PAD = 8;
 
 /** INPUT grupės etiketės Y – vertikaliai centre Prompt+Kontekstas zonoje */
 export function getInputLabelY(): number {
@@ -96,7 +108,7 @@ const PIPELINE_NODES_LT: readonly PipelineNode[] = [
     label: '3. Kontekstas',
     sub: 'dokumentai, CRM, taisyklės',
     mode: 'context',
-    badgeContext: '+ papildomas kontekstas',
+    badgeContext: '+ kontekstas',
   },
   { id: 'llm', label: '4. LLM', sub: 'planuoja ir generuoja', mode: 'both' },
   {
@@ -104,7 +116,7 @@ const PIPELINE_NODES_LT: readonly PipelineNode[] = [
     label: '5. Įrankiai / Duomenys',
     sub: 'paieška, DB, API',
     mode: 'context',
-    badgeTools: '+ papildomi įrankiai',
+    badgeTools: '+ įrankiai',
   },
   {
     id: 'output',
@@ -148,25 +160,29 @@ export function getPipelineNodes(locale: Locale): readonly PipelineNode[] {
 /** @deprecated Use getPipelineNodes(locale) for locale-aware labels. */
 export const PIPELINE_NODES = PIPELINE_NODES_LT;
 
-/* ═══ Colors ═══ */
+/* ═══ Colors (B+1: token emerald – no pastel wash) ═══ */
 export const COLORS = {
   brand: DIAGRAM_TOKENS.colors.brand,
-  brandStart: '#5a6d7d',
-  brandDarker: '#2a3f54',
-  emerald: '#4f8f80',
-  emeraldLight: '#6ca999',
-  emeraldDarker: '#3a7568',
-  emeraldGlow: '#90c7b8',
+  brandStart: DIAGRAM_TOKENS.colors.brandTop,
+  brandDarker: DIAGRAM_TOKENS.colors.brandDark,
+  emerald: DIAGRAM_TONE_COLORS.emerald.bottom,
+  /** Gradient top – must stay AA with white (≥4.5); tone.top #2f9f88 is too light */
+  emeraldLight: '#117a72',
+  emeraldDarker: DIAGRAM_TONE_COLORS.emerald.stroke,
+  /** Badge pill fill – light mint, dark text */
+  badgePillBg: '#ecfdf5',
+  badgePillText: DIAGRAM_TOKENS.colors.brandDark,
   neutral: DIAGRAM_TOKENS.colors.flow,
   neutralLight: '#94a3b8',
   border: DIAGRAM_TOKENS.colors.border,
   bgStart: DIAGRAM_TOKENS.colors.bgStart,
-  bgEnd: '#e8eef4',
+  bgEnd: DIAGRAM_TOKENS.colors.bgEnd,
   textDark: DIAGRAM_TOKENS.colors.brandDark,
   textMuted: DIAGRAM_TOKENS.colors.flow,
-  textWhite: '#ffffff',
+  textWhite: DIAGRAM_TOKENS.colors.whiteText,
   arrow: DIAGRAM_TOKENS.colors.flow,
-  arrowContext: '#4f8f80',
+  arrowContext: DIAGRAM_TOKENS.colors.emerald,
+  groupStroke: 'rgba(15,118,110,0.55)',
 } as const;
 
 /* ═══ Interactive mode ═══ */
@@ -220,7 +236,10 @@ export interface ContextPipelineUiLabels {
   compareLabel: string;
   modeLabel: string;
   ariaGroup: string;
+  /** Single-line fallback / aria */
   inputPromptContext: string;
+  /** Two-line SVG annotation (fits annotation lane) */
+  inputPromptContextLines: readonly [string, string];
   llmToolsLabel: string;
   stepDetailAria: string;
   keyRuleLabel: string;
@@ -235,6 +254,7 @@ const UI_LABELS_LT: ContextPipelineUiLabels = {
   modeLabel: 'Režimas:',
   ariaGroup: 'Pipeline režimas',
   inputPromptContext: 'Įvestis: promptas + kontekstas',
+  inputPromptContextLines: ['Įvestis:', 'promptas + kontekstas'],
   llmToolsLabel: 'LLM ↔ Tools',
   stepDetailAria: 'Žingsnio detalė',
   keyRuleLabel: 'Svarbiausia taisyklė',
@@ -249,6 +269,7 @@ const UI_LABELS_EN: ContextPipelineUiLabels = {
   modeLabel: 'Mode:',
   ariaGroup: 'Pipeline mode',
   inputPromptContext: 'INPUT: Prompt + Context',
+  inputPromptContextLines: ['INPUT:', 'Prompt + Context'],
   llmToolsLabel: 'LLM ↔ Tools',
   stepDetailAria: 'Step detail',
   keyRuleLabel: 'Key rule',
@@ -256,6 +277,19 @@ const UI_LABELS_EN: ContextPipelineUiLabels = {
   ariaStepsPrompt: '4 steps (Goal → Prompt → LLM → Output)',
   ariaStepsContext: '6 steps (Prompt + Context + Tools)',
 };
+
+/** Approx SVG text width for layout guards (bold sans ~0.55em). */
+export function approxLabelWidthPx(
+  text: string,
+  fontSize: number,
+  charFactor = 0.55
+): number {
+  return Math.ceil(text.length * fontSize * charFactor);
+}
+
+export function getAnnotationRightRoom(): number {
+  return VB_WIDTH - ANNOTATION_LANE_X;
+}
 
 export function getDiagramUiLabels(locale: Locale): ContextPipelineUiLabels {
   return locale === 'en' ? UI_LABELS_EN : UI_LABELS_LT;

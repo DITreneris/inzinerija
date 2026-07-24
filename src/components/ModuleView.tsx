@@ -40,7 +40,7 @@ import {
   getVisiblePosition,
 } from '../utils/useSlideNavigation';
 import { useCompactViewport } from '../utils/useCompactViewport';
-import { LoadingSpinner } from './ui';
+import { LoadingSpinner, ModuleBreadcrumb } from './ui';
 import { ModuleCompleteScreen } from './ModuleCompleteScreen';
 import ErrorBoundary from './ui/ErrorBoundary';
 import { selectQuestions } from '../utils/questionPoolSelector';
@@ -410,6 +410,15 @@ function ModuleView({
     );
   }, [currentSlideData]);
 
+  const persistFastTrack = useCallback((next: boolean) => {
+    setFastTrack(next);
+    try {
+      localStorage.setItem(FAST_TRACK_KEY, next ? '1' : '0');
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const toggleFastTrack = useCallback(() => {
     setFastTrack((prev) => {
       const next = !prev;
@@ -421,6 +430,13 @@ function ModuleView({
       return next;
     });
   }, []);
+
+  const handlePathModeChange = useCallback(
+    (mode: 'short' | 'full') => {
+      persistFastTrack(mode === 'short');
+    },
+    [persistFastTrack]
+  );
 
   /** Lygis B rerun: iš santraukos grįžti į fokuso pasirinkimą (skaidrė 70). */
   const handleRerunFocus = useCallback(() => {
@@ -528,12 +544,36 @@ function ModuleView({
       .filter((x) => x.type === 'practice-scenario');
   }, [module]);
 
-  /** Modulio 3 / 9: santraukos skaidrės indeksas – kad iš bet kurio scenarijaus galėtų išeiti į santrauką */
+  /** M3/M9 practice-summary; M15 (ir pan.) – type summary po practice scenarijų */
   const practiceSummarySlideIndex = useMemo(() => {
     if (!module) return null;
-    const idx = module.slides.findIndex((s) => s.type === 'practice-summary');
-    return idx >= 0 ? idx : null;
-  }, [module]);
+    const practiceSummaryIdx = module.slides.findIndex(
+      (s) => s.type === 'practice-summary'
+    );
+    if (practiceSummaryIdx >= 0) return practiceSummaryIdx;
+    if (moduleId === 15) {
+      const summaryIdx = module.slides.findIndex((s) => s.type === 'summary');
+      return summaryIdx >= 0 ? summaryIdx : null;
+    }
+    return null;
+  }, [module, moduleId]);
+
+  const m15MinScenariosDone = useMemo(() => {
+    if (moduleId !== 15 || !module) return false;
+    const intro = module.slides.find((s) => s.type === 'practice-intro');
+    const minRequired =
+      typeof intro?.content === 'object' &&
+      intro.content != null &&
+      typeof (intro.content as { minScenariosToComplete?: number })
+        .minScenariosToComplete === 'number'
+        ? (intro.content as { minScenariosToComplete: number })
+            .minScenariosToComplete
+        : 1;
+    const completed = progress.completedTasks[moduleId] ?? [];
+    const scenarioIds = new Set(practiceScenarioSlides.map((s) => s.slideId));
+    const doneCount = completed.filter((id) => scenarioIds.has(id)).length;
+    return doneCount >= minRequired;
+  }, [moduleId, module, progress.completedTasks, practiceScenarioSlides]);
 
   const onNavigateToSlide = useCallback(
     (slideIndex: number) => {
@@ -799,14 +839,13 @@ function ModuleView({
     return (
       <div className="space-y-6">
         <div className="card p-4 lg:p-6">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-lg px-3 py-2 min-h-[44px]"
-            aria-label={t('module:backToModules')}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span>{t('module:backToModules')}</span>
-          </button>
+          <ModuleBreadcrumb
+            parentLabel={t('modulesParent')}
+            parentAriaLabel={t('modulesParentAria')}
+            currentLabel={t('notAccessible')}
+            onParentClick={onBack}
+            ariaLabel={t('breadcrumbAria')}
+          />
         </div>
         <div className="card p-8 text-center min-h-[300px] flex flex-col items-center justify-center">
           <p className="text-gray-600 dark:text-gray-400 mb-2">
@@ -834,14 +873,13 @@ function ModuleView({
     return (
       <div className="space-y-6">
         <div className="card p-4 lg:p-6">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg px-3 py-2 min-h-[44px]"
-            aria-label={t('module:backToModules')}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span>{t('module:backToModules')}</span>
-          </button>
+          <ModuleBreadcrumb
+            parentLabel={t('modulesParent')}
+            parentAriaLabel={t('modulesParentAria')}
+            currentLabel={module.title}
+            onParentClick={onBack}
+            ariaLabel={t('breadcrumbAria')}
+          />
         </div>
 
         <div className="card p-8 lg:p-12 min-h-[400px] flex flex-col items-center justify-center text-center">
@@ -921,22 +959,19 @@ function ModuleView({
         </div>
       )}
 
-      {/* Header */}
+      {/* Header – hierarchical escape (breadcrumb), not slide Prev */}
       <div className="card p-4 lg:p-6">
-        <div className="flex items-center justify-between mb-4">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded-lg px-3 py-2 min-h-[44px]"
-            aria-label={t('module:backToModules')}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span className="hidden sm:inline">
-              {t('module:backToModules')}
-            </span>
-            <span className="sm:hidden">{t('module:backShort')}</span>
-          </button>
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <ModuleBreadcrumb
+            parentLabel={t('modulesParent')}
+            parentAriaLabel={t('modulesParentAria')}
+            currentLabel={module.title}
+            onParentClick={onBack}
+            ariaLabel={t('breadcrumbAria')}
+            className="min-w-0 flex-1"
+          />
 
-          <div className="hidden lg:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="hidden lg:flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 shrink-0">
             <span
               className="flex items-center gap-2"
               aria-label={t('slideOf', {
@@ -997,7 +1032,17 @@ function ModuleView({
                   {isModuleCompleted && (
                     <span className="badge-success">
                       <CheckCircle className="w-3 h-3 mr-1" />
-                      {t('completedLabel')}
+                      {module.level === 'test' &&
+                      typeof progress.moduleTestScores?.[moduleId] === 'number'
+                        ? t('completedTestScore', {
+                            score: Math.round(
+                              progress.moduleTestScores[moduleId]
+                            ),
+                          })
+                        : visiblePosition <= 2 &&
+                            currentSlideData.type !== 'test-results'
+                          ? t('reviewingCompletedModule')
+                          : t('completedLabel')}
                     </span>
                   )}
                   {currentSlideData.optional &&
@@ -1118,21 +1163,21 @@ function ModuleView({
                   aria-label={t('prevSlide')}
                 >
                   <ChevronLeft className="w-5 h-5 shrink-0" aria-hidden />
-                  <span>{t('backShort')}</span>
+                  <span>{t('prevShort')}</span>
                 </CTAButton>
                 <span
-                  className="text-xs font-medium text-brand-600 dark:text-brand-400 tabular-nums whitespace-nowrap"
+                  className="text-sm font-semibold text-brand-700 dark:text-brand-300 tabular-nums whitespace-nowrap"
                   aria-label={t('slideOf', {
                     current: visiblePosition,
                     total: visibleSlideCount,
                   })}
                 >
                   {m7MacroBlockLabel ? (
-                    <span className="text-gray-500 dark:text-gray-400 mr-1.5">
+                    <span className="text-gray-500 dark:text-gray-400 mr-1.5 font-medium text-xs">
                       {m7MacroBlockLabel} ·
                     </span>
                   ) : null}
-                  {visiblePosition}/{visibleSlideCount}
+                  {visiblePosition} / {visibleSlideCount}
                 </span>
                 <CTAButton
                   type="button"
@@ -1267,7 +1312,11 @@ function ModuleView({
                 practiceScenarioSlides={practiceScenarioSlides}
                 onNavigateToSlide={onNavigateToSlide}
                 onGoToSummary={
-                  moduleId === 3 || moduleId === 9 ? onGoToSummary : undefined
+                  moduleId === 3 ||
+                  moduleId === 9 ||
+                  (moduleId === 15 && m15MinScenariosDone)
+                    ? onGoToSummary
+                    : undefined
                 }
                 onNavigateToSlideById={
                   moduleId === 9 ? onNavigateToSlideById : undefined
@@ -1281,6 +1330,8 @@ function ModuleView({
                 onJourneyFocusChoice={onJourneyFocusChoice}
                 visiblePosition={visiblePosition}
                 visibleSlideCount={visibleSlideCount}
+                pathMode={fastTrack ? 'short' : 'full'}
+                onPathModeChange={handlePathModeChange}
               />
             </Suspense>
           </ErrorBoundary>
@@ -1319,7 +1370,7 @@ function ModuleView({
             >
               <ChevronLeft className="w-5 h-5" />
               <span className="font-medium whitespace-nowrap">
-                {t('backShort')}
+                {t('prevShort')}
               </span>
             </button>
 

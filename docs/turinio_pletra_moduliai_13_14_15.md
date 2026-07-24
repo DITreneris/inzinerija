@@ -13,19 +13,21 @@
 
 | Moduliai 1–6                          | Moduliai 10–12                                 | Moduliai 13–15                                        |
 | ------------------------------------- | ---------------------------------------------- | ----------------------------------------------------- |
-| 6 blokų sistema, konteksto inžinerija | Agentų inžinerija                              | **Turinio inžinerija** – vaizdai, video, muzika su DI |
+| 6 blokų sistema, konteksto inžinerija | Agentų inžinerija                              | **Turinio inžinerija** – vaizdai, video, garsas su DI |
 | Teorija → Testas → Projektas (M4–M6)  | Teorija (M10) → Testas (M11) → Projektas (M12) | Teorija (M13) → Testas (M14) → Projektas (M15)        |
 | Bendras pamatas                       | Softo inžinieriai                              | **Rinkodaros ir komunikacijos specialistai**          |
 
-**Prielaida:** Dalyvis gali pradėti po Modulio 6 (arba lygiagrečiai keliems keliams). Moduliai 13–15 fokusas: **vaizdų, vaizdo įrašų ir muzikos generavimas** – įrankiai, promptų principai, kokybės patikra.
+**Prielaida:** Dalyvis gali pradėti po Modulio 6 (arba lygiagrečiai keliems keliams). Moduliai 13–15 fokusas: **vaizdų, vaizdo įrašų ir garso generavimas** – pipeline, promptų principai, consistency, kokybės patikra ir provenance.
 
 ### 1.2 Mokymosi tikslai (po modulių 13–15)
 
-- **Vaizdų generavimas:** Suprasti, kaip formuluoti vaizdo promptus (stilius, proporcijos, ko vengti); naudoti DI įrankius vaizdų kūrimui.
-- **Video generavimas:** Žinoti, kaip aprašyti scenarijų trumpiems vaizdo įrašams; kadrai, trukmė, formatas; įrankiai.
-- **Muzikos ir garsų generavimas:** Mokėti aprašyti nuotaiką, stilių ir gauti muzikos ar garsų fragmentą; naudojimo teisės ir ribos.
+- **Pipeline:** Suprasti generatyvinės medijos grandinę: brief → stills/storyboard → reference lock → trumpi I2V klipai → garsas → montažas → QA / provenance.
+- **Vaizdų generavimas:** Formuluoti vaizdo promptus (stilius, proporcijos, kamera); brand consistency; character/product consistency per reference.
+- **Video generavimas:** Storyboard prieš brangų generavimą; 3–5 s klipai; image→video; CPI (kaina už tinkamą clipą), ne tik €/s.
+- **Garsas (audio-first):** Scenarijus → VO → klipų trukmė pagal audio → bed/SFX; licencijuota vs demo muzika; LUFS.
+- **Provenance:** C2PA / SynthID / žmogui matoma DI žyma prieš publikaciją.
 - **Testas (M14):** Patikrinti įsisavinimą prieš finalinį Turinio inžinerijos projektą (M15).
-- **Projektas (M15):** Sukurti bent vieną artefaktą – vaizdas, trumpas vaizdo įrašas arba muzikos fragmentas – su naudotu promptu.
+- **Projektas (M15):** Privalomas minimumas – hero vaizdas su naudotu promptu ir trumpu brief (skaidrė 150.5). Optional pilnas kelias – video, garsas ir montažas (151–154).
 
 ### 1.3 Ryšys su 6 blokais
 
@@ -37,11 +39,11 @@
 
 Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.1:
 
-| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                                                                                                                                                                      |
-| ------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **13**  | action-intro (pirmoji) | Po šio modulio mokėsi kurti vaizdus, trumpus vaizdo įrašus ir muziką su DI – nuo promptų iki įrankių ir kokybės patikros. **Outcomes** (3 punktai) – aukšto lygio kryptys; skaidrėje 13.1 „Trumpai“ – gilesnis sluoksnis (mažiau žodinio kartojimosi su įvanga). |
-| **14**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).                                                                                                                                                                    |
-| **15**  | practice-intro         | Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui.                                                                                                                                                          |
+| Modulis | Skaidrė / tipas        | whyBenefit (tekstas į JSON)                                                                                                                                                                                                                       |
+| ------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **13**  | action-intro (pirmoji) | Po šio modulio mokėsi kurti vaizdus, trumpus vaizdo įrašus ir garsą su DI – nuo pipeline ir promptų iki įrankių, consistency ir kokybės patikros. **Outcomes** (3 punktai) – aukšto lygio kryptys; skaidrėje 13.1 „Trumpai“ – gilesnis sluoksnis. |
+| **14**  | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).                                                                                                                                                     |
+| **15**  | practice-intro         | Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui.                                                                                                                                           |
 
 ---
 
@@ -49,11 +51,11 @@ Pagal [docs/development/GOLDEN_STANDARD.md](development/GOLDEN_STANDARD.md) §4.
 
 **Skaidrė: Kelio apžvalga (13.1)**
 
-- **Vaizdų generavimas:** Kaip rašyti vaizdo promptus; stilius, proporcijos (aspect ratio); ko vengti; įrankiai (DALL·E, Midjourney, Ideogram, Leonardo.ai, Canva AI ir kt.).
-- **Video generavimas:** Trumpi vaizdo įrašai iš teksto ar scenarijaus; kadrai, trukmė; įrankiai (Sora, Runway, Pika, Luma, Synthesia, InVideo ir kt.).
-- **Muzikos ir garsų generavimas:** Muzikos ir garsų kūrimas iš aprašymo; nuotaika, stilius, naudojimo teisės; įrankiai (Suno, Udio, Mubert, Soundraw, AIVA, ElevenLabs garsams ir kt.).
+- **Vaizdų generavimas:** Kaip rašyti vaizdo promptus; stilius, proporcijos (aspect ratio); brand; įrankiai (FLUX, GPT-Image, Midjourney, Ideogram, Leonardo.ai, Adobe Firefly, Imagen ir kt.).
+- **Video generavimas:** Storyboard → image-to-video; 3–5 s klipai; įrankiai (Seedance, Kling, Veo, Sora, Runway, Synthesia ir kt.).
+- **Garsas:** Audio-first (VO → bed/SFX); licencijos; įrankiai (ElevenLabs, ElevenMusic, Soundraw, Beatoven, Suno/Udio demo).
 
-**Kampanijos tikslai ir vaizdo tipas (MUST – 13.1 arba atskira skaidrė 13.2)**  
+**Kampanijos tikslai ir vaizdo tipas (MUST – 13.1)**  
 Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
 
 - **Awareness (atpažįstamumas):** Vaizdas pritraukia dėmesį – ryškus, lengvai atpažįstamas, emocija ar intriga. Tinka: viršelio nuotrauka, baneris, social postas.
@@ -62,9 +64,44 @@ Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
 
 **Kada emocija, kada aiškumas:** Awareness dažnai = emocija, kontrastas; Conversion = aiškumas, pasitikėjimas, skaitomumas. Engagement – pusiausvyra.
 
-**Kur pritaikyti:** Rinkodaros vizualai, socialinio turinio vaizdai ir trumpi vaizdo įrašai, foninė muzika ar garsai projektams – be būtino dizainerio ar kompozitoriaus.
+**Kur pritaikyti:** Rinkodaros vizualai, socialinio turinio vaizdai ir trumpi vaizdo įrašai, VO ir foninė muzika projektams – be būtino dizainerio ar kompozitoriaus.
 
 **modules.json (LT):** Skaidrės 13.1 „Trumpai“ formuluotė nurodo, kad čia – **gilesnis nei 130 įvanga** sluoksnis (kampanijos tikslų modelis + kur pritaikyti), kad nesidubliuotų su outcomes.
+
+### 2.1 Generatyvinės medijos pipeline (13.12) – MUST
+
+**Trumpai:** 2026 praktikoje laimi ne „geriausias modelis“, o **grandinė**. Vienas promptas į video generatorių = brangūs retry. Pipeline sumažina atsitiktinumą.
+
+**modules.json:** interaktyvi schema `m13_media_pipeline` = **6 žingsniai** (brief → stills → refs → I2V → garsas/edit → QA). Skaidrės antraštė „Kaip skaityti schemą“ – ne „4+QA“; checklist = praktika, ne antras žingsnių sąrašas.
+
+**6 žingsniai (schema + SOT):**
+
+1. **Brief + brand lock** – tikslas (A/E/C), auditorija, platforma, spalvos/tonas.
+2. **Stills / storyboard** – pigūs kadrai (hero + 1–2 papildomi); užrakink kompoziciją prieš mokėdamas už video.
+3. **Reference lock** – 3–5 kampai; „same product / same style“.
+4. **Trumpi I2V** – 3–5 s klipai iš keyframe.
+5. **Garsas + montažas** – audio-first: VO (arba bed) diktuoja trukmę; CapCut/Premiere cut + mix.
+6. **QA + provenance** – brand, žinutė, teisės, C2PA/disclosure.
+
+**Daryk dabar:** Užpildyk checklistą savo temai (nekopijuok į generatorių – tai planas).
+
+**Kopijuojamas šablonas (CopyButton):**
+
+```
+Pipeline checklist:
+Brief: tikslas [Awareness/Engagement/Conversion], auditorija [kam], platforma [kur].
+Brand: spalvos [X], tonas [Y].
+Stills: hero + [0–2] papildomi kadrai (užrakinti prieš video).
+Refs: [produktas/personažas – 3–5 kampai] / nėra.
+Klipai: [2–4] × 3–5 s (I2V), ne vienas ilgas one-shot.
+Garsas: [VO pirmiausia / tik bed] + teisės [licensed / demo].
+Montažas: cut + grade + mix.
+QA: brand | žinutė | formatas | teisės | disclosure (C2PA/žyma).
+```
+
+**Patikra:** Ar prieš video turi bent vieną užrakintą still? Ar žinai, ar garsas bus VO-first ar tik bed?
+
+**Kur pritaikyti:** Reklamos klipai, social Reels, produktų demo, vidiniai explaineriai.
 
 ---
 
@@ -119,7 +156,33 @@ Proporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tek
 
 **Įrankiai (tools.json, category: „Vaizdų generavimas“, moduleId: 13):** DALL·E (OpenAI), Midjourney, Ideogram, Leonardo.ai, Canva AI, Stable Diffusion (pvz. per įrankius).
 
-**Įrankių pozicionavimas (cheat sheet, optional):** DALL·E 3 – balansas (tikroviški + koncepciniai, gera teksto integracija, ChatGPT); Midjourney – aukštas meninis lygis, daug stilių, Discord; Leonardo.ai – creator/pro, fotorealizmas, galima mokyti modelius, žaidimų/produktų dizainas; Ideogram – labai geras tekstas vaizduose (logo, plakatai, LinkedIn); Stable Diffusion (DreamStudio) – atviras, lankstus; Adobe Firefly – korporacinė integracija (CC, Generative Fill), „teisiškai saugi“ šaltiniai, mažesnė autorinių teisių rizika. Google (Imagen 3 / „Nano Banana“): objektų išlaikymas per scenas, išplėstinis redagavimas tekstu, SynthID atsekamumas, stiprūs saugumo filtrai – tinka saugiai reklamai, katalogams.
+**Įrankių pozicionavimas (cheat sheet, optional):** GPT-Image / ChatGPT – natūrali kalba, greitas brief→vaizdas; FLUX – fotorealizmas ir multi-reference consistency; Midjourney – aukštas meninis lygis, `--cref` character ref; Leonardo.ai – fotorealizmas, produktų/žaidimų dizainas; Ideogram – tekstas vaizduose (logo, plakatai, LinkedIn); Adobe Firefly – CC integracija, teisiškai saugesni šaltiniai, C2PA; Google Imagen – objektų išlaikymas, SynthID – saugi reklama, katalogai. Stable Diffusion / DreamStudio – atviras, lankstus (advanced).
+
+### 3.2b Character / product consistency (13.32) – MUST
+
+**Trumpai:** Promptas vienas neužrakina tapatybės. Marketinge reikia **reference lock**: 3–5 reference vaizdai (skirtingi kampai), tada „same product / same character / same style / same color palette“. Be to kampanijos setas „plaukioja“.
+
+**Brand / product sheet (minimumas):**
+
+1. Hero / priekinis vaizdas
+2. ¾ arba šonas
+3. Flatlay arba detalė (etiketė, medžiaga)
+4. (Optional) stiliaus ref (apšvietimas / mood)
+
+**Daryk dabar:** Surink arba sugeneruok 3 reference savo produktui/personažui. Nukopijuok taisyklę į kitą generavimą.
+
+**Kopijuojamas šablonas (CopyButton):**
+
+```
+Reference lock: naudok tuos pačius 3–5 reference vaizdus.
+Taisyklė: same product, same proportions, same label/logo placement, same color palette, same style.
+Nauja scena: [APLINKA / VEIKSMAS]. Kamera: [kampas]. Formatas: [1:1 / 16:9 / 9:16].
+Be teksto vaizde (nebent etiketė ant produkto).
+```
+
+**Patikra (failure modes):** Ar produktas „išsipūtė“ / pakeitė spalvą / prarado etiketę? Jei taip – sumažink scenos sudėtingumą, padidink ref svorį, arba inpaint tik probleminę zoną. Venk realių žmonių veidų be sutikimo.
+
+**Kur pritaikyti:** Produktų katalogai, serijiniai social postai, video storyboard su tuo pačiu hero.
 
 ### 3.2a Savitikra: stilius ir proporcijos (13.31)
 
@@ -241,6 +304,8 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 ### 3.7 Vaizdo generatorius – sugeneruok savo promptą (interaktyvus, 13.37)
 
+**UI copy SOT:** `modules.json` skaidrės `13.37.content.tldr` ir `content.patikra` (EN – `modules-en-m13-m15.json`); forma lieka React komponente.
+
 **Trumpai:** Interaktyvus įrankis, kuris padeda sudėlioti vaizdo promptą žingsnis po žingsnio: kampanijos kontekstas (tikslas, platforma, auditorija, tonas), vizualo esmė (objektas, stilius, apšvietimas, kamera, spalva) ir tekstų integracija (antraštė, CTA, šriftas). Rezultatas – vienas paruoštas promptas, kurį galima nukopijuoti ir įklijuoti į bet kurį vaizdų generavimo įrankį.
 
 **Ryšys su 13.35 (MASTER):** MASTER šablonas (§3.6) – universalus, bet reikalauja pačiam užpildyti laukus tekstu. Generatorius (13.37) – interaktyvūs laukai su dropdown pasirinkimais ir laisvais tekstais; promptas sudedamas automatiškai. Tai „Daryk dabar" skaidrė: vartotojas išbando visus principus (stilius, proporcijos, kompozicija) viename įrankyje.
@@ -261,149 +326,201 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 ## 4. Blokas 2 – Video generavimas
 
-**Kodėl DI video verta dėmesio (trumpai):** Mažiau įrangos, aktorių ir montažo; greitis ir mastelis (dešimtys variantų per valandą); personalizavimas rinkoms/kalboms/segmentams. Tinka: vidiniai mokymai, saugos instrukcijos, reklamos kampanijos. _Procentų (pvz. „sutaupykite 90%“) vengti be šaltinio – žr. §5a „Verslo argumentai“._
+**Kodėl DI video verta dėmesio (trumpai):** Mažiau įrangos ir aktorių; greitis ir mastelis; personalizavimas. Tinka: vidiniai mokymai, saugos instrukcijos, reklamos. _Procentų be šaltinio vengti – žr. §5a._
 
-**Video workflow (sutrumpintas):** Koncepcija → idėja/scenarijus → promptų generavimas → optimizacija → generavimas (Sora, Runway, Veo3, Synthesia, InVideo).
+**Video workflow (2026):** Brief → storyboard stills → reference lock → **3–5 s I2V klipai** → (audio-first VO) → montažas. Ne: vienas ilgas text-to-video one-shot be plano.
 
 ### 4.1 Scenarijus trumpam vaizdo įrašui (13.4)
 
-**Trumpai:** Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, kokiu tonu (dramatiškas, ramus, informatyvus). Kadravimas ir kameros kampas (lygus akims, iš viršaus, iš apačios, POV) keičia emociją – nurodyk prompte, jei nori kontroliuoti išvaizdą. DI gali generuoti vaizdo įrašą iš teksto arba kadrų aprašymo.
+**Trumpai:** Trumpas vaizdo įrašas reikalauja aiškaus scenarijaus: kas vyksta, kiek sekundžių, tonas, kamera. Geriau **2–4 trumpi klipai (3–5 s)** nei vienas 20–30 s bandymas – kokybė ir kontrolė aukštesnė.
 
-**Image → video grandinė (MUST, be naujos skaidrės):** 2026 praktikoje trumpą video dažnai saugiau pradėti nuo vieno gero kadro. Pirma sugeneruok hero vaizdą / keyframe, tada naudok jį kaip pradžios kadrą image-to-video įrankyje (pvz. Runway, Kling, Veo ar panašiai), galiausiai pridėk paprastą foninę muziką arba garsą, jei reikia. Tai ne „lygiagretus ciklas“ – tai viena aiški seka, kuri mažina atsitiktinumą ir padeda išlaikyti tą patį stilių.
+**Storyboard prieš mokėjimą (MUST):** Pirma užrakink still/keyframe (žr. 13.12). Video modelis geriausiai atlieka **judesį ir laiką**, ne vizualinį turinį iš nulio.
 
-**Daryk dabar:** Parašyk 2–3 sakinius: kas matoma vaizdo įraše, nuo pradžios iki pabaigos. Nukopijuok žemiau esantį šabloną į vaizdo generavimo įrankį.
+**Image → video grandinė (MUST):** Hero / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → montažas. **Audio-first hint:** jei bus VO, pirmiausia užfiksuok VO trukmę – tada kirpk klipus pagal audio, ne atvirkščiai.
+
+**Daryk dabar:** Parašyk 2–3 sakinius scenarijui **vienam** 3–5 s kadrui. Nukopijuok šabloną.
 
 **Kopijuojamas promptas (CopyButton):**
 
 ```
-Trumpas vaizdo įrašas, 5–10 sekundžių.
-Scenarijus: [APRAŠYK – pvz. „Atidaroma duris, įėjimas į šviesų biurą. Kamera juda lėtai į priekį. Galas: ekrane logotipas.“].
-Tonas: [profesionalus / dinamiškas / ramus]. Be garso arba paprasta foninė muzika.
+Klipas 3–5 s (ne ilgesnis).
+Scenarijus: [kas vyksta šiame kadre].
+Kamera: [lėtai į priekį / šonu / stabiliai / crane up].
+Tonas: [profesionalus / dinamiškas / ramus].
+Startas: image-to-video iš hero keyframe. Same style, same colors.
 ```
 
 **Kopijuojama grandinė – vaizdas → video (CopyButton):**
 
 ```
-1) Sukurk hero vaizdą: [OBJEKTAS], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos 16:9, be teksto vaizde.
-2) Animacija iš šio vaizdo: 5–8 sekundės. Kamera juda [lėtai į priekį / šonu / stabiliai], objektas [ką daro], nuotaika [rami / dinamiška / profesionali]. Išlaikyk tą patį stilių ir spalvas.
+1) Sukurk hero vaizdą: [OBJEKTAS], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos 16:9 arba 9:16, be teksto vaizde.
+2) Animacija iš šio vaizdo: 3–5 sekundės. Kamera juda […], objektas [ką daro]. Same character/product, same style, same color palette.
+3) (Jei reikia ilgesnio) Pakartok 2) su antru keyframe – vėliau sumontuok.
 ```
 
-**Patikra:** Ar įrankis palaiko vaizdo generavimą? Ar trukmė ir kadrai atitinka aprašymą? Jei ne – sutrumpink scenarijų arba pasirink kitą įrankį.
+**Patikra image → video:** Ar pradžia panaši į hero? Ar produktas/personažas neišsikraipė? Jei ne – supaprastink sceną arba stiprink reference.
 
-**Patikra image → video grandinei:** Ar video pradžia atpažįstamai panaši į hero vaizdą? Ar spalvos, personažas / objektas ir aplinka neišsikraipė? Jei ne – grįžk į hero vaizdą, supaprastink sceną arba nurodyk „same character, same style, same color palette“.
+**Kur pritaikyti:** Reklaminiai klipai, Reels/TikTok, pristatymų intros.
 
-**Kur pritaikyti:** Trumpi reklaminiai vaizdo įrašai, socialinio turinio vaizdeliai, pristatymų intros.
+**Consistency keliuose kadruose:** Tas pats reference + „same product / same style“ (žr. 13.32). Venk realių veidų/balsų be sutikimo (13.101).
 
-**Optional – ta pati išvaizda keliuose kadruose:** Jei reikia kelių klipų su tuo pačiu žmogumi, produktu ar stiliumi, naudok tą patį reference vaizdą ir trumpą taisyklę: „same character / same product / same style“. Venk realių žmonių veidų ar balsų be sutikimo – tai vertinama 13.10 „Verslas ir rizikos“ skaidrėje.
+### 4.2 Įrankiai, formatas ir CPI (13.5)
 
-### 4.2 Įrankiai ir formatas (13.5)
+**UI (modules.json):** Accent „Kodėl verta ir ką nurodyti“; collapsible „2026 video įrankių matrica“; collapsible „Visi video įrankiai“.
 
-**UI (modules.json):** Vienas accent blokas „Kodėl verta ir ką nurodyti“ (sujungia motyvaciją ir formatą/teises). Ilgas įrankių sąrašas – **collapsible** „Visi video įrankiai“ (numatytai uždaryta).
+**Trumpai:** Skirtingi modeliai priima skirtingą inputų skaičių (1–2 vs daug refs). Matuok **CPI** (cost per usable clip) = visos generavimo + retry kainos / tinkamų klipų skaičius – ne tik €/sekundę.
 
-**Trumpai:** Skirtingi įrankiai duoda skirtingą kokybę ir trukmę. Nurodyk formatą (horizontalus / vertikalus) ir maksimalią trukmę pagal įrankio galimybes.
+**2026 tool matrix (MUST lentelė):**
 
-**Daryk dabar:** Pasirink vieną įrankį (žr. sąrašą žemiau), atidaryk ir sugeneruok vieną trumpą vaizdo įrašą pagal savo scenarijų.
+| Use case                          | Įrankis             | Kodėl                                              |
+| --------------------------------- | ------------------- | -------------------------------------------------- |
+| Directed motion + daug refs       | Seedance 2.0        | Daug image/video/audio inputų vienoje generacijoje |
+| Balance kokybė/kaina              | Kling 3.0           | Stiprus I2V mokymuisi ir reklamoms                 |
+| Aukščiausia kokybė + native audio | Veo 3.1             | Kinematografija, sinchronizuotas garsas            |
+| OpenAI ekosistema                 | Sora 2              | Realistiška fizika, 1–2 image refs                 |
+| Avatarai / mokymai                | Synthesia           | Kalbantys avatarai                                 |
+| Social šablonai                   | InVideo / CapCut AI | Greitas montažas                                   |
+
+**Daryk dabar:** Pasirink vieną įrankį, sugeneruok **vieną** 3–5 s I2V klipą.
 
 **Kopijuojamas promptas (CopyButton):**
 
 ```
-Vaizdo įrašas: [TRUMPAS SCENARIJUS – 1–2 sakiniai].
-Formatas: [horizontalus 16:9 / vertikalus 9:16]. Trukmė: 5–10 sek. Stilius: [nurodyk].
+Vaizdo klipas iš keyframe: [1–2 sakiniai veiksmo].
+Formatas: [16:9 / 9:16]. Trukmė: 3–5 sek. Stilius: [nurodyk].
+CPI pastaba: kiek retry prireikė iki usable? [N]
 ```
 
-**Patikra:** Ar failas atsisiuntėmas? Ar galima naudoti komerciniu tikslu (patikrink naudojimo teises).
+**Patikra:** Ar failas atsisiuntėmas? Ar komercinės teisės OK? Koks CPI (retry įskaičiuoti)?
 
-**Įrankiai (tools.json, category: „Video generavimas“, moduleId: 13):** Sora (OpenAI) – aukšta kokybė, realistinė judesio fizika; Runway, Pika, Luma Dream Machine, Synthesia (avatarai), InVideo (šablonai, socialiniam turiniui). **Google Veo 3:** 1080p, kinematografinė kokybė, tikroviškas apšvietimas, dinamiškas judesys – tinka prototipams, trumpiems reklaminiams klipams, architektūrinei vizualizacijai; reikia tikslių užklausų, sudėtinga >1 min scenoms.
+**Įrankiai (tools.json):** Seedance, Kling, Veo 3.1, Sora 2, Runway, Pika, Luma, Synthesia, InVideo.
 
-**Video prompt .json šablonas (optional, pipeline/agentams):** Laukai: id, use_case, tags, mode, duration_s, genre, mood, main_subject, scene, visual_style, camera_movement, lighting, composition. Papildomai galima: aspect_ratio, fps, seed, negative, audio, text_overlay, brand_guidelines, safety_flags, deliverables. Struktūruota – lengva versijuoti ir naudoti automatiškai.
+**Video prompt .json šablonas (optional):** id, use_case, duration_s (3–5), main_subject, scene, visual_style, camera_movement, lighting, aspect_ratio, reference_ids, negative, audio, brand_guidelines, safety_flags, cpi_note.
 
 ### 4.2a Savitikra: video promptas ir formatas (13.51)
 
-**Tikslas:** Trumpa patikra po 13.5, prieš muzikos skyrių. Dalyvis pasitikrina, ar video promptas turi scenarijų, formatą ir naudojimo teisių patikrą.
+**Tikslas:** Patikra po 13.5, prieš post-prod / garsą.
 
 **Klausimai (warm-up-quiz):**
 
-1. **Kas būtina trumpam vaizdo promptui?**  
-   Teisinga: scenarijus, trukmė, formatas ir tonas.
-2. **Kada rinktis 9:16 formatą?**  
-   Teisinga: kai kuriamas vertikalus Stories, Reels ar TikTok tipo klipas.
-3. **Ką patikrinti prieš publikuojant sugeneruotą video viešai?**  
-   Teisinga: naudojimo teises, veidų / balsų sutikimą ir ar rezultatas atitinka prekės ženklą.
+1. **Kas būtina trumpam vaizdo promptui?** → scenarijus, trukmė (3–5 s), formatas, tonas.
+2. **Kada rinktis 9:16?** → Stories / Reels / TikTok.
+3. **Ką patikrinti prieš viešą publikaciją?** → teisės, veidų/balsų sutikimas, brand.
 
-**Remediation:** Jei klysti – grįžk į 13.4–13.5 ir sutrumpink promptą iki vienos aiškios scenos su formatu bei trukme.
+**Remediation:** Grįžk į 13.4–13.5; sutrumpink iki vienos aiškios 3–5 s scenos.
+
+### 4.3 Post-production (13.52) – MUST
+
+**Trumpai:** DI video = **žalia medžiaga (raw)**, ne galutinis deliverable. Profesionali praktika: cut 3–5 s klipus, color grade, tekstas/overlay, audio mix, export.
+
+**Minimalus CapCut / Premiere checklist:**
+
+1. Surink 2–4 klipus chronologija pagal scenarijų / VO.
+2. Nukirpk silpnus kadrus; palik hook pirmose 1–2 s.
+3. Spalvos / ekspozicija vienoda.
+4. Uždėk VO arba bed; SFX perėjimams.
+5. Loudness orientyras: ~−14 LUFS (muzika/apps) arba ~−16 (streaming VO mix) – klausyk ausimis, ne tik skaičiais.
+6. Export pagal platformą (9:16 / 16:9).
+
+**Daryk dabar:** Parašyk 4 eilučių montažo planą savo mini klipui.
+
+**Kopijuojamas šablonas:**
+
+```
+Montažo planas (15–30 s):
+0–3 s: [hook klipas]
+3–8 s: [produktas / nauda]
+8–15 s: [įrodymas / detalė]
+Pabaiga: [CTA kadras + tekstas]
+Garsas: [VO / bed] | teisės: [licensed]
+```
+
+**Patikra:** Ar be DI „magic“ klipas vis dar skaitomas kaip istorija? Ar garsas neslopina VO?
 
 ---
 
-## 5. Blokas 3 – Muzikos ir garsų generavimas
+## 5. Blokas 3 – Garsas (audio-first)
 
-**Konteksas – technologinė evoliucija:** DI muzika – istorinio progreso etapas. Trumpa lentelė: 1877 fonografas (muzika įrašoma) → XX a. analoginė/skaitmeninė (profesionalizacija) → 1990–2000 CD/MP3 (demokratizacija) → DAW namų studijos (decentralizacija) → **DI generatyvinė muzika (kūrybos automatizacija)**. **Tezė:** DI = naujas muzikos demokratizacijos etapas.
+**Pagrindinė 2026 žinutė:** **Audio-first** – scenarijus ir VO (arba bent bed trukmė) **prieš** brangų video. Jei audio „plaukioja“, video atrodys atsijungęs.
 
-**Pagrindinė žinutė:** „Muziką kurti gali visi.“ Argumentai: (1) technologija sumažina įgūdžių barjerą, (2) gamyba greita ir pigi, (3) platinimas globalus (YouTube, Spotify, DistroKid). **Strateginė išvada:** DI muzikos įrankiai – produktyvumo multiplikatorius ir content velocity įrankis; bet tik tie, kurie supras distribution + branding + storytelling, laimės – vien generavimas nėra konkurencinis pranašumas.
+**Trys audio tipai (triada):**
 
-**Ekosistema (pilnas AI kūrybos pipeline):** Tekstui – ChatGPT, Copilot, Rytr; vizualams – DALL·E, Ideogram, Leonardo; muzikai – Suno, Udio, Soundraw, Boomy, Beatoven; platinimui – YouTube, Spotify, DistroKid.
+| Tipas              | Paskirtis                       | Tipiniai įrankiai 2026                                                          |
+| ------------------ | ------------------------------- | ------------------------------------------------------------------------------- |
+| **VO** (voiceover) | Naracija, pacing, emocija       | ElevenLabs                                                                      |
+| **SFX**            | Perėjimai, UI garsai, atmosfera | ElevenLabs SFX, Stable Audio                                                    |
+| **Music bed**      | Foninė muzika                   | ElevenMusic, Soundraw, Beatoven (komercinė sauga); Suno/Udio – demo / ne-client |
 
-### 5.1 Muzikos aprašymas (13.6)
+**Komercinė taisyklė:** Klientui / reklamai / monetizacijai → **licensed stack** (ElevenMusic, Soundraw, Beatoven). Asmeniniai testai / viral demo → Suno/Udio OK, bet ne „tikriausiai niekas nepagaus“.
 
-**Trumpai (modules.json – paprasta kalba):** Nuotaika, stilius, tempas, instrumentai; daugelis įrankių leidžia greitai gauti juodraštį – vis tiek patikrink naudojimo teises prieš viešą naudojimą. **Angliškas MASTER šablonas:** paliktas kaip copyable EN tekstas; viršuje – LT paaiškinimas, kodėl anglų kalba. Collapsible antraštė: „Papildomi pavyzdžiai įvairiems įrankiams (ilgas sąrašas)“.
+### 5.1 Muzikos ir VO aprašymas (13.6)
 
-**Trumpai (detaliau SOT):** Muzikos generavimui reikia aprašyti: nuotaiką (linksma, įtempta, rami), stilių (pop, elektroninė, akustinė), tempo (lėtas, vidutinis, greitas) ir, jei reikia, instrumentus ar vokalą. **Prompt struktūra:** Mood + Genre + Tempo + Instrumentation + Vocal type + Structure + Platform use case.
+**Trumpai (modules.json):** Audio-first: pirma VO arba bed trukmė, tada video kirpimai. Muzikai – nuotaika, stilius, tempas, instrumentai; visada patikrink licenciją.
 
-**TOP 5 DI muzikos generatoriai – pozicionavimas:**
+**Prompt struktūra (muzika):** Mood + Genre + Tempo + Instrumentation + Vocal (none for bed) + Structure + Platform + **license intent (commercial / demo)**.
 
-| Įrankis         | Stiprybės                                                           | Kaina (apytiksliai)         | Kam tinka                                    |
-| --------------- | ------------------------------------------------------------------- | --------------------------- | -------------------------------------------- |
-| **Suno**        | Tekstas → pilna daina, integracija su Copilot, greitis (~5 min)     | Free su limitais; ~24 €/mėn | YouTube testai, viral hook, demo             |
-| **Boomy**       | Paprasta UI, daug šablonų, greitas publikavimas                     | 25 dainos free; 10–30 €/mėn | Naujokams, lo-fi, social content             |
-| **Soundraw**    | Nuotaika + trukmė, Pro – instrumentų mixas, autorių teisių saugumas | ~17–30 €/mėn                | Podcast intro, reklama, brand content        |
-| **Udio**        | Įkelti savo audio, redaguoti tekstus, miksuoti – gili kontrolė      | 0–30 €/mėn                  | Rimtesni projektai, albumo prototipas, remix |
-| **Beatoven.ai** | Royalty-free, emocijų kontrolė, optimizacija video fonui            | ~6–20 € (minutės pagrindu)  | YouTube monetizacija, vlog, reklamos         |
+**TOP įrankiai – pozicionavimas:**
 
-**Industrinės implikacijos:** Demokratizacija (barjeras krenta); produkcijos pagreitis (kūrinys per minučių); industrijos pokyčiai (kompozitoriai – viena iš galimybių). **Rizikos (neaptartos plačiai):** autorių teisių konfliktai (modelių treniravimo duomenys), platformų politikos/banai, muzikos saturacija, AI turinio nuvertėjimas, YouTube monetizacijos pokyčiai – prieš skalavimą verta įvertinti.
+| Įrankis                 | Stiprybės                                        | Kam tinka                     |
+| ----------------------- | ------------------------------------------------ | ----------------------------- |
+| **ElevenLabs**          | VO, cloning (su sutikimu), SFX                   | Narration, ads VO             |
+| **ElevenMusic**         | Licensed training data, vieninga audio platforma | Client / YouTube monetization |
+| **Soundraw / Beatoven** | Royalty-friendly beds, video fonas               | Reklama, podcast intro        |
+| **Suno / Udio**         | Pilna daina, greitas demo                        | Asmeniniai testai, ne-client  |
 
-**Daryk dabar:** Nukopijuok žemiau esantį promptą į muzikos generavimo įrankį. Pakeisk [APRAŠYMAS] pagal savo projektą.
+**Daryk dabar:** Jei turi VO – pirmiausia sugeneruok / įrašyk VO. Jei tik bed – nukopijuok muzikos promptą.
 
-**Kopijuojamas promptas (CopyButton):**
+**Kopijuojamas promptas – bed (CopyButton):**
 
 ```
-Sukurk muzikos fragmentą, 30–60 sekundžių.
-Nuotaika: [ramus / energingas / nostalgijos]. Stilius: [akustinė gitara / elektroninė / pianinas].
-Tempo: [lėtas / vidutinis]. Be vokalo. Tinka foninei muzikai pristatymams ar vaizdo įrašams.
+Sukurk foninės muzikos fragmentą, 30–60 sekundžių.
+Nuotaika: [ramus / energingas]. Stilius: [akustinė / elektroninė / pianinas].
+Tempo: [lėtas / vidutinis]. Be vokalo. Naudojimas: [reklama / prezentacija] – reikia komercinės licencijos.
 ```
 
-**MASTER muzikos promptas (universalus) – CopyButton:**
+**Kopijuojamas promptas – VO (CopyButton):**
+
+```
+Voiceover, [LT/EN], tonas [profesionalus / draugiškas], tempo [ramus].
+Tekstas: [įklijuok 2–4 sakinius scenarijaus].
+Be foninės muzikos faile – tik balsas. Vėliau sumaišysiu su bed.
+```
+
+**MASTER muzikos promptas (EN, CopyButton):**
 
 ```
 Create a [genre] track,
 mood: [emotion],
 tempo: [bpm or speed],
 instruments: [list],
-vocal: [male/female/none],
-structure: intro – verse – chorus – drop,
-target platform: [YouTube/TikTok/Spotify],
-goal: [viral / background / branding],
+vocal: none,
+structure: intro – bed – soft outro,
+target platform: [YouTube/TikTok/ads],
+goal: background / branding,
+license intent: commercial,
 production quality: professional.
 ```
 
-**Patikra:** Ar gautas failas atitinka nuotaiką? Jei per greitas ar per lėtas – nurodyk tempo (pvz. BPM – taktų per minutę) arba „lėtesnis / greitesnis“.
+**Patikra:** Ar bed neslopina VO? Ar licencija leidžia reklamą?
 
-**Kur pritaikyti:** Foninė muzika prezentacijoms, podcastams, vaizdo įrašams; garsų efektai (pvz. perėjimai, pranešimai).
+**Kur pritaikyti:** Reklamos VO, podcast intro, video bed, UI SFX.
 
-### 5.2 Garsai ir naudojimo teisės (13.7)
+### 5.2 Garsai, licencijos ir loudness (13.7)
 
-**Trumpai:** Kai kurie įrankiai leidžia naudoti sugeneruotą muziką ar garsus komerciniu tikslu; kiti – tik asmeniniam. Visada patikrink paslaugos taisykles ir licenciją.
+**Trumpai:** Atskirk SFX nuo muzikos. Komerciniam darbui – licensed įrankiai. Orientyras loudness: ~−14 LUFS (muzika) / ~−16 (VO mix) – galutinį sprendimą priimk klausydamas.
 
-**Daryk dabar:** Prieš naudodamas sugeneruotą muziką viešai ar projekte – atidaryk įrankio puslapį apie naudojimo teises ir įsitikink, kad gali naudoti.
+**Daryk dabar:** Prieš viešą naudojimą atidaryk ToS / license puslapį; užsirašyk „commercial OK?“ taip/ne.
 
-**Kopijuojamas promptas (CopyButton) – garsų efektai:**
+**Kopijuojamas promptas – SFX:**
 
 ```
-Sukurk trumpą garsą: [APRAŠYK – pvz. „švelnus perėjimo garsas, 1 sekunda“ / „pranešimo signalas, optimistiškas“].
-Formatas: MP3 arba WAV. Be muzikos – tik garsas.
+Sukurk trumpą garsą: [pvz. „švelnus perėjimo whoosh, 1 sekunda“].
+Formatas: WAV arba MP3. Be muzikos – tik SFX.
 ```
 
-**Patikra:** Ar failas atsisiuntėmas? Ar licencija leidžia naudoti jūsų projekte (reklama, YouTube, podcast)?
+**Patikra:** Atsisiuntimas OK? Licencija OK reklamai / YouTube?
 
-**Įrankiai (tools.json, category: „Muzikos generavimas“, moduleId: 13):** Suno, Boomy, Soundraw, Udio, Beatoven.ai, Mubert, AIVA, ElevenLabs (garsų efektai).
+**Įrankiai (tools.json):** ElevenLabs (VO/SFX), ElevenMusic, Soundraw, Beatoven, Suno, Udio, Boomy, Mubert, AIVA.
 
 ### 5.3 Ready prompts – muzika, tekstai, viršeliai, video (optional)
 
@@ -423,7 +540,7 @@ Formatas: MP3 arba WAV. Be muzikos – tik garsas.
 
 **Muzikos video (bendrai):** _Cinematic music video, dark urban setting, slow motion, neon reflections, moody atmosphere, professional lighting, 4K._
 
-**Ko šis modulis dar neturi (tolimesnė plėtra):** Neigiami promptai („be X“), tikslūs parametrai (apšvietimo reikšmės, aspect ratio skaičiai), iteracijos metodika (kaip gerinti per kelis ciklus), QA modelis sugeneruotam turiniui – dalis įtraukta į 13.10 ir 13.11 žemiau.
+**Tolimesnė plėtra (P2, ne šiame atnaujinime):** Hybrid AI + real B-roll kaip atskira skaidrė; automation Zapier; ComfyUI/LoRA advanced.
 
 ---
 
@@ -433,7 +550,7 @@ Formatas: MP3 arba WAV. Be muzikos – tik garsas.
 
 **Kampanijos vaizdams būtina:** KPI matavimas, A/B testavimas, teisės ir rizikos. Be šito nėra verslo mokymo.
 
-**Struktūra UI (modules.json):** trumpas accent „Trumpai“; collapsible „Rodikliai ir A/B testas (plačiau)“; matomas A/B CopyButton; collapsible „Teisės, rizikos ir verslas“; collapsible „Prieš publikuojant (QA ir versijos)“; matomas „Top 3 pitfalls“.
+**Struktūra UI (modules.json):** trumpas accent „Trumpai“; **matoma** brand sekcija „Teisės ir rizikos (privaloma)“ (4 punktai); collapsible „Rodikliai ir A/B testas (plačiau)“; matomas A/B CopyButton; collapsible „Teisės, rizikos ir verslas (plačiau)“; collapsible „Prieš publikuojant (QA ir versijos)“; matomas „Top 3 pitfalls“.
 
 ### 5a.1 KPI ir A/B testavimo sistema (MUST)
 
@@ -453,7 +570,15 @@ Metrika: CTR (arba CVR, scroll stop). Trukmė: [pvz. 7 dienos]. Auditorija: [kam
 
 **Marketinge būtina:** Autorinių teisių rizika (sugeneruotas turinys – kieno autorius?; trečiųjų šalių stilius/veidus); deepfake rizika (veidas, balsas – atpažimumas ir sutikimas); prekės ženklų naudojimas (logotipai, prekės pavadinimai – nepažeisti); GDPR vaizduose (žmonių atpažimumas, sutikimas publikavimui). Verslo pasaulyje kritiška – prieš publikavimą patikrinti paslaugos taisykles ir, jei reikia, teisininką.
 
-**Daryk dabar:** Prieš naudodamas sugeneruotą vaizdą ar video reklamoje – atidaryk įrankio naudojimo ir autorinių teisių puslapį; jei vaizde yra žmonių veidai – įvertink deepfake ir GDPR rizikas.
+**Provenance / disclosure (MUST, 2026):** EU AI Act Art. 50 reikalauja, kad sintetinį turinį būtų galima atpažinti. Praktinis stack:
+
+1. **C2PA Content Credentials** – pasirašytas metadata manifestas (kas sukūrė, koks modelis, ar DI).
+2. **Neišnykstantis watermark** (pvz. SynthID ar ekvivalentas) – kai social platformos nuima metadata.
+3. **Žmogui matoma žyma** – kur reikalaujama (reklama, politinis turinys, platformos politika).
+
+**Soft Binding:** watermark + remote manifest lookup, kai C2PA failas „nuplėštas“ re-encode metu. Mokiniui užtenka checklisto: ar įrankis žymi output? ar brief’e yra disclosure eilutė?
+
+**Daryk dabar:** Prieš reklamą – ToS + veidai/balsai + **disclosure** (C2PA/žyma). Užsirašyk vieną sakinį: „Šis vizualas / video sukurtas su DI; įrankis: [X].“
 
 ### 5a.3 Verslo argumentai ir use-cases
 
@@ -463,7 +588,7 @@ Metrika: CTR (arba CVR, scroll stop). Trukmė: [pvz. 7 dienos]. Auditorija: [kam
 
 ### 5a.4 QA checklist (prieš publikavimą)
 
-Patikrink: (1) Tekstas vaize be klaidų ir keistų šriftų. (2) Brand spalvos ir tonas atitinka. (3) Teisingas formatas (proporcijos, platforma). (4) Aiški žinutė – atitinka kampanijos tikslą. (5) Nėra rizikingo ar netinkamo turinio (brand safety). (6) Naudojimo teisės ir teisės riskai įvertinti (§5a.2).
+Patikrink: (1) Tekstas vaize be klaidų. (2) Brand spalvos ir tonas. (3) Formatas. (4) Žinutė / kampanijos tikslas. (5) Brand safety. (6) Teisės (§5a.2). (7) **Disclosure / C2PA / watermark** jei reikalaujama. (8) Reference lock išlaikytas (produktas/personažas).
 
 **Vertinimo rubrika (MUST):** Prieš publikuodamas įvertink rezultatą pagal 3 kriterijus: (1) brand atitikimas – ar spalvos, tonas ir stilius dera su prekės ženklu; (2) žinutės aiškumas – ar per 2–3 sekundes suprantama, ką nori pasakyti; (3) platformos tinkamumas – ar formatas, teksto kiekis ir pirmas kadras tinka pasirinktai platformai. Tai paprastas „generatorius + vertintojas“ principas: sugeneruoji, tada paprašai DI įvertinti pagal taisykles.
 
@@ -492,17 +617,17 @@ Failų naming ir versijavimas: V1, V2, V3 + viena eilutė „kas pasikeitė prom
 
 **Ryšys su 13.35:** Pilname „Trumpai“ tekste (modules.json) – nuoroda į neprivalomą skaidrę **13.35** kaip į techninį 5 žingsnių vaizdų pipeline; čia – **verslo** ciklas nuo brief iki publikacijos.
 
-**Dabar to nėra – turi būti.** Pilnas ciklas:
+Pilnas verslo ciklas (techninį medijos pipeline žr. **13.12**):
 
 1. **Marketing brief** – kam, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija.
-2. **Prompt generavimas** – pagal brief ir brand consistency (spalvos, tonas, stilius).
-3. **Variantai** – 3–5 vaizdų ar video variantų testui.
-4. **Iteracija** – gerinimas pagal grįžtamąjį ryšį („šviesesnis“, „mažiau teksto“, „veidas į kamerą“).
-5. **Adaptacija platformoms** – skirtingi kadrai ir formatai (LinkedIn, Instagram, TikTok, Meta Ads, Google Display – skiriasi proporcijos, teksto kiekis, fokusas).
+2. **Prompt generavimas** – pagal brief, brand consistency ir reference lock (13.32).
+3. **Variantai** – 3–5 vaizdų ar video variantų testui (trumpi I2V klipai).
+4. **Iteracija** – gerinimas pagal grįžtamąjį ryšį; matuok CPI video.
+5. **Adaptacija platformoms** – LinkedIn, Instagram, TikTok, Meta Ads, Google Display.
 6. **Testavimas** – A/B, hipotezė, KPI (CTR, CVR, scroll stop).
-7. **Optimizacija** – remiantis rezultatais, pakartoti ciklą.
+7. **Optimizacija** – remiantis rezultatais, pakartoti ciklą + disclosure.
 
-Jei dirbi komandoje, vaizdas, scenarijus ir muzika gali būti ruošiami vienu metu, bet tik tada, kai visi remiasi tuo pačiu brief ir brand taisyklėmis.
+Jei dirbi komandoje, vaizdas, scenarijus ir garsas gali būti ruošiami lygiagrečiai **tik** kai visi remiasi tuo pačiu brief, brand ir (jei reikia) audio-first VO trukme.
 
 **Kopijuojamas šablonas – brief į promptą:**
 
@@ -528,9 +653,13 @@ Brand: [1–2 sakiniai – spalvos, tipografija, nuotaika]. Variantų skaičius:
 
 ## 5c. Modulio 14 testas (LT, modules.json)
 
-- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“ (galininkas mot. g. dgs.); `firstActionCTA` – 8 klausimai apie vaizdus, video, muziką, **rizikas, workflow ir image → video grandinę**.
-- **Klausimai (141):** Vietoj pasikartojančio „kur pritaikyti“ – **m14-q5** apie veidą/balsą ir teises (`relatedSlideId`: **13.101**); **m14-q6** – logiškas žingsnis po brief (`relatedSlideId`: **13.11**); **m14-q7** – conversion vizualas Instagram 9:16 (`relatedSlideId`: **13.1** / **13.3**); **m14-q8** – kada rinktis image → video grandinę (`relatedSlideId`: **13.4**).
-- **Rezultatai (142):** `useCaseBlock` – **„Kitas žingsnis: Modulis 15“** (ne trečias „Kur pritaikyti?“ kartojimas); `thresholdExplanation` suderinta su „tu“ tonu.
+- **Intro (140):** `thresholdExplanation` – „rekomenduojame **peržiūrėti** … Modulio 13 **skaidres**“; `firstActionCTA` – **12 klausimų** apie vaizdus, video, garsą, pipeline, rizikas, workflow, image→video, audio-first, licencijas, C2PA.
+- **Klausimai (141):** Esami m14-q1…q8 + nauji:
+  - **m14-q9** – kodėl pipeline / storyboard prieš brangų video (`relatedSlideId`: **13.12**);
+  - **m14-q10** – kas yra audio-first (`relatedSlideId`: **13.6**);
+  - **m14-q11** – kada ElevenMusic/Soundraw vs Suno klientui (`relatedSlideId`: **13.7**);
+  - **m14-q12** – C2PA / disclosure prieš publikaciją (`relatedSlideId`: **13.101**).
+- **Rezultatai (142):** `useCaseBlock` – **„Kitas žingsnis: Modulis 15“**.
 
 ---
 
@@ -543,6 +672,11 @@ Viena skaidrė arba collapsible „Nori suprasti detaliau?“ – 8–10 termin�
 | **Vaizdo promptas**              | Tekstinis aprašymas, pagal kurį DI sukuria vaizdą (subjektas, stilius, proporcijos).                                                                                       |
 | **Aspect ratio (proporcijos)**   | Vaizdo ar vaizdo įrašo santykis (pvz. 16:9 platus, 1:1 kvadratas, 9:16 vertikalus).                                                                                        |
 | **Scenarijus vaizdui**           | Trumpas tekstas, aprašantis, kas vyksta vaizde arba vaizdo įraše (kadrai, veiksmas).                                                                                       |
+| **Audio-first**                  | Pirma užbaigi VO (arba bed trukmę), tada kirpi / generuoji video pagal audio pacing.                                                                                       |
+| **Reference lock**               | 3–5 reference vaizdai + taisyklė „same product/character/style“, kad tapatybė neplaukiotų.                                                                                 |
+| **CPI**                          | Cost per usable clip – kaina už tinkamą klipą (įskaitant retry), ne tik € už sekundę.                                                                                      |
+| **C2PA**                         | Content Credentials – pasirašytas provenance metadata, kas ir kaip sukūrė turinį.                                                                                          |
+| **Soft Binding / SynthID**       | Neišnykstantis watermark, kai social nuima C2PA metadata; leidžia atkurti provenance.                                                                                      |
 | **BPM**                          | Taktų per minutę – muzikos tempo matas (lėtas ~60–80, greitas ~120–140).                                                                                                   |
 | **Nuotaika (mood)**              | Jausmas, kurį skleidžia vaizdas ar muzika (ramus, energingas, įtemptas).                                                                                                   |
 | **Stilius**                      | Vizualus ar garso išvaizdos tipas (fotorealistiškas, akrilas, pop, akustinė).                                                                                              |
@@ -595,11 +729,12 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ### 9.1 practice-intro
 
-- **whyBenefit:** Po projekto turėsi bent vieną paruoštą vizualų ar garso artefaktą ir promptų šablonus tolesniam darbui.
+- **whyBenefit:** Po projekto turėsi hero vaizdą su naudotu promptu ir brief; jei nori – mini kampanijos paketą (video + garsas + montažas).
 - **duration:** ~20 min greitas startas / ~60–90 min pilnas kelias.
-- **firstActionCTA:** Pradėk nuo greito starto: sukurk vieną hero vaizdą su naudotu promptu. Jei nori pilno kelio – tęsk į video iš to vaizdo ir foninę muziką.
-- **minScenariosToComplete:** 1.
-- **primaryPathIntro:** Greitas startas – vienas hero vaizdas (150.5). Pilnas kelias – hero vaizdas (151) → trumpas video iš to vaizdo (152) → foninė muzika arba garsas (153). Pilnas kelias neprivalomas, bet paruošia mini kampanijos paketą.
+- **firstActionCTA:** Pradėk nuo greito starto: sukurk vieną hero vaizdą su naudotu promptu. Jei nori pilno kelio – tęsk į video, garsą ir montažą.
+- **minScenariosToComplete:** 1 (privaloma skaidrė **150.5**).
+- **recommendedSlideIds:** `[150.5, 150.25]` (core); 151–154 – optional full.
+- **primaryPathIntro:** Privalomas minimumas – greitas startas (150.5). Po jo greitame kelyje galima eiti į santrauką (158). Pilnas kelias (optional) – 151 → 152 → 153 → **154**.
 
 ### 9.1a Greitas startas: vienas hero vaizdas (150.5)
 
@@ -617,19 +752,26 @@ Brand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vai
 
 ### 9.2 Scenarijai (practice-scenario)
 
-**MUST – bent vienas artefaktas:**
+**MUST – privalomas minimumas (150.5):**
 
-| #     | Scenarijus            | Aprašymas                                                                                                    | Artefaktas                                          |
-| ----- | --------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| **1** | Vaizdas               | Sukurk vieną vaizdą savo temai (rinkodara, prezentacija, socialinis turinys). Nurodyk stilių ir proporcijas. | Sugeneruotas vaizdas + naudotas promptas (tekstas). |
-| **2** | Trumpas vaizdo įrašas | Parašyk 2–3 sakinius scenarijų ir sugeneruok 5–10 sek. vaizdo įrašą.                                         | Vaizdo įrašas arba nuoroda + promptas.              |
-| **3** | Muzikos fragmentas    | Aprašyk nuotaiką ir stilių, sugeneruok 30–60 sek. muzikos arba garsą.                                        | Muzikos / garsų failas arba nuoroda + promptas.     |
+| #     | Scenarijus              | Aprašymas                                                                  | Artefaktas                  |
+| ----- | ----------------------- | -------------------------------------------------------------------------- | --------------------------- |
+| **0** | Greitas startas (150.5) | Hero vaizdas + brief (tikslas, auditorija, platforma) + naudotas promptas. | Vaizdas + promptas + brief. |
 
-**Delivery-first:** Dalyvis turi turėti bent **vieną** iš trijų artefaktų (vaizdas arba video arba muzika) ir **naudotą promptą** (kopijuojamas į praktinę užduotį arba įrašytas atskirai).
+**Optional – pilnas mini kampanijos kelias (151–154):**
 
-**Pilnas mini kampanijos kelias (optional):** Jei turi daugiau laiko, atlik seka: (1) sukurk hero vaizdą / keyframe, (2) naudok jį trumpam 5–10 sek. video, (3) pridėk 30–60 sek. foninę muziką arba garsą, (4) užrašyk V1/V2 skirtumą ir 1 sakinį apie naudojimo teises. Tai pilnas kelias, bet ne privalomas minimumas.
+| #     | Scenarijus                  | Aprašymas                                                  | Artefaktas                              |
+| ----- | --------------------------- | ---------------------------------------------------------- | --------------------------------------- |
+| **1** | Vaizdas (151)               | Keyframe pilnam keliui (arba reuse 150.5) + optional refs. | Vaizdas + promptas (+ refs).            |
+| **2** | Trumpas vaizdo įrašas (152) | 3–5 s I2V iš hero keyframe (arba 2 klipai).                | Vaizdo įrašas / nuoroda + promptas.     |
+| **3** | Garsas (153)                | VO arba 30–60 s bed + teisės.                              | Failas / nuoroda + promptas.            |
+| **4** | Montažas (154)              | 15–30 s iš 2–4 klipų + VO/bed + CPI pastaba.               | Galutinis export / nuoroda + checklist. |
 
-**Delivery checklist:** Prieš laikydamas projektą baigtu, turėk: brief (tikslas, auditorija, platforma), bent vieną promptą, rezultatą arba nuorodą, jei darei pilną kelią – V1/V2 pokytį, ir vieną sakinį apie naudojimo teises.
+**Delivery-first:** Dalyvis **privalo** turėti 150.5 artefaktą. Video, garsas ir montažas – optional full kelias.
+
+**Pilnas mini kampanijos kelias (optional):** (1) hero keyframe + refs, (2) 3–5 s I2V klipai, (3) VO/bed + teisės, (4) montažas 15–30 s, (5) disclosure.
+
+**Delivery checklist:** brief; promptas; rezultatas/nuoroda; jei full – V1/V2; teisės; **refs?**; **disclosure?**; **CPI pastaba?** (video).
 
 ### 9.3 practice-summary
 
@@ -654,14 +796,18 @@ Brand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vai
 
 ### MUST (be šito marketingo mokymas neveiks)
 
-| #     | Elementas                                                       | Vieta SOT / skaidrė                                                                                                                  |
-| ----- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **1** | **Kampanijos tikslų modelis** (Objective → Visual Strategy)     | §2 – 13.1 (arba atskira 13.2): Awareness / Engagement / Conversion; koks vaizdo tipas kuriems tikslams; kada emocija, kada aiškumas. |
-| **2** | **KPI ir A/B testavimo sistema**                                | §5a.1 (13.10): CTR, CVR, CPM, scroll stop rate, heatmap; kaip generuoti 3–5 variantus testui; kaip formuluoti hipotezę.              |
-| **3** | **Brand consistency framework**                                 | §3.2 (13.3): Spalvų sistema, tipografijos kontrolė, tonas, vizualinis identitetas – kitaip DI generuos chaotišką brandą.             |
-| **4** | **Legal / Risk**                                                | §5a.2 (13.10): Autorinių teisių rizika, deepfake rizika, prekės ženklai, GDPR vaizduose.                                             |
-| **5** | **Workflow: nuo brief iki publikacijos**                        | §5b (13.11): Marketing brief → Prompt generavimas → Variantai → Iteracija → Adaptacija platformoms → Testavimas → Optimizacija.      |
-| **+** | 3 blokai (vaizdai, video, muzika) + M15 artefaktas + M14 testas | Kaip anksčiau.                                                                                                                       |
+| #     | Elementas                                                       | Vieta SOT / skaidrė                                                                    |
+| ----- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **1** | **Kampanijos tikslų modelis** (Objective → Visual Strategy)     | §2 – 13.1: Awareness / Engagement / Conversion.                                        |
+| **2** | **KPI ir A/B testavimo sistema**                                | §5a.1 (13.101): CTR, CVR, CPM, scroll stop; 3–5 variantai; hipotezė.                   |
+| **3** | **Brand consistency framework**                                 | §3.2 (13.3): Spalvos, tipografija, tonas, vizualinis identitetas.                      |
+| **4** | **Legal / Risk + provenance**                                   | §5a.2 (13.101): Autorinės teisės, deepfake, GDPR, C2PA/SynthID/disclosure.             |
+| **5** | **Workflow: nuo brief iki publikacijos**                        | §5b (13.11): Brief → Prompt → Variantai → Iteracija → Platformos → A/B → Optimizacija. |
+| **6** | **Generatyvinės medijos pipeline**                              | §2.1 (13.12): Brief → stills → refs → I2V → garsas → edit → QA.                        |
+| **7** | **Character / product consistency**                             | §3.2b (13.32): 3–5 refs, same-product lock.                                            |
+| **8** | **Audio-first + triada**                                        | §5 (13.6–13.7): VO → bed/SFX; licensed vs demo.                                        |
+| **9** | **Post-production**                                             | §4.3 (13.52): AI = raw; cut/grade/mix.                                                 |
+| **+** | 3 blokai (vaizdai, video, garsas) + M15 artefaktas + M14 testas | + optional montažas 154.                                                               |
 
 ### SHOULD (stipriai pakelia lygį)
 

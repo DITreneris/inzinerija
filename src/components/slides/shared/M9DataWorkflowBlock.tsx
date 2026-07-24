@@ -66,6 +66,7 @@ export default function M9DataWorkflowBlock({
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.youAreHere}
           currentStep={currentStep}

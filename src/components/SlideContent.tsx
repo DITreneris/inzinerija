@@ -308,6 +308,9 @@ interface SlideContentProps {
   /** M7 footer variant B: visible path position in slide footer */
   visiblePosition?: number;
   visibleSlideCount?: number;
+  /** M4/M10/M13 action-intro + M15 practice-intro: Trumpas/Ilgas ↔ Fast track */
+  pathMode?: 'short' | 'full';
+  onPathModeChange?: (mode: 'short' | 'full') => void;
 }
 
 /** Context passed to each slide type renderer in the registry */
@@ -336,6 +339,11 @@ export interface SlideRenderContext {
   initialHubLevel1?: number | null;
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
   onJourneyFocusChoice?: (moduleId: number, choiceId: string) => void;
+  /** M4/M10/M13 action-intro + M15 practice-intro: Trumpas/Ilgas ↔ Fast track */
+  pathMode?: 'short' | 'full';
+  onPathModeChange?: (mode: 'short' | 'full') => void;
+  /** M4 path statusHint skaitiklis */
+  visibleSlideCount?: number;
   /** DS v0.2 E5 — modulio identitetas skaidrėms */
   moduleAccent: ModuleAccent;
   identityIcon?: LucideIcon;
@@ -365,6 +373,8 @@ export default function SlideContent({
   onJourneyFocusChoice,
   visiblePosition,
   visibleSlideCount,
+  pathMode,
+  onPathModeChange,
 }: SlideContentProps) {
   const { t } = useTranslation('module');
   const { t: tModulesPage } = useTranslation('modulesPage');
@@ -510,6 +520,9 @@ export default function SlideContent({
     initialHubLevel1,
     onNavigateToHubWithCharacter,
     onJourneyFocusChoice,
+    pathMode,
+    onPathModeChange,
+    visibleSlideCount,
     moduleAccent,
     identityIcon,
     levelLabel,
@@ -568,6 +581,9 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         moduleAccent={ctx.moduleAccent}
         identityIcon={ctx.identityIcon}
         levelLabel={ctx.levelLabel}
+        pathMode={ctx.pathMode}
+        onPathModeChange={ctx.onPathModeChange}
+        visibleSlideCount={ctx.visibleSlideCount}
       />
     );
   },
@@ -686,6 +702,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         content={content}
         isCompleted={ctx.isTaskCompleted}
         onMarkComplete={() => ctx.handleTaskComplete(ctx.slide.id)}
+        onGoToSummary={ctx.moduleId === 15 ? ctx.onGoToSummary : undefined}
       />
     );
   },
@@ -867,6 +884,9 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
       onNavigateToSlide={ctx.onNavigateToSlide}
       onNavigateToSlideById={ctx.onNavigateToSlideById}
       onNavigateToHubWithCharacter={ctx.onNavigateToHubWithCharacter}
+      pathMode={ctx.pathMode}
+      onPathModeChange={ctx.onPathModeChange}
+      visibleSlideCount={ctx.visibleSlideCount}
     />
   ),
   'practice-scenario-hub': (ctx) => {
@@ -947,5 +967,15 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   'hallucination-dashboard': (_ctx) => <HallucinationRatesDashboard />,
   'hallucination-pipeline': (_ctx) => <HallucinationPipelineSlide />,
   'ai-detectors': (_ctx) => <AiDetectorsSlide />,
-  'vaizdo-generatorius': (_ctx) => <VaizdoGeneratoriusSlide />,
+  'vaizdo-generatorius': (ctx) => (
+    <VaizdoGeneratoriusSlide
+      content={
+        ctx.slide.content as {
+          tldr?: string;
+          patikra?: string;
+          footer?: string;
+        }
+      }
+    />
+  ),
 };

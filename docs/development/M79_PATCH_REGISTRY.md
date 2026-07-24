@@ -2,7 +2,11 @@
 
 > **Tikslas:** Vienas sąrašas idempotentinių M79 patch skriptų, paleidimo tvarka ir EN overlay taisyklės.
 > **Operacinis SOT:** iteraciniai UX polish pakeitimai fiksuojami čia + [`TEST_REPORT.md`](TEST_REPORT.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
-> **Atnaujinta:** 2026-07-16
+> **Atnaujinta:** 2026-07-24
+
+**Rankinis turinio polish (ne patch skriptas):** M7 sk. **67.5** (2026-07-24) – GOLDEN §3.2: scenarijus + copyable gynybos promptas; žodynas Promptų injekcija / Jailbreak. Failai: `modules.json`, `modules-en-m7-m9.json`, `glossary.json`, `glossary-en.json` → `generate:core-data`.
+
+**M8 kelionės UX (2026-07-24, rankinis):** sk. 80 SOT copy; intro chips secondary + return aria; App remediation return `{8→7,11→10,14→13}`; results retry/CTA; ModuleView test badge. Failai: `App.tsx`, `TestPracticeSlides.tsx`, `TestKnowledgeScopeDiagram.tsx`, `ModuleView.tsx`, `modules.json` (+ EN + m1-m9), `lt.json`/`en.json`.
 
 ---
 
@@ -81,3 +85,13 @@ npm run audit:m79
 - Smoke: [`TEST_REPORT.md`](TEST_REPORT.md) §2026-07-16 M79-50
 - Priežiūra: [`DOCS_MAINTENANCE.md`](DOCS_MAINTENANCE.md)
 - DATA gairės: [`DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md`](DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md) §3.1 M7–M9 EN
+
+## 5a. M13–15 historical patches (ne M7–9, bet re-run hazard)
+
+| Skriptas                            | Būsena              | Pastaba                                                                                                                                                                                       |
+| ----------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scripts/patch-m13-m15-2026.mjs`    | **STALE / APPLIED** | Curriculum refresh one-shot. Po apply rankiniu būdu pridėti `image`: `m13_media_pipeline`, `m13_consistency_lock`, `m13_postprod_steps`. **Nepakartoti** – re-insert numestų diagramų raktus. |
+| `scripts/patch-m13-m15-en-2026.mjs` | **STALE / APPLIED** | EN veidrodis; ta pati rizika.                                                                                                                                                                 |
+| `scripts/patch-tools-m13-2026.mjs`  | Tools-only          | Nesusijęs su diagram `image` raktais.                                                                                                                                                         |
+
+Live SOT: `modules.json` + `modules-en-m13-m15.json`. Registry: [`DIAGRAMU_M13_M15_REGISTRY.md`](DIAGRAMU_M13_M15_REGISTRY.md).

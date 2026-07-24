@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 import { useLocale } from '../../../contexts/LocaleContext';
 import CustomGptProcessDiagram from './CustomGptProcessDiagram';
+import EnlargeableDiagram from './EnlargeableDiagram';
 
 export interface ProcessStep {
   id: number;
@@ -223,15 +224,12 @@ export default function ProcessStepper() {
 
   return (
     <div className="space-y-6" role="region" aria-label={t('regionAria')}>
-      {/* Pilna proceso diagrama: aktyvus žingsnis paryškintas, kiti priteminti */}
-      <div
-        className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 p-4 shadow-sm overflow-hidden"
-        data-slide-swipe-lock
-      >
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+      {/* Diagram chrome slim (LMS 1A): no Card; Enlargeable; practice panel stays below */}
+      <div className="space-y-3 overflow-hidden" data-slide-swipe-lock>
+        <div className="flex flex-wrap items-center justify-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-100 dark:bg-brand-900/40 px-3 py-1 text-sm font-semibold text-brand-700 dark:text-brand-300">
             <span
-              className="h-2 w-2 rounded-full bg-brand-500 animate-pulse"
+              className="h-2 w-2 rounded-full bg-brand-500 shrink-0"
               aria-hidden
             />
             {t('youAreHere', {
@@ -243,11 +241,21 @@ export default function ProcessStepper() {
             {currentStep + 1} / {steps.length}
           </span>
         </div>
-        <CustomGptProcessDiagram
-          currentStep={currentStep}
-          onStepClick={setCurrentStep}
-          stepTitles={stepTitles}
-          className="min-h-[320px]"
+        <p className="text-sm text-center text-slate-600 dark:text-slate-400">
+          {t('diagramClickHint')}
+        </p>
+        <EnlargeableDiagram
+          mobileBehavior="reflow"
+          controlPlacement="top-right"
+          enlargeLabel={t('regionAria')}
+          renderContent={() => (
+            <CustomGptProcessDiagram
+              currentStep={currentStep}
+              onStepClick={setCurrentStep}
+              stepTitles={stepTitles}
+              className="min-h-[320px]"
+            />
+          )}
         />
       </div>
 
@@ -281,10 +289,10 @@ export default function ProcessStepper() {
                       })
                 }
                 className={`
-                  flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-all min-w-[2.5rem] cursor-pointer
+                  flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold transition-colors min-w-[2.5rem] cursor-pointer
                   focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900
                   ${isPast ? 'border-emerald-400 bg-emerald-100 text-emerald-800 dark:border-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-200 hover:bg-emerald-200/80 dark:hover:bg-emerald-900/60' : ''}
-                  ${isActive ? 'border-brand-500 bg-brand-500 text-white shadow-lg shadow-brand-500/25 scale-110 ring-2 ring-brand-400/30' : ''}
+                  ${isActive ? 'border-brand-500 bg-brand-500 text-white' : ''}
                   ${!isPast && !isActive ? 'border-gray-300 bg-gray-100 text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 hover:border-brand-400 hover:bg-brand-50 dark:hover:bg-brand-900/30 dark:hover:border-brand-600' : ''}
                 `}
               >

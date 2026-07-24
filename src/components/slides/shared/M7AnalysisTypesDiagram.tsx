@@ -139,7 +139,7 @@ export default function M7AnalysisTypesDiagram({
         fontSize={
           isCompactDiagram ? typography.title.compact : typography.title.desktop
         }
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
       >
         {title}

@@ -11,11 +11,12 @@ Detalios instrukcijos yra `README.md`:
 
 ## Base path politika (vienas šaltinis)
 
-| Scenarijus                                    | `VITE_BASE_PATH` | Pastaba                                                                                                                                |
-| --------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Production monorepo** (promptanatomy.app)   | `/anatomy/`      | Canonical SPA kelias. Senas `/anatomija/` – tik **301 redirect** (ne naudoti naujose nuorodose). Žr. `MARKETING_HANDOFF_CHECKLIST.md`. |
-| **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | `vite.config.ts` default production be env.                                                                                            |
-| **Lokalus dev**                               | `/` (tuščia)     | `npm run dev`                                                                                                                          |
+| Scenarijus                                    | `VITE_BASE_PATH` | Moduliai  | Build / env                                    | Pastaba                                                                                 |
+| --------------------------------------------- | ---------------- | --------- | ---------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Production monorepo** (promptanatomy.app)   | `/anatomy/`      | M1–9      | `build:production` / `VITE_MAX_BUILD_MODULE=9` | Canonical SPA. Senas `/anatomija/` – tik **301**. Žr. `MARKETING_HANDOFF_CHECKLIST.md`. |
+| **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | M1–6      | `VITE_MVP_MODE=1` (deploy.yml)                 | Preview; ne tas pats artefaktas kaip production.                                        |
+| **Authoring / local full**                    | `/` (dev)        | M1–15     | default `modules.json`                         | Full katalogas; M10+ ne production bundle.                                              |
+| **Lokalus dev**                               | `/` (tuščia)     | pagal env | `npm run dev`                                  | —                                                                                       |
 
 **Magic link URL (prod):** `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...`
 

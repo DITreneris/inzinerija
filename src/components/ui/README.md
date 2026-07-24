@@ -134,3 +134,63 @@ import SectionDivider from './SectionDivider';
 ```
 
 **Proof:** `ContentSlides.tsx` (`SummarySlide` — prieš refleksijos bloką).
+
+---
+
+## ModuleBreadcrumb (GOLDEN §8.6)
+
+Hierarchinis escape iš modulio playerio: parent = katalogas („Moduliai“), current = modulio pavadinimas. **Ne** „Atgal“ mygtukas – Prev skaidrei lieka player juosta (`prevShort`).
+
+```tsx
+import ModuleBreadcrumb from './ModuleBreadcrumb';
+
+<ModuleBreadcrumb
+  parentLabel="Moduliai"
+  parentAriaLabel="Grįžti į modulių sąrašą"
+  currentLabel={module.title}
+  onParentClick={onBack}
+  ariaLabel="Modulio navigacija"
+/>;
+```
+
+**Proof:** `ModuleView.tsx` (header / resume / fallback).
+
+---
+
+## ChoiceControl (GOLDEN §3.1b)
+
+Exclusive pasirinkimas (radiogroup): Trumpas/Ilgas, journey fokusas, **arba** in-slide decision lab (scenarijus × režimas). Selected = **brand** (ne accent/violet). `value: T | null`. `columns?: 1 | 2 | 3` (default 2).
+
+```tsx
+import ChoiceControl from './ChoiceControl';
+import { Zap, Layers } from 'lucide-react';
+
+<ChoiceControl
+  legend="Pasirink kelią"
+  columns={2}
+  size="compact"
+  value={pathMode}
+  onChange={setPathMode}
+  options={[
+    { id: 'short', label: 'Trumpas kelias', icon: Zap },
+    { id: 'full', label: 'Ilgas kelias', icon: Layers },
+  ]}
+  statusHint="Rodoma ~35 skaidrių šiame kelyje."
+/>;
+
+{
+  /* Decision lab: vertical list */
+}
+<ChoiceControl
+  legend="Pasirink verslo scenarijų"
+  columns={1}
+  size="compact"
+  value={scenarioId}
+  onChange={setScenarioId}
+  options={scenarioOptions}
+/>;
+```
+
+**Dual radiogroup labs:** du atskiri `ChoiceControl` (ne antras chooser komponentas). Pavyzdys: `M10HumanControlSimulatorBlock` (10.26).
+
+**Proof:** `ActionIntroSlide.tsx` (M4 path), `ContentSlides.tsx` (`ActionIntroJourneySlide`), `M10HumanControlSimulatorBlock.tsx`.

@@ -269,8 +269,12 @@
     },
     {
       "term": "Jailbreak",
-      "definition": "Bandymas apeiti DI saugumo ar naudojimo ribas per specialiai sukonstruotus promptus; manipuliacijos atvejis, ko vengti.",
-      "moduleId": 4
+      "definition": "Sąmoningas bandymas specialiomis užklausomis apeiti DI saugumo ar naudojimo ribas. Tai saugumo rizika – ne tas pats kas promptų manipuliacija (šališkas verslo kontekstas).",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 67.5
+      }
     },
     {
       "term": "Kameros kampas",
@@ -387,6 +391,11 @@
       "moduleId": 13
     },
     {
+      "term": "Neuroniniai tinklai",
+      "definition": "Skaičiavimo modelis, įkvėptas smegenų neuronų – pagrindas giliam mokymuisi ir šiuolaikiniams DI modeliams.",
+      "moduleId": 4
+    },
+    {
       "term": "NoSQL",
       "definition": "Duomenų bazės principas be griežtos lentelių schemos. Tinka dokumentams, lankstesnei struktūrai ir greitiems MVP.",
       "moduleId": 7,
@@ -394,11 +403,6 @@
         "moduleId": 7,
         "slideId": 84
       }
-    },
-    {
-      "term": "Neuroniniai tinklai",
-      "definition": "Skaičiavimo modelis, įkvėptas smegenų neuronų – pagrindas giliam mokymuisi ir šiuolaikiniams DI modeliams.",
-      "moduleId": 4
     },
     {
       "term": "Nuotaika (mood)",
@@ -442,6 +446,15 @@
       "unlockedBy": {
         "moduleId": 6,
         "slideId": 65.5
+      }
+    },
+    {
+      "term": "Promptų injekcija (Prompt injection)",
+      "definition": "Kenksmingos instrukcijos, paslėptos įvesties duomenyse (el. laiške, dokumente, CSV), kurios bando pakeisti DI elgesį. Gynyba – sistemos instrukcijų atskyrimas nuo išorės teksto ir įvesties tikrinimas.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 67.5
       }
     },
     {
@@ -652,6 +665,15 @@
       "term": "Zero-shot",
       "definition": "Užklausa be pavyzdžių – vienas klausimas ar instrukcija.",
       "moduleId": 1
+    },
+    {
+      "term": "Žmogaus kontrolė (Human-in-the-loop / HITL)",
+      "definition": "Kai žmogus lieka patvirtinimo, išimčių peržiūros ar stebėsenos taške DI / agento darbo eigoje. Režimą renkame pagal pasekmę ir tai, ar klaidą sunku atšaukti – ne pagal „kuo daugiau autonomijos, tuo brandžiau“.",
+      "moduleId": 10,
+      "unlockedBy": {
+        "moduleId": 10,
+        "slideId": 10.26
+      }
     }
   ]
 }

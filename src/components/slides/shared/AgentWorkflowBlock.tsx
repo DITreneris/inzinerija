@@ -1,6 +1,6 @@
 /**
  * Agentų ciklo diagramos blokas (M10.2) – interaktyvi diagrama + paaiškinimai apačioje.
- * „Tu esi čia" badge, žingsnių mygtukai, stabili paaiškinimo struktūra (SCHEME_AGENT §3.6).
+ * Hero status: „Žingsnis N iš T“ + title pill (SCHEME_AGENT §3.6 / LMS I3c).
  * Lokalizuota per useLocale() ir agentWorkflowContent getterius.
  */
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ const BLOCK_LABELS = {
   lt: {
     regionAria: 'Agentų ciklas: 5 žingsniai su paaiškinimais',
     statusLabel: 'Tu esi čia:',
+    stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
     clickHint:
       'Paspausk žingsnį diagramoje arba skaičių 1–5 – paaiškinimas rodomas apačioje.',
     navAria: 'Žingsnio pasirinkimas',
@@ -24,6 +25,7 @@ const BLOCK_LABELS = {
   en: {
     regionAria: 'Agent cycle: 5 steps with explanations',
     statusLabel: 'You are here:',
+    stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
     clickHint:
       'Click a step in the diagram or number 1–5 – explanation shown below.',
     navAria: 'Step selection',
@@ -45,8 +47,10 @@ export default function AgentWorkflowBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
+          stepOfLabel={labels.stepOf(currentStep + 1, totalSteps)}
           currentStep={currentStep}
           totalSteps={totalSteps}
           currentTitle={step.title}
@@ -57,9 +61,7 @@ export default function AgentWorkflowBlock() {
           explanationTitle={step.title}
           explanation={<p>{renderBold(step.body)}</p>}
         >
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            {labels.clickHint}
-          </p>
+          <p className="sr-only">{labels.clickHint}</p>
           <AgentWorkflowDiagram
             locale={loc}
             currentStep={currentStep}

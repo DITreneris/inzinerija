@@ -113,18 +113,18 @@
       "category": "AI content detectors"
     },
     {
-      "name": "MyDetector.ai",
-      "url": "https://mydetector.ai/",
-      "description": "Quick free AI text detector, no sign-up, supports many languages.",
-      "moduleId": 4,
-      "category": "AI content detectors"
-    },
-    {
       "name": "MongoDB",
       "url": "https://www.mongodb.com",
       "description": "NoSQL document database for flexible data structures: catalogues, events, content apps, and fast MVPs.",
       "moduleId": 7,
       "category": "Databases"
+    },
+    {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Quick free AI text detector, no sign-up, supports many languages.",
+      "moduleId": 4,
+      "category": "AI content detectors"
     },
     {
       "name": "MySQL",
@@ -227,7 +227,7 @@
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google video generation model – create videos from text (prompt).",
+      "description": "Veo 3.1 – cinematic quality, native audio; prototypes and short ads.",
       "moduleId": 4,
       "category": "Video generation"
     },

@@ -10,12 +10,12 @@
 
 ## 0. Kas yra „tiesa“ (sluoksniai)
 
-| Sluoksnis             | Dokumentas / kodas                                         | Paskirtis                                                                        |
-| --------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| **Produktinė DS**     | šis failas + `src/components/ui/` + `src/design-tokens.ts` | Primitivai, token helperiai, modulio identitetas, brand mark, ikonos, CI auditai |
-| **GOLDEN (etalonas)** | `GOLDEN_STANDARD.md` 2.3.9                                 | Šriftai, spalvos, blockVariant, content-block schema, footeriai, sticky, a11y    |
-| **Diagramos**         | `DIAGRAM_KIT_STANDARD.md` + `diagramTokens.ts`             | InteractiveDiagramShell, hit zones, dark palette                                 |
-| **Turinys**           | `modules.json` (+ EN overlays)                             | `blockVariant`, accent biudžetas — ne React                                      |
+| Sluoksnis             | Dokumentas / kodas                                                      | Paskirtis                                                                        |
+| --------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Produktinė DS**     | šis failas + `src/components/ui/` + `src/design-tokens.ts`              | Primitivai, token helperiai, modulio identitetas, brand mark, ikonos, CI auditai |
+| **GOLDEN (etalonas)** | `GOLDEN_STANDARD.md` 2.3.9                                              | Šriftai, spalvos, blockVariant, content-block schema, footeriai, sticky, a11y    |
+| **Diagramos**         | `DIAGRAM_KIT_STANDARD.md` + `diagramTokens.ts` + `diagramLayoutMath.ts` | InteractiveDiagramShell, LMS token floors, hit zones, dark palette               |
+| **Turinys**           | `modules.json` (+ EN overlays)                                          | `blockVariant`, accent biudžetas — ne React                                      |
 
 **Nėra atskiros „DS 1.0“ paletės.** Naujas vizualinis darbas = GOLDEN + šio dokumento primitivai. Redesign / nauja paletė = out of scope (v0.3+ backlog).
 
@@ -57,8 +57,9 @@ npm run audit:accent-budget:m1012     # greitas M10–12
 Canonical sluoksniai:
 
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
+- `src/components/slides/shared/diagramTokens.ts` — SVG paletė, tipografija, stroke/radius/arrow; **LMS floors** (`opacity.inactive` 0.88, `stroke.flow` 3.5, title 17/700); `getDiagramPalette()` / `getDiagramToneColors()`; M10/M12: `DIAGRAM_ROLE_COLORS` / `getDiagramActiveStroke()`. `lmsCycle` = deprecated alias. DS v0.2 **B1** partially closed via this promote.
+- `src/components/slides/shared/diagramLayoutMath.ts` — `centerAxisStart`, shaft floor helpers (ne AgentWorkflow BOX clone).
 - `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`).
-- `src/components/slides/shared/diagramTokens.ts` — SVG paletė, tipografija, stroke/radius/arrow; `getDiagramPalette()` / `getDiagramToneColors()`; M10/M12: `DIAGRAM_ROLE_COLORS` / `getDiagramActiveStroke()`.
 
 Baseline (istorinis startas): [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md).  
 Revision tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
@@ -180,7 +181,7 @@ Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 
 - M1–M9 DiagramKit migracija + leftovers (DiPrezentacijos, Turinio, AgentWorkflow, CustomGpt hit zones) — done / dalinis.
 - M10–M12 process diagramos — shell + layout SOT; vizualinis backlog dauguma **Done**: [`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
-- **v0.3 backlog:** `LlmArch` B3 — [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md); CustomGpt hex; `ContentSlides` arbitrary class.
+- **v0.3 backlog:** CustomGpt hex; `ContentSlides` arbitrary class. (`LlmArch` B3 / W6 etalon ✅ 2026-07 — [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).)
 
 ---
 
@@ -232,7 +233,7 @@ Detalu: `CHANGELOG.md` `[Unreleased]` · **DS max-ROI compliance**.
 
 ## 10. Backlog (v0.3+) — ne ši DS linija
 
-- LlmArch B3 hex/inline migracija
+- LlmArch B3 / W6 etalon ✅ (2026-07)
 - `ContentSlides.tsx` arbitrary Tailwind cleanup
 - `.card` / `.btn-*` CSS pašalinimas po pilnos JSX migracijos
 - Badge primitive

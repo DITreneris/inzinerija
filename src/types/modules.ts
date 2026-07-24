@@ -295,14 +295,25 @@ export interface ActionIntroContent {
   sandboxMessage?: string;
   /** Pažadas dėl parsisiunčiamos PDF atmintinės (pvz. M5 – rodomas po reveal) */
   handoutPromise?: string;
-  /** „Kaip naudoti šį modulį“ – minimalus vs pilnas kelias (PEDAGOGINE_ANALIZE §2.8). Rodomas kaip terms blokas. */
+  /**
+   * Modulio kelio pasirinkimas (M4 action-intro) – Trumpas/Ilgas mygtukai,
+   * susieti su Fast track (`skipOptional`). Legacy: `body` / `items` (tekstas).
+   */
   howToUseModule?: {
     heading?: string;
-    /** Viena pastraipa arba items naudojami kaip sąrašas */
+    /** Viena pastraipa (legacy) */
     body?: string;
+    /** Sąrašas (legacy – curriculum ID; nepageidautina UI) */
     items?: string[];
+    /** Trumpas kelias (fastTrack ON) */
+    short?: { label: string; description?: string };
+    /** Ilgas kelias (fastTrack OFF) */
+    full?: { label: string; description?: string };
   };
 }
+
+/** Action-intro kelio režimas – atitinka ModuleView fastTrack */
+export type ModulePathMode = 'short' | 'full';
 
 /** Viena kelionės pasirinkimo kortelė – Modulio 7 action-intro-journey */
 export interface JourneyChoice {
@@ -1295,6 +1306,20 @@ export interface PracticeScenarioSlideContent {
   reflectionPromptAfter?: string;
 }
 
+/** Content skaidrei type 'practice-intro' (partial – UI skaito daugiau laukų runtime). */
+export interface PracticeIntroContent {
+  whyBenefit?: string;
+  duration?: string;
+  recommendedStart?: string;
+  firstActionCTA?: string;
+  howToUseModule?: {
+    heading?: string;
+    short?: { label: string; description?: string };
+    full?: { label: string; description?: string };
+  };
+  thresholds?: { pass?: number };
+}
+
 export type SlideContent =
   | ActionIntroContent
   | ActionIntroJourneyContent
@@ -1324,6 +1349,7 @@ export type SlideContent =
   | PracticeSummaryContent
   | PracticeScenarioHubContent
   | PracticeScenarioSlideContent
+  | PracticeIntroContent
   | AdvancedVeiksmoIntroContent
   | AdvancedSlideContent;
 

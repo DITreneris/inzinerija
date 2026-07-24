@@ -6,6 +6,12 @@ import {
   VERTICAL_FLOW_MIN_GAP,
   verticalFlowStemLength,
 } from '../verticalFlowGeometry';
+import {
+  buildVerticalColumnOrigin,
+  verticalColumnMarginsEqual,
+  visibleShaftMeetsFloor,
+} from '../diagramLayoutMath';
+import { DIAGRAM_TOKENS } from '../diagramTokens';
 
 const config = {
   stepCount: 5,
@@ -73,5 +79,15 @@ describe('getVerticalFlowConnector', () => {
       y2: 138,
     });
     expect(conn.y2 - conn.y1).toBeGreaterThanOrEqual(MIN_VISIBLE_STEM);
+  });
+});
+
+describe('M7 da_pipeline linear etalon (LMS promote)', () => {
+  it('centers the column and keeps vertical shaft floor with local tip 10', () => {
+    const origin = buildVerticalColumnOrigin({ viewBoxW: 600, colW: 440 });
+    expect(origin.colsX).toBe(80);
+    expect(verticalColumnMarginsEqual(origin.colsX, 440, 600)).toBe(true);
+    expect(visibleShaftMeetsFloor(VERTICAL_FLOW_MIN_GAP, 10)).toBe(true);
+    expect(DIAGRAM_TOKENS.stroke.flowStrong).toBeGreaterThanOrEqual(3.5);
   });
 });

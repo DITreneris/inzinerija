@@ -46,6 +46,7 @@ export default function M10ToolDecisionTreeBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
           currentStep={currentStep}

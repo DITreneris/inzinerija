@@ -5,8 +5,9 @@ import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7DataStoryCycleSteps, type M7Locale } from './m7DiagramContent';
-import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
+import { DIAGRAM_TOKENS, DIAGRAM_ROLE_COLORS } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import { feedbackUPath, horizontalRowBoxes } from './cycleFeedbackGeometry';
 import {
   getVerticalFlowConnector,
   type DiagramBox,
@@ -16,13 +17,13 @@ const STEP_COUNT = 5;
 const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
 
 const DESKTOP_VIEWBOX_W = 640;
-const DESKTOP_VIEWBOX_H = 330;
+/** I3c-style crop – keep 5×108 story boxes (not AgentWorkflow 188). */
+const DESKTOP_VIEWBOX_H = 268;
 const DESKTOP_BOX_W = 108;
 const DESKTOP_BOX_H = 72;
-const DESKTOP_GAP = 16;
-const DESKTOP_START_X =
-  (DESKTOP_VIEWBOX_W - (DESKTOP_BOX_W * STEP_COUNT + DESKTOP_GAP * 4)) / 2;
-const DESKTOP_ROW_Y = 112;
+const DESKTOP_GAP = 20;
+const DESKTOP_ROW_Y = 48;
+const DESKTOP_FEEDBACK_OFFSET = 40;
 
 const COMPACT_VIEWBOX_W = 320;
 const COMPACT_VIEWBOX_H = 430;
@@ -33,16 +34,14 @@ const COMPACT_START_X = 40;
 const COMPACT_START_Y = 74;
 
 function getDesktopBoxes(): [number, number, number, number][] {
-  return Array.from(
-    { length: STEP_COUNT },
-    (_, i) =>
-      [
-        DESKTOP_START_X + (DESKTOP_BOX_W + DESKTOP_GAP) * i,
-        DESKTOP_ROW_Y,
-        DESKTOP_BOX_W,
-        DESKTOP_BOX_H,
-      ] as [number, number, number, number]
-  );
+  return horizontalRowBoxes({
+    count: STEP_COUNT,
+    boxW: DESKTOP_BOX_W,
+    boxH: DESKTOP_BOX_H,
+    gap: DESKTOP_GAP,
+    viewBoxW: DESKTOP_VIEWBOX_W,
+    rowY: DESKTOP_ROW_Y,
+  }).map((b) => [b.x, b.y, b.w, b.h] as [number, number, number, number]);
 }
 
 function getCompactBoxes(): [number, number, number, number][] {
@@ -82,8 +81,8 @@ export default function M7DataStoryCycleDiagram({
   const cx = viewBoxWidth / 2;
   const firstBox = boxes[0];
   const lastBox = boxes[boxes.length - 1];
-  const feedbackY = DESKTOP_ROW_Y + DESKTOP_BOX_H + 76;
-  const feedbackR = 18;
+  const feedbackY = DESKTOP_ROW_Y + DESKTOP_BOX_H + DESKTOP_FEEDBACK_OFFSET;
+  const feedbackR = 16;
   const firstCx = firstBox[0] + firstBox[2] / 2;
   const lastCx = lastBox[0] + lastBox[2] / 2;
   const firstBottom = firstBox[1] + firstBox[3];
@@ -103,7 +102,8 @@ export default function M7DataStoryCycleDiagram({
     locale === 'en'
       ? 'Story informs the next cycle'
       : 'Istorija pradeda kitą ciklą';
-  const feedbackColors = DIAGRAM_TONE_COLORS.amber;
+  const feedbackStroke = DIAGRAM_ROLE_COLORS.accentDark;
+  const feedbackSoft = DIAGRAM_ROLE_COLORS.amberSoft;
   const typography = DIAGRAM_TOKENS.typography;
 
   return (
@@ -136,6 +136,7 @@ export default function M7DataStoryCycleDiagram({
         </linearGradient>
         <marker
           id={`m7-story-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW_MARKER_LEN}
@@ -151,6 +152,7 @@ export default function M7DataStoryCycleDiagram({
         </marker>
         <marker
           id={`m7-story-feedback-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW_MARKER_LEN}
@@ -159,8 +161,8 @@ export default function M7DataStoryCycleDiagram({
         >
           <path
             d={DIAGRAM_TOKENS.arrow.markerPath}
-            fill={DIAGRAM_TOKENS.colors.amber}
-            stroke={DIAGRAM_TOKENS.colors.amber}
+            fill={DIAGRAM_ROLE_COLORS.accentDark}
+            stroke={DIAGRAM_ROLE_COLORS.accentDark}
             strokeWidth="0.5"
           />
         </marker>
@@ -183,20 +185,20 @@ export default function M7DataStoryCycleDiagram({
 
       <text
         x={cx}
-        y="34"
+        y="22"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
         fontSize={
-          isCompactDiagram ? typography.title.compact : typography.title.desktop
+          isCompactDiagram ? 15 : DIAGRAM_TOKENS.typography.title.desktop
         }
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
       >
         {title}
       </text>
       <text
         x={cx}
-        y="54"
+        y="40"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
         fontSize={
@@ -216,22 +218,24 @@ export default function M7DataStoryCycleDiagram({
             cx={lastCx}
             cy={lastBottom + 10}
             r="4.5"
-            fill={feedbackColors.stroke}
+            fill={feedbackStroke}
             opacity="0.9"
           />
           <path
-            d={`M ${lastCx} ${lastBottom + 10}
-              L ${lastCx} ${feedbackY - feedbackR}
-              Q ${lastCx} ${feedbackY}, ${lastCx - feedbackR} ${feedbackY}
-              L ${firstCx + feedbackR} ${feedbackY}
-              Q ${firstCx} ${feedbackY}, ${firstCx} ${feedbackY - feedbackR}
-              L ${firstCx} ${firstBottom + 2}`}
+            d={feedbackUPath({
+              firstCx,
+              lastCx,
+              startY: lastBottom + 10,
+              troughY: feedbackY,
+              tipY: firstBottom + 2,
+              cornerR: feedbackR,
+            })}
             fill="none"
-            stroke={feedbackColors.stroke}
-            strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+            stroke={feedbackStroke}
+            strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
             strokeDasharray="7 5"
             markerEnd={`url(#m7-story-feedback-${uid})`}
-            opacity="0.88"
+            opacity="0.92"
           />
           <rect
             x={cx - 104}
@@ -239,7 +243,7 @@ export default function M7DataStoryCycleDiagram({
             width="208"
             height="22"
             rx="11"
-            fill={feedbackColors.soft}
+            fill={feedbackSoft}
             opacity="0.92"
           />
           <text
@@ -247,9 +251,9 @@ export default function M7DataStoryCycleDiagram({
             y={feedbackY + 24}
             textAnchor="middle"
             fontFamily={DIAGRAM_TOKENS.font}
-            fontSize={typography.subtitle.desktop}
-            fontWeight="700"
-            fill={feedbackColors.stroke}
+            fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+            fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+            fill={feedbackStroke}
           >
             {feedbackLabel}
           </text>
@@ -262,7 +266,7 @@ export default function M7DataStoryCycleDiagram({
         const step = steps[i];
         const opacity = isActive
           ? DIAGRAM_TOKENS.opacity.active
-          : DIAGRAM_TOKENS.opacity.inactiveSoft;
+          : DIAGRAM_TOKENS.opacity.inactive;
 
         return (
           <g key={i}>
@@ -344,7 +348,7 @@ export default function M7DataStoryCycleDiagram({
                       x2={conn.x2}
                       y2={conn.y2}
                       stroke={palette.flow}
-                      strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
                       markerEnd={`url(#m7-story-arrow-${uid})`}
                     />
                   );
@@ -356,7 +360,7 @@ export default function M7DataStoryCycleDiagram({
                   x2={boxes[i + 1][0] - ARROW_MARKER_LEN}
                   y2={y + h / 2}
                   stroke={palette.flow}
-                  strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                  strokeWidth={DIAGRAM_TOKENS.stroke.flow}
                   markerEnd={`url(#m7-story-arrow-${uid})`}
                 />
               ))}

@@ -47,7 +47,7 @@ Patvirtintos priklausomybės:
 - `LlmArchDiagramBlock.tsx` perduoda tą patį `mode` į `EnlargeableDiagram`, todėl modal parity turi būti tikrinama per režimų perjungimą prieš ir po modalinio vaizdo atidarymo.
 - Dabartiniai arbitrary class / inline style radiniai šiame komponente laikomi B3 radiniais, ne bendro token-hotspot sprinto taikiniu.
 
-Kitas B3 žingsnis: pirma parašyti naršyklinio smoke scenarijų `basic → rag → tool → basic` desktop, mobile ir full-size modal vaizduose; tik po to skaidyti `computeReturnPath()` į testuojamą helperį.
+**Statusas 2026-07-24:** B3 įgyvendinta kaip Type Etalon W6. `computeReturnPath` → `llmArchReturnPath.ts` + unit tests; mode-absent placeholders; brand active; Agentinis rename. Naršyklinis smoke vis dar rekomenduojamas release QA (`basic → rag → tool → basic`).
 
 ## Kas Neįeina Į B3
 

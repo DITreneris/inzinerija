@@ -64,7 +64,7 @@ function bubblesForModule(
         x: 176,
         y: 88,
         w: 100,
-        t: t ? 'Gestalt' : 'Geštaltas',
+        t: t ? 'Visualisation' : 'Vizualizacija',
         targetModuleId: 7,
         slideId: 86,
       },
@@ -194,13 +194,10 @@ function bubblesForModule(
 
 function titleFor(moduleId: 8 | 11 | 14, locale: M10Locale): string {
   if (locale === 'en') {
-    if (moduleId === 8) return 'This test checks (examples)';
-    if (moduleId === 11) return 'This test checks (examples)';
-    return 'This test checks (examples)';
+    return 'Topics – tap to refresh theory (you can return to the test)';
   }
-  if (moduleId === 8) return 'Testas tikrina (pavyzdžiai)';
-  if (moduleId === 11) return 'Testas tikrina (pavyzdžiai)';
-  return 'Testas tikrina (pavyzdžiai)';
+  void moduleId;
+  return 'Temos – bakstelėjus atnaujinsi teoriją (grįši į testą)';
 }
 
 export default function TestKnowledgeScopeDiagram({
@@ -255,11 +252,11 @@ export default function TestKnowledgeScopeDiagram({
               key={`${b.targetModuleId}-${b.slideId}-${b.t}`}
               type="button"
               onClick={() => go(b)}
-              className="min-h-[44px] rounded-lg border border-brand-800 bg-brand-700 px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-brand-300 dark:bg-brand-800 dark:hover:bg-brand-700"
+              className="min-h-[44px] rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-100 dark:hover:bg-slate-800"
               aria-label={
                 locale === 'en'
-                  ? `Review theory: ${b.t}`
-                  : `Peržiūrėti teoriją: ${b.t}`
+                  ? `Review theory (return to test): ${b.t}`
+                  : `Peržiūrėti teoriją (grįši į testą): ${b.t}`
               }
             >
               {b.t}

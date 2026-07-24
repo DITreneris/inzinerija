@@ -1,8 +1,13 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.9  
-> **Data:** 2026-07-09  
+> **Versija:** 2.3.14  
+> **Data:** 2026-07-23  
+> **2.3.14:** §3.1c Lab color exception (`interactive-control-lab`) – risk palette lab surface; ChoiceControl optional `optionTone`.  
+> **2.3.13:** §3.1b – `columns` 1|2|3; consumer `M10HumanControlSimulatorBlock` (10.26 `interactive-control-lab`).  
+> **2.3.12:** §8.6 Modulio navigacijos hierarchija – breadcrumb escape („Moduliai“) vs player Prev („Ankstesnė“); `ModuleBreadcrumb`.  
+> **2.3.11:** §3.1b consumers – +M15 Greitas/Pilnas, +M10/M13 Trumpas/Ilgas, +M6 projekto tipas (navigate).  
+> **2.3.10:** §3.1 – `howToUseModule.short/full` → `ChoiceControl`; §3.1b Exclusive choice primityvas (M4 path, M7 journey).  
 > **2.3.9:** §3.8 – pridėtas modulio interaktyvumo ritmas: kas 6–8 teorijos skaidres įterpti savitikrą, kelio žingsnį arba embed micro-check; M4 pattern katalogas ir EN sync vartai susieti su `audit:slide-interactivity`.  
 > **2.3.8:** §3.2, §3.2a – LT content-block: vartotojui matomoje antraštėje **„Trumpai“** be anglų santrumpų (`modules.json`, `lt.json`); schema žymėjimas Trumpai (LT) / In short (EN). Žr. `docs/development/PAPRASTOS_KALBOS_GAIRES.md` §2.  
 > **2.3.7:** §2.1 Paletė – pridėta `gold: #f3cc30` spalva (brand žaibas, hero CTA, dark mode glow). Centralizuota per `tailwind.config.js` ir CSS custom property `--brand-gold`. Sync su promptanatomy.app.  
@@ -78,15 +83,49 @@
 
 ### 3.1 action-intro
 
-| Laukas                          | Privalomas | Turinio taisyklė                |
-| ------------------------------- | ---------- | ------------------------------- |
-| whyBenefit                      | Taip       | Vienas sakinys „kas man iš to?“ |
-| heroStat, heroText, heroSubText | Taip       | Provokacija + CTA               |
-| firstActionCTA                  | Taip       | Pirmas veiksmas per ~1 min      |
-| duration, audience              | Ne         | Trumpai                         |
-| outcomes                        | Taip       | 3–6 punktų                      |
+| Laukas                          | Privalomas | Turinio taisyklė                                                                                                      |
+| ------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------- |
+| whyBenefit                      | Taip       | Vienas sakinys „kas man iš to?“                                                                                       |
+| heroStat, heroText, heroSubText | Taip       | Provokacija + CTA                                                                                                     |
+| firstActionCTA                  | Taip       | Pirmas veiksmas per ~1 min                                                                                            |
+| duration, audience              | Ne         | Trumpai                                                                                                               |
+| outcomes                        | Taip       | 3–6 punktų                                                                                                            |
+| howToUseModule.short / .full    | Ne         | Kelio UI = `ChoiceControl` (§3.1b). **Draudžiama** vartotojui rodyti curriculum ID (`items[]` su `4.2-open` ir pan.). |
 
-**Veiksmo modelis:** Hook (problema + CTA) → Reveal (palyginimas) → Kontekstas.
+**Veiksmo modelis:** Hook (problema + CTA) → Reveal (palyginimas) → Kontekstas (± kelio pasirinkimas).
+
+### 3.1b Exclusive choice (`ChoiceControl`)
+
+**Paskirtis:** Exclusive pasirinkimas: kelio gylis, journey fokusas, projekto tipas, **ir** in-slide decision labs (scenarijus × režimas). Ne painioti su `CTAButton` (veiksmas) ar `path-step` (§3.4d).
+
+**Komponentas:** `src/components/ui/ChoiceControl.tsx`.
+
+| Taisyklė        | Reikšmė                                                                                                                      |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Selected spalva | **brand** (ne accent, ne violet/emerald – nestack su module accent §2.2). **Išimtis:** §3.1c lab gali perduoti `optionTone`. |
+| A11y            | `radiogroup` + `role="radio"` + `aria-checked`; `min-h-[44px]`; rodyklės keičia pasirinkimą                                  |
+| `value`         | `T \| null` (null = dar nepasirinkta, pvz. M7 / M6 jump / lab prieš režimą)                                                  |
+| `columns`       | `1 \| 2 \| 3` (default 2); decision lab gali naudoti `1` (vertikalus sąrašas)                                                |
+| Hint            | Viena `statusHint` eilutė po grid – be description dublio                                                                    |
+
+**Consumeriai:**
+
+- `ActionIntroSlide` – M4 / M10 / M13 path (`howToUseModule.short/full` ↔ Fast track / `skipOptional`)
+- `ActionIntroJourneySlide` – M7 domeno fokusas (ne gylis)
+- `PracticeIntroSlide` – M15 Greitas/Pilnas ↔ Fast track; M6 projekto tipas (navigate į 61 / 67, **ne** Fast track)
+- `M10HumanControlSimulatorBlock` – 10.26 dual radiogroups (scenarijus + kontrolės režimas); Pattern `interactive-control-lab` (ne SVG shell)
+
+### 3.1c Lab color exception (`interactive-control-lab`)
+
+**Paskirtis:** Form-like decision lab (pvz. M10 10.26 žmogaus kontrolės simuliatorius) – **būsenų / rizikos** UI, ne content-block siena. Precedentas: Portal 2.1 (spalvų biudžetas per act, ne per visą skaidrę).
+
+| Taisyklė      | Reikšmė                                                                                                                                                                                                                                                                           |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama kontrolės taisyklė – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. |
+| Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts`. UI: **risk strip** (3 chips, be empty 2×2), timing juosta, 2 trade meteriai.                                              |
+| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                               |
+| A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                          |
+| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                        |
 
 ### 3.2 content-block (veiksmo skaidrės)
 
@@ -570,13 +609,13 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 | M6      | Projekto kūrimas      | `accent`  | `Rocket`         |
 | M7      | Duomenų analizė su DI | `sky`     | `BarChart3`      |
 | M8      | DA testas             | `sky`     | `ClipboardCheck` |
-| M9      | DA praktika           | `sky`     | `Briefcase`      |
+| M9      | DA praktika           | `sky`     | `Rocket`         |
 | M10     | Agentų inžinerija     | `fuchsia` | `Cpu`            |
 | M11     | Agentų testas         | `fuchsia` | `ClipboardCheck` |
 | M12     | Agentų praktika       | `fuchsia` | `Rocket`         |
 | M13     | Turinio inžinerija    | `rose`    | `Image`          |
 | M14     | Turinio testas        | `rose`    | `ClipboardCheck` |
-| M15     | Turinio praktika      | `rose`    | `Briefcase`      |
+| M15     | Turinio praktika      | `rose`    | `Rocket`         |
 
 **Track accent logika (M7–15):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias).
 
@@ -609,7 +648,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 - Klausimų tipai: mcq, true-false, matching, ordering, scenario.
 - Remediacija: relatedSlideId, radar chart, deep link.
 
-### 8.4 Modulių puslapis (ModulesPage) – legacy idea
+### 8.4 Modulių puslapis (ModulesPage)
 
 **H1 ir subtitle** – etalonas, keisti tik pagal SOT / vartotojų atsiliepimus:
 
@@ -619,6 +658,21 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 | **Subtitle** | Kiekvienas modulis – realios užduotys, verslo scenarijai ir šablonai. |
 
 **Taisyklė:** H1 ir subtitle nesidubliuoja. Implementacija: `src/components/ModulesPage.tsx`.
+
+**Katalogo hierarchija (track chrome):**
+
+| Sluoksnis            | Kas                                                | Vizualas                                                                                                                                    |
+| -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Track**            | M1–6 Bazė, M7–9 DA, M10–12 Agentai, M13–15 Turinys | Pilna juosta `trackSectionClasses` (brand / sky / fuchsia / rose)                                                                           |
+| **Bazės subsection** | Po M1–M3, prieš M4–M6                              | Tylesnė juosta (`border-t` + H2) – **ne** antras track; i18n `trackBaseCycle2Title` / `Subtitle`                                            |
+| **„Mano medžiaga“**  | Uždirbtos atmintinės + sertifikatai                | Grid’e **po paskutinio** modulio su `id <= maxAccessible`, **prieš** tier-locked track’us ir coming-soon (`insertMaterialsAfterAccessible`) |
+
+**UX taisyklės:**
+
+1. Reward (medžiaga) = primary; tier-lock / coming-soon = secondary – neatidėlioti materials po užrakintų kortelių.
+2. Ribą imti iš **access tier** (`maxAccessible`), ne iš sekencinio lock (sekvenciniai `<= maxAccessible` lieka virš materials).
+3. Bazės M1–6 lieka **vienas** track (pricing / sertifikatai); M4–M6 skiria tik subsection, ne atskiras kelias.
+4. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai).
 
 ### 8.5 Skaidrių navigacijos taškai (ModuleView)
 
@@ -634,6 +688,27 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 | **A11y**                         | Konteineriui `role="group"` ir `aria-label` su skaidrių skaičiumi (`slideDotsAria`); kiekvienas taškas – `aria-label` „Eiti į skaidrę N“, `aria-current` dabartinei. |
 
 **Implementacija:** `src/components/ModuleView.tsx` – blokas „Slide dots“. Vertimai: `module.slideDotsAria` (lt/en).
+
+### 8.6 Modulio navigacijos hierarchija (ModuleView chrome)
+
+**Problema:** Du kairieji „Atgal“ (escape į katalogą + ankstesnė skaidrė) konkuruoja – vartotojai netyčia išeina iš modulio.
+
+**Taisyklė:**
+
+| Zonos                                              | Veiksmas                                | Label / UI                                                                          | Ko nedaryti                                                                    |
+| -------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **Escape (chrome viršuje)**                        | Hierarchija → modulių katalogas         | `ModuleBreadcrumb`: parent `modulesParent` („Moduliai“) + `/` + modulio pavadinimas | Nenaudoti žodžio „Atgal“, nenaudoti ← kaip escape gestą                        |
+| **Player juosta** (sticky desktop + mobile bottom) | Chronologija → ankstesnė / kita skaidrė | Prev = `prevShort` („Ankstesnė“); Next = `continueShort` / kontekstinis label       | Nenaudoti `backShort` escape’ui; mobile parent niekada nesutrumpinti į „Atgal“ |
+
+**A11y / DS:**
+
+- Parent mygtukas: `min-h-[44px]`, `modulesParentAria`, focus ring brand.
+- Current segment: `aria-current="page"`, `truncate`.
+- Nav: `breadcrumbAria`.
+- Sticky stacking lieka §5.5; slide dots – §8.5.
+- `Escape` klavišas → `onBack()` (hierarchinis escape) – leidžiama; tai ne painiojama su Prev mygtuku.
+
+**Implementacija:** `src/components/ui/ModuleBreadcrumb.tsx`, `ModuleView.tsx` header + player nav, `ModuleCompleteScreen` secondary CTA = `modulesParent`. Vertimai: `module.modulesParent`, `modulesParentAria`, `breadcrumbAria`, `prevShort` (lt/en).
 
 ---
 
@@ -654,6 +729,8 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 | Tipai                                                 | src/types/modules.ts, scripts/schemas/modules.schema.json                                                                 |
 | **Footeriai (nuoseklūs nr.)**                         | .cursor/rules/footer-slide-numbers.mdc, .cursor/skills/orchestrator/SKILL.md                                              |
 | **Skaidrių taškai (navigacija)**                      | ModuleView.tsx §8.5 – viena eilutė, overflow-x-auto, ilgiems moduliams mažesni taškai                                     |
+| **Modulio chrome (breadcrumb vs Prev)**               | ModuleView + ModuleBreadcrumb §8.6 – escape = Moduliai; player = Ankstesnė / Tęsti                                        |
+| **ModulesPage katalogas (track / materials)**         | §8.4 – track chrome, bazės subsection M4–M6, „Mano medžiaga“ po `maxAccessible`                                           |
 | **Sertifikatai moduliuose (atkartojamas standartas)** | §3.7 – kada išduoti, certificateContent.json (tiers, websiteUrl, websiteCta), PDF maketas, UI; CERTIFICATE_CONTENT_SOT.md |
 
 ---
@@ -669,6 +746,7 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 - [ ] **Footer (jei skaidrė turi „Toliau“):** nuoseklus numeris (1, 2, 3…), ne skaidrės `id`; formatas „Toliau – skaidrė N: [pavadinimas]“ (§3.6)
 - [ ] **Naujas sertifikatas moduliui:** §3.7 – tier į certificateContent.json (introLine, completionLine, programName, label, footerText); root websiteUrl, websiteCta; ModuleCompleteScreen sąlyga + mygtukas; tas pats PDF maketas ir CertificateScreen; nuoroda po mygtukais
 - [ ] Touch targets min 44px (trumpi moduliai) arba 36px ilgiems (>24 skaidrės); aria-label interaktyviems; skaidrių taškai – viena eilutė + horizontalus scroll (§8.5)
+- [ ] Modulio chrome: escape = breadcrumb „Moduliai“, ne „Atgal“; Prev label = „Ankstesnė“ (§8.6)
 - [ ] Dark mode variantai
 
 ---

@@ -65,6 +65,7 @@ export default function M12ThreeLabsDiagram({
         </linearGradient>
         <marker
           id={`m12tl-conn-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW}
@@ -86,8 +87,8 @@ export default function M12ThreeLabsDiagram({
         x={W / 2}
         y={24}
         textAnchor="middle"
-        fontSize="14"
-        fontWeight="800"
+        fontSize={DIAGRAM_TOKENS.typography.title.compact}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >

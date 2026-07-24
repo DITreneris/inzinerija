@@ -2,7 +2,9 @@ import { fireEvent } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../test/test-utils';
 import AgentWorkflowBlock from '../AgentWorkflowBlock';
+import { getAgentWorkflowLabels } from '../agentWorkflowContent';
 import DiPrezentacijosWorkflowBlock from '../DiPrezentacijosWorkflowBlock';
+import ProcessStepper from '../ProcessStepper';
 import M7AnalysisTypesBlock from '../M7AnalysisTypesBlock';
 import M7BiSchemaBlock from '../M7BiSchemaBlock';
 import M7DaPipelineBlock from '../M7DaPipelineBlock';
@@ -14,6 +16,7 @@ import M9WorkflowStepCopyBlock from '../M9WorkflowStepCopyBlock';
 import LlmArchDiagramBlock from '../LlmArchDiagramBlock';
 import LlmAutoregressiveBlock from '../LlmAutoregressiveBlock';
 import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
+import M10HumanControlSimulatorBlock from '../M10HumanControlSimulatorBlock';
 import M10IncidentPlaybookBlock from '../M10IncidentPlaybookBlock';
 import M10LearningLoopBlock from '../M10LearningLoopBlock';
 import M10OrchestratorBlock from '../M10OrchestratorBlock';
@@ -23,9 +26,17 @@ import M10TriggerFlowBlock from '../M10TriggerFlowBlock';
 import M10WorkflowSpecBlock from '../M10WorkflowSpecBlock';
 import M12MultiAgentSchemaBlock from '../M12MultiAgentSchemaBlock';
 import M12ThreeLabsBlock from '../M12ThreeLabsBlock';
+import M13AecFunnelBlock from '../M13AecFunnelBlock';
+import M13ConsistencyLockBlock from '../M13ConsistencyLockBlock';
+import M13MediaPipelineBlock from '../M13MediaPipelineBlock';
+import M13PostprodBlock from '../M13PostprodBlock';
+import M13PromptStackBlock from '../M13PromptStackBlock';
+import M13RuleOfThirdsBlock from '../M13RuleOfThirdsBlock';
 import M15PracticeLoopBlock from '../M15PracticeLoopBlock';
 import RlProcessBlock from '../RlProcessBlock';
 import StrukturuotasProcesasBlock from '../StrukturuotasProcesasBlock';
+import HallucinationPipelineBlock from '../HallucinationPipelineBlock';
+import { getHallucinationPipelineSteps } from '../hallucinationPipelineContent';
 import TestKnowledgeScopeDiagram from '../TestKnowledgeScopeDiagram';
 import TurinioWorkflowBlock from '../TurinioWorkflowBlock';
 
@@ -61,6 +72,18 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   });
 
   describe('AgentWorkflowBlock (M10.2)', () => {
+    it('uses verb forward labels without node-echo nouns', () => {
+      const lt = getAgentWorkflowLabels('lt').forwardLabels;
+      const en = getAgentWorkflowLabels('en').forwardLabels;
+      expect(lt).toEqual(['užduoda', 'sudaro planą', 'kviečia', 'grąžina']);
+      expect(en).toEqual(['assigns', 'plans', 'calls', 'returns']);
+      for (const labels of [lt, en]) {
+        expect(labels.join(' ')).not.toMatch(
+          /\b(užduotis|žingsniai|įrankiai|kontekstas|task|steps|tools|context)\b/i
+        );
+      }
+    });
+
     it('renders English copy when locale is en', () => {
       setLocale('en');
       const { container } = renderWithProviders(<AgentWorkflowBlock />);
@@ -77,18 +100,20 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(container.textContent).toContain('grįžtamasis ryšys');
     });
 
-    it('is interactive: shows "you are here" badge and step buttons (en)', () => {
+    it('is interactive: shows Step N of T status and step buttons (en)', () => {
       setLocale('en');
       const { container } = renderWithProviders(<AgentWorkflowBlock />);
-      expect(container.textContent).toContain('You are here:');
+      expect(container.textContent).toContain('Step 1 of 5');
+      expect(container.textContent).not.toContain('You are here:');
       const stepButtons = container.querySelectorAll('nav button');
       expect(stepButtons.length).toBe(5);
     });
 
-    it('is interactive: shows "Tu esi čia" badge (lt)', () => {
+    it('is interactive: shows Žingsnis N iš T status (lt)', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<AgentWorkflowBlock />);
-      expect(container.textContent).toContain('Tu esi čia:');
+      expect(container.textContent).toContain('Žingsnis 1 iš 5');
+      expect(container.textContent).not.toContain('Tu esi čia:');
     });
   });
 
@@ -110,6 +135,123 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(container.textContent).toContain('Apdorojimas');
       expect(container.textContent).toContain('Rezultatas');
     });
+
+    it('dims inactive step panels with DIAGRAM_TOKENS.opacity.inactive', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<StrukturuotasProcesasBlock />);
+      const panels = container.querySelectorAll('[data-step-panel]');
+      expect(panels.length).toBe(3);
+      const active = Array.from(panels).find(
+        (el) => el.getAttribute('data-active') === 'true'
+      );
+      const inactive = Array.from(panels).filter(
+        (el) => el.getAttribute('data-active') === 'false'
+      );
+      expect(active).toBeTruthy();
+      expect(inactive.length).toBe(2);
+      expect((active as HTMLElement).style.opacity).toBe('');
+      for (const el of inactive) {
+        expect(
+          Number((el as HTMLElement).style.opacity)
+        ).toBeGreaterThanOrEqual(0.88);
+      }
+    });
+  });
+
+  describe('HallucinationPipelineBlock (M7 slide 67.7)', () => {
+    it('keeps template prefix only on ground step (content SOT)', () => {
+      const lt = getHallucinationPipelineSteps('lt');
+      const en = getHallucinationPipelineSteps('en');
+      expect(lt[0]?.body.startsWith('Šablone:')).toBe(true);
+      expect(en[0]?.body.startsWith('In the template:')).toBe(true);
+      for (const step of lt.slice(1)) {
+        expect(step.body.startsWith('Šablone:')).toBe(false);
+      }
+      for (const step of en.slice(1)) {
+        expect(step.body.startsWith('In the template:')).toBe(false);
+      }
+      expect(lt[1]?.body).toContain('Prieš galutinį atsakymą');
+      expect(en[1]?.body).toContain('Before the final answer');
+    });
+
+    it('renders English labels, body hook and bridge when locale is en', () => {
+      setLocale('en');
+      const { container, getByRole } = renderWithProviders(
+        <HallucinationPipelineBlock />
+      );
+      expect(container.textContent).toContain('Sources');
+      expect(container.textContent).toContain('Verify');
+      expect(container.textContent).toContain('Risk');
+      expect(container.textContent).toContain('Risk scan');
+      expect(container.textContent).toContain(
+        'In the template: use only the information provided'
+      );
+      expect(container.textContent).toContain(
+        'Next you will copy the anti-hallucination template'
+      );
+      expect(container.textContent).not.toContain('Šaltiniai');
+      expect(container.textContent).not.toContain('Detect');
+      expect(container.textContent).not.toContain('Click a stage to pause');
+      const playBtn = getByRole('button', { name: /Play cycle|Pause cycle/ });
+      expect(playBtn.textContent).toMatch(/Play|Pause/);
+      expect(playBtn.getAttribute('title')).toBe('Click a stage to pause');
+    });
+
+    it('renders Lithuanian labels, body hook and bridge when locale is lt', () => {
+      setLocale('lt');
+      const { container, getByRole } = renderWithProviders(
+        <HallucinationPipelineBlock />
+      );
+      expect(container.textContent).toContain('Šaltiniai');
+      expect(container.textContent).toContain('Patikra');
+      expect(container.textContent).toContain('Spragos ir įtarimai');
+      expect(container.textContent).toContain(
+        'Šablone: naudok tik pateiktą informaciją'
+      );
+      expect(container.textContent).toContain(
+        'Kitame žingsnyje nukopijuosi anti-haliucinacinį šabloną'
+      );
+      expect(container.textContent).not.toContain(
+        'Spustelėk etapą – pristabdyti'
+      );
+      const playBtn = getByRole('button', {
+        name: /Paleisti ciklą|Pristabdyti ciklą/,
+      });
+      expect(playBtn.textContent).toMatch(/Paleisti|Pauzė/);
+    });
+
+    it('has five shell nav buttons and dims inactive panels', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<HallucinationPipelineBlock />);
+      expect(container.querySelectorAll('nav button')).toHaveLength(5);
+      const panels = container.querySelectorAll('[data-step-panel]');
+      expect(panels.length).toBeGreaterThanOrEqual(5);
+      const inactive = Array.from(panels).filter(
+        (el) => el.getAttribute('data-active') === 'false'
+      );
+      expect(inactive.length).toBeGreaterThan(0);
+      for (const el of inactive) {
+        expect(
+          Number((el as HTMLElement).style.opacity)
+        ).toBeGreaterThanOrEqual(0.88);
+      }
+    });
+
+    it('pin via shell nav pauses autoplay control', () => {
+      setLocale('lt');
+      vi.useFakeTimers();
+      const { container, getByRole } = renderWithProviders(
+        <HallucinationPipelineBlock />
+      );
+      const navButtons = container.querySelectorAll('nav button');
+      fireEvent.click(navButtons[2]!);
+      const pauseOrPlay = getByRole('button', {
+        name: /Paleisti ciklą|Pristabdyti ciklą/,
+      });
+      expect(pauseOrPlay.getAttribute('aria-pressed')).toBe('false');
+      expect(pauseOrPlay.textContent).toContain('Paleisti');
+      vi.useRealTimers();
+    });
   });
 
   describe('TurinioWorkflowBlock (M13 slide 13.11)', () => {
@@ -130,22 +272,178 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     });
   });
 
+  describe('M13 AEC funnel interactive (13.1)', () => {
+    it('localizes AEC funnel LT/EN with shell nav and dark palette', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M13AecFunnelBlock />);
+      expect(en.textContent).toContain('Campaign goals funnel');
+      expect(en.textContent).toContain('Pull attention');
+      expect(en.textContent).not.toContain('Kampanijos tikslų piltuvas');
+
+      setLocale('lt');
+      setDarkTheme();
+      const { container: lt } = renderWithProviders(<M13AecFunnelBlock />);
+      expect(lt.textContent).toContain('Kampanijos tikslų piltuvas');
+      expect(lt.textContent).toContain('Tu esi čia:');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(3);
+      expect(
+        lt.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+      expectDarkDiagramBackground(lt);
+    });
+  });
+
+  describe('M13 prompt stack interactive', () => {
+    it('localizes prompt stack LT/EN with shell nav and dark palette', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M13PromptStackBlock />);
+      expect(en.textContent).toContain('Image prompt = layers');
+      expect(en.textContent).not.toContain('Vaizdo promptas = sluoksniai');
+
+      setLocale('lt');
+      setDarkTheme();
+      const { container: lt } = renderWithProviders(<M13PromptStackBlock />);
+      expect(lt.textContent).toContain('Vaizdo promptas = sluoksniai');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(3);
+      expectDarkDiagramBackground(lt);
+    });
+  });
+
+  describe('M13 consistency lock and post-prod', () => {
+    it('renders consistency lock with four nav buttons', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M13ConsistencyLockBlock />);
+      expect(container.textContent).toContain('Reference lock');
+      expect(container.querySelectorAll('nav button')).toHaveLength(4);
+      expect(
+        container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+    });
+
+    it('renders post-prod with four nav buttons and dark palette', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(<M13PostprodBlock />);
+      expect(container.textContent).toContain('Post-production');
+      expect(container.querySelectorAll('nav button')).toHaveLength(4);
+      expectDarkDiagramBackground(container);
+    });
+  });
+
+  describe('M13 static illustration diagrams', () => {
+    it('localizes rule of thirds LT/EN and uses dark palette', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(<M13RuleOfThirdsBlock />);
+      expect(en.textContent).toContain('Rule of thirds (guide)');
+      expect(en.textContent).not.toContain('Trečdalių taisyklė');
+
+      setLocale('lt');
+      setDarkTheme();
+      const { container: lt } = renderWithProviders(<M13RuleOfThirdsBlock />);
+      expect(lt.textContent).toContain('Trečdalių taisyklė (gairė)');
+      expectDarkDiagramBackground(lt);
+    });
+  });
+
+  describe('M13MediaPipelineBlock (M13 slide 13.12)', () => {
+    it('renders English pipeline copy when locale is en', () => {
+      setLocale('en');
+      const { container } = renderWithProviders(<M13MediaPipelineBlock />);
+      expect(container.textContent).toContain('Generative media pipeline');
+      expect(container.textContent).toContain('Reference lock');
+      expect(container.textContent).not.toContain(
+        'Generatyvinės medijos pipeline'
+      );
+    });
+
+    it('renders Lithuanian pipeline copy and shell nav when locale is lt', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M13MediaPipelineBlock />);
+      expect(container.textContent).toContain('Generatyvinės medijos pipeline');
+      expect(container.textContent).toContain('Tu esi čia:');
+      expect(container.querySelectorAll('nav button')).toHaveLength(6);
+      expect(
+        container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+    });
+
+    it('uses the dark diagram palette', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(<M13MediaPipelineBlock />);
+      expectDarkDiagramBackground(container);
+    });
+  });
+
   describe('M15PracticeLoopBlock (M15 slide 150.25)', () => {
     it('renders English quick and full path labels when locale is en', () => {
       setLocale('en');
       const { container } = renderWithProviders(<M15PracticeLoopBlock />);
       expect(container.textContent).toContain('Quick path');
       expect(container.textContent).toContain('Full path (optional)');
-      expect(container.textContent).toContain('QA');
+      expect(container.textContent).toContain('Brief');
       expect(container.textContent).not.toContain('Greitas kelias');
     });
 
-    it('renders Lithuanian quick and full path labels when locale is lt', () => {
+    it('renders Lithuanian quick path with shell nav when locale is lt', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M15PracticeLoopBlock />);
       expect(container.textContent).toContain('Greitas kelias');
       expect(container.textContent).toContain('Pilnas kelias (optional)');
       expect(container.textContent).toContain('Koreguok, kol tinka');
+      expect(container.textContent).toContain('Tu esi čia:');
+      expect(container.querySelectorAll('nav button')).toHaveLength(5);
+      expect(
+        container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+    });
+
+    it('switches to full path explanations and keeps five nav buttons', () => {
+      setLocale('lt');
+      const { container, getByRole } = renderWithProviders(
+        <M15PracticeLoopBlock />
+      );
+      fireEvent.click(
+        getByRole('button', { name: 'Pilnas kelias (optional)' })
+      );
+      expect(container.textContent).toContain('1. Vaizdas');
+      expect(container.textContent).toContain('skaidrė 151');
+      expect(container.querySelectorAll('nav button')).toHaveLength(5);
+    });
+
+    it('shows quick-path CTA to slide 150.5', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<M15PracticeLoopBlock />);
+      expect(container.textContent).toContain('skaidrė 150.5');
+    });
+
+    it('uses the dark diagram palette', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(<M15PracticeLoopBlock />);
+      expectDarkDiagramBackground(container);
+    });
+  });
+
+  describe('M5 DiPrezentacijosWorkflowBlock', () => {
+    it('uses the dark diagram palette', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(
+        <DiPrezentacijosWorkflowBlock />
+      );
+      expectDarkDiagramBackground(container);
+      expectDarkPaletteTitle(container);
+    });
+  });
+
+  describe('ProcessStepper (Custom GPT)', () => {
+    it('uses the dark diagram palette', () => {
+      setLocale('en');
+      setDarkTheme();
+      const { container } = renderWithProviders(<ProcessStepper />);
+      expectDarkDiagramBackground(container);
+      expectDarkPaletteTitle(container);
     });
   });
 
@@ -176,9 +474,12 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       ['M10 learning loop', () => <M10LearningLoopBlock />, 4],
       ['M10 orchestrator', () => <M10OrchestratorBlock />, 6],
       ['M10 trigger flow', () => <M10TriggerFlowBlock />, 4],
+      ['M10 3A strategy', () => <M10ThreeAStrategyBlock />, 3],
       ['M10 workflow spec', () => <M10WorkflowSpecBlock />, 8],
       ['M10 incident playbook', () => <M10IncidentPlaybookBlock />, 5],
       ['M12 multi-agent schema', () => <M12MultiAgentSchemaBlock />, 6],
+      ['M13 media pipeline', () => <M13MediaPipelineBlock />, 6],
+      ['M13 content workflow', () => <TurinioWorkflowBlock />, 7],
     ])(
       'keeps keyboard interaction in %s HTML nav only',
       (_name, renderComponent, expectedButtons) => {
@@ -209,17 +510,51 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   });
 
   describe('M10-M12 static diagram localization and palette contracts', () => {
-    it('renders M10 agent taxonomy in both locales', () => {
+    it('renders M10 agent depth/roles diagram in both locales with 8-step shell', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M10AgentTaxonomyBlock />);
-      expect(en.textContent).toContain('Agent taxonomy: depth + roles');
-      expect(en.textContent).toContain('Multi-agent roles');
-      expect(en.textContent).not.toContain('Agentų taksonomija');
+      expect(en.textContent).toContain('Agent depth and roles');
+      expect(en.textContent).not.toMatch(/taxonomy/i);
+      expect(en.textContent).toContain('Team – select L2');
+      expect(en.textContent).not.toContain('L2 team example');
+      expect(en.textContent).not.toContain('Selected level');
+      expect(en.textContent).toContain('Selected:');
+      expect(en.textContent).not.toContain('Agentų gylis ir rolės');
+      expect(en.querySelectorAll('nav button')).toHaveLength(8);
+      expect(
+        en.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+      const enButtons = en.querySelectorAll('nav button');
+      // L1 → still ghost caption (not live hub)
+      fireEvent.click(enButtons[1]);
+      expect(en.textContent).toContain('Team – select L2');
+      expect(en.textContent).not.toContain('Selected level');
+      fireEvent.click(enButtons[2]);
+      expect(en.textContent).toContain('L2 team example');
+      expect(en.textContent).toContain('Selected level');
+      expect(en.textContent).not.toContain('delivers');
+      // specialist step → staged pateikia/delivers pill
+      fireEvent.click(enButtons[6]);
+      expect(en.textContent).toContain('delivers');
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10AgentTaxonomyBlock />);
-      expect(lt.textContent).toContain('Agentų taksonomija: gylis + rolės');
-      expect(lt.textContent).toContain('Kelių agentų rolės');
+      expect(lt.textContent).toContain('Agentų gylis ir rolės');
+      expect(lt.textContent).not.toMatch(/taksonomij/i);
+      expect(lt.textContent).toContain('Komanda – pasirink L2');
+      expect(lt.textContent).not.toContain('Pasirinktas lygis');
+      expect(lt.textContent).toContain('Pasirinkta:');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(8);
+      const ltButtons = lt.querySelectorAll('nav button');
+      fireEvent.click(ltButtons[1]);
+      expect(lt.textContent).toContain('Komanda – pasirink L2');
+      expect(lt.textContent).not.toContain('Pasirinktas lygis');
+      fireEvent.click(ltButtons[2]);
+      expect(lt.textContent).toContain('L2 komandos pavyzdys');
+      expect(lt.textContent).toContain('Pasirinktas lygis');
+      expect(lt.textContent).not.toContain('pateikia');
+      fireEvent.click(ltButtons[6]);
+      expect(lt.textContent).toContain('pateikia');
     });
 
     it('renders M10 trigger flow in both locales', () => {
@@ -235,17 +570,40 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(lt.textContent).toContain('paleidžia srautą');
     });
 
-    it('renders M10 3A strategy in both locales', () => {
+    it('renders M10 3A strategy in both locales with shell nav', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M10ThreeAStrategyBlock />);
-      expect(en.textContent).toContain('3A strategy (80 / 15 / 5)');
-      expect(en.textContent).toContain('Rule-based flows');
-      expect(en.textContent).not.toContain('Taisyklėmis paremti srautai');
+      expect(en.textContent).toContain('AUTOMATIZE');
+      expect(en.textContent).toContain('AUGMENT');
+      expect(en.textContent).toContain('AUTONOMIZE');
+      expect(en.textContent).not.toContain('AUGMEAUTONOMIZE');
+      expect(en.textContent).toContain('fewer errors');
+      expect(en.textContent).toContain('Human decides, model helps');
+      expect(en.textContent).toContain('5 %');
+      expect(en.textContent).toContain('Step 1 of 3');
+      expect(en.textContent).not.toContain('mažiau klaidų');
+      expect(en.querySelectorAll('nav button')).toHaveLength(3);
+      expect(
+        en.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
+      expect(en.textContent).not.toMatch(
+        /Peržiūrėti visą dydį|View full size/i
+      );
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10ThreeAStrategyBlock />);
-      expect(lt.textContent).toContain('3A strategija (80 / 15 / 5)');
-      expect(lt.textContent).toContain('Taisyklėmis paremti srautai');
+      expect(lt.textContent).toContain('AUTOMATIZE');
+      expect(lt.textContent).toContain('AUGMENT');
+      expect(lt.textContent).toContain('AUTONOMIZE');
+      expect(lt.textContent).not.toContain('AUGMEAUTONOMIZE');
+      expect(lt.textContent).toContain('mažiau klaidų');
+      expect(lt.textContent).toContain('Žmogus sprendžia, DI padeda');
+      expect(lt.textContent).toContain('5 %');
+      expect(lt.textContent).toContain('Žingsnis 1 iš 3');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(3);
+      expect(
+        lt.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
     });
 
     it('renders M10 workflow spec and incident playbook in both locales', () => {
@@ -280,6 +638,24 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(incidentLt.textContent).toContain('Pranešti');
     });
 
+    it('renders M10 human control simulator in both locales', () => {
+      setLocale('en');
+      const { container: en } = renderWithProviders(
+        <M10HumanControlSimulatorBlock />
+      );
+      expect(en.textContent).toContain('Choose a business scenario');
+      expect(en.textContent).toContain('Exception review');
+      expect(en.textContent).not.toContain('Pasirink verslo scenarijų');
+
+      setLocale('lt');
+      const { container: lt } = renderWithProviders(
+        <M10HumanControlSimulatorBlock />
+      );
+      expect(lt.textContent).toContain('Pasirink verslo scenarijų');
+      expect(lt.textContent).toContain('Išimčių peržiūra');
+      expect(lt.textContent).not.toContain('Choose a business scenario');
+    });
+
     it('renders M12 three labs in both locales', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M12ThreeLabsBlock />);
@@ -296,7 +672,6 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it.each([
       ['M10 agent taxonomy', () => <M10AgentTaxonomyBlock />],
       ['M10 trigger flow', () => <M10TriggerFlowBlock />],
-      ['M10 3A strategy', () => <M10ThreeAStrategyBlock />],
       ['M10 workflow spec', () => <M10WorkflowSpecBlock />],
       ['M10 incident playbook', () => <M10IncidentPlaybookBlock />],
       ['M12 three labs', () => <M12ThreeLabsBlock />],
@@ -307,6 +682,13 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(renderComponent());
 
       expectDarkPaletteTitle(container);
+    });
+
+    it('uses the dark diagram palette in M10 3A strategy', () => {
+      setLocale('lt');
+      setDarkTheme();
+      const { container } = renderWithProviders(<M10ThreeAStrategyBlock />);
+      expectDarkDiagramBackground(container);
     });
   });
 
@@ -364,7 +746,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       );
 
       fireEvent.click(
-        getByRole('button', { name: 'Peržiūrėti teoriją: Pipeline' })
+        getByRole('button', {
+          name: 'Peržiūrėti teoriją (grįši į testą): Pipeline',
+        })
       );
 
       expect(onGoToModule).toHaveBeenCalledWith(7, expect.any(Number), 8);
@@ -384,7 +768,9 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       );
 
       fireEvent.click(
-        getByRole('button', { name: 'Peržiūrėti teoriją: Agentų ciklas' })
+        getByRole('button', {
+          name: 'Peržiūrėti teoriją (grįši į testą): Agentų ciklas',
+        })
       );
 
       expect(onGoToModule).toHaveBeenCalledWith(10, expect.any(Number), 11);
@@ -421,16 +807,31 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it('renders M7 data pipeline in English', () => {
       setLocale('en');
       const { container } = renderWithProviders(<M7DaPipelineBlock />);
-      expect(container.textContent).toContain('Data analysis pipeline');
+      expect(container.textContent).toContain('Analysis path');
       expect(container.textContent).toContain('Collection');
+      expect(container.textContent).toContain('Modeling');
+      expect(container.textContent).toContain('Gather sources');
+      expect(container.textContent).toContain('Step 1 of 6');
+      expect(container.textContent).toContain(
+        'Click a step in the diagram or number 1–6'
+      );
       expect(container.textContent).not.toContain('Duomenų analizės pipeline');
+      expect(container.textContent).not.toContain('Analizės eiga');
+      expect(container.textContent).not.toContain('Modeliai');
     });
 
     it('renders M7 data pipeline in Lithuanian with step navigation', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M7DaPipelineBlock />);
-      expect(container.textContent).toContain('Duomenų analizės pipeline');
+      expect(container.textContent).toContain('Analizės eiga');
       expect(container.textContent).toContain('Rinkimas');
+      expect(container.textContent).toContain('Modeliavimas');
+      expect(container.textContent).toContain('Skaičiuojame');
+      expect(container.textContent).toContain('Žingsnis 1 iš 6');
+      expect(container.textContent).toContain(
+        'Paspausk žingsnį diagramoje arba skaičių 1–6'
+      );
+      expect(container.textContent).not.toContain('Modeliai');
       const stepButtons = container.querySelectorAll('nav button');
       expect(stepButtons.length).toBe(6);
     });
@@ -459,6 +860,11 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<M7DataPrepWorkflowBlock />);
       expect(container.textContent).toContain('Five-step data prep');
       expect(container.textContent).toContain('Sources');
+      expect(container.textContent).toContain('List sources');
+      expect(container.textContent).toContain('Step 1 of 5');
+      expect(container.textContent).toContain(
+        'Click a step in the diagram or number 1–5'
+      );
       expect(container.textContent).not.toContain('Penki žingsniai');
       expect(container.querySelectorAll('nav button').length).toBe(5);
     });
@@ -559,24 +965,36 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   describe('LlmArchDiagramBlock (M4 slide 56)', () => {
     it('renders Lithuanian mode tabs when locale is lt', () => {
       setLocale('lt');
-      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
-      expect(container.textContent).toContain('Bazinis');
-      expect(container.textContent).toContain('Įrankiai');
-      expect(container.textContent).not.toContain('Basic');
+      const { getByRole } = renderWithProviders(<LlmArchDiagramBlock />);
+      expect(getByRole('button', { name: /Režimas: Bazinis/i })).toBeTruthy();
+      expect(getByRole('button', { name: /Režimas: Agentinis/i })).toBeTruthy();
+      expect(() =>
+        getByRole('button', { name: /Režimas: Įrankiai/i })
+      ).toThrow();
+      expect(() => getByRole('button', { name: /Mode: Basic/i })).toThrow();
     });
 
     it('renders English mode tabs when locale is en', () => {
       setLocale('en');
-      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
-      expect(container.textContent).toContain('Basic');
-      expect(container.textContent).toContain('Tools');
-      expect(container.textContent).not.toContain('Bazinis');
+      const { getByRole } = renderWithProviders(<LlmArchDiagramBlock />);
+      expect(getByRole('button', { name: /Mode: Basic/i })).toBeTruthy();
+      expect(getByRole('button', { name: /Mode: Agent/i })).toBeTruthy();
+      expect(() => getByRole('button', { name: /Mode: Tools/i })).toThrow();
+      expect(() =>
+        getByRole('button', { name: /Režimas: Bazinis/i })
+      ).toThrow();
     });
 
     it('is interactive: three mode tabs with aria-pressed', () => {
       setLocale('lt');
-      const { container } = renderWithProviders(<LlmArchDiagramBlock />);
-      expect(container.querySelectorAll('button[aria-pressed]').length).toBe(3);
+      const { getAllByRole } = renderWithProviders(<LlmArchDiagramBlock />);
+      const modeTabs = getAllByRole('button').filter((btn) =>
+        /Režimas:/i.test(btn.getAttribute('aria-label') || '')
+      );
+      expect(modeTabs.length).toBe(3);
+      expect(modeTabs.every((btn) => btn.hasAttribute('aria-pressed'))).toBe(
+        true
+      );
     });
   });
 
@@ -613,6 +1031,16 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(container.textContent).toContain('Tu esi čia:');
       const stepButtons = container.querySelectorAll('nav button');
       expect(stepButtons.length).toBe(10);
+    });
+
+    it('forward marker uses userSpaceOnUse so shaft stays visible with stroke.flow', () => {
+      setLocale('lt');
+      const { container } = renderWithProviders(<LlmAutoregressiveBlock />);
+      const markers = container.querySelectorAll('svg marker');
+      expect(markers.length).toBeGreaterThan(0);
+      markers.forEach((m) => {
+        expect(m.getAttribute('markerUnits')).toBe('userSpaceOnUse');
+      });
     });
   });
 

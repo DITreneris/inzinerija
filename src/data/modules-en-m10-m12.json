@@ -3,8 +3,8 @@
     {
       "id": 10,
       "title": "Agent engineering with AI",
-      "subtitle": "Tools, prompts, systems – design and execution",
-      "description": "Agent engineering: cycle, tools, prompts, integrations. AI as agent system builder.",
+      "subtitle": "Agents, tools, and automation",
+      "description": "Learn to design AI agents: what they do, which tools they use, and how to connect them.",
       "icon": "Cpu",
       "level": "learn",
       "duration": "25–30 min",
@@ -21,15 +21,26 @@
             "whyBenefit": "After this module you will understand how to design AI agents – from the cycle and tools to integrations and prompt architecture.",
             "heroStat": "You already know the 6 blocks and context engineering.",
             "heroText": "Now – agent engineering.",
-            "heroSubText": "Design agents for your processes – taxonomy, multi-agent coordination, no-code tools. Context – Module 4.",
+            "heroSubText": "Design agents for your processes – depth levels and roles, multi-agent coordination, no-code tools. Context – Module 4.",
             "firstActionCTA": "Pick an AI tool with tools enabled (search or Tools) and in 1–2 minutes ask one agent-style query – e.g. “Search [topic] and give a summary with sources”.",
             "outcomes": [
-              "Understand agent taxonomy (L0–L3) and multi-agent roles",
+              "Understand agent depth levels (L0–L3) and multi-agent roles",
               "Use 5 workflow patterns and system prompts",
               "Know how to choose tools and limit risks"
             ],
             "duration": "~20–25 min",
-            "audience": "For business specialists and engineers who completed Modules 4–6 (Context engineering)."
+            "audience": "For business specialists and engineers who completed Modules 4–6 (Context engineering).",
+            "howToUseModule": {
+              "heading": "Choose your path",
+              "short": {
+                "label": "Short path",
+                "description": "Skip optional slides (GitHub deep, testing/security deep, glossary)."
+              },
+              "full": {
+                "label": "Full path",
+                "description": "All slides, including optional ones."
+              }
+            }
           }
         },
         {
@@ -65,19 +76,19 @@
         {
           "id": 10.2,
           "title": "Agent cycle and architecture",
-          "subtitle": "Agent → Planning → Tools → Result → Feedback",
+          "subtitle": "Agent → Planning → Tools → Environment → Result → Feedback",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "Process diagram",
-                "body": "Agent cycle: from task to result and feedback. View full size – the same image opens in a modal.",
+                "heading": "How an AI agent works",
+                "body": "The agent plans actions, uses tools, reads the environment and evaluates the result. View full size – the same image opens in a modal.",
                 "image": "agent_workflow_diagram",
-                "blockVariant": "brand"
+                "blockVariant": "default"
               },
               {
                 "heading": "How an agent works",
-                "body": "An AI agent **(1)** receives a task, **(2)** plans steps, **(3)** uses tools (search, API, files – if the platform allows), **(4)** returns a result with feedback.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish. Unlike a simple chat – the agent **autonomously** chooses actions and can call external tools.",
+                "body": "An AI agent runs in **five steps**: **(1)** Agent receives a task, **(2)** Planning – break into steps, **(3)** Tools (search, API, files – if the platform allows), **(4)** Environment – context and response, **(5)** Result with feedback back to the agent.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish. Unlike a simple chat – the agent **autonomously** chooses actions and can call external tools.",
                 "blockVariant": "brand"
               },
               {
@@ -92,8 +103,8 @@
               },
               {
                 "heading": "Copyable AI task",
-                "body": "Task for AI (paste into chat): “Explain in your own words **in four steps** how an AI agent works, and **in one sentence** – how it differs from one question and one answer without tools.”",
-                "copyable": "Explain in your own words in four steps how an AI agent works, and in one sentence – how it differs from one question and one answer without tools."
+                "body": "Task for AI (paste into chat): “Explain in your own words **in five steps** (agent, planning, tools, environment, result) how an AI agent works, and **in one sentence** – how it differs from one question and one answer without tools.”",
+                "copyable": "Explain in your own words in five steps (agent, planning, tools, environment, result) how an AI agent works, and in one sentence – how it differs from one question and one answer without tools."
               }
             ],
             "footer": "Next slide"
@@ -181,18 +192,18 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "3A splits automation: **80%** rules (Automatize), **15%** with human approval (Augment), **5%** limited autonomy (Autonomize). Value–safety balance.",
+                "body": "3A is a decision portfolio: most work uses rules (**fewer errors**), a smaller share is human + AI, and the smallest band is agents with limits.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "3A strategy (diagram)",
-                "body": "Visually: largest – **Automatize (80%)**, smaller – **Augment (15%)**, smallest – **Autonomize (5%)**. **View full size** – same image in a modal.",
+                "body": "Tap a band – when to choose it. Then assign your own processes below.",
                 "image": "m10_three_a_strategy",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Three bands (80 / 15 / 5)",
-                "body": "**AUTOMATIZE (80%)** – rule-based flows, no human decision. E.g. form → CRM → email → Slack.\n\n**AUGMENT (15%)** – human decides, AI helps (summaries, classification). E.g. email → AI summary → human approval → send.\n\n**AUTONOMIZE (5%)** – AI agents with limits: quality checks, escalation. E.g. feedback → sentiment → escalation → ticket.",
+                "heading": "Example",
+                "body": "**Invoices / form → CRM → confirmation email** → **Automatize**, because the rule is clear and no human decision is needed.",
                 "blockVariant": "brand"
               },
               {
@@ -207,16 +218,46 @@
               },
               {
                 "heading": "Check",
-                "body": "Can you explain why at least one process is **not** Autonomize (5%) if you chose Automatize or Augment? If not – return to “Three bands”.",
+                "body": "Can you explain why at least one process is **not** Autonomize (5%) if you chose Automatize or Augment? Can you name a process that **requires** a human? If not – return to the diagram or the example.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Where to apply",
                 "body": "When planning business automation: which processes need only rules (80), which need human approval (15), where limited agent autonomy is OK (5).",
                 "blockVariant": "terms",
-                "collapsible": true
+                "collapsible": true,
+                "collapsedByDefault": true
               }
-            ]
+            ],
+            "footer": "Next – slide 7: When does a human approve?"
+          }
+        },
+        {
+          "id": 10.26,
+          "title": "When does a human approve?",
+          "subtitle": "Control mode by consequence and reversibility",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Human oversight (**Human-in-the-loop / HITL**) is not a maturity ladder to autopilot. It is a **risk architecture**: the higher the consequence and the harder it is to reverse a mistake, the earlier a human must step in.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick a scenario and a control mode. The simulator shows whether your choice fits, what happens on an error case, and generates a rule for the 10.64 brief.",
+                "image": "m10_human_control_simulator",
+                "imageAlt": "Human control mode simulator",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you name at least one process where **outcome monitoring alone is not enough**? Will your 10.64 human-control line include mode, condition, escalation and an audit record?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 8: Role and system prompt template"
           }
         },
         {
@@ -258,43 +299,33 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Not every task needs an AI team. First set the **depth level** (L0–L3), then whether you need several **roles** (coordinator, specialist, evaluator, router).",
+                "body": "Not every task needs an AI team. First set the **depth level** (L0–L3), then whether you need several **roles**. Below – the diagram; start at L0.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Taxonomy diagram",
-                "body": "Left – depth levels (L0–L3); right – multi-agent roles and handoffs. **View full size** – same image in a modal.",
+                "heading": "Depth and team roles",
+                "body": "Left – depth; right – L2 team example (appears when you select L2).",
                 "image": "m10_agent_taxonomy",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Depth levels (L0–L3)",
-                "body": "**L0 – Chat with AI:** one question–answer (e.g. drafting an email).\n\n**L1 – Single AI agent:** several steps + tools (research + summary).\n\n**L2 – AI team:** different roles, handoffs (RFP: researcher → writer → reviewer).\n\n**L3 – Automated flow:** trigger → actions (form → CRM → email).",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Multi-agent roles",
-                "body": "**Coordinator** – breaks down the task, delegates, merges results (team lead).\n\n**Specialist** – does one narrow job: search, draft, calculation.\n\n**Evaluator** – QC, rules, returns for revision (editor / compliance).\n\n**Router** – routes by type (reception / triage).",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "3A mapping",
-                "body": "**Automatize (80 %)** → usually L3 (flow, no multi-agent). **Augment (15 %)** → L1 + human (HITL). **Autonomize (5 %)** → L2 with evaluator and incident playbook.",
+                "heading": "3A tip",
+                "body": "3A reminder: **Automatize** ≈ L3 flow; **Augment** ≈ L1; **Autonomize** ≈ L2 + evaluator. Details – earlier 3A slide.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Pick one work process and define three roles – coordinator, specialist, evaluator.",
+                "body": "Pick one work process. First write **L0 / L1 / L2 / L3**. If L2 – define three roles (coordinator, specialist, evaluator). **Router** – only if you need triage before the coordinator.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
                 "body": "Copy and fill [X] with your process.",
-                "copyable": "Define three roles for your process [X]:\n1) Coordinator – what they plan and delegate\n2) Specialist – what they do specifically\n3) Evaluator – what they check before delivering the result\nFor each role – one sentence + input + output."
+                "copyable": "Process: [X]\nDepth level (L0–L3): [L?]\nIf L2 – three roles:\n1) Coordinator – what they plan and delegate (+ input / output)\n2) Specialist – what they do specifically (+ input / output)\n3) Evaluator – what they check before delivery (+ input / output)\nOne sentence per role."
               },
               {
                 "heading": "Check",
-                "body": "Does each role have a clear **input** and **output** description? If not – too complex; start with L1 (one agent).",
+                "body": "Did you choose a **depth level**? If L2 – does each role have a clear **input** and **output**? If not – start with L1 (one agent).",
                 "blockVariant": "accent"
               },
               {
@@ -318,12 +349,12 @@
             "pathLabel": "Agent engineering path",
             "stepNumber": 2,
             "stepTotal": 3,
-            "body": "Pick one process and write 3 roles: coordinator, specialist, evaluator. Mark the step when each role has a clear input and output.",
+            "body": "You already chose the level on slide 10.45. Here – only **input, output, and handoff rule** for three roles (if L2). If you stayed on L1 – mark the step and continue.",
             "sections": [
               {
                 "heading": "What to check",
                 "body": "Is it clear when the specialist hands work to the evaluator? Does the evaluator have a done criterion?",
-                "copyable": "Process: [DESCRIBE]. Describe 3 roles: coordinator, specialist, evaluator. For each role state: input, output, and the handoff rule – when work passes to the next role."
+                "copyable": "Process: [DESCRIBE] (level already: L2).\nFor each role (coordinator / specialist / evaluator):\n– input\n– output\n– handoff rule: when work passes to the next role."
               },
               {
                 "heading": "If too complex",
@@ -942,7 +973,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 24: GitHub as code source"
+            "footer": "Next – slide 25: GitHub as code source"
           }
         },
         {
@@ -1003,39 +1034,39 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 25: Minimum brief"
+            "footer": "Next – slide 26: Minimum workflow brief"
           }
         },
         {
           "id": 10.64,
           "title": "Minimum workflow brief",
-          "subtitle": "1-page schema + 3 tests + human approval",
+          "subtitle": "1-page schema + 3 tests + when a human approves",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before Module 12 practices (121–123), have an **minimum brief**: a 1-page workflow spec, 3 test cases, and a human-approval rule. Without it, artefacts stay weak. The deep guide (10 tests, incident playbook, security) remains optional slide **10.65**.",
+                "body": "Before Module 12 practices, fill a **minimum workflow brief**: 1-page schema + 3 test cases + a human-control rule. Carry the same brief into 10.66 QC and the labs.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Minimum ticket",
-                "body": "**(A) 1-page spec** – Trigger, input schema, condition, actions, output, error handling.\n\n**(B) 3 test cases** – happy path; missing required field; API/timeout or webhook duplicate.\n\n**(C) HITL** – when human approval is required (e.g. finance, PII, send to client).",
+                "heading": "Minimum brief",
+                "body": "**(A)** 1-page spec: trigger → error handling.\n**(B)** 3 test cases: happy path, missing field, API/timeout or webhook duplicate.\n**(C)** Human-control rule – mode, condition / limit, reject or escalate, audit record.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Fill the template below for **your process** – the same ticket you carry into M12 labs and the QC evaluator (10.66).",
+                "body": "Copy the template and fill it for your process. Next – the 10.66 evaluator.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable template",
-                "body": "Copy and fill every line.",
-                "copyable": "Workflow minimum brief:\n1) Trigger: …\n2) Input schema (required fields): …\n3) Condition: …\n4) Actions (3–5): …\n5) Output: …\n6) Error handling: …\n7) HITL – when a human is required: …\n8) 3 test cases:\n   A) happy path → expected result\n   B) missing required field → “Not found / Failed: …”\n   C) API/timeout or webhook duplicate → behaviour"
+                "body": "Minimum workflow brief.",
+                "copyable": "Minimum workflow brief:\n1) Trigger – what starts the flow.\n2) Input schema – which fields are required.\n3) Condition – what branches the flow.\n4) Actions – 3–5 steps with tools.\n5) Output – what result must be created.\n6) Error handling – what to do if a step fails.\n7) Audit record – what to log: time, step, result.\n8) Human-control rule – mode: [every case / exceptions / post-action / monitoring]; condition or limit: […]; reject / escalate: […]; audit record: […].\n\nTest cases:\nB1 happy path: …\nB2 missing field: …\nB3 timeout / duplicate: …"
               },
               {
                 "heading": "Check",
-                "body": "Do you have cases **B** and **C** (not only happy path)? Is HITL never “never” when finance or personal data is involved? If not – fix before M12.",
+                "body": "Do you have **B** and **C** (not only happy path)? Does the human-control rule include mode, condition, escalation and an audit record? If finance / personal data is marked “never” – return to 10.26.",
                 "blockVariant": "accent"
               }
             ],
@@ -1124,7 +1155,7 @@
                 "heading": "Copyable prompt (evaluator)",
                 "body": "One prompt evaluates another: the evaluator does not create a new workflow, it shows what to fix.",
                 "blockVariant": "terms",
-                "copyable": "You are an agent quality evaluator.\nEvaluate the agent or workflow specification below against 5 criteria:\n1) goal and completion criterion,\n2) input fields,\n3) tools and limits,\n4) error handling,\n5) human approval in risky places.\n\nReturn a table: criterion | OK / fix | what is unclear | concrete fix.\nIf data is missing, do not guess – say which field is needed.\nSpecification: [PASTE HERE]"
+                "copyable": "You are an agent quality evaluator.\nEvaluate the agent or workflow specification below against 5 criteria:\n1) goal and completion criterion,\n2) input fields,\n3) tools and limits,\n4) error handling,\n5) human-control rule: mode, condition / limit, reject or escalate, audit record.\n\nReturn a table: criterion | OK / fix | what is unclear | concrete fix.\nIf data is missing, do not guess – say which field is needed.\nSpecification: [PASTE HERE]"
               },
               {
                 "heading": "Check",
@@ -1176,6 +1207,10 @@
               {
                 "term": "Guardrails",
                 "definition": "Rules the agent does not break (e.g. disallowed actions, privacy)."
+              },
+              {
+                "term": "Human-in-the-loop (HITL)",
+                "definition": "Keeping a human in approval, exception review or monitoring for AI / agent actions. Choose the mode by consequence and reversibility (slide 10.26) – not as a maturity ladder to full autonomy."
               },
               {
                 "term": "Error handling",
@@ -1296,11 +1331,11 @@
       ],
       "businessExamples": [
         {
-          "title": "Agent cycle and tools",
-          "description": "Trigger → action → artefacts with AI"
+          "title": "Agent cycle",
+          "description": "What the agent does step by step"
         },
         {
-          "title": "Integrations and automation",
+          "title": "Automation with tools",
           "description": "AI with search, API, tools"
         }
       ]
@@ -1308,8 +1343,8 @@
     {
       "id": 11,
       "title": "Knowledge check (Agent path)",
-      "subtitle": "Test: agent cycle, prompts, tools",
-      "description": "Check your understanding before the final Agent engineering project (Module 12).",
+      "subtitle": "Quiz before the agent project",
+      "description": "Check the agent flow and tools. ≥70% recommended before Module 12.",
       "icon": "ClipboardCheck",
       "level": "test",
       "duration": "10–12 min",
@@ -1496,17 +1531,17 @@
               "id": "m11-q8",
               "type": "scenario",
               "bloomLevel": 3,
-              "scenarioContext": "You get a long complaint by email. You want AI to briefly summarise it, but you write and send the final reply to the client only after you review it.",
-              "question": "Which option best matches Augment (15 %)?",
+              "scenarioContext": "A workflow prepares a customer reply and sometimes sees personal data. Standard replies repeat, but a wrong reply to a customer would be hard to reverse.",
+              "question": "Which human-control mode fits best?",
               "options": [
-                "Flow: email → AI summary → you review / edit → then send to client",
-                "AI automatically replies to client without your step",
-                "Do not use AI – do everything by hand",
-                "AI deletes the email if longer than 500 words"
+                "Exception review: standard cases run automatically; risky or unclear cases go to a human",
+                "Outcome monitoring only: a human sees only a weekly dashboard",
+                "Post-action spot checks: send to the customer first, then sample a few cases later",
+                "Approve every case, even though only some of the flow is risky"
               ],
               "correct": 0,
-              "explanation": "Augment – human stays in the decision, AI helps (summary, classification). Human-in-the-loop before sending reduces risk.",
-              "relatedSlideId": 10.25
+              "explanation": "Exception review matches Augment logic: AI speeds up standard cases, but risk, personal data or uncertainty goes to a human before send.",
+              "relatedSlideId": 10.26
             },
             {
               "id": "m11-q9",
@@ -1580,11 +1615,11 @@
       "businessExamples": [
         {
           "title": "Agent cycle and prompts",
-          "description": "Questions on trigger, action, result"
+          "description": "Questions on flow and result"
         },
         {
           "title": "Tools and integrations",
-          "description": "Search, Tools, systems with AI"
+          "description": "Search and systems with AI"
         }
       ]
     },
@@ -1592,10 +1627,10 @@
       "id": 12,
       "title": "Final project (Agent path)",
       "subtitle": "One full agent or automation scenario",
-      "description": "Build one agent or automation scenario – continuation of M10 and M11 (Agent path).",
+      "description": "Quick start with prompts, or 3 labs: a work process, checks, and a reusable template.",
       "icon": "Rocket",
       "level": "practice",
-      "duration": "20–30 min",
+      "duration": "20–30 min / 60–90 min",
       "unlocksAfter": 11,
       "accent": "fuchsia",
       "identityIcon": "Rocket",
@@ -1951,41 +1986,41 @@
           "subtitle": "Email → AI summary → human approve → send",
           "type": "practice-scenario",
           "scenario": {
-            "narrativeLead": "Build workflow with AI summary step and human approval. Record prompt and rules.",
+            "narrativeLead": "Build a workflow with an AI summary step and a human-control rule. Record the prompt, mode and escalation.",
             "situation": "Augment (15 %): human decides, AI helps – e.g. email → summary → approval before send.",
             "context": "Flow: incoming email → AI summary (e.g. ChatGPT or Make AI module) → human approval before send → send.",
-            "data": "Task: build workflow and prepare artefacts – diagram, summary prompt template, approval step description, 1–2 test cases.",
-            "constraints": "**Recommended:** Make or Zapier with an AI module. **Prompt-only fallback:** create summary + evaluator prompts and describe the approval step without a live workflow. Clearly state who sees the summary and who approves. Use the **10.64 brief** as the artefact base.",
-            "expectedFormat": "Artefacts: workflow schema (1 p.), summary prompt, approval rule, 1–2 test cases. **Prompt-only:** schema + prompts are enough (no platform logs)."
+            "data": "Task: build the workflow and prepare artefacts – schema, summary prompt template, control rule (mode, condition, escalation, audit), 1–2 test cases.",
+            "constraints": "Use Make or Zapier with an AI module. Clearly state who sees the summary, who approves exceptions, and what happens on reject.",
+            "expectedFormat": "Artefacts: workflow schema, summary prompt, human-control rule, 1–2 test cases."
           },
           "practicalTask": {
-            "title": "Record augment workflow and artefacts",
-            "placeholder": "Enter workflow summary, summary prompt and approval rules…",
-            "templateLabel": "Summary template and approval rule",
-            "template": "Summary prompt: From this email extract: (1) sender and date, (2) main topic in one sentence, (3) 3–5 bullet points. Human-in-the-loop: before sending human approves or edits.\n\nEVALUATOR PROMPT: Check the summary: (1) tone suitable for client, (2) facts match original, (3) no excess PII. If not – return list of fixes.",
-            "explanation": "Human approval reduces risk of wrong automatic send. Use the 10.64 brief as the artefact base. You can mark done without an artefact, but completion is weak – enter at least a short summary.",
+            "title": "Record Augment workflow and artefacts",
+            "placeholder": "Enter workflow summary, summary prompt and control rules…",
+            "templateLabel": "Summary template and human-control rule",
+            "template": "Summary prompt: From this email extract: (1) sender and date, (2) main topic in one sentence, (3) 3–5 bullet points.\n\nHuman-control rule: mode – exception review; condition – escalate to a human when the summary goes to a customer, includes personal data, or AI marks uncertainty; reject / escalate – stop send and return a fix list; audit – log approver, time, decision and fix.\n\nEVALUATOR PROMPT: Check the summary: (1) tone suitable for client, (2) facts match original, (3) no excess personal data. If not – return a list of fixes.",
+            "explanation": "Exception review lowers risk without forcing a human to approve every standard case.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
               "title": "Steps and artefacts",
               "steps": [
                 {
                   "step": 1,
-                  "title": "Build or describe the Augment flow",
-                  "description": "Trigger (new email) → AI summary → approval step → send. On a platform or as a prompts + schema draft.",
-                  "hint": "Prompt-only fallback is allowed without Zapier/Make.",
+                  "title": "Build the workflow: trigger (new email) → AI summary → approval step → send",
+                  "description": "Use Make or Zapier with an AI module.",
+                  "hint": "Use Make or Zapier with an AI module.",
                   "partialSolution": "Use Make or Zapier with an AI module."
                 },
                 {
                   "step": 2,
-                  "title": "Write summary prompt template and approval step",
-                  "description": "Who sees, who approves, what happens on reject. Copy the template below.",
-                  "hint": "Who sees, who approves, what happens on reject.",
-                  "partialSolution": "Who sees it, who approves, what to do if rejected."
+                  "title": "Write the summary prompt and human-control rule",
+                  "description": "Mode, condition, who approves, what happens on reject, what to log in audit.",
+                  "hint": "Use the rule generated on 10.26 as a start.",
+                  "partialSolution": "Mode – exception review; condition – human when sending to customer, personal data, or unclear facts; on reject – stop send; audit – approver, time, decision."
                 },
                 {
                   "step": 3,
-                  "title": "1–2 test cases + schema (1 p.)",
-                  "description": "Happy path + one edge case. Platform – run evidence; prompt-only – AI chat result.",
+                  "title": "Write 1–2 test cases and a workflow schema (1 p.)",
+                  "description": "Happy path + one edge case.",
                   "hint": "Happy path + one edge case.",
                   "partialSolution": "Happy path + one edge case."
                 }
@@ -2206,7 +2241,7 @@
           "description": "3 required practices + optional scenarios"
         },
         {
-          "title": "Capstone – Agent path",
+          "title": "Agent path project",
           "description": "Integrated project after M10–M11"
         }
       ]

@@ -50,7 +50,6 @@ import {
   FigmaEmbed,
   InstructGptQualityBlock,
   WorkflowChainsBlock,
-  TurinioWorkflowBlock,
   WorkflowComparisonInteractiveBlock,
   ContextEngineeringPipelineDiagram,
 } from '../shared';
@@ -59,10 +58,10 @@ import { getColorClasses } from '../utils/colorStyles';
 import { getContentBlockVariantClasses } from '../utils/blockVariantClasses';
 import { sectionBreakBadgeByAccent } from '../../../utils/moduleIdentity';
 import { resolveLucideIcon } from '../../../icons/resolveIcon';
-import { slideCardIconClasses } from '../../../icons/iconSizes';
 import { SlideLucideIcon } from '../../../icons/SlideLucideIcon';
 import SectionDivider from '../../ui/SectionDivider';
 import Banner from '../../ui/Banner';
+import ChoiceControl from '../../ui/ChoiceControl';
 import type { ModuleAccent } from '../../../types/modules';
 import type {
   ActionIntroJourneyContent,
@@ -125,6 +124,30 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'da_pipeline_6',
   'da_bi_schema_4',
   'rl_process_diagram',
+  /** LMS polish pilot – slim chrome around hero diagram */
+  'agent_workflow_diagram',
+  /** M4/56 comparison-mode-architecture etalon – slim chrome (no emerald frame) */
+  'llm_arch',
+  /** M10–12 LMS polish + labs – slim chrome parity */
+  'm10_three_a_strategy',
+  'm10_human_control_simulator',
+  'm10_tool_decision_tree',
+  'm10_agent_taxonomy',
+  'm10_trigger_flow',
+  'm10_agent_orchestrator',
+  'm10_learning_loop',
+  'm10_workflow_spec',
+  'm10_incident_playbook',
+  'm12_three_labs',
+  'm12_multi_agent_schema',
+  /** M13–15 hero spines */
+  'm13_aec_funnel',
+  'm13_prompt_stack',
+  'm13_media_pipeline',
+  'm13_consistency_lock',
+  'm13_postprod_steps',
+  'turinio_workflow',
+  'm15_practice_loop',
 ] as const;
 
 function isPremiumDiagramSection(image?: string) {
@@ -266,64 +289,28 @@ export function ActionIntroJourneySlide({
         </div>
       </div>
 
-      {/* Kelionės pasirinkimas – kortelės */}
-      <div className="animate-fade-in">
-        <h3 className="text-center text-base font-bold text-gray-900 dark:text-white mb-4">
-          {journeyHeading}
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {content.journeyChoices.map((choice) => {
-            const IconComponent =
-              resolveLucideIcon(choice.icon, 'journey') ?? Compass;
-            const isSelected = selected?.id === choice.id;
-            return (
-              <button
-                key={choice.id}
-                type="button"
-                onClick={() => {
-                  setSelected(choice);
-                  // Lygis B rerun: leisti perrinkti fokusą net kai jau patvirtinta –
-                  // pasirinkus kitą kortelę vėl parodomas patvirtinimo CTA.
-                  if (confirmed && choice.id !== selected?.id) {
-                    setConfirmed(false);
-                  }
-                }}
-                aria-pressed={isSelected}
-                className={`relative flex flex-col items-start text-left p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${
-                  isSelected
-                    ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30 shadow-lg shadow-brand-500/20 ring-2 ring-brand-200 dark:ring-brand-800'
-                    : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md'
-                }`}
-              >
-                <span className="flex items-center gap-3 mb-2">
-                  <span
-                    className={`flex items-center justify-center rounded-xl ${slideCardIconClasses.box} ${isSelected ? 'bg-brand-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'}`}
-                  >
-                    <IconComponent
-                      className={slideCardIconClasses.icon}
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="font-bold text-gray-900 dark:text-white">
-                    {choice.label}
-                  </span>
-                </span>
-                <span className="text-sm text-gray-600 dark:text-gray-400 leading-snug">
-                  {choice.subtitle}
-                </span>
-                {isSelected && (
-                  <span
-                    className="absolute top-3 right-3 w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center"
-                    aria-hidden="true"
-                  >
-                    <CheckCircle className="w-4 h-4 text-white" />
-                  </span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      {/* Kelionės pasirinkimas – ChoiceControl */}
+      <ChoiceControl
+        className="animate-fade-in"
+        legend={journeyHeading}
+        columns={3}
+        size="comfortable"
+        value={selected?.id ?? null}
+        onChange={(id) => {
+          const choice = content.journeyChoices.find((c) => c.id === id);
+          if (!choice) return;
+          setSelected(choice);
+          if (confirmed && choice.id !== selected?.id) {
+            setConfirmed(false);
+          }
+        }}
+        options={content.journeyChoices.map((choice) => ({
+          id: choice.id,
+          label: choice.label,
+          description: choice.subtitle,
+          icon: resolveLucideIcon(choice.icon, 'journey') ?? Compass,
+        }))}
+      />
 
       {/* Patvirtinimas + CTA po pasirinkimo */}
       {selected && !confirmed && (
@@ -1006,7 +993,9 @@ export function ContentBlockSlide({
                         ? 'font-semibold text-sm text-gray-600 dark:text-gray-400 mb-2'
                         : isBottomLine
                           ? 'text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2'
-                          : 'text-base font-semibold text-gray-900 dark:text-white mb-2'
+                          : isInteractiveDiagram
+                            ? 'text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-2'
+                            : 'text-base font-semibold text-gray-900 dark:text-white mb-2'
                     }
                   >
                     {section.heading}
@@ -1145,17 +1134,7 @@ export function ContentBlockSlide({
                       moduleId,
                       slideId: slide?.id,
                       imageAlt: section.imageAlt ?? section.heading ?? '',
-                    }) ??
-                    (section.image.includes('turinio_workflow') ? (
-                      <div className="my-4">
-                        <TurinioWorkflowBlock />
-                        {section.body && (
-                          <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
-                            {renderBodyWithBold(section.body)}
-                          </p>
-                        )}
-                      </div>
-                    ) : (
+                    }) ?? (
                       <figure className="my-4">
                         <div className="overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/30 max-h-80">
                           <img
@@ -1178,7 +1157,7 @@ export function ContentBlockSlide({
                           {t('openInNewTabLabel')}
                         </a>
                       </figure>
-                    )))
+                    ))
                   ) : null}
                   {!section.image &&
                     !section.presentationToolsBlock &&
@@ -5897,10 +5876,13 @@ export function PathStepSlide({
   content,
   isCompleted,
   onMarkComplete,
+  onGoToSummary,
 }: {
   content: PathStepContent;
   isCompleted: boolean;
   onMarkComplete: () => void;
+  /** M15 quick path: jump to project summary when min scenarios done */
+  onGoToSummary?: () => void;
 }) {
   useTranslation();
   const t = getT('contentSlides');
@@ -5972,24 +5954,38 @@ export function PathStepSlide({
             {content.unlockedGlossaryTerms.join(', ')}.
           </p>
         )}
-      {!isCompleted ? (
-        <button
-          type="button"
-          onClick={onMarkComplete}
-          className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
-          aria-label={t('markStepDoneAria')}
-        >
-          <CheckCircle className="w-5 h-5" aria-hidden />
-          {isEn ? 'Mark as completed' : 'Pažymėjau kaip atliktą'}
-        </button>
-      ) : (
-        <p className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
-          <CheckCircle className="w-5 h-5" aria-hidden />
-          {isEn
-            ? 'This step is already completed'
-            : 'Šis žingsnis jau atliktas'}
-        </p>
-      )}
+      <div className="flex flex-wrap items-center gap-3">
+        {!isCompleted ? (
+          <button
+            type="button"
+            onClick={onMarkComplete}
+            className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            aria-label={t('markStepDoneAria')}
+          >
+            <CheckCircle className="w-5 h-5" aria-hidden />
+            {isEn ? 'Mark as completed' : 'Pažymėjau kaip atliktą'}
+          </button>
+        ) : (
+          <p className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+            <CheckCircle className="w-5 h-5" aria-hidden />
+            {isEn
+              ? 'This step is already completed'
+              : 'Šis žingsnis jau atliktas'}
+          </p>
+        )}
+        {onGoToSummary && (
+          <button
+            type="button"
+            onClick={onGoToSummary}
+            className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium border-2 border-brand-500 text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            aria-label={
+              isEn ? 'Go to project summary' : 'Eiti į projekto santrauką'
+            }
+          >
+            {isEn ? 'Go to summary' : 'Eiti į santrauką'}
+          </button>
+        )}
+      </div>
       {content.footer && (
         <p className="text-sm text-gray-500 dark:text-gray-400 pt-2">
           {content.footer}

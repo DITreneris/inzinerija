@@ -90,7 +90,8 @@ export function AppNav({
 
           {/* Desktop Navigation – min-w nav mygtukams kad keičiant LT/EN meniu nešoktų */}
           <div className="hidden lg:flex flex-wrap items-center justify-end gap-2">
-            {overallProgress > 0 && (
+            {/* Hide overall % inside module view – ModuleView N/M is the primary signal (LMS polish I5) */}
+            {overallProgress > 0 && currentPage !== 'module' && (
               <div
                 className="flex items-center gap-2 mr-4 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 rounded-full"
                 role="img"
@@ -260,7 +261,7 @@ export function AppNav({
 
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-2">
-            {overallProgress > 0 && (
+            {overallProgress > 0 && currentPage !== 'module' && (
               <div
                 className="flex items-center gap-1.5 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-full"
                 role="img"

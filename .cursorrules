@@ -1,7 +1,7 @@
 # Promptų anatomija - Cursor AI Rules
 
 ## Projekto kontekstas
-- Produktas: interaktyvus DI promptų inžinerijos mokymas. Moduliai `1–6` MVP pilnai; `7–9` korporatyvinis bundle (tier 9); `10–12` turinys full kataloge; `13–15` planavimas.
+- Produktas: interaktyvus DI promptų inžinerijos mokymas. Moduliai `1–6` MVP pilnai; `7–9` korporatyvinis bundle (tier 9); `10–12` turinys full kataloge; `13–15` authoring kataloge (ne production bundle).
 - Turinio šaltinis ir tiesa: `turinio_pletra.md` (M1–M3), `docs/turinio_pletra_moduliai_4_5_6.md` (M4–M6), `docs/turinio_pletra_moduliai_7_8_9.md` (M7–M9), `docs/turinio_pletra_moduliai_10_11_12.md` (M10–M12).
 - Duomenų architektūra (`A` modelis): full redagavimo SOT – `src/data/modules.json`, `glossary.json`, `tools.json`; core profiliai – `*-m1-m6.json` (MVP, `VITE_MVP_MODE=1`) ir `*-m1-m9.json` (korporatyvinis, `VITE_MAX_BUILD_MODULE=9`), generuojami per `npm run generate:core-data`; EN overlay M10–12 – `modules-en-m10-m12.json` (partial, merge kai kataloge modulis 10+).
 - UI/UX logika ir renderinimas: `src/components/*` (ypač `SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`).

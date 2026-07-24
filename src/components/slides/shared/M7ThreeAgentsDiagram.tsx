@@ -65,6 +65,7 @@ export default function M7ThreeAgentsDiagram({
       <defs>
         <marker
           id={`m7-ag-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={ARROW_MARKER_LEN}
@@ -129,7 +130,7 @@ export default function M7ThreeAgentsDiagram({
         fontSize={
           isCompactDiagram ? typography.title.compact : typography.title.desktop
         }
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
       >
         {title}

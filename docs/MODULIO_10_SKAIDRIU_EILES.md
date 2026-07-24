@@ -2,43 +2,44 @@
 
 > **Paskirtis:** Rekomenduojama Modulio 10 (Agentų inžinerija) skaidrių/temų seka su trumpu pateisinimu. SOT: `docs/turinio_pletra_moduliai_10_11_12.md`. Atpažinimas: 10.1–10.8 = tik Modulio 10 (`docs/CONTENT_MODULIU_ATPAZINIMAS.md` §6).  
 > **Lean branduolys:** ~15–22 skaidrės (planas – apie 11–12 M10 teorijos skaidrių + M11 testas + M12 praktika).  
-> **Atnaujinta:** 2026-07-05 – pridėtas uždaro mokymosi ciklas (10.49): taisyklės, įgūdžiai, veiksmų istorija, patikra, pamokos ir atnaujinimas.
+> **Atnaujinta:** 2026-07-23 – 10.26 „Kada tvirtina žmogus?“ (kontrolės lab po 3A; W1.1 risk strip + lab artefaktas → 10.64); anksčiau 10.49 uždaro mokymosi ciklas.
 
 ---
 
 ## Pilna seka ir motyvacija (Modulis 10)
 
-| Eilė | ID         | Skaidrė / tema                                           | Kodėl čia?                                                                                                               |
-| ---- | ---------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| 0    | 100        | Modulio 10 įvadas / įtraukimas (action-intro)            | Pirmoji skaidrė – hook, whyBenefit, firstActionCTA; auditorija: verslo specialistai + inžinieriai.                       |
-| 1    | 10.1       | Agentų inžinerijos kelias – ką čia rasite                | Kelio apžvalga; sąvokų apibrėžimų **nėra** (jie – skaidrėje 10.15).                                                      |
-| 2    | 10.2       | Agentų ciklas ir architektūra                            | Proceso diagrama; ReAct-style ciklas; „Kada naudoti agentą“.                                                             |
-| 2a   | **10.21**  | **Kontrolinis taškas: agentų ciklas**                    | **NAUJA** – path-step greita pergalė; dalyvis patikrina 1 agentinę užklausą prieš gilesnę teoriją.                       |
-| 2b   | **10.22**  | **Savitikra: agentų ciklas**                             | Warm-up po 10.2 / 10.21; 3 klausimai apie agentinį ciklą, paprastą promptą ir klaidos pranešimą.                         |
-| 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatize / Augment / Autonomize.                                                    |
-| 3a   | **10.3**   | **Rolės ir sisteminio prompto šablonas**                 | Po ciklo + 3A – paprastas sisteminis promptas **prieš** multi-agent taksonomiją.                                         |
-| 4    | **10.45**  | **DI agentų tipai ir rolės**                             | **NAUJA** – L0–L3 taksonomija; koordinatorius, specialistas, vertintojas, maršrutizatorius; CopyButton.                  |
-| 4a   | **10.451** | **Kontrolinis taškas: rolės ir perdavimas**              | **NAUJA** – path-step; įvestys / išvestys ir perdavimo taisyklė prieš workflow šablonus.                                 |
-| 5    | **10.48**  | **5 workflow šablonai verslui**                          | **NAUJA** – grandinė, maršrutizavimas, lygiagretus, koordinatorius+specialistai, generatorius+vertintojas.               |
-| 5a   | **10.481** | **Keli agentai → darbo eiga** (section-break)            | Recap po 10.48; spinoffCta → blog `how-to-design-an-ai-agent-workflow`.                                                  |
-| 5b   | **10.482** | **Agentų orkestravimo simuliacija**                      | DiagramKit walkthrough (`m10_agent_orchestrator`); Router≠orkestratorius; prieš 10.485.                                  |
-| 5c   | **10.485** | **Savitikra: workflow šablonai**                         | Warm-up po orkestravimo; 3 klausimai (įsk. orkestravimas).                                                               |
-| 5d   | **10.49**  | **Uždaro mokymosi ciklas: taisyklės, įgūdžiai, pamokos** | Po workflow šablonų: vykdymas → veiksmų istorija → patikra → pamokos → atnaujinimas.                                     |
-| 6    | 10.4       | Įrankių pasirinkimas ir apribojimai                      | DI platformos; įrankių pasirinkimo medis.                                                                                |
-| 7    | 10.5       | Kada rinktis agentą, kada – paprastą promptą             | Agentinis šablonas (5 dalių); nuoroda į 10.48.                                                                           |
-| 7a   | **10.51**  | **Kontrolinis taškas: agentinis promptas**               | **NAUJA** – path-step; 5 dalių promptas + workflow spec juodraštis prieš M12.                                            |
-| 8    | 10.6       | Klaidos tvarkymas ir ribos                               | CopyButton – „Jei nepavyksta – parašyk kodėl“.                                                                           |
-| 8a   | **10.61**  | **Savitikra: prieš workflow sąvokas**                    | Warm-up po 10.6; 3 klausimai prieš 10.15.                                                                                |
-| 9    | 10.15      | Pagrindinės sąvokos: trigger, action, condition, webhook | **Perkelta** po agentų mąstymo – workflow terminai.                                                                      |
-| 9b   | **10.151** | **Darbo eiga → automatizavimas** (section-break)         | Recap po 10.15; spinoffCta → blog `choosing-workflow-automation-ai-pipelines`. (JSON id `10.151`; kurikulo alias 10.15b) |
-| 10   | 10.35      | Verslo automatizavimo įrankiai                           | Zapier, Make, n8n, Power Automate.                                                                                       |
-| 10b  | **10.36**  | **Paleidimas: Railway tipo PaaS ir sluoksniai**          | Workflow vs RPA vs DI agentas vs hostingas; always-on / cron / worker; lean lentelės.                                    |
-| 10c  | **10.37**  | **GitHub kaip kodo šaltinis** (optional)                 | GitHub saugo, PaaS paleidžia; lentelė GitHub/Vercel/Railway/Render; be git tutorialio.                                   |
-| 10a  | **10.64**  | **Minimalus darbo eigos aprašymas**                      | **MUST** – 1 psl. schema + 3 bandymai + kada tvirtina žmogus; Copy → 10.66 ir M12 lab'ai.                                |
-| 11   | 10.65      | Darbo eigos testavimas ir saugumas                       | Optional deep po 10.64; diagramos, 10 edge-case, incident, saugumas.                                                     |
-| 11a  | **10.66**  | **Agentų QC vertintojas**                                | Vertina **10.64 aprašymą** (arba 10.51 juodraštį).                                                                       |
-| 12   | 10.7       | Žodynėlis (optional)                                     | + Koordinatorius, Vertintojas, Maršrutizatorius, ReAct.                                                                  |
-| 13   | 10.8       | Modulio 10 santrauka                                     | 5 blokų modelis + use case katalogas (4 sritys).                                                                         |
+| Eilė | ID         | Skaidrė / tema                                           | Kodėl čia?                                                                                                                               |
+| ---- | ---------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 0    | 100        | Modulio 10 įvadas / įtraukimas (action-intro)            | Pirmoji skaidrė – hook, whyBenefit, firstActionCTA; auditorija: verslo specialistai + inžinieriai.                                       |
+| 1    | 10.1       | Agentų inžinerijos kelias – ką čia rasite                | Kelio apžvalga; sąvokų apibrėžimų **nėra** (jie – skaidrėje 10.15).                                                                      |
+| 2    | 10.2       | Agentų ciklas ir architektūra                            | Proceso diagrama; ReAct-style ciklas; „Kada naudoti agentą“.                                                                             |
+| 2a   | **10.21**  | **Kontrolinis taškas: agentų ciklas**                    | **NAUJA** – path-step greita pergalė; dalyvis patikrina 1 agentinę užklausą prieš gilesnę teoriją.                                       |
+| 2b   | **10.22**  | **Savitikra: agentų ciklas**                             | Warm-up po 10.2 / 10.21; 3 klausimai apie agentinį ciklą, paprastą promptą ir klaidos pranešimą.                                         |
+| 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatize / Augment / Autonomize.                                                                    |
+| 3a   | **10.26**  | **Kada tvirtina žmogus?**                                | Po 3A – kontrolės lab (risk strip + režimai; pasekmė × atšaukimas); kopijuojama taisyklė lab viduje → 10.64 / M12. Be „HITL“ antraštėje. |
+| 3b   | **10.3**   | **Rolės ir sisteminio prompto šablonas**                 | Po ciklo + 3A + žmogaus kontrolė – paprastas sisteminis promptas **prieš** multi-agent taksonomiją.                                      |
+| 4    | **10.45**  | **DI agentų tipai ir rolės**                             | **NAUJA** – L0–L3 taksonomija; koordinatorius, specialistas, vertintojas, maršrutizatorius; CopyButton.                                  |
+| 4a   | **10.451** | **Kontrolinis taškas: rolės ir perdavimas**              | **NAUJA** – path-step; įvestys / išvestys ir perdavimo taisyklė prieš workflow šablonus.                                                 |
+| 5    | **10.48**  | **5 workflow šablonai verslui**                          | **NAUJA** – grandinė, maršrutizavimas, lygiagretus, koordinatorius+specialistai, generatorius+vertintojas.                               |
+| 5a   | **10.481** | **Keli agentai → darbo eiga** (section-break)            | Recap po 10.48; spinoffCta → blog `how-to-design-an-ai-agent-workflow`.                                                                  |
+| 5b   | **10.482** | **Agentų orkestravimo simuliacija**                      | DiagramKit walkthrough (`m10_agent_orchestrator`); Router≠orkestratorius; prieš 10.485.                                                  |
+| 5c   | **10.485** | **Savitikra: workflow šablonai**                         | Warm-up po orkestravimo; 3 klausimai (įsk. orkestravimas).                                                                               |
+| 5d   | **10.49**  | **Uždaro mokymosi ciklas: taisyklės, įgūdžiai, pamokos** | Po workflow šablonų: vykdymas → veiksmų istorija → patikra → pamokos → atnaujinimas.                                                     |
+| 6    | 10.4       | Įrankių pasirinkimas ir apribojimai                      | DI platformos; įrankių pasirinkimo medis.                                                                                                |
+| 7    | 10.5       | Kada rinktis agentą, kada – paprastą promptą             | Agentinis šablonas (5 dalių); nuoroda į 10.48.                                                                                           |
+| 7a   | **10.51**  | **Kontrolinis taškas: agentinis promptas**               | **NAUJA** – path-step; 5 dalių promptas + workflow spec juodraštis prieš M12.                                                            |
+| 8    | 10.6       | Klaidos tvarkymas ir ribos                               | CopyButton – „Jei nepavyksta – parašyk kodėl“.                                                                                           |
+| 8a   | **10.61**  | **Savitikra: prieš workflow sąvokas**                    | Warm-up po 10.6; 3 klausimai prieš 10.15.                                                                                                |
+| 9    | 10.15      | Pagrindinės sąvokos: trigger, action, condition, webhook | **Perkelta** po agentų mąstymo – workflow terminai.                                                                                      |
+| 9b   | **10.151** | **Darbo eiga → automatizavimas** (section-break)         | Recap po 10.15; spinoffCta → blog `choosing-workflow-automation-ai-pipelines`. (JSON id `10.151`; kurikulo alias 10.15b)                 |
+| 10   | 10.35      | Verslo automatizavimo įrankiai                           | Zapier, Make, n8n, Power Automate.                                                                                                       |
+| 10b  | **10.36**  | **Paleidimas: Railway tipo PaaS ir sluoksniai**          | Workflow vs RPA vs DI agentas vs hostingas; always-on / cron / worker; lean lentelės.                                                    |
+| 10c  | **10.37**  | **GitHub kaip kodo šaltinis** (optional)                 | GitHub saugo, PaaS paleidžia; lentelė GitHub/Vercel/Railway/Render; be git tutorialio.                                                   |
+| 10a  | **10.64**  | **Minimalus darbo eigos aprašymas**                      | **MUST** – 1 psl. schema + 3 bandymai + kada tvirtina žmogus; Copy → 10.66 ir M12 lab'ai.                                                |
+| 11   | 10.65      | Darbo eigos testavimas ir saugumas                       | Optional deep po 10.64; diagramos, 10 edge-case, incident, saugumas.                                                                     |
+| 11a  | **10.66**  | **Agentų QC vertintojas**                                | Vertina **10.64 aprašymą** (arba 10.51 juodraštį).                                                                                       |
+| 12   | 10.7       | Žodynėlis (optional)                                     | + Koordinatorius, Vertintojas, Maršrutizatorius, ReAct.                                                                                  |
+| 13   | 10.8       | Modulio 10 santrauka                                     | 5 blokų modelis + use case katalogas (4 sritys).                                                                                         |
 
 ---
 

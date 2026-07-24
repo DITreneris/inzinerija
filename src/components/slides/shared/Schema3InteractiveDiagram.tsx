@@ -21,6 +21,7 @@ import {
 } from './schema3Layout';
 import type { Locale } from './schema3Labels';
 import { getSchema3DiagramTitles, getSchema3NodeLabels } from './schema3Labels';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 const BRAND = '#334e68';
 const BRAND_LIGHT = '#486581';
@@ -117,6 +118,7 @@ export default function Schema3InteractiveDiagram({
         </linearGradient>
         <marker
           id={`s3i-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="8"
           markerHeight="6"
           refX={ARROW_MARKER_LEN}
@@ -132,6 +134,7 @@ export default function Schema3InteractiveDiagram({
         </marker>
         <marker
           id={`s3i-arrow-rev-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="8"
           markerHeight="6"
           refX={ARROW_MARKER_LEN}
@@ -147,6 +150,7 @@ export default function Schema3InteractiveDiagram({
         </marker>
         <marker
           id={`s3i-arrow-dashed-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="8"
           markerHeight="6"
           refX={ARROW_MARKER_LEN}

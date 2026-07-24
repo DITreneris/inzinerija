@@ -234,7 +234,17 @@ function SelectInput({
   );
 }
 
-export default function VaizdoGeneratoriusSlide() {
+export type VaizdoGeneratoriusContent = {
+  tldr?: string;
+  patikra?: string;
+  footer?: string;
+};
+
+export default function VaizdoGeneratoriusSlide({
+  content,
+}: {
+  content?: VaizdoGeneratoriusContent;
+} = {}) {
   const { t } = useTranslation('vaizdoGen');
   const { locale } = useLocale();
   const isEn = locale === 'en';
@@ -244,6 +254,9 @@ export default function VaizdoGeneratoriusSlide() {
   const [copied, setCopied] = useState(false);
   const [showTips, setShowTips] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
+
+  const tldrText = content?.tldr?.trim() || t('tldr');
+  const patikraText = content?.patikra?.trim() || t('checkText');
 
   const PLATFORMS = isEn ? PLATFORMS_EN : PLATFORMS_LT;
   const TONES = isEn ? TONES_EN : TONES_LT;
@@ -375,23 +388,29 @@ export default function VaizdoGeneratoriusSlide() {
 
   return (
     <div className="space-y-8">
-      {/* TL;DR – accent */}
+      {/* Trumpai – iš modules.json (fallback: i18n) */}
       <Banner
         variant="info"
         className="p-4 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500"
+        ariaLabel={isEn ? 'In short' : 'Trumpai'}
       >
         <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
-          {t('tldr')}
+          {tldrText}
         </p>
       </Banner>
 
       {/* Žingsnių indikatorius */}
-      <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-full border border-slate-200 dark:border-slate-700 w-fit">
+      <div
+        className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-full border border-slate-200 dark:border-slate-700 w-fit"
+        role="tablist"
+        aria-label={isEn ? 'Prompt builder steps' : 'Promptų kūrimo žingsniai'}
+      >
         {[t('stepContext'), t('stepVisual'), t('stepText')].map(
           (stepLabel, idx) => (
             <button
               key={`step-${idx}`}
               type="button"
+              role="tab"
               onClick={() => setActiveStep(idx + 1)}
               className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
                 activeStep === idx + 1
@@ -399,6 +418,8 @@ export default function VaizdoGeneratoriusSlide() {
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
               }`}
               aria-label={`${idx + 1}. ${stepLabel}`}
+              aria-current={activeStep === idx + 1 ? 'step' : undefined}
+              aria-selected={activeStep === idx + 1}
             >
               {idx + 1}. {stepLabel}
             </button>
@@ -601,7 +622,11 @@ export default function VaizdoGeneratoriusSlide() {
                 </button>
               </div>
 
-              <div className="min-h-[140px] text-sm leading-relaxed font-mono text-slate-200 selection:bg-brand-500 whitespace-pre-wrap break-words">
+              <div
+                className="min-h-[140px] text-sm leading-relaxed font-mono text-slate-200 selection:bg-brand-500 whitespace-pre-wrap break-words"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 {generatedPrompt}
               </div>
 
@@ -729,12 +754,16 @@ export default function VaizdoGeneratoriusSlide() {
         </div>
       </section>
 
-      {/* Patikra – accent */}
-      <div className="rounded-xl p-4 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+      {/* Patikra – iš modules.json (fallback: i18n) */}
+      <Banner
+        variant="info"
+        className="rounded-xl p-4 bg-accent-50 dark:bg-accent-900/20 border-accent-500"
+        ariaLabel={isEn ? 'Quality check' : 'Patikra'}
+      >
         <p className="text-sm text-slate-700 dark:text-slate-300">
-          <strong>{t('checkTitle')}</strong> {t('checkText')}
+          <strong>{t('checkTitle')}</strong> {patikraText}
         </p>
-      </div>
+      </Banner>
     </div>
   );
 }

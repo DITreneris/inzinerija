@@ -60,6 +60,7 @@ export default function M10IncidentPlaybookDiagram({
         </linearGradient>
         <marker
           id={`m10-ip-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={MARKER}
@@ -82,7 +83,7 @@ export default function M10IncidentPlaybookDiagram({
         y={26}
         textAnchor="middle"
         fontSize="14"
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -99,7 +100,7 @@ export default function M10IncidentPlaybookDiagram({
             x2={nextX - MARKER}
             y2={ROW_Y + BOX_H / 2}
             stroke={palette.flow}
-            strokeWidth="2"
+            strokeWidth={DIAGRAM_TOKENS.stroke.flow}
             markerEnd={`url(#m10-ip-arrow-${uid})`}
           />
         );
@@ -110,7 +111,7 @@ export default function M10IncidentPlaybookDiagram({
         const active = currentStep === index;
         const dimmed = currentStep >= 0 && !active;
         return (
-          <g key={label} opacity={dimmed ? 0.45 : 1}>
+          <g key={label} opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}>
             <rect
               x={x}
               y={ROW_Y}
@@ -119,7 +120,11 @@ export default function M10IncidentPlaybookDiagram({
               rx="9"
               fill={amber.soft}
               stroke={active ? getDiagramActiveStroke() : amber.stroke}
-              strokeWidth={active ? 3 : 1.2}
+              strokeWidth={
+                active
+                  ? DIAGRAM_TOKENS.stroke.active
+                  : DIAGRAM_TOKENS.stroke.inactive
+              }
             />
             <text
               x={cx}

@@ -91,6 +91,19 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 ## Nauji įrašai
 
+### 2026-07-24 – Pre-launch auditas Go / No-Go
+
+| Kriterijus                           | Būsena         | Įrodymas                                                                                                                                   |
+| ------------------------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Automated gates                      | ✅ GO          | `audit:release-preflight` + typecheck + builds (default / MVP / M1–9); **103/686**                                                         |
+| Docs / registry truth                | ✅ GO          | Meta 1.4.6; Feature Doc Contract (`m9_workflow_step_prompts`, M13 STALE, §2.2d); `validate-sot-index` ✅                                   |
+| Release-ready (MON-1/3/5 + mobile)   | ⏳ CONDITIONAL | Auto: `gate.smoke` ✅; prod `/anatomy/` HTTP 200 ✅; `verify-access` be param → 400 ✅. **Trūksta:** human browser tier 0/6/9 + mobile 375 |
+| Monetization-ready (MON-2/4/8 + PDF) | ❌ NO-GO       | Marketing pin/PostHog/PDF rankinė ⏳ – žr. `TODO.md` §1.1                                                                                  |
+
+**Verdict:** **CONDITIONAL GO** training/code shippable; **ne** monetization-ready kol neuždaryti MON-\* browser + PDF. Detalės: `RELEASE_QA_RUN.md` §2026-07-24. Naujų `nauja` incidentų nėra.
+
+**2026-07-24 – M7 sk. 67.5 saugumas (GOLDEN praktika):** Trumpai → Daryk → scenarijus (injection laiške) → jailbreak signalas → copyable gynybos šablonas → OWASP collapsible → Patikra ×2. Žodynas: Promptų injekcija + Jailbreak pataisa (≠ manipuliacija). Sk. 68.5 `check-manip-2` suderinamas. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:accent-budget` ✅.
+
 **2026-07-15 – Release 1.4.5 tag smoke (automatinis + kodo peržiūra):**
 
 | #   | Kelias                  | Patikra                                                                          | Rezultatas     |

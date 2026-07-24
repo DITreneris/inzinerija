@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CheckCircle,
-  ArrowLeft,
   ArrowRight,
   Download,
   Award,
@@ -294,14 +293,13 @@ export function ModuleCompleteScreen({
                   module_id: module.id,
                   slide_id: lastSlide?.id ?? undefined,
                   cta_id: 'back_to_modules',
-                  cta_label: t('module:backToModules'),
+                  cta_label: t('module:modulesParent'),
                   destination: 'internal',
                 });
                 onBack();
               }}
             >
-              <ArrowLeft className="w-5 h-5" />
-              {t('module:backToModules')}
+              {t('module:modulesParent')}
             </CTAButton>
             {moduleCompleteHandout && (
               <HandoutDownloadButton

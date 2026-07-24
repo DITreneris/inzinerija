@@ -1,7 +1,7 @@
 /**
  * LlmArch diagram layout – geometrijos ir turinio SOT.
  * LLM agentinė sistema: Input → LLM → Output; Tool Use; Database.
- * Režimai: Bazinis, RAG, Tool Use.
+ * Režimai: Bazinis, RAG, Agentinis (mode id 'tool' lieka).
  * Projekto spalvos: brand, accent, emerald (tailwind.config.js).
  */
 
@@ -24,7 +24,7 @@ export interface LlmArchModeConfig {
 export const LLM_ARCH_MODES: Record<LlmArchMode, LlmArchModeConfig> = {
   basic: {
     tabLabel: 'Bazinis',
-    label: 'Bazinis srautas',
+    label: 'Bazinis',
     desc: 'Įvestis → LLM → Išvestis',
     showVertical: false,
     returnFrom: null,
@@ -32,15 +32,15 @@ export const LLM_ARCH_MODES: Record<LlmArchMode, LlmArchModeConfig> = {
   },
   rag: {
     tabLabel: 'RAG',
-    label: 'RAG režimas',
+    label: 'RAG',
     desc: 'Įvestis → LLM → Įrankiai → DB → LLM → Išvestis',
     showVertical: true,
     returnFrom: 'db',
     activeCard: 1,
   },
   tool: {
-    tabLabel: 'Įrankiai',
-    label: 'Įrankių režimas',
+    tabLabel: 'Agentinis',
+    label: 'Agentinis',
     desc: 'LLM → Įrankiai → API → LLM → Išvestis',
     showVertical: true,
     returnFrom: 'tool',
@@ -51,7 +51,7 @@ export const LLM_ARCH_MODES: Record<LlmArchMode, LlmArchModeConfig> = {
 export const LLM_ARCH_MODES_EN: Record<LlmArchMode, LlmArchModeConfig> = {
   basic: {
     tabLabel: 'Basic',
-    label: 'Basic flow',
+    label: 'Basic',
     desc: 'Input → LLM → Output',
     showVertical: false,
     returnFrom: null,
@@ -59,15 +59,15 @@ export const LLM_ARCH_MODES_EN: Record<LlmArchMode, LlmArchModeConfig> = {
   },
   rag: {
     tabLabel: 'RAG',
-    label: 'RAG mode',
+    label: 'RAG',
     desc: 'Input → LLM → Tools → DB → LLM → Output',
     showVertical: true,
     returnFrom: 'db',
     activeCard: 1,
   },
   tool: {
-    tabLabel: 'Tools',
-    label: 'Tool use mode',
+    tabLabel: 'Agent',
+    label: 'Agent',
     desc: 'LLM → Tools → API → LLM → Output',
     showVertical: true,
     returnFrom: 'tool',
@@ -75,7 +75,9 @@ export const LLM_ARCH_MODES_EN: Record<LlmArchMode, LlmArchModeConfig> = {
   },
 };
 
-export function getLlmArchModes(locale: Locale): Record<LlmArchMode, LlmArchModeConfig> {
+export function getLlmArchModes(
+  locale: Locale
+): Record<LlmArchMode, LlmArchModeConfig> {
   return locale === 'en' ? LLM_ARCH_MODES_EN : LLM_ARCH_MODES;
 }
 
@@ -84,26 +86,31 @@ export interface LlmArchCard {
   title: string;
   text: string;
   tags: string[];
+  /** Mode id this card selects when clicked */
+  mode: LlmArchMode;
 }
 
 export const LLM_ARCH_CARDS: LlmArchCard[] = [
   {
     num: '01 — Bazinis',
     title: 'Pagrindinis srautas',
-    text: 'Vartotojas pateikia užklausą. LLM apdoroja ir generuoja atsakymą tiesiogiai, be papildomų įrankių.',
+    text: 'Užklausa eina tiesiai į LLM – atsakymas be papildomų įrankių ar žinių bazės.',
     tags: ['Įvestis', '→ LLM', '→ Išvestis'],
+    mode: 'basic',
   },
   {
     num: '02 — RAG',
-    title: 'RAG – paieška žinių bazėje',
-    text: 'LLM nusprendžia, kad reikia papildomos informacijos. Kreipiasi į duomenų bazę per įrankių sluoksnį.',
+    title: 'Paieška žinių bazėje',
+    text: 'LLM kreipiasi į DB per įrankių sluoksnį, tada generuoja atsakymą su kontekstu.',
     tags: ['LLM', '→ Įrankiai', '→ DB → LLM'],
+    mode: 'rag',
   },
   {
-    num: '03 — Agentinė',
+    num: '03 — Agentinis',
     title: 'Valdymo centras',
-    text: 'LLM ≠ izoliuotas generatorius. LLM = valdymo centras, kuris sprendžia, kviečia įrankius ir jungiasi prie žinių bazės.',
-    tags: ['◈ Orchestratorius', '⚙ Veiksmai'],
+    text: 'LLM sprendžia, kviečia įrankius (API) ir grąžina rezultatą į srautą.',
+    tags: ['LLM', '→ Įrankiai', '→ API → LLM'],
+    mode: 'tool',
   },
 ];
 
@@ -111,20 +118,23 @@ export const LLM_ARCH_CARDS_EN: LlmArchCard[] = [
   {
     num: '01 — Basic',
     title: 'Main flow',
-    text: 'User submits a query. The LLM processes it and generates a response directly, without additional tools.',
+    text: 'The query goes straight to the LLM – a response with no extra tools or knowledge base.',
     tags: ['Input', '→ LLM', '→ Output'],
+    mode: 'basic',
   },
   {
     num: '02 — RAG',
-    title: 'RAG – knowledge base search',
-    text: 'The LLM decides it needs more information. It queries the database through the tools layer.',
+    title: 'Knowledge base search',
+    text: 'The LLM queries the DB via the tools layer, then answers with that context.',
     tags: ['LLM', '→ Tools', '→ DB → LLM'],
+    mode: 'rag',
   },
   {
     num: '03 — Agent',
     title: 'Control centre',
-    text: 'LLM ≠ isolated generator. LLM = control centre that decides, calls tools, and connects to the knowledge base.',
-    tags: ['◈ Orchestrator', '⚙ Actions'],
+    text: 'The LLM decides, calls tools (API), and feeds the result back into the flow.',
+    tags: ['LLM', '→ Tools', '→ API → LLM'],
+    mode: 'tool',
   },
 ];
 
@@ -154,6 +164,10 @@ export interface LlmArchDiagramLabels {
   dbHint: string;
   sectionFlow: string;
   sectionArch: string;
+  inactiveBadge: string;
+  edgeCall: string;
+  edgeReturn: string;
+  activeModePrefix: string;
 }
 
 const LLM_ARCH_DIAGRAM_LABELS_LT: LlmArchDiagramLabels = {
@@ -169,10 +183,14 @@ const LLM_ARCH_DIAGRAM_LABELS_LT: LlmArchDiagramLabels = {
   toolSubtitle: 'API · Paieška',
   dbRagLabel: 'RAG sluoksnis',
   dbTitle: 'Duomenų bazė',
-  dbSubtitle: 'Dokumentai · Žinių bazė',
+  dbSubtitle: 'Dokumentai · žinių bazė',
   dbHint: 'Papildo modelį kontekstu',
   sectionFlow: 'Sistemos srautas',
-  sectionArch: 'Architektūros logika',
+  sectionArch: 'Kaip keičiasi architektūra',
+  inactiveBadge: 'Neaktyvu',
+  edgeCall: 'kviečia',
+  edgeReturn: 'grąžina',
+  activeModePrefix: 'Aktyvus režimas',
 };
 
 const LLM_ARCH_DIAGRAM_LABELS_EN: LlmArchDiagramLabels = {
@@ -188,14 +206,20 @@ const LLM_ARCH_DIAGRAM_LABELS_EN: LlmArchDiagramLabels = {
   toolSubtitle: 'API · Search',
   dbRagLabel: 'RAG layer',
   dbTitle: 'Database',
-  dbSubtitle: 'Documents · Knowledge base',
+  dbSubtitle: 'Documents · knowledge base',
   dbHint: 'Supplies context to the model',
   sectionFlow: 'System flow',
-  sectionArch: 'Architecture logic',
+  sectionArch: 'How the architecture changes',
+  inactiveBadge: 'Inactive',
+  edgeCall: 'calls',
+  edgeReturn: 'returns',
+  activeModePrefix: 'Active mode',
 };
 
 export function getLlmArchDiagramLabels(locale: Locale): LlmArchDiagramLabels {
-  return locale === 'en' ? LLM_ARCH_DIAGRAM_LABELS_EN : LLM_ARCH_DIAGRAM_LABELS_LT;
+  return locale === 'en'
+    ? LLM_ARCH_DIAGRAM_LABELS_EN
+    : LLM_ARCH_DIAGRAM_LABELS_LT;
 }
 
 /** Bloko UI etiketės (region aria, enlarge mygtukas) */
@@ -205,13 +229,13 @@ export interface LlmArchBlockLabels {
 }
 
 const LLM_ARCH_BLOCK_LABELS_LT: LlmArchBlockLabels = {
-  regionAria: 'LLM agentinė sistema – režimų perjungimas',
-  enlargeLabel: 'LLM agentinė sistema: režimai Bazinis, RAG, Įrankiai',
+  regionAria: 'DI sistemos veikimo režimai – perjungimas',
+  enlargeLabel: 'DI sistemos režimai: Bazinis, RAG, Agentinis',
 };
 
 const LLM_ARCH_BLOCK_LABELS_EN: LlmArchBlockLabels = {
-  regionAria: 'LLM agent system – mode switching',
-  enlargeLabel: 'LLM agent system: Basic, RAG, Tools modes',
+  regionAria: 'AI system operating modes – switching',
+  enlargeLabel: 'AI system modes: Basic, RAG, Agent',
 };
 
 export function getLlmArchBlockLabels(locale: Locale): LlmArchBlockLabels {

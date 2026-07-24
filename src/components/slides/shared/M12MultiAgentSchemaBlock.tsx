@@ -38,6 +38,7 @@ export default function M12MultiAgentSchemaBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
           currentStep={currentStep}

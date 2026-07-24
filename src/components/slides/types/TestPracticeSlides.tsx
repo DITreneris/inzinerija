@@ -17,6 +17,10 @@ import {
   Briefcase,
   Download,
   User,
+  Zap,
+  Layers,
+  FileText,
+  Bot,
 } from 'lucide-react';
 import { resolveLucideIcon } from '../../../icons/resolveIcon';
 import { slideCardIconClasses } from '../../../icons/iconSizes';
@@ -26,6 +30,8 @@ import type {
   PracticeScenarioHubContent,
   PracticeScenarioSlideContent,
   M9Character,
+  ModulePathMode,
+  ModulesData,
 } from '../../../types/modules';
 import {
   CharacterCard,
@@ -50,6 +56,7 @@ import { useTranslation } from 'react-i18next';
 import { getT } from '../../../i18n';
 import { useCountUp } from '../../../utils/useCountUp';
 import { getModulesSync } from '../../../data/modulesLoader';
+import modulesData from '../../../data/modules.json';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { getM9Characters } from '../../../data/m9CharactersLoader';
 import { downloadHandout } from '../../../utils/downloadHandout';
@@ -65,6 +72,7 @@ import {
 import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
 import Banner from '../../ui/Banner';
 import CTAButton from '../../ui/CTAButton';
+import ChoiceControl from '../../ui/ChoiceControl';
 
 /** Category scores from the last test attempt (session-lived, not persisted) */
 export interface CategoryScore {
@@ -113,8 +121,23 @@ function getPracticeIntroContent(slide: Slide | undefined): {
   optionalInstruction?: string;
   /** M6: pažadas apie parsisiunčiamą PDF atmintinę (CTA) */
   handoutPromise?: string;
+  /** M4/M15 stiliumi: Trumpas/Ilgas arba Greitas/Pilnas */
+  howToUseModule?: {
+    heading?: string;
+    short?: { label: string; description?: string };
+    full?: { label: string; description?: string };
+  };
 } {
   const c = slide?.content as Record<string, unknown> | undefined;
+  const howRaw = c?.howToUseModule;
+  const howToUseModule =
+    howRaw && typeof howRaw === 'object' && !Array.isArray(howRaw)
+      ? (howRaw as {
+          heading?: string;
+          short?: { label: string; description?: string };
+          full?: { label: string; description?: string };
+        })
+      : undefined;
   return c
     ? {
         whyBenefit: c.whyBenefit as string | undefined,
@@ -157,6 +180,7 @@ function getPracticeIntroContent(slide: Slide | undefined): {
             : undefined,
         handoutPromise:
           typeof c.handoutPromise === 'string' ? c.handoutPromise : undefined,
+        howToUseModule,
       }
     : {};
 }
@@ -384,11 +408,8 @@ export function TestIntroSlide({
             </p>
           )}
           {testIntro.firstActionCTA && (
-            <Banner
-              variant="warning"
-              className="rounded-lg mb-3 !bg-accent-50 dark:!bg-accent-900/20 !border-accent-500"
-            >
-              <p className="text-sm font-medium text-accent-900 dark:text-accent-100">
+            <Banner variant="info" className="rounded-lg mb-3">
+              <p className="text-sm font-medium text-brand-900 dark:text-brand-100">
                 {testIntro.firstActionCTA}
               </p>
             </Banner>
@@ -1116,6 +1137,19 @@ const RADAR_CATEGORIES = [
   'technikos',
 ] as const;
 
+/** Index of graded test-section slide within a module (for retry deep-link). */
+function getTestSectionSlideIndex(moduleId: number, locale: string): number {
+  const modulesLocale = locale === 'en' ? 'en' : 'lt';
+  const fromSync = getModulesSync(modulesLocale)?.find(
+    (m) => m.id === moduleId
+  );
+  const fromFallback = (modulesData as ModulesData).modules.find(
+    (m) => m.id === moduleId
+  );
+  const mod = fromSync ?? fromFallback;
+  return mod?.slides?.findIndex((s) => s.type === 'test-section') ?? -1;
+}
+
 export function TestResultsSlide({
   moduleId,
   progress,
@@ -1482,6 +1516,12 @@ export function TestResultsSlide({
       ?.content as
       | { reflectionPrompt?: string; reflectionTitle?: string }
       | undefined;
+    const m8TestSectionIndex = getTestSectionSlideIndex(8, locale);
+    const handleRetryM8Test = () => {
+      if (onGoToModule && m8TestSectionIndex >= 0) {
+        onGoToModule(8, m8TestSectionIndex);
+      }
+    };
 
     return (
       <div className="space-y-6">
@@ -1498,19 +1538,29 @@ export function TestResultsSlide({
                 {passedMessage}
               </p>
             </div>
-            {onNextSlide && (
-              <div className="flex justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {onNextSlide && (
                 <CTAButton
                   variant="primary"
                   onClick={onNextSlide}
                   className="px-6 py-3"
-                  aria-label={t('m8ContinueToModule9')}
+                  aria-label={t('m8ContinueToBonuses')}
                 >
                   <ChevronRight className="w-5 h-5" />
-                  {t('m8ContinueToModule9')}
+                  {t('m8ContinueToBonuses')}
                 </CTAButton>
-              </div>
-            )}
+              )}
+              {onGoToModule && (
+                <CTAButton
+                  variant="secondary"
+                  onClick={() => onGoToModule(9)}
+                  className="px-6 py-3"
+                  aria-label={t('m8GoToModule9')}
+                >
+                  {t('m8GoToModule9')}
+                </CTAButton>
+              )}
+            </div>
           </>
         ) : (
           <>
@@ -1525,17 +1575,17 @@ export function TestResultsSlide({
                 {onGoToModule && (
                   <CTAButton
                     variant="secondary"
-                    onClick={() => onGoToModule(7)}
+                    onClick={() => onGoToModule(7, undefined, 8)}
                     className="px-6 py-3"
                     aria-label={t('m8ViewModule7')}
                   >
                     {t('m8ViewModule7')}
                   </CTAButton>
                 )}
-                {onNextSlide && (
+                {onGoToModule && m8TestSectionIndex >= 0 && (
                   <CTAButton
                     variant="primary"
-                    onClick={onNextSlide}
+                    onClick={handleRetryM8Test}
                     className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
@@ -1611,6 +1661,13 @@ export function TestResultsSlide({
     const useCaseBody =
       typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
 
+    const m11TestSectionIndex = getTestSectionSlideIndex(11, locale);
+    const handleRetryM11Test = () => {
+      if (onGoToModule && m11TestSectionIndex >= 0) {
+        onGoToModule(11, m11TestSectionIndex);
+      }
+    };
+
     return (
       <div className="space-y-6">
         {passed ? (
@@ -1654,19 +1711,29 @@ export function TestResultsSlide({
                 </p>
               </Banner>
             )}
-            {onNextSlide && (
-              <div className="flex justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {onNextSlide && (
                 <CTAButton
                   variant="primary"
                   onClick={onNextSlide}
                   className="px-6 py-3"
-                  aria-label={t('startModule12Aria')}
+                  aria-label={t('m11ContinueToBonuses')}
                 >
                   <ChevronRight className="w-5 h-5" />
+                  {t('m11ContinueToBonuses')}
+                </CTAButton>
+              )}
+              {onGoToModule && (
+                <CTAButton
+                  variant="secondary"
+                  onClick={() => onGoToModule(12)}
+                  className="px-6 py-3"
+                  aria-label={t('startModule12Aria')}
+                >
                   {t('startModule12Aria')}
                 </CTAButton>
-              </div>
-            )}
+              )}
+            </div>
           </>
         ) : (
           <>
@@ -1681,7 +1748,7 @@ export function TestResultsSlide({
                 {onGoToModule && (
                   <CTAButton
                     variant="secondary"
-                    onClick={() => onGoToModule(10)}
+                    onClick={() => onGoToModule(10, undefined, 11)}
                     className="px-6 py-3"
                     aria-label={t('viewModule10Aria')}
                   >
@@ -1690,10 +1757,10 @@ export function TestResultsSlide({
                       : 'Peržiūrėti Modulį 10'}
                   </CTAButton>
                 )}
-                {onNextSlide && (
+                {onGoToModule && m11TestSectionIndex >= 0 && (
                   <CTAButton
                     variant="primary"
-                    onClick={onNextSlide}
+                    onClick={handleRetryM11Test}
                     className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
@@ -1775,6 +1842,13 @@ export function TestResultsSlide({
     const useCaseBody =
       typeof useCaseBlockObj?.body === 'string' ? useCaseBlockObj.body : null;
 
+    const m14TestSectionIndex = getTestSectionSlideIndex(14, locale);
+    const handleRetryM14Test = () => {
+      if (onGoToModule && m14TestSectionIndex >= 0) {
+        onGoToModule(14, m14TestSectionIndex);
+      }
+    };
+
     return (
       <div className="space-y-6">
         {passed ? (
@@ -1818,19 +1892,29 @@ export function TestResultsSlide({
                 </p>
               </Banner>
             )}
-            {onNextSlide && (
-              <div className="flex justify-center">
+            <div className="flex flex-wrap gap-3 justify-center">
+              {onNextSlide && (
                 <CTAButton
                   variant="primary"
                   onClick={onNextSlide}
                   className="px-6 py-3"
-                  aria-label={t('startModule15Aria')}
+                  aria-label={t('continueAfterTestAria')}
                 >
                   <ChevronRight className="w-5 h-5" />
+                  {t('continueAfterTest')}
+                </CTAButton>
+              )}
+              {onGoToModule && (
+                <CTAButton
+                  variant="secondary"
+                  onClick={() => onGoToModule(15)}
+                  className="px-6 py-3"
+                  aria-label={t('startModule15Aria')}
+                >
                   {t('startModule15Aria')}
                 </CTAButton>
-              </div>
-            )}
+              )}
+            </div>
           </>
         ) : (
           <>
@@ -1845,7 +1929,7 @@ export function TestResultsSlide({
                 {onGoToModule && (
                   <CTAButton
                     variant="secondary"
-                    onClick={() => onGoToModule(13)}
+                    onClick={() => onGoToModule(13, undefined, 14)}
                     className="px-6 py-3"
                     aria-label={t('viewModule13Aria')}
                   >
@@ -1854,10 +1938,10 @@ export function TestResultsSlide({
                       : 'Peržiūrėti Modulį 13'}
                   </CTAButton>
                 )}
-                {onNextSlide && (
+                {onGoToModule && m14TestSectionIndex >= 0 && (
                   <CTAButton
                     variant="primary"
-                    onClick={onNextSlide}
+                    onClick={handleRetryM14Test}
                     className="px-6 py-3"
                     aria-label={t('retryTestAria')}
                   >
@@ -2314,6 +2398,9 @@ export function PracticeIntroSlide({
   onNavigateToSlide,
   onNavigateToSlideById,
   onNavigateToHubWithCharacter,
+  pathMode = 'full',
+  onPathModeChange,
+  visibleSlideCount,
 }: {
   slide?: Slide;
   moduleId?: number;
@@ -2324,6 +2411,9 @@ export function PracticeIntroSlide({
   onNavigateToSlideById?: (slideId: number) => void;
   /** M9 įvade: paspaudus veikėją – atidaryti hub su tuo veikėju (characterIndex 0–3) */
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
+  pathMode?: ModulePathMode;
+  onPathModeChange?: (mode: ModulePathMode) => void;
+  visibleSlideCount?: number;
 }) {
   useTranslation();
   const t = getT('testPractice');
@@ -2506,6 +2596,43 @@ export function PracticeIntroSlide({
             {introContent.audience}
           </p>
         )}
+        <ChoiceControl
+          className="max-w-2xl mx-auto"
+          legend={locale === 'en' ? 'Choose your project' : 'Pasirink projektą'}
+          columns={2}
+          size="compact"
+          value={null}
+          onChange={(id) => {
+            const slideId = id === 'report' ? 61 : 67;
+            const target = scenarioSlides?.find((s) => s.slideId === slideId);
+            if (target && onNavigateToSlide) {
+              onNavigateToSlide(target.slideIndex);
+            } else if (onNavigateToSlideById) {
+              onNavigateToSlideById(slideId);
+            }
+            // Projekto tipas ≠ Fast track (66/67 optional = COMBO/bonus, ne gylis)
+          }}
+          options={[
+            {
+              id: 'report',
+              label: locale === 'en' ? 'Research report' : 'Tyrimo ataskaita',
+              description:
+                locale === 'en'
+                  ? 'Main path – 6-block report with sources.'
+                  : 'Pagrindinis kelias – 6 blokų ataskaita su šaltiniais.',
+              icon: FileText,
+            },
+            {
+              id: 'custom-gpt',
+              label: 'Custom GPT',
+              description:
+                locale === 'en'
+                  ? 'Optional path – build your assistant step by step.'
+                  : 'Papildomas kelias – sukurk asistentą žingsnis po žingsnio.',
+              icon: Bot,
+            },
+          ]}
+        />
         {introContent.recommendedStart && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
             <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
@@ -2995,9 +3122,50 @@ export function PracticeIntroSlide({
             </p>
           </Banner>
         )}
+        {moduleId === 15 &&
+          onPathModeChange &&
+          introContent.howToUseModule?.short &&
+          introContent.howToUseModule?.full && (
+            <ChoiceControl
+              className="mb-3 animate-fade-in"
+              legend={
+                introContent.howToUseModule.heading ?? t('pathChoiceHeading')
+              }
+              columns={2}
+              size="compact"
+              value={pathMode}
+              onChange={onPathModeChange}
+              options={[
+                {
+                  id: 'short' as const,
+                  label: introContent.howToUseModule.short.label,
+                  description: introContent.howToUseModule.short.description,
+                  icon: Zap,
+                },
+                {
+                  id: 'full' as const,
+                  label: introContent.howToUseModule.full.label,
+                  description: introContent.howToUseModule.full.description,
+                  icon: Layers,
+                },
+              ]}
+              statusHint={
+                typeof visibleSlideCount === 'number' && visibleSlideCount > 0
+                  ? t('pathVisibleCountHint', { count: visibleSlideCount })
+                  : pathMode === 'short'
+                    ? t('pathShortActiveHint')
+                    : t('pathFullActiveHint')
+              }
+            />
+          )}
         {!isM9 &&
           (!isM12 || !introContent.primaryPathIntro) &&
-          introContent.recommendedStart && (
+          introContent.recommendedStart &&
+          !(
+            moduleId === 15 &&
+            introContent.howToUseModule?.short &&
+            introContent.howToUseModule?.full
+          ) && (
             <Banner
               variant="warning"
               className="p-3 mb-3"
@@ -3007,6 +3175,13 @@ export function PracticeIntroSlide({
                 {introContent.recommendedStart}
               </p>
             </Banner>
+          )}
+        {moduleId === 15 &&
+          introContent.howToUseModule?.short &&
+          introContent.recommendedStart && (
+            <p className="text-xs text-slate-600 dark:text-slate-400 mb-3">
+              {introContent.recommendedStart}
+            </p>
           )}
         {recommendedNote && (
           <Banner

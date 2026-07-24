@@ -84,6 +84,13 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 - **Maži blokai** (badge, progress, trumpi eilutės): **12–16px** (`mb-4`).
 - Tikslas: vienodas „kvėpavimas“, sisteminga vizualinė hierarchija, ne atsitiktiniai tarpai.
 
+### 3.8 ModulesPage katalogas (track / materials)
+
+- **Track antraštės:** accent pagal kelią – `trackSectionClasses` (brand / sky / fuchsia / rose); copy – CONTENT_AGENT + `module-description-criteria.mdc`.
+- **Bazė M1–6:** vienas track; po M1–M3 – tylesnė **subsection** „Kontekstas ir projektas (M4–M6)“ (`trackBaseCycle2*`), ne antras track.
+- **„Mano medžiaga“:** rodyti grid’e po paskutinio `id <= maxAccessible` modulio (`insertMaterialsAfterAccessible`); **ne** po visų tier-locked / coming-soon blokų. Sekvenciniai lock’ai tame pačiame tier’e lieka virš materials.
+- **SOT:** `GOLDEN_STANDARD.md` §8.4; testai `ModulesPage.materials.test.tsx`.
+
 ---
 
 ## 4. Visų skaidrių patikrinimas (audit)
@@ -99,17 +106,19 @@ UI_UX_AGENT geba **patikrinti visas skaidres** ar jos atitinka geriausias prakti
 
 ### 4.2 Checklist (geriausios praktikos)
 
-| Kriterijus               | Klausimas                                                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Vizualinė hierarchija    | Ar brand/accent/slate blokai naudojami teisingai? content-block: max 2× accent (Trumpai+Patikra); Daryk = brand (`audit:accent-budget`). |
-| Vienas dominuojantis CTA | Ar skaidrėje yra vienas aiškiai dominuojantis CTA (pagal „vienos eilutės“ principą)? Ar antriniai mygtukai antro plano?                  |
-| A11y                     | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown?                                                                    |
-| Touch targets            | Ar min 44px (py-1.5 px-3 badge'ams)?                                                                                                     |
-| Dark mode                | Ar visi blokai turi dark: variantus?                                                                                                     |
-| Spalvos                  | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)?                                                                          |
-| Konsistencija            | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.?                                                                          |
-| Skenuojamumas            | Ar antraštės, bullet points, CTA aiškūs?                                                                                                 |
-| Lentelės                 | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių?                    |
+| Kriterijus               | Klausimas                                                                                                                                                                                                                                            |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vizualinė hierarchija    | Ar brand/accent/slate blokai naudojami teisingai? content-block: max 2× accent (Trumpai+Patikra); Daryk = brand (`audit:accent-budget`).                                                                                                             |
+| Vienas dominuojantis CTA | Ar skaidrėje yra vienas aiškiai dominuojantis CTA (pagal „vienos eilutės“ principą)? Ar antriniai mygtukai antro plano?                                                                                                                              |
+| Exclusive choice         | Ar Trumpas/Ilgas, journey fokusas ar decision lab naudoja `ChoiceControl` (GOLDEN §3.1b), ne inline dublikatą / `CTAButton`? Decision lab gali turėti **du** radiogroup'us (scenarijus + režimas); default selected = brand; be module-accent stack. |
+| Lab color exception      | `interactive-control-lab` (10.26): ar risk spalvos **tik** lab surface (GOLDEN §3.1c)? Stake chip + tekstas (ne tik spalva)? Dark contrast OK? Risk strip (3 chips, be empty) / timing juosta skaitoma mobile? Path ChoiceControl be `optionTone`?   |
+| A11y                     | Ar interaktyvūs elementai turi aria-label, role, tabIndex, onKeyDown?                                                                                                                                                                                |
+| Touch targets            | Ar min 44px (py-1.5 px-3 badge'ams)?                                                                                                                                                                                                                 |
+| Dark mode                | Ar visi blokai turi dark: variantus?                                                                                                                                                                                                                 |
+| Spalvos                  | Ar naudojamos tik Tailwind safelist klasės (ne ad-hoc opacity)?                                                                                                                                                                                      |
+| Konsistencija            | Ar blokų stiliai suderinti su PracticalTask, WarmUpQuiz ir kt.?                                                                                                                                                                                      |
+| Skenuojamumas            | Ar antraštės, bullet points, CTA aiškūs?                                                                                                                                                                                                             |
+| Lentelės                 | Ar lentelės įskaitomos (text-base, leading-relaxed, align-top, **bold** renderinamas)? Ar nėra „peršokančių“ raidžių?                                                                                                                                |
 
 ### 4.3 Išvesties formatas (audito ataskaita)
 
@@ -186,5 +195,6 @@ Kurdamas naują skaidrės tipą, UI_UX_AGENT laikosi:
 ## 8. Nuorodos
 
 - Orkestratorius ir router: `docs/development/AGENT_ORCHESTRATOR.md`, `.cursor/rules/agent-orchestrator.mdc`
-- Dizaino gairės: `docs/development/GOLDEN_STANDARD.md`, `tailwind.config.js`
+- Dizaino gairės: `docs/development/GOLDEN_STANDARD.md` (įskaitant §8.4 ModulesPage katalogas), `tailwind.config.js`
 - Komponentų analizė: `UI_KOMPONENTU_ANALIZE.md`
+- ModulesPage materials / PDF: `docs/development/PDF_DOWNLOAD_TESTING.md`

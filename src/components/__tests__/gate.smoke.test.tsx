@@ -110,19 +110,26 @@ describe('Access gate smoke (CONV-2 / CONV-3)', () => {
     expect(await getModule(7)).toBeNull();
   });
 
-  // MON-8: tier 9 production bundle shows M7 and non-interactive M10–12 previews.
+  // MON-8: tier 9 production bundle shows M7 and non-interactive M10–15 previews.
   it('tier 9: renders M7 and "Ruošiama" coming-soon cards without any link/button inside', () => {
     vi.mocked(getMaxAccessibleModuleId).mockReturnValue(9);
     renderWithProviders(
       <ModulesPage onModuleSelect={() => {}} progress={emptyProgress()} />
     );
     expect(
-      screen.getByRole('heading', { name: /Agentų inžinerijos kelias/ })
+      screen.getByRole('heading', {
+        name: /Agentų inžinerijos kelias ruošiamas/,
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        name: /Turinio inžinerijos kelias ruošiamas/,
+      })
     ).toBeInTheDocument();
     const comingSoonCards = screen.getAllByRole('article', {
       name: /Ruošiamas modulis/,
     });
-    expect(comingSoonCards).toHaveLength(3);
+    expect(comingSoonCards).toHaveLength(6);
     for (const card of comingSoonCards) {
       expect(card.querySelector('a, button')).toBeNull();
     }

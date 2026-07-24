@@ -1,14 +1,15 @@
 /**
  * ContextEngineeringPipelineDiagram – interaktyvi vertikali pipeline schema.
  * Vienas toggle, du režimai (Prompt engineering / Konteksto inžinerija).
- * Konteksto inžinerija: emerald mazgai rodomi pilnai; prompt režime – užtemdyti.
- * Pagal WorkflowComparisonInteractiveBlock modelį: toggle + opacity transition + consequence line.
+ * Context režimas: emerald mazgai pilnai. Prompt režimas: 3/5 = dashed placeholder
+ * slots (variant B) – ne ghost fill; bypass stubos Prompt→LLM / LLM→Output.
  * SCHEME_AGENT: rodyklės kraštas į kraštą, refX=0, path nekerta blokų.
  * Be EnlargeableImage.
  */
 import { useEffect, useId, useMemo, useState } from 'react';
 import type { InteractivePipelineContent } from '../../../types/modules';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 import {
   COLORS,
   VB_WIDTH,
@@ -21,6 +22,8 @@ import {
   NODE_Y,
   ARROW_MARKER_LEN,
   ANNOTATION_LANE_X,
+  PLACEHOLDER_DASH,
+  PLACEHOLDER_STROKE_WIDTH,
   getInputLabelY,
   getLlmToolsLabelY,
   getPromptToLlmPath,
@@ -162,7 +165,7 @@ export default function ContextEngineeringPipelineDiagram({
       </div>
 
       {/* ═══ SVG Pipeline ═══ */}
-      <div className="relative rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] border border-black/[0.04] dark:border-gray-700 overflow-hidden">
+      <div className="relative rounded-xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] border border-black/[0.04] dark:border-gray-700 overflow-visible">
         {hoveredStep && hoveredStepIndex >= 0 && (
           <div
             role="status"
@@ -178,7 +181,7 @@ export default function ContextEngineeringPipelineDiagram({
         )}
         <svg
           viewBox={`0 0 ${VB_WIDTH} ${VB_HEIGHT_INTERACTIVE}`}
-          className="w-full max-w-md mx-auto block"
+          className="w-full max-w-xl mx-auto block"
           role="img"
           aria-label={`DI pipeline schema – ${modeLabels[mode]}: ${isContext ? uiLabels.ariaStepsContext : uiLabels.ariaStepsPrompt}`}
         >
@@ -270,12 +273,16 @@ export default function ContextEngineeringPipelineDiagram({
               d={getPromptToLlmPath()}
               fill="none"
               stroke={COLORS.arrowContext}
-              strokeWidth="2.1"
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
               strokeDasharray="4 4"
               strokeLinecap="round"
               markerEnd={`url(#ce-arr-emerald-${uid})`}
               style={{
-                opacity: isContext ? (flowStep >= 3 ? 0.88 : 0.3) : 0,
+                opacity: isContext
+                  ? flowStep >= 3
+                    ? DIAGRAM_TOKENS.opacity.inactive
+                    : 0.35
+                  : 0,
                 transition: 'opacity 0.35s ease',
               }}
             />
@@ -287,13 +294,17 @@ export default function ContextEngineeringPipelineDiagram({
               x2={CX}
               y2={NODE_Y[4] - ARROW_MARKER_LEN}
               stroke={COLORS.arrowContext}
-              strokeWidth="2.8"
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
               strokeDasharray="6 4"
               strokeLinecap="round"
               markerStart={`url(#ce-arr-emerald-${uid})`}
               markerEnd={`url(#ce-arr-emerald-${uid})`}
               style={{
-                opacity: isContext ? (flowStep >= 4 ? 0.95 : 0.35) : 0,
+                opacity: isContext
+                  ? flowStep >= 4
+                    ? DIAGRAM_TOKENS.opacity.active
+                    : 0.4
+                  : 0,
                 transition: 'opacity 0.35s ease',
               }}
             />
@@ -305,12 +316,16 @@ export default function ContextEngineeringPipelineDiagram({
               x2={CX}
               y2={NODE_Y[3] - ARROW_MARKER_LEN}
               stroke={COLORS.arrow}
-              strokeWidth="2.5"
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
               strokeDasharray="4 3"
               strokeLinecap="round"
               markerEnd={`url(#ce-arr-brand-${uid})`}
               style={{
-                opacity: !isContext ? (flowStep >= 3 ? 0.9 : 0.3) : 0,
+                opacity: !isContext
+                  ? flowStep >= 3
+                    ? DIAGRAM_TOKENS.opacity.inactive
+                    : 0.35
+                  : 0,
                 transition: 'opacity 0.35s ease',
               }}
             />
@@ -320,12 +335,16 @@ export default function ContextEngineeringPipelineDiagram({
               x2={CX}
               y2={NODE_Y[5] - ARROW_MARKER_LEN}
               stroke={COLORS.arrow}
-              strokeWidth="2.5"
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
               strokeDasharray="4 3"
               strokeLinecap="round"
               markerEnd={`url(#ce-arr-brand-${uid})`}
               style={{
-                opacity: !isContext ? (flowStep >= 5 ? 0.9 : 0.3) : 0,
+                opacity: !isContext
+                  ? flowStep >= 5
+                    ? DIAGRAM_TOKENS.opacity.inactive
+                    : 0.35
+                  : 0,
                 transition: 'opacity 0.35s ease',
               }}
             />
@@ -335,7 +354,7 @@ export default function ContextEngineeringPipelineDiagram({
           {isContext && (
             <g
               style={{
-                opacity: flowStep >= 2 ? 0.9 : 0.3,
+                opacity: flowStep >= 2 ? 0.95 : 0.4,
                 transition: 'opacity 0.25s ease',
               }}
               aria-hidden="true"
@@ -347,9 +366,9 @@ export default function ContextEngineeringPipelineDiagram({
                 height={NODE_Y[2] + BOX_H - NODE_Y[1] + 20}
                 rx="12"
                 fill="none"
-                stroke="rgba(79,143,128,0.45)"
-                strokeWidth="1.4"
-                strokeDasharray="5 4"
+                stroke={COLORS.groupStroke}
+                strokeWidth={PLACEHOLDER_STROKE_WIDTH}
+                strokeDasharray={PLACEHOLDER_DASH}
               />
             </g>
           )}
@@ -359,11 +378,27 @@ export default function ContextEngineeringPipelineDiagram({
             const y = NODE_Y[i];
             const isCtxNode = node.mode === 'context';
             const isLlm = node.id === 'llm';
-            const nodeOpacity = isCtxNode && !isContext ? 0.2 : 1;
+            const isPlaceholder = isCtxNode && !isContext;
             const step = getStepById(content, node.id);
-            const isAvailable = step ? isStepAvailableInMode(step, mode) : true;
-            const isActive = activeStep?.id === node.id;
-            const revealOpacity = flowStep >= i ? 1 : 0.35;
+            const isAvailable =
+              !isPlaceholder &&
+              (step ? isStepAvailableInMode(step, mode) : true);
+            const isActive = !isPlaceholder && activeStep?.id === node.id;
+            const revealOpacity = isPlaceholder
+              ? 1
+              : flowStep >= i
+                ? 1
+                : DIAGRAM_TOKENS.opacity.inactive;
+            const slotLabel =
+              node.id === 'context'
+                ? node.badgeContext
+                : node.id === 'tools'
+                  ? node.badgeTools
+                  : undefined;
+            const badgeText = isContext && isCtxNode ? slotLabel : undefined;
+            const badgeW = badgeText
+              ? Math.min(BOX_W - 16, Math.max(72, badgeText.length * 6.2 + 14))
+              : 0;
 
             const fill = isCtxNode
               ? `url(#ce-g-emerald-${uid})`
@@ -374,88 +409,122 @@ export default function ContextEngineeringPipelineDiagram({
               ? COLORS.emeraldDarker
               : COLORS.brandDarker;
             const centerY = y + BOX_H / 2;
-            const glowFilter = isLlm
-              ? 'drop-shadow(0 6px 20px rgba(0,0,0,0.18))'
-              : undefined;
 
             return (
               <g
                 key={node.id}
                 style={{
-                  opacity: nodeOpacity * revealOpacity,
-                  transition: 'opacity 0.35s ease, filter 0.35s ease',
-                  filter:
-                    isCtxNode && isContext ? 'brightness(1.26)' : glowFilter,
+                  opacity: revealOpacity,
+                  transition: 'opacity 0.35s ease',
                 }}
               >
-                <rect
-                  x={BOX_X}
-                  y={y}
-                  width={BOX_W}
-                  height={BOX_H}
-                  rx={BOX_R}
-                  fill={fill}
-                  stroke={stroke}
-                  strokeWidth={
-                    isActive
-                      ? 3.2
-                      : isLlm
-                        ? 2.4
-                        : isCtxNode && isContext
-                          ? 2.8
-                          : 1.7
-                  }
-                />
-                {isLlm && (
-                  <rect
-                    x={BOX_X - 2}
-                    y={y - 2}
-                    width={BOX_W + 4}
-                    height={BOX_H + 4}
-                    rx={BOX_R + 1}
-                    fill="none"
-                    stroke="rgba(255,255,255,0.42)"
-                    strokeWidth="1.25"
-                  />
-                )}
-                <text
-                  x={CX}
-                  y={centerY - 6}
-                  textAnchor="middle"
-                  fontFamily={FONT}
-                  fontSize={isLlm ? 15 : 13}
-                  fontWeight={isLlm ? '800' : '700'}
-                  fill={COLORS.textWhite}
-                >
-                  {node.label}
-                </text>
-                <text
-                  x={CX}
-                  y={centerY + 12}
-                  textAnchor="middle"
-                  fontFamily={FONT}
-                  fontSize="10.5"
-                  fontWeight="600"
-                  fill="rgba(255,255,255,0.9)"
-                >
-                  {node.sub}
-                </text>
-
-                {/* Context badge – tik emerald mazgams */}
-                {isCtxNode && (node.badgeContext ?? node.badgeTools) && (
-                  <text
-                    x={BOX_X + BOX_W - 6}
-                    y={y + 12}
-                    textAnchor="end"
-                    fontFamily={FONT}
-                    fontSize="8"
-                    fontWeight="700"
-                    fill={COLORS.emeraldGlow}
-                  >
-                    {node.id === 'context'
-                      ? node.badgeContext
-                      : node.badgeTools}
-                  </text>
+                {isPlaceholder ? (
+                  <>
+                    <rect
+                      x={BOX_X}
+                      y={y}
+                      width={BOX_W}
+                      height={BOX_H}
+                      rx={BOX_R}
+                      fill="none"
+                      stroke={COLORS.groupStroke}
+                      strokeWidth={PLACEHOLDER_STROKE_WIDTH}
+                      strokeDasharray={PLACEHOLDER_DASH}
+                    />
+                    {slotLabel && (
+                      <text
+                        x={CX}
+                        y={centerY + 4}
+                        textAnchor="middle"
+                        fontFamily={FONT}
+                        fontSize={12}
+                        fontWeight="600"
+                        fill={COLORS.textDark}
+                      >
+                        {slotLabel}
+                      </text>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <rect
+                      x={BOX_X}
+                      y={y}
+                      width={BOX_W}
+                      height={BOX_H}
+                      rx={BOX_R}
+                      fill={fill}
+                      stroke={stroke}
+                      strokeWidth={
+                        isActive
+                          ? DIAGRAM_TOKENS.stroke.active
+                          : isLlm
+                            ? 2.4
+                            : isCtxNode
+                              ? 2.8
+                              : DIAGRAM_TOKENS.stroke.inactive
+                      }
+                    />
+                    {isLlm && (
+                      <rect
+                        x={BOX_X - 2}
+                        y={y - 2}
+                        width={BOX_W + 4}
+                        height={BOX_H + 4}
+                        rx={BOX_R + 1}
+                        fill="none"
+                        stroke="rgba(255,255,255,0.42)"
+                        strokeWidth="1.25"
+                      />
+                    )}
+                    <text
+                      x={CX}
+                      y={centerY - 6}
+                      textAnchor="middle"
+                      fontFamily={FONT}
+                      fontSize={isLlm ? 15 : 13}
+                      fontWeight="700"
+                      fill={COLORS.textWhite}
+                    >
+                      {node.label}
+                    </text>
+                    <text
+                      x={CX}
+                      y={centerY + 12}
+                      textAnchor="middle"
+                      fontFamily={FONT}
+                      fontSize="11"
+                      fontWeight="600"
+                      fill="rgba(255,255,255,0.92)"
+                    >
+                      {node.sub}
+                    </text>
+                    {badgeText && (
+                      <g aria-hidden="true">
+                        <rect
+                          x={BOX_X + BOX_W - badgeW - 6}
+                          y={y - 8}
+                          width={badgeW}
+                          height={16}
+                          rx="8"
+                          fill={COLORS.badgePillBg}
+                          stroke={COLORS.emeraldDarker}
+                          strokeWidth="0.75"
+                        />
+                        <text
+                          x={BOX_X + BOX_W - 6 - badgeW / 2}
+                          y={y + 3}
+                          textAnchor="middle"
+                          fontFamily={FONT}
+                          fontSize="10"
+                          fontWeight="700"
+                          fill={COLORS.badgePillText}
+                        >
+                          {badgeText}
+                        </text>
+                      </g>
+                    )}
+                  </>
                 )}
 
                 {/* Click/hover hit area */}
@@ -468,7 +537,11 @@ export default function ContextEngineeringPipelineDiagram({
                   fill="transparent"
                   role="button"
                   tabIndex={isAvailable ? 0 : -1}
-                  aria-label={`${step?.title ?? node.label}. ${step?.shortHint ?? node.sub}`}
+                  aria-label={
+                    isPlaceholder
+                      ? `${slotLabel ?? node.label}. ${content.labels.availableInContextModeOnly}`
+                      : `${step?.title ?? node.label}. ${step?.shortHint ?? node.sub}`
+                  }
                   aria-disabled={!isAvailable}
                   onMouseEnter={() => setHoveredStepId(node.id)}
                   onMouseLeave={() =>
@@ -489,14 +562,16 @@ export default function ContextEngineeringPipelineDiagram({
                   style={{ cursor: isAvailable ? 'pointer' : 'not-allowed' }}
                 />
 
-                {/* Arrow to next node */}
+                {/* Arrow to next node – skip stubs into/out of prompt-mode slots */}
                 {i < pipelineNodes.length - 1 &&
                   (() => {
                     const nextNode = pipelineNodes[i + 1];
                     const nextIsCtx = nextNode.mode === 'context';
-                    const arrowOpacity =
-                      (isCtxNode || nextIsCtx) && !isContext ? 0.12 : 0.92;
-                    const revealArrowOpacity = flowStep >= i + 1 ? 1 : 0.28;
+                    if (!isContext && (isCtxNode || nextIsCtx)) {
+                      return null;
+                    }
+                    const revealArrowOpacity =
+                      flowStep >= i + 1 ? 1 : DIAGRAM_TOKENS.opacity.inactive;
                     const arrowColor =
                       isCtxNode || nextIsCtx
                         ? COLORS.arrowContext
@@ -514,13 +589,13 @@ export default function ContextEngineeringPipelineDiagram({
                         x2={CX}
                         y2={NODE_Y[i + 1] - ARROW_MARKER_LEN}
                         stroke={arrowColor}
-                        strokeWidth="2.8"
+                        strokeWidth={DIAGRAM_TOKENS.stroke.flow}
                         strokeLinecap="round"
                         markerEnd={`url(#${markerId})`}
                         style={{
                           opacity: hideForLoopMode
                             ? 0
-                            : arrowOpacity * revealArrowOpacity,
+                            : 0.95 * revealArrowOpacity,
                           transition: 'opacity 0.35s ease',
                         }}
                       />
@@ -535,29 +610,34 @@ export default function ContextEngineeringPipelineDiagram({
             <g aria-hidden="true">
               <text
                 x={ANNOTATION_LANE_X}
-                y={getInputLabelY()}
+                y={getInputLabelY() - 7}
                 textAnchor="start"
                 fontFamily={FONT}
-                fontSize="9"
-                fontWeight="700"
-                fill={COLORS.emeraldDarker}
+                fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+                fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+                fill={COLORS.textDark}
                 style={{
-                  opacity: flowStep >= 2 ? 0.95 : 0.3,
+                  opacity: flowStep >= 2 ? 0.95 : 0.4,
                   transition: 'opacity 0.25s ease',
                 }}
               >
-                {uiLabels.inputPromptContext}
+                <tspan x={ANNOTATION_LANE_X} dy="0">
+                  {uiLabels.inputPromptContextLines[0]}
+                </tspan>
+                <tspan x={ANNOTATION_LANE_X} dy="14">
+                  {uiLabels.inputPromptContextLines[1]}
+                </tspan>
               </text>
               <text
                 x={ANNOTATION_LANE_X}
                 y={getLlmToolsLabelY()}
                 textAnchor="start"
                 fontFamily={FONT}
-                fontSize="9"
-                fontWeight="700"
-                fill={COLORS.emeraldDarker}
+                fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+                fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+                fill={COLORS.textDark}
                 style={{
-                  opacity: flowStep >= 4 ? 0.9 : 0.35,
+                  opacity: flowStep >= 4 ? 0.95 : 0.4,
                   transition: 'opacity 0.35s ease',
                 }}
               >

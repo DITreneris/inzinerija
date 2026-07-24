@@ -2,12 +2,57 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.5 (tag release) + Unreleased A–C residual  
-**Testai:** 74 failai / 512 testai (HEAD 2026-07-16)  
-**Data:** 2026-07-16  
+**Baseline:** 1.4.6 (tag release) + Unreleased pre-launch  
+**Testai:** 103 failai / 686 testai (HEAD 2026-07-24)  
+**Data:** 2026-07-24  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
+## Deploy / env matrica (viena tiesa)
+
+| Artefaktas                      | Env / komanda                                                                              | Moduliai     | Base path      |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | ------------ | -------------- |
+| **GitHub Pages preview**        | `VITE_MVP_MODE=1` (deploy.yml)                                                             | M1–6         | `/inzinerija/` |
+| **Production (Vercel)**         | `npm run build:production` / `VITE_MAX_BUILD_MODULE=9`                                     | M1–9         | `/anatomy/`    |
+| **Authoring / full CI default** | be MVP cap; full `modules.json`                                                            | M1–15        | `/` (dev)      |
+| **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9` | tier 0/3/6/9 | —              |
+
+CI (`test.yml`) stato MVP + M1–9; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M1–9 EN).
+
 ## Sync lentelė
+
+### Pre-launch meta sync (Unreleased) – 2026-07-24
+
+| #   | Failas                             | Laukas               | Buvo                                                  | Turi būti                | Done |
+| --- | ---------------------------------- | -------------------- | ----------------------------------------------------- | ------------------------ | ---- |
+| 1   | `package.json` / CHANGELOG         | release truth        | mixed 1.4.3–1.4.5                                     | **1.4.6** + Unreleased   | [x]  |
+| 2   | ROADMAP / CODEBASE / LEAN / README | version + test count | 1.4.5 / 74/512                                        | 1.4.6 / **103/686**      | [x]  |
+| 3   | DOCS_SYNC baseline                 | header               | 1.4.5 / 74/512                                        | 1.4.6 / 103/686          | [x]  |
+| 4   | RELEASE_QA_RUN                     | automated snapshot   | 71–74 / 465–512                                       | 103/686 + preflight ✅   | [x]  |
+| 5   | Registry / patches                 | Feature Doc Contract | `m9_workflow_step_prompts` missing; M13 patches stale | registry + STALE notes   | [x]  |
+| 6   | Browser smoke M79 S1–S7 @375px     | rankinė              | ⬜                                                    | Savininkas prieš release | [ ]  |
+
+### M10 10.26 lab W1.1 docs sync (Unreleased) – 2026-07-23
+
+| #   | Failas                                                | Laukas         | Buvo                       | Turi būti                                                    | Done |
+| --- | ----------------------------------------------------- | -------------- | -------------------------- | ------------------------------------------------------------ | ---- |
+| 1   | `SCHEME_AGENT.md` §2.2c                               | UI checklist   | "risk matrix"              | risk strip (3 chips, no empty)                               | [x]  |
+| 2   | `turinio_pletra` §3b1                                 | Simuliatorius  | plonas 3×4                 | W1.1 strip + lab CopyButton artefact; be JSON copyable siena | [x]  |
+| 3   | `GOLDEN_STANDARD.md` §3.1c                            | Lab exception  | W1                         | W1.1 strip + artefact note                                   | [x]  |
+| 4   | Indexes (DOCUMENTATION/LEAN/CODEBASE/eilės/sot_index) | 10.26 pointers | W1 / matrix                | W1.1 risk strip                                              | [x]  |
+| 5   | `CONTENT_AGENT.md`                                    | 10.26 lab      | vague kopijuojama taisyklė | lab viduje, ne content-block Copy siena                      | [x]  |
+
+### M10 10.26 docs/agents sync (Unreleased) – 2026-07-23
+
+| #   | Failas                                     | Laukas                | Buvo                        | Turi būti                                        | Done |
+| --- | ------------------------------------------ | --------------------- | --------------------------- | ------------------------------------------------ | ---- |
+| 1   | `SCHEME_AGENT.md`                          | M10 inventory + §2.2c | be 10.26 / Shell assumption | Lab no Shell + interactive-control-lab checklist | [x]  |
+| 2   | `GOLDEN_STANDARD.md` §3.1b                 | consumers / columns   | path-only 2–3               | 1\|2\|3 + M10HumanControlSimulatorBlock          | [x]  |
+| 3   | scheme/content/data/ui-ux/coding lessons   | pitfall lines         | be 10.26                    | 10.26 pattern lessons                            | [x]  |
+| 4   | `CODEBASE_WHAT_IS_DONE.md`                 | M10–12 row            | be 10.26 lab                | + human-control lab / interactive-control-lab    | [x]  |
+| 5   | `LEAN_INDEX.md` / `DOCUMENTATION_INDEX.md` | M10 pointer / date    | 2026-07-16                  | 10.26 + SCHEME §2.2c                             | [x]  |
+| 6   | `sot_index.json`                           | contentSOT            | be control-lab / registry   | m10_human_control + diagram registry pointers    | [x]  |
+| 7   | `CHANGELOG.md`                             | Unreleased Changed    | feature Added only          | docs/agents sync note                            | [x]  |
+| 8   | `DOCS_MAINTENANCE.md` + orchestrator skill | Feature Doc Contract  | —                           | checklist + DoD pointer                          | [x]  |
 
 ### M79 A–C residual (Unreleased) – 2026-07-16
 
@@ -74,20 +119,21 @@
 
 ### 1.4.2 + Unreleased docs sync – 2026-07-06
 
-| #   | Failas                                           | Laukas                             | Buvo                                   | Turi būti                                                | Done |
-| --- | ------------------------------------------------ | ---------------------------------- | -------------------------------------- | -------------------------------------------------------- | ---- |
-| 1   | `README.md`                                      | versija                            | 1.4.1                                  | 1.4.2 + Unreleased nuoroda                               | [x]  |
-| 2   | `docs/development/CODEBASE_WHAT_IS_DONE.md`      | release / testai / backlog         | 1.4.1, 53/323, M4 footer backlog       | 1.4.2, 60/403, MON/PDF/backlog tik aktualus              | [x]  |
-| 3   | `docs/DOCUMENTATION_QUICK_REF.md`                | atnaujinimo data / vartai          | 2026-06-30, be m1012/preflight         | 2026-07-06, `audit:m1012`, `audit:release-preflight`     | [x]  |
-| 4   | `docs/LEAN_INDEX.md`                             | codebase summary eilutė            | 1.4.1                                  | 1.4.2 + 60/403                                           | [x]  |
-| 5   | `docs/DOCUMENTATION_INDEX.md`                    | release / aktyvūs dokumentai       | 1.4.1                                  | 1.4.2 + docs sync + M7-M12 registry                      | [x]  |
-| 6   | `docs/development/VERSION_ANALIZE.md`            | versija                            | 1.4.1                                  | 1.4.2; kitas release 1.4.3 arba 1.5.0                    | [x]  |
-| 7   | `docs/development/AUDIT_2026-06_SUMMARY.md`      | testų metrika                      | ~38 testų failų                        | istorinė pastaba + 60/403 dabartinis baseline            | [x]  |
-| 8   | `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md` | submodule pin                      | v1.4.1 paskutinis patch                | v1.4.2 + Unreleased HEAD SHA pastaba                     | [x]  |
-| 9   | `ROADMAP.md`                                     | testų metrika / M10-12 gate        | 57/367                                 | 60/403 po Unreleased; `audit:m1012` prieš M10-12 release | [x]  |
-| 10  | `CHANGELOG.md`                                   | santrauka                          | 57/367                                 | 60/403 + docs sync įrašas                                | [x]  |
-| 11  | `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`   | M8/M10 statusai                    | keli pasenę „Reikia“ / „Registry only“ | deep-link/shell/test statusai pagal Unreleased           | [x]  |
-| 12  | `docs/development/GOLD_LEGACY_STANDARD.md`       | release header / AgentOrchestrator | 1.4.1 / aktyvus inventorius            | 1.4.2 / deprecated + M12 multi-agent eilutė              | [x]  |
+| #   | Failas                                           | Laukas                             | Buvo                                   | Turi būti                                                     | Done |
+| --- | ------------------------------------------------ | ---------------------------------- | -------------------------------------- | ------------------------------------------------------------- | ---- |
+| 1   | `README.md`                                      | versija                            | 1.4.1                                  | 1.4.2 + Unreleased nuoroda                                    | [x]  |
+| 2   | `docs/development/CODEBASE_WHAT_IS_DONE.md`      | release / testai / backlog         | 1.4.1, 53/323, M4 footer backlog       | 1.4.2, 60/403, MON/PDF/backlog tik aktualus                   | [x]  |
+| 3   | `docs/DOCUMENTATION_QUICK_REF.md`                | atnaujinimo data / vartai          | 2026-06-30, be m1012/preflight         | 2026-07-06, `audit:m1012`, `audit:release-preflight`          | [x]  |
+| 4   | `docs/LEAN_INDEX.md`                             | codebase summary eilutė            | 1.4.1                                  | 1.4.2 + 60/403                                                | [x]  |
+| 5   | `docs/DOCUMENTATION_INDEX.md`                    | release / aktyvūs dokumentai       | 1.4.1                                  | 1.4.2 + docs sync + M7-M12 registry                           | [x]  |
+| 6   | `docs/development/VERSION_ANALIZE.md`            | versija                            | 1.4.1                                  | 1.4.2; kitas release 1.4.3 arba 1.5.0                         | [x]  |
+| 7   | `docs/development/AUDIT_2026-06_SUMMARY.md`      | testų metrika                      | ~38 testų failų                        | istorinė pastaba + 60/403 dabartinis baseline                 | [x]  |
+| 8   | `docs/deployment/MARKETING_HANDOFF_CHECKLIST.md` | submodule pin                      | v1.4.1 paskutinis patch                | v1.4.2 + Unreleased HEAD SHA pastaba                          | [x]  |
+| 9   | `ROADMAP.md`                                     | testų metrika / M10-12 gate        | 57/367                                 | 60/403 po Unreleased; `audit:m1012` prieš M10-12 release      | [x]  |
+| 10  | `CHANGELOG.md`                                   | santrauka                          | 57/367                                 | 60/403 + docs sync įrašas                                     | [x]  |
+| 11  | `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`   | M8/M10 statusai                    | keli pasenę „Reikia“ / „Registry only“ | deep-link/shell/test statusai pagal Unreleased                | [x]  |
+| 11b | `docs/development/DIAGRAMU_M13_M15_REGISTRY.md`  | M13–15 image keys / shell          | trūko / incomplete                     | 8 keys: pipeline, consistency, postprod, shell AEC/prompt/M15 | [x]  |
+| 12  | `docs/development/GOLD_LEGACY_STANDARD.md`       | release header / AgentOrchestrator | 1.4.1 / aktyvus inventorius            | 1.4.2 / deprecated + M12 multi-agent eilutė                   | [x]  |
 
 ## Kartojimo procedūra
 
@@ -95,7 +141,7 @@
 2. Patikrinti `package.json` `version` ir naujausią `CHANGELOG.md` release antraštę.
 3. Jei yra didelis Unreleased sprintas, atskirti istorinį release skaičių nuo dabartinio HEAD skaičiaus.
 4. Atnaujinti agentų įėjimo dokumentus pirmiausia: `README.md`, `DOCUMENTATION_QUICK_REF.md`, `LEAN_INDEX.md`, `DOCUMENTATION_INDEX.md`, `CODEBASE_WHAT_IS_DONE.md`.
-5. Tik tada atnaujinti ops ir registry dokumentus: `VERSION_ANALIZE.md`, `AUDIT_2026-06_SUMMARY.md`, `MARKETING_HANDOFF_CHECKLIST.md`, `ROADMAP.md`, `DIAGRAMU_M7_M12_REGISTRY.md`, `GOLD_LEGACY_STANDARD.md`.
+5. Tik tada atnaujinti ops ir registry dokumentus: `VERSION_ANALIZE.md`, `AUDIT_2026-06_SUMMARY.md`, `MARKETING_HANDOFF_CHECKLIST.md`, `ROADMAP.md`, `DIAGRAMU_M7_M12_REGISTRY.md`, `DIAGRAMU_M13_M15_REGISTRY.md`, `GOLD_LEGACY_STANDARD.md`.
 
 ## Sąmoningai nekeisti
 

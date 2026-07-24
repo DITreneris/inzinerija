@@ -71,7 +71,7 @@ function NodeBox({
   onActivate?: () => void;
 }) {
   return (
-    <g opacity={dimmed ? 0.45 : 1}>
+    <g opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}>
       <rect
         x={box.x}
         y={box.y}
@@ -88,7 +88,7 @@ function NodeBox({
         textAnchor="middle"
         fill="white"
         fontSize="12"
-        fontWeight="800"
+        fontWeight="700"
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {box.label[0]}
@@ -141,7 +141,7 @@ function Arrow({
       x2={x2}
       y2={y2}
       stroke={color}
-      strokeWidth="2"
+      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
       strokeDasharray={dashed ? '5 4' : undefined}
       markerEnd={`url(#${markerId})`}
     />
@@ -164,7 +164,7 @@ function CurvedArrow({
       d={d}
       fill="none"
       stroke={color}
-      strokeWidth="2.5"
+      strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
       strokeDasharray={dashed ? '5 4' : undefined}
       markerEnd={`url(#${markerId})`}
     />
@@ -219,6 +219,7 @@ export default function M10LearningLoopDiagram({
         <defs>
           <marker
             id={arrowId}
+            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
             markerWidth="7"
             markerHeight="7"
             refX="6"
@@ -229,6 +230,7 @@ export default function M10LearningLoopDiagram({
           </marker>
           <marker
             id={tealArrowId}
+            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
             markerWidth="7"
             markerHeight="7"
             refX="6"
@@ -260,8 +262,8 @@ export default function M10LearningLoopDiagram({
           x="210"
           y="36"
           textAnchor="middle"
-          fontSize="14"
-          fontWeight="800"
+          fontSize={DIAGRAM_TOKENS.typography.title.compact}
+          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
           fill={palette.brandDark}
           fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
         >
@@ -271,8 +273,8 @@ export default function M10LearningLoopDiagram({
           x="210"
           y="553"
           textAnchor="middle"
-          fontSize="14"
-          fontWeight="800"
+          fontSize={DIAGRAM_TOKENS.typography.title.compact}
+          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
           fill={palette.brandDark}
           fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
         >
@@ -332,9 +334,9 @@ export default function M10LearningLoopDiagram({
           x="346"
           y="405"
           textAnchor="middle"
-          fontSize="10"
+          fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
           fill={TEAL}
-          fontWeight="700"
+          fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
           fontFamily={DIAGRAM_TOKENS.font}
         >
           {L.improveNextRun}
@@ -355,6 +357,7 @@ export default function M10LearningLoopDiagram({
       <defs>
         <marker
           id={arrowId}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="7"
           markerHeight="7"
           refX="6"
@@ -365,6 +368,7 @@ export default function M10LearningLoopDiagram({
         </marker>
         <marker
           id={tealArrowId}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="7"
           markerHeight="7"
           refX="6"
@@ -379,8 +383,8 @@ export default function M10LearningLoopDiagram({
         x={M10_LEARNING_LOOP_VIEWBOX.desktop.width / 2}
         y="28"
         textAnchor="middle"
-        fontSize="17"
-        fontWeight="800"
+        fontSize={DIAGRAM_TOKENS.typography.title.desktop}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
@@ -409,8 +413,8 @@ export default function M10LearningLoopDiagram({
         x="236"
         y="75"
         textAnchor="middle"
-        fontSize="13"
-        fontWeight="800"
+        fontSize={DIAGRAM_TOKENS.typography.title.compact}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
@@ -420,8 +424,8 @@ export default function M10LearningLoopDiagram({
         x="675"
         y="75"
         textAnchor="middle"
-        fontSize="13"
-        fontWeight="800"
+        fontSize={DIAGRAM_TOKENS.typography.title.compact}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
@@ -469,9 +473,9 @@ export default function M10LearningLoopDiagram({
         x="464"
         y="221"
         textAnchor="middle"
-        fontSize="10"
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
         fill={palette.muted}
-        fontWeight="700"
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.record}
@@ -481,9 +485,9 @@ export default function M10LearningLoopDiagram({
         x="408"
         y="170"
         textAnchor="middle"
-        fontSize="10"
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
         fill={TEAL}
-        fontWeight="700"
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.updateRules}
@@ -492,9 +496,9 @@ export default function M10LearningLoopDiagram({
         x="401"
         y="360"
         textAnchor="middle"
-        fontSize="10"
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
         fill={TEAL}
-        fontWeight="700"
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.updateSkills}
@@ -503,9 +507,9 @@ export default function M10LearningLoopDiagram({
         x="748"
         y="286"
         textAnchor="middle"
-        fontSize="10"
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
         fill={palette.muted}
-        fontWeight="700"
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
         fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
       >
         {L.improveNextRun}

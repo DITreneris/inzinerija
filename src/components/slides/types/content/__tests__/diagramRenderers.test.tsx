@@ -8,7 +8,7 @@ import {
 } from '../diagramRenderers';
 
 /** ContentSlides.tsx special-case when registry returns null */
-const CONTENT_SLIDES_SPECIAL_IMAGES = ['turinio_workflow'];
+const CONTENT_SLIDES_SPECIAL_IMAGES: string[] = [];
 
 function renderDiagram(
   image: string,
@@ -65,6 +65,36 @@ describe('diagramRenderers registry contract', () => {
     expect(promptStack.textContent).toContain('Prompt stack body');
     expect(promptStack.querySelector('img')).toBeNull();
 
+    const { container: mediaPipeline } = renderDiagram(
+      'm13_media_pipeline',
+      'Media pipeline body'
+    );
+    expect(mediaPipeline.textContent).toContain('Media pipeline body');
+    expect(mediaPipeline.querySelector('img')).toBeNull();
+    expect(mediaPipeline.querySelectorAll('nav button')).toHaveLength(6);
+
+    const { container: consistency } = renderDiagram(
+      'm13_consistency_lock',
+      'Consistency body'
+    );
+    expect(consistency.textContent).toContain('Consistency body');
+    expect(consistency.querySelectorAll('nav button')).toHaveLength(4);
+
+    const { container: postprod } = renderDiagram(
+      'm13_postprod_steps',
+      'Postprod body'
+    );
+    expect(postprod.textContent).toContain('Postprod body');
+    expect(postprod.querySelectorAll('nav button')).toHaveLength(4);
+
+    const { container: turinioWorkflow } = renderDiagram(
+      'turinio_workflow',
+      'Content workflow body'
+    );
+    expect(turinioWorkflow.textContent).toContain('Content workflow body');
+    expect(turinioWorkflow.querySelector('img')).toBeNull();
+    expect(turinioWorkflow.querySelectorAll('nav button')).toHaveLength(7);
+
     const { container: learningLoop } = renderDiagram(
       'm10_learning_loop',
       'Learning loop body'
@@ -92,6 +122,16 @@ describe('diagramRenderers registry contract', () => {
     );
     expect(incidentPlaybook.textContent).toContain('Incident playbook body');
     expect(incidentPlaybook.querySelector('img')).toBeNull();
+
+    const { container: humanControl } = renderDiagram(
+      'm10_human_control_simulator',
+      'Human control body'
+    );
+    expect(humanControl.textContent).toContain('Human control body');
+    expect(humanControl.textContent).toContain('Pasirink verslo scenarijų');
+    expect(humanControl.textContent).toContain('Kontrolės režimas');
+    expect(humanControl.querySelector('img')).toBeNull();
+    expect(humanControl.querySelectorAll('nav button')).toHaveLength(0);
 
     const { container: m12MultiAgent } = renderDiagram(
       'm12_multi_agent_schema',
@@ -148,7 +188,13 @@ describe('diagramRenderers registry contract', () => {
     expect(container.textContent).toContain('Arch body');
     expect(container.textContent).toContain('Bazinis');
     expect(container.querySelector('img')).toBeNull();
-    expect(container.querySelectorAll('button[aria-pressed]').length).toBe(3);
+    // Block mode tabs + diagram in-SVG mode chips both use aria-pressed (3+3).
+    expect(
+      container.querySelectorAll('button[aria-label^="Režimas"]').length
+    ).toBe(3);
+    expect(
+      container.querySelectorAll('button[aria-pressed]').length
+    ).toBeGreaterThanOrEqual(3);
   });
 
   it('preserves body placement before, after, and none', () => {

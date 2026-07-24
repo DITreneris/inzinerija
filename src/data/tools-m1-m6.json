@@ -185,7 +185,7 @@
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google vaizdo generavimo modelis – vaizdo įrašų kūrimas iš teksto (prompto).",
+      "description": "Veo 3.1 – kinematografinė kokybė, native audio; prototipai ir trumpi reklaminiai.",
       "moduleId": 4,
       "category": "Vaizdo generavimas"
     },

@@ -79,12 +79,13 @@ Verslo automatizavimas (workflow tarp sistemų) glaudžiai susijęs su agentų i
 
 **Turinys (skaidrė 10.2):**
 
-- **Vienas sujungtas blokas „Kaip veikia agentas“:** DI agentas (1) gauna užduotį, (2) planuoja žingsnius, (3) naudoja įrankius (paieška, API, failai – jei platforma leidžia), (4) grąžina rezultatą su grįžtamuoju ryšiu. **Ciklas (ReAct stiliumi):** suprasti → pasirinkti įrankį → vykdyti → pagal rezultatą spręsti, ar kartoti, ar baigti. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir gali kviesti išorinius įrankius.
+- **Antraštė virš diagramos:** „Kaip veikia DI agentas“ (ne techninė „Proceso diagrama“). Lead: agentas planuoja, naudoja įrankius, skaito aplinką ir vertina rezultatą.
+- **Vienas sujungtas blokas „Kaip veikia agentas“:** DI agentas eina **penkiais žingsniais** – (1) Agentas gauna užduotį, (2) Planavimas – skaidoma į žingsnius, (3) Įrankiai (paieška, API, failai – jei platforma leidžia), (4) Aplinka – kontekstas ir atsakas, (5) Rezultatas + grįžtamasis ryšys į agentą. **Ciklas (ReAct stiliumi):** suprasti → pasirinkti įrankį → vykdyti → pagal rezultatą spręsti, ar kartoti, ar baigti. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir gali kviesti išorinius įrankius.
 - **Kada naudoti agentą (trumpai skaidrėje 10.2):** 3–4 bullet’ai + sakinys „Išsamiau ir su pavyzdžiais – skaidrė **10.5** (Kada rinktis agentą, kada paprastą promptą)“.
 
-**Vizualizacija:** Proceso diagrama (React komponentas pagal [docs/development/SCHEME_AGENT.md](development/SCHEME_AGENT.md)) – pvz. Agent → Planavimas → Įrankiai → Aplinka → Rezultatas → Grįžtamasis ryšys. „Peržiūrėti pilname dydyje“ – tas pats React per EnlargeableDiagram.
+**Vizualizacija:** React diagrama ([SCHEME_AGENT](development/SCHEME_AGENT.md), LMS polish [LMS_DIAGRAM_POLISH_10_2.md](development/LMS_DIAGRAM_POLISH_10_2.md)) – **Agentas → Planavimas → Įrankiai → Aplinka → Rezultatas** + grįžtamasis ryšys. Prose ir copyable **privalo** sutapti su 5 diagramos žingsniais. „Peržiūrėti pilname dydyje“ – EnlargeableDiagram.
 
-**CopyButton:** **ne** dubliuoti ankstesnio „Trumpai“ paragrafo. Naudoti **užduotį DI**, pvz.: „Paaiškink savo žodžiais 4 žingsniais, kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“
+**CopyButton:** **ne** dubliuoti ankstesnio „Trumpai“ paragrafo. Naudoti **užduotį DI**, pvz.: „Paaiškink savo žodžiais penkiais žingsniais (agentas, planavimas, įrankiai, aplinka, rezultatas), kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“
 
 ### 3.0a Savitikra: agentų ciklas (10.22)
 
@@ -155,7 +156,7 @@ Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. A
 
 ## 3b. 3A strategija (skaidrė 10.25)
 
-**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → diagrama (brand) → Trys juostos (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Kur pritaikyti (terms, collapsible).
+**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → diagrama (brand) → Pavyzdys (brand) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Kur pritaikyti (terms, collapsible). Juostų gylis – diagramos shell (spausk juostą); atskiros „Trys juostos“ sekcijos skaidrėje **nėra** (vengti dublio).
 
 | Lygis          | Dalis | Aprašymas                                                                                    |
 | -------------- | ----- | -------------------------------------------------------------------------------------------- |
@@ -163,7 +164,11 @@ Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. A
 | **AUGMENT**    | 15 %  | Žmogus sprendžia, DI padeda (santraukos, klasifikacija, rekomendacijos).                     |
 | **AUTONOMIZE** | 5 %   | DI agentai, RAG, kokybės kontrolė, eskalacija – sistema gali veikti autonomiškai su ribomis. |
 
-**Taisyklė 80/15/5** – optimali vertės ir saugumo proporcija: didžioji dalis – paprasta automatizacija, maža dalis – žmogaus + DI, mažiausia – pilnai autonomiški agentai su žmogaus priežiūra.
+**Taisyklė 80/15/5** – sprendimų portfelis (vertė **ir** saugumas): didžioji dalis – taisyklės (**mažiau klaidų**, nuspėjama); mažesnė – žmogus + DI (sprendimas / atsakomybė); mažiausia – agentai su ribomis (brangu / rizikinga – siaura juosta).
+
+**Diagrama (body):** Spausk juostą – kada rinktis. Tada priskirk savo procesus žemiau. Shell explanations = 3 eilutės **Kiek / Kodėl / Pvz.** (ne tik „vertė“). Vertikali legenda po juosta su trumpu „kodėl“. (Be procentų pakartojimo / enlarge meta.)
+
+**Pavyzdys:** Sąskaitos / forma → CRM → patvirtinimo laiškas → **Automatize**, nes taisyklė aiški, žmogaus sprendimo nėra.
 
 **Daryk dabar:** Išrašyk **tris savo darbo procesus** ir kiekvieną priskirk vienai 3A juostai.
 
@@ -175,19 +180,39 @@ Procesas 2: …
 Procesas 3: …
 ```
 
-**Patikra:** Ar gali paaiškinti, kodėl bent vienas procesas nėra Autonomize (5 %), jei pasirinkai Automatize ar Augment?
+**Patikra:** Ar gali paaiškinti, kodėl bent vienas procesas nėra Autonomize (5 %), jei pasirinkai Automatize ar Augment? Ar gali įvardyti procesą, kuriam **būtinas** žmogus? Jei ne – grįžk į diagramą arba pavyzdį.
 
 **Kur pritaikyti (collapsible):** Planuojant verslo automatizavimą – kurių procesų pakanka tik taisyklėms (80), kuriems reikia žmogaus patvirtinimo (15), kur galima leisti agentui veikti su ribomis (5).
 
 ---
 
+## 3b1. Kada tvirtina žmogus? (skaidrė 10.26)
+
+**Vieta sekoje:** po **10.25** (3A), prieš **10.3** (sisteminis promptas).
+
+**Tezė:** žmogaus kontrolė nėra brandos kopėčios iki autopiloto – tai **rizikos architektūra** (pasekmė × atšaukimas). Antraštėse be „HITL“. Trumpai – bilingvinis paminėjimas: **Human-in-the-loop / HITL**. Terminų SOT: `glossary.json` + M10 žodynėlis 10.7 – **Žmogaus kontrolė (Human-in-the-loop / HITL)**; EN – `Human-in-the-loop (HITL)`. Lab UI: GOLDEN §3.1c + **W1.1** (risk strip, ne 2×2 empty cell).
+
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Daryk dabar + simuliatorius (brand) → Patikra (accent). **Be** atskiros content-block „Kopijuojamas promptas“ sienos – kopijuojamas artefaktas **lab viduje** (po režimo). Image key: `m10_human_control_simulator` (ne `InteractiveDiagramShell` – form-like decision lab).
+
+**Keturi režimai:** kiekvieną atvejį tvirtina žmogus → išimčių peržiūra → po faktų patikros (spot check) → rezultatų stebėsena.
+
+**Simuliatorius (MUST):** risk strip (3 scenarijai) + `ChoiceControl` (scenarijus × režimas, `optionTone`) → rekomendacija / neatitikimas **tik po** režimo → ModeTimingStrip → 2 trade meteriai (greitis, krūvis) → „Patikrink klaidos atvejį“ → **kopijuojama kontrolės taisyklė** (`formatControlRuleArtefact`: režimas, sąlyga, eskalacija, auditas) → 10.64 eilutei. Failai: `M10HumanControlSimulatorBlock`, `m10HumanControlModel.ts`, `m10HumanControlContent.ts`, `m10HumanControlLabTokens.ts`.
+
+**Patikra:** Ar yra procesas, kuriam neužtenka tik rezultatų stebėsenos? Ar 10.64 žmogaus patvirtinimo eilutėje bus režimas + sąlyga + eskalacija + auditas?
+
+**Carry:** 10.64 / 10.66 kriterijus → M11 `m11-q8` (`relatedSlideId: 10.26`) → M12 Lab #2 (`122`).
+
+---
+
 ## 3b2. DI agentų tipai ir rolės (skaidrė 10.45)
 
-**Tikslas:** Verslo taksonomija – gylio lygiai ir kelių agentų rolės be programavimo.
+**Tikslas:** Verslo modelis – gylio lygiai ir kelių agentų rolės be programavimo.
 
-**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → Lentelės (brand) → 3A susiejimas (brand) → Daryk dabar (accent) → CopyButton → Patikra (accent) → Neprivaloma (terms, collapsible).
+**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → **Interaktyvi schema** (brand, `m10_agent_taxonomy`, Shell, 8 žingsniai; UI antraštė „Agentų gylis ir rolės“, be žodžio „taksonomija“) → 3A tipas (brand, trumpas priminimas) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Neprivaloma (terms, collapsible). Apibrėžimai – shell paaiškinimuose (ne atskirose brand sienose).
 
-**A. Gylio lygiai (L0–L3):**
+**Schema (interaktyvi):** Pattern `dual-taxonomy` (Type Etalon W5; pattern ID vidinis). Sprendimų stuburas: L0→L1→L2→L3→maršrutizatorius→koordinatorius→specialistas→vertintojas. L2 paryškina dešinės roles.
+
+**A. Gylio lygiai (L0–L3)** – mokoma schemoje + shell:
 
 | Lygis | Pavadinimas               | Kada                         | Verslo pavyzdys                        |
 | ----- | ------------------------- | ---------------------------- | -------------------------------------- |
@@ -196,7 +221,7 @@ Procesas 3: …
 | L2    | DI komanda (keli agentai) | Skirtingos rolės, perdavimai | RFP: tyrėjas → rašytojas → tikrintojas |
 | L3    | Automatizuotas srautas    | Trigger → veiksmai           | Forma → CRM → laiškas                  |
 
-**B. Kelių agentų rolės:**
+**B. Kelių agentų rolės** – mokoma schemoje + shell:
 
 | Rolė                 | Atsakomybė                                                   | Verslo metafora                      |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------ |
@@ -205,17 +230,23 @@ Procesas 3: …
 | **Vertintojas**      | Kokybės patikra, taisyklės, grąžina pataisymui               | Redaktorius / atitikties tikrintojas |
 | **Maršrutizatorius** | Nukreipia pagal tipą / kategoriją                            | Registratūra / triažas               |
 
-**3A susiejimas:** Automatize (80 %) → L3; Augment (15 %) → L1 + žmogaus patvirtinimas; Autonomize (5 %) → L2 su vertintoju ir ribomis.
+**3A tipas (trumpai):** priminimas – Automatize ≈ L3 srautas; Augment ≈ L1; Autonomize ≈ L2 + vertintojas (detaliau – 10.25).
+
+**Daryk:** pirmiausia **L?**, tada (jei L2) trys rolės; maršrutizatorius – tik jei reikia triažo.
 
 **CopyButton promptas:**
 
 ```
-Apibrėžk savo procesui [X] tris roles:
-1) Koordinatorius – ką planuoja ir kam deleguoja
-2) Specialistas – ką konkrečiai daro
-3) Vertintojas – ką tikrina prieš pateikiant rezultatą
-Kiekvienai rolei – vienas sakinys + įvestis + išvestis.
+Procesas: [X]
+Gylio lygis (L0–L3): [L?]
+Jei L2 – trys rolės:
+1) Koordinatorius – ką planuoja ir kam deleguoja (+ įvestis / išvestis)
+2) Specialistas – ką konkrečiai daro (+ įvestis / išvestis)
+3) Vertintojas – ką tikrina prieš rezultatą (+ įvestis / išvestis)
+Kiekvienai rolei – vienas sakinys.
 ```
+
+**10.451 (path-step):** neklonuoti 10.45 – tik įvestis / išvestis / perdavimo taisyklė (lygis jau pasirinktas).
 
 **Neprivaloma (collapsible):** „Kada nenaudoti kelių agentų“ – vienas agentas užtenka; per sudėtinga be žmogaus patvirtinimo; nėra aiškaus „baigta“ kriterijaus.
 
@@ -462,9 +493,9 @@ Ar man reikia GitHub + auto-deploy, ar užtenka no-code (Zapier/Make)? Atsakyk 5
 
 **CopyButton:** „Minimalus darbo eigos aprašymas“ – 8 punktai (žr. `modules.json` 10.64).
 
-**Patikra:** Ar yra B ir C (ne tik happy path)? Ar žmogaus patvirtinimas nėra „niekada“ finansams / PII?
+**Patikra:** Ar yra **B** ir **C** (ne tik happy path)? Ar žmogaus kontrolės taisyklėje yra režimas, sąlyga, eskalacija ir audito įrašas? Jei finansai / asmens duomenys pažymėti kaip „niekada“ – grįžk į **10.26**.
 
-**Ryšys:** 10.51 – juodraštis + golden; 10.64 – pilnas aprašymas; 10.65 – optional deep; 10.66 – vertina 10.64 artefaktą.
+**Ryšys:** 10.26 – kontrolės lab (W1.1 risk strip) + kopijuojama taisyklė lab viduje; 10.51 – juodraštis + golden; 10.64 – pilnas aprašymas; 10.65 – optional deep; 10.66 – vertina 10.64 artefaktą.
 
 **Tiltas iš 10.37:** Footer `Toliau – skaidrė 25: Minimalus aprašymas` / EN `Next – slide 25: Minimum brief`.
 
@@ -527,7 +558,7 @@ Schema pagal GOLDEN_STANDARD §3.2: Trumpai (accent) → Daryk dabar (brand) →
 
 ### 4.1 Rolės ir sisteminio prompto šablonas (10.3)
 
-**Vieta sekoje:** po **10.25** (3A), prieš **10.45** (taksonomija). Pirmiausia – paprastas sisteminis promptas; kelių agentų rolės – 10.45.
+**Vieta sekoje:** po **10.26** (žmogaus kontrolė), prieš **10.45** (taksonomija). Pirmiausia – paprastas sisteminis promptas; kelių agentų rolės – 10.45.
 
 **Trumpai:** Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodoma rolė, ribos ir principai. Čia – paprastas sisteminis promptas; kelių agentų rolės – skaidrėje 10.45.
 
@@ -735,6 +766,7 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
   - **m11-q9 (naujas):** Ką daryti po netikslaus agento rezultato, kad mokymosi ciklas užsidarytų? → `relatedSlideId: 10.49`
   - **m11-q5 (naujas):** Kas yra maršrutizatorius multi-agent sistemoje? → `relatedSlideId: 10.45`
   - **m11-q6 (naujas):** Situacinis RFP tyrimas – koordinatorius + tyrėjas + rašytojas; kuris workflow šablonas? → `relatedSlideId: 10.48`
+  - **m11-q8:** Kliento atsakymo srautas su asmens duomenimis – kuris žmogaus kontrolės režimas? → `relatedSlideId: 10.26` (ne 10.64)
 - **test-results:** failedMessage vartotojui rodo **žmogiškas temas** (agento ciklas, 3A, kelių agentų rolės, darbo eigos šablonai, įrankiai, klaidų tvarkymas, Zapier / Make), ne techninius skaidrių ID. Remediation chips gali likti deep-link į M10 skaidres.
 
 ### 7.3 Bonus mini-praktika po testo (113)
@@ -858,7 +890,7 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### 8.2c Lab #2 ir #3 sustiprinimas
 
-- **122 (Augment):** pridėti vertintojo promptą prie žmogaus patvirtinimo srauto (tonas, faktai, rizika).
+- **122 (Augment):** žmogaus patvirtinimo žingsnis naudoja **10.26** kontrolės taisyklę (režimas / sąlyga / eskalacija / auditas) + vertintojo promptą (tonas, faktai, rizika).
 - **123 (Autonomize):** rolės etiketės schemoje: Klasifikatorius → Sentiment specialistas → Eskalacijos koordinatorius.
 
 ### 8.3 practice-summary
@@ -895,13 +927,13 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 
 ### MUST (be šito mokymai nėra pilno pristatymo kelias)
 
-| Elementas                                     | Vieta                                                                                                  | Pastaba                                                                                                                                                                                     |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize)                   | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
-| **Standartinė workflow specifikacija (1 p.)** | **M10** – **skaidrė 10.64** (MUST minimalus aprašymas); Copy ir juodraštis taip pat 10.5 / 10.51       | Trigger, input schema, condition, actions, output; error handling; HITL. Giliau – optional 10.65 + ref. §18.                                                                                |
-| **Testavimo rinkinys (minimalus)**            | **M10** – **10.64** (3 bandymo atvejai MUST); optional 10.65 – 10 edge-case                            | MUST: happy path + trūksta lauko + API/timeout ar webhook dublikatas. Pilnas 10 – ref. §19.                                                                                                 |
-| **Saugumo/atitikties mini-modulis**           | **M10** – HITL eilutė **10.64**; optional 10.65 – PII, access, incident playbook                       | MUST: kada HITL. Deep – optional 10.65 + ref. §20.                                                                                                                                          |
-| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
+| Elementas                                     | Vieta                                                                                                    | Pastaba                                                                                                                                                                                     |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **3 realūs lab'ai su artefaktais**            | **M12** – 3 practice-scenario (Lab #1 Automatize, Lab #2 Augment, Lab #3 Autonomize)                     | §8.2. Artefaktai: workflow schema, laukų mappingas, test cases, logų screenshot'ai. Pilnas aprašymas: [AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md](AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md) §17.         |
+| **Standartinė workflow specifikacija (1 p.)** | **M10** – **skaidrė 10.64** (MUST minimalus aprašymas); Copy ir juodraštis taip pat 10.5 / 10.51         | Trigger, input schema, condition, actions, output; error handling; HITL. Giliau – optional 10.65 + ref. §18.                                                                                |
+| **Testavimo rinkinys (minimalus)**            | **M10** – **10.64** (3 bandymo atvejai MUST); optional 10.65 – 10 edge-case                              | MUST: happy path + trūksta lauko + API/timeout ar webhook dublikatas. Pilnas 10 – ref. §19.                                                                                                 |
+| **Saugumo/atitikties mini-modulis**           | **M10** – **10.26** režimų simuliatorius → HITL eilutė **10.64**; optional 10.65 – PII, access, incident | MUST: kada tvirtina žmogus (be „HITL“ antraštėje). Deep – optional 10.65 + ref. §20.                                                                                                        |
+| **Įrankių pasirinkimo sprendimų medis**       | **M10** – skaidrė 10.1 (kelio apžvalga) arba 10.4 (įrankių pasirinkimas); pilnas algoritmas – ref. doc   | Jei Office 365 heavy → Power Automate. Jei non-tech + greitai → Zapier. Jei sudėtinga logika + kaina → Make. Jei kontrolė + savihost → n8n. Jei enterprise governance → Workato. Ref.: §21. |
 
 ### SHOULD (stipriai pakelia vertę, mažina fail'ų skaičių)
 

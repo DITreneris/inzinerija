@@ -3,7 +3,7 @@
     {
       "name": "Adobe Firefly",
       "url": "https://www.adobe.com/products/firefly.html",
-      "description": "Adobe AI for images – Generative Fill, text-to-image; integration with Photoshop, CC. \"Legally safe\" sources.",
+      "description": "Adobe generative images – Generative Fill, text-to-image; CC integration, safer training sources, C2PA Content Credentials.",
       "moduleId": 13,
       "category": "Image generation"
     },
@@ -87,7 +87,7 @@
     {
       "name": "DALL·E (OpenAI)",
       "url": "https://chat.openai.com",
-      "description": "Image generation via ChatGPT – text-to-image, style and proportions.",
+      "description": "Image generation via ChatGPT / GPT-Image – text to image, style and ratios; fast brief→image.",
       "moduleId": 13,
       "category": "Image generation"
     },
@@ -101,7 +101,14 @@
     {
       "name": "ElevenLabs (voices)",
       "url": "https://elevenlabs.io",
-      "description": "Voice and sound effects generation – announcements, transitions, sound design.",
+      "description": "VO (voiceover), voice synthesis and SFX – audio-first narration and transitions.",
+      "moduleId": 13,
+      "category": "Music generation"
+    },
+    {
+      "name": "ElevenMusic",
+      "url": "https://elevenlabs.io/music",
+      "description": "Music trained on licensed data – client / YouTube monetization; same platform as ElevenLabs VO.",
       "moduleId": 13,
       "category": "Music generation"
     },
@@ -118,6 +125,13 @@
       "description": "Visual layout and design – context for AI generation (e.g. web HTML).",
       "moduleId": 4,
       "category": "Visual design"
+    },
+    {
+      "name": "FLUX",
+      "url": "https://blackforestlabs.ai",
+      "description": "Photorealism and multi-reference consistency – product/character series.",
+      "moduleId": 13,
+      "category": "Image generation"
     },
     {
       "name": "Fly.io",
@@ -155,6 +169,13 @@
       "category": "Planning"
     },
     {
+      "name": "GPT-Image (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "OpenAI image model in ChatGPT – natural language, complex briefs, fast marketing drafts.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
       "name": "GPTZero",
       "url": "https://gptzero.me/",
       "description": "Benchmark tool for academia – ~99% accuracy on text; detects mixed (human + AI) content.",
@@ -171,7 +192,14 @@
     {
       "name": "Ideogram",
       "url": "https://ideogram.ai",
-      "description": "Image generation with text in image – ads, posters, logos.",
+      "description": "Strong text-in-image – logos, posters, LinkedIn; solid marketing starter.",
+      "moduleId": 13,
+      "category": "Image generation"
+    },
+    {
+      "name": "Imagen (Google)",
+      "url": "https://deepmind.google/technologies/imagen/",
+      "description": "Google image generation – object consistency, SynthID provenance; safer ads and catalogs.",
       "moduleId": 13,
       "category": "Image generation"
     },
@@ -188,6 +216,13 @@
       "description": "Lithuanian AI detector, good at spotting text from popular LLMs (~96% accuracy).",
       "moduleId": 4,
       "category": "AI content detectors"
+    },
+    {
+      "name": "Kling AI",
+      "url": "https://klingai.com",
+      "description": "Kling 3 – quality/cost balance for image-to-video; short 3–5 s ad clips.",
+      "moduleId": 13,
+      "category": "Video generation"
     },
     {
       "name": "Leonardo.ai",
@@ -211,16 +246,9 @@
       "category": "Business automation"
     },
     {
-      "name": "MyDetector.ai",
-      "url": "https://mydetector.ai/",
-      "description": "Quick free AI text detector, no sign-up, supports many languages.",
-      "moduleId": 4,
-      "category": "AI content detectors"
-    },
-    {
       "name": "Midjourney",
       "url": "https://midjourney.com",
-      "description": "High-quality image generation – illustrations, art, conceptual images.",
+      "description": "High artistic quality with character/style reference – brand and campaign looks.",
       "moduleId": 13,
       "category": "Image generation"
     },
@@ -237,6 +265,13 @@
       "description": "Background and stock video music – licenses for commercial use.",
       "moduleId": 13,
       "category": "Music generation"
+    },
+    {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Quick free AI text detector, no sign-up, supports many languages.",
+      "moduleId": 4,
+      "category": "AI content detectors"
     },
     {
       "name": "MySQL",
@@ -295,18 +330,18 @@
       "category": "Video generation"
     },
     {
-      "name": "Power Automate",
-      "url": "https://powerautomate.microsoft.com",
-      "description": "Microsoft ecosystem automation – Excel, Teams, Outlook, SharePoint; for admin, sales, project management.",
-      "moduleId": 10,
-      "category": "Business automation"
-    },
-    {
       "name": "PostgreSQL",
       "url": "https://www.postgresql.org",
       "description": "Universal choice for new web/SaaS projects, analytics, complex queries, JSON, and pgvector / AI features.",
       "moduleId": 7,
       "category": "Databases"
+    },
+    {
+      "name": "Power Automate",
+      "url": "https://powerautomate.microsoft.com",
+      "description": "Microsoft ecosystem automation – Excel, Teams, Outlook, SharePoint; for admin, sales, project management.",
+      "moduleId": 10,
+      "category": "Business automation"
     },
     {
       "name": "Prezent.ai",
@@ -339,7 +374,7 @@
     {
       "name": "Runway",
       "url": "https://runwayml.com",
-      "description": "Video generation from text – short clips, effects, editing.",
+      "description": "Video generation and editing – image-to-video, short clips, post-prod.",
       "moduleId": 13,
       "category": "Video generation"
     },
@@ -351,6 +386,13 @@
       "category": "RAG / research"
     },
     {
+      "name": "Seedance",
+      "url": "https://seedance.ai",
+      "description": "Seedance 2.0 – directed motion with many image/video/audio refs in one generation.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
       "name": "SlidesAI",
       "url": "https://www.slidesai.io",
       "description": "Text → slides in a few clicks. Google Slides integration.",
@@ -360,9 +402,16 @@
     {
       "name": "Sora (OpenAI)",
       "url": "https://openai.com/sora",
-      "description": "Video generation from text – high quality, realistic motion physics, scene consistency.",
+      "description": "Sora 2 – high quality, realistic motion physics; 1–2 image refs.",
       "moduleId": 13,
       "category": "Video generation"
+    },
+    {
+      "name": "Soundraw",
+      "url": "https://soundraw.io",
+      "description": "Royalty-friendly beds – mood + length; good for ads and podcast intros.",
+      "moduleId": 13,
+      "category": "Music generation"
     },
     {
       "name": "SQLite",
@@ -370,13 +419,6 @@
       "description": "Local database for prototypes, mobile apps, CLI tools, and tests; no separate server needed.",
       "moduleId": 7,
       "category": "Databases"
-    },
-    {
-      "name": "Soundraw",
-      "url": "https://soundraw.io",
-      "description": "Music generation and editing – melodies, tempo, mood.",
-      "moduleId": 13,
-      "category": "Music generation"
     },
     {
       "name": "Stable Diffusion (DreamStudio)",
@@ -388,7 +430,7 @@
     {
       "name": "Suno",
       "url": "https://suno.com",
-      "description": "Music generation from description – songs, instrumental, various styles.",
+      "description": "Text → song; fast demos and viral hooks. For client/ads prefer a licensed stack first.",
       "moduleId": 13,
       "category": "Music generation"
     },
@@ -402,7 +444,7 @@
     {
       "name": "Synthesia",
       "url": "https://www.synthesia.io",
-      "description": "Avatar-based videos – presentations, training, intros.",
+      "description": "AI avatars – training, explainers, localization.",
       "moduleId": 13,
       "category": "Video generation"
     },
@@ -416,22 +458,15 @@
     {
       "name": "Udio",
       "url": "https://udio.com",
-      "description": "Music creation from text – mood, style, tempo, vocal or instrumental.",
+      "description": "Deep music control and remix; better for demos than client ads without a license check.",
       "moduleId": 13,
       "category": "Music generation"
     },
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google video generation model – create videos from text (prompt).",
+      "description": "Veo 3.1 – cinematic quality, native audio; prototypes and short ads.",
       "moduleId": 4,
-      "category": "Video generation"
-    },
-    {
-      "name": "Veo 3 (Google)",
-      "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google video generation model – videos from text (prompt), high quality.",
-      "moduleId": 13,
       "category": "Video generation"
     },
     {

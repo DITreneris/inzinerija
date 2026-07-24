@@ -64,6 +64,71 @@ export const accentTopBarClasses: Record<ModuleAccent, string> = {
   rose: 'bg-rose-500',
 };
 
+/** ModulesPage track section header shell (border + tint). */
+export const trackSectionClasses: Record<
+  'brand' | 'sky' | 'fuchsia' | 'rose',
+  string
+> = {
+  brand:
+    'rounded-2xl border border-brand-200 dark:border-brand-800 bg-brand-50/70 dark:bg-brand-900/20 px-5 py-4',
+  sky: 'rounded-2xl border border-sky-200 dark:border-sky-800 bg-sky-50/70 dark:bg-sky-900/20 px-5 py-4',
+  fuchsia:
+    'rounded-2xl border border-fuchsia-200 dark:border-fuchsia-800 bg-fuchsia-50/70 dark:bg-fuchsia-900/20 px-5 py-4',
+  rose: 'rounded-2xl border border-rose-200 dark:border-rose-800 bg-rose-50/70 dark:bg-rose-900/20 px-5 py-4',
+};
+
+/** Coming-soon eyebrow / badge / note surfaces by track accent. */
+export const comingSoonAccentClasses: Record<
+  'fuchsia' | 'rose',
+  {
+    eyebrow: string;
+    badge: string;
+    note: string;
+  }
+> = {
+  fuchsia: {
+    eyebrow: 'text-fuchsia-700 dark:text-fuchsia-300',
+    badge:
+      'bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-700 dark:text-fuchsia-300',
+    note: 'border-fuchsia-300 dark:border-fuchsia-700 bg-fuchsia-50/70 dark:bg-fuchsia-900/20 text-fuchsia-800 dark:text-fuchsia-200',
+  },
+  rose: {
+    eyebrow: 'text-rose-700 dark:text-rose-300',
+    badge: 'bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300',
+    note: 'border-rose-300 dark:border-rose-700 bg-rose-50/70 dark:bg-rose-900/20 text-rose-800 dark:text-rose-200',
+  },
+};
+
+/** ModulesPage card icon well — track/module accent (not level). */
+export const accentIconWellClasses: Record<ModuleAccent, string> = {
+  brand: 'bg-gradient-to-br from-brand-700 to-brand-800',
+  slate: 'bg-gradient-to-br from-slate-600 to-slate-700',
+  emerald: 'bg-gradient-to-br from-emerald-600 to-emerald-700',
+  violet: 'bg-gradient-to-br from-violet-600 to-violet-700',
+  cyan: 'bg-gradient-to-br from-cyan-600 to-cyan-700',
+  accent: 'bg-gradient-to-br from-accent-500 to-accent-600',
+  sky: 'bg-gradient-to-br from-sky-600 to-sky-700',
+  fuchsia: 'bg-gradient-to-br from-fuchsia-600 to-fuchsia-700',
+  rose: 'bg-gradient-to-br from-rose-600 to-rose-700',
+};
+
+/** ModulesPage businessExamples chip surface — track/module accent. */
+export const accentChipClasses: Record<ModuleAccent, string> = {
+  brand: 'bg-brand-50 dark:bg-brand-900/20 text-brand-800 dark:text-brand-200',
+  slate: 'bg-slate-50 dark:bg-slate-900/20 text-slate-800 dark:text-slate-200',
+  emerald:
+    'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-800 dark:text-emerald-200',
+  violet:
+    'bg-violet-50 dark:bg-violet-900/20 text-violet-800 dark:text-violet-200',
+  cyan: 'bg-cyan-50 dark:bg-cyan-900/20 text-cyan-800 dark:text-cyan-200',
+  accent:
+    'bg-accent-50 dark:bg-accent-900/20 text-accent-800 dark:text-accent-200',
+  sky: 'bg-sky-50 dark:bg-sky-900/20 text-sky-800 dark:text-sky-200',
+  fuchsia:
+    'bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-800 dark:text-fuchsia-200',
+  rose: 'bg-rose-50 dark:bg-rose-900/20 text-rose-800 dark:text-rose-200',
+};
+
 /** Section-break sectionNumber badge only (E5.6). */
 export const sectionBreakBadgeByAccent: Record<ModuleAccent, string> = {
   brand: 'bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300',

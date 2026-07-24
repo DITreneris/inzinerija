@@ -1,10 +1,10 @@
-# Ekosistemos žemėlapis — mokymo app (M1–12)
+# Ekosistemos žemėlapis — mokymo app (M1–15 authoring; production funnel M1–12)
 
 > **Tikslas:** Viena vieta susieti Prompt Anatomy ekosistemą su moduliais, CTA vietomis ir analytics.  
 > **Brand SOT:** [DITreneris/site `primal_concept.txt`](https://github.com/DITreneris/site/blob/main/primal_concept.txt)  
 > **Kodo SOT:** [`src/constants/ecosystemUrls.ts`](../src/constants/ecosystemUrls.ts)  
 > **Blog ↔ moduliai:** [`docs/development/BLOG_CURRICULUM_LINKS.yaml`](development/BLOG_CURRICULUM_LINKS.yaml)  
-> **Atnaujinta:** 2026-06-30
+> **Atnaujinta:** 2026-07-24
 
 ---
 

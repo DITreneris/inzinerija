@@ -51,6 +51,7 @@ export default function M10ToolDecisionTreeDiagram({
       <defs>
         <marker
           id={`m10tree-arr-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={DIAGRAM_TOKENS.arrow.markerLen}
@@ -65,7 +66,7 @@ export default function M10ToolDecisionTreeDiagram({
         y={22}
         textAnchor="middle"
         fontSize={DIAGRAM_TOKENS.typography.title.compact}
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >

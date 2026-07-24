@@ -25,11 +25,15 @@ import { LoadingSpinner, Card, CTAButton } from './ui';
 import Eyebrow from './ui/Eyebrow';
 import { HandoutDownloadButton } from './HandoutDownloadButton';
 import { downloadHandout } from '../utils/downloadHandout';
-import type { ModuleAccent } from '../types/modules';
+import type { Module, ModuleAccent } from '../types/modules';
 import {
+  accentChipClasses,
+  accentIconWellClasses,
   accentTopBarClasses,
+  comingSoonAccentClasses,
   resolveModuleAccent,
   resolveModuleIcon,
+  trackSectionClasses,
 } from '../utils/moduleIdentity';
 import CircularProgress from './CircularProgress';
 import AccessGateScreen from './AccessGateScreen';
@@ -40,6 +44,26 @@ interface ModulesPageProps {
   progress: Progress;
   onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
 }
+
+type TrackAccent = 'brand' | 'sky' | 'fuchsia' | 'rose';
+
+type ModuleGridItem =
+  | { type: 'module'; module: Module; index: number }
+  | {
+      type: 'section';
+      id: 'base' | 'data' | 'agents' | 'content';
+      accent: TrackAccent;
+      title: string;
+      subtitle: string;
+      moduleIds: number[];
+    }
+  | {
+      type: 'subsection';
+      id: string;
+      accent: 'brand';
+      title: string;
+      subtitle: string;
+    };
 
 // Level colors for modules based on type: learn, test, practice (business-oriented)
 function useLevelStyles(t: (k: string) => string) {
@@ -72,6 +96,40 @@ function useLevelStyles(t: (k: string) => string) {
 }
 
 const moduleLevels = ['learn', 'test', 'practice'] as const;
+
+const TRACK_MODULE_IDS: number[][] = [
+  [1, 2, 3, 4, 5, 6],
+  [7, 8, 9],
+  [10, 11, 12],
+  [13, 14, 15],
+];
+
+type DisplayGridItem = ModuleGridItem | { type: 'materials' };
+
+/** Insert „Mano medžiaga“ after last tier-accessible module card (before locked tracks). */
+function insertMaterialsAfterAccessible(
+  items: ModuleGridItem[],
+  maxAccessible: number,
+  enabled: boolean
+): DisplayGridItem[] {
+  if (!enabled) return items;
+  let lastAccessibleIdx = -1;
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (item.type === 'module' && item.module.id <= maxAccessible) {
+      lastAccessibleIdx = i;
+    }
+  }
+  const materialsItem = { type: 'materials' as const };
+  if (lastAccessibleIdx === -1) {
+    return [...items, materialsItem];
+  }
+  return [
+    ...items.slice(0, lastAccessibleIdx + 1),
+    materialsItem,
+    ...items.slice(lastAccessibleIdx + 1),
+  ];
+}
 
 function ModulesPage({
   onModuleSelect,
@@ -144,6 +202,32 @@ function ModulesPage({
     );
   }, [modules, maxAccessible]);
 
+  const comingSoonTracks = useMemo(() => {
+    const tracks: Array<{
+      id: 'agents' | 'content';
+      accent: 'fuchsia' | 'rose';
+      titleKey: 'comingSoonAgentsTitle' | 'comingSoonContentTitle';
+      subtitleKey: 'comingSoonAgentsSubtitle' | 'comingSoonContentSubtitle';
+      modules: typeof comingSoonModules;
+    }> = [
+      {
+        id: 'agents',
+        accent: 'fuchsia',
+        titleKey: 'comingSoonAgentsTitle',
+        subtitleKey: 'comingSoonAgentsSubtitle',
+        modules: comingSoonModules.filter((m) => m.track === 'agents'),
+      },
+      {
+        id: 'content',
+        accent: 'rose',
+        titleKey: 'comingSoonContentTitle',
+        subtitleKey: 'comingSoonContentSubtitle',
+        modules: comingSoonModules.filter((m) => m.track === 'content'),
+      },
+    ];
+    return tracks.filter((track) => track.modules.length > 0);
+  }, [comingSoonModules]);
+
   // Memoize locked modules. Prefer module.unlocksAfter so parallel learning paths
   // (M7 and M10 after M6) match the data SOT instead of the array order.
   const lockedModules = useMemo(() => {
@@ -163,67 +247,110 @@ function ModulesPage({
     return locked;
   }, [DISABLE_MODULE_LOCK, progress.completedModules, modules]);
 
-  // First incomplete (unlocked) module index – for "Toliau rekomenduojama" (one dominant CTA). Only within access tier.
-  const firstIncompleteIndex = useMemo(() => {
-    if (!modules) return -1;
-    return modules.findIndex(
-      (m, i) =>
-        m.id <= maxAccessible &&
-        !progress.completedModules.includes(m.id) &&
-        (() => {
-          if (i === 0) return true;
-          const requiredModuleId = m.unlocksAfter ?? modules[i - 1]?.id;
-          return (
-            requiredModuleId != null &&
-            progress.completedModules.includes(requiredModuleId)
-          );
-        })()
-    );
+  // One "recommended next" per track (parallel paths after M6).
+  const recommendedModuleIds = useMemo(() => {
+    const recommended = new Set<number>();
+    if (!modules) return recommended;
+    const indexById = new Map(modules.map((m, i) => [m.id, i]));
+    for (const trackIds of TRACK_MODULE_IDS) {
+      for (const id of trackIds) {
+        const index = indexById.get(id);
+        if (index == null) continue;
+        const module = modules[index];
+        if (module.id > maxAccessible) continue;
+        if (progress.completedModules.includes(module.id)) continue;
+        if (index === 0) {
+          recommended.add(module.id);
+          break;
+        }
+        const requiredModuleId = module.unlocksAfter ?? modules[index - 1]?.id;
+        if (
+          requiredModuleId == null ||
+          !progress.completedModules.includes(requiredModuleId)
+        ) {
+          continue;
+        }
+        recommended.add(module.id);
+        break;
+      }
+    }
+    return recommended;
   }, [modules, progress.completedModules, maxAccessible]);
 
-  const moduleGridItems = useMemo(() => {
+  const moduleGridItems = useMemo((): ModuleGridItem[] => {
     if (!modules) return [];
     const moduleEntries = modules.map((module, index) => ({ module, index }));
-    const groups = [
+    const groups: Array<{
+      id: 'base' | 'data' | 'agents' | 'content';
+      accent: TrackAccent;
+      title: string;
+      subtitle: string;
+      moduleIds: number[];
+    }> = [
       {
         id: 'base',
+        accent: 'brand',
         title: t('trackBaseTitle'),
         subtitle: t('trackBaseSubtitle'),
-        moduleIds: [1, 2, 3, 4, 5, 6],
+        moduleIds: TRACK_MODULE_IDS[0],
       },
       {
         id: 'data',
+        accent: 'sky',
         title: t('trackDataTitle'),
         subtitle: t('trackDataSubtitle'),
-        moduleIds: [7, 8, 9],
+        moduleIds: TRACK_MODULE_IDS[1],
       },
       {
         id: 'agents',
+        accent: 'fuchsia',
         title: t('trackAgentsTitle'),
         subtitle: t('trackAgentsSubtitle'),
-        moduleIds: [10, 11, 12],
+        moduleIds: TRACK_MODULE_IDS[2],
       },
       {
         id: 'content',
+        accent: 'rose',
         title: t('trackContentTitle'),
         subtitle: t('trackContentSubtitle'),
-        moduleIds: [13, 14, 15],
+        moduleIds: TRACK_MODULE_IDS[3],
       },
     ];
 
-    return groups.flatMap((group) => {
+    return groups.flatMap((group): ModuleGridItem[] => {
       const groupModules = moduleEntries.filter(({ module }) =>
         group.moduleIds.includes(module.id)
       );
       if (groupModules.length === 0) return [];
-      return [
-        { type: 'section' as const, ...group },
-        ...groupModules.map(({ module, index }) => ({
+
+      const toModuleItems = (
+        entries: typeof groupModules
+      ): Array<Extract<ModuleGridItem, { type: 'module' }>> =>
+        entries.map(({ module, index }) => ({
           type: 'module' as const,
           module,
           index,
-        })),
-      ];
+        }));
+
+      // Bazė M1–M6: po M1–M3 – tylesnė sub-juosta prieš M4–M6 (ne antras track).
+      if (group.id === 'base') {
+        const firstCycle = groupModules.filter(({ module }) => module.id <= 3);
+        const secondCycle = groupModules.filter(({ module }) => module.id >= 4);
+        return [
+          { type: 'section', ...group },
+          ...toModuleItems(firstCycle),
+          {
+            type: 'subsection',
+            id: 'base-cycle-2',
+            accent: 'brand',
+            title: t('trackBaseCycle2Title'),
+            subtitle: t('trackBaseCycle2Subtitle'),
+          },
+          ...toModuleItems(secondCycle),
+        ];
+      }
+
+      return [{ type: 'section', ...group }, ...toModuleItems(groupModules)];
     });
   }, [modules, t]);
 
@@ -240,6 +367,16 @@ function ModulesPage({
   const hasMaterials =
     earnedHandoutArtifacts.length > 0 ||
     (Boolean(onRequestCertificate) && earnedCertificateTiers.length > 0);
+
+  const displayGridItems = useMemo(
+    () =>
+      insertMaterialsAfterAccessible(
+        moduleGridItems,
+        maxAccessible,
+        hasMaterials
+      ),
+    [moduleGridItems, maxAccessible, hasMaterials]
+  );
 
   const handleMaterialHandoutDownload = useCallback(
     async (moduleId: number) => {
@@ -324,9 +461,9 @@ function ModulesPage({
         </div>
       </div>
 
-      {/* Modules grid */}
+      {/* Modules grid — materials after last id <= maxAccessible */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {moduleGridItems.map((item) => {
+        {displayGridItems.map((item) => {
           if (item.type === 'section') {
             return (
               <section
@@ -334,7 +471,7 @@ function ModulesPage({
                 className="lg:col-span-3 pt-2"
                 aria-label={item.title}
               >
-                <div className="rounded-2xl border border-brand-200 dark:border-brand-800 bg-brand-50/70 dark:bg-brand-900/20 px-5 py-4">
+                <div className={trackSectionClasses[item.accent]}>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                     {item.title}
                   </h2>
@@ -343,6 +480,97 @@ function ModulesPage({
                   </p>
                 </div>
               </section>
+            );
+          }
+
+          if (item.type === 'subsection') {
+            return (
+              <section
+                key={`subsection-${item.id}`}
+                className="lg:col-span-3 mt-2 pt-6 border-t border-brand-200/80 dark:border-brand-800/80"
+                aria-label={item.title}
+              >
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {item.title}
+                </h2>
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  {item.subtitle}
+                </p>
+              </section>
+            );
+          }
+
+          if (item.type === 'materials') {
+            return (
+              <div key="materials" className="lg:col-span-3">
+                <section
+                  className="card p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
+                  aria-labelledby="my-materials-title"
+                >
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4">
+                    <div>
+                      <h2
+                        id="my-materials-title"
+                        className="text-xl font-bold text-gray-900 dark:text-white"
+                      >
+                        {t('myMaterialsTitle')}
+                      </h2>
+                      <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {t('myMaterialsSubtitle')}
+                      </p>
+                    </div>
+                    {earnedCertificateTiers.length > 0 &&
+                      onRequestCertificate && (
+                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
+                          <Award className="w-3.5 h-3.5" aria-hidden />
+                          {t('myMaterialsCertificatesBadge')}
+                        </span>
+                      )}
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {earnedHandoutArtifacts.map((artifact) => {
+                      const moduleId =
+                        artifact.earnOnModuleIds[
+                          artifact.earnOnModuleIds.length - 1
+                        ];
+                      return (
+                        <HandoutDownloadButton
+                          key={`handout-${artifact.key}`}
+                          label={t(artifact.ctaI18nKey)}
+                          onClick={() =>
+                            handleMaterialHandoutDownload(moduleId)
+                          }
+                          className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
+                          iconClassName="w-4 h-4"
+                        />
+                      );
+                    })}
+                    {onRequestCertificate &&
+                      earnedCertificateTiers.map((tier) => (
+                        <CTAButton
+                          key={`certificate-${tier}`}
+                          variant="secondary"
+                          onClick={() => onRequestCertificate(tier)}
+                          className="min-h-[44px]"
+                          aria-label={t(`certificateTier${tier}Aria`)}
+                        >
+                          <Award className="w-4 h-4" aria-hidden />
+                          {t(`certificateTier${tier}`)}
+                        </CTAButton>
+                      ))}
+                  </div>
+
+                  {materialsError && (
+                    <p
+                      className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+                      role="alert"
+                    >
+                      {t('common:handoutPdfError')}
+                    </p>
+                  )}
+                </section>
+              </div>
             );
           }
 
@@ -371,12 +599,16 @@ function ModulesPage({
               : moduleProgress >= 100
                 ? t('ctaView')
                 : t('ctaContinue');
-          const isRecommendedNext = index === firstIncompleteIndex;
+          const isRecommendedNext = recommendedModuleIds.has(module.id);
           const moduleAccent: ModuleAccent = resolveModuleAccent(module);
           const topStripeClass = module.accent
             ? accentTopBarClasses[module.accent]
             : null;
           const ModuleIconCmp = resolveModuleIcon(module.icon);
+          const ctaGradientClass =
+            level === 'practice'
+              ? 'from-accent-500 to-accent-600'
+              : styles.gradient;
 
           const isMvpLocked7Plus =
             getIsMvpMode() && module.id > 6 && lockReason === 'tier';
@@ -406,15 +638,19 @@ function ModulesPage({
                   : 'hover:shadow-lg hover:-translate-y-0.5'
               } ${isRecommendedNext ? 'ring-2 ring-accent-500 ring-offset-2 dark:ring-offset-gray-900 shadow-lg shadow-accent-500/20' : ''}`}
               style={{ animationDelay: `${index * 0.1}s` }}
-              onClick={() => !locked && onModuleSelect(module.id)}
+              onClick={locked ? undefined : () => onModuleSelect(module.id)}
               role="button"
               tabIndex={locked ? -1 : 0}
-              onKeyDown={(e) => {
-                if (!locked && (e.key === 'Enter' || e.key === ' ')) {
-                  e.preventDefault();
-                  onModuleSelect(module.id);
-                }
-              }}
+              onKeyDown={
+                locked
+                  ? undefined
+                  : (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onModuleSelect(module.id);
+                      }
+                    }
+              }
               aria-label={cardAriaLabel}
               aria-disabled={locked}
             >
@@ -427,10 +663,10 @@ function ModulesPage({
 
               {/* Locked overlay */}
               {locked && (
-                <div className="absolute inset-0 bg-gray-100/80 dark:bg-gray-900/80 z-10 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gray-100/90 dark:bg-gray-900/85 z-10 flex items-center justify-center">
                   <div className="text-center">
-                    <Lock className="w-10 h-10 text-gray-400 dark:text-gray-600 mx-auto mb-2" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                    <Lock className="w-10 h-10 text-gray-500 dark:text-gray-400 mx-auto mb-2" />
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       {isMvpLocked7Plus
                         ? t('lockTierMvpLater')
                         : lockReason === 'tier' && tierForCta
@@ -449,7 +685,7 @@ function ModulesPage({
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
+                      className={`${accentIconWellClasses[moduleAccent]} p-3 rounded-xl shadow-md`}
                     >
                       {ModuleIconCmp && (
                         <ModuleIconCmp
@@ -510,24 +746,31 @@ function ModulesPage({
                           </span>
                         )}
                       </div>
-                      <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                         {module.title}
-                      </h2>
+                      </h3>
                     </div>
                   </div>
                 </div>
 
-                {/* Subtitle */}
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                {/* Subtitle + duration (separate line so description is not truncated) */}
+                <p
+                  className={`text-sm text-gray-500 dark:text-gray-400 ${module.duration ? 'mb-1' : 'mb-3'}`}
+                >
                   {module.subtitle}
                 </p>
+                {module.duration ? (
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                    {module.duration}
+                  </p>
+                ) : null}
 
                 {/* Description – min-h užtikrina vienodą kortelių aukštį grid'e (max 120 simbolių per .cursor/rules/module-description-criteria.mdc) */}
                 <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed min-h-[4.5rem] line-clamp-3">
                   {module.description}
                 </p>
 
-                {/* Progress */}
+                {/* Progress — level gradient (level signal); icon/chips use track accent */}
                 <div className="mb-4">
                   <div className="flex justify-between text-xs text-gray-600 dark:text-gray-400 mb-1.5">
                     <span>{t('progressLabel')}</span>
@@ -545,7 +788,7 @@ function ModulesPage({
                   </div>
                 </div>
 
-                {/* Temos / Verslo pavyzdžiai – rodoma tik jei yra bent vienas (1–3 ir 4–7, 9 užpildyti; 8, 10–15 kol tušti – blokas nesimato) */}
+                {/* Temos / Verslo pavyzdžiai – chip fonas = track accent */}
                 {module.businessExamples &&
                   module.businessExamples.length > 0 && (
                     <div className="mb-5">
@@ -557,10 +800,10 @@ function ModulesPage({
                       <div className="space-y-1.5">
                         {module.businessExamples
                           .slice(0, 2)
-                          .map((example, idx) => (
+                          .map((example: { title: string }, idx: number) => (
                             <div
                               key={idx}
-                              className={`text-xs text-gray-600 dark:text-gray-400 ${styles.bg} p-2 rounded-lg`}
+                              className={`text-xs ${accentChipClasses[moduleAccent]} p-2 rounded-lg`}
                             >
                               • {example.title}
                             </div>
@@ -569,19 +812,14 @@ function ModulesPage({
                     </div>
                   )}
 
-                {/* Action button – M3 accent tik čia (S-DS2), kiti moduliai – savo gradient */}
-                <button
-                  className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${
+                {/* Decorative CTA — navigation only via card (single tab stop) */}
+                <span
+                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${
                     locked
-                      ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed'
-                      : `bg-gradient-to-r ${level === 'practice' ? 'from-accent-500 to-accent-600' : styles.gradient} text-white shadow-md hover:shadow-lg active:scale-95`
+                      ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500'
+                      : `bg-gradient-to-r ${ctaGradientClass} text-white shadow-md`
                   }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (!locked) onModuleSelect(module.id);
-                  }}
-                  disabled={locked}
-                  aria-label={cardAriaLabel}
+                  aria-hidden="true"
                 >
                   {locked ? (
                     <>
@@ -594,155 +832,100 @@ function ModulesPage({
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
-                </button>
+                </span>
               </div>
             </Card>
           );
         })}
       </div>
 
-      {hasMaterials && (
-        <section
-          className="card p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
-          aria-labelledby="my-materials-title"
-        >
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div>
-              <h2
-                id="my-materials-title"
-                className="text-xl font-bold text-gray-900 dark:text-white"
+      {comingSoonTracks.map((track) => {
+        const accentUi = comingSoonAccentClasses[track.accent];
+        return (
+          <section
+            key={`coming-soon-${track.id}`}
+            className="space-y-4"
+            aria-labelledby={`coming-soon-modules-title-${track.id}`}
+          >
+            <div className="text-center max-w-2xl mx-auto">
+              <p
+                className={`text-xs font-semibold uppercase tracking-wide mb-2 ${accentUi.eyebrow}`}
               >
-                {t('myMaterialsTitle')}
+                {t('comingSoonEyebrow')}
+              </p>
+              <h2
+                id={`coming-soon-modules-title-${track.id}`}
+                className="text-2xl font-bold text-gray-900 dark:text-white"
+              >
+                {t(track.titleKey)}
               </h2>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {t('myMaterialsSubtitle')}
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                {t(track.subtitleKey)}
               </p>
             </div>
-            {earnedCertificateTiers.length > 0 && onRequestCertificate && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
-                <Award className="w-3.5 h-3.5" aria-hidden />
-                {t('myMaterialsCertificatesBadge')}
-              </span>
-            )}
-          </div>
 
-          <div className="flex flex-wrap gap-3">
-            {earnedHandoutArtifacts.map((artifact) => {
-              const moduleId =
-                artifact.earnOnModuleIds[artifact.earnOnModuleIds.length - 1];
-              return (
-                <HandoutDownloadButton
-                  key={`handout-${artifact.key}`}
-                  label={t(artifact.ctaI18nKey)}
-                  onClick={() => handleMaterialHandoutDownload(moduleId)}
-                  className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
-                  iconClassName="w-4 h-4"
-                />
-              );
-            })}
-            {onRequestCertificate &&
-              earnedCertificateTiers.map((tier) => (
-                <CTAButton
-                  key={`certificate-${tier}`}
-                  variant="secondary"
-                  onClick={() => onRequestCertificate(tier)}
-                  className="min-h-[44px]"
-                  aria-label={t(`certificateTier${tier}Aria`)}
-                >
-                  <Award className="w-4 h-4" aria-hidden />
-                  {t(`certificateTier${tier}`)}
-                </CTAButton>
-              ))}
-          </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {track.modules.map((module) => {
+                const styles = levelStyles[module.level];
+                const ModuleIconCmp = resolveModuleIcon(module.icon);
+                const topStripeClass = accentTopBarClasses[module.accent];
 
-          {materialsError && (
-            <p
-              className="mt-3 text-sm text-rose-700 dark:text-rose-300"
-              role="alert"
-            >
-              {t('common:handoutPdfError')}
-            </p>
-          )}
-        </section>
-      )}
-
-      {comingSoonModules.length > 0 && (
-        <section
-          className="space-y-4"
-          aria-labelledby="coming-soon-modules-title"
-        >
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-wide text-fuchsia-700 dark:text-fuchsia-300 mb-2">
-              {t('comingSoonEyebrow')}
-            </p>
-            <h2
-              id="coming-soon-modules-title"
-              className="text-2xl font-bold text-gray-900 dark:text-white"
-            >
-              {t('comingSoonTitle')}
-            </h2>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              {t('comingSoonSubtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {comingSoonModules.map((module) => {
-              const styles = levelStyles[module.level];
-              const ModuleIconCmp = resolveModuleIcon(module.icon);
-              const topStripeClass = accentTopBarClasses[module.accent];
-
-              return (
-                <article
-                  key={module.id}
-                  className="card relative overflow-hidden opacity-80"
-                  aria-label={t('comingSoonCardAria', {
-                    title: module.title[localeKey],
-                  })}
-                >
-                  <div
-                    className={`absolute top-0 left-0 right-0 h-1.5 ${topStripeClass}`}
-                  />
-                  <div className="p-6">
-                    <div className="flex items-start justify-between gap-3 mb-4">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
-                        >
-                          {ModuleIconCmp && (
-                            <ModuleIconCmp
-                              className="w-6 h-6 text-white"
-                              strokeWidth={1.5}
-                            />
-                          )}
-                        </div>
-                        <div>
-                          <span className="inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-full bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-700 dark:text-fuchsia-300">
-                            {t('comingSoonBadge')}
-                          </span>
-                          <h3 className="mt-2 text-lg font-bold text-gray-900 dark:text-white">
-                            {module.title[localeKey]}
-                          </h3>
+                return (
+                  <article
+                    key={module.id}
+                    className="card relative overflow-hidden opacity-80"
+                    aria-label={t('comingSoonCardAria', {
+                      title: module.title[localeKey],
+                    })}
+                  >
+                    <div
+                      className={`absolute top-0 left-0 right-0 h-1.5 ${topStripeClass}`}
+                    />
+                    <div className="p-6">
+                      <div className="flex items-start justify-between gap-3 mb-4">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`bg-gradient-to-br ${styles.gradient} p-3 rounded-xl shadow-md`}
+                          >
+                            {ModuleIconCmp && (
+                              <ModuleIconCmp
+                                className="w-6 h-6 text-white"
+                                strokeWidth={1.5}
+                              />
+                            )}
+                          </div>
+                          <div>
+                            <span
+                              className={`inline-flex items-center text-xs font-semibold px-2 py-0.5 rounded-full ${accentUi.badge}`}
+                            >
+                              {t('comingSoonBadge')}
+                            </span>
+                            <h3 className="mt-2 text-lg font-bold text-gray-900 dark:text-white">
+                              {module.title[localeKey]}
+                            </h3>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                      {module.subtitle[localeKey]}
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed min-h-[4.5rem]">
-                      {module.description[localeKey]}
-                    </p>
-                    <div className="mt-5 rounded-xl border border-dashed border-fuchsia-300 dark:border-fuchsia-700 bg-fuchsia-50/70 dark:bg-fuchsia-900/20 px-4 py-3 text-sm text-fuchsia-800 dark:text-fuchsia-200">
-                      {t('comingSoonNote')}
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                        {module.subtitle[localeKey]}
+                      </p>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed min-h-[4.5rem]">
+                        {module.description[localeKey]}
+                      </p>
+                      <div
+                        className={`mt-5 rounded-xl border border-dashed px-4 py-3 text-sm ${accentUi.note}`}
+                      >
+                        {t('comingSoonNote')}
+                      </div>
                     </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        );
+      })}
 
       {/* Completion message */}
       {completedCount === totalModules && (

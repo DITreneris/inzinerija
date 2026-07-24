@@ -36,6 +36,7 @@
 | **sentimentas**                      | Nuotaika, tonas (teigiamas / neutralus / neigiamas). Gali likti; jei reikia – „nuotaika (sentimentas)“                                                                                                                                                    |
 | **TL;DR**                            | LT sąsajoje naudoti **„Trumpai“** (content-block pirmos sekcijos `heading` ir matoma kopija). Anglų santrumpų vartotojui matomuose tekstuose – vengti (išskyrus citatas ar privalomus produkto terminus). Žr. `docs/development/GOLDEN_STANDARD.md` §3.2. |
 | **workflow**                         | Antraštėse ir navigacijoje – **darbo eiga** / **darbo eigos**. Pirmame paminėjime galima bilingviškai: „darbo eiga (workflow)“. Body ir promptuose loanword gali likti.                                                                                   |
+| **HITL / Human-in-the-loop**         | Antraštėse – **kada tvirtina žmogus** / **žmogaus kontrolė** (be santrumpos). Body ar žodyne – bilingviškai: „žmogaus kontrolė (Human-in-the-loop / HITL)“. Režimai – skaidrė 10.26.                                                                      |
 | **router**                           | **Maršrutizatorius**; mokymo poros su EN: „maršrutizatorius (router)“ – ypač kai aiškinamas skirtumas nuo orkestratoriaus.                                                                                                                                |
 
 ---

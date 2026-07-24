@@ -67,19 +67,19 @@ export function getM7AnalysisShortLabels(
 
 /** 5 žingsnių duomenų paruošimas – skaidrė 89 */
 const M7_PREP_STEPS_LT = [
-  { label: 'Šaltiniai', desc: 'Identifikuoti' },
-  { label: 'Struktūra', desc: 'Lentelė' },
-  { label: 'Surinkti', desc: 'Kategorijos' },
-  { label: 'Valymas', desc: 'Dubliai, trūkumai' },
-  { label: 'Eksportas', desc: 'CSV' },
+  { label: 'Šaltiniai', desc: 'Išvardink šaltinius' },
+  { label: 'Struktūra', desc: 'Sukurk stulpelius' },
+  { label: 'Surinkti', desc: 'Priskirk kategorijoms' },
+  { label: 'Valymas', desc: 'Valyk dublikatus' },
+  { label: 'Eksportas', desc: 'Eksportuok CSV' },
 ];
 
 const M7_PREP_STEPS_EN = [
-  { label: 'Sources', desc: 'Identify' },
-  { label: 'Structure', desc: 'Table' },
-  { label: 'Collect', desc: 'Categories' },
-  { label: 'Cleaning', desc: 'Dupes, gaps' },
-  { label: 'Export', desc: 'CSV' },
+  { label: 'Sources', desc: 'List sources' },
+  { label: 'Structure', desc: 'Define columns' },
+  { label: 'Collect', desc: 'Assign categories' },
+  { label: 'Cleaning', desc: 'Clean duplicates' },
+  { label: 'Export', desc: 'Export CSV' },
 ];
 
 export function getM7DataPrepSteps(locale: M7Locale) {
@@ -137,21 +137,21 @@ export function getM7DataPrepExplanations(locale: M7Locale): StepExplanation[] {
 
 /** 6 žingsnių duomenų analizės pipeline – skaidrė 70 */
 const M7_DA_PIPELINE_STEPS_LT = [
-  { label: 'Rinkimas', desc: 'Šaltiniai' },
-  { label: 'Paruošimas', desc: 'Tvarka' },
-  { label: 'EDA', desc: 'Apžvalga' },
-  { label: 'Modeliai', desc: 'Skaičiavimai' },
-  { label: 'Vizualizacija', desc: 'Vaizdas' },
-  { label: 'Publikavimas', desc: 'Sprendimas' },
+  { label: 'Rinkimas', desc: 'Surenkame šaltinius' },
+  { label: 'Paruošimas', desc: 'Sutvarkome duomenis' },
+  { label: 'EDA', desc: 'Ieškome dėsningumų' },
+  { label: 'Modeliavimas', desc: 'Skaičiuojame' },
+  { label: 'Vizualizavimas', desc: 'Rodome įžvalgas' },
+  { label: 'Publikavimas', desc: 'Paruošiame sprendimą' },
 ];
 
 const M7_DA_PIPELINE_STEPS_EN = [
-  { label: 'Collection', desc: 'Sources' },
-  { label: 'Preparation', desc: 'Structure' },
-  { label: 'EDA', desc: 'Overview' },
-  { label: 'Models', desc: 'Calculations' },
-  { label: 'Visualization', desc: 'Visuals' },
-  { label: 'Publishing', desc: 'Decision' },
+  { label: 'Collection', desc: 'Gather sources' },
+  { label: 'Preparation', desc: 'Clean and structure' },
+  { label: 'EDA', desc: 'Find patterns' },
+  { label: 'Modeling', desc: 'Calculate / forecast' },
+  { label: 'Visualization', desc: 'Show insights' },
+  { label: 'Publishing', desc: 'Prep the decision' },
 ];
 
 export function getM7DaPipelineSteps(locale: M7Locale) {
@@ -164,27 +164,27 @@ export function getM7DaPipelineExplanations(
   if (locale === 'en') {
     return [
       {
-        title: '1. Collection',
+        title: 'Collection',
         body: 'Collect the right **sources** first: files, systems, public data or internal tables.',
       },
       {
-        title: '2. Preparation',
+        title: 'Preparation',
         body: 'Clean formats, missing values and duplicates so the next steps use the same structure.',
       },
       {
-        title: '3. EDA',
+        title: 'EDA',
         body: 'Explore what the data says: totals, outliers, segments and first hypotheses.',
       },
       {
-        title: '4. Models',
+        title: 'Modeling',
         body: 'Apply calculations or forecasts only after the data shape is clear.',
       },
       {
-        title: '5. Visualization',
+        title: 'Visualization',
         body: 'Choose visuals that answer the question: trend, comparison, share or relationship.',
       },
       {
-        title: '6. Publishing',
+        title: 'Publishing',
         body: 'Turn the result into a decision-ready message: what changed, why it matters and what to do.',
       },
     ];
@@ -192,27 +192,27 @@ export function getM7DaPipelineExplanations(
 
   return [
     {
-      title: '1. Rinkimas',
+      title: 'Rinkimas',
       body: 'Pirmiausia surink tinkamus **šaltinius**: failus, sistemas, viešus duomenis ar vidines lenteles.',
     },
     {
-      title: '2. Paruošimas',
+      title: 'Paruošimas',
       body: 'Sutvarkyk formatus, trūkstamas reikšmes ir dublius, kad kiti žingsniai remtųsi ta pačia struktūra.',
     },
     {
-      title: '3. EDA',
+      title: 'EDA',
       body: 'Peržiūrėk, ką duomenys rodo: sumas, išskirtis, segmentus ir pirmas hipotezes.',
     },
     {
-      title: '4. Modeliai',
+      title: 'Modeliavimas',
       body: 'Skaičiavimus ar prognozes taikyk tik tada, kai duomenų forma jau aiški.',
     },
     {
-      title: '5. Vizualizacija',
+      title: 'Vizualizavimas',
       body: 'Parink vaizdą pagal klausimą: tendencija, palyginimas, dalis ar ryšys.',
     },
     {
-      title: '6. Publikavimas',
+      title: 'Publikavimas',
       body: 'Paversk rezultatą sprendimo žinute: kas pasikeitė, kodėl svarbu ir ką daryti.',
     },
   ];

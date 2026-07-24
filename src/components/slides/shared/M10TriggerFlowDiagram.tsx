@@ -64,6 +64,7 @@ export default function M10TriggerFlowDiagram({
       <defs>
         <marker
           id={`m10tf-fwd-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={MARKER}
@@ -74,6 +75,7 @@ export default function M10TriggerFlowDiagram({
         </marker>
         <marker
           id={`m10tf-dash-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={MARKER}
@@ -88,7 +90,7 @@ export default function M10TriggerFlowDiagram({
         y={22}
         textAnchor="middle"
         fontSize={DIAGRAM_TOKENS.typography.title.compact + 1}
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >

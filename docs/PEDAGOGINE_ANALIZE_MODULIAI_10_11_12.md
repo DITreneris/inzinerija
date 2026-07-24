@@ -99,17 +99,19 @@ Moduliai 10–12 turi **aiškų kelią**: teorija (10) → testas (11) → proje
 | **P2**      | **120.5**     | Copy „perdavimo taisyklė“ + Daryk/Patikra                           | ✅ 2026-07-20    |
 | **P2**      | **10.3 seka** | Po 10.25, prieš 10.45                                               | ✅ 2026-07-20    |
 | **P2**      | **10.64**     | MUST įėjimo bilietas (spec + 3 testai + HITL); 10.65 lieka optional | ✅ 2026-07-20    |
+| **P2**      | **10.26**     | Žmogaus kontrolės simuliatorius po 3A; carry → 10.64 / m11-q8 / 122 | ✅ 2026-07-23    |
 
 ---
 
 ## 7. Santrauka
 
-| Sritis           | Pagrindinis trūkumas                        | Pirmas žingsnis (max ROI)            |
-| ---------------- | ------------------------------------------- | ------------------------------------ |
-| Veiksmo ciklas   | Orientacinės skaidrės be Daryk/Copy/Patikra | 10.25, 120.25, 10.15, 10.35          |
-| Diferenciacija   | 124 ≈ 10.5                                  | Golden test + tool trace             |
-| M12 pasiruošimas | Testavimas/HITL buvo optional 10.65         | **10.64 MUST bilietas** (10.65 deep) |
-| Seka             | 10.3 buvo po multi-agent                    | **10.3 po 10.25, prieš 10.45** ✅    |
+| Sritis           | Pagrindinis trūkumas                        | Pirmas žingsnis (max ROI)                                                         |
+| ---------------- | ------------------------------------------- | --------------------------------------------------------------------------------- |
+| Veiksmo ciklas   | Orientacinės skaidrės be Daryk/Copy/Patikra | 10.25, 120.25, 10.15, 10.35                                                       |
+| Diferenciacija   | 124 ≈ 10.5                                  | Golden test + tool trace                                                          |
+| M12 pasiruošimas | Testavimas/HITL buvo optional 10.65         | **10.64 MUST bilietas** (10.65 deep)                                              |
+| Seka             | 10.3 buvo po multi-agent                    | **10.3 po 10.26, prieš 10.45** ✅                                                 |
+| Žmogaus kontrolė | Tik „taip/ne“ eilutė 10.64                  | **10.26** režimų lab + kopijuojama taisyklė (lab viduje, W1.1 risk strip) → 10.64 |
 
 **Runtime sinchronizacija:** `src/data/modules.json` + `src/data/modules-en-m10-m12.json`.  
 **Turinio SOT:** `docs/turinio_pletra_moduliai_10_11_12.md`.

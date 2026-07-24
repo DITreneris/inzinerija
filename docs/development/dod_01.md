@@ -85,8 +85,9 @@ Pilna tiesa: `SCHEME_AGENT.md` §3, §5; `DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`.
 - [ ] `GOLDEN_STANDARD.md` ir `UI_UX_AGENT.md` atidaryti prieš vertinimą.
 - [ ] Auditas pagal §4.2 checklist – ataskaitoje kas tikrinta, kas pataisyta.
 - [ ] Rekomendacijos CODING_AGENT konkrečios (Tailwind klasės, aria atributai).
+- [ ] Jei auditas liečia **ModulesPage katalogą** – §3.8 / GOLDEN §8.4 (track accent, bazės subsection, materials po `maxAccessible`).
 
-Pilna tiesa: `UI_UX_AGENT.md` §4.2, §5.2.
+Pilna tiesa: `UI_UX_AGENT.md` §3.8, §4.2, §5.2; `GOLDEN_STANDARD.md` §8.4.
 
 ### §3.7 CURRICULUM_AGENT
 

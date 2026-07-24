@@ -40,9 +40,11 @@ export const DIAGRAM_TOKENS = {
   },
   typography: {
     title: {
-      desktop: 16,
-      compact: 14,
+      /** LMS caption-scale (under slide H1) */
+      desktop: 17,
+      compact: 15,
     },
+    titleWeight: 700,
     subtitle: {
       desktop: 10,
       compact: 9,
@@ -54,6 +56,10 @@ export const DIAGRAM_TOKENS = {
     stepSub: {
       desktop: 10,
       compact: 8,
+    },
+    edgeLabel: {
+      size: 12,
+      weight: 500,
     },
     rolesHub: {
       title: {
@@ -76,16 +82,21 @@ export const DIAGRAM_TOKENS = {
   },
   stroke: {
     border: 1,
-    flow: 2,
-    flowStrong: 2.5,
+    /** LMS 1A process shafts (was 2) */
+    flow: 3.5,
+    flowStrong: 3.5,
+    /** Feedback / return loops */
+    feedback: 3.5,
     inactive: 1.5,
     active: 2.5,
   },
   opacity: {
     active: 1,
-    inactive: 0.48,
-    inactiveSoft: 0.58,
-    selectableInactive: 0.82,
+    /** LMS 1A – readable inactive (was 0.48 grey wash) */
+    inactive: 0.88,
+    /** @deprecated same floor as inactive – prefer opacity.inactive */
+    inactiveSoft: 0.88,
+    selectableInactive: 0.88,
   },
   radius: {
     frame: 12,
@@ -96,10 +107,29 @@ export const DIAGRAM_TOKENS = {
     markerWidth: 8,
     markerHeight: 6,
     markerPath: 'M0 0 L6 3 L0 6 Z',
+    /**
+     * Required for process markers with stroke.flow ≥ 3.5.
+     * SVG default markerUnits=strokeWidth scales the tip by stroke → shaft vanishes
+     * when GAP ≈ 24–32 (tip ≈ markerLen × 3.5 ≥ visible shaft).
+     */
+    markerUnits: 'userSpaceOnUse' as const,
   },
   verticalFlow: {
     minGap: 24,
     minStem: 12,
+  },
+  /**
+   * @deprecated Prefer stroke.flow / opacity.inactive / typography.* (LMS floors promoted 2026-07).
+   * Kept as alias for W1 call sites until migrated.
+   */
+  lmsCycle: {
+    inactiveOpacity: 0.88,
+    forwardStroke: 3.5,
+    feedbackStroke: 3.5,
+    titleSize: 17,
+    titleWeight: 700,
+    edgeLabelSize: 12,
+    edgeLabelWeight: 500,
   },
 } as const;
 

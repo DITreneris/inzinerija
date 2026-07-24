@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "6-Block System",
-      "subtitle": "Meta, Input, Output, Reasoning, Quality, Advanced",
+      "subtitle": "Role, data, format, reasoning, quality",
       "description": "Six prompt structure blocks in one clear course – the full system from A to Z.",
       "icon": "BookOpen",
       "level": "learn",
@@ -983,7 +983,7 @@
     {
       "id": 2,
       "title": "Knowledge check",
-      "subtitle": "15 random questions from an updated question bank.",
+      "subtitle": "15 random questions from a continuously updated bank",
       "description": "Five formats: multiple choice, matching, ordering, true/false, and scenario-based questions.",
       "icon": "ClipboardList",
       "level": "test",
@@ -1446,7 +1446,7 @@
       ],
       "businessExamples": [
         {
-          "title": "6-block system and workflow",
+          "title": "6-block system and work process",
           "description": "Questions on Meta, Input, Output, Reasoning, Quality, Advanced"
         },
         {
@@ -1461,7 +1461,7 @@
       "id": 3,
       "title": "Practical application",
       "subtitle": "6 business scenarios with 6 blocks",
-      "description": "6 different scenarios – create your prompts and build a template library.",
+      "description": "6 business scenarios – your prompts and a template library.",
       "icon": "Briefcase",
       "level": "practice",
       "duration": "25–30 min",

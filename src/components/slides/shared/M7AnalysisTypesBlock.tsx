@@ -36,6 +36,7 @@ export default function M7AnalysisTypesBlock() {
       mobileBehavior="reflow"
       renderContent={() => (
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.youAreHere}
           currentStep={currentStep}

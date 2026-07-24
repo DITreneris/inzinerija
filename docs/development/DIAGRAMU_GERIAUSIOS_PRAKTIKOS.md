@@ -32,14 +32,14 @@
 
 ## 4. Palyginimas su react-diagrams
 
-| Aspektas | react-diagrams | Mūsų projektas |
-|----------|----------------|----------------|
-| Model | DiagramModel, nodes, links (engine) | Layout .ts – nodes, edges, getAnchorPoint / getLineEndPoint |
-| View | React widgets, factories | Diagram .tsx – skaito layout, piešia SVG |
-| Tipai | TypeScript out of the box | TypeScript – Schema3Node, Schema3Edge, Anchor |
-| SOT | Model serialization | Vienas layout failas arba diagramos konstantos |
-| Mazgai | HTML first (inputs, dropdowns) | SVG first – paprasti blokai ir rodyklės |
-| Pluggable | Savi Model/Factory/Widget | Nauji layout.ts + Diagram.tsx + Block pagal SCHEME_AGENT |
+| Aspektas  | react-diagrams                      | Mūsų projektas                                              |
+| --------- | ----------------------------------- | ----------------------------------------------------------- |
+| Model     | DiagramModel, nodes, links (engine) | Layout .ts – nodes, edges, getAnchorPoint / getLineEndPoint |
+| View      | React widgets, factories            | Diagram .tsx – skaito layout, piešia SVG                    |
+| Tipai     | TypeScript out of the box           | TypeScript – Schema3Node, Schema3Edge, Anchor               |
+| SOT       | Model serialization                 | Vienas layout failas arba diagramos konstantos              |
+| Mazgai    | HTML first (inputs, dropdowns)      | SVG first – paprasti blokai ir rodyklės                     |
+| Pluggable | Savi Model/Factory/Widget           | Nauji layout.ts + Diagram.tsx + Block pagal SCHEME_AGENT    |
 
 Šaltinis: [react-diagrams](https://github.com/projectstorm/react-diagrams), [GitBook](https://projectstorm.gitbook.io/react-diagrams). Mes nenaudojame bibliotekos – principus (Model/View, vienas SOT, TypeScript) pritaikome be engine.
 
@@ -77,44 +77,45 @@ Referencinė implementacija: **LlmAutoregressiveDiagram** + **llmAutoregressiveL
 
 #### Forward rodyklės (blokas → blokas į dešinę)
 
-| Aspektas | Specifikacija | Įgyvendinimas (LLM diagrama) |
-|----------|---------------|------------------------------|
-| **Kryptis** | Vienintelė kryptis – į dešinę; rodyklė horizontalė, Y = eilutės centre (centre bloko aukščio). | `ARROWS_ROW_N` / `ARROWS_ROW_N1`: `[x1, centerY, x2]`; `centerY = boxY + BOX_H/2`. |
-| **Pradžia** | Ištekančio bloko **dešinysis kraštas** (right edge). Linija prasideda ties kraštu, ne į vidų. | `x1 = inputRight` (pvz. `START_X + INPUT_W`); tas pats iš layout konstantų. |
-| **Pabaiga** | Įeinančio bloko **kairysis kraštas minus antgalio ilgis**. Antgalio smailė **liečia** kraštą, trikampis **neįeina** į bloką. | `x2 = llmLeft - ARROW_MARKER_LEN` (layout); `ARROW_MARKER_LEN = 6`. |
-| **Stilius** | Pilna linija (solid), vienas antgalis (single arrowhead), vienoda spalva srautui. | `stroke={BORDER}`, `strokeWidth="2"`, `markerEnd` – vienas marker. |
-| **Proporcingumas** | Antgalio dydis (refX) atitinka `ARROW_MARKER_LEN` path skaičiavime; antgalis ne didesnis už GAP. | Layout: `ARROW_MARKER_LEN = 6`; SVG marker: `refX="5"`, `markerWidth="6"` – smailė ties 5px. GAP=24 > 6. |
-| **Spalva** | Pakankamas kontrastas ant fono; ne per šviesi. | Pvz. `BORDER` (#4a5568) – tamsesnė pilka. |
+| Aspektas           | Specifikacija                                                                                                                | Įgyvendinimas (LLM diagrama)                                                                       |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Kryptis**        | Vienintelė kryptis – į dešinę; rodyklė horizontalė, Y = eilutės centre (centre bloko aukščio).                               | `ARROWS_ROW_N` / `ARROWS_ROW_N1`: `[x1, centerY, x2]`; `centerY = boxY + BOX_H/2`.                 |
+| **Pradžia**        | Ištekančio bloko **dešinysis kraštas** (right edge). Linija prasideda ties kraštu, ne į vidų.                                | `x1 = inputRight` (pvz. `START_X + INPUT_W`); tas pats iš layout konstantų.                        |
+| **Pabaiga**        | Įeinančio bloko **kairysis kraštas minus antgalio ilgis**. Antgalio smailė **liečia** kraštą, trikampis **neįeina** į bloką. | `x2 = llmLeft - ARROW_MARKER_LEN` (layout); `ARROW_MARKER_LEN = 6`.                                |
+| **Stilius**        | Pilna linija (solid), vienas antgalis (single arrowhead), vienoda spalva srautui.                                            | `stroke={BORDER}`, `strokeWidth={DIAGRAM_TOKENS.stroke.flow}` (≥3.5), `markerEnd` – vienas marker. |
+| **markerUnits**    | `userSpaceOnUse` – antgalis neauga su stroke (kitaip kotas dingsta).                                                         | `markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}` ant forward `<marker>`.                           |
+| **Proporcingumas** | Antgalio dydis (refX) atitinka `ARROW_MARKER_LEN` path skaičiavime; antgalis ne didesnis už GAP.                             | Layout: `ARROW_MARKER_LEN = 6`; SVG marker: `refX≈6`, `markerWidth` user-space. GAP=24 > 6.        |
+| **Spalva**         | Pakankamas kontrastas ant fono; ne per šviesi.                                                                               | Pvz. `BORDER` (#4a5568) – tamsesnė pilka.                                                          |
 
 **Praktika įgyvendinimui:** Visos forward rodyklių koordinatės (x1, x2, y) kyla iš **layout failo** iš tų pačių blokų rect (right = rect[0]+rect[2], left = kito rect[0]). Nenaudoti „magic numbers“ diagramos komponente.
 
 #### Grįžtamojo ryšio (feedback) rodyklė
 
-| Aspektas | Specifikacija | Įgyvendinimas |
-|----------|---------------|---------------|
-| **Vizualus atskyrimas** | Skirta nuo forward: **punktyrinė** linija, galima kitokią spalvą (pvz. pilka arba accent). | `strokeDasharray="5 3"`, `stroke={GRAY_FLOW}`. |
-| **Maršrutas** | Path **nekerta** kitų blokų; eina aplink (žemyn → horizontaliai → į viršų). | `pathD` su Q (bezier) arba L segmentais; pabaiga ties tikslo bloko kraštu. |
-| **Antgalis** | Aiškiai nukreiptas į tikslo bloką; gali būti rankinis `<polygon>`, kad nėra orientacijos dviprasmybės. | Polygon su smaile ties `inputN1Top`; `orient="auto"` nebūtina. |
-| **Etiketė** | Trumpas tekstas paaiškina ryšį (pvz. „Pridedama prie naujos įvesties“). | `FEEDBACK.labelX`, `FEEDBACK.labelY` – centre tarp eilučių; SIZE_MICRO, TEXT_MUTED. |
+| Aspektas                | Specifikacija                                                                                                                        | Įgyvendinimas                                                     |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| **Vizualus atskyrimas** | Skirta nuo forward: **punktyrinė** linija, galima kitokią spalvą (pvz. pilka arba accent).                                           | `strokeDasharray="5 3"`, `stroke={GRAY_FLOW}`.                    |
+| **Maršrutas**           | 2 eilutės: **inter-row U** (žemyn → horizontaliai → žemyn į tipą), ne įstrižas Q. Cycle (1 eilutė): `feedbackUPath` (tipas į viršų). | `feedbackInterRowPath` + `FEEDBACK.pathD`; R=16; trough virš tip. |
+| **Antgalis**            | Rankinis `<polygon>` **už** tikslo krašto; oras ~**3** (ne 8 – floating); ACCENT_DARK; tipH/W 12/8.                                  | `tipY = inputTop − gap`, `baseY = tipY − tipH`.                   |
+| **Etiketė**             | Trumpas tekstas **po** horizontaliu trough (ne virš – liejasi su viršutine eile).                                                    | `labelX` mid X, `labelY = troughY + 12`; ACCENT_DARK.             |
 
 ### 6.2 Blokų užrašų analizė (užrašai blokuose)
 
-| Aspektas | Geriausia praktika | LLM diagramos pavyzdys |
-|----------|--------------------|-------------------------|
-| **Hierarchija** | Pirmoji eilutė = **rolė/tipas** (Įvestis, LLM, Išvestis, Pasirinkta); antra/trečia = **turinys/pavyzdys**. | „Įvestis“ + „Rytas tapo“; „Išvestis“ + „Tokenų tikimybės:“ + procentai; „Pasirinkta“ + „čempionais“. |
-| **Tipografija** | Rolė: storesnis šriftas (600/700), šiek tiek didesnis arba atskiros spalvos; turinys: 400, skaitomumas. | Rolė: `fontWeight="600"` arba `"500"`, SIZE_SCHEMA_LABEL/18; turinys: SIZE_BODY, fontWeight 400. |
-| **Spalvos** | Rolė ir turinys gali būti tos pačios spalvos arba rolė tamsesnė/akcentinė; kontrastas su bloko fonu. | Įvestis: INPUT_BORDER ant INPUT_BG; Išvestis: OUTPUT_LABEL; Pasirinkta: PASIRINKTA_TEXT. |
-| **Pozicionavimas** | Visos koordinatės iš **layout** (getTwoLineTextPositions, getOutputTextPositions, getInputTextPositions, getCenterTextPosition). Vertikaliai: padding + line height, kad tekstas netelpėtų už rect. | PAD_TOP, LINE_HEIGHT, PAD_TOP_OUTPUT, LINE_HEIGHT_OUTPUT; cx = rect[0] + rect[2]/2. |
-| **Kelių eilučių turinys** | Naudoti `<tspan>` su `dy` arba atskirus `<text>` su skaičiuotomis Y. | Išvesties bloke: body + body2 su dy="20". |
-| **Vienas centrinis žodis** | LLM-type blokas: viena eilutė centre (vertikaliai ir horizontaliai). | `getCenterTextPosition`: x = rx+rw/2, y = ry+rh/2+6. |
+| Aspektas                   | Geriausia praktika                                                                                                                                                                                  | LLM diagramos pavyzdys                                                                               |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Hierarchija**            | Pirmoji eilutė = **rolė/tipas** (Įvestis, LLM, Išvestis, Pasirinkta); antra/trečia = **turinys/pavyzdys**.                                                                                          | „Įvestis“ + „Rytas tapo“; „Išvestis“ + „Tokenų tikimybės:“ + procentai; „Pasirinkta“ + „čempionais“. |
+| **Tipografija**            | Rolė: storesnis šriftas (600/700), šiek tiek didesnis arba atskiros spalvos; turinys: 400, skaitomumas.                                                                                             | Rolė: `fontWeight="600"` arba `"500"`, SIZE_SCHEMA_LABEL/18; turinys: SIZE_BODY, fontWeight 400.     |
+| **Spalvos**                | Rolė ir turinys gali būti tos pačios spalvos arba rolė tamsesnė/akcentinė; kontrastas su bloko fonu.                                                                                                | Įvestis: INPUT_BORDER ant INPUT_BG; Išvestis: OUTPUT_LABEL; Pasirinkta: PASIRINKTA_TEXT.             |
+| **Pozicionavimas**         | Visos koordinatės iš **layout** (getTwoLineTextPositions, getOutputTextPositions, getInputTextPositions, getCenterTextPosition). Vertikaliai: padding + line height, kad tekstas netelpėtų už rect. | PAD_TOP, LINE_HEIGHT, PAD_TOP_OUTPUT, LINE_HEIGHT_OUTPUT; cx = rect[0] + rect[2]/2.                  |
+| **Kelių eilučių turinys**  | Naudoti `<tspan>` su `dy` arba atskirus `<text>` su skaičiuotomis Y.                                                                                                                                | Išvesties bloke: body + body2 su dy="20".                                                            |
+| **Vienas centrinis žodis** | LLM-type blokas: viena eilutė centre (vertikaliai ir horizontaliai).                                                                                                                                | `getCenterTextPosition`: x = rx+rw/2, y = ry+rh/2+6.                                                 |
 
 ### 6.3 Geriausių praktikų checklist įgyvendinimui
 
 Naudoti kuriant ar taisant horizontalias proceso diagramas:
 
 - [ ] **Rodyklės:** Koordinatės (x1, y, x2) iš layout; x1 = dešinysis kraštas, x2 = kairysis kraštas − ARROW_MARKER_LEN; Y = eilutės centre.
-- [ ] **Marker:** refX atitinka ARROW_MARKER_LEN; antgalis ne didesnis už GAP; vienas marker tipas forward srautui.
-- [ ] **Feedback:** Punktyrinė linija; path nekerta blokų; aiški etiketė (pvz. „Pridedama prie naujos įvesties“).
+- [ ] **Marker:** `markerUnits=userSpaceOnUse` (su `stroke.flow`); refX atitinka ARROW_MARKER_LEN; antgalis ne didesnis už GAP; vienas marker tipas forward srautui.
+- [ ] **Feedback:** Punktyrinė U (ne diagonalus Q); tipas su oru virš tikslo; etiketė ant trough (pvz. „Pridedama prie naujos įvesties“).
 - [ ] **Blokų užrašai:** Rolė (pvz. Įvestis, Išvestis) + turinys; pozicijos iš layout helper funkcijų; tekstas telpa į rect (padding/line-height).
 - [ ] **Viena tiesa:** Keisti tik layout; diagramos komponentas tik skaito ir piešia (§1).
 

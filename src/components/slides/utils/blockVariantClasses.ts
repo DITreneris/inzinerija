@@ -31,7 +31,8 @@ export function getContentBlockVariantClasses({
   }
 
   if (isInteractiveDiagram) {
-    return 'bg-white/95 dark:bg-slate-900/80 p-4 lg:p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm';
+    /* LMS: one light panel, almost no frame weight (hero diagram) */
+    return 'bg-transparent dark:bg-transparent p-1 sm:p-2 rounded-xl border-0 shadow-none';
   }
 
   switch (variant) {

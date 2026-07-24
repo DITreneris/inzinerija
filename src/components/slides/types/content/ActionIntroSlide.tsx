@@ -5,6 +5,7 @@ import {
   CheckCircle,
   ArrowRight,
   Zap,
+  Layers,
   ExternalLink,
   Wrench,
   ChevronDown,
@@ -14,10 +15,12 @@ import {
 import { CopyButton } from '../../shared';
 import Banner from '../../../ui/Banner';
 import Eyebrow from '../../../ui/Eyebrow';
+import ChoiceControl from '../../../ui/ChoiceControl';
 import type { LucideIcon } from 'lucide-react';
 import type {
   ActionIntroContent,
   ModuleAccent,
+  ModulePathMode,
 } from '../../../../types/modules';
 
 export interface ActionIntroSlideProps {
@@ -26,6 +29,11 @@ export interface ActionIntroSlideProps {
   moduleAccent: ModuleAccent;
   identityIcon?: LucideIcon;
   levelLabel: string;
+  /** Trumpas = Fast track ON; Ilgas = visos skaidrės */
+  pathMode?: ModulePathMode;
+  onPathModeChange?: (mode: ModulePathMode) => void;
+  /** Matomų skaidrių skaitiklis statusHint (po path pasirinkimo) */
+  visibleSlideCount?: number;
 }
 
 const TOOLS_PREVIEW_COUNT = 3;
@@ -38,6 +46,9 @@ export function ActionIntroSlide({
   moduleAccent,
   identityIcon,
   levelLabel,
+  pathMode = 'full',
+  onPathModeChange,
+  visibleSlideCount,
 }: ActionIntroSlideProps) {
   useTranslation(); // re-render kai keičiasi kalba
   const t = getT('testPractice');
@@ -46,6 +57,24 @@ export function ActionIntroSlide({
   const [showAllTools, setShowAllTools] = useState(false);
   const [showMetaCollapsible, setShowMetaCollapsible] = useState(false);
   const [showAllOutcomes, setShowAllOutcomes] = useState(false);
+
+  const pathChoice = content.howToUseModule;
+  const hasPathButtons = Boolean(
+    onPathModeChange && pathChoice?.short && pathChoice?.full
+  );
+  const shortLabel = pathChoice?.short?.label ?? t('pathShortLabel');
+  const fullLabel = pathChoice?.full?.label ?? t('pathFullLabel');
+  const shortDescription =
+    pathChoice?.short?.description ?? t('pathShortDescription');
+  const fullDescription =
+    pathChoice?.full?.description ?? t('pathFullDescription');
+  const pathHeading = pathChoice?.heading ?? t('pathChoiceHeading');
+  const pathStatusHint =
+    typeof visibleSlideCount === 'number' && visibleSlideCount > 0
+      ? t('pathVisibleCountHint', { count: visibleSlideCount })
+      : pathMode === 'short'
+        ? t('pathShortActiveHint')
+        : t('pathFullActiveHint');
 
   const hasReveal = Boolean(
     content.unstructuredPrompt && content.structuredPrompt
@@ -386,7 +415,33 @@ export function ActionIntroSlide({
             </div>
           </div>
 
-          {content.howToUseModule &&
+          {hasPathButtons && onPathModeChange && (
+            <ChoiceControl
+              legend={pathHeading}
+              columns={2}
+              size="compact"
+              value={pathMode}
+              onChange={onPathModeChange}
+              options={[
+                {
+                  id: 'short' as const,
+                  label: shortLabel,
+                  description: shortDescription,
+                  icon: Zap,
+                },
+                {
+                  id: 'full' as const,
+                  label: fullLabel,
+                  description: fullDescription,
+                  icon: Layers,
+                },
+              ]}
+              statusHint={pathStatusHint}
+              className="animate-fade-in"
+            />
+          )}
+          {!hasPathButtons &&
+            content.howToUseModule &&
             (content.howToUseModule.items?.length ||
               content.howToUseModule.body) && (
               <Banner

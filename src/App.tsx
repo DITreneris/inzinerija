@@ -52,6 +52,14 @@ type Page =
   | 'tools'
   | 'certificate';
 
+/** Test module → theory module for remediation return banner */
+const REMEDIATION_THEORY_BY_SOURCE: Record<number, number> = {
+  2: 1,
+  8: 7,
+  11: 10,
+  14: 13,
+};
+
 function getVerifyAccessUrl(configuredValue: string): string {
   const trimmed = configuredValue.trim();
   if (!trimmed) return '/api/verify-access';
@@ -548,13 +556,20 @@ function App() {
                       setCurrentPage('tools');
                     }}
                     remediationFrom={
-                      selectedModule === 1 &&
-                      remediationFrom?.sourceModuleId === 2
+                      remediationFrom &&
+                      selectedModule != null &&
+                      REMEDIATION_THEORY_BY_SOURCE[
+                        remediationFrom.sourceModuleId
+                      ] === selectedModule
                         ? remediationFrom
                         : null
                     }
                     onReturnToRemediation={
-                      remediationFrom && selectedModule === 1
+                      remediationFrom &&
+                      selectedModule != null &&
+                      REMEDIATION_THEORY_BY_SOURCE[
+                        remediationFrom.sourceModuleId
+                      ] === selectedModule
                         ? handleReturnToRemediation
                         : undefined
                     }

@@ -3,8 +3,8 @@
     {
       "id": 4,
       "title": "Context engineering",
-      "subtitle": "Sources, tokens, manipulation, hallucinations",
-      "description": "Sources (RAG), deep research, and tokens – how to control context and get more accurate answers.",
+      "subtitle": "Sources, context size, risks, and trust",
+      "description": "Learn to give AI your sources, control context size, and get more accurate answers.",
       "icon": "Brain",
       "level": "learn",
       "duration": "30–35 min",
@@ -25,24 +25,25 @@
             "aboutText": "Once the 6 blocks are familiar, RAG (answers from your documents and sources) and fact-checking let you work with real data and reduce errors. Token economy – save time and cost; spotting manipulation – ethical, reliable use. This module prepares you for one integrated project (Module 6).",
             "outcomesHeading": "After this module you'll be able to:",
             "outcomes": [
-              "Understand what RAG is and when to use it; specify sources in the prompt.",
-              "Know what Deep research is and how to structure multi-step queries.",
-              "Understand token usage (context window, max_tokens) and optimise prompts for length and cost.",
-              "Spot prompt manipulation and write neutral prompts.",
-              "Spot hallucinations and check AI answer accuracy (sources, cross-check, \"I don't know\"); link to the Quality block.",
-              "Apply it all in one project (Module 6)."
+              "Give AI your sources and get answers with citations.",
+              "Structure deeper multi-step queries.",
+              "Shorten prompts and save tokens and time.",
+              "Check answers – fewer guesses and hallucinations."
             ],
             "toolsIntro": "Context engineering principles work in any of these tools. Below – a short intro and use cases.",
             "duration": "~30–35 min",
             "audience": "For those who have completed Modules 1–3 and want to work with sources, RAG, and answer verification.",
             "firstActionCTA": "Choose the AI tool you'll use today – list below (ChatGPT, Claude, Gemini, etc.). You'll use it throughout the module.",
             "howToUseModule": {
-              "heading": "How to use this module",
-              "items": [
-                "Minimum path: 4.1, 4.2, 4.3, 4.5, 4.6, 4.7 (core topics).",
-                "Full path: all slides.",
-                "Optional (go deeper): 4.2-open (open data), 4.3a (prompt sequences), 4.4 practice tasks."
-              ]
+              "heading": "Choose your path",
+              "short": {
+                "label": "Short path",
+                "description": "Skip optional slides – core topics only."
+              },
+              "full": {
+                "label": "Full path",
+                "description": "All slides, including optional ones."
+              }
             },
             "tools": [
               {
@@ -2168,11 +2169,11 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Agent view",
-                "body": "Switch between modes: Basic (input → AI → output), RAG (with database), Tools. Shows how AI uses your sources.",
+                "heading": "AI system operating modes",
+                "body": "Compare how basic, RAG, and agent flows work. Shows how AI uses your sources and tools.",
                 "image": "llm_arch",
-                "imageAlt": "AI agent system: Basic, RAG, Tools modes",
-                "blockVariant": "emerald"
+                "imageAlt": "AI system modes: Basic, RAG, Agent",
+                "blockVariant": "default"
               },
               {
                 "heading": "What is RAG (3 steps)",
@@ -2210,6 +2211,7 @@
           "title": "Open data and RAG",
           "subtitle": "Eurostat, data.europa.eu, national portals – official sources",
           "type": "content-block",
+          "optional": true,
           "content": {
             "sections": [
               {
@@ -2795,6 +2797,7 @@
           "shortTitle": "Prompt sequences",
           "subtitle": "Sequence • Chain (CoT) • Idea tree (ToT) – 3 thinking templates",
           "type": "content-block",
+          "optional": true,
           "content": {
             "sections": [
               {
@@ -3311,7 +3314,7 @@
               },
               {
                 "term": "RLHF",
-                "definition": "Reinforcement Learning with Human Feedback – learning from human feedback; used to shape \"better\" answer strategies in AI models."
+                "definition": "Reinforcement Learning from Human Feedback – learning from human feedback; used to shape \"better\" answer strategies in AI models."
               },
               {
                 "term": "Master prompt",
@@ -3443,11 +3446,11 @@
       ],
       "businessExamples": [
         {
-          "title": "RAG, Deep research, tokens",
+          "title": "Sources in your own data",
           "description": "Data, sources, context optimisation"
         },
         {
-          "title": "Manipulation and hallucinations",
+          "title": "When AI errs or is manipulated",
           "description": "Neutral prompts, fact-checking"
         }
       ],
@@ -3921,7 +3924,7 @@
       "id": 6,
       "title": "Project creation",
       "subtitle": "Practice: research report or Custom GPT project",
-      "description": "One full project with 6 blocks: research report (with sources) or Custom GPT creation following the schema.",
+      "description": "One project: a research report with sources, or your own Custom GPT step by step.",
       "icon": "Rocket",
       "level": "practice",
       "duration": "25–35 min",
@@ -3936,7 +3939,7 @@
             "duration": "~25–35 min",
             "audience": "For those who have completed Modules 1–5 and want to apply the 6-block system, RAG and fact-checking in one project (research report or Custom GPT).",
             "firstActionCTA": "Start now: open the scenario \"Project: Research report with AI\", fill in the META block (role and goal) and run AI.",
-            "recommendedStart": "Start with \"Research report\". If you choose \"Custom GPT\", do this: 1) review M4 schema (4.1a2-viz), 2) open \"Project: Custom GPT\", 3) fill in goal and role.",
+            "recommendedStart": "Tip: start with the research report unless you specifically need a Custom GPT.",
             "handoutPromise": "After this module you can download the Module 6 handout (PDF): project 6 steps, 5 data-handling points and reflection summary – print and use at work."
           }
         },
@@ -4450,7 +4453,7 @@
           "description": "Real document with sources and verification"
         },
         {
-          "title": "Capstone – 6 blocks + RAG",
+          "title": "Full project with 6 blocks",
           "description": "Integrated project as final application"
         }
       ],

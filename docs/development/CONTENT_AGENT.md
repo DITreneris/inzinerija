@@ -35,7 +35,10 @@
 | **Moduliai 4–6**                          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                           | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
 | **Moduliai 7–9**                          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                           | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
 | **Moduliai 10–12**                        | `docs/turinio_pletra_moduliai_10_11_12.md`                                                                        | Turinio kūrimas; verslo multi-agent taksonomija, workflow šablonai, capstone scenarijai                                                                        |
+| **Moduliai 13–15**                        | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                        | Turinio inžinerija: pipeline, vaizdai, consistency, video/CPI, post-prod, **garsas** (audio-first), provenance (C2PA); M15 150.5 MUST, optional 151–154        |
 | **Skaidrių eilė M10**                     | `docs/MODULIO_10_SKAIDRIU_EILES.md`                                                                               | **Privaloma** prieš keičiant M10 skaidrių seką                                                                                                                 |
+| **Skaidrių eilė M13**                     | `docs/MODULIO_13_SKAIDRIU_EILES.md`                                                                               | **Privaloma** prieš keičiant M13 skaidrių seką (13.12 / 13.32 / 13.52 MUST; Legal runtime **13.101**)                                                          |
+| **M13–15 schemų registry**                | `docs/development/DIAGRAMU_M13_M15_REGISTRY.md`                                                                   | Žingsnių skaičius / image keys (`m13_*`, `turinio_workflow`, `m15_*`) – sinchronizuoti su skaidrės body; geometrija → SCHEME_AGENT                             |
 | **Modulių atpažinimas**                   | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                             | **Privaloma** naudoti – vienoda numeracija (4.1–4.7 = tik Modulio 4)                                                                                           |
 | **Santraukos skaidrės**                   | `docs/development/SUMMARY_SLIDE_SPEC.md`                                                                          | Tekstai pagal 5 blokų struktūrą                                                                                                                                |
 | **Duomenų analizės geriausios praktikos** | `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` (stub → redaguoti `turinio_pletra_moduliai_7_8_9.md`) | Moduliams 7–9 turinio semantika                                                                                                                                |
@@ -53,6 +56,7 @@
 
 - **Rašyti paprastai** – kad paprastam žmogui būtų **aišku ir suprantama** be vadybinio/techninio žargono.
 - Vartotojui matomi tekstai (antraštės, aprašymai, CTA, kortelių pavadinimai) – **be** nepaaiškintų terminų (ROI, HR, CFO, EBITDA, NPS, SWOT, influencer, Senior ir pan.). Jei terminas būtinas – vienas sakinys paaiškinimo arba paprastas atitikmuo.
+- **ModulesPage katalogo kortelės** (`module.description` / `subtitle` / `businessExamples`): plain nauda, max 120 simb.; learn = `Išmoksi…`, test = ką tikrina + `≥70%` (be „Trumpas testas“ dublio); SOT jargon (`pipeline`, `RAG`, `provenance`…) – tik skaidrėse. SOT: `.cursor/rules/module-description-criteria.mdc`.
 - **Žargono „vengti arba paaiškinti“ sąrašas** ir pavyzdžiai: `docs/development/PAPRASTOS_KALBOS_GAIRES.md`. CONTENT_AGENT privalo jį laikytis rašant ar redaguojant turinį.
 
 ### 3.1 Terminologija
@@ -109,7 +113,7 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 - **Daryk dabar** – aiškus veiksmas; vienas CTA „🔘 Kopijuoti promptą (žemiau)“.
 - **Quality check** – „Jei bent 2 „ne“ → grįžk prie…“ (vienoda formuluotė).
 - **Optional** – antraštė „🔽 Nori suprasti detaliau? (optional)“; collapsible teorija.
-- **MUST vs optional deep (M10 precedentas 10.64 / 10.65):** jei dense optional skaidrę dalyviai praleidžia, o M12 lab'ai reikalauja branduolio – **neišjunk** viso optional; ištrauk ploną **privalomą** content-block (spec + minimalūs testai + HITL) prieš optional deep. Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`.
+- **MUST vs optional deep (M10 precedentas 10.64 / 10.65):** jei dense optional skaidrę dalyviai praleidžia, o M12 lab'ai reikalauja branduolio – **neišjunk** viso optional; ištrauk ploną **privalomą** content-block (spec + minimalūs testai + žmogaus kontrolė) prieš optional deep. **Koncepto lab:** skaidrė **10.26** (`m10_human_control_simulator`) – režimai + **kopijuojama kontrolės taisyklė lab viduje** (ne GOLDEN „Kopijuojamas promptas“ siena); **10.64** laiko kontrolės eilutę. Antraštėse be „HITL“ (`PAPRASTOS_KALBOS` / `audit:slide-titles`). Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `turinio_pletra_moduliai_10_11_12.md` §3b1.
 - **Orientacinės skaidrės** (schema / 3A / įrankių katalogas) be Daryk/Copy/Patikra – silpnos; pridėti GOLDEN §3.2 ciklą, ne tik diagramą.
 
 ---
@@ -170,7 +174,7 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 - **Mišri užduotis** (turinys + JSON): CONTENT_AGENT (SOT + tekstai) → DATA_AGENT (full SOT `modules.json`, prireikus ir core profilis) → CODE_REVIEW_AGENT → QA_AGENT.
 - **User Journey rekomendacijos:** USER_JOURNEY_AGENT → CONTENT_AGENT (onboarding, trinties mažinimas, CTA, „pirmas veiksmas per 24h“).
 - **Pedagogikos vertinimas:** CURRICULUM_AGENT (struktūra, tikslai) → CONTENT_AGENT (kopija pagal struktūrą).
-- **Schemų semantika:** CONTENT_AGENT (ką rodyk, žingsnių pavadinimai) → SCHEME_AGENT (geometrija, rodyklės).
+- **Schemų semantika:** CONTENT_AGENT (ką rodyk, žingsnių pavadinimai) → SCHEME_AGENT (geometrija, rodyklės). M13–15: body neturi prieštarauti registry žingsnių skaičiui (pvz. 13.12 = 6-step pipeline skaitymo gidas, ne „4 žingsniai“); label SOT dažnai `m13*Content.ts` / `m15*Content.ts`, ne tik JSON.
 
 ---
 

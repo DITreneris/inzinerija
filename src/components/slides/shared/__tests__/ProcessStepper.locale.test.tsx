@@ -24,11 +24,18 @@ describe('ProcessStepper locale and mobile layout', () => {
 
     expect(container.textContent).toContain('Custom GPT creation process');
     expect(container.textContent).toContain('You are here: Step 1');
+    expect(container.textContent).toContain(
+      'Click a step in the diagram or number 1–8 – explanation and checklist below.'
+    );
     expect(container.textContent).not.toContain('Custom GPT kūrimo procesas');
     expect(container.textContent).not.toContain('Tu esi čia');
+    expect(container.textContent).not.toContain('Goal -> role');
+    expect(container.textContent).not.toContain(
+      'Goal -> role -> testing -> improvement'
+    );
 
     const compactDiagram = container.querySelector(
-      'svg[viewBox="0 0 360 780"]'
+      'svg[viewBox="0 0 360 770"]'
     );
     expect(compactDiagram).toBeTruthy();
     expect(container.querySelector('[data-slide-swipe-lock]')).toBeTruthy();

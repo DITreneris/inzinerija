@@ -4,6 +4,8 @@
 
 **Būsena (2026-07-09):** Pilnas `npm run test:run` – 71 testų failas, 465 testai praeina. PDF serija dengia intro-action-pie, M1/M4/M5/M6/M7–9/M10–12/M13–15 atmintines, completion artefaktų registry ir sertifikatų atsisiuntimo smoke testus.
 
+**„Mano medžiaga“ (ModulesPage):** pakartotinis atmintinių/sertifikatų atsisiuntimas. **Pozicija (2026-07-23):** juosta grid’e **po paskutinio** modulio su `id <= maxAccessible`, **prieš** tier-locked track’us ir coming-soon – ne puslapio apačioje po visų užrakintų kortelių. SOT: `GOLDEN_STANDARD.md` §8.4; regresija: `ModulesPage.materials.test.tsx`.
+
 ---
 
 ## Kas testuojama

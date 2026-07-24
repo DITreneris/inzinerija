@@ -17,6 +17,7 @@ import {
   getAnchorPoint,
   getLineEndPoint,
 } from './schema4Layout';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 const BRAND = '#334e68';
 const BRAND_LIGHT = '#486581';
@@ -83,6 +84,7 @@ export default function Schema4Diagram({
         </linearGradient>
         <marker
           id={`s4-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="10"
           markerHeight="8"
           refX={ARROW_MARKER_LEN}
@@ -98,6 +100,7 @@ export default function Schema4Diagram({
         </marker>
         <marker
           id={`s4-arrow-optional-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth="10"
           markerHeight="8"
           refX={ARROW_MARKER_LEN}

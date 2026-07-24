@@ -76,6 +76,7 @@ export default function M10WorkflowSpecDiagram({
         </linearGradient>
         <marker
           id={`m10-ws-arrow-${uid}`}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={MARKER}
@@ -98,7 +99,7 @@ export default function M10WorkflowSpecDiagram({
         y={24}
         textAnchor="middle"
         fontSize="14"
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -130,7 +131,7 @@ export default function M10WorkflowSpecDiagram({
             x2={x2}
             y2={y2}
             stroke={palette.flow}
-            strokeWidth="2"
+            strokeWidth={DIAGRAM_TOKENS.stroke.flow}
             markerEnd={`url(#m10-ws-arrow-${uid})`}
           />
         );
@@ -141,7 +142,10 @@ export default function M10WorkflowSpecDiagram({
         const active = currentStep === box.index;
         const dimmed = currentStep >= 0 && !active;
         return (
-          <g key={box.label} opacity={dimmed ? 0.45 : 1}>
+          <g
+            key={box.label}
+            opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}
+          >
             <rect
               x={box.x}
               y={box.y}
@@ -150,7 +154,11 @@ export default function M10WorkflowSpecDiagram({
               rx="9"
               fill={box.fill}
               stroke={active ? getDiagramActiveStroke() : palette.brandDark}
-              strokeWidth={active ? 3 : 1}
+              strokeWidth={
+                active
+                  ? DIAGRAM_TOKENS.stroke.active
+                  : DIAGRAM_TOKENS.stroke.inactive
+              }
             />
             <text
               x={box.x + 12}

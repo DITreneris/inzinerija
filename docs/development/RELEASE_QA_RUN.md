@@ -45,7 +45,7 @@
    - Moduliai → Modulis 4 → nueiti į **skaidrę 21** (modulyje: „RAG: kas tai ir pabandyk“ / shortTitle „RAG praktiškai“).
    - **Patikrinti:**
      - Navigacija (← / →) veikia.
-     - Sekcija **„Agentinė vizualizacija“** su `image: "llm_arch_diagram"` – tabai (Bazinis, RAG, Įrankiai) veikia.
+     - Sekcija **„DI sistemos veikimo režimai“** su `image: "llm_arch"` – tabai (Bazinis, RAG, Agentinis) veikia; mode-absent dashed; kortelės sync.
      - **Kopijuojamas promptas** – mygtukas „Kopijuoti“ veikia, tekstas nukopijuojamas.
      - Jei yra nuoroda **„Peržiūrėti pilname dydyje“** – paspausti ir įsitikinti, kad atsidaro tas pats turinys (diagrama/schema), ne 404.
    - Turinys skaitomas, lietuviškos raidės teisingos.
@@ -128,6 +128,24 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 ## Paskutinio vykdymo rezultatai
 
+### 2026-07-24 Pre-launch auditas (I0–I3 automated)
+
+| Patikra                                       | Rezultatas | Įrodymas                                                                          |
+| --------------------------------------------- | ---------- | --------------------------------------------------------------------------------- |
+| `npm run validate:schema`                     | ✅         | Exit 0                                                                            |
+| `npm run lint`                                | ✅         | Exit 0                                                                            |
+| `npm run typecheck`                           | ✅         | Exit 0 (po ModulesPage / PracticeIntro / locale fix)                              |
+| `npm run test:run`                            | ✅         | **103 failai / 686 testai**, exit 0                                               |
+| `npm run audit:release-preflight`             | ✅         | Schema, lint, DS gate, identity, icons, accent, titles, m49, journey, **103/686** |
+| `npm run audit:m1012` / `audit:m1315`         | ✅         | EN coverage + language OK (HITL allowlist 2)                                      |
+| `node scripts/validate-sot-index.mjs`         | ✅         | 15 modulių                                                                        |
+| `npm run build` (default)                     | ✅         | Exit 0                                                                            |
+| `VITE_MVP_MODE=1` build                       | ✅         | Exit 0                                                                            |
+| `VITE_MAX_BUILD_MODULE=9` build               | ✅         | Exit 0                                                                            |
+| Rankinė RELEASE_QA §1–5 / PDF / MON-5 browser | ⏳ Ranka   | Žmogus – žr. žemiau QA-1…6 ir MON-5                                               |
+
+**Gate ladder:** GitHub CI ⊂ `audit:release-preflight` ⊂ full RELEASE_QA_CHECKLIST (rankinė).
+
 ### 2026-07-15 Docs maintenance catch-up
 
 | Patikra                               | Rezultatas | Įrodymas                                                                                                                |
@@ -164,15 +182,26 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 
 **Vykdymo instrukcijos:** §0.1, §0.2, `RELEASE_QA_CHECKLIST.md` §2–5g. Rezultatą įrašyti į lentelę žemiau.
 
-### 2026-07-09 MON-5 prod smoke (browser) – reikia žmogaus
+### 2026-07-09 / 2026-07-24 MON-5 prod smoke (browser) – reikia žmogaus
 
-| #   | Scenarijus                                 | Rezultatas | Pastaba                         |
-| --- | ------------------------------------------ | ---------- | ------------------------------- |
-| 1   | Incognito `/anatomy/` → AccessGateScreen   | ⏳         |                                 |
-| 2   | Tier 6 magic link → M1–6 open, M7–9 locked | ⏳         | Stripe kelias                   |
-| 3   | Tier 9 magic link → M1–9 open              | ⏳         | Supabase → generate-access-link |
-| 4   | Refresh – tier išlieka localStorage        | ⏳         |                                 |
-| 5   | Invalid token → 401, gate lieka            | ✅ API     | curl 2026-07-09                 |
+| #   | Scenarijus                                 | Rezultatas | Pastaba                                                           |
+| --- | ------------------------------------------ | ---------- | ----------------------------------------------------------------- |
+| 1   | Incognito `/anatomy/` → AccessGateScreen   | ⏳         | HTTP 200 (2026-07-24); UI gate – žmogus                           |
+| 2   | Tier 6 magic link → M1–6 open, M7–9 locked | ⏳         | Stripe kelias                                                     |
+| 3   | Tier 9 magic link → M1–9 open              | ⏳         | Supabase → generate-access-link                                   |
+| 4   | Refresh – tier išlieka localStorage        | ⏳         |                                                                   |
+| 5   | Invalid / missing token API                | ✅ API     | 2026-07-24: be param → **400**; 2026-07-09 invalid → Link expired |
+
+### 2026-07-24 MON production checklist (I5)
+
+| ID    | Patikra                                   | Rezultatas | Pastaba                                                      |
+| ----- | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
+| MON-1 | Prod be `VITE_MAX_ACCESSIBLE_MODULE=6\|9` | ⏳         | Rankinė Vercel env grep (marketing)                          |
+| MON-2 | Submodule pin → **1.4.6**                 | ⏳         | Runbook `MARKETING_SUBMODULE_PIN_1.4.4.md` atnaujinti target |
+| MON-3 | verify-access end-to-end                  | ⏳ dalinis | API gyvas (400 be param); magic link browser ⏳              |
+| MON-4 | PostHog/GA4 dashboard                     | ⏳         | Checklist `MON-4_POSTHOG_DEPLOY.md`                          |
+| MON-5 | Gate browser                              | ⏳ dalinis | Auto `gate.smoke` ✅; prod browser ⏳                        |
+| MON-8 | Marketing `build:production` M1–9         | ⏳         | `vercel-build.sh` OK docs; Vercel env rankinė ⏳             |
 
 ### 2026-07-09 P2 artefaktų docs sync baseline
 

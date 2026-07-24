@@ -101,6 +101,7 @@ export default function RlProcessBlock({
 
       <div ref={explanationRef}>
         <InteractiveDiagramShell
+          density="hero"
           regionAria={labels.regionAria}
           statusLabel={`${labels.youAreHere} ${currentStep + 1}.`}
           currentStep={currentStep}

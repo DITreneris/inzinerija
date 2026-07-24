@@ -185,7 +185,7 @@
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google video generation model – create videos from text (prompt).",
+      "description": "Veo 3.1 – cinematic quality, native audio; prototypes and short ads.",
       "moduleId": 4,
       "category": "Video generation"
     },

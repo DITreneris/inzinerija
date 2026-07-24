@@ -218,6 +218,7 @@ export default function M10OrchestratorDiagram({
         </linearGradient>
         <marker
           id={flowMarker}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={DIAGRAM_TOKENS.arrow.markerLen}
@@ -228,6 +229,7 @@ export default function M10OrchestratorDiagram({
         </marker>
         <marker
           id={retryMarker}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={DIAGRAM_TOKENS.arrow.markerLen}
@@ -238,6 +240,7 @@ export default function M10OrchestratorDiagram({
         </marker>
         <marker
           id={roseMarker}
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
           markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
           markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
           refX={DIAGRAM_TOKENS.arrow.markerLen}
@@ -262,7 +265,7 @@ export default function M10OrchestratorDiagram({
         textAnchor="middle"
         fill={palette.brandDark}
         fontSize={DIAGRAM_TOKENS.typography.title.compact}
-        fontWeight="800"
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.title}

@@ -106,9 +106,27 @@
       "moduleId": 4
     },
     {
+      "term": "Human-in-the-loop (HITL)",
+      "definition": "Keeping a human in approval, exception review or monitoring for AI / agent actions. Choose the mode by consequence and how hard a mistake is to reverse – not as a maturity ladder to full autonomy.",
+      "moduleId": 10,
+      "unlockedBy": {
+        "moduleId": 10,
+        "slideId": 10.26
+      }
+    },
+    {
       "term": "Input",
       "definition": "Block that provides concrete data: numbers, dates, metrics – the facts the AI needs for the task.",
       "moduleId": 1
+    },
+    {
+      "term": "Jailbreak",
+      "definition": "A deliberate attempt, using crafted prompts, to bypass AI safety or usage limits. This is a security risk – not the same as prompt manipulation (biased business framing).",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 67.5
+      }
     },
     {
       "term": "Knowledge check",
@@ -184,6 +202,15 @@
       "term": "Process prompt",
       "definition": "A process-based request – asking to create or describe a process (strategy, project management, operations improvement); brings clarity for teams and decision-makers.",
       "moduleId": 4
+    },
+    {
+      "term": "Prompt injection",
+      "definition": "Harmful instructions hidden in input data (email, document, CSV) that try to change AI behaviour. Defence: keep system instructions separate from external text and validate input.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 67.5
+      }
     },
     {
       "term": "Prompt library",

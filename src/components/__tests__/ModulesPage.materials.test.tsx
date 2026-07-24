@@ -4,6 +4,7 @@ import { renderWithProviders } from '../../test/test-utils';
 import ModulesPage from '../ModulesPage';
 import type { Module } from '../../types/modules';
 import type { Progress } from '../../utils/progress';
+import { getMaxAccessibleModuleId } from '../../utils/accessTier';
 import { downloadM4HandoutPdf } from '../../utils/m4HandoutPdf';
 import { downloadM1012HandoutPdf } from '../../utils/m1012HandoutPdf';
 import { downloadM1315HandoutPdf } from '../../utils/m1315HandoutPdf';
@@ -63,6 +64,7 @@ function progress(overrides: Partial<Progress> = {}): Progress {
 describe('ModulesPage materials section', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(getMaxAccessibleModuleId).mockReturnValue(12);
     localStorage.setItem(storageKey, 'lt');
   });
 
@@ -72,6 +74,34 @@ describe('ModulesPage materials section', () => {
     );
 
     expect(screen.queryByText('Mano medžiaga')).not.toBeInTheDocument();
+  });
+
+  it('places materials after last accessible module when tier is 6', () => {
+    vi.mocked(getMaxAccessibleModuleId).mockReturnValue(6);
+    renderWithProviders(
+      <ModulesPage
+        onModuleSelect={() => {}}
+        progress={progress({ completedModules: [1, 2, 3, 4] })}
+      />
+    );
+
+    const materials = screen.getByRole('heading', {
+      level: 2,
+      name: 'Mano medžiaga',
+    });
+    const m6 = screen.getByRole('heading', { level: 3, name: 'Modulis 6' });
+    const dataTrack = screen.getByRole('heading', {
+      level: 2,
+      name: 'Duomenų analizės kelias (M7–M9)',
+    });
+
+    expect(
+      m6.compareDocumentPosition(materials) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      materials.compareDocumentPosition(dataTrack) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 
   it('shows earned Module 4 handout and downloads it', async () => {
@@ -129,5 +159,40 @@ describe('ModulesPage materials section', () => {
       expect(downloadM1012HandoutPdf).toHaveBeenCalledTimes(1);
       expect(downloadM1315HandoutPdf).toHaveBeenCalledTimes(1);
     });
+  });
+});
+
+describe('ModulesPage base track subsection', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(getMaxAccessibleModuleId).mockReturnValue(12);
+    localStorage.setItem(storageKey, 'lt');
+  });
+
+  it('renders cycle-2 subsection between M3 and M4 cards', () => {
+    renderWithProviders(
+      <ModulesPage onModuleSelect={() => {}} progress={progress()} />
+    );
+
+    const subsectionHeading = screen.getByRole('heading', {
+      level: 2,
+      name: 'Kontekstas ir projektas (M4–M6)',
+    });
+    const m3 = screen.getByRole('heading', { level: 3, name: 'Modulis 3' });
+    const m4 = screen.getByRole('heading', { level: 3, name: 'Modulis 4' });
+
+    expect(
+      m3.compareDocumentPosition(subsectionHeading) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      subsectionHeading.compareDocumentPosition(m4) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      screen.getByText(
+        'Konteksto inžinerija, prezentacijos sprintas ir baigiamasis projektas.'
+      )
+    ).toBeInTheDocument();
   });
 });

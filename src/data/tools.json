@@ -3,7 +3,7 @@
     {
       "name": "Adobe Firefly",
       "url": "https://www.adobe.com/products/firefly.html",
-      "description": "Adobe DI vaizdams – Generative Fill, tekstas į vaizdą; integracija su Photoshop, CC. „Teisiškai saugi“ šaltiniai.",
+      "description": "Adobe DI vaizdams – Generative Fill, tekstas į vaizdą; CC integracija, teisiškai saugesni šaltiniai, C2PA Content Credentials.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
     },
@@ -87,7 +87,7 @@
     {
       "name": "DALL·E (OpenAI)",
       "url": "https://chat.openai.com",
-      "description": "Vaizdų generavimas per ChatGPT – tekstas į vaizdą, stilius ir proporcijos.",
+      "description": "Vaizdų generavimas per ChatGPT / GPT-Image – tekstas į vaizdą, stilius ir proporcijos; greitas brief→vaizdas.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
     },
@@ -115,7 +115,14 @@
     {
       "name": "ElevenLabs (garsai)",
       "url": "https://elevenlabs.io",
-      "description": "Balsų ir garsų efektų generavimas – pranešimai, perėjimai, sound design.",
+      "description": "VO (voiceover), balsų sintezė ir SFX – audio-first workflow naracijai ir perėjimams.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
+    },
+    {
+      "name": "ElevenMusic",
+      "url": "https://elevenlabs.io/music",
+      "description": "Licencijuotos treniravimo duomenų muzika – client / YouTube monetizacija; vieninga platforma su ElevenLabs VO.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
     },
@@ -139,6 +146,13 @@
       "description": "Debesijos paleidimas – konteineriai arti vartotojų skirtinguose regionuose; tinka API ir agentams, kai svarbus globalus atsakymo greitis.",
       "moduleId": 10,
       "category": "Debesijos paleidimas"
+    },
+    {
+      "name": "FLUX",
+      "url": "https://blackforestlabs.ai",
+      "description": "Fotorealizmas ir multi-reference consistency – produktų / personažų serijoms.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
     },
     {
       "name": "Gamma",
@@ -169,6 +183,13 @@
       "category": "Planavimas"
     },
     {
+      "name": "GPT-Image (OpenAI)",
+      "url": "https://chat.openai.com",
+      "description": "OpenAI vaizdų modelis ChatGPT – natūrali kalba, sudėtingi briefai, greitas marketingo juodraštis.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
       "name": "GPTZero",
       "url": "https://gptzero.me/",
       "description": "Benchmark įrankis akademijai – ~99 % tikslumas tekstui; atpažįsta ir mišrų (žmogus + DI) turinį.",
@@ -185,7 +206,14 @@
     {
       "name": "Ideogram",
       "url": "https://ideogram.ai",
-      "description": "Vaizdų generavimas su tekstu vaize – reklamos, plakatai, logotipai.",
+      "description": "Stiprus tekstas vaizduose – logo, plakatai, LinkedIn; geras marketingo startas.",
+      "moduleId": 13,
+      "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "Imagen (Google)",
+      "url": "https://deepmind.google/technologies/imagen/",
+      "description": "Google vaizdų generavimas – objektų išlaikymas, SynthID atsekamumas; saugi reklama ir katalogai.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
     },
@@ -209,6 +237,13 @@
       "description": "Analitikoje: NLP analizė, paprasta naudoti – greita eksploracinė duomenų analizė be sudėtingo setup.",
       "moduleId": 7,
       "category": "Duomenų analizė"
+    },
+    {
+      "name": "Kling AI",
+      "url": "https://klingai.com",
+      "description": "Kling 3 – balance kokybė/kaina image-to-video; trumpi 3–5 s reklamos klipai.",
+      "moduleId": 13,
+      "category": "Video generavimas"
     },
     {
       "name": "Leonardo.ai",
@@ -241,9 +276,16 @@
     {
       "name": "Midjourney",
       "url": "https://midjourney.com",
-      "description": "Aukštos kokybės vaizdų generavimas – iliustracijos, menas, konceptualūs vaizdai.",
+      "description": "Aukštas meninis lygis, character/style reference – brand ir kampanijų stiliai.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
+    },
+    {
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
     },
     {
       "name": "MongoDB",
@@ -258,13 +300,6 @@
       "description": "Foninė ir kilnojamųjų vaizdų muzika – licencijos komerciniam naudojimui.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
-    },
-    {
-      "name": "MySQL",
-      "url": "https://www.mysql.com",
-      "description": "Labai paplitusi DB web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.",
-      "moduleId": 7,
-      "category": "Duomenų bazės"
     },
     {
       "name": "n8n",
@@ -316,6 +351,13 @@
       "category": "Video generavimas"
     },
     {
+      "name": "PostgreSQL",
+      "url": "https://www.postgresql.org",
+      "description": "Universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms.",
+      "moduleId": 7,
+      "category": "Duomenų bazės"
+    },
+    {
       "name": "Power Automate",
       "url": "https://powerautomate.microsoft.com",
       "description": "Microsoft ekosistemos automatizavimas – Excel, Teams, Outlook, SharePoint; tinka administracijai, pardavimams, projektų valdymui.",
@@ -328,13 +370,6 @@
       "description": "Analitikoje: vizualizacijos, integracijos, enterprise – verslo ataskaitos ir dashboard iš struktūruotų duomenų.",
       "moduleId": 7,
       "category": "Duomenų analizė"
-    },
-    {
-      "name": "PostgreSQL",
-      "url": "https://www.postgresql.org",
-      "description": "Universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms.",
-      "moduleId": 7,
-      "category": "Duomenų bazės"
     },
     {
       "name": "Prezent.ai",
@@ -367,7 +402,7 @@
     {
       "name": "Runway",
       "url": "https://runwayml.com",
-      "description": "Vaizdo įrašų generavimas iš teksto – trumpi klipai, efektai, redagavimas.",
+      "description": "Video generavimas ir redagavimas – image-to-video, trumpi klipai, post-prod.",
       "moduleId": 13,
       "category": "Video generavimas"
     },
@@ -379,9 +414,16 @@
       "category": "RAG / tyrimai"
     },
     {
+      "name": "Seedance",
+      "url": "https://seedance.ai",
+      "description": "Seedance 2.0 – directed motion su daug image/video/audio refs vienoje generacijoje.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
       "name": "Synthesia",
       "url": "https://www.synthesia.io",
-      "description": "Avatarais paremti vaizdo įrašai – pristatymai, mokymai, įvadiniai.",
+      "description": "DI avatarai – mokymai, paaiškinamieji video, lokalizacija.",
       "moduleId": 13,
       "category": "Video generavimas"
     },
@@ -395,9 +437,16 @@
     {
       "name": "Sora (OpenAI)",
       "url": "https://openai.com/sora",
-      "description": "Vaizdo įrašų generavimas iš teksto – aukšta kokybė, realistinė judesio fizika, scenos nuoseklumas.",
+      "description": "Sora 2 – aukšta kokybė, realistinė judesio fizika; 1–2 image refs.",
       "moduleId": 13,
       "category": "Video generavimas"
+    },
+    {
+      "name": "Soundraw",
+      "url": "https://soundraw.io",
+      "description": "Royalty-friendly foninė muzika – nuotaika + trukmė; tinka reklamai ir podcast intro.",
+      "moduleId": 13,
+      "category": "Muzikos generavimas"
     },
     {
       "name": "SQLite",
@@ -405,13 +454,6 @@
       "description": "Lokali DB prototipams, mobilioms apps, CLI įrankiams ir testams; nereikia atskiro serverio.",
       "moduleId": 7,
       "category": "Duomenų bazės"
-    },
-    {
-      "name": "Soundraw",
-      "url": "https://soundraw.io",
-      "description": "Muzikos generavimas ir redagavimas – melodijos, tempo, nuotaika.",
-      "moduleId": 13,
-      "category": "Muzikos generavimas"
     },
     {
       "name": "Stable Diffusion (DreamStudio)",
@@ -423,7 +465,7 @@
     {
       "name": "Suno",
       "url": "https://suno.com",
-      "description": "Muzikos generavimas iš aprašymo – dainos, instrumentinė muzika, įvairūs stiliai.",
+      "description": "Tekstas → daina; greiti demo ir viral hook. Klientui / reklamai pirmiau rinkis licensed stack.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
     },
@@ -444,23 +486,16 @@
     {
       "name": "Udio",
       "url": "https://udio.com",
-      "description": "Muzikos kūrimas iš teksto – nuotaika, stilius, tempo, vokalas arba instrumentinė.",
+      "description": "Gili muzikos kontrolė, remix; geriau demo / kūrybiniams bandymams nei client ads be licencijos patikros.",
       "moduleId": 13,
       "category": "Muzikos generavimas"
     },
     {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google vaizdo generavimo modelis – vaizdo įrašų kūrimas iš teksto (prompto).",
+      "description": "Veo 3.1 – kinematografinė kokybė, native audio; prototipai ir trumpi reklaminiai.",
       "moduleId": 4,
       "category": "Vaizdo generavimas"
-    },
-    {
-      "name": "Veo 3 (Google)",
-      "url": "https://deepmind.google/technologies/veo/",
-      "description": "Google vaizdo generavimo modelis – vaizdo įrašai iš teksto (prompto), aukšta kokybė.",
-      "moduleId": 13,
-      "category": "Video generavimas"
     },
     {
       "name": "Visme",

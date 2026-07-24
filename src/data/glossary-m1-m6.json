@@ -105,11 +105,6 @@
       "moduleId": 1
     },
     {
-      "term": "Jailbreak",
-      "definition": "Bandymas apeiti DI saugumo ar naudojimo ribas per specialiai sukonstruotus promptus; manipuliacijos atvejis, ko vengti.",
-      "moduleId": 4
-    },
-    {
       "term": "Kontekstinis promptas",
       "definition": "Pateikia situacinę informaciją (sektorius, duomenys, metai).",
       "moduleId": 1

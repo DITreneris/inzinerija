@@ -215,9 +215,7 @@ describe('TestPracticeSlides M15 practice contract', () => {
       | undefined;
 
     expect(content?.minScenariosToComplete).toBe(1);
-    expect(content?.recommendedSlideIds).toEqual(
-      expect.arrayContaining([150.5, 150.25, 151, 152, 153])
-    );
+    expect(content?.recommendedSlideIds).toEqual([150.5, 150.25]);
   });
 
   it('keeps the M15 quick start before the optional full path', () => {
@@ -229,5 +227,14 @@ describe('TestPracticeSlides M15 practice contract', () => {
       type: 'practice-scenario',
       recommended: true,
     });
+
+    for (const id of [151, 152, 153]) {
+      const slide = getM15Slides().find((s) => s.id === id);
+      expect(slide).toMatchObject({
+        type: 'practice-scenario',
+        optional: true,
+        recommended: false,
+      });
+    }
   });
 });

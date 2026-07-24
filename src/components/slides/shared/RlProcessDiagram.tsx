@@ -1,207 +1,141 @@
 /**
  * RL proceso diagrama – horizontali schema (Agentas → Aplinka → Veiksmas → Atlygis).
  * Interaktyvi: currentStep, onStepClick – paspaudus žingsnį, rodomas paaiškinimas apačioje.
- * SCHEME_AGENT: forward = pilka arrow (užpildytas trikampis); feedback = ACCENT arrow į viršų (užpildytas trikampis).
- * Rodyklės = arrow (filled triangle), ne chevron (stroke „>“).
+ * LMS polish: flat brand/amber, GAP 32 + tip≥10, active=stroke (ne juodas fill), dashed U be circle.
  */
 import { useId, useState, useEffect } from 'react';
 import { useLocale } from '../../../contexts/LocaleContext';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import { feedbackUPath, horizontalRowBoxes } from './cycleFeedbackGeometry';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 
-/* ═══ Viewbox – sutemptas (mažiau tuščios erdvės, schema vizualiai didesnė) ═══ */
-const VIEWBOX_DESKTOP = '0 0 920 268';
-const VIEWBOX_MOBILE = '0 0 520 420';
-const VB_WIDTH_DESKTOP = 920;
-const VB_HEIGHT_DESKTOP = 268;
-const VB_WIDTH_MOBILE = 520;
-const VB_HEIGHT_MOBILE = 420;
+/** Geometry SOT – tests assert GAP / viewBox / row centering. */
+export const RL_PROCESS_GEOMETRY = {
+  boxW: 180,
+  boxH: 88,
+  gap: 32,
+  viewBoxW: 920,
+  /** Room for caption + edge labels above boxes (title≠„atlikimas“ collision). */
+  viewBoxH: 236,
+  viewBoxWMobile: 520,
+  viewBoxHMobile: 340,
+  /** Boxes low enough that edge labels (box.y−6) clear SVG title. */
+  rowY: 62,
+  diagramTitleY: 22,
+  /** Forward tip ≥~2× stroke.flow 3.5 (CustomGPT/LLM lesson); refX=0. */
+  arrowMarkerLen: 10,
+  fbTroughOffset: 36,
+  mobileOffsetX: 40,
+  mobileOffsetY: 48,
+  /** Baseline gap title→desc inside node (air, not cramped 20). */
+  nodeTextGap: 30,
+} as const;
+
+const VIEWBOX_DESKTOP = `0 0 ${RL_PROCESS_GEOMETRY.viewBoxW} ${RL_PROCESS_GEOMETRY.viewBoxH}`;
+const VIEWBOX_MOBILE = `0 0 ${RL_PROCESS_GEOMETRY.viewBoxWMobile} ${RL_PROCESS_GEOMETRY.viewBoxHMobile}`;
+const VB_WIDTH_DESKTOP = RL_PROCESS_GEOMETRY.viewBoxW;
+const VB_HEIGHT_DESKTOP = RL_PROCESS_GEOMETRY.viewBoxH;
+const VB_WIDTH_MOBILE = RL_PROCESS_GEOMETRY.viewBoxWMobile;
+const VB_HEIGHT_MOBILE = RL_PROCESS_GEOMETRY.viewBoxHMobile;
 const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
 const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactive;
+const FORWARD_STROKE_WIDTH = DIAGRAM_TOKENS.stroke.flow;
 
-/* ═══ Geometrijos konstantos – viena tiesa (SCHEME_AGENT §3.1) ═══ */
-const BOX_W = 200;
-const BOX_H = 88;
-const GAP = 20; /** Sumažintas ~29% – vientisas ciklas, ne išsibarstę kortelės */
-const ARROW_GAP_FB = 12; /** Feedback: comfortable gap below box */
-const START_X = 32; /** Paskutinis box: 32+3×(200+20)+200=892<920 */
-const ROW_Y = 54; /** Sutemptas viewbox – mažiau oro viršuje/apačioje */
-/** Rodyklės antgalis = kaip LLM (DIAGRAMU_GERIAUSIOS_PRAKTIKOS §6.1): 6px, refX=0 kad smailė liestų bloką. */
-const ARROW_MARKER_LEN = 6;
+const BOX_W = RL_PROCESS_GEOMETRY.boxW;
+const BOX_H = RL_PROCESS_GEOMETRY.boxH;
+const GAP = RL_PROCESS_GEOMETRY.gap;
+const ARROW_GAP_FB = 12;
+const ROW_Y = RL_PROCESS_GEOMETRY.rowY;
+const ARROW_MARKER_LEN = RL_PROCESS_GEOMETRY.arrowMarkerLen;
 
-/* ═══ Forward labels – individualūs pločiai (centered-on-edge, yWorks pattern) ═══ */
-// (eksportuojame tik komponentus; label fonų/plotų konstantos pašalintos – buvo nenaudojamos)
+const FB_TIP_H = 12;
+const FB_TIP_W = 8;
+const FB_CORNER_R = 16;
+const FB_PATH_STROKE = DIAGRAM_TOKENS.stroke.feedback;
+const FB_GAP_ABOVE_BLOCK = 2;
 
-/* ═══ Feedback rodyklė – didelė, aiški (ciklas = RL esmė, ne dekoras) ═══ */
-const FB_TIP_H = 12; /** Trikampio aukštis – proporcingas, smailė ne ant bloko */
-const FB_TIP_W = 8; /** Trikampio pusė pločio */
-const FB_CORNER_R = 16; /** Rounded corners feedback path */
-const FB_PATH_STROKE = 3.5; /** Grįžtamoji – dashed, ne „priklijuota“ (SCHEME_AGENT §3.7.4) */
-const FB_GAP_ABOVE_BLOCK = 2; /** Tarpas tarp bloko apačios ir feedback smailės – ne užlipa ant bloko */
-
-/* ═══ Spalvos – procesas: Agentas (brand) → Aplinka (neutrali) → Veiksmas (šviesiai mėlyna) → Atlygis (accent) ═══ */
-const BRAND =
-  DIAGRAM_TOKENS.colors.brand; /* Agentas – tamsiai mėlynas (brand) */
-const ENV_START =
-  DIAGRAM_TOKENS.colors.slate; /* Aplinka – neutrali pilka (ne mėlyna) */
-const ENV_END = DIAGRAM_TOKENS.colors.flow;
-const ACTION_START = '#4a7aa0'; /* Veiksmas – aiškiai mėlyna */
-const ACTION_END = '#6b9bc0';
-const ACCENT =
-  DIAGRAM_TOKENS.colors.amber; /* Atlygis – kontrastingas (auksas) */
-const ACCENT_DARK = '#7a5807';
-const ACCENT_LIGHT = '#d4a520';
-/** Forward rodyklės – tamsesnė, storesnė (flow jėga, ne silpnas „>“). */
+const ACCENT = DIAGRAM_TOKENS.colors.amber;
+const ACCENT_DARK = DIAGRAM_TONE_COLORS.amber.stroke;
 const FORWARD_STROKE = DIAGRAM_TOKENS.colors.slate;
-/* ═══ Desktop: viena eilė ═══ */
-const STEPS_ROW = [
-  {
-    x: START_X,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Agentas',
-    desc: 'DI sistema',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 1,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Aplinka',
-    desc: 'situacija / užduotis',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 2,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Veiksmas',
-    desc: 'ką padaro',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 3,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Atlygis',
-    desc: 'gerai / blogai',
-  },
-];
+const BOX_RX = DIAGRAM_TOKENS.radius.box;
+const NODE_TITLE_SIZE = 15;
+const NODE_DESC_SIZE = 12;
 
-const STEPS_ROW_EN = [
-  {
-    x: START_X,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Agent',
-    desc: 'LLM system',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 1,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Environment',
-    desc: 'situation / task',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 2,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Action',
-    desc: 'what it does',
-  },
-  {
-    x: START_X + (BOX_W + GAP) * 3,
-    y: ROW_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Reward',
-    desc: 'good / bad',
-  },
-];
+const DESKTOP_ROW_BOXES = horizontalRowBoxes({
+  count: 4,
+  boxW: BOX_W,
+  boxH: BOX_H,
+  gap: GAP,
+  viewBoxW: VB_WIDTH_DESKTOP,
+  rowY: ROW_Y,
+});
 
-/* ═══ Mobile: 2×2 grid ═══ */
-const MOBILE_OFFSET_X = 40;
-const MOBILE_OFFSET_Y = 60;
-const STEPS_GRID = [
-  {
-    x: MOBILE_OFFSET_X,
-    y: MOBILE_OFFSET_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Agentas',
-    desc: 'DI sistema',
-  },
-  {
-    x: MOBILE_OFFSET_X + BOX_W + GAP,
-    y: MOBILE_OFFSET_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Aplinka',
-    desc: 'situacija / užduotis',
-  },
-  {
-    x: MOBILE_OFFSET_X,
-    y: MOBILE_OFFSET_Y + BOX_H + GAP,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Veiksmas',
-    desc: 'ką padaro',
-  },
-  {
-    x: MOBILE_OFFSET_X + BOX_W + GAP,
-    y: MOBILE_OFFSET_Y + BOX_H + GAP,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Atlygis',
-    desc: 'gerai / blogai',
-  },
-];
+const STEP_META_LT = [
+  { title: 'Agentas', desc: 'DI sistema' },
+  { title: 'Aplinka', desc: 'situacija / užduotis' },
+  { title: 'Veiksmas', desc: 'ką padaro' },
+  { title: 'Atlygis', desc: 'gerai / blogai' },
+] as const;
 
-const STEPS_GRID_EN = [
-  {
-    x: MOBILE_OFFSET_X,
-    y: MOBILE_OFFSET_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Agent',
-    desc: 'LLM system',
-  },
-  {
-    x: MOBILE_OFFSET_X + BOX_W + GAP,
-    y: MOBILE_OFFSET_Y,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Environment',
-    desc: 'situation / task',
-  },
-  {
-    x: MOBILE_OFFSET_X,
-    y: MOBILE_OFFSET_Y + BOX_H + GAP,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Action',
-    desc: 'what it does',
-  },
-  {
-    x: MOBILE_OFFSET_X + BOX_W + GAP,
-    y: MOBILE_OFFSET_Y + BOX_H + GAP,
-    w: BOX_W,
-    h: BOX_H,
-    title: 'Reward',
-    desc: 'good / bad',
-  },
-];
+const STEP_META_EN = [
+  { title: 'Agent', desc: 'AI system' },
+  { title: 'Environment', desc: 'situation / task' },
+  { title: 'Action', desc: 'what it does' },
+  { title: 'Reward', desc: 'good / bad' },
+] as const;
 
-/** Etiketės ant forward rodyklių */
+const STEPS_ROW = DESKTOP_ROW_BOXES.map((box, i) => ({
+  ...box,
+  ...STEP_META_LT[i],
+}));
+
+const STEPS_ROW_EN = DESKTOP_ROW_BOXES.map((box, i) => ({
+  ...box,
+  ...STEP_META_EN[i],
+}));
+
+const MOBILE_OFFSET_X = RL_PROCESS_GEOMETRY.mobileOffsetX;
+const MOBILE_OFFSET_Y = RL_PROCESS_GEOMETRY.mobileOffsetY;
+
+function buildMobileGrid(meta: typeof STEP_META_LT | typeof STEP_META_EN) {
+  return [
+    {
+      x: MOBILE_OFFSET_X,
+      y: MOBILE_OFFSET_Y,
+      w: BOX_W,
+      h: BOX_H,
+      ...meta[0],
+    },
+    {
+      x: MOBILE_OFFSET_X + BOX_W + GAP,
+      y: MOBILE_OFFSET_Y,
+      w: BOX_W,
+      h: BOX_H,
+      ...meta[1],
+    },
+    {
+      x: MOBILE_OFFSET_X,
+      y: MOBILE_OFFSET_Y + BOX_H + GAP,
+      w: BOX_W,
+      h: BOX_H,
+      ...meta[2],
+    },
+    {
+      x: MOBILE_OFFSET_X + BOX_W + GAP,
+      y: MOBILE_OFFSET_Y + BOX_H + GAP,
+      w: BOX_W,
+      h: BOX_H,
+      ...meta[3],
+    },
+  ];
+}
+
+const STEPS_GRID = buildMobileGrid(STEP_META_LT);
+const STEPS_GRID_EN = buildMobileGrid(STEP_META_EN);
+
 const FORWARD_LABELS = ['sprendimas', 'atlikimas', 'rezultatas'] as const;
 const FORWARD_LABELS_EN = ['decision', 'execution', 'outcome'] as const;
-/** Etiketė ant grįžtamosios rodyklės */
 const FEEDBACK_LABEL = 'elgesio korekcija';
 const FEEDBACK_LABEL_EN = 'behaviour adjustment';
 
@@ -223,11 +157,19 @@ function useIsCompact() {
   return compact;
 }
 
-function stepFillId(uid: string, index: number): string {
-  if (index === 0) return `url(#rl-step-${uid})`;
-  if (index === 1) return `url(#rl-env-${uid})`;
-  if (index === 2) return `url(#rl-action-${uid})`;
-  return `url(#rl-atlygis-${uid})`;
+function stepBoxFill(index: number, brand: string): string {
+  if (index === 3) return ACCENT;
+  return brand;
+}
+
+function stepBoxStroke(
+  index: number,
+  isActive: boolean,
+  brand: string,
+  brandDark: string
+): string {
+  if (isActive) return brandDark;
+  return index === 3 ? ACCENT_DARK : brand;
 }
 
 export default function RlProcessDiagram({
@@ -266,6 +208,10 @@ export default function RlProcessDiagram({
   const viewBox = isCompact ? VIEWBOX_MOBILE : VIEWBOX_DESKTOP;
   const vbWidth = isCompact ? VB_WIDTH_MOBILE : VB_WIDTH_DESKTOP;
   const vbHeight = isCompact ? VB_HEIGHT_MOBILE : VB_HEIGHT_DESKTOP;
+  const titleSize = isCompact
+    ? DIAGRAM_TOKENS.typography.title.compact
+    : DIAGRAM_TOKENS.typography.title.desktop;
+  const titleY = isCompact ? 28 : RL_PROCESS_GEOMETRY.diagramTitleY;
 
   const forwardEdges = isCompact
     ? [
@@ -282,39 +228,31 @@ export default function RlProcessDiagram({
   const last = STEPS[3];
   const first = STEPS[0];
 
-  /* ═══ Feedback geometry ═══ */
   const firstCx = first.x + first.w / 2;
   const lastCx = last.x + last.w / 2;
   const firstBottom = first.y + first.h;
   const lastBottom = last.y + last.h;
   const fbY = isCompact
-    ? MOBILE_OFFSET_Y + 2 * (BOX_H + GAP) + 48
-    : ROW_Y + BOX_H + 48;
+    ? MOBILE_OFFSET_Y + 2 * (BOX_H + GAP) + RL_PROCESS_GEOMETRY.fbTroughOffset
+    : ROW_Y + BOX_H + RL_PROCESS_GEOMETRY.fbTroughOffset;
 
-  /**
-   * Feedback path: dashed ACCENT (§3.7.4), path baigiasi ties smailės tašku – ne ant bloko.
-   * Smailė firstBottom + FB_GAP_ABOVE_BLOCK, trikampio bazė žemiau.
-   */
   const fbTipY = firstBottom + FB_GAP_ABOVE_BLOCK;
   const fbTriBaseY = fbTipY + FB_TIP_H;
   const R = FB_CORNER_R;
   const fbStartY = lastBottom + ARROW_GAP_FB;
-  const feedbackPath = isCompact
-    ? `M ${lastCx} ${fbStartY}
-       L ${lastCx} ${fbY}
-       L ${firstCx} ${fbY}
-       L ${firstCx} ${fbTipY}`
-    : `M ${lastCx} ${fbStartY}
-       L ${lastCx} ${fbY - R}
-       Q ${lastCx} ${fbY}, ${lastCx - R} ${fbY}
-       L ${firstCx + R} ${fbY}
-       Q ${firstCx} ${fbY}, ${firstCx} ${fbY - R}
-       L ${firstCx} ${fbTipY}`;
+  const feedbackPath = feedbackUPath({
+    firstCx,
+    lastCx,
+    startY: fbStartY,
+    troughY: fbY,
+    tipY: fbTipY,
+    cornerR: R,
+  });
 
   return (
     <svg
       viewBox={viewBox}
-      className={`w-full max-w-3xl mx-auto block ${className}`}
+      className={`w-full max-w-5xl mx-auto block ${className}`}
       role="img"
       aria-label={svgAriaLabel}
     >
@@ -323,74 +261,24 @@ export default function RlProcessDiagram({
           <stop offset="0%" stopColor={palette.bgStart} />
           <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
-        {/* Forward rodyklė = kaip LLM: mažas trikampis, refX=0 – smailė liečia bloko kraštą (DIAGRAMU_GERIAUSIOS_PRAKTIKOS §6.1) */}
         <marker
           id={`rl-arrow-${uid}`}
-          markerUnits="userSpaceOnUse"
-          markerWidth="6"
-          markerHeight="5"
-          refX="0"
-          refY="2.5"
+          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
+          markerWidth={ARROW_MARKER_LEN}
+          markerHeight={ARROW_MARKER_LEN * 0.9}
+          refX={0}
+          refY={(ARROW_MARKER_LEN * 0.9) / 2}
           orient="auto"
         >
           <path
-            d="M0 0 L6 2.5 L0 5 Z"
+            d={`M0 0 L${ARROW_MARKER_LEN} ${(ARROW_MARKER_LEN * 0.9) / 2} L0 ${ARROW_MARKER_LEN * 0.9} Z`}
             fill={FORWARD_STROKE}
             stroke={FORWARD_STROKE}
-            strokeWidth="0.4"
+            strokeWidth="0.5"
           />
         </marker>
-        {/* Feedback – arrow į viršų (užpildytas trikampis) */}
-        {/* Agentas – sušvelnintas brand (vienodas svoris su kitais) */}
-        <linearGradient id={`rl-step-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#5a6d7d" />
-          <stop offset="100%" stopColor={BRAND} />
-        </linearGradient>
-        {/* Aplinka – neutrali pilka */}
-        <linearGradient id={`rl-env-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={ENV_END} />
-          <stop offset="100%" stopColor={ENV_START} />
-        </linearGradient>
-        {/* Veiksmas – šviesesnė mėlyna */}
-        <linearGradient
-          id={`rl-action-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={ACTION_END} />
-          <stop offset="100%" stopColor={ACTION_START} />
-        </linearGradient>
-        {/* Atlygis – sušvelnintas accent (vienodas svoris su kitais) */}
-        <linearGradient
-          id={`rl-atlygis-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={ACCENT_LIGHT} />
-          <stop offset="100%" stopColor="#a67a0a" />
-        </linearGradient>
-        <filter
-          id={`rl-glow-active-${uid}`}
-          x="-20%"
-          y="-20%"
-          width="140%"
-          height="140%"
-        >
-          <feDropShadow
-            dx="0"
-            dy="0"
-            stdDeviation="4"
-            floodColor={BRAND}
-            floodOpacity="0.5"
-          />
-        </filter>
       </defs>
 
-      {/* Background */}
       <rect
         width={vbWidth}
         height={vbHeight}
@@ -406,35 +294,18 @@ export default function RlProcessDiagram({
         rx={DIAGRAM_TOKENS.radius.frame}
       />
 
-      {/* Title – progresas „Tu esi čia“ RlProcessBlock */}
-      {!isCompact && (
-        <text
-          x={vbWidth / 2}
-          y="28"
-          textAnchor="middle"
-          fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-          fontSize="17"
-          fontWeight="800"
-          fill={palette.brandDark}
-        >
-          {diagramTitle}
-        </text>
-      )}
-      {isCompact && (
-        <text
-          x={vbWidth / 2}
-          y="32"
-          textAnchor="middle"
-          fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-          fontSize="15"
-          fontWeight="800"
-          fill={palette.brandDark}
-        >
-          {diagramTitle}
-        </text>
-      )}
+      <text
+        x={vbWidth / 2}
+        y={titleY}
+        textAnchor="middle"
+        fontFamily={DIAGRAM_TOKENS.font}
+        fontSize={titleSize}
+        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+        fill={palette.brandDark}
+      >
+        {diagramTitle}
+      </text>
 
-      {/* ═══ Steps (boxes + forward arrows + labels) ═══ */}
       {STEPS.map((step, i) => {
         const isActive = currentStep === i;
         const opacity = isActive ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
@@ -444,29 +315,26 @@ export default function RlProcessDiagram({
         const centerX = x + w / 2;
         const centerY = y + h / 2;
         const next = STEPS[i + 1];
-        const fill = stepFillId(uid, i);
-        const strokeColor = isActive
-          ? palette.brandDark
-          : i === 0
-            ? BRAND
-            : i === 1
-              ? ENV_START
-              : i === 2
-                ? ACTION_START
-                : ACCENT_DARK;
-        const strokeW = isActive ? 2.5 : 1.5;
-        const boxFilter = isActive ? `url(#rl-glow-active-${uid})` : undefined;
-        const scaleTransform = isActive
-          ? `translate(${centerX},${centerY}) scale(1.03) translate(${-centerX},${-centerY})`
-          : undefined;
+        const fill = stepBoxFill(i, palette.brand);
+        const strokeColor = stepBoxStroke(
+          i,
+          isActive,
+          palette.brand,
+          palette.brandDark
+        );
+        const strokeW = isActive
+          ? DIAGRAM_TOKENS.stroke.active
+          : DIAGRAM_TOKENS.stroke.inactive;
+        /** Centered title/desc pair with ≥30px baseline gap (not cramped 20). */
+        const titleBaseline =
+          y + Math.round(h / 2 - RL_PROCESS_GEOMETRY.nodeTextGap / 2 + 4);
+        const descBaseline = titleBaseline + RL_PROCESS_GEOMETRY.nodeTextGap;
 
         return (
           <g key={i}>
-            {/* Box – spalvų logika, hover + aktyvus (scale 1.03 + glow) */}
             <g
               opacity={opacity}
-              transform={scaleTransform}
-              style={{ transition: 'opacity 0.2s ease, transform 0.2s ease' }}
+              style={{ transition: 'opacity 0.2s ease' }}
               aria-hidden
             >
               <rect
@@ -474,62 +342,56 @@ export default function RlProcessDiagram({
                 y={y}
                 width={w}
                 height={h}
-                rx="10"
+                rx={BOX_RX}
                 fill={fill}
                 stroke={strokeColor}
                 strokeWidth={strokeW}
-                filter={boxFilter}
                 style={{
                   transition: 'stroke 0.15s ease, stroke-width 0.15s ease',
                 }}
               />
               <text
                 x={centerX}
-                y={y + 32}
+                y={titleBaseline}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="14"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={NODE_TITLE_SIZE}
                 fontWeight="700"
-                fill="white"
+                fill={DIAGRAM_TOKENS.colors.whiteText}
               >
                 {step.title}
               </text>
               <text
                 x={centerX}
-                y={y + 52}
+                y={descBaseline}
                 textAnchor="middle"
-                fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                fontSize="12"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={NODE_DESC_SIZE}
                 fontWeight="500"
-                fill="rgba(255,255,255,0.95)"
+                fill={DIAGRAM_TOKENS.colors.whiteText}
               >
                 {step.desc}
               </text>
             </g>
 
-            {/* Click target + hover (a11y: §3.5) */}
             {isInteractive && (
               <DiagramStepHitArea
                 x={x}
                 y={y}
                 width={w}
                 height={h}
-                radius={10}
+                radius={BOX_RX}
                 onActivate={() => onStepClick?.(i)}
               />
             )}
 
-            {/* Forward arrow + centered-on-edge label (yWorks / GoJS pattern) */}
             {next &&
               (() => {
                 const n = next;
                 const labelText = forwardLabels[i];
-
-                /* ── Etiketės VIRŠ rodyklių, laisvoje erdvėje tarp title ir box'ų ── */
                 const gapCenterX = rightEdge + GAP / 2;
-                const lblY =
-                  step.y - 6; /* teksto baseline: 6px virš box viršaus */
-                const lblRectY = lblY - 13; /* rect viršus */
+                const lblY = step.y - 6;
+                const lblRectY = lblY - 13;
                 const lblRectH = 18;
 
                 if (forwardEdges[i]?.axis === 'y') {
@@ -551,7 +413,7 @@ export default function RlProcessDiagram({
                         x2={nCenterX}
                         y2={y2}
                         stroke={FORWARD_STROKE}
-                        strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+                        strokeWidth={FORWARD_STROKE_WIDTH}
                         strokeLinecap="round"
                         markerEnd={`url(#rl-arrow-${uid})`}
                       />
@@ -560,10 +422,12 @@ export default function RlProcessDiagram({
                           x={(centerX + nCenterX) / 2 + 14}
                           y={(y1 + y2) / 2 + 4}
                           textAnchor="middle"
-                          fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                          fontSize="10"
-                          fontWeight="600"
-                          fill={palette.flow}
+                          fontFamily={DIAGRAM_TOKENS.font}
+                          fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+                          fontWeight={
+                            DIAGRAM_TOKENS.typography.edgeLabel.weight
+                          }
+                          fill={palette.brandDark}
                         >
                           {labelText}
                         </text>
@@ -572,12 +436,10 @@ export default function RlProcessDiagram({
                   );
                 }
 
-                /** Rodyklė kraštas į kraštą (DIAGRAMU_GERIAUSIOS_PRAKTIKOS §6.1): pradžia = bloko dešinė, pabaiga = kito kairė − ARROW_MARKER_LEN */
                 const fromX = rightEdge;
                 const arrowY = centerY;
                 const toX = n.x - ARROW_MARKER_LEN;
-                const connTop =
-                  lblRectY + lblRectH; /* connector start: label rect apačia */
+                const connTop = lblRectY + lblRectH;
                 return (
                   <g
                     key={`arrow-${i}`}
@@ -587,18 +449,16 @@ export default function RlProcessDiagram({
                         : `Rodyklė: ${step.title} → ${n.title} (${labelText})`
                     }
                   >
-                    {/* Horizontalus jungtis – storesnė linija, aiški kryptis */}
                     <line
                       x1={fromX}
                       y1={arrowY}
                       x2={toX}
                       y2={arrowY}
                       stroke={FORWARD_STROKE}
-                      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+                      strokeWidth={FORWARD_STROKE_WIDTH}
                       strokeLinecap="round"
                       markerEnd={`url(#rl-arrow-${uid})`}
                     />
-                    {/* Etiketė virš gap'o + vertikalus connector */}
                     {labelText && (
                       <>
                         <line
@@ -615,10 +475,12 @@ export default function RlProcessDiagram({
                           x={gapCenterX}
                           y={lblY}
                           textAnchor="middle"
-                          fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-                          fontSize="10"
-                          fontWeight="600"
-                          fill={palette.flow}
+                          fontFamily={DIAGRAM_TOKENS.font}
+                          fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+                          fontWeight={
+                            DIAGRAM_TOKENS.typography.edgeLabel.weight
+                          }
+                          fill={palette.brandDark}
                         >
                           {labelText}
                         </text>
@@ -631,26 +493,6 @@ export default function RlProcessDiagram({
         );
       })}
 
-      {/* ═══ Feedback loop: ciklas = RL esmė – solid, storesnė, ryški (ne dekoras) ═══ */}
-
-      {/* Start indicator – ryškus pradžios taškas */}
-      <circle
-        cx={lastCx}
-        cy={fbStartY}
-        r={6}
-        fill={ACCENT}
-        stroke={ACCENT_DARK}
-        strokeWidth="1.5"
-      >
-        <animate
-          attributeName="r"
-          values="5;7;5"
-          dur="1.5s"
-          repeatCount="indefinite"
-        />
-      </circle>
-
-      {/* Dashed path – grįžtamasis ryšys, nekerta bloko (SCHEME_AGENT §3.7.4) */}
       <path
         d={feedbackPath}
         stroke={ACCENT_DARK}
@@ -663,18 +505,16 @@ export default function RlProcessDiagram({
         <title>{feedbackPathTitle}</title>
       </path>
 
-      {/* Feedback arrow – smailė ties fbTipY (po bloku), bazė žemiau */}
       <polygon
         points={`${firstCx - FB_TIP_W},${fbTriBaseY} ${firstCx},${fbTipY} ${firstCx + FB_TIP_W},${fbTriBaseY}`}
         fill={ACCENT_DARK}
       />
 
-      {/* Feedback label – paryškinta kaip ciklo dalis */}
       <text
         x={(lastCx + firstCx) / 2}
-        y={fbY + 16}
+        y={fbY + 14}
         textAnchor="middle"
-        fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
         fontSize="14"
         fontWeight="700"
         fill={ACCENT_DARK}

@@ -26,7 +26,7 @@
     },
     "moduliai_10_12": {
       "path": "docs/turinio_pletra_moduliai_10_11_12.md",
-      "description": "Content truth for Moduliai 10–12 (Agentų inžinerija)"
+      "description": "Content truth for Moduliai 10–12 (Agentų inžinerija); includes §3b1 slide 10.26 human-control lab"
     },
     "moduliai_13_15": {
       "path": "docs/turinio_pletra_moduliai_13_14_15.md",
@@ -38,7 +38,15 @@
     },
     "docs_maintenance": {
       "path": "docs/development/DOCS_MAINTENANCE.md",
-      "description": "Long-term documentation governance: layers, dual SOT, release sync cadence"
+      "description": "Long-term documentation governance: layers, dual SOT, Feature Doc Contract, release sync cadence"
+    },
+    "diagramu_m7_m12_registry": {
+      "path": "docs/development/DIAGRAMU_M7_M12_REGISTRY.md",
+      "description": "M7–M12 image-key registry (Pattern + Shell Y/N); includes m10_human_control_simulator interactive-control-lab"
+    },
+    "m10_human_control_lab": {
+      "path": "src/components/slides/shared/m10HumanControlModel.ts",
+      "description": "10.26 human-control lab: getRiskStripItems + recommendMode; labels m10HumanControlContent.ts; tokens m10HumanControlLabTokens.ts; Block M10HumanControlSimulatorBlock (W1.1 risk strip, CopyButton artefact); SCHEME §2.2c / GOLDEN §3.1c"
     }
   },
   "dataSOT": {

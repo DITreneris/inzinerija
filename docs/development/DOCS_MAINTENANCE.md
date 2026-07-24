@@ -1,8 +1,8 @@
 # Dokumentacijos priežiūra (ilgalaikis vadovas)
 
 > **Tikslas:** Vienas vadovas dokumentacijos sluoksniams, dual SOT taisyklei ir release sync procedūrai. Papildo [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md) (konkretūs failų diff'ai po sprinto).
-> **Atnaujinta:** 2026-07-15
-> **Cadence:** pilnas meta sync **prieš kiekvieną release** (1.4.x tag). Tarp release – pakanka `CHANGELOG` + `TEST_REPORT`.
+> **Atnaujinta:** 2026-07-23
+> **Cadence:** pilnas meta sync **prieš kiekvieną release** (1.4.x tag). Tarp release – pakanka `CHANGELOG` + `TEST_REPORT` + Feature Doc Contract (§1b) naujiems interaktyviems įrankiams.
 
 ---
 
@@ -17,6 +17,22 @@
 | **Archyvas**           | Istorinė informacija (ne SOT)             | `docs/archive/`                                                                                                     | Retai; per release peržiūra                          |
 
 **Konflikto tvarka:** Turinio SOT → JSON → UI. Operacinis SOT **nepakeičia** turinio SOT struktūriniams pakeitimams.
+
+---
+
+## 1b. Feature Doc Contract (nauji interaktyvūs mokymo įrankiai)
+
+Kai pridedamas naujas interaktyvus mokymo įrankis (ypač naujas `sections[].image` raktas ar UI primityvo consumeris), prieš „done“:
+
+1. **Curriculum SOT** + skaidrių eilė (`turinio_pletra*`, `MODULIO_*_SKAIDRIU_EILES.md`).
+2. **Registry:** Pattern pavadinimas + Shell Y/N + render kelias (`DIAGRAMU_M7_M12_REGISTRY.md` / `DIAGRAMU_M13_M15_REGISTRY.md`) **prieš** JSON.
+3. **Jei keičiasi UI primityvas** → `GOLDEN_STANDARD.md` + `src/components/ui/README.md` consumers.
+4. **Agentų savininkų docs** – SCHEME / CONTENT / DATA / UI_UX / CODING pagal taikomumą (įsk. §2.2c jei Shell = Ne).
+5. **Viena `lessons.md` eilutė** kiekvienam agentui, kuris rado pitfall.
+6. **`CHANGELOG`** Unreleased; prieš release – meta indeksai per [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md).
+7. **Blokuojantis drift:** naujas `image` key be registry Pattern / Shell Y/N.
+
+Pavyzdys (2026-07-23): M10 `m10_human_control_simulator` – Pattern `interactive-control-lab`, Shell: Ne; W1.1 risk strip + lab CopyButton artefaktas (ne JSON copy wall).
 
 ---
 
@@ -74,13 +90,14 @@
 
 ## 5. Drift signalai (kada docs „atsilikę“)
 
-| Signalas                      | Kur tikrinti                                              | Veiksmas                                            |
-| ----------------------------- | --------------------------------------------------------- | --------------------------------------------------- |
-| Testų skaičius                | `CODEBASE_WHAT_IS_DONE`, `ROADMAP`, `CHANGELOG` santrauka | `npm run test:run` → sync                           |
-| Backlog „problema“ vs kodas   | `07_08_09_backlog.md` §4.6                                | `grep` modules.json → atnaujinti statusą            |
-| Naujas JSON laukas be schemos | `modules.schema.json`, `modules.ts`                       | DATA formalizuoja                                   |
-| EN LT liekanos                | `npm run audit:m79`                                       | Pilnas EN `sections[]` veidrodis (žr. M79 registry) |
-| Pasenęs SOT aprašymas         | `turinio_pletra*` vs JSON                                 | Rodyklė arba struktūrinis atnaujinimas              |
+| Signalas                                  | Kur tikrinti                                              | Veiksmas                                            |
+| ----------------------------------------- | --------------------------------------------------------- | --------------------------------------------------- |
+| Testų skaičius                            | `CODEBASE_WHAT_IS_DONE`, `ROADMAP`, `CHANGELOG` santrauka | `npm run test:run` → sync                           |
+| Backlog „problema“ vs kodas               | `07_08_09_backlog.md` §4.6                                | `grep` modules.json → atnaujinti statusą            |
+| Naujas JSON laukas be schemos             | `modules.schema.json`, `modules.ts`                       | DATA formalizuoja                                   |
+| EN LT liekanos                            | `npm run audit:m79`                                       | Pilnas EN `sections[]` veidrodis (žr. M79 registry) |
+| Pasenęs SOT aprašymas                     | `turinio_pletra*` vs JSON                                 | Rodyklė arba struktūrinis atnaujinimas              |
+| Naujas `image` key be Pattern / Shell Y/N | Registry vs `diagramRenderers` / modules.json             | Užpildyti Feature Doc Contract §1b; blokuoti merge  |
 
 ---
 

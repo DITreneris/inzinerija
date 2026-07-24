@@ -10,6 +10,9 @@ export type { EyebrowAccent } from './Eyebrow';
 export { default as IconChip } from './IconChip';
 export type { IconChipRole, IconChipSize } from './IconChip';
 export { default as SectionDivider } from './SectionDivider';
+export { default as ChoiceControl } from './ChoiceControl';
+export type { ChoiceOption, ChoiceControlProps } from './ChoiceControl';
+export { default as ModuleBreadcrumb } from './ModuleBreadcrumb';
 export {
   default as Table,
   TableHead,

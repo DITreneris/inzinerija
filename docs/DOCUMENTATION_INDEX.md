@@ -1,7 +1,7 @@
 # Dokumentacijos indeksas – kur kuo remtis
 
 > **Tikslas:** Agentai ir žmonės žino, kuris dokumentas yra tiesa (SOT), kas aktyvus, o kas archyvuota.  
-> **Atnaujinta:** 2026-07-16 (A–C residual docs; docs maintenance; M7–M9 P2 + Lygis C)
+> **Atnaujinta:** 2026-07-23 (M10 10.26 lab W1.1 – risk strip + §3.1c; SCHEME §2.2c)
 >
 > **Agentams (lean, prieinama):** pirmiausia **`docs/DOCUMENTATION_QUICK_REF.md`** (SOT + keliai); **`docs/LEAN_INDEX.md`** – minimalus branduolys (~20 failų). Pilnas sąrašas ir archyvas žemiau.
 
@@ -19,8 +19,8 @@
 | **Turinys Moduliai 10–12**                                                                 | `docs/turinio_pletra_moduliai_10_11_12.md`                                                                                                                                                                             | Agentų inžinerija: teorija (10), testas (11), projektas (12)                                                                                                                                                            |
 | **Turinys Moduliai 13–15**                                                                 | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                                                                                                                             | Turinio inžinerija: teorija (13), testas (14), projektas (15)                                                                                                                                                           |
 | **Kur kalbama apie kurį modulį**                                                           | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                  | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13                                                                                                                                         |
-| **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                  | Vienas etalonas visiems moduliams (v2.3.0: §3.4c skiriamoji/apibendrinimo; §3.4d path-step kelio žingsnis, badge, žodynėlio atrakinimas)                                                                                |
-| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                             | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.3 + Unreleased P2** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                              |
+| **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                  | Vienas etalonas visiems moduliams (v2.3.14: §3.1c lab color exception + §3.1b ChoiceControl / 10.26; §3.4c skiriamoji/apibendrinimo; §3.4d path-step)                                                                   |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                             | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.6 + Unreleased** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                                 |
 | **Duomenys**                                                                               | `src/data/modules.json`, `*-m1-m6.json`, `*-m1-m9.json`, `promptLibrary.json`, `glossary.json`, `tools.json`, `hallucinationRates.ts`, `completionArtifacts.json`, `certificateContent*.json`, `*HandoutContent*.json` | Full SOT: `modules.json` / `glossary.json` / `tools.json`; artefaktai per `completionArtifacts.json`. Build profiliai: `*-m1-m6.json` (MVP), `*-m1-m9.json` (**production**). Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` |
 | **Vartotojo atsiliepimai**                                                                 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                                                                                                                                               | Gyvas testavimas, V1/V2, segmentai                                                                                                                                                                                      |
 | **Klaidos ir sprendimai**                                                                  | `docs/development/TEST_REPORT.md`                                                                                                                                                                                      | QA_AGENT priima klaidas čia                                                                                                                                                                                             |
@@ -33,27 +33,29 @@
 
 ### Agentai ir procesas (development/)
 
-| Failas                                                 | Paskirtis                                                                                |
-| ------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline, kokybės vartai                                                       |
-| `docs/development/GOLD_LEGACY_STANDARD.md`             | Techninė atspirties dokumentacija (inventorius, failai, testai, CI); savininkas QA_AGENT |
-| `docs/development/DOCS_SYNC_CHECKLIST.md`              | Docs sync vartas po release / didelio Unreleased sprinto                                 |
-| `docs/development/DOCS_MAINTENANCE.md`                 | Ilgalaikė dokumentacijos priežiūra, dual SOT, release cadence                            |
-| `docs/development/M79_PATCH_REGISTRY.md`               | M7–M9 patch skriptų registras (operacinis UX polish SOT)                                 |
-| `docs/development/PLAN_AGENTAI_DARBAI.md`              | Kas, seka, Modulio 4 MUST/SHOULD                                                         |
-| `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`     | Pedagoginės įžvalgos, Must/Should/Want                                                   |
-| `docs/development/CONTENT_AGENT.md`                    | CONTENT_AGENT spec                                                                       |
-| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika, Bloom, santraukos                                                            |
-| `docs/development/SCHEME_AGENT.md`                     | Schemų/diagramų gairės                                                                   |
-| `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`         | Aktyvus M7–M12 schemų routing, test coverage ir image key registry                       |
-| `docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`    | Diagramų praktikos                                                                       |
-| `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`    | Verifikacija, „padaryta“ vs tikrovė                                                      |
-| `docs/development/UI_UX_AGENT.md`                      | UI/UX gairės                                                                             |
-| `docs/development/LENTELIU_STANDARTAS.md`              | Lentelių standartas                                                                      |
-| `docs/development/USER_JOURNEY_AGENT.md`               | Vartotojo kelionės diagnostika                                                           |
-| `docs/development/DATA_AGENT_TOOLS.md`                 | DATA_AGENT įrankiai                                                                      |
-| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | Duomenų atnaujinimo gairės                                                               |
-| `docs/development/analysis/README.md`                  | Redirect – vienkartinės analizės perkeltos į `docs/archive/development/analysis/`        |
+| Failas                                                 | Paskirtis                                                                                               |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline, kokybės vartai                                                                      |
+| `docs/development/GOLD_LEGACY_STANDARD.md`             | Techninė atspirties dokumentacija (inventorius, failai, testai, CI); savininkas QA_AGENT                |
+| `docs/development/DOCS_SYNC_CHECKLIST.md`              | Docs sync vartas po release / didelio Unreleased sprinto                                                |
+| `docs/development/DOCS_MAINTENANCE.md`                 | Ilgalaikė dokumentacijos priežiūra, dual SOT, release cadence                                           |
+| `docs/development/M79_PATCH_REGISTRY.md`               | M7–M9 patch skriptų registras (operacinis UX polish SOT)                                                |
+| `docs/development/PLAN_AGENTAI_DARBAI.md`              | Kas, seka, Modulio 4 MUST/SHOULD                                                                        |
+| `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`     | Pedagoginės įžvalgos, Must/Should/Want                                                                  |
+| `docs/development/CONTENT_AGENT.md`                    | CONTENT_AGENT spec                                                                                      |
+| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika, Bloom, santraukos                                                                           |
+| `docs/development/SCHEME_AGENT.md`                     | Schemų/diagramų gairės (+ §2.2c `interactive-control-lab`)                                              |
+| `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`         | Aktyvus M7–M12 schemų routing, test coverage ir image key registry (įsk. `m10_human_control_simulator`) |
+| `docs/development/LMS_DIAGRAM_POLISH_10_2.md`          | LMS polish 1A: 10.2 Agentų ciklas etalonas → tipų roll-out (ne premium SaaS)                            |
+| `docs/development/DIAGRAMU_M13_M15_REGISTRY.md`        | M13–15 Turinio kelio schemų registry (`m13_*`, `m15_*`, `turinio_workflow`)                             |
+| `docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`    | Diagramų praktikos                                                                                      |
+| `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`    | Verifikacija, „padaryta“ vs tikrovė                                                                     |
+| `docs/development/UI_UX_AGENT.md`                      | UI/UX gairės                                                                                            |
+| `docs/development/LENTELIU_STANDARTAS.md`              | Lentelių standartas                                                                                     |
+| `docs/development/USER_JOURNEY_AGENT.md`               | Vartotojo kelionės diagnostika                                                                          |
+| `docs/development/DATA_AGENT_TOOLS.md`                 | DATA_AGENT įrankiai                                                                                     |
+| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | Duomenų atnaujinimo gairės                                                                              |
+| `docs/development/analysis/README.md`                  | Redirect – vienkartinės analizės perkeltos į `docs/archive/development/analysis/`                       |
 
 **User Journey seka ir modulio analizės (archyvas):** `docs/archive/development/` – AGENT*SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE, MODULIO*_*USER_JOURNEY_ANALIZE, M4_SKAIDRE*_ ir kt. Žr. `docs/archive/README.md`.
 
@@ -66,18 +68,18 @@
 
 ### Kokybė ir release
 
-| Failas                                            | Paskirtis                                                                                                                                   |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `docs/development/RELEASE_QA_CHECKLIST.md`        | 5 min prieš release (a11y, lietuviškos raidės, MVP)                                                                                         |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`     | Paprasta kalba, žargonas                                                                                                                    |
-| **Archyvas**                                      | Mobile auditas, EN standartas, santraukos spec – `docs/archive/development/` (MOBILE_UI_UX_AUDIT, EN_LANGUAGE_STANDARD, SUMMARY_SLIDE_SPEC) |
-| `docs/development/TESTING_CHECKLIST.md`           | Testavimo sąrašas                                                                                                                           |
-| `docs/development/ANALYTICS_EVENT_TAXONOMY.md`    | MVP Analytics (eventai, funnel)                                                                                                             |
-| `docs/development/ANALYTICS_DASHBOARD_MVP.md`     | Dashboard wireframe, PostHog                                                                                                                |
-| `docs/development/PDF_MAKETO_GAIRES.md`           | PDF maketas (tipografija, NotoSans)                                                                                                         |
-| `docs/development/PDF_DOWNLOAD_TESTING.md`        | PDF atsisiuntimo testai                                                                                                                     |
-| `docs/development/PDF_GENERATION_AGENT_MEMORY.md` | PDF geriausios praktikos, checklist                                                                                                         |
-| **Archyvas**                                      | LT/EN analizės, multikalbiškumas, WWW nuorodos – `docs/archive/development/`                                                                |
+| Failas                                            | Paskirtis                                                                                                                                                                        |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `docs/development/RELEASE_QA_CHECKLIST.md`        | 5 min prieš release (a11y, lietuviškos raidės, MVP)                                                                                                                              |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`     | Paprasta kalba, žargonas                                                                                                                                                         |
+| **Archyvas**                                      | Mobile auditas, EN standartas – `docs/archive/development/` (MOBILE_UI_UX_AUDIT, EN_LANGUAGE_STANDARD). **SUMMARY_SLIDE_SPEC** aktyvus: `docs/development/SUMMARY_SLIDE_SPEC.md` |
+| `docs/development/TESTING_CHECKLIST.md`           | Testavimo sąrašas                                                                                                                                                                |
+| `docs/development/ANALYTICS_EVENT_TAXONOMY.md`    | MVP Analytics (eventai, funnel)                                                                                                                                                  |
+| `docs/development/ANALYTICS_DASHBOARD_MVP.md`     | Dashboard wireframe, PostHog                                                                                                                                                     |
+| `docs/development/PDF_MAKETO_GAIRES.md`           | PDF maketas (tipografija, NotoSans)                                                                                                                                              |
+| `docs/development/PDF_DOWNLOAD_TESTING.md`        | PDF atsisiuntimo testai                                                                                                                                                          |
+| `docs/development/PDF_GENERATION_AGENT_MEMORY.md` | PDF geriausios praktikos, checklist                                                                                                                                              |
+| **Archyvas**                                      | LT/EN analizės, multikalbiškumas, WWW nuorodos – `docs/archive/development/`                                                                                                     |
 
 ### Moduliai 4–6 (struktūra ir tobulinimai)
 
@@ -96,8 +98,8 @@
 
 | Failas                                         | Paskirtis                                                                                                              |
 | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `docs/turinio_pletra_moduliai_10_11_12.md`     | Turinio SOT M10–M12                                                                                                    |
-| `docs/MODULIO_10_SKAIDRIU_EILES.md`            | Oficiali M10/M11/M12 skaidrių eilė                                                                                     |
+| `docs/turinio_pletra_moduliai_10_11_12.md`     | Turinio SOT M10–M12 (įsk. §3b1 skaidrė 10.26)                                                                          |
+| `docs/MODULIO_10_SKAIDRIU_EILES.md`            | Oficiali M10/M11/M12 skaidrių eilė (10.25 → 10.26 → 10.3)                                                              |
 | `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md` | Pedagoginė analizė + max ROI backlog (S/P/N/R)                                                                         |
 | `docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md`      | Verslo automatizavimo gidas (papildomas skaitymas M10–12)                                                              |
 | **Archyvas**                                   | MODULIO*10_USER_JOURNEY_ANALIZE, ANALIZE*\*\_10_11_12, MODULIAI_10_11_12_TURINIO_SPRAGOS – `docs/archive/development/` |

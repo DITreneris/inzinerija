@@ -1,57 +1,63 @@
 /**
- * M10 – 3A strategija: vizualiai proporcingos juostos (80 / 15 / 5).
+ * M10 – 3A strategija: horizontal 100% stacked bar (80 / 15 / 5)
+ * + vertical legend (dot + TITLE pct + sub).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { DiagramStepHitArea } from './diagramKit';
 import { getM10ThreeALabels, type M10Locale } from './m10DiagramContent';
+import {
+  getThreeAHitRects,
+  getThreeALegendItems,
+  getThreeASegmentRects,
+  M10_THREE_A_LAYOUT,
+} from './m10ThreeAStrategyLayout';
 
-const W = 400;
-const H = 280;
-const BAR_X = 48;
-const BAR_W = 304;
-const H80 = 120;
-const H15 = 36;
-const H5 = 22;
-const GAP = 10;
+const INNER_PCT_MIN_W = 72;
 
 export default function M10ThreeAStrategyDiagram({
   locale = 'lt',
   className = '',
+  currentStep = 0,
+  onStepClick,
 }: {
   locale?: M10Locale;
   className?: string;
+  currentStep?: number;
+  onStepClick?: (index: number) => void;
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10ThreeALabels(locale);
-  let y = 40;
+  const isInteractive = typeof onStepClick === 'function';
+  const { viewBoxW: W, viewBoxH: H } = M10_THREE_A_LAYOUT;
+  const segments = getThreeASegmentRects();
+  const legend = getThreeALegendItems();
+  const hits = getThreeAHitRects();
 
-  const rows: {
-    h: number;
-    title: string;
-    pct: string;
-    sub: string;
-    fill: string;
-  }[] = [
+  const toneFills = [
+    tones.brand.bottom,
+    tones.emerald.bottom,
+    tones.amber.bottom,
+  ];
+
+  const rows = [
     {
-      h: H80,
       title: L.auto,
       pct: L.autoPct,
       sub: L.autoSub,
       fill: `url(#m10-3a-a-${uid})`,
     },
     {
-      h: H15,
       title: L.aug,
       pct: L.augPct,
       sub: L.augSub,
       fill: `url(#m10-3a-b-${uid})`,
     },
     {
-      h: H5,
       title: L.auton,
       pct: L.autonPct,
       sub: L.autonSub,
@@ -62,9 +68,9 @@ export default function M10ThreeAStrategyDiagram({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className={`w-full max-w-[min(28rem,100%)] mx-auto block ${className}`}
+      className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
-      aria-label={L.aria}
+      aria-label={`${L.aria}${isInteractive ? ` ${L.hint}` : ''}`}
     >
       <defs>
         <linearGradient id={`m10-3a-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
@@ -89,68 +95,116 @@ export default function M10ThreeAStrategyDiagram({
         y="0"
         width={W}
         height={H}
-        rx="12"
+        rx={DIAGRAM_TOKENS.radius.frame}
         fill={`url(#m10-3a-bg-${uid})`}
       />
-      <text
-        x={W / 2}
-        y={24}
-        textAnchor="middle"
-        fontSize="14"
-        fontWeight="800"
-        fill={palette.brandDark}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.title}
-      </text>
+      <rect
+        x="0"
+        y="0"
+        width={W}
+        height={H}
+        rx={DIAGRAM_TOKENS.radius.frame}
+        fill="none"
+        stroke={palette.border}
+        strokeWidth={DIAGRAM_TOKENS.stroke.border}
+      />
       {rows.map((r, i) => {
-        const rowY = y;
-        y += r.h + GAP;
-        const ty = rowY + Math.min(r.h / 2 + 5, r.h - 4);
+        const seg = segments[i];
+        const hit = hits[i];
+        const isActive = currentStep === i;
+        const opacity = isInteractive
+          ? isActive
+            ? DIAGRAM_TOKENS.opacity.active
+            : DIAGRAM_TOKENS.opacity.inactive
+          : 1;
+        const cx = seg.x + seg.w / 2;
+        const showInnerPct = seg.w >= INNER_PCT_MIN_W;
         return (
-          <g key={i}>
-            <rect
-              x={BAR_X}
-              y={rowY}
-              width={BAR_W}
-              height={r.h}
-              rx="8"
-              fill={r.fill}
-              stroke={palette.brandDark}
-              strokeWidth="1"
-            />
+          <g key={`seg-${i}`}>
+            <g
+              opacity={opacity}
+              style={{ transition: 'opacity 0.2s ease' }}
+              aria-hidden
+            >
+              <rect
+                x={seg.x}
+                y={seg.y}
+                width={seg.w}
+                height={seg.h}
+                rx={i === 0 ? DIAGRAM_TOKENS.radius.box : 4}
+                fill={r.fill}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
+              />
+              {showInnerPct && (
+                <text
+                  x={cx}
+                  y={seg.y + seg.h / 2 + 4}
+                  textAnchor="middle"
+                  fill={palette.whiteText}
+                  fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
+                  fontWeight="700"
+                  fontFamily={DIAGRAM_TOKENS.font}
+                >
+                  {r.pct}
+                </text>
+              )}
+            </g>
+            {isInteractive && (
+              <DiagramStepHitArea
+                x={hit.x}
+                y={hit.y}
+                width={hit.w}
+                height={hit.h}
+                radius={DIAGRAM_TOKENS.radius.box}
+                onActivate={() => onStepClick?.(i)}
+              />
+            )}
+          </g>
+        );
+      })}
+      {legend.map((item, i) => {
+        const r = rows[i];
+        const isActive = currentStep === i;
+        const dot = toneFills[item.toneIndex];
+        const titleFill = isActive ? palette.brandDark : palette.muted;
+        const subFill = palette.muted;
+        const rowOpacity = isInteractive
+          ? isActive
+            ? DIAGRAM_TOKENS.opacity.active
+            : DIAGRAM_TOKENS.opacity.inactive
+          : 1;
+        const titleX = item.x + 14;
+        const subX = item.x + 168;
+        return (
+          <g key={`leg-${i}`} opacity={rowOpacity} aria-hidden>
+            <circle cx={item.x + 4} cy={item.y - 3} r={4} fill={dot} />
             <text
-              x={BAR_X + 14}
-              y={ty}
-              fill="white"
-              fontSize={r.h < 26 ? 10 : 12}
-              fontWeight="700"
+              x={titleX}
+              y={item.y}
+              textAnchor="start"
+              fill={titleFill}
+              fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
+              fontWeight={isActive ? 700 : 600}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {r.title} {r.pct}
             </text>
-            {r.h >= 36 && (
-              <text
-                x={BAR_X + 14}
-                y={rowY + r.h - 10}
-                fill="rgba(255,255,255,0.88)"
-                fontSize="10"
-                fontFamily={DIAGRAM_TOKENS.font}
-              >
-                {r.sub}
-              </text>
-            )}
-            {r.h >= 22 && r.h < 36 && (
-              <text
-                x={BAR_X + 14}
-                y={rowY + r.h - 6}
-                fill="rgba(255,255,255,0.88)"
-                fontSize="8"
-                fontFamily={DIAGRAM_TOKENS.font}
-              >
-                {r.sub}
-              </text>
-            )}
+            <text
+              x={subX}
+              y={item.y}
+              textAnchor="start"
+              fill={subFill}
+              fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
+              fontWeight={500}
+              fontFamily={DIAGRAM_TOKENS.font}
+            >
+              {r.sub}
+            </text>
           </g>
         );
       })}

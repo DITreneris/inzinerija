@@ -55,6 +55,7 @@
 - [ ] **Sertifikato PDF (tier 1 smoke):** Baigus 3. modulį → „Parsisiųsti sertifikatą“ → įrašyti vardą su diakritika (pvz. „Jonas Žilinskas“) → parsisiųsti PDF – atsidaryti PDF ir patikrinti, kad vardas ir tekstas („Užbaigė 1 dalį“, „Promptų anatomija“) rodomi su lietuviškomis raidėmis (ž, ė, ų ir kt.). Žr. `public/fonts/README.md` – NotoSans turi būti įdiegtas.
 - [ ] **Tier 4 sertifikatas (full catalog):** Baigti M10, M11, M12; M11 testas ≥70 % → Modulio 12 užbaigimo ekranas → CertificateScreen → PDF turi rodyti Agentų inžinerijos kelio tekstą, ne visos 15 modulių programos copy. Pakartotinis atsisiuntimas per „Mano medžiaga“ turi rodyti tą patį serial numerį.
 - [ ] **Tier 5 sertifikatas (full catalog):** Baigti M13, M14, M15; M14 testas ≥70 % → Modulio 15 užbaigimo ekranas → CertificateScreen → PDF turi rodyti Turinio inžinerijos kelio tekstą, ne visos 15 modulių programos copy. Pakartotinis atsisiuntimas per „Mano medžiaga“ turi rodyti tą patį serial numerį.
+- [ ] **ModulesPage katalogas (2026-07-23):** Bazė – subsection po M1–M3 („Kontekstas ir projektas M4–M6“). Su uždirbta medžiaga ir tier 6: „Mano medžiaga“ matoma **po M6**, **prieš** M7–9 lock track – ne po visų užrakintų modulių. Automatinis: `npm run test:run -- src/components/__tests__/ModulesPage.materials.test.tsx`.
 
 ---
 
@@ -86,19 +87,20 @@
 
 Raktų checklist (po vieną skaidrę / shell):
 
-| Raktas                   | Tipinė skaidrė | Shell nav count              | Dark SVG fonas | Nėra `svg [role=button]` | Enlarge = tas pats React |
-| ------------------------ | -------------- | ---------------------------- | -------------- | ------------------------ | ------------------------ |
-| `agent_workflow_diagram` | 10.2           | ✓ (5)                        | ✓              | ✓                        | ✓                        |
-| `m10_three_a_strategy`   | 10.25          | (static OK – comparison)     | ✓              | ✓                        | ✓                        |
-| `m10_tool_decision_tree` | 10.4           | (HitArea + DiagramStepNav 5) | ✓              | ✓                        | ✓                        |
-| `m10_agent_taxonomy`     | 10.45          | (static OK)                  | ✓              | ✓                        | ✓                        |
-| `m10_trigger_flow`       | 10.15          | ✓ (4)                        | ✓              | ✓                        | ✓                        |
-| `m10_agent_orchestrator` | 10.482         | ✓ (6)                        | ✓              | ✓                        | ✓                        |
-| `m10_learning_loop`      | 10.49          | ✓ (4 makro)                  | ✓              | ✓                        | ✓                        |
-| `m10_workflow_spec`      | 10.65          | ✓ (8)                        | ✓              | ✓                        | ✓                        |
-| `m10_incident_playbook`  | 10.65          | ✓ (5)                        | ✓              | ✓                        | ✓                        |
-| `m12_three_labs`         | 120.25         | (static OK – comparison)     | ✓              | ✓                        | ✓                        |
-| `m12_multi_agent_schema` | 120.5          | ✓ (6) + feedback edge        | ✓              | ✓                        | ✓                        |
+| Raktas                        | Tipinė skaidrė | Shell nav count                    | Dark SVG fonas       | Nėra `svg [role=button]` | Enlarge = tas pats React                       |
+| ----------------------------- | -------------- | ---------------------------------- | -------------------- | ------------------------ | ---------------------------------------------- |
+| `agent_workflow_diagram`      | 10.2           | ✓ (5, `density=hero`)              | ✓                    | ✓                        | ✓ LMS polish 2026-07                           |
+| `m10_three_a_strategy`        | 10.25          | ✓ (3, `density=hero`)              | ✓                    | ✓                        | ✓ horizontal 100% stacked                      |
+| `m10_human_control_simulator` | 10.26          | N/A (ne Shell – ChoiceControl lab) | ✓ (lab tokens §3.1c) | N/A (no SVG buttons)     | ✓ W1.1 risk strip + timing + optionTone; LT/EN |
+| `m10_tool_decision_tree`      | 10.4           | (HitArea + DiagramStepNav 5)       | ✓                    | ✓                        | ✓                                              |
+| `m10_agent_taxonomy`          | 10.45          | 8 (L0–L3 + 4 roles)                | ✓                    | ✓                        | ✓                                              |
+| `m10_trigger_flow`            | 10.15          | ✓ (4)                              | ✓                    | ✓                        | ✓                                              |
+| `m10_agent_orchestrator`      | 10.482         | ✓ (6)                              | ✓                    | ✓                        | ✓                                              |
+| `m10_learning_loop`           | 10.49          | ✓ (4 makro)                        | ✓                    | ✓                        | ✓                                              |
+| `m10_workflow_spec`           | 10.65          | ✓ (8)                              | ✓                    | ✓                        | ✓                                              |
+| `m10_incident_playbook`       | 10.65          | ✓ (5)                              | ✓                    | ✓                        | ✓                                              |
+| `m12_three_labs`              | 120.25         | (static OK – comparison)           | ✓                    | ✓                        | ✓                                              |
+| `m12_multi_agent_schema`      | 120.5          | ✓ (6) + feedback edge              | ✓                    | ✓                        | ✓                                              |
 
 - [x] **P2 code/doc gate (2026-07-17):** stub EN path-steps cleared; `audit:m1012` paleidžiamas prieš release; nėra žinomų blocking diagram bug'ų šiame sprint'e.
 - [x] **Automated diagram smoke (2026-07-20):** `DiagramLocalization` + `m10m12LayoutGeometry` + `diagramRenderers` – shell nav / no `svg [role=button]` / dark palette contracts for M10–12 keys (įsk. `m10_agent_orchestrator`); path order smoke: M10 `10.51→10.6→10.61→10.15`, M11 `110→110.5→111`, M12 `124.5→124→121–123`.
@@ -125,7 +127,7 @@ Raktų checklist (po vieną skaidrę / shell):
 - [ ] **M4 PDF automatinis guard:** jei keistas M4 handout turinys arba utilas, paleisti `npm run test:run -- src/data/__tests__/m4HandoutContent.test.ts src/utils/__tests__/m4HandoutPdf.test.ts`.
 - [ ] **PDF / sertifikatų registry guard:** jei keistas `completionArtifacts.json`, handout schema arba `downloadHandout.ts`, paleisti `npm run validate:schema` ir `npm run test:run -- src/data/__tests__/completionArtifacts.test.ts src/components/__tests__/ModuleCompleteScreen.test.tsx src/components/__tests__/ModulesPage.materials.test.tsx`.
 - [ ] **Sertifikato serial stabilumas:** tą patį tier sertifikatą atsisiųsti 2 kartus per CertificateScreen / „Mano medžiaga“ – PDF turi rodyti tą patį `PA-2026-...` numerį; naujam tier gali būti kitas numeris.
-- [ ] **M4 skaidrė 56 (RAG: kas tai ir pabandyk):** navigacija, LlmArch tabai, kopijuojamas promptas, „Peržiūrėti pilname dydyje“ – veikia, turinys skaitomas.
+- [ ] **M4 skaidrė 56 (RAG: kas tai ir pabandyk):** navigacija, LlmArch tabai (Bazinis / RAG / Agentinis), mode-absent dashed, kortelės sync, kopijuojamas promptas, „Peržiūrėti pilname dydyje“ – veikia, turinys skaitomas.
 - [ ] **M6 skaidrė 64 (Pagalbinis promptas: duomenų tvarkymo sistema):** Kopijuoti mygtukas, lietuviškos raidės, turinys atitinka.
 
 ---
@@ -217,7 +219,7 @@ Raktų checklist (po vieną skaidrę / shell):
 - [ ] **Top-5 „dirtiest" failai – nepakitę:** Pirmieji 5 (`CustomGptProcessDiagram`, `LlmArchDiagramDiagram`, `M10SpecIncidentDiagram`, `LlmAutoregressiveDiagram`, `M13RuleOfThirdsDiagram`) – pagal v0.3 backlog'ą **B1**, jų konsolidavimas planuojamas vėliau; v0.2 metu jie **nesikeičia**.
 - [ ] **Jei `audit:design-tokens` `package.json` script'as pridėtas (E2.1 baigta):** vietoj `node scripts/...` galima naudoti `npm run audit:design-tokens` (žr. plano §5 E2.1 exit-kriterijus).
 
-**Pastaba.** Audit skriptas yra **warn-only** (`exit 0`) – jis NEturi blokuoti `npm run build` ar CI. Pre-commit gate – v0.3 backlog **B7**.
+**Pastaba.** `npm run audit:design-tokens` (be `:gate`) yra **warn-only** (`exit 0`) – NEturi blokuoti `npm run build` ar GitHub CI. **Release preflight** naudoja `audit:design-tokens:gate` (`--fail-on-regression`) – blokuoja lokaliai / `audit:release-preflight`, bet **ne** GitHub Actions `test.yml` / deploy `quality-gates`.
 
 ---
 
