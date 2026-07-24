@@ -179,7 +179,7 @@ Raktų checklist (po vieną skaidrę / shell):
 
 ## 5g. UX pattern smoke po interaktyvumo bangų (~5 min)
 
-> **Įtraukta:** 2026-07-09. SOT: `docs/development/GOLDEN_STANDARD.md` §3.8, `docs/MODULIO_4_SKAIDRIU_EILES.md` pattern katalogas, `docs/development/UX_BANGA_1_2_EN_SYNC.md`.
+> **Įtraukta:** 2026-07-09. SOT: `docs/development/GOLDEN_STANDARD.md` §3.8, `docs/MODULIO_4_SKAIDRIU_EILES.md` pattern katalogas; EN sync istorija – `docs/archive/development/UX_BANGA_1_2_EN_SYNC.md`.
 
 - [ ] **Automatiniai vartai:** `npm run audit:slide-interactivity`, `npm run audit:embed-catalog`, `npm run audit:test-scenario-share` – praeina.
 - [ ] **M4 sk. 49:** `correctPromptPractice` – pataisymo pasirinkimas, feedback ir copy mygtukai veikia 390px.

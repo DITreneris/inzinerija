@@ -30,12 +30,15 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 | `opacity.inactive` / `inactiveSoft`       | ≥ **0.88** (no grey wash)                        |
 | `stroke.flow` / `flowStrong` / `feedback` | ≥ **3.5**                                        |
 | `arrow.markerUnits`                       | **`userSpaceOnUse`** (required with flow stroke) |
+| `arrow.processTipLen`                     | **10** (LMS process tip; use with `refX=0`)      |
+| `arrow.markerLen`                         | **6** = **legacy** only (not process tip)        |
 | `typography.title.desktop`                | **17**                                           |
 | `typography.titleWeight`                  | **700**                                          |
 | `typography.edgeLabel`                    | **12 / 500**                                     |
 
 - Prefer these over hardcoded `0.45` / `strokeWidth="2"`.
 - Process `<marker>` + `stroke.flow`: always set `markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}` so tip size stays in user units (default `strokeWidth` scaling swallows the shaft).
+- LMS forward tips: `DIAGRAM_TOKENS.arrow.processTipLen` + [`processArrowMarker.ts`](../../src/components/slides/shared/processArrowMarker.ts) (`getProcessArrowMarkerGeom`, `refX=0`). **Do not** change global `markerLen` to 10; never assert `processTipLen === markerLen`.
 - `DIAGRAM_TOKENS.lmsCycle` is a **deprecated alias** of the same floors (W1 call sites).
 - Use `useDiagramPalette()` for SVG background, border, flow colors.
 - Keep local semantic tone gradients (`DIAGRAM_TONE_COLORS`) only where tone carries meaning.
@@ -46,21 +49,23 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 - `centerAxisStart(viewBox, content)` – equal side margins (SCHEME §2).
 - `buildVerticalColumnOrigin({ viewBoxW, colW })` – centered `colsX` + `cx` for vertical spines (Type Etalon W2).
 - `verticalColumnMarginsEqual` – L/R margin guard for tests.
-- `visibleShaftLen` / `visibleShaftMeetsFloor` – horizontal shaft floor (mirror of `verticalFlowStemLength`).
+- `visibleShaftLen` / `visibleShaftMeetsFloor` – shaft floor (default tip = `processTipLen`).
+- `getProcessArrowMarkerGeom` / `processArrowEndInset` – LMS process marker + line-end inset.
 - Vertical spines: `verticalFlowGeometry.ts` + linear etalon `M7DaPipelineDiagram`.
 - Cycle-feedback: `cycleFeedbackGeometry.ts` – `horizontalRowBoxes`, `feedbackUPath` (Type Etalon W1).
 - Funnel/stack: `funnelStackGeometry.ts` – `funnelStageWidths` / `funnelStageRects` / `stackColumnRects` (Type Etalon W3). Stack GAP etalon **18** (no connectors).
 
 ## Type etalons (uniqueness)
 
-| Type                                        | Etalon                                                        | Preserve                                                                                                                     | Wave             |
-| ------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| cycle-feedback                              | `agent_workflow_diagram` (M10.2) + `cycleFeedbackGeometry`    | N + U feedback topology; own BOX sizes                                                                                       | ✅ W1            |
-| linear-process (vertical)                   | `m7_da_pipeline` + `buildVerticalColumnOrigin`                | Vertical spine; no U loop; own BOX                                                                                           | ✅ W2            |
-| linear-process (HTML horizontal cards)      | `strukturuotas_procesas` / `StrukturuotasProcesasDiagram`     | 3-step IPO cards + bullets; Shell = Taip; **not** vertical spine helpers                                                     | ✅ HTML          |
-| linear-process (HTML icon-chain + autoplay) | `hallucination-pipeline` / `HallucinationPipelineBlock`       | 5 icon cards + captions; `useAutoplaySteps` (pause-on-pin); Shell = Taip; explanation = caption only; **not** SVG spine      | ✅ HTML autoplay |
-| funnel / stack                              | `m13_aec_funnel` / `m13_prompt_stack` + `funnelStackGeometry` | Funnel narrowing / stack depth                                                                                               | ✅ W3            |
-| dual-taxonomy                               | `m10_agent_taxonomy` + `m10TaxonomyLayout.ts`                 | Left L0–L3 ladder + right role hub; L2 owns hub; ghost hard + role fills ≠ levels; edge KISS (`pateikia` + single `grąžina`) | ✅ W5            |
+| Type                                        | Etalon                                                        | Preserve                                                                                                                                   | Wave             |
+| ------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| cycle-feedback                              | `agent_workflow_diagram` (M10.2) + `cycleFeedbackGeometry`    | N + U feedback topology; own BOX sizes                                                                                                     | ✅ W1            |
+| linear-process (vertical)                   | `m7_da_pipeline` + `buildVerticalColumnOrigin`                | Vertical spine; no U loop; own BOX                                                                                                         | ✅ W2            |
+| linear-process (HTML horizontal cards)      | `strukturuotas_procesas` / `StrukturuotasProcesasDiagram`     | 3-step IPO cards + bullets; Shell = Taip; **not** vertical spine helpers                                                                   | ✅ HTML          |
+| linear-process (HTML icon-chain + autoplay) | `hallucination-pipeline` / `HallucinationPipelineBlock`       | 5 icon cards + captions; `useAutoplaySteps` (pause-on-pin); Shell = Taip; explanation = caption only; **not** SVG spine                    | ✅ HTML autoplay |
+| funnel / stack                              | `m13_aec_funnel` / `m13_prompt_stack` + `funnelStackGeometry` | Funnel narrowing / stack depth                                                                                                             | ✅ W3            |
+| dual-taxonomy (superseded)                  | ~~`m10_agent_taxonomy` Shell~~ → lab hybrid                   | **Superseded 2026-07-24:** Pattern `interactive-control-lab` (Shell=Ne) – `M10DepthRolesLabBlock` + static mini SVG; ne 8-step Shell spine | ⛔ W5 archived   |
+| multi-agent-flow                            | `m10_agent_orchestrator` + `orchestratorRetryPath.ts`         | Hub + specialists + state/tools dashed + left retry U; Shell walkthrough; own BOX; M12 tokens brother only                                 | ✅ W7            |
 
 Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWorkflowDiagram` (registry: HTML cards – not SVG spine).
 
@@ -115,10 +120,20 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 
 ### Non-spine / residual (Wave 4)
 
-- Roles-hub, comparison, decision-tree, multi-agent, dual-path: **tokens inherit only** (no shared geometry wave) — except **dual-taxonomy** (W5) and **comparison-mode-architecture** (W6 `llm_arch` below).
+- Roles-hub, comparison, decision-tree, dual-path: **tokens inherit only** (no shared geometry wave) — except **comparison-mode-architecture** (W6 `llm_arch` below) and **multi-agent-flow** (W7 `m10_agent_orchestrator` below). **W5 dual-taxonomy Shell** superseded by `interactive-control-lab` hybrid (`m10_agent_taxonomy` / 10.45).
 - SVG diagram **title** captions use `typography.titleWeight` (not raw `800`); caption size via `title.compact` / `title.desktop` when near scale.
 - Step/badge labels may keep local weight.
 - **Comparison mode-absent steps (exception to `opacity.inactive` ≥0.88):** when a step is _not part of_ the active mode path (e.g. M4 sk. 45 Prompt: nodes 3/5; LlmArch basic: Tools/DB), do **not** use ghost-filled boxes at low opacity — use dashed **placeholder slots** (outline + short label / „Neaktyvu“, opacity 1). LMS inactive floor still applies to dimming _within_ an active path.
+
+### Multi-agent-flow checklist (new / polish) – Wave 7
+
+1. Shell = **Taip** (`density="hero"`) + guided walkthrough; opt-in `stepOfLabel`.
+2. Topology: hub orchestrator + side state + specialist row + tools dashed + evaluator → output + **left retry U** (not cycle `feedbackUPath`).
+3. Retry geometry via `orchestratorRetryPath.ts` (tip outside hub); `arrow.processTipLen` + `refX=0` / `getProcessArrowMarkerGeom` (do **not** change legacy `arrow.markerLen`).
+4. Role bands: hub violet; specialists teal; gates amber; infra slate; state brand — no Control/Execution/Data layer frames.
+5. Staged verb edge labels (`shouldShowEdgeLabel`); Title Case agents band (no ALL CAPS); inactive ≥ `opacity.inactive`.
+6. Do **not** unify BOX/viewBox with M12; brother `m12_multi_agent_schema` = tokens + tip/refX parity only.
+7. Geometry test: `lmsMultiAgentPolish.test.ts`.
 
 ### Type Etalon – comparison-mode-architecture (W6)
 

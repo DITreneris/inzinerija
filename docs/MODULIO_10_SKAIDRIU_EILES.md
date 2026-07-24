@@ -18,7 +18,7 @@
 | 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatize / Augment / Autonomize.                                                                    |
 | 3a   | **10.26**  | **Kada tvirtina žmogus?**                                | Po 3A – kontrolės lab (risk strip + režimai; pasekmė × atšaukimas); kopijuojama taisyklė lab viduje → 10.64 / M12. Be „HITL“ antraštėje. |
 | 3b   | **10.3**   | **Rolės ir sisteminio prompto šablonas**                 | Po ciklo + 3A + žmogaus kontrolė – paprastas sisteminis promptas **prieš** multi-agent taksonomiją.                                      |
-| 4    | **10.45**  | **DI agentų tipai ir rolės**                             | **NAUJA** – L0–L3 taksonomija; koordinatorius, specialistas, vertintojas, maršrutizatorius; CopyButton.                                  |
+| 4    | **10.45**  | **DI agentų tipai ir rolės**                             | Depth/roles hibridas: mini schema + decision lab (be scenarijaus); Pokalbis/Agentas/Komanda/Srautas; Copy lab viduje.                    |
 | 4a   | **10.451** | **Kontrolinis taškas: rolės ir perdavimas**              | **NAUJA** – path-step; įvestys / išvestys ir perdavimo taisyklė prieš workflow šablonus.                                                 |
 | 5    | **10.48**  | **5 workflow šablonai verslui**                          | **NAUJA** – grandinė, maršrutizavimas, lygiagretus, koordinatorius+specialistai, generatorius+vertintojas.                               |
 | 5a   | **10.481** | **Keli agentai → darbo eiga** (section-break)            | Recap po 10.48; spinoffCta → blog `how-to-design-an-ai-agent-workflow`.                                                                  |

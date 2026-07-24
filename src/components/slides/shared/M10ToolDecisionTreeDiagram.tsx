@@ -5,6 +5,7 @@ import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import {
   getM10ToolTreeLeaves,
   getM10ToolTreeLabels,
@@ -17,6 +18,8 @@ const LEAF_W = 118;
 const LEAF_H = 56;
 const ROOT_W = 200;
 const ROOT_H = 44;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_TIP = PROCESS_ARROW.tipLen;
 
 export default function M10ToolDecisionTreeDiagram({
   locale = 'lt',
@@ -51,14 +54,14 @@ export default function M10ToolDecisionTreeDiagram({
       <defs>
         <marker
           id={`m10tree-arr-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={DIAGRAM_TOKENS.arrow.markerLen}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
       </defs>
       <text
@@ -105,7 +108,7 @@ export default function M10ToolDecisionTreeDiagram({
         return (
           <g key={leaf.id} opacity={dim}>
             <path
-              d={`M ${rootCx} ${rootY + ROOT_H} L ${rootCx} ${midY} L ${cx} ${midY} L ${cx} ${leafTop}`}
+              d={`M ${rootCx} ${rootY + ROOT_H} L ${rootCx} ${midY} L ${cx} ${midY} L ${cx} ${leafTop - ARROW_TIP}`}
               fill="none"
               stroke={palette.flow}
               strokeWidth={DIAGRAM_TOKENS.stroke.flow}

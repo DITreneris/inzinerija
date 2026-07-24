@@ -23,8 +23,8 @@ export const RL_PROCESS_GEOMETRY = {
   /** Boxes low enough that edge labels (box.y−6) clear SVG title. */
   rowY: 62,
   diagramTitleY: 22,
-  /** Forward tip ≥~2× stroke.flow 3.5 (CustomGPT/LLM lesson); refX=0. */
-  arrowMarkerLen: 10,
+  /** LMS process tip – processTipLen + refX=0. */
+  arrowMarkerLen: DIAGRAM_TOKENS.arrow.processTipLen,
   fbTroughOffset: 36,
   mobileOffsetX: 40,
   mobileOffsetY: 48,

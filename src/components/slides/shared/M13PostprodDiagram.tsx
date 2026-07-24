@@ -10,6 +10,7 @@ import {
 } from './m13PostprodContent';
 import type { M10Locale } from './m10DiagramContent';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
   getVerticalFlowConnector,
@@ -20,7 +21,8 @@ import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 const STEP_COUNT = 4;
 const BOX_H = 46;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const DESKTOP_W = 560;
 const DESKTOP_COL_W = 400;
 const DESKTOP_COL = buildVerticalColumnOrigin({
@@ -96,15 +98,15 @@ export default function M13PostprodDiagram({
         </linearGradient>
         <marker
           id={`m13-pp-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
+            d={PROCESS_ARROW.pathD}
             fill={palette.flow}
             stroke={palette.flow}
             strokeWidth="0.5"

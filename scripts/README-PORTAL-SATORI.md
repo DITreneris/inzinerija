@@ -4,7 +4,7 @@
 
 Deterministic 16:9 editorial beat images for news-portal slide 53.5.
 
-**Plan + OK/FAIL audit:** `docs/development/PORTAL_BEAT_SATORI_PLAN.md`  
+**Plan + OK/FAIL audit (archyvas):** `docs/archive/development/PORTAL_BEAT_SATORI_PLAN.md`  
 **Sister repo reference:** [DITreneris/blog](https://github.com/DITreneris/blog) (`build:satori`, `generate_satori_images.mjs`)
 
 ## Setup (once)

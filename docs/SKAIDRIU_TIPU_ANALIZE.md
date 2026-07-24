@@ -1,7 +1,7 @@
 # Skaidrių tipų, turinio ir atvaizdavimo analizė
 
 > **Tikslas:** Aiškiai aprašyti skaidrių tipus, jų duomenų šaltinius, atvaizdavimą ir konkrečius tobulinimų siūlymus.  
-> **Šaltiniai:** `src/components/slides/`, `SlideContent.tsx`, `ModuleView.tsx`, `src/types/modules.ts`, `src/data/modules.json`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`, `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`. Istoriniai (lokaliai archyve): `docs/archive/root/UI_KOMPONENTU_ANALIZE.md`, `docs/archive/MODULIAI_4_5_6_STRUKTUROS_ANALIZE.md`.
+> **Šaltiniai:** `src/components/slides/`, `SlideContent.tsx`, `ModuleView.tsx`, `src/types/modules.ts`, `src/data/modules.json`, `docs/CONTENT_MODULIU_ATPAZINIMAS.md`, `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`.
 
 ---
 

@@ -58,7 +58,7 @@ export const M12_MULTI_AGENT_STEP_NODE_IDS: M12MultiAgentNodeId[][] = [
   ['output'],
 ];
 
-export const M12_MULTI_AGENT_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+export const M12_MULTI_AGENT_MARKER_LEN = DIAGRAM_TOKENS.arrow.processTipLen;
 
 export const M12_MULTI_AGENT_EDGES_DESKTOP: M12MultiAgentEdge[] = [
   {

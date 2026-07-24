@@ -10,6 +10,7 @@ import {
   type M13Locale,
 } from './m13MediaPipelineContent';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
   getVerticalFlowConnector,
@@ -21,7 +22,8 @@ import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 const STEP_COUNT = 6;
 const BOX_H = 46;
 const GAP = VERTICAL_FLOW_MIN_GAP;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const DESKTOP_W = 560;
 const DESKTOP_COL_W = 400;
 const DESKTOP_COL = buildVerticalColumnOrigin({
@@ -97,15 +99,15 @@ export default function M13MediaPipelineDiagram({
         </linearGradient>
         <marker
           id={`m13-media-pipeline-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
+            d={PROCESS_ARROW.pathD}
             fill={palette.flow}
             stroke={palette.flow}
             strokeWidth="0.5"

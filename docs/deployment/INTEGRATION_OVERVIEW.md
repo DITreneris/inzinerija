@@ -107,13 +107,13 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 
 ## Greitos nuorodos
 
-| Tikslas                                  | Dokumentas                                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                           |
-| Marketing handoff (env, Stripe, smoke)   | [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)           |
-| Tier 9 / vienas production build (memo)  | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) |
-| Production audit santrauka               | [docs/development/AUDIT_2026-06_SUMMARY.md](../development/AUDIT_2026-06_SUMMARY.md)       |
-| Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md)       |
-| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                             |
-| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                       |
-| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                                |
+| Tikslas                                  | Dokumentas                                                                                           |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                                     |
+| Marketing handoff (env, Stripe, smoke)   | [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)                     |
+| Tier 9 / vienas production build (memo)  | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)           |
+| Production audit santrauka (archyvas)    | [docs/archive/development/AUDIT_2026-06_SUMMARY.md](../archive/development/AUDIT_2026-06_SUMMARY.md) |
+| Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md)                 |
+| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                                       |
+| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                                 |
+| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                                          |

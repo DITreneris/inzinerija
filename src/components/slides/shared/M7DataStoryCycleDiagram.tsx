@@ -14,7 +14,11 @@ import {
 } from './verticalFlowGeometry';
 
 const STEP_COUNT = 5;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+/** LMS process tip – processTipLen (not legacy markerLen). */
+export const M7_DATA_STORY_ARROW_TIP = DIAGRAM_TOKENS.arrow.processTipLen;
+const ARROW_TIP_H = M7_DATA_STORY_ARROW_TIP * 0.9;
+const FB_TIP_H = 12;
+const FB_TIP_W = 8;
 
 const DESKTOP_VIEWBOX_W = 640;
 /** I3c-style crop – keep 5×108 story boxes (not AgentWorkflow 188). */
@@ -137,32 +141,16 @@ export default function M7DataStoryCycleDiagram({
         <marker
           id={`m7-story-arrow-${uid}`}
           markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerWidth={M7_DATA_STORY_ARROW_TIP}
+          markerHeight={ARROW_TIP_H}
+          refX={0}
+          refY={ARROW_TIP_H / 2}
           orient="auto"
         >
           <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
+            d={`M0 0 L${M7_DATA_STORY_ARROW_TIP} ${ARROW_TIP_H / 2} L0 ${ARROW_TIP_H} Z`}
             fill={palette.flow}
             stroke={palette.flow}
-            strokeWidth="0.5"
-          />
-        </marker>
-        <marker
-          id={`m7-story-feedback-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
-          orient="auto"
-        >
-          <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
-            fill={DIAGRAM_ROLE_COLORS.accentDark}
-            stroke={DIAGRAM_ROLE_COLORS.accentDark}
             strokeWidth="0.5"
           />
         </marker>
@@ -212,53 +200,56 @@ export default function M7DataStoryCycleDiagram({
         {isInteractive ? hint : ''}
       </text>
 
-      {!isCompactDiagram && (
-        <g aria-hidden>
-          <circle
-            cx={lastCx}
-            cy={lastBottom + 10}
-            r="4.5"
-            fill={feedbackStroke}
-            opacity="0.9"
-          />
-          <path
-            d={feedbackUPath({
-              firstCx,
-              lastCx,
-              startY: lastBottom + 10,
-              troughY: feedbackY,
-              tipY: firstBottom + 2,
-              cornerR: feedbackR,
-            })}
-            fill="none"
-            stroke={feedbackStroke}
-            strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
-            strokeDasharray="7 5"
-            markerEnd={`url(#m7-story-feedback-${uid})`}
-            opacity="0.92"
-          />
-          <rect
-            x={cx - 104}
-            y={feedbackY + 9}
-            width="208"
-            height="22"
-            rx="11"
-            fill={feedbackSoft}
-            opacity="0.92"
-          />
-          <text
-            x={cx}
-            y={feedbackY + 24}
-            textAnchor="middle"
-            fontFamily={DIAGRAM_TOKENS.font}
-            fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-            fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-            fill={feedbackStroke}
-          >
-            {feedbackLabel}
-          </text>
-        </g>
-      )}
+      {!isCompactDiagram &&
+        (() => {
+          const fbTipY = firstBottom + 2;
+          const fbTriBase = fbTipY + FB_TIP_H;
+          return (
+            <g aria-hidden>
+              <path
+                d={feedbackUPath({
+                  firstCx,
+                  lastCx,
+                  startY: lastBottom + 10,
+                  troughY: feedbackY,
+                  tipY: fbTipY,
+                  cornerR: feedbackR,
+                })}
+                fill="none"
+                stroke={feedbackStroke}
+                strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+                strokeDasharray="7 5"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                opacity="0.92"
+              />
+              <polygon
+                points={`${firstCx - FB_TIP_W},${fbTriBase} ${firstCx},${fbTipY} ${firstCx + FB_TIP_W},${fbTriBase}`}
+                fill={feedbackStroke}
+              />
+              <rect
+                x={cx - 104}
+                y={feedbackY + 9}
+                width="208"
+                height="22"
+                rx="11"
+                fill={feedbackSoft}
+                opacity="0.92"
+              />
+              <text
+                x={cx}
+                y={feedbackY + 24}
+                textAnchor="middle"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+                fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+                fill={feedbackStroke}
+              >
+                {feedbackLabel}
+              </text>
+            </g>
+          );
+        })()}
 
       {boxes.map((box, i) => {
         const [x, y, w, h] = box;
@@ -339,7 +330,7 @@ export default function M7DataStoryCycleDiagram({
                     box as DiagramBox,
                     boxes[i + 1],
                     x + w / 2,
-                    ARROW_MARKER_LEN
+                    M7_DATA_STORY_ARROW_TIP
                   );
                   return (
                     <line
@@ -357,7 +348,7 @@ export default function M7DataStoryCycleDiagram({
                 <line
                   x1={x + w}
                   y1={y + h / 2}
-                  x2={boxes[i + 1][0] - ARROW_MARKER_LEN}
+                  x2={boxes[i + 1][0] - M7_DATA_STORY_ARROW_TIP}
                   y2={y + h / 2}
                   stroke={palette.flow}
                   strokeWidth={DIAGRAM_TOKENS.stroke.flow}

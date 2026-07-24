@@ -1437,90 +1437,50 @@
         },
         {
           "id": 54,
-          "title": "Method vs agent prompt: the difference",
-          "subtitle": "Method = give the method; agent = AI acts as an agent with tools",
+          "title": "When methodical, when agentic?",
+          "subtitle": "Prompt mode by data need and method strictness",
           "type": "content-block",
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (30 s)",
-                "body": "**Method** = AI writes to your instructions (role, steps, format). **Agent** = AI acts as an agent – searches, gathers, uses tools. Below – how to tell them apart and when to use which.",
+                "heading": "In short",
+                "body": "Agentic is not a maturity ladder above methodical. It is **task architecture**: choose the mode by whether you need **live / external data**, and how **strict** the method and output format must be.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Two approaches to the same task",
-                "body": "The same goal (e.g. market analysis) can be achieved with a method or an agent approach.",
+                "heading": "Do it now",
+                "body": "Pick a business scenario and a prompt mode. The simulator shows whether the choice fits, what happens with a weak ask, and generates a rule for your RAG / Deep research notes and Module 6 project.",
+                "image": "m4_prompt_mode_simulator",
+                "imageAlt": "Methodical vs agentic prompt-mode simulator",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Method vs agent prompt – comparison",
-                "body": "",
-                "blockVariant": "terms",
-                "table": {
-                  "headers": ["Aspect", "Method prompt", "Agentic prompt"],
-                  "rows": [
-                    [
-                      "In short",
-                      "Specifies **how** to do it – role, steps, format",
-                      "Asks AI **to take action** – search, gather, analyse"
-                    ],
-                    [
-                      "AI behaviour",
-                      "Generates answer from instructions",
-                      "Acts as agent: uses search, tools"
-                    ],
-                    [
-                      "Tools",
-                      "Not needed – works without search",
-                      "Needed: Browse, Search, API (ChatGPT, Claude, Gemini)"
-                    ],
-                    [
-                      "Result",
-                      "Structured report, analysis",
-                      "Gathered data, lists, facts from the web"
-                    ],
-                    [
-                      "When to use",
-                      "When you have data and need analysis / structure",
-                      "When you need **to find new information** in real time"
-                    ]
-                  ]
-                }
+                "heading": "Check",
+                "body": "Can you name at least one task where a loose “analyse the market” ask is **not enough**? Does your mode rule include **mode**, **condition**, and **check**?",
+                "blockVariant": "accent"
               },
               {
-                "heading": "1️⃣ Methodological prompt – example",
-                "body": "**Situation:** You have a sector and want a structured analysis.\nAI generates the report from your methodology – no external search.",
+                "heading": "Example templates",
+                "body": "If you want classic copyable prompts outside the simulator – two templates below (methodical and agentic).",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Methodical prompt – example",
+                "body": "**Situation:** You have a sector and want structured analysis without external search.",
                 "copyable": "Role – analyst.\n\nCarry out a deep [Sector] analysis in [country/region] context.\n\nProvide:\n1) Main market players\n2) Market size and growth trends\n3) Regulatory aspects\n4) SWOT (strengths, weaknesses, opportunities, threats) analysis\n\nFormat: report with tables.\nLanguage: English.",
                 "blockVariant": "violet",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "2️⃣ Agentic prompt – example",
-                "body": "**Situation:** You need to find real data online.\nAI acts as an agent: searches, gathers, returns. **Turn on search (Browse / Search) in the platform.**",
+                "heading": "Agentic prompt – example",
+                "body": "**Situation:** You need real data from the web. **Turn on Browse / Search.**",
                 "copyable": "Search the web and find TOP 10 [sector] companies.\n\nFor each company provide:\n- Name\n- CEO / head\n- Annual revenue\n- Contacts (email, website)\n\nFormat: table.\nSources: state where you found the information.",
                 "blockVariant": "violet",
                 "collapsible": true,
                 "collapsedByDefault": true
-              },
-              {
-                "heading": "How to write an agentic prompt (full template)",
-                "body": "Full **agentic prompt template (5 parts)** – Role, Task in steps, Tools, Output format, Error handling – and rules and tips are in **Module 10**, slide \"When to choose an agent…\". There you'll find the copyable template and guidelines.",
-                "blockVariant": "brand",
-                "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "How to tell them apart? (check questions)",
-                "body": "• **Role** – is it specified? (both can have it)\n• **Result** – \"give a report\" (methodological) vs \"find and give a list\" (agentic)\n• **Tools** – is search / tools needed? (agentic only)\n• **Format** – methodological specifies structure; agentic specifies **what to gather**",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true
-              },
-              {
-                "heading": "In short",
-                "body": "**Methodological** = AI writes from your instructions.\n**Agentic** = AI acts and searches for you.\n\nMany real tasks use **both types together** – first the agentic one gathers data, then the methodological one analyses it.",
-                "blockVariant": "brand"
               }
             ],
             "footer": "Next – slide 13: Custom GPT creation process"
@@ -3460,36 +3420,36 @@
     {
       "id": 5,
       "title": "Presentation sprint",
-      "subtitle": "15 min presentation draft + mini knowledge quiz",
-      "description": "15 min presentation draft + mini quiz. Brief → structure → slides. ≥70% recommended before Module 6.",
+      "subtitle": "Sprint + mini quiz: brief → storyline → draft → QC",
+      "description": "Presentation draft + mini quiz. Brief → storyline → slides. ≥70% before Module 6.",
       "icon": "ClipboardCheck",
       "level": "test",
-      "duration": "15–18 min",
+      "duration": "25–30 min",
       "slides": [
         {
           "id": 45.5,
           "title": "Module 5: Presentation sprint",
-          "subtitle": "15 min – 8-slide presentation with AI",
+          "subtitle": "Brief → storyline → draft → quality check",
           "type": "action-intro",
           "content": {
-            "whyBenefit": "In 15 min you get a presentation draft. Brief, structure, quality check – one template, one result.",
+            "whyBenefit": "In ~25–30 min you get a presentation draft. Brief, storyline, structure, quality check – one path, one result.",
             "ctaText": "See what's ahead – in 1 minute!",
             "heroStat": "Module 5: Presentation sprint.",
-            "heroText": "15 min – 8-slide presentation with AI.",
-            "heroSubText": "Brief → structure → content. In this module you copy the template, fill in [Topic] and [Audience], run AI – and get a ready draft.",
-            "firstActionCTA": "Next: open the slide \"What is the 15 min sprint\" and copy the 8-slide template. Fill in [Topic], [Audience], run AI.",
-            "duration": "~15–18 min (sprint + mini quiz)",
-            "audience": "For those who finished Module 4 and want to create a presentation draft in 15 min before the Module 6 project.",
+            "heroText": "25–30 min – 8-slide presentation with AI.",
+            "heroSubText": "Brief → storyline → structure → content → QC. You copy templates, fill [Topic] and [Audience], run AI – and get a draft before Module 6.",
+            "firstActionCTA": "Next: open the slide \"What is the 15 min sprint and what to do first\" and copy the 8-slide template. Fill [Topic], [Audience], run AI.",
+            "duration": "~25–30 min (sprint + QC + mini quiz)",
+            "audience": "For those who finished Module 4 and want a presentation draft with storyline and quality check before the Module 6 project.",
             "outcomes": [
               "Create a brief (topic, audience, goal)",
-              "Generate an 8-slide structure with AI",
-              "Get a ready draft and do a quick quality check",
-              "After passing the mini quiz – move to Module 6",
-              "Download Module 5 handout (PDF) – sprint, brief, template, quiz summary"
+              "Form a storyline (decision + 3 arguments + CTA)",
+              "Generate an 8-slide structure and draft with AI",
+              "Complete the QC lab and mini quiz (≥70% → Module 6)",
+              "Download Module 5 handout (PDF)"
             ],
-            "handoutPromise": "After this module you can download the Module 5 handout (PDF): sprint overview, brief, 8-slide template, and mini quiz summary.",
+            "handoutPromise": "After this module you can download the Module 5 handout (PDF): sprint, brief, storyline, 8-slide template, QC and quiz summary.",
             "unstructuredPrompt": "Write an 8-slide presentation about [topic].",
-            "structuredPrompt": "Brief: topic [X], audience [Y], goal [Z]. 8 slides. Create structure (title + 2 bullets each), then full content for slide 3. Quality check – 5 points."
+            "structuredPrompt": "Brief: topic [X], audience [Y], goal [Z]. Storyline: decision + 3 arguments. 8 slides. Structure (assertion title + 2 bullets), then full content for slide 3. Quality check – 6 points."
           },
           "footer": "Next – slide 2: What is the 15 min sprint and what to do first"
         },
@@ -3500,9 +3460,9 @@
           "subtitle": "Brief and 8-slide structure – first step",
           "type": "content-block",
           "content": {
-            "whyBenefit": "After this sprint you'll create business presentations in 15 minutes!",
-            "duration": "~15–18 min",
-            "firstActionCTA": "Copy the 8-slide structure template below, fill in [Topic] and [Audience], run AI – get your plan.",
+            "whyBenefit": "After this module you'll create business presentation drafts quickly and with structure.",
+            "duration": "~25–30 min",
+            "firstActionCTA": "Copy the 8-slide structure template below, fill [Topic] and [Audience], run AI – get your plan.",
             "preCopyCheckBlock": {
               "question": "What must you include in the brief before generating the presentation?",
               "options": [
@@ -3512,7 +3472,7 @@
                 "Only visual style"
               ],
               "correct": 1,
-              "explanation": "A full brief (topic, audience, goal, scope, tone) lets AI generate the structure quickly and accurately. Without it, AI guesses and gives generic output."
+              "explanation": "A full brief (topic, audience, goal, scope, tone) lets AI generate structure quickly and accurately. Without it, AI guesses."
             },
             "artifactDownload": {
               "filename": "presentation-8-slide-template.txt",
@@ -3522,12 +3482,12 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Process:** First step – brief and 8-slide structure. AI (structure) → then full content and tool. Start here – copy the template below.",
+                "body": "**Process:** Brief → storyline (next slide) → 8-slide structure → content → QC. Start with brief and structure – copy the template below.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Do it now (2–5 min)",
-                "body": "**What to do:** Copy the 8-slide structure template below. Fill in [Topic] and [Audience], run AI. **Result:** 8-slide plan (titles + 2–3 points each). Next – slide \"Full content and tools\".",
+                "body": "**What to do:** Copy the 8-slide structure template below. Fill [Topic] and [Audience], run AI. **Result:** 8-slide plan. Next – storyline, then full content and tools.",
                 "blockVariant": "brand"
               },
               {
@@ -3536,48 +3496,123 @@
                 "copyable": "1. Problem / context\n2. Why it matters now\n3. Solution idea\n4. How it works (simply)\n5. Example / use case\n6. Benefits / results\n7. Risks / limits\n8. What to do next (CTA)"
               },
               {
-                "heading": "Master prompt: structure only",
-                "body": "This prompt asks only for **structure** – not full content. Fill in [Your text], copy into AI or your tool.",
-                "copyable": "Create an 8-slide presentation structure (not full content). Topic: [Your text]. Audience: [Your text]. For each slide give: title and 2–3 main points. Format: numbered list. Tone: clear, non-tech."
+                "heading": "🔽 Master prompt (structure only)",
+                "body": "Asks only for structure – not full content. Fill [Your text], copy into AI. The full 6-block content prompt is on \"Full content and tools\".",
+                "copyable": "Create an 8-slide presentation structure (not full content). Topic: [Your text]. Audience: [Your text]. For each slide give: title and 2–3 main points. Format: numbered list. Tone: clear, non-tech.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "🔽 Want more detail? Process diagram",
+                "heading": "🔽 Process diagram",
                 "image": "di_prezentacijos_workflow",
-                "body": "Click a step on the diagram – explanation below. The same process works with any tool. Next – slide \"Full content and tools\".",
+                "body": "Click a step on the diagram – explanation below. The same process works with any tool.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 3: Full content and tools"
+            "footer": "Next – slide 3: Storyline – decision and 3 arguments"
+          }
+        },
+        {
+          "id": 47.2,
+          "title": "Storyline – decision and 3 arguments",
+          "shortTitle": "Storyline",
+          "subtitle": "Titles = assertions; governing thought before detail",
+          "type": "content-block",
+          "content": {
+            "whyBenefit": "Without a storyline AI gives “about the topic” slides. With a storyline – an argument you can present.",
+            "firstActionCTA": "Copy the storyline prompt below, fill in the decision and 3 arguments, run AI.",
+            "sections": [
+              {
+                "heading": "1️⃣ In short",
+                "body": "**Storyline:** (1) what the audience must decide, (2) 3 arguments, (3) CTA. Titles = **assertions**, not topic labels.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Do it now",
+                "body": "Copy the prompt below. If you already have an 8-slide structure – rewrite titles into assertions using the storyline.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Topic title vs assertion title",
+                "body": "Titles should sound like assertions, not topic labels.",
+                "table": {
+                  "headers": ["Weak (topic)", "Strong (assertion)"],
+                  "rows": [
+                    ["About the Q3 budget", "Prioritize X over Y in Q3"],
+                    ["Risks", "Without a 2-week buffer we will slip"],
+                    ["Next steps", "Approve the pilot by Friday"]
+                  ],
+                  "comparisonStyle": true
+                },
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Copyable storyline prompt",
+                "body": "Fill [Your text], run AI – get a governing thought, 3 arguments and a CTA.",
+                "copyable": "Prepare a presentation storyline (not full content).\n\nTOPIC: [Your text]\nAUDIENCE: [Your text]\nDECISION (what the audience must decide / remember): [Your text]\n\nProvide:\n1) Governing thought (1 sentence)\n2) 3 arguments (each = assertion title, not a topic label)\n3) CTA (what to do next)\n\nRule: titles = assertions (\"Prioritize X in Q3\"), not topics (\"About Q3\").",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Check",
+                "body": "Is it clear what the audience must decide? Do 3 arguments support that decision? Do titles sound like assertions?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 4: Full content and tools"
           }
         },
         {
           "id": 47.5,
           "title": "Full content and tools – paste into slides",
-          "subtitle": "Content prompt and tools (Gamma, Canva, etc.)",
+          "subtitle": "6-block prompt + tool tree (3 paths)",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "Content is generated by AI. Now – full content prompt and tools to paste into. First copy the prompt below, run AI, then choose a tool for slides.",
+                "body": "You generate content with AI. Then pick **one** path for slides. Recommended today: AI text → **Gamma**.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Do it now (5–15 min)",
-                "body": "**What to do:** Copy the full content prompt below, fill in [Topic]/[Audience], run AI. Paste the output into one of the tools (Gamma, Canva, etc.) – get ready-made slides.",
+                "body": "**What to do:** Copy the 6-block prompt below, fill [Topic]/[Audience], run AI. Paste into your chosen tool.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Prompt for full content (6-block principles)",
-                "body": "Full content-generation prompt following the Module 1 system. Fill in [Your text], copy – then paste into one of the presentation tools below.",
+                "heading": "Prompt for full content (6 blocks) – only full version",
+                "body": "Follows the Module 1 system. Fill [Your text], copy – then paste into a tool using the tree below.",
                 "copyable": "META: You are an expert at creating presentation content. Goal – create content for an 8-slide presentation. Audience: [Your text].\n\nINPUT: Topic – [Your text]. Constraints – 8 slides; structure: problem → why it matters → solution → how it works → example → benefits → risks → CTA.\n\nOUTPUT: For each slide – title, 2–3 bullet points, visual suggestion. Format – clear, concise. Tone – professional, non-tech.\n\nREASONING: First define each slide's purpose, then write the content.\n\nQUALITY: No more than 3 points per slide; plain language; no jargon.\n\nADVANCED: (optional) Low temperature – for clear, consistent content.",
                 "blockVariant": "brand"
               },
               {
+                "heading": "Tool tree – 3 paths",
+                "body": "**1. Recommended today:** AI (ChatGPT / Claude) → **Gamma** – fast draft.\n**2. Office ecosystem:** Copilot / PowerPoint – if you work in Microsoft.\n**3. Visual templates:** Canva – if you need quick visuals.\n\nA good prompt and clear structure = 80% of the presentation. The tool is just the format.",
+                "blockVariant": "brand",
+                "presentationToolsBlock": true,
+                "presentationTools": [
+                  {
+                    "name": "Gamma (recommended)",
+                    "url": "https://gamma.app",
+                    "forWhom": "AI text → slides. Fast draft."
+                  },
+                  {
+                    "name": "Copilot",
+                    "url": "https://copilot.microsoft.com",
+                    "forWhom": "Office / PowerPoint ecosystem"
+                  },
+                  {
+                    "name": "Canva",
+                    "url": "https://www.canva.com",
+                    "forWhom": "Visual templates, Magic Write"
+                  }
+                ]
+              },
+              {
                 "heading": "1. First: AI – structure and content",
-                "body": "Create structure and content in ChatGPT, Claude, Gemini or Copilot. Copy the prompt above, paste – get 8-slide content.",
+                "body": "Create content in ChatGPT, Claude or Gemini. Copy the 6-block prompt above.",
                 "blockVariant": "brand",
                 "presentationToolsBlock": true,
                 "presentationTools": [
@@ -3595,34 +3630,21 @@
                     "name": "Gemini",
                     "url": "https://gemini.google.com",
                     "forWhom": "Research, documents, Google ecosystem"
-                  },
-                  {
-                    "name": "Copilot",
-                    "url": "https://copilot.microsoft.com",
-                    "forWhom": "If you use Microsoft Office"
                   }
                 ]
               },
               {
-                "heading": "2. Then: paste content into a tool",
-                "body": "Content is already generated by AI. Now choose a tool, paste – get ready-made slides.",
-                "blockVariant": "brand",
+                "heading": "🔽 Other tools",
+                "body": "If Gamma / Copilot / Canva do not fit – these options.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
                 "presentationToolsBlock": true,
                 "presentationTools": [
-                  {
-                    "name": "Gamma",
-                    "url": "https://gamma.app",
-                    "forWhom": "Web-style, interactive. Multiple languages."
-                  },
                   {
                     "name": "SlidesAI",
                     "url": "https://www.slidesai.io",
                     "forWhom": "Text → slides. Google Slides."
-                  },
-                  {
-                    "name": "Canva",
-                    "url": "https://www.canva.com",
-                    "forWhom": "Magic Write, templates, visuals."
                   },
                   {
                     "name": "Prezent.ai",
@@ -3645,16 +3667,9 @@
                 "heading": "Bottom line",
                 "body": "**A good prompt and clear structure = 80% of the presentation.** The tool is just the slide format.",
                 "blockVariant": "brand"
-              },
-              {
-                "heading": "🔽 Want more detail? Result and your journey",
-                "body": "**In 15 min** you get a ready framework and prompts. **Key:** Tools don't create – **the prompt creates**. Start with structure (previous slide), then full content and choose a tool.",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 4: Sprint: Brief, structure, slides"
+            "footer": "Next – slide 5: Sprint"
           }
         },
         {
@@ -3678,36 +3693,80 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Why it's worth it:** In 15 min you'll create a presentation draft on any topic: 8-slide structure + 1 fully prepared slide. Brief → structure → content – one template, one result.",
+                "body": "**Why it is worth it:** One template gives an 8-slide structure + 1 fully prepared slide + QC. This is a draft, not polish.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Do it now (2–15 min)",
-                "body": "**What to do:** Copy the sprint template below, fill in [Topic], [Audience], [Goal], run AI. **What you get:** 8-slide structure + full content for slide 3 + 5-point quality check.",
+                "body": "**What to do:** Copy the sprint template below, fill [Topic], [Audience], [Goal], run AI. **What you get:** 8-slide structure + full content for slide 3 + 6-point quality check.",
                 "blockVariant": "emerald"
               },
               {
                 "heading": "3️⃣ Copyable template",
-                "body": "Copy the template below, fill in [your topic], [your audience] and run AI.",
+                "body": "Copy the template below, fill [your topic], [your audience] and run AI.",
                 "blockVariant": "terms"
               },
               {
-                "heading": "🔽 Want more detail? Sprint timeline (15 min)",
-                "body": "0–2 min: create brief (topic, audience, goal, tone).\n2–6 min: generate 8-slide structure (headline + 2 bullets each).\n6–10 min: generate 2 \"heavy\" slides (comparison / diagram / table).\n10–13 min: visual instructions (what goes where, 2–3 image ideas).\n13–15 min: quick quality check (clarity, audience, structure, facts).",
+                "heading": "🔽 Sprint timeline (guide)",
+                "body": "0–3 min: brief + storyline direction.\n3–8 min: 8-slide structure (assertion + 2 bullets).\n8–14 min: full content / 2 heavy slides.\n14–18 min: paste into a tool (polish optional).\n18–22 min: QC (next slide) + soft proof.",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "4️⃣ Check (1 min)",
-                "body": "Is the goal clear? Is the audience clear? Is the structure logical? If there are facts – are they not \"made up\" (if needed – ask for sources or mark assumptions).",
+                "heading": "4️⃣ Soft proof – check yourself before the mini quiz",
+                "body": "This is a draft, not final polish. Check yourself:\n• I ran AI with brief / storyline\n• I have 8 titles (ideally assertions)\n• I did a quick QC (or the next slide – QC lab)",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 5: Help cards (when you need them)",
+            "footer": "Next – slide 6: QC lab",
             "practicalTask": {
               "templateLabel": "📋 Sprint template (copy-paste)",
-              "template": "You are an AI presentation writer. \n\nTOPIC: [your topic]\nAUDIENCE: [who it's for]\nGOAL: [what the presentation should achieve]\nTONE: professional, clear, no fluff\nSCOPE: 8 slides\nFORMAT: for each slide give: 1) title, 2) 2 bullets (≤12 words), 3) one visual idea (diagram / icon / table).\n\nFirst generate the 8-slide structure. Then generate full content for slide 3 (expanded, with example). Finally give a 5-point quality check: what to improve for clarity for the audience."
+              "template": "You are an AI presentation writer.\n\nTOPIC: [your topic]\nAUDIENCE: [who it's for]\nGOAL: [what the presentation should achieve]\nTONE: professional, clear, no fluff\nSCOPE: 8 slides\nFORMAT: for each slide give: 1) title (assertion), 2) 2 bullets (≤12 words), 3) one visual idea (diagram / icon / table).\n\nFirst generate the 8-slide structure. Then generate full content for slide 3 (expanded, with example). Finally give a 6-point quality check: clarity, audience, structure, facts/assumptions, assertion titles, clear CTA."
             }
+          }
+        },
+        {
+          "id": 510.5,
+          "title": "QC lab – weak vs strong draft",
+          "shortTitle": "QC lab",
+          "subtitle": "Human quality check before you send",
+          "type": "content-block",
+          "content": {
+            "whyBenefit": "An AI draft looks finished before it is accurate. QC is your stop before publishing.",
+            "firstActionCTA": "Read the weak fragment, then the strong one. Copy the QC checklist onto your draft.",
+            "sections": [
+              {
+                "heading": "1️⃣ In short",
+                "body": "**6 points:** clarity · audience · structure · facts/assumptions · titles = assertions · clear CTA. If facts matter – use the Hallucinations help card.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "🔽 Weak fragment",
+                "body": "**Title:** About exports\n• Many interesting trends and numbers about the market in recent years with various aspects\n• Important to talk about opportunities\n• Also risks and a few more thoughts\n*(No CTA, title is a topic, bullets too long, numbers missing / \"made up\".)*",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": false
+              },
+              {
+                "heading": "🔽 Strong fragment",
+                "body": "**Title:** Export +12% – prioritize 3 markets\n• Export +12% YoY (source: [add])\n• Top 3 markets drive 60% of volume\n**CTA slide:** Approve a Baltic pilot by Q3.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": false
+              },
+              {
+                "heading": "2️⃣ Do it now",
+                "body": "Paste your 1 slide into AI with this prompt, or mark the 6 points yourself.",
+                "copyable": "Check this slide against 6 points. For each: Yes / No + 1 sentence how to fix.\n\n1) Clarity 2) Audience 3) Structure 4) Facts vs assumptions 5) Title = assertion 6) CTA (if this is the last / action slide)\n\nSLIDE:\n[paste]",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Check",
+                "body": "Is the title an assertion? Are there no \"made-up\" facts unmarked? If facts are shaky – open the **Hallucinations** help card (next slide).",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 7: Help cards"
           }
         },
         {
@@ -3720,46 +3779,46 @@
             "sections": [
               {
                 "heading": "How to use",
-                "body": "**When needed:** if you get stuck during the sprint – pick a situation below and copy the template. If the topic doesn't apply – skip."
+                "body": "**When needed:** if you get stuck during the sprint or QC – pick a situation below and copy the template. After the QC lab – the Hallucinations card is especially useful."
               },
               {
                 "heading": "RAG: when the answer must cite sources",
-                "body": "Use when the presentation has facts/figures and you want AI to clearly separate: what comes from sources vs assumptions.",
+                "body": "Use when the presentation has facts/figures and you want AI to separate sources vs assumptions.",
                 "copyable": "Work only with the information I provide (below). If information is insufficient – say \"I don't know\" and state what's missing.\n\nTask: prepare 1 slide about [TOPIC].\nFormat: Title + 2 bullets + \"Sources\" (1–3 points).\nRule: link each fact to a source (e.g. [Source 1]).\n\nCONTEXT/SOURCES:\n[paste 1–3 source excerpts]\n",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Tokens: when context doesn't fit",
-                "body": "Use when you have a lot of text/sources and AI starts \"forgetting\" earlier information or answers get messy.",
+                "body": "Use when you have a lot of text/sources and AI starts forgetting earlier information.",
                 "copyable": "I will paste a long text. Your task – compress it into a \"context capsule\" that fits the prompt.\n\n1) Extract 10–15 key facts (max 1 sentence each).\n2) Build a 6–8 key-term glossary (term → 1 line).\n3) Give 3 questions that must be answered for the presentation to be accurate.\n\nReturn as:\nCONTEXT_CAPSULE:\n- Facts: ...\n- Terms: ...\n- Missing questions: ...\n",
                 "blockVariant": "terms"
               },
               {
                 "heading": "Manipulation: when the question is biased / you want neutral",
-                "body": "Use when you catch yourself asking \"prove that…\", \"write why we're the best…\" and want objective content.",
+                "body": "Use when you catch yourself asking \"prove that…\" and want objective content.",
                 "copyable": "Rewrite my request into 2 versions:\nA) Neutral (no bias, both sides)\nB) Business (persuasive), but ethical (no made-up facts)\n\nThen generate 1 slide from the neutral version: title + 2 bullets + 1 \"risk/counterargument\".\n\nMY REQUEST:\n[paste]\n",
                 "blockVariant": "default"
               },
               {
                 "heading": "Hallucinations: when you need reliability",
-                "body": "Use when AI gives convincing facts but you want a quick \"stop\": what's true, what's unclear, what to check.",
-                "copyable": "Reliability check.\n\n1) List all statements that sound like facts (max 10).\n2) For each: mark (A) has a source in my context / (B) no source.\n3) If (B) – rewrite the statement as an assumption or suggest what source is needed.\n\nThen give a corrected slide version: title + 2 bullets + \"What's unclear / what to check\".\n\nTEXT/SLIDE:\n[paste]\n",
+                "body": "Use when AI gives convincing facts but you want a quick stop. Fits after the QC lab.",
+                "copyable": "Reliability check.\n\n1) List all statements that sound like facts (max 10).\n2) For each: mark (A) has a source in my context / (B) no source.\n3) If (B) – rewrite as an assumption or suggest what source is needed.\n\nThen give a corrected slide: title + 2 bullets + \"What's unclear / what to check\".\n\nTEXT/SLIDE:\n[paste]\n",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 6: Warm-up check"
+            "footer": "Next – slide 8: Warm-up check"
           }
         },
         {
           "id": 511,
           "title": "Warm-up check",
-          "subtitle": "A few practice questions before the mini quiz – not counted in the result",
+          "subtitle": "Practice questions before the mini quiz – not counted in the score",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
               {
                 "id": "m5-warm-1",
-                "question": "What is a \"brief\" in the context of the presentation sprint?",
+                "question": "What is a \"brief\" in the presentation sprint?",
                 "options": [
                   "A short description: topic, audience, goal – what AI uses to generate structure and content",
                   "Only the number of slides",
@@ -3767,7 +3826,7 @@
                   "Only the quality-check list"
                 ],
                 "correct": 0,
-                "explanation": "A brief orients AI: what topic, who it's for, what result we expect. A good brief reduces back-and-forth and improves the result. Next – the mini quiz checks if you got the sprint logic."
+                "explanation": "A brief orients AI: topic, audience, expected result. A good brief reduces back-and-forth."
               },
               {
                 "id": "m5-warm-2",
@@ -3779,11 +3838,11 @@
                   "Because the quiz requires exactly 8 slides"
                 ],
                 "correct": 0,
-                "explanation": "Structure (e.g. 8 slides: intro, problem, solution…) is a \"map\" for AI and you. Less guessing, more repeatable results. If wrong – review the \"Presentation workflow\" slide (47)."
+                "explanation": "Structure is a map for AI and you. Less guessing, more repeatable results."
               },
               {
                 "id": "m5-warm-3",
-                "question": "What do you check in the \"quality check\" step?",
+                "question": "What do you check in the quality-check step?",
                 "options": [
                   "Whether content matches the brief, no errors, slides are clear and consistent",
                   "Only whether the tool saves the file",
@@ -3791,7 +3850,19 @@
                   "Only whether AI answered quickly"
                 ],
                 "correct": 0,
-                "explanation": "Quality check – does the result match the goals (brief), are there no factual errors, is the structure clear. It's the last step before sharing. Next – the mini quiz."
+                "explanation": "Quality check – goals (brief), factual errors, clear structure. Last step before sharing."
+              },
+              {
+                "id": "m5-warm-4",
+                "question": "How is a storyline different from \"just a list of 8 topics\"?",
+                "options": [
+                  "A storyline has a decision, 3 arguments and a CTA; titles = assertions",
+                  "A storyline means more animations",
+                  "A storyline only works in Gamma",
+                  "A storyline replaces the brief"
+                ],
+                "correct": 0,
+                "explanation": "A storyline gives a governing thought and arguments. A topic list without a decision stays generic."
               }
             ]
           }
@@ -3799,13 +3870,13 @@
         {
           "id": 512,
           "title": "Mini quiz after the sprint",
-          "subtitle": "3–5 questions on brief, structure, tool and quality check",
+          "subtitle": "Questions on brief, storyline, structure, tool and quality check",
           "type": "test-intro",
           "content": {
             "introTitle": "Mini quiz after the presentation sprint",
-            "introBody": "You've just done the **15 min presentation sprint** (you created a presentation draft from what you had). This mini quiz checks that you got the main ideas: a clear brief, structure, tool choice and a quick quality check.",
-            "microWinPhrase": "If you've already done the 15 min sprint – you're ready. This quiz just reinforces what you learned.",
-            "thresholdsText": "Score **≥70%** – recommended to move to Module 6 (practice). Score **<70%** – recommended to retake the mini quiz and review \"Structured process\" (43) and \"Presentation workflow\" (47). You can still continue if you prefer.",
+            "introBody": "You just did the **presentation sprint** (brief, storyline, draft, QC). This mini quiz checks the essentials: brief, storyline, structure, tool choice and a quick quality check.",
+            "microWinPhrase": "If you've already done the sprint and QC – you're ready. This quiz reinforces what you learned.",
+            "thresholdsText": "Score **≥70%** – recommended to move to Module 6 (practice). Score **<70%** – retake the mini quiz and review the sprint, storyline and QC lab. You can still continue if you prefer.",
             "ctaLabel": "Start mini quiz"
           }
         },
@@ -3818,7 +3889,7 @@
             {
               "id": "m5-sprint-q1",
               "type": "scenario",
-              "scenarioContext": "You're about to create a 15 min presentation draft on \"Export trends 2024\". Before starting – what must you tell AI?",
+              "scenarioContext": "You're about to create a presentation draft on \"Export trends 2024\". Before starting – what must you tell AI?",
               "question": "What should you include in the brief?",
               "options": [
                 "Topic + audience + goal + number of slides + tone/format",
@@ -3827,11 +3898,11 @@
                 "Only visual style"
               ],
               "correct": 0,
-              "explanation": "Without a brief AI guesses. Topic, audience, goal, scope and format give you a predictable result quickly.",
+              "explanation": "Without a brief AI guesses. Topic, audience, goal, scope and format give a predictable result.",
               "ifWrongSee": {
-                "moduleId": 4,
-                "slideId": 43,
-                "label": "Structured process"
+                "moduleId": 5,
+                "slideId": 47,
+                "label": "What is the 15 min sprint"
               }
             },
             {
@@ -3844,7 +3915,7 @@
                 "Always switch to another tool"
               ],
               "correct": 0,
-              "explanation": "Structure and clear limits are the biggest lever. Usually you don't need to change the tool – tighten the format.",
+              "explanation": "Structure and clear limits are the biggest lever. Usually tighten the format – do not switch tools.",
               "ifWrongSee": {
                 "moduleId": 5,
                 "slideId": 47.5,
@@ -3861,16 +3932,16 @@
                 "Does the presentation use only English terms"
               ],
               "correct": 0,
-              "explanation": "Quality = a minimal \"stop\" before publishing: clarity, audience, structure and fact reliability.",
+              "explanation": "Quality = a minimal stop before publishing: clarity, audience, structure and fact reliability.",
               "ifWrongSee": {
-                "moduleId": 4,
-                "slideId": 68,
-                "label": "Fact-checking (Module 7)"
+                "moduleId": 5,
+                "slideId": 510.5,
+                "label": "QC lab"
               }
             },
             {
               "id": "m5-sprint-q4",
-              "question": "Which tool choice makes most sense for a 15 min presentation draft?",
+              "question": "Which tool choice makes most sense for a presentation draft?",
               "options": [
                 "Presentation generator (e.g. Gamma) or AI (ChatGPT/Claude) with clear structure and template",
                 "Only a text editor (Word) without AI",
@@ -3878,11 +3949,30 @@
                 "No difference – any tool gives the same result"
               ],
               "correct": 0,
-              "explanation": "The tool matters, but the biggest lever is prompt structure and a clear brief. Gamma or AI with a template fits a draft best.",
+              "explanation": "The tool matters, but the biggest lever is prompt structure and a clear brief.",
               "ifWrongSee": {
                 "moduleId": 5,
                 "slideId": 47.5,
                 "label": "Full content and tools"
+              }
+            },
+            {
+              "id": "m5-sprint-q5",
+              "type": "scenario",
+              "scenarioContext": "You got 8 slides: titles \"About the product\", \"Market\", \"Next steps\"; 5-line bullets; a 47% figure with no source; no CTA.",
+              "question": "What is the best first step?",
+              "options": [
+                "Rescue: assertion titles, max 2 bullets, mark assumptions, add a CTA",
+                "Switch tools without changing the content",
+                "Ask for even longer text",
+                "Delete all slides and start with no brief"
+              ],
+              "correct": 0,
+              "explanation": "A messy deck is fixed with structure and QC, not a new tool. The rescue prompt is on the bonus slide after results.",
+              "ifWrongSee": {
+                "moduleId": 5,
+                "slideId": 516,
+                "label": "Bonus: Fix a messy deck"
               }
             }
           ]
@@ -3894,9 +3984,9 @@
           "type": "test-results",
           "content": {
             "passedTitle": "Congratulations!",
-            "passedMessage": "Score **[X]%**. You have a working presentation structure and understand the sprint logic – you can move to Module 6 practice.",
-            "thresholdExplanation": "≥70% means: you understand brief, structure and quality check – you can move to the project (Module 6). Below 70% – we recommend reviewing the sprint and the slides listed below again.",
-            "useCaseBlock": "Use the same 15 min sprint template for another presentation – team meeting, pitch or report. Brief + 8 slides + quality check.",
+            "passedMessage": "Score **[X]%**. You have a working presentation structure, a storyline direction and understand the sprint logic – you can move to Module 6 practice.",
+            "thresholdExplanation": "≥70% means: you understand brief, storyline, structure and quality check – you can move to the project (Module 6). Below 70% – review the sprint and the slides listed below.",
+            "useCaseBlock": "Use the same sprint template for another presentation – team meeting, pitch or report. Brief + storyline + 8 slides + quality check.",
             "passedCtaLabel": "Continue to module wrap-up",
             "failedTitle": "Score [X]%",
             "failedMessage": "We recommend retaking the mini quiz first. If things are still unclear, review the slides listed below. You can still continue to the module wrap-up if you prefer.",
@@ -3904,6 +3994,42 @@
             "failedCtaContinue": "Continue to module wrap-up anyway",
             "failedCtaReview": "Review Module 4",
             "handoutDownloadLabel": "Download Module 5 handout (PDF)"
+          }
+        },
+        {
+          "id": 516,
+          "title": "Bonus: Fix a messy deck",
+          "shortTitle": "Rescue",
+          "subtitle": "Rescue prompt – when the draft is long, has no CTA and weak titles",
+          "type": "content-block",
+          "optional": true,
+          "badgeVariant": "bonus",
+          "content": {
+            "whyBenefit": "You passed the mini quiz – bonus: how to rescue a weak AI draft without switching tools.",
+            "sections": [
+              {
+                "heading": "1️⃣ In short",
+                "body": "A messy deck = weak titles, long bullets, no CTA, unsourced numbers. Rescue = tighten format and storyline, not \"write it better\".",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "2️⃣ Do it now",
+                "body": "Paste a weak draft (or invent one) into the prompt below and run AI.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Copyable rescue prompt",
+                "body": "Copy, paste your draft instead of [paste].",
+                "copyable": "Here is a messy 8-slide draft. Fix it.\n\nPROBLEMS: long bullets, no CTA, titles are topics (not assertions), numbers without sources.\n\nTASK:\n1) Rewrite 8 titles as assertions\n2) Max 2 bullets per slide (≤12 words)\n3) Add a clear CTA on slide 8\n4) Mark unsourced numbers as assumptions or ask for a source\n\nDRAFT:\n[paste]",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "3️⃣ Check",
+                "body": "Did titles become assertions? Bullets ≤2? Is there a CTA? Are numbers sourced or marked as assumptions?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "You can return to module wrap-up or start Module 6."
           }
         }
       ],
@@ -3938,9 +4064,10 @@
             "whyBenefit": "After the project you'll have one ready artefact (research report or Custom GPT) and templates for further work.",
             "duration": "~25–35 min",
             "audience": "For those who have completed Modules 1–5 and want to apply the 6-block system, RAG and fact-checking in one project (research report or Custom GPT).",
-            "firstActionCTA": "Start now: open the scenario \"Project: Research report with AI\", fill in the META block (role and goal) and run AI.",
-            "recommendedStart": "Tip: start with the research report unless you specifically need a Custom GPT.",
-            "handoutPromise": "After this module you can download the Module 6 handout (PDF): project 6 steps, 5 data-handling points and reflection summary – print and use at work."
+            "firstActionCTA": "Pick one project (Research report or Custom GPT), fill the META block, and run AI. Scaffolding techniques – as needed.",
+            "recommendedStart": "Finishing needs **one** project: Research report **or** Custom GPT. Tip: start with the research report unless you specifically need a Custom GPT.",
+            "handoutPromise": "After this module you can download the Module 6 handout (PDF): project 6 steps, 5 data-handling points and reflection summary – print and use at work.",
+            "footer": "Next – slide 2: Research report with AI"
           }
         },
         {
@@ -4018,6 +4145,9 @@
                 }
               ]
             }
+          },
+          "content": {
+            "footer": "Next – slide 3: Practice: COMBO"
           }
         },
         {
@@ -4044,10 +4174,15 @@
               {
                 "heading": "Example in project context",
                 "body": "Role – business analyst. Steps – Deep research (2–3 sub-questions). Comparison – trends A vs B. Format – 1–2 page report with sources.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you say in one sentence one concrete next step for your project?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 4: HTML page step by step",
+            "footer": "Next – slide 4: HTML page chain",
             "practicalTask": {
               "templateLabel": "📋 COMBO project example (copy-paste)",
               "template": "You are a business analyst. Do a deep research on [topic]. Provide: 1) step-by-step methodology, 2) comparison (trends A vs B), 3) 1–2 page report with sources."
@@ -4085,7 +4220,7 @@
                 ]
               }
             ],
-            "footer": "Next – slide 5: Single-page website (HTML)"
+            "footer": "Next – slide 5: One-page HTML"
           },
           "shortTitle": "Example: HTML page"
         },
@@ -4155,6 +4290,11 @@
                 "heading": "Link to Module 1",
                 "body": "All **6 blocks** (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) – same system as in Module 1 and Module 6 project stages. Applied to HTML page creation.",
                 "blockVariant": "terms"
+              },
+              {
+                "heading": "Check",
+                "body": "Did you produce one HTML page (or a clear next step) you can open in a browser?",
+                "blockVariant": "accent"
               }
             ],
             "correctPromptPractice": {
@@ -4197,13 +4337,19 @@
                 "heading": "3. REVIEW (work review)",
                 "body": "Copy the template below, paste your text (research report, message, plan) after the prompt – you'll get constructive feedback: strengths, areas to improve, main recommendation.",
                 "copyable": "Your role – [X] domain expert and constructive editor. Review my text that I'll paste below. Provide: 1) 2–3 strengths (what works well), 2) 2–3 areas to improve with concrete suggestions, 3) one main recommendation. Be constructive and specific.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you say in one sentence one concrete next step for your project?",
                 "blockVariant": "accent"
               }
             ],
             "practicalTask": {
               "templateLabel": "📋 SUPER – LEARN (copy-paste)",
               "template": "Your role – [X] domain expert. Give me 20% of the information so I understand 80% of the topic [TOPIC]. Structure your answer: – Main principles (3–5) – Key terms with definitions – Practical examples – Common pitfalls to avoid."
-            }
+            },
+            "footer": "Next – slide 7: Module 6 reflection"
           }
         },
         {
@@ -4243,7 +4389,7 @@
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Next – slide 8: Data checklist"
+            "footer": "Next – slide 8: Data hygiene checklist"
           }
         },
         {
@@ -4284,7 +4430,7 @@
               }
             ],
             "unlockedGlossaryTerms": ["Prompt library", "Prompt versioning"],
-            "footer": "Next – slide 9: Data handling"
+            "footer": "Next – slide 9: Data hygiene"
           }
         },
         {
@@ -4327,7 +4473,7 @@
               {
                 "heading": "TIP",
                 "body": "Start with 1–2 things (e.g. library + versioning) and grow the system gradually.",
-                "blockVariant": "accent"
+                "blockVariant": "brand"
               },
               {
                 "heading": "Helper prompt: data handling system",
@@ -4339,9 +4485,15 @@
                 "heading": "First action within 24 hours",
                 "body": "Open your tool and create 1 folder \"My prompts\" or save one prompt from the module.",
                 "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you say in one sentence one concrete next step for your project?",
+                "blockVariant": "accent"
               }
             ],
-            "handoutDownloadLabel": "Download Module 6 handout (PDF)"
+            "handoutDownloadLabel": "Download Module 6 handout (PDF)",
+            "footer": "Next – slide 10: Custom GPT schema (optional)"
           }
         },
         {
@@ -4375,7 +4527,8 @@
                 "body": "1) Clear instructions (no fluff). 2) Limits: \"I don't know\" + sources. 3) 5 test prompts show stable behaviour.",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "footer": "Next – slide 11: Custom GPT assistant"
           }
         },
         {
@@ -4444,6 +4597,69 @@
                 }
               ]
             }
+          },
+          "content": {
+            "footer": "Next – slide 12: Project summary"
+          }
+        },
+        {
+          "id": 69,
+          "title": "Project summary",
+          "subtitle": "What you take away and what to do next",
+          "type": "summary",
+          "shortTitle": "Project summary",
+          "content": {
+            "introHeading": "What you learned",
+            "introBody": "Well done! You finished the Module 6 project: a research report with AI or a Custom GPT. You have an artifact, 6-block templates, COMBO/HTML technique cues, and a data-hygiene handout.",
+            "stats": [
+              {
+                "label": "Project",
+                "value": "1 of 2"
+              },
+              {
+                "label": "Techniques",
+                "value": "COMBO + HTML"
+              },
+              {
+                "label": "Handout",
+                "value": "PDF"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "One artifact",
+                "icon": "Target",
+                "color": "brand",
+                "items": [
+                  "Research report with sources – or Custom GPT instructions",
+                  "6-block structure applied in a real project",
+                  "RAG / knowledge checks – fewer hallucinations"
+                ]
+              },
+              {
+                "heading": "Techniques and hygiene",
+                "icon": "Layers",
+                "color": "violet",
+                "items": [
+                  "COMBO – several methods in one prompt",
+                  "HTML chain – from draft to a one-page site",
+                  "Data hygiene – library, versions, documentation"
+                ]
+              },
+              {
+                "heading": "Next step",
+                "icon": "ArrowRight",
+                "color": "accent",
+                "items": [
+                  "Download the Module 6 PDF handout (after completion)",
+                  "Within 24–48h save one prompt to your library",
+                  "For the Data Analysis path – Module 7 (when you have access)"
+                ]
+              }
+            ],
+            "reflectionTitle": "Reflection prompt",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
+            "tagline": "One project + handout = a repeatable AI work rhythm"
           }
         }
       ],

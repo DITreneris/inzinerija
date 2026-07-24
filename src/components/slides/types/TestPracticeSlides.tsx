@@ -3297,8 +3297,8 @@ export function PracticeIntroSlide({
               ) : isM12 ? (
                 <>
                   {locale === 'en'
-                    ? 'First the linear quick start 124.5 → 124 (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices 121–123 (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
-                    : 'Pirmiausia linijinis greitas startas 124.5 → 124 (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas 121–123 (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
+                    ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
+                    : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
                   {locale === 'en'
                     ? 'Follow the linear order on the next slides and save artefacts before marking a practice done.'
                     : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
@@ -3870,10 +3870,25 @@ export function PracticeScenarioHubSlide({
   const level2Choices = Array.isArray(content?.level2Choices)
     ? content.level2Choices
     : [];
-  const level2 =
+  const recommendedIds = Array.isArray(content?.recommendedSlideIds)
+    ? content.recommendedSlideIds
+    : [];
+  const recommendedSet = new Set(recommendedIds);
+  const rawLevel2 =
     selectedLevel1 !== null && level2Choices[selectedLevel1]
       ? level2Choices[selectedLevel1]
       : null;
+  const level2 = rawLevel2
+    ? [...rawLevel2].sort((a, b) => {
+        const ar = recommendedSet.has(a.targetSlideId) ? 0 : 1;
+        const br = recommendedSet.has(b.targetSlideId) ? 0 : 1;
+        if (ar !== br) return ar - br;
+        return (
+          recommendedIds.indexOf(a.targetSlideId) -
+          recommendedIds.indexOf(b.targetSlideId)
+        );
+      })
+    : null;
 
   const cardBase =
     'flex flex-col gap-2 p-4 rounded-xl border-2 text-left transition-all min-h-[44px] justify-center focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 cursor-pointer ' +
@@ -3999,28 +4014,44 @@ export function PracticeScenarioHubSlide({
         </div>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {level2.map((choice) => (
-            <button
-              key={choice.targetSlideId}
-              type="button"
-              onClick={() => onNavigateToSlideById(choice.targetSlideId)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onNavigateToSlideById(choice.targetSlideId);
-                }
-              }}
-              className={cardBase}
-              aria-label={t('goToScenarioAria', { title: choice.title })}
-            >
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {choice.title}
-              </span>
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                {choice.description}
-              </span>
-            </button>
-          ))}
+          {level2.map((choice) => {
+            const isRecommended = recommendedSet.has(choice.targetSlideId);
+            return (
+              <button
+                key={choice.targetSlideId}
+                type="button"
+                onClick={() => onNavigateToSlideById(choice.targetSlideId)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onNavigateToSlideById(choice.targetSlideId);
+                  }
+                }}
+                className={`${cardBase} ${
+                  isRecommended
+                    ? 'ring-2 ring-amber-400 dark:ring-amber-500 border-amber-300 dark:border-amber-600'
+                    : ''
+                }`}
+                aria-label={t('goToScenarioAria', { title: choice.title })}
+              >
+                <span className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-wrap">
+                  {choice.title}
+                  {isRecommended ? (
+                    <span className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-amber-500/20 text-amber-800 dark:text-amber-200 border border-amber-400/50 dark:border-amber-600/50">
+                      {t('hubRecommendedBadge')}
+                    </span>
+                  ) : (
+                    <span className="px-1.5 py-0.5 text-xs font-medium rounded-full bg-slate-200/80 text-slate-700 dark:bg-slate-700/60 dark:text-slate-200 border border-slate-300/60 dark:border-slate-600/50">
+                      {t('hubOptionalBadge')}
+                    </span>
+                  )}
+                </span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {choice.description}
+                </span>
+              </button>
+            );
+          })}
         </div>
       )}
     </div>

@@ -14,6 +14,7 @@ import {
 } from './m10DiagramContent';
 import { M10_INCIDENT_PLAYBOOK_LAYOUT } from './m10IncidentPlaybookLayout';
 import { DiagramStepHitArea } from './diagramKit';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const {
   width: W,
@@ -23,7 +24,8 @@ const {
   gap: GAP,
   rowY: ROW_Y,
 } = M10_INCIDENT_PLAYBOOK_LAYOUT;
-const MARKER = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const MARKER = PROCESS_ARROW.tipLen;
 
 export default function M10IncidentPlaybookDiagram({
   locale = 'lt',
@@ -60,14 +62,14 @@ export default function M10IncidentPlaybookDiagram({
         </linearGradient>
         <marker
           id={`m10-ip-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={MARKER}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
       </defs>
       <rect

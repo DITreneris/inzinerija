@@ -11,13 +11,15 @@ import {
   getContextFlowAriaLabel,
 } from './contextFlowDiagramLabels';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const VIEWBOX_W = 640;
 const VIEWBOX_H = 200;
 const BOX_W = 160;
 const BOX_H = 72;
 const GAP = 32;
-const ARROW_MARKER_LEN = 10;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const START_X = 40;
 const ROW_Y = 72;
 
@@ -104,14 +106,15 @@ export default function ContextFlowDiagram() {
         </linearGradient>
         <marker
           id="ctx-arrow"
-          markerWidth={ARROW_MARKER_LEN + 2}
-          markerHeight={10}
-          refX={ARROW_MARKER_LEN}
-          refY={5}
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d={`M0 0 L${ARROW_MARKER_LEN} 5 L0 10 Z`}
+            d={PROCESS_ARROW.pathD}
             fill={GREY_ARROW}
             stroke={GREY_ARROW}
             strokeWidth="0.5"
@@ -149,7 +152,7 @@ export default function ContextFlowDiagram() {
         const centerX = box.x + box.w / 2;
         const next = boxes[i + 1];
         const fromX = rightEdge + 4;
-        const toX = next ? next.x + ARROW_MARKER_LEN : 0;
+        const toX = next ? next.x - ARROW_MARKER_LEN : 0;
         const fromY = box.y + box.h + 4;
         const toY = next ? next.y - ARROW_MARKER_LEN : 0;
         const fill =

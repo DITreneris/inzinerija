@@ -22,7 +22,7 @@ describe('m15PracticeLoopLayout', () => {
         boxes[i + 1],
         M15_PRACTICE_LOOP_LAYOUT.activeY +
           M15_PRACTICE_LOOP_LAYOUT.boxHeight / 2,
-        DIAGRAM_TOKENS.arrow.markerLen
+        DIAGRAM_TOKENS.arrow.processTipLen
       );
       expect(conn.x1).toBeLessThan(conn.x2);
       expect(conn.y1).toBe(conn.y2);

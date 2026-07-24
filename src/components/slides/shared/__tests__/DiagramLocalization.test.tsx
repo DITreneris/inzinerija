@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderWithProviders } from '../../../../test/test-utils';
 import AgentWorkflowBlock from '../AgentWorkflowBlock';
@@ -15,7 +15,7 @@ import M9DataWorkflowBlock from '../M9DataWorkflowBlock';
 import M9WorkflowStepCopyBlock from '../M9WorkflowStepCopyBlock';
 import LlmArchDiagramBlock from '../LlmArchDiagramBlock';
 import LlmAutoregressiveBlock from '../LlmAutoregressiveBlock';
-import M10AgentTaxonomyBlock from '../M10AgentTaxonomyBlock';
+import M10DepthRolesLabBlock from '../M10DepthRolesLabBlock';
 import M10HumanControlSimulatorBlock from '../M10HumanControlSimulatorBlock';
 import M10IncidentPlaybookBlock from '../M10IncidentPlaybookBlock';
 import M10LearningLoopBlock from '../M10LearningLoopBlock';
@@ -510,51 +510,35 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   });
 
   describe('M10-M12 static diagram localization and palette contracts', () => {
-    it('renders M10 agent depth/roles diagram in both locales with 8-step shell', () => {
+    it('renders M10 depth/roles hybrid lab in both locales (no 8-step shell)', () => {
       setLocale('en');
-      const { container: en } = renderWithProviders(<M10AgentTaxonomyBlock />);
-      expect(en.textContent).toContain('Agent depth and roles');
+      const { container: en } = renderWithProviders(<M10DepthRolesLabBlock />);
+      expect(en.textContent).toContain('Depth levels');
       expect(en.textContent).not.toMatch(/taxonomy/i);
-      expect(en.textContent).toContain('Team – select L2');
-      expect(en.textContent).not.toContain('L2 team example');
-      expect(en.textContent).not.toContain('Selected level');
-      expect(en.textContent).toContain('Selected:');
-      expect(en.textContent).not.toContain('Agentų gylis ir rolės');
-      expect(en.querySelectorAll('nav button')).toHaveLength(8);
-      expect(
-        en.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
-      ).toHaveLength(0);
-      const enButtons = en.querySelectorAll('nav button');
-      // L1 → still ghost caption (not live hub)
-      fireEvent.click(enButtons[1]);
-      expect(en.textContent).toContain('Team – select L2');
-      expect(en.textContent).not.toContain('Selected level');
-      fireEvent.click(enButtons[2]);
-      expect(en.textContent).toContain('L2 team example');
-      expect(en.textContent).toContain('Selected level');
-      expect(en.textContent).not.toContain('delivers');
-      // specialist step → staged pateikia/delivers pill
-      fireEvent.click(enButtons[6]);
-      expect(en.textContent).toContain('delivers');
+      expect(en.textContent).toContain('Choose depth for your process');
+      expect(en.textContent).toContain('Chat (L0)');
+      expect(en.textContent).toContain('Choose a depth first');
+      expect(en.querySelectorAll('nav button')).toHaveLength(0);
+      expect(en.textContent).not.toContain('Team – select L2');
+      fireEvent.click(within(en).getByRole('radio', { name: /Team \(L2\)/i }));
+      expect(en.textContent).toContain('Team roles');
+      expect(en.textContent).toContain('Add router');
+      expect(en.textContent).toContain('Coordinator');
+      expect(en.textContent).toContain('Depth level: Team (L2)');
 
       setLocale('lt');
-      const { container: lt } = renderWithProviders(<M10AgentTaxonomyBlock />);
-      expect(lt.textContent).toContain('Agentų gylis ir rolės');
+      const { container: lt } = renderWithProviders(<M10DepthRolesLabBlock />);
+      expect(lt.textContent).toContain('Gylio lygiai');
       expect(lt.textContent).not.toMatch(/taksonomij/i);
-      expect(lt.textContent).toContain('Komanda – pasirink L2');
-      expect(lt.textContent).not.toContain('Pasirinktas lygis');
-      expect(lt.textContent).toContain('Pasirinkta:');
-      expect(lt.querySelectorAll('nav button')).toHaveLength(8);
-      const ltButtons = lt.querySelectorAll('nav button');
-      fireEvent.click(ltButtons[1]);
-      expect(lt.textContent).toContain('Komanda – pasirink L2');
-      expect(lt.textContent).not.toContain('Pasirinktas lygis');
-      fireEvent.click(ltButtons[2]);
-      expect(lt.textContent).toContain('L2 komandos pavyzdys');
-      expect(lt.textContent).toContain('Pasirinktas lygis');
-      expect(lt.textContent).not.toContain('pateikia');
-      fireEvent.click(ltButtons[6]);
-      expect(lt.textContent).toContain('pateikia');
+      expect(lt.textContent).toContain('Pasirink gylį savo procesui');
+      expect(lt.textContent).toContain('Pokalbis (L0)');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(0);
+      fireEvent.click(
+        within(lt).getByRole('radio', { name: /Komanda \(L2\)/i })
+      );
+      expect(lt.textContent).toContain('Komandos rolės');
+      expect(lt.textContent).toContain('Pridėti maršrutizatorių');
+      expect(lt.textContent).toContain('Gylio lygis: Komanda (L2)');
     });
 
     it('renders M10 trigger flow in both locales', () => {
@@ -670,7 +654,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     });
 
     it.each([
-      ['M10 agent taxonomy', () => <M10AgentTaxonomyBlock />],
+      ['M10 depth roles lab', () => <M10DepthRolesLabBlock />],
       ['M10 trigger flow', () => <M10TriggerFlowBlock />],
       ['M10 workflow spec', () => <M10WorkflowSpecBlock />],
       ['M10 incident playbook', () => <M10IncidentPlaybookBlock />],

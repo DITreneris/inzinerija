@@ -131,6 +131,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   /** M10–12 LMS polish + labs – slim chrome parity */
   'm10_three_a_strategy',
   'm10_human_control_simulator',
+  'm4_prompt_mode_simulator',
   'm10_tool_decision_tree',
   'm10_agent_taxonomy',
   'm10_trigger_flow',
@@ -417,6 +418,7 @@ export function ContentBlockSlide({
   const isBonusSlide =
     slide?.id === 51 ||
     slide?.id === 52 ||
+    slide?.id === 516 ||
     slide?.id === 801 ||
     slide?.id === 802;
   const [openSections, setOpenSections] = useState<Record<number, boolean>>({});
@@ -5950,7 +5952,7 @@ export function PathStepSlide({
           <p className="text-xs text-slate-600 dark:text-slate-400">
             {isEn
               ? 'Completing this step unlocks in the glossary:'
-              : 'Užbaigę žingsnį atrakinsite žodynėlyje:'}{' '}
+              : 'Užbaigęs žingsnį atrakinsi žodynėlyje:'}{' '}
             {content.unlockedGlossaryTerms.join(', ')}.
           </p>
         )}

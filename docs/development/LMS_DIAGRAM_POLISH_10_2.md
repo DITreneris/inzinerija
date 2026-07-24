@@ -21,6 +21,7 @@
 | cycle-feedback  | M10.2 `agent_workflow` + W1 brothers                            |
 | linear vertical | `m7_da_pipeline` + `verticalFlowGeometry` / `diagramLayoutMath` |
 | funnel / stack  | `m13_aec_funnel`, `m13_prompt_stack`                            |
+| multi-agent     | M10.482 `m10_agent_orchestrator` + `orchestratorRetryPath` (W7) |
 | shell UX        | DiagramKit `density=hero`                                       |
 | token floors    | `DIAGRAM_TOKENS` (LMS promoted)                                 |
 
@@ -63,6 +64,8 @@ Helpers: `cycleFeedbackGeometry.ts` (`horizontalRowBoxes`, `feedbackUPath`, `hor
 
 Wired: AgentWorkflow (etalon), DataStory, RlProcess. Brothers LearningLoop / M12: token migrate only.
 
+**AgentWorkflow caption air (2026-07-24):** po I3c crop – `rowY` 62 / `titleY` 22 / fb trough +36 (RL parity); H lieka 248; edge−title ≥18.
+
 ## Type Etalon Wave 2 – linear vertical ✅
 
 Helpers: `diagramLayoutMath.ts` (`buildVerticalColumnOrigin`, `verticalColumnMarginsEqual`) + `verticalFlowGeometry.ts` (`getVerticalFlowConnector`, GAP ≥ 24).
@@ -78,7 +81,7 @@ Helpers: `diagramLayoutMath.ts` (`buildVerticalColumnOrigin`, `verticalColumnMar
 
 Wired spine: `m7_da_pipeline` (etalon), DataPrep, MediaPipeline, ConsistencyLock, Postprod, TurinioWorkflow. Tokens-only: M10 trigger/spec/incident.
 
-**W2 etalon 1A (2026-07-24):** `M7DaPipelineDiagram` – flat step fills (no box gradient); `BOX_H` 58; desktop 600×440 / compact 340×280; `max-w-3xl`; **local** arrow tip 10 + `refX=0` (do **not** change global `arrow.markerLen`); local stepLabel 15 / stepSub 12; shell `stepOfLabel` + enlarge `top-right`.
+**W2 etalon 1A (2026-07-24):** `M7DaPipelineDiagram` – flat step fills (no box gradient); `BOX_H` 58; desktop 600×440 / compact 340×280; `max-w-3xl`; arrow tip = `arrow.processTipLen` + `refX=0` (do **not** change legacy `arrow.markerLen`); local stepLabel 15 / stepSub 12; shell `stepOfLabel` + enlarge `top-right`.
 
 **W2 etalon 1A+ micro (2026-07-24):** inactive soft ≠ frame bg; Enlargeable nested inside shell (SVG only); short verb `desc`; visible clickHint; caption „Analizės eiga“ / „Analysis path“; `startY` 44 / `viewBoxH` 520.
 
@@ -99,7 +102,26 @@ Helpers: `funnelStackGeometry.ts` (`funnelStageWidths`, `funnelStageRects`, `sta
 
 Wired: `m13_aec_funnel`, `m13_prompt_stack`. Tokens-only: `m13_rule_of_thirds` titleWeight.
 
-**Type-etalon waves:** W1–W3 closed; **W5 dual-taxonomy** etalon (`m10_agent_taxonomy`); **W6 comparison-mode-architecture** etalon (`llm_arch`). Other roles-hub/comparison remain C4 token inherit.
+**Type-etalon waves:** W1–W3 closed; **W5** (`m10_agent_taxonomy`) – dual-taxonomy Shell superseded (2026-07-24) by interactive-control-lab hybrid (mini static SVG + ChoiceControl); **W6 comparison-mode-architecture** etalon (`llm_arch`); **W7 multi-agent-flow** etalon (`m10_agent_orchestrator`). Other roles-hub/comparison remain C4 token inherit.
+
+## Wave 7 – multi-agent-flow type etalon ✅
+
+Pilot: `m10_agent_orchestrator` (10.482). Pattern `multi-agent-flow`. Shell = Taip (6-step guided walkthrough). Brother: `m12_multi_agent_schema` (tokens + tip/refX only; own layout).
+
+| Check                | Rule                                                                                          |
+| -------------------- | --------------------------------------------------------------------------------------------- |
+| Topology             | Hub + state + specialists + tools dashed + evaluator/output + left retry U                    |
+| Process graph (P3)   | Fan-out trunk/bus + fan-in collect→Vertintojas→Rezultatas; roles parallel (not linear agents) |
+| Align                | `state.centerY === orch.centerY`; `eval`/`output` same y+h (true horizontals)                 |
+| Error step (v06)     | Step 4: cull `eval-output`; dim !active; validate amber+rose stroke/`!`; soft-rose fan-in 2.5 |
+| Micro chrome (v06.1) | `isOrchestratorNodeLive` orphan dim; LT box widths; `kviečia` +4; viewBox 448 / HITL +16      |
+| Retry helper         | tools/eval gutter U (not far-left wrap); `Kartoti`/`Retry`; mount steps 4–5 only              |
+| Tips                 | `arrow.processTipLen` + `refX=0` via `getProcessArrowMarkerGeom` (`markerLen` legacy)         |
+| Role bands           | Hub violet; specialists teal; gates amber; infra slate; state brandTop (soft)                 |
+| Edges                | Staged verbs; annotation wash; data stroke 2; state ⇄; agentsBand start-align (clear shafts)  |
+| Chrome               | `density=hero` + opt-in `stepOfLabel`; Title Case lane header; inactive ≥ 0.88                |
+| Brother              | M12 tip/refX + feedback dim ≥ inactive floor; no BOX/viewBox / fan-in port                    |
+| Tests                | `lmsMultiAgentPolish.test.ts` + DiagramLocalization (6 nav)                                   |
 
 ## Wave 6 – comparison-mode-architecture type etalon ✅
 
@@ -120,14 +142,16 @@ Pilot: `llm_arch` (M4 sk. 56). Pattern `comparison-mode-architecture`. Shell = *
 
 Not a type etalon. Sweep SVG diagram **titles** to `DIAGRAM_TOKENS.typography.titleWeight` (700); near-caption sizes → `title.compact` / `title.desktop`. Leave step/badge `800` alone.
 
-## Wave 5 – dual-taxonomy type etalon
+## Wave 5 – dual-taxonomy type etalon (SUPERSEDED 2026-07-24)
 
-Pilot: `m10_agent_taxonomy` (10.45). Pattern `dual-taxonomy`. Shell = Taip (8 steps, decision spine).
+> **Status:** Shell dual-taxonomy **nebegalioja**. Live: Pattern `interactive-control-lab`, Shell = Ne – `M10DepthRolesLabBlock` + static `M10DepthRolesMiniDiagram`. Žr. `TEACHING_ELEMENTS_REGISTRY.md` / `DIAGRAMU_M7_M12_REGISTRY.md` eilutę 10.45.
+
+Pilot (istorinis): `m10_agent_taxonomy` (10.45). Pattern ~~`dual-taxonomy`~~ → `interactive-control-lab`. Shell ~~Taip (8 steps)~~ → Ne.
 
 | Check             | Rule                                                                                                              |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Topology          | Left L0–L3 ladder (38%) + right L2 team hierarchy (62%), gap ≥ 32                                                 |
-| Steps             | L0→L1→L2→L3→router→coordinator→specialist→evaluator                                                               |
+| Topology (legacy) | Left L0–L3 ladder (38%) + right L2 team hierarchy (62%), gap ≥ 32                                                 |
+| Steps (legacy)    | L0→L1→L2→L3→router→coordinator→specialist→evaluator                                                               |
 | Header            | Reserved `HEADER_H` ≥ 60; title + subtitle only                                                                   |
 | L2 link           | Solid arrow L2→Coord + pill when hub live; ghost hub + „pasirink L2“ when L0/L1/L3                                |
 | State truth       | `isHubLive` – right panel live only for L2/role steps                                                             |
@@ -139,7 +163,7 @@ Pilot: `m10_agent_taxonomy` (10.45). Pattern `dual-taxonomy`. Shell = Taip (8 st
 | Tokens            | Flow shafts ≥ 3.5; node strokes 1.5–2; equal role `r=48`                                                          |
 | Layout SOT        | `m10TaxonomyLayout.ts` only                                                                                       |
 
-**Maintenance:** tokens inherit for remaining non-spine patterns (roles-hub siblings, comparison, decision-tree).
+**Maintenance:** tokens inherit for remaining non-spine patterns (roles-hub siblings, comparison, decision-tree). Multi-agent-flow → Wave 7.
 
 ## Kas nedaroma
 

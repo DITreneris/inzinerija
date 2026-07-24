@@ -2,6 +2,10 @@
 /**
  * Audit: slide interactivity patterns across modules.json (M1–15).
  * Usage: node scripts/audit-slide-interactivity.mjs [--json] [--embed-catalog]
+ *
+ * Scope: INTERACTIVE_TYPES + top-level EMBED_KEYS (+ toolChoiceBar in --embed-catalog).
+ * Diagrams / labs / tables / full SlideType catalog → `npm run audit:teaching-elements`
+ * (docs/development/TEACHING_ELEMENTS_REGISTRY.md).
  */
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

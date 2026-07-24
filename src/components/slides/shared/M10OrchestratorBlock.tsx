@@ -14,12 +14,14 @@ const LABELS = {
   lt: {
     regionAria: 'Agentų orkestravimo simuliacija: 6 makro žingsniai',
     statusLabel: 'Pasirinkta dalis:',
+    stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
     navAria: 'Orkestravimo žingsnio pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
   },
   en: {
     regionAria: 'Agent orchestration walkthrough: 6 macro steps',
     statusLabel: 'Selected part:',
+    stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
     navAria: 'Orchestration step selection',
     stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,
   },
@@ -41,6 +43,7 @@ export default function M10OrchestratorBlock() {
           density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
+          stepOfLabel={labels.stepOf(currentStep + 1, totalSteps)}
           currentStep={currentStep}
           totalSteps={totalSteps}
           currentTitle={step.title}

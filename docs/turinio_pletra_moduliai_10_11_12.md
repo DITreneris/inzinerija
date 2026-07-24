@@ -206,43 +206,45 @@ Procesas 3: …
 
 ## 3b2. DI agentų tipai ir rolės (skaidrė 10.45)
 
-**Tikslas:** Verslo modelis – gylio lygiai ir kelių agentų rolės be programavimo.
+**Tikslas:** Verslo sprendimas – pasirinkti gylį (Pokalbis / Agentas / Komanda / Srautas), jei Komanda – roles; be programavimo. Ambcija 8/10: lab = CTA, schema = plonas modelis.
 
-**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → **Interaktyvi schema** (brand, `m10_agent_taxonomy`, Shell, 8 žingsniai; UI antraštė „Agentų gylis ir rolės“, be žodžio „taksonomija“) → 3A tipas (brand, trumpas priminimas) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Neprivaloma (terms, collapsible). Apibrėžimai – shell paaiškinimuose (ne atskirose brand sienose).
+**UI (hibridas):** GOLDEN §3.2 – Trumpai (accent) → **brand** sekcija su `image: m10_agent_taxonomy` (Pattern `interactive-control-lab`, Shell = Ne: mini static schema + ChoiceControl lab, be scenarijaus) → Daryk dabar (brand) → Patikra (accent) → Neprivaloma (terms). **Copy** – lab `CopyButton` viduje (ne atskira „Kopijuojamas promptas“ siena). Be 3A sienos (detaliau – 10.25). Be žodžio „taksonomija“ UI.
 
-**Schema (interaktyvi):** Pattern `dual-taxonomy` (Type Etalon W5; pattern ID vidinis). Sprendimų stuburas: L0→L1→L2→L3→maršrutizatorius→koordinatorius→specialistas→vertintojas. L2 paryškina dešinės roles.
+**Mini schema:** 4 pill (Pokalbis / Agentas / Komanda / Srautas + L0–L3 badge); Komanda atveria role strip (koordinatorius → specialistas → vertintojas; maršrutizatorius optional). Viena formų šeima; vienas state su lab.
 
-**A. Gylio lygiai (L0–L3)** – mokoma schemoje + shell:
+**Lab (be scenarijaus):** „Pasirink gylį savo procesui“ → jei Komanda – 3 rolės + optional maršrutizatorius → Copy artefaktas.
 
-| Lygis | Pavadinimas               | Kada                         | Verslo pavyzdys                        |
+**A. Gylio lygiai** – mokoma schemoje + lab (pirminė kalba = vardas; L\* = kodas):
+
+| Kodas | Pavadinimas               | Kada                         | Verslo pavyzdys                        |
 | ----- | ------------------------- | ---------------------------- | -------------------------------------- |
 | L0    | Pokalbis su DI            | Vienas klausimas–atsakymas   | El. laiško formulavimas                |
 | L1    | Vienas DI agentas         | Keli žingsniai + įrankiai    | Tyrimas + santrauka                    |
 | L2    | DI komanda (keli agentai) | Skirtingos rolės, perdavimai | RFP: tyrėjas → rašytojas → tikrintojas |
 | L3    | Automatizuotas srautas    | Trigger → veiksmai           | Forma → CRM → laiškas                  |
 
-**B. Kelių agentų rolės** – mokoma schemoje + shell:
+**B. Kelių agentų rolės** – kai pasirinkta Komanda:
 
 | Rolė                 | Atsakomybė                                                   | Verslo metafora                      |
 | -------------------- | ------------------------------------------------------------ | ------------------------------------ |
 | **Koordinatorius**   | Skaido užduotį, deleguoja, sujungia rezultatus               | Komandos vadovas                     |
 | **Specialistas**     | Vykdo vieną siaurą darbą (paieška, juodraštis, skaičiavimas) | Srities ekspertas                    |
 | **Vertintojas**      | Kokybės patikra, taisyklės, grąžina pataisymui               | Redaktorius / atitikties tikrintojas |
-| **Maršrutizatorius** | Nukreipia pagal tipą / kategoriją                            | Registratūra / triažas               |
+| **Maršrutizatorius** | Nukreipia pagal tipą / kategoriją (optional)                 | Registratūra / triažas               |
 
-**3A tipas (trumpai):** priminimas – Automatize ≈ L3 srautas; Augment ≈ L1; Autonomize ≈ L2 + vertintojas (detaliau – 10.25).
+**3A:** ne ši skaidrė – nuoroda į 10.25 Trumpai, jei reikia.
 
-**Daryk:** pirmiausia **L?**, tada (jei L2) trys rolės; maršrutizatorius – tik jei reikia triažo.
+**Daryk:** pasirink gylį lab’e; jei Komanda – roles; nukopijuok artefaktą.
 
-**CopyButton promptas:**
+**Lab artefaktas (pvz. Komanda):**
 
 ```
 Procesas: [X]
-Gylio lygis (L0–L3): [L?]
-Jei L2 – trys rolės:
-1) Koordinatorius – ką planuoja ir kam deleguoja (+ įvestis / išvestis)
-2) Specialistas – ką konkrečiai daro (+ įvestis / išvestis)
-3) Vertintojas – ką tikrina prieš rezultatą (+ įvestis / išvestis)
+Gylio lygis: Komanda (L2)
+Rolės:
+1) Koordinatorius – … (+ įvestis / išvestis)
+2) Specialistas – …
+3) Vertintojas – …
 Kiekvienai rolei – vienas sakinys.
 ```
 

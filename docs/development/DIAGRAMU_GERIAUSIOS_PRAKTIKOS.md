@@ -77,15 +77,15 @@ Referencinė implementacija: **LlmAutoregressiveDiagram** + **llmAutoregressiveL
 
 #### Forward rodyklės (blokas → blokas į dešinę)
 
-| Aspektas           | Specifikacija                                                                                                                | Įgyvendinimas (LLM diagrama)                                                                       |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Kryptis**        | Vienintelė kryptis – į dešinę; rodyklė horizontalė, Y = eilutės centre (centre bloko aukščio).                               | `ARROWS_ROW_N` / `ARROWS_ROW_N1`: `[x1, centerY, x2]`; `centerY = boxY + BOX_H/2`.                 |
-| **Pradžia**        | Ištekančio bloko **dešinysis kraštas** (right edge). Linija prasideda ties kraštu, ne į vidų.                                | `x1 = inputRight` (pvz. `START_X + INPUT_W`); tas pats iš layout konstantų.                        |
-| **Pabaiga**        | Įeinančio bloko **kairysis kraštas minus antgalio ilgis**. Antgalio smailė **liečia** kraštą, trikampis **neįeina** į bloką. | `x2 = llmLeft - ARROW_MARKER_LEN` (layout); `ARROW_MARKER_LEN = 6`.                                |
-| **Stilius**        | Pilna linija (solid), vienas antgalis (single arrowhead), vienoda spalva srautui.                                            | `stroke={BORDER}`, `strokeWidth={DIAGRAM_TOKENS.stroke.flow}` (≥3.5), `markerEnd` – vienas marker. |
-| **markerUnits**    | `userSpaceOnUse` – antgalis neauga su stroke (kitaip kotas dingsta).                                                         | `markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}` ant forward `<marker>`.                           |
-| **Proporcingumas** | Antgalio dydis (refX) atitinka `ARROW_MARKER_LEN` path skaičiavime; antgalis ne didesnis už GAP.                             | Layout: `ARROW_MARKER_LEN = 6`; SVG marker: `refX≈6`, `markerWidth` user-space. GAP=24 > 6.        |
-| **Spalva**         | Pakankamas kontrastas ant fono; ne per šviesi.                                                                               | Pvz. `BORDER` (#4a5568) – tamsesnė pilka.                                                          |
+| Aspektas           | Specifikacija                                                                                                               | Įgyvendinimas (LLM diagrama)                                                                       |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Kryptis**        | Vienintelė kryptis – į dešinę; rodyklė horizontalė, Y = eilutės centre (centre bloko aukščio).                              | `ARROWS_ROW_N` / `ARROWS_ROW_N1`: `[x1, centerY, x2]`; `centerY = boxY + BOX_H/2`.                 |
+| **Pradžia**        | Ištekančio bloko **dešinysis kraštas** (right edge). Linija prasideda ties kraštu, ne į vidų.                               | `x1 = inputRight` (pvz. `START_X + INPUT_W`); tas pats iš layout konstantų.                        |
+| **Pabaiga**        | Įeinančio bloko **kairysis kraštas minus tipLen**. Su **`refX=0`** smailė **liečia** kraštą, trikampis **neįeina** į bloką. | `x2 = nextLeft - tipLen`; tip = `arrow.processTipLen` / `processArrowEndInset()`.                  |
+| **Stilius**        | Pilna linija (solid), vienas antgalis (single arrowhead), vienoda spalva srautui.                                           | `stroke={BORDER}`, `strokeWidth={DIAGRAM_TOKENS.stroke.flow}` (≥3.5), `markerEnd` – vienas marker. |
+| **markerUnits**    | `userSpaceOnUse` – antgalis neauga su stroke (kitaip kotas dingsta).                                                        | `getProcessArrowMarkerGeom()` → `markerUnits` + path; ne `arrow.markerPath` (legacy tip6).         |
+| **Proporcingumas** | `processTipLen` ≥10, **`refX=0`**; tipLen = path inset; antgalis ne didesnis už GAP. `markerLen=6` = legacy.                | Helper: `processArrowMarker.ts`; etalonai ant to paties tokeno.                                    |
+| **Spalva**         | Pakankamas kontrastas ant fono; ne per šviesi.                                                                              | Pvz. `BORDER` (#4a5568) – tamsesnė pilka.                                                          |
 
 **Praktika įgyvendinimui:** Visos forward rodyklių koordinatės (x1, x2, y) kyla iš **layout failo** iš tų pačių blokų rect (right = rect[0]+rect[2], left = kito rect[0]). Nenaudoti „magic numbers“ diagramos komponente.
 
@@ -113,9 +113,9 @@ Referencinė implementacija: **LlmAutoregressiveDiagram** + **llmAutoregressiveL
 
 Naudoti kuriant ar taisant horizontalias proceso diagramas:
 
-- [ ] **Rodyklės:** Koordinatės (x1, y, x2) iš layout; x1 = dešinysis kraštas, x2 = kairysis kraštas − ARROW_MARKER_LEN; Y = eilutės centre.
-- [ ] **Marker:** `markerUnits=userSpaceOnUse` (su `stroke.flow`); refX atitinka ARROW_MARKER_LEN; antgalis ne didesnis už GAP; vienas marker tipas forward srautui.
-- [ ] **Feedback:** Punktyrinė U (ne diagonalus Q); tipas su oru virš tikslo; etiketė ant trough (pvz. „Pridedama prie naujos įvesties“).
+- [ ] **Rodyklės:** Koordinatės (x1, y, x2) iš layout; x1 = dešinysis kraštas, x2 = kairysis kraštas − tipLen; Y = eilutės centre.
+- [ ] **Marker:** `getProcessArrowMarkerGeom()` / `arrow.processTipLen`; `markerUnits=userSpaceOnUse`; **`refX=0`**; ne `arrow.markerPath` (legacy tip6); testai ne lock’ina tip==`markerLen`.
+- [ ] **Feedback:** Punktyrinė U (ne diagonalus Q); cycle be start circle; rankinis polygon į start box; etiketė po trough.
 - [ ] **Blokų užrašai:** Rolė (pvz. Įvestis, Išvestis) + turinys; pozicijos iš layout helper funkcijų; tekstas telpa į rect (padding/line-height).
 - [ ] **Viena tiesa:** Keisti tik layout; diagramos komponentas tik skaito ir piešia (§1).
 

@@ -1,13 +1,15 @@
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
 import { M12_THREE_LABS_LAYOUT } from './m12ThreeLabsLayout';
 
 const W = M12_THREE_LABS_LAYOUT.width;
 const H = M12_THREE_LABS_LAYOUT.height;
-const ARROW = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW = PROCESS_ARROW.tipLen;
 
 export default function M12ThreeLabsDiagram({
   locale = 'lt',
@@ -65,14 +67,14 @@ export default function M12ThreeLabsDiagram({
         </linearGradient>
         <marker
           id={`m12tl-conn-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.brandDark} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.brandDark} />
         </marker>
       </defs>
       <rect

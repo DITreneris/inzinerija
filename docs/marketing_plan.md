@@ -2,7 +2,7 @@
 
 > **Paskirtis:** Vienas rinkodaros dokumentas – auditorija, žinutės, kanalai, funnel (LinkedIn lead magnet → vieša Telegram grupė), monetizacija (Modulis 4 mokamai), integracijos ir MUST–SHOULD–WANT.
 > **Šaltiniai:** `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`, ROADMAP.md, modulių struktūra. **Atnaujinta:** 2026-02-18 (Telegram grupė, funnel, M4); 2026-02-25 (spin-off Nr. 2 SOT_Marketingas, LinkedIn postas numatytas 2026-02-25); 2026-03-01 (spin-off Nr. 3 Personalas – HR atrankos sistema).
-> **Supersedes:** `docs/archive/marketing_plan.md`, `docs/archive/MARKETING_MUST_SHOULD_WANT.md`. Ankstesnė „tik funnel“ versija archyvuota: `docs/archive/MARKETING_FUNNEL_PLAN.md` (turinys sulietas čia).
+> **Supersedes:** ankstesni draftai (archyvo kopijos pašalintos 2026-07-24 lean purge; turinys sulietas čia).
 
 ---
 
@@ -312,4 +312,4 @@ _Integracijų detalės – žr. §9 (M5, S7, W5)._
 - **Klaidos ir sprendimai:** `docs/development/TEST_REPORT.md`.
 - **Turinio SOT (Modulis 4):** `docs/turinio_pletra_moduliai_4_5_6.md`.
 - **ROADMAP:** `ROADMAP.md` – „User feedback“, iteruoti pagal duomenis.
-- **Archyvas (superseded):** `docs/archive/marketing_plan.md`, `docs/archive/MARKETING_MUST_SHOULD_WANT.md`.
+- **Archyvas (superseded):** pašalinta lean purge 2026-07-24 – vienintelė tiesa šis failas.

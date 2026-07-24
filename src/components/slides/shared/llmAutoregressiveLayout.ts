@@ -6,6 +6,7 @@
  * Feedback: inter-row U (feedbackInterRowPath), ne įstrižas Q.
  */
 import { feedbackInterRowPath } from './cycleFeedbackGeometry';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 export const VIEWBOX_W = 780;
 export const VIEWBOX_H = 444;
@@ -94,10 +95,9 @@ export const ROW_N: RowLayout = _rowN;
 export const ROW_N1: RowLayout = _rowN1;
 
 /**
- * Forward tip length (userSpaceOnUse). SCHEME §3.7.2 ~12px su storesniu stroke;
- * GAP=24 → shaft 14 ≥ minStem 12. Senas 6px tipas ant stroke.flow 3.5 atrodė kaip „V“.
+ * Forward tip length (userSpaceOnUse). SCHEME §3.7.2 – processTipLen + refX=0.
  */
-export const ARROW_MARKER_LEN = 10;
+export const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.processTipLen;
 
 const inputRight = START_X + INPUT_W;
 const llmRight = START_X + INPUT_W + GAP + LLM_W;

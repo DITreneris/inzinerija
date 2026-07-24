@@ -122,7 +122,7 @@ export default function HomePage({
               <BrandMark variant="hero" />
               <div className="absolute -top-2 -right-2 rounded-xl bg-gold px-2.5 py-1.5 shadow-sm shadow-gold/15 ring-1 ring-white/40">
                 <span className="text-xs font-semibold text-gray-900">
-                  {t('home:durationBadge')}
+                  {t('home:durationBadge', { count: totalModules })}
                 </span>
               </div>
             </div>
@@ -153,9 +153,7 @@ export default function HomePage({
           <div className="flex flex-wrap justify-center gap-4 mb-8 lg:mb-14 text-sm text-gray-500 dark:text-gray-500">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-gold/70 dark:text-gold/60" />
-              <span>
-                {totalModules} {t('home:trustModules')}
-              </span>
+              <span>{t('home:trustModules')}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-gold/70 dark:text-gold/60" />

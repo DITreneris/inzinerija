@@ -17,7 +17,6 @@ import {
 } from '../m10LearningLoopLayout';
 import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
 import { getM10LearningLoopLabels } from '../m10LearningLoopContent';
-import { getCircleEdgePoints, M10_TAXONOMY_ROLES } from '../m10TaxonomyLayout';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
 import {
   AGENT_WORKFLOW_ARROW,
@@ -25,6 +24,7 @@ import {
   AGENT_WORKFLOW_FEEDBACK,
   AGENT_WORKFLOW_GAP,
   AGENT_WORKFLOW_OPACITY,
+  AGENT_WORKFLOW_START,
   AGENT_WORKFLOW_STEP_COUNT,
   AGENT_WORKFLOW_TYPE,
   AGENT_WORKFLOW_VIEWBOX,
@@ -146,6 +146,19 @@ describe('agentWorkflowLayout (I3c micro polish)', () => {
       AGENT_WORKFLOW_VIEWBOX.desktop.height
     );
     expect(AGENT_WORKFLOW_FEEDBACK.labelOffsetY).toBe(14);
+    const labelY =
+      AGENT_WORKFLOW_FEEDBACK.desktopY() + AGENT_WORKFLOW_FEEDBACK.labelOffsetY;
+    expect(labelY).toBeLessThan(AGENT_WORKFLOW_VIEWBOX.desktop.height);
+  });
+
+  it('keeps caption clear of edge labels (RL caption-air parity)', () => {
+    expect(AGENT_WORKFLOW_START.desktop.y).toBeGreaterThanOrEqual(58);
+    expect(AGENT_WORKFLOW_TYPE.diagramTitleY.desktop).toBe(22);
+    const edgeLabelY = AGENT_WORKFLOW_START.desktop.y - 6;
+    const titleBottomApprox =
+      AGENT_WORKFLOW_TYPE.diagramTitleY.desktop +
+      DIAGRAM_TOKENS.typography.title.desktop * 0.35;
+    expect(edgeLabelY - titleBottomApprox).toBeGreaterThanOrEqual(18);
   });
 
   it('keeps visible forward shaft and thick feedback stroke', () => {
@@ -155,37 +168,21 @@ describe('agentWorkflowLayout (I3c micro polish)', () => {
     expect(AGENT_WORKFLOW_FEEDBACK.cornerR).toBe(16);
     expect(AGENT_WORKFLOW_ARROW.forwardStroke).toBeGreaterThanOrEqual(3.5);
     expect(AGENT_WORKFLOW_ARROW.gapFwd).toBe(0);
-    expect(AGENT_WORKFLOW_ARROW.markerLen).toBe(DIAGRAM_TOKENS.arrow.markerLen);
+    /** Local tip ≥10; must not lock to legacy global markerLen (6). */
+    expect(AGENT_WORKFLOW_ARROW.markerLen).toBeGreaterThanOrEqual(10);
+    expect(AGENT_WORKFLOW_ARROW.markerLen).toBeGreaterThan(
+      DIAGRAM_TOKENS.arrow.markerLen
+    );
     expect(AGENT_WORKFLOW_OPACITY.inactive).toBeGreaterThanOrEqual(0.85);
   });
 
   it('uses caption-scale diagram title and lighter edge labels', () => {
     expect(AGENT_WORKFLOW_TYPE.diagramTitle.desktop).toBe(17);
     expect(AGENT_WORKFLOW_TYPE.diagramTitleWeight).toBe(700);
-    expect(AGENT_WORKFLOW_TYPE.diagramTitleY.desktop).toBe(20);
+    expect(AGENT_WORKFLOW_TYPE.diagramTitleY.desktop).toBe(22);
     expect(AGENT_WORKFLOW_TYPE.edgeLabel).toBe(12);
     expect(AGENT_WORKFLOW_TYPE.edgeLabelWeight).toBe(500);
     expect(AGENT_WORKFLOW_TYPE.nodeTitleWeight).toBe(700);
     expect(AGENT_WORKFLOW_TYPE.nodeDescWeight).toBe(500);
-  });
-});
-
-describe('m10TaxonomyLayout marker inset', () => {
-  it('shortens to-point by markerLen past circumference', () => {
-    const from = M10_TAXONOMY_ROLES[0];
-    const to = M10_TAXONOMY_ROLES[1];
-    const without = getCircleEdgePoints(from, to, 0);
-    const withMarker = getCircleEdgePoints(
-      from,
-      to,
-      DIAGRAM_TOKENS.arrow.markerLen
-    );
-    const distWithout = Math.hypot(to.x - without.x2, to.y - without.y2);
-    const distWith = Math.hypot(to.x - withMarker.x2, to.y - withMarker.y2);
-    expect(distWith).toBeGreaterThan(distWithout);
-    expect(distWith - distWithout).toBeCloseTo(
-      DIAGRAM_TOKENS.arrow.markerLen,
-      5
-    );
   });
 });

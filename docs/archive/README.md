@@ -1,6 +1,6 @@
 # Archyvas – pasenę dokumentai (ne SOT)
 
-> **Atnaujinta:** 2026-07-14  
+> **Atnaujinta:** 2026-07-24 (Docs Lean DL-3 + A/B/C purge)  
 > **Taisyklė agentams ir žmonėms:** šiame kataloge esantys failai **nėra šaltinis tiesos**. Prieš bet kokį darbą naudokite `docs/DOCUMENTATION_QUICK_REF.md` → `docs/LEAN_INDEX.md` → `docs/DOCUMENTATION_INDEX.md` §1–2.
 
 ---
@@ -21,8 +21,8 @@
 | `docs/archive/audits/` | Modulių 1–6 UX/mobile audito ataskaitos (2026-03) |
 | `docs/archive/development/` | Įgyvendinti planai, vienkartiniai auditai, EN checklist |
 | `docs/archive/development/analysis/` | Vienkartinės analizės (DS baseline, CTA, footer, M1–M9 EN ir kt.) |
-| `docs/archive/moduliai_7_8_9/` | M7–M9 detalios analizės (verdiktas – `turinio_pletra_moduliai_7_8_9.md`) |
-| `docs/archive/root/` | Iš projekto šaknies perkelti txt/md (testai, portalas – konfidencialūs) |
+| `docs/archive/moduliai_7_8_9/` | _(ištrinta 2026-07-24 lean purge – untracked)_ |
+| `docs/archive/root/` | _(ištrinta 2026-07-24 lean purge – untracked)_ |
 
 **Pastaba:** šaknies `archive/` (be `docs/`) yra `.gitignore` – senas lokalinis katalogas; naudokite **`docs/archive/`**.
 
@@ -46,6 +46,28 @@
 | `docs/development/MODULIU_7_8_9_GILI_ANALIZE_VERDIKTAS.md` | `docs/archive/development/` | Istorinė analizė; dalis nebevalidi po 1.4.0 |
 | `docs/development/EN_UI_US_CONTEXT_CHECKLIST.md` | `docs/archive/development/` | Vienkartinis EN checklist |
 | `docs/archive/development/analysis/*` | `docs/archive/development/analysis/*` | Vienkartinės analizės – ne kasdieninis SOT |
+
+### Docs Lean DL-3 (2026-07-24)
+
+Stub lieka `docs/development/<vardas>.md` → pilnas tekstas čia. Taip pat: `TODO_DONE_SPRINTS_2026-07.md`.
+
+| Buvęs kelias (`docs/development/`) | Priežastis |
+|------------------------------------|------------|
+| `AUDIT_2026-06_SUMMARY.md` | dated audit |
+| `SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md` | rollout baigtas; ritmas = GOLDEN §3.8 |
+| `PORTAL_2_1_UI_AUDIT.md` | session audit |
+| `M4_SK_53_5_SESSION_RETROSPECTIVE.md` | ne SOT |
+| `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md` | execution baigtas |
+| `LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md` | W6 done |
+| `PORTAL_BEAT_SATORI_PLAN.md` | superseded |
+| `UX_BANGA_1_2_EN_SYNC.md` | bangos baigtos |
+| `PLAN_AGENTAI_DARBAI.md` | M4-era plan |
+
+### Lean purge A/B/C (2026-07-24)
+
+- **A:** ištrinta šaknies `archive/` (gitignore, ~13).
+- **B:** ištrinti archive dublikatai gyvų SOT (`CERTIFICATE_CONTENT_SOT`, `SUMMARY_SLIDE_SPEC`, `DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS`).
+- **C:** ~176 untracked ANALIZE/SEQUENCE/audit (+ tušti `moduliai_7_8_9/`, `root/`). Palikta: 52 tracked + 10 DL keep.
 
 ---
 

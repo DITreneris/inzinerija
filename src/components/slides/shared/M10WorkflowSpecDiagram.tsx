@@ -14,6 +14,7 @@ import {
   M10_WORKFLOW_SPEC_START_X,
 } from './m10WorkflowSpecLayout';
 import { DiagramStepHitArea } from './diagramKit';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const {
   width: W,
@@ -25,7 +26,8 @@ const {
   row2Y: ROW_2_Y,
 } = M10_WORKFLOW_SPEC_LAYOUT;
 const START_X = M10_WORKFLOW_SPEC_START_X;
-const MARKER = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const MARKER = PROCESS_ARROW.tipLen;
 
 function textLines(label: string) {
   if (label.length <= 10) return [label];
@@ -76,14 +78,14 @@ export default function M10WorkflowSpecDiagram({
         </linearGradient>
         <marker
           id={`m10-ws-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={MARKER}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
       </defs>
       <rect

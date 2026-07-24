@@ -11,10 +11,12 @@ import {
   type DiagramTone,
 } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const BOX_H = 78;
 const GAP = 28;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const AGENT_TONES: DiagramTone[] = ['slate', 'brand', 'emerald'];
 
 export default function M7ThreeAgentsDiagram({
@@ -65,15 +67,15 @@ export default function M7ThreeAgentsDiagram({
       <defs>
         <marker
           id={`m7-ag-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
+            d={PROCESS_ARROW.pathD}
             fill={palette.flow}
             stroke={palette.flow}
             strokeWidth="0.5"

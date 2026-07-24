@@ -181,7 +181,7 @@ Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 
 - M1–M9 DiagramKit migracija + leftovers (DiPrezentacijos, Turinio, AgentWorkflow, CustomGpt hit zones) — done / dalinis.
 - M10–M12 process diagramos — shell + layout SOT; vizualinis backlog dauguma **Done**: [`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
-- **v0.3 backlog:** CustomGpt hex; `ContentSlides` arbitrary class. (`LlmArch` B3 / W6 etalon ✅ 2026-07 — [`LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md`](LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).)
+- **v0.3 backlog:** CustomGpt hex; `ContentSlides` arbitrary class. (`LlmArch` B3 / W6 etalon ✅ 2026-07 — [`LLMARCH_B3_…`](../archive/development/LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).)
 
 ---
 
@@ -248,7 +248,7 @@ Detalu: `CHANGELOG.md` `[Unreleased]` · **DS max-ROI compliance**.
 | GOLDEN etalonas          | `GOLDEN_STANDARD.md`                                                |
 | UI/UX agentas            | `UI_UX_AGENT.md`                                                    |
 | v0.2 planas (archyvas)   | `DESIGN_SYSTEM_V0_2.md`                                             |
-| v0.2 vykdymas (archyvas) | `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`                              |
+| v0.2 vykdymas (archyvas) | `docs/archive/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md`     |
 | DiagramKit               | `DIAGRAM_KIT_STANDARD.md`                                           |
 | Brand mark               | `BRAND_MARK_SPEC.md`                                                |
 | Release QA               | `RELEASE_QA_CHECKLIST.md`                                           |

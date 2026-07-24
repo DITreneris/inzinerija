@@ -64,7 +64,13 @@ export const M7_JOURNEY_TIER2_PARTIAL_FIELDS: Record<
   M7JourneyTier2PartialSlideId,
   readonly string[]
 > = {
-  73: ['pipeline-overview'],
+  73: [
+    'pipeline-overview',
+    'pipeline-prep',
+    'pipeline-eda',
+    'pipeline-viz',
+    'pipeline-publish',
+  ],
   732: ['sentiment-prompt'],
   78: ['di-role-prompt'],
   78.5: ['excel-clean-prompt'],
@@ -78,9 +84,15 @@ export const M7_JOURNEY_TIER2_REMAINING_FIELDS: Record<
   84: ['db-structure'],
   86: ['viz-prompt'],
   87: ['forecast-prompt'],
-  89: ['algo-sources'],
+  89: [
+    'algo-sources',
+    'algo-structure',
+    'algo-collect',
+    'algo-clean',
+    'algo-export',
+  ],
   891: ['prep-clean'],
-  90: ['eda-stats'],
+  90: ['eda-stats', 'eda-corr', 'eda-anomaly', 'eda-hypotheses'],
   92: ['bi-plan'],
 };
 
@@ -121,6 +133,10 @@ export const M7_CONTENT_BLOCK_FIELD_INDICES: Partial<
   },
   73: {
     'pipeline-overview': 3,
+    'pipeline-prep': 4,
+    'pipeline-eda': 5,
+    'pipeline-viz': 6,
+    'pipeline-publish': 7,
   },
   732: {
     'sentiment-prompt': 2,
@@ -135,9 +151,20 @@ export const M7_CONTENT_BLOCK_FIELD_INDICES: Partial<
   84: { 'db-structure': 3 },
   86: { 'viz-prompt': 2 },
   87: { 'forecast-prompt': 2 },
-  89: { 'algo-sources': 3 },
+  89: {
+    'algo-sources': 3,
+    'algo-structure': 4,
+    'algo-collect': 5,
+    'algo-clean': 6,
+    'algo-export': 7,
+  },
   891: { 'prep-clean': 2 },
-  90: { 'eda-stats': 2 },
+  90: {
+    'eda-stats': 2,
+    'eda-corr': 3,
+    'eda-anomaly': 4,
+    'eda-hypotheses': 5,
+  },
   92: { 'bi-plan': 2 },
 };
 

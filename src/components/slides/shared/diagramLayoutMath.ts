@@ -45,7 +45,7 @@ export function visibleShaftLen(gap: number, markerLen: number): number {
 
 export function visibleShaftMeetsFloor(
   gap: number,
-  markerLen: number = DIAGRAM_TOKENS.arrow.markerLen,
+  markerLen: number = DIAGRAM_TOKENS.arrow.processTipLen,
   floor: number = DIAGRAM_TOKENS.verticalFlow.minStem
 ): boolean {
   return visibleShaftLen(gap, markerLen) >= floor;

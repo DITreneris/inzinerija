@@ -74,9 +74,9 @@
 
 ### 3.1.2 EN vertimas M10+ (handoff DATA_AGENT)
 
-- LT SOT → DATA sinchronizuoja `modules.json` → EN per `modules-en-m10-m12.json` arba `npm run build:modules-en-m10-m12`.
+- LT SOT → DATA sinchronizuoja `modules.json` → EN per `modules-en-m10-m12.json` arba `npm run build:modules-en-m10-m12` (build paleidžia `syncEnFootersFromLt` – EN `Next – slide N` iš LT eilės).
 - **LT** vartotojui — **DI**; **EN locale** — **AI** (`PAPRASTOS_KALBOS_GAIRES.md` §4).
-- Po EN keitimo: `npm run audit:en-coverage-m10-12`, `npm run validate:schema`.
+- Po EN keitimo: `npm run audit:en-coverage-m10-12`, `npm run validate:schema`; jei keisti footeriai – `node scripts/audit-footer-numbers.mjs --modules=10,11,12 --locale=en`.
 - **Žinoma spraga:** slide 10.7 glossary terminai EN overlay faile ≠ globalus `glossary-en.json` (glossary page gali rodyti LT).
 
 ### 3.2 Antraštės ir trumpa santrauka (Trumpai)
@@ -90,7 +90,9 @@
 
 - **Konkretus veiksmas:** „Paimk…“, „Nukopijuok…“, „Palygink promptus per 1 min“ – ne „tęskite mokymąsi“.
 - **Vienas CTA** skaidrėje – aiškiausias pirmas žingsnis.
-- **firstActionCTA** (intro skaidrėse): vienas sakinys – ką daryti per 1–2 min.
+- **firstActionCTA** (intro skaidrėse): vienas sakinys – ką daryti per 1–2 min (pvz. „Spausk Tęsti — …“, „Nukopijuok…“).
+- **Curriculum ID vartotojui – draudžiama:** `124.5`, `10.64`, `121–123` ir pan. **nerodyti** CTA, whyBenefit, body, i18n (`lt.json`/`en.json`) ar path-step tekste. Nuorodoms – skaidrės **pavadinimas** („Greitas startas“, „3A strategija“). ID lieka tik JSON navigacijai: `recommendedSlideIds`, `relatedSlideId`, `onNavigateToSlideById`.
+- **Kreipinys:** **tu** (ne Jūs) – ir antraštėse („ką čia rasi“, ne „rasite“).
 - **„Kur pritaikyti?“** po modulio: 1–2 sakiniai (pvz. „Panaudok tą patį šabloną kitai prezentacijai per 24–48 val.“).
 
 ### 3.4 Kopijuojami promptai
@@ -125,9 +127,23 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 | **action-intro**   | whyBenefit, firstActionCTA, duration, vertė (1 sakinys), palyginimas/veiksmas per ~30 s                                                  |
 | **summary**        | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA     |
 | **content-block**  | Sekcijos (heading, body), Trumpai, Daryk dabar, Patikra, optional collapsible, CopyButton promptas (EN: In short, Do now, Quality check) |
-| **test-intro**     | whyBenefit, trukmė, pirmas žingsnis                                                                                                      |
+| **test-intro**     | whyBenefit, trukmė, pirmas žingsnis; kelio vartams – žr. Path Test Contract žemiau                                                       |
+| **warm-up-quiz**   | 3 unscored (M8 leidžia 4); diagnostinis tonas **tu**; 1 forward bridge į projektą                                                        |
+| **test-results**   | passed/failed (žmogiškos temos), threshold, useCaseBlock → projektas, reflection; be curriculum ID learner copy                          |
 | **practice-intro** | whyBenefit, vertė, pirmas veiksmas                                                                                                       |
 | **practicalTask**  | instructions (žingsniai), partialSolution, template, hint                                                                                |
+
+### 4.1 Path Test Contract (kelio vartai M8 / M11 / M14)
+
+SOT: **`GOLDEN_STANDARD.md` §3.4a1**. Lukštas vienodas; **stuburas** (domeno klausimai) – unikalus.
+
+| Taisyklė | CONTENT                                                                                              |
+| -------- | ---------------------------------------------------------------------------------------------------- |
+| Eilė     | `test-intro` → `warm-up-quiz` → `test-section` → `test-results` → optional bonus `content-block`     |
+| Bonus    | Trumpai → Daryk dabar → Copy → Patikra; `optional` + `badgeVariant: "bonus"`                         |
+| Balsas   | **tu**; M2 live pool = `questionPool.ts` (ne tik embedded JSON bankas)                               |
+| EN       | Tie patys Q ID + `relatedSlideId` kaip LT (M11: `build-en-m10-m12.mjs`; M14: `build-en-m13-m15.mjs`) |
+| Išimtys  | **M2** – be warm-up (pool/radar); **M8** – 4 warm-up OK (3+1 M9 fork)                                |
 
 ---
 

@@ -18,6 +18,10 @@ const DESKTOP_H = 330;
 const COMPACT_W = 420;
 const COMPACT_H = 620;
 
+/** LMS process tip – processTipLen + refX=0 (W7). */
+const M12_ARROW_TIP = DIAGRAM_TOKENS.arrow.processTipLen;
+const M12_ARROW_TIP_H = M12_ARROW_TIP * 0.9;
+
 const MUTED = DIAGRAM_ROLE_COLORS.brandTop;
 const SLATE = DIAGRAM_ROLE_COLORS.slate;
 const TEAL = DIAGRAM_ROLE_COLORS.teal;
@@ -188,6 +192,25 @@ function HandoffLabel({
   );
 }
 
+function FlowMarker({ id, fill }: { id: string; fill: string }) {
+  return (
+    <marker
+      id={id}
+      markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
+      markerWidth={M12_ARROW_TIP}
+      markerHeight={M12_ARROW_TIP_H}
+      refX={0}
+      refY={M12_ARROW_TIP_H / 2}
+      orient="auto"
+    >
+      <path
+        d={`M0 0 L${M12_ARROW_TIP} ${M12_ARROW_TIP_H / 2} L0 ${M12_ARROW_TIP_H} Z`}
+        fill={fill}
+      />
+    </marker>
+  );
+}
+
 export default function M12MultiAgentSchemaDiagram({
   locale = 'lt',
   className = '',
@@ -299,42 +322,12 @@ export default function M12MultiAgentSchemaDiagram({
         aria-label={L.aria}
       >
         <defs>
-          <marker
-            id={arrowId}
-            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth="7"
-            markerHeight="7"
-            refX="7"
-            refY="3.5"
-            orient="auto"
-          >
-            <path d="M0,0 L7,3.5 L0,7 Z" fill={SLATE} />
-          </marker>
-          <marker
-            id={dashedArrowId}
-            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth="7"
-            markerHeight="7"
-            refX="7"
-            refY="3.5"
-            orient="auto"
-          >
-            <path d="M0,0 L7,3.5 L0,7 Z" fill={AMBER} />
-          </marker>
-          <marker
+          <FlowMarker id={arrowId} fill={SLATE} />
+          <FlowMarker id={dashedArrowId} fill={AMBER} />
+          <FlowMarker
             id={feedbackArrowId}
-            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth="7"
-            markerHeight="7"
-            refX="7"
-            refY="3.5"
-            orient="auto"
-          >
-            <path
-              d="M0,0 L7,3.5 L0,7 Z"
-              fill={DIAGRAM_ROLE_COLORS.accentDark}
-            />
-          </marker>
+            fill={DIAGRAM_ROLE_COLORS.accentDark}
+          />
         </defs>
         <rect
           x="10"
@@ -374,7 +367,13 @@ export default function M12MultiAgentSchemaDiagram({
           color={AMBER}
           dashed
         />
-        <g opacity={feedbackActive ? 1 : 0.55}>
+        <g
+          opacity={
+            feedbackActive
+              ? DIAGRAM_TOKENS.opacity.active
+              : DIAGRAM_TOKENS.opacity.inactive
+          }
+        >
           <CurvedArrow
             d="M 110 467 C 20 467, 20 257, 110 257"
             markerId={feedbackArrowId}
@@ -462,39 +461,12 @@ export default function M12MultiAgentSchemaDiagram({
       aria-label={L.aria}
     >
       <defs>
-        <marker
-          id={arrowId}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="7"
-          markerHeight="7"
-          refX="7"
-          refY="3.5"
-          orient="auto"
-        >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={SLATE} />
-        </marker>
-        <marker
-          id={dashedArrowId}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="7"
-          markerHeight="7"
-          refX="7"
-          refY="3.5"
-          orient="auto"
-        >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={AMBER} />
-        </marker>
-        <marker
+        <FlowMarker id={arrowId} fill={SLATE} />
+        <FlowMarker id={dashedArrowId} fill={AMBER} />
+        <FlowMarker
           id={feedbackArrowId}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="7"
-          markerHeight="7"
-          refX="7"
-          refY="3.5"
-          orient="auto"
-        >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={DIAGRAM_ROLE_COLORS.accentDark} />
-        </marker>
+          fill={DIAGRAM_ROLE_COLORS.accentDark}
+        />
       </defs>
       <rect
         x="14"
@@ -534,7 +506,13 @@ export default function M12MultiAgentSchemaDiagram({
         color={AMBER}
         dashed
       />
-      <g opacity={feedbackActive ? 1 : 0.55}>
+      <g
+        opacity={
+          feedbackActive
+            ? DIAGRAM_TOKENS.opacity.active
+            : DIAGRAM_TOKENS.opacity.inactive
+        }
+      >
         <CurvedArrow
           d="M 701 190 C 640 255, 450 255, 388 190"
           markerId={feedbackArrowId}

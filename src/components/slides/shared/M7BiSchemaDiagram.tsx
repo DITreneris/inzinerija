@@ -11,13 +11,15 @@ import {
   type DiagramTone,
 } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import {
   getVerticalFlowConnector,
   type DiagramBox,
 } from './verticalFlowGeometry';
 
 const STEP_COUNT = 4;
-const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const STEP_TONES: DiagramTone[] = ['slate', 'brand', 'emerald', 'amber'];
 
 const DESKTOP_VIEWBOX_W = 640;
@@ -117,15 +119,15 @@ export default function M7BiSchemaDiagram({
         </linearGradient>
         <marker
           id={`m7-bi-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
+            d={PROCESS_ARROW.pathD}
             fill={palette.flow}
             stroke={palette.flow}
             strokeWidth="0.5"

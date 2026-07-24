@@ -1,4 +1,5 @@
 import type { M10LearningLoopLabels } from './m10LearningLoopContent';
+import { DIAGRAM_TOKENS } from './diagramTokens';
 
 export type M10LearningLoopNodeId =
   | 'task'
@@ -141,7 +142,9 @@ export function getLearningLoopAnchor(
   return { x: box.x + box.w / 2, y: box.y + box.h };
 }
 
-const MARKER_LEN = 6;
+/** LMS process tip – processTipLen (not legacy markerLen). */
+export const M10_LEARNING_LOOP_ARROW_TIP = DIAGRAM_TOKENS.arrow.processTipLen;
+const MARKER_LEN = M10_LEARNING_LOOP_ARROW_TIP;
 
 export function getLearningLoopStraightEdge(
   from: M10LearningLoopBox,

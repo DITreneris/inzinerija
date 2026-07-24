@@ -14,7 +14,7 @@ import { equalBoxRowWidth, visibleShaftLen } from './diagramLayoutMath';
 export const AGENT_WORKFLOW_STEP_COUNT = 5;
 
 export const AGENT_WORKFLOW_VIEWBOX = {
-  /** W fits 5×188 + 4×32 + equal side margins; H I3c crop */
+  /** W fits 5×188 + 4×32 + equal side margins; H = I3c crop + caption air */
   desktop: { width: 1100, height: 248 },
   compact: { width: 360, height: 540 },
 } as const;
@@ -45,17 +45,22 @@ export function agentWorkflowDesktopStartX(): number {
 }
 
 export const AGENT_WORKFLOW_START = {
-  /** x derived via horizontalRowBoxes; y is layout SOT */
-  desktop: { y: 40 },
+  /** x derived via horizontalRowBoxes; y = caption air (RL ROW_Y 62 parity) */
+  desktop: { y: 62 },
   /** Compact column already centered: (360 − 228) / 2 = 66 */
   compact: { x: 66, y: 44 },
 } as const;
 
-/** Feedback loop Y (desktop) / X gutter (compact). */
+/** Feedback trough offset under box bottom (RL fbTroughOffset parity). */
+export const AGENT_WORKFLOW_FB_TROUGH_OFFSET = 36;
+
+/** Feedback loop Y (desktop) / X gutter (compact). No start circle (RlProcess parity). */
 export const AGENT_WORKFLOW_FEEDBACK = {
-  /** I3c: tighter U under the row */
+  /** U under the row – offset leaves label inside H=248 after caption air */
   desktopY: () =>
-    AGENT_WORKFLOW_START.desktop.y + AGENT_WORKFLOW_BOX.desktop.h + 28,
+    AGENT_WORKFLOW_START.desktop.y +
+    AGENT_WORKFLOW_BOX.desktop.h +
+    AGENT_WORKFLOW_FB_TROUGH_OFFSET,
   compactX: 34,
   tipH: 12,
   tipW: 8,
@@ -63,7 +68,6 @@ export const AGENT_WORKFLOW_FEEDBACK = {
   gapAboveBlock: 2,
   arrowGapFb: 10,
   pathStroke: DIAGRAM_TOKENS.stroke.feedback,
-  startRadius: 5,
   labelSize: 14,
   labelOffsetY: 14,
 } as const;
@@ -72,7 +76,8 @@ export const AGENT_WORKFLOW_ARROW = {
   /** Desktop forward starts at box edge (RlProcess); compact still uses small gap. */
   gapFwd: 0,
   gapFwdCompact: 5,
-  markerLen: DIAGRAM_TOKENS.arrow.markerLen,
+  /** LMS process tip – DIAGRAM_TOKENS.arrow.processTipLen (not legacy markerLen). */
+  markerLen: DIAGRAM_TOKENS.arrow.processTipLen,
   forwardStroke: DIAGRAM_TOKENS.stroke.flow,
 } as const;
 
@@ -83,7 +88,8 @@ export const AGENT_WORKFLOW_TYPE = {
     compact: DIAGRAM_TOKENS.typography.title.compact,
   },
   diagramTitleY: {
-    desktop: 20,
+    /** RL caption air: titleY 22 + row low enough for edge labels */
+    desktop: 22,
     compact: 20,
   },
   diagramTitleWeight: DIAGRAM_TOKENS.typography.titleWeight,

@@ -21,7 +21,7 @@ import {
 } from './schema3Layout';
 import type { Locale } from './schema3Labels';
 import { getSchema3DiagramTitles, getSchema3NodeLabels } from './schema3Labels';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const BRAND = '#334e68';
 const BRAND_LIGHT = '#486581';
@@ -32,6 +32,7 @@ const TEXT_DARK = '#102a43';
 const STORAGE_FILL = '#64748b';
 const STORAGE_STROKE = '#475569';
 const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 const NODE_INDEX: Record<string, number> = {
   input: 0,
@@ -118,15 +119,15 @@ export default function Schema3InteractiveDiagram({
         </linearGradient>
         <marker
           id={`s3i-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="8"
-          markerHeight="6"
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d="M0 0 L8 3 L0 6 Z"
+            d={PROCESS_ARROW.pathD}
             fill={BRAND}
             stroke={BRAND}
             strokeWidth="0.2"
@@ -134,15 +135,15 @@ export default function Schema3InteractiveDiagram({
         </marker>
         <marker
           id={`s3i-arrow-rev-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="8"
-          markerHeight="6"
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto-start-reverse"
         >
           <path
-            d="M0 0 L8 3 L0 6 Z"
+            d={PROCESS_ARROW.pathD}
             fill={BRAND}
             stroke={BRAND}
             strokeWidth="0.2"
@@ -150,15 +151,15 @@ export default function Schema3InteractiveDiagram({
         </marker>
         <marker
           id={`s3i-arrow-dashed-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="8"
-          markerHeight="6"
-          refX={ARROW_MARKER_LEN}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d="M0 0 L8 3 L0 6 Z"
+            d={PROCESS_ARROW.pathD}
             fill={STORAGE_STROKE}
             stroke={STORAGE_STROKE}
             strokeWidth="0.2"

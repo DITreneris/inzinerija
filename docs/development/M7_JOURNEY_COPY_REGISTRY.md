@@ -1,6 +1,6 @@
 # M7 Journey Copy Registry — Tier 1 (RC-1)
 
-> **Backlog:** M79-32  
+> **Backlog:** M79-32 · **Branda:** [`M7_PROMPT_MATURITY.md`](M7_PROMPT_MATURITY.md) (M7P – F/S/R/L + sibling parity)  
 > **Overlay:** `src/data/modules-journey-m7.json`  
 > **Kodas:** `src/data/m7JourneyCopyRegistry.ts`  
 > **Fallback:** `activeJourneyId` → `pardavimai` overlay → `modules.json` bazė
@@ -71,32 +71,32 @@
 
 ---
 
-## Tier 2 dalinis (RC-2 parity banga) — 4 skaidrės × 4 laukai = 16 × 6 = 96
+## Tier 2 dalinis + M7P sibling parity
 
-| Skaidrė | fieldKey             | JSON kelias                    |
-| ------- | -------------------- | ------------------------------ |
-| 73      | `pipeline-overview`  | `content.sections[3].copyable` |
-| 732     | `sentiment-prompt`   | `content.sections[2].copyable` |
-| 78      | `di-role-prompt`     | `content.sections[3].copyable` |
-| 78.5    | `excel-clean-prompt` | `content.sections[2].copyable` |
+| Skaidrė | fieldKey                                                                                 | JSON kelias                    |
+| ------- | ---------------------------------------------------------------------------------------- | ------------------------------ |
+| 73      | `pipeline-overview`, `pipeline-prep`, `pipeline-eda`, `pipeline-viz`, `pipeline-publish` | `sections[3…7].copyable`       |
+| 732     | `sentiment-prompt`                                                                       | `content.sections[2].copyable` |
+| 78      | `di-role-prompt`                                                                         | `content.sections[3].copyable` |
+| 78.5    | `excel-clean-prompt`                                                                     | `content.sections[2].copyable` |
 
 **LT overlay:** `modules-journey-m7.json`  
 **EN overlay:** `modules-journey-en-m7.json` (AI, ne DI)
 
 ---
 
-## Tier 2 likę (RC-4 / M79-35) — 8 skaidrės × 1 laukas × 6 = 48
+## Tier 2 likę + M7P sibling parity (89 / 90)
 
-| Skaidrė | fieldKey          | JSON kelias                    |
-| ------- | ----------------- | ------------------------------ |
-| 83      | `role-activation` | `content.sections[2].copyable` |
-| 84      | `db-structure`    | `content.sections[3].copyable` |
-| 86      | `viz-prompt`      | `content.sections[2].copyable` |
-| 87      | `forecast-prompt` | `content.sections[2].copyable` |
-| 89      | `algo-sources`    | `content.sections[3].copyable` |
-| 891     | `prep-clean`      | `content.sections[2].copyable` |
-| 90      | `eda-stats`       | `content.sections[2].copyable` |
-| 92      | `bi-plan`         | `content.sections[2].copyable` |
+| Skaidrė | fieldKey                                                                      | JSON kelias                    |
+| ------- | ----------------------------------------------------------------------------- | ------------------------------ |
+| 83      | `role-activation`                                                             | `content.sections[2].copyable` |
+| 84      | `db-structure`                                                                | `content.sections[3].copyable` |
+| 86      | `viz-prompt`                                                                  | `content.sections[2].copyable` |
+| 87      | `forecast-prompt`                                                             | `content.sections[2].copyable` |
+| 89      | `algo-sources`, `algo-structure`, `algo-collect`, `algo-clean`, `algo-export` | `sections[3…7].copyable`       |
+| 891     | `prep-clean`                                                                  | `content.sections[2].copyable` |
+| 90      | `eda-stats`, `eda-corr`, `eda-anomaly`, `eda-hypotheses`                      | `sections[2…5].copyable`       |
+| 92      | `bi-plan`                                                                     | `content.sections[2].copyable` |
 
 Authoring: `scripts/journey-lt-tier2-remaining.json` / `journey-en-tier2-remaining.json`
 
@@ -120,7 +120,7 @@ Authoring: `scripts/journey-lt-pathstep.json` / `journey-en-pathstep.json` + `pa
 - Tier 2 likę: 48 variantai (`83`…`92`)
 - Path-step: 30 variantai (`71.1`…`71.5`)
 - Resolver: `resolveJourneyCopy.ts` — `locale: 'lt' | 'en'`
-- Gate: `audit:m7-journey-coverage` (+ `:en`) — 31 fields × 6
+- Gate: `audit:m7-journey-coverage` (+ `:en`) — **42 fields × 6** (po M7P sibling parity)
 
 ## Optional RC-1 stretch
 

@@ -22,7 +22,7 @@
     },
     "m4_sk_53_5_news_portal": {
       "path": "docs/development/NEWS_PORTAL_SLIDE_53_5.md",
-      "description": "M4 sk. 53.5 news-portal editorial scroll; beat diagrams PORTAL_BEAT_DIAGRAMS.md; session retrospective M4_SK_53_5_SESSION_RETROSPECTIVE.md; UI audit PORTAL_2_1_UI_AUDIT.md; improvement guide PORTAL_2_1_IMPROVEMENT_GUIDE.md"
+      "description": "M4 sk. 53.5 news-portal editorial scroll; beat diagrams PORTAL_BEAT_DIAGRAMS.md; improvement guide PORTAL_2_1_IMPROVEMENT_GUIDE.md (session retrospective / UI audit → docs/archive/development/)"
     },
     "moduliai_10_12": {
       "path": "docs/turinio_pletra_moduliai_10_11_12.md",
@@ -40,9 +40,25 @@
       "path": "docs/development/DOCS_MAINTENANCE.md",
       "description": "Long-term documentation governance: layers, dual SOT, Feature Doc Contract, release sync cadence"
     },
+    "teaching_elements_registry": {
+      "path": "docs/development/TEACHING_ELEMENTS_REGISTRY.md",
+      "description": "Master teaching elements registry (diagrams, labs, embeds, tables, slide types); brandą 0–4; overlay teaching-elements-overlay.json; audit:teaching-elements"
+    },
+    "teaching_elements_overlay": {
+      "path": "docs/development/teaching-elements-overlay.json",
+      "description": "Curated Pattern / Shell / maturity per elementId; validated by scripts/audit-teaching-elements.mjs"
+    },
     "diagramu_m7_m12_registry": {
       "path": "docs/development/DIAGRAMU_M7_M12_REGISTRY.md",
-      "description": "M7–M12 image-key registry (Pattern + Shell Y/N); includes m10_human_control_simulator interactive-control-lab"
+      "description": "M7–M12 image-key satellite registry (Pattern + Shell Y/N); detail under TEACHING_ELEMENTS_REGISTRY"
+    },
+    "diagramu_m13_m15_registry": {
+      "path": "docs/development/DIAGRAMU_M13_M15_REGISTRY.md",
+      "description": "M13–15 image-key satellite registry (m13_*, m15_*, turinio_workflow)"
+    },
+    "diagramu_m1_m9_auditas": {
+      "path": "docs/development/DIAGRAMU_M1_M9_AUDITAS.md",
+      "description": "Rubric + historical M1–9 smoke; primary live inventory = teaching_elements_registry / teaching_elements_overlay; slide IDs may lag"
     },
     "m10_human_control_lab": {
       "path": "src/components/slides/shared/m10HumanControlModel.ts",

@@ -103,6 +103,10 @@ export const DIAGRAM_TOKENS = {
     box: 10,
   },
   arrow: {
+    /**
+     * LEGACY tip/inset (circle edges, old path shape). Do not use for LMS process
+     * forward markers — prefer `processTipLen` + `getProcessArrowMarkerGeom`.
+     */
     markerLen: 6,
     markerWidth: 8,
     markerHeight: 6,
@@ -113,6 +117,11 @@ export const DIAGRAM_TOKENS = {
      * when GAP ≈ 24–32 (tip ≈ markerLen × 3.5 ≥ visible shaft).
      */
     markerUnits: 'userSpaceOnUse' as const,
+    /**
+     * LMS process forward tip (≥~2× stroke.flow 3.5). Use with refX=0.
+     * Never assert processTipLen === markerLen.
+     */
+    processTipLen: 10,
   },
   verticalFlow: {
     minGap: 24,

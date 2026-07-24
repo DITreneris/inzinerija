@@ -23,7 +23,7 @@ const moduleMeta = {
   14: {
     title: 'Knowledge check: Content path',
     subtitle: 'Images, video, music and workflow',
-    description: 'Check whether you are ready for the final content engineering project.',
+    description: 'Check image, video and audio principles. ≥70% recommended before Module 15.',
     duration: '12–15 min',
   },
   15: {
@@ -58,8 +58,10 @@ const slideMeta = {
   13.8: ['Glossary (optional)', 'Content engineering terms'],
   13.9: ['Module 13 summary', 'What you learned and what to do next'],
   140: ['Module 14 test', 'Content engineering knowledge'],
-  141: ['Questions', 'Images, video, music'],
+  140.5: ['Warm-up before the test', '3 questions: brand, audio-first, path to M15'],
+  141: ['Questions', 'Images, video, audio, pipeline'],
   142: ['Results', 'Ready for Module 15?'],
+  143: ['Bonus: pipeline checklist in 5 min', 'Brief → stills → video/audio → disclosure'],
   150: ['Content engineering project', 'Quick start or full mini campaign'],
   150.5: ['Quick start: one hero image', 'Brief + hero image + prompt'],
   150.25: ['Project loop: quick and full paths', 'One asset first; full path if you want more'],
@@ -74,6 +76,7 @@ const headingMap = new Map([
   ['Daryk dabar', 'Do this now'],
   ['Patikra', 'Check'],
   ['Kopijuojamas promptas', 'Copyable prompt'],
+  ['Kopijuojamas promptų rinkinys', 'Copyable prompt pack'],
   ['Kopijuojamas šablonas (kompozicija + kadras)', 'Copyable template: composition and framing'],
   ['Kampanijos tikslai – schema', 'Campaign goals diagram'],
   ['Kampanijos tikslai (kuo vadovautis)', 'Campaign goals: how to decide'],
@@ -137,8 +140,10 @@ const genericBySlide = {
   13.11: 'Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.',
   13.8: 'Learn the key terms used in content engineering.',
   13.9: 'You learned the core image, video and music prompt patterns.',
-  140: 'Answer 8 questions before starting the final content project.',
+  140: 'Answer 12 questions before starting the final content project.',
+  140.5: 'Check brand/format, audio-first thinking, and what you will do first in Module 15.',
   142: 'Use your result to decide whether to review Module 13 or continue to the project.',
+  143: 'After the test, run a 5-minute pipeline checklist: brief, stills, video or audio-first, then rights and disclosure.',
   150: 'Start with one hero image; optionally continue to short video and background music.',
   150.5: 'Create one hero image, a short brief and the prompt you used.',
   150.25: 'Quick path: brief -> one asset -> tweak. Full path: image -> video -> music -> QA.',
@@ -169,6 +174,13 @@ const copyableBySlide = {
     'Evaluate this artefact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artefact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes.',
   13.11:
     'Brief: Goal [awareness / engagement / conversion]. Audience: [describe]. Platform: [e.g. Instagram 1:1]. Image prompt: [subject] + [action/context] + [setting]. Brand: [colors and tone]. Variants: 3-5.',
+  143: `You are a content pipeline assistant. Topic: [DESCRIBE].
+1) BRIEF: goal (A/E/C), audience, platform, ratios.
+2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).
+3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.
+4) RIGHTS: commercial licence; faces/voices – consent.
+5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.
+OUTPUT: checklist table (step | status | risk) + 1 next action.`,
   150.5:
     'Brief: goal [awareness / engagement / conversion], audience [who], platform [where]. Create a hero image: [subject and action], setting [context], style [style], ratio [1:1 / 16:9 / 9:16]. Brand: colors [X], tone [professional / friendly / premium].',
   151:
@@ -180,6 +192,29 @@ const copyableBySlide = {
   158:
     'Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.',
 };
+
+const bonus143Sections = [
+  {
+    heading: 'In short',
+    body: 'After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a licence and C2PA / disclosure.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Do this now',
+    body: 'Pick one real topic (product or event). Copy the checklist prompt below, run it in AI, and note what you need before expensive video and what you will check before publishing.',
+    blockVariant: 'brand',
+  },
+  {
+    heading: 'Copyable prompt',
+    body: 'Use this in one AI chat.',
+    copyable: copyableBySlide[143],
+  },
+  {
+    heading: 'Check',
+    body: 'If licence or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.',
+    blockVariant: 'accent',
+  },
+];
 
 const recognitionBySlide = {
   13.34: {
@@ -223,16 +258,68 @@ function translateModule(module) {
 function translateSlide(slide, moduleId) {
   const [title, subtitle] = slideMeta[slide.id] ?? [toEnglishTitle(slide.title), toEnglishTitle(slide.subtitle)];
   const translated = walk(slide, { moduleId, slideId: slide.id, path: `M${moduleId}/slides[${slide.id}]` });
+  const contentOverrides = {};
+  if (recognitionBySlide[slide.id]) {
+    contentOverrides.recognitionExercise = recognitionBySlide[slide.id];
+  }
+  if (slide.id === 143) {
+    contentOverrides.sections = bonus143Sections;
+    contentOverrides.footer = 'Next – Module 15: Content project';
+  }
+  if (slide.id === 140.5) {
+    contentOverrides.questions = [
+      {
+        id: 'm14-warm-1',
+        question: 'How do you reduce a chaotic brand look across a social image series?',
+        options: [
+          'Specify brand colours, tone, visual identity and platform ratios',
+          'Only write “make it pretty” and switch tools',
+          'Specify only the file name',
+          'Specify only music BPM',
+        ],
+        correct: 0,
+        explanation:
+          'Strong: brand consistency plus clear ratios (e.g. 1:1 feed / 9:16 Stories) reduces random style. If you missed it – revisit style and ratios.',
+      },
+      {
+        id: 'm14-warm-2',
+        question: 'What does audio-first thinking mean on the content path?',
+        options: [
+          'Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”',
+          'Use only a music generator with no scene plan',
+          'Always pick the longest track',
+          'Ignore licences if the audio is short',
+        ],
+        correct: 0,
+        explanation:
+          'Strong: audio means VO + SFX + music and pacing. If you thought only “music” – go back to audio description and audio-first logic.',
+      },
+      {
+        id: 'm14-warm-3',
+        question: 'After the test, what should you do first in Module 15?',
+        options: [
+          'The required quick start: hero image + prompt + brief (MUST); video/audio only on the optional path',
+          'Jump straight into editing a 3-minute film with no brief',
+          'Skip the hero and go only to music',
+          'Wait for AI to choose the campaign goal',
+        ],
+        correct: 0,
+        explanation:
+          'Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artefact.',
+      },
+    ];
+    contentOverrides.footer = 'Next – slide 3: Questions';
+  }
   return {
     ...translated,
     title,
     ...(subtitle ? { subtitle } : {}),
-    ...(slide.shortTitle ? { shortTitle: title } : {}),
-    ...(recognitionBySlide[slide.id]
+    ...(slide.shortTitle ? { shortTitle: toEnglishTitle(slide.shortTitle) || 'Warm-up' } : {}),
+    ...(Object.keys(contentOverrides).length
       ? {
           content: {
             ...translated.content,
-            recognitionExercise: recognitionBySlide[slide.id],
+            ...contentOverrides,
           },
         }
       : {}),
@@ -275,14 +362,16 @@ function translateString(value, ctx) {
   }
   if (key === 'firstActionCTA') {
     return slideId === 140
-      ? 'Answer 8 questions about images, video, music, risks, workflow and image-to-video.'
+      ? 'Answer 12 questions – images, video, audio, pipeline, audio-first, licences, C2PA, risks and workflow.'
       : 'Start with the quick path: create one hero image with the prompt you used.';
   }
   if (key === 'microWinPhrase') return 'Each correct answer shows that you can apply content prompts.';
   if (key === 'thresholdExplanation') return 'At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.';
   if (key === 'passedMessage') return 'Great work! You can continue to Module 15: Content engineering project.';
-  if (key === 'failedMessage') return 'Review Module 13 slides again: images, video, music, workflow and risks.';
-  if (key === 'question') return translateQuestion(value);
+  if (key === 'failedMessage') {
+    return 'Review Module 13 again – pipeline, images, video, audio, licences and C2PA.';
+  }
+  if (key === 'question') return translateQuestion(value, slideId);
   if (key === 'explanation') return 'The best answer uses a clear goal, context, format and quality check.';
   if (key === 'scenarioContext') return genericBySlide[slideId] ?? 'Read the situation and choose the best next step.';
   if (key === 'title') {
@@ -325,10 +414,23 @@ function shouldKeep(value, key, path) {
   return false;
 }
 
-function translateQuestion(value) {
+function translateQuestion(value, slideId) {
+  if (slideId === 140.5) {
+    if (value.includes('chaotišką brandą')) {
+      return 'How do you reduce a chaotic brand look across a social image series?';
+    }
+    if (value.includes('audio-first')) {
+      return 'What does audio-first thinking mean on the content path?';
+    }
+    if (value.includes('Modulyje 15')) {
+      return 'After the test, what should you do first in Module 15?';
+    }
+  }
   if (value.includes('kvadratinio socialinio įrašo')) return 'What should you specify for a square social post image?';
   if (value.includes('labiausiai valdo vaizdo išvaizdą')) return 'Which field controls the image look the most?';
-  if (value.includes('chaotiško brando')) return 'How do you reduce a random, inconsistent brand look?';
+  if (value.includes('chaotiško brando') || value.includes('chaotišką brandą')) {
+    return 'How do you reduce a random, inconsistent brand look?';
+  }
   if (value.includes('būtina trumpam vaizdo promptui')) return 'What does a short video prompt need?';
   if (value.includes('rinktis 9:16')) return 'When should you choose a 9:16 format?';
   if (value.includes('publikuojant sugeneruotą video')) return 'What should you check before publishing generated video publicly?';
@@ -340,6 +442,10 @@ function translateQuestion(value) {
   if (value.includes('marketing brief')) return 'In the full brief-to-publication workflow, what comes right after the brief?';
   if (value.includes('situacijai')) return 'Which prompt best fits this situation?';
   if (value.includes('saugiausias')) return 'What is the safest workflow here?';
+  if (value.includes('C2PA')) return 'What is C2PA / disclosure practice before publishing AI content?';
+  if (value.includes('audio-first') || value.includes('Audio-first')) {
+    return 'Why plan audio-first pacing before expensive video?';
+  }
   return 'Choose the best answer for this content engineering situation.';
 }
 
@@ -389,7 +495,24 @@ function toEnglishOption(value) {
   if (value.includes('Sutikimą')) return 'Consent, rights and deepfake risk';
   if (value.includes('Formuluoti')) return 'Write a brand-aligned prompt and plan several variants';
   if (value.includes('vertikalų 9:16')) return 'A vertical 9:16 product hero image with brand colors and space for a headline';
-  if (value.includes('hero vaizdą')) return 'Generate a hero image first, then use it in an image-to-video tool';
+  if (value.includes('hero vaizdą') && value.includes('I2V')) {
+    return 'Generate a hero image first, then use it in an image-to-video tool';
+  }
+  if (value.includes('brand spalvas')) {
+    return 'Specify brand colours, tone, visual identity and platform ratios';
+  }
+  if (value.includes('padaryk gražu')) return 'Only write “make it pretty” and switch tools';
+  if (value.includes('VO, SFX') || value.includes('VO/SFX')) {
+    return 'Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”';
+  }
+  if (value.includes('tik muzikos generatorių')) return 'Use only a music generator with no scene plan';
+  if (value.includes('Privalomą greitą startą') || value.includes('hero vaizdas + promptas')) {
+    return 'The required quick start: hero image + prompt + brief (MUST); video/audio only on the optional path';
+  }
+  if (value.includes('3 min filmą')) return 'Jump straight into editing a 3-minute film with no brief';
+  if (value.includes('Provenance') || value.includes('Content Credentials')) {
+    return 'Provenance marking: Content Credentials / watermark and, where needed, a human-visible AI label';
+  }
   return 'A clear, specific option based on goal, format and checks';
 }
 

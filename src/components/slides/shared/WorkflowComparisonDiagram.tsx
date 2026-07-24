@@ -35,6 +35,7 @@ import {
   getDiagramLabels,
 } from './workflowComparisonConfig';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 interface Props {
   locale?: Locale;
@@ -45,6 +46,7 @@ interface Props {
 }
 
 const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 export default function WorkflowComparisonDiagram({
   locale = 'lt',
@@ -81,25 +83,25 @@ export default function WorkflowComparisonDiagram({
 
         <marker
           id={`wf-arr-${uid}`}
-          markerUnits="userSpaceOnUse"
-          markerWidth="6"
-          markerHeight="5"
-          refX="0"
-          refY="2.5"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d="M0 0 L6 2.5 L0 5 Z" fill={COLORS.arrow} />
+          <path d={PROCESS_ARROW.pathD} fill={COLORS.arrow} />
         </marker>
         <marker
           id={`wf-arr-em-${uid}`}
-          markerUnits="userSpaceOnUse"
-          markerWidth="6"
-          markerHeight="5"
-          refX="0"
-          refY="2.5"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d="M0 0 L6 2.5 L0 5 Z" fill={COLORS.emerald} />
+          <path d={PROCESS_ARROW.pathD} fill={COLORS.emerald} />
         </marker>
 
         <linearGradient

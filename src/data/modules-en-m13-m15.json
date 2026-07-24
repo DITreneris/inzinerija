@@ -3,8 +3,8 @@
     {
       "id": 13,
       "title": "Content engineering with AI",
-      "subtitle": "Images, video, and audio",
-      "description": "Learn to create images, short videos, and audio with AI – from brief to quality checks before publishing.",
+      "subtitle": "Images, video, music",
+      "description": "Create marketing visuals, short videos and audio with AI prompts, checks and rights awareness.",
       "icon": "Image",
       "level": "learn",
       "duration": "25–30 min",
@@ -1081,20 +1081,20 @@
       ],
       "businessExamples": [
         {
-          "title": "Image generation",
-          "description": "Prompts, style, aspect ratio, tools"
+          "title": "Vaizdu generavimas",
+          "description": "Use this step to create, check and improve your AI content artefact."
         },
         {
-          "title": "Video and music",
-          "description": "Short clips and audio generation with AI"
+          "title": "Video ir music",
+          "description": "Use this step to create, check and improve your AI content artefact."
         }
       ]
     },
     {
       "id": 14,
       "title": "Knowledge check: Content path",
-      "subtitle": "Test: images, video, audio",
-      "description": "Check image, video, and audio principles. ≥70% recommended before Module 15.",
+      "subtitle": "Images, video, music and workflow",
+      "description": "Check image, video and audio principles. ≥70% recommended before Module 15.",
       "icon": "ClipboardCheck",
       "level": "test",
       "duration": "12–15 min",
@@ -1116,7 +1116,56 @@
               "pass": 70,
               "fail": 0
             },
-            "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides."
+            "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.",
+            "footer": "Next – slide 2: Warm-up"
+          }
+        },
+        {
+          "id": 140.5,
+          "title": "Warm-up before the test",
+          "shortTitle": "Savitikra",
+          "subtitle": "3 questions: brand, audio-first, path to M15",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m14-warm-1",
+                "question": "How do you reduce a chaotic brand look across a social image series?",
+                "options": [
+                  "Specify brand colours, tone, visual identity and platform ratios",
+                  "Only write “make it pretty” and switch tools",
+                  "Specify only the file name",
+                  "Specify only music BPM"
+                ],
+                "correct": 0,
+                "explanation": "Strong: brand consistency plus clear ratios (e.g. 1:1 feed / 9:16 Stories) reduces random style. If you missed it – revisit style and ratios."
+              },
+              {
+                "id": "m14-warm-2",
+                "question": "What does audio-first thinking mean on the content path?",
+                "options": [
+                  "Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”",
+                  "Use only a music generator with no scene plan",
+                  "Always pick the longest track",
+                  "Ignore licences if the audio is short"
+                ],
+                "correct": 0,
+                "explanation": "Strong: audio means VO + SFX + music and pacing. If you thought only “music” – go back to audio description and audio-first logic."
+              },
+              {
+                "id": "m14-warm-3",
+                "question": "After the test, what should you do first in Module 15?",
+                "options": [
+                  "The required quick start: hero image + prompt + brief (MUST); video/audio only on the optional path",
+                  "Jump straight into editing a 3-minute film with no brief",
+                  "Skip the hero and go only to music",
+                  "Wait for AI to choose the campaign goal"
+                ],
+                "correct": 0,
+                "explanation": "Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artefact."
+              }
+            ],
+            "footer": "Next – slide 3: Questions"
           }
         },
         {
@@ -1142,16 +1191,16 @@
             {
               "id": "m14-q2",
               "type": "scenario",
-              "scenarioContext": "You need a LinkedIn post series: every image should look like one brand, and Stories must be vertical.",
-              "question": "What must you put in the prompt to reduce chaotic brand results and hit the right format?",
+              "scenarioContext": "Read the situation and choose the best next step.",
+              "question": "How do you reduce a random, inconsistent brand look?",
               "options": [
-                "Only the word \"nice\" and any tool name",
-                "Brand colours, tone, visual identity and ratios (e.g. 1:1 feed / 9:16 Stories)",
-                "Only the file name and duration in seconds",
-                "Only the music BPM"
+                "Only one narrow detail",
+                "A clear, specific option based on goal, format and checks",
+                "Only one narrow detail",
+                "Only one narrow detail"
               ],
               "correct": 1,
-              "explanation": "Brand consistency (colours, tone, identity) plus clear ratios per platform keeps the model from inventing a random style.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.3
             },
             {
@@ -1185,16 +1234,16 @@
             {
               "id": "m14-q5",
               "type": "scenario",
-              "scenarioContext": "You are planning a public campaign where an AI-made face or voice looks or sounds like a real person.",
-              "question": "What should you check before publishing?",
+              "scenarioContext": "Read the situation and choose the best next step.",
+              "question": "Choose the best answer for this content engineering situation.",
               "options": [
-                "Only image sharpness",
+                "Only one narrow detail",
                 "Consent, rights and deepfake risk",
-                "Only the color palette",
-                "Only the social media algorithm"
+                "Only one narrow detail",
+                "Only one narrow detail"
               ],
               "correct": 1,
-              "explanation": "Faces and voices in public campaigns raise ethics and legal questions: consent, likeness rights, tool rules and deepfake risk.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.101
             },
             {
@@ -1214,74 +1263,74 @@
             {
               "id": "m14-q7",
               "type": "scenario",
-              "scenarioContext": "Your goal is a conversion ad for Instagram Stories. You need a hero image with a clear product and space for a headline.",
+              "scenarioContext": "Read the situation and choose the best next step.",
               "question": "Which prompt best fits this situation?",
               "options": [
-                "Create a beautiful image that catches people's attention.",
-                "Create a vertical 9:16 product hero image: [product] in the foreground, clean background, brand colors [X], space for a headline at the top, clear call-to-action area at the bottom, no random text inside the image.",
-                "Create any 1:1 image with many details and a lot of text.",
-                "Create an artistic image without the product; only the mood matters."
+                "A clear, specific option based on goal, format and checks",
+                "A vertical 9:16 product hero image with brand colors and space for a headline",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks"
               ],
               "correct": 1,
-              "explanation": "A conversion visual needs a clear format, product, brand rules and space for text. Pure emotion or abstract beauty fits awareness better.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.1
             },
             {
               "id": "m14-q8",
               "type": "scenario",
-              "scenarioContext": "You want a short 5–8 second clip that keeps the same product look and colors as the campaign hero visual.",
+              "scenarioContext": "Read the situation and choose the best next step.",
               "question": "What is the safest workflow here?",
               "options": [
-                "Write only a broad text-to-video prompt and hope the style matches.",
-                "Generate the hero image / keyframe first, then use it in an image-to-video tool and ask it to keep the same style and colors.",
-                "Start from the music and create the video without a script.",
-                "Generate a 1-minute video with one prompt, because longer is always better."
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks"
               ],
               "correct": 1,
-              "explanation": "The image → video chain helps preserve the same style, object and colors. A long video in one prompt is safer as short, clear scenes.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.4
             },
             {
               "id": "m14-q9",
               "type": "mcq",
-              "question": "Why have storyboard / stills before expensive video generation?",
+              "question": "Choose the best answer for this content engineering situation.",
               "options": [
-                "So the file is larger",
-                "To lock composition and reduce retries / CPI",
-                "So you can skip the brief",
-                "So you can skip rights checks"
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks"
               ],
               "correct": 1,
-              "explanation": "Stills / storyboard lock the visual cheaply; the video model then handles motion. That cuts randomness and cost per usable clip (CPI).",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.12
             },
             {
               "id": "m14-q10",
               "type": "mcq",
-              "question": "What does audio-first workflow mean?",
+              "question": "Why plan audio-first pacing before expensive video?",
               "options": [
-                "Video first, then any audio",
-                "Finish VO (or bed duration) first, then cut / generate video to match audio pacing",
-                "SFX only, no music",
-                "Silent export only"
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "Only one narrow detail",
+                "Only one narrow detail"
               ],
               "correct": 1,
-              "explanation": "Audio-first: VO or bed sets edit rhythm. If audio “floats”, video feels disconnected.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.6
             },
             {
               "id": "m14-q11",
               "type": "scenario",
-              "scenarioContext": "A client needs background music for a monetised YouTube ad.",
-              "question": "Which choice should you prioritise?",
+              "scenarioContext": "Read the situation and choose the best next step.",
+              "question": "Choose the best answer for this content engineering situation.",
               "options": [
-                "Suno free demo without checking licence",
-                "Licensed stack (ElevenMusic, Soundraw or Beatoven) and ToS check",
-                "Any random file from the internet",
-                "Silence, because music is never allowed"
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks",
+                "A clear, specific option based on goal, format and checks"
               ],
               "correct": 1,
-              "explanation": "Client / ad / monetisation – licensed tools. Suno/Udio suit demos, not “probably nobody will notice”.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.7
             },
             {
@@ -1289,13 +1338,13 @@
               "type": "mcq",
               "question": "What is C2PA / disclosure practice before publishing AI content?",
               "options": [
-                "Only a nice file name",
-                "Provenance marking: Content Credentials / watermark and, where required, human-visible AI label",
-                "Only colour correction",
-                "Only a longer prompt"
+                "Only one narrow detail",
+                "Provenance marking: Content Credentials / watermark and, where needed, a human-visible AI label",
+                "Only one narrow detail",
+                "Only one narrow detail"
               ],
               "correct": 1,
-              "explanation": "EU AI Act Art. 50 and platform policies require recognisable synthetic content: C2PA, watermark (e.g. SynthID), human-visible label.",
+              "explanation": "The best answer uses a clear goal, context, format and quality check.",
               "relatedSlideId": 13.101
             }
           ]
@@ -1317,24 +1366,57 @@
             "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate knowledge after the Content path test.\nINPUT: I just finished Module 14 – images, video, audio, pipeline, audio-first, C2PA.\nOUTPUT: Ask 3 questions: (1) Which artefact will I create in Module 15? (2) What was newest? (3) What do I want to try first? After my answers, give one concrete tip.",
             "reflectionTitle": "Reflection prompt"
           }
+        },
+        {
+          "id": 143,
+          "title": "Bonus: pipeline checklist in 5 min",
+          "subtitle": "Brief → stills → video/audio → disclosure",
+          "type": "content-block",
+          "optional": true,
+          "badgeVariant": "bonus",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a licence and C2PA / disclosure.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick one real topic (product or event). Copy the checklist prompt below, run it in AI, and note what you need before expensive video and what you will check before publishing.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Copyable prompt",
+                "body": "Use this in one AI chat.",
+                "copyable": "You are a content pipeline assistant. Topic: [DESCRIBE].\n1) BRIEF: goal (A/E/C), audience, platform, ratios.\n2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).\n3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.\n4) RIGHTS: commercial licence; faces/voices – consent.\n5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.\nOUTPUT: checklist table (step | status | risk) + 1 next action."
+              },
+              {
+                "heading": "Check",
+                "body": "If licence or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – Module 15: Content project"
+          }
         }
       ],
       "businessExamples": [
         {
-          "title": "Image and video prompts",
-          "description": "Formats, tools, quality"
+          "title": "Vaizdu ir video promptai",
+          "description": "Use this step to create, check and improve your AI content artefact."
         },
         {
-          "title": "Content path knowledge",
-          "description": "12 questions before the Module 15 project"
+          "title": "Turinio kelio zinios",
+          "description": "Use this step to create, check and improve your AI content artefact."
         }
       ]
     },
     {
       "id": 15,
       "title": "Final project: Content path",
-      "subtitle": "Quick start or mini campaign",
-      "description": "Required: a main hero image with your prompt. Optionally add video, audio, and edit.",
+      "subtitle": "Quick start or mini campaign path",
+      "description": "Create a hero image with a prompt; optionally continue into short video and background music.",
       "icon": "Rocket",
       "level": "practice",
       "duration": "20 min / 60–90 min",
@@ -1366,7 +1448,8 @@
                 "label": "Full path",
                 "description": "~60–90 min – mini campaign: image → video → audio → edit."
               }
-            }
+            },
+            "footer": "Next – slide 2: Quick start: hero image"
           }
         },
         {
@@ -1397,9 +1480,11 @@
                   "description": "Artefact: hero image + prompt + brief."
                 }
               ]
-            }
+            },
+            "footer": "Next – slide 3: Project loop"
           },
-          "recommended": true
+          "recommended": true,
+          "shortTitle": "Quick start: hero image"
         },
         {
           "id": 150.25,
@@ -1427,13 +1512,14 @@
               }
             ],
             "footer": "Next – slide 4: Checkpoint"
-          }
+          },
+          "shortTitle": "Project loop"
         },
         {
           "id": 150.26,
           "title": "Checkpoint: project path",
           "shortTitle": "Checkpoint",
-          "subtitle": "Content path – confirm your path before scenarios",
+          "subtitle": "Content path – confirm your path before the scenarios",
           "type": "path-step",
           "content": {
             "title": "Is your project path clear?",
@@ -1455,7 +1541,7 @@
                 "body": "Which path do you choose – quick (summary) or full (151)? What is your first artefact?"
               }
             ],
-            "footer": "Next – full path (151) or summary"
+            "footer": "Next – slide 5: Scenario: Image (optional)"
           }
         },
         {
@@ -1483,9 +1569,11 @@
                   "description": "If the quick path is done – go to the summary. Otherwise: image + prompt → 152."
                 }
               ]
-            }
+            },
+            "footer": "Next – slide 6: Short video clip"
           },
-          "recommended": false
+          "recommended": false,
+          "shortTitle": "Scenario: Image"
         },
         {
           "id": 152,
@@ -1512,9 +1600,11 @@
                   "description": "Artefact: video or link + prompt. Check that the style did not drift."
                 }
               ]
-            }
+            },
+            "footer": "Next – slide 7: Scenario: Audio"
           },
-          "recommended": false
+          "recommended": false,
+          "shortTitle": "Short video clip"
         },
         {
           "id": 153,
@@ -1541,9 +1631,11 @@
                   "description": "Artefact: file or link + prompt + one sentence on usage rights."
                 }
               ]
-            }
+            },
+            "footer": "Next – slide 8: Scenario: Edit"
           },
-          "recommended": false
+          "recommended": false,
+          "shortTitle": "Scenario: Audio"
         },
         {
           "id": 154,
@@ -1570,9 +1662,11 @@
                   "description": "Artefact: file / link + rights + disclosure + CPI note."
                 }
               ]
-            }
+            },
+            "footer": "Next – slide 9: Project summary"
           },
-          "recommended": false
+          "recommended": false,
+          "shortTitle": "Scenario: Edit"
         },
         {
           "id": 158,
@@ -1642,17 +1736,18 @@
             "tagline": "Image + video + audio = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
             "firstAction24h": "Within 24–48 hours use your quick start hero image or one mini campaign element in a real project (social post, slide or background)."
-          }
+          },
+          "shortTitle": "Project summary"
         }
       ],
       "businessExamples": [
         {
-          "title": "Quick start",
-          "description": "Hero image with brief and prompt"
+          "title": "Greitas startas",
+          "description": "Use this step to create, check and improve your AI content artefact."
         },
         {
-          "title": "Mini campaign path",
-          "description": "Hero image → video → audio → edit"
+          "title": "Mini kampanijos",
+          "description": "Use this step to create, check and improve your AI content artefact."
         }
       ]
     }

@@ -11,6 +11,7 @@ import {
 import { getM10TriggerFlowLabels, type M10Locale } from './m10DiagramContent';
 import { M10_TRIGGER_FLOW_LAYOUT } from './m10TriggerFlowLayout';
 import { DiagramStepHitArea } from './diagramKit';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const {
   width: W,
@@ -22,7 +23,8 @@ const {
   x0: X0,
   webhookNotch: WEBHOOK_NOTCH,
 } = M10_TRIGGER_FLOW_LAYOUT;
-const MARKER = DIAGRAM_TOKENS.arrow.markerLen;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const MARKER = PROCESS_ARROW.tipLen;
 
 export default function M10TriggerFlowDiagram({
   locale = 'lt',
@@ -64,25 +66,25 @@ export default function M10TriggerFlowDiagram({
       <defs>
         <marker
           id={`m10tf-fwd-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={MARKER}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={flowGrey} />
+          <path d={PROCESS_ARROW.pathD} fill={flowGrey} />
         </marker>
         <marker
           id={`m10tf-dash-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={MARKER}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={webhookStroke} />
+          <path d={PROCESS_ARROW.pathD} fill={webhookStroke} />
         </marker>
       </defs>
       <text

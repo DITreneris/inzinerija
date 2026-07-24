@@ -40,6 +40,10 @@ const CONTENT_BLOCK_FIELD_INDICES = {
   },
   73: {
     'pipeline-overview': 3,
+    'pipeline-prep': 4,
+    'pipeline-eda': 5,
+    'pipeline-viz': 6,
+    'pipeline-publish': 7,
   },
   732: {
     'sentiment-prompt': 2,
@@ -54,9 +58,20 @@ const CONTENT_BLOCK_FIELD_INDICES = {
   84: { 'db-structure': 3 },
   86: { 'viz-prompt': 2 },
   87: { 'forecast-prompt': 2 },
-  89: { 'algo-sources': 3 },
+  89: {
+    'algo-sources': 3,
+    'algo-structure': 4,
+    'algo-collect': 5,
+    'algo-clean': 6,
+    'algo-export': 7,
+  },
   891: { 'prep-clean': 2 },
-  90: { 'eda-stats': 2 },
+  90: {
+    'eda-stats': 2,
+    'eda-corr': 3,
+    'eda-anomaly': 4,
+    'eda-hypotheses': 5,
+  },
   92: { 'bi-plan': 2 },
 };
 

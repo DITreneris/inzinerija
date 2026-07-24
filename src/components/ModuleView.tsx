@@ -296,6 +296,18 @@ function ModuleView({
       }
     }
 
+    // Module 5: bonus Rescue (516) tik po testo rezultatų
+    if (moduleId === 5 && raw.slides) {
+      const bonusSlides = raw.slides.filter((s) => s.id === 516);
+      const mainSlides = raw.slides.filter((s) => s.id !== 516);
+      if (bonusSlides.length > 0) {
+        return {
+          ...raw,
+          slides: [...mainSlides, ...bonusSlides],
+        };
+      }
+    }
+
     return raw;
   }, [modules, moduleId, t, m2Questions]);
   const moduleIndex = useMemo(

@@ -1287,6 +1287,8 @@ export interface PracticeScenarioHubChoiceLevel2 {
 export interface PracticeScenarioHubContent {
   /** Neprivalomo kelio banneris hub viršuje (M9 sk. 99) */
   optionalPathNote?: string;
+  /** Soft-recommended hub scenario ids (amber badge); mirrors intro recommendedSlideIds */
+  recommendedSlideIds?: number[];
   level1Choices: PracticeScenarioHubChoiceLevel1[];
   level2Choices: PracticeScenarioHubChoiceLevel2[][];
 }

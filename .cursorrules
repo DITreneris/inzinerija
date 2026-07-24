@@ -17,9 +17,10 @@
 - Dokumentų sinchronizacija yra privaloma: `README.md`, `docs/getting-started/QUICK_START.md`, `docs/deployment/DEPLOYMENT.md`, `docs/deployment/GITHUB_SETUP.md`, `ROADMAP.md`, `TODO.md` turi sutapti su realia konfigūracija (`vite.config.ts`, `package.json`).
 
 ## Roadmap/TODO integracija
-- `ROADMAP.md` ir `TODO.md` yra įsipareigojimai: nauji darbai turi atitikti prioritetus.
-- Kritiniai punktai (Error Boundary, duomenų migracija/validacija, testai) turi būti saugomi kaip aukščiausi prioritetai.
-- Jei įgyvendini funkciją iš roadmap/TODO, atnaujink atitinkamą dokumentą.
+- Prioritetai = **open** P0/P1 [`TODO.md`](TODO.md) §1 ir [`ROADMAP.md`](ROADMAP.md) open gaps — ne visas istorinis failas.
+- Done istorija → `docs/development/CODEBASE_WHAT_IS_DONE.md` / `docs/archive/` (pvz. `TODO_DONE_SPRINTS_2026-07.md`); **neatnaujink** Done lentelių TODO §1.
+- Kritiniai punktai (Error Boundary, duomenų migracija/validacija, testai) – aukščiausi prioritetai.
+- Jei užbaigi open užduotį: pažymėk TODO §1, atnaujink ROADMAP open gaps; Docs Lean taisyklės – `DOCS_MAINTENANCE.md` §1c.
 
 ## Kodo kokybės gairės
 - Nepažeisk TypeScript tipų (ypač `Slide` struktūros `SlideContent.tsx`).
@@ -39,7 +40,7 @@
 ## Dokumentacijos taisyklės
 - Atnaujink `CHANGELOG.md` kiekvieną kartą, kai keičiasi funkcionalumas.
 - Atnaujink `README.md`, jei keičiasi setup arba deployment.
-- Atnaujink `ROADMAP.md` ir `TODO.md`, kai užbaigiama užduotis.
+- Atnaujink open `ROADMAP.md` gaps ir `TODO.md` §1, kai užbaigiama open užduotis (ne Done snapshot).
 - Dokumentuok sudėtingesnius sprendimus komentarais.
 
 ## Turinio kokybės gairės

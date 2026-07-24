@@ -1,7 +1,7 @@
 /**
  * Agentų ciklo diagrama (M10.2) – horizontali schema:
  * Agentas → Planavimas → Įrankiai → Aplinka → Rezultatas + grįžtamasis ryšys.
- * I3b: matomi forward kotai, vienakryptis storesnis feedback (RlProcess parity).
+ * LMS: tip≥10 refX=0, flat fills, dashed U be start circle (RlProcess parity).
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
@@ -23,10 +23,9 @@ import {
 import { feedbackUPath } from './cycleFeedbackGeometry';
 import { DiagramStepHitArea } from './diagramKit';
 import { DIAGRAM_ROLE_COLORS, DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const BRAND = DIAGRAM_ROLE_COLORS.brand;
-const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
-const ACCENT = DIAGRAM_ROLE_COLORS.amber;
 const ACCENT_DARK = DIAGRAM_ROLE_COLORS.accentDark;
 const GREY_FORWARD = DIAGRAM_ROLE_COLORS.greyForward;
 
@@ -66,7 +65,6 @@ export default function AgentWorkflowDiagram({
     arrowGapFb,
     pathStroke,
     compactX,
-    startRadius,
     labelSize: feedbackLabelSize,
   } = AGENT_WORKFLOW_FEEDBACK;
   const feedbackBase = isCompactDiagram
@@ -77,6 +75,7 @@ export default function AgentWorkflowDiagram({
   const fbStartY = lastBottom + arrowGapFb;
   const { markerLen, forwardStroke, gapFwd, gapFwdCompact } =
     AGENT_WORKFLOW_ARROW;
+  const arrowGeom = getProcessArrowMarkerGeom(markerLen);
   const titleY = isCompactDiagram
     ? AGENT_WORKFLOW_TYPE.diagramTitleY.compact
     : AGENT_WORKFLOW_TYPE.diagramTitleY.desktop;
@@ -128,24 +127,20 @@ export default function AgentWorkflowDiagram({
         </linearGradient>
         <marker
           id={`aw-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={markerLen + 2}
-          markerHeight={8}
-          refX={markerLen}
-          refY="4"
+          markerUnits={arrowGeom.markerUnits}
+          markerWidth={arrowGeom.markerWidth}
+          markerHeight={arrowGeom.markerHeight}
+          refX={arrowGeom.refX}
+          refY={arrowGeom.refY}
           orient="auto"
         >
           <path
-            d={`M0 0 L${markerLen} 4 L0 8 Z`}
+            d={arrowGeom.pathD}
             fill={GREY_FORWARD}
             stroke={GREY_FORWARD}
             strokeWidth="0.5"
           />
         </marker>
-        <linearGradient id={`aw-step-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={BRAND_LIGHT} />
-          <stop offset="100%" stopColor={BRAND} />
-        </linearGradient>
       </defs>
 
       <rect
@@ -207,10 +202,12 @@ export default function AgentWorkflowDiagram({
                 width={box.w}
                 height={box.h}
                 rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#aw-step-${uid})`}
+                fill={BRAND}
                 stroke={isInteractive && isActive ? palette.brandDark : BRAND}
                 strokeWidth={
-                  isInteractive && isActive ? 3 : DIAGRAM_TOKENS.stroke.inactive
+                  isInteractive && isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
                 }
               />
               <text
@@ -317,15 +314,6 @@ export default function AgentWorkflowDiagram({
         );
       })}
 
-      {/* Start indicator – only under Result (not a second arrowhead) */}
-      <circle
-        cx={lastCx}
-        cy={fbStartY}
-        r={startRadius}
-        fill={ACCENT}
-        stroke={ACCENT_DARK}
-        strokeWidth="1.5"
-      />
       <path
         d={feedbackPath}
         stroke={ACCENT_DARK}

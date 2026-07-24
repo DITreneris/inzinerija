@@ -9,10 +9,10 @@
 | Simbolis / frazė                           | Reikšmė                                                                                                                                                        |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Modulis 1**                              | „6 Blokų Sistema“ (MOKYMASIS) – teorija, 19 skaidrių                                                                                                           |
-| **Modulis 2**                              | „Žinių Patikrinimas“ (TESTAS) – 12 klausimų                                                                                                                    |
+| **Modulis 2**                              | „Žinių Patikrinimas“ (TESTAS) – 15 klausimų (5 formatai, pool) + optional bonus 51–52                                                                          |
 | **Modulis 3**                              | „Praktinis Pritaikymas“ (PRAKTIKA) – 6 scenarijai                                                                                                              |
 | **Modulis 4**                              | Pažangusis lygis – teorija (RAG, Deep research, tokenai, manipuliacijos). Pilnas haliucinacijų ir žinių patikrinimo blokas – Modulyje 7 (Patikrumas ir etika). |
-| **Modulis 5**                              | Pažangusis lygis – testas (žinių patikrinimas)                                                                                                                 |
+| **Modulis 5**                              | Prezentacijos sprintas + mini testas (Apply+Gate); `level: test` kataloge; eilė: `docs/MODULIO_5_SKAIDRIU_EILES.md`                                            |
 | **Modulis 6**                              | Pažangusis lygis – praktika (vienas projektas)                                                                                                                 |
 | **Skaidrė 1 … 19** (be modulio pavadinimo) | **Visada Modulio 1** skaidrės, jei kontekstas `turinio_pletra.md`                                                                                              |
 | **4.1 … 4.7** (skaidrės / temos)           | **Modulio 4** skaidrės/temos (įvadas, RAG, Deep research, … santrauka)                                                                                         |
@@ -53,7 +53,7 @@
 | **„Modulis 4“**, **„4.1“ … „4.7“** lentelėje (Skaidrė / tema)                                                                                 | Modulio 4 skaidrės/temos                                                                                   |
 | **„4.1-system-master“**, **„System prompt vs Master prompt“**                                                                                 | Modulio 4 skaidrė (takoskyra tarp System ir Master prompt)                                                 |
 | **„santraukos skaidrėje (4.7)“**                                                                                                              | Modulio 4 skaidrė 7                                                                                        |
-| **„## 3. Testas (Modulis 5)“**                                                                                                                | Modulis 5                                                                                                  |
+| **„## 3. Prezentacijos sprintas (Modulis 5)“** / **„## 3. Testas (Modulis 5)“** (senas antraštės sinonimas)                                   | Modulis 5 (Apply+Gate)                                                                                     |
 | **„Modulio 2“** (formatas toks pat kaip)                                                                                                      | Modulis 2                                                                                                  |
 | **„peržiūrėti Modulį 4“**, **„Modulis 6“** (slenksčiai)                                                                                       | 4, 6                                                                                                       |
 | **„## 4. Praktinė dalis (Modulis 6)“**                                                                                                        | Modulis 6                                                                                                  |
@@ -90,16 +90,17 @@ Dėl to **4.1–4.7** faile `turinio_pletra_moduliai_4_5_6.md` visada reiškia *
 - **„6 blokų“** – tai prompto blokai (META, INPUT, …), ne modulių numeriai.
 - **Skaidrių id 51 ir 52 (Modulio 2 bonusas):** Bonus skaidrės „Stilių naudojimas“ ir „Praktinės užduotys“ identifikuojamos **pagal id 51 ir 52** – šie id naudojami kode (`ModuleView.tsx` – bonusSlides filter ir badge; `ContentSlides.tsx` – ContentBlockSlide bonus hero). Jei pridėsime trečią bonusą ar perkelsime skaidres, reikės atnaujinti abu komponentus.
 - **Skaidrių id 801 ir 802 (Modulio 8 bonusas):** Bonus skaidrės „Ekrano nuotraukos analizė“ ir „Vizualizacija praktiškai“ rodomos po M8 testo; identifikuojamos **pagal id 801 ir 802** (`ModuleView.tsx` – badge; `ContentSlides.tsx` – bonus hero). SOT: `turinio_pletra_moduliai_7_8_9.md` §9.2.
+- **Skaidrės id 516 (Modulio 5 bonusas):** „Pataisyk chaotišką decką“ (Rescue) po M5 testo rezultatų; `ModuleView.tsx` perkelia po 514; `ContentSlides.tsx` – bonus hero. SOT: `turinio_pletra_moduliai_4_5_6.md` §3; eilė: `MODULIO_5_SKAIDRIU_EILES.md`.
 
 ---
 
 ## 5. Santrauka atpažinimui
 
 - **Modulis 1** = teorija, 6 blokai, workflow, technikos, 19 skaidrių.
-- **Modulis 2** = testas po Modulio 1, 12 klausimų.
+- **Modulis 2** = testas po Modulio 1, 15 klausimų (pool) + optional bonus.
 - **Modulis 3** = praktika, 6 scenarijai.
 - **Modulis 4** = pažangusis teorija (RAG, Deep research, tokenai, manipuliacijos, patikrinimas); skaidrės **4.1–4.7**.
-- **Modulis 5** = pažangusis testas.
+- **Modulis 5** = prezentacijos sprintas + mini testas (Apply+Gate); ne grynas klausimynas.
 - **Modulis 6** = vienas projektas (capstone).
 - **Skaidrė X** be modulio pavadinimo pagrindiniame faile = **Modulio 1**.
 - **4.1–4.7** modulių 4–6 faile = **Modulio 4** skaidrės. Skyriaus „4. Praktinė dalis (Modulis 6)“ poskyriai pavadinti be numerių (Projekto koncepcija, Scenarijus, Integracija su Moduliu 3), kad 4.x būtų rezervuota tik Moduliui 4.
@@ -145,7 +146,7 @@ Dėl to **4.1–4.7** faile `turinio_pletra_moduliai_4_5_6.md` visada reiškia *
 
 **7.1–7.35 (Modulio 7):** Faile `docs/turinio_pletra_moduliai_7_8_9.md` skaidrės/temos **7.1 … 7.35** visada reiškia **tik Modulio 7** (Duomenų analizė su DI). Oficiali skaidrių eilė ir sujungtos skaidrės – [docs/MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
 
-**10.1–10.8 (Modulio 10):** Faile `docs/turinio_pletra_moduliai_10_11_12.md` skaidrės **10.1 … 10.8** (ir įvado id 100) visada reiškia **tik Modulio 10** (Agentų inžinerija). Oficiali skaidrių eilė – [docs/MODULIO_10_SKAIDRIU_EILES.md](MODULIO_10_SKAIDRIU_EILES.md). M11 skaidrės 110–112, M12 skaidrės 120–128.
+**10.1–10.8 (Modulio 10):** Faile `docs/turinio_pletra_moduliai_10_11_12.md` skaidrės **10.1 … 10.8** (ir įvado id 100) visada reiškia **tik Modulio 10** (Agentų inžinerija). Oficiali skaidrių eilė – [docs/MODULIO_10_SKAIDRIU_EILES.md](MODULIO_10_SKAIDRIU_EILES.md). M11 skaidrės **110 → 110.5 → 111 → 112 → 113** (bonus), M12 skaidrės 120–128. M14 lukštas: **140 → 140.5 → 141 → 142 → 143** (žr. [MODULIO_13_SKAIDRIU_EILES.md](MODULIO_13_SKAIDRIU_EILES.md)).
 
 **13.1–13.11 + 13.12 / 13.32 / 13.52 (Modulio 13):** Faile `docs/turinio_pletra_moduliai_13_14_15.md` skaidrės **13.1 … 13.11** (ir įvado id 130) visada reiškia **tik Modulio 13** (Turinio inžinerija). Papildomi MUST ID: **13.12** (pipeline), **13.32** (consistency), **13.52** (post-prod); tema 13.10 runtime ID **13.101**. Oficiali skaidrių eilė – [docs/MODULIO_13_SKAIDRIU_EILES.md](MODULIO_13_SKAIDRIU_EILES.md). M14 skaidrės 140–142, M15 skaidrės 150–154, 158.
 

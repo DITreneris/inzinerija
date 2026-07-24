@@ -3,8 +3,10 @@
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
 > **Versija:** 2.3.14  
 > **Data:** 2026-07-23  
-> **2.3.14:** §3.1c Lab color exception (`interactive-control-lab`) – risk palette lab surface; ChoiceControl optional `optionTone`.  
-> **2.3.13:** §3.1b – `columns` 1|2|3; consumer `M10HumanControlSimulatorBlock` (10.26 `interactive-control-lab`).  
+> **2.3.16:** §3.1b/c – consumer `M10DepthRolesLabBlock` (10.45 `m10_agent_taxonomy`, hybrid lab + static mini SVG; be scenarijaus / risk strip).
+> **2.3.15:** §3.1b/c – consumer `M4PromptModeSimulatorBlock` (54 `m4_prompt_mode_simulator`, `interactive-control-lab`).
+> **2.3.14:** §3.1c Lab color exception (`interactive-control-lab`) – risk palette lab surface; ChoiceControl optional `optionTone`.
+> **2.3.13:** §3.1b – `columns` 1|2|3; consumer `M10HumanControlSimulatorBlock` (10.26 `interactive-control-lab`).
 > **2.3.12:** §8.6 Modulio navigacijos hierarchija – breadcrumb escape („Moduliai“) vs player Prev („Ankstesnė“); `ModuleBreadcrumb`.  
 > **2.3.11:** §3.1b consumers – +M15 Greitas/Pilnas, +M10/M13 Trumpas/Ilgas, +M6 projekto tipas (navigate).  
 > **2.3.10:** §3.1 – `howToUseModule.short/full` → `ChoiceControl`; §3.1b Exclusive choice primityvas (M4 path, M7 journey).  
@@ -114,18 +116,20 @@
 - `ActionIntroJourneySlide` – M7 domeno fokusas (ne gylis)
 - `PracticeIntroSlide` – M15 Greitas/Pilnas ↔ Fast track; M6 projekto tipas (navigate į 61 / 67, **ne** Fast track)
 - `M10HumanControlSimulatorBlock` – 10.26 dual radiogroups (scenarijus + kontrolės režimas); Pattern `interactive-control-lab` (ne SVG shell)
+- `M4PromptModeSimulatorBlock` – 54 dual radiogroups (scenarijus + promptų režimas); Pattern `interactive-control-lab` (ne SVG shell)
+- `M10DepthRolesLabBlock` – 10.45 depth ChoiceControl (be scenarijaus) + static mini schema; Pattern `interactive-control-lab`; Copy lab viduje; brand-only (be risk strip)
 
 ### 3.1c Lab color exception (`interactive-control-lab`)
 
 **Paskirtis:** Form-like decision lab (pvz. M10 10.26 žmogaus kontrolės simuliatorius) – **būsenų / rizikos** UI, ne content-block siena. Precedentas: Portal 2.1 (spalvų biudžetas per act, ne per visą skaidrę).
 
-| Taisyklė      | Reikšmė                                                                                                                                                                                                                                                                           |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama kontrolės taisyklė – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. |
-| Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts`. UI: **risk strip** (3 chips, be empty 2×2), timing juosta, 2 trade meteriai.                                              |
-| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                               |
-| A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                          |
-| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                        |
+| Taisyklė      | Reikšmė                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`, `M4PromptModeSimulatorBlock`, `M10DepthRolesLabBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama taisyklė – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. 10.45: brand-only Choice + static mini SVG OK (SCHEME §2.2c). |
+| Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts` / `m4PromptModeLabTokens.ts` (M4 be finansinės kritinės rose – stake = duomenų / haliucinacijos rizika). UI: **strip** (3 chips, be empty), timing juosta, 2 trade meteriai.                                                          |
+| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                                                                                                                                          |
+| A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                                                                                                                                     |
+| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                                                                                                                                   |
 
 ### 3.2 content-block (veiksmo skaidrės)
 
@@ -272,11 +276,33 @@
 
 ### 3.4a warm-up-quiz (savitikra)
 
-**Paskirtis:** Savitikra prieš testą – 3 klausimai su diagnostiniu feedback (pvz. „Čia stipru“, „Jei supainiojote – prisiminkite“). Ne ta pati kaip apšilimas – warm-up-quiz = quiz; apšilimas = content-block praktinis pavyzdys.
+**Paskirtis:** Savitikra prieš testą – 3 klausimai su diagnostiniu feedback (pvz. „Čia stipru“, „Jei supainiojai – prisimink“). Ne ta pati kaip apšilimas – warm-up-quiz = quiz; apšilimas = content-block praktinis pavyzdys.
 
-**Vieta:** M4 po temų (pvz. id 63.5, 65.7, 66.5). M7 ilgame learn kelyje – branduolio savitikros po pagrindinių konceptų (id 73.5, 731.5, 891.5, 68.5, 74.5).
+**Vieta:** M4 po temų (pvz. id 63.5, 65.7, 66.5). M7 ilgame learn kelyje – branduolio savitikros po pagrindinių konceptų (id 73.5, 731.5, 891.5, 68.5, 74.5). Path-test moduliuose – **po** `test-intro` (žr. §3.4a1).
 
 **Turinio schema:** `WarmUpQuizContent` – klausimai, teisingi atsakymai, explanations (diagnostinis tonas).
+
+### 3.4a1 Path Test Contract (kelio vartų lukštas)
+
+**Paskirtis:** Vienodas lukštas kelio testams **M8 / M11 / M14** (Learn → Test → Project). Savitumas lieka klausimų stubure (domenas), ne skaidrių eilėje.
+
+**Eilė:** `test-intro` → `warm-up-quiz` (**3** klausimai) → `test-section` → `test-results` → optional `content-block` bonus (**1**).
+
+| Taisyklė | Reikalavimas                                                                                                            |
+| -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Warm-up  | 2 diagnostiniai + **1 forward bridge** į projektą (precedentas: M8 `m8-warm-4` → M9 šakutė)                             |
+| Results  | Žmogiškos `failedMessage` temos + `TestRemediationChips` sutampa su `relatedSlideId` aibe + reflection + CTA į projektą |
+| Bonus    | Trumpai → Daryk dabar → Copy → Patikra (§3.2); `optional` + `badgeVariant: "bonus"`                                     |
+| Balsas   | Kreipinys **tu**; be curriculum ID user-facing copy                                                                     |
+| EN       | Overlay = LT semantika (tie patys Q ID ir `relatedSlideId`)                                                             |
+
+**Išimtys:**
+
+- **M2** (branduolio assessment-engine): warm-up **nerašomas** — rotating 15-from-pool + hint/explanation + radar jau formuoja diagnostiką. Bonusai `51`/`52` vis tiek §3.2.
+- **M5** (Apply+Gate sprintas): `warm-up-quiz` eina **prieš** `test-intro` (po sprinto skaidrių), ne po intro – formuojanti savitikra prieš graded mini testą. Lukštas nėra M8/M11/M14 Path Test etalonas. Leidžiama **4** warm-up klausimai (3 diagnostiniai + 1 storyline/QC). Optional bonus `516` po `test-results` (§3.2).
+- **M8:** leidžiama **4** warm-up klausimai (3 diagnostiniai + 1 forward bridge), kai ketvirtas aiškiai ruošia M9 šakutę.
+
+**Etalonas lukštui:** M11 (LT). **Etalonas diagnostikos gylui:** M2 pool/radar.
 
 ### 3.4b section-break
 
@@ -460,14 +486,14 @@ action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-
 
 **Formative check taisyklė:** Learn moduliuose tikslas – bent vienas savitikros arba veiksmo momentas kas **6–8 teorijos skaidres**. M4 yra etalonas: po teminių blokų eina `warm-up-quiz`, `section-break` su recap arba embedded micro-check. `audit:slide-interactivity` saugo, kad ilgiausias content-block streak nebūtų didesnis nei 8.
 
-| Situacija                         | Pattern                                               | Naudoti kai                                                                                       |
-| --------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Ilgas teorijos kelias             | `warm-up-quiz` (§3.4a)                                | Reikia 2–5 klausimų su diagnostiniu feedback po koncepto bloko.                                   |
-| Practice arba capstone checkpoint | `path-step` (§3.4d)                                   | Vartotojas turi pažymėti aiškų žingsnį ir pereiti į kitą darbo etapą.                             |
-| Įvadas su segmentais              | `intro-action-pie` (§3.2c)                            | Pirmiausia norime, kad vartotojas pasirinktų savo profilį, tada pamatytų statistiką.              |
-| Vienas promptas vertina kitą      | `evaluator-prompt-block` (§3.2b)                      | Praktika yra kokybės patikra: vertintojas randa, ką taisyti.                                      |
-| Micro-check be naujos skaidrės    | Embedded sub-laukas (§3.8.1)                          | Skaidrė jau turi stiprų turinį, bet reikia vieno trumpo patikrinimo ar interaktyvaus pasirinkimo. |
-| Test modulis                      | `warm-up-quiz` prieš `test-intro`; scenario klausimai | Prieš vertinamą testą reikia nevertinamos savitikros arba realių situacijų.                       |
+| Situacija                         | Pattern                                                         | Naudoti kai                                                                                       |
+| --------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Ilgas teorijos kelias             | `warm-up-quiz` (§3.4a)                                          | Reikia 2–5 klausimų su diagnostiniu feedback po koncepto bloko.                                   |
+| Practice arba capstone checkpoint | `path-step` (§3.4d)                                             | Vartotojas turi pažymėti aiškų žingsnį ir pereiti į kitą darbo etapą.                             |
+| Įvadas su segmentais              | `intro-action-pie` (§3.2c)                                      | Pirmiausia norime, kad vartotojas pasirinktų savo profilį, tada pamatytų statistiką.              |
+| Vienas promptas vertina kitą      | `evaluator-prompt-block` (§3.2b)                                | Praktika yra kokybės patikra: vertintojas randa, ką taisyti.                                      |
+| Micro-check be naujos skaidrės    | Embedded sub-laukas (§3.8.1)                                    | Skaidrė jau turi stiprų turinį, bet reikia vieno trumpo patikrinimo ar interaktyvaus pasirinkimo. |
+| Test modulis (kelio vartai)       | `warm-up-quiz` **po** `test-intro` (§3.4a1); scenario klausimai | Path-test eilė: intro → warm-up → graded → results → optional bonus. M2 – žr. §3.4a1 išimtį.      |
 
 #### 3.8.1 Embedded sub-laukai
 
@@ -489,7 +515,7 @@ Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toj
 **Modulių tipų taisyklės:**
 
 - **Learn moduliai** (pvz. M4, M7, M10, M13): stebėti ritmą, kad teorija nebūtų ilga be veiksmo.
-- **Test moduliai** (pvz. M2, M5, M8, M11, M14): prieš testą galima dėti nevertinamą savitikrą; realūs `scenario` klausimai turi aiškų `scenarioContext`.
+- **Test moduliai** (pvz. M2, M5, M8, M11, M14): kelio vartai M8/M11/M14 – Path Test Contract (§3.4a1); realūs `scenario` klausimai turi aiškų `scenarioContext`.
 - **Practice moduliai** (pvz. M3, M6, M9, M12, M15): `path-step` tinka tarp darbo etapų, o micro-check – prieš kopijuojamą promptą ar rezultatų taisymą.
 
 **DoD prieš uždarant naują interaktyvumo pakeitimą:**
@@ -500,7 +526,7 @@ Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toj
 - Jei keistas M10+ turinys – praeina atitinkamas EN auditas (`audit:m1012` arba `audit:m1315`).
 - Footeriai naudoja 1-based skaidrės numerį, ne slide `id` (§3.6).
 
-**Nuorodos:** Planas ir metrikos – `docs/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`; M4 pattern katalogas – `docs/MODULIO_4_SKAIDRIU_EILES.md`; informacinis katalogas – `npm run audit:embed-catalog`.
+**Nuorodos:** Ritmas = šis §3.8; istorinis planas – `docs/archive/development/SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md`; gyvas inventorius – `TEACHING_ELEMENTS_REGISTRY.md`; M4 pattern katalogas – `docs/MODULIO_4_SKAIDRIU_EILES.md`; `npm run audit:embed-catalog`.
 
 ---
 
@@ -599,23 +625,23 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 2. **ActionIntroSlide** — `<Eyebrow icon={identityIcon} accent={moduleAccent}>` virš H1.
 3. **SectionBreakSlide** — tik `sectionNumber` badge (`sectionBreakBadgeByAccent`); hero lieka `heroColorKey`.
 
-| Modulis | Pavadinimas (trumpai) | `accent`  | `identityIcon`   |
-| ------- | --------------------- | --------- | ---------------- |
-| M1      | 6 Blokų Sistema       | `brand`   | `BookOpen`       |
-| M2      | Žinių Patikrinimas    | `slate`   | `ClipboardList`  |
-| M3      | Praktinis Pritaikymas | `emerald` | `Briefcase`      |
-| M4      | Konteksto inžinerija  | `violet`  | `Brain`          |
-| M5      | Pažangus testas       | `cyan`    | `ClipboardCheck` |
-| M6      | Projekto kūrimas      | `accent`  | `Rocket`         |
-| M7      | Duomenų analizė su DI | `sky`     | `BarChart3`      |
-| M8      | DA testas             | `sky`     | `ClipboardCheck` |
-| M9      | DA praktika           | `sky`     | `Rocket`         |
-| M10     | Agentų inžinerija     | `fuchsia` | `Cpu`            |
-| M11     | Agentų testas         | `fuchsia` | `ClipboardCheck` |
-| M12     | Agentų praktika       | `fuchsia` | `Rocket`         |
-| M13     | Turinio inžinerija    | `rose`    | `Image`          |
-| M14     | Turinio testas        | `rose`    | `ClipboardCheck` |
-| M15     | Turinio praktika      | `rose`    | `Rocket`         |
+| Modulis | Pavadinimas (trumpai)               | `accent`  | `identityIcon`   |
+| ------- | ----------------------------------- | --------- | ---------------- |
+| M1      | 6 Blokų Sistema                     | `brand`   | `BookOpen`       |
+| M2      | Žinių Patikrinimas                  | `slate`   | `ClipboardList`  |
+| M3      | Praktinis Pritaikymas               | `emerald` | `Briefcase`      |
+| M4      | Konteksto inžinerija                | `violet`  | `Brain`          |
+| M5      | Prezentacijos sprintas (Apply+Gate) | `cyan`    | `ClipboardCheck` |
+| M6      | Projekto kūrimas                    | `accent`  | `Rocket`         |
+| M7      | Duomenų analizė su DI               | `sky`     | `BarChart3`      |
+| M8      | DA testas                           | `sky`     | `ClipboardCheck` |
+| M9      | DA praktika                         | `sky`     | `Rocket`         |
+| M10     | Agentų inžinerija                   | `fuchsia` | `Cpu`            |
+| M11     | Agentų testas                       | `fuchsia` | `ClipboardCheck` |
+| M12     | Agentų praktika                     | `fuchsia` | `Rocket`         |
+| M13     | Turinio inžinerija                  | `rose`    | `Image`          |
+| M14     | Turinio testas                      | `rose`    | `ClipboardCheck` |
+| M15     | Turinio praktika                    | `rose`    | `Rocket`         |
 
 **Track accent logika (M7–15):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias).
 

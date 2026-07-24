@@ -710,18 +710,22 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 
 ## 8. Modulis 14 – Testas
 
+**Lukštas (Path Test Contract, `GOLDEN_STANDARD.md` §3.4a1):** `140` test-intro → `140.5` warm-up (3) → `141` test-section (12) → `142` test-results → `143` optional bonus.
+
 ### 8.1 test-intro
 
 - **whyBenefit:** Po šio testo žinosi, ar esi pasiruošęs finaliniam Turinio inžinerijos projektui (Modulis 15).
 - **duration:** ~12–15 min.
-- **firstActionCTA:** Atsakyk į 8 klausimus – apie vaizdų, video ir muzikos promptus, įrankius, rizikas, workflow ir image → video grandinę.
+- **firstActionCTA:** Atsakyk į 12 klausimų – apie vaizdus, video, garsą, pipeline, audio-first, licencijas, C2PA, rizikas, workflow ir image → video grandinę.
 - **microWinPhrase:** „Kiekvienas teisingas atsakymas parodo, kad moki formuluoti turinio promptus.“
 - **Slenksčiai:** ≥70 % – rekomenduojama pereiti prie Modulio 15 (projektas). &lt;70 % – peržiūrėk rekomenduojamas M13 skaidres (remediation pagal klausimą).
 
-### 8.2 test-section ir test-results
+### 8.2 warm-up, test-section, test-results, bonus
 
-- **Klausimai:** 8 klausimai – MCQ ir scenarijų tipas („Duota situacija – kuris promptas tinkamiausias vaizdui / vaizdo įrašui / muzikai?“). Remediation – nuoroda į konkretų M13 slide id. Nauji klausimai: **m14-q7** apie conversion vizualą Instagram 9:16 (`relatedSlideId`: 13.1 arba 13.3); **m14-q8** apie image → video grandinę (`relatedSlideId`: 13.4).
-- **test-results:** passedMessage, failedMessage, **useCaseBlock** („Kur pritaikyti?“ – accent): „Turinio inžinerijos žinias gali pritaikyti: rinkodaros vizualai, socialinio turinio vaizdai ir vaizdo įrašai, foninė muzika projektams.“ thresholdExplanation: „Pasiekę ≥70 % galite pereiti prie Modulio 15 (projektas). Jei mažiau – rekomenduojame peržiūrėti Modulio 13 skaidres.“
+- **Warm-up (`140.5`):** 3 unscored – brand/formatas; audio-first vs tik muzika; forward bridge į M15 MUST vs optional.
+- **Klausimai (`141`):** **12** klausimai – MCQ ir scenarijų tipas. Remediation – `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101). Įskaitant **m14-q7** conversion 9:16; **m14-q8** image → video; **m14-q9–q12** pipeline/CPI, audio-first, licencijos, C2PA.
+- **test-results (`142`):** passedMessage, failedMessage, **useCaseBlock** – „Kitas žingsnis: Modulis 15“ (150.5 MUST / 151–154 optional). thresholdExplanation (tu): „Kai pasieksi ≥70 %, gali pereiti prie Modulio 15 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 13 skaidres.“
+- **Bonus (`143`):** optional content-block – 5 min pipeline checklist (Trumpai → Daryk → Copy → Patikra).
 
 ---
 

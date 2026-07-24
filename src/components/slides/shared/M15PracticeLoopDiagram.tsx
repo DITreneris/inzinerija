@@ -1,6 +1,7 @@
 ﻿import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
   getM15PracticeLoopLabels,
@@ -20,6 +21,8 @@ const {
   activeY: ACTIVE_Y,
   accentIndex: ACCENT_INDEX,
 } = M15_PRACTICE_LOOP_LAYOUT;
+
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 export default function M15PracticeLoopDiagram({
   locale = 'lt',
@@ -70,28 +73,25 @@ export default function M15PracticeLoopDiagram({
         </linearGradient>
         <marker
           id={`m15lp-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={DIAGRAM_TOKENS.arrow.markerLen}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={DIAGRAM_TOKENS.arrow.markerPath} fill={palette.flow} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
         <marker
           id={`m15fb-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={DIAGRAM_TOKENS.arrow.markerWidth}
-          markerHeight={DIAGRAM_TOKENS.arrow.markerHeight}
-          refX={DIAGRAM_TOKENS.arrow.markerLen}
-          refY="3"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path
-            d={DIAGRAM_TOKENS.arrow.markerPath}
-            fill={DIAGRAM_TOKENS.colors.amber}
-          />
+          <path d={PROCESS_ARROW.pathD} fill={DIAGRAM_TOKENS.colors.amber} />
         </marker>
       </defs>
       <rect
@@ -190,7 +190,7 @@ export default function M15PracticeLoopDiagram({
                   b,
                   steps[i + 1],
                   ACTIVE_Y + BOX_H / 2,
-                  DIAGRAM_TOKENS.arrow.markerLen
+                  DIAGRAM_TOKENS.arrow.processTipLen
                 );
                 return (
                   <line

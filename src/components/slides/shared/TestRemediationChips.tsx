@@ -42,6 +42,24 @@ const LINKS_M8: LinkSpec[] = [
     labelLt: 'Valymas ir seka',
     labelEn: 'Cleaning & sequence',
   },
+  {
+    targetModuleId: 7,
+    slideId: 732,
+    labelLt: 'Sentimentas',
+    labelEn: 'Sentiment',
+  },
+  {
+    targetModuleId: 7,
+    slideId: 86,
+    labelLt: 'Vizualizacija',
+    labelEn: 'Visualisation',
+  },
+  {
+    targetModuleId: 7,
+    slideId: 733,
+    labelLt: 'Verslo OUTPUT',
+    labelEn: 'Business OUTPUT',
+  },
 ];
 
 const LINKS_M11: LinkSpec[] = [
@@ -87,22 +105,33 @@ const LINKS_M11: LinkSpec[] = [
 const LINKS_M14: LinkSpec[] = [
   {
     targetModuleId: 13,
-    slideId: 13.2,
-    labelLt: 'Vaizdo promptas',
-    labelEn: 'Image prompt',
+    slideId: 13.12,
+    labelLt: 'Pipeline / CPI',
+    labelEn: 'Pipeline / CPI',
   },
   {
     targetModuleId: 13,
-    slideId: 13.4,
-    labelLt: 'Video scenarijus',
-    labelEn: 'Video script',
+    slideId: 13.3,
+    labelLt: 'Brandas ir formatas',
+    labelEn: 'Brand and format',
   },
-  { targetModuleId: 13, slideId: 13.6, labelLt: 'Muzika', labelEn: 'Music' },
+  {
+    targetModuleId: 13,
+    slideId: 13.6,
+    labelLt: 'Garsas / audio-first',
+    labelEn: 'Audio-first',
+  },
+  {
+    targetModuleId: 13,
+    slideId: 13.7,
+    labelLt: 'Licencijos',
+    labelEn: 'Licences',
+  },
   {
     targetModuleId: 13,
     slideId: 13.101,
-    labelLt: 'KPI ir rizikos',
-    labelEn: 'KPI & risks',
+    labelLt: 'C2PA ir rizikos',
+    labelEn: 'C2PA & risks',
   },
   {
     targetModuleId: 13,

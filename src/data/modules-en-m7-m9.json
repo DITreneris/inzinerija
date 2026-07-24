@@ -640,7 +640,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**6-step analysis path** (pipeline) – from data to decision. Pick **one** stage – each has a prompt below.",
                 "blockVariant": "accent"
               },
@@ -652,48 +652,48 @@
                 "imageAlt": "Data analysis pipeline – 6 steps"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick **one** analysis-path stage: collection, preparation, EDA, visualisation or publishing. Copy the prompt and paste into AI.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "3a. Data collection",
                 "body": "Where will we get info?",
-                "copyable": "List 10 possible data sources for [X] topic.",
+                "copyable": "Data: topic [X] (sales)\nDo: list 10 possible sales data sources (e.g. CRM, ERP, e-commerce)\nFormat: 1) source 2) type 3) what it gives 4) how to access",
                 "collapsible": true,
                 "collapsedByDefault": false
               },
               {
                 "heading": "3b. Preparation",
                 "body": "Preparation – missing values, format.",
-                "copyable": "Identify missing values and suggest fill methods.",
+                "copyable": "Data: [paste sales table]\nDo: find missing values and suggest fill methods\nFormat: 1) column 2) % missing 3) method 4) risk if not fixed",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3c. EDA (exploratory analysis)",
                 "body": "What can I learn from data?",
-                "copyable": "Identify 5 main patterns.",
+                "copyable": "Data: [paste sales data]\nDo: identify 5 most important patterns\nFormat: 1) pattern 2) evidence in numbers 3) business meaning",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3d. Visualisation",
                 "body": "How to show leadership?",
-                "copyable": "Suggest 3 charts for this analysis.",
+                "copyable": "Data: [paste sales data]\nDo: suggest 3 charts for this analysis\nFormat: 1) chart type 2) axes / dimensions 3) insight",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3e. Publishing",
                 "body": "How to sell it – report for leadership.",
-                "copyable": "Generate a leadership report with recommendations.",
+                "copyable": "Data: [paste sales insights or table]\nDo: generate an executive report with recommendations\nFormat: 1) summary 2) 3 insights 3) 3 actions 4) risks",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you pick the right analysis-path stage?",
+                "body": "• Did you paste data / topic [X]?\n• Did you get the Format points (not only vague text)?",
                 "blockVariant": "accent"
               },
               {
@@ -766,7 +766,7 @@
               {
                 "heading": "Task for your path",
                 "body": "Copy the task for your path – this is the first practical step.",
-                "copyable": "ROLE: You are a sales analyst.\nTASK: Design a 3-step tool sequence for sales analysis.\nCONTEXT: Data from CRM / e-commerce about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (KPI table)."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Build a 3-step tool sequence for sales analysis.\nCONTEXT: Data from CRM, ERP, e-commerce about [X].\nOUTPUT: 1) Tool 1 + goal 2) Tool 2 + goal 3) Tool 3 + result (KPI / artefact).\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               }
             ]
           }
@@ -779,7 +779,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Four types** – What happened? Why? What may happen? What to do? Pick the type by question.",
                 "blockVariant": "accent"
               },
@@ -819,30 +819,30 @@
               {
                 "heading": "3a. Descriptive (What happened?)",
                 "body": "Top products, regions, trends, concentration.",
-                "copyable": "Summarize this sales data:\n- Top 5 products by revenue\n- Regions with highest growth\n- Seasonality trends\n- Revenue concentration (% from top 20% customers)",
+                "copyable": "Data: [paste sales data]\nDo: summarize what happened\nFormat:\n- Top 5 units by main KPI\n- Segments with biggest change\n- Seasonality / period trends\n- Concentration (% from top 20%)",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. Diagnostic (Why?)",
                 "body": "Causes, price/seasonality/marketing impact.",
-                "copyable": "Given Q3 sales decline:\n- Identify possible causes\n- Check if related to price changes\n- Did seasonality play a role?\n- Did marketing activity decrease?",
+                "copyable": "Data: [paste sales data + observed change]\nDo: explain why the change happened\nFormat:\n- Possible causes\n- What to check first\n- External vs internal factors\n- What data is still missing",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. Predictive (What may happen?)",
                 "body": "Forecast, stock needs, risk.",
-                "copyable": "Based on 3 years of data:\n- Forecast Q4 sales\n- Estimate stock needs\n- State risk (% probability)",
+                "copyable": "Data: [paste sales history]\nDo: forecast the next period\nFormat:\n- Forecast (Q4, inventory)\n- Seasonality / peak impact\n- Risk (% or level)\n- Assumptions",
                 "linkedRowIndex": 2
               },
               {
                 "heading": "3d. Prescriptive (How to act?)",
                 "body": "How much to increase stock, raise price, which products to focus.",
-                "copyable": "Based on the forecast:\n- How much to increase stock?\n- Raise price?\n- Intensify ads?\n- Which products to focus?",
+                "copyable": "Data: [forecast or sales summary]\nDo: recommend what to do next\nFormat:\n- 3 actions by priority\n- What not to do\n- How we will measure success\n- First step this week",
                 "linkedRowIndex": 3
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you pick the right analysis type for your question?",
+                "body": "• Does the type match the question (what / why / what next / what to do)?\n• Did you paste data before running?",
                 "blockVariant": "accent"
               },
               {
@@ -908,12 +908,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Business value** – not just \"positive/neutral/negative\". A simple prompt only gives surface. Here – topic classification, emotion intensity, problem priorities, action recommendations. E.g.: 200 reviews → 62% positive; 11% mention slow delivery, 9% price → decision level. Useful when you need actions, not just statistics.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Upload reviews (text or file) to AI. Copy the prompt below, paste it in. You will get: sentiment structure, topics, intensity, critical complaints, and 3 priority actions.",
                 "blockVariant": "brand"
               },
@@ -921,7 +921,7 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "ROLE + TASK + CONTEXT + OUTPUT (5 points) + TONE. Paste into AI.",
                 "blockVariant": "terms",
-                "copyable": "ROLE: You are market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Run a sentiment analysis.\nCONTEXT: I will paste customer / audience feedback about sales [X].\n\nOUTPUT:\n1. Overall sentiment mix (% positive / neutral / negative)\n2. Top themes (with counts)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no fluff.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -939,7 +939,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**3 templates** – data creation, competitor analysis, CFO report. Pick **one** by task.",
                 "blockVariant": "accent"
               },
@@ -968,19 +968,19 @@
               {
                 "heading": "3a. Data creation",
                 "body": "Structured sales example with columns and formulas.",
-                "copyable": "ROLE: Data analyst.\nCreate 20 rows of sales data.\nColumns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (Price*0.76), Total amount (Quantity*Price), Profit.\nAdd: 3 regions, seasonality, realistic prices.",
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Create a 20-row sales sample dataset.\nCONTEXT: Topic [X]; need realistic columns for analysis.\nOUTPUT: Table with columns + 20 rows + 2 calculated metrics.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. Competitor analysis",
                 "body": "SWOT, weak spots, opportunities, strategy.",
-                "copyable": "ROLE: Strategic business analyst. TASK: Perform competitor analysis.\nAnalyze: 1) Social media activity 2) SEO strategy 3) Product pricing 4) Most common customer complaints 5) Financial metrics\nOUTPUT: SWOT table, 3 competitor weak spots, 3 our opportunities, quick entry strategy (30-day plan).",
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Run a competitor / alternatives analysis.\nCONTEXT: sales market [X].\nOUTPUT: SWOT table, 3 weaknesses, 3 opportunities, 30-day quick-action plan.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. CFO assistant (finance)",
                 "body": "EBITDA, margin, risks, optimization.",
-                "copyable": "ROLE: CFO assistant.\nAssess: EBITDA, margin, cash flow, debt level.\nIdentify: 3 financial risks, 3 optimization opportunities, price increase potential (%).",
+                "copyable": "ROLE: You are a CFO assistant (sales).\nTASK: Assess financial / cost metrics.\nCONTEXT: [paste sales numbers or description]\nOUTPUT: 3 risks, 3 optimization opportunities, pricing / budget upside (%).\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 2
               },
               {
@@ -1004,7 +1004,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "The four analysis types answer: \"What happened? Why? What may happen? How should we act?\" But \"how should we act?\" often stops halfway: you get a long list of observations, not a decision. These **five short filters** force the result to end with a concrete action: fix, prioritize, reject, test or expand.",
                 "blockVariant": "accent"
               },
@@ -1066,32 +1066,32 @@
                 }
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick the situation from the table above → copy the matching prompt below → paste it into AI with your data or idea list.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "3a. OK / Fail check",
                 "body": "Fast quality gate: accept or reject.",
-                "copyable": "Evaluate this data/result with OK / Fail logic.\n\nContext: [describe the business, data and goal]\nData: [paste here]\n\nAnswer:\n1. What clearly works (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. What is the likely cause of each Fail?\n5. What should be fixed first?\n6. Final verdict: OK / Fail / OK with conditions.\n\nBe critical. Do not soften weak spots.",
+                "copyable": "Evaluate this data/result with OK / Fail logic.\n\nContext: [describe the business, data and goal]\nData: [paste here]\n\nAnswer:\n1. What clearly works (OK)?\n2. What clearly fails (Fail)?\n3. What is unclear?\n4. What is the likely cause of each Fail?\n5. What should be fixed first?\n6. Final verdict: OK / Fail / OK with conditions.\n\nBe critical. Do not soften weak spots.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. What matters most? (Must / Important / Wanted / Not now)",
                 "body": "Priority system when there are many ideas or tasks.",
-                "copyable": "Sort this list into 4 groups: Must / Important / Wanted / Not now (this method is sometimes called MoSCoW).\n\nContext: [goal / project]\nList: [tasks, features, ideas]\n\nFor each item, write:\n1. Why it belongs in that group\n2. Business impact\n3. Risk if we do not do it\n4. Recommended next step\n\nBe ruthless about scope. The \"Not now\" group must be real.",
+                "copyable": "Sort this list into 4 groups: Must / Important / Wanted / Not now (this method is sometimes called MoSCoW).\n\nContext: [goal / project]\nList: [tasks, features, ideas]\n\nFor each item, write:\n1. Why it belongs in that group\n2. Business impact\n3. Risk if we do not do it\n4. Recommended next step\n\nBe ruthless about scope. The \"Not now\" group must be real.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. Quick wins (Low-hanging fruit)",
                 "body": "Where low effort gives a fast, visible result.",
-                "copyable": "Find quick wins in this data.\n\nGoal: [what we want to improve]\nData: [problems, opportunities, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Visible in results\n\nFor each opportunity, provide: action, expected impact, effort level, when we can check it, risk, and how we will measure success.\n\nPick the top 5.",
+                "copyable": "Find quick wins in this data.\n\nGoal: [what we want to improve]\nData: [problems, opportunities, metrics]\n\nLook for opportunities that are:\n1. Low effort\n2. Low cost\n3. Fast to implement\n4. Visible in results\n\nFor each opportunity, provide: action, expected impact, effort level, when we can check it, risk, and how we will measure success.\n\nPick the top 5.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 2
               },
               {
                 "heading": "3d. Test / Invest / Drop (Kiss-Marry-Kill)",
                 "body": "Portfolio decision for products, channels, clients or ideas.",
-                "copyable": "Evaluate these options using Test / Invest / Drop logic (Kiss-Marry-Kill).\n\nContext: [goal, budget, deadline]\nOptions: [products, channels, clients, ideas]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for a bigger commitment\n3. Drop – weak return, distracting or risky\n\nExplain: 1) why this assignment, 2) evidence for/against, 3) what would change your mind, 4) next step, 5) how we will measure success.\n\nBe direct and focus on business results.",
+                "copyable": "Evaluate these options using Test / Invest / Drop logic (Kiss-Marry-Kill).\n\nContext: [goal, budget, deadline]\nOptions: [products, channels, clients, ideas]\n\nFor each option:\n1. Test – worth a small experiment\n2. Invest – strong candidate for a bigger commitment\n3. Drop – weak return, distracting or risky\n\nExplain: 1) why this assignment, 2) evidence for/against, 3) what would change your mind, 4) next step, 5) how we will measure success.\n\nBe direct and focus on business results.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "linkedRowIndex": 3
               },
               {
@@ -1432,7 +1432,7 @@
               {
                 "heading": "Task for your path",
                 "body": "Copy the system prompt and research topic for your path.",
-                "copyable": "ROLE: You are a sales researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to compare sales drivers in market [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer."
+                "copyable": "ROLE: You are a sales analyst / researcher.\nTASK: Write a system prompt and a deep-research topic.\nCONTEXT: I want to research sales drivers for [X].\nOUTPUT: 1) System prompt (role + rules) 2) Research topic 3) 5 questions I must answer.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               }
             ]
           }
@@ -1484,7 +1484,7 @@
                 "heading": "4️⃣ Do now",
                 "body": "Before moving to role activation, describe one real analysis task and ask AI where it can help.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand",
-                "copyable": "ROLE: You are an experienced business data analyst.\nTASK: Show how AI can help in my analysis task.\nCONTEXT: Task: [write]. Available data: [write]. Decision I need to make: [write].\nOUTPUT: 1) What AI can do on its own 2) What a human must check 3) What data still needs collecting 4) First prompt to start with."
+                "copyable": "ROLE: You are an experienced data analyst (sales).\nTASK: Show how AI can help my sales analysis task.\nCONTEXT: Task: [write]. Available data: [write]. Decision I must make: [write].\nOUTPUT: 1) What AI can do alone 2) What a human must check 3) What data to collect next 4) First prompt to start with.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "🔽 Want to understand more?",
@@ -1514,7 +1514,7 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "copyable": "ROLE: You are a data analyst.\nTASK: Prepare an internal data cleaning plan.\nCONTEXT: I have CSV/Excel from [CRM / ERP / Excel – enter]. Columns: [enter column names]. Goal – prepare data for analysis.\nOUTPUT:\n1. Column types and likely issues (dates, missing values, duplicates)\n2. 5-step cleaning checklist\n3. 3 KPIs you can compute from this data\nTONE: Concrete, business language.",
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Build a cleaning plan for an Excel/CRM export.\nCONTEXT: I have a sales export about [X].\nOUTPUT: 1) Columns to check 2) Typical errors 3) Cleaning steps 4) When data is “clean enough” for analysis.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
                 "body": ""
               },
               {
@@ -1542,7 +1542,7 @@
               {
                 "heading": "3️⃣ Copyable prompt",
                 "body": "Paste into AI – System prompt or first message.",
-                "copyable": "Your role – senior business data analyst.\nYou think in systems.\nYou base decisions on data, not intuition."
+                "copyable": "Your role is a senior sales analyst.\nYou think in systems.\nYou ground decisions in sales data, not intuition."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1631,7 +1631,7 @@
               {
                 "heading": "4️⃣ Copyable prompt",
                 "body": "Paste into AI; replace [X] with your niche.",
-                "copyable": "I have an e-commerce business (niche: [X]).\nHelp create an ideal database structure:\n1. Customer tables 2. Orders 3. Products 4. Marketing 5. Returns 6. Loyalty\nProvide: structure, relationships (ER), KPI."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: sales domain (niche: [X]); sources: CRM, ERP, e-commerce.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "5️⃣ Check (1 min)",
@@ -1648,12 +1648,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Data relationship analysis** – when you have structure (tables, columns) and need: main **relationships** explained, **duplication** spots, **bottlenecks** (where data flow may stall), **5 KPIs** from this structure. One prompt – paste structure, get insights.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Paste your data structure (description or schema) into the prompt below. Copy it, replace [PASTE], and run AI. You will get: relationships, duplication risks, bottlenecks, and 5 KPIs.",
                 "blockVariant": "brand"
               },
@@ -1679,12 +1679,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**4 outputs** from one prompt: **Revenue trends** chart, **customer segment** comparison, **product profitability** analysis, **3 key insights**. Useful when you have sales data and want visualizations and insights fast – one prompt, four results.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Paste sales data (or URL) into the prompt below. Copy it, replace [DATA], and run AI. You will get: trends chart, segments comparison, profitability analysis, and 3 insights. If data is insufficient – AI will say what is missing.",
                 "blockVariant": "brand"
               },
@@ -1692,7 +1692,7 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "Paste your data instead of [DATA].",
                 "blockVariant": "terms",
-                "copyable": "Based on these sales data:\n[DATA]\n\nGenerate:\n1. Revenue trends chart\n2. Customer segment comparison\n3. Product profitability analysis\n4. 3 main insights"
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Generate visualizations and insights.\nCONTEXT: Using this sales data:\n[data]\nOUTPUT:\n1. Main trend chart\n2. Segment comparison\n3. Risk / opportunity view\n4. 3 key insights\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1743,34 +1743,34 @@
               {
                 "heading": "1. Bar chart (comparison)",
                 "body": "For category comparison.",
-                "copyable": "I have data: [paste columns: category, value]. Suggest a bar chart: categories on X, values on Y. Add a short insight (top 3).",
+                "copyable": "I have data: [paste columns: category, value]. Suggest a bar chart: categories on X, values on Y. Add a short insight (top 3).\n\nIf data is insufficient – write “I don’t know” and what is missing.",
                 "linkedRowIndex": 0,
                 "blockVariant": "terms"
               },
               {
                 "heading": "2. Line chart (trends)",
                 "body": "For time series.",
-                "copyable": "I have time series data: [dates / period, metric]. Suggest a line chart – trend over time. State main trend and 1–2 insights.",
+                "copyable": "I have time series data: [dates / period, metric]. Suggest a line chart – trend over time. State main trend and 1–2 insights.\n\nIf data is insufficient – write “I don’t know” and what is missing.",
                 "linkedRowIndex": 1,
                 "blockVariant": "terms"
               },
               {
                 "heading": "3. Pie chart (parts of whole)",
                 "body": "For proportions.",
-                "copyable": "I have proportion data: [category, share % or value]. Suggest a pie chart. Add legend and one main insight.",
+                "copyable": "I have proportion data: [category, share % or value]. Suggest a pie chart. Add legend and one main insight.\n\nIf data is insufficient – write “I don’t know” and what is missing.",
                 "linkedRowIndex": 2,
                 "blockVariant": "terms"
               },
               {
                 "heading": "4. Table / structured list",
                 "body": "When you need exact numbers.",
-                "copyable": "Summarize this data: [data]. Present in a table: columns [specify], max 10 rows. Add 1–2 sentences of interpretation.",
+                "copyable": "Summarize this data: [data]. Present in a table: columns [specify], max 10 rows. Add 1–2 sentences of interpretation.\n\nIf data is insufficient – write “I don’t know” and what is missing.",
                 "linkedRowIndex": 3,
                 "blockVariant": "terms"
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you get a visualization suggestion with 1–2 insights?",
+                "body": "• Did you get a visualization suggestion with 1–2 insights?\n• If the AI guessed – did you ask for missing data?",
                 "blockVariant": "accent"
               }
             ]
@@ -1784,12 +1784,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Forecast** – what may happen next from historical data: coming months, seasonality, optimistic and pessimistic scenarios, risks. One prompt – structured plan for decisions.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Paste sales or another metric history (or URL) where **[DATA]** is shown. Copy the prompt below and run AI.",
                 "blockVariant": "brand"
               },
@@ -1797,7 +1797,7 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "Paste into AI; replace [DATA] with your data or description.",
                 "blockVariant": "terms",
-                "copyable": "Based on 24 months of sales history:\n[DATA or link]\n\n1. Forecast revenue for the next 6 months\n2. Specify seasonality impact\n3. Provide optimistic and pessimistic scenarios\n4. Specify main risks"
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Prepare a 6-month forecast.\nCONTEXT: Based on 24 months of sales history:\n[data or link]\nOUTPUT:\n1. Forecast (Q4, inventory)\n2. Seasonality impact\n3. Optimistic and pessimistic scenarios\n4. Main risks\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1878,7 +1878,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**5-step algorithm** – correct data prep sequence: **Sources** (identify) → **Structure** (table, columns) → **Collect** (assign to categories) → **Cleaning** (duplicates, missing values) → **Export** (CSV). When you need to prepare data systematically – pick a step and copy the prompt.",
                 "blockVariant": "accent"
               },
@@ -1890,48 +1890,48 @@
                 "imageAlt": "Five steps: sources, structure, collection, cleaning, export"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick **one** step for where you are (or click the diagram). Copy the matching prompt and paste into AI.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "3a. Identify sources",
                 "body": "Create a list of public data sources with links.",
-                "copyable": "Create a list of 20 public data sources in Lithuania for topic [X], with links.",
+                "copyable": "Data: topic [X] (sales)\nDo: list 20 public data sources in Lithuania with links\nFormat: source | URL | type | update frequency",
                 "collapsible": true,
                 "collapsedByDefault": false
               },
               {
                 "heading": "3b. Create structure",
                 "body": "Table: category, source, URL, update frequency.",
-                "copyable": "Create a table with columns: category, source, URL, update frequency.",
+                "copyable": "Data: [source list or topic [X]]\nDo: create a table to structure sources\nFormat: columns category, source, URL, update frequency + 5 sample rows",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3c. Collect data",
                 "body": "Assign datasets to categories.",
-                "copyable": "Assign these datasets to categories.",
+                "copyable": "Data: [source table or list]\nDo: assign these datasets to categories\nFormat: category | dataset | why it fits | priority",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3d. Cleaning",
                 "body": "Remove duplicates and fix missing values.",
-                "copyable": "Remove duplicates. Identify missing values and suggest fill methods.",
+                "copyable": "Data: [paste sales table]\nDo: remove duplicates; find missing values and suggest fills\nFormat: 1) duplicates 2) gaps 3) actions 4) what remains unclear",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "3e. Export",
                 "body": "Prepare data for export.",
-                "copyable": "Prepare this data for CSV export.",
+                "copyable": "Data: [paste cleaned sales table]\nDo: prepare CSV for export\nFormat: 1) column list 2) UTF-8 encoding 3) 3 checks before export",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you get a research structure with 5 steps?",
+                "body": "• Did you get a table / list matching Format?\n• Does the step match your place in the 5-step sequence?",
                 "blockVariant": "accent"
               },
               {
@@ -1951,12 +1951,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Correct sequence** – Collect → Clean (checklist) → Add metadata → 4 analysis types (What happened? Why? What may? How to act?) → Action plan. Before any analysis you need cleaning and metadata – otherwise AI output stays shallow.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Before analysis: copy the cleaning prompt below and paste it into AI with your data. Apply the checklist (anonymization, formats, duplicates, missing values, types, tags). Get a cleaning report and suggested actions.\n\n🔘 Copy prompt (for cleaning)",
                 "blockVariant": "brand"
               },
@@ -1964,7 +1964,7 @@
                 "heading": "3️⃣ Copyable prompt (cleaning)",
                 "body": "Paste into AI before analysis, together with your data.",
                 "blockVariant": "terms",
-                "copyable": "Before analysis, check this data:\n1. Is anonymization needed?\n2. Are formats standardized (dates, numbers)?\n3. Are duplicates removed?\n4. Where are values missing and how to fill them?\n5. Are column types correct?\n6. Are time and region tags added?\nProvide a cleaning report and suggested actions."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Check data before analysis.\nCONTEXT: [paste sales export]\nOUTPUT:\n1. Is anonymization needed?\n2. Are formats aligned (dates, numbers)?\n3. Are duplicates removed?\n4. Where are gaps and how to fill them?\n5. Are column types correct?\n6. Are time / region tags added?\nProvide a cleaning report and recommended actions.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -2490,7 +2490,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Exploratory data analysis (EDA)** – first look: statistics, correlations, anomalies, hypotheses. Pick **one** area.",
                 "blockVariant": "accent"
               },
@@ -2523,30 +2523,30 @@
               {
                 "heading": "3a. Statistical analysis",
                 "body": "Mean, median, IQR, standard deviation.",
-                "copyable": "Provide mean, median, IQR and standard deviation for this data.",
+                "copyable": "Data: [paste sales data]\nDo: provide mean, median, IQR and standard deviation (revenue, quantity, price)\nFormat: metric | mean | median | IQR | SD | 1-sentence interpretation",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. Correlation",
                 "body": "Correlation matrix and relationship explanation.",
-                "copyable": "Calculate the correlation matrix and explain main relationships.",
+                "copyable": "Data: [paste sales data]\nDo: compute a correlation matrix and explain links (e.g. price vs quantity, region vs revenue)\nFormat: 1) matrix / top pairs 2) explanation 3) what to check next",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. Anomalies",
                 "body": "Outliers using IQR method.",
-                "copyable": "Identify outliers using the IQR method.",
+                "copyable": "Data: [paste sales data]\nDo: identify outliers using the IQR method\nFormat: 1) row/column 2) why outlier 3) error or signal 4) what to do",
                 "linkedRowIndex": 2
               },
               {
                 "heading": "3d. Hypotheses",
                 "body": "Hypotheses worth testing.",
-                "copyable": "Suggest 3 hypotheses worth testing with this data.",
+                "copyable": "Data: [paste sales data or summary]\nDo: propose 3 hypotheses worth testing\nFormat: hypothesis | why it matters | what data would confirm / reject",
                 "linkedRowIndex": 3
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you pick the right EDA area and get a useful result?",
+                "body": "• Did you paste data?\n• Does the result follow Format (not only a single number)?",
                 "blockVariant": "accent"
               }
             ]
@@ -2560,12 +2560,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Table creation method** – Goal → Columns → Examples → Validation. When you need a structured table for analysis: specify goal [X], columns, get 5 sample rows, 2 calculated metrics and short interpretation. Professional prompt – one action.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Replace [X] with analysis topic, [enter] – with column list. Copy prompt (below), paste into AI. Get a table with 5 rows, 2 metrics and interpretation.",
                 "blockVariant": "brand"
               },
@@ -2591,19 +2591,19 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Reporting schema** (BI) – Collect → Analyze → Report → Forecast. Two practical prompts below.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick: **BI plan** – replace [X] with topic, copy first prompt, get 4-step plan. Or **market trends** – replace [X] with sector.",
                 "blockVariant": "terms"
               },
               {
                 "heading": "3a. BI plan",
                 "body": "Provide a 4-step plan per BI schema. Replace [X] with topic.",
-                "copyable": "Based on topic [X], provide a 4-step BI plan:\n1. Collect – which data sources to use\n2. Analyze – which EDA and insight steps to perform\n3. Report – when to visualize and present to leadership\n4. Forecast – what to forecast and which scenarios"
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Provide a 4-step BI plan for topic [X].\nCONTEXT: sales context; sources: CRM, ERP, e-commerce.\nOUTPUT:\n1. Collect – which sources to use\n2. Analyze – which EDA and insight steps\n3. Report – how to visualize and for whom\n4. Forecast – what to forecast next (Q4, inventory)\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "3b. Market trends",
@@ -2640,7 +2640,7 @@
               {
                 "heading": "Task for your path",
                 "body": "Copy the 2–4 sources task for your path.",
-                "copyable": "ROLE: You are a sales analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – sales / market [X].\nOUTPUT: Table: source | type (public/internal) | what it gives | why it matters."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Prepare a list of 2–4 sources for parallel research.\nCONTEXT: Topic – sales [X].\nOUTPUT: Table: source | type (public/internal) | what it gives | why it matters.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               }
             ]
           }
@@ -2743,7 +2743,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**3 AI agent types** – each matches a different analysis stage. **Data Research** – source identification, data structure, cleaning. **EDA** – statistical analysis, visualizations, hypotheses. **Insight** – recommendations, forecasts, insights for leadership. Pick an agent by task and copy the prompt.",
                 "blockVariant": "accent"
               },
@@ -2755,7 +2755,7 @@
                 "imageAlt": "Three agents: Data Research, EDA, Insight"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick an agent: **Data Research** (sources and structure), **EDA** (exploratory analysis), **Insight** (insights for leadership). Copy the matching prompt (below) and paste into AI.",
                 "blockVariant": "brand"
               },
@@ -2790,12 +2790,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**AI can analyze** a screenshot or data schema. **Screenshot** – dashboards, tables, UI, code; useful for UX audits, report review. **Schema** – entities, relationships (1-N, N-N), normalization; useful for DB design and e-commerce. One prompt, structured answer.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "Pick: **image** (dashboard, UI, table) – copy first prompt, upload screenshot to AI. Or **schema** (entities, relationships) – copy second prompt, upload schema image or text. Get: elements / relationships / optimizations.",
                 "blockVariant": "brand"
               },
@@ -2832,12 +2832,12 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Practical step for leadership** – one prompt to start a conversation about data-driven culture: plan, what to measure (KPIs), leader behaviour. Focus here is the **copyable conversation template** only.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "When you need **to start a conversation with leadership** – copy the prompt below, paste into AI. You get: 5-step plan, key metrics system, leadership behavior guidelines.",
                 "blockVariant": "brand"
               },
@@ -2869,7 +2869,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Why here?",
+                "heading": "1️⃣ In short",
                 "body": "This optional slide shows where the basic AI analysis path ends and deeper practice begins. If you want to work more professionally, you need model logic, real data, automation and validation.",
                 "blockVariant": "accent"
               },
@@ -2910,9 +2910,9 @@
             "blockVariant": "accent",
             "sections": [
               {
-                "heading": "1️⃣ What is this for?",
+                "heading": "1️⃣ In short",
                 "body": "**Full 8-step template** (MASTER PROMPT) – one copyable template for full analysis (8 steps). Use when you need everything from sources to recommendations for one topic.",
-                "blockVariant": "brand"
+                "blockVariant": "accent"
               },
               {
                 "heading": "Interactive 8-step schema",
@@ -2927,19 +2927,19 @@
                 "blockVariant": "terms"
               },
               {
-                "heading": "2️⃣ What to do",
+                "heading": "2️⃣ Do now",
                 "body": "**What to do:** Replace [X] with your topic (e.g. \"Q4 sales\", \"customer success\"). Copy the prompt below, paste into AI and run. **What you get:** full analysis with 8 blocks.",
-                "blockVariant": "terms"
+                "blockVariant": "brand"
               },
               {
                 "heading": "3️⃣ Copyable prompt",
                 "body": "",
-                "copyable": "Role: Experienced data analyst.\nTask: Perform full data analysis on topic [X].\n\nStructure:\n1. Data sources\n2. Data structure\n3. Cleaning\n4. EDA\n5. Visualization suggestions\n6. Insights\n7. Forecasts\n8. Strategic recommendations",
-                "blockVariant": "accent"
+                "copyable": "META: You are an experienced data analyst (sales). Goal: full sales analysis on topic [X].\n\nINPUT: Topic – [X]. Data: [paste or describe sources: CRM, ERP, e-commerce]. If data is missing – write “I don’t know” and say what is missing; do not guess.\n\nOUTPUT: Provide 8 blocks:\n1. Data sources (CRM, ERP, e-commerce)\n2. Data structure\n3. Cleaning\n4. EDA (top products, regions, trends)\n5. Visualization suggestions\n6. Insights\n7. Forecasts (Q4, inventory)\n8. Strategic recommendations",
+                "blockVariant": "terms"
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you replace [X] and get all 8 blocks?",
+                "body": "• Did you replace [X] and paste / describe data?\n• Did you get all 8 blocks?\n• If the AI guessed – did you require “I don’t know” where data was missing?",
                 "blockVariant": "accent"
               }
             ]
@@ -3007,7 +3007,7 @@
               {
                 "heading": "Task for your path",
                 "body": "Copy the synthesis task for your path.",
-                "copyable": "ROLE: You are a sales analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – sales [X]. I paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 actions for the sales team."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Merge 2 research answers into a synthesis table.\nCONTEXT: Topic – sales [X]. I will paste 2 AI answers.\nOUTPUT: 1) What matches 2) What differs 3) 3 actions for the team.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               }
             ]
           }
@@ -3027,7 +3027,7 @@
               {
                 "heading": "Task for your path",
                 "body": "Copy the data-table task for your path.",
-                "copyable": "ROLE: You are a sales analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about sales [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 KPIs I will calculate next."
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Prepare a data table for further analysis.\nCONTEXT: I have synthesis findings about sales [X].\nOUTPUT: 1) Table columns 2) 5–10 sample rows 3) 3 KPIs I will compute next.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               }
             ]
           }
@@ -3063,7 +3063,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Why here?",
+                "heading": "1️⃣ In short",
                 "body": "Visualization is not just a nice chart. It is a way to quickly show **what data means for a decision**. AI speeds up the work, but the story logic is still controlled by the human.",
                 "blockVariant": "accent"
               },
@@ -3143,29 +3143,34 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Why here?",
+                "heading": "1️⃣ In short",
                 "body": "These four prompts turn a vague request like “make a chart” into a clear task: pick the type, create the story, give Power BI steps or generate a Python example.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2. Visualization type selection",
                 "body": "Role + TASK + CONTEXT + AUDIENCE + OUTPUT + TONE.",
-                "copyable": "ROLE: You are a senior data visualization expert and UX designer.\nTASK: Pick the optimal visualization type.\nCONTEXT: I have sales data by region and month. The goal is to show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear."
+                "copyable": "ROLE: You are a senior data visualization expert and UX designer.\nTASK: Pick the optimal visualization type.\nCONTEXT: I have sales data by region and month. The goal is to show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 variants 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "3. Story creation from data",
                 "body": "Data storyteller – narrative with insight, conflict, action.",
-                "copyable": "ROLE: Data storyteller.\nTASK: Create a narrative from the provided data.\nCONTEXT: Sales grew 20%, but 2 regions declined.\nOUTPUT: 1) Main insight 2) Conflict / tension 3) What this means for business 4) Recommended action"
+                "copyable": "ROLE: Data storyteller.\nTASK: Create a narrative from the provided data.\nCONTEXT: Sales grew 20%, but 2 regions declined.\nOUTPUT: 1) Main insight 2) Conflict / tension 3) What this means for business 4) Recommended action\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4. Power BI step generation",
                 "body": "Upload, data structure in tables, visualizations, year-over-year calculation (DAX), visual clarity principles.",
-                "copyable": "ROLE: Power BI specialist.\nTASK: Provide exact steps.\nCONTEXT: CSV file with columns: Date, Region, Sales, Category.\nOUTPUT: 1) Data upload 2) Data structure check 3) Visualization creation 4) DAX formula for year-over-year growth 5) Design recommendations (visual grouping principles)"
+                "copyable": "ROLE: Power BI specialist.\nTASK: Provide exact steps.\nCONTEXT: CSV file with columns: Date, Region, Sales, Category.\nOUTPUT: 1) Data upload 2) Data structure check 3) Visualization creation 4) DAX formula for year-over-year growth 5) Design recommendations (visual grouping principles)\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "5. Python visualization code",
                 "body": "Dataset, bar + line chart, seaborn, annotations.",
-                "copyable": "Write Python code that: 1) Generates a sales dataset 2) Plots: bar chart by region, line trend over time 3) Uses seaborn 4) Adds annotations with key insights"
+                "copyable": "Write Python code that: 1) Generates a sales dataset 2) Plots: bar chart by region, line trend over time 3) Uses seaborn 4) Adds annotations with key insights\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
+              },
+              {
+                "heading": "4️⃣ Check (1 min)",
+                "body": "• Does CONTEXT include real columns / audience?\n• Does OUTPUT answer the task without guessing?",
+                "blockVariant": "accent"
               }
             ]
           }
@@ -3178,7 +3183,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Why here?",
+                "heading": "1️⃣ In short",
                 "body": "Leadership often does not need another table. It needs to understand what is changing, why it matters and what to do. That is why data must become a story.",
                 "blockVariant": "accent"
               },
@@ -3230,7 +3235,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Why here?",
+                "heading": "1️⃣ In short",
                 "body": "AI can speed up visualization work, but it needs a clear task: what data, who will see it and which decision is needed. This slide combines ideas, code, guidance and alternative tools.",
                 "blockVariant": "accent"
               },
@@ -3254,7 +3259,7 @@
                 "heading": "6️⃣ Super prompt",
                 "body": "Run this prompt when you have a CSV or at least a clear data description and want one analysis package.\n\n🔘 Copy prompt (below)",
                 "blockVariant": "brand",
-                "copyable": "ROLE: You are a data analyst + visualization designer + business strategist.\nTASK: Create a full analysis package from the provided data.\nCONTEXT: CSV file or table with data: [describe columns, time period and audience].\nOUTPUT:\n1) Data summary (3 key insights)\n2) Suggested charts\n3) Power BI instruction\n4) Python code direction or example\n5) Story text for leadership (up to 200 words)\n6) Recommended business action."
+                "copyable": "ROLE: You are a data analyst + visualization designer + business strategist.\nTASK: Create a full analysis package from the provided data.\nCONTEXT: CSV file or table with data: [describe columns, time period and audience].\nOUTPUT:\n1) Data summary (3 key insights)\n2) Suggested charts\n3) Power BI instruction\n4) Python code direction or example\n5) Story text for leadership (up to 200 words)\n6) Recommended business action.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "7️⃣ Alternatives",
@@ -3287,6 +3292,11 @@
                 "body": "The full visualization and data story path is planned for later modules. The main takeaway here: AI speeds up the work, but you still control the question, audience and decision.",
                 "blockVariant": "terms",
                 "collapsible": true
+              },
+              {
+                "heading": "4️⃣ Check (1 min)",
+                "body": "• Did you describe columns, period and audience?\n• Does the package include summary, charts and an action?\n• If data is missing – write “I don’t know” and say what is missing; do not guess.",
+                "blockVariant": "accent"
               }
             ]
           }
@@ -3631,24 +3641,23 @@
             "whyBenefit": "After the test – extra practice. Upload any screenshot, copy the prompt and in minutes get structured analysis.",
             "sections": [
               {
-                "heading": "1️⃣ In short",
-                "body": "**Bonus after the test:** upload a screenshot (dashboard, table) – get structured AI analysis in minutes.",
+                "heading": "In short",
+                "body": "**Bonus after the test:** upload a screenshot (dashboard, table) – get structured AI analysis in minutes. AI can convert text, explain charts, assess UI/UX.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "What AI can get from a screenshot",
-                "body": "Convert text, explain code, interpret charts, assess UI/UX, transcribe handwriting. Useful: dashboard and report review, UX audits.",
+                "heading": "Do this now",
+                "body": "Upload an image to AI (ChatGPT, Claude, etc.), copy the prompt below and run.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Prompt – copy and use",
-                "body": "Upload an image to AI (ChatGPT, Claude, etc.), paste the prompt below and run.",
-                "copyable": "Analyze this screenshot.\n\n1. Identify main elements\n2. Name possible problems\n3. Suggest optimisations\n4. Provide structured analysis:\n   - Function\n   - Risk\n   - Possible improvement\n   - Priority (Low / Medium / High)",
-                "blockVariant": "brand"
+                "heading": "Copyable prompt",
+                "body": "Use with your screenshot.",
+                "copyable": "Analyze this screenshot.\n\n1. Identify main elements\n2. Name possible problems\n3. Suggest optimisations\n4. Provide structured analysis:\n   - Function\n   - Risk\n   - Possible improvement\n   - Priority (Low / Medium / High)"
               },
               {
-                "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you get a 4-point analysis (function, risk, improvement, priority)?",
+                "heading": "Check",
+                "body": "Did you get a 4-point analysis (function, risk, improvement, priority)? If not – retry with a clearer image or sharpen the prompt.",
                 "blockVariant": "accent"
               }
             ]
@@ -3663,24 +3672,23 @@
             "whyBenefit": "Second bonus: visualization practice. Replace CONTEXT with your data – get 3 visualization variants and explanations.",
             "sections": [
               {
-                "heading": "1️⃣ In short",
-                "body": "**Second bonus:** change CONTEXT to your data – get 3 chart options with risks.",
+                "heading": "In short",
+                "body": "**Second bonus:** change CONTEXT to your data – get 3 chart options with risks. AI will suggest options for leadership and name misleading-interpretation risks.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Choosing a visualization type",
-                "body": "Business level: AI will suggest several options, explain why each fits and name risks (e.g. misleading interpretation). Audience – leadership.",
+                "heading": "Do this now",
+                "body": "Change CONTEXT: describe your data (columns, goal). Copy the prompt below into AI and run.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Prompt – copy and adapt",
-                "body": "Change CONTEXT: describe your data (columns, goal). Copy into AI and run.",
-                "copyable": "ROLE: You are a senior data visualisation expert and UX designer.\nTASK: Pick the optimal chart type.\nCONTEXT: I have sales data by region and month. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 options 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear.",
-                "blockVariant": "brand"
+                "heading": "Copyable prompt",
+                "body": "Adapt CONTEXT to your data.",
+                "copyable": "ROLE: You are a senior data visualisation expert and UX designer.\nTASK: Pick the optimal chart type.\nCONTEXT: I have sales data by region and month. Goal – show growth trend and regional differences.\nAUDIENCE: Leadership (not analysts).\nOUTPUT: 1) Suggest 3 options 2) Explain why each fits 3) Name risks (e.g. misleading interpretation)\nTONE: Strategic, clear."
               },
               {
-                "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you get 3 options with explanations and risks?",
+                "heading": "Check",
+                "body": "Did you get 3 options with explanations and risks? If at least two answers are “no” – clarify CONTEXT (columns, audience, goal) and run again.",
                 "blockVariant": "accent"
               }
             ]
@@ -3708,22 +3716,23 @@
         {
           "id": 90,
           "title": "Data Analysis path project",
-          "subtitle": "First – two practices and the 8-step cycle; hub scenarios are optional",
+          "subtitle": "First – two practices and the 8-step cycle; hub – optional library",
           "type": "practice-intro",
           "content": {
             "whyBenefit": "After the project you will have one ready business-analysis artifact and templates for everyday work with AI – with your Excel/CRM or the sample file.",
-            "primaryPathIntro": "**Two practices** (sources catalog or your CSV/Excel) + **8-step cycle**: diagram, copyable prompts and verifiable mini-projects. Enough to complete the module.",
+            "primaryPathIntro": "**Main path:** two practices (sources catalog or your CSV/Excel) + the **8-step cycle** (diagram and copyable prompts). That is enough to finish the module.",
             "duration": "~25–35 min",
             "audience": "You finished M7–M8 and want one full analysis pass with AI.",
-            "recommendedStart": "**(i)** No internal data → sources catalog. **(ii)** You have Excel/CRM (or sample CSV) → file cleaning. Then the diagram and helper prompts. Extra scenarios – hub (optional).",
-            "firstActionCTA": "Press Continue → practice and diagram.",
+            "recommendedStart": "**(i)** No internal data → sources catalog. **(ii)** You have Excel/CRM (or sample CSV) → clean your file. Then the diagram and helper prompts. Hub scenarios are an optional library; amber “Recommended” marks starters after the main path.",
+            "firstActionCTA": "Press Continue → sources catalog, then the 8-step diagram and prompts.",
             "learningOutcomes": [
               "You will complete at least one practice (catalog or CSV) and the 8-step cycle with copyable prompts.",
               "You will have a summary or .html dashboard; hub scenarios are optional."
             ],
             "storyBlock": "Module 7 gave the method; Module 8 checked it; here you apply it to your topic. 4 characters, up to 17 extra tasks – optional via the hub.",
             "useCaseBlock": "• **Sales** – Q3 Excel / CRM export → clean → KPIs\n• **Marketing** – campaign / channel CSV → sentiment and ROAS\n• **IT** – logs / ETL export → errors and volume\n• **People** – retention / pulse table → funnel\n• **Management** – executive KPI table → board summary\n• **Other / internal** – any Excel → universal columns",
-            "recommendedSlideIds": [101, 102, 111, 116, 117]
+            "recommendedSlideIds": [101, 102, 104, 111, 116, 117],
+            "footer": "Next – slide 2: 8-step workflow"
           }
         },
         {
@@ -3768,8 +3777,10 @@
                 "body": "• Do you have at least 3 sources in the catalog or a cleaned CSV? If not – return to practice slides.",
                 "blockVariant": "accent"
               }
-            ]
-          }
+            ],
+            "footer": "Next – slide 3: Practice: sources catalog"
+          },
+          "shortTitle": "8-step workflow"
         },
         {
           "id": 93.1,
@@ -3782,7 +3793,8 @@
             "taskFrame": {
               "task": "Build a table of 10–15 public data sources for your sector or company.",
               "doneWhen": "Table columns: source, URL, format (CSV/API/report), update frequency, and a one-sentence description per row."
-            }
+            },
+            "footer": "Next – slide 4: Practice: your CSV / Excel"
           },
           "scenario": {
             "context": "Use when starting external analysis – market, sector or competitor data. If you have your Excel/CRM – go to the CSV/Excel practice.",
@@ -3840,7 +3852,8 @@
             "sampleFile": {
               "href": "/m9_sample_internal.csv",
               "label": "Download sample CSV (sales)"
-            }
+            },
+            "footer": "Next – slide 5: Helper prompts per step"
           },
           "scenario": {
             "context": "For internal data – sales, CRM, warehouse. Same logic as Data preparation. If no file – sample CSV (sales default) or the column list below.",
@@ -3906,8 +3919,10 @@
                 "body": "• Did you copy prompts for at least 2 steps and get useful AI output?",
                 "blockVariant": "accent"
               }
-            ]
-          }
+            ],
+            "footer": "Next – slide 6: Scenario hub (optional)"
+          },
+          "shortTitle": "Helper prompts per step"
         },
         {
           "id": 99,
@@ -4027,8 +4042,10 @@
                 }
               ]
             ],
-            "optionalPathNote": "Optional · main path: diagram → Sources catalog → CSV cleaning → copyable prompts → Project summary."
-          }
+            "optionalPathNote": "Optional library · main path first: diagram → two practices → helper prompts → summary. Amber “Recommended” = starters; others are extra.",
+            "recommendedSlideIds": [101, 102, 104, 111, 116, 117]
+          },
+          "shortTitle": "Scenario hub (optional)"
         },
         {
           "id": 101,
@@ -4203,7 +4220,7 @@
             }
           },
           "template": "Role: Experienced data analyst.\nTask: Perform full data analysis on [YOUR_TOPIC].\nStructure: 1. Data sources 2. Data structure 3. Cleaning 4. EDA 5. Visualizations 6. Insights 7. Forecasts 8. Recommendations",
-          "recommended": false
+          "recommended": true
         },
         {
           "id": 105,

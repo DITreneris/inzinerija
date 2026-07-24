@@ -78,12 +78,14 @@
 - **Keitimas liečia MVP `1–6`** → po full SOT sinchrono paleisti `npm run generate:core-data` (arba patikrinti `*-m1-m6.json`).
 - **Keitimas liečia korporatyvinį `7–9`** → `generate:core-data` atnaujina ir `*-m1-m9.json`.
 - **ModulesPage kortelių laukai** (`subtitle` / `description` / `businessExamples` modulio lygyje) → LT + EN overlay + (jei preview) `comingSoonModules.ts`; plain-language SOT `.cursor/rules/module-description-criteria.mdc`; M1–9 → `generate:core-data`; `validate:schema` (description ≤120).
-- **Keitimas liečia M10–12** → tik **modules.json** + optional **modules-en-m10-m12.json**; **ne** core profiliai (`*-m1-m6`, `*-m1-m9`).
+- **Keitimas liečia M10–12** → tik **modules.json** + **modules-en-m10-m12.json** (po LT: `npm run build:modules-en-m10-m12`); **ne** core profiliai (`*-m1-m6`, `*-m1-m9`).
+- **Path Test Shell (M8/M11/M14)** → lukštas pagal GOLDEN §3.4a1; M14 insert (`140.5`/`143`) → LT + `build:modules-en-m13-m15` (+ `audit:m1315`); M11 EN → **tik** per `build-en-m10-m12.mjs`; M8 bonus → LT + `modules-en-m7-m9.json` + `generate:core-data`; **M2 live balsas** → `questionPool.ts` / `questionPool.en.ts` (ne vien `modules.json` embedded bankas).
 - **Keitimas liečia M13–15** → tik **modules.json** + **modules-en-m13-m15.json** (nauji ID privalo būti abiejuose); **ne** core profiliai (`*-m1-m6`, `*-m1-m9`). Gate: `validate:schema` + `npm run audit:m1315`. Bulk patch precedentas: `scripts/patch-m13-m15-2026.mjs` / `patch-m13-m15-en-2026.mjs`.
 - **Handout / sertifikato artefaktas** → `completionArtifacts.json` + atitinkamas content JSON / schema + `handoutArtifactActions.ts` map'as (handout) arba `certificateEligibility.ts` raktas (sertifikatas); paleisti `npm run validate:schema` ir tikslinius guard testus iš `RELEASE_QA_CHECKLIST.md` §5d.
 - **Naujos skaidrės arba modulio struktūros pakeitimas** → pirmiausia **modules.json**; jei skaidrėse minimi nauji terminai ar įrankiai → **glossary.json**, **tools.json**.
 - **Image key Shell = Ne** → po registry laiduok `sections[].image` net kai Pattern `interactive-control-lab` (be SVG); insert tarp ID → footeriai + `relatedSlideId` retarget (pvz. m11-q8 → 10.26).
-- **Prieš release M10+** → `AUDIT_MODULES=10 node scripts/audit-footer-numbers.mjs` (žr. `RELEASE_QA_CHECKLIST.md`).
+- **Footeriai (GOLDEN §3.6):** po bet kokio M10–12 eilės keitimo – perskaičiuoti LT `Toliau – skaidrė N` (N = next 1-based); ilgiems next title – `shortTitle`; EN per `build:modules-en-m10-m12` (`syncEnFootersFromLt`). `practice-scenario` leidžia `content: { footer }` (tik footer, ne pilnas content-block).
+- **Prieš release M10+** → `node scripts/audit-footer-numbers.mjs --modules=10,11,12` (+ `--locale=en`); `node scripts/audit-footer-length.mjs` (žr. `RELEASE_QA_CHECKLIST.md`).
 - **Prieš release** → `npm run validate:schema` praeina; SOT↔JSON sinchronas.
 - **Išorinis šaltinis (Vectara leaderboard)** atnaujintas → **hallucinationRates.ts**.
 

@@ -5,7 +5,7 @@
  * Srautas: Įvestis (tekstas) → LLM → Išvestis; Tool Use → Generation, Retrieval → Duomenų bazė.
  */
 import { useId } from 'react';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const VIEWBOX = '0 0 520 220';
 const PAD = 0;
@@ -25,7 +25,8 @@ const INPUT_CX = INPUT_X + BOX_W / 2;
 const MODEL_CX = MODEL_X + BOX_W / 2;
 const OUTPUT_CX = OUTPUT_X + BOX_W / 2;
 const ROW_CY = ROW_Y + ROW_H / 2;
-const ARROW_MARKER_LEN = 6;
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
+const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 
 const BRANCH_Y_START = ROW_Y + ROW_H;
 const GAP_BRANCH = 18;
@@ -85,15 +86,15 @@ export default function Schema3Diagram({
         </linearGradient>
         <marker
           id={`s3-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="10"
-          markerHeight="8"
-          refX={ARROW_MARKER_LEN}
-          refY="4"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d="M0 0 L10 4 L0 8 Z"
+            d={PROCESS_ARROW.pathD}
             fill={BRAND}
             stroke={BRAND}
             strokeWidth="0.3"

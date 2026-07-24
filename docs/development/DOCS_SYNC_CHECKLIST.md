@@ -20,6 +20,30 @@ CI (`test.yml`) stato MVP + M1–9; Pages shipina tik MVP. Preflight (`audit:rel
 
 ## Sync lentelė
 
+### Docs Lean Pass DL-0…4 (Unreleased) – 2026-07-24
+
+| #   | Failas                                        | Laukas            | Buvo                | Turi būti                            | Done |
+| --- | --------------------------------------------- | ----------------- | ------------------- | ------------------------------------ | ---- |
+| 1   | `DOCS_MAINTENANCE.md` §1c + TODO §1.0h        | kontraktas        | nėra                | open-only + LEAN ≤25 + archive ≠ SOT | [x]  |
+| 2   | `TODO.md` / `ROADMAP.md`                      | §1 dydis          | ~372 / ~186 eil.    | open only + archive Done snapshot    | [x]  |
+| 3   | `.cursorrules` / `AGENTS.md`                  | always-on         | visas ROADMAP+TODO  | open P0/P1 only                      | [x]  |
+| 4   | `LEAN_INDEX` / `QUICK_REF`                    | core keliai       | ~35–40 + legacy SOT | ≤25; be ANALIZE/audit-as-SOT         | [x]  |
+| 5   | Archive moves + stubs                         | frozen PLAN/AUDIT | `docs/development/` | `docs/archive/development/` + stub   | [x]  |
+| 6   | `DIAGRAMU_M1_M9_AUDITAS` + skills + sot_index | inventory SOT     | privalomas load     | TE primary; AUDITAS = rubrika        | [x]  |
+| 7   | Empty skills + INDEX/CHANGELOG                | QA/UJ/CR          | 0 B SKILL           | filled; meta sync                    | [x]  |
+
+### Teaching Elements Registry TE-0…5 (Unreleased) – 2026-07-24
+
+| #   | Failas                                    | Laukas           | Buvo                   | Turi būti                     | Done |
+| --- | ----------------------------------------- | ---------------- | ---------------------- | ----------------------------- | ---- |
+| 1   | `TEACHING_ELEMENTS_REGISTRY.md` + overlay | master SOT       | fragmentuoti satelitai | master + overlay + brandą 0–4 | [x]  |
+| 2   | `audit:teaching-elements` / preflight     | drift gate       | nėra                   | `--strict` release-preflight  | [x]  |
+| 3   | Feature Doc §1b / SCHEME / AGENTS         | registry entry   | tik satelitai          | master overlay prieš JSON     | [x]  |
+| 4   | `DIAGRAMU_M7_M12_REGISTRY.md`             | UTF-8 + slide ID | mojibake; 70/71.2      | clean LT; live 73/89/92       | [x]  |
+| 5   | DIAGRAM_KIT / LMS W5                      | dual-taxonomy    | etalon Shell           | superseded → lab hybrid       | [x]  |
+| 6   | sot_index / LEAN / DOC indexes            | pointers         | be master              | teaching*elements*\* keys     | [x]  |
+| 7   | LENTELIU §5 / SLIDE_UX baseline           | counts           | 17 tables / 262 slides | 21/19 tables / **283** slides | [x]  |
+
 ### Pre-launch meta sync (Unreleased) – 2026-07-24
 
 | #   | Failas                             | Laukas               | Buvo                                                  | Turi būti                | Done |

@@ -23,8 +23,8 @@ export const M7_DATA_PREP_GEOMETRY = {
   stepCount: 5,
   boxH: 58,
   gap: VERTICAL_FLOW_MIN_GAP,
-  /** Local tip ≥~2× stroke.flow 3.5; do not change DIAGRAM_TOKENS.arrow.markerLen. */
-  arrowTip: 10,
+  /** LMS process tip – processTipLen (not legacy markerLen). */
+  arrowTip: DIAGRAM_TOKENS.arrow.processTipLen,
   startY: 44,
   /** 44 + 5×58 + 4×24 + bottom pad ≈ 448 */
   viewBoxH: 448,

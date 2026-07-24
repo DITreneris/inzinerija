@@ -10,6 +10,56 @@ import { fileURLToPath } from 'url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outPath = join(root, 'src', 'data', 'modules-en-m10-m12.json');
 
+/** LT shortTitle / title → EN label for footers, titles, player chrome. */
+const SHORT_TITLE_EN = {
+  'Kelias – ką čia rasi': 'Path – what you will find',
+  'Agentų ciklas': 'Agent cycle',
+  'Kontrolinis taškas: ciklas': 'Checkpoint: agent cycle',
+  'Savitikra: ciklas': 'Warm-up: cycle',
+  '3A strategija': '3A strategy',
+  'Kada tvirtina žmogus?': 'When does a human approve?',
+  'Rolės ir sisteminis promptas': 'Role and system prompt',
+  'DI agentų tipai ir rolės': 'Agent types and roles',
+  'Kontrolinis taškas: rolės': 'Checkpoint: roles',
+  '5 darbo eigos šablonai': '5 workflow patterns',
+  'Keli agentai → darbo eiga': 'Multi-agent → workflow',
+  'Orkestravimo simuliacija': 'Orchestration walkthrough',
+  'Savitikra: workflow': 'Warm-up: workflow',
+  'Uždaro mokymosi ciklas': 'Closed learning loop',
+  'Įrankių pasirinkimas': 'Tool selection',
+  'Agentas ar paprastas promptas': 'Agent or plain prompt',
+  'Kontrolinis taškas: promptas': 'Checkpoint: agent prompt',
+  'Klaidos tvarkymas ir ribos': 'Errors and limits',
+  'Savitikra: saugikliai': 'Warm-up: safeguards',
+  'Pagrindinės sąvokos': 'Core concepts',
+  'Pagrindinės sąvokos: trigger…webhook': 'Core concepts',
+  'Darbo eiga → automatizavimas': 'Workflow → automation',
+  'Automatizavimo įrankiai': 'Automation tools',
+  'Paleidimas: PaaS': 'Hosting: PaaS',
+  'GitHub kaip kodo šaltinis': 'GitHub as code source',
+  'Minimalus eigos aprašymas': 'Minimum workflow brief',
+  'Testavimas ir saugumas': 'Testing and security',
+  'QC vertintojas': 'QC evaluator',
+  Žodynėlis: 'Glossary',
+  'Modulio 10 santrauka': 'Module 10 summary',
+  Savitikra: 'Warm-up',
+  'Savitikra prieš testą': 'Warm-up before the test',
+  'Modulio 11 testas': 'Module 11 test',
+  Klausimai: 'Questions',
+  Rezultatai: 'Results',
+  'Papildomai: agento grandinė per 5 min': 'Bonus: agent chain in 5 minutes',
+  'Trys praktikos (3A)': 'Three practices (3A)',
+  'Kelių agentų schema': 'Multi-agent schema',
+  'Kontrolinis taškas': 'Checkpoint',
+  'Greitas startas': 'Quick start',
+  'Tyrimo agentas': 'Research agent',
+  '1 praktika: Automatize': 'Practice 1: Automatize',
+  '2 praktika: Augment': 'Practice 2: Augment',
+  '3 praktika: Autonomize': 'Practice 3: Autonomize',
+  'Pakartok Modulį 10': 'Revisit Module 10',
+  'Projekto santrauka': 'Project summary',
+};
+
 const en = {
   modules: [
     {
@@ -32,7 +82,7 @@ const en = {
             heroSubText:
               'Design agents for your processes – taxonomy, multi-agent coordination, no-code tools. Context – Module 4.',
             firstActionCTA:
-              'Pick an AI tool with tools enabled (search or Tools) and in 1–2 minutes ask one agent-style query – e.g. “Search [topic] and give a summary with sources”.',
+              'On the next slide, copy the quick check: in one sentence, tell an agent apart from a simple question–answer.',
             outcomes: [
               'Understand agent taxonomy (L0–L3) and multi-agent roles',
               'Use 5 workflow patterns and system prompts',
@@ -45,7 +95,8 @@ const en = {
         },
         {
           id: 10.1,
-          title: 'Agent engineering path – what you will find',
+          title: 'Agent engineering path – what you will find here',
+          shortTitle: 'Path – what you will find',
           subtitle: 'Short overview; detail on later slides',
           content: {
             sections: [
@@ -177,57 +228,44 @@ const en = {
         {
           id: 10.45,
           title: 'AI agent types and roles',
-          subtitle: 'Depth levels L0–L3 and multi-agent roles for business',
+          subtitle: 'Depth levels and multi-agent roles for business',
+          shortTitle: 'Agent types and roles',
           content: {
             sections: [
               {
                 heading: 'In short',
                 body:
-                  'Not every task needs an AI team. First set the **depth level** (L0–L3), then whether you need several **roles** (coordinator, specialist, evaluator, router).',
+                  'Not every task needs an AI team. First choose **depth** (Chat → Agent → Team → Flow), then whether you need **roles**. Below – schema and lab; start from your process.',
+                blockVariant: 'accent',
               },
               {
-                heading: 'Taxonomy diagram',
+                heading: 'Depth and team roles',
                 body:
-                  'Left – depth levels (L0–L3); right – multi-agent roles and handoffs. **View full size** – same image in a modal.',
-              },
-              {
-                heading: 'Depth levels (L0–L3)',
-                body:
-                  '**L0 – Chat with AI:** one question–answer (e.g. drafting an email).\n\n**L1 – Single AI agent:** several steps + tools (research + summary).\n\n**L2 – AI team:** different roles, handoffs (RFP: researcher → writer → reviewer).\n\n**L3 – Automated flow:** trigger → actions (form → CRM → email).',
-              },
-              {
-                heading: 'Multi-agent roles',
-                body:
-                  '**Coordinator** – breaks down the task, delegates, merges results (team lead).\n\n**Specialist** – does one narrow job: search, draft, calculation.\n\n**Evaluator** – QC, rules, returns for revision (editor / compliance).\n\n**Router** – routes by type (reception / triage).',
-              },
-              {
-                heading: '3A mapping',
-                body:
-                  '**Automatize (80 %)** → usually L3 (flow, no multi-agent). **Augment (15 %)** → L1 + human (HITL). **Autonomize (5 %)** → L2 with evaluator and incident playbook.',
+                  'Choose depth in the lab – the schema highlights the same choice. Team reveals the roles.',
+                blockVariant: 'brand',
               },
               {
                 heading: 'Do this now',
                 body:
-                  'Pick one work process and define three roles – coordinator, specialist, evaluator.',
-              },
-              {
-                heading: 'Copyable prompt',
-                body: 'Copy and fill [X] with your process.',
-                copyable:
-                  'Define three roles for your process [X]:\n1) Coordinator – what they plan and delegate\n2) Specialist – what they do specifically\n3) Evaluator – what they check before delivering the result\nFor each role – one sentence + input + output.',
+                  'Choose depth for your process. If **Team** – three roles (coordinator, specialist, evaluator); router only if you need triage. Copy the artefact in the lab.',
+                blockVariant: 'brand',
               },
               {
                 heading: 'Check',
                 body:
-                  'Does each role have a clear **input** and **output** description? If not – too complex; start with L1 (one agent).',
+                  'Did you choose a **depth**? If Team – are the three roles clear? If not – start from **Agent** (one agent).',
+                blockVariant: 'accent',
               },
               {
-                heading: 'When NOT to use multi-agent',
+                heading: 'When not to use multi-agent',
                 body:
-                  'One agent is enough for a simple task. Multi-agent too early if there is no HITL or clear “done” criterion. Start simple – add roles only when one agent is no longer enough.',
+                  'One agent is enough for a simple task. A multi-agent system is too early if there is no human approval or a clear “done” criterion. Start simple – add roles only when one agent is no longer enough.',
+                blockVariant: 'terms',
+                collapsible: true,
+                collapsedByDefault: true,
               },
             ],
-            footer: 'Next – slide 6: 5 workflow patterns',
+            footer: 'Next – slide 10: Checkpoint: roles',
           },
         },
         {
@@ -506,7 +544,7 @@ const en = {
         },
         {
           id: 10.65,
-          title: 'Workflow, testing and security (optional)',
+          title: 'Workflow testing and security',
           subtitle: 'Specification, 10 test scenarios, security, tool tree – visible content',
           content: {
             sections: [
@@ -594,7 +632,7 @@ const en = {
         },
         {
           id: 10.7,
-          title: 'Glossary (optional)',
+          title: 'Glossary',
           subtitle: 'Agent engineering terms – want more detail?',
           content: {
             terms: [
@@ -750,9 +788,9 @@ const en = {
     {
       id: 11,
       title: 'Knowledge check (Agent path)',
-      subtitle: 'Test: agent cycle, prompts, tools',
+      subtitle: 'Test before the agent project',
       description:
-        'Check your understanding before the final Agent engineering project (Module 12).',
+        'Check agent flow and tools. ≥70% recommended before Module 12.',
       duration: '10–12 min',
       slides: [
         {
@@ -764,11 +802,60 @@ const en = {
               'After this test you will know if you are ready for the final Agent engineering project (Module 12).',
             duration: '~10–12 min',
             firstActionCTA:
-              'Answer 8 questions – topics: agent cycle, taxonomy, multi-agent, workflow, 3A.',
+              'Press Continue — 9 questions with explanations (cycle, 3A, roles, workflow).',
             microWinPhrase:
               'Each correct answer shows you are ready to design agents.',
             thresholdExplanation:
               'When you reach ≥70 %, you can go to Module 12 (project). If less – we recommend reviewing Module 10 slides.',
+          },
+        },
+        {
+          id: 110.5,
+          title: 'Warm-up before the test',
+          shortTitle: 'Warm-up',
+          subtitle: '3 questions: agent vs prompt, 3A, orchestration',
+          content: {
+            questions: [
+              {
+                id: 'm11-warm-1',
+                question: 'When is it worth choosing an agent over a plain prompt?',
+                options: [
+                  'When you need several steps, tools or a decision, or to repeat an action',
+                  'When you need one short answer with no search',
+                  'When you only want a nicer tone',
+                  'When the prompt is longer than 2 sentences',
+                ],
+                correct: 0,
+                explanation:
+                  'An agent fits complex tasks with steps and tools. For one clear answer, a plain prompt is often enough.',
+              },
+              {
+                id: 'm11-warm-2',
+                question: 'Which 3A lane means “human decides, AI helps”?',
+                options: [
+                  'Augment (15 %)',
+                  'Automatize (80 %)',
+                  'Autonomize (5 %)',
+                  'Only L0 taxonomy',
+                ],
+                correct: 0,
+                explanation:
+                  'Augment – the human stays in the decision; AI provides summaries, recommendations or drafts before approval.',
+              },
+              {
+                id: 'm11-warm-3',
+                question: 'How does a router differ from an orchestrator?',
+                options: [
+                  'Router = where to go; orchestrator = how to manage plan, state and retry',
+                  'They do the same thing',
+                  'Orchestrator only classifies the type',
+                  'Router always restarts the whole flow',
+                ],
+                correct: 0,
+                explanation:
+                  'Router routes by type (WHERE). Orchestrator manages the active plan and targeted retry (HOW).',
+              },
+            ],
           },
         },
         {
@@ -778,15 +865,25 @@ const en = {
           testQuestions: [
             {
               id: 'm11-q1',
-              question: 'How many main steps does the agent cycle have?',
-              options: ['3', '4', '5', '6'],
-              correct: 1,
+              type: 'scenario',
+              bloomLevel: 3,
+              scenarioContext:
+                'An AI agent gives a confident answer but cites no sources, even though the task needed up-to-date facts.',
+              question: 'What should you fix first?',
+              options: [
+                'Clearly specify the tool and rule: use search, provide sources; if you cannot find them – write “Not found”',
+                'Increase the answer length to 2000 words',
+                'Delete the error-handling sentence',
+                'Keep the same prompt and just ask again',
+              ],
+              correct: 0,
               explanation:
-                'Agent: receives task, plans steps, uses tools, returns result. Plus – feedback.',
-              relatedSlideId: 10.2,
+                'The agent needs clear context: which tool to use, when to provide sources, and what to return when sources are missing. That lowers the risk of invented facts.',
+              relatedSlideId: 10.3,
             },
             {
               id: 'm11-q2',
+              type: 'mcq',
               question: 'Where are AI role and limits set in an agent system?',
               options: [
                 'Only in user prompt',
@@ -801,8 +898,9 @@ const en = {
             },
             {
               id: 'm11-q3',
+              type: 'mcq',
               question:
-                'How does an evaluator differ from a specialist in multi-agent?',
+                'How does an evaluator differ from a specialist in a multi-agent system?',
               options: [
                 'Evaluator checks quality; specialist does the work',
                 'Evaluator always sends emails; specialist only reads',
@@ -816,25 +914,27 @@ const en = {
             },
             {
               id: 'm11-q4',
-              question: 'What to do when the agent cannot complete the task?',
+              type: 'mcq',
+              question: 'What should you do when the agent cannot complete the task?',
               options: [
                 'Nothing – wait',
-                'Specify in system or user prompt: write “Failed” and reason',
+                'Specify in system or user prompt: write “Failed” and the reason',
                 'Turn off tools',
                 'Repeat the same prompt',
               ],
               correct: 1,
               explanation:
-                'Error handling – clearly state what to return (e.g. “Failed: [reason]” and what to fix).',
+                'Error handling – clearly state what to return (e.g. “Failed: [reason]” and a suggestion of what to fix).',
               relatedSlideId: 10.6,
             },
             {
               id: 'm11-q5',
+              type: 'mcq',
               question: 'What is a router in an AI team?',
               options: [
-                'Role that routes the request to the right role by type',
-                'Tool that sends emails automatically',
-                'Same as coordinator – synonym',
+                'A role that routes the request to the right role by type',
+                'A tool that sends emails automatically',
+                'Same as coordinator – a synonym',
                 'AI model version',
               ],
               correct: 0,
@@ -844,23 +944,28 @@ const en = {
             },
             {
               id: 'm11-q6',
-              question:
-                'Scenario: you receive an RFP document and want: researcher gathers facts, writer prepares summary, evaluator checks criteria. Which workflow pattern fits best?',
+              type: 'scenario',
+              bloomLevel: 3,
+              scenarioContext:
+                'You receive an RFP document and want: a researcher to gather facts, a writer to prepare a summary, an evaluator to check the criteria.',
+              question: 'Which workflow pattern fits best?',
               options: [
-                'Coordinator + specialists (or chain with roles)',
-                'Only one prompt without role',
+                'Coordinator + specialists (or a chain with roles)',
+                'Only one prompt without a role',
                 'Routing by email size',
                 'Parallel work without merging',
               ],
               correct: 0,
               explanation:
-                'RFP with several roles – typical L2 (AI team): coordinator plans, specialists execute, evaluator checks. Chain with roles also works.',
+                'RFP with several roles – typical L2 (AI team): coordinator plans, specialists execute, evaluator checks. A chain with roles also works.',
               relatedSlideId: 10.48,
             },
             {
               id: 'm11-q7',
+              type: 'mcq',
+              bloomLevel: 3,
               question:
-                'Scenario: a client fills a form on the website; you want the new entry to go to Google Sheets and the client to get email confirmation. What should you do first when designing the flow (Zapier, Make, etc.)?',
+                'Scenario: a client fills a form on the website; you want the new entry to go into Google Sheets and the client to get email confirmation. What should you do first when designing the flow (Zapier, Make, etc.)?',
               options: [
                 'Define the trigger – what starts the flow (e.g. new form submission), then actions (Sheets, email)',
                 'First write only a long AI chat text with no link to form or email',
@@ -869,23 +974,43 @@ const en = {
               ],
               correct: 0,
               explanation:
-                'First – event that starts the flow (trigger) and input schema; then actions (entry, email). Clear what starts the chain and what data moves.',
+                'First – the event that starts the flow (trigger) and the input schema; then actions (entry, email). Clear what starts the chain and what data moves.',
               relatedSlideId: 10.15,
             },
             {
               id: 'm11-q8',
-              question:
-                'Scenario: you get a long complaint by email. You want AI to briefly summarise it, but you write and send the final reply to the client only after you review it. Which option best matches Augment (15 %)?',
+              type: 'scenario',
+              bloomLevel: 3,
+              scenarioContext:
+                'A workflow prepares a reply to a client and sometimes sees personal data. Standard replies repeat, but a wrong reply to the client would be hard to undo.',
+              question: 'Which human-control mode fits best?',
               options: [
-                'Flow: email → AI summary → you review / edit → then send to client',
-                'AI automatically replies to client without your step',
-                'Do not use AI – do everything by hand',
-                'AI deletes the email if longer than 500 words',
+                'Exception review: standard cases are automatic; risky or unclear ones go to a human',
+                'Results monitoring only: the human sees only a weekly summary',
+                'After-the-fact check: send to the client immediately, later sample a few cases',
+                'A human approves every case, even though only part of the flow is risky',
               ],
               correct: 0,
               explanation:
-                'Augment – human stays in the decision, AI helps (summary, classification). Human-in-the-loop before sending reduces risk.',
-              relatedSlideId: 10.25,
+                'Exception review matches Augment logic: AI speeds up standard cases, but risk, personal data or ambiguity go to a human before sending.',
+              relatedSlideId: 10.26,
+            },
+            {
+              id: 'm11-q9',
+              type: 'mcq',
+              bloomLevel: 3,
+              question:
+                'Scenario: the agent completed the task, but the result was inaccurate. After analysing the error you see the cause. What do you need to do so the learning loop closes, instead of only describing the problem?',
+              options: [
+                'Update the rule, prompt, skill or test based on the root cause – do not only write down what happened',
+                'Write a note in a list and continue with the same prompt',
+                'Make the agent answer longer',
+                'Run the same request again without changes',
+              ],
+              correct: 0,
+              explanation:
+                'The learning loop closes only when the lesson becomes a concrete update: a rule, prompt, skill or test. Stating the fact alone does not finish the loop.',
+              relatedSlideId: 10.49,
             },
           ],
         },
@@ -897,25 +1022,64 @@ const en = {
             passedMessage:
               'Congratulations! You are ready for the Agent engineering project (Module 12).',
             failedMessage:
-              'We recommend reviewing Module 10 topics: agent cycle, 3A taxonomy, coordinator and specialist roles, workflow patterns, tool use, error handling, and Zapier / Make integrations.',
+              'Worth reviewing Module 10 topics: agent cycle, 3A taxonomy, coordinator and specialist roles, workflow patterns, tool use, error handling, and Zapier / Make integrations.',
             thresholdExplanation:
               'When you reach ≥70 %, you can go to Module 12. Less – review the agent cycle, 3A, multi-agent roles, workflow patterns and prompt safeguards.',
             useCaseBlock: {
               heading: 'Where to apply?',
               body:
-                'Taxonomy, multi-agent, workflow (trigger, action), 3A and tools – research, reports, support triage, RFP analysis.',
+                'Taxonomy, multi-agent work, workflow (trigger, action), 3A and tools – research, reports, support triage, RFP analysis.',
+              blockVariant: 'accent',
             },
+            reflectionTitle: 'Reflection prompt',
+            reflectionPrompt:
+              'META: You are a training reflection assistant. Goal – consolidate knowledge after the Agent path test.\nINPUT: I just finished the Module 11 knowledge check – agent cycle, 3A, workflow patterns, tools and prompt safeguards.\nOUTPUT: Ask 3 questions: (1) Which agent step will I apply within 24 hours? (2) What was newest? (3) What do I want to try in Module 12? After my answers, give 1 concrete tip.',
+          },
+        },
+        {
+          id: 113,
+          title: 'Bonus: agent chain in 5 minutes',
+          shortTitle: 'Bonus: agent chain',
+          subtitle: 'Coordinator → specialist → evaluator',
+          content: {
+            sections: [
+              {
+                heading: 'In short',
+                body:
+                  'After the test you can try a mini agent chain in 5 minutes without Zapier or Make: 3 separate AI chats, a clear handoff, and one quality check.',
+                blockVariant: 'accent',
+              },
+              {
+                heading: 'Do this now',
+                body:
+                  'Pick a small process: RFP summary, weekly sales, or a client complaint. Run the prompt pack below and note what you pass from one role to the next.',
+                blockVariant: 'brand',
+              },
+              {
+                heading: 'Copyable prompt pack',
+                body: 'Use in 3 separate AI chats.',
+                copyable:
+                  'COORDINATOR: Task: [DESCRIBE]. Split into 2 sub-tasks, assign a specialist and an evaluator. Specify input, output and the handoff rule.\n\nSPECIALIST: Input: [COORDINATOR PLAN]. Do the assigned work. Output: short summary, facts, unknowns.\n\nEVALUATOR: Check the specialist output against criteria: facts, clarity, risk. If data is missing – return a revision list.',
+              },
+              {
+                heading: 'Check',
+                body:
+                  'Do you have a clear handoff rule and 1 trial case where data is missing? If yes – you are ready for the M12 quick start with prompts only (Coordinator + 2 specialists).',
+                blockVariant: 'accent',
+              },
+            ],
+            footer: 'Next – Module 12: Agent project',
           },
         },
       ],
       businessExamples: [
         {
           title: 'Agent cycle and prompts',
-          description: 'Questions on trigger, action, result',
+          description: 'Questions on flow and result',
         },
         {
           title: 'Tools and integrations',
-          description: 'Search, Tools, systems with AI',
+          description: 'Search and systems with AI',
         },
       ],
     },
@@ -937,14 +1101,18 @@ en.modules.push({
       subtitle: '3 required practices (trigger → action → artefacts) + 4 optional scenarios',
       content: {
         whyBenefit:
-          'After the project you will have ready artefacts: workflow diagram (trigger, condition, actions), field mapping, test cases, log evidence. Three required practices per 3A: Automatize (80 %), Augment (15 %), Autonomize (5 %). Value summary: time saved ≈ (manual hours × frequency) − (automated hours × frequency); full ROI template – in “Business automation tools”, §22.',
-        duration: '~20–30 min per practice',
+          'After the project you will have ready artefacts: a multi-agent schema with prompts only, or a full workflow (trigger, condition, actions), field mapping, test cases, log evidence, and one Skill pack for reuse. Quick start – Coordinator + 2 specialists; full path – 3 practices per 3A.',
+        duration: '~20–30 min start; ~60–90 min for all 3 practices',
         minScenariosToComplete: 3,
         firstActionCTA:
-          'Pick practice 1 (form→CRM→email→Slack/Teams), practice 2 (email→AI summary→approval) or practice 3 (feedback→sentiment→escalation) and finish with artefacts.',
+          'Press Continue → quick start (Coordinator + 2 specialists), then 3 practices per 3A.',
         recommendedStart:
-          'Required: practices 1–3 (Automatize, Augment, Autonomize). Recommended: Coordinator + 2 specialists (124.5), Research agent, Report generator.',
-        recommendedSlideIds: [120.25, 120.5, 121, 122, 123, 124.5],
+          'Quick start: Coordinator + 2 specialists. Required path: 3 practices per 3A – Automatize, Augment, Autonomize. Extra: Research agent and M10 revisit scenarios.',
+        primaryPathIntro:
+          'Quick start – Coordinator + 2 specialists: 3 separate AI chats, a schema, and 1 test case. Required path – 3 main practices: Automatize, Augment, and Autonomize. Completing them finishes the module; extra scenarios are for deeper practice.',
+        taskOneLiner:
+          'Start with the quick start → then complete the 3 main practices. Extra scenarios only if you want more examples.',
+        recommendedSlideIds: [124.5, 120.25, 120.5, 121, 122, 123],
       },
     },
     {
@@ -967,10 +1135,10 @@ en.modules.push({
     {
       id: 120.5,
       title: 'Business multi-agent schema',
-      subtitle: 'Input → roles → evaluator → output (+ HITL)',
+      subtitle: 'Input → roles → evaluator → output (+ human approval)',
       content: {
         whyBenefit:
-          'Understand when one AI is not enough and how to split work without coding. Practice – Coordinator + 2 specialists slide (124.5).',
+          'Understand when one AI is not enough and how to split work without coding. Practice – Coordinator + 2 specialists (quick start).',
         sections: [
           {
             heading: 'Business multi-agent schema',
@@ -1607,6 +1775,58 @@ const fallback = {
 };
 en.modules = mergeArraysById(fallback.modules, en.modules);
 
+/** Sync EN shortTitles + numbered footers from LT §3.6. */
+function syncEnFootersFromLt() {
+  for (const modId of [10, 11, 12]) {
+    const ltMod = ltData.modules.find((m) => m.id === modId);
+    const enMod = en.modules.find((m) => m.id === modId);
+    if (!ltMod || !enMod) continue;
+    for (let i = 0; i < ltMod.slides.length; i++) {
+      const ltSlide = ltMod.slides[i];
+      const enSlide = enMod.slides[i];
+      if (!enSlide) continue;
+      if (ltSlide.shortTitle) {
+        enSlide.shortTitle =
+          SHORT_TITLE_EN[ltSlide.shortTitle] ||
+          enSlide.shortTitle ||
+          ltSlide.shortTitle;
+      }
+      // Prefer mapped LT title over generic fallback "AI agent step"
+      if (
+        typeof ltSlide.title === 'string' &&
+        (enSlide.title === 'AI agent step' || !enSlide.title)
+      ) {
+        enSlide.title =
+          SHORT_TITLE_EN[ltSlide.title] ||
+          fallbackTitle(ltSlide.title) ||
+          enSlide.title;
+      }
+      const ltFooter = ltSlide?.content?.footer;
+      if (typeof ltFooter !== 'string') continue;
+      const m = ltFooter.match(/^Toliau – skaidrė (\d+):\s*(.+)$/);
+      if (!m) continue;
+      const n = Number(m[1]);
+      const nextLt = ltMod.slides[i + 1];
+      const nextEn = enMod.slides[i + 1];
+      if (!nextEn || !nextLt) continue;
+      const label =
+        (nextLt.shortTitle && SHORT_TITLE_EN[nextLt.shortTitle]) ||
+        nextEn.shortTitle ||
+        nextEn.title ||
+        m[2];
+      const prefix = `Next – slide ${n}: `;
+      const maxLabel = 55 - prefix.length;
+      let L = String(label);
+      if (L.length > maxLabel) L = `${L.slice(0, maxLabel - 1).trimEnd()}…`;
+      if (!enSlide.content || typeof enSlide.content !== 'object') {
+        enSlide.content = {};
+      }
+      enSlide.content.footer = prefix + L;
+    }
+  }
+}
+syncEnFootersFromLt();
+
 writeFileSync(outPath, JSON.stringify(en, null, 2) + '\n', 'utf8');
 const lines = readFileSync(outPath, 'utf8').split('\n').length;
 console.log('Written:', outPath, 'lines:', lines);
@@ -1679,13 +1899,30 @@ function fallbackString(value, ctx) {
 
 function fallbackTitle(value) {
   const text = String(value);
+  if (SHORT_TITLE_EN[text]) return SHORT_TITLE_EN[text];
   if (text.includes('Kontrolinis taškas') && text.includes('agentų ciklas')) return 'Checkpoint: agent cycle';
   if (text.includes('rolės ir perdavimas')) return 'Checkpoint: roles and handoff';
-  if (text.includes('keli agentai')) return 'Multi-agent to workflow';
+  if (text.includes('Kada tvirtina žmogus')) return 'When does a human approve?';
+  if (text.includes('keli agentai') || text.includes('Keli agentai')) return 'Multi-agent to workflow';
   if (text.includes('Uždaro mokymosi ciklas')) return 'Closed learning loop';
   if (text.includes('agentinis promptas')) return 'Checkpoint: agent prompt';
   if (text.includes('Workflow') || text.includes('automatizavimas')) return 'Workflow to automation';
-  if (text.includes('Bonus')) return 'Bonus: agent chain in 5 minutes';
+  if (text.includes('Savitikra prieš testą')) return 'Warm-up before the test';
+  if (text.includes('Bonus') || text.includes('Papildomai')) return 'Bonus: agent chain in 5 minutes';
+  if (text.includes('Agentų ciklas')) return 'Agent cycle and architecture';
+  if (text.includes('Rolės ir sisteminio')) return 'Role and system prompt template';
+  if (text.includes('Įrankių pasirinkimas')) return 'Tool selection and limits';
+  if (text.includes('Kada rinktis agentą')) return 'When to choose an agent';
+  if (text.includes('Klaidos tvarkymas')) return 'Error handling and limits';
+  if (text.includes('Pagrindinės sąvokos')) return 'Core concepts: trigger, action, condition, webhook';
+  if (text.includes('Verslo automatizavimo')) return 'Business automation tools';
+  if (text.includes('Paleidimas')) return 'Hosting: where the agent and API run';
+  if (text.includes('GitHub')) return 'GitHub as code source';
+  if (text.includes('Minimalus darbo')) return 'Minimum workflow brief';
+  if (text.includes('testavimas ir saugumas') || text.includes('Testavimas')) return 'Workflow testing and security';
+  if (text.includes('QC vertintojas') || text.includes('Agentų QC')) return 'Agent QC evaluator';
+  if (text.includes('Žodynėlis')) return 'Glossary';
+  if (text.includes('santrauka')) return 'Module 10 summary';
   return 'AI agent step';
 }
 
@@ -1700,7 +1937,7 @@ function fallbackHeading(value) {
   const text = String(value);
   if (text.includes('Trumpai')) return 'In short';
   if (text.includes('Daryk')) return 'Do this now';
-  if (text.includes('Kopijuojamas')) return 'Copyable prompt';
+  if (text.includes('Kopijuojamas')) return 'Copyable prompt pack';
   if (text.includes('Patikra') || text.includes('Ką patikrinti')) return 'Check';
   if (text.includes('Jei')) return 'If it fails';
   if (text.includes('Schema') || text.includes('diagrama')) return 'Diagram';

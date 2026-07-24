@@ -19,6 +19,7 @@ import {
   getLearningLoopBoxMap,
   getM10LearningLoopCompactBoxes,
   getM10LearningLoopDesktopBoxes,
+  M10_LEARNING_LOOP_ARROW_TIP,
   M10_LEARNING_LOOP_EDGES_DESKTOP,
   M10_LEARNING_LOOP_STEP_NODE_IDS,
   M10_LEARNING_LOOP_VIEWBOX,
@@ -27,6 +28,8 @@ import {
   type M10LearningLoopEdge,
 } from './m10LearningLoopLayout';
 
+const TIP = M10_LEARNING_LOOP_ARROW_TIP;
+const TIP_H = TIP * 0.9;
 const BRAND = DIAGRAM_ROLE_COLORS.brand;
 const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
 const TEAL = DIAGRAM_ROLE_COLORS.teal;
@@ -220,24 +223,24 @@ export default function M10LearningLoopDiagram({
           <marker
             id={arrowId}
             markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth="7"
-            markerHeight="7"
-            refX="6"
-            refY="3.5"
+            markerWidth={TIP}
+            markerHeight={TIP_H}
+            refX={0}
+            refY={TIP_H / 2}
             orient="auto"
           >
-            <path d="M0,0 L7,3.5 L0,7 Z" fill={BRAND} />
+            <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={BRAND} />
           </marker>
           <marker
             id={tealArrowId}
             markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth="7"
-            markerHeight="7"
-            refX="6"
-            refY="3.5"
+            markerWidth={TIP}
+            markerHeight={TIP_H}
+            refX={0}
+            refY={TIP_H / 2}
             orient="auto"
           >
-            <path d="M0,0 L7,3.5 L0,7 Z" fill={TEAL} />
+            <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={TEAL} />
           </marker>
         </defs>
         <rect
@@ -358,24 +361,24 @@ export default function M10LearningLoopDiagram({
         <marker
           id={arrowId}
           markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="7"
-          markerHeight="7"
-          refX="6"
-          refY="3.5"
+          markerWidth={TIP}
+          markerHeight={TIP_H}
+          refX={0}
+          refY={TIP_H / 2}
           orient="auto"
         >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={BRAND} />
+          <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={BRAND} />
         </marker>
         <marker
           id={tealArrowId}
           markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="7"
-          markerHeight="7"
-          refX="6"
-          refY="3.5"
+          markerWidth={TIP}
+          markerHeight={TIP_H}
+          refX={0}
+          refY={TIP_H / 2}
           orient="auto"
         >
-          <path d="M0,0 L7,3.5 L0,7 Z" fill={TEAL} />
+          <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={TEAL} />
         </marker>
       </defs>
 

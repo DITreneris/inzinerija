@@ -37,11 +37,15 @@
 
 ## Modulis 14 (testas) – skaidrių eilė
 
-| Eilė | ID  | Skaidrė / tipas | Kodėl čia?                                                                                 |
-| ---- | --- | --------------- | ------------------------------------------------------------------------------------------ |
-| 0    | 140 | test-intro      | firstActionCTA – 12 klausimų (pipeline, audio-first, licencijos, C2PA + ankstesnės temos). |
-| 1    | 141 | test-section    | 12 MCQ; remediation `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101).               |
-| 2    | 142 | test-results    | **useCaseBlock** – „Kitas žingsnis: Modulis 15“.                                           |
+Path Test Contract (`GOLDEN_STANDARD.md` §3.4a1) – lukštas kaip M11.
+
+| Eilė | ID    | Skaidrė / tipas       | Kodėl čia?                                                                                 |
+| ---- | ----- | --------------------- | ------------------------------------------------------------------------------------------ |
+| 0    | 140   | test-intro            | firstActionCTA – 12 klausimų (pipeline, audio-first, licencijos, C2PA + ankstesnės temos). |
+| 0a   | 140.5 | warm-up-quiz          | 3 unscored: brand/formatas; audio-first; forward bridge → M15 MUST vs optional.            |
+| 1    | 141   | test-section          | 12 klausimų; remediation `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101).          |
+| 2    | 142   | test-results          | **useCaseBlock** – „Kitas žingsnis: Modulis 15“.                                           |
+| 3    | 143   | content-block (bonus) | Optional 5 min pipeline checklist (Trumpai → Daryk → Copy → Patikra) prieš M15.            |
 
 ---
 

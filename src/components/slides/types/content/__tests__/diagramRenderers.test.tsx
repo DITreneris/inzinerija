@@ -133,6 +133,16 @@ describe('diagramRenderers registry contract', () => {
     expect(humanControl.querySelector('img')).toBeNull();
     expect(humanControl.querySelectorAll('nav button')).toHaveLength(0);
 
+    const { container: promptMode } = renderDiagram(
+      'm4_prompt_mode_simulator',
+      'Prompt mode body'
+    );
+    expect(promptMode.textContent).toContain('Prompt mode body');
+    expect(promptMode.textContent).toContain('Pasirink verslo scenarijų');
+    expect(promptMode.textContent).toContain('Promptų režimas');
+    expect(promptMode.querySelector('img')).toBeNull();
+    expect(promptMode.querySelectorAll('nav button')).toHaveLength(0);
+
     const { container: m12MultiAgent } = renderDiagram(
       'm12_multi_agent_schema',
       'M12 multi-agent body'

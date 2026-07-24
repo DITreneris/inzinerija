@@ -36,13 +36,10 @@
    └── 19. Modulio Santrauka
 
 📝 MODULIS 2: "Žinių Patikrinimas" (TESTAS) - 10 min
-   ├── Testo Įvadas (12 klausimų apie 6 blokus ir workflow)
-   ├── Meta Blokas – Testas (2 klausimai)
-   ├── Input ir Output – Testas (3 klausimai)
-   ├── Reasoning ir Quality – Testas (2 klausimai)
-   ├── Advanced ir Bendra – Testas (3 klausimai)
-   ├── Workflow ir Technikos – Testas (2 klausimai) ✅
-   └── Testo Rezultatai
+   ├── Testo Įvadas (15 klausimų iš pool – 5 formatai, 6 blokai + workflow)
+   ├── Vienas runtime testas (MCQ / T-F / matching / ordering / scenario)
+   ├── Testo Rezultatai (radar + remediation į M1)
+   └── Optional bonus: stiliai (51) + praktinės užduotys (52)
 
 💼 MODULIS 3: "Praktinis Pritaikymas" (PRAKTIKA) - 20 min
    ├── Praktikos Įvadas
@@ -84,7 +81,7 @@ Implementacija: `src/utils/progress.ts` (atrakinimo taisyklės), `src/data/modul
 | HR / personalas  | Paruošk apklausų klausimus ar darbo aprašymus su aiškia struktūra – rolė (Meta), klausimų/ reikalavimų sąrašas (Input), formatas (Output).     |
 | Analitikas       | Formuluok užduotis duomenų analizei: kokį rezultatą nori gauti (Output) ir kokius duomenis duodi (Input); DI geriau atsakys, kai viskas aišku. |
 
-**Turinys (Modulis 3 – praktinis pritaikymas, 4 scenarijai):**
+**Turinys (Modulis 3 – praktinis pritaikymas, 6 scenarijai):**
 
 | Rolė             | Turinys (LT)                                                                                                                                                  |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -898,7 +895,7 @@ ADVANCED: Temperature: [0.2–0.7]. Reasoning: [normal/extended].
 - Kiekvienas klausimas turi paaiškinimą IR užuominą (progressive hint)
 - Galutinis rezultatas procentais + per-bloko žinių žemėlapis
 - Gamifikacija: streak indikatorius, „Puikiai!" ženklelis
-- **5 tipai:** MCQ (5), True/False (3), Matching (1), Ordering (1), Scenario (2)
+- **5 tipai (vienoje 15 klausimų traukoje):** MCQ, True/False, Matching, Ordering, Scenario – bankas rotuoja; selector užtikrina formatų įvairovę
 - **Bloom taksonomija:** Remember → Understand → Apply → Analyze
 - **Backward compatible:** klausimai be `type` = MCQ
 - **Komponentai:** `src/components/slides/shared/questions/`
@@ -943,6 +940,12 @@ UI turi siūlyti aiškius mygtukus: „Pakartoti testą“ / „Į Modulį 1“ 
 ---
 
 ## 💼 Modulis 3: Praktinis Pritaikymas
+
+### Practice-intro (id 30)
+
+- **whyBenefit:** Po praktinės dalies turėsi 6 paruoštus šablonus kasdieniam darbui.
+- **firstActionCTA:** Atlik Apšilimą (2–3 min), tada bent 2 scenarijus.
+- **minScenariosToComplete:** 2 (soft UI – „Pasirink bent 2…“).
 
 ### Apšilimas (Warming-up) – pirmas praktinis pavyzdys
 

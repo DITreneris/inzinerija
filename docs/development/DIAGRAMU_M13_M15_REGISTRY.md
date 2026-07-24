@@ -1,7 +1,7 @@
 # M13–M15 schemų registry
 
 > Tikslas: viena prižiūrima vieta Turinio inžinerijos kelio (M13–15) schemų routing, interaktyvumo, layout SOT ir testų būsenai.
-> M7–12 etalonas: [DIAGRAMU_M7_M12_REGISTRY.md](DIAGRAMU_M7_M12_REGISTRY.md). Kit: [DIAGRAM_KIT_STANDARD.md](DIAGRAM_KIT_STANDARD.md).
+> **Master:** [TEACHING_ELEMENTS_REGISTRY.md](TEACHING_ELEMENTS_REGISTRY.md). M7–12: [DIAGRAMU_M7_M12_REGISTRY.md](DIAGRAMU_M7_M12_REGISTRY.md). Kit: [DIAGRAM_KIT_STANDARD.md](DIAGRAM_KIT_STANDARD.md).
 
 ## Semantinis skirtumas (be dublio)
 

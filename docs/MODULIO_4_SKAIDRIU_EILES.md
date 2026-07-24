@@ -1,7 +1,7 @@
 # Modulio 4 skaidrių eilė (oficiali)
 
 > **Paskirtis:** Viena vieta – rekomenduojama Modulio 4 skaidrių/temų seka su trumpu pateisinimu kiekvienam žingsniui. SOT: `docs/turinio_pletra_moduliai_4_5_6.md`. Atpažinimas: 4.1–4.7 = tik Modulio 4 (`docs/CONTENT_MODULIU_ATPAZINIMAS.md`).  
-> **Paskutinė atnaujinta:** 2026-07-09 (UX Banga 4 – pridėtas interaktyvumo pattern katalogas).
+> **Paskutinė atnaujinta:** 2026-07-24 (M4 54 `m4_prompt_mode_simulator` interactive-control-lab).
 
 ---
 
@@ -23,7 +23,7 @@
 | ~~10~~ | ~~4.1a5-practice~~ | ~~Praktinės užduotys (po Stilių)~~                               | **Perkelta į Modulio 2 kaip bonusas po testo** – žr. Modulį 2.                                                                                                                                                                       |
 | 11     | 4.1                | Įvadas į konteksto inžineriją                                    | Kas bus modulyje (RAG, Deep research, tokenai, manipuliacijos, patikrinimas); nuoroda į 6 blokus.                                                                                                                                    |
 | 12     | 4.1-tools          | Pagrindiniai įrankiai                                            | Paruošia workflow – kokius įrankius naudoti (ChatGPT, Claude, Gemini, Gamma ir kt.).                                                                                                                                                 |
-| 13     | 4.1-prompts        | Metodinis vs Agentinis promptas                                  | Skiria „pateikti metodiką“ nuo „atlikti workflow“ – paruošia RAG/Deep research (agentinis = paieška, šaltiniai).                                                                                                                     |
+| 13     | 4.1-prompts (54)   | Kada metodinis, kada agentinis?                                  | Decision lab (`m4_prompt_mode_simulator`): gyvi duomenys × metodika → režimas; taisyklė → RAG / M6. Ne brandos kopėčios iki agentų.                                                                                                  |
 | 14     | 4.1b               | Darbas su DI: struktūruotas procesas                             | 8 žingsnių workflow – kaip sistemingai dirbti su DI; pagrindas visiems tolesniems metodams.                                                                                                                                          |
 | 15     | **56**             | **RAG: kas tai ir pabandyk** (4.1c+4.2 suliesta)                 | Viena skaidrė: konceptualus RAG (įvestis → DI → išvestis, šaltiniai) + praktika „pabandyk iš karto“ – kopijuojamas promptas, agentinė vizualizacija, optional collapsible. Buvo atskiros 4.1c ir 4.2 – dabar id 56.                  |
 | 20     | 4.2-open           | Atviros duomenų bazės ir RAG                                     | Oficialūs šaltiniai (Eurostat, data.gov); praktika RAG.                                                                                                                                                                              |
@@ -55,21 +55,22 @@
 
 > **Paskirtis:** M4 yra kurso etalonas, kaip teorijos modulį pertraukti trumpais veiksmais. Ši lentelė prižiūrima kartu su `npm run audit:slide-interactivity` ir `npm run audit:embed-catalog`.
 
-| ID    | Skaidrė                                  | Top-level tipas          | Embedded / special pattern | Kodėl čia?                                                                                   |
-| ----- | ---------------------------------------- | ------------------------ | -------------------------- | -------------------------------------------------------------------------------------------- |
-| 42    | Kam tu dažniausiai naudoji DI?           | `intro-action-pie`       | —                          | Ankstyvas pasirinkimas įtraukia vartotoją prieš ilgesnę teoriją.                             |
-| 44    | Konteksto inžinerija: kaip „valdyti“ DI  | `content-block`          | `instructGptQuality`       | Vienoje vietoje sujungia sąvoką ir tyrimo įrodymą, kad nereikėtų atskiros teorinės skaidrės. |
-| 45    | 4 gero prompto dedamosios                | `evaluator-prompt-block` | `interactivePipeline`      | Prompto vertinimas iš karto tampa praktika, ne tik kriterijų sąrašu.                         |
-| 39.5  | Praktika: DI visata                      | `content-block`          | `recognitionExercise`      | Trumpas atpažinimo pratimas uždaro DI hierarchijos bloką.                                    |
-| 49    | Tavo promptas geras… ar tik taip atrodo? | `content-block`          | `correctPromptPractice`    | Dalyvis pataiso blogą promptą prieš eidamas į gilesnes kokybės temas.                        |
-| 53    | Svarbiausi DI įrankiai                   | `content-block`          | `sections[].toolChoiceBar` | Įrankio pasirinkimas paverčia sąrašą veiksmu pagal užduoties tipą.                           |
-| 63.5  | Savitikra: RAG                           | `warm-up-quiz`           | —                          | Formatinis feedback po RAG temos.                                                            |
-| 65.7  | Savitikra: Deep research                 | `warm-up-quiz`           | —                          | Patikrina, ar aiški RAG ir gilaus tyrimo skirtis.                                            |
-| 66.5  | Savitikra: Tokenai                       | `warm-up-quiz`           | —                          | Uždaro tokenų ir konteksto degradacijos bloką.                                               |
-| 40.5  | Pirma dalis baigta                       | `section-break`          | recap                      | Kvėpavimo pauzė po įvadinio promptų tipų bloko.                                              |
-| 52.5  | RAG ir gilusis tyrimas                   | `section-break`          | recap + `spinoffCta`       | Nukreipia iš teorijos į šaltinių ir tyrimo praktikas.                                        |
-| 65.8  | Tokenai ir technikos                     | `section-break`          | recap + `spinoffCta`       | Apibendrina 7 technikas prieš tokenų ekonomiką.                                              |
-| 66.95 | Konteksto inžinerijos atspaudas          | `section-break`          | recap + `spinoffCta`       | Uždaro M4 kaip veiksmų žemėlapis prieš testą ir projektą.                                    |
+| ID    | Skaidrė                                  | Top-level tipas          | Embedded / special pattern                                       | Kodėl čia?                                                                                   |
+| ----- | ---------------------------------------- | ------------------------ | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 42    | Kam tu dažniausiai naudoji DI?           | `intro-action-pie`       | —                                                                | Ankstyvas pasirinkimas įtraukia vartotoją prieš ilgesnę teoriją.                             |
+| 44    | Konteksto inžinerija: kaip „valdyti“ DI  | `content-block`          | `instructGptQuality`                                             | Vienoje vietoje sujungia sąvoką ir tyrimo įrodymą, kad nereikėtų atskiros teorinės skaidrės. |
+| 45    | 4 gero prompto dedamosios                | `evaluator-prompt-block` | `interactivePipeline`                                            | Prompto vertinimas iš karto tampa praktika, ne tik kriterijų sąrašu.                         |
+| 39.5  | Praktika: DI visata                      | `content-block`          | `recognitionExercise`                                            | Trumpas atpažinimo pratimas uždaro DI hierarchijos bloką.                                    |
+| 49    | Tavo promptas geras… ar tik taip atrodo? | `content-block`          | `correctPromptPractice`                                          | Dalyvis pataiso blogą promptą prieš eidamas į gilesnes kokybės temas.                        |
+| 53    | Svarbiausi DI įrankiai                   | `content-block`          | `sections[].toolChoiceBar`                                       | Įrankio pasirinkimas paverčia sąrašą veiksmu pagal užduoties tipą.                           |
+| 54    | Kada metodinis, kada agentinis?          | `content-block`          | `m4_prompt_mode_simulator` (`interactive-control-lab`, Shell Ne) | Scenarijus × režimas kalibruoja pasirinkimą; taisyklė nešama į RAG / M6.                     |
+| 63.5  | Savitikra: RAG                           | `warm-up-quiz`           | —                                                                | Formatinis feedback po RAG temos.                                                            |
+| 65.7  | Savitikra: Deep research                 | `warm-up-quiz`           | —                                                                | Patikrina, ar aiški RAG ir gilaus tyrimo skirtis.                                            |
+| 66.5  | Savitikra: Tokenai                       | `warm-up-quiz`           | —                                                                | Uždaro tokenų ir konteksto degradacijos bloką.                                               |
+| 40.5  | Pirma dalis baigta                       | `section-break`          | recap                                                            | Kvėpavimo pauzė po įvadinio promptų tipų bloko.                                              |
+| 52.5  | RAG ir gilusis tyrimas                   | `section-break`          | recap + `spinoffCta`                                             | Nukreipia iš teorijos į šaltinių ir tyrimo praktikas.                                        |
+| 65.8  | Tokenai ir technikos                     | `section-break`          | recap + `spinoffCta`                                             | Apibendrina 7 technikas prieš tokenų ekonomiką.                                              |
+| 66.95 | Konteksto inžinerijos atspaudas          | `section-break`          | recap + `spinoffCta`                                             | Uždaro M4 kaip veiksmų žemėlapis prieš testą ir projektą.                                    |
 
 **Platinimo gairė:** pirmiausia rinktis esamą pattern'ą. Jei teorijos blokas ilgas – `warm-up-quiz`; jei reikia kelio pažymėjimo – `path-step`; jei skaidrė jau turi stiprų turinį – embedded sub-laukas. `toolChoiceBar` iš skaidrės 53 yra optional P2 platinimo kandidatas kituose learn moduliuose.
 

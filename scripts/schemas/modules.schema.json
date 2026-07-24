@@ -799,6 +799,15 @@
       "type": "object",
       "required": ["level1Choices", "level2Choices"],
       "properties": {
+        "optionalPathNote": {
+          "type": "string",
+          "description": "Banner above hub – main path vs optional library"
+        },
+        "recommendedSlideIds": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Soft-recommended hub scenario ids (amber badge)"
+        },
         "level1Choices": {
           "type": "array",
           "minItems": 4,

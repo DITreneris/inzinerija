@@ -91,16 +91,17 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 ## Nauji įrašai
 
-### 2026-07-24 – Pre-launch auditas Go / No-Go
+### 2026-07-24 – Pre-launch I4 → tag **1.4.7**
 
-| Kriterijus                           | Būsena         | Įrodymas                                                                                                                                   |
-| ------------------------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Automated gates                      | ✅ GO          | `audit:release-preflight` + typecheck + builds (default / MVP / M1–9); **103/686**                                                         |
-| Docs / registry truth                | ✅ GO          | Meta 1.4.6; Feature Doc Contract (`m9_workflow_step_prompts`, M13 STALE, §2.2d); `validate-sot-index` ✅                                   |
-| Release-ready (MON-1/3/5 + mobile)   | ⏳ CONDITIONAL | Auto: `gate.smoke` ✅; prod `/anatomy/` HTTP 200 ✅; `verify-access` be param → 400 ✅. **Trūksta:** human browser tier 0/6/9 + mobile 375 |
-| Monetization-ready (MON-2/4/8 + PDF) | ❌ NO-GO       | Marketing pin/PostHog/PDF rankinė ⏳ – žr. `TODO.md` §1.1                                                                                  |
+| Kriterijus                           | Būsena         | Įrodymas                                                                                                                          |
+| ------------------------------------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Automated gates                      | ✅ GO          | `audit:release-preflight` (incl. typecheck + TE strict) + builds; **111/720**; M6 accent demote + orchestrator `viewBoxW: number` |
+| Docs / registry truth                | ✅ GO          | Meta **1.4.7**; Feature Doc Contract; **TE-0…5** + `audit:teaching-elements --strict`                                             |
+| Teaching Elements inventory          | ✅ GO          | 283 slides; 38 images; 4 labs; 22 embeds; 22 tables; overlay **135**                                                              |
+| Release-ready (MON-1/3/5 + mobile)   | ⏳ CONDITIONAL | Code tag ready. **Trūksta:** human browser tier 0/6/9 + mobile 375 + PDF rankinė (`TODO.md` §1.2)                                 |
+| Monetization-ready (MON-2/4/8 + PDF) | ❌ NO-GO       | Marketing pin **v1.4.7** / PostHog / PDF rankinė ⏳ – žr. `TODO.md` §1.1                                                          |
 
-**Verdict:** **CONDITIONAL GO** training/code shippable; **ne** monetization-ready kol neuždaryti MON-\* browser + PDF. Detalės: `RELEASE_QA_RUN.md` §2026-07-24. Naujų `nauja` incidentų nėra.
+**Verdict:** **GO** code tag **v1.4.7**; **CONDITIONAL** release-ready; **NO-GO** monetization kol MON-\* browser + PDF. Rankinė checklist lieka open (neuždaryta false-close).
 
 **2026-07-24 – M7 sk. 67.5 saugumas (GOLDEN praktika):** Trumpai → Daryk → scenarijus (injection laiške) → jailbreak signalas → copyable gynybos šablonas → OWASP collapsible → Patikra ×2. Žodynas: Promptų injekcija + Jailbreak pataisa (≠ manipuliacija). Sk. 68.5 `check-manip-2` suderinamas. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:accent-budget` ✅.
 

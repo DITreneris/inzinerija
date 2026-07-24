@@ -74,27 +74,33 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas – `ContentSlides.tsx` (vienas bendras blokas `section.table && !section.workflowChains`).
 
-| Skaidrė / kontekstas | Heading (trumpai)                  | Stulpeliai | comparisonStyle | Pastabos                                                                                                         |
-| -------------------- | ---------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
-| M4                   | Sisteminis vs Master promptas      | 3          | ne              | Palyginimas 3 stulpeliais                                                                                        |
-| M4                   | ❌ Blogas / ✅ Geras               | 2          | ne              | Collapsible + table                                                                                              |
-| M4                   | Metodinis vs Agentinis             | 3          | ne              | Aspektas + 2 stulpeliai                                                                                          |
-| M4                   | 4️⃣ RL vs RLHF – palyginimas        | 2          | **taip**        | Verslo kalba, body micro-UX                                                                                      |
-| M4                   | Įrankių palyginimas                | 4          | ne              | Įrankis, Stiprybė, Kam, Kaina                                                                                    |
-| M?                   | Modelių konteksto langai           | 3          | ne              |                                                                                                                  |
-| M?                   | Iteracija / strateginis planavimas | 3          | ne              |                                                                                                                  |
-| M?                   | Blogas vs geras promptas           | 2          | ne              |                                                                                                                  |
-| M?                   | 6 blokų struktūra                  | 2          | ne              | Blokas, Nurodymas                                                                                                |
-| M7 / 734             | 5 grupės – sprendimų filtrai       | 3          | ne              | `solutionMatrixStyle` + `toolChoiceBar` (A–D); `linkedRowIndex` copyable filtras (be lentelės)                   |
-| M7 / 731, 733, 77    | Copyable promptų filtrai           | —          | ne              | `toolChoiceBar` + `linkedRowIndex` (vienas aktyvus promptas)                                                     |
-| M7 / 78              | Tradicinė vs DI analizė            | 2          | **taip**        | Branduolys                                                                                                       |
-| M7 / 84              | DB įrankiai                        | 2          | ne              | `rowMeta` badge'ai, collapsible                                                                                  |
-| M7 / 76              | Pasirink sritį + promptas          | 3          | ne              | `toolChoiceBar` + `linkedRowIndex`; **ne** `comparisonStyle` poravimui – žemėlapis collapsible                   |
-| M7 / 67              | Manipuliacijos tipai + patikra     | 2–3        | **taip**        | `toolChoiceBar` + `linkedRowIndex`; `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` + verslas vs saugumas |
-| M7 / 104             | Duomenys → Istorija                | 2          | ne              | `solutionMatrixStyle`, optional viz šaka                                                                         |
-| M7 / 106             | Alternatyvos (viz įrankiai)        | 2          | ne              | optional viz šaka                                                                                                |
+> Atnaujinta TE-3 (2026-07-24) iš live SOT: **21** table / **19** skaidrių. Master: `TEACHING_ELEMENTS_REGISTRY.md`.
 
-**Patobulinimai (žr. TODO.md):** M4 2 stulpelių lentelėms be `comparisonStyle` – L2; auditas „nesuspausta / skaitomumas“ – L1–L4.
+| Skaidrė     | Heading (trumpai)                                | Stulpeliai | comparisonStyle | Pastabos      |
+| ----------- | ------------------------------------------------ | ---------: | --------------- | ------------- |
+| M4 / 54.5   | Sisteminis ir Master promptas – palyginimas      |          3 | ne              |               |
+| M4 / 55     | Papildomai: Geras vs blogas proceso promptas     |          2 | **taip**        |               |
+| M4 / 48     | 4️⃣ RL vs RLHF – palyginimas                      |          2 | **taip**        |               |
+| M4 / 53     | Įrankių palyginimas                              |          4 | ne              | toolChoiceBar |
+| M4 / 59     | Lentelė „Pavyzdžiai“                             |          3 | ne              |               |
+| M4 / 60     | Sprendimo matrica: DI atmintis ir dokumentai     |          3 | ne              |               |
+| M4 / 66     | Modelių konteksto langai (2026)                  |          3 | ne              |               |
+| M4 / 66.25  | Verslo pavyzdys: strateginis planavimas          |          3 | ne              |               |
+| M4 / 66.6   | Pavyzdžiai: blogas vs geras (pagal geriausias pr |          2 | **taip**        |               |
+| M6 / 68     | 6 blokų struktūra                                |          2 | ne              |               |
+| M7 / 734    | 📍 5 grupės – pasirink pagal situaciją           |          3 | ne              | toolChoiceBar |
+| M7 / 76     | 🔽 Ne tik finansai – nori suprasti plačiau?      |          3 | ne              |               |
+| M7 / 78     | 2️⃣ Tradicinė analizė vs analizė su DI            |          2 | **taip**        |               |
+| M7 / 84     | 2️⃣ Kokį DB įrankį rinktis?                       |          2 | ne              |               |
+| M7 / 67     | 🔽 Nori suprasti plačiau?                        |          2 | **taip**        |               |
+| M7 / 67     | 🔽 Verslas vs saugumas                           |          3 | ne              |               |
+| M7 / 104    | 2️⃣ Duomenys → Istorija modelis                   |          2 | ne              |               |
+| M7 / 106    | 7️⃣ Alternatyvos                                  |          2 | ne              |               |
+| M10 / 10.36 | Kada ką – paleidimo režimai                      |          3 | ne              |               |
+| M10 / 10.36 | Kada ką – PaaS orientacija                       |          2 | ne              |               |
+| M10 / 10.37 | Kada ką – platformos                             |          2 | ne              |               |
+
+**Patobulinimai:** žr. `TEACHING_ELEMENTS_REGISTRY.md` scorecard; auditas `npm run audit:teaching-elements`.
 
 ---
 

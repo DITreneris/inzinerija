@@ -67,11 +67,14 @@ describe('TestPracticeSlides M12 practice contract', () => {
       scenarioSlides.map((slide) => slide.id)
     );
     expect(
-      scenarioSlides.every(
-        (slide) =>
-          slide.practicalTask != null &&
-          !Object.prototype.hasOwnProperty.call(slide, 'content')
-      )
+      scenarioSlides.every((slide) => {
+        if (slide.practicalTask == null) return false;
+        if (!Object.prototype.hasOwnProperty.call(slide, 'content'))
+          return true;
+        // Allow content.footer only (GOLDEN §3.6 next-slide chrome)
+        const keys = Object.keys(slide.content ?? {});
+        return keys.length === 1 && keys[0] === 'footer';
+      })
     ).toBe(true);
 
     const optionalRecap = getM12Slides().find((slide) => slide.id === 125);
@@ -100,7 +103,7 @@ describe('TestPracticeSlides M12 practice contract', () => {
     expect(screen.getByText('Rekomenduojamas startas')).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Privalomas kelias – 3 pagrindinės praktikos \(121–123\)/
+        /Privalomas kelias – 3 pagrindinės praktikos: Automatize/
       )
     ).toBeInTheDocument();
     const requiredPath = screen.getByRole('region', {
@@ -111,7 +114,7 @@ describe('TestPracticeSlides M12 practice contract', () => {
     ).toBeInTheDocument();
     expect(
       within(requiredPath).getByText(
-        /124\.5 → 124|3 pagrindines 3A praktikas|kelias tik su promptais/
+        /Koordinatorius \+ 2 specialistai|3 pagrindines 3A praktikas|kelias tik su promptais/
       )
     ).toBeInTheDocument();
     fireEvent.click(

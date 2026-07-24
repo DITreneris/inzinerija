@@ -12,12 +12,11 @@ import {
   INNER_W,
   TITLE_Y,
   PAD_TRANSFORM,
-  ARROW_MARKER_LEN,
   getNode,
   getAnchorPoint,
   getLineEndPoint,
 } from './schema4Layout';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
 const BRAND = '#334e68';
 const BRAND_LIGHT = '#486581';
@@ -31,6 +30,7 @@ const INFRA_FILL = '#64748b';
 const INFRA_STROKE = '#475569';
 const OPTIONAL_STROKE = '#94a3b8';
 const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
+const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 function getNodeFill(id: string): {
   fill: string;
@@ -84,15 +84,15 @@ export default function Schema4Diagram({
         </linearGradient>
         <marker
           id={`s4-arrow-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="10"
-          markerHeight="8"
-          refX={ARROW_MARKER_LEN}
-          refY="4"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d="M0 0 L10 4 L0 8 Z"
+            d={PROCESS_ARROW.pathD}
             fill={BRAND}
             stroke={BRAND}
             strokeWidth="0.3"
@@ -100,15 +100,15 @@ export default function Schema4Diagram({
         </marker>
         <marker
           id={`s4-arrow-optional-${uid}`}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth="10"
-          markerHeight="8"
-          refX={ARROW_MARKER_LEN}
-          refY="4"
+          markerUnits={PROCESS_ARROW.markerUnits}
+          markerWidth={PROCESS_ARROW.markerWidth}
+          markerHeight={PROCESS_ARROW.markerHeight}
+          refX={PROCESS_ARROW.refX}
+          refY={PROCESS_ARROW.refY}
           orient="auto"
         >
           <path
-            d="M0 0 L10 4 L0 8 Z"
+            d={PROCESS_ARROW.pathD}
             fill={OPTIONAL_STROKE}
             stroke={OPTIONAL_STROKE}
             strokeWidth="0.3"

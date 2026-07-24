@@ -5,9 +5,10 @@ import {
   AgentWorkflowBlock,
   LlmArchDiagramBlock,
   LlmAutoregressiveBlock,
-  M10AgentTaxonomyBlock,
+  M10DepthRolesLabBlock,
   M10IncidentPlaybookBlock,
   M10HumanControlSimulatorBlock,
+  M4PromptModeSimulatorBlock,
   M10LearningLoopBlock,
   M10OrchestratorBlock,
   M10ThreeAStrategyBlock,
@@ -164,7 +165,7 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
   {
     key: 'm10_agent_taxonomy',
     bodyPlacement: 'after',
-    render: () => <M10AgentTaxonomyBlock />,
+    render: () => <M10DepthRolesLabBlock />,
   },
   {
     key: 'm10_learning_loop',
@@ -180,6 +181,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     key: 'm10_human_control_simulator',
     bodyPlacement: 'after',
     render: () => <M10HumanControlSimulatorBlock />,
+  },
+  {
+    key: 'm4_prompt_mode_simulator',
+    bodyPlacement: 'after',
+    render: () => <M4PromptModeSimulatorBlock />,
   },
   {
     key: 'm10_tool_decision_tree',

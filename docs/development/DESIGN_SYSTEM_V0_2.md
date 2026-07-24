@@ -64,14 +64,14 @@
 
 Šie failai sukuriami iškart, kad E2–E7 darbas vyktų efektyviai be papildomo bootstrap'o:
 
-| #             | Failas                                                  | Paskirtis                                                     | Statusas                                          |
-| ------------- | ------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
-| W1            | `docs/development/DESIGN_SYSTEM_V0_2.md`                | Šis planas — SOT'as E2–E7 vykdymui                            | **šioje sesijoje**                                |
-| W2            | `scripts/audit-design-tokens.mjs`                       | Warn-only hex/inline-style auditas                            | **šioje sesijoje (skelet)**                       |
-| W3            | `.cursor/rules/design-system-v02.mdc`                   | Cursor rule — v0.2 scope guard ir fail-safe                   | **šioje sesijoje**                                |
-| W4            | `TODO.md` (atnaujinimas)                                | „P1 — Design System v0.2“ skyrius su 28 task'ais              | **šioje sesijoje**                                |
-| W6            | `docs/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md` | Operacinis vykdymo planas E4–E7 (iteracijos, failai, gate'ai) | **2026-05-19**                                    |
-| W5 (optional) | `feat/design-system-v0.2` branch                        | Izoliacija nuo `main`                                         | **vartotojo sprendimas; rekomenduojama prieš E4** |
+| #             | Failas                                                          | Paskirtis                                                     | Statusas                                          |
+| ------------- | --------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------- |
+| W1            | `docs/development/DESIGN_SYSTEM_V0_2.md`                        | Šis planas — SOT'as E2–E7 vykdymui                            | **šioje sesijoje**                                |
+| W2            | `scripts/audit-design-tokens.mjs`                               | Warn-only hex/inline-style auditas                            | **šioje sesijoje (skelet)**                       |
+| W3            | `.cursor/rules/design-system-v02.mdc`                           | Cursor rule — v0.2 scope guard ir fail-safe                   | **šioje sesijoje**                                |
+| W4            | `TODO.md` (atnaujinimas)                                        | „P1 — Design System v0.2“ skyrius su 28 task'ais              | **šioje sesijoje**                                |
+| W6            | `docs/archive/development/DESIGN_SYSTEM_V0_2_EXECUTION_PLAN.md` | Operacinis vykdymo planas E4–E7 (archyvas; stub development/) | **2026-05-19**                                    |
+| W5 (optional) | `feat/design-system-v0.2` branch                                | Izoliacija nuo `main`                                         | **vartotojo sprendimas; rekomenduojama prieš E4** |
 
 ---
 

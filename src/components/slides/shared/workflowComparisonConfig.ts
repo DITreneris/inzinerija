@@ -473,7 +473,8 @@ export const VB_HEIGHT = 270;
 export const BOX_W = 170;
 export const BOX_H = 70;
 export const BOX_R = 10;
-export const ARROW_MARKER_LEN = 6;
+/** LMS process tip – processTipLen (not legacy markerLen). */
+export const ARROW_MARKER_LEN = DIAGRAM_TOKENS.arrow.processTipLen;
 
 /* ═══ Column X positions ═══ */
 export const COL_INPUT = 30;

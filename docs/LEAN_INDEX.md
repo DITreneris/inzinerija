@@ -1,78 +1,66 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-07-24
-
-> **Tikslas:** Minimalus dokumentų rinkinys – pakanka ~90% užduočių. Vienkartinės analizės – `docs/archive/development/analysis/` (ne SOT). Žr. `docs/DOCUMENTATION_INDEX.md`.
-
----
-
-## 1. Pirmiausia naudok (vienas failas)
-
-| Failas                                | Kada                                                           |
-| ------------------------------------- | -------------------------------------------------------------- |
-| **`docs/DOCUMENTATION_QUICK_REF.md`** | SOT lentelė + agentų routeris + kritiniai keliai – pradėk čia. |
+> **Atnaujinta:** 2026-07-24 (Docs Lean DL-2)  
+> **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.
 
 ---
 
-## 2. Lean core (pakanka daugumai užduočių)
+## 1. Pirmiausia
+
+| Failas                                | Kada                                       |
+| ------------------------------------- | ------------------------------------------ |
+| **`docs/DOCUMENTATION_QUICK_REF.md`** | SOT lentelė + agentų routeris – pradėk čia |
+
+---
+
+## 2. Lean core (≤25)
 
 ### SOT ir duomenys
 
-| Failas                                                                                   | Paskirtis                                                                                |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `turinio_pletra.md`                                                                      | Turinys M1–3                                                                             |
-| `docs/turinio_pletra_moduliai_4_5_6.md`                                                  | Turinys M4–6                                                                             |
-| `docs/turinio_pletra_moduliai_7_8_9.md`                                                  | Turinys M7–9 (Duomenų analizės kelias; **production** tier 9)                            |
-| `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                    | Modulių/skaidrių numeracija (4.1 = Modulio 4, ne 6)                                      |
-| `docs/development/GOLDEN_STANDARD.md`                                                    | Dizainas, skaidrių išdėstymas, content-block                                             |
-| `docs/development/CODEBASE_WHAT_IS_DONE.md`                                              | Kas įgyvendinta – architektūra, duomenys, i18n, testai (1.4.6 + Unreleased; **103/686**) |
-| `docs/development/DOCS_MAINTENANCE.md`                                                   | Ilgalaikė dokumentacijos priežiūra, dual SOT, release sync                               |
-| `docs/development/DOCS_SYNC_CHECKLIST.md`                                                | Docs sync vartas po release / didelio Unreleased sprinto                                 |
-| `docs/development/M79_PATCH_REGISTRY.md`                                                 | M7–M9 patch skriptai ir EN overlay taisyklės                                             |
-| `docs/development/GOLD_LEGACY_STANDARD.md`                                               | Istorinis M1–6 techninis snapshot (v1.3.0) – ne dabartinio production SOT                |
-| `src/data/modules.json`, `glossary.json`, `promptLibrary.json`, `tools.json`             | Full redagavimo SOT                                                                      |
-| `src/data/modules-m1-m6.json`, `glossary-m1-m6.json`, `tools-m1-m6.json`                 | Demo/MVP profilis (`VITE_MVP_MODE=1`)                                                    |
-| `src/data/modules-m1-m9.json`, `glossary-m1-m9.json`, `tools-m1-m9.json`                 | **Production** profilis (`npm run build:production`)                                     |
-| `src/data/completionArtifacts.json`, `certificateContent*.json`, `*HandoutContent*.json` | Artefaktų registry, sertifikatų ir PDF atmintinių turinys                                |
-| `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                 | Atsiliepimai                                                                             |
-| `docs/development/TEST_REPORT.md`                                                        | Klaidos ir sprendimai                                                                    |
+| Failas                                                    | Paskirtis                                                    |
+| --------------------------------------------------------- | ------------------------------------------------------------ |
+| `turinio_pletra.md`                                       | Turinys M1–3                                                 |
+| `docs/turinio_pletra_moduliai_4_5_6.md`                   | Turinys M4–6                                                 |
+| `docs/turinio_pletra_moduliai_7_8_9.md`                   | Turinys M7–9 (production tier 9)                             |
+| `docs/turinio_pletra_moduliai_10_11_12.md`                | Turinys M10–12 (authoring)                                   |
+| `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                     | Modulių/skaidrių numeracija                                  |
+| `docs/development/GOLDEN_STANDARD.md`                     | Dizainas, content-block, §3.8 ritmas                         |
+| `docs/development/TEACHING_ELEMENTS_REGISTRY.md`          | Master mokymo elementai (+ `teaching-elements-overlay.json`) |
+| `docs/development/CODEBASE_WHAT_IS_DONE.md`               | Kas įgyvendinta (metrikos, architektūra)                     |
+| `docs/development/DOCS_MAINTENANCE.md`                    | Dual SOT, Feature Doc, Docs Lean §1c                         |
+| `docs/development/DOCS_SYNC_CHECKLIST.md`                 | Docs sync po sprinto                                         |
+| `docs/development/TEST_REPORT.md`                         | Klaidos / QA žurnalas                                        |
+| `docs/development/RELEASE_QA_CHECKLIST.md`                | Prieš release                                                |
+| `src/data/modules.json` (+ `glossary.json`, `tools.json`) | Full authoring SOT                                           |
+| `src/data/modules-m1-m9.json` (+ glossary/tools m1-m9)    | Production profilis                                          |
+| `src/data/modules-m1-m6.json` (+ glossary/tools m1-m6)    | MVP/demo profilis                                            |
 
 ### Procesas ir agentai
 
-| Failas                                              | Paskirtis                                     |
-| --------------------------------------------------- | --------------------------------------------- |
-| `docs/development/AGENT_ORCHESTRATOR.md`            | Routeris, pipeline, kokybės vartai            |
-| `docs/development/PLAN_AGENTAI_DARBAI.md`           | Kas, seka, MUST/SHOULD (Modulis 4)            |
-| `docs/development/CONTENT_AGENT.md`                 | Turinys, CTA, kopija                          |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`       | Paprasta kalba, žargonas                      |
-| `docs/development/CURRICULUM_AGENT.md`              | Pedagogika, Bloom, santraukos                 |
-| `docs/development/SCHEME_AGENT.md`                  | Schemos, diagramos                            |
-| `docs/development/UI_UX_AGENT.md`                   | UI/UX, a11y                                   |
-| `docs/development/USER_JOURNEY_AGENT.md`            | Vartotojo kelionė                             |
-| `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md` | Verifikacija, „padaryta“ vs tikrovė           |
-| `docs/development/LENTELIU_STANDARTAS.md`           | Lentelių standartas                           |
-| `docs/development/RELEASE_QA_CHECKLIST.md`          | Prieš release (a11y, lietuviškos raidės, PDF) |
-
-### Skaidrių eilė ir tobulinimai (M4, M7)
-
-| Failas                                               | Paskirtis                            |
-| ---------------------------------------------------- | ------------------------------------ |
-| `docs/MODULIO_4_SKAIDRIU_EILES.md`                   | Oficiali M4 skaidrių eilė            |
-| `docs/MODULIO_7_SKAIDRIU_EILES.md`                   | M7 skaidrių eilė, path-step          |
-| `docs/development/07_08_09_backlog.md`               | M7–M9 user test backlog (2026-07-14) |
-| `docs/MODULIO_4_TOBULINIMAI_GERIAUSIOS_PRAKTIKOS.md` | MUST/SHOULD prioritetai              |
-| `docs/PEDAGOGINE_ANALIZE_MODULIAI_4_5_6.md`          | Pedagoginė analizė M4–6              |
-| `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`       | Pedagoginė analizė M10–12 + max ROI  |
-| `docs/SKAIDRIU_TIPU_ANALIZE.md`                      | Skaidrių tipai                       |
+| Failas                                                 | Paskirtis              |
+| ------------------------------------------------------ | ---------------------- |
+| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline     |
+| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA           |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba         |
+| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika             |
+| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos    |
+| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay         |
+| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y            |
+| `AGENTS.md`                                            | Agentų žemėlapis       |
+| `TODO.md` §1                                           | **Open** P0/P1 only    |
+| `ROADMAP.md`                                           | Open gaps + deploy/MON |
 
 ---
 
-## 3. Visa kita – pagal poreikį
+## 3. Pagal poreikį (ne lean core)
 
-- **Moduliai 10–12, 13–15:** turinio SOT `docs/turinio_pletra_moduliai_10_11_12.md`, `docs/turinio_pletra_moduliai_13_14_15.md`; skaidrių eilės `docs/MODULIO_10_SKAIDRIU_EILES.md`, `docs/MODULIO_13_SKAIDRIU_EILES.md`. **M10 10.26:** žmogaus kontrolės lab (`interactive-control-lab`, Shell: Ne) – risk strip W1.1 + kopijuojama taisyklė lab viduje; `SCHEME_AGENT.md` §2.2c + `DIAGRAMU_M7_M12_REGISTRY.md`. **M15:** MUST = 150.5 (hero); 151–153 optional; po checkpoint – skip į 158 (`audit:m1315`).
-- **PDF handout'ai:** `docs/development/PDF_DOWNLOAD_TESTING.md`, `PDF_MAKETO_GAIRES.md` (M1, M4, M5, M6, M7–9, M10–12, M13–15).
-- **Modulio analizės, auditai (archyvas):** `docs/archive/development/analysis/` – istorinei informacijai; **Santraukos skaidrės (5 blokai):** `docs/development/SUMMARY_SLIDE_SPEC.md`.
-- **Pilnas aktyvių dokumentų sąrašas:** `docs/DOCUMENTATION_INDEX.md` §2–4.
-- **Konteksto inžinerija:** `docs/development/context-engineering/` (sot_index, context_budget) – modulių registrui.
+- **M13–15 SOT / eilės:** `turinio_pletra_moduliai_13_14_15.md`, `MODULIO_13_SKAIDRIU_EILES.md`
+- **Skaidrių eilės:** `MODULIO_*_SKAIDRIU_EILES.md` – tik kai liečia tą modulį
+- **M7–9 polish:** `M79_PATCH_REGISTRY.md`, `07_08_09_backlog.md`
+- **Portal M4/53.5:** `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`
+- **PDF:** `PDF_DOWNLOAD_TESTING.md`, `PDF_GENERATION_AGENT_MEMORY.md`
+- **Reference (ne SOT):** `PEDAGOGINE_ANALIZE_*`, `SKAIDRIU_TIPU_ANALIZE.md` – INDEX
+- **Archyvas:** `docs/archive/` – Done TODO snapshot, frozen PLAN/AUDIT
+- **Pilnas katalogas:** `DOCUMENTATION_INDEX.md` §2–4
 
-**Agentams:** Jei užduotis nes liečia konkretų modulio analizės dokumentą – pirmiausia lean core (šis failas + QUICK_REF); kitus dokumentus atidaryk tik tada, kai reikia.
+**Agentams:** pirmiausia QUICK_REF + šis lean core; kitus failus – tik kai užduotis to reikalauja.
