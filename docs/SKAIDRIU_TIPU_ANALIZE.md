@@ -140,10 +140,9 @@ SlideContent.tsx
 
 ### 3.7 HallucinationRatesDashboard
 
-- Atskiras komponentas, `slide.content` nenaudojamas.
-- Skaidrė `type: "hallucination-dashboard"` – tik „parodymo“ tipas.
-
-**Siūlymas:** Palikti kaip specialų tipą; jei reikės konfigūruojamų šaltinių – pridėti `content?: { sourceUrl?, title? }`.
+- Atskiras komponentas, `slide.content` nenaudojamas (M7 sk. 200, `etika-plus`).
+- Layout: intro → Vectara bar chart (`hallucinationRates.ts`) → Išvada → LT/EN learner Copy promptas (`getHallucinationResearchPrompt`); UI chrome – i18n namespace `hallucinationRates` (kaip `ai-detectors`).
+- Tipas lieka specialus; šaltinio URL / as-of data – `HALLUCINATION_RATES_SOURCE`.
 
 ### 3.8 path-step (Duomenų analizės kelio žingsnis)
 

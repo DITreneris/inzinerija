@@ -105,7 +105,7 @@ describe('A11y smoke (axe-core)', () => {
     vi.mocked(getModulesDataSync).mockReturnValue({
       modules: [],
       quiz: {
-        title: 'Apklausa',
+        title: 'Branduolio pasitikrinimas',
         description: '',
         passingScore: 70,
         questions: [

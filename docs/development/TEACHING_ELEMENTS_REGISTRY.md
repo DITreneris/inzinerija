@@ -57,7 +57,9 @@ teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
   ├─ GOLDEN_STANDARD.md §3.8           ← ritmas + embed katalogas
   ├─ LENTELIU_STANDARTAS.md            ← lentelių UX
   ├─ archive/…/SLIDE_UX_INTERACTIVITY_* ← istorinis rollout (ritmas = GOLDEN §3.8)
-  └─ M7_PROMPT_MATURITY.md             ← copyable F/S/R/L (ne UI registry)
+  ├─ M1_M3_PROMPT_MATURITY.md          ← M1–3 copyable fit-for-purpose + freeze (ne UI registry)
+  ├─ M4_PROMPT_MATURITY.md             ← M4 copyable fit-for-purpose (ne UI registry)
+  └─ M7_PROMPT_MATURITY.md             ← M7 copyable F/S/R/L + journey (ne UI registry)
 ```
 
 **Neįtraukti į master lentelę** (tik nuoroda): `M79_PATCH_REGISTRY`, `completionArtifacts.json`, `src/icons/registry`.
@@ -75,8 +77,8 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 | Off-renderer live šeimos       |                5 |
 | Orphaned                       |                2 |
 | ChoiceControl labai            |                3 |
-| Embed katalogas                |               20 |
-| `section.table`                | 21 / 19 skaidrių |
+| Embed katalogas                |               25 |
+| `section.table`                | 29 / 23 skaidrių |
 
 ## Diagramos, labai ir off-renderer (TE-2)
 
@@ -106,6 +108,7 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 | `diagram:m15_practice_loop`         | M15/150.25                | `dual-path`                    | Taip  |        3 | M15PracticeLoopBlock                             |
 | `diagram:m7_analysis_types`         | M7/731                    | `roles-hub`                    | Taip  |        3 | M7AnalysisTypesBlock                             |
 | `diagram:m7_bi_schema`              | M7/92                     | `linear-process`               | Taip  |        3 | M7BiSchemaBlock                                  |
+| `diagram:m7_macro_path_map`         | M7/71                     | `linear-process`               | Ne    |        3 | M7PathMapBlock                                   |
 | `diagram:m7_da_pipeline`            | M7/73                     | `linear-process`               | Taip  |        4 | M7DaPipelineBlock                                |
 | `diagram:m7_data_prep_workflow`     | M7/89                     | `linear-process`               | Taip  |        3 | M7DataPrepWorkflowBlock                          |
 | `diagram:m7_data_story_cycle`       | M7/100                    | `cycle-feedback`               | Taip  |        4 | M7DataStoryCycleBlock                            |
@@ -179,32 +182,35 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 
 ## Embeds (TE-3)
 
-| elementId                              | Key                                   | M/slide   |
-| -------------------------------------- | ------------------------------------- | --------- |
-| `embed:briefCheckBlock:m2:51`          | `briefCheckBlock`                     | M2/51     |
-| `embed:briefCheckBlock:m5:510`         | `briefCheckBlock`                     | M5/510    |
-| `embed:correctPromptPractice:m4:49`    | `correctPromptPractice`               | M4/49     |
-| `embed:correctPromptPractice:m6:68`    | `correctPromptPractice`               | M6/68     |
-| `embed:instructGptQuality:m4:44`       | `instructGptQuality`                  | M4/44     |
-| `embed:interactivePipeline:m4:45`      | `interactivePipeline`                 | M4/45     |
-| `embed:pipelineDiagram:m4:45`          | `pipelineDiagram:context-engineering` | M4/45     |
-| `embed:preCopyCheckBlock:m5:47`        | `preCopyCheckBlock`                   | M5/47     |
-| `embed:preCopyCheckBlock:m7:67`        | `preCopyCheckBlock`                   | M7/67     |
-| `embed:presentationToolsBlock:m5:47.5` | `presentationToolsBlock`              | M5/47.5   |
-| `embed:recognitionExercise:m13:13.34`  | `recognitionExercise`                 | M13/13.34 |
-| `embed:recognitionExercise:m4:39.5`    | `recognitionExercise`                 | M4/39.5   |
-| `embed:toolChoiceBar:m4:53:s2`         | `sections[2].toolChoiceBar`           | M4/53     |
-| `embed:toolChoiceBar:m7:67:s1`         | `sections[1].toolChoiceBar`           | M7/67     |
-| `embed:toolChoiceBar:m7:731:s2`        | `sections[2].toolChoiceBar`           | M7/731    |
-| `embed:toolChoiceBar:m7:733:s1`        | `sections[1].toolChoiceBar`           | M7/733    |
-| `embed:toolChoiceBar:m7:734:s1`        | `sections[1].toolChoiceBar`           | M7/734    |
-| `embed:toolChoiceBar:m7:76:s1`         | `sections[1].toolChoiceBar`           | M7/76     |
-| `embed:toolChoiceBar:m7:77:s1`         | `sections[1].toolChoiceBar`           | M7/77     |
-| `embed:toolChoiceBar:m7:861:s1`        | `sections[1].toolChoiceBar`           | M7/861    |
-| `embed:toolChoiceBar:m7:88:s1`         | `sections[1].toolChoiceBar`           | M7/88     |
-| `embed:toolChoiceBar:m7:90:s1`         | `sections[1].toolChoiceBar`           | M7/90     |
+| elementId                              | Key                                   | M/slide             |
+| -------------------------------------- | ------------------------------------- | ------------------- |
+| `embed:briefCheckBlock:m2:51`          | `briefCheckBlock`                     | M2/51               |
+| `embed:briefCheckBlock:m5:510`         | `briefCheckBlock`                     | M5/510              |
+| `embed:correctPromptPractice:m4:49`    | `correctPromptPractice`               | M4/49               |
+| `embed:correctPromptPractice:m6:68`    | `correctPromptPractice`               | M6/68               |
+| `embed:instructGptQuality:m4:44`       | `instructGptQuality`                  | M4/44               |
+| `embed:interactivePipeline:m4:45`      | `interactivePipeline`                 | M4/45               |
+| `embed:pipelineDiagram:m4:45`          | `pipelineDiagram:context-engineering` | M4/45               |
+| `embed:preCopyCheckBlock:m5:47`        | `preCopyCheckBlock`                   | M5/47               |
+| `embed:preCopyCheckBlock:m7:67`        | `preCopyCheckBlock`                   | M7/67               |
+| `embed:preCopyCheckBlock:m7:67.8`      | `preCopyCheckBlock`                   | M7/67.8             |
+| `embed:presentationToolsBlock:m5:47.5` | `presentationToolsBlock`              | M5/47.5             |
+| `embed:recognitionExercise:m13:13.34`  | `recognitionExercise`                 | M13/13.34           |
+| `embed:recognitionExercise:m4:39.5`    | `recognitionExercise`                 | M4/39.5             |
+| `embed:toolChoiceBar:m4:53:s2`         | `sections[2].toolChoiceBar`           | M4/53               |
+| `embed:toolChoiceBar:m4:61:s1`         | `sections[1].toolChoiceBar`           | M4/61               |
+| `embed:toolChoiceBar:m7:71.35:s1`      | `sections[1].toolChoiceBar`           | M7/71.35            |
+| `embed:toolChoiceBar:m7:67:s1`         | `sections[1].toolChoiceBar`           | M7/67               |
+| `embed:toolChoiceBar:m7:731:s2`        | `sections[2].toolChoiceBar`           | M7/731              |
+| `embed:toolChoiceBar:m7:733:s1`        | `sections[1].toolChoiceBar`           | M7/733              |
+| `embed:toolChoiceBar:m7:734:s1`        | `sections[1].toolChoiceBar`           | M7/734              |
+| `embed:toolChoiceBar:m7:76:s1`         | `sections[1].toolChoiceBar`           | M7/76               |
+| `embed:toolChoiceBar:m7:77:s1`         | `sections[1].toolChoiceBar`           | M7/77               |
+| `embed:toolChoiceBar:m7:861:s1`        | `sections[1].toolChoiceBar`           | M7/861              |
+| `embed:toolChoiceBar:m7:88:s1`         | `sections[1].toolChoiceBar`           | M7/88               |
+| `embed:toolChoiceBar:m7:90:s1`         | `sections[1].toolChoiceBar`           | M7/90 (prompt-tool) |
 
-**Pastaba:** `audit:embed-catalog` EMBED_KEYS = 6 top-level; master taip pat skaičiuoja `toolChoiceBar`, `pipelineDiagram`, `presentationToolsBlock` (čia 22 eilutės).
+**Pastaba:** `audit:embed-catalog` EMBED_KEYS = 6 top-level; master taip pat skaičiuoja `toolChoiceBar`, `pipelineDiagram`, `presentationToolsBlock` (čia 25 eilutės).
 
 ## Lentelės (TE-3)
 
@@ -216,6 +222,10 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 | `table:m4:53:s2`     | M4/53     | ne              | Svarbiausi DI įrankiai                                             |
 | `table:m4:59:s5`     | M4/59     | ne              | Atviros duomenų bazės ir RAG                                       |
 | `table:m4:60:s6`     | M4/60     | ne              | Darbas su RAG: atmintis, išoriniai šaltiniai ir duomenų paruošimas |
+| `table:m4:61:s1`     | M4/61     | ne              | Kada ką? (solutionMatrixStyle + toolChoiceBar)                     |
+| `table:m4:61:s2`     | M4/61     | ne              | Tipinė eiga (30–45 min)                                            |
+| `table:m7:71.35:s1`  | M7/71.35  | ne              | Kada ką? (sync M4/61)                                              |
+| `table:m7:71.35:s2`  | M7/71.35  | ne              | Tipinė eiga (30–45 min) (sync M4/61)                               |
 | `table:m4:66:s4`     | M4/66     | ne              | Tokenų ekonomika                                                   |
 | `table:m4:66.25:s2`  | M4/66.25  | ne              | Konteksto degradacija: kodėl modeliai „pamiršta“?                  |
 | `table:m4:66.6:s5`   | M4/66.6   | ne              | Neigiami promptai (ko vengti)                                      |
@@ -227,6 +237,9 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 | `table:m7:84:s1`     | M7/84     | ne              | Duomenų struktūros kūrimas (DB)                                    |
 | `table:m7:67:s5`     | M7/67     | ne              | Promptų manipuliacijos                                             |
 | `table:m7:67:s6`     | M7/67     | ne              | Promptų manipuliacijos                                             |
+| `table:m7:67.8:s2`   | M7/67.8   | taip            | FAKTAI vs SPĖJIMAI                                                 |
+| `table:m7:67.8:s3`   | M7/67.8   | ne              | Kodėl DI daro haliucinacijas?                                      |
+| `table:m7:67.8:s4`   | M7/67.8   | ne              | Keturi kontrolės lygiai                                            |
 | `table:m7:104:s1`    | M7/104    | ne              | Papildoma: istorijos modelis ir geri dashboard'ai                  |
 | `table:m7:106:s6`    | M7/106    | ne              | Papildoma: DI pagalba + super promptas + alternatyvos              |
 | `table:m10:10.36:s1` | M10/10.36 | ne              | Paleidimas: kur veikia agentas ir API                              |
@@ -238,13 +251,13 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 | Kind             |   N | Avg maturity | Maturity ≤1 |
 | ---------------- | --: | -----------: | ----------: |
 | `diagram`        |  34 |         3.24 |           0 |
-| `embed`          |  22 |         2.00 |           0 |
+| `embed`          |  25 |         2.04 |           0 |
 | `lab`            |   4 |         3.25 |           0 |
 | `off-renderer`   |   5 |         2.80 |           0 |
 | `orphaned`       |   2 |         1.00 |           2 |
 | `renderer-alias` |   2 |         1.00 |           2 |
 | `slide-type`     |  44 |         2.00 |           0 |
-| `table`          |  22 |         2.00 |           0 |
+| `table`          |  29 |         2.00 |           0 |
 
 **P0 (diagram/lab/off-renderer, maturity ≤1):** _nėra_.
 
@@ -252,5 +265,5 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Pradinis
 
 - Merginti patch / completion / icon registry į šią lentelę.
 - Trinti orphaned Schema3 / ContextFlow be atskiro cleanup ticketo.
-- Force-META / M7P copy klases čia (lieka `M7_PROMPT_MATURITY.md`).
+- Force-META / M4P–M7P copy klases čia (lieka `M4_PROMPT_MATURITY.md`, `M7_PROMPT_MATURITY.md`).
 - Kurti naują UI „kad registry būtų pilnesnis“ – tik registruoti esamą.

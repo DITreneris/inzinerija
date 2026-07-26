@@ -151,7 +151,7 @@ export const loadModules = async (
         const empty: ModulesData = {
           modules: [],
           quiz: {
-            title: 'Apklausa',
+            title: 'Branduolio pasitikrinimas',
             description: '',
             passingScore: 70,
             questions: [],
@@ -247,7 +247,7 @@ export const loadModules = async (
         data = {
           ...data,
           quiz: {
-            title: data.quiz?.title ?? 'Apklausa',
+            title: data.quiz?.title ?? 'Branduolio pasitikrinimas',
             description: data.quiz?.description ?? '',
             passingScore: data.quiz?.passingScore ?? 70,
             questions: [],

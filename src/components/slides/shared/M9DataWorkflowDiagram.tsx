@@ -1,6 +1,6 @@
 /**
  * Modulio 9 – 8 žingsnių duomenų valdymo ciklas (interaktyvi diagrama).
- * Horizontal card flow (desktop) / vertical stack (mobile) – M79-23.
+ * Desktop: 2×4 card grid; mobile: vertical stack.
  */
 import { Fragment } from 'react';
 import {
@@ -27,6 +27,11 @@ const STEP_ICONS: LucideIcon[] = [
   Merge,
   BarChart3,
   LayoutDashboard,
+];
+
+const DESKTOP_ROWS: number[][] = [
+  [0, 1, 2, 3],
+  [4, 5, 6, 7],
 ];
 
 interface M9DataWorkflowDiagramProps {
@@ -79,9 +84,10 @@ export default function M9DataWorkflowDiagram({
     return (
       <div
         key={i}
+        data-step-index={i}
         className={[
           'relative flex w-full flex-col items-center rounded-2xl border p-4 shadow-sm transition-all duration-200',
-          compact ? 'max-w-none' : 'max-w-[9.5rem] md:max-w-[10.5rem]',
+          compact ? 'max-w-none' : 'min-w-0 flex-1 max-w-[14rem]',
           isActive
             ? 'border-accent-500 bg-accent-50/90 ring-2 ring-accent-400/30 dark:border-accent-500/60 dark:bg-accent-900/25'
             : 'border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800/80',
@@ -120,20 +126,47 @@ export default function M9DataWorkflowDiagram({
           />
         </div>
         <h3
-          className={`text-center text-sm font-semibold leading-tight md:text-base ${
+          className={`flex min-h-[2.75rem] w-full flex-col items-center justify-center text-center text-sm font-semibold leading-tight ${
             isActive
               ? 'text-gray-900 dark:text-white'
               : 'text-gray-700 dark:text-gray-200'
           }`}
         >
-          {stepLabel}
+          <span
+            className={
+              isActive
+                ? 'text-accent-700 dark:text-accent-300'
+                : 'text-brand-600 dark:text-brand-300'
+            }
+          >
+            {i + 1}.
+          </span>
+          <span>{st.label}</span>
         </h3>
-        <p className="mt-1 text-center text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+        <p className="mt-1 text-center text-xs font-medium text-slate-500 dark:text-slate-400">
           {st.desc}
         </p>
       </div>
     );
   };
+
+  const renderDesktopRow = (indices: number[]) => (
+    <div className="flex w-full items-stretch justify-center gap-2">
+      {indices.map((i, rowPos) => (
+        <Fragment key={i}>
+          {rowPos > 0 && (
+            <div className="relative flex shrink-0 items-center px-0.5">
+              <MoveRight
+                className="h-5 w-5 text-brand-400 dark:text-brand-500"
+                aria-hidden
+              />
+            </div>
+          )}
+          {renderStep(i, false)}
+        </Fragment>
+      ))}
+    </div>
+  );
 
   return (
     <div
@@ -156,6 +189,7 @@ export default function M9DataWorkflowDiagram({
         <div
           className="flex flex-col items-stretch gap-2 lg:hidden"
           role="list"
+          data-layout="mobile-stack"
         >
           {stepsMeta.map((_, i) => (
             <Fragment key={i}>
@@ -170,22 +204,18 @@ export default function M9DataWorkflowDiagram({
         </div>
 
         <div
-          className="hidden lg:flex lg:items-center lg:justify-start lg:gap-1 xl:justify-center xl:gap-2"
+          className="hidden lg:flex lg:flex-col lg:items-stretch lg:gap-3"
           role="list"
+          data-layout="desktop-2x4"
         >
-          {stepsMeta.map((_, i) => (
-            <Fragment key={i}>
-              {i > 0 && (
-                <div className="relative flex shrink-0 items-center px-0.5">
-                  <MoveRight
-                    className="h-5 w-5 text-brand-400 dark:text-brand-500"
-                    aria-hidden
-                  />
-                </div>
-              )}
-              {renderStep(i, false)}
-            </Fragment>
-          ))}
+          {renderDesktopRow(DESKTOP_ROWS[0])}
+          <div
+            className="flex justify-center text-brand-400 dark:text-brand-500"
+            aria-hidden
+          >
+            <ChevronDown className="h-5 w-5" />
+          </div>
+          {renderDesktopRow(DESKTOP_ROWS[1])}
         </div>
       </div>
     </div>

@@ -897,12 +897,12 @@
             "whyBenefit": "Process gives clarity to teams and decision-makers; a defined workflow is \"tracks for the train\" for later chains and tools.",
             "sections": [
               {
-                "heading": "1️⃣ What's it for? What do you get?",
+                "heading": "1️⃣ In short",
                 "body": "**Process prompt** – a request where you ask AI to **define or create a process**: how to work in a structured way (strategy, projects, operations) or **how you use AI in your work**. When you have a defined workflow – less guessing, more **repeatable** results.\n\n**What you get:** a skeleton of your AI workflow (3–5 steps) that you can reuse.\n\n👉 **First step:** paste your description into the prompt below and copy – in 2–7 min you'll have your workflow.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Define your professional workflow (2–7 min)",
+                "heading": "2️⃣ Do now (2–7 min)",
                 "body": "👉 Describe in one or two sentences: **what you most often do with AI** at work (e.g. \"I prepare weekly reports\", \"I write emails to managers\", \"I prepare 5-slide intros for clients\"). Paste into the CONTEXT field below.\n\nAI will break it into **your** step sequence – a process you can reuse.\n\n🔘 Copy prompt (below)\n\n**Different from \"chain\":** here – **your** general way of working with AI, not a single chain (tool → tool → result).",
                 "blockVariant": "brand"
               },
@@ -910,7 +910,7 @@
                 "heading": "3️⃣ Copyable prompt (process / workflow definition)",
                 "body": "Paste your description into CONTEXT below. AI will suggest **3–5 steps** – your professional workflow skeleton that you can reuse.",
                 "blockVariant": "terms",
-                "copyable": "ROLE: You are a work process assistant.\n\nTASK:\nHelp me define **my professional workflow with AI**: what steps do I do in sequence when I use AI at work? Break it into 3–5 clear steps. For each step: **purpose**, **what I input / give**, **what I get**. Result – a process I can reuse, not a one-off task.\n\nCONTEXT:\n[Paste here: what I most often do with AI at work – 1–2 sentences]\n\nRULES:\n- Steps must be **actions**, not labels\n- Process must be **reusable**\n- If information is missing – say so clearly\n\nOUTPUT FORMAT:\nShort numbered list: for each step – purpose, input, result."
+                "copyable": "ROLE: You are a work-process assistant.\nTASK: Define my professional AI workflow – 3–5 steps. For each: goal, what I input, what I get. Reusable process.\nCONTEXT: [Paste: what I most often do with AI – 1–2 sentences]\nOUTPUT: Numbered list – step | goal | input | result.\nIf info is missing – say what you need."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -934,19 +934,19 @@
                 "heading": "Example: Business strategy creation",
                 "body": "Create a process – AI will break it into stages (market analysis, product development, business expansion, etc.).",
                 "blockVariant": "terms",
-                "copyable": "Create a process for a mid-size technology company's growth strategy. Break it into stages such as market analysis, product development and business expansion. Highlight the most common pitfalls and how to avoid them."
+                "copyable": "Data: [sector / company size / market]\nDo: build a growth-strategy process (market → product → expansion)\nFormat: stage | common mistake | how to avoid"
               },
               {
                 "heading": "Example: Project management",
                 "body": "Give a structured process – from stakeholder buy-in to implementation.",
                 "blockVariant": "terms",
-                "copyable": "Give a structured process for managing digital transformation, from initial stakeholder buy-in to implementation. Include main phases and risk management strategies."
+                "copyable": "Data: [project / digital transformation / stakeholders]\nDo: structured process from buy-in to delivery\nFormat: stage | risks | control action"
               },
               {
                 "heading": "Example: Operations improvement",
                 "body": "Give a step-by-step process – e.g. for supply chain optimisation.",
                 "blockVariant": "terms",
-                "copyable": "Give a step-by-step process for optimising supply chain operations in a retail company. Focus on cost reduction, efficiency gains and technology integration."
+                "copyable": "Data: [operation, e.g. supply chain / retail]\nDo: step-by-step optimization process (cost, efficiency, tech)\nFormat: step | goal | KPI"
               },
               {
                 "heading": "Optional: Good vs bad process prompt",
@@ -1062,7 +1062,7 @@
                 "heading": "3️⃣ Copyable prompt (chain + implementation)",
                 "body": "Paste your result (one sentence) into CONTEXT below. AI will suggest a 3-step chain with tools and **implementation instructions** – what to do in each step (what to open, what to paste, what to click).",
                 "blockVariant": "terms",
-                "copyable": "ROLE:\nYou are a practical chain (workflow) assistant.\n\nTASK:\n1) Turn my task into a **concrete 3-step chain** (input → processing → result). For each step **suggest a tool** (e.g. ChatGPT, Gamma, Figma, Gmail – as fits).\n2) After the chain give **implementation instructions**: what to do in step 1, 2 and 3 – concretely (what to open, what to enter or paste, what to click). Briefly, step by step.\n\nCONTEXT:\n[Paste your result in one sentence: what you want to get and for whom]\n\nRULES:\n- Steps – actions, not labels\n- Tools – real (ChatGPT, Claude, Gamma, Figma, Gmail, etc.)\n- Implementation instructions – so I can do it in order without extra guessing\n\nOUTPUT FORMAT:\n1) Chain: 3 steps + for each – suggested tool. 2) Implementation: Step 1 – …; Step 2 – …; Step 3 – …."
+                "copyable": "ROLE: You are a practical workflow-chain assistant.\nTASK: 1) Turn my task into a concrete 3-step chain (input → process → result) + a tool per step. 2) Implementation: what to open / paste / click in each step.\nCONTEXT: [One sentence: what I want and for whom]\nOUTPUT: 1) Chain (step + tool) 2) Instructions Steps 1–3.\nSteps = actions; real tools (ChatGPT, Claude, Gamma, etc.)."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
@@ -1570,11 +1570,11 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "Paste your prompt into INPUT – AI will rate it on 5 principles and suggest improvements.",
                 "blockVariant": "terms",
-                "copyable": "ROLE:\nYou are an experienced prompt engineer and training facilitator. Your goal – critically evaluate prompt quality and suggest improvements.\n\nTASK:\nRate the given prompt against 5 principles:\n1) Clarity\n2) Experimentation\n3) Simple → complex\n4) Context\n5) Word choice\n\nINPUT:\n[prompt to evaluate – paste your prompt here]\n\nEVALUATION FORMAT:\n1. Rating table (1–5 points per principle)\n2. Brief explanation of WHY that score\n3. 3 main weak spots\n4. Suggested improved prompt version\n\nRULES:\n- Be specific, no generic phrases\n- If information is missing – state it clearly\n- If the prompt is too complex – suggest a simpler first version\n- Don't rewrite unnecessarily – fix only what adds real value\n\nOUTPUT:\nStructured, clear, practically usable answer."
+                "copyable": "ROLE: You are a prompt quality evaluator.\nTASK: Rate the prompt on 5 principles: Clarity; Experimentation; Simple → complex; Context; Word choice.\nINPUT: [paste your prompt here]\nOUTPUT:\n1) Table 1–5 per principle + 1 sentence why\n2) 3 weak spots\n3) Improved version (only changes that add value)\nIf info is missing – say so; if too complex – suggest a simpler first version."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you get a **rating table** (1–5 per principle)?\n• Are the **3 weak spots** clear and fixable?\n• Is the **improved version** useful – could you use it?\n• Would you **use** these principles next time before sending a prompt?\n\nIf 2 or more \"no\" – go back to your prompt (INPUT) or change it and run again.",
+                "body": "• Did you get a **1–5 table** for each of the 5 principles + a short \"why\"?\n• Are the **3 weak spots** clear and fixable?\n• Is the **improved version** useful – could you use it?\n\nIf 2 or more \"no\" – go back to INPUT (your prompt) and run again.",
                 "blockVariant": "accent"
               },
               {
@@ -1659,13 +1659,13 @@
                 "heading": "5️⃣ RL prompt example",
                 "body": "🔘 Copy the prompt (below).\n\n**Without human feedback.**\n\n**Business case:** Optimise an email by clear KPIs.\n**When to use:** When success can be defined by rules and numbers.",
                 "blockVariant": "brand",
-                "copyable": "You are an AI that optimises business emails.\n\nGoal:\nWrite an email that maximises open rate.\n\nRules:\n- Up to 100 words\n- Clear value proposition\n- Clear CTA\n\nGenerate 3 versions and pick the best by: \"clearest and shortest\"."
+                "copyable": "You are an AI optimizing business emails.\nGoal: an email that maximizes open likelihood.\nRules: under 100 words; clear value; clear CTA.\nOUTPUT: 3 variants + pick the best by “clearest and shortest” + 1 sentence why."
               },
               {
                 "heading": "6️⃣ RLHF prompt example",
                 "body": "🔘 Copy the prompt (below).\n\n**With human feedback.**\n\n**Business case:** Choose the best email for a real customer.\n**When to use:** When human opinion, tone, and trust matter.",
                 "blockVariant": "brand",
-                "copyable": "You are an AI that creates business emails.\n\nTask:\nGenerate 3 email variants for a client about AI training.\n\nThen:\n- Ask ME to choose the best variant\n- Ask what I liked / didn't like\n\nBased on my choice, generate 1 improved final email."
+                "copyable": "You are an AI writing business emails.\nTask: 3 email variants to a client about AI training.\nThen: ask ME to pick the best and what I liked / disliked.\nOUTPUT: 1 improved final email based on my feedback."
               },
               {
                 "heading": "🔽 Link to GPT, prompts, and ethics",
@@ -2246,7 +2246,7 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "copyable": "Use only Eurostat (ec.europa.eu/eurostat) data. Task: [describe, e.g. GDP comparison]. Give the answer with dataset names and links."
+                "copyable": "Data: task [describe, e.g. GDP comparison]\nDo: answer using Eurostat only (ec.europa.eu/eurostat)\nFormat: claim | dataset | link\nIf no data – “I don’t know”."
               },
               {
                 "heading": "Mini-prompt: open sources list",
@@ -2254,7 +2254,7 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "copyable": "Compile a list of official [country] open data sources suitable for RAG analysis. Group by category: statistics, law, business, finance, public procurement. For each give: institution, link, type of data, whether it has API."
+                "copyable": "Data: need – sources for RAG analysis in Lithuania\nDo: list official open data sources\nFormat: category (stats / law / business / finance / procurement) | institution | URL | type | API (yes/no)"
               },
               {
                 "heading": "4️⃣ Check: anti-hallucination RAG rule",
@@ -2306,9 +2306,9 @@
               },
               {
                 "heading": "6️⃣ Copyable prompt",
-                "body": "Paste this prompt into AI (ChatGPT, Claude) with your documents labelled [Source 1], [Source 2]:",
+                "body": "Paste documents labelled [Source 1], [Source 2] into the Data field. Expect rows: conclusion | source | quote.",
                 "blockVariant": "default",
-                "copyable": "Here is data with references: [paste text with [Source 1], [Source 2]…]. Analyse and give conclusions; for each conclusion give the source reference."
+                "copyable": "Data: [paste text with [Source 1], [Source 2]…]\nDo: give conclusions only from these sources\nFormat: conclusion | source | quote / fragment\nIf data is missing – write “I don’t know” and what is missing."
               },
               {
                 "heading": "Decision matrix: AI memory vs documents",
@@ -2390,7 +2390,7 @@
               },
               {
                 "heading": "7️⃣ Check",
-                "body": "If AI doesn't cite sources or references are unclear – go back to data prep: add clear labels [Source 1], [Source 2] and in the prompt require \"For each claim give source ID.\"",
+                "body": "• Did you get rows in the format **conclusion | source | quote**?\n• Did AI write **\"I don't know\"** when data was missing?\n• If not – add labels [Source 1], [Source 2] and run again.",
                 "blockVariant": "accent"
               },
               {
@@ -2425,7 +2425,8 @@
           "optional": true,
           "content": {
             "whyBenefit": "You can do any research in 30–45 min – enter a question or upload a PDF, get answers with sources.",
-            "toolsIntro": "Enter a question or upload a PDF – you'll get answers with sources. Useful for RAG source search and Deep research tasks.",
+            "toolsIntro": "Enter a question or upload a PDF – you will get answers with sources. Useful for RAG source search and Deep research tasks.",
+            "toolsCollapsible": true,
             "tools": [
               {
                 "name": "Perplexity",
@@ -2480,26 +2481,118 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (20 s)",
-                "body": "Optional cheat sheet: 6 AI tools for search and synthesis – use with RAG sources. Typical run – 30–45 min.",
+                "body": "Optional cheat sheet: pick an AI tool by situation (search → PDF → citation → synthesis). Typical run – 30–45 min. Use with RAG sources.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Usage tips",
-                "body": "**Perplexity:** web mode, ask for sources, be specific.\n**PaperGuide:** upload PDF, ask a concrete question.\n**Scite:** check \"Supported\" vs \"Contradicted\".\n**Elicit:** clear question, trends and risks.\n**Consensus / Connected Papers:** scientific claims and paper networks.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
+                "heading": "When to use which?",
+                "body": "**First 4 = typical 30–45 min run.** Consensus and Connected Papers – when you need research depth.",
+                "blockVariant": "terms",
+                "toolChoiceBar": {
+                  "question": "What are you doing now?",
+                  "choices": [
+                    {
+                      "label": "Sources",
+                      "rowIndex": 0
+                    },
+                    {
+                      "label": "PDF",
+                      "rowIndex": 1
+                    },
+                    {
+                      "label": "Synthesis",
+                      "rowIndex": 2
+                    },
+                    {
+                      "label": "Citation",
+                      "rowIndex": 3
+                    },
+                    {
+                      "label": "Science",
+                      "rowIndex": 4
+                    },
+                    {
+                      "label": "Network",
+                      "rowIndex": 5
+                    }
+                  ]
+                },
+                "table": {
+                  "headers": ["Situation", "Tool", "Input → result", "Time"],
+                  "solutionMatrixStyle": true,
+                  "rows": [
+                    [
+                      "Quick sources with links",
+                      "Perplexity",
+                      "Question → answer + URL",
+                      "5–10 min"
+                    ],
+                    [
+                      "I have a PDF / report",
+                      "PaperGuide",
+                      "PDF + question → summary",
+                      "10–15 min"
+                    ],
+                    [
+                      "Trends across several studies",
+                      "Elicit",
+                      "Question / PDF → synthesis",
+                      "10–15 min"
+                    ],
+                    [
+                      "Does the citation support the claim?",
+                      "Scite",
+                      "DOI / title → Supported vs Contradicted",
+                      "~5 min"
+                    ],
+                    [
+                      "\"What does science say?\"",
+                      "Consensus",
+                      "Claim → support view",
+                      "As needed"
+                    ],
+                    [
+                      "Paper network / seminal work",
+                      "Connected Papers",
+                      "Paper → clusters",
+                      "As needed"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "Typical run (30–45 min)",
-                "body": "**4 tools = full run:**\n\n**1.** Sources (Perplexity) – 5–10 min.\n\n**2.** PDF analysis (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citation check (Scite) – ~5 min.\n\n**4.** Synthesis (Elicit) – 10–15 min.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
+                "body": "Four steps for one topic – times are approximate.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["#", "Step", "Tool", "Min"],
+                  "rows": [
+                    ["1", "Sources", "Perplexity", "5–10"],
+                    ["2", "PDF", "PaperGuide / Elicit", "10–15"],
+                    ["3", "Citation", "Scite", "~5"],
+                    ["4", "Synthesis", "Elicit", "10–15"]
+                  ]
+                }
+              },
+              {
+                "heading": "2️⃣ Do now",
+                "body": "Take a topic you are already researching (or your RAG sources). Run at least **1 step** from the table – Perplexity is enough to start. 🔘 **Copy prompt (below)**",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Starter: Perplexity",
+                "body": "Paste into Perplexity (web mode). Replace [X] with your topic.",
+                "blockVariant": "default",
+                "copyable": "ROLE: You are a business researcher.\nTASK: Find 5–7 reliable sources on: [X].\nOUTPUT: Table – claim | source (URL) | why reliable.\nRULE: Every claim needs a source; if you do not know – write \"I don't know\"."
+              },
+              {
+                "heading": "4️⃣ Quality check (1 min)",
+                "body": "If at least 2 answers are \"no\" – go back to \"When to use which?\".\n\n1. Do you have sources with URLs?\n2. If you used a PDF – did you ask a concrete question (not just \"summary\")?\n3. Did you check a key claim in Scite (Supported vs Contradicted)?",
+                "blockVariant": "accent"
               },
               {
                 "heading": "Where to apply?",
-                "body": "Use after you cite sources in your prompt (RAG) or prepare documents for research. Later in the module – **Deep research** (4.3).",
+                "body": "Use after you cite sources in your prompt (RAG) or prepare documents for research. Later in the module – **Deep research**.",
                 "blockVariant": "brand"
               }
             ],
@@ -2557,25 +2650,25 @@
                 "heading": "1️⃣ Step-by-step",
                 "body": "What I do: Ask to break the task into clear steps.\n\nCopy and paste into AI:",
                 "blockVariant": "emerald",
-                "copyable": "Give a step-by-step plan [enter your task, e.g. to launch a new marketing campaign]."
+                "copyable": "Give a step-by-step plan for: [task].\nFormat: numbered steps + 1 sentence each."
               },
               {
                 "heading": "2️⃣ Chain of thought (CoT)",
                 "body": "What I do: Ask to explain the logic, not just the result.\n\nCopy and paste into AI:",
                 "blockVariant": "emerald",
-                "copyable": "Explain the pricing strategy – from positioning to final price. Show how each step leads to the next."
+                "copyable": "Explain [topic, e.g. pricing] from start to result. Show how each step leads to the next.\nFormat: step → why the next follows."
               },
               {
                 "heading": "3️⃣ Comparisons and analogies",
                 "body": "What I do: Ask to compare or explain by analogy.\n\nCopy and paste into AI:",
                 "blockVariant": "emerald",
-                "copyable": "Compare traditional and digital marketing – when is which more effective for business? Give concrete examples."
+                "copyable": "Compare [A] and [B] for business. Give concrete cases.\nFormat: table + 2 concrete cases."
               },
               {
                 "heading": "4️⃣ Idea tree (ToT)",
                 "body": "What I do: Ask to evaluate several options and suggest the best – several branches, pick the best.\n\nCopy and paste into AI:",
                 "blockVariant": "emerald",
-                "copyable": "Evaluate 3 alternatives [for a project or investment] by risk, return, and timeframe. Suggest the best one and briefly justify."
+                "copyable": "Rate 3 alternatives for [project / investment] by risk, return and time.\nFormat: table + best pick + 2 sentences of rationale."
               },
               {
                 "heading": "Bottom line",
@@ -2737,10 +2830,10 @@
                 "blockVariant": "brand"
               },
               {
-                "heading": "⚡ Quick win",
-                "body": "Simplest to start – copy and replace [topic]:",
+                "heading": "⚡ Quick start (research starter)",
+                "body": "Copy and replace [TOPIC] / [goal] – you get sub-questions and a synthesis skeleton (not a meta “write a prompt”).",
                 "blockVariant": "brand",
-                "copyable": "Create a prompt for deep research on [topic]."
+                "copyable": "Data: topic [TOPIC]; goal [decision / report]\nDo: 3 sub-questions + which sources you need + short synthesis\nFormat: sub-question | what to look for | 1 finding (with link if you have one)\nIf no source – “I don’t know”."
               },
               {
                 "heading": "Bottom line",
@@ -2777,8 +2870,8 @@
               },
               {
                 "heading": "Universal template",
-                "body": "Copy below and replace [PROBLEM] and [sequence / chain / idea tree] as needed.",
-                "copyable": "Write me a prompt [sequence / chain / idea tree] that would help solve this problem: [PROBLEM].\n\nMake sure:\n– the structure is clear\n– the steps link logically\n– there is a clear final decision"
+                "body": "Copy below, replace [PROBLEM] and type (sequence / chain / idea tree). Expect numbered steps and a final format – not a one-line \"write a prompt\".",
+                "copyable": "Data: problem [PROBLEM]; type [sequence / chain / idea tree]\nDo: generate a prompt structure for this problem\nFormat: 1) numbered steps 2) how they link 3) final decision format"
               },
               {
                 "heading": "🔽 Want more detail? (3 templates – 3 situations)",
@@ -3178,7 +3271,7 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "One prompt – the AI will help you rewrite your query into a clear, controllable version (goal, context, result).",
                 "blockVariant": "terms",
-                "copyable": "ROLE: You are a prompt-engineering assistant helping to improve queries.\n\nTASK:\nRewrite my query below into a \"good\" prompt following best practices:\n- Clear goal (what I want to get)\n- Context (who for, where, what constraints)\n- Clear output (format, length, what counts as a good result)\n- No vague terms (\"help\", \"optimise\", \"improve\") without concrete actions\n\nCONTEXT (my current / bad query):\n[Paste your query here]\n\nRULES:\n- Keep my intent but make the query actionable and verifiable\n- If information is missing – say what needs to be added\n- Give 2 versions: short (1–2 sentences) and longer (with blocks)\n\nOUTPUT FORMAT:\n\"Short version:\" + \"Longer version:\" with clear blocks."
+                "copyable": "ROLE: You are a prompt assistant – you rewrite weak requests.\nTASK: Rewrite my request into a good prompt: clear goal, context, output format; no vague verbs (“help”, “optimize”) without actions.\nCONTEXT: [Paste your bad / old request]\nOUTPUT:\nShort version: (1–2 sentences)\nFuller: goal + context + format\nIf info is missing – say what to add."
               },
               {
                 "heading": "4️⃣ Quick check (1 min)",

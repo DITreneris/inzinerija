@@ -1,6 +1,20 @@
 {
   "terms": [
     {
+      "term": "3NF",
+      "definition": "Third normal form – a database structure rule that reduces duplication and helps connect tables more clearly.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "4 analysis types",
+      "definition": "Four question levels: descriptive (what happened?), diagnostic (why?), predictive (what might happen?), prescriptive (how to act?) – from fact to action.",
+      "moduleId": 7
+    },
+    {
       "term": "6-block system",
       "definition": "A structured prompt framework: Meta, Input, Output, Reasoning, Quality, Advanced.",
       "moduleId": 1
@@ -16,14 +30,14 @@
       "moduleId": 4
     },
     {
-      "term": "AI agent",
-      "definition": "A system that performs tasks in steps and can use tools such as search, APIs or files. Unlike a simple chat, it can take several actions and use external sources.",
-      "moduleId": 10
-    },
-    {
       "term": "Agentic prompt",
       "definition": "Asks the AI to take action – search, use tools (Browse, Search, API), gather data; the AI acts as an agent; requires a platform with tool/search support (e.g. “find and list TOP10”).",
       "moduleId": 4
+    },
+    {
+      "term": "AI agent",
+      "definition": "A system that performs tasks in steps and can use tools such as search, APIs or files. Unlike a simple chat, it can take several actions and use external sources.",
+      "moduleId": 10
     },
     {
       "term": "AI memory",
@@ -46,9 +60,23 @@
       "moduleId": 4
     },
     {
+      "term": "Bonus practice",
+      "definition": "Optional task after the path test – an extra Copy→Check cycle (e.g. screenshot or visualization) to lock the skill without score pressure.",
+      "moduleId": 8
+    },
+    {
       "term": "Brief",
       "definition": "A short brief before you start: topic, audience, goal, scope, and tone – the basis for a structured prompt.",
       "moduleId": 5
+    },
+    {
+      "term": "Cache layer",
+      "definition": "A fast temporary data layer for sessions, queues, or speed. Usually an addition to the main database, not the main storage.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
     },
     {
       "term": "Chain",
@@ -61,9 +89,19 @@
       "moduleId": 4
     },
     {
+      "term": "Combined super prompt",
+      "definition": "One prompt that joins several analysis steps or methods (e.g. cleaning + EDA + recommendations) for a fast end-to-end result.",
+      "moduleId": 9
+    },
+    {
       "term": "COMBO",
       "definition": "A prompt type that combines several methods in one prompt – role + steps + comparison + format; the most powerful but also the most complex.",
       "moduleId": 4
+    },
+    {
+      "term": "Competitor analysis",
+      "definition": "Structured comparison of competitors (products, prices, messages) with AI – to spot gaps and opportunities, not only “who does the same”.",
+      "moduleId": 9
     },
     {
       "term": "Context capsule",
@@ -96,6 +134,41 @@
       "moduleId": 4
     },
     {
+      "term": "Dashboard",
+      "definition": "Single-screen report with key metrics, charts, and trends – status at a glance. AI can help generate dashboard structure or copy.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data analysis",
+      "definition": "Collecting, cleaning, and interpreting data so you can understand the past, assess the present, and forecast – then decide.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data analysis pipeline",
+      "definition": "Sequential data path: collection → preparation → exploratory analysis → models → visualization → publishing. Each step has its own AI prompts.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data cleaning",
+      "definition": "Data preparation: remove duplicates, fill missing values, unify formats. Required before analysis; AI can suggest cleaning steps and prompts.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data storytelling",
+      "definition": "Turning numbers into a story: data → chart → narrative → decision. Visualization as a decision tool, not just a pretty graphic.",
+      "moduleId": 7
+    },
+    {
+      "term": "Data-driven decisions",
+      "definition": "Choices based on analysis and insights, not only intuition or opinion.",
+      "moduleId": 7
+    },
+    {
+      "term": "Decision filter",
+      "definition": "A short method that turns analysis into an action (fix, prioritize, reject, test, expand) – not only a description.",
+      "moduleId": 7
+    },
+    {
       "term": "Deep Learning",
       "definition": "The part of machine learning that uses multi-layer neural networks – the basis for image, language, and text AI models.",
       "moduleId": 4
@@ -104,6 +177,45 @@
       "term": "Deep research",
       "definition": "In-depth research with AI – several steps (breaking down questions, searching sources, synthesising into one answer or report).",
       "moduleId": 4
+    },
+    {
+      "term": "Deming principle",
+      "definition": "“In God we trust, all others bring data” – prioritize evidence and continuous improvement over gut feel alone.",
+      "moduleId": 7
+    },
+    {
+      "term": "EDA",
+      "definition": "Exploratory data analysis – first step before models: see what is in the data, patterns, outliers. AI can help with stats, correlations, and hypotheses.",
+      "moduleId": 7
+    },
+    {
+      "term": "ER model",
+      "definition": "Entity-Relationship model – a description of tables and their relationships, such as 1-N or N-N, that helps understand data structure.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "Evaluator",
+      "definition": "A multi-agent role that checks output against criteria, rules and risks; it can return work for revision.",
+      "moduleId": 10
+    },
+    {
+      "term": "Financial insights",
+      "definition": "AI-assisted reading of financial metrics and trends – not only table numbers, but what they mean for a decision.",
+      "moduleId": 9
+    },
+    {
+      "term": "Full analysis template",
+      "definition": "Eight steps for one topic: sources → structure → cleaning → EDA → visuals → insights → forecasts → recommendations. Different from the 6-step analysis pipeline.",
+      "moduleId": 8
+    },
+    {
+      "term": "Gestalt principles",
+      "definition": "Visual-perception rules (proximity, similarity, figure–ground, continuity, and more) you apply when designing charts and dashboards.",
+      "moduleId": 7
     },
     {
       "term": "Human-in-the-loop (HITL)",
@@ -120,6 +232,11 @@
       "moduleId": 1
     },
     {
+      "term": "Integration",
+      "definition": "A connection between AI and external data or services such as APIs, databases, email or CRM. Required for agents and workflow automation.",
+      "moduleId": 10
+    },
+    {
       "term": "Jailbreak",
       "definition": "A deliberate attempt, using crafted prompts, to bypass AI safety or usage limits. This is a security risk – not the same as prompt manipulation (biased business framing).",
       "moduleId": 7,
@@ -134,6 +251,15 @@
       "moduleId": 2
     },
     {
+      "term": "KPI",
+      "definition": "Key performance indicator – what you measure to see whether a business process is working well.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
       "term": "Leading questions",
       "definition": "Questions phrased to steer the answer in a desired direction; a form of prompt manipulation to avoid – use neutral prompts instead.",
       "moduleId": 4
@@ -142,6 +268,11 @@
       "term": "LLM",
       "definition": "Large Language Model – a large language model; the technical basis for AI that processes text and can use tools (Tool Use) and memory (Retrieval).",
       "moduleId": 4
+    },
+    {
+      "term": "Low-hanging fruit",
+      "definition": "Opportunities that need little effort or cost but give a quick, visible result.",
+      "moduleId": 7
     },
     {
       "term": "Machine learning (ML)",
@@ -154,9 +285,19 @@
       "moduleId": 4
     },
     {
+      "term": "MASTER PROMPT",
+      "definition": "The full 8-step prompt for end-to-end data analysis: sources, structure, cleaning, EDA, visuals, insights, forecasts, recommendations. Not the same as a Master prompt (M4 personalization context).",
+      "moduleId": 7
+    },
+    {
       "term": "Meta block",
       "definition": "Block that defines who you are (role), what experience, and who the result is for (audience).",
       "moduleId": 1
+    },
+    {
+      "term": "Metadata",
+      "definition": "Data about data: descriptive (source, date), structural (schema, types), administrative (rights, security). Without it, AI analysis stays shallow.",
+      "moduleId": 7
     },
     {
       "term": "Methodological prompt",
@@ -174,9 +315,28 @@
       "moduleId": 4
     },
     {
+      "term": "Must / Should / Could / Won’t (MoSCoW)",
+      "definition": "Priority buckets for tasks or ideas by importance and urgency – helps you decide what to do first.",
+      "moduleId": 7
+    },
+    {
       "term": "Neural networks",
       "definition": "A computing model inspired by brain neurons – the basis for deep learning and modern AI models.",
       "moduleId": 4
+    },
+    {
+      "term": "NoSQL",
+      "definition": "A database approach without a strict table schema. Useful for documents, flexible structure, and fast MVPs.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "OK / Fail check",
+      "definition": "Fast quality gates: what clearly passes, what clearly fails, what is unclear, then a verdict (Pass / Fail / Pass with conditions).",
+      "moduleId": 7
     },
     {
       "term": "Output",
@@ -189,9 +349,19 @@
       "moduleId": 4
     },
     {
+      "term": "Path test",
+      "definition": "Short graded check after Data Analysis Path theory: are you ready for the Module 9 project? Usually ≥70% is the green light to continue.",
+      "moduleId": 8
+    },
+    {
       "term": "Practice scenario",
       "definition": "A concrete business situation where you apply the 6-block system to create a prompt.",
       "moduleId": 3
+    },
+    {
+      "term": "Predictive analysis",
+      "definition": "The “what might happen?” question – trends, risks, scenarios from historical data. One of the four analysis types, often before an action plan.",
+      "moduleId": 9
     },
     {
       "term": "Process",
@@ -246,14 +416,14 @@
       "moduleId": 4
     },
     {
-      "term": "Reward",
-      "definition": "A numeric signal showing whether an AI action was good or bad; the main mechanism in reinforcement learning.",
-      "moduleId": 4
-    },
-    {
       "term": "ReAct",
       "definition": "An agent loop principle: understand the task, choose a tool, act, observe the result and decide whether to repeat or finish.",
       "moduleId": 10
+    },
+    {
+      "term": "Reward",
+      "definition": "A numeric signal showing whether an AI action was good or bad; the main mechanism in reinforcement learning.",
+      "moduleId": 4
     },
     {
       "term": "RL",
@@ -271,9 +441,63 @@
       "moduleId": 10
     },
     {
+      "term": "Screenshot analysis",
+      "definition": "Using AI to read a screen capture – text, code, charts, UI/UX – and return a structured review. Example: dashboard photo → elements, risks, priorities.",
+      "moduleId": 7
+    },
+    {
+      "term": "Scripted data collection",
+      "definition": "Automated collection (e.g. a Python script) when the source has no easy export – often ends as CSV/Excel for further analysis.",
+      "moduleId": 9
+    },
+    {
+      "term": "Sentiment analysis",
+      "definition": "Scoring text mood (positive / neutral / negative) plus themes, intensity, and action tips.",
+      "moduleId": 7
+    },
+    {
       "term": "SFT (Supervised Fine-Tuning)",
       "definition": "A supervised training stage – people prepare example question–answer pairs, and the model learns to respond in the desired style.",
       "moduleId": 4
+    },
+    {
+      "term": "Social listening",
+      "definition": "Systematic tracking of public posts and reactions (topics, sentiment, influencers) – so you see what the market says, not only your CRM.",
+      "moduleId": 9
+    },
+    {
+      "term": "Source catalog",
+      "definition": "A list of your analysis sources (files, URLs, systems) with a short note – the first Module 9 project step before cleaning and EDA.",
+      "moduleId": 9
+    },
+    {
+      "term": "Source citation",
+      "definition": "Prompt section listing data or information sources (pages, reports, official data). Reduces errors and improves answer grounding.",
+      "moduleId": 7
+    },
+    {
+      "term": "SQL database",
+      "definition": "A database based on tables and relationships. Useful for structured business data, queries, and reports.",
+      "moduleId": 7,
+      "unlockedBy": {
+        "moduleId": 7,
+        "slideId": 84
+      }
+    },
+    {
+      "term": "Synthesis",
+      "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
+      "moduleId": 7
+    },
+    {
+      "term": "Synthetic data",
+      "definition": "Artificially generated data for training or prototypes when real data is missing or cannot be shared. Use carefully – it is not a 1:1 real population.",
+      "moduleId": 9
+    },
+    {
+      "term": "Test / Invest / Kill (Kiss-Marry-Kill)",
+      "definition": "Portfolio choice for options (products, channels, ideas): which to only test, which to grow, which to drop.",
+      "moduleId": 7
     },
     {
       "term": "Token",
@@ -291,98 +515,9 @@
       "moduleId": 4
     },
     {
-      "term": "3NF",
-      "definition": "Third normal form – a database structure rule that reduces duplication and helps connect tables more clearly.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "Cache layer",
-      "definition": "A fast temporary data layer for sessions, queues, or speed. Usually an addition to the main database, not the main storage.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "Dashboard",
-      "definition": "Single-screen report with key metrics, charts, and trends – status at a glance. AI can help generate dashboard structure or copy.",
-      "moduleId": 7
-    },
-    {
-      "term": "Data analysis pipeline",
-      "definition": "Sequential data path: collection → preparation → exploratory analysis → models → visualization → publishing. Each step has its own AI prompts.",
-      "moduleId": 7
-    },
-    {
-      "term": "Data cleaning",
-      "definition": "Data preparation: remove duplicates, fill missing values, unify formats. Required before analysis; AI can suggest cleaning steps and prompts.",
-      "moduleId": 7
-    },
-    {
-      "term": "EDA",
-      "definition": "Exploratory data analysis – first step before models: see what is in the data, patterns, outliers. AI can help with stats, correlations, and hypotheses.",
-      "moduleId": 7
-    },
-    {
-      "term": "ER model",
-      "definition": "Entity-Relationship model – a description of tables and their relationships, such as 1-N or N-N, that helps understand data structure.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "Evaluator",
-      "definition": "A multi-agent role that checks output against criteria, rules and risks; it can return work for revision.",
+      "term": "Trigger",
+      "definition": "An event that starts a workflow, such as a new email, form submission or uploaded file.",
       "moduleId": 10
-    },
-    {
-      "term": "Integration",
-      "definition": "A connection between AI and external data or services such as APIs, databases, email or CRM. Required for agents and workflow automation.",
-      "moduleId": 10
-    },
-    {
-      "term": "KPI",
-      "definition": "Key performance indicator – what you measure to see whether a business process is working well.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "NoSQL",
-      "definition": "A database approach without a strict table schema. Useful for documents, flexible structure, and fast MVPs.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "SQL database",
-      "definition": "A database based on tables and relationships. Useful for structured business data, queries, and reports.",
-      "moduleId": 7,
-      "unlockedBy": {
-        "moduleId": 7,
-        "slideId": 84
-      }
-    },
-    {
-      "term": "Synthesis",
-      "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
-      "moduleId": 7
-    },
-    {
-      "term": "Source citation",
-      "definition": "Prompt section listing data or information sources (pages, reports, official data). Reduces errors and improves answer grounding.",
-      "moduleId": 7
     },
     {
       "term": "Visualization",
@@ -390,9 +525,14 @@
       "moduleId": 7
     },
     {
-      "term": "Trigger",
-      "definition": "An event that starts a workflow, such as a new email, form submission or uploaded file.",
-      "moduleId": 10
+      "term": "Visualization risk",
+      "definition": "The downside of a chart or dashboard choice – misleading interpretation, wrong audience, or too complex a type. Name 1–2 risks before you show leadership.",
+      "moduleId": 8
+    },
+    {
+      "term": "Warm-up self-check",
+      "definition": "Short ungraded questions before the scored test – to recall key ideas (e.g. 6-step pipeline vs 8-step template).",
+      "moduleId": 8
     },
     {
       "term": "Webhook",

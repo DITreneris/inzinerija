@@ -22,7 +22,7 @@
             "ctaText": "See the difference in 30 seconds!",
             "unstructuredPrompt": "Write me a marketing plan.",
             "structuredPrompt": "META: You are a marketing strategist with 10 years of B2B experience.\nGoal: prepare a Q1 marketing plan.\nAudience: CMO and leadership.\n\nINPUT: Budget 50k EUR. Target market: Baltic countries.\nCompetitors: 3 main players.\n\nOUTPUT: Strategic document, 2–3 pages.\nStructure: goals → channels → budget → key indicators.\nTone: professional, with concrete numbers.",
-            "firstActionCTA": "Copy the green structured prompt and change only the topic, audience and budget for your situation. This is your first try with the 6-block system.",
+            "firstActionCTA": "Copy the green structured prompt and change only the topic, audience and budget for your situation. This is your first structured try (META·INPUT·OUTPUT) – later you will add 3 more blocks.",
             "aboutText": "In this course you'll learn the 6-block system – from a messy question to a professional result.",
             "sandboxMessage": "This is a sandbox – you can try, make mistakes, and go back. Results aren't saved here; what matters is learning.",
             "outcomes": [
@@ -201,17 +201,17 @@
                 "url": "https://www.nber.org/papers/w31161"
               }
             ],
-            "footer": "Next – slide 3: First 6-block try"
+            "footer": "Next – slide 3: First structured try"
           }
         },
         {
           "id": 1.1,
-          "title": "First 6-block try",
-          "subtitle": "Micro-win: copy the structured prompt and change 3 fields",
+          "title": "First structured try",
+          "subtitle": "Micro-win: copy the META·INPUT·OUTPUT prompt and change 3 fields",
           "type": "path-step",
           "content": {
             "title": "First try – structured prompt",
-            "pathLabel": "6-block path",
+            "pathLabel": "3-block path",
             "stepNumber": 1,
             "stepTotal": 2,
             "body": "Copy the structured prompt from the intro and change only 3 things: topic, audience, and one constraint. This small action immediately shows how structure changes the AI answer.",
@@ -223,7 +223,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Did you change all 3 fields? If yes, you already have your first try with the 6-block system and can expand it later."
+                "body": "Did you change all 3 fields? If yes, you already have your first structured (META·INPUT·OUTPUT) try and can expand it to 6 blocks later."
               }
             ],
             "footer": "Next – slide 4: Prompt and prompt engineering"
@@ -1375,27 +1375,27 @@
               },
               {
                 "heading": "Examples – copy and adapt",
-                "body": "Professional style, formal summary, compact style, or formatting – pick one and paste into your prompt.",
+                "body": "The chips below are add-ons to your task or text. Pick one, copy it, append it to your prompt, and run AI.",
                 "blockVariant": "default"
               },
               {
                 "heading": "Professional style",
-                "body": "Copy the prompt below and use it in your AI – target audience and style will be clearly specified.",
+                "body": "Add to your task: copy below and paste into your prompt – audience and style will be clear.",
                 "copyable": "Style: professional, clear, no fluff. Target audience: [Enter audience]."
               },
               {
                 "heading": "Formal summary",
-                "body": "Copy the prompt below and paste into AI – you'll get a formal summary (5–7 sentences).",
-                "copyable": "Formal tone. Provide a 5–7 sentence summary."
+                "body": "Add to your task: copy, paste text into [paste text], and run AI – you get a formal 5–7 sentence summary.",
+                "copyable": "Formal tone. Text: [paste text]. Provide a 5–7 sentence summary."
               },
               {
                 "heading": "Compact style",
-                "body": "Copy the prompt below – AI will keep to roughly 500 words (or your chosen length).",
-                "copyable": "Compact style; keep to ~500 words (or max_tokens≈750)."
+                "body": "Add to your task: copy below – AI will keep to about 500 words (about 1 page).",
+                "copyable": "Compact style; keep to about 500 words (about 1 page)."
               },
               {
                 "heading": "Formatting",
-                "body": "Copy the prompt below and adapt to your format (e.g. Markdown or company style).",
+                "body": "Add to existing text: copy below and adapt to your format (e.g. Markdown or company style).",
                 "copyable": "Fix formatting to match [Markdown / company style]."
               },
               {
@@ -1418,24 +1418,60 @@
             "whyBenefit": "Second bonus: practice. Each prompt is ready – just copy and run.",
             "sections": [
               {
-                "heading": "1. Creating texts in different styles and formats",
-                "body": "Official invitation, formal agreement, enthusiastic announcement – three different styles. Expand, copy one set and adapt it.",
-                "copyable": "OFFICIAL INVITATION\nMETA: You are a business communications specialist. Goal – prepare an invitation.\nINPUT: Event – [your business event]. Date – [next month]. Audience – partners and clients.\nOUTPUT: Official invitation text, 1 page, formal tone.\n\nFORMAL AGREEMENT\nMETA: You are a legal specialist. Goal – draft an agreement.\nINPUT: Product – [enter product]. Parties – seller and client. Constraints – 1–2 pages.\nOUTPUT: Formal agreement with sections: parties, subject, price, terms. Legal tone.\n\nJOB POSTING\nMETA: You are an HR specialist. Goal – attract candidates.\nINPUT: Position – [enter position]. Company – [enter company]. Benefits – flexible schedule, team.\nOUTPUT: Job posting, 150–200 words, enthusiastic and engaging tone.",
-                "blockVariant": "brand",
+                "heading": "In short",
+                "body": "Two practice packs: style texts and customer email replies. Pick one prompt below, copy, and run AI.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do it now",
+                "body": "Expand one block below, copy the prompt, replace [enter…] fields, and run AI. One Copy = one run.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Official invitation",
+                "body": "Copy, replace [enter…] fields, and run AI.",
+                "copyable": "META: You are a business communications specialist. Goal – prepare an invitation.\nINPUT: Event – [your business event]. Date – [next month]. Audience – partners and clients.\nOUTPUT: Official invitation text, 1 page, formal tone.",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "2. Replies to customer emails",
-                "body": "Polite, professional, respectful – three different tones. Expand and choose the situation.",
-                "copyable": "APOLOGY REPLY\nMETA: You are a customer service specialist. Goal – retain the customer.\nINPUT: Situation – customer complains about late delivery. Tone – polite, apologetic.\nOUTPUT: Email reply, 80–120 words, with a concrete solution and apology.\n\nINFORMATIVE REPLY\nMETA: You are a sales manager. Goal – provide information and encourage purchase.\nINPUT: Customer asks about service prices and discounts. Services – [enter services].\nOUTPUT: Professional reply, 100–150 words, with pricing structure and call to action.\n\nRETURNS POLICY\nMETA: You are an e-commerce customer service specialist. Goal – clearly explain the policy.\nINPUT: Customer asks about returns policy. Store – [enter store]. Deadline – 14 days.\nOUTPUT: Respectful reply, 80–120 words, with return steps and conditions.",
-                "blockVariant": "brand",
+                "heading": "Formal agreement",
+                "body": "Copy, replace the product field, and run AI – you get a draft skeleton (not legal advice).",
+                "copyable": "META: You are a business documents assistant. Goal – draft an agreement outline.\nINPUT: Product – [enter product]. Parties – seller and client. Constraints – 1–2 pages.\nOUTPUT: Formal agreement with sections: parties, subject, price, terms. Legal tone. Note: this is a draft, not legal advice.",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "Adapt to your business",
-                "body": "Copy any prompt and run it in AI – you'll get text in the chosen style. Then change [enter product] or context to fit your needs.",
+                "heading": "Job posting",
+                "body": "Copy, replace position and company, and run AI.",
+                "copyable": "META: You are an HR specialist. Goal – attract candidates.\nINPUT: Position – [enter position]. Company – [enter company]. Benefits – flexible schedule, team.\nOUTPUT: Job posting, 150–200 words, enthusiastic and engaging tone.",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Apology reply",
+                "body": "Copy and run AI – polite reply about late delivery.",
+                "copyable": "META: You are a customer service specialist. Goal – retain the customer.\nINPUT: Situation – customer complains about late delivery. Tone – polite, apologetic.\nOUTPUT: Email reply, 80–120 words, with a concrete solution and apology.",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Informative reply",
+                "body": "Copy, enter services, and run AI.",
+                "copyable": "META: You are a sales manager. Goal – provide information and encourage purchase.\nINPUT: Customer asks about service prices and discounts. Services – [enter services].\nOUTPUT: Professional reply, 100–150 words, with pricing structure and call to action.",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Returns policy",
+                "body": "Copy, enter the store name, and run AI.",
+                "copyable": "META: You are an e-commerce customer service specialist. Goal – clearly explain the policy.\nINPUT: Customer asks about returns policy. Store – [enter store]. Deadline – 14 days.\nOUTPUT: Respectful reply, 80–120 words, with return steps and conditions.",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Check",
+                "body": "Did you run at least one prompt and replace [enter…] with your context? If not – go back to Do it now.",
                 "blockVariant": "accent"
               }
             ]
@@ -1521,9 +1557,9 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for an executive strategy report",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "templateLabel": "View full example",
-            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTemperature: 0.3 (factual tone), Format: business document",
+            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTone: factual. Format: business document",
             "explanation": "A strategy report requires decision logic, summaries, and clear recommendations.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1553,8 +1589,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Specify analysis and prioritisation logic",
-                  "hint": "CoT: 1) KPI summary, 2) Risk assessment, 3) Priority recommendations.",
-                  "partialSolution": "REASONING (CoT):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations"
+                  "hint": "Steps: 1) KPI summary, 2) Risk assessment, 3) Priority recommendations.",
+                  "partialSolution": "REASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations"
                 },
                 {
                   "step": 5,
@@ -1565,10 +1601,10 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Model parameters",
-                  "hint": "Temperature: 0.3 (factual tone).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (factual tone), Format: business document"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: factual. Format: business document.",
+                  "partialSolution": "ADVANCED:\nTone: factual. Format: business document"
                 }
               ]
             }
@@ -1591,7 +1627,7 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for sales analysis and action plan",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "explanation": "Sales analysis needs number interpretation and concrete actions with deadlines.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1621,8 +1657,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Specify how AI should think before creating the plan",
-                  "hint": "Use CoT (Chain of Thought) – one logical sequence. 1) Analyse Q4 results, 2) Assess competitor threat, 3) Set Q1 goals, 4) Formulate strategy.",
-                  "partialSolution": "REASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation"
+                  "hint": "Use step by step (Chain of Thought) – one logical sequence. 1) Analyse Q4 results, 2) Assess competitor threat, 3) Set Q1 goals, 4) Formulate strategy.",
+                  "partialSolution": "REASONING (step by step):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority"
                 },
                 {
                   "step": 5,
@@ -1633,15 +1669,15 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Choose model parameters (if needed)",
-                  "hint": "Temperature: 0.4–0.5 (strategic but creative). Reasoning: normal or extended.",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (strategic thinking with creativity)\nReasoning: extended (deeper analysis needed)\nFormat: structured business document"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: factual, analytical. Format: structured sales analysis.",
+                  "partialSolution": "ADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
                 }
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions.\n\nINPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment.\n\nOUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone.\n\nREASONING (CoT):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n4) Formulate a concrete action plan with KPI and budget allocation\n\nQUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)\n\nADVANCED:\nTemperature: 0.4 (strategic thinking with creativity)\nReasoning: extended (deeper analysis needed)\nFormat: structured business document"
+            "template": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions.\n\nINPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment.\n\nOUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone.\n\nREASONING (step by step):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n\nQUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)\n\nADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
           },
           "content": {
             "footer": "Next – slide 5: Scenario 3: Marketing campaign plan"
@@ -1661,7 +1697,7 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for a marketing campaign plan",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "explanation": "For a marketing campaign, focus on: audience, channels, KPI, and how you'll measure results.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1691,8 +1727,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Specify how AI should think before creating the analysis",
-                  "hint": "Use CoT (Chain of Thought). 1) Analyse problem areas, 2) Assess causes, 3) Formulate solutions, 4) Allocate budget.",
-                  "partialSolution": "REASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions for each problem area\n4) Allocate budget (50k EUR) by priority and expected impact"
+                  "hint": "Use step by step (Chain of Thought). 1) Analyse problem areas, 2) Assess causes, 3) Formulate solutions, 4) Allocate budget.",
+                  "partialSolution": "REASONING (step by step):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions for each problem area"
                 },
                 {
                   "step": 5,
@@ -1703,15 +1739,15 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Choose model parameters (if needed)",
-                  "hint": "Temperature: 0.3–0.4 (sensitive but professional). Reasoning: extended (deeper analysis).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.3 (sensitive, professional tone)\nReasoning: extended (deeper analysis and empathy)\nFormat: structured HR document with visuals"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: strategic with creativity. Format: structured marketing document.",
+                  "partialSolution": "ADVANCED:\nTone: strategic with creativity.\nFormat: structured marketing document"
                 }
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan.\n\nINPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone.\n\nREASONING (CoT):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions per problem area\n4) Allocate budget (50k EUR) by priority and expected impact\n\nQUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)\n\nADVANCED:\nTemperature: 0.3 (sensitive, professional tone)\nReasoning: extended (deeper analysis and empathy)\nFormat: structured HR document with visuals"
+            "template": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan.\n\nINPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone.\n\nREASONING (step by step):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions per problem area\n\nQUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)\n\nADVANCED:\nTone: strategic with creativity.\nFormat: structured marketing document"
           },
           "content": {
             "footer": "Next – slide 6: Scenario 4: Internal comms document"
@@ -1731,7 +1767,7 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for an internal comms document",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "explanation": "For internal comms, focus on: tone, clarity, reducing resistance, and a Q&A section.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1761,8 +1797,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Tone, clarity, reducing resistance",
-                  "hint": "CoT: 1) Explain clearly, 2) Address fears, 3) What staff need to know.",
-                  "partialSolution": "REASONING (CoT):\n1) Explain the changes as clearly as possible\n2) Address fears (\"Will we lose our jobs?\" etc.)\n3) Give concrete next steps and Q&A"
+                  "hint": "Steps: 1) Explain clearly, 2) Address fears, 3) What staff need to know.",
+                  "partialSolution": "REASONING (step by step):\n1) Explain the changes as clearly as possible\n2) Address fears (\"Will we lose our jobs?\" etc.)\n3) Give concrete next steps and Q&A"
                 },
                 {
                   "step": 5,
@@ -1773,15 +1809,15 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Model parameters",
-                  "hint": "Temperature: 0.4 (empathetic but professional).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.4 (empathetic tone), Format: internal message"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: empathetic, professional. Format: internal announcement.",
+                  "partialSolution": "ADVANCED:\nTone: empathetic, professional. Format: internal announcement"
                 }
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about the CRM change, reducing worry.\n\nINPUT:\nCompany moving to new CRM. Changes in 6 weeks. 120 staff – training. Most common question: \"Will we lose our jobs?\" Constraints: 3 days, max 500 words.\n\nOUTPUT:\nFormat: Internal message (300–500 words). Structure: 1) What's changing, 2) Why, 3) When and what to do, 4) Q&A. Tone: caring, clear.\n\nREASONING: 1) Explain clearly, 2) Address fears, 3) Q&A section.\n\nQUALITY: ✓ Caring tone ✓ Q&A included ✓ 300–500 words\n\nADVANCED: Temperature: 0.4, Format: internal message"
+            "template": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about the CRM change, reducing worry.\n\nINPUT:\nCompany moving to new CRM. Changes in 6 weeks. 120 staff – training. Most common question: \"Will we lose our jobs?\" Constraints: 3 days, max 500 words.\n\nOUTPUT:\nFormat: Internal message (300–500 words). Structure: 1) What's changing, 2) Why, 3) When and what to do, 4) Q&A. Tone: caring, clear.\n\nREASONING: 1) Explain clearly, 2) Address fears, 3) Q&A section.\n\nQUALITY: ✓ Caring tone ✓ Q&A included ✓ 300–500 words\n\nADVANCED: Tone: empathetic, professional. Format: internal announcement"
           },
           "content": {
             "footer": "Next – slide 7: Scenario 5: People decisions analysis"
@@ -1801,7 +1837,7 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for people decisions analysis",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "explanation": "People analysis needs data interpretation, priorities, and realistic decisions.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1831,8 +1867,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Data interpretation, priorities",
-                  "hint": "CoT: 1) Analyse problems, 2) Assess causes, 3) Formulate solutions.",
-                  "partialSolution": "REASONING (CoT):\n1) Analyse problem areas and causes\n2) Formulate concrete solutions\n3) Allocate budget by priority"
+                  "hint": "Steps: 1) Analyse problems, 2) Assess causes, 3) Formulate solutions.",
+                  "partialSolution": "REASONING (step by step):\n1) Analyse problem areas and causes\n2) Formulate concrete solutions\n3) Allocate budget by priority"
                 },
                 {
                   "step": 5,
@@ -1843,15 +1879,15 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Model parameters",
-                  "hint": "Temperature: 0.3 (sensitive, professional).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.3, Format: HR report"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: sensitive, professional. Format: HR report.",
+                  "partialSolution": "ADVANCED:\nTone: sensitive, professional. Format: HR report"
                 }
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individuals.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Temperature: 0.3, Format: HR report"
+            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individuals.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Tone: sensitive, professional. Format: HR report"
           },
           "content": {
             "footer": "Next – slide 8: Scenario 6: Customer complaint handling"
@@ -1871,7 +1907,7 @@
           },
           "practicalTask": {
             "title": "Create a full prompt for customer complaint handling",
-            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Parameters...",
+            "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "explanation": "Complaint handling needs empathy, accountability, and a clear structure for the response.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1901,8 +1937,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Empathy, accountability, response structure",
-                  "hint": "CoT: 1) Acknowledge the problem, 2) Offer solution, 3) Internal plan.",
-                  "partialSolution": "REASONING (CoT):\n1) Acknowledge the problem and respond with empathy\n2) Give the customer a concrete solution\n3) Formulate internal action plan (3–5 points)"
+                  "hint": "Steps: 1) Acknowledge the problem, 2) Offer solution, 3) Internal plan.",
+                  "partialSolution": "REASONING (step by step):\n1) Acknowledge the problem and respond with empathy\n2) Give the customer a concrete solution\n3) Formulate internal action plan (3–5 points)"
                 },
                 {
                   "step": 5,
@@ -1913,15 +1949,15 @@
                 },
                 {
                   "step": 6,
-                  "title": "ADVANCED block – Set parameters",
-                  "description": "Model parameters",
-                  "hint": "Temperature: 0.4 (empathetic but controlled).",
-                  "partialSolution": "ADVANCED:\nTemperature: 0.4, Format: customer service document"
+                  "title": "ADVANCED block – Set tone and format",
+                  "description": "Set tone and format (no API parameters)",
+                  "hint": "Tone: empathetic, controlled. Format: customer service document.",
+                  "partialSolution": "ADVANCED:\nTone: empathetic, controlled. Format: customer service document"
                 }
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are a customer service lead. Your goal is to prepare an empathetic reply to the customer and an internal action plan.\n\nINPUT:\nComplaint: 2-week delay, unclear communication. Customer: B2B, 3 years. Reputational risk. Constraints: 24 hours, empathetic tone.\n\nOUTPUT:\nFormat: 1) Email to customer, 2) Internal plan 3–5 points. Language: English.\n\nREASONING: 1) Acknowledge problem, 2) Offer solution, 3) Internal plan.\n\nQUALITY: ✓ Empathy ✓ Accountability ✓ Concrete actions\n\nADVANCED: Temperature: 0.4, Format: customer service"
+            "template": "META:\nYou are a customer service lead. Your goal is to prepare an empathetic reply to the customer and an internal action plan.\n\nINPUT:\nComplaint: 2-week delay, unclear communication. Customer: B2B, 3 years. Reputational risk. Constraints: 24 hours, empathetic tone.\n\nOUTPUT:\nFormat: 1) Email to customer, 2) Internal plan 3–5 points. Language: English.\n\nREASONING: 1) Acknowledge problem, 2) Offer solution, 3) Internal plan.\n\nQUALITY: ✓ Empathy ✓ Accountability ✓ Concrete actions\n\nADVANCED: Tone: empathetic, controlled. Format: customer service"
           },
           "content": {
             "footer": "Next – slide 9: Practice summary"

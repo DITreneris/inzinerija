@@ -1,7 +1,8 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-07-24 (Docs Lean DL-2)  
-> **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.
+> **Atnaujinta:** 2026-07-26 (turinio ambicijos flip)  
+> **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.  
+> **Open P0** = mokymosi kokybė (`TODO.md` §1); MON / marketing – ne lean branduolys.
 
 ---
 
@@ -37,18 +38,18 @@
 
 ### Procesas ir agentai
 
-| Failas                                                 | Paskirtis              |
-| ------------------------------------------------------ | ---------------------- |
-| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline     |
-| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA           |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba         |
-| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika             |
-| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos    |
-| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay         |
-| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y            |
-| `AGENTS.md`                                            | Agentų žemėlapis       |
-| `TODO.md` §1                                           | **Open** P0/P1 only    |
-| `ROADMAP.md`                                           | Open gaps + deploy/MON |
+| Failas                                                 | Paskirtis                         |
+| ------------------------------------------------------ | --------------------------------- |
+| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline                |
+| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA                      |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba                    |
+| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika                        |
+| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos               |
+| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay                    |
+| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y                       |
+| `AGENTS.md`                                            | Agentų žemėlapis                  |
+| `TODO.md` §1                                           | **Open** P0/P1 (mokymosi/turinys) |
+| `ROADMAP.md`                                           | Open gaps + turinio plėtra        |
 
 ---
 
@@ -57,8 +58,10 @@
 - **M13–15 SOT / eilės:** `turinio_pletra_moduliai_13_14_15.md`, `MODULIO_13_SKAIDRIU_EILES.md`
 - **Skaidrių eilės:** `MODULIO_*_SKAIDRIU_EILES.md` – tik kai liečia tą modulį
 - **M7–9 polish:** `M79_PATCH_REGISTRY.md`, `07_08_09_backlog.md`
+- **Pedagogika:** `PEDAGOGINES_IZVALGOS_ROADMAP.md`
 - **Portal M4/53.5:** `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`
 - **PDF:** `PDF_DOWNLOAD_TESTING.md`, `PDF_GENERATION_AGENT_MEMORY.md`
+- **Marketing handoff (ne P0):** `docs/deployment/MON_P0_EXECUTION_PLAN.md`
 - **Reference (ne SOT):** `PEDAGOGINE_ANALIZE_*`, `SKAIDRIU_TIPU_ANALIZE.md` – INDEX
 - **Archyvas:** `docs/archive/` – Done TODO snapshot, frozen PLAN/AUDIT
 - **Pilnas katalogas:** `DOCUMENTATION_INDEX.md` §2–4

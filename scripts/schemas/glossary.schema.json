@@ -12,8 +12,18 @@
         "properties": {
           "term": { "type": "string" },
           "definition": { "type": "string" },
-          "moduleId": { "type": "number" }
-        }
+          "moduleId": { "type": "number" },
+          "unlockedBy": {
+            "type": "object",
+            "required": ["moduleId", "slideId"],
+            "properties": {
+              "moduleId": { "type": "number" },
+              "slideId": { "type": "number" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
       }
     }
   }

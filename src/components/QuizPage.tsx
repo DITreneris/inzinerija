@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 import { Progress } from '../utils/progress';
@@ -32,6 +32,7 @@ export default function QuizPage({
   const { t } = useTranslation(['quiz', 'common']);
   const { locale } = useLocale();
   const modulesData = getModulesDataSync(locale);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const questions = useMemo(() => {
     if (!modulesData?.quiz.questions) return [];
@@ -106,8 +107,57 @@ export default function QuizPage({
         firstWrongIndex={firstWrongIndex}
         onRestart={handleRestart}
         onBack={onBack}
+        completedModulesCount={progress.completedModules.length}
         quizContext="m2"
       />
+    );
+  }
+
+  if (!hasStarted) {
+    const readyAfterM3 = progress.completedModules.includes(3);
+    return (
+      <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+          aria-label={t('backToHomeAria')}
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>{t('backToHome')}</span>
+        </button>
+        <Card className="p-4 sm:p-6 lg:p-10">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('title')}
+          </h1>
+          <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">
+            {t('introWhy')}
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+            {t('introVsModuleTest')}
+          </p>
+          <p
+            className={`text-sm mb-3 ${
+              readyAfterM3
+                ? 'text-emerald-700 dark:text-emerald-300 font-medium'
+                : 'text-gray-600 dark:text-gray-400'
+            }`}
+          >
+            {readyAfterM3 ? t('introWhenReady') : t('introWhenLater')}
+          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+            {t('introThreshold')}
+          </p>
+          <CTAButton
+            variant="primary"
+            onClick={() => setHasStarted(true)}
+            className="w-full sm:w-auto"
+            aria-label={t('introStartAria')}
+          >
+            {t('introStart')}
+            <ArrowRight className="w-5 h-5" />
+          </CTAButton>
+        </Card>
+      </div>
     );
   }
 

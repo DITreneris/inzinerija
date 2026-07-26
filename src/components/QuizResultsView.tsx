@@ -22,6 +22,8 @@ export interface QuizResultsViewProps {
   firstWrongIndex: number;
   onRestart: () => void;
   onBack: () => void;
+  /** Baigtų modulių skaičius – Tier 2 hint kai ≥6 ir score ≥70 %. */
+  completedModulesCount?: number;
   /** Standalone quiz (M2 bank): Deepen spin-off when score &lt; 70 %. */
   quizContext?: 'm2';
 }
@@ -33,6 +35,7 @@ export function QuizResultsView({
   firstWrongIndex,
   onRestart,
   onBack,
+  completedModulesCount = 0,
   quizContext,
 }: QuizResultsViewProps) {
   const { t } = useTranslation('quiz');
@@ -86,6 +89,7 @@ export function QuizResultsView({
 
   const passed = score >= 70;
   const showDeepenSpinoff = quizContext === 'm2' && !passed;
+  const showTier2Hint = passed && completedModulesCount >= 6;
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
@@ -109,6 +113,19 @@ export function QuizResultsView({
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           {passed ? t('resultsTitlePass') : t('resultsTitleFail')}
         </h2>
+        <p className="text-base text-gray-600 dark:text-gray-400 mb-2 max-w-xl mx-auto">
+          {passed ? t('resultsReadyBody') : t('resultsNotReadyBody')}
+        </p>
+        {!passed && (
+          <p className="text-sm text-amber-800 dark:text-amber-200 mb-4 max-w-xl mx-auto">
+            {t('resultsRemediation')}
+          </p>
+        )}
+        {showTier2Hint && (
+          <p className="text-sm text-brand-700 dark:text-brand-300 mb-4 max-w-xl mx-auto font-medium">
+            {t('resultsTier2Hint')}
+          </p>
+        )}
 
         <div className="my-8">
           <CircularProgress
@@ -215,7 +232,7 @@ export function QuizResultsView({
             {t('btnRestart')}
           </CTAButton>
           <CTAButton variant="primary" onClick={onBack}>
-            {t('btnBack')}
+            {t('resultsContinueModules')}
             <ArrowRight className="w-5 h-5" />
           </CTAButton>
         </div>

@@ -17,7 +17,7 @@
 | Žinių testas + vienas projektas (M4–M6)                        | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
 | Learn → Test → Practice                                        | Ta pati seka, auditorija: analitikai                         |
 
-**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys: **M4 skaidrė id 61** (optional, 4.2a-academic) ir **M7 skaidrė id 71.35** (optional, po kelio žingsnio 71.3) – ta pati atmintinė; M4 = RAG kontekstas, M7 = Duomenų analizės kelias.
+**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys: **M4 skaidrė id 61** (optional, 4.2a-academic) ir **M7 skaidrė id 71.35** (optional, po kelio žingsnio 71.3) – ta pati sprendimo atmintinė (`toolChoiceBar` + „Kada ką?“ + tipinė eiga); M4 = RAG kontekstas, M7 = Duomenų analizės kelias.
 
 ### 1.2 Mokymosi tikslai (po modulių 7–9)
 
@@ -251,10 +251,11 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 **Operacinis polish (2026-07-15) – ne pilnas turinio rewrite:** UX iteracijos fiksuojamos operaciniame SOT: [`docs/development/TEST_REPORT.md`](development/TEST_REPORT.md) §P2, [`docs/development/M79_PATCH_REGISTRY.md`](development/M79_PATCH_REGISTRY.md), [`docs/development/07_08_09_backlog.md`](development/07_08_09_backlog.md) §12. Santrauka:
 
 - M7 etika (sk. 67, 67.5, 67.8, 67.3, 68): collapsible, dedup, Patikra
+- **M7 sk. 67.8 (2026-07-25):** lentelės FAKTAI vs SPĖJIMAI + Kodėl + 4 kontrolės lygiai; `preCopyCheckBlock` prieš copy; 5 taisyklės + anti-šablonas hero (ne plain-text siena)
 - **M7 sk. 67 (2026-07-15):** interaktyvus UX – `toolChoiceBar` (3 tipai) + `linkedRowIndex` (blogas/geras promptas) + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` santrauka + „Verslas vs saugumas“ (jailbreak → sk. 67.5); subtitle be jailbreak; micro-win visiems fokusams (ne tik `etika-plus` → 67.3)
 - Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
 - M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99
-- Optional šakos + sk. 200 dashboard intro (UI komponentas)
+- Optional šakos + sk. 200: intro → Vectara chart → Išvada → LT/EN Copy tyrimo promptas (`HallucinationRatesDashboard`)
 
 ---
 
@@ -604,19 +605,22 @@ Lietuva daugelyje organizacijų vis dar atsilieka: dominuoja intuicija, „taip 
 ```
 Mūsų įmonėje sprendimai dažnai grindžiami intuicija.
 
+Remkis Deming logika: tobulinti sistemą (ne kaltinti žmones);
+skirti signalą nuo triukšmo; matuoti prieš spėjant.
+
 Sukurk:
 1. 5 žingsnių planą perėjimui prie duomenimis grįstos kultūros
-2. KPI sistemą (ką matuoti, kaip sekti)
+2. Pagrindinių rodiklių sistemą (ką matuoti, kaip sekti)
 3. Vadovų elgesio pokyčių gaires (pavyzdžiai: „prašyti duomenų prieš sprendimą“, „ne spėti – matuoti“)
 ```
 
-_Skaidrėje – 5 sekcijos: Griežta teorija, Kodėl pagrindas, Kontekstas Lietuva, Citata, Promptas vadovybei (CopyButton)._
+_Runtime (sk. 97, GOLDEN content-block lukštas): matoma teorija prieš Copy – Trumpai (kas Deming) → Keturi principai (kanonas su sk. 72 body: duomenys > nuomonė; variacija; tobulinti sistemą; analizė → sprendimui) → Daryk → Copy → Patikra → collapsible (LT kontekstas, citata, PDCA). Teorija **ne** tik collapsible. Sk. 72 collapsible 5 punktų rėmas lieka tik 72._
 
 ---
 
 ## 7A. Duomenų vizualizacija ir data storytelling (DA_4)
 
-**Implementacija:** Skaidrės 100–106 (DA_4) modulyje 7 pažymėtos kaip **optional** – dalyvis gali praleisti (Fast track) arba peržiūrėti. Prieš jas įterpiama `section-break` skaidrė **99.9 „Papildomas blokas: vizualizacija ir data storytelling“**, kad vartotojas aiškiai matytų: branduolys baigtas, vizualizacija – papildoma šaka. Pilnas vizualizacijos ir data storytelling turinys planuojamas **Moduliuose 16–18** (Duomenų inžinerijos kelias). Nuoroda: „Vizualizacija – Moduliuose 16–18“. **Įgyvendinta JSON (2026-06-30):** skaidrės 100, 101, 104, 106 išplėstos iki pilnų 4+ blokų su CopyButton; 103 papildyta „Kodėl čia?“ įžanga; 100 naudoja interaktyvią React schemą `m7_data_story_cycle`. **Papildyta 2026-07:** 99.9 section-break + santraukos tekstas apie optional vizualizacijos šaką.
+**Implementacija:** Skaidrės 100–106 (DA_4) modulyje 7 pažymėtos kaip **optional** – dalyvis gali praleisti (Fast track) arba peržiūrėti. Prieš jas įterpiama `section-break` skaidrė **99.9 „Papildomas blokas: vizualizacija ir data storytelling“**, kad vartotojas aiškiai matytų: branduolys baigtas, vizualizacija – papildoma šaka. Pilnas vizualizacijos ir data storytelling turinys planuojamas **Moduliuose 16–18** (Kodo inžinerijos kelias / vibe-coding). Nuoroda: „Vizualizacija – Moduliuose 16–18“. **Įgyvendinta JSON (2026-06-30):** skaidrės 100, 101, 104, 106 išplėstos iki pilnų 4+ blokų su CopyButton; 103 papildyta „Kodėl čia?“ įžanga; 100 naudoja interaktyvią React schemą `m7_data_story_cycle`. **Papildyta 2026-07:** 99.9 section-break + santraukos tekstas apie optional vizualizacijos šaką.
 
 **Pozicionavimas:** Tai nėra techninis kursas apie grafikus. Tai **data storytelling + DI asistavimo įvadas**, skirtas: parodyti, kodėl vizualizacija veikia (psichologija); parodyti, kaip DI gali padėti; pateikti alternatyvius DI įrankius; parodyti verslo kontekstą. **Esminė mintis:** vizualizacija nėra tik grafikas – tai **istorijos dalis**. Vizualizacija = sprendimų įrankis; DI = greičio katalizatorius.
 
@@ -790,7 +794,7 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 | **7.21**     | **DI agentų koncepcija**                                | Data Research Agent, EDA Agent, Insight Agent – 3 kortelės.                                                                                                                                                                  | —              |
 | **7.22**     | **Screenshot analizė**                                  | Ką DI gali iš nuotraukos; CopyButton: sisteminis promptas (elementai, problemos, optimizacijos, prioritetas).                                                                                                                | —              |
 | **7.23**     | **Schema paaiškinimo metodas**                          | CopyButton: entitetai, ryšiai, normalizavimas, optimizavimas.                                                                                                                                                                | INPUT          |
-| **7.24**     | **Deming ir duomenimis grįsta kultūra**                 | Citata; CopyButton: promptas vadovybei (5 žingsniai, KPI, vadovų elgesio gairės).                                                                                                                                            | Governance     |
+| **7.24**     | **Deming ir duomenimis grįsta kultūra**                 | Kas Deming + 4 principai (matoma); CopyButton vadovybei (5 žingsniai, rodikliai, elgesio gairės + Deming logika); collapsible PDCA/LT/citata.                                                                                | Governance     |
 | **7.25**     | **Silpnosios vietos – ką pridėti**                      | Modeliai, realūs pavyzdžiai, automatizavimas, validacijos metodika (optional / collapsible).                                                                                                                                 | —              |
 | **7.26**     | **MASTER PROMPTAS**                                     | Galutinis 8 žingsnių promptas (šaltiniai → struktūra → valymas → EDA → vizualizacijos → įžvalgos → prognozės → rekomendacijos); CopyButton; M9 šablonas.                                                                     | META, OUTPUT   |
 | **7.26-w1**  | **Savitikra: MASTER PROMPTAS**                          | Warm-up-quiz po 7.26: 3 klausimai apie 8 žingsnių pilnos analizės šabloną, `[X]` temos pakeitimą ir skirtumą nuo vieno pipeline etapo prompto. Tai paskutinė branduolio patikra prieš M7 santrauką.                          | M8, M9         |
@@ -930,7 +934,7 @@ Jei bent 2 „ne“ → grįžk į lentelę viršuje, pasirink teisingą grupę.
 - **M8 testas nepavyko (`<70%`):** UI deepen → blog `rag-in-production`; vidinė remediation lieka `TestRemediationChips` → M7 skaidrės.
 - **M9 ModuleComplete:** secondary links – blog `ai-workflow-canvas-template`, `promptanatomy.pro`, `promptanatomy.site#ecosystem`.
 
-**Blokas „Patikrumas ir etika“ (perkeltas iš Modulio 4):** Po skaidrės 891 (Duomenų paruošimas ir workflow) įterptas blokas: 891.5 (Savitikra: Duomenų paruošimas), 66.9 (section-break), 67 (Promptų manipuliacijos), 67.3 (Praktika: pataisyk šališką promptą), 67.5 (Saugumas: prompt injection ir jailbreak), 67.7 (Haliucinacijų mažinimo grandinė – vizuali 5 etapų schema + hook į 67.8 anti-haliucinacinį šabloną, tipas `hallucination-pipeline`; shortTitle „5 etapų patikimumas“; CoVe ≠ ši schema – CoVe yra „Savęs patikra“ 67.8), 67.8 (Haliucinacijos), 68 (Žinių patikrinimas), 200 (Haliucinacijų rodikliai), 201 (DI turinio detektoriai), 68.5 (Savitikra). Tematika atitinka duomenų/turinio patikimumą analizėje. 68.5 yra branduolio savitikra – ji neturi `pathBranch` ir nėra optional, todėl ją mato visi M7 fokusai. Žr. [MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
+**Blokas „Patikrumas ir etika“ (perkeltas iš Modulio 4):** Po skaidrės 891 (Duomenų paruošimas ir workflow) įterptas blokas: 891.5 (Savitikra: Duomenų paruošimas), 66.9 (section-break), 67 (Promptų manipuliacijos), 67.3 (Praktika: pataisyk šališką promptą), 67.5 (Saugumas: prompt injection ir jailbreak), 67.7 (Haliucinacijų mažinimo grandinė – vizuali 5 etapų schema + hook į 67.8 anti-haliucinacinį šabloną, tipas `hallucination-pipeline`; shortTitle „5 etapų patikimumas“; CoVe ≠ ši schema – CoVe yra „Savęs patikra“ 67.8), 67.8 (Haliucinacijos – FAKTAI/SPĖJIMAI + 4 lygiai lentelės, `preCopyCheckBlock`, 5 taisyklės + anti-šablonas), 68 (Žinių patikrinimas), 200 (Haliucinacijų rodikliai – Vectara chart + Išvada + learner Copy promptas), 201 (DI turinio detektoriai), 68.5 (Savitikra). Tematika atitinka duomenų/turinio patikimumą analizėje. 68.5 yra branduolio savitikra – ji neturi `pathBranch` ir nėra optional, todėl ją mato visi M7 fokusai. Žr. [MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
 
 **Sk. 67.5 (Saugumas) – GOLDEN §3.2 praktika (2026-07-24):** Linijinė veiksmo skaidrė (be `toolChoiceBar`): Trumpai → Daryk → scenarijus (kliento laiškas su slapta instrukcija – rodyti, ne copyable CTA) → Jailbreak signalas (atpažinti) → **vienas copyable gynybos šablonas** (sistemos instrukcijos atskirtos nuo duomenų; DI nevykdo instrukcijų iš laiško/CSV) → OWASP collapsible → Patikra (2 punktai). Takoskyra: promptų manipuliacija (etika, sk. 67/67.3) ≠ promptų injekcija / jailbreak (saugumas). Žodynas: „Promptų injekcija (Prompt injection)“, atnaujintas „Jailbreak“.
 
@@ -948,7 +952,7 @@ Jei bent 2 „ne“ → grįžk į lentelę viršuje, pasirink teisingą grupę.
 | 4        | 4× tyrimų sintetinimas ir RAG                 | Po 7.26 (MASTER PROMPTAS)                                 | Sintetinimas, Duomenų valymas      |
 | 5        | Duomenų masyvas ir atvaizdavimas              | Prieš 7.27 (santrauka) arba M9 kontekste                  | Vizualizacija, Dashboard           |
 
-**Turinio schema path-step:** `title`, `stepNumber`, `body` arba `sections`, `unlockedGlossaryTerms` (terminų pavadinimų masyvas – šie terminai žodynėlyje atrakinti po žingsnio užbaigimo). Sąveika: vartotojas paspaudžia „Pažymėjau kaip atliktą“ → įrašas į progresą (`completedTasks[moduleId]`) → žodynėlyje terminai iš `unlockedGlossaryTerms` laikomi atrakintais. Žodynėlio terminai su optional `unlockedBy: { moduleId, slideId }` rodomi kaip užrakinti, kol atitinkamas path-step neužbaigtas (GOLDEN_STANDARD §path-step; implementacija – CODING_AGENT, DATA_AGENT).
+**Turinio schema path-step:** `title`, `stepNumber`, `body` arba `sections`, `unlockedGlossaryTerms` (terminų pavadinimų masyvas – kelio atlygio copy skaidrėje po „Pažymėjau kaip atliktą“). Sąveika: vartotojas paspaudžia „Pažymėjau kaip atliktą“ → įrašas į progresą (`completedTasks[moduleId]`); skaidrėje rodomas atlygis. `glossary.json` laukas `unlockedBy` – path-step metadata. **Žodynėlio puslapis** apibrėžimus rodo visada (GOLDEN_STANDARD §3.4d; ne teaser-lock).
 
 **Skaidrių eilė:** Žr. [docs/MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md) – path-step id (pvz. 71.1–71.5) įterpti tarp esamų M7 skaidrių; footeriai perskaičiuoti pagal footer-slide-numbers.mdc.
 
@@ -1594,6 +1598,8 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 
 ## 11. Žodynėlis (Modulis 7) – optional skaidrė arba collapsible
 
+> **JSON SOT (2026-07-26):** terminai `glossary.json` / `glossary-en.json` (`moduleId` 7). Kanoninis pipeline vardas JSON’e – **Duomenų analizės pipeline** (ne „Pipeline (duomenų analizės)“). **MASTER PROMPTAS** (M7, 8 žingsnių DA) ≠ **Master promptas** (M4 personalizacija).
+
 | Terminas                                           | Apibrėžimas (vienas sakinys)                                                                                                                                       |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Duomenų analizė**                                | Rinkimas, tvarkymas ir interpretavimas duomenų siekiant priimti sprendimus – suprasti praeitį, įvertinti dabartį, prognozuoti ateitį.                              |
@@ -1619,3 +1625,30 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 | **Būtina / Svarbu / Norima / Ne dabar (MoSCoW)**   | Prioritetų sistema: skirstyti užduotis ar idėjas į 4 grupes pagal svarbą ir skubą.                                                                                 |
 | **Greiti laimėjimai (Low-hanging fruit)**          | Galimybės, kurios reikalauja mažai pastangų ir kainos, bet duoda greitą, matomą rezultatą.                                                                         |
 | **Testuok / Investuok / Atmesk (Kiss-Marry-Kill)** | Sprendimas apie variantus (produktus, kanalus, idėjas): kurį tik testuoti, kurį rimtai plėtoti, kurio atsisakyti.                                                  |
+
+### 11.1 Žodynėlis (Modulis 8) – kelio testas
+
+| Terminas (LT)                | Apibrėžimas (santrauka)                                                             |
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| **Kelio testas**             | Trumpas įvertinimas po DA kelio teorijos prieš M9 (≥70% – žalias signalas).         |
+| **Pasiruošimo savitikra**    | Apšilimo klausimai prieš įskaitinį testą (be balo spaudimo).                        |
+| **Pilnas analizės šablonas** | 8 žingsnių modelis vienai temai; skiriasi nuo 6 žingsnių pipeline.                  |
+| **Bonus praktika**           | Neprivaloma Copy→Patikra po testo (801/802).                                        |
+| **Vizualizacijos rizika**    | Klaidinanti interpretacija / netinkamas tipas – įvardink prieš rodydamas vadovybei. |
+
+EN twin’ai: Path test, Warm-up self-check, Full analysis template, Bonus practice, Visualization risk. Bonus skaidrės: `onGoToGlossaryTerm` → Screenshot analysis / Visualization risk.
+
+### 11.2 Žodynėlis (Modulis 9) – projekto praktika
+
+| Terminas (LT)                   | Apibrėžimas (santrauka)                                      |
+| ------------------------------- | ------------------------------------------------------------ |
+| **Šaltinių katalogas**          | Šaltinių sąrašas su trumpu aprašu – projekto startas.        |
+| **Sintetiniai duomenys**        | Dirbtiniai duomenys prototipui, kai tikrų negalima dalintis. |
+| **Socialinių tinklų stebėsena** | Viešų žinučių/reakcijų stebėjimas (temos, sentimentas).      |
+| **Konkurentų analizė**          | Struktūruotas konkurentų palyginimas su DI.                  |
+| **Nuspėjamoji analizė**         | „Kas gali įvykti?“ – vienas iš 4 analizės tipų.              |
+| **Kombinuotas super promptas**  | Kelių žingsnių/metodų sujungimas viename prompte.            |
+| **Finansų įžvalgos**            | Rodiklių interpretacija sprendimui, ne tik lentelė.          |
+| **Duomenų rinkimas skriptu**    | Automatinis surinkimas (pvz. Python) → CSV/Excel.            |
+
+EN twin’ai: Source catalog, Synthetic data, Social listening, Competitor analysis, Predictive analysis, Combined super prompt, Financial insights, Scripted data collection.

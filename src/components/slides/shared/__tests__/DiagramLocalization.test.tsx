@@ -910,15 +910,23 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expectDarkDiagramBackground(container);
     });
 
-    it('renders M9 workflow with horizontal card layout', () => {
+    it('renders M9 workflow with desktop 2×4 card layout', () => {
       setLocale('lt');
 
       const { container } = renderWithProviders(<M9DataWorkflowBlock />);
 
       expect(container.querySelector('[role="img"]')).toBeTruthy();
       expect(
+        container.querySelector('[data-layout="desktop-2x4"]')
+      ).toBeTruthy();
+      expect(
+        container.querySelector('[data-layout="mobile-stack"]')
+      ).toBeTruthy();
+      expect(
         container.querySelectorAll('[role="button"]').length
       ).toBeGreaterThan(0);
+      expect(container.textContent).toContain('Vaizdai');
+      expect(container.textContent).toContain('Tyrimas');
     });
 
     it.each([

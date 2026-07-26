@@ -180,6 +180,11 @@
       "moduleId": 1
     },
     {
+      "term": "Parametrų laukas",
+      "definition": "Šešių grupių rėmas promptų inžinieriui: sisteminiai, metodiniai, turinio, manipuliacijų, kokybiniai ir techniniai – kur realiai gali daryti įtaką rezultatui.",
+      "moduleId": 4
+    },
+    {
       "term": "Paskatinamasis mokymas",
       "definition": "Lietuviškas RL atitikmuo – DI mokymo metodas, kai sistema mokosi per atlygio ir baudos signalus.",
       "moduleId": 4
@@ -196,7 +201,7 @@
     },
     {
       "term": "Promptas",
-      "definition": "Tekstinė instrukcija ar klausimas, kurį pateikiate DI modeliui, siekdami gauti norimą atsakymą; jūsų komunikacijos su dirbtinio intelekto sistema forma.",
+      "definition": "Tekstinė instrukcija ar klausimas, kurį pateiki DI modeliui, siekdamas gauti norimą atsakymą; tavo komunikacijos su dirbtinio intelekto sistema forma.",
       "moduleId": 1
     },
     {

@@ -19,6 +19,7 @@ import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
 import { BrandMark, Card, CTAButton } from './ui';
+import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
 
 const QUICK_PROMPTS_LT = [
   {
@@ -122,7 +123,10 @@ export default function HomePage({
               <BrandMark variant="hero" />
               <div className="absolute -top-2 -right-2 rounded-xl bg-gold px-2.5 py-1.5 shadow-sm shadow-gold/15 ring-1 ring-white/40">
                 <span className="text-xs font-semibold text-gray-900">
-                  {t('home:durationBadge', { count: totalModules })}
+                  {t('home:durationBadge', {
+                    count: totalModules,
+                    modulesWord: moduleWord(locale, totalModules),
+                  })}
                 </span>
               </div>
             </div>
@@ -170,6 +174,8 @@ export default function HomePage({
               {t('home:progressLabel', {
                 done: modulesCompleted,
                 total: totalModules,
+                modulesWord: moduleWord(locale, modulesCompleted),
+                completedWord: modulesCompletedWord(locale, modulesCompleted),
               })}
             </p>
           )}

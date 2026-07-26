@@ -1,12 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-07-24 | Roadmap v2.9 (Docs Lean)  
-> **App:** 1.4.7 · **Open blokoriai:** MON browser (1/3/5/8) + PDF rankinė QA + MON-4.  
+> **Atnaujinta:** 2026-07-26 | Roadmap v3.0 (turinio ambicijos flip)  
+> **App:** 1.4.7 · **Open blokoriai:** M79 browser smoke + Portal 48h; P1 PDF + M10–12 rankinė UI (chrome turinys ✅). CONTENT §4.6 ✅.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md)  
 > **Open darbai:** [`TODO.md`](TODO.md) §1 (open only).
 
-**Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); Stripe M1–6, magic link M7–9. M10+ – authoring.  
-**Production:** CONDITIONAL GO — automated ✅ (111/720, tag **v1.4.7**); release-ready blokuoja MON browser + PDF.
+**Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
+**Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); M10+ – authoring brandumas šiame repo.  
+**Production:** CONDITIONAL GO — automated ✅ (117/745 Unreleased, tag **v1.4.7**); learning QA blokuoja PDF rankinė + M79 browser smoke (ne monetization-ready).
 
 ---
 
@@ -16,20 +17,37 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring · LT/EN · sert
 
 ### Open gaps
 
-| Sritis            | Kas                                                 | Prioritetas |
-| ----------------- | --------------------------------------------------- | ----------- |
-| **MON / env**     | MON-1…5, MON-8 browser/env; MON-4 PostHog           | P0          |
-| **PDF rankinė**   | M5/M6 (+ release checklist)                         | P1          |
-| **Diagram smoke** | Rankinis light/dark M7–9 (TE registry + RELEASE_QA) | P1          |
-| **GitHub Pages**  | MVP preview `/inzinerija/` – gate policy            | Patikrinti  |
-| **E2E**           | Playwright po MON-\* (vitest gate ✅)               | P1 post-MON |
-| **PC-4.\***       | Practice closer polish backlog                      | P2          |
+| Sritis                | Kas                                                              | Prioritetas  |
+| --------------------- | ---------------------------------------------------------------- | ------------ |
+| **M7–9 kokybė**       | Browser S1–S7 / E1–E6 @375px (CONTENT §4.6 #6–9 ✅)              | P0           |
+| **Portal**            | 48h anti-PPT retest @375px                                       | P0           |
+| **PDF rankinė**       | M5/M6 (+ release checklist §5d) — learning artifact              | P1           |
+| **M10–12 brandumas**  | Chrome turinys ✅; lieka rankinė UI C1–C6 @375px (`TEST_REPORT`) | P1 (browser) |
+| **Diagram smoke**     | Rankinis light/dark M7–9 (TE registry + RELEASE_QA)              | P1           |
+| **PC-4.\***           | Practice closer polish backlog                                   | P2           |
+| **GitHub Pages**      | MVP preview `/inzinerija/` – gate policy                         | Patikrinti   |
+| **Marketing handoff** | MON-1…8, PostHog, CRO — ne šio repo P0                           | Out of scope |
 
 ---
 
-## 2. Pasiruošimas deploy
+## 2. Turinio plėtra M7–15 (pirminis)
 
-### 2.1 Privaloma
+1. **M7–9 kokybė (P0):** browser smoke (CONTENT §4.6 #6–9 ✅ CQ-M79-3) — [`07_08_09_backlog.md`](docs/development/07_08_09_backlog.md); SOT `turinio_pletra_moduliai_7_8_9.md`.
+2. **M10–12 authoring brandumas (P1):** chrome turinys ✅ (M1012-1); lieka rankinė UI C1–C6 @375px (M1012-2). SOT `turinio_pletra_moduliai_10_11_12.md` + `MODULIO_10_SKAIDRIU_EILES.md`.
+3. **M13–15 authoring:** katalogas OK; pilnas production release – Deferred. SOT `turinio_pletra_moduliai_13_14_15.md`.
+4. **Practice closer:** [`PRACTICE_CLOSER_PLAN.md`](docs/development/PRACTICE_CLOSER_PLAN.md) (PC-4 open).
+5. **Pedagogikos OS:** [`PEDAGOGINES_IZVALGOS_ROADMAP.md`](docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md) — open vykdymas = `TODO.md` §1.
+6. **M16–21 (Deferred):** Kodo inžinerija (16–18, vibe-coding) + DI politikos inžinerija (19–21). Open: `TODO.md` §1.5.
+
+**Etapai:** M7–9 learning QA (P0) → PDF + M10–12 brandumas (P1) → PC-4 / polish (P2).
+
+**Nedaryti dabar:** M10+ premium SaaS diagram redesign; M13–15 pilnas release; M16–21 turinio authoring; backend rewrite; marketing MON kaip šio repo P0.
+
+---
+
+## 3. Pasiruošimas deploy
+
+### 3.1 Privaloma
 
 | #   | Užduotis                                           | Šaltinis      |
 | --- | -------------------------------------------------- | ------------- |
@@ -39,13 +57,13 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring · LT/EN · sert
 | 4   | EN locale smoke                                    | QA            |
 | 5   | Deploy kelias: Pages vs Vercel/monorepo            | DEPLOYMENT.md |
 
-### 2.2 Rekomenduojama
+### 3.2 Rekomenduojama
 
 PDF M5/M6 rankinė · broken links · mobile 375px · docs index nuorodos.
 
 ---
 
-## 3. Deploy
+## 4. Deploy
 
 | Scenarijus           | Env                                            | Rezultatas             |
 | -------------------- | ---------------------------------------------- | ---------------------- |
@@ -57,31 +75,16 @@ CI: push/PR → schema, lint, test, MVP build. Deploy checklist: CI žalias → 
 
 ---
 
-## 4. Post-deploy / MON P0
+## 5. Marketing handoff (out of scope šiame repo)
 
-| #   | Užduotis                         | TODO         |
-| --- | -------------------------------- | ------------ |
-| 1   | PostHog/GA4 production           | MON-4        |
-| 2   | Verify-access smoke              | MON-3        |
-| 3   | Env audit + submodule pin        | MON-1, MON-2 |
-| 4   | Gate regression browser          | MON-5        |
-| 5   | Marketing `build:production` env | MON-8        |
-| 6   | Baseline KPI (po 2–4 sav.)       | MON-7        |
+Nuorodos marketing repo / env darbams (ne open P0 čia):
 
-Planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
-
-**Etapai:** Monetization pilot (P0) → stabilumas/PDF (P1) → UX/PC-4 (P2) → M10+ monetizacija Deferred.
-
-**Nedaryti dabar:** M10+ premium SaaS diagram redesign; M13–15 pilnas release; backend rewrite.
-
----
-
-## 5. Turinio plėtra M7–15
-
-- **7–9:** production tier 9 (`build:production`).
-- **10–15:** authoring; monetizacija po MON P0 + MON-7.
-- SOT: `turinio_pletra_moduliai_7_8_9.md` / `_10_11_12` / `_13_14_15`.
-- Practice closer: [`PRACTICE_CLOSER_PLAN.md`](docs/development/PRACTICE_CLOSER_PLAN.md) (PC-4 open).
+| Tema                        | Kur                                                                    |
+| --------------------------- | ---------------------------------------------------------------------- |
+| MON vykdymo planas          | [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md) |
+| PostHog                     | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md)   |
+| Deploy                      | [`DEPLOYMENT.md`](docs/deployment/DEPLOYMENT.md)                       |
+| Ticketų statusai (istorija) | [`TODO.md`](TODO.md) §1.4                                              |
 
 ---
 
@@ -94,7 +97,8 @@ Planas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
 | Agent start        | `DOCUMENTATION_QUICK_REF.md`                            |
 | Docs lean          | `DOCS_MAINTENANCE.md` §1c                               |
 | Release QA         | `RELEASE_QA_CHECKLIST.md`, `RELEASE_QA_RUN.md`          |
-| Deploy / MON       | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`             |
+| M7–9 backlog       | `07_08_09_backlog.md`                                   |
+| Marketing handoff  | `DEPLOYMENT.md`, `MON_P0_EXECUTION_PLAN.md`             |
 | Done TODO snapshot | `docs/archive/development/TODO_DONE_SPRINTS_2026-07.md` |
 
-**Sinchronas:** open gaps ↔ TODO §1 · **2026-07-24** Docs Lean Pass DL-0…4 ✅.
+**Sinchronas:** open gaps ↔ TODO §1 · **2026-07-26** turinio ambicijos flip ✅.

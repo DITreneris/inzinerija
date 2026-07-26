@@ -28,6 +28,7 @@ import type { ModulesData } from './types/modules';
 import { getBrowserEnglishContentVariant } from './i18n';
 import { getPublicAppUrl, getOgImageUrl } from './utils/publicSiteMeta';
 import { isMagicLinkTier } from './constants/pricing';
+import { moduleWord } from './utils/ltPlural';
 
 // Lazy load heavy components for better initial load
 const HomePage = lazy(() => import('./components/HomePage'));
@@ -423,7 +424,10 @@ function App() {
     currentPage === 'quiz';
   const defaultDescription =
     maxAccessible > 0
-      ? t('seo:descDefaultWithModules', { count: maxAccessible })
+      ? t('seo:descDefaultWithModules', {
+          count: maxAccessible,
+          modulesWord: moduleWord(locale, maxAccessible, 'genitive'),
+        })
       : t('seo:descDefault');
   const seoDescription =
     currentPage === 'module' && currentModule?.description
@@ -542,6 +546,7 @@ function App() {
                     onTaskComplete={handleTaskComplete}
                     onJourneyFocusChoice={handleModuleJourneyFocus}
                     onContinueToNext={handleContinueToNextModule}
+                    onGoToQuiz={() => setCurrentPage('quiz')}
                     onGoToModule={handleGoToModule}
                     onGoToGlossary={(slideIndex) => {
                       setInitialSlideIndex(slideIndex);

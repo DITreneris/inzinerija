@@ -122,7 +122,7 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 4. **Refresh:** po atrakinimo perkrauti puslapį – tier išlieka (`verified_access_tier` localStorage), gate negrįžta.
 5. **Klaidingas token:** magic link su pasibaigusiu/netikru token → gate lieka, konsolėje 401 iš `/api/verify-access` (ne `/anatomy/api/...`).
 
-**Rezultatą įrašyti:** lentelė žemiau arba `TEST_REPORT.md`. Susiję: `TODO.md` §1.1 MON-5, `docs/deployment/MON_P0_EXECUTION_PLAN.md` §Savaitė 1.
+**Rezultatą įrašyti:** lentelė žemiau arba `TEST_REPORT.md`. Susiję: `TODO.md` §1.4 MON-5 (marketing handoff), `docs/deployment/MON_P0_EXECUTION_PLAN.md` §Savaitė 1.
 
 ---
 

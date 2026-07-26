@@ -298,7 +298,7 @@ const en = {
               {
                 heading: 'Check',
                 body:
-                  'Does the plan have a clear **completion criterion**? Do risky steps have **HITL** (human approval)?',
+                  'Does the plan have a clear **completion criterion**? Do risky steps have **human approval**?',
               },
               {
                 heading: 'When NOT to use multi-agent',
@@ -432,7 +432,7 @@ const en = {
               {
                 heading: 'In short',
                 body:
-                  'Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** (chain, routing, etc.) – slide **10.48**.',
+                  'Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** (chain, routing, etc.) – slide **“5 workflow patterns for business”**.',
               },
               {
                 heading: 'Copyable prompt (example)',
@@ -551,7 +551,7 @@ const en = {
               {
                 heading: 'Why here?',
                 body:
-                  'When you build **workflows between systems** (Zapier, Make, n8n) or agents with external data – you need consistent specification, testing and security rules. Below – full visible content; more detail – in **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md).',
+                  'When you build **workflows between systems** (Zapier, Make, n8n) or agents with external data – you need consistent specification, testing and security rules. Below – full visible content; more detail – in **Business automation tools**.',
               },
               {
                 heading: 'Spec and incident playbook (diagram)',
@@ -581,12 +581,12 @@ const en = {
               {
                 heading: 'Tool selection tree',
                 body:
-                  'We **do not repeat** the table here – same tree and interactive diagram on **Tool selection and limits (10.4)**. More – in **Business automation tools** (§21).',
+                  'We **do not repeat** the table here – same tree and interactive diagram on **Tool selection and limits**. More – in **Business automation tools**.',
               },
               {
                 heading: 'Full guide',
                 body:
-                  'All material – **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md): §18 spec, §19 testing, §20 security, §21 tool tree and more.',
+                  'All material – **Business automation tools**: specification, testing, security, tool tree and more.',
               },
             ],
           },
@@ -759,7 +759,7 @@ const en = {
                 heading: 'Prompts and security',
                 items: [
                   '5-part agent template',
-                  'Error handling and HITL',
+                  'Error handling and human approval',
                   'AI agent QC tests',
                 ],
               },
@@ -1143,7 +1143,7 @@ en.modules.push({
           {
             heading: 'Business multi-agent schema',
             body:
-              '**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with **HITL gate** before sending to client or manager.',
+              '**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with a **human-approval gate** before sending to client or manager.',
           },
           {
             heading: 'Handoff',
@@ -1194,10 +1194,10 @@ en.modules.push({
               step: 2,
               title: 'Fill 1-page workflow specification',
               description:
-                'Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).',
-              hint: 'Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).',
+                'Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).',
+              hint: 'Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).',
               partialSolution:
-                'Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).',
+                'Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).',
             },
             {
               step: 3,
@@ -1240,7 +1240,7 @@ en.modules.push({
               step: 2,
               title: 'Fill 1-page workflow specification',
               description:
-                'Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).',
+                'Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).',
             },
             {
               step: 3,
@@ -1365,7 +1365,7 @@ en.modules.push({
         placeholder: 'Enter sentiment thresholds, escalation rules and workflow summary…',
         templateLabel: 'Sentiment and escalation rules',
         template:
-          'Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.',
+          'Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see Business automation tools – security.',
         explanation: 'Clear rules prevent wrong mass escalation.',
         instructions: {
           title: 'Steps and artefacts',
@@ -1404,7 +1404,7 @@ en.modules.push({
             'Build sentiment-based escalation workflow. Define thresholds and what to do in an incident.',
         },
         template:
-          'Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.',
+          'Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see Business automation tools – security.',
         templateLabel: 'Sentiment and escalation rules',
         instructions: {
           title: 'Steps and artefacts',
@@ -1502,7 +1502,7 @@ en.modules.push({
           'Pick topic (sales summary or RFP). Use 3 prompts in separate chats. Record diagram and 1 test case.',
         data: 'Artefacts: diagram (roles + handoff), 3 prompts, 1 test case (e.g. missing data).',
         constraints:
-          'Without Zapier/Make – only prompt orchestration. HITL before final send.',
+          'Without Zapier/Make – only prompt orchestration. Human approval before final send.',
         expectedFormat: 'Diagram + 3 copied prompts + test case description.',
       },
       practicalTask: {

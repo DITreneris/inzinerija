@@ -50,8 +50,15 @@
       "category": "Vaizdų generavimas"
     },
     {
+      "name": "CapCut",
+      "url": "https://www.capcut.com",
+      "description": "Social video montažas ir DI šablonai – 3–5 s klipų sudėjimas, overlay, export pagal platformą.",
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
       "name": "ChatGPT (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "Universalus pokalbių DI – geriausiai tinka bendram rašymui, santraukoms ir idėjų generavimui.",
       "moduleId": 1,
       "category": "Pokalbių DI"
@@ -86,7 +93,7 @@
     },
     {
       "name": "DALL·E (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "Vaizdų generavimas per ChatGPT / GPT-Image – tekstas į vaizdą, stilius ir proporcijos; greitas brief→vaizdas.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
@@ -113,11 +120,11 @@
       "category": "Duomenų analizė"
     },
     {
-      "name": "ElevenLabs (garsai)",
+      "name": "ElevenLabs",
       "url": "https://elevenlabs.io",
       "description": "VO (voiceover), balsų sintezė ir SFX – audio-first workflow naracijai ir perėjimams.",
       "moduleId": 13,
-      "category": "Muzikos generavimas"
+      "category": "Garsas"
     },
     {
       "name": "ElevenMusic",
@@ -184,7 +191,7 @@
     },
     {
       "name": "GPT-Image (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "OpenAI vaizdų modelis ChatGPT – natūrali kalba, sudėtingi briefai, greitas marketingo juodraštis.",
       "moduleId": 13,
       "category": "Vaizdų generavimas"
@@ -400,6 +407,13 @@
       "category": "Debesijos paleidimas"
     },
     {
+      "name": "Replit",
+      "url": "https://replit.com",
+      "description": "Greitas kodo prototipas naršyklėje – mokymų demonstracijoms; ne tas pats kas gamybinis Railway/Render.",
+      "moduleId": 10,
+      "category": "Debesijos paleidimas"
+    },
+    {
       "name": "Runway",
       "url": "https://runwayml.com",
       "description": "Video generavimas ir redagavimas – image-to-video, trumpi klipai, post-prod.",
@@ -491,11 +505,25 @@
       "category": "Muzikos generavimas"
     },
     {
+      "name": "UiPath",
+      "url": "https://www.uipath.com",
+      "description": "RPA – botas spaudo UI, kai nėra API. Kai API yra – rinkis workflow (Zapier/Make/n8n), ne RPA.",
+      "moduleId": 10,
+      "category": "Verslo automatizavimas"
+    },
+    {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
       "description": "Veo 3.1 – kinematografinė kokybė, native audio; prototipai ir trumpi reklaminiai.",
-      "moduleId": 4,
-      "category": "Vaizdo generavimas"
+      "moduleId": 13,
+      "category": "Video generavimas"
+    },
+    {
+      "name": "Vercel",
+      "url": "https://vercel.com",
+      "description": "Debesijos paleidimas – front-end ir svetainės (pvz. Next.js) iš GitHub; GitHub saugo, PaaS paleidžia.",
+      "moduleId": 10,
+      "category": "Debesijos paleidimas"
     },
     {
       "name": "Visme",
@@ -503,6 +531,13 @@
       "description": "Ataskaitoms ir duomenims – infografikai, interaktyvumas.",
       "moduleId": 4,
       "category": "Prezentacijos"
+    },
+    {
+      "name": "Whisper (OpenAI)",
+      "url": "https://openai.com/index/whisper/",
+      "description": "Kalbos į tekstą (STT) – transkripcija iš audio; poruojama su VO/montažo eiga.",
+      "moduleId": 13,
+      "category": "Garsas"
     },
     {
       "name": "Winston AI",
@@ -523,7 +558,7 @@
       "url": "https://zapier.com",
       "description": "Automatizuoja darbo eigas tarp programų – DI grandinėse gali siųsti duomenis į el. paštą, kalendorių ir kt.",
       "moduleId": 4,
-      "category": "Automatizacija"
+      "category": "Verslo automatizavimas"
     },
     {
       "name": "ZeroGPT",

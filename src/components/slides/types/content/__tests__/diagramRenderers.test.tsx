@@ -173,6 +173,22 @@ describe('diagramRenderers registry contract', () => {
     expect(container.querySelectorAll('nav button').length).toBeGreaterThan(0);
   });
 
+  it('renders M7/71 m7_macro_path_map through M7PathMapBlock (Shell Ne, no step nav)', () => {
+    expect(
+      renderDiagramSection('m7_macro_path_map', 'Path map caption', {})
+    ).not.toBeNull();
+
+    const { container } = renderDiagram(
+      'm7_macro_path_map',
+      'Path map caption'
+    );
+    expect(container.textContent).toContain('Path map caption');
+    expect(container.textContent).toContain('Pamatas');
+    expect(container.textContent).toContain('Tu esi čia');
+    expect(container.querySelector('img')).toBeNull();
+    expect(container.querySelectorAll('nav button')).toHaveLength(0);
+  });
+
   it('renders M4/43 strukturuotas_procesas through StrukturuotasProcesasBlock', () => {
     expect(
       renderDiagramSection('strukturuotas_procesas', 'Process body', {})

@@ -9,6 +9,7 @@ import addFormats from 'ajv-formats';
 import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { auditTools } from './audit-tools.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -410,6 +411,19 @@ function validateTools() {
   return true;
 }
 
+function validateToolsEn() {
+  const schema = loadJson(join(__dirname, 'schemas', 'tools.schema.json'));
+  const data = loadJson(join(dataDir, 'tools-en.json'));
+  const validate = ajv.compile(schema);
+  if (!validate(data)) {
+    console.error('tools-en.json validation failed:\n');
+    validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+    return false;
+  }
+  console.log('tools-en.json: OK');
+  return true;
+}
+
 function validateCoreTools() {
   const schema = loadJson(join(__dirname, 'schemas', 'tools.schema.json'));
   const files = ['tools-m1-m6.json', 'tools-en-m1-m6.json'];
@@ -591,8 +605,10 @@ function main() {
     && validateCoreGlossary()
     && validateCorporateGlossary()
     && validateTools()
+    && validateToolsEn()
     && validateCoreTools()
     && validateCorporateTools()
+    && auditTools()
     && validateIntroPiePdfContent()
     && validateCertificateContent()
     && validateCompletionArtifacts()

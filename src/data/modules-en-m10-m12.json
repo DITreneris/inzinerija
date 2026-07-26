@@ -415,7 +415,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Does the plan have a clear **completion criterion**? Do risky steps have **HITL** (human approval)?",
+                "body": "Does the plan have a clear **completion criterion**? Do risky steps have **human approval**?",
                 "blockVariant": "accent"
               },
               {
@@ -657,7 +657,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** (chain, routing, etc.) – slide **10.48**.",
+                "body": "Agent – when the task is complex (several actions, external data, tools). Simple prompt – when one question, one answer, no external tools.\n\n**Multi-agent patterns** (chain, routing, etc.) – slide **“5 workflow patterns for business”**.",
                 "blockVariant": "accent"
               },
               {
@@ -1136,7 +1136,7 @@
             "sections": [
               {
                 "heading": "Why here?",
-                "body": "When you build **workflows between systems** (Zapier, Make, n8n) or agents with external data – you need consistent specification, testing and security rules. Below – full visible content; more detail – in **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md).",
+                "body": "When you build **workflows between systems** (Zapier, Make, n8n) or agents with external data – you need consistent specification, testing and security rules. Below – full visible content; more detail – in **Business automation tools**.",
                 "blockVariant": "accent"
               },
               {
@@ -1168,12 +1168,12 @@
               },
               {
                 "heading": "Tool selection tree",
-                "body": "We **do not repeat** the table here – same tree and interactive diagram on **Tool selection and limits (10.4)**. More – in **Business automation tools** (§21).",
+                "body": "We **do not repeat** the table here – same tree and interactive diagram on **Tool selection and limits**. More – in **Business automation tools**.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Full guide",
-                "body": "All material – **Business automation tools** (docs/AUTOMATIZAVIMO_IRANKIAI_VERSLUI.md): §18 spec, §19 testing, §20 security, §21 tool tree and more.",
+                "body": "All material – **Business automation tools**: specification, testing, security, tool tree and more.",
                 "blockVariant": "terms"
               },
               {
@@ -1759,7 +1759,7 @@
             "sections": [
               {
                 "heading": "Business multi-agent schema",
-                "body": "**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with **HITL gate** before sending to client or manager.",
+                "body": "**1. Input** – task, data, constraints.\n\n**2. Router** (optional) – classifies type, routes.\n\n**3. Coordinator** – breaks down, assigns 2–3 specialists.\n\n**4. Specialists** – narrow work (research, draft, calculation).\n\n**5. Evaluator** – QC, rules, returns for revision.\n\n**6. Output** – with a **human-approval gate** before sending to client or manager.",
                 "blockVariant": "accent"
               },
               {
@@ -1833,7 +1833,7 @@
             "situation": "SHOULD: multi-agent practice in business terms – coordinator, specialist, evaluator.",
             "context": "Pick topic (sales summary or RFP). Use 3 prompts in separate chats. Record diagram and 1 test case.",
             "data": "Artefacts: diagram (roles + handoff), 3 prompts, 1 test case (e.g. missing data).",
-            "constraints": "Without Zapier/Make – only prompt orchestration. HITL before final send.",
+            "constraints": "Without Zapier/Make – only prompt orchestration. Human approval before final send.",
             "expectedFormat": "Diagram + 3 copied prompts + test case description."
           },
           "practicalTask": {
@@ -1970,9 +1970,9 @@
                 {
                   "step": 2,
                   "title": "Fill 1-page workflow specification",
-                  "description": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).",
-                  "hint": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18).",
-                  "partialSolution": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18)."
+                  "description": "Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).",
+                  "hint": "Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification).",
+                  "partialSolution": "Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification)."
                 },
                 {
                   "step": 3,
@@ -2014,7 +2014,7 @@
                 {
                   "step": 2,
                   "title": "Fill 1-page workflow specification",
-                  "description": "Trigger, input schema, condition, actions, output, error handling (see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §18)."
+                  "description": "Trigger, input schema, condition, actions, output, error handling (see Business automation tools – specification)."
                 },
                 {
                   "step": 3,
@@ -2128,7 +2128,7 @@
             "title": "Record autonomous workflow and rules",
             "placeholder": "Enter sentiment thresholds, escalation rules and workflow summary…",
             "templateLabel": "Sentiment and escalation rules",
-            "template": "Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.",
+            "template": "Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see Business automation tools – security.",
             "explanation": "Clear rules prevent wrong mass escalation.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
@@ -2168,7 +2168,7 @@
             "scenario": {
               "narrativeLead": "Build sentiment-based escalation workflow. Define thresholds and what to do in an incident."
             },
-            "template": "Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see AUTOMATIZAVIMO_IRANKIAI_VERSLUI §20.",
+            "template": "Sentiment thresholds: if < 3 stars or negative – create ticket and notify team. Escalation rule: ticket fields “sentiment”, “original_text” (short). Incident playbook: see Business automation tools – security.",
             "templateLabel": "Sentiment and escalation rules",
             "instructions": {
               "title": "Steps and artefacts",

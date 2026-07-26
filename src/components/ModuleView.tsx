@@ -198,6 +198,8 @@ interface ModuleViewProps {
   onGoToGlossary?: (slideIndex: number) => void;
   onGoToGlossaryTerm?: (term: string) => void;
   onGoToTools?: (moduleId: number) => void;
+  /** Branduolio pasitikrinimas (po M3 soft CTA). */
+  onGoToQuiz?: () => void;
   /** A-M3: when set, show "Grįžti į testo rezultatą" and call onReturnToRemediation to go back */
   remediationFrom?: { sourceModuleId: number } | null;
   onReturnToRemediation?: () => void;
@@ -220,6 +222,7 @@ function ModuleView({
   onGoToGlossary,
   onGoToGlossaryTerm,
   onGoToTools,
+  onGoToQuiz,
   remediationFrom,
   onReturnToRemediation,
   onRequestCertificate,
@@ -944,6 +947,7 @@ function ModuleView({
         onContinueToNext={onContinueToNext}
         isLastModule={isLastModule}
         onViewPart1Summary={moduleId === 3 ? onViewPart1Summary : undefined}
+        onGoToQuiz={onGoToQuiz}
         onRequestCertificate={onRequestCertificate}
       />
     );

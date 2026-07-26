@@ -3,24 +3,24 @@ import type { StepExplanation } from './stepExplanations';
 /** Trumpi antraštės tekstai diagramos dėžutėse (LT) – sinchronas su Modulio 9 id 93–94 */
 export const M9_DATA_WORKFLOW_STEPS_LT: { label: string; desc: string }[] = [
   { label: 'Surinkimas', desc: 'Šaltiniai, tema' },
-  { label: 'Metodika', desc: 'Struktūra, rodikliai' },
-  { label: 'Deep research', desc: 'Prompto paruošimas' },
-  { label: '4× tyrimas', desc: 'Kelios DI platformos' },
-  { label: 'Valymas', desc: 'Dublių šalinimas' },
-  { label: 'Integracija', desc: 'Vienas dokumentas' },
-  { label: 'Atvaizdavimas', desc: 'Spalvos, grafikai' },
-  { label: 'Dashboard', desc: '.html snippet' },
+  { label: 'Metodika', desc: 'Struktūra, KPI' },
+  { label: 'Tyrimas', desc: 'Promptas' },
+  { label: '4× paleidimas', desc: 'Kelios DI' },
+  { label: 'Valymas', desc: 'Dubliai' },
+  { label: 'Integracija', desc: 'Vienas dok.' },
+  { label: 'Vaizdai', desc: 'Spalvos, grafikai' },
+  { label: 'Dashboard', desc: '.html' },
 ];
 
 export const M9_DATA_WORKFLOW_STEPS_EN: { label: string; desc: string }[] = [
   { label: 'Collection', desc: 'Sources, topic' },
   { label: 'Methodology', desc: 'Structure, KPIs' },
   { label: 'Deep research', desc: 'Prompt prep' },
-  { label: '4× research', desc: 'Multiple LLMs' },
-  { label: 'Cleaning', desc: 'Dedupe, format' },
+  { label: '4× runs', desc: 'Multiple LLMs' },
+  { label: 'Cleaning', desc: 'Dedupe' },
   { label: 'Integration', desc: 'Single doc' },
-  { label: 'Visualisation', desc: 'Colours, charts' },
-  { label: 'Dashboard', desc: '.html snippet' },
+  { label: 'Charts', desc: 'Colours, charts' },
+  { label: 'Dashboard', desc: '.html' },
 ];
 
 export type M9DataWorkflowContext = 'm9' | 'm7_master';

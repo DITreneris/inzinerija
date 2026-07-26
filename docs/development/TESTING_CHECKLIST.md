@@ -36,12 +36,13 @@
 - [ ] Progress bar'ai veikia
 - [ ] Dark mode veikia
 
-### Testo Puslapis (QuizPage)
+### Branduolio pasitikrinimas (QuizPage)
 
-- [ ] Klausimai rodomi teisingai
-- [ ] Atsakymų pasirinkimas veikia
-- [ ] Rezultatų skaičiavimas teisingas
-- [ ] ≥70% riba veikia
+- [ ] Intro rodo role (ne „Apklausa“ / ne kelio egzaminas)
+- [ ] Po „Pradėti pasitikrinimą“ – klausimai rodomi teisingai
+- [ ] Atsakymų pasirinkimas ir paaiškinimai veikia
+- [ ] Rezultatų skaičiavimas teisingas; ≥70 % = „eiti toliau“
+- [ ] Soft CTA po M3 (ModuleComplete / ModulesPage); moduliai neužrakinti
 - [ ] Dark mode veikia
 
 ### Promptų Biblioteka (PromptLibrary)

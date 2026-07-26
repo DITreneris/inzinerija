@@ -185,7 +185,9 @@
             "sections": [
               {
                 "heading": "Path map (4 blocks)",
-                "body": "**1. Foundation** – principles and context (strategic foundation, path steps).\n**2. Collection** – analysis path, analysis types, sources.\n**3. Preparation** – 5-step algorithm, cleaning, metadata.\n**4. Analysis and MASTER** – EDA, visualization, AI agents, 8-step full analysis template.\n\n**You are here:** check the navigation bar above – it shows the macro block (Foundation / Collection / Preparation / Analysis) and your position in the module.",
+                "body": "**Now – Foundation** (principles). Next – collection, preparation, then analysis with the full template.",
+                "image": "m7_macro_path_map",
+                "imageAlt": "Module path map: four blocks, you are at Foundation",
                 "blockVariant": "brand"
               },
               {
@@ -297,23 +299,23 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ What you will learn here (1–2 min)",
+                "heading": "2️⃣ What you'll learn here (1–2 min)",
                 "body": "**What to remember:**\n👉 **Data analysis** = collection + handling + interpretation → decisions. Without a decision – it is just a report. Goals: understand the past, assess the present, forecast the future.\n\n👉 **Data > opinion** – data can be checked, compared, replicated; opinion is bias-prone. In a mature organization facts win, not hierarchy.\n\n👉 **Variation exists** – common cause (natural) vs special cause. Without statistical thinking we react to noise and ignore signal.\n\n👉 **Improve the system, not blame people** (Deming) – not \"who is at fault?\", but \"what system produces this result?\".\n\n**Closing thesis:** Strategy without data – intuition. Data without system – chaos. **System + data = predictable results.**",
                 "blockVariant": "brand"
               },
               {
-                "heading": "3️⃣ Copyable prompt (4 theses – for yourself or a meeting)",
-                "body": "Paste into AI – you will get a brief reminder of 4 strategic foundation theses. Useful before a report or conversation with leadership.",
+                "heading": "3️⃣ Copyable prompt",
+                "body": "4 theses – for yourself or a meeting. Paste into AI – you will get a brief reminder of the strategic foundation theses. Useful before a report or conversation with leadership.",
                 "blockVariant": "terms",
                 "copyable": "You are a business analytics consultant. Provide **4 strategic foundation theses** for data analysis (1–2 sentences each):\n1) What data analysis is and its goals\n2) Why data > opinion\n3) Why variation exists and what it means for leaders\n4) Deming principle: improve the system, not blame people\n\nClose with one closing thesis: system + data = predictable results. Language: English."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Can you say in one sentence how analysis differs from a report?",
+                "body": "• Can you say in one sentence how analysis differs from a report?\n• Can you explain why data matters more than opinion in a decision?\n\nIf not — go back to the 4 theses and copy the prompt.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Want to understand more?",
+                "heading": "🔽 Want to go deeper? Deming (5 principles)",
                 "body": "**W. Deming principles for data management:**\n1. **Constancy of purpose** – data serves long-term goals, not short-term KPI pressure.\n2. **Management by system** – results = product of the system; data reveals system limits.\n3. **Understanding variation** – do not control natural variation; look for special cause.\n4. **Evidence-based decisions** – opinion without data – hypothesis.\n5. **Continuous improvement (PDCA)** – Plan → Do → Check → Act; data is the \"Check\" backbone.",
                 "blockVariant": "brand",
                 "collapsible": true
@@ -1504,7 +1506,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Benefit:** Most analysts start with internal data – sales tables, CRM contacts, warehouse reports. One prompt helps you see what to clean before analysis.",
+                "body": "**Benefit:** Most analysts start with internal data – sales tables, CRM contacts, warehouse reports. One AI query helps you see what to clean before analysis.",
                 "blockVariant": "accent"
               },
               {
@@ -1560,7 +1562,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In brief (30 s)",
-                "body": "**Benefit:** One prompt – you get table structure, relationships (ER), and key performance indicators (KPIs). Then you can choose where to store that data: SQL database, NoSQL, or a fast cache layer. Redis / Valkey is usually not the main database – it is a speed layer."
+                "body": "**Benefit:** One copyable template – you get table structure, relationships (ER), and key performance indicators (KPIs). Then you can choose where to store that data: SQL database, NoSQL, or a fast cache layer. Redis / Valkey is usually not the main database – it is a speed layer."
               },
               {
                 "heading": "2️⃣ Which DB tool should you choose?",
@@ -1649,7 +1651,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Data relationship analysis** – when you have structure (tables, columns) and need: main **relationships** explained, **duplication** spots, **bottlenecks** (where data flow may stall), **5 KPIs** from this structure. One prompt – paste structure, get insights.",
+                "body": "**Data relationship analysis** – when you have structure (tables, columns) and need: main **relationships** explained, **duplication** spots, **bottlenecks** (where data flow may stall), **5 KPIs** from this structure. Paste the structure into AI – get insights.",
                 "blockVariant": "accent"
               },
               {
@@ -1680,7 +1682,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**4 outputs** from one prompt: **Revenue trends** chart, **customer segment** comparison, **product profitability** analysis, **3 key insights**. Useful when you have sales data and want visualizations and insights fast – one prompt, four results.",
+                "body": "**4 outputs** from one query: **Revenue trends** chart, **customer segment** comparison, **product profitability** analysis, **3 key insights**. Useful when you have sales data and want visualizations and insights fast – one query, four results.",
                 "blockVariant": "accent"
               },
               {
@@ -1785,7 +1787,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Forecast** – what may happen next from historical data: coming months, seasonality, optimistic and pessimistic scenarios, risks. One prompt – structured plan for decisions.",
+                "body": "**Forecast** – what may happen next from historical data: coming months, seasonality, optimistic and pessimistic scenarios, risks. One AI query – structured plan for decisions.",
                 "blockVariant": "accent"
               },
               {
@@ -1952,7 +1954,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Correct sequence** – Collect → Clean (checklist) → Add metadata → 4 analysis types (What happened? Why? What may? How to act?) → Action plan. Before any analysis you need cleaning and metadata – otherwise AI output stays shallow.",
+                "body": "**When to apply:** before any analysis with messy data – external or **internal** (Excel, CRM). Sequence: Collect → clean → metadata → export.",
                 "blockVariant": "accent"
               },
               {
@@ -1973,7 +1975,7 @@
               },
               {
                 "heading": "🔽 Want to understand more?",
-                "body": "**Cleaning checklist:** Anonymization; format standardization; duplicate removal; missing value identification; data type validation; timestamps; region tags.\n\n**Metadata – 3 types:** **Descriptive** – context (source, date, scope). **Structural** – schema, column types, relationships. **Administrative** – rights, security, accountability. Without metadata AI analysis becomes shallow.",
+                "body": "**Internal data path:** Excel/CRM export → cleaning checklist (this slide) → EDA (slide “Exploratory analysis (EDA)”).\n\n**Cleaning checklist:** Anonymization; format standardization; duplicate removal; missing value identification; data type validation; timestamps; region tags.\n\n**Metadata – 3 types:** **Descriptive** – context (source, date, scope). **Structural** – schema, column types, relationships. **Administrative** – rights, security, accountability. Without metadata AI analysis becomes shallow.",
                 "blockVariant": "brand",
                 "collapsible": true
               }
@@ -2298,38 +2300,100 @@
         {
           "id": 67.8,
           "title": "Hallucinations",
-          "subtitle": "What are hallucinations; why AI makes them; 4 tips, 5 rules; anti-hallucination template",
+          "subtitle": "What it is; FACTS vs GUESSES; 4 levels; 5 rules; anti-hallucination template",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In brief (30 s)",
-                "body": "Hallucination = AI-generated content that looks convincing but is factually unsupported. 4 tips and 5 rules – how to reduce. Below – anti-hallucination template. Next – Knowledge verification.",
+                "body": "Hallucination = AI content that sounds convincing but is factually unsupported. Below: FACTS vs GUESSES, 4 control levels, 5 rules, and the anti-hallucination template. Next – Knowledge verification.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "What is hallucination?",
-                "body": "AI-generated content that looks convincing but is factually unsupported, inaccurate or invented – the model \"fills gaps\" with probabilities. Therefore knowledge verification (on the next slide) is essential.",
+                "body": "AI-generated content that looks convincing but is factually unsupported, inaccurate or invented – the model \"fills gaps\" with probabilities. Therefore knowledge verification (next slide) is essential.",
                 "blockVariant": "brand"
+              },
+              {
+                "heading": "FACTS vs GUESSES",
+                "body": "If unclear – mark GUESS or ask.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["FACTS", "GUESSES"],
+                  "rows": [
+                    [
+                      "Supported by data or a source",
+                      "Assumption without confirmation"
+                    ],
+                    [
+                      "\"Per the Q3 report, profit +12%\"",
+                      "\"The market will probably grow 20%\""
+                    ],
+                    ["Can be checked externally", "Mark as **GUESS**"]
+                  ],
+                  "comparisonStyle": true
+                }
               },
               {
                 "heading": "Why does AI hallucinate?",
-                "body": "**1. Statistics** – the model predicts words by probability but does not directly \"understand\" the world. **2. Unreliable data** – errors or bias in training data show up in the output. **3. No access to facts** – the model cannot verify facts in real time like a person. **4. Gap filling** – when information is missing, it generates plausible but false details. **5. Ambiguity** – unclear or ambiguous questions increase the chance of errors.",
-                "blockVariant": "brand"
+                "body": "",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": ["Cause", "What you can do"],
+                  "rows": [
+                    [
+                      "**Statistics** – the model predicts words by probability",
+                      "Require sources; verify critical claims"
+                    ],
+                    [
+                      "**Unreliable data** – errors or bias in training",
+                      "Use reliable models and datasets"
+                    ],
+                    [
+                      "**No access to facts** – no real-time verification",
+                      "Provide RAG / documents; allow \"I don't know\""
+                    ],
+                    [
+                      "**Gap filling** – plausible but false details",
+                      "Forbid invented numbers, dates, quotes"
+                    ],
+                    [
+                      "**Ambiguity** – unclear question",
+                      "Write clearer prompts; ask for 1–3 clarifications"
+                    ]
+                  ]
+                }
               },
               {
-                "heading": "How to reduce risk (4 tips)",
-                "body": "**1.** Check information in reliable sources – does the AI answer match external sources. **2.** Write clearer prompts – reduces ambiguity and gap filling. **3.** Use prompt engineering – 6 blocks, CoT, clear requirements. **4.** Use reliable models and data – RAG and context quality drive hallucination rate; it is not just the prompt.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Hallucinations depend on more than the prompt",
-                "body": "Four levels: (1) model and training data, (2) provided data and context (RAG), (3) prompt, (4) knowledge verification practices. Answer at whole system level – reliable models, clear context, good prompts and ongoing verification.",
-                "blockVariant": "brand"
+                "heading": "Four control levels",
+                "body": "Reduce hallucinations at the whole-system level – not only the prompt.",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": ["Level", "Control"],
+                  "rows": [
+                    [
+                      "1. Model and training data",
+                      "Choose a reliable model; know its limits"
+                    ],
+                    [
+                      "2. Context (RAG)",
+                      "Provide sources; check context quality"
+                    ],
+                    ["3. Prompt", "6 blocks, CoT, clear requirements"],
+                    [
+                      "4. Knowledge verification",
+                      "Cross-check; \"I don't know\"; anti-hallucination template"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "5 rules for reliability",
-                "body": "**1. \"If unclear – ask\"** – AI must give 1–3 clarifying questions, not add details you did not specify. **2. Separate facts from guesses** – FACTS (supported by data) and GUESSES (assumptions); mark GUESS. **3. Do not invent data** – numbers, dates, statistics; if needed – say information is missing. **4. If unsure – say so** – write \"I am not sure\", note uncertainty. **5. Use only what is provided** – answer based on given information; if external data is needed – ask first.",
+                "body": "**1. If unclear – ask** – 1–3 clarifications, no added details.\n**2. Separate FACTS and GUESSES** – mark GUESS.\n**3. Do not invent data** – numbers, dates, statistics.\n**4. If unsure – say so** – \"I am not sure\".\n**5. Use only what is provided** – otherwise ask first.",
                 "blockVariant": "terms",
                 "copyable": "If my request is unclear or data is missing, give 1–3 clarifying questions. Do not add details I did not specify. Separate FACTS (supported by data) and GUESSES (assumptions). Mark GUESS. Do not create numbers, dates, percentages, legal references or statistics – if needed, say information is missing. If unsure, write \"I am not sure\" and note uncertainty. Answer only based on my provided information; if external data is needed – ask first."
               },
@@ -2341,7 +2405,7 @@
               },
               {
                 "heading": "Going deeper: Self-check (CoVe)",
-                "body": "**What is it?** CoVe – a method where AI checks itself first (not the same as the 5-stage reliability map on the previous slide): instead of giving the final answer right away, the model (1) plans verification questions (\"what should be checked?\"), (2) answers them separately, (3) revises or refines the final answer from those answers. Research shows this reduces hallucinations. **How to use:** you can ask AI: \"First list 2–3 things to verify for this answer; answer them separately; then give the refined final answer.\"",
+                "body": "**What is it?** CoVe – AI checks itself first (not the same as the 5-stage map on the previous slide): (1) plans verification questions, (2) answers them separately, (3) gives a refined answer. **How to use:** \"First list 2–3 things to verify; answer them separately; then give the refined final answer.\"",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -2352,6 +2416,18 @@
                 "blockVariant": "accent"
               }
             ],
+            "preCopyCheckBlock": {
+              "heading": "Before copying",
+              "question": "Which answer would you treat as hallucination risk?",
+              "options": [
+                "\"Per the uploaded Q3 report, profit grew 12%.\"",
+                "\"Company X had €847M revenue in 2024.\"",
+                "\"GUESS: if the trend holds, growth may be ~10%.\"",
+                "\"I am not sure – revenue data is missing.\""
+              ],
+              "correct": 1,
+              "explanation": "A concrete number without your source is typical gap-filling risk. A FACT needs a basis; a GUESS must be marked."
+            },
             "footer": "Next – Knowledge verification"
           }
         },
@@ -2491,31 +2567,41 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Exploratory data analysis (EDA)** – first look: statistics, correlations, anomalies, hypotheses. Pick **one** area.",
+                "body": "**Exploratory data analysis (EDA)** – first look: statistics, correlations, anomalies, hypotheses. Paste your data (or use the sample), pick **one** area, and copy the prompt.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Pick EDA area",
-                "body": "Pick area – only the matching prompt is shown.",
+                "heading": "2️⃣ Do now",
+                "body": "1) Prepare data. 2) Pick an EDA area. 3) Review Format and copy the prompt.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
+                  "variant": "prompt-tool",
                   "question": "What are you analysing?",
+                  "sequenceHint": "Not sure where to start? Statistics → Correlation → Anomalies → Hypotheses.",
+                  "sampleData": {
+                    "label": "Sample KPIs (5 rows)",
+                    "body": "unit | revenue_k | margin_% | target_%\nSales | 420 | 18 | 100\nMarketing | 95 | 12 | 90\nOperations | 210 | 22 | 95\nIT | 80 | 15 | 85\nHR | 60 | 10 | 80"
+                  },
                   "choices": [
                     {
                       "label": "Statistics",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you want typical values and spread."
                     },
                     {
                       "label": "Correlation",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you want links between metrics."
                     },
                     {
                       "label": "Anomalies",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you look for outliers or data errors."
                     },
                     {
                       "label": "Hypotheses",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "When you want to name what is worth testing next."
                     }
                   ]
                 }
@@ -2546,7 +2632,7 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you paste data?\n• Does the result follow Format (not only a single number)?",
+                "body": "• Did you paste your own or sample data into the prompt?\n• Does the result follow Format (not only a single number)?",
                 "blockVariant": "accent"
               }
             ]
@@ -2561,7 +2647,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Table creation method** – Goal → Columns → Examples → Validation. When you need a structured table for analysis: specify goal [X], columns, get 5 sample rows, 2 calculated metrics and short interpretation. Professional prompt – one action.",
+                "body": "**Table creation method** – Goal → Columns → Examples → Validation. When you need a structured table for analysis: specify goal [X], columns, get 5 sample rows, 2 calculated metrics and short interpretation. One copyable template – a table with examples.",
                 "blockVariant": "accent"
               },
               {
@@ -2654,7 +2740,8 @@
           "optional": true,
           "content": {
             "whyBenefit": "You can do any research in 30–45 min – enter a question or upload a PDF, get answers with sources.",
-            "toolsIntro": "Enter a question or upload a PDF – you'll get answers with sources. Use with path step 71.3.",
+            "toolsIntro": "Enter a question or upload a PDF – you will get answers with sources. Useful after parallel research (2–4 sources).",
+            "toolsCollapsible": true,
             "tools": [
               {
                 "name": "Perplexity",
@@ -2709,26 +2796,118 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (20 s)",
-                "body": "Optional cheat sheet: 6 AI tools for search and synthesis – use with path step **71.3** (parallel research). Typical run – 30–45 min.",
+                "body": "Optional cheat sheet: after parallel research, pick an AI tool by situation (search → PDF → citation → synthesis). Typical run – 30–45 min.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Usage tips",
-                "body": "**Perplexity:** web mode, ask for sources, be specific.\n**PaperGuide:** upload PDF, ask a concrete question.\n**Scite:** check \"Supported\" vs \"Contradicted\".\n**Elicit:** clear question, trends and risks.\n**Consensus / Connected Papers:** scientific claims and paper networks.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
+                "heading": "When to use which?",
+                "body": "**First 4 = typical 30–45 min run.** Consensus and Connected Papers – when you need research depth.",
+                "blockVariant": "terms",
+                "toolChoiceBar": {
+                  "question": "What are you doing now?",
+                  "choices": [
+                    {
+                      "label": "Sources",
+                      "rowIndex": 0
+                    },
+                    {
+                      "label": "PDF",
+                      "rowIndex": 1
+                    },
+                    {
+                      "label": "Synthesis",
+                      "rowIndex": 2
+                    },
+                    {
+                      "label": "Citation",
+                      "rowIndex": 3
+                    },
+                    {
+                      "label": "Science",
+                      "rowIndex": 4
+                    },
+                    {
+                      "label": "Network",
+                      "rowIndex": 5
+                    }
+                  ]
+                },
+                "table": {
+                  "headers": ["Situation", "Tool", "Input → result", "Time"],
+                  "solutionMatrixStyle": true,
+                  "rows": [
+                    [
+                      "Quick sources with links",
+                      "Perplexity",
+                      "Question → answer + URL",
+                      "5–10 min"
+                    ],
+                    [
+                      "I have a PDF / report",
+                      "PaperGuide",
+                      "PDF + question → summary",
+                      "10–15 min"
+                    ],
+                    [
+                      "Trends across several studies",
+                      "Elicit",
+                      "Question / PDF → synthesis",
+                      "10–15 min"
+                    ],
+                    [
+                      "Does the citation support the claim?",
+                      "Scite",
+                      "DOI / title → Supported vs Contradicted",
+                      "~5 min"
+                    ],
+                    [
+                      "\"What does science say?\"",
+                      "Consensus",
+                      "Claim → support view",
+                      "As needed"
+                    ],
+                    [
+                      "Paper network / seminal work",
+                      "Connected Papers",
+                      "Paper → clusters",
+                      "As needed"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "Typical run (30–45 min)",
-                "body": "**4 tools = full run:**\n\n**1.** Sources (Perplexity) – 5–10 min.\n\n**2.** PDF analysis (PaperGuide / Elicit) – 10–15 min.\n\n**3.** Citation check (Scite) – ~5 min.\n\n**4.** Synthesis (Elicit) – 10–15 min.",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "blockVariant": "terms"
+                "body": "Four steps for one topic – times are approximate.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["#", "Step", "Tool", "Min"],
+                  "rows": [
+                    ["1", "Sources", "Perplexity", "5–10"],
+                    ["2", "PDF", "PaperGuide / Elicit", "10–15"],
+                    ["3", "Citation", "Scite", "~5"],
+                    ["4", "Synthesis", "Elicit", "10–15"]
+                  ]
+                }
               },
               {
-                "heading": "Link to RAG (Module 4)",
-                "body": "The same cheat sheet is in **Module 4** (optional, after RAG memory). Here – practice on the Data analysis path after parallel research (Deep research, M9 workflow).",
+                "heading": "2️⃣ Do now",
+                "body": "Take the topic from the previous step (2–4 sources). Run at least **1 step** from the table – Perplexity is enough to start. 🔘 **Copy prompt (below)**",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Starter: Perplexity",
+                "body": "Paste into Perplexity (web mode). Replace [X] with your topic.",
+                "blockVariant": "default",
+                "copyable": "ROLE: You are a business researcher.\nTASK: Find 5–7 reliable sources on: [X].\nOUTPUT: Table – claim | source (URL) | why reliable.\nRULE: Every claim needs a source; if you do not know – write \"I don't know\"."
+              },
+              {
+                "heading": "4️⃣ Quality check (1 min)",
+                "body": "If at least 2 answers are \"no\" – go back to \"When to use which?\".\n\n1. Do you have sources with URLs?\n2. If you used a PDF – did you ask a concrete question (not just \"summary\")?\n3. Did you check a key claim in Scite (Supported vs Contradicted)?",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Where this sits on the path",
+                "body": "You will find the same cheat sheet in **Module 4** (optional, after RAG memory). Here – practice on the Data analysis path after parallel research (Deep research).",
                 "blockVariant": "brand"
               }
             ],
@@ -2785,13 +2964,13 @@
         {
           "id": 95,
           "title": "AI input analysis: screenshot and schema",
-          "subtitle": "Screenshot or data schema – one prompt, structured answer",
+          "subtitle": "Screenshot or data schema – one AI query, structured answer",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**AI can analyze** a screenshot or data schema. **Screenshot** – dashboards, tables, UI, code; useful for UX audits, report review. **Schema** – entities, relationships (1-N, N-N), normalization; useful for DB design and e-commerce. One prompt, structured answer.",
+                "body": "**AI can analyze** a screenshot or data schema. **Screenshot** – dashboards, tables, UI, code; useful for UX audits, report review. **Schema** – entities, relationships (1-N, N-N), normalization; useful for DB design and e-commerce. One AI query – structured answer.",
                 "blockVariant": "accent"
               },
               {
@@ -2833,29 +3012,34 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Practical step for leadership** – one prompt to start a conversation about data-driven culture: plan, what to measure (KPIs), leader behaviour. Focus here is the **copyable conversation template** only.",
+                "body": "**W. Edwards Deming** – quality and systems thinker: results come from the system, not from hunting for who to blame. Without a data-driven culture, AI analysis stays a report that leadership does not act on.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Do now",
-                "body": "When you need **to start a conversation with leadership** – copy the prompt below, paste into AI. You get: 5-step plan, key metrics system, leadership behavior guidelines.",
+                "heading": "2️⃣ Four principles",
+                "body": "👉 **Data > opinion** – ground decisions in facts you can check, not in hierarchy's voice.\n\n👉 **Variation exists** – not every swing is a problem; separate signal from noise.\n\n👉 **Improve the system, don't blame people** (Deming) – ask \"what system produces this result?\", not \"who is at fault?\".\n\n👉 **Analysis serves decisions** – without a decision or action, you only have a report.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "3️⃣ Copyable prompt (for leadership)",
-                "body": "",
-                "copyable": "In our company decisions are often based on intuition.\n\nCreate:\n1. 5-step plan to move to a data-driven culture\n2. Key metrics system (what to measure, how to track)\n3. Leadership behavior change guidelines (examples: \"ask for data before deciding\", \"don't guess – measure\")",
-                "blockVariant": "terms"
+                "heading": "3️⃣ Do now",
+                "body": "When you need **to start a conversation with leadership** about data culture – copy the prompt below and paste into AI. Ask for a plan, key metrics, and behavior guidelines **based on** these principles.",
+                "blockVariant": "brand"
               },
               {
-                "heading": "4️⃣ Check (1 min)",
-                "body": "• Does the result include a plan, metrics and leadership guidelines?",
+                "heading": "4️⃣ Copyable prompt (for leadership)",
+                "body": "Copy and paste into AI – you get a 5-step plan, a key metrics system, and leadership behavior guidelines with Deming logic.",
+                "blockVariant": "terms",
+                "copyable": "In our company decisions are often based on intuition.\n\nUse Deming logic: improve the system (don't blame people); separate signal from noise; measure before guessing.\n\nCreate:\n1. 5-step plan to move to a data-driven culture\n2. Key metrics system (what to measure, how to track)\n3. Leadership behavior change guidelines (examples: \"ask for data before deciding\", \"don't guess – measure\")"
+              },
+              {
+                "heading": "5️⃣ Check (1 min)",
+                "body": "• Can you state one of the 4 principles in your own words in one sentence?\n• Does the AI result include a plan, key metrics, and leadership guidelines?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Want to understand more?",
-                "body": "**Context: Lithuania.** In many organizations intuition and \"we always did it this way\" still dominate – building measurement habits matters. **Quote:** \"In God we trust, all others bring data.\" (W. Edwards Deming). **Remember 4 principles:** data > opinion; variation exists; improve the system, don't blame people; analysis serves decisions.",
-                "blockVariant": "brand",
+                "body": "**Context: Lithuania.** In many organizations intuition and \"we always did it this way\" still dominate – building measurement habits matters.\n\n**Quote:** \"In God we trust, all others bring data.\" (W. Edwards Deming).\n\n**PDCA:** Plan → Do → Check → Act – data is the \"Check\" backbone for continuous improvement.",
+                "blockVariant": "terms",
                 "collapsible": true
               }
             ]
@@ -3044,9 +3228,14 @@
             "recap": {
               "heading": "What you already have",
               "items": [
-                "6-step analysis pipeline",
-                "MASTER PROMPT for full analysis",
-                "Trust and source-checking rules"
+                "Data analysis pipeline – 6 steps from collection to publishing",
+                "MASTER PROMPT – 8 steps for one topic",
+                "Data storytelling – numbers become a decision story"
+              ],
+              "itemGlossaryTerms": [
+                "Data analysis pipeline",
+                "MASTER PROMPT",
+                "Data storytelling"
               ]
             },
             "nextSteps": [
@@ -3660,7 +3849,8 @@
                 "body": "Did you get a 4-point analysis (function, risk, improvement, priority)? If not – retry with a clearer image or sharpen the prompt.",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "onGoToGlossaryTerm": "Screenshot analysis"
           }
         },
         {
@@ -3691,7 +3881,8 @@
                 "body": "Did you get 3 options with explanations and risks? If at least two answers are “no” – clarify CONTEXT (columns, audience, goal) and run again.",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "onGoToGlossaryTerm": "Visualization risk"
           }
         }
       ],
@@ -3732,7 +3923,8 @@
             "storyBlock": "Module 7 gave the method; Module 8 checked it; here you apply it to your topic. 4 characters, up to 17 extra tasks – optional via the hub.",
             "useCaseBlock": "• **Sales** – Q3 Excel / CRM export → clean → KPIs\n• **Marketing** – campaign / channel CSV → sentiment and ROAS\n• **IT** – logs / ETL export → errors and volume\n• **People** – retention / pulse table → funnel\n• **Management** – executive KPI table → board summary\n• **Other / internal** – any Excel → universal columns",
             "recommendedSlideIds": [101, 102, 104, 111, 116, 117],
-            "footer": "Next – slide 2: 8-step workflow"
+            "footer": "Next – slide 2: 8-step workflow",
+            "onGoToGlossaryTerm": "Full analysis template"
           }
         },
         {
@@ -3778,7 +3970,8 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 3: Practice: sources catalog"
+            "footer": "Next – slide 3: Practice: sources catalog",
+            "onGoToGlossaryTerm": "Source catalog"
           },
           "shortTitle": "8-step workflow"
         },

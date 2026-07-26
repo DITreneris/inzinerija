@@ -470,7 +470,7 @@ describe('ModuleCompleteScreen', () => {
     });
   });
 
-  it('shows "Pradėti apklausą" when isLastModule is true', () => {
+  it('shows "Pasitikrink branduolį" when isLastModule is true', () => {
     renderWithProviders(
       <ModuleCompleteScreen
         module={allModules[5]}
@@ -484,7 +484,7 @@ describe('ModuleCompleteScreen', () => {
         onRequestCertificate={onRequestCertificate}
       />
     );
-    expect(screen.getByText(/Pradėti apklausą/)).toBeInTheDocument();
+    expect(screen.getByText(/Pasitikrink branduolį/)).toBeInTheDocument();
     expect(screen.queryByText(/Tęsti į kitą modulį/)).not.toBeInTheDocument();
   });
 });

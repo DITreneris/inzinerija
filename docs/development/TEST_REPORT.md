@@ -91,17 +91,121 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 ## Nauji įrašai
 
+### 2026-07-26 – Tools catalog hygiene + `audit:tools`
+
+**Implementacija:** LT/EN tools parity (81), curriculum adds (Vercel/CapCut/UiPath/Replit/Whisper), Veo→M13, category normalize, `audit:tools` į `validate:schema`. Agents/skills/lessons sync. Mokymo skaidrių UI nepaliestas (katalogas ≠ embedded tools).
+
+**Vartai:** `audit:tools` ✅ · `validate:schema` ✅ · `lint` ✅.
+
+**Rankinis (optional):** ToolsPage LT/EN – M7 Julius/Power BI, M10 Vercel, M13 Veo+CapCut ⬜.
+
+### 2026-07-26 – Branduolio pasitikrinimas (Plan A)
+
+**Aprašymas:** Global nav „Apklausa“ painiojosi su modulių testais (survey vs exam).  
+**Kontekstas:** `QuizPage`, AppNav, Home/Modules/ModuleComplete CTA.  
+**Prioritetas:** P2. **Statusas:** `išspręsta`.  
+**Sprendimas:** Formuojantis readiness check (Pasitikrink / Ready check); intro + formative results; soft CTA po M3; Tier 2 ≥70 % antrinis. Bankas `modules.json`/`quiz-en.json` nepakeistas.  
+**Vartai:** `lint` ✅ · QuizPage + App.quiz + modulesLoader + a11y 37/37 ✅. Rankinis: nav → intro → M3 CTA ⬜.
+
+### 2026-07-26 – Žodynas open+search + M7–9 term packs
+
+| Vartai                                               | Rezultatas |
+| ---------------------------------------------------- | ---------- |
+| `validate:schema` (glossary + modules + EN m7–9)     | ✅         |
+| GlossaryPage + glossaryLoader testai                 | ✅         |
+| LT/EN alpha + counts M7/M8/M9 = 30/5/8               | ✅         |
+| Rankinis: filtras 7/8/9 + paieška MASTER / Sentiment | ⬜         |
+
+**Pastaba:** GlossaryPage nebegate’ina apibrėžimų (GOLDEN §3.4d). Path-step `unlockedGlossaryTerms` = kelio atlygis skaidrėje. `MASTER PROMPTAS` ≠ `Master promptas`.
+
+### 2026-07-25 – M7 sk. 71 makro kelio žemėlapis UI (Plan B)
+
+**Aprašymas:** sk. 71 „Kelio žemėlapis“ buvo markdown + meta-nav į nav chip (`Pamatas · N/M`) – false affordance.  
+**Kontekstas:** M7 sk. 71 (`m7_macro_path_map`).  
+**Prioritetas:** P1. **Statusas:** `išspręsta` (M79-46).  
+**Sprendimas:** 4 HTML kortelės + „Tu esi čia“ ant Pamato; Shell=Ne; body be meta-nav. Overlay + `DIAGRAMU_M7_M12_REGISTRY` + LT/EN + `generate:core-data`. Testai: `M7PathMapDiagram.test.tsx`, `diagramRenderers`.  
+**Vartai:** `audit:teaching-elements --strict` ✅ · `M7PathMapDiagram` + `diagramRenderers` 16/16 ✅ · eslint touched ✅. Rankinis light/dark + mobile ⬜.
+
+### 2026-07-25 – M7/M9 8 žingsnių workflow desktop 2×4
+
+**Aprašymas:** 1×8 HTML juosta lūžė LT labelius (mid-word wrap / netolygus ritmas).  
+**Kontekstas:** M7 sk. 74 (`m7_master_workflow`), M9 sk. 93 (`m9_data_workflow`) – `M9DataWorkflowDiagram`.  
+**Prioritetas:** P2. **Statusas:** `išspręsta`.  
+**Sprendimas:** desktop 2×4 + `↓` 4→5; tipografija be uppercase; trumpi box labeliai; explanation pilni. Testai: `M9DataWorkflowDiagram.test.tsx` + `DiagramLocalization`. Docs: `DIAGRAM_KIT_STANDARD`, `SCHEME_AGENT`, `DIAGRAMU_M7_M12_REGISTRY`, TE overlay.  
+**Vartai:** targeted vitest ✅ · eslint ✅. Rankinis light/dark 1024–1440px ⬜.
+
+### 2026-07-25 – M7 sk. 97 Deming teorijos atkūrimas
+
+**Implementacija:** Variantas A (SOT §7) – matoma teorija prieš Copy: Trumpai (kas Deming) → Keturi principai → Daryk → Copy (Deming logika, ne tuščias body) → Patikra (principas + DI output) → collapsible PDCA/LT/citata (`terms`). Be meta-nav į sk. 72. LT + EN m7–9 + `generate:core-data`. Docs: turinio_pletra §7.4, M7 eilė 7.24, backlog #4–5, CONTENT lessons.
+
+**Vartai:** `validate:schema` ✅ · `audit:accent-budget` ✅ · `generate:core-data` ✅.
+
+**Rankinis (optional):** M7 fokusas Vadovai → sk. 97 (teorija matoma, collapsible); fokusas Kita → 97 paslėpta ⬜.
+
+### 2026-07-25 – M4/61 + M7/71.35 DI paieškos įrankiai
+
+**Implementacija:** optional atmintinė → `toolChoiceBar` + „Kada ką?“ (`solutionMatrixStyle`) + tipinė eiga lentelė; Trumpai → Daryk → Perplexity starteris → Patikra; `toolsCollapsible`. Sync M4/61 ↔ M7/71.35. LT/EN + `generate:core-data`. Docs: LENTELIU, TE overlay (25 embeds / 29 tables).
+
+**Vartai:** `validate:schema` ✅ · `audit:markdown-tables` ✅ · `audit:accent-budget` ✅ · `audit:teaching-elements --strict` ✅.
+
+**Rankinis (optional):** M7 → DI įrankiai informacijos paieškai – toolChoiceBar eilučių highlight, mobile scroll 4 stulpelių, EN parity ⬜.
+
+### 2026-07-25 – M7 sk. 90 EDA prompt-tool
+
+**Implementacija:** `toolChoiceBar.variant: prompt-tool` → `PromptFilterToolSurface` (sample KPI, brand ChoiceControl, EDA juosta, whenHint + Formato preview, linked Copy). Kind = embed. LT/EN + schema + `generate:core-data`. Docs: GOLDEN §3.8.1, TE overlay maturity 3, M7 eilė 7.17, AGENTS mišri eilutė.
+
+**Vartai:** `validate:schema` ✅ · `extractFormatPreview` + `ContentBlockSlide.promptTool` + `linkedRowIndex` ✅ · `audit:teaching-elements --strict` ✅.
+
+**Rankinis (optional):** M7 → Tiriamoji analizė (EDA) – null→pasirinkimas, sample copy, dark/light, EN parity ⬜.
+
+### 2026-07-25 – M7 sk. 67.8 Haliucinacijos UX
+
+**Implementacija:** 3 lentelės (FAKTAI vs SPĖJIMAI, Kodėl, 4 lygiai); `preCopyCheckBlock` prieš pirmą `copyable`; sutraukti 4 patarimai → 4 lygiai; hero = 5 taisyklės + anti-šablonas. `ContentSlides` preCopy placement (be linked-copy). LT/EN + `generate:core-data`. Docs: M7 eilė, LENTELIU, TE registry/overlay, GOLDEN §3.8.1.
+
+**Vartai:** `lint` ✅ · `ContentBlockSlide.preCopyPlacement` + `linkedRowIndex` ✅ · `audit:markdown-tables` ✅ · `audit:m79` ✅ · `audit:teaching-elements` ✅ (25 tables / 23 embeds).
+
+**Rankinis (optional):** M7 → Haliucinacijos – dark/light, collapsible, MCQ prieš Copy, EN sekcijų parity.
+
+### 2026-07-26 – Pre-launch Unreleased → push **inzinerija/main**
+
+| Kriterijus                        | Būsena        | Įrodymas                                                                                              |
+| --------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------- |
+| Automated gates                   | ✅ GO         | `audit:release-preflight` (schema+tools, lint, DS gate, M49, TE strict, typecheck, tests) **118/750** |
+| Design-tokens gate                | ✅ GO         | Fix: M7 path map badge `text-[11px]` → `text-xs` (arbitraryClass 59 = baseline)                       |
+| M10–12 EN                         | ✅ GO         | `audit:m1012` ✅; footer-numbers M1–12 LT ✅ / M10–12 EN ✅                                           |
+| M13 footer numbers (full catalog) | ⚠ known drift | `audit:footer-numbers` fail M13 pos 5+ (authoring; not in release-preflight / not production M1–9)    |
+| Learning QA (PDF + M79 browser)   | ⏳ open       | CQ-M79-1/2 + Portal + PDF-1…6 + M1012-2 browser – `TODO.md` §1.1–§1.2                                 |
+| Monetization (MON-\*)             | Out of scope  | Marketing repo – `TODO.md` §1.4                                                                       |
+
+**Verdict:** **GO** code push (Unreleased ant **1.4.7**); **CONDITIONAL** learning QA (browser smoke + PDF rankinė). M13 footer drift – atskiras authoring ticketas, ne launch blokorius M1–9.
+
 ### 2026-07-24 – Pre-launch I4 → tag **1.4.7**
 
-| Kriterijus                           | Būsena         | Įrodymas                                                                                                                          |
-| ------------------------------------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Automated gates                      | ✅ GO          | `audit:release-preflight` (incl. typecheck + TE strict) + builds; **111/720**; M6 accent demote + orchestrator `viewBoxW: number` |
-| Docs / registry truth                | ✅ GO          | Meta **1.4.7**; Feature Doc Contract; **TE-0…5** + `audit:teaching-elements --strict`                                             |
-| Teaching Elements inventory          | ✅ GO          | 283 slides; 38 images; 4 labs; 22 embeds; 22 tables; overlay **135**                                                              |
-| Release-ready (MON-1/3/5 + mobile)   | ⏳ CONDITIONAL | Code tag ready. **Trūksta:** human browser tier 0/6/9 + mobile 375 + PDF rankinė (`TODO.md` §1.2)                                 |
-| Monetization-ready (MON-2/4/8 + PDF) | ❌ NO-GO       | Marketing pin **v1.4.7** / PostHog / PDF rankinė ⏳ – žr. `TODO.md` §1.1                                                          |
+| Kriterijus                         | Būsena         | Įrodymas                                                                                                                          |
+| ---------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Automated gates                    | ✅ GO          | `audit:release-preflight` (incl. typecheck + TE strict) + builds; **111/720**; M6 accent demote + orchestrator `viewBoxW: number` |
+| Docs / registry truth              | ✅ GO          | Meta **1.4.7**; Feature Doc Contract; **TE-0…5** + `audit:teaching-elements --strict`                                             |
+| Teaching Elements inventory        | ✅ GO          | 283 slides; 38 images; 4 labs; 22 embeds; 22 tables; overlay **135**                                                              |
+| Release-ready (MON-1/3/5 + mobile) | ⏳ CONDITIONAL | Code tag ready. **Trūksta:** human browser tier 0/6/9 + mobile 375 + PDF rankinė (`TODO.md` §1.2)                                 |
+| Monetization-ready (MON-\*)        | Out of scope   | Marketing repo – `TODO.md` §1.4 (ne šio repo P0)                                                                                  |
+| Learning QA (PDF + M79 browser)    | ⏳ open        | PDF rankinė P1 · M79 smoke P0 – `TODO.md` §1.1–§1.2                                                                               |
 
-**Verdict:** **GO** code tag **v1.4.7**; **CONDITIONAL** release-ready; **NO-GO** monetization kol MON-\* browser + PDF. Rankinė checklist lieka open (neuždaryta false-close).
+**Verdict:** **GO** code tag **v1.4.7**; **CONDITIONAL** learning QA (PDF + M79 browser smoke). MON monetization – out of scope šiame repo. Rankinė checklist lieka open (neuždaryta false-close).
+
+**2026-07-26 – M10–12 chrome brandumas (M1012-1 / M1012-2):** CONTENT+DATA – EN learner body be curriculum ID (`10.48`, `(10.4)`), be `docs/…md` path, bare `HITL` → human approval / Human-in-the-loop spelled where needed; LT 10.65 + practice hints be `docs/` / slug. Šaltinis: `scripts/build-en-m10-m12.mjs` → `npm run build:modules-en-m10-m12`. **Vartai:** `audit-footer-numbers` LT+EN ✅ · `audit:m1012` ✅ · `validate:schema` ✅ · CODING nereikėjo (PathStep/ModuleView).
+
+| #   | Kelias                           | Tikrinti                                   | Kodo/JSON | Browser @375px |
+| --- | -------------------------------- | ------------------------------------------ | --------- | -------------- |
+| C1  | M10 1–5                          | titles, footer N (§3.6), CTA               | ✅        | ⬜ savininkas  |
+| C2  | M10 path-step / 10.45 lab chrome | be ID UI                                   | ✅        | ⬜             |
+| C3  | M10 10.5 / 10.65                 | cross-ref title-only; be `docs/`           | ✅        | ⬜             |
+| C4  | M11 intro → warm-up → results    | Path Test lukštas; remediation be naked ID | ✅        | ⬜             |
+| C5  | M12 124.5 + summary CTA          | human approval (ne bare HITL); title/CTA   | ✅        | ⬜             |
+| C6  | Dark + light                     | viena dense content-block                  | ✅ (kodo) | ⬜             |
+
+**Statusas:** `kodo/JSON chrome ✅` — M1012-1 uždaromas; M1012-2 browser stulpelis – savininko sesija (full catalog, LT tada EN).
+
+**2026-07-25 – M7 sk. 200 Haliucinacijų rodikliai UX:** Intro (gamintojai / nepriklausomi benchmarkai) → Vectara chart → Išvada → LT/EN learner Copy (`RESEARCH_PROMPT_*` + i18n `hallucinationRates`). Chart skaičiai nepaliesti. **Vartai:** `lint` ✅. Rankinis: M7 etika-plus → sk. 200 LT/EN ⬜.
 
 **2026-07-24 – M7 sk. 67.5 saugumas (GOLDEN praktika):** Trumpai → Daryk → scenarijus (injection laiške) → jailbreak signalas → copyable gynybos šablonas → OWASP collapsible → Patikra ×2. Žodynas: Promptų injekcija + Jailbreak pataisa (≠ manipuliacija). Sk. 68.5 `check-manip-2` suderinamas. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:accent-budget` ✅.
 
@@ -147,7 +251,7 @@ _Rankinis browser 375px (M4 portal, M7 sk. 93–94) – ⬜; ne tag blocker paga
 | M7 vadyba (fast track OFF, strategija) | sk. 725→726, footer be klaidinančių skaičių | ✅ kodo peržiūra  | Footer variant A (title) + B (visible N/M slide footer) |
 | M7 branduolys (fast track ON)          | sk. 71 macro label nav; 66.9→67             | ✅ kodo peržiūra  | `ModuleView` rodo `Pamatas · N/M`                       |
 | M7 vidiniai                            | journey choice sk. 70; sk. 78→78.5→84→891   | ✅ kodo peržiūra  | 4 skaidrės pathBranch `vidiniai`                        |
-| M9 workflow 375px                      | `M9DataWorkflowDiagram` horizontal cards    | ✅ kodo peržiūra  | Ankstesnis M79-23 card layout                           |
+| M9 workflow 375px                      | `M9DataWorkflowDiagram` mobile stack        | ✅ kodo peržiūra  | Desktop = 2×4 (2026-07-25); mobile stack nepakitęs      |
 | M7 warm-up MCQ 375px                   | warm-up-quiz tap targets                    | ✅ kodo peržiūra  | GOLDEN_STANDARD min-h                                   |
 | M8 remediation                         | wrong answer → clickable M7 link            | ✅ kodo peržiūra  | `TestPracticeSlides` ifWrongSee auto-map                |
 | M9 praktika                            | sk. 93.1 šaltinių katalogas; 93.2 CSV       | ✅ JSON struktūra | `practice-scenario` + taskFrame.doneWhen                |
@@ -451,7 +555,7 @@ _(Čia QA_AGENT prideda naujus vartotojo praneštus įrašus. Seni įrašai gali
 
 **M5 rankinė peržiūra:** Intro 45.5 (action-intro), skaidrė 47 – preCopyCheckBlock, vienas dominuojantis copyable (8 skaidrių), collapsible „Nori suprasti detaliau?“ (Master + pilnas turinio promptas), proceso diagrama. Rezultatų skaidrė 514 – useCaseBlock, thresholdExplanation (≥70%), paprasta kalba (brief, draft, sprint) pataisyta 2026-03-11.
 
-**Path-step žodynėlio patikra (M7, 71.1–71.5):** Kelio žingsniai 71.1–71.5 turi `type: "path-step"`; kiekvienas atrakina žodynėlio terminus per `unlockedGlossaryTerms` / glossary.json `unlockedBy`. **10 terminų** atrakinta: 71.1 → Duomenų analizės pipeline, EDA; 71.2 → Deep research, Master promptas; 71.3 → RAG, Šaltinių nurodymas; 71.4 → Duomenų valymas, Sintetinimas; 71.5 → Dashboard, Vizualizacija. „Pažymėjau kaip atliktą“ – PathStepSlide / kelio progresas; GlossaryPage rodo locked/unlocked pagal `unlockedBy`. Ne-MVP (moduleId 7 matomas).
+**Path-step žodynėlio patikra (M7, 71.1–71.5):** Kelio žingsniai 71.1–71.5 turi `type: "path-step"`; `unlockedGlossaryTerms` / `unlockedBy` = **kelio atlygio metadata** (skaidrėje), ne GlossaryPage lock (GOLDEN §3.4d, 2026-07-26). Terminai: 71.1 → Duomenų analizės pipeline, EDA; 71.2 → Deep research; 71.3 → RAG, Šaltinių nurodymas; 71.4 → Sintetinimas, Duomenų valymas; 71.5 → Dashboard, Vizualizacija. GlossaryPage – apibrėžimai visada skaitomi + paieška.
 
 ---
 

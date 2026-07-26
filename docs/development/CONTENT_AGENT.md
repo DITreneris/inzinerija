@@ -32,8 +32,11 @@
 | Sritis                                    | SOT failas                                                                                                        | CONTENT_AGENT veikla                                                                                                                                           |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Moduliai 1–3**                          | `turinio_pletra.md`                                                                                               | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **M1–3 copyable branda**                  | `docs/development/M1_M3_PROMPT_MATURITY.md`                                                                       | Fit-for-purpose + freeze po M1P; 3-block micro-win ≠ „6 blokų“; M3 curriculum 6-block; handoff → DATA                                                          |
 | **Moduliai 4–6**                          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                           | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **M4 copyable branda**                    | `docs/development/M4_PROMPT_MATURITY.md`                                                                          | Fit-for-purpose Micro/Stage/Flagship; 6-block tik 54.5; handoff → DATA                                                                                         |
 | **Moduliai 7–9**                          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                           | Turinio kūrimas, redagavimas, atnaujinimas                                                                                                                     |
+| **M7 copyable branda**                    | `docs/development/M7_PROMPT_MATURITY.md`                                                                          | F/S/R/L + journey sibling parity; handoff → DATA                                                                                                               |
 | **Moduliai 10–12**                        | `docs/turinio_pletra_moduliai_10_11_12.md`                                                                        | Turinio kūrimas; verslo multi-agent taksonomija, workflow šablonai, capstone scenarijai                                                                        |
 | **Moduliai 13–15**                        | `docs/turinio_pletra_moduliai_13_14_15.md`                                                                        | Turinio inžinerija: pipeline, vaizdai, consistency, video/CPI, post-prod, **garsas** (audio-first), provenance (C2PA); M15 150.5 MUST, optional 151–154        |
 | **Skaidrių eilė M10**                     | `docs/MODULIO_10_SKAIDRIU_EILES.md`                                                                               | **Privaloma** prieš keičiant M10 skaidrių seką                                                                                                                 |
@@ -44,9 +47,9 @@
 | **Duomenų analizės geriausios praktikos** | `docs/development/DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS.md` (stub → redaguoti `turinio_pletra_moduliai_7_8_9.md`) | Moduliams 7–9 turinio semantika                                                                                                                                |
 | **GOLDEN STANDARD (privaloma)**           | `docs/development/GOLDEN_STANDARD.md`                                                                             | Vienas etalonas – šriftai, spalvos, blockVariant, skaidrių schemos, turinio išdėstymas, modulio identitetas. **Privaloma** prieš rašant ar redaguojant turinį. |
 
-**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json`. Core profiliai `*-m1-m6.json` (MVP) ir `*-m1-m9.json` (korporatyvinis) naudojami build/runtime; CONTENT_AGENT **never** edits JSON.
+**Architektūra A:** full redagavimo SOT lieka `src/data/modules.json`, `src/data/glossary.json`, `src/data/tools.json` (+ EN `tools-en.json`). Core profiliai `*-m1-m6.json` (MVP) ir `*-m1-m9.json` (korporatyvinis) naudojami build/runtime; CONTENT_AGENT **never** edits JSON.
 
-**Konfliktų tvarka:** 1) Pirmiausia atnaujink SOT (semantika, terminai, pavyzdžiai). 2) Duomenys – DATA_AGENT sinchronuoja full failus (`modules.json`, EN overlay jei reikia). 3) UI – CODING_AGENT.
+**Konfliktų tvarka:** 1) Pirmiausia atnaujink SOT (semantika, terminai, pavyzdžiai). 2) Duomenys – DATA_AGENT sinchronuoja full failus (`modules.json`, EN overlay jei reikia; nauji įrankių vardai → `tools.json` + `tools-en.json`, žr. `DATA_AGENT_TOOLS.md`). 3) UI – CODING_AGENT.
 
 ---
 
@@ -78,6 +81,7 @@
 - **LT** vartotojui — **DI**; **EN locale** — **AI** (`PAPRASTOS_KALBOS_GAIRES.md` §4).
 - Po EN keitimo: `npm run audit:en-coverage-m10-12`, `npm run validate:schema`; jei keisti footeriai – `node scripts/audit-footer-numbers.mjs --modules=10,11,12 --locale=en`.
 - **Žinoma spraga:** slide 10.7 glossary terminai EN overlay faile ≠ globalus `glossary-en.json` (glossary page gali rodyti LT).
+- **M7 žodynas:** `MASTER PROMPTAS` (8 žingsnių DA) ≠ `Master promptas` (M4 personalizacija) – abu kanoniniai; copy/wire naudoja tikslų stringą. M7–9 term SOT: `turinio_pletra_moduliai_7_8_9.md` §11–§11.2. GlossaryPage apibrėžimai visada skaitomi (GOLDEN §3.4d).
 
 ### 3.2 Antraštės ir trumpa santrauka (Trumpai)
 
@@ -94,11 +98,14 @@
 - **Curriculum ID vartotojui – draudžiama:** `124.5`, `10.64`, `121–123` ir pan. **nerodyti** CTA, whyBenefit, body, i18n (`lt.json`/`en.json`) ar path-step tekste. Nuorodoms – skaidrės **pavadinimas** („Greitas startas“, „3A strategija“). ID lieka tik JSON navigacijai: `recommendedSlideIds`, `relatedSlideId`, `onNavigateToSlideById`.
 - **Kreipinys:** **tu** (ne Jūs) – ir antraštėse („ką čia rasi“, ne „rasite“).
 - **„Kur pritaikyti?“** po modulio: 1–2 sakiniai (pvz. „Panaudok tą patį šabloną kitai prezentacijai per 24–48 val.“).
+- **Branduolio pasitikrinimas (global nav):** learner UI – **Pasitikrink** / **Branduolio pasitikrinimas** (EN: Ready check / Core readiness check). **Ne** „Apklausa“ (survey). Formuojantis: ar 6 blokų sistema tvirta eiti į M4+; skirtumas nuo M2/M5/M8 kelio testų. Copy: `lt.json`/`en.json` (`nav`, `quiz`, `home`, `modulesPage`, `module`); SOT metadata – `modules.json`/`quiz-en.json` `quiz.title`. ≥70 % = rekomendacija + (kai ≥6 modulių) Tier 2 hint.
 
 ### 3.4 Kopijuojami promptai
 
-- **Ilgis:** max 6–8 eilutės (kopijuojama = trumpa).
-- **Struktūra:** Meta (rolė) + Input (kontekstas) + Output (formatas).
+- **Fit-for-purpose (ne „ilgesnis = brandesnis“):** klasė ir ilgis seka skaidrės darbą. SOT: [`M1_M3_PROMPT_MATURITY.md`](M1_M3_PROMPT_MATURITY.md) (M1–3 – freeze po M1P); [`M4_PROMPT_MATURITY.md`](M4_PROMPT_MATURITY.md) (M4 – Micro / Stage / Flagship; 6-block tik System/Master 54.5); [`M7_PROMPT_MATURITY.md`](M7_PROMPT_MATURITY.md) (M7 – F/S/R/L + journey). Prefer cut over add; Stage = Duomenys/Padaryk/Formatas (be force-META).
+- **Ilgis (tipinis Flagship):** max 6–8 eilutės; Micro 1–3; Stage 3–6; generatoriai (Custom GPT / Master) gali būti ilgesni.
+- **Struktūra:** Meta (rolė) + Input (kontekstas) + Output (formatas) – kai klasė Flagship; Micro/Stage – trumpiau.
+- **`Nežinau` / citata:** tik kai užduotis remiasi šaltiniais ar įklijuotais duomenimis (ne stiliaus chip’ams).
 - **Refleksijos promptas:** 3 klausimai (Apply, Analyze, Create) + 1 patarimas; „What–So What–Now What“.
 - **Copy mygtukas:** Prominent, su „Nukopijuota!“ feedback.
 
@@ -115,8 +122,11 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 - **Daryk dabar** – aiškus veiksmas; vienas CTA „🔘 Kopijuoti promptą (žemiau)“.
 - **Quality check** – „Jei bent 2 „ne“ → grįžk prie…“ (vienoda formuluotė).
 - **Optional** – antraštė „🔽 Nori suprasti detaliau? (optional)“; collapsible teorija.
+- **Dense teorija (numeruoti sąrašai):** jei ≥2 blokai „1. 2. 3…“ plain text – versti į `section.table` (pvz. Priežastis|Ką daryti; FAKTAI|SPĖJIMAI su `comparisonStyle`); hero = copyable + taisyklės; giluminį (CoVe) palikti collapsible. Etalonas: M7 sk. 67.8. Prieš copyable hero – `preCopyCheckBlock` (GOLDEN §3.8.1); ne naujas lab/diagrama, jei greta jau yra pipeline/dashboard.
+- **Prompt-tool (`toolChoiceBar.variant: prompt-tool`):** kai filtras turi jaustis kaip įrankis (duomenys → režimas → Formatas → Copy) – `sampleData`, `sequenceHint`, `whenHint` × choice; kind lieka embed. Etalonas: M7 sk. 90. **Ne** kelti į `interactive-control-lab`, jei užtenka ChoiceControl + linked Copy (GOLDEN §3.8.1).
 - **MUST vs optional deep (M10 precedentas 10.64 / 10.65):** jei dense optional skaidrę dalyviai praleidžia, o M12 lab'ai reikalauja branduolio – **neišjunk** viso optional; ištrauk ploną **privalomą** content-block (spec + minimalūs testai + žmogaus kontrolė) prieš optional deep. **Koncepto lab:** skaidrė **10.26** (`m10_human_control_simulator`) – režimai + **kopijuojama kontrolės taisyklė lab viduje** (ne GOLDEN „Kopijuojamas promptas“ siena); **10.64** laiko kontrolės eilutę. Antraštėse be „HITL“ (`PAPRASTOS_KALBOS` / `audit:slide-titles`). Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `turinio_pletra_moduliai_10_11_12.md` §3b1.
 - **Orientacinės skaidrės** (schema / 3A / įrankių katalogas) be Daryk/Copy/Patikra – silpnos; pridėti GOLDEN §3.2 ciklą, ne tik diagramą.
+- **HTML diagramos box labeliai (M9/M7 8 žingsnių):** kortelėje – trumpi LT/EN (`m9DataWorkflowContent` STEPS); pilni pavadinimai – Shell explanation / status. Geometrija (2×4) – SCHEME/CODING; ne tempti ilgų žodžių į siaurą 1×N juostą.
 
 ---
 

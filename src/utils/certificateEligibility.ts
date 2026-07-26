@@ -26,7 +26,7 @@ export function canRequestCertificateTier1(progress: Progress): boolean {
 }
 
 /**
- * Tier 2 PDF: baigti bent 6 moduliai ir baigiamoji apklausa ≥ 70 %.
+ * Tier 2 PDF: baigti bent 6 moduliai ir branduolio pasitikrinimas ≥ 70 %.
  */
 export function canRequestCertificateTier2(progress: Progress): boolean {
   return (

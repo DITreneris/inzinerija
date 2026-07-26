@@ -109,6 +109,8 @@ export interface ModuleCompleteScreenProps {
   isLastModule: boolean;
   /** Po Modulio 3: grįžti į „1 dalies santraukos“ skaidrę (be „grįžti du kartus“). */
   onViewPart1Summary?: () => void;
+  /** Branduolio pasitikrinimas (formative readiness). */
+  onGoToQuiz?: () => void;
   /** Hidden treasure: parsisiųsti sertifikatą pagal completionArtifacts registry. */
   onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
 }
@@ -123,6 +125,7 @@ export function ModuleCompleteScreen({
   onContinueToNext,
   isLastModule,
   onViewPart1Summary,
+  onGoToQuiz,
   onRequestCertificate,
 }: ModuleCompleteScreenProps) {
   const { t } = useTranslation(['module', 'common']);
@@ -285,6 +288,26 @@ export function ModuleCompleteScreen({
                 </>
               )}
             </CTAButton>
+            {module.id === 3 && onGoToQuiz && !progress.quizCompleted && (
+              <CTAButton
+                variant="secondary"
+                onClick={() => {
+                  const lastSlide = module.slides?.[module.slides.length - 1];
+                  track('cta_click', {
+                    module_id: module.id,
+                    slide_id: lastSlide?.id ?? undefined,
+                    cta_id: 'ready_check_after_m3',
+                    cta_label: t('module:readyCheckAfterM3'),
+                    destination: 'internal',
+                  });
+                  onGoToQuiz();
+                }}
+                aria-label={t('module:readyCheckAfterM3Aria')}
+              >
+                {t('module:readyCheckAfterM3')}
+                <ArrowRight className="w-5 h-5" />
+              </CTAButton>
+            )}
             <CTAButton
               variant="secondary"
               onClick={() => {

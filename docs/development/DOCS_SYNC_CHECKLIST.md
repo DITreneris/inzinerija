@@ -2,9 +2,9 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.6 (tag release) + Unreleased pre-launch  
-**Testai:** 103 failai / 686 testai (HEAD 2026-07-24)  
-**Data:** 2026-07-24  
+**Baseline:** 1.4.7 (tag release) + Unreleased M4/M7 UX  
+**Testai:** 117 failai / 745 testai (HEAD 2026-07-25)  
+**Data:** 2026-07-25  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Deploy / env matrica (viena tiesa)
@@ -43,6 +43,16 @@ CI (`test.yml`) stato MVP + M1–9; Pages shipina tik MVP. Preflight (`audit:rel
 | 5   | DIAGRAM_KIT / LMS W5                      | dual-taxonomy    | etalon Shell           | superseded → lab hybrid       | [x]  |
 | 6   | sot_index / LEAN / DOC indexes            | pointers         | be master              | teaching*elements*\* keys     | [x]  |
 | 7   | LENTELIU §5 / SLIDE_UX baseline           | counts           | 17 tables / 262 slides | 21/19 tables / **283** slides | [x]  |
+
+### Unreleased M4/M7 UX meta sync – 2026-07-25
+
+| #   | Failas                                      | Laukas          | Buvo                | Turi būti                        | Done |
+| --- | ------------------------------------------- | --------------- | ------------------- | -------------------------------- | ---- |
+| 1   | `package.json` / CHANGELOG                  | release truth   | 1.4.7 + Unreleased  | **1.4.7** + Unreleased (no bump) | [x]  |
+| 2   | ROADMAP / TODO / CODEBASE / DOCS_SYNC       | test count      | 111/720 ar 103/686  | **117/745**                      | [x]  |
+| 3   | `DOCUMENTATION_INDEX`                       | release pointer | v1.4.6 + Unreleased | **v1.4.7 + Unreleased**          | [x]  |
+| 4   | Feature surface (TE / GOLDEN / M4 maturity) | inventory       | pre-M4P / path map  | M4P + M7 71/90/67.8/97/200 + 2×4 | [x]  |
+| 5   | Browser smoke M79 / MON                     | rankinė         | ⬜                  | Savininkas prieš release         | [ ]  |
 
 ### Pre-launch meta sync (Unreleased) – 2026-07-24
 

@@ -16,7 +16,7 @@
     },
     {
       "name": "ChatGPT (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "Universalus pokalbių DI – geriausiai tinka bendram rašymui, santraukoms ir idėjų generavimui.",
       "moduleId": 1,
       "category": "Pokalbių DI"
@@ -253,13 +253,6 @@
       "category": "RAG / išoriniai šaltiniai"
     },
     {
-      "name": "Veo 3 (Google)",
-      "url": "https://deepmind.google/technologies/veo/",
-      "description": "Veo 3.1 – kinematografinė kokybė, native audio; prototipai ir trumpi reklaminiai.",
-      "moduleId": 4,
-      "category": "Vaizdo generavimas"
-    },
-    {
       "name": "Visme",
       "url": "https://www.visme.co",
       "description": "Ataskaitoms ir duomenims – infografikai, interaktyvumas.",
@@ -278,7 +271,7 @@
       "url": "https://zapier.com",
       "description": "Automatizuoja darbo eigas tarp programų – DI grandinėse gali siųsti duomenis į el. paštą, kalendorių ir kt.",
       "moduleId": 4,
-      "category": "Automatizacija"
+      "category": "Verslo automatizavimas"
     },
     {
       "name": "ZeroGPT",

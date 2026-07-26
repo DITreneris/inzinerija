@@ -15,6 +15,7 @@
     "test:coverage": "vitest --coverage",
     "test:run": "vitest run",
     "validate:schema": "node scripts/validate-schema.mjs",
+    "audit:tools": "node scripts/audit-tools.mjs",
     "validate:journey-m7": "node scripts/validate-journey-m7.mjs",
     "validate:journey-en-m7": "node scripts/validate-journey-en-m7.mjs",
     "audit:m7-journey-coverage": "node scripts/audit-m7-journey-coverage.mjs",

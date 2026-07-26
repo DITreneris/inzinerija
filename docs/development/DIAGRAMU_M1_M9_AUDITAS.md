@@ -39,7 +39,7 @@
 | M7 / 74           | MASTER workflow             | `m7_master_workflow` -> `M9DataWorkflowBlock context=\"m7_master\"`                                                                                        | `linear-process`                     | Geras reuse                         | Reikia islaikyti bendra M9 geometrija.                                                  |
 | M7 / 95           | Duomenu schema pavyzdys     | `/da_schema_entity_example.svg` -> fallback `<img>`                                                                                                        | `illustration`                       | Palikti arba migracija veliau       | Labiau pavyzdys nei mokomasis procesas.                                                 |
 | M7 / 71.4         | Duomenu istorijos ciklas    | `m7_data_story_cycle` -> `M7DataStoryCycleBlock`                                                                                                           | `cycle-feedback`                     | A prioriteto refaktorius            | Vadina ciklu, bet desktop atrodo kaip tiesine seka.                                     |
-| M9 / 93           | 8 zingsniu workflow         | `m9_data_workflow` -> `M9DataWorkflowBlock`                                                                                                                | `linear-process`                     | Pagrindinis DA etalonas             | Turi tapti 5/8 zingsniu vertikaliu flow standartu.                                      |
+| M9 / 93           | 8 zingsniu workflow         | `m9_data_workflow` -> `M9DataWorkflowBlock`                                                                                                                | `linear-process` (HTML 2×4)          | HTML cards sibling                  | Desktop 2×4 (2026-07-25); mobile stack; ne SVG vertical-flow.                           |
 
 ## Patternu taksonomija
 
@@ -63,8 +63,9 @@ Standartas:
 
 - vertikali seka, kai zingsniu > 4;
 - horizontalus srautas tik kai telpa desktop ir nereikia ilgu labeliu;
+- 8 HTML korteles: desktop **2×4** (ne 1×8 su ilgais LT labeliais); mobile – vertikalus stack;
 - aktyvus zingsnis + numeruoti mygtukai + paaiskinimas po schema;
-- M7 5 zingsniai ir M9 8 zingsniai turi naudoti ta pacia vizualine kalba.
+- M7 5 zingsniai (SVG vertical) ir M9 8 zingsniai (HTML 2×4) – ta pati Shell kalba, skirtinga geometrija.
 
 ### `cycle-feedback`
 
@@ -99,7 +100,7 @@ Standartas:
 ## M7-M9 refaktoriaus priemimo kriterijai
 
 1. Visi A grupes blokai naudoja bendra `InteractiveDiagramShell`.
-2. `M7DataPrepWorkflowDiagram` ir `M9DataWorkflowDiagram` naudoja bendra tokenu palete ir panasia vertical-flow geometrija.
+2. `M7DataPrepWorkflowDiagram` naudoja vertical-flow geometrija; `M9DataWorkflowDiagram` – HTML 2×4 cards (ta pati Shell/token kalba, ne `verticalFlowGeometry`).
 3. `M7AnalysisTypesDiagram` nebera keturi identiski tamsus blokai: kiekvienas tipas turi subtilu semantini tona.
 4. `M7ThreeAgentsDiagram` roles vizualiai skiriasi ir turi vienoda horizontalu arrow standarta.
 5. `M7DataStoryCycleDiagram` turi ciklo/feedback uzuomina desktop rezime, ne vien linear row.
@@ -196,14 +197,14 @@ Statusas: automatinis guard atliktas; agent-side dev/render smoke atliktas B2.6 
 
 Statusas: įgyvendinta kaip M1-M9 fokuso iteracija; M10 kokybės remontas neįtrauktas.
 
-| Sritis                                   | Statusas | Įrodymas / pastaba                                                                                                                                                                  |
-| ---------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Shared vertical-flow model               | OK       | `M7DataPrepWorkflowDiagram`, `M7DaPipelineDiagram` ir `M9DataWorkflowDiagram` naudoja bendrą `verticalFlowGeometry` helperį 5/6/8 žingsnių dėžutėms, viewBox ir centrui skaičiuoti. |
-| 5/6/8 žingsnių ritmas                    | OK       | Bendras `boxHeight`, `gap`, `startY` modelis palieka rodykles kraštas į kraštą per tą patį `DIAGRAM_TOKENS.arrow.markerLen` kontraktą.                                              |
-| `M7DataStoryCycleDiagram` cycle-feedback | OK       | Desktop feedback path sustiprintas dashed amber ciklu, start indikatoriumi ir label fonu; mobile lieka vertikalus flow.                                                             |
-| Roles-hub semantics                      | OK       | `M7AnalysisTypesDiagram` ir `M7ThreeAgentsDiagram` išlaiko `DIAGRAM_TONE_COLORS`; agentų compact width padidintas, fontai pervesti į `DIAGRAM_TOKENS.font`.                         |
-| Guard testai                             | OK       | Pridėtas `verticalFlowGeometry.test.ts`; `DiagramLocalization.test.tsx` išplėstas M7 prep, analysis roles, three agents ir M9 workflow kontraktams.                                 |
-| B3 / W6 LlmArch                          | OK       | Type Etalon W6: Agentinis rename, brand active, placeholders, `llmArchReturnPath`, premium chrome.                                                                                  |
+| Sritis                                   | Statusas | Įrodymas / pastaba                                                                                                                                          |
+| ---------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Shared vertical-flow model               | OK       | `M7DataPrepWorkflowDiagram` ir `M7DaPipelineDiagram` – `verticalFlowGeometry`. `M9DataWorkflowDiagram` – HTML 2×4 cards (ne SVG spine).                     |
+| 5/6/8 žingsnių ritmas                    | OK       | Bendras `boxHeight`, `gap`, `startY` modelis palieka rodykles kraštas į kraštą per tą patį `DIAGRAM_TOKENS.arrow.markerLen` kontraktą.                      |
+| `M7DataStoryCycleDiagram` cycle-feedback | OK       | Desktop feedback path sustiprintas dashed amber ciklu, start indikatoriumi ir label fonu; mobile lieka vertikalus flow.                                     |
+| Roles-hub semantics                      | OK       | `M7AnalysisTypesDiagram` ir `M7ThreeAgentsDiagram` išlaiko `DIAGRAM_TONE_COLORS`; agentų compact width padidintas, fontai pervesti į `DIAGRAM_TOKENS.font`. |
+| Guard testai                             | OK       | Pridėtas `verticalFlowGeometry.test.ts`; `DiagramLocalization.test.tsx` išplėstas M7 prep, analysis roles, three agents ir M9 workflow kontraktams.         |
+| B3 / W6 LlmArch                          | OK       | Type Etalon W6: Agentinis rename, brand active, placeholders, `llmArchReturnPath`, premium chrome.                                                          |
 
 ## Pirma iteracija
 

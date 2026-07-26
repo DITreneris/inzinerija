@@ -38,7 +38,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 - **Agentų kelias M10–12:** turinys full authoring kataloge (ne production bundle); taksonomija 10.45, workflow 10.48.
 - **Turinio kelias M13–15:** full authoring katalogas; vaizdai, video, muzika, testas ir finalinis kūrybinis projektas.
 - **6 blokų sistema** su workflow, technikomis ir mąstymo modeliais (CoT, ToT, konteksto inžinerijos schemos).
-- **Žodynėlis**, **Įrankių puslapis**, **Apklausa**, **Promptų biblioteka**.
+- **Žodynėlis**, **Įrankių puslapis**, **Branduolio pasitikrinimas** (nav: Pasitikrink), **Promptų biblioteka**.
 - **Sertifikatai (PDF):**
   - Tier 1 – po modulių 1–3.
   - Tier 2 – po modulių 1–6 ir apklausos ≥ 70 %.
@@ -111,7 +111,7 @@ npm run test:coverage # Su coverage report
 | 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (authoring; ne prod bundle)       |
 | 13–15   | Turinio inžinerija      | Planavimas / authoring SOT                                                |
 
-**Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Apklausa.
+**Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Pasitikrink.
 
 **Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`.
 

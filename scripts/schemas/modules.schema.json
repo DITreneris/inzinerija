@@ -307,10 +307,28 @@
                           "minimum": 0,
                           "description": "Susieti copyable sekciją su toolChoiceBar eilute"
                         },
+                        "formatPreview": {
+                          "type": "string",
+                          "description": "Optional Format preview for prompt-tool; else parse from copyable"
+                        },
                         "toolChoiceBar": {
                           "type": "object",
                           "properties": {
                             "question": { "type": "string" },
+                            "variant": {
+                              "type": "string",
+                              "enum": ["chips", "prompt-tool"],
+                              "description": "chips = default bar; prompt-tool = EDA tool surface (M7/90)"
+                            },
+                            "sequenceHint": { "type": "string" },
+                            "sampleData": {
+                              "type": "object",
+                              "required": ["label", "body"],
+                              "properties": {
+                                "label": { "type": "string" },
+                                "body": { "type": "string" }
+                              }
+                            },
                             "choices": {
                               "type": "array",
                               "items": {
@@ -321,7 +339,8 @@
                                   "rowIndex": {
                                     "type": "integer",
                                     "minimum": 0
-                                  }
+                                  },
+                                  "whenHint": { "type": "string" }
                                 }
                               }
                             }

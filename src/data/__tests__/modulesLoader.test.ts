@@ -39,7 +39,7 @@ const fakeModulesData: ModulesData = {
     minimalModule({ id: 4, title: 'M4' }),
   ],
   quiz: {
-    title: 'Apklausa',
+    title: 'Branduolio pasitikrinimas',
     description: '',
     passingScore: 70,
     questions: [
@@ -178,7 +178,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     };
     const data = await loadModules();
     expect(data.quiz).toBeDefined();
-    expect(data.quiz.title).toBe('Apklausa');
+    expect(data.quiz.title).toBe('Branduolio pasitikrinimas');
     expect(data.quiz.questions).toEqual([]);
   });
 
@@ -187,7 +187,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     const data = await loadModules();
     expect(data.modules).toEqual([]);
     expect(data.quiz.questions).toEqual([]);
-    expect(data.quiz.title).toBe('Apklausa');
+    expect(data.quiz.title).toBe('Branduolio pasitikrinimas');
   });
 
   it('returns fallback when modules is not array', async () => {
@@ -197,7 +197,7 @@ describe('modulesLoader (tier 6 and edge cases)', () => {
     };
     const data = await loadModules();
     expect(data.modules).toEqual([]);
-    expect(data.quiz.title).toBe('Apklausa');
+    expect(data.quiz.title).toBe('Branduolio pasitikrinimas');
   });
 
   it('getModulesLoadError returns error after load fails', async () => {

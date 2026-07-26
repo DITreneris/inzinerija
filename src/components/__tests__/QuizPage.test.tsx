@@ -19,6 +19,18 @@ const defaultProgress = {
   quizScore: null,
 };
 
+const startReadyCheck = async () => {
+  await act(async () => {
+    await userEvent.click(
+      screen.getByRole('button', {
+        name: /Pradėti branduolio pasitikrinimą|Start the core readiness check/i,
+      })
+    );
+  });
+};
+
+const finishReadyCheck = /Baigti pasitikrinimą|Finish readiness check/i;
+
 describe('QuizPage', () => {
   const onBack = vi.fn();
   const onQuizComplete = vi.fn();
@@ -46,8 +58,8 @@ describe('QuizPage', () => {
     const dataWithEmptyQuiz: ModulesData = {
       modules: [],
       quiz: {
-        title: 'Baigiamasis Testas',
-        description: 'Galutinis žinių patikrinimas',
+        title: 'Branduolio pasitikrinimas',
+        description: 'Trumpas check',
         passingScore: 70,
         questions: [],
       },
@@ -63,7 +75,9 @@ describe('QuizPage', () => {
     );
 
     expect(
-      screen.getByText(/Apklausos klausimų nėra|No quiz questions available/i)
+      screen.getByText(
+        /Pasitikrinimo klausimų nėra|No readiness-check questions available/i
+      )
     ).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
@@ -74,6 +88,45 @@ describe('QuizPage', () => {
       screen.getByRole('button', { name: /Grįžti atgal|Back to home|Go back/i })
     );
     expect(onBack).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows readiness intro before questions', async () => {
+    const dataWithOneQuestion: ModulesData = {
+      modules: [],
+      quiz: {
+        title: 'Testas',
+        description: '',
+        passingScore: 70,
+        questions: [
+          {
+            id: 1,
+            question: 'Test question?',
+            options: ['A', 'B'],
+            correct: 0,
+            explanation: 'Because A',
+          },
+        ],
+      },
+    };
+    vi.mocked(getModulesDataSync).mockReturnValue(dataWithOneQuestion);
+    renderWithProviders(
+      <QuizPage
+        onBack={onBack}
+        progress={{ ...defaultProgress, completedModules: [3] }}
+        onQuizComplete={onQuizComplete}
+      />
+    );
+    expect(
+      screen.getByRole('heading', {
+        name: /Branduolio pasitikrinimas|Core readiness check/i,
+      })
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/Test question/)).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/Paruošta dabar|You are ready now/i)
+    ).toBeInTheDocument();
+    await startReadyCheck();
+    expect(screen.getByText(/Test question/)).toBeInTheDocument();
   });
 
   it('calls onQuizComplete with a valid number (not NaN) when submitting with one question', async () => {
@@ -104,6 +157,7 @@ describe('QuizPage', () => {
       />
     );
 
+    await startReadyCheck();
     expect(screen.getByText(/Test question/)).toBeInTheDocument();
     const optionButtons = screen.getAllByRole('button', {
       name: /Pasirink atsakymą:|Select answer:/i,
@@ -112,7 +166,7 @@ describe('QuizPage', () => {
       await userEvent.click(optionButtons[0]);
     });
     const submitButton = screen.getByRole('button', {
-      name: /Baigti apklausą|Finish quiz/i,
+      name: finishReadyCheck,
     });
     await act(async () => {
       await userEvent.click(submitButton);
@@ -125,7 +179,7 @@ describe('QuizPage', () => {
     expect(score).toBeLessThanOrEqual(100);
   });
 
-  it('shows pass state (Puikiai) when score ≥ 70%', async () => {
+  it('shows pass state when score ≥ 70%', async () => {
     const dataWithOneQuestion: ModulesData = {
       modules: [],
       quiz: {
@@ -151,18 +205,23 @@ describe('QuizPage', () => {
         onQuizComplete={onQuizComplete}
       />
     );
+    await startReadyCheck();
     await act(async () => {
       await userEvent.click(screen.getByRole('button', { name: /Correct/ }));
     });
     await act(async () => {
       await userEvent.click(
-        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+        screen.getByRole('button', { name: finishReadyCheck })
       );
     });
-    expect(screen.getByText(/Puikiai|Well done/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        name: /Tinka eiti toliau|Ready to go further/i,
+      })
+    ).toBeInTheDocument();
   });
 
-  it('shows fail state (Bandykite dar kartą) when score < 70%', async () => {
+  it('shows fail state when score < 70%', async () => {
     const dataWithOneQuestion: ModulesData = {
       modules: [],
       quiz: {
@@ -188,16 +247,19 @@ describe('QuizPage', () => {
         onQuizComplete={onQuizComplete}
       />
     );
+    await startReadyCheck();
     await act(async () => {
       await userEvent.click(screen.getByRole('button', { name: /Wrong/ }));
     });
     await act(async () => {
       await userEvent.click(
-        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+        screen.getByRole('button', { name: finishReadyCheck })
       );
     });
     expect(
-      screen.getByRole('heading', { name: /Bandykite dar kartą|Try again/i })
+      screen.getByRole('heading', {
+        name: /Dar pasitikrink branduolį|Strengthen the core first/i,
+      })
     ).toBeInTheDocument();
   });
 
@@ -227,6 +289,7 @@ describe('QuizPage', () => {
         onQuizComplete={onQuizComplete}
       />
     );
+    await startReadyCheck();
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
@@ -263,6 +326,7 @@ describe('QuizPage', () => {
         onQuizComplete={onQuizComplete}
       />
     );
+    await startReadyCheck();
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
@@ -272,7 +336,7 @@ describe('QuizPage', () => {
     });
     await act(async () => {
       await userEvent.click(
-        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+        screen.getByRole('button', { name: finishReadyCheck })
       );
     });
     const deepenLink = screen.getByRole('link', {
@@ -316,6 +380,7 @@ describe('QuizPage', () => {
         onQuizComplete={onQuizComplete}
       />
     );
+    await startReadyCheck();
     await act(async () => {
       await userEvent.click(
         screen.getByRole('button', {
@@ -325,7 +390,7 @@ describe('QuizPage', () => {
     });
     await act(async () => {
       await userEvent.click(
-        screen.getByRole('button', { name: /Baigti apklausą|Finish quiz/i })
+        screen.getByRole('button', { name: finishReadyCheck })
       );
     });
     expect(

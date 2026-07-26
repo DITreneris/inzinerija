@@ -445,10 +445,29 @@ export interface ContentBlockSection {
   /** Pasirenkama: pasirinkimo juosta virš lentelės „Ką darai dabar?“ – rowIndex atitinka table.rows eilutę (skaidrė 53) */
   /** Pasirenkama: susieti copyable sekciją su toolChoiceBar table eilute (sk. 76) */
   linkedRowIndex?: number;
+  /**
+   * Optional explicit Format preview for prompt-tool variant.
+   * When omitted, UI extracts `Formatas:` / `Format:` from `copyable`.
+   */
+  formatPreview?: string;
   toolChoiceBar?: {
     /** Klausimas virš mygtukų (pvz. „Ką darai dabar?“) */
     question?: string;
-    choices: { label: string; rowIndex: number }[];
+    /**
+     * `chips` (default) – accent button bar + auto-select first choice.
+     * `prompt-tool` – ChoiceControl + sample data + EDA strip (M7/90).
+     */
+    variant?: 'chips' | 'prompt-tool';
+    /** Sequence hint under ChoiceControl (prompt-tool) */
+    sequenceHint?: string;
+    /** Collapsible sample rows to paste into the prompt (prompt-tool) */
+    sampleData?: { label: string; body: string };
+    choices: {
+      label: string;
+      rowIndex: number;
+      /** One-line “when to pick” (prompt-tool) */
+      whenHint?: string;
+    }[];
   };
   /** Pasirenkama: workflow grandinės (List Cards) – naudoti vietoj table, kai blokas „Pavyzdžiai iš praktikos“ */
   workflowChains?: WorkflowChainItem[];
@@ -601,9 +620,13 @@ export interface ContentBlockContent {
     correct: number;
     explanation: string;
   };
-  /** Mini checkpoint prieš copy-paste (skaidrė 47) – 1 klausimas, ar suprato brief */
+  /**
+   * Mini checkpoint prieš copy-paste (1 klausimas).
+   * Placement: be linkedRowIndex → prieš pirmą `copyable` sekciją; su linkedRowIndex → esamas 67 kelias.
+   * Etalonai: M5/47, M7/67, M7/67.8.
+   */
   preCopyCheckBlock?: {
-    /** Optional heading (pvz. sk. 67 „3️⃣ Patikra“); default – locale preCopyCheckHeading */
+    /** Optional heading (pvz. sk. 67 „3️⃣ Patikra“, 67.8 „Prieš kopijuojant“); default – locale preCopyCheckHeading */
     heading?: string;
     question: string;
     options: string[];

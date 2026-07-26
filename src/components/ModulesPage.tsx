@@ -37,6 +37,7 @@ import {
 } from '../utils/moduleIdentity';
 import CircularProgress from './CircularProgress';
 import AccessGateScreen from './AccessGateScreen';
+import { moduleWord } from '../utils/ltPlural';
 
 interface ModulesPageProps {
   onModuleSelect: (moduleId: number) => void;
@@ -455,7 +456,11 @@ function ModulesPage({
               {t('overallProgress')}
             </p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {t('modulesCount', { done: completedCount, total: totalModules })}
+              {t('modulesCount', {
+                done: completedCount,
+                total: totalModules,
+                modulesWord: moduleWord(locale, totalModules, 'genitive'),
+              })}
             </p>
           </div>
         </div>
@@ -619,6 +624,11 @@ function ModulesPage({
                   moduleNumber,
                   maxModuleId: tierForCta.maxModuleId,
                   priceEur: tierForCta.priceEur,
+                  modulesWord: moduleWord(
+                    locale,
+                    tierForCta.maxModuleId,
+                    'genitive'
+                  ),
                 })
               : t('lockSequenceAria', { moduleNumber, title: module.title });
           const cardAriaLabel = locked
@@ -673,6 +683,11 @@ function ModulesPage({
                           ? t('lockTierShort', {
                               max: tierForCta.maxModuleId,
                               price: tierForCta.priceEur,
+                              modulesWord: moduleWord(
+                                locale,
+                                tierForCta.maxModuleId,
+                                'genitive'
+                              ),
                             })
                           : t('lockCompletePrevious')}
                     </p>
@@ -926,6 +941,30 @@ function ModulesPage({
           </section>
         );
       })}
+
+      {/* Soft CTA po M3 – branduolio pasitikrinimas prieš pažangesnius modulius */}
+      {onGoToQuiz &&
+        progress.completedModules.includes(3) &&
+        !progress.quizCompleted &&
+        completedCount < totalModules && (
+          <div className="card p-5 sm:p-6 border border-brand-200 dark:border-brand-800 bg-brand-50/60 dark:bg-brand-900/20 text-center animate-fade-in">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              {t('readyCheckBeforeM4')}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-xl mx-auto">
+              {t('readyCheckBeforeM4Body')}
+            </p>
+            <CTAButton
+              variant="secondary"
+              onClick={onGoToQuiz}
+              className="px-6 py-3 rounded-xl font-semibold group"
+              aria-label={t('readyCheckBeforeM4Aria')}
+            >
+              {t('readyCheckBeforeM4')}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </CTAButton>
+          </div>
+        )}
 
       {/* Completion message */}
       {completedCount === totalModules && (

@@ -136,7 +136,8 @@ Raktų checklist (po vieną skaidrę / shell):
 
 > **Įtraukta:** 2026-03-07. Kai vartotojas pasirenka EN (LT | EN perjungiklis), visi matomi ir skelbiami tekstai turi būti anglų kalba.
 
-- [ ] **Perjungimas į EN:** AppNav → EN → visi UI stringai (nav, home, moduliai, žodynėlis, apklausa) – anglų kalba. Nėra maišytos LT/EN viename vaizde.
+- [ ] **Perjungimas į EN:** AppNav → EN → visi UI stringai (nav, home, moduliai, žodynėlis, Pasitikrink / Ready check) – anglų kalba. Nėra maišytos LT/EN viename vaizde.
+- [ ] **Įrankiai (ToolsPage) LT/EN:** `npm run audit:tools` (arba `validate:schema`). Rankinė: filtras M7 (Julius / Power BI EN), M10 (Vercel), M13 (Veo, CapCut); kategorijos be `Automatizacija` / `Vaizdo generavimas`. Katalogas ≠ skaidrių embedded tools.
 - [ ] **Raktų paritetas:** `src/locales/lt.json` ir `src/locales/en.json` – tie patys raktai (common, nav, home, module, quiz, glossary, modulesPage); nėra tuščių ar placeholder EN vertimų prieš release.
 - [ ] **Terminologija EN:** Vartotojui matomi EN tekstai naudoja „AI“ (ne „DI“). Žr. glossary-en.json ir CONTENT_MODULIU_ATPAZINIMAS; detalės – `docs/archive/development/EN_LANGUAGE_STANDARD.md`.
 - [ ] **Moduliai 1–3 EN:** Jei `modules-en.json` naudojamas – skaidrių pavadinimai ir turinys anglų kalba; jei dar WIP – dokumentuota (pvz. EN_UI_UX_LANGUAGE_AUDIT.md).
@@ -145,7 +146,7 @@ Raktų checklist (po vieną skaidrę / shell):
 - [ ] **Moduliai 10–12 EN:** `modules-en-m10-m12.json` — deep-merge overlay (failas partial struktūra, body pilnas); merge tik kai kataloge `maxModuleId >= 10`. Patikra: `npm run audit:m1012`; validacija – `validateModulesEnM1012()` per `npm run validate:schema`.
 - [ ] **Moduliai 13–15 EN:** `modules-en-m13-m15.json` — deep-merge overlay (body pilnas); merge tik kai kataloge `maxModuleId >= 13`. Patikra: `npm run audit:m1315` (coverage + language). Rankinė: M13 image→video 13.4, M14 8 klausimai, M15 quick start 150.5 ir schema 150.25 LT/EN.
 - [ ] **Glossary EN (M4–6):** `glossary-en.json` turi terminus su `moduleId` 4, 5, 6 (ai, ne DI; žr. CONTENT_MODULIU_ATPAZINIMAS). Detalės – `docs/archive/development/EN_LANGUAGE_STANDARD.md`.
-- [ ] **Quiz EN:** Kai `locale === 'en'`, loaderis įkelia `quiz-en.json` – pavadinimas „Final Quiz“, 20 klausimų anglų kalba; jei failas nėra – rodomas LT quiz.
+- [ ] **Branduolio pasitikrinimas EN:** Kai `locale === 'en'`, loaderis įkelia `quiz-en.json` – pavadinimas „Core readiness check“, 20 klausimų anglų kalba; jei failas nėra – rodomas LT quiz. Nav: Ready check; intro + formative results.
 - [ ] **Automatiniai EN testai:** Prieš release paleisti `npm run test:run` – EN kelias padengtas: `src/data/__tests__/modulesLoader.test.ts` (loadModules('en') merge M1–M6), `src/utils/__tests__/questionPoolSelector.test.ts` (selectQuestions('en'/'lt')), `src/data/__tests__/glossaryLoader.test.ts` (getGlossary('en'/'lt')), `src/components/__tests__/App.quiz.integration.test.tsx` (describe „App – EN locale smoke“).
 
 ---

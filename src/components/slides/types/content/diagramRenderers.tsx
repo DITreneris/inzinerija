@@ -28,6 +28,7 @@ import {
   M7AnalysisTypesBlock,
   M7BiSchemaBlock,
   M7DaPipelineBlock,
+  M7PathMapBlock,
   M7DataPrepWorkflowBlock,
   M7DataStoryCycleBlock,
   M7ThreeAgentsBlock,
@@ -55,6 +56,11 @@ interface DiagramRenderer {
 }
 
 const DIAGRAM_RENDERERS: DiagramRenderer[] = [
+  {
+    key: 'm7_macro_path_map',
+    bodyPlacement: 'after',
+    render: () => <M7PathMapBlock />,
+  },
   {
     key: 'm7_da_pipeline',
     bodyPlacement: 'after',

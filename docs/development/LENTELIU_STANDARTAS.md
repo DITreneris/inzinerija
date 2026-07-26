@@ -74,31 +74,38 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas – `ContentSlides.tsx` (vienas bendras blokas `section.table && !section.workflowChains`).
 
-> Atnaujinta TE-3 (2026-07-24) iš live SOT: **21** table / **19** skaidrių. Master: `TEACHING_ELEMENTS_REGISTRY.md`.
+> Atnaujinta (2026-07-25) iš live SOT: **29** table / **23** skaidrių. Master: `TEACHING_ELEMENTS_REGISTRY.md`.
 
-| Skaidrė     | Heading (trumpai)                                | Stulpeliai | comparisonStyle | Pastabos      |
-| ----------- | ------------------------------------------------ | ---------: | --------------- | ------------- |
-| M4 / 54.5   | Sisteminis ir Master promptas – palyginimas      |          3 | ne              |               |
-| M4 / 55     | Papildomai: Geras vs blogas proceso promptas     |          2 | **taip**        |               |
-| M4 / 48     | 4️⃣ RL vs RLHF – palyginimas                      |          2 | **taip**        |               |
-| M4 / 53     | Įrankių palyginimas                              |          4 | ne              | toolChoiceBar |
-| M4 / 59     | Lentelė „Pavyzdžiai“                             |          3 | ne              |               |
-| M4 / 60     | Sprendimo matrica: DI atmintis ir dokumentai     |          3 | ne              |               |
-| M4 / 66     | Modelių konteksto langai (2026)                  |          3 | ne              |               |
-| M4 / 66.25  | Verslo pavyzdys: strateginis planavimas          |          3 | ne              |               |
-| M4 / 66.6   | Pavyzdžiai: blogas vs geras (pagal geriausias pr |          2 | **taip**        |               |
-| M6 / 68     | 6 blokų struktūra                                |          2 | ne              |               |
-| M7 / 734    | 📍 5 grupės – pasirink pagal situaciją           |          3 | ne              | toolChoiceBar |
-| M7 / 76     | 🔽 Ne tik finansai – nori suprasti plačiau?      |          3 | ne              |               |
-| M7 / 78     | 2️⃣ Tradicinė analizė vs analizė su DI            |          2 | **taip**        |               |
-| M7 / 84     | 2️⃣ Kokį DB įrankį rinktis?                       |          2 | ne              |               |
-| M7 / 67     | 🔽 Nori suprasti plačiau?                        |          2 | **taip**        |               |
-| M7 / 67     | 🔽 Verslas vs saugumas                           |          3 | ne              |               |
-| M7 / 104    | 2️⃣ Duomenys → Istorija modelis                   |          2 | ne              |               |
-| M7 / 106    | 7️⃣ Alternatyvos                                  |          2 | ne              |               |
-| M10 / 10.36 | Kada ką – paleidimo režimai                      |          3 | ne              |               |
-| M10 / 10.36 | Kada ką – PaaS orientacija                       |          2 | ne              |               |
-| M10 / 10.37 | Kada ką – platformos                             |          2 | ne              |               |
+| Skaidrė     | Heading (trumpai)                                | Stulpeliai | comparisonStyle | Pastabos                                       |
+| ----------- | ------------------------------------------------ | ---------: | --------------- | ---------------------------------------------- |
+| M4 / 54.5   | Sisteminis ir Master promptas – palyginimas      |          3 | ne              |                                                |
+| M4 / 55     | Papildomai: Geras vs blogas proceso promptas     |          2 | **taip**        |                                                |
+| M4 / 48     | 4️⃣ RL vs RLHF – palyginimas                      |          2 | **taip**        |                                                |
+| M4 / 53     | Įrankių palyginimas                              |          4 | ne              | toolChoiceBar                                  |
+| M4 / 59     | Lentelė „Pavyzdžiai“                             |          3 | ne              |                                                |
+| M4 / 60     | Sprendimo matrica: DI atmintis ir dokumentai     |          3 | ne              |                                                |
+| M4 / 61     | Kada ką?                                         |          4 | ne              | toolChoiceBar; solutionMatrixStyle             |
+| M4 / 61     | Tipinė eiga (30–45 min)                          |          4 | ne              |                                                |
+| M4 / 66     | Modelių konteksto langai (2026)                  |          3 | ne              |                                                |
+| M4 / 66.25  | Verslo pavyzdys: strateginis planavimas          |          3 | ne              |                                                |
+| M4 / 66.6   | Pavyzdžiai: blogas vs geras (pagal geriausias pr |          2 | **taip**        |                                                |
+| M6 / 68     | 6 blokų struktūra                                |          2 | ne              |                                                |
+| M7 / 71.35  | Kada ką?                                         |          4 | ne              | toolChoiceBar; solutionMatrixStyle; sync M4/61 |
+| M7 / 71.35  | Tipinė eiga (30–45 min)                          |          4 | ne              | sync M4/61                                     |
+| M7 / 734    | 📍 5 grupės – pasirink pagal situaciją           |          3 | ne              | toolChoiceBar                                  |
+| M7 / 76     | 🔽 Ne tik finansai – nori suprasti plačiau?      |          3 | ne              |                                                |
+| M7 / 78     | 2️⃣ Tradicinė analizė vs analizė su DI            |          2 | **taip**        |                                                |
+| M7 / 84     | 2️⃣ Kokį DB įrankį rinktis?                       |          2 | ne              |                                                |
+| M7 / 67     | 🔽 Nori suprasti plačiau?                        |          2 | **taip**        |                                                |
+| M7 / 67     | 🔽 Verslas vs saugumas                           |          3 | ne              |                                                |
+| M7 / 67.8   | FAKTAI vs SPĖJIMAI                               |          2 | **taip**        |                                                |
+| M7 / 67.8   | Kodėl DI daro haliucinacijas?                    |          2 | ne              |                                                |
+| M7 / 67.8   | Keturi kontrolės lygiai                          |          2 | ne              |                                                |
+| M7 / 104    | 2️⃣ Duomenys → Istorija modelis                   |          2 | ne              |                                                |
+| M7 / 106    | 7️⃣ Alternatyvos                                  |          2 | ne              |                                                |
+| M10 / 10.36 | Kada ką – paleidimo režimai                      |          3 | ne              |                                                |
+| M10 / 10.36 | Kada ką – PaaS orientacija                       |          2 | ne              |                                                |
+| M10 / 10.37 | Kada ką – platformos                             |          2 | ne              |                                                |
 
 **Patobulinimai:** žr. `TEACHING_ELEMENTS_REGISTRY.md` scorecard; auditas `npm run audit:teaching-elements`.
 

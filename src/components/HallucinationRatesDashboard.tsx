@@ -1,10 +1,13 @@
 import { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   HALLUCINATION_RATES,
   HALLUCINATION_RATES_SOURCE,
+  getHallucinationResearchPrompt,
   type HallucinationRateEntry,
 } from '../data/hallucinationRates';
 import { useLocale } from '../contexts/LocaleContext';
+import CopyButton from './slides/shared/CopyButton';
 
 const MAX_RATE = 6;
 const BAR_HEIGHT = 28;
@@ -30,48 +33,36 @@ function sortData(
 }
 
 export default function HallucinationRatesDashboard() {
+  const { t } = useTranslation('hallucinationRates');
   const { locale } = useLocale();
   const [sort, setSort] = useState<SortKey>('rate-asc');
   const [hoverId, setHoverId] = useState<string | null>(null);
 
   const sorted = useMemo(() => sortData(HALLUCINATION_RATES, sort), [sort]);
+  const researchPrompt = getHallucinationResearchPrompt(locale);
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-4">
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-        {locale === 'en'
-          ? 'What to do with these numbers? Choose a model for reliability, not popularity.'
-          : 'Ką daryti su šiais skaičiais? Rinkis modelį pagal patikimumą, ne populiarumą.'}
+        {t('intro')}
       </p>
       <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-brand-50/80 via-white to-accent-50/40 p-4 shadow-sm dark:border-gray-700 dark:from-brand-950/40 dark:via-gray-900 dark:to-accent-950/20 md:p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-            {locale === 'en'
-              ? 'Hallucination rates by model'
-              : 'Haliucinacijų rodikliai pagal modelį'}
+            {t('chartTitle')}
           </h3>
           <div className="flex items-center gap-2">
             <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
-              {locale === 'en' ? 'Sort:' : 'Rikiuoti:'}
+              {t('sortLabel')}
             </span>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortKey)}
               className="text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-2 py-1 focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
             >
-              <option value="rate-asc">
-                {locale === 'en'
-                  ? 'Rate (descending)'
-                  : 'Rodiklis (mažėjančiai)'}
-              </option>
-              <option value="rate-desc">
-                {locale === 'en'
-                  ? 'Rate (ascending)'
-                  : 'Rodiklis (didėjančiai)'}
-              </option>
-              <option value="name">
-                {locale === 'en' ? 'By model name' : 'Pagal modelio pavadinimą'}
-              </option>
+              <option value="rate-asc">{t('sortRateAsc')}</option>
+              <option value="rate-desc">{t('sortRateDesc')}</option>
+              <option value="name">{t('sortName')}</option>
             </select>
           </div>
         </div>
@@ -82,14 +73,8 @@ export default function HallucinationRatesDashboard() {
         >
           <div className="space-y-2 mb-2">
             <div className="flex text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">
-              <span className="w-40 flex-shrink-0">
-                {locale === 'en' ? 'Model' : 'Modelis'}
-              </span>
-              <span className="flex-1 text-right pr-2">
-                {locale === 'en'
-                  ? 'Hallucination rate (%)'
-                  : 'Haliucinacijų rodiklis (%)'}
-              </span>
+              <span className="w-40 flex-shrink-0">{t('modelColumn')}</span>
+              <span className="flex-1 text-right pr-2">{t('rateColumn')}</span>
             </div>
             {sorted.map((entry) => {
               const widthPercent = (entry.ratePercent / MAX_RATE) * 100;
@@ -112,11 +97,7 @@ export default function HallucinationRatesDashboard() {
                     {entry.lowAnswerRate && (
                       <span
                         className="ml-0.5 text-amber-600 dark:text-amber-400"
-                        title={
-                          locale === 'en'
-                            ? 'Answer rate below 95% in Vectara benchmark'
-                            : 'Vectara benchmarke atsakymų aprėptis < 95 %'
-                        }
+                        title={t('lowAnswerRateTitle')}
                       >
                         *
                       </span>
@@ -161,14 +142,12 @@ export default function HallucinationRatesDashboard() {
               <strong>
                 {sorted.find((e) => e.id === hoverId)?.ratePercent}%
               </strong>{' '}
-              {locale === 'en'
-                ? 'hallucination rate (benchmark).'
-                : 'haliucinacijų rodiklis (benchmarke).'}
+              {t('hoverRateSuffix')}
             </div>
           )}
 
           <p className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-600 text-xs text-gray-500 dark:text-gray-400">
-            {locale === 'en' ? 'Source:' : 'Šaltinis:'}{' '}
+            {t('sourceLabel')}{' '}
             <a
               href={HALLUCINATION_RATES_SOURCE.url}
               target="_blank"
@@ -179,22 +158,39 @@ export default function HallucinationRatesDashboard() {
               {HALLUCINATION_RATES_SOURCE.by}
             </a>
             {HALLUCINATION_RATES_SOURCE.asOfDate
-              ? ` (${locale === 'en' ? 'as of' : 'atnaujinta'} ${HALLUCINATION_RATES_SOURCE.asOfDate})`
+              ? ` (${t('asOfLabel')} ${HALLUCINATION_RATES_SOURCE.asOfDate})`
               : ''}
-            .{' '}
-            {locale === 'en'
-              ? 'Rates may vary depending on evaluation date and methodology.'
-              : 'Rodikliai gali skirtis priklausomai nuo vertinimo datos ir metodologijos.'}
+            . {t('ratesMayVary')}
             {HALLUCINATION_RATES.some((e) => e.lowAnswerRate) && (
-              <>
-                {' '}
-                {locale === 'en'
-                  ? '* Models with answer rate below 95% in the benchmark.'
-                  : '* Modeliai su atsakymų aprėptimi < 95 % benchmarke.'}
-              </>
+              <> {t('lowAnswerRateNote')}</>
             )}
           </p>
         </div>
+      </div>
+
+      <div className="rounded-xl p-4 lg:p-5 bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
+        <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+          {t('conclusionHeading')}
+        </h4>
+        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          {t('conclusionBody')}
+        </p>
+      </div>
+
+      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+            {t('promptBlockTitle')}
+          </h4>
+          <CopyButton
+            text={researchPrompt}
+            size="sm"
+            ariaLabel={t('copyPromptAria')}
+          />
+        </div>
+        <pre className="text-xs font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed bg-gray-50 dark:bg-gray-900 p-3 rounded-lg">
+          {researchPrompt}
+        </pre>
       </div>
     </div>
   );

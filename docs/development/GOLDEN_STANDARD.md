@@ -213,7 +213,7 @@
 
 **Pavyzdys:** M4 skaidrė id 42 „Kam žmonės naudoja GPT?“.
 
-**Action blokas (po insight „Ką tai reiškia tau?“):** Du mygtukai – „Generuok patarimus sau“ (primary/accent, atidaro modalą su pilnu segmento turiniu) ir „Eksportuok PDF“ (secondary, atsisiunčia tik savo segmento PDF). Turinys iš `src/data/introPiePdfContent.json` (7 segmentai): title, top5Tips, mainToolName, additionalToolNames, workflowSteps, glossaryTermNames, systemPrompt, motivationWish. Įrankiai ir žodyno terminai – nuorodos į `tools.json` ir `glossary.json` pagal name/term.
+**Action blokas (po insight „Ką tai reiškia tau?“):** Du mygtukai – „Generuok patarimus sau“ (primary/accent, atidaro modalą su pilnu segmento turiniu) ir „Eksportuok PDF“ (secondary, atsisiunčia tik savo segmento PDF). Turinys iš `src/data/introPiePdfContent.json` (7 segmentai): title, top5Tips, mainToolName, additionalToolNames, workflowSteps, glossaryTermNames, systemPrompt, motivationWish. Įrankiai ir žodyno terminai – **exact** `name` / `term` match į `tools.json` ir `glossary.json` (rename → sync pie content tuo pačiu PR; ToolsPage EN twin – `tools-en.json` + `audit:tools`).
 
 **SOT:** `docs/turinio_pletra_moduliai_4_5_6.md` § „Kam žmonės naudoja GPT?“ (intro action).
 
@@ -332,24 +332,26 @@
 
 ### 3.4d path-step (kelio žingsnis)
 
-**Paskirtis:** Vienas „Duomenų analizės kelio“ žingsnis – pramaišytas su M7 teorija. Keliautojas atlikęs žingsnį gauna **badge** ir **atrakina** nurodytus terminus žodynėlyje. Vizualiai atpažįstamas (kelias ≠ section-break, ne content-block).
+**Paskirtis:** Vienas „Duomenų analizės kelio“ žingsnis – pramaišytas su M7 teorija. Keliautojas atlikęs žingsnį gauna **badge** ir **kelio atlygį** (terminų sąrašas skaidrėje). Vizualiai atpažįstamas (kelias ≠ section-break, ne content-block).
 
-**Turinio schema:** `PathStepContent` – title, stepNumber (1…N), body (trumpas aprašymas) arba sections (content-block panašūs blokai), unlockedGlossaryTerms (string[] – terminų pavadinimai, kurie atrakinti po žingsnio užbaigimo).
+**Turinio schema:** `PathStepContent` – title, stepNumber (1…N), body (trumpas aprašymas) arba sections (content-block panašūs blokai), unlockedGlossaryTerms (string[] – terminų pavadinimai, kurie pažymimi kaip kelio atlygis po „Pažymėjau kaip atliktą“).
 
-| Laukas                | Privalomas     | Turinio taisyklė                                                              |
-| --------------------- | -------------- | ----------------------------------------------------------------------------- |
-| title                 | Taip           | Žingsnio pavadinimas (pvz. „Įrankių seka ir workflow“)                        |
-| stepNumber            | Taip           | Kelio žingsnio numeris (1, 2, … N)                                            |
-| body arba sections    | Taip           | Kas daryti; trumpas tekstas arba sekcijos su heading/body                     |
-| unlockedGlossaryTerms | Rekomenduojama | Terminų pavadinimų masyvas – atrakinti žodynėlyje po „Pažymėjau kaip atliktą“ |
+| Laukas                | Privalomas     | Turinio taisyklė                                                                      |
+| --------------------- | -------------- | ------------------------------------------------------------------------------------- |
+| title                 | Taip           | Žingsnio pavadinimas (pvz. „Įrankių seka ir workflow“)                                |
+| stepNumber            | Taip           | Kelio žingsnio numeris (1, 2, … N)                                                    |
+| body arba sections    | Taip           | Kas daryti; trumpas tekstas arba sekcijos su heading/body                             |
+| unlockedGlossaryTerms | Rekomenduojama | Terminų pavadinimų masyvas – kelio atlygio copy skaidrėje po „Pažymėjau kaip atliktą“ |
 
 **Vizualė (atpažįstamumas):** „Duomenų analizės kelias“ identitetas – brand + accent juosta arba ikona (kelias/žemėlapis); badge pvz. „Žingsnis 1/N“ arba custom („Lygiagretūs tyrimai“). Skaidrė skiriasi nuo section-break (recap + „Kas toliau“) ir content-block (veiksmo sekcijos).
 
-**Sąveika:** CTA „Pažymėjau kaip atliktą“ – paspaudus žingsnis įrašomas į progresą (`completedTasks[moduleId]`); žodynėlyje terminai iš `unlockedGlossaryTerms` (arba terminai su `unlockedBy: { moduleId, slideId }`) laikomi atrakintais. Užrakinti terminai – pilkai arba su „Atrakink per Modulio 7 kelio žingsnį X“.
+**Sąveika:** CTA „Pažymėjau kaip atliktą“ – paspaudus žingsnis įrašomas į progresą (`completedTasks[moduleId]`); skaidrėje rodomas atlygis (`unlockedGlossaryTerms`). `glossary.json` laukas `unlockedBy` – path-step metadata (sinchronas su sąrašu); **ne** Žodynėlio puslapio gate.
+
+**Žodynėlio puslapis (GlossaryPage):** apibrėžimai **visada skaitomi** (su paieška ir modulio filtru). Draudžiama teaser-lock kortelės („matau terminą, bet neskaitau apibrėžimo“).
 
 **Vieta:** M7 (Duomenų analizės kelias) – path-step skaidrės įterpiamos tarp teorinių (žr. turinio_pletra_moduliai_7_8_9.md §8.2, MODULIO_7_SKAIDRIU_EILES.md).
 
-**Implementacija:** Komponentas PathStepSlide; progresas – completedTasks; GlossaryPage – rodyti locked/unlocked pagal unlockedBy ir completedTasks.
+**Implementacija:** Komponentas PathStepSlide; progresas – completedTasks; GlossaryPage – visada rodo `definition` (ne locked/unlocked UI).
 
 ### 3.5 Kiti tipai
 
@@ -385,11 +387,11 @@
 
 #### 3.7.1 Kada išduoti sertifikatą
 
-| Sąlyga                   | Pavyzdys (dabartinis)                                                                                                     |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: kelias 7–9; Tier 4: kelias 10–12; Tier 5: kelias 13–15.             |
-| **Papildoma (optional)** | Baigiamoji apklausa ≥70 % – tier 2; kelio testas: M8 ≥70 % – tier 3, M11 ≥70 % – tier 4, M14 ≥70 % – tier 5.              |
-| **Vieta mygtuko**        | `completionArtifacts.json` nurodo `unlockOnModuleId`; ModuleCompleteScreen tik perskaito registry ir eligibility helperį. |
+| Sąlyga                   | Pavyzdys (dabartinis)                                                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Užbaigti moduliai**    | Tier 1: moduliai 1–2–3; Tier 2: moduliai 1–6; Tier 3: kelias 7–9; Tier 4: kelias 10–12; Tier 5: kelias 13–15.                          |
+| **Papildoma (optional)** | Branduolio pasitikrinimas (formative; Tier 2 ≥70 %) – tier 2; kelio testas: M8 ≥70 % – tier 3, M11 ≥70 % – tier 4, M14 ≥70 % – tier 5. |
+| **Vieta mygtuko**        | `completionArtifacts.json` nurodo `unlockOnModuleId`; ModuleCompleteScreen tik perskaito registry ir eligibility helperį.              |
 
 **Receptas naujam moduliui:** Nuspręsti, po kurio modulio išduodamas sertifikatas; ar reikia quiz ribos; pridėti tier į `certificateContent*.json`, `certificateEligibility.ts` ir `completionArtifacts.json`. UI neturi gauti naujos `module.id === N` šakos vien dėl sertifikato.
 
@@ -499,18 +501,23 @@ action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-
 
 Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toje pačioje skaidrėje. Jis neturi tapti antra pilna skaidre viduje: vienas aiškus veiksmas, trumpas feedback ir vienas dominuojantis CTA.
 
-| Laukas                  | Paskirtis                                       | Etalonas                                                                     |
-| ----------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
-| `briefCheckBlock`       | Trumpas brief / tono / užduoties patikrinimas.  | M2 sk. 51, M5 sk. 510                                                        |
-| `preCopyCheckBlock`     | Patikra prieš kopijuojamą promptą.              | M5 sk. 47                                                                    |
-| `correctPromptPractice` | Blogo prompto taisymas į gerą.                  | M4 sk. 49, M6 sk. 68                                                         |
-| `recognitionExercise`   | Atpažinimo pratimas su pasirinkimais.           | M4 sk. 39.5, M13 sk. 13.34                                                   |
-| `interactivePipeline`   | Interaktyvus proceso / pipeline pasirinkimas.   | M4 sk. 45                                                                    |
-| `instructGptQuality`    | Tyrimo įrodymo ir kokybės principų mikroblokas. | M4 sk. 44                                                                    |
-| `toolChoiceBar`         | Įrankio / filtro pasirinkimas pagal užduotį.    | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)         |
-| `linkedRowIndex`        | Rodo tik susietą copyable sekciją (filtras).    | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`) |
+| Laukas                               | Paskirtis                                                                             | Etalonas                                                                     |
+| ------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `briefCheckBlock`                    | Trumpas brief / tono / užduoties patikrinimas.                                        | M2 sk. 51, M5 sk. 510                                                        |
+| `preCopyCheckBlock`                  | Patikra prieš kopijuojamą promptą.                                                    | M5 sk. 47; M7 sk. 67 (linked); M7 sk. 67.8 (prieš pirmą `copyable`)          |
+| `correctPromptPractice`              | Blogo prompto taisymas į gerą.                                                        | M4 sk. 49, M6 sk. 68                                                         |
+| `recognitionExercise`                | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                   |
+| `interactivePipeline`                | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                    |
+| `instructGptQuality`                 | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                    |
+| `toolChoiceBar`                      | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)         |
+| `linkedRowIndex`                     | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`) |
+| `toolChoiceBar.variant: prompt-tool` | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.  |
 
 **`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.
+
+**`prompt-tool`:** `variant: "prompt-tool"` – be auto-select (value null iki pasirinkimo); brand `ChoiceControl` + static EDA juosta; `sampleData` / `sequenceHint` / `whenHint`; Formatas preview iš `formatPreview` arba `copyable` eilutės `Formatas:` / `Format:`. Kind lieka embed (ne `interactive-control-lab`).
+
+**`preCopyCheckBlock` vieta:** be `linkedRowIndex` – renderinti **prieš pirmą sekciją su `copyable`** (ne skaidrės viršuje), kad teorija eitų pirma; su `linkedRowIndex` – esamas kelias (prieš pirmą collapsible / po bar). Testas: `ContentBlockSlide.preCopyPlacement.test.tsx`.
 
 **Modulių tipų taisyklės:**
 

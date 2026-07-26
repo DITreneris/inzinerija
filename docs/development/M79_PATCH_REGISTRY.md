@@ -2,7 +2,7 @@
 
 > **Tikslas:** Vienas sąrašas idempotentinių M79 patch skriptų, paleidimo tvarka ir EN overlay taisyklės.
 > **Operacinis SOT:** iteraciniai UX polish pakeitimai fiksuojami čia + [`TEST_REPORT.md`](TEST_REPORT.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
-> **Atnaujinta:** 2026-07-24
+> **Atnaujinta:** 2026-07-26
 
 **Rankinis turinio polish (ne patch skriptas):** M7 sk. **67.5** (2026-07-24) – GOLDEN §3.2: scenarijus + copyable gynybos promptas; žodynas Promptų injekcija / Jailbreak. Failai: `modules.json`, `modules-en-m7-m9.json`, `glossary.json`, `glossary-en.json` → `generate:core-data`.
 
@@ -27,6 +27,7 @@
 | `patch-m79-plain-w4-w5.mjs`           | A–C: sk. 97 inline principai + W4 (66.9) + W5 body batch (M79-44/45) LT+EN | Vienkartinis (jau paleista 2026-07-16) | Abu JSON; ne paleisti pakartotinai be diff review |
 | `patch-m79-everyday-closeness.mjs`    | M79-51…54 LT: M9 90/93.1/93.2/99 + M8 warm-up/vignette + sampleFile        | Vienkartinis (jau paleista 2026-07-16) | `modules.json`; `public/m9_sample_internal.csv`   |
 | `patch-m79-everyday-closeness-en.mjs` | M79-51…54 EN overlay veidrodis                                             | Po LT patch                            | `modules-en-m7-m9.json`                           |
+| `patch-m79-46-section46-residual.mjs` | CQ-M79-3 §4.6: EN 891 when-first + M7 #9 phrase batch LT+EN (#6/#8 verify) | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`          |
 
 **Paleidimo tvarka (jei reikia iš naujo):** LT patch → `npm run validate:schema` → EN patch → `npm run audit:m79` → `npm run generate:core-data` (jei M1–9 core).
 

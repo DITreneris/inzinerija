@@ -53,10 +53,13 @@ function getQuizNavButton() {
   const nav = screen.getByRole('navigation', {
     name: /Pagrindinė navigacija|Main navigation/i,
   });
-  return within(nav).getByRole('button', { name: /Apklausa|Quiz/i });
+  return within(nav).getByRole('button', {
+    name: /Branduolio pasitikrinimas|Core readiness check|Pasitikrink|Ready check/i,
+  });
 }
 
-const emptyQuizMessage = /Apklausos klausimų nėra|No quiz questions available/i;
+const emptyQuizMessage =
+  /Pasitikrinimo klausimų nėra|No readiness-check questions available/i;
 const modulesHeading =
   /Paversk DI savo darbo sistema|Turn AI into your work system/i;
 
@@ -91,7 +94,7 @@ describe('App – Quiz integracinis srautas', () => {
     vi.mocked(preloadModules).mockImplementation(() => {});
   });
 
-  it('naviguoja į Apklausą ir rodo empty-state kai quiz.questions tuščias', async () => {
+  it('naviguoja į pasitikrinimą ir rodo empty-state kai quiz.questions tuščias', async () => {
     const user = userEvent.setup();
 
     renderWithProviders(
@@ -118,7 +121,7 @@ describe('App – Quiz integracinis srautas', () => {
     ).toBeInTheDocument();
   }, 15000);
 
-  it('mygtukas „Grįžti atgal“ Apklausoje grąžina atgal', async () => {
+  it('mygtukas „Grįžti atgal“ pasitikrinime grąžina atgal', async () => {
     const user = userEvent.setup();
 
     renderWithProviders(
@@ -153,7 +156,7 @@ describe('App – Quiz integracinis srautas', () => {
     expect(getQuizNavButton()).toBeInTheDocument();
   }, 30000);
 
-  it('progress išlieka po navigacijos į Apklausą ir atgal', async () => {
+  it('progress išlieka po navigacijos į pasitikrinimą ir atgal', async () => {
     const user = userEvent.setup();
     const progressWithModule = {
       ...getProgress(),

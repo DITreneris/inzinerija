@@ -1,7 +1,8 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-07-24 (Docs Lean). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
+> **Atnaujinta:** 2026-07-26 (turinio ambicijos flip). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.  
+> **Open P0/P1** = mokymosi / turinio kokybė (`TODO.md` §1). Marketing / MON – ne default.
 
 ---
 
@@ -23,7 +24,7 @@
 | M4 news-portal        | `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`                                                                                                                          |
 | M7–9 polish ops       | `M79_PATCH_REGISTRY.md` + `DOCS_MAINTENANCE.md` (backlog – ne pirmas load)                                                                                                      |
 | Klaidos               | `docs/development/TEST_REPORT.md`                                                                                                                                               |
-| Open prioritetai      | `TODO.md` §1 · `ROADMAP.md` open gaps                                                                                                                                           |
+| Open prioritetai      | `TODO.md` §1 (P0 = mokymosi kokybė) · `ROADMAP.md` open gaps · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                                                    |
 
 **Konfliktas:** Turinio SOT → JSON → UI.
 
@@ -57,18 +58,20 @@
 
 ---
 
-## 4. Išoriniams integratoriams
+## 4. Išoriniams integratoriams (ne default P0)
+
+> Marketing / MON / PostHog – **kitas repo**; čia tik handoff. Agentų default backlog = §1 turinio TODO, ne šis skyrius.
 
 - Integracija: `docs/deployment/INTEGRATION_OVERVIEW.md`
-- Marketing handoff / MON: `MARKETING_HANDOFF_CHECKLIST.md`, `MON_P0_EXECUTION_PLAN.md`
+- Marketing handoff / MON: `MARKETING_HANDOFF_CHECKLIST.md`, `MON_P0_EXECUTION_PLAN.md` · ticketai `TODO.md` §1.4
 - PostHog: `MON-4_POSTHOG_DEPLOY.md`
 - Deploy: `DEPLOYMENT.md`
-- Metrikos: `CODEBASE_WHAT_IS_DONE.md`
+- Metrikos (produkto): `CODEBASE_WHAT_IS_DONE.md`
 
 ---
 
 ## 5. Konteksto taupymas
 
 1. Šis failas arba LEAN_INDEX.
-2. `TODO.md` / `ROADMAP.md` – tik **open** §1 / gaps.
+2. `TODO.md` / `ROADMAP.md` – tik **open** §1 P0/P1 (mokymosi/turinio); §1.4 MON = out of scope.
 3. Archyvas – tik kai explicit istorija.

@@ -67,7 +67,7 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 | dual-taxonomy (superseded)                  | ~~`m10_agent_taxonomy` Shell~~ → lab hybrid                   | **Superseded 2026-07-24:** Pattern `interactive-control-lab` (Shell=Ne) – `M10DepthRolesLabBlock` + static mini SVG; ne 8-step Shell spine | ⛔ W5 archived   |
 | multi-agent-flow                            | `m10_agent_orchestrator` + `orchestratorRetryPath.ts`         | Hub + specialists + state/tools dashed + left retry U; Shell walkthrough; own BOX; M12 tokens brother only                                 | ✅ W7            |
 
-Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWorkflowDiagram` (registry: HTML cards – not SVG spine).
+Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWorkflowDiagram` — desktop **2×4** cards (`→` in-row, `↓` 4→5), mobile vertical stack; short box labels in `m9DataWorkflowContent.ts` (full titles in Shell explanation). Not SVG spine / not `verticalFlowGeometry`.
 
 ### Cycle-feedback checklist (new / polish)
 
@@ -92,6 +92,7 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 3. Desktop connectors: brand/flow color; stroke ~`DIAGRAM_TOKENS.stroke.inactive` (1.5) — **HTML exception** (do not force SVG `stroke.flow` 3.5 between cards).
 4. `InteractiveDiagramShell` + `EnlargeableDiagram`; labels/explanations in locale helper (e.g. `strukturuotasProcesasStepExplanations.ts`).
 5. **No** required `*Layout.ts` / `verticalFlowGeometry` — do not migrate to SVG spine unless product asks for one visual language.
+6. **8+ steps:** do not force 1×N desktop row with long LT labels (mid-word wrap). Prefer **2×4** (or stack) + short box labels; full names stay in explanation panel. Etalon sibling: `M9DataWorkflowDiagram`.
 
 ### Linear-process (HTML icon-chain + autoplay) checklist (new / polish)
 

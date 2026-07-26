@@ -57,6 +57,14 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 - Nestandartinės opacity: naudoti tik Tailwind safelist klasės (pvz. `dark:bg-brand-900/20`), ne ad-hoc `/50`, `/30`.
 - DI Visata hierarchijos spalvos: `di-visata-bg-top`, `di-visata-dante-paper`, `di-visata-ai-cool` – pagal `tailwind.config.js`.
 
+### 3.3a Branduolio pasitikrinimas (global QuizPage)
+
+- **Role UI:** formuojantis readiness check – ne survey („Apklausa“), ne Path Test lukštas.
+- **Nav:** trumpas label (Pasitikrink / Ready check); aria = pilnas pavadinimas.
+- **Pirmas viewport:** intro (kam / kuo skiriasi / kada / ≥70 %) → CTA start; tada klausimai.
+- **Po M3:** soft secondary CTA (neuŽrakina M4); results = eiti toliau / remediation, ne vien deepen spin-off.
+- **Perk:** Tier 2 hint tik kai ≥6 modulių ir ≥70 % (GOLDEN §3.7).
+
 ### 3.4 Konsistencija su kitomis skaidrėmis
 
 - Blokų stiliai suderinti su PracticalTask, WarmUpQuiz, DiModalities ir kt.
@@ -67,6 +75,8 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 
 - Skenuojamumas: antraštės, bullet points, trumpi blokai.
 - Ilgų pastraipų vengimas; CTA aiškūs ir matomi.
+- **Dense content-block:** jei „Atidaryti visus“ = siena – rekomenduoti `section.table` (+ `comparisonStyle` kai 2 ašys), ne naują diagramą greta esamos; `preCopyCheckBlock` turi būti prieš pirmą `copyable` (GOLDEN §3.8.1). Etalonas: M7 sk. 67.8.
+- **`prompt-tool` surface (M7/90):** brand `ChoiceControl` (ne accent chip’ai); sample + Formatas preview prieš Copy; static EDA juosta = selection mirror, ne Shell SVG; a11y radiogroup. Skirti nuo `interactive-control-lab` (GOLDEN §3.1c) – čia embed §3.8.1.
 
 ### 3.6 Lentelės (content-block table)
 

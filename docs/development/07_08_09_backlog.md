@@ -1,6 +1,6 @@
 # M7–M9 backlog (Duomenų analizės kelias)
 
-> **Statusas:** `aktyvus priežiūros backlog` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55 kasdienis darbas** atlikta (2026-07-16); lieka browser smoke + §4.6 #6–9.  
+> **Statusas:** `aktyvus priežiūros backlog` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55** + **CQ-M79-3 §4.6 #6–9** ✅ (2026-07-26); lieka browser smoke S1–S7 / E1–E6.  
 > **Tikslas:** Vienas darbo sąrašas prieš vieningą tvarkymą („vienu ypu“). Savininkas papildo pastabomis žemiau — **§9 Savininko pastabos**.  
 > **SOT:** `docs/turinio_pletra_moduliai_7_8_9.md` · `docs/MODULIO_7_SKAIDRIU_EILES.md` · `src/data/modules.json`  
 > **Susiję:** `docs/development/TEST_REPORT.md` (§2026-07-14…16), `M79_PATCH_REGISTRY.md`, `docs/archive/development/analysis/M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`
@@ -91,17 +91,17 @@ Savarankiškas analitikas
 
 #### Pasikartojančių frazių katalogas (M7 branduolis — auditas)
 
-| #   | Pattern / frazė                                                    | Kur kartojasi               | Problema                               | Statusas (2026-07-16)                                                                |
-| --- | ------------------------------------------------------------------ | --------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------ |
-| 1   | `pipeline, MASTER PROMPTAS` (forward-reference)                    | sk. 72 (buvo), intro blokai | Insider žargonas                       | ✅ sk. 72 perrašyta                                                                  |
-| 2   | `stovi ant silpno pamato` / `rests on weak ground`                 | EN sk. 72 (buvo)            | Tuščia metafora                        | ✅ pašalinta                                                                         |
-| 3   | `Ar rezultatas atitinka tikslą?` + `Jei ne — grįžk prie 2️⃣…`       | M7 Patikra blokai           | Copy-paste boilerplate                 | ✅ 0× grep modules.json                                                              |
-| 4   | `**Priminimas:** … jau skaidrėje „Strateginis pamatas“`            | sk. 97 (Deming)             | Meta-navigacija vietoj turinio         | ✅ M79-44: collapsible – inline 4 principai, be skaidrės pavadinimo (2026-07-16)     |
-| 5   | `**Platesnis teorinis pamatas** … skaidrėje „Strateginis pamatas“` | sk. 97 collapsible          | Tas pats                               | ✅ M79-44: ta pati collapsible body (LT+EN)                                          |
-| 6   | `Po etikos bloko – grįžtame prie EDA (tas pats kelias)`            | sk. 90                      | Navigacinis triukšmas „Kam tai?“ bloke | Perkelti į section-break; „Kam tai?“ = tik EDA prasmė                                |
-| 7   | `**Seka:** Surink → išvalyk → …` (be kodėl)                        | sk. 891                     | Etiketė be use-case                    | Prieš seką: **kada** taikyti (pvz. prieš bet kokią analizę su nešvariais duomenimis) |
-| 8   | `Ne M4 Master promptas apie kontekstą`                             | sk. 74                      | Gynybiškas paaiškinimas, ne nauda      | Pakeisti į „pilna 8 žingsnių analizė vienai temai“                                   |
-| 9   | `vienas promptas` / `vienas veiksmas` (be skirtumo)                | daug skaidrių               | Praranda prasmę per kartojimą          | Variuoti: „vienas kopijuojamas šablonas“, „viena užklausa DI“                        |
+| #   | Pattern / frazė                                                    | Kur kartojasi               | Problema                               | Statusas (2026-07-16)                                                                            |
+| --- | ------------------------------------------------------------------ | --------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 1   | `pipeline, MASTER PROMPTAS` (forward-reference)                    | sk. 72 (buvo), intro blokai | Insider žargonas                       | ✅ sk. 72 perrašyta                                                                              |
+| 2   | `stovi ant silpno pamato` / `rests on weak ground`                 | EN sk. 72 (buvo)            | Tuščia metafora                        | ✅ pašalinta                                                                                     |
+| 3   | `Ar rezultatas atitinka tikslą?` + `Jei ne — grįžk prie 2️⃣…`       | M7 Patikra blokai           | Copy-paste boilerplate                 | ✅ 0× grep modules.json                                                                          |
+| 4   | `**Priminimas:** … jau skaidrėje „Strateginis pamatas“`            | sk. 97 (Deming)             | Meta-navigacija vietoj turinio         | ✅ M79-44 + 2026-07-25: 4 principai matomi prieš Copy; be meta-nav; collapsible = PDCA/LT/citata |
+| 5   | `**Platesnis teorinis pamatas** … skaidrėje „Strateginis pamatas“` | sk. 97 collapsible          | Tas pats                               | ✅ M79-44 + 2026-07-25: theory restored visible (LT+EN); collapsible be sk. 72 nuorodos          |
+| 6   | `Po etikos bloko – grįžtame prie EDA (tas pats kelias)`            | sk. 90                      | Navigacinis triukšmas „Kam tai?“ bloke | ✅ 2026-07-26: Trumpai = tik EDA; nav sk. 66.9 section-break (verify, be rewrite)                |
+| 7   | `**Seka:** Surink → išvalyk → …` (be kodėl)                        | sk. 891                     | Etiketė be use-case                    | ✅ LT already when-first; EN sync „When to apply“ (CQ-M79-3)                                     |
+| 8   | `Ne M4 Master promptas apie kontekstą`                             | sk. 74                      | Gynybiškas paaiškinimas, ne nauda      | ✅ 2026-07-26: „Pilnas 8 žingsnių šablonas… vienai temai“ (verify, `Ne M4` = 0)                  |
+| 9   | `vienas promptas` / `vienas veiksmas` (be skirtumo)                | daug skaidrių               | Praranda prasmę per kartojimą          | ✅ M7 batch LT+EN: užklausa DI / kopijuojamas šablonas (`patch-m79-46-section46-residual.mjs`)   |
 
 #### Rewrite principai (CONTENT_AGENT)
 
@@ -333,26 +333,27 @@ Statusai: `nauja` | `svarstoma` | `vykdoma` | `atlikta` | `atmesta`
 
 ### P1 — Orientacija ir „kada naudoti“
 
-| ID          | Prioritetas | Statusas    | Aprašymas                                                                                                             | Agentas                         | Failai / vietos                                                                  |
-| ----------- | ----------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------------- |
-| M79-01      | P1          | atlikta     | M7 makro-žemėlapis pradžioje: 4 blokai (Pamatas → Rinkimas → Paruošimas → Analizė/MASTER) + „dabar esi“ logika        | CURRICULUM → CONTENT → DATA     | sk. 71; `MODULIO_7_SKAIDRIU_EILES.md`; `modules.json` M7                         |
-| M79-02      | P1          | atlikta     | Section-break recap kas ~8–10 skaidrių su „ką jau padarėme / kas toliau“                                              | CURRICULUM → CONTENT            | `modules.json` M7 section-break skaidrės (66.9 recap + badge)                    |
-| M79-03      | P1          | atlikta     | Use-case blokai: **5 žingsnių algoritmas** (id 89) — 2–3 situacijos + „kada ne“                                       | CONTENT → DATA                  | `modules.json` sk. 89; SOT §7.16                                                 |
-| M79-04      | P1          | atlikta     | Use-case blokai: **MASTER** (id 74) vs **6 pipeline** (id 73) vs **5 paruošimas** (891) — decision tree viename bloke | CONTENT → DATA                  | sk. 73, 74, 891; SOT §8.1b                                                       |
-| M79-05      | P1          | atlikta     | UI: modulio progreso etiketė pagal makro-bloką (jei reikia kodo)                                                      | CODING                          | `ModuleView.tsx`, `m7MacroBlocks.ts`                                             |
-| **M79-16**  | **P1**      | **atlikta** | **Beprasmių frazių auditas ir perrašymas M7–M9** — pradėta nuo sk. **72**, EN sync                                    | **CONTENT** → DATA              | `modules.json` M7–M9; `modules-en-m7-m9.json`                                    |
-| **M79-17**  | **P1**      | **atlikta** | **725+726 dedup:** variantas A §4.7                                                                                   | **CURRICULUM** → CONTENT → DATA | sk. 725, 726                                                                     |
-| **M79-18**  | **P1**      | **atlikta** | **Cross-slide reference policy:** naked id pašalinti M4+M7                                                            | CONTENT → CODING?               | `modules.json` M4, M7; EN overlays                                               |
-| **M79-41b** | **P0**      | **atlikta** | **Nav copy be JSON id:** M9 sk. 90/99, M7 sk. 75 – temų pavadinimai vietoje `sk. 93.1`                                | CONTENT → DATA                  | `modules.json`, `modules-en-m7-m9.json`                                          |
-| **M79-42**  | **P1**      | **atlikta** | **Modulių metadata plain language:** M7–M9 subtitle/description LT+EN (hub kortelė)                                   | CONTENT → DATA                  | `modules.json`, `modules-en-m7-m9.json`                                          |
-| **M79-43**  | **P1**      | **atlikta** | **Antraštės / intro plain language W3:** sk. 70, 73, 73.5, 733, 84, 85, 66.9, 80, 80.5, 81 – LT+EN                    | CONTENT → DATA → QA             | `modules.json`, `modules-en-m7-m9.json`; `turinio_pletra_moduliai_7_8_9.md` §1.4 |
-| **M79-19**  | **P2**      | **atlikta** | M4/M7 etikos blokas: pašalinti **(67.3)**, „grįžk ten“                                                                | CONTENT                         | sk. 67, 68, 67.8                                                                 |
-| **M79-20**  | **P1**      | **atlikta** | **Footer desync:** variantas A be skaičiaus M7                                                                        | CONTENT                         | sk. 66.9–8713 footers M7                                                         |
-| **M79-22**  | **P2**      | **atlikta** | **Haliucinacijų benchmark duomenys (sk. 200)**                                                                        | DATA                            | `hallucinationRates.ts`                                                          |
-| **M79-23**  | **P2**      | **atlikta** | **M9/M7 8 žingsnių schema:** horizontal card layout                                                                   | SCHEME → CODING                 | `M9DataWorkflowDiagram.tsx`                                                      |
-| **M79-25**  | **P1**      | **atlikta** | **Resume modal desync**                                                                                               | CODING                          | `ModuleView.tsx`                                                                 |
-| **M79-26**  | **P2**      | **atlikta** | **M79 PDF atmintinė evergreen**                                                                                       | CONTENT → DATA                  | `m79HandoutContent.json`, `-en.json`                                             |
-| M79-27      | P2          | atlikta     | 67.7 pavadinimo fix (ne „5 žingsnių“)                                                                                 | CONTENT                         | sk. 67.7 shortTitle                                                              |
+| ID          | Prioritetas | Statusas    | Aprašymas                                                                                                             | Agentas                          | Failai / vietos                                                                  |
+| ----------- | ----------- | ----------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------- |
+| M79-01      | P1          | atlikta     | M7 makro-žemėlapis pradžioje: 4 blokai (Pamatas → Rinkimas → Paruošimas → Analizė/MASTER) + „dabar esi“ logika        | CURRICULUM → CONTENT → DATA      | sk. 71; `MODULIO_7_SKAIDRIU_EILES.md`; `modules.json` M7                         |
+| **M79-46**  | **P1**      | **atlikta** | **M7 sk. 71 path map UI (Plan B):** 4 HTML kortelės + „Tu esi čia“; be meta-nav į nav chip; Shell=Ne                  | SCHEME → CONTENT → DATA → CODING | `m7_macro_path_map`, `M7PathMapBlock`, overlay + `DIAGRAMU_M7_M12_REGISTRY`      |
+| M79-02      | P1          | atlikta     | Section-break recap kas ~8–10 skaidrių su „ką jau padarėme / kas toliau“                                              | CURRICULUM → CONTENT             | `modules.json` M7 section-break skaidrės (66.9 recap + badge)                    |
+| M79-03      | P1          | atlikta     | Use-case blokai: **5 žingsnių algoritmas** (id 89) — 2–3 situacijos + „kada ne“                                       | CONTENT → DATA                   | `modules.json` sk. 89; SOT §7.16                                                 |
+| M79-04      | P1          | atlikta     | Use-case blokai: **MASTER** (id 74) vs **6 pipeline** (id 73) vs **5 paruošimas** (891) — decision tree viename bloke | CONTENT → DATA                   | sk. 73, 74, 891; SOT §8.1b                                                       |
+| M79-05      | P1          | atlikta     | UI: modulio progreso etiketė pagal makro-bloką (jei reikia kodo)                                                      | CODING                           | `ModuleView.tsx`, `m7MacroBlocks.ts`                                             |
+| **M79-16**  | **P1**      | **atlikta** | **Beprasmių frazių auditas ir perrašymas M7–M9** — pradėta nuo sk. **72**, EN sync                                    | **CONTENT** → DATA               | `modules.json` M7–M9; `modules-en-m7-m9.json`                                    |
+| **M79-17**  | **P1**      | **atlikta** | **725+726 dedup:** variantas A §4.7                                                                                   | **CURRICULUM** → CONTENT → DATA  | sk. 725, 726                                                                     |
+| **M79-18**  | **P1**      | **atlikta** | **Cross-slide reference policy:** naked id pašalinti M4+M7                                                            | CONTENT → CODING?                | `modules.json` M4, M7; EN overlays                                               |
+| **M79-41b** | **P0**      | **atlikta** | **Nav copy be JSON id:** M9 sk. 90/99, M7 sk. 75 – temų pavadinimai vietoje `sk. 93.1`                                | CONTENT → DATA                   | `modules.json`, `modules-en-m7-m9.json`                                          |
+| **M79-42**  | **P1**      | **atlikta** | **Modulių metadata plain language:** M7–M9 subtitle/description LT+EN (hub kortelė)                                   | CONTENT → DATA                   | `modules.json`, `modules-en-m7-m9.json`                                          |
+| **M79-43**  | **P1**      | **atlikta** | **Antraštės / intro plain language W3:** sk. 70, 73, 73.5, 733, 84, 85, 66.9, 80, 80.5, 81 – LT+EN                    | CONTENT → DATA → QA              | `modules.json`, `modules-en-m7-m9.json`; `turinio_pletra_moduliai_7_8_9.md` §1.4 |
+| **M79-19**  | **P2**      | **atlikta** | M4/M7 etikos blokas: pašalinti **(67.3)**, „grįžk ten“                                                                | CONTENT                          | sk. 67, 68, 67.8                                                                 |
+| **M79-20**  | **P1**      | **atlikta** | **Footer desync:** variantas A be skaičiaus M7                                                                        | CONTENT                          | sk. 66.9–8713 footers M7                                                         |
+| **M79-22**  | **P2**      | **atlikta** | **Haliucinacijų benchmark duomenys (sk. 200)**                                                                        | DATA                             | `hallucinationRates.ts`                                                          |
+| **M79-23**  | **P2**      | **atlikta** | **M9/M7 8 žingsnių schema:** HTML cards → desktop **2×4** (2026-07-25; buvo 1×8)                                      | SCHEME → CODING                  | `M9DataWorkflowDiagram.tsx`, `m9DataWorkflowContent.ts`                          |
+| **M79-25**  | **P1**      | **atlikta** | **Resume modal desync**                                                                                               | CODING                           | `ModuleView.tsx`                                                                 |
+| **M79-26**  | **P2**      | **atlikta** | **M79 PDF atmintinė evergreen**                                                                                       | CONTENT → DATA                   | `m79HandoutContent.json`, `-en.json`                                             |
+| M79-27      | P2          | atlikta     | 67.7 pavadinimo fix (ne „5 žingsnių“)                                                                                 | CONTENT                          | sk. 67.7 shortTitle                                                              |
 
 ### P0 — Lygis C: pilnai adaptuotas branduolys (epic M79-32–40)
 
@@ -515,7 +516,7 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] Vartai: `validate:schema` · `audit:m79` · `generate:core-data` · `lint` · `test:run` **74/512**
 - [ ] Browser S1–S7 @375px — savininkas (`TEST_REPORT` browser stulpelis)
 
-**Ne scope (likę):** §4.6 #6–9; M79-46 (89/90 stretch); quiz/`copyable` žargonas; sk. 73/74 **title**.
+**Ne scope (likę):** M79-46 (89/90 stretch); quiz/`copyable` žargonas; sk. 73/74 **title**. (§4.6 #6–9 ✅ CQ-M79-3 2026-07-26.)
 
 ---
 

@@ -47,12 +47,14 @@ import {
   CopyButton,
   DownloadTemplateButton,
   TemplateBlock,
+  PromptFilterToolSurface,
   FigmaEmbed,
   InstructGptQualityBlock,
   WorkflowChainsBlock,
   WorkflowComparisonInteractiveBlock,
   ContextEngineeringPipelineDiagram,
 } from '../shared';
+import { extractFormatPreview } from '../../../utils/extractFormatPreview';
 import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { getColorClasses } from '../utils/colorStyles';
 import { getContentBlockVariantClasses } from '../utils/blockVariantClasses';
@@ -533,6 +535,8 @@ export function ContentBlockSlide({
   useEffect(() => {
     if (!toolChoiceSection?.toolChoiceBar || selectedToolRowIndex !== null)
       return;
+    // prompt-tool: stay null until learner picks (tool mental model)
+    if (toolChoiceSection.toolChoiceBar.variant === 'prompt-tool') return;
     const defaultRow =
       toolChoiceSection.toolChoiceBar.choices?.[0]?.rowIndex ?? 0;
     setSelectedToolRowIndex(defaultRow);
@@ -559,9 +563,15 @@ export function ContentBlockSlide({
     }
   }, []);
 
-  const hasCopyableSection = sectionsList.some(
+  const firstCopyableSectionIndex = sectionsList.findIndex(
     (s) => (s.copyable ?? '').trim().length > 0
   );
+  const hasCopyableSection = firstCopyableSectionIndex >= 0;
+  /** When no linked-copy filter: place preCopy before first copyable (not slide top). */
+  const preCopyBeforeFirstCopyable =
+    Boolean(content.preCopyCheckBlock) &&
+    !hasLinkedCopySections &&
+    hasCopyableSection;
   const hasBrandActionSection = sectionsList.some(
     (s) => s.blockVariant === 'brand'
   );
@@ -819,7 +829,9 @@ export function ContentBlockSlide({
           )}
         </div>
       )}
-      {!hasLinkedCopySections && renderPreCopyCheck()}
+      {!hasLinkedCopySections &&
+        !preCopyBeforeFirstCopyable &&
+        renderPreCopyCheck()}
 
       {isTabsMode && tabSections.length > 0 && (
         <div className="space-y-6">
@@ -939,8 +951,8 @@ export function ContentBlockSlide({
           if (
             hasLinkedCopySections &&
             section.linkedRowIndex !== undefined &&
-            selectedToolRowIndex !== null &&
-            section.linkedRowIndex !== selectedToolRowIndex
+            (selectedToolRowIndex === null ||
+              section.linkedRowIndex !== selectedToolRowIndex)
           ) {
             return null;
           }
@@ -975,6 +987,9 @@ export function ContentBlockSlide({
             <Fragment key={i}>
               {isFirstCollapsible &&
                 hasLinkedCopySections &&
+                renderPreCopyCheck()}
+              {preCopyBeforeFirstCopyable &&
+                i === firstCopyableSectionIndex &&
                 renderPreCopyCheck()}
               <div
                 className={blockClasses}
@@ -1190,50 +1205,81 @@ export function ContentBlockSlide({
                     !section.presentationToolsBlock && (
                       <WorkflowChainsBlock chains={section.workflowChains} />
                     )}
-                  {section.toolChoiceBar && !section.presentationToolsBlock && (
-                    <div
-                      className="mb-4 space-y-3"
-                      role="region"
-                      aria-label={t('chooseTaskTypeAria')}
-                    >
-                      {section.toolChoiceBar.question && (
-                        <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                          {section.toolChoiceBar.question}
-                        </p>
-                      )}
-                      <div className="flex flex-wrap gap-2">
-                        {(section.toolChoiceBar.choices ?? []).map(
-                          (choice, idx) => {
-                            const isSelected =
-                              selectedToolRowIndex === choice.rowIndex;
-                            return (
-                              <button
-                                key={idx}
-                                type="button"
-                                onClick={() =>
-                                  setSelectedToolRowIndex(choice.rowIndex)
-                                }
-                                className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
-                                  isSelected
-                                    ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
-                                    : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
-                                }`}
-                                aria-pressed={isSelected}
-                                aria-label={`${choice.label}${isSelected ? t('choiceSelectedSuffix') : ''}`}
-                              >
-                                {choice.label}
-                              </button>
-                            );
-                          }
+                  {section.toolChoiceBar &&
+                    !section.presentationToolsBlock &&
+                    section.toolChoiceBar.variant === 'prompt-tool' &&
+                    (() => {
+                      const bar = section.toolChoiceBar!;
+                      const activeLinked = sectionsList.find(
+                        (s) =>
+                          s.linkedRowIndex !== undefined &&
+                          s.linkedRowIndex === selectedToolRowIndex
+                      );
+                      const activeChoice = (bar.choices ?? []).find(
+                        (c) => c.rowIndex === selectedToolRowIndex
+                      );
+                      const formatPreview =
+                        activeLinked?.formatPreview ??
+                        extractFormatPreview(activeLinked?.copyable);
+                      return (
+                        <PromptFilterToolSurface
+                          question={bar.question}
+                          sequenceHint={bar.sequenceHint}
+                          sampleData={bar.sampleData}
+                          choices={bar.choices ?? []}
+                          selectedRowIndex={selectedToolRowIndex}
+                          onSelect={setSelectedToolRowIndex}
+                          formatPreview={formatPreview}
+                          whenHint={activeChoice?.whenHint}
+                        />
+                      );
+                    })()}
+                  {section.toolChoiceBar &&
+                    !section.presentationToolsBlock &&
+                    section.toolChoiceBar.variant !== 'prompt-tool' && (
+                      <div
+                        className="mb-4 space-y-3"
+                        role="region"
+                        aria-label={t('chooseTaskTypeAria')}
+                      >
+                        {section.toolChoiceBar.question && (
+                          <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                            {section.toolChoiceBar.question}
+                          </p>
+                        )}
+                        <div className="flex flex-wrap gap-2">
+                          {(section.toolChoiceBar.choices ?? []).map(
+                            (choice, idx) => {
+                              const isSelected =
+                                selectedToolRowIndex === choice.rowIndex;
+                              return (
+                                <button
+                                  key={idx}
+                                  type="button"
+                                  onClick={() =>
+                                    setSelectedToolRowIndex(choice.rowIndex)
+                                  }
+                                  className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
+                                    isSelected
+                                      ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
+                                      : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
+                                  }`}
+                                  aria-pressed={isSelected}
+                                  aria-label={`${choice.label}${isSelected ? t('choiceSelectedSuffix') : ''}`}
+                                >
+                                  {choice.label}
+                                </button>
+                              );
+                            }
+                          )}
+                        </div>
+                        {hasLinkedCopySections && (
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {t('toolChoiceLinkedCopyHint')}
+                          </p>
                         )}
                       </div>
-                      {hasLinkedCopySections && (
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {t('toolChoiceLinkedCopyHint')}
-                        </p>
-                      )}
-                    </div>
-                  )}
+                    )}
                   {!section.workflowChains?.length &&
                     section.table &&
                     !section.presentationToolsBlock &&

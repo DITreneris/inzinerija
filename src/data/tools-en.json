@@ -50,8 +50,15 @@
       "category": "Image generation"
     },
     {
+      "name": "CapCut",
+      "url": "https://www.capcut.com",
+      "description": "Social video editing and AI templates – assemble 3–5 s clips, overlays, export per platform.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
       "name": "ChatGPT (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "Universal conversational AI – best for general writing, summaries and idea generation.",
       "moduleId": 1,
       "category": "Chat AI"
@@ -86,10 +93,17 @@
     },
     {
       "name": "DALL·E (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "Image generation via ChatGPT / GPT-Image – text to image, style and ratios; fast brief→image.",
       "moduleId": 13,
       "category": "Image generation"
+    },
+    {
+      "name": "DataLab (DataCamp)",
+      "url": "https://www.datacamp.com/datalab",
+      "description": "Analytics: SQL + Python, notebook environment, enterprise – data exploration and code in one place.",
+      "moduleId": 7,
+      "category": "Data analysis"
     },
     {
       "name": "DeepSeek",
@@ -99,11 +113,18 @@
       "category": "Chat AI"
     },
     {
-      "name": "ElevenLabs (voices)",
+      "name": "Echobase",
+      "url": "https://www.echobase.ai",
+      "description": "Analytics: AI agents, file sync – automated data work with context.",
+      "moduleId": 7,
+      "category": "Data analysis"
+    },
+    {
+      "name": "ElevenLabs",
       "url": "https://elevenlabs.io",
       "description": "VO (voiceover), voice synthesis and SFX – audio-first narration and transitions.",
       "moduleId": 13,
-      "category": "Music generation"
+      "category": "Audio"
     },
     {
       "name": "ElevenMusic",
@@ -127,18 +148,18 @@
       "category": "Visual design"
     },
     {
-      "name": "FLUX",
-      "url": "https://blackforestlabs.ai",
-      "description": "Photorealism and multi-reference consistency – product/character series.",
-      "moduleId": 13,
-      "category": "Image generation"
-    },
-    {
       "name": "Fly.io",
       "url": "https://fly.io",
       "description": "Cloud hosting – containers close to users in different regions; fits APIs and agents when global response time matters.",
       "moduleId": 10,
       "category": "Cloud hosting"
+    },
+    {
+      "name": "FLUX",
+      "url": "https://blackforestlabs.ai",
+      "description": "Photorealism and multi-reference consistency – product/character series.",
+      "moduleId": 13,
+      "category": "Image generation"
     },
     {
       "name": "Gamma",
@@ -170,7 +191,7 @@
     },
     {
       "name": "GPT-Image (OpenAI)",
-      "url": "https://chat.openai.com",
+      "url": "https://chatgpt.com",
       "description": "OpenAI image model in ChatGPT – natural language, complex briefs, fast marketing drafts.",
       "moduleId": 13,
       "category": "Image generation"
@@ -218,6 +239,13 @@
       "category": "AI content detectors"
     },
     {
+      "name": "Julius AI",
+      "url": "https://julius.ai",
+      "description": "Analytics: NLP analysis, easy to use – fast exploratory data analysis without heavy setup.",
+      "moduleId": 7,
+      "category": "Data analysis"
+    },
+    {
       "name": "Kling AI",
       "url": "https://klingai.com",
       "description": "Kling 3 – quality/cost balance for image-to-video; short 3–5 s ad clips.",
@@ -246,11 +274,25 @@
       "category": "Business automation"
     },
     {
+      "name": "MyDetector.ai",
+      "url": "https://mydetector.ai/",
+      "description": "Quick free AI text detector, no sign-up, supports many languages.",
+      "moduleId": 4,
+      "category": "AI content detectors"
+    },
+    {
       "name": "Midjourney",
       "url": "https://midjourney.com",
       "description": "High artistic quality with character/style reference – brand and campaign looks.",
       "moduleId": 13,
       "category": "Image generation"
+    },
+    {
+      "name": "MySQL",
+      "url": "https://www.mysql.com",
+      "description": "Widely used database in web hosting, WordPress, e-commerce, and simple CRUD systems.",
+      "moduleId": 7,
+      "category": "Databases"
     },
     {
       "name": "MongoDB",
@@ -265,20 +307,6 @@
       "description": "Background and stock video music – licenses for commercial use.",
       "moduleId": 13,
       "category": "Music generation"
-    },
-    {
-      "name": "MyDetector.ai",
-      "url": "https://mydetector.ai/",
-      "description": "Quick free AI text detector, no sign-up, supports many languages.",
-      "moduleId": 4,
-      "category": "AI content detectors"
-    },
-    {
-      "name": "MySQL",
-      "url": "https://www.mysql.com",
-      "description": "Widely used database in web hosting, WordPress, e-commerce, and simple CRUD systems.",
-      "moduleId": 7,
-      "category": "Databases"
     },
     {
       "name": "n8n",
@@ -344,6 +372,13 @@
       "category": "Business automation"
     },
     {
+      "name": "Power BI",
+      "url": "https://www.microsoft.com/power-platform/products/power-bi",
+      "description": "Analytics: visualizations, integrations, enterprise – business reports and dashboards from structured data.",
+      "moduleId": 7,
+      "category": "Data analysis"
+    },
+    {
       "name": "Prezent.ai",
       "url": "https://prezent.ai",
       "description": "For business – brand, Story Builder, narrative; corporate presentations.",
@@ -372,6 +407,13 @@
       "category": "Cloud hosting"
     },
     {
+      "name": "Replit",
+      "url": "https://replit.com",
+      "description": "Fast in-browser code prototype – for demos and learning; not the same as production Railway/Render.",
+      "moduleId": 10,
+      "category": "Cloud hosting"
+    },
+    {
       "name": "Runway",
       "url": "https://runwayml.com",
       "description": "Video generation and editing – image-to-video, short clips, post-prod.",
@@ -389,6 +431,13 @@
       "name": "Seedance",
       "url": "https://seedance.ai",
       "description": "Seedance 2.0 – directed motion with many image/video/audio refs in one generation.",
+      "moduleId": 13,
+      "category": "Video generation"
+    },
+    {
+      "name": "Synthesia",
+      "url": "https://www.synthesia.io",
+      "description": "AI avatars – training, explainers, localization.",
       "moduleId": 13,
       "category": "Video generation"
     },
@@ -442,13 +491,6 @@
       "category": "Databases"
     },
     {
-      "name": "Synthesia",
-      "url": "https://www.synthesia.io",
-      "description": "AI avatars – training, explainers, localization.",
-      "moduleId": 13,
-      "category": "Video generation"
-    },
-    {
       "name": "Trello",
       "url": "https://trello.com",
       "description": "Boards and cards – can describe tasks as context for RAG prompts.",
@@ -463,11 +505,25 @@
       "category": "Music generation"
     },
     {
+      "name": "UiPath",
+      "url": "https://www.uipath.com",
+      "description": "RPA – bots click the UI when there is no API. When an API exists, prefer workflow (Zapier/Make/n8n), not RPA.",
+      "moduleId": 10,
+      "category": "Business automation"
+    },
+    {
       "name": "Veo 3 (Google)",
       "url": "https://deepmind.google/technologies/veo/",
       "description": "Veo 3.1 – cinematic quality, native audio; prototypes and short ads.",
-      "moduleId": 4,
+      "moduleId": 13,
       "category": "Video generation"
+    },
+    {
+      "name": "Vercel",
+      "url": "https://vercel.com",
+      "description": "Cloud hosting – front-end and sites (e.g. Next.js) from GitHub; GitHub stores, PaaS runs.",
+      "moduleId": 10,
+      "category": "Cloud hosting"
     },
     {
       "name": "Visme",
@@ -475,6 +531,13 @@
       "description": "For reports and data – infographics, interactivity.",
       "moduleId": 4,
       "category": "Presentations"
+    },
+    {
+      "name": "Whisper (OpenAI)",
+      "url": "https://openai.com/index/whisper/",
+      "description": "Speech-to-text (STT) – transcription from audio; pairs with VO / edit workflows.",
+      "moduleId": 13,
+      "category": "Audio"
     },
     {
       "name": "Winston AI",
@@ -495,7 +558,7 @@
       "url": "https://zapier.com",
       "description": "Automates workflows between apps – in AI chains can send data to email, calendar, etc.",
       "moduleId": 4,
-      "category": "Automation"
+      "category": "Business automation"
     },
     {
       "name": "ZeroGPT",
