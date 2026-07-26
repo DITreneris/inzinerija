@@ -9,6 +9,7 @@ import {
   ECOSYSTEM_URLS,
   blogArticleUrl,
 } from '../constants/ecosystemUrls';
+import { logError } from './logger';
 import {
   HANDOUT_ACCENT_COLOR,
   HANDOUT_CONTENT_W_INNER,
@@ -17,6 +18,8 @@ import {
   addFooter,
   addHeader,
   addListSection,
+  addPageNumbers,
+  addPromptBlock,
   addSectionTitle,
   addTrainingUtm,
   addWrappedText,
@@ -40,11 +43,12 @@ export interface M1012HandoutOptions {
 function buildDefaultUrls(): M1012HandoutUrls {
   return {
     primary: blogArticleUrl(
-      BLOG_ARTICLE_SLUGS.workflowCanvas,
+      BLOG_ARTICLE_SLUGS.agentOrchestratorModel,
       { moduleId: 12, touchpoint: 'handout' },
       { medium: 'handout' }
     ),
-    decide: addTrainingUtm(ECOSYSTEM_URLS.decide, 'm12_handout_decide'),
+    // Hub fallback while promptanatomy.pro is unstable (utm_campaign keeps intent).
+    decide: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm12_handout_decide'),
     map: addTrainingUtm(ECOSYSTEM_URLS.map, 'm12_handout_map'),
     hub: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm12_handout_hub'),
   };
@@ -54,6 +58,22 @@ function buildDefaultUrls(): M1012HandoutUrls {
  * Įkrauna šriftą ir generuoja Modulių 10–12 atmintinės PDF.
  */
 export async function downloadM1012HandoutPdf(
+  content: M1012HandoutContent,
+  options: M1012HandoutOptions,
+  filename?: string
+): Promise<void> {
+  try {
+    await buildM1012HandoutPdf(content, options, filename);
+  } catch (err) {
+    logError(err instanceof Error ? err : new Error(String(err)), {
+      util: 'downloadM1012HandoutPdf',
+      locale: options.locale,
+    });
+    throw err;
+  }
+}
+
+async function buildM1012HandoutPdf(
   content: M1012HandoutContent,
   options: M1012HandoutOptions,
   filename?: string
@@ -89,12 +109,19 @@ export async function downloadM1012HandoutPdf(
     { colorHex: HANDOUT_ACCENT_COLOR }
   );
 
+  y = addPromptBlock(
+    ctx,
+    isEn ? '5. Starter prompt' : '5. Starter promptas',
+    content.starterPrompt,
+    y
+  );
+
   const yReflection = y;
   y = addSectionTitle(
     ctx,
     isEn
-      ? '5. Reflection and 48-hour action'
-      : '5. Refleksija ir 48 val. veiksmas',
+      ? '6. Reflection and 48-hour action'
+      : '6. Refleksija ir 48 val. veiksmas',
     y,
     HANDOUT_ACCENT_COLOR
   );
@@ -122,6 +149,7 @@ export async function downloadM1012HandoutPdf(
     ],
   });
 
+  addPageNumbers(ctx, options.locale);
   addFooter(ctx, content.footerText, {
     websiteCta: content.websiteCta,
     websiteUrl: urls.hub || content.websiteUrl,

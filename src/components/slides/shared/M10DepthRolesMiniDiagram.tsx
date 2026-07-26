@@ -26,6 +26,7 @@ import {
   M10_DEPTH_PILL,
   M10_DEPTH_ROLE_BOX,
   M10_DEPTH_ROLES_VIEWBOX,
+  M10_DEPTH_TITLE_Y,
 } from './m10DepthRolesLayout';
 
 /** LMS process tip SOT – same as Waves A–E (tip≥10, refX=0). */
@@ -65,21 +66,11 @@ export default function M10DepthRolesMiniDiagram({
   return (
     <svg
       viewBox={`0 0 ${M10_DEPTH_ROLES_VIEWBOX.width} ${height}`}
-      className={`mx-auto block w-full max-w-3xl ${className}`}
+      className={`mx-auto block w-full max-w-5xl ${className}`}
       role="img"
       aria-label={ui.regionAria}
     >
       <defs>
-        <linearGradient
-          id={`m10-depth-bg-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="100%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
-        </linearGradient>
         <marker
           id={`m10-depth-flow-${uid}`}
           markerUnits={PROCESS_ARROW.markerUnits}
@@ -97,10 +88,11 @@ export default function M10DepthRolesMiniDiagram({
         </marker>
       </defs>
 
+      {/* Flat LMS fill (no gradient wash) – lab brother of 10.2 / 10.26. */}
       <rect
         width={M10_DEPTH_ROLES_VIEWBOX.width}
         height={height}
-        fill={`url(#m10-depth-bg-${uid})`}
+        fill={palette.bgEnd}
         rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
@@ -114,7 +106,7 @@ export default function M10DepthRolesMiniDiagram({
 
       <text
         x={M10_DEPTH_ROLES_VIEWBOX.width / 2}
-        y={28}
+        y={M10_DEPTH_TITLE_Y}
         textAnchor="middle"
         fontSize={typography.title.desktop}
         fontWeight={typography.titleWeight}

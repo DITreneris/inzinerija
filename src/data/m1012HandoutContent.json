@@ -26,10 +26,11 @@
     "Vertintojas: patikrink faktus, rizikas, toną ir ar atsakyta į kriterijus.",
     "Nepavyko taisyklė: jei trūksta duomenų arba įrankis neveikia, parašyk „Nepavyko“ ir nurodyk priežastį."
   ],
+  "starterPrompt": "META: Tu esi agentų procesoės koordinatorius. Tikslas – vienas pakartojamas procesas su žmogaus patvirtinimo tašku.\nINPUT: Procesas: [pvz. klientų užklausų santrauka]. Trigger: [kas paleidžia]. Šaltiniai ir ribos: [ką galima / ko negalima].\nOUTPUT: (1) 5 žingsnių eiga (trigger → action → tool → human gate → log), (2) 3 rolių promptai (koordinatorius, specialistas, vertintojas), (3) vienas „Nepavyko“ atvejis.\nQUALITY: Jei trūksta duomenų ar įrankis neveikia – sustok ir paprašyk žmogaus. Nespėliok.",
   "reflectionSummary": "Per 24–48 val. pasirink vieną procesą ir paleisk mažą agentų grandinę: koordinatorius → specialistas → vertintojas. Užrašyk vieną pamoką ir atnaujink promptą.",
   "nextPageHeading": "Ką daryti per 48 val.",
   "nextPageIntro": "Agentų kelias baigtas tada, kai turi vieną procesą, kurį gali pakartoti: schema, promptai, bandymo atvejis ir aiški žmogaus patvirtinimo vieta.",
-  "primaryCtaLabel": "Workflow canvas šablonas (blog)",
+  "primaryCtaLabel": "Agentų orchestratoriaus modelis (blog)",
   "secondaryCtaLabels": {
     "decide": "Nuspręsk kitą žingsnį (Decide)",
     "map": "Peržiūrėk ekosistemos žemėlapį (Map)"

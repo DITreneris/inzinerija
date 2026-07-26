@@ -473,7 +473,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
     it.each([
       ['M10 learning loop', () => <M10LearningLoopBlock />, 4],
       ['M10 orchestrator', () => <M10OrchestratorBlock />, 6],
-      ['M10 trigger flow', () => <M10TriggerFlowBlock />, 4],
+      ['M10 trigger flow', () => <M10TriggerFlowBlock />, 3],
       ['M10 3A strategy', () => <M10ThreeAStrategyBlock />, 3],
       ['M10 workflow spec', () => <M10WorkflowSpecBlock />, 8],
       ['M10 incident playbook', () => <M10IncidentPlaybookBlock />, 5],
@@ -546,12 +546,18 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container: en } = renderWithProviders(<M10TriggerFlowBlock />);
       expect(en.textContent).toContain('Workflow chain');
       expect(en.textContent).toContain('starts the flow');
+      expect(en.textContent).toContain('Webhook = a trigger type');
+      expect(en.textContent).toMatch(/1\s*\/\s*3/);
+      expect(en.querySelectorAll('nav button')).toHaveLength(3);
       expect(en.textContent).not.toContain('paleidžia srautą');
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10TriggerFlowBlock />);
-      expect(lt.textContent).toContain('Workflow grandinė');
+      expect(lt.textContent).toContain('Darbo eigos grandinė');
       expect(lt.textContent).toContain('paleidžia srautą');
+      expect(lt.textContent).toContain('Webhook = Trigger tipas');
+      expect(lt.textContent).toMatch(/1\s*\/\s*3/);
+      expect(lt.querySelectorAll('nav button')).toHaveLength(3);
     });
 
     it('renders M10 3A strategy in both locales with shell nav', () => {

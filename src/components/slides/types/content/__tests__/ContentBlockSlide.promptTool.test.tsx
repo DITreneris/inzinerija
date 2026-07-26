@@ -81,6 +81,18 @@ describe('ContentBlockSlide prompt-tool variant', () => {
     expect(container.textContent).not.toContain('1) matrica 2) paaiškinimas');
   });
 
+  it('EDA strip is decorative (no buttons); ChoiceControl is the only mode selector', () => {
+    const { container, getAllByRole } = renderWithProviders(
+      <ContentBlockSlide content={promptToolContent} />
+    );
+
+    const strip = container.querySelector('[data-prompt-tool-eda-strip]');
+    expect(strip).toBeTruthy();
+    expect(strip?.getAttribute('aria-hidden')).toBe('true');
+    expect(strip?.querySelectorAll('button').length).toBe(0);
+    expect(getAllByRole('radio').length).toBe(2);
+  });
+
   it('keeps chips variant auto-select behaviour', () => {
     const chipsContent: ContentBlockContent = {
       sections: [

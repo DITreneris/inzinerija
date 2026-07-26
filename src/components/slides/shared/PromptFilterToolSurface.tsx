@@ -96,40 +96,37 @@ export default function PromptFilterToolSurface({
         ) : null}
       </div>
 
-      <nav aria-label={t('promptToolEdaStripAria')}>
-        <ol className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          {choices.map((choice, idx) => {
-            const active = selectedRowIndex === choice.rowIndex;
-            return (
-              <li
-                key={choice.rowIndex}
-                className="flex items-center gap-1.5 sm:gap-2"
+      {/* Visual EDA progress mirror – ChoiceControl is the only interactive selector. */}
+      <ol
+        className="flex flex-wrap items-center gap-1.5 sm:gap-2"
+        aria-hidden="true"
+        data-prompt-tool-eda-strip
+      >
+        {choices.map((choice, idx) => {
+          const active = selectedRowIndex === choice.rowIndex;
+          return (
+            <li
+              key={choice.rowIndex}
+              className="flex items-center gap-1.5 sm:gap-2"
+            >
+              {idx > 0 ? (
+                <span className="text-slate-400 dark:text-slate-500 text-sm select-none">
+                  →
+                </span>
+              ) : null}
+              <span
+                className={`inline-flex items-center min-h-[44px] px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium pointer-events-none select-none ${
+                  active
+                    ? 'bg-brand-500 text-white dark:bg-brand-600'
+                    : 'bg-slate-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200'
+                }`}
               >
-                {idx > 0 ? (
-                  <span
-                    className="text-slate-400 dark:text-slate-500 text-sm select-none"
-                    aria-hidden
-                  >
-                    →
-                  </span>
-                ) : null}
-                <button
-                  type="button"
-                  onClick={() => onSelect(choice.rowIndex)}
-                  className={`min-h-[36px] px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ${
-                    active
-                      ? 'bg-brand-500 text-white dark:bg-brand-600'
-                      : 'bg-slate-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600'
-                  }`}
-                  aria-current={active ? 'step' : undefined}
-                >
-                  {choice.label}
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-      </nav>
+                {choice.label}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
 
       <ChoiceControl
         legend={question ?? t('promptToolChooseLegend')}

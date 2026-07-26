@@ -69,6 +69,9 @@ export default function M10DepthRolesLabBlock() {
         <p className="text-xs text-gray-600 dark:text-gray-400">
           {ui.examples}
         </p>
+        <p className="text-xs font-medium text-brand-800 dark:text-brand-200">
+          {ui.decisionRule}
+        </p>
       </div>
 
       <ChoiceControl

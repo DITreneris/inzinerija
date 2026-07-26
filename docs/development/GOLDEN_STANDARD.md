@@ -525,8 +525,8 @@ Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toj
 | `recognitionExercise`                          | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                           |
 | `interactivePipeline`                          | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                            |
 | `instructGptQuality`                           | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                            |
-| `toolChoiceBar`                                | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)                 |
-| `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`)         |
+| `toolChoiceBar`                                | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76; M10/10.48, **10.35** (`autoSelect: false`)  |
+| `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76; M10/10.48, 10.35 (`sections[].linkedRowIndex`)         |
 | `toolChoiceBar.variant: prompt-tool`           | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.          |
 | `toolChoiceBar.variant: manipulation-contrast` | Manipuliacijų kontrastas: ChoiceControl → Blogas\|Geras + pushSignal → linked Copy.   | **Etalonas:** M7 sk. 67 (`ManipulationContrastToolSurface`); brother of prompt-tool. |
 

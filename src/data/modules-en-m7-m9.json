@@ -4032,7 +4032,7 @@
           "type": "practice-quest-intro",
           "content": {
             "whyBenefit": "After this project you will understand the data analysis flow and have your own AI-ready analysis kit: prompts, cleaned data, and a summary.",
-            "duration": "~45 min for the minimum path · up to ~90 min for the full 8-step cycle",
+            "duration": "~45–90 min",
             "audience": "You finished the theory and the test – now complete one full analysis pass with AI.",
             "journeyHeading": "Choose your domain",
             "journeyChoices": [

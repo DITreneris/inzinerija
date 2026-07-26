@@ -7,19 +7,27 @@ import {
   getDesktopFaninGeometry,
   getDesktopFanoutGeometry,
   getM10OrchestratorDesktopBoxes,
+  getOrchestratorEdgeEmphasis,
   getOrchestratorEdgeLabelAnchor,
+  getOrchestratorEdgeOpacity,
   getOrchestratorRetryLabelAnchor,
+  getValidateEvalOrthogonalPath,
   getRoleBandTone,
+  M10_ORCHESTRATOR_DESKTOP_X_OFFSET,
   isOrchestratorNodeLive,
+  M10_ORCHESTRATOR_AGENTS_HEADER_H,
   M10_ORCHESTRATOR_ARROW_TIP,
   M10_ORCHESTRATOR_EDGE_LABEL_BY_STEP,
+  M10_ORCHESTRATOR_EDGES,
   M10_ORCHESTRATOR_FANIN_ERROR_STROKE,
+  M10_ORCHESTRATOR_FOCUS_BY_STEP,
   M10_ORCHESTRATOR_ROLE_BAND,
   M10_ORCHESTRATOR_STEP_COUNT,
   M10_ORCHESTRATOR_STEP_NODE_IDS,
   M10_ORCHESTRATOR_STROKE_DATA,
   M10_ORCHESTRATOR_TITLE_Y_DESKTOP,
   M10_ORCHESTRATOR_VIEWBOX,
+  ORCHESTRATOR_MAP_EDGE_OPACITY,
   ORCHESTRATOR_ORPHAN_OPACITY,
   shouldPaintEdge,
   shouldPaintFanin,
@@ -35,12 +43,32 @@ import {
   ORCHESTRATOR_RETRY_ROUTE_X_COMPACT,
   retryTipOutsideHub,
 } from '../orchestratorRetryPath';
+import { getM12MultiAgentSchemaLabels } from '../m12MultiAgentSchemaContent';
+import {
+  getM12BoxMap,
+  getM12EdgeOpacity,
+  getM12FaninGeometry,
+  getM12FanoutGeometry,
+  getM12FeedbackLabelPos,
+  getM12MultiAgentDesktopBoxes,
+  getM12NodeOpacity,
+  M12_MAP_EDGE_OPACITY,
+  M12_MULTI_AGENT_MARKER_LEN,
+  M12_MULTI_AGENT_STEP_COUNT,
+  M12_MULTI_AGENT_STEP_NODE_IDS,
+  M12_ORPHAN_OPACITY,
+  m12PillAabb,
+  m12PillsOverlap,
+  m12SpineCenterYAligned,
+  shouldShowM12EdgeLabel,
+} from '../m12MultiAgentSchemaLayout';
 
-describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
+describe('lmsMultiAgentPolish (Type Etalon W7 full-map + step-focus)', () => {
   it('keeps guided walkthrough at 6 shell steps', () => {
     expect(M10_ORCHESTRATOR_STEP_COUNT).toBe(6);
     expect(M10_ORCHESTRATOR_STEP_NODE_IDS).toHaveLength(6);
     expect(M10_ORCHESTRATOR_EDGE_LABEL_BY_STEP).toHaveLength(6);
+    expect(M10_ORCHESTRATOR_FOCUS_BY_STEP).toHaveLength(6);
   });
 
   it('uses LMS token floors for inactive and strokes', () => {
@@ -82,26 +110,42 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(boxes.find((b) => b.id === 'validate')!.tone).toBe('amber');
   });
 
-  it('culls early-step edges and step-4 eval-output (hide not dim)', () => {
-    expect(shouldPaintEdge(0, 'input-router')).toBe(true);
-    expect(shouldPaintEdge(0, 'router-orch')).toBe(false);
-    expect(shouldPaintFanout(2)).toBe(true);
-    expect(shouldPaintFanin(3)).toBe(true);
-    expect(shouldPaintEdge(4, 'validate-eval')).toBe(true);
-    expect(shouldPaintEdge(4, 'eval-output')).toBe(false);
-    expect(shouldPaintEdge(5, 'eval-output')).toBe(true);
+  it('full-map: paints every edge every step; focus ≠ cull', () => {
+    for (let step = 0; step < 6; step++) {
+      for (const edge of M10_ORCHESTRATOR_EDGES) {
+        expect(shouldPaintEdge(step, edge.id)).toBe(true);
+      }
+    }
+    expect(shouldPaintFanout(0)).toBe(true);
+    expect(shouldPaintFanin(0)).toBe(true);
+    expect(getOrchestratorEdgeEmphasis(0, 'router-orch')).toBe('map');
+    expect(getOrchestratorEdgeEmphasis(1, 'router-orch')).toBe('focus');
+    expect(getOrchestratorEdgeEmphasis(3, 'eval-output')).toBe('map');
+    expect(getOrchestratorEdgeEmphasis(4, 'eval-output')).toBe('map');
+    expect(getOrchestratorEdgeEmphasis(5, 'eval-output')).toBe('focus');
+    expect(getOrchestratorEdgeOpacity(0, 'eval-output')).toBe(
+      ORCHESTRATOR_MAP_EDGE_OPACITY
+    );
+    expect(getOrchestratorEdgeOpacity(5, 'eval-output')).toBe(1);
     expect(shouldShowRetryLabel(4)).toBe(true);
+    expect(getOrchestratorEdgeEmphasis(2, 'eval-retry')).toBe('map');
+    expect(getOrchestratorEdgeEmphasis(4, 'eval-retry')).toBe('focus');
   });
 
-  it('dims orphan nodes early (live-map); tools/eval/output not live on step 0–1', () => {
+  it('full-map: all 10 nodes present; focus live-map without hide', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    expect(getM10OrchestratorDesktopBoxes(labels)).toHaveLength(10);
     expect(isOrchestratorNodeLive(0, 'input')).toBe(true);
-    expect(isOrchestratorNodeLive(0, 'router')).toBe(true); // via input-router
+    expect(isOrchestratorNodeLive(0, 'router')).toBe(true);
     expect(isOrchestratorNodeLive(0, 'tools')).toBe(false);
-    expect(isOrchestratorNodeLive(0, 'evaluator')).toBe(false);
     expect(isOrchestratorNodeLive(0, 'output')).toBe(false);
-    expect(isOrchestratorNodeLive(1, 'orchestrator')).toBe(true);
-    expect(isOrchestratorNodeLive(1, 'tools')).toBe(false);
+    expect(isOrchestratorNodeLive(2, 'tools')).toBe(false);
     expect(isOrchestratorNodeLive(3, 'tools')).toBe(true);
+    expect(isOrchestratorNodeLive(3, 'output')).toBe(false);
+    expect(isOrchestratorNodeLive(5, 'output')).toBe(true);
+    expect(ORCHESTRATOR_ORPHAN_OPACITY).toBeLessThan(
+      DIAGRAM_TOKENS.opacity.inactive
+    );
   });
 
   it('step 2 shows a single orch assign edge id (not ×3)', () => {
@@ -110,38 +154,108 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(orchAssign).toEqual(['orch-summarize']);
   });
 
-  it('builds desktop fan-out with start-aligned band clear of mid-drop', () => {
+  it('builds desktop fan-out with band clear of research drop and off-shaft assign', () => {
     const labels = getM10OrchestratorLabels('lt');
     const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
-    const fan = getDesktopFanoutGeometry(boxes);
+    const assignVerb = labels.edgeVerbs['orch-summarize'];
+    expect(assignVerb).toBe('paskiria agentus');
+    const fan = getDesktopFanoutGeometry(boxes, undefined, assignVerb);
     expect(fan).not.toBeNull();
     const research = boxes.research;
     const summarize = boxes.summarize;
+    const { w: pillW, h: pillH } = estimateOrchestratorPillSize(assignVerb);
     expect(fan!.busY).toBeLessThanOrEqual(fan!.agentsLane.y);
-    expect(fan!.agentsBand.y).toBeGreaterThan(fan!.busY + 5);
+    expect(M10_ORCHESTRATOR_AGENTS_HEADER_H).toBeGreaterThanOrEqual(34);
+    expect(fan!.agentsBand.y).toBeGreaterThanOrEqual(fan!.busY + 14 - 0.01);
     expect(fan!.agentsBand.y).toBeLessThan(research.y);
-    // Start-aligned — not lane center / summarize drop
+    expect(research.y - fan!.agentsBand.y).toBeGreaterThanOrEqual(16 - 0.01);
+    // Just right of research drop — not on shaft / mid summarize
+    const researchCx = research.x + research.w / 2;
     const midDropX = summarize.x + summarize.w / 2;
     const approxLabelW = labels.agentsBand.length * 6.6;
-    expect(fan!.agentsBand.x).toBe(fan!.agentsLane.x + 12);
+    expect(fan!.agentsBand.x).toBeGreaterThanOrEqual(researchCx + 8);
     expect(fan!.agentsBand.x + approxLabelW).toBeLessThan(midDropX - 4);
     expect(fan!.agentsBand.x + approxLabelW).toBeLessThan(fan!.trunkX - 4);
+    // Off-shaft left of trunk (not on-stroke)
+    expect(Math.abs(fan!.assignPill.x - fan!.trunkX)).toBeGreaterThanOrEqual(
+      pillW / 2 + 8 - 0.01
+    );
+    expect(fan!.assignPill.x).toBeLessThan(fan!.trunkX);
     expect(fan!.assignPill.y).toBeGreaterThanOrEqual(
       boxes.orchestrator.y + boxes.orchestrator.h + 10
     );
-    expect(fan!.busY - fan!.assignPill.y).toBeGreaterThanOrEqual(8);
+    expect(fan!.busY - (fan!.assignPill.y + pillH / 2)).toBeGreaterThanOrEqual(
+      6 - 0.01
+    );
+    // +20 agents cascade air
+    expect(
+      research.y - (boxes.orchestrator.y + boxes.orchestrator.h)
+    ).toBeGreaterThanOrEqual(72);
   });
 
-  it('builds desktop fan-in collect bus into evaluator', () => {
+  it('builds desktop fan-in collect bus into evaluator (vertical under Tikrintojas)', () => {
     const labels = getM10OrchestratorLabels('lt');
     const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
     const fanin = getDesktopFaninGeometry(boxes);
     expect(fanin).not.toBeNull();
     expect(fanin!.dropPaths).toHaveLength(3);
     expect(fanin!.busY).toBeLessThan(boxes.evaluator.y);
+    const validateCx = boxes.validate.x + boxes.validate.w / 2;
+    const evalCx = boxes.evaluator.x + boxes.evaluator.w / 2;
+    expect(Math.abs(validateCx - evalCx)).toBeLessThan(0.5);
+    expect(Math.abs(fanin!.trunkX - validateCx)).toBeLessThan(0.5);
+    // Handoff pill above bus, not on Vertintojas
+    expect(fanin!.handoffPill.y + 9).toBeLessThanOrEqual(fanin!.busY - 6);
+    expect(fanin!.handoffPill.y + 9).toBeLessThan(boxes.evaluator.y);
   });
 
-  it('aligns state↔orch and eval↔output; LT text-fit widths; viewBox air', () => {
+  it('aligns router↔orch centers (vertical drop, no hypotenuse)', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const routerCx = boxes.router.x + boxes.router.w / 2;
+    const orchCx = boxes.orchestrator.x + boxes.orchestrator.w / 2;
+    expect(Math.abs(routerCx - orchCx)).toBeLessThan(0.5);
+  });
+
+  it('keeps parenka and skaito pills from overlapping on step 2', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const parenka = labels.edgeVerbs['router-orch'];
+    const skaito = labels.edgeVerbs['state-orch'];
+    const { w: pw, h: ph } = estimateOrchestratorPillSize(parenka);
+    const { w: sw, h: sh } = estimateOrchestratorPillSize(skaito);
+    const p = getOrchestratorEdgeLabelAnchor(
+      boxes.router,
+      boxes.orchestrator,
+      'bottom',
+      'top',
+      undefined,
+      parenka,
+      'router-orch'
+    );
+    const s = getOrchestratorEdgeLabelAnchor(
+      boxes.state,
+      boxes.orchestrator,
+      'left',
+      'right',
+      undefined,
+      skaito,
+      'state-orch'
+    );
+    // parenka LEFT of shaft; skaito in state pocket (right of orch)
+    expect(p.x).toBeLessThan(p.midX);
+    expect(s.x).toBeGreaterThan(boxes.orchestrator.x + boxes.orchestrator.w);
+    const pRect = { x: p.x - pw / 2, y: p.y - ph / 2, w: pw, h: ph };
+    const sRect = { x: s.x - sw / 2, y: s.y - sh / 2, w: sw, h: sh };
+    const intersects =
+      pRect.x < sRect.x + sRect.w &&
+      pRect.x + pRect.w > sRect.x &&
+      pRect.y < sRect.y + sRect.h &&
+      pRect.y + pRect.h > sRect.y;
+    expect(intersects).toBe(false);
+  });
+
+  it('aligns state↔orch and eval↔output; centered desktop; viewBox air', () => {
     const labels = getM10OrchestratorLabels('lt');
     const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
     expect(boxes.state.y + boxes.state.h / 2).toBe(
@@ -155,13 +269,31 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(
       boxes.output.x - (boxes.evaluator.x + boxes.evaluator.w)
     ).toBeGreaterThanOrEqual(24);
-    expect(M10_ORCHESTRATOR_VIEWBOX.desktop.height).toBeGreaterThanOrEqual(470);
+    expect(M10_ORCHESTRATOR_VIEWBOX.desktop.height).toBeGreaterThanOrEqual(490);
     expect(boxes.research.h).toBeGreaterThanOrEqual(58);
     expect(boxes.input.y).toBeGreaterThanOrEqual(62);
+    expect(boxes.input.x).toBe(28 + M10_ORCHESTRATOR_DESKTOP_X_OFFSET);
+    const maxRight = Math.max(...Object.values(boxes).map((b) => b.x + b.w));
+    const minLeft = Math.min(...Object.values(boxes).map((b) => b.x));
+    const padL = minLeft;
+    const padR = M10_ORCHESTRATOR_VIEWBOX.desktop.width - maxRight;
+    expect(Math.abs(padL - padR)).toBeLessThanOrEqual(8);
     // HITL note under output stays inside viewBox
     expect(boxes.output.y + boxes.output.h + 16).toBeLessThanOrEqual(
       M10_ORCHESTRATOR_VIEWBOX.desktop.height
     );
+  });
+
+  it('uses orthogonal validate→eval path (no hypotenuse)', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const d = getValidateEvalOrthogonalPath(boxes.validate, boxes.evaluator);
+    expect(d.startsWith('M ')).toBe(true);
+    // Aligned centers → single vertical segment (no mid bus jog)
+    expect(d.includes(' L ')).toBe(true);
+    const parts = d.split(' ');
+    // Vertical-only when aligned: M cx y1 L cx y2 → 6 tokens
+    expect(parts.length).toBeLessThanOrEqual(6);
   });
 
   it('keeps top-row nukreipia caption-air and gap fit (pill ≤ gap)', () => {
@@ -206,20 +338,38 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
       'right',
       'left',
       undefined,
-      verb
+      verb,
+      'input-router'
     );
+    // Top row: above shaft mid (title caption air)
     expect(horiz.midY - horiz.y).toBeGreaterThanOrEqual(pillH / 2 + 8 - 0.01);
+    const approve = labels.edgeVerbs['eval-output'];
+    const { h: approveH } = estimateOrchestratorPillSize(approve);
+    const evalOut = getOrchestratorEdgeLabelAnchor(
+      boxes.evaluator,
+      boxes.output,
+      'right',
+      'left',
+      undefined,
+      approve,
+      'eval-output'
+    );
+    // Bottom row: above both boxes
+    expect(evalOut.y).toBe(
+      Math.min(boxes.evaluator.y, boxes.output.y) - (approveH / 2 + 8)
+    );
     const vert = getOrchestratorEdgeLabelAnchor(
       boxes.router,
       boxes.orchestrator,
       'bottom',
       'top',
       undefined,
-      verb
+      verb,
+      'router-orch'
     );
-    expect(Math.abs(vert.x - vert.midX)).toBeGreaterThanOrEqual(
-      pillW / 2 + 10 - 0.01
-    );
+    // Forced LEFT of shaft (not right-into-State)
+    expect(vert.x).toBeLessThan(vert.midX);
+    expect(vert.midX - vert.x).toBeGreaterThanOrEqual(pillW / 2 + 14 - 0.01);
     const calls = 'kviečia';
     const base = getOrchestratorEdgeLabelAnchor(
       boxes.research,
@@ -241,6 +391,72 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(bumped.x - base.x).toBe(4);
   });
 
+  it('keeps eval-output / fan-in / retry pills clear of node boxes', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const allBoxes = Object.values(boxes);
+
+    const pillRect = (cx: number, cy: number, label: string) => {
+      const { w, h } = estimateOrchestratorPillSize(label);
+      return {
+        x: cx - w / 2,
+        y: cy - h / 2,
+        w,
+        h,
+      };
+    };
+    const intersects = (
+      a: { x: number; y: number; w: number; h: number },
+      b: { x: number; y: number; w: number; h: number }
+    ) =>
+      a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+
+    const approve = labels.edgeVerbs['eval-output'];
+    const approvePt = getOrchestratorEdgeLabelAnchor(
+      boxes.evaluator,
+      boxes.output,
+      'right',
+      'left',
+      undefined,
+      approve,
+      'eval-output'
+    );
+    const approvePill = pillRect(approvePt.x, approvePt.y, approve);
+    for (const box of allBoxes) {
+      expect(intersects(approvePill, box)).toBe(false);
+    }
+
+    const handoff = labels.edgeVerbs['validate-eval'];
+    const fanin = getDesktopFaninGeometry(boxes)!;
+    const handoffPill = pillRect(
+      fanin.handoffPill.x,
+      fanin.handoffPill.y,
+      handoff
+    );
+    expect(fanin.handoffPill.y + handoffPill.h / 2).toBeLessThanOrEqual(
+      fanin.busY - 6
+    );
+    for (const box of allBoxes) {
+      expect(intersects(handoffPill, box)).toBe(false);
+    }
+
+    const routeX = getOrchestratorRetryRouteXDesktop(
+      boxes.tools,
+      boxes.evaluator
+    );
+    const retryPt = getOrchestratorRetryLabelAnchor(
+      boxes.evaluator,
+      boxes.orchestrator,
+      routeX,
+      labels.retryLabel
+    );
+    const retryPill = pillRect(retryPt.x, retryPt.y, labels.retryLabel);
+    expect(retryPill.x + retryPill.w).toBeLessThanOrEqual(boxes.evaluator.x);
+    for (const box of allBoxes) {
+      expect(intersects(retryPill, box)).toBe(false);
+    }
+  });
+
   it('routes desktop retry between tools and evaluator (not far-left wrap)', () => {
     const labels = getM10OrchestratorLabels('lt');
     const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
@@ -254,14 +470,17 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
       retryTipOutsideHub(boxes.evaluator, boxes.orchestrator, routeX)
     ).toBe(true);
     const label = labels.retryLabel;
-    const { w } = estimateOrchestratorPillSize(label);
     const pt = getOrchestratorRetryLabelAnchor(
       boxes.evaluator,
       boxes.orchestrator,
       routeX,
       label
     );
-    expect(pt.x - w / 2).toBeGreaterThanOrEqual(routeX + 10);
+    // Above horizontal U leg, in gutter left of evaluator
+    expect(pt.x).toBeLessThan(boxes.evaluator.x);
+    expect(pt.x).toBeGreaterThan(routeX);
+    expect(pt.y).toBeLessThan(boxes.evaluator.y + boxes.evaluator.h / 2);
+    expect(pt.y).toBeGreaterThan(boxes.summarize.y + boxes.summarize.h);
     expect(
       getOrchestratorRetryPathDesktop(
         boxes.evaluator,
@@ -278,14 +497,36 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     ).toBe(true);
   });
 
-  it('shows retry label only on steps 4–5 (path mount gate)', () => {
+  it('shows retry label only on steps 4–5 (path always on, dim→focus)', () => {
     expect(shouldShowRetryLabel(0)).toBe(false);
     expect(shouldShowRetryLabel(3)).toBe(false);
     expect(shouldShowRetryLabel(4)).toBe(true);
     expect(shouldShowRetryLabel(5)).toBe(true);
+    expect(shouldPaintEdge(0, 'eval-retry')).toBe(true);
   });
 
-  it('provides LT/EN Kartoti/Retry, Maršrutizatorius, changelog state sub', () => {
+  it('uses orthogonal retry U (3+ L segments, not diagonal)', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const routeX = getOrchestratorRetryRouteXDesktop(
+      boxes.tools,
+      boxes.evaluator
+    );
+    const d = getOrchestratorRetryPathDesktop(
+      boxes.evaluator,
+      boxes.orchestrator,
+      routeX
+    );
+    const lCount = (d.match(/ L /g) ?? []).length;
+    expect(lCount).toBeGreaterThanOrEqual(3);
+    // Horizontal then vertical then horizontal — shared X on vertical shaft
+    expect(d).toMatch(new RegExp(`L ${routeX} [\\d.]+ L ${routeX} [\\d.]+ L`));
+    expect(
+      retryTipOutsideHub(boxes.evaluator, boxes.orchestrator, routeX)
+    ).toBe(true);
+  });
+
+  it('provides LT/EN Kartoti/Retry, roles Tyrėjas/Rašytojas/Tikrintojas', () => {
     const lt = getM10OrchestratorLabels('lt');
     const en = getM10OrchestratorLabels('en');
     expect(lt.retryLabel).toBe('Kartoti');
@@ -294,9 +535,103 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(en.edgeVerbs['eval-retry']).toBe('Retry');
     expect(lt.edgeVerbs['state-orch']).toBe('skaito / įrašo');
     expect(lt.nodes.router[0]).toBe('Maršrutizatorius');
+    expect(lt.nodes.research[0]).toBe('Tyrėjas');
+    expect(lt.nodes.summarize[0]).toBe('Rašytojas');
+    expect(lt.nodes.validate[0]).toBe('Tikrintojas');
+    expect(en.nodes.research[0]).toBe('Researcher');
+    expect(en.nodes.summarize[0]).toBe('Writer');
+    expect(en.nodes.validate[0]).toBe('Checker');
     expect(lt.nodes.state[1]).toBe('atmintis / changelog');
     expect(en.nodes.state[1]).toBe('memory / changelog');
     expect(lt.agentsBand).not.toBe(lt.agentsBand.toUpperCase());
     expect(shouldShowEdgeLabel(2, 'orch-summarize')).toBe(true);
+  });
+});
+
+describe('m12 multi-agent brother (W7 layout polish)', () => {
+  it('keeps 6 shell steps and LMS tip floors', () => {
+    expect(M12_MULTI_AGENT_STEP_COUNT).toBe(6);
+    expect(M12_MULTI_AGENT_STEP_NODE_IDS).toHaveLength(6);
+    expect(M12_MULTI_AGENT_MARKER_LEN).toBeGreaterThanOrEqual(10);
+    expect(M12_ORPHAN_OPACITY).toBeGreaterThanOrEqual(0.5);
+    expect(M12_ORPHAN_OPACITY).toBeLessThan(DIAGRAM_TOKENS.opacity.inactive);
+  });
+
+  it('aligns spine cy and builds orthogonal fan-out / fan-in', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
+    expect(m12SpineCenterYAligned(boxes)).toBe(true);
+    const fanout = getM12FanoutGeometry(boxes);
+    const fanin = getM12FaninGeometry(boxes);
+    expect(fanout).not.toBeNull();
+    expect(fanin).not.toBeNull();
+    expect(fanout!.trunkPath).toMatch(/^M /);
+    expect(fanout!.dropA).toMatch(/^M /);
+    // Horizontal drops have shaft (busX ≠ tipX)
+    const dropParts = fanout!.dropA.split(' ');
+    expect(Number(dropParts[1])).toBeLessThan(Number(dropParts[4]));
+    expect(fanin!.trunkPath).toMatch(/^M /);
+  });
+
+  it('stages edge verb pills and keeps LT/EN verbs (not noun-echo)', () => {
+    const lt = getM12MultiAgentSchemaLabels('lt');
+    const en = getM12MultiAgentSchemaLabels('en');
+    expect(lt.edgeVerbs.assigns).toBe('paskiria');
+    expect(en.edgeVerbs.assigns).toBe('assigns');
+    expect(lt.edgeVerbs.returns).toBe('grąžina');
+    expect(en.edgeVerbs.handsOff).toBe('hands off');
+    expect(shouldShowM12EdgeLabel('coord-assign', 0)).toBe(false);
+    expect(shouldShowM12EdgeLabel('coord-assign', 2)).toBe(true);
+    expect(shouldShowM12EdgeLabel('evaluator-coordinator', 4)).toBe(true);
+  });
+
+  it('avoids pill∩pill AABB on staged desktop verbs (step 5)', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
+    const fanout = getM12FanoutGeometry(boxes)!;
+    const fanin = getM12FaninGeometry(boxes)!;
+    const fb = getM12FeedbackLabelPos(boxes, false);
+    const pills = [
+      m12PillAabb(
+        (boxes.input.x + boxes.input.w + boxes.router.x) / 2,
+        boxes.input.y - 12,
+        labels.edgeVerbs.routes
+      ),
+      m12PillAabb(
+        (boxes.router.x + boxes.router.w + boxes.coordinator.x) / 2,
+        boxes.router.y - 12,
+        labels.edgeVerbs.selects
+      ),
+      m12PillAabb(
+        fanout.assignPill.x,
+        fanout.assignPill.y,
+        labels.edgeVerbs.assigns
+      ),
+      m12PillAabb(
+        fanin.handoffPill.x,
+        fanin.handoffPill.y,
+        labels.edgeVerbs.handsOff
+      ),
+      m12PillAabb(
+        (boxes.evaluator.x + boxes.evaluator.w + boxes.output.x) / 2,
+        boxes.evaluator.y - 12,
+        labels.edgeVerbs.approves
+      ),
+      m12PillAabb(fb.x, fb.y, labels.edgeVerbs.returns),
+    ];
+    for (let i = 0; i < pills.length; i++) {
+      for (let j = i + 1; j < pills.length; j++) {
+        expect(m12PillsOverlap(pills[i], pills[j])).toBe(false);
+      }
+    }
+  });
+
+  it('full-map: orphan dim + live edge emphasis helpers', () => {
+    expect(getM12NodeOpacity('output', 0, true)).toBe(M12_ORPHAN_OPACITY);
+    expect(getM12NodeOpacity('input', 0, true)).toBe(1);
+    expect(getM12EdgeOpacity('input-router', 0)).toBe(
+      DIAGRAM_TOKENS.opacity.active
+    );
+    expect(getM12EdgeOpacity('evaluator-output', 0)).toBe(M12_MAP_EDGE_OPACITY);
   });
 });

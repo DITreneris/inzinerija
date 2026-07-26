@@ -29,6 +29,7 @@
     "Ask for a visualisation specification: charts, colours and metrics.",
     "Generate a simple dashboard or a clear executive summary."
   ],
+  "starterPrompt": "META: You are my data analysis assistant. Goal – prepare a clear executive summary in one cycle.\nINPUT: Topic: [insert]. Sources: [links / files / notes]. Constraints: [time, confidentiality].\nOUTPUT: (1) 5-point EDA summary, (2) 3 insights with a risk tag, (3) 3 recommendations with a first action.\nQUALITY: If data is missing – write \"I don't know\" and say what is needed. Do not cite sources that do not exist.",
   "reflectionSummary": "Repeat the 8 steps with another topic. Ask yourself: what did I create, what does it mean for my work and what is the next single action?",
   "nextPageHeading": "Next step",
   "nextPageIntro": "One workflow cycle = one finished project. Next, deepen the template or choose the next step in the Prompt Anatomy ecosystem.",

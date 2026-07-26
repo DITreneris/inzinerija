@@ -1,13 +1,15 @@
 /**
  * M10 10.482 – Agentų orkestravimo simuliacija (view).
- * Geometry SOT: m10OrchestratorLayout.ts · W7 v06.1 micro chrome
+ * Geometry SOT: m10OrchestratorLayout.ts · W7 full-map + step-focus
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DiagramStepHitArea } from './diagramKit';
 import {
+  DIAGRAM_AMBER_INK_SOFT,
   DIAGRAM_ROLE_COLORS,
+  DIAGRAM_TONE_COLORS,
   DIAGRAM_TOKENS,
   getDiagramActiveStroke,
 } from './diagramTokens';
@@ -26,11 +28,14 @@ import {
   getM10OrchestratorDesktopBoxes,
   getOrchestratorEdgeLabelAnchor,
   getOrchestratorRetryLabelAnchor,
+  getValidateEvalOrthogonalPath,
   getRetryPathCompact,
   getRetryPathDesktop,
+  getOrchestratorEdgeOpacity,
+  isOrchestratorFaninFocus,
+  isOrchestratorFanoutFocus,
   isOrchestratorNodeLive,
   M10_ORCHESTRATOR_ARROW_TIP,
-  ORCHESTRATOR_ORPHAN_OPACITY,
   M10_ORCHESTRATOR_EDGES,
   M10_ORCHESTRATOR_FANIN_EDGE_ID,
   M10_ORCHESTRATOR_FANIN_ERROR_STROKE,
@@ -38,9 +43,8 @@ import {
   M10_ORCHESTRATOR_STEP_NODE_IDS,
   M10_ORCHESTRATOR_STROKE_DATA,
   M10_ORCHESTRATOR_VIEWBOX,
-  shouldPaintEdge,
-  shouldPaintFanin,
-  shouldPaintFanout,
+  ORCHESTRATOR_MAP_EDGE_OPACITY,
+  ORCHESTRATOR_ORPHAN_OPACITY,
   shouldShowEdgeLabel,
   shouldShowRetryLabel,
   type M10OrchestratorBox,
@@ -61,7 +65,7 @@ const SLATE = DIAGRAM_ROLE_COLORS.slate;
 /** Softer memory fill (not orch-level weight). */
 const BRAND_SOFT = DIAGRAM_TOKENS.colors.brandTop;
 const ACTIVE_STROKE = getDiagramActiveStroke();
-const AMBER_INK = '#713f12';
+const AMBER_INK = DIAGRAM_AMBER_INK_SOFT;
 const TIP = M10_ORCHESTRATOR_ARROW_TIP;
 const TIP_H = TIP * 0.9;
 
@@ -126,21 +130,26 @@ function NodeBox({
   dimOpacity,
   errorState,
   softActive,
+  successTone,
   stroke,
   onActivate,
 }: {
   box: M10OrchestratorBox;
   active: boolean;
-  /** 1 = full; orphan / step-4 soft-dim use distinct floors. */
+  /** 1 = full; step-4 !active uses LMS inactive floor. */
   dimOpacity: number;
   /** Rose stroke + badge; keep role-band fill (not solid rose block). */
   errorState?: boolean;
   softActive?: boolean;
+  /** Step-5 approved output — local emerald, not global color OS. */
+  successTone?: boolean;
   stroke: string;
   onActivate?: () => void;
 }) {
-  const fill = toneFill(box.tone);
-  const useAmberInk = box.tone === 'amber';
+  const fill = successTone
+    ? DIAGRAM_TONE_COLORS.emerald.bottom
+    : toneFill(box.tone);
+  const useAmberInk = box.tone === 'amber' && !successTone;
   const titleFill = useAmberInk ? AMBER_INK : '#ffffff';
   const subFill = useAmberInk
     ? 'rgba(113,63,18,0.88)'
@@ -236,6 +245,7 @@ function FlowEdge({
   color,
   dashed,
   strokeWidth = DIAGRAM_TOKENS.stroke.flow,
+  opacity = 1,
 }: {
   edge: M10OrchestratorEdge;
   boxes: Record<M10OrchestratorNodeId, M10OrchestratorBox>;
@@ -244,6 +254,7 @@ function FlowEdge({
   color: string;
   dashed?: boolean;
   strokeWidth?: number;
+  opacity?: number;
 }) {
   const from = boxes[edge.from];
   const to = boxes[edge.to];
@@ -262,6 +273,7 @@ function FlowEdge({
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeDasharray={dashed ? '5 4' : undefined}
+      opacity={opacity}
       markerStart={markerStartId ? `url(#${markerStartId})` : undefined}
       markerEnd={markerId ? `url(#${markerId})` : undefined}
     />
@@ -326,10 +338,18 @@ export default function M10OrchestratorDiagram({
     M10_ORCHESTRATOR_STEP_NODE_IDS[0];
   const isErrorStep = currentStep === 4;
   const isRetryStep = shouldShowRetryLabel(currentStep);
-  const paintFanout = !isCompactDiagram && shouldPaintFanout(currentStep);
-  const paintFanin = !isCompactDiagram && shouldPaintFanin(currentStep);
-  const fanout = !isCompactDiagram ? getDesktopFanoutGeometry(boxes) : null;
-  const fanin = !isCompactDiagram ? getDesktopFaninGeometry(boxes) : null;
+  const showDesktopFanout = !isCompactDiagram;
+  const showDesktopFanin = !isCompactDiagram;
+  const fanoutOpacity = isOrchestratorFanoutFocus(currentStep)
+    ? 1
+    : ORCHESTRATOR_MAP_EDGE_OPACITY;
+  const faninFocus = isOrchestratorFaninFocus(currentStep);
+  const assignVerb =
+    L.edgeVerbs['orch-summarize'] ?? L.edgeVerbs['orch-research'] ?? '';
+  const fanout = showDesktopFanout
+    ? getDesktopFanoutGeometry(boxes, undefined, assignVerb)
+    : null;
+  const fanin = showDesktopFanin ? getDesktopFaninGeometry(boxes) : null;
   const routeX =
     isCompactDiagram || !boxes.tools || !boxes.evaluator
       ? ORCHESTRATOR_RETRY_ROUTE_X_COMPACT
@@ -341,19 +361,21 @@ export default function M10OrchestratorDiagram({
   const nodeProps = (box: M10OrchestratorBox) => {
     const stepIndex = stepForNode(box.id);
     const active = activeNodeIds.includes(box.id);
-    const live = isOrchestratorNodeLive(currentStep, box.id);
     let dimOpacity = 1;
-    if (isErrorStep) {
-      // Step 4: one story — LMS inactive floor for !active
-      if (!active) dimOpacity = DIAGRAM_TOKENS.opacity.inactive;
-    } else if (!live) {
-      dimOpacity = ORCHESTRATOR_ORPHAN_OPACITY;
+    if (!active) {
+      dimOpacity = isErrorStep
+        ? DIAGRAM_TOKENS.opacity.inactive
+        : ORCHESTRATOR_ORPHAN_OPACITY;
     }
     return {
       active,
       softActive: active && box.id === 'state' && !isErrorStep,
       dimOpacity,
       errorState: isErrorStep && box.id === 'validate',
+      successTone:
+        box.id === 'output' &&
+        currentStep === 5 &&
+        isOrchestratorNodeLive(currentStep, 'output'),
       stroke: palette.brandDark,
       onActivate:
         onStepClick && stepIndex >= 0
@@ -370,7 +392,12 @@ export default function M10OrchestratorDiagram({
   const faninWidth = isErrorStep
     ? M10_ORCHESTRATOR_FANIN_ERROR_STROKE
     : DIAGRAM_TOKENS.stroke.flow;
-  const faninOpacity = isErrorStep ? 0.75 : 1;
+  const faninOpacity = isErrorStep
+    ? 0.75
+    : faninFocus
+      ? 1
+      : ORCHESTRATOR_MAP_EDGE_OPACITY;
+  const retryPathOpacity = isRetryStep ? 1 : ORCHESTRATOR_MAP_EDGE_OPACITY;
 
   const retryLabelPoint =
     isRetryStep && boxes.evaluator && boxes.orchestrator
@@ -380,6 +407,13 @@ export default function M10OrchestratorDiagram({
           routeX,
           L.retryLabel
         )
+      : null;
+
+  const retryPathD =
+    boxes.evaluator && boxes.orchestrator
+      ? isCompactDiagram
+        ? getRetryPathCompact(boxes.evaluator, boxes.orchestrator, routeX)
+        : getRetryPathDesktop(boxes.evaluator, boxes.orchestrator, routeX)
       : null;
 
   return (
@@ -425,8 +459,8 @@ export default function M10OrchestratorDiagram({
         {L.title}
       </text>
 
-      {/* Soft agents lane with header (desktop) */}
-      {fanout && paintFanout ? (
+      {/* Soft agents lane with header (desktop) — always on */}
+      {fanout ? (
         <rect
           x={fanout.agentsLane.x}
           y={fanout.agentsLane.y}
@@ -440,7 +474,7 @@ export default function M10OrchestratorDiagram({
         />
       ) : null}
 
-      {fanout && paintFanout ? (
+      {fanout ? (
         <text
           x={fanout.agentsBand.x}
           y={fanout.agentsBand.y}
@@ -454,20 +488,15 @@ export default function M10OrchestratorDiagram({
         </text>
       ) : null}
 
-      {/* Non-fanout / non-fanin edges (culled by step) */}
+      {/* Non-fanout / non-fanin edges — always on, focus/map opacity */}
       {M10_ORCHESTRATOR_EDGES.filter((e) => {
         if (e.kind === 'retry') return false;
         if (FANOUT_SET.has(e.id)) return false;
-        if (
-          !isCompactDiagram &&
-          e.id === M10_ORCHESTRATOR_FANIN_EDGE_ID &&
-          paintFanin
-        ) {
+        if (!isCompactDiagram && e.id === M10_ORCHESTRATOR_FANIN_EDGE_ID) {
           return false;
         }
         return true;
       }).map((edge) => {
-        if (!shouldPaintEdge(currentStep, edge.id)) return null;
         const isData = edge.kind === 'state' || edge.kind === 'tools';
         const isState = edge.kind === 'state';
         return (
@@ -482,51 +511,50 @@ export default function M10OrchestratorDiagram({
             strokeWidth={
               isData ? M10_ORCHESTRATOR_STROKE_DATA : DIAGRAM_TOKENS.stroke.flow
             }
+            opacity={getOrchestratorEdgeOpacity(currentStep, edge.id)}
           />
         );
       })}
 
-      {/* Compact fan-out: individual lines when painted */}
+      {/* Compact fan-out: individual lines always on */}
       {isCompactDiagram
         ? M10_ORCHESTRATOR_EDGES.filter((e) => FANOUT_SET.has(e.id)).map(
-            (edge) => {
-              if (!shouldPaintEdge(currentStep, edge.id)) return null;
-              return (
-                <FlowEdge
-                  key={edge.id}
-                  edge={edge}
-                  boxes={boxes}
-                  markerId={flowMarker}
-                  color={flowColor}
-                />
-              );
-            }
+            (edge) => (
+              <FlowEdge
+                key={edge.id}
+                edge={edge}
+                boxes={boxes}
+                markerId={flowMarker}
+                color={flowColor}
+                opacity={getOrchestratorEdgeOpacity(currentStep, edge.id)}
+              />
+            )
           )
         : null}
 
-      {/* Compact validate→eval line */}
-      {isCompactDiagram &&
-      shouldPaintEdge(currentStep, M10_ORCHESTRATOR_FANIN_EDGE_ID) ? (
-        <FlowEdge
-          edge={
-            M10_ORCHESTRATOR_EDGES.find(
-              (e) => e.id === M10_ORCHESTRATOR_FANIN_EDGE_ID
-            )!
-          }
-          boxes={boxes}
-          markerId={isErrorStep ? roseMarker : flowMarker}
-          color={isErrorStep ? ROSE : flowColor}
+      {/* Compact validate→eval: orthogonal elbow (never hypotenuse) */}
+      {isCompactDiagram && boxes.validate && boxes.evaluator ? (
+        <path
+          d={getValidateEvalOrthogonalPath(boxes.validate, boxes.evaluator)}
+          fill="none"
+          stroke={isErrorStep ? ROSE : flowColor}
           strokeWidth={
             isErrorStep
               ? M10_ORCHESTRATOR_FANIN_ERROR_STROKE
               : DIAGRAM_TOKENS.stroke.flow
           }
+          strokeLinecap="round"
+          opacity={getOrchestratorEdgeOpacity(
+            currentStep,
+            M10_ORCHESTRATOR_FANIN_EDGE_ID
+          )}
+          markerEnd={`url(#${isErrorStep ? roseMarker : flowMarker})`}
         />
       ) : null}
 
-      {/* Desktop orthogonal fan-out */}
-      {paintFanout && fanout ? (
-        <g>
+      {/* Desktop orthogonal fan-out — always on */}
+      {fanout ? (
+        <g opacity={fanoutOpacity}>
           <path
             d={fanout.trunkPath}
             fill="none"
@@ -555,8 +583,8 @@ export default function M10OrchestratorDiagram({
         </g>
       ) : null}
 
-      {/* Desktop orthogonal fan-in (agents → evaluator) */}
-      {paintFanin && fanin ? (
+      {/* Desktop orthogonal fan-in (agents → evaluator) — always on */}
+      {fanin ? (
         <g opacity={faninOpacity}>
           {fanin.dropPaths.map((drop) => (
             <path
@@ -586,18 +614,16 @@ export default function M10OrchestratorDiagram({
         </g>
       ) : null}
 
-      {isRetryStep && boxes.evaluator && boxes.orchestrator ? (
+      {/* Retry left-U — always on (orthogonal); label only steps 4–5 */}
+      {retryPathD ? (
         <path
-          d={
-            isCompactDiagram
-              ? getRetryPathCompact(boxes.evaluator, boxes.orchestrator, routeX)
-              : getRetryPathDesktop(boxes.evaluator, boxes.orchestrator, routeX)
-          }
+          d={retryPathD}
           fill="none"
           stroke={DIAGRAM_ROLE_COLORS.amber}
           strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
           strokeLinecap="round"
           strokeDasharray="5 4"
+          opacity={retryPathOpacity}
           markerEnd={`url(#${retryMarker})`}
         />
       ) : null}
@@ -606,20 +632,14 @@ export default function M10OrchestratorDiagram({
         <NodeBox key={box.id} box={box} {...nodeProps(box)} />
       ))}
 
-      {/* Edge / retry labels after boxes so top-row pills are not covered */}
+      {/* Edge / retry labels after boxes — staged verbs only */}
       {M10_ORCHESTRATOR_EDGES.filter((e) => e.kind !== 'retry').map((edge) => {
         if (!shouldShowEdgeLabel(currentStep, edge.id)) return null;
-        if (!shouldPaintEdge(currentStep, edge.id)) return null;
         const verb = L.edgeVerbs[edge.id];
         if (!verb) return null;
 
         if (FANOUT_SET.has(edge.id) && !isCompactDiagram) {
-          if (
-            edge.id === 'orch-summarize' &&
-            fanout &&
-            paintFanout &&
-            currentStep === 2
-          ) {
+          if (edge.id === 'orch-summarize' && fanout && currentStep === 2) {
             return (
               <EdgeAnnotation
                 key={`lbl-${edge.id}`}
@@ -638,8 +658,7 @@ export default function M10OrchestratorDiagram({
         if (
           edge.id === M10_ORCHESTRATOR_FANIN_EDGE_ID &&
           !isCompactDiagram &&
-          fanin &&
-          paintFanin
+          fanin
         ) {
           return (
             <EdgeAnnotation
@@ -687,7 +706,7 @@ export default function M10OrchestratorDiagram({
         />
       ) : null}
 
-      {currentStep === 5 && boxes.output ? (
+      {boxes.output ? (
         <text
           x={boxes.output.x + boxes.output.w / 2}
           y={boxes.output.y + boxes.output.h + 16}
@@ -696,6 +715,7 @@ export default function M10OrchestratorDiagram({
           fontSize={DIAGRAM_TOKENS.typography.subtitle.desktop}
           fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
           fontFamily={DIAGRAM_TOKENS.font}
+          opacity={currentStep === 5 ? 1 : ORCHESTRATOR_MAP_EDGE_OPACITY}
         >
           {L.hitlNote}
         </text>

@@ -24,7 +24,7 @@
 | **Schemas / diagramos**                          | ✅ Lokalizuotos                         | LlmArch, Schema3, DiPrezentacijosWorkflow, StrukturuotasProcesas, RagDuomenuRuosimas, RlProcess, TurinioWorkflow, ContextEngineeringPipeline (M4 sk. 45: B+1 + Prompt placeholder slots), M7–M12 React schemos (`m12_multi_agent_schema`, M10 `m10_*`) – tekstai per locale getterius arba i18n. **Lab (no Shell):** `m10_human_control_simulator` (ChoiceControl + risk strip + CopyButton artefaktas). Legacy `AgentOrchestrator` nebewired. |
 | **Veiksmo intro (Trumpai/Daryk/Patikra)**        | ✅                                      | VeiksmoIntroBlock + DiModalitiesSlide takeaway + AiDetectorsSlide – etiketės per `contentSlides` / `aiDetectors`.                                                                                                                                                                                                                                                                                                                              |
 | **Navigacija (ModuleView)**                      | ✅                                      | Viena sticky viršutinė juosta, primary „Tęsti“, Atgal ghost (CHANGELOG 2026-02-26, 2026-02-28).                                                                                                                                                                                                                                                                                                                                                |
-| **Testai**                                       | ✅ 126 failai, 781 testai               | Vitest + RTL; unit, component, integration, a11y smoke, gate tier 9, handout PDF (M1/M4/M5/M6/M79/M1012/M1315), tier 4/5 eligibility, diagram / LMS polish guards, M10–15 EN/data-contract audit guard'ai, journey / M9 quest / manipulation-contrast; + M7 path map / prompt-tool (2026-07-26 Unreleased).                                                                                                                                    |
+| **Testai**                                       | ✅ 129 failai, 822 testai               | Vitest + RTL; unit, component, integration, a11y smoke, gate tier 9, handout PDF (M1/M4/M5/M6/M79/M1012/M1315), tier 4/5 eligibility, diagram / LMS polish guards, M10–15 EN/data-contract audit guard'ai, journey / M9 quest / manipulation-contrast; + M7 path map / prompt-tool / audit remediacija (2026-07-26 Unreleased). `@ tag 1.4.8` freeze = 126/781.                                                                                |
 | **Validacija**                                   | ✅                                      | `validate-schema.mjs` – full, core (`*-m1-m6`, `*-m1-m9`), EN overlays, glossary, tools, `completionArtifacts.json`, handout content JSON. `sot_index.json` – `validate-sot-index.mjs`. Release gate M1–9: `npm run audit:release-preflight`; M10–12: `npm run audit:m1012`; M13–15: `npm run audit:m1315`.                                                                                                                                    |
 | **Access tier**                                  | ✅                                      | Magic link tier 3 \| 6 \| 9; `getMaxAccessibleModuleId()`, užrakinimas modulių.                                                                                                                                                                                                                                                                                                                                                                |
 | **ModulesPage katalogas**                        | ✅                                      | Track chrome (brand/sky/fuchsia/rose); bazės subsection M4–M6; „Mano medžiaga“ po `maxAccessible` (GOLDEN §8.4).                                                                                                                                                                                                                                                                                                                               |
@@ -70,7 +70,7 @@
 
 ## 3. i18n padengimas
 
-- **Namespace (16):** common, nav, home, module, quiz, glossary, modulesPage, certificate, stepper, testPractice, vaizdoGen, contentSlides, diagrams, toolsPage, promptLibrary, aiDetectors.
+- **Namespace (20):** common, nav, home, module, quiz, glossary, modulesPage, certificate, stepper, testPractice, vaizdoGen, contentSlides, diagrams, toolsPage, promptLibrary, aiDetectors, celebration, footer, seo, hallucinationRates.
 - **Komponentai naudoja `useLocale()` / `useTranslation()`:** App, AppNav, HomePage, ModulesPage, ModuleView, QuizPage, GlossaryPage, CertificateScreen, ModuleCompleteScreen, SlideContent, ContentSlides, TestPracticeSlides, VaizdoGeneratoriusSlide, AiDetectorsSlide, ProcessStepper, diagramų/blokų komponentai, VeiksmoIntroBlock.
 - **M10–12 EN gate:** `modules-en-m10-m12.json` deep-merge overlay; patikra `npm run audit:m1012` (coverage + language).
 - **M13–15 EN gate:** `modules-en-m13-m15.json` deep-merge overlay; patikra `npm run audit:m1315` (coverage + language).
@@ -80,7 +80,7 @@
 
 ## 4. Testai
 
-- **126 testų failai, 781 testai** (unit + component + integration; release **1.4.8** / 2026-07-26).
+- **129 testų failai, 822 testai** (unit + component + integration; HEAD Unreleased 2026-07-26; `@ tag 1.4.8` = 126/781).
 - **Padengimas:** modulesLoader, glossaryLoader, questionPoolSelector, certificatePdf/certificateStorage, `certificateEligibility` tier 1–5, handout PDF (M1/M4/M5/M6/M79/M1012/M1315), completionArtifacts registry, `ModulesPage.materials` uždirbtos M12/M15 atmintinės, accessTier, mvp.gating, gate.smoke, a11y smoke, ModuleCompleteScreen, QuizPage, ecosystem URLs, diagram registry guards, EN audit tests (`m46EnLanguageAudit`, `m79EnLanguageAudit`, `m1012EnLanguageAudit`, `m1315EnLanguageAudit`).
 - **E2E:** Nėra (roadmap; gate smoke – vitest).
 
@@ -90,7 +90,7 @@
 
 - **M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF:** Rankinė lietuviškų raidžių, spaudžiamų nuorodų ir parsisiuntimo patikra prieš release; NotoSans production (`RELEASE_QA_CHECKLIST` §5d).
 - **Moduliai 13–15:** Turinys SOT + EN overlay + audit vartai; dar reikia rankinės UI peržiūros prieš release.
-- **M7–9 / M10–12 learning QA:** open `TODO.md` §1.1–§1.2 (browser smoke, §4.6 residual, PDF, M10–12 chrome).
+- **Learning QA:** M7–9 browser smoke CQ-M79-1/2 ✅; lieka open `TODO.md` §1.1–§1.2 — Portal 48h, PDF rankinė, M1012-2 C1–C6, DIAG-1.
 - **E2E (Playwright):** gate smoke jau dengiamas Vitest; Playwright – later.
 - **Monitoring (PostHog/GA4):** marketing handoff – `TODO.md` §1.4 MON-4 (ne šio repo P0).
 

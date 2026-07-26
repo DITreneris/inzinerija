@@ -11011,7 +11011,7 @@
           "type": "practice-quest-intro",
           "content": {
             "whyBenefit": "Po šio projekto suprasi duomenų analizės eigą ir turėsi savo analitinį rinkinį su DI: promptus, sutvarkytus duomenis ir suvestinę.",
-            "duration": "~45 min minimumui · iki ~90 min pilnam 8 žingsnių ciklui",
+            "duration": "~45–90 min",
             "audience": "Baigei teoriją ir testą – dabar vieną kartą praeik pilną analizę su DI.",
             "journeyHeading": "Pasirink savo sritį",
             "journeyChoices": [

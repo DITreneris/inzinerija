@@ -7,7 +7,7 @@ import type { M1012HandoutContent } from '../../data/handoutContentLoader';
 
 const mockSave = vi.fn();
 const mockText = vi.fn();
-const mockTextWithLink = vi.fn();
+const mockLink = vi.fn();
 const mockSetFontSize = vi.fn();
 const mockSetFont = vi.fn();
 const mockSetTextColor = vi.fn();
@@ -25,7 +25,10 @@ vi.mock('jspdf', () => ({
   jsPDF: vi.fn().mockImplementation(() => ({
     save: mockSave,
     text: mockText,
-    textWithLink: mockTextWithLink,
+    link: mockLink,
+    setDrawColor: vi.fn(),
+    setLineWidth: vi.fn(),
+    line: vi.fn(),
     setFontSize: mockSetFontSize,
     setFont: mockSetFont,
     setTextColor: mockSetTextColor,
@@ -59,6 +62,7 @@ const minimal: M1012HandoutContent = {
   threeAModel: ['3A'],
   workflowSteps: ['Workflow'],
   promptPatterns: ['Prompt'],
+  starterPrompt: 'Starter',
   reflectionSummary: 'Reflect',
   nextPageHeading: 'Next',
   nextPageIntro: 'Intro',
@@ -88,16 +92,18 @@ describe('m1012HandoutPdf', () => {
     await downloadM1012HandoutPdf(minimal, { locale: 'lt' });
     const allText = mockText.mock.calls.map((c: unknown[]) => c[0]).flat();
     expect(allText).toContain('Promptų anatomija');
-    expect(mockTextWithLink).toHaveBeenCalledWith(
-      'Primary',
+    expect(mockLink).toHaveBeenCalledWith(
+      expect.any(Number),
+      expect.any(Number),
       expect.any(Number),
       expect.any(Number),
       expect.objectContaining({
         url: expect.stringContaining('utm_medium=handout'),
       })
     );
-    expect(mockTextWithLink).toHaveBeenCalledWith(
-      'Primary',
+    expect(mockLink).toHaveBeenCalledWith(
+      expect.any(Number),
+      expect.any(Number),
       expect.any(Number),
       expect.any(Number),
       expect.objectContaining({

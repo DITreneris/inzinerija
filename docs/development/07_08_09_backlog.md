@@ -1,6 +1,6 @@
 # M7–M9 backlog (Duomenų analizės kelias)
 
-> **Statusas:** `aktyvus priežiūros backlog` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55** + **CQ-M79-3 §4.6 #6–9** ✅ (2026-07-26); lieka browser smoke S1–S7 / E1–E6.  
+> **Statusas:** `aktyvus priežiūros backlog` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55** + **CQ-M79-3 §4.6 #6–9** ✅ + **CQ-M79-1/2 browser** S1–S7 / E1–E6 ✅ (2026-07-26).  
 > **Tikslas:** Vienas darbo sąrašas prieš vieningą tvarkymą („vienu ypu“). Savininkas papildo pastabomis žemiau — **§9 Savininko pastabos**.  
 > **SOT:** `docs/turinio_pletra_moduliai_7_8_9.md` · `docs/MODULIO_7_SKAIDRIU_EILES.md` · `src/data/modules.json`  
 > **Susiję:** `docs/development/TEST_REPORT.md` (§2026-07-14…16), `M79_PATCH_REGISTRY.md`, `docs/archive/development/analysis/M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`
@@ -497,12 +497,12 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] **M7 sk. 76 friction (2026-07-15):** „domenas“ → „sritis“, `comparisonStyle` iš pagrindinio flow, collapsible žemėlapis, `toolChoiceBar` scroll į promptą + hint (`ContentSlides.tsx`)
 - [x] **Iter 1:** M7 etika (67, 67.5, 67.8, 67.3, 68) — collapsible, dedup, Patikra
 - [x] **Iter 2:** Copyable filtrai sk. 734, 731, 733, 77; bar be `table` (`ContentSlides`)
-- [x] **Iter 3:** M9 sk. 93 bookends, sk. 94 Patikra, scenarijai 101/102/111/116/117, hub 99
+- [x] **Iter 3:** M9 sk. 93 bookends + Patikra (historical sk. 94 → merged into 93; live MUST 90→93.1→93.2→93→92), scenarijai, hub 99
 - [x] **Iter 4:** Optional šakos 77.5, 90, 861, 88, M7 sk. 101 (EN veidrodis)
 - [x] **Iter 5:** sk. 200 dashboard intro; sk. 74 MASTER schema copy
 - [x] **Iter 6:** `validate:schema` · `audit:m79` · `generate:core-data` · `test:run` **482/482**
-- [x] **M79-50 smoke protokolas S1–S7** — kodo/JSON ✅ (`TEST_REPORT.md` §2026-07-16); browser ⬜ savininkas prieš release
-- [ ] Rankinis 375px browser smoke (S1–S7 browser stulpelis) — `TEST_REPORT.md` ⬜
+- [x] **M79-50 smoke protokolas S1–S7** — kodo/JSON ✅ (`TEST_REPORT.md` §2026-07-16); browser ✅ savininkas @375px (2026-07-26)
+- [x] Rankinis 375px browser smoke (S1–S7 browser stulpelis) — `TEST_REPORT.md` ✅ CQ-M79-1
 
 **Operacinis SOT:** [`TEST_REPORT.md`](TEST_REPORT.md) §2026-07-15 P2 · §2026-07-16 M79-50 · [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md) · `patch-m79-p2-polish*.mjs` · `patch-m79-plain-w4-w5.mjs`
 
@@ -515,9 +515,9 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] **M79-45 W5:** Body batch 10 taikinių (70, 71, 73, 74, 78, 78.5, 84, 89, 92 + 66.9) LT+EN; skriptas `patch-m79-plain-w4-w5.mjs`
 - [x] **M79-50:** TEST_REPORT S1–S7 lentelė; kodo/JSON ✅
 - [x] Vartai: `validate:schema` · `audit:m79` · `generate:core-data` · `lint` · `test:run` **74/512**
-- [ ] Browser S1–S7 @375px — savininkas (`TEST_REPORT` browser stulpelis)
+- [x] Browser S1–S7 @375px — savininkas (`TEST_REPORT` browser stulpelis ✅; CQ-M79-1)
 
-**Ne scope / uždaryta:** M79-46 path map ✅; sk. **73 title** ✅; §4.6 #6–9 ✅ CQ-M79-3 (2026-07-26). **Open:** browser S1–S7 / E1–E6 @375px (CQ-M79-1/2).
+**Ne scope / uždaryta:** M79-46 path map ✅; sk. **73 title** ✅; §4.6 #6–9 ✅ CQ-M79-3; browser S1–S7 / E1–E6 ✅ CQ-M79-1/2 (2026-07-26).
 
 ---
 
@@ -529,7 +529,7 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] Hub 99: 0× `Neprivaloma · .` (level1)
 - [x] M8: +1 warm-up, ≥2 vignette su Excel/CRM
 - [x] LT+EN; patch registry; SOT §10; TEST_REPORT E1–E6
-- [ ] Browser E1–E6 @375px — savininkas
+- [x] Browser E1–E6 @375px — savininkas (`TEST_REPORT` ✅; CQ-M79-2)
 
 **Skriptai:** `patch-m79-everyday-closeness.mjs` · `patch-m79-everyday-closeness-en.mjs` · asset `public/m9_sample_internal.csv`
 

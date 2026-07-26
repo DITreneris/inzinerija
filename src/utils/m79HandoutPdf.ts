@@ -9,6 +9,7 @@ import {
   ECOSYSTEM_URLS,
   blogArticleUrl,
 } from '../constants/ecosystemUrls';
+import { logError } from './logger';
 import {
   HANDOUT_ACCENT_COLOR,
   HANDOUT_CONTENT_W_INNER,
@@ -17,6 +18,8 @@ import {
   addFooter,
   addHeader,
   addListSection,
+  addPageNumbers,
+  addPromptBlock,
   addSectionTitle,
   addTrainingUtm,
   addWrappedText,
@@ -44,7 +47,8 @@ function buildDefaultUrls(): M79HandoutUrls {
       { moduleId: 9, touchpoint: 'handout' },
       { medium: 'handout' }
     ),
-    decide: addTrainingUtm(ECOSYSTEM_URLS.decide, 'm9_handout_decide'),
+    // Hub fallback while promptanatomy.pro is unstable (utm_campaign keeps intent).
+    decide: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm9_handout_decide'),
     map: addTrainingUtm(ECOSYSTEM_URLS.map, 'm9_handout_map'),
     hub: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm9_handout_hub'),
   };
@@ -55,6 +59,22 @@ function buildDefaultUrls(): M79HandoutUrls {
  * Failas: LT – Promptu_anatomija_DA_kelio_atmintine.pdf; EN – Prompt_Anatomy_Data_Analytics_path_handout.pdf
  */
 export async function downloadM79HandoutPdf(
+  content: M79HandoutContent,
+  options: M79HandoutOptions,
+  filename?: string
+): Promise<void> {
+  try {
+    await buildM79HandoutPdf(content, options, filename);
+  } catch (err) {
+    logError(err instanceof Error ? err : new Error(String(err)), {
+      util: 'downloadM79HandoutPdf',
+      locale: options.locale,
+    });
+    throw err;
+  }
+}
+
+async function buildM79HandoutPdf(
   content: M79HandoutContent,
   options: M79HandoutOptions,
   filename?: string
@@ -83,12 +103,19 @@ export async function downloadM79HandoutPdf(
     y
   );
 
+  y = addPromptBlock(
+    ctx,
+    isEn ? '4. Starter prompt' : '4. Starter promptas',
+    content.starterPrompt,
+    y
+  );
+
   const yReflection = y;
   y = addSectionTitle(
     ctx,
     isEn
-      ? '4. Reflection and 48-hour action'
-      : '4. Refleksija ir 48 val. veiksmas',
+      ? '5. Reflection and 48-hour action'
+      : '5. Refleksija ir 48 val. veiksmas',
     y,
     HANDOUT_ACCENT_COLOR
   );
@@ -116,6 +143,7 @@ export async function downloadM79HandoutPdf(
     ],
   });
 
+  addPageNumbers(ctx, options.locale);
   addFooter(ctx, content.footerText, {
     websiteCta: content.websiteCta,
     websiteUrl: urls.hub || content.websiteUrl,

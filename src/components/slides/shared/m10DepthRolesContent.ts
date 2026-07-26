@@ -25,6 +25,8 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
       rolesStripTitle: 'Team roles',
       hint: 'Think of one real work process.',
       examples: 'e.g. email · research · RFP · form → CRM',
+      decisionRule:
+        'Rule: start from Agent – pick Team or Flow only when one agent is not enough or you need a trigger.',
       depthLegend: 'Choose depth for your process',
       teamRolesNote:
         'Team needs three roles: coordinator, specialist, evaluator. Router only if you need triage before the coordinator.',
@@ -51,6 +53,8 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
     rolesStripTitle: 'Komandos rolės',
     hint: 'Pagalvok apie vieną realų savo procesą.',
     examples: 'pvz. laiškas · tyrimas · RFP · forma → CRM',
+    decisionRule:
+      'Taisyklė: pradėk nuo Agentas – Komandą ar Srautą rinkis tik kai vienas agentas nebeužtenka arba reikia triggerio.',
     depthLegend: 'Pasirink gylį savo procesui',
     teamRolesNote:
       'Komandai reikia trijų rolių: koordinatorius, specialistas, vertintojas. Maršrutizatorius – tik jei reikia triažo prieš koordinatorių.',

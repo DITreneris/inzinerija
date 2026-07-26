@@ -65,7 +65,7 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 | linear-process (HTML icon-chain + autoplay) | `hallucination-pipeline` / `HallucinationPipelineBlock`       | 5 icon cards + captions; `useAutoplaySteps` (pause-on-pin); Shell = Taip; explanation = caption only; **not** SVG spine                    | ✅ HTML autoplay |
 | funnel / stack                              | `m13_aec_funnel` / `m13_prompt_stack` + `funnelStackGeometry` | Funnel narrowing / stack depth                                                                                                             | ✅ W3            |
 | dual-taxonomy (superseded)                  | ~~`m10_agent_taxonomy` Shell~~ → lab hybrid                   | **Superseded 2026-07-24:** Pattern `interactive-control-lab` (Shell=Ne) – `M10DepthRolesLabBlock` + static mini SVG; ne 8-step Shell spine | ⛔ W5 archived   |
-| multi-agent-flow                            | `m10_agent_orchestrator` + `orchestratorRetryPath.ts`         | Hub + specialists + state/tools dashed + left retry U; Shell walkthrough; own BOX; M12 tokens brother only                                 | ✅ W7            |
+| multi-agent-flow                            | `m10_agent_orchestrator` + `orchestratorRetryPath.ts`         | Hub + specialists + state/tools dashed + left retry U; Shell walkthrough; own BOX; M12 = W7 **layout** brother (own topology)              | ✅ W7            |
 
 Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWorkflowDiagram` — desktop **2×4** cards (`→` in-row, `↓` 4→5), mobile vertical stack; short box labels in `m9DataWorkflowContent.ts` (full titles in Shell explanation). Not SVG spine / not `verticalFlowGeometry`.
 
@@ -110,14 +110,15 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 4. Do **not** copy AgentWorkflow or da_pipeline BOX / viewBox.
 5. Geometry test: `lmsFunnelStackPolish.test.ts` (narrowing + margins + token floors).
 
-### Dual-taxonomy checklist (new / polish) – Wave 5
+### Depth/roles lab checklist (10.45) – live (W5 Shell superseded)
 
-1. Decision-spine step order: L0→L1→L2→L3→roles (Shell + HitArea; 8 steps on etalon).
-2. L2 step group-highlights the role hub; soft bridge from L2 bar toward hub.
-3. All ladder bars tall enough for level subtitles (`M10_TAXONOMY_MIN_LEVEL_HEIGHT`).
-4. Canonical LMS tokens – `stroke.flow` / `feedback`, `opacity.inactive`, `typography.title*` / `edgeLabel`.
-5. Do **not** flatten onto funnel / linear / cycle helpers; keep own `m10TaxonomyLayout.ts`.
-6. Geometry test: `lmsDualTaxonomyPolish.test.ts` (step count, min heights, stroke floors).
+> **Do not implement** the archived dual-taxonomy 8-step Shell (`m10TaxonomyLayout.ts` / `lmsDualTaxonomyPolish` – deleted).
+
+1. Pattern `interactive-control-lab`, Shell = **Ne** – ChoiceControl lab + static mini SVG (no `InteractiveDiagramShell` walkthrough).
+2. Layout SOT: `m10DepthRolesLayout.ts` + `M10DepthRolesMiniDiagram` / `M10DepthRolesLabBlock` (+ `m10DepthRolesContent.ts`).
+3. Mini strip = shaft + tip only; process tips via `getProcessArrowMarkerGeom()` / `arrow.processTipLen` + `refX=0` (do **not** use legacy `arrow.markerLen`).
+4. Brand-only chrome (no 10.26 risk strip); Copy lab inside ChoiceControl surface.
+5. Geometry / model tests: `m10DepthRolesLayout.test.ts`, `m10DepthRolesModel.test.ts`, `M10DepthRolesLabBlock.test.tsx`.
 
 ### Non-spine / residual (Wave 4)
 
@@ -133,8 +134,8 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 3. Retry geometry via `orchestratorRetryPath.ts` (tip outside hub); `arrow.processTipLen` + `refX=0` / `getProcessArrowMarkerGeom` (do **not** change legacy `arrow.markerLen`).
 4. Role bands: hub violet; specialists teal; gates amber; infra slate; state brand — no Control/Execution/Data layer frames.
 5. Staged verb edge labels (`shouldShowEdgeLabel`); Title Case agents band (no ALL CAPS); inactive ≥ `opacity.inactive`.
-6. Do **not** unify BOX/viewBox with M12; brother `m12_multi_agent_schema` = tokens + tip/refX parity only.
-7. Geometry test: `lmsMultiAgentPolish.test.ts`.
+6. Do **not** unify BOX/viewBox with M12; brother `m12_multi_agent_schema` = own layout SOT (`m12MultiAgentSchemaLayout.ts`) + fan-out/fan-in + staged verbs (W7 layout polish).
+7. Geometry test: `lmsMultiAgentPolish.test.ts` (orch + M12 brother suite).
 
 ### Type Etalon – comparison-mode-architecture (W6)
 
@@ -156,4 +157,4 @@ Every migrated diagram should have tests that verify:
 - The number of `nav button` elements matches the number of steps.
 - Dark mode uses the dark SVG background palette.
 - SVG internals do not expose duplicate keyboard buttons (`svg [role="button"]`, `svg [tabindex="0"]`).
-- Token / geometry floors: `lmsCyclePolish.test.ts`, `lmsLinearPolish.test.ts`, `lmsFunnelStackPolish.test.ts`, `lmsDualTaxonomyPolish.test.ts`, `lmsCaptionTokenPolish.test.ts`, `verticalFlowGeometry.test.ts`.
+- Token / geometry floors: `lmsCyclePolish.test.ts`, `lmsLinearPolish.test.ts`, `lmsFunnelStackPolish.test.ts`, `m10DepthRolesLayout.test.ts`, `lmsMultiAgentPolish.test.ts`, `lmsLearningLoopPolish.test.ts`, `lmsCaptionTokenPolish.test.ts`, `verticalFlowGeometry.test.ts`.

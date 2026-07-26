@@ -11011,7 +11011,7 @@
           "type": "practice-quest-intro",
           "content": {
             "whyBenefit": "Po šio projekto suprasi duomenų analizės eigą ir turėsi savo analitinį rinkinį su DI: promptus, sutvarkytus duomenis ir suvestinę.",
-            "duration": "~45 min minimumui · iki ~90 min pilnam 8 žingsnių ciklui",
+            "duration": "~45–90 min",
             "audience": "Baigei teoriją ir testą – dabar vieną kartą praeik pilną analizę su DI.",
             "journeyHeading": "Pasirink savo sritį",
             "journeyChoices": [
@@ -12043,7 +12043,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Šiame modulyje eilės tvarka: **agentų ciklas** (diagrama), **3A strategija**, **DI agentų tipai ir rolės**, **5 workflow šablonai**, **rolė ir sisteminis promptas**, **DI įrankių pasirinkimas**, **kada rinktis agentą**, **klaidos ir ribos**, **workflow sąvokos** (trigger, sąlyga, veiksmas, webhook), **verslo automatizavimo platformos** (Zapier, Make, n8n, Power Automate), **paleidimas** (Railway tipo PaaS – kur veikia agentas / API). Neprivaloma: **GitHub kaip kodo šaltinis**; gilesnė specifikacija ir testavimas; žodynėlis; santrauka.\n\nČia **nebekartojame** sąvokų apibrėžimų – juos pamatysi skaidrėje **Pagrindinės sąvokos**.",
+                "body": "**MUST kelias:** agentų ciklas → 3A strategija → gylis ir rolės → 5 darbo eigos šablonai → rolė ir sisteminis promptas → įrankiai → kada rinktis agentą → klaidos ir ribos → workflow sąvokos → automatizavimo platformos → paleidimas.\n\n**Neprivaloma:** GitHub, gilesnė specifikacija, žodynėlis, santrauka. Sąvokų apibrėžimai – skaidrėje **Pagrindinės sąvokos**.",
                 "blockVariant": "accent"
               },
               {
@@ -12075,38 +12075,38 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "DI agentas eina **penkiais žingsniais**: užduotis → planavimas → įrankiai → aplinka → rezultatas su grįžtamuoju ryšiu. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir gali kviesti įrankius.",
+                "body": "Diagrama žemiau – **penki ciklo žingsniai**. Skirtumas nuo paprasto pokalbio: agentas **savarankiškai** renkasi veiksmus ir gali kviesti įrankius.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Kaip veikia DI agentas",
-                "body": "Agentas planuoja veiksmus, naudoja įrankius, skaito aplinką ir vertina rezultatą. Peržiūrėk visą dydį – tas pats vaizdas atsidarys modale.",
+                "body": "Paspausk žingsnį – paaiškinimas apačioje. Peržiūrėk visą dydį – tas pats vaizdas atsidarys modale.",
                 "image": "agent_workflow_diagram",
                 "blockVariant": "default"
               },
               {
-                "heading": "Kaip veikia agentas",
-                "body": "DI agentas eina **penkiais žingsniais**: **(1)** Agentas gauna užduotį, **(2)** Planavimas – skaidoma į žingsnius, **(3)** Įrankiai (paieška, API, failai – jei platforma leidžia), **(4)** Aplinka – kontekstas ir atsakas, **(5)** Rezultatas su grįžtamuoju ryšiu į agentą.\n\n**API** – programų „durys“ duomenims ar veiksmams: agentas jomis kreipiasi į CRM, paštą ar kitą sistemą, nes pats tų duomenų „neturi“.\n\n**Ciklas praktikoje:** suprasti → pasirinkti įrankį → vykdyti → pagal rezultatą spręsti, ar kartoti žingsnį, ar baigti. Skirtumas nuo paprasto pokalbio – agentas **savarankiškai** renkasi veiksmus ir gali kviesti išorinius įrankius.",
+                "heading": "API ir kartojimas",
+                "body": "**API** – programų „durys“ duomenims ar veiksmams: agentas jomis kreipiasi į CRM, paštą ar kitą sistemą, nes pats tų duomenų „neturi“.\n\n**Kartojimas:** po rezultato agentas sprendžia – kartoti žingsnį, kviesti kitą įrankį, ar baigti. Tai ir yra grįžtamasis ryšys ciklo pabaigoje.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Kada naudoti agentą (trumpai)",
-                "body": "- Reikia **kelių žingsnių**, ne vieno atsakymo.\n- Sunku viską aprašyti **grynomis taisyklėmis**.\n- Yra **nestruktūruotų duomenų** (tekstas, laiškai, atsiliepimai), kuriuos reikia interpretuoti.\n\n**Paprastas promptas** pakanka, kai vienas aiškus klausimas ir vienas atsakymas – be paieškos ir išorinių sistemų.\n\n**Išsamiau** – su pavyzdžiais ir agentiniu šablonu – skaidrėje **Kada rinktis agentą, kada – paprastą promptą**.",
+                "heading": "Kada rinktis agentą",
+                "body": "Išsamiau, kada agentas, o kada paprastas promptas – su pavyzdžiais – skaidrėje **Kada rinktis agentą, kada – paprastą promptą**.",
                 "blockVariant": "terms"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok žemiau esančią užduotį į DI ir įvykdyk.",
+                "body": "Pritaikyk ciklą savo procesui – nukopijuok užduotį į DI.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
-                "body": "Užduotis DI (įklijuok į pokalbį): „Paaiškink savo žodžiais **penkiais žingsniais** (agentas, planavimas, įrankiai, aplinka, rezultatas), kaip veikia DI agentas, ir **vienu sakiniu** – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių.“",
-                "copyable": "Paaiškink savo žodžiais penkiais žingsniais (agentas, planavimas, įrankiai, aplinka, rezultatas), kaip veikia DI agentas, ir vienu sakiniu – kuo jis skiriasi nuo vieno klausimo ir vieno atsakymo be įrankių."
+                "body": "Užpildyk [APRAŠYK] savo darbu.",
+                "copyable": "Mano procesas: [APRAŠYK, pvz. klientų laiškų triažas].\nEik per agento ciklą: (1) kokia užduotis, (2) koks planas, (3) kokį įrankį kviesi, (4) kokią aplinką / duomenis skaitai, (5) koks rezultatas ir ar reikia kartoti.\nVienu sakiniu: kur šiame procese būtinas įrankis (ne vien tekstinis atsakymas)?"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar gali įvardyti penkis ciklo žingsnius ir vienu sakiniu skirtumą nuo paprasto klausimo–atsakymo? Jei ne – grįžk į diagramą.",
+                "body": "Ar gali savo procesu parodyti, **kur ciklas kviečia įrankį** ir **kur grįžtamasis ryšys** gali kartoti žingsnį? Jei ne – grįžk į diagramą.",
                 "blockVariant": "accent"
               }
             ],
@@ -12239,10 +12239,10 @@
               },
               {
                 "heading": "Kur pritaikyti",
-                "body": "Planuojant verslo automatizavimą – kurių procesų pakanka tik taisyklėms (80 %), kuriems reikia žmogaus patvirtinimo (15 %), kur galima leisti agentui veikti su ribomis (5 %).",
+                "body": "**Portfelio taisyklė:** pirmiausia inventorizuok ~10 procesų – daugumą laikyk taisyklėse (**Automatize**); agentus tik ten, kur nauda aiškiai didesnė už klaidos kainą.\n\n**Juostos taisyklė:** reikia atsakomybės parašo ar tono/faktų patvirtinimo → **Augment**; šablonas stabilus ir klaida pigi → **Automatize**; **Autonomize** – tik su riba, eskalacija ir auditu.\n\n**Kitas žingsnis:** kada žmogus privalo tvirtinti – skaidrėje **Kada tvirtina žmogus?**",
                 "blockVariant": "terms",
                 "collapsible": true,
-                "collapsedByDefault": true
+                "collapsedByDefault": false
               }
             ],
             "footer": "Toliau – skaidrė 7: Kada tvirtina žmogus?"
@@ -12280,30 +12280,42 @@
         },
         {
           "id": 10.3,
-          "title": "Rolės ir sisteminio prompto šablonas",
+          "title": "Rolės ir sisteminis promptas",
           "subtitle": "Kaip nustatyti rolę ir ribas agentui",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas yra konteksto inžinerijos dalis: čia nurodai rolę, ribas, įrankius ir ką daryti, kai duomenų trūksta.",
+                "body": "Rolė nustato, kaip DI elgiasi – ir paprastame pokalyje, ir agentų sistemoje. Sisteminis promptas – kur nurodai **rolę, ribas, įrankius** ir ką daryti, kai duomenų trūksta. Čia – paprastas vieno agento šablonas; kelių agentų rolės – skaidrėje **DI agentų tipai ir rolės**.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Kas įeina į sisteminį promptą",
+                "body": "1. **Rolė** – kas esi ir ką darai.\n2. **Ribos** – ko nedarai / kada eskaluoji žmogui.\n3. **Įrankiai** – ką leidžiama kviesti (paieška, failai, API).\n4. **Trūkumas** – jei faktų nėra: ieškok arba rašyk „Nežinau“ (neišgalvok).",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok žemiau esantį promptą į savo DI įrankio „sisteminio nustatymo“ lauką (jei toks yra). Tada užduok vieną agentinę užklausą.",
+                "body": "Nukopijuok šabloną į DI „sisteminio nustatymo“ lauką (jei tokio nėra – įklijuok kaip **pirmą** žinutę). Užpildyk `[ROLĖ]` ir `[RIBOS]`. Tada užduok: „Ieškok [X] ir pateik santrauką su šaltiniais“.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
-                "body": "Žemiau – sisteminis promptas, kurį gali nukopijuoti į DI įrankio nustatymus.",
-                "copyable": "Tavo rolė – asistentas, kuris atlieka užduotis žingsnis po žingsnio.\nNaudok įrankius (paieška, skaičiuoklės ir kt.), kai tai padės atsakymui.\nJei užduotis neaiški arba nepavyksta – parašyk trumpai kodėl ir ką reikėtų pataisyti.\nNeišsivaizduok duomenų – jei reikia faktų, naudok paiešką arba parašyk „Nežinau“."
+                "body": "Sisteminis šablonas – pakeisk laukus skliaustuose.",
+                "copyable": "Tavo rolė – [ROLĖ, pvz. klientų aptarnavimo asistentas].\nRibos: [RIBOS, pvz. nesiūlyk nuolaidų be žmogaus; jautrius skundus eskaluok].\nNaudok įrankius (paieška, failai ir kt.), kai tai padeda užduočiai.\nJei užduotis neaiški arba nepavyksta – parašyk trumpai kodėl ir ką pataisyti.\nNeišgalvok duomenų – jei reikia faktų, naudok paiešką arba parašyk „Nežinau“."
               },
               {
                 "heading": "Patikra",
-                "body": "Jei DI nepasinaudoja įrankiais, kai reikia – patikrink, ar platforma turi įjungtas agentines funkcijas (Browse, Tools). Jei atsakymas be šaltinių – paprašyk „pateik šaltinius“ arba nurodyk šaltinius įvestyje.",
+                "body": "Gerame atsakyme matai: žingsnius arba įrankio pėdsaką, šaltinius (jei ieškojai), arba aiškų „Nežinau“. Jei DI nenaudoja įrankių – patikrink Browse / Tools nustatymus.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Kur pritaikyti",
+                "body": "Bet kur, kur reikia ne tik vieno atsakymo, bet ir paieškos, skaičiavimų ar išorinių duomenų. Tai tas pats konteksto inžinerijos principas kaip M4–M6 – tik taikomas agentui: rolė, ribos, įrankiai, išvestis.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               }
             ],
             "footer": "Toliau – skaidrė 9: DI agentų tipai ir rolės"
@@ -12319,31 +12331,31 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Ne kiekvienai užduočiai reikia DI komandos. Pirmiausia pasirink **gylį** (Pokalbis → Agentas → Komanda → Srautas), tada – ar reikia **rolių**. Žemiau – schema ir lab; pradėk nuo savo proceso.",
+                "body": "Ne kiekvienai užduočiai reikia DI komandos. Lab’e pasirink **gylį** savo procesui; **Komanda** atveria roles. **Taisyklė:** pradėk nuo **Agentas** – Komandą ar Srautą rinkis tik kai vienas agentas nebeužtenka arba reikia triggerio.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Gylis ir komandos rolės",
-                "body": "Pasirink gylį lab’e – schema paryškina tą patį. Komanda atveria roles.",
+                "body": "Komanda atveria roles apačioje. Įvestis / išvestis – kitame kontroliniame taške.",
                 "image": "m10_agent_taxonomy",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink gylį savo procesui. Jei **Komanda** – trys rolės (koordinatorius, specialistas, vertintojas); maršrutizatorius – tik jei reikia triažo. Nukopijuok artefaktą lab’e.",
+                "body": "Jei **Komanda** – trys rolės (koordinatorius, specialistas, vertintojas); maršrutizatorius – tik jei reikia triažo. Nukopijuok artefaktą lab’e.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar pasirinkai **gylį**? Jei Komanda – ar trys rolės aiškios? Jei ne – pradėk nuo **Agentas** (vienas agentas).",
+                "body": "Ar pasirinkai **gylį** ir vienu sakiniu gali pasakyti kodėl? Jei Komanda – ar trys rolės aiškios? Jei abejoji – lik prie **Agentas**.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Kada nenaudoti kelių agentų",
-                "body": "Vienas agentas užtenka paprastai užduočiai. Kelių agentų sistema per anksti, jei nėra žmogaus patvirtinimo ar aiškaus „baigta“ kriterijaus. Pradėk paprastai – pridėk roles tik kai vienas agentas nebeužtenka.",
+                "body": "**Nerink Komandos ar Srauto**, jei užduotis paprasta, nėra žmogaus patvirtinimo arba nėra aiškaus „baigta“ kriterijaus. Pridėk roles tik kai vienas agentas nebeužtenka.",
                 "blockVariant": "terms",
                 "collapsible": true,
-                "collapsedByDefault": true
+                "collapsedByDefault": false
               }
             ],
             "footer": "Toliau – skaidrė 10: Kontrolinis taškas: rolės"
@@ -12390,23 +12402,73 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Kai vienas DI agentas nebeužtenka, naudok **darbo eigos (workflow) šablonus** – ne programavimą, o aiškų vaidmenų ir perdavimų planą.",
+                "body": "Kai vienas DI agentas nebeužtenka – rinkis **darbo eigos šabloną** (ne programavimą). Pasirink **vieną** – pamatysi planą.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "5 šablonai",
-                "body": "**1. Grandinė** – vienas žingsnis po kito (užklausa → klasifikacija → juodraštis → siuntimas).\n\n**2. Maršrutizavimas** – pagal tipą skirtinga šaka (skundas / užklausa / pasiūlymas).\n\n**3. Lygiagretus darbas** – keli specialistai vienu metu, vėliau sujungimas (CRM + el. paštas → viena suvestinė).\n\n**4. Koordinatorius + specialistai** – dinamiškai paskirsto sub-užduotis (savaitės ataskaita: duomenys + tendencijos → 1 puslapis).\n\n**5. Generatorius + vertintojas** – juodraštis → QC → pataisa (laiškas, ataskaita, FAQ).",
-                "blockVariant": "brand"
-              },
-              {
                 "heading": "Daryk dabar",
-                "body": "Pasirink vieną šabloną savo procesui ir užrašyk, kurios rolės atlieka kiekvieną žingsnį.",
-                "blockVariant": "brand"
+                "body": "Pasirink **vieną** šabloną savo procesui. Po pasirinkimo matysi tik to šablono planą – nukopijuok ir užpildyk. Po savitikros – orkestravimo simuliacija (KAIP, ne tik šablonas).",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "Kurį šabloną taikysi savo procesui?",
+                  "choices": [
+                    {
+                      "label": "Grandinė",
+                      "rowIndex": 0,
+                      "whenHint": "**Taip:** žingsniai eina vienas po kito. **Ne:** tipai skiriasi arba keli dirba lygiagrečiai."
+                    },
+                    {
+                      "label": "Maršrutizavimas",
+                      "rowIndex": 1,
+                      "whenHint": "**Taip:** pagal tipą skirtinga šaka (skundas / užklausa). **Ne:** visi atvejai eina ta pačia seka."
+                    },
+                    {
+                      "label": "Lygiagretus",
+                      "rowIndex": 2,
+                      "whenHint": "**Taip:** keli šaltiniai / specialistai vienu metu, vėliau sujungimas. **Ne:** rezultatas priklauso nuo ankstesnio žingsnio."
+                    },
+                    {
+                      "label": "Koordinatorius",
+                      "rowIndex": 3,
+                      "whenHint": "**Taip:** reikia dinamiškai skaidyti sub-užduotis. **Ne:** užtenka fiksuotos grandinės be paskirstymo."
+                    },
+                    {
+                      "label": "Generatorius + vertintojas",
+                      "rowIndex": 4,
+                      "whenHint": "**Taip:** juodraštis + QC (laiškas, FAQ, ataskaita). **Ne:** rezultatas be kokybės rizikos – pakanka L1."
+                    }
+                  ]
+                }
               },
               {
-                "heading": "Kopijuojamas promptas (koordinatorius)",
+                "heading": "Kopijuojamas planas – Grandinė",
                 "body": "Nukopijuok ir užpildyk [APRAŠYK].",
-                "copyable": "Tu esi koordinatorius. Užduotis: [APRAŠYK].\nSuskaidyk į 2–3 sub-užduotis. Kiekvienai paskirk rolę (specialistas / vertintojas),\nįvestį, išvestį ir perdavimo taisyklę (kada perduoti kitam vaidmeniui).\nPateik planą kaip numeruotą sąrašą."
+                "copyable": "Procesas: [APRAŠYK]. Šablonas: Grandinė.\nIšrašyk 3–5 žingsnius eilės tvarka (įvestis → veiksmas → išvestis).\nKiekvienam žingsniui: kas atlieka (žmogus / DI / taisyklė) ir pabaigos kriterijus.\nRizikingiems žingsniams pažymėk žmogaus patvirtinimą.",
+                "linkedRowIndex": 0
+              },
+              {
+                "heading": "Kopijuojamas planas – Maršrutizavimas",
+                "body": "Nukopijuok ir užpildyk [APRAŠYK].",
+                "copyable": "Procesas: [APRAŠYK]. Šablonas: Maršrutizavimas.\nĮvestis tipai: [pvz. skundas / užklausa / pasiūlymas].\nKiekvienai šakai: kas vykdo, kokia išvestis, kada eskaluoti žmogui.\nPabaigos kriterijus visoms šakoms.",
+                "linkedRowIndex": 1
+              },
+              {
+                "heading": "Kopijuojamas planas – Lygiagretus",
+                "body": "Nukopijuok ir užpildyk [APRAŠYK].",
+                "copyable": "Procesas: [APRAŠYK]. Šablonas: Lygiagretus darbas.\nLygiagretūs srautai (2–3): [pvz. CRM + el. paštas].\nKiekvienam: įvestis, išvestis.\nSujungimo taisyklė: kaip virsta viena suvestine + kas tvirtina.",
+                "linkedRowIndex": 2
+              },
+              {
+                "heading": "Kopijuojamas planas – Koordinatorius",
+                "body": "Nukopijuok ir užpildyk [APRAŠYK].",
+                "copyable": "Tu esi koordinatorius. Užduotis: [APRAŠYK].\nSuskaidyk į 2–3 sub-užduotis. Kiekvienai paskirk rolę (specialistas / vertintojas),\nįvestį, išvestį ir perdavimo taisyklę (kada perduoti kitam vaidmeniui).\nPateik planą kaip numeruotą sąrašą.",
+                "linkedRowIndex": 3
+              },
+              {
+                "heading": "Kopijuojamas planas – Generatorius + vertintojas",
+                "body": "Nukopijuok ir užpildyk [APRAŠYK].",
+                "copyable": "Procesas: [APRAŠYK]. Šablonas: Generatorius + vertintojas.\nGeneratorius: ką sukuria (juodraštis) ir kokie šaltiniai.\nVertintojas: QC kriterijai (faktai, tonas, rizika) ir kada grąžinti taisyti.\nŽmogaus patvirtinimas: [kada TAIP / NE].",
+                "linkedRowIndex": 4
               },
               {
                 "heading": "Patikra",
@@ -12415,7 +12477,7 @@
               },
               {
                 "heading": "Kada nenaudoti kelių agentų",
-                "body": "Jei užduotis turi 1–2 žingsnius – pakanka L1 (vienas agentas). Kelių agentų sistema be vertintojo rizikinga finansams, klientų aptarnavimui ir viešam turiniui.",
+                "body": "Jei užduotis turi 1–2 žingsnius – pakanka vieno agento (Agentas). Šablonai be vertintojo rizikingi finansams, klientų aptarnavimui ir viešam turiniui.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -12476,34 +12538,34 @@
         {
           "id": 10.482,
           "title": "Agentų orkestravimo simuliacija",
-          "subtitle": "Maršrutizatorius ≠ orkestratorius; tikrinimas ≠ vertinimas; tikslinis retry",
+          "subtitle": "Maršrutizatorius ≠ orkestratorius; Tikrintojas ≠ Vertintojas; tikslinis retry",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Orkestratorius pats neatlieka specializuoto darbo – jis valdo planą, būseną ir taisymo ciklus. Trys skirtumai: **Maršrutizatorius = KUR**, **orkestratorius = KAIP**; **tikrinimas** žiūri formatą/šaltinius, **vertintojas** sprendžia Patvirtinti / Kartoti / Žmogui; klaida → **tikslinis** retry, ne visas paleidimas iš naujo.",
+                "body": "Orkestratorius pats neatlieka specializuoto darbo – jis valdo planą, būseną ir taisymo ciklus. Trys skirtumai: **Maršrutizatorius = KUR**, **orkestratorius = KAIP**; **Tikrintojas** žiūri formatą/šaltinius, **Vertintojas** sprendžia Patvirtinti / Kartoti / Žmogui; klaida → **tikslinis** retry, ne visas paleidimas iš naujo.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Simuliacija",
                 "body": "Scenarijus: RFP santrauka (5 punktai) – kiekvienam punktui privaloma citata iš patikimo šaltinio. Pereik 6 makro žingsnius diagramoje.",
                 "image": "m10_agent_orchestrator",
-                "imageAlt": "Agentų orkestravimo srautas: įvestis, maršrutizatorius, orkestratorius, specialistai, tikrinimas, vertintojas, rezultatas"
+                "imageAlt": "Agentų orkestravimo srautas: įvestis, maršrutizatorius, orkestratorius, specialistai (Tyrėjas, Rašytojas, Tikrintojas), vertintojas, rezultatas"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pereik visus 6 žingsnius. Žingsnyje **Klaida ir KARTOTI (5 iš 6)** pastebėk **KARTOTI** kilpą – kas grįžta į orkestratorių ir kodėl ne paleidžiama viskas iš naujo.",
+                "body": "Pereik visus 6 žingsnius. Žingsnyje **Klaida ir KARTOTI** pastebėk **KARTOTI** kilpą – kas grįžta į orkestratorių ir kodėl ne paleidžiama viskas iš naujo.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar gali vienu sakiniu pasakyti, kuo **maršrutizatorius** skiriasi nuo **orkestratoriaus**? Ar žinai, kada vertintojas sako **Kartoti**, o kada – **perduoti žmogui**? Įvardyk savo procese: **KUR** / **KAIP** / kokybės vartus.",
+                "body": "Vienu sakiniu: kuo **maršrutizatorius** (KUR) skiriasi nuo **orkestratoriaus** (KAIP)? Kada vertintojas sako **Kartoti**, o kada – **perduoti žmogui**?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Trys skirtumai (giliau)",
-                "body": "**1. Maršrutizatorius prieš orkestratorių** – maršrutizatorius (EN: router) klasifikuoja užklausą prieš vykdymą; orkestratorius valdo aktyvų planą, būseną (atmintis / changelog) ir bandymus. RFP pavyzdys: „greitas atsakymas“ vs „tyrimas su citatomis“.\n\n**2. Agentai prieš įrankius** – agentai turi rolę ir taisykles; įrankiai (paieška, API) yra išorinis sluoksnis, kurį agentai kviečia.\n\n**3. Tikrinimas prieš vertinimą** – tikrinimas tikrina formatą ir šaltinius (pvz. ar kiekvienas RFP punktas turi citatą); vertintojas priima sisteminį sprendimą (Patvirtinti / Kartoti / Žmogui).\n\nSkirtumas nuo skaidrės **„Kelių agentų schema“**: čia – architektūros simuliacija; ten – paprasta verslo multi-agent schema be programavimo.",
+                "body": "**1. Maršrutizatorius prieš orkestratorių** – maršrutizatorius klasifikuoja užklausą prieš vykdymą; orkestratorius valdo planą, būseną ir bandymus.\n\n**2. Agentai prieš įrankius** – agentai turi rolę ir taisykles; įrankiai (paieška, API) – ką jie kviečia.\n\n**3. Tikrintojas prieš Vertintoją** – Tikrintojas žiūri formatą/šaltinius; Vertintojas sprendžia Patvirtinti / Kartoti / Žmogui.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -12516,14 +12578,14 @@
         {
           "id": 10.481,
           "title": "Keli agentai → darbo eiga",
-          "subtitle": "5 šablonai įveikti – toliau agentų projektavimas praktikoje.",
+          "subtitle": "Po šablonų ir orkestravimo – toliau mokymosi ciklas ir įrankiai.",
           "type": "section-break",
           "content": {
             "title": "Keli agentai → darbo eiga",
-            "subtitle": "Taksonomija, rolės ir 5 darbo eigos šablonai – toliau mokymosi ciklas ir įrankiai.",
+            "subtitle": "Šablonai + orch skirtumai – epilogas; toliau mokymosi ciklas ir įrankiai.",
             "sectionNumber": "M10",
             "footer": "Toliau – skaidrė 15: Uždaro mokymosi ciklas",
-            "celebrationText": "Puiku! Taksonomija ir 5 darbo eigos šablonai – jau tavo arsenale.",
+            "celebrationText": "Puiku! 5 šablonai ir skirtumas maršrutizatorius ≠ orkestratorius – jau tavo arsenale.",
             "nextSteps": [
               "Uždaro mokymosi ciklas – kaip klaidos tampa taisyklėmis ir įgūdžiais.",
               "Įrankių pasirinkimas – paieška, API, platformos.",
@@ -12534,11 +12596,11 @@
               "heading": "Ką jau žinai?",
               "lead": "Agentų inžinerijos kelias – kelių agentų pamatas.",
               "items": [
-                "L0–L3 – kada pakanka vieno agento, kada reikia kelių.",
-                "Koordinatorius, specialistas, vertintojas, maršrutizatorius – aiškios rolės.",
-                "Grandinė – vienas žingsnis po kito.",
-                "Maršrutizavimas – šaka pagal tipą.",
-                "Generatorius + vertintojas – juodraštis ir kokybės vartai."
+                "Gylis L0–L3 – kada pakanka vieno agento, kada reikia kelių.",
+                "Maršrutizatorius = KUR; orkestratorius = KAIP (planas ir retry).",
+                "Grandinė, maršrutizavimas, lygiagretus, koordinatorius, generatorius + vertintojas.",
+                "Tikrinimas ≠ vertinimas – formatas vs Patvirtinti / Kartoti / Žmogui.",
+                "Pradėk paprastai – roles ir šablonus tik kai vienas agentas nebeužtenka."
               ],
               "itemGlossaryTerms": [
                 "Kelių agentų sistema",
@@ -12565,18 +12627,25 @@
               {
                 "heading": "Trumpai",
                 "body": "Agentas ne tik vykdo užduotį. Gera sistema kaupia veiksmų istoriją, tikrina rezultatą, iš klaidų ištraukia pamokas ir atnaujina taisykles arba įgūdžius kitam kartui.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Mokymosi ciklas",
+                "body": "Vykdymas ir mokymasis – du sluoksniai. Spausk žingsnį diagramoje.",
                 "image": "m10_learning_loop",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Du sistemos sluoksniai",
-                "body": "**Vykdymo sistema:** užduotis → taisyklės → koordinatorius → specialistai / vertintojas → įgūdžiai → rezultatas.\n\n**Mokymosi ciklas:** veiksmų istorija → patikra → pamokos → atnaujinimas. Taip vieno bandymo klaidos tampa geresniu kitu bandymu.",
+                "body": "**Vykdymas:** užduotis → taisyklės → rolės → rezultatas.\n\n**Mokymasis:** veiksmų istorija → patikra → pamokos → atnaujinimas. Vieno bandymo klaida tampa geresniu kitu bandymu.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Blokai paprastai",
-                "body": "**Taisyklės** – ribos ir principai: ko DI nedaro, kada klausia žmogaus.\n\n**Įgūdžiai** – pakartotinai naudojami gebėjimai: paieška, rašymas, tikrinimas arba vienas Įgūdžio paketas su instrukcija.\n\n**Veiksmų istorija** – užduotis, žingsniai, klaidos, žmogaus pastabos.\n\n**Patikra** – testas ar vertinimas: ar rezultatas atitiko kriterijus.\n\n**Pamokos** – trumpas įrašas: kas nepavyko, ką keisti, kur taisyklę ar įgūdį atnaujinti.\n\n**Atnaujinimas** – pakeista taisyklė, promptas, įgūdžio aprašas arba testas kitam kartui.",
-                "blockVariant": "brand"
+                "body": "**Taisyklės** – ko DI nedaro, kada klausia žmogaus.\n\n**Įgūdžiai** – pakartotinai naudojami gebėjimai (paieška, rašymas, tikrinimas).\n\n**Veiksmų istorija** – užduotis, žingsniai, klaidos, pastabos.\n\n**Patikra** – ar rezultatas atitiko kriterijus.\n\n**Pamokos** – kas nepavyko, ką keisti.\n\n**Atnaujinimas** – pakeista taisyklė, promptas, įgūdis ar testas.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Daryk dabar",
@@ -12585,7 +12654,7 @@
               },
               {
                 "heading": "Kopijuojamas pamokos šablonas",
-                "body": "Naudok po M12 scenarijaus arba po bet kurio agento bandymo.",
+                "body": "Naudok po praktikos arba po bet kurio agento bandymo.",
                 "copyable": "Pamoka po agento bandymo:\n1) Kas nutiko?\n2) Kokia priežastis?\n3) Ką atnaujinu: taisyklę, promptą, įgūdį ar testą?\n4) Kaip patikrinsiu kitą kartą?"
               },
               {
@@ -12607,39 +12676,28 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Ne visi DI įrankiai turi tuos pačius įrankius. Užduotyje aiškiai parašyk: „Naudok paiešką ir pateik šaltinius“. Nurodyk vartotojui (arba sau), ką gali naudoti pasirinktoje platformoje.",
+                "body": "Ne visos DI **platformos** turi tuos pačius įrankius (paieška, failai, API). Užduotyje aiškiai parašyk: „Naudok paiešką ir pateik šaltinius“. Prieš agentinį promptą patikrink nustatymus: ar įjungta paieška arba Tools.\n\nWorkflow platformos (Zapier, Make, n8n, Power Automate) – skaidrė **Verslo automatizavimo įrankiai**.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Populiarios platformos – ką turi",
-                "body": "**ChatGPT** (OpenAI): paieška internete (Browse), vaizdų generavimas (DALL·E), skaičiuoklė. **Claude** (Anthropic): įrankiai (Tools) – galima prijungti paiešką, API, savo funkcijas. **Gemini** (Google): paieška, „Workspace“ integracija (Docs, Sheets, Gmail). Kiekviena platforma skiriasi – prieš rašant agentinį promptą patikrink nustatymus: ar įjungta paieška arba įrankiai.",
+                "heading": "Populiarios DI platformos – ką turi",
+                "body": "**ChatGPT:** paieška (Browse), vaizdai, skaičiuoklė. **Claude:** Tools (paieška, API). **Gemini:** paieška, Workspace. Prieš rašant agentinį promptą – patikrink, kas įjungta.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Atidaryk savo DI įrankio nustatymus ir pažymėk, kokius įrankius leidi (paieška, failai, API). Tada vienoje užduotyje aiškiai parašyk: „Naudok paiešką ir pateik šaltinius“.",
+                "body": "Atidaryk savo DI nustatymus ir pažymėk, kokius įrankius leidi. Tada vienoje užduotyje parašyk: „Naudok paiešką ir pateik šaltinius“.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas promptas",
-                "body": "Žemiau – promptas su paieškos nurodymu; nukopijuok ir užpildyk [APRAŠYK UŽDUOTĮ].",
+                "body": "Nukopijuok ir užpildyk [APRAŠYK UŽDUOTĮ].",
                 "copyable": "Užduotis: [APRAŠYK UŽDUOTĮ].\nNaudok paiešką, kad rastum naujausią informaciją. Jei randi šaltinius – nurodyk juos atsakymo pabaigoje. Jei nerandi – parašyk „Nerasta“ ir trumpai paaiškink, ką ieškojai."
               },
               {
                 "heading": "Patikra",
                 "body": "Jei atsakymas be nuorodų – ar nurodei „naudok paiešką“? Ar įrankis įjungtas platformoje?",
                 "blockVariant": "accent"
-              },
-              {
-                "heading": "Įrankių pasirinkimo medis (interaktyvi schema)",
-                "body": "Pasirink šaką diagramoje – apačioje patvirtinimas. Pilnas aprašymas – dokumente **Automatizavimo įrankiai verslui**, §21.",
-                "image": "m10_tool_decision_tree",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Įrankių pasirinkimo medis (darbo eigos įrankiams)",
-                "body": "**Office 365 kasdien** (Teams, Outlook, SharePoint) → **Power Automate**. **Netechninė komanda, greitas startas** → **Zapier**. **Sudėtinga logika + gera kaina** → **Make.com**. **Pilna kontrolė, savihost, duomenys pas mus** → **n8n**. **Didelės įmonės valdymas, auditoriai, atitiktis** → **Workato**. Išsamus palyginimas – dokumente „Automatizavimo įrankiai verslui“, §21.",
-                "blockVariant": "brand"
               }
             ],
             "footer": "Toliau – skaidrė 17: Agentas ar paprastas promptas"
@@ -12674,18 +12732,12 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Neprivaloma: 5 dalių šablonas, taisyklės",
-                "body": "Aiškiai apibrėžtas agentinis promptas turi 5 dalis: (1) Rolė – kas esi, ribos; (2) Užduotis žingsniais – ką atlikti iš eilės; (3) Įrankiai – ką naudoti (paieška, API); (4) Išvesties formatas – lentelė, kalba, šaltiniai; (5) Klaidos tvarkymas – ką grąžinti, kai nepavyksta. Ilgesnis pilnas šablonas – išskleidžiamas bloke žemiau.\n\nTaisyklės: būk aiškus (žingsniai, ne tik tikslas); nurodyk įrankius („naudok paiešką“, „pateik šaltinius“); klaidos tvarkymas privalomas; sisteminis promptas optimaliai iki ~1000 tokenų; nurodyk ribas (ko nedaryti). Patarimai: prieš rašant išrašyk 3–5 žingsnių; jei įmanoma – įdėk 1 pavyzdį (few-shot); testuok, kai duomenų nėra – ar DI grąžina aiškų „Nerasta“ / „Nepavyko“.\n\nPilnas šablonas – nukopijuok žemiau.",
+                "heading": "Neprivaloma: 5 dalių šablonas",
+                "body": "Agentinis promptas: (1) Rolė + ribos (2) Užduotis žingsniais (3) Įrankiai (4) Išvesties formatas (5) Klaidos tvarkymas. Pilnas šablonas – nukopijuok žemiau.\n\n**1 psl. workflow aprašymas** (trigger, veiksmai, žmogaus tvirtinimas) – skaidrėje **Minimalus darbo eigos aprašymas**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "copyable": "ROLĖ\nTu esi [sritis / rolė]. Tavo atsakomybė – [ką darai]. Turi prieigą prie [paieška / skaičiuoklė / API]. Ko nedaryti: [ribos, pvz. neišsivaizduok duomenų].\n\nUŽDUOTIS (žingsniais)\n(1) [Pirmas žingsnis, pvz. ieškoti X]\n(2) [Antras žingsnis, pvz. išrinkti 3–5 šaltinius]\n(3) [Trečias žingsnis, pvz. parašyti santrauką]\n\nĮRANKIAI\nNaudok [paieška / įrankis], kai [kada]. Jei reikia faktų – naudok paiešką arba parašyk „Nežinau“. Pateik šaltinius atsakymo pabaigoje.\n\nFORMATAS\n[Lentelė / sąrašas / ataskaita]. Kalba: lietuvių. Šaltiniai: nurodyk.\n\nKLAIDOS TVARKYMAS\nJei užduoties atlikti negalima (trūksta duomenų, timeout): parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką pataisyti. Neverk tuščio atsakymo."
-              },
-              {
-                "heading": "Darbo eigos specifikacija (1 puslapis)",
-                "body": "Kai agentas jungiasi su forma, CRM, el. paštu ar kitu įrankiu, prieš paleidimą užrašyk vieno puslapio specifikaciją. Pilnas testavimas ir saugumas – neprivalomoje skaidrėje „Darbo eiga, testavimas ir saugumas“.",
-                "blockVariant": "brand",
-                "copyable": "Darbo eigos specifikacija:\n1) Trigger – kas paleidžia srautą.\n2) Įvesties schema – kokie laukai privalomi.\n3) Condition – kokia sąlyga keičia eigą.\n4) Veiksmai – 3–5 veiksmai su įrankiais.\n5) Išvestis – koks rezultatas turi būti sukurtas.\n6) Klaidos tvarkymas – ką daryti, jei žingsnis nepavyksta.\n7) Audito įrašas – ką fiksuoti: laikas, žingsnis, rezultatas.\n8) Žmogaus patvirtinimas – kur jis reikalingas."
+                "copyable": "ROLĖ\nTu esi [sritis / rolė]. Tavo atsakomybė – [ką darai]. Turi prieigą prie [paieška / skaičiuoklė / API]. Ko nedaryti: [ribos, pvz. neišgalvok duomenų].\n\nUŽDUOTIS (žingsniais)\n(1) [Pirmas žingsnis, pvz. ieškoti X]\n(2) [Antras žingsnis, pvz. išrinkti 3–5 šaltinius]\n(3) [Trečias žingsnis, pvz. parašyti santrauką]\n\nĮRANKIAI\nNaudok [paieška / įrankis], kai [kada]. Jei reikia faktų – naudok paiešką arba parašyk „Nežinau“. Pateik šaltinius atsakymo pabaigoje.\n\nFORMATAS\n[Lentelė / sąrašas / ataskaita]. Kalba: lietuvių. Šaltiniai: nurodyk.\n\nKLAIDOS TVARKYMAS\nJei užduoties atlikti negalima (trūksta duomenų, timeout): parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką pataisyti. Nerašyk tuščio atsakymo."
               }
             ],
             "footer": "Toliau – skaidrė 18: Kontrolinis taškas: promptas"
@@ -12737,7 +12789,7 @@
               {
                 "heading": "Trumpai",
                 "body": "Agentas turi žinoti, ką daryti, kai kažkas nepavyksta. Nurodyk ribas: ko nedaryti, ką grąžinti vietoj tuščio atsakymo.",
-                "blockVariant": "brand"
+                "blockVariant": "accent"
               },
               {
                 "heading": "Daryk dabar",
@@ -12747,7 +12799,7 @@
               {
                 "heading": "Kopijuojamas promptas",
                 "body": "Pridėk prie sisteminio arba vartotojo prompto – ką daryti, kai nepavyksta.",
-                "copyable": "Jei užduoties atlikti negalima (trūksta duomenų, neleistinas veiksmas arba timeout): parašyk trumpą pranešimą „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Neverk tuščio atsakymo."
+                "copyable": "Jei užduoties atlikti negalima (trūksta duomenų, neleistinas veiksmas arba timeout): parašyk trumpą pranešimą „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Nerašyk tuščio atsakymo."
               },
               {
                 "heading": "Patikra",
@@ -12816,38 +12868,48 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Darbo eiga (workflow) turi keturis branduolius: **trigger** (kas paleidžia), **condition** (sąlyga), **action** (veiksmas), **webhook** (įvykis iš išorės). Žemiau – diagrama ir šablonas.",
+                "body": "Darbo eigos branduolys – trys žingsniai: **Trigger** → **Condition** → **Action**. **Webhook** – ne ketvirtas žingsnis, o Trigger tipas (išorinis įvykis → API). Žemiau – diagrama, pavyzdys ir šablonas.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Darbo eigos grandinė (diagrama)",
-                "body": "Trigger → Condition → Action; webhook gali paleisti triggerį iš naujo. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "heading": "Darbo eigos grandinė",
+                "body": "Trigger → Condition (jei reikia) → Action. Po Trigger – tipai: forma, laikas, **Webhook**. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
                 "image": "m10_trigger_flow",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Keturios pagrindinės sąvokos",
-                "body": "**Trigger** – kas paleidžia srautą (nauja forma, laiškas, laikas).\n\n**Condition** – sąlyga, kuri keičia eigą (jei suma > X).\n\n**Action** – ką sistema daro (rašo į CRM, siunčia laišką).\n\n**Webhook** – išorinis įvykis, kuris paleidžia triggerį.",
+                "heading": "Veikiantis pavyzdys",
+                "body": "**Forma:** Trigger – forma pateikta → Condition – jei el. paštas validus → Action – CRM įrašas + laiškas.\n\n**Apmokėjimas:** PayPal įvykis → **Webhook** = Trigger tipas → pardavimų sistema atnaujina užsakymą.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Sąvokos – kontrastas",
+                "body": "**Trigger** – įvykis, kuris paleidžia srautą (forma, laiškas, laikas).\n\n**Condition** – sąlyga / šaka (jei suma > X); pirmame sraute gali nebūti.\n\n**Action** – ką **sistema** daro (CRM, laiškas) – ne pats paleidiklis.\n\n**Webhook** – Trigger tipas: realaus laiko duomenys iš kitos sistemos (įvykis → API). Tai ne Action.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Kur pritaikyti",
+                "body": "**Pardavimai:** T: forma → A: CRM įrašas + priminimo laiškas.\n**Palaikymas:** T: laiškas → C: jei prioritetas aukštas → A: ticket + Slack.\n**Operacijos:** T: kasdieninis failas → A: patikra + ataskaita komandai.\n\nViena taisyklė: pirmiausia Trigger + Action; Condition ir Webhook – kai procesas jau veikia.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Aprašyk savo procesą keturiais laukais. Nukopijuok šabloną.",
+                "body": "Aprašyk savo procesą pagal pavyzdį. Nukopijuok šabloną ir užpildyk laukus.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas šablonas",
                 "body": "Užpildyk [ ] laukus.",
-                "copyable": "Procesas: [PROCESAS].\nTrigger: [KAS PALEIDŽIA].\nCondition: [SĄLYGA ARBA „nėra“].\nAction: [VEIKSMAS].\nWebhook: [TAIP/NE – iš kur]."
+                "copyable": "Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. Action 2: [VEIKSMAS]. Webhook? [TAIP/NE – iš kur]. Klaidos žingsnis: [ką daryti, jei nepavyksta]."
               },
               {
                 "heading": "Patikra",
-                "body": "Ar gali vienu sakiniu pasakyti skirtumą tarp **trigger** ir **webhook**? Jei ne – grįžk į sąvokas.",
+                "body": "Ar triggeris yra **įvykis** (ne užduotis), o action – **sistemos veiksmas**? Ar nurodytas klaidos žingsnis? Jei ne – grįžk į pavyzdį ir šabloną.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Papildomos sąvokos (jei reikia)",
-                "body": "Delay, filter, loop, error handler – kai srautas auga. Detaliau – optional skaidrėje „Darbo eiga, testavimas ir saugumas“.",
+                "body": "Delay, filter, loop, error handler – kai srautas auga. Detaliau – neprivalomoje skaidrėje **Darbo eigos testavimas ir saugumas**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -12879,7 +12941,7 @@
               "lead": "Agentų ciklas ir promptai – workflow sluoksnis pridėtas.",
               "items": [
                 "Trigger → Condition → Action – pagrindinė seka.",
-                "Webhook – realaus laiko duomenys tarp sistemų.",
+                "Webhook – Trigger tipas: realaus laiko įvykis tarp sistemų.",
                 "Integracija, API, klaidų tvarkymas ir logai – auditui ir derinimui."
               ],
               "itemGlossaryTerms": ["Trigger", "Webhook", "Integracija"]
@@ -12900,105 +12962,199 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Keturi dažni įrankiai: **Zapier** – greitas startas; **Make** – sudėtingesnė logika; **n8n** – kontrolė savo serveriuose; **Power Automate** – Microsoft ekosistema. Pasirink vieną pagal savo kontekstą. Jie automatizuoja **procesus** – jei reikia 24/7 programos, API ar DI agento paleidimo, kita skaidrė.",
+                "body": "Keturi Automate (80 %) įrankiai: **Zapier** – greitas startas; **Make** – sudėtingesnė logika; **n8n** – kontrolė savo serveriuose; **Power Automate** – Microsoft. Pasirink **vieną** – Trigger → Action juodraštis. 24/7 programai / API – kita skaidrė.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Kada ką rinktis",
-                "body": "**Ne techninė komanda, greitas startas** → **Zapier** (pvz. Calendly → kalendorius → priminimo laiškas).\n\n**Reikia sąlygų, ciklų, geresnės kainos** → **Make.com** (pvz. Shopify užsakymas → atsargos → tiekėjo alertas).\n\n**Techninė komanda, duomenys savo pusėje** → **n8n** (pvz. mokėjimo webhook → DB → Slack alertas).\n\n**Kasdien Teams / Outlook / SharePoint** → **Power Automate** (pvz. Outlook PDF → SharePoint → Teams).",
+                "heading": "Įrankių pasirinkimo medis",
+                "body": "Paspausk šaką – pamatysi, kuris įrankis tinka tavo kontekstui (įskaitant enterprise Workato).",
+                "image": "m10_tool_decision_tree",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink **vieną** įrankį savo procesui ir užpildyk šabloną.",
-                "blockVariant": "brand"
+                "body": "Pasirink **vieną** įrankį savo procesui. Žemiau – kada taip / kada ne, tada nukopijuok šabloną.",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "Kurį įrankį rinkiesi savo procesui?",
+                  "autoSelect": false,
+                  "choices": [
+                    {
+                      "label": "Zapier",
+                      "rowIndex": 0,
+                      "whenHint": "**Taip:** netechninė komanda, greitas startas. **Ne:** sudėtinga logika ar duomenys savo serveriuose. Pvz. Calendly → kalendorius → priminimo laiškas."
+                    },
+                    {
+                      "label": "Make.com",
+                      "rowIndex": 1,
+                      "whenHint": "**Taip:** sąlygos, ciklai, geresnė kaina. **Ne:** užtenka paprasto 2–3 žingsnių srauto. Pvz. Shopify užsakymas → atsargos → tiekėjo alertas."
+                    },
+                    {
+                      "label": "n8n",
+                      "rowIndex": 2,
+                      "whenHint": "**Taip:** techninė komanda, duomenys savo pusėje. **Ne:** nėra IT arba reikia greito SaaS. Pvz. mokėjimo webhook → DB → Slack alertas."
+                    },
+                    {
+                      "label": "Power Automate",
+                      "rowIndex": 3,
+                      "whenHint": "**Taip:** kasdien Teams / Outlook / SharePoint. **Ne:** pagrindinis stackas ne Microsoft. Pvz. Outlook PDF → SharePoint → Teams."
+                    }
+                  ]
+                }
               },
               {
-                "heading": "Kopijuojamas šablonas",
+                "heading": "Kopijuojamas šablonas – Zapier",
                 "body": "Užpildyk [ ] laukus.",
-                "copyable": "Procesas: [PROCESAS]. Pasirinktas įrankis: Zapier / Make / n8n / Power Automate. Kodėl (1 sakinys): [PRIEŽASTIS]. Trigger → Action (trumpai): [SCHEMA]."
+                "copyable": "Procesas: [PROCESAS].\nPasirinktas įrankis: Zapier.\nKodėl šis (1 sakinys): [PRIEŽASTIS].\nKodėl ne Make: [ ].\nTrigger → Action (trumpai): [SCHEMA].",
+                "linkedRowIndex": 0
+              },
+              {
+                "heading": "Kopijuojamas šablonas – Make.com",
+                "body": "Užpildyk [ ] laukus.",
+                "copyable": "Procesas: [PROCESAS].\nPasirinktas įrankis: Make.com.\nKodėl šis (1 sakinys): [PRIEŽASTIS].\nKodėl ne Zapier: [ ].\nTrigger → Action (trumpai): [SCHEMA].",
+                "linkedRowIndex": 1
+              },
+              {
+                "heading": "Kopijuojamas šablonas – n8n",
+                "body": "Užpildyk [ ] laukus.",
+                "copyable": "Procesas: [PROCESAS].\nPasirinktas įrankis: n8n.\nKodėl šis (1 sakinys): [PRIEŽASTIS].\nKodėl ne Make: [ ].\nTrigger → Action (trumpai): [SCHEMA].",
+                "linkedRowIndex": 2
+              },
+              {
+                "heading": "Kopijuojamas šablonas – Power Automate",
+                "body": "Užpildyk [ ] laukus.",
+                "copyable": "Procesas: [PROCESAS].\nPasirinktas įrankis: Power Automate.\nKodėl šis (1 sakinys): [PRIEŽASTIS].\nKodėl ne Zapier: [ ].\nTrigger → Action (trumpai): [SCHEMA].",
+                "linkedRowIndex": 3
               },
               {
                 "heading": "Patikra",
-                "body": "Ar gali paaiškinti, kodėl **nepasirinkai** kito įrankio? Jei ne – grįžk į „Kada ką rinktis“.",
+                "body": "Ar tavo šablone yra **kodėl ne** (alternatyva)? Jei ne – grįžk prie pasirinkimo ir užpildyk.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Daugiau apie kiekvieną",
-                "body": "**Zapier:** 7000+ integracijų; greitas startas; silpnybė – kaina didelėms apimtims.\n\n**Make.com:** drag & drop, sąlygos ir ciklai; silpnybė – mokymosi kreivė.\n\n**n8n:** open-source, self-host; silpnybė – reikia IT žinių.\n\n**Power Automate:** Microsoft saugumas ir licencijavimas; silpnybė – ribota už Microsoft.\n\nIšsamiau – dokumente **Automatizavimo įrankiai verslui**. Interaktyvus medis – skaidrė **Įrankių pasirinkimas ir apribojimai**.",
+                "body": "**Zapier:** daug integracijų; greitas startas; silpnybė – kaina didelėms apimtims.\n\n**Make.com:** drag & drop, sąlygos ir ciklai; silpnybė – mokymosi kreivė.\n\n**n8n:** open-source, savo serveriuose; silpnybė – reikia IT žinių.\n\n**Power Automate:** Microsoft saugumas ir licencijavimas; silpnybė – ribota už Microsoft.\n\n**Didelės įmonės valdymas** (auditoriai, atitiktis) → **Workato** – žr. medį aukščiau.\n\nGilesnė medžiaga – neprivalomoje skaidrėje **Darbo eigos testavimas ir saugumas**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 24: Paleidimas: PaaS"
+            "footer": "Toliau – skaidrė 24: Kur paleisti"
           },
           "shortTitle": "Automatizavimo įrankiai"
         },
         {
           "id": 10.36,
-          "title": "Paleidimas: kur veikia agentas ir API",
-          "subtitle": "Darbo eiga vs RPA vs DI agentas vs Railway tipo hostingas",
+          "title": "Kur paleisti programą ar agentą",
+          "subtitle": "Darbo eiga sudėlioja – paleidimo vieta paleidžia",
           "type": "content-block",
           "content": {
+            "preCopyCheckBlock": {
+              "heading": "Patikra",
+              "question": "Kuriuo sakiniu teisingai atskiri n8n nuo Railway?",
+              "options": [
+                "n8n paleidžia programą 24/7; Railway sudėlioja eigą",
+                "Abu daro tą patį – greitą automatizaciją",
+                "n8n sudėlioja eigą; Railway paleidžia programą ar agentą",
+                "Railway reikalingas tik Zapier įrankiams"
+              ],
+              "correct": 2,
+              "explanation": "n8n sudėlioja eigą; Railway paleidžia programą. Skirtingi sluoksniai – jei painioji, grįžk į „Trumpai“."
+            },
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "**Keturi sluoksniai:** darbo eiga (workflow: Zapier / Make / n8n) sudėlioja veiksmus; RPA (UiPath) spaudo UI be API; DI agentas analizuoja ir sprendžia; **paleidimas (PaaS)** – vieta internete, kur programa, API ar agentas veikia 24/7 (Railway, Render, Fly.io). Viena mintis: darbo eiga sudėlioja; PaaS paleidžia. Jei rašai kodą, šaltinis dažnai **GitHub** – giliau optional skaidrėje toliau.",
+                "body": "**Viena mintis:** darbo eiga sudėlioja veiksmus; paleidimo vieta (Railway, Render, Fly.io) paleidžia programą, API ar agentą. **Analogija:** n8n = proceso vadovas · agentas = darbuotojas · Railway = biuras.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Kada ką – paleidimo režimai",
-                "body": "Pasirink režimą pagal tai, ar programa turi klausytis įvykių, ar pakanka paleisti pagal laiką.",
+                "heading": "Keturi sluoksniai",
+                "body": "Pirmiausia atskirk, **ką** renkiesi – ne tik įrankio pavadinimą.",
                 "blockVariant": "brand",
                 "table": {
-                  "headers": ["Režimas", "Kada", "Pavyzdys"],
+                  "headers": ["Sluoksnis", "Pavyzdžiai", "Klausimas"],
                   "rows": [
                     [
-                      "Always-on",
-                      "Turi klausytis įvykių",
-                      "Telegram / Discord botas"
+                      "Darbo eiga",
+                      "Zapier, Make, n8n, Power Automate",
+                      "Kaip eina duomenys tarp sistemų?"
                     ],
-                    ["Cron", "Pagal laiką", "Kainų tikrinimas rytą"],
+                    ["RPA", "UiPath", "Kaip spaudo UI, kai nėra API?"],
                     [
-                      "Webhook + worker",
-                      "Ilga užduotis",
-                      "PDF analizė, ataskaita"
+                      "DI agentas",
+                      "ChatGPT / Claude + įrankiai",
+                      "Kas analizuoja ir sprendžia?"
+                    ],
+                    [
+                      "Paleidimas",
+                      "Railway, Render, Fly.io",
+                      "Kur programa veikia nuolat (24/7)?"
                     ]
                   ]
                 }
               },
               {
-                "heading": "Kada ką – PaaS orientacija",
-                "body": "Trys dažni paleidimo pasirinkimai (be kainų – jos keičiasi).",
-                "blockVariant": "brand",
+                "heading": "Kur paleisti (orientacija)",
+                "body": "Trys dažni pasirinkimai (be kainų). Atidaryk, kai renkiesi konkretų hostą.",
+                "blockVariant": "terms",
                 "table": {
-                  "headers": ["Platforma", "Kam geriausia"],
+                  "headers": ["Vieta", "Kam geriausia"],
                   "rows": [
                     ["Railway", "API + duomenų bazė + agentas greitam startui"],
                     ["Render", "Paprastas web + worker"],
                     ["Fly.io", "Kai reikia arti vartotojų skirtingose šalyse"]
                   ]
-                }
+                },
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Ar tavo scenarijui reikia **hostingo** (programa / API veikia nuolat)? Taip arba ne. Jei taip – pasirink režimą (always-on / cron / webhook+worker) ir užpildyk šabloną.",
-                "blockVariant": "brand"
+                "body": "Pasirink **vieną** režimą – tada nukopijuok tik tą šabloną ir užpildyk [ ] laukus.",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "Kaip turi veikti tavo programa?",
+                  "autoSelect": false,
+                  "choices": [
+                    {
+                      "label": "Always-on",
+                      "rowIndex": 0,
+                      "whenHint": "**Taip:** turi klausytis įvykių realiu laiku. **Ne:** užtenka paleisti pagal laiką. Pvz. Telegram / Discord botas."
+                    },
+                    {
+                      "label": "Pagal laiką (cron)",
+                      "rowIndex": 1,
+                      "whenHint": "**Taip:** kartojasi pagal grafiką. **Ne:** reikia nuolat klausytis žinučių. Pvz. kainų tikrinimas rytą."
+                    },
+                    {
+                      "label": "Webhook + worker",
+                      "rowIndex": 2,
+                      "whenHint": "**Taip:** ilga užduotis; greitas „priimta“ atsakymas. **Ne:** trumpas 2–3 žingsnių srautas be laukimo. Pvz. PDF analizė, ataskaita."
+                    }
+                  ]
+                }
               },
               {
-                "heading": "Kopijuojamas šablonas",
-                "body": "Užpildyk [ ] laukus.",
-                "copyable": "Procesas: [PROCESAS]\nWorkflow: Zapier / Make / n8n / Power Automate / nėra\nDI agentas: taip / ne\nRPA (UI be API): taip / ne\nKodas: GitHub repo / lokalus / nėra\nPaleidimas: Railway / Render / Fly.io / nenaudoju\nRežimas: always-on / cron / webhook+worker\nKodėl (1 sakinys): [ ]"
+                "heading": "Kopijuojamas šablonas – Always-on",
+                "body": "Užpildyk [ ] laukus. Režimas jau pažymėtas.",
+                "copyable": "Procesas: [PROCESAS]\nDarbo eiga: Zapier / Make / n8n / Power Automate / nėra\nPaleidimas: Railway / Render / Fly.io / nenaudoju\nRežimas: always-on\nKodėl (1 sakinys): [ ]",
+                "linkedRowIndex": 0
               },
               {
-                "heading": "Patikra",
-                "body": "Ar gali **vienu sakiniu** atskirti n8n nuo Railway? (n8n sudėlioja eigą; Railway paleidžia programą.) Jei ne – grįžk į „Trumpai“.",
-                "blockVariant": "accent"
+                "heading": "Kopijuojamas šablonas – Pagal laiką (cron)",
+                "body": "Užpildyk [ ] laukus. Režimas jau pažymėtas.",
+                "copyable": "Procesas: [PROCESAS]\nDarbo eiga: Zapier / Make / n8n / Power Automate / nėra\nPaleidimas: Railway / Render / Fly.io / nenaudoju\nRežimas: cron\nKodėl (1 sakinys): [ ]",
+                "linkedRowIndex": 1
+              },
+              {
+                "heading": "Kopijuojamas šablonas – Webhook + worker",
+                "body": "Užpildyk [ ] laukus. Režimas jau pažymėtas.",
+                "copyable": "Procesas: [PROCESAS]\nDarbo eiga: Zapier / Make / n8n / Power Automate / nėra\nPaleidimas: Railway / Render / Fly.io / nenaudoju\nRežimas: webhook + worker\nKodėl (1 sakinys): [ ]",
+                "linkedRowIndex": 2
               },
               {
                 "heading": "Daugiau: hybrid ir klaidos",
-                "body": "**Hybrid:** forma → n8n → DI agentas → Postgres → laiškas; agentas, API ir DB veikia PaaS (pvz. Railway).\n\n**Analogija:** n8n = proceso vadovas · agentas = darbuotojas · Postgres = archyvas · Railway = biuras.\n\n**Venk:** (1) DI agentas ten, kur užtenka Zapier; (2) RPA, kai yra API; (3) tik serverless funkcija Discord botui – reikia always-on.\n\n**Kodas ir deploy:** jei rašai programą – žr. optional skaidrę **GitHub kaip kodo šaltinis**.\n\nIšsamiau – **Automatizavimo įrankiai verslui**, skyrius „Paleidimas (PaaS)“.",
+                "body": "**Hybrid:** forma → n8n → DI agentas → Postgres → laiškas; agentas, API ir DB veikia paleidimo vietoje (pvz. Railway).\n\n**Venk:** (1) DI agentas ten, kur užtenka Zapier; (2) RPA, kai yra API; (3) tik serverless funkcija Discord botui – reikia always-on.\n\n**Papildomai šablone (jei reikia):** RPA taip/ne; kodas – GitHub / lokalus / nėra.\n\n**Kodas:** jei rašai programą – žr. neprivalomą skaidrę **GitHub kaip kodo šaltinis**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -13006,7 +13162,7 @@
             ],
             "footer": "Toliau – skaidrė 25: GitHub kaip kodo šaltinis"
           },
-          "shortTitle": "Paleidimas: PaaS"
+          "shortTitle": "Kur paleisti"
         },
         {
           "id": 10.37,
@@ -13018,7 +13174,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "**GitHub** saugo projekto kodą ir versijas (pagrindinis šaltinis). **Paleidimo platformos** (Railway, Render, Vercel) automatiškai paima naujausią kodą ir paleidžia jį internete. Viena mintis: GitHub saugo, PaaS paleidžia. Įrankiams be kodo (Zapier/Make) GitHub dažnai **nereikia**.",
+                "body": "**GitHub** saugo kodą ir versijas; **PaaS** (Railway / Render / Vercel) paleidžia. Tipinė eiga: lokalus darbas → GitHub → auto-deploy → veikia internete. Be kodo (Zapier/Make) GitHub dažnai **nereikia**.",
                 "blockVariant": "accent"
               },
               {
@@ -13042,19 +13198,14 @@
                 }
               },
               {
-                "heading": "Eiga",
-                "body": "Tipinė seka (orientacija): **lokalus darbas** → išsaugai pakeitimus į GitHub (commit / push) → platforma **automatiškai paleidžia** (auto-deploy) → svetainė, API ar agentas veikia Railway / Render / Vercel. Tai ne git pamoka – pakanka suprasti kryptį.",
-                "blockVariant": "brand"
-              },
-              {
                 "heading": "Daryk dabar",
-                "body": "Ar tavo scenarijui reikia **GitHub repo**? Taip arba ne – vienu sakiniu kodėl. Užpildyk šabloną.",
+                "body": "Ar tavo scenarijui reikia **GitHub repo**? Taip arba ne – vienu sakiniu kodėl.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas šablonas",
-                "body": "Užpildyk [ ] laukus; promptą – į DI.",
-                "copyable": "Procesas: [PROCESAS]\nKodas GitHub: taip / ne / dar nėra\nPaleidimas: Railway / Render / Vercel / nenaudoju\nKodėl (1 sakinys): [ ]\n\n---\nPromptas DI:\nPaaiškink skirtumą: GitHub vs Railway. Mano projektas: [APRAŠYMAS].\nAr man reikia GitHub + automatinio paleidimo (auto-deploy), ar užtenka įrankių be kodo (Zapier/Make)? Atsakyk 5 eilutėmis."
+                "body": "Užpildyk [ ] laukus; tada nukopijuok į DI.",
+                "copyable": "Procesas: [PROCESAS]\nKodas GitHub: taip / ne / dar nėra\nPaleidimas: Railway / Render / Vercel / nenaudoju\nKodėl (1 sakinys): [ ]\n\n---\nAr man reikia GitHub + auto-deploy, ar užtenka Zapier/Make? Atsakyk 3 eilutėmis."
               },
               {
                 "heading": "Patikra",
@@ -13063,7 +13214,7 @@
               },
               {
                 "heading": "Daugiau: tipinė eiga ir klaidos",
-                "body": "**Komandos vienoje eilutėje (jei jau naudoji git):** add → commit → push.\n\n**Replit** – greitas prototipas ar mokymų demonstracija; ne tas pats kas gamybinis Railway/Render.\n\n**Venk:** kodas tik lokaliai (be repo), kai reikia patikimo paleidimo ar komandos darbo.\n\nIšsamiau – **Automatizavimo įrankiai verslui**, §21b „GitHub kaip šaltinis“.",
+                "body": "**Eiga vienoje eilutėje:** lokalus → commit/push → GitHub → auto-deploy → PaaS.\n\n**Komandos (jei jau naudoji git):** add → commit → push.\n\n**Replit** – greitas prototipas; ne tas pats kas gamybinis Railway/Render.\n\n**Venk:** kodas tik lokaliai, kai reikia patikimo paleidimo ar komandos darbo.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -13082,17 +13233,17 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Prieš Modulio 12 praktikas užpildyk **minimalų darbo eigos aprašymą**: 1 psl. schema + 3 bandymo atvejai + taisyklė, kada tvirtina žmogus. Tą patį aprašymą neši į „QC vertintojas“ QC ir praktikas.",
+                "body": "Prieš Modulio 12 praktikas užpildyk **minimalų darbo eigos aprašymą**: 1 psl. schema + 3 bandymo atvejai + taisyklė, kada tvirtina žmogus. Tą patį aprašymą neši į QC vertintoją ir praktikas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Minimalus aprašymas",
-                "body": "**(A)** Specifikacija 1 psl.: paleidiklis → klaidų tvarkymas.\n**(B)** 3 bandymo atvejai: sėkmės kelias, trūksta lauko, API/timeout ar webhook dublikatas.\n**(C)** Žmogaus kontrolės taisyklė – režimas, sąlyga / riba, atmetimas arba eskalacija, audito įrašas.",
+                "body": "**(A)** Specifikacija 1 psl.: Trigger → klaidų tvarkymas.\n**(B)** 3 bandymo atvejai: sėkmės kelias, trūksta lauko, API/timeout ar webhook dublikatas.\n**(C)** Žmogaus kontrolės taisyklė – režimas, sąlyga / riba, atmetimas arba eskalacija, audito įrašas.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok šabloną ir užpildyk savo procesu. Vėliau – „QC vertintojas“ vertintojas.",
+                "body": "Nukopijuok šabloną ir užpildyk savo procesu. Vėliau – skaidrė **Agentų QC vertintojas**.",
                 "blockVariant": "brand"
               },
               {
@@ -13113,56 +13264,82 @@
         {
           "id": 10.65,
           "title": "Darbo eigos testavimas ir saugumas",
-          "subtitle": "Specifikacija, 10 testavimo scenarijų, saugumas, įrankių medis",
+          "subtitle": "Neprivaloma: 8 blokų spec, testai, saugumas",
           "type": "content-block",
           "optional": true,
           "content": {
             "sections": [
               {
-                "heading": "Kodėl čia?",
-                "body": "Kai kuriate **workflow tarp sistemų** (Zapier, Make, n8n) arba agentų su išoriniais duomenimis – reikia vienodos specifikacijos, testavimo ir saugumo taisyklių. Žemiau – pilnas matomas turinys; išsamiau – medžiagoje **Automatizavimo įrankiai verslui**.",
+                "heading": "Trumpai",
+                "body": "**Neprivaloma gilinimosi** skaidrė. Kai jungiate sistemas ar agentą su išoriniais duomenimis – reikia testų ir saugumo. MUST aprašymas jau yra skaidrėje **Minimalus eigos aprašymas**.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Darbo eigos specifikacija (diagrama)",
-                "body": "**8 specifikacijos blokai** kaip viena seka: nuo trigger iki audito žurnalo. Tekstas išsamiau – sekcijoje žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "body": "**8 blokai** nuo Trigger iki audito žurnalo. Detaliau – collapsible žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
                 "image": "m10_workflow_spec",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Incidentų planas (diagrama)",
-                "body": "**5 incidentų žingsniai** saugumui: sustabdyti, fiksuoti, įvertinti apimtį, pranešti ir ištaisyti. Tekstas išsamiau – saugumo sekcijoje žemiau. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "body": "**5 žingsniai:** sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
                 "image": "m10_incident_playbook",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Darbo eigos specifikacija (8 blokų)",
-                "body": "**Trigger** – kas paleidžia srautą (įvykis, dažnumas). **Įvesties schema** – kokie laukai, formatai, kas privaloma ar neprivaloma. **Condition** – sąlygos (pvz. jei laukas X > 500). **Actions** – žingsnių sąrašas su įrankiais. **Output** – ką gauname (įrašas CRM, laiškas, užklausa). **SLA, bandymai kartoti ir limitai** – didžiausias laukimo laikas, kiek kartų bandyti, API ribos. **Klaidų tvarkymas** – ką daryti klaidos atveju (kartoti, įspėti, eskaluoti žmogui). **Audito žurnalas** – ką fiksuojame (run_id, laikas, žingsnis, rezultatas).",
+                "heading": "8 blokų specifikacija",
+                "body": "**Trigger** – kas paleidžia. **Įvesties schema** – privalomi laukai. **Condition** – sąlygos. **Actions** – žingsniai + įrankiai. **Output** – rezultatas. **SLA / limitai** – laukimas, pakartojimai. **Klaidų tvarkymas** – kartoti, įspėti, eskaluoti. **Audito žurnalas** – run_id, laikas, žingsnis, rezultatas.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Paimk savo **Minimalus eigos aprašymas** juodraštį. Nukopijuok checklistą ir pažymėk 3 kokybės testus.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "10 testavimo scenarijų (prieš paleidžiant į gyvą)",
-                "body": "(1) Tušti laukai (privalomi tušti). (2) Neteisingas el. pašto formatas. (3) Dublikatai – tas pats įrašas du kartus. (4) Laiko limitas – API neatsako laiku. (5) Webhook dublikatai – tas pats webhook gaunamas du kartus. (6) Specialieji simboliai / ilgas tekstas laukuose. (7) Neleistinos reikšmės (ne skaičius ten, kur tikimasi skaičiaus). (8) Trūkstami laukai (schema pasikeitė). (9) Pasiektas naudojimo limitas (429). (10) Prisijungimo klaida (401/403).\n\n**Kartojimosi apsauga:** taisyklės, kad **tas pats veiksmas neįvyktų du kartus** dėl pasikartojančio webhook ar dvigubo paspaudimo – pvz. unikalus užklausos ID; jei įrašas su tuo ID jau yra – **atnaujink**, ne kurk naują.",
-                "blockVariant": "brand"
+                "heading": "Kopijuojamas checklistas",
+                "body": "Įklijuok aprašymą į [ ] ir paleisk DI.",
+                "copyable": "Štai mano minimalus darbo eigos aprašymas:\n[ĮKLIJUOK APRAŠYMĄ]\n\nPatikrink tris kokybės testus:\n(1) Tuščia įvestis – ar grąžina aiškų „Nepavyko“?\n(2) Klaidingas faktas – ar nepatvirtina?\n(3) Per ilgas tekstas – ar nepalūžta be pranešimo?\n\nAtsakyk trumpai: TAIP/NE kiekvienam + 1 trūkumas, jei yra."
               },
               {
-                "heading": "3 DI agento kokybės testai (papildomai)",
-                "body": "Prieš paleidimą patikrink DI agentą: (1) tuščia įvestis – ar grąžina aiškų „Nepavyko“? (2) klaidingas faktas – ar nepatvirtina? (3) per ilgas tekstas – ar nepalūžta be pranešimo?",
-                "blockVariant": "terms"
+                "heading": "Patikra",
+                "body": "Ar aprašyme yra bent **3 bandymai** ir taisyklė **kada tvirtina žmogus**? Jei ne – grįžk į **Minimalus eigos aprašymas**.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "10 testavimo scenarijų",
+                "body": "Prieš paleidimą į gyvą – eik per sąrašą. **Kartojimosi apsauga:** unikalus užklausos ID; jei įrašas jau yra – atnaujink, ne kurk naują.",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true,
+                "table": {
+                  "headers": ["#", "Scenarijus"],
+                  "rows": [
+                    ["1", "Tušti privalomi laukai"],
+                    ["2", "Neteisingas el. pašto formatas"],
+                    ["3", "Dublikatai – tas pats įrašas du kartus"],
+                    ["4", "Laiko limitas – API neatsako"],
+                    ["5", "Webhook dublikatai"],
+                    ["6", "Specialieji simboliai / ilgas tekstas"],
+                    ["7", "Neleistinos reikšmės"],
+                    ["8", "Trūkstami laukai (schema pasikeitė)"],
+                    ["9", "Naudojimo limitas (429)"],
+                    ["10", "Prisijungimo klaida (401/403)"]
+                  ]
+                }
+              },
+              {
+                "heading": "3 DI agento kokybės testai",
+                "body": "(1) Tuščia įvestis – ar grąžina „Nepavyko“? (2) Klaidingas faktas – ar nepatvirtina? (3) Per ilgas tekstas – ar nepalūžta be pranešimo?",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Saugumas ir atitiktis",
-                "body": "**Asmens duomenys:** ką leidžiama siųsti į DI, ką maskuoti (vardas, pavardė, el. paštas – pagal GDPR ir įmonės politiką). **Prieiga:** kas gali redaguoti workflow (peržiūrėtojas, redaktorius, administratorius); API raktai – ne kode, o platformos saugykloje. **Incidentų planas (5 žingsniai):** (1) Sustabdyti workflow / atjungti integraciją. (2) Fiksuoti – žurnalai, kas, kada, ką. (3) Įvertinti apimtį. (4) Pranešti – DPO, vadovui, jei reikia valstybinėms institucijoms. (5) Ištaisyti ir įdiegti apsaugas. **Žmogaus patvirtinimas:** kada privalomas žmogaus sprendimas – pvz. finansinės operacijos virš X sumos, asmens duomenų masinis eksportas.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Įrankių pasirinkimo medis",
-                "body": "Čia **nekartojame** lentelės – tą patį medį ir interaktyvią schemą jau turi skaidrė **Įrankių pasirinkimas ir apribojimai („Įrankių pasirinkimas“)**. Išsamiau – dokumente **Automatizavimo įrankiai verslui** (§21).",
-                "blockVariant": "terms"
-              },
-              {
-                "heading": "Išsamus gidas",
-                "body": "Visa medžiaga – **Automatizavimo įrankiai verslui**: specifikacija, testavimas, saugumas, įrankio pasirinkimo medis ir daugiau.",
+                "body": "**Asmens duomenys:** ką leidžiama siųsti į DI, ką maskuoti. **Prieiga:** kas redaguoja workflow; API raktai – platformos saugykloje, ne kode. **Incidentų planas:** sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti. **Žmogaus patvirtinimas:** finansai virš X, masinis asmens duomenų eksportas.",
                 "blockVariant": "brand"
               }
             ],
@@ -13313,7 +13490,7 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokai",
-            "introBody": "Sveikiname! Esminiai laimėjimai: agentų taksonomija (L0–L3, rolės), 5 workflow šablonai, 3A, uždaro mokymosi ciklas, DI ir įrankiai be programavimo, promptai ir klaidų tvarkymas.",
+            "introBody": "Sveikiname! Esminiai laimėjimai: agentų gylis (Pokalbis → Srautas) ir rolės, 5 workflow šablonai, 3A, uždaro mokymosi ciklas, DI su įrankiais, promptai ir klaidų tvarkymas.",
             "stats": [
               {
                 "label": "Gylio lygiai + rolės",
@@ -13330,11 +13507,11 @@
             ],
             "sections": [
               {
-                "heading": "Taksonomija ir keli agentai",
+                "heading": "Gylis ir keli agentai",
                 "icon": "Users",
                 "color": "violet",
                 "items": [
-                  "L0–L3 gylio lygiai",
+                  "Pokalbis → Agentas → Komanda → Srautas",
                   "Koordinatorius, specialistas, vertintojas, maršrutizatorius",
                   "5 workflow šablonai verslui"
                 ]
@@ -13350,17 +13527,17 @@
                 ]
               },
               {
-                "heading": "Promptai ir use case katalogas",
+                "heading": "Promptai ir workflow bilietas",
                 "icon": "Target",
                 "color": "accent",
                 "items": [
-                  "5 dalių agentinis šablonas",
-                  "Pardavimai: užklausa→CRM; pardavimų eiga; RFP",
-                  "HR, finansai ir support: nuo santraukos iki eskalacijos"
+                  "5 dalių agentinis šablonas + klaidos tvarkymas",
+                  "Trigger → Condition → Action; įrankių pasirinkimas",
+                  "1 psl. darbo eigos aprašymas prieš praktiką"
                 ]
               }
             ],
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 10.\nINPUT: Ką tik baigiau mokymą apie DI agentus – taksonomiją (L0–L3), kelių agentų darbą, 5 workflow šablonus, 3A, uždaro mokymosi ciklą ir promptus.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kokią pamoką po bandymo norėčiau fiksuoti? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 10.\nINPUT: Ką tik baigiau mokymą apie DI agentus – gylį (Pokalbis→Srautas), kelių agentų darbą, 5 workflow šablonus, 3A, uždaro mokymosi ciklą ir promptus.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento scenarijų galėčiau pritaikyti šiandien? (2) Kokią pamoką po bandymo norėčiau fiksuoti? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas",
             "tagline": "Agentas = žingsniai + įrankiai + ribos – tavo pagrindas automatizacijai.",
             "nextStepCTA": "Pereik prie Modulio 11: Žinių patikrinimas (Agentų kelias)",
@@ -13607,11 +13784,11 @@
           "type": "test-results",
           "content": {
             "passedMessage": "Sveikiname! Esi pasiruošęs Agentų inžinerijos projektui (Modulis 12).",
-            "failedMessage": "Verta peržiūrėti Modulio 10 temas: agento ciklą, 3A taksonomiją, koordinatoriaus ir specialistų vaidmenis, workflow šablonus, įrankių naudojimą, klaidų tvarkymą ir Zapier / Make integracijas.",
+            "failedMessage": "Verta peržiūrėti Modulio 10 temas: agento ciklą, 3A juostas (gylis ir rolės), koordinatoriaus ir specialistų vaidmenis, darbo eigos šablonus, įrankius, klaidų tvarkymą ir Zapier / Make integracijas.",
             "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 12. Mažiau – peržiūrėk agento ciklą, 3A, kelių agentų vaidmenis, workflow šablonus ir promptų saugiklius.",
             "useCaseBlock": {
               "heading": "Kur pritaikyti?",
-              "body": "Taksonomija, kelių agentų darbas, workflow (trigger, action), 3A ir įrankiai – tyrimai, ataskaitos, klientų aptarnavimo triažas, RFP analizė.",
+              "body": "Gylis ir rolės, kelių agentų darbas, workflow (trigger, action), 3A ir įrankiai – tyrimai, ataskaitos, klientų aptarnavimo triažas, RFP analizė.",
               "blockVariant": "accent"
             },
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Agentų kelio testo.\nINPUT: Ką tik baigiau Modulio 11 žinių patikrinimą – agentų ciklą, 3A, workflow šablonus, įrankius ir promptų saugiklius.\nOUTPUT: Užduok 3 klausimus: (1) Kurį agento žingsnį pritaikysiu per 24 val.? (2) Kas buvo naujausia? (3) Ką noriu išbandyti Modulyje 12? Po mano atsakymų duok 1 konkretų patarimą.",
@@ -13704,26 +13881,76 @@
           "subtitle": "Schema – kur reikia žmogaus patvirtinimo",
           "type": "content-block",
           "content": {
+            "preCopyCheckBlock": {
+              "question": "Augment juostoje (Laiškas → DI → Patvirtinimas → Siųsti) – kuriame chip'e reikia žmogaus?",
+              "options": [
+                "Kiekviename žingsnyje",
+                "Tik Patvirtinimas (prieš Siųsti)",
+                "Tik Slack / pranešimas pabaigoje",
+                "Žmogaus niekur nereikia"
+              ],
+              "correct": 1,
+              "explanation": "Augment = DI paruošia, žmogus tvirtina prieš siuntimą. Automatize – mažai žmogaus; Autonomize – žmogus prie eskalacijos / kokybės."
+            },
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trys M12 praktikos atitinka 3A: **Automatize (80 %)** – taisyklės; **Augment (15 %)** – žmogus + DI; **Autonomize (5 %)** – ribota autonomija. Pasirink juostą prieš lab'ą.",
+                "body": "Trys M12 praktikos atitinka 3A: **Automatize (80 %)** – taisyklės; **Augment (15 %)** – žmogus + DI; **Autonomize (5 %)** – ribota autonomija. Žemiau pasirink juostą – tada nukopijuok šabloną.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Palyginimas",
-                "body": "Diagrama: trys praktikos greta. **Peržiūrėti pilname dydyje** – tas pats vaizdas modale.",
+                "body": "Trys eigos greta – **paryškintas chip** = kur reikia žmogaus (Augment / Autonomize).",
                 "image": "m12_three_labs",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Užsirašyk, kuri praktika (**1 / 2 / 3**) geriausiai tinka vienam tavo procesui ir kodėl (1 sakinys).",
-                "blockVariant": "brand"
+                "body": "Pasirink **vieną** 3A juostą savo procesui. Po pasirinkimo matysi tik tos juostos šabloną.",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "Kuri 3A juosta tavo procesui?",
+                  "autoSelect": false,
+                  "choices": [
+                    {
+                      "label": "Automatize",
+                      "rowIndex": 0,
+                      "whenHint": "**Taip:** aiškios taisyklės, mažai sprendimų. **Ne:** reikia žmogaus patvirtinimo prieš veiksmą."
+                    },
+                    {
+                      "label": "Augment",
+                      "rowIndex": 1,
+                      "whenHint": "**Taip:** DI juodraštis + žmogus tvirtina. **Ne:** viskas grynos taisyklės be peržiūros."
+                    },
+                    {
+                      "label": "Autonomize",
+                      "rowIndex": 2,
+                      "whenHint": "**Taip:** ribota autonomija + eskalacija / kokybė. **Ne:** kiekvieną žingsnį tvirtina žmogus."
+                    }
+                  ]
+                }
+              },
+              {
+                "heading": "Šablonas – Automatize",
+                "body": "Užpildyk [ ] – tada eik į **praktiką 1** (Automatize).",
+                "copyable": "Mano procesas: [pvz. Forma → CRM → laiškas → Slack]\n3A juosta: Automatize\nŽmogaus chip: (nėra gate – mažai sprendimų)\nKodėl (1 sakinys): [ ]\nToliau: praktika 1 (Automatize)",
+                "linkedRowIndex": 0
+              },
+              {
+                "heading": "Šablonas – Augment",
+                "body": "Užpildyk [ ] – tada eik į **praktiką 2** (Augment).",
+                "copyable": "Mano procesas: [pvz. klientų laiškų santrauka]\n3A juosta: Augment\nŽmogaus chip: Patvirtinimas (prieš Siųsti)\nKodėl (1 sakinys): [ ]\nToliau: praktika 2 (Augment)",
+                "linkedRowIndex": 1
+              },
+              {
+                "heading": "Šablonas – Autonomize",
+                "body": "Užpildyk [ ] – tada eik į **praktiką 3** (Autonomize).",
+                "copyable": "Mano procesas: [pvz. atsiliepimai → sentimentas → eskalacija]\n3A juosta: Autonomize\nŽmogaus chip: Eskalacija / kokybė\nKodėl (1 sakinys): [ ]\nToliau: praktika 3 (Autonomize)",
+                "linkedRowIndex": 2
               },
               {
                 "heading": "Patikra",
-                "body": "Jei nežinai juostos – grįžk į **„3A strategija“** (3A) prieš praktiką.",
+                "body": "1) Ar gali įvardyti **žmogaus chip** savo juostoje?\n2) Kurią M12 praktiką (1 / 2 / 3) atidarai toliau?\n\nJei juosta neaiški – grįžk į M10 **„3A strategija“** prieš praktiką.",
                 "blockVariant": "accent"
               }
             ],
@@ -13737,11 +13964,11 @@
           "subtitle": "Įvestis → rolės → vertintojas → išvestis (+ žmogaus patvirtinimas)",
           "type": "content-block",
           "content": {
-            "whyBenefit": "Suprasi, kada vienam DI neužtenka ir kaip padalinti darbą be programavimo. Praktika – skaidrė Koordinatorius + 2 specialistai („Greitas startas“).",
+            "whyBenefit": "Suprasi, kada vienam DI neužtenka ir kaip padalinti darbą be programavimo. Pilną orkestravimo eigą matei skaidrėje **Agentų orkestravimo simuliacija** – čia tik praktikos žemėlapis ir perdavimo taisyklė. Praktika – skaidrė Koordinatorius + 2 specialistai („Greitas startas“).",
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Verslo multi-agent schema be programavimo: įvestis → maršrutizatorius → specialistai → vertintojas → išvestis (+ žmogaus patvirtinimas).",
+                "body": "Verslo kelių agentų schema be programavimo: įvestis → maršrutizatorius (pasirenkama) → koordinatorius → specialistai → vertintojas → išvestis (+ žmogaus patvirtinimas).",
                 "blockVariant": "accent"
               },
               {
@@ -13777,7 +14004,7 @@
         },
         {
           "id": 120.55,
-          "title": "Kontrolinis taškas: multi-agent schema",
+          "title": "Kontrolinis taškas: kelių agentų schema",
           "shortTitle": "Kontrolinis taškas",
           "subtitle": "Agentų praktikos kelias – patikrink schemą prieš praktiką",
           "type": "path-step",
@@ -13913,7 +14140,7 @@
             "title": "Užfiksuok darbo eigą ir artefaktus (Automatize)",
             "placeholder": "Įrašyk arba įklijuok savo darbo eigos aprašymą, laukų susiejimą ir bandymo atvejų santrauką…",
             "templateLabel": "Darbo eigos specifikacija – šablonas",
-            "template": "Trigger: naujas formos pateikimas. Veiksmai: (1) įrašyti į lentelę / CRM su laukų susiejimu, (2) išsiųsti personalizuotą laišką, (3) pranešti komandai Slack / Teams. Klaidos tvarkymas: ką daryti, jei API neatsako.",
+            "template": "Trigger: [pvz. naujas formos pateikimas]\nĮvestis: [privalomi laukai]\nSąlyga: [jei reikia]\nVeiksmai: (1) lentelė/CRM (2) laiškas (3) Slack/Teams\nIšvestis: [ką gauna komanda]\nKlaidos: [ką daryti, jei API neatsako]\nBandymas 1 (happy path): [ ]\nBandymas 2 (klaida): [ ]",
             "explanation": "Artefaktai įrodo, kad darbo eiga sukurta ir patikrinta.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
@@ -13929,9 +14156,9 @@
                 {
                   "step": 2,
                   "title": "Užpildyk 1 puslapio darbo eigos specifikaciją",
-                  "description": "Trigger, įvesties schema, sąlyga, veiksmai, išvestis, klaidos tvarkymas (žr. Automatizavimo įrankiai verslui – specifikacija).",
-                  "hint": "Trigger, įvesties schema, sąlyga, veiksmai, išvestis, klaidos tvarkymas (žr. Automatizavimo įrankiai verslui – specifikacija).",
-                  "partialSolution": "Trigger, įvesties schema, sąlyga, veiksmai, išvestis, klaidos tvarkymas (žr. Automatizavimo įrankiai verslui – specifikacija)."
+                  "description": "Naudok struktūrą kaip **Minimalus eigos aprašymas** (trigger → klaidos + 2 bandymai).",
+                  "hint": "Naudok struktūrą kaip **Minimalus eigos aprašymas** (trigger → klaidos + 2 bandymai).",
+                  "partialSolution": "Naudok struktūrą kaip **Minimalus eigos aprašymas** (trigger → klaidos + 2 bandymai)."
                 },
                 {
                   "step": 3,
@@ -14020,13 +14247,13 @@
             "context": "Srautas (rolės): **Klasifikatorius** → **Nuotaikos specialistas** → **Eskalacijos koordinatorius** → užklausa. Atsiliepimai (CRM / forma) → nuotaikos vertinimas su DI → eskalacija → užklausa (Jira, Trello, Teams).",
             "data": "Užduotis: apibrėžti slenksčius, eskalacijos taisykles ir paruošti artefaktus – schemą, nuorodą į incidentų planą.",
             "constraints": "Naudok Make, n8n arba Zapier su DI moduliu. Nurodyk, kada kurti užklausą ir kokius laukus užpildyti.",
-            "expectedFormat": "Artefaktai: darbo eigos schema (1 p.), nuotaikos slenksčių apibrėžimas, eskalacijos taisyklės, nuoroda į incidentų planą (5 žingsniai, žr. doc §20)."
+            "expectedFormat": "Artefaktai: darbo eigos schema (1 p.), nuotaikos slenksčių apibrėžimas, eskalacijos taisyklės, nuoroda į incidentų planą (5 žingsniai) – skaidrė **Testavimas ir saugumas** (neprivaloma)."
           },
           "practicalTask": {
             "title": "Užfiksuok autonominę darbo eigą ir taisykles",
             "placeholder": "Įrašyk nuotaikos slenksčius, eskalacijos taisykles ir darbo eigos santrauką…",
             "templateLabel": "Nuotaikos ir eskalacijos taisyklės",
-            "template": "Nuotaikos slenksčiai: jei < 3 žvaigždutės arba neigiamas atsiliepimas – sukurti užklausą ir pranešti komandai. Eskalacijos taisyklė: užklausos laukas „nuotaika“, „originalus_tekstas“ (trumpas). Incidentų planas: žr. Automatizavimo įrankiai verslui – saugumas.",
+            "template": "Pirmiausia užpildyk **Minimalus eigos aprašymas**, tada šią eigą.\n\nNuotaikos slenksčiai: jei < 3 žvaigždutės arba neigiamas atsiliepimas – sukurti užklausą ir pranešti komandai. Eskalacijos taisyklė: užklausos laukas „nuotaika“, „originalus_tekstas“ (trumpas).\n\nIncidentų planas: sustabdyti → fiksuoti → įvertinti → pranešti → ištaisyti (žr. **Testavimas ir saugumas**).",
             "explanation": "Aiškios taisyklės apsaugo nuo neteisingos masinės eskalacijos.",
             "allowMarkWithoutAnswer": true,
             "instructions": {
@@ -14049,9 +14276,9 @@
                 {
                   "step": 3,
                   "title": "Užrašyk darbo eigos schemą (1 p.) ir nuorodą į incidentų planą (5 žingsniai)",
-                  "description": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti.",
-                  "hint": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti.",
-                  "partialSolution": "Žr. doc §20 – sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti."
+                  "description": "5 žingsniai: sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti – skaidrė **Testavimas ir saugumas**.",
+                  "hint": "5 žingsniai: sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti – skaidrė **Testavimas ir saugumas**.",
+                  "partialSolution": "5 žingsniai: sustabdyti, fiksuoti, įvertinti, pranešti, ištaisyti – skaidrė **Testavimas ir saugumas**."
                 }
               ]
             }
@@ -14069,8 +14296,18 @@
           "type": "content-block",
           "optional": true,
           "content": {
-            "whyBenefit": "Šie 3 promptai kartoja Modulio 10 pagrindus kitame kontekste. Pasirink vieną, kuris tau aktualiausias – neprivaloma atlikti visų.",
+            "whyBenefit": "Neprivaloma: vienas M10 promptų pakartojimas – pasirink temą, kuri tau aktualiausia.",
             "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Trys trumpi promptai kartoja Modulio 10 pagrindus. **Pasirink vieną** – neprivaloma daryti visų.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Pasirink vieną temą žemiau; nukopijuok ir paleisk DI.",
+                "blockVariant": "brand"
+              },
               {
                 "heading": "Ataskaitos generatorius",
                 "body": "META + INPUT + OUTPUT – kelios veiklos: duomenys → analizė → 1 puslapio ataskaita.",
@@ -14081,13 +14318,22 @@
                 "heading": "Įrankių naudojimas",
                 "body": "Įjunk paiešką arba skaičiuoklę platformoje ir patikrink, ar DI panaudojo įrankį atsakyme.",
                 "copyable": "Naudok [įrankį – paieška arba skaičiuoklę] ir pateik rezultatą su trumpu paaiškinimu. Užduotis: [APRAŠYK].",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Klaidos tvarkymas ir ribos",
                 "body": "Pridėk prie sisteminio prompto ir bandyk užduotį be duomenų – DI turi aiškiai pasakyti, kai negali atlikti užduoties.",
                 "copyable": "Jei užduoties atlikti negalima: parašyk „Nepavyko: [priežastis]“ ir pasiūlyk, ką vartotojas gali pataisyti. Negrąžink tuščio atsakymo.",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar nukopijavai **vieną** ir paleidai DI? Jei ne – grįžk į Daryk.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – skaidrė 11: Projekto santrauka"

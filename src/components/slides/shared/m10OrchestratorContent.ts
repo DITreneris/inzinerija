@@ -33,9 +33,9 @@ const EDGE_VERBS_LT: Record<string, string> = {
   'input-router': 'nukreipia',
   'router-orch': 'parenka srautą',
   'state-orch': 'skaito / įrašo',
-  'orch-research': 'paskiria vykdymo agentus',
-  'orch-summarize': 'paskiria vykdymo agentus',
-  'orch-validate': 'paskiria vykdymo agentus',
+  'orch-research': 'paskiria agentus',
+  'orch-summarize': 'paskiria agentus',
+  'orch-validate': 'paskiria agentus',
   'research-tools': 'kviečia',
   'validate-eval': 'perduoda',
   'eval-output': 'patvirtina',
@@ -46,9 +46,9 @@ const EDGE_VERBS_EN: Record<string, string> = {
   'input-router': 'routes',
   'router-orch': 'selects flow',
   'state-orch': 'read / write',
-  'orch-research': 'assigns execution agents',
-  'orch-summarize': 'assigns execution agents',
-  'orch-validate': 'assigns execution agents',
+  'orch-research': 'assigns agents',
+  'orch-summarize': 'assigns agents',
+  'orch-validate': 'assigns agents',
   'research-tools': 'calls',
   'validate-eval': 'hands off',
   'eval-output': 'approves',
@@ -56,7 +56,7 @@ const EDGE_VERBS_EN: Record<string, string> = {
 };
 
 const LABELS_LT: M10OrchestratorLabels = {
-  aria: 'Agentų orkestravimo srautas: įvestis, maršrutizatorius, orkestratorius, būsena, specialistai, įrankiai, tikrinimas, vertintojas, rezultatas',
+  aria: 'Agentų orkestravimo srautas: įvestis, maršrutizatorius, orkestratorius, būsena, specialistai (Tyrėjas, Rašytojas, Tikrintojas), įrankiai, vertintojas, rezultatas',
   title: 'Agentų orkestravimo simuliacija',
   agentsBand: 'Vykdymo agentai',
   retryLabel: 'Kartoti',
@@ -66,9 +66,9 @@ const LABELS_LT: M10OrchestratorLabels = {
     router: ['Maršrutizatorius', 'kur eiti'],
     orchestrator: ['Orkestratorius', 'planas + bandymai'],
     state: ['Būsena', 'atmintis / changelog'],
-    research: ['Tyrimas', 'paieška'],
-    summarize: ['Sąrašas', 'sintezė'],
-    validate: ['Tikrinimas', 'kokybės vartai'],
+    research: ['Tyrėjas', 'paieška'],
+    summarize: ['Rašytojas', 'sintezė'],
+    validate: ['Tikrintojas', 'kokybės vartai'],
     tools: ['Įrankiai', 'paieška / API'],
     evaluator: ['Vertintojas', 'Patvirtinti / Kartoti'],
     output: ['Rezultatas', 'patvirtintas'],
@@ -87,24 +87,24 @@ const STEPS_LT: M10OrchestratorStepExplanation[] = [
   },
   {
     title: 'Orkestratorius',
-    body: 'Orkestratorius nusprendžia KAIP: sudaro planą Tyrimas → Sąrašas → Tikrinimas, seka bandymų limitus. Būsena (atmintis / changelog) saugo kontekstą ir kas jau bandyta.',
+    body: 'Orkestratorius nusprendžia KAIP: sudaro planą Tyrėjas → Rašytojas → Tikrintojas, seka bandymų limitus. Būsena (atmintis / changelog) saugo kontekstą ir kas jau bandyta.',
   },
   {
     title: 'Specialistai ir įrankiai',
-    body: 'Tyrimo agentas per įrankius ieško šaltinių RFP punktams; Sąrašas sutraukia faktus į santraukos punktus. Agentai – siauri darbuotojai; įrankiai (paieška / API) – išorinis sluoksnis, kurį jie kviečia.',
+    body: 'Tyrėjas per įrankius ieško šaltinių RFP punktams; Rašytojas sutraukia faktus į santraukos punktus. Agentai – siauri darbuotojai; įrankiai (paieška / API) – išorinis sluoksnis, kurį jie kviečia.',
   },
   {
     title: 'Klaida ir KARTOTI',
-    body: 'Tikrinimas randa punktą be citatos. Vertintojas priima sprendimą KARTOTI ir grąžina orkestratoriui tikslų taisymo nurodymą (rasti šaltinį trūkstamam punktui) – ne „paleisk viską iš naujo“.',
+    body: 'Tikrintojas (vykdymo agentas) randa punktą be citatos. Vertintojas (galutinis vartas) sprendžia KARTOTI ir grąžina orkestratoriui tikslų taisymo nurodymą – ne „paleisk viską iš naujo“.',
   },
   {
     title: 'Taisymas ir rezultatas',
-    body: 'Orkestratorius paleidžia tik tyrimą iš naujo; citata atsiranda, tikrinimas praeina. Rezultatas – Patvirtinti. Jei rizika didelė (pvz. teisinė atsakomybė), Vertintojas gali perduoti žmogui.',
+    body: 'Orkestratorius paleidžia tik Tyrėją iš naujo; citata atsiranda, Tikrintojas praeina. Rezultatas – Patvirtinti. Jei rizika didelė (pvz. teisinė atsakomybė), Vertintojas gali perduoti žmogui.',
   },
 ];
 
 const LABELS_EN: M10OrchestratorLabels = {
-  aria: 'Agent orchestration flow: input, router, orchestrator, state, specialists, tools, validation, evaluator, output',
+  aria: 'Agent orchestration flow: input, router, orchestrator, state, specialists (Researcher, Writer, Checker), tools, evaluator, output',
   title: 'Agent orchestration walkthrough',
   agentsBand: 'Execution agents',
   retryLabel: 'Retry',
@@ -114,9 +114,9 @@ const LABELS_EN: M10OrchestratorLabels = {
     router: ['Router', 'where to go'],
     orchestrator: ['Orchestrator', 'plan + retries'],
     state: ['State', 'memory / changelog'],
-    research: ['Research', 'search'],
-    summarize: ['Checklist', 'synthesis'],
-    validate: ['Validation', 'quality gate'],
+    research: ['Researcher', 'search'],
+    summarize: ['Writer', 'synthesis'],
+    validate: ['Checker', 'quality gate'],
     tools: ['Tools', 'search / API'],
     evaluator: ['Evaluator', 'Approve / Retry'],
     output: ['Output', 'approved'],
@@ -135,19 +135,19 @@ const STEPS_EN: M10OrchestratorStepExplanation[] = [
   },
   {
     title: 'Orchestrator',
-    body: 'The orchestrator decides HOW: it builds the plan Research → Checklist → Validation and tracks retry limits. State (memory / changelog) keeps context and what was already tried.',
+    body: 'The orchestrator decides HOW: it builds the plan Researcher → Writer → Checker and tracks retry limits. State (memory / changelog) keeps context and what was already tried.',
   },
   {
     title: 'Specialists and tools',
-    body: 'The research agent finds sources for RFP bullets via tools; Checklist compresses facts into summary points. Agents are narrow workers; tools (search / API) are the external layer they call.',
+    body: 'The Researcher finds sources for RFP bullets via tools; the Writer compresses facts into summary points. Agents are narrow workers; tools (search / API) are the external layer they call.',
   },
   {
     title: 'Error and RETRY',
-    body: 'Validation finds a bullet without a citation. The evaluator decides RETRY and sends the orchestrator a targeted fix (find a source for that bullet) – not “rerun everything”.',
+    body: 'The Checker (execution agent) finds a bullet without a citation. The Evaluator (final gate) decides RETRY and sends the orchestrator a targeted fix – not “rerun everything”.',
   },
   {
     title: 'Fix and output',
-    body: 'The orchestrator reruns only research; the citation appears, validation passes. Output is Approve. If risk is high (e.g. legal liability), the evaluator can hand off to a human.',
+    body: 'The orchestrator reruns only the Researcher; the citation appears, the Checker passes. Output is Approve. If risk is high (e.g. legal liability), the evaluator can hand off to a human.',
   },
 ];
 

@@ -8,6 +8,7 @@
     "pipelineSteps",
     "masterPromptSteps",
     "workflowSteps",
+    "starterPrompt",
     "reflectionSummary",
     "nextPageHeading",
     "nextPageIntro",
@@ -36,6 +37,7 @@
       "minItems": 1,
       "items": { "type": "string", "minLength": 1 }
     },
+    "starterPrompt": { "type": "string", "minLength": 1 },
     "reflectionSummary": { "type": "string", "minLength": 1 },
     "nextPageHeading": { "type": "string", "minLength": 1 },
     "nextPageIntro": { "type": "string", "minLength": 1 },

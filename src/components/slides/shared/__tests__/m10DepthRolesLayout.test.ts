@@ -9,14 +9,22 @@ import {
   pillsFitViewBox,
   roleStripGapOk,
   roleStripOnlyForTeam,
+  M10_DEPTH_PILL,
   M10_DEPTH_ROLE_BOX,
   M10_DEPTH_ROLES_VIEWBOX,
+  M10_DEPTH_TITLE_Y,
 } from '../m10DepthRolesLayout';
 
 describe('m10DepthRolesLayout', () => {
   it('fits four depth pills in the viewBox', () => {
     expect(getDepthPillRow()).toHaveLength(4);
     expect(pillsFitViewBox()).toBe(true);
+  });
+
+  it('keeps caption air between title and depth pills', () => {
+    expect(M10_DEPTH_PILL.startY - M10_DEPTH_TITLE_Y).toBeGreaterThanOrEqual(
+      18
+    );
   });
 
   it('shows taller viewBox only when roles strip is needed', () => {

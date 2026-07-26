@@ -11,27 +11,31 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
       trigger: 'Trigger',
       triggerSub: 'starts the flow',
       condition: 'Condition',
-      conditionSub: 'branch / filter',
+      conditionSub: 'if needed',
       action: 'Action',
       actionSub: 'system step',
-      webhook: 'Webhook',
-      webhookSub: 'real-time event',
-      arrowToTrigger: 'can act as trigger',
-      aria: 'Workflow: Trigger, Condition, Action; Webhook can start like a trigger',
+      typesLabel: 'Trigger types',
+      typeForm: 'Form',
+      typeSchedule: 'Schedule',
+      typeWebhook: 'Webhook',
+      typesHint: 'Webhook = a trigger type',
+      aria: 'Workflow: Trigger, Condition, Action; Webhook is a trigger type',
     };
   }
   return {
-    title: 'Workflow grandinė',
+    title: 'Darbo eigos grandinė',
     trigger: 'Trigger',
     triggerSub: 'paleidžia srautą',
     condition: 'Condition',
-    conditionSub: 'šaka / filtras',
+    conditionSub: 'jei reikia',
     action: 'Action',
     actionSub: 'veiksmas sistemoje',
-    webhook: 'Webhook',
-    webhookSub: 'realaus laiko įvykis',
-    arrowToTrigger: 'gali veikti kaip paleidiklis',
-    aria: 'Workflow: Trigger, Condition, Action; Webhook gali veikti kaip paleidiklis',
+    typesLabel: 'Trigger tipai',
+    typeForm: 'Forma',
+    typeSchedule: 'Laikas',
+    typeWebhook: 'Webhook',
+    typesHint: 'Webhook = Trigger tipas',
+    aria: 'Darbo eiga: Trigger, Condition, Action; Webhook yra Trigger tipas',
   };
 }
 
@@ -219,11 +223,35 @@ export function getM10IncidentPlaybookLabels(locale: M10Locale) {
 /** Shell step explanations – titles from labels; short bodies for walkthrough. */
 export function getM10TriggerFlowStepExplanations(locale: M10Locale) {
   const L = getM10TriggerFlowLabels(locale);
+  if (locale === 'en') {
+    return [
+      {
+        title: L.trigger,
+        body: `${L.triggerSub}. Types: ${L.typeForm}, ${L.typeSchedule}, ${L.typeWebhook}.`,
+      },
+      {
+        title: L.condition,
+        body: 'Optional branch / filter – skip until Trigger + Action already work.',
+      },
+      {
+        title: L.action,
+        body: L.actionSub,
+      },
+    ];
+  }
   return [
-    { title: L.trigger, body: L.triggerSub },
-    { title: L.condition, body: L.conditionSub },
-    { title: L.action, body: L.actionSub },
-    { title: L.webhook, body: `${L.webhookSub}. ${L.arrowToTrigger}.` },
+    {
+      title: L.trigger,
+      body: `${L.triggerSub}. Tipai: ${L.typeForm}, ${L.typeSchedule}, ${L.typeWebhook}.`,
+    },
+    {
+      title: L.condition,
+      body: 'Neprivaloma šaka / filtras – kol Trigger + Action neveikia, dar neįtrauk.',
+    },
+    {
+      title: L.action,
+      body: L.actionSub,
+    },
   ];
 }
 

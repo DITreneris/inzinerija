@@ -1,17 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import {
   getM12EdgePoints,
+  getM12FeedbackPathDesktop,
   getM12LineEnd,
   getM12MultiAgentDesktopBoxes,
   M12_MULTI_AGENT_EDGES_DESKTOP,
   M12_MULTI_AGENT_MARKER_LEN,
+  M12_MULTI_AGENT_TITLE_Y,
   getM12BoxMap,
+  m12DesktopBoxesFitViewBox,
+  m12SpineCenterYAligned,
 } from '../m12MultiAgentSchemaLayout';
 import {
   getLearningLoopBoxMap,
   getM10LearningLoopCompactBoxes,
   getM10LearningLoopDesktopBoxes,
   M10_LEARNING_LOOP_EDGES_DESKTOP,
+  M10_LEARNING_LOOP_PANELS,
   M10_LEARNING_LOOP_STEP_NODE_IDS,
   resolveLearningLoopStraight,
 } from '../m10LearningLoopLayout';
@@ -35,6 +40,11 @@ import {
   agentWorkflowForwardShaftLen,
   buildAgentWorkflowDesktopBoxes,
 } from '../agentWorkflowLayout';
+import {
+  M10_TRIGGER_FLOW_LAYOUT,
+  M10_TRIGGER_FLOW_STEP_COUNT,
+} from '../m10TriggerFlowLayout';
+import { getM10TriggerFlowStepExplanations } from '../m10DiagramContent';
 
 describe('m12MultiAgentSchemaLayout', () => {
   it('derives edge endpoints short of target by markerLen', () => {
@@ -64,7 +74,9 @@ describe('m12MultiAgentSchemaLayout', () => {
     );
   });
 
-  it('includes evaluator→coordinator feedback edge with path (M10-DIA-03)', () => {
+  it('includes evaluator→coordinator feedback edge + derived U path', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const boxes = getM12BoxMap(getM12MultiAgentDesktopBoxes(labels));
     const feedback = M12_MULTI_AGENT_EDGES_DESKTOP.find(
       (e) => e.id === 'evaluator-coordinator'
     );
@@ -72,7 +84,20 @@ describe('m12MultiAgentSchemaLayout', () => {
     expect(feedback!.kind).toBe('feedback');
     expect(feedback!.from).toBe('evaluator');
     expect(feedback!.to).toBe('coordinator');
-    expect(feedback!.path).toBeTruthy();
+    const d = getM12FeedbackPathDesktop(boxes);
+    expect(d).toMatch(/^M /);
+    expect(d.length).toBeGreaterThan(20);
+  });
+
+  it('fits desktop boxes in viewBox and aligns spine centerY', () => {
+    const labels = getM12MultiAgentSchemaLabels('lt');
+    const list = getM12MultiAgentDesktopBoxes(labels);
+    const boxes = getM12BoxMap(list);
+    expect(m12DesktopBoxesFitViewBox(list)).toBe(true);
+    expect(m12SpineCenterYAligned(boxes)).toBe(true);
+    expect(list[0].y - M12_MULTI_AGENT_TITLE_Y.desktop).toBeGreaterThanOrEqual(
+      18
+    );
   });
 });
 
@@ -91,9 +116,19 @@ describe('m10LearningLoopLayout edges', () => {
     expect(pts!.x2).toBeLessThan(map.rules.x);
   });
 
-  it('stores curved update paths in layout SOT', () => {
-    const curved = M10_LEARNING_LOOP_EDGES_DESKTOP.filter((e) => e.desktopPath);
-    expect(curved.length).toBeGreaterThanOrEqual(3);
+  it('routes update via bus helper (no center C-curves)', () => {
+    const labels = getM10LearningLoopLabels('lt');
+    const { loop } = getM10LearningLoopDesktopBoxes(labels);
+    const update = loop.find((b) => b.id === 'update')!;
+    const curvedLegacy = M10_LEARNING_LOOP_EDGES_DESKTOP.filter(
+      (e) =>
+        'desktopPath' in e &&
+        Boolean((e as { desktopPath?: string }).desktopPath)
+    );
+    expect(curvedLegacy).toHaveLength(0);
+    expect(update.x).toBeGreaterThanOrEqual(
+      M10_LEARNING_LOOP_PANELS.desktop.learn.x
+    );
   });
 
   it('keeps four macro steps as the intentional contract (M10-DIA-02)', () => {
@@ -184,5 +219,22 @@ describe('agentWorkflowLayout (I3c micro polish)', () => {
     expect(AGENT_WORKFLOW_TYPE.edgeLabelWeight).toBe(500);
     expect(AGENT_WORKFLOW_TYPE.nodeTitleWeight).toBe(700);
     expect(AGENT_WORKFLOW_TYPE.nodeDescWeight).toBe(500);
+  });
+});
+
+describe('m10TriggerFlowLayout', () => {
+  it('keeps Shell step count at 3 (T/C/A; Webhook is a trigger type)', () => {
+    expect(M10_TRIGGER_FLOW_STEP_COUNT).toBe(3);
+    expect(getM10TriggerFlowStepExplanations('lt')).toHaveLength(3);
+    expect(getM10TriggerFlowStepExplanations('en')).toHaveLength(3);
+  });
+
+  it('fits trigger-type chips under the main row inside the viewBox', () => {
+    const L = M10_TRIGGER_FLOW_LAYOUT;
+    expect(L.typeRowY + L.typeChipH).toBeLessThan(L.height);
+    expect(L.typesLabelY).toBeLessThan(L.typeRowY);
+    expect(L.yMain + L.boxH).toBeLessThan(L.typeRowY);
+    const rowW = 3 * L.boxW + 2 * L.gap;
+    expect(L.x0 + rowW).toBeLessThanOrEqual(L.width);
   });
 });

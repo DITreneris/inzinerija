@@ -6,20 +6,22 @@ import M12MultiAgentSchemaDiagram from './M12MultiAgentSchemaDiagram';
 import { getM12MultiAgentStepExplanations } from './m12MultiAgentSchemaContent';
 
 const ENLARGE = {
-  lt: 'Verslo multi-agent schema',
+  lt: 'Verslo kelių agentų schema',
   en: 'Business multi-agent schema',
 } as const;
 
 const LABELS = {
   lt: {
-    regionAria: 'Verslo multi-agent schema: 6 žingsniai',
+    regionAria: 'Verslo kelių agentų schema: 6 žingsniai',
     statusLabel: 'Pasirinktas žingsnis:',
-    navAria: 'Multi-agent schemos žingsnio pasirinkimas',
+    stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
+    navAria: 'Kelių agentų schemos žingsnio pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
   },
   en: {
     regionAria: 'Business multi-agent schema: 6 steps',
     statusLabel: 'Selected step:',
+    stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
     navAria: 'Multi-agent schema step selection',
     stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,
   },
@@ -41,6 +43,7 @@ export default function M12MultiAgentSchemaBlock() {
           density="hero"
           regionAria={labels.regionAria}
           statusLabel={labels.statusLabel}
+          stepOfLabel={labels.stepOf(currentStep + 1, totalSteps)}
           currentStep={currentStep}
           totalSteps={totalSteps}
           currentTitle={step.title}

@@ -11,6 +11,7 @@ import {
   loadPdfUnicodeFont,
   registerUnicodePdfFont,
 } from './pdfNotoFont';
+import { drawClickableUrl } from './pdfLink';
 
 const ACCENT_COLOR = '#d4a520';
 const MARGIN = 18;
@@ -55,9 +56,9 @@ export interface DownloadCertificateOptions {
   programTitle?: string;
   /** Certificate label (e.g. "SERTIFIKATAS" / "CERTIFICATE"). */
   certificateLabel?: string;
-  /** Label before author name (e.g. "Programa ir metodika:"). */
+  /** Label before author name (e.g. "Autorius:" / "Author:"). */
   authorByLabel?: string;
-  /** Label before product name (e.g. "Autorius:"). */
+  /** Label before product name (e.g. "Programa ir metodika:" / "Program and methodology:"). */
   authorProductLabel?: string;
   /** Serial number prefix (e.g. "Sertifikato Nr." / "Certificate No."). */
   serialLabel?: string;
@@ -148,10 +149,10 @@ export async function downloadCertificatePdf(
     options?.certificateLabel ??
     (locale === 'en' ? 'CERTIFICATE' : 'SERTIFIKATAS');
   const authorByLabel =
-    options?.authorByLabel ??
-    (locale === 'en' ? 'Program and methodology:' : 'Programa ir metodika:');
+    options?.authorByLabel ?? (locale === 'en' ? 'Author:' : 'Autorius:');
   const authorProductLabel =
-    options?.authorProductLabel ?? (locale === 'en' ? 'Author:' : 'Autorius:');
+    options?.authorProductLabel ??
+    (locale === 'en' ? 'Program and methodology:' : 'Programa ir metodika:');
 
   // Plonas rėmelis (pilka)
   doc.setDrawColor(136, 136, 136);
@@ -244,26 +245,27 @@ export async function downloadCertificatePdf(
   applyFont(doc, useCustomFont);
   doc.text(content.footerText, PAGE_W / 2, PAGE_H - 15, { align: 'center' });
 
-  // Privaloma nuoroda ir CTA (promptanatomy.app) – spaudžiama nuoroda PDF (jsPDF textWithLink)
+  // Privaloma nuoroda ir CTA (promptanatomy.app) – label + hitbox (pdfLink)
   const websiteUrl = options?.websiteUrl;
   const websiteCta = options?.websiteCta || websiteUrl;
   if (websiteCta && websiteUrl) {
     const linkY = PAGE_H - 10;
-    const docWithLink = doc as jsPDF & {
-      textWithLink?(
-        text: string,
-        x: number,
-        y: number,
-        opts: { url: string }
-      ): void;
-    };
-    if (typeof docWithLink.textWithLink === 'function') {
-      const w = doc.getTextWidth(websiteCta);
-      const linkX = Math.max(MARGIN, (PAGE_W - w) / 2);
-      docWithLink.textWithLink(websiteCta, linkX, linkY, { url: websiteUrl });
-    } else {
-      doc.text(websiteCta, PAGE_W / 2, linkY, { align: 'center' });
-    }
+    const contentW = PAGE_W - MARGIN * 2;
+    drawClickableUrl({
+      doc,
+      label: websiteCta,
+      url: websiteUrl,
+      x: MARGIN,
+      y: linkY,
+      maxWidth: contentW,
+      labelFontSize: FONT_FOOTER + 1,
+      urlFontSize: FONT_FOOTER,
+      labelLineHeight: 3.5,
+      urlLineHeight: 3,
+      applyFont: () => applyFont(doc, useCustomFont),
+      showUrl: false,
+      align: 'center',
+    });
   }
 
   const safeName = (

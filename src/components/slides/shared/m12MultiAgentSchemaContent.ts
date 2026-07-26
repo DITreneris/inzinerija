@@ -11,9 +11,15 @@ export interface M12MultiAgentSchemaLabels {
   specialistB: DiagramLabelPair;
   evaluator: DiagramLabelPair;
   output: DiagramLabelPair;
-  handoff: string;
-  hitl: string;
-  feedback: string;
+  /** Staged process edge verbs (W7 Option B). */
+  edgeVerbs: {
+    routes: string;
+    selects: string;
+    assigns: string;
+    handsOff: string;
+    approves: string;
+    returns: string;
+  };
   aria: string;
 }
 
@@ -39,10 +45,15 @@ export function getM12MultiAgentSchemaLabels(
       specialistA: pair('Specialist A', 'research / draft'),
       specialistB: pair('Specialist B', 'calculation / check'),
       evaluator: pair('Evaluator', 'QC + returns'),
-      output: pair('Output', 'HITL gate'),
-      handoff: 'clear handoff',
-      hitl: 'human approves',
-      feedback: 'return to coordinator',
+      output: pair('Output', 'human approval'),
+      edgeVerbs: {
+        routes: 'routes',
+        selects: 'selects',
+        assigns: 'assigns',
+        handsOff: 'hands off',
+        approves: 'approves',
+        returns: 'returns',
+      },
       aria: 'Business multi-agent flow: input, optional router, coordinator, two specialists, evaluator with return to coordinator, output with human approval',
     };
   }
@@ -56,9 +67,14 @@ export function getM12MultiAgentSchemaLabels(
     specialistB: pair('Specialistas B', 'skaičiavimas / patikra'),
     evaluator: pair('Vertintojas', 'kokybė + grąžinimas'),
     output: pair('Išvestis', 'žmogaus patvirtinimas'),
-    handoff: 'aiškus perdavimas',
-    hitl: 'žmogus patvirtina',
-    feedback: 'grąžinimas koordinatoriui',
+    edgeVerbs: {
+      routes: 'nukreipia',
+      selects: 'parenka',
+      assigns: 'paskiria',
+      handsOff: 'perduoda',
+      approves: 'tvirtina',
+      returns: 'grąžina',
+    },
     aria: 'Verslo kelių agentų srautas: įvestis, pasirenkamas maršrutizatorius, koordinatorius, du specialistai, vertintojas su grąžinimu koordinatoriui ir išvestis su žmogaus patvirtinimu',
   };
 }
@@ -74,7 +90,7 @@ export function getM12MultiAgentStepExplanations(
       },
       {
         title: 'Router',
-        body: 'The optional router classifies the request and sends it to the right path.',
+        body: 'The optional router classifies the request and routes it to the right path.',
       },
       {
         title: 'Coordinator',
@@ -82,14 +98,14 @@ export function getM12MultiAgentStepExplanations(
       },
       {
         title: 'Specialists',
-        body: 'Specialists do narrow work: research, draft, calculation or checks.',
+        body: 'Specialists do narrow work: research, draft, calculation or checks – then hand off in a clear format.',
       },
       {
         title: 'Evaluator',
         body: 'The evaluator checks quality, rules and gaps. If quality fails, work returns to the coordinator (dashed feedback) instead of going to output.',
       },
       {
-        title: 'Output + HITL',
+        title: 'Output + human approval',
         body: 'The final output passes through a human approval gate before it reaches a customer or manager.',
       },
     ];
@@ -110,7 +126,7 @@ export function getM12MultiAgentStepExplanations(
     },
     {
       title: 'Specialistai',
-      body: 'Specialistai vykdo siaurus darbus: tyrimą, juodraštį, skaičiavimą arba patikrą.',
+      body: 'Specialistai vykdo siaurus darbus: tyrimą, juodraštį, skaičiavimą arba patikrą – tada perduoda aiškiu formatu.',
     },
     {
       title: 'Vertintojas',

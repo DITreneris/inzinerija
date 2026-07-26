@@ -1,6 +1,6 @@
 /**
  * M10 – closed-loop agent learning system.
- * Two panels: execution system + learning loop, with update arrows back to rules and skills.
+ * Dual-panel + update bus (gutter magistrale); staged edges per 4 makro steps.
  */
 import { useId } from 'react';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
@@ -15,41 +15,47 @@ import {
   DIAGRAM_TOKENS,
   getDiagramActiveStroke,
 } from './diagramTokens';
+import { getProcessArrowMarkerGeom } from './processArrowMarker';
+import { learningLoopTipPoints } from './learningLoopUpdateBus';
 import {
   getLearningLoopBoxMap,
+  getLearningLoopCompactBusX,
+  getLearningLoopDesktopBusX,
+  getLearningLoopNodeVisualState,
+  getLearningLoopUpdateBusForBoxes,
   getM10LearningLoopCompactBoxes,
   getM10LearningLoopDesktopBoxes,
-  M10_LEARNING_LOOP_ARROW_TIP,
-  M10_LEARNING_LOOP_EDGES_DESKTOP,
+  M10_LEARNING_LOOP_EDGES,
+  M10_LEARNING_LOOP_ORPHAN_OPACITY,
+  M10_LEARNING_LOOP_PANELS,
   M10_LEARNING_LOOP_STEP_NODE_IDS,
   M10_LEARNING_LOOP_VIEWBOX,
-  resolveLearningLoopStraight,
+  resolveLearningLoopEdge,
+  shouldPaintLearningLoopEdge,
+  shouldShowLearningLoopCycleRing,
+  shouldShowLearningLoopEdgeLabel,
+  type LearningLoopNodeVisual,
   type M10LearningLoopBox,
-  type M10LearningLoopEdge,
+  type M10LearningLoopEdgeKind,
 } from './m10LearningLoopLayout';
 
-const TIP = M10_LEARNING_LOOP_ARROW_TIP;
-const TIP_H = TIP * 0.9;
-const BRAND = DIAGRAM_ROLE_COLORS.brand;
 const BRAND_LIGHT = DIAGRAM_ROLE_COLORS.brandTop;
 const TEAL = DIAGRAM_ROLE_COLORS.teal;
 const VIOLET = DIAGRAM_ROLE_COLORS.violet;
 const AMBER = DIAGRAM_ROLE_COLORS.amber;
 const SLATE = DIAGRAM_ROLE_COLORS.slate;
+const FLOW = DIAGRAM_ROLE_COLORS.greyForward;
 const ACTIVE_STROKE = getDiagramActiveStroke();
+const MARKER = getProcessArrowMarkerGeom();
+/** Local orphan dim – ≠ DIAGRAM_TOKENS.opacity.inactive (LMS floor 0.88). */
+const ORPHAN_OPACITY = M10_LEARNING_LOOP_ORPHAN_OPACITY;
+const CYCLE_RING_PAD = 10;
+const CYCLE_RING_OPACITY = 0.35;
 
-function edgeColor(kind: M10LearningLoopEdge['kind']) {
-  if (kind === 'record') return VIOLET;
-  if (kind === 'eval') return AMBER;
-  if (kind === 'lessons') return VIOLET;
-  if (
-    kind === 'to-update' ||
-    kind === 'update-rules' ||
-    kind === 'update-skills'
-  ) {
-    return TEAL;
-  }
-  return BRAND;
+function edgeStroke(kind: M10LearningLoopEdgeKind) {
+  if (kind === 'record' || kind === 'learn') return VIOLET;
+  if (kind === 'update') return TEAL;
+  return FLOW;
 }
 
 function toneFill(tone: M10LearningLoopBox['tone']) {
@@ -62,19 +68,19 @@ function toneFill(tone: M10LearningLoopBox['tone']) {
 
 function NodeBox({
   box,
-  active,
-  dimmed,
+  visualState,
   stroke,
   onActivate,
 }: {
   box: M10LearningLoopBox;
-  active: boolean;
-  dimmed: boolean;
+  visualState: LearningLoopNodeVisual;
   stroke: string;
   onActivate?: () => void;
 }) {
+  const isActive = visualState === 'active';
+  const opacity = visualState === 'orphan' ? ORPHAN_OPACITY : 1;
   return (
-    <g opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}>
+    <g opacity={opacity}>
       <rect
         x={box.x}
         y={box.y}
@@ -82,27 +88,27 @@ function NodeBox({
         height={box.h}
         rx="12"
         fill={toneFill(box.tone)}
-        stroke={active ? ACTIVE_STROKE : stroke}
-        strokeWidth={active ? 3 : 1}
+        stroke={isActive ? ACTIVE_STROKE : stroke}
+        strokeWidth={isActive ? 3 : 1}
       />
       <text
         x={box.x + box.w / 2}
-        y={box.y + 24}
+        y={box.y + 22}
         textAnchor="middle"
         fill="white"
         fontSize="12"
         fontWeight="700"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[0]}
       </text>
       <text
         x={box.x + box.w / 2}
-        y={box.y + 43}
+        y={box.y + 40}
         textAnchor="middle"
         fill="rgba(255,255,255,0.88)"
         fontSize="9"
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[1]}
       </text>
@@ -120,57 +126,46 @@ function NodeBox({
   );
 }
 
-function Arrow({
-  x1,
-  y1,
-  x2,
-  y2,
-  markerId,
-  color = BRAND,
-  dashed = false,
+function EdgePill({
+  x,
+  y,
+  label,
+  fill,
+  bg,
 }: {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-  markerId: string;
-  color?: string;
-  dashed?: boolean;
+  x: number;
+  y: number;
+  label: string;
+  fill: string;
+  bg: string;
 }) {
+  const w = Math.min(150, Math.max(64, label.length * 7.2 + 16));
+  const h = 18;
   return (
-    <line
-      x1={x1}
-      y1={y1}
-      x2={x2}
-      y2={y2}
-      stroke={color}
-      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-      strokeDasharray={dashed ? '5 4' : undefined}
-      markerEnd={`url(#${markerId})`}
-    />
-  );
-}
-
-function CurvedArrow({
-  d,
-  markerId,
-  color = TEAL,
-  dashed = false,
-}: {
-  d: string;
-  markerId: string;
-  color?: string;
-  dashed?: boolean;
-}) {
-  return (
-    <path
-      d={d}
-      fill="none"
-      stroke={color}
-      strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
-      strokeDasharray={dashed ? '5 4' : undefined}
-      markerEnd={`url(#${markerId})`}
-    />
+    <g>
+      <rect
+        x={x - w / 2}
+        y={y - h / 2}
+        width={w}
+        height={h}
+        rx={9}
+        fill={bg}
+        stroke={fill}
+        strokeWidth={1}
+        opacity={0.96}
+      />
+      <text
+        x={x}
+        y={y + 4}
+        textAnchor="middle"
+        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+        fill={fill}
+        fontFamily={DIAGRAM_TOKENS.font}
+      >
+        {label}
+      </text>
+    </g>
   );
 }
 
@@ -189,18 +184,18 @@ export default function M10LearningLoopDiagram({
   const L = getM10LearningLoopLabels(locale);
   const palette = useDiagramPalette();
   const { isCompactDiagram } = useCompactViewport();
-  const arrowId = `m10ll-arrow-${uid}`;
-  const tealArrowId = `m10ll-teal-${uid}`;
-  const activeNodeIds =
-    M10_LEARNING_LOOP_STEP_NODE_IDS[currentStep] ??
-    M10_LEARNING_LOOP_STEP_NODE_IDS[0];
+  const flowMarkerId = `m10ll-flow-${uid}`;
+  const recordMarkerId = `m10ll-record-${uid}`;
+
   const stepForNode = (id: M10LearningLoopBox['id']) =>
     M10_LEARNING_LOOP_STEP_NODE_IDS.findIndex((nodes) => nodes.includes(id));
   const nodeProps = (box: M10LearningLoopBox) => {
     const stepIndex = stepForNode(box.id);
+    const visualState = onStepClick
+      ? getLearningLoopNodeVisualState(currentStep, box.id)
+      : ('live' as LearningLoopNodeVisual);
     return {
-      active: activeNodeIds.includes(box.id),
-      dimmed: Boolean(onStepClick) && !activeNodeIds.includes(box.id),
+      visualState,
       stroke: palette.brandDark,
       onActivate:
         onStepClick && stepIndex >= 0
@@ -209,314 +204,292 @@ export default function M10LearningLoopDiagram({
     };
   };
 
-  if (isCompactDiagram) {
-    const boxes = getM10LearningLoopCompactBoxes(L);
+  const boxes = isCompactDiagram
+    ? getM10LearningLoopCompactBoxes(L)
+    : (() => {
+        const { execution, loop } = getM10LearningLoopDesktopBoxes(L);
+        return [...execution, ...loop];
+      })();
+  const map = getLearningLoopBoxMap(boxes);
+  const busX = isCompactDiagram
+    ? getLearningLoopCompactBusX()
+    : getLearningLoopDesktopBusX();
+  const panels = isCompactDiagram
+    ? M10_LEARNING_LOOP_PANELS.compact
+    : M10_LEARNING_LOOP_PANELS.desktop;
+  const vb = isCompactDiagram
+    ? M10_LEARNING_LOOP_VIEWBOX.compact
+    : M10_LEARNING_LOOP_VIEWBOX.desktop;
 
-    return (
-      <svg
-        viewBox={`0 0 ${M10_LEARNING_LOOP_VIEWBOX.compact.width} ${M10_LEARNING_LOOP_VIEWBOX.compact.height}`}
-        className={`w-full max-w-md mx-auto block ${className}`}
-        role="img"
-        aria-label={L.aria}
-      >
-        <defs>
-          <marker
-            id={arrowId}
-            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth={TIP}
-            markerHeight={TIP_H}
-            refX={0}
-            refY={TIP_H / 2}
-            orient="auto"
-          >
-            <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={BRAND} />
-          </marker>
-          <marker
-            id={tealArrowId}
-            markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-            markerWidth={TIP}
-            markerHeight={TIP_H}
-            refX={0}
-            refY={TIP_H / 2}
-            orient="auto"
-          >
-            <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={TEAL} />
-          </marker>
-        </defs>
-        <rect
-          x="10"
-          y="12"
-          width="400"
-          height="510"
-          rx="18"
-          fill={palette.bgEnd}
-          stroke={palette.border}
-        />
-        <rect
-          x="10"
-          y="525"
-          width="400"
-          height="255"
-          rx="18"
-          fill={palette.bgStart}
-          stroke={palette.border}
-        />
-        <text
-          x="210"
-          y="36"
-          textAnchor="middle"
-          fontSize={DIAGRAM_TOKENS.typography.title.compact}
-          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
-          fill={palette.brandDark}
-          fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-        >
-          {L.executionTitle}
-        </text>
-        <text
-          x="210"
-          y="553"
-          textAnchor="middle"
-          fontSize={DIAGRAM_TOKENS.typography.title.compact}
-          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
-          fill={palette.brandDark}
-          fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-        >
-          {L.learningTitle}
-        </text>
-        {boxes.map((box) => (
-          <NodeBox key={box.id} box={box} {...nodeProps(box)} />
-        ))}
-        {[0, 1, 2, 3, 4].map((i) => (
-          <Arrow
-            key={i}
-            x1={210}
-            y1={126 + i * 75}
-            x2={210}
-            y2={145 + i * 75}
-            markerId={arrowId}
-          />
-        ))}
-        <Arrow
-          x1={210}
-          y1={501}
-          x2={210}
-          y2={540}
-          markerId={arrowId}
-          color={VIOLET}
-        />
-        <Arrow
-          x1={190}
-          y1={568}
-          x2={110}
-          y2={625}
-          markerId={arrowId}
-          color={VIOLET}
-        />
-        <Arrow
-          x1={230}
-          y1={568}
-          x2={310}
-          y2={625}
-          markerId={arrowId}
-          color={VIOLET}
-        />
-        <Arrow
-          x1={210}
-          y1={681}
-          x2={210}
-          y2={710}
-          markerId={tealArrowId}
-          color={TEAL}
-        />
-        <CurvedArrow
-          d="M 210 766 C 365 740, 365 210, 310 174"
-          markerId={tealArrowId}
-          color={TEAL}
-        />
-        <text
-          x="346"
-          y="405"
-          textAnchor="middle"
-          fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-          fill={TEAL}
-          fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-          fontFamily={DIAGRAM_TOKENS.font}
-        >
-          {L.improveNextRun}
-        </text>
-      </svg>
-    );
-  }
-
-  const { execution, loop } = getM10LearningLoopDesktopBoxes(L);
+  const busGeom = getLearningLoopUpdateBusForBoxes(map, busX);
+  const paintBus = shouldPaintLearningLoopEdge(currentStep, 'update-rules');
+  const pillBg = palette.bgStart;
 
   return (
     <svg
-      viewBox={`0 0 ${M10_LEARNING_LOOP_VIEWBOX.desktop.width} ${M10_LEARNING_LOOP_VIEWBOX.desktop.height}`}
-      className={`w-full max-w-4xl mx-auto block ${className}`}
+      viewBox={`0 0 ${vb.width} ${vb.height}`}
+      className={`w-full ${isCompactDiagram ? 'max-w-md' : 'max-w-5xl'} mx-auto block ${className}`}
       role="img"
       aria-label={L.aria}
     >
       <defs>
         <marker
-          id={arrowId}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={TIP}
-          markerHeight={TIP_H}
-          refX={0}
-          refY={TIP_H / 2}
+          id={flowMarkerId}
+          markerUnits={MARKER.markerUnits}
+          markerWidth={MARKER.markerWidth}
+          markerHeight={MARKER.markerHeight}
+          refX={MARKER.refX}
+          refY={MARKER.refY}
           orient="auto"
         >
-          <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={BRAND} />
+          <path d={MARKER.pathD} fill={FLOW} />
         </marker>
         <marker
-          id={tealArrowId}
-          markerUnits={DIAGRAM_TOKENS.arrow.markerUnits}
-          markerWidth={TIP}
-          markerHeight={TIP_H}
-          refX={0}
-          refY={TIP_H / 2}
+          id={recordMarkerId}
+          markerUnits={MARKER.markerUnits}
+          markerWidth={MARKER.markerWidth}
+          markerHeight={MARKER.markerHeight}
+          refX={MARKER.refX}
+          refY={MARKER.refY}
           orient="auto"
         >
-          <path d={`M0,0 L${TIP},${TIP_H / 2} L0,${TIP_H} Z`} fill={TEAL} />
+          <path d={MARKER.pathD} fill={VIOLET} />
         </marker>
       </defs>
 
-      <text
-        x={M10_LEARNING_LOOP_VIEWBOX.desktop.width / 2}
-        y="28"
-        textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.title.desktop}
-        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
-        fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-      >
-        {L.title}
-      </text>
+      {!isCompactDiagram ? (
+        <text
+          x={vb.width / 2}
+          y="28"
+          textAnchor="middle"
+          fontSize={DIAGRAM_TOKENS.typography.title.desktop}
+          fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+          fill={palette.brandDark}
+          fontFamily={DIAGRAM_TOKENS.font}
+        >
+          {L.title}
+        </text>
+      ) : null}
 
       <rect
-        x="26"
-        y="48"
-        width="420"
-        height="360"
+        x={panels.exec.x}
+        y={panels.exec.y}
+        width={panels.exec.w}
+        height={panels.exec.h}
         rx="22"
         fill={palette.bgEnd}
         stroke={palette.border}
       />
       <rect
-        x="475"
-        y="48"
-        width="400"
-        height="360"
+        x={panels.learn.x}
+        y={panels.learn.y}
+        width={panels.learn.w}
+        height={panels.learn.h}
         rx="22"
         fill={palette.bgStart}
         stroke={palette.border}
       />
       <text
-        x="236"
-        y="75"
+        x={panels.exec.x + panels.exec.w / 2}
+        y={panels.exec.y + 26}
         textAnchor="middle"
         fontSize={DIAGRAM_TOKENS.typography.title.compact}
         fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.executionTitle}
       </text>
       <text
-        x="675"
-        y="75"
+        x={panels.learn.x + panels.learn.w / 2}
+        y={panels.learn.y + 26}
         textAnchor="middle"
         fontSize={DIAGRAM_TOKENS.typography.title.compact}
         fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+        fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.learningTitle}
       </text>
 
-      {[...execution, ...loop].map((box) => (
+      {shouldShowLearningLoopCycleRing(currentStep) ? (
+        <rect
+          x={panels.learn.x + CYCLE_RING_PAD}
+          y={panels.learn.y + CYCLE_RING_PAD + 18}
+          width={panels.learn.w - CYCLE_RING_PAD * 2}
+          height={panels.learn.h - CYCLE_RING_PAD * 2 - 12}
+          rx="18"
+          fill="none"
+          stroke={VIOLET}
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
+          opacity={CYCLE_RING_OPACITY}
+        />
+      ) : null}
+
+      {M10_LEARNING_LOOP_EDGES.map((edge) => {
+        if (edge.id === 'update-rules' || edge.id === 'update-skills') {
+          return null;
+        }
+        if (!shouldPaintLearningLoopEdge(currentStep, edge.id)) return null;
+
+        const useMarker = edge.kind === 'flow' || edge.kind === 'record';
+        const resolved = resolveLearningLoopEdge(edge, map, {
+          busX,
+          useMarkerTip: useMarker,
+          compact: isCompactDiagram,
+        });
+        if (!resolved || resolved.mode === 'bus') return null;
+
+        const color = edgeStroke(edge.kind);
+        const dash = edge.dashed ? '8 4' : undefined;
+
+        if (resolved.mode === 'path') {
+          return (
+            <path
+              key={edge.id}
+              d={resolved.d}
+              fill="none"
+              stroke={color}
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+              strokeLinejoin="round"
+              markerEnd={`url(#${flowMarkerId})`}
+            />
+          );
+        }
+
+        if (useMarker) {
+          return (
+            <line
+              key={edge.id}
+              x1={resolved.x1}
+              y1={resolved.y1}
+              x2={resolved.x2}
+              y2={resolved.y2}
+              stroke={color}
+              strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+              strokeDasharray={dash}
+              markerEnd={`url(#${edge.kind === 'record' ? recordMarkerId : flowMarkerId})`}
+            />
+          );
+        }
+
+        return (
+          <g key={edge.id}>
+            <line
+              x1={resolved.x1}
+              y1={resolved.y1}
+              x2={resolved.x2}
+              y2={resolved.y2}
+              stroke={color}
+              strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+              strokeDasharray={dash}
+            />
+            {resolved.tipGeom && resolved.tip ? (
+              <polygon
+                points={learningLoopTipPoints(
+                  resolved.tip,
+                  resolved.tipGeom.tipX,
+                  resolved.tipGeom.tipY
+                )}
+                fill={color}
+              />
+            ) : null}
+          </g>
+        );
+      })}
+
+      {paintBus ? (
+        <g>
+          <path
+            d={busGeom.trunkPath}
+            fill="none"
+            stroke={TEAL}
+            strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+            strokeLinejoin="round"
+            strokeDasharray="8 4"
+          />
+          <line
+            x1={busGeom.dropRules.start.x}
+            y1={busGeom.dropRules.start.y}
+            x2={busGeom.dropRules.end.x}
+            y2={busGeom.dropRules.end.y}
+            stroke={TEAL}
+            strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+            strokeDasharray="8 4"
+          />
+          <line
+            x1={busGeom.dropSkills.start.x}
+            y1={busGeom.dropSkills.start.y}
+            x2={busGeom.dropSkills.end.x}
+            y2={busGeom.dropSkills.end.y}
+            stroke={TEAL}
+            strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+            strokeDasharray="8 4"
+          />
+          <polygon
+            points={learningLoopTipPoints(
+              busGeom.tipRules.dir,
+              busGeom.tipRules.tipX,
+              busGeom.tipRules.tipY
+            )}
+            fill={TEAL}
+          />
+          <polygon
+            points={learningLoopTipPoints(
+              busGeom.tipSkills.dir,
+              busGeom.tipSkills.tipX,
+              busGeom.tipSkills.tipY
+            )}
+            fill={TEAL}
+          />
+        </g>
+      ) : null}
+
+      {boxes.map((box) => (
         <NodeBox key={box.id} box={box} {...nodeProps(box)} />
       ))}
 
-      {(() => {
-        const map = getLearningLoopBoxMap([...execution, ...loop]);
-        return M10_LEARNING_LOOP_EDGES_DESKTOP.map((edge) => {
-          const color = edgeColor(edge.kind);
-          const marker = color === TEAL ? tealArrowId : arrowId;
-          if (edge.desktopPath) {
-            return (
-              <CurvedArrow
-                key={edge.id}
-                d={edge.desktopPath}
-                markerId={marker}
-                color={color}
-                dashed={edge.dashed}
-              />
-            );
+      {shouldShowLearningLoopEdgeLabel(currentStep, 'output-logs') ? (
+        <EdgePill
+          x={
+            isCompactDiagram
+              ? map.output.x + map.output.w / 2
+              : (map.output.x + map.output.w + map.logs.x) / 2
           }
-          const pts = resolveLearningLoopStraight(edge, map);
-          if (!pts) return null;
-          return (
-            <Arrow
-              key={edge.id}
-              x1={pts.x1}
-              y1={pts.y1}
-              x2={pts.x2}
-              y2={pts.y2}
-              markerId={marker}
-              color={color}
-              dashed={edge.dashed}
-            />
-          );
-        });
-      })()}
+          y={
+            isCompactDiagram
+              ? (map.output.y + map.output.h + map.logs.y) / 2
+              : map.output.y + map.output.h / 2 - 16
+          }
+          label={L.record}
+          fill={VIOLET}
+          bg={pillBg}
+        />
+      ) : null}
 
-      <text
-        x="464"
-        y="221"
-        textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-        fill={palette.muted}
-        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.record}
-      </text>
+      {shouldShowLearningLoopEdgeLabel(currentStep, 'eval-lessons') ? (
+        <EdgePill
+          x={
+            map.evaluation.x +
+            map.evaluation.w / 2 +
+            (isCompactDiagram ? 0 : 36)
+          }
+          y={(map.evaluation.y + map.evaluation.h + map.lessons.y) / 2}
+          label={L.improveNextRun}
+          fill={VIOLET}
+          bg={pillBg}
+        />
+      ) : null}
 
-      <text
-        x="408"
-        y="170"
-        textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-        fill={TEAL}
-        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.updateRules}
-      </text>
-      <text
-        x="401"
-        y="360"
-        textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-        fill={TEAL}
-        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.updateSkills}
-      </text>
-      <text
-        x="748"
-        y="286"
-        textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
-        fill={palette.muted}
-        fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
-        fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-      >
-        {L.improveNextRun}
-      </text>
+      {shouldShowLearningLoopEdgeLabel(currentStep, 'update-bus') ? (
+        <EdgePill
+          x={busGeom.label.x}
+          y={busGeom.label.y}
+          label={L.updateSystem}
+          fill={TEAL}
+          bg={pillBg}
+        />
+      ) : null}
     </svg>
   );
 }

@@ -325,6 +325,10 @@
                               ],
                               "description": "chips = default bar; prompt-tool = EDA (M7/90); manipulation-contrast = Blogas|Geras (M7/67)"
                             },
+                            "autoSelect": {
+                              "type": "boolean",
+                              "description": "chips only: false = no default selection until learner picks (M10/10.35); omit/true = auto-select first (10.48)"
+                            },
                             "sequenceHint": { "type": "string" },
                             "sampleData": {
                               "type": "object",

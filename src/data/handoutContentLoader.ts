@@ -83,6 +83,7 @@ export interface M79HandoutContent {
   pipelineSteps: string[];
   masterPromptSteps: string[];
   workflowSteps: string[];
+  starterPrompt: string;
   reflectionSummary: string;
   nextPageHeading: string;
   nextPageIntro: string;
@@ -103,6 +104,7 @@ export interface M1012HandoutContent {
   threeAModel: string[];
   workflowSteps: string[];
   promptPatterns: string[];
+  starterPrompt: string;
   reflectionSummary: string;
   nextPageHeading: string;
   nextPageIntro: string;

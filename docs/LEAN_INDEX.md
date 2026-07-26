@@ -56,6 +56,7 @@
 ## 3. Pagal poreikį (ne lean core)
 
 - **M13–15 SOT / eilės:** `turinio_pletra_moduliai_13_14_15.md`, `MODULIO_13_SKAIDRIU_EILES.md`
+- **M16–18 SOT:** `turinio_pletra_moduliai_16_17_18.md` (JSON Deferred)
 - **Skaidrių eilės:** `MODULIO_*_SKAIDRIU_EILES.md` – tik kai liečia tą modulį
 - **M7–9 polish:** `M79_PATCH_REGISTRY.md`, `07_08_09_backlog.md`
 - **Pedagogika:** `PEDAGOGINES_IZVALGOS_ROADMAP.md`

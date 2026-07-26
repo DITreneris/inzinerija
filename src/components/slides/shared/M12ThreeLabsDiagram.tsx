@@ -1,15 +1,21 @@
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  getDiagramToneColors,
+  type DiagramTone,
+} from './diagramTokens';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { getM12ThreeLabsLabels } from './m12ThreeLabsContent';
 import type { M10Locale } from './m10DiagramContent';
-import { M12_THREE_LABS_LAYOUT } from './m12ThreeLabsLayout';
+import { M12_THREE_LABS_LAYOUT as L } from './m12ThreeLabsLayout';
 
-const W = M12_THREE_LABS_LAYOUT.width;
-const H = M12_THREE_LABS_LAYOUT.height;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
-const ARROW = PROCESS_ARROW.tipLen;
+
+function chipWidth(label: string): number {
+  const estimated = 14 + label.length * 6.2;
+  return Math.min(L.chipMaxW, Math.max(L.chipMinW, estimated));
+}
 
 export default function M12ThreeLabsDiagram({
   locale = 'lt',
@@ -22,43 +28,20 @@ export default function M12ThreeLabsDiagram({
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const tones = getDiagramToneColors(isDarkPalette);
-  const L = getM12ThreeLabsLabels(locale);
-  const rowH = M12_THREE_LABS_LAYOUT.rowH;
-  const gap = M12_THREE_LABS_LAYOUT.gap;
-  const x0 = 24;
-  const w0 = W - 48;
-  const humanFill = tones.amber.soft;
-  const humanStroke = tones.amber.stroke;
-  const humanText = tones.amber.stroke;
-  let y = 40;
-
-  const rows = [
-    {
-      title: L.l1,
-      sub: L.l1Sub,
-      hum: L.l1Human,
-      fill: tones.brand.stroke,
-    },
-    {
-      title: L.l2,
-      sub: L.l2Sub,
-      hum: L.l2Human,
-      fill: tones.emerald.stroke,
-    },
-    {
-      title: L.l3,
-      sub: L.l3Sub,
-      hum: L.l3Human,
-      fill: tones.amber.stroke,
-    },
-  ];
+  const labels = getM12ThreeLabsLabels(locale);
+  const tip = PROCESS_ARROW.tipLen;
+  const rowSurface = isDarkPalette
+    ? 'rgba(30,41,59,0.55)'
+    : 'rgba(255,255,255,0.72)';
+  const chipSoftFill = isDarkPalette ? 'rgba(15,23,42,0.65)' : '#ffffff';
+  const noteMuted = isDarkPalette ? palette.flow : palette.muted;
 
   return (
     <svg
-      viewBox={`0 0 ${W} ${H}`}
+      viewBox={`0 0 ${L.width} ${L.height}`}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
-      aria-label={L.aria}
+      aria-label={labels.aria}
     >
       <defs>
         <linearGradient id={`m12tl-bg-${uid}`} x1="0" y1="0" x2="0" y2="1">
@@ -74,96 +57,126 @@ export default function M12ThreeLabsDiagram({
           refY={PROCESS_ARROW.refY}
           orient="auto"
         >
-          <path d={PROCESS_ARROW.pathD} fill={palette.brandDark} />
+          <path d={PROCESS_ARROW.pathD} fill={palette.flow} />
         </marker>
       </defs>
       <rect
         x="0"
         y="0"
-        width={W}
-        height={H}
-        rx="12"
+        width={L.width}
+        height={L.height}
+        rx={DIAGRAM_TOKENS.radius.frame}
         fill={`url(#m12tl-bg-${uid})`}
       />
       <text
-        x={W / 2}
-        y={24}
+        x={L.width / 2}
+        y={L.titleY}
         textAnchor="middle"
         fontSize={DIAGRAM_TOKENS.typography.title.compact}
         fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
-        {L.title}
+        {labels.title}
       </text>
-      {rows.map((r, i) => {
-        const yy = y;
-        const mainRight = x0 + w0 * 0.72;
-        const humanX = mainRight + 12;
-        const humanW = w0 * 0.26;
-        const midY = yy + rowH / 2;
-        y += rowH + gap;
+      {labels.rows.map((row, rowIndex) => {
+        const tone = tones[row.tone as DiagramTone];
+        const yy = L.rowY0 + rowIndex * (L.rowH + L.gap);
+        const chipY = yy + 10;
+        const noteY = yy + L.rowH - 10;
+        let x = L.padX + L.accentBarW + 10 + L.labelW;
+
         return (
-          <g key={i}>
+          <g key={row.label}>
             <rect
-              x={x0}
+              x={L.padX}
               y={yy}
-              width={w0 * 0.72}
-              height={rowH}
-              rx="10"
-              fill={r.fill}
-              stroke={palette.brandDark}
-              strokeWidth="1.2"
+              width={L.width - L.padX * 2}
+              height={L.rowH}
+              rx={DIAGRAM_TOKENS.radius.box}
+              fill={rowSurface}
+              stroke={palette.border}
+              strokeWidth={DIAGRAM_TOKENS.stroke.border}
             />
-            <line
-              x1={mainRight}
-              y1={midY}
-              x2={humanX - ARROW}
-              y2={midY}
-              stroke={palette.brandDark}
-              strokeWidth="1.5"
-              strokeDasharray="4 3"
-              markerEnd={`url(#m12tl-conn-${uid})`}
-            />
-            <text
-              x={x0 + 12}
-              y={yy + 22}
-              fill="white"
-              fontSize="12"
-              fontWeight="700"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-            >
-              {r.title}
-            </text>
-            <text
-              x={x0 + 12}
-              y={yy + 40}
-              fill="rgba(255,255,255,0.9)"
-              fontSize="9"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-            >
-              {r.sub}
-            </text>
             <rect
-              x={humanX}
+              x={L.padX}
               y={yy}
-              width={humanW}
-              height={rowH}
-              rx="10"
-              fill={humanFill}
-              stroke={humanStroke}
-              strokeWidth="1.2"
+              width={L.accentBarW}
+              height={L.rowH}
+              rx={2}
+              fill={tone.stroke}
             />
             <text
-              x={humanX + humanW / 2}
-              y={yy + rowH / 2 + 4}
-              textAnchor="middle"
-              fill={humanText}
-              fontSize="9"
-              fontWeight="700"
-              fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
+              x={L.padX + L.accentBarW + 10}
+              y={yy + L.rowH / 2 + 4}
+              fill={palette.brandDark}
+              fontSize={DIAGRAM_TOKENS.typography.stepLabel.compact}
+              fontWeight={700}
+              fontFamily={DIAGRAM_TOKENS.font}
             >
-              {r.hum}
+              {row.label}
+            </text>
+            {row.steps.map((step, stepIndex) => {
+              const w = chipWidth(step);
+              const isHuman = row.humanStepIndex === stepIndex;
+              const chipX = x;
+              x +=
+                w +
+                L.chipGap +
+                (stepIndex < row.steps.length - 1 ? tip + 2 : 0);
+              const fill = isHuman ? tone.bottom : chipSoftFill;
+              const stroke = isHuman ? tone.stroke : palette.border;
+              const textFill = isHuman ? tone.text : palette.brandDark;
+              const strokeW = isHuman
+                ? DIAGRAM_TOKENS.stroke.active
+                : DIAGRAM_TOKENS.stroke.border;
+              return (
+                <g key={`${row.label}-${step}`}>
+                  {stepIndex > 0 && (
+                    <line
+                      x1={chipX - L.chipGap - tip}
+                      y1={chipY + L.chipH / 2}
+                      x2={chipX - tip}
+                      y2={chipY + L.chipH / 2}
+                      stroke={palette.flow}
+                      strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+                      markerEnd={`url(#m12tl-conn-${uid})`}
+                    />
+                  )}
+                  <rect
+                    x={chipX}
+                    y={chipY}
+                    width={w}
+                    height={L.chipH}
+                    rx={8}
+                    fill={fill}
+                    stroke={stroke}
+                    strokeWidth={strokeW}
+                  />
+                  <text
+                    x={chipX + w / 2}
+                    y={chipY + L.chipH / 2 + 4}
+                    textAnchor="middle"
+                    fill={textFill}
+                    fontSize={DIAGRAM_TOKENS.typography.stepLabel.compact}
+                    fontWeight={isHuman ? 700 : 600}
+                    fontFamily={DIAGRAM_TOKENS.font}
+                  >
+                    {step}
+                  </text>
+                </g>
+              );
+            })}
+            <text
+              x={L.width - L.padX - 8}
+              y={noteY}
+              textAnchor="end"
+              fill={row.humanStepIndex === null ? noteMuted : tone.stroke}
+              fontSize={DIAGRAM_TOKENS.typography.stepSub.compact}
+              fontWeight={row.humanStepIndex === null ? 500 : 700}
+              fontFamily={DIAGRAM_TOKENS.font}
+            >
+              {row.humanNote}
             </text>
           </g>
         );

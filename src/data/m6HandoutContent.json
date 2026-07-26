@@ -3,7 +3,7 @@
   "subtitle": "Projekto etapai, duomenų tvarkymas, refleksija – atsispausdink ir naudok prie darbo.",
   "projectSteps": [
     "Tikslas ir rolė (META) – ką kuri, kam, kokia rolė. Gali sustoti ir išsaugoti.",
-    "Šaltiniai ir apribojimai (INPUT + RAG) – kokius duomenis naudojate, RAG gairės.",
+    "Šaltiniai ir apribojimai (INPUT + RAG) – kokius duomenis naudoji, RAG gairės.",
     "Formatas (OUTPUT) – struktūra, ilgis, kalba.",
     "Tyrimo planas (REASONING / Deep research) – žingsniai, sub-klausimai.",
     "Kokybė ir patikrinimas (QUALITY) – šaltiniai, „nežinau“, objektyvumas.",
@@ -12,7 +12,7 @@
   "dataManagementPoints": [
     {
       "title": "1. Asmeninė promptų biblioteka",
-      "practicalMeaning": "Vienoje vietoje (Notion, failas, įrankis) laikote visus „veikiančius“ promptus – nebereikia ieškoti sename pokalbyje."
+      "practicalMeaning": "Vienoje vietoje (Notion, failas, įrankis) laikai visus „veikiančius“ promptus – nebereikia ieškoti sename pokalbyje."
     },
     {
       "title": "2. Promptų versijavimas",
@@ -20,7 +20,7 @@
     },
     {
       "title": "3. Dokumentacija",
-      "practicalMeaning": "Prie kiekvieno šablono 2–3 sakiniai: kam jis, ką įklijuoti, ką tikėtis – po mėnesio jūs ar kolega supras, kaip naudoti."
+      "practicalMeaning": "Prie kiekvieno šablono 2–3 sakiniai: kam jis, ką įklijuoti, ką tikėtis – po mėnesio tu ar kolega supras, kaip naudoti."
     },
     {
       "title": "4. Procesai",

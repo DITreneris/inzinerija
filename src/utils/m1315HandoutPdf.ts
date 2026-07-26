@@ -17,6 +17,7 @@ import {
   addFooter,
   addHeader,
   addListSection,
+  addPageNumbers,
   addSectionTitle,
   addTrainingUtm,
   addWrappedText,
@@ -40,11 +41,12 @@ export interface M1315HandoutOptions {
 function buildDefaultUrls(): M1315HandoutUrls {
   return {
     primary: blogArticleUrl(
-      BLOG_ARTICLE_SLUGS.workflowCanvas,
+      BLOG_ARTICLE_SLUGS.ecosystemMap,
       { moduleId: 15, touchpoint: 'handout' },
       { medium: 'handout' }
     ),
-    decide: addTrainingUtm(ECOSYSTEM_URLS.decide, 'm15_handout_decide'),
+    // Hub fallback while promptanatomy.pro is unstable (utm_campaign keeps intent).
+    decide: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm15_handout_decide'),
     map: addTrainingUtm(ECOSYSTEM_URLS.map, 'm15_handout_map'),
     hub: addTrainingUtm(ECOSYSTEM_URLS.hub, 'm15_handout_hub'),
   };
@@ -160,6 +162,7 @@ export async function downloadM1315HandoutPdf(
     pageTwoY
   );
 
+  addPageNumbers(ctx, options.locale);
   addFooter(ctx, content.footerText, {
     websiteCta: content.websiteCta,
     websiteUrl: urls.hub || content.websiteUrl,

@@ -543,15 +543,19 @@ export function ContentBlockSlide({
     if (!toolChoiceSection?.toolChoiceBar || selectedToolRowIndex !== null)
       return;
     // prompt-tool / manipulation-contrast: stay null until learner picks
-    const toolVariant = toolChoiceSection.toolChoiceBar.variant;
+    const bar = toolChoiceSection.toolChoiceBar;
+    const toolVariant = bar.variant;
     if (
       toolVariant === 'prompt-tool' ||
       toolVariant === 'manipulation-contrast'
     ) {
       return;
     }
-    const defaultRow =
-      toolChoiceSection.toolChoiceBar.choices?.[0]?.rowIndex ?? 0;
+    // chips: autoSelect false (M10/10.35) – no default until learner picks
+    if (bar.autoSelect === false) {
+      return;
+    }
+    const defaultRow = bar.choices?.[0]?.rowIndex ?? 0;
     setSelectedToolRowIndex(defaultRow);
   }, [toolChoiceSection, selectedToolRowIndex]);
 
@@ -1377,157 +1381,174 @@ export function ContentBlockSlide({
                           'bg-orange-100 dark:bg-orange-900/40 text-orange-800 dark:text-orange-200',
                       };
                       const isTermsTable = section.blockVariant === 'terms';
+                      const showScrollFade = isComparison || isSolutionMatrix;
                       return (
                         <>
                           <div
-                            className={`overflow-x-auto my-3 rounded-lg ${isComparison ? 'border border-gray-100 dark:border-gray-700' : 'border border-gray-200 dark:border-gray-600'} ${isTermsTable ? 'bg-white dark:bg-slate-900/40 border-l-4 border-slate-400 dark:border-slate-500' : ''}`}
-                            role="region"
-                            aria-label={ariaLabel}
+                            className={`relative my-3 ${showScrollFade ? 'max-sm:pr-0' : ''}`}
                           >
-                            <table
-                              className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
+                            <div
+                              className={`overflow-x-auto rounded-lg ${isComparison ? 'border border-gray-100 dark:border-gray-700' : 'border border-gray-200 dark:border-gray-600'} ${isTermsTable ? 'bg-white dark:bg-slate-900/40 border-l-4 border-slate-400 dark:border-slate-500' : ''}`}
+                              role="region"
+                              aria-label={ariaLabel}
                             >
-                              <thead>
-                                <tr>
-                                  {(section.table.headers ?? []).map((h, j) => (
-                                    <th
-                                      key={j}
-                                      className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
-                                        isComparison
-                                          ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
-                                          : isSolutionMatrix
-                                            ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
-                                            : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
-                                      }`}
-                                    >
-                                      {h}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {tableRows.map((row, ri) => {
-                                  const isLastRow = ri === tableRows.length - 1;
-                                  const meta = hasRowMeta
-                                    ? rowMeta[ri]
-                                    : undefined;
-                                  const isHighlighted =
-                                    section.toolChoiceBar &&
-                                    selectedToolRowIndex === ri;
-                                  const isWarningRow = meta?.isWarning === true;
-                                  const zebraClass = isSolutionMatrix
-                                    ? 'even:bg-gray-100 dark:even:bg-gray-700/50'
-                                    : !isComparison
-                                      ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
-                                      : '';
-                                  const isToolChoiceRow = Boolean(
-                                    section.toolChoiceBar
-                                  );
-                                  return (
-                                    <tr
-                                      key={ri}
-                                      ref={(el) => {
-                                        if (section.toolChoiceBar)
-                                          tableRowRefs.current[ri] = el;
-                                      }}
-                                      role={
-                                        isToolChoiceRow ? 'button' : undefined
-                                      }
-                                      tabIndex={isToolChoiceRow ? 0 : undefined}
-                                      onClick={
-                                        isToolChoiceRow
-                                          ? () => setSelectedToolRowIndex(ri)
-                                          : undefined
-                                      }
-                                      onKeyDown={
-                                        isToolChoiceRow
-                                          ? (e) => {
-                                              if (
-                                                e.key === 'Enter' ||
-                                                e.key === ' '
-                                              ) {
-                                                e.preventDefault();
-                                                setSelectedToolRowIndex(ri);
+                              <table
+                                className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
+                              >
+                                <thead>
+                                  <tr>
+                                    {(section.table.headers ?? []).map(
+                                      (h, j) => (
+                                        <th
+                                          key={j}
+                                          className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
+                                            isComparison
+                                              ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
+                                              : isSolutionMatrix
+                                                ? `px-4 py-4 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
+                                                : `px-4 py-3 border-gray-200 dark:border-gray-600 bg-brand-100 dark:bg-brand-900/40 ${j === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}`
+                                          }`}
+                                        >
+                                          {h}
+                                        </th>
+                                      )
+                                    )}
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {tableRows.map((row, ri) => {
+                                    const isLastRow =
+                                      ri === tableRows.length - 1;
+                                    const meta = hasRowMeta
+                                      ? rowMeta[ri]
+                                      : undefined;
+                                    const isHighlighted =
+                                      section.toolChoiceBar &&
+                                      selectedToolRowIndex === ri;
+                                    const isWarningRow =
+                                      meta?.isWarning === true;
+                                    const zebraClass = isSolutionMatrix
+                                      ? 'even:bg-gray-100 dark:even:bg-gray-700/50'
+                                      : !isComparison
+                                        ? 'even:bg-gray-50/50 dark:even:bg-gray-800/30'
+                                        : '';
+                                    const isToolChoiceRow = Boolean(
+                                      section.toolChoiceBar
+                                    );
+                                    return (
+                                      <tr
+                                        key={ri}
+                                        ref={(el) => {
+                                          if (section.toolChoiceBar)
+                                            tableRowRefs.current[ri] = el;
+                                        }}
+                                        role={
+                                          isToolChoiceRow ? 'button' : undefined
+                                        }
+                                        tabIndex={
+                                          isToolChoiceRow ? 0 : undefined
+                                        }
+                                        onClick={
+                                          isToolChoiceRow
+                                            ? () => setSelectedToolRowIndex(ri)
+                                            : undefined
+                                        }
+                                        onKeyDown={
+                                          isToolChoiceRow
+                                            ? (e) => {
+                                                if (
+                                                  e.key === 'Enter' ||
+                                                  e.key === ' '
+                                                ) {
+                                                  e.preventDefault();
+                                                  setSelectedToolRowIndex(ri);
+                                                }
                                               }
-                                            }
-                                          : undefined
-                                      }
-                                      className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''} ${isToolChoiceRow ? 'cursor-pointer hover:bg-accent-50/50 dark:hover:bg-accent-900/20' : ''}`}
-                                    >
-                                      {row.map((cell, ci) => {
-                                        const isFirstCol = ci === 0;
-                                        const isStrengthCol = ci === 1;
-                                        const isPriceCol =
-                                          numCols >= 4 && ci === numCols - 1;
-                                        const isThirdCol =
-                                          numCols === 3 && ci === 2;
-                                        const cellContent =
-                                          typeof cell === 'string'
-                                            ? renderBodyWithBold(cell)
-                                            : cell;
-                                        const cellPadding = isSolutionMatrix
-                                          ? 'px-4 py-5'
-                                          : isComparison
-                                            ? 'px-5 py-5'
-                                            : 'px-4 py-3.5';
-                                        const stickyFirstCellBg = isFirstCol
-                                          ? isComparison && isLastRow
-                                            ? 'bg-brand-50/50 dark:bg-brand-900/20'
-                                            : isSolutionMatrix
-                                              ? ri % 2 === 1
-                                                ? 'bg-gray-100 dark:bg-gray-700/50'
-                                                : 'bg-white dark:bg-gray-900'
-                                              : ri % 2 === 1
-                                                ? 'bg-gray-50 dark:bg-gray-800/30'
-                                                : 'bg-white dark:bg-gray-900'
-                                          : '';
-                                        return (
-                                          <td
-                                            key={ci}
-                                            className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
-                                              isFirstCol
-                                                ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-sm ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
-                                                : isPriceCol
-                                                  ? 'text-gray-500 dark:text-gray-400'
-                                                  : isThirdCol
-                                                    ? 'text-gray-600 dark:text-gray-400 min-w-[12rem] sm:min-w-[14rem]'
-                                                    : `text-gray-700 dark:text-gray-300 ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : ''} ${numCols === 2 && !isSolutionMatrix && ci === 1 ? 'min-w-[10rem]' : ''} ${hasRowMeta && isStrengthCol ? 'font-semibold' : ''}`
-                                            }`}
-                                          >
-                                            {isFirstCol &&
-                                            meta?.bestFor != null ? (
-                                              <div className="space-y-0.5">
-                                                <span className="block text-base font-semibold text-gray-900 dark:text-white">
-                                                  {cellContent}
+                                            : undefined
+                                        }
+                                        className={`${isComparison ? 'border-b border-gray-100 dark:border-gray-700 last:border-b-0' : 'border-b border-gray-200 dark:border-gray-600 last:border-b-0'} ${isComparison && isLastRow ? 'bg-brand-50/50 dark:bg-brand-900/20 font-semibold' : ''} ${isWarningRow ? 'bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 dark:border-amber-500' : ''} ${zebraClass} ${isHighlighted ? 'ring-2 ring-accent-500 ring-inset bg-accent-50/80 dark:bg-accent-900/40' : ''} ${isToolChoiceRow ? 'cursor-pointer hover:bg-accent-50/50 dark:hover:bg-accent-900/20' : ''}`}
+                                      >
+                                        {row.map((cell, ci) => {
+                                          const isFirstCol = ci === 0;
+                                          const isStrengthCol = ci === 1;
+                                          const isPriceCol =
+                                            numCols >= 4 && ci === numCols - 1;
+                                          const isThirdCol =
+                                            numCols === 3 && ci === 2;
+                                          const cellContent =
+                                            typeof cell === 'string'
+                                              ? renderBodyWithBold(cell)
+                                              : cell;
+                                          const cellPadding = isSolutionMatrix
+                                            ? 'px-4 py-5'
+                                            : isComparison
+                                              ? 'px-5 py-5'
+                                              : 'px-4 py-3.5';
+                                          const stickyFirstCellBg = isFirstCol
+                                            ? isComparison && isLastRow
+                                              ? 'bg-brand-50/50 dark:bg-brand-900/20'
+                                              : isSolutionMatrix
+                                                ? ri % 2 === 1
+                                                  ? 'bg-gray-100 dark:bg-gray-700/50'
+                                                  : 'bg-white dark:bg-gray-900'
+                                                : ri % 2 === 1
+                                                  ? 'bg-gray-50 dark:bg-gray-800/30'
+                                                  : 'bg-white dark:bg-gray-900'
+                                            : '';
+                                          return (
+                                            <td
+                                              key={ci}
+                                              className={`align-top min-h-[2.5rem] ${cellPadding} ${isComparison ? 'leading-loose' : 'leading-relaxed'} ${
+                                                isFirstCol
+                                                  ? `sticky left-0 z-10 font-medium text-gray-900 dark:text-white align-top shadow-sm ${stickyFirstCellBg} ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : isSolutionMatrix ? 'min-w-[10rem] sm:min-w-[12rem]' : 'min-w-[10rem] sm:min-w-40'}`
+                                                  : isPriceCol
+                                                    ? 'text-gray-500 dark:text-gray-400'
+                                                    : isThirdCol
+                                                      ? 'text-gray-600 dark:text-gray-400 min-w-[12rem] sm:min-w-[14rem]'
+                                                      : `text-gray-700 dark:text-gray-300 ${isComparison ? 'min-w-[14rem] sm:min-w-[16rem] w-1/2' : ''} ${numCols === 2 && !isSolutionMatrix && ci === 1 ? 'min-w-[10rem]' : ''} ${hasRowMeta && isStrengthCol ? 'font-semibold' : ''}`
+                                              }`}
+                                            >
+                                              {isFirstCol &&
+                                              meta?.bestFor != null ? (
+                                                <div className="space-y-0.5">
+                                                  <span className="block text-base font-semibold text-gray-900 dark:text-white">
+                                                    {cellContent}
+                                                  </span>
+                                                  <span className="block text-xs text-gray-500 dark:text-gray-400">
+                                                    {meta.bestFor}
+                                                  </span>
+                                                </div>
+                                              ) : isStrengthCol &&
+                                                meta?.strengthBadge != null ? (
+                                                <span
+                                                  className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
+                                                  aria-label={t(
+                                                    'strengthBadgeAria',
+                                                    {
+                                                      badge: meta.strengthBadge,
+                                                    }
+                                                  )}
+                                                >
+                                                  {meta.strengthBadge}
                                                 </span>
-                                                <span className="block text-xs text-gray-500 dark:text-gray-400">
-                                                  {meta.bestFor}
-                                                </span>
-                                              </div>
-                                            ) : isStrengthCol &&
-                                              meta?.strengthBadge != null ? (
-                                              <span
-                                                className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
-                                                aria-label={t(
-                                                  'strengthBadgeAria',
-                                                  {
-                                                    badge: meta.strengthBadge,
-                                                  }
-                                                )}
-                                              >
-                                                {meta.strengthBadge}
-                                              </span>
-                                            ) : (
-                                              cellContent
-                                            )}
-                                          </td>
-                                        );
-                                      })}
-                                    </tr>
-                                  );
-                                })}
-                              </tbody>
-                            </table>
+                                              ) : (
+                                                cellContent
+                                              )}
+                                            </td>
+                                          );
+                                        })}
+                                      </tr>
+                                    );
+                                  })}
+                                </tbody>
+                              </table>
+                            </div>
+                            {showScrollFade ? (
+                              <div
+                                className="pointer-events-none absolute inset-y-0 right-0 hidden w-6 rounded-r-lg bg-gradient-to-l from-white to-transparent max-sm:block dark:from-gray-900"
+                                aria-hidden
+                              />
+                            ) : null}
                           </div>
                           {isComparison && section.body && (
                             <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -3179,13 +3200,13 @@ function DiModalityCard({
                 target="_blank"
                 rel="noreferrer noopener"
                 title={ex.tooltip}
-                className="inline-flex items-center gap-1.5 min-h-[32px] px-2.5 py-1.5 rounded-lg text-sm font-medium text-brand-700 dark:text-brand-300 bg-slate-100 dark:bg-slate-700/60 hover:bg-brand-100 dark:hover:bg-brand-900/40 hover:text-brand-800 dark:hover:text-brand-200 border border-transparent hover:border-brand-200 dark:hover:border-brand-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1"
+                className="inline-flex items-center gap-1.5 min-h-[44px] px-2.5 py-1.5 rounded-lg text-sm font-medium text-brand-700 dark:text-brand-300 bg-slate-100 dark:bg-slate-700/60 hover:bg-brand-100 dark:hover:bg-brand-900/40 hover:text-brand-800 dark:hover:text-brand-200 border border-transparent hover:border-brand-200 dark:hover:border-brand-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1"
               >
                 {ex.name}
               </a>
             ) : (
               <span
-                className="inline-flex items-center min-h-[32px] px-2.5 py-1.5 rounded-lg text-sm font-medium text-brand-600 dark:text-brand-400 bg-slate-100 dark:bg-slate-700/60"
+                className="inline-flex items-center min-h-[44px] px-2.5 py-1.5 rounded-lg text-sm font-medium text-brand-600 dark:text-brand-400 bg-slate-100 dark:bg-slate-700/60"
                 title={ex.tooltip}
               >
                 {ex.name}

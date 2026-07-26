@@ -2,10 +2,44 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-07-26 – Pre-launch deep audit (post-1.4.8 Unreleased → inzinerija)
+
+**Statusas:** ✅ **CONDITIONAL GO** ship Unreleased batch (ne 1.4.9 tag).  
+**Automatika:** `audit:release-preflight` ✅ (**129** failai / **822** testai) · `audit:m1012` ✅ · `validate:journey-m9` ✅ · TE strict **156** ✅ · `build:production` (M1–9) ✅.  
+**Apimtis:** M10–12 W1–W3B + diagram polish · PDF `pdfLink` / handout maturity · M7–9 mobile touch · M16–18 SOT parked (docs only).  
+**Prod rizika (M1–9):** M9 quest hydrate/re-confirm · 44px touch · handout/cert PDF link hitbox · M9 duration copy. M10–12 = authoring (ne prod bundle).  
+**NO-GO tag / MON pin:** `package.json` lieka **1.4.8**; open žmogaus: **CQ-PORTAL** · PDF-1…6 · M1012-2 C1–C6 · **DIAG-1**.  
+**Secrets:** nėra `.env` / credentials WT.
+
+## 2026-07-26 – M7–9 mobile polish (post CQ-M79)
+
+**Statusas:** ✅ code done — touch targets + M9 quest fold + table scroll fade.
+**Implementacija:** `PromptFilterToolSurface` EDA strip `min-h-[44px]`; ContentSlides tool chips `min-h-[44px]`; `PracticeQuestIntroSlide` Start prieš outcomeChips + `space-y-4 sm:space-y-5`; M9/90 `duration` → `~45–90 min` LT+EN; comparison/solution matrix max-sm right-edge fade.
+**Vartai:** full-repo `npm run lint` ✅ · PracticeQuestIntroSlide 5/5 + promptTool 3/3 ✅ · `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `validate:journey-m9` ✅.
+
+### DIAG-1 checklist (owner — open TODO)
+
+Pass: labels readable, no clipped text, dark tokens OK, reflow/stack OK. Registry: `DIAGRAMU_M7_M12_REGISTRY.md`.
+
+| #   | Slide  | Key / component              | Light | Dark | 375px |
+| --- | ------ | ---------------------------- | ----- | ---- | ----- |
+| 1   | M7/71  | `m7_macro_path_map`          | ⬜    | ⬜   | ⬜    |
+| 2   | M7/73  | `m7_da_pipeline`             | ⬜    | ⬜   | ⬜    |
+| 3   | M7/731 | `m7_analysis_types`          | ⬜    | ⬜   | ⬜    |
+| 4   | M7/74  | MASTER / shared workflow     | ⬜    | ⬜   | ⬜    |
+| 5   | M9/93  | `m9_data_workflow`           | ⬜    | ⬜   | ⬜    |
+| 6   | M8/80  | Path Test intro scope chrome | ⬜    | ⬜   | ⬜    |
+
+## 2026-07-26 – CQ-M79-1/2 browser smoke closeout (S1–S7 / E1–E6)
+
+**Statusas:** ✅ PASS — savininkas, viewport **375px**, blokerių nerasta.
+**Uždaryta:** CQ-M79-1 (S1–S7) + CQ-M79-2 (E1–E6) — žr. lenteles §2026-07-16 žemiau (Browser stulpelis ✅).
+**Lieka open (ne šis gate):** CQ-PORTAL 48h · PDF rankinė · M1012-2 C1–C6 · DIAG-1 light/dark.
+
 ## 2026-07-26 – Release **1.4.8** (preflight → tag)
 
-**Statusas:** ✅ GO code tag **v1.4.8**. **CONDITIONAL** learning QA (žmogus po commit – CQ-M79 browser, Portal 48h, PDF, M1012-2 C1–C6, DIAG-1).
-**Automatika:** `audit:release-preflight` ✅ **126/781** · `validate:journey-m9` ✅ · `audit:m1012` ✅ · M7–9 three-audit ✅ (žr. žemiau).
+**Statusas:** ✅ GO code tag **v1.4.8**. **CONDITIONAL** learning QA (žmogus – Portal 48h, PDF, M1012-2 C1–C6, DIAG-1; CQ-M79 browser ✅ 2026-07-26).
+**Automatika:** `audit:release-preflight` ✅ (@ tag **1.4.8** = **126/781**); HEAD Unreleased **129/822** · `validate:journey-m9` ✅ · `audit:m1012` ✅ · TE strict **156** ✅ · M7–9 three-audit ✅ (žr. žemiau).
 **Pin:** marketing MON-2 → submodule **v1.4.8** (out of scope šiame repo).
 
 ## 2026-07-26 – M7–9 three-audit (EN/LT · titles · footer/header)
@@ -23,14 +57,14 @@
 
 **DATA fix:** nereikėjo (visi exit 0).
 **Pastaba:** `npm run audit:slide-titles -- --modules=7,8,9` PowerShell/npm gali praryti `--modules` (full-catalog WARN M13/M14 `pipeline`); M7–9 scope – kviesti `node scripts/audit-slide-titles.mjs --modules=7,8,9`.
-**Out of scope (lieka):** full `audit:release-preflight`, CQ-M79 browser, PDF rankinė, tag/commit/push.
+**Out of scope (lieka):** PDF rankinė; CQ-M79 browser ✅ (closeout aukščiau).
 
 ## 2026-07-26 – Audit remediacija (gates × docs)
 
 **Statusas:** automatiniai vartai sutvarkyti. **Kontekstas:** deep audit – `audit:m79` FAIL dėl LEAN_M9 ghost 94/117.
-**Fix:** `m7-m9-en-manifest` MUST+hub; `practiceQuestIntroContent` schema; `validate:journey-m9`; TE baseline 149; satellite docs 94→93; DiagramLocalization refine-catalog asercijos.
+**Fix:** `m7-m9-en-manifest` MUST+hub; `practiceQuestIntroContent` schema; `validate:journey-m9`; TE baseline 156 (was 149 @ 1.4.8 remediacija); satellite docs 94→93; DiagramLocalization refine-catalog asercijos.
 **Automatika:** `validate:schema` ✅ · `audit:m79` ✅ · TE strict ✅ · `validate:journey-m9` ✅ · lint/typecheck ✅ · DiagramLocalization ✅.
-**Rankinė QA:** CQ-M79-1/2 / Portal / PDF / M1012-2 browser – lieka open TODO §1.
+**Rankinė QA:** CQ-M79-1/2 ✅; lieka Portal / PDF / M1012-2 / DIAG-1 – open TODO §1.
 
 ## 2026-07-26 – M9 journey paste + SOT hygiene (micropolish I2–I3)
 
@@ -41,7 +75,7 @@
 
 ## 2026-07-26 – M9M-6 MUST smoke (micropolish I1)
 
-**Statusas:** M9 MUST slice ✅ (automatika + struktūra); vizualus @375px lieka CQ-M79-1/2 matricoje.
+**Statusas:** M9 MUST slice ✅ (automatika + struktūra); vizualus @375px ✅ CQ-M79-1/2 closeout.
 **Kontekstas:** Plan `m9_micropolish_iterations` I1 – uždaryti M9M-6 su įrodymais prieš journey-paste I2.
 **Struktūra:** eilė `90→93.1→93.2→93→92→99`; hub 12 (+99); checklist ×4 (`catalog/csv/summary/reliability`); assets `m9_sample_internal.csv` (888 B) + `m9_dashboard_snippet.html`.
 **Automatika (16/16):** PracticeQuestIntroSlide (confirm gate / soft `value=null`); `resolveM9JourneyCopy`; `applyM9JourneyTheme`; `m9KitChecklist`; `resolveM9QuestStepStatus`.
@@ -56,7 +90,7 @@
 | 5    | 92    | ✅ kitChecklist ×4 + reliability                                      |
 | 6    | 99    | ✅ 12 scenarijų ids live                                              |
 
-**Vizualus @375px (CQ-M79):** ⬜ savininkas – S1–S7 / E1–E6 matrica (neblokuoją M9M-6 po unit/struktūros).
+**Vizualus @375px (CQ-M79):** ✅ savininkas – S1–S7 / E1–E6 (2026-07-26 closeout).
 **Character PNGs:** nėra `public/characters/veikejas-*.png` – CharacterCard text fallback (I3: be asset darbo).
 
 ## 2026-07-26 – M9 maturity done (M9M I0–I6)
@@ -65,7 +99,7 @@
 **Kontekstas:** chrome truth 12/4×3; journey theme tokens; Bronze/Silver/Gold; thin reliability; kit checklist ×4; SOT §10 align; `M9_PROMPT_MATURITY.md`.
 **Automatika:** `applyM9JourneyTheme`, `m9KitChecklist`, `M9DataWorkflowDiagram` label tests; `generate:core-data`; `validate:schema`.
 **Assets:** `public/m9_sample_internal.csv`, `public/m9_dashboard_snippet.html` – verified present.
-**Rankinis smoke (MUST @375px):** ✅ unit/struktūra (M9M-6); vizualus CQ-M79 ⬜.
+**Rankinis smoke (MUST @375px):** ✅ unit/struktūra (M9M-6); vizualus CQ-M79 ✅.
 
 ## 2026-07-26 – M9 sk. 93 clarity (schema ↔ copy)
 
@@ -80,14 +114,14 @@
 **Automatika:** `validate:schema` ✅ · `generate:core-data` ✅ · `PracticeQuestIntroSlide` / `resolveM9JourneyCopy` / `M9DataWorkflowDiagram` tests ✅.
 **Copy gate:** 90 duration/audience; 93.1 rinkinys (ne fork); 93 Trumpai nebesako „pradėk katalogą“; 99 be „Neprivaloma ·“ ×4; 113 be DA_4/§7A.
 **UI gate:** soft-preselect `value=null` iki confirm; quest map `data-quest-status` current/done.
-**Rankinis smoke:** ⬜ browser 90 confirm + map states @375px.
+**Rankinis smoke:** ✅ browser 90 confirm + map states @375px — covered by CQ-M79 closeout 2026-07-26.
 
 ## 2026-07-26 – M9 practice-quest redesign
 
 **Statusas:** įgyvendinta (I0–I6). **Kontekstas:** M9 quest desk, hub 12, checklist, journey overlay.
 **Automatika:** `PracticeQuestIntroSlide`, `resolveM9JourneyCopy`, `m9KitChecklist` + `validate:schema` / `generate:core-data` / `audit:teaching-elements:strict` / lint.
 **Progress chrome:** MUST = 5 (skipOptional M9); hub 99+12 = `optional`; `buildSlideGroups` → Projektas / Neprivaloma.
-**Rankinis smoke:** unit/struktūra ✅ (flow LT+EN wired); vizualus @375px confirm→93.1→…→92 = CQ-M79 ⬜.
+**Rankinis smoke:** unit/struktūra ✅ (flow LT+EN wired); vizualus @375px confirm→93.1→…→92 = CQ-M79 ✅.
 
 ## Kaip naudoti
 
@@ -275,7 +309,7 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 **Vartai:** `validate:schema` ✅ · `ContentBlockSlide.manipulationContrast` ✅ · `audit:teaching-elements` ✅ (overlay aligned) · `lint` ✅.
 
-**Rankinis (optional):** M7 → Promptų manipuliacijos – null→pasirinkimas, 2×2 mobile stack, dark/light, EN parity ⬜.
+**Rankinis (optional):** M7 → Promptų manipuliacijos – null→pasirinkimas, 2×2 mobile stack, dark/light, EN parity ✅ — covered by CQ-M79 closeout 2026-07-26.
 
 ### 2026-07-25 – M7 sk. 90 EDA prompt-tool
 
@@ -283,7 +317,7 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 
 **Vartai:** `validate:schema` ✅ · `extractFormatPreview` + `ContentBlockSlide.promptTool` + `linkedRowIndex` ✅ · `audit:teaching-elements --strict` ✅.
 
-**Rankinis (optional):** M7 → Tiriamoji analizė (EDA) – null→pasirinkimas, sample copy, dark/light, EN parity ⬜.
+**Rankinis (optional):** M7 → Tiriamoji analizė (EDA) – null→pasirinkimas, sample copy, dark/light, EN parity ✅ — covered by CQ-M79 closeout 2026-07-26.
 
 ### 2026-07-25 – M7 sk. 67.8 Haliucinacijos UX
 
@@ -301,7 +335,7 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 | Design-tokens gate                | ✅ GO         | Fix: M7 path map badge `text-[11px]` → `text-xs` (arbitraryClass 59 = baseline)                       |
 | M10–12 EN                         | ✅ GO         | `audit:m1012` ✅; footer-numbers M1–12 LT ✅ / M10–12 EN ✅                                           |
 | M13 footer numbers (full catalog) | ⚠ known drift | `audit:footer-numbers` fail M13 pos 5+ (authoring; not in release-preflight / not production M1–9)    |
-| Learning QA (PDF + M79 browser)   | ⏳ open       | CQ-M79-1/2 + Portal + PDF-1…6 + M1012-2 browser – `TODO.md` §1.1–§1.2                                 |
+| Learning QA (PDF + Portal)        | ⏳ open       | CQ-M79-1/2 ✅; lieka Portal + PDF-1…6 + M1012-2 + DIAG-1 – `TODO.md` §1.1–§1.2                        |
 | Monetization (MON-\*)             | Out of scope  | Marketing repo – `TODO.md` §1.4                                                                       |
 
 **Verdict:** **GO** code push (Unreleased ant **1.4.7**); **CONDITIONAL** learning QA (browser smoke + PDF rankinė). M13 footer drift – atskiras authoring ticketas, ne launch blokorius M1–9.
@@ -315,9 +349,13 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 | Teaching Elements inventory        | ✅ GO          | 283 slides; 38 images; 4 labs; 22 embeds; 22 tables; overlay **135**                                                              |
 | Release-ready (MON-1/3/5 + mobile) | ⏳ CONDITIONAL | Code tag ready. **Trūksta:** human browser tier 0/6/9 + mobile 375 + PDF rankinė (`TODO.md` §1.2)                                 |
 | Monetization-ready (MON-\*)        | Out of scope   | Marketing repo – `TODO.md` §1.4 (ne šio repo P0)                                                                                  |
-| Learning QA (PDF + M79 browser)    | ⏳ open        | PDF rankinė P1 · M79 smoke P0 – `TODO.md` §1.1–§1.2                                                                               |
+| Learning QA (PDF + Portal)         | ⏳ open        | CQ-M79 ✅; PDF rankinė P1 · Portal P0 – `TODO.md` §1.1–§1.2                                                                       |
 
 **Verdict:** **GO** code tag **v1.4.7**; **CONDITIONAL** learning QA (PDF + M79 browser smoke). MON monetization – out of scope šiame repo. Rankinė checklist lieka open (neuždaryta false-close).
+
+**2026-07-26 – M12 120.5 W7 layout brother polish (I0–I5):** Diagram←layout SOT; fan-out/fan-in; orphan dim; staged verbs; `stepOfLabel`; W7 brother unlock. **Vartai:** `lmsMultiAgentPolish` (orch+M12) ✅ · `m10m12LayoutGeometry` ✅ · `DiagramLocalization` ✅. Rankinė: desktop/compact LT/EN dark+light step1+step5 ⬜.
+
+**2026-07-26 – M12 120.5 / 120.55 schema sibling polish:** Kept `m12_multi_agent_schema` (≠ M10 orch). LT chain + M10 bridge; EN 120.5 full sections + handoff copyable; EN 120.55 Checkpoint (ne stub „AI agent step“); Output label human approval. **Vartai:** `validate:schema` ✅ · `audit:m1012` ✅ · `audit-footer-numbers --modules=10,11,12` LT+EN ✅ · DiagramLocalization + m10m12LayoutGeometry ✅. Rankinė: M12 EN 120.5 → 120.55 → 124.5 smoke ⬜.
 
 **2026-07-26 – M10–12 chrome brandumas (M1012-1 / M1012-2):** CONTENT+DATA – EN learner body be curriculum ID (`10.48`, `(10.4)`), be `docs/…md` path, bare `HITL` → human approval / Human-in-the-loop spelled where needed; LT 10.65 + practice hints be `docs/` / slug. Šaltinis: `scripts/build-en-m10-m12.mjs` → `npm run build:modules-en-m10-m12`. **Vartai:** `audit-footer-numbers` LT+EN ✅ · `audit:m1012` ✅ · `validate:schema` ✅ · CODING nereikėjo (PathStep/ModuleView).
 
@@ -328,6 +366,7 @@ _Užpildyk stulpelius (OK / ⚠️ / ❌) ir pastabas po rankinės peržiūros._
 | C3  | M10 10.5 / 10.65                 | cross-ref title-only; be `docs/`           | ✅        | ⬜             |
 | C4  | M11 intro → warm-up → results    | Path Test lukštas; remediation be naked ID | ✅        | ⬜             |
 | C5  | M12 124.5 + summary CTA          | human approval (ne bare HITL); title/CTA   | ✅        | ⬜             |
+| C5b | M12 120.5 → 120.55               | EN handoff copyable; Checkpoint (ne stub)  | ✅        | ⬜             |
 | C6  | Dark + light                     | viena dense content-block                  | ✅ (kodo) | ⬜             |
 
 **Statusas:** `kodo/JSON chrome ✅` — M1012-1 uždaromas; M1012-2 browser stulpelis – savininko sesija (full catalog, LT tada EN).
@@ -352,22 +391,22 @@ _Rankinis browser 375px (M4 portal, M7 sk. 93–94) – ⬜; ne tag blocker paga
 
 **2026-07-15 – M7–M9 P2 UX polish (browser gate + implementacija):** Iteracijos 1–6 pagal P2 planą. **Implementacija:** M7 etika collapsible/dedup/Patikra (67, 67.5, 67.8, 67.3, 68); copyable filtrai sk. 734/731/733/77 (`toolChoiceBar` + `linkedRowIndex`, bar be lentelės); M9 sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy (101/102/111/116/117), hub 99; optional šakos 77.5/90/861/88/M7-101; sk. 200 dashboard intro; sk. 74 MASTER schema copy. Skriptai `patch-m79-p2-polish.mjs`, `patch-m79-p2-polish-en.mjs`; testas `ContentBlockSlide.linkedRowIndex.test.tsx`. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `lint` ✅ · `test:run` 482/482 ✅.
 
-| Kelias      | Skaidrės              | Tikrinti                                          | Rezultatas        |
-| ----------- | --------------------- | ------------------------------------------------- | ----------------- |
-| M7 etika    | 67 → 67.5 → 67.8 → 68 | Collapsible detalės; viena Patikra; be dubliavimo | ⬜ rankinis 375px |
-| M7 filtrai  | 734, 731, 733, 77     | Domain bar + vienas copyable                      | ⬜ rankinis 375px |
-| M9 primary  | 93 → 94 → scenarijai  | Bookends; Patikra; scenarijų intro                | ⬜ rankinis 375px |
-| M9 optional | 99 → hub              | Banneris + accent CTA                             | ⬜ rankinis 375px |
+| Kelias      | Skaidrės                   | Tikrinti                                           | Rezultatas                    |
+| ----------- | -------------------------- | -------------------------------------------------- | ----------------------------- |
+| M7 etika    | 67 → 67.5 → 67.8 → 68      | Collapsible detalės; viena Patikra; be dubliavimo  | ✅ CQ-M79 closeout 2026-07-26 |
+| M7 filtrai  | 734, 731, 733, 77          | Domain bar + vienas copyable                       | ✅ CQ-M79 closeout 2026-07-26 |
+| M9 primary  | 90 → 93.1 → 93.2 → 93 → 92 | Live quest; Patikra on 93 (94→93 merge historical) | ✅ CQ-M79 closeout 2026-07-26 |
+| M9 optional | 99 → hub                   | Banneris + accent CTA                              | ✅ CQ-M79 closeout 2026-07-26 |
 
 **2026-07-15 – M7–M9 Phase 2 polish (browser gate + implementacija):** Sprint A–E pagal Phase 2 planą. **Implementacija:** Patikra de-boilerplate (19 M7 skaidrių); M8 warm-up be naked refs; M7 macro map 59/59 (+78.5); sk. 78.5 vidiniai + M9 sk. 93.1/93.2 practice-scenario; footer variant B (visible pozicija slide footer); EN overlay sync. **Vartai:** `validate:schema` ✅ · `generate:core-data` ✅ · `audit:m79` ✅ · `lint` ✅ · `test:run` 478/478 ✅.
 
 **2026-07-15 – M7–M9 UX polish Top 5 (browser gate):**
 
-| Kelias      | Skaidrės                        | Tikrinti                                                            | Rezultatas        |
-| ----------- | ------------------------------- | ------------------------------------------------------------------- | ----------------- |
-| M9 primary  | 90 → 93 → 93.1 → 93.2 → 94 → 92 | Intro CTA 93.1; sk. 94 vienas promptas; sk. 93 be 8 žingsnių teksto | ⬜ rankinis 375px |
-| M7 tankumas | 76, 89, 73, 74                  | sk. 76 domain bar + 1 copy; sk. 89/73 collapsible                   | ⬜ rankinis 375px |
-| M9 optional | 99 → scenarijus → santrauka     | Banneris + accent „Praleisti hub“                                   | ⬜ rankinis 375px |
+| Kelias      | Skaidrės                    | Tikrinti                                           | Rezultatas                    |
+| ----------- | --------------------------- | -------------------------------------------------- | ----------------------------- |
+| M9 primary  | 90 → 93.1 → 93.2 → 93 → 92  | Live quest; Patikra on 93 (historical 94→93 merge) | ✅ CQ-M79 closeout 2026-07-26 |
+| M7 tankumas | 76, 89, 73, 74              | sk. 76 domain bar + 1 copy; sk. 89/73 collapsible  | ✅ CQ-M79 closeout 2026-07-26 |
+| M9 optional | 99 → scenarijus → santrauka | Banneris + accent „Praleisti hub“                  | ✅ CQ-M79 closeout 2026-07-26 |
 
 **Implementacija:** `M9WorkflowStepCopyBlock`, `linkedRowIndex` + `toolChoiceBar` (sk. 76), patch skriptai `patch-m79-ux-polish*.mjs`. **Vartai:** `audit:m79` ✅ · `test:run` 480/480 ✅.
 
@@ -389,26 +428,28 @@ _Rankinis browser smoke (localhost, 375px) – rekomenduojama prieš release; au
 
 | #   | Kelias    | Tikslas                                    | Kodo/JSON | Browser |
 | --- | --------- | ------------------------------------------ | --------- | ------- |
-| E1  | M9 sk. 90 | 6 use-case + (i)/(ii) fork be naked id     | ✅        | ⬜      |
-| E2  | M9 93.1   | Sektorius pagal M7 kelią; DI chat be failo | ✅        | ⬜      |
-| E3  | M9 93.2   | sample CSV download + 6 stulpelių CONTEXT  | ✅        | ⬜      |
-| E4  | M9 hub 99 | level1 description ≠ `Neprivaloma · .`     | ✅        | ⬜      |
-| E5  | M8 80.5   | warm-up #4: katalogas vs CSV               | ✅        | ⬜      |
-| E6  | M8 q1/q7  | Excel/CRM vignette                         | ✅        | ⬜      |
+| E1  | M9 sk. 90 | 6 use-case + (i)/(ii) fork be naked id     | ✅        | ✅      |
+| E2  | M9 93.1   | Sektorius pagal M7 kelią; DI chat be failo | ✅        | ✅      |
+| E3  | M9 93.2   | sample CSV download + 6 stulpelių CONTEXT  | ✅        | ✅      |
+| E4  | M9 hub 99 | level1 description ≠ `Neprivaloma · .`     | ✅        | ✅      |
+| E5  | M8 80.5   | warm-up #4: katalogas vs CSV               | ✅        | ✅      |
+| E6  | M8 q1/q7  | Excel/CRM vignette                         | ✅        | ✅      |
 
-**2026-07-16 – M79-50 smoke protokolas (A–C wave):** Vykdoma lentelė S1–S7. **Kodo/JSON stulpelis** užpildytas agentu; **browser** – savininko sesija prieš release.
+**Browser E1–E6:** ✅ savininkas @375px (2026-07-26) — CQ-M79-2.
+
+**2026-07-16 – M79-50 smoke protokolas (A–C wave):** Vykdoma lentelė S1–S7. **Kodo/JSON** ✅; **browser** ✅ savininkas @375px (2026-07-26).
 
 | #   | Kelias          | Patikra                | Kodo ✅ | Browser | Pastabos                                                  |
 | --- | --------------- | ---------------------- | ------- | ------- | --------------------------------------------------------- |
-| S1  | M7 `vadyba`     | 70→731→74→71.1→67→67.3 | ✅      | ⬜      | `branchIds` incl. `etika-plus`; overlay `731`/`74`/`71.1` |
-| S2  | M7 `personalas` | 70→731→71.1→67→67.8    | ✅      | ⬜      | `personalas` be `etika-plus`; 67.3 `pathBranch`           |
-| S3  | M7 EN           | kaip S1                | ✅      | ⬜      | EN 67 subtitle be jailbreak; journey-en overlay           |
-| S4  | M7 sk. 76       | bar→prompt             | ✅      | ⬜      | `toolChoiceBar` + 6× `linkedRowIndex`                     |
-| S5  | M7 sk. 67       | tipas→MCQ              | ✅      | ⬜      | subtitle be jailbreak; `preCopyCheckBlock`                |
-| S6  | M9 @375px       | 90→93.1→93.2→99        | ✅      | ⬜      | 0× `sk. 93.x` naked id JSON                               |
-| S7  | Footer 66.9→67  | be „skaidrė N“         | ✅      | ⬜      | footer: „Toliau – Promptų manipuliacijos“                 |
+| S1  | M7 `vadyba`     | 70→731→74→71.1→67→67.3 | ✅      | ✅      | `branchIds` incl. `etika-plus`; overlay `731`/`74`/`71.1` |
+| S2  | M7 `personalas` | 70→731→71.1→67→67.8    | ✅      | ✅      | `personalas` be `etika-plus`; 67.3 `pathBranch`           |
+| S3  | M7 EN           | kaip S1                | ✅      | ✅      | EN 67 subtitle be jailbreak; journey-en overlay           |
+| S4  | M7 sk. 76       | bar→prompt             | ✅      | ✅      | `toolChoiceBar` + 6× `linkedRowIndex`                     |
+| S5  | M7 sk. 67       | tipas→MCQ              | ✅      | ✅      | subtitle be jailbreak; `preCopyCheckBlock`                |
+| S6  | M9 @375px       | 90→93.1→93.2→99        | ✅      | ✅      | 0× `sk. 93.x` naked id JSON                               |
+| S7  | Footer 66.9→67  | be „skaidrė N“         | ✅      | ✅      | footer: „Toliau – Promptų manipuliacijos“                 |
 
-**Statusas:** `kodo verifikacija atlikta` — §12/§13 checkbox uždaromas po savininko browser eilutės (arba kai S1–S7 browser ✅).
+**Statusas:** `browser S1–S7 ✅` (2026-07-26) — CQ-M79-1; backlog §12/§13 uždaryta.
 
 **Susiję (A–C, 2026-07-16):** M79-44 (sk. 97) + M79-45 (W4/W5 plain) – `atlikta` JSON; žr. `07_08_09_backlog.md` §13, `CHANGELOG` [Unreleased].
 

@@ -15,6 +15,7 @@ const ARRAY_FIELDS = [
 const REQUIRED_STRING_FIELDS = [
   'title',
   'subtitle',
+  'starterPrompt',
   'reflectionSummary',
   'nextPageHeading',
   'nextPageIntro',
@@ -35,6 +36,7 @@ function visibleStrings(content: M79HandoutContent): string[] {
     ...content.pipelineSteps,
     ...content.masterPromptSteps,
     ...content.workflowSteps,
+    content.starterPrompt,
     content.reflectionSummary,
     content.nextPageHeading,
     content.nextPageIntro,

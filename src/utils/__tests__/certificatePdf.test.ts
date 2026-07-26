@@ -24,7 +24,7 @@ const mockAddFileToVFS = vi.fn();
 const mockAddFont = vi.fn();
 const mockSplitTextToSize = vi.fn((text: string) => [text]);
 const mockGetTextWidth = vi.fn(() => 40);
-const mockTextWithLink = vi.fn();
+const mockLink = vi.fn();
 
 function createMockDoc() {
   return {
@@ -41,7 +41,7 @@ function createMockDoc() {
     addFont: mockAddFont,
     splitTextToSize: mockSplitTextToSize,
     getTextWidth: mockGetTextWidth,
-    textWithLink: mockTextWithLink,
+    link: mockLink,
   };
 }
 

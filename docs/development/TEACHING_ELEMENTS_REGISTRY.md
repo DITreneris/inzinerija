@@ -77,9 +77,9 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | Off-renderer live šeimos       |                5 |
 | Orphaned                       |                2 |
 | ChoiceControl labai (audit)    |                4 |
-| Embed katalogas                |               27 |
-| `section.table`                | 29 / 23 skaidrių |
-| Inventory / overlay elements   |              149 |
+| Embed katalogas                |               33 |
+| `section.table`                | 30 / 24 skaidrių |
+| Inventory / overlay elements   |              156 |
 
 ## Diagramos, labai ir off-renderer (TE-2)
 
@@ -95,10 +95,10 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `diagram:m10_incident_playbook`     | M10/10.65                 | `linear-process`               | Taip  |        3 | M10IncidentPlaybookBlock                         |
 | `diagram:m10_learning_loop`         | M10/10.49                 | `cycle-feedback`               | Taip  |        3 | M10LearningLoopBlock                             |
 | `diagram:m10_three_a_strategy`      | M10/10.25                 | `comparison`                   | Taip  |        3 | M10ThreeAStrategyBlock                           |
-| `diagram:m10_tool_decision_tree`    | M10/10.4                  | `decision-tree`                | Taip  |        3 | M10ToolDecisionTreeBlock                         |
+| `diagram:m10_tool_decision_tree`    | M10/10.35                 | `decision-tree`                | Taip  |        3 | M10ToolDecisionTreeBlock                         |
 | `diagram:m10_trigger_flow`          | M10/10.15                 | `linear-process`               | Taip  |        3 | M10TriggerFlowBlock                              |
 | `diagram:m10_workflow_spec`         | M10/10.65                 | `linear-process`               | Taip  |        3 | M10WorkflowSpecBlock                             |
-| `diagram:m12_multi_agent_schema`    | M12/120.5                 | `multi-agent-flow`             | Taip  |        3 | M12MultiAgentSchemaBlock                         |
+| `diagram:m12_multi_agent_schema`    | M12/120.5                 | `multi-agent-flow`             | Taip  |        4 | M12MultiAgentSchemaBlock                         |
 | `diagram:m12_three_labs`            | M12/120.25                | `comparison`                   | Ne    |        3 | M12ThreeLabsBlock                                |
 | `diagram:m13_aec_funnel`            | M13/13.1                  | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
 | `diagram:m13_consistency_lock`      | M13/13.32                 | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
@@ -214,8 +214,14 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `embed:toolChoiceBar:m7:88:s1`         | `sections[1].toolChoiceBar`                         | M7/88               |
 | `embed:toolChoiceBar:m7:90:s1`         | `sections[1].toolChoiceBar`                         | M7/90 (prompt-tool) |
 | `embed:toolChoiceBar:m7:84:s1`         | `sections[1].toolChoiceBar`                         | M7/84               |
+| `embed:toolChoiceBar:m10:10.48:s1`     | `sections[1].toolChoiceBar`                         | M10/10.48           |
+| `embed:toolChoiceBar:m10:10.35:s2`     | `sections[2].toolChoiceBar`                         | M10/10.35           |
+| `embed:toolChoiceBar:m10:10.36:s3`     | `sections[3].toolChoiceBar`                         | M10/10.36           |
+| `embed:preCopyCheckBlock:m10:10.36`    | `preCopyCheckBlock`                                 | M10/10.36           |
+| `embed:toolChoiceBar:m12:120.25:s2`    | `sections[2].toolChoiceBar`                         | M12/120.25          |
+| `embed:preCopyCheckBlock:m12:120.25`   | `preCopyCheckBlock`                                 | M12/120.25          |
 
-**Pastaba:** `audit:embed-catalog` EMBED_KEYS = 6 top-level; master taip pat skaičiuoja `toolChoiceBar`, `pipelineDiagram`, `presentationToolsBlock` (čia 25 eilutės).
+**Pastaba:** `audit:embed-catalog` EMBED_KEYS = 6 top-level; master taip pat skaičiuoja `toolChoiceBar`, `pipelineDiagram`, `presentationToolsBlock`.
 
 ## Lentelės (TE-3)
 
@@ -245,9 +251,10 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `table:m7:67.8:s4`   | M7/67.8   | ne              | Keturi kontrolės lygiai                                            |
 | `table:m7:104:s1`    | M7/104    | ne              | Papildoma: istorijos modelis ir geri dashboard'ai                  |
 | `table:m7:106:s6`    | M7/106    | ne              | Papildoma: DI pagalba + super promptas + alternatyvos              |
-| `table:m10:10.36:s1` | M10/10.36 | ne              | Paleidimas: kur veikia agentas ir API                              |
-| `table:m10:10.36:s2` | M10/10.36 | ne              | Paleidimas: kur veikia agentas ir API                              |
+| `table:m10:10.36:s1` | M10/10.36 | ne              | Kur paleisti – keturi sluoksniai                                   |
+| `table:m10:10.36:s2` | M10/10.36 | ne              | Kur paleisti – orientacija (Railway / Render / Fly.io)             |
 | `table:m10:10.37:s1` | M10/10.37 | ne              | GitHub kaip kodo šaltinis                                          |
+| `table:m10:10.65:s7` | M10/10.65 | ne              | Darbo eigos testavimas: 10 scenarijų (collapsible)                 |
 
 ## Kind × maturity scorecard (TE-4)
 

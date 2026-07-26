@@ -9,6 +9,7 @@ export interface M10LearningLoopLabels {
   improveNextRun: string;
   updateRules: string;
   updateSkills: string;
+  updateSystem: string;
   nodes: {
     task: [string, string];
     rules: [string, string];
@@ -33,10 +34,12 @@ const LABELS_LT: M10LearningLoopLabels = {
   title: 'Uždaro mokymosi ciklas agentams',
   executionTitle: 'Vykdymo sistema',
   learningTitle: 'Mokymosi ciklas',
-  record: 'fiksuoti',
+  record: 'fiksuoja',
   improveNextRun: 'gerina kitą bandymą',
-  updateRules: 'atnaujina taisykles',
-  updateSkills: 'atnaujina įgūdžius',
+  updateRules: 'atnaujina sistemą',
+  updateSkills: 'atnaujina sistemą',
+  /** Single chip on update magistrale (preferred over per-drop nouns). */
+  updateSystem: 'atnaujina sistemą',
   nodes: {
     task: ['Užduotis', 'tikslas arba prašymas'],
     rules: ['Taisyklės', 'ribos, principai'],
@@ -75,10 +78,11 @@ const LABELS_EN: M10LearningLoopLabels = {
   title: 'Closed learning loop for agents',
   executionTitle: 'Execution system',
   learningTitle: 'Learning loop',
-  record: 'record',
+  record: 'records',
   improveNextRun: 'improves next run',
-  updateRules: 'updates rules',
-  updateSkills: 'updates skills',
+  updateRules: 'updates system',
+  updateSkills: 'updates system',
+  updateSystem: 'updates system',
   nodes: {
     task: ['Task', 'goal or request'],
     rules: ['Rules', 'limits, principles'],

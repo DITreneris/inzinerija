@@ -13,10 +13,12 @@
 | Turinys M1–3          | `turinio_pletra.md`                                                                                                                                                             |
 | Turinys M4–6          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                         |
 | Turinys M7–9          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                         |
-| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė `MODULIO_10_SKAIDRIU_EILES.md` pagal poreikį)                                                                                |
+| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė; ranks: `M10_SLIDE_RANKING_AUDIT.md`, `M11_M12_SLIDE_RANKING_AUDIT.md`)                                                      |
 | Turinys M13–15        | `docs/turinio_pletra_moduliai_13_14_15.md` (authoring)                                                                                                                          |
+| Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` (SOT draft; JSON Deferred)                                                                                                           |
 | Numeracija            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                           |
 | Dizainas / ritmas     | `docs/development/GOLDEN_STANDARD.md` (§3.8)                                                                                                                                    |
+| PDF handout branda    | `docs/development/HANDOUT_MATURITY.md` (+ `PDF_MAKETO_GAIRES.md`)                                                                                                               |
 | Mokymo elementai      | `docs/development/TEACHING_ELEMENTS_REGISTRY.md` + overlay; `npm run audit:teaching-elements`                                                                                   |
 | Interaktyvumo auditai | `npm run audit:slide-interactivity` · `audit:embed-catalog` (ritmas = GOLDEN §3.8; istorinis UX planas – archive po DL-3)                                                       |
 | Kas įgyvendinta       | `docs/development/CODEBASE_WHAT_IS_DONE.md` (ne GOLD_LEGACY)                                                                                                                    |

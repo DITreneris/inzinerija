@@ -3,7 +3,7 @@
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
 **Baseline:** 1.4.8 (tag release)  
-**Testai:** 126 failai / 781 testai (preflight 2026-07-26)  
+**Testai:** 129 failai / 822 testai (HEAD Unreleased 2026-07-26; `@ tag 1.4.8` = 126/781)  
 **Data:** 2026-07-26  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 

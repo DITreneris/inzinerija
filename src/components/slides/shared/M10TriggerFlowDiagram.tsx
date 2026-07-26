@@ -1,5 +1,5 @@
 /**
- * M10 – Trigger → Condition → Action + Webhook → Trigger (SCHEME_AGENT: rodyklės kraštas į kraštą).
+ * M10 – Trigger → Condition → Action; Webhook = Trigger tipas (ne 4-asis Shell žingsnis).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
@@ -21,7 +21,11 @@ const {
   gap: GAP,
   yMain: Y_MAIN,
   x0: X0,
-  webhookNotch: WEBHOOK_NOTCH,
+  typeChipW: CHIP_W,
+  typeChipH: CHIP_H,
+  typeChipGap: CHIP_GAP,
+  typeRowY: TYPE_ROW_Y,
+  typesLabelY: TYPES_LABEL_Y,
 } = M10_TRIGGER_FLOW_LAYOUT;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const MARKER = PROCESS_ARROW.tipLen;
@@ -45,7 +49,7 @@ export default function M10TriggerFlowDiagram({
   const webhookFill = tones.amber.soft;
   const webhookStroke = tones.amber.stroke;
   const webhookText = tones.amber.stroke;
-  const webhookSubText = palette.muted;
+  const chipFill = tones.brand.soft;
   const flowGrey = palette.flow;
   const interactive = typeof onStepClick === 'function';
   const x1 = X0;
@@ -53,8 +57,19 @@ export default function M10TriggerFlowDiagram({
   const x3 = x2 + BOX_W + GAP;
   const cx = (x: number) => x + BOX_W / 2;
   const yB = Y_MAIN + BOX_H;
-  const whX = x1;
-  const whY = Y_MAIN + BOX_H + 36;
+
+  const typeChips = [
+    { key: 'form', label: L.typeForm, emphasize: false },
+    { key: 'sched', label: L.typeSchedule, emphasize: false },
+    { key: 'webhook', label: L.typeWebhook, emphasize: true },
+  ] as const;
+  const typesStripW =
+    typeChips.length * CHIP_W + (typeChips.length - 1) * CHIP_GAP;
+  const typesStripX = Math.max(
+    10,
+    Math.min(cx(x1) - typesStripW / 2, W - typesStripW - 10)
+  );
+  const typesDim = currentStep >= 0 && currentStep !== 0;
 
   return (
     <svg
@@ -76,7 +91,7 @@ export default function M10TriggerFlowDiagram({
           <path d={PROCESS_ARROW.pathD} fill={flowGrey} />
         </marker>
         <marker
-          id={`m10tf-dash-${uid}`}
+          id={`m10tf-up-${uid}`}
           markerUnits={PROCESS_ARROW.markerUnits}
           markerWidth={PROCESS_ARROW.markerWidth}
           markerHeight={PROCESS_ARROW.markerHeight}
@@ -100,9 +115,15 @@ export default function M10TriggerFlowDiagram({
       </text>
 
       {[
-        { x: x1, title: L.trigger, sub: L.triggerSub, step: 0 },
-        { x: x2, title: L.condition, sub: L.conditionSub, step: 1 },
-        { x: x3, title: L.action, sub: L.actionSub, step: 2 },
+        { x: x1, title: L.trigger, sub: L.triggerSub, step: 0, dashed: false },
+        {
+          x: x2,
+          title: L.condition,
+          sub: L.conditionSub,
+          step: 1,
+          dashed: true,
+        },
+        { x: x3, title: L.action, sub: L.actionSub, step: 2, dashed: false },
       ].map((b) => {
         const active = currentStep < 0 || currentStep === b.step;
         const dim = currentStep >= 0 && currentStep !== b.step;
@@ -125,6 +146,7 @@ export default function M10TriggerFlowDiagram({
                   ? DIAGRAM_TOKENS.stroke.active
                   : DIAGRAM_TOKENS.stroke.border + 0.2
               }
+              strokeDasharray={b.dashed ? '5 4' : undefined}
             />
             <text
               x={cx(b.x)}
@@ -179,68 +201,72 @@ export default function M10TriggerFlowDiagram({
         markerEnd={`url(#m10tf-fwd-${uid})`}
       />
 
-      <path
-        d={`M${whX + 10} ${whY} H${whX + BOX_W - WEBHOOK_NOTCH} L${whX + BOX_W} ${whY + BOX_H / 2} L${whX + BOX_W - WEBHOOK_NOTCH} ${whY + BOX_H} H${whX + 10} Q${whX} ${whY + BOX_H} ${whX} ${whY + BOX_H - 10} V${whY + 10} Q${whX} ${whY} ${whX + 10} ${whY} Z`}
-        fill={webhookFill}
-        stroke={currentStep === 3 ? getDiagramActiveStroke() : webhookStroke}
-        strokeWidth={
-          currentStep === 3
-            ? DIAGRAM_TOKENS.stroke.active
-            : DIAGRAM_TOKENS.stroke.inactive
-        }
-        opacity={currentStep >= 0 && currentStep !== 3 ? 0.4 : 1}
-      />
-      <text
-        x={cx(whX)}
-        y={whY + 22}
-        textAnchor="middle"
-        fill={webhookText}
-        fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
-        fontWeight="700"
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.webhook}
-      </text>
-      <text
-        x={cx(whX)}
-        y={whY + 38}
-        textAnchor="middle"
-        fill={webhookSubText}
-        fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop - 1}
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.webhookSub}
-      </text>
-      {interactive ? (
-        <DiagramStepHitArea
-          x={whX}
-          y={whY}
-          width={BOX_W}
-          height={BOX_H}
-          onActivate={() => onStepClick(3)}
+      <g opacity={typesDim ? 0.45 : 1}>
+        <text
+          x={typesStripX + typesStripW / 2}
+          y={TYPES_LABEL_Y}
+          textAnchor="middle"
+          fill={palette.muted}
+          fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop - 1}
+          fontWeight="600"
+          fontFamily={DIAGRAM_TOKENS.font}
+        >
+          {L.typesLabel}
+        </text>
+        {typeChips.map((chip, i) => {
+          const chipX = typesStripX + i * (CHIP_W + CHIP_GAP);
+          return (
+            <g key={chip.key}>
+              <rect
+                x={chipX}
+                y={TYPE_ROW_Y}
+                width={CHIP_W}
+                height={CHIP_H}
+                rx={6}
+                fill={chip.emphasize ? webhookFill : chipFill}
+                stroke={chip.emphasize ? webhookStroke : palette.brandDark}
+                strokeWidth={
+                  chip.emphasize
+                    ? DIAGRAM_TOKENS.stroke.inactive
+                    : DIAGRAM_TOKENS.stroke.border
+                }
+              />
+              <text
+                x={chipX + CHIP_W / 2}
+                y={TYPE_ROW_Y + 18}
+                textAnchor="middle"
+                fill={chip.emphasize ? webhookText : palette.brandDark}
+                fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop - 1}
+                fontWeight={chip.emphasize ? '700' : '600'}
+                fontFamily={DIAGRAM_TOKENS.font}
+              >
+                {chip.label}
+              </text>
+            </g>
+          );
+        })}
+        <line
+          x1={cx(x1)}
+          y1={TYPE_ROW_Y}
+          x2={cx(x1)}
+          y2={yB + MARKER}
+          stroke={webhookStroke}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+          strokeDasharray="5 4"
+          markerEnd={`url(#m10tf-up-${uid})`}
         />
-      ) : null}
-
-      <line
-        x1={cx(x1)}
-        y1={whY}
-        x2={cx(x1)}
-        y2={yB - MARKER}
-        stroke={webhookStroke}
-        strokeWidth={DIAGRAM_TOKENS.stroke.flow}
-        strokeDasharray="5 4"
-        markerEnd={`url(#m10tf-dash-${uid})`}
-      />
-      <text
-        x={cx(x1) + 68}
-        y={whY + BOX_H / 2}
-        fill={webhookText}
-        fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop - 1}
-        fontWeight="600"
-        fontFamily={DIAGRAM_TOKENS.font}
-      >
-        {L.arrowToTrigger}
-      </text>
+        <text
+          x={W / 2}
+          y={TYPE_ROW_Y + CHIP_H + 18}
+          textAnchor="middle"
+          fill={webhookText}
+          fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop - 1}
+          fontWeight="600"
+          fontFamily={DIAGRAM_TOKENS.font}
+        >
+          {L.typesHint}
+        </text>
+      </g>
     </svg>
   );
 }

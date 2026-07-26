@@ -4,12 +4,13 @@
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`docs/archive/development/TODO_DONE_SPRINTS_2026-07.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
 **Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + learning QA (PDF, smoke), P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-07-26 (turinio ambicijos flip).
 
-**Dabartinis fokusas:** **turinio plėtros OS** — M7–9 kokybė → M10–12 authoring brandumas → pedagogikos OS. Automated: lint + schema + TE strict + typecheck + `audit:m79` + `validate:journey-m9` (LEAN_M9 + audit remediacija 2026-07-26). Blokoriai (žmogaus QA): M79 browser smoke + Portal 48h; P1: PDF rankinė + M10–12 rankinė UI (chrome turinys ✅ M1012-1). CONTENT §4.6 #6–9 ✅ (CQ-M79-3).
+**Dabartinis fokusas:** **turinio plėtros OS** — M7–9 browser ✅ → Portal 48h → M10–12 authoring brandumas → pedagogikos OS. Automated: lint + schema + TE strict + typecheck + `audit:m79` + `validate:journey-m9`. Blokoriai (žmogaus QA): Portal 48h; P1: PDF rankinė + M10–12 rankinė UI (chrome ✅ M1012-1) + DIAG-1. CONTENT §4.6 #6–9 ✅; CQ-M79-1/2 ✅ (2026-07-26).
 
 **Learning QA vartai (šiame repo):**
 
-- **P0 uždaryti:** M79 browser S1–S7 / E1–E6 @375px + Portal 48h retest.
-- **P1 brandumas:** PDF M5/M6 (+ §5d) + M10–12 rankinė UI C1–C6 (`TEST_REPORT`) + diagram light/dark smoke.
+- **P0 uždaryta:** CQ-M79-1/2/3 (S1–S7 / E1–E6 @375px + §4.6 #6–9 ✅).
+- **Open P0:** CQ-PORTAL 48h anti-PPT retest (5 mobile, 375px).
+- **P1 brandumas:** PDF M5/M6 (+ §5d) + M10–12 rankinė UI C1–C6 (`TEST_REPORT`) + diagram light/dark smoke (DIAG-1).
 
 ---
 
@@ -31,26 +32,33 @@
 
 | ID            | Užduotis                                                                                    | Status         | Pastaba                                                                                          |
 | ------------- | ------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------ |
-| **CQ-M79-1**  | M7–9 browser smoke S1–S7 @375px                                                             | [ ]            | [`07_08_09_backlog.md`](docs/development/07_08_09_backlog.md) §12–13; `TEST_REPORT` browser ⬜   |
-| **CQ-M79-2**  | M7–9 browser smoke E1–E6 @375px (kasdienis artumas)                                         | [ ]            | backlog §14; `TEST_REPORT`                                                                       |
+| **CQ-M79-1**  | M7–9 browser smoke S1–S7 @375px                                                             | [x] 2026-07-26 | `TEST_REPORT` S1–S7 Browser ✅; backlog §12–13                                                   |
+| **CQ-M79-2**  | M7–9 browser smoke E1–E6 @375px (kasdienis artumas)                                         | [x] 2026-07-26 | `TEST_REPORT` E1–E6 Browser ✅; backlog §14                                                      |
 | **CQ-M79-3**  | CONTENT residual §4.6 **#6–9** (sk. 90 nav; 891 „kada“; 74 MASTER vs M4; „vienas promptas“) | [x] 2026-07-26 | #6/#8 verify; EN 891 when-first; M7 #9 phrase batch LT+EN; `patch-m79-46-section46-residual.mjs` |
 | **CQ-PORTAL** | 48h anti-PPT retest (5 mobile, 375px)                                                       | ⬜             | Portal 2.1 polish ✅; retest paruošta                                                            |
 | **M9M-0…5**   | M9 maturity I0–I5 (chrome 12/4×3, tokens, tiers, reli, honesty, SOT/M9P)                    | [x] 2026-07-26 | Plan `m9_maturity_iterations`; DoD docs + `M9_PROMPT_MATURITY.md`                                |
-| **M9M-6**     | M9 MUST browser smoke @375px (90→93.1→93.2→93→92)                                           | [x] 2026-07-26 | Unit+struktūra ✅ `TEST_REPORT` M9M-6; vizualus @375px → CQ-M79-1/2                              |
+| **M9M-6**     | M9 MUST browser smoke @375px (90→93.1→93.2→93→92)                                           | [x] 2026-07-26 | Unit+struktūra ✅; vizualus @375px ✅ CQ-M79-1/2                                                 |
 
 ### §1.2 P1 – Turinio kokybė + authoring brandumas
 
-| ID          | Užduotis                                                             | Status         | Pastaba                                                                           |
-| ----------- | -------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------- |
-| **PDF-1**   | M5 PDF rankinė (lietuviškos raidės)                                  | [ ]            | RELEASE_QA_CHECKLIST §5d                                                          |
-| **PDF-2**   | M6 PDF rankinė                                                       | [ ]            | §5d                                                                               |
-| **PDF-3**   | Rankinė M4 sk. 56 (RAG / LlmArch)                                    | [ ]            | §5d                                                                               |
-| **PDF-4**   | Rankinė M6 sk. 64                                                    | [ ]            | §5d                                                                               |
-| **PDF-5**   | Browser spot-check M1/M4/M6 @390px                                   | [ ]            | Bug bundle matrix (archive)                                                       |
-| **PDF-6**   | PDF/handout entry point M5/M6                                        | [ ]            |                                                                                   |
-| **M1012-1** | M10–12 chrome: titles / footer / CTA brandumas (be curriculum ID UI) | [x] 2026-07-26 | EN cross-ref/HITL/`docs/` fix + LT 10.65; GOLDEN §3.6; `build:modules-en-m10-m12` |
-| **M1012-2** | `audit:m1012` + rankinė UI peržiūra (LT/EN)                          | [ ]            | `audit:m1012` ✅; browser C1–C6 @375px – `TEST_REPORT` ⬜                         |
-| **DIAG-1**  | Rankinis light/dark diagram smoke M7–9 (TE registry + RELEASE_QA)    | [ ]            |                                                                                   |
+| ID             | Užduotis                                                             | Status         | Pastaba                                                                                                                      |
+| -------------- | -------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **PDF-1**      | M5 PDF rankinė (lietuviškos raidės)                                  | [ ]            | RELEASE_QA_CHECKLIST §5d                                                                                                     |
+| **PDF-2**      | M6 PDF rankinė                                                       | [ ]            | §5d                                                                                                                          |
+| **PDF-3**      | Rankinė M4 sk. 56 (RAG / LlmArch)                                    | [ ]            | §5d                                                                                                                          |
+| **PDF-4**      | Rankinė M6 sk. 64                                                    | [ ]            | §5d                                                                                                                          |
+| **PDF-5**      | Browser spot-check M1/M4/M6 @390px                                   | [ ]            | Bug bundle matrix (archive)                                                                                                  |
+| **PDF-6**      | PDF/handout entry point M5/M6                                        | [ ]            |                                                                                                                              |
+| **PDF-LINK-1** | Handout/certificate PDF nuorodų hitbox + maturity P0–P2              | [x] 2026-07-26 | `pdfLink` + Decide→hub; path CTA; starterPrompt; [`HANDOUT_MATURITY.md`](docs/development/HANDOUT_MATURITY.md); Annots smoke |
+| **M1012-1**    | M10–12 chrome: titles / footer / CTA brandumas (be curriculum ID UI) | [x] 2026-07-26 | EN cross-ref/HITL/`docs/` fix + LT 10.65; GOLDEN §3.6; `build:modules-en-m10-m12`                                            |
+| **M1012-W1**   | M10 Wave 1 content/schema (10.1–10.48 intake #1–6)                   | [x] 2026-07-26 | Copy dedupe + 10.45 lab polish + 10.48 toolChoiceBar; intake closed Wave1                                                    |
+| **M1012-W2**   | M10 Wave 2 content (10.485–10.8 intake #7–11)                        | [x] 2026-07-26 | Orch/tools/workflow/MUST-tail polish; EN dual-source; intake closed Wave2                                                    |
+| **M1012-2**    | `audit:m1012` + rankinė UI peržiūra (LT/EN)                          | [ ]            | `audit:m1012` ✅; browser C1–C6 @375px – `TEST_REPORT` ⬜                                                                    |
+| **M1012-R**    | M10 slide ranking audit (UI/UX/Journey/Maturity/TE) → Top 8 backlog  | [x] 2026-07-26 | [`M10_SLIDE_RANKING_AUDIT.md`](docs/development/M10_SLIDE_RANKING_AUDIT.md)                                                  |
+| **M1012-W3a**  | M10 Top-5 density/cycle batch (10.36/65/37/cluster/10.48)            | [x] 2026-07-26 | LT+EN; eilė sync; rework flags cleared; ranking audit §6 done                                                                |
+| **M1012-W3R**  | M11/M12 Wave3 ranking audit (16 slides) → Top 8 / Top 5 frozen       | [x] 2026-07-26 | [`M11_M12_SLIDE_RANKING_AUDIT.md`](docs/development/M11_M12_SLIDE_RANKING_AUDIT.md); batch iki „tvarkom batch“               |
+| **M1012-W3B**  | M11/M12 Top-5 batch (120.25/125/123/112/121 + EN 126/127 delete)     | [x] 2026-07-26 | LT+`build-en-m10-m12`; cycle/Copy/doc scrub; `audit:m1012` + schema OK                                                       |
+| **DIAG-1**     | Rankinis light/dark diagram smoke M7–9 (TE registry + RELEASE_QA)    | [ ]            |                                                                                                                              |
 
 ### §1.3 Open P2 / polish
 
@@ -89,7 +97,7 @@ MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
 - M13–15 pilnas production release – Deferred (authoring katalogas OK).
 - M10–15 marketing monetizacija – marketing repo.
-- M16–18 **Kodo inžinerija** (vibe-coding) – Deferred (nėra SOT / katalogo; M7 optional viz sk. 100–106 lieka M7, ne iškelta).
+- M16–18 **Kodo inžinerija** (vibe-coding) – Deferred JSON/katalogas / skaidrių eilė; **SOT parked** (`turinio_pletra_moduliai_16_17_18.md` §8 freeze + F1–F8 checklist; intake → `docs/archive/development/intake/`). Un-defer tik po CQ-PORTAL (CQ-M79-1/2 ✅) (arba override) **ir** product call „kitas kelias = Kodo inžinerija“; tada F1 eilė. Ne open P0. M7 optional viz sk. 100–106 lieka M7.
 - M19–21 **DI politikos inžinerija** (dokumentacija ir komunikacija) – Deferred (nėra SOT / katalogo).
 
 ---
@@ -101,7 +109,7 @@ Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-07.md`](docs/archive/development/TODO
 - UX Banga 0–4 + M5 Apply+Gate ✅ · Practice closer PC-0…3 ✅ · M7P ✅ · Teaching Elements TE-0…5 ✅
 - Portal 2.1 polish ✅ (liko anti-PPT retest) · DS hardening + W6–W10 ✅ · CONV-1…5 ✅
 - Path Test Shell M2/M8/M11/M14 ✅ · LMS diagram polish W1–W7 ✅ · Release 1.4.6–1.4.8
-- Docs Lean DL-0…4 ✅ · **Turinio ambicijos flip** (TODO/ROADMAP P0 = mokymosi kokybė) ✅ 2026-07-26
+- Docs Lean DL-0…4 ✅ · **Turinio ambicijos flip** ✅ · CQ-M79-1/2 browser @375px ✅ 2026-07-26
 
 ---
 

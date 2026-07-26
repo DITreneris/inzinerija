@@ -459,6 +459,11 @@ export interface ContentBlockSection {
      * `manipulation-contrast` – ChoiceControl + Blogas|Geras panel (M7/67).
      */
     variant?: 'chips' | 'prompt-tool' | 'manipulation-contrast';
+    /**
+     * When `false`, chips stay unselected until the learner picks (M10/10.35).
+     * Default / omitted = auto-select first choice (10.48 and older).
+     */
+    autoSelect?: boolean;
     /** Sequence hint under ChoiceControl (prompt-tool / manipulation-contrast) */
     sequenceHint?: string;
     /** Collapsible sample rows to paste into the prompt (prompt-tool) */

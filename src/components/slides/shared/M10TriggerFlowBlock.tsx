@@ -6,19 +6,19 @@ import M10TriggerFlowDiagram from './M10TriggerFlowDiagram';
 import { getM10TriggerFlowStepExplanations } from './m10DiagramContent';
 
 const ENLARGE = {
-  lt: 'Workflow grandinė (Trigger, Condition, Action, Webhook)',
-  en: 'Workflow chain (Trigger, Condition, Action, Webhook)',
+  lt: 'Darbo eigos grandinė (Trigger → Condition → Action)',
+  en: 'Workflow chain (Trigger → Condition → Action)',
 } as const;
 
 const LABELS = {
   lt: {
-    regionAria: 'Workflow grandinė: 4 žingsniai',
+    regionAria: 'Darbo eigos grandinė: 3 žingsniai',
     statusLabel: 'Pasirinktas žingsnis:',
-    navAria: 'Workflow grandinės žingsnio pasirinkimas',
+    navAria: 'Darbo eigos grandinės žingsnio pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
   },
   en: {
-    regionAria: 'Workflow chain: 4 steps',
+    regionAria: 'Workflow chain: 3 steps',
     statusLabel: 'Selected step:',
     navAria: 'Workflow chain step selection',
     stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,

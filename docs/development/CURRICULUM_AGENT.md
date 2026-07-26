@@ -29,6 +29,8 @@
 | Turinys (Moduliai 4–6)                   | `docs/turinio_pletra_moduliai_4_5_6.md`                                                |
 | Turinys (Moduliai 7–9)                   | `docs/turinio_pletra_moduliai_7_8_9.md`                                                |
 | Turinys (Moduliai 10–12)                 | `docs/turinio_pletra_moduliai_10_11_12.md`; seka – `docs/MODULIO_10_SKAIDRIU_EILES.md` |
+| Turinys (Moduliai 13–15)                 | `docs/turinio_pletra_moduliai_13_14_15.md`; seka – `docs/MODULIO_13_SKAIDRIU_EILES.md` |
+| Turinys (Moduliai 16–18)                 | `docs/turinio_pletra_moduliai_16_17_18.md` (JSON / eilės Deferred)                     |
 | Modulių/skaidrių atpažinimas             | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                  |
 | Santraukos skaidrės struktūra (5 blokai) | `docs/development/SUMMARY_SLIDE_SPEC.md`                                               |
 | Faktinė skaidrių/modulių struktūra       | `src/data/modules.json` (full redagavimo SOT, tik skaityti; keičia DATA_AGENT)         |
@@ -40,6 +42,8 @@
 **M10 seka (2026-07-20):** paprastas sisteminis promptas (**10.3**) eina **po 10.25 (3A), prieš 10.45** (taksonomiją) – ne po multi-agent bloko. M12 pasiruošimo MUST: plonas privalomas **10.64** įėjimo bilietas (spec + 3 testai + HITL); dense **10.65** lieka optional. Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `docs/MODULIO_10_SKAIDRIU_EILES.md`.
 
 **M13–15 seka (2026-07-22):** generative media – **pipeline prieš įrankius**: MUST **13.12** (pipeline) → vaizdai → **13.32** (consistency) → video (trumpi I2V + CPI) → **13.52** (post-prod) → **garsas** (audio-first) → **13.101** provenance/Legal → **13.11** verslo workflow. M15 completion = **150.5** only; optional full **151–154** (montažas). Registruoti naujus ID `MODULIO_13_SKAIDRIU_EILES.md` + `CONTENT_MODULIU_ATPAZINIMAS.md` §6. Žr. `docs/turinio_pletra_moduliai_13_14_15.md`.
+
+**M16–18 (2026-07):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas**, **M18 = D3+D4+D5**; Cursor-first; soft DoD. Skaidrių eilės failų dar nėra; JSON Deferred (`TODO.md` §1.5). **Ne** painioti su M7 optional viz (sk. 100–106). Žr. `docs/turinio_pletra_moduliai_16_17_18.md`.
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 

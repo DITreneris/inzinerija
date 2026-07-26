@@ -11,6 +11,7 @@ import {
   setCertificateName,
 } from '../utils/certificateStorage';
 import { track } from '../utils/analytics';
+import { logError } from '../utils/logger';
 import Card from './ui/Card';
 import CTAButton from './ui/CTAButton';
 
@@ -67,7 +68,10 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
         module_id: tier,
       });
     } catch (err) {
-      console.error('Certificate PDF download failed:', err);
+      logError(err instanceof Error ? err : new Error(String(err)), {
+        component: 'CertificateScreen',
+        tier,
+      });
       setDownloadError(true);
     } finally {
       setIsDownloading(false);

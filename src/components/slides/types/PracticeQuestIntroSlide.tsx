@@ -16,7 +16,7 @@ import { useLocale } from '../../../contexts/LocaleContext';
 import { getT } from '../../../i18n';
 import {
   findJourneyChoiceByStored,
-  type M7JourneyChoiceId,
+  isM7JourneyChoiceId,
 } from '../../../utils/moduleJourneyFocus';
 import { loadM9KitChecklist } from '../../../utils/m9KitChecklist';
 import { resolveQuestStepStatus } from '../../../utils/resolveM9QuestStepStatus';
@@ -60,7 +60,10 @@ export function PracticeQuestIntroSlide({
   const t = getT('testPractice');
   const { locale } = useLocale();
   const isEn = locale.startsWith('en');
-  const content = (slide?.content ?? {}) as QuestIntroContent;
+  const content: QuestIntroContent =
+    slide?.type === 'practice-quest-intro' && slide.content
+      ? (slide.content as QuestIntroContent)
+      : {};
   const choices = useMemo(
     () => content.journeyChoices ?? [],
     [content.journeyChoices]
@@ -86,16 +89,18 @@ export function PracticeQuestIntroSlide({
     setKit(loadM9KitChecklist());
   }, []);
 
+  // Hydrate only from progress props — never depend on selectedId (re-select loop).
   useEffect(() => {
     if (savedM9) {
       setSelectedId(savedM9.id);
       setConfirmed(true);
       return;
     }
-    if (softChoice && !selectedId) {
-      setSelectedId(softChoice.id);
+    setConfirmed(false);
+    if (softChoice) {
+      setSelectedId((prev) => prev ?? softChoice.id);
     }
-  }, [savedM9, softChoice, selectedId]);
+  }, [savedM9, softChoice]);
 
   const selected = choices.find((c) => c.id === selectedId) ?? null;
   const questSteps = content.questSteps ?? [];
@@ -120,8 +125,8 @@ export function PracticeQuestIntroSlide({
       : softHint;
 
   const handleConfirm = () => {
-    if (!selected) return;
-    onJourneyFocusChoice?.(9, selected.id as M7JourneyChoiceId);
+    if (!selected || !isM7JourneyChoiceId(selected.id)) return;
+    onJourneyFocusChoice?.(9, selected.id);
     setConfirmed(true);
   };
 
@@ -134,7 +139,7 @@ export function PracticeQuestIntroSlide({
   const choiceValue = confirmed ? selectedId : null;
 
   return (
-    <div className="space-y-5 max-w-3xl mx-auto">
+    <div className="space-y-4 sm:space-y-5 max-w-3xl mx-auto">
       {content.whyBenefit && (
         <p className="text-base font-medium text-center text-gray-800 dark:text-gray-200 leading-relaxed">
           {content.whyBenefit}
@@ -260,22 +265,6 @@ export function PracticeQuestIntroSlide({
         </div>
       )}
 
-      {chips.length > 0 && (
-        <ul
-          className="flex flex-wrap justify-center gap-2"
-          aria-label={t('m9QuestOutcomesAria')}
-        >
-          {chips.map((chip) => (
-            <li
-              key={chip}
-              className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
-            >
-              {chip}
-            </li>
-          ))}
-        </ul>
-      )}
-
       <div className="flex flex-col items-center gap-2">
         <button
           type="button"
@@ -293,6 +282,22 @@ export function PracticeQuestIntroSlide({
           </p>
         )}
       </div>
+
+      {chips.length > 0 && (
+        <ul
+          className="flex flex-wrap justify-center gap-2"
+          aria-label={t('m9QuestOutcomesAria')}
+        >
+          {chips.map((chip) => (
+            <li
+              key={chip}
+              className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
+            >
+              {chip}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {content.audience && (
         <p className="text-center text-sm text-gray-600 dark:text-gray-400">

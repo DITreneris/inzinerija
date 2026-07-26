@@ -4,6 +4,8 @@
  * Retry: orchestratorRetryPath.ts · W7 v06 error/retry hierarchy
  */
 
+import { DIAGRAM_TOKENS } from './diagramTokens';
+import { shortenToTip } from './diagramPathGeom';
 import type { M10OrchestratorLabels } from './m10OrchestratorContent';
 import {
   ORCHESTRATOR_ARROW_TIP_LEN,
@@ -63,25 +65,31 @@ export interface M10OrchestratorEdge {
 }
 
 export const M10_ORCHESTRATOR_VIEWBOX = {
-  /** +22 cascade (top-row caption air) + HITL note clearance */
-  desktop: { width: 760, height: 470 },
+  /** +22 top-row caption air + +20 agents cascade + HITL note clearance */
+  desktop: { width: 760, height: 490 },
   compact: { width: 420, height: 700 },
 } as const;
+
+/** Shift so content is centered in desktop viewBox (pad L≈R). */
+export const M10_ORCHESTRATOR_DESKTOP_X_OFFSET = 18;
 
 /** Desktop SVG caption baseline (matches M10OrchestratorDiagram title y). */
 export const M10_ORCHESTRATOR_TITLE_Y_DESKTOP = 28;
 
 /**
- * Early-step non-live nodes (staged map). Stronger than LMS inactive floor.
- * Step-4 !active still uses DIAGRAM_TOKENS.opacity.inactive.
+ * Full-map: !active node dim (not hide). Below LMS inactive floor.
+ * Step-4 error uses DIAGRAM_TOKENS.opacity.inactive for !active instead.
  */
-export const ORCHESTRATOR_ORPHAN_OPACITY = 0.55;
+export const ORCHESTRATOR_ORPHAN_OPACITY = DIAGRAM_TOKENS.opacity.orphanMap;
+
+/** Non-focus topology edges (always painted, dimmed). */
+export const ORCHESTRATOR_MAP_EDGE_OPACITY = 0.4;
 
 /** Local data/resource stroke (thinner than flow). */
 export const M10_ORCHESTRATOR_STROKE_DATA = 2;
 
 /** Agents lane header height (Title Case band inside soft lane). */
-export const M10_ORCHESTRATOR_AGENTS_HEADER_H = 28;
+export const M10_ORCHESTRATOR_AGENTS_HEADER_H = 34;
 
 /** Soft-rose fan-in on error step (thinner than flow). */
 export const M10_ORCHESTRATOR_FANIN_ERROR_STROKE = 2.5;
@@ -127,8 +135,11 @@ export const M10_ORCHESTRATOR_EDGE_LABEL_BY_STEP: readonly (readonly string[])[]
     ['research-tools', 'validate-eval', 'eval-output', 'eval-retry'],
   ];
 
-/** Edges painted per step (hidden, not dim). Fan-out = trunk/bus/drops. */
-export const M10_ORCHESTRATOR_PAINT_BY_STEP: readonly (readonly string[])[] = [
+/**
+ * Focus-path edge ids per step (emphasis = full opacity).
+ * All edges always painted; non-focus → map dim. Step 4: eval-output = map only.
+ */
+export const M10_ORCHESTRATOR_FOCUS_BY_STEP: readonly (readonly string[])[] = [
   ['input-router'],
   ['input-router', 'router-orch'],
   [
@@ -148,18 +159,6 @@ export const M10_ORCHESTRATOR_PAINT_BY_STEP: readonly (readonly string[])[] = [
     'orch-validate',
     'research-tools',
     'validate-eval',
-    'eval-output',
-  ],
-  [
-    // Step 4 (Klaida ir KARTOTI): no eval-output — success path culled
-    'input-router',
-    'router-orch',
-    'state-orch',
-    'orch-research',
-    'orch-summarize',
-    'orch-validate',
-    'research-tools',
-    'validate-eval',
   ],
   [
     'input-router',
@@ -170,9 +169,26 @@ export const M10_ORCHESTRATOR_PAINT_BY_STEP: readonly (readonly string[])[] = [
     'orch-validate',
     'research-tools',
     'validate-eval',
+    'eval-retry',
+  ],
+  [
+    'input-router',
+    'router-orch',
+    'state-orch',
+    'orch-research',
+    'orch-summarize',
+    'orch-validate',
+    'research-tools',
+    'validate-eval',
     'eval-output',
+    'eval-retry',
   ],
 ];
+
+/** @deprecated use M10_ORCHESTRATOR_FOCUS_BY_STEP (full-map: no cull). */
+export const M10_ORCHESTRATOR_PAINT_BY_STEP = M10_ORCHESTRATOR_FOCUS_BY_STEP;
+
+export type OrchestratorEdgeEmphasis = 'focus' | 'map';
 
 export function shouldShowEdgeLabel(
   stepIndex: number,
@@ -182,23 +198,57 @@ export function shouldShowEdgeLabel(
   return Boolean(set?.includes(edgeId));
 }
 
-export function shouldPaintEdge(stepIndex: number, edgeId: string): boolean {
-  if (edgeId === 'eval-retry') return shouldShowRetryLabel(stepIndex);
-  const set = M10_ORCHESTRATOR_PAINT_BY_STEP[stepIndex];
-  return Boolean(set?.includes(edgeId));
+/** Full-map: every topology edge is always painted (incl. retry). */
+export function shouldPaintEdge(_stepIndex: number, _edgeId: string): boolean {
+  return true;
 }
 
-export function shouldPaintFanout(stepIndex: number): boolean {
-  return M10_ORCHESTRATOR_FANOUT_EDGE_IDS.some((id) =>
-    shouldPaintEdge(stepIndex, id)
+export function getOrchestratorEdgeEmphasis(
+  stepIndex: number,
+  edgeId: string
+): OrchestratorEdgeEmphasis {
+  if (edgeId === 'eval-retry') {
+    return shouldShowRetryLabel(stepIndex) ? 'focus' : 'map';
+  }
+  const set = M10_ORCHESTRATOR_FOCUS_BY_STEP[stepIndex];
+  return set?.includes(edgeId) ? 'focus' : 'map';
+}
+
+export function getOrchestratorEdgeOpacity(
+  stepIndex: number,
+  edgeId: string
+): number {
+  return getOrchestratorEdgeEmphasis(stepIndex, edgeId) === 'focus'
+    ? 1
+    : ORCHESTRATOR_MAP_EDGE_OPACITY;
+}
+
+/** Fan-out always on (full-map). */
+export function shouldPaintFanout(_stepIndex: number): boolean {
+  return true;
+}
+
+/** Fan-in always on (full-map). */
+export function shouldPaintFanin(_stepIndex: number): boolean {
+  return true;
+}
+
+/** Whether fan-out group uses focus opacity this step. */
+export function isOrchestratorFanoutFocus(stepIndex: number): boolean {
+  return M10_ORCHESTRATOR_FANOUT_EDGE_IDS.some(
+    (id) => getOrchestratorEdgeEmphasis(stepIndex, id) === 'focus'
   );
 }
 
-export function shouldPaintFanin(stepIndex: number): boolean {
-  return shouldPaintEdge(stepIndex, M10_ORCHESTRATOR_FANIN_EDGE_ID);
+/** Whether fan-in group uses focus opacity this step. */
+export function isOrchestratorFaninFocus(stepIndex: number): boolean {
+  return (
+    getOrchestratorEdgeEmphasis(stepIndex, M10_ORCHESTRATOR_FANIN_EDGE_ID) ===
+    'focus'
+  );
 }
 
-/** Retry label / path visible on error + fix steps (4–5). */
+/** Retry verb pill on error + fix steps (4–5); path always on. */
 export function shouldShowRetryLabel(stepIndex: number): boolean {
   return stepIndex === 4 || stepIndex === 5;
 }
@@ -287,8 +337,8 @@ export const M10_ORCHESTRATOR_EDGES: M10OrchestratorEdge[] = [
 ];
 
 /**
- * Node is "live" (full opacity) if highlighted this step or participates
- * in a painted edge. Otherwise dim as orphan (early-step cull).
+ * Focus / "live" for teaching emphasis: step highlight or on a focus-path edge.
+ * Full-map: all nodes always render; use this for emerald / soft cues only.
  */
 export function isOrchestratorNodeLive(
   stepIndex: number,
@@ -298,7 +348,7 @@ export function isOrchestratorNodeLive(
   if (active?.includes(nodeId)) return true;
   return M10_ORCHESTRATOR_EDGES.some(
     (edge) =>
-      shouldPaintEdge(stepIndex, edge.id) &&
+      getOrchestratorEdgeEmphasis(stepIndex, edge.id) === 'focus' &&
       (edge.from === nodeId || edge.to === nodeId)
   );
 }
@@ -306,10 +356,12 @@ export function isOrchestratorNodeLive(
 export function getM10OrchestratorDesktopBoxes(
   labels: M10OrchestratorLabels
 ): M10OrchestratorBox[] {
+  const ox = M10_ORCHESTRATOR_DESKTOP_X_OFFSET;
+  // validate cx 425+ox; evaluator w 196 → x = cx - 98 so trunk is vertical under Tikrintojas
   return [
     {
       id: 'input',
-      x: 28,
+      x: 28 + ox,
       y: 62,
       w: 150,
       h: 52,
@@ -317,9 +369,9 @@ export function getM10OrchestratorDesktopBoxes(
       label: labels.nodes.input,
     },
     {
-      // gap after input ≥ pill(nukreipia)+16 ≈ 91.4 → x ≥ 270
+      // gap after input ≥ pill(nukreipia)+16 ≈ 91.4
       id: 'router',
-      x: 270,
+      x: 270 + ox,
       y: 62,
       w: 168,
       h: 52,
@@ -327,8 +379,9 @@ export function getM10OrchestratorDesktopBoxes(
       label: labels.nodes.router,
     },
     {
+      // cx === router.cx → vertical router→orch (no hypotenuse)
       id: 'orchestrator',
-      x: 200,
+      x: 239 + ox,
       y: 142,
       w: 230,
       h: 64,
@@ -337,8 +390,8 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'state',
-      // centerY === orch centerY (142+32)
-      x: 548,
+      // centerY === orch centerY (142+32); gap after orch ≥24
+      x: 548 + ox,
       y: 140,
       w: 156,
       h: 68,
@@ -347,8 +400,8 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'research',
-      x: 40,
-      y: 258,
+      x: 40 + ox,
+      y: 278,
       w: 130,
       h: 58,
       tone: 'teal',
@@ -356,8 +409,8 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'summarize',
-      x: 200,
-      y: 258,
+      x: 200 + ox,
+      y: 278,
       w: 130,
       h: 58,
       tone: 'teal',
@@ -365,8 +418,8 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'validate',
-      x: 360,
-      y: 258,
+      x: 360 + ox,
+      y: 278,
       w: 130,
       h: 58,
       tone: 'amber',
@@ -374,27 +427,28 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'tools',
-      x: 40,
-      y: 374,
+      x: 40 + ox,
+      y: 394,
       w: 130,
       h: 48,
       tone: 'slate',
       label: labels.nodes.tools,
     },
     {
+      // Centered under validate (Tikrintojas) → vertical handoff, no hypotenuse
       id: 'evaluator',
-      x: 312,
-      y: 374,
+      x: 327 + ox,
+      y: 394,
       w: 196,
       h: 58,
       tone: 'amber',
       label: labels.nodes.evaluator,
     },
     {
-      // gap after eval ≥24: 312+196+24 = 532
+      // gap after eval ≥24: 327+196+24 = 547
       id: 'output',
-      x: 532,
-      y: 374,
+      x: 547 + ox,
+      y: 394,
       w: 150,
       h: 58,
       tone: 'slate',
@@ -537,15 +591,7 @@ export function getLineEndPoint(
   to: { x: number; y: number },
   tipLen = M10_ORCHESTRATOR_ARROW_TIP
 ): { x: number; y: number } {
-  const dx = to.x - from.x;
-  const dy = to.y - from.y;
-  const dist = Math.hypot(dx, dy) || 1;
-  const ux = dx / dist;
-  const uy = dy / dist;
-  return {
-    x: to.x - ux * tipLen,
-    y: to.y - uy * tipLen,
-  };
+  return shortenToTip(from, to, tipLen);
 }
 
 export function estimateOrchestratorPillSize(label: string): {
@@ -558,8 +604,10 @@ export function estimateOrchestratorPillSize(label: string): {
 
 /**
  * Off-shaft annotation anchor (not midpoint-on-stroke).
- * Clearance = pillW/2+10 (vertical) or pillH/2+8 (horizontal).
- * research-tools: +4 px extra horizontal clear.
+ * Horizontal same-row: above both boxes (min y), not above shaft midY.
+ * Vertical: pillW/2+14 clear; research-tools +4 bump.
+ * HARD: router-orch always LEFT of shaft (State / skaito zone is RIGHT).
+ * HARD: state-orch pill biased toward State (not into router-orch pocket).
  */
 export function getOrchestratorEdgeLabelAnchor(
   from: M10OrchestratorBox,
@@ -582,30 +630,46 @@ export function getOrchestratorEdgeLabelAnchor(
     toAnchor === 'right';
 
   if (horizontal && Math.abs(a.y - b.y) < Math.abs(a.x - b.x)) {
-    return { x: midX, y: midY - (pillH / 2 + 8), midX, midY };
+    const aboveBoxes = Math.min(from.y, to.y) - (pillH / 2 + 8);
+    // Top row (near title): keep above shaft mid for caption air.
+    // Bottom row (eval→output): above both boxes so pill ∉ box AABB.
+    const y =
+      Math.min(from.y, to.y) < 120 ? midY - (pillH / 2 + 8) : aboveBoxes;
+    // state↔orch: pull toward State so not in router→orch label pocket
+    const x =
+      edgeId === 'state-orch'
+        ? midX + Math.min(36, Math.abs(b.x - a.x) * 0.18)
+        : midX;
+    return { x, y, midX, midY };
   }
 
-  const toolsBump = edgeId === 'research-tools' ? 4 : 0;
-  const vClear = pillW / 2 + 10 + toolsBump;
+  const edgeBump = edgeId === 'research-tools' ? 4 : 0;
+  const vClear = pillW / 2 + 14 + edgeBump;
   const rightX = midX + vClear;
   const leftX = midX - vClear;
+  // router→orch: NEVER right (collides with state↔orch "skaito / įrašo")
+  if (edgeId === 'router-orch') {
+    return { x: leftX, y: midY, midX, midY };
+  }
   const x = rightX + pillW / 2 + 8 < viewBoxW ? rightX : leftX;
   return { x, y: midY, midX, midY };
 }
 
-/** Retry annotation center clear of left U shaft: leftX + pillW/2 + 12. */
+/**
+ * Retry annotation: above the horizontal U leg (evaluator → gutter),
+ * not on the vertical shaft / not on the stroke.
+ */
 export function getOrchestratorRetryLabelAnchor(
   from: OrchestratorBoxLike,
-  to: OrchestratorBoxLike,
+  _to: OrchestratorBoxLike,
   leftX: number,
   label: string
 ): { x: number; y: number } {
   const startY = from.y + from.h / 2;
-  const endY = to.y + to.h / 2;
-  const { w } = estimateOrchestratorPillSize(label);
+  const { h } = estimateOrchestratorPillSize(label);
   return {
-    x: leftX + w / 2 + 12,
-    y: (startY + endY) / 2,
+    x: (leftX + from.x) / 2,
+    y: startY - (h / 2 + 10),
   };
 }
 
@@ -633,7 +697,9 @@ export interface DesktopFaninGeometry {
 /** Orthogonal trunk → bus → drops for desktop fan-out. */
 export function getDesktopFanoutGeometry(
   boxes: Record<M10OrchestratorNodeId, M10OrchestratorBox>,
-  tipLen = M10_ORCHESTRATOR_ARROW_TIP
+  tipLen = M10_ORCHESTRATOR_ARROW_TIP,
+  /** Assign verb for off-shaft pill width (default ≈ LT/EN short phrase). */
+  assignLabel = 'paskiria agentus'
 ): DesktopFanoutGeometry | null {
   const orch = boxes.orchestrator;
   const research = boxes.research;
@@ -646,9 +712,13 @@ export function getDesktopFanoutGeometry(
   const headerH = M10_ORCHESTRATOR_AGENTS_HEADER_H;
   const agentsTop = research.y;
   const laneTop = agentsTop - headerH;
-  // Bus above lane; assign pill ≥12 below orch and ≥10 above bus
-  const assignPillY = orchBottom + 12;
-  const busY = Math.max(assignPillY + 10, laneTop - 4);
+  const { w: pillW, h: pillH } = estimateOrchestratorPillSize(assignLabel);
+  // Off-shaft left (State / skaito zone is right of trunk)
+  const assignPillX = trunkX - (pillW / 2 + 12);
+  const assignPillYMin = orchBottom + 10 + pillH / 2;
+  // Bus above lane; keep ≥6 px air under pill bottom
+  const busY = Math.max(assignPillYMin + pillH / 2 + 6, laneTop - 4);
+  const assignPillY = Math.min(assignPillYMin, busY - (pillH / 2 + 6));
   const leftCx = research.x + research.w / 2;
   const rightCx = validate.x + validate.w / 2;
 
@@ -685,12 +755,16 @@ export function getDesktopFanoutGeometry(
     trunkPath,
     busPath,
     dropPaths,
-    assignPill: { x: trunkX, y: assignPillY },
+    assignPill: { x: assignPillX, y: assignPillY },
     agentsLane,
-    /** Start-aligned in header — clear of mid-drop / trunk shafts. */
+    /**
+     * Start just right of research drop (LT “Vykdymo agentai” too wide for
+     * left-of-drop pocket); below bus, above agent tops.
+     */
     agentsBand: {
-      x: agentsLane.x + 12,
-      y: Math.max(busY + 10, agentsLane.y + headerH / 2 + 4),
+      x: leftCx + 10,
+      // ≥16 px under bus before agent tops (header zone air)
+      y: busY + 14,
     },
   };
 }
@@ -708,10 +782,14 @@ export function getDesktopFaninGeometry(
 
   const agentsBottom = research.y + research.h;
   const evalTop = evaluator.y;
-  const busY = agentsBottom + 14;
+  // Bus low enough that handoff pill above bus clears agent bottoms
+  const { w: handoffPillW, h: handoffPillH } =
+    estimateOrchestratorPillSize('perduoda');
+  const busY = Math.max(agentsBottom + 22, agentsBottom + handoffPillH + 16);
+  const validateCx = validate.x + validate.w / 2;
   const trunkX = evaluator.x + evaluator.w / 2;
   const leftCx = research.x + research.w / 2;
-  const rightCx = validate.x + validate.w / 2;
+  const rightCx = validateCx;
   const trunkEndY = evalTop - tipLen;
 
   const dropPaths = (
@@ -729,6 +807,7 @@ export function getDesktopFaninGeometry(
     };
   });
 
+  // Pill above bus, right of trunk (vertical handoff under Tikrintojas)
   return {
     trunkX,
     busY,
@@ -736,10 +815,29 @@ export function getDesktopFaninGeometry(
     trunkPath: `M ${trunkX} ${busY} L ${trunkX} ${trunkEndY}`,
     dropPaths,
     handoffPill: {
-      x: trunkX,
-      y: (busY + evalTop) / 2,
+      x: trunkX + handoffPillW / 2 + 14,
+      y: busY - (handoffPillH / 2 + 8),
     },
   };
+}
+
+/**
+ * Orthogonal validate→eval elbow (no hypotenuse). Used on compact
+ * and as reference for handoff geometry tests.
+ */
+export function getValidateEvalOrthogonalPath(
+  validate: OrchestratorBoxLike,
+  evaluator: OrchestratorBoxLike,
+  tipLen = M10_ORCHESTRATOR_ARROW_TIP
+): string {
+  const fromCx = validate.x + validate.w / 2;
+  const toCx = evaluator.x + evaluator.w / 2;
+  const busY = validate.y + validate.h + 22;
+  const endY = evaluator.y - tipLen;
+  if (Math.abs(fromCx - toCx) < 0.5) {
+    return `M ${fromCx} ${validate.y + validate.h} L ${fromCx} ${endY}`;
+  }
+  return `M ${fromCx} ${validate.y + validate.h} L ${fromCx} ${busY} L ${toCx} ${busY} L ${toCx} ${endY}`;
 }
 
 export function getRetryPathDesktop(

@@ -4,6 +4,7 @@ import {
   loadPdfUnicodeFont,
   registerUnicodePdfFont,
 } from './pdfNotoFont';
+import { drawClickableUrl } from './pdfLink';
 
 export const HANDOUT_BRAND_COLOR = '#627d98';
 export const HANDOUT_ACCENT_COLOR = '#d4a520';
@@ -56,15 +57,6 @@ export interface HandoutPdfContext {
   useCustomFont: boolean;
   typography: HandoutTypography;
 }
-
-export type JsPdfWithLink = jsPDF & {
-  textWithLink?: (
-    text: string,
-    x: number,
-    y: number,
-    opts: { url: string }
-  ) => void;
-};
 
 type JsPdfWithPages = jsPDF & {
   getNumberOfPages?: () => number;
@@ -213,21 +205,24 @@ export function addLinkLine(
   ctx: HandoutPdfContext,
   label: string,
   url: string,
-  y: number
+  y: number,
+  options?: { showUrl?: boolean; maxWidth?: number; x?: number }
 ): number {
-  ctx.doc.setFontSize(ctx.typography.body + 0.5);
-  ctx.doc.setTextColor(35, 91, 150);
-  applyHandoutFont(ctx.doc, ctx.useCustomFont);
-
-  const docWithLink = ctx.doc as JsPdfWithLink;
-  if (typeof docWithLink.textWithLink === 'function') {
-    docWithLink.textWithLink(label, HANDOUT_CONTENT_X, y, { url });
-  } else {
-    ctx.doc.text(label, HANDOUT_CONTENT_X, y);
-  }
-
-  ctx.doc.setTextColor(0, 0, 0);
-  return y + ctx.typography.lineHeightBody + ctx.typography.paragraphGap;
+  const nextY = drawClickableUrl({
+    doc: ctx.doc,
+    label,
+    url,
+    x: options?.x ?? HANDOUT_CONTENT_X,
+    y,
+    maxWidth: options?.maxWidth ?? HANDOUT_CONTENT_W_INNER,
+    labelFontSize: ctx.typography.body + 0.5,
+    urlFontSize: ctx.typography.small,
+    labelLineHeight: ctx.typography.lineHeightBody,
+    urlLineHeight: ctx.typography.lineHeightBody - 0.4,
+    applyFont: () => applyHandoutFont(ctx.doc, ctx.useCustomFont),
+    showUrl: options?.showUrl ?? true,
+  });
+  return nextY + ctx.typography.paragraphGap;
 }
 
 export function addFooter(
@@ -246,21 +241,33 @@ export function addFooter(
     ctx.doc.setFontSize(ctx.typography.small);
     ctx.doc.setTextColor(128, 128, 128);
     applyHandoutFont(ctx.doc, ctx.useCustomFont);
-    ctx.doc.text(footerText, HANDOUT_MARGIN, HANDOUT_PAGE_H - 10);
+    ctx.doc.text(footerText, HANDOUT_MARGIN, HANDOUT_PAGE_H - 12);
 
     if (options?.websiteCta && options.websiteUrl) {
       const prefix = options.linkPrefix ?? '';
-      const linkY = HANDOUT_PAGE_H - 5;
-      ctx.doc.text(prefix, HANDOUT_MARGIN, linkY);
-      const linkX = HANDOUT_MARGIN + getTextWidth(ctx.doc, prefix);
-      const docWithLink = ctx.doc as JsPdfWithLink;
-      if (typeof docWithLink.textWithLink === 'function') {
-        docWithLink.textWithLink(options.websiteCta, linkX, linkY, {
-          url: options.websiteUrl,
-        });
-      } else {
-        ctx.doc.text(options.websiteCta, linkX, linkY);
+      const linkY = HANDOUT_PAGE_H - 7;
+      applyHandoutFont(ctx.doc, ctx.useCustomFont);
+      ctx.doc.setFontSize(ctx.typography.small);
+      ctx.doc.setTextColor(128, 128, 128);
+      if (prefix) {
+        ctx.doc.text(prefix, HANDOUT_MARGIN, linkY);
       }
+      const linkX = HANDOUT_MARGIN + getTextWidth(ctx.doc, prefix);
+      drawClickableUrl({
+        doc: ctx.doc,
+        label: options.websiteCta,
+        url: options.websiteUrl,
+        x: linkX,
+        y: linkY,
+        maxWidth: HANDOUT_PAGE_W - linkX - HANDOUT_MARGIN,
+        labelFontSize: ctx.typography.small,
+        urlFontSize: ctx.typography.small - 0.5,
+        labelLineHeight: 3.2,
+        urlLineHeight: 2.8,
+        applyFont: () => applyHandoutFont(ctx.doc, ctx.useCustomFont),
+        // Footer is tight; CTA label already carries the domain.
+        showUrl: false,
+      });
     }
   }
 
@@ -315,6 +322,76 @@ export function addEcosystemCta(
   drawSectionLeftBorder(ctx.doc, ySecondary, nextY, HANDOUT_BRAND_COLOR);
 
   return nextY;
+}
+
+export function addPromptBlock(
+  ctx: HandoutPdfContext,
+  title: string,
+  body: string,
+  y: number
+): number {
+  const pad = 2.5;
+  const yStart = y;
+  const bodySize = ctx.typography.body - 0.5;
+  const bodyLh = ctx.typography.lineHeightBody - 0.2;
+
+  applyHandoutFont(ctx.doc, ctx.useCustomFont);
+  ctx.doc.setFontSize(bodySize);
+  const bodyLines = ctx.doc.splitTextToSize(body, HANDOUT_CONTENT_W_INNER);
+  const blockHeight =
+    pad +
+    ctx.typography.lineHeightBody +
+    ctx.typography.paragraphGap +
+    bodyLines.length * bodyLh +
+    pad;
+
+  ctx.doc.setFillColor(248, 248, 250);
+  ctx.doc.rect(
+    HANDOUT_MARGIN,
+    yStart - 1,
+    HANDOUT_PAGE_W - HANDOUT_MARGIN * 2,
+    Math.max(blockHeight + 1, 4),
+    'F'
+  );
+
+  let nextY = addSectionTitle(ctx, title, yStart + pad, HANDOUT_ACCENT_COLOR);
+  nextY =
+    addWrappedText(
+      ctx,
+      body,
+      HANDOUT_CONTENT_X,
+      nextY,
+      HANDOUT_CONTENT_W_INNER,
+      bodySize,
+      bodyLh
+    ) + pad;
+  drawSectionLeftBorder(ctx.doc, yStart - 1, nextY, HANDOUT_ACCENT_COLOR);
+  return nextY + ctx.typography.sectionGap;
+}
+
+export function addPageNumbers(
+  ctx: HandoutPdfContext,
+  locale: 'lt' | 'en'
+): void {
+  const docWithPages = ctx.doc as JsPdfWithPages;
+  const pageCount =
+    docWithPages.getNumberOfPages?.() ??
+    docWithPages.internal?.getNumberOfPages?.() ??
+    1;
+  if (pageCount <= 1) return;
+
+  for (let page = 1; page <= pageCount; page++) {
+    ctx.doc.setPage(page);
+    ctx.doc.setFontSize(ctx.typography.small);
+    ctx.doc.setTextColor(128, 128, 128);
+    applyHandoutFont(ctx.doc, ctx.useCustomFont);
+    const label =
+      locale === 'en' ? `${page}/${pageCount}` : `${page}/${pageCount}`;
+    ctx.doc.text(label, HANDOUT_PAGE_W - HANDOUT_MARGIN, HANDOUT_PAGE_H - 16, {
+      align: 'right',
+    });
+  }
+  ctx.doc.setTextColor(0, 0, 0);
 }
 
 export function addTrainingUtm(url: string, campaign: string): string {

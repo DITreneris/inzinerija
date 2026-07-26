@@ -19,6 +19,7 @@
 | **„3 moduliai“**                           | Moduliai 1 + 2 + 3 (bazinė dalis)                                                                                                                              |
 | **„Moduliai 4–6“**                         | Pažangusis blokas (teorija + testas + projektas)                                                                                                               |
 | **„Moduliai 7–15“**                        | Trys vartotojų keliai (Duomenų analizė 7–9, Agentų inžinerija 10–12, Turinio inžinerija 13–15); žr. §6                                                         |
+| **„Moduliai 16–18“** / **Kodo inžinerija** | Ketvirtas kelias (vibe-coding su disciplina, Cursor-first); SOT parked §8; eilė po un-defer; JSON Deferred; žr. §6                                             |
 
 ---
 
@@ -141,8 +142,12 @@ Dėl to **4.1–4.7** faile `turinio_pletra_moduliai_4_5_6.md` visada reiškia *
 | **Modulis 14**     | Turinio inžinerija – testas (12 klausimų).                                                                                                                                                                                                                                                                         |
 | **Modulis 15**     | Turinio inžinerija – praktika (hero 150.5 MUST; optional 151–154 montažas); **finalinis integruotas projektas** (kelio capstone).                                                                                                                                                                                  |
 | **Moduliai 13–15** | Vartotojų kelias „Turinio inžinerija“ (auditorija: rinkodaros ir komunikacijos specialistai).                                                                                                                                                                                                                      |
+| **Modulis 16**     | Kodo inžinerija – planavimas (D1 kortelė + D2 MVP brief); Cursor-first.                                                                                                                                                                                                                                            |
+| **Modulis 17**     | Kodo inžinerija – testas (brief / planavimo kokybė prieš M18).                                                                                                                                                                                                                                                     |
+| **Modulis 18**     | Kodo inžinerija – projektas (D3 BUILD PACKET → D4 Cursor build → D5 deploy/DoD).                                                                                                                                                                                                                                   |
+| **Moduliai 16–18** | Vartotojų kelias „Kodo inžinerija“ (vibe-coding su disciplina; auditorija: verslo / produktų žmonės). **SOT parked §8** (freeze + un-defer gates); eilė po gates; **JSON / skaidrių eilės Deferred** (`TODO.md` §1.5). M7 optional viz (100–106) ≠ šis kelias.                                                     |
 
-**SOT vieta:** vienas failas per kelią – `docs/turinio_pletra_moduliai_7_8_9.md`, `docs/turinio_pletra_moduliai_10_11_12.md`, `docs/turinio_pletra_moduliai_13_14_15.md`. Skaidrių numeracija (7.1, 10.2 ir pan.) – tik atitinkamam moduliui. Žr. ROADMAP.md § „Viso turinio plėtra“ (nuspręsta: hybrid, įėjimas 1–3, 9/12/15 = finalinis projektas).
+**SOT vieta:** vienas failas per kelią – `docs/turinio_pletra_moduliai_7_8_9.md`, `docs/turinio_pletra_moduliai_10_11_12.md`, `docs/turinio_pletra_moduliai_13_14_15.md`, `docs/turinio_pletra_moduliai_16_17_18.md` (M16–18). Skaidrių numeracija (7.1, 10.2 ir pan.) – tik atitinkamam moduliui. Kol nėra `MODULIO_16_*` eilės failo, M16–18 ID **nenaudoti** runtime’e. Žr. ROADMAP.md § „Viso turinio plėtra“ (nuspręsta: hybrid, įėjimas 1–3, 9/12/15 = finalinis projektas).
 
 **7.1–7.35 (Modulio 7):** Faile `docs/turinio_pletra_moduliai_7_8_9.md` skaidrės/temos **7.1 … 7.35** visada reiškia **tik Modulio 7** (Duomenų analizė su DI). Oficiali skaidrių eilė ir sujungtos skaidrės – [docs/MODULIO_7_SKAIDRIU_EILES.md](MODULIO_7_SKAIDRIU_EILES.md).
 

@@ -4,7 +4,7 @@
 
 **Architektūra A:** `src/data/tools.json` yra full LT redagavimo SOT; `src/data/tools-en.json` – EN twin (tas pats `name` / `moduleId` / `url`). Core profiliai: `tools-m1-m6.json`, `tools-m1-m9.json` (+ EN) generuojami per `npm run generate:core-data`.
 
-**Produkto riba:** Įrankių skiltis = **mokymuose minimi / mokomi įrankiai**, ne rinkos blogroll. Vibe-coding stack (Cursor, Claude Code, v0, Lovable) – atidedamas ateities moduliams.
+**Produkto riba:** Įrankių skiltis = **mokymuose minimi / mokomi įrankiai**, ne rinkos blogroll. Vibe-coding stack (Cursor, Claude Code, v0, Lovable) – SOT **M16–18** (`docs/turinio_pletra_moduliai_16_17_18.md`); `tools.json` eilutės Cursor/… – tik kai M16+ skaidrės į JSON.
 
 ---
 
@@ -17,6 +17,7 @@
 | **docs/turinio_pletra_moduliai_7_8_9.md**    | DA alternatyvos (Julius, Echobase, DataLab, Power BI), DB žemėlapis, deep-research įrankiai.                                                                                                                |
 | **docs/turinio_pletra_moduliai_10_11_12.md** | Workflow (Zapier/Make/n8n/PA/Workato), RPA (UiPath), PaaS (Railway/Render/Fly/Vercel), GitHub, Replit.                                                                                                      |
 | **docs/turinio_pletra_moduliai_13_14_15.md** | Vaizdas / video / garsas / montažas (CapCut, Whisper, ElevenLabs, …).                                                                                                                                       |
+| **docs/turinio_pletra_moduliai_16_17_18.md** | Vibe-coding / Cursor-first (M16–18) – kol JSON Deferred, **ne** traukti į `tools.json`.                                                                                                                     |
 | **src/data/modules.json**                    | `slides[].content.tools` (`action-intro`); `presentationTools`; `ai-workflow` `groups` (name, url, tooltip); workflow `chain` masyvai; content-block lentelės su įrankių pavadinimais (PaaS, video matrix). |
 
 ---

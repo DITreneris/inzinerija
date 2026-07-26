@@ -97,6 +97,13 @@ export const DIAGRAM_TOKENS = {
     /** @deprecated same floor as inactive – prefer opacity.inactive */
     inactiveSoft: 0.88,
     selectableInactive: 0.88,
+    /** Full-map orphan dim (M10 orch / M12 multi-agent W7) – below inactive */
+    orphanMap: 0.55,
+    /**
+     * Learning-loop local orphan (documented exception vs orphanMap).
+     * Do not silently unify with orphanMap without SCHEME review.
+     */
+    orphanLearningLoop: 0.5,
   },
   radius: {
     frame: 12,
@@ -186,6 +193,9 @@ export const DIAGRAM_TONE_COLORS: Record<
     soft: '#e5e7eb',
   },
 };
+
+/** Dark amber ink on soft fills (gate / softInk NodeBox text). */
+export const DIAGRAM_AMBER_INK_SOFT = '#713f12';
 
 export const DIAGRAM_TONE_COLORS_DARK: Record<
   DiagramTone,

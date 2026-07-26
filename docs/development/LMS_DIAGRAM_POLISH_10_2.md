@@ -106,22 +106,22 @@ Wired: `m13_aec_funnel`, `m13_prompt_stack`. Tokens-only: `m13_rule_of_thirds` t
 
 ## Wave 7 – multi-agent-flow type etalon ✅
 
-Pilot: `m10_agent_orchestrator` (10.482). Pattern `multi-agent-flow`. Shell = Taip (6-step guided walkthrough). Brother: `m12_multi_agent_schema` (tokens + tip/refX only; own layout).
+Pilot: `m10_agent_orchestrator` (10.482). Pattern `multi-agent-flow`. Shell = Taip (6-step guided walkthrough). Brother: `m12_multi_agent_schema` (W7 **layout** brother – own business topology; fan-out/fan-in + full-map focus + staged verbs; not tokens-only).
 
-| Check                | Rule                                                                                          |
-| -------------------- | --------------------------------------------------------------------------------------------- |
-| Topology             | Hub + state + specialists + tools dashed + evaluator/output + left retry U                    |
-| Process graph (P3)   | Fan-out trunk/bus + fan-in collect→Vertintojas→Rezultatas; roles parallel (not linear agents) |
-| Align                | `state.centerY === orch.centerY`; `eval`/`output` same y+h (true horizontals)                 |
-| Error step (v06)     | Step 4: cull `eval-output`; dim !active; validate amber+rose stroke/`!`; soft-rose fan-in 2.5 |
-| Micro chrome (v06.1) | `isOrchestratorNodeLive` orphan dim; LT box widths; `kviečia` +4; viewBox 448 / HITL +16      |
-| Retry helper         | tools/eval gutter U (not far-left wrap); `Kartoti`/`Retry`; mount steps 4–5 only              |
-| Tips                 | `arrow.processTipLen` + `refX=0` via `getProcessArrowMarkerGeom` (`markerLen` legacy)         |
-| Role bands           | Hub violet; specialists teal; gates amber; infra slate; state brandTop (soft)                 |
-| Edges                | Staged verbs; annotation wash; data stroke 2; state ⇄; agentsBand start-align (clear shafts)  |
-| Chrome               | `density=hero` + opt-in `stepOfLabel`; Title Case lane header; inactive ≥ 0.88                |
-| Brother              | M12 tip/refX + feedback dim ≥ inactive floor; no BOX/viewBox / fan-in port                    |
-| Tests                | `lmsMultiAgentPolish.test.ts` + DiagramLocalization (6 nav)                                   |
+| Check                | Rule                                                                                                           |
+| -------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Topology             | Hub + state + specialists + tools dashed + evaluator/output + left retry U                                     |
+| Process graph (P3)   | Fan-out trunk/bus + fan-in collect→Vertintojas→Rezultatas; roles parallel (not linear agents)                  |
+| Align                | `state.centerY === orch.centerY`; `eval`/`output` same y+h (true horizontals)                                  |
+| Error step (v06)     | Step 4: cull `eval-output`; dim !active; validate amber+rose stroke/`!`; soft-rose fan-in 2.5                  |
+| Micro chrome (v06.1) | Full-map: all nodes always; `!active` orphan dim; LT box widths; `kviečia` +4; HITL +16                        |
+| Retry helper         | tools/eval gutter U always on (dim→full steps 4–5); `Kartoti`/`Retry` label 4–5 only                           |
+| Tips                 | `arrow.processTipLen` + `refX=0` via `getProcessArrowMarkerGeom` (`markerLen` legacy)                          |
+| Role bands           | Hub violet; specialists teal; gates amber; infra slate; state brandTop (soft)                                  |
+| Edges                | Always-on topology + focus/map emphasis; staged verbs only; no hide-until-live / edge cull                     |
+| Chrome               | `density=hero` + opt-in `stepOfLabel`; Title Case lane header; inactive ≥ 0.88                                 |
+| Brother              | M12 own BOX/viewBox; orthogonal fan-out/fan-in; orphan dim; staged edge verbs; `lmsMultiAgentPolish` M12 suite |
+| Tests                | `lmsMultiAgentPolish.test.ts` (orch + M12 brother) + DiagramLocalization (6 nav)                               |
 
 ## Wave 6 – comparison-mode-architecture type etalon ✅
 
@@ -144,24 +144,15 @@ Not a type etalon. Sweep SVG diagram **titles** to `DIAGRAM_TOKENS.typography.ti
 
 ## Wave 5 – dual-taxonomy type etalon (SUPERSEDED 2026-07-24)
 
-> **Status:** Shell dual-taxonomy **nebegalioja**. Live: Pattern `interactive-control-lab`, Shell = Ne – `M10DepthRolesLabBlock` + static `M10DepthRolesMiniDiagram`. Žr. `TEACHING_ELEMENTS_REGISTRY.md` / `DIAGRAMU_M7_M12_REGISTRY.md` eilutę 10.45.
+> **Status: SUPERSEDED — do not implement.** Archived 8-step Shell dual-taxonomy (`m10TaxonomyLayout.ts`, `lmsDualTaxonomyPolish`) **deleted**. Live 10.45 = Pattern `interactive-control-lab`, Shell = Ne. Žr. `DIAGRAM_KIT_STANDARD.md` „Depth/roles lab checklist“ + `TEACHING_ELEMENTS_REGISTRY.md`.
 
-Pilot (istorinis): `m10_agent_taxonomy` (10.45). Pattern ~~`dual-taxonomy`~~ → `interactive-control-lab`. Shell ~~Taip (8 steps)~~ → Ne.
-
-| Check             | Rule                                                                                                              |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Topology (legacy) | Left L0–L3 ladder (38%) + right L2 team hierarchy (62%), gap ≥ 32                                                 |
-| Steps (legacy)    | L0→L1→L2→L3→router→coordinator→specialist→evaluator                                                               |
-| Header            | Reserved `HEADER_H` ≥ 60; title + subtitle only                                                                   |
-| L2 link           | Solid arrow L2→Coord + pill when hub live; ghost hub + „pasirink L2“ when L0/L1/L3                                |
-| State truth       | `isHubLive` – right panel live only for L2/role steps                                                             |
-| Ghost hard (P4)   | `HUB_GHOST_OPACITY` 0.2; when `!isHubLive` – silhouettes only (no edges / L2 bridge / pills)                      |
-| Role palette (P4) | Shared slate-family fills; Coord violet only (L2 echo); roles ≠ L0–L3 ladder tones                                |
-| Edges (P4 KISS)   | `nukreipia` / `deleguoja` / `pateikia` + single dashed `grąžina`; no dual Coord↔Eval shafts                       |
-| Label air (P6)    | viewBox H≥500; COL_GAP≥40; Spec/Eval ±120; staged edge pills by shell step; hand anchors (clean space > midpoint) |
-| Subs              | All level bars ≥ `M10_TAXONOMY_MIN_LEVEL_HEIGHT`; quiet inactive ladder (~0.58 local)                             |
-| Tokens            | Flow shafts ≥ 3.5; node strokes 1.5–2; equal role `r=48`                                                          |
-| Layout SOT        | `m10TaxonomyLayout.ts` only                                                                                       |
+| Check (live) | Rule                                                                                          |
+| ------------ | --------------------------------------------------------------------------------------------- |
+| Pattern      | `interactive-control-lab` – ChoiceControl + Copy lab; no Shell walkthrough                    |
+| Mini schema  | Static `M10DepthRolesMiniDiagram` – 4 depth pills + L2 role strip                             |
+| Layout SOT   | `m10DepthRolesLayout.ts` only (not `m10TaxonomyLayout.ts`)                                    |
+| Process tips | `getProcessArrowMarkerGeom()` / `processTipLen`; connectors under boxes; edge verbs in gutter |
+| Tests        | `m10DepthRolesLayout.test.ts`, `m10DepthRolesModel.test.ts`, `M10DepthRolesLabBlock.test.tsx` |
 
 **Maintenance:** tokens inherit for remaining non-spine patterns (roles-hub siblings, comparison, decision-tree). Multi-agent-flow → Wave 7.
 

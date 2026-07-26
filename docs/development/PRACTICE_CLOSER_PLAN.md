@@ -44,8 +44,8 @@ Leidžiama skirtinga: hub (M9), 6-blokų accordion (M3), dual-path (M12/M15), te
 
 ### Sprint 1 – M9 (detaliau)
 
-- **MUST path:** 90 → 93 → 93.1 → 93.2 → 94 → (rekomenduojama 104) → 92.
-- **Biblioteka:** hub 99 + 101–117 – badge „papildoma“, ne privaloma baigti.
+- **MUST path:** 90 → 93.1 → 93.2 → 93 → 92 (live quest; sk. 94 merged into 93 — M7 sk. 94 ≠ M9).
+- **Biblioteka:** hub 99 (12 scenarijų, 4×3) – badge „papildoma“, ne privaloma baigti.
 - `docs/MODULIO_9_SKAIDRIU_EILES.md`.
 - DATA: `modules.json` + `generate:core-data` + `modules-en-m7-m9.json`.
 - CODING: intro/hub MUST vs SHOULD vizualas (esami tipai).

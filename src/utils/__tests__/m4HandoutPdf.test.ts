@@ -6,7 +6,7 @@ import m4ContentEn from '../../data/m4HandoutContent-en.json';
 
 const mockSave = vi.fn();
 const mockText = vi.fn();
-const mockTextWithLink = vi.fn();
+const mockLink = vi.fn();
 const mockSetFontSize = vi.fn();
 const mockSetFont = vi.fn();
 const mockSetTextColor = vi.fn();
@@ -24,7 +24,10 @@ vi.mock('jspdf', () => ({
   jsPDF: vi.fn().mockImplementation(() => ({
     save: mockSave,
     text: mockText,
-    textWithLink: mockTextWithLink,
+    link: mockLink,
+    setDrawColor: vi.fn(),
+    setLineWidth: vi.fn(),
+    line: vi.fn(),
     setFontSize: mockSetFontSize,
     setFont: mockSetFont,
     setTextColor: mockSetTextColor,
@@ -75,7 +78,7 @@ describe('m4HandoutPdf', () => {
     await downloadM4HandoutPdf(minimal);
     const allText = mockText.mock.calls.map((c: unknown[]) => c[0]).flat();
     expect(allText).toContain('Promptų anatomija');
-    expect(mockTextWithLink).not.toHaveBeenCalled();
+    expect(mockLink).not.toHaveBeenCalled();
   });
 
   it('generates PDF from real m4HandoutContent.json without throwing', async () => {

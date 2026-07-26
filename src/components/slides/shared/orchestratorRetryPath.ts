@@ -3,7 +3,11 @@
  * Left U: evaluator → gutter (between tools & eval) → orchestrator.
  * Not cycle feedbackUPath.
  */
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  DIAGRAM_PROCESS_TIP_LEN,
+  shortenToTip,
+  type DiagramPoint,
+} from './diagramPathGeom';
 
 export interface OrchestratorBoxLike {
   x: number;
@@ -12,13 +16,13 @@ export interface OrchestratorBoxLike {
   h: number;
 }
 
-export interface OrchestratorPoint {
-  x: number;
-  y: number;
-}
+export type OrchestratorPoint = DiagramPoint;
 
-/** LMS process tip – DIAGRAM_TOKENS.arrow.processTipLen (not legacy markerLen). */
-export const ORCHESTRATOR_ARROW_TIP_LEN = DIAGRAM_TOKENS.arrow.processTipLen;
+/** LMS process tip – re-export shared tip len (not legacy markerLen). */
+export const ORCHESTRATOR_ARROW_TIP_LEN = DIAGRAM_PROCESS_TIP_LEN;
+
+/** @deprecated Prefer `shortenToTip` from `diagramPathGeom` – re-export for callers. */
+export { shortenToTip };
 
 /** Fallback desktop gutter (prefer getOrchestratorRetryRouteXDesktop). */
 export const ORCHESTRATOR_RETRY_ROUTE_X_DESKTOP = 14;
@@ -28,23 +32,6 @@ export const ORCHESTRATOR_RETRY_TOOLS_GUTTER = 12;
 
 function leftAnchor(box: OrchestratorBoxLike): OrchestratorPoint {
   return { x: box.x, y: box.y + box.h / 2 };
-}
-
-/** Shorten line end so tip (refX=0) meets the target edge from outside. */
-export function shortenToTip(
-  from: OrchestratorPoint,
-  to: OrchestratorPoint,
-  tipLen: number = ORCHESTRATOR_ARROW_TIP_LEN
-): OrchestratorPoint {
-  const dx = to.x - from.x;
-  const dy = to.y - from.y;
-  const dist = Math.hypot(dx, dy) || 1;
-  const ux = dx / dist;
-  const uy = dy / dist;
-  return {
-    x: to.x - ux * tipLen,
-    y: to.y - uy * tipLen,
-  };
 }
 
 function retryPath(
@@ -96,18 +83,18 @@ export function getOrchestratorRetryPathCompact(
   return retryPath(from, to, leftX, tipLen);
 }
 
-/** Label just right of the vertical retry shaft. */
+/** Label just right of the vertical retry shaft (lower third — clear of agent row). */
 export function getOrchestratorRetryLabelPoint(
   from: OrchestratorBoxLike,
-  to: OrchestratorBoxLike,
+  _to: OrchestratorBoxLike,
   leftX: number,
   labelXPad: number = ORCHESTRATOR_RETRY_LABEL_X_PAD
 ): OrchestratorPoint {
   const start = leftAnchor(from);
-  const end = leftAnchor(to);
   return {
     x: leftX + labelXPad,
-    y: (start.y + end.y) / 2,
+    // Above horizontal U leg (same convention as getOrchestratorRetryLabelAnchor)
+    y: start.y - 19,
   };
 }
 

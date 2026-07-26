@@ -92,4 +92,50 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
       container.querySelector('[data-linked-copy]')?.textContent
     ).toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
   });
+
+  it('autoSelect false keeps linked copyable hidden until learner picks', () => {
+    const noAuto: ContentBlockContent = {
+      sections: [
+        {
+          heading: 'Daryk dabar',
+          body: 'Pick one.',
+          blockVariant: 'brand',
+          toolChoiceBar: {
+            question: 'Which tool?',
+            autoSelect: false,
+            choices: [
+              { label: 'Zapier', rowIndex: 0, whenHint: 'Quick start' },
+              { label: 'Make', rowIndex: 1, whenHint: 'Logic' },
+            ],
+          },
+        },
+        {
+          heading: 'Template Zapier',
+          body: 'Fill.',
+          copyable: 'ZAPIER_TEMPLATE_ONLY',
+          linkedRowIndex: 0,
+        },
+        {
+          heading: 'Template Make',
+          body: 'Fill.',
+          copyable: 'MAKE_TEMPLATE_ONLY',
+          linkedRowIndex: 1,
+        },
+      ],
+    };
+
+    const { container, getByRole } = renderWithProviders(
+      <ContentBlockSlide content={noAuto} />
+    );
+
+    expect(container.textContent).not.toContain('ZAPIER_TEMPLATE_ONLY');
+    expect(container.textContent).not.toContain('MAKE_TEMPLATE_ONLY');
+    expect(container.querySelector('button[aria-pressed="true"]')).toBeFalsy();
+
+    fireEvent.click(getByRole('button', { name: /Zapier/ }));
+
+    expect(container.textContent).toContain('ZAPIER_TEMPLATE_ONLY');
+    expect(container.textContent).toContain('Quick start');
+    expect(container.textContent).not.toContain('MAKE_TEMPLATE_ONLY');
+  });
 });

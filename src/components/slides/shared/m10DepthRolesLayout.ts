@@ -17,8 +17,12 @@ export const M10_DEPTH_PILL = {
   height: 56,
   gap: 12,
   radius: 12,
-  startY: 52,
+  /** Caption air under SVG title (LMS lab etalon – not cramped under title). */
+  startY: 58,
 } as const;
+
+/** SVG title baseline Y – keep ≥18px clear to pill tops. */
+export const M10_DEPTH_TITLE_Y = 22;
 
 export const M10_DEPTH_ROLE_BOX = {
   width: 112,

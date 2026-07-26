@@ -104,6 +104,37 @@ describe('PracticeQuestIntroSlide', () => {
     ).toBeInTheDocument();
   });
 
+  it('allows changing domain after confirm and saves new focus', async () => {
+    const user = userEvent.setup();
+    const onFocus = vi.fn();
+    render(
+      <PracticeQuestIntroSlide
+        slide={slide}
+        progress={{ moduleJourneyFocus: { 9: 'pardavimai' } }}
+        onJourneyFocusChoice={onFocus}
+      />
+    );
+
+    const start = screen.getByRole('button', {
+      name: 'm9StartPracticeAria',
+    });
+    expect(start).not.toBeDisabled();
+
+    await user.click(screen.getByRole('radio', { name: /Rinkodara/i }));
+    await waitFor(() => {
+      expect(start).toBeDisabled();
+      expect(
+        screen.getByRole('button', { name: 'm9QuestConfirmCta' })
+      ).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByRole('button', { name: 'm9QuestConfirmCta' }));
+    await waitFor(() => {
+      expect(onFocus).toHaveBeenCalledWith(9, 'rinkodara');
+      expect(start).not.toBeDisabled();
+    });
+  });
+
   it('shows done status on map when practices completed', () => {
     render(
       <PracticeQuestIntroSlide
@@ -120,5 +151,19 @@ describe('PracticeQuestIntroSlide', () => {
     const csv = screen.getByText('CSV').closest('[data-quest-status]');
     expect(catalog?.getAttribute('data-quest-status')).toBe('done');
     expect(csv?.getAttribute('data-quest-status')).toBe('done');
+  });
+
+  it('renders Start before outcome chips (mobile fold)', () => {
+    render(
+      <PracticeQuestIntroSlide
+        slide={slide}
+        progress={{ moduleJourneyFocus: { 9: 'pardavimai' } }}
+      />
+    );
+    const start = screen.getByRole('button', { name: 'm9StartPracticeAria' });
+    const chip = screen.getByText('Šaltinių lentelė');
+    expect(
+      start.compareDocumentPosition(chip) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 });

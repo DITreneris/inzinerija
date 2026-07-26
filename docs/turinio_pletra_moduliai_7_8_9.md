@@ -255,7 +255,7 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 - **M7 sk. 67 (2026-07-15):** interaktyvus UX – `toolChoiceBar` (3 tipai) + `linkedRowIndex` (blogas/geras promptas) + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` santrauka + „Verslas vs saugumas“ (jailbreak → sk. 67.5); subtitle be jailbreak; micro-win visiems fokusams (ne tik `etika-plus` → 67.3)
 - **M7 sk. 67 (2026-07-26):** `toolChoiceBar.variant: manipulation-contrast` – `ManipulationContrastToolSurface` (4 tipai + Blogas\|Geras + pushSignal); collapsible lentelės pašalintos; saugumo takoskyra = terms callout → 67.5; L-Lab fixtures (`M7_PROMPT_MATURITY`); GOLDEN §3.8.1
 - Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
-- M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99
+- M9: sk. 93 bookends + Patikra (94→93 merge); scenarijų microcopy; hub 99 (live MUST: 90 → 93.1 → 93.2 → 93 → 92)
 - Optional šakos + sk. 200: intro → Vectara chart → Išvada → LT/EN Copy tyrimo promptas (`HallucinationRatesDashboard`)
 
 ---
