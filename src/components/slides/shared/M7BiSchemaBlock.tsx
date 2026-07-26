@@ -10,6 +10,9 @@ const LABELS = {
   lt: {
     regionAria: 'BI schema – keturi žingsniai',
     youAreHere: 'Tu esi čia:',
+    stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
+    clickHint:
+      'Paspausk žingsnį diagramoje arba skaičių 1–4 – paaiškinimas rodomas apačioje.',
     navAria: 'BI žingsnių pasirinkimas',
     stepAria: (i: number, title: string) => `Žingsnis ${i + 1}: ${title}`,
     enlargeLabel: 'Modulis 7 – BI schema',
@@ -17,6 +20,9 @@ const LABELS = {
   en: {
     regionAria: 'BI flow – four steps',
     youAreHere: 'You are here:',
+    stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
+    clickHint:
+      'Click a step in the diagram or number 1–4 – explanation shown below.',
     navAria: 'BI step selection',
     stepAria: (i: number, title: string) => `Step ${i + 1}: ${title}`,
     enlargeLabel: 'Module 7 – BI flow',
@@ -32,31 +38,36 @@ export default function M7BiSchemaBlock() {
     useStepDiagram(explanations);
 
   return (
-    <EnlargeableDiagram
-      mobileBehavior="reflow"
-      renderContent={() => (
-        <InteractiveDiagramShell
-          density="hero"
-          regionAria={labels.regionAria}
-          statusLabel={labels.youAreHere}
-          currentStep={currentStep}
-          totalSteps={totalSteps}
-          currentTitle={step.title}
-          navAria={labels.navAria}
-          steps={explanations}
-          onStepSelect={setCurrentStep}
-          stepAria={labels.stepAria}
-          explanationTitle={step.title}
-          explanation={<p>{renderBold(step.body)}</p>}
-        >
+    <InteractiveDiagramShell
+      density="hero"
+      regionAria={labels.regionAria}
+      statusLabel={labels.youAreHere}
+      stepOfLabel={labels.stepOf(currentStep + 1, totalSteps)}
+      currentStep={currentStep}
+      totalSteps={totalSteps}
+      currentTitle={step.title}
+      navAria={labels.navAria}
+      steps={explanations}
+      onStepSelect={setCurrentStep}
+      stepAria={labels.stepAria}
+      explanationTitle={step.title}
+      explanation={<p>{renderBold(step.body)}</p>}
+    >
+      <p className="text-sm text-slate-600 dark:text-slate-400">
+        {labels.clickHint}
+      </p>
+      <EnlargeableDiagram
+        mobileBehavior="reflow"
+        showEnlargeControl={false}
+        enlargeLabel={labels.enlargeLabel}
+        renderContent={() => (
           <M7BiSchemaDiagram
             currentStep={currentStep}
             onStepClick={setCurrentStep}
             locale={loc}
           />
-        </InteractiveDiagramShell>
-      )}
-      enlargeLabel={labels.enlargeLabel}
-    />
+        )}
+      />
+    </InteractiveDiagramShell>
   );
 }

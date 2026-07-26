@@ -12,20 +12,21 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ### Versijų antraštės (turinio medis)
 
-| Skiltis                     | Ką rasite                                                                |
-| --------------------------- | ------------------------------------------------------------------------ |
-| **[Unreleased]**            | Pakeitimai po **[1.4.7]** release.                                       |
-| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.          |
-| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.        |
-| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.      |
-| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.    |
-| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.          |
-| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.       |
-| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).     |
-| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel. |
-| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                  |
-| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                    |
-| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                |
+| Skiltis                     | Ką rasite                                                                 |
+| --------------------------- | ------------------------------------------------------------------------- |
+| **[Unreleased]**            | Pakeitimai po **[1.4.8]** release.                                        |
+| **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight. |
+| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.           |
+| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.         |
+| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.       |
+| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.     |
+| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.           |
+| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.        |
+| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).      |
+| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel.  |
+| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                   |
+| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                     |
+| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                 |
 
 ---
 
@@ -40,26 +41,53 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 17 namespace; schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** 118 failai, 750 testai (2026-07-26 Unreleased / baseline **1.4.7**). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + DS gate + typecheck + TE strict + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.7** (2026-07-24). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** 126 failai, 781 testai (release **1.4.8**, 2026-07-26). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + DS gate + typecheck + TE strict + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.8** (2026-07-26). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.7 release._
+_Įrašai po 1.4.8 release._
+
+---
+
+## [1.4.8] – 2026-07-26
+
+_Content-quality sprint: M9 practice quest, M7 embeds (prompt-tool / manipulation-contrast), prompt maturity (M1P/M4P/M7P/M9P), tools+glossary gates, M10 UX; preflight green before tag._
 
 ### Added
 
+- **M9 prompt maturity contract (2026-07-26):** `docs/development/M9_PROMPT_MATURITY.md` (M9P) – Flagship MUST tokens `[X]` + Nežinau; hub Stage; Bronze/Silver/Gold on sk. 93.
+- **M9 journey theme injector (2026-07-26):** `applyM9JourneyTheme` – personalizes step copyables (`[X]`, legacy `[TAVO TEMA…]` / `[YOUR TOPIC…]`).
+- **M9 practice-quest-intro + kit redesign (2026-07-26):** Naujas tipas `practice-quest-intro` (ChoiceControl ×6, soft-preselect M7, privalomas confirm → `moduleJourneyFocus[9]`, 5-step quest map, CTA → 93.1). MUST eilė: 90 → 93.1 → 93.2 → 93 (schema+promptai, buvę 93+94) → 92 (checklist „turiu…“ + 2 badge). Hub 4×3=12 (drop 104/108/109/115/117). Journey overlay `modules-journey-m9.json` (+EN). Feature Doc `M9_PRACTICE_QUEST_INTRO.md`; TE overlay `slide-type:practice-quest-intro`. LT+EN + `generate:core-data`. Testai: PracticeQuestIntroSlide, resolveM9JourneyCopy, m9KitChecklist.
+- **M7 sk. 67 manipulation-contrast (2026-07-26):** `toolChoiceBar.variant: manipulation-contrast` – `ManipulationContrastToolSurface` (4 tipai, Blogas|Geras, `pushSignal`/`badExample`, linked Copy, be collapsible lentelių). Kind = embed (brother of prompt-tool). LT + EN m7–9 + schema + `generate:core-data`. Testai: `ContentBlockSlide.manipulationContrast`. GOLDEN §3.8.1 + TE overlay maturity 3.
 - **Tools data gates (2026-07-26):** `npm run audit:tools` – LT↔EN exact `name` parity, `localeCompare('lt')` sort, moduleId 1–15, category allowlist, core profiles ⊆ SOT; wired into `validate:schema` (+ full `tools-en.json` schema). Curriculum sync: Vercel, CapCut, UiPath, Replit, Whisper; EN M7 Julius/Echobase/DataLab/Power BI. Script: `patch-tools-hygiene-2026-07.mjs`.
 - **M7–9 žodyno pack (2026-07-26):** §11 skylės + M8 (5) + M9 (8) LT terminai; EN twin’ai + 5 M7 decision-framework; `MASTER PROMPTAS` ≠ `Master promptas`. Wire: 66.9/99.9 `itemGlossaryTerms`, M8 801/802 + M9 90/93 `onGoToGlossaryTerm`. `generate:core-data`. Script: `patch-m7-m9-glossary-fill.mjs`.
 - **Žodynėlio paieška + atviri apibrėžimai (2026-07-26):** GlossaryPage – search (term+definition), i18n `searchPlaceholder`/`noResults`; pašalintas teaser-lock UI (apibrėžimai visada skaitomi). Schema `unlockedBy` optional. Terminai: „Promptas“ tu-forma; naujas „Parametrų laukas“ (orphan 4.52.5). `generate:core-data`. Testai: `GlossaryPage.test.tsx`. GOLDEN §3.4d.
 - **M7 sk. 71 makro kelio žemėlapis UI (2026-07-25):** `m7_macro_path_map` – 4 HTML kortelės (Pamatas→Rinkimas→Paruošimas→Analizė) su „Tu esi čia“ ant Pamato; Shell=Ne, be Enlargeable / StepNav. Body be meta-nav į nav chip. LT + EN m7–9 + `generate:core-data`. Testai: `M7PathMapDiagram`, `diagramRenderers`.
 - **M7 sk. 200 Haliucinacijų rodikliai UX (2026-07-25):** po Vectara chart – Išvada + LT/EN learner copyable tyrimo promptas (`hallucinationRates.ts`); intro apie gamintojų nenorą skelbti %; i18n namespace `hallucinationRates`.
 - **M7 sk. 90 EDA prompt-tool (2026-07-25):** `toolChoiceBar.variant: prompt-tool` – `PromptFilterToolSurface` (pavyzdiniai KPI, ChoiceControl, EDA juosta, whenHint + Formato preview); kind lieka embed. LT + EN m7–9 + `generate:core-data`. Testai: `extractFormatPreview`, `ContentBlockSlide.promptTool`.
+- **`validate:journey-m9` (2026-07-26):** Plonas gate – LT/EN journey overlay domain keys ⊆ M9/90 `journeyChoices` + string field checks. `npm run validate:journey-m9` (ne į preflight šiame sprinte).
+
+### Fixed
+
+- **LEAN_M9 / `audit:m79` po quest redesign (2026-07-26):** `scripts/m7-m9-en-manifest.mjs` – drop ghost `94`/`117`; MUST `93.1`/`93.2`; hub meta 12 scenarios / ~45–90 min. `audit:m79` ✅.
+- **`practice-quest-intro` schema shape (2026-07-26):** `modules.schema.json` `allOf` + `practiceQuestIntroContent` (`journeyChoices` / `questSteps` / `firstActionSlideId` required).
+- **M9 step-copy localization tests (2026-07-26):** `DiagramLocalization` – asercijos sutampa su refine-catalog copy (ne „List 10–15“ / „Išvardink 10–15“).
 
 ### Changed
 
+- **M9 micropolish I1–I3 (2026-07-26):** Journey paste fidelity – `applyM9PracticeTemplate` wires 93.1/93.2 CopyButton to confirmed journey (`[įmonės / sektoriaus]` / `[STULPELIAI]` · EN `[COLUMNS]`); slim 93.1 step-1; topic-only footers; drop dead `recommendedSlideIds` on 90; SOT §10.3 checklist ×4 + §10.4 storyBlock archive; M9M-6 unit/struktūra ✅ (`TEST_REPORT`). Script: `patch-m9-journey-paste.mjs`. LT+EN + `generate:core-data`. Testai: `applyM9JourneyTheme` (+ practice tokens).
+- **M9 maturity I0–I5 (2026-07-26):** Learner chrome **12 / 4×3** (locales + TestPracticeSlides); sk. 90 CTA shortened; sk. 93 Bronze/Silver/Gold + 1–2 DI note; step 1 = refine catalog; steps 3 vs 4 differentiated; thin reliability on 93.2 + kit checklist 4th item (`reliability`); SOT §10.2/10.4 aligned to quest default; Giedrė plain profession. LT+EN + `generate:core-data`.
+- **M9 sk. 93 clarity (2026-07-26):** Schema↔copy shared step (`m9WorkflowSharedStep`); be dvigubo „1. 1.“ status; copy lab be antros 1–8 juostos; Trumpai/Daryk numeruoti žingsniai; tuščias diagram/copy body (chrome schematyje). LT+EN + `generate:core-data`.
+- **M9 copy remediation + quest clarity (2026-07-26):** MUST truth – sk. 93 Trumpai po 93.1/93.2 (ne „pradėk katalogą“); trukmė ~45–90 min; 93.1/93.2 rinkinio kalba; hub be „Neprivaloma ·“ ×4 + plain 112/DA_4/§7A; journey `kpiHint` plain; diagram learner strings be CopyButton/LLM. Soft-preselect ChoiceControl `value=null` iki confirm; quest map current/done. Script: `patch-m9-copy-remediation.mjs`. LT+EN + `generate:core-data`. PC-4.2 quest clarity.
+- **M7 sk. 92 BI schema brandumas (2026-07-26):** Schema hero po Trumpai (etalon 73); optional deep be SVG; 3b → F skeletas + Patikra (schema/`[X]`); EN accent GOLDEN; `bi-plan` journey index → `sections[3]`. `M7BiSchemaBlock` Shell→hint→Enlargeable (`showEnlarge=false`); flat brand fills (be rainbow). LT + EN m7–9 + `generate:core-data`. Testai: `DiagramLocalization` BI schema.
+- **M7 sk. 66.9 dalies pabaiga (2026-07-26):** Section-break po paruošimo – celebration tik uždaro pamatus; recap gebėjimų kalba + glossary (`Duomenų analizės pipeline` / `4 analizės tipai` / `Duomenų valymas`, ne EDA/MASTER); `nextSteps` +4 tiltas atgal į EDA; EN `sectionNumber` Reliability (ne M7); badge `3/3`. LT + EN m7–9 + string-map + `generate:core-data`.
+- **M7 sk. 84 situacijos chip’ai (2026-07-26):** `toolChoiceBar` – situacijos (ne įrankių vardai) + `whenHint` chips UI; pašalintas collapsible įrankio Copy; Flagship ER/KPI `CONTEXT` + `Saugykla: [įrankis iš §2]`; journey index `db-structure` → `sections[3]`; Trumpai/Daryk/Patikra + tiltas į 85. LT + EN m7–9 + journey + `generate:core-data`. Testas: `ContentBlockSlide.toolChoiceWhenHint`.
+- **M7 tester batch I0–I5 (2026-07-26):** Nav CTA (`shortTitle` 70.5/733 + `navLabel` hanging genitive fallback); plain titles 73/73.5/78/84/732; sk. 73 operacinė lentelė + Modeliavimas (S×6 journey); 731/78 detaliau be meta; 732 `preCopyCheckBlock`; 84 tools-first + `toolChoiceBar` + 3 stulpeliai; 71 kortelių pasirinkimas (Shell=Ne); 70.5 „analizės eiga“ vietoj bare pipeline. LT + EN m7–9 + journey + `generate:core-data`. `audit:slide-titles` WARN bare `pipeline`.
+- **M10 10.482 nukreipia + orphan map (2026-07-26):** W7 desktop caption-air (top-row y=62, cascade +22, viewBox H=470); input↔router gap ≥ pill+16; edge/retry labels after NodeBox; local `ORCHESTRATOR_ORPHAN_OPACITY` 0.55 for !live (LMS inactive floor lieka step-4). Tests: `lmsMultiAgentPolish`.
+- **M10 UX batch M10-UX-1…5 (2026-07-26):** Nav CTA (`shortTitle` „Kelias modulyje“ + `navLabel` dash/trail); glossary `API` + 10.2 sakinys + 10.21 unlock; 10.25 3A mąstymo sluoksnis (Trys juostos be klikų); 10.26 lab takeaway ≠ Trumpai dublis; eilė `10.48→10.485→10.482→10.481→10.49` + recap 5 / nextSteps. LT + EN (`build:modules-en-m10-m12` + `scripts/data/m10-ux-batch-en-overlay.json`). SOT §3b/§3b3a; `TEST_REPORT`.
 - **CQ-M79-3 §4.6 residual #6–9 (2026-07-26):** #6 sk.90 / #8 sk.74 verified done (nav 66.9; be „Ne M4“). EN 891 Trumpai → when-first + internal-path collapsible. M7 #9 phrase batch LT+EN (78.5/84/85/86/87/91/95): „užklausa DI“ / „kopijuojamas šablonas“; 74 etalonas. Script: `patch-m79-46-section46-residual.mjs` + `generate:core-data`. Stale test: ModuleCompleteScreen „Pasitikrink branduolį“.
 - **M1–3 copyable branda M1P-0…4 (2026-07-26):** Fit-for-purpose + freeze. M1 intro/1.1 – 3-block micro-win labels (ne „6 blokų bandymas“); M2.51 Micro chip’ai kaip priedai, be `max_tokens`; M2.52 packed blobs → 6 atskiri Stage Copy; M3.31–36 ADVANCED = tonas/formatas (be Temperature), CoT → žingsnis po žingsnio, 31 grammar + Vadovybės santrauka. LT + EN + us-overrides + `generate:core-data`. Script: `patch-m1p-prompt-maturity.mjs`. Kontraktas: `M1_M3_PROMPT_MATURITY.md`.
 - **M10–12 chrome brandumas M1012-1 (2026-07-26):** EN learner copy be curriculum ID (`slide **10.48**`, `(10.4)`), be `docs/….md` path; bare `HITL` → human approval / human-approval gate (glossary HITL lieka); LT 10.65 + M12 practice hints be failo slug. `scripts/build-en-m10-m12.mjs` → `build:modules-en-m10-m12`. Vartai: footer-numbers LT/EN, `audit:m1012`, `validate:schema`. Rankinė UI C1–C6 – `TEST_REPORT` (M1012-2).
@@ -75,7 +103,9 @@ _Įrašai po 1.4.7 release._
 
 ### Docs
 
-- **Pre-launch audit → inzinerija push (2026-07-26):** `audit:release-preflight` ✅ **118/750**; `audit:m1012` ✅; footer-numbers M1–12 LT + M10–12 EN ✅; DS gate fix (`text-xs`); M13 footer drift dokumentuotas `TEST_REPORT` (authoring, ne M1–9 blokorius). Learning QA rankinė lieka open (TODO §1.1–§1.2).
+- **Release 1.4.8 cut (2026-07-26):** Meta sync `package.json` / README / ROADMAP / TODO MON-2 pin / CODEBASE / DOCS_SYNC / DOCUMENTATION_INDEX / `TEST_REPORT`; `audit:release-preflight` ✅ **126/781** · `validate:journey-m9` ✅ · `audit:m1012` ✅ · M7–9 three-audit ✅. Learning QA rankinė (CQ-M79 / Portal / PDF / M1012-2 browser) – po tag žmogui.
+- **Audit remediacija kodas×docs×gates (2026-07-26):** TE baseline **149** / slides 277 / renderers 41; overlay `updatedAt` 2026-07-26; `M79_PATCH` sk.94→93; turinio §1.4 `practice-quest-intro`; backlog §13 stale clean; ROADMAP PC-4.2 ✅ + GitHub Pages → TODO P2 #GP; `TEST_REPORT` quest smoke honesty; TODO gates line be false „✅“ overclaim.
+- **Pre-launch audit → inzinerija push (2026-07-26):** `audit:release-preflight` ✅ **126/781**; `audit:m1012` ✅; footer-numbers M1–12 LT + M10–12 EN ✅; DS gate fix (`text-xs`); M13 footer drift dokumentuotas `TEST_REPORT` (authoring, ne M1–9 blokorius). Learning QA rankinė lieka open (TODO §1.1–§1.2).
 - **CQ-M79-3 closeout (2026-07-26):** TODO CQ-M79-3 ✅; backlog §4.6 #6–9 ✅; ROADMAP M7–9 gap = browser smoke only; `M79_PATCH_REGISTRY` + content `lessons.md`.
 - **M1P copyable freeze (2026-07-26):** `M1_M3_PROMPT_MATURITY.md`; `AGENTS.md` / CONTENT / DATA / TE registry / INDEX; content/data/orchestrator skills + content `lessons.md`.
 - **M10–12 chrome closeout (2026-07-26):** TODO M1012-1 ✅; M1012-2 audit ✅ / browser C1–C6 ⬜ `TEST_REPORT`; ROADMAP gap; content/data `lessons.md`.

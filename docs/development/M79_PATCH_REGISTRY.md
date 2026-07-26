@@ -6,6 +6,10 @@
 
 **Rankinis turinio polish (ne patch skriptas):** M7 sk. **67.5** (2026-07-24) – GOLDEN §3.2: scenarijus + copyable gynybos promptas; žodynas Promptų injekcija / Jailbreak. Failai: `modules.json`, `modules-en-m7-m9.json`, `glossary.json`, `glossary-en.json` → `generate:core-data`.
 
+**M7 sk. 67 manipulation-contrast (2026-07-26, rankinis):** `ManipulationContrastToolSurface` + `variant: manipulation-contrast` (4 tipai, be collapsible lentelių). Failai: `modules.json`, `modules-en-m7-m9.json`, `ContentSlides.tsx`, surface komponentas, schema, locales → `generate:core-data`.
+
+**M9 practice-quest redesign (2026-07-26):** `patch-m9-quest-redesign.mjs` – tipas `practice-quest-intro`, merge 94→93, hub 12, optional hub path, checklist/badges; journey `modules-journey-m9.json` (+EN). UI: `PracticeQuestIntroSlide`, ModuleView skipOptional M9. → `generate:core-data`.
+
 **M8 kelionės UX (2026-07-24, rankinis):** sk. 80 SOT copy; intro chips secondary + return aria; App remediation return `{8→7,11→10,14→13}`; results retry/CTA; ModuleView test badge. Failai: `App.tsx`, `TestPracticeSlides.tsx`, `TestKnowledgeScopeDiagram.tsx`, `ModuleView.tsx`, `modules.json` (+ EN + m1-m9), `lt.json`/`en.json`.
 
 ---
@@ -28,6 +32,7 @@
 | `patch-m79-everyday-closeness.mjs`    | M79-51…54 LT: M9 90/93.1/93.2/99 + M8 warm-up/vignette + sampleFile        | Vienkartinis (jau paleista 2026-07-16) | `modules.json`; `public/m9_sample_internal.csv`   |
 | `patch-m79-everyday-closeness-en.mjs` | M79-51…54 EN overlay veidrodis                                             | Po LT patch                            | `modules-en-m7-m9.json`                           |
 | `patch-m79-46-section46-residual.mjs` | CQ-M79-3 §4.6: EN 891 when-first + M7 #9 phrase batch LT+EN (#6/#8 verify) | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`          |
+| `patch-m9-quest-redesign.mjs`         | M9 quest intro + merge 94→93 + hub 12 + checklist (LT+EN)                  | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`          |
 
 **Paleidimo tvarka (jei reikia iš naujo):** LT patch → `npm run validate:schema` → EN patch → `npm run audit:m79` → `npm run generate:core-data` (jei M1–9 core).
 
@@ -61,7 +66,7 @@ npm run audit:m79
 | Pattern                            | Komponentas / laukas                                     | Skaidrės (pavyzdžiai)            |
 | ---------------------------------- | -------------------------------------------------------- | -------------------------------- |
 | `toolChoiceBar` + `linkedRowIndex` | `ContentSlides.tsx`                                      | M7: 734, 731, 733, 77; Top 5: 76 |
-| `M9WorkflowStepCopyBlock`          | `diagramRenderers.tsx`                                   | M9 sk. 94                        |
+| `M9WorkflowStepCopyBlock`          | `diagramRenderers.tsx`                                   | M9 sk. 93                        |
 | `content.sampleFile` download      | `TestPracticeSlides` PracticeScenarioSlide               | M9 sk. 93.2                      |
 | Bar be `table`                     | `ContentSlides` – bar render be `presentationToolsBlock` | 734, 731, 733, 77                |
 

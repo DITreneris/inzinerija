@@ -2,9 +2,9 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.7 (tag release) + Unreleased M4/M7 UX  
-**Testai:** 117 failai / 745 testai (HEAD 2026-07-25)  
-**Data:** 2026-07-25  
+**Baseline:** 1.4.8 (tag release)  
+**Testai:** 126 failai / 781 testai (preflight 2026-07-26)  
+**Data:** 2026-07-26  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Deploy / env matrica (viena tiesa)

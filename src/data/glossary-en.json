@@ -50,6 +50,15 @@
       "moduleId": 4
     },
     {
+      "term": "API",
+      "definition": "A program’s “door” to data or actions – an agent calls an external system (CRM, email, spreadsheet) through it, because it does not “have” that data itself.",
+      "moduleId": 10,
+      "unlockedBy": {
+        "moduleId": 10,
+        "slideId": 10.21
+      }
+    },
+    {
       "term": "Artefact",
       "definition": "A ready-made end result – a report, Custom GPT, webpage, or other tangible output created with AI.",
       "moduleId": 6

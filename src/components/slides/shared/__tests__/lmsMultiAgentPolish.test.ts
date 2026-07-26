@@ -18,7 +18,9 @@ import {
   M10_ORCHESTRATOR_STEP_COUNT,
   M10_ORCHESTRATOR_STEP_NODE_IDS,
   M10_ORCHESTRATOR_STROKE_DATA,
+  M10_ORCHESTRATOR_TITLE_Y_DESKTOP,
   M10_ORCHESTRATOR_VIEWBOX,
+  ORCHESTRATOR_ORPHAN_OPACITY,
   shouldPaintEdge,
   shouldPaintFanin,
   shouldPaintFanout,
@@ -153,8 +155,44 @@ describe('lmsMultiAgentPolish (Type Etalon W7 + v06.1)', () => {
     expect(
       boxes.output.x - (boxes.evaluator.x + boxes.evaluator.w)
     ).toBeGreaterThanOrEqual(24);
-    expect(M10_ORCHESTRATOR_VIEWBOX.desktop.height).toBeGreaterThanOrEqual(448);
+    expect(M10_ORCHESTRATOR_VIEWBOX.desktop.height).toBeGreaterThanOrEqual(470);
     expect(boxes.research.h).toBeGreaterThanOrEqual(58);
+    expect(boxes.input.y).toBeGreaterThanOrEqual(62);
+    // HITL note under output stays inside viewBox
+    expect(boxes.output.y + boxes.output.h + 16).toBeLessThanOrEqual(
+      M10_ORCHESTRATOR_VIEWBOX.desktop.height
+    );
+  });
+
+  it('keeps top-row nukreipia caption-air and gap fit (pill ≤ gap)', () => {
+    const labels = getM10OrchestratorLabels('lt');
+    const boxes = getBoxMap(getM10OrchestratorDesktopBoxes(labels));
+    const verb = labels.edgeVerbs['input-router'];
+    expect(verb).toBe('nukreipia');
+    const { h: pillH, w: pillW } = estimateOrchestratorPillSize(verb);
+    const gap = boxes.router.x - (boxes.input.x + boxes.input.w);
+    expect(gap).toBeGreaterThanOrEqual(pillW + 16 - 0.01);
+    const anchor = getOrchestratorEdgeLabelAnchor(
+      boxes.input,
+      boxes.router,
+      'right',
+      'left',
+      undefined,
+      verb
+    );
+    const labelTop = anchor.y - pillH / 2;
+    const titleBottomApprox =
+      M10_ORCHESTRATOR_TITLE_Y_DESKTOP +
+      DIAGRAM_TOKENS.typography.title.compact * 0.35;
+    expect(labelTop - titleBottomApprox).toBeGreaterThanOrEqual(18);
+  });
+
+  it('uses local orphan opacity below LMS inactive (not global token change)', () => {
+    expect(ORCHESTRATOR_ORPHAN_OPACITY).toBeGreaterThanOrEqual(0.5);
+    expect(ORCHESTRATOR_ORPHAN_OPACITY).toBeLessThan(
+      DIAGRAM_TOKENS.opacity.inactive
+    );
+    expect(DIAGRAM_TOKENS.opacity.inactive).toBeGreaterThanOrEqual(0.85);
   });
 
   it('places annotation anchors with pill-size clearance; kviečia +4', () => {

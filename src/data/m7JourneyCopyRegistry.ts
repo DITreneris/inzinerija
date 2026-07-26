@@ -68,6 +68,7 @@ export const M7_JOURNEY_TIER2_PARTIAL_FIELDS: Record<
     'pipeline-overview',
     'pipeline-prep',
     'pipeline-eda',
+    'pipeline-model',
     'pipeline-viz',
     'pipeline-publish',
   ],
@@ -132,11 +133,12 @@ export const M7_CONTENT_BLOCK_FIELD_INDICES: Partial<
     'filter-portfolio': 6,
   },
   73: {
-    'pipeline-overview': 3,
-    'pipeline-prep': 4,
-    'pipeline-eda': 5,
-    'pipeline-viz': 6,
-    'pipeline-publish': 7,
+    'pipeline-overview': 4,
+    'pipeline-prep': 5,
+    'pipeline-eda': 6,
+    'pipeline-model': 7,
+    'pipeline-viz': 8,
+    'pipeline-publish': 9,
   },
   732: {
     'sentiment-prompt': 2,
@@ -165,7 +167,7 @@ export const M7_CONTENT_BLOCK_FIELD_INDICES: Partial<
     'eda-anomaly': 4,
     'eda-hypotheses': 5,
   },
-  92: { 'bi-plan': 2 },
+  92: { 'bi-plan': 3 },
 };
 
 /** path-step: fieldKey → sections[] index */

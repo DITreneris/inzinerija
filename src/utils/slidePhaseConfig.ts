@@ -246,6 +246,7 @@ export function getPhaseLabel(
     'test-section': 'Testas',
     'test-results': 'Testas',
     'practice-intro': 'Praktika',
+    'practice-quest-intro': 'Praktika',
     'practice-scenario': 'Praktika',
     'practice-summary': 'Praktika',
   };
@@ -270,6 +271,13 @@ export function buildSlideGroups(
       { label: l('Sprintas'), startIdx: 0, endIdx: 2 },
       { label: l('Pagalba'), startIdx: 3, endIdx: 3 },
       { label: l('Testas'), startIdx: 4, endIdx: slides.length - 1 },
+    ];
+  }
+  // Module 9: MUST projektas (5) → optional hub biblioteka (12)
+  if (moduleId === 9 && slides.length >= 6) {
+    return [
+      { label: l('Projektas'), startIdx: 0, endIdx: 4 },
+      { label: l('Neprivaloma'), startIdx: 5, endIdx: slides.length - 1 },
     ];
   }
   // Module 11, 12, 14, 15 – single phase

@@ -62,9 +62,13 @@ export default function M9DataWorkflowDiagram({
         ? '8-step data workflow'
         : '8 žingsnių duomenų ciklas';
   const hint =
-    locale === 'en'
-      ? 'Tap a step – explanation below'
-      : 'Paspausk žingsnį – paaiškinimas apačioje';
+    diagramContext === 'm7_master'
+      ? locale === 'en'
+        ? 'Tap a step – explanation below'
+        : 'Paspausk žingsnį – paaiškinimas apačioje'
+      : locale === 'en'
+        ? 'Tap a step – explanation below; copy prompt further down'
+        : 'Paspausk žingsnį – paaiškinimas apačioje; promptą nukopijuosi žemiau';
 
   const ariaIntro =
     diagramContext === 'm7_master'
@@ -72,8 +76,8 @@ export default function M9DataWorkflowDiagram({
         ? 'MASTER prompt: eight steps from sources to recommendations.'
         : 'MASTER promptas: aštuoni žingsniai nuo šaltinių iki rekomendacijų.'
       : locale === 'en'
-        ? 'Module 9 workflow: eight steps from collection to HTML dashboard.'
-        : 'Modulio 9 workflow: aštuoni žingsniai nuo surinkimo iki .html dashboard.';
+        ? 'Module 9 work process: eight steps from collection to HTML dashboard.'
+        : 'Modulio 9 darbo eiga: aštuoni žingsniai nuo surinkimo iki .html suvestinės.';
 
   const renderStep = (i: number, compact: boolean) => {
     const isActive = currentStep === i;

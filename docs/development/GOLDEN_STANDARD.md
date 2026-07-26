@@ -115,6 +115,7 @@
 - `ActionIntroSlide` – M4 / M10 / M13 path (`howToUseModule.short/full` ↔ Fast track / `skipOptional`)
 - `ActionIntroJourneySlide` – M7 domeno fokusas (ne gylis)
 - `PracticeIntroSlide` – M15 Greitas/Pilnas ↔ Fast track; M6 projekto tipas (navigate į 61 / 67, **ne** Fast track)
+- `PracticeQuestIntroSlide` – M9/90 quest desk: 6 journey ChoiceControl + confirm + 5-step map; Pattern `interactive-control-lab` (Shell = Ne); soft-preselect iš M7 **ne** auto-confirm
 - `M10HumanControlSimulatorBlock` – 10.26 dual radiogroups (scenarijus + kontrolės režimas); Pattern `interactive-control-lab` (ne SVG shell)
 - `M4PromptModeSimulatorBlock` – 54 dual radiogroups (scenarijus + promptų režimas); Pattern `interactive-control-lab` (ne SVG shell)
 - `M10DepthRolesLabBlock` – 10.45 depth ChoiceControl (be scenarijaus) + static mini schema; Pattern `interactive-control-lab`; Copy lab viduje; brand-only (be risk strip)
@@ -273,6 +274,21 @@
 | whyBenefit                       | Vienas aiškus naudos sakinys |
 | duration                         | „~15 min“ arba panašiai      |
 | firstActionCTA / pirmas veiksmas | Trumpas, konkretus           |
+
+### 3.4e practice-quest-intro (M9 quest desk)
+
+**Paskirtis:** Capstone intro – srities ChoiceControl + 5-step quest map + vienas CTA. Ne briefing siena; hub ne first viewport.
+
+| Laukas         | Turinio taisyklė                                                        |
+| -------------- | ----------------------------------------------------------------------- |
+| whyBenefit     | Vienas naudos sakinys (rinkinys / artefaktas)                           |
+| journeyChoices | Tie patys 6 id kaip M7 (`pardavimai`…`kita`)                            |
+| questSteps     | 5 mazgai (Start → Katalogas → CSV → 8 žingsniai → Rinkinys)             |
+| outcomeChips   | 3 trumpi (ne use-case siena)                                            |
+| firstActionCTA | Vienas primary → pirma MUST praktika; disabled kol sritis nepatvirtinta |
+| Soft-preselect | M7 focus = hint; confirm → `moduleJourneyFocus[9]`                      |
+
+**SOT:** `docs/development/M9_PRACTICE_QUEST_INTRO.md`. Pattern `interactive-control-lab`, Shell = Ne.
 
 ### 3.4a warm-up-quiz (savitikra)
 
@@ -501,21 +517,24 @@ action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-
 
 Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toje pačioje skaidrėje. Jis neturi tapti antra pilna skaidre viduje: vienas aiškus veiksmas, trumpas feedback ir vienas dominuojantis CTA.
 
-| Laukas                               | Paskirtis                                                                             | Etalonas                                                                     |
-| ------------------------------------ | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `briefCheckBlock`                    | Trumpas brief / tono / užduoties patikrinimas.                                        | M2 sk. 51, M5 sk. 510                                                        |
-| `preCopyCheckBlock`                  | Patikra prieš kopijuojamą promptą.                                                    | M5 sk. 47; M7 sk. 67 (linked); M7 sk. 67.8 (prieš pirmą `copyable`)          |
-| `correctPromptPractice`              | Blogo prompto taisymas į gerą.                                                        | M4 sk. 49, M6 sk. 68                                                         |
-| `recognitionExercise`                | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                   |
-| `interactivePipeline`                | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                    |
-| `instructGptQuality`                 | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                    |
-| `toolChoiceBar`                      | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)         |
-| `linkedRowIndex`                     | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`) |
-| `toolChoiceBar.variant: prompt-tool` | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.  |
+| Laukas                                         | Paskirtis                                                                             | Etalonas                                                                             |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `briefCheckBlock`                              | Trumpas brief / tono / užduoties patikrinimas.                                        | M2 sk. 51, M5 sk. 510                                                                |
+| `preCopyCheckBlock`                            | Patikra prieš kopijuojamą promptą.                                                    | M5 sk. 47; M7 sk. 67 (linked); M7 sk. 67.8 (prieš pirmą `copyable`)                  |
+| `correctPromptPractice`                        | Blogo prompto taisymas į gerą.                                                        | M4 sk. 49, M6 sk. 68                                                                 |
+| `recognitionExercise`                          | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                           |
+| `interactivePipeline`                          | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                            |
+| `instructGptQuality`                           | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                            |
+| `toolChoiceBar`                                | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76 (`sections[].toolChoiceBar`)                 |
+| `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76 (`sections[].linkedRowIndex` + `toolChoiceBar`)         |
+| `toolChoiceBar.variant: prompt-tool`           | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.          |
+| `toolChoiceBar.variant: manipulation-contrast` | Manipuliacijų kontrastas: ChoiceControl → Blogas\|Geras + pushSignal → linked Copy.   | **Etalonas:** M7 sk. 67 (`ManipulationContrastToolSurface`); brother of prompt-tool. |
 
 **`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.
 
 **`prompt-tool`:** `variant: "prompt-tool"` – be auto-select (value null iki pasirinkimo); brand `ChoiceControl` + static EDA juosta; `sampleData` / `sequenceHint` / `whenHint`; Formatas preview iš `formatPreview` arba `copyable` eilutės `Formatas:` / `Format:`. Kind lieka embed (ne `interactive-control-lab`).
+
+**`manipulation-contrast`:** `variant: "manipulation-contrast"` – be auto-select; brand `ChoiceControl` 2×2; `choices[].pushSignal` + `badExample`; Geras stulpelis iš linked `copyable`; linked Copy po surface. Kind = embed (ne lab). Copyable klasė **L – Lab** (`M7_PROMPT_MATURITY.md`).
 
 **`preCopyCheckBlock` vieta:** be `linkedRowIndex` – renderinti **prieš pirmą sekciją su `copyable`** (ne skaidrės viršuje), kad teorija eitų pirma; su `linkedRowIndex` – esamas kelias (prieš pirmą collapsible / po bar). Testas: `ContentBlockSlide.preCopyPlacement.test.tsx`.
 

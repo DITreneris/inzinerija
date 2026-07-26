@@ -456,9 +456,10 @@ export interface ContentBlockSection {
     /**
      * `chips` (default) – accent button bar + auto-select first choice.
      * `prompt-tool` – ChoiceControl + sample data + EDA strip (M7/90).
+     * `manipulation-contrast` – ChoiceControl + Blogas|Geras panel (M7/67).
      */
-    variant?: 'chips' | 'prompt-tool';
-    /** Sequence hint under ChoiceControl (prompt-tool) */
+    variant?: 'chips' | 'prompt-tool' | 'manipulation-contrast';
+    /** Sequence hint under ChoiceControl (prompt-tool / manipulation-contrast) */
     sequenceHint?: string;
     /** Collapsible sample rows to paste into the prompt (prompt-tool) */
     sampleData?: { label: string; body: string };
@@ -467,6 +468,10 @@ export interface ContentBlockSection {
       rowIndex: number;
       /** One-line “when to pick” (prompt-tool) */
       whenHint?: string;
+      /** What the biased prompt pushes (manipulation-contrast) */
+      pushSignal?: string;
+      /** Biased prompt text for contrast panel (manipulation-contrast) */
+      badExample?: string;
     }[];
   };
   /** Pasirenkama: workflow grandinės (List Cards) – naudoti vietoj table, kai blokas „Pavyzdžiai iš praktikos“ */
@@ -1228,6 +1233,7 @@ export type SlideType =
   | 'test-section'
   | 'test-results'
   | 'practice-intro'
+  | 'practice-quest-intro'
   | 'practice-scenario'
   | 'practice-scenario-hub'
   | 'practice-summary'
@@ -1306,7 +1312,7 @@ export interface PracticeScenarioHubChoiceLevel2 {
   description: string;
 }
 
-/** Content skaidrei type 'practice-scenario-hub' – 4×4 scenarijų medis */
+/** Content skaidrei type 'practice-scenario-hub' – 4×3 scenarijų medis (M9 hub = 12) */
 export interface PracticeScenarioHubContent {
   /** Neprivalomo kelio banneris hub viršuje (M9 sk. 99) */
   optionalPathNote?: string;
@@ -1345,6 +1351,24 @@ export interface PracticeIntroContent {
   thresholds?: { pass?: number };
 }
 
+/** M9 practice-quest-intro (GOLDEN §3.4e). */
+export interface PracticeQuestIntroContent {
+  whyBenefit?: string;
+  duration?: string;
+  audience?: string;
+  journeyHeading?: string;
+  journeyChoices?: JourneyChoice[];
+  confirmMessage?: string;
+  softPreselectHint?: string;
+  questSteps?: { id: string; label: string; slideId: number }[];
+  outcomeChips?: string[];
+  firstActionCTA?: string;
+  firstActionSlideId?: number;
+  recommendedSlideIds?: number[];
+  footer?: string;
+  onGoToGlossaryTerm?: string;
+}
+
 export type SlideContent =
   | ActionIntroContent
   | ActionIntroJourneyContent
@@ -1375,6 +1399,7 @@ export type SlideContent =
   | PracticeScenarioHubContent
   | PracticeScenarioSlideContent
   | PracticeIntroContent
+  | PracticeQuestIntroContent
   | AdvancedVeiksmoIntroContent
   | AdvancedSlideContent;
 
@@ -1597,6 +1622,12 @@ export interface PracticeSummaryContent {
   firstAction24h?: string;
   /** M9: mygtuko „Parsisiųsti atmintinę (PDF)“ etiketė */
   handoutDownloadLabel?: string;
+  /** M9 quest: soft artefact checklist */
+  kitChecklist?: { id: string; label: string }[];
+  /** M9 quest: mastery badges copy */
+  badges?: { id: string; label: string; rule: string }[];
+  hubCtaLabel?: string;
+  hubSlideId?: number;
 }
 
 /** M9 užduoties rėmas – vienas sakinys (Užduotis) ir konkretus output (Užbaigta, kai) */

@@ -39,11 +39,12 @@ const CONTENT_BLOCK_FIELD_INDICES = {
     'filter-portfolio': 6,
   },
   73: {
-    'pipeline-overview': 3,
-    'pipeline-prep': 4,
-    'pipeline-eda': 5,
-    'pipeline-viz': 6,
-    'pipeline-publish': 7,
+    'pipeline-overview': 4,
+    'pipeline-prep': 5,
+    'pipeline-eda': 6,
+    'pipeline-model': 7,
+    'pipeline-viz': 8,
+    'pipeline-publish': 9,
   },
   732: {
     'sentiment-prompt': 2,
@@ -72,7 +73,7 @@ const CONTENT_BLOCK_FIELD_INDICES = {
     'eda-anomaly': 4,
     'eda-hypotheses': 5,
   },
-  92: { 'bi-plan': 2 },
+  92: { 'bi-plan': 3 },
 };
 
 /** Must match m7JourneyCopyRegistry.ts M7_PATHSTEP_FIELD_INDICES */

@@ -156,7 +156,7 @@ Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. A
 
 ## 3b. 3A strategija (skaidrė 10.25)
 
-**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → diagrama (brand) → Pavyzdys (brand) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Kur pritaikyti (terms, collapsible). Juostų gylis – diagramos shell (spausk juostą); atskiros „Trys juostos“ sekcijos skaidrėje **nėra** (vengti dublio).
+**Schema:** GOLDEN_STANDARD §3.2 – Trumpai (accent) → **Trys juostos – kada rinktis** (brand, matoma be klikų) → diagrama (brand) → Pavyzdys (brand, kontrastas) → Daryk dabar (brand) → CopyButton → Patikra (accent) → Kur pritaikyti (terms, collapsible). Diagrama lieka practice (spausk juostą); first viewport turi mąstymo sluoksnį (ne tik 1 sakinys + 1/3 juostos).
 
 | Lygis          | Dalis | Aprašymas                                                                                    |
 | -------------- | ----- | -------------------------------------------------------------------------------------------- |
@@ -164,11 +164,13 @@ Trigger: [ĮVYKIS]. Condition (jei reikia): [TAISYKLĖ]. Action 1: [VEIKSMAS]. A
 | **AUGMENT**    | 15 %  | Žmogus sprendžia, DI padeda (santraukos, klasifikacija, rekomendacijos).                     |
 | **AUTONOMIZE** | 5 %   | DI agentai, RAG, kokybės kontrolė, eskalacija – sistema gali veikti autonomiškai su ribomis. |
 
-**Taisyklė 80/15/5** – sprendimų portfelis (vertė **ir** saugumas): didžioji dalis – taisyklės (**mažiau klaidų**, nuspėjama); mažesnė – žmogus + DI (sprendimas / atsakomybė); mažiausia – agentai su ribomis (brangu / rizikinga – siaura juosta).
+**Taisyklė 80/15/5** – sprendimų portfelis (vertė **ir** saugumas): didžioji dalis – taisyklės (**mažiau klaidų**, nuspėjama); mažesnė – žmogus + DI (sprendimas / atsakomybė); mažiausia – agentai su ribomis (brangu / rizikinga – siaura juosta). Klaidingas mąstymas: „daugiau agentų = geriau“.
+
+**Trys juostos (content-block):** kiekvienai juostai **Kiek / Kodėl / Pvz.** – matoma be diagramos klikų.
 
 **Diagrama (body):** Spausk juostą – kada rinktis. Tada priskirk savo procesus žemiau. Shell explanations = 3 eilutės **Kiek / Kodėl / Pvz.** (ne tik „vertė“). Vertikali legenda po juosta su trumpu „kodėl“. (Be procentų pakartojimo / enlarge meta.)
 
-**Pavyzdys:** Sąskaitos / forma → CRM → patvirtinimo laiškas → **Automatize**, nes taisyklė aiški, žmogaus sprendimo nėra.
+**Pavyzdys:** Tas pats procesas – dvi juostos (Automatize vs Augment); Autonomize – tik su ribomis ir eskalacija.
 
 **Daryk dabar:** Išrašyk **tris savo darbo procesus** ir kiekvieną priskirk vienai 3A juostai.
 
@@ -256,7 +258,7 @@ Kiekvienai rolei – vienas sakinys.
 
 ### Papildomas skaitymas (blog)
 
-- **Skaidrė 10.48b (section-break, po 10.48):** `spinoffCta` → blog `how-to-design-an-ai-agent-workflow`.
+- **Skaidrė 10.481 (section-break, po 10.485 + 10.482):** `spinoffCta` → blog `how-to-design-an-ai-agent-workflow`.
 - **Skaidrė 10.15b (section-break, po 10.15):** `spinoffCta` → blog `choosing-workflow-automation-ai-pipelines`.
 - **M11 testas nepavyko:** UI deepen → blog `evaluating-agents-with-clear`.
 - **M10 / M12 ModuleComplete:** secondary ecosystem links (blog + map / manage). Žr. `docs/ECOSYSTEM_MAP.md` § Moduliai 7–12.
@@ -288,7 +290,9 @@ Pateik planą kaip numeruotą sąrašą.
 
 ### 3b3a Savitikra: workflow šablonai (10.485)
 
-**Tikslas:** Trumpa savitikra po 10.48, prieš skyriaus recap. Dalyvis pasitikrina, ar gali parinkti tinkamą šabloną pagal situaciją.
+**Eilė (live):** `10.48` → `10.485` (ši) → `10.482` (orkestravimas) → `10.481` (section-break recap) → `10.49`.
+
+**Tikslas:** Trumpa savitikra po 10.48, prieš orkestravimo simuliaciją ir skyriaus recap. Dalyvis pasitikrina, ar gali parinkti tinkamą šabloną pagal situaciją.
 
 **Klausimai (warm-up-quiz):**
 

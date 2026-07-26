@@ -47,7 +47,7 @@ Vartotojui matoma skaidrės antraštė = **dalyvio rezultatas ar tema**, ne kurs
 
 1. **Be redakcinės meta:** nenaudoti `Skyrius:`, `Prieš M12`, `bilietas` antraštėje – UI tipas (`section-break`) ir kelio navigacija jau atskiria.
 2. **Be `(neprivaloma)` / `(optional)` antraštėje:** tik `optional: true` + UI badge (`ModuleView`).
-3. **Terminai antraštėse:** **darbo eiga**, ne `workflow`. Subtitle be `HITL`, `Spec`, `CopyButton` – vietoj to paprasta LT (pvz. „kada tvirtina žmogus“, „kopijuojami šablonai“).
+3. **Terminai antraštėse:** **darbo eiga**, ne `workflow`; **analizės eiga**, ne bare `pipeline` H1; venk „operacinė lentelė“ antraštėje. Subtitle be `HITL`, `Spec`, `CopyButton` – vietoj to paprasta LT (pvz. „kada tvirtina žmogus“, „kopijuojami šablonai“).
 4. **Ilgis:** rekomenduojama title ≤ ~55 simb.; jei ilgesnė – `shortTitle` navigacijai / footeriams.
 5. **EN overlay:** ta pati semantika kaip LT (ne „entry ticket“, jei LT – „aprašymas“ / „brief“).
 
@@ -57,6 +57,7 @@ Vartotojui matoma skaidrės antraštė = **dalyvio rezultatas ar tema**, ne kurs
 | `Skyrius: RAG ir gilusis tyrimas`        | `RAG ir gilusis tyrimas`                            |
 | `Žodynėlis (neprivaloma)`                | `Žodynėlis` (+ `optional: true`)                    |
 | `Spec 1 p. + … HITL` (subtitle)          | `1 psl. schema + 3 bandymai + kada tvirtina žmogus` |
+| `Pipeline ir operacinė lentelė`          | `6 žingsnių analizės eiga`                          |
 
 ---
 

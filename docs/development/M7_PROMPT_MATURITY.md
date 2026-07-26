@@ -36,24 +36,24 @@ Kelti praktinių copyable užduočių brandą **be** naujų skaidrių ir **be** 
 
 ## Inventorius (skaidrė → klasė → fieldKeys)
 
-| ID                      | Klasė        | Journey fieldKeys (po M7P)                                                                          |
-| ----------------------- | ------------ | --------------------------------------------------------------------------------------------------- |
-| 71                      | F (etalonas) | — (be overlay)                                                                                      |
-| 74                      | F            | `master-prompt`                                                                                     |
-| 71.1–71.5               | F            | `step-task`                                                                                         |
-| 732                     | F            | `sentiment-prompt`                                                                                  |
-| 734                     | F            | `filter-*` ×4                                                                                       |
-| 733                     | F            | `template-*` ×3                                                                                     |
-| 78 / 78.5               | F            | `di-role-prompt` / `excel-clean-prompt`                                                             |
-| 84 / 86 / 87 / 891 / 92 | F            | po 1 primary (+ struktūra)                                                                          |
-| 83                      | R            | `role-activation`                                                                                   |
-| 731                     | S×4          | `types-*` ×4                                                                                        |
-| 73                      | S×5          | `pipeline-overview` (rinkimas), `pipeline-prep`, `pipeline-eda`, `pipeline-viz`, `pipeline-publish` |
-| 89                      | S×5          | `algo-sources`, `algo-structure`, `algo-collect`, `algo-clean`, `algo-export`                       |
-| 90                      | S×4          | `eda-stats`, `eda-corr`, `eda-anomaly`, `eda-hypotheses`                                            |
-| 67                      | L            | —                                                                                                   |
-| 75                      | F            | `reflection`, `first-action-24h`                                                                    |
-| 103 / 106 / 861         | F            | — (viz šaka; Patikra/Nežinau)                                                                       |
+| ID                      | Klasė        | Journey fieldKeys (po M7P)                                                                                            |
+| ----------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------- |
+| 71                      | F (etalonas) | — (be overlay)                                                                                                        |
+| 74                      | F            | `master-prompt`                                                                                                       |
+| 71.1–71.5               | F            | `step-task`                                                                                                           |
+| 732                     | F            | `sentiment-prompt`                                                                                                    |
+| 734                     | F            | `filter-*` ×4                                                                                                         |
+| 733                     | F            | `template-*` ×3                                                                                                       |
+| 78 / 78.5               | F            | `di-role-prompt` / `excel-clean-prompt`                                                                               |
+| 84 / 86 / 87 / 891 / 92 | F            | po 1 primary (+ struktūra)                                                                                            |
+| 83                      | R            | `role-activation`                                                                                                     |
+| 731                     | S×4          | `types-*` ×4                                                                                                          |
+| 73                      | S×6          | `pipeline-overview` (rinkimas), `pipeline-prep`, `pipeline-eda`, `pipeline-model`, `pipeline-viz`, `pipeline-publish` |
+| 89                      | S×5          | `algo-sources`, `algo-structure`, `algo-collect`, `algo-clean`, `algo-export`                                         |
+| 90                      | S×4          | `eda-stats`, `eda-corr`, `eda-anomaly`, `eda-hypotheses`                                                              |
+| 67                      | L            | —                                                                                                                     |
+| 75                      | F            | `reflection`, `first-action-24h`                                                                                      |
+| 103 / 106 / 861         | F            | — (viz šaka; Patikra/Nežinau)                                                                                         |
 
 ## Iteracijos
 

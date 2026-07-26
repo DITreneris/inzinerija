@@ -207,6 +207,7 @@
             "test-section",
             "test-results",
             "practice-intro",
+            "practice-quest-intro",
             "practice-scenario",
             "practice-scenario-hub",
             "practice-summary",
@@ -317,8 +318,12 @@
                             "question": { "type": "string" },
                             "variant": {
                               "type": "string",
-                              "enum": ["chips", "prompt-tool"],
-                              "description": "chips = default bar; prompt-tool = EDA tool surface (M7/90)"
+                              "enum": [
+                                "chips",
+                                "prompt-tool",
+                                "manipulation-contrast"
+                              ],
+                              "description": "chips = default bar; prompt-tool = EDA (M7/90); manipulation-contrast = Blogas|Geras (M7/67)"
                             },
                             "sequenceHint": { "type": "string" },
                             "sampleData": {
@@ -340,7 +345,9 @@
                                     "type": "integer",
                                     "minimum": 0
                                   },
-                                  "whenHint": { "type": "string" }
+                                  "whenHint": { "type": "string" },
+                                  "pushSignal": { "type": "string" },
+                                  "badExample": { "type": "string" }
                                 }
                               }
                             }
@@ -485,6 +492,18 @@
                   }
                 }
               }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "practice-quest-intro" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["content"],
+            "properties": {
+              "content": { "$ref": "#/$defs/practiceQuestIntroContent" }
             }
           }
         },
@@ -814,6 +833,64 @@
         }
       ]
     },
+    "practiceQuestIntroContent": {
+      "type": "object",
+      "description": "M9 practice-quest-intro (GOLDEN §3.4e)",
+      "required": ["journeyChoices", "questSteps", "firstActionSlideId"],
+      "additionalProperties": true,
+      "properties": {
+        "whyBenefit": { "type": "string" },
+        "duration": { "type": "string" },
+        "audience": { "type": "string" },
+        "journeyHeading": { "type": "string" },
+        "journeyChoices": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "label"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "label": { "type": "string", "minLength": 1 },
+              "subtitle": { "type": "string" },
+              "icon": { "type": "string" },
+              "branchIds": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "confirmMessage": { "type": "string" },
+        "softPreselectHint": { "type": "string" },
+        "questSteps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "slideId"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "label": { "type": "string", "minLength": 1 },
+              "slideId": { "type": "number" }
+            }
+          }
+        },
+        "outcomeChips": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "firstActionCTA": { "type": "string" },
+        "firstActionSlideId": { "type": "number" },
+        "recommendedSlideIds": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Optional; micropolish may omit"
+        },
+        "footer": { "type": "string" },
+        "onGoToGlossaryTerm": { "type": "string" }
+      }
+    },
     "practiceScenarioHubContent": {
       "type": "object",
       "required": ["level1Choices", "level2Choices"],
@@ -848,8 +925,9 @@
           "maxItems": 4,
           "items": {
             "type": "array",
-            "minItems": 4,
+            "minItems": 3,
             "maxItems": 4,
+            "description": "3 = M9 4×3 library; 4 = legacy 4×4",
             "items": {
               "type": "object",
               "required": ["targetSlideId", "title", "description"],

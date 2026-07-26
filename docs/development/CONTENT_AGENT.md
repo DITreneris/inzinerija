@@ -124,6 +124,7 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 - **Optional** – antraštė „🔽 Nori suprasti detaliau? (optional)“; collapsible teorija.
 - **Dense teorija (numeruoti sąrašai):** jei ≥2 blokai „1. 2. 3…“ plain text – versti į `section.table` (pvz. Priežastis|Ką daryti; FAKTAI|SPĖJIMAI su `comparisonStyle`); hero = copyable + taisyklės; giluminį (CoVe) palikti collapsible. Etalonas: M7 sk. 67.8. Prieš copyable hero – `preCopyCheckBlock` (GOLDEN §3.8.1); ne naujas lab/diagrama, jei greta jau yra pipeline/dashboard.
 - **Prompt-tool (`toolChoiceBar.variant: prompt-tool`):** kai filtras turi jaustis kaip įrankis (duomenys → režimas → Formatas → Copy) – `sampleData`, `sequenceHint`, `whenHint` × choice; kind lieka embed. Etalonas: M7 sk. 90. **Ne** kelti į `interactive-control-lab`, jei užtenka ChoiceControl + linked Copy (GOLDEN §3.8.1).
+- **Manipulation-contrast (`toolChoiceBar.variant: manipulation-contrast`):** tipų juosta → Blogas|Geras + `pushSignal`/`badExample` → linked neutralus Copy; L-Lab fixture’ai (ne Flagship). Etalonas: M7 sk. 67. Kind = embed (GOLDEN §3.8.1).
 - **MUST vs optional deep (M10 precedentas 10.64 / 10.65):** jei dense optional skaidrę dalyviai praleidžia, o M12 lab'ai reikalauja branduolio – **neišjunk** viso optional; ištrauk ploną **privalomą** content-block (spec + minimalūs testai + žmogaus kontrolė) prieš optional deep. **Koncepto lab:** skaidrė **10.26** (`m10_human_control_simulator`) – režimai + **kopijuojama kontrolės taisyklė lab viduje** (ne GOLDEN „Kopijuojamas promptas“ siena); **10.64** laiko kontrolės eilutę. Antraštėse be „HITL“ (`PAPRASTOS_KALBOS` / `audit:slide-titles`). Žr. `docs/PEDAGOGINE_ANALIZE_MODULIAI_10_11_12.md`, `turinio_pletra_moduliai_10_11_12.md` §3b1.
 - **Orientacinės skaidrės** (schema / 3A / įrankių katalogas) be Daryk/Copy/Patikra – silpnos; pridėti GOLDEN §3.2 ciklą, ne tik diagramą.
 - **HTML diagramos box labeliai (M9/M7 8 žingsnių):** kortelėje – trumpi LT/EN (`m9DataWorkflowContent` STEPS); pilni pavadinimai – Shell explanation / status. Geometrija (2×4) – SCHEME/CODING; ne tempti ilgų žodžių į siaurą 1×N juostą.
@@ -132,16 +133,17 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 
 ## 4. Skaidrių tipai ir CONTENT_AGENT fokusas
 
-| Tipas              | Kas svarbu CONTENT_AGENT                                                                                                                 |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **action-intro**   | whyBenefit, firstActionCTA, duration, vertė (1 sakinys), palyginimas/veiksmas per ~30 s                                                  |
-| **summary**        | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA     |
-| **content-block**  | Sekcijos (heading, body), Trumpai, Daryk dabar, Patikra, optional collapsible, CopyButton promptas (EN: In short, Do now, Quality check) |
-| **test-intro**     | whyBenefit, trukmė, pirmas žingsnis; kelio vartams – žr. Path Test Contract žemiau                                                       |
-| **warm-up-quiz**   | 3 unscored (M8 leidžia 4); diagnostinis tonas **tu**; 1 forward bridge į projektą                                                        |
-| **test-results**   | passed/failed (žmogiškos temos), threshold, useCaseBlock → projektas, reflection; be curriculum ID learner copy                          |
-| **practice-intro** | whyBenefit, vertė, pirmas veiksmas                                                                                                       |
-| **practicalTask**  | instructions (žingsniai), partialSolution, template, hint                                                                                |
+| Tipas                    | Kas svarbu CONTENT_AGENT                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **action-intro**         | whyBenefit, firstActionCTA, duration, vertė (1 sakinys), palyginimas/veiksmas per ~30 s                                                                                         |
+| **summary**              | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA                                            |
+| **content-block**        | Sekcijos (heading, body), Trumpai, Daryk dabar, Patikra, optional collapsible, CopyButton promptas (EN: In short, Do now, Quality check)                                        |
+| **test-intro**           | whyBenefit, trukmė, pirmas žingsnis; kelio vartams – žr. Path Test Contract žemiau                                                                                              |
+| **warm-up-quiz**         | 3 unscored (M8 leidžia 4); diagnostinis tonas **tu**; 1 forward bridge į projektą                                                                                               |
+| **test-results**         | passed/failed (žmogiškos temos), threshold, useCaseBlock → projektas, reflection; be curriculum ID learner copy                                                                 |
+| **practice-intro**       | whyBenefit, vertė, pirmas veiksmas                                                                                                                                              |
+| **practice-quest-intro** | M9/90 – GOLDEN **§3.4e** + `M9_PRACTICE_QUEST_INTRO.md`: soft-preselect hint, confirm, quest map, outcome chips, CTA → 93.1; hub ne first viewport; checklist/badge copy ant 92 |
+| **practicalTask**        | instructions (žingsniai), partialSolution, template, hint                                                                                                                       |
 
 ### 4.1 Path Test Contract (kelio vartai M8 / M11 / M14)
 

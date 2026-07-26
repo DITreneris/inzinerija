@@ -4,6 +4,7 @@ export { default as DownloadTemplateButton } from './DownloadTemplateButton';
 export { TestResultsReflectionBlock } from './TestResultsReflectionBlock';
 export { default as TemplateBlock } from './TemplateBlock';
 export { default as PromptFilterToolSurface } from './PromptFilterToolSurface';
+export { default as ManipulationContrastToolSurface } from './ManipulationContrastToolSurface';
 export { default as PracticalTask } from './PracticalTask';
 export { default as ProcessStepper } from './ProcessStepper';
 export { default as CustomGptProcessDiagram } from './CustomGptProcessDiagram';

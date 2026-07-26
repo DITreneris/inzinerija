@@ -50,7 +50,7 @@ export function getHumanControlUiLabels(locale: M10Locale) {
       copyLabel: 'Copy control rule',
       copiedLabel: 'Copied',
       takeaway:
-        'Human oversight is not a maturity ladder to full autonomy. Choose the control by consequence and how hard it is to reverse a mistake.',
+        'Pick a scenario and a control mode – you will see if it fits, what happens on error, and get a rule for your brief.',
       matrixHeading: 'Where this sits on risk',
       matrixConsequence: 'Consequence',
       matrixReversibility: 'Reversibility',
@@ -104,7 +104,7 @@ export function getHumanControlUiLabels(locale: M10Locale) {
     copyLabel: 'Kopijuoti taisyklę',
     copiedLabel: 'Nukopijuota',
     takeaway:
-      'Žmogaus kontrolė – ne brandos kopėčios iki pilnos autonomijos. Režimą rink pagal pasekmes ir tai, ar klaidą sunku atšaukti.',
+      'Pasirink scenarijų ir kontrolės režimą – pamatysi, ar tinka, kas nutinka klaidos atveju, ir gausi taisyklę aprašymui.',
     matrixHeading: 'Kur tu esi rizikoje',
     matrixConsequence: 'Pasekmė',
     matrixReversibility: 'Atšaukimas',

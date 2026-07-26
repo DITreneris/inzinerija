@@ -81,6 +81,8 @@ Jei užduotyje minimi **bent 2 iš 3**: (1) turinys/mokymai/terminai, (2) JSON, 
 
 **Jei užduotis apima UI/UX (layout, a11y, dizaino atitiktis):** CODING_AGENT gali įtraukti **UI_UX_AGENT** – gairės ir tikrinimas pagal `docs/development/UI_UX_AGENT.md`; implementacija – CODING_AGENT.
 
+**Specialūs mišrūs maršrutai (sutrumpintai):** žr. `AGENTS.md` §Mišri užduotis – pvz. **M9 practice-quest-intro** (Feature Doc `M9_PRACTICE_QUEST_INTRO.md`, GOLDEN §3.4e, journey-m9, skipOptional progress 5).
+
 **Jei užduotis liečia duomenų architektūrą arba JSON redagavimą:** prieš bet kokį siūlymą agentas turi atsakyti į 2 klausimus:
 
 1. Ar užduotis yra apie **full authoring SOT**, ar apie **core build/runtime profilį**?

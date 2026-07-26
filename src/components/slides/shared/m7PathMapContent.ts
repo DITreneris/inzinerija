@@ -13,12 +13,14 @@ export interface M7PathMapStep {
 export interface M7PathMapLabels {
   regionAria: string;
   youAreHere: string;
+  previewLabel: string;
   steps: M7PathMapStep[];
 }
 
 const LT: M7PathMapLabels = {
   regionAria: 'Modulio kelio žemėlapis: keturi blokai',
   youAreHere: 'Tu esi čia',
+  previewLabel: 'Peržiūra',
   steps: [
     {
       title: 'Pamatas',
@@ -42,6 +44,7 @@ const LT: M7PathMapLabels = {
 const EN: M7PathMapLabels = {
   regionAria: 'Module path map: four blocks',
   youAreHere: 'You are here',
+  previewLabel: 'Preview',
   steps: [
     {
       title: 'Foundation',

@@ -55,7 +55,7 @@ Pagal golden standard (docs/development/GOLDEN_STANDARD.md §4.1) – vienas ai�
 | ------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | **7**   | action-intro (pirmoji) | Po šio modulio naudosi DI kaip verslo analitiką – nuo duomenų struktūros iki pilno analizės šablono (8 žingsnių) ir vizualizacijų. |
 | **8**   | test-intro             | Po šio testo žinosi, ar esi pasiruošęs finaliniam Duomenų analizės kelio projektui (Modulis 9).                                    |
-| **9**   | practice-intro         | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.                                   |
+| **9**   | practice-quest-intro   | Po projekto turėsi vieną paruoštą verslo analizės artefaktą ir šablonus kasdieniam darbui su DI.                                   |
 
 ---
 
@@ -253,6 +253,7 @@ _Skaidrėje – sąrašas su trumpu paaiškinimu; ryšys su sistemine promptų a
 - M7 etika (sk. 67, 67.5, 67.8, 67.3, 68): collapsible, dedup, Patikra
 - **M7 sk. 67.8 (2026-07-25):** lentelės FAKTAI vs SPĖJIMAI + Kodėl + 4 kontrolės lygiai; `preCopyCheckBlock` prieš copy; 5 taisyklės + anti-šablonas hero (ne plain-text siena)
 - **M7 sk. 67 (2026-07-15):** interaktyvus UX – `toolChoiceBar` (3 tipai) + `linkedRowIndex` (blogas/geras promptas) + `preCopyCheckBlock` MCQ; collapsible `comparisonStyle` santrauka + „Verslas vs saugumas“ (jailbreak → sk. 67.5); subtitle be jailbreak; micro-win visiems fokusams (ne tik `etika-plus` → 67.3)
+- **M7 sk. 67 (2026-07-26):** `toolChoiceBar.variant: manipulation-contrast` – `ManipulationContrastToolSurface` (4 tipai + Blogas\|Geras + pushSignal); collapsible lentelės pašalintos; saugumo takoskyra = terms callout → 67.5; L-Lab fixtures (`M7_PROMPT_MATURITY`); GOLDEN §3.8.1
 - Copyable filtrai: `toolChoiceBar` + `linkedRowIndex` (sk. 734, 731, 733, 77)
 - M9: sk. 93 bookends, sk. 94 Patikra, scenarijų microcopy, hub 99
 - Optional šakos + sk. 200: intro → Vectara chart → Išvada → LT/EN Copy tyrimo promptas (`HallucinationRatesDashboard`)
@@ -304,27 +305,18 @@ _Skaidrėje – šablonas su lauku [X]; pastaba: jei reikia, viena skaidrė su l
 
 ### 5.2a DB įrankių pasirinkimas (praktinė matrica)
 
-**Tikslas:** Papildyti DB dizaino skaidrę trumpa praktine matrica: kai DI pasiūlo lenteles ir ryšius, dalyvis turi suprasti, kokio tipo įrankis tinka jo situacijai. Tai nėra SQL mokymas – tik sprendimo žemėlapis.
+**Tikslas:** Sk. 84 – situacijos `toolChoiceBar` (ne įrankių vardai) → `whenHint` + lentelės eilutė; tada Flagship ER/KPI Copy su `Saugykla: [įrankis iš §2]`. Tai nėra SQL mokymas – sprendimo žemėlapis, tada struktūros šablonas.
 
-| Įrankis            | Kam naudojamas praktiškai                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| **PostgreSQL**     | Geriausias universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms. |
-| **MySQL**          | Labai paplitęs web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.                                                     |
-| **SQLite**         | Lokali DB prototipams, mobilioms apps, CLI įrankiams ir testams; nereikia serverio.                                                     |
-| **MongoDB**        | NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps, greiti MVP.                                        |
-| **Redis / Valkey** | Cache, sesijos, eilės, rate limit ir real-time funkcijos; dažnai ne pagrindinė DB, o greičio sluoksnis.                                 |
-| **Supabase**       | Greitas backend MVP: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos.                                            |
+| Situacija (chip)             | Įrankis (lentelė)  | Kam naudojamas praktiškai                                                                                                               |
+| ---------------------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Struktūruoti verslo duomenys | **PostgreSQL**     | Geriausias universalus pasirinkimas naujiems web/SaaS projektams, analitikai, sudėtingoms užklausoms, JSON ir pgvector / DI funkcijoms. |
+| Hostingas / paprastas CRUD   | **MySQL**          | Labai paplitęs web hostinguose, WordPress, e-commerce ir paprastose CRUD sistemose.                                                     |
+| Prototipas be serverio       | **SQLite**         | Lokali DB prototipams, mobilioms apps, CLI įrankiams ir testams; nereikia serverio.                                                     |
+| Lanksti schema               | **MongoDB**        | NoSQL dokumentų DB, kai duomenų struktūra lanksti: katalogai, eventai, content apps, greiti MVP.                                        |
+| Greitis ir sesijos           | **Redis / Valkey** | Cache, sesijos, eilės, rate limit ir real-time funkcijos; dažnai ne pagrindinė DB, o greičio sluoksnis.                                 |
+| Greitas MVP backend          | **Supabase**       | Greitas backend MVP: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos.                                            |
 
-**Pastaba skaidrei:** Redis / Valkey aiškiai pažymėti kaip greičio sluoksnį, ne kaip pagrindinę duomenų saugyklą. Supabase paaiškinti kaip PostgreSQL pagrindu veikiantį MVP backend'ą.
-
-**Kopijuojamas promptas (CopyButton):**
-
-```
-ROLE: Tu esi verslo duomenų analitikas.
-TASK: Pasiūlyk tinkamiausią DB įrankį mano atvejui.
-CONTEXT: Verslas: [X]. Duomenų tipas: [lentelės / JSON / real-time]. Apimtis: [MVP / didelė].
-OUTPUT: 1) Rekomenduotas įrankis 2) Kodėl ne kiti 2 variantai 3) Ką DI gali padėti su schema 4) Pirmas žingsnis.
-```
+**Pastaba skaidrei:** Redis / Valkey aiškiai pažymėti kaip greičio sluoksnį, ne kaip pagrindinę duomenų saugyklą. Supabase paaiškinti kaip PostgreSQL pagrindu veikiantį MVP backend'ą. Atskiras įrankio-pasirinkimo CopyButton **nebenaudojamas** – pakanka situacijos chip’ų + lentelės.
 
 _Įrankių kataloge (`tools.json`) šie įrankiai rodomi kategorijoje „Duomenų bazės“._
 
@@ -1000,9 +992,10 @@ Po M8 testo (test-results) gali būti rodomos **2 neprivalomos BONUS skaidrės**
 
 ## 10. Modulis 9 – Praktika (finalinis integruotas projektas)
 
-- **Tikslas:** Vienas pilnas projektas – **integruota kelionė: pasirinktos ES šalies (27 valstybės) LinkedIn + Eurostat analizė**. Dalyvis pradžioje pasirenka šalį (bėgančioje juostoje); visa 8 užduočių seka susikonfigūruoja pagal šalį. Naudojama 6 blokų sistema, šio kelio promptų užuominos, MASTER PROMPTAS (02_DA XIII). Žr. **§10.0.2** – integruota kelionė, mažai konfigūracijos, vesti per procesą.
-- **Struktūra:** Learn (M7) → Test (M8) → **Practice** (M9); capstone = vienas projektas (8 žingsniai, viena šalis). **15 papildomų scenarijų** (101–103, 105–116) – už pagrindinio modulio ribų, nuoroda SOT §10.2.
-- **Ryšys su 4.1b:** Struktūruotas procesas (tikslai, kontekstas, rolė, promptai, grįžtamasis ryšys) – taikomas 8 žingsnių kelionei ir, jei atgaunami, scenarijams.
+- **Tikslas (produktas):** Po M9 mokytojas supranta duomenų analizės eigą, žino įrankius/promptus/vizualizacijas ir moka paruošti sau **analitinį rinkinį** su DI (dvi MUST praktikos + 8 žingsnių ciklas + checklist artefaktas).
+- **Struktūra:** Learn (M7) → Test (M8) → **Practice** (M9); MUST = quest-intro → katalogas → CSV → schema+promptai → santrauka/checklist. **Hub:** 4×3 = **12** scenarijų (biblioteka). Žr. [`MODULIO_9_SKAIDRIU_EILES.md`](MODULIO_9_SKAIDRIU_EILES.md).
+- **§10.0.2 (ES šalys / LinkedIn + Eurostat):** optional backlog / premium – **ne** default produkto kelias.
+- **Ryšys su 4.1b:** Struktūruotas procesas taikomas 8 žingsnių ciklui ir hub scenarijams.
 
 **Paprasta kalba (Moduliai 7–9):** Vartotojui matomi tekstai (antraštės, aprašymai, CTA, kortelių pavadinimai) rašomi **paprastai** – paprastam žmogui aišku ir suprantama. Vengiama vadybinio/techninio žargono be paaiškinimo (ROI, HR, CFO, EBITDA, NPS, SWOT, influencer, Senior ir pan.). Jei terminas būtinas – vienas sakinys paaiškinimo. Žr. `docs/development/PAPRASTOS_KALBOS_GAIRES.md`.
 
@@ -1023,15 +1016,18 @@ Vienas aiškus 8 žingsnių ciklas – nuo duomenų surinkimo iki dashboard atva
 
 **Sandbox principas:** Parametrai, spalvos, grafikų pavadinimai ir jų dinamika nurodomi prompte; mažai rankinio kodo, daug aišių instrukcijų DI.
 
-**Phase 2 (2026-07-15) – verifiable praktika:** Pagrindinis kelias 93–94 papildytas dviem `practice-scenario` skaidrėmis **93.1** (viešų šaltinių katalogas, `doneWhen`: lentelė su URL/formatu/dažniu) ir **93.2** (CSV/Excel įkėlimas į DI + valymo promptas). Skaidrė 93 – workflow schema; praktikos turinys perkeltas į 93.1–93.2.
+**Phase 2 (2026-07-15) – verifiable praktika:** Dvi `practice-scenario` skaidrės **93.1** (katalogas) ir **93.2** (CSV/Excel).
 
-**M79-51…55 (2026-07-16) – artumas kasdieniam darbui:** M9 intro (90) + praktikos 93.1/93.2 susietos su 6 M7 keliais ir įrankiais; sample CSV; hub 99 aprašymai; M8 vignette. Backlog: `docs/development/07_08_09_backlog.md`.
+**M9 Quest redesign (2026-07-26):** sk. **90** = `practice-quest-intro` (6 keliai + confirm + quest map); **93** = schema + step prompts (buvę 93+94); hub **12** scenarijų; checklist ant 92. Feature Doc: `docs/development/M9_PRACTICE_QUEST_INTRO.md`.
 
-##### Sk. 90 practice-intro – fork ir 6 use-case
+**Sk. 93 copy (po quest):** Trumpai / Daryk turi pripažinti, kad **93.1 + 93.2 jau atlikti** – nebekviesti „pradėk katalogą“. Minimumas = 2 žingsniai su DI; pilnas ciklas = 8. Trukmė UI: ~45–90 min. Schema = žingsnio pasirinkimas; copy lab žemiau be antro 1–8 juostos (shared step sync).
 
-- **Fork:** (i) šaltinių katalogas – kai nėra vidinių duomenų; (ii) savo CSV/Excel – kai turi CRM/Excel eksportą arba sample failą.
-- **useCaseBlock (6 eilutės):** pardavimai → Q3 Excel/CRM; rinkodara → kampanijų/kanalų CSV; IT → logai/ETL; personalas → retention/pulse; vadyba → executive KPI lentelė; kita → bet koks vidinis Excel.
-- Be naked skaidrių id – temų pavadinimai.
+##### Sk. 90 practice-quest-intro – rinkinio stalas
+
+- **ChoiceControl ×6** (tie patys id kaip M7); soft-preselect iš M7; **privalomas confirm** → `moduleJourneyFocus[9]`.
+- **Quest map (5):** Start → Katalogas → CSV → 8 žingsniai → Rinkinys.
+- **Outcome chips (3)** – ne use-case siena; hub ne first viewport.
+- **CTA:** „Pradėti: šaltinių katalogas“ → 93.1 (tik po confirm).
 
 ##### Sk. 93.1 – šaltinių katalogas
 
@@ -1138,17 +1134,17 @@ Reikalavimai: antraštė, 2–3 KPI blokai (skaičiai ar placeholder), 1–2 gra
 
 _Vizualinė workflow schema: žr. `public/m9_workflow.svg`._
 
-#### 10.0.2 Integruota kelionė: 27 ES šalys, LinkedIn + Eurostat (pagrindinė M9 kelionė)
+#### 10.0.2 Integruota kelionė: 27 ES šalys, LinkedIn + Eurostat (**optional backlog**)
 
-**Patvirtinta koncepcija:** Dalyvis **pradžioje pasirenka šalį** (bėgančioje juostoje / šalies pasirinkimo UI) – **27 Europos Sąjungos valstybės**. Pagal pasirinkimą **susikonfigūruoja visa 8 užduočių seka**; keičiasi tik šalis, promptų užuominos lieka trumpos ir bendros. **Kuo mažiau konfigūracijos:** mes duodame trumpas promptų užuominas; visus tyrimus renka, sintetizuoja ir integruoja mokymų dalyviai. Mums svarbiau vesti per procesą – aiškus kelias, ką ir kaip daryti.
+> **Produkto statusas (2026-07-26):** ne default M9 kelias. Default = quest-intro + dvi praktikos + 8 žingsniai + checklist (§10.3). Ši sekcija – **premium / vėlesnis** variantas.
+
+**Koncepcija (archyvas / backlog):** Dalyvis **pradžioje pasirenka šalį** (bėgančioje juostoje / šalies pasirinkimo UI) – **27 Europos Sąjungos valstybės**. Pagal pasirinkimą **susikonfigūruoja visa 8 užduočių seka**; keičiasi tik šalis, promptų užuominos lieka trumpos ir bendros.
 
 **LinkedIn:** Tik **vieši duomenys** (profesinė ekosistema, tendencijos, darbo rinka – ne asmeniniai profiliai). Išmokysim dalyvius **sugeneruoti promptą patys**: pagal 6 blokų šabloną (Modulis 1) – „Sugeneruok gilaus tyrimo promptą apie [tema] pagal 6 blokų šabloną.“ Tuos promptus jie copy-paste į savo modelius. **Etika** – vieta ir laikas paminėti (vieši šaltiniai, gerbti ToS, ne rinkti asmens duomenų). LinkedIn įtraukia per interesą ir norą sukurti kažką, ko dar nebuvo – vieša, visiems suprantama ir prieinama tema.
 
 **Eurostat:** Užtenka nurodyme promptuose (pvz. „Pridėk Eurostat rodiklius šaliai: BVP, užimtumas, eksportas“) – DI pats suranda/aprašo. Mažiau yra geriau; svarbiau vesti per procesą. Jei iki 7 modulio neišmoko kopijuoti promptų, tokiems nebepadėsime – kelias skirtas tiems, kurie eina kartu.
 
-**M9 pagrindas (default):** Vienas integruotas projektas – **skaidrė 104 (Pilnas workflow)**. Tema pagal nutylėjimą: **„[Pasirinktos šalies] LinkedIn + Eurostat analizė“** – 8 žingsniai nuo surinkimo iki dashboard. Šalies pasirinkimas iš 27 ES valstybių – pirmame M9 (arba M7) žingsnyje, bėgančioje juostoje.
-
-**15 scenarijų (101–103, 105–116):** Iškeliami **už pagrindinio modulio ribų** – gal vėliau, kaip papildomos opcijos. SOT palieka tik **nuorodą**, kad tokie scenarijai buvo kurti (§10.2 scenarijai 1–16 ir 10.2.1 4×4 medis – archyvas / referencas). Pagrindinė M9 kelionė = viena integruota 8 žingsnių kelionė su pasirinkta ES šalimi.
+**Jei atgaunama kaip premium:** tema pvz. **„[Pasirinktos šalies] LinkedIn + Eurostat analizė“** – 8 žingsniai; šalies pasirinkimas pradžioje. Hub bibliotekoje (12 scenarijų) šis variantas **nedubliuoja** MUST ciklo (buvęs 104 pašalintas iš produkto).
 
 ### 10.1 Struktūrinė logika: 5 blokai (framework)
 
@@ -1164,7 +1160,7 @@ _Framework apima: tekstinę analizę, skaitinę analizę, prognozavimą, rizikas
 
 ### 10.2 Modulio 9 scenarijai ir promptai (referencas – už pagrindinio modulio ribų)
 
-**Pagrindinė M9 kelionė** – žr. §10.0.2: 27 ES šalys, pasirinkimas pradžioje, 8 užduotys (LinkedIn + Eurostat). Žemiau – **scenarijų aprašymai ir promptai** išsaugoti SOT kaip **referencas / archyvas**; šie 16 scenarijų (1–16 → id 101–116) **neįeina į pagrindinę modulio ribą** – gal vėliau atgaunami kaip papildomos opcijos. Kiekvienas scenarijus gali būti atskira užduotis arba dalis integruoto projekto kitame kontekste.
+**Pagrindinė M9 kelionė (produktas):** §10.3 quest – 90 → 93.1 → 93.2 → 93 → 92; hub **12** scenarijų (4×3). **§10.0.2** (27 ES šalys / LinkedIn + Eurostat) = optional backlog, ne default. Žemiau – **scenarijų aprašymai ir promptai** kaip **referencas / archyvas** (istoriniai 16 id 101–116; produkto hub = 12). Kiekvienas scenarijus gali būti atskira užduotis arba dalis integruoto projekto kitame kontekste.
 
 ---
 
@@ -1469,9 +1465,9 @@ _M9 galutinis projektas gali būti: atlikti visą ciklą vienai temai (pvz. pard
 
 ---
 
-### 10.2.1 Modulio 9 – 4×4 scenarijų medis (referencas – už pagrindinio modulio ribų)
+### 10.2.1 Modulio 9 – scenarijų medis (archyvas 4×4 / produkto hub 4×3)
 
-_Ši struktūra (4×4, 16 scenarijų, id 101–116) dokumentuota SOT; pagrindinė M9 kelionė – §10.0.2 (27 šalys, 8 žingsniai). Jei vėliau atgaunama:_ vartotojas pirmiausia pasirenka vieną iš 4 krypčių (1 lygis), paskui vieną iš 4 scenarijų (2 lygis) → 16 pabaigų. Kiekviena = viena `practice-scenario` skaidrė su SOT scenarijumi.
+_Archyvas žemiau (4×4, 16 id) – referencas. **Produkto hub** = 4×3 = **12** scenarijų (§10.3). Pagrindinė M9 kelionė = quest §10.3 (ne §10.0.2 ES-27)._
 
 | 1 lygis (4 kortelės)                   | 2 lygis (po 4 scenarijus)                                                                   | SOT scenarijai → skaidrės id |
 | -------------------------------------- | ------------------------------------------------------------------------------------------- | ---------------------------- |
@@ -1481,33 +1477,32 @@ _Ši struktūra (4×4, 16 scenarijų, id 101–116) dokumentuota SOT; pagrindin�
 | **D. Vizualizacija ir istorija**       | Vizualizacijos tipas, Istorijos kūrimas, Power BI žingsniai, Python vizualizacijos          | 12, 13, 14, 15 → id 113–116  |
 
 - **Hub skaidrė** (tipas `practice-scenario-hub`): rodo 4 korteles 1 lygyje; pasirinkus – 4 korteles 2 lygyje; pasirinkus 2 lygį – navigacija į atitinkamą skaidrę pagal `targetSlideId`.
-- **Progresas:** `completedTasks[9]` = užbaigtų scenarijų skaidrių id (101–116 ir 117). Galima rodyti „X iš 17 scenarijų užbaigta“ (arba 16, jei 117 neskaičiuojamas atskirai – JSON turi būti nuoseklus).
+- **Progresas (archyvas):** seniau „X iš 16/17“. **Produktas:** hub **12** scenarijų; soft completion be hard `minScenariosToComplete`; MUST progress = 5 (quest), hub optional.
 
-**Soft-rekomenduojami papildomi scenarijai:** Skaidrės **101, 102, 104, 111, 116, 117** (JSON `recommendedSlideIds` + hub amber badge). Po pagrindinio workflow – hub biblioteka. JSON: `recommended: true` ant starterių; hard completion gate nėra.
+**Soft-rekomenduojami hub scenarijai (bazė):** **101, 102, 111, 116**; I5 – per `journeyId` (2–3 amber). Hard completion gate nėra. Hub dydis: **12** (be 104, 108, 109, 115, 117).
 
 ---
 
 ### 10.3 Modulio 9 praktikos įgyvendinimas
 
-**Produkto pasirinkimas (supaprastintas variantas B):** pagrindinis vartotojo kelias – **8 žingsnių workflow** skaidrėse **93–94** (schema + CopyButton promptai pagal §10.0). Tai laikoma **pakankamu** modulio užbaigimui. **Hub (id 99), 4 veikėjai ir iki 17 scenarijų (101–116 + 117)** – **papildoma biblioteka** po workflow; įvade UI suskleidžiama į „Papildomai“, kad nekurtų konkurencijos su pagrindiniu keliu.
+**Produkto kelias (2026-07-26 quest):** MUST = **90** (`practice-quest-intro`) → **93.1** → **93.2** → **93** (schema + CopyButton lab) → **92** (checklist + santrauka). **Hub 99 + 12 scenarijų** – optional biblioteka po MUST (ne intro viewport).
 
-- **Integruota ES šalių kelionė (§10.0.2):** palikta SOT kaip **alternatyvus / būsimas** produkto variantas; dabartinė implementacija jo nenaudoja kaip default.
-- **Skaidrių eilė (oficiali):** žr. [`docs/MODULIO_9_SKAIDRIU_EILES.md`](MODULIO_9_SKAIDRIU_EILES.md). Produkto kelias: 90 → 93 → 93.1 → 93.2 → 94 → 99 (hub) → 101–117 → 92. **MUST:** 90–94 + 92; hub – soft biblioteka (`recommendedSlideIds` + amber badge; be hard `minScenariosToComplete`). Po 94 UI gali pasiūlyti **tiesioginį perėjimą į santrauką** (`onGoToSummary`).
-- **Ryšys su M8:** Modulio 8 klausimai tikrina 5 blokus ir workflow logiką (surinkimas, deep research, valymas, integracija, vizualizacija).
-- **Practice-intro (id 90):** `primaryPathIntro` – aiškiai: „Tęsti“ → praktikos + schema; `firstActionCTA` – ne hub pirmiausia. Veikėjai ir `storyBlock` – kontekstas **papildomiems** scenarijams (suskleidžiama sekcija).
-- **Practice-summary (id 92):** sveikinimas už **workflow**; statistikos ir CTA atspindi 8 žingsnius kaip branduolį, scenarijai – „iki 17“, neprivaloma.
-- **§10.2 / 10.2.1** scenarijų lentelės ir taskFrame lieka referencu; skaidrė **117** – Data scraping, įskaičiuota į papildomų scenarijų skaičių.
+- **Integruota ES šalių kelionė (§10.0.2):** optional backlog – ne default.
+- **Skaidrių eilė (oficiali):** žr. [`docs/MODULIO_9_SKAIDRIU_EILES.md`](MODULIO_9_SKAIDRIU_EILES.md). Po 93 UI gali pasiūlyti hub arba santrauką (`onGoToSummary`).
+- **Ryšys su M8:** Modulio 8 klausimai tikrina 5 blokus ir workflow logiką.
+- **Practice-quest-intro (id 90):** Feature Doc `M9_PRACTICE_QUEST_INTRO.md`; confirm prieš CTA; quest map 5; hub ne first viewport.
+- **Practice-summary (id 92):** checklist „turiu…“ (**4 punktai**: katalogas, CSV, suvestinė, patikros taisyklė) + 2 badge; hub CTA secondary („Papildoma biblioteka (12)“).
+- **§10.2 / 10.2.1** – referencas; produkto hub = 101–103, 105–107, 110–114, 116.
 
-#### 10.3.1 Tekstai į JSON (practice-intro, 8 žingsnių kelionė, summary)
+#### 10.3.1 Tekstai į JSON (practice-quest-intro, 8 žingsnių, summary)
 
-**Practice-intro (id 90) – dominuojantis kelias (workflow 93–94):**
+**Practice-quest-intro (id 90):**
 
-- `primaryPathIntro`: trumpas blokas – 8 žingsniai kitose dviejose skaidrėse, „Tęsti“, pakanka moduliui užbaigti.
-- `meaningParagraph`, `taskOneLiner`, `firstActionCTA`, `learningOutcomes`: workflow pirmiausia; scenarijai / hub – antraeilis.
-- `storyBlock`, `characterMeaning`, `recommendedStart`: kontekstas **papildomai** (įvade – po suskleidžiamu „Papildomai“).
-- `useCaseBlock`: gali likti verslo pavyzdžiai; nekonkuruoja su firstActionCTA.
+- `journeyChoices` (6), `questSteps` (5), `outcomeChips` (3), `confirmMessage`, `firstActionCTA` → 93.1.
+- Soft-preselect hint iš M7; `moduleJourneyFocus[9]` po confirm.
+- Trukmė UI: ~45–90 min.
 
-_Scenarijų laukai (characterMeaning, 4 veikėjai, taskFrame 101–116 + 117) – žr. §10.2.1 ir lentelę žemiau._
+_Scenarijų laukai (4 veikėjai, taskFrame live 12) – žr. §10.2.1; išmesti id lieka archyve._
 
 **Užduoties rėmas (taskFrame) – 101–116:**
 
@@ -1532,24 +1527,26 @@ _Scenarijų laukai (characterMeaning, 4 veikėjai, taskFrame 101–116 + 117) �
 
 **Refleksija po scenarijaus (reflectionPromptAfter)** – tas pats visiems 101–116: „Esi mokymų refleksijos asistentas. Ką tik atlikau vieną iš Modulio 9 scenarijų (verslo analizė su DI). Užduok man vieną klausimą: Ką šis scenarijus tau davė ir ką pritaikysi kitą kartą? Po mano atsakymo duok vieną konkretų patarimą.“
 
-**Practice-summary (id 92)** – introBody ir stats atspindi **užbaigtą 8 žingsnių workflow**; papildomi scenarijai – neprivaloma praktika (iki 17). reflectionPrompt (What–So What–Now What); tagline, nextStepCTA ir firstAction24h – pakartoti workflow arba atidaryti papildomą scenarijų per 24–48 val.
+**Practice-summary (id 92)** – introBody ir stats atspindi pagrindinį kelią + checklist (įsk. patikros taisyklę); papildomi scenarijai – neprivaloma praktika (hub **12**). reflectionPrompt (What–So What–Now What); tagline, hub CTA secondary – pakartoti workflow arba atidaryti papildomą scenarijų per 24–48 val.
+
+**Sk. 93 lygiai:** Bronze = 2 žingsniai · Silver = 5 · Gold = 8; pakanka 1–2 DI (ne būtina 4).
 
 ---
 
 ### 10.4 Modulio 9 role-quest: 4 veikėjai ir bendras siužetas
 
-Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veikėjais, kurie bendradarbiauja; kiekvienoje skaidrėje rodoma to scenarijaus „atlikėjo“ asmens kortelė (vardas, amžius, profesija, patirtis, hobis + PNG).
+Mini role-quest principas (hub biblioteka): **12** scenarijų (produkto hub) susieti 4 veikėjais; kiekvienoje hub skaidrėje rodoma to scenarijaus „atlikėjo“ asmens kortelė (vardas, amžius, profesija, patirtis, hobis + PNG). Istoriniai 16 id lieka archyve (§10.2).
 
 **Bendras siužetas:** Verslo analizės komanda „Duomenų kelias“ – keturi specialistai kartu dirba Q1 projekte: klientų atsiliepimų analizė, duomenų kokybė, verslo įžvalgos ir vizualizacijos. Kiekvienas atsakingas už savo sritį; scenarijai – kasdienės verslo situacijos, kurias jie sprendžia su DI.
 
 **4 veikėjai (asmens kortelė: vardas, amžius, profesija, patirtis, hobis, PNG):**
 
-| id  | Vardas   | Amžius | Profesija                        | Patirtis                                 | Hobis                   | PNG            |
-| --- | -------- | ------ | -------------------------------- | ---------------------------------------- | ----------------------- | -------------- |
-| 1   | Jūratė   | 28     | Verslo analitikė                 | 4 m. klientų ir rinkos analizėje         | Skaitmeninė fotografija | veikejas-1.png |
-| 2   | Martynas | 34     | Duomenų analitikas               | 7 m. EDA ir rizikų vertinime             | Bėgimas, maratonai      | veikejas-2.png |
-| 3   | Giedrė   | 31     | Verslo konsultantė (CFO/HR)      | 5 m. finansų ir HR analizėje             | Knygos, kelionės        | veikejas-3.png |
-| 4   | Lukas    | 26     | Vizualizacijų ir BI specialistas | 3 m. Power BI, Python, data storytelling | Muzika, gitara          | veikejas-4.png |
+| id  | Vardas   | Amžius | Profesija                                   | Patirtis                                 | Hobis                   | PNG            |
+| --- | -------- | ------ | ------------------------------------------- | ---------------------------------------- | ----------------------- | -------------- |
+| 1   | Jūratė   | 28     | Verslo analitikė                            | 4 m. klientų ir rinkos analizėje         | Skaitmeninė fotografija | veikejas-1.png |
+| 2   | Martynas | 34     | Duomenų analitikas                          | 7 m. EDA ir rizikų vertinime             | Bėgimas, maratonai      | veikejas-2.png |
+| 3   | Giedrė   | 31     | Verslo konsultantė (finansai ir personalas) | 5 m. finansų ir personalo analizėje      | Knygos, kelionės        | veikejas-3.png |
+| 4   | Lukas    | 26     | Vizualizacijų ir BI specialistas            | 3 m. Power BI, Python, data storytelling | Muzika, gitara          | veikejas-4.png |
 
 **Priskyrimas skaidrės id → characterId (kas atlieka užduotį):**
 
@@ -1563,9 +1560,9 @@ Mini role-quest principas: visi 16 scenarijų susieti bendra istorija ir 4 veik�
 - PNG laikomi `public/characters/veikejas-1.png` … `veikejas-4.png` (vartotojas įkels atskirai).
 - Duomenys: `src/data/m9Characters.json` (4 įrašai); skaidrėse 101–116 laukas `characterId` (1–4). UI: asmens kortelė virš scenarijaus aprašymo, fallback be nuotraukos jei PNG nėra.
 
-**Bendro siužeto blokas įvade (S2):** Practice-intro (id 90) turi lauką `content.storyBlock` (trumpas) ir **veikėjų prasmę vienu sakiniu**: „Veikėjai padeda pasirinkti **tematiką**: Jūratė – klientai ir duomenų valdymas; Martynas – analizės tipai ir rizikos; Giedrė – finansai ir HR; Lukas – vizualizacija ir BI. Pasirink pagal savo darbą arba tiesiog scenarijų iš sąrašo.“ StoryBlock pavyzdys: „Komanda „Duomenų kelias“ – 4 specialistai, 16 verslo užduočių (4×4). Žemiau – 4 greiti scenarijai arba paspausk veikėją – atsidarys jo 4 užduotys.“
+**Bendro siužeto blokas / veikėjai įvade (archyvas, ne produkto 90):** Iki quest redesign praktikos-intro turėjo `content.storyBlock` + paspaudžiamas CharacterCard → hub. **Produktas (2026-07-26):** sk. **90** = `practice-quest-intro` (kelio confirm + quest map); hub veikėjai ir `narrativeLead` – optional bibliotekoje (99+12), ne first viewport. StoryBlock / „4×4 / 16 užduočių“ tekstai – tik istorinis referencas.
 
-**Veikėjų kortelės įvade paspaudžiamos:** Įvade veikėjų kortelės (CharacterCard) yra **paspaudžiamos** – paspaudus vieną veikėją, vartotojas nukreipiamas į hub skaidrę (id 99) su **iš anksto pasirinktu** 1 lygiu (`initialLevel1` = atitinkamas veikėjo indeksas), t. y. iškart matomas 2/2 ekranas „Pasirinkite vieną iš šio veikėjo 4 scenarijų“. UI: `onNavigateToHubWithCharacter(characterIndex)` → navigacija į 99 su `returnToHubWithLevel1` (arba ekvivalentu).
+**Veikėjų kortelės hube:** CharacterCard ant hub scenarijų; PNG optional (`public/characters/…`) – UI fallback be nuotraukos jei failo nėra.
 
 **Naratyvinis sakinys per scenarijų (S1):** Kiekvienoje skaidrėje 101–116 – optional laukas `scenario.narrativeLead`: vienas įvedantis sakinys „Šią savaitę [Veikėjas] atlieka…“. Lentelė (tekstas į JSON):
 

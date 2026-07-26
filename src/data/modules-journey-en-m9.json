@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-26",
+  "description": "M9 EN thin journey overlay (mirrors LT slots)",
+  "journeys": {
+    "pardavimai": {
+      "catalogSectorHint": "Sales → e-commerce / retail",
+      "sampleColumns": "date, region, product, revenue, units",
+      "sampleFileLabel": "Download sample CSV (sales)",
+      "kpiHint": "Metrics (KPIs): revenue, units, top regions; Q3/Q4 trend",
+      "themePlaceholder": "Q3 sales",
+      "recommendedSlideIds": [101, 102, 111]
+    },
+    "rinkodara": {
+      "catalogSectorHint": "Marketing → digital campaigns",
+      "sampleColumns": "date, channel, campaign, spend, clicks, conversions",
+      "sampleFileLabel": "Download sample CSV (use sales file or your channel export)",
+      "kpiHint": "Metrics: return on ad spend (ROAS), click-through rate (CTR), conversions by channel",
+      "themePlaceholder": "campaign channel analysis",
+      "recommendedSlideIds": [101, 107, 116]
+    },
+    "it-inzinerija": {
+      "catalogSectorHint": "IT → SaaS / data platforms",
+      "sampleColumns": "timestamp, source_system, rows_in, rows_out, error_count",
+      "sampleFileLabel": "Download sample CSV (adapt columns for logs)",
+      "kpiHint": "Metrics (KPIs): error %, row volumes, source reliability",
+      "themePlaceholder": "ETL errors and volumes",
+      "recommendedSlideIds": [102, 103, 105]
+    },
+    "personalas": {
+      "catalogSectorHint": "People → hiring / people ops",
+      "sampleColumns": "month, hired, left, dept, eNPS",
+      "sampleFileLabel": "Download sample CSV (adapt people columns)",
+      "kpiHint": "Metrics: retention, team pulse (eNPS), funnel by dept",
+      "themePlaceholder": "retention and pulse analysis",
+      "recommendedSlideIds": [112, 102, 114]
+    },
+    "vadyba": {
+      "catalogSectorHint": "Management → SMB leadership",
+      "sampleColumns": "period, kpi_name, actual, target, owner",
+      "sampleFileLabel": "Download sample CSV (adapt board metrics)",
+      "kpiHint": "Metrics: actual vs target, owners, board summary",
+      "themePlaceholder": "board metrics summary",
+      "recommendedSlideIds": [111, 110, 114]
+    },
+    "kita": {
+      "catalogSectorHint": "Other → your domain [X]",
+      "sampleColumns": "col_a, col_b, col_c",
+      "sampleFileLabel": "Download sample CSV (universal sales example)",
+      "kpiHint": "Metrics (KPIs): 3 metrics you choose after cleaning",
+      "themePlaceholder": "your topic [X]",
+      "recommendedSlideIds": [101, 102, 116]
+    }
+  }
+}

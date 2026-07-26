@@ -19,7 +19,9 @@ describe('M10HumanControlSimulatorBlock', () => {
     expect(
       screen.getByRole('region', { name: /Žmogaus kontrolės simuliatorius/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/ne brandos kopėčios/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Pasirink scenarijų ir kontrolės režimą/i)
+    ).toBeInTheDocument();
     expect(screen.getByText('Kur tu esi rizikoje')).toBeInTheDocument();
     expect(screen.queryByText(/Čia nėra scenarijaus/i)).not.toBeInTheDocument();
     expect(
@@ -100,7 +102,9 @@ describe('M10HumanControlSimulatorBlock', () => {
     expect(
       screen.getByRole('region', { name: /Human control simulator/i })
     ).toBeInTheDocument();
-    expect(screen.getByText(/not a maturity ladder/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Pick a scenario and a control mode/i)
+    ).toBeInTheDocument();
     expect(screen.getByText('Where this sits on risk')).toBeInTheDocument();
     expect(screen.queryByText(/No scenario here/i)).not.toBeInTheDocument();
     expect(screen.getByText('Choose a business scenario')).toBeInTheDocument();

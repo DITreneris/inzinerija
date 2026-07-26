@@ -213,5 +213,22 @@ describe('slidePhaseConfig', () => {
       expect(groups).toHaveLength(1);
       expect(groups[0].label).toBe('');
     });
+
+    it('groups Module 9 into Projektas (5) + Neprivaloma hub', () => {
+      const slides = [
+        { type: 'practice-quest-intro', id: 90 },
+        { type: 'practice-scenario', id: 93.1 },
+        { type: 'practice-scenario', id: 93.2 },
+        { type: 'content-block', id: 93 },
+        { type: 'practice-summary', id: 92 },
+        { type: 'practice-scenario-hub', id: 99 },
+        { type: 'practice-scenario', id: 101 },
+      ];
+      const groups = buildSlideGroups(slides, 9);
+      expect(groups).toEqual([
+        { label: 'Projektas', startIdx: 0, endIdx: 4 },
+        { label: 'Neprivaloma', startIdx: 5, endIdx: 6 },
+      ]);
+    });
   });
 });

@@ -30,6 +30,7 @@ import {
   getRetryPathDesktop,
   isOrchestratorNodeLive,
   M10_ORCHESTRATOR_ARROW_TIP,
+  ORCHESTRATOR_ORPHAN_OPACITY,
   M10_ORCHESTRATOR_EDGES,
   M10_ORCHESTRATOR_FANIN_EDGE_ID,
   M10_ORCHESTRATOR_FANIN_ERROR_STROKE,
@@ -122,7 +123,7 @@ function EdgeAnnotation({
 function NodeBox({
   box,
   active,
-  dimmed,
+  dimOpacity,
   errorState,
   softActive,
   stroke,
@@ -130,7 +131,8 @@ function NodeBox({
 }: {
   box: M10OrchestratorBox;
   active: boolean;
-  dimmed: boolean;
+  /** 1 = full; orphan / step-4 soft-dim use distinct floors. */
+  dimOpacity: number;
   /** Rose stroke + badge; keep role-band fill (not solid rose block). */
   errorState?: boolean;
   softActive?: boolean;
@@ -163,7 +165,7 @@ function NodeBox({
   const subY = box.y + box.h - 12;
 
   return (
-    <g opacity={dimmed ? DIAGRAM_TOKENS.opacity.inactive : 1}>
+    <g opacity={dimOpacity}>
       <rect
         x={box.x}
         y={box.y}
@@ -340,11 +342,17 @@ export default function M10OrchestratorDiagram({
     const stepIndex = stepForNode(box.id);
     const active = activeNodeIds.includes(box.id);
     const live = isOrchestratorNodeLive(currentStep, box.id);
+    let dimOpacity = 1;
+    if (isErrorStep) {
+      // Step 4: one story — LMS inactive floor for !active
+      if (!active) dimOpacity = DIAGRAM_TOKENS.opacity.inactive;
+    } else if (!live) {
+      dimOpacity = ORCHESTRATOR_ORPHAN_OPACITY;
+    }
     return {
       active,
       softActive: active && box.id === 'state' && !isErrorStep,
-      // Step 4: one story — dim !active. Else: dim orphans (not live).
-      dimmed: isErrorStep ? !active : !live,
+      dimOpacity,
       errorState: isErrorStep && box.id === 'validate',
       stroke: palette.brandDark,
       onActivate:
@@ -578,7 +586,27 @@ export default function M10OrchestratorDiagram({
         </g>
       ) : null}
 
-      {/* Edge annotations (off-shaft) */}
+      {isRetryStep && boxes.evaluator && boxes.orchestrator ? (
+        <path
+          d={
+            isCompactDiagram
+              ? getRetryPathCompact(boxes.evaluator, boxes.orchestrator, routeX)
+              : getRetryPathDesktop(boxes.evaluator, boxes.orchestrator, routeX)
+          }
+          fill="none"
+          stroke={DIAGRAM_ROLE_COLORS.amber}
+          strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
+          strokeLinecap="round"
+          strokeDasharray="5 4"
+          markerEnd={`url(#${retryMarker})`}
+        />
+      ) : null}
+
+      {boxesList.map((box) => (
+        <NodeBox key={box.id} box={box} {...nodeProps(box)} />
+      ))}
+
+      {/* Edge / retry labels after boxes so top-row pills are not covered */}
       {M10_ORCHESTRATOR_EDGES.filter((e) => e.kind !== 'retry').map((edge) => {
         if (!shouldShowEdgeLabel(currentStep, edge.id)) return null;
         if (!shouldPaintEdge(currentStep, edge.id)) return null;
@@ -649,22 +677,6 @@ export default function M10OrchestratorDiagram({
         );
       })}
 
-      {isRetryStep && boxes.evaluator && boxes.orchestrator ? (
-        <path
-          d={
-            isCompactDiagram
-              ? getRetryPathCompact(boxes.evaluator, boxes.orchestrator, routeX)
-              : getRetryPathDesktop(boxes.evaluator, boxes.orchestrator, routeX)
-          }
-          fill="none"
-          stroke={DIAGRAM_ROLE_COLORS.amber}
-          strokeWidth={DIAGRAM_TOKENS.stroke.feedback}
-          strokeLinecap="round"
-          strokeDasharray="5 4"
-          markerEnd={`url(#${retryMarker})`}
-        />
-      ) : null}
-
       {isRetryStep && retryLabelPoint ? (
         <EdgeAnnotation
           x={retryLabelPoint.x}
@@ -674,10 +686,6 @@ export default function M10OrchestratorDiagram({
           textFill={DIAGRAM_ROLE_COLORS.amber}
         />
       ) : null}
-
-      {boxesList.map((box) => (
-        <NodeBox key={box.id} box={box} {...nodeProps(box)} />
-      ))}
 
       {currentStep === 5 && boxes.output ? (
         <text

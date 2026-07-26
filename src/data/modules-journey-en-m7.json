@@ -27,6 +27,14 @@
         "vadyba": "Data: [paste executive KPI data]\nDo: identify 5 most important patterns\nFormat: 1) pattern 2) evidence in numbers 3) business meaning",
         "kita": "Data: [paste [X] data]\nDo: identify 5 most important patterns\nFormat: 1) pattern 2) evidence in numbers 3) business meaning"
       },
+      "pipeline-model": {
+        "pardavimai": "Data: [paste sales data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+        "rinkodara": "Data: [paste marketing / campaign data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+        "it-inzinerija": "Data: [paste pipeline / quality data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+        "personalas": "Data: [paste HR data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+        "vadyba": "Data: [paste executive KPI data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+        "kita": "Data: [paste [X] data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check"
+      },
       "pipeline-viz": {
         "pardavimai": "Data: [paste sales data]\nDo: suggest 3 charts for this analysis\nFormat: 1) chart type 2) axes / dimensions 3) insight",
         "rinkodara": "Data: [paste marketing / campaign data]\nDo: suggest 3 charts for this analysis\nFormat: 1) chart type 2) axes / dimensions 3) insight",
@@ -94,12 +102,12 @@
     },
     "84": {
       "db-structure": {
-        "pardavimai": "ROLE: You are a sales analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: sales domain (niche: [X]); sources: CRM, ERP, e-commerce.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
-        "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: marketing domain (niche: [X]); sources: campaigns, social, web analytics.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
-        "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Help design an ideal database structure.\nCONTEXT: data systems domain (niche: [X]); sources: DB, API, logs, files.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
-        "personalas": "ROLE: You are a HR analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: people / workforce domain (niche: [X]); sources: HRIS, surveys, hiring portals.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
-        "vadyba": "ROLE: You are a strategic analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: business domain (niche: [X]); sources: KPIs, finance, operations.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
-        "kita": "ROLE: You are a business analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: [X] domain (niche: [X]); sources: [X] sources.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
+        "pardavimai": "ROLE: You are a sales analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: sales domain (niche: [X]); sources: CRM, ERP, e-commerce; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+        "rinkodara": "ROLE: You are a marketing analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: marketing domain (niche: [X]); sources: campaigns, social, web analytics; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+        "it-inzinerija": "ROLE: You are a data engineer.\nTASK: Help design an ideal database structure.\nCONTEXT: data systems domain (niche: [X]); sources: DB, API, logs, files; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+        "personalas": "ROLE: You are a HR analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: people / workforce domain (niche: [X]); sources: HRIS, surveys, hiring portals; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+        "vadyba": "ROLE: You are a strategic analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: business domain (niche: [X]); sources: KPIs, finance, operations; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+        "kita": "ROLE: You are a business analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: [X] domain (niche: [X]); sources: [X] sources; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
       }
     },
     "86": {

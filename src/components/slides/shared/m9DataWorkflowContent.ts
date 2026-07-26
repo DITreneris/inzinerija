@@ -1,11 +1,11 @@
 import type { StepExplanation } from './stepExplanations';
 
-/** Trumpi antraštės tekstai diagramos dėžutėse (LT) – sinchronas su Modulio 9 id 93–94 */
+/** Trumpi antraštės tekstai diagramos dėžutėse (LT) – sinchronas su Modulio 9 id 93 */
 export const M9_DATA_WORKFLOW_STEPS_LT: { label: string; desc: string }[] = [
   { label: 'Surinkimas', desc: 'Šaltiniai, tema' },
   { label: 'Metodika', desc: 'Struktūra, KPI' },
   { label: 'Tyrimas', desc: 'Promptas' },
-  { label: '4× paleidimas', desc: 'Kelios DI' },
+  { label: 'Paleidimas', desc: '1–4 DI' },
   { label: 'Valymas', desc: 'Dubliai' },
   { label: 'Integracija', desc: 'Vienas dok.' },
   { label: 'Vaizdai', desc: 'Spalvos, grafikai' },
@@ -16,7 +16,7 @@ export const M9_DATA_WORKFLOW_STEPS_EN: { label: string; desc: string }[] = [
   { label: 'Collection', desc: 'Sources, topic' },
   { label: 'Methodology', desc: 'Structure, KPIs' },
   { label: 'Deep research', desc: 'Prompt prep' },
-  { label: '4× runs', desc: 'Multiple LLMs' },
+  { label: 'Run tools', desc: '1–4 AI' },
   { label: 'Cleaning', desc: 'Dedupe' },
   { label: 'Integration', desc: 'Single doc' },
   { label: 'Charts', desc: 'Colours, charts' },
@@ -28,7 +28,7 @@ export type M9DataWorkflowContext = 'm9' | 'm7_master';
 const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_LT: StepExplanation[] = [
   {
     title: '1. Duomenų surinkimas',
-    body: 'Išvardink **10–15 šaltinių** temai: oficialūs, vieši; formatas (CSV, API, ataskaitos) ir atnaujinimo dažnis. **Kopijuojamą šabloną** rasite kitoje skaidrėje „Pagalbiniai promptai (CopyButton)“.',
+    body: '**Patikslink ar išplėsk** jau turimą šaltinių katalogą (iš praktikos): oficialūs, vieši; formatas ir atnaujinimo dažnis. Jei lentelė silpna – papildyk 3–5 eilutėmis. **Kopijuojamą šabloną** – žemiau.',
   },
   {
     title: '2. Metodikos promptas',
@@ -36,15 +36,15 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_LT: StepExplanation[] = [
   },
   {
     title: '3. Deep research promptas',
-    body: 'Vienas **gilusis tyrimo** promptas su šaltinių taisykle – paruošk prieš paleidimą keliose DI platformose. **Kopijuojamą šabloną** žingsniams 3–4 rasite kitoje skaidrėje „Pagalbiniai promptai (CopyButton)“ – paspausk **Tęsti**.',
+    body: '**Paruošk** vieną gilaus tyrimo promptą su šaltinių taisykle ir „Nežinau“. Dar **nepaliek** keliose DI – tai kitas žingsnis. **Kopijuojamą šabloną** – žemiau.',
   },
   {
-    title: '4. Keturi tyrimai vienu metu',
-    body: 'Tą patį promptą paleisk **ChatGPT, Gemini, DeepSeek, Grok** (ar prieinamus). Vėliau sujungsi išvestis į vieną dokumentą.',
+    title: '4. Paleidimas prieinamuose DI',
+    body: 'Tą patį promptą paleisk **1–4 prieinamuose** įrankiuose (ChatGPT, Gemini, DeepSeek, Grok – tiek, kiek turi). Pakanka 1–2; vėliau sujungsi išvestis.',
   },
   {
     title: '5. Duomenų išvalymas',
-    body: '**Checklist**: dublių šalinimas, datos ir skaičių formatas, trūkstamos reikšmės, metaduomenys (kuris DI, data). Tą patį principą radai Modulyje 7 skaidrėje **„Duomenų paruošimas ir workflow“**.',
+    body: '**Checklist**: dublių šalinimas, datos ir skaičių formatas, trūkstamos reikšmės, metaduomenys (kuris DI, data). Tą patį principą radai Modulyje 7 skaidrėje **„Duomenų paruošimas ir darbo eiga“**.',
   },
   {
     title: '6. Integracija',
@@ -52,7 +52,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_LT: StepExplanation[] = [
   },
   {
     title: '7. Atvaizdavimas',
-    body: '**Vizualizacijos spec**: spalvos (hex), ašys, legenda, 2 grafikų tipai, KPI blokai – mažai kodo, aiškios instrukcijos DI.',
+    body: '**Vizualizacijos spec**: spalvos (hex), ašys, legenda, 2 grafikų tipai, pagrindinių rodiklių (KPI) blokai – mažai kodo, aiškios instrukcijos DI.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -79,7 +79,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_LT: StepExplanation[] = [
   },
   {
     title: '5. Duomenų išvalymas',
-    body: '**Checklist**: dublių šalinimas, datos ir skaičių formatas, trūkstamos reikšmės, metaduomenys (kuris DI, data). Tą patį principą radai skaidrėje **„Duomenų paruošimas ir workflow“**.',
+    body: '**Checklist**: dublių šalinimas, datos ir skaičių formatas, trūkstamos reikšmės, metaduomenys (kuris DI, data). Tą patį principą radai skaidrėje **„Duomenų paruošimas ir darbo eiga“**.',
   },
   {
     title: '6. Integracija',
@@ -87,7 +87,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_LT: StepExplanation[] = [
   },
   {
     title: '7. Atvaizdavimas',
-    body: '**Vizualizacijos spec**: spalvos (hex), ašys, legenda, 2 grafikų tipai, KPI blokai – mažai kodo, aiškios instrukcijos DI.',
+    body: '**Vizualizacijos spec**: spalvos (hex), ašys, legenda, 2 grafikų tipai, pagrindinių rodiklių (KPI) blokai – mažai kodo, aiškios instrukcijos DI.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -98,23 +98,23 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_LT: StepExplanation[] = [
 const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_EN: StepExplanation[] = [
   {
     title: '1. Data collection',
-    body: 'List **10–15 sources** for the topic: official, public; format (CSV, API, reports) and refresh cadence. **Copyable template** on the next slide “Helper prompts (CopyButton)”.',
+    body: '**Refine or expand** the source catalog you already built: official, public; format and refresh cadence. If the table is thin – add 3–5 rows. **Copyable template** – below.',
   },
   {
     title: '2. Methodology prompt',
-    body: 'Prepare **analysis methodology**: structure, KPIs, table template. Links to Module 7 – MASTER and business analysis templates.',
+    body: 'Prepare **analysis methodology**: structure, metrics (KPIs), table template. Links to Module 7 – MASTER and business analysis templates.',
   },
   {
     title: '3. Deep research prompt',
-    body: 'One **deep research** prompt with source rules – prepare before running on several LLM platforms. **Copyable template** for steps 3–4 on the next slide “Helper prompts (CopyButton)” – press **Continue**.',
+    body: '**Prepare** one deep-research prompt with source rules and "I don\'t know". Do **not** run on several tools yet – that is the next step. **Copyable template** – below.',
   },
   {
-    title: '4. Four parallel runs',
-    body: 'Run the same prompt on **ChatGPT, Gemini, DeepSeek, Grok** (or available). You will merge outputs into one document later.',
+    title: '4. Run on available AI tools',
+    body: 'Run the same prompt on **1–4 available** tools (ChatGPT, Gemini, DeepSeek, Grok – whatever you have). 1–2 is enough; merge outputs later.',
   },
   {
     title: '5. Data cleaning',
-    body: '**Checklist**: dedupe, date and number formats, missing values, metadata (which LLM, date). Same principles on Module 7 slide **“Data preparation and workflow”**.',
+    body: '**Checklist**: dedupe, date and number formats, missing values, metadata (which AI tool, date). Same principles on Module 7 slide **“Data preparation and work process”**.',
   },
   {
     title: '6. Integration',
@@ -122,7 +122,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_EN: StepExplanation[] = [
   },
   {
     title: '7. Visualisation',
-    body: '**Viz spec**: colours (hex), axes, legend, two chart types, KPI blocks – minimal code, clear LLM instructions.',
+    body: '**Viz spec**: colours (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -137,11 +137,11 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_EN: StepExplanation[] = [
   },
   {
     title: '2. Methodology prompt',
-    body: 'Prepare **analysis methodology**: structure, KPIs, table template. Links to the MASTER prompt below – clear structure before going deeper.',
+    body: 'Prepare **analysis methodology**: structure, metrics (KPIs), table template. Links to the MASTER prompt below – clear structure before going deeper.',
   },
   {
     title: '3. Deep research prompt',
-    body: 'One **deep research** prompt with source rules – prepare before running on 2–4 LLM platforms. **Template essence:** ROLE + TASK + topic + OUTPUT with sources; if data is missing, say “I don’t know”. Full copyable version in **Module 9** on slide “Helper prompts”.',
+    body: 'One **deep research** prompt with source rules – prepare before running on 2–4 AI tools. **Template essence:** ROLE + TASK + topic + OUTPUT with sources; if data is missing, say “I don’t know”. Full copyable version in **Module 9** on the project slide with step prompts.',
   },
   {
     title: '4. Four parallel runs',
@@ -149,7 +149,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_EN: StepExplanation[] = [
   },
   {
     title: '5. Data cleaning',
-    body: '**Checklist**: dedupe, date and number formats, missing values, metadata (which LLM, date). Same principles on slide **“Data preparation and workflow”**.',
+    body: '**Checklist**: dedupe, date and number formats, missing values, metadata (which AI tool, date). Same principles on slide **“Data preparation and work process”**.',
   },
   {
     title: '6. Integration',
@@ -157,7 +157,7 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_EN: StepExplanation[] = [
   },
   {
     title: '7. Visualisation',
-    body: '**Viz spec**: colours (hex), axes, legend, two chart types, KPI blocks – minimal code, clear LLM instructions.',
+    body: '**Viz spec**: colours (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -193,7 +193,7 @@ export function getM9DataWorkflowStepExplanations(
     : M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_LT;
 }
 
-/** Modulio 9 sk. 94 – kopijuojami promptai pagal workflow žingsnį */
+/** Modulio 9 sk. 93 – kopijuojami promptai pagal workflow žingsnį */
 export interface M9WorkflowPromptStep extends StepExplanation {
   copyable: string;
 }
@@ -201,9 +201,9 @@ export interface M9WorkflowPromptStep extends StepExplanation {
 const M9_WORKFLOW_PROMPTS_LT: M9WorkflowPromptStep[] = [
   {
     title: 'Duomenų surinkimas',
-    body: 'Išvardink šaltinius – oficialūs, vieši, atnaujinimo dažnis.',
+    body: 'Patikslink ar išplėsk katalogą – oficialūs, vieši, atnaujinimo dažnis.',
     copyable:
-      'Išvardink 10–15 duomenų šaltinių [įmonės / sektoriaus] temai: oficialūs, vieši šaltiniai; nurodyk atnaujinimo dažnį ir formatą (CSV, API, ataskaitos). Pridėk trumpą aprašymą kiekvienam.',
+      'Patikslink arba išplėsk šaltinių katalogą temai [X]: oficialūs, vieši šaltiniai; nurodyk atnaujinimo dažnį ir formatą (CSV, API, ataskaitos). Pridėk trumpą aprašymą kiekvienam. Jei jau turi lentelę – papildyk trūkstamus URL / dažnius, nekurk visko iš naujo.',
   },
   {
     title: 'Metodikos promptas',
@@ -213,21 +213,21 @@ const M9_WORKFLOW_PROMPTS_LT: M9WorkflowPromptStep[] = [
   },
   {
     title: 'Deep research promptas',
-    body: 'Paruošk **gilaus tyrimo** promptą su šaltinių taisykle – prieš paleidimą keliose DI platformose.',
+    body: 'Paruošk gilaus tyrimo promptą – dar nepaliek DI.',
     copyable:
-      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [TAVO TEMA – įmonė, sektorius arba verslo klausimas].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.',
+      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra arba nežinai – parašyk „Nežinau“, ne spėliok. Kiekvieną skaičių susiek su šaltiniu.',
   },
   {
-    title: '4× tyrimas',
-    body: 'Paleisk **tą patį** promptą ChatGPT, Gemini, DeepSeek, Grok (ar prieinamuose) – rezultatus sujungsi vėliau.',
+    title: 'Paleidimas (1–4 DI)',
+    body: 'Paleisk tą patį promptą 1–4 prieinamuose DI – pakanka 1–2.',
     copyable:
-      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [TAVO TEMA – įmonė, sektorius arba verslo klausimas].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\nTą patį promptą paleisk ChatGPT, Gemini, DeepSeek ir Grok (arba prieinamus iš šių) – rezultatus vėliau sujungsime į vieną dokumentą.',
+      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\nINSTRUKCIJA SAU: paleisk šį promptą 1–4 prieinamuose DI (ChatGPT, Gemini, DeepSeek, Grok – kiek turi; pakanka 1–2). Rezultatus vėliau sujungsi.',
   },
   {
     title: 'Duomenų valymas',
-    body: 'Checklist – ta pati logika kaip Modulyje 7 skaidrėje „Duomenų paruošimas ir workflow“.',
+    body: 'Checklist – ta pati logika kaip Modulyje 7 skaidrėje „Duomenų paruošimas ir darbo eiga“.',
     copyable:
-      'Štai 4 DI (ChatGPT, Gemini, DeepSeek, Grok) tyrimo išvestys. Užduotis:\n1. Išvalyk: pašalink dublius ir pasikartojančius faktus.\n2. Suvienodink datas (formatas YYYY-MM-DD) ir skaičius (dešimtainis su kableliu arba tašku – nurodyk).\n3. Pažymėk trūkstamas reikšmes ir siūlyk, kur galima papildyti.\n4. Pridėk metaduomenis: šaltinis (kuris DI), data, tema.\nChecklist prieš analizę: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas – žr. Modulio 7 skaidrę „Duomenų paruošimas ir workflow“.',
+      'Štai DI tyrimo išvestys (1–4). Užduotis:\n1. Išvalyk: pašalink dublius ir pasikartojančius faktus.\n2. Suvienodink datas (formatas YYYY-MM-DD) ir skaičius (dešimtainis su kableliu arba tašku – nurodyk).\n3. Pažymėk trūkstamas reikšmes ir faktus be šaltinio – jei nežinai, rašyk „Nežinau“.\n4. Pridėk metaduomenis: šaltinis (kuris DI), data, tema.\nChecklist prieš analizę: anonimizacija (jei reikia), formatų suvienodinimas, dublių šalinimas, trūkstamų reikšmių identifikavimas – žr. Modulio 7 skaidrę „Duomenų paruošimas ir darbo eiga“.',
   },
   {
     title: 'Duomenų integracija',
@@ -252,9 +252,9 @@ const M9_WORKFLOW_PROMPTS_LT: M9WorkflowPromptStep[] = [
 const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
   {
     title: 'Data collection',
-    body: 'List sources – official, public, refresh cadence.',
+    body: 'Refine or expand the catalog – official, public, refresh cadence.',
     copyable:
-      'List 10–15 data sources for [company / sector] topic: official, public sources; note refresh cadence and format (CSV, API, reports). Add a short description for each.',
+      'Refine or expand the source catalog for topic [X]: official, public sources; note refresh cadence and format (CSV, API, reports). Add a short description for each. If you already have a table – fill missing URLs / cadence; do not rebuild from scratch.',
   },
   {
     title: 'Methodology prompt',
@@ -264,21 +264,21 @@ const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
   },
   {
     title: 'Deep research prompt',
-    body: 'Prepare a **deep research** prompt with source rules – before running on several LLM platforms.',
+    body: 'Prepare the deep-research prompt – do not run tools yet.',
     copyable:
-      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [YOUR TOPIC – company, sector or business question].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write "I don\'t know", do not guess.',
+      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing or unknown – write "I don\'t know", do not guess. Tie every number to a source.',
   },
   {
-    title: '4× research',
-    body: 'Run the **same** prompt on ChatGPT, Gemini, DeepSeek, Grok (or available) – merge results later.',
+    title: 'Run tools (1–4 AI)',
+    body: 'Run the same prompt on 1–4 available AI tools – 1–2 is enough.',
     copyable:
-      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [YOUR TOPIC – company, sector or business question].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write "I don\'t know", do not guess.\nRun the same prompt on ChatGPT, Gemini, DeepSeek and Grok (or available) – we will merge results into one document.',
+      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write "I don\'t know", do not guess.\nSELF NOTE: run this prompt on 1–4 available AI tools (ChatGPT, Gemini, DeepSeek, Grok – whatever you have; 1–2 is enough). Merge results later.',
   },
   {
     title: 'Data cleaning',
-    body: 'Checklist – same logic as Module 7 slide "Data preparation and workflow".',
+    body: 'Checklist – same logic as Module 7 slide "Data preparation and work process".',
     copyable:
-      'Here are 4 LLM (ChatGPT, Gemini, DeepSeek, Grok) research outputs. Task:\n1. Clean: remove duplicates and repeated facts.\n2. Normalise dates (YYYY-MM-DD) and numbers (decimal format – specify).\n3. Mark missing values and suggest where to fill.\n4. Add metadata: source (which LLM), date, topic.\nPre-analysis checklist: anonymisation (if needed), format normalisation, dedupe, missing values – see Module 7 slide "Data preparation and workflow".',
+      'Here are AI research outputs (1–4). Task:\n1. Clean: remove duplicates and repeated facts.\n2. Normalise dates (YYYY-MM-DD) and numbers (decimal format – specify).\n3. Mark missing values and claims without sources – if unknown, write "I don\'t know".\n4. Add metadata: source (which AI tool), date, topic.\nPre-analysis checklist: anonymisation (if needed), format normalisation, dedupe, missing values – see Module 7 slide "Data preparation and work process".',
   },
   {
     title: 'Data integration',
@@ -290,7 +290,7 @@ const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
     title: 'Visualisation',
     body: 'Specify parameters – colours (hex), axes, legend, 2 chart types, KPI blocks.',
     copyable:
-      'ROLE: You are a data visualisation expert. Minimal code – clear instructions.\nTASK: Prepare visualisation spec from integrated data.\nCONTEXT: I have one summary document (collected + cleaned + merged from 4 LLM runs). Goal – executive dashboard.\nOUTPUT – specify:\n1. Colours: primary (hex), secondary (hex), accent (hex).\n2. Chart labels: X axis, Y axis, chart title, legend – specific to my data.\n3. Dynamics: which 2 charts? (e.g. time series, category comparison.) Type: bar / line / pie.\n4. KPI blocks: which 3–4 numbers to show on top?\nProvide concrete text I can copy into Claude or ChatGPT to get .html dashboard code.',
+      'ROLE: You are a data visualisation expert. Minimal code – clear instructions.\nTASK: Prepare visualisation spec from integrated data.\nCONTEXT: I have one summary document (collected + cleaned + merged from 4 AI runs). Goal – executive dashboard.\nOUTPUT – specify:\n1. Colours: primary (hex), secondary (hex), accent (hex).\n2. Chart labels: X axis, Y axis, chart title, legend – specific to my data.\n3. Dynamics: which 2 charts? (e.g. time series, category comparison.) Type: bar / line / pie.\n4. KPI blocks: which 3–4 numbers to show on top?\nProvide concrete text I can copy into Claude or ChatGPT to get .html dashboard code.',
   },
   {
     title: '.html dashboard',

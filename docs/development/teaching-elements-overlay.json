@@ -1,7 +1,7 @@
 {
   "$schema": "./teaching-elements-overlay.schema.json",
   "version": "1.0.0",
-  "updatedAt": "2026-07-25",
+  "updatedAt": "2026-07-26",
   "description": "Curated Pattern / Shell / maturity for Teaching Elements Registry. Inventory source: audit-teaching-elements.mjs",
   "elements": [
     {
@@ -285,9 +285,9 @@
       "contentSot": "M9WorkflowStepCopyBlock.tsx",
       "maturity": 3,
       "owner": "SCHEME",
-      "notes": "8-step prompt strip; no Shell SVG",
+      "notes": "8-step prompt strip on merged slide 93; no Shell SVG",
       "moduleId": 9,
-      "slideId": 94
+      "slideId": 93
     },
     {
       "elementId": "diagram:agent_workflow_diagram",
@@ -1060,12 +1060,12 @@
       "key": "sections[1].toolChoiceBar",
       "pattern": "embed",
       "shell": "n/a",
-      "render": null,
+      "render": "ManipulationContrastToolSurface",
       "layoutSot": null,
-      "contentSot": null,
-      "maturity": 2,
+      "contentSot": "modules.json#67 + modules-en-m7-m9.json",
+      "maturity": 3,
       "owner": "CONTENT",
-      "notes": "Promptų manipuliacijos",
+      "notes": "manipulation-contrast variant; ChoiceControl + Blogas|Geras + pushSignal; GOLDEN §3.8.1; L-Lab fixtures",
       "moduleId": 7,
       "slideId": 67
     },
@@ -1363,9 +1363,24 @@
       "render": null,
       "layoutSot": null,
       "contentSot": null,
-      "maturity": 2,
+      "maturity": 3,
       "owner": "UI_UX",
-      "notes": "DI vaidmuo verslo analizėje",
+      "notes": "Kaip DI keičia verslo analizę – tradicinė vs DI",
+      "moduleId": 7,
+      "slideId": 78
+    },
+    {
+      "elementId": "table:m7:78:s2",
+      "kind": "table",
+      "key": "section.table",
+      "pattern": "table",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": null,
+      "maturity": 3,
+      "owner": "CONTENT",
+      "notes": "Kaip DI keičia verslo analizę – ką DI gali / ką tikrina žmogus",
       "moduleId": 7,
       "slideId": 78
     },
@@ -1378,29 +1393,44 @@
       "render": null,
       "layoutSot": null,
       "contentSot": null,
-      "maturity": 2,
+      "maturity": 3,
       "owner": "UI_UX",
-      "notes": "Duomenų struktūros kūrimas (DB)",
+      "notes": "Kur laikyti duomenis: DB įrankiai (3 stulpeliai + situacijos toolChoiceBar)",
       "moduleId": 7,
       "slideId": 84
     },
     {
-      "elementId": "table:m7:67:s5",
-      "kind": "table",
-      "key": "section.table",
-      "pattern": "table",
+      "elementId": "embed:toolChoiceBar:m7:84:s1",
+      "kind": "embed",
+      "key": "sections[1].toolChoiceBar",
+      "pattern": "embed",
       "shell": "n/a",
       "render": null,
       "layoutSot": null,
       "contentSot": null,
-      "maturity": 2,
-      "owner": "UI_UX",
-      "notes": "Promptų manipuliacijos",
+      "maturity": 3,
+      "owner": "CONTENT",
+      "notes": "Situacijos chip’ai + whenHint → lentelės eilutė (ne įrankių vardai)",
       "moduleId": 7,
-      "slideId": 67
+      "slideId": 84
     },
     {
-      "elementId": "table:m7:67:s6",
+      "elementId": "embed:preCopyCheckBlock:m7:732",
+      "kind": "embed",
+      "key": "preCopyCheckBlock",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": null,
+      "maturity": 3,
+      "owner": "CONTENT",
+      "notes": "Sentimentų analizė – prieš Copy",
+      "moduleId": 7,
+      "slideId": 732
+    },
+    {
+      "elementId": "table:m7:73:s2",
       "kind": "table",
       "key": "section.table",
       "pattern": "table",
@@ -1408,11 +1438,11 @@
       "render": null,
       "layoutSot": null,
       "contentSot": null,
-      "maturity": 2,
-      "owner": "UI_UX",
-      "notes": "Promptų manipuliacijos",
+      "maturity": 3,
+      "owner": "CONTENT",
+      "notes": "6 žingsnių analizės eiga – etapas versle ir DI",
       "moduleId": 7,
-      "slideId": 67
+      "slideId": 73
     },
     {
       "elementId": "table:m7:67.8:s2",
@@ -1863,6 +1893,21 @@
       "notes": "SlideType practice-intro",
       "moduleId": null,
       "slideId": null
+    },
+    {
+      "elementId": "slide-type:practice-quest-intro",
+      "kind": "slide-type",
+      "key": "practice-quest-intro",
+      "pattern": "interactive-control-lab",
+      "shell": "Ne",
+      "render": "PracticeQuestIntroSlide",
+      "layoutSot": null,
+      "contentSot": "M9_PRACTICE_QUEST_INTRO.md",
+      "maturity": 2,
+      "owner": "CODING",
+      "notes": "M9/90 quest desk: ChoiceControl ×6 + confirm + map; soft-preselect M7; Shell Ne",
+      "moduleId": 9,
+      "slideId": 90
     },
     {
       "elementId": "slide-type:practice-scenario",

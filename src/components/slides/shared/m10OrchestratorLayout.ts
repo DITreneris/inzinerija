@@ -63,9 +63,19 @@ export interface M10OrchestratorEdge {
 }
 
 export const M10_ORCHESTRATOR_VIEWBOX = {
-  desktop: { width: 760, height: 448 },
+  /** +22 cascade (top-row caption air) + HITL note clearance */
+  desktop: { width: 760, height: 470 },
   compact: { width: 420, height: 700 },
 } as const;
+
+/** Desktop SVG caption baseline (matches M10OrchestratorDiagram title y). */
+export const M10_ORCHESTRATOR_TITLE_Y_DESKTOP = 28;
+
+/**
+ * Early-step non-live nodes (staged map). Stronger than LMS inactive floor.
+ * Step-4 !active still uses DIAGRAM_TOKENS.opacity.inactive.
+ */
+export const ORCHESTRATOR_ORPHAN_OPACITY = 0.55;
 
 /** Local data/resource stroke (thinner than flow). */
 export const M10_ORCHESTRATOR_STROKE_DATA = 2;
@@ -300,16 +310,17 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'input',
       x: 28,
-      y: 40,
+      y: 62,
       w: 150,
       h: 52,
       tone: 'slate',
       label: labels.nodes.input,
     },
     {
+      // gap after input ≥ pill(nukreipia)+16 ≈ 91.4 → x ≥ 270
       id: 'router',
-      x: 232,
-      y: 40,
+      x: 270,
+      y: 62,
       w: 168,
       h: 52,
       tone: 'slate',
@@ -318,7 +329,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'orchestrator',
       x: 200,
-      y: 120,
+      y: 142,
       w: 230,
       h: 64,
       tone: 'violet',
@@ -326,9 +337,9 @@ export function getM10OrchestratorDesktopBoxes(
     },
     {
       id: 'state',
-      // centerY === orch centerY (120+32)
+      // centerY === orch centerY (142+32)
       x: 548,
-      y: 118,
+      y: 140,
       w: 156,
       h: 68,
       tone: 'brand',
@@ -337,7 +348,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'research',
       x: 40,
-      y: 236,
+      y: 258,
       w: 130,
       h: 58,
       tone: 'teal',
@@ -346,7 +357,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'summarize',
       x: 200,
-      y: 236,
+      y: 258,
       w: 130,
       h: 58,
       tone: 'teal',
@@ -355,7 +366,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'validate',
       x: 360,
-      y: 236,
+      y: 258,
       w: 130,
       h: 58,
       tone: 'amber',
@@ -364,7 +375,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'tools',
       x: 40,
-      y: 352,
+      y: 374,
       w: 130,
       h: 48,
       tone: 'slate',
@@ -373,7 +384,7 @@ export function getM10OrchestratorDesktopBoxes(
     {
       id: 'evaluator',
       x: 312,
-      y: 352,
+      y: 374,
       w: 196,
       h: 58,
       tone: 'amber',
@@ -383,7 +394,7 @@ export function getM10OrchestratorDesktopBoxes(
       // gap after eval ≥24: 312+196+24 = 532
       id: 'output',
       x: 532,
-      y: 352,
+      y: 374,
       w: 150,
       h: 58,
       tone: 'slate',

@@ -50,6 +50,15 @@
       "moduleId": 10
     },
     {
+      "term": "API",
+      "definition": "Programų „durys“ duomenims ar veiksmams – agentas jomis kviečia išorinę sistemą (CRM, paštas, lentelė), nes pats tų duomenų „neturi“.",
+      "moduleId": 10,
+      "unlockedBy": {
+        "moduleId": 10,
+        "slideId": 10.21
+      }
+    },
+    {
       "term": "Artefaktas",
       "definition": "Paruoštas galutinis rezultatas – ataskaita, Custom GPT, tinklalapis ar kitas apčiuopiamas produktas, sukurtas naudojant DI.",
       "moduleId": 6

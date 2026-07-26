@@ -44,10 +44,17 @@ import {
 import { useLocale } from '../../../contexts/LocaleContext';
 import { findJourneyChoiceByStored } from '../../../utils/moduleJourneyFocus';
 import {
+  hasM9DataReadyBadge,
+  isM9KitComplete,
+  loadM9KitChecklist,
+  saveM9KitChecklist,
+} from '../../../utils/m9KitChecklist';
+import {
   CopyButton,
   DownloadTemplateButton,
   TemplateBlock,
   PromptFilterToolSurface,
+  ManipulationContrastToolSurface,
   FigmaEmbed,
   InstructGptQualityBlock,
   WorkflowChainsBlock,
@@ -535,8 +542,14 @@ export function ContentBlockSlide({
   useEffect(() => {
     if (!toolChoiceSection?.toolChoiceBar || selectedToolRowIndex !== null)
       return;
-    // prompt-tool: stay null until learner picks (tool mental model)
-    if (toolChoiceSection.toolChoiceBar.variant === 'prompt-tool') return;
+    // prompt-tool / manipulation-contrast: stay null until learner picks
+    const toolVariant = toolChoiceSection.toolChoiceBar.variant;
+    if (
+      toolVariant === 'prompt-tool' ||
+      toolVariant === 'manipulation-contrast'
+    ) {
+      return;
+    }
     const defaultRow =
       toolChoiceSection.toolChoiceBar.choices?.[0]?.rowIndex ?? 0;
     setSelectedToolRowIndex(defaultRow);
@@ -1236,7 +1249,30 @@ export function ContentBlockSlide({
                     })()}
                   {section.toolChoiceBar &&
                     !section.presentationToolsBlock &&
-                    section.toolChoiceBar.variant !== 'prompt-tool' && (
+                    section.toolChoiceBar.variant === 'manipulation-contrast' &&
+                    (() => {
+                      const bar = section.toolChoiceBar!;
+                      const activeLinked = sectionsList.find(
+                        (s) =>
+                          s.linkedRowIndex !== undefined &&
+                          s.linkedRowIndex === selectedToolRowIndex
+                      );
+                      return (
+                        <ManipulationContrastToolSurface
+                          question={bar.question}
+                          sequenceHint={bar.sequenceHint}
+                          choices={bar.choices ?? []}
+                          selectedRowIndex={selectedToolRowIndex}
+                          onSelect={setSelectedToolRowIndex}
+                          goodExample={activeLinked?.copyable ?? null}
+                        />
+                      );
+                    })()}
+                  {section.toolChoiceBar &&
+                    !section.presentationToolsBlock &&
+                    section.toolChoiceBar.variant !== 'prompt-tool' &&
+                    section.toolChoiceBar.variant !==
+                      'manipulation-contrast' && (
                       <div
                         className="mb-4 space-y-3"
                         role="region"
@@ -1273,6 +1309,22 @@ export function ContentBlockSlide({
                             }
                           )}
                         </div>
+                        {selectedToolRowIndex != null &&
+                          (() => {
+                            const activeWhenHint = (
+                              section.toolChoiceBar!.choices ?? []
+                            ).find(
+                              (c) => c.rowIndex === selectedToolRowIndex
+                            )?.whenHint;
+                            return activeWhenHint ? (
+                              <p
+                                className="text-sm text-gray-700 dark:text-gray-300"
+                                data-tool-choice-when-hint
+                              >
+                                {activeWhenHint}
+                              </p>
+                            ) : null;
+                          })()}
                         {hasLinkedCopySections && (
                           <p className="text-sm text-gray-600 dark:text-gray-400">
                             {t('toolChoiceLinkedCopyHint')}
@@ -5675,6 +5727,8 @@ export interface PracticeSummarySlideProps {
   totalScenarioCount?: number;
   moduleId?: number;
   slideId?: number;
+  completedTaskIds?: number[];
+  onNavigateToSlideById?: (slideId: number) => void;
 }
 export function PracticeSummarySlide({
   content: contentProp,
@@ -5682,10 +5736,13 @@ export function PracticeSummarySlide({
   totalScenarioCount,
   moduleId,
   slideId,
+  completedTaskIds,
+  onNavigateToSlideById,
 }: PracticeSummarySlideProps) {
   useTranslation();
   const t = getT('contentSlides');
   const tCommon = getT('common');
+  const tPractice = getT('testPractice');
   const { locale } = useLocale();
   const isEn = locale === 'en';
   const localDefault = isEn
@@ -5719,11 +5776,31 @@ export function PracticeSummarySlide({
     ? t('practiceSummaryDefaultTaglineSub')
     : (c.taglineSub ?? '');
   const [handoutError, setHandoutError] = useState(false);
+  const [kitState, setKitState] = useState(() =>
+    moduleId === 9
+      ? loadM9KitChecklist()
+      : { catalog: false, csv: false, summary: false, reliability: false }
+  );
   const hasSections = (c.sections?.length ?? 0) > 0;
   const showScenarioProgress =
     completedScenarioCount != null &&
     totalScenarioCount != null &&
     totalScenarioCount > 0;
+  const dataReadyBadge =
+    moduleId === 9 && hasM9DataReadyBadge(completedTaskIds);
+  const kitReadyBadge = moduleId === 9 && isM9KitComplete(kitState);
+
+  const toggleKitItem = (id: string) => {
+    if (moduleId !== 9) return;
+    setKitState((prev) => {
+      const next = {
+        ...prev,
+        [id]: !prev[id as keyof typeof prev],
+      };
+      saveM9KitChecklist(next);
+      return next;
+    });
+  };
   const handleM79HandoutDownload = useCallback(async () => {
     if (moduleId !== 9) return;
     try {
@@ -5786,7 +5863,71 @@ export function PracticeSummarySlide({
             })}
           </p>
         )}
+        {moduleId === 9 && (dataReadyBadge || kitReadyBadge) && (
+          <div className="mt-3 flex flex-wrap justify-center gap-2">
+            {dataReadyBadge && (
+              <span className="rounded-full border border-brand-300 bg-brand-50 px-3 py-1 text-xs font-bold text-brand-800 dark:border-brand-600 dark:bg-brand-950/40 dark:text-brand-200">
+                {c.badges?.find((b) => b.id === 'data-ready')?.label ??
+                  tPractice('m9BadgeDataReady')}
+              </span>
+            )}
+            {kitReadyBadge && (
+              <span className="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800 dark:border-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-200">
+                {c.badges?.find((b) => b.id === 'kit-ready')?.label ??
+                  tPractice('m9BadgeKitReady')}
+              </span>
+            )}
+          </div>
+        )}
       </div>
+
+      {moduleId === 9 && c.kitChecklist && c.kitChecklist.length > 0 && (
+        <div
+          className="rounded-xl border-2 border-brand-200 bg-white p-5 dark:border-brand-800 dark:bg-gray-900/40"
+          role="group"
+          aria-label={tPractice('m9KitChecklistAria')}
+        >
+          <h4 className="mb-3 font-bold text-gray-900 dark:text-white">
+            {tPractice('m9KitChecklistHeading')}
+          </h4>
+          <ul className="space-y-2">
+            {c.kitChecklist.map((item) => {
+              const checked =
+                kitState[item.id as keyof typeof kitState] === true;
+              return (
+                <li key={item.id}>
+                  <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded-lg px-2 py-1 hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleKitItem(item.id)}
+                      className="h-5 w-5 rounded border-brand-400 text-brand-600 focus:ring-brand-500"
+                    />
+                    <span className="text-sm text-gray-800 dark:text-gray-200">
+                      {item.label}
+                    </span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
+      {moduleId === 9 &&
+        c.hubCtaLabel &&
+        c.hubSlideId != null &&
+        onNavigateToSlideById && (
+          <div className="text-center">
+            <button
+              type="button"
+              onClick={() => onNavigateToSlideById(c.hubSlideId!)}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl border-2 border-brand-300 bg-white px-4 py-2 text-sm font-semibold text-brand-800 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-brand-600 dark:bg-gray-900 dark:text-brand-200 dark:hover:bg-brand-950/40"
+            >
+              {c.hubCtaLabel}
+            </button>
+          </div>
+        )}
 
       {hasSections ? (
         <div className="space-y-4">

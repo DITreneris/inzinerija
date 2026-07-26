@@ -73,12 +73,12 @@
 
 ## Tier 2 dalinis + M7P sibling parity
 
-| Skaidrė | fieldKey                                                                                 | JSON kelias                    |
-| ------- | ---------------------------------------------------------------------------------------- | ------------------------------ |
-| 73      | `pipeline-overview`, `pipeline-prep`, `pipeline-eda`, `pipeline-viz`, `pipeline-publish` | `sections[3…7].copyable`       |
-| 732     | `sentiment-prompt`                                                                       | `content.sections[2].copyable` |
-| 78      | `di-role-prompt`                                                                         | `content.sections[3].copyable` |
-| 78.5    | `excel-clean-prompt`                                                                     | `content.sections[2].copyable` |
+| Skaidrė | fieldKey                                                                                                   | JSON kelias                    |
+| ------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| 73      | `pipeline-overview`, `pipeline-prep`, `pipeline-eda`, `pipeline-model`, `pipeline-viz`, `pipeline-publish` | `sections[4…9].copyable`       |
+| 732     | `sentiment-prompt`                                                                                         | `content.sections[2].copyable` |
+| 78      | `di-role-prompt`                                                                                           | `content.sections[3].copyable` |
+| 78.5    | `excel-clean-prompt`                                                                                       | `content.sections[2].copyable` |
 
 **LT overlay:** `modules-journey-m7.json`  
 **EN overlay:** `modules-journey-en-m7.json` (AI, ne DI)
@@ -96,7 +96,7 @@
 | 89      | `algo-sources`, `algo-structure`, `algo-collect`, `algo-clean`, `algo-export` | `sections[3…7].copyable`       |
 | 891     | `prep-clean`                                                                  | `content.sections[2].copyable` |
 | 90      | `eda-stats`, `eda-corr`, `eda-anomaly`, `eda-hypotheses`                      | `sections[2…5].copyable`       |
-| 92      | `bi-plan`                                                                     | `content.sections[2].copyable` |
+| 92      | `bi-plan`                                                                     | `content.sections[3].copyable` |
 
 Authoring: `scripts/journey-lt-tier2-remaining.json` / `journey-en-tier2-remaining.json`
 

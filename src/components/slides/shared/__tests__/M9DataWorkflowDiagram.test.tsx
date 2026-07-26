@@ -17,7 +17,7 @@ describe('M9DataWorkflowDiagram', () => {
     expect(mobile?.querySelectorAll('[data-step-index]').length).toBe(8);
     expect(container.textContent).toContain('Surinkimas');
     expect(container.textContent).toContain('Vaizdai');
-    expect(container.textContent).toContain('4× paleidimas');
+    expect(container.textContent).toContain('Paleidimas');
   });
 
   it('calls onStepClick for steps 4 and 5 (row boundary)', () => {
@@ -45,7 +45,7 @@ describe('M9DataWorkflowDiagram', () => {
 
     expect(container.textContent).toContain('MASTER: 8 analysis steps');
     expect(container.textContent).toContain('Charts');
-    expect(container.textContent).toContain('4× runs');
+    expect(container.textContent).toContain('Run tools');
     expect(container.textContent).not.toContain('COLOURS, CHARTS');
   });
 });

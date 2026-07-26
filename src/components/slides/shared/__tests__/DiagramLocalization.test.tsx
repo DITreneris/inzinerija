@@ -825,7 +825,14 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<M7BiSchemaBlock />);
       expect(container.textContent).toContain('BI flow');
       expect(container.textContent).toContain('Collect');
+      expect(container.textContent).toContain('Step 1 of 4');
+      expect(container.textContent).toContain(
+        'Click a step in the diagram or number 1–4'
+      );
       expect(container.textContent).not.toContain('BI schema');
+      expect(
+        container.querySelector('[aria-label*="Išskleisti schemą"]')
+      ).toBeNull();
     });
 
     it('renders M7 BI schema in Lithuanian with step navigation', () => {
@@ -833,8 +840,15 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container } = renderWithProviders(<M7BiSchemaBlock />);
       expect(container.textContent).toContain('BI schema');
       expect(container.textContent).toContain('Surink');
+      expect(container.textContent).toContain('Žingsnis 1 iš 4');
+      expect(container.textContent).toContain(
+        'Paspausk žingsnį diagramoje arba skaičių 1–4'
+      );
       const stepButtons = container.querySelectorAll('nav button');
       expect(stepButtons.length).toBe(4);
+      expect(
+        container.querySelector('[aria-label*="Išskleisti schemą"]')
+      ).toBeNull();
     });
   });
 
@@ -883,15 +897,19 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('lt');
       const { container } = renderWithProviders(<M9WorkflowStepCopyBlock />);
       expect(container.textContent).toContain('Duomenų surinkimas');
-      expect(container.textContent).toContain('Išvardink 10–15');
-      expect(container.querySelectorAll('nav button').length).toBe(8);
+      expect(container.textContent).toContain('Patikslink arba išplėsk');
+      expect(container.textContent).toContain('schemoje aukščiau');
+      expect(container.querySelectorAll('nav button').length).toBe(0);
     });
 
     it('renders M9 step-copy panel in English', () => {
       setLocale('en');
       const { container } = renderWithProviders(<M9WorkflowStepCopyBlock />);
       expect(container.textContent).toContain('Data collection');
-      expect(container.textContent).toContain('List 10–15');
+      expect(container.textContent).toContain(
+        'Refine or expand the source catalog'
+      );
+      expect(container.textContent).toContain('schema above');
     });
 
     it.each([

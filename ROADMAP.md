@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
 > **Atnaujinta:** 2026-07-26 | Roadmap v3.0 (turinio ambicijos flip)  
-> **App:** 1.4.7 · **Open blokoriai:** M79 browser smoke + Portal 48h; P1 PDF + M10–12 rankinė UI (chrome turinys ✅). CONTENT §4.6 ✅.  
+> **App:** 1.4.8 · **Open blokoriai:** M79 browser smoke + Portal 48h; P1 PDF + M10–12 rankinė UI (chrome turinys ✅). CONTENT §4.6 ✅.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md)  
 > **Open darbai:** [`TODO.md`](TODO.md) §1 (open only).
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); M10+ – authoring brandumas šiame repo.  
-**Production:** CONDITIONAL GO — automated ✅ (117/745 Unreleased, tag **v1.4.7**); learning QA blokuoja PDF rankinė + M79 browser smoke (ne monetization-ready).
+**Production:** CONDITIONAL GO — automated gates green (`audit:release-preflight` 126/781, `audit:m79`, `validate:journey-m9`, `audit:m1012`); tag **v1.4.8**; learning QA blokuoja PDF rankinė + M79 browser smoke (ne monetization-ready).
 
 ---
 
@@ -24,8 +24,8 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring · LT/EN · sert
 | **PDF rankinė**       | M5/M6 (+ release checklist §5d) — learning artifact              | P1           |
 | **M10–12 brandumas**  | Chrome turinys ✅; lieka rankinė UI C1–C6 @375px (`TEST_REPORT`) | P1 (browser) |
 | **Diagram smoke**     | Rankinis light/dark M7–9 (TE registry + RELEASE_QA)              | P1           |
-| **PC-4.\***           | Practice closer polish backlog                                   | P2           |
-| **GitHub Pages**      | MVP preview `/inzinerija/` – gate policy                         | Patikrinti   |
+| **PC-4.\***           | PC-4.2 quest clarity ✅; likę PC-4.1 / 4.3 / 4.4                 | P2           |
+| **GitHub Pages**      | MVP preview `/inzinerija/` – gate policy (ne learning P0)        | P2 / check   |
 | **Marketing handoff** | MON-1…8, PostHog, CRO — ne šio repo P0                           | Out of scope |
 
 ---
@@ -35,7 +35,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring · LT/EN · sert
 1. **M7–9 kokybė (P0):** browser smoke (CONTENT §4.6 #6–9 ✅ CQ-M79-3) — [`07_08_09_backlog.md`](docs/development/07_08_09_backlog.md); SOT `turinio_pletra_moduliai_7_8_9.md`.
 2. **M10–12 authoring brandumas (P1):** chrome turinys ✅ (M1012-1); lieka rankinė UI C1–C6 @375px (M1012-2). SOT `turinio_pletra_moduliai_10_11_12.md` + `MODULIO_10_SKAIDRIU_EILES.md`.
 3. **M13–15 authoring:** katalogas OK; pilnas production release – Deferred. SOT `turinio_pletra_moduliai_13_14_15.md`.
-4. **Practice closer:** [`PRACTICE_CLOSER_PLAN.md`](docs/development/PRACTICE_CLOSER_PLAN.md) (PC-4 open).
+4. **Practice closer:** [`PRACTICE_CLOSER_PLAN.md`](docs/development/PRACTICE_CLOSER_PLAN.md) (PC-4.2 ✅; PC-4.1/4.3/4.4 open).
 5. **Pedagogikos OS:** [`PEDAGOGINES_IZVALGOS_ROADMAP.md`](docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md) — open vykdymas = `TODO.md` §1.
 6. **M16–21 (Deferred):** Kodo inžinerija (16–18, vibe-coding) + DI politikos inžinerija (19–21). Open: `TODO.md` §1.5.
 

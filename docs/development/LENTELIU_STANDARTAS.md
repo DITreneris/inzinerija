@@ -74,7 +74,7 @@ Kai sekcija yra **palyginimo** tipo (du kontrastuojantys stulpeliai), naudoti `c
 
 Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas – `ContentSlides.tsx` (vienas bendras blokas `section.table && !section.workflowChains`).
 
-> Atnaujinta (2026-07-25) iš live SOT: **29** table / **23** skaidrių. Master: `TEACHING_ELEMENTS_REGISTRY.md`.
+> Atnaujinta (2026-07-26) iš live SOT: M7/67 lentelės pašalintos (`manipulation-contrast` embed). Master: `TEACHING_ELEMENTS_REGISTRY.md`.
 
 | Skaidrė     | Heading (trumpai)                                | Stulpeliai | comparisonStyle | Pastabos                                       |
 | ----------- | ------------------------------------------------ | ---------: | --------------- | ---------------------------------------------- |
@@ -95,9 +95,9 @@ Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas
 | M7 / 734    | 📍 5 grupės – pasirink pagal situaciją           |          3 | ne              | toolChoiceBar                                  |
 | M7 / 76     | 🔽 Ne tik finansai – nori suprasti plačiau?      |          3 | ne              |                                                |
 | M7 / 78     | 2️⃣ Tradicinė analizė vs analizė su DI            |          2 | **taip**        |                                                |
-| M7 / 84     | 2️⃣ Kokį DB įrankį rinktis?                       |          2 | ne              |                                                |
-| M7 / 67     | 🔽 Nori suprasti plačiau?                        |          2 | **taip**        |                                                |
-| M7 / 67     | 🔽 Verslas vs saugumas                           |          3 | ne              |                                                |
+| M7 / 84     | 2️⃣ Kokį DB įrankį rinktis?                       |          3 | ne              | situacijos toolChoiceBar + whenHint            |
+| M7 / 73     | Etapas versle ir DI                              |          3 | ne              |                                                |
+| M7 / 78     | Tradicinė vs DI / Ką DI gali                     |     2× / 3 | taip (vs)       |                                                |
 | M7 / 67.8   | FAKTAI vs SPĖJIMAI                               |          2 | **taip**        |                                                |
 | M7 / 67.8   | Kodėl DI daro haliucinacijas?                    |          2 | ne              |                                                |
 | M7 / 67.8   | Keturi kontrolės lygiai                          |          2 | ne              |                                                |

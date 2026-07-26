@@ -1,3 +1,4 @@
+import { fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { renderWithProviders } from '../../../../test/test-utils';
 import { getM7PathMapLabels } from '../m7PathMapContent';
@@ -49,12 +50,16 @@ describe('M7PathMapDiagram / Block (sk. 71)', () => {
     expect(queryByText('Foundation')).toBeNull();
   });
 
-  it('has no step nav buttons (Shell = Ne)', () => {
-    const { container } = renderWithProviders(
-      <M7PathMapDiagram locale="en" currentStep={0} />
-    );
+  it('has no shell step nav (Shell = Ne) but Block cards are selectable', () => {
+    const { container, getByText } = renderWithProviders(<M7PathMapBlock />);
     expect(container.querySelectorAll('nav button')).toHaveLength(0);
-    expect(container.textContent).toContain('You are here');
-    expect(container.textContent).toContain('Foundation');
+    expect(getByText('Tu esi čia')).toBeTruthy();
+    const cards = container.querySelectorAll('button[aria-pressed]');
+    expect(cards.length).toBe(4);
+    fireEvent.click(cards[2]);
+    expect(getByText('Peržiūra')).toBeTruthy();
+    expect(
+      container.querySelector('[data-active="true"]')?.textContent
+    ).toContain('Paruošimas');
   });
 });

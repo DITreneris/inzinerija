@@ -183,10 +183,11 @@ describe('resolveJourneyCopy', () => {
     it('applies Tier 2 overlay for slide 73 pipeline-overview', () => {
       const tier2Content: ContentBlockContent = {
         sections: [
-          { heading: '1', body: 'a' },
-          { heading: '2', body: 'b' },
-          { heading: '3', body: 'c' },
-          { heading: '4', body: 'd', copyable: 'Base pipeline' },
+          { heading: '0', body: 'a' },
+          { heading: '1', body: 'b' },
+          { heading: '2', body: 'c' },
+          { heading: '3', body: 'd' },
+          { heading: '4', body: 'e', copyable: 'Base pipeline' },
         ],
       };
       const result = applyJourneyOverlayToContentBlock(
@@ -200,7 +201,7 @@ describe('resolveJourneyCopy', () => {
         'pipeline-overview',
         'it-inzinerija'
       );
-      expect(result.sections[3].copyable).toBe(overlay);
+      expect(result.sections[4].copyable).toBe(overlay);
     });
 
     it('applies Tier 2 remaining overlay for slide 83 role-activation', () => {

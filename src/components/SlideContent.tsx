@@ -23,6 +23,11 @@ import {
   applyJourneyOverlayToSummary,
 } from '../utils/resolveJourneyCopy';
 import { normalizeModuleJourneyFocusId } from '../utils/moduleJourneyFocus';
+import {
+  getM9RecommendedSlideIds,
+  resolveM9JourneySlots,
+} from '../utils/resolveM9JourneyCopy';
+import { applyM9PracticeTemplate } from '../utils/applyM9JourneyTheme';
 import { lazyWithRetry } from '../utils/lazyWithRetry';
 import { PracticalTask } from './slides';
 import { LoadingSpinner } from './ui';
@@ -229,6 +234,11 @@ const LazyPracticeIntroSlide = lazyWithRetry(() =>
     default: m.PracticeIntroSlide,
   }))
 );
+const LazyPracticeQuestIntroSlide = lazyWithRetry(() =>
+  import('./slides/types/PracticeQuestIntroSlide').then((m) => ({
+    default: m.PracticeQuestIntroSlide,
+  }))
+);
 const LazyPracticeScenarioHubSlide = lazyWithRetry(() =>
   import('./slides/types/TestPracticeSlides').then((m) => ({
     default: m.PracticeScenarioHubSlide,
@@ -422,9 +432,24 @@ export default function SlideContent({
   // Practical Task wrapper component
   const PracticalTaskSection = () => {
     if (!slide.practicalTask) return null;
+    let task = slide.practicalTask;
+    if (moduleId === 9 && (slide.id === 93.1 || slide.id === 93.2)) {
+      const slots = resolveM9JourneySlots(
+        progress.moduleJourneyFocus?.[9],
+        locale.startsWith('en') ? 'en' : 'lt'
+      );
+      task = {
+        ...slide.practicalTask,
+        template: applyM9PracticeTemplate(
+          slide.practicalTask.template ?? '',
+          slots.themePlaceholder,
+          slots.sampleColumns
+        ),
+      };
+    }
     return (
       <PracticalTask
-        task={slide.practicalTask}
+        task={task}
         slideId={slide.id}
         moduleId={moduleId}
         onTaskComplete={handleTaskComplete}
@@ -889,12 +914,28 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
       visibleSlideCount={ctx.visibleSlideCount}
     />
   ),
+  'practice-quest-intro': (ctx) => (
+    <LazyPracticeQuestIntroSlide
+      slide={ctx.slide}
+      progress={ctx.progress}
+      onJourneyFocusChoice={ctx.onJourneyFocusChoice}
+      onNavigateToSlideById={ctx.onNavigateToSlideById}
+    />
+  ),
   'practice-scenario-hub': (ctx) => {
     if (!ctx.slide.content || !ctx.onNavigateToSlideById)
       return ctx.fallbackMissingContent();
+    const base = ctx.slide.content as PracticeScenarioHubContent;
+    const journeyRec =
+      ctx.moduleId === 9
+        ? getM9RecommendedSlideIds(ctx.progress.moduleJourneyFocus?.[9])
+        : undefined;
+    const content: PracticeScenarioHubContent = journeyRec
+      ? { ...base, recommendedSlideIds: journeyRec }
+      : base;
     return (
       <LazyPracticeScenarioHubSlide
-        content={ctx.slide.content as PracticeScenarioHubContent}
+        content={content}
         onNavigateToSlideById={ctx.onNavigateToSlideById}
         initialLevel1={ctx.initialHubLevel1 ?? undefined}
         onGoToSummary={ctx.onGoToSummary ?? undefined}
@@ -913,6 +954,9 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         onRenderTask={ctx.PracticalTaskSection}
         onGoToSummary={ctx.onGoToSummary}
         character={character}
+        journeyFocusId={
+          ctx.moduleId === 9 ? ctx.progress.moduleJourneyFocus?.[9] : undefined
+        }
       />
     );
   },
@@ -923,10 +967,12 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         : undefined;
     const isM9 = ctx.moduleId === 9;
     const completedScenarioCount = isM9
-      ? (ctx.progress.completedTasks[9]?.length ?? 0)
+      ? (ctx.practiceScenarioSlides?.filter((s) =>
+          ctx.progress.completedTasks[9]?.includes(s.slideId)
+        ).length ?? 0)
       : undefined;
     const totalScenarioCount = isM9
-      ? (ctx.practiceScenarioSlides?.length ?? 17)
+      ? (ctx.practiceScenarioSlides?.length ?? 12)
       : undefined;
     return (
       <LazyPracticeSummarySlide
@@ -935,6 +981,8 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
         totalScenarioCount={totalScenarioCount}
         moduleId={ctx.moduleId}
         slideId={ctx.slide.id}
+        completedTaskIds={isM9 ? ctx.progress.completedTasks[9] : undefined}
+        onNavigateToSlideById={isM9 ? ctx.onNavigateToSlideById : undefined}
       />
     );
   },

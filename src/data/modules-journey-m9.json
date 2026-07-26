@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-26",
+  "description": "M9 thin journey overlay: sample columns, catalog hint, KPI line, recommended hub ids × 6",
+  "journeys": {
+    "pardavimai": {
+      "catalogSectorHint": "Pardavimai → e-commerce / mažmena LT",
+      "sampleColumns": "date, region, product, revenue, units",
+      "sampleFileLabel": "Atsisiųsti sample CSV (pardavimai)",
+      "kpiHint": "Rodikliai (KPI): pajamos, vnt., regionų top; Q3/Q4 tendencija",
+      "themePlaceholder": "Q3 pardavimai",
+      "recommendedSlideIds": [101, 102, 111]
+    },
+    "rinkodara": {
+      "catalogSectorHint": "Rinkodara → skaitmeninė reklama LT",
+      "sampleColumns": "date, channel, campaign, spend, clicks, conversions",
+      "sampleFileLabel": "Atsisiųsti sample CSV (naudok pardavimų failą arba savo kanalų eksportą)",
+      "kpiHint": "Rodikliai: grąža iš reklamos (ROAS), paspaudimų dalis (CTR), konversijos pagal kanalą",
+      "themePlaceholder": "kampanijų kanalų analizė",
+      "recommendedSlideIds": [101, 107, 116]
+    },
+    "it-inzinerija": {
+      "catalogSectorHint": "IT → SaaS / duomenų platformos",
+      "sampleColumns": "timestamp, source_system, rows_in, rows_out, error_count",
+      "sampleFileLabel": "Atsisiųsti sample CSV (pritaikyk stulpelius logams)",
+      "kpiHint": "Rodikliai (KPI): klaidų %, eilučių apimtys, šaltinių patikimumas",
+      "themePlaceholder": "ETL klaidų ir apimčių analizė",
+      "recommendedSlideIds": [102, 103, 105]
+    },
+    "personalas": {
+      "catalogSectorHint": "Personalas → Lietuvos personalas / įdarbinimas",
+      "sampleColumns": "month, hired, left, dept, eNPS",
+      "sampleFileLabel": "Atsisiųsti sample CSV (pritaikyk personalo stulpelius)",
+      "kpiHint": "Rodikliai: išlaikymas (retention), komandos pulse (eNPS), funnel pagal skyrių",
+      "themePlaceholder": "išlaikymo ir pulse analizė",
+      "recommendedSlideIds": [112, 102, 114]
+    },
+    "vadyba": {
+      "catalogSectorHint": "Vadyba → SMB valdymas LT",
+      "sampleColumns": "period, kpi_name, actual, target, owner",
+      "sampleFileLabel": "Atsisiųsti sample CSV (pritaikyk valdybos rodiklius)",
+      "kpiHint": "Rodikliai: actual vs target, savininkai, santrauka valdybai",
+      "themePlaceholder": "valdybos rodiklių santrauka",
+      "recommendedSlideIds": [111, 110, 114]
+    },
+    "kita": {
+      "catalogSectorHint": "Kita → tavo sritis [X]",
+      "sampleColumns": "col_a, col_b, col_c",
+      "sampleFileLabel": "Atsisiųsti sample CSV (universalus pardavimų pavyzdys)",
+      "kpiHint": "Rodikliai (KPI): 3 rodikliai, kuriuos pasirinksi po valymo",
+      "themePlaceholder": "tavo tema [X]",
+      "recommendedSlideIds": [101, 102, 116]
+    }
+  }
+}

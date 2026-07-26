@@ -12,7 +12,8 @@ const outPath = join(root, 'src', 'data', 'modules-en-m10-m12.json');
 
 /** LT shortTitle / title → EN label for footers, titles, player chrome. */
 const SHORT_TITLE_EN = {
-  'Kelias – ką čia rasi': 'Path – what you will find',
+  'Kelias modulyje': 'Path in this module',
+  'Kelias – ką čia rasi': 'Path in this module',
   'Agentų ciklas': 'Agent cycle',
   'Kontrolinis taškas: ciklas': 'Checkpoint: agent cycle',
   'Savitikra: ciklas': 'Warm-up: cycle',
@@ -131,7 +132,7 @@ const en = {
               {
                 heading: 'How an agent works',
                 body:
-                  'An AI agent **(1)** receives a task, **(2)** plans steps, **(3)** uses tools (search, API, files – if the platform allows), **(4)** returns a result with feedback.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish. Unlike a simple chat – the agent **autonomously** chooses actions and can call external tools.',
+                  'An AI agent **(1)** receives a task, **(2)** plans steps, **(3)** uses tools (search, API, files – if the platform allows), **(4)** returns a result with feedback.\n\n**API** – a program’s “door” to data or actions: the agent calls CRM, email or another system through it, because it does not “have” that data itself.\n\n**Cycle in practice:** understand → choose tool → execute → based on the result, decide whether to repeat the step or finish. Unlike a simple chat – the agent **autonomously** chooses actions and can call external tools.',
               },
               {
                 heading: 'When to use an agent (brief)',
@@ -208,14 +209,24 @@ const en = {
           content: {
             sections: [
               {
-                heading: '3A strategy (diagram)',
+                heading: 'In short',
                 body:
-                  'Visually: the largest share – **Automatize (80 %)**, smaller – **Augment (15 %)**, smallest – **Autonomize (5 %)**. Balance of value and safety. **View full size** – same image in a modal.',
+                  '3A is a **decision portfolio**, not “more agents = better”. Most work – rules (**fewer errors**, predictable); a smaller share – human + AI (judgment and ownership); the smallest – agents with limits (costly and risky). **80/15/5** protects speed and safety – not a maturity ladder to autopilot.',
               },
               {
-                heading: 'Three bands (80 / 15 / 5)',
+                heading: 'Three bands – when to choose',
                 body:
-                  '**AUTOMATIZE (80 %)** – rule-based flows, no human decision. E.g.: form → CRM → email → Slack.\n\n**AUGMENT (15 %)** – human decides, AI helps (summaries, classification, recommendations). E.g.: email → AI summary → human approval → send.\n\n**AUTONOMIZE (5 %)** – AI agents with limits: RAG, quality control, escalation. E.g.: feedback → sentiment AI → escalation → ticket.',
+                  '**Automatize (80 %)** – how much: rules without a human at every step. Why: fewer errors, predictable. E.g.: form → CRM → email.\n\n**Augment (15 %)** – how much: human decides, AI helps. Why: ownership or context needed. E.g.: AI draft → human approves → send.\n\n**Autonomize (5 %)** – how much: agent with limits and escalation. Why: narrow band – higher risk. E.g.: feedback → sentiment → escalate to a human.',
+              },
+              {
+                heading: '3A strategy (diagram)',
+                body:
+                  'Click a band – when to choose. Then assign your processes below.',
+              },
+              {
+                heading: 'Example',
+                body:
+                  '**Same process – two bands.** Customer email → reply: if a template “received / ticket #” → **Automatize**. If AI drafts and a human approves tone and facts → **Augment**. Choose Autonomize only with clear limits and escalation.',
               },
               {
                 heading: 'Where to apply',
@@ -1774,6 +1785,15 @@ const fallback = {
   modules: ltData.modules.filter((module) => [10, 11, 12].includes(module.id)).map(toEnglishFallback),
 };
 en.modules = mergeArraysById(fallback.modules, en.modules);
+
+/** M10 UX batch (nav/API/3A/HITL/recap) – quality EN overlay; order follows LT via merge. */
+const m10UxBatchPath = join(root, 'scripts', 'data', 'm10-ux-batch-en-overlay.json');
+try {
+  const m10UxBatch = JSON.parse(readFileSync(m10UxBatchPath, 'utf8'));
+  en.modules = mergeArraysById(en.modules, m10UxBatch.modules);
+} catch {
+  /* optional patch file */
+}
 
 /** Sync EN shortTitles + numbered footers from LT §3.6. */
 function syncEnFootersFromLt() {

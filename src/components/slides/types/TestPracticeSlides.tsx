@@ -41,6 +41,7 @@ import {
   TestResultsReflectionBlock,
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
+import { resolveM9JourneySlots } from '../../../utils/resolveM9JourneyCopy';
 import { stickyClasses, surfaceGlass } from '../../../design-tokens';
 import {
   McqQuestion,
@@ -2387,7 +2388,7 @@ function getRecommendedNote(slide: Slide | undefined): string | undefined {
   return c?.recommendedNote;
 }
 
-/** M9 hub skaidrės id – navigacija „Visi 16 scenarijų“ */
+/** M9 hub skaidrės id – navigacija į 12 scenarijų (4×3) biblioteką */
 const M9_HUB_SLIDE_ID = 99;
 
 export function PracticeIntroSlide({
@@ -2407,7 +2408,7 @@ export function PracticeIntroSlide({
   progress?: { completedTasks: Record<number, number[]> };
   scenarioSlides?: PracticeScenarioSlideInfo[];
   onNavigateToSlide?: (slideIndex: number) => void;
-  /** M9: pereiti į hub (4×4) skaidrę pagal slide id */
+  /** M9: pereiti į hub (4×3) skaidrę pagal slide id */
   onNavigateToSlideById?: (slideId: number) => void;
   /** M9 įvade: paspaudus veikėją – atidaryti hub su tuo veikėju (characterIndex 0–3) */
   onNavigateToHubWithCharacter?: (characterIndex: number) => void;
@@ -2954,7 +2955,7 @@ export function PracticeIntroSlide({
           return aRec - bRec;
         })
       : scenarioSlides;
-  /** M9: intro rodo tik 4 rekomenduojamus + „Visi 16 → hub“, ne visus 16 (USER_JOURNEY: 16 vienoje skaidrėje = absurdas) */
+  /** M9: intro rodo tik rekomenduojamus + „Visi N → hub“, ne visą 12 biblioteką viename viewport */
   const m9ScenarioBase = displayScenarioSlides ?? scenarioSlides;
   const m9ScenarioTotal = isM9 ? (scenarioSlides?.length ?? 0) : 0;
   const introOnlyFourAndHub =
@@ -2966,8 +2967,8 @@ export function PracticeIntroSlide({
             slideIndex: -1,
             title:
               locale === 'en'
-                ? `View all ${m9ScenarioTotal} scenarios (4×4 hub)`
-                : `Peržiūrėti visus ${m9ScenarioTotal} scenarijus (4×4 hub)`,
+                ? `View all ${m9ScenarioTotal} scenarios (4×3 hub)`
+                : `Peržiūrėti visus ${m9ScenarioTotal} scenarijus (4×3 hub)`,
             isHubLink: true,
           } as PracticeScenarioSlideInfo & { isHubLink?: boolean },
         ]
@@ -3414,7 +3415,7 @@ export function PracticeIntroSlide({
                   strokeWidth={1.5}
                 />
                 <span>
-                  {m9ScenarioTotal >= 16
+                  {m9ScenarioTotal >= 12
                     ? t('m9ScenarioGridHeading', { n: m9ScenarioTotal })
                     : locale === 'en'
                       ? 'Business scenarios'
@@ -3433,9 +3434,7 @@ export function PracticeIntroSlide({
                     : t('selectScenarioHintB')}
                 </p>
               )}
-              <div
-                className={`grid gap-3 ${m9ScenarioTotal >= 16 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-2 lg:grid-cols-3'}`}
-              >
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {(() => {
                   const list =
                     introOnlyFourAndHub ??
@@ -3625,10 +3624,10 @@ export function PracticeIntroSlide({
                 strokeWidth={1.5}
               />
               <span>
-                {scenarioSlides?.length === 16
+                {scenarioSlides?.length === 12
                   ? locale === 'en'
-                    ? '🔥 16 scenarios (4×4)'
-                    : '🔥 16 scenarijų (4×4)'
+                    ? '🔥 12 scenarios (4×3)'
+                    : '🔥 12 scenarijų (4×3)'
                   : locale === 'en'
                     ? '🔥 6 Business Scenarios'
                     : '🔥 6 Verslo Scenarijai'}
@@ -3836,7 +3835,7 @@ export function PracticeIntroSlide({
   );
 }
 
-/** Modulio 9: 4×4 scenarijų hub – pasirink 1 iš 4 veikėjų, paskui 1 iš to veikėjo 4 scenarijų. Ryšys: level1Choices[i] = veikėjas i, level2Choices[i] = to veikėjo 4 scenarijai. */
+/** Modulio 9: 4×3 scenarijų hub – pasirink 1 iš 4 veikėjų, paskui 1 iš to veikėjo 3 scenarijų. Ryšys: level1Choices[i] = veikėjas i, level2Choices[i] = to veikėjo 3 scenarijai. */
 export function PracticeScenarioHubSlide({
   content,
   onNavigateToSlideById,
@@ -4080,6 +4079,7 @@ export function PracticeScenarioSlide({
   onRenderTask,
   onGoToSummary,
   character,
+  journeyFocusId,
 }: {
   slide: Slide;
   /** Modulio 9: default reflectionPromptAfter iš i18n, jei JSON neoverride */
@@ -4089,6 +4089,8 @@ export function PracticeScenarioSlide({
   onGoToSummary?: () => void;
   /** Modulio 9 role-quest: veikėjas, atliekantis šį scenarijų – rodoma asmens kortelė */
   character?: M9Character;
+  /** M9 journey id for catalog/CSV slot hints */
+  journeyFocusId?: string;
 }) {
   const { t } = useTranslation('testPractice');
   const { locale } = useLocale();
@@ -4099,6 +4101,14 @@ export function PracticeScenarioSlide({
     number | null
   >(null);
   if (!slide.scenario) return null;
+
+  const m9Slots =
+    moduleId === 9 && (slide.id === 93.1 || slide.id === 93.2)
+      ? resolveM9JourneySlots(
+          journeyFocusId,
+          locale.startsWith('en') ? 'en' : 'lt'
+        )
+      : null;
 
   const branching = slide.scenario.branching;
   const showBranchingOnly = branching && selectedBranchingIndex === null;
@@ -4120,10 +4130,33 @@ export function PracticeScenarioSlide({
     (moduleId === 9 ? t('m9DefaultReflectionAfter') : undefined);
   const taskFrame = practiceContent?.taskFrame;
   const sampleFile = practiceContent?.sampleFile;
+  const sampleLabel = m9Slots?.sampleFileLabel ?? sampleFile?.label;
 
   return (
     <div className="space-y-6">
       {character && <CharacterCard character={character} />}
+      {m9Slots && (
+        <div
+          className="rounded-xl border border-brand-200 bg-brand-50/80 p-3 text-sm text-brand-900 dark:border-brand-700 dark:bg-brand-950/30 dark:text-brand-100"
+          role="note"
+        >
+          {slide.id === 93.1 ? (
+            <p>
+              <span className="font-semibold">
+                {locale === 'en' ? 'Sector hint: ' : 'Sektoriaus užuomina: '}
+              </span>
+              {m9Slots.catalogSectorHint}
+            </p>
+          ) : (
+            <p>
+              <span className="font-semibold">
+                {locale === 'en' ? 'Columns: ' : 'Stulpeliai: '}
+              </span>
+              {m9Slots.sampleColumns}
+            </p>
+          )}
+        </div>
+      )}
       {moduleId !== 9 && slide.scenario?.narrativeLead && (
         <p
           className="text-brand-700 dark:text-brand-300 italic text-sm border-l-4 border-brand-400 dark:border-brand-600 pl-3 py-1"
@@ -4149,15 +4182,15 @@ export function PracticeScenarioSlide({
           </p>
         </div>
       )}
-      {sampleFile?.href && sampleFile.label && (
+      {sampleFile?.href && sampleLabel && (
         <a
           href={sampleFile.href}
           download
           className="inline-flex items-center gap-2 rounded-lg border border-brand-300 dark:border-brand-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-semibold text-brand-800 dark:text-brand-200 shadow-sm hover:bg-brand-50 dark:hover:bg-brand-950/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 min-h-[44px]"
-          aria-label={sampleFile.label}
+          aria-label={sampleLabel}
         >
           <Download className="h-4 w-4 shrink-0" aria-hidden />
-          {sampleFile.label}
+          {sampleLabel}
         </a>
       )}
 

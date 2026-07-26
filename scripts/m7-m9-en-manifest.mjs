@@ -32,8 +32,8 @@ export const LEAN_MODULE_META = {
     title: 'Capstone project (DA path)',
     subtitle: 'One full project (DA path)',
     description:
-      '8-step path to a dashboard; up to 17 additional scenarios. Continuation of the Data Analysis path (M7–M8).',
-    duration: '25–35 min',
+      'Quest desk + 8-step analysis cycle; 12 hub scenarios. Continuation of the Data Analysis path (M7–M8).',
+    duration: '~45–90 min',
   },
 };
 
@@ -44,7 +44,8 @@ export const LEAN_M7_SLIDE_IDS = [
 
 export const LEAN_M8_SLIDE_IDS = [80, 80.5, 81, 82, 801, 802];
 
-export const LEAN_M9_SLIDE_IDS = [90, 93, 94, 92, 99, 101, 102, 111, 116, 117];
+/** MUST quest + hub core (live M9 ids after quest redesign; no 94/117). */
+export const LEAN_M9_SLIDE_IDS = [90, 93.1, 93.2, 93, 92, 99, 101, 102, 111, 116];
 
 function loadModules() {
   return JSON.parse(readFileSync(modulesPath, 'utf8')).modules;

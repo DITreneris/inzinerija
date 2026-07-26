@@ -45,6 +45,17 @@ const TITLE_FAIL_PATTERNS = [
   { rule: 'bilietas', re: /\bbiliet/i },
   { rule: 'pries_module', re: /^Prieš M\d/i },
   { rule: 'workflow_in_lt_title', re: /\bworkflow\b/i, ltOnly: true },
+  /** Course infra in LT H1 (PAPRASTOS_KALBOS §2a). */
+  {
+    rule: 'operacine_lentele_in_lt_title',
+    re: /operacin[ėe]\s+lentel/i,
+    ltOnly: true,
+  },
+];
+
+/** Prefer „analizės eiga“ in new M7+ titles; WARN so legacy M13/M14 titles do not block release. */
+const TITLE_WARN_PATTERNS = [
+  { rule: 'pipeline_in_lt_title', re: /\bpipeline\b/i, ltOnly: true },
 ];
 
 const TITLE_OR_SUB_FAIL = [
@@ -75,6 +86,14 @@ function auditFile(path, label, { checkWorkflow = false } = {}) {
         if (re.test(title)) {
           failed = true;
           console.error(`${loc}: FAIL ${rule} in title: "${title}"`);
+        }
+      }
+
+      for (const { rule, re, ltOnly } of TITLE_WARN_PATTERNS) {
+        if (ltOnly && !checkWorkflow) continue;
+        if (re.test(title)) {
+          warnCount += 1;
+          console.warn(`${loc}: WARN ${rule} in title: "${title}"`);
         }
       }
 

@@ -1,6 +1,6 @@
 /**
  * M7 sk. 71 – makro kelio žemėlapis (4 HTML kortelės).
- * Shell = Ne, be klikų / Enlargeable. Brother of StrukturuotasProcesasDiagram.
+ * Shell = Ne, be Enlargeable / StepNav. Kortelės pasirenkamos tipui peržiūrėti.
  */
 import { Fragment, useId } from 'react';
 import { DIAGRAM_TOKENS } from './diagramTokens';
@@ -9,6 +9,8 @@ import { getM7PathMapLabels, type M7PathMapLocale } from './m7PathMapContent';
 const VIEWBOX_W = 48;
 const ARROW_REFX = 5;
 const HTML_CONNECTOR_STROKE = DIAGRAM_TOKENS.stroke.inactive;
+/** Learning position in the module (Pamatas) – badge „Tu esi čia“. */
+export const M7_PATH_MAP_HOME_STEP = 0;
 
 function Connector() {
   const uid = useId().replace(/:/g, '');
@@ -54,18 +56,22 @@ function Connector() {
 
 export interface M7PathMapDiagramProps {
   className?: string;
-  /** Active macro block (0–3). Sk. 71 = 0 (Pamatas). */
+  /** Selected card for tip emphasis (0–3). */
   currentStep?: number;
+  /** Called when learner selects a card (light interactivity, Shell = Ne). */
+  onStepSelect?: (stepIndex: number) => void;
   locale?: M7PathMapLocale;
 }
 
 export default function M7PathMapDiagram({
   className = '',
-  currentStep = 0,
+  currentStep = M7_PATH_MAP_HOME_STEP,
+  onStepSelect,
   locale = 'lt',
 }: M7PathMapDiagramProps) {
   const labels = getM7PathMapLabels(locale);
   const steps = labels.steps;
+  const selectable = typeof onStepSelect === 'function';
 
   return (
     <div
@@ -75,51 +81,72 @@ export default function M7PathMapDiagram({
     >
       <div className="flex flex-col lg:flex-row lg:items-stretch gap-4 lg:gap-0 overflow-visible">
         {steps.map((step, i) => {
-          const isActive = currentStep === i;
+          const isSelected = currentStep === i;
+          const isHome = i === M7_PATH_MAP_HOME_STEP;
+          const panel = (
+            <div
+              data-step-panel
+              data-active={isSelected ? 'true' : 'false'}
+              className={`flex flex-col gap-2 p-3 sm:p-4 rounded-lg border text-left w-full h-full ${
+                isSelected
+                  ? 'bg-brand-100/70 dark:bg-brand-900/30 border-brand-400 dark:border-brand-500 ring-2 ring-brand-500 ring-inset'
+                  : 'bg-slate-50 dark:bg-slate-800/40 border-gray-200 dark:border-gray-700'
+              } ${
+                selectable
+                  ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900'
+                  : ''
+              }`}
+              style={
+                isSelected
+                  ? undefined
+                  : { opacity: DIAGRAM_TOKENS.opacity.inactive }
+              }
+            >
+              {isSelected ? (
+                <span className="inline-flex self-start items-center rounded-md bg-brand-600 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white">
+                  {isHome ? labels.youAreHere : labels.previewLabel}
+                </span>
+              ) : null}
+              <div className="flex items-center gap-2.5">
+                <span
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${
+                    isSelected
+                      ? 'bg-brand-600'
+                      : 'bg-brand-400 dark:bg-brand-700'
+                  }`}
+                  aria-hidden
+                >
+                  {i + 1}
+                </span>
+                <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white leading-snug">
+                  {step.title}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed pl-0.5">
+                {step.tip}
+              </p>
+            </div>
+          );
+
           return (
             <Fragment key={step.title}>
               <article
                 className="flex-1 min-w-0"
-                aria-current={isActive ? 'step' : undefined}
+                aria-current={isSelected ? 'step' : undefined}
               >
-                <div
-                  data-step-panel
-                  data-active={isActive ? 'true' : 'false'}
-                  className={`flex flex-col gap-2 p-3 sm:p-4 rounded-lg border ${
-                    isActive
-                      ? 'bg-brand-100/70 dark:bg-brand-900/30 border-brand-400 dark:border-brand-500 ring-2 ring-brand-500 ring-inset'
-                      : 'bg-slate-50 dark:bg-slate-800/40 border-gray-200 dark:border-gray-700'
-                  }`}
-                  style={
-                    isActive
-                      ? undefined
-                      : { opacity: DIAGRAM_TOKENS.opacity.inactive }
-                  }
-                >
-                  {isActive ? (
-                    <span className="inline-flex self-start items-center rounded-md bg-brand-600 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white">
-                      {labels.youAreHere}
-                    </span>
-                  ) : null}
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${
-                        isActive
-                          ? 'bg-brand-600'
-                          : 'bg-brand-400 dark:bg-brand-700'
-                      }`}
-                      aria-hidden
-                    >
-                      {i + 1}
-                    </span>
-                    <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white leading-snug">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed pl-0.5">
-                    {step.tip}
-                  </p>
-                </div>
+                {selectable ? (
+                  <button
+                    type="button"
+                    className="block w-full h-full rounded-lg"
+                    onClick={() => onStepSelect(i)}
+                    aria-pressed={isSelected}
+                    aria-label={`${i + 1}. ${step.title}. ${step.tip}`}
+                  >
+                    {panel}
+                  </button>
+                ) : (
+                  panel
+                )}
               </article>
               {i < steps.length - 1 && <Connector />}
             </Fragment>

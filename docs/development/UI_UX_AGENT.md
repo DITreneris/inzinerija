@@ -77,6 +77,7 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 - Ilgų pastraipų vengimas; CTA aiškūs ir matomi.
 - **Dense content-block:** jei „Atidaryti visus“ = siena – rekomenduoti `section.table` (+ `comparisonStyle` kai 2 ašys), ne naują diagramą greta esamos; `preCopyCheckBlock` turi būti prieš pirmą `copyable` (GOLDEN §3.8.1). Etalonas: M7 sk. 67.8.
 - **`prompt-tool` surface (M7/90):** brand `ChoiceControl` (ne accent chip’ai); sample + Formatas preview prieš Copy; static EDA juosta = selection mirror, ne Shell SVG; a11y radiogroup. Skirti nuo `interactive-control-lab` (GOLDEN §3.1c) – čia embed §3.8.1.
+- **`manipulation-contrast` surface (M7/67):** brand `ChoiceControl` 2×2; Blogas|Geras kontrastas po pick (mobile stack); `pushSignal` eilutė; be collapsible lentelių / „Atidaryti visus“; null iki pasirinkimo. Kind = embed §3.8.1.
 
 ### 3.6 Lentelės (content-block table)
 

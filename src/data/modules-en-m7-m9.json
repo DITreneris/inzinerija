@@ -69,6 +69,7 @@
         {
           "id": 70.5,
           "title": "What is your analyst profile?",
+          "shortTitle": "Analyst profile",
           "subtitle": "Quick warm-up: where do you usually work with data?",
           "type": "intro-action-pie",
           "content": {
@@ -146,7 +147,7 @@
                 "insight": "Your priority is for data to be clean, reliable and ready for analysis.",
                 "question": "do you check sources, formats and missing values before drawing conclusions?",
                 "line1": "Your profile: Data steward.",
-                "line2": "In this module, pay special attention to the pipeline, data types, preparation and metadata.",
+                "line2": "In this module, pay special attention to the analysis path (6 steps), data types, preparation and metadata.",
                 "ctaLabel": "Go to the data preparation path"
               },
               {
@@ -170,7 +171,7 @@
                 "insight": "Your priority is to turn repeatable analysis steps into a reliable process.",
                 "question": "do you know where a human should approve the result?",
                 "line1": "Your profile: Automation builder.",
-                "line2": "In this module, pay special attention to the pipeline, AI agent concepts and error checks.",
+                "line2": "In this module, pay special attention to the analysis path, AI agent concepts and error checks.",
                 "ctaLabel": "Go to the automation path"
               }
             ]
@@ -636,8 +637,9 @@
         },
         {
           "id": 73,
-          "title": "Data path (6 steps) and operational table",
-          "subtitle": "6 steps and AI prompts for each stage",
+          "title": "6-step analysis path",
+          "shortTitle": "Analysis path",
+          "subtitle": "AI prompts for each stage",
           "type": "content-block",
           "content": {
             "sections": [
@@ -647,15 +649,55 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Pipeline diagram",
-                "body": "Click a stage in the diagram – explanation appears below. Prompts are in sections 3a–3e further down.",
+                "heading": "Analysis path diagram",
+                "body": "Click a stage in the diagram – explanation appears below. Prompts are in sections 3a–3f further down.",
                 "blockVariant": "brand",
                 "image": "m7_da_pipeline",
-                "imageAlt": "Data analysis pipeline – 6 steps"
+                "imageAlt": "Data analysis path – 6 steps"
+              },
+              {
+                "heading": "Stage in business and AI",
+                "body": "Short operations table: what the stage means in business and which AI prompt to use.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": ["Stage", "Business meaning", "AI prompt"],
+                  "rows": [
+                    [
+                      "Collection",
+                      "Gather reliable sources before calculations",
+                      "3a – source list"
+                    ],
+                    [
+                      "Preparation",
+                      "Clean tables so numbers are trustworthy",
+                      "3b – gaps and risk"
+                    ],
+                    [
+                      "EDA",
+                      "First look: patterns and anomalies",
+                      "3c – 5 patterns"
+                    ],
+                    [
+                      "Modeling",
+                      "Calculate / forecast before the chart",
+                      "3d – model and assumptions"
+                    ],
+                    [
+                      "Visualization",
+                      "Show the insight clearly to leadership",
+                      "3e – 3 chart ideas"
+                    ],
+                    [
+                      "Publishing",
+                      "Turn insight into a decision and actions",
+                      "3f – executive report"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "2️⃣ Do now",
-                "body": "Pick **one** analysis-path stage: collection, preparation, EDA, visualisation or publishing. Copy the prompt and paste into AI.",
+                "body": "Pick **one** analysis-path stage: collection, preparation, EDA, modeling, visualisation or publishing. Copy the prompt and paste into AI.",
                 "blockVariant": "brand"
               },
               {
@@ -680,14 +722,21 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "3d. Visualisation",
+                "heading": "3d. Modeling",
+                "body": "Calculation, forecast or a simple model before the chart.",
+                "copyable": "Data: [paste sales data]\nDo: suggest 1–2 calculation / forecast methods for this topic\nFormat: 1) method 2) which columns 3) assumptions 4) what a human should check",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "3e. Visualisation",
                 "body": "How to show leadership?",
                 "copyable": "Data: [paste sales data]\nDo: suggest 3 charts for this analysis\nFormat: 1) chart type 2) axes / dimensions 3) insight",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "3e. Publishing",
+                "heading": "3f. Publishing",
                 "body": "How to sell it – report for leadership.",
                 "copyable": "Data: [paste sales insights or table]\nDo: generate an executive report with recommendations\nFormat: 1) summary 2) 3 insights 3) 3 actions 4) risks",
                 "collapsible": true,
@@ -695,21 +744,22 @@
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Did you paste data / topic [X]?\n• Did you get the Format points (not only vague text)?",
+                "body": "• Did you paste data / topic [X]?\n• Did you get the Format points (not only vague text)?\n• Does the stage match your question (did you skip modeling when you need numbers)?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Want to understand more?",
-                "body": "**Where will you use it?** When planning a new analysis or report – from data sources to leadership presentation. Copy the prompt for each stage. **Pipeline:** 1) Collection 2) Preparation 3) EDA 4) Modeling 5) Visualization 6) Publishing.",
-                "blockVariant": "brand"
+                "body": "**Example:** Q3 drop – start with collection + EDA; model only when the table is clean. **When not to run all 6 steps:** a quick single-KPI question for leadership – EDA + publishing is enough. Use the full path when you plan a new analysis or report from sources to decision.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
         },
         {
           "id": 73.5,
-          "title": "Self-check: data analysis path (6 steps)",
-          "shortTitle": "Self-check: Data path",
+          "title": "Self-check: analysis path",
+          "shortTitle": "Self-check: path",
           "subtitle": "Check the 6-step path from data to decision",
           "type": "warm-up-quiz",
           "content": {
@@ -724,7 +774,7 @@
                   "8: sources, structure, cleaning, EDA, visualizations, insights, forecasts, recommendations"
                 ],
                 "correct": 0,
-                "explanation": "This checks the 6-step pipeline. 4 means analysis types, 5 means the data preparation algorithm, and 8 means the MASTER PROMPT. If you mixed them up, revisit the Pipeline and operational table slide."
+                "explanation": "This checks the 6-step analysis path. 4 means analysis types, 5 means the data preparation algorithm, and 8 means the MASTER PROMPT. If you mixed them up, revisit the “6-step analysis path” slide."
               },
               {
                 "id": "m7-warm-pipeline-2",
@@ -849,8 +899,9 @@
               },
               {
                 "heading": "🔽 Want to understand more?",
-                "body": "The four types cover the full cycle from description to action plan. Prepares Module 8 test questions on analysis types.",
-                "blockVariant": "brand"
+                "body": "**Easy to mix up:** Descriptive ≠ Diagnostic (“what” vs “why”). Predictive ≠ Prescriptive (“what might happen” vs “what to do”).\n\n**Mini scenario:** Same campaign table – (1) What happened? → top channels; (2) Why did CTR drop? → diagnostic; (3) What next month? → forecast; (4) What should we do? → 3 actions. Pick the type by the question, not by the columns you happen to have.",
+                "blockVariant": "terms",
+                "collapsible": true
               }
             ]
           }
@@ -904,7 +955,8 @@
         },
         {
           "id": 732,
-          "title": "Sentiment analysis – business-grade output",
+          "title": "Sentiment analysis – business-grade result",
+          "shortTitle": "Sentiment analysis",
           "subtitle": "5-point structure – topics, intensity, actions",
           "type": "content-block",
           "content": {
@@ -921,7 +973,7 @@
               },
               {
                 "heading": "3️⃣ Copyable prompt",
-                "body": "ROLE + TASK + CONTEXT + OUTPUT (5 points) + TONE. Paste into AI.",
+                "body": "ROLE + TASK + CONTEXT + result (5 points) + TONE. Paste into AI.",
                 "blockVariant": "terms",
                 "copyable": "ROLE: You are a sales analyst.\nTASK: Run a sentiment analysis.\nCONTEXT: I will paste customer / audience feedback about sales [X].\n\nOUTPUT:\n1. Overall sentiment mix (% positive / neutral / negative)\n2. Top themes (with counts)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no fluff.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
@@ -930,12 +982,25 @@
                 "body": "• Does the result have 5 points and priority actions?",
                 "blockVariant": "accent"
               }
-            ]
+            ],
+            "preCopyCheckBlock": {
+              "heading": "Before you copy",
+              "question": "What must a business-grade sentiment result include?",
+              "options": [
+                "Only positive / negative percent",
+                "5 points: structure %, topics, intensity, critical complaints, 3 actions",
+                "Only an emotion word cloud with no actions",
+                "One sentence “customers are unhappy”"
+              ],
+              "correct": 1,
+              "explanation": "Business output is not only +/−. You need topics, intensity, risky complaints and 3 priority actions."
+            }
           }
         },
         {
           "id": 733,
           "title": "Business analysis templates",
+          "shortTitle": "Business templates",
           "subtitle": "Data creation, competitors, finance assistant (CFO) – 3 templates",
           "type": "content-block",
           "content": {
@@ -1441,38 +1506,39 @@
         },
         {
           "id": 78,
-          "title": "AI role in business analysis",
-          "subtitle": "Traditional analysis vs what AI can do",
+          "title": "How AI changes business analysis",
+          "shortTitle": "AI vs traditional",
+          "subtitle": "Traditional vs AI · what an analyst can do with AI",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "AI speeds the path to a decision: collect, explain, compare, visualize, verify. **Next** – practice with Excel and CRM export (copyable cleaning plan prompt).",
+                "body": "**AI = analyst + automator + forecaster.** It speeds the path to a decision, but you still check logic and risk.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Traditional analysis vs analysis with AI",
-                "body": "AI does not replace your decision, but it speeds up the path to it.",
+                "body": "Why compare: so you see where AI saves time and where your control stays.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": ["Traditional analysis", "Analysis with AI"],
                   "rows": [
                     [
-                      "A lot of manual work",
-                      "AI prepares the first draft, table or code"
+                      "Lots of manual work",
+                      "AI prepares a first draft, table or code"
                     ],
                     [
                       "Limited models",
-                      "It can compare several methods and explain differences"
+                      "Can compare several methods and explain differences"
                     ],
                     [
-                      "A human interprets alone",
-                      "AI proposes hypotheses, but a human checks the logic"
+                      "One person interprets alone",
+                      "AI suggests hypotheses, but a human checks the logic"
                     ],
                     [
                       "Low flexibility",
-                      "You can quickly rewrite the same question for another context"
+                      "The same question can be quickly rewritten for another context"
                     ]
                   ],
                   "comparisonStyle": true
@@ -1480,17 +1546,57 @@
               },
               {
                 "heading": "3️⃣ What AI can do in an analyst role",
-                "body": "**Explain methods** – what correlation, forecasting or data cleaning means. **Run exploratory analysis** – find patterns, anomalies and missing values. **Generate visualizations** – suggest a chart, Power BI steps or Python code. **Forecast** – create scenarios and risk ranges. **Model decisions** – compare several action options."
+                "body": "Five capabilities – with an example and a human check.",
+                "blockVariant": "terms",
+                "table": {
+                  "headers": [
+                    "What AI can do",
+                    "Example",
+                    "What a human checks"
+                  ],
+                  "rows": [
+                    [
+                      "Explain methods",
+                      "Correlation, forecast, cleaning in plain language",
+                      "Whether the explanation fits your data"
+                    ],
+                    [
+                      "Run exploratory analysis",
+                      "Patterns, anomalies, missing values",
+                      "Whether an “anomaly” is just a bad column"
+                    ],
+                    [
+                      "Generate visualizations",
+                      "Chart type, BI steps, Python sketch",
+                      "Whether the chart answers the business question"
+                    ],
+                    [
+                      "Forecast",
+                      "Scenarios and risk ranges",
+                      "Assumptions and whether there is enough data"
+                    ],
+                    [
+                      "Model decisions",
+                      "Compare several action options",
+                      "Cost, risk and accountability"
+                    ]
+                  ]
+                }
               },
               {
                 "heading": "4️⃣ Do now",
-                "body": "Before moving to role activation, describe one real analysis task and ask AI where it can help.\n\n🔘 Copy prompt (below)",
+                "body": "Describe one real analysis task and ask AI where it can help – before you activate an analyst role.",
                 "blockVariant": "brand",
                 "copyable": "ROLE: You are an experienced data analyst (sales).\nTASK: Show how AI can help my sales analysis task.\nCONTEXT: Task: [write]. Available data: [write]. Decision I must make: [write].\nOUTPUT: 1) What AI can do alone 2) What a human must check 3) What data to collect next 4) First prompt to start with.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
+                "heading": "5️⃣ Check (1 min)",
+                "body": "• Did OUTPUT separate what AI can do alone vs what you must verify?\n• Did you enter a concrete task and available data (not vague generalities)?",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "🔽 Want to understand more?",
-                "body": "Next you will move to role, data structure and visualization slides. This slide is the bridge: it explains **why** you should activate an analyst role before asking AI to calculate or create a chart.",
+                "body": "**Limits:** AI may suggest a correlation (“X is linked to Y”) – that is not yet causation. Before deciding ask: do I have enough data? can I check the hypothesis with another source? **When not to rely on a single AI answer:** legal, HR and finance decisions without human review.",
                 "blockVariant": "terms",
                 "collapsible": true
               }
@@ -1555,47 +1661,88 @@
         },
         {
           "id": 84,
-          "title": "Data structure creation (DB)",
-          "subtitle": "E-commerce, data schema (ER), key metrics (KPIs)",
+          "title": "Where to store data: DB tools",
+          "shortTitle": "DB tools",
+          "subtitle": "Pick storage, then ER and KPI template",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In brief (30 s)",
-                "body": "**Benefit:** One copyable template – you get table structure, relationships (ER), and key performance indicators (KPIs). Then you can choose where to store that data: SQL database, NoSQL, or a fast cache layer. Redis / Valkey is usually not the main database – it is a speed layer."
+                "body": "**First – where you will store data.** SQL, NoSQL or a speed layer (Redis / Valkey ≠ main DB). Pick a situation in §2 – then use the ER and KPI template.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Which DB tool should you choose?",
-                "body": "If unsure, choose by situation: structured business data – PostgreSQL; simple hosting – MySQL; prototype – SQLite; flexible schema – MongoDB; speed and sessions – Redis / Valkey; fast MVP backend – Supabase.",
-                "copyable": "ROLE: You are a business data analyst.\nTASK: Recommend the best DB tool for my case.\nCONTEXT: Business: [X]. Data type: [tables / JSON / real-time]. Scope: [MVP / large].\nOUTPUT: 1) Recommended tool 2) Why not 2 other options 3) How AI can help with the schema 4) First step.",
-                "blockVariant": "terms",
-                "collapsible": true,
+                "heading": "2️⃣ Which DB tool to choose?",
+                "body": "Pick a situation – the table shows the tool, when to choose it, and what to avoid.",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "What is your case?",
+                  "choices": [
+                    {
+                      "label": "Structured business data",
+                      "rowIndex": 0,
+                      "whenHint": "Recommended: **PostgreSQL** – analytics and strict relationships."
+                    },
+                    {
+                      "label": "Hosting / simple CRUD",
+                      "rowIndex": 1,
+                      "whenHint": "Recommended: **MySQL** – hosting, WordPress, simple e-commerce."
+                    },
+                    {
+                      "label": "Prototype without a server",
+                      "rowIndex": 2,
+                      "whenHint": "Recommended: **SQLite** – local prototype / tests."
+                    },
+                    {
+                      "label": "Flexible schema",
+                      "rowIndex": 3,
+                      "whenHint": "Recommended: **MongoDB** – documents, events, content MVP."
+                    },
+                    {
+                      "label": "Speed and sessions",
+                      "rowIndex": 4,
+                      "whenHint": "Recommended: **Redis / Valkey** – cache layer, not the main DB."
+                    },
+                    {
+                      "label": "Fast MVP backend",
+                      "rowIndex": 5,
+                      "whenHint": "Recommended: **Supabase** – Postgres + Auth + API for a fast MVP."
+                    }
+                  ]
+                },
                 "table": {
-                  "headers": ["Tool", "Practical use"],
+                  "headers": ["Tool", "When to choose", "Avoid / note"],
                   "rows": [
                     [
                       "**PostgreSQL**",
-                      "New web/SaaS projects, analytics, complex queries, JSON, pgvector / AI features."
+                      "Structured business data, analytics, JSON, AI / pgvector",
+                      "Too heavy if you only need a quick file prototype"
                     ],
                     [
                       "**MySQL**",
-                      "Hosting, WordPress, e-commerce, simple CRUD systems."
+                      "Hosting, WordPress, simple e-commerce CRUD",
+                      "For complex analytical queries – prefer PostgreSQL"
                     ],
                     [
                       "**SQLite**",
-                      "Prototypes, mobile apps, CLI tools, tests – no server needed."
+                      "Prototype, mobile, CLI, tests without a server",
+                      "Not a multi-user production DB"
                     ],
                     [
                       "**MongoDB**",
-                      "NoSQL documents when structure is flexible: catalogues, events, content apps, fast MVPs."
+                      "Flexible schema: catalogs, events, content MVP",
+                      "When you need strict relations and SQL reports"
                     ],
                     [
                       "**Redis / Valkey**",
-                      "Cache, sessions, queues, rate limiting, real-time features – not the main database."
+                      "Cache, sessions, queues, rate limit, real-time",
+                      "Not the primary data store"
                     ],
                     [
                       "**Supabase**",
-                      "Fast MVP backend: PostgreSQL + Auth + API + storage + real-time with less DevOps overhead."
+                      "Fast MVP: PostgreSQL + Auth + API + storage",
+                      "When you need fully custom DevOps / another DB family"
                     ]
                   ],
                   "rowMeta": [
@@ -1628,16 +1775,18 @@
               },
               {
                 "heading": "3️⃣ Do now (3–5 min)",
-                "body": "**What to do:** Replace [X] with your business niche, copy the prompt below and run AI. **What you get:** table list, relationship description, key metrics (KPIs) worth tracking."
+                "body": "**What to do:** Replace [X] with your business niche. If §2 was Redis / Valkey – ER still sits on the main DB. Copy the prompt below and run AI. **You get:** table list, relationships, KPIs.",
+                "blockVariant": "brand"
               },
               {
-                "heading": "4️⃣ Copyable prompt",
-                "body": "Paste into AI; replace [X] with your niche.",
-                "copyable": "ROLE: You are a sales analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: sales domain (niche: [X]); sources: CRM, ERP, e-commerce.\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
+                "heading": "4️⃣ Copyable prompt – ER and KPI",
+                "copyable": "ROLE: You are a sales analyst.\nTASK: Help design an ideal database structure.\nCONTEXT: sales domain (niche: [X]); sources: CRM, ERP, e-commerce; Storage: [tool from §2; Redis/Valkey = speed layer only].\nOUTPUT: 1) 6 main tables 2) Relationships (ER logic) 3) KPIs worth tracking 4) First step.\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess.",
+                "body": ""
               },
               {
                 "heading": "5️⃣ Check (1 min)",
-                "body": "Are **tables** provided (not just concepts)? Are **relationships** clear (1-N, N-N)? Are **key metrics (KPIs)** linked to business questions? Does the chosen tool fit the context (MVP, hosting, flexible schema, or speed layer)? Can you use this structure as a base for further analysis? If 2+ \"no\" → return to the prompt, add context (niche, scope, data type)."
+                "body": "• Does storage match the situation (not cache as the main DB)?\n• Did AI give **tables**, relationships (1-N, N-N), and **KPIs** tied to a business question?\nNext – slide “Data relationship analysis”: audit relationships and bottlenecks.",
+                "blockVariant": "accent"
               }
             ]
           }
@@ -2032,31 +2181,32 @@
         {
           "id": 66.9,
           "title": "Reliability and ethics",
-          "subtitle": "Reliability and ethics – then back to exploratory analysis and the full analysis template.",
+          "subtitle": "After the ethics block we return to exploratory analysis and the full analysis template.",
           "type": "section-break",
           "content": {
             "title": "Reliability and ethics",
-            "subtitle": "First in this section: manipulation, security, hallucinations, knowledge verification (optional – benchmark and detectors). Then we return to exploratory analysis, tables, reporting schema, agents, and the full analysis template.",
-            "sectionNumber": "M7",
+            "subtitle": "After the ethics block we return to exploratory analysis and the full analysis template.",
+            "sectionNumber": "Reliability",
             "footer": "Next – Prompt manipulation",
-            "celebrationText": "Good! The analysis path, prompts and data preparation – already completed in this part. Now – reliability and ethics in analysis.",
+            "celebrationText": "Great! The analysis path, business prompts and data preparation – this part is done.",
             "nextSteps": [
-              "Prompt manipulation – bias, leading questions, neutral prompts.",
-              "Security – prompt injection and boundary bypass; defense principles.",
-              "Hallucinations – what they are, how to reduce, reliability template."
+              "Prompt manipulation – bias and neutral prompts.",
+              "Hallucinations – how to reduce and verify.",
+              "Knowledge checks – sources and the \"I don't know\" rule.",
+              "Then we return to exploratory analysis, tables and the full analysis template."
             ],
             "recap": {
               "heading": "What do you already know?",
-              "lead": "Data Analysis path – these foundations already covered.",
+              "lead": "Before reliability – these three foundations are already covered.",
               "items": [
-                "Analysis path and operational prompts – from data collection to publishing.",
-                "Business prompt architecture – role, structure, visualizations, forecasts.",
-                "Data preparation – cleaning checklist and metadata before analysis."
+                "You know Data analysis pipeline – from collection to publishing and operational prompts.",
+                "4 analysis types – you know how to call them with prompts (role, structure, visualization, forecast).",
+                "You know Data cleaning checklist and metadata before analysis."
               ],
               "itemGlossaryTerms": [
                 "Data analysis pipeline",
-                "EDA",
-                "MASTER PROMPT"
+                "4 analysis types",
+                "Data cleaning"
               ]
             },
             "spinoffCta": {
@@ -2074,111 +2224,77 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**Manipulation** = a prompt that steers AI toward the answer you want. Pick a type below – you will see a bad and a good example.",
+                "body": "**Manipulation** = a prompt that steers AI toward the answer you want. Pick a type – you will see **what** it pushes and how to rewrite it neutrally.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "2️⃣ Pick a type",
-                "body": "Choose one – below you will compare a bad and a good prompt.",
+                "body": "Four types – the contrast and neutral prompt open after you choose.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
+                  "variant": "manipulation-contrast",
                   "question": "Which manipulation type matters most to you?",
+                  "sequenceHint": "Pick a type – see how the prompt steers the AI.",
                   "choices": [
                     {
                       "label": "Framing",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "pushSignal": "The conclusion is baked into the question (leading question).",
+                      "badExample": "Show why our Q3 campaign was a success, despite a few challenges."
                     },
                     {
                       "label": "Context",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "pushSignal": "Data is cherry-picked for one side.",
+                      "badExample": "Use only these positive reviews and explain why the product is best in market."
                     },
                     {
                       "label": "Role",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "pushSignal": "Role plus a prove-it goal.",
+                      "badExample": "You are our sales director – prove that a price increase is the best decision."
+                    },
+                    {
+                      "label": "Criteria",
+                      "rowIndex": 3,
+                      "pushSignal": "The scoring axis is narrowed to one KPI.",
+                      "badExample": "Generate 5 strategies and score them only by short-term revenue."
                     }
                   ]
                 }
               },
               {
-                "heading": "Bad vs good – Framing",
-                "body": "**Bad:** \"Show why our Q3 campaign was a success\"",
+                "heading": "Copy the neutral – Framing",
+                "body": "Try the neutral prompt in your tool.",
                 "copyable": "Assess Q3 campaign strengths and weaknesses. Give arguments for and against.",
                 "linkedRowIndex": 0,
                 "blockVariant": "terms"
               },
               {
-                "heading": "Bad vs good – Context",
-                "body": "**Bad:** \"Use only positive reviews\"",
-                "copyable": "Use varied reviews. Give a balanced assessment.",
+                "heading": "Copy the neutral – Context",
+                "body": "Try the neutral prompt in your tool.",
+                "copyable": "Use varied reviews (positive and negative). Give a balanced assessment.",
                 "linkedRowIndex": 1,
                 "blockVariant": "terms"
               },
               {
-                "heading": "Bad vs good – Role",
-                "body": "**Bad:** \"You are our director – prove a price increase is best\"",
-                "copyable": "Role: independent analyst. Compare price-increase vs no-increase scenarios.",
+                "heading": "Copy the neutral – Role",
+                "body": "Try the neutral prompt in your tool.",
+                "copyable": "Role: independent analyst. Compare price-increase vs no-increase scenarios: revenue, retention, reputation.",
                 "linkedRowIndex": 2,
                 "blockVariant": "terms"
               },
               {
-                "heading": "🔽 Want to understand more?",
-                "body": "Summary of all types. More on security (prompt injection, jailbreak) – see the **Security** slide.",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "table": {
-                  "headers": ["❌ Biased prompt", "✅ Neutral prompt"],
-                  "rows": [
-                    [
-                      "\"Show why our Q3 campaign was a success\"",
-                      "\"Assess Q3 campaign strengths and weaknesses. Give arguments for and against.\""
-                    ],
-                    [
-                      "\"Use only positive reviews\"",
-                      "\"Use varied reviews. Give a balanced assessment.\""
-                    ],
-                    [
-                      "\"You are our director – prove a price increase is best\"",
-                      "\"Role: independent analyst. Compare price-increase vs no-increase scenarios.\""
-                    ],
-                    [
-                      "\"Rate strategies only by short-term revenue\"",
-                      "\"Rate by 4 criteria: revenue, reputation, customers, risk.\""
-                    ],
-                    [
-                      "\"Is our product the best?\"",
-                      "\"Compare products by [criteria]. Role: independent analyst.\""
-                    ]
-                  ],
-                  "comparisonStyle": true
-                }
+                "heading": "Copy the neutral – Criteria",
+                "body": "Try the neutral prompt in your tool.",
+                "copyable": "Generate 5 strategies and score them on 4 criteria: revenue, reputation, customers, risk. Give a balanced recommendation.",
+                "linkedRowIndex": 3,
+                "blockVariant": "terms"
               },
               {
-                "heading": "🔽 Business vs security",
-                "body": "On the **Security** slide – injection and jailbreak (different topic). Here – business manipulation.",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true,
-                "table": {
-                  "headers": [
-                    "Topic",
-                    "In business (bias)",
-                    "Security (other slide)"
-                  ],
-                  "rows": [
-                    ["Framing", "Leading questions, conclusion baked in", "–"],
-                    [
-                      "Context",
-                      "Only positive data, cherry-picked context",
-                      "–"
-                    ],
-                    [
-                      "Bypassing limits",
-                      "–",
-                      "Prompt injection, jailbreak (Security slide)"
-                    ]
-                  ]
-                }
+                "heading": "Business vs security",
+                "body": "Here – business bias in prompts. Prompt injection and jailbreak – see the **Security** slide.",
+                "blockVariant": "terms"
               }
             ],
             "footer": "Next – Fix the prompt",
@@ -2188,11 +2304,11 @@
               "options": [
                 "Prove X is the best solution.",
                 "Assess X strengths and weaknesses against 3 criteria.",
-                "You are our director – prepare a report.",
-                "Ignore negative reviews."
+                "Is our product the best in the market?",
+                "Score strategies only by short-term revenue."
               ],
               "correct": 1,
-              "explanation": "A neutral prompt does not assume the conclusion and asks you to weigh both sides."
+              "explanation": "A neutral prompt does not bake in the conclusion and asks for clear criteria – not a single KPI or a leading question."
             }
           }
         },
@@ -2678,13 +2794,20 @@
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "**Reporting schema** (BI) – Collect → Analyze → Report → Forecast. Two practical prompts below.",
-                "blockVariant": "brand"
+                "body": "**BI schema** below – Collect → Analyze → Report → Forecast. After it – two practical prompts (BI plan and market trends).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "BI schema",
+                "body": "Tap a step – explanation below the diagram. Prompts – 3a–3b.",
+                "blockVariant": "brand",
+                "image": "m7_bi_schema",
+                "imageAlt": "BI schema: Collect → Analyze → Report → Forecast"
               },
               {
                 "heading": "2️⃣ Do now",
-                "body": "Pick: **BI plan** – replace [X] with topic, copy first prompt, get 4-step plan. Or **market trends** – replace [X] with sector.",
-                "blockVariant": "terms"
+                "body": "Pick: **BI plan** – replace [X] with topic, copy the first prompt, get a 4-step plan from the schema above. Or **market trends** – replace [X] with sector, copy the second prompt, get 5 trends with impact and forecast.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "3a. BI plan",
@@ -2693,20 +2816,18 @@
               },
               {
                 "heading": "3b. Market trends",
-                "body": "Role + Task + Sources + Result. Replace [X] to sector.",
-                "copyable": "Role: Market analyst.\nTask: Identify 5 latest market trends in sector [X].\nSources: [specify or \"official public sources\"].\nResult: 5 trends; for each – impact, risk, 6-month forecast."
+                "body": "5 trends with impact and forecast. Replace [X] with sector.",
+                "copyable": "ROLE: You are a market analyst.\nTASK: Identify 5 latest market trends in sector [X].\nCONTEXT: Public / official sources; if I specify others – use only those.\nOUTPUT:\n1. Trend\n2. Impact\n3. Risk\n4. 6-month forecast\n(repeat for 5 trends)\n\nRULE: If data is missing – write “I don’t know” and say what is missing; do not guess."
               },
               {
                 "heading": "4️⃣ Check (1 min)",
-                "body": "• Does the plan cover all 4 BI steps?",
+                "body": "• Can you recognize the 4 BI steps in the schema?\n• Does the plan / result cover all 4 steps?\n• Did you replace [X] with a concrete topic or sector?",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Want to understand more?",
-                "body": "**Reporting schema (visual):** 4 steps – Collect (data sources), Analyze (EDA, insights), Report (visualization, conclusions for leadership), Forecast. Links to the analysis path and the full analysis template – same thinking, different detail.",
-                "blockVariant": "brand",
-                "image": "m7_bi_schema",
-                "imageAlt": "BI schema: Collect → Analyze → Report → Forecast"
+                "body": "Same thinking, different detail: the **analysis path** (6 steps) and the **MASTER PROMPT** (full analysis) – the BI schema is their summary through to a decision.",
+                "blockVariant": "terms"
               }
             ]
           }
@@ -3900,80 +4021,103 @@
     {
       "id": 9,
       "title": "Capstone project (DA path)",
-      "subtitle": "8 steps to a summary",
-      "description": "One 8-step analysis project ending in a summary. Extra scenarios only if you want to go deeper.",
-      "duration": "25–35 min",
+      "subtitle": "Your AI analysis kit",
+      "description": "Build one AI analysis kit: catalog, CSV clean-up, 8-step prompts, checklist.",
+      "duration": "~45–90 min",
       "slides": [
         {
           "id": 90,
-          "title": "Data Analysis path project",
-          "subtitle": "First – two practices and the 8-step cycle; hub – optional library",
-          "type": "practice-intro",
+          "title": "Data analysis path project",
+          "subtitle": "Build your AI analysis kit – ~45–90 min",
+          "type": "practice-quest-intro",
           "content": {
-            "whyBenefit": "After the project you will have one ready business-analysis artifact and templates for everyday work with AI – with your Excel/CRM or the sample file.",
-            "primaryPathIntro": "**Main path:** two practices (sources catalog or your CSV/Excel) + the **8-step cycle** (diagram and copyable prompts). That is enough to finish the module.",
-            "duration": "~25–35 min",
-            "audience": "You finished M7–M8 and want one full analysis pass with AI.",
-            "recommendedStart": "**(i)** No internal data → sources catalog. **(ii)** You have Excel/CRM (or sample CSV) → clean your file. Then the diagram and helper prompts. Hub scenarios are an optional library; amber “Recommended” marks starters after the main path.",
-            "firstActionCTA": "Press Continue → sources catalog, then the 8-step diagram and prompts.",
-            "learningOutcomes": [
-              "You will complete at least one practice (catalog or CSV) and the 8-step cycle with copyable prompts.",
-              "You will have a summary or .html dashboard; hub scenarios are optional."
-            ],
-            "storyBlock": "Module 7 gave the method; Module 8 checked it; here you apply it to your topic. 4 characters, up to 17 extra tasks – optional via the hub.",
-            "useCaseBlock": "• **Sales** – Q3 Excel / CRM export → clean → KPIs\n• **Marketing** – campaign / channel CSV → sentiment and ROAS\n• **IT** – logs / ETL export → errors and volume\n• **People** – retention / pulse table → funnel\n• **Management** – executive KPI table → board summary\n• **Other / internal** – any Excel → universal columns",
-            "recommendedSlideIds": [101, 102, 104, 111, 116, 117],
-            "footer": "Next – slide 2: 8-step workflow",
-            "onGoToGlossaryTerm": "Full analysis template"
-          }
-        },
-        {
-          "id": 93,
-          "title": "Module 9 workflow: 8-step cycle",
-          "subtitle": "Main project – schema: collection → methodology → deep research → cleaning → integration → dashboard",
-          "type": "content-block",
-          "content": {
-            "sections": [
+            "whyBenefit": "After this project you will understand the data analysis flow and have your own AI-ready analysis kit: prompts, cleaned data, and a summary.",
+            "duration": "~45 min for the minimum path · up to ~90 min for the full 8-step cycle",
+            "audience": "You finished the theory and the test – now complete one full analysis pass with AI.",
+            "journeyHeading": "Choose your domain",
+            "journeyChoices": [
               {
-                "heading": "1️⃣ In short",
-                "body": "**8-step cycle** – start with the sources catalog practice; copy prompts on the helper prompts slide.",
-                "blockVariant": "accent"
+                "id": "pardavimai",
+                "branchIds": ["viz-sales"],
+                "label": "Sales",
+                "subtitle": "Metrics, trends, forecasts",
+                "icon": "TrendingUp"
               },
               {
-                "heading": "2️⃣ Do now",
-                "body": "**Start with the sources catalog** – required mini-project. Then CSV cleaning and workflow prompts.",
-                "blockVariant": "brand"
+                "id": "rinkodara",
+                "branchIds": ["viz-mkt"],
+                "label": "Marketing",
+                "subtitle": "Channels and campaigns",
+                "icon": "Image"
               },
               {
-                "heading": "Interactive 8-step schema",
-                "body": "Pick a step in the diagram – copyable prompts are on \"Helper prompts (CopyButton)\".",
-                "image": "m9_data_workflow",
-                "blockVariant": "brand"
+                "id": "it-inzinerija",
+                "branchIds": ["technika", "etika-plus"],
+                "label": "IT and engineering",
+                "subtitle": "Data flows and logs",
+                "icon": "Cpu"
               },
               {
-                "heading": "📄 Sample result (what to aim for)",
-                "body": "A good MASTER PROMPT result: leadership summary, metrics table, trends, 3 risks, action plan.",
-                "blockVariant": "terms",
-                "collapsible": true,
-                "collapsedByDefault": true
+                "id": "personalas",
+                "branchIds": ["strategija"],
+                "label": "People / HR",
+                "subtitle": "Retention and team pulse",
+                "icon": "Users"
               },
               {
-                "heading": "Dashboard example",
-                "body": "Minimal example: open `m9_dashboard_snippet.html` (public folder).",
-                "blockVariant": "brand",
-                "collapsible": true,
-                "collapsedByDefault": true
+                "id": "vadyba",
+                "branchIds": ["strategija", "etika-plus"],
+                "label": "Managers and specialists",
+                "subtitle": "Board-ready reports",
+                "icon": "Briefcase"
               },
               {
-                "heading": "4️⃣ Quality check (1 min)",
-                "body": "• Do you have at least 3 sources in the catalog or a cleaned CSV? If not – return to practice slides.",
-                "blockVariant": "accent"
+                "id": "kita",
+                "branchIds": [],
+                "label": "Other area or internal data",
+                "subtitle": "Excel, CRM – universal templates",
+                "icon": "Compass"
               }
             ],
-            "footer": "Next – slide 3: Practice: sources catalog",
-            "onGoToGlossaryTerm": "Source catalog"
-          },
-          "shortTitle": "8-step workflow"
+            "confirmMessage": "Domain: {label}. Confirm to unlock the start button.",
+            "softPreselectHint": "In Module 7 you chose {label} – confirm or change below.",
+            "questSteps": [
+              {
+                "id": "start",
+                "label": "Start",
+                "slideId": 90
+              },
+              {
+                "id": "catalog",
+                "label": "Source catalog",
+                "slideId": 93.1
+              },
+              {
+                "id": "csv",
+                "label": "CSV clean-up",
+                "slideId": 93.2
+              },
+              {
+                "id": "cycle",
+                "label": "8-step cycle",
+                "slideId": 93
+              },
+              {
+                "id": "kit",
+                "label": "Your kit",
+                "slideId": 92
+              }
+            ],
+            "outcomeChips": [
+              "Source table",
+              "Cleaned file",
+              "Summary / .html draft"
+            ],
+            "firstActionCTA": "Start: source catalog",
+            "firstActionSlideId": 93.1,
+            "footer": "Next – Practice: source catalog",
+            "onGoToGlossaryTerm": "Full analysis template"
+          }
         },
         {
           "id": 93.1,
@@ -3982,16 +4126,16 @@
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Public sources catalog",
-            "scenarioDescription": "When you lack internal data – systematically list official and public sources for your sector. Run AI chat (ChatGPT, Claude, Gemini); you can paste the table into Sheets later.",
+            "scenarioDescription": "First part of the kit: public sources even if you will use your own file later. Run AI chat (ChatGPT, Claude, Gemini); you can paste the table into Sheets later.",
             "taskFrame": {
               "task": "Build a table of 10–15 public data sources for your sector or company.",
               "doneWhen": "Table columns: source, URL, format (CSV/API/report), update frequency, and a one-sentence description per row."
             },
-            "footer": "Next – slide 4: Practice: your CSV / Excel"
+            "footer": "Next – Practice: your CSV / Excel"
           },
           "scenario": {
-            "context": "Use when starting external analysis – market, sector or competitor data. If you have your Excel/CRM – go to the CSV/Excel practice.",
-            "data": "Your topic from the M7 path: [company / sector / product].",
+            "context": "External start – market, sector or competitor data. Next: CSV/Excel practice (sample or your file).",
+            "data": "Your topic for your domain: [company / sector / product].",
             "constraints": "Official or trusted public sources only; if unknown – say \"Unknown\".",
             "expectedFormat": "Table with 10–15 rows and 5 columns."
           },
@@ -4007,9 +4151,9 @@
               "steps": [
                 {
                   "step": 1,
-                  "title": "Pick a sector from your M7 path",
-                  "description": "Sales → e-commerce / retail; Marketing → digital ads; IT → SaaS / data platforms; People → HR / hiring; Management → SMB leadership; Other → your domain [X].",
-                  "hint": "Put the sector into the prompt instead of [company / sector].",
+                  "title": "Confirm your sector",
+                  "description": "Your sector was confirmed on the analysis kit desk – see the hint above. The prompt uses your domain instead of [company / sector].",
+                  "hint": "Need a different domain? Go back and confirm another path.",
                   "partialSolution": ""
                 },
                 {
@@ -4037,26 +4181,26 @@
           "type": "practice-scenario",
           "content": {
             "scenarioTitle": "Internal data cleaning with AI",
-            "scenarioDescription": "The platform does not upload files for you. Tools: ChatGPT · Claude · Gemini (file) · Excel / Google Sheets (export → CSV). If you have no file – download the sample or copy columns.",
+            "scenarioDescription": "Second part of the kit: clean a file in AI chat. The platform does not upload files for you. Tools: ChatGPT · Claude · Gemini (file) · Excel / Google Sheets (export → CSV). If you have no file – download the sample or copy columns.",
             "taskFrame": {
               "task": "Upload a CSV or Excel file to AI (or the sample) and run the cleaning prompt.",
-              "doneWhen": "AI identified duplicates, dates, missing values and provided a cleaning report with suggested actions."
+              "doneWhen": "AI identified duplicates, dates, missing values and provided a cleaning report. You checked that AI did not invent columns or KPIs that are not in the file."
             },
             "sampleFile": {
               "href": "/m9_sample_internal.csv",
               "label": "Download sample CSV (sales)"
             },
-            "footer": "Next – slide 5: Helper prompts per step"
+            "footer": "Next – 8-step cycle and prompts"
           },
           "scenario": {
             "context": "For internal data – sales, CRM, warehouse. Same logic as Data preparation. If no file – sample CSV (sales default) or the column list below.",
             "data": "Columns by M7 path (copy into AI if you have no file):\n• Sales: date, region, product, revenue, units\n• Marketing: date, channel, campaign, spend, clicks, conversions\n• IT: timestamp, source_system, rows_in, rows_out, error_count\n• People: month, hired, left, dept, eNPS\n• Management: period, kpi_name, actual, target, owner\n• Other: col_a, col_b, col_c ([X])",
-            "constraints": "Anonymize personal data before uploading.",
-            "expectedFormat": "Cleaning report: issues + suggested actions."
+            "constraints": "Anonymize personal data before uploading. If AI proposes a column or KPI that is not in the file – reject it or mark \"I don't know\".",
+            "expectedFormat": "Cleaning report: issues + suggested actions + a note on what AI did not invent."
           },
-          "template": "Here is my data file (CSV/Excel) or columns: date, region, product, revenue, units (sales example).\nTasks:\n1. Identify column types and likely errors (dates, duplicates, missing values).\n2. Provide a 5-step cleaning checklist.\n3. Suggest 3 KPIs computable after cleaning.\nChecklist: anonymization (if needed), format alignment, duplicate removal, missing value identification.",
+          "template": "Here is my data file (CSV/Excel) or columns: [COLUMNS].\nTasks:\n1. Identify column types and likely errors (dates, duplicates, missing values).\n2. Provide a 5-step cleaning checklist.\n3. Suggest 3 KPIs computable after cleaning – only from these columns; if data is missing, write \"I don't know\".\nChecklist: anonymization (if needed), format alignment, duplicate removal, missing value identification.",
           "practicalTask": {
-            "template": "Here is my data file (CSV/Excel) or columns: date, region, product, revenue, units (sales example).\nTasks:\n1. Identify column types and likely errors (dates, duplicates, missing values).\n2. Provide a 5-step cleaning checklist.\n3. Suggest 3 KPIs computable after cleaning.\nChecklist: anonymization (if needed), format alignment, duplicate removal, missing value identification.",
+            "template": "Here is my data file (CSV/Excel) or columns: [COLUMNS].\nTasks:\n1. Identify column types and likely errors (dates, duplicates, missing values).\n2. Provide a 5-step cleaning checklist.\n3. Suggest 3 KPIs computable after cleaning – only from these columns; if data is missing, write \"I don't know\".\nChecklist: anonymization (if needed), format alignment, duplicate removal, missing value identification.",
             "templateLabel": "Cleaning prompt – copy into AI with your file",
             "title": "Clean your data",
             "placeholder": "Enter the AI cleaning report or key findings.",
@@ -4081,7 +4225,7 @@
                 {
                   "step": 3,
                   "title": "Copy the cleaning prompt",
-                  "description": "Paste the prompt below and run with the file. After cleaning – 3 KPIs for your path.",
+                  "description": "Paste the prompt below and run with the file. After cleaning – 3 key metrics (KPIs) for your domain.",
                   "hint": "Same logic as M7 Data preparation – no extra code.",
                   "partialSolution": ""
                 }
@@ -4090,59 +4234,146 @@
           }
         },
         {
-          "id": 94,
-          "title": "Helper prompts for each workflow step",
-          "subtitle": "Main project – sandbox: little code, many AI instructions; parameters, colors, charts",
+          "id": 93,
+          "title": "8-step cycle and prompts",
+          "subtitle": "Pick a step on the schema – copy the prompt below",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "1️⃣ In short",
-                "body": "One **copyable prompt per workflow step**. Pick a step – only the active template is shown.",
+                "body": "You already have the catalog and CSV. Now walk the **8-step cycle**: pick a step on the schema, copy the prompt below, run it in AI.\n\n**Tiers:** Bronze = **2** steps · Silver = **5** · Gold = **8**. **1–2 AI tools** are enough – you do not need to run four.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Copy prompt by step",
-                "body": "Pick a step in the bar – copy the template and paste into AI.",
+                "heading": "2️⃣ Do now",
+                "body": "1) Tap a step on the schema.\n2) Copy the prompt below.\n3) Paste into AI and get a result.\nStart with Bronze (2 steps); if you have energy – go Silver or Gold.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "3️⃣ Schema – pick a step",
+                "body": "",
+                "image": "m9_data_workflow",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "4️⃣ Prompt for this step",
+                "body": "",
                 "blockVariant": "brand",
                 "image": "m9_workflow_step_prompts"
               },
               {
-                "heading": "4️⃣ Quality check (1 min)",
-                "body": "• Did you copy prompts for at least 2 steps and get useful AI output?",
+                "heading": "5️⃣ Check (1 min)",
+                "body": "• **Bronze:** did you copy prompts for at least **2** steps and get a useful AI answer?\n• **Silver / Gold:** did you reach 5 or 8 (summary / .html)?\n• Are numbers or facts without a source marked \"I don't know\"?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 6: Scenario hub (optional)"
+            "footer": "Next – slide 5: Project summary (your kit checklist)",
+            "onGoToGlossaryTerm": "Source catalog"
           },
-          "shortTitle": "Helper prompts per step"
+          "shortTitle": "8 steps + prompts"
+        },
+        {
+          "id": 92,
+          "title": "Your analysis kit",
+          "subtitle": "Checklist and next steps",
+          "type": "practice-summary",
+          "content": {
+            "introHeading": "What you can do now",
+            "introBody": "You understand the analysis flow, tools, prompts, and visuals – and you can assemble an AI-ready kit for any topic.",
+            "stats": [
+              {
+                "label": "Main path",
+                "value": "5 steps"
+              },
+              {
+                "label": "Optional scenarios",
+                "value": "12"
+              },
+              {
+                "label": "Artefact",
+                "value": "1"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "Example result (work process)",
+                "body": "A good result: a consolidated document with sources, deduplicated entries, clear key metrics (KPIs) or charts, .html or a clear spec for leadership. If you used the MASTER PROMPT from Module 7, the structure should be similar: sources, structure, cleaning, insights, recommendations.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "What next?",
+                "body": "Within 48 hours, repeat the work process for another topic or open an extra scenario. Return to the module list — next module or certificate.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Reflection",
+                "body": "What did you do? (What) — What does it mean for you or the team? (So What) — What will you do next? (Now What). Answer briefly to yourself or use the prompt below in AI."
+              }
+            ],
+            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step cycle; optional extra scenario if I did one).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers give 1 concrete tip.",
+            "tagline": "One kit = catalog + clean data + 8-step prompts + summary.",
+            "handoutDownloadLabel": "Download Data analytics path handout (PDF)",
+            "kitChecklist": [
+              {
+                "id": "catalog",
+                "label": "I have a source catalog table"
+              },
+              {
+                "id": "csv",
+                "label": "I have a cleaned CSV / sample result"
+              },
+              {
+                "id": "summary",
+                "label": "I have a summary or .html draft"
+              },
+              {
+                "id": "reliability",
+                "label": "I have a reliability rule (source / I don't know / file mismatch)"
+              }
+            ],
+            "badges": [
+              {
+                "id": "data-ready",
+                "label": "Data ready",
+                "rule": "practices"
+              },
+              {
+                "id": "kit-ready",
+                "label": "Analysis kit",
+                "rule": "checklist"
+              }
+            ],
+            "hubCtaLabel": "Optional library (12 scenarios)",
+            "hubSlideId": 99
+          }
         },
         {
           "id": 99,
-          "title": "Pick a scenario (4×4)",
-          "subtitle": "4 characters – each does 4 tasks. Pick a character, then – one of their 4 scenarios.",
+          "title": "Pick a scenario (4×3)",
+          "subtitle": "Optional library – 4 characters, 3 tasks each. Not required to finish the module.",
           "type": "practice-scenario-hub",
           "content": {
             "level1Choices": [
               {
                 "id": 0,
                 "title": "Jurate – Sentiment and data management",
-                "description": "Optional · Reviews and cleaning before analysis."
+                "description": "Reviews and cleaning before analysis."
               },
               {
                 "id": 1,
                 "title": "Martynas – 4 analysis types and risk",
-                "description": "Optional · What / why / what next / what to do + risk."
+                "description": "What / why / what next / what to do + risks."
               },
               {
                 "id": 2,
                 "title": "Giedre – Business application",
-                "description": "Optional · Finance, competitors, HR practical templates."
+                "description": "Finance, competitors, people templates."
               },
               {
                 "id": 3,
                 "title": "Lukas – Visualization and story",
-                "description": "Optional · Charts and story for leadership."
+                "description": "Charts and story for leadership."
               }
             ],
             "level2Choices": [
@@ -4150,7 +4381,7 @@
                 {
                   "targetSlideId": 101,
                   "title": "Sentiment analysis",
-                  "description": "Topics, intensity, priorities, actions."
+                  "description": "Themes, intensity, priorities."
                 },
                 {
                   "targetSlideId": 102,
@@ -4161,18 +4392,13 @@
                   "targetSlideId": 103,
                   "title": "Metadata",
                   "description": "3 types – context, schema, rights."
-                },
-                {
-                  "targetSlideId": 104,
-                  "title": "Full workflow",
-                  "description": "8-step business cycle."
                 }
               ],
               [
                 {
                   "targetSlideId": 105,
                   "title": "4 analysis types",
-                  "description": "Descriptive → diagnostic → predictive → prescriptive."
+                  "description": "Descriptive → prescriptive."
                 },
                 {
                   "targetSlideId": 106,
@@ -4181,21 +4407,11 @@
                 },
                 {
                   "targetSlideId": 107,
-                  "title": "Social media monitoring",
-                  "description": "Topics, sentiment, influential people (high follower count)."
-                },
-                {
-                  "targetSlideId": 108,
-                  "title": "Combined super prompt",
-                  "description": "Analyst + visualization + strategist."
+                  "title": "Social listening",
+                  "description": "Themes, sentiment, risk."
                 }
               ],
               [
-                {
-                  "targetSlideId": 109,
-                  "title": "Data creation",
-                  "description": "Structured example, columns, formulas."
-                },
                 {
                   "targetSlideId": 110,
                   "title": "Competitor analysis",
@@ -4204,41 +4420,38 @@
                 {
                   "targetSlideId": 111,
                   "title": "Finance insights",
-                  "description": "Revenue, costs, margin, risks."
+                  "description": "Executive summary."
                 },
                 {
                   "targetSlideId": 112,
-                  "title": "Training ROI assessment",
-                  "description": "Does training pay off, group split, topics."
+                  "title": "Training value",
+                  "description": "Training impact, segments."
                 }
               ],
               [
                 {
                   "targetSlideId": 113,
-                  "title": "Visualization type",
-                  "description": "3 options, risks, audience."
+                  "title": "Chart choice",
+                  "description": "3 options for leadership."
                 },
                 {
                   "targetSlideId": 114,
-                  "title": "Story creation",
-                  "description": "Data storytelling – insight, conflict, action."
-                },
-                {
-                  "targetSlideId": 115,
-                  "title": "Power BI steps",
-                  "description": "CSV, data structure, Power BI formulas, design principles."
+                  "title": "Data storytelling",
+                  "description": "Insight → action."
                 },
                 {
                   "targetSlideId": 116,
-                  "title": "Python visualizations",
-                  "description": "seaborn, bar and line charts."
+                  "title": "Python charts",
+                  "description": "Code or specification."
                 }
               ]
             ],
-            "optionalPathNote": "Optional library · main path first: diagram → two practices → helper prompts → summary. Amber “Recommended” = starters; others are extra.",
-            "recommendedSlideIds": [101, 102, 104, 111, 116, 117]
+            "optionalPathNote": "Finish the main path first (catalog → CSV → 8 steps → kit).",
+            "recommendedSlideIds": [101, 102, 111, 116]
           },
-          "shortTitle": "Scenario hub (optional)"
+          "shortTitle": "Scenario hub (optional)",
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 101,
@@ -4287,7 +4500,9 @@
             }
           },
           "template": "ROLE: You are a market analyst.\nTASK: Perform sentiment analysis.\nCONTEXT: I upload customer reviews about our product.\n\nOUTPUT:\n1. Overall sentiment structure (% positive / neutral / negative)\n2. Most common topics (with frequency count)\n3. Emotion intensity (low / medium / high)\n4. Critical complaints (top 5 by reputation risk)\n5. 3 priority actions\n\nTONE: Analytical, concrete, no generalities.",
-          "recommended": true
+          "recommended": true,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 102,
@@ -4303,9 +4518,9 @@
             }
           },
           "scenario": {
-            "context": "Before any analysis – checklist. Links to Module 7 data preparation workflow (cleaning and metadata).",
+            "context": "Before any analysis – a checklist. Linked to Module 7 data preparation work process (cleaning and metadata).",
             "data": "Raw collected data.",
-            "constraints": "Data type validation, timestamps, region tags.",
+            "constraints": "Type checks, timestamps, region tags.",
             "expectedFormat": "Cleaned data with metadata."
           },
           "practicalTask": {
@@ -4327,7 +4542,9 @@
             }
           },
           "template": "Checklist before analysis: Anonymization; Format standardization; Duplicate removal; Missing value identification; Data type validation; Timestamps; Region tags.",
-          "recommended": true
+          "recommended": true,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 103,
@@ -4343,7 +4560,7 @@
             }
           },
           "scenario": {
-            "context": "Without metadata, AI analysis becomes shallow. Integrate into your workflow before the 4 analysis types.",
+            "context": "Without metadata AI analysis stays shallow. Fold it into the work process before the 4 analysis types.",
             "data": "Dataset or source.",
             "constraints": "Add source, date, and topic tags.",
             "expectedFormat": "Metadata for each block."
@@ -4366,54 +4583,10 @@
               ]
             }
           },
-          "template": "3 metadata types: Descriptive (context); Structural (schema); Administrative (rights, security). Add to my data: source, date, topic."
-        },
-        {
-          "id": 104,
-          "title": "Scenario: full workflow",
-          "subtitle": "8-step business cycle",
-          "type": "practice-scenario",
-          "content": {
-            "scenarioTitle": "Full workflow – business cycle",
-            "scenarioDescription": "Collect → clean → metadata → 4 analyses → action plan.",
-            "taskFrame": {
-              "task": "Run the full 8-step workflow for one topic (from collection to dashboard).",
-              "doneWhen": "You have a summary document or dashboard specification, or you copied the prompts and got answers from AI."
-            }
-          },
-          "scenario": {
-            "context": "M9 final project: complete the full cycle for one topic (sales, reviews) using MASTER PROMPT.",
-            "data": "Pick a topic.",
-            "constraints": "8-step sequence.",
-            "expectedFormat": "Report or plan with 8 blocks."
-          },
-          "practicalTask": {
-            "template": "Role: Experienced data analyst.\nTask: Perform full data analysis on [YOUR_TOPIC].\nStructure: 1. Data sources 2. Data structure 3. Cleaning 4. EDA 5. Visualizations 6. Insights 7. Forecasts 8. Recommendations",
-            "templateLabel": "Prompt for this scenario – copy to AI",
-            "title": "Implement full cycle",
-            "placeholder": "Enter the MASTER PROMPT and result.",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy the prompt below and paste into AI",
-                  "description": "Below is the MASTER PROMPT template. Replace [YOUR_TOPIC] (e.g. sales Q3), copy and run in AI.",
-                  "hint": "Replace [YOUR_TOPIC].",
-                  "partialSolution": ""
-                },
-                {
-                  "step": 2,
-                  "title": "Provide the result",
-                  "description": "Enter the report or plan with 8 blocks you received.",
-                  "hint": "ChatGPT, Claude.",
-                  "partialSolution": ""
-                }
-              ]
-            }
-          },
-          "template": "Role: Experienced data analyst.\nTask: Perform full data analysis on [YOUR_TOPIC].\nStructure: 1. Data sources 2. Data structure 3. Cleaning 4. EDA 5. Visualizations 6. Insights 7. Forecasts 8. Recommendations",
-          "recommended": true
+          "template": "3 metadata types: Descriptive (context); Structural (schema); Administrative (rights, security). Add to my data: source, date, topic.",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 105,
@@ -4472,7 +4645,9 @@
             }
           },
           "template": "Descriptive: Summarize sales – top 5 products, regions, seasonality. Diagnostic: Why Q3 drop? Predictive: Forecast Q4. Prescriptive: How much to increase stock? Raise price?",
-          "recommended": false
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 106,
@@ -4511,7 +4686,10 @@
               ]
             }
           },
-          "template": "Create a risk matrix. Columns: Risk | Probability (%) | Impact (financial) | Timeframe | Prevention action | Alternative plan. Additionally: 3 scenarios (optimistic / realistic / pessimistic)."
+          "template": "Create a risk matrix. Columns: Risk | Probability (%) | Impact (financial) | Timeframe | Prevention action | Alternative plan. Additionally: 3 scenarios (optimistic / realistic / pessimistic).",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 107,
@@ -4550,92 +4728,10 @@
               ]
             }
           },
-          "template": "1. Extract top 10 topics 2. Assess sentiment (%) 3. Identify influential people (many followers) 4. Determine reputation risk 5. Prepare 2-week response strategy"
-        },
-        {
-          "id": 108,
-          "title": "Scenario: Combined super prompt",
-          "subtitle": "Analyst + visualization + strategist",
-          "type": "practice-scenario",
-          "content": {
-            "scenarioTitle": "Combined super prompt (DA_4)",
-            "scenarioDescription": "Full package: 3 insights, charts, Power BI, Python, story for leadership.",
-            "taskFrame": {
-              "task": "Use a combined super prompt (analyst + visualization + business strategist).",
-              "doneWhen": "You have a summary, suggested charts, and recommended action, or you copied the prompt and got an answer from AI."
-            }
-          },
-          "scenario": {
-            "context": "Analyst + visualization designer + business strategist. OUTPUT: summary, charts, Power BI instructions, Python code, story (max 200 words), action.",
-            "data": "Your data domain.",
-            "constraints": "See §7A.7 CopyButton.",
-            "expectedFormat": "Summary, suggested charts, instructions, code, text."
-          },
-          "practicalTask": {
-            "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words); recommended action.",
-            "templateLabel": "Prompt for this scenario – copy to AI",
-            "title": "Implement package",
-            "placeholder": "Enter topic and result.",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy the prompt below and paste into AI",
-                  "description": "Below is the super prompt template. Replace [X] with your topic (e.g. sales Q4), copy and run in AI.",
-                  "hint": "E.g. sales Q4.",
-                  "partialSolution": ""
-                },
-                {
-                  "step": 2,
-                  "title": "Provide the result",
-                  "description": "Enter the package you received (insights, charts, instructions).",
-                  "hint": "Follow-up may be needed.",
-                  "partialSolution": ""
-                }
-              ]
-            }
-          },
-          "template": "ROLE: Experienced analyst + visualization expert + business strategist. TASK: Full analysis package for topic [X]. OUTPUT: 3 insights; suggested charts; Power BI steps; Python visualization code; story text for leadership (max 200 words); recommended action."
-        },
-        {
-          "id": 109,
-          "title": "Scenario: Data creation",
-          "subtitle": "Structured example, columns, formulas",
-          "type": "practice-scenario",
-          "content": {
-            "scenarioTitle": "Data creation – structured example",
-            "scenarioDescription": "Columns, formulas, regions, seasonality.",
-            "taskFrame": {
-              "task": "Create structured sales data examples (columns, formulas, regions).",
-              "doneWhen": "You have a 20-row example with columns and formulas, or you copied the prompt and got an answer from AI."
-            }
-          },
-          "scenario": {
-            "context": "Trains analytical thinking. 20 rows of sales data, XLS structure.",
-            "data": "None – AI generates an example.",
-            "constraints": "ID AB0001, Name, Date, Product, Quantity, Price, Cost 0.76, Profit. 3 regions.",
-            "expectedFormat": "Table with formulas."
-          },
-          "practicalTask": {
-            "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Price*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas.",
-            "templateLabel": "Prompt for this scenario – copy to AI",
-            "title": "Generate data",
-            "placeholder": "Paste AI output or your table.",
-            "instructions": {
-              "title": "Step",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy the prompt below and paste into AI",
-                  "description": "Below is the data creation prompt. Copy and run in AI – get 20 rows of sample data.",
-                  "hint": "Get 20 rows.",
-                  "partialSolution": ""
-                }
-              ]
-            }
-          },
-          "template": "ROLE: Data analyst. Create 20 rows of sales data. Columns: ID (AB0001), First name, Last name, Order date, Product, Quantity, Unit price, Cost (=Price*0.76), Total amount, Profit. 3 regions, seasonality, realistic prices. Export XLS structure with formulas."
+          "template": "1. Extract top 10 topics 2. Assess sentiment (%) 3. Identify influential people (many followers) 4. Determine reputation risk 5. Prepare 2-week response strategy",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 110,
@@ -4651,7 +4747,7 @@
             }
           },
           "scenario": {
-            "context": "Strategic business analyst. SWOT, 3 weak spots, 3 opportunities, 30-day plan.",
+            "context": "Strategic business analyst. Strengths, weaknesses, opportunities, threats; 3 weak spots, 3 opportunities, 30-day plan.",
             "data": "Competitor list or market.",
             "constraints": "Analyze: social media, SEO, pricing, complaints, finance.",
             "expectedFormat": "Analysis table (strengths, weaknesses, opportunities, threats), weak spots, opportunities, 30-day strategy."
@@ -4674,7 +4770,10 @@
               ]
             }
           },
-          "template": "ROLE: Strategic business analyst. TASK: Perform competitor analysis. Analyze: 1) Social media activity 2) SEO strategy 3) Product pricing 4) Most common customer complaints 5) Financial metrics. OUTPUT: Table (strengths, weaknesses, opportunities, threats); 3 competitor weak spots; 3 our opportunities; Quick entry strategy (30-day plan)."
+          "template": "ROLE: Strategic business analyst. TASK: Perform competitor analysis. Analyze: 1) Social media activity 2) SEO strategy 3) Product pricing 4) Most common customer complaints 5) Financial metrics. OUTPUT: Table (strengths, weaknesses, opportunities, threats); 3 competitor weak spots; 3 our opportunities; Quick entry strategy (30-day plan).",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 111,
@@ -4714,7 +4813,9 @@
             }
           },
           "template": "ROLE: You are a finance assistant. Assess: key profit metrics (EBITDA), margin, cash flow, debt level. Identify: 3 financial risks; 3 optimization opportunities; price increase potential (%).",
-          "recommended": true
+          "recommended": true,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 112,
@@ -4753,7 +4854,10 @@
               ]
             }
           },
-          "template": "1. Assess training ROI: return = (productivity gain – training cost) / training cost. 2. Split employees: High impact / Medium / Zero. 3. Identify: which topics worked, which did not. 4. Suggest: what to stop, expand, test."
+          "template": "1. Assess training ROI: return = (productivity gain – training cost) / training cost. 2. Split employees: High impact / Medium / Zero. 3. Identify: which topics worked, which did not. 4. Suggest: what to stop, expand, test.",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 113,
@@ -4761,7 +4865,7 @@
           "subtitle": "3 options, risks, audience",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Choosing a visualization type (DA_4)",
+            "scenarioTitle": "Choosing a visualization type",
             "scenarioDescription": "Business level: 3 options, why it fits, risks, leadership.",
             "taskFrame": {
               "task": "Pick the optimal visualization type for leadership (3 options, explanations, risks).",
@@ -4769,9 +4873,9 @@
             }
           },
           "scenario": {
-            "context": "ROLE: senior visualization expert + UX. OUTPUT: 3 options, explanations, risks. TONE: strategic.",
+            "context": "Role: senior visualization expert and UX. Output: 3 options, explanations, risks. Tone: strategic.",
             "data": "Data or report purpose.",
-            "constraints": "See §7A.4 (1).",
+            "constraints": "3 options with rationale; risk and audience (leadership).",
             "expectedFormat": "3 visualization options with rationale and risks."
           },
           "practicalTask": {
@@ -4792,7 +4896,10 @@
               ]
             }
           },
-          "template": "ROLE: You are a senior visualization expert and UX specialist. TASK: Suggest a visualization for this data. OUTPUT: 3 options (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic."
+          "template": "ROLE: You are a senior visualization expert and UX specialist. TASK: Suggest a visualization for this data. OUTPUT: 3 options (type, why it fits, risk – misleading interpretation), audience (leadership). TONE: Strategic.",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 114,
@@ -4800,7 +4907,7 @@
           "subtitle": "Data storytelling – insight, conflict, action",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Story creation from data (DA_4)",
+            "scenarioTitle": "Building a story from data",
             "scenarioDescription": "Narrative from numbers: insight, tension, recommended action.",
             "taskFrame": {
               "task": "Create a data story – insight, tension, what it means for business, action.",
@@ -4810,7 +4917,7 @@
           "scenario": {
             "context": "Data storyteller. CONTEXT e.g. sales +20% but down in 2 regions. OUTPUT: 4 points.",
             "data": "Business metrics or trends.",
-            "constraints": "See §7A.4 (2).",
+            "constraints": "4 points: insight, conflict/tension, business meaning, action.",
             "expectedFormat": "Insight, conflict/tension, what it means for business, action."
           },
           "practicalTask": {
@@ -4831,46 +4938,10 @@
               ]
             }
           },
-          "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, but down in 2 regions]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means for business 4) Recommended action. Max 200 words."
-        },
-        {
-          "id": 115,
-          "title": "Scenario: Power BI steps",
-          "subtitle": "CSV, data structure, Power BI formulas, design principles",
-          "type": "practice-scenario",
-          "content": {
-            "scenarioTitle": "Power BI step generation (DA_4)",
-            "scenarioDescription": "CSV upload, data structure, visualizations, Power BI formulas (YOY growth), design recommendations.",
-            "taskFrame": {
-              "task": "Generate Power BI steps (CSV, data structure, formulas, design principles).",
-              "doneWhen": "You have a step list or instructions, or you copied the prompt and got an answer from AI."
-            }
-          },
-          "scenario": {
-            "context": "Columns e.g. Date, Region, Sales, Category. Gestalt principles in design.",
-            "data": "CSV structure or table.",
-            "constraints": "See §7A.4 (3).",
-            "expectedFormat": "Steps: upload, model, visualizations, DAX, design."
-          },
-          "practicalTask": {
-            "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Cover: data upload, data model, visualizations, DAX formulas for YOY growth, design recommendations.",
-            "templateLabel": "Prompt for this scenario – copy to AI",
-            "title": "Get Power BI plan",
-            "placeholder": "Enter column description and AI answer.",
-            "instructions": {
-              "title": "Step",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy the prompt below and paste into AI",
-                  "description": "Below is the Power BI steps prompt. Copy, specify your column schema (e.g. Date, Region, Sales) – run in AI.",
-                  "hint": "Date, Region, Sales...",
-                  "partialSolution": ""
-                }
-              ]
-            }
-          },
-          "template": "ROLE: Power BI expert. TASK: Generate steps from CSV to dashboard. Columns: Date, Region, Sales, Category. Cover: data upload, data model, visualizations, DAX formulas for YOY growth, design recommendations."
+          "template": "ROLE: Data storytelling expert. CONTEXT: [Your data – e.g. sales +20%, but down in 2 regions]. OUTPUT: 1) Insight 2) Conflict/tension 3) What it means for business 4) Recommended action. Max 200 words.",
+          "recommended": false,
+          "optional": true,
+          "badgeVariant": "optional"
         },
         {
           "id": 116,
@@ -4878,7 +4949,7 @@
           "subtitle": "seaborn, bar and line charts",
           "type": "practice-scenario",
           "content": {
-            "scenarioTitle": "Python visualization code (DA_4)",
+            "scenarioTitle": "Python visualization code",
             "scenarioDescription": "Dataset, bar + line chart, seaborn, annotations with insights.",
             "taskFrame": {
               "task": "Prepare Python visualization code (seaborn, annotations, insights).",
@@ -4888,7 +4959,7 @@
           "scenario": {
             "context": "Dataset generation, seaborn, annotations. One slide max for code – task description or fragment.",
             "data": "Data name or schema.",
-            "constraints": "See §7A.4 (4).",
+            "constraints": "Bar and line charts; annotations with insights; code or a clear spec.",
             "expectedFormat": "Python code or instructions."
           },
           "practicalTask": {
@@ -4910,98 +4981,9 @@
             }
           },
           "template": "ROLE: You are a Python data visualization expert. TASK: Generate seaborn code – bar and line charts, annotations with insights. Data: [describe columns]. Use seaborn and matplotlib annotations.",
-          "recommended": true
-        },
-        {
-          "id": 117,
-          "title": "Scenario: Data scraping with a Python script",
-          "subtitle": "Data scraping – AI generates the script, you run it",
-          "type": "practice-scenario",
-          "content": {
-            "scenarioTitle": "Data scraping – simple Python script",
-            "scenarioDescription": "Copy the prompt into AI, get the script – pip install, python scrape.py, CSV result. See Module 7 slide \"Data scraping\".",
-            "taskFrame": {
-              "task": "Collect data from a website – AI writes a Python script, you run it and get a CSV.",
-              "doneWhen": "You have a CSV file with collected data, or you copied the prompt and got a script from AI."
-            },
-            "reflectionPromptAfter": "META: You are a training reflection assistant. Goal – consolidate the Data scraping scenario experience.\nINPUT: I just completed the Data scraping scenario – data collection with an AI-generated Python script.\nOUTPUT: Ask me one question: what did this scenario give me and what will I apply next time? After my answer give 1 concrete tip."
-          },
-          "scenario": {
-            "context": "Data Analysis path data collection step. AI generates a Python script (requests, BeautifulSoup); you run it – pip install, python scrape.py.",
-            "data": "Website link and what to extract (table, list, prices).",
-            "constraints": "Public data only. Libraries: requests, BeautifulSoup, or pandas.read_html.",
-            "expectedFormat": "CSV file with UTF-8 encoding. Optional: simple chart from collected data."
-          },
-          "practicalTask": {
-            "template": "ROLE: You are a Python developer who writes simple data scraping scripts.\nTASK: Write a Python script that:\n1. Opens this page: [KEEP_WEBSITE_URL]\n2. Extracts [WHAT_TO_EXTRACT – e.g. a table with prices, product list, names and prices]\n3. Saves the result to a CSV file (UTF-8 encoding)\n\nRequirements:\n- Use requests and BeautifulSoup (or pandas.read_html if it is a table).\n- Script should be short, with comments in English.\n- At the end print: how many records collected and the file name.\nProvide the full script – so I can copy to a file and run: pip install requests beautifulsoup4, python scrape.py",
-            "templateLabel": "Prompt to generate script – copy to AI",
-            "title": "Get Python script and collect data",
-            "placeholder": "Enter the website URL, what you collected, or the AI answer.",
-            "instructions": {
-              "title": "Steps",
-              "steps": [
-                {
-                  "step": 1,
-                  "title": "Copy the prompt, enter the URL and what to collect – get a script from AI",
-                  "description": "Replace [KEEP_WEBSITE_URL] and [WHAT_TO_EXTRACT]. AI will provide a script – copy it to scrape.py.",
-                  "hint": "E.g. a table with prices.",
-                  "partialSolution": ""
-                },
-                {
-                  "step": 2,
-                  "title": "Run the script",
-                  "description": "In the terminal: pip install requests beautifulsoup4 (one time). Then: python scrape.py.",
-                  "hint": "Result – CSV in the same folder.",
-                  "partialSolution": ""
-                }
-              ]
-            }
-          },
-          "template": "ROLE: You are a Python developer who writes simple data scraping scripts.\nTASK: Write a Python script that:\n1. Opens this page: [KEEP_WEBSITE_URL]\n2. Extracts [WHAT_TO_EXTRACT – e.g. a table with prices, product list, names and prices]\n3. Saves the result to a CSV file (UTF-8 encoding)\n\nRequirements:\n- Use requests and BeautifulSoup (or pandas.read_html if it is a table).\n- Script should be short, with comments in English.\n- At the end print: how many records collected and the file name.\nProvide the full script – so I can copy to a file and run: pip install requests beautifulsoup4, python scrape.py",
-          "recommended": true
-        },
-        {
-          "id": 92,
-          "title": "Project summary",
-          "subtitle": "What next?",
-          "type": "practice-summary",
-          "content": {
-            "introHeading": "What you've learned",
-            "introBody": "Congratulations! You completed the core path: 8-step cycle, summary or dashboard.",
-            "stats": [
-              {
-                "label": "Main path",
-                "value": "8 steps"
-              },
-              {
-                "label": "Additional scenarios",
-                "value": "up to 17"
-              },
-              {
-                "label": "Artifact",
-                "value": "1"
-              }
-            ],
-            "sections": [
-              {
-                "heading": "Example result (workflow)",
-                "body": "A good result: a consolidated document with sources, deduplicated entries, clear KPIs or charts, .html or a clear spec for leadership. If you used the MASTER PROMPT from Module 7, the structure should be similar: sources, structure, cleaning, insights, recommendations.",
-                "blockVariant": "accent"
-              },
-              {
-                "heading": "What next?",
-                "body": "Within 48 hours, repeat the workflow for another topic or open an extra scenario. Return to the module list — next module or certificate.",
-                "blockVariant": "accent"
-              },
-              {
-                "heading": "Reflection",
-                "body": "What did you do? (What) — What does it mean for you or the team? (So What) — What will you do next? (Now What). Answer briefly to yourself or use the prompt below in AI."
-              }
-            ],
-            "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Data Analysis path project results.\nINPUT: I just finished Module 9 project – business analysis with AI (8-step workflow and at least one scenario).\nOUTPUT: Ask 3 questions: (1) What did I do in this project and where will I apply it? (2) What does this mean for me or the team? (3) What will I do in the next 24–48 hours? After my answers give 1 concrete tip.",
-            "tagline": "One workflow cycle = one ready project.",
-            "handoutDownloadLabel": "Download Data analytics path handout (PDF)"
-          }
+          "recommended": true,
+          "optional": true,
+          "badgeVariant": "optional"
         }
       ],
       "businessExamples": [

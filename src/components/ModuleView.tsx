@@ -393,7 +393,9 @@ function ModuleView({
     onComplete,
     resumeImmediately: resumeImmediate,
     initialSlideIndex,
-    skipOptional: fastTrack,
+    // M9: hub + scenarios are optional enrichment; MUST path is 5 slides (90→…→92).
+    // Hub remains reachable via CTA / slide-id nav even when skipOptional is on.
+    skipOptional: moduleId === 9 ? true : fastTrack,
     activeBranchIds,
   });
 
@@ -485,7 +487,7 @@ function ModuleView({
     if (!module?.slides?.length) return { n: 1, total: 1 };
     return {
       n: getVisiblePosition(module.slides, savedSlidePosition, {
-        skipOptional: fastTrack,
+        skipOptional: moduleId === 9 ? true : fastTrack,
         activeBranchIds,
       }),
       total: visibleSlideCount,
@@ -493,6 +495,7 @@ function ModuleView({
   }, [
     module?.slides,
     savedSlidePosition,
+    moduleId,
     fastTrack,
     activeBranchIds,
     visibleSlideCount,
@@ -1000,7 +1003,7 @@ function ModuleView({
                 {visiblePosition} / {visibleSlideCount} {t('slidesSuffix')}
               </span>
             </span>
-            {module.slides.some((s) => s.optional) && (
+            {moduleId !== 9 && module.slides.some((s) => s.optional) && (
               <label className="flex items-center gap-1.5 cursor-pointer select-none">
                 <input
                   type="checkbox"
@@ -1346,7 +1349,7 @@ function ModuleView({
                 onJourneyFocusChoice={onJourneyFocusChoice}
                 visiblePosition={visiblePosition}
                 visibleSlideCount={visibleSlideCount}
-                pathMode={fastTrack ? 'short' : 'full'}
+                pathMode={moduleId === 9 || fastTrack ? 'short' : 'full'}
                 onPathModeChange={handlePathModeChange}
               />
             </Suspense>
