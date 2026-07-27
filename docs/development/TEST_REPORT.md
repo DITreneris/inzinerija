@@ -55,12 +55,12 @@
 
 | Klausimas                           | Atsakymas                                                                            |
 | ----------------------------------- | ------------------------------------------------------------------------------------ |
-| Ar M1–9 learning kokybė ship’inama? | **GO** (P0 closed + automation green po type fix)                                    |
-| Ar galima tag’inti 1.4.9 dabar?     | **Ne** – commit Unreleased, sync docs metrikas, tada preflight + tag                 |
-| Ar monetization-ready?              | **NO-GO** (MON handoff)                                                              |
+| Ar M1–9 learning kokybė ship’inama? | **GO** (P0 closed + automation green; tag **v1.4.9**)                                |
+| Ar galima tag’inti 1.4.9 dabar?     | **Done** – https://github.com/DITreneris/inzinerija/releases/tag/v1.4.9              |
+| Ar monetization-ready?              | **NO-GO** (MON handoff; pin target **v1.4.9**)                                       |
 | Kas lieka šiame repo?               | P2 polish (test infra T2, modules.ts split, PDF memory sync, GH Pages gate, RAG doc) |
 
-**Tester:** QA_AGENT pre-launch deep audit · **Data:** 2026-07-27
+**Tester:** QA_AGENT pre-launch deep audit · **Data:** 2026-07-27 · **Ship:** `28460be` / tag `v1.4.9`
 
 ## 2026-07-26 – Pre-launch deep audit (post-1.4.8 Unreleased → inzinerija)
 
