@@ -1517,7 +1517,7 @@
             "minScenariosToComplete": 2,
             "optionalInstruction": "Pasirink bent 2 scenarijus pagal savo rolę / veiklos sritį – gali praleisti likusius.",
             "footer": "Toliau – skaidrė 2: Apšilimas",
-            "firstActionCTA": "Atlik Apšilimą (2–3 min), tada bent 2 scenarijus."
+            "firstActionCTA": "Sukurk bent 2 scenarijų artefaktus: pradėk nuo Apšilimo (2–3 min), tada pasirink scenarijus."
           }
         },
         {
@@ -15824,17 +15824,17 @@
         {
           "id": 150,
           "title": "Turinio inžinerijos projektas",
-          "subtitle": "Privaloma: hero vaizdas; optional: video, garsas, montažas",
+          "subtitle": "Privaloma: hero vaizdas; neprivaloma: video, garsas, montažas",
           "type": "practice-intro",
           "content": {
             "whyBenefit": "Po projekto turėsi hero vaizdą su naudotu promptu ir brief; jei nori – mini kampanijos paketą (video + garsas + montažas) ir šablonus tolesniam darbui.",
             "duration": "~20 min greitas startas / ~60–90 min pilnas kelias",
             "minScenariosToComplete": 1,
             "firstActionCTA": "Pradėk nuo greito starto: sukurk vieną hero vaizdą su naudotu promptu. Jei nori pilno kelio – tęsk į video, garsą ir montažą.",
-            "recommendedStart": "Po pasirinkimo: greitas kelias baigiasi hero vaizdu (150.5); pilnas – tęsia 151–154.",
+            "recommendedStart": "Po pasirinkimo: greitas kelias baigiasi hero vaizdu; pilnas – tęsia neprivalomus video, garso ir montažo žingsnius.",
             "recommendedSlideIds": [150.5, 150.25],
-            "primaryPathIntro": "Privalomas minimumas: hero vaizdas (150.5). Po greito starto gali eiti į santrauką.",
-            "taskOneLiner": "Atlik 150.5, kad užbaigtum modulį; 151–154 – optional pilnas mini kampanijos kelias.",
+            "primaryPathIntro": "Privalomas minimumas: greitas startas (hero vaizdas). Po jo gali eiti į santrauką.",
+            "taskOneLiner": "Užbaik greitą startą (hero vaizdas), kad užbaigtum modulį; video, garsas ir montažas – neprivalomas pilnas kelias.",
             "howToUseModule": {
               "heading": "Pasirink kelią",
               "short": {
@@ -15886,13 +15886,13 @@
         {
           "id": 150.25,
           "title": "Projekto ciklas: šaka ir iteracija",
-          "subtitle": "Quick start arba optional pilnas kelias",
+          "subtitle": "Greitas startas arba neprivalomas pilnas kelias",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Greitas kelias: brief → vienas hero vaizdas → promptas → korekcija → santrauka. Pilnas kelias (optional): hero → 3–5 s I2V → VO/bed → montažas 15–30 s → QA + disclosure.",
+                "body": "Greitas kelias: brief → vienas hero vaizdas → promptas → korekcija → santrauka. Pilnas kelias (neprivaloma): hero → 3–5 s I2V → VO/bed → montažas 15–30 s → QA + disclosure.",
                 "blockVariant": "accent",
                 "image": "m15_practice_loop",
                 "imageAlt": "Turinio projekto ciklas: greitas kelias ir pilnas mini kampanijos kelias"

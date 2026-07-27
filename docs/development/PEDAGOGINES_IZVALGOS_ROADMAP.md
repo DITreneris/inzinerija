@@ -1,54 +1,51 @@
 # Pedagoginės įžvalgos – atitiktis ir planas (Must–Should–Want)
 
 > **Paskirtis:** Lyginame 8 pedagogines įžvalgas su dabartiniu produktu; nustatome, kas jau padaryta, o kas lieka open.  
-> **Atnaujinta:** 2026-07-26 (turinio ambicijos flip) · Būklė prieš [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md).  
-> **Open vykdymas:** [`TODO.md`](../../TODO.md) §1 (P0 = mokymosi kokybė). Marketing / CRO – ne čia.
+> **Atnaujinta:** 2026-07-27 (PC-4 closed) · Būklė prieš [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md).  
+> **Open vykdymas:** [`TODO.md`](../../TODO.md) §1.3 (P2 polish) — learning P0 + PC-4 uždaryta. Marketing / CRO – ne čia.
 
 ---
 
 ## Palyginimas su kodu (2026-07)
 
-| Įžvalga                          | Dabartinė būklė                                                                                                               | Atitiktis                                                                                                               |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 1. Mokyti darymo, ne supratimo   | PracticalTask, copyable promptai, M9 practice-scenario, Practice closer PC-0…3, M4P/M7P branda, ModuleCompleteScreen use-case | ⚠️ Dalinai – dauguma modulių baigiasi kūriniu; nuoseklus „Sukurk / rezultatas“ CTA ir §4.6 residual (CQ-M79-3) dar open |
-| 2. Safe-to-fail sandbox          | localStorage; niekas neišlekia į produkciją; Path Test warm-up + remediation chips                                            | ✅ Architektūra + lukštas OK; sandėlio „treniruoklis“ pranešimas vis dar low-effort gap                                 |
-| 3. Skaidrumas = sprendimo kelias | Nėra DI CoT UI; process/schema žingsniai (DiagramKit, M7 path map, MASTER)                                                    | ✅ Nėra klaidinančio „minčių“ skaidrumo; gairė lieka jei bus live DI feedback                                           |
-| 4. Role-first                    | M7 `journeyChoices` (6 keliai) + Lygis C overlay; branduolys be globalaus „pasirink rolę“ įėjimo                              | ⚠️ Dalinai M7 kelionėje; nėra product-wide role-first onboarding                                                        |
-| 5. Vertinimas padėti, ne teisti  | Path Test Shell (M2/M8/M11/M14): intro → warm-up → graded → results + remediation; Ready check soft po M3                     | ✅ Path Test lukštas diagnostinis; branduolio Quiz explanation OK; tonas „čia stipru / rizika“ – tobulinti copy         |
-| 6. Per anksti per daug           | M1–9 production; M10–15 authoring; Docs Lean; ambicija = turinio kokybė, ne feature flood                                     | ✅ Atitinka                                                                                                             |
-| 7. Organizacijos atmintis        | Progresas: unlocked / completed / test scores; nėra bandymų istorijos ar „kas suveikė“ žurnalo                                | ❌ Tik completion metadata                                                                                              |
-| 8. Teisinė/etinė by design       | Lokalu; M7 etikos blokai; M13 provenance/Legal skaidrės authoring                                                             | ⚠️ Turinys yra; runtime apsaugos su realiu DI API – Want                                                                |
+| Įžvalga                          | Dabartinė būklė                                                                                                  | Atitiktis                                                                                                       |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| 1. Mokyti darymo, ne supratimo   | PracticalTask, copyable promptai, M9 practice-scenario, Practice closer PC-0…4, M4P/M7P branda; M3 CTA „Sukurk…“ | ✅ Closer + darymo CTA spot-check (M3)                                                                          |
+| 2. Safe-to-fail sandbox          | localStorage; Path Test warm-up; M1 intro „treniruoklis“ banner                                                  | ✅ Architektūra + UI pranešimas                                                                                 |
+| 3. Skaidrumas = sprendimo kelias | Nėra DI CoT UI; process/schema žingsniai (DiagramKit, M7 path map, MASTER)                                       | ✅ Nėra klaidinančio „minčių“ skaidrumo; gairė lieka jei bus live DI feedback                                   |
+| 4. Role-first                    | M7 `journeyChoices` (6 keliai) + Lygis C overlay; branduolys be globalaus „pasirink rolę“ įėjimo                 | ⚠️ Dalinai M7 kelionėje; nėra product-wide role-first onboarding                                                |
+| 5. Vertinimas padėti, ne teisti  | Path Test Shell (M2/M8/M11/M14): intro → warm-up → graded → results + remediation; Ready check soft po M3        | ✅ Path Test lukštas diagnostinis; branduolio Quiz explanation OK; tonas „čia stipru / rizika“ – tobulinti copy |
+| 6. Per anksti per daug           | M1–9 production; M10–15 authoring; Docs Lean; ambicija = turinio kokybė, ne feature flood                        | ✅ Atitinka                                                                                                     |
+| 7. Organizacijos atmintis        | Progresas: unlocked / completed / test scores; nėra bandymų istorijos ar „kas suveikė“ žurnalo                   | ❌ Tik completion metadata                                                                                      |
+| 8. Teisinė/etinė by design       | Lokalu; M7 etikos blokai; M13 provenance/Legal skaidrės authoring                                                | ⚠️ Turinys yra; runtime apsaugos su realiu DI API – Want                                                        |
 
 ---
 
 ## Kas jau padengta (ne kartoti kaip Must)
 
 - Path Test Shell homogenizuotas lukštas (GOLDEN §3.4a1).
-- Practice closer branduolys PC-0…3; Teaching Elements registry + Feature Doc.
+- Practice closer branduolys PC-0…4; Teaching Elements registry + Feature Doc.
 - Branduolio pasitikrinimas = readiness (ne hard gate).
 - M7 makro kelio žemėlapis (sk. 71), journey copy Lygis C.
 - Safe-to-fail: viskas lokalu + warm-up prieš graded.
+- **Learning QA P0 (2026-07-27):** CQ-M79-1/2/3 · CQ-PORTAL 48h · PDF-1…6 · M1012-1/2 · DIAG-1.
 
 ---
 
-## Low effort (kai liečia open P0/P1)
+## Low effort (P2)
 
-- **Sandbox pranešimas:** trumpas „treniruoklis – klysk ir grįžk“ (pirmas modulis / praktika).
-- **„Darymo“ CTA nuoseklumas:** PracticalTask / closer – „Sukurk…“ / „Rezultatas: …“, ne tik „Peržiūrėjai“.
-- **§4.6 #6–9** microcopy (TODO **CQ-M79-3**).
+- **Sandbox pranešimas:** ✅ M1 intro banner (2026-07-27).
+- **„Darymo“ CTA:** ✅ M3 `firstActionCTA` „Sukurk bent 2…“ (2026-07-27); platesnis spot-check – optional.
 
-## Must (open – `TODO.md` §1 P0/P1)
+## Must (open – learning P0)
 
-- **M7–9 learning QA:** browser smoke S1–S7 / E1–E6; CONTENT residual §4.6 #6–9.
-- **Portal 48h** anti-PPT retest.
-- **PDF rankinė** M5/M6 (+ §5d) kaip learning artifact.
-- **M10–12 authoring brandumas:** chrome / footer / CTA; `audit:m1012` + rankinė UI.
+- **Nėra.** Learning P0 uždaryta 2026-07-27.
 
-## Should (po P0/P1)
+## Should (P2 / vėliau)
 
+- **PC-4.\*** ✅ (4.1 / 4.3 / 4.4 2026-07-27; 4.2 anksčiau).
 - Role-first įėjimas platesniu produktu (ne tik M7 journey).
 - Organizacijos atmintis (bandymų / „kas suveikė“ istorija).
-- PC-4.\* practice closer polish.
 - Diagnostinis Quiz tonas visur (ne tik Path Test lukšte).
 
 ## Want (vėliau)
@@ -80,7 +77,8 @@
 
 | Kas                    | Kur                                                    |
 | ---------------------- | ------------------------------------------------------ |
-| Open backlog           | [`TODO.md`](../../TODO.md) §1                          |
+| Open backlog           | [`TODO.md`](../../TODO.md) §1.3                        |
 | Kas padaryta           | [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md) |
 | M7–9 residual          | [`07_08_09_backlog.md`](07_08_09_backlog.md) §4.6      |
 | USER_JOURNEY (baigtis) | [`USER_JOURNEY_AGENT.md`](USER_JOURNEY_AGENT.md)       |
+| Practice closer        | [`PRACTICE_CLOSER_PLAN.md`](PRACTICE_CLOSER_PLAN.md)   |

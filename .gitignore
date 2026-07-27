@@ -46,6 +46,7 @@ test_coverage_test.txt
 # Temporary files
 *.tmp
 *.temp
+tmp/
 
 # Local EN audit run outputs (not SOT)
 audit-m1012.json

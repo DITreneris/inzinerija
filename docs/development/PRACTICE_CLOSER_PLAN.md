@@ -10,7 +10,7 @@
 | --- | ------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | 1   | M9 completion                   | **Soft:** `recommended` + badge’ai / intro hierarchija. **Ne** hard `minScenariosToComplete` ant hub’o. |
 | 2   | M6 uždarymas                    | **Nauja `summary` skaidrė** (refleksijos echo + handout CTA) – ne tik complete-screen copy.             |
-| 3   | Sprint 4 (individualumo polish) | **Backlog po P0–P1** (`PC-4.*`) – nepradėti kol PC-0…PC-3 uždaryti.                                     |
+| 3   | Sprint 4 (individualumo polish) | **Done 2026-07-27** (`PC-4.1` / `4.3` / `4.4`; `4.2` anksčiau; hub filtrai out of scope).               |
 
 ## Guardrails (nedaryti)
 
@@ -33,14 +33,14 @@ Leidžiama skirtinga: hub (M9), 6-blokų accordion (M3), dual-path (M12/M15), te
 
 ## Sprintai
 
-| Sprint | ID      | Turinys                                                                   | Prioritetas          |
-| ------ | ------- | ------------------------------------------------------------------------- | -------------------- | --------------- |
-| 0      | PC-0    | Šis kontraktas + TODO/ROADMAP sync                                        | Docs                 | done            |
-| 1      | PC-1    | M9 MUST vs biblioteka (soft + badge’ai), eilė, footers primary            | P0                   | done 2026-07-24 |
-| 2A     | PC-2a   | M3 `firstActionCTA`                                                       | P0                   | done 2026-07-24 |
-| 2B     | PC-2b   | M6 gate (1 iš 2) + **nauja summary** + Patikra/footer spragos             | P0                   | done 2026-07-24 |
-| 3      | PC-3    | M15 footers; eilės docs M3/M6/M9; certificate SOT nuoroda; M12 audit-only | P1                   | done 2026-07-24 |
-| 4      | PC-4.\* | Individualumo polish (portfolio chip, hub filtrai, …)                     | **Backlog po P0–P1** | open            |
+| Sprint | ID      | Turinys                                                                   | Prioritetas | Status          |
+| ------ | ------- | ------------------------------------------------------------------------- | ----------- | --------------- |
+| 0      | PC-0    | Šis kontraktas + TODO/ROADMAP sync                                        | Docs        | done            |
+| 1      | PC-1    | M9 MUST vs biblioteka (soft + badge’ai), eilė, footers primary            | P0          | done 2026-07-24 |
+| 2A     | PC-2a   | M3 `firstActionCTA`                                                       | P0          | done 2026-07-24 |
+| 2B     | PC-2b   | M6 gate (1 iš 2) + **nauja summary** + Patikra/footer spragos             | P0          | done 2026-07-24 |
+| 3      | PC-3    | M15 footers; eilės docs M3/M6/M9; certificate SOT nuoroda; M12 audit-only | P1          | done 2026-07-24 |
+| 4      | PC-4.\* | Individualumo polish (portfolio chip, M15 badge, M6 soft-preselect)       | P2          | done 2026-07-27 |
 
 ### Sprint 1 – M9 (detaliau)
 

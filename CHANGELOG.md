@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                 |
 | --------------------------- | ------------------------------------------------------------------------- |
-| **[Unreleased]**            | Pakeitimai po **[1.4.8]** release.                                        |
+| **[Unreleased]**            | Pakeitimai po **[1.4.9]** release.                                        |
+| **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.          |
 | **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight. |
 | **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.           |
 | **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.         |
@@ -41,19 +42,29 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** **129** failai / **822** testai (HEAD Unreleased 2026-07-26; @ tag **1.4.8** freeze buvo 126/781). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + DS gate + typecheck + TE strict + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.8** (2026-07-26). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** **130** failai / **825** testai (@ tag **1.4.9**). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + DS gate + typecheck + TE strict + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.9** (2026-07-27). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.8 release._
+_Įrašai po 1.4.9 release._
+
+---
+
+## [1.4.9] – 2026-07-27
+
+_Learning QA closeout + PC-4 polish: CQ-PORTAL / PDF-1…6 / DIAG-1 / M1012-2 owner smokes, practice closer, PracticeIntro type gap; preflight **130/825** before tag._
+
+### Added
+
+- **PC-4 practice closer polish (2026-07-27):** M3 live `N/6` portfolio chip (intro + ModuleView); M6 soft-preselect ChoiceControl + „Tęsti į projektą“ CTA; M15 `Privaloma` badge (`recommended && !optional`) + intro copy be curriculum ID; M1 sandbox „treniruoklis“ banner; M3 darymo CTA. i18n LT/EN. Tests: `PracticeIntroSlide.pathChoice`. Docs: TODO/ROADMAP/PRACTICE_CLOSER/PEDAGOGINES.
 
 ### Changed
 
 - **Audit remediacija kodas (2026-07-26):** shared `diagramPathGeom.shortenToTip` (orch/loop/M12 rewire); `DIAGRAM_AMBER_INK_SOFT` + `opacity.orphanMap` / `orphanLearningLoop`; M12 diagram single SVG path (compact/desktop layout props); PromptFilter EDA strip decorative (`aria-hidden`, ChoiceControl-only); PDF util try/log + `pdfLink` warn be `doc.link`; one-shot `patch-m10*` / `patch-m1012-w3b` → `scripts/archive/applied-2026-07/`; PracticeQuestIntro type guard + `isM7JourneyChoiceId`.
-- **M7–9 mobile polish (2026-07-26):** EDA strip + tool chips `min-h-[44px]`; M9 quest intro Start before outcome chips + tighter spacing; M9/90 duration `~45–90 min` LT+EN; comparison/solution tables max-sm right-edge scroll fade. `TEST_REPORT` DIAG-1 checklist (owner open).
+- **M7–9 mobile polish (2026-07-26):** EDA strip + tool chips `min-h-[44px]`; M9 quest intro Start before outcome chips + tighter spacing; M9/90 duration `~45–90 min` LT+EN; comparison/solution tables max-sm right-edge scroll fade.
 
 - **M12 120.25 Stage maturity A+B+C (2026-07-26):** `toolChoiceBar` 3A juostos (`autoSelect: false` + whenHint) + linked Stage copyable ×3 + `preCopyCheckBlock` (Augment human chip) + Patikra ×2. LT `modules.json` + `build-en-m10-m12`. TE: `embed:toolChoiceBar:m12:120.25:s2`, `embed:preCopyCheckBlock:m12:120.25`.
 - **M11/M12 Wave3-B Top-5 batch (2026-07-26):** `120.25` Micro Copy + Daryk; `125` Trumpai/Daryk/Patikra + 2/3 collapsible; EN orphans `126`/`127` deleted from `build-en-m10-m12`; `123` title-only incident (**Testavimas ir saugumas**) + 10.64 carry; `112` failedMessage „3A juostos (gylis ir rolės)“; `121` Stage template ≈ Minimalus eigos aprašymas. LT `modules.json` + EN rebuild. Ranking audit §7 done.
@@ -67,6 +78,8 @@ _Įrašai po 1.4.8 release._
 
 ### Fixed
 
+- **PracticeIntro type gap (2026-07-27):** `PracticeIntroContent.minScenariosToComplete` added to `modules.ts` — unblocked `typecheck` / release-preflight after PC-4 portfolio chip test.
+- **M5 handout CTA at score 0 (2026-07-27):** `TestResultsSlide` M5 branch no longer requires `rawScore > 0` — failed/empty attempts still show „Parsisiųsti Modulio 5 atmintinę (PDF)“ (PDF-1 / §5d). Test: `TestResultsSlide.m5Handout.test.tsx`.
 - **Handout/certificate PDF links + maturity (2026-07-26):** `pdfLink.drawClickableUrl` (underline + visible URL + `doc.link` hitbox); Decide CTA → hub (kol `.pro` nestabilus); sertifikatų author labels sukeisti; M6 LT tu-forma; path-fit primary CTA (M1012 orchestrator, M1315 ecosystem map); M79/M1012 `starterPrompt` + `addPromptBlock` / page numbers; SOT [`HANDOUT_MATURITY.md`](docs/development/HANDOUT_MATURITY.md); Annots smoke `handoutPdfLinks.annots.test.ts`.
 - **M12 120.25 three labs PPT gestalt (2026-07-26):** solid 3 juostos + vienodos amber human kortelės → soft row + tone accent bar + chip flow; human gate = filled chip (Approve / Escalation); Automatize be gate chip. Caption LT/EN be „modal / View full size“. `M12ThreeLabsDiagram` + layout/content.
 - **M9 practice-quest-intro domain re-select (2026-07-26):** po `moduleJourneyFocus[9]` confirm nebegalima pakeisti srities — `useEffect` sync’ino `selectedId` iš saved focus kiekvieną click. Hydrate tik iš `savedM9`/`softChoice` (be `selectedId` deps). Test: change domain after confirm.
@@ -81,9 +94,13 @@ _Įrašai po 1.4.8 release._
 
 ### Docs
 
+- **Pre-launch deep audit (2026-07-27):** GO learning (P0 closed) · ship process → tag **v1.4.9** · NO-GO monetization; preflight **130/825** po type fix; `TEST_REPORT` verdict matrix.
+- **CQ-PORTAL 48h closeout (2026-07-27):** M4 sk. 53.5 @375 — Phase A `scripts/smoke-cq-portal.mjs` (LT light/dark + EN, `fails: []`); Phase B owner-proxy Q1–Q10 panel (4 LT + 1 EN) all thresholds PASS; facilitator [`CQ_PORTAL_48H_FACILITATOR.md`](docs/development/CQ_PORTAL_48H_FACILITATOR.md). TODO/ROADMAP/TEST_REPORT; open learning P0 = none.
+- **PDF-1…6 owner smoke closeout (2026-07-27):** §5d M5/M6 PDF + M4/56 · M6/64 · @390 · entry points PASS; helper `scripts/smoke-pdf-1-6.mjs`. TODO PDF-1…6 `[x]`; ROADMAP PDF gap done; `TEST_REPORT` section; lieka CQ-PORTAL (later ✅).
+- **DIAG-1 + M1012-2 owner smoke closeout (2026-07-27):** Playwright @375×667 light/dark — DIAG-1 (M7/71·73·731·74, M9/93, M8/80) + M1012-2 C1–C6 (+C5b) LT/EN hotspots; no `docs/` / bare HITL / curriculum-ID chrome; no product code fix. Helper `scripts/smoke-diag1-m1012.mjs`. TODO/ROADMAP/TEST_REPORT gates closed; lieka CQ-PORTAL (PDF later ✅).
 - **Audit remediacija docs BLOCK (2026-07-26):** TE inventory rebaseline **156** (embed 33 / table 30; was 149 @ 1.4.8); DIAGRAM_KIT + LMS W5 checklist → depth/roles lab (`m10DepthRoles*`, ne `m10TaxonomyLayout`); M9 MUST live `90→93.1→93.2→93→92` (PRACTICE_CLOSER / turinio / backlog / TEST_REPORT); TODO Learning QA – CQ-M79 closed, CQ-PORTAL open P0.
 - **TE overlay 10.65 table index (2026-07-26):** `table:m10:10.65:s4` → `s7` (po W3a section reorder) – `audit:teaching-elements --strict` green.
-- **CQ-M79-1/2 browser smoke closeout (2026-07-26):** savininkas @375px — S1–S7 + E1–E6 PASS; `TEST_REPORT` Browser ✅; TODO CQ-M79-1/2 `[x]`; ROADMAP M7–9 gap done; `07_08_09_backlog` §12–14; lieka Portal 48h / PDF / M1012-2 / DIAG-1. Be JSON/UI.
+- **CQ-M79-1/2 browser smoke closeout (2026-07-26):** savininkas @375px — S1–S7 + E1–E6 PASS; `TEST_REPORT` Browser ✅; TODO CQ-M79-1/2 `[x]`; ROADMAP M7–9 gap done; `07_08_09_backlog` §12–14; lieka Portal 48h / PDF (M1012-2 / DIAG-1 later ✅ 2026-07-27). Be JSON/UI.
 - **M11/M12 Wave3 ranking audit (2026-07-26):** `docs/development/M11_M12_SLIDE_RANKING_AUDIT.md` – 16 skaidrių 5 ašių balai; Path Test pass + practice gaps; Top 8 / Top 5 frozen (120.25, 125, 123, 112, 121); EN orphans 126/127. TODO `M1012-W3R`. Be JSON/UI.
 - **M10 slide ranking audit (2026-07-26):** `docs/development/M10_SLIDE_RANKING_AUDIT.md` – 30 skaidrių registry + 5 ašių balai (UI/UX/Journey/Maturity/TE); Top 8 worst-first; next batch Top 5 frozen. TODO `M1012-R`. Be JSON/UI.
 - **M16–18 parking lot §8 (2026-07-26):** `turinio_pletra_moduliai_16_17_18.md` – freeze, un-defer gates (M79+Portal+product call), F1–F8 checklist; TODO/ROADMAP Deferred; be eilės/JSON.

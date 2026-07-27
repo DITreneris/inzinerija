@@ -1434,10 +1434,10 @@
             "duration": "~20 min quick start / ~60–90 min full path",
             "minScenariosToComplete": 1,
             "firstActionCTA": "Start with the quick path: create one hero image with the prompt you used. For the full path – continue into video, audio and edit.",
-            "recommendedStart": "After you choose: quick path ends at the hero image (150.5); full path continues 151–154.",
+            "recommendedStart": "After you choose: the quick path ends at the hero image; the full path continues with optional video, audio and edit steps.",
             "recommendedSlideIds": [150.5, 150.25],
-            "primaryPathIntro": "Required minimum: hero image (150.5). After the quick start you can go to the summary.",
-            "taskOneLiner": "Complete 150.5 to finish the module; 151–154 – optional full mini campaign path.",
+            "primaryPathIntro": "Required minimum: quick start (hero image). After that you can go to the summary.",
+            "taskOneLiner": "Finish the quick start (hero image) to complete the module; video, audio and edit are the optional full path.",
             "howToUseModule": {
               "heading": "Choose your path",
               "short": {

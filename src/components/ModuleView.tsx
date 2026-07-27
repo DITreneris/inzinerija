@@ -229,7 +229,7 @@ function ModuleView({
   progress,
   totalModules,
 }: ModuleViewProps) {
-  const { t } = useTranslation(['module', 'common']);
+  const { t } = useTranslation(['module', 'common', 'testPractice']);
   const { locale } = useLocale();
   const modules = getModulesSync(locale);
 
@@ -592,6 +592,22 @@ function ModuleView({
     const doneCount = completed.filter((id) => scenarioIds.has(id)).length;
     return doneCount >= minRequired;
   }, [moduleId, module, progress.completedTasks, practiceScenarioSlides]);
+
+  const m3PortfolioProgress = useMemo(() => {
+    if (moduleId !== 3) return null;
+    const total = practiceScenarioSlides.length;
+    if (total === 0) return null;
+    const completed = progress.completedTasks[3] ?? [];
+    const scenarioIds = new Set(practiceScenarioSlides.map((s) => s.slideId));
+    const done = completed.filter((id) => scenarioIds.has(id)).length;
+    return { done, total, min: 2 };
+  }, [moduleId, progress.completedTasks, practiceScenarioSlides]);
+
+  const showM3PortfolioChip =
+    m3PortfolioProgress != null &&
+    currentSlideData != null &&
+    (currentSlideData.type === 'practice-intro' ||
+      currentSlideData.type === 'practice-scenario');
 
   const onNavigateToSlide = useCallback(
     (slideIndex: number) => {
@@ -1048,6 +1064,21 @@ function ModuleView({
                   >
                     {t('moduleLabel', { n: moduleIndex + 1 })}
                   </span>
+                  {showM3PortfolioChip && m3PortfolioProgress && (
+                    <span
+                      className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50"
+                      aria-label={t('testPractice:m3PortfolioChipAria', {
+                        done: m3PortfolioProgress.done,
+                        total: m3PortfolioProgress.total,
+                        min: m3PortfolioProgress.min,
+                      })}
+                    >
+                      {t('testPractice:m3PortfolioChip', {
+                        done: m3PortfolioProgress.done,
+                        total: m3PortfolioProgress.total,
+                      })}
+                    </span>
+                  )}
                   {isModuleCompleted && (
                     <span className="badge-success">
                       <CheckCircle className="w-3 h-3 mr-1" />
@@ -1064,6 +1095,15 @@ function ModuleView({
                           : t('completedLabel')}
                     </span>
                   )}
+                  {currentSlideData.recommended &&
+                    !currentSlideData.optional && (
+                      <span
+                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800 dark:bg-brand-900/30 dark:text-brand-300 border border-brand-200 dark:border-brand-700/50"
+                        aria-label={t('requiredSlideAria')}
+                      >
+                        {t('common:required')}
+                      </span>
+                    )}
                   {currentSlideData.optional &&
                     (currentSlideData.badgeVariant === 'bonus' ? (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r from-accent-100 to-amber-100 dark:from-accent-900/30 dark:to-amber-900/20 text-accent-800 dark:text-accent-200 border border-accent-200 dark:border-accent-700/50">

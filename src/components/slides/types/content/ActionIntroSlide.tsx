@@ -100,6 +100,17 @@ export function ActionIntroSlide({
       <Eyebrow icon={identityIcon} accent={moduleAccent} className="mb-0">
         {tModules('moduleN', { n: moduleId })} · {levelLabel}
       </Eyebrow>
+      {moduleId === 1 && (
+        <Banner
+          variant="terms"
+          className="rounded-xl !border-slate-400"
+          ariaLabel={t('sandboxTrainerNote')}
+        >
+          <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug">
+            {t('sandboxTrainerNote')}
+          </p>
+        </Banner>
+      )}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 via-brand-900 to-gray-900 dark:from-gray-950 dark:via-brand-950 dark:to-gray-950 p-6 sm:p-8 lg:p-10 text-white">
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"

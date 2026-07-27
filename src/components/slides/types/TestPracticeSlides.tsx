@@ -1205,8 +1205,9 @@ export function TestResultsSlide({
   }));
   const hasRadarData = Object.keys(lastCategoryScores).length > 0;
 
-  // Module 5 results (content-driven from slide 514 when available)
-  if (moduleId === 5 && rawScore > 0) {
+  // Module 5 results (content-driven from slide 514 when available).
+  // Include rawScore === 0 so failed/empty attempts still expose handout CTA (PDF-1 / §5d).
+  if (moduleId === 5) {
     const manageHref = buildEcosystemUrl('manage', {
       moduleId: 5,
       touchpoint: 'test_results',
@@ -2428,6 +2429,9 @@ export function PracticeIntroSlide({
   const [selfAssessment, setSelfAssessment] = useState<
     Record<number, SelfAssessmentValue>
   >(loadModule6SelfAssessment);
+  const [m6ProjectId, setM6ProjectId] = useState<
+    'report' | 'custom-gpt' | null
+  >(null);
 
   useEffect(() => {
     if (moduleId !== 6 || Object.keys(selfAssessment).length === 0) return;
@@ -2602,16 +2606,9 @@ export function PracticeIntroSlide({
           legend={locale === 'en' ? 'Choose your project' : 'Pasirink projektą'}
           columns={2}
           size="compact"
-          value={null}
+          value={m6ProjectId}
           onChange={(id) => {
-            const slideId = id === 'report' ? 61 : 67;
-            const target = scenarioSlides?.find((s) => s.slideId === slideId);
-            if (target && onNavigateToSlide) {
-              onNavigateToSlide(target.slideIndex);
-            } else if (onNavigateToSlideById) {
-              onNavigateToSlideById(slideId);
-            }
-            // Projekto tipas ≠ Fast track (66/67 optional = COMBO/bonus, ne gylis)
+            setM6ProjectId(id as 'report' | 'custom-gpt');
           }}
           options={[
             {
@@ -2628,12 +2625,38 @@ export function PracticeIntroSlide({
               label: 'Custom GPT',
               description:
                 locale === 'en'
-                  ? 'Optional path – build your assistant step by step.'
-                  : 'Papildomas kelias – sukurk asistentą žingsnis po žingsnio.',
+                  ? 'Optional path – build your assistant. Skips the techniques buffet (COMBO / HTML / SUPER).'
+                  : 'Papildomas kelias – sukurk asistentą. Praleidžia technikų buffet (COMBO / HTML / SUPER).',
               icon: Bot,
             },
           ]}
         />
+        <div className="flex flex-col items-center gap-2 max-w-2xl mx-auto">
+          <CTAButton
+            variant="primary"
+            disabled={m6ProjectId == null}
+            aria-label={t('m6ProjectContinueAria')}
+            onClick={() => {
+              if (m6ProjectId == null) return;
+              const slideId = m6ProjectId === 'report' ? 61 : 67;
+              const target = scenarioSlides?.find((s) => s.slideId === slideId);
+              if (target && onNavigateToSlide) {
+                onNavigateToSlide(target.slideIndex);
+              } else if (onNavigateToSlideById) {
+                onNavigateToSlideById(slideId);
+              }
+            }}
+            className="min-h-[44px] px-6"
+          >
+            <ChevronRight className="w-5 h-5" aria-hidden />
+            {t('m6ProjectContinue')}
+          </CTAButton>
+          {m6ProjectId == null && (
+            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+              {t('m6ProjectSelectHint')}
+            </p>
+          )}
+        </div>
         {introContent.recommendedStart && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
             <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
@@ -3280,8 +3303,18 @@ export function PracticeIntroSlide({
                   : 'Praktinis Pritaikymas'}
               </h3>
               {isMod3 && (
-                <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50">
-                  {locale === 'en' ? '6 scenarios' : '6 scenarijai'}
+                <span
+                  className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50"
+                  aria-label={t('m3PortfolioChipAria', {
+                    done: completedCount,
+                    total: scenarioSlides?.length ?? 6,
+                    min: introContent.minScenariosToComplete ?? 2,
+                  })}
+                >
+                  {t('m3PortfolioChip', {
+                    done: completedCount,
+                    total: scenarioSlides?.length ?? 6,
+                  })}
                 </span>
               )}
             </div>

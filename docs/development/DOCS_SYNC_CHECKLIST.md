@@ -2,10 +2,22 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.8 (tag release)  
-**Testai:** 129 failai / 822 testai (HEAD Unreleased 2026-07-26; `@ tag 1.4.8` = 126/781)  
-**Data:** 2026-07-26  
+**Baseline:** 1.4.9 (tag release)  
+**Testai:** 130 failai / 825 testai (`@ tag 1.4.9`)  
+**Data:** 2026-07-27  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
+
+## Sync lentelė
+
+### Release 1.4.9 tag – 2026-07-27
+
+| #   | Failas                                         | Laukas           | Buvo                         | Turi būti                          | Done |
+| --- | ---------------------------------------------- | ---------------- | ---------------------------- | ---------------------------------- | ---- |
+| 1   | `package.json` / CHANGELOG                     | release truth    | 1.4.8 + Unreleased           | **1.4.9** + empty Unreleased       | [x]  |
+| 2   | ROADMAP / TODO / CODEBASE / DOCS_SYNC / README | version + tests  | 1.4.8 / 129/822              | **1.4.9** / **130/825**            | [x]  |
+| 3   | `TEST_REPORT`                                  | pre-launch audit | CONDITIONAL ship process     | **GO tag v1.4.9** after preflight  | [x]  |
+| 4   | Learning QA P0                                 | open blockers    | none (CQ-PORTAL…PC-4 closed) | none                               | [x]  |
+| 5   | MON-2 handoff                                  | submodule pin    | v1.4.8                       | target **v1.4.9** (marketing repo) | [x]  |
 
 ## Deploy / env matrica (viena tiesa)
 
@@ -17,8 +29,6 @@
 | **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9` | tier 0/3/6/9 | —              |
 
 CI (`test.yml`) stato MVP + M1–9; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M1–9 EN).
-
-## Sync lentelė
 
 ### Docs Lean Pass DL-0…4 (Unreleased) – 2026-07-24
 

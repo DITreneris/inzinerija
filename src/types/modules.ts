@@ -1348,6 +1348,8 @@ export interface PracticeIntroContent {
   duration?: string;
   recommendedStart?: string;
   firstActionCTA?: string;
+  /** M3/M12/M15: bent kiek scenarijų privaloma (portfolio chip / chrome). */
+  minScenariosToComplete?: number;
   howToUseModule?: {
     heading?: string;
     short?: { label: string; description?: string };

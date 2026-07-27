@@ -82,7 +82,7 @@ describe('PracticeIntroSlide pathChoice (M15)', () => {
 });
 
 describe('PracticeIntroSlide project choice (M6)', () => {
-  it('navigates to report or Custom GPT without calling onPathModeChange', () => {
+  it('soft-preselect: select then confirm navigates; does not call onPathModeChange', () => {
     const onNavigateToSlide = vi.fn();
     const onPathModeChange = vi.fn();
     renderWithProviders(
@@ -99,12 +99,57 @@ describe('PracticeIntroSlide project choice (M6)', () => {
     );
 
     expect(screen.getByRole('radiogroup')).toBeInTheDocument();
+    const continueBtn = screen.getByRole('button', {
+      name: /Tęsti į pasirinktą projektą|Tęsti į projektą/i,
+    });
+    expect(continueBtn).toBeDisabled();
+
     fireEvent.click(screen.getByRole('radio', { name: /Tyrimo ataskaita/i }));
+    expect(onNavigateToSlide).not.toHaveBeenCalled();
+    expect(continueBtn).not.toBeDisabled();
+
+    fireEvent.click(continueBtn);
     expect(onNavigateToSlide).toHaveBeenCalledWith(1);
     expect(onPathModeChange).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole('radio', { name: /Custom GPT/i }));
+    fireEvent.click(continueBtn);
     expect(onNavigateToSlide).toHaveBeenCalledWith(8);
     expect(onPathModeChange).not.toHaveBeenCalled();
+  });
+});
+
+describe('PracticeIntroSlide M3 portfolio chip', () => {
+  it('shows live N/6 from completedTasks', () => {
+    const m3Intro: Slide = {
+      id: 30,
+      title: 'Praktika',
+      subtitle: '',
+      type: 'practice-intro',
+      content: {
+        whyBenefit: 'Praktika',
+        minScenariosToComplete: 2,
+        firstActionCTA: 'Sukurk',
+      },
+    };
+    renderWithProviders(
+      <PracticeIntroSlide
+        slide={m3Intro}
+        moduleId={3}
+        progress={{ completedTasks: { 3: [31, 32] } }}
+        scenarioSlides={[
+          { slideId: 31, slideIndex: 1, title: 'A' },
+          { slideId: 32, slideIndex: 2, title: 'B' },
+          { slideId: 33, slideIndex: 3, title: 'C' },
+          { slideId: 34, slideIndex: 4, title: 'D' },
+          { slideId: 35, slideIndex: 5, title: 'E' },
+          { slideId: 36, slideIndex: 6, title: 'F' },
+        ]}
+      />
+    );
+    expect(
+      screen.getByLabelText(/Portfelis: 2 iš 6|Portfolio: 2 of 6/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText('2/6')).toBeInTheDocument();
   });
 });
