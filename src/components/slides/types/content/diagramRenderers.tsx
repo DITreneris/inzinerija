@@ -11,6 +11,7 @@ import {
   M4PromptModeSimulatorBlock,
   M10LearningLoopBlock,
   M10OrchestratorBlock,
+  M10TeamReadinessLabBlock,
   M10ThreeAStrategyBlock,
   M10ToolDecisionTreeBlock,
   M10TriggerFlowBlock,
@@ -19,6 +20,7 @@ import {
   M12ThreeLabsBlock,
   M13AecFunnelBlock,
   M13ConsistencyLockBlock,
+  M13ConsistencyLockLabBlock,
   M13MediaPipelineBlock,
   M13PostprodBlock,
   M13PromptStackBlock,
@@ -169,6 +171,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     render: () => <M10ThreeAStrategyBlock />,
   },
   {
+    key: 'm10_team_readiness_lab',
+    bodyPlacement: 'after',
+    render: () => <M10TeamReadinessLabBlock />,
+  },
+  {
     key: 'm10_agent_taxonomy',
     bodyPlacement: 'after',
     render: () => <M10DepthRolesLabBlock />,
@@ -227,6 +234,11 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
     key: 'm13_consistency_lock',
     bodyPlacement: 'after',
     render: () => <M13ConsistencyLockBlock />,
+  },
+  {
+    key: 'm13_consistency_lab',
+    bodyPlacement: 'after',
+    render: () => <M13ConsistencyLockLabBlock />,
   },
   {
     key: 'm13_media_pipeline',

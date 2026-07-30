@@ -1,7 +1,7 @@
 {
   "$schema": "./teaching-elements-overlay.schema.json",
   "version": "1.0.0",
-  "updatedAt": "2026-07-26",
+  "updatedAt": "2026-07-28",
   "description": "Curated Pattern / Shell / maturity for Teaching Elements Registry. Inventory source: audit-teaching-elements.mjs",
   "elements": [
     {
@@ -103,9 +103,9 @@
       "render": "RagDuomenuRuosimasBlock",
       "layoutSot": null,
       "contentSot": null,
-      "maturity": 2,
+      "maturity": 3,
       "owner": "SCHEME",
-      "notes": "HTML/timeline",
+      "notes": "HTML pipeline + InteractiveDiagramShell chrome; brand-active tokens (Shell spine SVG N/A)",
       "moduleId": 4,
       "slideId": 62
     },
@@ -320,6 +320,21 @@
       "slideId": 10.25
     },
     {
+      "elementId": "lab:m10_team_readiness_lab",
+      "kind": "lab",
+      "key": "m10_team_readiness_lab",
+      "pattern": "interactive-control-lab",
+      "shell": "Ne",
+      "render": "M10TeamReadinessLabBlock",
+      "layoutSot": "m10TeamReadinessModel.ts + m10TeamReadinessLabTokens.ts",
+      "contentSot": "m10TeamReadinessContent.ts",
+      "maturity": 3,
+      "owner": "SCHEME",
+      "notes": "Team DI-practice snapshot; no score; Feature Doc",
+      "moduleId": 10,
+      "slideId": 10.255
+    },
+    {
       "elementId": "lab:m10_human_control_simulator",
       "kind": "lab",
       "key": "m10_human_control_simulator",
@@ -528,6 +543,21 @@
       "notes": "W2 spine",
       "moduleId": 13,
       "slideId": 13.32
+    },
+    {
+      "elementId": "lab:m13_consistency_lab",
+      "kind": "lab",
+      "key": "m13_consistency_lab",
+      "pattern": "interactive-control-lab",
+      "shell": "Ne",
+      "render": "M13ConsistencyLockLabBlock",
+      "layoutSot": null,
+      "contentSot": "m13ConsistencyLabContent.ts",
+      "maturity": 3,
+      "owner": "SCHEME",
+      "notes": "13.325 Drift Lab: ref checklist ×4 + ChoiceControl ×5 + Simptomas|Fix; Feature Doc M13_CONSISTENCY_LOCK_LAB.md; brand-only; Shell Ne",
+      "moduleId": 13,
+      "slideId": 13.325
     },
     {
       "elementId": "diagram:m13_rule_of_thirds",
@@ -815,9 +845,9 @@
       "slideId": 49
     },
     {
-      "elementId": "embed:toolChoiceBar:m4:53:s2",
+      "elementId": "embed:toolChoiceBar:m4:53:s3",
       "kind": "embed",
-      "key": "sections[2].toolChoiceBar",
+      "key": "sections[3].toolChoiceBar",
       "pattern": "embed",
       "shell": "n/a",
       "render": null,
@@ -828,6 +858,36 @@
       "notes": "Svarbiausi DI įrankiai",
       "moduleId": 4,
       "slideId": 53
+    },
+    {
+      "elementId": "embed:preCopyCheckBlock:m4:59",
+      "kind": "embed",
+      "key": "preCopyCheckBlock",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": null,
+      "maturity": 2,
+      "owner": "CONTENT",
+      "notes": "Atviros duomenų bazės ir RAG",
+      "moduleId": 4,
+      "slideId": 59
+    },
+    {
+      "elementId": "embed:preCopyCheckBlock:m4:60",
+      "kind": "embed",
+      "key": "preCopyCheckBlock",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": null,
+      "maturity": 2,
+      "owner": "CONTENT",
+      "notes": "Darbas su RAG: atmintis, išoriniai šaltiniai ir duomenų paruošimas",
+      "moduleId": 4,
+      "slideId": 60
     },
     {
       "elementId": "embed:toolChoiceBar:m4:61:s1",
@@ -908,6 +968,21 @@
       "elementId": "embed:correctPromptPractice:m6:68",
       "kind": "embed",
       "key": "correctPromptPractice",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": null,
+      "maturity": 2,
+      "owner": "CONTENT",
+      "notes": "Praktika: Vieno puslapio tinklalapio kūrimas (HTML)",
+      "moduleId": 6,
+      "slideId": 68
+    },
+    {
+      "elementId": "embed:preCopyCheckBlock:m6:68",
+      "kind": "embed",
+      "key": "preCopyCheckBlock",
       "pattern": "embed",
       "shell": "n/a",
       "render": null,
@@ -1145,7 +1220,7 @@
       "slideId": 48
     },
     {
-      "elementId": "table:m4:53:s2",
+      "elementId": "table:m4:53:s3",
       "kind": "table",
       "key": "section.table",
       "pattern": "table",
@@ -1250,7 +1325,7 @@
       "slideId": 71.35
     },
     {
-      "elementId": "table:m4:66:s4",
+      "elementId": "table:m4:66:s5",
       "kind": "table",
       "key": "section.table",
       "pattern": "table",
@@ -1265,7 +1340,7 @@
       "slideId": 66
     },
     {
-      "elementId": "table:m4:66.25:s2",
+      "elementId": "table:m4:66.25:s3",
       "kind": "table",
       "key": "section.table",
       "pattern": "table",
@@ -2253,6 +2328,21 @@
       "notes": "SlideType vaizdo-generatorius",
       "moduleId": null,
       "slideId": null
+    },
+    {
+      "elementId": "slide-type:i2v-generatorius",
+      "kind": "slide-type",
+      "key": "i2v-generatorius",
+      "pattern": "special",
+      "shell": "Ne",
+      "render": "I2vGeneratoriusSlide",
+      "layoutSot": "docs/development/M13_I2V_CLIP_BUILDER.md",
+      "contentSot": "docs/turinio_pletra_moduliai_13_14_15.md",
+      "maturity": 2,
+      "owner": "CODING",
+      "notes": "M13 13.47 I2V clip builder; Pattern special / Shell Ne; Feature Doc M13_I2V_CLIP_BUILDER.md",
+      "moduleId": 13,
+      "slideId": 13.47
     },
     {
       "elementId": "slide-type:warm-up-quiz",

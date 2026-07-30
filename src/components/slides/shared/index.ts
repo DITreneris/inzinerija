@@ -39,6 +39,7 @@ export { default as M7DataStoryCycleBlock } from './M7DataStoryCycleBlock';
 export { default as M7ThreeAgentsBlock } from './M7ThreeAgentsBlock';
 export { default as M10TriggerFlowBlock } from './M10TriggerFlowBlock';
 export { default as M10ThreeAStrategyBlock } from './M10ThreeAStrategyBlock';
+export { default as M10TeamReadinessLabBlock } from './M10TeamReadinessLabBlock';
 export { default as M10DepthRolesLabBlock } from './M10DepthRolesLabBlock';
 export { default as M10LearningLoopBlock } from './M10LearningLoopBlock';
 export { default as M10OrchestratorBlock } from './M10OrchestratorBlock';
@@ -50,6 +51,7 @@ export { default as M4PromptModeSimulatorBlock } from './M4PromptModeSimulatorBl
 export { default as M12MultiAgentSchemaBlock } from './M12MultiAgentSchemaBlock';
 export { default as M13AecFunnelBlock } from './M13AecFunnelBlock';
 export { default as M13ConsistencyLockBlock } from './M13ConsistencyLockBlock';
+export { default as M13ConsistencyLockLabBlock } from './M13ConsistencyLockLabBlock';
 export { default as M13MediaPipelineBlock } from './M13MediaPipelineBlock';
 export { default as M13PostprodBlock } from './M13PostprodBlock';
 export { default as M13PromptStackBlock } from './M13PromptStackBlock';

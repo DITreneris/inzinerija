@@ -71,6 +71,8 @@ import { SlideLucideIcon } from '../../../icons/SlideLucideIcon';
 import SectionDivider from '../../ui/SectionDivider';
 import Banner from '../../ui/Banner';
 import ChoiceControl from '../../ui/ChoiceControl';
+import CTAButton from '../../ui/CTAButton';
+import { typographyClasses } from '../../../design-tokens';
 import type { ModuleAccent } from '../../../types/modules';
 import type {
   ActionIntroJourneyContent,
@@ -139,6 +141,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'llm_arch',
   /** M10–12 LMS polish + labs – slim chrome parity */
   'm10_three_a_strategy',
+  'm10_team_readiness_lab',
   'm10_human_control_simulator',
   'm4_prompt_mode_simulator',
   'm10_tool_decision_tree',
@@ -155,6 +158,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm13_prompt_stack',
   'm13_media_pipeline',
   'm13_consistency_lock',
+  'm13_consistency_lab',
   'm13_postprod_steps',
   'turinio_workflow',
   'm15_practice_loop',
@@ -623,7 +627,7 @@ export function ContentBlockSlide({
           </span>
           {content.preCopyCheckBlock.heading ?? t('preCopyCheckHeading')}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+        <p className={`${typographyClasses.bodyMuted} mb-3`}>
           {content.preCopyCheckBlock.question}
         </p>
         <div className="space-y-2">
@@ -661,7 +665,7 @@ export function ContentBlockSlide({
           })}
         </div>
         {preCopyCheckAnswer !== null && (
-          <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+          <p className={`mt-3 ${typographyClasses.bodyMuted}`}>
             <strong>
               {preCopyCheckAnswer === content.preCopyCheckBlock!.correct
                 ? tQuiz('correctLabel')
@@ -795,7 +799,7 @@ export function ContentBlockSlide({
             </span>
             {t('briefCheckHeading')}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          <p className={`${typographyClasses.bodyMuted} mb-3`}>
             {content.briefCheckBlock.question}
           </p>
           <div className="space-y-2">
@@ -835,7 +839,7 @@ export function ContentBlockSlide({
             })}
           </div>
           {briefCheckAnswer !== null && (
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+            <p className={`mt-3 ${typographyClasses.bodyMuted}`}>
               <strong>
                 {briefCheckAnswer === content.briefCheckBlock!.correct
                   ? tQuiz('correctLabel')
@@ -930,22 +934,22 @@ export function ContentBlockSlide({
 
       {showExpandCollapseAll && !isTabsMode && (
         <div className="flex flex-wrap items-center justify-end gap-2">
-          <button
-            type="button"
+          <CTAButton
+            variant="secondary"
             onClick={expandAll}
-            className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="px-4 py-2 text-sm rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
             aria-label={t('expandAllAria')}
           >
             {t('expandAllLabel')}
-          </button>
-          <button
-            type="button"
+          </CTAButton>
+          <CTAButton
+            variant="secondary"
             onClick={collapseAll}
-            className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="px-4 py-2 text-sm rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
             aria-label={t('collapseAllAria')}
           >
             {t('collapseAllLabel')}
-          </button>
+          </CTAButton>
         </div>
       )}
 
@@ -1200,8 +1204,8 @@ export function ContentBlockSlide({
                       <div
                         className={
                           isOptional
-                            ? 'text-sm text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line'
-                            : 'text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line'
+                            ? `${typographyClasses.bodyMuted} whitespace-pre-line`
+                            : `${typographyClasses.body} text-gray-700 dark:text-gray-300 whitespace-pre-line`
                         }
                       >
                         {renderBodyWithBold(section.body)}
@@ -1551,7 +1555,9 @@ export function ContentBlockSlide({
                             ) : null}
                           </div>
                           {isComparison && section.body && (
-                            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                            <p
+                              className={`mt-2 ${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                            >
                               {renderBodyWithBold(section.body)}
                             </p>
                           )}
@@ -1730,7 +1736,9 @@ export function ContentBlockSlide({
             </div>
           );
           const toolsIntroBlock = content.toolsIntro ? (
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-6`}
+            >
               {content.toolsIntro}
             </p>
           ) : null;
@@ -1883,15 +1891,15 @@ export function ContentBlockSlide({
             />
           </Banner>
           <div>
-            <button
-              type="button"
+            <CTAButton
+              variant="secondary"
               onClick={() => setShowCorrectPromptSolution(true)}
-              className="btn-secondary px-4 py-2 text-sm min-h-[44px] rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              className="px-4 py-2 text-sm rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
               aria-expanded={showCorrectPromptSolution}
               aria-controls="correct-prompt-solution"
             >
               {practice.revealButtonLabel}
-            </button>
+            </CTAButton>
           </div>
           {showCorrectPromptSolution && (
             <div

@@ -80,6 +80,15 @@ describe('diagramRenderers registry contract', () => {
     expect(consistency.textContent).toContain('Consistency body');
     expect(consistency.querySelectorAll('nav button')).toHaveLength(4);
 
+    const { container: consistencyLab } = renderDiagram(
+      'm13_consistency_lab',
+      'Consistency lab body'
+    );
+    expect(consistencyLab.textContent).toContain('Consistency lab body');
+    expect(
+      within(consistencyLab).getAllByRole('radio').length
+    ).toBeGreaterThanOrEqual(2);
+
     const { container: postprod } = renderDiagram(
       'm13_postprod_steps',
       'Postprod body'
@@ -132,6 +141,16 @@ describe('diagramRenderers registry contract', () => {
     expect(humanControl.textContent).toContain('Kontrolės režimas');
     expect(humanControl.querySelector('img')).toBeNull();
     expect(humanControl.querySelectorAll('nav button')).toHaveLength(0);
+
+    const { container: teamReadiness } = renderDiagram(
+      'm10_team_readiness_lab',
+      'Team readiness body'
+    );
+    expect(teamReadiness.textContent).toContain('Team readiness body');
+    expect(teamReadiness.textContent).toContain('Komandos naudojimas');
+    expect(teamReadiness.textContent).toContain('Be balo');
+    expect(teamReadiness.querySelector('img')).toBeNull();
+    expect(teamReadiness.querySelectorAll('nav button')).toHaveLength(0);
 
     const { container: promptMode } = renderDiagram(
       'm4_prompt_mode_simulator',

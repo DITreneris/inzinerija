@@ -9,7 +9,9 @@ import {
   getM13ConsistencyLockSteps,
 } from './m13ConsistencyLockContent';
 import type { M10Locale } from './m10DiagramContent';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
+import { M13_CONSISTENCY_LOCK_TONES } from './contentTrackDiagramTones';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
@@ -71,12 +73,16 @@ export default function M13ConsistencyLockDiagram({
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDark);
+  const track = getContentTrackColors(isDark);
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM13ConsistencyLockSteps(locale);
   const chrome = getM13ConsistencyLockChrome(locale);
   const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
     resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
   const typography = DIAGRAM_TOKENS.typography;
+  const uniqueTones = [...new Set(M13_CONSISTENCY_LOCK_TONES)];
 
   return (
     <svg
@@ -94,7 +100,7 @@ export default function M13ConsistencyLockDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
         <marker
           id={`m13-cons-arrow-${uid}`}
@@ -112,16 +118,22 @@ export default function M13ConsistencyLockDiagram({
             strokeWidth="0.5"
           />
         </marker>
-        <linearGradient
-          id={`m13-cons-step-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
+        {uniqueTones.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`m13-cons-tone-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
       </defs>
       <rect
         width={viewBoxWidth}
@@ -167,6 +179,7 @@ export default function M13ConsistencyLockDiagram({
       </text>
       {stepBoxes.map((box, i) => {
         const [x, y, w, h] = box;
+        const tone = M13_CONSISTENCY_LOCK_TONES[i];
         const isActive = currentStep === i;
         const opacity = isActive
           ? DIAGRAM_TOKENS.opacity.active
@@ -185,8 +198,8 @@ export default function M13ConsistencyLockDiagram({
                 width={w}
                 height={h}
                 rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#m13-cons-step-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
+                fill={`url(#m13-cons-tone-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : toneColors[tone].stroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active

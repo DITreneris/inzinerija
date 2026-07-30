@@ -18,6 +18,8 @@ const SHORT_TITLE_EN = {
   'Kontrolinis taškas: ciklas': 'Checkpoint: agent cycle',
   'Savitikra: ciklas': 'Warm-up: cycle',
   '3A strategija': '3A strategy',
+  'Komandos pasirengimas': 'Team readiness',
+  'Ar komanda pasirengusi agentiniam darbui?': 'Is the team ready for agentic work?',
   'Kada tvirtina žmogus?': 'When does a human approve?',
   'Rolės ir sisteminis promptas': 'Role and system prompt',
   'DI agentų tipai ir rolės': 'Agent types and roles',
@@ -268,6 +270,37 @@ const en = {
                   '**Portfolio rule:** first inventory ~10 processes – keep most on rules (**Automatize**); use agents only where value clearly outweighs error cost.\n\n**Band rule:** need a sign-off or tone/fact approval → **Augment**; stable template and cheap errors → **Automatize**; **Autonomize** – only with a limit, escalation and audit.\n\n**Next step:** when a human must approve – slide **When does a human approve?**',
                 collapsible: true,
                 collapsedByDefault: false,
+              },
+            ],
+          },
+        },
+        {
+          id: 10.255,
+          title: 'Is the team ready for agentic work?',
+          subtitle:
+            'A quick team AI-practice snapshot before control rules',
+          shortTitle: 'Team readiness',
+          content: {
+            sections: [
+              {
+                heading: 'In short',
+                body:
+                  'This is a **moment-in-time team practice snapshot**, not a formal maturity test. Choose how the team uses AI, how it structures prompts and how it learns from outcomes. The weakest dimension shows one next action before increasing autonomy.',
+                blockVariant: 'accent',
+              },
+              {
+                heading: 'Do this now',
+                body:
+                  'Pick one state in each of the three dimensions. The lab generates a team readiness profile you can use before choosing a human-control rule on the next slide.',
+                image: 'm10_team_readiness_lab',
+                imageAlt: 'Team readiness for agentic work lab',
+                blockVariant: 'brand',
+              },
+              {
+                heading: 'Check',
+                body:
+                  'Can you name the **one habit** the team needs to strengthen before agentic work? If you chose “systematic” everywhere, do you have evidence: a shared template, owner and review rhythm? If not – mark “fragmented”.',
+                blockVariant: 'accent',
               },
             ],
           },

@@ -250,9 +250,38 @@
                 "collapsedByDefault": false
               }
             ],
-            "footer": "Next – slide 7: When does a human approve?"
+            "footer": "Next – slide 7: Team readiness"
           },
           "shortTitle": "3A strategy"
+        },
+        {
+          "id": 10.255,
+          "title": "Is the team ready for agentic work?",
+          "subtitle": "A quick team AI-practice snapshot before control rules",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "This is a **moment-in-time team practice snapshot**, not a formal maturity test. Choose how the team uses AI, how it structures prompts and how it learns from outcomes. The weakest dimension shows one next action before increasing autonomy.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pick one state in each of the three dimensions. The lab generates a team readiness profile you can use before choosing a human-control rule on the next slide.",
+                "image": "m10_team_readiness_lab",
+                "imageAlt": "Team readiness for agentic work lab",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Can you name the **one habit** the team needs to strengthen before agentic work? If you chose “systematic” everywhere, do you have evidence: a shared template, owner and review rhythm? If not – mark “fragmented”.",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 8: When does a human approve?"
+          },
+          "shortTitle": "Team readiness"
         },
         {
           "id": 10.26,
@@ -279,7 +308,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 8: Role and system prompt"
+            "footer": "Next – slide 9: Role and system prompt"
           },
           "shortTitle": "When does a human approve?"
         },
@@ -323,7 +352,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 9: Agent types and roles"
+            "footer": "Next – slide 10: Agent types and roles"
           },
           "shortTitle": "Role and system prompt"
         },
@@ -363,7 +392,7 @@
                 "collapsedByDefault": false
               }
             ],
-            "footer": "Next – slide 10: Checkpoint: roles"
+            "footer": "Next – slide 11: Checkpoint: roles"
           },
           "shortTitle": "Agent types and roles"
         },
@@ -394,7 +423,7 @@
               "AI agent workflow step.",
               "AI agent workflow step."
             ],
-            "footer": "Next – slide 11: 5 workflow patterns"
+            "footer": "Next – slide 12: 5 workflow patterns"
           },
           "shortTitle": "Checkpoint: roles"
         },
@@ -488,7 +517,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 12: Warm-up: workflow"
+            "footer": "Next – slide 13: Warm-up: workflow"
           },
           "shortTitle": "5 workflow patterns"
         },
@@ -537,7 +566,7 @@
                 "explanation": "Generator + evaluator creates a draft first, then checks quality and returns it for fixes."
               }
             ],
-            "footer": "Next – slide 13: Orchestration walkthrough"
+            "footer": "Next – slide 14: Orchestration walkthrough"
           }
         },
         {
@@ -576,7 +605,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 14: Multi-agent → workflow"
+            "footer": "Next – slide 15: Multi-agent → workflow"
           },
           "shortTitle": "Orchestration walkthrough"
         },
@@ -589,7 +618,7 @@
             "title": "Multi-agent → workflow",
             "subtitle": "Patterns + orch differences – epilogue; next: learning loop and tools.",
             "sectionNumber": "M10",
-            "footer": "Next – slide 15: Closed learning loop",
+            "footer": "Next – slide 16: Closed learning loop",
             "celebrationText": "Great! 5 patterns and router ≠ orchestrator are in your toolkit.",
             "nextSteps": [
               "Closed learning loop – how mistakes become rules and skills.",
@@ -668,7 +697,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 16: Tool selection"
+            "footer": "Next – slide 17: Tool selection"
           },
           "shortTitle": "Closed learning loop"
         },
@@ -705,7 +734,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 17: Agent or plain prompt"
+            "footer": "Next – slide 18: Agent or plain prompt"
           },
           "shortTitle": "Tool selection"
         },
@@ -745,7 +774,7 @@
                 "copyable": "ROLE\nYou are [domain / role]. Your responsibility – [what you do]. You have access to [search / calculator / API]. Do not: [limits, e.g. do not invent data].\n\nTASK (step by step)\n(1) [First step, e.g. search X]\n(2) [Second step, e.g. pick 3–5 sources]\n(3) [Third step, e.g. write summary]\n\nTOOLS\nUse [search / tool] when [when]. If facts needed – use search or write “I don’t know”. List sources at the end.\n\nFORMAT\n[Table / list / report]. Language: English. Sources: cite them.\n\nERROR HANDLING\nIf the task cannot be completed (missing data, timeout): write “Failed: [reason]” and suggest what to fix. Do not write an empty answer."
               }
             ],
-            "footer": "Next – slide 18: Checkpoint: agent prompt"
+            "footer": "Next – slide 19: Checkpoint: agent prompt"
           },
           "shortTitle": "Agent or plain prompt"
         },
@@ -780,7 +809,7 @@
               "AI agent workflow step.",
               "AI agent workflow step."
             ],
-            "footer": "Next – slide 19: Errors and limits"
+            "footer": "Next – slide 20: Errors and limits"
           },
           "shortTitle": "Checkpoint: agent prompt"
         },
@@ -812,7 +841,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 20: Warm-up: safeguards"
+            "footer": "Next – slide 21: Warm-up: safeguards"
           },
           "shortTitle": "Errors and limits"
         },
@@ -861,7 +890,7 @@
                 "explanation": "The best answer keeps the agent goal, tools, limits and error handling clear."
               }
             ],
-            "footer": "Next – slide 21: Core concepts"
+            "footer": "Next – slide 22: Core concepts"
           }
         },
         {
@@ -920,7 +949,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 22: Workflow → automation"
+            "footer": "Next – slide 23: Workflow → automation"
           },
           "shortTitle": "Core concepts"
         },
@@ -933,7 +962,7 @@
             "title": "Workflow → automation",
             "subtitle": "Next: Zapier / Make / n8n, hosting (Railway-style) and optional spec/testing.",
             "sectionNumber": "M10",
-            "footer": "Next – slide 23: Automation tools",
+            "footer": "Next – slide 24: Automation tools",
             "celebrationText": "Nice! The workflow chain and core concepts are clear.",
             "nextSteps": [
               "Business automation tools – when Zapier, Make, n8n or Power Automate.",
@@ -1044,7 +1073,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 24: Where it runs"
+            "footer": "Next – slide 25: Where it runs"
           },
           "shortTitle": "Automation tools"
         },
@@ -1172,7 +1201,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 25: GitHub as code source"
+            "footer": "Next – slide 26: GitHub as code source"
           },
           "shortTitle": "Where it runs"
         },
@@ -1229,7 +1258,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 26: Minimal workflow brief"
+            "footer": "Next – slide 27: Minimal workflow brief"
           },
           "shortTitle": "GitHub as code source"
         },
@@ -1266,7 +1295,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 27: Testing and security"
+            "footer": "Next – slide 28: Testing and security"
           },
           "shortTitle": "Minimal workflow brief"
         },
@@ -1352,7 +1381,7 @@
                 "blockVariant": "brand"
               }
             ],
-            "footer": "Next – slide 28: QC evaluator"
+            "footer": "Next – slide 29: QC evaluator"
           },
           "shortTitle": "Testing and security"
         },
@@ -1392,7 +1421,7 @@
               "templateLabel": "Steps: evaluator checks your specification",
               "template": "1. Copy the evaluator prompt from the block above.\n2. Paste it into AI.\n3. Paste your agent prompt or workflow specification.\n4. Fix at least one point the evaluator marked as “fix”.\n5. Run the evaluation again and check whether all 5 criteria have a clear answer.\n\nThe evaluator and your prompt are not competitors: the evaluator helps improve your artefact before practice."
             },
-            "footer": "Next – slide 29: Glossary"
+            "footer": "Next – slide 30: Glossary"
           }
         },
         {
@@ -1488,7 +1517,7 @@
                 "definition": "A key term used in agent engineering."
               }
             ],
-            "footer": "Next – slide 30: Module 10 summary"
+            "footer": "Next – slide 31: Module 10 summary"
           },
           "shortTitle": "Glossary"
         },

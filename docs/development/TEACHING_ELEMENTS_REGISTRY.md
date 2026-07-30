@@ -41,7 +41,7 @@ Prieš „done“ naujam mokymo elementui ([`DOCS_MAINTENANCE.md`](DOCS_MAINTENA
 1. Curriculum SOT + skaidrių eilė (jei nauja skaidrė).
 2. **Master overlay** eilutė (`elementId`, Pattern, Shell, render) **+** satelitas (jei `diagram` / `lab` / `off-renderer`).
 3. UI primityvas → GOLDEN + `src/components/ui/README.md`.
-4. Owner agent docs; `lessons.md` jei pitfall.
+4. Owner agent docs; `docs/development/lessons/<agentas>.md` jei naujas pitfall.
 5. `CHANGELOG`; prieš release – `DOCS_SYNC` + `audit:teaching-elements --strict`.
 
 **Blokuojantis drift:** naujas `image` key / off-renderer / lab be overlay Pattern + Shell.
@@ -66,7 +66,7 @@ teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
 
 ## Faktinė bazė (audito baseline)
 
-Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline 2026-07-26 (`audit:teaching-elements:strict`):
+Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline 2026-07-26 (`audit:teaching-elements:strict`); overlay `updatedAt` **2026-07-28** (RAG maturity 3 + preCopy M4/59–60/M6/68):
 
 | Bucket                         |                N |
 | ------------------------------ | ---------------: |
@@ -102,6 +102,7 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `diagram:m12_three_labs`            | M12/120.25                | `comparison`                   | Ne    |        3 | M12ThreeLabsBlock                                |
 | `diagram:m13_aec_funnel`            | M13/13.1                  | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
 | `diagram:m13_consistency_lock`      | M13/13.32                 | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
+| `lab:m13_consistency_lab`           | M13/13.325                | `interactive-control-lab`      | Ne    |        3 | M13ConsistencyLockLabBlock (Drift + Ref)         |
 | `diagram:m13_media_pipeline`        | M13/13.12                 | `linear-process`               | Taip  |        4 | M13MediaPipelineBlock                            |
 | `diagram:m13_postprod_steps`        | M13/13.52                 | `linear-process`               | Taip  |        4 | M13PostprodBlock                                 |
 | `diagram:m13_prompt_stack`          | M13/13.2                  | `stack`                        | Taip  |        4 | M13PromptStackBlock                              |
@@ -116,14 +117,16 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `diagram:m7_master_workflow`        | M7/74                     | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock context=m7_master            |
 | `diagram:m7_three_agents_flow`      | M7/94                     | `roles-hub`                    | Taip  |        3 | M7ThreeAgentsBlock                               |
 | `diagram:m9_data_workflow`          | M9/93                     | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock                              |
-| `diagram:rag_duomenu_ruosimas`      | M4/62                     | `linear-process`               | Ne    |        2 | RagDuomenuRuosimasBlock                          |
+| `diagram:rag_duomenu_ruosimas`      | M4/62                     | `linear-process`               | Ne    |        3 | RagDuomenuRuosimasBlock                          |
 | `diagram:rl_process_diagram`        | M4/48                     | `cycle-feedback`               | Taip  |        3 | RlProcessBlock                                   |
 | `diagram:strukturuotas_procesas`    | M4/43                     | `linear-process`               | Ne    |        3 | StrukturuotasProcesasBlock                       |
 | `diagram:turinio_workflow`          | M13/13.11                 | `linear-process`               | Taip  |        4 | TurinioWorkflowBlock                             |
 | `lab:m10_agent_taxonomy`            | M10/10.45                 | `interactive-control-lab`      | Ne    |        3 | M10DepthRolesLabBlock + M10DepthRolesMiniDiagram |
 | `lab:m10_human_control_simulator`   | M10/10.26                 | `interactive-control-lab`      | Ne    |        4 | M10HumanControlSimulatorBlock                    |
+| `lab:m10_team_readiness_lab`        | M10/10.255                | `interactive-control-lab`      | Ne    |        3 | M10TeamReadinessLabBlock                         |
 | `lab:m4_prompt_mode_simulator`      | M4/54                     | `interactive-control-lab`      | Ne    |        3 | M4PromptModeSimulatorBlock                       |
 | `slide-type:practice-quest-intro`   | M9/90                     | `interactive-control-lab`      | Ne    |        2 | PracticeQuestIntroSlide                          |
+| `slide-type:i2v-generatorius`       | M13/13.47                 | `special`                      | Ne    |        2 | I2vGeneratoriusSlide                             |
 | `lab:m9_workflow_step_prompts`      | M9/93                     | `interactive-control-lab`      | Ne    |        3 | M9WorkflowStepCopyBlock                          |
 | `off:hallucination-pipeline`        | M7/67.7                   | `linear-process`               | Taip  |        3 | HallucinationPipelineBlock                       |
 | `off:pipeline-context-engineering`  | M4/45                     | `comparison+linear-process`    | Ne    |        2 | ContextEngineeringPipelineDiagram                |
@@ -179,7 +182,8 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `test-results`            |     0 | assessment |        |
 | `test-section`            |     0 | assessment |        |
 | `transition-3-to-6`       |     0 | stuburas   |        |
-| `vaizdo-generatorius`     |     0 | special    |        |
+| `vaizdo-generatorius`     |     1 | special    |        |
+| `i2v-generatorius`        |     1 | special    |        |
 | `warm-up-quiz`            |     0 | assessment |        |
 | `workflow-summary`        |     0 | special    |        |
 
@@ -194,14 +198,17 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `embed:instructGptQuality:m4:44`       | `instructGptQuality`                                | M4/44               |
 | `embed:interactivePipeline:m4:45`      | `interactivePipeline`                               | M4/45               |
 | `embed:pipelineDiagram:m4:45`          | `pipelineDiagram:context-engineering`               | M4/45               |
+| `embed:preCopyCheckBlock:m4:59`        | `preCopyCheckBlock`                                 | M4/59               |
+| `embed:preCopyCheckBlock:m4:60`        | `preCopyCheckBlock`                                 | M4/60               |
 | `embed:preCopyCheckBlock:m5:47`        | `preCopyCheckBlock`                                 | M5/47               |
+| `embed:preCopyCheckBlock:m6:68`        | `preCopyCheckBlock`                                 | M6/68               |
 | `embed:preCopyCheckBlock:m7:67`        | `preCopyCheckBlock`                                 | M7/67               |
 | `embed:preCopyCheckBlock:m7:67.8`      | `preCopyCheckBlock`                                 | M7/67.8             |
 | `embed:preCopyCheckBlock:m7:732`       | `preCopyCheckBlock`                                 | M7/732              |
 | `embed:presentationToolsBlock:m5:47.5` | `presentationToolsBlock`                            | M5/47.5             |
 | `embed:recognitionExercise:m13:13.34`  | `recognitionExercise`                               | M13/13.34           |
 | `embed:recognitionExercise:m4:39.5`    | `recognitionExercise`                               | M4/39.5             |
-| `embed:toolChoiceBar:m4:53:s2`         | `sections[2].toolChoiceBar`                         | M4/53               |
+| `embed:toolChoiceBar:m4:53:s3`         | `sections[3].toolChoiceBar`                         | M4/53               |
 | `embed:toolChoiceBar:m4:61:s1`         | `sections[1].toolChoiceBar`                         | M4/61               |
 | `embed:toolChoiceBar:m7:71.35:s1`      | `sections[1].toolChoiceBar`                         | M7/71.35            |
 | `embed:toolChoiceBar:m7:67:s1`         | `sections[1].toolChoiceBar` (manipulation-contrast) | M7/67               |
@@ -230,15 +237,15 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `table:m4:54.5:s7`   | M4/54.5   | ne              | Sisteminis promptas ir Master promptas: skirtumai                  |
 | `table:m4:55:s9`     | M4/55     | ne              | Proceso promptas: savo darbo eigos sudarymas                       |
 | `table:m4:48:s3`     | M4/48     | ne              | Kas yra paskatinamasis mokymas (RL / RLHF)?                        |
-| `table:m4:53:s2`     | M4/53     | ne              | Svarbiausi DI įrankiai                                             |
+| `table:m4:53:s3`     | M4/53     | ne              | Svarbiausi DI įrankiai                                             |
 | `table:m4:59:s5`     | M4/59     | ne              | Atviros duomenų bazės ir RAG                                       |
 | `table:m4:60:s6`     | M4/60     | ne              | Darbas su RAG: atmintis, išoriniai šaltiniai ir duomenų paruošimas |
 | `table:m4:61:s1`     | M4/61     | ne              | Kada ką? (solutionMatrixStyle + toolChoiceBar)                     |
 | `table:m4:61:s2`     | M4/61     | ne              | Tipinė eiga (30–45 min)                                            |
 | `table:m7:71.35:s1`  | M7/71.35  | ne              | Kada ką? (sync M4/61)                                              |
 | `table:m7:71.35:s2`  | M7/71.35  | ne              | Tipinė eiga (30–45 min) (sync M4/61)                               |
-| `table:m4:66:s4`     | M4/66     | ne              | Tokenų ekonomika                                                   |
-| `table:m4:66.25:s2`  | M4/66.25  | ne              | Konteksto degradacija: kodėl modeliai „pamiršta“?                  |
+| `table:m4:66:s5`     | M4/66     | ne              | Tokenų ekonomika                                                   |
+| `table:m4:66.25:s3`  | M4/66.25  | ne              | Konteksto degradacija: kodėl modeliai „pamiršta“?                  |
 | `table:m4:66.6:s5`   | M4/66.6   | ne              | Neigiami promptai (ko vengti)                                      |
 | `table:m5:47.2:s2`   | M5/47.2   | taip            | Tema-antraštė vs teiginys-antraštė                                 |
 | `table:m6:68:s3`     | M6/68     | ne              | Praktika: Vieno puslapio tinklalapio kūrimas (HTML)                |

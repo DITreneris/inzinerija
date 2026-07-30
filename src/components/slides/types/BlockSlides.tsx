@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { CopyButton, TemplateBlock } from '../shared';
 import Banner from '../../ui/Banner';
+import Badge from '../../ui/Badge';
 import { getColorClasses } from '../utils/colorStyles';
 import type {
   QualityCriteria,
@@ -87,9 +88,9 @@ export function MetaBlockSlide({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="bg-rose-50 dark:bg-rose-900/10 p-5 rounded-xl border-2 border-rose-200 dark:border-rose-800 relative">
           <div className="flex justify-between items-start mb-3">
-            <span className="badge bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">
+            <Badge className="bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300">
               {t('blockMetaBadLabel')}
-            </span>
+            </Badge>
             <CopyButton text={t('blockMetaBadExample')} size="sm" />
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-2">
@@ -102,9 +103,9 @@ export function MetaBlockSlide({
 
         <div className="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 relative">
           <div className="flex justify-between items-start mb-3">
-            <span className="badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
+            <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">
               {t('blockMetaGoodLabel')}
-            </span>
+            </Badge>
             <CopyButton text={goodExample} size="sm" />
           </div>
           <p className="text-sm text-gray-700 dark:text-gray-300 italic">

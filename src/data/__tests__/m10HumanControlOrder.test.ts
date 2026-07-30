@@ -11,16 +11,29 @@ function getModuleSlides(
 }
 
 describe('M10 human-control slide order', () => {
-  it('keeps 10.25 → 10.26 → 10.3 in LT SOT', () => {
+  it('keeps 10.25 → 10.255 → 10.26 → 10.3 in LT SOT', () => {
     const slides = getModuleSlides(modulesData as { modules: Module[] }, 10);
     const ids = slides.map((slide) => slide.id);
     const i25 = ids.indexOf(10.25);
+    const i255 = ids.indexOf(10.255);
     const i26 = ids.indexOf(10.26);
     const i3 = ids.indexOf(10.3);
 
     expect(i25).toBeGreaterThanOrEqual(0);
-    expect(i26).toBe(i25 + 1);
+    expect(i255).toBe(i25 + 1);
+    expect(i26).toBe(i255 + 1);
     expect(i3).toBe(i26 + 1);
+
+    const slide255 = slides[i255];
+    expect(slide255.type).toBe('content-block');
+    expect(slide255.title).toMatch(/pasirengusi agentiniam darbui/i);
+    const readinessSections =
+      (slide255.content as { sections?: { image?: string }[] })?.sections ?? [];
+    expect(
+      readinessSections.some(
+        (section) => section.image === 'm10_team_readiness_lab'
+      )
+    ).toBe(true);
 
     const slide26 = slides[i26];
     expect(slide26.type).toBe('content-block');
@@ -34,15 +47,18 @@ describe('M10 human-control slide order', () => {
     ).toBe(true);
   });
 
-  it('keeps 10.25 → 10.26 → 10.3 in EN overlay', () => {
+  it('keeps 10.25 → 10.255 → 10.26 → 10.3 in EN overlay', () => {
     const slides = getModuleSlides(modulesEn as { modules: Module[] }, 10);
     const ids = slides.map((slide) => slide.id);
     const i25 = ids.indexOf(10.25);
+    const i255 = ids.indexOf(10.255);
     const i26 = ids.indexOf(10.26);
     const i3 = ids.indexOf(10.3);
 
-    expect(i26).toBe(i25 + 1);
+    expect(i255).toBe(i25 + 1);
+    expect(i26).toBe(i255 + 1);
     expect(i3).toBe(i26 + 1);
+    expect(slides[i255].title).toMatch(/ready for agentic work/i);
     expect(slides[i26].title).toMatch(/human approve/i);
   });
 });

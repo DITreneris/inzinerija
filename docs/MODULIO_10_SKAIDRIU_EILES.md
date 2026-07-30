@@ -16,6 +16,7 @@
 | 2a   | **10.21**  | **Kontrolinis taškas: agentų ciklas**                    | **NAUJA** – path-step greita pergalė; dalyvis patikrina 1 agentinę užklausą prieš gilesnę teoriją.                                       |
 | 2b   | **10.22**  | **Savitikra: agentų ciklas**                             | Warm-up po 10.2 / 10.21; 3 klausimai apie agentinį ciklą, paprastą promptą ir klaidos pranešimą.                                         |
 | 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatize / Augment / Autonomize.                                                                    |
+| 3a0  | **10.255** | **Ar komanda pasirengusi agentiniam darbui?**            | Komandos DI praktikos nuotrauka po 3A: naudojimas, promptų struktūra, mokymosi ritmas; be balo; silpniausia dimensija → kitas veiksmas.  |
 | 3a   | **10.26**  | **Kada tvirtina žmogus?**                                | Po 3A – kontrolės lab (risk strip + režimai; pasekmė × atšaukimas); kopijuojama taisyklė lab viduje → 10.64 / M12. Be „HITL“ antraštėje. |
 | 3b   | **10.3**   | **Rolės ir sisteminio prompto šablonas**                 | Po ciklo + 3A + žmogaus kontrolė – paprastas sisteminis promptas **prieš** multi-agent taksonomiją.                                      |
 | 4    | **10.45**  | **DI agentų tipai ir rolės**                             | Depth/roles hibridas: mini schema + decision lab (be scenarijaus); Pokalbis/Agentas/Komanda/Srautas; Copy lab viduje.                    |
