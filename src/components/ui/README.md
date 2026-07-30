@@ -20,6 +20,19 @@ import Card from './Card';
 
 ---
 
+## Badge
+
+`variant?: 'default' | 'brand' | 'accent' | 'success' | 'slate'` — status / level chip (DS 0.3.2). `default` = tik bazinis layout; custom spalvos per `className`.
+
+```tsx
+import Badge from './Badge';
+
+<Badge variant="success">Baigta</Badge>
+<Badge className="bg-rose-100 text-rose-700">Blogas</Badge>
+```
+
+---
+
 ## CTAButton
 
 `variant?: 'primary' | 'secondary' | 'accent'` — mygtukas; viduje naudoja `.btn-*` CSS (deprecated tiesioginiam JSX).
@@ -193,4 +206,6 @@ import { Zap, Layers } from 'lucide-react';
 
 **Dual radiogroup labs:** du atskiri `ChoiceControl` (ne antras chooser komponentas). Pavyzdys: `M10HumanControlSimulatorBlock` (10.26).
 
-**Proof:** `ActionIntroSlide.tsx` (M4 path), `ContentSlides.tsx` (`ActionIntroJourneySlide`), `M10HumanControlSimulatorBlock.tsx`.
+**Brand-only labs (be risk strip):** `M10DepthRolesLabBlock` (10.45), `M13ConsistencyLockLabBlock` (13.325 Drift + Ref checklist).
+
+**Proof:** `ActionIntroSlide.tsx` (M4 path), `ContentSlides.tsx` (`ActionIntroJourneySlide`), `M10HumanControlSimulatorBlock.tsx`, `M13ConsistencyLockLabBlock.tsx`.

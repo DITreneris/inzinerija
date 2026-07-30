@@ -1,7 +1,7 @@
 /**
  * ChoiceControl – exclusive choice (radiogroup).
- * GOLDEN §3.1b: default selected = brand.
- * GOLDEN §3.1c: optional `optionTone` for interactive-control-lab only.
+ * GOLDEN §3.1b: default selected = brand; Content track path may use rose (§6b).
+ * GOLDEN §3.1c: optional `optionTone` for interactive-control-lab (and §6b path).
  */
 import {
   useCallback,
@@ -34,7 +34,7 @@ export type ChoiceControlProps<T extends string = string> = {
   /** Po pasirinkimo – viena eilutė (skaitiklis / trumpas statusas) */
   statusHint?: string;
   /**
-   * Lab-only (GOLDEN §3.1c). When omitted, selected = brand (path / journey).
+   * Lab (GOLDEN §3.1c) or Content-track path (§6b rose). When omitted, selected = brand.
    * Partial map: missing ids fall back to brand.
    */
   optionTone?: Partial<Record<T, ChoiceOptionTone>>;

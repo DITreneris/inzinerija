@@ -1,6 +1,8 @@
 export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as Card } from './Card';
+export { default as Badge } from './Badge';
+export type { BadgeVariant } from './Badge';
 export { default as CTAButton } from './CTAButton';
 export { default as Banner } from './Banner';
 export { default as BrandMark } from './BrandMark';

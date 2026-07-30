@@ -117,7 +117,7 @@ export default function EnlargeableDiagram({
     if (mobileBehavior === 'reflow') {
       return (
         <div className={className} data-slide-swipe-lock>
-          <div role="img" aria-label={enlargeLabel}>
+          <div role="group" aria-label={enlargeLabel}>
             {renderContent()}
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function EnlargeableDiagram({
           </div>
         }
       >
-        <div role="img" aria-label={enlargeLabel}>
+        <div role="group" aria-label={enlargeLabel}>
           {renderContent()}
         </div>
       </MobileDiagramScroller>

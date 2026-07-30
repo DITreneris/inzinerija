@@ -11,6 +11,7 @@ import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
 import { confidenceLabel } from './confidenceLabels';
 import { useLocale } from '../../../../contexts/LocaleContext';
+import CTAButton from '../../../ui/CTAButton';
 
 interface OrderingQuestionProps {
   question: TestQuestion;
@@ -190,14 +191,15 @@ export function OrderingQuestion({
 
       {/* Check button */}
       {!isChecked && (
-        <button
+        <CTAButton
+          variant="primary"
           onClick={handleCheck}
-          className="mt-4 w-full btn-primary flex items-center justify-center gap-2 min-h-[44px]"
+          className="mt-4 w-full"
           aria-label={en ? 'Check order' : 'Patikrinti tvarką'}
         >
           <CheckCircle className="w-5 h-5" />
           {en ? 'Check order' : 'Patikrinti tvarką'}
-        </button>
+        </CTAButton>
       )}
 
       {/* Progressive hint */}

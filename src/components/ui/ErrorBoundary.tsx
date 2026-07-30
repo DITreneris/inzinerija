@@ -2,6 +2,7 @@ import { Component, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
 import i18n from 'i18next';
 import { logError } from '../../utils/logger';
+import CTAButton from './CTAButton';
 
 const RELOAD_FLAG = 'chunk-reload-attempted';
 
@@ -70,19 +71,16 @@ export default class ErrorBoundary extends Component<Props, State> {
             {i18n.t('common:errorHint')}
           </p>
           <div className="flex gap-4">
-            <button
-              onClick={this.handleRetry}
-              className="btn-secondary flex items-center gap-2"
-            >
+            <CTAButton variant="secondary" onClick={this.handleRetry}>
               <RefreshCw className="w-4 h-4" />
               {i18n.t('common:retry')}
-            </button>
-            <button
+            </CTAButton>
+            <CTAButton
+              variant="primary"
               onClick={() => window.location.reload()}
-              className="btn-primary"
             >
               {i18n.t('common:refreshPage')}
-            </button>
+            </CTAButton>
           </div>
           {import.meta.env.DEV && this.state.error && (
             <details className="mt-6 text-left w-full max-w-lg">

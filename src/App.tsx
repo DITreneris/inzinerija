@@ -28,6 +28,7 @@ import type { ModulesData } from './types/modules';
 import { getBrowserEnglishContentVariant } from './i18n';
 import { getPublicAppUrl, getOgImageUrl } from './utils/publicSiteMeta';
 import { isMagicLinkTier } from './constants/pricing';
+import { buildFooterDeepenUrl } from './constants/ecosystemUrls';
 import { moduleWord } from './utils/ltPlural';
 
 // Lazy load heavy components for better initial load
@@ -668,6 +669,15 @@ function App() {
                 aria-label={t('footer:ecosystemAria')}
               >
                 {t('footer:ecosystemLabel')}
+              </a>
+              <a
+                href={buildFooterDeepenUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+                aria-label={t('footer:deepenAria')}
+              >
+                {t('footer:deepenLabel')}
               </a>
               <a
                 href="https://t.me/prompt_anatomy"
