@@ -69,6 +69,15 @@
       "moduleId": 4
     },
     {
+      "term": "Awareness",
+      "definition": "Campaign goal – the image pulls attention with emotion and contrast; typical formats: cover, banner, social post.",
+      "moduleId": 13,
+      "unlockedBy": {
+        "moduleId": 13,
+        "slideId": 13.1
+      }
+    },
+    {
       "term": "Bonus practice",
       "definition": "Optional task after the path test – an extra Copy→Check cycle (e.g. screenshot or visualization) to lock the skill without score pressure.",
       "moduleId": 8
@@ -131,6 +140,15 @@
       "term": "Context window",
       "definition": "The maximum amount of input and output text (in tokens) the model can “see” at once; beyond that, the oldest information is dropped.",
       "moduleId": 4
+    },
+    {
+      "term": "Conversion",
+      "definition": "Campaign goal – the image drives action: product, offer, call to action (CTA); typical formats: ad layout, landing hero, “buy now” block.",
+      "moduleId": 13,
+      "unlockedBy": {
+        "moduleId": 13,
+        "slideId": 13.1
+      }
     },
     {
       "term": "Coordinator",
@@ -196,6 +214,15 @@
       "term": "EDA",
       "definition": "Exploratory data analysis – first step before models: see what is in the data, patterns, outliers. AI can help with stats, correlations, and hypotheses.",
       "moduleId": 7
+    },
+    {
+      "term": "Engagement",
+      "definition": "Campaign goal – the image makes people stop and interact with clear context; typical formats: carousel, video intro, article illustration.",
+      "moduleId": 13,
+      "unlockedBy": {
+        "moduleId": 13,
+        "slideId": 13.1
+      }
     },
     {
       "term": "ER model",

@@ -165,6 +165,142 @@ function validateCorporateTools() {
   return true;
 }
 
+/** Corporate12 profile: modules 1–12 (Horizon B production cut). */
+function validateCorporate12Modules() {
+  const schemaPath = join(__dirname, 'schemas', 'modules.schema.json');
+  const schema = loadJson(schemaPath);
+  delete schema.$id;
+  const dataPath = join(dataDir, 'modules-m1-m12.json');
+  const data = loadJson(dataPath);
+
+  const validate = ajv.compile(schema);
+  const valid = validate(data);
+  if (!valid) {
+    console.error('modules-m1-m12.json validation failed:\n');
+    validate.errors.forEach((err) => {
+      const path = err.instancePath || '/';
+      console.error(`  ${path}: ${err.message}`);
+      if (err.params?.allowedValues) console.error(`    (allowed: ${err.params.allowedValues.join(', ')})`);
+    });
+    return false;
+  }
+  if (Array.isArray(data.modules) && data.modules.some((module) => module.id > 12)) {
+    console.error('modules-m1-m12.json validation failed:\n');
+    console.error('  /modules: contains module with id > 12');
+    return false;
+  }
+  console.log('modules-m1-m12.json: OK');
+  return validateModuleIconIdentitySync(data, 'modules-m1-m12.json');
+}
+
+function validateCorporate12Glossary() {
+  const schema = loadJson(join(__dirname, 'schemas', 'glossary.schema.json'));
+  const data = loadJson(join(dataDir, 'glossary-m1-m12.json'));
+  const validate = ajv.compile(schema);
+  if (!validate(data)) {
+    console.error('glossary-m1-m12.json validation failed:\n');
+    validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+    return false;
+  }
+  if (Array.isArray(data.terms) && data.terms.some((term) => term.moduleId > 12)) {
+    console.error('glossary-m1-m12.json validation failed:\n');
+    console.error('  /terms: contains term with moduleId > 12');
+    return false;
+  }
+  console.log('glossary-m1-m12.json: OK');
+  return true;
+}
+
+function validateCorporate12Tools() {
+  const schema = loadJson(join(__dirname, 'schemas', 'tools.schema.json'));
+  const files = ['tools-m1-m12.json', 'tools-en-m1-m12.json'];
+
+  for (const file of files) {
+    const data = loadJson(join(dataDir, file));
+    const validate = ajv.compile(schema);
+    if (!validate(data)) {
+      console.error(`${file} validation failed:\n`);
+      validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+      return false;
+    }
+    if (Array.isArray(data.tools) && data.tools.some((tool) => tool.moduleId > 12)) {
+      console.error(`${file} validation failed:\n`);
+      console.error('  /tools: contains tool with moduleId > 12');
+      return false;
+    }
+    console.log(`${file}: OK`);
+  }
+  return true;
+}
+
+/** Corporate15 profile: modules 1–15 (Horizon C production cut). */
+function validateCorporate15Modules() {
+  const schemaPath = join(__dirname, 'schemas', 'modules.schema.json');
+  const schema = loadJson(schemaPath);
+  delete schema.$id;
+  const dataPath = join(dataDir, 'modules-m1-m15.json');
+  const data = loadJson(dataPath);
+
+  const validate = ajv.compile(schema);
+  const valid = validate(data);
+  if (!valid) {
+    console.error('modules-m1-m15.json validation failed:\n');
+    validate.errors.forEach((err) => {
+      const path = err.instancePath || '/';
+      console.error(`  ${path}: ${err.message}`);
+      if (err.params?.allowedValues) console.error(`    (allowed: ${err.params.allowedValues.join(', ')})`);
+    });
+    return false;
+  }
+  if (Array.isArray(data.modules) && data.modules.some((module) => module.id > 15)) {
+    console.error('modules-m1-m15.json validation failed:\n');
+    console.error('  /modules: contains module with id > 15');
+    return false;
+  }
+  console.log('modules-m1-m15.json: OK');
+  return validateModuleIconIdentitySync(data, 'modules-m1-m15.json');
+}
+
+function validateCorporate15Glossary() {
+  const schema = loadJson(join(__dirname, 'schemas', 'glossary.schema.json'));
+  const data = loadJson(join(dataDir, 'glossary-m1-m15.json'));
+  const validate = ajv.compile(schema);
+  if (!validate(data)) {
+    console.error('glossary-m1-m15.json validation failed:\n');
+    validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+    return false;
+  }
+  if (Array.isArray(data.terms) && data.terms.some((term) => term.moduleId > 15)) {
+    console.error('glossary-m1-m15.json validation failed:\n');
+    console.error('  /terms: contains term with moduleId > 15');
+    return false;
+  }
+  console.log('glossary-m1-m15.json: OK');
+  return true;
+}
+
+function validateCorporate15Tools() {
+  const schema = loadJson(join(__dirname, 'schemas', 'tools.schema.json'));
+  const files = ['tools-m1-m15.json', 'tools-en-m1-m15.json'];
+
+  for (const file of files) {
+    const data = loadJson(join(dataDir, file));
+    const validate = ajv.compile(schema);
+    if (!validate(data)) {
+      console.error(`${file} validation failed:\n`);
+      validate.errors.forEach((err) => console.error(`  ${err.instancePath || '/'}: ${err.message}`));
+      return false;
+    }
+    if (Array.isArray(data.tools) && data.tools.some((tool) => tool.moduleId > 15)) {
+      console.error(`${file} validation failed:\n`);
+      console.error('  /tools: contains tool with moduleId > 15');
+      return false;
+    }
+    console.log(`${file}: OK`);
+  }
+  return true;
+}
+
 function validateModulesEnM1012() {
   /** Partial EN overrides merged by id – not full module documents (see modulesLoader deepMerge). */
   const partialSchema = {
@@ -596,6 +732,8 @@ function main() {
   let ok = validateModules()
     && validateCoreModules()
     && validateCorporateModules()
+    && validateCorporate12Modules()
+    && validateCorporate15Modules()
     && validateModulesEnM46()
     && validateModulesEnM1012()
     && validateModulesEnM1315()
@@ -604,10 +742,14 @@ function main() {
     && validateGlossary()
     && validateCoreGlossary()
     && validateCorporateGlossary()
+    && validateCorporate12Glossary()
+    && validateCorporate15Glossary()
     && validateTools()
     && validateToolsEn()
     && validateCoreTools()
     && validateCorporateTools()
+    && validateCorporate12Tools()
+    && validateCorporate15Tools()
     && auditTools()
     && validateIntroPiePdfContent()
     && validateCertificateContent()

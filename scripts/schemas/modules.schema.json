@@ -226,7 +226,8 @@
             "section-break",
             "warm-up-quiz",
             "path-step",
-            "vaizdo-generatorius"
+            "vaizdo-generatorius",
+            "i2v-generatorius"
           ]
         },
         "shortTitle": { "type": "string" },

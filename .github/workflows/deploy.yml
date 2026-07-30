@@ -81,6 +81,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Gate policy (P2 #GP): Pages = MVP M1–6 only. Do not deploy full/M1–9 here.
       - name: Build (core production profile – moduliai 1–6)
         run: npm run build
         env:

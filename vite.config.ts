@@ -5,15 +5,36 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { resolvePublicAppUrlsForBuild } from './src/utils/publicSiteMeta';
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1';
-// Production profilis: M1–9 (Duomenų analizės kelias, tier 9). Naudoti BE VITE_MVP_MODE.
-// Bundle'as turi tik 1–9 modulius – M10–15 turinys neįtraukiamas (nėra client-side exposure).
-const isProductionBuild =
-  !isCoreBuild && process.env.VITE_MAX_BUILD_MODULE === '9';
+// Production ladder (be VITE_MVP_MODE): 9 = M1–9, 12 = M1–12, 15 = M1–15. Full = authoring M1–15 (same as 15 until M16).
+// Slice build'ai 9/12 neįtraukia aukštesnių modulių (nėra client-side exposure).
+const maxBuildModule = process.env.VITE_MAX_BUILD_MODULE;
+const isCorporate9Build = !isCoreBuild && maxBuildModule === '9';
+const isCorporate12Build = !isCoreBuild && maxBuildModule === '12';
+const isCorporate15Build = !isCoreBuild && maxBuildModule === '15';
+/** True when shipping a capped production slice that stubs M15 generators (9 | 12). */
+const isSlicedProductionBuild = isCorporate9Build || isCorporate12Build;
+
 const resolvePath = (value: string) =>
   fileURLToPath(new URL(value, import.meta.url));
 
-const dataAlias = (core: string, production: string, full: string) =>
-  resolvePath(isCoreBuild ? core : isProductionBuild ? production : full);
+const dataAlias = (
+  core: string,
+  corporate9: string,
+  corporate12: string,
+  corporate15: string,
+  full: string
+) =>
+  resolvePath(
+    isCoreBuild
+      ? core
+      : isCorporate9Build
+        ? corporate9
+        : isCorporate12Build
+          ? corporate12
+          : isCorporate15Build
+            ? corporate15
+            : full
+  );
 
 function seoIndexHtmlPlugin() {
   return {
@@ -66,24 +87,32 @@ export default defineConfig({
       '@modules-data': dataAlias(
         './src/data/modules-m1-m6.json',
         './src/data/modules-m1-m9.json',
+        './src/data/modules-m1-m12.json',
+        './src/data/modules-m1-m15.json',
         './src/data/modules.json'
       ),
       '@glossary-data': dataAlias(
         './src/data/glossary-m1-m6.json',
         './src/data/glossary-m1-m9.json',
+        './src/data/glossary-m1-m12.json',
+        './src/data/glossary-m1-m15.json',
         './src/data/glossary.json'
       ),
       '@tools-data': dataAlias(
         './src/data/tools-m1-m6.json',
         './src/data/tools-m1-m9.json',
+        './src/data/tools-m1-m12.json',
+        './src/data/tools-m1-m15.json',
         './src/data/tools.json'
       ),
       '@tools-en-data': dataAlias(
         './src/data/tools-en-m1-m6.json',
         './src/data/tools-en-m1-m9.json',
+        './src/data/tools-en-m1-m12.json',
+        './src/data/tools-en-m1-m15.json',
         './src/data/tools-en.json'
       ),
-      // M9 veikėjai reikalingi korporatyviniam (1–9) ir full build'ams; tušti tik core 1–6.
+      // M9 veikėjai reikalingi korporatyviniam (1–9/1–12/1–15) ir full build'ams; tušti tik core 1–6.
       '@m9-characters-data': resolvePath(
         isCoreBuild
           ? './src/data/m9Characters-empty.json'
@@ -95,11 +124,16 @@ export default defineConfig({
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/AiDetectorsSlide.tsx'
       ),
-      // Vaizdo generatorius – M15 turinys; nereikalingas core (1–6) nei korporatyviniam (1–9) build'ui.
+      // Vaizdo / I2V generatorius – M15; stub core + corporate 9/12 slice (corporate15 + full = live).
       '@vaizdo-generatorius-slide': resolvePath(
-        isCoreBuild || isProductionBuild
+        isCoreBuild || isSlicedProductionBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/VaizdoGeneratoriusSlide.tsx'
+      ),
+      '@i2v-generatorius-slide': resolvePath(
+        isCoreBuild || isSlicedProductionBuild
+          ? './src/components/stubs/UnavailableModuleSlide.tsx'
+          : './src/components/I2vGeneratoriusSlide.tsx'
       ),
     },
   },

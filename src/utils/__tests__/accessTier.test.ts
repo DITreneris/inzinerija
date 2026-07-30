@@ -29,6 +29,16 @@ describe('accessTier', () => {
       expect(getMaxAccessibleModuleId()).toBe(3);
     });
 
+    it('returns 12 from localStorage when set', () => {
+      localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, '12');
+      expect(getMaxAccessibleModuleId()).toBe(12);
+    });
+
+    it('returns 15 from localStorage when set', () => {
+      localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, '15');
+      expect(getMaxAccessibleModuleId()).toBe(15);
+    });
+
     it('ignores invalid localStorage value', () => {
       localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, '99');
       expect(getMaxAccessibleModuleId()).toBe(0);
@@ -68,6 +78,15 @@ describe('accessTier', () => {
       const { getIsMvpMode } = await import('../mvpMode');
       vi.mocked(getIsMvpMode).mockReturnValue(true);
       localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, '12');
+      expect(getMaxAccessibleModuleId()).toBe(6);
+      vi.mocked(getIsMvpMode).mockReturnValue(false);
+    });
+
+    /** GitHub Pages gate policy: MVP preview never unlocks M7+ even if tier token says 15. */
+    it('caps at 6 when MVP and localStorage has 15 (Pages M1–6 policy)', async () => {
+      const { getIsMvpMode } = await import('../mvpMode');
+      vi.mocked(getIsMvpMode).mockReturnValue(true);
+      localStorage.setItem(VERIFIED_ACCESS_TIER_KEY, '15');
       expect(getMaxAccessibleModuleId()).toBe(6);
       vi.mocked(getIsMvpMode).mockReturnValue(false);
     });

@@ -4,6 +4,30 @@ import path from 'path';
 import os from 'os';
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1';
+const maxBuildModule = process.env.VITE_MAX_BUILD_MODULE;
+const isCorporate9Build = !isCoreBuild && maxBuildModule === '9';
+const isCorporate12Build = !isCoreBuild && maxBuildModule === '12';
+const isCorporate15Build = !isCoreBuild && maxBuildModule === '15';
+const isSlicedProductionBuild = isCorporate9Build || isCorporate12Build;
+
+function dataAlias(
+  core: string,
+  corporate9: string,
+  corporate12: string,
+  corporate15: string,
+  full: string
+) {
+  const relative = isCoreBuild
+    ? core
+    : isCorporate9Build
+      ? corporate9
+      : isCorporate12Build
+        ? corporate12
+        : isCorporate15Build
+          ? corporate15
+          : full;
+  return path.resolve(__dirname, relative);
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -50,27 +74,33 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@modules-data': path.resolve(
-        __dirname,
-        isCoreBuild
-          ? './src/data/modules-m1-m6.json'
-          : './src/data/modules.json'
+      '@modules-data': dataAlias(
+        './src/data/modules-m1-m6.json',
+        './src/data/modules-m1-m9.json',
+        './src/data/modules-m1-m12.json',
+        './src/data/modules-m1-m15.json',
+        './src/data/modules.json'
       ),
-      '@glossary-data': path.resolve(
-        __dirname,
-        isCoreBuild
-          ? './src/data/glossary-m1-m6.json'
-          : './src/data/glossary.json'
+      '@glossary-data': dataAlias(
+        './src/data/glossary-m1-m6.json',
+        './src/data/glossary-m1-m9.json',
+        './src/data/glossary-m1-m12.json',
+        './src/data/glossary-m1-m15.json',
+        './src/data/glossary.json'
       ),
-      '@tools-data': path.resolve(
-        __dirname,
-        isCoreBuild ? './src/data/tools-m1-m6.json' : './src/data/tools.json'
+      '@tools-data': dataAlias(
+        './src/data/tools-m1-m6.json',
+        './src/data/tools-m1-m9.json',
+        './src/data/tools-m1-m12.json',
+        './src/data/tools-m1-m15.json',
+        './src/data/tools.json'
       ),
-      '@tools-en-data': path.resolve(
-        __dirname,
-        isCoreBuild
-          ? './src/data/tools-en-m1-m6.json'
-          : './src/data/tools-en.json'
+      '@tools-en-data': dataAlias(
+        './src/data/tools-en-m1-m6.json',
+        './src/data/tools-en-m1-m9.json',
+        './src/data/tools-en-m1-m12.json',
+        './src/data/tools-en-m1-m15.json',
+        './src/data/tools-en.json'
       ),
       '@m9-characters-data': path.resolve(
         __dirname,
@@ -86,9 +116,15 @@ export default defineConfig({
       ),
       '@vaizdo-generatorius-slide': path.resolve(
         __dirname,
-        isCoreBuild
+        isCoreBuild || isSlicedProductionBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/VaizdoGeneratoriusSlide.tsx'
+      ),
+      '@i2v-generatorius-slide': path.resolve(
+        __dirname,
+        isCoreBuild || isSlicedProductionBuild
+          ? './src/components/stubs/UnavailableModuleSlide.tsx'
+          : './src/components/I2vGeneratoriusSlide.tsx'
       ),
     },
   },

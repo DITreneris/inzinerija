@@ -20,13 +20,17 @@ const tools = readJson('tools.json');
 const toolsEn = readJson('tools-en.json');
 
 /**
- * Build/runtime profiliai (Architektūra A): core 1–6 (viešas MVP) ir
- * korporatyvinis 1–9 (Duomenų analizės kelias, tier 9). Abu generuojami
- * iš full authoring SOT (modules.json / glossary.json / tools.json).
+ * Build/runtime profiliai (Architektūra A): core 1–6 (viešas MVP),
+ * korporatyvinis 1–9 (Duomenų analizės kelias, tier 9),
+ * korporatyvinis 1–12 (Agentų kelias, tier 12) ir
+ * korporatyvinis 1–15 (Turinio kelias, tier 15). Generuojami iš full
+ * authoring SOT (modules.json / glossary.json / tools.json).
  */
 const PROFILES = [
   { maxModuleId: 6, suffix: 'm1-m6' },
   { maxModuleId: 9, suffix: 'm1-m9' },
+  { maxModuleId: 12, suffix: 'm1-m12' },
+  { maxModuleId: 15, suffix: 'm1-m15' },
 ];
 
 for (const { maxModuleId, suffix } of PROFILES) {
@@ -50,4 +54,6 @@ for (const { maxModuleId, suffix } of PROFILES) {
 
 writeJson('m9Characters-empty.json', { characters: [] });
 
-console.log('Core (1–6) and corporate (1–9) production data generated.');
+console.log(
+  'Core (1–6), corporate (1–9), corporate12 (1–12), and corporate15 (1–15) production data generated.'
+);

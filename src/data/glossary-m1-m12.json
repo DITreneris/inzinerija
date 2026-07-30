@@ -15,11 +15,6 @@
       "moduleId": 7
     },
     {
-      "term": "A/B testavimas",
-      "definition": "Dviejų ar daugiau variantų (vaizdas, antraštė) palyginimas – kuris geriau veikia; reikalauja hipotezės ir KPI (CTR, CVR).",
-      "moduleId": 13
-    },
-    {
       "term": "Action",
       "definition": "Veiksmas, kurį atlieka automatizavimo sistema (pvz. siųsti laišką, įrašyti į CRM, atnaujinti lentelę).",
       "moduleId": 10
@@ -64,11 +59,6 @@
       "moduleId": 6
     },
     {
-      "term": "Aspect ratio (proporcijos)",
-      "definition": "Vaizdo ar vaizdo įrašo pločio ir aukščio santykis (pvz. 16:9 platus, 1:1 kvadratas, 9:16 vertikalus).",
-      "moduleId": 13
-    },
-    {
       "term": "Atlygis (reward)",
       "definition": "Skaitinis signalas, rodantis, ar DI veiksmas buvo geras ar blogas; pagrindinis RL mokymo mechanizmas.",
       "moduleId": 4
@@ -79,38 +69,14 @@
       "moduleId": 4
     },
     {
-      "term": "Awareness (atpažįstamumas)",
-      "definition": "Kampanijos tikslas – vaizdas pritraukia dėmesį emocija ir kontrastu; tipiniai formatai: viršelis, baneris, social postas.",
-      "moduleId": 13,
-      "unlockedBy": {
-        "moduleId": 13,
-        "slideId": 13.1
-      }
-    },
-    {
       "term": "Bonus praktika",
       "definition": "Neprivaloma užduotis po kelio testo – papildomas Copy→Patikra ciklas (pvz. screenshot ar vizualizacija), kad įtvirtintum įgūdį be balo spaudimo.",
       "moduleId": 8
     },
     {
-      "term": "BPM",
-      "definition": "Taktų per minutę – muzikos tempo matas (lėtas ~60–80, greitas ~120–140).",
-      "moduleId": 13
-    },
-    {
-      "term": "Brand consistency",
-      "definition": "Nuoseklus vizualinis identitetas – spalvos, tipografija, tonas ir stilius visuose turinio vienetuose; prompte nurodoma, kad DI generuotų atitinkančią įmonės stilistiką.",
-      "moduleId": 13
-    },
-    {
       "term": "Brief",
       "definition": "Trumpa užduotis prieš pradedant darbą: tema, auditorija, tikslas, apimtis ir tonas – pagrindas struktūruotam promptui.",
       "moduleId": 5
-    },
-    {
-      "term": "Brief (marketing)",
-      "definition": "Trumpas dokumentas – tikslas kampanijai A/E/C (žr. Awareness / Engagement / Conversion), auditorija, platforma; pagrindas vaizdo ar video promptui.",
-      "moduleId": 13
     },
     {
       "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
@@ -142,38 +108,14 @@
       "moduleId": 10
     },
     {
-      "term": "Conversion (konversija)",
-      "definition": "Kampanijos tikslas – vaizdas skatina veiksmą: produktas, pasiūlymas, kvietimas veikti (CTA); tipiniai formatai: reklamos maketas, landingo hero, „pirk dabar“ blokas.",
-      "moduleId": 13,
-      "unlockedBy": {
-        "moduleId": 13,
-        "slideId": 13.1
-      }
-    },
-    {
       "term": "CoT (Chain of Thought)",
       "definition": "Mąstymo grandinė – viena nuosekli minčių seka, žingsnis po žingsnio; tinka analizei ir skaičiavimams.",
       "moduleId": 1
     },
     {
-      "term": "CPM (kaina už 1000 parodymų)",
-      "definition": "Kiek kainuoja 1000 reklamos ar vaizdo parodymų. Naudinga lyginti platformas.",
-      "moduleId": 13
-    },
-    {
-      "term": "CTR (paspaudimų dalis)",
-      "definition": "Kiek procentų žmonių, kurie pamatė reklamą ar vaizdą, jį paspaudė. Svarbus rodiklis vertinimui.",
-      "moduleId": 13
-    },
-    {
       "term": "Custom GPT",
       "definition": "ChatGPT projektas su taisyklėmis, instrukcijomis ir failais – asmeninis ar komandos asistentas konkrečiai užduočiai.",
       "moduleId": 4
-    },
-    {
-      "term": "CVR (konversijų dalis)",
-      "definition": "Kiek lankytojų atliko norimą veiksmą (pirkimas, registracija). Skiriasi nuo CTR – matuojamas po paspaudimo.",
-      "moduleId": 13
     },
     {
       "term": "Dashboard",
@@ -197,11 +139,6 @@
         "moduleId": 7,
         "slideId": 71.2
       }
-    },
-    {
-      "term": "Deepfake",
-      "definition": "DI sugeneruotas realistiškas vaizdas ar balsas, atrodo tikras; reikalauja sutikimo asmenims – rizika reputacijai ir teisėms.",
-      "moduleId": 13
     },
     {
       "term": "Deming principas",
@@ -261,15 +198,6 @@
       }
     },
     {
-      "term": "Engagement (įsitraukimas)",
-      "definition": "Kampanijos tikslas – vaizdas skatina sustoti ir sąveikauti su aiškiu kontekstu; tipiniai formatai: karuselė, video intro, iliustracija straipsniui.",
-      "moduleId": 13,
-      "unlockedBy": {
-        "moduleId": 13,
-        "slideId": 13.1
-      }
-    },
-    {
       "term": "ER modelis",
       "definition": "Entity-Relationship modelis – lentelių ir jų ryšių (pvz. 1-N, N-N) logikos aprašas, padedantis suprasti duomenų struktūrą.",
       "moduleId": 7,
@@ -287,11 +215,6 @@
       "term": "Finansų įžvalgos",
       "definition": "DI padedama finansinių rodiklių ir tendencijų interpretacija – ne tik skaičiai lentelėje, o ką jie reiškia sprendimui.",
       "moduleId": 9
-    },
-    {
-      "term": "Foninė muzika",
-      "definition": "Muzika fone (prezentacijose, vaizdo įrašuose), dažnai be vokalo.",
-      "moduleId": 13
     },
     {
       "term": "Generatyvus DI",
@@ -356,11 +279,6 @@
         "moduleId": 7,
         "slideId": 67.5
       }
-    },
-    {
-      "term": "Kameros kampas",
-      "definition": "Iš kur „žiūri“ kamera: lygus akims (neutralu), iš viršaus (silpnina), iš apačios (suteikia galios).",
-      "moduleId": 13
     },
     {
       "term": "Kelio testas",
@@ -482,21 +400,6 @@
       "moduleId": 4
     },
     {
-      "term": "Naratyvinis vaizdas",
-      "definition": "Vaizdas, kuris pasakoja istoriją arba konceptą (pvz. mitologija + modernybė).",
-      "moduleId": 13
-    },
-    {
-      "term": "Naudojimo teisės / licencija",
-      "definition": "Ar sugeneruotą turinį galima naudoti komerciniu tikslu (reklama, produktas).",
-      "moduleId": 13
-    },
-    {
-      "term": "Neigiamas promptas",
-      "definition": "Ko vengti vaizde ar rezultate – nurodoma DI prompte (pvz. „be teksto vaize“); sumažina nežėlimus rezultatus.",
-      "moduleId": 13
-    },
-    {
       "term": "Neuroniniai tinklai",
       "definition": "Skaičiavimo modelis, įkvėptas smegenų neuronų – pagrindas giliam mokymuisi ir šiuolaikiniams DI modeliams.",
       "moduleId": 4
@@ -509,11 +412,6 @@
         "moduleId": 7,
         "slideId": 84
       }
-    },
-    {
-      "term": "Nuotaika (mood)",
-      "definition": "Jausmas, kurį skleidžia vaizdas ar muzika (ramus, energingas, įtemptas).",
-      "moduleId": 13
     },
     {
       "term": "Nuspėjamoji analizė",
@@ -657,19 +555,9 @@
       "moduleId": 10
     },
     {
-      "term": "Scenarijus vaizdui",
-      "definition": "Trumpas tekstas, aprašantis, kas vyksta vaizde arba vaizdo įraše (kadrai, veiksmas).",
-      "moduleId": 13
-    },
-    {
       "term": "Screenshot analizė",
       "definition": "DI galimybė analizuoti ekrano nuotrauką – tekstą, kodą, grafikus, UI/UX – ir grąžinti struktūruotą išvadą. Pvz. dashboard nuotrauka → elementai, rizikos, prioritetai.",
       "moduleId": 7
-    },
-    {
-      "term": "Scroll stop",
-      "definition": "Metrika – kiek vartotojų sustojo pabraukti turinį (pvz. socialiniam tinkle); rodo įsitraukimo stiprumą.",
-      "moduleId": 13
     },
     {
       "term": "Sentimentų analizė",
@@ -720,11 +608,6 @@
       }
     },
     {
-      "term": "Stilius (vizualas/garso)",
-      "definition": "Vizualus ar garso išvaizdos tipas (fotorealistiškas, akrilas, pop, akustinė).",
-      "moduleId": 13
-    },
-    {
       "term": "Šaltinių katalogas",
       "definition": "Sąrašas tavo analizės šaltinių (failai, URL, sistemos) su trumpu aprašu – pradinis Modulio 9 projekto žingsnis prieš valymą ir EDA.",
       "moduleId": 9
@@ -759,11 +642,6 @@
       "moduleId": 1
     },
     {
-      "term": "Trečdalių taisyklė",
-      "definition": "Kompozicijos principas: pagrindinis objektas – 3×3 tinklelio sankirtos taškuose (ne centre).",
-      "moduleId": 13
-    },
-    {
       "term": "Trigger",
       "definition": "Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas, failo įkėlimas).",
       "moduleId": 10
@@ -772,11 +650,6 @@
       "term": "Vaidmens promptas",
       "definition": "Formuoja komunikacijos stilių ir toną (pvz. „Įsivaizduok, kad esi įmonės vadovas…“).",
       "moduleId": 1
-    },
-    {
-      "term": "Vaizdo promptas",
-      "definition": "Tekstinis aprašymas, pagal kurį DI sukuria vaizdą (subjektas, stilius, proporcijos).",
-      "moduleId": 13
     },
     {
       "term": "Vartotojo promptas",

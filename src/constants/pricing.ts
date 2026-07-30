@@ -7,18 +7,20 @@ export const ACCESS_TIERS = [
   { maxModuleId: 6, priceEur: 99 },
   { maxModuleId: 9, priceEur: 149 },
   { maxModuleId: 12, priceEur: 199 },
+  /** Provisional Content-track SKU (Horizon C); Stripe = marketing. */
+  { maxModuleId: 15, priceEur: 249 },
 ] as const;
 
 export type AccessTier = (typeof ACCESS_TIERS)[number];
 
 /** Leidžiami max atrakinto modulio ID (0 = niekas neįsigyta). */
-export const VALID_MAX_MODULE_IDS = [0, 3, 6, 9, 12] as const;
+export const VALID_MAX_MODULE_IDS = [0, 3, 6, 9, 12, 15] as const;
 
 /** Upgrade tier 6 → 9 (marketing copy; abu produktai siunčia access_tier=9). */
 export const UPGRADE_FROM_TIER_6_EUR = 49;
 
-/** Tiers accepted by magic link / verify-access (Phase 2: 3, 6, 9). */
-export const MAGIC_LINK_TIERS = [3, 6, 9] as const;
+/** Tiers accepted by magic link / verify-access (3, 6, 9, 12, 15). */
+export const MAGIC_LINK_TIERS = [3, 6, 9, 12, 15] as const;
 
 export type MagicLinkTier = (typeof MAGIC_LINK_TIERS)[number];
 

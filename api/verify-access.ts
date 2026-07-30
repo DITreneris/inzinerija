@@ -1,11 +1,11 @@
 /**
  * Magic link access verification – HMAC-signed token.
- * GET /api/verify-access?access_tier=3|6|9&expires=UNIX_TS&token=BASE64URL_HMAC
- * Phase 2: access_tier 3, 6, or 9. Returns 200 { access_tier } or 400/401.
+ * GET /api/verify-access?access_tier=3|6|9|12|15&expires=UNIX_TS&token=BASE64URL_HMAC
+ * Production tiers: 3, 6, 9, 12, 15. Returns 200 { access_tier } or 400/401.
  */
 import crypto from 'node:crypto';
 
-const VALID_TIERS = [3, 6, 9] as const;
+const VALID_TIERS = [3, 6, 9, 12, 15] as const;
 
 function base64UrlEncode(buffer: Buffer): string {
   return buffer

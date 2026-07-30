@@ -72,6 +72,13 @@ describe('Access tier 6 / MVP (M1–M6 accessible, 7+ locked)', () => {
     expect(mod).not.toBeNull();
     expect(mod?.id).toBe(6);
   });
+
+  /** Pages gate policy: tier 6 must not expose M7 via getModule. */
+  it('getModule(7) returns null when tier is 6 (Pages / MVP lock)', async () => {
+    await loadModules();
+    const mod = await getModule(7);
+    expect(mod).toBeNull();
+  });
 });
 
 describe('Access tier 9 / corporate (Duomenų analizės kelias 7–9 accessible, 10+ locked)', () => {
@@ -96,6 +103,32 @@ describe('Access tier 9 / corporate (Duomenų analizės kelias 7–9 accessible,
   it('getModule(10) returns null when tier is 9 (M10+ locked)', async () => {
     await loadModules();
     const mod = await getModule(10);
+    expect(mod).toBeNull();
+  });
+});
+
+describe('Access tier 12 / corporate12 (Agentų kelias 10–12 accessible, 13+ locked)', () => {
+  beforeEach(() => {
+    vi.mocked(getMaxAccessibleModuleId).mockReturnValue(12);
+    __clearCacheForTesting();
+    localStorage.clear();
+  });
+
+  it('getModule(10) returns non-null when tier is 12', async () => {
+    const mod = await getModule(10);
+    expect(mod).not.toBeNull();
+    expect(mod?.id).toBe(10);
+  });
+
+  it('getModule(12) returns non-null when tier is 12', async () => {
+    const mod = await getModule(12);
+    expect(mod).not.toBeNull();
+    expect(mod?.id).toBe(12);
+  });
+
+  it('getModule(13) returns null when tier is 12 (M13+ locked)', async () => {
+    await loadModules();
+    const mod = await getModule(13);
     expect(mod).toBeNull();
   });
 });

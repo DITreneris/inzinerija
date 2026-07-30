@@ -45,6 +45,7 @@ test_coverage_test.txt
 
 # Temporary files
 *.tmp
+.tmp-*
 *.temp
 tmp/
 

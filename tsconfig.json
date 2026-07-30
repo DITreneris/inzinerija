@@ -23,7 +23,8 @@
       "@ai-detectors-slide": ["src/components/AiDetectorsSlide.tsx"],
       "@vaizdo-generatorius-slide": [
         "src/components/VaizdoGeneratoriusSlide.tsx"
-      ]
+      ],
+      "@i2v-generatorius-slide": ["src/components/I2vGeneratoriusSlide.tsx"]
     },
 
     /* Linting */

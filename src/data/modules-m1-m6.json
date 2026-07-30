@@ -4121,9 +4121,14 @@
           "content": {
             "sections": [
               {
-                "heading": "Pagrindiniai DI įrankiai prieš workflow",
-                "body": "Įrankį rinkis pagal užduoties tipą, o ne pagal populiarumą. Teisingas pasirinkimas taupo laiką ir mažina klaidų tikimybę.",
+                "heading": "Trumpai",
+                "body": "Įrankį rinkis pagal užduoties tipą, ne pagal populiarumą. Teisingas pasirinkimas taupo laiką ir mažina klaidas.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Pasirink juostoje, ką darai dabar (Rašau / Analizuoju / Office / Tiriu / Skaidrės). Lentelė parodys tinkamiausią įrankį – užsirašyk vieną pasirinkimą šiai savaitei.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Greita orientacija (30 s) ⚡",
@@ -4237,12 +4242,12 @@
               {
                 "heading": "Kaip rinktis?",
                 "body": "**Taisyklė:** Užduotis → Įrankis → Workflow (ne atvirkščiai).\n\nRašymas / strategija → **ChatGPT**.\nDuomenys / kodas / ilgi dokumentai → **Claude**.\nOffice aplinka → **Copilot**.\nTyrimai / vizualai → **Gemini**.\nSkaidrės / pasiūlymai → **Gamma**.\n\nGalima jungti kelis įrankius vienoje grandinėje. Pvz.: Claude (analizė) → ChatGPT (formulavimas) → Gamma (skaidrės).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Pavyzdinė grandinė (workflow)",
                 "body": "",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "workflowChains": [
                   {
                     "chain": ["Claude", "ChatGPT", "Gamma"],
@@ -4255,9 +4260,9 @@
                 ]
               },
               {
-                "heading": "Praktinė rekomendacija",
-                "body": "**Pro tip:** 80 % atvejų pakanka 1 pagrindinio įrankio + 1 specializuoto. Svarbu ne turėti visus įrankius, o aiškiai žinoti, kurį naudoti kuriame žingsnyje.",
-                "blockVariant": "brand"
+                "heading": "Patikra",
+                "body": "Pažymėk sau:\n• Ar žinau 1 pagrindinį įrankį šiai savaitei?\n• Ar žinau, kada jungti antrą (specializuotą)?\n• Ar renkusi pagal užduotį, ne pagal hype?\n\nJei bent 2 „ne“ – grįžk prie juostos ir pakartok pasirinkimą.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – RAG: kas tai ir pabandyk"
@@ -4411,7 +4416,18 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – RAG atmintis ir šaltiniai"
+            "footer": "Toliau – RAG atmintis ir šaltiniai",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas RAG promptą su atvirais duomenimis – kas privaloma?",
+              "options": [
+                "Užtenka paprašyti „surask faktus internete“",
+                "Nurodyti oficialius šaltinius ir reikalauti citatos (arba „Nežinau“)",
+                "Prašyti kuo ilgesnio atsakymo be šaltinių",
+                "Naudoti tik vieną neoficialų blogą"
+              ],
+              "correct": 1,
+              "explanation": "RAG su atvirais duomenimis veikia, kai šaltiniai aiškūs ir DI privalo cituoti arba pripažinti spragą („Nežinau“). Be to – lengva haliucinacija."
+            }
           }
         },
         {
@@ -4549,7 +4565,18 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – DI įrankiai informacijos paieškai"
+            "footer": "Toliau – DI įrankiai informacijos paieškai",
+            "preCopyCheckBlock": {
+              "question": "Kada DI „atmintis“ (įkeltas kontekstas) veikia patikimiau nei bendras pokalbis?",
+              "options": [
+                "Kai prašai nuomonės be dokumentų",
+                "Kai įkeli savo šaltinius / santrauką ir prašai atsakyti tik iš jų",
+                "Kai kartojį tą patį klausimą 10 kartų",
+                "Kai renkiesi ilgiausią modelį be konteksto"
+              ],
+              "correct": 1,
+              "explanation": "Patikima atmintis = tavo dokumentai ar santrauka kaip šaltinis + instrukcija neiti už ribų. Be įkeltų duomenų modelis spėlioja."
+            }
           }
         },
         {
@@ -4752,15 +4779,20 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (30 s)",
-                "body": "5 žingsniai: metaduomenys → išvalymas → antraštės → fragmentai → santrauka. Pasirink žingsnį – pamatysi promptą ir nukopijuok.",
+                "heading": "Trumpai",
+                "body": "5 žingsniai: metaduomenys → išvalymas → antraštės → fragmentai → santrauka. Pasirink žingsnį magistralėje – pamatysi promptą ir nukopijuok.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Peržvelk magistralę: kur tavo rizika (chunk dydis, metaduomenys, išvalymas)? Pasirink tą žingsnį, nukopijuok promptą ir paleisk ant savo dokumento gabalo.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "RAG ruošimo magistralė",
                 "body": "Pasirink žingsnį – pamatysi promptą ir kodėl jis svarbus. Nuoseklus procesas: metaduomenys → išvalymas → antraštės → fragmentai → santrauka.",
                 "image": "rag_duomenu_ruosimas",
-                "blockVariant": "emerald"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Ką dar darau?",
@@ -4770,8 +4802,13 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "Terminas paprasta kalba: chunk (fragmentas)",
+                "heading": "Terminas: fragmentas (chunk)",
                 "body": "**Fragmentas** – vienas logiškas teksto gabalas, į kurį skaidai dokumentą RAG sistemai (pvz. viena pastraipa, skyrius arba tema). Vietoj ilgo failo į paiešką – mažesni, prasmingi fragmentai; tada RAG randa tik tą gabalą, kuris atitinka klausimą. **Kaip naudoti:** ribą renk pagal prasmę (viena mintis / pastraipa); vengk per ilgų fragmentų be antraščių; prie kiekvieno – trumpa antraštė arba santrauka.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Patikra",
+                "body": "Prieš RAG:\n• Ar dokumentas turi metaduomenis (šaltinis, data)?\n• Ar fragmentai logiški (ne per ilgi be antraščių)?\n• Ar žinai, kurį magistralės žingsnį darysi pirmą?\n\nJei „ne“ – grįžk prie to žingsnio prompto.",
                 "blockVariant": "accent"
               }
             ],
@@ -4786,9 +4823,14 @@
           "content": {
             "sections": [
               {
-                "heading": "🎯 Kas man iš to?",
-                "body": "• Mažiau chaoso\n• Aiškesnės išvados\n• Struktūruoti atsakymai vietoj teksto srauto\n• Geresnė RAG / Deep research kokybė\n\nVeikia su RAG ir Deep Research – tai universali struktūra.",
+                "heading": "Trumpai",
+                "body": "Keturios trumpos strategijos – mažiau chaoso, aiškesnės išvados, struktūruoti atsakymai. Veikia su RAG ir Deep research.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Nukopijuok **vieną** Micro promptą žemiau (pradėk nuo „Žingsnis po žingsnio“), pakeisk skliaustus ir paleisk DI. Palygink su savo įprastu klausimu.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "1️⃣ Žingsnis po žingsnio",
@@ -4815,8 +4857,8 @@
                 "copyable": "Įvertink 3 alternatyvas [projektui / investicijai] pagal riziką, grąžą ir laiką.\nFormatas: lentelė + geriausia + 2 sakiniai pagrindimo."
               },
               {
-                "heading": "Esmė",
-                "body": "Tu ne tik klausi DI. Tu valdai jo mąstymo struktūrą.",
+                "heading": "Patikra",
+                "body": "Po paleidimo:\n• Ar atsakymas turi aiškią struktūrą (žingsniai / lentelė / šakos)?\n• Ar galiu tą pačią strategiją pakartoti kitai temai?\n\nJei „ne“ – bandyk kitą Micro iš sąrašo. Tu ne tik klausi DI – tu valdai mąstymo struktūrą.",
                 "blockVariant": "accent"
               }
             ],
@@ -4831,23 +4873,28 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Situacija (tipinė versle)",
-                "body": "Turi problemą: pardavimai stagnuoja, rinka spaudžia kainas, komanda blaškosi tarp idėjų, vadovybei reikia aiškaus sprendimo. DI negali duoti „gražaus teksto“ – jis turi pateikti sprendimo logiką. Tam naudojamas COMBO.",
+                "heading": "Trumpai",
+                "body": "COMBO sujungia vaidmenį, procesą, alternatyvas ir aiškią išvestį – DI duoda sprendimo logiką, ne „gražų tekstą“. Tą patį principą naudosi projekte.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Nukopijuok COMBO pavyzdį žemiau (practical task). Pakeisk situaciją į savo verslo atvejį ir paleisk DI. Tikslas – 90 dienų planas + 3 rizikos, ne bendros frazės.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "COMBO = Struktūruotas užklausos rėmas",
                 "body": "Viename prompte sujungi 4 sluoksnius: **1️⃣ Vaidmuo** – kas analizuoja? **2️⃣ Procesas** – kaip mąsto? **3️⃣ Alternatyvų įvertinimas** – ką lygina? **4️⃣ Aiški išvestis** – ką konkrečiai turiu gauti? Tai jau ne klausimas – tai mini strateginė sesija viename prompte. Nukopijuok žemiau ir pabandyk.",
-                "blockVariant": "violet"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Kodėl tai veikia?",
-                "body": "• DI negali „išsisukti“ bendromis frazėmis\n• Gauni sprendimo struktūrą, ne nuomonę\n• Atsakymas tampa naudojamas vadovų susitikime\n• Tą patį principą galėsi taikyti M6 projekte\n\n**Esmė:** Kai naudoji COMBO, tu ne prašai patarimo – tu valdai analizės architektūrą.",
+                "heading": "Patikra",
+                "body": "Po paleidimo:\n• Ar DI palygino alternatyvas (ne tik vieną idėją)?\n• Ar yra rekomenduojama kryptis + 90 dienų planas?\n• Ar įvardytos bent 3 rizikos?\n\nJei „ne“ – grąžink COMBO sluoksnius į promptą (vaidmuo → procesas → alternatyvos → išvestis).",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Tokenų valdymas (nori žinoti daugiau?)",
-                "body": "COMBO promptai gali būti ilgi – gerbk tokenų limitą (promptas + atsakymas); planuok max_tokens arba skaidyk į kelis promptus. Jei atsakymas pertrūksta – skaidyk į kelias užklausas su aiškia seka.\n\nRyšys su Modulio 4 tokenų ekonomika (4.4) – daugiau apie tokenus ir konteksto langą.",
+                "body": "COMBO promptai gali būti ilgi – gerbk tokenų limitą (promptas + atsakymas); planuok apimtį arba skaidyk į kelis promptus. Jei atsakymas pertrūksta – skaidyk į kelias užklausas su aiškia seka.\n\nDaugiau – skaidrėje „Tokenų ekonomika“ šiame modulyje.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -4946,14 +4993,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Kada to reikia?",
-                "body": "Kai sprendimas kainuoja pinigus, reikia pagrįsti vadovybei, vieno atsakymo neužtenka arba reikia šaltinių, ne nuomonės. Deep Research ≠ paprastas klausimas DI – tai struktūruotas mini tyrimas (5–15 min).",
+                "heading": "Trumpai",
+                "body": "Kai sprendimas kainuoja pinigus arba reikia šaltinių vadovybei – Deep research = struktūruotas mini tyrimas (5–15 min), ne vienas DI atsakymas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Kas tai iš esmės?",
                 "body": "4 etapai viename procese: (1) tema išskaidoma į sub-klausimus, (2) šaltinių paieška, (3) duomenų ištraukimas, (4) sintezė su nuorodomis. Rezultatas – sprendimui tinkama analizė.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Kuo skiriasi nuo RAG?",
@@ -4961,6 +5008,11 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Nukopijuok Deep Research promptą žemiau. Pakeisk [TEMA], [TIKSLĄ], [ŠALTINIUS] ir paleisk. Jei skubi – naudok Greitą startą (tyrimo starterį).",
+                "blockVariant": "brand"
               },
               {
                 "heading": "2️⃣ Deep Research promptas (copy–paste)",
@@ -4971,7 +5023,7 @@
               {
                 "heading": "Kur tai veikia?",
                 "body": "[Perplexity](https://perplexity.ai) (Research režimas), [ChatGPT](https://chat.openai.com) (Browse / Advanced Data Analysis), [Claude](https://claude.ai) (su įrankiais), [Gemini](https://gemini.google.com) (integruota paieška). Akademikai: [Elicit](https://elicit.com), [Consensus](https://consensus.app).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "⚡ Greitas startas (tyrimo starteris)",
@@ -4980,9 +5032,9 @@
                 "copyable": "Duomenys: tema [TEMA]; tikslas [sprendimas / ataskaita]\nPadaryk: 3 sub-klausimai + kokių šaltinių reikia + trumpa sintezė\nFormatas: sub-klausimas | ką ieškoti | 1 išvada (su nuoroda jei turi)\nJei šaltinio nėra – „Nežinau“."
               },
               {
-                "heading": "Esmė",
-                "body": "Deep Research leidžia ne „paklausti DI“ – o pagrįsti sprendimą duomenimis.",
-                "blockVariant": "terms"
+                "heading": "Patikra",
+                "body": "Patikrink OUTPUT:\n• Ar yra sub-klausimai ir sintezė (ne tik nuomonė)?\n• Ar prie išvadų yra šaltiniai (arba „Nežinau“)?\n• Ar galiu tuo pagrįsti sprendimą?\n\nJei bent 2 „ne“ – paleisk Greitą startą ir papildyk šaltinius.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – Praktinės užduotys: promptų sekos"
@@ -5199,19 +5251,24 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (30 s)",
-                "body": "Tokenas = mažiausias teksto vienetas DI. Konteksto langas ir max_tokens riboja, kiek informacijos „telpa“. 7 patarimai – kaip trumpinti ir išlaikyti kokybę. Žemiau – praktika.",
+                "heading": "Trumpai",
+                "body": "Tokenas = mažiausias teksto vienetas DI. Konteksto langas ir max_tokens riboja, kiek informacijos „telpa“. Žemiau – kaip trumpinti ir išlaikyti kokybę.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Pasiimk vieną savo neseniai naudotą promptą. Įvertink: ar gali sutrumpinti 30 % ir pridėti išvesties ribą („maks. 150 žodžių“ / „tik sąrašą“)? Užsirašyk 1 pakeitimą.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Kas yra tokenas?",
                 "body": "Tokenas – mažiausias teksto vienetas, kurį DI apdoroja. Apytiksliai: 1 tokenas ≈ 4 simboliai (anglų k.) arba ~0,75 žodžio. Lietuvių kalboje tokenai gali būti trumpesni dėl diakritikų (ė, š, ž ir kt.).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Konkretus pavyzdys",
                 "body": "Sakinys „Dirbtinis intelektas keičia darbo rinką“ ≈ 8 tokenai (lietuvių k.). Tas pats angliškai „Artificial intelligence is changing the job market“ ≈ 7 tokenai. 1 A4 puslapis (~2000 simbolių) ≈ 500–600 tokenų. Visa knyga (~80 000 žodžių) ≈ ~100 000 tokenų.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Konteksto langas",
@@ -5252,12 +5309,12 @@
               {
                 "heading": "5 patarimai tokenų biužetui",
                 "body": "1) **Struktūruok** – skaidyk temas į potemes (mažesni pokalbiai). 2) **Trumpink** – tikslūs, trumpūs promptai taupo tokenus. 3) **Apibendrink** – ilguose pokalbiuose prašyk santraukos. 4) **Ribok išvestį** – naudok max_tokens, „maks. 150 žodžių“, „tik sąrašą“. 5) **Šablonai** – sisteminis prompt su fiksuotomis instrukcijomis, kad nereikėtų kartoti.",
-                "blockVariant": "accent"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Kodėl tai svarbu?",
-                "body": "Ilgesnis kontekstas = didesnė kaina ir lėtesnis atsakymas. Trumpas, tikslus promptas su aiškiais Output apribojimais – taupo pinigus ir laiką. Pvz.: „Be įžangos – tik atsakymas“ arba „Pateik tik numeruotą sąrašą (5 punktai)“.",
-                "blockVariant": "terms"
+                "heading": "Patikra",
+                "body": "Prieš kitą ilgą sesiją:\n• Ar žinau savo modelio konteksto lango dydį (apytiksliai)?\n• Ar prompte yra išvesties riba?\n• Ar galiu skaidyti temą į mažesnius pokalbius?\n\nJei bent 2 „ne“ – grįžk prie 5 patarimų ir pritaikyk vieną dabar.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – Konteksto degradacija"
@@ -5271,19 +5328,24 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**Konteksto degradacija** – kodėl DI „pamiršta“ ilguose pokalbiuose. Trys mechanizmai: Lost in the Middle, dėmesio sklaida, konteksto išstūmimas (FIFO). Trys praktikos: checkpoint, atskiri pokalbiai, prioritetų kartojimas.",
+                "heading": "Trumpai",
+                "body": "Konteksto degradacija – kodėl DI „pamiršta“ ilguose pokalbiuose. Trys mechanizmai + trys praktikos: checkpoint, atskiri pokalbiai, prioritetų kartojimas.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Kitame ilgame pokalbyje padaryk checkpoint: kas ~10 žinučių paprašyk DI apibendrinti, kas sutarėte. Svarbiausią taisyklę pakartok kritinėje užklausoje.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Kas vyksta už kadro: 3 konteksto praradimo mechanizmai",
                 "body": "**1. Lost in the Middle** – modeliai geriausiai įsisavina informaciją teksto **pradžioje** arba **pabaigoje**; informacija **viduryje** praranda aktualumą (tyrimai: tikslumas gali nukristi nuo >90 % iki ~40 %).\n\n**2. Dėmesio sklaida** – didėjant žetonų skaičiui, matematinis „dėmesys“ kiekvienam konkrečiam faktui mažėja.\n\n**3. Konteksto išstūmimas (FIFO)** – pasiekus techninį limitą, seniausia informacija ištrinama, kad būtų vietos naujai.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Verslo pavyzdys: strateginis planavimas",
                 "body": "Kaip ilgame pokalbyje prarandamas svarbus prioritetas – ir kokia rizika verslui.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "table": {
                   "headers": ["Iteracija", "Veiksmas", "Konteksto būsena"],
                   "rows": [
@@ -5308,11 +5370,18 @@
               {
                 "heading": "Tyrimų duomenys",
                 "body": "„Modelio gebėjimas identifikuoti specifinį faktą ilgajame kontekste mažėja eksponentiškai, kai tas faktas nėra tiesiogiai susijęs su paskutine užklausa.“ — *Liu et al., Stanford University (2023)*\n\n• **Efektyvumo praradimas:** Sudėtingose sesijose logikos nuoseklumas krenta vidutiniškai **~39 %** per ilgą diskusiją.\n• **Klaidų kaupimas:** Klaidinga prielaida 5-oje žinutėje tampa „faktu“ 15-oje žinutėje (haliucinacijų grandinė).",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Kaip suvaldyti riziką",
-                "body": "**1. Checkpoint metodas** – kas ~10 žinučių paprašyk DI apibendrinti tai, kas sutarėme.\n\n**2. Konteksto izoliavimas** – skirtingiems projektams kurk atskirus pokalbių langus.\n\n**3. Prioritetų kartojimas** – svarbiausias taisykles įtraukite į kiekvieną kritinę užklausą (angl. *Prompt Re-injection*).\n\n**Pabandyk:** Kitą ilgą pokalbį pradėk nuo 1–2 sakinio apibendrinimo – tai sumažina „pamiršimo“ riziką.",
+                "body": "**1. Checkpoint metodas** – kas ~10 žinučių paprašyk DI apibendrinti tai, kas sutarėme.\n\n**2. Konteksto izoliavimas** – skirtingiems projektams kurk atskirus pokalbių langus.\n\n**3. Prioritetų kartojimas** – svarbiausias taisykles įtrauk į kiekvieną kritinę užklausą (angl. *Prompt Re-injection*).\n\n**Pabandyk:** Kitą ilgą pokalbį pradėk nuo 1–2 sakinio apibendrinimo – tai sumažina „pamiršimo“ riziką.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ilgoje sesijoje:\n• Ar naudoju checkpoint (santrauka kas ~10 žinučių)?\n• Ar kritinė taisyklė pakartota paskutinėje užklausoje?\n• Ar skirtingi projektai – atskiruose pokalbiuose?\n\nJei „ne“ – pradėk nuo 1–2 sakinių apibendrinimo kitame pokalbyje.",
                 "blockVariant": "accent"
               },
               {
@@ -5582,12 +5651,12 @@
           "content": {
             "sections": [
               {
-                "heading": "Refleksijos promptas",
-                "body": "Prieš eidamas į Modulio 5 testą arba Modulio 6 projektą – užduok sau 3 klausimus. Nukopijuok žemiau esantį promptą į DI ir gauk asmeninę grįžtamąjį ryšį.",
+                "heading": "Trumpai",
+                "body": "Prieš Modulio 5 testą ar projektą – 3 klausimai sau. Nukopijuok refleksijos promptą ir gauk asmeninį grįžtamąjį ryšį.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Pirmas veiksmas po modulio",
+                "heading": "Daryk dabar",
                 "body": "Per 24–48 val. atidaryk DI ir užduok vieną RAG arba žinių patikrinimo klausimą su šaltiniais – pvz. „Iš Eurostat duomenų: BVP tendencija Lietuvoje per 3 metus. Cituok šaltinį.“ Tai įtvirtina modulio naudą.",
                 "blockVariant": "brand"
               },
@@ -5603,9 +5672,9 @@
                 "copyable": "Esi mokymų refleksijos asistentas.\n\nKą tik baigiau Modulio 4 (konteksto inžinerija) – RAG, Deep research, tokenai, žinių patikrinimas.\n\nUžduok man 3 klausimus:\n1. Ką iš to galiu pritaikyti savo darbe jau šiandien?\n2. Kas buvo naujausia ar netikėčiausia?\n3. Ką noriu išbandyti pirmiausia – testą (M5) ar projektą (M6)?\n\nPo mano atsakymų duok vieną konkretų patarimą, kaip pradėti."
               },
               {
-                "heading": "Kitas žingsnis",
-                "body": "Pasirink tolesnį žingsnį – kita skaidrė (interaktyvi).",
-                "blockVariant": "emerald"
+                "heading": "Patikra",
+                "body": "Ar turi 1 konkretų veiksmą kitoms 48 val. (RAG klausimas, testas ar projektas)? Jei ne – grįžk prie prompto ir užsirašyk vieną žingsnį.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – Pasirink tolesnį žingsnį"
@@ -5619,29 +5688,29 @@
           "content": {
             "sections": [
               {
-                "heading": "Ką galiu daryti toliau?",
-                "body": "Modulis 4 baigtas. Pasirink vieną iš keturių kelių – pagal savo tikslą.",
+                "heading": "Trumpai",
+                "body": "Modulis 4 baigtas. Pasirink **vieną** kitą žingsnį – rekomenduojama pradėti nuo Modulio 5 testo.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "1. Eiti į Modulio 5 testą",
-                "body": "15 min prezentacijos sprintas ir mini suvokimo testas. Rekomenduojama ≥70% – tada atrakinamas Modulio 6 projektas.",
+                "heading": "Daryk dabar: Modulio 5 testas",
+                "body": "Eik į Modulio 5 – 15 min prezentacijos sprintas ir mini suvokimo testas. Rekomenduojama ≥70 %, tada projektas Module 6 bus aiškesnis.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "2. Peržiūrėti RAG arba Deep research",
-                "body": "Jei nori sustiprinti šaltinių naudojimą arba giliąjį tyrimą – grįžk į atitinkamas Modulio 4 skaidres (4.2, 4.3).",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "3. Atidaryti Modulio 6 projekto aprašą",
-                "body": "Praktika: SUPER PROMPTAI, COMBO, HTML – vienas integruotas projektas. Rekomenduojama po Modulio 5 testo.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "4. Parsisiųsti Modulio 4 santrauką (PDF)",
-                "body": "Baigęs modulį, užbaigimo ekrane parsisiųsk Modulio 4 atmintinę: RAG, gilusis tyrimas, tokenai, haliucinacijos ir patikros checklist.",
+                "heading": "Kitaip: sustiprinti Modulį 4",
+                "body": "Jei nori daugiau praktikos – grįžk į skaidres „RAG: kas tai ir pabandyk“ arba „Deep research (Gilusis tyrimas)“.",
                 "blockVariant": "terms"
+              },
+              {
+                "heading": "Kitaip: Modulio 6 projektas",
+                "body": "Praktika su SUPER promptais ir COMBO – vienas integruotas projektas. Rekomenduojama po Modulio 5 testo.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Patikra: atmintinė",
+                "body": "Užbaigimo ekrane parsisiųsk Modulio 4 PDF atmintinę (RAG, gilusis tyrimas, tokenai, patikros checklist). Jei dar neatsisiuntei – padaryk tai prieš testą.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Modulis 4 baigtas – sėkmės testuose ir projekte!"
@@ -5740,6 +5809,11 @@
                 "copyable": "1. Problema / kontekstas\n2. Kodėl tai svarbu dabar\n3. Sprendimo idėja\n4. Kaip tai veikia (paprastai)\n5. Pavyzdys / panaudojimo atvejis\n6. Nauda / rezultatai\n7. Rizikos / ribos\n8. Ką daryti toliau (CTA)"
               },
               {
+                "heading": "Patikra",
+                "body": "Po paleidimo:\n• Ar turi 8 skaidrių antraštes (ne pilną tekstą)?\n• Ar brief turi temą + auditoriją?\n• Ar galiu tą patį šabloną paleisti kitai temai?\n\nJei „ne“ – grįžk prie struktūros šablono aukščiau.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "🔽 Master promptas (tik struktūra)",
                 "body": "Prašo tik struktūros – ne pilno turinio. Užpildyk [Įrašyti], nukopijuok į DI. Pilnas 6 blokų turinio promptas – skaidrėje „Pilnas turinys ir įrankiai“.",
                 "copyable": "Sukurk 8 skaidrių prezentacijos struktūrą (ne pilną turinį). Tema: [Įrašyti]. Auditorija: [Įrašyti]. Kiekvienai skaidrei pateik: pavadinimą ir 2–3 pagrindines mintis. Formatas: numeruotas sąrašas. Tonas: aiškus, non-tech.",
@@ -5756,7 +5830,7 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Toliau – skaidrė 3: Storyline – sprendimas ir 3 argumentai"
+            "footer": "Toliau – skaidrė 3: Storyline"
           }
         },
         {
@@ -5837,7 +5911,7 @@
               {
                 "heading": "Įrankio medis – 3 keliai",
                 "body": "**1. Rekomenduojama šiandien:** DI (ChatGPT / Claude) → **Gamma** – greitas draftas.\n**2. Office ekosistema:** Copilot / PowerPoint – jei dirbi Microsoft aplinkoje.\n**3. Vizualų šablonai:** Canva – jei reikia greitų vizualų.\n\nGeras promptas ir aiški struktūra = 80% prezentacijos. Įrankis – tik formatas.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -5860,7 +5934,7 @@
               {
                 "heading": "1. Pirmiausia: DI – struktūra ir turinys",
                 "body": "Susikurk turinį ChatGPT, Claude, Gemini arba Copilot. Nukopijuok 6 blokų promptą aukščiau.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -5911,9 +5985,9 @@
                 ]
               },
               {
-                "heading": "Svarbiausia",
-                "body": "**Geras promptas ir aiški struktūra = 80% prezentacijos.** Įrankis – tik skaidrės formatas.",
-                "blockVariant": "brand"
+                "heading": "Patikra",
+                "body": "Prieš QC:\n• Ar paleidai 6 blokų promptą su užpildytais [Tema] / [Auditorija]?\n• Ar pasirinkai 1 įrankio kelią (ne visus iš karto)?\n• Ar turi juodraštį 8 skaidrėms?\n\n**Esmė:** geras promptas ir aiški struktūra = ~80 % prezentacijos; įrankis – formatas.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – skaidrė 5: Sprintas"
@@ -5946,7 +6020,7 @@
               {
                 "heading": "2️⃣ Daryk dabar (2–15 min)",
                 "body": "**Ką daryti:** Nukopijuok sprinto šabloną žemiau, užpildyk [Tema], [Auditorija], [Tikslas], paleisk DI. **Ką gausi:** 8 skaidrių struktūra + pilnas 3-ios skaidrės turinys + 6 punktų kokybės patikra.",
-                "blockVariant": "emerald"
+                "blockVariant": "brand"
               },
               {
                 "heading": "3️⃣ Kopijuojamas šablonas",
@@ -5960,7 +6034,7 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "4️⃣ Soft proof – prieš mini testą pažymėk sau",
+                "heading": "Patikra",
                 "body": "Tai juodraštis, ne galutinis polish. Pažymėk sau:\n• Paleidau DI su brief / storyline\n• Turiu 8 antraštes (geriau – teiginius)\n• Padariau greitą QC (arba kitą skaidrę – QC lab)",
                 "blockVariant": "accent"
               }
@@ -6022,34 +6096,52 @@
           "subtitle": "RAG, tokenai, manipuliacijos, haliucinacijos – tik tada, kai reikia",
           "type": "content-block",
           "content": {
-            "displayMode": "tabs",
             "sections": [
               {
-                "heading": "Kaip naudoti",
-                "body": "**Kai prireikia:** jei užstrigai sprinto ar QC metu – pasirink situaciją žemiau ir nukopijuok šabloną. Po QC lab – ypač naudinga kortelė „Haliucinacijos“."
+                "heading": "Trumpai",
+                "body": "Keturios greitos pagalbos kortelės sprintui. Pasirink situaciją, nukopijuok šabloną, grįžk į QC.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "RAG: kai atsakymas turi būti su šaltiniais",
-                "body": "Naudok, kai prezentacijoje atsiranda faktai/skaičiai ir nori, kad DI aiškiai atskirtų: kas yra iš šaltinių, o kas – prielaidos.",
-                "copyable": "Dirbk tik su mano pateikta informacija (žemiau). Jei informacijos nepakanka – parašyk „nežinau“ ir nurodyk, ko trūksta.\n\nUžduotis: paruošk 1 skaidrę apie [TEMA].\nFormatas: Antraštė + 2 bullet + „Šaltiniai“ (1–3 punktai).\nTaisyklė: kiekvieną faktą susiek su šaltiniu (pvz. [Šaltinis 1]).\n\nKONTEKSTAS/ŠALTINIAI:\n[įklijuok 1–3 šaltinių ištraukas]\n",
+                "heading": "Daryk dabar",
+                "body": "Pasirink **vieną** kortelę žemiau pagal riziką ir paleisk promptą ant juodraščio.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Tokenai: kai nebetelpa kontekstas",
+                "heading": "🔽 RAG: kai atsakymas turi būti su šaltiniais",
+                "body": "Naudok, kai prezentacijoje atsiranda faktai/skaičiai ir nori, kad DI aiškiai atskirtų: kas yra iš šaltinių, o kas – prielaidos.",
+                "copyable": "Dirbk tik su mano pateikta informacija (žemiau). Jei informacijos nepakanka – parašyk „nežinau“ ir nurodyk, ko trūksta.\n\nUžduotis: paruošk 1 skaidrę apie [TEMA].\nFormatas: Antraštė + 2 bullet + „Šaltiniai“ (1–3 punktai).\nTaisyklė: kiekvieną faktą susiek su šaltiniu (pvz. [Šaltinis 1]).\n\nKONTEKSTAS/ŠALTINIAI:\n[įklijuok 1–3 šaltinių ištraukas]\n",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "🔽 Tokenai: kai nebetelpa kontekstas",
                 "body": "Naudok, kai turi daug teksto/šaltinių ir DI pradeda „pamesti“ ankstesnę informaciją arba atsakymai tampa chaotiški.",
                 "copyable": "Aš įklijuosiu ilgą tekstą. Tavo užduotis – suspausti jį į „konteksto kapsulę“, kad tilptų į promptą.\n\n1) Ištrauk 10–15 svarbiausių faktų (maks. 1 sakinys kiekvienam).\n2) Sudaryk 6–8 raktinių terminų žodynėlį (term → 1 eilutė).\n3) Pateik 3 klausimus, kuriuos būtina atsakyti, kad prezentacija būtų tiksli.\n\nGrąžink kaip:\nKONTEKSTO_KAPSULĖ:\n- Faktai: ...\n- Terminai: ...\n- Trūkstami klausimai: ...\n",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "Manipuliacijos: kai klausimas šališkas / nori neutralaus",
+                "heading": "🔽 Manipuliacijos: kai klausimas šališkas / nori neutralaus",
                 "body": "Naudok, kai pagauni save formuluojant „įrodyk, kad…“, „parašyk, kodėl mes geriausi…“ ir nori objektyvaus turinio.",
                 "copyable": "Perrašyk mano užklausą į 2 variantus:\nA) Neutralus (be šališkumo, abi pusės)\nB) Verslo (įtikinamas), bet etiškas (be išgalvotų faktų)\n\nTada sugeneruok 1 skaidrę pagal neutralų variantą: antraštė + 2 bullet + 1 „rizika/kontraargumentas“.\n\nMANO UŽKLAUSA:\n[įklijuok]\n",
-                "blockVariant": "default"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "Haliucinacijos: kai reikia patikimumo",
+                "heading": "🔽 Haliucinacijos: kai reikia patikimumo",
                 "body": "Naudok, kai DI pateikia įtikinamus faktus, bet tu nori greito „stop“: kas tikra, kas neaišku, ką tikrinti. Tinka po QC lab.",
                 "copyable": "Patikimumo patikra.\n\n1) Išskirk visus teiginius, kurie skamba kaip faktai (maks. 10).\n2) Prie kiekvieno: pažymėk (A) turi šaltinį mano kontekste / (B) neturi šaltinio.\n3) Jei (B) – perrašyk teiginį kaip prielaidą arba pasiūlyk, kokio šaltinio reikia.\n\nTada pateik pataisytą skaidrės variantą: antraštė + 2 bullet + „Kas neaišku / ką tikrinti“.\n\nTEKSTAS/SKAIDRĖ:\n[įklijuok]\n",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Patikra",
+                "body": "Po pagalbos kortelės:\n• Ar pritaikiau **vieną** techniką (ne visas keturias)?\n• Ar juodraštyje aišku, kas faktas / kas prielaida?\n• Ar galiu grįžti į QC lab?\n\nJei „ne“ – pakartok Daryk su kita kortele.",
                 "blockVariant": "accent"
               }
             ],
@@ -6444,14 +6536,19 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (15 s)",
+                "heading": "Trumpai",
                 "body": "Konteksto inžinerijos schema tinklalapiui: konteksto rinkinys (RAG) → vizualus maketas (Figma) → 6 blokų promptas ir HTML. Žemiau – grandinės kortelė.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Daryk dabar",
+                "body": "Peržvelk pavyzdinę eigą žemiau. Užsirašyk, kurį žingsnį darysi pirmą su savo HTML projektu (brief → blokai → generavimas → patikra).",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Pavyzdžiai iš praktikos",
                 "body": "Konteksto inžinerijos schema tinklalapiui: pirmiausia **surink kontekstą** (RAG arba paieška), tada **vizualus maketas** (Figma), paskui **6 blokų promptas** ir HTML generavimas. Žemiau – šios grandinės kortelė (kaip Modulyje 4).",
-                "blockVariant": "emerald",
+                "blockVariant": "terms",
                 "workflowChains": [
                   {
                     "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
@@ -6465,6 +6562,11 @@
                     "expandOutput": "Pilnas HTML+CSS viename faile, mobilus, 6 blokų promptas"
                   }
                 ]
+              },
+              {
+                "heading": "Patikra",
+                "body": "Ar matai aiškią seką (ne tik „padaryk HTML“)? Ar žinai, kur įterpti 6 blokus? Jei ne – grįžk prie praktikos skaidrės su COMBO/HTML promptu.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – skaidrė 5: Vieno puslapio HTML"
@@ -6480,13 +6582,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (20 s)",
+                "heading": "Trumpai",
                 "body": "6 blokų sistema – META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED – skirta generuoti profesionalų, mobilų .html tinklalapį. Žemiau – konteksto inžinerijos schema ir pilnas pavyzdinis promptas.",
                 "blockVariant": "accent"
               },
               {
-                "body": "Struktūruota praktinė užduotis – **6 blokų sistema** (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED), skirta generuoti profesionalų, modernų, mobilų .html tinklalapį. Atitinka Modulio 6 principą: visur 6 blokai.",
-                "blockVariant": "emerald"
+                "body": "Pirmiausia – atpažink silpną HTML promptą praktikoje žemiau (arba „Parodyti sprendimą“). Tada nukopijuok pilną 6 blokų pavyzdį ir paleisk DI savo temai.",
+                "blockVariant": "brand",
+                "heading": "Daryk dabar"
               },
               {
                 "heading": "Prieš kurdami: konteksto inžinerijos schema (Modulio 4)",
@@ -6552,7 +6655,18 @@
               "solutionCopyable": "META: Tavo rolė – patyręs front-end programuotojas ir UX/UI dizaineris. Tikslas – vieno puslapio .html tinklalapis sporto klubui.\nINPUT: Turinys – klubo pristatymas, treniruotės, kontaktai. CTA – lankytojas užpildo kontaktinę formą.\nOUTPUT: Pilnas HTML su įterptu CSS viename faile, be komentarų.\nREASONING: 1) Pristatymo blokas, 2) Treniruočių sekcija, 3) Kontaktai ir forma – logiška seka.\nQUALITY: Tonas modernus, aiškus, draugiškas; mobilus, lengvai skaitomas.\nADVANCED: Tik validus HTML+CSS kodas, be markdown žymų.",
               "solutionSummary": "Aiški rolė ir tikslas (META), konkretus formatas (OUTPUT – vienas .html failas), logiška sekcijų seka (REASONING), matuojama kokybė (QUALITY – mobilus, skaitomas) ir tikslus techninis apribojimas (ADVANCED). Gali šį variantą nukopijuoti ir paleisti."
             },
-            "footer": "Toliau – skaidrė 6: SUPER PROMPTAI"
+            "footer": "Toliau – skaidrė 6: SUPER PROMPTAI",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas HTML promptą – ko negali trūkti 6 blokų sistemoje?",
+              "options": [
+                "Užtenka paprašyti „gražaus tinklalapio“",
+                "META + INPUT + OUTPUT (+ REASONING/QUALITY/ADVANCED pagal užduotį)",
+                "Tik spalvų paletė be tikslo",
+                "Tik „padaryk professionaliai“ be formato"
+              ],
+              "correct": 1,
+              "explanation": "6 blokai duoda rolę, įvestį ir aiškų OUTPUT (failas/formatas). Be to DI spėlioja ir rezultatas būna chaotiškas."
+            }
           }
         },
         {
@@ -6607,9 +6721,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (15 s)",
+                "heading": "Trumpai",
                 "body": "Trys žingsniai: atsakyk sau (sunkiausia, pirmas naudojimas, tolesnis mokymasis); nukopijuok refleksijos promptą; pirmas veiksmas per 24–48 val.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Daryk dabar",
+                "body": "Rytoj: atidaryk savo DI įrankį ir įrašyk vieną promptą iš šio modulio į savo biblioteką. Arba: panaudok tą pačią 6 blokų struktūrą kitai temai.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Refleksijos klausimai",
@@ -6623,17 +6742,12 @@
               {
                 "heading": "Modulio rezultatas",
                 "body": "Dabar turi: paruoštą tyrimo ataskaitą arba Custom GPT instrukcijas; 6 blokų šabloną; RAG pavyzdį. Išsaugok juos savo bibliotekoje (žr. Duomenų tvarkymas).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Pirmas veiksmas per 24–48 val.",
-                "body": "Rytoj: atidaryk savo DI įrankį ir įrašyk vieną promptą iš šio modulio į savo biblioteką. Arba: panaudok tą pačią 6 blokų struktūrą kitai temai.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Ką toliau?",
-                "body": "**Grįžti į modulių sąrašą** – pasirink kitą modulį arba peržiūrėk sertifikatą. **Pažangūs keliai** (Moduliai 7–15) – gilinti žinias apie DI pritaikymą ir konteksto inžineriją.",
-                "blockVariant": "brand"
+                "heading": "Patikra",
+                "body": "Ar turi 1 konkretų veiksmą kitoms 24–48 val.? Ar refleksijos atsakymai užrašyti? Jei ne – paleisk refleksijos promptą dar kartą ir užsirašyk vieną žingsnį.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Toliau – skaidrė 8: Duomenų tvarkymo checklist"
@@ -6757,7 +6871,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Trumpai (15 s)",
+                "heading": "Trumpai",
                 "body": "Optional: 8 žingsnių schema – nuo tikslo iki tobulinimo. Tinka tiems, kurie nori kurti savo darbo asistentą (Custom GPT).",
                 "blockVariant": "accent"
               },
@@ -6766,14 +6880,19 @@
                 "body": "Jei nori **susikurti savo darbo asistentą** (Custom GPT) su aiškiomis taisyklėmis, ribomis ir testavimo rinkiniu."
               },
               {
+                "heading": "Daryk dabar",
+                "body": "Peržvelk 8 žingsnių schemą. Pažymėk, kuriame žingsnyje esi dabar, ir atlik tik kitą vieną žingsnį (ne visus iš karto).",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "8 žingsnių schema",
                 "body": "Naudok šią schemą kaip vedlį (Tikslas → Rolė → Konfigūracija → Testavimas → Tobulinimas).",
                 "image": "/custom_gpt_process.svg",
                 "imageAlt": "Custom GPT kūrimo procesas (8 žingsniai)",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Baigimo kriterijai (greitai)",
+                "heading": "Patikra",
                 "body": "1) Aiškios instrukcijos (be pertekliaus). 2) Ribos: „nežinau“ + šaltiniai. 3) 5 test promptai parodo stabilų elgesį.",
                 "blockVariant": "accent"
               }
