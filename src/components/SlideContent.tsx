@@ -35,7 +35,9 @@ import HallucinationRatesDashboard from './HallucinationRatesDashboard';
 import HallucinationPipelineSlide from './HallucinationPipelineSlide';
 import AiDetectorsSlide from '@ai-detectors-slide';
 import VaizdoGeneratoriusSlide from '@vaizdo-generatorius-slide';
+import I2vGeneratoriusSlide from '@i2v-generatorius-slide';
 import SlideWorkspace from './slides/shared/SlideWorkspace';
+import { typographyClasses } from '../design-tokens';
 
 /* Lazy by group (B): ContentSlides, BlockSlides, TestPracticeSlides – separate chunks.
    lazyWithRetry retries up to 3× on chunk load failure (mobile networks). */
@@ -570,7 +572,9 @@ export default function SlideContent({
   const content = showOuterFooter ? (
     <>
       {main}
-      <div className="flex flex-wrap items-center justify-between gap-4 py-4 mt-6 border-t border-slate-200 dark:border-slate-700 text-[11px] text-slate-500 dark:text-slate-400 italic">
+      <div
+        className={`flex flex-wrap items-center justify-between gap-4 py-4 mt-6 border-t border-slate-200 dark:border-slate-700 ${typographyClasses.footer} text-slate-500 dark:text-slate-400`}
+      >
         <span>{footer}</span>
         {moduleId === 7 &&
         visiblePosition != null &&
@@ -904,6 +908,7 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
     <LazyPracticeIntroSlide
       slide={ctx.slide}
       moduleId={ctx.moduleId}
+      moduleAccent={ctx.moduleAccent}
       progress={ctx.progress}
       scenarioSlides={ctx.practiceScenarioSlides}
       onNavigateToSlide={ctx.onNavigateToSlide}
@@ -1017,6 +1022,17 @@ const slideRegistry: Record<string, (ctx: SlideRenderContext) => ReactNode> = {
   'ai-detectors': (_ctx) => <AiDetectorsSlide />,
   'vaizdo-generatorius': (ctx) => (
     <VaizdoGeneratoriusSlide
+      content={
+        ctx.slide.content as {
+          tldr?: string;
+          patikra?: string;
+          footer?: string;
+        }
+      }
+    />
+  ),
+  'i2v-generatorius': (ctx) => (
+    <I2vGeneratoriusSlide
       content={
         ctx.slide.content as {
           tldr?: string;

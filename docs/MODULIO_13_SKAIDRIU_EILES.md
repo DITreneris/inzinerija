@@ -6,32 +6,34 @@
 
 ## Pilna seka (Modulis 13)
 
-| Eilė | ID                          | Skaidrė / tema                                  | Kodėl čia?                                                                                        |
-| ---- | --------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| 0    | 130                         | Modulio 13 įvadas / įtraukimas (action-intro)   | Pirmoji skaidrė – hook, whyBenefit, firstActionCTA; auditorija: rinkodara, komunikacijos.         |
-| 1    | 13.1                        | Turinio inžinerijos kelias – ką čia rasite      | Gilesnis nei įvanga sluoksnis: kampanijos tikslų modelis ir kur pritaikyti.                       |
-| 2    | **13.12**                   | **Generatyvinės medijos pipeline (MUST)**       | Brief → stills → refs → I2V → garsas → edit → QA/provenance. 2026 stuburas prieš įrankių detales. |
-| 3    | **13.15**                   | **Skyrius: Vaizdo generavimas (section-break)** | Skiriamoji skaidrė – vizualiai atskiria skyrių „Vaizdai“.                                         |
-| 4    | 13.2                        | Vaizdo prompto pagrindai                        | Content-block: Trumpai, formulė, CopyButton, Patikra.                                             |
-| 5    | 13.3                        | Stilius ir proporcijos (vaizdai)                | Brand consistency (MUST); collapsible įrankių pozicionavimas (FLUX, GPT-Image, …).                |
-| 5a   | **13.31**                   | **Savitikra: stilius ir proporcijos**           | Warm-up po 13.3.                                                                                  |
-| 5b   | **13.32**                   | **Character / product consistency (MUST)**      | 3–5 refs, same-product lock; po brand, prieš kompoziciją.                                         |
-| 5c   | **13.33**                   | **Kompozicija ir kadras (optional)**            | Optional: trečdalių taisyklė, kamera.                                                             |
-| 5d   | **13.34**                   | **Praktika: atpažink stilių ir proporcijas**    | Recognition pratimas.                                                                             |
-| 5e   | **13.35**                   | **Workflow ir MASTER šablonai (optional)**      | 5 žingsnių workflow, MASTER, ready prompts.                                                       |
-| 5f   | **13.37**                   | **Vaizdo generatorius (interaktyvus)**          | Interaktyvus generatorius.                                                                        |
-| 6    | **13.36**                   | **Skyrius: Video generavimas (section-break)**  | Skyrius „Video“.                                                                                  |
-| 7    | 13.4                        | Scenarijus trumpam vaizdo įrašui                | Storyboard, 3–5 s klipai, image→video, audio-first hint.                                          |
-| 8    | 13.5                        | Video įrankiai, formatas ir CPI                 | 2026 matrix (Seedance, Kling, Veo 3.1, Sora 2) + CPI.                                             |
-| 8a   | **13.51**                   | **Savitikra: video promptas ir formatas**       | Warm-up po 13.5.                                                                                  |
-| 8b   | **13.52**                   | **Post-production (MUST)**                      | AI = raw; CapCut cut/grade/mix; LUFS hint.                                                        |
-| 9    | **13.56**                   | **Skyrius: Garsas (section-break)**             | Skyrius „Garsas“ (VO / SFX / music); ne tik muzika.                                               |
-| 10   | 13.6                        | Audio-first: VO ir muzikos aprašymas            | Audio-first; VO + bed promptai; licensed vs demo.                                                 |
-| 11   | 13.7                        | Garsai, licencijos ir loudness                  | SFX + commercial license + LUFS.                                                                  |
-| 12   | **13.101** (tema **13.10**) | **Verslas ir rizikos (MUST)**                   | KPI/A/B + Legal + **C2PA/SynthID/disclosure** + QA.                                               |
-| 13   | **13.11**                   | **Workflow: nuo brief iki publikacijos (MUST)** | Verslo ciklas; nuoroda į **13.12** techninį pipeline.                                             |
-| 14   | 13.8                        | Žodynėlis (optional)                            | + CPI, C2PA, Soft Binding, audio-first, reference lock.                                           |
-| 15   | 13.9                        | Modulio 13 santrauka                            | 5 blokų modelis; CTA į M14 / M15.                                                                 |
+| Eilė | ID                          | Skaidrė / tema                                  | Kodėl čia?                                                                                             |
+| ---- | --------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 0    | 130                         | Modulio 13 įvadas / įtraukimas (action-intro)   | Pirmoji skaidrė – hook, whyBenefit, firstActionCTA; auditorija: rinkodara, komunikacijos.              |
+| 1    | 13.1                        | Turinio inžinerijos kelias – ką čia rasite      | Gilesnis nei įvanga sluoksnis: kampanijos tikslų modelis ir kur pritaikyti.                            |
+| 2    | **13.12**                   | **Generatyvinės medijos grandinė (MUST)**       | Brief → stills → refs → I2V → garsas → edit → QA/provenance. 2026 stuburas prieš įrankių detales.      |
+| 3    | **13.15**                   | **Skyrius: Vaizdo generavimas (section-break)** | Skiriamoji skaidrė – vizualiai atskiria skyrių „Vaizdai“.                                              |
+| 4    | 13.2                        | Vaizdo prompto pagrindai                        | Content-block: Trumpai, formulė, CopyButton, Patikra.                                                  |
+| 5    | 13.3                        | Stilius ir proporcijos (vaizdai)                | Brand consistency (MUST); collapsible įrankių pozicionavimas (FLUX, GPT-Image, …).                     |
+| 5a   | **13.31**                   | **Savitikra: stilius ir proporcijos**           | Warm-up po 13.3.                                                                                       |
+| 5b   | **13.32**                   | **Character / product consistency (MUST)**      | 3–5 refs, same-product lock; po brand, prieš kompoziciją.                                              |
+| 5b2  | **13.325**                  | **Lab: Consistency Drift**                      | Ref checklist + drift diagnosis lab; Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`; po 13.32, prieš 13.33. |
+| 5c   | **13.33**                   | **Kompozicija ir kadras (optional)**            | Optional: trečdalių taisyklė, kamera.                                                                  |
+| 5d   | **13.34**                   | **Praktika: atpažink stilių ir proporcijas**    | Recognition pratimas.                                                                                  |
+| 5e   | **13.35**                   | **Workflow ir MASTER šablonai (optional)**      | 5 žingsnių workflow, MASTER, ready prompts.                                                            |
+| 5f   | **13.37**                   | **Vaizdo generatorius (interaktyvus)**          | Interaktyvus generatorius.                                                                             |
+| 6    | **13.36**                   | **Skyrius: Video generavimas (section-break)**  | Skyrius „Video“.                                                                                       |
+| 7    | 13.4                        | Scenarijus trumpam vaizdo įrašui                | Storyboard, 3–5 s klipai, image→video, audio-first hint.                                               |
+| 7a   | **13.47**                   | **I2V klipo generatorius (interaktyvus)**       | Keyframe → 3–5 s promptas; po 13.4, prieš įrankių matricą. Feature Doc `M13_I2V_CLIP_BUILDER.md`.      |
+| 8    | 13.5                        | Video įrankiai, formatas ir CPI                 | 2026 matrix (Seedance, Kling, Veo 3.1, Sora 2) + CPI.                                                  |
+| 8a   | **13.51**                   | **Savitikra: video promptas ir formatas**       | Warm-up po 13.5.                                                                                       |
+| 8b   | **13.52**                   | **Post-production (MUST)**                      | AI = raw; CapCut cut/grade/mix; LUFS hint.                                                             |
+| 9    | **13.56**                   | **Skyrius: Garsas (section-break)**             | Skyrius „Garsas“ (VO / SFX / music); ne tik muzika.                                                    |
+| 10   | 13.6                        | Audio-first: VO ir muzikos aprašymas            | Audio-first; VO + bed promptai; licensed vs demo.                                                      |
+| 11   | 13.7                        | Garsai, licencijos ir loudness                  | SFX + commercial license + LUFS.                                                                       |
+| 12   | **13.101** (tema **13.10**) | **Verslas ir rizikos (MUST)**                   | KPI/A/B + Legal + **C2PA/SynthID/disclosure** + QA.                                                    |
+| 13   | **13.11**                   | **Workflow: nuo brief iki publikacijos (MUST)** | Verslo ciklas; nuoroda į **13.12** techninį pipeline.                                                  |
+| 14   | 13.8                        | Žodynėlis (optional)                            | + CPI, C2PA, Soft Binding, audio-first, reference lock.                                                |
+| 15   | 13.9                        | Modulio 13 santrauka                            | 5 blokų modelis; CTA į M14 / M15.                                                                      |
 
 ---
 
@@ -45,7 +47,7 @@ Path Test Contract (`GOLDEN_STANDARD.md` §3.4a1) – lukštas kaip M11.
 | 0a   | 140.5 | warm-up-quiz          | 3 unscored: brand/formatas; audio-first; forward bridge → M15 MUST vs optional.            |
 | 1    | 141   | test-section          | 12 klausimų; remediation `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101).          |
 | 2    | 142   | test-results          | **useCaseBlock** – „Kitas žingsnis: Modulis 15“.                                           |
-| 3    | 143   | content-block (bonus) | Optional 5 min pipeline checklist (Trumpai → Daryk → Copy → Patikra) prieš M15.            |
+| 3    | 143   | content-block (bonus) | Optional 5 min medijos grandinės checklist (Trumpai → Daryk → Copy → Patikra) prieš M15.   |
 
 ---
 

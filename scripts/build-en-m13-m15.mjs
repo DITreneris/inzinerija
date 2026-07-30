@@ -38,10 +38,13 @@ const moduleMeta = {
 const slideMeta = {
   130: ['Content engineering path', 'Images, video, music'],
   13.1: ['What you will find in this path', 'Images, video, music – tools and prompts'],
+  13.12: ['Generative media chain', 'Brief → stills → refs → I2V → audio → edit → QA'],
   13.15: ['Image generation', 'Section: prompts, style, ratios and tools'],
   13.2: ['Image prompt basics', 'What to describe: subject, style, ratio'],
   13.3: ['Style and ratios for images', 'Style controls look; ratio controls format'],
   13.31: ['Quick check: style and ratios', '3 questions before composition and the builder'],
+  13.32: ['Character / product consistency', '3–5 references + same-product lock'],
+  13.325: ['Lab: Consistency Drift', 'Tick refs, pick what drifted – copy fix + lock rule'],
   13.33: ['Composition and framing (optional)', 'Rule of thirds, camera angle, shot types'],
   13.34: ['Practice: recognise style and ratios', '5 situations: style, ratio, composition, brand'],
   13.35: ['Workflow and MASTER templates (optional)', '5-step pipeline, #1000Books, ready prompts'],
@@ -85,6 +88,9 @@ const headingMap = new Map([
   ['Minimalūs reikalavimai', 'Minimum requirements'],
   ['Kodėl tai veikia', 'Why this works'],
   ['Brand consistency (svarbu verslui)', 'Brand consistency'],
+  ['Reference lock – schema', 'Reference lock – diagram'],
+  ['Brand / product sheet (minimumas)', 'Brand / product sheet (minimum)'],
+  ['Drift lab', 'Drift lab'],
   ['Įrankiai', 'Tools'],
   ['Kuris įrankis kam', 'Which tool for which case'],
   ['Trečdalių tinklelis (gairė)', 'Rule-of-thirds grid'],
@@ -127,6 +133,8 @@ const genericBySlide = {
   13.2: 'A good image prompt describes the subject, context, style, ratio and what to avoid.',
   13.3: 'Use style, ratio and brand rules so the image does not look random.',
   13.31: 'Check whether you can identify ratio, style and brand consistency before moving on.',
+  13.32: 'A single prompt does not lock identity – you need 3–5 reference angles and a same-product lock rule.',
+  13.325: 'Tick the references you have, diagnose drift (or a fresh brief), then copy one prompt rule.',
   13.33: 'Composition and camera language help you control what the viewer sees first.',
   13.34: 'Recognise which prompt field needs fixing: style, ratio, composition or brand consistency.',
   13.35: 'Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.',
@@ -192,6 +200,101 @@ OUTPUT: checklist table (step | status | risk) + 1 next action.`,
   158:
     'Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.',
 };
+
+const slide13_32Sections = [
+  {
+    heading: 'In short',
+    body: 'A single prompt does not lock identity. In marketing you need 3–5 references (different angles) and the rule “same product / same style / same color palette” – otherwise the set drifts.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Reference lock – diagram',
+    body: 'Four steps – tap a stage. You will copy the rule in the Consistency lab.',
+    blockVariant: 'brand',
+    image: 'm13_consistency_lock',
+    imageAlt: 'Reference lock: refs, rule, generate, QA',
+  },
+  {
+    heading: 'Brand / product sheet (minimum)',
+    body: '(1) Hero / front view. (2) ¾ or side. (3) Flatlay or detail (label). (4) Optional – style / lighting ref.',
+    blockVariant: 'brand',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+  {
+    heading: 'Do this now',
+    body: 'Collect or generate at least 3 references for your product or character. In the Consistency lab, tick refs and diagnose drift.',
+    blockVariant: 'brand',
+  },
+  {
+    heading: 'Check',
+    body: 'Do you have at least 3 angles as refs? If the set still drifts – use Consistency lab: Symptom | Fix and copy the rule. Avoid real people’s faces without consent.',
+    blockVariant: 'accent',
+  },
+];
+
+const slide13_325Sections = [
+  {
+    heading: 'In short',
+    body: 'After the reference lock diagram – practice: tick the refs you have, recognise drift (proportions, colour, label, style) or a new brief. One choice → one copyable rule.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Drift lab',
+    body: 'Tick refs (≥3), pick what drifted. Below – Symptom | Fix and the prompt rule – copy it into your next generation.',
+    blockVariant: 'brand',
+    image: 'm13_consistency_lab',
+    imageAlt: 'Consistency drift lab: refs, Symptom and Fix, copyable rule',
+  },
+  {
+    heading: 'Check',
+    body: 'Did you tick refs, pick a mode and copy the rule? If refs are missing – go back to Character / product consistency and collect 3–5 angles.',
+    blockVariant: 'accent',
+  },
+];
+
+const slide13_1Sections = [
+  {
+    heading: 'In short',
+    body: 'Before you generate an image or clip, pick a campaign goal: Awareness, Engagement or Conversion. The diagram links the goal to the visual.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Campaign goals diagram',
+    body: 'Pick a goal – each band shows what to emphasise: emotion at the top, clarity at the bottom.',
+    blockVariant: 'brand',
+    image: 'm13_aec_funnel',
+    imageAlt: 'Campaign goals funnel: Awareness, Engagement, Conversion',
+  },
+  {
+    heading: 'Do this now',
+    body: 'Think of one real post or ad. Tap the matching band in the diagram, then copy the template below and fill it in (or run it in AI).',
+    blockVariant: 'brand',
+  },
+  {
+    heading: 'Campaign goals: how to decide',
+    body: 'Awareness – attention and emotion; typical: cover, banner, social post. Engagement – context and stop-scroll; typical: carousel, video intro, illustration. Conversion – action, product, call to action (CTA); typical: ad layout, landing hero, “buy now” block. When emotion vs clarity: Awareness often = emotion; Conversion = clarity and trust.',
+    blockVariant: 'terms',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+  {
+    heading: 'Copyable template',
+    body: 'Paste into an AI chat or fill it yourself – pick A/E/C for your visual.',
+    copyable:
+      'Help me choose a campaign goal (A/E/C) for this visual.\n\nContext: [product / topic], platform [where], audience [who].\nGoals: awareness | engagement | conversion.\n\nReply briefly:\n1) one goal,\n2) why (1 sentence),\n3) what to emphasise visually (emotion / context / CTA),\n4) 1–2 fitting formats.',
+  },
+  {
+    heading: 'Check',
+    body: 'Do you have one clear A/E/C goal and a one-sentence “why” (from the template / AI)? If not – go back to the bands or the template. If yes – continue to the Media chain.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Where to use this',
+    body: 'Marketing visuals, social images and short videos, background music or sounds for projects – without needing a designer or composer every time.',
+    blockVariant: 'terms',
+  },
+];
 
 const bonus143Sections = [
   {
@@ -261,6 +364,18 @@ function translateSlide(slide, moduleId) {
   const contentOverrides = {};
   if (recognitionBySlide[slide.id]) {
     contentOverrides.recognitionExercise = recognitionBySlide[slide.id];
+  }
+  if (slide.id === 13.1) {
+    contentOverrides.sections = slide13_1Sections;
+    contentOverrides.footer = 'Next – slide 3: Media chain';
+  }
+  if (slide.id === 13.32) {
+    contentOverrides.sections = slide13_32Sections;
+    contentOverrides.footer = 'Next – slide 9: Consistency lab';
+  }
+  if (slide.id === 13.325) {
+    contentOverrides.sections = slide13_325Sections;
+    contentOverrides.footer = 'Next – slide 10: Composition and framing';
   }
   if (slide.id === 143) {
     contentOverrides.sections = bonus143Sections;
