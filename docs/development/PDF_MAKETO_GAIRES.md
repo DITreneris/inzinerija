@@ -30,7 +30,7 @@ Viena šriftų šeima (custom font su lietuviškais simboliais). Skiriasi **dydi
 
 - **Tarp eilutės:** apie 1,2–1,4× fonto dydis (line height).
 - **Tarp pastraipų / sąrašo punktų:** mažiausiai 3–4 mm.
-- **Atmintinių serija:** bazinė skalė valdoma `handoutPdfKit.ts` (`regular`); tankiems 2 psl. M7–9/M10–12/M13–15 PDF leidžiama `compact`, bet header, footer ir spalvos lieka tos pačios.
+- **Atmintinių serija:** bazinė skalė valdoma `handoutPdfKit.ts` (`regular`); tankiems 2 psl. M7–9/M10–12/M13–15 PDF leidžiama `compact`. **Išimtis M5:** pilnas body (įrankiai + promptai + QC + slenksčiai) netelpa į A4 su `regular` (~55 mm overflow) – privaloma `compact` + fit guard `HANDOUT_CONTENT_BOTTOM` (žr. [`HANDOUT_MATURITY.md`](HANDOUT_MATURITY.md)). Header, footer ir spalvos lieka tos pačios.
 
 ---
 

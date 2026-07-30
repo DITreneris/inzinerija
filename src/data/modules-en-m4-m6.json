@@ -1977,9 +1977,14 @@
           "content": {
             "sections": [
               {
-                "heading": "Main AI tools before workflow",
-                "body": "Choose the tool by task type, not popularity. The right choice saves time and reduces errors.",
+                "heading": "In short",
+                "body": "Pick the tool by task type, not popularity. The right choice saves time and cuts mistakes.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "In the bar, pick what you are doing now (Write / Analyze / Office / Research / Slides). The table highlights the best-fit tool — note one choice for this week.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Quick orientation (30 s) ⚡",
@@ -2088,12 +2093,12 @@
               {
                 "heading": "How to choose?",
                 "body": "**Rule:** Task → Tool → Workflow (not the other way round).\n\nWriting / strategy → **ChatGPT**.\nData / code / long documents → **Claude**.\nOffice → **Copilot**.\nResearch / visuals → **Gemini**.\nSlides / proposals → **Gamma**.\n\nYou can combine several tools in one chain. E.g.: Claude (analysis) → ChatGPT (wording) → Gamma (slides).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Example chain (workflow)",
                 "body": "",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "workflowChains": [
                   {
                     "chain": ["Claude", "ChatGPT", "Gamma"],
@@ -2106,9 +2111,9 @@
                 ]
               },
               {
-                "heading": "Practical recommendation",
-                "body": "**Pro tip:** In 80% of cases one main tool + one specialised is enough. What matters isn't having all tools – it's knowing clearly which to use at which step.",
-                "blockVariant": "brand"
+                "heading": "Quality check",
+                "body": "Check yourself:\n• Do I know 1 primary tool for this week?\n• Do I know when to add a second specialist tool?\n• Did I choose by task, not hype?\n\nIf at least 2 are “no” — return to the bar and choose again.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 21: RAG: what it is and try it"
@@ -2262,7 +2267,18 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 23: Working with RAG: memory and sources"
+            "footer": "Next – slide 23: Working with RAG: memory and sources",
+            "preCopyCheckBlock": {
+              "question": "Before copying a RAG prompt with open data — what is required?",
+              "options": [
+                "Asking to “find facts online” is enough",
+                "Name official sources and require a citation (or “I don’t know”)",
+                "Ask for the longest answer with no sources",
+                "Use only one unofficial blog"
+              ],
+              "correct": 1,
+              "explanation": "RAG with open data works when sources are clear and AI must cite or admit a gap (“I don’t know”). Without that — easy hallucination."
+            }
           }
         },
         {
@@ -2413,7 +2429,18 @@
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 24: AI tools for information search"
+            "footer": "Next – slide 24: AI tools for information search",
+            "preCopyCheckBlock": {
+              "question": "When is AI “memory” (uploaded context) more reliable than a general chat?",
+              "options": [
+                "When you ask for an opinion with no documents",
+                "When you upload your sources / summary and ask answers only from them",
+                "When you repeat the same question 10 times",
+                "When you pick the longest model with no context"
+              ],
+              "correct": 1,
+              "explanation": "Reliable memory = your documents or summary as the source + an instruction not to go outside them. Without uploaded data the model guesses."
+            }
           }
         },
         {
@@ -2608,15 +2635,20 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (30 s)",
-                "body": "5 steps: metadata → clean-up → headings → chunks → summary. Pick a step – you'll see the prompt and copy it.",
+                "heading": "In short",
+                "body": "5 steps: metadata → cleaning → headings → chunks → summary. Pick a step on the pipeline — see the prompt and copy it.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "Scan the pipeline: where is your risk (chunk size, metadata, cleaning)? Pick that step, copy the prompt, and run it on a piece of your document.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "RAG prep pipeline",
                 "body": "Pick a step – you'll see the prompt and why it matters. Sequential process: metadata → clean-up → headings → chunks → summary.",
                 "image": "rag_duomenu_ruosimas",
-                "blockVariant": "emerald"
+                "blockVariant": "terms"
               },
               {
                 "heading": "What else do I do?",
@@ -2626,8 +2658,13 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "Plain-language term: chunk",
+                "heading": "Term: chunk (fragment)",
                 "body": "**Chunk** – one logical piece of text you split the document into for the RAG system (e.g. one paragraph, section, or topic). Instead of one long file in search – smaller, meaningful chunks; then RAG finds only the bit that matches the question. **How to use:** set the boundary by meaning (one idea/paragraph); avoid long chunks without headings; add a short heading or summary for each.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Quality check",
+                "body": "Before RAG:\n• Does the document have metadata (source, date)?\n• Are chunks logical (not too long without headings)?\n• Do you know which pipeline step you will do first?\n\nIf “no” — return to that step’s prompt.",
                 "blockVariant": "accent"
               }
             ],
@@ -2642,9 +2679,14 @@
           "content": {
             "sections": [
               {
-                "heading": "🎯 What's in it for me?",
-                "body": "• Less chaos\n• Clearer conclusions\n• Structured answers instead of a stream of text\n• Better RAG / Deep research quality\n\nWorks with RAG and Deep Research – it's a universal structure.",
+                "heading": "In short",
+                "body": "Four short strategies — less chaos, clearer conclusions, structured answers. Works with RAG and Deep research.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "Copy **one** Micro prompt below (start with “Step-by-step”), fill the brackets, and run it in AI. Compare with your usual question.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "1️⃣ Step-by-step",
@@ -2671,8 +2713,8 @@
                 "copyable": "Rate 3 alternatives for [project / investment] by risk, return and time.\nFormat: table + best pick + 2 sentences of rationale."
               },
               {
-                "heading": "Bottom line",
-                "body": "You're not just asking AI. You're steering its thinking structure.",
+                "heading": "Quality check",
+                "body": "After you run it:\n• Does the answer have clear structure (steps / table / branches)?\n• Can you reuse the same strategy on another topic?\n\nIf “no” — try another Micro from the list. You are not just asking AI — you steer its thinking structure.",
                 "blockVariant": "accent"
               }
             ],
@@ -2687,23 +2729,28 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ Situation (typical in business)",
-                "body": "You have a problem: sales are flat, market is squeezing prices, the team is scattered between ideas, management needs a clear decision. AI can't give \"nice text\" – it has to give decision logic. That's what COMBO is for.",
+                "heading": "In short",
+                "body": "COMBO joins role, process, alternatives, and a clear output — AI gives decision logic, not “nice text”. You will reuse the same principle in your project.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "Copy the COMBO example below (practical task). Swap in your business case and run it in AI. Goal — a 90-day plan + 3 risks, not generic phrases.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "COMBO = Structured query framework",
                 "body": "In one prompt you combine 4 layers: **1️⃣ Role** – who is analysing? **2️⃣ Process** – how do they think? **3️⃣ Alternative evaluation** – what is compared? **4️⃣ Clear output** – what exactly do I get? This isn't a question – it's a mini strategy session in one prompt. Copy below and try.",
-                "blockVariant": "violet"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Why does it work?",
-                "body": "• AI can't dodge with generic phrases\n• You get a decision structure, not an opinion\n• The answer becomes usable in a management meeting\n• You can use the same principle in the M6 project\n\n**Bottom line:** When you use COMBO, you're not asking for advice – you're controlling the analysis architecture.",
+                "heading": "Quality check",
+                "body": "After you run it:\n• Did AI compare alternatives (not just one idea)?\n• Is there a recommended direction + 90-day plan?\n• Are at least 3 risks named?\n\nIf “no” — put the COMBO layers back into the prompt (role → process → alternatives → output).",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Token management (want to know more?)",
-                "body": "COMBO prompts can be long – respect the token limit (prompt + answer); plan max_tokens or split into several prompts. If the answer gets cut off – split into several queries with a clear sequence.\n\nLink to Module 4 token economy (4.4) – more on tokens and context window.",
+                "body": "COMBO prompts can get long — respect the token limit (prompt + answer); plan length or split into several prompts. If the answer cuts off — split into sequenced queries.\n\nMore in the “Token economy” slide in this module.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -2802,14 +2849,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ When do you need it?",
-                "body": "When the decision costs money, you need to justify to management, one answer isn't enough, or you need sources, not opinion. Deep Research ≠ a simple question to AI – it's a structured mini research (5–15 min).",
+                "heading": "In short",
+                "body": "When a decision costs money or you need sources for leadership — Deep research is a structured mini-study (5–15 min), not a single AI answer.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "What is it in essence?",
                 "body": "4 stages in one process: (1) topic split into sub-questions, (2) source search, (3) data extraction, (4) synthesis with links. Result – analysis fit for a decision.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "How is it different from RAG?",
@@ -2817,6 +2864,11 @@
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
+              },
+              {
+                "heading": "Do now",
+                "body": "Copy the Deep Research prompt below. Replace [TOPIC], [GOAL], [SOURCES] and run it. In a hurry — use Quick start (research starter).",
+                "blockVariant": "brand"
               },
               {
                 "heading": "2️⃣ Deep Research prompt (copy–paste)",
@@ -2827,7 +2879,7 @@
               {
                 "heading": "Where does it work?",
                 "body": "[Perplexity](https://perplexity.ai) (Research mode), [ChatGPT](https://chat.openai.com) (Browse / Advanced Data Analysis), [Claude](https://claude.ai) (with tools), [Gemini](https://gemini.google.com) (built-in search). For academics: [Elicit](https://elicit.com), [Consensus](https://consensus.app).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "⚡ Quick start (research starter)",
@@ -2836,9 +2888,9 @@
                 "copyable": "Data: topic [TOPIC]; goal [decision / report]\nDo: 3 sub-questions + which sources you need + short synthesis\nFormat: sub-question | what to look for | 1 finding (with link if you have one)\nIf no source – “I don’t know”."
               },
               {
-                "heading": "Bottom line",
-                "body": "Deep Research lets you not \"ask AI\" – but back a decision with data.",
-                "blockVariant": "terms"
+                "heading": "Quality check",
+                "body": "Check the OUTPUT:\n• Are there sub-questions and a synthesis (not just opinion)?\n• Do conclusions cite sources (or “I don’t know”)?\n• Can you defend a decision with this?\n\nIf at least 2 are “no” — run Quick start and add sources.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 30: Practical tasks: prompt sequences"
@@ -3055,19 +3107,24 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (30 s)",
-                "body": "Token = smallest unit of text the AI processes. Context window and max_tokens limit how much information \"fits\". 7 tips – how to shorten and keep quality. Practice below.",
+                "heading": "In short",
+                "body": "A token is the smallest text unit AI processes. Context window and max_tokens limit how much fits. Below — how to shorten without losing quality.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "Take one prompt you used recently. Check: can you cut 30% and add an output limit (“max 150 words” / “list only”)? Write down 1 change.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "What is a token?",
                 "body": "A token is the smallest unit of text the AI processes. Roughly: 1 token ≈ 4 characters (English) or ~0.75 words. In other languages tokens can be shorter (e.g. with accents).",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Concrete example",
                 "body": "The sentence \"Artificial intelligence is changing the job market\" ≈ 7 tokens (English). 1 A4 page (~2000 characters) ≈ 500–600 tokens. A whole book (~80,000 words) ≈ ~100,000 tokens.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Context window",
@@ -3104,12 +3161,12 @@
               {
                 "heading": "5 tips for your token budget",
                 "body": "1) **Structure** – split topics into sub-topics (shorter conversations). 2) **Shorten** – precise, short prompts save tokens. 3) **Summarise** – in long chats ask for a summary. 4) **Limit output** – use max_tokens, \"max 150 words\", \"list only\". 5) **Templates** – system prompt with fixed instructions so you don't repeat.",
-                "blockVariant": "accent"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Why does it matter?",
-                "body": "Longer context = higher cost and slower response. A short, clear prompt with clear Output limits – saves money and time. E.g. \"No intro – answer only\" or \"Give a numbered list only (5 items)\".",
-                "blockVariant": "terms"
+                "heading": "Quality check",
+                "body": "Before the next long session:\n• Do I roughly know my model’s context window size?\n• Does the prompt cap the output?\n• Can I split the topic into smaller chats?\n\nIf at least 2 are “no” — return to the 5 tips and apply one now.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 35: Context degradation"
@@ -3123,19 +3180,24 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (30 s)",
-                "body": "**Context degradation** – why the AI \"forgets\" in long conversations. Three mechanisms: Lost in the Middle, attention spread, context displacement (FIFO). Three practices: checkpoint, separate chats, repeat priorities.",
+                "heading": "In short",
+                "body": "Context degradation — why AI “forgets” in long chats. Three mechanisms + three practices: checkpoint, separate chats, re-inject priorities.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "In your next long chat, run a checkpoint: about every ~10 messages ask AI to summarize what you agreed. Re-state the top rule in the critical request.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "What happens under the hood: 3 context-loss mechanisms",
                 "body": "**1. Lost in the Middle** – models absorb information best at the **start** or **end** of the text; information in the **middle** loses impact (research: accuracy can drop from >90% to ~40%).\n\n**2. Attention spread** – as the number of tokens grows, the model's \"attention\" to each specific fact decreases.\n\n**3. Context displacement (FIFO)** – when the technical limit is reached, the oldest information is dropped to make room for new input.",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
                 "heading": "Business example: strategic planning",
                 "body": "How an important priority gets lost in a long conversation – and what risk that is for the business.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "table": {
                   "headers": ["Iteration", "Action", "Context state"],
                   "rows": [
@@ -3160,11 +3222,18 @@
               {
                 "heading": "Research data",
                 "body": "\"The model's ability to identify a specific fact in long context decreases exponentially when that fact is not directly related to the latest query.\" — *Liu et al., Stanford University (2023)*\n\n• **Loss of effectiveness:** In complex sessions, consistency of reasoning drops on average **~39%** over a long discussion.\n• **Error accumulation:** A wrong assumption in the 5th message becomes \"fact\" by the 15th (hallucination chain).",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "How to reduce the risk",
                 "body": "**1. Checkpoint method** – every ~10 messages ask the AI to summarise what we've agreed.\n\n**2. Isolate context** – use separate chat windows for different projects.\n\n**3. Repeat priorities** – restate the most important rules in each critical query (Prompt re-injection).\n\n**Try it:** Start your next long conversation with a 1–2 sentence summary – that reduces \"forgetting\" risk.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Quality check",
+                "body": "In a long session:\n• Do I use checkpoints (summary ~every 10 messages)?\n• Is the critical rule repeated in the last request?\n• Are different projects in separate chats?\n\nIf “no” — start the next chat with a 1–2 sentence summary.",
                 "blockVariant": "accent"
               },
               {
@@ -3431,12 +3500,12 @@
           "content": {
             "sections": [
               {
-                "heading": "Reflection prompt",
-                "body": "Before the Module 5 test or Module 6 project – ask yourself 3 questions. Copy the prompt below into the AI and get personal feedback.",
+                "heading": "In short",
+                "body": "Before the Module 5 test or project — 3 questions for yourself. Copy the reflection prompt and get personal feedback.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "First action after the module",
+                "heading": "Do now",
                 "body": "Within 24–48 hours open the AI and ask one RAG or fact-check question with sources – e.g. \"From Eurostat data: GDP trend in Lithuania over 3 years. Cite the source.\" That reinforces what the module is for.",
                 "blockVariant": "brand"
               },
@@ -3452,9 +3521,9 @@
                 "copyable": "You are a training reflection assistant.\n\nI've just finished Module 4 (context engineering) – RAG, Deep research, tokens, fact-checking.\n\nAsk me 3 questions:\n1. What can I apply from this at work today?\n2. What was newest or most surprising?\n3. What do I want to try first – the test (M5) or the project (M6)?\n\nAfter my answers, give one concrete tip on how to start."
               },
               {
-                "heading": "Next step",
-                "body": "Pick one option below.",
-                "blockVariant": "emerald"
+                "heading": "Quality check",
+                "body": "Do you have 1 concrete action for the next 48h (RAG question, test, or project)? If not — return to the prompt and write one step.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 41: Choose next step"
@@ -3468,29 +3537,29 @@
           "content": {
             "sections": [
               {
-                "heading": "What can I do next?",
-                "body": "Module 4 is complete. Choose one of four paths – depending on your goal.",
+                "heading": "In short",
+                "body": "Module 4 is done. Pick **one** next step — recommended: start with the Module 5 test.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "1. Go to Module 5 test",
-                "body": "15 min presentation sprint and mini comprehension test. ≥70% recommended – then Module 6 project is unlocked.",
+                "heading": "Do now: Module 5 test",
+                "body": "Go to Module 5 — a 15-min presentation sprint and a short comprehension test. Aim for ≥70%, then the Module 6 project will be clearer.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "2. Review RAG or Deep research",
-                "body": "If you want to strengthen using sources or deep research – go back to the relevant Module 4 slides (4.2, 4.3).",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "3. Open Module 6 project description",
-                "body": "Practice: SUPER PROMPTS, COMBO, HTML – one integrated project. Recommended after the Module 5 test.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "4. Download Module 4 summary (PDF)",
-                "body": "After you finish the module, download the Module 4 handout from the completion screen: RAG, deep research, tokens, hallucinations, and a reliability checklist.",
+                "heading": "Otherwise: reinforce Module 4",
+                "body": "Want more practice — revisit “RAG: what it is and try it” or “Deep research”.",
                 "blockVariant": "terms"
+              },
+              {
+                "heading": "Otherwise: Module 6 project",
+                "body": "Practice with SUPER prompts and COMBO — one integrated project. Recommended after the Module 5 test.",
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Quality check: handout",
+                "body": "On the completion screen, download the Module 4 PDF handout (RAG, deep research, tokens, QC checklist). If you have not yet — do it before the test.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Module 4 complete – good luck with the test and project!"
@@ -3589,6 +3658,11 @@
                 "copyable": "1. Problem / context\n2. Why it matters now\n3. Solution idea\n4. How it works (simply)\n5. Example / use case\n6. Benefits / results\n7. Risks / limits\n8. What to do next (CTA)"
               },
               {
+                "heading": "Quality check",
+                "body": "After you run it:\n• Do you have 8 slide titles (not full copy)?\n• Does the brief include topic + audience?\n• Can you reuse the same template on another topic?\n\nIf “no” — return to the structure template above.",
+                "blockVariant": "accent"
+              },
+              {
                 "heading": "🔽 Master prompt (structure only)",
                 "body": "Asks only for structure – not full content. Fill [Your text], copy into AI. The full 6-block content prompt is on \"Full content and tools\".",
                 "copyable": "Create an 8-slide presentation structure (not full content). Topic: [Your text]. Audience: [Your text]. For each slide give: title and 2–3 main points. Format: numbered list. Tone: clear, non-tech.",
@@ -3683,7 +3757,7 @@
               {
                 "heading": "Tool tree – 3 paths",
                 "body": "**1. Recommended today:** AI (ChatGPT / Claude) → **Gamma** – fast draft.\n**2. Office ecosystem:** Copilot / PowerPoint – if you work in Microsoft.\n**3. Visual templates:** Canva – if you need quick visuals.\n\nA good prompt and clear structure = 80% of the presentation. The tool is just the format.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -3706,7 +3780,7 @@
               {
                 "heading": "1. First: AI – structure and content",
                 "body": "Create content in ChatGPT, Claude or Gemini. Copy the 6-block prompt above.",
-                "blockVariant": "brand",
+                "blockVariant": "terms",
                 "presentationToolsBlock": true,
                 "presentationTools": [
                   {
@@ -3757,9 +3831,9 @@
                 ]
               },
               {
-                "heading": "Bottom line",
-                "body": "**A good prompt and clear structure = 80% of the presentation.** The tool is just the slide format.",
-                "blockVariant": "brand"
+                "heading": "Quality check",
+                "body": "Before QC:\n• Did you run the 6-block prompt with [Topic] / [Audience] filled?\n• Did you pick 1 tool path (not all at once)?\n• Do you have a draft for 8 slides?\n\n**Bottom line:** a good prompt and clear structure ≈ 80% of the deck; the tool is formatting.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 5: Sprint"
@@ -3806,7 +3880,7 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "4️⃣ Soft proof – check yourself before the mini quiz",
+                "heading": "Quality check",
                 "body": "This is a draft, not final polish. Check yourself:\n• I ran AI with brief / storyline\n• I have 8 titles (ideally assertions)\n• I did a quick QC (or the next slide – QC lab)",
                 "blockVariant": "accent"
               }
@@ -3868,34 +3942,52 @@
           "subtitle": "RAG, tokens, manipulation, hallucinations – only when needed",
           "type": "content-block",
           "content": {
-            "displayMode": "tabs",
             "sections": [
               {
-                "heading": "How to use",
-                "body": "**When needed:** if you get stuck during the sprint or QC – pick a situation below and copy the template. After the QC lab – the Hallucinations card is especially useful."
+                "heading": "In short",
+                "body": "Four quick help cards for the sprint. Pick a situation, copy the template, return to QC.",
+                "blockVariant": "accent"
               },
               {
-                "heading": "RAG: when the answer must cite sources",
-                "body": "Use when the presentation has facts/figures and you want AI to separate sources vs assumptions.",
-                "copyable": "Work only with the information I provide (below). If information is insufficient – say \"I don't know\" and state what's missing.\n\nTask: prepare 1 slide about [TOPIC].\nFormat: Title + 2 bullets + \"Sources\" (1–3 points).\nRule: link each fact to a source (e.g. [Source 1]).\n\nCONTEXT/SOURCES:\n[paste 1–3 source excerpts]\n",
+                "heading": "Do now",
+                "body": "Pick **one** card below by risk and run the prompt on your draft.",
                 "blockVariant": "brand"
               },
               {
-                "heading": "Tokens: when context doesn't fit",
+                "heading": "🔽 RAG: when the answer must cite sources",
+                "body": "Use when the presentation has facts/figures and you want AI to separate sources vs assumptions.",
+                "copyable": "Work only with the information I provide (below). If information is insufficient – say \"I don't know\" and state what's missing.\n\nTask: prepare 1 slide about [TOPIC].\nFormat: Title + 2 bullets + \"Sources\" (1–3 points).\nRule: link each fact to a source (e.g. [Source 1]).\n\nCONTEXT/SOURCES:\n[paste 1–3 source excerpts]\n",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "🔽 Tokens: when context doesn't fit",
                 "body": "Use when you have a lot of text/sources and AI starts forgetting earlier information.",
                 "copyable": "I will paste a long text. Your task – compress it into a \"context capsule\" that fits the prompt.\n\n1) Extract 10–15 key facts (max 1 sentence each).\n2) Build a 6–8 key-term glossary (term → 1 line).\n3) Give 3 questions that must be answered for the presentation to be accurate.\n\nReturn as:\nCONTEXT_CAPSULE:\n- Facts: ...\n- Terms: ...\n- Missing questions: ...\n",
-                "blockVariant": "terms"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "Manipulation: when the question is biased / you want neutral",
+                "heading": "🔽 Manipulation: when the question is biased / you want neutral",
                 "body": "Use when you catch yourself asking \"prove that…\" and want objective content.",
                 "copyable": "Rewrite my request into 2 versions:\nA) Neutral (no bias, both sides)\nB) Business (persuasive), but ethical (no made-up facts)\n\nThen generate 1 slide from the neutral version: title + 2 bullets + 1 \"risk/counterargument\".\n\nMY REQUEST:\n[paste]\n",
-                "blockVariant": "default"
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
-                "heading": "Hallucinations: when you need reliability",
+                "heading": "🔽 Hallucinations: when you need reliability",
                 "body": "Use when AI gives convincing facts but you want a quick stop. Fits after the QC lab.",
                 "copyable": "Reliability check.\n\n1) List all statements that sound like facts (max 10).\n2) For each: mark (A) has a source in my context / (B) no source.\n3) If (B) – rewrite as an assumption or suggest what source is needed.\n\nThen give a corrected slide: title + 2 bullets + \"What's unclear / what to check\".\n\nTEXT/SLIDE:\n[paste]\n",
+                "blockVariant": "terms",
+                "collapsible": true,
+                "collapsedByDefault": true
+              },
+              {
+                "heading": "Quality check",
+                "body": "After a help card:\n• Did I apply **one** technique (not all four)?\n• Is it clear in the draft what is fact vs assumption?\n• Can I return to the QC lab?\n\nIf “no” — repeat Do now with another card.",
                 "blockVariant": "accent"
               }
             ],
@@ -4290,14 +4382,19 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (15 s)",
+                "heading": "In short",
                 "body": "Context engineering flow for a page: context set (RAG) → visual mock-up (Figma) → 6-block prompt and HTML. Below – the chain card.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Do now",
+                "body": "Scan the example flow below. Note which step you will do first on your HTML project (brief → blocks → generate → check).",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Examples from practice",
                 "body": "Context engineering flow for a page: first **gather context** (RAG or search), then **visual mock-up** (Figma), then **6-block prompt** and HTML generation. Below – this chain card (as in Module 4).",
-                "blockVariant": "emerald",
+                "blockVariant": "terms",
                 "workflowChains": [
                   {
                     "chain": ["ChatGPT / Perplexity", "Figma", "Claude"],
@@ -4311,6 +4408,11 @@
                     "expandOutput": "Full HTML+CSS in one file, mobile, 6-block prompt"
                   }
                 ]
+              },
+              {
+                "heading": "Quality check",
+                "body": "Do you see a clear sequence (not just “make HTML”)? Do you know where the 6 blocks fit? If not — return to the practice slide with the COMBO/HTML prompt.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 5: One-page HTML"
@@ -4326,13 +4428,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (20 s)",
+                "heading": "In short",
                 "body": "6-block system – META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED – for generating a professional, mobile .html page. Below – context engineering flow and full example prompt.",
                 "blockVariant": "accent"
               },
               {
-                "body": "Structured practical task – **6-block system** (META, INPUT, OUTPUT, REASONING, QUALITY, ADVANCED) to generate a professional, modern, mobile .html page. Matches Module 6 principle: 6 blocks everywhere.",
-                "blockVariant": "emerald"
+                "body": "First — spot the weak HTML prompt in the practice below (or “Show solution”). Then copy the full 6-block example and run it in AI for your topic.",
+                "blockVariant": "brand",
+                "heading": "Do now"
               },
               {
                 "heading": "Before you build: context engineering flow (Module 4)",
@@ -4398,7 +4501,18 @@
               "solutionCopyable": "META: Your role – experienced front-end developer and UX/UI designer. Goal – a single-page .html website for a sports club.\nINPUT: Content – club intro, training, contacts. CTA – visitor fills a contact form.\nOUTPUT: Full HTML with embedded CSS in one file, no comments.\nREASONING: 1) Intro block, 2) Training section, 3) Contacts and form – logical flow.\nQUALITY: Tone modern, clear, friendly; mobile-friendly, easy to read.\nADVANCED: Valid HTML+CSS only, no markdown.",
               "solutionSummary": "Clear role and goal (META), concrete format (OUTPUT – one .html file), logical section flow (REASONING), measurable quality (QUALITY – mobile, readable) and a precise technical constraint (ADVANCED). You can copy this version and run it."
             },
-            "footer": "Next – slide 6: SUPER PROMPTS"
+            "footer": "Next – slide 6: SUPER PROMPTS",
+            "preCopyCheckBlock": {
+              "question": "Before copying the HTML prompt — what must the 6-block system include?",
+              "options": [
+                "Asking for a “nice website” is enough",
+                "META + INPUT + OUTPUT (+ REASONING/QUALITY/ADVANCED as needed)",
+                "Only a color palette with no goal",
+                "Only “make it professional” with no format"
+              ],
+              "correct": 1,
+              "explanation": "The 6 blocks give role, input, and a clear OUTPUT (file/format). Without them AI guesses and the result gets messy."
+            }
           }
         },
         {
@@ -4453,9 +4567,14 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (15 s)",
+                "heading": "In short",
                 "body": "Three steps: answer for yourself (hardest, first use, what to learn next); copy the reflection prompt; first action within 24–48 hours.",
                 "blockVariant": "accent"
+              },
+              {
+                "heading": "Do now",
+                "body": "Tomorrow: open your AI tool and add one prompt from this module to your library. Or: use the same 6-block structure for another topic.",
+                "blockVariant": "brand"
               },
               {
                 "heading": "Reflection questions",
@@ -4472,14 +4591,9 @@
                 "blockVariant": "brand"
               },
               {
-                "heading": "First action within 24–48 hours",
-                "body": "Tomorrow: open your AI tool and add one prompt from this module to your library. Or: use the same 6-block structure for another topic.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "What next?",
-                "body": "**Back to module list** – choose another module or view your certificate. **Advanced paths** (Modules 7–15) – deepen your knowledge of AI use and context engineering.",
-                "blockVariant": "brand"
+                "heading": "Quality check",
+                "body": "Do you have 1 concrete action for the next 24–48h? Are reflection answers written down? If not — run the reflection prompt again and note one step.",
+                "blockVariant": "accent"
               }
             ],
             "footer": "Next – slide 8: Data hygiene checklist"
@@ -4600,7 +4714,7 @@
           "content": {
             "sections": [
               {
-                "heading": "1️⃣ In short (15 s)",
+                "heading": "In short",
                 "body": "Optional: 8-step flow – from goal to improvement. For those who want to create their own work assistant (Custom GPT).",
                 "blockVariant": "accent"
               },
@@ -4609,14 +4723,19 @@
                 "body": "If you want **to create your own work assistant** (Custom GPT) with clear rules, limits and a test set."
               },
               {
+                "heading": "Do now",
+                "body": "Scan the 8-step schema. Mark which step you are on now, and do only the next one step (not all at once).",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "8-step flow",
                 "body": "Use this flow as a guide (Goal → Role → Config → Testing → Improvement).",
                 "image": "/custom_gpt_process.svg",
                 "imageAlt": "Custom GPT creation process (8 steps)",
-                "blockVariant": "brand"
+                "blockVariant": "terms"
               },
               {
-                "heading": "Completion criteria (quick)",
+                "heading": "Quality check",
                 "body": "1) Clear instructions (no fluff). 2) Limits: \"I don't know\" + sources. 3) 5 test prompts show stable behaviour.",
                 "blockVariant": "accent"
               }

@@ -188,9 +188,47 @@ Procesas 3: …
 
 ---
 
+## 3b0. Komandos pasirengimas agentiniam darbui (skaidrė 10.255)
+
+**Vieta sekoje:** po **10.25** (3A), prieš **10.26** (kada tvirtina žmogus).
+
+**Tikslas:** trumpa komandos DI praktikos nuotrauka prieš kontrolės sprendimą. Tai **ne brandos sertifikatas** ir ne L0–L3 gylio kopėčios. Dalyvis mato, kuri komandos praktikos dimensija silpniausia, ir gauna vieną kitą veiksmą prieš bandant didinti autonomiją.
+
+**Šaltinis adaptacijai:** sibling repo maturity quiz idėja – 3 klausimų refleksija apie komandos DI naudojimą, promptų struktūrą ir mokymosi ritmą. Neperkelti `3–12` balo, produktų routing, „AI Operating System Ready“ ar pardavimo CTA.
+
+**Schema:** GOLDEN §3.2 – Trumpai (accent) → Daryk dabar + `m10_team_readiness_lab` (brand, Pattern `interactive-control-lab`, Shell = Ne) → Patikra (accent). Copy artefaktas yra lab viduje.
+
+**Trys dimensijos:**
+
+| Dimensija                    | Klausimas                                            | Būsenos                                    |
+| ---------------------------- | ---------------------------------------------------- | ------------------------------------------ |
+| Komandos naudojimas          | Kaip nuosekliai komanda naudoja DI realiame darbe?   | Atsitiktinai / Fragmentuotai / Sistemiškai |
+| Promptų struktūra            | Kiek struktūruotos instrukcijos, rolės ir išvestys?  | Atsitiktinai / Fragmentuotai / Sistemiškai |
+| Mokymosi ir praktikos ritmas | Kaip komanda peržiūri rezultatus ir gerina praktiką? | Atsitiktinai / Fragmentuotai / Sistemiškai |
+
+**Taisyklė:** nėra bendro balo. Silpniausia dimensija lemia kitą veiksmą; jei kelios vienodai silpnos – pirma sutarti bendrą bazę (vienas procesas, vienas prompto šablonas, vienas peržiūros ritmas).
+
+**Lab artefaktas:**
+
+```
+Komandos pasirengimo profilis agentiniam darbui:
+- Naudojimas: [Atsitiktinai / Fragmentuotai / Sistemiškai]
+- Struktūra: [Atsitiktinai / Fragmentuotai / Sistemiškai]
+- Mokymasis: [Atsitiktinai / Fragmentuotai / Sistemiškai]
+Silpniausia dimensija (-os): [X].
+Kitas veiksmas: [vienas veiksmas].
+Primink sau: autonomija priklauso nuo proceso rizikos, duomenų jautrumo ir žmogaus kontrolės taisyklių.
+```
+
+**Patikra:** Ar gali pasakyti, kuris vienas įprotis turi būti sustiprintas prieš agentinį darbą? Jei pasirinkai „sistemiškai“ visur – ar turi įrodymą: bendrą šabloną, savininką ir peržiūros ritmą? Jei ne – pažymėk „fragmentuotai“.
+
+**Carry:** 10.26 primena, kad net sisteminga komanda vis tiek turi rinktis kontrolės režimą pagal pasekmę ir atšaukimą.
+
+---
+
 ## 3b1. Kada tvirtina žmogus? (skaidrė 10.26)
 
-**Vieta sekoje:** po **10.25** (3A), prieš **10.3** (sisteminis promptas).
+**Vieta sekoje:** po **10.255** (komandos pasirengimo nuotrauka), prieš **10.3** (sisteminis promptas).
 
 **Tezė:** žmogaus kontrolė nėra brandos kopėčios iki autopiloto – tai **rizikos architektūra** (pasekmė × atšaukimas). Antraštėse be „HITL“. Trumpai – bilingvinis paminėjimas: **Human-in-the-loop / HITL**. Terminų SOT: `glossary.json` + M10 žodynėlis 10.7 – **Žmogaus kontrolė (Human-in-the-loop / HITL)**; EN – `Human-in-the-loop (HITL)`. Lab UI: GOLDEN §3.1c + **W1.1** (risk strip, ne 2×2 empty cell).
 

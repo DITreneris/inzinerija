@@ -18,7 +18,7 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
-import { BrandMark, Card, CTAButton } from './ui';
+import { Badge, BrandMark, Card, CTAButton } from './ui';
 import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
 
 const QUICK_PROMPTS_LT = [
@@ -493,41 +493,42 @@ export default function HomePage({
                   </span>
                 ))}
               </div>
-              <button
-                type="button"
-                onClick={async () => {
-                  try {
-                    await navigator.clipboard.writeText(item.prompt);
-                    setCopiedQuickId(item.id);
-                    setTimeout(() => setCopiedQuickId(null), 2000);
-                  } catch {
-                    // ignore
-                  }
-                }}
-                className={`mt-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                  copiedQuickId === item.id
-                    ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300'
-                    : 'btn-secondary'
-                }`}
-                aria-label={t('home:copyAria', { title: item.title })}
-              >
-                {copiedQuickId === item.id ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    {t('common:copied')}
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4" />
-                    {t('common:copy')}
-                  </>
-                )}
-              </button>
+              {copiedQuickId === item.id ? (
+                <button
+                  type="button"
+                  className="mt-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold min-h-[44px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+                  aria-label={t('home:copyAria', { title: item.title })}
+                >
+                  <Check className="w-4 h-4" />
+                  {t('common:copied')}
+                </button>
+              ) : (
+                <CTAButton
+                  variant="secondary"
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText(item.prompt);
+                      setCopiedQuickId(item.id);
+                      setTimeout(() => setCopiedQuickId(null), 2000);
+                    } catch {
+                      // ignore
+                    }
+                  }}
+                  className="mt-auto px-4 py-3 rounded-xl text-sm font-semibold"
+                  aria-label={t('home:copyAria', { title: item.title })}
+                >
+                  <Copy className="w-4 h-4" />
+                  {t('common:copy')}
+                </CTAButton>
+              )}
               {copiedQuickId === item.id && (
-                <div className="absolute bottom-3 right-3 badge-success animate-fade-in">
+                <Badge
+                  variant="success"
+                  className="absolute bottom-3 right-3 animate-fade-in"
+                >
                   <Check className="w-3 h-3 mr-1" />
                   {t('common:copiedExclaim')}
-                </div>
+                </Badge>
               )}
             </Card>
           ))}

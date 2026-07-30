@@ -19,9 +19,18 @@ import {
 import { getModulesSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { getMaxAccessibleModuleId } from '../utils/accessTier';
+import {
+  dismissChapterRecovery,
+  getChapterEntryModuleIds,
+  getRecommendedChapterAwareModuleIds,
+  getSequenceLockedModuleIds,
+  isChapterRecoveryDismissed,
+  shouldShowChapterRecovery,
+  shouldShowChapterStartBadge,
+} from '../utils/chapterStarts';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
-import { LoadingSpinner, Card, CTAButton } from './ui';
+import { LoadingSpinner, Card, Badge, CTAButton } from './ui';
 import Eyebrow from './ui/Eyebrow';
 import { HandoutDownloadButton } from './HandoutDownloadButton';
 import { downloadHandout } from '../utils/downloadHandout';
@@ -148,6 +157,9 @@ function ModulesPage({
   const levelStyles = useLevelStyles(t);
   const modules = getModulesSync(locale);
   const [materialsError, setMaterialsError] = useState(false);
+  const [recoveryDismissed, setRecoveryDismissed] = useState(() =>
+    isChapterRecoveryDismissed()
+  );
 
   // Preload ModuleView and SlideContent for faster navigation when user selects a module
   useEffect(() => {
@@ -229,54 +241,43 @@ function ModulesPage({
     return tracks.filter((track) => track.modules.length > 0);
   }, [comingSoonModules]);
 
-  // Memoize locked modules. Prefer module.unlocksAfter so parallel learning paths
-  // (M7 and M10 after M6) match the data SOT instead of the array order.
+  // Sequence locks; chapter entries (1/4/7/10) bypass unlocksAfter by tier.
   const lockedModules = useMemo(() => {
-    if (DISABLE_MODULE_LOCK || !modules) return new Set<number>();
-    const locked = new Set<number>();
-    modules.forEach((module, index) => {
-      if (index === 0) return;
-      const previousModuleId = modules[index - 1]?.id;
-      const requiredModuleId = module.unlocksAfter ?? previousModuleId;
-      if (
-        requiredModuleId != null &&
-        !progress.completedModules.includes(requiredModuleId)
-      ) {
-        locked.add(module.id);
-      }
-    });
-    return locked;
-  }, [DISABLE_MODULE_LOCK, progress.completedModules, modules]);
+    if (!modules) return new Set<number>();
+    return getSequenceLockedModuleIds(
+      modules,
+      progress.completedModules,
+      maxAccessible,
+      DISABLE_MODULE_LOCK
+    );
+  }, [DISABLE_MODULE_LOCK, progress.completedModules, modules, maxAccessible]);
 
-  // One "recommended next" per track (parallel paths after M6).
+  // One "recommended next" per track (chapter entries count as open starts).
   const recommendedModuleIds = useMemo(() => {
-    const recommended = new Set<number>();
-    if (!modules) return recommended;
-    const indexById = new Map(modules.map((m, i) => [m.id, i]));
-    for (const trackIds of TRACK_MODULE_IDS) {
-      for (const id of trackIds) {
-        const index = indexById.get(id);
-        if (index == null) continue;
-        const module = modules[index];
-        if (module.id > maxAccessible) continue;
-        if (progress.completedModules.includes(module.id)) continue;
-        if (index === 0) {
-          recommended.add(module.id);
-          break;
-        }
-        const requiredModuleId = module.unlocksAfter ?? modules[index - 1]?.id;
-        if (
-          requiredModuleId == null ||
-          !progress.completedModules.includes(requiredModuleId)
-        ) {
-          continue;
-        }
-        recommended.add(module.id);
-        break;
-      }
-    }
-    return recommended;
+    if (!modules) return new Set<number>();
+    return getRecommendedChapterAwareModuleIds(
+      TRACK_MODULE_IDS,
+      modules,
+      progress.completedModules,
+      maxAccessible
+    );
   }, [modules, progress.completedModules, maxAccessible]);
+
+  const chapterEntryIds = useMemo(
+    () => getChapterEntryModuleIds(maxAccessible),
+    [maxAccessible]
+  );
+
+  const showRecoveryCard =
+    !recoveryDismissed &&
+    shouldShowChapterRecovery(progress.completedModules, maxAccessible);
+
+  const showChapterStrip = maxAccessible >= 6;
+
+  const handleDismissRecovery = useCallback(() => {
+    dismissChapterRecovery();
+    setRecoveryDismissed(true);
+  }, []);
 
   const moduleGridItems = useMemo((): ModuleGridItem[] => {
     if (!modules) return [];
@@ -442,8 +443,68 @@ function ModulesPage({
         </p>
       </div>
 
+      {showRecoveryCard && (
+        <Card
+          className="p-5 lg:p-6 border-2 border-brand-200 dark:border-brand-800 max-w-3xl mx-auto"
+          role="region"
+          aria-label={t('chapterRecoveryAria')}
+        >
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+            {t('chapterRecoveryTitle')}
+          </h2>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {t('chapterRecoveryBody')}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {chapterEntryIds.map((id) => (
+              <CTAButton
+                key={`recovery-${id}`}
+                variant={id === 1 ? 'primary' : 'secondary'}
+                onClick={() => onModuleSelect(id)}
+                className="min-h-[44px]"
+                aria-label={t('chapterStartChipAria', { n: id })}
+              >
+                {t('chapterStartChip', { n: id })}
+              </CTAButton>
+            ))}
+            <CTAButton
+              variant="secondary"
+              onClick={handleDismissRecovery}
+              className="min-h-[44px]"
+            >
+              {t('chapterRecoveryDismiss')}
+            </CTAButton>
+          </div>
+        </Card>
+      )}
+
+      {showChapterStrip && (
+        <div
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 max-w-3xl mx-auto"
+          role="navigation"
+          aria-label={t('chapterStripAria')}
+        >
+          <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 text-center sm:text-left">
+            {t('chapterStripLabel')}
+          </span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {chapterEntryIds.map((id) => (
+              <button
+                key={`strip-${id}`}
+                type="button"
+                onClick={() => onModuleSelect(id)}
+                className="min-h-[44px] px-3 py-1.5 text-sm font-semibold rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-200 hover:bg-brand-100 dark:hover:bg-brand-900/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+                aria-label={t('chapterStartChipAria', { n: id })}
+              >
+                {t('chapterStartChip', { n: id })}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-center">
-        <div className="card px-8 py-4 inline-flex items-center gap-6">
+        <Card className="px-8 py-4 inline-flex items-center gap-6">
           <CircularProgress
             progress={
               totalModules === 0 ? 0 : (completedCount / totalModules) * 100
@@ -463,7 +524,7 @@ function ModulesPage({
               })}
             </p>
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Modules grid — materials after last id <= maxAccessible */}
@@ -508,9 +569,10 @@ function ModulesPage({
           if (item.type === 'materials') {
             return (
               <div key="materials" className="lg:col-span-3">
-                <section
-                  className="card p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
+                <Card
+                  className="p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
                   aria-labelledby="my-materials-title"
+                  role="region"
                 >
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-4">
                     <div>
@@ -546,7 +608,7 @@ function ModulesPage({
                           onClick={() =>
                             handleMaterialHandoutDownload(moduleId)
                           }
-                          className="btn-secondary flex items-center justify-center gap-2 min-h-[44px]"
+                          className="min-h-[44px]"
                           iconClassName="w-4 h-4"
                         />
                       );
@@ -574,7 +636,7 @@ function ModulesPage({
                       {t('common:handoutPdfError')}
                     </p>
                   )}
-                </section>
+                </Card>
               </div>
             );
           }
@@ -605,6 +667,14 @@ function ModulesPage({
                 ? t('ctaView')
                 : t('ctaContinue');
           const isRecommendedNext = recommendedModuleIds.has(module.id);
+          const showChapterBadge =
+            !locked &&
+            shouldShowChapterStartBadge(
+              module.id,
+              modules,
+              progress.completedModules,
+              maxAccessible
+            );
           const moduleAccent: ModuleAccent = resolveModuleAccent(module);
           const topStripeClass = module.accent
             ? accentTopBarClasses[module.accent]
@@ -734,32 +804,58 @@ function ModulesPage({
                             {t('recommendedNext')}
                           </span>
                         )}
+                        {showChapterBadge && !isRecommendedNext && (
+                          <Badge
+                            variant="brand"
+                            className="hidden lg:inline-flex"
+                          >
+                            {t('chapterStartBadge')}
+                          </Badge>
+                        )}
                         {isCompleted && (
-                          <span className="hidden lg:inline-flex badge-success text-xs">
+                          <Badge
+                            variant="success"
+                            className="hidden lg:inline-flex"
+                          >
                             <CheckCircle className="w-3 h-3 mr-1" />
                             {t('badgeCompleted')}
-                          </span>
+                          </Badge>
                         )}
-                        {/* Mobile: exactly one secondary badge – Rekomenduojama > Baigta > level */}
+                        {/* Mobile: one secondary – Rekomenduojama > Baigta > skyriaus startas > level */}
                         {isRecommendedNext && (
                           <span className="lg:hidden inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
                             {t('recommendedNext')}
                           </span>
                         )}
                         {!isRecommendedNext && isCompleted && (
-                          <span className="lg:hidden inline-flex items-center gap-1 text-xs badge-success">
+                          <Badge
+                            variant="success"
+                            className="lg:hidden inline-flex gap-1"
+                          >
                             <CheckCircle className="w-3 h-3" />
                             {t('badgeCompleted')}
-                          </span>
+                          </Badge>
                         )}
-                        {!isRecommendedNext && !isCompleted && (
-                          <span
-                            className={`lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}
-                          >
-                            <BadgeIcon className="w-3 h-3" strokeWidth={2} />
-                            {styles.badgeLabel}
-                          </span>
-                        )}
+                        {!isRecommendedNext &&
+                          !isCompleted &&
+                          showChapterBadge && (
+                            <Badge
+                              variant="brand"
+                              className="lg:hidden inline-flex"
+                            >
+                              {t('chapterStartBadge')}
+                            </Badge>
+                          )}
+                        {!isRecommendedNext &&
+                          !isCompleted &&
+                          !showChapterBadge && (
+                            <span
+                              className={`lg:hidden inline-flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full ${styles.bg} ${styles.text}`}
+                            >
+                              <BadgeIcon className="w-3 h-3" strokeWidth={2} />
+                              {styles.badgeLabel}
+                            </span>
+                          )}
                       </div>
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                         {module.title}
@@ -886,9 +982,10 @@ function ModulesPage({
                 const topStripeClass = accentTopBarClasses[module.accent];
 
                 return (
-                  <article
+                  <Card
                     key={module.id}
-                    className="card relative overflow-hidden opacity-80"
+                    className="relative overflow-hidden opacity-80"
+                    role="article"
                     aria-label={t('comingSoonCardAria', {
                       title: module.title[localeKey],
                     })}
@@ -934,7 +1031,7 @@ function ModulesPage({
                         {t('comingSoonNote')}
                       </div>
                     </div>
-                  </article>
+                  </Card>
                 );
               })}
             </div>
@@ -947,7 +1044,7 @@ function ModulesPage({
         progress.completedModules.includes(3) &&
         !progress.quizCompleted &&
         completedCount < totalModules && (
-          <div className="card p-5 sm:p-6 border border-brand-200 dark:border-brand-800 bg-brand-50/60 dark:bg-brand-900/20 text-center animate-fade-in">
+          <Card className="p-5 sm:p-6 border border-brand-200 dark:border-brand-800 bg-brand-50/60 dark:bg-brand-900/20 text-center animate-fade-in">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
               {t('readyCheckBeforeM4')}
             </h3>
@@ -963,12 +1060,12 @@ function ModulesPage({
               {t('readyCheckBeforeM4')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </CTAButton>
-          </div>
+          </Card>
         )}
 
       {/* Completion message */}
       {completedCount === totalModules && (
-        <div className="card p-6 bg-gradient-to-r from-brand-50 to-accent-50 dark:from-brand-900/20 dark:to-accent-900/20 border-2 border-brand-200 dark:border-brand-800 text-center animate-bounce-in">
+        <Card className="p-6 bg-gradient-to-r from-brand-50 to-accent-50 dark:from-brand-900/20 dark:to-accent-900/20 border-2 border-brand-200 dark:border-brand-800 text-center animate-bounce-in">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 mb-4">
             <CheckCircle className="w-8 h-8 text-white" />
           </div>
@@ -993,7 +1090,7 @@ function ModulesPage({
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </CTAButton>
           )}
-        </div>
+        </Card>
       )}
     </div>
   );

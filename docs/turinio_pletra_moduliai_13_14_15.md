@@ -66,42 +66,42 @@ Be šito vaizdai būna gražūs, bet atsitiktiniai. Trijų tikslų modelis:
 
 **Kur pritaikyti:** Rinkodaros vizualai, socialinio turinio vaizdai ir trumpi vaizdo įrašai, VO ir foninė muzika projektams – be būtino dizainerio ar kompozitoriaus.
 
-**modules.json (LT):** Skaidrės 13.1 „Trumpai“ formuluotė nurodo, kad čia – **gilesnis nei 130 įvanga** sluoksnis (kampanijos tikslų modelis + kur pritaikyti), kad nesidubliuotų su outcomes.
+**modules.json (LT):** Skaidrė 13.1 = GOLDEN ciklas: **Trumpai** (A/E/C pasirinkimas) → schema `m13_aec_funnel` → **Daryk dabar** → collapsible „kuo vadovautis“ → **Kopijuojamas šablonas (Micro): A/E/C tikslų brief** (ne image prompt) → **Patikra** → „Kur pritaikyti?“ (`terms`). Accent tik Trumpai + Patikra. EN – `slide13_1Sections` override `build:modules-en-m13-m15`.
 
-### 2.1 Generatyvinės medijos pipeline (13.12) – MUST
+### 2.1 Generatyvinės medijos grandinė (13.12) – MUST
 
-**Trumpai:** 2026 praktikoje laimi ne „geriausias modelis“, o **grandinė**. Vienas promptas į video generatorių = brangūs retry. Pipeline sumažina atsitiktinumą.
+**Trumpai:** 2026 praktikoje laimi ne „geriausias modelis“, o **aiški darbo grandinė**. Vienas promptas tiesiai į video generatorių dažnai = brangūs bandymai iš naujo – todėl pirmiausia užrakink planą, kadrus ir referencus, tada trumpus klipus, garsą ir patikrą.
 
-**modules.json:** interaktyvi schema `m13_media_pipeline` = **6 žingsniai** (brief → stills → refs → I2V → garsas/edit → QA). Skaidrės antraštė „Kaip skaityti schemą“ – ne „4+QA“; checklist = praktika, ne antras žingsnių sąrašas.
+**modules.json:** interaktyvi schema `m13_media_pipeline` = **6 žingsniai** (brief → kadrai → referencai → I2V → garsas/montažas → patikra). Skaidrės antraštė „Kodėl šie 6 žingsniai“ – ne „4+QA“; checklist = praktika, ne antras žingsnių sąrašas. Learner UI: **grandinė** (ne bare `pipeline`); terminai pirmą kartą su plain gloss.
 
 **6 žingsniai (schema + SOT):**
 
-1. **Brief + brand lock** – tikslas (A/E/C), auditorija, platforma, spalvos/tonas.
-2. **Stills / storyboard** – pigūs kadrai (hero + 1–2 papildomi); užrakink kompoziciją prieš mokėdamas už video.
-3. **Reference lock** – 3–5 kampai; „same product / same style“.
-4. **Trumpi I2V** – 3–5 s klipai iš keyframe.
-5. **Garsas + montažas** – audio-first: VO (arba bed) diktuoja trukmę; CapCut/Premiere cut + mix.
-6. **QA + provenance** – brand, žinutė, teisės, C2PA/disclosure.
+1. **Brief + ženklas** – tikslas (atpažįstamumas / įsitraukimas / konversija), auditorija, platforma, spalvos/tonas.
+2. **Kadrai** – pigūs scenarijaus piešiniai (pagrindinis + 0–2 papildomi); užrakink kompoziciją prieš mokėdamas už video.
+3. **Referencų užraktas** – 3–5 kampai; „tas pats produktas / tas pats stilius“.
+4. **Trumpi I2V** – 3–5 s klipai iš kadro (video iš nuotraukos).
+5. **Garsas + montažas** – pirmiausia garsas: balsas (arba fonas) diktuoja trukmę; tada kirpimas, spalvos, mix.
+6. **Patikra + DI žyma** – ženklas, žinutė, teisės, C2PA / matoma DI žyma (disclosure).
 
 **Daryk dabar:** Užpildyk checklistą savo temai (nekopijuok į generatorių – tai planas).
 
 **Kopijuojamas šablonas (CopyButton):**
 
 ```
-Pipeline checklist:
-Brief: tikslas [Awareness/Engagement/Conversion], auditorija [kam], platforma [kur].
-Brand: spalvos [X], tonas [Y].
-Stills: hero + [0–2] papildomi kadrai (užrakinti prieš video).
-Refs: [produktas/personažas – 3–5 kampai] / nėra.
-Klipai: [2–4] × 3–5 s (I2V), ne vienas ilgas one-shot.
-Garsas: [VO pirmiausia / tik bed] + teisės [licensed / demo].
-Montažas: cut + grade + mix.
-QA: brand | žinutė | formatas | teisės | disclosure (C2PA/žyma).
+Grandinės checklist:
+Brief: tikslas [atpažįstamumas / įsitraukimas / konversija], auditorija [kam], platforma [kur].
+Ženklas: spalvos [X], tonas [Y].
+Kadrai: pagrindinis + [0–2] papildomi (užrakinti prieš video).
+Referencai: [produktas/personažas – 3–5 kampai] / nėra.
+Klipai: [2–4] × 3–5 s (I2V – video iš kadro), ne vienas ilgas klipas.
+Garsas: [balsas pirmiausia / tik fonas] + teisės [licencijuota / demo].
+Montažas: kirpimas + spalvos + mix.
+Patikra: ženklas | žinutė | formatas | teisės | DI žyma (C2PA / disclosure).
 ```
 
-**Patikra:** Ar prieš video turi bent vieną užrakintą still? Ar žinai, ar garsas bus VO-first ar tik bed?
+**Patikra:** Ar prieš video turi bent vieną užrakintą kadrą? Ar žinai, ar garsas bus balsas pirmiausia, ar tik fonas?
 
-**Kur pritaikyti:** Reklamos klipai, social Reels, produktų demo, vidiniai explaineriai.
+**Kur pritaikyti:** Reklamos klipai, social trumpi video, produktų demo, vidiniai paaiškinimai.
 
 ---
 
@@ -154,9 +154,11 @@ Proporcijos: [1:1 / 16:9 / 9:16]. Kalba: lietuviška scena arba neutrali, be tek
 
 **Patikra:** Ar platforma palaiko nurodytas proporcijas? Jei vaizdas „nukirpto“ – pakeisk proporcijas arba papildyk aprašymą.
 
-**Įrankiai (tools.json, category: „Vaizdų generavimas“, moduleId: 13):** DALL·E (OpenAI), Midjourney, Ideogram, Leonardo.ai, Canva AI, Stable Diffusion (pvz. per įrankius).
+**Įrankiai (UI – `content.tools` ant 13.3, po Patikra; ne collapsible wall):** 6 TOP kortelės su exact `tools.json` `name`: GPT-Image (OpenAI), Ideogram, FLUX, Midjourney, Leonardo.ai, Adobe Firefly. `toolsIntro`: principas tas pats; skiriasi stipriosios pusės; pradžiai užtenka vieno. Pilnas katalogas – skiltis „Įrankiai“ (moduleId 13, category „Vaizdų generavimas“).
 
-**Įrankių pozicionavimas (cheat sheet, optional):** GPT-Image / ChatGPT – natūrali kalba, greitas brief→vaizdas; FLUX – fotorealizmas ir multi-reference consistency; Midjourney – aukštas meninis lygis, `--cref` character ref; Leonardo.ai – fotorealizmas, produktų/žaidimų dizainas; Ideogram – tekstas vaizduose (logo, plakatai, LinkedIn); Adobe Firefly – CC integracija, teisiškai saugesni šaltiniai, C2PA; Google Imagen – objektų išlaikymas, SynthID – saugi reklama, katalogai. Stable Diffusion / DreamStudio – atviras, lankstus (advanced).
+**Įrankių pozicionavimas (cheat sheet → kortelės):** GPT-Image – natūrali kalba, greitas brief→vaizdas; Ideogram – tekstas vaizde; FLUX – fotorealizmas + multi-ref consistency; Midjourney – meninis lygis, character ref; Leonardo.ai – produktai / fotorealizmas; Adobe Firefly – CC, teisiškai saugesnis kelias, C2PA. (Kataloge lieka ir DALL·E, Canva AI, Imagen, Stable Diffusion – ne privaloma 13.3 kortelėse.)
+
+**Section-break 13.15:** temų žemėlapis (`recap` + `nextSteps`) – **be** brandų dump’o subtitre; įrankių pasirinkimas mokomas 13.3.
 
 ### 3.2b Character / product consistency (13.32) – MUST
 
@@ -183,6 +185,12 @@ Be teksto vaizde (nebent etiketė ant produkto).
 **Patikra (failure modes):** Ar produktas „išsipūtė“ / pakeitė spalvą / prarado etiketę? Jei taip – sumažink scenos sudėtingumą, padidink ref svorį, arba inpaint tik probleminę zoną. Venk realių žmonių veidų be sutikimo.
 
 **Kur pritaikyti:** Produktų katalogai, serijiniai social postai, video storyboard su tuo pačiu hero.
+
+### 3.2b2 Lab: lock vs regenerate (13.325)
+
+**Trumpai:** Po 13.32 – sprendimas: **reference lock** (3–5 refs, same product) vs **regenerate be lock** (kai briefas sąmoningai keičiasi). Vienas pasirinkimas → viena kopijuojama taisyklė. Feature Doc: `docs/development/M13_CONSISTENCY_LOCK_LAB.md`.
+
+**Patikra:** Ar nukopijavai taisyklę? Jei produktas vis dar „plaukioja“ – grįžk į 13.32 ir surink refs.
 
 ### 3.2a Savitikra: stilius ir proporcijos (13.31)
 
@@ -310,15 +318,17 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 
 **Ryšys su 13.35 (MASTER):** MASTER šablonas (§3.6) – universalus, bet reikalauja pačiam užpildyti laukus tekstu. Generatorius (13.37) – interaktyvūs laukai su dropdown pasirinkimais ir laisvais tekstais; promptas sudedamas automatiškai. Tai „Daryk dabar" skaidrė: vartotojas išbando visus principus (stilius, proporcijos, kompozicija) viename įrankyje.
 
+**Brandumas (meter + proporcijos):** Sticky išvestyje – kokybės / pasirengimo matuoklis (užpildyti laukai + hint „Trūksta / Sustiprink / Paruošta“). Formoje – **proporcijos** (1:1 / 16:9 / 9:16) ir **A/E/C** kampanijos tikslas (Awareness / Engagement / Conversion). Keturi greiti šablonai (e-commerce, renginiai, brand, social) užpildo formą. UX idėjos – sibling įrankis _vaizdas_; kanonas lieka in-app.
+
 **Kaip veikia:**
 
-1. **Kampanijos kontekstas:** Kampanijos tikslas (laisvas laukas), platforma (Instagram, LinkedIn, Facebook, Web, Print), auditorija (laisvas), prekės ženklo tonas (Premium, Bold, Minimalistinis, Žaismingas, Ekspertiškas).
-2. **Vizualo esmė:** Kas vaizduojama (laisvas), stilius (tikroviška nuotrauka, 3D, kinematografinis, mados žurnalo, minimalistinė iliustracija), apšvietimas (cinematic, minkšta dienos, auksinė valanda, studija, neonas), kameros kampas (close-up, akių lygis, flatlay, platus, hero shot), dominuojanti spalva (laisvas).
-3. **Tekstų integracija (neprivaloma):** Antraštė, kvietimas veikti (CTA), teksto pozicija (centras, viršus, apačia, dinaminis), šrifto stilius (modernus, prabangus, minimalistinis, rankraštinis), kontrastas.
+1. **Kampanijos kontekstas:** A/E/C tikslas + laisvas tikslo aprašymas, platforma (Instagram, LinkedIn, Facebook, Web, Print), auditorija (laisvas), prekės ženklo tonas (Premium, Bold, Minimalistinis, Žaismingas, Ekspertiškas).
+2. **Vizualo esmė:** Kas vaizduojama (laisvas), stilius, apšvietimas, kameros kampas, dominuojanti spalva, **proporcijos**.
+3. **Tekstų integracija (neprivaloma):** Antraštė, kvietimas veikti (CTA), teksto pozicija, šrifto stilius.
 
 **Rezultatas:** Vienas sugeneruotas promptas – nukopijuok ir įklijuok į Ideogram, Leonardo.ai, Midjourney, ChatGPT (DALL·E), Adobe Firefly arba Canva AI. Paspaudus ant įrankio kortelės – promptas nukopijuojamas automatiškai ir atsidaro naujas skirtukas.
 
-**Patikra:** Ar sugeneruotas promptas apima bent 3 elementus (objektas, stilius, proporcijos)? Ar rezultatas atitiko lūkesčius? Jei ne – grįžk ir pakeisk parametrus.
+**Patikra:** Ar sugeneruotas promptas apima bent 3 elementus (objektas, stilius, proporcijos) ir aiškų A/E/C tikslą? Ar meter rodo „Paruošta“? Jei ne – grįžk ir pakeisk parametrus.
 
 **Kur pritaikyti:** Socialinių tinklų vizualai, reklamos maketai, pristatymų iliustracijos, blogo viršeliai, naujienlaiškių hero vaizdai.
 
@@ -329,6 +339,18 @@ Negative prompts: [ko vengti – pvz. be teksto, be veidų].
 **Kodėl DI video verta dėmesio (trumpai):** Mažiau įrangos ir aktorių; greitis ir mastelis; personalizavimas. Tinka: vidiniai mokymai, saugos instrukcijos, reklamos. _Procentų be šaltinio vengti – žr. §5a._
 
 **Video workflow (2026):** Brief → storyboard stills → reference lock → **3–5 s I2V klipai** → (audio-first VO) → montažas. Ne: vienas ilgas text-to-video one-shot be plano.
+
+**Interaktyvus I2V (13.47):** Po scenarijaus (13.4), prieš įrankių matricą (13.5) – in-app klipo promptų generatorius (keyframe → 3–5 s → kamera / same style). Feature Doc: `docs/development/M13_I2V_CLIP_BUILDER.md`.
+
+### 4.0a I2V klipo generatorius (interaktyvus, 13.47)
+
+**UI copy SOT:** `modules.json` skaidrės `13.47.content.tldr` / `patikra` (EN – `modules-en-m13-m15.json`).
+
+**Trumpai:** Interaktyvus įrankis image→video promptui: keyframe / scena, trukmė 3–5 s, kameros judesys, same style / same product. Rezultatas – nukopijuojamas promptas + atidarymas video generatoriuje (Kling, Runway, Veo, Sora, …).
+
+**Daryk dabar:** Įrašyk hero still aprašymą (arba tą patį objektą kaip 13.37), pasirink 3–5 s ir judesį, nukopijuok.
+
+**Patikra:** Ar prompte yra keyframe, trukmė ≤5 s ir same style/product? Ar pradžia gali atitikti hero still?
 
 ### 4.1 Scenarijus trumpam vaizdo įrašui (13.4)
 
@@ -725,7 +747,7 @@ Pagal [docs/development/SUMMARY_SLIDE_SPEC.md](development/SUMMARY_SLIDE_SPEC.md
 - **Warm-up (`140.5`):** 3 unscored – brand/formatas; audio-first vs tik muzika; forward bridge į M15 MUST vs optional.
 - **Klausimai (`141`):** **12** klausimai – MCQ ir scenarijų tipas. Remediation – `relatedSlideId` į M13 (įsk. 13.12, 13.6, 13.7, 13.101). Įskaitant **m14-q7** conversion 9:16; **m14-q8** image → video; **m14-q9–q12** pipeline/CPI, audio-first, licencijos, C2PA.
 - **test-results (`142`):** passedMessage, failedMessage, **useCaseBlock** – „Kitas žingsnis: Modulis 15“ (150.5 MUST / 151–154 optional). thresholdExplanation (tu): „Kai pasieksi ≥70 %, gali pereiti prie Modulio 15 (projektas). Jei mažiau – rekomenduoju peržiūrėti Modulio 13 skaidres.“
-- **Bonus (`143`):** optional content-block – 5 min pipeline checklist (Trumpai → Daryk → Copy → Patikra).
+- **Bonus (`143`):** optional content-block – 5 min medijos grandinės checklist (Trumpai → Daryk → Copy → Patikra).
 
 ---
 
@@ -807,7 +829,7 @@ Brand: spalvos [X], tonas [profesionalus / draugiškas / premium]. Be teksto vai
 | **3** | **Brand consistency framework**                                 | §3.2 (13.3): Spalvos, tipografija, tonas, vizualinis identitetas.                      |
 | **4** | **Legal / Risk + provenance**                                   | §5a.2 (13.101): Autorinės teisės, deepfake, GDPR, C2PA/SynthID/disclosure.             |
 | **5** | **Workflow: nuo brief iki publikacijos**                        | §5b (13.11): Brief → Prompt → Variantai → Iteracija → Platformos → A/B → Optimizacija. |
-| **6** | **Generatyvinės medijos pipeline**                              | §2.1 (13.12): Brief → stills → refs → I2V → garsas → edit → QA.                        |
+| **6** | **Generatyvinės medijos grandinė**                              | §2.1 (13.12): Brief → stills → refs → I2V → garsas → edit → QA.                        |
 | **7** | **Character / product consistency**                             | §3.2b (13.32): 3–5 refs, same-product lock.                                            |
 | **8** | **Audio-first + triada**                                        | §5 (13.6–13.7): VO → bed/SFX; licensed vs demo.                                        |
 | **9** | **Post-production**                                             | §4.3 (13.52): AI = raw; cut/grade/mix.                                                 |

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import CircularProgress from './CircularProgress';
 import Card from './ui/Card';
+import Badge from './ui/Badge';
 import CTAButton from './ui/CTAButton';
 import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
@@ -191,13 +192,13 @@ export function ModuleCompleteScreen({
           </p>
 
           <div className="flex justify-center gap-4 mb-8">
-            <div className="badge-brand">
+            <Badge variant="brand">
               {t('moduleNOfTotal', { n: moduleIndex + 1, total: totalModules })}
-            </div>
-            <div className="badge-success">
+            </Badge>
+            <Badge variant="success">
               <CheckCircle className="w-4 h-4 mr-1" />
               {t('completeBadge')}
-            </div>
+            </Badge>
           </div>
 
           <div className="mb-8">

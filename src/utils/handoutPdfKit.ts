@@ -11,6 +11,8 @@ export const HANDOUT_ACCENT_COLOR = '#d4a520';
 export const HANDOUT_MARGIN = 18;
 export const HANDOUT_PAGE_W = 210;
 export const HANDOUT_PAGE_H = 297;
+/** Content must end at or above this Y (mm) so footer at PAGE_H-12 / PAGE_H-7 does not overlap. */
+export const HANDOUT_CONTENT_BOTTOM = HANDOUT_PAGE_H - 16;
 export const HANDOUT_BORDER_LEFT_WIDTH = 1.5;
 export const HANDOUT_CONTENT_X = HANDOUT_MARGIN + HANDOUT_BORDER_LEFT_WIDTH + 3;
 export const HANDOUT_CONTENT_W_INNER =

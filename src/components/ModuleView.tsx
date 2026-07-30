@@ -21,12 +21,13 @@ import {
 } from 'lucide-react';
 import {
   focusRingClasses,
-  radiusClasses,
   spacingClasses,
   surfaceGlass,
   touchTargetClasses,
 } from '../design-tokens';
 import CTAButton from './ui/CTAButton';
+import Card from './ui/Card';
+import Badge from './ui/Badge';
 import { Progress } from '../utils/progress';
 import { findJourneyChoiceByStored } from '../utils/moduleJourneyFocus';
 import { isSlideLikelyUntranslatedForEn } from '../utils/enPartialCoverage';
@@ -53,6 +54,7 @@ import type {
 } from '../types/modules';
 import { isNewsPortalImmersive } from './slides/news-portal/portalUtils';
 import SlideContent from './SlideContent';
+import { typographyClasses } from '../design-tokens';
 
 const FAST_TRACK_KEY = 'prompt-anatomy-fast-track';
 
@@ -872,7 +874,7 @@ function ModuleView({
   if (!module) {
     return (
       <div className="space-y-6">
-        <div className="card p-4 lg:p-6">
+        <Card className="p-4 lg:p-6">
           <ModuleBreadcrumb
             parentLabel={t('modulesParent')}
             parentAriaLabel={t('modulesParentAria')}
@@ -880,15 +882,15 @@ function ModuleView({
             onParentClick={onBack}
             ariaLabel={t('breadcrumbAria')}
           />
-        </div>
-        <div className="card p-8 text-center min-h-[300px] flex flex-col items-center justify-center">
+        </Card>
+        <Card className="p-8 text-center min-h-[300px] flex flex-col items-center justify-center">
           <p className="text-gray-600 dark:text-gray-400 mb-2">
             {t('notAccessible')}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {t('notAccessibleHint')}
           </p>
-        </div>
+        </Card>
       </div>
     );
   }
@@ -906,7 +908,7 @@ function ModuleView({
   if (showResumePrompt && module) {
     return (
       <div className="space-y-6">
-        <div className="card p-4 lg:p-6">
+        <Card className="p-4 lg:p-6">
           <ModuleBreadcrumb
             parentLabel={t('modulesParent')}
             parentAriaLabel={t('modulesParentAria')}
@@ -914,9 +916,9 @@ function ModuleView({
             onParentClick={onBack}
             ariaLabel={t('breadcrumbAria')}
           />
-        </div>
+        </Card>
 
-        <div className="card p-8 lg:p-12 min-h-[400px] flex flex-col items-center justify-center text-center">
+        <Card className="p-8 lg:p-12 min-h-[400px] flex flex-col items-center justify-center text-center">
           <div className="bg-brand-100 dark:bg-brand-900/30 p-4 rounded-full mb-6">
             <Play className="w-10 h-10 text-brand-600 dark:text-brand-400" />
           </div>
@@ -949,7 +951,7 @@ function ModuleView({
               {t('module:resumeStartOver')}
             </CTAButton>
           </div>
-        </div>
+        </Card>
       </div>
     );
   }
@@ -995,7 +997,7 @@ function ModuleView({
       )}
 
       {/* Header – hierarchical escape (breadcrumb), not slide Prev */}
-      <div className="card p-4 lg:p-6">
+      <Card className="p-4 lg:p-6">
         <div className="flex items-center justify-between gap-4 mb-4">
           <ModuleBreadcrumb
             parentLabel={t('modulesParent')}
@@ -1033,12 +1035,16 @@ function ModuleView({
             )}
           </div>
         </div>
-      </div>
+      </Card>
 
       {/* Slide Content (desktop: single column; mobile: full width, bottom nav) */}
       <div className="grid grid-cols-1">
-        <div
-          className={`${isImmersiveNewsPortal ? 'bg-transparent shadow-none border-0 p-0 lg:p-2 lg:pb-24' : 'card'} ${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y ${isImmersiveNewsPortal ? '' : radiusClasses.card}`}
+        <Card
+          className={
+            isImmersiveNewsPortal
+              ? `!bg-transparent !shadow-none !border-0 !rounded-none p-0 lg:p-2 lg:pb-24 ${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y`
+              : `${spacingClasses.slideWrapper} min-h-[500px] animate-fade-in touch-pan-y`
+          }
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onTouchCancel={handleTouchCancel}
@@ -1055,15 +1061,13 @@ function ModuleView({
             ) && (
               <div className="mb-8">
                 <div className="flex items-center gap-3 mb-3">
-                  <span
-                    className={
-                      moduleId === 2 || moduleId === 3
-                        ? 'badge-slate'
-                        : 'badge-brand'
+                  <Badge
+                    variant={
+                      moduleId === 2 || moduleId === 3 ? 'slate' : 'brand'
                     }
                   >
                     {t('moduleLabel', { n: moduleIndex + 1 })}
-                  </span>
+                  </Badge>
                   {showM3PortfolioChip && m3PortfolioProgress && (
                     <span
                       className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50"
@@ -1080,7 +1084,7 @@ function ModuleView({
                     </span>
                   )}
                   {isModuleCompleted && (
-                    <span className="badge-success">
+                    <Badge variant="success">
                       <CheckCircle className="w-3 h-3 mr-1" />
                       {module.level === 'test' &&
                       typeof progress.moduleTestScores?.[moduleId] === 'number'
@@ -1093,7 +1097,7 @@ function ModuleView({
                             currentSlideData.type !== 'test-results'
                           ? t('reviewingCompletedModule')
                           : t('completedLabel')}
-                    </span>
+                    </Badge>
                   )}
                   {currentSlideData.recommended &&
                     !currentSlideData.optional && (
@@ -1127,7 +1131,9 @@ function ModuleView({
                       </span>
                     ))}
                 </div>
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
+                <h1
+                  className={`${typographyClasses.h1} text-gray-900 dark:text-white mb-3 leading-tight`}
+                >
                   {currentSlideData.shortTitle ?? currentSlideData.title}
                 </h1>
                 {currentSlideData.subtitle != null && (
@@ -1412,7 +1418,7 @@ function ModuleView({
                 </button>
               </div>
             )}
-        </div>
+        </Card>
       </div>
 
       {/* Mobile: Bottom Navigation Bar */}

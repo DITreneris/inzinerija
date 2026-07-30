@@ -17,7 +17,9 @@
 | Žinių testas + vienas projektas (M4–M6)                        | Žinių testas (M8) + **finalinis integruotas projektas** (M9) |
 | Learn → Test → Practice                                        | Ta pati seka, auditorija: analitikai                         |
 
-**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**. Papildomas RAG/tyrimų įrankių turinys: **M4 skaidrė id 61** (optional, 4.2a-academic) ir **M7 skaidrė id 71.35** (optional, po kelio žingsnio 71.3) – ta pati sprendimo atmintinė (`toolChoiceBar` + „Kada ką?“ + tipinė eiga); M4 = RAG kontekstas, M7 = Duomenų analizės kelias.
+**Prielaida:** Dalyvis baigė bent Modulius 1–3 (6 blokai, workflow); pageidautina Moduliai 4–6 (RAG, šaltiniai, žinių patikrinimas – žr. 4.2, 4.2b). Moduliai 7–9 nesidubliuoja su RAG „duomenys kaip šaltinis“ – fokusas: **DI kaip analitikas + automatizatorius + prognozuotojas**.
+
+**Papildomas skaitymas (RAG / tyrimų įrankiai):** ta pati sprendimo atmintinė (`toolChoiceBar` + „Kada ką?“ + tipinė eiga) – **M4** optional skaidrė „DI įrankiai informacijos paieškai“ (id `61`, RAG kontekstas) ir **M7** optional ta pati atmintinė po kelio žingsnio „Įrankių seka“ (id `71.35`, Duomenų analizės kelias). UI kelio apžvalgoje (sk. `71`) – title-only nuoroda be curriculum ID.
 
 ### 1.2 Mokymosi tikslai (po modulių 7–9)
 
@@ -753,7 +755,7 @@ Modulis 7 – **„Duomenų analizė su DI“** (level: `learn`). Trukmė: orien
 
 | #            | Skaidrė / tema                                          | Trumpas aprašymas                                                                                                                                                                                                            | Ryšys          |
 | ------------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| **7.1**      | **Duomenų analizės kelias – ką čia rasite**             | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); fokusas – analizės užklausos ir išvados. Kodėl duomenų analizė su DI svarbu analitikams.                                                                              | META, 4.2      |
+| **7.1**      | **Duomenų analizės kelias – ką čia rasite**             | Kelio apžvalga; ryšys su 6 blokais ir Moduliu 4 (RAG); **Papildomas skaitymas** → optional „DI įrankiai informacijos paieškai“ (M4 + šiame kelyje po įrankių sekos). Fokusas – analizės užklausos ir išvados.                | META, 4.2      |
 | **7.2**      | **Strateginis pamatas**                                 | Duomenys = sprendimų sistema; rinkimas + tvarkymas + interpretavimas → sprendimai; duomenys > nuomonė; variacija; tobulinti sistemą, ne kaltinti žmones.                                                                     | Governance     |
 | **7.3**      | **Duomenų analizės pipeline**                           | 6 žingsniai: rinkimas → paruošimas → EDA → modeliai → vizualizacija → publikavimas; „raw → insight → decision“.                                                                                                              | —              |
 | **7.4**      | **Pagrindinės sąvokos – operacinė lentelė**             | Etapas vs „ką reiškia versle“ vs DI promptas (rinkimas, paruošimas, EDA, vizualizacija, publikavimas); CopyButton.                                                                                                           | INPUT, OUTPUT  |

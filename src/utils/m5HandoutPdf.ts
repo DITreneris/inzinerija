@@ -1,8 +1,12 @@
 /**
  * Generuoja Modulio 5 PDF atmintinę.
  * Maketo branduolys bendras visai atmintinių serijai: handoutPdfKit.ts.
+ *
+ * Density: `compact` — full M5 body (tools + prompts + sequence + QC + thresholds)
+ * does not fit on one A4 page at `regular` (~55 mm footer overlap).
  */
 
+import type { jsPDF } from 'jspdf';
 import {
   HANDOUT_ACCENT_COLOR,
   HANDOUT_BRAND_COLOR,
@@ -16,6 +20,7 @@ import {
   createHandoutDoc,
   defaultHandoutFilename,
   drawSectionLeftBorder,
+  type HandoutPdfContext,
 } from './handoutPdfKit';
 
 export interface M5HandoutContent {
@@ -33,19 +38,23 @@ export interface M5HandoutContent {
   footerText: string;
 }
 
+export interface M5HandoutBuildResult {
+  doc: jsPDF;
+  ctx: HandoutPdfContext;
+  contentEndY: number;
+}
+
 /**
- * Įkrauna šriftą (NotoSans) ir generuoja Modulio 5 atmintinės PDF.
- * Failas: LT – Promptu_anatomija_Modulio5_atmintine.pdf; EN – Prompt_Anatomy_Module5_handout.pdf
+ * Lays out Modulio 5 handout and returns contentEndY for fit guards.
+ * Caller is responsible for save / output.
  */
-export async function downloadM5HandoutPdf(
+export async function buildM5HandoutPdf(
   content: M5HandoutContent,
-  filename?: string,
-  locale?: 'lt' | 'en'
-): Promise<void> {
-  const pdfLocale = locale ?? 'lt';
-  const isEn = pdfLocale === 'en';
-  const ctx = await createHandoutDoc('regular');
-  let y = addHeader(ctx, content.title, content.subtitle, pdfLocale);
+  locale: 'lt' | 'en' = 'lt'
+): Promise<M5HandoutBuildResult> {
+  const isEn = locale === 'en';
+  const ctx = await createHandoutDoc('compact');
+  let y = addHeader(ctx, content.title, content.subtitle, locale);
 
   const yTools = y;
   y = addSectionTitle(
@@ -202,9 +211,23 @@ export async function downloadM5HandoutPdf(
     linkPrefix: isEn ? 'More: ' : 'Daugiau: ',
   });
 
+  return { doc: ctx.doc, ctx, contentEndY: y };
+}
+
+/**
+ * Įkrauna šriftą (NotoSans) ir generuoja Modulio 5 atmintinės PDF.
+ * Failas: LT – Promptu_anatomija_Modulio5_atmintine.pdf; EN – Prompt_Anatomy_Module5_handout.pdf
+ */
+export async function downloadM5HandoutPdf(
+  content: M5HandoutContent,
+  filename?: string,
+  locale?: 'lt' | 'en'
+): Promise<void> {
+  const pdfLocale = locale ?? 'lt';
+  const { doc } = await buildM5HandoutPdf(content, pdfLocale);
   const defaultName = defaultHandoutFilename(
-    isEn ? 'Module5_handout' : 'Modulio5_atmintine',
+    pdfLocale === 'en' ? 'Module5_handout' : 'Modulio5_atmintine',
     pdfLocale
   );
-  ctx.doc.save(filename ?? defaultName);
+  doc.save(filename ?? defaultName);
 }

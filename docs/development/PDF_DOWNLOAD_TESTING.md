@@ -2,7 +2,7 @@
 
 > Testų infrastruktūra skirta PDF atsisiuntimo funkcijai (intro-action-pie skaidrė) ir kitose skaidrėse naudojimui.
 
-**Būsena (2026-07-09):** Pilnas `npm run test:run` – 71 testų failas, 465 testai praeina. PDF serija dengia intro-action-pie, M1/M4/M5/M6/M7–9/M10–12/M13–15 atmintines, completion artefaktų registry ir sertifikatų atsisiuntimo smoke testus.
+**Būsena (2026-07-28):** Pilnas `npm run test:run` – **130** testų failų / **825** testai (@ tag 1.4.9 + Unreleased fit). PDF serija dengia intro-action-pie, M1/M4/M5/M6/M7–9/M10–12/M13–15 atmintines, completion artefaktų registry, sertifikatų smoke, **M5 fit** (`m5HandoutPdf.fit.test.ts`), **pdfLink Annots** (`handoutPdfLinks.annots.test.ts`). Owner visual PDF-FIT-1 ✅.
 
 **„Mano medžiaga“ (ModulesPage):** pakartotinis atmintinių/sertifikatų atsisiuntimas. **Pozicija (2026-07-23):** juosta grid’e **po paskutinio** modulio su `id <= maxAccessible`, **prieš** tier-locked track’us ir coming-soon – ne puslapio apačioje po visų užrakintų kortelių. SOT: `GOLDEN_STANDARD.md` §8.4; regresija: `ModulesPage.materials.test.tsx`.
 
@@ -49,8 +49,8 @@
 
 ## Atmintinių serijos bendras maketas
 
-- **Kit:** [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts) valdo M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF header, tipografiją, sekcijų border, footer, `textWithLink` ir UTM helperius.
-- **CTA pakopos:** M1/M4 – value-only be outbound; M5/M6 – minimalus website footer; M7–9/M10–12/M13–15 – 2 psl. ekosistemos funnel su `utm_medium=handout`.
+- **Kit:** [src/utils/handoutPdfKit.ts](../../src/utils/handoutPdfKit.ts) valdo M1/M4/M5/M6/M7–9/M10–12/M13–15 PDF header, tipografiją, sekcijų border, footer, `textWithLink` / `pdfLink` ir UTM helperius. Content floor: `HANDOUT_CONTENT_BOTTOM`.
+- **CTA pakopos + density:** žr. [`HANDOUT_MATURITY.md`](HANDOUT_MATURITY.md) – M1/M4 value-only; M5/M6 website footer (**M5 = `compact`**); path-funnel `utm_medium=handout`. Fit: `m5HandoutPdf.fit.test.ts` (LT/EN).
 - **UI:** Completion ir skaidrių mygtukams naudoti [src/components/HandoutDownloadButton.tsx](../../src/components/HandoutDownloadButton.tsx), kad PDF atmintinių serija turėtų vienodą Download ikoną, `aria-label` ir focus stilių.
 
 ## Modulio 1 atmintinė (PDF)

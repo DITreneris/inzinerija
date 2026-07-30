@@ -105,6 +105,15 @@ export function ecosystemLocaleUrl(
   return isEn ? ECOSYSTEM_URLS.createEn : ECOSYSTEM_URLS.createLt;
 }
 
+/** App footer deepen entry (no module context). */
+export function buildFooterDeepenUrl(): string {
+  const parsed = new URL(ECOSYSTEM_URLS.deepen);
+  parsed.searchParams.set('utm_source', 'training');
+  parsed.searchParams.set('utm_medium', 'footer');
+  parsed.searchParams.set('utm_campaign', 'app_footer');
+  return parsed.toString();
+}
+
 /** Map outbound URL → analytics cta_id suffix (spinoff_*). */
 export function getSpinoffCtaIdFromUrl(url: string): string {
   try {

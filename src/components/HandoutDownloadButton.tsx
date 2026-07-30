@@ -1,4 +1,5 @@
 import { Download } from 'lucide-react';
+import CTAButton from './ui/CTAButton';
 
 interface HandoutDownloadButtonProps {
   label: string;
@@ -10,18 +11,18 @@ interface HandoutDownloadButtonProps {
 export function HandoutDownloadButton({
   label,
   onClick,
-  className = 'btn-secondary flex items-center justify-center gap-2',
+  className = '',
   iconClassName = 'w-5 h-5',
 }: HandoutDownloadButtonProps) {
   return (
-    <button
-      type="button"
+    <CTAButton
+      variant="secondary"
       onClick={onClick}
       className={className}
       aria-label={label}
     >
       <Download className={iconClassName} aria-hidden />
       {label}
-    </button>
+    </CTAButton>
   );
 }

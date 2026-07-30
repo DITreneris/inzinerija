@@ -16,6 +16,7 @@ import { CopyButton } from '../../shared';
 import Banner from '../../../ui/Banner';
 import Eyebrow from '../../../ui/Eyebrow';
 import ChoiceControl from '../../../ui/ChoiceControl';
+import { isContentTrackAccent } from '../../shared/contentTrackTokens';
 import type { LucideIcon } from 'lucide-react';
 import type {
   ActionIntroContent,
@@ -447,6 +448,11 @@ export function ActionIntroSlide({
                   icon: Layers,
                 },
               ]}
+              optionTone={
+                isContentTrackAccent(moduleAccent)
+                  ? { short: 'rose', full: 'rose' }
+                  : undefined
+              }
               statusHint={pathStatusHint}
               className="animate-fade-in"
             />

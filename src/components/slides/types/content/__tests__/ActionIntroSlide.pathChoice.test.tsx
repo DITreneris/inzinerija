@@ -82,4 +82,46 @@ describe('ActionIntroSlide pathChoice', () => {
       screen.getByRole('radio', { name: /Trumpas kelias/i })
     ).toHaveAttribute('aria-checked', 'true');
   });
+
+  it('uses rose selected tone for Content-track moduleAccent', () => {
+    renderWithProviders(
+      <ActionIntroSlide
+        content={baseContent}
+        moduleId={13}
+        moduleAccent="rose"
+        levelLabel="Mokymasis"
+        pathMode="full"
+        onPathModeChange={vi.fn()}
+      />
+    );
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Pamatyk, kas laukia/i })
+    );
+
+    const fullBtn = screen.getByRole('radio', { name: /Ilgas kelias/i });
+    expect(fullBtn.className).toMatch(/border-rose-500/);
+    expect(fullBtn.className).toMatch(/bg-rose-50/);
+  });
+
+  it('keeps brand selected tone for non-Content path (M4)', () => {
+    renderWithProviders(
+      <ActionIntroSlide
+        content={baseContent}
+        moduleId={4}
+        moduleAccent="violet"
+        levelLabel="Mokymasis"
+        pathMode="full"
+        onPathModeChange={vi.fn()}
+      />
+    );
+
+    fireEvent.click(
+      screen.getByRole('button', { name: /Pamatyk, kas laukia/i })
+    );
+
+    const fullBtn = screen.getByRole('radio', { name: /Ilgas kelias/i });
+    expect(fullBtn.className).toMatch(/border-brand-500/);
+    expect(fullBtn.className).not.toMatch(/border-rose-500/);
+  });
 });

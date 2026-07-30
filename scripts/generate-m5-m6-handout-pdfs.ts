@@ -18,6 +18,7 @@ import {
   drawSectionLeftBorder,
   HANDOUT_CONTENT_X,
   HANDOUT_CONTENT_W_INNER,
+  HANDOUT_CONTENT_BOTTOM,
   HANDOUT_BRAND_COLOR,
   HANDOUT_ACCENT_COLOR,
 } from '../src/utils/handoutPdfKit';
@@ -44,67 +45,15 @@ function inspect(buf: Buffer) {
 }
 
 async function genM5() {
-  const ctx = await createHandoutDoc('regular');
+  const { buildM5HandoutPdf } = await import('../src/utils/m5HandoutPdf');
+  const { doc, ctx, contentEndY } = await buildM5HandoutPdf(m5, 'lt');
   if (!ctx.useCustomFont) throw new Error('M5: font not registered');
-  let y = addHeader(ctx, m5.title, m5.subtitle, 'lt');
-  const yTools = y;
-  y = addSectionTitle(ctx, '1. Pagrindiniai įrankiai', y);
-  y =
-    addWrappedText(
-      ctx,
-      m5.toolsIntro,
-      HANDOUT_CONTENT_X,
-      y,
-      HANDOUT_CONTENT_W_INNER
-    ) + ctx.typography.paragraphGap;
-  for (const bullet of m5.toolsBullets) {
-    y =
-      addWrappedText(
-        ctx,
-        `• ${bullet}`,
-        HANDOUT_CONTENT_X,
-        y,
-        HANDOUT_CONTENT_W_INNER
-      ) + ctx.typography.paragraphGap;
+  if (contentEndY > HANDOUT_CONTENT_BOTTOM) {
+    throw new Error(
+      `M5 content overlaps footer: contentEndY=${contentEndY} > ${HANDOUT_CONTENT_BOTTOM}`
+    );
   }
-  drawSectionLeftBorder(ctx.doc, yTools, y, HANDOUT_BRAND_COLOR);
-  y += ctx.typography.sectionGap;
-  y =
-    addWrappedText(
-      ctx,
-      m5.masterPrompt,
-      HANDOUT_CONTENT_X,
-      y,
-      HANDOUT_CONTENT_W_INNER
-    ) + ctx.typography.sectionGap;
-  y = addListSection(ctx, '3. Seka (15 min sprintas)', m5.sequenceSteps, y);
-  const yConcepts = y;
-  y = addSectionTitle(ctx, '4. Sąvokos', y);
-  for (const point of m5.qualityCheckPoints) {
-    y =
-      addWrappedText(
-        ctx,
-        `• ${point}`,
-        HANDOUT_CONTENT_X,
-        y,
-        HANDOUT_CONTENT_W_INNER
-      ) + ctx.typography.paragraphGap;
-  }
-  y =
-    addWrappedText(
-      ctx,
-      m5.thresholdsExplanation,
-      HANDOUT_CONTENT_X,
-      y,
-      HANDOUT_CONTENT_W_INNER
-    ) + ctx.typography.sectionGap;
-  drawSectionLeftBorder(ctx.doc, yConcepts, y, HANDOUT_ACCENT_COLOR);
-  addFooter(ctx, m5.footerText, {
-    websiteCta: 'www.promptanatomy.app',
-    websiteUrl: 'https://www.promptanatomy.app/',
-    linkPrefix: 'Daugiau: ',
-  });
-  const buf = Buffer.from(ctx.doc.output('arraybuffer'));
+  const buf = Buffer.from(doc.output('arraybuffer'));
   writeFileSync(join(OUT, 'Promptu_anatomija_Modulio5_atmintine.pdf'), buf);
   return { name: 'Modulio5', useCustomFont: ctx.useCustomFont, buf };
 }

@@ -4,11 +4,13 @@
 
 ## Klasės
 
-| Klasė         | Artefaktai           | CTA intensyvumas                                     |
-| ------------- | -------------------- | ---------------------------------------------------- |
-| `value-only`  | M1, M4               | Be outbound nuorodų                                  |
-| `footer`      | M5, M6               | Minimalus website footer (`doc.link` + label)        |
-| `path-funnel` | M7–9, M10–12, M13–15 | 2 psl.: value + ecosystem CTA (`utm_medium=handout`) |
+| Klasė         | Artefaktai           | CTA intensyvumas                                     | Density (1 psl.)           |
+| ------------- | -------------------- | ---------------------------------------------------- | -------------------------- |
+| `value-only`  | M1, M4               | Be outbound nuorodų                                  | `regular`                  |
+| `footer`      | M5, M6               | Minimalus website footer (`doc.link` + label)        | M5=`compact`, M6=`regular` |
+| `path-funnel` | M7–9, M10–12, M13–15 | 2 psl.: value + ecosystem CTA (`utm_medium=handout`) | `compact`                  |
+
+> **M5:** pilnas body (įrankiai + promptai + seka + QC + slenksčiai) netelpa į A4 su `regular` (~55 mm overflow → footer overlap). Fit guard: `HANDOUT_CONTENT_BOTTOM` + `m5HandoutPdf.fit.test.ts`.
 
 ## Privalomi laukai pagal klasę
 
@@ -33,6 +35,16 @@ Secondary „Decide“: hub URL su `utm_campaign=m{N}_handout_decide` (kol `.pro
 1. Matomas label (mėlyna + underline).
 2. Path CTA: po label – **pilnas URL** (small).
 3. Hitbox: `doc.link` su padding (`src/utils/pdfLink.ts`) – nepasikliauti vien `textWithLink`.
+
+## Backlog decisions (Horizon A — CORP-M2 ✅ 2026-07-28)
+
+| Sprendimas          | Apimtis                                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Keep**            | Klasės `value-only` / `footer` / `path-funnel`; entry = ModuleComplete + „Mano medžiaga“ (`completionArtifacts.json`) |
+| **Won’t-now**       | Papildomos mid-path PDF atmintinės (pvz. po M2/M5 mid-module); sertifikatų skills-QR — be atskiro product ticket      |
+| **Revisit trigger** | Product call arba Horizon C capacity                                                                                  |
+
+Rationale: M1/M4/M5/M6/M79/M1012/M1315 + PDF-FIT-1 ✅; mid-path / QR = naujas epic be capacity.
 
 ## Related
 

@@ -48,6 +48,7 @@ describe('PracticeIntroSlide pathChoice (M15)', () => {
       <PracticeIntroSlide
         slide={m15IntroSlide}
         moduleId={15}
+        moduleAccent="rose"
         pathMode="full"
         onPathModeChange={onPathModeChange}
         visibleSlideCount={4}
@@ -63,6 +64,20 @@ describe('PracticeIntroSlide pathChoice (M15)', () => {
     fireEvent.click(shortBtn);
     expect(onPathModeChange).toHaveBeenCalledWith('short');
     expect(screen.getByText(/4/)).toBeInTheDocument();
+  });
+
+  it('uses rose selected tone when moduleAccent is rose', () => {
+    renderWithProviders(
+      <PracticeIntroSlide
+        slide={m15IntroSlide}
+        moduleId={15}
+        moduleAccent="rose"
+        pathMode="full"
+        onPathModeChange={vi.fn()}
+      />
+    );
+    const fullBtn = screen.getByRole('radio', { name: /Pilnas kelias/i });
+    expect(fullBtn.className).toMatch(/border-rose-500/);
   });
 
   it('skips optional M15 scenarios 151–154 when short path (fastTrack)', () => {
@@ -116,6 +131,11 @@ describe('PracticeIntroSlide project choice (M6)', () => {
     fireEvent.click(continueBtn);
     expect(onNavigateToSlide).toHaveBeenCalledWith(8);
     expect(onPathModeChange).not.toHaveBeenCalled();
+
+    const reportRadio = screen.getByRole('radio', {
+      name: /Tyrimo ataskaita/i,
+    });
+    expect(reportRadio.className).not.toMatch(/border-rose-500/);
   });
 });
 

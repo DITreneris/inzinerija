@@ -3,6 +3,7 @@ import {
   blogArticleUrl,
   BLOG_ARTICLE_SLUGS,
   buildEcosystemUrl,
+  buildFooterDeepenUrl,
   getSpinoffCtaIdFromUrl,
 } from '../ecosystemUrls';
 
@@ -54,5 +55,14 @@ describe('ecosystemUrls', () => {
     expect(getSpinoffCtaIdFromUrl(mapUrl)).toBe('spinoff_map');
     expect(anatomizerUrl).toContain('#anatomizer');
     expect(getSpinoffCtaIdFromUrl(anatomizerUrl)).toBe('spinoff_anatomizer');
+  });
+
+  it('buildFooterDeepenUrl adds footer UTM to deepen hub', () => {
+    const url = buildFooterDeepenUrl();
+    expect(url).toContain('https://www.promptanatomy.blog/');
+    expect(url).toContain('utm_source=training');
+    expect(url).toContain('utm_medium=footer');
+    expect(url).toContain('utm_campaign=app_footer');
+    expect(getSpinoffCtaIdFromUrl(url)).toBe('spinoff_deepen');
   });
 });

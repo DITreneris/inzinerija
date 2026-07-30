@@ -74,6 +74,8 @@ import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
 import Banner from '../../ui/Banner';
 import CTAButton from '../../ui/CTAButton';
 import ChoiceControl from '../../ui/ChoiceControl';
+import type { ModuleAccent } from '../../../types/modules';
+import { isContentTrackAccent } from '../shared/contentTrackTokens';
 
 /** Category scores from the last test attempt (session-lived, not persisted) */
 export interface CategoryScore {
@@ -1320,7 +1322,7 @@ export function TestResultsSlide({
               <HandoutDownloadButton
                 label={handoutDownloadLabel}
                 onClick={handleM5HandoutPdf}
-                className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
+                className="px-5 py-3"
               />
               {onNextSlide && (
                 <CTAButton
@@ -1356,7 +1358,7 @@ export function TestResultsSlide({
                 <HandoutDownloadButton
                   label={handoutDownloadLabel}
                   onClick={handleM5HandoutPdf}
-                  className="btn-secondary inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px]"
+                  className="px-5 py-3"
                 />
                 {onGoToModule && (
                   <CTAButton
@@ -2395,6 +2397,7 @@ const M9_HUB_SLIDE_ID = 99;
 export function PracticeIntroSlide({
   slide,
   moduleId,
+  moduleAccent,
   progress,
   scenarioSlides,
   onNavigateToSlide,
@@ -2406,6 +2409,7 @@ export function PracticeIntroSlide({
 }: {
   slide?: Slide;
   moduleId?: number;
+  moduleAccent?: ModuleAccent;
   progress?: { completedTasks: Record<number, number[]> };
   scenarioSlides?: PracticeScenarioSlideInfo[];
   onNavigateToSlide?: (slideIndex: number) => void;
@@ -3173,6 +3177,11 @@ export function PracticeIntroSlide({
                   icon: Layers,
                 },
               ]}
+              optionTone={
+                isContentTrackAccent(moduleAccent)
+                  ? { short: 'rose', full: 'rose' }
+                  : undefined
+              }
               statusHint={
                 typeof visibleSlideCount === 'number' && visibleSlideCount > 0
                   ? t('pathVisibleCountHint', { count: visibleSlideCount })

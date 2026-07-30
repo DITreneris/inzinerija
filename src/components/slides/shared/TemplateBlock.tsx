@@ -1,5 +1,6 @@
 import CopyButton from './CopyButton';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { typographyClasses } from '../../../design-tokens';
 
 interface TemplateBlockProps {
   id?: string;
@@ -11,16 +12,30 @@ interface TemplateBlockProps {
   copyCopiedLabel?: string;
 }
 
-export default function TemplateBlock({ id, label, template, copyAriaLabel, copyCopiedLabel }: TemplateBlockProps) {
+export default function TemplateBlock({
+  id,
+  label,
+  template,
+  copyAriaLabel,
+  copyCopiedLabel,
+}: TemplateBlockProps) {
   const { locale } = useLocale();
   return (
-    <div className="bg-accent-50/50 dark:bg-accent-900/10 border border-gray-200 dark:border-gray-700 rounded-xl p-4 lg:p-5 relative" data-action="copy">
+    <div
+      className="bg-accent-50/50 dark:bg-accent-900/10 border border-gray-200 dark:border-gray-700 rounded-xl p-4 lg:p-5 relative"
+      data-action="copy"
+    >
       {label && (
-        <p id={id} className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-2">
+        <p
+          id={id}
+          className="text-sm font-bold text-gray-800 dark:text-gray-200 mb-2"
+        >
           {label}
         </p>
       )}
-      <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line font-mono mb-3">
+      <p
+        className={`${typographyClasses.code} text-gray-700 dark:text-gray-300 whitespace-pre-line mb-3`}
+      >
         {template}
       </p>
       <div className="flex justify-end">
@@ -29,7 +44,9 @@ export default function TemplateBlock({ id, label, template, copyAriaLabel, copy
           size="md"
           variant="accent"
           ariaLabel={copyAriaLabel ?? (locale === 'en' ? 'Copy' : 'Kopijuoti')}
-          copiedLabel={copyCopiedLabel ?? (locale === 'en' ? 'Copied!' : 'Nukopijuota!')}
+          copiedLabel={
+            copyCopiedLabel ?? (locale === 'en' ? 'Copied!' : 'Nukopijuota!')
+          }
         />
       </div>
     </div>
