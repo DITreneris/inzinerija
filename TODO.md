@@ -1,126 +1,128 @@
 # TODO – Promptų anatomija
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
-**Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`docs/archive/development/TODO_DONE_SPRINTS_2026-07.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + learning QA (PDF, smoke), P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-07-27 (release **1.4.9**).
+**Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) (+ ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md)). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-07-30 (Horizon **C** M1315-C\* ✅; B-V verify/lock ✅).
 
-**Dabartinis fokusas:** **P2 polish** po **v1.4.9** (learning QA P0 + PC-4 ✅). Automated: lint + schema + TE strict + typecheck + `audit:m79` + `validate:journey-m9` · preflight **130/825**. CQ-PORTAL ✅ · PDF-1…6 ✅ · M1012-2 ✅ · DIAG-1 ✅ · PC-4.\* ✅ · CONTENT §4.6 #6–9 ✅; CQ-M79-1/2 ✅.
+**Dabartinis fokusas:** marketing cutover handoff (MON, out of scope) · product next (Horizon D / quiet). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **142/903** (`test:run` po 10.255 order guard fix); `build:corporate12` + `build:corporate15` žali.
 
-**Learning QA vartai (šiame repo):**
+**Learning / corporate vartai (šiame repo):**
 
-- **P0 uždaryta:** CQ-M79-1/2/3 · **CQ-PORTAL** 48h @375 (2026-07-27).
 - **Open P0:** nėra.
-- **P1 brandumas:** PDF-1…6 ✅ · M10–12 C1–C6 ✅ · DIAG-1 ✅.
+- **Open P1:** `M1315-S*` schemų / interaktyvių elementų ROI fix'ai (Deferred production; žr. §1.2c).
+- **Open P2:** nėra (Horizon A CORP-M\* ✅ → archive).
 
 ---
 
 ## 1. Aktualus pipeline (open only)
 
-### §1.0h Docs Lean (DL)
-
-> **Taisyklės:** [`DOCS_MAINTENANCE.md`](docs/development/DOCS_MAINTENANCE.md) §1c.
-
-| ID       | Iteracija | Užduotis                                         | Status         |
-| -------- | --------- | ------------------------------------------------ | -------------- |
-| **DL-0** | I0        | Kontraktas §1c + ticketai                        | [x] 2026-07-24 |
-| **DL-1** | I1        | TODO/ROADMAP slim + archive snapshot + always-on | [x] 2026-07-24 |
-| **DL-2** | I2        | LEAN ≤25 + QUICK_REF purge                       | [x] 2026-07-24 |
-| **DL-3** | I3        | Archive frozen PLAN/AUDIT; M1–9 AUDITAS demote   | [x] 2026-07-24 |
-| **DL-4** | I4        | Empty skills + INDEX/DOCS_SYNC/CHANGELOG         | [x] 2026-07-24 |
+> **Taisyklės:** [`DOCS_MAINTENANCE.md`](docs/development/DOCS_MAINTENANCE.md) §1c — §1 tik open; done → archive.
 
 ### §1.1 P0 – Mokymosi kokybės blokoriai
 
-| ID            | Užduotis                                                                                    | Status         | Pastaba                                                                                          |
-| ------------- | ------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------ |
-| **CQ-M79-1**  | M7–9 browser smoke S1–S7 @375px                                                             | [x] 2026-07-26 | `TEST_REPORT` S1–S7 Browser ✅; backlog §12–13                                                   |
-| **CQ-M79-2**  | M7–9 browser smoke E1–E6 @375px (kasdienis artumas)                                         | [x] 2026-07-26 | `TEST_REPORT` E1–E6 Browser ✅; backlog §14                                                      |
-| **CQ-M79-3**  | CONTENT residual §4.6 **#6–9** (sk. 90 nav; 891 „kada“; 74 MASTER vs M4; „vienas promptas“) | [x] 2026-07-26 | #6/#8 verify; EN 891 when-first; M7 #9 phrase batch LT+EN; `patch-m79-46-section46-residual.mjs` |
-| **CQ-PORTAL** | 48h anti-PPT retest (5 mobile, 375px)                                                       | [x] 2026-07-27 | Phase A smoke + Phase B owner-proxy panel; `smoke-cq-portal.mjs`; `TEST_REPORT`                  |
-| **M9M-0…5**   | M9 maturity I0–I5 (chrome 12/4×3, tokens, tiers, reli, honesty, SOT/M9P)                    | [x] 2026-07-26 | Plan `m9_maturity_iterations`; DoD docs + `M9_PROMPT_MATURITY.md`                                |
-| **M9M-6**     | M9 MUST browser smoke @375px (90→93.1→93.2→93→92)                                           | [x] 2026-07-26 | Unit+struktūra ✅; vizualus @375px ✅ CQ-M79-1/2                                                 |
+Open P0: **nėra.** Closeout (CQ-M79 / CQ-PORTAL / M9M): [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md).
 
-### §1.2 P1 – Turinio kokybė + authoring brandumas
+### §1.2 P1 – Horizon C: M13–15 corporate production
 
-| ID             | Užduotis                                                             | Status         | Pastaba                                                                                                                      |
-| -------------- | -------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **PDF-1**      | M5 PDF rankinė (lietuviškos raidės)                                  | [x] 2026-07-27 | §5d; font+LT glyphs; CTA ir kai score 0 (`TestResultsSlide`)                                                                 |
-| **PDF-2**      | M6 PDF rankinė                                                       | [x] 2026-07-27 | §5d; sk. 64 + Mano medžiaga                                                                                                  |
-| **PDF-3**      | Rankinė M4 sk. 56 (RAG / LlmArch)                                    | [x] 2026-07-27 | tabai×7, copy, LT; enlarge = desktop-only (`EnlargeableDiagram`)                                                             |
-| **PDF-4**      | Rankinė M6 sk. 64                                                    | [x] 2026-07-27 | title + copy; ne Deep research                                                                                               |
-| **PDF-5**      | Browser spot-check M1/M4/M6 @390px                                   | [x] 2026-07-27 | no overflowX                                                                                                                 |
-| **PDF-6**      | PDF/handout entry point M5/M6                                        | [x] 2026-07-27 | 45.5 promise + Mano medžiaga re-download                                                                                     |
-| **PDF-LINK-1** | Handout/certificate PDF nuorodų hitbox + maturity P0–P2              | [x] 2026-07-26 | `pdfLink` + Decide→hub; path CTA; starterPrompt; [`HANDOUT_MATURITY.md`](docs/development/HANDOUT_MATURITY.md); Annots smoke |
-| **M1012-1**    | M10–12 chrome: titles / footer / CTA brandumas (be curriculum ID UI) | [x] 2026-07-26 | EN cross-ref/HITL/`docs/` fix + LT 10.65; GOLDEN §3.6; `build:modules-en-m10-m12`                                            |
-| **M1012-W1**   | M10 Wave 1 content/schema (10.1–10.48 intake #1–6)                   | [x] 2026-07-26 | Copy dedupe + 10.45 lab polish + 10.48 toolChoiceBar; intake closed Wave1                                                    |
-| **M1012-W2**   | M10 Wave 2 content (10.485–10.8 intake #7–11)                        | [x] 2026-07-26 | Orch/tools/workflow/MUST-tail polish; EN dual-source; intake closed Wave2                                                    |
-| **M1012-2**    | `audit:m1012` + rankinė UI peržiūra (LT/EN)                          | [x] 2026-07-27 | `audit:m1012` ✅; browser C1–C6 (+C5b) @375 LT/EN – `TEST_REPORT`; helper `scripts/smoke-diag1-m1012.mjs`                    |
-| **M1012-R**    | M10 slide ranking audit (UI/UX/Journey/Maturity/TE) → Top 8 backlog  | [x] 2026-07-26 | [`M10_SLIDE_RANKING_AUDIT.md`](docs/development/M10_SLIDE_RANKING_AUDIT.md)                                                  |
-| **M1012-W3a**  | M10 Top-5 density/cycle batch (10.36/65/37/cluster/10.48)            | [x] 2026-07-26 | LT+EN; eilė sync; rework flags cleared; ranking audit §6 done                                                                |
-| **M1012-W3R**  | M11/M12 Wave3 ranking audit (16 slides) → Top 8 / Top 5 frozen       | [x] 2026-07-26 | [`M11_M12_SLIDE_RANKING_AUDIT.md`](docs/development/M11_M12_SLIDE_RANKING_AUDIT.md); batch iki „tvarkom batch“               |
-| **M1012-W3B**  | M11/M12 Top-5 batch (120.25/125/123/112/121 + EN 126/127 delete)     | [x] 2026-07-26 | LT+`build-en-m10-m12`; cycle/Copy/doc scrub; `audit:m1012` + schema OK                                                       |
-| **DIAG-1**     | Rankinis light/dark diagram smoke M7–9 (TE registry + RELEASE_QA)    | [x] 2026-07-27 | 6× light/dark/375 ✅; unit `DiagramLocalization`+pathmap; be kodo fix                                                        |
+**Closed 2026-07-30** (`M1315-C0`…`C4`) — intake [`M13_M15_CORPORATE_PRODUCTION_INTAKE.md`](docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md).  
+Repo exit: `build:corporate15` + `*-m1-m15.json` + magic-link tier **15** (€249 provisional) + `audit:m1315` + RELEASE_QA §6b + CI. Marketing env/pin cutover = §1.4.
 
-### §1.3 Open P2 / polish
+### §1.2b P1 – Horizon B: M10–12 corporate production
 
-> Practice closer: [`PRACTICE_CLOSER_PLAN.md`](docs/development/PRACTICE_CLOSER_PLAN.md). PC-0…3 ✅.
+**Closed 2026-07-28** (`M1012-P0`…`P4`) + **B-V verify/lock 2026-07-30** → archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md).  
+Repo exit: `build:corporate12` + magic-link tier 12 + `audit:m1012` + docs. Marketing env/pin cutover = §1.4.
 
-| ID         | Užduotis                                     | Status                                                                |
-| ---------- | -------------------------------------------- | --------------------------------------------------------------------- |
-| **PC-4.1** | M3 portfolio progress chip (2/6)             | [x] 2026-07-27 live N/6 intro + ModuleView chrome                     |
-| **PC-4.2** | M9 hub filtrai / quest clarity               | [x] 2026-07-26 quest clarity (map+hub copy); hub filtrai out of scope |
-| **PC-4.3** | M15 optional badgeVariant clarity            | [x] 2026-07-27 Privaloma badge + intro be curriculum ID               |
-| **PC-4.4** | M6 intro ChoiceControl auditas (61 vs 67)    | [x] 2026-07-27 soft-preselect + confirm CTA                           |
-| P2 #2      | Testų infrastruktūra T2 (App/Quiz/progress)  | [ ]                                                                   |
-| P2 #3      | S-R4 optional: `modules.ts` padalinti        | [ ]                                                                   |
-| P2 #16     | PDF_GENERATION_AGENT_MEMORY sync             | [ ]                                                                   |
-| P2 #GP     | GitHub Pages MVP `/inzinerija/` gate policy  | [ ]                                                                   |
-| §3 RAG     | M7–9 docs: RAG/tyrimų nuoroda kelio aprašyme | [ ]                                                                   |
+### §1.2c P1 – M13–15 schemes / interactive ROI
+
+> Auditas: [`M13_M15_SCHEME_AUDIT.md`](docs/development/M13_M15_SCHEME_AUDIT.md). Production release lieka Deferred; ne corporate cut.
+
+| ID              | Užduotis                                | Status   | Pastaba                                                        |
+| --------------- | --------------------------------------- | -------- | -------------------------------------------------------------- |
+| **M1315-S0**    | Audit SOT + docs sync                   | [x]      | `M13_M15_SCHEME_AUDIT.md` + indeksai                           |
+| **M1315-S1**    | 13.47 I2V readiness meter               | [x]      | Realūs checks; testų perrašymas                                |
+| **M1315-S2**    | 13.37 Vaizdo generatoriaus a11y         | [x]      | Fake tablist, labeliai, i18n tips                              |
+| **M1315-S3**    | 150.25 practice loop mobile             | [x]      | Scroll mobile; feedback path iš layout                         |
+| **M1315-S4**    | 13.325 rose semantika                   | [x]      | After-lock → emerald; GOLDEN sync                              |
+| **M1315-S5**    | Browser smoke vartai                    | [x]      | 13.37/13.47/13.325 shots; overflowX gate                       |
+| **M1315-S6/S7** | Process form individuality + 13.33 lift | Deferred | S4-INDIV (metaforos) + S5-THIRDS; ne VerticalFlow pixel dedupe |
+
+### §1.2d P1 – M7–9 schemes / interactive ROI
+
+> Auditas: [`M7_M9_SCHEME_AUDIT.md`](docs/development/M7_M9_SCHEME_AUDIT.md). Korporatyvinis bundle (tier 9) – kokybės remontas, ne naujas cut.  
+> Sprendimai §0: chips auto-select = klaida; compact tipografijos grindys keliamos **globaliai**; individualumo taisyklė – **visoms** schemoms.
+
+| ID             | Užduotis                                           | Status | Pastaba                                                                                                     |
+| -------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
+| **M79-S0**     | Audit SOT + docs sync                              | [x]    | `M7_M9_SCHEME_AUDIT.md` + indeksai + registry                                                               |
+| **M79-S1a**    | A1-GATE: `preCopyCheckBlock` (67, 67.8)            | [ ]    | Realus copy gate arba pervadinti; ChoiceControl + `aria-live`                                               |
+| **M79-S1b**    | A1-CHIPS: `toolChoiceBar` default ×9               | [ ]    | Auto-select šalinimas + testo perrašymas; `whenHint`; `aria-live`                                           |
+| **M79-S2a**    | A2-CARDS: `m9_data_workflow` (74 + M9/93)          | [ ]    | `tabIndex={-1}` + `aria-hidden`; `role="img"` kolizija; guard test                                          |
+| **M79-S2b**    | A2-SCOPE: M8/80 test-knowledge-scope               | [ ]    | Content SOT + tokenai; dublis `slideId: 891`; mirusios šakos                                                |
+| **A11Y-SWEEP** | `role="img"` + interaktyvūs SVG internals          | [ ]    | Cross-module: Schema3Interactive / RagDuomenu / WorkflowComparison / ContextEngineering / LlmAutoregressive |
+| **A11Y-GUARD** | Registry-driven `role="img"` descendant guard      | [ ]    | Per `getDiagramRendererKeys()` renderinti schemas; drausti focusable vaikus `[role="img"]` viduje           |
+| **M79-S3**     | A3-TYPE: compact tipografijos grindys + 92/94/100  | [ ]    | `diagramTokens` globaliai → cross-modulinis re-fit; sk. 100 2u clip                                         |
+| **M79-S4**     | A4-CANVAS: miręs kadras 94 / 92 / 100              | [ ]    | viewBox kirpimas (ne BOX↑)                                                                                  |
+| **M79-S5**     | A5-INDIV: formos individualumas (73 vs 89 + visos) | [ ]    | Metafora matoma be step text; ne pixel-parity dedupe                                                        |
+| **M79-S6**     | A6-REGISTRY: overlay dublių šalinimas              | [ ]    | Hallucination ×2 įrašai; `contentSot` korekcijos                                                            |
+
+### §1.3 P2 – Horizon A: corporate micro (M1–9)
+
+**Closed 2026-07-28** (`CORP-M1` done · `CORP-M2` won’t-now · `CORP-M3` deferred-with-date) → archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md).  
+Open learning P2 šiame repo: **nėra**.
 
 ### §1.4 Out of scope – marketing handoff
 
-> Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).
+> Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).  
+> **Horizon B cutover:** `build:corporate12` + `access_tier=12` — [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md).  
+> **Horizon C cutover:** `build:corporate15` + `access_tier=15` (provisional €249) — tas pats checklist.
 
-| ID        | Užduotis                                                                | Status | Pastaba                                                              |
-| --------- | ----------------------------------------------------------------------- | ------ | -------------------------------------------------------------------- |
-| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel                                                     |
-| **MON-2** | Submodule pin **v1.4.9** + deploy                                       | ⏳     | Marketing → pin tag **v1.4.9** (was 1.4.8)                           |
-| **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳                                                           |
-| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) |
-| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                  |
-| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]    | Marketing                                                            |
-| **MON-8** | Marketing prod: `build:production` M1–9 env                             | ⏳     | Vercel env rankinė                                                   |
-| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]    | Marketing                                                            |
+| ID        | Užduotis                                                                | Status | Pastaba                                                               |
+| --------- | ----------------------------------------------------------------------- | ------ | --------------------------------------------------------------------- |
+| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel                                                      |
+| **MON-2** | Submodule pin **v1.4.9** + deploy                                       | ⏳     | Marketing → pin tag **v1.4.9** (was 1.4.8); later 1.5.x + corporate15 |
+| **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15**                         |
+| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md)  |
+| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                   |
+| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]    | Marketing                                                             |
+| **MON-8** | Marketing prod: `build:production` M1–9 env                             | ⏳     | Vercel env; optional cutover → `build:corporate12` / `corporate15`    |
+| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]    | Marketing                                                             |
 
 MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
-### §1.5 Deferred (ne pradėti dabar)
+### §1.5 Deferred (Horizon D – ne pradėti dabar)
 
-- M13–15 pilnas production release – Deferred (authoring katalogas OK).
-- M10–15 marketing monetizacija – marketing repo.
-- M16–18 **Kodo inžinerija** (vibe-coding) – Deferred JSON/katalogas / skaidrių eilė; **SOT parked** (`turinio_pletra_moduliai_16_17_18.md` §8 freeze + F1–F8 checklist; intake → `docs/archive/development/intake/`). Un-defer tik po CQ-PORTAL (CQ-M79-1/2 ✅) (arba override) **ir** product call „kitas kelias = Kodo inžinerija“; tada F1 eilė. Ne open P0. M7 optional viz sk. 100–106 lieka M7.
-- M19–21 **DI politikos inžinerija** (dokumentacija ir komunikacija) – Deferred (nėra SOT / katalogo).
+- M10–15 marketing monetizacija – marketing repo (tier 12/15 cutover = §1.4).
+- **Horizon D:** M16–18 **Kodo inžinerija** (vibe-coding) – Deferred JSON/katalogas / skaidrių eilė; **SOT parked** (`turinio_pletra_moduliai_16_17_18.md` §8 freeze + F1–F8). Un-defer: product call „kitas kelias = Kodo inžinerija“. Tada F1 eilė. Ne open P0. M7 optional viz sk. 100–106 lieka M7.
+- M19–21 **DI politikos inžinerija** – Deferred (nėra SOT / katalogo).
 
 ---
 
 ## 2. Padaryta (santrauka)
 
-Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-07.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). Metrika: [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md).
+Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) · ankstesnis: [`TODO_DONE_SPRINTS_2026-07.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). Metrika: [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md).
 
-- UX Banga 0–4 + M5 Apply+Gate ✅ · Practice closer PC-0…3 ✅ · M7P ✅ · Teaching Elements TE-0…5 ✅
-- Portal 2.1 polish ✅ (liko anti-PPT retest) · DS hardening + W6–W10 ✅ · CONV-1…5 ✅
-- Path Test Shell M2/M8/M11/M14 ✅ · LMS diagram polish W1–W7 ✅ · Release 1.4.6–1.4.8
-- Docs Lean DL-0…4 ✅ · **Turinio ambicijos flip** ✅ · CQ-M79-1/2 browser @375px ✅ 2026-07-26
+- UX Banga 0–4 + M5 Apply+Gate ✅ · Practice closer PC-0…4 ✅ · M7P / M9M ✅ · Teaching Elements TE-0…5 ✅
+- Learning QA P0 ✅ (CQ-M79 + CQ-PORTAL) · PDF-1…6 / PDF-FIT-1 / DIAG-1 / M1012 authoring / M1315 ✅
+- M13 gen meter → I2V (13.37 + 13.47) ✅ · P2 residual (T2 / S-R4 / GP / RAG / PDF memory) ✅ 2026-07-28
+- M13–15 journey/UX (`M1315-J0`…`J7`) ✅ 2026-07-28 — 13.325 lab · M13P · M15 polish
+- Path Test Shell M2/M8/M11/M14 ✅ · LMS W1–W7 ✅ · Docs Lean DL-0…4 ✅ · Release 1.4.6–1.4.9
+- **Horizon B M10–12 corporate production** (`M1012-P0`…`P4`) ✅ 2026-07-28 + B-V lock 2026-07-30
+- **Horizon C M13–15 corporate production** (`M1315-C0`…`C4`) ✅ 2026-07-30 — `build:corporate15`, magic-link tier 15
+- **Horizon A CORP-M1…M3** ✅ 2026-07-28 — M7–9 backlog formal close; mid-path handout won’t-now; pedagogikos Should deferred
 
 ---
 
 ## 3. Nuorodos
 
-| Kas                  | Kur                                                          |
-| -------------------- | ------------------------------------------------------------ |
-| Klaidos / release QA | `docs/development/TEST_REPORT.md`, `RELEASE_QA_CHECKLIST.md` |
-| M7–9 kokybė          | `docs/development/07_08_09_backlog.md`                       |
-| Pedagogika           | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`           |
-| Marketing handoff    | `docs/deployment/MON_P0_EXECUTION_PLAN.md`                   |
-| Docs lean            | `docs/development/DOCS_MAINTENANCE.md` §1c                   |
-| Agent start          | `docs/DOCUMENTATION_QUICK_REF.md`                            |
-| Done snapshot        | `docs/archive/development/TODO_DONE_SPRINTS_2026-07.md`      |
+| Kas                  | Kur                                                              |
+| -------------------- | ---------------------------------------------------------------- |
+| Production ladder    | [`ROADMAP.md`](ROADMAP.md)                                       |
+| Klaidos / release QA | `docs/development/TEST_REPORT.md`, `RELEASE_QA_CHECKLIST.md`     |
+| M7–9 kokybė          | `docs/development/07_08_09_backlog.md`                           |
+| Pedagogika           | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`               |
+| M10–12 corp intake   | `docs/development/intake/M10_M12_CORPORATE_PRODUCTION_INTAKE.md` |
+| M13–15 corp intake   | `docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md` |
+| Marketing handoff    | `docs/deployment/MON_P0_EXECUTION_PLAN.md`                       |
+| Docs lean            | `docs/development/DOCS_MAINTENANCE.md` §1c                       |
+| Agent start          | `docs/DOCUMENTATION_QUICK_REF.md`                                |
+| Done snapshot        | `docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md`       |

@@ -2,7 +2,7 @@
 
 > **Paskirtis:** Lyginame 8 pedagogines įžvalgas su dabartiniu produktu; nustatome, kas jau padaryta, o kas lieka open.  
 > **Atnaujinta:** 2026-07-27 (PC-4 closed) · Būklė prieš [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md).  
-> **Open vykdymas:** [`TODO.md`](../../TODO.md) §1.3 (P2 polish) — learning P0 + PC-4 uždaryta. Marketing / CRO – ne čia.
+> **Open vykdymas:** learning P0/P2 uždaryta (Horizon A CORP-M3 Should → deferred). Marketing / CRO – [`TODO.md`](../../TODO.md) §1.4.
 
 ---
 
@@ -44,9 +44,11 @@
 ## Should (P2 / vėliau)
 
 - **PC-4.\*** ✅ (4.1 / 4.3 / 4.4 2026-07-27; 4.2 anksčiau).
-- Role-first įėjimas platesniu produktu (ne tik M7 journey).
-- Organizacijos atmintis (bandymų / „kas suveikė“ istorija).
-- Diagnostinis Quiz tonas visur (ne tik Path Test lukšte).
+- Role-first įėjimas platesniu produktu (ne tik M7 journey) — **deferred** (Horizon A CORP-M3 ✅ 2026-07-28; revisit po MON cutover arba Horizon C seed).
+- Organizacijos atmintis (bandymų / „kas suveikė“ istorija) — **deferred** (tas pats trigger).
+- Diagnostinis Quiz tonas visur (ne tik Path Test lukšte) — **deferred** (branduolys: Quiz formative + GOLDEN §3.7; platesnis = epic).
+
+> **CORP-M3:** smallest slice dabar nedaromas; M7 journey + Quiz formative dengia branduolį.
 
 ## Want (vėliau)
 

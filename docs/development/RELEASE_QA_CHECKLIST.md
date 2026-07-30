@@ -8,14 +8,14 @@
 
 **Vykdymo gidas (rankinė + automatinė):** Žr. `docs/development/RELEASE_QA_RUN.md` – automatinės patikros rezultatai ir žingsnis po žingsnio 0.1, 0.2, 0.4.
 
-**Automatinis preflight (viena komanda):** `npm run audit:release-preflight` – schema, lint, M1–9 EN/LT auditai (`audit:m49`), M7 pathBranch guard ir pilnas `test:run`. Paleisti prieš kiekvieną deploy; rankinės patikros (§§ žemiau ir MON-5 gate check `RELEASE_QA_RUN.md`) lieka žmogui.
+**Automatinis preflight (viena komanda):** `npm run audit:release-preflight` – schema, lint, M4–15 EN/LT auditai (`audit:m49`, `audit:m1012`, `audit:m1315`), M7/M9 journey guard'ai, footer numeriai, TE strict ir pilnas `test:run`. Paleisti prieš kiekvieną deploy; rankinės patikros (§§ žemiau ir MON-5 gate check `RELEASE_QA_RUN.md`) lieka žmogui.
 
 ---
 
 ## 1. Broken links (~2 min)
 
 - [ ] **Internos nuorodos:** Skip link `#main-content` veikia (Home → klaviatūra Tab → Enter).
-- [ ] **Išorinės nuorodos (1–2 spot check):** GitHub (App.tsx footer), bent viena ContentSlides nuoroda (įrankiai, šaltiniai) – atsidaro naujame lange, nėra 404.
+- [ ] **Išorinės nuorodos (1–2 spot check):** App footer – **Skaitiniai / Deep reads** (`buildFooterDeepenUrl` → blog + `utm_medium=footer`) ir/ar GitHub; bent viena ContentSlides nuoroda (įrankiai, šaltiniai) – atsidaro naujame lange, nėra 404.
 - [ ] **AI detektoriai / Prompt biblioteka:** Jei naudojami – nuorodos atsidaro.
 
 ---
@@ -198,6 +198,32 @@ Raktų checklist (po vieną skaidrę / shell):
 - [ ] **Core 1–6 build:** `VITE_MVP_MODE=1 npm run build` → atidaryti → Moduliai → matyti tik 6 produkcinės kortelės; `7–15` neatsiranda kataloge.
 - [ ] **Glossary:** Žodynėlio filtre – Moduliai 1–6 (terminai su moduleId 7+ paslėpti).
 - [ ] **HomePage CTA:** Baigus 6 modulius – „Į apklausą“ (ne „Tęsti mokymą“). Paspaudus – navigacija į Apklausą.
+
+---
+
+## 6a. Corporate12 release (Horizon B – M1–12)
+
+> **Įtraukta:** 2026-07-28. Kai deploy target = tier 12 (`build:corporate12` / `VITE_MAX_BUILD_MODULE=12`). Default production lieka M1–9 (`build:production`) iki marketing cutover.
+
+- [ ] **Corporate12 build:** `npm run build:corporate12` → exit 0; kataloge M1–12; M13–15 **nėra** bundle'e.
+- [ ] **Automatiniai vartai:** `npm run audit:m1012` + `npm run validate:schema` + `npm run test:run` (įsk. gate tier 12 / `magicLinkTier`).
+- [ ] **Magic link tier 12:** verify-access priima `access_tier=12` → `verified_access_tier=12`; M10–12 atrakinti; M13+ užrakinti (full/authoring) arba nėra kataloge (corporate12 slice).
+- [ ] **EN overlay smoke:** locale EN su `maxModuleId >= 10` – M10–12 skaidrės EN; `audit:m1012` ✅.
+- [ ] **Handout M1012 + cert tier 4:** Agentų kelio PDF + tier 4 sertifikatas po M10–12 + M11 ≥70 % (žr. §5 / §5d).
+- [ ] **Marketing handoff:** env cutover (`VITE_MAX_BUILD_MODULE=12` arba `build:corporate12`) + magic-link generator siunčia `access_tier=12` – marketing repo; ne blokeris šiame repo.
+
+---
+
+## 6b. Corporate15 release (Horizon C – M1–15)
+
+> **Įtraukta:** 2026-07-30. Kai deploy target = tier 15 (`build:corporate15` / `VITE_MAX_BUILD_MODULE=15`). Default production lieka M1–9 (`build:production`) iki marketing cutover (12 arba 15).
+
+- [ ] **Corporate15 build:** `npm run build:corporate15` → exit 0; kataloge M1–15; Vaizdo/I2V **ne** stub.
+- [ ] **Automatiniai vartai:** `npm run audit:m1315` + `npm run validate:schema` + `npm run test:run` (įsk. gate tier 15 / `magicLinkTier`).
+- [ ] **Magic link tier 15:** verify-access priima `access_tier=15` → `verified_access_tier=15`; M13–15 atrakinti; žemesni tier’ai (12) užrakina M13+.
+- [ ] **EN overlay smoke:** locale EN – M13–15 skaidrės EN; `audit:m1315` ✅.
+- [ ] **Handout M1315 + cert tier 5:** Turinio kelio PDF + tier 5 sertifikatas po M13–15 + M14 ≥70 % (žr. §5 / §5d).
+- [ ] **Marketing handoff:** env cutover (`VITE_MAX_BUILD_MODULE=15` arba `build:corporate15`) + magic-link generator siunčia `access_tier=15` (provisional €249) – marketing repo; ne blokeris šiame repo.
 
 ---
 

@@ -1,8 +1,12 @@
 # Golden standard – vienas etalonas viskam
 
 > **Paskirtis:** Vienas dokumentas – visi standartai: šriftai, spalvos, blokų hierarchija, skaidrių tipai ir jų užpildymo schemos, turinio išdėstymas, modulio identitetas. **CONTENT_AGENT, UI_UX_AGENT, DATA_AGENT ir CODING_AGENT privalo laikytis šio dokumento.**
-> **Versija:** 2.3.14  
-> **Data:** 2026-07-23  
+> **Versija:** 2.3.20  
+> **Data:** 2026-07-29  
+> **2.3.20:** §3.1b/c – consumer `M10TeamReadinessLabBlock` (10.255 `m10_team_readiness_lab`: 3 dimensijų komandos DI praktikos nuotrauka; be balo; Shell=Ne).
+> **2.3.19:** §6b Content-track visual exception (M13–15); §3.1b path Choice `optionTone: rose` kai `moduleAccent === 'rose'`.
+> **2.3.18:** §3.1b/c – `M13ConsistencyLockLabBlock` Drift Lab (13.325: ref checklist + drift Choice ×5 + Simptomas|Fix; brand-only; Shell=Ne).
+> **2.3.17:** §3.1b/c – consumer `M13ConsistencyLockLabBlock` (13.325 `m13_consistency_lab`, brand-only; Shell=Ne) – superseded by 2.3.18 Drift enhancement.
 > **2.3.16:** §3.1b/c – consumer `M10DepthRolesLabBlock` (10.45 `m10_agent_taxonomy`, hybrid lab + static mini SVG; be scenarijaus / risk strip).
 > **2.3.15:** §3.1b/c – consumer `M4PromptModeSimulatorBlock` (54 `m4_prompt_mode_simulator`, `interactive-control-lab`).
 > **2.3.14:** §3.1c Lab color exception (`interactive-control-lab`) – risk palette lab surface; ChoiceControl optional `optionTone`.
@@ -41,7 +45,8 @@
 
 **Taisyklė:** Vienas H1 per skaidrę. Bold – tik svarbiems žodžiams, ne visai pastraipai.
 
-**Techninis:** `tailwind.config.js` – fontFamily: sans (Plus Jakarta Sans), mono (JetBrains Mono).
+**Techninis:** `tailwind.config.js` – fontFamily: sans (Plus Jakarta Sans), mono (JetBrains Mono).  
+**Runtime (DS 0.3.2):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts) (`h1` / `h2` / `h3` / `body` / `bodyMuted` / `small` / `code` / `footer`).
 
 ---
 
@@ -102,13 +107,13 @@
 
 **Komponentas:** `src/components/ui/ChoiceControl.tsx`.
 
-| Taisyklė        | Reikšmė                                                                                                                      |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Selected spalva | **brand** (ne accent, ne violet/emerald – nestack su module accent §2.2). **Išimtis:** §3.1c lab gali perduoti `optionTone`. |
-| A11y            | `radiogroup` + `role="radio"` + `aria-checked`; `min-h-[44px]`; rodyklės keičia pasirinkimą                                  |
-| `value`         | `T \| null` (null = dar nepasirinkta, pvz. M7 / M6 jump / lab prieš režimą)                                                  |
-| `columns`       | `1 \| 2 \| 3` (default 2); decision lab gali naudoti `1` (vertikalus sąrašas)                                                |
-| Hint            | Viena `statusHint` eilutė po grid – be description dublio                                                                    |
+| Taisyklė        | Reikšmė                                                                                                                                                                                                                                                                                  |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Selected spalva | **brand** (ne accent, ne violet/emerald – nestack su module accent §2.2). **Išimtys:** (1) §3.1c lab gali perduoti `optionTone`; (2) **Content track** (§6b) – path Choice (`ActionIntro` / `PracticeIntro` Greitas·Pilnas) kai `moduleAccent === 'rose'` → `optionTone: rose` selected. |
+| A11y            | `radiogroup` + `role="radio"` + `aria-checked`; `min-h-[44px]`; rodyklės keičia pasirinkimą                                                                                                                                                                                              |
+| `value`         | `T \| null` (null = dar nepasirinkta, pvz. M7 / M6 jump / lab prieš režimą)                                                                                                                                                                                                              |
+| `columns`       | `1 \| 2 \| 3` (default 2); decision lab gali naudoti `1` (vertikalus sąrašas)                                                                                                                                                                                                            |
+| Hint            | Viena `statusHint` eilutė po grid – be description dublio                                                                                                                                                                                                                                |
 
 **Consumeriai:**
 
@@ -118,19 +123,21 @@
 - `PracticeQuestIntroSlide` – M9/90 quest desk: 6 journey ChoiceControl + confirm + 5-step map; Pattern `interactive-control-lab` (Shell = Ne); soft-preselect iš M7 **ne** auto-confirm
 - `M10HumanControlSimulatorBlock` – 10.26 dual radiogroups (scenarijus + kontrolės režimas); Pattern `interactive-control-lab` (ne SVG shell)
 - `M4PromptModeSimulatorBlock` – 54 dual radiogroups (scenarijus + promptų režimas); Pattern `interactive-control-lab` (ne SVG shell)
+- `M10TeamReadinessLabBlock` – 10.255 trys radiogrupės (naudojimas / struktūra / mokymasis); Pattern `interactive-control-lab`; be balo, silpniausia dimensija → kitas veiksmas
 - `M10DepthRolesLabBlock` – 10.45 depth ChoiceControl (be scenarijaus) + static mini schema; Pattern `interactive-control-lab`; Copy lab viduje; brand-only (be risk strip)
+- `M13ConsistencyLockLabBlock` – 13.325 Drift Lab: ref checklist ×4 + drift/fresh ChoiceControl ×5 + Simptomas|Fix; Pattern `interactive-control-lab`; Copy lab viduje; brand-only (be risk strip)
 
 ### 3.1c Lab color exception (`interactive-control-lab`)
 
 **Paskirtis:** Form-like decision lab (pvz. M10 10.26 žmogaus kontrolės simuliatorius) – **būsenų / rizikos** UI, ne content-block siena. Precedentas: Portal 2.1 (spalvų biudžetas per act, ne per visą skaidrę).
 
-| Taisyklė      | Reikšmė                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`, `M4PromptModeSimulatorBlock`, `M10DepthRolesLabBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama taisyklė – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. 10.45: brand-only Choice + static mini SVG OK (SCHEME §2.2c). |
-| Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts` / `m4PromptModeLabTokens.ts` (M4 be finansinės kritinės rose – stake = duomenų / haliucinacijos rizika). UI: **strip** (3 chips, be empty), timing juosta, 2 trade meteriai.                                                          |
-| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                                                                                                                                          |
-| A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                                                                                                                                     |
-| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                                                                                                                                   |
+| Taisyklė      | Reikšmė                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scope         | Išimtis **tik** lab surface viduje `*Block` (pvz. `M10HumanControlSimulatorBlock`, `M4PromptModeSimulatorBlock`, `M10TeamReadinessLabBlock`, `M10DepthRolesLabBlock`, `M13ConsistencyLockLabBlock`). Slide chrome (Trumpai / Daryk / Patikra) – §3.2 accent biudžetas **be** pakeitimų. Kopijuojama taisyklė / profilis – lab `CopyButton`, ne atskira content-block „Kopijuojamas promptas“ siena. 10.255 / 10.45 / 13.325: brand-only Choice + status mirror OK; 13.325 papildomai ref checklist + Simptomas\|Fix (SCHEME §2.2c). |
+| Risk palette  | Lab viduje leidžiama: brand / amber / rose / slate (stake) + emerald (fit) + amber (mismatch) + rose (error). Token SOT: `m10HumanControlLabTokens.ts` / `m4PromptModeLabTokens.ts` (M4 be finansinės kritinės rose – stake = duomenų / haliucinacijos rizika). UI: **strip** (3 chips, be empty), timing juosta, 2 trade meteriai.                                                                                                                                                                                                 |
+| ChoiceControl | Default selected = **brand**. Lab gali perduoti optional `optionTone` per option id; M4/M7 path **nenaudoja** tone.                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| A11y          | Spalva **+** tekstinis chip / ikona (ne tik spalva). Dark: `*/20` fills.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Draudžiama    | Purple glow, neon, module emerald/violet stack ant path ChoiceControl, SVG Shell / `density=hero`, empty „nėra scenarijaus“ celės (žr. SCHEME §2.2c W1.1).                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### 3.2 content-block (veiksmo skaidrės)
 
@@ -517,18 +524,18 @@ action-intro [(-journey)] → content-block × (4–6) → [warm-up-quiz | path-
 
 Embedded sub-laukas įdedamas į `content-block`, kai užtenka mažo veiksmo toje pačioje skaidrėje. Jis neturi tapti antra pilna skaidre viduje: vienas aiškus veiksmas, trumpas feedback ir vienas dominuojantis CTA.
 
-| Laukas                                         | Paskirtis                                                                             | Etalonas                                                                             |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `briefCheckBlock`                              | Trumpas brief / tono / užduoties patikrinimas.                                        | M2 sk. 51, M5 sk. 510                                                                |
-| `preCopyCheckBlock`                            | Patikra prieš kopijuojamą promptą.                                                    | M5 sk. 47; M7 sk. 67 (linked); M7 sk. 67.8 (prieš pirmą `copyable`)                  |
-| `correctPromptPractice`                        | Blogo prompto taisymas į gerą.                                                        | M4 sk. 49, M6 sk. 68                                                                 |
-| `recognitionExercise`                          | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                           |
-| `interactivePipeline`                          | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                            |
-| `instructGptQuality`                           | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                            |
-| `toolChoiceBar`                                | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76; M10/10.48, **10.35** (`autoSelect: false`)  |
-| `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76; M10/10.48, 10.35 (`sections[].linkedRowIndex`)         |
-| `toolChoiceBar.variant: prompt-tool`           | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.          |
-| `toolChoiceBar.variant: manipulation-contrast` | Manipuliacijų kontrastas: ChoiceControl → Blogas\|Geras + pushSignal → linked Copy.   | **Etalonas:** M7 sk. 67 (`ManipulationContrastToolSurface`); brother of prompt-tool. |
+| Laukas                                         | Paskirtis                                                                             | Etalonas                                                                                     |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `briefCheckBlock`                              | Trumpas brief / tono / užduoties patikrinimas.                                        | M2 sk. 51, M5 sk. 510                                                                        |
+| `preCopyCheckBlock`                            | Patikra prieš kopijuojamą promptą.                                                    | M4 sk. 59–60; M5 sk. 47; M6 sk. 68; M7 sk. 67 (linked); M7 sk. 67.8 (prieš pirmą `copyable`) |
+| `correctPromptPractice`                        | Blogo prompto taisymas į gerą.                                                        | M4 sk. 49, M6 sk. 68                                                                         |
+| `recognitionExercise`                          | Atpažinimo pratimas su pasirinkimais.                                                 | M4 sk. 39.5, M13 sk. 13.34                                                                   |
+| `interactivePipeline`                          | Interaktyvus proceso / pipeline pasirinkimas.                                         | M4 sk. 45                                                                                    |
+| `instructGptQuality`                           | Tyrimo įrodymo ir kokybės principų mikroblokas.                                       | M4 sk. 44                                                                                    |
+| `toolChoiceBar`                                | Įrankio / filtro pasirinkimas pagal užduotį.                                          | M4 sk. 53; M7 sk. 734, 731, 733, 77, 76; M10/10.48, **10.35** (`autoSelect: false`)          |
+| `linkedRowIndex`                               | Rodo tik susietą copyable sekciją (filtras).                                          | M7 sk. 734, 731, 733, 77, 76; M10/10.48, 10.35 (`sections[].linkedRowIndex`)                 |
+| `toolChoiceBar.variant: prompt-tool`           | Promptų įrankio surface: sample data → ChoiceControl → Formato preview → linked Copy. | **Etalonas:** M7 sk. 90 (`PromptFilterToolSurface`); default `chips` kitur.                  |
+| `toolChoiceBar.variant: manipulation-contrast` | Manipuliacijų kontrastas: ChoiceControl → Blogas\|Geras + pushSignal → linked Copy.   | **Etalonas:** M7 sk. 67 (`ManipulationContrastToolSurface`); brother of prompt-tool.         |
 
 **`toolChoiceBar` be lentelės:** kai skaidrė turi tik copyable promptus (ne `table`), `ContentSlides` renderina bar be `presentationToolsBlock`. Žr. [`LENTELIU_STANDARTAS.md`](LENTELIU_STANDARTAS.md) M7/734.
 
@@ -672,6 +679,26 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 **Track accent logika (M7–15):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias).
 
 **Bendras principas:** Vienas akcentas per kontekstą; neutralūs fonai (slate/gray). Modulio identity **NIEKUR kitur** — ne diagramose, ne CTA mygtukuose, ne body callout'uose (CTA lieka GOLDEN §2.2 accent/brand).
+
+### 6b Content-track visual exception (M13–15)
+
+> **Intake:** `docs/development/intake/M13_CONTENT_TRACK_VISUAL_INTAKE_2026-07.md`. Token SOT: `src/components/slides/shared/contentTrackTokens.ts`.
+
+Turinio kelias (vaizdai / video / marketing) gali turėti **scoped** warm track wash ir semantinius diagram tonus — be platform retheme ir be rose primary CTA.
+
+| Leidžiama                                                                         | Draudžiama                                                         |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `CONTENT_TRACK` soft fills (SVG bg end, lab soft shell)                           | Rose ant primary CTA / „Pirmyn“ / gold accent                      |
+| Per-step `DiagramTone` (`brand` / `slate` / `amber` / `emerald`) M13–15 Shell SVG | Rainbow box’ai; `DIAGRAM_ROLE_COLORS` violet/teal copy-paste į M13 |
+| Gen palette swatches (13.37 / 13.47)                                              | Module identity juosta ant visų SVG box’ų                          |
+| Drift lab Before/After strip (Before/Drift = muted; After/Ref lock = emerald)     | Shell nav rose; global LMS category retheme                        |
+| Path Choice `optionTone: rose` kai `moduleAccent === 'rose'`                      | `blockVariant: rose` content-block JSON (v1)                       |
+
+**Rose semantika (nepainioti):** (1) track soft wash / path selected; (2) lab **Simptomas** / error (§2.3) — **ne** primary mygtukas. Lab **After / Ref lock** busena naudoja emerald, ne rose.
+
+**60/30/10:** ~60 % slate+brand · ~30 % soft rose track · ~10 % warm amber/coral stage. Flow arrows lieka `palette.flow`.
+
+**Shell chrome** (`InteractiveDiagramShell` nav): v1 **brand** (neliečiama).
 
 ---
 

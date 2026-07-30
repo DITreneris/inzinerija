@@ -1,0 +1,33 @@
+# Lessons – ORCHESTRATOR
+
+> Format (one line per lesson, see `docs/development/dod_01.md` §5):
+> `YYYY-MM-DD | context (module/slide/file) | problem | solution | files`
+> Universal rules go to `AGENTS.md` or `docs/development/AGENT_ORCHESTRATOR.md`, not here.
+
+## Lessons
+
+2026-07-28 | M13 gen → I2V | Epic A meter ir Epic B I2V sulieti į vieną komponentą / Feature Doc ant enhancement | A = enhancement 13.37 (be Feature Doc); B = `special` + Feature Doc prieš CODING; nesujungti I1+I7 | M13_GEN_METER_I2V_INTAKE_2026-07.md, M13_I2V_CLIP_BUILDER.md, AGENTS.md
+2026-07-26 | M16–18 park gates | Noras eilė/JSON prieš P0 | Route stays Deferred until §8.2; do not reorder ahead of CQ-M79 / Portal | turinio_pletra_moduliai_16_17_18.md §8, TODO.md §1.5, AGENT_ORCHESTRATOR.md
+2026-07-26 | M16–18 agent sync | SOT live bet agentai „vibe = nowhere“; noras Feature Doc/JSON anksti | Pointeriai rules/AGENTS/skills; CURRICULUM/CONTENT ant SOT only; be TE/lab kol nėra UI; D1/D2/D3 overlap – neskurti labų dabar | turinio_pletra_moduliai_16_17_18.md, AGENTS.md, TODO.md §1.5
+2026-07-26 | M9 practice-quest mixed | Naujas tipas be Feature Doc / `lab:` orphan / hub first viewport | I0 Feature Doc + `slide-type:` overlay; CURRICULUM→CONTENT→SCHEME→DATA→CODING; soft-preselect≠confirm; AGENTS mišri eilutė | M9_PRACTICE_QUEST_INTRO.md, AGENTS.md, teaching-elements-overlay.json
+2026-07-26 | Tools catalog hygiene | EN tools drift + curriculum gaps; noras „best AI tools 2026“ blogroll | CONTENT→DATA; taught tools only; `audit:tools` gate; vibe-coding deferred; AGENTS mišri eilutė | DATA_AGENT_TOOLS.md, audit-tools.mjs, AGENTS.md
+2026-07-25 | M4P copyable branda | Force-META / ilginimas kaip „branda“ | Fit-for-purpose kontraktas; CONTENT→DATA→QA; Feature Doc nereikia; AGENTS mišri eilutė | M4_PROMPT_MATURITY.md, AGENTS.md, CONTENT_AGENT.md §3.4
+2026-07-25 | M7/90 EDA tool UX | Noras „lab“ kai užtenka embed prompt-tool | CONTENT→DATA→CODING (`PromptFilterToolSurface`); kind=embed; Feature Doc lab nereikia; AGENTS mišri eilutė | GOLDEN §3.8.1, AGENTS.md, PromptFilterToolSurface.tsx
+2026-07-25 | M7 dense content-block UX | Plain-text siena + noras naujo lab/diagramos greta pipeline | CONTENT (lentelės/sutraukimas) → DATA (LT+EN full sections + TE) → CODING (preCopy placement) → UI_UX/QA; Feature Doc tik jei naujas Pattern | CONTENT_AGENT.md §3.6, GOLDEN §3.8.1, modules.json 67.8
+2026-07-24 | Docs Lean Pass | TODO/ROADMAP + LEAN pollution (ANALIZE/audit-as-SOT) | TODO §1 open-only; LEAN ≤25 be ANALIZE; TE overlay ≠ M1–9 AUDITAS; archive frozen PLAN | DOCS_MAINTENANCE.md §1c, LEAN_INDEX.md, orchestrator/SKILL.md, sot_index.json
+2026-07-24 | Teaching Elements Registry mixed | diagram/lab/embed/table inventoriai skirtinguose failuose + Feature Doc tik image key | Master overlay + satelitai; Feature Doc scope = image/off-renderer/lab/embed; gate `audit:teaching-elements --strict` prieš „done“ | TEACHING_ELEMENTS_REGISTRY.md, DOCS_MAINTENANCE.md §1b, orchestrator/SKILL.md
+2026-07-24 | Path-test M2/M8/M11/M14 mixed | skirtingi lukštai + pool Jūs + EN drift + SOT Q counts | CURRICULUM (§3.4a1 + eilė) → CONTENT (tu/stuburas) → DATA (pool + EN builds + core) → CODING (bubbles/chips) → QA (m14 shell, m1012); ne homogenizuoti domeno Q | GOLDEN_STANDARD.md, AGENTS.md, modules.json M14, questionPool.ts
+2026-07-24 | M10–12 chrome mixed | footer N + CTA/ID + tu + PathStep + EN overlay | UI_UX audit → CONTENT (CTA/tu/be ID) → DATA (LT §3.6 + build:modules-en-m10-m12 syncEnFootersFromLt) → CODING (PathStep atrakinsi, m12RequiredPathBody) → QA footer/m1012 gates; ne generate:core-data | modules.json, modules-en-m10-m12.json, ContentSlides.tsx, AGENTS.md
+2026-07-24 | M8 path-test UX mixed | UI_UX audit + CONTENT copy + CODING return/CTA + DATA sync | UI_UX/USER_JOURNEY (kelionė) → CONTENT sk.80 → DATA LT+EN+m1-m9 → CODING (App return, results CTA, chips style) → QA (m8Results test); nenaikinti M7 deep-link pedagogikos | App.tsx, TestPracticeSlides.tsx, modules.json, M79_PATCH_REGISTRY.md
+2026-06-29 | M10 mixed task | CURRICULUM?CONTENT?DATA pipeline | taksonomija 10.45/10.48 prie? 10.15 | MODULIO_10_SKAIDRIU_EILES.md, turinio_pletra_moduliai_10_11_12.md
+2026-06-29 | M10?12 NEXT mixed | SCHEME+EN+footer vienu metu | eiga: footer QA ? EN infra ? optional SCHEME ? EN footers; JSON image prie? final EN | AGENTS.md, orchestrator/SKILL.md
+2026-06-29 | M1?6 ecosystem mixed | pipeline be CURRICULUM | ECOSYSTEM_MAP ? JSON spinoffCta ? UI touchpoints ? QA outbound | ECOSYSTEM_MAP.md, modules.json, orchestrator/SKILL.md
+2026-06-29 | ecosystem routing | child repo site ? training SOT | training links out; site map SOT atskirai (DITreneris/site); ?ia tik outbound policy | docs/ECOSYSTEM_MAP.md
+2026-06-30 | M7-9 PDF handout mixed | sister repo Pandoc drift | runtime PDF: CONTENT?DATA (JSON+sk.92 label)?CODING (util+UI)?QA (drift guard docs); ne statinio PDF commit | m79HandoutPdf.ts, PDF_DOWNLOAD_TESTING.md
+2026-06-30 | Leader repo analysis | gh api nepasiekiamas | WebFetch GitHub API directory listing | borrow_leader plan
+2026-06-30 | Leader borrow mixed | per platus scope | MoSCoW MUST only; paste strip Won't; rescope prie? implement | orchestrator/SKILL.md
+2026-06-30 | M1?M9 schem? suvienodinimas mixed | SCHEME+CODING vienu metu be inventoriaus ? rizika perra?yti visas schemas | audit doc ? DiagramKit MVP ? A grup? refaktorius ? routing registry ? QA; universal? SOT kelti tik po pakartojimo | DIAGRAMU_M1_M9_AUDITAS.md, diagramKit.tsx, diagramRenderers.tsx
+2026-07-08 | UX Banga 2 mixed | warm-up/path-step/correctPromptPractice | JSON + EN overlay tik; CODING stage nereik?jo; gate: validate + audit:slide-interactivity + footer + test:run | modules.json, SLIDE_UX_INTERACTIVITY_PLAN_M1_M15.md
+2026-07-13 | M4 sk. 53.5 news-portal mixed task | UX test + SVG + JSON + polish vienu sprintu | USER_JOURNEY (test) ? CONTENT ? SCHEME ? CODING ? DATA ? QA; retrospektyva M4_SK_53_5_SESSION_RETROSPECTIVE.md | AGENTS.md, lessons.md, TODO �1.0d
+2026-07-13 | M4 sk. 53.5 anti-PPT mixed | DS egzistuoja bet news-portal jos nenaudojo | UI_UX spec (Anti-PPT taisykl?s) ? CONTENT (dedup) ? DATA ? CODING (PortalBlockShell + ModuleView) ? QA (48h protokolas) | NEWS_PORTAL_SLIDE_53_5.md, orchestrator/SKILL.md
+2026-07-22 | M13?15 2026 best-practice mixed | SOT+JSON+tools+EN+eil? vienu planu | CURRICULUM/CONTENT SOT ? MODULIO_13 eil? + ATPA?INIMAS �6 ? DATA LT patch ? EN mirror ? tools ? light UI strings (m15PracticeLoopContent) ? QA (validate:schema, audit:m1315, lint); be naujo slide tipo | turinio_pletra_moduliai_13_14_15.md, modules.json, modules-en-m13-m15.json

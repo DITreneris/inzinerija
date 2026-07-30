@@ -1,8 +1,8 @@
 # Dokumentacijos priežiūra (ilgalaikis vadovas)
 
 > **Tikslas:** Vienas vadovas dokumentacijos sluoksniams, dual SOT taisyklei ir release sync procedūrai. Papildo [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md) (konkretūs failų diff'ai po sprinto).
-> **Atnaujinta:** 2026-07-24
-> **Cadence:** pilnas meta sync **prieš kiekvieną release** (1.4.x tag). Tarp release – pakanka `CHANGELOG` + `TEST_REPORT` + Feature Doc Contract (§1b) naujiems interaktyviems įrankiams.
+> **Atnaujinta:** 2026-07-28
+> **Cadence:** pilnas meta sync **prieš kiekvieną release** (1.4.x tag). Tarp release – pakanka `CHANGELOG` + `TEST_REPORT` + Feature Doc Contract (§1b) naujiems interaktyviems įrankiams; Unreleased docs drift – `DOCS_SYNC_CHECKLIST` nauja lentelė.
 > **Master registry:** [`TEACHING_ELEMENTS_REGISTRY.md`](TEACHING_ELEMENTS_REGISTRY.md) + [`teaching-elements-overlay.json`](teaching-elements-overlay.json); drift – `npm run audit:teaching-elements`.
 
 ---
@@ -30,7 +30,7 @@ Kai pridedamas naujas interaktyvus mokymo įrankis (`sections[].image`, off-rend
 3. **Satelitas** (detalės) – diagram/lab: `DIAGRAMU_M7_M12_REGISTRY.md` / `DIAGRAMU_M13_M15_REGISTRY.md` pagal modulį; `DIAGRAMU_M1_M9_AUDITAS.md` = rubrika (ne privalomas inventorius).
 4. **Jei keičiasi UI primityvas** → `GOLDEN_STANDARD.md` + `src/components/ui/README.md` consumers.
 5. **Agentų savininkų docs** – SCHEME / CONTENT / DATA / UI_UX / CODING pagal taikomumą (įsk. §2.2c jei Shell = Ne).
-6. **Viena `lessons.md` eilutė** kiekvienam agentui, kuris rado pitfall.
+6. **Viena owner agent `lessons.md` eilutė** `docs/development/lessons/<agentas>.md`, jei rastas naujas pitfall. Prieš rašant – `docs/development/lessons/` paieška; cross-cutting / pasikartojantis pitfall keliamas į standartą arba `*_AGENT.md`, o ne dubliuojamas kelių agentų lessons.
 7. **`CHANGELOG`** Unreleased; prieš release – meta indeksai per [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md) + `npm run audit:teaching-elements --strict`.
 8. **Blokuojantis drift:** naujas `image` key / off-renderer / lab be master overlay Pattern + Shell.
 
@@ -127,11 +127,11 @@ Agentų konteksto taršos kontrolė (TODO §1.0h DL-\*):
 
 ## 7. Nuorodos
 
-| Dokumentas                                                                   | Paskirtis                                  |
-| ---------------------------------------------------------------------------- | ------------------------------------------ |
-| [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md)                           | Konkretūs failų diff'ai po sprinto         |
-| [`TEACHING_ELEMENTS_REGISTRY.md`](TEACHING_ELEMENTS_REGISTRY.md)             | Master mokymo elementų registry + brandą   |
-| [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md)                             | M7–M9 patch skriptai ir EN merge taisyklės |
-| [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) §Docs sync              | Release checklist                          |
-| [`context-engineering/sot_index.json`](context-engineering/sot_index.json)   | Modulių ir SOT registras                   |
-| [`.cursor/skills/qa-agent/SKILL.md`](../../.cursor/skills/qa-agent/SKILL.md) | QA_AGENT workflow                          |
+| Dokumentas                                                                 | Paskirtis                                  |
+| -------------------------------------------------------------------------- | ------------------------------------------ |
+| [`DOCS_SYNC_CHECKLIST.md`](DOCS_SYNC_CHECKLIST.md)                         | Konkretūs failų diff'ai po sprinto         |
+| [`TEACHING_ELEMENTS_REGISTRY.md`](TEACHING_ELEMENTS_REGISTRY.md)           | Master mokymo elementų registry + brandą   |
+| [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md)                           | M7–M9 patch skriptai ir EN merge taisyklės |
+| [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) §Docs sync            | Release checklist                          |
+| [`context-engineering/sot_index.json`](context-engineering/sot_index.json) | Modulių ir SOT registras                   |
+| [`lessons/`](lessons/)                                                     | Repo-tracked agentų pamokos                |

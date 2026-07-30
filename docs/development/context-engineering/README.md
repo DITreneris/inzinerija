@@ -9,7 +9,7 @@ This folder holds **drop-in templates** for context engineering in the "Promptų
 | **memory_schema.md**  | Deciding what to treat as session notes vs long-term (changelog, MEMORY.md, TEST_REPORT).                                       |
 | **eval_rubric.md**    | Reviewing content/UX quality (CTA, tone, lietuviškos, links, module consistency); optional heuristics or LLM-as-judge.          |
 
-**Related:** `../dod_01.md` – Definition of Done index (per-agent checkboxes, pipeline handoff, skill evolution). Agent skills (workflow + lessons): `.cursor/skills/README.md`.
+**Related:** `../dod_01.md` – Definition of Done index (per-agent checkboxes, pipeline handoff, skill evolution). Agent skills (workflow): `.cursor/skills/README.md`; repo-tracked lessons: `../lessons/`.
 
 **Orchestrator:** `.cursor/rules/agent-orchestrator.mdc` and `../AGENT_ORCHESTRATOR.md` reference SOT; for module/slide scope, prefer `sot_index.json` and load full SOT only when the task touches that module.
 

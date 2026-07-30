@@ -85,7 +85,7 @@ Jei užduotyje minimi **bent 2 iš 3**: (1) turinys/mokymai/terminai, (2) JSON, 
 
 **Jei užduotis apima UI/UX (layout, a11y, dizaino atitiktis):** CODING_AGENT gali įtraukti **UI_UX_AGENT** – gairės ir tikrinimas pagal `docs/development/UI_UX_AGENT.md`; implementacija – CODING_AGENT.
 
-**Specialūs mišrūs maršrutai (sutrumpintai):** žr. `AGENTS.md` §Mišri užduotis – pvz. **M9 practice-quest-intro** (Feature Doc `M9_PRACTICE_QUEST_INTRO.md`, GOLDEN §3.4e, journey-m9, skipOptional progress 5).
+**Specialūs mišrūs maršrutai (sutrumpintai):** žr. `AGENTS.md` §Mišri užduotis – pvz. **M9 practice-quest-intro** (Feature Doc `M9_PRACTICE_QUEST_INTRO.md`, GOLDEN §3.4e, journey-m9, skipOptional progress 5); **M13 gen → I2V** (Epic A 13.37 enhancement be Feature Doc; Epic B 13.47 `special` + `M13_I2V_CLIP_BUILDER.md`, eilė 13.4→13.47→13.5).
 
 **Jei užduotis liečia duomenų architektūrą arba JSON redagavimą:** prieš bet kokį siūlymą agentas turi atsakyti į 2 klausimus:
 

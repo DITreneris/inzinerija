@@ -1,0 +1,34 @@
+# UI_UX_AGENT lessons
+
+> Formatas: `YYYY-MM-DD | kontekstas | problema | sprendimas | failai` (`dod_01.md` §5).
+
+## Pamokos
+
+2026-07-29 | M13–15 Content-track §6b | Rose kataloge ≠ in-slide marketing feel; full retheme / rose CTA laužo LMS + rose=error | Scoped §6b: soft wash + tones + path Choice rose selected; FAIL rose Pirmyn / Shell nav / rainbow | GOLDEN §6b, M13_CONTENT_TRACK_VISUAL_INTAKE, ChoiceControl optionTone
+2026-07-28 | M13–15 vs peers | Chrome/Path Test parity ≠ kelio brandumas: 0 labs, M15=practice-intro (ne quest), 13.1 be Patikra, prod=coming-soon | Vertinti Pattern/journey atskirai nuo footer/smoke; residual = lab decision + 13.1/13.3/13.4 + Horizon C | GOLDEN §3.8/§3.4e, M13_M15_SLIDE_RANKING_AUDIT, ModulesPage rose track
+2026-07-26 | M9 quest mobile fold | outcomeChips prieš Start CTA = Start žemiau fold @375px | Start prieš chips; duration trumpas; space-y-4 mobile | PracticeQuestIntroSlide.tsx, GOLDEN §3.4e
+2026-07-26 | M9 quest intro viewport | Hub + veikėjai + 3 CTA first screen = dashboard, ne quest | One composition: choice + map + confirm + one Start; hub secondary ant 92; progress 5 | PracticeQuestIntroSlide.tsx, GOLDEN §3.4e
+2026-07-26 | M7 sk. 67 contrast tool | Dvi collapsed lentelės + „Atidaryti visus“ = climax slepiamas | Embed surface Blogas|Geras atidengtas po pick; 0 collapsible; mobile stack 1→2 col | ManipulationContrastToolSurface.tsx, GOLDEN §3.8.1
+2026-07-26 | M7 sk. 84 DB įrankiai | Collapsible lentelė + badge-ploni stulpeliai + ER Copy kaip hero → įrankiai antraeiliai | Įrankiai pirmi (3 stulp. + toolChoiceBar); schema Copy antras; be collapsible ant įrankių matricos | modules.json 84, GOLDEN §3.8.1 / §4.2
+2026-07-26 | Global QuizPage | „Apklausa“ nav + CTA tik po visų modulių = final exam jausmas | Pasitikrink + intro-first + soft CTA po M3; results go-further | QuizPage.tsx, ModulesPage.tsx, ModuleCompleteScreen.tsx
+2026-07-26 | Žodynėlio puslapis | teaser-lock (matau terminą, bet neskaitau) = spynų siena, ne mokymas | GlossaryPage visada rodo apibrėžimus + paieška; unlockedBy = path-step atlygio metadata, ne gate | GlossaryPage.tsx, GOLDEN §3.4d
+2026-07-25 | M7 sk. 71 path map | „Žemėlapis“ + meta-nav į chip = false affordance; makro ≠ mikro stepper | 4 kortelės + „Tu esi čia“ ant Pamato; caption be nav instrukcijos; brand active / muted rest | M7PathMapDiagram.tsx, modules.json 71
+2026-07-25 | M9/M7 8-step cards | Equal-width 1×8 + uppercase tracking = mid-word wrap / šokinėjantis ritmas | 2×4 + ↓; be uppercase desc; title `min-h`; short box labels | M9DataWorkflowDiagram.tsx, DIAGRAM_KIT_STANDARD HTML §6
+2026-07-25 | M7 sk. 90 prompt-tool | Accent chip'ai + auto-select = skaidrė, ne įrankis | Brand ChoiceControl; null iki pasirinkimo; Format preview; EDA juosta = mirror (ne Shell) | PromptFilterToolSurface.tsx, GOLDEN §3.8.1 / §3.1b
+2026-07-25 | M7 sk. 67.8 wall of text | Collapsible nepadeda jei „Atidaryti visus“; preCopy viršuje prieš teoriją | comparisonStyle + 2 stulpelių lentelės; preCopy prieš pirmą copyable (GOLDEN §3.8.1); hero copyables atidaryti; giluminis collapsed | modules.json 67.8, ContentSlides.tsx, LENTELIU_STANDARTAS.md
+2026-07-24 | M10 10.45 hybrid lab | nukopijuoti 10.26 risk strip kai job = gylio pasirinkimas | brand-only ChoiceControl; be optionTone/mismatch; vienas Copy lab'e; schema = mirror ne antras CTA | M10DepthRolesLabBlock.tsx, GOLDEN §3.1c
+2026-07-24 | M10–12 titles/footers audit | footer be N / wrong N konkuruoja su player „Tęsti:“; path-step H1+`content.title` dual; curriculum ID CTA | §3.6 numbered footer + shortTitle ≤55; CTA be ID; H1=checkpoint, H2=completion statement; tu ne Jūs | GOLDEN_STANDARD.md §3.6/§4.2, modules.json M10–12
+2026-07-24 | M8/M11/M14 path-test intro | chip'ai kaip primary CTA + jargon `firstActionCTA` (warning) → „ką daryti?“ neaišku | intro = 1 darbas (Tęsti); chip'ai **secondary** + aria „grįši į testą“ (nuorodos lieka); CTA = veiksmas, ne keyword sąrašas; `firstActionCTA` = info Banner | TestKnowledgeScopeDiagram.tsx, TestIntroSlide, modules.json 80
+2026-07-24 | Path-test revisit chrome | „Baigtas“ + `1/N` konfliktuoja | test `level`: badge = score %; ankstyva skaidrė → „Pakartotinė peržiūra“ | ModuleView.tsx, lt/en.json
+2026-07-23 | M4 sk. 45 pipeline comparison | ghost-filled „absent“ steps (opacity ~0.28) skaitosi unfinished, ne pedagogika | Prompt režime dashed placeholder + `+` label; filled tik Context; LMS inactive 0.88 netaikyti mode-absent žingsniams | ContextEngineeringPipelineDiagram.tsx, DIAGRAM_KIT_STANDARD.md, DIAGRAMU_M1_M9_AUDITAS.md
+2026-07-23 | M10 10.26 decision lab | temptation to fork second chooser / accent selected | dual ChoiceControl + CopyButton artefact; selected brand; GOLDEN §3.1b | M10HumanControlSimulatorBlock.tsx, ChoiceControl.tsx, GOLDEN_STANDARD.md
+2026-07-20 | M10–12 content-block | trečias accent (Daryk kaip accent) | GOLDEN §3.2: Trumpai+Patikra = accent OK; Daryk privalo brand; CI `audit:accent-budget` | GOLDEN_STANDARD.md, audit-accent-budget.mjs, modules.json
+2026-07-20 | Agent track chrome | SlideWorkspace tik M10; complete be track accent | SlideWorkspace +11/12; ModuleComplete `resolveModuleAccent` top bar | SlideContent.tsx, ModuleCompleteScreen.tsx, DESIGN_SYSTEM.md
+2026-07-21 | M13 MUST collapsible | Legal/KPI default collapsed = slepiamas mokymas | MUST santrauka matoma; detalės collapsible | modules.json 13.101, GOLDEN_STANDARD.md
+2026-07-21 | M15 quick/full | minScenarios=1, bet linear nav vis tiek veda į 151 | checkpoint + „Eiti į santrauką“ kai min atlikta; optional badge 151–153 | ModuleView.tsx, PathStepSlide, modules.json
+2026-07-22 | ModulesPage tracks | visos sekcijos brand → keliai susilieja | track header pagal accent (brand/sky/fuchsia/rose); coming-soon agents+content atskiros sekcijos | ModulesPage.tsx, moduleIdentity.ts trackSectionClasses
+2026-07-22 | ModulesPage DS | h2+nested button; icon/chip = level; 1 recommended | h3 + CTA span; accent well/chip; duration; recommended per track; overlay AA | ModulesPage.tsx, moduleIdentity.ts, GOLDEN_STANDARD.md §6
+2026-07-23 | Bazė M1–6 grid | M4–M6 atrodo kaip tos pačios eilės overflow | subsection po M3 (`trackBaseCycle2*`); track lieka vienas | ModulesPage.tsx, lt/en.json, GOLDEN §8.4
+2026-07-23 | Mano medžiaga | reward po visų lock/coming-soon | `insertMaterialsAfterAccessible` po `id <= maxAccessible`; prieš tier-lock | ModulesPage.tsx, GOLDEN §8.4, ModulesPage.materials.test.tsx
+2026-07-23 | M10 diagram chrome | dėžutės+53%+1/5 triukšmas | shell `density=hero`; AppNav % slepiamas `currentPage===module`; interactive diagram section be sunkaus brand frame | diagramKit.tsx, AppNav.tsx, blockVariantClasses.ts
+2026-07-23 | Hero status / H1 | „Tu esi čia“ + silpnas section heading | 10.2 opt-in `stepOfLabel` („Žingsnis N iš T“ + pill); premium diagram `h3` → `text-2xl sm:text-3xl`; kiti hero lieka senas badge | diagramKit.tsx, ContentSlides.tsx, AgentWorkflowBlock.tsx

@@ -2,6 +2,184 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-07-30 – Code/doc audit follow-up
+
+**Statusas:** ✅ PASS (CI blokeris uždarytas).  
+**Apimtis:** `m10SlideOrder.test` neatitiko naujos 10.255 bridge skaidrės tarp 10.25 ir 10.26.
+
+**Automatika:**
+
+| Gate                         | Rezultatas     |
+| ---------------------------- | -------------- |
+| Focused `m10SlideOrder.test` | ✅ 1/1         |
+| `test:run`                   | ✅ **142/903** |
+
+**Verdict:** M10 seka užrakinta kaip `10.25 → 10.255 → 10.26 → 10.3`; docs metrika syncinama į 142/903.
+
+## 2026-07-30 – M10 team readiness lab (10.255)
+
+**Statusas:** ✅ PASS.  
+**Apimtis:** nauja M10 skaidrė `10.255` po 3A strategijos; `m10_team_readiness_lab` (`interactive-control-lab`, Shell=Ne); LT/EN + core profiliai; TE registry.
+
+**Automatika:**
+
+| Gate                                            | Rezultatas                                                    |
+| ----------------------------------------------- | ------------------------------------------------------------- |
+| `validate:schema`                               | ✅                                                            |
+| `audit-footer-numbers --modules=10,11,12` LT/EN | ✅                                                            |
+| `audit-footer-length`                           | ✅                                                            |
+| `audit:accent-budget:m1012`                     | ✅                                                            |
+| `audit:teaching-elements:strict`                | ✅ (162 inventory / overlay)                                  |
+| `audit:m1012`                                   | ✅                                                            |
+| `lint`                                          | ✅                                                            |
+| `typecheck`                                     | ✅                                                            |
+| Focused Vitest                                  | ✅ 23/23 (`M10TeamReadinessLabBlock`, model, renderer, order) |
+
+**Pastaba:** footer-length gate turėjo tris senus per ilgus LT footer tekstus (M5/M9/M13); sutrumpinta iki short-title formos ir regeneruoti core profiliai.
+**Verdict:** M10 readiness bridge ready; 3A → team practice snapshot → human-control lab flow locked.
+
+## 2026-07-30 – Horizon B-V lock + Horizon C corporate15
+
+**Statusas:** ✅ PASS (repo gates).  
+**Apimtis:** B-V0…V4 verify/lock · `M1315-C0`…`C4` corporate15 production cut.  
+**Automatika:**
+
+| Gate                                      | Rezultatas                                                                 |
+| ----------------------------------------- | -------------------------------------------------------------------------- |
+| `audit:release-preflight` (tail)          | ✅ slide-titles · TE strict · typecheck; full `test:run` dabar **142/903** |
+| `validate:schema` (+ m1–m12 + m1–m15)     | ✅                                                                         |
+| `audit:m1012` / `audit:m1315`             | ✅                                                                         |
+| `audit:teaching-elements --strict`        | ✅                                                                         |
+| `build:corporate12` / `build:corporate15` | ✅                                                                         |
+| Gate / magicLink / accessTier             | ✅ tier 12 + tier 15                                                       |
+| CI                                        | corporate15 step added                                                     |
+
+**Fix during B-V0:** EN `modules-en-m13-m15` titles 13.33/13.35/13.8 — removed `(optional)` (badge via `optional: true`).  
+**Out of scope:** marketing MON pin/env / Stripe €249.  
+**Verdict:** Horizon B re-locked · Horizon C repo-ready · default artifact still M1–9.
+
+## 2026-07-29 – Pre-launch blockers: tokens baseline + M1315 EN
+
+**Statusas:** ✅ PASS.  
+**Apimtis:** sąmoningi fix’ai (ne gate pažeminimas): Content-track §6b inventoriaus pripažinimas + EN LT likučių pataisa.  
+**Automatika:**
+
+| Gate                       | Rezultatas                              |
+| -------------------------- | --------------------------------------- |
+| `audit:design-tokens:gate` | ✅ BASELINE hex **202** / total **272** |
+| `audit:m1315`              | ✅ 0 language violations                |
+| `validate:schema`          | ✅                                      |
+
+**Kodas:** `scripts/audit-design-tokens.mjs` BASELINE sync; `modules-en-m13-m15.json` direct EN patch (ne full rebuild).  
+**Verdict:** Pre-launch token + EN blockers closed.
+
+## 2026-07-28 – M13–15 journey/UX gap closure (M1315-J\*)
+
+**Statusas:** ✅ PASS (authoring gates; Horizon C Deferred).  
+**Apimtis:** I0–I8 — 13.1 ciklas · 13.3/13.4 density · 13.325 consistency lab · M15 polish · M13P · Horizon C readiness note.  
+**Automatika:**
+
+| Gate                               | Rezultatas                                                |
+| ---------------------------------- | --------------------------------------------------------- |
+| `validate:schema`                  | ✅                                                        |
+| `audit:teaching-elements --strict` | ✅ (labs 5; overlay 161)                                  |
+| `audit:m1315`                      | ✅                                                        |
+| `audit:slide-interactivity`        | ✅ (M13 streak 5)                                         |
+| `audit:footer-numbers`             | ✅                                                        |
+| `audit:accent-budget`              | ✅                                                        |
+| Vitest                             | ✅ `M13ConsistencyLockLabBlock` 3 · `diagramRenderers` 12 |
+
+**Browser:** owner spot @375 — 13.1 · 13.325 lab · 13.37 · 150 Greitas · 140 Path Test (ne blokeris jei gates žali).  
+**Verdict:** Authoring journey gaps closed; prod cut = product un-defer (`TODO` §1.5).
+
+## 2026-07-28 – Horizon A Day 0 (DS 0.3.2 soft close)
+
+**Statusas:** ✅ PASS (gates + code-path).  
+**DS 0.3.2 smoke (code-path):** `typographyClasses` wired — content-block body, ModuleView H1 `md:`, footer `text-xs`, TemplateBlock code; CTA/Card/Badge migracija.  
+**Browser spot (owner):** M1 content-block · M7 dense · ModuleView H1 @md · light/dark @375 — recommended follow-up (ne blokeris).  
+**Tokens:** `audit:design-tokens:gate` BASELINE sync → **hex 180 / inline 7 / svg 7 / arbitrary 56 / total 250** ✅.
+
+## 2026-07-28 – Pre-launch WIP closeout → RC **1.5.0**
+
+**Statusas:** ✅ PASS (repo gates).  
+**Apimtis:** design-token regression fix · corporate12 schema validation · version/docs sync.  
+**Automatika:**
+
+| Gate                                                  | Rezultatas                                                           |
+| ----------------------------------------------------- | -------------------------------------------------------------------- |
+| `audit:design-tokens:gate`                            | ✅ arbitraryClass **57** ≤ 59 (`text-[11px]` → `text-xs` I2V/Vaizdo) |
+| `validate:schema` (+ m1–m12)                          | ✅ `modules` / `glossary` / `tools` / `tools-en` m1–m12              |
+| `audit:release-preflight`                             | ✅ (run closeout)                                                    |
+| `audit:m1012` / `audit:m1315` / `validate:journey-m9` | ✅                                                                   |
+| `build:production` / `build:corporate12`              | ✅                                                                   |
+| `test:run`                                            | ✅ **133/841**                                                       |
+
+**Out of scope:** marketing MON pin/env, annotated git tag (on request).  
+**Verdict:** ✅ RC **1.5.0** repo-ready · default artifact still M1–9 · corporate12 cutover = marketing handoff.
+
+## 2026-07-28 – M13GEN / M13I2V (13.37 meter + 13.47 I2V)
+
+**Statusas:** ✅ gates.  
+**Automatika:** `validate:schema` ✅ · `audit:teaching-elements --strict` (160) ✅ · footer-numbers ✅ · `vaizdoGenQuality.test.ts` ✅.  
+**Deliverables:** 13.37 quality meter + A/E/C + proporcijos + 4 preset’ai; skaidrė **13.47** `i2v-generatorius` (`I2vGeneratoriusSlide`); Feature Doc `M13_I2V_CLIP_BUILDER.md`; TE overlay; intake close.  
+**Browser:** rankinis @375 13.37/13.47 LT/EN – owner spot (gates žali); full Playwright smoke – optional follow-up.  
+**Docs:** TODO M13GEN/M13I2V `[x]` · ROADMAP · CHANGELOG Unreleased · MODULIO_13 eilė.
+
+## 2026-07-28 – P2 polish residual (RAG / GP / T2 / types)
+
+**Statusas:** ✅ PASS — I1–I4 closed.  
+**§3 RAG:** SOT + sk. 71 pointer · `audit:m79` ✅.  
+**P2 #GP:** DEPLOYMENT Gate policy · mvp.gating M7@tier6 null · accessTier MVP+15→6.  
+**P2 #2 T2:** `p2.t2.flows.test.tsx` 3/3 ✅ (quiz progress · resume clamp · locale mid-quiz).  
+**P2 #3:** `modules.ts` → barrel + `types/modules/{questions,slides,module,shared}` · `typecheck` ✅.
+
+## 2026-07-28 – M13–15 authoring brandumas (M1315-F…DIAG)
+
+**Statusas:** ✅ PASS — epic closed (authoring; production release still Deferred).  
+**Apimtis:** I0 tickets/intake → I1 footers+titles → I2 chrome → I3 ranking → I4 Top-5 → I5 C1–C6 + DIAG.  
+**Automatika:** footer-numbers M13–15 LT/EN ✅ · slide-titles ✅ · `audit:m1315` ✅ · schema ✅ · lint ✅.  
+**Browser:** `node scripts/smoke-diag1-m1315.mjs` @375 → **25/25 PASS** (LT/EN light + diagram dark spots).  
+**Kodas:** DEV access tier **15**; `m15PracticeLoopContent` CTA be curriculum ID.  
+**Docs:** ranking [`M13_M15_SLIDE_RANKING_AUDIT.md`](M13_M15_SLIDE_RANKING_AUDIT.md); intake; TODO/ROADMAP.
+
+| #   | Kelias                         | Rezultatas       |
+| --- | ------------------------------ | ---------------- |
+| C1  | M13 `130` / `13.1`             | ✅               |
+| C2  | `13.12` (+ schema)             | ✅ light/dark    |
+| C3  | `13.32` / `13.5`               | ✅               |
+| C4  | M14 intro → results            | ✅               |
+| C5  | M15 intro / `150.5` / `150.25` | ✅ (+ DIAG loop) |
+| C6  | `13.101` dense                 | ✅ light/dark    |
+
+**Verdict:** ✅ PASS · **Data:** 2026-07-28 · Production release: Deferred (§1.5).
+
+## 2026-07-28 – Unreleased docs sync (post-1.4.9)
+
+**Statusas:** ✅ PASS — docs drift closed (ECOSYSTEM / PDF / GOLDEN / TE / meta).  
+**Scope:** Footer Skaitiniai UTM · M5 compact gairės · PDF_GENERATION_AGENT_MEMORY (P2 #16) · GOLDEN preCopy etalonai · RAG P3 done · INDEX/CODEBASE/DOCS_SYNC.  
+**Docs:** `DOCS_SYNC_CHECKLIST` Unreleased lentelė · CHANGELOG Unreleased Docs · TODO P2 #16 `[x]`.
+
+## 2026-07-27 – PDF-FIT-1 all-handout visual (post M5 compact)
+
+**Statusas:** ✅ PASS — PDF-FIT-1 closed.  
+**Trigeris:** tester screenshot – M5 EN QC bullets overlapped copyright footer (~55 mm `regular` overflow).  
+**Fix:** M5 → `compact`; `HANDOUT_CONTENT_BOTTOM` + `m5HandoutPdf.fit.test.ts` (LT/EN).  
+**Owner visual:** all handout PDFs checked — **M1, M4, M5, M6, M79, M1012, M1315** — PASS (no cut text / footer collision).  
+**Automatika:** fit tests ✅.  
+**Docs:** TODO `PDF-FIT-1` `[x]` · ROADMAP PDF gap · CHANGELOG Unreleased.
+
+| Artefaktas | Rezultatas      |
+| ---------- | --------------- |
+| M1         | ✅              |
+| M4         | ✅              |
+| M5         | ✅ (po compact) |
+| M6         | ✅              |
+| M7–9       | ✅              |
+| M10–12     | ✅              |
+| M13–15     | ✅              |
+
+**Verdict:** ✅ PASS · **Data:** 2026-07-27 · **Tester:** owner
+
 ## 2026-07-27 – Pre-launch deep audit → tag **v1.4.9**
 
 **Statusas:** ✅ **GO tag v1.4.9 shipped** (learning) · ❌ **NO-GO monetization** (MON out of scope).  
@@ -34,6 +212,7 @@
 | CQ-M79-1/2           | ✅ 2026-07-26 |
 | CQ-PORTAL            | ✅ 2026-07-27 |
 | PDF-1…6              | ✅ 2026-07-27 |
+| PDF-FIT-1            | ✅ 2026-07-27 |
 | DIAG-1               | ✅ 2026-07-27 |
 | M1012-2              | ✅ 2026-07-27 |
 | PC-4.\*              | ✅ 2026-07-27 |
@@ -41,24 +220,24 @@
 
 ### Ship / process rizikos
 
-| Rizika                    | Lygis        | Pastaba                                                                                |
-| ------------------------- | ------------ | -------------------------------------------------------------------------------------- |
-| Uncommitted WIP on `main` | ✅ closed    | Released as **v1.4.9**                                                                 |
-| Tag / version             | ✅           | Pin **1.4.9** / **130/825**                                                            |
-| Prod residual watch       | P2           | M9 quest hydrate/re-confirm · 44px touch · PDF hitbox · M9 duration (ankstesnis audit) |
-| M10–15                    | Info         | Authoring / full catalog; ne `build:production` bundle                                 |
-| M16–18                    | Parked       | SOT only; JSON Deferred                                                                |
-| MON-1…8                   | Out of scope | Marketing repo – monetization NO-GO šiame audite                                       |
-| Secrets                   | ✅           | Nėra `.env` / `.env.local` WT                                                          |
+| Rizika                    | Lygis        | Pastaba                                                                                                             |
+| ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------- |
+| Uncommitted WIP on `main` | ✅ closed    | Released as **v1.4.9**                                                                                              |
+| Tag / version             | ✅           | Pin **1.4.9** / **130/825**                                                                                         |
+| Prod residual watch       | P2           | M9 quest hydrate/re-confirm · 44px touch · M9 duration (ankstesnis audit); PDF hitbox/fit ✅ PDF-LINK-1 + PDF-FIT-1 |
+| M10–15                    | Info         | Authoring / full catalog; ne `build:production` bundle                                                              |
+| M16–18                    | Parked       | SOT only; JSON Deferred                                                                                             |
+| MON-1…8                   | Out of scope | Marketing repo – monetization NO-GO šiame audite                                                                    |
+| Secrets                   | ✅           | Nėra `.env` / `.env.local` WT                                                                                       |
 
 ### Verdict matrix
 
-| Klausimas                           | Atsakymas                                                                            |
-| ----------------------------------- | ------------------------------------------------------------------------------------ |
-| Ar M1–9 learning kokybė ship’inama? | **GO** (P0 closed + automation green; tag **v1.4.9**)                                |
-| Ar galima tag’inti 1.4.9 dabar?     | **Done** – https://github.com/DITreneris/inzinerija/releases/tag/v1.4.9              |
-| Ar monetization-ready?              | **NO-GO** (MON handoff; pin target **v1.4.9**)                                       |
-| Kas lieka šiame repo?               | P2 polish (test infra T2, modules.ts split, PDF memory sync, GH Pages gate, RAG doc) |
+| Klausimas                           | Atsakymas                                                                                                                     |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Ar M1–9 learning kokybė ship’inama? | **GO** (P0 closed + automation green; tag **v1.4.9**)                                                                         |
+| Ar galima tag’inti 1.4.9 dabar?     | **Done** – https://github.com/DITreneris/inzinerija/releases/tag/v1.4.9                                                       |
+| Ar monetization-ready?              | **NO-GO** (MON handoff; pin target **v1.4.9**)                                                                                |
+| Kas lieka šiame repo?               | P2 residual closed 2026-07-28 (T2 · modules.ts split · PDF memory · GH Pages · RAG); open = MON / Deferred M13–15 prod / M16+ |
 
 **Tester:** QA_AGENT pre-launch deep audit · **Data:** 2026-07-27 · **Ship:** `28460be` / tag `v1.4.9`
 

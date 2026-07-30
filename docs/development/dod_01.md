@@ -12,6 +12,7 @@
 - [ ] **CHECKS su įrodymu:** nurodytas konkretus failas, dokumentas pagal kurį tikrinta, ir 1–2 pavyzdžiai (ne „patikrinau – atitinka“).
 - [ ] Jei keistas vartotojui matomas turinys (`modules.json`, skaidrių komponentai) – **Patikra pagal SOT** blokas: paprasta kalba, golden standard, lietuviškos raidės (žr. `AGENT_ORCHESTRATOR.md` §5 ir `AGENTS.md` §Output gate).
 - [ ] Jei užduotis mišri (turinys + JSON + UI) – pipeline seka įvykdyta **arba** aiškiai pažymėta, kuris etapas liko (žr. §2).
+- [ ] Jei taisyta klasės klaida (tas pats pattern'as gali kartotis kitur), atliktas sibling call-site sweep; kiekvienas rastas atvejis pataisytas arba įrašytas į TODO / auditą.
 - [ ] Maži diffai; nekeista tai, ko užduotis neprašė.
 
 ---
@@ -126,12 +127,13 @@ Užduoties DoD (§1–§3) **nepakeičia** release patikros. Prieš deploy – p
 
 Po sesijos, jei išmokta nauja pamoka, agentas nusprendžia **kur** ją įrašyti (pagal `context-engineering/memory_schema.md`):
 
-| Pamokos tipas                                 | Kur rašyti                                                    |
-| --------------------------------------------- | ------------------------------------------------------------- |
-| Universali taisyklė (galioja visada, visiems) | Atitinkamas `*_AGENT.md` doc (pasiūlyti atnaujinimą atskirai) |
-| Vienkartinė / projekto specifinė pamoka       | `.cursor/skills/<agentas>/lessons.md`                         |
-| Release sprendimas / „kodėl pasirinkome X“    | `CHANGELOG.md` arba `MEMORY.md`                               |
-| Klaida / regresija                            | `docs/development/TEST_REPORT.md`                             |
+| Pamokos tipas                                        | Kur rašyti                                                                         |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Universali taisyklė (galioja visada, visiems)        | Atitinkamas `*_AGENT.md` doc (pasiūlyti atnaujinimą atskirai)                      |
+| Vienkartinė / projekto specifinė pamoka              | `docs/development/lessons/<agentas>.md`                                            |
+| Pasikartojanti pamoka / antras tos pačios klasės hit | Ne nauja eilutė: promote į standartą / `*_AGENT.md` + sweep ticket arba audit TODO |
+| Release sprendimas / „kodėl pasirinkome X“           | `CHANGELOG.md` arba `MEMORY.md`                                                    |
+| Klaida / regresija                                   | `docs/development/TEST_REPORT.md`                                                  |
 
 **lessons.md formatas (privalomas):** viena eilutė per pamoką:
 
@@ -139,7 +141,11 @@ Po sesijos, jei išmokta nauja pamoka, agentas nusprendžia **kur** ją įrašyt
 YYYY-MM-DD | kontekstas (modulis/skaidrė/failas) | problema | sprendimas | failai
 ```
 
-Higiena: kas ~4 savaites peržiūrėti lessons.md – pasikartojančias pamokas kelti į `*_AGENT.md`, pasenusias šalinti.
+Prieš rašydamas naują pamoką, ieškok `docs/development/lessons/` pagal pagrindinį pattern'ą. Jei pamoka jau yra, neatkartok jos kitame agente – promote į standartą / `*_AGENT.md` ir atlik sweep.
+
+**SUPERSEDED konvencija:** kai sprendimas apsiverčia, redaguok seną eilutę su `— SUPERSEDED YYYY-MM-DD: priežastis`, o ne pridėk prieštaraujančią naują eilutę.
+
+Higiena: peržiūrėti `docs/development/lessons/`, kai (a) tas pats root cause pasikartoja antrą kartą arba (b) agento lessons failas viršija ~40 eilučių. Kartotinas pamokas kelti į `*_AGENT.md`, pasenusias žymėti `SUPERSEDED` arba šalinti.
 
 ---
 

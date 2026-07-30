@@ -4,7 +4,7 @@
 > **Brand SOT:** [DITreneris/site `primal_concept.txt`](https://github.com/DITreneris/site/blob/main/primal_concept.txt)  
 > **Kodo SOT:** [`src/constants/ecosystemUrls.ts`](../src/constants/ecosystemUrls.ts)  
 > **Blog ↔ moduliai:** [`docs/development/BLOG_CURRICULUM_LINKS.yaml`](development/BLOG_CURRICULUM_LINKS.yaml)  
-> **Atnaujinta:** 2026-07-24
+> **Atnaujinta:** 2026-07-28
 
 ---
 
@@ -20,39 +20,42 @@
 
 **Blog deep links:** `https://www.promptanatomy.blog/articles/{slug}/?utm_source=training&utm_medium=spinoff&utm_campaign=m{module}_{touchpoint}`. PDF handout'ai naudoja tą pačią kampanijų logiką, bet `utm_medium=handout`.
 
+**App footer Deepen (Skaitiniai / Deep reads):** `buildFooterDeepenUrl()` → blog hub `promptanatomy.blog/` su `utm_source=training&utm_medium=footer&utm_campaign=app_footer` (be modulio konteksto). Primary nav nekeistas; nuoroda po Ekosistema.
+
 **Likęs darbas (SHOULD):** JSON `spinoffCta.url` (M4 section-break info/space/map) dar gali būti be UTM – render sluoksnis arba JSON sync.
 
 ---
 
 ## Funnel taisyklės
 
-| Vieta                      | Leidžiama                            | Draudžiama               |
-| -------------------------- | ------------------------------------ | ------------------------ |
-| AccessGate                 | pricing + optional Enter (cloud)     | pilnas 9 domenų map      |
-| M1–M2 skaidrės viduje      | 0 outbound                           | spin-off                 |
-| Section-break (M4+)        | 1 `spinoffCta` / skaidrė             | kelios outbound nuorodos |
-| Test-results fail (`<70%`) | 1 Deepen (blog) + vidinė remediation | kelios outbound          |
-| Module complete            | secondary links (terms stilius)      | primary CTA konkurencija |
-| Footer                     | site map + Telegram + app            | —                        |
+| Vieta                      | Leidžiama                                     | Draudžiama               |
+| -------------------------- | --------------------------------------------- | ------------------------ |
+| AccessGate                 | pricing + optional Enter (cloud)              | pilnas 9 domenų map      |
+| M1–M2 skaidrės viduje      | 0 outbound                                    | spin-off                 |
+| Section-break (M4+)        | 1 `spinoffCta` / skaidrė                      | kelios outbound nuorodos |
+| Test-results fail (`<70%`) | 1 Deepen (blog) + vidinė remediation          | kelios outbound          |
+| Module complete            | secondary links (terms stilius)               | primary CTA konkurencija |
+| Footer                     | site map + Skaitiniai (blog) + Telegram + app | —                        |
 
 ---
 
 ## Modulis ↔ fazė ↔ touchpoint (M1–M6)
 
-| Modulis             | Fazė            | Domenas           | Vieta                             | URL                                 | `cta_id`                                        |
-| ------------------- | --------------- | ----------------- | --------------------------------- | ----------------------------------- | ----------------------------------------------- |
-| Gate                | Hub + Enter     | app, cloud        | AccessGateScreen                  | `#pricing`, cloud                   | `pricing_click`, `spinoff_enter`                |
-| M1                  | Enter           | cloud, anatomizer | ModuleCompleteScreen (secondary)  | cloud, site#anatomizer              | `spinoff_enter`, `spinoff_anatomizer`           |
-| M1 handout          | First win       | none              | ModuleCompleteScreen (download)   | value-only PDF, be outbound         | `m1_handout_pdf`                                |
-| M2                  | Deepen          | blog              | QuizResultsView (score &lt; 70 %) | blog (homepage)                     | `spinoff_deepen`                                |
-| M3                  | Use + Hub       | info, help, app   | ModuleComplete + upsell           | info, help, `#pricing`              | `spinoff_use`, `spinoff_hire`, `pricing_click`  |
-| M4 §4.1 (40.5)      | Use             | info              | section-break                     | info `/lt/` \| `/en/`               | `spinoff_use`                                   |
-| M4 §4.2 (52.5)      | Create          | space             | section-break                     | space `/lt/` \| `/en/`              | `spinoff_create`                                |
-| M4 §4.4 (65.8)      | Deepen          | blog              | section-break                     | blog `/articles/rag-in-production/` | `spinoff_deepen`                                |
-| M4 apžvalga (66.95) | Map             | site              | section-break                     | site#ecosystem                      | `spinoff_map`                                   |
-| M5                  | Manage          | ceo               | TestResultsSlide (module 5)       | ceo                                 | `spinoff_manage`                                |
-| M6                  | Decide + Play   | pro, lol, map     | ModuleCompleteScreen (secondary)  | pro, lol, site                      | `spinoff_decide`, `spinoff_play`, `spinoff_map` |
-| Visi                | Map + community | site, Telegram    | App footer                        | site, t.me                          | `spinoff_map`                                   |
+| Modulis             | Fazė            | Domenas           | Vieta                                | URL                                 | `cta_id`                                        |
+| ------------------- | --------------- | ----------------- | ------------------------------------ | ----------------------------------- | ----------------------------------------------- |
+| Gate                | Hub + Enter     | app, cloud        | AccessGateScreen                     | `#pricing`, cloud                   | `pricing_click`, `spinoff_enter`                |
+| M1                  | Enter           | cloud, anatomizer | ModuleCompleteScreen (secondary)     | cloud, site#anatomizer              | `spinoff_enter`, `spinoff_anatomizer`           |
+| M1 handout          | First win       | none              | ModuleCompleteScreen (download)      | value-only PDF, be outbound         | `m1_handout_pdf`                                |
+| M2                  | Deepen          | blog              | QuizResultsView (score &lt; 70 %)    | blog (homepage)                     | `spinoff_deepen`                                |
+| M3                  | Use + Hub       | info, help, app   | ModuleComplete + upsell              | info, help, `#pricing`              | `spinoff_use`, `spinoff_hire`, `pricing_click`  |
+| M4 §4.1 (40.5)      | Use             | info              | section-break                        | info `/lt/` \| `/en/`               | `spinoff_use`                                   |
+| M4 §4.2 (52.5)      | Create          | space             | section-break                        | space `/lt/` \| `/en/`              | `spinoff_create`                                |
+| M4 §4.4 (65.8)      | Deepen          | blog              | section-break                        | blog `/articles/rag-in-production/` | `spinoff_deepen`                                |
+| M4 apžvalga (66.95) | Map             | site              | section-break                        | site#ecosystem                      | `spinoff_map`                                   |
+| M5                  | Manage          | ceo               | TestResultsSlide (module 5)          | ceo                                 | `spinoff_manage`                                |
+| M6                  | Decide + Play   | pro, lol, map     | ModuleCompleteScreen (secondary)     | pro, lol, site                      | `spinoff_decide`, `spinoff_play`, `spinoff_map` |
+| Visi                | Map + community | site, Telegram    | App footer                           | site, t.me                          | `spinoff_map`                                   |
+| Visi                | Deepen          | blog              | App footer (Skaitiniai / Deep reads) | blog hub (`buildFooterDeepenUrl`)   | `utm_medium=footer` / `app_footer`              |
 
 ---
 

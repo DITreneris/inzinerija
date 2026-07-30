@@ -1,9 +1,9 @@
 # Dokumentacijos indeksas – kur kuo remtis
 
 > **Tikslas:** Agentai ir žmonės žino, kuris dokumentas yra tiesa (SOT), kas aktyvus, o kas archyvuota.  
-> **Atnaujinta:** 2026-07-24 (Docs Lean DL-3/4)  
+> **Atnaujinta:** 2026-07-28 (Unreleased docs sync po 1.4.9)  
 > **Hierarchija:** **`DOCUMENTATION_QUICK_REF.md`** (startas) → **`LEAN_INDEX.md`** (≤25 keliai) → **šis INDEX** (pilnas katalogas + archyvas).  
-> Open darbai: `TODO.md` §1 · Done istorija: `docs/archive/development/TODO_DONE_SPRINTS_2026-07.md`.
+> Open darbai: `TODO.md` §1 (MON + Deferred) · Done: `docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md`.
 
 ---
 
@@ -21,7 +21,7 @@
 | **Turinys Moduliai 16–18**                                                                 | `docs/turinio_pletra_moduliai_16_17_18.md`                                                                                                                                                                                              | Kodo inžinerija (vibe-coding, Cursor-first): M16 planavimas · M17 testas · M18 packet→deploy; intake archyvas `docs/archive/development/intake/`                                                                                                                                     |
 | **Kur kalbama apie kurį modulį**                                                           | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                                   | 4.1–4.7 = tik Modulio 4; 10.1–10.8 = tik Modulio 10; 13.1–13.9 = tik Modulio 13                                                                                                                                                                                                      |
 | **Dizaino etalonas** (šriftai, spalvos, skaidrių schemos)                                  | `docs/development/GOLDEN_STANDARD.md`                                                                                                                                                                                                   | Vienas etalonas visiems moduliams (v2.3.14: §3.1c lab color exception + §3.1b ChoiceControl / 10.26; §3.4c skiriamoji/apibendrinimo; §3.4d path-step)                                                                                                                                |
-| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                              | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.8** – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                                                                                                           |
+| **Techninė atspirties dokumentacija** (inventorius, architektūra, komponentai, testai, CI) | `docs/development/GOLD_LEGACY_STANDARD.md`                                                                                                                                                                                              | Istorinis baseline v1.3.0 (M1–6 snapshot); dabartinis release **v1.4.9** (+ Unreleased) – žr. `CHANGELOG.md`, `docs/development/CODEBASE_WHAT_IS_DONE.md`                                                                                                                            |
 | **Duomenys**                                                                               | `src/data/modules.json`, `*-m1-m6.json`, `*-m1-m9.json`, `promptLibrary.json`, `glossary.json`, `tools.json`, `tools-en.json`, `hallucinationRates.ts`, `completionArtifacts.json`, `certificateContent*.json`, `*HandoutContent*.json` | Full SOT: `modules.json` / `glossary.json` / `tools.json`+`tools-en.json` (gate `audit:tools`); artefaktai per `completionArtifacts.json`. Build profiliai: `*-m1-m6.json` (MVP), `*-m1-m9.json` (**production**). Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` / `DATA_AGENT_TOOLS.md` |
 | **Vartotojo atsiliepimai**                                                                 | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md`                                                                                                                                                                                                | Gyvas testavimas, V1/V2, segmentai                                                                                                                                                                                                                                                   |
 | **Klaidos ir sprendimai**                                                                  | `docs/development/TEST_REPORT.md`                                                                                                                                                                                                       | QA_AGENT priima klaidas čia                                                                                                                                                                                                                                                          |
@@ -53,6 +53,8 @@
 | `docs/development/DIAGRAMU_M7_M12_REGISTRY.md`         | Satelitas: M7–M12 schemų routing / image keys (detalės po master)                                                 |
 | `docs/development/LMS_DIAGRAM_POLISH_10_2.md`          | LMS polish 1A: 10.2 Agentų ciklas etalonas → tipų roll-out (ne premium SaaS)                                      |
 | `docs/development/DIAGRAMU_M13_M15_REGISTRY.md`        | Satelitas: M13–15 Turinio kelio schemų registry (`m13_*`, `m15_*`, `turinio_workflow`)                            |
+| `docs/development/M13_M15_SCHEME_AUDIT.md`             | M13–15 schemų / interaktyvių elementų deep audit + max-ROI taisymo seka                                           |
+| `docs/development/M7_M9_SCHEME_AUDIT.md`               | M7–M9 schemų / interaktyvių elementų deep audit + max-ROI taisymo seka (`M79-S*`)                                 |
 | `docs/development/DIAGRAMU_GERIAUSIOS_PRAKTIKOS.md`    | Diagramų praktikos                                                                                                |
 | `docs/development/AGENT_VERIFICATION_NE_MELUOTI.md`    | Verifikacija, „padaryta“ vs tikrovė                                                                               |
 | `docs/development/UI_UX_AGENT.md`                      | UI/UX gairės                                                                                                      |
@@ -126,7 +128,8 @@
 | --------------------------------------- | ------------------------------------------------------------- |
 | `docs/development/context-engineering/` | sot_index.json, context_budget.md, memory_schema, eval_rubric |
 | `docs/development/dod_01.md`            | Definition of Done indeksas (agentų DoD, pipeline handoff)    |
-| `.cursor/skills/`                       | Agentų skills (workflow + lessons.md)                         |
+| `.cursor/skills/`                       | Agentų skills (workflow)                                      |
+| `docs/development/lessons/`             | Repo-tracked agentų pamokos (`<agent>.md`)                    |
 
 ### Pradžia ir deployment
 
@@ -178,7 +181,7 @@ Kelias **`docs/archive/`** yra repozitorijoje (sekamas git). Šaknies `archive/`
 
 - **docs/archive/README.md** – archyvavimo taisyklės ir 2026-07-14 perkėlimų sąrašas.
 - **docs/archive/audits/** – Modulių 1–6 UX/mobile audito ataskaitos.
-- **docs/archive/development/** – įgyvendinti planai, vienkartiniai auditai; Docs Lean DL-3: `AUDIT_2026-06_SUMMARY`, `SLIDE_UX_INTERACTIVITY_PLAN_M1_M15`, `PORTAL_2_1_UI_AUDIT`, `M4_SK_53_5_SESSION_RETROSPECTIVE`, `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN`, `LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS`, `PORTAL_BEAT_SATORI_PLAN`, `UX_BANGA_1_2_EN_SYNC`, `PLAN_AGENTAI_DARBAI`; Done TODO snapshot `TODO_DONE_SPRINTS_2026-07.md`.
+- **docs/archive/development/** – įgyvendinti planai, vienkartiniai auditai; Docs Lean DL-3: `AUDIT_2026-06_SUMMARY`, `SLIDE_UX_INTERACTIVITY_PLAN_M1_M15`, `PORTAL_2_1_UI_AUDIT`, `M4_SK_53_5_SESSION_RETROSPECTIVE`, `DESIGN_SYSTEM_V0_2_EXECUTION_PLAN`, `LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS`, `PORTAL_BEAT_SATORI_PLAN`, `UX_BANGA_1_2_EN_SYNC`, `PLAN_AGENTAI_DARBAI`; Done TODO snapshots `TODO_DONE_SPRINTS_2026-07-28.md` (+ ankstesnis `TODO_DONE_SPRINTS_2026-07.md`).
 - **docs/archive/development/analysis/** – vienkartinės analizės (CTA, footer, DS baseline, EN ir kt.).
 - _(pašalinta lean purge 2026-07-24)_ `moduliai_7_8_9/`, `root/` – untracked lokalūs katalogai.
 

@@ -215,6 +215,7 @@ Aliasai `vite.config.ts` persijungia failų kelius:
 | `@m9-characters-data`        | `m9Characters.json`           | `m9Characters-empty.json`    |
 | `@ai-detectors-slide`        | `AiDetectorsSlide.tsx`        | `UnavailableModuleSlide.tsx` |
 | `@vaizdo-generatorius-slide` | `VaizdoGeneratoriusSlide.tsx` | `UnavailableModuleSlide.tsx` |
+| `@i2v-generatorius-slide`    | `I2vGeneratoriusSlide.tsx`    | `UnavailableModuleSlide.tsx` |
 
 ### 4.2 Duomenų failų inventorius
 

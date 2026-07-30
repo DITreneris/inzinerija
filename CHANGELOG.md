@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                 |
 | --------------------------- | ------------------------------------------------------------------------- |
-| **[Unreleased]**            | Pakeitimai po **[1.4.9]** release.                                        |
+| **[Unreleased]**            | Horizon C corporate15 + tier 15; B-V lock; tests **142/903**.             |
+| **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                   |
 | **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.          |
 | **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight. |
 | **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.           |
@@ -37,19 +38,97 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 - **Moduliai 1–6:** Pilnai (teorija, testas, praktika, pažangus). Duomenys + EN merge.
 - **Moduliai 7–9:** Korporatyvinis kelias (Duomenų analizės kelias); production bundle per `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`); **EN overlay** `modules-en-m7-m9.json` (branduolys + šakos + M8 testas + M9 scenarijai).
-- **Moduliai 10–12:** Agentų kelias full authoring kataloge (ne production bundle); EN overlay `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė ir tier 4 sertifikatas.
-- **Moduliai 13–15:** Turinio inžinerijos kelias full authoring kataloge; EN overlay `modules-en-m13-m15.json`; P2 artefaktai – `m1315` atmintinė ir tier 5 sertifikatas.
+- **Moduliai 10–12:** Agentų kelias; corporate cut `build:corporate12` (`*-m1-m12.json`); EN overlay `modules-en-m10-m12.json`; P2 artefaktai – `m1012` atmintinė ir tier 4 sertifikatas. Default Vercel pin vis dar M1–9.
+- **Moduliai 13–15:** Turinio inžinerijos kelias; corporate cut `build:corporate15` (`*-m1-m15.json`); EN overlay `modules-en-m13-m15.json`; P2 artefaktai – `m1315` atmintinė ir tier 5 sertifikatas.
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
-- **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9; sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
+- **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** **130** failai / **825** testai (@ tag **1.4.9**). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (M1–9 EN/LT + M7 pathBranch + DS gate + typecheck + TE strict + testai), M10–12 vartai `npm run audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.4.9** (2026-07-27). Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** **142** failai / **903** testai (post–M10 readiness + M13–15 scheme ROI). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight`, M10–12 `audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.5.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Įrašai po 1.4.9 release._
+_Horizon C corporate15 + magic-link tier 15; B-V verify/lock; tests **142/903**._
+
+### Added
+
+- **M10 team readiness lab (2026-07-30):** nauja skaidrė **10.255** po 3A strategijos – `m10_team_readiness_lab` (`interactive-control-lab`, Shell=Ne). Adaptuota sibling maturity quiz idėja į 3 dimensijų komandos DI praktikos nuotrauką (naudojimas / promptų struktūra / mokymosi ritmas) be balo ar produktų routing; silpniausia dimensija → vienas kitas veiksmas; copyable profilis lab viduje. LT/EN SOT + `modules-en-m10-m12` + core profiliai sync; Feature Doc `M10_TEAM_READINESS_LAB.md`; TE registry/GOLDEN/SCHEME/M7–12 registry.
+- **M7–9 scheme ROI audit (2026-07-30):** naujas `M7_M9_SCHEME_AUDIT.md` SOT – 18 elementų, 4 FAIL: `preCopyCheckBlock` (kopijavimo negatina; 67.8 be copyable), M8/80 test-scope (hardcoded SOT + dublis `slideId: 891`), `toolChoiceBar` default ×9 (auto-select = atlygis be darbo), `m9_data_workflow` (interaktyvios kortelės `role="img"` viduje → 16 tab stop'ų). Sisteminiai: compact tipografijos grindys pažeistos token lygyje (`stepSub.compact: 8` vs rubrikos ≥10px), HTML kortelių keyboard kontraktas išsiskyrė, miręs kadras 29–35 %, overlay dublis. Sprendimai: chips auto-select = klaida, tokenai keliami **globaliai**, individualumo taisyklė – visoms schemoms. Batch'ai `M79-S0`…`S6`.
+- **M13–15 scheme ROI audit (2026-07-30):** naujas `M13_M15_SCHEME_AUDIT.md` SOT su worst-first rework seka: 13.47 I2V meter, 13.37 Vaizdo a11y, 150.25 mobile, 13.325 rose→emerald, smoke gates.
+- **Horizon C corporate15 production cut (2026-07-30):** `npm run build:corporate15` (`VITE_MAX_BUILD_MODULE=15`) + Architecture A profilis `*-m1-m15.json` (`generate:core-data`); vite/vitest alias ladder 6/9/12/15/full; Vaizdo/I2V **live** corporate15 slice. Magic-link tier **15** (`MAGIC_LINK_TIERS`, `api/verify-access`); `ACCESS_TIERS` +15 @ €249 provisional. CI step corporate15. RELEASE_QA §6b. Tickets `M1315-C0`…`C4`. Intake [`M13_M15_CORPORATE_PRODUCTION_INTAKE.md`](docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md).
+- **Skyrių startai + recovery (tier-based):** sequence bypass įėjimams **M1 / M4 / M7 / M10** pagal `maxAccessible` (6/9/12); be `completedModules` seed. ModulesPage: dismissible recovery kortelė (tuščia eiga + tier ≥ 6) + nuolatinė „Skyrių startai“ juosta; util `chapterStarts.ts`. Support: `MARKETING_HANDOFF_CHECKLIST` Lost access.
+- **M13–15 journey/UX gap closure (M1315-J\*):** 13.1 Patikra+Daryk; 13.3/13.4 density collapse; skaidrė **13.325** consistency lab (`m13_consistency_lab`, `M13ConsistencyLockLabBlock`, Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`); `M13_PROMPT_MATURITY.md`; M15 Greitas summary escape + 48h transfer ant 150.26. Intake `M13_M15_JOURNEY_UX_INTAKE_2026-07.md`.
+- **M13–15 Content-track visual exception (GOLDEN §6b):** scoped Turinio kelio spalvos be platform retheme. Token SOT `contentTrackTokens.ts` + tone maps `contentTrackDiagramTones.ts`; softRose SVG bg wash; per-step `DiagramTone` (brand/slate/amber/emerald) ant M13 process/funnel/stack + M15 practice_loop frame; 13.325 Drift Before/After strip + rose soft lab shell; Vaizdo/I2V palette swatches (`contentTrackSwatches`); path Choice `optionTone: rose` kai `moduleAccent === 'rose'`. Docs: GOLDEN §6b / §3.1b, DIAGRAM_KIT, SCHEME §2.2b, `DIAGRAMU_M13_M15_REGISTRY` „Content tones“. Intake `M13_CONTENT_TRACK_VISUAL_INTAKE_2026-07.md`.
+
+### Fixed
+
+- **M10 order guard (2026-07-30):** `m10SlideOrder.test` atnaujintas po 10.255 team readiness bridge įterpimo; saugoma seka `10.25 → 10.255 → 10.26 → 10.3`.
+- **M10–12 scheme audit B1/B2 (2026-07-30):** mobile `EnlargeableDiagram` wrappers no longer expose interactive Shell diagrams as static `role="img"` groups; M10 10.65 workflow-spec Shell now has 8 distinct LT/EN step explanations instead of one repeated generic body. Added regression coverage for both traps.
+- **M13–15 scheme ROI S1–S5 (2026-07-30):** 13.47 I2V readiness nebėra default-check muliažas; 13.37 Vaizdo generatorius nebesiskelbia fake tablist ir naudoja lokalizuotus formų labelius; 150.25 mobile perėjo į scroll + layout feedback path; 13.325 After-lock → emerald; `smoke-diag1-m1315` pridėjo generatorių/lab shots ir `overflowX` tapo blocking.
+- **Design-tokens baseline sync §6b (2026-07-29):** `audit:design-tokens` BASELINE **250→272** / hex **180→202** after Content-track `contentTrackTokens` inventory (gate green; not a silence of new scatter hex).
+- **M13–15 EN LT leftovers (2026-07-29):** direct patch `modules-en-m13-m15.json` — 13.31/13.36/13.37/13.4/13.47/13.51 shortTitles + tldr/patikra/nextSteps; 150.26 checkpoint chrome; 158 `Project summary`. `audit:m1315` green. Do **not** full-regenerate overlay via `build:modules-en-m13-m15`.
+
+### Changed
+
+- **Lessons consolidation + a11y rule collision fix (2026-07-30):** agentų pamokos perkeltos iš hidden local skill lesson files į repo-tracked `docs/development/lessons/<agent>.md`; skill failai liko workflow entry point'ai ir rodo į naują lessons path. Sutvarkytas `role="img"` / Shell kortelių taisyklių konfliktas tarp `UI_UX_AGENT` ir `DIAGRAM_KIT_STANDARD`: standalone kontroliai gauna keyboard semantics, o Shell kortelės deleguoja klaviatūrą Shell nav (`tabIndex={-1}` + `aria-hidden`). Konsoliduotos pasikartojusios `role="img"` ir `preCopyCheckBlock` pamokos, įvesta `SUPERSEDED` konvencija, event-based lessons hygiene ir class-bug sweep DoD. Sweep: M7–M9 blocker'is lieka `M79-S2a`; cross-module SVG internals įrašyti kaip `A11Y-SWEEP` + `A11Y-GUARD`.
+- **M13 process individuality (S4-INDIV / S5-THIRDS) agent sync (2026-07-30):** epic DoD = vizualinės metaforos (13.12 linear · 13.32 lock · 13.52 timeline · 13.11 cycle; 13.33 subject motif), **ne** `VerticalFlowDiagram` pixel-parity dedupe. Sync: `AGENTS.md`, `SCHEME_AGENT` §2.2b, `DIAGRAMU_M13_M15_REGISTRY`, `M13_M15_SCHEME_AUDIT`, `TODO` M1315-S6/S7, scheme/coding/content skills + lessons.
+- **ROADMAP v4.3 Horizon C exit (2026-07-30):** M13–15 corporate production cut repo-done; open fokusas → MON cutover + Horizon D parked. Default `build:production` lieka M1–9 iki marketing pin.
+- **Horizon B-V verify/lock (2026-07-30):** re-ran corporate12 build, tier-12 tests, `audit:m1012`, release-preflight tail; EN slide-title optional_parens scrub (13.33/13.35/13.8); `.tmp-*` gitignore.
+- **M13 13.1 A/E/C funnel fills (§6b):** brand depth ladder stage fills → per-step `DiagramTone` (brand / amber / emerald) + softRose bg; wow silhouette/motifs/ring lieka.
+- **M13 13.1 A/E/C funnel wow (P1–P4):** brand depth ladder, active inset ring, continuous silhouette (`gapY=0` + hairlines + outline), inline motifs (eye/pointer/target), reduced-motion transitions.
+- **M13 13.1 Micro A/E/C tikslų brief:** copyable po collapsible (ne image prompt); Daryk/Patikra sync; `M13_PROMPT_MATURITY` + SOT §2; EN via `build:modules-en-m13-m15`.
+- **M13 Consistency Drift Lab (13.325):** ref checklist ×4 + drift/fresh ChoiceControl ×5 + Simptomas|Fix kontrastas; Copy tik lab’e. 13.32 liesinta (be dublikatinio copyable; brand sheet collapsible). Feature Doc + M13P + EN overlay sync.
+- **M13 13.1 A/E/C funnel etalon:** juostose tik etapas (be sub overflow); trapezoid `path` siluetas (`funnelStageTrapezoids`); paaiškinimas Shell; W3 docs + `lmsFunnelStackPolish`.
+- **M13 13.12 plain-first (2026-07-28):** Medijos grandinė – learner copy ir diagramos etiketės be bare `pipeline` / EN santrumpų sienos; checklist + step bodies su plain gloss (I2V, C2PA); chrome „grandinė“ / „chain“; SOT §2.1 + EN twin sync.
+- **M13 image tools ROI (2026-07-28):** Section-breaks **13.15 / 13.36 / 13.56** – `recap` + `nextSteps` temų žemėlapis, be brandų dump’o; **13.3** – 6× `content.tools` kortelės (exact `tools.json` names) po Patikra; LT + EN; SOT §3.2 sync.
+- **M13 13.1 A/E/C polish:** GOLDEN ciklas (Trumpai → schema → Daryk → collapsible guide → Patikra); LT juostų etiketės (Atpažįstamumas / Įsitraukimas / Konversija); EN 13.1 sekcijos + `slide13_1Sections` build override; glossary A/E/C terminai.
+- **Horizon A closeout CORP-M1…M3 (2026-07-28):** M7–9 backlog formal close (done); mid-path handout / skills-QR won’t-now; pedagogikos Should deferred-with-date (revisit po MON / Horizon C). Day 0: DS 0.3.2 soft close + `audit:design-tokens` BASELINE → **250**. ROADMAP v4.2 · TODO §1.3 closed → archive.
+- **DS 0.3.2 rails (2026-07-28):** `typographyClasses` (GOLDEN §1) — content-block body `md:text-base`, ModuleView H1 `md:`, footer `text-xs`, TemplateBlock `code`; raw `btn-*` → `CTAButton`; `.card` → `<Card />`; new `<Badge />` + call-site migracija; `DIAGRAM_TOKENS.colors.inactiveSoftDark` (CustomGpt/M7/DiPrezentacijos). Docs: `GOLDEN_STANDARD` §1, `DESIGN_SYSTEM` 0.3.2. CSS `.card`/`.btn-*`/`.badge*` lieka (0.3.3+).
+- **LMS Wave 4b residual typography (2026-07-28):** M10 residual (`workflow_spec`, `incident_playbook`, `tool_decision_tree`, LearningLoop NodeBox, DepthRoles mini, orch error badge) + M15 `practice_loop` SVG size/weight → `DIAGRAM_TOKENS.typography` roles (no raw `800` / title `14`; tight leaves → `stepLabel.compact`). Docs: `LMS_DIAGRAM_POLISH_10_2.md` Wave 4b, `DIAGRAM_KIT_STANDARD` residual. Gate: `lmsCaptionTokenPolish` Wave 4b source-scan.
+
+---
+
+## [1.5.0] – 2026-07-28
+
+_Horizon B corporate12 + magic-link tier 12 + M13 I2V builder; preflight closeout (design tokens + m1–m12 schema); **133/841**._
+
+### Added
+
+- **Horizon B corporate12 production cut (2026-07-28):** `npm run build:corporate12` (`VITE_MAX_BUILD_MODULE=12`) + Architecture A profilis `*-m1-m12.json` (`generate:core-data`); vite/vitest alias ladder 6/9/12/full; M15 Vaizdo/I2V stub’ai corporate slice. Magic-link tier **12** (`MAGIC_LINK_TIERS`, `api/verify-access`); gate/magicLink/accessTier testai. CI step corporate12. RELEASE_QA §6a. Tickets `M1012-P0`…`P4`.
+- **M13 gen meter + I2V builder (2026-07-28):** 13.37 quality/readiness meter, A/E/C + proporcijos, 4 preset’ai (`VaizdoGeneratoriusSlide`, `vaizdoGenQuality`); nauja skaidrė **13.47** `i2v-generatorius` (`I2vGeneratoriusSlide`, Feature Doc `M13_I2V_CLIP_BUILDER.md`, TE overlay). Intake `M13_GEN_METER_I2V_INTAKE_2026-07.md`.
+- **Footer Skaitiniai / Deep reads (2026-07-27):** globali nuoroda į `promptanatomy.blog` po Ekosistema (`utm_source=training&utm_medium=footer&utm_campaign=app_footer`); `buildFooterDeepenUrl`; i18n LT/EN. Primary nav nekeistas.
+- **M4–M6 brandos polish (2026-07-27):** GOLDEN §3.2 chrome (Trumpai → Daryk → Patikra) ant silpniausių M4/M5/M6 content-block; `preCopyCheckBlock` M4/59–60 ir M6/68; M4/62 RAG magistralė – `InteractiveDiagramShell` chrome + brand-active tokens (maturity 2→3, Shell=Ne); M5/515 tabs → collapsible kortelės. LT+EN (`modules-en-m4-m6`) + `generate:core-data`. TE overlay: `preCopyCheckBlock` m4:59/60, m6:68; TCB m4:53 s2→s3.
+- **P2 #2 T2 test flows (2026-07-28):** `p2.t2.flows.test.tsx` – quiz≥70→progress persist; resume slide-pos clamp; mid-quiz LT→EN chrome.
+
+### Changed
+
+- **ROADMAP v4.1 Horizon B exit (2026-07-28):** M10–12 corporate production cut repo-done; open fokusas → Horizon A (CORP-M\*) + MON cutover; C/D deferred. Default `build:production` lieka M1–9 iki marketing pin.
+- **ROADMAP v4 production ladder (2026-07-28):** forward plan Horizon A (M1–9 micro P2) → **B** M10–12 corporate cut (P1 next) → C M13–15 prod → D M16–18; TODO seed `M1012-P*` / `CORP-M*`; intake [`M10_M12_CORPORATE_PRODUCTION_INTAKE.md`](docs/development/intake/M10_M12_CORPORATE_PRODUCTION_INTAKE.md). Nebe „learning empty → M16 OR MON“.
+- **P2 #3 `modules.ts` S-R4 split (2026-07-28):** barrel `src/types/modules.ts` + `types/modules/{questions,slides,module,shared}.ts`; public imports unchanged; typecheck green.
+- **M13–15 authoring brandumas closeout M1315-2/DIAG (2026-07-28):** Playwright smoke `smoke-diag1-m1315.mjs` **25/25** @375 LT/EN light/dark (C1–C6 + diagrams). DEV `getMaxAccessibleModuleId` → **15** (+ `VALID_MAX_MODULE_IDS`). M15 practice-loop CTA be curriculum ID (`m15PracticeLoopContent`).
+- **M13–15 Top-5 batch M1315-W1 (2026-07-28):** density/cycle polish `13.35` / `13.34` / `13.101` / `13.33` / `13.5` (Trumpai/Patikra/collapse); EN stub rebuild + copyables. Ranking [`M13_M15_SLIDE_RANKING_AUDIT.md`](docs/development/M13_M15_SLIDE_RANKING_AUDIT.md) §6. Scripts `patch-m1315-w1-top5.mjs`, `patch-m1315-w1-en-copyables.mjs`.
+- **M13–15 chrome brandumas M1315-1 (2026-07-28):** learner copy be curriculum ID (title-only cross-ref); M15 path copy be `150.5`/`151–154`; shortTitle gaps 13.11/13.37. Script `patch-m1315-i2-chrome.mjs`. Gates: footer-numbers · `audit:m1315`.
+
+### Fixed
+
+- **Preflight design-token regression (2026-07-28):** `text-[11px]` → `text-xs` in `I2vGeneratoriusSlide` / `VaizdoGeneratoriusSlide` — `audit:design-tokens:gate` green (arbitraryClass ≤ 59).
+- **Corporate12 schema gate (2026-07-28):** `validate-schema.mjs` validates `modules-m1-m12.json`, `glossary-m1-m12.json`, `tools-m1-m12.json` + `tools-en-m1-m12.json` (id/moduleId ≤ 12).
+- **M13–15 footer numbers + title WARN (M1315-F/T, 2026-07-28):** recalculated LT/EN `Toliau – skaidrė N` / `Next – slide N` for M13–15; renamed `13.12` / `143` titles (pipeline → grandinė / media chain). Script `patch-m1315-i1-footers-titles.mjs`. Gates: footer-numbers LT/EN · slide-titles · `audit:m1315` · schema.
+- **M5 handout footer overlap (2026-07-27):** full M5 body at `regular` density overran A4 by ~55 mm — QC bullets + thresholds collided with copyright footer. M5 now uses `compact`; `HANDOUT_CONTENT_BOTTOM` + `buildM5HandoutPdf` fit tests (LT/EN). Smoke `generate-m5-m6-handout-pdfs` calls the real builder.
+
+### Docs
+
+- **Horizon B docs exit (2026-07-28):** `DEPLOYMENT.md` corporate12 eilutė; `MARKETING_HANDOFF_CHECKLIST` tier 12 cutover; ROADMAP v4.1 B done; TODO §1.2 closed → archive `M1012-P*`; RELEASE_QA §6a.
+- **Docs Lean TODO closeout (2026-07-28):** Done §1.0h–§1.3 (CQ/PDF/M1012/M1315/M13GEN–I2V/P2) → archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md); gyvas `TODO.md` §1 = tik MON + Deferred; ROADMAP Open gaps slim.
+- **P2 #GP GitHub Pages gate policy (2026-07-28):** DEPLOYMENT Gate policy lentelė; GITHUB_SETUP; README; deploy.yml comment; `accessTier` MVP+tier15→6; `mvp.gating` getModule(7) null @ tier 6.
+- **P2 §3 RAG kelio nuoroda (2026-07-28):** SOT M7–9 §1.1 „Papildomas skaitymas“ (M4/`61` + M7/`71.35`); sk. 71 title-only pointer LT+EN; `DUOMENU_ANALIZES_GERIAUSIOS_PRAKTIKOS` sync; `generate:core-data`.
+- **M13–15 authoring brandumas epic I0 (2026-07-28):** TODO M1315-F/T/1/R/W1/2/DIAG open; ROADMAP gap; intake [`M13_M15_TOBULINIMO_INTAKE_2026-07.md`](docs/development/intake/M13_M15_TOBULINIMO_INTAKE_2026-07.md). Production release lieka Deferred.
+- **Unreleased docs sync (2026-07-28):** ECOSYSTEM_MAP footer Skaitiniai/`utm_medium=footer`; RELEASE_QA spot check; PDF_MAKETO + PDF_DOWNLOAD_TESTING + **PDF_GENERATION_AGENT_MEMORY** (P2 #16); GOLDEN preCopy M4/59–60/M6/68; DIAGRAMU RAG P3 → done; TE overlay `updatedAt`; CODEBASE/INDEX/QUICK_REF/LEAN/DOCS_SYNC.
+- **PDF-FIT-1 handout visual closeout (2026-07-27):** owner checked all handout PDFs (M1/M4/M5/M6/M79/M1012/M1315) after M5 compact fit — PASS; gate closed in TODO/ROADMAP/`TEST_REPORT`.
+- **TE registry (2026-07-27):** `diagram:rag_duomenu_ruosimas` maturity 3; nauji `preCopyCheckBlock` embed’ai M4/M6.
+- **Pre-launch WIP closeout (2026-07-28):** CODEBASE_WHAT_IS_DONE Horizon B done + 133/841; TEST_REPORT closeout note.
 
 ---
 
@@ -478,7 +557,7 @@ _Žemiau – Unreleased sprinto turinys (M7–M9 polish, M4 portal), įtrauktas 
 - **Bang L Readability (2026-07-14):** `PORTAL_BEAT_SVG` dark-aware fill; secondary text floor; `M4_SK_53_5_SESSION_RETROSPECTIVE.md` Bang L.
 - **Retrospektyva:\*\*** `docs/development/M4_SK_53_5_SESSION_RETROSPECTIVE.md` – 3 bangos (editorial scroll → React SVG → user-test polish), failų mapa, atviri darbai, DoD.
 - **Anti-PPT sesija (2026-07-13):** testuotojo audit (LMS rėmas + ad-hoc kortelės + trijų kolonų hero) → P0+P1 planas; `NEWS_PORTAL_SLIDE_53_5.md` §Anti-PPT; `TEST_REPORT.md` §48h anti-PPT protokolas (portal ≥70%, PPT ≤30%).
-- **Agentų pamokos:** atnaujinti `.cursor/skills/{orchestrator,ui-ux-agent,user-journey-agent,coding-agent,content-agent,data-agent,qa-agent,code-review-agent}/lessons.md` (2026-07-13 anti-PPT).
+- **Agentų pamokos:** po 2026-07-30 konsolidacijos laikomos `docs/development/lessons/`; anti-PPT įrašai perkelti į atitinkamus `<agent>.md` failus.
 - **TEST_REPORT:** awareness-gap round 1–2 + anti-PPT 48h protokolas (verdict ⬜ pending; pre-retest baseline 2026-07-14).
 - **TODO:** §1.0d – CONTENT softinimas ✅; PNG cleanup ✅; 48h retest ⬜ paruošta.
 - **sot_index.json:** `m4_sk_53_5_news_portal` content SOT entry.
@@ -791,7 +870,7 @@ Corporate path (M7–9), access tier 9, production build M1–9, M10–12 author
 ### Added (2026-06-29) – Agent spine: ekosistemos M1–M6 žinios
 
 - **Spine:** [`AGENTS.md`](AGENTS.md) §Ecosystem integration; trigeriai CONTENT/DATA/CODING/QA/CODE_REVIEW/USER_JOURNEY; [`sot_index.json`](docs/development/context-engineering/sot_index.json) → `ecosystem`.
-- **Orchestrator:** doc-loading triggers + Special case Ecosystem/spin-off; [`orchestrator/lessons.md`](.cursor/skills/orchestrator/lessons.md).
+- **Orchestrator:** doc-loading triggers + Special case Ecosystem/spin-off; [`orchestrator` lessons](docs/development/lessons/orchestrator.md).
 - **Skills + lessons:** ecosystem bullet'ai ir sesijų pamokos (`data`, `coding`, `content`, `qa`, `code-review`, `user-journey` agents).
 - **QA/DATA/Analytics:** [`RELEASE_QA_CHECKLIST.md`](docs/development/RELEASE_QA_CHECKLIST.md) §5f outbound smoke; [`ANALYTICS_EVENT_TAXONOMY.md`](docs/development/ANALYTICS_EVENT_TAXONOMY.md) §4a `spinoff_*` cta_id lentelė.
 

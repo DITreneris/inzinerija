@@ -1,9 +1,11 @@
 # Marketingo repo handoff checklist (Promptų anatomija)
 
 > **Tikslas:** Copy-paste užduotys marketingo monorepo komandai (Vercel, Stripe, Supabase). Mokymo turinys ir UI — **šis repo** (`inzinerija`); auth, mokėjimai, production env — **marketingo repo** (promptanatomy.app).  
-> **Susiję TODO ID:** MON-1, MON-2, MON-3, MON-4, MON-8 (žr. `TODO.md` §1.1).  
-> **Atnaujinta:** 2026-06-30  
-> **Tier 9 memo:** [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)
+> **Susiję TODO ID:** MON-1, MON-2, MON-3, MON-4, MON-8 (žr. `TODO.md` §1.4).  
+> **Atnaujinta:** 2026-07-30  
+> **Tier 9 memo:** [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)  
+> **Horizon B (M1–12):** training repo ready (`build:corporate12`, magic-link tier **12**). Cutover = marketing env/pin + Stripe/`access_tier=12` — žr. §1 / §2 / §3.  
+> **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**, provisional **€249**). Cutover = marketing env/pin + Stripe/`access_tier=15`.
 
 ---
 
@@ -17,13 +19,15 @@ Po sėkmingo apmokėjimo nukreipti vartotoją į mokymo app URL su query paramet
 https://www.promptanatomy.app/anatomy/?access_tier=6&expires=UNIX_TIMESTAMP&token=BASE64URL_HMAC
 ```
 
-| Parametras    | Reikšmė                                                                            |
-| ------------- | ---------------------------------------------------------------------------------- |
-| `access_tier` | `3` (1–3), `6` (1–6) arba `9` (1–9, Duomenų analizės kelias)                       |
-| `expires`     | Unix timestamp (sekundės); link galioja iki šio laiko                              |
-| `token`       | HMAC-SHA256 payload `access_tier:expires`, Base64url, secret `ACCESS_TOKEN_SECRET` |
+| Parametras    | Reikšmė                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------- |
+| `access_tier` | `3` (1–3), `6` (1–6), `9` (1–9), **`12`** (1–12, Agentų), arba **`15`** (1–15, Turinio) |
+| `expires`     | Unix timestamp (sekundės); link galioja iki šio laiko                                   |
+| `token`       | HMAC-SHA256 payload `access_tier:expires`, Base64url, secret `ACCESS_TOKEN_SECRET`      |
 
-**Upgrade 6→9 (€49) ir pilnas 1–9 (€149):** abu siunčia `access_tier=9` (kumuliatyvus tier). Stripe Phase 2 – žr. memo 05 §9.
+**Upgrade 6→9 (€49) ir pilnas 1–9 (€149):** abu siunčia `access_tier=9` (kumuliatyvus tier). Stripe Phase 2 – žr. memo 05 §9.  
+**Agentų kelias (€199 / tier 12):** siųsti `access_tier=12` (training `MAGIC_LINK_TIERS` + `api/verify-access` jau priima).  
+**Turinio kelias (€249 provisional / tier 15):** siųsti `access_tier=15`.
 
 Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access API. Reference: [api/verify-access.ts](../../api/verify-access.ts).
 
@@ -35,7 +39,7 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 | ------------------ | ---------------------------------------------------------------- |
 | **Endpoint**       | `GET /api/verify-access` — **domain root**, ne po `/anatomy/`    |
 | **Secret**         | Env `ACCESS_TOKEN_SECRET` (min. 16 simbolių; rekomenduojama ≥32) |
-| **Leidžiami tier** | `3`, `6`, `9` (Phase 2)                                          |
+| **Leidžiami tier** | `3`, `6`, `9`, **`12`**, **`15`** (Horizon B + C)                |
 | **Responses**      | 200 `{ access_tier }`, 400, 401, 500 — pagal kontraktą           |
 
 ---
@@ -46,8 +50,8 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 | ------------------------ | --------------------------------------------------------------------------- | ----------------------------------------- |
 | `VITE_BASE_PATH`         | `/anatomy/`                                                                 | Atitinka SPA base path (prod monorepo)    |
 | `VITE_VERIFY_ACCESS_URL` | `https://www.promptanatomy.app` arba tuščia (relative `/api/verify-access`) | Frontend: `App.tsx`                       |
-| `VITE_MAX_BUILD_MODULE`  | **`9`**                                                                     | Vienas production build – M1–9 bundle     |
-| Build komanda            | **`npm run build:production`**                                              | Ne `VITE_MVP_MODE=1`                      |
+| `VITE_MAX_BUILD_MODULE`  | **`9`** (šiandien) / **`12`** (B) / **`15`** (C cutover)                    | M1–9, M1–12, arba M1–15 slice             |
+| Build komanda            | **`build:production`** / **`build:corporate12`** / **`build:corporate15`**  | Ne `VITE_MVP_MODE=1`                      |
 | `VITE_POSTHOG_KEY`       | PostHog project key                                                         | MON-4; snippet marketing shell arba index |
 | `VITE_POSTHOG_HOST`      | (optional) PostHog host                                                     | Jei self-hosted                           |
 
@@ -85,13 +89,13 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 
 ## 6. Support playbook (1 puslapis)
 
-| Problema                             | Veiksmas                                                                                                               |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| **„Link expired“**                   | Generuoti naują magic link; patikrinti `expires` UTC                                                                   |
-| **„Locked after payment“**           | Patikrinti verify-access 200; ar SPA gauna `VITE_VERIFY_ACCESS_URL`; ar localStorage `verified_access_tier` nustatytas |
-| **„M7 locked after tier 9 payment“** | Patikrinti ar link buvo `access_tier=9` (ne 6); ar marketing API priima tier 9; ar localStorage = `"9"`                |
-| **„Lost access“**                    | Patikrinti ar vartotojas neišvalė localStorage / kitas browser                                                         |
-| **Wrong tier**                       | Patikrinti Stripe produktas → `access_tier` redirect (3 / 6 / 9)                                                       |
+| Problema                             | Veiksmas                                                                                                                                                                                                                                                                                  |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **„Link expired“**                   | Generuoti naują magic link; patikrinti `expires` UTC                                                                                                                                                                                                                                      |
+| **„Locked after payment“**           | Patikrinti verify-access 200; ar SPA gauna `VITE_VERIFY_ACCESS_URL`; ar localStorage `verified_access_tier` nustatytas                                                                                                                                                                    |
+| **„M7 locked after tier 9 payment“** | Patikrinti ar link buvo `access_tier=9` (ne 6); ar marketing API priima tier 9; ar localStorage = `"9"`                                                                                                                                                                                   |
+| **„Lost access“**                    | Patikrinti ar vartotojas neišvalė localStorage / kitas browser. Naujas magic link **atkuria tier** (`verified_access_tier`). ModulesPage **skyrių startai** (M1/M4/M7/M10 pagal tier ≥ 6/9/12) leidžia tęsti be M1–6 sekos; mokymosi eigos istorija (`completedModules`) **neatsikuria**. |
+| **Wrong tier**                       | Patikrinti Stripe produktas → `access_tier` redirect (3 / 6 / 9)                                                                                                                                                                                                                          |
 
 **Neprašyti** vartotojo redaguoti localStorage rankiniu būdu — tik support debug.
 

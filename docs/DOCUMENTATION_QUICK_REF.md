@@ -1,32 +1,33 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-07-26 (turinio ambicijos flip). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.  
-> **Open P0/P1** = mokymosi / turinio kokybė (`TODO.md` §1). Marketing / MON – ne default.
+> **Atnaujinta:** 2026-07-30 (ROADMAP v4.3 + code/doc audit sync). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.  
+> **Open:** M7–9 scheme / interactive ROI + a11y guard (`M79-S*`, `A11Y-*`) — `TODO.md` §1.2d. Horizon D parked; Marketing / MON – ne default.
 
 ---
 
 ## 1. Source of Truth (SOT)
 
-| Sritis                | Failas                                                                                                                                                                          |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Turinys M1–3          | `turinio_pletra.md`                                                                                                                                                             |
-| Turinys M4–6          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                         |
-| Turinys M7–9          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                         |
-| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė; ranks: `M10_SLIDE_RANKING_AUDIT.md`, `M11_M12_SLIDE_RANKING_AUDIT.md`)                                                      |
-| Turinys M13–15        | `docs/turinio_pletra_moduliai_13_14_15.md` (authoring)                                                                                                                          |
-| Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` (SOT draft; JSON Deferred)                                                                                                           |
-| Numeracija            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                           |
-| Dizainas / ritmas     | `docs/development/GOLDEN_STANDARD.md` (§3.8)                                                                                                                                    |
-| PDF handout branda    | `docs/development/HANDOUT_MATURITY.md` (+ `PDF_MAKETO_GAIRES.md`)                                                                                                               |
-| Mokymo elementai      | `docs/development/TEACHING_ELEMENTS_REGISTRY.md` + overlay; `npm run audit:teaching-elements`                                                                                   |
-| Interaktyvumo auditai | `npm run audit:slide-interactivity` · `audit:embed-catalog` (ritmas = GOLDEN §3.8; istorinis UX planas – archive po DL-3)                                                       |
-| Kas įgyvendinta       | `docs/development/CODEBASE_WHAT_IS_DONE.md` (ne GOLD_LEGACY)                                                                                                                    |
-| Duomenys              | Full: `modules.json`, `glossary.json`, `tools.json`. Production: `*-m1-m9.json`. MVP: `*-m1-m6.json`. EN overlays `modules-en*.json`. Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` |
-| M4 news-portal        | `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`                                                                                                                          |
-| M7–9 polish ops       | `M79_PATCH_REGISTRY.md` + `DOCS_MAINTENANCE.md` (backlog – ne pirmas load)                                                                                                      |
-| Klaidos               | `docs/development/TEST_REPORT.md`                                                                                                                                               |
-| Open prioritetai      | `TODO.md` §1 (P0 = mokymosi kokybė) · `ROADMAP.md` open gaps · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                                                    |
+| Sritis                | Failas                                                                                                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Turinys M1–3          | `turinio_pletra.md`                                                                                                                                                                    |
+| Turinys M4–6          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                |
+| Turinys M7–9          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                                |
+| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė; ranks: `M10_SLIDE_RANKING_AUDIT.md`, `M11_M12_SLIDE_RANKING_AUDIT.md`)                                                             |
+| Turinys M13–15        | `docs/turinio_pletra_moduliai_13_14_15.md` (corporate15 + authoring)                                                                                                                   |
+| Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` (SOT draft; JSON Deferred)                                                                                                                  |
+| Numeracija            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                  |
+| Dizainas / ritmas     | `docs/development/GOLDEN_STANDARD.md` (§3.8)                                                                                                                                           |
+| PDF handout branda    | `docs/development/HANDOUT_MATURITY.md` (+ `PDF_MAKETO_GAIRES.md`, `PDF_GENERATION_AGENT_MEMORY.md`)                                                                                    |
+| Ekosistema / footer   | `docs/ECOSYSTEM_MAP.md` (`buildFooterDeepenUrl`, UTM spinoff\|handout\|footer)                                                                                                         |
+| Mokymo elementai      | `docs/development/TEACHING_ELEMENTS_REGISTRY.md` + overlay; `npm run audit:teaching-elements`                                                                                          |
+| Interaktyvumo auditai | `npm run audit:slide-interactivity` · `audit:embed-catalog` (ritmas = GOLDEN §3.8; istorinis UX planas – archive po DL-3)                                                              |
+| Kas įgyvendinta       | `docs/development/CODEBASE_WHAT_IS_DONE.md` (ne GOLD_LEGACY)                                                                                                                           |
+| Duomenys              | Full: `modules.json`, `glossary.json`, `tools.json`. Profiles: `*-m1-m6`, `*-m1-m9`, `*-m1-m12`, `*-m1-m15`. EN overlays `modules-en*.json`. Žr. `DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` |
+| M4 news-portal        | `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`                                                                                                                                 |
+| M7–9 polish ops       | `M79_PATCH_REGISTRY.md` + `DOCS_MAINTENANCE.md` (backlog – ne pirmas load)                                                                                                             |
+| Klaidos               | `docs/development/TEST_REPORT.md`                                                                                                                                                      |
+| Open prioritetai      | `TODO.md` §1.2d (`M79-S*`, `A11Y-*`) · `ROADMAP.md` ladder · Horizon D Deferred · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                                        |
 
 **Konfliktas:** Turinio SOT → JSON → UI.
 
@@ -75,5 +76,5 @@
 ## 5. Konteksto taupymas
 
 1. Šis failas arba LEAN_INDEX.
-2. `TODO.md` / `ROADMAP.md` – tik **open** §1 P0/P1 (mokymosi/turinio); §1.4 MON = out of scope.
+2. `TODO.md` / `ROADMAP.md` – tik **open** §1 (`M79-S*`, `A11Y-*`; Horizon D Deferred); §1.4 MON = out of scope.
 3. Archyvas – tik kai explicit istorija.

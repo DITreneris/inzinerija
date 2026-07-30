@@ -1,18 +1,20 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.4.9 (2026-07-27). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
+**Versija:** 1.5.0 (2026-07-28). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
-Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
+Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
 UI ir turinys palaiko **LT / EN** (M1–M15; M10–12 EN kai kataloge `maxModuleId >= 10`, M13–15 EN kai `maxModuleId >= 13`).
 
-## Produkto modelis (3 build sluoksniai)
+## Produkto modelis (5 build sluoksniai)
 
-| Sluoksnis               | Build komanda                   | Moduliai         | Paskirtis                 |
-| ----------------------- | ------------------------------- | ---------------- | ------------------------- |
-| **Demo / GitHub Pages** | `VITE_MVP_MODE=1 npm run build` | M1–6             | Preview `/inzinerija/`    |
-| **Production (Vercel)** | `npm run build:production`      | M1–9             | Tier 3 / 6 / 9 magic link |
-| **Dev / authoring**     | `npm run build`                 | M1–15 (full SOT) | Turinio redagavimas       |
+| Sluoksnis               | Build komanda                   | Moduliai         | Paskirtis                                                     |
+| ----------------------- | ------------------------------- | ---------------- | ------------------------------------------------------------- |
+| **Demo / GitHub Pages** | `VITE_MVP_MODE=1 npm run build` | M1–6 only        | Preview `/inzinerija/` (ne M7–15; žr. DEPLOYMENT gate policy) |
+| **Production (Vercel)** | `npm run build:production`      | M1–9             | Tier 3 / 6 / 9 magic link                                     |
+| **Corporate12**         | `npm run build:corporate12`     | M1–12            | Tier 12 magic link; repo-ready, marketing cutover atskirai    |
+| **Corporate15**         | `npm run build:corporate15`     | M1–15            | Tier 15 magic link; Vaizdo/I2V live                           |
+| **Dev / authoring**     | `npm run build`                 | M1–15 (full SOT) | Turinio redagavimas                                           |
 
 Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md).
 
@@ -35,8 +37,8 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 
 - **Pamatinis kelias M1–6:** 6 Blokų Sistema → Žinių patikrinimas → Praktika → Konteksto inžinerija → Pažangus testas → Projekto kūrimas.
 - **Duomenų analizės kelias M7–9:** tier 9, production bundle (`build:production`); adaptuotos šakos Modulyje 7.
-- **Agentų kelias M10–12:** turinys full authoring kataloge (ne production bundle); taksonomija 10.45, workflow 10.48.
-- **Turinio kelias M13–15:** full authoring katalogas; vaizdai, video, muzika, testas ir finalinis kūrybinis projektas.
+- **Agentų kelias M10–12:** corporate12 build (`build:corporate12`) ir full authoring katalogas; taksonomija 10.45, workflow 10.48.
+- **Turinio kelias M13–15:** corporate15 build (`build:corporate15`) ir full authoring katalogas; vaizdai, video, muzika, testas ir finalinis kūrybinis projektas.
 - **6 blokų sistema** su workflow, technikomis ir mąstymo modeliais (CoT, ToT, konteksto inžinerijos schemos).
 - **Žodynėlis**, **Įrankių puslapis**, **Branduolio pasitikrinimas** (nav: Pasitikrink), **Promptų biblioteka**.
 - **Sertifikatai (PDF):**
@@ -47,7 +49,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
   - Tier 5 – po kelio 13–15 ir Modulio 14 testo ≥ 70 %.
 - **PDF atmintinės:** M1 (first-win, value-only), M4, M5, M6, M7–9 DA kelio, M10–12 Agentų kelio ir M13–15 Turinio kelio atmintinės (LT/EN); bendras maketas `handoutPdfKit.ts`, registry `completionArtifacts.json`, pakartotinis atsisiuntimas – `ModulesPage` „Mano medžiaga“. Žr. `docs/development/PDF_DOWNLOAD_TESTING.md`.
 - **Progreso sekimas:** localStorage, versijavimas, autosave.
-- **Prieigos lygiai (access tier):** magic link tier **3** (M1–3), **6** (M1–6), **9** (M1–9) per `api/verify-access.ts`.
+- **Prieigos lygiai (access tier):** magic link tier **3** (M1–3), **6** (M1–6), **9** (M1–9), **12** (M1–12), **15** (M1–15) per `api/verify-access.ts`.
 - **Ekosistema M1–12:** spinoff nuorodos, blog deepen (žr. `docs/ECOSYSTEM_MAP.md`).
 - **LT/EN**, responsive, dark/light, klaviatūros navigacija, lazy loading, Error Boundary, SEO (`react-helmet-async`).
 
@@ -78,6 +80,13 @@ npm run build:production   # Production M1–9 (Vercel)
 npm run preview
 ```
 
+**Corporate build'ai:**
+
+```bash
+npm run build:corporate12  # M1–12
+npm run build:corporate15  # M1–15
+```
+
 **Demo / core M1–6:**
 
 ```bash
@@ -104,16 +113,16 @@ npm run test:coverage # Su coverage report
 
 ## 📚 Modulių struktūra
 
-| Modulis | Pavadinimas             | Turinys                                                                   |
-| ------- | ----------------------- | ------------------------------------------------------------------------- |
-| 1–6     | Pamatinis kelias        | 6 blokų sistema, testai, praktika, RAG, projektas (žr. ankstesnę lentelę) |
-| 7–9     | Duomenų analizės kelias | Pipeline, vizualizacija, M8 testas, M9 capstone (production tier 9)       |
-| 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (authoring; ne prod bundle)       |
-| 13–15   | Turinio inžinerija      | Planavimas / authoring SOT                                                |
+| Modulis | Pavadinimas             | Turinys                                                                      |
+| ------- | ----------------------- | ---------------------------------------------------------------------------- |
+| 1–6     | Pamatinis kelias        | 6 blokų sistema, testai, praktika, RAG, projektas (žr. ankstesnę lentelę)    |
+| 7–9     | Duomenų analizės kelias | Pipeline, vizualizacija, M8 testas, M9 capstone (production tier 9)          |
+| 10–12   | Agentų inžinerija       | Taksonomija, workflow, testas, capstone (corporate12; default prod dar M1–9) |
+| 13–15   | Turinio inžinerija      | Planavimas, medijos generavimas, testas, finalinis projektas (corporate15)   |
 
 **Navigacija:** Pagrindinis → Moduliai → Žodynėlis → Įrankiai → Pasitikrink.
 
-**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`.
+**Duomenų architektūra:** `src/data/modules.json` – full `1–15` SOT. Build profiliai: `modules-m1-m6.json` (MVP), `modules-m1-m9.json` (production), `modules-m1-m12.json` (corporate12), `modules-m1-m15.json` (corporate15). EN: `modules-en.json`, `modules-en-m4-m6.json`, `modules-en-m7-m9.json`, `modules-en-m10-m12.json`, `modules-en-m13-m15.json`.
 
 ## ⚙️ Konfigūracija
 
@@ -132,7 +141,7 @@ Spalvos – `tailwind.config.js` (brand navy/slate, accent auksinė). Pilna pale
 
 ### GitHub Pages (demo)
 
-Push į `main` → GitHub Actions deploy. Prieiga: `https://ditreneris.github.io/inzinerija/` (MVP M1–6).
+Push į `main` → GitHub Actions deploy. Prieiga: `https://ditreneris.github.io/inzinerija/` (**MVP M1–6 only**; M7–15 ne Pages – `docs/deployment/DEPLOYMENT.md` Gate policy).
 
 ### Production (Vercel)
 

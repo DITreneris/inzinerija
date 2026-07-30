@@ -1,7 +1,7 @@
 # M7–M9 backlog (Duomenų analizės kelias)
 
-> **Statusas:** `aktyvus priežiūros backlog` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55** + **CQ-M79-3 §4.6 #6–9** ✅ + **CQ-M79-1/2 browser** S1–S7 / E1–E6 ✅ (2026-07-26).  
-> **Tikslas:** Vienas darbo sąrašas prieš vieningą tvarkymą („vienu ypu“). Savininkas papildo pastabomis žemiau — **§9 Savininko pastabos**.  
+> **Statusas:** `uždarytas priežiūros backlog (Horizon A CORP-M1 ✅ 2026-07-28)` — Phase 2 + P2 polish + Lygis C + A–C + **M79-51…55** + **CQ-M79-3 §4.6 #6–9** ✅ + **CQ-M79-1/2 browser** S1–S7 / E1–E6 ✅.  
+> **Tikslas (istorinis):** Vienas darbo sąrašas prieš vieningą tvarkymą („vienu ypu“). Nauji M7–9 darbai — tik su atskiru product ticket. Savininko pastabos — **§9**.  
 > **SOT:** `docs/turinio_pletra_moduliai_7_8_9.md` · `docs/MODULIO_7_SKAIDRIU_EILES.md` · `src/data/modules.json`  
 > **Susiję:** `docs/development/TEST_REPORT.md` (§2026-07-14…16), `M79_PATCH_REGISTRY.md`, `docs/archive/development/analysis/M7_STEP_COUNT_CURRICULUM_REVIEW_2026-07.md`
 
@@ -111,15 +111,15 @@ Savarankiškas analitikas
 4. **Konkretus veiksmas** vietoj metaforų: ne „silpnas pamatas“, o „sprendimas be 4 principų → dažniau remiasi nuomone“.
 5. Po LT rewrite — **EN overlay sync** (`modules-en-m7-m9.json`, `m7-m9-en-string-map.json`).
 
-#### Perrašymo juodraštis — sk. 72 „Strateginis pamatas“ (Kam tai?)
+#### Perrašymo juodraštis — sk. 72 (historical)
 
-**Dabartinis LT:** „4 principai, ant kurių stovi pipeline ir MASTER PROMPTAS.“
+> **Ne vykdoma.** Live LT/EN = §4.6 „Dabartinė būklė ✅“ (M79-16). Žemiau — istorinis juodraštis prieš Phase 2.
 
-**Siūlomas kryptis (ne final):**
+**Senasis LT (prieš rewrite):** „4 principai, ant kurių stovi pipeline ir MASTER PROMPTAS.“
 
-> „**Strateginis pamatas** – 4 principai, pagal kuriuos vertini bet kokią analizę: ar sprendimas remiasi duomenimis, ar nuomone. Čia dar ne promptai – tik mąstymo taisyklės prieš bet kokią užklausą DI.“
+**Juodraščio kryptis (įgyvendinta):**
 
-_(Finalinį tekstą patvirtina CONTENT + savininkas §9.)_
+> „**Strateginis pamatas** – 4 principai, pagal kuriuos vertini bet kokią analizę…“
 
 ### 4.4 Struktūra eigoje (wayfinding)
 
@@ -532,6 +532,18 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] Browser E1–E6 @375px — savininkas (`TEST_REPORT` ✅; CQ-M79-2)
 
 **Skriptai:** `patch-m79-everyday-closeness.mjs` · `patch-m79-everyday-closeness-en.mjs` · asset `public/m9_sample_internal.csv`
+
+---
+
+## 15. Horizon A triage (CORP-M1 ✅ 2026-07-28)
+
+| Klausimas                      | Rezultatas                                    |
+| ------------------------------ | --------------------------------------------- |
+| Open residual tickets (M79-\*) | **none** — §8 / §11–14 DoD visi `[x]`         |
+| CORP-M1 sprendimas             | **done** — formal close, be naujo epic        |
+| TODO                           | [`TODO.md`](../../TODO.md) §1.3 CORP-M1 `[x]` |
+
+Naujas M7–9 darbas = atskiras product ticket (ne šio backlog „aktyvus“ statusas).
 
 ---
 

@@ -68,7 +68,7 @@ Vykdyti eilės tvarka; pažymėti kiekvieną punktą.
 ### §1 Broken links (~2 min)
 
 - [ ] **Skip link:** Home → Tab (kelis kartus) → matomas „Praleisti į turinį“ → Enter. Fokusas turi pereiti į main turinį (ne į meniu).
-- [ ] **Išorinė nuoroda (1–2 spot check):** Pvz. App footer GitHub nuoroda arba ContentSlides nuoroda į šaltinį – atsidaro naujame lange, nėra 404.
+- [ ] **Išorinė nuoroda (1–2 spot check):** App footer **Skaitiniai / Deep reads** (blog + `utm_medium=footer`) ir/ar GitHub; arba ContentSlides nuoroda į šaltinį – atsidaro naujame lange, nėra 404.
 - [ ] **AI detektoriai / Prompt biblioteka:** Jei naudojami – nuorodos atsidaro.
 
 ### §2 Mobile sanity (~1 min)

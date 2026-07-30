@@ -11,41 +11,71 @@ Detalios instrukcijos yra `README.md`:
 
 ## Base path politika (vienas šaltinis)
 
-| Scenarijus                                    | `VITE_BASE_PATH` | Moduliai  | Build / env                                    | Pastaba                                                                                 |
-| --------------------------------------------- | ---------------- | --------- | ---------------------------------------------- | --------------------------------------------------------------------------------------- |
-| **Production monorepo** (promptanatomy.app)   | `/anatomy/`      | M1–9      | `build:production` / `VITE_MAX_BUILD_MODULE=9` | Canonical SPA. Senas `/anatomija/` – tik **301**. Žr. `MARKETING_HANDOFF_CHECKLIST.md`. |
-| **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | M1–6      | `VITE_MVP_MODE=1` (deploy.yml)                 | Preview; ne tas pats artefaktas kaip production.                                        |
-| **Authoring / local full**                    | `/` (dev)        | M1–15     | default `modules.json`                         | Full katalogas; M10+ ne production bundle.                                              |
-| **Lokalus dev**                               | `/` (tuščia)     | pagal env | `npm run dev`                                  | —                                                                                       |
+| Scenarijus                                    | `VITE_BASE_PATH` | Moduliai  | Build / env                                      | Pastaba                                                                                          |
+| --------------------------------------------- | ---------------- | --------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| **Production monorepo** (promptanatomy.app)   | `/anatomy/`      | M1–9      | `build:production` / `VITE_MAX_BUILD_MODULE=9`   | Canonical SPA šiandien. Senas `/anatomija/` – tik **301**. Žr. `MARKETING_HANDOFF_CHECKLIST.md`. |
+| **Corporate12 target** (Horizon B)            | `/anatomy/`      | M1–12     | `build:corporate12` / `VITE_MAX_BUILD_MODULE=12` | Repo-ready; marketing cutover kai pin/env perjungia. M13–15 ne bundle'e.                         |
+| **Corporate15 target** (Horizon C)            | `/anatomy/`      | M1–15     | `build:corporate15` / `VITE_MAX_BUILD_MODULE=15` | Repo-ready; Vaizdo/I2V live. Marketing cutover kai pin/env perjungia.                            |
+| **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | M1–6      | `VITE_MVP_MODE=1` (deploy.yml)                   | Preview; ne tas pats artefaktas kaip production.                                                 |
+| **Authoring / local full**                    | `/` (dev)        | M1–15     | default `modules.json`                           | Full katalogas (šiandien = corporate15 slice).                                                   |
+| **Lokalus dev**                               | `/` (tuščia)     | pagal env | `npm run dev`                                    | —                                                                                                |
 
-**Magic link URL (prod):** `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...`
+**Magic link URL (prod, tier 9):** `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...`  
+**Magic link URL (tier 12, po cutover):** `https://www.promptanatomy.app/anatomy/?access_tier=12&expires=...&token=...`  
+**Magic link URL (tier 15, po cutover):** `https://www.promptanatomy.app/anatomy/?access_tier=15&expires=...&token=...`
 
 ---
 
-## Production (moduliai 1–9, vienas build)
+## Production (moduliai 1–9, vienas build – dabartinis)
 
 **Vercel (promptanatomy.app / marketing monorepo):**
 
 - **Build:** `npm run build:production` (`VITE_MAX_BUILD_MODULE=9`, be `VITE_MVP_MODE`).
 - **Bundle:** `modules-m1-m9.json`, glossary/tools M1–9 – M10–15 ne client-side.
-- **Prieiga:** magic link tier 3, 6, 9; gate kai tier 0. Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md).
+- **Prieiga:** magic link tier 3, 6, 9 (ir **12** šiame repo – žr. corporate12); gate kai tier 0. Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md).
 
-### Prieigos lygis (tier 3, 6, 9)
+### Corporate12 (M1–12) – Horizon B ready
+
+- **Build:** `npm run build:corporate12` (`VITE_MAX_BUILD_MODULE=12`, be `VITE_MVP_MODE`).
+- **Bundle:** `*-m1-m12.json` (generate:core-data); M10–12 EN overlay merge; M13–15 + Vaizdo/I2V slide stub’ai.
+- **Prieiga:** magic link `access_tier=12` → moduliai 1–12; `api/verify-access` + `MAGIC_LINK_TIERS` priima 3|6|9|12|15.
+- **Marketing cutover (ne šio repo P0):** Vercel build → `build:corporate12` (arba `VITE_MAX_BUILD_MODULE=12`); Stripe/Supabase generator siunčia `access_tier=12` už Agentų kelio produktą (€199). Default pin gali likti M1–9 iki cutover.
+
+### Corporate15 (M1–15) – Horizon C ready
+
+- **Build:** `npm run build:corporate15` (`VITE_MAX_BUILD_MODULE=15`, be `VITE_MVP_MODE`).
+- **Bundle:** `*-m1-m15.json` (generate:core-data); M13–15 EN overlay merge; Vaizdo/I2V **live** (ne stub).
+- **Prieiga:** magic link `access_tier=15` → moduliai 1–15; `MAGIC_LINK_TIERS` + `api/verify-access` priima 3|6|9|12|15.
+- **Marketing cutover (ne šio repo P0):** Vercel build → `build:corporate15`; Stripe/Supabase generator siunčia `access_tier=15` už Turinio kelio produktą (**€249** provisional). Default pin gali likti M1–9 iki cutover.
+
+### Prieigos lygis (tier 3, 6, 9, 12, 15)
 
 Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/utils/accessTier.ts`). Be patikrinto magic link numatytasis lygis yra **0**.
 
 **Magic link (rekomenduojama):**
 
-- `access_tier=3` | `6` | `9`
+- `access_tier=3` | `6` | `9` | `12` | `15`
 - `expires=UNIX_TIMESTAMP`, `token=BASE64URL_HMAC`
 - Pvz. tier 9: `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...` (senas `/anatomija/` → 301)
+- Pvz. tier 12: `https://www.promptanatomy.app/anatomy/?access_tier=12&expires=...&token=...`
 - Frontend → `GET /api/verify-access`; 200 → `localStorage` `verified_access_tier`
 
-**Draudžiama production:** `VITE_MAX_ACCESSIBLE_MODULE=6` arba `9` (atidaro visiems be apmokėjimo).
+**Draudžiama production:** `VITE_MAX_ACCESSIBLE_MODULE=6`, `9` arba `12` (atidaro visiems be apmokėjimo).
 
 ---
 
 ## GitHub Pages / demo (moduliai 1–6)
+
+### Gate policy (P2 #GP) – užfiksuota
+
+|              | GitHub Pages (`/inzinerija/`)                                                                           | Production (`promptanatomy.app/anatomy/`)                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Build**    | `VITE_MVP_MODE=1` + `VITE_BASE_PATH=/inzinerija/` (`.github/workflows/deploy.yml` → `build-and-deploy`) | `npm run build:production` / `VITE_MAX_BUILD_MODULE=9` (target: `build:corporate12`) |
+| **Moduliai** | **M1–6** core (`*-m1-m6.json`)                                                                          | **M1–9** (`*-m1-m9.json`); corporate12 → **M1–12** (`*-m1-m12.json`)                 |
+| **Nėra**     | M7–9, M10–15 authoring                                                                                  | M13–15 (authoring / Horizon C); M10–12 nėra tik M1–9 slice                           |
+| **Prieiga**  | MVP + tier cap ≤6 (`getIsMvpMode` → `capForMvp`)                                                        | Magic link tier 3 / 6 / 9 / **12**                                                   |
+
+**Taisyklė:** Pages = MVP **preview**, ne tas pats artefaktas kaip marketing production. Quality-gates job stato ir default, ir MVP build; **deploy** kelias naudoja **tik** MVP.
 
 Production gali veikti dviem keliais (dev/demo):
 
@@ -83,6 +113,8 @@ Aplikacija rodo modulius tik iki `getMaxAccessibleModuleId()` (šaltinis: `src/u
 **Build komandos:**
 
 - **Production (Vercel M1–9):** `npm run build:production`
+- **Corporate12 (M1–12):** `npm run build:corporate12`
+- **Corporate15 (M1–15):** `npm run build:corporate15`
 - Pilnas SOT (authoring): `npm run build` (be env).
 - Core 1–6 demo (GitHub Pages): `VITE_MVP_MODE=1 npm run build` (žr. README).
 

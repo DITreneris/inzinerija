@@ -29,7 +29,7 @@ Ankstesnis atskiras dokumentas aprašė Duomenų analizės kelio pedagogiką (02
 - **Pipeline ir operacinės sąvokos:** `turinio_pletra_moduliai_7_8_9.md` §1.2, §2
 - **M8 testas / M9 capstone:** tas pats SOT §9–§10
 - **Path-step kelias (71.1–71.5):** `MODULIO_7_SKAIDRIU_EILES.md` + SOT §8.2
-- **Papildomas RAG/tyrimų turinys (pvz. M4 id 61):** gali būti „Papildomas skaitymas“ M7–9 kontekste – žr. SOT §1.1, `TODO.md` §3 RAG optional
+- **Papildomas RAG/tyrimų turinys:** SOT §1.1 „Papildomas skaitymas“ – M4 optional „DI įrankiai informacijos paieškai“ (`61`) + M7 ta pati atmintinė (`71.35`); UI nuoroda kelio apžvalgoje sk. `71` (title-only). TODO §3 RAG ✅
 - **Production bundle:** M7–9 kliente – `npm run build:production` (tier 9); žr. `05_marketingo_memo_tier9_vienas_build.md`
 
 ---

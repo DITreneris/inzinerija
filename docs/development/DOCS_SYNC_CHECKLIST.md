@@ -2,12 +2,35 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.4.9 (tag release)  
-**Testai:** 130 failai / 825 testai (`@ tag 1.4.9`)  
-**Data:** 2026-07-27  
+**Baseline:** 1.5.0 + Horizon C / code-doc audit sync  
+**Testai:** 142 failai / 903 testai (`@ HEAD` po 10.255 order guard fix; `@ tag 1.4.9` = 130/825)  
+**Data:** 2026-07-30  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Code/doc audit sync – 2026-07-30
+
+| #   | Failas                                                                  | Laukas                    | Buvo                                       | Turi būti                                                        | Done |
+| --- | ----------------------------------------------------------------------- | ------------------------- | ------------------------------------------ | ---------------------------------------------------------------- | ---- |
+| 1   | `README.md`                                                             | produkto build sluoksniai | 3 sluoksniai; tier 3/6/9                   | 5 sluoksniai; MVP/M1–9/corporate12/corporate15/full + tier 12/15 | [x]  |
+| 2   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG`           | testų metrika             | 139/889 arba 139/891                       | **142/903** po `m10SlideOrder` fix                               | [x]  |
+| 3   | `DOCUMENTATION_QUICK_REF` / `LEAN_INDEX` / `.cursorrules` / `AGENTS.md` | open fokusas              | Horizon B `M1012-P*` / Horizon A `CORP-M*` | M7–9 `M79-S*` + `A11Y-*`; MON out of scope; Horizon D parked     | [x]  |
+| 4   | `VERSION_ANALIZE.md`                                                    | release truth             | package version 1.4.9                      | package version **1.5.0**; v1.4.9 = marketing pin                | [x]  |
+
+### Unreleased post-1.4.9 docs sync – 2026-07-28
+
+| #   | Failas                                       | Laukas                    | Buvo                                   | Turi būti                                                 | Done |
+| --- | -------------------------------------------- | ------------------------- | -------------------------------------- | --------------------------------------------------------- | ---- |
+| 1   | `ECOSYSTEM_MAP.md`                           | footer deepen UTM         | tik spinoff\|handout; footer = site/TG | `buildFooterDeepenUrl` + `utm_medium=footer` / Skaitiniai | [x]  |
+| 2   | `RELEASE_QA_CHECKLIST` / `RELEASE_QA_RUN`    | external link smoke       | tik GitHub footer                      | Skaitiniai / Deep reads + GitHub                          | [x]  |
+| 3   | `PDF_MAKETO_GAIRES` / `PDF_DOWNLOAD_TESTING` | M5 density                | compact tik path-funnel                | M5=`compact` + `HANDOUT_CONTENT_BOTTOM`                   | [x]  |
+| 4   | `PDF_GENERATION_AGENT_MEMORY.md` (P2 #16)    | handout maturity / fit    | pre-FIT memory                         | HANDOUT_MATURITY + fit + pdfLink                          | [x]  |
+| 5   | `GOLDEN_STANDARD` §3.8.1                     | preCopy etalonai          | M5/47, M7 only                         | + M4/59–60, M6/68                                         | [x]  |
+| 6   | `DIAGRAMU_M1_M9_AUDITAS`                     | RAG P3                    | Shell backlog                          | maturity 3 / Shell chrome done                            | [x]  |
+| 7   | TE overlay + registry                        | updatedAt / RAG / preCopy | 2026-07-26                             | 2026-07-28; RAG maturity 3; preCopy M4/M6                 | [x]  |
+| 8   | `CODEBASE` / INDEX / QUICK_REF / LEAN        | Unreleased pointers       | 1.4.9 only / INDEX v1.4.8              | footer + M4–M6 brandos; INDEX **1.4.9**                   | [x]  |
+| 9   | `CHANGELOG` Unreleased Docs                  | docs sync note            | PDF-FIT + TE only                      | + meta sync block                                         | [x]  |
 
 ### Release 1.4.9 tag – 2026-07-27
 
@@ -21,14 +44,16 @@
 
 ## Deploy / env matrica (viena tiesa)
 
-| Artefaktas                      | Env / komanda                                                                              | Moduliai     | Base path      |
-| ------------------------------- | ------------------------------------------------------------------------------------------ | ------------ | -------------- |
-| **GitHub Pages preview**        | `VITE_MVP_MODE=1` (deploy.yml)                                                             | M1–6         | `/inzinerija/` |
-| **Production (Vercel)**         | `npm run build:production` / `VITE_MAX_BUILD_MODULE=9`                                     | M1–9         | `/anatomy/`    |
-| **Authoring / full CI default** | be MVP cap; full `modules.json`                                                            | M1–15        | `/` (dev)      |
-| **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9` | tier 0/3/6/9 | —              |
+| Artefaktas                      | Env / komanda                                                                                  | Moduliai           | Base path      |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------ | -------------- |
+| **GitHub Pages preview**        | `VITE_MVP_MODE=1` (deploy.yml)                                                                 | M1–6               | `/inzinerija/` |
+| **Production (Vercel)**         | `npm run build:production` / `VITE_MAX_BUILD_MODULE=9`                                         | M1–9               | `/anatomy/`    |
+| **Corporate12 target**          | `npm run build:corporate12` / `VITE_MAX_BUILD_MODULE=12`                                       | M1–12              | `/anatomy/`    |
+| **Corporate15 target**          | `npm run build:corporate15` / `VITE_MAX_BUILD_MODULE=15`                                       | M1–15              | `/anatomy/`    |
+| **Authoring / full CI default** | be MVP cap; full `modules.json`                                                                | M1–15              | `/` (dev)      |
+| **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9\|12` | tier 0/3/6/9/12/15 | —              |
 
-CI (`test.yml`) stato MVP + M1–9; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M1–9 EN).
+CI (`test.yml`) stato MVP + M1–9 + corporate12 + corporate15; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M4–15 EN, footer numeriai, TE strict).
 
 ### Docs Lean Pass DL-0…4 (Unreleased) – 2026-07-24
 

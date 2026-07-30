@@ -47,7 +47,9 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 
 ### 3.2 Prieinamumas (a11y)
 
-- Kiekvienam interaktyviam elementui: `aria-label`, `role` (pvz. `role="button"`), `tabIndex={0}`, `onKeyDown` (Enter / tarpas).
+- Standalone interaktyviam elementui: `aria-label`, semantinis `button` arba `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter / tarpas).
+- **Shell / diagramų išimtis:** `InteractiveDiagramShell` kortelėse klaviatūros kelias priklauso Shell nav. HTML kortelės, kurios tik sinchronizuoja aktyvų žingsnį, turi būti pointer activate + `tabIndex={-1}` + `aria-hidden`; žr. `DIAGRAM_KIT_STANDARD.md` HTML checklist.
+- **`role="img"` taisyklė:** nedėk `role="img"` ant wrapper'io, kuris turi interaktyvių vaikų. ARIA `img` vaikus paverčia prezentaciniais, todėl gaunami fokusuojami, bet neanonsuojami kontroliai (WCAG 4.1.2). Interaktyvus wrapper'is = `role="group"`; `role="img"` laikomas ant vidinio SVG / statinės iliustracijos.
 - Touch targets: min 44px aukštis (pvz. `py-1.5 px-3` badge'ams).
 - Dark mode: visi blokai turi `dark:` variantus.
 
@@ -167,7 +169,7 @@ Kurdamas naują skaidrės tipą, UI_UX_AGENT laikosi:
 - **Terminai / sąrašai:** `bg-slate-50 dark:bg-slate-800/60`.
 - **Badge'ai:** `bg-brand-100 dark:bg-brand-900/30 text-brand-700 dark:text-brand-300 px-3 py-1.5 rounded-full`.
 - **Kortelės:** `rounded-xl border border-gray-200 dark:border-gray-700`.
-- **Interaktyvūs:** `aria-label`, `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter/space).
+- **Interaktyvūs:** standalone kontroliai turi `aria-label`, semantinį `button` arba `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter/space). Shell diagramų kortelės nesidubliuoja su Shell nav: `tabIndex={-1}` + `aria-hidden`.
 
 ### 5.3 Reikalingi failai (naujam tipui)
 

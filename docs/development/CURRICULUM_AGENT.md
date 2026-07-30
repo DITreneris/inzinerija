@@ -43,6 +43,8 @@
 
 **M13–15 seka (2026-07-22):** generative media – **pipeline prieš įrankius**: MUST **13.12** (pipeline) → vaizdai → **13.32** (consistency) → video (trumpi I2V + CPI) → **13.52** (post-prod) → **garsas** (audio-first) → **13.101** provenance/Legal → **13.11** verslo workflow. M15 completion = **150.5** only; optional full **151–154** (montažas). Registruoti naujus ID `MODULIO_13_SKAIDRIU_EILES.md` + `CONTENT_MODULIU_ATPAZINIMAS.md` §6. Žr. `docs/turinio_pletra_moduliai_13_14_15.md`.
 
+**M13 I2V builder (2026-07-28):** interaktyvi **13.47** (`i2v-generatorius`) **po 13.4**, **prieš 13.5** (eilė 7a). Neperkelti prieš still generatorių (13.37) ar po įrankių matricos be pedagoginio sprendimo. Feature Doc: `M13_I2V_CLIP_BUILDER.md`.
+
 **M16–18 (2026-07):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas**, **M18 = D3+D4+D5**; Cursor-first; soft DoD. Skaidrių eilės failų dar nėra; JSON Deferred (`TODO.md` §1.5). **Ne** painioti su M7 optional viz (sk. 100–106). Žr. `docs/turinio_pletra_moduliai_16_17_18.md`.
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
