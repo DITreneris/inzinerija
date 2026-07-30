@@ -31,7 +31,6 @@ const MARKER = PROCESS_ARROW.tipLen;
 
 function textLines(label: string) {
   if (label.length <= 10) return [label];
-  if (label === 'Condition') return ['Condi-', 'tion'];
   return [label];
 }
 
@@ -51,6 +50,7 @@ export default function M10WorkflowSpecDiagram({
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const tones = getDiagramToneColors(isDarkPalette);
   const L = getM10WorkflowSpecLabels(locale);
+  const typography = DIAGRAM_TOKENS.typography;
   const interactive = typeof onStepClick === 'function';
   const boxes = L.blocks.map((label, index) => {
     const isFirstRow = index < 4;
@@ -100,8 +100,8 @@ export default function M10WorkflowSpecDiagram({
         x={W / 2}
         y={24}
         textAnchor="middle"
-        fontSize="14"
-        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+        fontSize={typography.title.desktop}
+        fontWeight={typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -166,8 +166,8 @@ export default function M10WorkflowSpecDiagram({
               x={box.x + 12}
               y={box.y + 19}
               fill="rgba(255,255,255,0.9)"
-              fontSize="9"
-              fontWeight="700"
+              fontSize={typography.stepSub.desktop}
+              fontWeight={typography.titleWeight}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {box.index + 1}
@@ -177,8 +177,8 @@ export default function M10WorkflowSpecDiagram({
               y={box.y + (lines.length === 1 ? 29 : 22)}
               textAnchor="middle"
               fill="white"
-              fontSize="11"
-              fontWeight="800"
+              fontSize={typography.stepLabel.desktop}
+              fontWeight={typography.titleWeight}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {lines.map((line, lineIndex) => (

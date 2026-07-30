@@ -156,22 +156,6 @@ export function getM10ToolTreeLabels(locale: M10Locale) {
   };
 }
 
-export function getM10SpecIncidentLabels(locale: M10Locale) {
-  const spec = getM10WorkflowSpecLabels(locale);
-  const incident = getM10IncidentPlaybookLabels(locale);
-
-  return {
-    titleSpec: spec.title,
-    titleIncident: incident.title,
-    specBlocks: spec.blocks,
-    incidentSteps: incident.steps,
-    aria:
-      locale === 'en'
-        ? 'Workflow specification eight blocks and incident response five steps'
-        : 'Workflow specifikacija aštuoni blokai ir incidentų planas penki žingsniai',
-  };
-}
-
 export function getM10WorkflowSpecLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {
@@ -257,11 +241,29 @@ export function getM10TriggerFlowStepExplanations(locale: M10Locale) {
 
 export function getM10WorkflowSpecStepExplanations(locale: M10Locale) {
   const L = getM10WorkflowSpecLabels(locale);
-  const hint =
+  const bodies =
     locale === 'en'
-      ? 'One block of the one-page workflow spec.'
-      : 'Vienas vieno puslapio specifikacijos blokas.';
-  return L.blocks.map((title) => ({ title, body: hint }));
+      ? [
+          'Name what starts the workflow: form, schedule, manual button, webhook, or another clear signal.',
+          'List the required fields and validation rules so the agent knows what counts as a usable input.',
+          'Describe the branch or filter: when to continue, skip, ask a human, or stop the run.',
+          'Write the steps and tools the agent may use. Keep the order explicit, not hidden in prose.',
+          'Define the expected result: format, destination, owner, and what must be included before handoff.',
+          'Set waiting time, retry count, rate limits, and the point where the workflow must stop.',
+          'Plan failures up front: retry, notify, escalate, or return a clear "failed" state.',
+          'Log run_id, time, step, decision, and result so the team can audit what happened later.',
+        ]
+      : [
+          'Įvardyk, kas paleidžia eigą: forma, tvarkaraštis, rankinis mygtukas, webhook ar kitas aiškus signalas.',
+          'Surašyk privalomus laukus ir validavimo taisykles, kad agentas žinotų, kas yra tinkama įvestis.',
+          'Aprašyk šaką arba filtrą: kada tęsti, praleisti, klausti žmogaus arba stabdyti vykdymą.',
+          'Surašyk žingsnius ir įrankius, kuriuos agentas gali naudoti. Tvarką laikyk aiškią, ne paslėptą prozoje.',
+          'Apibrėžk laukiamą rezultatą: formatą, vietą, savininką ir ką būtina įtraukti prieš perdavimą.',
+          'Nustatyk laukimo laiką, kartojimų skaičių, limitus ir ribą, kada eiga turi sustoti.',
+          'Klaidas suplanuok iš anksto: kartoti, įspėti, eskaluoti arba grąžinti aiškią būseną „nepavyko“.',
+          'Fiksuok run_id, laiką, žingsnį, sprendimą ir rezultatą, kad komanda vėliau galėtų audituoti eigą.',
+        ];
+  return L.blocks.map((title, index) => ({ title, body: bodies[index] }));
 }
 
 export function getM10IncidentPlaybookStepExplanations(locale: M10Locale) {

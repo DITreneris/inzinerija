@@ -44,6 +44,7 @@ export default function M10IncidentPlaybookDiagram({
   const tones = getDiagramToneColors(isDarkPalette);
   const amber = tones.amber;
   const L = getM10IncidentPlaybookLabels(locale);
+  const typography = DIAGRAM_TOKENS.typography;
   const totalW = L.steps.length * BOX_W + (L.steps.length - 1) * GAP;
   const startX = (W - totalW) / 2;
   const interactive = typeof onStepClick === 'function';
@@ -84,8 +85,8 @@ export default function M10IncidentPlaybookDiagram({
         x={W / 2}
         y={26}
         textAnchor="middle"
-        fontSize="14"
-        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+        fontSize={typography.title.desktop}
+        fontWeight={typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -133,8 +134,8 @@ export default function M10IncidentPlaybookDiagram({
               y={ROW_Y + 28}
               textAnchor="middle"
               fill={amber.stroke}
-              fontSize="11"
-              fontWeight="800"
+              fontSize={typography.stepLabel.desktop}
+              fontWeight={typography.titleWeight}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {index + 1}. {label}

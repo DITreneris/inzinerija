@@ -15,9 +15,6 @@ import {
 } from './verticalFlowGeometry';
 import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
-/** Dark inactive soft – between frame bgStart (#1e293b) and brand (tone.soft equals bg). */
-const INACTIVE_SOFT_DARK = '#334155';
-
 /** Geometry SOT – tests assert center / shaft / tip floors. */
 export const M7_DATA_PREP_GEOMETRY = {
   stepCount: 5,
@@ -90,7 +87,7 @@ export default function M7DataPrepWorkflowDiagram({
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const inactiveSoft = isDarkPalette
-    ? INACTIVE_SOFT_DARK
+    ? DIAGRAM_TOKENS.colors.inactiveSoftDark
     : DIAGRAM_TONE_COLORS.brand.soft;
   const isInteractive = typeof onStepClick === 'function';
   const stepsMeta = getM7DataPrepSteps(locale);

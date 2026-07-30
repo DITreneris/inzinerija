@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { DIAGRAM_TOKENS } from '../diagramTokens';
 import {
+  getM15PracticeLoopFeedbackPath,
   getM15PracticeLoopHorizontalConnector,
   getM15PracticeLoopStepBoxes,
   M15_PRACTICE_LOOP_LAYOUT,
@@ -27,5 +28,17 @@ describe('m15PracticeLoopLayout', () => {
       expect(conn.x1).toBeLessThan(conn.x2);
       expect(conn.y1).toBe(conn.y2);
     }
+  });
+
+  it('builds feedback path from quick loop geometry', () => {
+    const path = getM15PracticeLoopFeedbackPath(
+      DIAGRAM_TOKENS.arrow.processTipLen
+    );
+    const numbers = path.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+
+    expect(path).toMatch(/^M /);
+    expect(numbers).toHaveLength(10);
+    expect(numbers.every(Number.isFinite)).toBe(true);
+    expect(numbers[0]).toBeGreaterThan(numbers[8]);
   });
 });

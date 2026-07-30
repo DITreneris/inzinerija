@@ -139,8 +139,8 @@ export default function M10DepthRolesMiniDiagram({
                 x={pill.x + pill.width / 2}
                 y={pill.y + 22}
                 textAnchor="middle"
-                fontSize={12}
-                fontWeight={700}
+                fontSize={typography.rolesHub.label.compact}
+                fontWeight={typography.titleWeight}
                 fill={active ? palette.whiteText : palette.brandDark}
                 fontFamily={DIAGRAM_TOKENS.font}
               >
@@ -150,8 +150,8 @@ export default function M10DepthRolesMiniDiagram({
                 x={pill.x + pill.width / 2}
                 y={pill.y + 40}
                 textAnchor="middle"
-                fontSize={10}
-                fontWeight={600}
+                fontSize={typography.rolesHub.sub.compact}
+                fontWeight={typography.edgeLabel.weight}
                 fill={active ? palette.whiteText : palette.muted}
                 fontFamily={DIAGRAM_TOKENS.font}
                 opacity={active ? 0.9 : 0.85}
@@ -180,7 +180,7 @@ export default function M10DepthRolesMiniDiagram({
             y={168}
             textAnchor="middle"
             fontSize={typography.rolesHub.subtitle.desktop}
-            fontWeight={700}
+            fontWeight={typography.titleWeight}
             fill={palette.brandDark}
             fontFamily={DIAGRAM_TOKENS.font}
           >
@@ -230,8 +230,8 @@ export default function M10DepthRolesMiniDiagram({
                 x={router.x + router.width / 2}
                 y={router.y + 25}
                 textAnchor="middle"
-                fontSize={11}
-                fontWeight={600}
+                fontSize={typography.rolesHub.subtitle.desktop}
+                fontWeight={typography.edgeLabel.weight}
                 fill={palette.muted}
                 fontFamily={DIAGRAM_TOKENS.font}
               >
@@ -263,8 +263,8 @@ export default function M10DepthRolesMiniDiagram({
                   x={box.x + box.width / 2}
                   y={box.y + 25}
                   textAnchor="middle"
-                  fontSize={11}
-                  fontWeight={700}
+                  fontSize={typography.rolesHub.subtitle.desktop}
+                  fontWeight={typography.titleWeight}
                   fill={palette.whiteText}
                   fontFamily={DIAGRAM_TOKENS.font}
                 >

@@ -277,13 +277,25 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('en');
       const { container: en } = renderWithProviders(<M13AecFunnelBlock />);
       expect(en.textContent).toContain('Campaign goals funnel');
+      expect(en.textContent).toContain('Awareness');
       expect(en.textContent).toContain('Pull attention');
+      expect(en.textContent).not.toContain('Attention, emotion');
       expect(en.textContent).not.toContain('Kampanijos tikslų piltuvas');
+      expect(
+        en.querySelectorAll('svg path[d^="M "]').length
+      ).toBeGreaterThanOrEqual(3);
 
       setLocale('lt');
       setDarkTheme();
       const { container: lt } = renderWithProviders(<M13AecFunnelBlock />);
       expect(lt.textContent).toContain('Kampanijos tikslų piltuvas');
+      expect(lt.textContent).toContain('Atpažįstamumas');
+      expect(lt.textContent).toContain('Įsitraukimas');
+      expect(lt.textContent).toContain('Konversija');
+      expect(lt.textContent).toContain('Pritrauk dėmesį');
+      expect(lt.textContent).not.toContain('Awareness ·');
+      expect(lt.textContent).not.toContain('Engagement ·');
+      expect(lt.textContent).not.toContain('Conversion ·');
       expect(lt.textContent).toContain('Tu esi čia:');
       expect(lt.querySelectorAll('nav button')).toHaveLength(3);
       expect(
@@ -346,20 +358,20 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
   });
 
   describe('M13MediaPipelineBlock (M13 slide 13.12)', () => {
-    it('renders English pipeline copy when locale is en', () => {
+    it('renders English chain copy when locale is en', () => {
       setLocale('en');
       const { container } = renderWithProviders(<M13MediaPipelineBlock />);
-      expect(container.textContent).toContain('Generative media pipeline');
+      expect(container.textContent).toContain('Generative media chain');
       expect(container.textContent).toContain('Reference lock');
       expect(container.textContent).not.toContain(
-        'Generatyvinės medijos pipeline'
+        'Generatyvinės medijos grandinė'
       );
     });
 
-    it('renders Lithuanian pipeline copy and shell nav when locale is lt', () => {
+    it('renders Lithuanian chain copy and shell nav when locale is lt', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M13MediaPipelineBlock />);
-      expect(container.textContent).toContain('Generatyvinės medijos pipeline');
+      expect(container.textContent).toContain('Generatyvinės medijos grandinė');
       expect(container.textContent).toContain('Tu esi čia:');
       expect(container.querySelectorAll('nav button')).toHaveLength(6);
       expect(
@@ -407,14 +419,15 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
         getByRole('button', { name: 'Pilnas kelias (optional)' })
       );
       expect(container.textContent).toContain('1. Vaizdas');
-      expect(container.textContent).toContain('skaidrė 151');
+      expect(container.textContent).toContain('optional scenarijus');
       expect(container.querySelectorAll('nav button')).toHaveLength(5);
     });
 
-    it('shows quick-path CTA to slide 150.5', () => {
+    it('shows quick-path CTA to hero quick start (no curriculum ID)', () => {
       setLocale('lt');
       const { container } = renderWithProviders(<M15PracticeLoopBlock />);
-      expect(container.textContent).toContain('skaidrė 150.5');
+      expect(container.textContent).toContain('greitas startas');
+      expect(container.textContent).not.toMatch(/skaidrė\s+150\.5/);
     });
 
     it('uses the dark diagram palette', () => {

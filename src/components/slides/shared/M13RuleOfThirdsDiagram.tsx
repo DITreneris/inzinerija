@@ -2,6 +2,7 @@ import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM13ThirdsLabels } from './m13DiagramContent';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
 import type { M10Locale } from './m10DiagramContent';
 
 const W = 360;
@@ -19,6 +20,8 @@ export default function M13RuleOfThirdsDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const track = getContentTrackColors(isDark);
   const L = getM13ThirdsLabels(locale);
   const frameY = M + 28;
   const x1 = M + FW / 3;
@@ -42,7 +45,7 @@ export default function M13RuleOfThirdsDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
       </defs>
       <rect

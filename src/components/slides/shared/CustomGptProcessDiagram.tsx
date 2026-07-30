@@ -28,9 +28,6 @@ import {
 const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
 const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactive;
 
-/** Dark inactive soft – between frame bgStart and brand. */
-const INACTIVE_SOFT_DARK = '#334155';
-
 const ACCENT_FB = DIAGRAM_TOKENS.colors.amber;
 const ACCENT_FB_DARK = DIAGRAM_ROLE_COLORS.accentDark;
 const FLOW_STROKE = DIAGRAM_TOKENS.stroke.flowStrong;
@@ -68,7 +65,7 @@ export default function CustomGptProcessDiagram({
   const layout = isCompactDiagram ? COMPACT_LAYOUT : DESKTOP_LAYOUT;
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const inactiveSoft = isDarkPalette
-    ? INACTIVE_SOFT_DARK
+    ? DIAGRAM_TOKENS.colors.inactiveSoftDark
     : DIAGRAM_TONE_COLORS.brand.soft;
   const flowStroke = palette.flow;
   const step = (i: number) =>

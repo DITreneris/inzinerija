@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import CTAButton from '../../ui/CTAButton';
 import CustomGptProcessDiagram from './CustomGptProcessDiagram';
 import EnlargeableDiagram from './EnlargeableDiagram';
 
@@ -417,23 +418,23 @@ export default function ProcessStepper() {
 
       {/* Navigacija: Ankstesnis / Toliau */}
       <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        <button
-          type="button"
+        <CTAButton
+          variant="secondary"
           onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
           disabled={isFirst}
-          className="btn-secondary inline-flex items-center justify-center gap-2 py-3 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
+          className="py-3 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed order-2 sm:order-1"
           aria-label={t('prevStepAria')}
         >
           <ChevronLeft className="h-5 w-5 shrink-0" />
           {t('prevStep')}
-        </button>
-        <button
-          type="button"
+        </CTAButton>
+        <CTAButton
+          variant="primary"
           onClick={() =>
             setCurrentStep((s) => Math.min(steps.length - 1, s + 1))
           }
           disabled={isLast}
-          className="btn-primary inline-flex items-center justify-center gap-2 py-3 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed order-1 sm:order-2"
+          className="py-3 sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed order-1 sm:order-2"
           aria-label={
             isLast
               ? t('lastStepAria')
@@ -448,7 +449,7 @@ export default function ProcessStepper() {
                 title: nextStep ? stepTitles[currentStep + 1] : '',
               })}
           <ChevronRight className="h-5 w-5 shrink-0" />
-        </button>
+        </CTAButton>
       </div>
     </div>
   );

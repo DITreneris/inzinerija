@@ -8,7 +8,7 @@ export type M13BusinessLocale = 'lt' | 'en';
 export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_LT: StepExplanation[] = [
   {
     title: 'Brief',
-    body: '**Marketing brief** – kam skirta, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija. Trumpas dokumentas – pagrindas visam darbui. Techninę medijos grandinę (stills → I2V → garsas → QA) žr. skaidrę „Generatyvinės medijos pipeline“ (13.12).',
+    body: '**Marketing brief** – kam skirta, kokiam tikslui (Awareness / Engagement / Conversion), kokia auditorija. Trumpas dokumentas – pagrindas visam darbui. Techninę medijos grandinę (kadrai → I2V → garsas → patikra) žr. skaidrę „Generatyvinės medijos grandinė“.',
   },
   {
     title: 'Prompt generavimas',
@@ -39,7 +39,7 @@ export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_LT: StepExplanation[] = [
 export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_EN: StepExplanation[] = [
   {
     title: 'Brief',
-    body: '**Marketing brief** – who it is for, goal (Awareness / Engagement / Conversion), audience. Short document – foundation for all work. For the technical media chain (stills → I2V → audio → QA), see the slide “Generative media pipeline” (13.12).',
+    body: '**Marketing brief** – who it is for, goal (Awareness / Engagement / Conversion), audience. Short document – foundation for all work. For the technical media chain (frames → I2V → audio → QA), see the slide “Generative media chain”.',
   },
   {
     title: 'Prompt generation',

@@ -89,16 +89,18 @@ Wired spine: `m7_da_pipeline` (etalon), DataPrep, MediaPipeline, ConsistencyLock
 
 ## Type Etalon Wave 3 – funnel / stack ✅
 
-Helpers: `funnelStackGeometry.ts` (`funnelStageWidths`, `funnelStageRects`, `stackColumnRects`, `funnelWidthsNarrowing`). Stack GAP etalon **18** (no connectors).
+Helpers: `funnelStackGeometry.ts` (`funnelStageWidths`, `funnelStageRects`, `funnelStageTrapezoids`, `funnelHairlineYs`, `funnelOuterOutlinePath`, `stackColumnRects`, `funnelWidthsNarrowing`). Stack GAP etalon **18** (no connectors).
 
-| Check     | Pass criteria                                        |
-| --------- | ---------------------------------------------------- |
-| Center    | Stage/stack `x` via `centerAxisStart` inside helpers |
-| Funnel    | Widths strictly narrowing; own viewBox 360×300       |
-| Stack     | Equal-width Y rhythm; own viewBox 320×300; GAP 18    |
-| Tokens    | `opacity.inactive` / box stroke / `titleWeight`      |
-| Own sizes | Never copy AgentWorkflow / da_pipeline BOX           |
-| No shafts | Type has no flow U / vertical connectors             |
+| Check      | Pass criteria                                                                     |
+| ---------- | --------------------------------------------------------------------------------- |
+| Center     | Stage/stack `x` via `centerAxisStart` inside helpers                              |
+| Funnel     | Widths strictly narrowing; own viewBox 360×280                                    |
+| Silhouette | AEC = continuous trapezoids (`gapY=0`) + hairlines + outer outline; title + motif |
+| Wow        | Brand depth ladder + active inset ring + inline motifs (eye/pointer/target)       |
+| Stack      | Equal-width Y rhythm; own viewBox 320×300; GAP 18                                 |
+| Tokens     | `opacity.inactive` / box stroke / `titleWeight`                                   |
+| Own sizes  | Never copy AgentWorkflow / da_pipeline BOX                                        |
+| No shafts  | Type has no flow U / vertical connectors                                          |
 
 Wired: `m13_aec_funnel`, `m13_prompt_stack`. Tokens-only: `m13_rule_of_thirds` titleWeight.
 
@@ -140,7 +142,27 @@ Pilot: `llm_arch` (M4 sk. 56). Pattern `comparison-mode-architecture`. Shell = *
 
 ## Wave 4 – residual caption tokens ✅
 
-Not a type etalon. Sweep SVG diagram **titles** to `DIAGRAM_TOKENS.typography.titleWeight` (700); near-caption sizes → `title.compact` / `title.desktop`. Leave step/badge `800` alone.
+Not a type etalon. Sweep SVG diagram **titles** to `DIAGRAM_TOKENS.typography.titleWeight` (700); near-caption sizes → `title.compact` / `title.desktop`.
+
+> **Superseded for M10 residual primary labels (Wave 4b):** do **not** leave step/badge raw `800`. Lab `font-mono` artefacts remain OK.
+
+## Wave 4b – residual size ladder ✅
+
+Not a type etalon. Align M10 residual (+ M15 practice loop) SVG **size/weight roles** to `DIAGRAM_TOKENS.typography` so schemas do not read as 3–4 font families (still one family: Plus Jakarta Sans).
+
+| Role                  | Token                                             |
+| --------------------- | ------------------------------------------------- |
+| Caption               | `title.desktop` / `title.compact` + `titleWeight` |
+| Box / leaf primary    | `stepLabel.*` + `titleWeight`                     |
+| Box secondary / micro | `stepSub.*` (+ `edgeLabel.weight` when secondary) |
+| Edge verb             | `edgeLabel`                                       |
+| Depth/roles hub       | `rolesHub.*`                                      |
+
+**In scope:** `M10WorkflowSpecDiagram`, `M10IncidentPlaybookDiagram`, `M10ToolDecisionTreeDiagram`, `M10LearningLoopDiagram` (NodeBox), `M10DepthRolesMiniDiagram`, `M15PracticeLoopDiagram`; light touch `M10OrchestratorDiagram` error badge.
+
+**Forbidden:** `fontSize="14"` captions, raw `fontWeight` 800.
+
+**Tests:** `lmsCaptionTokenPolish.test.ts` (Wave 4b source-scan).
 
 ## Wave 5 – dual-taxonomy type etalon (SUPERSEDED 2026-07-24)
 

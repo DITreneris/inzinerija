@@ -77,6 +77,7 @@ function NodeBox({
   stroke: string;
   onActivate?: () => void;
 }) {
+  const typography = DIAGRAM_TOKENS.typography;
   const isActive = visualState === 'active';
   const opacity = visualState === 'orphan' ? ORPHAN_OPACITY : 1;
   return (
@@ -96,8 +97,8 @@ function NodeBox({
         y={box.y + 22}
         textAnchor="middle"
         fill="white"
-        fontSize="12"
-        fontWeight="700"
+        fontSize={typography.stepLabel.desktop}
+        fontWeight={typography.titleWeight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[0]}
@@ -107,7 +108,8 @@ function NodeBox({
         y={box.y + 40}
         textAnchor="middle"
         fill="rgba(255,255,255,0.88)"
-        fontSize="9"
+        fontSize={typography.stepSub.desktop}
+        fontWeight={typography.edgeLabel.weight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {box.label[1]}

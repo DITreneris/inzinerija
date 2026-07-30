@@ -34,6 +34,7 @@ export default function M10ToolDecisionTreeDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const typography = DIAGRAM_TOKENS.typography;
   const L = getM10ToolTreeLabels(locale);
   const leaves = getM10ToolTreeLeaves(locale);
   const interactive = typeof onSelect === 'function';
@@ -68,8 +69,8 @@ export default function M10ToolDecisionTreeDiagram({
         x={W / 2}
         y={22}
         textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.title.compact}
-        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+        fontSize={typography.title.compact}
+        fontWeight={typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -90,8 +91,8 @@ export default function M10ToolDecisionTreeDiagram({
         y={rootY + 28}
         textAnchor="middle"
         fill="white"
-        fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop + 1}
-        fontWeight="700"
+        fontSize={typography.stepLabel.desktop}
+        fontWeight={typography.titleWeight}
         fontFamily={DIAGRAM_TOKENS.font}
       >
         {L.root}
@@ -129,8 +130,8 @@ export default function M10ToolDecisionTreeDiagram({
               y={leafTop + 18}
               textAnchor="middle"
               fill={isSel ? 'white' : palette.brand}
-              fontSize="9"
-              fontWeight="600"
+              fontSize={typography.stepSub.desktop}
+              fontWeight={typography.edgeLabel.weight}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {leaf.condition.length > 22
@@ -142,8 +143,8 @@ export default function M10ToolDecisionTreeDiagram({
               y={leafTop + 40}
               textAnchor="middle"
               fill={isSel ? 'rgba(255,255,255,0.95)' : palette.brandDark}
-              fontSize="11"
-              fontWeight="800"
+              fontSize={typography.stepLabel.compact}
+              fontWeight={typography.titleWeight}
               fontFamily={DIAGRAM_TOKENS.font}
             >
               {leaf.tool}

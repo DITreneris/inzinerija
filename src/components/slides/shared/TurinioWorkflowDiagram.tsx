@@ -9,7 +9,9 @@ import {
   getM13BusinessWorkflowDiagramLabels,
   type M13BusinessLocale,
 } from './m13BusinessWorkflowContent';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
+import { M13_TURINIO_WORKFLOW_TONES } from './contentTrackDiagramTones';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
@@ -73,14 +75,16 @@ export default function TurinioWorkflowDiagram({
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDark);
+  const track = getContentTrackColors(isDark);
   const isInteractive = typeof onStepClick === 'function';
   const labels = getM13BusinessWorkflowDiagramLabels(locale);
   const STEPS = labels.steps;
-  const STEP_ACTIVE_OPACITY = 1;
-  const STEP_INACTIVE_OPACITY = 0.5;
   const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
     resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
   const typography = DIAGRAM_TOKENS.typography;
+  const uniqueTones = [...new Set(M13_TURINIO_WORKFLOW_TONES)];
 
   return (
     <svg
@@ -98,7 +102,7 @@ export default function TurinioWorkflowDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
         <marker
           id={`tur-wf-arrow-${uid}`}
@@ -116,16 +120,22 @@ export default function TurinioWorkflowDiagram({
             strokeWidth="0.5"
           />
         </marker>
-        <linearGradient
-          id={`tur-wf-step-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
+        {uniqueTones.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`tur-wf-tone-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
       </defs>
 
       <rect
@@ -173,8 +183,11 @@ export default function TurinioWorkflowDiagram({
       </text>
 
       {stepBoxes.map((box, i) => {
+        const tone = M13_TURINIO_WORKFLOW_TONES[i];
         const isActive = currentStep === i;
-        const opacity = isActive ? STEP_ACTIVE_OPACITY : STEP_INACTIVE_OPACITY;
+        const opacity = isActive
+          ? DIAGRAM_TOKENS.opacity.active
+          : DIAGRAM_TOKENS.opacity.inactive;
         return (
           <g key={i}>
             <g
@@ -188,8 +201,8 @@ export default function TurinioWorkflowDiagram({
                 width={box[2]}
                 height={box[3]}
                 rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#tur-wf-step-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
+                fill={`url(#tur-wf-tone-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : toneColors[tone].stroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active

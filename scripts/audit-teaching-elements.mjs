@@ -44,8 +44,10 @@ const EMBED_KEYS = [
 const LAB_IMAGE_KEYS = new Set([
   'm4_prompt_mode_simulator',
   'm10_human_control_simulator',
+  'm10_team_readiness_lab',
   'm10_agent_taxonomy',
   'm9_workflow_step_prompts',
+  'm13_consistency_lab',
 ]);
 
 const LEGACY_ALIASES = new Set(['da_pipeline_6', 'da_bi_schema_4']);

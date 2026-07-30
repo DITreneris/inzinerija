@@ -13,6 +13,8 @@ export const DIAGRAM_TOKENS = {
     emerald: '#0f766e',
     amber: '#b8860b',
     slate: '#475569',
+    /** Dark-mode inactive box fill (shared by CustomGpt / M7 / DiPrezentacijos) */
+    inactiveSoftDark: '#334155',
   },
   palette: {
     light: {

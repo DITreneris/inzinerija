@@ -41,3 +41,18 @@ export function getM15PracticeLoopHorizontalConnector(
     y2: y,
   };
 }
+
+export function getM15PracticeLoopFeedbackPath(markerLen: number): string {
+  const steps = M15_PRACTICE_LOOP_LAYOUT.quickSteps;
+  const from = steps[4];
+  const to = steps[2];
+  const topY =
+    M15_PRACTICE_LOOP_LAYOUT.activeY + M15_PRACTICE_LOOP_LAYOUT.boxHeight;
+  const loopY = topY + 36;
+  const startX = from.x + from.w / 2;
+  const endX = to.x + markerLen;
+  const firstControlX = startX + 36;
+  const secondControlX = to.x + to.w / 2;
+
+  return `M ${startX} ${topY} Q ${firstControlX} ${loopY} ${from.x - 32} ${loopY} Q ${secondControlX} ${loopY} ${endX} ${topY}`;
+}

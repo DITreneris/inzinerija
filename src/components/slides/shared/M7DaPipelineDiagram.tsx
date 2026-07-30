@@ -15,9 +15,6 @@ import {
 } from './verticalFlowGeometry';
 import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
-/** Dark inactive soft – between frame bgStart (#1e293b) and brand (tone.soft equals bg). */
-const INACTIVE_SOFT_DARK = '#334155';
-
 /** Geometry SOT – tests assert center / shaft / tip floors. */
 export const M7_DA_PIPELINE_GEOMETRY = {
   stepCount: 6,
@@ -90,7 +87,7 @@ export default function M7DaPipelineDiagram({
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const inactiveSoft = isDarkPalette
-    ? INACTIVE_SOFT_DARK
+    ? DIAGRAM_TOKENS.colors.inactiveSoftDark
     : DIAGRAM_TONE_COLORS.brand.soft;
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM7DaPipelineSteps(locale);

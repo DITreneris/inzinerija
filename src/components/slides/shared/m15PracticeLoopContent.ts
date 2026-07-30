@@ -58,10 +58,10 @@ export function getM15PracticeLoopLabels(locale: M10Locale) {
   };
 }
 
-const CTA_QUICK_LT = ' Kitas žingsnis: skaidrė 150.5 (hero vaizdas).';
-const CTA_QUICK_EN = ' Next step: slide 150.5 (hero image).';
-const CTA_FULL_LT = ' Kitas žingsnis: skaidrė 151 (optional full).';
-const CTA_FULL_EN = ' Next step: slide 151 (optional full).';
+const CTA_QUICK_LT = ' Kitas žingsnis: greitas startas (hero vaizdas).';
+const CTA_QUICK_EN = ' Next step: quick start (hero image).';
+const CTA_FULL_LT = ' Kitas žingsnis: optional scenarijus (vaizdas).';
+const CTA_FULL_EN = ' Next step: optional scenario (image).';
 
 export function getM15PracticeLoopExplanations(
   locale: M10Locale,
@@ -138,7 +138,7 @@ export function getM15PracticeLoopExplanations(
       },
       {
         title: '5. Tweak',
-        body: `Iterate until brand and message fit – then go to the summary (slide 150.5 is enough).${cta}`,
+        body: `Iterate until brand and message fit – then go to the summary (quick-start hero is enough).${cta}`,
       },
     ];
   }
@@ -162,7 +162,7 @@ export function getM15PracticeLoopExplanations(
     },
     {
       title: '5. Korekcija',
-      body: `Koreguok, kol brand ir žinutė tinka – tada eik į santrauką (150.5 pakanka).${cta}`,
+      body: `Koreguok, kol brand ir žinutė tinka – tada eik į santrauką (greito starto hero pakanka).${cta}`,
     },
   ];
 }

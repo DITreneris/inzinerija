@@ -1,5 +1,5 @@
 /**
- * Modulio 13 – generatyvinės medijos pipeline (6 žingsniai, interaktyvu).
+ * Modulio 13 – generatyvinės medijos grandinė (6 žingsniai, interaktyvu).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
@@ -9,7 +9,9 @@ import {
   getM13MediaPipelineSteps,
   type M13Locale,
 } from './m13MediaPipelineContent';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
+import { M13_MEDIA_PIPELINE_TONES } from './contentTrackDiagramTones';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
@@ -72,12 +74,16 @@ export default function M13MediaPipelineDiagram({
   const uid = useId().replace(/:/g, '');
   const { isCompactDiagram } = useCompactViewport();
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDark);
+  const track = getContentTrackColors(isDark);
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM13MediaPipelineSteps(locale);
   const chrome = getM13MediaPipelineChrome(locale);
   const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
     resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
   const typography = DIAGRAM_TOKENS.typography;
+  const uniqueTones = [...new Set(M13_MEDIA_PIPELINE_TONES)];
 
   return (
     <svg
@@ -95,7 +101,7 @@ export default function M13MediaPipelineDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
         <marker
           id={`m13-media-pipeline-arrow-${uid}`}
@@ -113,16 +119,22 @@ export default function M13MediaPipelineDiagram({
             strokeWidth="0.5"
           />
         </marker>
-        <linearGradient
-          id={`m13-media-pipeline-step-${uid}`}
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
+        {uniqueTones.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`m13-media-pipeline-tone-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
       </defs>
 
       <rect
@@ -171,6 +183,7 @@ export default function M13MediaPipelineDiagram({
 
       {stepBoxes.map((box, i) => {
         const [x, y, w, h] = box;
+        const tone = M13_MEDIA_PIPELINE_TONES[i];
         const isActive = currentStep === i;
         const opacity = isActive
           ? DIAGRAM_TOKENS.opacity.active
@@ -189,8 +202,8 @@ export default function M13MediaPipelineDiagram({
                 width={w}
                 height={h}
                 rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#m13-media-pipeline-step-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
+                fill={`url(#m13-media-pipeline-tone-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : toneColors[tone].stroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active

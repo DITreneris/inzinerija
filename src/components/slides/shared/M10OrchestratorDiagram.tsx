@@ -215,8 +215,8 @@ function NodeBox({
             y={box.y + 13.5}
             textAnchor="middle"
             fill="#ffffff"
-            fontSize={10}
-            fontWeight={700}
+            fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
+            fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
             fontFamily={DIAGRAM_TOKENS.font}
           >
             !

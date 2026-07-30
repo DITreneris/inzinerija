@@ -26,7 +26,7 @@ export default function M15PracticeLoopBlock() {
 
   return (
     <EnlargeableDiagram
-      mobileBehavior="reflow"
+      mobileBehavior="scroll"
       renderContent={() => (
         <div className="space-y-3">
           <div

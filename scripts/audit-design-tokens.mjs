@@ -42,13 +42,13 @@ const FLAGS = {
   })(),
 };
 
-/** Baseline from docs/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md (2026-07 repair pass). */
+/** Baseline sync Content-track §6b (2026-07-29) — live inventory after contentTrackTokens (+12 hex) post Day 0. */
 const BASELINE = {
-  hex: 295,
-  inlineStyle: 12,
-  svgFill: 51,
-  arbitraryClass: 59,
-  total: 417,
+  hex: 202,
+  inlineStyle: 7,
+  svgFill: 7,
+  arbitraryClass: 56,
+  total: 272,
 };
 
 /** Reikšmės, kurios NETURI būti laikomos „hex'ais“ (legitimūs base64 fragmentai, regex bait'ai). */

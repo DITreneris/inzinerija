@@ -1,16 +1,14 @@
 import type { StepExplanation } from './stepExplanations';
 import type { M10Locale } from './m10DiagramContent';
 
+/** Stage titles only in SVG (etalon); body copy lives in getM13AecExplanations. */
 export function getM13AecLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {
       title: 'Campaign goals funnel',
       awareness: 'Awareness',
-      awarenessSub: 'Attention, emotion',
       engagement: 'Engagement',
-      engagementSub: 'Context, stop scroll',
       conversion: 'Conversion',
-      conversionSub: 'Action, CTA, trust',
       hint: 'Tap a band – when to choose it',
       aria: 'Funnel: Awareness, Engagement, Conversion',
       regionAria: 'Campaign goals – three stages',
@@ -22,14 +20,11 @@ export function getM13AecLabels(locale: M10Locale) {
   }
   return {
     title: 'Kampanijos tikslų piltuvas',
-    awareness: 'Awareness',
-    awarenessSub: 'Dėmesys, emocija',
-    engagement: 'Engagement',
-    engagementSub: 'Kontekstas, sustojimas',
-    conversion: 'Conversion',
-    conversionSub: 'Veiksmas, CTA, pasitikėjimas',
+    awareness: 'Atpažįstamumas',
+    engagement: 'Įsitraukimas',
+    conversion: 'Konversija',
     hint: 'Paspausk juostą – kada rinktis',
-    aria: 'Piltuvas: Awareness, Engagement, Conversion',
+    aria: 'Piltuvas: atpažįstamumas, įsitraukimas, konversija',
     regionAria: 'Kampanijos tikslai – trys etapai',
     youAreHere: 'Tu esi čia:',
     navAria: 'Kampanijos tikslo pasirinkimas',
@@ -47,26 +42,26 @@ export function getM13AecExplanations(locale: M10Locale): StepExplanation[] {
       },
       {
         title: 'Engagement',
-        body: 'Make people stop and interact – clear context, “what is this?”. Typical: carousel, video intro, article illustration.',
+        body: 'Make people stop and interact – clear context, “what is this?”. Typical: carousel (several frames), video intro, article illustration.',
       },
       {
         title: 'Conversion',
-        body: 'Drive action – product, offer, CTA visible; trust and readability first. Typical: ad layout, landing hero, “buy now” block.',
+        body: 'Drive action – product, offer, call to action (CTA) visible; trust and readability first. Typical: ad layout, landing hero, “buy now” block.',
       },
     ];
   }
   return [
     {
-      title: 'Awareness',
+      title: 'Atpažįstamumas',
       body: 'Pritrauk dėmesį emocija ir kontrastu. Tipiniai formatai: viršelis, baneris, social postas. Daugiau emocijos nei aiškumo.',
     },
     {
-      title: 'Engagement',
-      body: 'Skatink sustoti ir sąveikauti – aiškus kontekstas, „kas čia?“. Tipiška: carousel, video intro, iliustracija straipsniui.',
+      title: 'Įsitraukimas',
+      body: 'Skatink sustoti ir sąveikauti – aiškus kontekstas, „kas čia?“. Tipiška: karuselė (keli kadrai), video intro, iliustracija straipsniui.',
     },
     {
-      title: 'Conversion',
-      body: 'Skatink veiksmą – produktas, pasiūlymas, CTA matomas; pirmiausia aiškumas ir pasitikėjimas. Tipiška: reklamos maketas, landingo hero, „pirk dabar“ blokas.',
+      title: 'Konversija',
+      body: 'Skatink veiksmą – produktas, pasiūlymas, kvietimas veikti (CTA) matomas; pirmiausia aiškumas ir pasitikėjimas. Tipiška: reklamos maketas, landingo pagrindinis vaizdas (hero), „pirk dabar“ blokas.',
     },
   ];
 }

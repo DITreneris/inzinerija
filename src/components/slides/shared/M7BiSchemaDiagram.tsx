@@ -14,9 +14,6 @@ import {
   type DiagramBox,
 } from './verticalFlowGeometry';
 
-/** Dark inactive soft – between frame bgStart and brand (tone.soft equals bg). */
-const INACTIVE_SOFT_DARK = '#334155';
-
 const STEP_COUNT = 4;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
@@ -80,7 +77,7 @@ export default function M7BiSchemaDiagram({
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
   const inactiveSoft = isDarkPalette
-    ? INACTIVE_SOFT_DARK
+    ? DIAGRAM_TOKENS.colors.inactiveSoftDark
     : DIAGRAM_TONE_COLORS.brand.soft;
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM7BiSchemaSteps(locale);

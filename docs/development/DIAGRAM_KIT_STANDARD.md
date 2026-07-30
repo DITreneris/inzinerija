@@ -42,6 +42,7 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 - `DIAGRAM_TOKENS.lmsCycle` is a **deprecated alias** of the same floors (W1 call sites).
 - Use `useDiagramPalette()` for SVG background, border, flow colors.
 - Keep local semantic tone gradients (`DIAGRAM_TONE_COLORS`) only where tone carries meaning.
+- **M13–15 Content track (§6b):** process/funnel/stack SVG may use per-step `getDiagramToneColors` + `CONTENT_TRACK.softRose` as bg gradient end (`contentTrackTokens.ts`). Etalon pattern: `M7AnalysisTypesDiagram` tone fills. Flow arrows stay `palette.flow`. Shell nav stays brand.
 - **Do not** copy AgentWorkflow `BOX` / viewBox sizes into other types.
 
 ## Layout helpers
@@ -53,7 +54,7 @@ Canonical [`diagramTokens.ts`](../../src/components/slides/shared/diagramTokens.
 - `getProcessArrowMarkerGeom` / `processArrowEndInset` – LMS process marker + line-end inset.
 - Vertical spines: `verticalFlowGeometry.ts` + linear etalon `M7DaPipelineDiagram`.
 - Cycle-feedback: `cycleFeedbackGeometry.ts` – `horizontalRowBoxes`, `feedbackUPath` (Type Etalon W1).
-- Funnel/stack: `funnelStackGeometry.ts` – `funnelStageWidths` / `funnelStageRects` / `stackColumnRects` (Type Etalon W3). Stack GAP etalon **18** (no connectors).
+- Funnel/stack: `funnelStackGeometry.ts` – `funnelStageWidths` / `funnelStageRects` / `funnelStageTrapezoids` / `funnelHairlineYs` / `funnelOuterOutlinePath` / `stackColumnRects` (Type Etalon W3). Stack GAP etalon **18** (no connectors). AEC wow: continuous silhouette + depth ladder + motifs + active ring.
 
 ## Type etalons (uniqueness)
 
@@ -100,15 +101,17 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 2. Labels in locale helper (`hallucinationPipelineContent.ts`) – **label + caption only** (no long body / copyable on this slide).
 3. Autoplay via `useAutoplaySteps`: play cycles steps; **pin** (card click or Shell nav) pauses; Play resumes; `prefers-reduced-motion` = no interval / no particles.
 4. Cards: pointer activate + `tabIndex={-1}` / `aria-hidden` (Shell nav = keyboard primary); active = accent `ring-inset`; inactive ≥ `opacity.inactive` (0.88).
-5. Particles only while `isPlaying && !reducedMotion`. Do **not** migrate to SVG spine / `verticalFlowGeometry`.
+5. `role="img"` negali būti ant wrapper'io su interaktyviais vaikais (`button`, `a`, `input`, `select`, `[role="button"]`, `[tabindex="0"]`). ARIA `img` vaikus paverčia prezentaciniais; interaktyvus wrapper'is = `role="group"`, o `role="img"` lieka ant vidinio SVG / statinės iliustracijos.
+6. Particles only while `isPlaying && !reducedMotion`. Do **not** migrate to SVG spine / `verticalFlowGeometry`.
 
 ### Funnel / stack checklist (new / polish)
 
-1. Funnel stages via `funnelStageWidths` + `funnelStageRects` (centered, narrowing).
-2. Stack via `stackColumnRects` (equal width, Y rhythm); GAP etalon 18 — not linear 24.
-3. Canonical LMS tokens – titleWeight / inactive / box strokes.
-4. Do **not** copy AgentWorkflow or da_pipeline BOX / viewBox.
-5. Geometry test: `lmsFunnelStackPolish.test.ts` (narrowing + margins + token floors).
+1. Funnel stages via `funnelStageWidths` + `funnelStageRects` / `funnelStageTrapezoids` (centered, narrowing).
+2. AEC etalon (`m13_aec_funnel`): continuous silhouette (`gapY=0` + hairlines + outer outline); brand depth ladder; active inset ring; inline motifs (`m13AecFunnelMotifs.ts`); SVG label = stage title (+ decorative icon); body in Shell.
+3. Stack via `stackColumnRects` (equal width, Y rhythm); GAP etalon 18 — not linear 24.
+4. Canonical LMS tokens – titleWeight / inactive / box strokes. Stop list: no glow / luxury stepper / rainbow.
+5. Do **not** copy AgentWorkflow or da_pipeline BOX / viewBox.
+6. Geometry test: `lmsFunnelStackPolish.test.ts` (narrowing + trapezoid/ring/hairline + margins + token floors).
 
 ### Depth/roles lab checklist (10.45) – live (W5 Shell superseded)
 
@@ -120,11 +123,11 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 4. Brand-only chrome (no 10.26 risk strip); Copy lab inside ChoiceControl surface.
 5. Geometry / model tests: `m10DepthRolesLayout.test.ts`, `m10DepthRolesModel.test.ts`, `M10DepthRolesLabBlock.test.tsx`.
 
-### Non-spine / residual (Wave 4)
+### Non-spine / residual (Wave 4 / 4b)
 
 - Roles-hub, comparison, decision-tree, dual-path: **tokens inherit only** (no shared geometry wave) — except **comparison-mode-architecture** (W6 `llm_arch` below) and **multi-agent-flow** (W7 `m10_agent_orchestrator` below). **W5 dual-taxonomy Shell** superseded by `interactive-control-lab` hybrid (`m10_agent_taxonomy` / 10.45).
 - SVG diagram **title** captions use `typography.titleWeight` (not raw `800`); caption size via `title.compact` / `title.desktop` when near scale.
-- Step/badge labels may keep local weight.
+- **Wave 4b:** residual linear / decision-tree / dual-path / roles-hub mini use the same **size ladder** (`title` / `stepLabel` / `stepSub` / `edgeLabel` / `rolesHub`) — not titleWeight alone. No raw caption `14` or primary-label `800`.
 - **Comparison mode-absent steps (exception to `opacity.inactive` ≥0.88):** when a step is _not part of_ the active mode path (e.g. M4 sk. 45 Prompt: nodes 3/5; LlmArch basic: Tools/DB), do **not** use ghost-filled boxes at low opacity — use dashed **placeholder slots** (outline + short label / „Neaktyvu“, opacity 1). LMS inactive floor still applies to dimming _within_ an active path.
 
 ### Multi-agent-flow checklist (new / polish) – Wave 7
@@ -157,4 +160,5 @@ Every migrated diagram should have tests that verify:
 - The number of `nav button` elements matches the number of steps.
 - Dark mode uses the dark SVG background palette.
 - SVG internals do not expose duplicate keyboard buttons (`svg [role="button"]`, `svg [tabindex="0"]`).
+- HTML wrappers with `role="img"` do not contain focusable / interactive descendants (`[role="button"]`, `[tabindex="0"]`, `button`, `a`, `input`, `select`). Shell card diagrams must keep keyboard interaction in Shell nav.
 - Token / geometry floors: `lmsCyclePolish.test.ts`, `lmsLinearPolish.test.ts`, `lmsFunnelStackPolish.test.ts`, `m10DepthRolesLayout.test.ts`, `lmsMultiAgentPolish.test.ts`, `lmsLearningLoopPolish.test.ts`, `lmsCaptionTokenPolish.test.ts`, `verticalFlowGeometry.test.ts`.

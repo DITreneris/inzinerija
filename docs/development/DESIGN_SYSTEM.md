@@ -1,7 +1,7 @@
 # Design System — Promptų anatomija
 
-> **Produktinė DS versija:** **0.2.0 shipped** (2026-05-19) + **0.3.1 dalys** (BrandMark, icon registry, SlideWorkspace, surfaceGlass).  
-> **Paskutinis sync:** 2026-07-20 (DS max-ROI compliance).  
+> **Produktinė DS versija:** **0.2.0 shipped** + **0.3.1 dalys** + **0.3.2** (`typographyClasses` rails).  
+> **Paskutinis sync:** 2026-07-28 (DS 0.3.2 typography).  
 > **Turinio / layout etalonas (nelaužomas):** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) **2.3.9** — tipografija, paletė, `blockVariant`, skaidrių schemos. **Nekartoti** čia.  
 > **UI katalogas (kodas):** [`src/components/ui/README.md`](../../src/components/ui/README.md)  
 > **v0.2 vykdymo planas (archyvas, ✅ baigtas):** [`DESIGN_SYSTEM_V0_2.md`](DESIGN_SYSTEM_V0_2.md) — ne naujiems darbams; istorinis E1–E7.
@@ -28,6 +28,7 @@
 Trumpai (nekartoti klasių čia):
 
 - Sans: Plus Jakarta Sans · Mono: JetBrains Mono
+- **Runtime ladder (0.3.2):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts) — content-block body, ModuleView H1, slide footer, TemplateBlock code
 - Brand `#627d98` · Accent `#d4a520` · Gold `#f3cc30` · Slate neutrals
 - `blockVariant`: `accent` (CTA / Trumpai / Patikra) · `brand` (pagrindinė info / Daryk) · `terms` (šalutinė) · track `emerald` / `violet` tik modulio kontekste
 - Implementacija: `getContentBlockVariantClasses()` → `src/components/slides/utils/blockVariantClasses.ts`
@@ -59,7 +60,7 @@ Canonical sluoksniai:
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
 - `src/components/slides/shared/diagramTokens.ts` — SVG paletė, tipografija, stroke/radius/arrow; **LMS floors** (`opacity.inactive` 0.88, `stroke.flow` 3.5, title 17/700); `getDiagramPalette()` / `getDiagramToneColors()`; M10/M12: `DIAGRAM_ROLE_COLORS` / `getDiagramActiveStroke()`. `lmsCycle` = deprecated alias. DS v0.2 **B1** partially closed via this promote.
 - `src/components/slides/shared/diagramLayoutMath.ts` — `centerAxisStart`, shaft floor helpers (ne AgentWorkflow BOX clone).
-- `src/design-tokens.ts` — spacing, radius, 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`).
+- `src/design-tokens.ts` — spacing, radius, **`typographyClasses`** (0.3.2), 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`).
 
 Baseline (istorinis startas): [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md).  
 Revision tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
@@ -72,10 +73,10 @@ npm run audit:slide-icons          # Lucide raktų allowlist
 npm run audit:accent-budget        # GOLDEN §3.2
 ```
 
-**Gate baseline** (skripte `scripts/audit-design-tokens.mjs`, 2026-07-20):  
-`hex ≤ 295` · `inlineStyle ≤ 12` · `svgFill ≤ 51` · `arbitraryClass ≤ 59` · `total ≤ 417`.
+**Gate baseline** (skripte `scripts/audit-design-tokens.mjs`, Horizon A Day 0 2026-07-28):  
+`hex ≤ 180` · `inlineStyle ≤ 7` · `svgFill ≤ 7` · `arbitraryClass ≤ 56` · `total ≤ 250`.
 
-**Trend:** 539 → 417 (W7–W10) → **~344** (max-ROI; `inlineStyle` 12, gate PASS). Daugiausia „hex“ lieka kanoniniame `diagramTokens.ts` ir legacy diagramose (LlmArch, CustomGpt) — ne klaida, o v0.3 backlog.
+**Trend:** 539 → 417 (W7–W10) → ~344 → **250** (DS 0.3.2; gate PASS). Daugiausia „hex“ lieka kanoniniame `diagramTokens.ts` ir legacy diagramose — ne klaida, o v0.3 backlog.
 
 ---
 
@@ -96,6 +97,7 @@ Canonical JSX: `src/components/ui/`. Dublikatų žemėlapis (istorinis): [`analy
 | `SectionDivider` | Skiriamoji linija                               | SummarySlide                                          |
 | `BrandMark`      | Ženklas (Zap + gold)                            | nav / hero / footer — §4a                             |
 | `SlideWorkspace` | `space-y-6` chrome content-block                | **Visi M1–15** (`SlideContent.tsx`)                   |
+| `Badge`          | Status / level chip                             | Canonical 0.3.2; `.badge-*` CSS lieka                 |
 
 API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
@@ -181,7 +183,7 @@ Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 
 - M1–M9 DiagramKit migracija + leftovers (DiPrezentacijos, Turinio, AgentWorkflow, CustomGpt hit zones) — done / dalinis.
 - M10–M12 process diagramos — shell + layout SOT; vizualinis backlog dauguma **Done**: [`M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md`](../archive/development/analysis/M10PLUS_DIAGRAM_VISUAL_BACKLOG_2026-07.md).
-- **v0.3 backlog:** CustomGpt hex; `ContentSlides` arbitrary class. (`LlmArch` B3 / W6 etalon ✅ 2026-07 — [`LLMARCH_B3_…`](../archive/development/LLMARCH_B3_REFAKTORIAUS_RIZIKOS_PLANAS.md).)
+- **v0.3 backlog:** `ContentSlides` arbitrary class; Schema orphan hex. CustomGpt `inactiveSoftDark` → `DIAGRAM_TOKENS` ✅ 0.3.2. (`LlmArch` B3 / W6 etalon ✅ 2026-07.)
 
 ---
 
@@ -191,7 +193,7 @@ Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 | ------------------------------------------------- | ----------------------------- | --------------------------------------------- |
 | `.btn-primary` / `.btn-secondary` / `.btn-accent` | `<CTAButton />`               | CSS lieka; JSX → CTAButton (dalinė migracija) |
 | `.card` / `.card-hover`                           | `<Card />`                    | CSS lieka; migracija v0.3                     |
-| `.badge-*`                                        | Badge primitive (v0.3)        | CSS lieka                                     |
+| `.badge-*`                                        | `<Badge />`                   | CSS lieka; JSX migracija ✅ 0.3.2             |
 | Local SVG `style={{ background }}` ant diagramų   | `<linearGradient>` + `<rect>` | preferuoti (pvz. M10Orchestrator)             |
 
 `@deprecated` ≠ delete. Senas CSS veikia, kol v0.3 cleanup.
@@ -219,24 +221,26 @@ Checklist: [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) (§8 design toke
 
 ## 9. Versijų istorija
 
-| Versija                     | Kas                                                                                                                |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **0.1**                     | GOLDEN_STANDARD, pradiniai `Card` / `CTAButton` / `Banner`                                                         |
-| **0.2.0**                   | Konsolidacija, Eyebrow/IconChip/SectionDivider, M1–6 identity, `audit:design-tokens` — `CHANGELOG` `[v0.2.0]`      |
-| **0.3.1 dalys**             | BrandMark, icon registry, `module.icon` = identityIcon, M7–15 track accents                                        |
-| **DS hardening / W7–W10**   | Banner/CTAButton/Card pilotai, `surfaceGlass`, SlideWorkspace, tokens gate baseline 417                            |
-| **DS max-ROI (2026-07-20)** | Accent biudžetas M4–M9/M13 + EN; SlideWorkspace all M1–15; Orchestrator be inline bg; preflight full accent-budget |
+| Versija                     | Kas                                                                                                                               |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **0.1**                     | GOLDEN_STANDARD, pradiniai `Card` / `CTAButton` / `Banner`                                                                        |
+| **0.2.0**                   | Konsolidacija, Eyebrow/IconChip/SectionDivider, M1–6 identity, `audit:design-tokens` — `CHANGELOG` `[v0.2.0]`                     |
+| **0.3.1 dalys**             | BrandMark, icon registry, `module.icon` = identityIcon, M7–15 track accents                                                       |
+| **DS hardening / W7–W10**   | Banner/CTAButton/Card pilotai, `surfaceGlass`, SlideWorkspace, tokens gate baseline 417                                           |
+| **DS max-ROI (2026-07-20)** | Accent biudžetas M4–M9/M13 + EN; SlideWorkspace all M1–15; Orchestrator be inline bg; preflight full accent-budget                |
+| **0.3.2**                   | `typographyClasses` + content-block body `md:text-base` + ModuleView H1 `md:` + footer `text-xs`; CTA/Card/Badge opt-in migracija |
 
-Detalu: `CHANGELOG.md` `[Unreleased]` · **DS max-ROI compliance**.
+Detalu: `CHANGELOG.md` `[Unreleased]` · **DS 0.3.2**.
 
 ---
 
 ## 10. Backlog (v0.3+) — ne ši DS linija
 
 - LlmArch B3 / W6 etalon ✅ (2026-07)
-- `ContentSlides.tsx` arbitrary Tailwind cleanup
-- `.card` / `.btn-*` CSS pašalinimas po pilnos JSX migracijos
-- Badge primitive
+- `ContentSlides.tsx` arbitrary Tailwind cleanup (ne body ladder — tai 0.3.2)
+- `.card` / `.btn-*` / `.badge*` CSS pašalinimas po JSX migracijos ✅ (0.3.3+)
+- Badge primitive ✅ (0.3.2)
+- Schema3/4 / ContextFlow orphan hex → `DIAGRAM_TOKENS` (tik su TE registry)
 - Nauja paletė / „premium SaaS“ look — **neplanuota** be atskiro produkto sprendimo
 
 ---

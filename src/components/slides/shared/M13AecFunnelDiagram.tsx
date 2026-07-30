@@ -1,32 +1,53 @@
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { getM13AecLabels } from './m13DiagramContent';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
+import { M13_AEC_TONES } from './contentTrackDiagramTones';
 import { DiagramStepHitArea } from './diagramKit';
 import type { M10Locale } from './m10DiagramContent';
-import { funnelStageRects, funnelStageWidths } from './funnelStackGeometry';
+import {
+  funnelHairlineYs,
+  funnelOuterOutlinePath,
+  funnelStageTrapezoids,
+  funnelStageWidths,
+} from './funnelStackGeometry';
+import {
+  AEC_MOTIF_SIZE,
+  AEC_MOTIFS,
+  aecLabelCluster,
+} from './m13AecFunnelMotifs';
 
 const W = 360;
-const H = 300;
-const BOX_H = 58;
+const H = 280;
+const BOX_H = 62;
 const START_Y = 44;
-const GAP_Y = 16;
+/** Continuous silhouette (P3) — shared edges + hairlines */
+const GAP_Y = 0;
 const STAGE_COUNT = 3;
 const TOP_W = 300;
 const BOTTOM_W = 140;
+const HAIRLINE = 1.5;
 
 const STAGE_WIDTHS = funnelStageWidths({
   count: STAGE_COUNT,
   topW: TOP_W,
   bottomW: BOTTOM_W,
 });
-const STAGE_RECTS = funnelStageRects({
+const STAGE_TRAPEZOIDS = funnelStageTrapezoids({
   viewBoxW: W,
   widths: STAGE_WIDTHS,
   boxH: BOX_H,
   startY: START_Y,
   gapY: GAP_Y,
 });
+const HAIRLINE_YS = funnelHairlineYs({
+  count: STAGE_COUNT,
+  boxH: BOX_H,
+  startY: START_Y,
+  gapY: GAP_Y,
+});
+const OUTER_OUTLINE = funnelOuterOutlinePath(STAGE_TRAPEZOIDS);
 
 export default function M13AecFunnelDiagram({
   locale = 'lt',
@@ -44,11 +65,10 @@ export default function M13AecFunnelDiagram({
   const L = getM13AecLabels(locale);
   const isInteractive = typeof onStepClick === 'function';
   const cx = W / 2;
-  const labels = [
-    { t: L.awareness, s: L.awarenessSub },
-    { t: L.engagement, s: L.engagementSub },
-    { t: L.conversion, s: L.conversionSub },
-  ];
+  const labels = [L.awareness, L.engagement, L.conversion];
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDark);
+  const track = getContentTrackColors(isDark);
 
   return (
     <svg
@@ -66,12 +86,38 @@ export default function M13AecFunnelDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
-        <linearGradient id={`aec-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
+        {M13_AEC_TONES.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`aec-tone-${uid}-${tone}`}
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
+        <style>{`
+          .aec-funnel-stage-${uid} {
+            transition: opacity 0.2s ease, stroke-width 0.2s ease;
+          }
+          .aec-funnel-ring-${uid} {
+            transition: opacity 0.2s ease;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .aec-funnel-stage-${uid},
+            .aec-funnel-ring-${uid} {
+              transition: none;
+            }
+          }
+        `}</style>
       </defs>
       <rect
         width={W}
@@ -98,63 +144,69 @@ export default function M13AecFunnelDiagram({
       >
         {L.title}
       </text>
-      {STAGE_RECTS.map((row, i) => {
+      {STAGE_TRAPEZOIDS.map((stage, i) => {
+        const tone = M13_AEC_TONES[i];
         const isActive = currentStep === i;
         const opacity = isInteractive
           ? isActive
             ? DIAGRAM_TOKENS.opacity.active
             : DIAGRAM_TOKENS.opacity.inactive
           : 1 - i * 0.08;
-        const label = labels[i];
+        const cluster = aecLabelCluster({ cx, label: labels[i] });
+        const motif = AEC_MOTIFS[i];
+        const iconScale = AEC_MOTIF_SIZE / 16;
         return (
           <g key={i}>
             <g
+              className={`aec-funnel-stage-${uid}`}
               opacity={opacity}
-              style={{ transition: 'opacity 0.2s ease' }}
               aria-hidden
             >
-              <rect
-                x={row.x}
-                y={row.y}
-                width={row.w}
-                height={row.h}
-                rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#aec-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
+              <path
+                d={stage.d}
+                fill={`url(#aec-tone-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : toneColors[tone].stroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active
                     : DIAGRAM_TOKENS.stroke.inactive
                 }
               />
+              {isActive && stage.ringD && (
+                <path
+                  className={`aec-funnel-ring-${uid}`}
+                  d={stage.ringD}
+                  fill="none"
+                  stroke={palette.whiteText}
+                  strokeWidth={DIAGRAM_TOKENS.stroke.active}
+                  opacity={0.95}
+                />
+              )}
+              <path
+                d={motif}
+                fill="white"
+                fillRule="evenodd"
+                transform={`translate(${cluster.iconX}, ${stage.labelY - AEC_MOTIF_SIZE / 2}) scale(${iconScale})`}
+              />
               <text
-                x={cx}
-                y={row.y + 24}
+                x={cluster.textX}
+                y={stage.labelY}
                 textAnchor="middle"
+                dominantBaseline="middle"
                 fill="white"
                 fontSize={DIAGRAM_TOKENS.typography.stepLabel.desktop}
                 fontWeight="700"
                 fontFamily={DIAGRAM_TOKENS.font}
               >
-                {label.t}
-              </text>
-              <text
-                x={cx}
-                y={row.y + 42}
-                textAnchor="middle"
-                fill={palette.whiteText}
-                fontSize={DIAGRAM_TOKENS.typography.stepSub.desktop}
-                fontFamily={DIAGRAM_TOKENS.font}
-              >
-                {label.s}
+                {labels[i]}
               </text>
             </g>
             {isInteractive && (
               <DiagramStepHitArea
-                x={row.x}
-                y={row.y}
-                width={row.w}
-                height={row.h}
+                x={stage.hit.x}
+                y={stage.hit.y}
+                width={stage.hit.w}
+                height={stage.hit.h}
                 radius={DIAGRAM_TOKENS.radius.box}
                 onActivate={() => onStepClick?.(i)}
               />
@@ -162,6 +214,32 @@ export default function M13AecFunnelDiagram({
           </g>
         );
       })}
+      {HAIRLINE_YS.map((y, i) => {
+        const w = STAGE_WIDTHS[i + 1] ?? STAGE_WIDTHS[i];
+        const x = (W - w) / 2;
+        return (
+          <line
+            key={`hl-${i}`}
+            x1={x}
+            y1={y}
+            x2={x + w}
+            y2={y}
+            stroke={palette.bgStart}
+            strokeWidth={HAIRLINE}
+            opacity={0.9}
+            aria-hidden
+          />
+        );
+      })}
+      {OUTER_OUTLINE && (
+        <path
+          d={OUTER_OUTLINE}
+          fill="none"
+          stroke={palette.border}
+          strokeWidth={DIAGRAM_TOKENS.stroke.border}
+          aria-hidden
+        />
+      )}
       <text
         x={cx}
         y={H - 14}
@@ -170,7 +248,7 @@ export default function M13AecFunnelDiagram({
         fill={palette.muted}
         fontFamily={DIAGRAM_TOKENS.font}
       >
-        {isInteractive ? L.hint : L.hint}
+        {L.hint}
       </text>
     </svg>
   );

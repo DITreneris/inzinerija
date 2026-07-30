@@ -1,6 +1,8 @@
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
-import { DIAGRAM_TOKENS } from './diagramTokens';
+import { DIAGRAM_TOKENS, getDiagramToneColors } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
+import { M13_PROMPT_STACK_TONES } from './contentTrackDiagramTones';
 import { DiagramStepHitArea } from './diagramKit';
 import { getM13PromptStackLabels } from './m13DiagramContent';
 import type { M10Locale } from './m10DiagramContent';
@@ -39,6 +41,9 @@ export default function M13PromptStackDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDark);
+  const track = getContentTrackColors(isDark);
   const L = getM13PromptStackLabels(locale);
   const isInteractive = typeof onStepClick === 'function';
   const cx = W / 2;
@@ -65,12 +70,24 @@ export default function M13PromptStackDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
-        <linearGradient id={`pst-${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={palette.brandTop} />
-          <stop offset="100%" stopColor={palette.brand} />
-        </linearGradient>
+        {M13_PROMPT_STACK_TONES.map((tone) => {
+          const colors = toneColors[tone];
+          return (
+            <linearGradient
+              key={tone}
+              id={`pst-tone-${uid}-${tone}`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor={colors.top} />
+              <stop offset="100%" stopColor={colors.bottom} />
+            </linearGradient>
+          );
+        })}
       </defs>
       <rect
         width={W}
@@ -99,6 +116,7 @@ export default function M13PromptStackDiagram({
       </text>
       {rows.map((r, i) => {
         const box = STAGE_RECTS[i];
+        const tone = M13_PROMPT_STACK_TONES[i];
         const isActive = currentStep === i;
         const opacity = isInteractive
           ? isActive
@@ -118,8 +136,8 @@ export default function M13PromptStackDiagram({
                 width={box.w}
                 height={box.h}
                 rx={DIAGRAM_TOKENS.radius.box}
-                fill={`url(#pst-${uid})`}
-                stroke={isActive ? palette.brandDark : palette.brand}
+                fill={`url(#pst-tone-${uid}-${tone})`}
+                stroke={isActive ? palette.brandDark : toneColors[tone].stroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active

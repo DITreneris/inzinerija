@@ -1,5 +1,5 @@
 /**
- * Design tokens – spacing ir radius vienoje vietoje (N-DS2).
+ * Design tokens – spacing, radius, tipografija (N-DS2 / DS 0.3.2).
  * Šaltinis: docs/development/GOLDEN_STANDARD.md (anksčiau DESIGN_GUIDE_MODULIAI_1_2_3, archyve).
  * Naudojimas: importuoti klasės konstantas arba px vertes; Tailwind naudoja tą pačią 4px bazę.
  */
@@ -20,6 +20,20 @@ export const spacing = {
   8: 32,
   /** 48px – Tailwind p-12 */
   12: 48,
+} as const;
+
+/** GOLDEN_STANDARD §1 – runtime tipografijos ladder (DS 0.3.2) */
+export const typographyClasses = {
+  h1: 'text-2xl md:text-3xl font-bold' as const,
+  h2: 'text-lg md:text-xl font-bold' as const,
+  h3: 'text-base font-semibold' as const,
+  /** Size + leading; compose color classes at call site */
+  body: 'text-sm md:text-base leading-relaxed' as const,
+  bodyMuted:
+    'text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed' as const,
+  small: 'text-xs' as const,
+  code: 'font-mono text-sm leading-relaxed' as const,
+  footer: 'text-xs italic' as const,
 } as const;
 
 /** Tailwind spacing klasės pagal kontekstą (Design Guide 4.3) */

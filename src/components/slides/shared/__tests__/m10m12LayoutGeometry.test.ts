@@ -44,7 +44,10 @@ import {
   M10_TRIGGER_FLOW_LAYOUT,
   M10_TRIGGER_FLOW_STEP_COUNT,
 } from '../m10TriggerFlowLayout';
-import { getM10TriggerFlowStepExplanations } from '../m10DiagramContent';
+import {
+  getM10TriggerFlowStepExplanations,
+  getM10WorkflowSpecStepExplanations,
+} from '../m10DiagramContent';
 
 describe('m12MultiAgentSchemaLayout', () => {
   it('derives edge endpoints short of target by markerLen', () => {
@@ -236,5 +239,18 @@ describe('m10TriggerFlowLayout', () => {
     expect(L.yMain + L.boxH).toBeLessThan(L.typeRowY);
     const rowW = 3 * L.boxW + 2 * L.gap;
     expect(L.x0 + rowW).toBeLessThanOrEqual(L.width);
+  });
+});
+
+describe('m10WorkflowSpecStepExplanations', () => {
+  it('keeps all eight Shell bodies distinct in LT and EN', () => {
+    for (const locale of ['lt', 'en'] as const) {
+      const bodies = getM10WorkflowSpecStepExplanations(locale).map(
+        (step) => step.body
+      );
+
+      expect(bodies).toHaveLength(8);
+      expect(new Set(bodies).size).toBe(8);
+    }
   });
 });

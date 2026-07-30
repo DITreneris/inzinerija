@@ -1,6 +1,7 @@
 ﻿import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { getContentTrackColors } from './contentTrackTokens';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
 import {
@@ -8,6 +9,7 @@ import {
   type M15PracticePath,
 } from './m15PracticeLoopContent';
 import {
+  getM15PracticeLoopFeedbackPath,
   getM15PracticeLoopHorizontalConnector,
   getM15PracticeLoopStepBoxes,
   M15_PRACTICE_LOOP_LAYOUT,
@@ -39,6 +41,9 @@ export default function M15PracticeLoopDiagram({
 }) {
   const uid = useId().replace(/:/g, '');
   const palette = useDiagramPalette();
+  const isDark = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const track = getContentTrackColors(isDark);
+  const typography = DIAGRAM_TOKENS.typography;
   const L = getM15PracticeLoopLabels(locale);
   const isInteractive = typeof onStepClick === 'function';
   const cx = W / 2;
@@ -50,6 +55,9 @@ export default function M15PracticeLoopDiagram({
     ...box,
     t: labelsForPath[i],
   }));
+  const feedbackPath = getM15PracticeLoopFeedbackPath(
+    DIAGRAM_TOKENS.arrow.processTipLen
+  );
   const ghostLabel = path === 'quick' ? L.full : L.quick;
   const accentIndex = ACCENT_INDEX;
 
@@ -69,7 +77,7 @@ export default function M15PracticeLoopDiagram({
           y2="100%"
         >
           <stop offset="0%" stopColor={palette.bgStart} />
-          <stop offset="100%" stopColor={palette.bgEnd} />
+          <stop offset="100%" stopColor={track.softRose} />
         </linearGradient>
         <marker
           id={`m15lp-${uid}`}
@@ -112,8 +120,8 @@ export default function M15PracticeLoopDiagram({
         x={cx}
         y={22}
         textAnchor="middle"
-        fontSize={DIAGRAM_TOKENS.typography.title.compact}
-        fontWeight={DIAGRAM_TOKENS.typography.titleWeight}
+        fontSize={typography.title.compact}
+        fontWeight={typography.titleWeight}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
       >
@@ -123,10 +131,10 @@ export default function M15PracticeLoopDiagram({
         x={cx}
         y={44}
         textAnchor="middle"
-        fontSize="10"
+        fontSize={typography.subtitle.desktop}
         fill={palette.brandDark}
         fontFamily={DIAGRAM_TOKENS.font}
-        fontWeight={700}
+        fontWeight={typography.titleWeight}
       >
         {path === 'quick' ? L.quick : L.full}
       </text>
@@ -167,8 +175,8 @@ export default function M15PracticeLoopDiagram({
                 y={ACTIVE_Y + 25}
                 textAnchor="middle"
                 fill="white"
-                fontSize="10"
-                fontWeight="700"
+                fontSize={typography.stepLabel.desktop}
+                fontWeight={typography.titleWeight}
                 fontFamily={DIAGRAM_TOKENS.font}
               >
                 {b.t}
@@ -211,7 +219,7 @@ export default function M15PracticeLoopDiagram({
       {path === 'quick' && (
         <>
           <path
-            d="M 548 110 Q 584 146 470 146 Q 300 146 290 110"
+            d={feedbackPath}
             fill="none"
             stroke={DIAGRAM_TOKENS.colors.amber}
             strokeWidth={DIAGRAM_TOKENS.stroke.flow}
@@ -223,9 +231,10 @@ export default function M15PracticeLoopDiagram({
             x={cx}
             y={168}
             textAnchor="middle"
-            fontSize="9"
+            fontSize={typography.subtitle.compact}
             fill={DIAGRAM_TOKENS.colors.amber}
             fontFamily={DIAGRAM_TOKENS.font}
+            fontWeight={typography.edgeLabel.weight}
           >
             {L.repeat}
           </text>
@@ -235,10 +244,10 @@ export default function M15PracticeLoopDiagram({
         x={cx}
         y={H - 16}
         textAnchor="middle"
-        fontSize="10"
+        fontSize={typography.stepSub.desktop}
         fill={palette.muted}
         fontFamily={DIAGRAM_TOKENS.font}
-        fontWeight={500}
+        fontWeight={typography.edgeLabel.weight}
       >
         {ghostLabel}
       </text>
