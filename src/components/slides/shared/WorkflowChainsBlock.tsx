@@ -111,7 +111,7 @@ export default function WorkflowChainsBlock({
                   <button
                     type="button"
                     onClick={() => toggleExpand(index)}
-                    className="flex items-center gap-1 text-[11px] text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1 rounded transition-colors"
+                    className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1 rounded transition-colors"
                     aria-expanded={isExpanded}
                     aria-controls={`workflow-expand-${index}`}
                     id={`workflow-expand-btn-${index}`}

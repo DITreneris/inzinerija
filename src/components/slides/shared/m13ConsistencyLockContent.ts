@@ -66,8 +66,9 @@ export function getM13ConsistencyLockChrome(locale: M10Locale) {
   if (locale === 'en') {
     return {
       title: 'Reference lock',
+      metaphorCaption: 'Frozen refs stay locked beside the generate path',
       hint: 'Tap a step – explanation below',
-      aria: 'Four steps: collect refs, lock rule, generate, QA',
+      aria: 'Four steps with frozen reference pad: collect refs, lock rule, generate, QA',
       regionAria: 'Character and product consistency – four steps',
       youAreHere: 'You are here:',
       navAria: 'Consistency step selection',
@@ -77,8 +78,9 @@ export function getM13ConsistencyLockChrome(locale: M10Locale) {
   }
   return {
     title: 'Reference lock',
+    metaphorCaption: 'Užrakinti refs lieka greta generavimo kelio',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Keturi žingsniai: refs, lock, generavimas, QA',
+    aria: 'Keturi žingsniai su užrakintų refs kortele: refs, lock, generavimas, QA',
     regionAria: 'Character / product consistency – keturi žingsniai',
     youAreHere: 'Tu esi čia:',
     navAria: 'Consistency žingsnių pasirinkimas',

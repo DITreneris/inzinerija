@@ -1,5 +1,5 @@
 /**
- * Modulio 13 – character/product consistency (4 žingsniai).
+ * Modulio 13 – character/product consistency (4 žingsniai) with lock-artifact (S4-INDIV).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
@@ -19,43 +19,57 @@ import {
   resolveVerticalFlowGeometry,
   VERTICAL_FLOW_MIN_GAP,
 } from './verticalFlowGeometry';
-import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 const STEP_COUNT = 4;
 const BOX_H = 46;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
-const DESKTOP_W = 560;
-const DESKTOP_COL_W = 400;
-const DESKTOP_COL = buildVerticalColumnOrigin({
-  viewBoxW: DESKTOP_W,
-  colW: DESKTOP_COL_W,
-});
-const COMPACT_W = 320;
-const COMPACT_COL_W = 264;
-const COMPACT_COL = buildVerticalColumnOrigin({
-  viewBoxW: COMPACT_W,
-  colW: COMPACT_COL_W,
-});
 
-const FLOW_GEOMETRY = {
+/** Geometry SOT – frozen-ref pad + vertical spine (not bare vertical twin). */
+export const M13_CONSISTENCY_LOCK_GEOMETRY = {
+  metaphor: 'lock-artifact' as const,
   stepCount: STEP_COUNT,
   boxHeight: BOX_H,
   gap: VERTICAL_FLOW_MIN_GAP,
   startY: 74,
   desktop: {
-    viewBoxWidth: DESKTOP_W,
-    viewBoxHeight: 380,
-    colsX: DESKTOP_COL.colsX,
-    colsW: DESKTOP_COL_W,
-    cx: DESKTOP_COL.cx,
+    viewBoxWidth: 560,
+    viewBoxHeight: 400,
+    colsX: 168,
+    colsW: 340,
+    cx: 168 + 170,
+    artifactX: 28,
+    artifactW: 120,
   },
   compact: {
-    viewBoxWidth: COMPACT_W,
-    viewBoxHeight: 380,
-    colsX: COMPACT_COL.colsX,
-    colsW: COMPACT_COL_W,
-    cx: COMPACT_COL.cx,
+    viewBoxWidth: 320,
+    viewBoxHeight: 400,
+    colsX: 96,
+    colsW: 200,
+    cx: 96 + 100,
+    artifactX: 12,
+    artifactW: 72,
+  },
+} as const;
+
+const FLOW_GEOMETRY = {
+  stepCount: STEP_COUNT,
+  boxHeight: BOX_H,
+  gap: M13_CONSISTENCY_LOCK_GEOMETRY.gap,
+  startY: M13_CONSISTENCY_LOCK_GEOMETRY.startY,
+  desktop: {
+    viewBoxWidth: M13_CONSISTENCY_LOCK_GEOMETRY.desktop.viewBoxWidth,
+    viewBoxHeight: M13_CONSISTENCY_LOCK_GEOMETRY.desktop.viewBoxHeight,
+    colsX: M13_CONSISTENCY_LOCK_GEOMETRY.desktop.colsX,
+    colsW: M13_CONSISTENCY_LOCK_GEOMETRY.desktop.colsW,
+    cx: M13_CONSISTENCY_LOCK_GEOMETRY.desktop.cx,
+  },
+  compact: {
+    viewBoxWidth: M13_CONSISTENCY_LOCK_GEOMETRY.compact.viewBoxWidth,
+    viewBoxHeight: M13_CONSISTENCY_LOCK_GEOMETRY.compact.viewBoxHeight,
+    colsX: M13_CONSISTENCY_LOCK_GEOMETRY.compact.colsX,
+    colsW: M13_CONSISTENCY_LOCK_GEOMETRY.compact.colsW,
+    cx: M13_CONSISTENCY_LOCK_GEOMETRY.compact.cx,
   },
 };
 
@@ -81,8 +95,15 @@ export default function M13ConsistencyLockDiagram({
   const chrome = getM13ConsistencyLockChrome(locale);
   const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
     resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
+  const artifact = isCompactDiagram
+    ? M13_CONSISTENCY_LOCK_GEOMETRY.compact
+    : M13_CONSISTENCY_LOCK_GEOMETRY.desktop;
   const typography = DIAGRAM_TOKENS.typography;
   const uniqueTones = [...new Set(M13_CONSISTENCY_LOCK_TONES)];
+  const firstBox = stepBoxes[0]!;
+  const lastBox = stepBoxes[stepBoxes.length - 1]!;
+  const artifactY = firstBox[1];
+  const artifactH = lastBox[1] + lastBox[3] - firstBox[1];
 
   return (
     <svg
@@ -90,6 +111,7 @@ export default function M13ConsistencyLockDiagram({
       className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
+      data-metaphor={M13_CONSISTENCY_LOCK_GEOMETRY.metaphor}
     >
       <defs>
         <linearGradient
@@ -150,7 +172,7 @@ export default function M13ConsistencyLockDiagram({
         rx={DIAGRAM_TOKENS.radius.frame}
       />
       <text
-        x={cx}
+        x={viewBoxWidth / 2}
         y="34"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
@@ -163,7 +185,7 @@ export default function M13ConsistencyLockDiagram({
         {chrome.title}
       </text>
       <text
-        x={cx}
+        x={viewBoxWidth / 2}
         y="52"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
@@ -175,8 +197,80 @@ export default function M13ConsistencyLockDiagram({
         fontWeight="500"
         fill={palette.muted}
       >
-        {isInteractive ? chrome.hint : ''}
+        {chrome.metaphorCaption}
       </text>
+
+      {/* Frozen-ref artifact pad (lock metaphor) */}
+      <g data-lock-artifact="true" aria-hidden>
+        <rect
+          x={artifact.artifactX}
+          y={artifactY}
+          width={artifact.artifactW}
+          height={artifactH}
+          rx={DIAGRAM_TOKENS.radius.box}
+          fill={toneColors.amber.soft}
+          stroke={toneColors.amber.stroke}
+          strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
+          strokeDasharray="5 3"
+        />
+        {/* Stacked ref cards */}
+        {[0, 1, 2].map((i) => (
+          <rect
+            key={i}
+            data-ref-card={i}
+            x={artifact.artifactX + 12 + i * 4}
+            y={artifactY + 28 + i * 10}
+            width={artifact.artifactW - 32}
+            height={isCompactDiagram ? 28 : 36}
+            rx={4}
+            fill={palette.bgEnd}
+            stroke={palette.brand}
+            strokeWidth={1}
+          />
+        ))}
+        {/* Padlock badge */}
+        <g
+          transform={`translate(${artifact.artifactX + artifact.artifactW / 2} ${
+            artifactY + artifactH - (isCompactDiagram ? 28 : 36)
+          })`}
+        >
+          <circle
+            r={isCompactDiagram ? 12 : 14}
+            fill={DIAGRAM_TOKENS.colors.amber}
+            stroke={palette.brandDark}
+            strokeWidth={1.5}
+          />
+          <path
+            d="M -5 -2 v -4 a 5 5 0 0 1 10 0 v 4"
+            fill="none"
+            stroke={palette.brandDark}
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <rect
+            x={-6}
+            y={-2}
+            width={12}
+            height={10}
+            rx={2}
+            fill={palette.brandDark}
+          />
+        </g>
+        {!isCompactDiagram && (
+          <text
+            x={artifact.artifactX + artifact.artifactW / 2}
+            y={artifactY + 18}
+            textAnchor="middle"
+            fontFamily={DIAGRAM_TOKENS.font}
+            fontSize={typography.stepSub.desktop}
+            fontWeight="700"
+            fill={palette.brandDark}
+          >
+            {locale === 'en' ? 'Frozen refs' : 'Užrakinti refs'}
+          </text>
+        )}
+      </g>
+
       {stepBoxes.map((box, i) => {
         const [x, y, w, h] = box;
         const tone = M13_CONSISTENCY_LOCK_TONES[i];

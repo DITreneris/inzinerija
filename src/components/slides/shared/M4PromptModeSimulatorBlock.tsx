@@ -44,6 +44,7 @@ import {
   type QualitativeTradeOffs,
   type TradeOffTone,
 } from './m4PromptModeModel';
+import { typographyClasses } from '../../../design-tokens';
 
 export default function M4PromptModeSimulatorBlock() {
   const { locale } = useLocale();
@@ -352,7 +353,9 @@ function AxisStrip({
       <h3 className="text-sm font-bold text-gray-900 dark:text-white">
         {heading}
       </h3>
-      <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+      <p
+        className={`mt-1 ${typographyClasses.labelUpper} text-slate-500 dark:text-slate-400`}
+      >
         {axisCaption}
       </p>
       <div
@@ -381,14 +384,16 @@ function AxisStrip({
               }`}
             >
               <span
-                className={`mb-1.5 inline-flex rounded-full px-1.5 py-0.5 text-[10px] font-bold ${toneCls.chip}`}
+                className={`mb-1.5 inline-flex rounded-full px-1.5 py-0.5 ${typographyClasses.label} font-bold ${toneCls.chip}`}
               >
                 {stakeChip[stake]}
               </span>
               <span className="block text-xs font-bold text-gray-900 dark:text-white">
                 {labelById[id]}
               </span>
-              <span className="mt-1 block text-[10px] leading-snug text-slate-500 dark:text-slate-400">
+              <span
+                className={`mt-1 block ${typographyClasses.small} leading-snug text-slate-500 dark:text-slate-400`}
+              >
                 {liveHint} · {structHint}
               </span>
             </button>

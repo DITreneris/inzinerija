@@ -142,13 +142,13 @@ export function getM13ThirdsLabels(locale: M10Locale) {
   if (locale === 'en') {
     return {
       title: 'Rule of thirds (guide)',
-      sub: 'Place focus near intersection points',
-      aria: 'Composition grid: rule of thirds with four focal points',
+      sub: 'Put the subject on the right intersection — not dead center',
+      aria: 'Composition grid: rule of thirds with subject on the upper-right intersection and muted center',
     };
   }
   return {
     title: 'Trečdalių taisyklė (gairė)',
-    sub: 'Fokusą kur prie sankirtų',
-    aria: 'Kompozicijos tinklelis: trečdalių taisyklė su keturiomis sankirtomis',
+    sub: 'Subjektą dėk ant dešinės sankirtos — ne į patį centrą',
+    aria: 'Kompozicijos tinklelis: trečdalių taisyklė su subjektu ant viršutinės dešinės sankirtos ir prislopintu centru',
   };
 }

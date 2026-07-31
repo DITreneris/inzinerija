@@ -19,6 +19,7 @@ import {
   getRagDuomenuRuosimasBlockLabels,
   getRagDuomenuRuosimasSteps,
 } from './ragDuomenuRuosimasLayout';
+import { typographyClasses } from '../../../design-tokens';
 
 const STEP_ICONS = [Tags, Layers, Layout, CheckCircle2, FileText];
 
@@ -64,7 +65,9 @@ export default function RagDuomenuRuosimasBlock() {
           </div>
 
           <div className="relative">
-            <div className="absolute -top-2.5 left-4 bg-white px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:bg-slate-900 dark:text-slate-500">
+            <div
+              className={`absolute -top-2.5 left-4 bg-white px-2 ${typographyClasses.labelUpper} text-slate-400 dark:bg-slate-900 dark:text-slate-500`}
+            >
               {blockLabels.promptLabel}
             </div>
             <div className="rounded-xl border border-slate-100 bg-slate-50 p-4 font-mono text-sm leading-relaxed text-slate-700 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 lg:p-5">

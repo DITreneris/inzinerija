@@ -51,7 +51,7 @@
 
 - Viena geometrijos tiesa layout failuose – nodes/edges, 4 anchor, getAnchorPoint / getLineEndPoint.
 - SVG renderinimas React – deterministiška, rodyklės kraštas į kraštą; nekeisti į HTML-first diagramų biblioteką.
-- Block + EnlargeableDiagram + tas pats React modale (SCHEME_AGENT §5.5).
+- Block + EnlargeableDiagram kaip mobile frame; desktop enlarge/modal tik opt-in (`showEnlargeControl={true}`) – interaktyvioms Shell schemoms default OFF (SCHEME_AGENT §3.11).
 - DATA_AGENT nesikeičia diagramų matmenų – riba tarp DATA ir SCHEME išlaikoma.
 
 ### Marry (Adopt / adapt)

@@ -42,11 +42,22 @@ const whenHintContent: ContentBlockContent = {
 };
 
 describe('ContentBlockSlide toolChoiceBar whenHint (chips)', () => {
-  it('shows whenHint for the auto-selected first choice', () => {
+  it('hides whenHint until the learner picks (no default auto-select)', () => {
     const { container } = renderWithProviders(
       <ContentBlockSlide content={whenHintContent} />
     );
 
+    expect(container.querySelector('[data-tool-choice-when-hint]')).toBeFalsy();
+  });
+
+  it('shows whenHint after the first chip is selected', () => {
+    const { container, getByRole } = renderWithProviders(
+      <ContentBlockSlide content={whenHintContent} />
+    );
+
+    fireEvent.click(
+      getByRole('button', { name: /Struktūruoti verslo duomenys/ })
+    );
     const hint = container.querySelector('[data-tool-choice-when-hint]');
     expect(hint?.textContent).toContain('PostgreSQL');
   });
@@ -56,6 +67,9 @@ describe('ContentBlockSlide toolChoiceBar whenHint (chips)', () => {
       <ContentBlockSlide content={whenHintContent} />
     );
 
+    fireEvent.click(
+      getByRole('button', { name: /Struktūruoti verslo duomenys/ })
+    );
     fireEvent.click(getByRole('button', { name: /Lanksti schema/ }));
 
     const hint = container.querySelector('[data-tool-choice-when-hint]');

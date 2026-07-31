@@ -9,7 +9,7 @@ New step-based diagrams should follow the same chain:
 1. Labels and explanations live in a locale content helper (`m7DiagramContent.ts`, `m9DataWorkflowContent.ts`, or module-specific equivalent).
 2. Geometry lives in constants or a layout helper (`verticalFlowGeometry.ts` when the diagram is a vertical flow; `diagramLayoutMath.ts` for centering / shaft floors).
 3. The SVG component renders only the diagram view.
-4. The block component wraps it with `EnlargeableDiagram` and `InteractiveDiagramShell`.
+4. The block component wraps it with `EnlargeableDiagram` (mobile scroll/reflow frame; **`showEnlargeControl` default false**) and `InteractiveDiagramShell`. Interactive process schemas stay inline — do **not** enable desktop enlarge/modal (SCHEME §3.11). Opt-in `showEnlargeControl={true}` only for rare dense static diagrams.
 5. `diagramRenderers.tsx` maps the JSON `sections[].image` key to the React block.
 
 ## Shell density (LMS polish)
@@ -91,13 +91,13 @@ Sibling (same HTML card family, more steps): M9 `m9_data_workflow` / `M9DataWork
 1. **One chrome layer** – Shell (`density="hero"`) owns frame/status/nav; diagram has **no** outer border/shadow card.
 2. Step panels only (brand tint + number badge); active = `ring-inset`; inactive ≥ `DIAGRAM_TOKENS.opacity.inactive` (0.88).
 3. Desktop connectors: brand/flow color; stroke ~`DIAGRAM_TOKENS.stroke.inactive` (1.5) — **HTML exception** (do not force SVG `stroke.flow` 3.5 between cards).
-4. `InteractiveDiagramShell` + `EnlargeableDiagram`; labels/explanations in locale helper (e.g. `strukturuotasProcesasStepExplanations.ts`).
+4. `InteractiveDiagramShell` + `EnlargeableDiagram` (mobile frame; enlarge OFF by default); labels/explanations in locale helper (e.g. `strukturuotasProcesasStepExplanations.ts`).
 5. **No** required `*Layout.ts` / `verticalFlowGeometry` — do not migrate to SVG spine unless product asks for one visual language.
 6. **8+ steps:** do not force 1×N desktop row with long LT labels (mid-word wrap). Prefer **2×4** (or stack) + short box labels; full names stay in explanation panel. Etalon sibling: `M9DataWorkflowDiagram`.
 
 ### Linear-process (HTML icon-chain + autoplay) checklist (new / polish)
 
-1. Shell (`density="hero"`) + `EnlargeableDiagram`; slide type may stay `hallucination-pipeline` (thin wrapper → Block).
+1. Shell (`density="hero"`) + `EnlargeableDiagram` (mobile frame; enlarge OFF by default); slide type may stay `hallucination-pipeline` (thin wrapper → Block).
 2. Labels in locale helper (`hallucinationPipelineContent.ts`) – **label + caption only** (no long body / copyable on this slide).
 3. Autoplay via `useAutoplaySteps`: play cycles steps; **pin** (card click or Shell nav) pauses; Play resumes; `prefers-reduced-motion` = no interval / no particles.
 4. Cards: pointer activate + `tabIndex={-1}` / `aria-hidden` (Shell nav = keyboard primary); active = accent `ring-inset`; inactive ≥ `opacity.inactive` (0.88).

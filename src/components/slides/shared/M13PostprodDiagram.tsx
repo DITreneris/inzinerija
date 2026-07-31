@@ -1,5 +1,5 @@
 /**
- * Modulio 13 – post-production (4 žingsniai).
+ * Modulio 13 – post-production (4 žingsniai) as horizontal timeline (S4-INDIV).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
@@ -14,50 +14,32 @@ import { getContentTrackColors } from './contentTrackTokens';
 import { M13_POSTPROD_TONES } from './contentTrackDiagramTones';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 import { DiagramStepHitArea } from './diagramKit';
-import {
-  getVerticalFlowConnector,
-  resolveVerticalFlowGeometry,
-  VERTICAL_FLOW_MIN_GAP,
-} from './verticalFlowGeometry';
-import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 const STEP_COUNT = 4;
-const BOX_H = 46;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
-const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
-const DESKTOP_W = 560;
-const DESKTOP_COL_W = 400;
-const DESKTOP_COL = buildVerticalColumnOrigin({
-  viewBoxW: DESKTOP_W,
-  colW: DESKTOP_COL_W,
-});
-const COMPACT_W = 320;
-const COMPACT_COL_W = 264;
-const COMPACT_COL = buildVerticalColumnOrigin({
-  viewBoxW: COMPACT_W,
-  colW: COMPACT_COL_W,
-});
 
-const FLOW_GEOMETRY = {
+/** Geometry SOT – individuality tests assert metaphor ≠ vertical twin. */
+export const M13_POSTPROD_GEOMETRY = {
+  metaphor: 'timeline',
   stepCount: STEP_COUNT,
-  boxHeight: BOX_H,
-  gap: VERTICAL_FLOW_MIN_GAP,
-  startY: 74,
-  desktop: {
-    viewBoxWidth: DESKTOP_W,
-    viewBoxHeight: 380,
-    colsX: DESKTOP_COL.colsX,
-    colsW: DESKTOP_COL_W,
-    cx: DESKTOP_COL.cx,
-  },
-  compact: {
-    viewBoxWidth: COMPACT_W,
-    viewBoxHeight: 380,
-    colsX: COMPACT_COL.colsX,
-    colsW: COMPACT_COL_W,
-    cx: COMPACT_COL.cx,
-  },
-};
+  desktop: { viewBoxW: 560, viewBoxH: 220, padX: 20, boxH: 72, railY: 168 },
+  compact: { viewBoxW: 320, viewBoxH: 200, padX: 10, boxH: 64, railY: 152 },
+} as const;
+
+function timelineBoxes(
+  viewBoxW: number,
+  padX: number,
+  boxH: number,
+  startY: number
+): Array<[number, number, number, number]> {
+  const gap = 10;
+  const inner = viewBoxW - padX * 2;
+  const boxW = (inner - gap * (STEP_COUNT - 1)) / STEP_COUNT;
+  return Array.from({ length: STEP_COUNT }, (_, i) => {
+    const x = padX + i * (boxW + gap);
+    return [x, startY, boxW, boxH] as [number, number, number, number];
+  });
+}
 
 export default function M13PostprodDiagram({
   currentStep = 0,
@@ -79,17 +61,23 @@ export default function M13PostprodDiagram({
   const isInteractive = typeof onStepClick === 'function';
   const steps = getM13PostprodSteps(locale);
   const chrome = getM13PostprodChrome(locale);
-  const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
-    resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
+  const layout = isCompactDiagram
+    ? M13_POSTPROD_GEOMETRY.compact
+    : M13_POSTPROD_GEOMETRY.desktop;
+  const { viewBoxW, viewBoxH, padX, boxH, railY } = layout;
+  const startY = 58;
+  const stepBoxes = timelineBoxes(viewBoxW, padX, boxH, startY);
   const typography = DIAGRAM_TOKENS.typography;
   const uniqueTones = [...new Set(M13_POSTPROD_TONES)];
+  const cx = viewBoxW / 2;
 
   return (
     <svg
-      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      viewBox={`0 0 ${viewBoxW} ${viewBoxH}`}
       className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
+      data-metaphor={M13_POSTPROD_GEOMETRY.metaphor}
     >
       <defs>
         <linearGradient
@@ -136,14 +124,14 @@ export default function M13PostprodDiagram({
         })}
       </defs>
       <rect
-        width={viewBoxWidth}
-        height={viewBoxHeight}
+        width={viewBoxW}
+        height={viewBoxH}
         fill={`url(#m13-pp-bg-${uid})`}
         rx={DIAGRAM_TOKENS.radius.frame}
       />
       <rect
-        width={viewBoxWidth}
-        height={viewBoxHeight}
+        width={viewBoxW}
+        height={viewBoxH}
         fill="none"
         stroke={palette.border}
         strokeWidth={DIAGRAM_TOKENS.stroke.border}
@@ -151,7 +139,7 @@ export default function M13PostprodDiagram({
       />
       <text
         x={cx}
-        y="34"
+        y="28"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
         fontSize={
@@ -164,7 +152,7 @@ export default function M13PostprodDiagram({
       </text>
       <text
         x={cx}
-        y="52"
+        y="46"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
         fontSize={
@@ -175,8 +163,20 @@ export default function M13PostprodDiagram({
         fontWeight="500"
         fill={palette.muted}
       >
-        {isInteractive ? chrome.hint : ''}
+        {chrome.metaphorCaption}
       </text>
+      {/* Timeline rail under steps */}
+      <line
+        data-timeline-rail="true"
+        x1={padX}
+        y1={railY}
+        x2={viewBoxW - padX}
+        y2={railY}
+        stroke={palette.flow}
+        strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+        strokeLinecap="round"
+        aria-hidden
+      />
       {stepBoxes.map((box, i) => {
         const [x, y, w, h] = box;
         const tone = M13_POSTPROD_TONES[i];
@@ -185,8 +185,9 @@ export default function M13PostprodDiagram({
           ? DIAGRAM_TOKENS.opacity.active
           : DIAGRAM_TOKENS.opacity.inactive;
         const step = steps[i];
+        const boxCx = x + w / 2;
         return (
-          <g key={i}>
+          <g key={i} data-timeline-step={i}>
             <g
               opacity={opacity}
               style={{ transition: 'opacity 0.2s ease' }}
@@ -207,8 +208,8 @@ export default function M13PostprodDiagram({
                 }
               />
               <text
-                x={cx}
-                y={y + 19}
+                x={boxCx}
+                y={y + (isCompactDiagram ? 22 : 26)}
                 textAnchor="middle"
                 fontFamily={DIAGRAM_TOKENS.font}
                 fontSize={
@@ -222,8 +223,8 @@ export default function M13PostprodDiagram({
                 {i + 1} · {step.label}
               </text>
               <text
-                x={cx}
-                y={y + 36}
+                x={boxCx}
+                y={y + (isCompactDiagram ? 42 : 48)}
                 textAnchor="middle"
                 fontFamily={DIAGRAM_TOKENS.font}
                 fontSize={
@@ -236,6 +237,23 @@ export default function M13PostprodDiagram({
               >
                 {step.desc}
               </text>
+              {/* Tick from box to rail */}
+              <line
+                x1={boxCx}
+                y1={y + h}
+                x2={boxCx}
+                y2={railY}
+                stroke={palette.flow}
+                strokeWidth={1.5}
+              />
+              <circle
+                cx={boxCx}
+                cy={railY}
+                r={4}
+                fill={
+                  isActive ? palette.brandDark : DIAGRAM_TOKENS.colors.amber
+                }
+              />
             </g>
             {isInteractive && (
               <DiagramStepHitArea
@@ -249,18 +267,17 @@ export default function M13PostprodDiagram({
             )}
             {i < stepBoxes.length - 1 &&
               (() => {
-                const conn = getVerticalFlowConnector(
-                  box,
-                  stepBoxes[i + 1],
-                  cx,
-                  ARROW_MARKER_LEN
-                );
+                const next = stepBoxes[i + 1]!;
+                const yMid = y + h / 2;
+                const x1 = x + w + 2;
+                const x2 = next[0] - PROCESS_ARROW.tipLen - 2;
+                if (x2 <= x1) return null;
                 return (
                   <line
-                    x1={conn.x1}
-                    y1={conn.y1}
-                    x2={conn.x2}
-                    y2={conn.y2}
+                    x1={x1}
+                    y1={yMid}
+                    x2={x2}
+                    y2={yMid}
                     stroke={palette.flow}
                     strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
                     markerEnd={`url(#m13-pp-arrow-${uid})`}

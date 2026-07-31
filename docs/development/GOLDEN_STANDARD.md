@@ -34,19 +34,25 @@
 
 ## 1. Šriftai ir tipografija
 
-| Vieta                            | Šriftas           | Tailwind                         | Naudojimas                       |
-| -------------------------------- | ----------------- | -------------------------------- | -------------------------------- |
-| **H1 (skaidrės pavadinimas)**    | Plus Jakarta Sans | `text-2xl md:text-3xl font-bold` | Vienas per skaidrę – ModuleView  |
-| **H2 (poskyrio antraštė)**       | Plus Jakarta Sans | `text-lg md:text-xl font-bold`   | Blokų heading                    |
-| **H3 (kortelės/bloko antraštė)** | Plus Jakarta Sans | `text-base font-semibold`        | Sekcijų heading                  |
-| **Body (pagrindinis tekstas)**   | Plus Jakarta Sans | `text-sm md:text-base`           | Aprašymai, body                  |
-| **Small (etiketės, šaltiniai)**  | Plus Jakarta Sans | `text-xs`                        | Badge, šaltiniai                 |
-| **Kodas / promptai / šablonai**  | JetBrains Mono    | `font-mono text-sm`              | Copyable blokai, kodo pavyzdžiai |
+| Vieta                            | Šriftas           | Tailwind / token                                                      | Naudojimas                                  |
+| -------------------------------- | ----------------- | --------------------------------------------------------------------- | ------------------------------------------- |
+| **H1 (skaidrės pavadinimas)**    | Plus Jakarta Sans | `text-2xl md:text-3xl font-bold` (`h1`)                               | Vienas per skaidrę – ModuleView             |
+| **H2 (poskyrio antraštė)**       | Plus Jakarta Sans | `text-lg md:text-xl font-bold` (`h2`)                                 | Blokų heading, hero claim kai H1 paslėptas  |
+| **H3 (kortelės/bloko antraštė)** | Plus Jakarta Sans | `text-base font-semibold` (`h3`)                                      | Sekcijų heading (Trumpai / Daryk / Patikra) |
+| **Body (pagrindinis tekstas)**   | Plus Jakarta Sans | `text-sm md:text-base` (`body` / `bodyMuted`)                         | Aprašymai, body                             |
+| **Small (etiketės, šaltiniai)**  | Plus Jakarta Sans | `text-xs` (`small`)                                                   | Badge, šaltiniai                            |
+| **Label / kicker**               | Plus Jakarta Sans | `text-xs font-semibold` (`label` / `labelUpper`)                      | Uppercase kicker, chip; floor **12px**      |
+| **Metric (KPI)**                 | Plus Jakarta Sans | `text-3xl md:text-4xl font-bold tabular-nums` (`metric` / `metricSm`) | Hero / portal / infographic skaičiai        |
+| **Kodas / promptai / šablonai**  | JetBrains Mono    | `font-mono text-sm` (`code`)                                          | Copyable blokai, kodo pavyzdžiai            |
+| **Hero display (išimtis)**       | Plus Jakarta Sans | `h1` + `lg:text-4xl` (`heroDisplay`)                                  | **Tik** immersive news-portal (M4 53.5)     |
+| **Diagram (SVG)**                | Plus Jakarta Sans | `DIAGRAM_TOKENS.typography` (px)                                      | Compact floor ≥10px label / ≥12px title     |
 
-**Taisyklė:** Vienas H1 per skaidrę. Bold – tik svarbiems žodžiams, ne visai pastraipai.
+**Taisyklė:** Vienas H1 per skaidrę. Bold – tik svarbiems žodžiams, ne visai pastraipai. Max weight learner UI = **`font-extrabold` (800)** — **draudžiama** `font-black` (900; fontas neįkrautas). Learner UI **draudžiama** `text-[9px]` / `text-[10px]` / `text-[11px]` (naudoti `label` / `small`).
+
+**Chrome išimtys (ModuleView H1 slepiamas):** `action-intro`, immersive `news-portal` (`infographic` variant), celebration `section-break`. Vidinis hero = `h2` / `metric` / `heroDisplay` (portal) — ne antras H1 tokenas be dokumentacijos.
 
 **Techninis:** `tailwind.config.js` – fontFamily: sans (Plus Jakarta Sans), mono (JetBrains Mono).  
-**Runtime (DS 0.3.2):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts) (`h1` / `h2` / `h3` / `body` / `bodyMuted` / `small` / `code` / `footer`).
+**Runtime (DS 0.3.3):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts). Audit: `npm run audit:typography`.
 
 ---
 
@@ -165,7 +171,7 @@
 
 **Collapsible naudojimas:** Collapsible **taupo vietą** – naudoti tik tada, kai turinys **ilgas** (kelios pastraipos arba ≥2 eilutės ir pakankamai teksto). Viena eilutė ar labai trumpas tekstas (pvz. „Kodėl verta 10 min“, „Prieš vs Po“ su vienu sakiniumi) **nerodomas** kaip collapsible – UI jau trumpas turinys rodo kaip paprastą bloką. Patikra: `node scripts/audit-collapsible-sections.mjs`.
 
-**Peržiūrėti pilname dydyje (enlarge):** Naudoti **tik tada**, kai vaizdas/diagrama **tanki** ir naudinga didinti: daug blokų/teksto schemoje, mažas šriftas, mobilus peržiūrėtojas. **Nenaudoti** (paprastas `<img>` arba nuoroda „Atidaryti naujame lange“): palyginimo vaizdai (comparisonImages – du vaizdai šalia, dekoratyvūs), paprastos ilustracijos, vienas vaizdas jau aiškiai skaitomas normaliame dydyje, workflow paveikslėliai be smulkios informacijos. Taip sumažiname perteklinį UI ir dvigubą render (modal).
+**Peržiūrėti pilname dydyje (enlarge):** Naudoti **tik tada**, kai vaizdas/diagrama **tanki** ir naudinga didinti: daug blokų/teksto schemoje, mažas šriftas, mobilus peržiūrėtojas. **Process / Shell schemos:** `EnlargeableDiagram` default = be desktop enlarge (`showEnlargeControl=false`) – interaktyvumas inline. **Nenaudoti** (paprastas `<img>` arba nuoroda „Atidaryti naujame lange“): palyginimo vaizdai (comparisonImages – du vaizdai šalia, dekoratyvūs), paprastos ilustracijos, vienas vaizdas jau aiškiai skaitomas normaliame dydyje, workflow paveikslėliai be smulkios informacijos. Taip sumažiname perteklinį UI ir dvigubą render (modal).
 
 **content-block viršuje (M5 ir pan.):** whyBenefit, duration, firstActionCTA – kaip action-intro.
 

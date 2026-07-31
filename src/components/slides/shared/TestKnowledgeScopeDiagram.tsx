@@ -1,204 +1,22 @@
 /**
  * Test intro – ką apima žinių patikrinimas (M8, M11, M14).
+ * Bubble SOT: testKnowledgeScopeContent.ts (M79-S2b).
  */
 import { getModulesSync } from '../../../data/modulesLoader';
 import modulesData from '../../../data/modules.json';
 import type { ModulesData } from '../../../types/modules';
 import type { M10Locale } from './m10DiagramContent';
+import { DIAGRAM_TOKENS } from './diagramTokens';
+import {
+  bubbleLabel,
+  getTestKnowledgeBubbles,
+  testKnowledgeScopeTitle,
+  type TestKnowledgeBubble,
+} from './testKnowledgeScopeContent';
 
 const W = 520;
 const H = 140;
 const FALLBACK_MODULES = (modulesData as ModulesData).modules;
-
-type BubbleSpec = {
-  x: number;
-  y: number;
-  w: number;
-  t: string;
-  targetModuleId?: number;
-  slideId?: number;
-};
-
-function bubblesForModule(
-  moduleId: 8 | 11 | 14,
-  locale: M10Locale
-): BubbleSpec[] {
-  if (moduleId === 8) {
-    const t = locale === 'en';
-    return [
-      { x: 16, y: 36, w: 92, t: 'Pipeline', targetModuleId: 7, slideId: 73 },
-      {
-        x: 112,
-        y: 36,
-        w: 88,
-        t: t ? 'BI / report' : 'BI / ataskaita',
-        targetModuleId: 7,
-        slideId: 92,
-      },
-      { x: 204, y: 36, w: 86, t: 'MASTER', targetModuleId: 7, slideId: 74 },
-      {
-        x: 294,
-        y: 36,
-        w: 100,
-        t: t ? 'Sentiment' : 'Sentimentas',
-        targetModuleId: 7,
-        slideId: 732,
-      },
-      {
-        x: 398,
-        y: 36,
-        w: 100,
-        t: t ? '4 types' : '4 tipai',
-        targetModuleId: 7,
-        slideId: 731,
-      },
-      {
-        x: 70,
-        y: 88,
-        w: 100,
-        t: t ? 'Cleaning' : 'Valymas',
-        targetModuleId: 7,
-        slideId: 891,
-      },
-      {
-        x: 176,
-        y: 88,
-        w: 100,
-        t: t ? 'Visualisation' : 'Vizualizacija',
-        targetModuleId: 7,
-        slideId: 86,
-      },
-      {
-        x: 282,
-        y: 88,
-        w: 110,
-        t: t ? 'Workflow' : 'Seka',
-        targetModuleId: 7,
-        slideId: 891,
-      },
-      {
-        x: 396,
-        y: 88,
-        w: 100,
-        t: t ? 'CFO output' : 'CFO OUTPUT',
-        targetModuleId: 7,
-        slideId: 733,
-      },
-    ];
-  }
-  if (moduleId === 11) {
-    const t = locale === 'en';
-    return [
-      {
-        x: 20,
-        y: 44,
-        w: 100,
-        t: t ? 'Agent cycle' : 'Agentų ciklas',
-        targetModuleId: 10,
-        slideId: 10.2,
-      },
-      {
-        x: 128,
-        y: 44,
-        w: 100,
-        t: t ? 'Trigger flow' : 'Trigger / flow',
-        targetModuleId: 10,
-        slideId: 10.15,
-      },
-      {
-        x: 236,
-        y: 44,
-        w: 72,
-        t: '3A',
-        targetModuleId: 10,
-        slideId: 10.25,
-      },
-      {
-        x: 314,
-        y: 44,
-        w: 88,
-        t: t ? 'Tools' : 'Įrankiai',
-        targetModuleId: 10,
-        slideId: 10.4,
-      },
-      {
-        x: 408,
-        y: 44,
-        w: 92,
-        t: t ? 'Prompts' : 'Promptai',
-        targetModuleId: 10,
-        slideId: 10.48,
-      },
-      {
-        x: 200,
-        y: 92,
-        w: 120,
-        t: t ? 'Errors / limits' : 'Ribos / klaidos',
-        targetModuleId: 10,
-        slideId: 10.6,
-      },
-    ];
-  }
-  const t = locale === 'en';
-  return [
-    {
-      x: 16,
-      y: 36,
-      w: 96,
-      t: 'Pipeline',
-      targetModuleId: 13,
-      slideId: 13.12,
-    },
-    {
-      x: 120,
-      y: 36,
-      w: 100,
-      t: t ? 'Audio-first' : 'Garsas / audio-first',
-      targetModuleId: 13,
-      slideId: 13.6,
-    },
-    {
-      x: 228,
-      y: 36,
-      w: 92,
-      t: t ? 'Licences' : 'Licencijos',
-      targetModuleId: 13,
-      slideId: 13.7,
-    },
-    {
-      x: 328,
-      y: 36,
-      w: 88,
-      t: 'C2PA',
-      targetModuleId: 13,
-      slideId: 13.101,
-    },
-    {
-      x: 424,
-      y: 36,
-      w: 80,
-      t: t ? 'Brand' : 'Brandas',
-      targetModuleId: 13,
-      slideId: 13.3,
-    },
-    {
-      x: 180,
-      y: 88,
-      w: 160,
-      t: t ? 'Brief → publish' : 'Brief → publikacija',
-      targetModuleId: 13,
-      slideId: 13.11,
-    },
-  ];
-}
-
-function titleFor(moduleId: 8 | 11 | 14, locale: M10Locale): string {
-  if (locale === 'en') {
-    return 'Topics – tap to refresh theory (you can return to the test)';
-  }
-  void moduleId;
-  return 'Temos – bakstelėjus atnaujinsi teoriją (grįši į testą)';
-}
 
 export default function TestKnowledgeScopeDiagram({
   moduleId,
@@ -217,20 +35,17 @@ export default function TestKnowledgeScopeDiagram({
   ) => void;
   sourceModuleId?: number;
 }) {
-  const bubbles = bubblesForModule(moduleId, locale);
-  const title = titleFor(moduleId, locale);
-  const canDeepLink =
-    (moduleId === 8 || moduleId === 11 || moduleId === 14) &&
-    typeof onGoToModule === 'function';
+  const bubbles = getTestKnowledgeBubbles(moduleId);
+  const title = testKnowledgeScopeTitle(locale);
+  const canDeepLink = typeof onGoToModule === 'function';
+  const palette = DIAGRAM_TOKENS.palette.light;
 
-  const go = (bubble: BubbleSpec) => {
-    if (!onGoToModule || bubble.targetModuleId == null) return;
+  const go = (bubble: TestKnowledgeBubble) => {
+    if (!onGoToModule) return;
     const modules = getModulesSync(locale) ?? FALLBACK_MODULES;
     const mod = modules?.find((m) => m.id === bubble.targetModuleId);
     const slideIndex =
-      mod && bubble.slideId != null
-        ? mod.slides.findIndex((s) => s.id === bubble.slideId)
-        : -1;
+      mod != null ? mod.slides.findIndex((s) => s.id === bubble.slideId) : -1;
     onGoToModule(
       bubble.targetModuleId,
       slideIndex >= 0 ? slideIndex : undefined,
@@ -247,21 +62,24 @@ export default function TestKnowledgeScopeDiagram({
       </p>
       {canDeepLink ? (
         <div className="flex flex-wrap justify-center gap-2">
-          {bubbles.map((b) => (
-            <button
-              key={`${b.targetModuleId}-${b.slideId}-${b.t}`}
-              type="button"
-              onClick={() => go(b)}
-              className="min-h-[44px] rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-100 dark:hover:bg-slate-800"
-              aria-label={
-                locale === 'en'
-                  ? `Review theory (return to test): ${b.t}`
-                  : `Peržiūrėti teoriją (grįši į testą): ${b.t}`
-              }
-            >
-              {b.t}
-            </button>
-          ))}
+          {bubbles.map((b) => {
+            const label = bubbleLabel(b, locale);
+            return (
+              <button
+                key={`${b.targetModuleId}-${b.slideId}-${b.labelLt}`}
+                type="button"
+                onClick={() => go(b)}
+                className="min-h-[44px] rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:border-slate-600 dark:bg-slate-800/60 dark:text-slate-100 dark:hover:bg-slate-800"
+                aria-label={
+                  locale === 'en'
+                    ? `Review theory (return to test): ${label}`
+                    : `Peržiūrėti teoriją (grįši į testą): ${label}`
+                }
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
       ) : (
         <svg
@@ -270,31 +88,34 @@ export default function TestKnowledgeScopeDiagram({
           role="img"
           aria-label={title}
         >
-          {bubbles.map((b, i) => (
-            <g key={i}>
-              <rect
-                x={b.x}
-                y={b.y}
-                width={b.w}
-                height={36}
-                rx="8"
-                fill="#334e68"
-                stroke="#102a43"
-                strokeWidth="1"
-              />
-              <text
-                x={b.x + b.w / 2}
-                y={b.y + 23}
-                textAnchor="middle"
-                fill="white"
-                fontSize="10"
-                fontWeight="600"
-                fontFamily="'Plus Jakarta Sans',system-ui,sans-serif"
-              >
-                {b.t.length > 14 ? `${b.t.slice(0, 13)}…` : b.t}
-              </text>
-            </g>
-          ))}
+          {bubbles.map((b, i) => {
+            const label = bubbleLabel(b, locale);
+            return (
+              <g key={i}>
+                <rect
+                  x={b.x}
+                  y={b.y}
+                  width={b.w}
+                  height={36}
+                  rx="8"
+                  fill={palette.brand}
+                  stroke={palette.brandDark}
+                  strokeWidth="1"
+                />
+                <text
+                  x={b.x + b.w / 2}
+                  y={b.y + 23}
+                  textAnchor="middle"
+                  fill={palette.whiteText}
+                  fontSize={DIAGRAM_TOKENS.typography.stepLabel.compact}
+                  fontWeight="600"
+                  fontFamily={DIAGRAM_TOKENS.font}
+                >
+                  {label.length > 14 ? `${label.slice(0, 13)}…` : label}
+                </text>
+              </g>
+            );
+          })}
         </svg>
       )}
     </div>

@@ -851,19 +851,23 @@
                   "choices": [
                     {
                       "label": "What happened?",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you need to describe what already happened (numbers, facts)."
                     },
                     {
                       "label": "Why?",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you dig into causes – why it happened."
                     },
                     {
                       "label": "What next?",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you forecast what is likely next."
                     },
                     {
                       "label": "What to do?",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "When you need concrete actions / recommendations."
                     }
                   ]
                 }
@@ -1019,15 +1023,18 @@
                   "choices": [
                     {
                       "label": "Data",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you have a table or facts and want a quick analysis."
                     },
                     {
                       "label": "Competitors",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you compare yourself to the market or competitors."
                     },
                     {
                       "label": "Finance (CFO)",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you need a finance summary for leadership."
                     }
                   ]
                 }
@@ -1084,19 +1091,23 @@
                   "choices": [
                     {
                       "label": "OK / Fail",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you need a fast yes / no filter."
                     },
                     {
                       "label": "Priorities",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you rank ideas by impact."
                     },
                     {
                       "label": "Quick wins",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you hunt quick, low-effort wins."
                     },
                     {
                       "label": "Portfolio",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "When you assess a whole idea portfolio together."
                     }
                   ]
                 },
@@ -1196,27 +1207,33 @@
                   "choices": [
                     {
                       "label": "Customers",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you deepen into customer behaviour and segments."
                     },
                     {
                       "label": "Supply",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you check supply / logistics data."
                     },
                     {
                       "label": "Sales",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you analyse the sales pipeline or deals."
                     },
                     {
                       "label": "Marketing",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "When you look at marketing channels and campaigns."
                     },
                     {
                       "label": "Processes",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "When you see process delays or errors."
                     },
                     {
                       "label": "Competitors",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "When you gather competitor signals."
                     }
                   ]
                 }
@@ -1345,35 +1362,43 @@
                   "choices": [
                     {
                       "label": "Quantitative",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Numbers and measures – when you need KPIs."
                     },
                     {
                       "label": "Qualitative",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Interviews, feedback – when you need meaning."
                     },
                     {
                       "label": "Structured",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Tables with clear columns."
                     },
                     {
                       "label": "Unstructured",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Text, images, no strict schema."
                     },
                     {
                       "label": "Semi-struct.",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "Mixed – JSON, logs, forms."
                     },
                     {
                       "label": "Primary",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "You collected it yourself (survey, experiment)."
                     },
                     {
                       "label": "Secondary",
-                      "rowIndex": 6
+                      "rowIndex": 6,
+                      "whenHint": "External or already existing sources."
                     },
                     {
                       "label": "Automated",
-                      "rowIndex": 7
+                      "rowIndex": 7,
+                      "whenHint": "Sensors, APIs, automated streams."
                     }
                   ]
                 }
@@ -1874,19 +1899,23 @@
                   "choices": [
                     {
                       "label": "Bar",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Comparing categories – bars are usually easiest to read."
                     },
                     {
                       "label": "Line",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Trends over time – a line."
                     },
                     {
                       "label": "Pie",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Part-to-whole – a pie (careful with many slices)."
                     },
                     {
                       "label": "Table",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Exact numbers side by side – a table."
                     }
                   ]
                 }
@@ -1979,15 +2008,18 @@
                   "choices": [
                     {
                       "label": "Brand",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you study brand perception."
                     },
                     {
                       "label": "Loyalty",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you measure loyalty / repeat purchase."
                     },
                     {
                       "label": "Sales",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you hunt sales blockers or levers."
                     }
                   ]
                 }
@@ -2929,27 +2961,33 @@
                   "choices": [
                     {
                       "label": "Sources",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "When you need a list of reliable sources."
                     },
                     {
                       "label": "PDF",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "When you work with PDFs / documents."
                     },
                     {
                       "label": "Synthesis",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "When you need to merge several sources into a summary."
                     },
                     {
                       "label": "Citation",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "When a citation with a link is required."
                     },
                     {
                       "label": "Science",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "When you look for scholarly / peer-reviewed sources."
                     },
                     {
                       "label": "Network",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "When you map a topic network or relationships."
                     }
                   ]
                 },

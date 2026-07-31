@@ -6,6 +6,8 @@
 
 ## Lessons
 
+2026-07-31 | M1–15 skaitomumas / density | Noras formalaus Density DoD vs Flagship gylis; M13 dens vs M79 FAIL | Product: gylis lieka; Density DoD/CI = ne (soft checklist); product next = M79-S\*; 13.3/13.4 → M1315-DENS | M79_READABILITY_EXECUTION_PLAN.md, TODO.md §1.2d
+2026-07-31 | Scheme enlarge policy | Kit „visada Enlargeable+modal“ prieštaravo SCHEME §3.11 / M1 etalonui → M7–15 mygtukai grįžo | Product lock: interactive = enlarge OFF; sync AGENTS + skills + Kit prieš naujus Block'us; be Feature Doc | AGENTS.md, DIAGRAM_KIT_STANDARD.md, EnlargeableDiagram.tsx
 2026-07-28 | M13 gen → I2V | Epic A meter ir Epic B I2V sulieti į vieną komponentą / Feature Doc ant enhancement | A = enhancement 13.37 (be Feature Doc); B = `special` + Feature Doc prieš CODING; nesujungti I1+I7 | M13_GEN_METER_I2V_INTAKE_2026-07.md, M13_I2V_CLIP_BUILDER.md, AGENTS.md
 2026-07-26 | M16–18 park gates | Noras eilė/JSON prieš P0 | Route stays Deferred until §8.2; do not reorder ahead of CQ-M79 / Portal | turinio_pletra_moduliai_16_17_18.md §8, TODO.md §1.5, AGENT_ORCHESTRATOR.md
 2026-07-26 | M16–18 agent sync | SOT live bet agentai „vibe = nowhere“; noras Feature Doc/JSON anksti | Pointeriai rules/AGENTS/skills; CURRICULUM/CONTENT ant SOT only; be TE/lab kol nėra UI; D1/D2/D3 overlap – neskurti labų dabar | turinio_pletra_moduliai_16_17_18.md, AGENTS.md, TODO.md §1.5

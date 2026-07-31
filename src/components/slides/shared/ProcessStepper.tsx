@@ -247,7 +247,6 @@ export default function ProcessStepper() {
         </p>
         <EnlargeableDiagram
           mobileBehavior="reflow"
-          controlPlacement="top-right"
           enlargeLabel={t('regionAria')}
           renderContent={() => (
             <CustomGptProcessDiagram

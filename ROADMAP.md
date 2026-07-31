@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-07-30 | Roadmap **v4.3** (Horizon C exit)  
-> **App:** 1.5.0 · **Open fokusas:** marketing cutover (MON out of scope) · product next D / quiet.  
+> **Atnaujinta:** 2026-07-31 | Roadmap **v4.5** (M79 skaitomumo ROI done)  
+> **App:** 1.5.0 · **Open fokusas:** marketing cutover (MON out of scope) · Horizon D parked · Deferred dens (`M1315-DENS`).  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D).
+> **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D). M79 + M1315-S5/S6/S7 scheme ROI done 2026-07-31.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); **M10–12 corporate cut repo-ready** (`build:corporate12`); **M13–15 corporate cut repo-ready** (`build:corporate15`); M16–18 parked.  
-**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **142/903**; default `build:production` = M1–9.
+**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **150/924**; default `build:production` = M1–9.
 
 ---
 
@@ -17,13 +17,14 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
 
 ### Open gaps (production ladder)
 
-| Horizon | Scope                         | Status                          | Prioritetas   |
-| ------- | ----------------------------- | ------------------------------- | ------------- |
-| **A**   | M1–9 corporate micro polish   | **done** (triage 2026-07-28)    | —             |
-| **B**   | M10–12 corporate production   | **done** (repo exit + B-V lock) | —             |
-| **C**   | M13–15 corporate production   | **done** (repo exit 2026-07-30) | —             |
-| **D**   | M16–18 Kodo inžinerija        | parked (product call)           | Deferred §1.5 |
-| **MON** | marketing (env, PostHog, CRO) | out of scope                    | TODO §1.4     |
+| Horizon | Scope                         | Status                           | Prioritetas   |
+| ------- | ----------------------------- | -------------------------------- | ------------- |
+| **A**   | M1–9 corporate micro polish   | **done** (triage 2026-07-28)     | —             |
+| **B**   | M10–12 corporate production   | **done** (repo exit + B-V lock)  | —             |
+| **C**   | M13–15 corporate production   | **done** (repo exit 2026-07-30)  | —             |
+| **M79** | M7–9 scheme / skaitomumo ROI  | **done** (Sprint 1–3 2026-07-31) | TODO §1.2d    |
+| **D**   | M16–18 Kodo inžinerija        | parked (product call)            | Deferred §1.5 |
+| **MON** | marketing (env, PostHog, CRO) | out of scope                     | TODO §1.4     |
 
 > Horizon A+B closeout → [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md). Horizon C → intake [`M13_M15_CORPORATE_PRODUCTION_INTAKE.md`](docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md).  
 > Mid-path handout / skills-QR → **won’t-now** ([`HANDOUT_MATURITY.md`](docs/development/HANDOUT_MATURITY.md) Horizon A).
@@ -82,7 +83,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
 
 ### Nedaryti dabar
 
-M19–21; M10+ premium SaaS diagram redesign; M16 JSON be product call; backend rewrite; marketing MON kaip šio repo learning P0.
+M19–21; M10+ premium SaaS diagram redesign; M16 JSON be product call; backend rewrite; marketing MON kaip šio repo learning P0; **formalus Density DoD / CI** (gylis lieka; soft checklist tik); M13 **13.3/13.4** dens (`M1315-DENS`) – Deferred product choice (M79 gate cleared 2026-07-31; ne open P0).
 
 ---
 

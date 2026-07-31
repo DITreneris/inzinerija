@@ -40,7 +40,6 @@ export default function DiPrezentacijosWorkflowBlock() {
       </p>
       <EnlargeableDiagram
         mobileBehavior="reflow"
-        controlPlacement="top-right"
         enlargeLabel={labels.enlargeLabel}
         renderContent={() => (
           <DiPrezentacijosWorkflowDiagram

@@ -342,13 +342,8 @@ export default function Schema3InteractiveDiagram({
                   onClick={() => onStepClick?.(idx)}
                   aria-label={t('schema3NodeAria', { label: line1 })}
                   role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      onStepClick?.(idx);
-                    }
-                  }}
+                  tabIndex={-1}
+                  aria-hidden
                 />
               )}
             </g>

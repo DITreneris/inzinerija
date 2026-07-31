@@ -100,21 +100,6 @@ export default function M7AnalysisTypesDiagram({
             </linearGradient>
           );
         })}
-        <filter
-          id={`m7-an-active-${uid}`}
-          x="-16%"
-          y="-16%"
-          width="132%"
-          height="132%"
-        >
-          <feDropShadow
-            dx="0"
-            dy="2"
-            stdDeviation="3"
-            floodColor={palette.brand}
-            floodOpacity={isDarkPalette ? '0.45' : '0.28'}
-          />
-        </filter>
       </defs>
 
       <rect
@@ -183,8 +168,11 @@ export default function M7AnalysisTypesDiagram({
                 rx={DIAGRAM_TOKENS.radius.box}
                 fill={`url(#m7-an-box-${uid}-${tone})`}
                 stroke={isActive ? palette.brandDark : colors.stroke}
-                strokeWidth={isActive ? 3 : DIAGRAM_TOKENS.stroke.inactive}
-                filter={isActive ? `url(#m7-an-active-${uid})` : undefined}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
               />
               <text
                 x={box[0] + box[2] / 2}

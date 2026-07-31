@@ -10,6 +10,7 @@ import {
 } from '../data/aiDetectors';
 import { useLocale } from '../contexts/LocaleContext';
 import CopyButton from './slides/shared/CopyButton';
+import { typographyClasses } from '../design-tokens';
 
 /** Statistikos blokas viršuje */
 function StatsBar({
@@ -95,7 +96,9 @@ function ToolCard({
           <h4 className="text-base font-bold text-gray-900 dark:text-white leading-tight pt-0.5">
             {tool.name}
             {tool.highlight && (
-              <span className="ml-2 text-[10px] font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30 px-1.5 py-0.5 rounded">
+              <span
+                className={`ml-2 ${typographyClasses.labelUpper} text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30 px-1.5 py-0.5 rounded`}
+              >
                 LT
               </span>
             )}

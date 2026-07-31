@@ -58,7 +58,6 @@ export default function M7DaPipelineBlock() {
       </p>
       <EnlargeableDiagram
         mobileBehavior="reflow"
-        controlPlacement="top-right"
         enlargeLabel={labels.enlargeLabel}
         renderContent={() => (
           <M7DaPipelineDiagram

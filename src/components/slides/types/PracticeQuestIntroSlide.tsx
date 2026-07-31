@@ -21,6 +21,7 @@ import {
 import { loadM9KitChecklist } from '../../../utils/m9KitChecklist';
 import { resolveQuestStepStatus } from '../../../utils/resolveM9QuestStepStatus';
 import type { JourneyChoice, Slide } from '../../../types/modules';
+import { typographyClasses } from '../../../design-tokens';
 
 export type QuestStep = {
   id: string;
@@ -147,14 +148,16 @@ export function PracticeQuestIntroSlide({
       )}
 
       {content.duration && (
-        <p className="text-sm font-semibold text-center text-accent-700 dark:text-accent-300">
+        <p
+          className={`${typographyClasses.label} text-center text-accent-700 dark:text-accent-300`}
+        >
           {t('durationLabel')} {content.duration}
         </p>
       )}
 
       {softHint && (
         <p
-          className="text-sm text-center text-brand-700 dark:text-brand-300"
+          className={`${typographyClasses.body} text-center text-brand-700 dark:text-brand-300`}
           role="status"
         >
           {softHint}
@@ -182,7 +185,9 @@ export function PracticeQuestIntroSlide({
 
       {selected && !confirmed && (
         <div className="rounded-xl border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/90 dark:bg-emerald-950/30 p-4">
-          <p className="text-sm text-gray-800 dark:text-gray-200 mb-3">
+          <p
+            className={`${typographyClasses.body} text-gray-800 dark:text-gray-200 mb-3`}
+          >
             {(content.confirmMessage ?? t('m9QuestConfirmMessage')).replace(
               '{label}',
               selected.label
@@ -202,10 +207,12 @@ export function PracticeQuestIntroSlide({
       {questSteps.length > 0 && (
         <div
           className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/40 p-4"
-          role="navigation"
+          role="group"
           aria-label={t('m9QuestMapAria')}
         >
-          <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white">
+          <h4
+            className={`${typographyClasses.h3} mb-3 flex items-center gap-2 text-gray-900 dark:text-white`}
+          >
             <MapIcon className="h-4 w-4 text-brand-600" aria-hidden />
             {t('m9QuestMapHeading')}
           </h4>
@@ -277,7 +284,9 @@ export function PracticeQuestIntroSlide({
           <ArrowRight className="h-4 w-4" aria-hidden />
         </button>
         {!confirmed && (
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p
+            className={`${typographyClasses.small} text-slate-500 dark:text-slate-400`}
+          >
             {t('m9QuestStartLockedHint')}
           </p>
         )}
@@ -291,7 +300,7 @@ export function PracticeQuestIntroSlide({
           {chips.map((chip) => (
             <li
               key={chip}
-              className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200"
+              className={`${typographyClasses.label} rounded-full border border-brand-200 bg-brand-50 px-3 py-1.5 text-brand-800 dark:border-brand-700 dark:bg-brand-950/40 dark:text-brand-200`}
             >
               {chip}
             </li>
@@ -300,7 +309,7 @@ export function PracticeQuestIntroSlide({
       )}
 
       {content.audience && (
-        <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+        <p className={`${typographyClasses.bodyMuted} text-center`}>
           {content.audience}
         </p>
       )}

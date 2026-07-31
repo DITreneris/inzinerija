@@ -7889,19 +7889,23 @@
                   "choices": [
                     {
                       "label": "Kas įvyko?",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai reikia aprašyti, kas jau įvyko (skaičiai, faktais)."
                     },
                     {
                       "label": "Kodėl?",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai ieškai priežasčių – kodėl taip nutiko."
                     },
                     {
                       "label": "Kas bus?",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai prognozuoji, kas greičiausiai bus toliau."
                     },
                     {
                       "label": "Ką daryti?",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Kai reikia konkrečių veiksmų / rekomendacijų."
                     }
                   ]
                 }
@@ -8057,15 +8061,18 @@
                   "choices": [
                     {
                       "label": "Duomenys",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai turi lentelę ar faktus ir nori greitos analizės."
                     },
                     {
                       "label": "Konkurentai",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai lygini save su rinka ar konkurentais."
                     },
                     {
                       "label": "CFO",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai reikia finansų santraukos vadovybei."
                     }
                   ]
                 }
@@ -8122,19 +8129,23 @@
                   "choices": [
                     {
                       "label": "Tinka / Netinka",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai reikia greito „taip / ne“ filtro."
                     },
                     {
                       "label": "Prioritetai",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai rikiuoji kelias idėjas pagal poveikį."
                     },
                     {
                       "label": "Greiti laimėjimai",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai ieškai greitų, mažos pastangos laimėjimų."
                     },
                     {
                       "label": "Portfelis",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Kai vertini visą idėjų portfelį kartu."
                     }
                   ]
                 },
@@ -8235,27 +8246,33 @@
                   "choices": [
                     {
                       "label": "Klientai",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai giliniesi į klientų elgseną ir segmentus."
                     },
                     {
                       "label": "Tiekimas",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai tikrini tiekimo / logistikos duomenis."
                     },
                     {
                       "label": "Pardavimai",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai analizuoji pardavimų pipeline ar sandorius."
                     },
                     {
                       "label": "Rinkodara",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Kai žiūri rinkodaros kanalus ir kampanijas."
                     },
                     {
                       "label": "Procesai",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "Kai matai procesų vėlavimus ar klaidas."
                     },
                     {
                       "label": "Konkurentai",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "Kai renki signalus apie konkurentus."
                     }
                   ]
                 }
@@ -8385,35 +8402,43 @@
                   "choices": [
                     {
                       "label": "Kiekybiniai",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Skaičiai, matavimai – kai reikia KPI."
                     },
                     {
                       "label": "Kokybiniai",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Interviu, atsiliepimai – kai reikia prasmės."
                     },
                     {
                       "label": "Struktūruoti",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Lentelės su aiškiomis skiltimis."
                     },
                     {
                       "label": "Nestruktūruoti",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Tekstas, vaizdai, be griežtos schemos."
                     },
                     {
                       "label": "Pusiau strukt.",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "Mišinys – JSON, logai, formos."
                     },
                     {
                       "label": "Pirminiai",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "Surinkai pats (apklausa, eksperimentas)."
                     },
                     {
                       "label": "Antriniai",
-                      "rowIndex": 6
+                      "rowIndex": 6,
+                      "whenHint": "Išoriniai ar jau egzistuojantys šaltiniai."
                     },
                     {
                       "label": "Automatiniai",
-                      "rowIndex": 7
+                      "rowIndex": 7,
+                      "whenHint": "Sensoriai, API, automatiniai srautai."
                     }
                   ]
                 }
@@ -8914,19 +8939,23 @@
                   "choices": [
                     {
                       "label": "Stulpelinė",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kategorijų palyginimui – stulpeliai greičiausiai skaitomi."
                     },
                     {
                       "label": "Linijinė",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Tendencijai laikui bėgant – linija."
                     },
                     {
                       "label": "Skritulinė",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Dalių santykiui – skritulinė (atsargiai su daug dalių)."
                     },
                     {
                       "label": "Lentelė",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Tiksliems skaičiams šalia – lentelė."
                     }
                   ]
                 }
@@ -9020,15 +9049,18 @@
                   "choices": [
                     {
                       "label": "Prekės ženklas",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai tiriate prekės ženklo suvokimą."
                     },
                     {
                       "label": "Lojalumas",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai matuojate lojalumą / pakartotinį pirkimą."
                     },
                     {
                       "label": "Pardavimai",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai ieškote pardavimų kliūčių ar svirčių."
                     }
                   ]
                 }
@@ -9981,27 +10013,33 @@
                   "choices": [
                     {
                       "label": "Šaltiniai",
-                      "rowIndex": 0
+                      "rowIndex": 0,
+                      "whenHint": "Kai reikia patikimų šaltinių sąrašo."
                     },
                     {
                       "label": "PDF",
-                      "rowIndex": 1
+                      "rowIndex": 1,
+                      "whenHint": "Kai dirbate su PDF / dokumentais."
                     },
                     {
                       "label": "Sintezė",
-                      "rowIndex": 2
+                      "rowIndex": 2,
+                      "whenHint": "Kai reikia suvesti kelis šaltinius į santrauką."
                     },
                     {
                       "label": "Citata",
-                      "rowIndex": 3
+                      "rowIndex": 3,
+                      "whenHint": "Kai būtina citata su nuoroda."
                     },
                     {
                       "label": "Mokslas",
-                      "rowIndex": 4
+                      "rowIndex": 4,
+                      "whenHint": "Kai ieškote mokslinių / peer-reviewed šaltinių."
                     },
                     {
                       "label": "Tinklas",
-                      "rowIndex": 5
+                      "rowIndex": 5,
+                      "whenHint": "Kai mapinate temų tinklą ar ryšius."
                     }
                   ]
                 },

@@ -83,56 +83,56 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 
 ## Diagramos, labai ir off-renderer (TE-2)
 
-| elementId                           | M/slide                   | Pattern                        | Shell | Maturity | Render                                           |
-| ----------------------------------- | ------------------------- | ------------------------------ | ----- | -------: | ------------------------------------------------ |
-| `diagram:agent_workflow_diagram`    | M10/10.2                  | `cycle-feedback`               | Taip  |        4 | AgentWorkflowBlock                               |
-| `diagram:custom_gpt_process`        | M4/46                     | `linear-process`               | Ne    |        3 | ProcessStepper                                   |
-| `diagram:da_schema_entity_example`  | M7/95                     | `illustration`                 | Ne    |        2 | DiagramImageFrame                                |
-| `diagram:di_prezentacijos_workflow` | M5/47                     | `linear-process`               | Taip  |        3 | DiPrezentacijosWorkflowBlock                     |
-| `diagram:llm_arch`                  | M4/56                     | `comparison-mode-architecture` | Ne    |        4 | LlmArchDiagramBlock                              |
-| `diagram:llm_autoregressive`        | M4/44                     | `cycle-feedback`               | Taip  |        3 | LlmAutoregressiveBlock                           |
-| `diagram:m10_agent_orchestrator`    | M10/10.482                | `multi-agent-flow`             | Taip  |        4 | M10OrchestratorBlock                             |
-| `diagram:m10_incident_playbook`     | M10/10.65                 | `linear-process`               | Taip  |        3 | M10IncidentPlaybookBlock                         |
-| `diagram:m10_learning_loop`         | M10/10.49                 | `cycle-feedback`               | Taip  |        3 | M10LearningLoopBlock                             |
-| `diagram:m10_three_a_strategy`      | M10/10.25                 | `comparison`                   | Taip  |        3 | M10ThreeAStrategyBlock                           |
-| `diagram:m10_tool_decision_tree`    | M10/10.35                 | `decision-tree`                | Taip  |        3 | M10ToolDecisionTreeBlock                         |
-| `diagram:m10_trigger_flow`          | M10/10.15                 | `linear-process`               | Taip  |        3 | M10TriggerFlowBlock                              |
-| `diagram:m10_workflow_spec`         | M10/10.65                 | `linear-process`               | Taip  |        3 | M10WorkflowSpecBlock                             |
-| `diagram:m12_multi_agent_schema`    | M12/120.5                 | `multi-agent-flow`             | Taip  |        4 | M12MultiAgentSchemaBlock                         |
-| `diagram:m12_three_labs`            | M12/120.25                | `comparison`                   | Ne    |        3 | M12ThreeLabsBlock                                |
-| `diagram:m13_aec_funnel`            | M13/13.1                  | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
-| `diagram:m13_consistency_lock`      | M13/13.32                 | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
-| `lab:m13_consistency_lab`           | M13/13.325                | `interactive-control-lab`      | Ne    |        3 | M13ConsistencyLockLabBlock (Drift + Ref)         |
-| `diagram:m13_media_pipeline`        | M13/13.12                 | `linear-process`               | Taip  |        4 | M13MediaPipelineBlock                            |
-| `diagram:m13_postprod_steps`        | M13/13.52                 | `linear-process`               | Taip  |        4 | M13PostprodBlock                                 |
-| `diagram:m13_prompt_stack`          | M13/13.2                  | `stack`                        | Taip  |        4 | M13PromptStackBlock                              |
-| `diagram:m13_rule_of_thirds`        | M13/13.33                 | `illustration`                 | Ne    |        2 | M13RuleOfThirdsBlock                             |
-| `diagram:m15_practice_loop`         | M15/150.25                | `dual-path`                    | Taip  |        3 | M15PracticeLoopBlock                             |
-| `diagram:m7_analysis_types`         | M7/731                    | `roles-hub`                    | Taip  |        3 | M7AnalysisTypesBlock                             |
-| `diagram:m7_bi_schema`              | M7/92                     | `linear-process`               | Taip  |        3 | M7BiSchemaBlock                                  |
-| `diagram:m7_macro_path_map`         | M7/71                     | `linear-process`               | Ne    |        3 | M7PathMapBlock                                   |
-| `diagram:m7_da_pipeline`            | M7/73                     | `linear-process`               | Taip  |        4 | M7DaPipelineBlock                                |
-| `diagram:m7_data_prep_workflow`     | M7/89                     | `linear-process`               | Taip  |        3 | M7DataPrepWorkflowBlock                          |
-| `diagram:m7_data_story_cycle`       | M7/100                    | `cycle-feedback`               | Taip  |        4 | M7DataStoryCycleBlock                            |
-| `diagram:m7_master_workflow`        | M7/74                     | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock context=m7_master            |
-| `diagram:m7_three_agents_flow`      | M7/94                     | `roles-hub`                    | Taip  |        3 | M7ThreeAgentsBlock                               |
-| `diagram:m9_data_workflow`          | M9/93                     | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock                              |
-| `diagram:rag_duomenu_ruosimas`      | M4/62                     | `linear-process`               | Ne    |        3 | RagDuomenuRuosimasBlock                          |
-| `diagram:rl_process_diagram`        | M4/48                     | `cycle-feedback`               | Taip  |        3 | RlProcessBlock                                   |
-| `diagram:strukturuotas_procesas`    | M4/43                     | `linear-process`               | Ne    |        3 | StrukturuotasProcesasBlock                       |
-| `diagram:turinio_workflow`          | M13/13.11                 | `linear-process`               | Taip  |        4 | TurinioWorkflowBlock                             |
-| `lab:m10_agent_taxonomy`            | M10/10.45                 | `interactive-control-lab`      | Ne    |        3 | M10DepthRolesLabBlock + M10DepthRolesMiniDiagram |
-| `lab:m10_human_control_simulator`   | M10/10.26                 | `interactive-control-lab`      | Ne    |        4 | M10HumanControlSimulatorBlock                    |
-| `lab:m10_team_readiness_lab`        | M10/10.255                | `interactive-control-lab`      | Ne    |        3 | M10TeamReadinessLabBlock                         |
-| `lab:m4_prompt_mode_simulator`      | M4/54                     | `interactive-control-lab`      | Ne    |        3 | M4PromptModeSimulatorBlock                       |
-| `slide-type:practice-quest-intro`   | M9/90                     | `interactive-control-lab`      | Ne    |        2 | PracticeQuestIntroSlide                          |
-| `slide-type:i2v-generatorius`       | M13/13.47                 | `special`                      | Ne    |        2 | I2vGeneratoriusSlide                             |
-| `lab:m9_workflow_step_prompts`      | M9/93                     | `interactive-control-lab`      | Ne    |        3 | M9WorkflowStepCopyBlock                          |
-| `off:hallucination-pipeline`        | M7/67.7                   | `linear-process`               | Taip  |        3 | HallucinationPipelineBlock                       |
-| `off:pipeline-context-engineering`  | M4/45                     | `comparison+linear-process`    | Ne    |        2 | ContextEngineeringPipelineDiagram                |
-| `off:portal-beat`                   | M4/53.5                   | `portal-beat`                  | Ne    |        3 | PortalBeatDiagram                                |
-| `off:test-knowledge-scope`          | TestKnowledgeScopeDiagram | `test-scope`                   | Ne    |        3 | TestKnowledgeScopeDiagram                        |
-| `off:workflow-comparison`           | M1/15                     | `comparison`                   | Ne    |        3 | WorkflowComparisonInteractiveBlock               |
+| elementId                           | M/slide                | Pattern                        | Shell | Maturity | Render                                           |
+| ----------------------------------- | ---------------------- | ------------------------------ | ----- | -------: | ------------------------------------------------ |
+| `diagram:agent_workflow_diagram`    | M10/10.2               | `cycle-feedback`               | Taip  |        4 | AgentWorkflowBlock                               |
+| `diagram:custom_gpt_process`        | M4/46                  | `linear-process`               | Ne    |        3 | ProcessStepper                                   |
+| `diagram:da_schema_entity_example`  | M7/95                  | `illustration`                 | Ne    |        2 | DiagramImageFrame                                |
+| `diagram:di_prezentacijos_workflow` | M5/47                  | `linear-process`               | Taip  |        3 | DiPrezentacijosWorkflowBlock                     |
+| `diagram:llm_arch`                  | M4/56                  | `comparison-mode-architecture` | Ne    |        4 | LlmArchDiagramBlock                              |
+| `diagram:llm_autoregressive`        | M4/44                  | `cycle-feedback`               | Taip  |        3 | LlmAutoregressiveBlock                           |
+| `diagram:m10_agent_orchestrator`    | M10/10.482             | `multi-agent-flow`             | Taip  |        4 | M10OrchestratorBlock                             |
+| `diagram:m10_incident_playbook`     | M10/10.65              | `linear-process`               | Taip  |        3 | M10IncidentPlaybookBlock                         |
+| `diagram:m10_learning_loop`         | M10/10.49              | `cycle-feedback`               | Taip  |        3 | M10LearningLoopBlock                             |
+| `diagram:m10_three_a_strategy`      | M10/10.25              | `comparison`                   | Taip  |        3 | M10ThreeAStrategyBlock                           |
+| `diagram:m10_tool_decision_tree`    | M10/10.35              | `decision-tree`                | Taip  |        3 | M10ToolDecisionTreeBlock                         |
+| `diagram:m10_trigger_flow`          | M10/10.15              | `linear-process`               | Taip  |        3 | M10TriggerFlowBlock                              |
+| `diagram:m10_workflow_spec`         | M10/10.65              | `linear-process`               | Taip  |        3 | M10WorkflowSpecBlock                             |
+| `diagram:m12_multi_agent_schema`    | M12/120.5              | `multi-agent-flow`             | Taip  |        4 | M12MultiAgentSchemaBlock                         |
+| `diagram:m12_three_labs`            | M12/120.25             | `comparison`                   | Ne    |        3 | M12ThreeLabsBlock                                |
+| `diagram:m13_aec_funnel`            | M13/13.1               | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
+| `diagram:m13_consistency_lock`      | M13/13.32              | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
+| `lab:m13_consistency_lab`           | M13/13.325             | `interactive-control-lab`      | Ne    |        3 | M13ConsistencyLockLabBlock (Drift + Ref)         |
+| `diagram:m13_media_pipeline`        | M13/13.12              | `linear-process`               | Taip  |        4 | M13MediaPipelineBlock                            |
+| `diagram:m13_postprod_steps`        | M13/13.52              | `linear-process`               | Taip  |        4 | M13PostprodBlock                                 |
+| `diagram:m13_prompt_stack`          | M13/13.2               | `stack`                        | Taip  |        4 | M13PromptStackBlock                              |
+| `diagram:m13_rule_of_thirds`        | M13/13.33              | `illustration`                 | Ne    |        2 | M13RuleOfThirdsBlock                             |
+| `diagram:m15_practice_loop`         | M15/150.25             | `dual-path`                    | Taip  |        3 | M15PracticeLoopBlock                             |
+| `diagram:m7_analysis_types`         | M7/731                 | `roles-hub`                    | Taip  |        3 | M7AnalysisTypesBlock                             |
+| `diagram:m7_bi_schema`              | M7/92                  | `linear-process`               | Taip  |        3 | M7BiSchemaBlock                                  |
+| `diagram:m7_macro_path_map`         | M7/71                  | `linear-process`               | Ne    |        3 | M7PathMapBlock                                   |
+| `diagram:m7_da_pipeline`            | M7/73                  | `linear-process`               | Taip  |        4 | M7DaPipelineBlock                                |
+| `diagram:m7_data_prep_workflow`     | M7/89                  | `linear-process`               | Taip  |        3 | M7DataPrepWorkflowBlock                          |
+| `diagram:m7_data_story_cycle`       | M7/100                 | `cycle-feedback`               | Taip  |        4 | M7DataStoryCycleBlock                            |
+| `diagram:m7_master_workflow`        | M7/74                  | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock context=m7_master            |
+| `diagram:m7_three_agents_flow`      | M7/94                  | `roles-hub`                    | Taip  |        3 | M7ThreeAgentsBlock                               |
+| `diagram:m9_data_workflow`          | M9/93                  | `linear-process`               | Taip  |        3 | M9DataWorkflowBlock                              |
+| `diagram:rag_duomenu_ruosimas`      | M4/62                  | `linear-process`               | Ne    |        3 | RagDuomenuRuosimasBlock                          |
+| `diagram:rl_process_diagram`        | M4/48                  | `cycle-feedback`               | Taip  |        3 | RlProcessBlock                                   |
+| `diagram:strukturuotas_procesas`    | M4/43                  | `linear-process`               | Ne    |        3 | StrukturuotasProcesasBlock                       |
+| `diagram:turinio_workflow`          | M13/13.11              | `linear-process`               | Taip  |        4 | TurinioWorkflowBlock                             |
+| `lab:m10_agent_taxonomy`            | M10/10.45              | `interactive-control-lab`      | Ne    |        3 | M10DepthRolesLabBlock + M10DepthRolesMiniDiagram |
+| `lab:m10_human_control_simulator`   | M10/10.26              | `interactive-control-lab`      | Ne    |        4 | M10HumanControlSimulatorBlock                    |
+| `lab:m10_team_readiness_lab`        | M10/10.255             | `interactive-control-lab`      | Ne    |        3 | M10TeamReadinessLabBlock                         |
+| `lab:m4_prompt_mode_simulator`      | M4/54                  | `interactive-control-lab`      | Ne    |        3 | M4PromptModeSimulatorBlock                       |
+| `slide-type:practice-quest-intro`   | M9/90                  | `interactive-control-lab`      | Ne    |        2 | PracticeQuestIntroSlide                          |
+| `slide-type:i2v-generatorius`       | M13/13.47              | `special`                      | Ne    |        2 | I2vGeneratoriusSlide                             |
+| `lab:m9_workflow_step_prompts`      | M9/93                  | `interactive-control-lab`      | Ne    |        3 | M9WorkflowStepCopyBlock                          |
+| `off:hallucination-pipeline`        | M7/67.7                | `linear-process`               | Taip  |        3 | HallucinationPipelineBlock                       |
+| `off:pipeline-context-engineering`  | M4/45                  | `comparison+linear-process`    | Ne    |        2 | ContextEngineeringPipelineDiagram                |
+| `off:portal-beat`                   | M4/53.5                | `portal-beat`                  | Ne    |        3 | PortalBeatDiagram                                |
+| `off:test-knowledge-scope`          | M8/80 (+M11/M14 intro) | `test-scope`                   | Ne    |        3 | TestKnowledgeScopeDiagram                        |
+| `off:workflow-comparison`           | M1/15                  | `comparison`                   | Ne    |        3 | WorkflowComparisonInteractiveBlock               |
 
 > Pilnas overlay: `teaching-elements-overlay.json`. Audit: `npm run audit:teaching-elements --strict`.
 

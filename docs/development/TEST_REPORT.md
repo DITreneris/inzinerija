@@ -2,6 +2,76 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-07-31 – Pre-launch deep audit (repo gates)
+
+**Statusas:** ✅ PASS (automated) · ⚠️ process GO with conditions.  
+**Apimtis:** `audit:release-preflight` + `build:production` + `build:corporate15` ant dirty WIP (M79 ROI + M1315 individuality + DS typography).
+
+**Automatika:**
+
+| Gate                                                                         | Rezultatas                               |
+| ---------------------------------------------------------------------------- | ---------------------------------------- |
+| `validate:schema` (+ tools, core profiles, handouts)                         | ✅                                       |
+| lint / typecheck / DS tokens gate / typography gate                          | ✅ (tokens TOTAL 229; typography bans 0) |
+| `audit:m49` · `audit:m1012` · `audit:m1315` · TE strict · journeys · footers | ✅                                       |
+| `test:run`                                                                   | ✅ **150/924** (was 142/903)             |
+| `build:production` (M1–9)                                                    | ✅                                       |
+| `build:corporate15` (M1–15)                                                  | ✅                                       |
+
+**Process blockers (ne code FAIL):** working tree dirty (~100 modified + untracked `testKnowledgeScopeContent.ts`, `audit-typography.mjs`); do not tag/deploy from unclean HEAD; incomplete commit would break CI. Human RELEASE_QA §1–5 / PDF / MON-5 browser still open. Open learning P0/P1: none. MON §1.4 out of scope.
+
+**Verdict:** Repo learning cut **GO after commit** → production M1–9 primary; corporate12/15 repo-ready same commit. Marketing cutover separate.
+
+## 2026-07-31 – M79 soft residual clearout
+
+**Statusas:** ✅ PASS (focused).  
+**Apimtis:** 71 focus ring · 731 glow · 67.7 dual aria-live · M9 quest nav landmark.
+
+**Verdict:** Soft residual line cleared in execution plan; M79 epic remains closed (no new tickets).
+
+## 2026-07-31 – M1315 S5-THIRDS + S4-INDIV closeout
+
+**Statusas:** ✅ PASS (focused).  
+**Apimtis:** 13.33 subject motif; 13.52 timeline; 13.32 lock-artifact; 13.11 cycle; 13.12 linear etalon.
+
+**Automatika:**
+
+| Gate           | Rezultatas                                                              |
+| -------------- | ----------------------------------------------------------------------- |
+| Focused Vitest | `m13RuleOfThirdsS5`, `m13S4WaveAIndividuality`, `m13SpineIndividuality` |
+| TODO           | `M1315-S6` + `M1315-S7` `[x]`                                           |
+
+**Verdict:** M13 process individuality epic closed; residual dens (`M1315-DENS`) stays Deferred.
+
+## 2026-07-31 – M79 Sprint 2–3 closeout (S2b…S6 + A11Y)
+
+**Statusas:** ✅ PASS (focused).  
+**Apimtis:** test-scope SOT; 92/94/100 typography+crop; 73 vs 89 metaphors; TE overlay; `role="img"` sweep + registry guard.
+
+**Automatika:**
+
+| Gate                              | Rezultatas                                                                                                                                   |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Focused Vitest (5 failai)         | ✅ **12/12** (`testKnowledgeScopeContent`, `m7StoryCycleViewBox`, `lmsLinearPolish`, `m7SpineIndividuality`, `diagramRoleImgFocusableGuard`) |
+| `audit:teaching-elements:strict`  | ✅ 162/162                                                                                                                                   |
+| ESLint (touched diagrams + tests) | ✅                                                                                                                                           |
+
+**Verdict:** M79 epic Sprint 2–3 tickets locked; soft residual (macro path focus ring, 731 glow, 67.7 dual aria-live, practice-quest nav) not blocking. Next product: Deferred dens / MON out of learning P0.
+
+## 2026-07-31 – M79 Sprint 1 (S1a / S1b / S2a)
+
+**Statusas:** ✅ PASS (focused).  
+**Apimtis:** `preCopyCheck` Copy gate; chips null-until-pick + whenHint; M9 workflow kortelių a11y.
+
+**Automatika:**
+
+| Gate                        | Rezultatas                                                                                                        |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Focused Vitest (5 failai)   | ✅ **19/19** (`preCopyGate`, `preCopyPlacement`, `linkedRowIndex`, `toolChoiceWhenHint`, `M9DataWorkflowDiagram`) |
+| ESLint (touched components) | ✅                                                                                                                |
+
+**Verdict:** Sprint 1 locked; next = S2b / S3 / S4 / A11Y-GUARD. Soft density DoD neįvestas.
+
 ## 2026-07-30 – Code/doc audit follow-up
 
 **Statusas:** ✅ PASS (CI blokeris uždarytas).  
@@ -91,6 +161,12 @@
 
 **Browser:** owner spot @375 — 13.1 · 13.325 lab · 13.37 · 150 Greitas · 140 Path Test (ne blokeris jei gates žali).  
 **Verdict:** Authoring journey gaps closed; prod cut = product un-defer (`TODO` §1.5).
+
+## 2026-07-31 – DS 0.3.3 Typography Wave T0–T6
+
+**Statusas:** ✅ PASS (code-path).  
+**Gates:** `audit:typography:gate` — font-black=0, micro-px=0; `typecheck` OK.  
+**Smoke (recommended):** M1 action-intro · M1 0.5 · M4 53.5 portal · M4 celebration section-break · M7 dense content-block + schema · M13 13.37 · M2/M8 test results · light/dark.
 
 ## 2026-07-28 – Horizon A Day 0 (DS 0.3.2 soft close)
 

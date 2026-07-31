@@ -107,7 +107,7 @@ export function DiagramStepNav<TStep extends DiagramStepSummary>({
             aria-label={stepAria(idx, step.title)}
             className={`
               flex shrink-0 items-center justify-center rounded-full border-2 font-bold transition-all
-              ${isHero ? 'h-9 w-9 min-h-[36px] min-w-[36px] text-[11px] shadow-none' : `${touchTargetClasses.minimum} text-xs shadow-sm`}
+              ${isHero ? 'h-9 w-9 min-h-[36px] min-w-[36px] text-xs shadow-none' : `${touchTargetClasses.minimum} text-xs shadow-sm`}
               ${focusRingClasses.brandOnWhite}
               ${
                 isActive

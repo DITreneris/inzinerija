@@ -21,16 +21,18 @@ const FB_TIP_H = 12;
 const FB_TIP_W = 8;
 
 const DESKTOP_VIEWBOX_W = 640;
-/** I3c-style crop – keep 5×108 story boxes (not AgentWorkflow 188). */
-const DESKTOP_VIEWBOX_H = 268;
-const DESKTOP_BOX_W = 108;
+/** S4: crop dead air below feedback trough (was 268). */
+const DESKTOP_VIEWBOX_H = 212;
+/** Slightly wider so „3. Vizualizacija“ fits with padding. */
+const DESKTOP_BOX_W = 112;
 const DESKTOP_BOX_H = 72;
-const DESKTOP_GAP = 20;
+const DESKTOP_GAP = 16;
 const DESKTOP_ROW_Y = 48;
 const DESKTOP_FEEDBACK_OFFSET = 40;
 
 const COMPACT_VIEWBOX_W = 320;
-const COMPACT_VIEWBOX_H = 430;
+/** S3: stack height 74+4×(54+22)+54 = 432; + cycle cue band. */
+const COMPACT_VIEWBOX_H = 452;
 const COMPACT_BOX_W = 240;
 const COMPACT_BOX_H = 54;
 const COMPACT_GAP = 22;
@@ -250,6 +252,31 @@ export default function M7DataStoryCycleDiagram({
             </g>
           );
         })()}
+
+      {isCompactDiagram ? (
+        <g aria-hidden>
+          <rect
+            x={cx - 110}
+            y={COMPACT_VIEWBOX_H - 28}
+            width="220"
+            height="20"
+            rx="10"
+            fill={feedbackSoft}
+            opacity="0.92"
+          />
+          <text
+            x={cx}
+            y={COMPACT_VIEWBOX_H - 14}
+            textAnchor="middle"
+            fontFamily={DIAGRAM_TOKENS.font}
+            fontSize={DIAGRAM_TOKENS.typography.edgeLabel.size}
+            fontWeight={DIAGRAM_TOKENS.typography.edgeLabel.weight}
+            fill={feedbackStroke}
+          >
+            {feedbackLabel}
+          </text>
+        </g>
+      ) : null}
 
       {boxes.map((box, i) => {
         const [x, y, w, h] = box;

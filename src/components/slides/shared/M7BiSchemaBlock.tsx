@@ -58,7 +58,6 @@ export default function M7BiSchemaBlock() {
       </p>
       <EnlargeableDiagram
         mobileBehavior="reflow"
-        showEnlargeControl={false}
         enlargeLabel={labels.enlargeLabel}
         renderContent={() => (
           <M7BiSchemaDiagram

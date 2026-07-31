@@ -12,6 +12,7 @@ import {
   getLlmArchDiagramLabels,
   getLlmArchModes,
 } from './llmArchLayout';
+import { typographyClasses } from '../../../design-tokens';
 
 const MODES: LlmArchMode[] = ['basic', 'rag', 'tool'];
 
@@ -39,7 +40,7 @@ export default function LlmArchDiagramBlock() {
               aria-pressed={mode === m}
               aria-label={`${locale === 'en' ? 'Mode' : 'Režimas'}: ${modes[m].label}`}
               className={`
-                font-sans text-[13px] font-medium uppercase px-5 py-2.5 rounded
+                ${typographyClasses.labelUpper} font-medium px-5 py-2.5 rounded
                 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
                 min-h-[44px] min-w-[44px]
                 ${
@@ -55,7 +56,7 @@ export default function LlmArchDiagramBlock() {
           ))}
         </div>
         <div
-          className="inline-flex items-center gap-2 rounded-full border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 px-3 py-1.5 font-sans text-[13px] text-brand-800 dark:text-brand-200"
+          className={`inline-flex items-center gap-2 rounded-full border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 px-3 py-1.5 ${typographyClasses.small} text-brand-800 dark:text-brand-200`}
           aria-live="polite"
         >
           <span

@@ -2,15 +2,17 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) (+ ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md)). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-07-30 (Horizon **C** M1315-C\* ✅; B-V verify/lock ✅).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-07-31 (M79 epic Sprint 1–3 **done**; Density DoD = ne; M1315-DENS deferred).
 
-**Dabartinis fokusas:** marketing cutover handoff (MON, out of scope) · product next (Horizon D / quiet). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **142/903** (`test:run` po 10.255 order guard fix); `build:corporate12` + `build:corporate15` žali.
+**Dabartinis fokusas:** M79 scheme ROI **uždarytas** · M1315-S5/S6/S7 **uždaryti** · marketing cutover (MON, out of scope) · Horizon D parked · Deferred dens (`M1315-DENS`). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **150/924**; `build:corporate12` + `build:corporate15` žali.
+
+**Produktiniai sprendimai (2026-07-31):** (1) skaitomumas keliamas **išlaikant gylį**; (2) **M79-S\*** epic completed; (3) **formalus Density DoD / CI – ne**; (4) M13 **13.3 / 13.4** dens → **M1315-DENS**.
 
 **Learning / corporate vartai (šiame repo):**
 
 - **Open P0:** nėra.
-- **Open P1:** `M1315-S*` schemų / interaktyvių elementų ROI fix'ai (Deferred production; žr. §1.2c).
-- **Open P2:** nėra (Horizon A CORP-M\* ✅ → archive).
+- **Open P1:** nėra (M79 `S0`…`S6` + `A11Y-*` done — §1.2d snapshot).
+- **Open P2 / deferred dens:** `M1315-DENS` (13.3/13.4) — §1.2c; `M1315-S6/S7` done 2026-07-31.
 
 ---
 
@@ -36,39 +38,43 @@ Repo exit: `build:corporate12` + magic-link tier 12 + `audit:m1012` + docs. Mark
 
 > Auditas: [`M13_M15_SCHEME_AUDIT.md`](docs/development/M13_M15_SCHEME_AUDIT.md). Production release lieka Deferred; ne corporate cut.
 
-| ID              | Užduotis                                | Status   | Pastaba                                                        |
-| --------------- | --------------------------------------- | -------- | -------------------------------------------------------------- |
-| **M1315-S0**    | Audit SOT + docs sync                   | [x]      | `M13_M15_SCHEME_AUDIT.md` + indeksai                           |
-| **M1315-S1**    | 13.47 I2V readiness meter               | [x]      | Realūs checks; testų perrašymas                                |
-| **M1315-S2**    | 13.37 Vaizdo generatoriaus a11y         | [x]      | Fake tablist, labeliai, i18n tips                              |
-| **M1315-S3**    | 150.25 practice loop mobile             | [x]      | Scroll mobile; feedback path iš layout                         |
-| **M1315-S4**    | 13.325 rose semantika                   | [x]      | After-lock → emerald; GOLDEN sync                              |
-| **M1315-S5**    | Browser smoke vartai                    | [x]      | 13.37/13.47/13.325 shots; overflowX gate                       |
-| **M1315-S6/S7** | Process form individuality + 13.33 lift | Deferred | S4-INDIV (metaforos) + S5-THIRDS; ne VerticalFlow pixel dedupe |
+| ID             | Užduotis                              | Status   | Pastaba                                                                                          |
+| -------------- | ------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| **M1315-S0**   | Audit SOT + docs sync                 | [x]      | `M13_M15_SCHEME_AUDIT.md` + indeksai                                                             |
+| **M1315-S1**   | 13.47 I2V readiness meter             | [x]      | Realūs checks; testų perrašymas                                                                  |
+| **M1315-S2**   | 13.37 Vaizdo generatoriaus a11y       | [x]      | Fake tablist, labeliai, i18n tips                                                                |
+| **M1315-S3**   | 150.25 practice loop mobile           | [x]      | Scroll mobile; feedback path iš layout                                                           |
+| **M1315-S4**   | 13.325 rose semantika                 | [x]      | After-lock → emerald; GOLDEN sync                                                                |
+| **M1315-S5**   | Browser smoke vartai                  | [x]      | 13.37/13.47/13.325 shots; overflowX gate                                                         |
+| **M1315-S7**   | 13.33 S5-THIRDS subject motif         | [x]      | Upper-right subject + muted center; `m13RuleOfThirdsS5`                                          |
+| **M1315-S6**   | Process form individuality (S4-INDIV) | [x]      | linear / lock-artifact / timeline / cycle; `m13SpineIndividuality`                               |
+| **M1315-DENS** | 13.3 / 13.4 content density residual  | Deferred | Po M79 (done); soft checklist (ne CI); **gylis lieka** – collapsible / Trumpai, ne Flagship trim |
 
-### §1.2d P1 – M7–9 schemes / interactive ROI
+### §1.2d P1 – M7–9 schemes / interactive ROI ← **done 2026-07-31**
 
-> Auditas: [`M7_M9_SCHEME_AUDIT.md`](docs/development/M7_M9_SCHEME_AUDIT.md). Korporatyvinis bundle (tier 9) – kokybės remontas, ne naujas cut.  
-> Sprendimai §0: chips auto-select = klaida; compact tipografijos grindys keliamos **globaliai**; individualumo taisyklė – **visoms** schemoms.
+> Auditas: [`M7_M9_SCHEME_AUDIT.md`](docs/development/M7_M9_SCHEME_AUDIT.md).  
+> **Vykdymo planas:** [`M79_READABILITY_EXECUTION_PLAN.md`](docs/development/intake/M79_READABILITY_EXECUTION_PLAN.md) (Sprint 1→3) — epic DoD checked.  
+> Soft residual: ✅ cleared 2026-07-31 (71 focus ring · 731 glow · 67.7 dual aria-live · M9 quest nav).  
+> Sprendimai: chips auto-select = klaida; compact tipografijos grindys **globaliai**; individualumas visoms schemoms; **Density DoD = ne** (soft checklist).
 
-| ID             | Užduotis                                           | Status | Pastaba                                                                                                     |
-| -------------- | -------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
-| **M79-S0**     | Audit SOT + docs sync                              | [x]    | `M7_M9_SCHEME_AUDIT.md` + indeksai + registry                                                               |
-| **M79-S1a**    | A1-GATE: `preCopyCheckBlock` (67, 67.8)            | [ ]    | Realus copy gate arba pervadinti; ChoiceControl + `aria-live`                                               |
-| **M79-S1b**    | A1-CHIPS: `toolChoiceBar` default ×9               | [ ]    | Auto-select šalinimas + testo perrašymas; `whenHint`; `aria-live`                                           |
-| **M79-S2a**    | A2-CARDS: `m9_data_workflow` (74 + M9/93)          | [ ]    | `tabIndex={-1}` + `aria-hidden`; `role="img"` kolizija; guard test                                          |
-| **M79-S2b**    | A2-SCOPE: M8/80 test-knowledge-scope               | [ ]    | Content SOT + tokenai; dublis `slideId: 891`; mirusios šakos                                                |
-| **A11Y-SWEEP** | `role="img"` + interaktyvūs SVG internals          | [ ]    | Cross-module: Schema3Interactive / RagDuomenu / WorkflowComparison / ContextEngineering / LlmAutoregressive |
-| **A11Y-GUARD** | Registry-driven `role="img"` descendant guard      | [ ]    | Per `getDiagramRendererKeys()` renderinti schemas; drausti focusable vaikus `[role="img"]` viduje           |
-| **M79-S3**     | A3-TYPE: compact tipografijos grindys + 92/94/100  | [ ]    | `diagramTokens` globaliai → cross-modulinis re-fit; sk. 100 2u clip                                         |
-| **M79-S4**     | A4-CANVAS: miręs kadras 94 / 92 / 100              | [ ]    | viewBox kirpimas (ne BOX↑)                                                                                  |
-| **M79-S5**     | A5-INDIV: formos individualumas (73 vs 89 + visos) | [ ]    | Metafora matoma be step text; ne pixel-parity dedupe                                                        |
-| **M79-S6**     | A6-REGISTRY: overlay dublių šalinimas              | [ ]    | Hallucination ×2 įrašai; `contentSot` korekcijos                                                            |
+| ID             | Užduotis                                           | Status | Pastaba                                                                                                       |
+| -------------- | -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| **M79-S0**     | Audit SOT + docs sync                              | [x]    | `M7_M9_SCHEME_AUDIT.md` + indeksai + registry                                                                 |
+| **M79-S1a**    | A1-GATE: `preCopyCheckBlock` (67, 67.8)            | [x]    | Realus Copy gate (teisingas atsakymas); ChoiceControl + `aria-live`; TemplateBlock `copyDisabled`             |
+| **M79-S1b**    | A1-CHIPS: `toolChoiceBar` default ×9               | [x]    | Default null iki pick; `whenHint` ×8 (+84); `aria-live`; testai perrašyti                                     |
+| **M79-S2a**    | A2-CARDS: `m9_data_workflow` (74 + M9/93)          | [x]    | Kortelės `tabIndex={-1}` + `aria-hidden`; guard test                                                          |
+| **M79-S2b**    | A2-SCOPE: M8/80 test-knowledge-scope               | [x]    | `testKnowledgeScopeContent.ts`; Valymas→891 / Seka→89; DIAGRAM_TOKENS SVG fallback; overlay contentSot        |
+| **A11Y-SWEEP** | `role="img"` + interaktyvūs SVG internals          | [x]    | Schema3 / Rag / WorkflowComparison / ContextEngineering / LlmAutoregressive → `tabIndex={-1}` + `aria-hidden` |
+| **A11Y-GUARD** | Registry-driven `role="img"` descendant guard      | [x]    | `diagramRoleImgFocusableGuard.test.tsx` (registry keys + sweep targets)                                       |
+| **M79-S3**     | A3-TYPE: compact tipografijos grindys + 92/94/100  | [x]    | T5 floors + 92/94/100 re-fit; sk.100 compact stack + cycle cue; 94 dark tones                                 |
+| **M79-S4**     | A4-CANVAS: miręs kadras 94 / 92 / 100              | [x]    | viewBox kirpimas (ne BOX↑) ant 92/94/100                                                                      |
+| **M79-S5**     | A5-INDIV: formos individualumas (73 vs 89 + visos) | [x]    | 73 `station-rail` vs 89 `prep-funnel`; individuality test                                                     |
+| **M79-S6**     | A6-REGISTRY: overlay dublių šalinimas              | [x]    | Hallucination slide-type → alias of `off:`; scope/contentSot; `audit:teaching-elements:strict` green          |
 
 ### §1.3 P2 – Horizon A: corporate micro (M1–9)
 
 **Closed 2026-07-28** (`CORP-M1` done · `CORP-M2` won’t-now · `CORP-M3` deferred-with-date) → archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md).  
-Open learning P2 šiame repo: **nėra**.
+Open learning P2: **nėra** aktyvių ticket’ų (dens residual = Deferred **M1315-DENS** §1.2c, ne open P2 sprintas).
 
 ### §1.4 Out of scope – marketing handoff
 
@@ -114,15 +120,16 @@ Pilnos lentelės: [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/T
 
 ## 3. Nuorodos
 
-| Kas                  | Kur                                                              |
-| -------------------- | ---------------------------------------------------------------- |
-| Production ladder    | [`ROADMAP.md`](ROADMAP.md)                                       |
-| Klaidos / release QA | `docs/development/TEST_REPORT.md`, `RELEASE_QA_CHECKLIST.md`     |
-| M7–9 kokybė          | `docs/development/07_08_09_backlog.md`                           |
-| Pedagogika           | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`               |
-| M10–12 corp intake   | `docs/development/intake/M10_M12_CORPORATE_PRODUCTION_INTAKE.md` |
-| M13–15 corp intake   | `docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md` |
-| Marketing handoff    | `docs/deployment/MON_P0_EXECUTION_PLAN.md`                       |
-| Docs lean            | `docs/development/DOCS_MAINTENANCE.md` §1c                       |
-| Agent start          | `docs/DOCUMENTATION_QUICK_REF.md`                                |
-| Done snapshot        | `docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md`       |
+| Kas                    | Kur                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| Production ladder      | [`ROADMAP.md`](ROADMAP.md)                                                                       |
+| Klaidos / release QA   | `docs/development/TEST_REPORT.md`, `RELEASE_QA_CHECKLIST.md`                                     |
+| M7–9 kokybė            | `docs/development/07_08_09_backlog.md`                                                           |
+| M7–9 skaitomumo planas | [`M79_READABILITY_EXECUTION_PLAN.md`](docs/development/intake/M79_READABILITY_EXECUTION_PLAN.md) |
+| Pedagogika             | `docs/development/PEDAGOGINES_IZVALGOS_ROADMAP.md`                                               |
+| M10–12 corp intake     | `docs/development/intake/M10_M12_CORPORATE_PRODUCTION_INTAKE.md`                                 |
+| M13–15 corp intake     | `docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md`                                 |
+| Marketing handoff      | `docs/deployment/MON_P0_EXECUTION_PLAN.md`                                                       |
+| Docs lean              | `docs/development/DOCS_MAINTENANCE.md` §1c                                                       |
+| Agent start            | `docs/DOCUMENTATION_QUICK_REF.md`                                                                |
+| Done snapshot          | `docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md`                                       |

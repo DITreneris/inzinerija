@@ -304,14 +304,8 @@ export default function WorkflowComparisonDiagram({
             cursor="pointer"
             onClick={onLlmClick}
             role="button"
-            tabIndex={0}
-            aria-label={labels.workflow.llmClickAria}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onLlmClick();
-              }
-            }}
+            tabIndex={-1}
+            aria-hidden
           />
         )}
 
@@ -477,14 +471,8 @@ export default function WorkflowComparisonDiagram({
             cursor="pointer"
             onClick={onLlmClick}
             role="button"
-            tabIndex={0}
-            aria-label={labels.workflow.llmClickAria}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onLlmClick();
-              }
-            }}
+            tabIndex={-1}
+            aria-hidden
           />
         )}
 

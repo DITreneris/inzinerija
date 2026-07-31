@@ -37,19 +37,19 @@ M14 – schemų nėra.
 
 ## Registry
 
-| Modulis / skaidrė | Image key              | Pattern                 | Shell | Content / layout SOT                                                         | Testai                     | Būsena                 |
-| ----------------- | ---------------------- | ----------------------- | ----- | ---------------------------------------------------------------------------- | -------------------------- | ---------------------- |
-| M13 / 13.1        | `m13_aec_funnel`       | comparison / funnel     | Taip  | `m13DiagramContent.ts`, `funnelStackGeometry.ts`, `m13AecFunnelMotifs.ts`    | nav ×3 + dark; wow P1–P4   | Type Etalon W3 + tones |
-| M13 / 13.2        | `m13_prompt_stack`     | stack                   | Taip  | `m13DiagramContent.ts`, `funnelStackGeometry.ts`                             | nav ×3 + dark              | Type Etalon W3 + tones |
-| M13 / 13.33       | `m13_rule_of_thirds`   | illustration            | Ne    | `m13DiagramContent.ts`                                                       | LT/EN + dark               | OK + softRose bg       |
-| M13 / 13.12       | `m13_media_pipeline`   | linear-process          | Taip  | `m13MediaPipelineContent.ts`, `verticalFlowGeometry`, `diagramLayoutMath`    | nav ×6                     | Type Etalon W2 + tones |
-| M13 / 13.32       | `m13_consistency_lock` | linear-process          | Taip  | `m13ConsistencyLockContent.ts`, `diagramLayoutMath`                          | nav ×4                     | Type Etalon W2 + tones |
-| M13 / 13.325      | `m13_consistency_lab`  | interactive-control-lab | Ne    | `m13ConsistencyLabContent.ts`; Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`     | Ref + Drift + Before/After | OK + track soft        |
-| M13 / 13.52       | `m13_postprod_steps`   | linear-process          | Taip  | `m13PostprodContent.ts`, `diagramLayoutMath`                                 | nav ×4                     | Type Etalon W2 + tones |
-| M13 / 13.11       | `turinio_workflow`     | linear-process          | Taip  | `m13BusinessWorkflowContent.ts`, `verticalFlowGeometry`, `diagramLayoutMath` | nav ×7                     | Type Etalon W2 + tones |
-| M13 / 13.37       | _(slide-type)_         | special                 | Ne    | `VaizdoGeneratoriusSlide` (+ palette swatches)                               | quality N/9 + swatches     | OK                     |
-| M13 / 13.47       | _(slide-type)_         | special                 | Ne    | `I2vGeneratoriusSlide` (+ palette swatches); `M13_I2V_CLIP_BUILDER.md`       | readiness N/4              | OK                     |
-| M15 / 150.25      | `m15_practice_loop`    | dual-path               | Taip  | `m15PracticeLoopContent.ts`, `m15PracticeLoopLayout.ts`                      | nav ×5 + layout test       | OK + softRose bg       |
+| Modulis / skaidrė | Image key              | Pattern                 | Shell | Content / layout SOT                                                      | Testai                     | Būsena                   |
+| ----------------- | ---------------------- | ----------------------- | ----- | ------------------------------------------------------------------------- | -------------------------- | ------------------------ |
+| M13 / 13.1        | `m13_aec_funnel`       | comparison / funnel     | Taip  | `m13DiagramContent.ts`, `funnelStackGeometry.ts`, `m13AecFunnelMotifs.ts` | nav ×3 + dark; wow P1–P4   | Type Etalon W3 + tones   |
+| M13 / 13.2        | `m13_prompt_stack`     | stack                   | Taip  | `m13DiagramContent.ts`, `funnelStackGeometry.ts`                          | nav ×3 + dark              | Type Etalon W3 + tones   |
+| M13 / 13.33       | `m13_rule_of_thirds`   | illustration            | Ne    | `m13DiagramContent.ts`                                                    | LT/EN + dark; S5-THIRDS    | OK + subject-focus-right |
+| M13 / 13.12       | `m13_media_pipeline`   | linear-process          | Taip  | `m13MediaPipelineContent.ts`; metaphor **linear**                         | nav ×6; S4 etalon          | linear + tones           |
+| M13 / 13.32       | `m13_consistency_lock` | linear-process          | Taip  | `m13ConsistencyLockContent.ts`; metaphor **lock-artifact**                | nav ×4; S4 done            | lock-artifact + tones    |
+| M13 / 13.325      | `m13_consistency_lab`  | interactive-control-lab | Ne    | `m13ConsistencyLabContent.ts`; Feature Doc `M13_CONSISTENCY_LOCK_LAB.md`  | Ref + Drift + Before/After | OK + track soft          |
+| M13 / 13.52       | `m13_postprod_steps`   | linear-process          | Taip  | `m13PostprodContent.ts`; metaphor **timeline** (horizontal)               | nav ×4; S4 done            | timeline + tones         |
+| M13 / 13.11       | `turinio_workflow`     | linear-process          | Taip  | `m13BusinessWorkflowContent.ts`; metaphor **cycle** + return path         | nav ×7; S4 done            | cycle + tones            |
+| M13 / 13.37       | _(slide-type)_         | special                 | Ne    | `VaizdoGeneratoriusSlide` (+ palette swatches)                            | quality N/9 + swatches     | OK                       |
+| M13 / 13.47       | _(slide-type)_         | special                 | Ne    | `I2vGeneratoriusSlide` (+ palette swatches); `M13_I2V_CLIP_BUILDER.md`    | readiness N/4              | OK                       |
+| M15 / 150.25      | `m15_practice_loop`    | dual-path               | Taip  | `m15PracticeLoopContent.ts`, `m15PracticeLoopLayout.ts`                   | nav ×5 + layout test       | OK + softRose bg         |
 
 ## Priėmimo vartai
 
@@ -58,4 +58,4 @@ M14 – schemų nėra.
 3. LT + EN overlay; core m1-m6/m1-m9 neliečiama.
 4. Dark via `useDiagramPalette` frame (+ `getContentTrackColors` softRose).
 5. Content tones maps match registry table (GOLDEN §6b).
-6. M13–15 scheme ROI: FAIL/PARTIAL I0–I5 done; next = **S5-THIRDS (13.33)** tada **S4-INDIV** (formos individualumas 13.12/13.32/13.52/13.11 — ne VerticalFlow pixel dedupe). Žr. `M13_M15_SCHEME_AUDIT.md`.
+6. M13–15 scheme ROI: I0–I5 + **S5-THIRDS** + **S4-INDIV** done (linear / lock-artifact / timeline / cycle). Residual dens = `M1315-DENS`. Žr. `M13_M15_SCHEME_AUDIT.md`.

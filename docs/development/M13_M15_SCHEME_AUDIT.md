@@ -20,19 +20,19 @@ Sis auditas papildo `M13_M15_SLIDE_RANKING_AUDIT.md`: ten vertintos skaidres, ci
 
 ## 2. Scored registry
 
-| id         | Elementas             | Avg     | Verdiktas     | Pagrindine problema                                                                 |
-| ---------- | --------------------- | ------- | ------------- | ----------------------------------------------------------------------------------- |
-| **13.47**  | I2V generatorius      | **2.2** | **FAIL**      | Readiness meter turejo konstantinius check'us; vienas keyframe simbolis rode Ready. |
-| **13.37**  | Vaizdo generatorius   | **2.6** | **FAIL**      | Fake `tablist`; LT UI formos laukai turejo EN `aria-label`.                         |
-| **150.25** | M15 practice loop     | **2.8** | **FAIL**      | Fiksuotas 620 viewBox su `reflow` telefone smulkino tekstus iki neiskaitomu.        |
-| **13.325** | Consistency drift lab | **3.4** | PARTIAL       | Rose reiske ir gera After-lock busena, ir Simptomas/error.                          |
-| **13.33**  | Rule of thirds        | **3.4** | PARTIAL       | Techniskai tvarkinga, bet maziausia mokymo graza.                                   |
-| 13.11      | Turinio workflow      | **4.0** | OK            | 7 zingsniu vertikali schema; didelis aukstis, bet naudinga.                         |
-| 13.52      | Post-prod             | **4.2** | OK            | W2 linear etalonas, bet klonas.                                                     |
-| 13.32      | Consistency lock      | **4.2** | OK            | W2 linear etalonas, bet klonas.                                                     |
-| 13.12      | Media pipeline        | **4.2** | OK            | W2 linear etalonas, bet klonas.                                                     |
-| 13.2       | Prompt stack          | **4.2** | OK            | Tinkamas stack etalonas.                                                            |
-| 13.1       | AEC funnel            | **4.4** | OK / etalonas | Geriausias M13-15 schema patternas.                                                 |
+| id         | Elementas             | Avg     | Verdiktas          | Pagrindine problema                                                                 |
+| ---------- | --------------------- | ------- | ------------------ | ----------------------------------------------------------------------------------- |
+| **13.47**  | I2V generatorius      | **2.2** | **FIXED (S1)**     | Readiness meter turejo konstantinius check'us; vienas keyframe simbolis rode Ready. |
+| **13.37**  | Vaizdo generatorius   | **2.6** | **FIXED (S2)**     | Fake `tablist`; LT UI formos laukai turejo EN `aria-label`.                         |
+| **150.25** | M15 practice loop     | **2.8** | **FIXED (S3)**     | Fiksuotas 620 viewBox su `reflow` telefone smulkino tekstus iki neiskaitomu.        |
+| **13.325** | Consistency drift lab | **3.4** | **FIXED (S4)**     | Rose reiske ir gera After-lock busena, ir Simptomas/error.                          |
+| **13.33**  | Rule of thirds        | **4.2** | **FIXED (S5)**     | Subject motif ant dešinės sankirtos + muted center (S5-THIRDS).                     |
+| 13.11      | Turinio workflow      | **4.4** | **FIXED (S4)**     | Cycle + return path Brief←Optimisation.                                             |
+| 13.52      | Post-prod             | **4.4** | **FIXED (S4)**     | Horizontal timeline rail.                                                           |
+| 13.32      | Consistency lock      | **4.4** | **FIXED (S4)**     | Lock-artifact frozen-ref pad.                                                       |
+| 13.12      | Media pipeline        | **4.4** | OK (linear etalon) | Linear technical chain (S4 control baseline).                                       |
+| 13.2       | Prompt stack          | **4.2** | OK                 | Tinkamas stack etalonas.                                                            |
+| 13.1       | AEC funnel            | **4.4** | OK / etalonas      | Geriausias M13-15 schema patternas.                                                 |
 
 M14 turi tik Path Test luksta; schemu nera.
 
@@ -76,15 +76,15 @@ Techniskai OK, bet mokymo graza zema: tinklelis be objekto ar kontrasto. **S5-TH
 
 ## 6. Max-ROI iteracijos
 
-| #   | Batch         | id                      | Veiksmas                                                                        |
-| --- | ------------- | ----------------------- | ------------------------------------------------------------------------------- |
-| 1   | **S1-METER**  | 13.47                   | Realus readiness meter + testu perrasymas.                                      |
-| 2   | **S1-A11Y**   | 13.37                   | Fake tablist salinimas, lokalizuoti formu label'iai, i18n tips.                 |
-| 3   | **S2-MOBILE** | 150.25                  | Mobile scroll, label dydis, feedback path is layout.                            |
-| 4   | **S2-ROSE**   | 13.325                  | After-lock emerald + GOLDEN/registry sync.                                      |
-| 5   | **S3-GATES**  | visi                    | Smoke shots + `overflowX` kaip blocking signalas.                               |
-| 6   | **S4-INDIV**  | 13.12/13.32/13.52/13.11 | Vizualinės metaforos (linear / lock / timeline / cycle); ne thin-facade dedupe. |
-| 7   | **S5-THIRDS** | 13.33                   | Pedagoginis liftas (subject motif); daryti prieš arba greta S4-INDIV.           |
+| #   | Batch         | id                      | Status | Veiksmas                                                                       |
+| --- | ------------- | ----------------------- | ------ | ------------------------------------------------------------------------------ |
+| 1   | **S1-METER**  | 13.47                   | done   | Realus readiness meter + testu perrasymas.                                     |
+| 2   | **S1-A11Y**   | 13.37                   | done   | Fake tablist salinimas, lokalizuoti formu label'iai, i18n tips.                |
+| 3   | **S2-MOBILE** | 150.25                  | done   | Mobile scroll, label dydis, feedback path is layout.                           |
+| 4   | **S2-ROSE**   | 13.325                  | done   | After-lock emerald + GOLDEN/registry sync.                                     |
+| 5   | **S3-GATES**  | visi                    | done   | Smoke shots + `overflowX` kaip blocking signalas.                              |
+| 6   | **S4-INDIV**  | 13.12/13.32/13.52/13.11 | done   | linear / lock-artifact / timeline / cycle (2026-07-31); ne thin-facade dedupe. |
+| 7   | **S5-THIRDS** | 13.33                   | done   | Subject motif upper-right + muted center (2026-07-31).                         |
 
 ## 7. Rizikos
 

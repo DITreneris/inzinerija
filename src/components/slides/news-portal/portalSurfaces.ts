@@ -1,3 +1,5 @@
+import { typographyClasses } from '../../../design-tokens';
+
 export type PortalSurfaceVariant =
   | 'brand'
   | 'accent'
@@ -53,9 +55,8 @@ export type PortalKickerVariant = 'hero' | 'neutral' | 'chapter' | 'rail';
 export type PortalSectionLabelVariant = 'break' | 'nav';
 
 const SECTION_LABEL: Record<PortalSectionLabelVariant, string> = {
-  break:
-    'text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300',
-  nav: 'text-xs font-semibold tracking-wide text-gray-600 dark:text-gray-300',
+  break: `${typographyClasses.labelUpper} font-bold text-gray-600 dark:text-gray-300`,
+  nav: `${typographyClasses.label} tracking-wide text-gray-600 dark:text-gray-300`,
 };
 
 export function getPortalSectionLabelClasses(
@@ -65,10 +66,9 @@ export function getPortalSectionLabelClasses(
 }
 
 const KICKER: Record<PortalKickerVariant, string> = {
-  hero: 'text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400',
+  hero: `${typographyClasses.labelUpper} font-bold text-brand-600 dark:text-brand-400`,
 
-  neutral:
-    'text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-300',
+  neutral: `${typographyClasses.labelUpper} text-gray-500 dark:text-gray-300`,
 
   /** @deprecated Naudoti getPortalSectionLabelClasses('break') */
   chapter: SECTION_LABEL.break,
@@ -90,38 +90,33 @@ export function getPortalVioletKickerClasses(): string {
 /** Antraštės – vienas šaltinis */
 
 export const PORTAL_HEADING = {
-  hero: 'text-2xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight',
+  hero: `${typographyClasses.heroDisplay} text-gray-900 dark:text-white leading-tight`,
 
-  heroCompact:
-    'text-lg lg:text-xl font-bold text-gray-900 dark:text-white leading-tight',
+  heroCompact: `${typographyClasses.h2} text-gray-900 dark:text-white leading-tight`,
 
-  beat: 'text-lg lg:text-xl font-bold text-gray-900 dark:text-white leading-snug',
+  beat: `${typographyClasses.h2} text-gray-900 dark:text-white leading-snug`,
 
-  pullQuote:
-    'text-lg lg:text-xl font-semibold text-gray-900 dark:text-white leading-snug',
+  pullQuote: `${typographyClasses.h2} font-semibold text-gray-900 dark:text-white leading-snug`,
 
-  cta: 'text-base lg:text-lg font-bold text-gray-900 dark:text-white leading-snug',
+  cta: `${typographyClasses.h3} font-bold text-gray-900 dark:text-white leading-snug`,
 
-  mastheadBrand:
-    'text-lg lg:text-xl font-bold text-gray-900 dark:text-white tracking-tight truncate',
+  mastheadBrand: `${typographyClasses.h2} text-gray-900 dark:text-white tracking-tight truncate`,
 
-  mastheadFallbackBrand:
-    'text-xl lg:text-2xl font-bold text-accent-700 dark:text-accent-300 tracking-tight',
+  mastheadFallbackBrand: `${typographyClasses.h2} text-accent-700 dark:text-accent-300 tracking-tight`,
 } as const;
 
 /** Pilka tipografija – max 2 tonai hero lead'e */
 
 export const PORTAL_TEXT = {
-  body: 'text-sm lg:text-base text-gray-700 dark:text-gray-300 leading-relaxed',
+  body: `${typographyClasses.body} text-gray-700 dark:text-gray-300`,
 
-  bodySm: 'text-sm text-gray-700 dark:text-gray-300 leading-snug',
+  bodySm: `${typographyClasses.small} text-gray-700 dark:text-gray-300 leading-snug`,
 
   muted: 'text-sm text-gray-500 dark:text-gray-300',
 
   mutedXs: 'text-xs text-gray-500 dark:text-gray-300',
 
-  cardTitle:
-    'text-base font-semibold text-gray-900 dark:text-white leading-snug',
+  cardTitle: `${typographyClasses.h3} text-gray-900 dark:text-white leading-snug`,
 
   cardFooter:
     'text-sm font-semibold text-gray-700 dark:text-gray-300 leading-snug',
@@ -157,9 +152,9 @@ export const PORTAL_SOURCE_FOOTER =
 export type PortalMetricSize = 'chapter' | 'inline';
 
 const METRIC_SIZE: Record<PortalMetricSize, string> = {
-  chapter: 'text-3xl font-extrabold tabular-nums',
+  chapter: `${typographyClasses.metric} font-extrabold`,
 
-  inline: 'text-2xl lg:text-2xl font-extrabold tabular-nums',
+  inline: `${typographyClasses.metricSm} font-extrabold`,
 };
 
 export function getPortalMetricClasses(size: PortalMetricSize): string {

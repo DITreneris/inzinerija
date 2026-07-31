@@ -62,4 +62,12 @@ describe('M7PathMapDiagram / Block (sk. 71)', () => {
       container.querySelector('[data-active="true"]')?.textContent
     ).toContain('Paruošimas');
   });
+
+  it('puts focus-visible ring on the focusable button (not the panel div)', () => {
+    const { container } = renderWithProviders(<M7PathMapBlock />);
+    const button = container.querySelector('button[aria-pressed]');
+    expect(button?.className).toMatch(/focus-visible:ring-2/);
+    const panel = container.querySelector('[data-step-panel]');
+    expect(panel?.className).not.toMatch(/focus-visible:ring/);
+  });
 });

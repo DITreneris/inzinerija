@@ -158,7 +158,7 @@ function SlideGroupProgressBar({
             </div>
             {group.label && (
               <span
-                className={`hidden lg:inline text-[10px] font-medium max-w-full text-center break-words ${
+                className={`hidden lg:inline ${typographyClasses.small} font-medium max-w-full text-center break-words ${
                   isActive
                     ? 'text-brand-600 dark:text-brand-400'
                     : isPast
@@ -1137,7 +1137,9 @@ function ModuleView({
                   {currentSlideData.shortTitle ?? currentSlideData.title}
                 </h1>
                 {currentSlideData.subtitle != null && (
-                  <p className="hidden lg:block text-lg text-gray-600 dark:text-gray-200 leading-relaxed">
+                  <p
+                    className={`hidden lg:block ${typographyClasses.subtitle} text-gray-600 dark:text-gray-200`}
+                  >
                     {currentSlideData.subtitle}
                   </p>
                 )}

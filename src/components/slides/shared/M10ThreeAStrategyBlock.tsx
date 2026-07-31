@@ -20,7 +20,6 @@ export default function M10ThreeAStrategyBlock() {
   return (
     <EnlargeableDiagram
       mobileBehavior="reflow"
-      showEnlargeControl={false}
       renderContent={() => (
         <InteractiveDiagramShell
           density="hero"

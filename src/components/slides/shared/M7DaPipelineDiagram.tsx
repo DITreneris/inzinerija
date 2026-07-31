@@ -17,6 +17,8 @@ import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 /** Geometry SOT – tests assert center / shaft / tip floors. */
 export const M7_DA_PIPELINE_GEOMETRY = {
+  /** Industrial analysis path: numbered station rail + full-width stage cards. */
+  metaphor: 'station-rail',
   stepCount: 6,
   boxH: 58,
   gap: VERTICAL_FLOW_MIN_GAP,
@@ -24,8 +26,9 @@ export const M7_DA_PIPELINE_GEOMETRY = {
   arrowTip: DIAGRAM_TOKENS.arrow.processTipLen,
   startY: 44,
   viewBoxH: 520,
-  desktop: { viewBoxW: 600, colW: 440 },
-  compact: { viewBoxW: 340, colW: 280 },
+  desktop: { viewBoxW: 600, colW: 440, railX: 36 },
+  compact: { viewBoxW: 340, colW: 280, railX: 18 },
+  railRadius: 11,
   stepLabel: { desktop: 15, compact: 13 },
   stepSub: { desktop: 12, compact: 11 },
   labelBaseline: 24,
@@ -105,12 +108,20 @@ export default function M7DaPipelineDiagram({
     locale === 'en'
       ? 'Click a step for explanation below.'
       : 'Paspausk žingsnį – paaiškinimas apačioje.';
+  const railX = isCompactDiagram
+    ? M7_DA_PIPELINE_GEOMETRY.compact.railX
+    : M7_DA_PIPELINE_GEOMETRY.desktop.railX;
+  const railR = M7_DA_PIPELINE_GEOMETRY.railRadius;
+  const firstMidY = stepBoxes[0][1] + stepBoxes[0][3] / 2;
+  const lastMidY =
+    stepBoxes[stepBoxes.length - 1][1] + stepBoxes[stepBoxes.length - 1][3] / 2;
 
   return (
     <svg
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
+      data-metaphor={M7_DA_PIPELINE_GEOMETRY.metaphor}
       aria-label={`${ariaIntro}${isInteractive ? ` ${clickAria}` : ''}`}
     >
       <defs>
@@ -171,6 +182,49 @@ export default function M7DaPipelineDiagram({
         {title}
       </text>
 
+      {/* Station rail – primary metaphor (readable without step text). */}
+      <g aria-hidden data-rail="station">
+        <line
+          x1={railX}
+          y1={firstMidY}
+          x2={railX}
+          y2={lastMidY}
+          stroke={palette.brand}
+          strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+        />
+        {stepBoxes.map((box, i) => {
+          const midY = box[1] + box[3] / 2;
+          const isActive = currentStep === i;
+          return (
+            <g key={`rail-${i}`} data-station={i}>
+              <circle
+                cx={railX}
+                cy={midY}
+                r={railR}
+                fill={isActive ? palette.brand : inactiveSoft}
+                stroke={isActive ? palette.brandDark : palette.brand}
+                strokeWidth={
+                  isActive
+                    ? DIAGRAM_TOKENS.stroke.active
+                    : DIAGRAM_TOKENS.stroke.inactive
+                }
+              />
+              <text
+                x={railX}
+                y={midY + 4}
+                textAnchor="middle"
+                fontFamily={DIAGRAM_TOKENS.font}
+                fontSize={isCompactDiagram ? 11 : 12}
+                fontWeight="700"
+                fill={isActive ? palette.whiteText : palette.brandDark}
+              >
+                {i + 1}
+              </text>
+            </g>
+          );
+        })}
+      </g>
+
       {stepBoxes.map((box, i) => {
         const [x, y, w, h] = box;
         const isActive = currentStep === i;
@@ -215,7 +269,7 @@ export default function M7DaPipelineDiagram({
                 fontWeight="700"
                 fill={labelFill}
               >
-                {i + 1} · {step.label}
+                {step.label}
               </text>
               <text
                 x={cx}
@@ -258,9 +312,11 @@ export default function M7DaPipelineDiagram({
                     x2={conn.x2}
                     y2={conn.y2}
                     stroke={palette.flow}
-                    strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                    strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+                    strokeDasharray="4 3"
                     markerEnd={`url(#m7-da-pipeline-arrow-${uid})`}
                     aria-hidden
+                    opacity={0.55}
                   />
                 );
               })()}

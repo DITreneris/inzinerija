@@ -355,14 +355,14 @@ export interface ContentBlockSection {
     /** Klausimas virš mygtukų (pvz. „Ką darai dabar?“) */
     question?: string;
     /**
-     * `chips` (default) – accent button bar + auto-select first choice.
+     * `chips` (default) – accent button bar; null until learner picks.
      * `prompt-tool` – ChoiceControl + sample data + EDA strip (M7/90).
      * `manipulation-contrast` – ChoiceControl + Blogas|Geras panel (M7/67).
      */
     variant?: 'chips' | 'prompt-tool' | 'manipulation-contrast';
     /**
-     * When `false`, chips stay unselected until the learner picks (M10/10.35).
-     * Default / omitted = auto-select first choice (10.48 and older).
+     * When `true`, chips auto-select the first choice on mount (legacy catalog).
+     * Default / omitted / `false` = null until the learner picks (M79-S1b).
      */
     autoSelect?: boolean;
     /** Sequence hint under ChoiceControl (prompt-tool / manipulation-contrast) */

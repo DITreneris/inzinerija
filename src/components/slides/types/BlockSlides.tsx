@@ -11,6 +11,7 @@ import { CopyButton, TemplateBlock } from '../shared';
 import Banner from '../../ui/Banner';
 import Badge from '../../ui/Badge';
 import { getColorClasses } from '../utils/colorStyles';
+import { typographyClasses } from '../../../design-tokens';
 import type {
   QualityCriteria,
   FullExampleBlock,
@@ -50,7 +51,9 @@ function OptionalWhySections({ slide }: { slide?: Slide }) {
           open={sec.collapsedByDefault === false}
         >
           <summary className="cursor-pointer list-none flex items-center justify-between p-4 hover:bg-slate-100/80 dark:hover:bg-slate-700/50 transition-colors select-none min-h-[44px]">
-            <h4 className="font-semibold text-slate-900 dark:text-slate-100 text-sm">
+            <h4
+              className={`${typographyClasses.h3} text-slate-900 dark:text-slate-100`}
+            >
               {sec.heading || t('blockWhyHeading')}
             </h4>
             <span className="text-slate-400 dark:text-slate-500 group-open:rotate-180 transition-transform text-sm shrink-0">
@@ -58,7 +61,9 @@ function OptionalWhySections({ slide }: { slide?: Slide }) {
             </span>
           </summary>
           <div className="px-4 pb-4">
-            <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 whitespace-pre-wrap`}
+            >
               {sec.body}
             </p>
           </div>
@@ -79,7 +84,9 @@ export function MetaBlockSlide({
   return (
     <div className="space-y-6">
       <Banner variant="warning" className="p-6 rounded-xl">
-        <h3 className="font-bold text-xl mb-3 text-rose-900 dark:text-rose-100">
+        <h3
+          className={`${typographyClasses.h2} mb-3 text-rose-900 dark:text-rose-100`}
+        >
           {t('blockMetaQuestion')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">{t('blockMetaBody')}</p>
@@ -93,10 +100,12 @@ export function MetaBlockSlide({
             </Badge>
             <CopyButton text={t('blockMetaBadExample')} size="sm" />
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 italic mb-2">
+          <p className={`${typographyClasses.bodyMuted} italic mb-2`}>
             {t('blockMetaBadExample')}
           </p>
-          <p className="text-xs text-rose-600 dark:text-rose-400">
+          <p
+            className={`${typographyClasses.small} text-rose-600 dark:text-rose-400`}
+          >
             {t('blockMetaBadProblem')}
           </p>
         </div>
@@ -108,7 +117,9 @@ export function MetaBlockSlide({
             </Badge>
             <CopyButton text={goodExample} size="sm" />
           </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 italic">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 italic`}
+          >
             {goodExample}
           </p>
         </div>
@@ -167,7 +178,9 @@ export function InputBlockSlide({
   return (
     <div className="space-y-6">
       <Banner variant="warning" className="p-6 rounded-xl">
-        <h3 className="font-bold text-xl mb-3 text-orange-900 dark:text-orange-100">
+        <h3
+          className={`${typographyClasses.h2} mb-3 text-orange-900 dark:text-orange-100`}
+        >
           {t('blockInputQuestion')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
@@ -192,18 +205,24 @@ export function InputBlockSlide({
 
         <div className="grid grid-cols-1 gap-3">
           <div className="bg-rose-50 dark:bg-rose-900/10 p-4 rounded-xl border border-rose-200 dark:border-rose-800">
-            <p className="text-xs text-rose-700 dark:text-rose-400 font-bold mb-2 uppercase tracking-wider">
+            <p
+              className={`${typographyClasses.labelUpper} text-rose-700 dark:text-rose-400 mb-2`}
+            >
               {t('blockInputBadLabel')}
             </p>
-            <p className="text-sm italic text-gray-600 dark:text-gray-400">
+            <p className={`${typographyClasses.bodyMuted} italic`}>
               {t('blockInputBadExample')}
             </p>
           </div>
           <div className="bg-emerald-50 dark:bg-emerald-900/10 p-4 rounded-xl border border-emerald-200 dark:border-emerald-800">
-            <p className="text-xs text-emerald-700 dark:text-emerald-400 font-bold mb-2 uppercase tracking-wider">
+            <p
+              className={`${typographyClasses.labelUpper} text-emerald-700 dark:text-emerald-400 mb-2`}
+            >
               {t('blockInputGoodLabel')}
             </p>
-            <p className="text-sm italic text-gray-700 dark:text-gray-300">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 italic`}
+            >
               {t('blockInputGoodExample')}
             </p>
           </div>
@@ -255,7 +274,9 @@ export function OutputBlockSlide({
   return (
     <div className="space-y-6">
       <Banner variant="warning" className="p-6 rounded-xl">
-        <h3 className="font-bold text-xl mb-3 text-orange-900 dark:text-orange-100">
+        <h3
+          className={`${typographyClasses.h2} mb-3 text-orange-900 dark:text-orange-100`}
+        >
           {t('blockOutputQuestion')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
@@ -297,7 +318,9 @@ export function OutputBlockSlide({
           <h4 className="font-bold mb-3 text-brand-900 dark:text-brand-100">
             {t('blockOutputFormatTypesTitle')}
           </h4>
-          <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+          <ul
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+          >
             {formatItems.map((item, idx) => (
               <li key={idx}>• {item}</li>
             ))}
@@ -307,7 +330,9 @@ export function OutputBlockSlide({
           <h4 className="font-bold mb-3 text-emerald-900 dark:text-emerald-100">
             {t('blockOutputRequirementsListTitle')}
           </h4>
-          <ul className="text-sm space-y-2 text-gray-700 dark:text-gray-300">
+          <ul
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+          >
             {reqListItems.map((item, idx) => (
               <li key={idx}>• {item}</li>
             ))}
@@ -362,7 +387,9 @@ export function ReasoningModelsSlide({
           alt={t('blockReasoningModelsImgAlt')}
           className="w-full h-auto object-contain rounded-lg max-h-72"
         />
-        <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
+        <p
+          className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 text-center mt-2`}
+        >
           {t('blockReasoningModelsImgCaption')}
         </p>
       </div>
@@ -381,12 +408,16 @@ export function ReasoningModelsSlide({
               <p className="font-bold text-brand-900 dark:text-brand-100">
                 {t('blockReasoningModelsCotTitle')}
               </p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p
+                className={`${typographyClasses.small} text-gray-600 dark:text-gray-400`}
+              >
                 {t('blockReasoningModelsCotSub')}
               </p>
             </div>
           </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
+          >
             {t('blockReasoningModelsCotDesc')}
           </p>
           <span className="inline-block px-2 py-0.5 rounded-full bg-brand-200 dark:bg-brand-800 text-brand-800 dark:text-brand-200 text-xs font-medium">
@@ -406,12 +437,16 @@ export function ReasoningModelsSlide({
               <p className="font-bold text-emerald-900 dark:text-emerald-100">
                 {t('blockReasoningModelsTotTitle')}
               </p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p
+                className={`${typographyClasses.small} text-gray-600 dark:text-gray-400`}
+              >
                 {t('blockReasoningModelsTotSub')}
               </p>
             </div>
           </div>
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
+          >
             {t('blockReasoningModelsTotDesc')}
           </p>
           <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-200 dark:bg-emerald-800 text-emerald-800 dark:text-emerald-200 text-xs font-medium">
@@ -437,7 +472,9 @@ export function ReasoningModelsSlide({
         <div className="px-5 pb-5 space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-              <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">
+              <p
+                className={`${typographyClasses.labelUpper} text-gray-900 dark:text-white mb-2`}
+              >
                 {t('blockReasoningModelsWhenUse')}
               </p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -447,7 +484,9 @@ export function ReasoningModelsSlide({
               </ul>
             </div>
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-              <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">
+              <p
+                className={`${typographyClasses.labelUpper} text-gray-900 dark:text-white mb-2`}
+              >
                 {t('blockReasoningModelsFits')}
               </p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -459,7 +498,9 @@ export function ReasoningModelsSlide({
           </div>
           <div className="bg-white dark:bg-gray-800 p-3 rounded-lg relative">
             <div className="flex justify-between items-start mb-2">
-              <span className="text-xs font-semibold text-brand-700 dark:text-brand-300 uppercase tracking-wider">
+              <span
+                className={`${typographyClasses.labelUpper} text-brand-700 dark:text-brand-300`}
+              >
                 {t('blockReasoningModelsExampleLabel')}
               </span>
               <CopyButton text={cotExample} size="sm" />
@@ -488,7 +529,9 @@ export function ReasoningModelsSlide({
         <div className="px-5 pb-5 space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-              <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">
+              <p
+                className={`${typographyClasses.labelUpper} text-gray-900 dark:text-white mb-2`}
+              >
                 {t('blockReasoningModelsWhenUse')}
               </p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -498,7 +541,9 @@ export function ReasoningModelsSlide({
               </ul>
             </div>
             <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-              <p className="text-xs font-semibold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">
+              <p
+                className={`${typographyClasses.labelUpper} text-gray-900 dark:text-white mb-2`}
+              >
                 {t('blockReasoningModelsFits')}
               </p>
               <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -510,7 +555,9 @@ export function ReasoningModelsSlide({
           </div>
           <div className="bg-white dark:bg-gray-800 p-3 rounded-lg relative">
             <div className="flex justify-between items-start mb-2">
-              <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">
+              <span
+                className={`${typographyClasses.labelUpper} text-emerald-700 dark:text-emerald-300`}
+              >
                 {t('blockReasoningModelsExampleLabel')}
               </span>
               <CopyButton text={totExample} size="sm" />
@@ -539,7 +586,9 @@ export function ReasoningModelsSlide({
         <span className="text-lg" aria-hidden="true">
           ⚠️
         </span>
-        <p className="text-sm text-gray-700 dark:text-gray-300 flex-1">
+        <p
+          className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 flex-1`}
+        >
           {t('blockReasoningModelsWarning')}
         </p>
       </Banner>
@@ -621,7 +670,9 @@ export function ReasoningBlockSlide({
           role="article"
           aria-label={t('blockReasoningUseWhen')}
         >
-          <h4 className="font-bold mb-2 text-emerald-900 dark:text-emerald-100 flex items-center gap-2 text-sm">
+          <h4
+            className={`${typographyClasses.h3} mb-2 text-emerald-900 dark:text-emerald-100 flex items-center gap-2`}
+          >
             <span>✅</span> {t('blockReasoningUseWhen')}
           </h4>
           <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -635,7 +686,9 @@ export function ReasoningBlockSlide({
           role="article"
           aria-label={t('blockReasoningDontUse')}
         >
-          <h4 className="font-bold mb-2 text-rose-900 dark:text-rose-100 flex items-center gap-2 text-sm">
+          <h4
+            className={`${typographyClasses.h3} mb-2 text-rose-900 dark:text-rose-100 flex items-center gap-2`}
+          >
             <span>❌</span> {t('blockReasoningDontUse')}
           </h4>
           <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
@@ -672,7 +725,9 @@ export function ReasoningBlockSlide({
               <span className="text-brand-600 dark:text-brand-400 font-bold text-sm">
                 {idx + 1}.
               </span>
-              <span className="text-sm text-gray-700 dark:text-gray-300">
+              <span
+                className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+              >
                 {step}
               </span>
             </div>
@@ -704,10 +759,14 @@ export function ReasoningBlockSlide({
                 {item.num}
               </div>
               <div>
-                <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                <p
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white`}
+                >
                   {item.step}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p
+                  className={`${typographyClasses.small} text-gray-500 dark:text-gray-400`}
+                >
                   {item.desc}
                 </p>
               </div>
@@ -773,7 +832,9 @@ export function ReasoningBlockSlide({
             ⚠️
           </span>
           <div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+            >
               {t('blockReasoningWarning1')}
             </p>
             <p className="text-sm text-amber-800 dark:text-amber-200 mt-1 font-semibold">
@@ -840,7 +901,9 @@ export function QualityBlockSlide({
         <h4 className="font-bold text-base mb-3 text-rose-900 dark:text-rose-100">
           {t('blockQualityNotEqual')}
         </h4>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+        <p
+          className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-3`}
+        >
           {t('blockQualityNotEqualBody')}
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -855,7 +918,9 @@ export function QualityBlockSlide({
                 {t('blockQualityBadLabel')}
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
+            <p
+              className={`${typographyClasses.small} text-gray-600 dark:text-gray-400`}
+            >
               {t('blockQualityBadDesc')}
             </p>
           </div>
@@ -870,7 +935,9 @@ export function QualityBlockSlide({
                 {t('blockQualityGoodLabel')}
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
+            <p
+              className={`${typographyClasses.small} text-gray-600 dark:text-gray-400`}
+            >
               {t('blockQualityGoodDesc')}
             </p>
           </div>
@@ -892,7 +959,9 @@ export function QualityBlockSlide({
                 <CheckCircle
                   className={`w-4 h-4 ${colors.text} ${colors.textDark} flex-shrink-0`}
                 />
-                <span className="text-gray-700 dark:text-gray-300 text-sm">
+                <span
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {item.text}
                 </span>
               </div>
@@ -975,10 +1044,14 @@ export function QualityBlockSlide({
         </summary>
         <div className="px-5 pb-5 space-y-4">
           <div>
-            <h5 className="font-bold mb-2 text-sm text-gray-900 dark:text-white">
+            <h5
+              className={`${typographyClasses.h3} mb-2 text-gray-900 dark:text-white`}
+            >
               {t('blockQualityInlineTitle')}
             </h5>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+            <p
+              className={`${typographyClasses.small} text-gray-600 dark:text-gray-400 mb-2`}
+            >
               {t('blockQualityInlineIntro')}
             </p>
             <TemplateBlock
@@ -995,10 +1068,14 @@ export function QualityBlockSlide({
             </div>
           </div>
           <div>
-            <h5 className="font-bold mb-2 text-sm text-gray-900 dark:text-white">
+            <h5
+              className={`${typographyClasses.h3} mb-2 text-gray-900 dark:text-white`}
+            >
               {t('blockQualityPostHocTitle')}
             </h5>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+            <p
+              className={`${typographyClasses.small} text-gray-600 dark:text-gray-400 mb-2`}
+            >
               {t('blockQualityPostHocIntro')}
             </p>
             <TemplateBlock
@@ -1029,7 +1106,9 @@ export function QualityBlockSlide({
           />
           {t('blockQualityMicroTitle')}
         </h4>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+        <p
+          className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-3`}
+        >
           {t('blockQualityMicroIntro')}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -1055,7 +1134,9 @@ export function QualityBlockSlide({
       </div>
 
       <Banner variant="success">
-        <p className="text-sm text-gray-700 dark:text-gray-300">
+        <p
+          className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+        >
           {t('blockQualitySafetyBelt')}
         </p>
       </Banner>
@@ -1088,7 +1169,9 @@ export function AdvancedParameters2Slide({
     <div className="space-y-6">
       {intro && <VeiksmoIntroBlock content={intro} />}
       <Banner variant="info" className="p-6 rounded-xl">
-        <h3 className="font-bold text-xl mb-3 text-brand-900 dark:text-brand-100">
+        <h3
+          className={`${typographyClasses.h2} mb-3 text-brand-900 dark:text-brand-100`}
+        >
           {t('blockAdvanced2Title')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300 mb-3">
@@ -1117,7 +1200,9 @@ export function AdvancedParameters2Slide({
           </span>
         </summary>
         <div className="px-6 pb-6 space-y-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-4`}
+          >
             <strong>{t('blockAdvanced2Controls')}</strong>{' '}
             {t('blockAdvanced2MaxTokensControls')}
           </p>
@@ -1182,7 +1267,9 @@ export function AdvancedParameters2Slide({
               <div className="pr-8">
                 <div className="mb-2">ADVANCED:</div>
                 <div className="mb-3">Max tokens: 150</div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                <div
+                  className={`${typographyClasses.small} text-gray-600 dark:text-gray-400 mb-1`}
+                >
                   {t('blockAdvanced2TaskLabel')}
                 </div>
                 <div>{t('blockAdvanced2MaxExampleTask')}</div>
@@ -1215,7 +1302,9 @@ export function AdvancedParameters2Slide({
           </span>
         </summary>
         <div className="px-6 pb-6 space-y-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-4`}
+          >
             <strong>{t('blockAdvanced2Controls')}</strong>{' '}
             {t('blockAdvanced2TopPControls')}
           </p>
@@ -1252,7 +1341,9 @@ export function AdvancedParameters2Slide({
               <div className="pr-8">
                 <div className="mb-2">ADVANCED:</div>
                 <div className="mb-3">Top-p: 0.4</div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                <div
+                  className={`${typographyClasses.small} text-gray-600 dark:text-gray-400 mb-1`}
+                >
                   {t('blockAdvanced2TaskLabel')}
                 </div>
                 <div>{t('blockAdvanced2TopPExampleTask')}</div>
@@ -1281,7 +1372,9 @@ export function AdvancedParameters2Slide({
           </span>
         </summary>
         <div className="px-6 pb-6 space-y-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-4`}
+          >
             <strong>{t('blockAdvanced2Controls')}</strong>{' '}
             {t('blockAdvanced2FreqControls')}
           </p>
@@ -1315,7 +1408,9 @@ export function AdvancedParameters2Slide({
               <div className="pr-8">
                 <div className="mb-2">ADVANCED:</div>
                 <div className="mb-3">Frequency penalty: 0.8</div>
-                <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                <div
+                  className={`${typographyClasses.small} text-gray-600 dark:text-gray-400 mb-1`}
+                >
                   {t('blockAdvanced2TaskLabel')}
                 </div>
                 <div>{t('blockAdvanced2FreqExampleTask')}</div>
@@ -1349,7 +1444,9 @@ export function AdvancedParameters2Slide({
           </span>
         </summary>
         <div className="px-6 pb-6 space-y-4">
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-4`}
+          >
             <strong>{t('blockAdvanced2Controls')}</strong>{' '}
             {t('blockAdvanced2PresenceControls')}
           </p>
@@ -1408,7 +1505,9 @@ export function AdvancedParameters2Slide({
       </details>
 
       <Banner variant="success" className="p-6 rounded-xl">
-        <h4 className="font-bold text-lg mb-3 text-emerald-900 dark:text-emerald-100">
+        <h4
+          className={`${typographyClasses.h2} mb-3 text-emerald-900 dark:text-emerald-100`}
+        >
           {t('blockAdvanced2SafeDefault')}
         </h4>
         <div className="bg-white dark:bg-gray-800 p-4 rounded-lg relative group">
@@ -1430,7 +1529,9 @@ export function AdvancedParameters2Slide({
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-1">
               Frequency penalty: 0.5
             </p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+            >
               Presence penalty: 0.3
             </p>
           </div>
@@ -1444,7 +1545,9 @@ export function AdvancedParameters2Slide({
         variant="info"
         className="p-6 rounded-xl !bg-violet-50 dark:!bg-violet-900/20 !border-violet-500"
       >
-        <h4 className="font-bold text-lg mb-3 text-violet-900 dark:text-violet-100">
+        <h4
+          className={`${typographyClasses.h2} mb-3 text-violet-900 dark:text-violet-100`}
+        >
           {t('blockAdvanced2OneRule')}
         </h4>
         <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
@@ -1522,7 +1625,7 @@ export function FullExampleSlide({
           <p className="text-xs sm:text-sm text-emerald-300/80 font-semibold uppercase tracking-wider mb-1">
             {t('blockFullExampleHero1')}
           </p>
-          <h3 className="text-lg sm:text-xl font-bold leading-snug tracking-tight">
+          <h3 className={`${typographyClasses.h2} leading-snug tracking-tight`}>
             {t('blockFullExampleHero2')}
           </h3>
           <p className="text-xs sm:text-sm text-brand-300/80 mt-2 font-medium">

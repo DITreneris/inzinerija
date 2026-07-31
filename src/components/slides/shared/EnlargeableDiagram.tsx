@@ -17,18 +17,23 @@ interface EnlargeableDiagramProps {
   /** Minimum width for the scrollable mobile container (default 600px) */
   mobileMinWidth?: number;
   mobileBehavior?: 'scroll' | 'reflow';
-  /** Desktop “View full size” control; default true. Set false when enlarge adds no value. */
+  /**
+   * Desktop “Išskleisti schemą” modal; default **false**.
+   * Opt-in only for rare dense static diagrams. Interactive Shell/process schemas
+   * stay inline (SCHEME_AGENT §3.11 / GOLDEN §3.2) — enlarge adds no value.
+   */
   showEnlargeControl?: boolean;
   /**
-   * Desktop control position. Default `below` (legacy).
+   * Desktop control position when `showEnlargeControl` is true. Default `below`.
    * `top-right` overlays a compact icon button near the diagram.
    */
   controlPlacement?: 'below' | 'top-right';
 }
 
 /**
- * Mobile (<lg): diagram rendered at readable size in a horizontally scrollable container.
- * Desktop (lg+): diagram inline with optional "View full size" modal button.
+ * Mobile (<lg): diagram at readable size in a scrollable/reflow container.
+ * Desktop (lg+): diagram inline; optional enlarge modal only when
+ * `showEnlargeControl` is explicitly true (default off).
  */
 export default function EnlargeableDiagram({
   renderContent,
@@ -36,7 +41,7 @@ export default function EnlargeableDiagram({
   className = '',
   mobileMinWidth = 600,
   mobileBehavior = 'scroll',
-  showEnlargeControl = true,
+  showEnlargeControl = false,
   controlPlacement = 'below',
 }: EnlargeableDiagramProps) {
   const { t } = useTranslation('common');

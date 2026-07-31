@@ -4,6 +4,8 @@
 
 ## Pamokos
 
+2026-07-31 | Typography Wave T0–T6 | „Skirtingi šriftai“ = dydžių/svorių chaosas + `font-black` (900 neįkrautas), ne kitos font family | Viena `typographyClasses` ladder + `audit:typography`; max weight extrabold; micro-px ban; portal/hero = dokumentuotos išimtys | design-tokens.ts, GOLDEN §1, audit-typography.mjs
+2026-07-31 | Scheme „Išskleisti“ false affordance | Mygtukas žada zoom, o modalas dažnai ≤ inline (tas pats max-w); konkuruoja su Shell step nav | Audit FAIL jei interactive Shell turi desktop enlarge; rekomendacija = OFF (CODING), ne „fix modal scale“ | EnlargeableDiagram.tsx, GOLDEN §3.2, SCHEME §3.11
 2026-07-29 | M13–15 Content-track §6b | Rose kataloge ≠ in-slide marketing feel; full retheme / rose CTA laužo LMS + rose=error | Scoped §6b: soft wash + tones + path Choice rose selected; FAIL rose Pirmyn / Shell nav / rainbow | GOLDEN §6b, M13_CONTENT_TRACK_VISUAL_INTAKE, ChoiceControl optionTone
 2026-07-28 | M13–15 vs peers | Chrome/Path Test parity ≠ kelio brandumas: 0 labs, M15=practice-intro (ne quest), 13.1 be Patikra, prod=coming-soon | Vertinti Pattern/journey atskirai nuo footer/smoke; residual = lab decision + 13.1/13.3/13.4 + Horizon C | GOLDEN §3.8/§3.4e, M13_M15_SLIDE_RANKING_AUDIT, ModulesPage rose track
 2026-07-26 | M9 quest mobile fold | outcomeChips prieš Start CTA = Start žemiau fold @375px | Start prieš chips; duration trumpas; space-y-4 mobile | PracticeQuestIntroSlide.tsx, GOLDEN §3.4e

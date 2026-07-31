@@ -1,22 +1,27 @@
 /**
  * Modulio 7 – 5 žingsnių duomenų paruošimo seka (interaktyvi).
- * LMS 1A+ Type Etalon W2 spine: flat fills, inactive soft ≠ frame, local tip≥10 / refX=0.
+ * Metaphor: prep funnel (narrowing stages + checklist ticks) — distinct from DA station-rail (73).
  */
 import { useId } from 'react';
 import { useDiagramPalette } from '../../../utils/useDiagramPalette';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7DataPrepSteps, type M7Locale } from './m7DiagramContent';
-import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  DIAGRAM_TONE_COLORS,
+  getDiagramToneColors,
+} from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
 import {
   getVerticalFlowConnector,
-  resolveVerticalFlowGeometry,
   VERTICAL_FLOW_MIN_GAP,
+  type DiagramBox,
 } from './verticalFlowGeometry';
-import { buildVerticalColumnOrigin } from './diagramLayoutMath';
 
 /** Geometry SOT – tests assert center / shaft / tip floors. */
 export const M7_DATA_PREP_GEOMETRY = {
+  /** Cleaning funnel: narrowing stages + left checklist ticks. */
+  metaphor: 'prep-funnel',
   stepCount: 5,
   boxH: 58,
   gap: VERTICAL_FLOW_MIN_GAP,
@@ -25,8 +30,11 @@ export const M7_DATA_PREP_GEOMETRY = {
   startY: 44,
   /** 44 + 5×58 + 4×24 + bottom pad ≈ 448 */
   viewBoxH: 448,
+  /** Max stage width (step 0); later steps scale via funnelScales. */
   desktop: { viewBoxW: 600, colW: 440 },
   compact: { viewBoxW: 340, colW: 280 },
+  /** Relative widths top→bottom (funnel silhouette without step text). */
+  funnelScales: [1, 0.9, 0.8, 0.7, 0.6] as const,
   stepLabel: { desktop: 15, compact: 13 },
   stepSub: { desktop: 12, compact: 11 },
   labelBaseline: 24,
@@ -37,39 +45,22 @@ const STEP_COUNT = M7_DATA_PREP_GEOMETRY.stepCount;
 const BOX_H = M7_DATA_PREP_GEOMETRY.boxH;
 const GAP = M7_DATA_PREP_GEOMETRY.gap;
 const ARROW_TIP = M7_DATA_PREP_GEOMETRY.arrowTip;
-const DESKTOP_W = M7_DATA_PREP_GEOMETRY.desktop.viewBoxW;
-const DESKTOP_COL_W = M7_DATA_PREP_GEOMETRY.desktop.colW;
-const DESKTOP_COL = buildVerticalColumnOrigin({
-  viewBoxW: DESKTOP_W,
-  colW: DESKTOP_COL_W,
-});
-const COMPACT_W = M7_DATA_PREP_GEOMETRY.compact.viewBoxW;
-const COMPACT_COL_W = M7_DATA_PREP_GEOMETRY.compact.colW;
-const COMPACT_COL = buildVerticalColumnOrigin({
-  viewBoxW: COMPACT_W,
-  colW: COMPACT_COL_W,
-});
 
-const FLOW_GEOMETRY = {
-  stepCount: STEP_COUNT,
-  boxHeight: BOX_H,
-  gap: GAP,
-  startY: M7_DATA_PREP_GEOMETRY.startY,
-  desktop: {
-    viewBoxWidth: DESKTOP_W,
-    viewBoxHeight: M7_DATA_PREP_GEOMETRY.viewBoxH,
-    colsX: DESKTOP_COL.colsX,
-    colsW: DESKTOP_COL_W,
-    cx: DESKTOP_COL.cx,
-  },
-  compact: {
-    viewBoxWidth: COMPACT_W,
-    viewBoxHeight: M7_DATA_PREP_GEOMETRY.viewBoxH,
-    colsX: COMPACT_COL.colsX,
-    colsW: COMPACT_COL_W,
-    cx: COMPACT_COL.cx,
-  },
-};
+function buildFunnelBoxes(
+  viewBoxW: number,
+  maxColW: number
+): { cx: number; stepBoxes: DiagramBox[] } {
+  const scales = M7_DATA_PREP_GEOMETRY.funnelScales;
+  const cx = viewBoxW / 2;
+  const stepBoxes: DiagramBox[] = Array.from({ length: STEP_COUNT }, (_, i) => {
+    const scale = scales[i] ?? scales[scales.length - 1];
+    const w = Math.round(maxColW * scale);
+    const x = Math.round((viewBoxW - w) / 2);
+    const y = M7_DATA_PREP_GEOMETRY.startY + (BOX_H + GAP) * i;
+    return [x, y, w, BOX_H];
+  });
+  return { cx, stepBoxes };
+}
 
 export default function M7DataPrepWorkflowDiagram({
   currentStep = 0,
@@ -86,13 +77,21 @@ export default function M7DataPrepWorkflowDiagram({
   const { isCompactDiagram } = useCompactViewport();
   const palette = useDiagramPalette();
   const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const tones = getDiagramToneColors(isDarkPalette);
   const inactiveSoft = isDarkPalette
     ? DIAGRAM_TOKENS.colors.inactiveSoftDark
-    : DIAGRAM_TONE_COLORS.brand.soft;
+    : DIAGRAM_TONE_COLORS.slate.soft;
+  const stageStroke = tones.slate.stroke;
   const isInteractive = typeof onStepClick === 'function';
   const stepsMeta = getM7DataPrepSteps(locale);
-  const { viewBoxWidth, viewBoxHeight, cx, stepBoxes } =
-    resolveVerticalFlowGeometry(FLOW_GEOMETRY, isCompactDiagram);
+  const viewBoxWidth = isCompactDiagram
+    ? M7_DATA_PREP_GEOMETRY.compact.viewBoxW
+    : M7_DATA_PREP_GEOMETRY.desktop.viewBoxW;
+  const maxColW = isCompactDiagram
+    ? M7_DATA_PREP_GEOMETRY.compact.colW
+    : M7_DATA_PREP_GEOMETRY.desktop.colW;
+  const viewBoxHeight = M7_DATA_PREP_GEOMETRY.viewBoxH;
+  const { cx, stepBoxes } = buildFunnelBoxes(viewBoxWidth, maxColW);
   const typography = DIAGRAM_TOKENS.typography;
   const tipH = ARROW_TIP * 0.9;
 
@@ -114,6 +113,7 @@ export default function M7DataPrepWorkflowDiagram({
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
+      data-metaphor={M7_DATA_PREP_GEOMETRY.metaphor}
       aria-label={`${ariaIntro}${isInteractive ? ` ${clickAria}` : ''}`}
     >
       <defs>
@@ -138,8 +138,8 @@ export default function M7DataPrepWorkflowDiagram({
         >
           <path
             d={`M0 0 L${ARROW_TIP} ${tipH / 2} L0 ${tipH} Z`}
-            fill={palette.flow}
-            stroke={palette.flow}
+            fill={stageStroke}
+            stroke={stageStroke}
             strokeWidth="0.5"
           />
         </marker>
@@ -181,16 +181,40 @@ export default function M7DataPrepWorkflowDiagram({
           ? DIAGRAM_TOKENS.opacity.active
           : DIAGRAM_TOKENS.opacity.inactive;
         const st = stepsMeta[i];
-        const fill = isActive ? palette.brand : inactiveSoft;
-        const labelFill = isActive ? palette.whiteText : palette.brandDark;
-        const subFill = isActive ? palette.whiteText : palette.muted;
+        const fill = isActive ? tones.slate.bottom : inactiveSoft;
+        const labelFill = isActive ? tones.slate.text : palette.brandDark;
+        const subFill = isActive ? tones.slate.text : palette.muted;
+        const tickX = x - (isCompactDiagram ? 14 : 18);
+        const tickCy = y + h / 2;
         return (
-          <g key={i}>
+          <g key={i} data-funnel-step={i} data-funnel-w={w}>
             <g
               opacity={opacity}
               style={{ transition: 'opacity 0.2s ease' }}
               aria-hidden
             >
+              {/* Checklist tick – funnel metaphor cue left of stage. */}
+              <circle
+                cx={tickX}
+                cy={tickCy}
+                r={isCompactDiagram ? 7 : 8}
+                fill={isActive ? tones.emerald.bottom : inactiveSoft}
+                stroke={isActive ? tones.emerald.stroke : stageStroke}
+                strokeWidth={DIAGRAM_TOKENS.stroke.inactive}
+                data-checklist-tick={i}
+              />
+              <path
+                d={
+                  isCompactDiagram
+                    ? `M${tickX - 3} ${tickCy} L${tickX - 1} ${tickCy + 2.5} L${tickX + 3.5} ${tickCy - 2.5}`
+                    : `M${tickX - 3.5} ${tickCy} L${tickX - 0.5} ${tickCy + 3} L${tickX + 4} ${tickCy - 3}`
+                }
+                fill="none"
+                stroke={isActive ? '#ffffff' : stageStroke}
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
               <rect
                 x={x}
                 y={y}
@@ -198,7 +222,7 @@ export default function M7DataPrepWorkflowDiagram({
                 height={h}
                 rx={DIAGRAM_TOKENS.radius.box}
                 fill={fill}
-                stroke={isActive ? palette.brandDark : palette.brand}
+                stroke={isActive ? tones.slate.stroke : stageStroke}
                 strokeWidth={
                   isActive
                     ? DIAGRAM_TOKENS.stroke.active
@@ -218,7 +242,7 @@ export default function M7DataPrepWorkflowDiagram({
                 fontWeight="700"
                 fill={labelFill}
               >
-                {i + 1} · {st.label}
+                {st.label}
               </text>
               <text
                 x={cx}
@@ -260,8 +284,9 @@ export default function M7DataPrepWorkflowDiagram({
                     y1={conn.y1}
                     x2={conn.x2}
                     y2={conn.y2}
-                    stroke={palette.flow}
-                    strokeWidth={DIAGRAM_TOKENS.stroke.flowStrong}
+                    stroke={stageStroke}
+                    strokeWidth={DIAGRAM_TOKENS.stroke.flow}
+                    strokeDasharray="5 4"
                     markerEnd={`url(#m7-prep-arrow-${uid})`}
                     aria-hidden
                   />

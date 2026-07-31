@@ -324,9 +324,9 @@ export function getM7AgentShortLabels(
     ];
   }
   return [
-    { title: 'Data Research', sub: 'Šaltiniai ir struktūra' },
-    { title: 'EDA', sub: 'Tiriamoji analizė' },
-    { title: 'Insight', sub: 'Įžvalgos vadovybei' },
+    { title: 'Data Research', sub: 'Šaltiniai' },
+    { title: 'EDA', sub: 'Tiriamoji' },
+    { title: 'Insight', sub: 'Vadovybei' },
   ];
 }
 

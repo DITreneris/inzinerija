@@ -77,13 +77,13 @@ function NodeHeaderBand({
   return (
     <div className="h-6 w-full border-b border-slate-200 dark:border-gray-600 flex items-center justify-center bg-slate-100 dark:bg-slate-700/80 relative z-[1] px-2 shrink-0">
       {live ? (
-        <span className="text-[11px] font-semibold tracking-wide text-brand-700 dark:text-brand-300">
+        <span className="text-xs font-semibold tracking-wide text-brand-700 dark:text-brand-300">
           {liveLabel}
         </span>
       ) : (
         <span
           data-testid={inactiveTestId}
-          className="text-[11px] font-semibold tracking-wide text-slate-600 dark:text-slate-300"
+          className="text-xs font-semibold tracking-wide text-slate-600 dark:text-slate-300"
         >
           {inactiveLabel}
         </span>
@@ -238,7 +238,7 @@ export default function LlmArchDiagramDiagram({
       >
         <div className="flex items-center justify-center gap-1 w-full py-0">
           <div className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-blue-50 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
-            <div className="text-[11px] font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
               {labels.inputRole}
             </div>
             <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-1 bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-300 text-base">
@@ -247,7 +247,7 @@ export default function LlmArchDiagramDiagram({
             <div className="font-semibold text-blue-800 dark:text-blue-200 text-lg">
               {labels.inputTitle}
             </div>
-            <div className="font-sans text-slate-600 dark:text-slate-400 text-[13px]">
+            <div className="font-sans text-slate-600 dark:text-slate-400 text-xs">
               {labels.inputSubtitle}
             </div>
           </div>
@@ -279,7 +279,7 @@ export default function LlmArchDiagramDiagram({
             >
               LLM
             </div>
-            <span className="text-[11px] font-medium tracking-wider text-white/90 mb-0.5">
+            <span className="text-xs font-medium tracking-wider text-white/90 mb-0.5">
               {labels.diBadge}
             </span>
             <div
@@ -293,7 +293,7 @@ export default function LlmArchDiagramDiagram({
           <FlowArrow direction="right" color={DIAGRAM_TOKENS.colors.emerald} />
 
           <div className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-300 dark:border-emerald-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
-            <div className="text-[11px] font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
+            <div className="text-xs font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
               {labels.outputRole}
             </div>
             <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-1 bg-emerald-200/50 dark:bg-emerald-800/50 text-emerald-600 dark:text-emerald-300 text-base">
@@ -302,7 +302,7 @@ export default function LlmArchDiagramDiagram({
             <div className="font-semibold text-emerald-800 dark:text-emerald-200 text-lg">
               {labels.outputTitle}
             </div>
-            <div className="font-sans text-slate-600 dark:text-slate-400 text-[13px]">
+            <div className="font-sans text-slate-600 dark:text-slate-400 text-xs">
               {labels.outputSubtitle}
             </div>
           </div>
@@ -437,7 +437,7 @@ export default function LlmArchDiagramDiagram({
                     : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-gray-600 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:border-brand-300 dark:hover:border-brand-600'
                 }`}
               >
-                <div className="font-sans mb-1 tracking-[0.1em] text-slate-600 dark:text-slate-400 text-[13px] font-semibold">
+                <div className="font-sans mb-1 tracking-[0.1em] text-slate-600 dark:text-slate-400 text-xs font-semibold">
                   {card.num}
                 </div>
                 <div className="font-semibold mb-1.5 font-[Plus_Jakarta_Sans] text-slate-900 dark:text-slate-100 text-base">

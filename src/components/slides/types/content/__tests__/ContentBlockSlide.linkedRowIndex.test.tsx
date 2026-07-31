@@ -39,13 +39,14 @@ const linkedRowContent: ContentBlockContent = {
 };
 
 describe('ContentBlockSlide linkedRowIndex filter', () => {
-  it('shows only the default linked copyable (row 0) on first render', () => {
+  it('hides linked copyables until the learner picks (default null, M79-S1b)', () => {
     const { container } = renderWithProviders(
       <ContentBlockSlide content={linkedRowContent} />
     );
 
-    expect(container.textContent).toContain('PROMPT_A_ONLY');
+    expect(container.textContent).not.toContain('PROMPT_A_ONLY');
     expect(container.textContent).not.toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
+    expect(container.querySelector('button[aria-pressed="true"]')).toBeFalsy();
   });
 
   it('renders toolChoiceBar without a table section', () => {
@@ -54,14 +55,14 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
     );
 
     expect(container.textContent).toContain('Kuris?');
-    expect(container.querySelector('button[aria-pressed="true"]')).toBeTruthy();
   });
 
-  it('marks the active linked copy section with data-linked-copy', () => {
-    const { container } = renderWithProviders(
+  it('marks the active linked copy section with data-linked-copy after pick', () => {
+    const { container, getByRole } = renderWithProviders(
       <ContentBlockSlide content={linkedRowContent} />
     );
 
+    fireEvent.click(getByRole('button', { name: /^A$/ }));
     expect(container.querySelector('[data-linked-copy]')).toBeTruthy();
     expect(
       container.querySelector('[data-linked-copy]')?.textContent
@@ -83,8 +84,8 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
       <ContentBlockSlide content={linkedRowContent} />
     );
 
-    const choiceB = getByRole('button', { name: /B/ });
-    fireEvent.click(choiceB);
+    fireEvent.click(getByRole('button', { name: /^A$/ }));
+    fireEvent.click(getByRole('button', { name: /^B$/ }));
 
     expect(container.textContent).toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
     expect(container.textContent).not.toContain('PROMPT_A_ONLY');
@@ -93,7 +94,58 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
     ).toContain('PROMPT_B_HIDDEN_BY_DEFAULT');
   });
 
-  it('autoSelect false keeps linked copyable hidden until learner picks', () => {
+  it('announces selection via aria-live region', () => {
+    const { container, getByRole } = renderWithProviders(
+      <ContentBlockSlide content={linkedRowContent} />
+    );
+
+    fireEvent.click(getByRole('button', { name: /^A$/ }));
+    const live = container.querySelector('[data-tool-choice-live]');
+    expect(live?.getAttribute('aria-live')).toBe('polite');
+    expect(live?.textContent).toMatch(/PROMPT|promptas|Rodomas/i);
+  });
+
+  it('autoSelect true keeps legacy first-row reveal', () => {
+    const withAuto: ContentBlockContent = {
+      sections: [
+        {
+          heading: 'Daryk dabar',
+          body: 'Pick one.',
+          blockVariant: 'brand',
+          toolChoiceBar: {
+            question: 'Which tool?',
+            autoSelect: true,
+            choices: [
+              { label: 'Zapier', rowIndex: 0, whenHint: 'Quick start' },
+              { label: 'Make', rowIndex: 1, whenHint: 'Logic' },
+            ],
+          },
+        },
+        {
+          heading: 'Template Zapier',
+          body: 'Fill.',
+          copyable: 'ZAPIER_TEMPLATE_ONLY',
+          linkedRowIndex: 0,
+        },
+        {
+          heading: 'Template Make',
+          body: 'Fill.',
+          copyable: 'MAKE_TEMPLATE_ONLY',
+          linkedRowIndex: 1,
+        },
+      ],
+    };
+
+    const { container } = renderWithProviders(
+      <ContentBlockSlide content={withAuto} />
+    );
+
+    expect(container.textContent).toContain('ZAPIER_TEMPLATE_ONLY');
+    expect(container.textContent).not.toContain('MAKE_TEMPLATE_ONLY');
+    expect(container.querySelector('button[aria-pressed="true"]')).toBeTruthy();
+  });
+
+  it('default (no autoSelect) keeps linked copyable hidden until learner picks', () => {
     const noAuto: ContentBlockContent = {
       sections: [
         {
@@ -102,7 +154,6 @@ describe('ContentBlockSlide linkedRowIndex filter', () => {
           blockVariant: 'brand',
           toolChoiceBar: {
             question: 'Which tool?',
-            autoSelect: false,
             choices: [
               { label: 'Zapier', rowIndex: 0, whenHint: 'Quick start' },
               { label: 'Make', rowIndex: 1, whenHint: 'Logic' },

@@ -7,7 +7,7 @@ import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getM7AgentShortLabels, type M7Locale } from './m7DiagramContent';
 import {
   DIAGRAM_TOKENS,
-  DIAGRAM_TONE_COLORS,
+  getDiagramToneColors,
   type DiagramTone,
 } from './diagramTokens';
 import { DiagramStepHitArea } from './diagramKit';
@@ -37,11 +37,14 @@ export default function M7ThreeAgentsDiagram({
   const labels = getM7AgentShortLabels(locale);
   const typography = DIAGRAM_TOKENS.typography;
 
+  const isDarkPalette = palette.bgStart === DIAGRAM_TOKENS.palette.dark.bgStart;
+  const toneColors = getDiagramToneColors(isDarkPalette);
   const n = 3;
   const viewW = isCompactDiagram ? 320 : 560;
-  const viewH = isCompactDiagram ? 200 : 220;
-  const boxW = isCompactDiagram ? 92 : 150;
-  const gap = isCompactDiagram ? 12 : GAP;
+  /** S4: crop dead air below boxes (was 200/220). */
+  const viewH = isCompactDiagram ? 152 : 158;
+  const boxW = isCompactDiagram ? 100 : 150;
+  const gap = isCompactDiagram ? 8 : GAP;
   const totalW = n * boxW + (n - 1) * gap;
   const startX = (viewW - totalW) / 2;
   const y = isCompactDiagram ? 56 : 64;
@@ -92,7 +95,7 @@ export default function M7ThreeAgentsDiagram({
           <stop offset="100%" stopColor={palette.bgEnd} />
         </linearGradient>
         {AGENT_TONES.map((tone) => {
-          const colors = DIAGRAM_TONE_COLORS[tone];
+          const colors = toneColors[tone];
           return (
             <linearGradient
               key={tone}
@@ -181,7 +184,7 @@ export default function M7ThreeAgentsDiagram({
           ? DIAGRAM_TOKENS.opacity.active
           : DIAGRAM_TOKENS.opacity.inactive;
         const tone = AGENT_TONES[i];
-        const colors = DIAGRAM_TONE_COLORS[tone];
+        const colors = toneColors[tone];
         return (
           <g key={i}>
             <g
@@ -229,7 +232,7 @@ export default function M7ThreeAgentsDiagram({
                     : typography.stepSub.desktop
                 }
                 fontWeight="500"
-                fill={palette.whiteText}
+                fill={isDarkPalette ? palette.whiteText : colors.text}
               >
                 {lb.sub}
               </text>

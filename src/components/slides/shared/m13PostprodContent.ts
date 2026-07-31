@@ -66,8 +66,9 @@ export function getM13PostprodChrome(locale: M10Locale) {
   if (locale === 'en') {
     return {
       title: 'Post-production chain',
+      metaphorCaption: 'Timeline – Cut → Export in time order',
       hint: 'Tap a step – explanation below',
-      aria: 'Four steps: cut, grade, mix, export',
+      aria: 'Four steps on a timeline: cut, grade, mix, export',
       regionAria: 'Post-production – four steps',
       youAreHere: 'You are here:',
       navAria: 'Post-production step selection',
@@ -77,8 +78,9 @@ export function getM13PostprodChrome(locale: M10Locale) {
   }
   return {
     title: 'Post-production grandinė',
+    metaphorCaption: 'Laiko juosta – Cut → Export eilės tvarka',
     hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-    aria: 'Keturi žingsniai: cut, grade, mix, export',
+    aria: 'Keturi žingsniai laiko juostoje: cut, grade, mix, export',
     regionAria: 'Post-production – keturi žingsniai',
     youAreHere: 'Tu esi čia:',
     navAria: 'Post-production žingsnių pasirinkimas',

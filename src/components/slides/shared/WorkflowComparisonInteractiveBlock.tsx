@@ -20,6 +20,7 @@ import {
   getCtaSentence,
   getBlockLabels,
 } from './workflowComparisonConfig';
+import { typographyClasses } from '../../../design-tokens';
 
 const MODE_KEYS: WorkflowMode[] = ['basic', 'workflow'];
 const FIXED_OUTPUT_TYPE: OutputType = 'document';
@@ -70,7 +71,7 @@ export default function WorkflowComparisonInteractiveBlock({
                   aria-pressed={mode === m}
                   aria-label={`${blockLabels.modeLabel} ${workflowModes[m].label}`}
                   className={`
-                  font-mono text-[13px] font-medium uppercase px-5 py-2.5 rounded
+                  ${typographyClasses.code} font-medium uppercase px-5 py-2.5 rounded
                   transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
                   min-h-[44px] min-w-[44px]
                   ${
@@ -91,7 +92,9 @@ export default function WorkflowComparisonInteractiveBlock({
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 font-mono text-[13px] text-gray-600 dark:text-gray-400">
+            <div
+              className={`flex items-center gap-2 ${typographyClasses.code} text-gray-600 dark:text-gray-400`}
+            >
               <span
                 className={`h-2 w-2 rounded-full shrink-0 transition-colors duration-300 ${
                   isWorkflow ? 'bg-emerald-500' : 'bg-gray-400 dark:bg-gray-500'

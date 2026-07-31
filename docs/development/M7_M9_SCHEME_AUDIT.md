@@ -134,13 +134,13 @@ Sk. 94 – 78 iš 220u (35 %); sk. 92 – 70 iš 220u (32 %); sk. 100 – ~77 i�
 
 ### 5.4 Overlay drift
 
-- `off:hallucination-pipeline` (maturity 3, realus SOT) ir `slide-type:hallucination-pipeline` (maturity 2, `contentSot: null`) – **du įrašai tam pačiam gyvam elementui**.
-- `off:test-knowledge-scope` – `moduleId: null`, `slideId: null`, `contentSot: null`.
-- `lab:m9_workflow_step_prompts` – `contentSot` rodo į komponentą, nors promptai gyvena `m9DataWorkflowContent.ts`.
+- ~~`off:hallucination-pipeline` + `slide-type:hallucination-pipeline` dubliu~~ → **FIXED (M79-S6):** slide-type = thin alias; canonical = `off:` (M7/67.7); shared `contentSot`.
+- ~~`off:test-knowledge-scope` null module/slide/contentSot~~ → **FIXED (M79-S2b/S6):** M8/80 + `testKnowledgeScopeContent.ts`.
+- ~~`lab:m9_workflow_step_prompts` contentSot → component~~ → **FIXED:** `m9DataWorkflowContent.ts`.
 
 ### 5.5 Dvyniai spine'ai viename modulyje
 
-`M7_DA_PIPELINE_GEOMETRY` ir `M7_DATA_PREP_GEOMETRY` skiriasi tik `stepCount` (6 vs 5) ir `viewBoxH`; `boxH`, `gap`, `startY`, `colW`, `stepLabel`, `stepSub`, baseline'ai identiški. Du ~275 eilučių failai, dvi skaidrės (73 ir 89) tame pačiame modulyje, vizualiai neatskiriamos. Pagal §0.3 – metaforos diferenciacija, ne pixel-parity dedupe.
+~~Identiška VerticalFlow geometrija 73 vs 89~~ → **FIXED (M79-S5):** 73 `station-rail` (numeruoti ratai + spine); 89 `prep-funnel` (siaurėjančios stadijos + checklist ticks + slate). Individualumo testas: `m7SpineIndividuality.test.tsx`.
 
 ### 5.6 Pasirinkimas be anonso
 

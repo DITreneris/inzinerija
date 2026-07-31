@@ -32,9 +32,11 @@ describe('lmsCaptionTokenPolish (Wave 4)', () => {
 
 describe('lmsCaptionTokenPolish (Wave 4b residual size ladder)', () => {
   it('keeps step / sub / edge typography floors', () => {
+    // M79-S3 / DS 0.3.3: compact stepLabel floor raised 10→11 (rubric ≥10px).
     expect(DIAGRAM_TOKENS.typography.stepLabel.desktop).toBe(12);
-    expect(DIAGRAM_TOKENS.typography.stepLabel.compact).toBe(10);
+    expect(DIAGRAM_TOKENS.typography.stepLabel.compact).toBe(11);
     expect(DIAGRAM_TOKENS.typography.stepSub.desktop).toBe(10);
+    expect(DIAGRAM_TOKENS.typography.stepSub.compact).toBe(10);
     expect(DIAGRAM_TOKENS.typography.edgeLabel.size).toBe(12);
     expect(DIAGRAM_TOKENS.typography.edgeLabel.weight).toBe(500);
   });

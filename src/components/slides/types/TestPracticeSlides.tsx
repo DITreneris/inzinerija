@@ -42,7 +42,11 @@ import {
 } from '../shared';
 import type { Progress } from '../../../utils/progress';
 import { resolveM9JourneySlots } from '../../../utils/resolveM9JourneyCopy';
-import { stickyClasses, surfaceGlass } from '../../../design-tokens';
+import {
+  stickyClasses,
+  surfaceGlass,
+  typographyClasses,
+} from '../../../design-tokens';
 import {
   McqQuestion,
   TrueFalseQuestion,
@@ -276,7 +280,9 @@ export function TestIntroSlide({
               {whyBenefit}
             </p>
           )}
-          <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">
+          <h3
+            className={`${typographyClasses.h2} mb-3 text-gray-900 dark:text-white`}
+          >
             {title}
           </h3>
           <p
@@ -305,7 +311,9 @@ export function TestIntroSlide({
             variant="info"
             className="p-5 rounded-xl border border-brand-200 dark:border-brand-800"
           >
-            <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
+            <h4
+              className={`${typographyClasses.h2} mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5`}
+            >
               <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
                 <ListChecks
                   className="w-5 h-5 text-brand-600 dark:text-brand-400"
@@ -314,7 +322,9 @@ export function TestIntroSlide({
               </span>
               {locale === 'en' ? 'Test structure' : 'Testo struktūra'}
             </h4>
-            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+            <ul
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+            >
               <li>
                 {locale === 'en'
                   ? '• 4 questions (brief, structure, tool, quality check)'
@@ -334,7 +344,9 @@ export function TestIntroSlide({
             variant="info"
             className="p-5 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500 border border-accent-200 dark:border-accent-800"
           >
-            <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
+            <h4
+              className={`${typographyClasses.h2} mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5`}
+            >
               <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
                 <Target
                   className="w-5 h-5 text-accent-600 dark:text-accent-400"
@@ -343,7 +355,9 @@ export function TestIntroSlide({
               </span>
               {locale === 'en' ? 'Goal' : 'Tikslas'}
             </h4>
-            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+            <ul
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+            >
               <li>
                 {locale === 'en'
                   ? '• Confirm the sprint was done correctly'
@@ -393,7 +407,9 @@ export function TestIntroSlide({
               {testIntro.whyBenefit}
             </p>
           )}
-          <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white flex items-center gap-2.5">
+          <h3
+            className={`${typographyClasses.h2} mb-3 text-gray-900 dark:text-white flex items-center gap-2.5`}
+          >
             <span
               className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20"
               aria-hidden="true"
@@ -406,7 +422,9 @@ export function TestIntroSlide({
             {title}
           </h3>
           {testIntro.duration && (
-            <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
+            >
               <strong>{t('durationLabel')}</strong> {testIntro.duration}
             </p>
           )}
@@ -473,7 +491,9 @@ export function TestIntroSlide({
             {whyBenefit}
           </p>
         )}
-        <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white flex items-center gap-2.5">
+        <h3
+          className={`${typographyClasses.h2} mb-3 text-gray-900 dark:text-white flex items-center gap-2.5`}
+        >
           <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
             <ClipboardCheck
               className="w-5 h-5 text-brand-600 dark:text-brand-400"
@@ -493,7 +513,9 @@ export function TestIntroSlide({
           variant="info"
           className="p-5 rounded-xl border border-brand-200 dark:border-brand-800"
         >
-          <h4 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5">
+          <h4
+            className={`${typographyClasses.h2} mb-3 text-brand-900 dark:text-brand-100 flex items-center gap-2.5`}
+          >
             <span className="inline-flex p-2 rounded-lg bg-brand-500/10 dark:bg-brand-500/20">
               <ListChecks
                 className="w-5 h-5 text-brand-600 dark:text-brand-400"
@@ -502,7 +524,9 @@ export function TestIntroSlide({
             </span>
             {locale === 'en' ? 'Test structure' : 'Testo struktūra'}
           </h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+          <ul
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+          >
             <li>
               {locale === 'en'
                 ? '• 15 questions – 5 different formats'
@@ -529,7 +553,9 @@ export function TestIntroSlide({
           variant="info"
           className="p-5 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500 border border-accent-200 dark:border-accent-800"
         >
-          <h4 className="font-bold text-lg mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5">
+          <h4
+            className={`${typographyClasses.h2} mb-3 text-accent-900 dark:text-accent-100 flex items-center gap-2.5`}
+          >
             <span className="inline-flex p-2 rounded-lg bg-accent-500/10 dark:bg-accent-500/20">
               <Target
                 className="w-5 h-5 text-accent-600 dark:text-accent-400"
@@ -538,7 +564,9 @@ export function TestIntroSlide({
             </span>
             {locale === 'en' ? 'Goal' : 'Tikslas'}
           </h4>
-          <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+          <ul
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 space-y-2`}
+          >
             <li>
               {locale === 'en'
                 ? '• Reinforce knowledge in different ways'
@@ -1282,7 +1310,9 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {passedTitle}
               </h3>
               <p
@@ -1299,7 +1329,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('resultMeaningHeading')}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {thresholdExplanation}
                 </p>
               </Banner>
@@ -1313,7 +1345,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whereToApplyHeading')}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {useCaseBlock}
                 </p>
               </Banner>
@@ -1348,7 +1382,9 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {failedTitle.replace('[X]', String(animatedScore))}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1485,7 +1521,7 @@ export function TestResultsSlide({
           </>
         )}
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <p className={`${typographyClasses.bodyMuted} mb-2`}>
             {getT('quiz')('ceoSpinoffDescription')}
           </p>
           <a
@@ -1535,7 +1571,9 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('passedTitleDefault')}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1569,7 +1607,9 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('resultLabel')} {animatedScore}%
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1680,7 +1720,9 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('passedTitleDefault')}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1696,7 +1738,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whatItMeansHeading')}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {thresholdExplanation}
                 </p>
               </Banner>
@@ -1710,7 +1754,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {useCaseHeading}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {useCaseBody}
                 </p>
               </Banner>
@@ -1742,7 +1788,9 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('resultLabel')} {animatedScore}%
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1861,7 +1909,9 @@ export function TestResultsSlide({
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('passedTitleDefault')}
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1877,7 +1927,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {t('whatItMeansHeading')}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {thresholdExplanation}
                 </p>
               </Banner>
@@ -1891,7 +1943,9 @@ export function TestResultsSlide({
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">
                   {useCaseHeading}
                 </h4>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
+                <p
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {useCaseBody}
                 </p>
               </Banner>
@@ -1923,7 +1977,9 @@ export function TestResultsSlide({
         ) : (
           <>
             <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-xl border-2 border-amber-200 dark:border-amber-800 text-center">
-              <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+              <h3
+                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+              >
                 {t('resultLabel')} {animatedScore}%
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
@@ -1999,7 +2055,7 @@ export function TestResultsSlide({
           }`}
         >
           <span
-            className={`text-3xl font-extrabold tabular-nums ${
+            className={`${typographyClasses.metricSm} font-extrabold ${
               passed
                 ? 'text-emerald-600 dark:text-emerald-400'
                 : 'text-amber-600 dark:text-amber-400'
@@ -2008,7 +2064,9 @@ export function TestResultsSlide({
             {animatedScore}%
           </span>
         </div>
-        <h3 className="font-bold text-2xl mb-2 text-gray-900 dark:text-white">
+        <h3
+          className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
+        >
           {passed ? t('testCompleteTitle') : t('resultLabel')}
         </h3>
         <p className="text-gray-700 dark:text-gray-300">
@@ -2034,7 +2092,7 @@ export function TestResultsSlide({
           <h4 className="font-bold text-gray-900 dark:text-white mb-1">
             {t('radarTitle')}
           </h4>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <p className={`${typographyClasses.bodyMuted} mb-4`}>
             {t('radarDesc')}
           </p>
           <RadarChart data={radarData} size={280} />
@@ -2159,7 +2217,9 @@ function RemediationRetryBlock({
   if (questions.length === 0) {
     return (
       <div className="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4">
-        <p className="text-sm text-amber-800 dark:text-amber-200">
+        <p
+          className={`${typographyClasses.body} text-amber-800 dark:text-amber-200`}
+        >
           {t('noRetakeInCategory')}
         </p>
         <button
@@ -2280,7 +2340,7 @@ function CategoryBreakdownWithLinks({
       <h4 className="font-bold text-gray-900 dark:text-white mb-2">
         {t('knowledgeMapTitle')}
       </h4>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+      <p className={`${typographyClasses.bodyMuted} mb-4`}>
         {hasScores ? t('knowledgeMapHint1') : t('knowledgeMapHint2')}
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -2345,7 +2405,9 @@ function CategoryBreakdownWithLinks({
         </div>
       )}
       {hasScores && (
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-3 text-center">
+        <p
+          className={`${typographyClasses.small} text-gray-400 dark:text-gray-500 mt-3 text-center`}
+        >
           {t('knowledgeMapWeakHint')}
         </p>
       )}
@@ -2601,7 +2663,9 @@ export function PracticeIntroSlide({
           </p>
         )}
         {introContent.audience && (
-          <p className="text-gray-600 dark:text-gray-400 text-center text-sm max-w-2xl mx-auto">
+          <p
+            className={`${typographyClasses.bodyMuted} text-center max-w-2xl mx-auto`}
+          >
             {introContent.audience}
           </p>
         )}
@@ -2656,7 +2720,7 @@ export function PracticeIntroSlide({
             {t('m6ProjectContinue')}
           </CTAButton>
           {m6ProjectId == null && (
-            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+            <p className={`${typographyClasses.bodyMuted} text-center`}>
               {t('m6ProjectSelectHint')}
             </p>
           )}
@@ -2701,7 +2765,9 @@ export function PracticeIntroSlide({
             })}
           </p>
         )}
-        <p className="text-gray-600 dark:text-gray-400 text-center text-sm lg:text-base max-w-2xl mx-auto">
+        <p
+          className={`${typographyClasses.bodyMuted} text-center max-w-2xl mx-auto`}
+        >
           {locale === 'en' ? (
             <>
               In this module you will create one project (a research report or
@@ -2722,7 +2788,7 @@ export function PracticeIntroSlide({
           <h3 className="font-bold text-lg mb-1 text-gray-900 dark:text-white">
             {t('projectOutcomeTitle')}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <p className={`${typographyClasses.bodyMuted} mb-4`}>
             {t('projectOutcomeDesc')}
           </p>
           <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -2751,7 +2817,9 @@ export function PracticeIntroSlide({
             />
           </summary>
           <div className="px-6 pb-6 border-t border-violet-200 dark:border-violet-800">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 mb-4">
+            <p
+              className={`${typographyClasses.body} text-gray-600 dark:text-gray-400 mt-4 mb-4`}
+            >
               {locale === 'en'
                 ? 'Project → COMBO → HTML practice → SUPER PROMPTS → Reflection → Data management.'
                 : 'Projektas → COMBO → HTML praktika → SUPER PROMPTAI → Refleksija → Duomenų tvarkymas.'}
@@ -2792,7 +2860,7 @@ export function PracticeIntroSlide({
               <h4 className="font-bold text-gray-900 dark:text-white mb-4">
                 {t('selfAssessmentTitle')}
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <p className={`${typographyClasses.bodyMuted} mb-4`}>
                 {t('selfAssessmentDesc')}
               </p>
               <ul className="space-y-3" role="list">
@@ -2857,7 +2925,7 @@ export function PracticeIntroSlide({
               <h4 className="font-bold text-gray-900 dark:text-white mb-4">
                 {t('projectStepsTitle')}
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+              <p className={`${typographyClasses.bodyMuted} mb-3`}>
                 {t('projectStepsDesc')}
               </p>
               <ol className="space-y-2 list-decimal list-inside text-gray-700 dark:text-gray-300">
@@ -3019,7 +3087,9 @@ export function PracticeIntroSlide({
             role="region"
             aria-label={t('m9PrimaryPathAria')}
           >
-            <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-2">
+            <h4
+              className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-2`}
+            >
               {isM12
                 ? locale === 'en'
                   ? 'Recommended start'
@@ -3027,7 +3097,7 @@ export function PracticeIntroSlide({
                 : t('m9PrimaryPathHeading')}
             </h4>
             <p
-              className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed"
+              className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
               dangerouslySetInnerHTML={{
                 __html: introContent.primaryPathIntro.replace(
                   /\*\*(.*?)\*\*/g,
@@ -3069,10 +3139,14 @@ export function PracticeIntroSlide({
             role="region"
             aria-label={t('m12RequiredPathAria')}
           >
-            <h4 className="font-bold text-accent-900 dark:text-accent-100 text-sm mb-2">
+            <h4
+              className={`${typographyClasses.h3} text-accent-900 dark:text-accent-100 mb-2`}
+            >
               {t('m12RequiredPathHeading')}
             </h4>
-            <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+            <p
+              className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
+            >
               {t('m12RequiredPathBody')}
             </p>
           </div>
@@ -3105,7 +3179,9 @@ export function PracticeIntroSlide({
             role="region"
             aria-label={t('yourTaskAria')}
           >
-            <p className="font-bold text-brand-900 dark:text-brand-100 text-sm">
+            <p
+              className={`${typographyClasses.h3} text-brand-900 dark:text-brand-100`}
+            >
               {introContent.taskOneLiner}
             </p>
           </div>
@@ -3116,7 +3192,7 @@ export function PracticeIntroSlide({
           </p>
         )}
         {isM9 && introContent.audience && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <p className={`${typographyClasses.bodyMuted} mb-2`}>
             {introContent.audience}
           </p>
         )}
@@ -3126,10 +3202,14 @@ export function PracticeIntroSlide({
             className="p-3 mb-3"
             ariaLabel={t('whereToApplyQAria')}
           >
-            <h4 className="font-bold text-emerald-900 dark:text-emerald-100 text-sm mb-1">
+            <h4
+              className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-1`}
+            >
               {locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}
             </h4>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p
+              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+            >
               {introContent.useCaseBlock}
             </p>
           </Banner>
@@ -3204,7 +3284,9 @@ export function PracticeIntroSlide({
               className="p-3 mb-3"
               ariaLabel={t('recommendedStartAria')}
             >
-              <p className="text-sm text-amber-800 dark:text-amber-200">
+              <p
+                className={`${typographyClasses.body} text-amber-800 dark:text-amber-200`}
+              >
                 {introContent.recommendedStart}
               </p>
             </Banner>
@@ -3212,7 +3294,9 @@ export function PracticeIntroSlide({
         {moduleId === 15 &&
           introContent.howToUseModule?.short &&
           introContent.recommendedStart && (
-            <p className="text-xs text-slate-600 dark:text-slate-400 mb-3">
+            <p
+              className={`${typographyClasses.small} text-slate-600 dark:text-slate-400 mb-3`}
+            >
               {introContent.recommendedStart}
             </p>
           )}
@@ -3293,7 +3377,7 @@ export function PracticeIntroSlide({
           )}
         {isM9 && (
           <p
-            className="text-sm text-gray-700 dark:text-gray-300 mb-2"
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
             role="note"
           >
             {t('m9WorkflowFirstFooter')}
@@ -3302,7 +3386,9 @@ export function PracticeIntroSlide({
         {!isM9 && (
           <>
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <h3 className="font-bold text-xl text-gray-900 dark:text-white flex items-center gap-2.5">
+              <h3
+                className={`${typographyClasses.h2} text-gray-900 dark:text-white flex items-center gap-2.5`}
+              >
                 <Briefcase
                   className="w-5 h-5 text-brand-600 dark:text-brand-400"
                   strokeWidth={1.5}
@@ -3394,10 +3480,14 @@ export function PracticeIntroSlide({
           <div className="px-4 pb-4 pt-0 border-t border-gray-200 dark:border-gray-700 space-y-4">
             {introContent.recommendedStart && (
               <Banner variant="warning" className="p-3">
-                <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm mb-1">
+                <h4
+                  className={`${typographyClasses.h3} text-amber-900 dark:text-amber-100 mb-1`}
+                >
                   {t('m9RecommendedAfterWorkflow')}
                 </h4>
-                <p className="text-sm text-amber-800 dark:text-amber-200">
+                <p
+                  className={`${typographyClasses.body} text-amber-800 dark:text-amber-200`}
+                >
                   {introContent.recommendedStart}
                 </p>
               </Banner>
@@ -3406,17 +3496,21 @@ export function PracticeIntroSlide({
               <div role="region" aria-label={t('storyBlockAria')}>
                 {introContent.storyBlock && (
                   <Banner variant="info" className="mb-3">
-                    <h4 className="font-bold text-brand-900 dark:text-brand-100 text-sm mb-2">
+                    <h4
+                      className={`${typographyClasses.h3} text-brand-900 dark:text-brand-100 mb-2`}
+                    >
                       {t('storyBlockHeading')}
                     </h4>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                    <p
+                      className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                    >
                       {introContent.storyBlock}
                     </p>
                   </Banner>
                 )}
                 {introContent.characterMeaning && (
                   <p
-                    className="text-sm text-gray-700 dark:text-gray-300 mb-2"
+                    className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
                     dangerouslySetInnerHTML={{
                       __html: introContent.characterMeaning.replace(
                         /\*\*(.*?)\*\*/g,
@@ -3425,7 +3519,9 @@ export function PracticeIntroSlide({
                     }}
                   />
                 )}
-                <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
+                <p
+                  className={`${typographyClasses.label} text-gray-500 dark:text-gray-400 mb-2`}
+                >
                   {t('pressCharacterHint')}
                 </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -3468,7 +3564,7 @@ export function PracticeIntroSlide({
                 displayScenarioSlides?.length ??
                 0) > 0 && (
                 <p
-                  className="text-sm text-gray-600 dark:text-gray-400 mb-3"
+                  className={`${typographyClasses.bodyMuted} mb-3`}
                   role="doc-subtitle"
                 >
                   {introOnlyFourAndHub
@@ -3679,7 +3775,7 @@ export function PracticeIntroSlide({
               displayScenarioSlides?.length ??
               0) > 0 && (
               <p
-                className="text-sm text-gray-600 dark:text-gray-400 mb-3"
+                className={`${typographyClasses.bodyMuted} mb-3`}
                 role="doc-subtitle"
               >
                 {introOnlyFourAndHub
@@ -4218,7 +4314,9 @@ export function PracticeScenarioSlide({
             {locale === 'en' ? 'Task:' : 'Užduotis:'}{' '}
             <span className="font-normal">{taskFrame.task}</span>
           </p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+          >
             <span className="font-semibold">{t('doneWhenLabel')}</span>{' '}
             {taskFrame.doneWhen}
           </p>
@@ -4277,7 +4375,9 @@ export function PracticeScenarioSlide({
               label: branching.choices[selectedBranchingIndex].label,
             })}
           </p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+          >
             {branching.choices[selectedBranchingIndex].consequence}
           </p>
         </div>
@@ -4294,7 +4394,9 @@ export function PracticeScenarioSlide({
               <h4 className="font-semibold text-brand-900 dark:text-brand-100 text-sm mb-1">
                 {locale === 'en' ? 'Situation' : 'Situacija'}
               </h4>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
+              <p
+                className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+              >
                 {slide.scenario.situation}
               </p>
             </div>

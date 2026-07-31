@@ -132,7 +132,7 @@ export default function HomePage({
             </div>
           </div>
 
-          <h1 className="text-5xl lg:text-8xl font-black text-gray-950 dark:text-white mb-4 tracking-tight">
+          <h1 className="text-5xl lg:text-8xl font-extrabold text-gray-950 dark:text-white mb-4 tracking-tight">
             {t('home:titlePart1')}{' '}
             <span className="gradient-text gradient-text-hero">
               {t('home:titlePart2')}

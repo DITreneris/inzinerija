@@ -2,12 +2,18 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.5.0 + Horizon C / code-doc audit sync  
-**Testai:** 142 failai / 903 testai (`@ HEAD` po 10.255 order guard fix; `@ tag 1.4.9` = 130/825)  
-**Data:** 2026-07-30  
+**Baseline:** 1.5.0 + M79/M1315 scheme ROI sync  
+**Testai:** 150 failai / 924 testai (`@ HEAD` po pre-launch preflight; `@ tag 1.4.9` = 130/825)  
+**Data:** 2026-07-31  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Pre-launch M79/M1315 sync – 2026-07-31
+
+| #   | Failas                                                        | Laukas        | Buvo    | Turi būti                                      | Done |
+| --- | ------------------------------------------------------------- | ------------- | ------- | ---------------------------------------------- | ---- |
+| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 142/903 | **150/924** po M79/M1315 ROI + typography gate | [x]  |
 
 ### Code/doc audit sync – 2026-07-30
 

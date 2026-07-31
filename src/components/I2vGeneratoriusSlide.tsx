@@ -6,6 +6,7 @@ import Banner from './ui/Banner';
 import { getTools } from '../data/toolsLoader';
 import { getI2vReadiness } from '../utils/vaizdoGenQuality';
 import { getContentTrackSwatches } from '../utils/contentTrackSwatches';
+import { typographyClasses } from '../design-tokens';
 
 const DURATIONS = ['3', '4', '5'] as const;
 
@@ -175,7 +176,9 @@ export default function I2vGeneratoriusSlide({
         className="p-4 rounded-xl bg-accent-50 dark:bg-accent-900/20 border-accent-500"
         ariaLabel={isEn ? 'In short' : 'Trumpai'}
       >
-        <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+        <p
+          className={`${typographyClasses.body} font-semibold text-slate-800 dark:text-slate-200`}
+        >
           {tldrText}
         </p>
       </Banner>
@@ -187,14 +190,18 @@ export default function I2vGeneratoriusSlide({
               <div className="w-9 h-9 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center">
                 <Film className="w-4.5 h-4.5 text-brand-600 dark:text-brand-400" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">
+              <h3
+                className={`${typographyClasses.h3} text-slate-900 dark:text-slate-100`}
+              >
                 {t('sectionTitle')}
               </h3>
             </div>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5">
+                <label
+                  className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
+                >
                   {t('labelKeyframe')}
                 </label>
                 <textarea
@@ -209,7 +216,9 @@ export default function I2vGeneratoriusSlide({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5">
+                  <label
+                    className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
+                  >
                     {t('labelDuration')}
                   </label>
                   <select
@@ -226,7 +235,9 @@ export default function I2vGeneratoriusSlide({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5">
+                  <label
+                    className={`block ${typographyClasses.labelUpper} text-slate-400 dark:text-slate-500 mb-1.5`}
+                  >
                     {t('labelMotion')}
                   </label>
                   <select
@@ -297,7 +308,9 @@ export default function I2vGeneratoriusSlide({
               aria-label={t('readyMeterAria')}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span
+                  className={`${typographyClasses.labelUpper} text-slate-500 dark:text-slate-400`}
+                >
                   {t('readyMeterLabel')}
                 </span>
                 <span
@@ -308,7 +321,7 @@ export default function I2vGeneratoriusSlide({
                 </span>
               </div>
               <p
-                className="text-sm text-slate-600 dark:text-slate-300"
+                className={`${typographyClasses.body} text-slate-600 dark:text-slate-300`}
                 aria-live="polite"
               >
                 {readyHint}
@@ -320,7 +333,9 @@ export default function I2vGeneratoriusSlide({
                 <Sparkles className="w-10 h-10" />
               </div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-accent-400">
+                <span
+                  className={`${typographyClasses.labelUpper} tracking-[0.15em] text-accent-400`}
+                >
                   {t('generatedPromptLabel')}
                 </span>
                 <button
@@ -336,7 +351,9 @@ export default function I2vGeneratoriusSlide({
                   )}
                 </button>
               </div>
-              <div className="min-h-[120px] text-sm leading-relaxed font-mono text-slate-200 whitespace-pre-wrap break-words">
+              <div
+                className={`min-h-[120px] ${typographyClasses.code} text-slate-200 whitespace-pre-wrap break-words`}
+              >
                 {generatedPrompt}
               </div>
               <button
@@ -352,10 +369,14 @@ export default function I2vGeneratoriusSlide({
       </div>
 
       <section>
-        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">
+        <h3
+          className={`${typographyClasses.h2} text-slate-900 dark:text-slate-100 mb-2`}
+        >
           {t('chooseToolTitle')}
         </h3>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+        <p
+          className={`${typographyClasses.body} text-slate-500 dark:text-slate-400 mb-4`}
+        >
           {t('chooseToolDesc')}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -386,7 +407,9 @@ export default function I2vGeneratoriusSlide({
         className="p-4 rounded-xl"
         ariaLabel={t('checkTitle')}
       >
-        <p className="text-sm text-slate-700 dark:text-slate-300">
+        <p
+          className={`${typographyClasses.body} text-slate-700 dark:text-slate-300`}
+        >
           <strong>{t('checkTitle')}</strong> {patikraText}
         </p>
       </Banner>

@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-07-31 | Scheme enlarge smoke | RELEASE_QA „Enlarge = tas pats React“ skatino tikrinti modalą, nors interactive default OFF | Smoke: nėra „Išskleisti schemą“ ant Shell; mobile scroll OK; DiagramLocalization regressija | RELEASE_QA_CHECKLIST.md, DiagramLocalization.test.tsx
 2026-07-30 | M13 S4-INDIV DoD | „4 facades / shared VerticalFlow / pad tests green“ ≠ learner win | QA: ar mokinys atskiria 13.12/13.32/13.52/13.11 be step text; 13.33 turi subject motif | M13_M15_SCHEME_AUDIT.md, DIAGRAMU_M13_M15_REGISTRY.md
 2026-07-30 | M13–15 smoke gates | Script matavo `overflowX`, bet `ok` jo nenaudojo; generatoriai/lab neturėjo shot'ų | Browser smoke turi įtraukti kritinius interactive slides ir padaryti `overflowX` blocking mobile signalu | smoke-diag1-m1315.mjs
 2026-07-28 | Wave 4b typography QA | TE maturity 3–4 neįrodo tipografijos; overlay bump netinka | Gate = `lmsCaptionTokenPolish` source-scan (no raw `800` / title `14`); ne kelti TE maturity dėl size ladder | lmsCaptionTokenPolish.test.ts, LMS_DIAGRAM_POLISH_10_2.md

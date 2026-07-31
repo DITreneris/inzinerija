@@ -17,7 +17,7 @@
 - Dokumentų sinchronizacija yra privaloma: `README.md`, `docs/getting-started/QUICK_START.md`, `docs/deployment/DEPLOYMENT.md`, `docs/deployment/GITHUB_SETUP.md`, `ROADMAP.md`, `TODO.md` turi sutapti su realia konfigūracija (`vite.config.ts`, `package.json`).
 
 ## Roadmap/TODO integracija
-- Prioritetai = **open** P0/P1 [`TODO.md`](TODO.md) §1 ir [`ROADMAP.md`](ROADMAP.md) ladder (dabar M7–9 scheme / interactive ROI + a11y guard; Horizon D parked) — ne visas istorinis failas.
+- Prioritetai = **open** P0/P1 [`TODO.md`](TODO.md) §1 ir [`ROADMAP.md`](ROADMAP.md) ladder (M79 scheme ROI done 2026-07-31; open learning P1 nėra; Horizon D parked) — ne visas istorinis failas.
 - Done istorija → `docs/development/CODEBASE_WHAT_IS_DONE.md` / `docs/archive/` (pvz. `TODO_DONE_SPRINTS_2026-07.md`); **neatnaujink** Done lentelių TODO §1.
 - Kritiniai punktai (Error Boundary, duomenų migracija/validacija, testai) – aukščiausi prioritetai.
 - Jei užbaigi open užduotį: pažymėk TODO §1, atnaujink ROADMAP open gaps; Docs Lean taisyklės – `DOCS_MAINTENANCE.md` §1c.

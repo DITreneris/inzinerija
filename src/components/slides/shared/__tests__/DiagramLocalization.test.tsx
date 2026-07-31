@@ -837,6 +837,11 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(container.textContent).not.toContain('Modeliai');
       const stepButtons = container.querySelectorAll('nav button');
       expect(stepButtons.length).toBe(6);
+      // Variant 1: interactive Shell/process — no desktop enlarge (default OFF)
+      expect(
+        container.querySelector('[aria-label*="Išskleisti schemą"]')
+      ).toBeNull();
+      expect(container.textContent).not.toContain('Išskleisti schemą');
     });
 
     it('renders M7 BI schema in English', () => {

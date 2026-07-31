@@ -22,7 +22,7 @@ export const spacing = {
   12: 48,
 } as const;
 
-/** GOLDEN_STANDARD §1 – runtime tipografijos ladder (DS 0.3.2) */
+/** GOLDEN_STANDARD §1 – runtime tipografijos ladder (DS 0.3.3) */
 export const typographyClasses = {
   h1: 'text-2xl md:text-3xl font-bold' as const,
   h2: 'text-lg md:text-xl font-bold' as const,
@@ -34,6 +34,16 @@ export const typographyClasses = {
   small: 'text-xs' as const,
   code: 'font-mono text-sm leading-relaxed' as const,
   footer: 'text-xs italic' as const,
+  /** KPI / hero numbers (max weight extrabold at call site if needed) */
+  metric: 'text-3xl md:text-4xl font-bold tabular-nums' as const,
+  metricSm: 'text-2xl md:text-3xl font-bold tabular-nums' as const,
+  /** Kicker / chip / badge label (12px floor) */
+  label: 'text-xs font-semibold' as const,
+  labelUpper: 'text-xs font-semibold uppercase tracking-wider' as const,
+  /** Immersive news-portal hero only (M4 53.5) */
+  heroDisplay: 'text-2xl md:text-3xl lg:text-4xl font-bold' as const,
+  /** ModuleView slide subtitle under H1 */
+  subtitle: 'text-lg leading-relaxed' as const,
 } as const;
 
 /** Tailwind spacing klasės pagal kontekstą (Design Guide 4.3) */

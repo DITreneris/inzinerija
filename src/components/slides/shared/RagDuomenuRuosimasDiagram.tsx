@@ -8,6 +8,7 @@ import {
   getRagDuomenuRuosimasSteps,
   type RagLocale,
 } from './ragDuomenuRuosimasLayout';
+import { typographyClasses } from '../../../design-tokens';
 
 const ICONS: React.ComponentType<{ className?: string }>[] = [
   Tags,
@@ -55,16 +56,10 @@ export default function RagDuomenuRuosimasDiagram({
             <div key={idx} className="flex flex-col items-center">
               <div
                 role="button"
-                tabIndex={isInteractive ? 0 : -1}
-                aria-label={labels.diagramStepAria(idx, step.label)}
+                tabIndex={-1}
+                aria-hidden
                 aria-current={isActive ? 'step' : undefined}
                 onClick={() => isInteractive && onStepClick(idx)}
-                onKeyDown={(e) => {
-                  if (isInteractive && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    onStepClick(idx);
-                  }
-                }}
                 className="rag-duomenu-step group flex select-none transition-all duration-300 focus:outline-none focus-visible:outline-none"
               >
                 <div
@@ -83,7 +78,7 @@ export default function RagDuomenuRuosimasDiagram({
 
               <div className="pointer-events-none mt-3 text-center">
                 <p
-                  className={`mb-0.5 text-[10px] font-bold uppercase tracking-widest ${
+                  className={`mb-0.5 ${typographyClasses.labelUpper} tracking-widest ${
                     isActive
                       ? 'text-brand-600 dark:text-brand-300'
                       : 'text-slate-400 dark:text-slate-500'

@@ -10,6 +10,7 @@ import { useEffect, useId, useMemo, useState } from 'react';
 import type { InteractivePipelineContent } from '../../../types/modules';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { DIAGRAM_TOKENS } from './diagramTokens';
+import { typographyClasses } from '../../../design-tokens';
 import {
   COLORS,
   VB_WIDTH,
@@ -126,7 +127,9 @@ export default function ContextEngineeringPipelineDiagram({
         </span>
 
         <div className="flex flex-col items-end gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+          <span
+            className={`${typographyClasses.labelUpper} text-gray-400 dark:text-gray-500`}
+          >
             {uiLabels.compareLabel}
           </span>
           <div
@@ -142,7 +145,7 @@ export default function ContextEngineeringPipelineDiagram({
                 aria-pressed={mode === m}
                 aria-label={`${uiLabels.modeLabel} ${modeLabels[m]}`}
                 className={`
-                text-[11px] font-semibold uppercase tracking-wide px-4 py-2 rounded
+                text-xs font-semibold uppercase tracking-wide px-4 py-2 rounded
                 transition-all duration-200
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
                 min-h-[44px] min-w-[44px]
@@ -536,12 +539,8 @@ export default function ContextEngineeringPipelineDiagram({
                   rx={BOX_R}
                   fill="transparent"
                   role="button"
-                  tabIndex={isAvailable ? 0 : -1}
-                  aria-label={
-                    isPlaceholder
-                      ? `${slotLabel ?? node.label}. ${content.labels.availableInContextModeOnly}`
-                      : `${step?.title ?? node.label}. ${step?.shortHint ?? node.sub}`
-                  }
+                  tabIndex={-1}
+                  aria-hidden
                   aria-disabled={!isAvailable}
                   onMouseEnter={() => setHoveredStepId(node.id)}
                   onMouseLeave={() =>

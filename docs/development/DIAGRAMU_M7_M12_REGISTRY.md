@@ -8,7 +8,7 @@
 
 - Nauji `sections[].image` raktai turi būti semantiniai: `m7_*`, `m9_*`, `m10_*`, `m12_*`.
 - Legacy SVG keliai (`/da_pipeline_6.svg`, `/da_bi_schema_4.svg`) lieka palaikomi per `diagramRenderers.tsx` alias, bet naujiems įrašams nenaudojami.
-- Jei schema moko procesą, žingsnius arba turi LT/EN tekstus, ji turi būti React komponentas per `EnlargeableDiagram`; statinis assetas tinka tik iliustracijai.
+- Jei schema moko procesą, žingsnius arba turi LT/EN tekstus, ji turi būti React komponentas (dažnai per `EnlargeableDiagram` kaip **mobile** scroll/reflow frame); desktop enlarge/modal **neprivalomas** ir default OFF (`showEnlargeControl=false`). Statinis assetas tinka tik iliustracijai.
 - Interaktyvi schema turi naudoti `InteractiveDiagramShell` ir `DiagramStepNav`; SVG hit zonos yra tik pointer-only per `DiagramStepHitArea`.
 
 ## Santykis su M1–M9 auditu

@@ -17,6 +17,7 @@ import Banner from '../../../ui/Banner';
 import Eyebrow from '../../../ui/Eyebrow';
 import ChoiceControl from '../../../ui/ChoiceControl';
 import { isContentTrackAccent } from '../../shared/contentTrackTokens';
+import { typographyClasses } from '../../../../design-tokens';
 import type { LucideIcon } from 'lucide-react';
 import type {
   ActionIntroContent,
@@ -107,7 +108,9 @@ export function ActionIntroSlide({
           className="rounded-xl !border-slate-400"
           ariaLabel={t('sandboxTrainerNote')}
         >
-          <p className="text-sm text-gray-700 dark:text-gray-300 leading-snug">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 leading-snug`}
+          >
             {t('sandboxTrainerNote')}
           </p>
         </Banner>
@@ -117,10 +120,10 @@ export function ActionIntroSlide({
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-black leading-none select-none">
+          <div className="absolute top-3 right-5 text-[90px] sm:text-[110px] font-extrabold leading-none select-none">
             ?
           </div>
-          <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-black leading-none select-none">
+          <div className="absolute bottom-3 left-5 text-[90px] sm:text-[110px] font-extrabold leading-none select-none">
             !
           </div>
         </div>
@@ -128,7 +131,7 @@ export function ActionIntroSlide({
         <div className="relative z-10 flex flex-col items-center text-center gap-3 sm:gap-4 max-w-lg mx-auto">
           {content.whyBenefit && (
             <p
-              className={`font-medium leading-snug max-w-md ${showHookOnly ? 'text-base sm:text-lg text-brand-100 dark:text-brand-200' : 'text-sm sm:text-base text-brand-200 dark:text-brand-300'}`}
+              className={`font-medium leading-snug max-w-md ${showHookOnly ? `${typographyClasses.h2} text-brand-100 dark:text-brand-200` : `${typographyClasses.body} text-brand-200 dark:text-brand-300`}`}
             >
               {content.whyBenefit}
             </p>
@@ -136,10 +139,14 @@ export function ActionIntroSlide({
           {!showHookOnly && (
             <>
               <div className="flex flex-col gap-1">
-                <p className="text-base lg:text-lg text-gray-300 dark:text-gray-400 font-medium tracking-tight">
+                <p
+                  className={`${typographyClasses.body} text-gray-300 dark:text-gray-400 font-medium tracking-tight`}
+                >
                   {content.heroStat}
                 </p>
-                <h2 className="text-xl lg:text-2xl font-bold tracking-tight leading-tight">
+                <h2
+                  className={`${typographyClasses.h2} tracking-tight leading-tight`}
+                >
                   <span className="bg-gradient-to-r from-brand-300 to-accent-300 bg-clip-text text-transparent">
                     {content.heroText}
                   </span>
@@ -157,17 +164,23 @@ export function ActionIntroSlide({
                   if (isTwoLineSmugis) {
                     return (
                       <div className="flex flex-col gap-2 sm:gap-3 max-w-sm leading-[1.5]">
-                        <p className="text-sm sm:text-base text-gray-400 dark:text-gray-500 opacity-60">
+                        <p
+                          className={`${typographyClasses.body} text-gray-400 dark:text-gray-500 opacity-60`}
+                        >
                           {parts[0]}.
                         </p>
-                        <p className="text-sm sm:text-base font-bold text-accent-400 dark:text-accent-300">
+                        <p
+                          className={`${typographyClasses.body} font-bold text-accent-400 dark:text-accent-300`}
+                        >
                           {parts[1]}.
                         </p>
                       </div>
                     );
                   }
                   return (
-                    <p className="text-sm sm:text-base text-gray-400 italic font-medium leading-relaxed max-w-sm">
+                    <p
+                      className={`${typographyClasses.body} text-gray-400 italic font-medium max-w-sm`}
+                    >
                       {content.heroSubText}
                     </p>
                   );
@@ -179,10 +192,14 @@ export function ActionIntroSlide({
                   role="region"
                   aria-label={t('firstStepAria')}
                 >
-                  <p className="text-xs font-semibold text-accent-200 dark:text-accent-300 uppercase tracking-wider mb-1.5">
+                  <p
+                    className={`${typographyClasses.labelUpper} text-accent-200 dark:text-accent-300 mb-1.5`}
+                  >
                     {t('firstStepLabel')}
                   </p>
-                  <p className="text-sm sm:text-base text-white font-medium leading-snug">
+                  <p
+                    className={`${typographyClasses.body} text-white font-medium leading-snug`}
+                  >
                     {content.firstActionCTA}
                   </p>
                 </div>
@@ -313,7 +330,9 @@ export function ActionIntroSlide({
               ariaLabel={content.outcomesHeading || t('outcomesRegionAria')}
             >
               {content.outcomesHeading && (
-                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3">
+                <h3
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-3`}
+                >
                   {content.outcomesHeading}
                 </h3>
               )}
@@ -490,7 +509,9 @@ export function ActionIntroSlide({
             )}
           {content.tools && content.tools.length > 0 && (
             <div className="animate-fade-in border-2 border-brand-200 dark:border-brand-800 rounded-2xl bg-gradient-to-b from-brand-50/80 to-white dark:from-brand-950/50 dark:to-gray-900 p-6 sm:p-8">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+              <h3
+                className={`${typographyClasses.h2} text-gray-900 dark:text-white mb-2 flex items-center gap-2`}
+              >
                 <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
                 {t('toolsHeading')}
               </h3>

@@ -282,10 +282,10 @@
       "shell": "Ne",
       "render": "M9WorkflowStepCopyBlock",
       "layoutSot": null,
-      "contentSot": "M9WorkflowStepCopyBlock.tsx",
+      "contentSot": "m9DataWorkflowContent.ts",
       "maturity": 3,
       "owner": "SCHEME",
-      "notes": "8-step prompt strip on merged slide 93; no Shell SVG",
+      "notes": "8-step prompt strip on merged slide 93; prompts in m9DataWorkflowContent.ts",
       "moduleId": 9,
       "slideId": 93
     },
@@ -717,12 +717,12 @@
       "shell": "Ne",
       "render": "TestKnowledgeScopeDiagram",
       "layoutSot": null,
-      "contentSot": null,
+      "contentSot": "testKnowledgeScopeContent.ts",
       "maturity": 3,
       "owner": "SCHEME",
-      "notes": "M8/80 M11/110 M14/140 intro only",
-      "moduleId": null,
-      "slideId": null
+      "notes": "M8/80 M11/110 M14/140 intro; Valymas→891 Seka→89 unique deep-links",
+      "moduleId": 8,
+      "slideId": 80
     },
     {
       "elementId": "orphaned:schema3",
@@ -1945,14 +1945,14 @@
       "key": "hallucination-pipeline",
       "pattern": "slide-type",
       "shell": "n/a",
-      "render": null,
+      "render": "HallucinationPipelineSlide → HallucinationPipelineBlock",
       "layoutSot": null,
-      "contentSot": null,
+      "contentSot": "hallucinationPipelineContent.ts",
       "maturity": 2,
       "owner": "CURRICULUM",
-      "notes": "SlideType hallucination-pipeline",
-      "moduleId": null,
-      "slideId": null
+      "notes": "Thin SlideType wrapper — canonical live row is off:hallucination-pipeline (M7/67.7)",
+      "moduleId": 7,
+      "slideId": 67.7
     },
     {
       "elementId": "slide-type:hierarchy",

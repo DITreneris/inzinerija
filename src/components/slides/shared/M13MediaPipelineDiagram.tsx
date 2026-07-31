@@ -39,7 +39,9 @@ const COMPACT_COL = buildVerticalColumnOrigin({
   colW: COMPACT_COL_W,
 });
 
-const FLOW_GEOMETRY = {
+/** Linear pipeline etalon – S4-INDIV control baseline (technical chain). */
+export const M13_MEDIA_PIPELINE_GEOMETRY = {
+  metaphor: 'linear' as const,
   stepCount: STEP_COUNT,
   boxHeight: BOX_H,
   gap: GAP,
@@ -58,6 +60,15 @@ const FLOW_GEOMETRY = {
     colsW: COMPACT_COL_W,
     cx: COMPACT_COL.cx,
   },
+} as const;
+
+const FLOW_GEOMETRY = {
+  stepCount: STEP_COUNT,
+  boxHeight: BOX_H,
+  gap: GAP,
+  startY: M13_MEDIA_PIPELINE_GEOMETRY.startY,
+  desktop: M13_MEDIA_PIPELINE_GEOMETRY.desktop,
+  compact: M13_MEDIA_PIPELINE_GEOMETRY.compact,
 };
 
 export default function M13MediaPipelineDiagram({
@@ -91,6 +102,8 @@ export default function M13MediaPipelineDiagram({
       className={`w-full max-w-2xl mx-auto block ${className}`}
       role="img"
       aria-label={`${chrome.aria}${isInteractive ? ` ${chrome.hint}` : ''}`}
+      data-metaphor={M13_MEDIA_PIPELINE_GEOMETRY.metaphor}
+      data-linear-spine="true"
     >
       <defs>
         <linearGradient

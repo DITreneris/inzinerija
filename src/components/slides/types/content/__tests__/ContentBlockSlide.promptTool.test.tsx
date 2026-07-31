@@ -93,7 +93,7 @@ describe('ContentBlockSlide prompt-tool variant', () => {
     expect(getAllByRole('radio').length).toBe(2);
   });
 
-  it('keeps chips variant auto-select behaviour', () => {
+  it('chips variant defaults to null until pick (M79-S1b); autoSelect opt-in reveals first', () => {
     const chipsContent: ContentBlockContent = {
       sections: [
         {
@@ -122,11 +122,36 @@ describe('ContentBlockSlide prompt-tool variant', () => {
       ],
     };
 
-    const { container } = renderWithProviders(
+    const defaultRender = renderWithProviders(
       <ContentBlockSlide content={chipsContent} />
     );
+    expect(
+      defaultRender.container.querySelector('[data-prompt-tool-surface]')
+    ).toBeNull();
+    expect(defaultRender.container.textContent).not.toContain('CHIPS_PROMPT_A');
+    expect(defaultRender.container.textContent).not.toContain('CHIPS_PROMPT_B');
+    expect(
+      defaultRender.container.querySelector('button[aria-pressed="true"]')
+    ).toBeNull();
+    defaultRender.unmount();
 
-    expect(container.querySelector('[data-prompt-tool-surface]')).toBeNull();
+    const legacyContent: ContentBlockContent = {
+      ...chipsContent,
+      sections: [
+        {
+          ...chipsContent.sections[0]!,
+          toolChoiceBar: {
+            ...chipsContent.sections[0]!.toolChoiceBar!,
+            autoSelect: true,
+          },
+        },
+        chipsContent.sections[1]!,
+        chipsContent.sections[2]!,
+      ],
+    };
+    const { container } = renderWithProviders(
+      <ContentBlockSlide content={legacyContent} />
+    );
     expect(container.textContent).toContain('CHIPS_PROMPT_A');
     expect(container.textContent).not.toContain('CHIPS_PROMPT_B');
     expect(container.querySelector('button[aria-pressed="true"]')).toBeTruthy();

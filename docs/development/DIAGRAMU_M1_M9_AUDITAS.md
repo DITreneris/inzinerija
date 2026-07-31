@@ -105,7 +105,7 @@ Standartas:
 4. `M7ThreeAgentsDiagram` roles vizualiai skiriasi ir turi vienoda horizontalu arrow standarta.
 5. `M7DataStoryCycleDiagram` turi ciklo/feedback uzuomina desktop rezime, ne vien linear row.
 6. Visi clickable rect islaiko `aria-label`, `role=\"button\"`, `tabIndex`, Enter/Space.
-7. `EnlargeableDiagram` renderina ta pati React turini modale.
+7. `EnlargeableDiagram` – mobile scroll/reflow; desktop enlarge default OFF (opt-in only).
 
 ## Statiniu SVG sprendimo kriterijai
 
@@ -171,7 +171,7 @@ Po schemu refaktoriaus:
    - LT ir EN;
    - desktop ir mobile;
    - dark mode;
-   - modale per `Perziureti pilname dydyje`, jei yra `EnlargeableDiagram`.
+   - desktop be „Išskleisti schemą“ ant interaktyvių Shell schemų (`showEnlargeControl` default false).
 5. SCHEME_AGENT patikra:
    - rodykles edge-to-edge;
    - proporcijos;

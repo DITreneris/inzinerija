@@ -776,13 +776,8 @@ export default function LlmAutoregressiveDiagram({
                 onClick={() => onStepClick(stepIndex)}
                 aria-label={`${L.stepLabels[stepIndex]}${L.ariaStep}`}
                 role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick(stepIndex);
-                  }
-                }}
+                tabIndex={-1}
+                aria-hidden
               />
             );
           })}
@@ -809,13 +804,8 @@ export default function LlmAutoregressiveDiagram({
                 onClick={() => onStepClick(stepIndex)}
                 aria-label={`${L.stepLabels[stepIndex]}${L.ariaStep}`}
                 role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onStepClick(stepIndex);
-                  }
-                }}
+                tabIndex={-1}
+                aria-hidden
               />
             );
           })}

@@ -6,6 +6,7 @@
 
 ## Pamokos
 
+2026-07-31 | Scheme enlarge re-enable | Diff su `showEnlargeControl={true}` / naujas „Išskleisti schemą“ ant Shell Block = politika regresija po Variant 1 | Block: reikalauti dense-static priežasties arba revert; default false | EnlargeableDiagram.tsx, SCHEME_AGENT.md §3.11
 2026-07-13 | M4 sk. 53.5 Satori→SVG | prarasti caption laukai migracijoje | diff YAML vs portalBeatContent prieš „done“ | portal-beat re migration
 2026-07-13 | M4 sk. 53.5 | awareness polish be retest | ne skelbti slide done; 48h protokolas | TEST_REPORT.md
 2026-07-13 | M4 sk. 53.5 anti-PPT | SOT→JSON→UI: DS nepririštas | CODE_REVIEW: news-portal turi naudoti getContentBlockVariantClasses per PortalBlockShell; ad-hoc border-l-4 = regress rizika | PortalBlockShell.tsx, blockVariantClasses.ts

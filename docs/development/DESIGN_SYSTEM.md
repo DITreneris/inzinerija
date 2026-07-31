@@ -1,7 +1,7 @@
 # Design System — Promptų anatomija
 
-> **Produktinė DS versija:** **0.2.0 shipped** + **0.3.1 dalys** + **0.3.2** (`typographyClasses` rails).  
-> **Paskutinis sync:** 2026-07-28 (DS 0.3.2 typography).  
+> **Produktinė DS versija:** **0.2.0 shipped** + **0.3.1 dalys** + **0.3.2** rails + **0.3.3** (Typography Wave T0–T6).  
+> **Paskutinis sync:** 2026-07-31 (DS 0.3.3 typography).  
 > **Turinio / layout etalonas (nelaužomas):** [`GOLDEN_STANDARD.md`](GOLDEN_STANDARD.md) **2.3.9** — tipografija, paletė, `blockVariant`, skaidrių schemos. **Nekartoti** čia.  
 > **UI katalogas (kodas):** [`src/components/ui/README.md`](../../src/components/ui/README.md)  
 > **v0.2 vykdymo planas (archyvas, ✅ baigtas):** [`DESIGN_SYSTEM_V0_2.md`](DESIGN_SYSTEM_V0_2.md) — ne naujiems darbams; istorinis E1–E7.
@@ -28,7 +28,7 @@
 Trumpai (nekartoti klasių čia):
 
 - Sans: Plus Jakarta Sans · Mono: JetBrains Mono
-- **Runtime ladder (0.3.2):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts) — content-block body, ModuleView H1, slide footer, TemplateBlock code
+- **Runtime ladder (0.3.3):** `typographyClasses` → [`src/design-tokens.ts`](../../src/design-tokens.ts) — H1–H3, body, label/metric/heroDisplay, code, footer; `npm run audit:typography`
 - Brand `#627d98` · Accent `#d4a520` · Gold `#f3cc30` · Slate neutrals
 - `blockVariant`: `accent` (CTA / Trumpai / Patikra) · `brand` (pagrindinė info / Daryk) · `terms` (šalutinė) · track `emerald` / `violet` tik modulio kontekste
 - Implementacija: `getContentBlockVariantClasses()` → `src/components/slides/utils/blockVariantClasses.ts`
@@ -68,6 +68,8 @@ Revision tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/deve
 ```bash
 npm run audit:design-tokens        # warn-only inventory
 npm run audit:design-tokens:gate   # exit 1 jei regresija vs skripto BASELINE
+npm run audit:typography           # GOLDEN §1 font-black + micro-px
+npm run audit:typography:gate      # hard ban (preflight)
 npm run audit:module-identity      # M1–15 accent + identityIcon
 npm run audit:slide-icons          # Lucide raktų allowlist
 npm run audit:accent-budget        # GOLDEN §3.2
@@ -229,15 +231,16 @@ Checklist: [`RELEASE_QA_CHECKLIST.md`](RELEASE_QA_CHECKLIST.md) (§8 design toke
 | **DS hardening / W7–W10**   | Banner/CTAButton/Card pilotai, `surfaceGlass`, SlideWorkspace, tokens gate baseline 417                                           |
 | **DS max-ROI (2026-07-20)** | Accent biudžetas M4–M9/M13 + EN; SlideWorkspace all M1–15; Orchestrator be inline bg; preflight full accent-budget                |
 | **0.3.2**                   | `typographyClasses` + content-block body `md:text-base` + ModuleView H1 `md:` + footer `text-xs`; CTA/Card/Badge opt-in migracija |
+| **0.3.3**                   | Typography Wave T0–T6: metric/label/heroDisplay roles, `audit:typography`, content-block/hero/portal/infographic/diagram floors   |
 
-Detalu: `CHANGELOG.md` `[Unreleased]` · **DS 0.3.2**.
+Detalu: `CHANGELOG.md` `[Unreleased]` · **DS 0.3.3**.
 
 ---
 
 ## 10. Backlog (v0.3+) — ne ši DS linija
 
 - LlmArch B3 / W6 etalon ✅ (2026-07)
-- `ContentSlides.tsx` arbitrary Tailwind cleanup (ne body ladder — tai 0.3.2)
+- `ContentSlides.tsx` arbitrary Tailwind cleanup (tipografija → 0.3.3 Wave; likęs non-type cleanup)
 - `.card` / `.btn-*` / `.badge*` CSS pašalinimas po JSX migracijos ✅ (0.3.3+)
 - Badge primitive ✅ (0.3.2)
 - Schema3/4 / ContextFlow orphan hex → `DIAGRAM_TOKENS` (tik su TE registry)

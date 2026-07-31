@@ -13,9 +13,20 @@ interface CopyButtonProps {
   ariaLabel?: string;
   /** Pasirenkama: po paspaudimo 1–2 s rodomas tekstas (pvz. „Nukopijuota“) – aiškesnis feedback */
   copiedLabel?: string;
+  /** preCopyCheck gate – blokuoja clipboard iki teisingo atsakymo */
+  disabled?: boolean;
 }
 
-export default function CopyButton({ text, className = '', size = 'md', variant = 'default', title: titleProp, ariaLabel, copiedLabel }: CopyButtonProps) {
+export default function CopyButton({
+  text,
+  className = '',
+  size = 'md',
+  variant = 'default',
+  title: titleProp,
+  ariaLabel,
+  copiedLabel,
+  disabled = false,
+}: CopyButtonProps) {
   const { locale } = useLocale();
   const defaultCopy = locale === 'en' ? 'Copy' : 'Kopijuoti';
   const title = titleProp ?? defaultCopy;
@@ -23,6 +34,7 @@ export default function CopyButton({ text, className = '', size = 'md', variant 
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
+    if (disabled) return;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -37,29 +49,36 @@ export default function CopyButton({ text, className = '', size = 'md', variant 
   const showCopiedText = copied && copiedLabel;
   const isAccent = variant === 'accent';
   const buttonClasses = isAccent
-    ? 'min-h-[44px] rounded-xl bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-colors'
-    : 'min-h-[44px] min-w-[44px] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700';
+    ? 'min-h-[44px] rounded-xl bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-accent-500 dark:disabled:hover:bg-accent-500'
+    : 'min-h-[44px] min-w-[44px] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent';
 
   return (
     <button
       type="button"
       onClick={handleCopy}
+      disabled={disabled}
       className={`${padding} flex items-center justify-center gap-1.5 ${buttonClasses} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 touch-manipulation ${className}`}
       aria-label={showCopiedText ? copiedLabel : ariaLabelFinal}
-      title={title}
+      title={disabled ? ariaLabelFinal : title}
       aria-live="polite"
     >
       {copied ? (
         <>
-          <Check className={`${iconSize} ${isAccent ? 'text-white' : 'text-emerald-600'} flex-shrink-0 animate-fade-in`} />
+          <Check
+            className={`${iconSize} ${isAccent ? 'text-white' : 'text-emerald-600'} flex-shrink-0 animate-fade-in`}
+          />
           {copiedLabel && (
-            <span className={`text-xs font-medium whitespace-nowrap ${isAccent ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`}>
+            <span
+              className={`text-xs font-medium whitespace-nowrap ${isAccent ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`}
+            >
               {copiedLabel}
             </span>
           )}
         </>
       ) : (
-        <Copy className={`${iconSize} ${isAccent ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`} />
+        <Copy
+          className={`${iconSize} ${isAccent ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}
+        />
       )}
     </button>
   );

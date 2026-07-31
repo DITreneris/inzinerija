@@ -83,7 +83,6 @@ export default function M9DataWorkflowDiagram({
     const isActive = currentStep === i;
     const Icon = STEP_ICONS[i] ?? Database;
     const st = stepsMeta[i];
-    const stepLabel = `${i + 1}. ${st.label}`;
 
     return (
       <div
@@ -99,21 +98,15 @@ export default function M9DataWorkflowDiagram({
             ? 'cursor-pointer hover:border-brand-400 focus-within:ring-2 focus-within:ring-brand-500'
             : '',
         ].join(' ')}
-        role={isInteractive ? 'button' : undefined}
-        tabIndex={isInteractive ? 0 : undefined}
-        aria-pressed={isInteractive ? isActive : undefined}
-        aria-label={`${stepLabel}: ${st.desc}`}
-        onClick={isInteractive ? () => onStepClick(i) : undefined}
-        onKeyDown={
-          isInteractive
-            ? (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onStepClick(i);
-                }
-              }
-            : undefined
-        }
+        {...(isInteractive
+          ? {
+              // Shell nav = keyboard primary (DIAGRAM_KIT); cards stay mouse-clickable.
+              role: 'button' as const,
+              tabIndex: -1,
+              'aria-hidden': true as const,
+              onClick: () => onStepClick!(i),
+            }
+          : {})}
       >
         <div
           className={[

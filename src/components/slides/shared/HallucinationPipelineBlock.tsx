@@ -85,9 +85,7 @@ export default function HallucinationPipelineBlock() {
         {ui.bridgeLine}
       </p>
 
-      <p className="sr-only" aria-live="polite">
-        {ui.statusLine(activeIndex + 1, totalSteps, step.title)}
-      </p>
+      {/* Step announce = Shell status/explanation aria-live only (no second live region). */}
 
       <EnlargeableDiagram
         enlargeLabel={ui.enlargeLabel}

@@ -38,6 +38,26 @@ describe('M9DataWorkflowDiagram', () => {
     expect(onStepClick).toHaveBeenCalledWith(4);
   });
 
+  it('keeps interactive cards out of tab order under role=img (M79-S2a)', () => {
+    const { container } = renderWithProviders(
+      <M9DataWorkflowDiagram locale="lt" onStepClick={() => {}} />
+    );
+
+    const img = container.querySelector('[role="img"]');
+    expect(img).toBeTruthy();
+    const focusableInside = img!.querySelectorAll(
+      'button, a[href], [tabindex]:not([tabIndex="-1"]):not([tabindex="-1"])'
+    );
+    // Cards use tabIndex={-1}; no positive tabindex / native buttons inside img.
+    expect(focusableInside.length).toBe(0);
+    const cards = img!.querySelectorAll('[data-step-index][role="button"]');
+    expect(cards.length).toBeGreaterThan(0);
+    cards.forEach((card) => {
+      expect(card.getAttribute('tabindex')).toBe('-1');
+      expect(card.getAttribute('aria-hidden')).toBe('true');
+    });
+  });
+
   it('renders English box labels without uppercase desc styling requirement', () => {
     const { container } = renderWithProviders(
       <M9DataWorkflowDiagram locale="en" diagramContext="m7_master" />

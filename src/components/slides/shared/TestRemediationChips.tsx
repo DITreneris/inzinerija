@@ -39,8 +39,14 @@ const LINKS_M8: LinkSpec[] = [
   {
     targetModuleId: 7,
     slideId: 891,
-    labelLt: 'Valymas ir seka',
-    labelEn: 'Cleaning & sequence',
+    labelLt: 'Valymas',
+    labelEn: 'Cleaning',
+  },
+  {
+    targetModuleId: 7,
+    slideId: 89,
+    labelLt: 'Seka (5 žingsniai)',
+    labelEn: 'Workflow (5 steps)',
   },
   {
     targetModuleId: 7,

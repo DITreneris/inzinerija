@@ -91,11 +91,7 @@ export default function M7PathMapDiagram({
                 isSelected
                   ? 'bg-brand-100/70 dark:bg-brand-900/30 border-brand-400 dark:border-brand-500 ring-2 ring-brand-500 ring-inset'
                   : 'bg-slate-50 dark:bg-slate-800/40 border-gray-200 dark:border-gray-700'
-              } ${
-                selectable
-                  ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900'
-                  : ''
-              }`}
+              } ${selectable ? 'cursor-pointer' : ''}`}
               style={
                 isSelected
                   ? undefined
@@ -137,7 +133,7 @@ export default function M7PathMapDiagram({
                 {selectable ? (
                   <button
                     type="button"
-                    className="block w-full h-full rounded-lg"
+                    className="block w-full h-full rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
                     onClick={() => onStepSelect(i)}
                     aria-pressed={isSelected}
                     aria-label={`${i + 1}. ${step.title}. ${step.tip}`}

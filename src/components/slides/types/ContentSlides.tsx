@@ -275,20 +275,24 @@ export function ActionIntroJourneySlide({
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute top-3 right-5 text-8xl sm:text-9xl font-black leading-none select-none">
+          <div className="absolute top-3 right-5 text-8xl sm:text-9xl font-extrabold leading-none select-none">
             ?
           </div>
-          <div className="absolute bottom-3 left-5 text-8xl sm:text-9xl font-black leading-none select-none">
+          <div className="absolute bottom-3 left-5 text-8xl sm:text-9xl font-extrabold leading-none select-none">
             !
           </div>
         </div>
         <div className="relative z-10 flex flex-col items-center text-center gap-3 sm:gap-4 max-w-lg mx-auto">
           {content.whyBenefit && (
-            <p className="text-sm sm:text-base text-brand-200 dark:text-brand-300 font-medium leading-snug max-w-md">
+            <p
+              className={`${typographyClasses.body} text-brand-200 dark:text-brand-300 font-medium leading-snug max-w-md`}
+            >
               {content.whyBenefit}
             </p>
           )}
-          <h2 className="text-lg lg:text-xl font-bold tracking-tight leading-tight">
+          <h2
+            className={`${typographyClasses.h2} tracking-tight leading-tight`}
+          >
             {content.heroStat}
             <br />
             <span className="bg-gradient-to-r from-brand-300 to-accent-300 bg-clip-text text-transparent">
@@ -296,7 +300,9 @@ export function ActionIntroJourneySlide({
             </span>
           </h2>
           {content.heroSubText && (
-            <p className="text-sm sm:text-base text-gray-400 dark:text-gray-500 font-medium leading-relaxed max-w-sm">
+            <p
+              className={`${typographyClasses.body} text-gray-400 dark:text-gray-500 font-medium max-w-sm`}
+            >
               {content.heroSubText}
             </p>
           )}
@@ -546,22 +552,27 @@ export function ContentBlockSlide({
   useEffect(() => {
     if (!toolChoiceSection?.toolChoiceBar || selectedToolRowIndex !== null)
       return;
-    // prompt-tool / manipulation-contrast: stay null until learner picks
     const bar = toolChoiceSection.toolChoiceBar;
     const toolVariant = bar.variant;
+    // prompt-tool / manipulation-contrast / chips default: null until pick
     if (
       toolVariant === 'prompt-tool' ||
-      toolVariant === 'manipulation-contrast'
+      toolVariant === 'manipulation-contrast' ||
+      bar.autoSelect !== true
     ) {
       return;
     }
-    // chips: autoSelect false (M10/10.35) – no default until learner picks
-    if (bar.autoSelect === false) {
-      return;
-    }
+    // Opt-in legacy catalog: auto-select first choice
     const defaultRow = bar.choices?.[0]?.rowIndex ?? 0;
     setSelectedToolRowIndex(defaultRow);
   }, [toolChoiceSection, selectedToolRowIndex]);
+
+  const preCopyGatePassed =
+    !content.preCopyCheckBlock ||
+    preCopyCheckAnswer === content.preCopyCheckBlock.correct;
+  const copyLockedHint = content.preCopyCheckBlock
+    ? t('preCopyGateLockedHint')
+    : undefined;
 
   const scrollToFirstAction = useCallback(() => {
     const root = slideContainerRef.current;
@@ -616,62 +627,57 @@ export function ContentBlockSlide({
 
   const renderPreCopyCheck = () => {
     if (!content.preCopyCheckBlock) return null;
+    const block = content.preCopyCheckBlock;
+    const choiceOptions = block.options.map((opt, idx) => ({
+      id: String(idx),
+      label: opt,
+    }));
+    const selectedId =
+      preCopyCheckAnswer === null ? null : String(preCopyCheckAnswer);
+    const isCorrect =
+      preCopyCheckAnswer !== null && preCopyCheckAnswer === block.correct;
     return (
       <div
         data-pre-copy-check
-        className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
+        className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10 space-y-3"
       >
-        <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+        <h3
+          className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-0 flex items-center gap-2`}
+        >
           <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
             <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
           </span>
-          {content.preCopyCheckBlock.heading ?? t('preCopyCheckHeading')}
+          {block.heading ?? t('preCopyCheckHeading')}
         </h3>
-        <p className={`${typographyClasses.bodyMuted} mb-3`}>
-          {content.preCopyCheckBlock.question}
-        </p>
-        <div className="space-y-2">
-          {content.preCopyCheckBlock.options.map((opt, idx) => {
-            const isSelected = preCopyCheckAnswer === idx;
-            const isCorrect = idx === content.preCopyCheckBlock!.correct;
-            const showResult = preCopyCheckAnswer !== null;
-            const showAsCorrect = showResult && isCorrect;
-            const showAsWrong = showResult && isSelected && !isCorrect;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() =>
-                  preCopyCheckAnswer === null && setPreCopyCheckAnswer(idx)
-                }
-                disabled={preCopyCheckAnswer !== null}
-                className={`w-full text-left p-3 rounded-lg border-2 min-h-[44px] transition-colors ${
-                  showResult
-                    ? showAsCorrect
-                      ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
-                      : showAsWrong
-                        ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/20'
-                        : 'border-gray-200 dark:border-gray-700'
-                    : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
-                }`}
-              >
-                <span className="text-gray-700 dark:text-gray-300">{opt}</span>
-                {showAsCorrect && (
-                  <CheckCircle className="w-4 h-4 inline ml-2 text-emerald-600" />
-                )}
-                {showAsWrong && <span className="ml-2 text-rose-600">✗</span>}
-              </button>
-            );
-          })}
-        </div>
+        <ChoiceControl
+          legend={block.question}
+          options={choiceOptions}
+          value={selectedId}
+          onChange={(id) => {
+            if (preCopyGatePassed) return;
+            setPreCopyCheckAnswer(Number(id));
+          }}
+          columns={1}
+          size="compact"
+          statusHint={
+            preCopyGatePassed
+              ? t('preCopyGateUnlockedHint')
+              : preCopyCheckAnswer !== null
+                ? t('preCopyGateRetryHint')
+                : t('preCopyGateLockedHint')
+          }
+        />
         {preCopyCheckAnswer !== null && (
-          <p className={`mt-3 ${typographyClasses.bodyMuted}`}>
+          <p
+            className={`${typographyClasses.bodyMuted}`}
+            role="status"
+            aria-live="polite"
+            data-pre-copy-result
+          >
             <strong>
-              {preCopyCheckAnswer === content.preCopyCheckBlock!.correct
-                ? tQuiz('correctLabel')
-                : tQuiz('incorrectLabel')}
+              {isCorrect ? tQuiz('correctLabel') : tQuiz('incorrectLabel')}
             </strong>{' '}
-            {content.preCopyCheckBlock!.explanation}
+            {block.explanation}
           </p>
         )}
       </div>
@@ -695,7 +701,9 @@ export function ContentBlockSlide({
           aria-label={t('contextIntroAria')}
         >
           <div className="relative z-10 text-center max-w-md mx-auto">
-            <p className="text-sm sm:text-base font-bold leading-snug tracking-tight">
+            <p
+              className={`${typographyClasses.body} font-bold leading-snug tracking-tight`}
+            >
               {content.contextIntro}
             </p>
           </div>
@@ -711,7 +719,9 @@ export function ContentBlockSlide({
             className="w-5 h-5 text-accent-600 dark:text-accent-400 shrink-0"
             aria-hidden
           />
-          <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+          <p
+            className={`${typographyClasses.body} font-medium text-gray-800 dark:text-gray-200`}
+          >
             {isEn
               ? 'You passed the test. Here\u2019s a bonus.'
               : 'Tu įveikei testą. Čia – papildoma nauda.'}
@@ -724,7 +734,9 @@ export function ContentBlockSlide({
           role="region"
           aria-label={t('whyBenefitAria')}
         >
-          <p className="text-sm font-medium text-accent-900 dark:text-accent-100">
+          <p
+            className={`${typographyClasses.body} font-medium text-accent-900 dark:text-accent-100`}
+          >
             {content.whyBenefit}
           </p>
         </div>
@@ -733,7 +745,9 @@ export function ContentBlockSlide({
         <div className="space-y-6">
           {content.comparisonImages.bridgeText && (
             <div className="p-4 rounded-xl bg-brand-50 dark:bg-brand-900/20 border-l-4 border-l-brand-500 border border-brand-200 dark:border-brand-800">
-              <p className="text-base text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+              <p
+                className={`${typographyClasses.body} text-gray-800 dark:text-gray-200 font-medium`}
+              >
                 {content.comparisonImages.bridgeText}
               </p>
             </div>
@@ -747,17 +761,23 @@ export function ContentBlockSlide({
                 className="w-full h-auto object-contain rounded-lg border border-amber-200/60 dark:border-amber-800/40 max-h-64"
               />
               {content.comparisonImages.left.label && (
-                <p className="text-sm font-semibold text-di-visata-text-muted dark:text-gray-300">
+                <p
+                  className={`${typographyClasses.label} text-di-visata-text-muted dark:text-gray-300`}
+                >
                   {content.comparisonImages.left.label}
                 </p>
               )}
               {content.comparisonImages.left.explanation && (
-                <p className="text-sm text-di-visata-text-muted dark:text-gray-400 leading-relaxed">
+                <p
+                  className={`${typographyClasses.bodyMuted} text-di-visata-text-muted dark:text-gray-400`}
+                >
                   {content.comparisonImages.left.explanation}
                 </p>
               )}
               {content.comparisonImages.left.source && (
-                <p className="text-xs text-gray-500 dark:text-gray-400 italic">
+                <p
+                  className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 italic`}
+                >
                   {content.comparisonImages.left.source}
                 </p>
               )}
@@ -770,17 +790,23 @@ export function ContentBlockSlide({
                 className="w-full h-auto object-contain rounded-lg border border-blue-200/60 dark:border-blue-800/40 max-h-64"
               />
               {content.comparisonImages.right.label && (
-                <p className="text-sm font-semibold text-di-visata-text-muted dark:text-gray-300">
+                <p
+                  className={`${typographyClasses.label} text-di-visata-text-muted dark:text-gray-300`}
+                >
                   {content.comparisonImages.right.label}
                 </p>
               )}
               {content.comparisonImages.right.explanation && (
-                <p className="text-sm text-di-visata-text-muted dark:text-gray-400 leading-relaxed">
+                <p
+                  className={`${typographyClasses.bodyMuted} text-di-visata-text-muted dark:text-gray-400`}
+                >
                   {content.comparisonImages.right.explanation}
                 </p>
               )}
               {content.comparisonImages.right.source && (
-                <p className="text-xs text-gray-500 dark:text-gray-400 italic">
+                <p
+                  className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 italic`}
+                >
                   {content.comparisonImages.right.source}
                 </p>
               )}
@@ -793,7 +819,9 @@ export function ContentBlockSlide({
           data-brief-check
           className="p-5 rounded-xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50/50 dark:bg-brand-900/10"
         >
-          <h3 className="font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+          <h3
+            className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2 flex items-center gap-2`}
+          >
             <span className="inline-flex p-1.5 rounded-lg bg-accent-500/20">
               <Target className="w-4 h-4 text-accent-600 dark:text-accent-400" />
             </span>
@@ -827,7 +855,9 @@ export function ContentBlockSlide({
                       : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-600'
                   }`}
                 >
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span
+                    className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                  >
                     {opt}
                   </span>
                   {showAsCorrect && (
@@ -858,11 +888,13 @@ export function ContentBlockSlide({
         <div className="space-y-6">
           {(content.sections ?? [])[0] && (
             <div className="p-4 lg:p-5 rounded-xl border-l-4 border-slate-400 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+              <h3
+                className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
+              >
                 {(content.sections ?? [])[0].heading}
               </h3>
               {(content.sections ?? [])[0].body && (
-                <p className="text-base text-gray-600 dark:text-gray-400">
+                <p className={`${typographyClasses.bodyMuted} mb-0`}>
                   {renderBodyWithBold((content.sections ?? [])[0].body)}
                 </p>
               )}
@@ -887,7 +919,7 @@ export function ContentBlockSlide({
                   aria-controls={`help-tab-panel-${idx}`}
                   id={`help-tab-${idx}`}
                   onClick={() => setActiveTabIdx(idx)}
-                  className={`min-h-[44px] px-4 py-2 rounded-t-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
+                  className={`min-h-[44px] px-4 py-2 rounded-t-lg ${typographyClasses.body} font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 ${
                     isActive
                       ? 'bg-brand-100 text-brand-800 dark:bg-brand-900/40 dark:text-brand-200 border border-brand-300 dark:border-brand-700 border-b-0 -mb-px'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 border border-transparent'
@@ -911,12 +943,14 @@ export function ContentBlockSlide({
                 className={blockClasses}
               >
                 {tab.heading && (
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3
+                    className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
+                  >
                     {tab.heading}
                   </h3>
                 )}
                 {tab.body && (
-                  <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
+                  <p className={`${typographyClasses.bodyMuted} mb-4`}>
                     {renderBodyWithBold(tab.body)}
                   </p>
                 )}
@@ -1028,12 +1062,12 @@ export function ContentBlockSlide({
                   <h3
                     className={
                       isOptional
-                        ? 'font-semibold text-sm text-gray-600 dark:text-gray-400 mb-2'
+                        ? `${typographyClasses.small} font-semibold text-gray-600 dark:text-gray-400 mb-2`
                         : isBottomLine
-                          ? 'text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-2'
+                          ? `${typographyClasses.h2} text-gray-800 dark:text-gray-100 mb-2`
                           : isInteractiveDiagram
-                            ? 'text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white mb-2'
-                            : 'text-base font-semibold text-gray-900 dark:text-white mb-2'
+                            ? `${typographyClasses.h1} font-semibold text-gray-900 dark:text-white mb-2`
+                            : `${typographyClasses.h3} text-gray-900 dark:text-white mb-2`
                     }
                   >
                     {section.heading}
@@ -1079,10 +1113,10 @@ export function ContentBlockSlide({
                     <span
                       className={
                         isOptional
-                          ? 'font-semibold text-sm text-gray-600 dark:text-gray-400'
+                          ? `${typographyClasses.small} font-semibold text-gray-600 dark:text-gray-400`
                           : isBottomLine
-                            ? 'text-lg lg:text-xl font-semibold text-gray-800 dark:text-gray-100'
-                            : 'text-base font-semibold text-gray-900 dark:text-white'
+                            ? `${typographyClasses.h2} font-semibold text-gray-800 dark:text-gray-100`
+                            : `${typographyClasses.h3} text-gray-900 dark:text-white`
                       }
                     >
                       {section.heading}
@@ -1120,7 +1154,7 @@ export function ContentBlockSlide({
                       role="region"
                       aria-label={t('presentationToolsAria')}
                     >
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className={`${typographyClasses.bodyMuted} mb-0`}>
                         {t('presentationToolsHint')}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -1137,14 +1171,18 @@ export function ContentBlockSlide({
                             className="flex flex-col p-3 rounded-xl border-2 border-brand-200 dark:border-brand-700 bg-brand-50/50 dark:bg-brand-900/10 hover:border-brand-500 dark:hover:border-brand-500 hover:bg-brand-100/80 dark:hover:bg-brand-900/20 transition-colors group"
                             aria-label={`${tool.name}: ${tool.forWhom}. ${t('openInNewTabHint')}`}
                           >
-                            <span className="font-bold text-brand-700 dark:text-brand-300 group-hover:text-brand-800 dark:group-hover:text-brand-200 flex items-center gap-1.5">
+                            <span
+                              className={`${typographyClasses.label} font-bold text-brand-700 dark:text-brand-300 group-hover:text-brand-800 dark:group-hover:text-brand-200 flex items-center gap-1.5`}
+                            >
                               {tool.name}
                               <ExternalLink
                                 className="w-3.5 h-3.5 shrink-0"
                                 aria-hidden
                               />
                             </span>
-                            <span className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                            <span
+                              className={`${typographyClasses.bodyMuted} mt-0.5`}
+                            >
                               {tool.forWhom}
                             </span>
                           </a>
@@ -1162,7 +1200,9 @@ export function ContentBlockSlide({
                         }
                       />
                       {section.body && (
-                        <figcaption className="mt-2 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <figcaption
+                          className={`mt-2 ${typographyClasses.bodyMuted}`}
+                        >
                           {renderBodyWithBold(section.body)}
                         </figcaption>
                       )}
@@ -1182,7 +1222,9 @@ export function ContentBlockSlide({
                           />
                         </div>
                         {section.body && (
-                          <figcaption className="mt-2 text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                          <figcaption
+                            className={`mt-2 ${typographyClasses.bodyMuted}`}
+                          >
                             {renderBodyWithBold(section.body)}
                           </figcaption>
                         )}
@@ -1190,7 +1232,7 @@ export function ContentBlockSlide({
                           href={`${import.meta.env.BASE_URL || '/'}${section.image.replace(/^\//, '')}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-1.5 inline-block text-xs font-medium text-brand-600 dark:text-brand-400 hover:underline"
+                          className={`mt-1.5 inline-block ${typographyClasses.small} font-medium text-brand-600 dark:text-brand-400 hover:underline`}
                         >
                           {t('openInNewTabLabel')}
                         </a>
@@ -1218,6 +1260,8 @@ export function ContentBlockSlide({
                         template={section.copyable}
                         copyAriaLabel={t('copyPrompt')}
                         copyCopiedLabel={tCommon('copiedExclaim')}
+                        copyDisabled={!preCopyGatePassed}
+                        copyLockedHint={copyLockedHint}
                       />
                     </div>
                   )}
@@ -1287,7 +1331,9 @@ export function ContentBlockSlide({
                         aria-label={t('chooseTaskTypeAria')}
                       >
                         {section.toolChoiceBar.question && (
-                          <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                          <p
+                            className={`${typographyClasses.label} text-gray-700 dark:text-gray-300`}
+                          >
                             {section.toolChoiceBar.question}
                           </p>
                         )}
@@ -1303,7 +1349,7 @@ export function ContentBlockSlide({
                                   onClick={() =>
                                     setSelectedToolRowIndex(choice.rowIndex)
                                   }
-                                  className={`min-h-[44px] px-4 py-2.5 rounded-xl text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
+                                  className={`min-h-[44px] px-4 py-2.5 rounded-xl ${typographyClasses.body} font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 ${
                                     isSelected
                                       ? 'bg-accent-500 text-white dark:bg-accent-600 dark:text-white'
                                       : 'bg-slate-100 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600'
@@ -1317,27 +1363,43 @@ export function ContentBlockSlide({
                             }
                           )}
                         </div>
-                        {selectedToolRowIndex != null &&
-                          (() => {
-                            const activeWhenHint = (
-                              section.toolChoiceBar!.choices ?? []
-                            ).find(
-                              (c) => c.rowIndex === selectedToolRowIndex
-                            )?.whenHint;
-                            return activeWhenHint ? (
-                              <p
-                                className="text-sm text-gray-700 dark:text-gray-300"
-                                data-tool-choice-when-hint
-                              >
-                                {activeWhenHint}
-                              </p>
-                            ) : null;
-                          })()}
                         {hasLinkedCopySections && (
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <p className={`${typographyClasses.bodyMuted} mb-0`}>
                             {t('toolChoiceLinkedCopyHint')}
                           </p>
                         )}
+                        <div
+                          role="status"
+                          aria-live="polite"
+                          data-tool-choice-live
+                        >
+                          {selectedToolRowIndex != null &&
+                            (() => {
+                              const activeChoice = (
+                                section.toolChoiceBar!.choices ?? []
+                              ).find(
+                                (c) => c.rowIndex === selectedToolRowIndex
+                              );
+                              const activeWhenHint = activeChoice?.whenHint;
+                              return (
+                                <>
+                                  <span className="sr-only">
+                                    {t('toolChoicePromptRevealed', {
+                                      label: activeChoice?.label ?? '',
+                                    })}
+                                  </span>
+                                  {activeWhenHint ? (
+                                    <p
+                                      className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                                      data-tool-choice-when-hint
+                                    >
+                                      {activeWhenHint}
+                                    </p>
+                                  ) : null}
+                                </>
+                              );
+                            })()}
+                        </div>
                       </div>
                     )}
                   {!section.workflowChains?.length &&
@@ -1397,7 +1459,7 @@ export function ContentBlockSlide({
                               aria-label={ariaLabel}
                             >
                               <table
-                                className={`border-collapse text-base ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
+                                className={`border-collapse ${typographyClasses.body} ${isComparison ? 'min-w-[36rem] w-full' : isSolutionMatrix ? 'min-w-[32rem] w-full' : 'w-full'}`}
                               >
                                 <thead>
                                   <tr>
@@ -1405,7 +1467,7 @@ export function ContentBlockSlide({
                                       (h, j) => (
                                         <th
                                           key={j}
-                                          className={`text-left font-bold text-gray-900 dark:text-white align-top border-b-2 ${
+                                          className={`text-left ${typographyClasses.h3} text-gray-900 dark:text-white align-top border-b-2 ${
                                             isComparison
                                               ? `px-5 py-5 border-b-gray-100 dark:border-b-gray-700 ${j === 0 ? 'sticky left-0 z-10 bg-brand-200 dark:bg-brand-900/40 shadow-sm' : 'bg-slate-200 dark:bg-slate-800/50'}`
                                               : isSolutionMatrix
@@ -1451,6 +1513,11 @@ export function ContentBlockSlide({
                                         }
                                         tabIndex={
                                           isToolChoiceRow ? 0 : undefined
+                                        }
+                                        aria-pressed={
+                                          isToolChoiceRow
+                                            ? selectedToolRowIndex === ri
+                                            : undefined
                                         }
                                         onClick={
                                           isToolChoiceRow
@@ -1515,17 +1582,21 @@ export function ContentBlockSlide({
                                               {isFirstCol &&
                                               meta?.bestFor != null ? (
                                                 <div className="space-y-0.5">
-                                                  <span className="block text-base font-semibold text-gray-900 dark:text-white">
+                                                  <span
+                                                    className={`block ${typographyClasses.h3} text-gray-900 dark:text-white`}
+                                                  >
                                                     {cellContent}
                                                   </span>
-                                                  <span className="block text-xs text-gray-500 dark:text-gray-400">
+                                                  <span
+                                                    className={`block ${typographyClasses.small} text-gray-500 dark:text-gray-400`}
+                                                  >
                                                     {meta.bestFor}
                                                   </span>
                                                 </div>
                                               ) : isStrengthCol &&
                                                 meta?.strengthBadge != null ? (
                                                 <span
-                                                  className={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
+                                                  className={`inline-block rounded-full px-2.5 py-1 ${typographyClasses.label} whitespace-nowrap ${toolBadgeClasses[meta.badgeVariant ?? 'blue'] ?? toolBadgeClasses.blue}`}
                                                   aria-label={t(
                                                     'strengthBadgeAria',
                                                     {
@@ -1597,12 +1668,16 @@ export function ContentBlockSlide({
                   }
                 >
                   {content.workflowImagesHeading && (
-                    <h3 className="font-extrabold text-xl lg:text-2xl text-brand-800 dark:text-brand-200 mb-1">
+                    <h3
+                      className={`${typographyClasses.h2} font-extrabold text-xl lg:text-2xl text-brand-800 dark:text-brand-200 mb-1`}
+                    >
                       {content.workflowImagesHeading}
                     </h3>
                   )}
                   {content.pipelineDiagramSubtitle && (
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-300 -mt-2 whitespace-pre-line">
+                    <p
+                      className={`${typographyClasses.body} font-medium text-gray-600 dark:text-gray-300 -mt-2 whitespace-pre-line`}
+                    >
                       {content.pipelineDiagramSubtitle}
                     </p>
                   )}
@@ -1624,7 +1699,9 @@ export function ContentBlockSlide({
                     }
                   >
                     {content.workflowImagesHeading && (
-                      <h3 className="font-bold text-lg lg:text-xl text-brand-800 dark:text-brand-200">
+                      <h3
+                        className={`${typographyClasses.h2} text-brand-800 dark:text-brand-200`}
+                      >
                         {content.workflowImagesHeading}
                       </h3>
                     )}
@@ -1642,7 +1719,9 @@ export function ContentBlockSlide({
                             />
                           </div>
                           {img.label && (
-                            <figcaption className="p-3 text-sm font-semibold text-brand-800 dark:text-brand-200 flex items-center gap-2">
+                            <figcaption
+                              className={`p-3 ${typographyClasses.label} text-brand-800 dark:text-brand-200 flex items-center gap-2`}
+                            >
                               {img.label}
                               {img.tooltip && (
                                 <button
@@ -1659,7 +1738,7 @@ export function ContentBlockSlide({
                                   />
                                   <span
                                     id={`workflow-tooltip-${j}`}
-                                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-64 p-3 text-xs font-normal text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity z-10 pointer-events-none"
+                                    className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-1 w-64 p-3 ${typographyClasses.small} font-normal text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity z-10 pointer-events-none`}
                                     role="tooltip"
                                   >
                                     {img.tooltip}
@@ -1696,7 +1775,7 @@ export function ContentBlockSlide({
                         href={tool.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-base font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1"
+                        className={`${typographyClasses.h3} text-brand-600 dark:text-brand-400 hover:text-brand-800 dark:hover:text-brand-200 underline underline-offset-2 inline-flex items-center gap-1`}
                       >
                         {tool.name}
                         <ExternalLink
@@ -1705,25 +1784,33 @@ export function ContentBlockSlide({
                         />
                       </a>
                     ) : (
-                      <span className="text-base font-semibold text-gray-900 dark:text-white">
+                      <span
+                        className={`${typographyClasses.h3} text-gray-900 dark:text-white`}
+                      >
                         {tool.name}
                       </span>
                     )}
                   </div>
                   {tool.description && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug mb-3">
+                    <p
+                      className={`${typographyClasses.bodyMuted} leading-snug mb-3`}
+                    >
                       {tool.description}
                     </p>
                   )}
                   {tool.useCases && tool.useCases.length > 0 && (
                     <div>
-                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+                      <p
+                        className={`${typographyClasses.labelUpper} text-gray-500 dark:text-gray-400 mb-1.5`}
+                      >
                         {tPractice('popularUseCases')}
                       </p>
                       <ul className="flex flex-wrap gap-1.5">
                         {tool.useCases.map((uc, i) => (
                           <li key={i}>
-                            <span className="inline-block text-xs px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">
+                            <span
+                              className={`inline-block ${typographyClasses.small} px-2 py-0.5 rounded-md bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300`}
+                            >
                               {uc}
                             </span>
                           </li>
@@ -1743,7 +1830,9 @@ export function ContentBlockSlide({
             </p>
           ) : null;
           const toolsFooter = (
-            <p className="text-sm text-gray-500 dark:text-gray-400 italic mt-5">
+            <p
+              className={`${typographyClasses.small} text-gray-500 dark:text-gray-400 italic mt-5`}
+            >
               {tPractice('toolsPrincipleNote')}
             </p>
           );
@@ -1754,7 +1843,7 @@ export function ContentBlockSlide({
             return (
               <details className={`group ${shellClass} overflow-hidden`}>
                 <summary
-                  className="flex cursor-pointer list-none items-center gap-2 p-4 sm:p-5 text-lg font-bold text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl"
+                  className={`flex cursor-pointer list-none items-center gap-2 p-4 sm:p-5 ${typographyClasses.h2} text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 rounded-2xl`}
                   aria-label={tPractice('toolsCollapsibleAria')}
                 >
                   <ChevronDown
@@ -1763,7 +1852,9 @@ export function ContentBlockSlide({
                   />
                   <Wrench className="h-5 w-5 text-brand-500" aria-hidden />
                   <span>{tPractice('toolsHeading')}</span>
-                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  <span
+                    className={`${typographyClasses.body} font-normal text-gray-500 dark:text-gray-400`}
+                  >
                     ({toolsList.length})
                   </span>
                 </summary>
@@ -1778,7 +1869,9 @@ export function ContentBlockSlide({
 
           return (
             <div className={`${shellClass} p-6 sm:p-8`}>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
+              <h3
+                className={`${typographyClasses.h2} text-gray-900 dark:text-white mb-2 flex items-center gap-2`}
+              >
                 <Wrench className="w-5 h-5 text-brand-500" aria-hidden="true" />
                 {tPractice('toolsHeading')}
               </h3>
@@ -1856,27 +1949,33 @@ export function ContentBlockSlide({
         >
           <h2
             id="correct-prompt-practice-heading"
-            className="text-lg font-bold text-gray-900 dark:text-white"
+            className={`${typographyClasses.h2} text-gray-900 dark:text-white`}
           >
             {t('correctPromptPracticeHeading')}
           </h2>
           <Banner variant="warning" className="p-4">
-            <p className="text-sm text-gray-800 dark:text-gray-200">
+            <p
+              className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
+            >
               {practice.intro}
             </p>
           </Banner>
           <Banner variant="terms" className="p-4">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <h3
+              className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
+            >
               {t('badExample')}
             </h3>
-            <p className="text-sm text-gray-700 dark:text-gray-300 font-mono whitespace-pre-wrap">
+            <p
+              className={`${typographyClasses.code} text-gray-700 dark:text-gray-300 whitespace-pre-wrap`}
+            >
               {practice.badPrompt}
             </p>
           </Banner>
           <Banner variant="info" className="p-4">
             <label
               htmlFor="correct-prompt-textarea"
-              className="block font-semibold text-gray-900 dark:text-white mb-2"
+              className={`block ${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
             >
               {t('correctPromptYourVersionLabel')}
             </label>
@@ -1886,7 +1985,7 @@ export function ContentBlockSlide({
               onChange={(e) => setCorrectPromptUserText(e.target.value)}
               placeholder={t('promptPlaceholder')}
               rows={4}
-              className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent min-h-[44px]"
+              className={`w-full px-3 py-2 ${typographyClasses.body} rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent min-h-[44px]`}
               aria-label={t('correctPromptTextareaAria')}
             />
           </Banner>
@@ -1909,10 +2008,14 @@ export function ContentBlockSlide({
               aria-label={t('solutionAria')}
             >
               <div className="p-4 rounded-xl border-l-4 border-slate-400 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                <h3
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
+                >
                   {t('correctPromptPrinciplesHeading')}
                 </h3>
-                <div className="text-sm text-gray-700 dark:text-gray-300">
+                <div
+                  className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+                >
                   {renderBodyWithBold(practice.solutionAnalysis)}
                 </div>
               </div>
@@ -1923,10 +2026,14 @@ export function ContentBlockSlide({
                 />
               </div>
               <div className="p-4 rounded-xl border-l-4 border-accent-500 bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                <h3
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-2`}
+                >
                   {t('correctPromptChangesHeading')}
                 </h3>
-                <p className="text-sm text-gray-800 dark:text-gray-200">
+                <p
+                  className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
+                >
                   {practice.solutionSummary}
                 </p>
               </div>
@@ -1948,7 +2055,7 @@ export function ContentBlockSlide({
           />
           {handoutError && (
             <p
-              className="mt-3 text-sm text-rose-700 dark:text-rose-300"
+              className={`mt-3 ${typographyClasses.body} text-rose-700 dark:text-rose-300`}
               role="alert"
             >
               {tCommon('handoutPdfError')}
@@ -1962,13 +2069,15 @@ export function ContentBlockSlide({
           role="region"
           aria-label={tPractice('m9SkipToSummaryAria')}
         >
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-3`}
+          >
             {tPractice('m9SkipToSummaryHint')}
           </p>
           <button
             type="button"
             onClick={m9SkipToSummaryHandler}
-            className="min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-xl text-sm font-semibold border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900"
+            className={`min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-xl ${typographyClasses.label} border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900`}
           >
             {tPractice('m9SkipToSummaryCta')}
           </button>
@@ -2140,7 +2249,9 @@ export function SectionBreakSlide({
             </span>
           )}
           {!content.celebrationText && (
-            <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
+            <h2
+              className={`${typographyClasses.h2} text-gray-900 dark:text-white`}
+            >
               {content.title}
             </h2>
           )}
@@ -2155,7 +2266,7 @@ export function SectionBreakSlide({
                   className="w-6 h-6 flex-shrink-0 text-accent-300 dark:text-accent-400 opacity-90"
                   aria-hidden
                 />
-                <h2 className="text-xl lg:text-2xl m-0 max-w-md">
+                <h2 className={`${typographyClasses.h2} m-0 max-w-md`}>
                   {(() => {
                     const text =
                       typeof content.celebrationText === 'string'
@@ -2167,7 +2278,9 @@ export function SectionBreakSlide({
                       const rest = text.slice(idx + 2);
                       return (
                         <span className="flex flex-col">
-                          <span className="font-bold text-accent-300 dark:text-accent-400 mb-1.5 text-xl lg:text-2xl leading-tight">
+                          <span
+                            className={`${typographyClasses.h2} text-accent-300 dark:text-accent-400 mb-1.5 leading-tight`}
+                          >
                             {exclamation}
                           </span>
                           <span className="font-semibold text-white dark:text-brand-100 leading-[1.2] tracking-[-0.01em]">
@@ -2902,10 +3015,10 @@ export function DefinitionsSlide({
             className="absolute inset-0 opacity-[0.05] pointer-events-none"
             aria-hidden="true"
           >
-            <div className="absolute top-2 right-4 text-7xl font-black leading-none select-none">
+            <div className="absolute top-2 right-4 text-7xl font-extrabold leading-none select-none">
               💬
             </div>
-            <div className="absolute bottom-2 left-4 text-7xl font-black leading-none select-none">
+            <div className="absolute bottom-2 left-4 text-7xl font-extrabold leading-none select-none">
               🔧
             </div>
           </div>
@@ -3927,7 +4040,7 @@ export function PromptTemplateSlide({
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute top-2 right-4 text-[80px] font-black leading-none select-none">
+          <div className="absolute top-2 right-4 text-[80px] font-extrabold leading-none select-none">
             📋
           </div>
         </div>
@@ -4253,7 +4366,7 @@ export function HierarchySlide({ content: contentProp }: HierarchySlideProps) {
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           aria-hidden="true"
         >
-          <div className="absolute top-2 right-4 text-[80px] font-black leading-none select-none">
+          <div className="absolute top-2 right-4 text-[80px] font-extrabold leading-none select-none">
             📐
           </div>
         </div>
@@ -4795,7 +4908,7 @@ export function SummarySlide({
                   className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-xl px-5 py-3 min-w-[80px] border border-white/10"
                   style={{ animationDelay: `${0.3 + i * 0.15}s` }}
                 >
-                  <span className="text-3xl lg:text-4xl font-black leading-none">
+                  <span className="text-3xl lg:text-4xl font-extrabold leading-none">
                     {stat.value}
                   </span>
                   <span className="text-xs lg:text-sm text-white/70 mt-1 font-medium uppercase tracking-wider">
@@ -5096,11 +5209,15 @@ export function DiParadoxInfographicSlide({
         <div className="p-5 lg:p-6 border-b border-slate-200 dark:border-slate-700 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-4 items-end">
           <div>
             {content.badge && (
-              <span className="inline-flex items-center gap-1.5 bg-accent-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded mb-3">
+              <span
+                className={`inline-flex items-center gap-1.5 bg-accent-500 text-white ${typographyClasses.labelUpper} font-bold px-3 py-1.5 rounded mb-3`}
+              >
                 {content.badge}
               </span>
             )}
-            <h2 className="text-xl lg:text-2xl font-extrabold text-gray-900 dark:text-white leading-tight">
+            <h2
+              className={`${typographyClasses.h2} text-gray-900 dark:text-white leading-tight`}
+            >
               {content.title}
             </h2>
             {content.subtitle && (
@@ -5111,7 +5228,9 @@ export function DiParadoxInfographicSlide({
           </div>
           {content.sourceBox && (
             <div className="text-right">
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <div
+                className={`${typographyClasses.labelUpper} text-slate-500 dark:text-slate-400`}
+              >
                 {content.sourceBox.label}
               </div>
               <div className="font-bold text-gray-900 dark:text-white text-sm">
@@ -5134,7 +5253,7 @@ export function DiParadoxInfographicSlide({
               className="relative p-5 lg:p-6 flex flex-col gap-2 min-h-[52px] py-4 hover:bg-slate-800/50 dark:hover:bg-slate-800/30 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-4 after:right-4 lg:after:left-6 lg:after:right-6 after:h-0.5 after:bg-transparent hover:after:bg-accent-500 after:transition-colors"
             >
               <div
-                className={`text-3xl lg:text-4xl font-extrabold ${heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand}`}
+                className={`${typographyClasses.metric} font-extrabold ${heroColorMap[stat.colorKey ?? 'brand'] ?? heroColorMap.brand}`}
               >
                 <StatWithTooltip
                   value={stat.value}
@@ -5164,7 +5283,9 @@ export function DiParadoxInfographicSlide({
               key={idx}
               className="relative bg-white dark:bg-gray-800 rounded-lg p-5 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
-              <span className="absolute -top-3 left-5 bg-accent-500 text-white text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded">
+              <span
+                className={`absolute -top-3 left-5 bg-accent-500 text-white ${typographyClasses.labelUpper} font-extrabold px-2.5 py-1 rounded`}
+              >
                 {card.number}
               </span>
               <div className="text-2xl mb-2">
@@ -5203,7 +5324,9 @@ export function DiParadoxInfographicSlide({
         <div className="rounded-xl bg-slate-900 dark:bg-slate-950 p-5 lg:p-6">
           <div className="mb-4">
             {content.shadowSection.sublabel && (
-              <div className="text-[10px] font-normal uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              <div
+                className={`${typographyClasses.labelUpper} font-normal text-slate-400 dark:text-slate-500`}
+              >
                 {content.shadowSection.sublabel}
               </div>
             )}
@@ -5253,7 +5376,9 @@ export function DiParadoxInfographicSlide({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {content.funnelSection && (
             <div>
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+              <h3
+                className={`${typographyClasses.labelUpper} tracking-widest text-slate-500 dark:text-slate-400 mb-4`}
+              >
                 {content.funnelSection.title}
               </h3>
               <div className="space-y-4">
@@ -5288,7 +5413,9 @@ export function DiParadoxInfographicSlide({
           )}
           {content.valueSection && (
             <div>
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+              <h3
+                className={`${typographyClasses.labelUpper} tracking-widest text-slate-500 dark:text-slate-400 mb-4`}
+              >
                 {content.valueSection.title}
               </h3>
               <div className="space-y-1">
@@ -5308,7 +5435,9 @@ export function DiParadoxInfographicSlide({
                       {item.text}
                     </span>
                     {item.tag && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 px-2 py-0.5 rounded">
+                      <span
+                        className={`${typographyClasses.labelUpper} text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 px-2 py-0.5 rounded`}
+                      >
                         {item.tag}
                       </span>
                     )}
@@ -5316,7 +5445,9 @@ export function DiParadoxInfographicSlide({
                 ))}
                 {content.valueSection.commonCondition && (
                   <div className="mt-4 p-3 rounded bg-accent-50 dark:bg-accent-900/20 border-l-4 border-accent-500">
-                    <div className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 mb-1">
+                    <div
+                      className={`${typographyClasses.labelUpper} text-accent-600 dark:text-accent-400 mb-1`}
+                    >
                       {content.valueSection.commonCondition.label}
                     </div>
                     <div className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -5333,7 +5464,9 @@ export function DiParadoxInfographicSlide({
       {/* Solution Pipeline */}
       {content.solutionSection && (
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+          <h3
+            className={`${typographyClasses.labelUpper} tracking-widest text-slate-500 dark:text-slate-400 mb-4`}
+          >
             {content.solutionSection.label}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-2">
@@ -5346,7 +5479,9 @@ export function DiParadoxInfographicSlide({
                     : 'border-slate-200 dark:border-slate-700 hover:border-accent-400'
                 }`}
               >
-                <div className="text-[10px] font-extrabold uppercase tracking-wider text-accent-600 dark:text-accent-400 mb-1">
+                <div
+                  className={`${typographyClasses.labelUpper} font-extrabold text-accent-600 dark:text-accent-400 mb-1`}
+                >
                   {step.num}
                 </div>
                 <div className="text-2xl mb-2">
@@ -5372,7 +5507,9 @@ export function DiParadoxInfographicSlide({
       {/* Action Cards */}
       {content.actionSection && (
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+          <h3
+            className={`${typographyClasses.labelUpper} tracking-widest text-slate-500 dark:text-slate-400 mb-4`}
+          >
             {content.actionSection.label}
           </h3>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -5384,7 +5521,9 @@ export function DiParadoxInfographicSlide({
                   actionBorderMap.accent
                 } border-t-4`}
               >
-                <div className="text-4xl font-extrabold text-slate-200 dark:text-slate-600 mb-2">
+                <div
+                  className={`${typographyClasses.metric} font-extrabold text-slate-200 dark:text-slate-600 mb-2`}
+                >
                   {card.num}
                 </div>
                 <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-2">
@@ -5393,7 +5532,9 @@ export function DiParadoxInfographicSlide({
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
                   {card.body}
                 </p>
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 flex items-center gap-1.5">
+                <div
+                  className={`${typographyClasses.labelUpper} text-accent-600 dark:text-accent-400 flex items-center gap-1.5`}
+                >
                   <span className="w-4 h-px bg-accent-500" />
                   {card.kpi}
                 </div>
@@ -5549,7 +5690,9 @@ export function ProductivityInfographicSlide({
               <Rocket className="w-32 h-32" strokeWidth={1} />
             </div>
 
-            <h2 className="text-xl lg:text-2xl font-black mb-2 leading-tight relative z-10">
+            <h2
+              className={`${typographyClasses.h2} mb-2 leading-tight relative z-10`}
+            >
               {content.title}
             </h2>
             {onGoToGlossary && (
@@ -5568,7 +5711,9 @@ export function ProductivityInfographicSlide({
             )}
 
             <div className="mb-6 relative z-10">
-              <div className="text-5xl lg:text-6xl font-black mb-2 drop-shadow-lg">
+              <div
+                className={`${typographyClasses.metric} text-5xl lg:text-6xl font-extrabold mb-2 drop-shadow-lg`}
+              >
                 {content.heroNumber}
               </div>
               <div className="text-lg lg:text-xl font-bold uppercase tracking-wider">
@@ -5611,7 +5756,7 @@ export function ProductivityInfographicSlide({
                         <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">
                           {stat.label}
                         </span>
-                        <span className="text-base font-black text-brand-600 dark:text-brand-400">
+                        <span className="text-base font-extrabold text-brand-600 dark:text-brand-400">
                           {stat.value}
                         </span>
                       </div>
@@ -5629,10 +5774,12 @@ export function ProductivityInfographicSlide({
                   className="bg-white dark:bg-gray-800 p-3 rounded-lg text-center shadow-sm dark:shadow-md border border-gray-200 dark:border-gray-700"
                 >
                   <div className="text-2xl mb-1">{insight.emoji}</div>
-                  <div className="text-lg font-black text-brand-600 dark:text-brand-400 mb-0.5">
+                  <div className="text-lg font-extrabold text-brand-600 dark:text-brand-400 mb-0.5">
                     {insight.value}
                   </div>
-                  <div className="text-[10px] font-semibold text-gray-600 dark:text-gray-400 leading-tight">
+                  <div
+                    className={`${typographyClasses.label} text-gray-600 dark:text-gray-400 leading-tight`}
+                  >
                     {insight.text}
                   </div>
                 </div>
@@ -6131,13 +6278,11 @@ export function PathStepSlide({
             : `${isEn ? 'Step' : 'Žingsnis'} ${content.stepNumber}`}
         </span>
       </div>
-      <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white">
+      <h2 className={`${typographyClasses.h2} text-gray-900 dark:text-white`}>
         {content.title}
       </h2>
       {content.body && (
-        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-          {content.body}
-        </p>
+        <p className={typographyClasses.bodyMuted}>{content.body}</p>
       )}
       {hasSections && (
         <div className="space-y-4">
@@ -6147,11 +6292,15 @@ export function PathStepSlide({
               className="rounded-lg border-l-4 border-brand-500 bg-slate-50 dark:bg-slate-800/40 pl-4 py-3 pr-3"
             >
               {sec.heading && (
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                <h3
+                  className={`${typographyClasses.h3} text-gray-900 dark:text-white mb-1`}
+                >
                   {sec.heading}
                 </h3>
               )}
-              <p className="text-sm text-gray-700 dark:text-gray-300">
+              <p
+                className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+              >
                 {sec.body}
               </p>
               {sec.copyable && (

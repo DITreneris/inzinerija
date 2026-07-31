@@ -83,6 +83,8 @@ export interface M13BusinessWorkflowDiagramStep {
 export interface M13BusinessWorkflowDiagramLabels {
   steps: M13BusinessWorkflowDiagramStep[];
   title: string;
+  metaphorCaption: string;
+  cycleReturnLabel: string;
   hint: string;
   ariaBase: string;
   ariaInteractiveSuffix: string;
@@ -100,8 +102,11 @@ const LABELS_LT: M13BusinessWorkflowDiagramLabels = {
     { label: 'Optimizacija', desc: 'Rezultatai → ciklas' },
   ],
   title: 'Nuo brief iki publikacijos',
+  metaphorCaption: 'Verslo ciklas – rezultatai grįžta į brief',
+  cycleReturnLabel: 'Kartoti',
   hint: 'Paspausk žingsnį – paaiškinimas apačioje',
-  ariaBase: 'Turinio workflow: nuo brief iki optimizacijos.',
+  ariaBase:
+    'Turinio workflow ciklas: nuo brief iki optimizacijos su grįžimu į brief.',
   ariaInteractiveSuffix: 'Paspausk žingsnį, kad pamatytum paaiškinimą.',
   stepAria: (i, label) => `Žingsnis ${i + 1}: ${label}. Paspausk paaiškinimui.`,
 };
@@ -117,8 +122,11 @@ const LABELS_EN: M13BusinessWorkflowDiagramLabels = {
     { label: 'Optimisation', desc: 'Results → cycle' },
   ],
   title: 'From brief to publication',
+  metaphorCaption: 'Business cycle – results loop back to brief',
+  cycleReturnLabel: 'Repeat',
   hint: 'Click a step – explanation below',
-  ariaBase: 'Content workflow: from brief to optimisation.',
+  ariaBase:
+    'Content workflow cycle: from brief to optimisation with return to brief.',
   ariaInteractiveSuffix: 'Click a step to see the explanation.',
   stepAria: (i, label) => `Step ${i + 1}: ${label}. Click for explanation.`,
 };

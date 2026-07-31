@@ -87,7 +87,7 @@
 
 Raktų checklist (po vieną skaidrę / shell):
 
-| Raktas                        | Tipinė skaidrė | Shell nav count                    | Dark SVG fonas       | Nėra `svg [role=button]` | Enlarge = tas pats React                       |
+| Raktas                        | Tipinė skaidrė | Shell nav count                    | Dark SVG fonas       | Nėra `svg [role=button]` | Be desktop enlarge (default OFF)               |
 | ----------------------------- | -------------- | ---------------------------------- | -------------------- | ------------------------ | ---------------------------------------------- |
 | `agent_workflow_diagram`      | 10.2           | ✓ (5, `density=hero`)              | ✓                    | ✓                        | ✓ LMS polish 2026-07                           |
 | `m10_three_a_strategy`        | 10.25          | ✓ (3, `density=hero`)              | ✓                    | ✓                        | ✓ horizontal 100% stacked                      |

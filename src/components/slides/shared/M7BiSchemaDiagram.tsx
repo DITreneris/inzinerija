@@ -19,19 +19,21 @@ const PROCESS_ARROW = getProcessArrowMarkerGeom();
 const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 
 const DESKTOP_VIEWBOX_W = 640;
-const DESKTOP_VIEWBOX_H = 220;
+/** S4: crop dead air below row (was 220 → ~32% empty). */
+const DESKTOP_VIEWBOX_H = 168;
 const DESKTOP_BOX_W = 126;
 const DESKTOP_BOX_H = 78;
 const DESKTOP_GAP = 22;
 const DESKTOP_ROW_Y = 72;
 
 const COMPACT_VIEWBOX_W = 320;
-const COMPACT_VIEWBOX_H = 340;
+/** 64 + 4×54 + 3×22 = 346 → pad to 350 after hint row. */
+const COMPACT_VIEWBOX_H = 350;
 const COMPACT_BOX_W = 248;
 const COMPACT_BOX_H = 54;
 const COMPACT_GAP = 22;
 const COMPACT_START_X = 36;
-const COMPACT_START_Y = 54;
+const COMPACT_START_Y = 64;
 
 function getDesktopBoxes(): [number, number, number, number][] {
   const totalW = STEP_COUNT * DESKTOP_BOX_W + (STEP_COUNT - 1) * DESKTOP_GAP;
@@ -90,10 +92,10 @@ export default function M7BiSchemaDiagram({
   const typography = DIAGRAM_TOKENS.typography;
 
   const title = locale === 'en' ? 'BI flow' : 'BI schema';
-  const clickAria =
+  const hint =
     locale === 'en'
-      ? 'Click a step for explanation below.'
-      : 'Paspausk žingsnį – paaiškinimas apačioje.';
+      ? 'Tap a step – explanation below'
+      : 'Paspausk žingsnį – paaiškinimas apačioje';
   const ariaIntro =
     locale === 'en'
       ? 'Four BI steps: collect, analyze, report, forecast.'
@@ -104,7 +106,7 @@ export default function M7BiSchemaDiagram({
       viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       className={`w-full max-w-3xl mx-auto block ${className}`}
       role="img"
-      aria-label={`${ariaIntro}${isInteractive ? ` ${clickAria}` : ''}`}
+      aria-label={`${ariaIntro}${isInteractive ? ` ${hint}` : ''}`}
     >
       <defs>
         <linearGradient
@@ -152,7 +154,7 @@ export default function M7BiSchemaDiagram({
 
       <text
         x={cx}
-        y="34"
+        y="28"
         textAnchor="middle"
         fontFamily={DIAGRAM_TOKENS.font}
         fontSize={
@@ -163,24 +165,35 @@ export default function M7BiSchemaDiagram({
       >
         {title}
       </text>
+      {isInteractive ? (
+        <text
+          x={cx}
+          y="46"
+          textAnchor="middle"
+          fontFamily={DIAGRAM_TOKENS.font}
+          fontSize={
+            isCompactDiagram
+              ? typography.subtitle.compact
+              : typography.subtitle.desktop
+          }
+          fontWeight="500"
+          fill={palette.muted}
+        >
+          {hint}
+        </text>
+      ) : null}
 
       {boxes.map((box, i) => {
         const [x, y, w, h] = box;
         const isActive = currentStep === i;
-        const opacity = isActive
-          ? DIAGRAM_TOKENS.opacity.active
-          : DIAGRAM_TOKENS.opacity.inactive;
+        // Soft fill only for inactive (no double-dim with opacity.inactive).
         const step = steps[i];
         const fill = isActive ? palette.brand : inactiveSoft;
         const labelFill = isActive ? palette.whiteText : palette.brandDark;
         const subFill = isActive ? palette.whiteText : palette.muted;
         return (
           <g key={i}>
-            <g
-              opacity={opacity}
-              style={{ transition: 'opacity 0.2s ease' }}
-              aria-hidden
-            >
+            <g aria-hidden>
               <rect
                 x={x}
                 y={y}

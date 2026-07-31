@@ -49,15 +49,15 @@ export const DIAGRAM_TOKENS = {
     titleWeight: 700,
     subtitle: {
       desktop: 10,
-      compact: 9,
+      compact: 10,
     },
     stepLabel: {
       desktop: 12,
-      compact: 10,
+      compact: 11,
     },
     stepSub: {
       desktop: 10,
-      compact: 8,
+      compact: 10,
     },
     edgeLabel: {
       size: 12,
