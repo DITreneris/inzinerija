@@ -113,6 +113,16 @@
       "moduleId": 13
     },
     {
+      "term": "Brief (MVP)",
+      "definition": "Siauras 01_MVP_BRIEF.md – kam, ką, Must/Won’t ir patikrinamas Done prieš Cursor build (ne marketing brief).",
+      "moduleId": 16
+    },
+    {
+      "term": "BUILD PACKET",
+      "definition": "Failų rinkinys prieš DI kodą: brief, flow, taisyklės ir Cursor promptas – kad generavimas turėtų ribas ir įrodymą.",
+      "moduleId": 18
+    },
+    {
       "term": "Būtina / Svarbu / Norima / Ne dabar (MoSCoW)",
       "definition": "Prioritetų sistema – užduotys ar idėjos skirstomos į 4 grupes pagal svarbą ir skubą; padeda nuspręsti, ką daryti pirmiausia.",
       "moduleId": 7
@@ -166,6 +176,11 @@
       "moduleId": 13
     },
     {
+      "term": "Cursor",
+      "definition": "DI kodavimo IDE / agentas mokymuose – planuoji, redaguoji ir tikrini diff prieš commit; ne „parašyk visą app“ mygtukas.",
+      "moduleId": 16
+    },
+    {
       "term": "Custom GPT",
       "definition": "ChatGPT projektas su taisyklėmis, instrukcijomis ir failais – asmeninis ar komandos asistentas konkrečiai užduočiai.",
       "moduleId": 4
@@ -217,6 +232,15 @@
       "term": "DI visata",
       "definition": "Metafora: dirbtinio intelekto pasaulis kaip hierarchija – nuo paprastų taisyklių iki generatyvinio DI ir įrankių. Padeda suvokti, kur „telpa“ šaltiniai, kontekstas ir įrankiai; kuo giliau lygmenyje, tuo galingesnės galimybės.",
       "moduleId": 4
+    },
+    {
+      "term": "Diff ritualas",
+      "definition": "Po DI pakeitimo: perskaityti diff → paleisti smoke → tada commit.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "Duomenimis grįsti sprendimai",
@@ -561,6 +585,11 @@
       "moduleId": 4
     },
     {
+      "term": "PROJECT_RULES.md",
+      "definition": "Trumpas (8–12 eil.) ribų failas Cursor sesijai: stack hint, Must/Won’t, Done, kalba, raktai ne kode.",
+      "moduleId": 18
+    },
+    {
       "term": "Promptas",
       "definition": "Tekstinė instrukcija ar klausimas, kurį pateiki DI modeliui, siekdamas gauti norimą atsakymą; tavo komunikacijos su dirbtinio intelekto sistema forma.",
       "moduleId": 1
@@ -701,9 +730,27 @@
       "moduleId": 1
     },
     {
+      "term": "Smoke",
+      "definition": "Greita patikra: pasileidžia, UI/API atsako, pagrindinė fn veikia; 1 raudona = nestartuojame giliau.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.16
+      }
+    },
+    {
       "term": "Socialinių tinklų stebėsena",
       "definition": "Sistemingas viešų žinučių ir reakcijų stebėjimas (temos, sentimentas, influenceriai) – kad matytum, ką sako rinka, ne tik savo CRM.",
       "moduleId": 9
+    },
+    {
+      "term": "Soft DoD",
+      "definition": "Minkštas baigties kriterijus Kodo kelyje: GitHub + commit’ai, README, bent vienos kritinės funkcijos patikra ir URL arba lokalus paleidimo įrodymas.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "Sprendimų filtras",
@@ -764,6 +811,11 @@
       "moduleId": 13
     },
     {
+      "term": "Triage (Būtina dabar / Galima vėliau / Nekuriame)",
+      "definition": "Trys apimties zonos MVP – ką darai dabar, ką atidedi ir ko nekuri; mapinimas į Must / Should / Won’t brief laukuose.",
+      "moduleId": 16
+    },
+    {
       "term": "Trigger",
       "definition": "Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas, failo įkėlimas).",
       "moduleId": 10
@@ -784,9 +836,23 @@
       "moduleId": 10
     },
     {
+      "term": "Vertikalus pjūvis",
+      "definition": "Vienas paleidžiamas Must kelias / viena funkcija prieš platų „viską iš karto“ generavimą Cursor projekte.",
+      "moduleId": 18
+    },
+    {
       "term": "Vertintojas",
       "definition": "Kelių agentų rolė, kuri tikrina rezultatą pagal kriterijus, taisykles ir rizikas; prireikus grąžina pataisymui.",
       "moduleId": 10
+    },
+    {
+      "term": "Vibe debt",
+      "definition": "Skola po greito DI generavimo be PACKET ir proof – veikia „kažkaip“, bet sunku taisyti, kartoti ar paleisti kitam žmogui.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "Vykdymas (execution)",
@@ -806,6 +872,11 @@
       "term": "Vizualizacijos rizika",
       "definition": "Grafiko ar dashboard pasirinkimo pavojus – klaidinanti interpretacija, netinkama auditorija ar per sudėtingas tipas. Prieš rodydamas vadovybei – įvardink 1–2 rizikas.",
       "moduleId": 8
+    },
+    {
+      "term": "VSR",
+      "definition": "Vibe → Skeleton → Refinement – brief brandinimo fazės; ne antras delivery kelias ir ne „vertical slice“.",
+      "moduleId": 16
     },
     {
       "term": "Webhook",

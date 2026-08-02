@@ -3,7 +3,19 @@ import { Helmet } from 'react-helmet-async';
 import Celebration from './components/Celebration';
 import { AppNav } from './components/AppNav';
 import { BrandMark, ErrorBoundary, LoadingSpinner } from './components/ui';
-import { getProgress, saveProgress, flushProgressSave } from './utils/progress';
+import {
+  getProgress,
+  saveProgress,
+  flushProgressSave,
+  type RetrievalScheduleItem,
+} from './utils/progress';
+import {
+  advanceRetrievalAfterAttempt,
+  scheduleAfterEvalVisit,
+  scheduleAfterLearnModuleComplete,
+  scheduleAfterModuleTest,
+  scheduleAfterQuizComplete,
+} from './utils/retrievalSchedule';
 import {
   logLearningEvent,
   hasLoggedFirstActionSuccess,
@@ -103,6 +115,8 @@ function App() {
   const [certificateTier, setCertificateTier] = useState<1 | 2 | 3 | 4 | 5>(1);
   /** Incremented after magic link verification so getMaxAccessibleModuleId() re-reads localStorage. */
   const [, setAccessTierRefresh] = useState(0);
+  const [retrievalSession, setRetrievalSession] =
+    useState<RetrievalScheduleItem | null>(null);
 
   const replaceUrlWithoutMagicLinkParams = useCallback(() => {
     const cleanSearch = stripMagicLinkSearchParams(window.location.search);
@@ -263,10 +277,15 @@ function App() {
 
   const handleModuleComplete = (moduleId: number) => {
     if (!progress.completedModules.includes(moduleId)) {
-      setProgress((prev) => ({
-        ...prev,
-        completedModules: [...prev.completedModules, moduleId],
-      }));
+      setProgress((prev) =>
+        scheduleAfterLearnModuleComplete(
+          {
+            ...prev,
+            completedModules: [...prev.completedModules, moduleId],
+          },
+          moduleId
+        )
+      );
       logLearningEvent('module_completed', { moduleId });
       // Show celebration
       setCelebrationType('module');
@@ -365,21 +384,30 @@ function App() {
   ) => {
     const isNewTask = !progress.completedTasks[moduleId]?.includes(taskId);
     if (isNewTask || testScore !== undefined) {
-      setProgress((prev) => ({
-        ...prev,
-        ...(isNewTask && {
-          completedTasks: {
-            ...prev.completedTasks,
-            [moduleId]: [...(prev.completedTasks[moduleId] || []), taskId],
-          },
-        }),
-        ...(testScore !== undefined && {
-          moduleTestScores: {
-            ...(prev.moduleTestScores ?? {}),
-            [moduleId]: testScore,
-          },
-        }),
-      }));
+      setProgress((prev) => {
+        let next = {
+          ...prev,
+          ...(isNewTask && {
+            completedTasks: {
+              ...prev.completedTasks,
+              [moduleId]: [...(prev.completedTasks[moduleId] || []), taskId],
+            },
+          }),
+          ...(testScore !== undefined && {
+            moduleTestScores: {
+              ...(prev.moduleTestScores ?? {}),
+              [moduleId]: testScore,
+            },
+          }),
+        };
+        if (testScore !== undefined) {
+          next = scheduleAfterModuleTest(next, moduleId, testScore);
+        }
+        if (isNewTask) {
+          next = scheduleAfterEvalVisit(next, moduleId, taskId);
+        }
+        return next;
+      });
       if (isNewTask) {
         if (!hasLoggedFirstActionSuccess()) {
           logLearningEvent('first_action_success', { moduleId, taskId });
@@ -389,6 +417,30 @@ function App() {
       }
     }
   };
+
+  const handleStartRetrieval = useCallback((item: RetrievalScheduleItem) => {
+    setRetrievalSession(item);
+    setCurrentPage('quiz');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleOpenEvalHabit = useCallback(
+    (moduleId: number, slideId: number) => {
+      if (moduleId > getMaxAccessibleModuleId()) {
+        setCurrentPage('modules');
+        return;
+      }
+      const mod = modulesData?.modules?.find((m) => m.id === moduleId);
+      const idx = mod?.slides?.findIndex((s) => s.id === slideId) ?? -1;
+      setSelectedModule(moduleId);
+      setInitialSlideIndex(idx >= 0 ? idx : null);
+      setRemediationFrom(null);
+      setProgress((prev) => scheduleAfterEvalVisit(prev, moduleId, slideId));
+      setCurrentPage('module');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    [modulesData]
+  );
 
   const totalModules = modulesData?.modules.length || 0;
   const completedModulesCount = progress.completedModules.length;
@@ -518,16 +570,26 @@ function App() {
               {currentPage === 'home' && (
                 <HomePage
                   onStart={() => setCurrentPage('modules')}
-                  onGoToQuiz={() => setCurrentPage('quiz')}
+                  onGoToQuiz={() => {
+                    setRetrievalSession(null);
+                    setCurrentPage('quiz');
+                  }}
                   progress={progress}
+                  onStartRetrieval={handleStartRetrieval}
+                  onOpenEvalHabit={handleOpenEvalHabit}
                 />
               )}
               {currentPage === 'modules' && (
                 <ModulesPage
                   onModuleSelect={handleModuleSelect}
-                  onGoToQuiz={() => setCurrentPage('quiz')}
+                  onGoToQuiz={() => {
+                    setRetrievalSession(null);
+                    setCurrentPage('quiz');
+                  }}
                   progress={progress}
                   onRequestCertificate={handleRequestCertificate}
+                  onStartRetrieval={handleStartRetrieval}
+                  onOpenEvalHabit={handleOpenEvalHabit}
                 />
               )}
               {currentPage === 'module' &&
@@ -611,14 +673,36 @@ function App() {
                   <AccessGateScreen />
                 ) : (
                   <QuizPage
-                    onBack={() => setCurrentPage('modules')}
+                    onBack={() => {
+                      setRetrievalSession(null);
+                      setCurrentPage('modules');
+                    }}
                     progress={progress}
+                    mode={retrievalSession ? 'retrieval' : 'branduolys'}
+                    retrievalItem={retrievalSession}
+                    onRetrievalComplete={(score) => {
+                      if (!retrievalSession) return;
+                      setProgress((prev) =>
+                        advanceRetrievalAfterAttempt(
+                          prev,
+                          retrievalSession.id,
+                          score
+                        )
+                      );
+                      setRetrievalSession(null);
+                      setCurrentPage('modules');
+                    }}
                     onQuizComplete={(score) => {
-                      setProgress((prev) => ({
-                        ...prev,
-                        quizScore: score,
-                        quizCompleted: true,
-                      }));
+                      setProgress((prev) =>
+                        scheduleAfterQuizComplete(
+                          {
+                            ...prev,
+                            quizScore: score,
+                            quizCompleted: true,
+                          },
+                          score
+                        )
+                      );
                     }}
                   />
                 ))}

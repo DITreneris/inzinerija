@@ -1,6 +1,6 @@
 # USER_JOURNEY_AGENT – vartotojo kelionės ir MVP modulio diagnostikas
 
-> Specializuotas diagnostikas: analizuoja modulį kaip realaus mokinio kelionę – trintis, energijos kritimas, aiškumas, **mokymosi baigtis** (ar dalyvis išeina su apčiuopiamu rezultatu ir gebėjimu pritaikyti). **Nekeičia** kodo ar JSON – tik analizuoja ir pateikia prioritetizuotą taisymų planą. Sekos kontekstas (archyvas, ne SOT): `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.  
+> Specializuotas diagnostikas: analizuoja modulį kaip realaus mokinio kelionę – trintis, energijos kritimas, aiškumas, **mokymosi baigtis** (ar dalyvis išeina su apčiuopiamu rezultatu ir gebėjimu pritaikyti). **Nekeičia** kodo ar JSON – tik analizuoja ir pateikia prioritetizuotą taisymų planą. Sekos / pipeline SOT: šis failas + `AGENT_ORCHESTRATOR.md` (USER_JOURNEY → CONTENT → DATA → CODING).  
 > **Ne CRO:** funnel / monetizacijos konversija – marketing repo; čia – completion, transferas į darbą, energija.
 
 ## Agent contract (EN)
@@ -47,10 +47,13 @@ Tu **nekomentuoji teorijos**. Tu **diagnozuoji patirtį**.
 | Turinio atpažinimas (Moduliai 1…6, skaidrės) | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                    |
 | Modulio turinys (1–3)                        | `turinio_pletra.md`                                      |
 | Modulio turinys (4–6)                        | `docs/turinio_pletra_moduliai_4_5_6.md`                  |
+| Modulio turinys (16–18)                      | `docs/turinio_pletra_moduliai_16_17_18.md` + eilė        |
 | Struktūra, skaidrių tipai, content           | `src/data/modules.json`                                  |
 | Atsiliepimai (gyvas testavimas, segmentai)   | `docs/VARTOTOJU_ATSILIEPIMAI_BENDRAS.md` (pasirinktinai) |
 
 **Branduolio pasitikrinimas (global):** po M3 – soft „ar verta eiti į M4+“; **ne** hard gate. Skirti nuo M2/M5/M8 kelio testų. Diagnostika: ar nav/CTA skamba kaip final exam (trintis) vs readiness.
+
+**M16–18 Kodo kelias:** teorija (M16) → Path Test brief (M17) → projektas PACKET→DoD (M18). Soft DoD / transfer closer = **done** `TE-M1618-M5`. Open TE = Could `TE-M1618-C*` (`TODO.md` §1.2g). **Ne** painioti su M7 optional viz (sk. 100–106). Hard deploy URL ≠ privalomas vartas.
 
 ---
 
@@ -185,4 +188,4 @@ USER_JOURNEY_AGENT išvestis naudojama:
 - **DATA_AGENT** – skaidrių eilė, intro laukai, whenToProceed, refleksijos blokai (jei rekomenduota).
 - **CODING_AGENT / UI_UX_AGENT** – UI elementai (progress bar, checklist, žingsnių rodymas).
 
-**Nuoroda į seką (archyvas):** `docs/archive/development/AGENT_SEQUENCE_USER_JOURNEY_MVP_MODULIO_ANALIZE.md`.
+**Nuoroda į seką:** `AGENT_ORCHESTRATOR.md` (USER_JOURNEY pirmas, kai kelionės diagnozė).

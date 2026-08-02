@@ -3725,7 +3725,9 @@
             "reflectionTitle": "Reflection",
             "tagline": "Data → Insights → Decisions",
             "nextStepCTA": "Go to Module 8: knowledge check, then Module 9: capstone project (start with Sources catalog).",
-            "firstAction24h": "Within 24–48 hours, run MASTER PROMPT with one real work topic and save the summary."
+            "firstAction24h": "Within 24–48 hours, run MASTER PROMPT with one real work topic and save the summary.",
+            "abilityBefore": "You gave data to AI without a clear pipeline and MASTER template.",
+            "abilityAfter": "You can go from data to insight with a MASTER prompt and analysis templates."
           }
         }
       ],
@@ -4054,7 +4056,13 @@
           "title": "Business analysis template",
           "description": "8-step business analysis template"
         }
-      ]
+      ],
+      "transfer": {
+        "abilityBefore": "Data-analysis path knowledge was fragmented.",
+        "abilityAfter": "You can check the pipeline, MASTER prompt, and analysis templates before the project.",
+        "firstAction24h": "Within 24–48h run one MASTER PROMPT with real (or anonymized) work data.",
+        "nextStepCTA": "Go to Module 9 – pick a quest and create an artefact."
+      }
     },
     {
       "id": 9,
@@ -4383,7 +4391,14 @@
               }
             ],
             "hubCtaLabel": "Optional library (12 scenarios)",
-            "hubSlideId": 99
+            "hubSlideId": 99,
+            "abilityBefore": "You lacked a quest artefact with a clear finish line.",
+            "abilityAfter": "You can pick a scenario, create a result, and mark what is done.",
+            "firstAction24h": "Within 24–48h use at least one quest artefact in a real process or meeting.",
+            "nextStepCTA": "Return to the hub for another scenario or go to the Agents path (Module 10).",
+            "ownWorkLabel": "Your quest context",
+            "ownWorkPlaceholder": "e.g. call summary, pricing table…",
+            "ownWorkTemplate": "META: You are an analytics partner.\nINPUT: My situation: {{context}}\nOUTPUT: Suggest 1 concrete next step and 3 questions I should ask AI."
           }
         },
         {

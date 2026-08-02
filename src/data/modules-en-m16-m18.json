@@ -1,0 +1,2534 @@
+{
+  "modules": [
+    {
+      "id": 16,
+      "title": "Code engineering with AI",
+      "subtitle": "Planning: from idea to MVP brief",
+      "description": "Learn to frame a narrow MVP task and fill a clear brief before Cursor.",
+      "icon": "Code",
+      "level": "learn",
+      "duration": "25–30 min",
+      "unlocksAfter": 6,
+      "accent": "cyan",
+      "identityIcon": "Code",
+      "slides": [
+        {
+          "id": 160,
+          "title": "Code engineering path",
+          "subtitle": "Planning before Cursor",
+          "type": "action-intro",
+          "content": {
+            "whyBenefit": "Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursime su AI.",
+            "heroStat": "Vibe coding",
+            "heroText": "su disciplina.",
+            "heroSubText": "Promptų pamatai – Moduliuose 1–6. Čia – produkto užduotis ir siauras brief prieš generavimą.",
+            "firstActionCTA": "Per 2 min užrašyk vieną naudotoją ir vieną problemą savo idėjai (arba naudok dienos prioritetų pavyzdį).",
+            "outcomes": [
+              "1+1+1: naudotojas, problema, vertė, 1 funkcija",
+              "Kūrimo kortelė → 01_MVP_BRIEF.md",
+              "Must / Won’t ir patikrinamas sėkmės kriterijus"
+            ],
+            "duration": "~25–30 min",
+            "audience": "Skirta verslo ir produktų žmonėms – veikiantis prototipas be gilaus programavimo.",
+            "footer": "Next – slide 2: What you will do today"
+          }
+        },
+        {
+          "id": 16.2,
+          "title": "What you will do today",
+          "shortTitle": "What you will do today",
+          "subtitle": "1 problem · 1 user · 1 task",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Šiandien: 1 problema, 1 naudotojas, 1 pagrindinė funkcija ir greitas būdas patikrinti, ar prototipas veikia. Rezultatas – ne prezentacija.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pasirink idėją (pvz. dienos prioritetų įrankis) ir užrašyk vienu sakiniu: kam ir ką sprendi.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar gali paaiškinti užduotį per 20 sekundžių be žodžio „app“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 3: Stack map"
+          }
+        },
+        {
+          "id": 16.25,
+          "title": "Stack map",
+          "shortTitle": "Stack map",
+          "subtitle": "Which layer when – not a tool fair",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Cursor-first path: brief can use chat AI; code – Cursor; proof – GitHub; host – later. Module 16 is not a build session yet.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Stack layers",
+                "body": "Not this path as the main stack: Lovable, Replit “write an app”, Claude Code, v0 – here we teach Cursor + PACKET discipline.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Layer", "Tool", "In M16 now", "Later"],
+                  "rows": [
+                    [
+                      "Brief / plan",
+                      "Chat AI (ChatGPT / Claude)",
+                      "Draft, skeptic, brief helper",
+                      "—"
+                    ],
+                    [
+                      "Code with discipline",
+                      "Cursor",
+                      "Install / open; do not generate the whole app",
+                      "M18 vertical slice"
+                    ],
+                    [
+                      "Proof / versions",
+                      "GitHub",
+                      "Know you will need Soft DoD",
+                      "M18 commit + repo"
+                    ],
+                    [
+                      "Host / URL",
+                      "Railway / Vercel / …",
+                      "Do not touch yet",
+                      "M18 publish"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Write down: brief = chat AI; build = Cursor (Module 18); proof = GitHub. If you lack Cursor – download cursor.com (no generate session today).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Are you already putting a tech stack in the brief, or leaving stack for Module 18?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 4: Process map"
+          }
+        },
+        {
+          "id": 16.3,
+          "title": "Process map",
+          "shortTitle": "Process map",
+          "subtitle": "From problem to test",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Kelias: PROBLEMA → NAUDOTOJAS → VERTĖ → 1 FUNKCIJA → PROTOTIPAS → TESTAS. Cursor build – tik in Module 18.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Delivery gates",
+                "body": "Šeši vartai iki brief/testo – Cursor build tik in Module 18. Spausk vartą diagramoje.",
+                "blockVariant": "brand",
+                "image": "m16_delivery_gates",
+                "imageAlt": "Delivery vartai: problema, naudotojas, vertė, 1 funkcija, prototipas, testas"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk, kuriame žingsnyje esi dabar.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar žinai, kad šiame modulyje baigiame brief’u, ne kodu?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 5: Problem before solution"
+          }
+        },
+        {
+          "id": 16.4,
+          "title": "Problem before solution",
+          "shortTitle": "Problem before solution",
+          "subtitle": "Bad vs good start",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Blogas: „Noriu app su AI.“ Geras: konkreti naudotojo problema situacijoje su pasekme.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Bad vs good start",
+                "body": "Pradėk nuo žmogaus, ne nuo technologijos.",
+                "blockVariant": "brand",
+                "table": {
+                  "comparisonStyle": true,
+                  "headers": ["Blogas", "Geras"],
+                  "rows": [
+                    ["„Noriu app su DI“", "Konkreti naudotojo problema"],
+                    [
+                      "Fokusas – stack ir funkcijos",
+                      "Fokusas – situacija ir pasekmė"
+                    ],
+                    ["Neaišku, ką tikrinsi", "Aišku, ką prototipas patikrina"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Perrašyk savo idėją kaip problemą: kas kenčia, kada, kokia pasekmė.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar sakinys apie žmogų, o ne apie technologiją?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 6: Problem formula"
+          }
+        },
+        {
+          "id": 16.5,
+          "title": "Problem formula",
+          "shortTitle": "Problem formula",
+          "subtitle": "User · problem · situation · consequence",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Formulė: [Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė]. Tikrink: dažnis, nepatogumas, ar prototipas patikrina dalį.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užpildyk formulę. Mokėjimas – optional.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar prototipas gali patikrinti bent vieną skausmo dalį?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 7: Value is not a feature"
+          }
+        },
+        {
+          "id": 16.6,
+          "title": "Value is not a feature",
+          "shortTitle": "Value is not a feature",
+          "subtitle": "Outcome vs product action",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Vertė = pokytis žmogui (pvz. sutaupo 10 min). Funkcija = veiksmas produkte (pvz. surikiuoja 3 užduotis).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Parašyk porą: vertė + funkcija po vieną sakinį.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar vertė lieka prasminga, jei pakeistum įrankį?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 8: MVP scope",
+            "recognitionExercise": {
+              "title": "Atpažink: vertė ar funkcija?",
+              "task": "Perskaityk 4 fraizes ir kiekvienai pasirink – **vertė** ar **funkcija**.",
+              "examples": [
+                "Sutaupo 10 minučių ryto planavimui.",
+                "Surikiuoja 3 dienos užduotis pagal prioritetą.",
+                "Žmogus žino, nuo ko pradėti, be streso.",
+                "Siunčia priminimą 9:00."
+              ],
+              "choices": [
+                "Vertė (pokytis žmogui)",
+                "Funkcija (veiksmas produkte)"
+              ],
+              "correctAnswers": [0, 1, 0, 1],
+              "explanations": [
+                "Pokytis žmogui – tai vertė, ne mygtukas.",
+                "Surikiavimas – produkto veiksmas (funkcija).",
+                "Mažiau streso / aiškumas – vertė.",
+                "Priminimas – funkcija; vertė būtų „nepamiršta pradėti“."
+              ],
+              "goal": "Vertė lieka prasminga, jei pakeistum įrankį; funkcija – konkretus veiksmas produkte."
+            }
+          }
+        },
+        {
+          "id": 16.7,
+          "title": "MVP scope",
+          "shortTitle": "MVP scope",
+          "subtitle": "Must now · Later · Won’t",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Triage mapinasi į Must / Should / Won’t. Pirmam MVP – 1 fn + max 1–2 palaikančios.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Triage zones",
+                "body": "Must = Būtina dabar. Should = Galima vėliau. Won’t = Nekuriame šiame MVP.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Zona", "Ką dedame", "Pavyzdys"],
+                  "rows": [
+                    [
+                      "Būtina dabar",
+                      "1 pagrindinė fn + max 1–2 palaikančios",
+                      "Surikiuoti 3 dienos užduotis"
+                    ],
+                    [
+                      "Galima vėliau",
+                      "Naudinga, bet neblokuojanti pirmo testo",
+                      "Priminimai el. paštu"
+                    ],
+                    [
+                      "Nekuriame",
+                      "Per anksti ar per platu pirmam MVP",
+                      "Auth, mokėjimai, admin panelė"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Įmesk 5 idėjas į tris stulpelius. Auth ir mokėjimai – greičiausiai Nekuriame.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar „Būtina“ telpa į vieną trumpą naudotojo ciklą?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 9: Practice: creation card"
+          }
+        },
+        {
+          "id": 16.8,
+          "title": "Practice: creation card",
+          "shortTitle": "Practice: creation card",
+          "subtitle": "5 fields – bridge to the brief",
+          "type": "path-step",
+          "content": {
+            "title": "Kūrimo kortelė – 5 laukai užrašyti",
+            "pathLabel": "Kūrimo kortelė",
+            "stepNumber": 1,
+            "stepTotal": 1,
+            "body": "Užpildyk kortelę savo idėjai (arba dienos prioritetų įrankiui). Pažymėk, kai visi 5 laukai užrašyti – tai tiltas į brief.",
+            "sections": [
+              {
+                "heading": "1. Naudotojas",
+                "body": "Kas naudoja ir kokiame kontekste?"
+              },
+              {
+                "heading": "2. Problema",
+                "body": "Konkreti problema (ne „noriu app“)."
+              },
+              {
+                "heading": "3. Kuriama vertė",
+                "body": "Koks pokytis naudotojui – ne funkcijų sąrašas."
+              },
+              {
+                "heading": "4. Pagrindinė funkcija",
+                "body": "Viena pagrindinė funkcija (+ max 1–2 palaikančios)."
+              },
+              {
+                "heading": "5. Kaip žinosime, kad veikia",
+                "body": "Patikrinamas sėkmės kriterijus (idealiai <2 min)."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar funkcija tikrai viena? Ar sėkmės kriterijus patikrinamas?"
+              }
+            ],
+            "footer": "Next – slide 10: Kortelė paruošta"
+          }
+        },
+        {
+          "id": 16.85,
+          "title": "Kortelė paruošta",
+          "shortTitle": "Kortelė ✓",
+          "subtitle": "D1 baigta – toliau brief",
+          "type": "section-break",
+          "content": {
+            "title": "Kortelė paruošta",
+            "subtitle": "Toliau: VSR, kryptis, ciklas ir 01_MVP_BRIEF.md. Dar ne Cursor build.",
+            "sectionNumber": "D1→D2",
+            "celebrationText": "Puiku! 5 kortelės laukai – tiltas į brief.",
+            "recap": {
+              "heading": "Ką jau žinai?",
+              "lead": "Pirmoji dalis – nuo problemos iki kortelės.",
+              "items": [
+                "Problema prieš sprendimą – konkretus naudotojas ir pasekmė.",
+                "Vertė ≠ funkcija; triage: Būtina / Galima / Nekuriame.",
+                "Kūrimo kortelė: 5 laukai kaip įvestis į brief."
+              ],
+              "itemGlossaryTerms": ["", "Triage (Must now / Later / Won’t)", ""]
+            },
+            "nextSteps": [
+              "Vibe → Skeleton → Refinement – brief fazės.",
+              "Produkto sakinys, kritika ir trys kryptys A/B/C.",
+              "Naudotojo ciklas, ekranai, ribos ir rizikos.",
+              "Praktika: 01_MVP_BRIEF.md (11 laukų)."
+            ],
+            "footer": "Next – slide 11: Transition to the brief"
+          }
+        },
+        {
+          "id": 16.9,
+          "title": "Transition to the brief",
+          "shortTitle": "Transition to the brief",
+          "subtitle": "From card to concept",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Kortelė paruošta – toliau brief (kritika, kryptis, ribos).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pasidėk 5 kortelės laukus šalia.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar turi visus 5 kortelės laukus?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 12: Vibe → Skeleton → Refinement"
+          }
+        },
+        {
+          "id": 16.101,
+          "title": "Vibe → Skeleton → Refinement",
+          "shortTitle": "Vibe → Skeleton → Refinement",
+          "subtitle": "Brief maturity phases",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Vibe → Skeleton → Refinement – brief fazės, ne antras delivery kelias.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "VSR maturity ladder",
+                "body": "Vibe → Skeleton → Refinement – brief fazės. Spausk pakopą.",
+                "blockVariant": "brand",
+                "image": "m16_vsr_maturity",
+                "imageAlt": "VSR brandos kopėčios: Vibe, Skeleton, Refinement"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pasakyk, kurioje fazėje tavo idėja dabar.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar nešoki į Refinement be Skeleton ciklo?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 13: Product sentence"
+          }
+        },
+        {
+          "id": 16.11,
+          "title": "Product sentence",
+          "shortTitle": "Product sentence",
+          "subtitle": "One line – for whom and why",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Kuriu [produktą], kuris padeda [žmogui] išspręsti [problemą], suteikdamas [rezultatą].",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Parašyk produkto sakinį iš kortelės.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar sakinys telpa į vieną eilutę?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 14: Three pillars and critique"
+          }
+        },
+        {
+          "id": 16.12,
+          "title": "Three pillars and critique",
+          "shortTitle": "Three pillars and critique",
+          "subtitle": "Problem–user–value + Before/After",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Trys atramos + skeptiška kritika be funkcijų spill. Prieš/Po: po kritikos sakinys siauresnis.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Paleisk Skeptiko prompt ant savo idėjos ir perrašyk sakinį Po.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Skeptic",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Tu esi skeptiškas produkto konsultantas. Mano idėja: [trumpai].\n1) Surask nepatikrintas prielaidas.\n2) Užduok max 5 klausimus, kurie sumažina riziką.\n3) Pasakyk, kas greičiausiai neveiks pirmame prototipe.\nNesiūlyk papildomų funkcijų ir tech stack."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar Po sakinys atsisakė bent vienos prielaidos?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 15: Three directions",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas Skeptiką – ko jis neturi daryti?",
+              "options": [
+                "Nesiūlyti papildomų funkcijų ir tech stack",
+                "Pridėti Auth ir Stripe kaip Must",
+                "Perrašyti visą produktą iš naujo",
+                "Pasiūlyti 20 naujų ekranų"
+              ],
+              "correct": 0,
+              "explanation": "Skeptikas siaurina prielaidas – ne meta funkcijų ar stack."
+            }
+          }
+        },
+        {
+          "id": 16.14,
+          "title": "Three directions",
+          "shortTitle": "Three directions",
+          "subtitle": "A / B / C – who, what, result",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Trys kryptys lentele: kam / ką daro / rezultatas. Ne 30 funkcijų.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Three directions A / B / C",
+                "body": "Užpildyk savo eilutes – ne 30 funkcijų.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Kryptis", "Kam", "Ką daro", "Rezultatas"],
+                  "rows": [
+                    [
+                      "A",
+                      "Užsiėmęs profesionalas",
+                      "Rodo 3 dienos prioritetus",
+                      "Žino, nuo ko pradėti per 1 min"
+                    ],
+                    [
+                      "B",
+                      "Komandos narys",
+                      "Dalijasi vienu prioritetų sąrašu",
+                      "Visi mato tą patį „dabar“"
+                    ],
+                    [
+                      "C",
+                      "Vadovas",
+                      "Matuoja, kiek užduočių baigta",
+                      "Trumpa dienos santrauka"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užpildyk A/B/C po vieną eilutę kiekvienam stulpeliui.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar kiekviena kryptis vis dar ta pati problema?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 16: Pick the most testable"
+          }
+        },
+        {
+          "id": 16.15,
+          "title": "Pick the most testable",
+          "shortTitle": "Pick the most testable",
+          "subtitle": "Score 1–5, not a radar",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Rinkis patikrinamiausią kryptį – ne gražiausią. Orientyras: greitis patikrinti, aiškumas, rizika (pavyzdys A≈11, B≈10, C≈9).",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Krypties lab",
+                "body": "Pasirink A, B arba C. Po pasirinkimo – balų veidrodis ir kopijuojamas „kodėl patikrinamiausia“.",
+                "blockVariant": "brand",
+                "image": "m16_direction_picker",
+                "imageAlt": "Krypties pasirinkimo lab: A/B/C, balai ir kopijuojamas kodėl"
+              },
+              {
+                "heading": "Orientyras 1–5 (pavyzdys)",
+                "body": "Jei nori lentelės – atverk. Lab’e jau matai balus po pasirinkimo.",
+                "blockVariant": "default",
+                "collapsible": true,
+                "table": {
+                  "headers": ["Kriterijus", "A", "B", "C"],
+                  "rows": [
+                    ["Greitis patikrinti (1–5)", "5", "3", "2"],
+                    ["Aiškumas naudotojui (1–5)", "4", "4", "3"],
+                    ["Rizika / sudėtingumas (1=maža)", "2", "3", "4"],
+                    ["Suma (orientyras)", "11", "10", "9"]
+                  ]
+                }
+              },
+              {
+                "heading": "Check",
+                "body": "Ar nugalėtojas patikrinamas per dieną, o ne per ketvirtį?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 17: User cycle"
+          }
+        },
+        {
+          "id": 16.16,
+          "title": "User cycle",
+          "shortTitle": "User cycle",
+          "subtitle": "Trigger → Input → Action → Result → Next",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Viena schema visam keliui. Ciklas aprašo UX, ne funkcijų sąrašą.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "User cycle",
+                "body": "Triggeris → įvestis → veiksmas → rezultatas → kitas (su grįžimu). Spausk žingsnį.",
+                "blockVariant": "brand",
+                "image": "m16_user_cycle",
+                "imageAlt": "Naudotojo ciklas su grįžimu"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užrašyk 5 žingsnius savo nugalėtojai krypčiai.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar „Rezultatas“ matomas naudotojui per <2 min?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 18: Screens from the flow"
+          }
+        },
+        {
+          "id": 16.17,
+          "title": "Screens from the flow",
+          "shortTitle": "Screens from the flow",
+          "subtitle": "Max 3–5 screens",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Ekranai kyla iš ciklo. Max 3–5. Ne AI fantazija su dešimtimi langų.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Screen ← cycle step",
+                "body": "Pavyzdys dienos prioritetų įrankiui – max 5.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Ekranas", "Ciklo žingsnis"],
+                  "rows": [
+                    ["Pradžia / šiandien", "Triggeris"],
+                    ["Įvesti 3 užduotis", "Įvestis"],
+                    ["Surikiuoti prioritetus", "Veiksmas"],
+                    ["Top 3 sąrašas", "Rezultatas"],
+                    ["Rytojaus priminimas (optional)", "Kitas"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Išvardyk ekranus iš savo ciklo (≤5).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar kiekvienas ekranas turi vietą cikle?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 19: Bounds and Now–Next–Later"
+          }
+        },
+        {
+          "id": 16.18,
+          "title": "Bounds and Now–Next–Later",
+          "shortTitle": "Bounds and Now–Next–Later",
+          "subtitle": "Must ≤4 · Won’t on purpose",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Būtina/Galima/Nekuriame = Must≤4 / Should / Won’t. „Dabar“ = vienas trumpas ciklas – be Q roadmap.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Must / Should / Won’t and NNL",
+                "body": "Pavyzdys dienos prioritetų įrankiui – perrašyk savo idėjai.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Zona", "Pavyzdys", "Dabar → Toliau → Vėliau"],
+                  "rows": [
+                    [
+                      "Must (≤4)",
+                      "Surikiuoti 3 dienos užduotis",
+                      "Dabar: vienas ciklas <2 min"
+                    ],
+                    ["Should", "Priminimas ryte", "Toliau: po pirmo smoke"],
+                    [
+                      "Won’t (≥3)",
+                      "Auth, Stripe, MCP",
+                      "Vėliau / niekada šiame MVP"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užpildyk Must (≤4), Should, Won’t (≥3) ir Dabar→Toliau→Vėliau.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar Auth/Stripe/MCP yra Won’t, jei jie neša pirmą ciklą?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 20: Risks"
+          }
+        },
+        {
+          "id": 16.201,
+          "title": "Risks",
+          "shortTitle": "Risks",
+          "subtitle": "3 risks + mitigation",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Trys rizikos + kaip sumažinsi. Ne plati rizikos matrica – viena eilutė kiekvienai.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "3 risks",
+                "body": "Pavyzdžiai – perrašyk savo idėjai.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Rizika", "Kaip sumažinsi"],
+                  "rows": [
+                    ["Per plati apimtis", "Must ≤4; Auth/Stripe → Won’t"],
+                    [
+                      "Nėra tikrų duomenų / užduočių",
+                      "Seed 3 pavyzdines užduotis prieš smoke"
+                    ],
+                    [
+                      "Naudotojas negrįžta",
+                      "Sėkmės kriterijus <2 min pirmame cikle"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Įrašyk 3 savo rizikas su po vieną mažinimo eilutę.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar kiekviena rizika turi vieną konkrečią mažinimo eilutę?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 21: Savitikra prieš brief"
+          }
+        },
+        {
+          "id": 16.205,
+          "title": "Savitikra prieš brief",
+          "shortTitle": "Savitikra",
+          "subtitle": "2–3 klausimai – ar pasiruošęs brief’ui?",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m16-wu-must",
+                "question": "Kiek Must punktų turėtų tilpti į pirmą MVP brief’ą?",
+                "options": [
+                  "Must ≤4 – siaura apimtis",
+                  "Must ≥10 – kad nieko nepamirštum",
+                  "Must neribotas – viską įrašyk",
+                  "Must tik tech stack"
+                ],
+                "correct": 0,
+                "explanation": "Siauras brief: Must ≤4. Jei klaidingai – grįžk prie skaidrės „Ribos ir Now–Next–Later“."
+              },
+              {
+                "id": "m16-wu-value",
+                "question": "Kas skiria vertę nuo funkcijos?",
+                "options": [
+                  "Vertė = pokytis naudotojui; funkcija = veiksmas produkte",
+                  "Vertė ir funkcija – tas pats",
+                  "Vertė = tech stack; funkcija = dizainas",
+                  "Vertė = kiek ekranų turi"
+                ],
+                "correct": 0,
+                "explanation": "Vertė = pokytis; funkcija = kaip produktas veikia. Žr. skaidrę „Vertė ≠ funkcija“."
+              },
+              {
+                "id": "m16-wu-cycle",
+                "question": "Kuo naudotojo ciklas skiriasi nuo funkcijų sąrašo?",
+                "options": [
+                  "Ciklas aprašo UX eigą (triggeris → rezultatas → kitas), ne feature listą",
+                  "Ciklas yra ERD diagrama",
+                  "Ciklas = deploy checklist",
+                  "Ciklas reikalingas tik po GitHub"
+                ],
+                "correct": 0,
+                "explanation": "Ciklas = UX seka. Žr. skaidrę „Naudotojo ciklas“."
+              }
+            ],
+            "footer": "Next – slide 22: Practice: MVP brief"
+          }
+        },
+        {
+          "id": 16.21,
+          "title": "Practice: MVP brief",
+          "shortTitle": "Practice: MVP brief",
+          "subtitle": "Fill 01_MVP_BRIEF.md (11 fields)",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Brief = produkto sakinys, problema, naudotojas, vertė, ciklas, Must/Should/Won’t, ekranai ≤5, duomenys (high-level), Dabar→Toliau→Vėliau, 3 rizikos, sėkmės kriterijus. Alias M18: mvp_brief.md.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užpildyk 11 laukų. Jei užstrigai – nukopijuok Brief pagalbininką.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Brief helper",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Padėk parašyti siaurą MVP brief in English.\nKontekstas: [kortelė / idėja].\nTaisyklės: Must ≤4; Won’t ≥3; max 3 spragos klausimais; be tech stack (stack – vėliau).\nGrąžink 11 laukų: produkto sakinys, problema, naudotojas, vertė, ciklas, Must/Should/Won’t, ekranai ≤5, duomenys (high-level), Dabar→Toliau→Vėliau, 3 rizikos, sėkmės kriterijus."
+              },
+              {
+                "heading": "Check",
+                "body": "Must≤4? Won’t≥3? Sėkmės kriterijus patikrinamas per <2 min?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 23: Module 16 summary",
+            "briefCheckBlock": {
+              "question": "Kurio brief lauko trūksta, jei negali pasakyti, ar MVP „veikia“ per <2 min?",
+              "options": [
+                "Sėkmės kriterijus (patikrinamas)",
+                "Tech stack ir hostingas",
+                "Q2–Q4 roadmap",
+                "Dizaino sistemos spalvos"
+              ],
+              "correct": 0,
+              "explanation": "Be patikrinamo sėkmės kriterijaus brief’as lieka idėja. Stack ir roadmap – vėliau."
+            },
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas Brief pagalbininką – kas privaloma MVP brief’e?",
+              "options": [
+                "Must ≤4, Won’t ≥3, patikrinamas sėkmės kriterijus",
+                "Bent 10 ekranų ir pilnas ERD",
+                "Auth + mokėjimai kaip Must",
+                "Tik produkto sakinys be ribų"
+              ],
+              "correct": 0,
+              "explanation": "Siauras brief: Must/Won’t ir sėkmės kriterijus. Auth/mokėjimai greičiausiai Won’t pirmam MVP."
+            }
+          }
+        },
+        {
+          "id": 16.22,
+          "title": "Module 16 summary",
+          "subtitle": "Brief ready – next is the quiz",
+          "shortTitle": "Module 16 summary",
+          "type": "summary",
+          "content": {
+            "introHeading": "Ką išmokai",
+            "introBody": "Nuo miglotos idėjos iki 01_MVP_BRIEF.md – su Must/Won’t, ciklu ir patikrinamu sėkmės kriterijumi.",
+            "stats": [
+              {
+                "label": "Kortelės laukai",
+                "value": "5"
+              },
+              {
+                "label": "Brief laukai",
+                "value": "11"
+              },
+              {
+                "label": "Kelias",
+                "value": "Kodo inž."
+              }
+            ],
+            "sections": [
+              {
+                "heading": "Problema prieš sprendimą",
+                "icon": "Target",
+                "color": "brand",
+                "items": ["Formulė ir kortelė", "Vertė ≠ funkcija"]
+              },
+              {
+                "heading": "Triage",
+                "icon": "Layers",
+                "color": "violet",
+                "items": ["Būtina / Galima / Nekuriame", "Must ≤4"]
+              },
+              {
+                "heading": "Ciklas ir ekranai",
+                "icon": "Workflow",
+                "color": "emerald",
+                "items": ["5 žingsnių ciklas", "≤5 ekranai"]
+              },
+              {
+                "heading": "Brief",
+                "icon": "Zap",
+                "color": "amber",
+                "items": ["01_MVP_BRIEF.md", "11 privalomų laukų"]
+              },
+              {
+                "heading": "Kritika",
+                "icon": "Sparkles",
+                "color": "rose",
+                "items": ["Skeptikas", "3 rizikos"]
+              }
+            ],
+            "tagline": "Vibe coding su disciplina prasideda brief’u – ne generavimu.",
+            "nextStepCTA": "Go to Module 17: Knowledge check (Code path)",
+            "abilityBefore": "I treated the idea as “need an app” with no bounds.",
+            "abilityAfter": "I can fill an MVP brief with Must/Won’t and a user cycle.",
+            "firstAction24h": "Finish 01_MVP_BRIEF.md for one narrow idea today.",
+            "footer": "Next – Module 17: Žinių patikrinimas"
+          }
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "MVP brief",
+          "description": "Siaura užduotis su Must/Won’t"
+        },
+        {
+          "title": "Naudotojo ciklas",
+          "description": "Triggeris → rezultatas per <2 min"
+        }
+      ],
+      "transfer": {
+        "abilityBefore": "I treated the idea as “need an app” with no bounds.",
+        "abilityAfter": "I can fill an MVP brief with Must/Won’t and a user cycle.",
+        "firstAction24h": "Finish 01_MVP_BRIEF.md for one narrow idea today.",
+        "nextStepCTA": "Go to Module 17 quiz"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Knowledge check (Code path)",
+      "subtitle": "Quiz: brief and planning quality",
+      "description": "Check that your brief is narrow and testable. ≥70% recommended before Module 18.",
+      "icon": "ClipboardCheck",
+      "level": "test",
+      "duration": "12–15 min",
+      "unlocksAfter": 16,
+      "accent": "cyan",
+      "identityIcon": "ClipboardCheck",
+      "slides": [
+        {
+          "id": 170,
+          "title": "Module 17 quiz",
+          "subtitle": "Brief and planning knowledge",
+          "type": "test-intro",
+          "content": {
+            "whyBenefit": "Po testo žinosi, ar brief’as pakankamai siauras ir patikrinamas prieš Cursor projektą.",
+            "duration": "~12–15 min",
+            "firstActionCTA": "Atsakyk į klausimus apie brief ir planavimą – ne apie kodą ar deploy.",
+            "microWinPhrase": "Kiekvienas teisingas atsakymas rodo, kad moki siaurinti užduotį prieš generavimą.",
+            "thresholds": {
+              "pass": 70,
+              "fail": 0
+            },
+            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Module 18 (projektas). Jei mažiau – peržiūrėk Module 16 brief ir triage skaidres.",
+            "footer": "Next – slide 2: Savitikra"
+          }
+        },
+        {
+          "id": 170.5,
+          "title": "Warm-up before the quiz",
+          "shortTitle": "Warm-up before the quiz",
+          "subtitle": "3 questions: 1+1+1, value, path to M18",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m17-warm-1",
+                "question": "Koks geriausias 1+1+1 startas MVP užduočiai?",
+                "options": [
+                  "Naudotojas + problema + 1 pagrindinė funkcija (ir sėkmės kriterijus)",
+                  "10 funkcijų sąrašas + stack pasirinkimas",
+                  "„Sukurk app su DI“ be naudotojo",
+                  "Iš karto Auth ir Stripe"
+                ],
+                "correct": 0,
+                "explanation": "Siauras startas = žmogus, problema, viena funkcija. Stack ir mokėjimai – vėliau."
+              },
+              {
+                "id": "m17-warm-2",
+                "question": "Kuris teiginys yra vertė, o ne funkcija?",
+                "options": [
+                  "Sutaupo 10 minučių rytą susidėliojant prioritetus",
+                  "Turi drag-and-drop lentelę",
+                  "Jungiasi prie 5 API",
+                  "Naudoja Redis cache"
+                ],
+                "correct": 0,
+                "explanation": "Vertė = pokytis žmogui. Likę – funkcijos ar infra."
+              },
+              {
+                "id": "m17-warm-3",
+                "question": "Po testo ką darysi pirmiausia in Module 18?",
+                "options": [
+                  "Sudėliosi BUILD PACKET iš brief’o (flow, rules, Cursor promptas) – ne „sukurk visą app“",
+                  "Iš karto prašysi DI parašyti visą sistemą be PACKET",
+                  "Praleisi brief ir eisi į multi-agent setup",
+                  "Pradėsi nuo Heroku blue-green kurso"
+                ],
+                "correct": 0,
+                "explanation": "M18 ašis: brief → PACKET → Cursor pjūvis → proof. Ne chaotiškas generate."
+              }
+            ],
+            "footer": "Next – slide 3: Klausimai"
+          }
+        },
+        {
+          "id": 171,
+          "title": "Questions",
+          "subtitle": "Planning and brief quality",
+          "type": "test-section",
+          "testQuestions": [
+            {
+              "id": "m17-q1",
+              "type": "mcq",
+              "question": "Kurį startą laikyti blogu?",
+              "options": [
+                "„Noriu app su DI“",
+                "Konkreti naudotojo problema su situacija",
+                "1 naudotojas + 1 problema",
+                "Vertė vienu sakiniu"
+              ],
+              "correct": 0,
+              "explanation": "Be problemos – tik technologijos troškimas.",
+              "relatedSlideId": 16.4
+            },
+            {
+              "id": "m17-q2",
+              "type": "mcq",
+              "question": "„Surikiuoja 3 užduotis“ – kas tai?",
+              "options": ["Vertė", "Funkcija", "Rizika", "Won’t"],
+              "correct": 1,
+              "explanation": "Tai produkto veiksmas = funkcija. Vertė būtų laiko / streso pokytis.",
+              "relatedSlideId": 16.6
+            },
+            {
+              "id": "m17-q3",
+              "type": "mcq",
+              "question": "Auth ir Stripe pirmame MVP triage – kur?",
+              "options": [
+                "Būtina dabar",
+                "Galima vėliau arba Nekuriame (Won’t pirmam ciklui)",
+                "Must visada",
+                "Ignoruoti triage"
+              ],
+              "correct": 1,
+              "explanation": "Mokėjimai/auth retai būtini pirmajam siauram ciklui.",
+              "relatedSlideId": 16.18
+            },
+            {
+              "id": "m17-q4",
+              "type": "ordering",
+              "question": "Surikiuok VSR fazes brief brandinimui (nuo pirmos iki paskutinės):",
+              "items": ["Skeleton", "Refinement", "Vibe"],
+              "correctOrder": ["Vibe", "Skeleton", "Refinement"],
+              "explanation": "Kryptis (Vibe) → karkasas (Skeleton) → ribos/brief (Refinement).",
+              "relatedSlideId": 16.101
+            },
+            {
+              "id": "m17-q5",
+              "type": "mcq",
+              "question": "Ko dažniausiai trūksta silpname brief’e?",
+              "options": [
+                "Must/Won’t ir sėkmės kriterijaus",
+                "Tik logo failo",
+                "Heroku pipeline",
+                "80% coverage"
+              ],
+              "correct": 0,
+              "explanation": "Ribos ir patikrinamas Done – brief branduolys.",
+              "relatedSlideId": 16.21
+            },
+            {
+              "id": "m17-q6",
+              "type": "mcq",
+              "question": "Kas geriau aprašo UX?",
+              "options": [
+                "Triggeris→Įvestis→Veiksmas→Rezultatas→Kitas",
+                "20 funkcijų bullet list",
+                "Tik ERD",
+                "Tik stack lentele"
+              ],
+              "correct": 0,
+              "explanation": "Ciklas aprašo naudotojo patirtį.",
+              "relatedSlideId": 16.16
+            },
+            {
+              "id": "m17-q7",
+              "type": "mcq",
+              "question": "Kas „per anksti“ prieš siaurą MVP?",
+              "options": [
+                "Redis + AWS + 10 ekranų + Auth",
+                "1 ciklas ir ≤5 ekranai",
+                "3 rizikos",
+                "Must ≤4"
+              ],
+              "correct": 0,
+              "explanation": "Infra ir plotis be pirmo ciklo – per anksti.",
+              "relatedSlideId": 16.18
+            },
+            {
+              "id": "m17-q8",
+              "type": "mcq",
+              "question": "Ką duoti Cursor prieš generate?",
+              "options": [
+                "PACKET / rules / vertikalų pjūvį",
+                "Tik „sukurk app“",
+                "Tik memą",
+                "Tik kainų anekdotą"
+              ],
+              "correct": 0,
+              "explanation": "Kontekstas ir ribos prieš generavimą.",
+              "relatedSlideId": 16.21
+            },
+            {
+              "id": "m17-q9",
+              "type": "mcq",
+              "question": "Koks geras sėkmės kriterijus MVP brief’e?",
+              "options": [
+                "Per 2 min galima patikrinti, ar pagrindinė fn veikia naudotojui",
+                "„Bus modernu“ be matavimo",
+                "10 ekranų ir Auth kaip pirmas žingsnis",
+                "Coverage 80% prieš pirmą paleidimą"
+              ],
+              "correct": 0,
+              "explanation": "Sėkmės kriterijus = greitai patikrinamas Done, ne mada ar infra.",
+              "relatedSlideId": 16.21
+            },
+            {
+              "id": "m17-q10",
+              "type": "mcq",
+              "question": "MCP serveriai brief fazėje?",
+              "options": [
+                "Per anksti branduoliui – neprivaloma",
+                "Privaloma visada",
+                "Vienintelis kelias",
+                "Keičia Must/Won’t"
+              ],
+              "correct": 0,
+              "explanation": "MCP/Spec Kit – ne privalomas kelias šiame kurse.",
+              "relatedSlideId": 16.18
+            },
+            {
+              "id": "m17-q11",
+              "type": "mcq",
+              "question": "Po AI pakeitimo – kada skaityti diff?",
+              "options": [
+                "Prieš commit: perskaityti diff, tada smoke, tada commit",
+                "Iškart commit + push be skaitymo",
+                "Tik po deploy URL",
+                "Nereikia, jei UI „atrodo gerai“"
+              ],
+              "correct": 0,
+              "explanation": "Diff ritualas: status → diff → smoke → commit → push.",
+              "relatedSlideId": 18.201
+            }
+          ],
+          "content": {
+            "footer": "Next – slide 4: Rezultatai"
+          }
+        },
+        {
+          "id": 172,
+          "title": "Results",
+          "subtitle": "Is the brief ready for Module 18?",
+          "type": "test-results",
+          "content": {
+            "useCaseBlock": {
+              "heading": "Kitas žingsnis: Modulis 18",
+              "body": "Jei ≥70 % – eik į projektą: BUILD PACKET, Cursor vertikalus pjūvis ir soft DoD. Jei mažiau – grįžk prie kortelės ir brief’o Module 16."
+            },
+            "footer": "Next – slide 5: Bonus: brief checklist"
+          }
+        },
+        {
+          "id": 173,
+          "title": "Bonus: brief checklist in 5 min",
+          "subtitle": "Optional before Module 18",
+          "shortTitle": "Bonus: brief checklist in 5 min",
+          "type": "content-block",
+          "optional": true,
+          "badgeVariant": "bonus",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Patikrink brief prieš PACKET – 5 greiti punktai.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Brief checklist",
+                "body": "Pažymėk žaliai / raudonai savo 01_MVP_BRIEF.md.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Punktas", "Žalia jei"],
+                  "rows": [
+                    ["Produkto sakinys", "Telpa į 1 eilutę"],
+                    ["Must ≤4", "Siaura apimtis"],
+                    ["Won’t ≥3", "Sąmoningai atsisakyta"],
+                    ["Ciklas + ≤5 ekranai", "UX, ne feature list"],
+                    ["Sėkmės kriterijus", "Patikrinamas per <2 min"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk žaliai/raudonai kiekvieną punktą savo brief’e.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar gali pradėti PACKET be „sukurk visą app“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – Module 18: Finalinis projektas"
+          }
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "Brief kokybė",
+          "description": "Siaurumas ir patikrinamumas"
+        },
+        {
+          "title": "Triage",
+          "description": "Must vs Won’t prieš Cursor"
+        }
+      ],
+      "transfer": {
+        "abilityBefore": "You checked brief quality by gut feel, without clear Must/Won’t gates.",
+        "abilityAfter": "You can check that a brief is narrow and testable before a Cursor project.",
+        "firstAction24h": "Within 24–48h, fix one weak brief spot and go to Module 18 with Must ≤4.",
+        "nextStepCTA": "Go to Module 18 – BUILD PACKET and soft DoD."
+      }
+    },
+    {
+      "id": 18,
+      "title": "Final project (Code path)",
+      "subtitle": "BUILD PACKET → Cursor → soft DoD",
+      "description": "Assemble a BUILD PACKET and prove a runnable (or local) MVP with discipline.",
+      "icon": "Rocket",
+      "level": "practice",
+      "duration": "45–90 min",
+      "unlocksAfter": 17,
+      "accent": "cyan",
+      "identityIcon": "Rocket",
+      "slides": [
+        {
+          "id": 180,
+          "title": "Code engineering project",
+          "subtitle": "PACKET → Cursor → soft DoD",
+          "type": "practice-intro",
+          "content": {
+            "whyBenefit": "Po projekto turėsi BUILD PACKET ir įrodytą paleidžiamą (arba lokaliai veikiantį) MVP.",
+            "duration": "~45–90 min",
+            "firstActionCTA": "Atidaryk savo 01_MVP_BRIEF.md (arba šabloną) ir pažymėk Must / Won’t.",
+            "outcomes": [
+              "BUILD PACKET (brief, flow, rules, Cursor promptas)",
+              "Vertikalus pjūvis Cursor su planu prieš kodą",
+              "Soft DoD: URL arba lokalus proof + GitHub"
+            ],
+            "minScenariosToComplete": 1,
+            "recommendedSlideIds": [18.12, 18.23],
+            "taskOneLiner": "Sudėliok PACKET, padaryk vieną Cursor pjūvį ir surink soft DoD įrodymą.",
+            "footer": "Next – slide 2: Refresh"
+          }
+        },
+        {
+          "id": 18.05,
+          "title": "Refresh: brief → PACKET",
+          "shortTitle": "Refresh: brief → PACKET",
+          "subtitle": "Single 1+1+1 reminder",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Turi brief. Čia nekartojame viso M16. Primename: 1 naudotojas, 1 problema, 1 fn – ir pereiname į PACKET.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Atidaryk brief ir patvirtink Must (≤4) bei sėkmės kriterijų.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar gali eiti į flow be naujo „noriu app“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 3: Ne visa app"
+          }
+        },
+        {
+          "id": 18.1,
+          "title": "Why not the whole app",
+          "shortTitle": "Why not the whole app",
+          "subtitle": "Chaos vs controlled build",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "AI siūlo daug. Žmogus riboja. Kontroliuojamas kūrimas = PACKET + vienas pjūvis.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Chaos vs control",
+                "body": "Kontroliuojamas kūrimas = PACKET + vienas pjūvis.",
+                "blockVariant": "brand",
+                "table": {
+                  "comparisonStyle": true,
+                  "headers": ["Chaosas", "Kontrolė"],
+                  "rows": [
+                    [
+                      "„Sukurk visą app“ be ribų",
+                      "PACKET + 1 vertikalus pjūvis"
+                    ],
+                    ["DI pats renka scope", "Tu renki Must / Won’t"],
+                    ["Commit be diff", "Diff → smoke → commit"],
+                    ["Done = „sugeneravo“", "Done = proof (URL arba lokalus)"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užrašyk, ką AI greičiausiai pasiūlys per daug tavo temoje.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar turi sakinį, kuo atsakysi į „o gal dar…“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 4: Anti-pavyzdys"
+          }
+        },
+        {
+          "id": 18.2,
+          "title": "Anti-example",
+          "shortTitle": "Anti-example",
+          "subtitle": "Task Manager + Redis/Auth/Stripe",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Pilnas Task Manager su Redis, WebSocket, AWS, Auth, Stripe – ne pirmas MVP.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Anti vs MVP",
+                "body": "Išbrauk plotį – palik vieną pjūvį.",
+                "blockVariant": "brand",
+                "table": {
+                  "comparisonStyle": true,
+                  "headers": ["Anti (per anksti)", "MVP pjūvis"],
+                  "rows": [
+                    [
+                      "Task Manager + Redis + WebSocket",
+                      "1 sąrašas: 3 prioritetai"
+                    ],
+                    [
+                      "Auth + Stripe pirmame commit",
+                      "Lokalus paleidimas be mokėjimų"
+                    ],
+                    ["AWS + 10 ekranų", "≤5 ekranai iš ciklo"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Išbrauk iš savo listo viską, kas neša pirmą ciklą.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar liko vienas vertikalus pjūvis?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 5: User flow"
+          }
+        },
+        {
+          "id": 18.3,
+          "title": "User flow",
+          "shortTitle": "User flow",
+          "subtitle": "5–7 steps + error branches",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Flow = 5–7 žingsniai su klaidos atšakomis. Ekranai – iš srauto.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "User cycle (flow)",
+                "body": "Ta pati ciklo schema – dabar įrašyk į user_flow.md su klaidos atšaka.",
+                "blockVariant": "brand",
+                "image": "m16_user_cycle",
+                "imageAlt": "Naudotojo ciklas su grįžimu"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užrašyk flow failui user_flow.md (arba brief skyriui).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar yra bent viena klaidos atšaka?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 6: Duomenys"
+          }
+        },
+        {
+          "id": 18.4,
+          "title": "Minimal data",
+          "shortTitle": "Minimal data",
+          "subtitle": "2–4 entities, plain language",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "2–4 esybės su atributais paprasta kalba. Ne SQL vs NoSQL kursas. schema.dbml – optional.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Minimal entities",
+                "body": "2–4 esybės paprasta kalba – ne SQL kursas.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": [
+                    "Esybė",
+                    "Pagrindiniai atributai",
+                    "Kam reikia MVP"
+                  ],
+                  "rows": [
+                    [
+                      "Užduotis",
+                      "pavadinimas, prioritetas, būsena",
+                      "Pagrindinė fn"
+                    ],
+                    ["Diena", "data, sąrašo id", "Rodyti „šiandien“"],
+                    [
+                      "Naudotojas (optional)",
+                      "vardas / lokalus id",
+                      "Tik jei reikia asmeninio sąrašo"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Išvardyk esybes (pvz. Užduotis, Prioritetas).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar apsieisi be sudėtingos DB pirmam pjūviui?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 7: Build brief"
+          }
+        },
+        {
+          "id": 18.5,
+          "title": "Build brief (6 fields)",
+          "shortTitle": "Build brief (6 fields)",
+          "subtitle": "Project · user · goal · context · constraints · Done",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Tie patys 6: intent · acceptance · constraints. Tai tiltas į Cursor prompt.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "6 fields",
+                "body": "Užpildyk kiekvieną eilutę savo brief’u.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Laukas", "Ką rašai"],
+                  "rows": [
+                    ["Projektas", "Kas kuriamas (1 sakinys)"],
+                    ["Naudotojas", "Kas naudoja ir kada"],
+                    ["Tikslas", "Kokį pokytį nori"],
+                    ["Kontekstas", "Brief / PACKET fragmentas"],
+                    ["Apribojimai", "Must / Won’t + stack hint"],
+                    ["Done", "Kaip žinosi, kad veikia"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užpildyk 6 laukus viename bloke.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar Done patikrinamas be AI interpretacijos?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 8: PROJECT_RULES"
+          }
+        },
+        {
+          "id": 18.6,
+          "title": "PROJECT_RULES.md",
+          "shortTitle": "PROJECT_RULES.md",
+          "subtitle": "8–12 lines for the agent",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Trumpos taisyklės: stack hint, Must/Won’t, Done, LT, saugumas, approve gate.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Nukopijuok šabloną ir užpildyk savo Must/Won’t.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "PROJECT_RULES.md",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Stack: Cursor-first; nekeisk stack be klausimo.\nMust: [1–4 punktai iš brief].\nWon’t: [auth / mokėjimai / … – ne šiame MVP].\nDone: [kaip žinosime, kad veikia].\nLanguage: EN in UI copy; kodas – aiškūs vardai.\nSaugumas: raktų ne kode ir ne promptuose.\nPrieš didesnį pakeitimą: failų planas → mano „taip“ → tada kodas."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar failas tilptų į repo šaknį?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 9: Cursor pjūvis",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas PROJECT_RULES – kas privalo būti faile?",
+              "options": [
+                "Must/Won’t, Done, saugumas (raktų ne kode), approve gate",
+                "Tik stack pavadinimas be ribų",
+                "Pilnas Agile ceremonijų aprašas",
+                "Heroku deploy žingsniai"
+              ],
+              "correct": 0,
+              "explanation": "Trumpos taisyklės agentui: ribos, Done, saugumas ir „taip“ prieš didesnį pakeitimą."
+            }
+          }
+        },
+        {
+          "id": 18.7,
+          "title": "Cursor vertical slice",
+          "shortTitle": "Cursor vertical slice",
+          "subtitle": "One function / one slice",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Viena Must funkcija. Failų planas prieš kodą. Priėmimo kriterijai.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Nukopijuok Cursor pjūvio prompt ir įrašyk savo 1 fn.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Cursor vertical slice",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Dirbk Cursor projekte. Tikslas: vienas vertikalus pjūvis – [1 funkcija iš Must].\nPrieš kodą: (1) failų planas, (2) Done kriterijus, (3) Won’t (ko nelieči).\nLauk mano „taip“. Tada generuok mažai, paleisk, patikrink.\nUI language: EN. Raktų ne kode ir ne promptuose."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar pjūvis telpa į vieną ciklą?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 10: Planas prieš kodą",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas Cursor pjūvio prompt – ką privalai turėti?",
+              "options": [
+                "Viena Must funkcija + failų planas prieš kodą",
+                "Visos 30 funkcijų sąrašas",
+                "Redis ir Auth kaip pirmas žingsnis",
+                "Tik „sukurk visą app“"
+              ],
+              "correct": 0,
+              "explanation": "Vertikalus pjūvis = viena fn, planas prieš generate, ne visas produktas."
+            }
+          }
+        },
+        {
+          "id": 18.8,
+          "title": "Plan → approve → code",
+          "shortTitle": "Plan → approve → code",
+          "subtitle": "Human says “yes” before generate",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Agentas grąžina failų planą; tu patvirtini; tada kodas. Tas pats pattern kaip saugus refaktorius.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Nukopijuok „Planas prieš kodą“ ir paleisk prieš pirmą generate.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Plan before code",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Prieš generuodamas kodą, surašyk:\n1) kuriuos failus kurs/keisi,\n2) ką laikysime Done,\n3) ko neliesi (Won’t).\nLauk mano „taip“ – tada tik generuok."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar turi rašytinį „taip“ momentą?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 11: Savitikra",
+            "preCopyCheckBlock": {
+              "question": "Kada leidžiama generuoti kodą pagal „Planas prieš kodą“?",
+              "options": [
+                "Po rašytinio „taip“ į failų planą, Done ir Won’t",
+                "Iškart po pirmo DI pasiūlymo",
+                "Kai UI atrodo gražiai",
+                "Tik po deploy"
+              ],
+              "correct": 0,
+              "explanation": "Approve gate: planas → tavo „taip“ → tada kodas."
+            }
+          }
+        },
+        {
+          "id": 18.55,
+          "title": "Savitikra: planas prieš kodą",
+          "shortTitle": "Savitikra",
+          "subtitle": "2 klausimai prieš Cursor generate",
+          "type": "warm-up-quiz",
+          "content": {
+            "questions": [
+              {
+                "id": "m18-wu-plan",
+                "question": "Kas turi eiti prieš pirmą didesnę Cursor generate sesiją?",
+                "options": [
+                  "Trumpas planas / patvirtinimas, tada kodas",
+                  "Iš karto visas app be brief",
+                  "Tik deploy URL",
+                  "MCP ir Spec Kit kaip privaloma"
+                ],
+                "correct": 0,
+                "explanation": "Planas prieš kodą – disciplina. Žr. skaidrę „Planas → patvirtinimas → kodas“."
+              },
+              {
+                "id": "m18-wu-rules",
+                "question": "Kam skirtas PROJECT_RULES.md vibe-coding sesijoje?",
+                "options": [
+                  "Trumpos ribos agentui: Won’t, Done, ko negeneruoti",
+                  "Pilnas SysEng vadovas",
+                  "Tik spalvų paletė",
+                  "Heroku-only deploy instrukcija"
+                ],
+                "correct": 0,
+                "explanation": "PROJECT_RULES – trumpos ribos Cursor. Žr. skaidrę PROJECT_RULES.md."
+              }
+            ],
+            "footer": "Next – slide 12: Composer vs Chat"
+          }
+        },
+        {
+          "id": 18.9,
+          "title": "Composer vs Chat",
+          "shortTitle": "Composer vs Chat",
+          "subtitle": "One idea – not a mastery course",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Agentas (multi-file) – kai turi PACKET. Chat – kai debugini vieną klaidą. Nesimaišyk abiejų be tikslo.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Kada kurį",
+                "body": "Viena taisyklė – mažiau chaoso.",
+                "blockVariant": "brand",
+                "table": {
+                  "comparisonStyle": true,
+                  "headers": ["Agentas / Composer", "Chat"],
+                  "rows": [
+                    [
+                      "Pirmas vertikalus pjūvis su PACKET",
+                      "Klaida + failas + ką bandei"
+                    ],
+                    ["Keli failai pagal planą", "Vienas simptomas, vienas fix"],
+                    ["Po tavo „taip“ į planą", "Po smoke, kai kažkas neveikia"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pasirink pirmam žingsniui: agentas su PACKET arba Chat su klaidos kontekstu – ir užrašyk kodėl.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar vengi „Chat + Agentas vienu metu be plano“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 13: Iteracija"
+          }
+        },
+        {
+          "id": 18.101,
+          "title": "Iteration loop",
+          "shortTitle": "Iteration loop",
+          "subtitle": "Describe → Generate little → Run → Check → Fix",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Maži ciklai: aprašyk → generuok mažai → paleisk → patikrink → pataisyk. Klaida + kontekstas – ne „pergeneruok viską“.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "5 žingsniai",
+                "body": "Kartok, kol Must funkcija praeina smoke.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Žingsnis", "Tikslas"],
+                  "rows": [
+                    ["Aprašyk", "Ką keisi (1 fn / 1 failų planas)"],
+                    ["Generuok mažai", "Po „taip“ – ne visas app"],
+                    ["Paleisk", "Ar pasileidžia?"],
+                    ["Patikrink", "Ar Must ciklas veikia?"],
+                    ["Pataisyk", "1 pakeitimas + kontekstas"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užrašyk savo pirmo pjūvio iteracijos 5 žingsnius vienu sakiniu kiekvienam.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar „Generuok“ eina po plano, o ne prieš jį?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 14: Klaidos prompt"
+          }
+        },
+        {
+          "id": 18.11,
+          "title": "Error prompt",
+          "shortTitle": "Error prompt",
+          "subtitle": "Bad: “Broken” · Good: context",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Geras klaidos prompt: simptomas, tikėtasi, failai, ką bandei, 4 klausimai.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Nukopijuok Klaidos konteksto šabloną ir užpildyk paskutine klaida (arba hipotetine).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Error context",
+                "body": "Nukopijuok ir pritaikyk savo kontekstui.",
+                "blockVariant": "brand",
+                "copyable": "Simptomas: [ką matau].\nTikėjausi: [rezultatas].\nFailai / vieta: [keliai].\nKą jau bandžiau: [1–2].\nUžduok 4 tikslinančius klausimus, tada pasiūlyk 1 hipotezę ir 1 pakeitimą."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar vengi vieno žodžio „neveikia“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 15: BUILD PACKET",
+            "preCopyCheckBlock": {
+              "question": "Prieš kopijuodamas Klaidos kontekstą – kas geriau už „neveikia“?",
+              "options": [
+                "Simptomas + failai + ką jau bandei",
+                "Tik žodis „neveikia“",
+                "Prašymas pergeneruoti visą app",
+                "Slapto rakto įklijavimas"
+              ],
+              "correct": 0,
+              "explanation": "Kontekstas (simptomas, failai, bandymai) leidžia vieną hipotezę ir vieną pakeitimą."
+            }
+          }
+        },
+        {
+          "id": 18.12,
+          "title": "Practice: BUILD PACKET",
+          "shortTitle": "Practice: BUILD PACKET",
+          "subtitle": "mvp_brief · user_flow · schema? · build_prompt · PROJECT_RULES",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "PACKET failai: mvp_brief.md (alias 01_MVP_BRIEF.md), user_flow.md, optional schema, build_prompt.md, PROJECT_RULES.md.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "BUILD PACKET layers",
+                "body": "Penki failų sluoksniai – checklist prieš Cursor. Spausk failą.",
+                "blockVariant": "brand",
+                "image": "m18_packet_stack",
+                "imageAlt": "BUILD PACKET failų sluoksniai"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Surašyk checklist: kas yra / ko trūksta. Tai privalomas projekto minimumas.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar Cursor gali dirbti be „sukurk visą app“?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 16: PACKET ✓"
+          }
+        },
+        {
+          "id": 18.125,
+          "title": "PACKET paruoštas",
+          "shortTitle": "PACKET ✓",
+          "subtitle": "Blokas A baigtas – toliau higiena ir įrodymas",
+          "type": "section-break",
+          "content": {
+            "title": "PACKET paruoštas",
+            "subtitle": "Toliau: vibe-debt, smoke, vartai, diff ir soft DoD.",
+            "sectionNumber": "A→B",
+            "celebrationText": "PACKET sudėtas – toliau higiena ir įrodymas.",
+            "recap": {
+              "heading": "Ką jau turi?",
+              "lead": "Build packet – kontekstas Cursor sesijai.",
+              "items": [
+                "mvp_brief.md (alias 01_MVP_BRIEF.md) – siauras brief.",
+                "user_flow.md + PROJECT_RULES.md + Cursor build promptas.",
+                "Planas prieš kodą; iteracijos ciklas ir klaidos kontekstas."
+              ],
+              "itemGlossaryTerms": [
+                "BUILD PACKET",
+                "PROJECT_RULES.md",
+                "Vertical slice"
+              ]
+            },
+            "nextSteps": [
+              "Kodas ≠ produktas – žmogus tikrina.",
+              "Smoke + kritinis kelias; edge ir .env.",
+              "Paleidimo vartai ir diff ritualas prieš commit.",
+              "Soft DoD: URL arba lokalus proof + GitHub."
+            ],
+            "footer": "Next – slide 17: Kodas ≠ produktas"
+          }
+        },
+        {
+          "id": 18.13,
+          "title": "Code is not the product",
+          "shortTitle": "Code is not the product",
+          "subtitle": "AI generates – you verify",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "AI generuoja. Produktas atsiranda tik kai tu patikrini paleidimą, funkciją ir saugumą – su įrodymu.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Ką tikrina žmogus",
+                "body": "Po pirmo generate – bent šie keturi.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Patikra", "Ką matai"],
+                  "rows": [
+                    ["Paleidimas", "App pasileidžia be crash"],
+                    ["Funkcija", "Must ciklas duoda lauktą rezultatą"],
+                    ["Saugumas", "Raktai ne kode / ne promptuose"],
+                    ["Regresija", "Ankstesnis veikiantis kelias nesulūžo"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Įrašyk vieną asmeninį patikros veiksmą po pirmo generate (pvz. „atidarysiu app ir įvesiu 3 užduotis“).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar tavo proof būtų aiškus kitam žmogui be tavo ekrano?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 18: 3 spąstai"
+          }
+        },
+        {
+          "id": 18.14,
+          "title": "3 vibe-debt traps",
+          "shortTitle": "3 vibe-debt traps",
+          "subtitle": "Tests from code · bloat · “looks fine”",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "(1) Testai, kuriuos AI parašė pagal kodą, ne pagal brief ciklą. (2) Dubliuotos fn / perteklinės abstrakcijos. (3) „Atrodo veikia“, bet praleistas verslo kraštas.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "3 vibe-debt traps",
+                "body": "Pažymėk rizikingiausią sau ir kaip jo išvengsi.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Spąstas", "Simptomas", "Kaip išvengti"],
+                  "rows": [
+                    [
+                      "Testai iš kodo",
+                      "DI rašo testus pagal sugeneruotą kodą, ne pagal brief ciklą",
+                      "Pirmiausia ciklas / Done – tada testas"
+                    ],
+                    [
+                      "Bloat",
+                      "Dubliuotos fn, perteklinės abstrakcijos",
+                      "1 pjūvis; Won’t sąrašas gyvas"
+                    ],
+                    [
+                      "„Atrodo veikia“",
+                      "UI šypsosi, bet praleistas verslo kraštas",
+                      "Smoke + 1 kritinis kelias prieš „done“"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk, kuris spąstas tau rizikingiausias.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar turi planą, kaip jo išvengsi?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 19: 5 rizikos"
+          }
+        },
+        {
+          "id": 18.15,
+          "title": "5 risks",
+          "shortTitle": "5 risks",
+          "subtitle": "Deps → Env → Tests → Security → Deploy",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Prieš gilesnį debug – greita navigacija per 5 rizikos zonas. Mažiau priklausomybių = mažiau netikėtumų.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "5 rizikos zonos",
+                "body": "Pažymėk žalia / geltona / raudona.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Zona", "Klausimas sau"],
+                  "rows": [
+                    [
+                      "Deps",
+                      "Ar pakanka mažiausio stack – be „gal prireiks“ paketų?"
+                    ],
+                    ["Env", "Ar .env / paleidimo komanda aiški kitam?"],
+                    [
+                      "Tests / smoke",
+                      "Ar žinai 1 kritinį kelią prieš gilesnį debug?"
+                    ],
+                    ["Security", "Ar raktai ne kode ir ne Git?"],
+                    ["Deploy", "Ar turi URL arba lokalų proof planą?"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk vieną raudoną zoną ir vieną veiksmą, kaip ją sumažinsi šiandien.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar eisi į smoke su bent viena žalia zona (paleidimas ar saugumas)?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 20: Smoke"
+          }
+        },
+        {
+          "id": 18.16,
+          "title": "Smoke and critical path",
+          "shortTitle": "Smoke and critical path",
+          "subtitle": "Starts + core function",
+          "type": "path-step",
+          "content": {
+            "title": "Smoke – kritinis kelias žalias",
+            "pathLabel": "Soft DoD kelias",
+            "stepNumber": 1,
+            "stepTotal": 2,
+            "body": "Aprašyk ir paleisk 3 smoke žingsnius. Pažymėk, kai paleidimas, UI/API ir pagrindinė fn – žali (1 raudona = nestartuojame giliau).",
+            "sections": [
+              {
+                "heading": "1. Paleidimas",
+                "body": "Žalia: app / serveris pasileidžia be klaidos. Raudona: crash / blank screen."
+              },
+              {
+                "heading": "2. UI arba API",
+                "body": "Žalia: pagrindinis ekranas / endpoint atsako. Raudona: 404 / tuščia būsena be paaiškinimo."
+              },
+              {
+                "heading": "3. Pagrindinė fn",
+                "body": "Žalia: brief ciklo rezultatas matomas. Raudona: fn neveikia arba klaidingas rezultatas."
+              },
+              {
+                "heading": "Kritinis kelias",
+                "body": "Kritinis kelias = brief ciklas: triggeris → rezultatas naudotojui. 1 raudona = nestartuojame giliau."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar žinai, kas yra „raudona“ tavo pjūviui?"
+              }
+            ],
+            "unlockedGlossaryTerms": ["Smoke"],
+            "footer": "Next – slide 21: Edge ir .env"
+          }
+        },
+        {
+          "id": 18.17,
+          "title": "Edge and .env",
+          "shortTitle": "Edge and .env",
+          "subtitle": "Normal / Edge / Error · no keys in prompts",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Edge cases: Normal / Edge / Error. Real keys – never in a committed .env on GitHub, never in prompts.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Pick a leak path",
+                "body": "Three paths – Bad|Good opens after you pick. Examples use PLACEHOLDER only (not a real key).",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "variant": "manipulation-contrast",
+                  "question": "Where do keys leak most often?",
+                  "sequenceHint": "Pick a type – you will see Bad vs Good.",
+                  "choices": [
+                    {
+                      "label": "Git",
+                      "rowIndex": 0,
+                      "pushSignal": "The key ends up in repo history.",
+                      "badExample": "API_KEY=sk-live-EXAMPLE_NOT_REAL in a file that goes into Git"
+                    },
+                    {
+                      "label": "Prompt",
+                      "rowIndex": 1,
+                      "pushSignal": "The key ends up in chat history or logs.",
+                      "badExample": "Here is my key sk-live-EXAMPLE_NOT_REAL – add it to the fetch header."
+                    },
+                    {
+                      "label": "Commit",
+                      "rowIndex": 2,
+                      "pushSignal": "Secret files enter the commit without a check.",
+                      "badExample": "git add . && git commit -m \"fix\" – without status and diff"
+                    }
+                  ]
+                }
+              },
+              {
+                "heading": "Copy the good – Git",
+                "body": "Use .env.example without real keys.",
+                "copyable": ".env – gitignore.\n.env.example:\nAPI_KEY=YOUR_API_KEY_HERE\n# PLACEHOLDER – not a real key",
+                "linkedRowIndex": 0,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Copy the good – Prompt",
+                "body": "Ask for an env variable – do not show the key.",
+                "copyable": "Use process.env.API_KEY (or the matching env).\nDo not paste the key value into the prompt and do not commit .env.",
+                "linkedRowIndex": 1,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Copy the good – Commit",
+                "body": "Before commit – status and diff.",
+                "copyable": "Before commit:\n1) git status – is .env absent?\n2) git diff – no sk- / API_KEY= real values?\nOnly then commit.",
+                "linkedRowIndex": 2,
+                "blockVariant": "terms"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Write one Normal / Edge / Error example for your Must function. Check .env.example has no secrets.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "If someone saw your last prompt – is there a real key in it?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 22: Debug"
+          }
+        },
+        {
+          "id": 18.18,
+          "title": "Debug: 1 change",
+          "shortTitle": "Debug: 1 change",
+          "subtitle": "Error → evidence → hypothesis → 1 change → test",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Debug disciplina: viena klaida → viena hipotezė → vienas pakeitimas → testas. Ne 5 failai vienu metu.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Debug seka",
+                "body": "Laikykis eilės – kitaip sunku žinoti, kas padėjo.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Žingsnis", "Ką darai"],
+                  "rows": [
+                    ["1. Klaida", "Simptomas vienu sakiniu"],
+                    ["2. Įrodymai", "Logas / ekranas / failas"],
+                    ["3. Hipotezė", "Viena priežastis (ne penkios)"],
+                    ["4. 1 pakeitimas", "Tik tai, kas tikrina hipotezę"],
+                    ["5. Testas", "Ar simptomas dingo?"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Paimk vieną klaidą ir užrašyk hipotezę + vieną failą, kurį keisi.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Jei pakeitimas nepavyks – ar žinosi, ką grąžinti atgal (commit / undo)?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 23: Paleidimo vartai"
+          }
+        },
+        {
+          "id": 18.19,
+          "title": "Launch gates",
+          "shortTitle": "Launch gates",
+          "subtitle": "WORKS → CHECKED → PROTECTED → LIVE → WATCHED",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Neskubėk iš „veikia lokalai“ į viešą. Penki vartai – kad nepraleistum saugumo ir patikros.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Paleidimo vartai",
+                "body": "Spausk vartus. APSAUGOTA – barjeras, kurio nešok.",
+                "blockVariant": "brand",
+                "image": "m18_launch_gates",
+                "imageAlt": "Penki paleidimo vartai su apsaugos barjeru"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk, kuriame vartuose esi dabar, ir ko trūksta iki kito.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar APSAUGOTA (raktai, .gitignore) pažymėta prieš PALEISTA?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 24: Git ir diff"
+          }
+        },
+        {
+          "id": 18.201,
+          "title": "Git safety and diff ritual",
+          "shortTitle": "Git safety and diff ritual",
+          "subtitle": "status → diff → smoke → commit → push",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "Prieš didesnį AI pakeitimą – commit veikiančios versijos. Po AI: perskaityk diff, tada smoke, tada commit.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Diff ritual",
+                "body": "Status → **diff** → smoke → commit → push. Spausk žingsnį – diff pabrėžtas.",
+                "blockVariant": "brand",
+                "image": "m18_diff_ritual",
+                "imageAlt": "Git diff ritualas su pabrėžtu diff žingsniu"
+              },
+              {
+                "heading": "Do this now",
+                "body": "Surašyk savo ritualą 5 žodžiais.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar diff eina prieš commit?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 25: Deploy-ready",
+            "recognitionExercise": {
+              "title": "Atpažink diff ritualo tvarką",
+              "task": "Perskaityk 4 situacijas ir pasirink, kuris žingsnis trūksta arba eina neteisingai.",
+              "examples": [
+                "Po DI pakeitimo iškart commit + push be skaitymo.",
+                "Prieš didesnį DI pakeitimą nėra veikiančios versijos commit’o.",
+                "Perskaitė diff, padarė smoke, tada commit.",
+                "Push padarė prieš smoke, nes „skubėjo“."
+              ],
+              "choices": [
+                "Trūksta: perskaityti diff prieš commit",
+                "Trūksta: commit veikiančios versijos prieš DI",
+                "Tvarka teisinga",
+                "Trūksta: smoke prieš push"
+              ],
+              "correctAnswers": [0, 1, 2, 3],
+              "explanations": [
+                "Diff eina prieš commit – kitaip rizikuoji aklu DI diff’u.",
+                "Saugus startas: commit veikiančios būsenos prieš didesnį DI pakeitimą.",
+                "status → diff → smoke → commit → push – teisinga seka.",
+                "Smoke prieš push – kitaip laužtum nuotolinę šaką."
+              ],
+              "goal": "Ritualas: status → **diff** → smoke → commit → push."
+            }
+          }
+        },
+        {
+          "id": 18.21,
+          "title": "Deploy-ready checklist",
+          "shortTitle": "Deploy-ready checklist",
+          "subtitle": "README · deps · gitignore · env.example",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "README paleidimui, deps failas, .gitignore, .env.example, paleidimo komanda.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Deploy-ready checklist",
+                "body": "Pažymėk, kas jau yra tavo repo.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Failas / ką", "Kodėl"],
+                  "rows": [
+                    ["README", "Svetimas žmogus paleidžia be tavęs"],
+                    ["Deps failas (package.json / …)", "Aišku, ką įdiegti"],
+                    [".gitignore", "node_modules ir .env nelieka Git"],
+                    [".env.example", "Kintamieji be tikrų raktų"],
+                    [
+                      "Paleidimo komanda",
+                      "Viena eilutė README (pvz. npm run dev)"
+                    ]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pažymėk checklist savo repo (ar planuojamam).",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar svetimas žmogus galėtų paleisti pagal README?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 26: Publish"
+          }
+        },
+        {
+          "id": 18.22,
+          "title": "Publish",
+          "shortTitle": "Publish",
+          "subtitle": "Platform-agnostic – not Heroku-only",
+          "type": "content-block",
+          "content": {
+            "sections": [
+              {
+                "heading": "In short",
+                "body": "GitHub → host → build → start → URL → logs. Platforma – tavo pasirinkimas.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Publish steps",
+                "body": "Platforma – tavo pasirinkimas; seka ta pati.",
+                "blockVariant": "brand",
+                "table": {
+                  "headers": ["Žingsnis", "Ką padarai"],
+                  "rows": [
+                    ["GitHub", "Repo su commit’ais"],
+                    ["Host", "Pasirenki platformą (ne Heroku-only)"],
+                    ["Build", "Build praeina be klaidos"],
+                    ["Start", "App pasileidžia"],
+                    ["URL", "Viešas adresas arba lokalus proof"],
+                    ["Logs", "Žinai, kur žiūrėti klaidas"]
+                  ]
+                }
+              },
+              {
+                "heading": "Do this now",
+                "body": "Pasirink viešą URL kelią arba lokalų proof kelią.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Check",
+                "body": "Ar DoD leidžia lokalų įrodymą, jei viešo dar nėra?",
+                "blockVariant": "accent"
+              }
+            ],
+            "footer": "Next – slide 27: Soft DoD"
+          }
+        },
+        {
+          "id": 18.23,
+          "title": "Soft DoD and proof",
+          "shortTitle": "Soft DoD and proof",
+          "subtitle": "Proof for a user or locally",
+          "type": "path-step",
+          "content": {
+            "title": "Soft DoD – įrodymas vartotojui arba lokaliai",
+            "pathLabel": "Soft DoD kelias",
+            "stepNumber": 2,
+            "stepTotal": 2,
+            "body": "Pažymėk, kai turi soft DoD įrodymą: GitHub + commit’ai, gitignore, README, PROJECT_RULES, ≥1 kritinės fn patikra, viešas URL arba lokalus proof, 1 pataisyta problema, rollback mintis.",
+            "sections": [
+              {
+                "heading": "Soft DoD checklist",
+                "body": "GitHub + commit’ai · .gitignore · README · PROJECT_RULES.md · ≥1 kritinės fn patikra · viešas URL arba lokalus proof · 1 pataisyta problema · rollback mintis."
+              },
+              {
+                "heading": "Do this now",
+                "body": "Užrašyk proof (URL arba lokalus paleidimo aprašas). Santraukoje – own-work slot PACKET kontekstui."
+              },
+              {
+                "heading": "Check",
+                "body": "Ar vibe coding baigiasi įrodymu, o ne generavimu?"
+              }
+            ],
+            "unlockedGlossaryTerms": ["Soft DoD", "Diff ritual", "Vibe debt"],
+            "footer": "Next – slide 28: Santrauka"
+          }
+        },
+        {
+          "id": 18.24,
+          "title": "Module 18 summary",
+          "subtitle": "PACKET + proven MVP",
+          "shortTitle": "Module 18 summary",
+          "type": "summary",
+          "content": {
+            "introHeading": "Ką išmokai",
+            "introBody": "Sudėliojai BUILD PACKET, dirbai Cursor su planu prieš kodą ir surinkai soft DoD įrodymą.",
+            "stats": [
+              {
+                "label": "PACKET",
+                "value": "5 failai"
+              },
+              {
+                "label": "DoD",
+                "value": "soft"
+              },
+              {
+                "label": "Stack",
+                "value": "Cursor"
+              }
+            ],
+            "sections": [
+              {
+                "heading": "PACKET",
+                "icon": "Layers",
+                "color": "brand",
+                "items": ["mvp_brief + flow + rules", "Cursor build promptas"]
+              },
+              {
+                "heading": "Disciplina",
+                "icon": "Target",
+                "color": "violet",
+                "items": ["Planas prieš kodą", "Diff prieš commit"]
+              },
+              {
+                "heading": "Higiena",
+                "icon": "Workflow",
+                "color": "emerald",
+                "items": ["Smoke", ".env be raktų"]
+              },
+              {
+                "heading": "DoD",
+                "icon": "Zap",
+                "color": "amber",
+                "items": ["URL arba lokalus proof", "GitHub"]
+              },
+              {
+                "heading": "Toliau",
+                "icon": "Compass",
+                "color": "rose",
+                "items": ["Siaurink kitą idėją", "Kartok PACKET ritualą"]
+              }
+            ],
+            "tagline": "Vibe coding su disciplina baigiasi, kai sistema patikimai veikia vartotojui (arba įrodytai lokaliai).",
+            "nextStepCTA": "Apply PACKET to another narrow idea within 7 days.",
+            "abilityBefore": "I used to run AI-generated code without a PACKET and proof.",
+            "abilityAfter": "I have a PACKET and soft DoD proof (URL or local).",
+            "firstAction24h": "Make 1 commit + 1 smoke / proof on your MVP.",
+            "footer": "Kelias „Kodo inžinerija“ – brief → testas → įrodytas MVP.",
+            "ownWorkLabel": "Your PACKET / proof context",
+            "ownWorkPlaceholder": "e.g. daily priorities MVP, GitHub URL, or local launch proof…",
+            "ownWorkTemplate": "META: You are a vibe-coding discipline partner.\nINPUT: My project / PACKET: {{context}}\nOUTPUT: Give (1) a 3-point soft DoD checklist (URL or local proof), (2) 1 missing PACKET file, (3) 1 concrete next commit/smoke step."
+          }
+        }
+      ],
+      "businessExamples": [
+        {
+          "title": "BUILD PACKET",
+          "description": "Brief, flow, rules, Cursor prompt"
+        },
+        {
+          "title": "Soft DoD",
+          "description": "URL arba lokalus proof + GitHub"
+        }
+      ],
+      "transfer": {
+        "abilityBefore": "I used to run AI-generated code without a PACKET and proof.",
+        "abilityAfter": "I have a PACKET and soft DoD proof (URL or local).",
+        "firstAction24h": "Make 1 commit + 1 smoke / proof on your MVP.",
+        "nextStepCTA": "Apply PACKET to another narrow idea"
+      }
+    }
+  ]
+}

@@ -3,8 +3,8 @@
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
 **Versija:** 1.5.0 (2026-07-28). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
-Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–15** (dev). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
-UI ir turinys palaiko **LT / EN** (M1–M15; M10–12 EN kai kataloge `maxModuleId >= 10`, M13–15 EN kai `maxModuleId >= 13`).
+Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–18** (dev; Kodo inžinerijos kelias). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
+UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModuleId >= 10`, M13–15 kai `>= 13`, M16–18 kai `>= 16`). Magic-link tiers lieka 3|6|9|12|15 (corporate18 Deferred).
 
 ## Produkto modelis (5 build sluoksniai)
 
@@ -14,7 +14,7 @@ UI ir turinys palaiko **LT / EN** (M1–M15; M10–12 EN kai kataloge `maxModule
 | **Production (Vercel)** | `npm run build:production`      | M1–9             | Tier 3 / 6 / 9 magic link                                     |
 | **Corporate12**         | `npm run build:corporate12`     | M1–12            | Tier 12 magic link; repo-ready, marketing cutover atskirai    |
 | **Corporate15**         | `npm run build:corporate15`     | M1–15            | Tier 15 magic link; Vaizdo/I2V live                           |
-| **Dev / authoring**     | `npm run build`                 | M1–15 (full SOT) | Turinio redagavimas                                           |
+| **Dev / authoring**     | `npm run build`                 | M1–18 (full SOT) | Turinio redagavimas; DEV unlock 18; magic-link ≤15            |
 
 Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md).
 

@@ -1,8 +1,8 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-07-30 (code/doc audit sync)  
+> **Atnaujinta:** 2026-08-01 (M16–18 TE Could open; docs A sync)  
 > **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.  
-> **Open P0** = mokymosi kokybė (`TODO.md` §1); MON / marketing – ne lean branduolys.
+> **Open P1** = `TE-M1618-C*` Could (`TODO.md` §1.2g); MON / marketing – ne lean branduolys.
 
 ---
 
@@ -40,25 +40,25 @@
 
 ### Procesas ir agentai
 
-| Failas                                                 | Paskirtis                                              |
-| ------------------------------------------------------ | ------------------------------------------------------ |
-| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline                                     |
-| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA                                           |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba                                         |
-| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika                                             |
-| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos                                    |
-| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay                                         |
-| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y                                            |
-| `AGENTS.md`                                            | Agentų žemėlapis                                       |
-| `TODO.md` §1                                           | **Open** P0/P1 (dabar M7–9 ROI/a11y; MON out of scope) |
-| `ROADMAP.md`                                           | Open gaps + turinio plėtra                             |
+| Failas                                                 | Paskirtis                                         |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline                                |
+| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA                                      |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba                                    |
+| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika                                        |
+| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos                               |
+| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay                                    |
+| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y                                       |
+| `AGENTS.md`                                            | Agentų žemėlapis                                  |
+| `TODO.md` §1                                           | **Open** P1 Could `TE-M1618-C*`; MON out of scope |
+| `ROADMAP.md`                                           | Open gaps + turinio plėtra                        |
 
 ---
 
 ## 3. Pagal poreikį (ne lean core)
 
 - **M13–15 SOT / eilės / schemų auditas:** `turinio_pletra_moduliai_13_14_15.md`, `MODULIO_13_SKAIDRIU_EILES.md`, `M13_M15_SCHEME_AUDIT.md`
-- **M16–18 SOT:** `turinio_pletra_moduliai_16_17_18.md` (JSON Deferred)
+- **M16–18 SOT / eilė / TE:** `turinio_pletra_moduliai_16_17_18.md`, `MODULIO_16_SKAIDRIU_EILES.md`, `TODO.md` §1.2g, `16_17_18_backlog.md`
 - **Skaidrių eilės:** `MODULIO_*_SKAIDRIU_EILES.md` – tik kai liečia tą modulį
 - **M7–9 polish:** `M79_PATCH_REGISTRY.md`, `07_08_09_backlog.md`, `M7_M9_SCHEME_AUDIT.md` (schemų / interaktyvių ROI)
 - **Pedagogika:** `PEDAGOGINES_IZVALGOS_ROADMAP.md`

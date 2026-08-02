@@ -229,6 +229,18 @@ export const loadModules = async (
         } catch {
           // Fallback: keep LT content for modules 13–15 if EN M13–M15 file missing
         }
+        try {
+          const maxModuleId = Math.max(...data.modules.map((m) => m.id), 0);
+          if (maxModuleId >= 16) {
+            const enM1618 = await import('./modules-en-m16-m18.json');
+            const m1618 = enM1618.default as Partial<ModulesData>;
+            if (Array.isArray(m1618.modules) && m1618.modules.length > 0) {
+              data = mergeModulesData(data, m1618);
+            }
+          }
+        } catch {
+          // Fallback: keep LT content for modules 16–18 if EN M16–M18 file missing
+        }
 
         if (resolvedVariant === 'en-us') {
           try {

@@ -88,6 +88,16 @@
       "moduleId": 5
     },
     {
+      "term": "Brief (MVP)",
+      "definition": "A narrow 01_MVP_BRIEF.md – who, what, Must/Won’t, and a testable Done before a Cursor build (not a marketing brief).",
+      "moduleId": 16
+    },
+    {
+      "term": "BUILD PACKET",
+      "definition": "A file set before AI coding: brief, flow, rules, and a Cursor prompt – so generation has bounds and proof.",
+      "moduleId": 18
+    },
+    {
       "term": "Cache layer",
       "definition": "A fast temporary data layer for sessions, queues, or speed. Usually an addition to the main database, not the main storage.",
       "moduleId": 7,
@@ -156,6 +166,11 @@
       "moduleId": 10
     },
     {
+      "term": "Cursor",
+      "definition": "An AI coding IDE / agent in this course – you plan, edit, and read the diff before commit; not a “write the whole app” button.",
+      "moduleId": 16
+    },
+    {
       "term": "Custom GPT",
       "definition": "A ChatGPT project with rules, instructions, and files – a personal or team assistant for a specific task.",
       "moduleId": 4
@@ -209,6 +224,15 @@
       "term": "Deming principle",
       "definition": "“In God we trust, all others bring data” – prioritize evidence and continuous improvement over gut feel alone.",
       "moduleId": 7
+    },
+    {
+      "term": "Diff ritual",
+      "definition": "After an AI change: read the diff → run smoke → then commit.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "EDA",
@@ -410,6 +434,11 @@
       "moduleId": 4
     },
     {
+      "term": "PROJECT_RULES.md",
+      "definition": "A short (8–12 line) rules file for a Cursor session: stack hint, Must/Won’t, Done, language, no secrets in code.",
+      "moduleId": 18
+    },
+    {
       "term": "Prompt injection",
       "definition": "Harmful instructions hidden in input data (email, document, CSV) that try to change AI behaviour. Defence: keep system instructions separate from external text and validate input.",
       "moduleId": 7,
@@ -497,9 +526,27 @@
       "moduleId": 4
     },
     {
+      "term": "Smoke",
+      "definition": "A quick check: it starts, UI/API responds, the core function works; one red = do not go deeper yet.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.16
+      }
+    },
+    {
       "term": "Social listening",
       "definition": "Systematic tracking of public posts and reactions (topics, sentiment, influencers) – so you see what the market says, not only your CRM.",
       "moduleId": 9
+    },
+    {
+      "term": "Soft DoD",
+      "definition": "A soft definition of done on the Code path: GitHub + commits, README, at least one critical-function check, and a URL or local run proof.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "Source catalog",
@@ -551,9 +598,28 @@
       "moduleId": 4
     },
     {
+      "term": "Triage (Must now / Later / Won’t)",
+      "definition": "Three MVP scope zones – what you build now, what you defer, and what you will not build; maps to Must / Should / Won’t in the brief.",
+      "moduleId": 16
+    },
+    {
       "term": "Trigger",
       "definition": "An event that starts a workflow, such as a new email, form submission or uploaded file.",
       "moduleId": 10
+    },
+    {
+      "term": "Vertical slice",
+      "definition": "One runnable Must path / one function before a wide “build everything” generation in a Cursor project.",
+      "moduleId": 18
+    },
+    {
+      "term": "Vibe debt",
+      "definition": "Debt after fast AI generation without a PACKET and proof – it “kind of works,” but is hard to fix, repeat, or hand to someone else.",
+      "moduleId": 18,
+      "unlockedBy": {
+        "moduleId": 18,
+        "slideId": 18.23
+      }
     },
     {
       "term": "Visualization",
@@ -564,6 +630,11 @@
       "term": "Visualization risk",
       "definition": "The downside of a chart or dashboard choice – misleading interpretation, wrong audience, or too complex a type. Name 1–2 risks before you show leadership.",
       "moduleId": 8
+    },
+    {
+      "term": "VSR",
+      "definition": "Vibe → Skeleton → Refinement – brief maturity phases; not a second delivery path and not a “vertical slice”.",
+      "moduleId": 16
     },
     {
       "term": "Warm-up self-check",

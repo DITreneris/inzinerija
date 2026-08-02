@@ -784,7 +784,53 @@
             "explanation": "Use the template above and build a full prompt for your real task. Remember: each block adds to the next and creates clear context for the AI model."
           },
           "content": {
-            "footer": "Next – slide 21: Before vs After"
+            "footer": "Next – slide 21: Check: score the prompt"
+          }
+        },
+        {
+          "id": 12.5,
+          "title": "Check: score the prompt",
+          "subtitle": "Produce → score with criteria → improve one spot",
+          "type": "evaluator-prompt-block",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "A strong prompt has a clear role, input, and format. The evaluator finds gaps.",
+              "daryk": [
+                "Copy the evaluator prompt",
+                "Paste your work prompt as INPUT",
+                "Fix 1 weak spot from the feedback"
+              ],
+              "patikra": [
+                "Does Meta say who you are and what you want?",
+                "Does Input include concrete data?",
+                "Does Output specify the format?"
+              ]
+            },
+            "sections": [
+              {
+                "heading": "In brief",
+                "body": "Produce a prompt → score with criteria → improve one spot.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Evaluator prompt",
+                "body": "Copy and run it with your work prompt.",
+                "blockVariant": "accent",
+                "copyable": "META: You are a prompt quality reviewer. Find gaps; do not rewrite everything.\nINPUT: Here is my prompt:\n\"\"\"\n[Paste your prompt]\n\"\"\"\nOUTPUT: Give: (1) a 1–5 score for Meta/Input/Output clarity, (2) 3 concrete gaps, (3) one rewritten weak sentence. No preamble."
+              },
+              {
+                "heading": "Check",
+                "body": "Save 1 improvement and re-run the improved prompt.",
+                "blockVariant": "emerald"
+              }
+            ],
+            "practicalTask": {
+              "title": "Steps: score your prompt",
+              "placeholder": "",
+              "templateLabel": "Steps",
+              "template": "1. Copy the evaluator prompt.\n2. Paste your work prompt.\n3. Fix 1 weak spot.\n4. Re-run the improved version."
+            },
+            "footer": "Next – slide 22: Before and After"
           }
         },
         {
@@ -814,7 +860,7 @@
               "rightPct": 85,
               "lessEditsPct": 60
             },
-            "footer": "Next – slide 22: Glossary"
+            "footer": "Next – slide 23: Glossary"
           }
         },
         {
@@ -889,7 +935,7 @@
                 "definition": "Model settings: temperature, reasoning depth, response length, repetition control."
               }
             ],
-            "footer": "Next – slide 23: Module summary"
+            "footer": "Next – slide 24: Module summary"
           }
         },
         {
@@ -963,7 +1009,11 @@
             ],
             "tagline": "Structured prompts = predictable results = better efficiency",
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 1.\nINPUT: I just finished training on prompt engineering – the 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced) and workflow principles.\nOUTPUT: Ask 3 questions: (1) Which block could I use at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start."
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Module 1.\nINPUT: I just finished training on prompt engineering – the 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced) and workflow principles.\nOUTPUT: Ask 3 questions: (1) Which block could I use at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
+            "abilityBefore": "You wrote prompts loosely – results were inconsistent.",
+            "abilityAfter": "You can structure a prompt with 6 blocks and choose Basic vs Workflow.",
+            "firstAction24h": "Today write one work prompt with Meta + Input + Output and run it in an AI tool.",
+            "nextStepCTA": "Go to Module 2 – check the 6-block and workflow knowledge."
           }
         }
       ],
@@ -1491,7 +1541,13 @@
         }
       ],
       "accent": "slate",
-      "identityIcon": "ClipboardList"
+      "identityIcon": "ClipboardList",
+      "transfer": {
+        "abilityBefore": "Answers about prompts were guesswork or inconsistent.",
+        "abilityAfter": "You can check the 6-block and workflow principles and see what to review.",
+        "firstAction24h": "Today fix one weak spot from the test results and run one improved work prompt.",
+        "nextStepCTA": "Go to Module 3 practice – apply the 6 blocks to a real task."
+      }
     },
     {
       "id": 3,
@@ -2036,7 +2092,14 @@
             "reflectionTitle": "Reflection prompt",
             "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate practical knowledge after Module 3.\nINPUT: I just finished the practice module – I applied the 6-block system in 6 business scenarios (board report, sales analysis, marketing plan, internal comms, people analysis, complaint handling).\nOUTPUT: Ask 3 questions: (1) Which scenario could I use at work today? (2) What was newest in the practice? (3) What do I want to try with my real data? After my answers – 1 concrete tip on how to start.",
             "tagline": "6 blocks + 6 scenarios = your template library for the workday",
-            "footer": "Next – slide 10: Part 1 summary"
+            "footer": "Next – slide 10: Part 1 summary",
+            "abilityBefore": "You knew the theory but lacked your own practice prompt set.",
+            "abilityAfter": "You have hands-on practice with 6 blocks and can repeat the process at work.",
+            "firstAction24h": "Within 24–48h apply one practice prompt to a real work task and save the result.",
+            "nextStepCTA": "If core readiness is clear – continue to Module 4 (advanced tools).",
+            "ownWorkLabel": "Your work context",
+            "ownWorkPlaceholder": "e.g. weekly sales report, customer complaints, email…",
+            "ownWorkTemplate": "META: You are my work assistant.\nINPUT: My context: {{context}}\nOUTPUT: Give 1 structured prompt (Meta/Input/Output) for this task and 3 quality criteria."
           }
         },
         {
@@ -2112,7 +2175,11 @@
             ],
             "reflectionTitle": "Reflection prompt",
             "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Part 1.\nINPUT: I just finished 3 modules: 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced), knowledge quiz, and 6 practice scenarios.\nOUTPUT: Ask 3 questions: (1) What can I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
-            "tagline": "3 modules = 6 blocks + quiz + 6 scenarios – your foundation for what's next."
+            "tagline": "3 modules = 6 blocks + quiz + 6 scenarios – your foundation for what's next.",
+            "abilityBefore": "You used AI without a clear 6-block system.",
+            "abilityAfter": "You finished part 1: structure, check, and practice – ready for the advanced path.",
+            "firstAction24h": "Today pick one work task and repeat a 6-block prompt without the training slides.",
+            "nextStepCTA": "Open the core readiness check or Module 4."
           }
         }
       ],

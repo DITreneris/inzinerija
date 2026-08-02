@@ -13,6 +13,7 @@ export const MODULE_ICONS = [
   'BarChart3',
   'Cpu',
   'Image',
+  'Code',
 ] as const;
 
 export type ModuleIcon = (typeof MODULE_ICONS)[number];

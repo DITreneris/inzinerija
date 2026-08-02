@@ -232,87 +232,73 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use style, ratio and brand rules so the image does not look random.",
+                "body": "Style sets the look (photo, acrylic, 3D, drawing). Ratio sets the frame: 1:1 square, 16:9 wide, 9:16 vertical (Stories).",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Brand consistency",
-                "body": "Use style, ratio and brand rules so the image does not look random.",
-                "blockVariant": "brand"
+                "body": "So the model does not generate a random look, specify in the prompt: colour system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).",
+                "blockVariant": "brand",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "Do this now",
-                "body": "Use style, ratio and brand rules so the image does not look random.",
+                "body": "Pick one style and one ratio. Copy the template below and fill it in.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
-                "body": "Use style, ratio and brand rules so the image does not look random.",
-                "copyable": "Image: [WHAT IS SHOWN]. Style: [photo / vector / 3D]. Ratio: [1:1 / 16:9 / 9:16]. Use a neutral scene and avoid text unless needed."
+                "body": "Template with style and ratio fields.",
+                "copyable": "Image: [WHAT IS SHOWN].\nStyle: [photorealistic / acrylic painting / minimal vector / 3D render].\nRatio: [1:1 / 16:9 / 9:16]. Language: neutral scene, no text in the image unless needed."
               },
               {
                 "heading": "Check",
-                "body": "Use style, ratio and brand rules so the image does not look random.",
+                "body": "Does the platform support the ratio you chose? If the image looks cropped – change the ratio or add detail to the description.",
                 "blockVariant": "accent"
               }
             ],
-            "toolsIntro": "Principas tas pats visuose generatoriuose – skiriasi stipriosios puses. Pradziai uztenka vieno irankio.",
-            "toolsCollapsible": false,
+            "toolsIntro": "The principle is the same across generators – strengths differ. One tool is enough to start.",
+            "toolsCollapsible": true,
             "tools": [
               {
                 "name": "GPT-Image (OpenAI)",
                 "url": "https://chatgpt.com",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
-                "useCases": [
-                  "Greitas brief",
-                  "Social juodrastis",
-                  "Ideju variantai"
-                ]
+                "description": "Natural language, fast brief-to-image – useful for marketing drafts.",
+                "useCases": ["Quick brief", "Social draft", "Idea variants"]
               },
               {
                 "name": "Ideogram",
                 "url": "https://ideogram.ai",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
-                "useCases": [
-                  "Logo ir tipografija",
-                  "Plakatai",
-                  "Tekstas vaizde"
-                ]
+                "description": "Strong text-in-image – logos, posters, LinkedIn headlines.",
+                "useCases": ["Logo and typography", "Posters", "Text in image"]
               },
               {
                 "name": "FLUX",
                 "url": "https://blackforestlabs.ai",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
-                "useCases": [
-                  "Fotorealizmas",
-                  "Produktu serija",
-                  "Reference lock"
-                ]
+                "description": "Photorealism and multi-reference consistency – product / character series.",
+                "useCases": ["Photorealism", "Product series", "Reference lock"]
               },
               {
                 "name": "Midjourney",
                 "url": "https://midjourney.com",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
-                "useCases": ["Meninis stilius", "Character ref", "Brand mood"]
+                "description": "High artistic level, character / style reference – brand and campaign styles.",
+                "useCases": ["Artistic style", "Character ref", "Brand mood"]
               },
               {
                 "name": "Leonardo.ai",
                 "url": "https://leonardo.ai",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
-                "useCases": [
-                  "Produktu dizainas",
-                  "Fotorealizmas",
-                  "Koncepcijos"
-                ]
+                "description": "Photorealism and product / game design – when you need more control.",
+                "useCases": ["Product design", "Photorealism", "Concepts"]
               },
               {
                 "name": "Adobe Firefly",
                 "url": "https://www.adobe.com/products/firefly.html",
-                "description": "Use style, ratio and brand rules so the image does not look random.",
+                "description": "CC integration, safer source claims, C2PA – for commercial paths.",
                 "useCases": [
                   "Adobe CC",
                   "C2PA / provenance",
-                  "Komercinis saugumas"
+                  "Commercial safety"
                 ]
               }
             ],
@@ -675,46 +661,46 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "body": "A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long one-shot – lock stills before expensive video.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Kadravimas ir kameros kampas",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "heading": "Framing and camera angle",
+                "body": "Framing changes emotion: eye-level, high angle, low angle, POV – write it in the prompt. Video models are strongest at motion and time, not inventing a full look from scratch.",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "Image-to-video chain",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "body": "Hero / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → edit. Audio-first hint: if you will add VO, lock VO length first – then cut clips to the audio.",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
                 "heading": "Do this now",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "body": "Write 2–3 sentences of script for one 3–5 s shot. Copy the template.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
-                "copyable": "Short video, 5-10 seconds. Script: [describe what happens]. Tone: [professional / dynamic / calm]. Format: [16:9 / 9:16]. Optional: start from the hero image and keep the same style and colors."
+                "body": "Template for one short clip.",
+                "copyable": "Clip 3–5 s (no longer).\nScript: [what happens in this shot].\nCamera: [slow push-in / side move / locked / crane up].\nTone: [professional / dynamic / calm].\nStart: image-to-video from the hero keyframe. Same style, same colors."
               },
               {
                 "heading": "Copyable chain: image to video",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
-                "copyable": "Short video, 5-10 seconds. Script: [describe what happens]. Tone: [professional / dynamic / calm]. Format: [16:9 / 9:16]. Optional: start from the hero image and keep the same style and colors."
+                "body": "Hero first, then animation; for longer pieces use several keyframes.",
+                "copyable": "1) Create a hero image: [SUBJECT], setting [CONTEXT], style [STYLE], ratio 16:9 or 9:16, no text in the image.\n2) Animate from this image: 3–5 seconds. Camera moves […], subject [what it does]. Same character/product, same style, same color palette.\n3) (If you need longer) Repeat 2) with a second keyframe – then edit them together."
               },
               {
                 "heading": "Check",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "body": "Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colours).",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Ta pati isvaizda keliuose kadruose",
-                "body": "For short video, describe the scene, duration, tone, movement and format.",
+                "heading": "Same look across shots",
+                "body": "Same reference + “same product / same style”. Avoid real faces or voices without consent.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -1248,7 +1234,9 @@
             "reflectionTitle": "Reflection prompt",
             "tagline": "Image + video + music = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
-            "firstAction24h": "You learned the core image, video and music prompt patterns."
+            "firstAction24h": "You learned the core image, video and music prompt patterns.",
+            "abilityBefore": "You wrote image/video prompts without style, ratios, or rights.",
+            "abilityAfter": "You can craft image, video, and music prompts with consistency and rights awareness."
           }
         }
       ],
@@ -1584,7 +1572,13 @@
           "title": "Turinio kelio zinios",
           "description": "Use this step to create, check and improve your AI content artefact."
         }
-      ]
+      ],
+      "transfer": {
+        "abilityBefore": "Image/video/audio principles were unchecked.",
+        "abilityAfter": "You can check style, rights, and consistency before a mini campaign.",
+        "firstAction24h": "Within 24–48h generate one image from your brief and note usage rights.",
+        "nextStepCTA": "Go to Module 15 – quick start or a full mini campaign."
+      }
     },
     {
       "id": 15,
@@ -1914,7 +1908,12 @@
             "reflectionPrompt": "Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.",
             "tagline": "Image + video + music = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
-            "firstAction24h": "You now have a prompt and at least one usable content artefact."
+            "firstAction24h": "You now have a prompt and at least one usable content artefact.",
+            "abilityBefore": "You lacked a mini campaign or hero image with saved prompts.",
+            "abilityAfter": "You have a quick-start or mini-campaign artefact and can repeat it for another topic.",
+            "ownWorkLabel": "Your campaign / channel context",
+            "ownWorkPlaceholder": "e.g. LinkedIn announcement, product landing hero…",
+            "ownWorkTemplate": "META: You are a content director.\nINPUT: My channel and goal: {{context}}\nOUTPUT: Give 1 hero image prompt (style, ratios, on-image text) and 3 check points."
           },
           "shortTitle": "Project summary"
         }

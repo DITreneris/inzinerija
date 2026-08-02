@@ -92,6 +92,13 @@
       "category": "Chat AI"
     },
     {
+      "name": "Cursor",
+      "url": "https://cursor.com",
+      "description": "AI code editor on the Code path – listed from Module 16; build and vertical slice happen in Module 18 (with PACKET and PROJECT_RULES).",
+      "moduleId": 16,
+      "category": "Productivity"
+    },
+    {
       "name": "DALL·E (OpenAI)",
       "url": "https://chatgpt.com",
       "description": "Image generation via ChatGPT / GPT-Image – text to image, style and ratios; fast brief→image.",

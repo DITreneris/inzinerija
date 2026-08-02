@@ -72,6 +72,16 @@ export interface SummaryContent {
   firstAction24h?: string;
   /** Kitas žingsnis CTA (pvz. „Pereikite prie Modulio 11“) – rodomas jei nėra sections su Kitas Žingsnis */
   nextStepCTA?: string;
+  /** Transfer Contract §3.4f: gebėjimas prieš modulį (Before) */
+  abilityBefore?: string;
+  /** Transfer Contract §3.4f: gebėjimas po modulio (After) */
+  abilityAfter?: string;
+  /** Own-work slot (practice closers): lauko antraštė */
+  ownWorkLabel?: string;
+  /** Own-work: placeholder tekstas */
+  ownWorkPlaceholder?: string;
+  /** Own-work: šablonas su `{{context}}` – įterpiama į copyable */
+  ownWorkTemplate?: string;
 }
 
 /** Praktikos santraukos skaidrė – content-driven. P2 §4.1 */
@@ -98,6 +108,12 @@ export interface PracticeSummaryContent {
   nextStepCTA?: string;
   /** M9/M12: pirmas praktinis veiksmas per 24–48 val. */
   firstAction24h?: string;
+  /** Transfer Contract §3.4f */
+  abilityBefore?: string;
+  abilityAfter?: string;
+  ownWorkLabel?: string;
+  ownWorkPlaceholder?: string;
+  ownWorkTemplate?: string;
   /** M9: mygtuko „Parsisiųsti atmintinę (PDF)“ etiketė */
   handoutDownloadLabel?: string;
   /** M9 quest: soft artefact checklist */

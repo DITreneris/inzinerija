@@ -4,7 +4,7 @@
  * - Schema shape for full LT + EN SOT
  * - Exact name-set parity LT ↔ EN
  * - Alphabetical sort (localeCompare 'lt')
- * - moduleId 1–15
+ * - moduleId 1–18
  * - Category allowlists (reject legacy typos)
  * - Core profiles ⊆ full SOT and respect max moduleId
  *
@@ -80,7 +80,7 @@ function checkSorted(tools, label, errors) {
 
 function checkModuleIds(tools, label, errors) {
   for (const t of tools) {
-    if (!Number.isInteger(t.moduleId) || t.moduleId < 1 || t.moduleId > 15) {
+    if (!Number.isInteger(t.moduleId) || t.moduleId < 1 || t.moduleId > 18) {
       errors.push(`${label}: "${t.name}" has invalid moduleId ${t.moduleId}`);
     }
   }

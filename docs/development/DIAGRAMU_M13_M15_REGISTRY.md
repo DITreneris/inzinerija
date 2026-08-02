@@ -58,4 +58,4 @@ M14 – schemų nėra.
 3. LT + EN overlay; core m1-m6/m1-m9 neliečiama.
 4. Dark via `useDiagramPalette` frame (+ `getContentTrackColors` softRose).
 5. Content tones maps match registry table (GOLDEN §6b).
-6. M13–15 scheme ROI: I0–I5 + **S5-THIRDS** + **S4-INDIV** done (linear / lock-artifact / timeline / cycle). Residual dens = `M1315-DENS`. Žr. `M13_M15_SCHEME_AUDIT.md`.
+6. M13–15 scheme ROI: I0–I5 + **S5-THIRDS** + **S4-INDIV** done (linear / lock-artifact / timeline / cycle). Content dens 13.3/13.4 = **`M1315-DENS` done** 2026-07-31. Žr. `M13_M15_SCHEME_AUDIT.md`.

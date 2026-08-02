@@ -30,7 +30,7 @@
 | Turinys (Moduliai 7–9)                   | `docs/turinio_pletra_moduliai_7_8_9.md`                                                |
 | Turinys (Moduliai 10–12)                 | `docs/turinio_pletra_moduliai_10_11_12.md`; seka – `docs/MODULIO_10_SKAIDRIU_EILES.md` |
 | Turinys (Moduliai 13–15)                 | `docs/turinio_pletra_moduliai_13_14_15.md`; seka – `docs/MODULIO_13_SKAIDRIU_EILES.md` |
-| Turinys (Moduliai 16–18)                 | `docs/turinio_pletra_moduliai_16_17_18.md` (JSON / eilės Deferred)                     |
+| Turinys (Moduliai 16–18)                 | `docs/turinio_pletra_moduliai_16_17_18.md` + `docs/MODULIO_16_SKAIDRIU_EILES.md`       |
 | Modulių/skaidrių atpažinimas             | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                  |
 | Santraukos skaidrės struktūra (5 blokai) | `docs/development/SUMMARY_SLIDE_SPEC.md`                                               |
 | Faktinė skaidrių/modulių struktūra       | `src/data/modules.json` (full redagavimo SOT, tik skaityti; keičia DATA_AGENT)         |
@@ -45,7 +45,7 @@
 
 **M13 I2V builder (2026-07-28):** interaktyvi **13.47** (`i2v-generatorius`) **po 13.4**, **prieš 13.5** (eilė 7a). Neperkelti prieš still generatorių (13.37) ar po įrankių matricos be pedagoginio sprendimo. Feature Doc: `M13_I2V_CLIP_BUILDER.md`.
 
-**M16–18 (2026-07):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas**, **M18 = D3+D4+D5**; Cursor-first; soft DoD. Skaidrių eilės failų dar nėra; JSON Deferred (`TODO.md` §1.5). **Ne** painioti su M7 optional viz (sk. 100–106). Žr. `docs/turinio_pletra_moduliai_16_17_18.md`.
+**M16–18 (2026-08):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas** (Path Test §3.4a1; stuburas = brief), **M18 = D3+D4+D5**; Cursor-first; soft DoD. Eilė + authoring JSON done; open TE MoSCoW (`TODO.md` §1.2g). JSON id: `16.101`/`16.201`/`18.101`/`18.201` (decimal collision). Corporate18 = Wave D3. **Ne** painioti su M7 optional viz (sk. 100–106).
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 

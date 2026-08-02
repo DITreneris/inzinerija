@@ -1,7 +1,7 @@
 {
   "name": "prompt-anatomy-training",
   "version": "1.5.0",
-  "description": "Interaktyvus DI promptų mokymas: MVP M1–6, production M1–9 (tier 9), corporate12 M1–12 (tier 12), corporate15 M1–15 (tier 15), full authoring katalogas M1–15. Praktika, apklausa, sertifikatai.",
+  "description": "Interaktyvus DI promptų mokymas: MVP M1–6, production M1–9 (tier 9), corporate12 M1–12 (tier 12), corporate15 M1–15 (tier 15), full authoring katalogas M1–18 (DEV). Praktika, apklausa, sertifikatai.",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -44,6 +44,10 @@
     "audit:en-coverage-m13-15": "node scripts/audit-en-coverage-m13-15.mjs",
     "audit:en-language-m13-15": "node scripts/audit-en-language-m13-15.mjs",
     "audit:m1315": "npm run audit:en-coverage-m13-15 && npm run audit:en-language-m13-15",
+    "audit:module-transfer": "node scripts/audit-module-transfer.mjs",
+    "audit:en-coverage-m16-18": "node scripts/audit-en-coverage-m16-18.mjs",
+    "audit:en-language-m16-18": "node scripts/audit-en-language-m16-18.mjs",
+    "audit:m1618": "npm run audit:en-coverage-m16-18 && npm run audit:en-language-m16-18 && npm run audit:module-transfer",
     "audit:en-coverage-m4-m6": "node scripts/audit-en-coverage-m4-m6.mjs",
     "audit:en-language-m4-m6": "node scripts/audit-en-language-m4-m6.mjs",
     "audit:m46": "npm run audit:en-coverage-m4-m6 && npm run audit:en-language-m4-m6",
@@ -59,6 +63,8 @@
     "build:modules-en-m10-m12": "node scripts/build-en-m10-m12.mjs",
     "extract:modules-en-m13-m15": "node scripts/extract-modules-m13-m15.mjs",
     "build:modules-en-m13-m15": "node scripts/build-en-m13-m15.mjs",
+    "build:modules-en-m16-m18": "node scripts/build-en-m16-m18.mjs",
+    "seed:m16-m18": "node scripts/seed-m16-m18.mjs",
     "build:modules-en-m7-m9": "node scripts/build-en-m7-m9.mjs",
     "audit:design-tokens": "node scripts/audit-design-tokens.mjs",
     "audit:design-tokens:gate": "node scripts/audit-design-tokens.mjs --fail-on-regression",

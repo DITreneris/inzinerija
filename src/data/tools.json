@@ -92,6 +92,13 @@
       "category": "Pokalbių DI"
     },
     {
+      "name": "Cursor",
+      "url": "https://cursor.com",
+      "description": "DI kodo redaktorius Kodo kelyje – kataloge nuo Modulio 16; build ir vertikalus pjūvis – Modulyje 18 (su PACKET ir PROJECT_RULES).",
+      "moduleId": 16,
+      "category": "Produktyvumas"
+    },
+    {
       "name": "DALL·E (OpenAI)",
       "url": "https://chatgpt.com",
       "description": "Vaizdų generavimas per ChatGPT / GPT-Image – tekstas į vaizdą, stilius ir proporcijos; greitas brief→vaizdas.",

@@ -333,6 +333,29 @@
 
 **Etalonas lukštui:** M11 (LT). **Etalonas diagnostikos gylui:** M2 pool/radar.
 
+### 3.4f Transfer Contract (mokymosi baigtis)
+
+**Paskirtis:** Kiekvienas modulis baigiasi apčiuopiamu **Before → After** gebėjimu ir **pirmu veiksmu per 24–48 val.** (ne CRO CTA).
+
+**Šaltiniai (prioritetas):**
+
+1. Paskutinė `summary` / `practice-summary` su `abilityBefore`, `abilityAfter`, `firstAction24h` (+ optional `nextStepCTA`).
+2. Modulio lygio `transfer` fallback (M4 ir path-test moduliai be summary).
+
+**Resolver:** `resolveModuleTransfer` (`src/utils/moduleTransfer.ts`). **UI:** summary strip + `ModuleCompleteScreen` (virš ecosystem/upsell).
+
+**Practice own-work (M3/M6/M9/M12/M15):** optional `ownWorkLabel` / `ownWorkPlaceholder` / `ownWorkTemplate` su `{{context}}` – textarea įterpia į copyable (lokalus state).
+
+**Balsas:** tu; DI; be curriculum ID user-facing transfer copy.
+
+### 3.4g Eval-as-habit Contract
+
+**Paskirtis:** Kiekviename learn kelyje (M1, M4, M7, M10, M13) ≥1 beatas: **pagamink → įvertink kriterijais → pataisyk vieną vietą**. Lukštas = esami tipai (`evaluator-prompt-block`, `preCopyCheckBlock` / revise embeds, judgment labs).
+
+**Registry:** `EVAL_HABIT_SLIDES` (`src/utils/retrievalSchedule.ts`) – deep-link iš Home/Modules („Paleisk vertintoją“). Progress `retrievalSchedule` saugo `kind: 'eval'`.
+
+**Etalonas:** M4/`45`, M10/`10.66`; M1/`12.5`; M7/`67`; M13/`13.325`.
+
 ### 3.4b section-break
 
 **Paskirtis:** Skyriaus skiriamoji skaidrė – vizualiai atskiria temų blokus ilgame modulyje.
@@ -681,8 +704,13 @@ AppNav aukštis yra **dinaminis** – desktop meniu gali persilaužti į 2 eilut
 | M13     | Turinio inžinerija                  | `rose`    | `Image`          |
 | M14     | Turinio testas                      | `rose`    | `ClipboardCheck` |
 | M15     | Turinio praktika                    | `rose`    | `Rocket`         |
+| M16     | Kodo inžinerija                     | `cyan`    | `Code`           |
+| M17     | Kodo testas                         | `cyan`    | `ClipboardCheck` |
+| M18     | Kodo praktika                       | `cyan`    | `Rocket`         |
 
-**Track accent logika (M7–15):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias).
+**Track accent logika (M7–18):** M7–9 = `sky` (Duomenų analizės kelias); M10–12 = `fuchsia` (Agentų kelias); M13–15 = `rose` (Turinio kelias); M16–18 = `cyan` (Kodo inžinerijos kelias).
+
+**Žinomas debt:** M5 (bazės spektras) ir M16–18 (code track) dalijasi `cyan` accent – skiria track chrome + modulio numeris; remap = ateities product call. Learn modulių `identityIcon` unikalūs (`audit:module-identity`).
 
 **Bendras principas:** Vienas akcentas per kontekstą; neutralūs fonai (slate/gray). Modulio identity **NIEKUR kitur** — ne diagramose, ne CTA mygtukuose, ne body callout'uose (CTA lieka GOLDEN §2.2 accent/brand).
 
@@ -746,11 +774,11 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 **Katalogo hierarchija (track chrome):**
 
-| Sluoksnis            | Kas                                                | Vizualas                                                                                                                                    |
-| -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Track**            | M1–6 Bazė, M7–9 DA, M10–12 Agentai, M13–15 Turinys | Pilna juosta `trackSectionClasses` (brand / sky / fuchsia / rose)                                                                           |
-| **Bazės subsection** | Po M1–M3, prieš M4–M6                              | Tylesnė juosta (`border-t` + H2) – **ne** antras track; i18n `trackBaseCycle2Title` / `Subtitle`                                            |
-| **„Mano medžiaga“**  | Uždirbtos atmintinės + sertifikatai                | Grid’e **po paskutinio** modulio su `id <= maxAccessible`, **prieš** tier-locked track’us ir coming-soon (`insertMaterialsAfterAccessible`) |
+| Sluoksnis            | Kas                                                              | Vizualas                                                                                                                                    |
+| -------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Track**            | M1–6 Bazė, M7–9 DA, M10–12 Agentai, M13–15 Turinys, M16–18 Kodas | Pilna juosta `trackSectionClasses` (brand / sky / fuchsia / rose / cyan)                                                                    |
+| **Bazės subsection** | Po M1–M3, prieš M4–M6                                            | Tylesnė juosta (`border-t` + H2) – **ne** antras track; i18n `trackBaseCycle2Title` / `Subtitle`                                            |
+| **„Mano medžiaga“**  | Uždirbtos atmintinės + sertifikatai                              | Grid’e **po paskutinio** modulio su `id <= maxAccessible`, **prieš** tier-locked track’us ir coming-soon (`insertMaterialsAfterAccessible`) |
 
 **UX taisyklės:**
 

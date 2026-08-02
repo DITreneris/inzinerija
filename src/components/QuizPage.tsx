@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
-import { Progress } from '../utils/progress';
+import { Progress, type RetrievalScheduleItem } from '../utils/progress';
 import { getModulesDataSync } from '../data/modulesLoader';
 import { useLocale } from '../contexts/LocaleContext';
 import { useQuizState } from '../utils/useQuizState';
+import { buildRetrievalQuestions } from '../utils/retrievalQuestions';
 import { Card, CTAButton, LoadingSpinner } from './ui';
 import CircularProgress from './CircularProgress';
 import { QuizResultsView } from './QuizResultsView';
@@ -13,6 +14,10 @@ interface QuizPageProps {
   onBack: () => void;
   progress: Progress;
   onQuizComplete: (score: number) => void;
+  /** Formative spaced retrieval (not Branduolio graded readiness). */
+  mode?: 'branduolys' | 'retrieval';
+  retrievalItem?: RetrievalScheduleItem | null;
+  onRetrievalComplete?: (score: number) => void;
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -28,15 +33,24 @@ export default function QuizPage({
   onBack,
   progress,
   onQuizComplete,
+  mode = 'branduolys',
+  retrievalItem = null,
+  onRetrievalComplete,
 }: QuizPageProps) {
   const { t } = useTranslation(['quiz', 'common']);
   const { locale } = useLocale();
+  const isEn = locale === 'en';
+  const isRetrieval = mode === 'retrieval' && retrievalItem != null;
   const modulesData = getModulesDataSync(locale);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(isRetrieval);
 
   const questions = useMemo(() => {
-    if (!modulesData?.quiz.questions) return [];
-    const originalQuestions = modulesData.quiz.questions;
+    if (!modulesData) return [];
+    const originalQuestions =
+      isRetrieval && retrievalItem
+        ? buildRetrievalQuestions(modulesData, retrievalItem)
+        : (modulesData.quiz?.questions ?? []);
+    if (!originalQuestions.length) return [];
     const shuffledQuestions = shuffleArray(originalQuestions);
     return shuffledQuestions.map((q) => {
       const originalOptions = [...q.options];
@@ -53,7 +67,15 @@ export default function QuizPage({
         correct: newCorrectIndex,
       };
     });
-  }, [modulesData]);
+  }, [modulesData, isRetrieval, retrievalItem]);
+
+  const handleComplete = (scoreValue: number) => {
+    if (isRetrieval && onRetrievalComplete) {
+      onRetrievalComplete(scoreValue);
+      return;
+    }
+    onQuizComplete(scoreValue);
+  };
 
   const {
     currentIndex: currentQuestion,
@@ -67,7 +89,7 @@ export default function QuizPage({
     handleSubmit,
     handleRestart,
     firstWrongIndex,
-  } = useQuizState({ questions, onQuizComplete });
+  } = useQuizState({ questions, onQuizComplete: handleComplete });
 
   // Show loading if modules not yet loaded
   if (!modulesData) {
@@ -127,33 +149,58 @@ export default function QuizPage({
         </button>
         <Card className="p-4 sm:p-6 lg:p-10">
           <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('title')}
+            {isRetrieval
+              ? isEn
+                ? 'Spaced recall'
+                : 'Pakartotinė atmintis'
+              : t('title')}
           </h1>
-          <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">
-            {t('introWhy')}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-            {t('introVsModuleTest')}
-          </p>
-          <p
-            className={`text-sm mb-3 ${
-              readyAfterM3
-                ? 'text-emerald-700 dark:text-emerald-300 font-medium'
-                : 'text-gray-600 dark:text-gray-400'
-            }`}
-          >
-            {readyAfterM3 ? t('introWhenReady') : t('introWhenLater')}
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
-            {t('introThreshold')}
-          </p>
+          {isRetrieval ? (
+            <>
+              <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">
+                {isEn
+                  ? 'A short formative check. Not a path test – practice recalling.'
+                  : 'Trumpa formuojanti patikra. Ne kelio testas – praktikuok prisiminimą.'}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+                {isEn
+                  ? 'About 5–8 questions. Weak spots come back tomorrow.'
+                  : 'Apie 5–8 klausimus. Silpnas vietas kartosime rytoj.'}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">
+                {t('introWhy')}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                {t('introVsModuleTest')}
+              </p>
+              <p
+                className={`text-sm mb-3 ${
+                  readyAfterM3
+                    ? 'text-emerald-700 dark:text-emerald-300 font-medium'
+                    : 'text-gray-600 dark:text-gray-400'
+                }`}
+              >
+                {readyAfterM3 ? t('introWhenReady') : t('introWhenLater')}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+                {t('introThreshold')}
+              </p>
+            </>
+          )}
           <CTAButton
             variant="primary"
             onClick={() => setHasStarted(true)}
             className="w-full sm:w-auto"
             aria-label={t('introStartAria')}
           >
-            {t('introStart')}
+            {isRetrieval
+              ? isEn
+                ? 'Start recall'
+                : 'Pradėti pakartojimą'
+              : t('introStart')}
             <ArrowRight className="w-5 h-5" />
           </CTAButton>
         </Card>

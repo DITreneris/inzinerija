@@ -21,8 +21,8 @@ export type ModuleLevel = 'learn' | 'test' | 'practice';
 
 /**
  * Modulio identiteto accent.
- * M1–M6: spektras (DS v0.2 §1). M7–M15: per taką (DS v0.3) —
- * sky (Duomenų analizė), fuchsia (Agentai), rose (Turinys).
+ * M1–M6: spektras (DS v0.2 §1). M7–M18: per taką (DS v0.3) —
+ * sky (Duomenų analizė), fuchsia (Agentai), rose (Turinys), cyan (Kodas).
  */
 export type ModuleAccent =
   | 'brand'
@@ -35,7 +35,7 @@ export type ModuleAccent =
   | 'fuchsia'
   | 'rose';
 
-/** Lucide identity icon name for module eyebrow (DS v0.2 §1, plėtra DS v0.3). */
+/** Lucide identity icon name for module eyebrow (DS v0.2 §1, plėtra DS v0.3 / M16 Code). */
 export type ModuleIdentityIcon =
   | 'BookOpen'
   | 'ClipboardList'
@@ -45,10 +45,19 @@ export type ModuleIdentityIcon =
   | 'Rocket'
   | 'BarChart3'
   | 'Cpu'
-  | 'Image';
+  | 'Image'
+  | 'Code';
 
 /** ModulesPage card icon — same Lucide set as identityIcon (DS v0.3.1). */
 export type ModuleIcon = ModuleIdentityIcon;
+
+/** Transfer Contract (GOLDEN §3.4f) – fallback kai nėra summary closer. */
+export interface ModuleTransfer {
+  abilityBefore: string;
+  abilityAfter: string;
+  firstAction24h: string;
+  nextStepCTA?: string;
+}
 
 export interface Module {
   id: number;
@@ -62,10 +71,12 @@ export interface Module {
   businessExamples: BusinessExample[];
   /** Modulio ID, po kurio šis modulis atrakinamas (jei nurodyta – naudojama vietoj „ankstesnis modulis masyve“). */
   unlocksAfter?: number;
-  /** Modulio identiteto accent (M1–M6 spektras; M7–M15 per taką). */
+  /** Modulio identiteto accent (M1–M6 spektras; M7–M18 per taką). */
   accent?: ModuleAccent;
-  /** Identity icon virš intro / ModulesPage eyebrow (M1–M15). */
+  /** Identity icon virš intro / ModulesPage eyebrow (M1–M18). */
   identityIcon?: ModuleIdentityIcon;
+  /** Transfer fallback (M4, path-test moduliai be summary). */
+  transfer?: ModuleTransfer;
 }
 
 export interface QuizQuestion {

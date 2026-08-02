@@ -5,7 +5,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { resolvePublicAppUrlsForBuild } from './src/utils/publicSiteMeta';
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1';
-// Production ladder (be VITE_MVP_MODE): 9 = M1–9, 12 = M1–12, 15 = M1–15. Full = authoring M1–15 (same as 15 until M16).
+// Production ladder (be VITE_MVP_MODE): 9 = M1–9, 12 = M1–12, 15 = M1–15. Full = authoring M1–18 (uncapped modules.json).
 // Slice build'ai 9/12 neįtraukia aukštesnių modulių (nėra client-side exposure).
 const maxBuildModule = process.env.VITE_MAX_BUILD_MODULE;
 const isCorporate9Build = !isCoreBuild && maxBuildModule === '9';

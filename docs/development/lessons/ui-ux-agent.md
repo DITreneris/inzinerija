@@ -4,6 +4,8 @@
 
 ## Pamokos
 
+2026-08-01 | M5 vs M16–18 cyan | Bazės M5 `accent: cyan` + code track `cyan` = tas pats token dviem prasmėm | Šiame cikle debt OK (track chrome + numeris); remap = product call; learn glyph atskirai (`Code` ≠ `Cpu`) | GOLDEN §6 debt, ModulesPage trackSectionClasses.cyan, modules.json M5/M16
+2026-08-01 | M16–18 cyan track | Temptation = full cyan Content-track (§6b clone) su TE Must schemas | Katalogas = `trackSectionClasses.cyan` only; signature schemas = brand palette (ne softRose); slide cyan tokens = Could C4 product call | ModulesPage.tsx, M16*Diagram.tsx, TODO.md §1.2g
 2026-07-31 | Typography Wave T0–T6 | „Skirtingi šriftai“ = dydžių/svorių chaosas + `font-black` (900 neįkrautas), ne kitos font family | Viena `typographyClasses` ladder + `audit:typography`; max weight extrabold; micro-px ban; portal/hero = dokumentuotos išimtys | design-tokens.ts, GOLDEN §1, audit-typography.mjs
 2026-07-31 | Scheme „Išskleisti“ false affordance | Mygtukas žada zoom, o modalas dažnai ≤ inline (tas pats max-w); konkuruoja su Shell step nav | Audit FAIL jei interactive Shell turi desktop enlarge; rekomendacija = OFF (CODING), ne „fix modal scale“ | EnlargeableDiagram.tsx, GOLDEN §3.2, SCHEME §3.11
 2026-07-29 | M13–15 Content-track §6b | Rose kataloge ≠ in-slide marketing feel; full retheme / rose CTA laužo LMS + rose=error | Scoped §6b: soft wash + tones + path Choice rose selected; FAIL rose Pirmyn / Shell nav / rainbow | GOLDEN §6b, M13_CONTENT_TRACK_VISUAL_INTAKE, ChoiceControl optionTone
@@ -31,6 +33,6 @@
 2026-07-22 | ModulesPage tracks | visos sekcijos brand → keliai susilieja | track header pagal accent (brand/sky/fuchsia/rose); coming-soon agents+content atskiros sekcijos | ModulesPage.tsx, moduleIdentity.ts trackSectionClasses
 2026-07-22 | ModulesPage DS | h2+nested button; icon/chip = level; 1 recommended | h3 + CTA span; accent well/chip; duration; recommended per track; overlay AA | ModulesPage.tsx, moduleIdentity.ts, GOLDEN_STANDARD.md §6
 2026-07-23 | Bazė M1–6 grid | M4–M6 atrodo kaip tos pačios eilės overflow | subsection po M3 (`trackBaseCycle2*`); track lieka vienas | ModulesPage.tsx, lt/en.json, GOLDEN §8.4
-2026-07-23 | Mano medžiaga | reward po visų lock/coming-soon | `insertMaterialsAfterAccessible` po `id <= maxAccessible`; prieš tier-lock | ModulesPage.tsx, GOLDEN §8.4, ModulesPage.materials.test.tsx
+2026-07-23 | Mano medžiaga | reward po visų lock/coming-soon | `insertMaterialsAfterAccessible`po`id <= maxAccessible`; prieš tier-lock | ModulesPage.tsx, GOLDEN §8.4, ModulesPage.materials.test.tsx
 2026-07-23 | M10 diagram chrome | dėžutės+53%+1/5 triukšmas | shell `density=hero`; AppNav % slepiamas `currentPage===module`; interactive diagram section be sunkaus brand frame | diagramKit.tsx, AppNav.tsx, blockVariantClasses.ts
-2026-07-23 | Hero status / H1 | „Tu esi čia“ + silpnas section heading | 10.2 opt-in `stepOfLabel` („Žingsnis N iš T“ + pill); premium diagram `h3` → `text-2xl sm:text-3xl`; kiti hero lieka senas badge | diagramKit.tsx, ContentSlides.tsx, AgentWorkflowBlock.tsx
+2026-07-23 | Hero status / H1 | „Tu esi čia“ + silpnas section heading | 10.2 opt-in `stepOfLabel`(„Žingsnis N iš T“ + pill); premium diagram`h3`→`text-2xl sm:text-3xl`; kiti hero lieka senas badge | diagramKit.tsx, ContentSlides.tsx, AgentWorkflowBlock.tsx

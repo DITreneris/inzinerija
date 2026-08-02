@@ -88,6 +88,9 @@ const headingMap = new Map([
   ['Minimalūs reikalavimai', 'Minimum requirements'],
   ['Kodėl tai veikia', 'Why this works'],
   ['Brand consistency (svarbu verslui)', 'Brand consistency'],
+  ['Prekės ženklo nuoseklumas', 'Brand consistency'],
+  ['Ta pati išvaizda keliuose kadruose', 'Same look across shots'],
+  ['Kadravimas ir kameros kampas', 'Framing and camera angle'],
   ['Reference lock – schema', 'Reference lock – diagram'],
   ['Brand / product sheet (minimumas)', 'Brand / product sheet (minimum)'],
   ['Drift lab', 'Drift lab'],
@@ -200,6 +203,133 @@ OUTPUT: checklist table (step | status | risk) + 1 next action.`,
   158:
     'Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.',
 };
+
+const slide13_3Copyable =
+  'Image: [WHAT IS SHOWN].\nStyle: [photorealistic / acrylic painting / minimal vector / 3D render].\nRatio: [1:1 / 16:9 / 9:16]. Language: neutral scene, no text in the image unless needed.';
+
+const slide13_3Tools = [
+  {
+    name: 'GPT-Image (OpenAI)',
+    url: 'https://chatgpt.com',
+    description: 'Natural language, fast brief-to-image – useful for marketing drafts.',
+    useCases: ['Quick brief', 'Social draft', 'Idea variants'],
+  },
+  {
+    name: 'Ideogram',
+    url: 'https://ideogram.ai',
+    description: 'Strong text-in-image – logos, posters, LinkedIn headlines.',
+    useCases: ['Logo and typography', 'Posters', 'Text in image'],
+  },
+  {
+    name: 'FLUX',
+    url: 'https://blackforestlabs.ai',
+    description: 'Photorealism and multi-reference consistency – product / character series.',
+    useCases: ['Photorealism', 'Product series', 'Reference lock'],
+  },
+  {
+    name: 'Midjourney',
+    url: 'https://midjourney.com',
+    description: 'High artistic level, character / style reference – brand and campaign styles.',
+    useCases: ['Artistic style', 'Character ref', 'Brand mood'],
+  },
+  {
+    name: 'Leonardo.ai',
+    url: 'https://leonardo.ai',
+    description: 'Photorealism and product / game design – when you need more control.',
+    useCases: ['Product design', 'Photorealism', 'Concepts'],
+  },
+  {
+    name: 'Adobe Firefly',
+    url: 'https://www.adobe.com/products/firefly.html',
+    description: 'CC integration, safer source claims, C2PA – for commercial paths.',
+    useCases: ['Adobe CC', 'C2PA / provenance', 'Commercial safety'],
+  },
+];
+
+const slide13_3Sections = [
+  {
+    heading: 'In short',
+    body: 'Style sets the look (photo, acrylic, 3D, drawing). Ratio sets the frame: 1:1 square, 16:9 wide, 9:16 vertical (Stories).',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Brand consistency',
+    body: 'So AI does not generate a random look, specify in the prompt: colour system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).',
+    blockVariant: 'brand',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+  {
+    heading: 'Do this now',
+    body: 'Pick one style and one ratio. Copy the template below and fill it in.',
+    blockVariant: 'brand',
+  },
+  {
+    heading: 'Copyable prompt',
+    body: 'Template with style and ratio fields.',
+    copyable: slide13_3Copyable,
+  },
+  {
+    heading: 'Check',
+    body: 'Does the platform support the ratio you chose? If the image looks cropped – change the ratio or add detail to the description.',
+    blockVariant: 'accent',
+  },
+];
+
+const slide13_4ClipCopyable =
+  'Clip 3–5 s (no longer).\nScript: [what happens in this shot].\nCamera: [slow push-in / side move / locked / crane up].\nTone: [professional / dynamic / calm].\nStart: image-to-video from the hero keyframe. Same style, same colors.';
+
+const slide13_4ChainCopyable =
+  '1) Create a hero image: [SUBJECT], setting [CONTEXT], style [STYLE], ratio 16:9 or 9:16, no text in the image.\n2) Animate from this image: 3–5 seconds. Camera moves […], subject [what it does]. Same character/product, same style, same color palette.\n3) (If you need longer) Repeat 2) with a second keyframe – then edit them together.';
+
+const slide13_4Sections = [
+  {
+    heading: 'In short',
+    body: 'A short video needs a clear script, tone and camera. Prefer 2–4 short clips (3–5 s) over one long one-shot – lock stills before expensive video.',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Framing and camera angle',
+    body: 'Framing changes emotion: eye-level, high angle, low angle, POV – write it in the prompt. Video models are strongest at motion and time, not inventing a full look from scratch.',
+    blockVariant: 'brand',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+  {
+    heading: 'Image-to-video chain',
+    body: 'Hero / keyframe → I2V (Runway, Kling, Veo, Seedance, Sora) → edit. Audio-first hint: if you will add VO, lock VO length first – then cut clips to the audio.',
+    blockVariant: 'brand',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+  {
+    heading: 'Do this now',
+    body: 'Write 2–3 sentences of script for one 3–5 s shot. Copy the template.',
+    blockVariant: 'brand',
+  },
+  {
+    heading: 'Copyable prompt',
+    body: 'Template for one short clip.',
+    copyable: slide13_4ClipCopyable,
+  },
+  {
+    heading: 'Copyable chain: image to video',
+    body: 'Hero first, then animation; for longer pieces use several keyframes.',
+    copyable: slide13_4ChainCopyable,
+  },
+  {
+    heading: 'Check',
+    body: 'Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colours).',
+    blockVariant: 'accent',
+  },
+  {
+    heading: 'Same look across shots',
+    body: 'Same reference + “same product / same style”. Avoid real faces or voices without consent.',
+    blockVariant: 'terms',
+    collapsible: true,
+    collapsedByDefault: true,
+  },
+];
 
 const slide13_32Sections = [
   {
@@ -369,6 +499,17 @@ function translateSlide(slide, moduleId) {
     contentOverrides.sections = slide13_1Sections;
     contentOverrides.footer = 'Next – slide 3: Media chain';
   }
+  if (slide.id === 13.3) {
+    contentOverrides.sections = slide13_3Sections;
+    contentOverrides.toolsCollapsible = true;
+    contentOverrides.toolsIntro =
+      'The principle is the same across generators – strengths differ. One tool is enough to start.';
+    contentOverrides.tools = slide13_3Tools;
+  }
+  if (slide.id === 13.4) {
+    contentOverrides.sections = slide13_4Sections;
+  }
+  // shortTitle overrides applied below (toEnglishTitle leaves LT shortTitles intact).
   if (slide.id === 13.32) {
     contentOverrides.sections = slide13_32Sections;
     contentOverrides.footer = 'Next – slide 9: Consistency lab';
@@ -425,11 +566,19 @@ function translateSlide(slide, moduleId) {
     ];
     contentOverrides.footer = 'Next – slide 3: Questions';
   }
+  const shortTitleBySlide = {
+    13.3: 'Style and ratios',
+    13.4: 'Short video script',
+  };
+  const shortTitle =
+    shortTitleBySlide[slide.id] ??
+    (slide.shortTitle ? toEnglishTitle(slide.shortTitle) || 'Warm-up' : undefined);
+
   return {
     ...translated,
     title,
     ...(subtitle ? { subtitle } : {}),
-    ...(slide.shortTitle ? { shortTitle: toEnglishTitle(slide.shortTitle) || 'Warm-up' } : {}),
+    ...(shortTitle ? { shortTitle } : {}),
     ...(Object.keys(contentOverrides).length
       ? {
           content: {

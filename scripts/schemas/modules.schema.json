@@ -115,7 +115,8 @@
             "Rocket",
             "BarChart3",
             "Cpu",
-            "Image"
+            "Image",
+            "Code"
           ],
           "description": "ModulesPage kortelės ikona (Lucide). Privalo sutapti su identityIcon, kai pastarasis nurodytas (DS v0.3.1)."
         },
@@ -139,6 +140,18 @@
         "unlocksAfter": {
           "type": "number",
           "description": "Modulio ID, po kurio šis modulis atrakinamas"
+        },
+        "transfer": {
+          "type": "object",
+          "description": "Transfer Contract §3.4f fallback kai nėra summary closer",
+          "required": ["abilityBefore", "abilityAfter", "firstAction24h"],
+          "properties": {
+            "abilityBefore": { "type": "string" },
+            "abilityAfter": { "type": "string" },
+            "firstAction24h": { "type": "string" },
+            "nextStepCTA": { "type": "string" }
+          },
+          "additionalProperties": false
         },
         "accent": {
           "type": "string",
@@ -166,9 +179,10 @@
             "Rocket",
             "BarChart3",
             "Cpu",
-            "Image"
+            "Image",
+            "Code"
           ],
-          "description": "Lucide identity icon name. Optional. M1–M15 (DS v0.2 §1 + DS v0.3 plėtra)."
+          "description": "Lucide identity icon name. Optional. M1–M18 (DS v0.2 §1 + DS v0.3 plėtra + code track)."
         }
       }
     },

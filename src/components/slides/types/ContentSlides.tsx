@@ -61,6 +61,8 @@ import {
   WorkflowComparisonInteractiveBlock,
   ContextEngineeringPipelineDiagram,
 } from '../shared';
+import { TransferAbilityStrip } from '../shared/TransferAbilityStrip';
+import { OwnWorkSlot } from '../shared/OwnWorkSlot';
 import { extractFormatPreview } from '../../../utils/extractFormatPreview';
 import { HandoutDownloadButton } from '../../HandoutDownloadButton';
 import { getColorClasses } from '../utils/colorStyles';
@@ -162,6 +164,12 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm13_postprod_steps',
   'turinio_workflow',
   'm15_practice_loop',
+  /** M16–18 signature schemas (TE-M1618) */
+  'm16_delivery_gates',
+  'm16_vsr_maturity',
+  'm16_user_cycle',
+  'm18_packet_stack',
+  'm18_diff_ritual',
 ] as const;
 
 function isPremiumDiagramSection(image?: string) {
@@ -5050,10 +5058,10 @@ export function SummarySlide({
         </div>
       )}
 
-      {/* ── Pirmas veiksmas per 24–48 val. (User Journey) ── */}
-      {content.firstAction24h && (
+      {/* ── Transfer Contract §3.4f (Before→After + 24–48h) ── */}
+      {(content.abilityBefore || content.firstAction24h) && (
         <div
-          className={`relative overflow-hidden rounded-2xl border-2 border-accent-200 dark:border-accent-700 bg-accent-50/50 dark:bg-accent-900/20 p-6 lg:p-8 transition-all duration-500 ${
+          className={`transition-all duration-500 ${
             showContent
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-4'
@@ -5062,13 +5070,22 @@ export function SummarySlide({
             transitionDelay: `${knowledgeSections.length * 120 + 80}ms`,
           }}
         >
-          <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-            Pirmas veiksmas per 24–48 val.
-          </h4>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            {content.firstAction24h}
-          </p>
+          <TransferAbilityStrip
+            abilityBefore={content.abilityBefore}
+            abilityAfter={content.abilityAfter}
+            firstAction24h={content.firstAction24h}
+            isEn={isEn}
+          />
         </div>
+      )}
+
+      {content.ownWorkTemplate && (
+        <OwnWorkSlot
+          label={content.ownWorkLabel}
+          placeholder={content.ownWorkPlaceholder}
+          template={content.ownWorkTemplate}
+          isEn={isEn}
+        />
       )}
 
       {/* ── Next Step CTA ── */}
@@ -6173,6 +6190,22 @@ export function PracticeSummarySlide({
         </div>
       )}
 
+      <TransferAbilityStrip
+        abilityBefore={c.abilityBefore}
+        abilityAfter={c.abilityAfter}
+        firstAction24h={c.firstAction24h}
+        isEn={isEn}
+      />
+
+      {c.ownWorkTemplate && (
+        <OwnWorkSlot
+          label={c.ownWorkLabel}
+          placeholder={c.ownWorkPlaceholder}
+          template={c.ownWorkTemplate}
+          isEn={isEn}
+        />
+      )}
+
       {(c as { nextStepCTA?: string }).nextStepCTA && (
         <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 text-center">
           <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
@@ -6180,16 +6213,6 @@ export function PracticeSummarySlide({
           </p>
           <p className="text-sm text-gray-700 dark:text-gray-300">
             {(c as { nextStepCTA: string }).nextStepCTA}
-          </p>
-        </div>
-      )}
-      {c.firstAction24h && (
-        <div className="bg-accent-50 dark:bg-accent-900/20 border-2 border-accent-200 dark:border-accent-700 rounded-xl p-4 text-center">
-          <p className="font-bold text-accent-800 dark:text-accent-200 mb-1">
-            {isEn ? 'First action in 24–48h' : 'Pirmas veiksmas per 24–48 val.'}
-          </p>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
-            {c.firstAction24h}
           </p>
         </div>
       )}

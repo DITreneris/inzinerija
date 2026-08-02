@@ -17,7 +17,7 @@ Detalios instrukcijos yra `README.md`:
 | **Corporate12 target** (Horizon B)            | `/anatomy/`      | M1–12     | `build:corporate12` / `VITE_MAX_BUILD_MODULE=12` | Repo-ready; marketing cutover kai pin/env perjungia. M13–15 ne bundle'e.                         |
 | **Corporate15 target** (Horizon C)            | `/anatomy/`      | M1–15     | `build:corporate15` / `VITE_MAX_BUILD_MODULE=15` | Repo-ready; Vaizdo/I2V live. Marketing cutover kai pin/env perjungia.                            |
 | **GitHub Pages demo** (DITreneris/inzinerija) | `/inzinerija/`   | M1–6      | `VITE_MVP_MODE=1` (deploy.yml)                   | Preview; ne tas pats artefaktas kaip production.                                                 |
-| **Authoring / local full**                    | `/` (dev)        | M1–15     | default `modules.json`                           | Full katalogas (šiandien = corporate15 slice).                                                   |
+| **Authoring / local full**                    | `/` (dev)        | M1–18     | default `modules.json`                           | Full SOT (M16–18 Kodo kelias); DEV unlock 18; magic-link tiers lieka ≤15 (D3 Deferred).          |
 | **Lokalus dev**                               | `/` (tuščia)     | pagal env | `npm run dev`                                    | —                                                                                                |
 
 **Magic link URL (prod, tier 9):** `https://www.promptanatomy.app/anatomy/?access_tier=9&expires=...&token=...`  

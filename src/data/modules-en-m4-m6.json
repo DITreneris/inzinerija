@@ -3577,7 +3577,13 @@
         }
       ],
       "accent": "violet",
-      "identityIcon": "Brain"
+      "identityIcon": "Brain",
+      "transfer": {
+        "abilityBefore": "You wrote prompts without clear memory, sources, or quality checks.",
+        "abilityAfter": "You can manage context and sources and verify an answer before using it.",
+        "firstAction24h": "Within 24–48h give AI one work document as a source and ask for a summary with citations.",
+        "nextStepCTA": "Go to Module 5 – apply prompts to a presentation and mini test."
+      }
     },
     {
       "id": 5,
@@ -4229,7 +4235,13 @@
         }
       ],
       "accent": "cyan",
-      "identityIcon": "ClipboardCheck"
+      "identityIcon": "ClipboardCheck",
+      "transfer": {
+        "abilityBefore": "You drafted decks without a clear brief and quality gate.",
+        "abilityAfter": "You can go brief → structure → slides and decide whether to proceed.",
+        "firstAction24h": "Today take one real brief, generate a 5–7 slide structure with AI, then fix one weak spot.",
+        "nextStepCTA": "Go to Module 6 – build a full work deliverable."
+      }
     },
     {
       "id": 6,
@@ -4871,7 +4883,14 @@
             ],
             "reflectionTitle": "Reflection prompt",
             "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
-            "tagline": "One project + handout = a repeatable AI work rhythm"
+            "tagline": "One project + handout = a repeatable AI work rhythm",
+            "abilityBefore": "You lacked a finished project with a prompt set and checks.",
+            "abilityAfter": "You have a project artefact and know how to repeat the process for another topic.",
+            "firstAction24h": "Within 24–48h use the project result in real work (email, slide, or report).",
+            "nextStepCTA": "Pick another path (e.g. Data analysis – Module 7) or repeat the project.",
+            "ownWorkLabel": "Your project topic",
+            "ownWorkPlaceholder": "e.g. Q3 report for leadership, onboarding plan…",
+            "ownWorkTemplate": "META: You are a project quality assistant.\nINPUT: My project topic: {{context}}\nOUTPUT: Give a 5-point checklist for work-ready output and 1 improvement."
           }
         }
       ],

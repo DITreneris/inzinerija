@@ -12,12 +12,13 @@ import {
   Rocket,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Progress } from '../utils/progress';
+import { Progress, type RetrievalScheduleItem } from '../utils/progress';
 import { getModulesSync } from '../data/modulesLoader';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
+import { RetrievalDueCard } from './RetrievalDueCard';
 import { Badge, BrandMark, Card, CTAButton } from './ui';
 import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
 
@@ -78,12 +79,16 @@ interface HomePageProps {
   onStart: () => void;
   onGoToQuiz?: () => void;
   progress: Progress;
+  onStartRetrieval?: (item: RetrievalScheduleItem) => void;
+  onOpenEvalHabit?: (moduleId: number, slideId: number) => void;
 }
 
 export default function HomePage({
   onStart,
   onGoToQuiz,
   progress,
+  onStartRetrieval,
+  onOpenEvalHabit,
 }: HomePageProps) {
   const { t } = useTranslation(['home', 'common']);
   const { locale } = useLocale();
@@ -297,6 +302,15 @@ export default function HomePage({
           </div>
         </Card>
       </div>
+
+      {onStartRetrieval && (
+        <RetrievalDueCard
+          progress={progress}
+          isEn={locale === 'en'}
+          onStartRetrieval={onStartRetrieval}
+          onOpenEval={onOpenEvalHabit}
+        />
+      )}
 
       <Card className="p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
         <div className="text-center mb-10">

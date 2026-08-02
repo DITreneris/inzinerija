@@ -2,12 +2,18 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.5.0 + M79/M1315 scheme ROI sync  
-**Testai:** 150 failai / 924 testai (`@ HEAD` po pre-launch preflight; `@ tag 1.4.9` = 130/825)  
-**Data:** 2026-07-31  
+**Baseline:** 1.5.0 + M16–18 authoring/TE + docs/EN sync A+B  
+**Testai:** 154 failai / 940 testai (`@ HEAD` 2026-08-01; `@ tag 1.4.9` freeze = 130/825)  
+**Data:** 2026-08-01  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Docs A + EN B sync – 2026-08-01
+
+| #   | Failas                                                        | Laukas        | Buvo              | Turi būti                          | Done |
+| --- | ------------------------------------------------------------- | ------------- | ----------------- | ---------------------------------- | ---- |
+| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 150/924 / 152/932 | **154/940** po M16–18 TE + UJ-MUST | [x]  |
 
 ### Pre-launch M79/M1315 sync – 2026-07-31
 
@@ -56,7 +62,7 @@
 | **Production (Vercel)**         | `npm run build:production` / `VITE_MAX_BUILD_MODULE=9`                                         | M1–9               | `/anatomy/`    |
 | **Corporate12 target**          | `npm run build:corporate12` / `VITE_MAX_BUILD_MODULE=12`                                       | M1–12              | `/anatomy/`    |
 | **Corporate15 target**          | `npm run build:corporate15` / `VITE_MAX_BUILD_MODULE=15`                                       | M1–15              | `/anatomy/`    |
-| **Authoring / full CI default** | be MVP cap; full `modules.json`                                                                | M1–15              | `/` (dev)      |
+| **Authoring / full CI default** | be MVP cap; full `modules.json`                                                                | M1–18              | `/` (dev)      |
 | **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9\|12` | tier 0/3/6/9/12/15 | —              |
 
 CI (`test.yml`) stato MVP + M1–9 + corporate12 + corporate15; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M4–15 EN, footer numeriai, TE strict).

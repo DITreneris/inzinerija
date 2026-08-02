@@ -784,7 +784,53 @@
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
           },
           "content": {
-            "footer": "Toliau – skaidrė 21: Prieš vs Po"
+            "footer": "Toliau – skaidrė 21: Patikra: įvertink promptą"
+          }
+        },
+        {
+          "id": 12.5,
+          "title": "Patikra: įvertink promptą",
+          "subtitle": "Pagamink → įvertink kriterijais → pataisyk vieną vietą",
+          "type": "evaluator-prompt-block",
+          "content": {
+            "veiksmoIntro": {
+              "trumpai": "Geras promptas turi aiškią rolę, įvestį ir formatą. Vertintojas padeda rasti spragas.",
+              "daryk": [
+                "Nukopijuok vertintojo promptą",
+                "Įklijuok savo darbo promptą kaip INPUT",
+                "Pataisyk 1 silpną vietą pagal atsakymą"
+              ],
+              "patikra": [
+                "Ar Meta sako kas esi ir ko nori?",
+                "Ar Input turi konkrečius duomenis?",
+                "Ar Output nurodo formatą?"
+              ]
+            },
+            "sections": [
+              {
+                "heading": "Trumpai",
+                "body": "Pagamink promptą → įvertink kriterijais → pataisyk vieną vietą.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Vertintojo promptas",
+                "body": "Nukopijuok ir paleisk su savo darbo promptu.",
+                "blockVariant": "accent",
+                "copyable": "META: Tu esi promptų kokybės vertintojas. Tikslas – rasti spragas, ne perrašyti viską.\nINPUT: Štai mano promptas:\n\"\"\"\n[Įklijuok savo promptą]\n\"\"\"\nOUTPUT: Duok: (1) balą 1–5 pagal Meta/Input/Output aiškumą, (2) 3 konkrečias spragas, (3) vieną perrašytą silpną sakinį. Be įžangos."
+              },
+              {
+                "heading": "Patikra",
+                "body": "Išsaugok 1 patobulinimą ir paleisk patobulintą promptą dar kartą.",
+                "blockVariant": "emerald"
+              }
+            ],
+            "practicalTask": {
+              "title": "Žingsniai: įvertink savo promptą",
+              "placeholder": "",
+              "templateLabel": "Žingsniai",
+              "template": "1. Nukopijuok vertintojo promptą.\n2. Įklijuok savo darbo promptą.\n3. Pataisyk 1 silpną vietą.\n4. Paleisk patobulintą versiją."
+            },
+            "footer": "Toliau – skaidrė 22: Prieš ir Po"
           }
         },
         {
@@ -814,7 +860,7 @@
               "rightPct": 85,
               "lessEditsPct": 60
             },
-            "footer": "Toliau – skaidrė 22: Žodynėlis"
+            "footer": "Toliau – skaidrė 23: Žodynėlis"
           }
         },
         {
@@ -889,7 +935,7 @@
                 "definition": "Modelio nustatymai: temperature, reasoning gylis, atsakymo ilgis, pasikartojimų kontrolė."
               }
             ],
-            "footer": "Toliau – skaidrė 23: Modulio Santrauka"
+            "footer": "Toliau – skaidrė 24: Modulio Santrauka"
           }
         },
         {
@@ -963,7 +1009,11 @@
             ],
             "tagline": "Struktūruoti promptai = nuspėjami rezultatai = didesnis efektyvumas",
             "reflectionTitle": "Refleksijos promptas",
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 1.\nINPUT: Ką tik baigiau mokymą apie promptų inžineriją – 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced) ir workflow principai.\nOUTPUT: Užduok 3 klausimus: (1) Kurį bloką galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti."
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 1.\nINPUT: Ką tik baigiau mokymą apie promptų inžineriją – 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced) ir workflow principai.\nOUTPUT: Užduok 3 klausimus: (1) Kurį bloką galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
+            "abilityBefore": "Promptus rašei laisvai – rezultatai buvo nenuoseklūs.",
+            "abilityAfter": "Moki struktūruoti promptą 6 blokais ir pasirinkti Basic vs Workflow.",
+            "firstAction24h": "Šiandien parašyk vieną darbo promptą su Meta + Input + Output ir paleisk jį DI įrankyje.",
+            "nextStepCTA": "Pereik prie Modulio 2 testo – patikrink 6 blokų ir workflow žinias."
           }
         }
       ],
@@ -1496,7 +1546,13 @@
         }
       ],
       "accent": "slate",
-      "identityIcon": "ClipboardList"
+      "identityIcon": "ClipboardList",
+      "transfer": {
+        "abilityBefore": "Atsakymai apie promptus buvo nuspėjami arba atsitiktiniai.",
+        "abilityAfter": "Moki patikrinti 6 blokų ir workflow principus ir matai, kur kartoti.",
+        "firstAction24h": "Šiandien pataisyk vieną silpną vietą iš testo rezultatų ir paleisk 1 patobulintą promptą darbe.",
+        "nextStepCTA": "Pereik prie Modulio 3 praktikos – pritaikyk 6 blokus tikroje užduotyje."
+      }
     },
     {
       "id": 3,
@@ -2041,7 +2097,14 @@
             "reflectionTitle": "Refleksijos promptas",
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti praktines žinias po Modulio 3.\nINPUT: Ką tik baigiau praktinį modulį – pritaikiau 6 blokų sistemą 6 verslo scenarijuose (valdybos ataskaita, pardavimų analizė, marketingo planas, vidaus komunikacija, personalo analizė, kliento skundo valdymas).\nOUTPUT: Užduok 3 klausimus: (1) Kurį scenarijų galėčiau pritaikyti darbe šiandien? (2) Kas buvo naujausia praktikoje? (3) Ką noriu išbandyti su tikrais duomenimis? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
             "tagline": "6 blokai + 6 scenarijai = tavo šablonų biblioteka darbo dienai",
-            "footer": "Toliau – skaidrė 10: 1 dalies santrauka"
+            "footer": "Toliau – skaidrė 10: 1 dalies santrauka",
+            "abilityBefore": "Žinojai teoriją, bet neturėjai savo praktinio promptų rinkinio.",
+            "abilityAfter": "Turi praktiką su 6 blokais ir gali pakartoti tą patį procesą darbe.",
+            "firstAction24h": "Per 24–48 val. pritaikyk vieną praktikos promptą tikrai darbo užduočiai ir išsaugok rezultatą.",
+            "nextStepCTA": "Jei branduolio pasiruošimas aiškus – eik į Modulį 4 (pažangūs įrankiai).",
+            "ownWorkLabel": "Tavo darbo kontekstas",
+            "ownWorkPlaceholder": "Pvz. savaitės pardavimų ataskaita, klientų skundai, el. laiškas…",
+            "ownWorkTemplate": "META: Tu esi mano darbo asistentas.\nINPUT: Mano kontekstas: {{context}}\nOUTPUT: Duok 1 struktūruotą promptą (Meta/Input/Output) šiai užduočiai ir 3 kokybės kriterijus."
           }
         },
         {
@@ -2117,7 +2180,11 @@
             ],
             "reflectionTitle": "Refleksijos promptas",
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po 1 dalies.\nINPUT: Ką tik baigiau 3 modulius: 6 blokų sistema (Meta, Input, Output, Reasoning, Quality, Advanced), žinių testas ir 6 praktiniai scenarijai.\nOUTPUT: Užduok 3 klausimus: (1) Ką galiu pritaikyti darbe šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų – 1 konkretus patarimas, kaip pradėti.",
-            "tagline": "3 moduliai = 6 blokai + testas + 6 scenarijai – tavo pagrindas toliau."
+            "tagline": "3 moduliai = 6 blokai + testas + 6 scenarijai – tavo pagrindas toliau.",
+            "abilityBefore": "DI naudojai be aiškios 6 blokų sistemos.",
+            "abilityAfter": "Baigei 1 dalį: struktūra, patikra ir praktika – gali eiti į pažangų kelią.",
+            "firstAction24h": "Šiandien pasirink vieną darbo užduotį ir pakartok 6 blokų promptą be mokymų skaidrių.",
+            "nextStepCTA": "Atidaryk Branduolio pasitikrinimą arba Modulį 4."
           }
         }
       ],
@@ -5728,7 +5795,13 @@
         }
       ],
       "accent": "violet",
-      "identityIcon": "Brain"
+      "identityIcon": "Brain",
+      "transfer": {
+        "abilityBefore": "Promptus rašei be aiškios atminties, šaltinių ir kokybės patikros.",
+        "abilityAfter": "Moki valdyti kontekstą, šaltinius ir patikrinti atsakymą prieš naudojimą.",
+        "firstAction24h": "Per 24–48 val. paimk vieną darbo dokumentą, duok jį DI kaip šaltinį ir paprašyk santraukos su citatomis.",
+        "nextStepCTA": "Pereik prie Modulio 5 – pritaikyk promptus prezentacijai ir mini testui."
+      }
     },
     {
       "id": 5,
@@ -6383,7 +6456,13 @@
         }
       ],
       "accent": "cyan",
-      "identityIcon": "ClipboardCheck"
+      "identityIcon": "ClipboardCheck",
+      "transfer": {
+        "abilityBefore": "Prezentacijos draftą darei be aiškaus brief ir kokybės vartų.",
+        "abilityAfter": "Moki eiti brief → struktūra → skaidrės ir patikrinti, ar verta eiti toliau.",
+        "firstAction24h": "Šiandien paimk vieną realų brief ir sugeneruok 5–7 skaidrių struktūrą su DI, tada pataisyk 1 silpną vietą.",
+        "nextStepCTA": "Pereik prie Modulio 6 projekto – sukurk pilną darbo rezultatą."
+      }
     },
     {
       "id": 6,
@@ -7028,7 +7107,14 @@
             ],
             "reflectionTitle": "Refleksijos promptas",
             "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Modulio 6 projekto rezultatus.\nINPUT: Ką tik baigiau vieną projektą – tyrimo ataskaitą su DI arba Custom GPT (6 blokai, RAG, technikų buffet).\nOUTPUT: Užduok 3 klausimus: (1) Kurį artefaktą naudosiu darbe pirmiausia? (2) Kurioje vietoje projekte buvo sunkiausia? (3) Ką įtrauksiu į savo promptų biblioteką per 24 val.? Po atsakymų – 1 konkretus patarimas.",
-            "tagline": "Vienas projektas + atmintinė = kartojamas DI darbo ritmas"
+            "tagline": "Vienas projektas + atmintinė = kartojamas DI darbo ritmas",
+            "abilityBefore": "Neturėjai baigto projekto su promptų rinkiniu ir patikra.",
+            "abilityAfter": "Turi projekto artefaktą ir žinai, kaip kartoti tą patį procesą kitai temai.",
+            "firstAction24h": "Per 24–48 val. panaudok projekto rezultatą realiame darbe (el. laiškas, skaidrė ar ataskaita).",
+            "nextStepCTA": "Pasirink kitą kelią (pvz. Duomenų analizė – Modulis 7) arba pakartok projektą.",
+            "ownWorkLabel": "Tavo projekto tema",
+            "ownWorkPlaceholder": "Pvz. Q3 ataskaita vadovybei, onboarding planas…",
+            "ownWorkTemplate": "META: Tu esi projekto kokybės asistentas.\nINPUT: Mano projekto tema: {{context}}\nOUTPUT: Duok 5 punktų checklist, ar rezultatas paruoštas naudoti darbe, ir 1 patobulinimą."
           }
         }
       ],

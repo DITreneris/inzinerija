@@ -1,8 +1,8 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-07-30 (ROADMAP v4.3 + code/doc audit sync). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.  
-> **Open:** M7–9 scheme / interactive ROI + a11y guard (`M79-S*`, `A11Y-*`) — `TODO.md` §1.2d. Horizon D parked; Marketing / MON – ne default.
+> **Atnaujinta:** 2026-08-01 (M16–18 authoring + TE Must/Should done; Could open). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.  
+> **Open:** `TE-M1618-C1`…`C5` (`TODO.md` §1.2g). Wave D3 corporate18 Deferred §1.5. Marketing / MON – ne default.
 
 ---
 
@@ -15,7 +15,7 @@
 | Turinys M7–9          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                                |
 | Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė; ranks: `M10_SLIDE_RANKING_AUDIT.md`, `M11_M12_SLIDE_RANKING_AUDIT.md`)                                                             |
 | Turinys M13–15        | `docs/turinio_pletra_moduliai_13_14_15.md` (corporate15 + authoring)                                                                                                                   |
-| Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` (SOT draft; JSON Deferred)                                                                                                                  |
+| Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` + eilė `MODULIO_16_SKAIDRIU_EILES.md` (authoring + TE Must/Should done; open Could §1.2g)                                                   |
 | Numeracija            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                  |
 | Dizainas / ritmas     | `docs/development/GOLDEN_STANDARD.md` (§3.8)                                                                                                                                           |
 | PDF handout branda    | `docs/development/HANDOUT_MATURITY.md` (+ `PDF_MAKETO_GAIRES.md`, `PDF_GENERATION_AGENT_MEMORY.md`)                                                                                    |
@@ -27,7 +27,7 @@
 | M4 news-portal        | `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`                                                                                                                                 |
 | M7–9 polish ops       | `M79_PATCH_REGISTRY.md` + `DOCS_MAINTENANCE.md` (backlog – ne pirmas load)                                                                                                             |
 | Klaidos               | `docs/development/TEST_REPORT.md`                                                                                                                                                      |
-| Open prioritetai      | `TODO.md` §1.2d (`M79-S*`, `A11Y-*`) · `ROADMAP.md` ladder · Horizon D Deferred · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                                        |
+| Open prioritetai      | `TODO.md` §1.2g (`TE-M1618-C*` Could) · `ROADMAP.md` ladder · D3 corporate18 Deferred §1.5 · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                             |
 
 **Konfliktas:** Turinio SOT → JSON → UI.
 
@@ -76,5 +76,5 @@
 ## 5. Konteksto taupymas
 
 1. Šis failas arba LEAN_INDEX.
-2. `TODO.md` / `ROADMAP.md` – tik **open** §1 (`M79-S*`, `A11Y-*`; Horizon D Deferred); §1.4 MON = out of scope.
+2. `TODO.md` / `ROADMAP.md` – tik **open** §1 (`TE-M1618-*` §1.2g; D3 Deferred §1.5); §1.4 MON = out of scope.
 3. Archyvas – tik kai explicit istorija.

@@ -53,33 +53,35 @@ TEACHING_ELEMENTS_REGISTRY.md          ← master (šis failas)
 teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
   ├─ DIAGRAMU_M7_M12_REGISTRY.md       ← image-key detalės M7–12
   ├─ DIAGRAMU_M13_M15_REGISTRY.md      ← image-key detalės M13–15
+  ├─ DIAGRAMU_M16_M18_REGISTRY.md      ← image-key detalės M16–18 (TE-M1618-M4; prieš JSON keys)
   ├─ DIAGRAMU_M1_M9_AUDITAS.md         ← rubrika + istorinis M1–9 smoke (ne primary)
   ├─ GOLDEN_STANDARD.md §3.8           ← ritmas + embed katalogas
   ├─ LENTELIU_STANDARTAS.md            ← lentelių UX
   ├─ archive/…/SLIDE_UX_INTERACTIVITY_* ← istorinis rollout (ritmas = GOLDEN §3.8)
   ├─ M1_M3_PROMPT_MATURITY.md          ← M1–3 copyable fit-for-purpose + freeze (ne UI registry)
   ├─ M4_PROMPT_MATURITY.md             ← M4 copyable fit-for-purpose (ne UI registry)
-  └─ M7_PROMPT_MATURITY.md             ← M7 copyable F/S/R/L + journey (ne UI registry)
+  ├─ M7_PROMPT_MATURITY.md             ← M7 copyable F/S/R/L + journey (ne UI registry)
+  └─ M16_M18_PROMPT_MATURITY.md        ← M16–18 copyable klasės (TE-M1618-S4 ✅)
 ```
 
 **Neįtraukti į master lentelę** (tik nuoroda): `M79_PATCH_REGISTRY`, `completionArtifacts.json`, `src/icons/registry`.
 
 ## Faktinė bazė (audito baseline)
 
-Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline 2026-07-26 (`audit:teaching-elements:strict`); overlay `updatedAt` **2026-07-28** (RAG maturity 3 + preCopy M4/59–60/M6/68):
+Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline 2026-08-01 (`audit:teaching-elements:strict`); overlay `updatedAt` **2026-08-01** (TE-M1618 Must + Should + C2 embed):
 
 | Bucket                         |                N |
 | ------------------------------ | ---------------: |
-| Skaidrės                       |              277 |
-| Naudoti SlideType              |               41 |
-| Live `sections[].image` unique |               39 |
-| `diagramRenderers` keys        |     41 (2 alias) |
+| Skaidrės                       |              336 |
+| Naudoti SlideType              |               42 |
+| Live `sections[].image` unique |               48 |
+| `diagramRenderers` keys        |               50 |
 | Off-renderer live šeimos       |                5 |
 | Orphaned                       |                2 |
-| ChoiceControl labai (audit)    |                4 |
-| Embed katalogas                |               33 |
-| `section.table`                | 30 / 24 skaidrių |
-| Inventory / overlay elements   |              156 |
+| ChoiceControl labai (audit)    |                7 |
+| Embed katalogas                |               44 |
+| `section.table`                | 41 / 35 skaidrių |
+| Inventory / overlay elements   |              188 |
 
 ## Diagramos, labai ir off-renderer (TE-2)
 
@@ -103,6 +105,8 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `diagram:m13_aec_funnel`            | M13/13.1               | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
 | `diagram:m13_consistency_lock`      | M13/13.32              | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
 | `lab:m13_consistency_lab`           | M13/13.325             | `interactive-control-lab`      | Ne    |        3 | M13ConsistencyLockLabBlock (Drift + Ref)         |
+| `lab:m16_direction_picker`          | M16/16.15              | `interactive-control-lab`      | Ne    |        3 | M16DirectionPickerLabBlock (A/B/C + score)       |
+| `diagram:m18_launch_gates`          | M18/18.19              | `linear-process`               | Taip  |        3 | M18LaunchGatesBlock (tollgate barriers)          |
 | `diagram:m13_media_pipeline`        | M13/13.12              | `linear-process`               | Taip  |        4 | M13MediaPipelineBlock                            |
 | `diagram:m13_postprod_steps`        | M13/13.52              | `linear-process`               | Taip  |        4 | M13PostprodBlock                                 |
 | `diagram:m13_prompt_stack`          | M13/13.2               | `stack`                        | Taip  |        4 | M13PromptStackBlock                              |

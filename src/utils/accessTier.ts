@@ -51,15 +51,15 @@ export function stripMagicLinkSearchParams(search: string): string {
 }
 
 /**
- * Grąžina maksimalų atrakintą modulio ID (0 | 3 | 6 | 9 | 12 | 15).
- * 0 = niekas neįsigyta; 3 = 1–3, 6 = 1–6, 9 = 1–9, 12 = 1–12; 15 = 1–15 (Content track / priced tier).
- * DEV always returns 15 for local authoring. Production: magic-link / localStorage tier 15.
+ * Grąžina maksimalų atrakintą modulio ID (0 | 3 | 6 | 9 | 12 | 15 | 18).
+ * 0 = niekas neįsigyta; 3 = 1–3, 6 = 1–6, 9 = 1–9, 12 = 1–12; 15 = 1–15; 18 = authoring/DEV Code path (magic-link tier 18 = Wave D3).
+ * DEV always returns 18 for local authoring (M16–18). Production magic-link tiers stay ≤15 until corporate18.
  * Šaltinio eilė: DEV → localStorage (patikrintas) → sessionStorage migracija → env → 0.
  * URL query param fallback productione nenaudojamas, kad neteisingas magic-link srautas
  * negalėtų atrakinti prieigos vien per `access_tier`.
  */
 export function getMaxAccessibleModuleId(): ValidMaxModuleId {
-  if (import.meta.env.DEV) return 15;
+  if (import.meta.env.DEV) return 18;
 
   if (typeof window !== 'undefined') {
     const fromLocal = parseAndValidateMaxModuleId(

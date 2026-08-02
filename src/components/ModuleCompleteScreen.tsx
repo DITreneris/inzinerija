@@ -39,6 +39,8 @@ import {
   accentTopBarClasses,
   resolveModuleAccent,
 } from '../utils/moduleIdentity';
+import { resolveModuleTransfer } from '../utils/moduleTransfer';
+import { TransferAbilityStrip } from './slides/shared/TransferAbilityStrip';
 
 function resolveEcosystemHref(
   spec: ModuleEcosystemLinkSpec,
@@ -154,6 +156,7 @@ export function ModuleCompleteScreen({
   const ecosystemIntroKey = MODULE_ECOSYSTEM_INTRO_KEYS[module.id];
   const moduleAccent = resolveModuleAccent(module);
   const accentTopBar = accentTopBarClasses[moduleAccent];
+  const transfer = resolveModuleTransfer(module);
   const handleModuleHandoutDownload = useCallback(async () => {
     if (!moduleCompleteHandout) return;
     try {
@@ -213,6 +216,20 @@ export function ModuleCompleteScreen({
               label={t('module:progressLabel')}
             />
           </div>
+
+          {transfer && (
+            <div
+              className="mb-8 text-left"
+              data-testid="module-complete-transfer"
+            >
+              <TransferAbilityStrip
+                abilityBefore={transfer.abilityBefore}
+                abilityAfter={transfer.abilityAfter}
+                firstAction24h={transfer.firstAction24h}
+                isEn={locale === 'en'}
+              />
+            </div>
+          )}
 
           {/* Hidden treasure: atrakinto sertifikato „discovery“ blokas (Unlock Features pattern) */}
           {activeCertificateTier != null && (

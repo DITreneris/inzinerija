@@ -10,8 +10,9 @@ import {
   PartyPopper,
   Award,
 } from 'lucide-react';
-import { Progress } from '../utils/progress';
+import { Progress, type RetrievalScheduleItem } from '../utils/progress';
 import { COMING_SOON_MODULES } from '../data/comingSoonModules';
+import { RetrievalDueCard } from './RetrievalDueCard';
 import {
   getEarnedCertificateTiers,
   getEarnedHandoutArtifacts,
@@ -53,15 +54,17 @@ interface ModulesPageProps {
   onGoToQuiz?: () => void;
   progress: Progress;
   onRequestCertificate?: (tier: 1 | 2 | 3 | 4 | 5) => void;
+  onStartRetrieval?: (item: RetrievalScheduleItem) => void;
+  onOpenEvalHabit?: (moduleId: number, slideId: number) => void;
 }
 
-type TrackAccent = 'brand' | 'sky' | 'fuchsia' | 'rose';
+type TrackAccent = 'brand' | 'sky' | 'fuchsia' | 'rose' | 'cyan';
 
 type ModuleGridItem =
   | { type: 'module'; module: Module; index: number }
   | {
       type: 'section';
-      id: 'base' | 'data' | 'agents' | 'content';
+      id: 'base' | 'data' | 'agents' | 'content' | 'code';
       accent: TrackAccent;
       title: string;
       subtitle: string;
@@ -112,6 +115,7 @@ const TRACK_MODULE_IDS: number[][] = [
   [7, 8, 9],
   [10, 11, 12],
   [13, 14, 15],
+  [16, 17, 18],
 ];
 
 type DisplayGridItem = ModuleGridItem | { type: 'materials' };
@@ -146,6 +150,8 @@ function ModulesPage({
   onGoToQuiz,
   progress,
   onRequestCertificate,
+  onStartRetrieval,
+  onOpenEvalHabit,
 }: ModulesPageProps) {
   const { t } = useTranslation([
     'modulesPage',
@@ -283,7 +289,7 @@ function ModulesPage({
     if (!modules) return [];
     const moduleEntries = modules.map((module, index) => ({ module, index }));
     const groups: Array<{
-      id: 'base' | 'data' | 'agents' | 'content';
+      id: 'base' | 'data' | 'agents' | 'content' | 'code';
       accent: TrackAccent;
       title: string;
       subtitle: string;
@@ -316,6 +322,13 @@ function ModulesPage({
         title: t('trackContentTitle'),
         subtitle: t('trackContentSubtitle'),
         moduleIds: TRACK_MODULE_IDS[3],
+      },
+      {
+        id: 'code',
+        accent: 'cyan',
+        title: t('trackCodeTitle'),
+        subtitle: t('trackCodeSubtitle'),
+        moduleIds: TRACK_MODULE_IDS[4],
       },
     ];
 
@@ -442,6 +455,17 @@ function ModulesPage({
           {t('headerSubtitle')}
         </p>
       </div>
+
+      {onStartRetrieval && (
+        <div className="max-w-3xl mx-auto">
+          <RetrievalDueCard
+            progress={progress}
+            isEn={locale === 'en'}
+            onStartRetrieval={onStartRetrieval}
+            onOpenEval={onOpenEvalHabit}
+          />
+        </div>
+      )}
 
       {showRecoveryCard && (
         <Card

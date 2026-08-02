@@ -84,18 +84,19 @@ Naudojamas M16–18 skaidrių pavyzdžiuose (ne kaip vienintelė leistina idėja
 **Tikslas:** Nuo miglotos idėjos iki `01_MVP_BRIEF.md`. **Dar ne** Cursor build, ERD, Git, deploy.  
 **Biudžetas:** ~18–22 skaidrės outline.
 
-### 2.1 D1 – Nuo problemos iki aiškios MVP užduoties (~8 sk.)
+### 2.1 D1 – Nuo problemos iki aiškios MVP užduoties (~9 sk.)
 
-| #    | Antraštė                 | Esminė žinutė                                                           |
-| ---- | ------------------------ | ----------------------------------------------------------------------- |
-| 16.1 | Kurso / modulio pažadas  | Veikiantis prototipas su DI; rezultatas ≠ prezentacija                  |
-| 16.2 | Ką šiandien padarysi     | 1 problema · 1 naudotojas · 1 užduotis · greitas testas                 |
-| 16.3 | Proceso schema (kelio)   | PROBLEMA → NAUDOTOJAS → VERTĖ → 1 FUNKCIJA → PROTOTIPAS → TESTAS        |
-| 16.4 | Problema prieš sprendimą | Blogas: „Noriu app su DI“ · Geras: konkreti naudotojo problema          |
-| 16.5 | Problemos formulė        | `[Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė]` |
-| 16.6 | Vertė ≠ funkcija         | Vertė = pokytis; funkcija = veiksmas produkte                           |
-| 16.7 | MVP apimtis              | Būtina dabar / Galima vėliau / Nekuriame · 1 fn + max 1–2 palaikančios  |
-| 16.8 | Praktika: kūrimo kortelė | 5 laukai → įvestis į D2                                                 |
+| #     | Antraštė                 | Esminė žinutė                                                                                     |
+| ----- | ------------------------ | ------------------------------------------------------------------------------------------------- |
+| 16.1  | Kurso / modulio pažadas  | Veikiantis prototipas su DI; rezultatas ≠ prezentacija                                            |
+| 16.2  | Ką šiandien padarysi     | 1 problema · 1 naudotojas · 1 užduotis · greitas testas                                           |
+| 16.25 | Stack žemėlapis          | Sluoksniai: chat DI (brief) · Cursor (kodas M18) · GitHub (proof) · host vėliau – ne įrankių mugė |
+| 16.3  | Proceso schema (kelio)   | PROBLEMA → NAUDOTOJAS → VERTĖ → 1 FUNKCIJA → PROTOTIPAS → TESTAS                                  |
+| 16.4  | Problema prieš sprendimą | Blogas: „Noriu app su DI“ · Geras: konkreti naudotojo problema                                    |
+| 16.5  | Problemos formulė        | `[Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė]`                           |
+| 16.6  | Vertė ≠ funkcija         | Vertė = pokytis; funkcija = veiksmas produkte                                                     |
+| 16.7  | MVP apimtis              | Būtina dabar / Galima vėliau / Nekuriame · 1 fn + max 1–2 palaikančios                            |
+| 16.8  | Praktika: kūrimo kortelė | 5 laukai → įvestis į D2                                                                           |
 
 **D1 artefaktas:**
 
@@ -337,6 +338,26 @@ Lauk mano „taip“ – tada tik generuok.
 
 Tik jei: progress-saved brief/packet (M9-like confirm), arba naujas ChoiceControl lab (3 kryptys) su Shell=Ne Pattern. Lentelės ir paprasti Shell – **be** naujo Feature Doc.
 
+### 5.4 Žodynas (M16–18)
+
+> JSON SOT: `glossary.json` / `glossary-en.json` (`moduleId` 16/18). Exact `term` match. **VSR** = Vibe → Skeleton → Refinement (brief fazės) — **≠** vertikalus pjūvis (M18). **Brief (MVP)** ≠ Brief@5 ≠ Brief (marketing)@13. Triage 3 zonos ≠ M7 MoSCoW 4 etiketės. Wire: 16.85 / 18.125 `itemGlossaryTerms`; 18.16 / 18.23 `unlockedGlossaryTerms`. GlossaryPage apibrėžimai visada skaitomi (GOLDEN §3.4d).
+
+| Term (exact)                                      | Apibrėžimas (1 sakinys)                                                                                  | moduleId | Anchor         |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------- | -------------- |
+| VSR                                               | Vibe → Skeleton → Refinement – brief brandinimo fazės; ne antras delivery kelias ir ne „vertical slice“. | 16       | 16.101         |
+| Brief (MVP)                                       | Siauras `01_MVP_BRIEF.md` – kam, ką, Must/Won’t ir patikrinamas Done prieš Cursor build.                 | 16       | 16.21          |
+| Triage (Būtina dabar / Galima vėliau / Nekuriame) | Trys apimties zonos MVP; mapinimas į Must / Should / Won’t brief laukuose.                               | 16       | 16.7 / 16.85   |
+| Cursor                                            | DI kodavimo IDE – planuoji, redaguoji ir tikrini diff prieš commit; ne „parašyk visą app“ mygtukas.      | 16       | katalogas      |
+| Vertikalus pjūvis                                 | Vienas paleidžiamas Must kelias / viena funkcija prieš platų „viską iš karto“ generavimą.                | 18       | 18.7           |
+| BUILD PACKET                                      | Failų rinkinys prieš DI kodą: brief, flow, taisyklės ir Cursor promptas.                                 | 18       | 18.12 / 18.125 |
+| PROJECT_RULES.md                                  | Trumpas (8–12 eil.) ribų failas Cursor sesijai: stack, Must/Won’t, Done, kalba, raktai.                  | 18       | 18.6 / 18.125  |
+| Smoke                                             | Greita patikra: pasileidžia, UI/API atsako, pagrindinė fn veikia; 1 raudona = nestartuojame giliau.      | 18       | 18.16          |
+| Diff ritualas                                     | Po DI pakeitimo: perskaityti diff → paleisti smoke → tada commit.                                        | 18       | 18.201 / 18.23 |
+| Soft DoD                                          | Minkštas baigties kriterijus: GitHub + commit’ai, README, kritinės fn patikra, URL arba lokalus proof.   | 18       | 18.23          |
+| Vibe debt                                         | Skola po greito DI generavimo be PACKET ir proof – veikia „kažkaip“, bet sunku taisyti ar perduoti.      | 18       | 18.14 / 18.23  |
+
+**EN twin (`term`):** VSR · Brief (MVP) · Triage (Must now / Later / Won’t) · Cursor · Vertical slice · BUILD PACKET · PROJECT_RULES.md · Smoke · Diff ritual · Soft DoD · Vibe debt.
+
 ---
 
 ## 6. MUST / SHOULD / WON’T (turinio apimtis)
@@ -370,22 +391,25 @@ Tik jei: progress-saved brief/packet (M9-like confirm), arba naujas ChoiceContro
 
 ## 7. Sinchronizacija
 
-| Etapas                        | Būsena                                                                   |
-| ----------------------------- | ------------------------------------------------------------------------ |
-| Turinio SOT (šis failas)      | **Konsoliduotas + market SHOULD patch** 2026-07-26                       |
-| Parking lot (§8)              | **Active** – freeze + un-defer gates                                     |
-| Intake RAW                    | Archyvas `docs/archive/development/intake/VIBE_CODING_INTAKE_2026-07.md` |
-| Skaidrių eilė `MODULIO_16_…`  | Nepradėta                                                                |
-| LT `modules.json`             | Nepradėta                                                                |
-| EN overlay                    | Nepradėta                                                                |
-| TE overlay / diagram registry | Nepradėta                                                                |
-| Core profiliai                | Netaikoma (M16+ authoring)                                               |
+| Etapas                        | Būsena                                                                                                                |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Turinio SOT (šis failas)      | **Konsoliduotas + market SHOULD patch** 2026-07-26                                                                    |
+| Parking lot (§8)              | **Un-parked 2026-08-01** (`M1618-D0`) – F1–F8 authoring                                                               |
+| Intake RAW                    | Archyvas `docs/archive/development/intake/VIBE_CODING_INTAKE_2026-07.md`                                              |
+| Skaidrių eilė `MODULIO_16_…`  | ✅ [`MODULIO_16_SKAIDRIU_EILES.md`](MODULIO_16_SKAIDRIU_EILES.md)                                                     |
+| LT `modules.json`             | ✅ modules 16–18                                                                                                      |
+| EN overlay                    | ✅ `modules-en-m16-m18` (`build:modules-en-m16-m18`)                                                                  |
+| TE overlay / diagram registry | Must + Should + C2 ✅ 2026-08-01 (`DIAGRAMU_M16_M18_REGISTRY` + overlay); open Could = C1 park only (`TODO.md` §1.2g) |
+| Core profiliai                | Netaikoma (M16+ authoring; be spill)                                                                                  |
 
 ---
 
-## 8. Parking lot (Deferred – ne authoring backlog)
+## 8. Parking lot → un-parked (2026-08-01)
 
-> Laikyti kelią **parked**, kol neužsidaro un-defer vartai. CQ-M79-1/2 ✅; open P0/P1 lieka Portal / PDF / M10–12 / DIAG-1 (`TODO.md` §1.1–1.2). Čia – checklist ateičiai, ne ticketai §1.
+> **Un-parked:** product call „kitas kelias = Kodo inžinerija“ + capacity (`M1618-D0` ✅).
+> Learning QA gates **CQ-M79-1/2** + **CQ-PORTAL** ✅ (archive 2026-07-28).
+> Authoring F1–F8 ✅ 2026-08-01. Open: TE MoSCoW `TODO.md` §1.2g. Wave D3 corporate18 = Deferred §1.5.
+> Ticketai: [`docs/development/16_17_18_backlog.md`](development/16_17_18_backlog.md).
 
 ### 8.1 Freeze
 
@@ -396,14 +420,16 @@ Tik jei: progress-saved brief/packet (M9-like confirm), arba naujas ChoiceContro
 ### 8.2 Un-defer gates (visi prieš eilės sprintą)
 
 1. **CQ-M79-1** ir **CQ-M79-2** ✅ (2026-07-26; arba product override `TODO.md`).
-2. **CQ-PORTAL** 48h retest atliktas arba waived `TODO.md`.
-3. Product call: „kitas kelias = Kodo inžinerija“ (ne automatiškai po PDF vien).
+2. **CQ-PORTAL** 48h retest ✅ (2026-07-27; archive Done snapshot).
+3. Product call: „kitas kelias = Kodo inžinerija“ ✅ (2026-08-01).
 
-Kol vartai neuždaryti: lieka `TODO.md` §1.5 Deferred; agentai **nepradeda** JSON / skaidrių eilės.
+Vartai uždaryti → F1–F8 authoring. JSON tik po F1–F3 eilės lock.
 
-### 8.3 Future phases (checklist – be ticket ID §1)
+### 8.3 Future phases (checklist – historical; F1–F8 done)
 
-Kai §8.2 true – eilė kaip `docs/MODULIO_13_SKAIDRIU_EILES.md`:
+> Statusas: F1–F8 ✅. Open teaching elements = `TODO.md` §1.2g. Wave D3 = §1.5. Live ticketai: [`16_17_18_backlog.md`](development/16_17_18_backlog.md).
+
+Kai §8.2 true – eilė kaip `docs/MODULIO_13_SKAIDRIU_EILES.md` (uždaryta 2026-08-01):
 
 | Phase | Owner         | Deliverable                                                                                              |
 | ----- | ------------- | -------------------------------------------------------------------------------------------------------- |

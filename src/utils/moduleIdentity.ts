@@ -66,7 +66,7 @@ export const accentTopBarClasses: Record<ModuleAccent, string> = {
 
 /** ModulesPage track section header shell (border + tint). */
 export const trackSectionClasses: Record<
-  'brand' | 'sky' | 'fuchsia' | 'rose',
+  'brand' | 'sky' | 'fuchsia' | 'rose' | 'cyan',
   string
 > = {
   brand:
@@ -75,6 +75,7 @@ export const trackSectionClasses: Record<
   fuchsia:
     'rounded-2xl border border-fuchsia-200 dark:border-fuchsia-800 bg-fuchsia-50/70 dark:bg-fuchsia-900/20 px-5 py-4',
   rose: 'rounded-2xl border border-rose-200 dark:border-rose-800 bg-rose-50/70 dark:bg-rose-900/20 px-5 py-4',
+  cyan: 'rounded-2xl border border-cyan-200 dark:border-cyan-800 bg-cyan-50/70 dark:bg-cyan-900/20 px-5 py-4',
 };
 
 /** Coming-soon eyebrow / badge / note surfaces by track accent. */

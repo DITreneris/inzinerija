@@ -4,6 +4,11 @@
 
 ## Pamokos
 
+2026-08-01 | Docs lag vs M1–18 | README/DEPLOYMENT/CODEBASE sakė M1–15 + TE open; test counts 150/924 vs 152/932 | Po TE ship: sync authoring M1–18 + Could-only + vienas `test:run` SOT (154/940); dead archive retarget | CODEBASE_WHAT_IS_DONE.md, DOCUMENTATION_QUICK_REF.md, DOCS_SYNC_CHECKLIST.md
+2026-08-01 | M16–18 dens polish gate | Po dens lentelių / m17-q11 EN rebuild be `transferEnByModule` → `audit:m1618` language FAIL; bank 10→11 be vitest = false green | Rebuild + durable transfer EN; TE overlay `:sN`; m17 test 11 Q + ≤2 forward; TEST_REPORT; C1 vis dar park | build-en-m16-m18.mjs, TestPracticeSlides.m17.test.tsx, TEST_REPORT.md, teaching-elements-overlay.json
+2026-08-01 | M16–18 Should polish gate | Lab overlay be `LAB_IMAGE_KEYS` + dens/hygiene/M17 be TEST_REPORT = false done | Strict TE + `M16DirectionPicker` + `TestPracticeSlides.m17` + spot 16.15/18.19; open = Could; D3 ≠ polish | TEST_REPORT.md, TODO.md §1.2g, audit-teaching-elements.mjs
+2026-08-01 | M16–18 TE Must gate | Strict TE failino ant naujų table/embed be overlay (diagram keys OK) | Po LT TE: overlay **visiems** inventory id + `audit:teaching-elements:strict`; EN rebuild; D3 ≠ TE Must | teaching-elements-overlay.json, TEST_REPORT.md, TODO.md §1.2g
+2026-08-01 | M16–18 authoring gate | Parked docs / core spill masking empty catalog | F8: schema + EN m16–18 + audit:tools + m17 shell; TE Must+Should vėliau = teaching-elements strict ✅; D3 ≠ F8 | TEST_REPORT.md, modules-en-m16-m18.json, TODO.md §1.2g
 2026-07-31 | Scheme enlarge smoke | RELEASE_QA „Enlarge = tas pats React“ skatino tikrinti modalą, nors interactive default OFF | Smoke: nėra „Išskleisti schemą“ ant Shell; mobile scroll OK; DiagramLocalization regressija | RELEASE_QA_CHECKLIST.md, DiagramLocalization.test.tsx
 2026-07-30 | M13 S4-INDIV DoD | „4 facades / shared VerticalFlow / pad tests green“ ≠ learner win | QA: ar mokinys atskiria 13.12/13.32/13.52/13.11 be step text; 13.33 turi subject motif | M13_M15_SCHEME_AUDIT.md, DIAGRAMU_M13_M15_REGISTRY.md
 2026-07-30 | M13–15 smoke gates | Script matavo `overflowX`, bet `ok` jo nenaudojo; generatoriai/lab neturėjo shot'ų | Browser smoke turi įtraukti kritinius interactive slides ir padaryti `overflowX` blocking mobile signalu | smoke-diag1-m1315.mjs

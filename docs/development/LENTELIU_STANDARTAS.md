@@ -106,6 +106,7 @@ Lentelės apibrėžtos `modules.json` sekcijose su `section.table`. Renderinimas
 | M10 / 10.36 | Kada ką – paleidimo režimai                      |          3 | ne              |                                                |
 | M10 / 10.36 | Kada ką – PaaS orientacija                       |          2 | ne              |                                                |
 | M10 / 10.37 | Kada ką – platformos                             |          2 | ne              |                                                |
+| M16 / 16.25 | Stack žemėlapis                                  |          4 | ne              | roles: chat DI · Cursor · GitHub · host        |
 
 **Patobulinimai:** žr. `TEACHING_ELEMENTS_REGISTRY.md` scorecard; auditas `npm run audit:teaching-elements`.
 

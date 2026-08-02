@@ -48,6 +48,7 @@ const LAB_IMAGE_KEYS = new Set([
   'm10_agent_taxonomy',
   'm9_workflow_step_prompts',
   'm13_consistency_lab',
+  'm16_direction_picker',
 ]);
 
 const LEGACY_ALIASES = new Set(['da_pipeline_6', 'da_bi_schema_4']);

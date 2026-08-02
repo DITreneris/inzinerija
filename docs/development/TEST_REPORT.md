@@ -2,6 +2,173 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-01 – Pre-launch P0 unblock (M1 footers + typecheck)
+
+**Statusas:** ✅ PASS (`audit:release-preflight` green).  
+**Apimtis:** M1 footer renumber after UJ-MUST `12.5`; `moduleTransfer` ES2020-safe inject; test fixture `subtitle` stubs.
+
+| Gate                                         | Rezultatas     |
+| -------------------------------------------- | -------------- |
+| M1 footers LT + EN (`--modules=1`)           | ✅             |
+| `generate:core-data` (m1–m6/9/12/15 inherit) | ✅             |
+| `typecheck`                                  | ✅             |
+| `audit:release-preflight`                    | ✅ **154/940** |
+| `audit:m1618`                                | ✅             |
+| Corporate18 / C1 / MON                       | Out of scope   |
+
+**Verdict:** Production release gate unblocked. Human smoke (RELEASE_QA §1–5 M1 path) still required before tag/deploy claim. M16–18 ≠ production cut.
+
+---
+
+## 2026-08-01 – M16–18 dens polish (I1–I5)
+
+**Statusas:** ✅ PASS (learning dens; C1 still park).  
+**Apimtis:** Thin-slide tables + M17 diff Q + preCopy gates; durable EN transfer in build script.
+
+| Gate                                              | Rezultatas             |
+| ------------------------------------------------- | ---------------------- |
+| LT tables 16.4/17/18/201 · 18.2/5/21/22 · 173     | ✅                     |
+| `preCopy` 16.12 + 18.11; 16.9 shortened           | ✅                     |
+| M17 bank 11 (`m17-q11` → 18.201); vitest          | ✅ 4/4                 |
+| Overlay table/embed rows + TE strict              | ✅                     |
+| `build:modules-en-m16-m18` + `transferEnByModule` | ✅ `audit:m1618` green |
+| `validate:schema` · lint                          | ✅                     |
+| C1 PACKET desk / D3                               | Parked / Deferred      |
+
+**Verdict:** Tier C thin slides densified. No new Shell/Feature Doc. Open Could = C1 only.
+
+---
+
+## 2026-08-01 – M16 stack map table (16.25)
+
+**Apimtis:** Stack roles slide after 16.2; LENTELIU table; EN + overlay; footers +1.
+
+| Gate                                                 | Rezultatas                                     |
+| ---------------------------------------------------- | ---------------------------------------------- |
+| LT insert 16.25 + footer renumber                    | ✅ M16=23; `audit-footer-numbers --modules=16` |
+| EN build + EN footer merge (m16–18 overlay in audit) | ✅                                             |
+| `audit:teaching-elements:strict`                     | ✅ `table:m16:16.25:s1`                        |
+| `validate:schema`                                    | ✅                                             |
+| tools.json                                           | unchanged (Cursor@16)                          |
+
+**Verdict:** Orientation table done; not a tool fair.
+
+---
+
+## 2026-08-01 – M16–18 glossary pack + tools docs
+
+**Apimtis:** VSR fix + pedagogy terms LT/EN; section-break / path-step wire; Cursor description; DATA_AGENT_TOOLS 1–18.
+
+| Gate                                              | Rezultatas                                                       |
+| ------------------------------------------------- | ---------------------------------------------------------------- |
+| `patch-m1618-glossary-fill` + sort                | ✅ VSR brief phases; +6 terms LT/EN                              |
+| Wire 16.85 / 18.125 / 18.16 / 18.23               | ✅ Triage · PACKET/Rules/slice · Smoke · Soft DoD/Diff/Vibe debt |
+| EN glossaryTermMap via `build:modules-en-m16-m18` | ✅                                                               |
+| `audit:tools` + `validate:schema`                 | ✅                                                               |
+| Manual smoke                                      | GlossaryPage VSR ≠ Vertical slice; ToolsPage filter 16 = Cursor  |
+
+**Verdict:** Hygiene done. Ne TE Could; ne `generate:core-data`.
+
+---
+
+## 2026-08-01 – TE-M1618-C2 (.env contrast on 18.17)
+
+**Statusas:** ✅ PASS (learning polish; ne D3).  
+**Apimtis:** 18.17 `manipulation-contrast` embed (M7/67 brother); Could freeze C3–C5 won’t-now; C1 sales park.
+
+| Check                                                 | Rezultatas                      |
+| ----------------------------------------------------- | ------------------------------- |
+| 18.17 LT + EN (null until pick; PLACEHOLDER fixtures) | ✅                              |
+| Overlay `embed:toolChoiceBar:m18:18.17:s1`            | ✅ (table:m18:18.17:s1 removed) |
+| `validate:schema`                                     | ✅                              |
+| `build:modules-en-m16-m18` (18.17 EN override)        | ✅                              |
+| `audit:teaching-elements:strict`                      | ✅ 188/188                      |
+| `ContentBlockSlide.manipulationContrast` vitest       | ✅ 2/2                          |
+| Wave D3 / C1                                          | Deferred / parked sales gate    |
+
+**Verdict:** C2 closed. Open learning Could = C1 only. Corporate18 still Deferred.
+
+## 2026-08-01 – M1618 ritmas / journey (`M1618-R1`…`R6`)
+
+**Statusas:** ✅ PASS (learning UX; ne D3).  
+**Apimtis:** section-break / warm-up / path-step reuse on M16–18; EN ritmas polish; TE overlay table key sync.
+
+| Check                                                             | Rezultatas              |
+| ----------------------------------------------------------------- | ----------------------- |
+| M16=22 (`16.85`, `16.205`, `16.8` path-step; `16.15` lab-primary) | ✅                      |
+| M18=28 (`18.55`, `18.125`, `18.16`/`18.23` Soft DoD path)         | ✅                      |
+| `validate:schema`                                                 | ✅                      |
+| `audit:footer-numbers --modules=16,17,18` LT+EN                   | ✅                      |
+| `audit:teaching-elements:strict`                                  | ✅                      |
+| Wave D3 / Could C1–C5                                             | Deferred / product call |
+
+**Verdict:** Ritmas gap vs M4 closed for Code path authoring. Corporate18 still Deferred.
+
+## 2026-08-01 – Docs A + EN B sync (full `test:run`)
+
+**Statusas:** ✅ PASS (metrics SOT).  
+**Apimtis:** Docs drift sync + EN transfer/glossary (plan A+B); full vitest baseline.
+
+| Check                  | Rezultatas                              |
+| ---------------------- | --------------------------------------- |
+| `test:run`             | ✅ **154/940**                          |
+| Authoring ceiling docs | M1–18 full SOT / DEV 18; magic-link ≤15 |
+| Open TE status         | Could C1–C5 only (Must+Should done)     |
+
+**Verdict:** Current automated SOT = **154/940**. Historical rows below keep their freeze numbers.
+
+## 2026-08-01 – Horizon D TE Should polish (S1/S2 + dens + M17)
+
+**Statusas:** ✅ PASS (learning polish; ne D3).  
+**Apimtis:** `TE-M1618-S1` direction picker · `TE-M1618-S2` launch gates · M18 dens soft · hygiene · M17 bank.
+
+| Check                                                 | Rezultatas                                                      |
+| ----------------------------------------------------- | --------------------------------------------------------------- |
+| S1 lab 16.15 `m16_direction_picker`                   | ✅ `M16DirectionPickerLabBlock` + 4 unit tests; null until pick |
+| S2 `m18_launch_gates` 18.19                           | ✅ tollgate barriers; Shell nav ×5; S4-INDIV ≠ delivery gates   |
+| M18 dens soft (18.9/13/15/17/18/101)                  | ✅ tables + distinct Patikra; no Density CI                     |
+| Hygiene meta strip (16.14 / 16.101 / 18.101 / 18.201) | ✅ LT+EN                                                        |
+| M17 ordering + ≤2 forward                             | ✅ `TestPracticeSlides.m17.test.tsx`                            |
+| `audit:teaching-elements:strict`                      | ✅                                                              |
+| `validate:schema` + `audit:tools` + lint              | ✅                                                              |
+| Wave D3 corporate18                                   | Deferred                                                        |
+
+**Verdict:** Should S1/S2 closed. Could C1–C5 + D3 remain product calls.
+
+## 2026-08-01 – Horizon D M16–18 authoring (F1–F8)
+
+**Statusas:** ✅ PASS (authoring Wave D2).  
+**Apimtis:** `M1618-D0`…`F8` — eilė + LT/EN katalogas + Cursor tools + Path Test M17 + ModulesPage code track.
+
+| Check                                                    | Rezultatas                           |
+| -------------------------------------------------------- | ------------------------------------ |
+| Eilė M16 (~20) / M17 shell / M18 (~26)                   | ✅ `MODULIO_16_SKAIDRIU_EILES.md`    |
+| `validate:schema` + `audit:tools` (moduleId ≤18, Cursor) | ✅                                   |
+| EN overlay `modules-en-m16-m18` + loader merge ≥16       | ✅                                   |
+| M17 Path Test contract test                              | ✅ `TestPracticeSlides.m17.test.tsx` |
+| Feature Doc / naujas Pattern                             | N/A (v1 lentelės + copyables)        |
+| Wave D3 corporate18 / magic-link 18                      | Deferred                             |
+
+**Verdict:** Authoring brandumas done. Corporate18 = atskiras call. Core `*-m1-m15` be M16 spill.
+
+## 2026-07-31 – M1315-DENS soft pass (13.3 + 13.4)
+
+**Statusas:** ✅ PASS (soft checklist; no Density CI).  
+**Apimtis:** MUST content-block dens residual only — **13.3** + **13.4** (ne 13.35 / Top-5).
+
+| Check                      | 13.3                                                | 13.4                                                    |
+| -------------------------- | --------------------------------------------------- | ------------------------------------------------------- |
+| Trumpai 1–2 sakiniai first | OK (kept)                                           | OK (rewritten; no curriculum cross-ref)                 |
+| Optional / tools collapsed | `toolsCollapsible: true`; brand section collapsed   | framing / I2V / same-look already collapsed             |
+| MUST action open           | Daryk + Stage copyable + Patikra                    | Daryk + Stage ×2 copyables + Patikra (no Flagship trim) |
+| EN twin                    | Real per-section bodies + EN tools (surgical patch) | Real per-section bodies; shortTitle EN                  |
+
+**Automatika:** `validate:schema` ✅ · `audit:m1315` ✅ · footer-numbers EN M13 ✅.  
+**CODING:** skipped — `ContentSlides` `toolsCollapsible` wiring already present.  
+**EN note:** do **not** full-regenerate `modules-en-m13-m15` via `build:modules-en-m13-m15` alone (regresses 13.37 tldr etc.); use `patch-m1315-dens-en-13-3-13-4.mjs` or keep build overrides + surgical restore. Build script now has `slide13_3` / `slide13_4` section overrides for future rebuilds.
+
+**Verdict:** `M1315-DENS` **done** (not won’t). Soft residual dens closed; gylis / Stage copyables kept.
+
 ## 2026-07-31 – Pre-launch deep audit (repo gates)
 
 **Statusas:** ✅ PASS (automated) · ⚠️ process GO with conditions.  
@@ -41,7 +208,7 @@
 | Focused Vitest | `m13RuleOfThirdsS5`, `m13S4WaveAIndividuality`, `m13SpineIndividuality` |
 | TODO           | `M1315-S6` + `M1315-S7` `[x]`                                           |
 
-**Verdict:** M13 process individuality epic closed; residual dens (`M1315-DENS`) stays Deferred.
+**Verdict:** M13 process individuality epic closed; residual dens (`M1315-DENS`) closed later same day (soft pass — see entry above).
 
 ## 2026-07-31 – M79 Sprint 2–3 closeout (S2b…S6 + A11Y)
 
@@ -302,7 +469,7 @@
 | Tag / version             | ✅           | Pin **1.4.9** / **130/825**                                                                                         |
 | Prod residual watch       | P2           | M9 quest hydrate/re-confirm · 44px touch · M9 duration (ankstesnis audit); PDF hitbox/fit ✅ PDF-LINK-1 + PDF-FIT-1 |
 | M10–15                    | Info         | Authoring / full catalog; ne `build:production` bundle                                                              |
-| M16–18                    | Parked       | SOT only; JSON Deferred                                                                                             |
+| M16–18                    | Authoring+TE | F1–F8 + Must/Should done; Could open; Wave D3 corporate18 Deferred                                                  |
 | MON-1…8                   | Out of scope | Marketing repo – monetization NO-GO šiame audite                                                                    |
 | Secrets                   | ✅           | Nėra `.env` / `.env.local` WT                                                                                       |
 

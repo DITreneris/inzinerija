@@ -1,6 +1,24 @@
 import { logError, logWarning, logInfo } from './logger';
 import { migrateModuleJourneyFocusLabelsToIds } from './moduleJourneyFocus';
 
+export type RetrievalInterval = 1 | 7 | 30;
+export type RetrievalKind = 'quiz' | 'module-test' | 'warmup-bank' | 'eval';
+
+export interface RetrievalScheduleItem {
+  id: string;
+  kind: RetrievalKind;
+  moduleId?: number;
+  slideId?: number;
+  completedAt: string;
+  intervalDays: RetrievalInterval;
+  nextDueAt: string;
+  lastScore?: number;
+}
+
+export interface RetrievalSchedule {
+  items: RetrievalScheduleItem[];
+}
+
 export interface Progress {
   completedModules: number[];
   completedTasks: Record<number, number[]>;
@@ -13,6 +31,8 @@ export interface Progress {
    * Raktas – moduleId; rodoma etiketė iš modules JSON pagal locale.
    */
   moduleJourneyFocus?: Record<number, string>;
+  /** Spaced retrieval + eval habit schedule (UJ-MUST / Horizon E). */
+  retrievalSchedule?: RetrievalSchedule;
 }
 
 // Internal storage format with versioning
@@ -24,6 +44,7 @@ interface ProgressV2 {
   quizScore: number | null;
   moduleTestScores?: Record<number, number>;
   moduleJourneyFocus?: Record<number, string>;
+  retrievalSchedule?: RetrievalSchedule;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -107,6 +128,16 @@ function validateProgress(data: unknown): data is Progress {
     for (const k of Object.keys(jf)) {
       if (Number.isNaN(Number(k))) return false;
       if (typeof jf[k] !== 'string') return false;
+    }
+  }
+
+  if (obj.retrievalSchedule !== undefined) {
+    if (
+      typeof obj.retrievalSchedule !== 'object' ||
+      obj.retrievalSchedule === null ||
+      !Array.isArray((obj.retrievalSchedule as RetrievalSchedule).items)
+    ) {
+      return false;
     }
   }
 
@@ -221,6 +252,7 @@ function v2ToProgress(v2: ProgressV2): Progress {
     quizScore: v2.quizScore,
     moduleTestScores: v2.moduleTestScores,
     moduleJourneyFocus,
+    retrievalSchedule: v2.retrievalSchedule,
   };
 }
 
@@ -369,6 +401,9 @@ export const saveProgress = (progress: Progress): void => {
       ...(progress.moduleJourneyFocus &&
       Object.keys(progress.moduleJourneyFocus).length > 0
         ? { moduleJourneyFocus: progress.moduleJourneyFocus }
+        : {}),
+      ...(progress.retrievalSchedule?.items?.length
+        ? { retrievalSchedule: progress.retrievalSchedule }
         : {}),
       updatedAt: now,
       createdAt: existing.createdAt || now,

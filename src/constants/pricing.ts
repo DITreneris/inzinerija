@@ -14,7 +14,8 @@ export const ACCESS_TIERS = [
 export type AccessTier = (typeof ACCESS_TIERS)[number];
 
 /** Leidžiami max atrakinto modulio ID (0 = niekas neįsigyta). */
-export const VALID_MAX_MODULE_IDS = [0, 3, 6, 9, 12, 15] as const;
+/** 18 = authoring/DEV Code path ceiling; magic-link tier 18 = Wave D3 (not in MAGIC_LINK_TIERS yet). */
+export const VALID_MAX_MODULE_IDS = [0, 3, 6, 9, 12, 15, 18] as const;
 
 /** Upgrade tier 6 → 9 (marketing copy; abu produktai siunčia access_tier=9). */
 export const UPGRADE_FROM_TIER_6_EUR = 49;

@@ -3,8 +3,8 @@
 > **Data:** 2026-07-31  
 > **Statusas:** **done** 2026-07-31 (Sprint 1–3; soft residual žemiau).  
 > **SOT auditas:** [`M7_M9_SCHEME_AUDIT.md`](../M7_M9_SCHEME_AUDIT.md)  
-> **Tickets:** `TODO.md` §1.2d (`M79-S*` + `A11Y-*`)  
-> **Produktiniai sprendimai (2026-07-31):** (1) **gylis lieka** – Flagship / Stage copyable netrumpinti „greičio“ vardan; (2) open S\* = #1 product next; (3) **Density DoD = ne** (žr. §2); (4) M13 residual 13.3/13.4 – **ne dabar** (`M1315-DENS`).
+> **Tickets:** archive [`TODO_DONE_SPRINTS_2026-07-31.md`](../../archive/development/TODO_DONE_SPRINTS_2026-07-31.md) (`M79-S*` + `A11Y-*`)  
+> **Produktiniai sprendimai (2026-07-31):** (1) **gylis lieka** – Flagship / Stage copyable netrumpinti „greičio“ vardan; (2) **M79-S\*** epic **done** 2026-07-31; (3) **Density DoD = ne** (žr. §2); (4) M13 residual 13.3/13.4 – **`M1315-DENS` done** 2026-07-31 (soft pass).
 
 ---
 
@@ -32,7 +32,7 @@ Exit (šiame repo): A1–A2 FAIL uždaryti + tipografijos grindys + miręs kadra
 4. Ilgis OK, jei progressive disclosure + vienas primary action.
 5. Drausti Trumpai ≈ takeaway echo (coherence).
 
-M13 **13.3 / 13.4** residual dens → `TODO` **M1315-DENS** (po M79-S\*).
+M13 **13.3 / 13.4** residual dens → `TODO` **M1315-DENS** (**done** 2026-07-31 soft pass).
 
 ---
 
@@ -80,8 +80,8 @@ Feature Doc **nereikia** – nėra naujo Pattern; enhancement ant esamų embed/S
 
 ## 5. Ne šiame plane
 
-- M13 13.3/13.4 dens trim → **M1315-DENS**
-- M1315-S6/S7 process individuality → lieka Deferred
+- M13 13.3/13.4 dens trim → **M1315-DENS** (**done** 2026-07-31 soft pass)
+- M1315-S6/S7 process individuality → **done** 2026-07-31 (S4-INDIV + S5-THIRDS)
 - Formalus Density DoD / CI
 - Horizon D / MON kaip learning P0
 - Nauji lab’ai „skaitomumui“
@@ -102,6 +102,6 @@ Feature Doc **nereikia** – nėra naujo Pattern; enhancement ant esamų embed/S
 ```text
 CHANGES: M79 Sprint 2–3 done 2026-07-31; soft residual cleared same day
 CHECKS: vitest path-map focus + M1315 individuality + teaching-elements:strict
-RISKS: M1315-DENS still Deferred
-NEXT: dens/MON stay out of learning P0
+RISKS: none learning-P0 dens residual
+NEXT: MON out of scope; Horizon D parked
 ```

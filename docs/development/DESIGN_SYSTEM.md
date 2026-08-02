@@ -70,7 +70,7 @@ npm run audit:design-tokens        # warn-only inventory
 npm run audit:design-tokens:gate   # exit 1 jei regresija vs skripto BASELINE
 npm run audit:typography           # GOLDEN §1 font-black + micro-px
 npm run audit:typography:gate      # hard ban (preflight)
-npm run audit:module-identity      # M1–15 accent + identityIcon
+npm run audit:module-identity      # M1–18 accent + identityIcon (+ unique learn icons)
 npm run audit:slide-icons          # Lucide raktų allowlist
 npm run audit:accent-budget        # GOLDEN §3.2
 ```
@@ -107,8 +107,8 @@ API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
 ## 4. Modulio identitetas
 
-**Duomenys (M1–M15):** `module.accent`, `module.identityIcon`, `module.icon` — `src/data/modules.json`.  
-`module.icon` = `module.identityIcon` (ModulesPage kortelė). Lygis (`learn` / `test` / `practice`) — gradientas + Eyebrow badge, ne kita ikona.
+**Duomenys (M1–M18):** `module.accent`, `module.identityIcon`, `module.icon` — `src/data/modules.json`.  
+`module.icon` = `module.identityIcon` (ModulesPage kortelė). Lygis (`learn` / `test` / `practice`) — gradientas + Eyebrow badge, ne kita ikona. Learn modulių `identityIcon` unikalūs (`audit:module-identity`).
 
 | Track        | Moduliai | `accent`                      | Tipinės ikonos                     |
 | ------------ | -------- | ----------------------------- | ---------------------------------- |
@@ -117,6 +117,7 @@ API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 | Data (corp)  | M7–M9    | `sky`                         | BarChart3, ClipboardCheck, Rocket  |
 | Agents       | M10–M12  | `fuchsia`                     | Cpu, ClipboardCheck, Rocket        |
 | Content eng. | M13–M15  | `rose`                        | Image, ClipboardCheck, Rocket      |
+| Code eng.    | M16–M18  | `cyan`                        | Code, ClipboardCheck, Rocket       |
 
 **3 UI vietos (identity biudžetas):**
 

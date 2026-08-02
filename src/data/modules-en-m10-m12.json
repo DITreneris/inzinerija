@@ -1579,7 +1579,9 @@
             "reflectionTitle": "Reflection prompt",
             "tagline": "Agent = steps + tools + limits – your foundation for automation.",
             "nextStepCTA": "Go to Module 11: Knowledge check (Agent path)",
-            "firstAction24h": "Today open one AI tool with tools enabled (search or Tools) and ask one agent query with “Use search and provide sources”."
+            "firstAction24h": "Today open one AI tool with tools enabled (search or Tools) and ask one agent query with “Use search and provide sources”.",
+            "abilityBefore": "You mixed agents with plain chat – no tools or boundaries.",
+            "abilityAfter": "You can choose depth, tools, and human control in an agent workflow."
           },
           "shortTitle": "Module 10 summary"
         }
@@ -1877,7 +1879,13 @@
           "title": "Tools and integrations",
           "description": "Search and systems with AI"
         }
-      ]
+      ],
+      "transfer": {
+        "abilityBefore": "Agent ideas were theoretical, without a clear check.",
+        "abilityAfter": "You can check agent depth, tools, and human control before practice.",
+        "firstAction24h": "Today run one agent query with tools and note where a human decision was needed.",
+        "nextStepCTA": "Go to Module 12 – start a multi-agent setup."
+      }
     },
     {
       "id": 12,
@@ -2551,7 +2559,12 @@
             "reflectionPrompt": "META: You are a training reflection assistant. Goal – consolidate Agent engineering project results.\nINPUT: I just finished Module 12: at least one of 3 required practices (Automatize / Augment / Autonomize) and maybe optional scenarios – I have workflow diagram and artefacts.\nOUTPUT: Ask 3 questions: (1) Which agent or workflow step will I apply in 24 hours? (2) What was newest? (3) What do I want to try first with a real process? After my answers, give one concrete tip.",
             "tagline": "3 practices + artefacts = working result first.",
             "nextStepCTA": "Go to Module 13: Content engineering with AI",
-            "firstAction24h": "In 24–48 hours run one workflow in your project (Zapier / Make / AI with tools) or repeat the same scenario with another form."
+            "firstAction24h": "In 24–48 hours run one workflow in your project (Zapier / Make / AI with tools) or repeat the same scenario with another form.",
+            "abilityBefore": "You lacked a multi-agent start with clear artefacts.",
+            "abilityAfter": "You have a quick-start or full practice pack and know what to improve next.",
+            "ownWorkLabel": "Your process",
+            "ownWorkPlaceholder": "e.g. lead qualification, content calendar…",
+            "ownWorkTemplate": "META: You are an agent architect.\nINPUT: My process: {{context}}\nOUTPUT: Propose Coordinator + 2 specialist roles (1 sentence each) and 1 human risk point."
           },
           "shortTitle": "Project summary"
         }
