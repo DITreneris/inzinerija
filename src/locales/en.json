@@ -26,7 +26,8 @@
     "viewFullSizeAria": "Expand diagram: {{label}}",
     "diagramFullSizeAria": "Diagram at full size: {{label}}",
     "imageFullSize": "Image at full size",
-    "imageFullSizeAria": "Image at full size: {{label}}"
+    "imageFullSizeAria": "Image at full size: {{label}}",
+    "swipeToExplore": "Swipe horizontally"
   },
   "footer": {
     "brandName": "Prompt Anatomy",

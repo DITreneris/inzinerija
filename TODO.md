@@ -2,16 +2,16 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) · ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-01 (TE-M1618-C2 done; C3–C5 won’t-now; C1 parked sales gate; Must/Should/R\* done; Density DoD = ne).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-03 (TE-M1618-C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
 
-**Dabartinis fokusas:** Horizon D TE Could C1 park (sales reassessment) · Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **154/940**; `build:corporate12` + `build:corporate15` žali.
+**Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **155/944**; `build:corporate12` + `build:corporate15` žali.
 
 **Produktiniai sprendimai (2026-07-31 + 2026-08-01):** (1) skaitomumas keliamas **išlaikant gylį**; (2) **M79-S\*** epic completed; (3) **formalus Density DoD / CI – ne**; (4) M13 **13.3 / 13.4** dens soft pass → **M1315-DENS done**; (5) UJ-MUST done; (6) **Horizon D un-park** — kitas kelias = Kodo inžinerija; (7) M16–18 TE = MoSCoW individual metaphors (S4-INDIV), ne thin VerticalFlow facades.
 
 **Learning / corporate vartai (šiame repo):**
 
 - **Open P0:** nėra.
-- **Open P1:** §1.2g `TE-M1618-C1` (PACKET desk – sales gate); D3 Deferred §1.5. (C2 done; C3–C5 won’t-now; `M1618-R*` done §1.2h.)
+- **Open P1:** nėra (learning). D3 corporate18 Deferred §1.5. TE-M1618 Could C1–C5 all won’t-now / done; `M1618-R*` done §1.2h.
 - **Open P2:** nėra.
 
 ---
@@ -103,19 +103,19 @@ Repo exit: `build:corporate12` + magic-link tier 12 + `audit:m1012` + docs. Mark
 
 #### Could (Want)
 
-| ID              | Užduotis                                                                           | Status                                                     |
-| --------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| **TE-M1618-C1** | Progress-saved PACKET desk (`lab:m18_packet_desk` / M9-like confirm) — Feature Doc | [ ] Parked — **sales reassessment** (žemiau)               |
-| **TE-M1618-C2** | `.env` secret contrast surface (manipulation-contrast brother)                     | [x] 18.17 `embed:toolChoiceBar:m18:18.17:s1` (M7/67 reuse) |
-| **TE-M1618-C3** | Interactive smoke checklist (persisted ticks)                                      | won’t-now — overlaps R6 `18.16` path-step                  |
-| **TE-M1618-C4** | M16–18 Content-track tokens (cyan; kaip M13 §6b) — product call                    | won’t-now — brand polish, ne pedagogy gap                  |
-| **TE-M1618-C5** | Thin debug process 18.18 — tik jei ne redundant su iterate loop                    | won’t-now — S4-INDIV; table + iterate/diff already cover   |
+| ID              | Užduotis                                                                           | Status                                                                                                                             |
+| --------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **TE-M1618-C1** | Progress-saved PACKET desk (`lab:m18_packet_desk` / M9-like confirm) — Feature Doc | won’t-now — 2026-08-03: not sales/demo moment; no Feature Doc capacity; covered by static `m18_packet_stack` + Soft DoD path-steps |
+| **TE-M1618-C2** | `.env` secret contrast surface (manipulation-contrast brother)                     | [x] 18.17 `embed:toolChoiceBar:m18:18.17:s1` (M7/67 reuse)                                                                         |
+| **TE-M1618-C3** | Interactive smoke checklist (persisted ticks)                                      | won’t-now — overlaps R6 `18.16` path-step                                                                                          |
+| **TE-M1618-C4** | M16–18 Content-track tokens (cyan; kaip M13 §6b) — product call                    | won’t-now — brand polish, ne pedagogy gap                                                                                          |
+| **TE-M1618-C5** | Thin debug process 18.18 — tik jei ne redundant su iterate loop                    | won’t-now — S4-INDIV; table + iterate/diff already cover                                                                           |
 
-**C1 reassessment gate (docs only — no Feature Doc until yes):**
+**C1 decision (2026-08-03 — docs only; no Feature Doc):**
 
-1. Is PACKET assembly the **sales/demo** moment for Kodo kelias?
-2. Capacity for full Feature Doc Contract (M9-like confirm lab)?
-3. If no within next capacity window → leave C1 parked; learning P1 empty (only D3 pricing / MON outside).
+1. PACKET assembly is **not** the sales/demo moment for Kodo kelias (static stack + Soft DoD path suffice).
+2. No capacity for full Feature Doc Contract (M9-like confirm lab) in this window.
+3. Outcome: **won’t-now** (same class as C3–C5). Learning open P1 empty (only D3 pricing / MON outside).
 
 #### Won’t
 

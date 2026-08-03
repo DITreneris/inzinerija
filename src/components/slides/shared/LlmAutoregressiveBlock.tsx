@@ -2,6 +2,8 @@
  * Interaktyvus autoregresinio LLM blokas – state-driven diagrama + „Tu esi čia“ + paaiškinimai.
  * Šioje skaidrėje „Peržiūrėti visą dydį“ nenaudojamas – diagrama rodoma tiesiogiai.
  */
+import { Maximize2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import LlmAutoregressiveDiagram from './LlmAutoregressiveDiagram';
 import {
   LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS,
@@ -43,6 +45,7 @@ const BLOCK_LABELS = {
 export default function LlmAutoregressiveBlock() {
   const { locale } = useLocale();
   const isMobile = useIsMobile();
+  const { t: tCommon } = useTranslation('common');
   const explanations =
     locale === 'en'
       ? LLM_AUTOREGRESSIVE_STEP_EXPLANATIONS_EN
@@ -120,7 +123,19 @@ export default function LlmAutoregressiveBlock() {
         style={{ maxWidth: '90vw' }}
       >
         {isMobile ? (
-          <MobileDiagramScroller minWidth={600} compactMinWidth={460}>
+          <MobileDiagramScroller
+            minWidth={520}
+            compactMinWidth={400}
+            showEdgeFade
+            hint={
+              <div className="flex items-center gap-2 mt-1">
+                <Maximize2 className="w-3.5 h-3.5 text-gray-400" aria-hidden />
+                <span className="text-xs text-gray-400">
+                  {tCommon('swipeToExplore')}
+                </span>
+              </div>
+            }
+          >
             <LlmAutoregressiveDiagram
               locale={locale}
               currentStep={currentStep}

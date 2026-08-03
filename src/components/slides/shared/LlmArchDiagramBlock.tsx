@@ -71,6 +71,7 @@ export default function LlmArchDiagramBlock() {
       </div>
 
       <EnlargeableDiagram
+        mobileBehavior="reflow"
         enlargeLabel={blockLabels.enlargeLabel}
         renderContent={() => (
           <LlmArchDiagramDiagram

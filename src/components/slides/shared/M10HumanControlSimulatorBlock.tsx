@@ -362,7 +362,7 @@ function RiskStrip({
         {axisCaption}
       </p>
       <div
-        className="mt-3 flex gap-2 overflow-x-auto pb-1"
+        className="mt-3 flex flex-wrap gap-2 pb-1"
         role="group"
         aria-label={heading}
       >
@@ -380,7 +380,7 @@ function RiskStrip({
               key={id}
               type="button"
               onClick={() => onSelectScenario(id)}
-              className={`min-w-[9.5rem] flex-1 rounded-xl border-2 px-3 py-2.5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
+              className={`min-w-[calc(50%-0.25rem)] flex-1 sm:min-w-[9.5rem] rounded-xl border-2 px-3 py-2.5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 active
                   ? `${toneCls.selectedBorder} ${toneCls.selectedBg} ${toneCls.selectedRing} shadow-sm`
                   : `border-transparent ${toneCls.softBg} hover:border-brand-300 dark:hover:border-brand-700`
@@ -424,7 +424,7 @@ function ModeTimingStrip({
         {heading}
       </h3>
       <div
-        className="flex gap-2 overflow-x-auto pb-1"
+        className="flex flex-wrap gap-2 pb-1"
         role="list"
         aria-label={heading}
       >
@@ -434,7 +434,7 @@ function ModeTimingStrip({
             <div
               key={phase}
               role="listitem"
-              className={`min-w-[7.5rem] flex-1 rounded-xl border-2 px-3 py-2 text-center text-xs font-semibold transition-all duration-200 ${
+              className={`min-w-[calc(50%-0.25rem)] flex-1 sm:min-w-[7.5rem] rounded-xl border-2 px-3 py-2 text-center text-xs font-semibold transition-all duration-200 ${
                 active
                   ? `border-brand-500 bg-brand-50 text-brand-900 dark:bg-brand-900/40 dark:text-brand-100 ${
                       emphasize ? 'animate-pulse' : ''

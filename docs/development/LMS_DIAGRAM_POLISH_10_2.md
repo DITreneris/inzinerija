@@ -129,16 +129,16 @@ Pilot: `m10_agent_orchestrator` (10.482). Pattern `multi-agent-flow`. Shell = Ta
 
 Pilot: `llm_arch` (M4 sk. 56). Pattern `comparison-mode-architecture`. Shell = **Ne** (own mode tabs + architecture cards).
 
-| Check       | Rule                                                                                     |
-| ----------- | ---------------------------------------------------------------------------------------- |
-| Modes       | Bazinis · RAG · Agentinis (EN: Basic · RAG · Agent); mode id `tool` stays                |
-| Active      | One brand-blue signal: tab + active card + status badge                                  |
-| Mode-absent | Dashed placeholder + „Neaktyvu“ / Inactive — not ghost `opacity-0.4`                     |
-| Topology    | Horizontal Input→LLM→Output; vertical LLM→Tools→DB; return RAG from DB, Agent from Tools |
-| Return path | `llmArchReturnPath.ts` pure helper + ResizeObserver enhance                              |
-| Tokens      | `stroke.flow` / `feedback` ≥ 3.5; LLM flat brand (no CTA glow)                           |
-| Chrome      | `llm_arch` in `PREMIUM_DIAGRAM_IMAGE_KEYS` (no emerald section frame)                    |
-| Tests       | `LlmArchModeStates.test.tsx`, `llmArchReturnPath.test.ts`, localization                  |
+| Check       | Rule                                                                                                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Modes       | Bazinis · RAG · Agentinis (EN: Basic · RAG · Agent); mode id `tool` stays                                                                                               |
+| Active      | One brand-blue signal: tab + active card + status badge                                                                                                                 |
+| Mode-absent | Dashed placeholder + „Neaktyvu“ / Inactive — not ghost `opacity-0.4`                                                                                                    |
+| Topology    | **lg+:** Horizontal Input→LLM→Output; vertical LLM→Tools→DB. **&lt;lg:** spine stacks vertically (same nodes); Tools/DB under LLM. Return RAG from DB, Agent from Tools |
+| Return path | `llmArchReturnPath.ts` pure helper + ResizeObserver; compact `routePad=24` when container width &lt; 640                                                                |
+| Tokens      | `stroke.flow` / `feedback` ≥ 3.5; LLM flat brand (no CTA glow)                                                                                                          |
+| Chrome      | `llm_arch` in `PREMIUM_DIAGRAM_IMAGE_KEYS`; Block `mobileBehavior="reflow"` (enlarge OFF)                                                                               |
+| Tests       | `LlmArchModeStates.test.tsx`, `llmArchReturnPath.test.ts`, localization                                                                                                 |
 
 ## Wave 4 – residual caption tokens ✅
 

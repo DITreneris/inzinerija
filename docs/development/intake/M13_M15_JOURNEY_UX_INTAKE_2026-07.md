@@ -55,4 +55,4 @@ Kai J1–J6 ✅:
 - Feature Doc: `docs/development/M13_CONSISTENCY_LOCK_LAB.md`
 - Lab: `M13ConsistencyLockLabBlock` + `m13ConsistencyLabContent.ts` + `diagramRenderers` key `m13_consistency_lab`
 - Maturity: `docs/development/M13_PROMPT_MATURITY.md`
-- Patch: `scripts/patch-m1315-journey-ux.mjs`
+- Patch: `scripts/archive/patches/patch-m1315-journey-ux.mjs`

@@ -1,13 +1,13 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-01 | Roadmap **v4.13** (Horizon D TE-C2 done · C1 park · C3–C5 won’t-now)  
-> **App:** 1.5.0 · **Open fokusas:** Horizon D TE Could C1 park (sales gate) · marketing cutover (MON out of scope).  
+> **Atnaujinta:** 2026-08-03 | Roadmap **v4.14** (Horizon D TE Could C1–C5 closed · C2 done · C1/C3–C5 won’t-now)  
+> **App:** 1.5.0 · **Open fokusas:** marketing cutover (MON out of scope) · Wave D3 corporate18 Deferred.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md)  
-> **Open darbai:** [`TODO.md`](TODO.md) §1.2g C1 only · §1.4 MON · §1.5 Deferred (D3 corporate18 + M19–21). Authoring F1–F8 + TE Must/Should + ritmas + C2 done.
+> **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D3 corporate18 + M19–21). Authoring F1–F8 + TE Must/Should/ritmas + C2 done; Could C1 won’t-now.
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
-**Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); **M10–12 corporate cut repo-ready** (`build:corporate12`); **M13–15 corporate cut repo-ready** (`build:corporate15`); M16–18 authoring + TE Must/Should + ritmas done · TE Could open.  
-**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **154/940**; default `build:production` = M1–9.
+**Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); **M10–12 corporate cut repo-ready** (`build:corporate12`); **M13–15 corporate cut repo-ready** (`build:corporate15`); M16–18 authoring + TE Must/Should + ritmas done · TE Could C1–C5 closed (won’t-now / C2 done).  
+**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **155/944**; default `build:production` = M1–9.
 
 ---
 
@@ -17,15 +17,15 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
 
 ### Open gaps (production ladder)
 
-| Horizon | Scope                          | Status                                                                                    | Prioritetas |
-| ------- | ------------------------------ | ----------------------------------------------------------------------------------------- | ----------- |
-| **A**   | M1–9 corporate micro polish    | **done** (triage 2026-07-28)                                                              | —           |
-| **B**   | M10–12 corporate production    | **done** (repo exit + B-V lock)                                                           | —           |
-| **C**   | M13–15 corporate production    | **done** (repo exit 2026-07-30)                                                           | —           |
-| **M79** | M7–9 scheme / skaitomumo ROI   | **done** (Sprint 1–3 2026-07-31)                                                          | TODO §1.2d  |
-| **E**   | Transfer & Retention (UJ-MUST) | **done** (S1–S5 2026-07-31)                                                               | TODO §1.2e  |
-| **D**   | M16–18 Kodo inžinerija         | **authoring + TE Must/Should + ritmas + C2 done** · C1 park · C3–C5 won’t-now (D3 future) | TODO §1.2g  |
-| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                              | TODO §1.4   |
+| Horizon | Scope                          | Status                                                                             | Prioritetas |
+| ------- | ------------------------------ | ---------------------------------------------------------------------------------- | ----------- |
+| **A**   | M1–9 corporate micro polish    | **done** (triage 2026-07-28)                                                       | —           |
+| **B**   | M10–12 corporate production    | **done** (repo exit + B-V lock)                                                    | —           |
+| **C**   | M13–15 corporate production    | **done** (repo exit 2026-07-30)                                                    | —           |
+| **M79** | M7–9 scheme / skaitomumo ROI   | **done** (Sprint 1–3 2026-07-31)                                                   | TODO §1.2d  |
+| **E**   | Transfer & Retention (UJ-MUST) | **done** (S1–S5 2026-07-31)                                                        | TODO §1.2e  |
+| **D**   | M16–18 Kodo inžinerija         | **authoring + TE Must/Should + ritmas + C2 done** · C1/C3–C5 won’t-now (D3 future) | TODO §1.2g  |
+| **MON** | marketing (env, PostHog, CRO)  | out of scope                                                                       | TODO §1.4   |
 
 > Horizon A+B closeout → [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md). Horizon C → intake [`M13_M15_CORPORATE_PRODUCTION_INTAKE.md`](docs/development/intake/M13_M15_CORPORATE_PRODUCTION_INTAKE.md).  
 > Mid-path handout / skills-QR → **won’t-now** ([`HANDOUT_MATURITY.md`](docs/development/HANDOUT_MATURITY.md) Horizon A).
@@ -77,11 +77,11 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
 
 ### Horizon D – M16–18 Kodo inžinerija (development)
 
-- **Status:** **Wave D2 authoring done** + **TE Must + Should S1–S4 done** + **ritmas `M1618-R1`…`R6` done** + **`TE-M1618-C2` done** (2026-08-01) — M16=22 · M18=28; 18.17 `.env` manipulation-contrast. **Open Could:** C1 park (sales gate). C3–C5 won’t-now. Backlog [`16_17_18_backlog.md`](docs/development/16_17_18_backlog.md); eilė [`MODULIO_16_SKAIDRIU_EILES.md`](docs/MODULIO_16_SKAIDRIU_EILES.md); registry [`DIAGRAMU_M16_M18_REGISTRY.md`](docs/development/DIAGRAMU_M16_M18_REGISTRY.md).
+- **Status:** **Wave D2 authoring done** + **TE Must + Should S1–S4 done** + **ritmas `M1618-R1`…`R6` done** + **`TE-M1618-C2` done** (2026-08-01) — M16=22 · M18=28; 18.17 `.env` manipulation-contrast. **Could:** C1 won’t-now (2026-08-03); C3–C5 won’t-now. Backlog [`16_17_18_backlog.md`](docs/development/16_17_18_backlog.md); eilė [`MODULIO_16_SKAIDRIU_EILES.md`](docs/MODULIO_16_SKAIDRIU_EILES.md); registry [`DIAGRAMU_M16_M18_REGISTRY.md`](docs/development/DIAGRAMU_M16_M18_REGISTRY.md).
 - **Entry:** product call „kitas kelias = Kodo inžinerija“ + capacity ✅. CQ-M79 / Portal ✅.
 - **Delivered (D0–D2 + TE Must + Should + ritmas + C2):** eilės M16–18 · LT/EN · Cursor tools · Path Test M17 · cyan track · DEV ceiling 18 · lentelės/embeds · 5+1 signature schemos · direction picker lab · launch gates · dens soft pass · TE overlay · M18 own-work · §3.8 breath · 18.17 `.env` contrast (M7/67 brother). Corporate18 = Wave D3 future only.
 - **Exit D2 (authoring):** ✅. Core profiliai be M16+ spill.
-- **Open TE (Could):** PACKET desk C1 — sales reassessment only (TODO §1.2g).
+- **Open TE (Could):** nėra — C1 won’t-now 2026-08-03 (TODO §1.2g).
 - **M19–21** DI politikos inžinerija — už horizonto (nėra SOT).
 
 ### Nedaryti dabar

@@ -13,6 +13,7 @@ import {
 import {
   computeReturnPath,
   getReturnPathLabelPoint,
+  resolveReturnRoutePad,
 } from './llmArchReturnPath';
 import { DIAGRAM_ROLE_COLORS, DIAGRAM_TOKENS } from './diagramTokens';
 
@@ -144,8 +145,9 @@ export default function LlmArchDiagramDiagram({
       const fr = from.getBoundingClientRect();
 
       setViewBox({ w: cr.width, h: cr.height });
-      setReturnPath(computeReturnPath(cr, dr, fr));
-      setReturnLabel(getReturnPathLabelPoint(cr, dr, fr));
+      const routePad = resolveReturnRoutePad(cr.width);
+      setReturnPath(computeReturnPath(cr, dr, fr, routePad));
+      setReturnLabel(getReturnPathLabelPoint(cr, dr, fr, routePad));
     };
 
     update();
@@ -236,8 +238,11 @@ export default function LlmArchDiagramDiagram({
         role="img"
         aria-label={flowAria}
       >
-        <div className="flex items-center justify-center gap-1 w-full py-0">
-          <div className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-blue-50 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
+        <div
+          data-testid="llm-arch-spine"
+          className="flex flex-col lg:flex-row items-center justify-center gap-1 w-full py-0"
+        >
+          <div className="flex flex-col items-center justify-center rounded-xl w-full max-w-[195px] lg:w-[195px] h-[100px] lg:h-[120px] bg-blue-50 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
             <div className="text-xs font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
               {labels.inputRole}
             </div>
@@ -252,11 +257,16 @@ export default function LlmArchDiagramDiagram({
             </div>
           </div>
 
-          <FlowArrow direction="right" />
+          <div className="lg:hidden" data-testid="llm-arch-spine-arrow-down">
+            <FlowArrow direction="down" />
+          </div>
+          <div className="hidden lg:block">
+            <FlowArrow direction="right" />
+          </div>
 
           <div
             ref={diNodeRef}
-            className="relative flex flex-col items-center justify-center rounded-xl w-[242px] lg:w-[292px] h-[126px] lg:h-[140px] shrink-0 z-[3] border border-brand-700 dark:border-brand-400"
+            className="relative flex flex-col items-center justify-center rounded-xl w-full max-w-[242px] lg:w-[292px] lg:max-w-none h-[126px] lg:h-[140px] z-[3] border border-brand-700 dark:border-brand-400"
             style={{
               background: DIAGRAM_TOKENS.colors.brand,
               boxShadow: '0 4px 12px rgba(16, 42, 67, 0.18)',
@@ -290,9 +300,20 @@ export default function LlmArchDiagramDiagram({
             </div>
           </div>
 
-          <FlowArrow direction="right" color={DIAGRAM_TOKENS.colors.emerald} />
+          <div
+            className="lg:hidden"
+            data-testid="llm-arch-spine-arrow-down-out"
+          >
+            <FlowArrow direction="down" color={DIAGRAM_TOKENS.colors.emerald} />
+          </div>
+          <div className="hidden lg:block">
+            <FlowArrow
+              direction="right"
+              color={DIAGRAM_TOKENS.colors.emerald}
+            />
+          </div>
 
-          <div className="flex flex-col items-center justify-center rounded-xl w-[165px] lg:w-[195px] h-[100px] lg:h-[120px] shrink-0 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-300 dark:border-emerald-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
+          <div className="flex flex-col items-center justify-center rounded-xl w-full max-w-[195px] lg:w-[195px] h-[100px] lg:h-[120px] bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-300 dark:border-emerald-700/60 font-[Plus_Jakarta_Sans,system-ui,sans-serif]">
             <div className="text-xs font-medium tracking-wider mb-0.5 text-slate-500 dark:text-slate-400">
               {labels.outputRole}
             </div>
@@ -330,7 +351,7 @@ export default function LlmArchDiagramDiagram({
             ref={toolNodeRef}
             data-testid="llm-arch-tool-node"
             data-state={toolLive ? 'live' : 'absent'}
-            className={`relative flex flex-col items-center rounded-xl w-[195px] lg:w-[225px] shrink-0 overflow-hidden transition-colors font-[Plus_Jakarta_Sans,system-ui,sans-serif] ${
+            className={`relative flex flex-col items-center rounded-xl w-full max-w-[225px] lg:w-[225px] overflow-hidden transition-colors font-[Plus_Jakarta_Sans,system-ui,sans-serif] ${
               toolLive ? liveToolClass : placeholderClass
             }`}
           >
@@ -360,7 +381,7 @@ export default function LlmArchDiagramDiagram({
             ref={dbNodeRef}
             data-testid="llm-arch-db-node"
             data-state={dbLive ? 'live' : 'absent'}
-            className={`relative rounded-xl w-[195px] lg:w-[225px] shrink-0 overflow-hidden transition-colors ${
+            className={`relative rounded-xl w-full max-w-[225px] lg:w-[225px] overflow-hidden transition-colors ${
               dbLive ? liveDbClass : placeholderClass
             }`}
             style={

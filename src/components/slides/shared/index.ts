@@ -12,6 +12,7 @@ export { default as DiPrezentacijosWorkflowDiagram } from './DiPrezentacijosWork
 export { default as DiPrezentacijosWorkflowBlock } from './DiPrezentacijosWorkflowBlock';
 export { default as EnlargeableImage } from './EnlargeableImage';
 export { default as EnlargeableDiagram } from './EnlargeableDiagram';
+export { default as TableHorizontalScroll } from './TableHorizontalScroll';
 export { default as FigmaEmbed } from './FigmaEmbed';
 export { InstructGptQualityBlock } from './InstructGptQualityBlock';
 export { default as RlProcessDiagram } from './RlProcessDiagram';

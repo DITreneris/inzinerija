@@ -2,6 +2,54 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-03 – Pre-launch ship to inzinerija
+
+**Statusas:** ✅ PASS (`audit:release-preflight` green).  
+**Apimtis:** Mobile @375 chrome · ContentSlides / Path Test split · patch archive · TE-M1618-C1 won’t-now docs. Ship target: `inzinerija/main` (ne MON / ne version tag).
+
+| Gate                                       | Rezultatas                                                                                             |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `npm run audit:release-preflight`          | ✅ schema · lint · token/typography gates · m49/m1012/m1315 · journey · footer · TE strict · typecheck |
+| `test:run`                                 | ✅ **155** failai / **946** testai                                                                     |
+| Manual @375 / RELEASE_QA §§1–5d            | ⬜ owner residual (same as 2026-08-02)                                                                 |
+| Marketing pin / `build:production` cutover | Out of scope                                                                                           |
+
+**Verdict:** Automated release gate green; proceed commit + push to https://github.com/DITreneris/inzinerija/.
+
+---
+
+## 2026-08-02 – LlmArch true mobile stack (SCHEME)
+
+**Statusas:** ✅ PASS (unit); owner @375 Bazinis/RAG/Agentinis recommended.  
+**Apimtis:** Responsive spine + compact return pad + Block reflow on `llm_arch`.
+
+| Gate                                      | Rezultatas           |
+| ----------------------------------------- | -------------------- |
+| `LlmArchModeStates` + `llmArchReturnPath` | ✅ 10/10             |
+| Manual @375 light+dark                    | ⬜ owner             |
+| Feature Doc / new image key               | N/A (W6 enhancement) |
+
+**Verdict:** LlmArch no longer needs horizontal scroll shell on phone.
+
+---
+
+## 2026-08-02 – Mobile @375 P0/P1 coding closeout
+
+**Statusas:** ✅ PASS (code gates); owner browser spot @375 recommended.  
+**Apimtis:** Enlargeable reflow flips (Strukturuotas · RL · Hallucination · M15 · Schema3); wide-diagram scroll chrome (LLM arch / autoregressive / workflow compare); `TableHorizontalScroll` + `swipeToExplore` i18n; M4/M10 lab chip wrap.
+
+| Gate                                                    | Rezultatas     |
+| ------------------------------------------------------- | -------------- |
+| `enlargeableDiagramA11y` + `TableHorizontalScroll` unit | ✅ 6/6         |
+| `npm run lint`                                          | ✅             |
+| `npm test`                                              | ✅ **155/944** |
+| Manual @375 (listed plan spots)                         | ⬜ owner       |
+| Content JSON / C1 / Density CI                          | Out of scope   |
+
+**Verdict:** Mobile chrome debt from M1–18 audit closed in code. Not a production cut / not MON.
+
+---
+
 ## 2026-08-01 – Pre-launch P0 unblock (M1 footers + typecheck)
 
 **Statusas:** ✅ PASS (`audit:release-preflight` green).  
@@ -111,11 +159,11 @@
 
 | Check                  | Rezultatas                              |
 | ---------------------- | --------------------------------------- |
-| `test:run`             | ✅ **154/940**                          |
+| `test:run`             | ✅ **154/940** (freeze; superseded)     |
 | Authoring ceiling docs | M1–18 full SOT / DEV 18; magic-link ≤15 |
 | Open TE status         | Could C1–C5 only (Must+Should done)     |
 
-**Verdict:** Current automated SOT = **154/940**. Historical rows below keep their freeze numbers.
+**Verdict (superseded):** Was **154/940** on 2026-08-01. Current SOT = **155/944** (2026-08-02 mobile chrome — see sections above).
 
 ## 2026-08-01 – Horizon D TE Should polish (S1/S2 + dens + M17)
 

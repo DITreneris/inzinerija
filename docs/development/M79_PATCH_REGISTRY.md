@@ -37,8 +37,8 @@
 **Paleidimo tvarka (jei reikia iš naujo):** LT patch → `npm run validate:schema` → EN patch → `npm run audit:m79` → `npm run generate:core-data` (jei M1–9 core).
 
 ```bash
-node scripts/patch-m79-p2-polish.mjs
-node scripts/patch-m79-p2-polish-en.mjs
+node scripts/archive/patches/patch-m79-p2-polish.mjs
+node scripts/archive/patches/patch-m79-p2-polish-en.mjs
 npm run validate:schema
 npm run generate:core-data
 npm run audit:m79
@@ -57,7 +57,7 @@ npm run audit:m79
 
 **Taisyklė:** keitus `content.sections` EN overlay – **perrašyti visą `sections` masyvą** toje skaidrėje, ne tik vieną lauką.
 
-**Pavyzdys:** [`scripts/patch-m79-p2-polish-en.mjs`](../../scripts/patch-m79-p2-polish-en.mjs) – pilni section veidrodžiai sk. 77.5, 101 (M7), etika, filtrai.
+**Pavyzdys:** [`scripts/archive/patches/patch-m79-p2-polish-en.mjs`](../../scripts/archive/patches/patch-m79-p2-polish-en.mjs) – pilni section veidrodžiai sk. 77.5, 101 (M7), etika, filtrai.
 
 ---
 
@@ -94,10 +94,10 @@ npm run audit:m79
 
 ## 5a. M13–15 historical patches (ne M7–9, bet re-run hazard)
 
-| Skriptas                            | Būsena              | Pastaba                                                                                                                                                                                       |
-| ----------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `scripts/patch-m13-m15-2026.mjs`    | **STALE / APPLIED** | Curriculum refresh one-shot. Po apply rankiniu būdu pridėti `image`: `m13_media_pipeline`, `m13_consistency_lock`, `m13_postprod_steps`. **Nepakartoti** – re-insert numestų diagramų raktus. |
-| `scripts/patch-m13-m15-en-2026.mjs` | **STALE / APPLIED** | EN veidrodis; ta pati rizika.                                                                                                                                                                 |
-| `scripts/patch-tools-m13-2026.mjs`  | Tools-only          | Nesusijęs su diagram `image` raktais.                                                                                                                                                         |
+| Skriptas                                            | Būsena              | Pastaba                                                                                                                                                                                       |
+| --------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scripts/archive/patches/patch-m13-m15-2026.mjs`    | **STALE / APPLIED** | Curriculum refresh one-shot. Po apply rankiniu būdu pridėti `image`: `m13_media_pipeline`, `m13_consistency_lock`, `m13_postprod_steps`. **Nepakartoti** – re-insert numestų diagramų raktus. |
+| `scripts/archive/patches/patch-m13-m15-en-2026.mjs` | **STALE / APPLIED** | EN veidrodis; ta pati rizika.                                                                                                                                                                 |
+| `scripts/archive/patches/patch-tools-m13-2026.mjs`  | Tools-only          | Nesusijęs su diagram `image` raktais.                                                                                                                                                         |
 
 Live SOT: `modules.json` + `modules-en-m13-m15.json`. Registry: [`DIAGRAMU_M13_M15_REGISTRY.md`](DIAGRAMU_M13_M15_REGISTRY.md).

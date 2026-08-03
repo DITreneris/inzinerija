@@ -487,7 +487,7 @@ Spec: docs/development/M7_LYGIS_C_JOURNEY_EPIC.md
 - [x] Sprint D audit batch (`patch-m79-phase2-audit.mjs`) — M8/M9/M7 targeted fixes
 - [x] `audit:m79` + `test:run` 478/478 green; `CHANGELOG.md` atnaujintas
 
-**Skriptai:** `scripts/patch-m79-patikra-batch2.mjs`, `patch-m79-phase2.mjs`, `patch-m79-phase2-en.mjs`, `patch-m79-phase2-audit.mjs`, `patch-m79-ux-polish.mjs`, `patch-m79-ux-polish-en.mjs` — pilnas sąrašas: [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md)
+**Skriptai:** `scripts/archive/patches/patch-m79-patikra-batch2.mjs`, `patch-m79-phase2.mjs`, `patch-m79-phase2-en.mjs`, `patch-m79-phase2-audit.mjs`, `patch-m79-ux-polish.mjs`, `patch-m79-ux-polish-en.mjs` — pilnas sąrašas: [`M79_PATCH_REGISTRY.md`](M79_PATCH_REGISTRY.md)
 
 ---
 

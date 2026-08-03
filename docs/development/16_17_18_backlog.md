@@ -1,6 +1,6 @@
 # M16–M18 backlog (Kodo inžinerija / vibe-coding)
 
-> **Statusas:** `authoring done` + **TE Must + Should S1–S4 + C2 done** (2026-08-01) — `M1618-D0`…`F8` ✅ · `TE-M1618-0`…`M5` ✅ · S1–S4 ✅ · C2 ✅ · R1–R6 ✅. Open Could → C1 park (sales gate) [`TODO.md`](../../TODO.md) §1.2g. C3–C5 won’t-now. Wave D3 corporate18 Deferred.  
+> **Statusas:** `authoring done` + **TE Must + Should S1–S4 + C2 done** (2026-08-01) — `M1618-D0`…`F8` ✅ · `TE-M1618-0`…`M5` ✅ · S1–S4 ✅ · C2 ✅ · R1–R6 ✅. Could C1 won’t-now 2026-08-03; C3–C5 won’t-now [`TODO.md`](../../TODO.md) §1.2g. Wave D3 corporate18 Deferred.  
 > **Tikslas:** Vienas darbo sąrašas Kodo inžinerijos keliui. Authoring ticket’ai čia (F\*); open TE → TODO §1.2g.  
 > **SOT (gates):** [`turinio_pletra_moduliai_16_17_18.md`](../turinio_pletra_moduliai_16_17_18.md) §0 · §6 · **§8** (freeze lifted for F1–F8).  
 > **Ladder:** [`ROADMAP.md`](../../ROADMAP.md) Horizon D.  
@@ -146,13 +146,13 @@ Biudžetas: M16 ~18–22 sk. · M18 ~22–28 sk. (+ M17 Path Test shell) ≈ **4
 
 ## 8. Sinchronas
 
-| Etapas                           | Būsena                                                                        |
-| -------------------------------- | ----------------------------------------------------------------------------- |
-| Šis backlog                      | **Active** (F1–F8 ✅; R\* ✅; TE Must/Should/C2 ✅; C1 park; C3–C5 won’t-now) |
-| SOT §8 freeze                    | Lifted for F1–F8 (2026-08-01)                                                 |
-| Open TODO §1.2f `M1618-F*`       | Done 2026-08-01                                                               |
-| Open TODO §1.2g `TE-M1618-*`     | Must ✅ · Should S1–S4 ✅ · C2 ✅ · C1 park · C3–C5 won’t-now                 |
-| Dens polish pass (I1–I5)         | Done 2026-08-01 — thin tables + m17-q11 + preCopy 16.12/18.11; C1 still park  |
-| Open TODO §1.2h `M1618-R*`       | Done 2026-08-01 (M16=22 · M18=28; Soft DoD path-step)                         |
-| F1–F3 eilės + JSON / EN / Cursor | Wave D2 done                                                                  |
-| Wave D3 corporate18              | Future outline only (§1.5)                                                    |
+| Etapas                           | Būsena                                                                     |
+| -------------------------------- | -------------------------------------------------------------------------- |
+| Šis backlog                      | **Active** (F1–F8 ✅; R\* ✅; TE Must/Should/C2 ✅; C1/C3–C5 won’t-now)    |
+| SOT §8 freeze                    | Lifted for F1–F8 (2026-08-01)                                              |
+| Open TODO §1.2f `M1618-F*`       | Done 2026-08-01                                                            |
+| Open TODO §1.2g `TE-M1618-*`     | Must ✅ · Should S1–S4 ✅ · C2 ✅ · C1/C3–C5 won’t-now                     |
+| Dens polish pass (I1–I5)         | Done 2026-08-01 — thin tables + m17-q11 + preCopy; C1 won’t-now 2026-08-03 |
+| Open TODO §1.2h `M1618-R*`       | Done 2026-08-01 (M16=22 · M18=28; Soft DoD path-step)                      |
+| F1–F3 eilės + JSON / EN / Cursor | Wave D2 done                                                               |
+| Wave D3 corporate18              | Future outline only (§1.5)                                                 |

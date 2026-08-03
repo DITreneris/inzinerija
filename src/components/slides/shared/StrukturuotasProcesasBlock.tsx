@@ -44,6 +44,7 @@ export default function StrukturuotasProcesasBlock() {
       </p>
 
       <EnlargeableDiagram
+        mobileBehavior="reflow"
         enlargeLabel={blockLabels.enlargeLabel}
         renderContent={() => (
           <StrukturuotasProcesasDiagram

@@ -48,7 +48,7 @@ Po M1P – **freeze:** keisti tik paste-run failure / kalbos klaidą; ne „gra�
 
 - Full SOT: `src/data/modules.json`; EN: `modules-en.json` (M1–3); core: `generate:core-data`.
 - US locale: `modules-en-us-overrides.json` kai dubliuoja M3 templates.
-- Script: `scripts/patch-m1p-prompt-maturity.mjs`.
+- Script: `scripts/archive/patches/patch-m1p-prompt-maturity.mjs`.
 
 ## Freeze
 

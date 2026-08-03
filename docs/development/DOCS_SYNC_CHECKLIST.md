@@ -3,7 +3,7 @@
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
 **Baseline:** 1.5.0 + M16–18 authoring/TE + docs/EN sync A+B  
-**Testai:** 154 failai / 940 testai (`@ HEAD` 2026-08-01; `@ tag 1.4.9` freeze = 130/825)  
+**Testai:** 155 failai / 944 testai (`@ HEAD` 2026-08-02; `@ tag 1.4.9` freeze = 130/825)  
 **Data:** 2026-08-01  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
@@ -11,9 +11,9 @@
 
 ### Docs A + EN B sync – 2026-08-01
 
-| #   | Failas                                                        | Laukas        | Buvo              | Turi būti                          | Done |
-| --- | ------------------------------------------------------------- | ------------- | ----------------- | ---------------------------------- | ---- |
-| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 150/924 / 152/932 | **154/940** po M16–18 TE + UJ-MUST | [x]  |
+| #   | Failas                                                        | Laukas        | Buvo    | Turi būti                         | Done |
+| --- | ------------------------------------------------------------- | ------------- | ------- | --------------------------------- | ---- |
+| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 154/940 | **155/944** po mobile @375 chrome | [x]  |
 
 ### Pre-launch M79/M1315 sync – 2026-07-31
 

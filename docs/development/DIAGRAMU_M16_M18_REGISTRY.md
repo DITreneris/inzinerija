@@ -49,14 +49,14 @@ M17 – Path Test shell only (be diagram `image` keys).
 
 ### Should / Could (ne Must)
 
-| Elementas                      | elementId / key                    | Pattern                       | Shell | Status                                                                                  |
-| ------------------------------ | ---------------------------------- | ----------------------------- | ----- | --------------------------------------------------------------------------------------- |
-| Direction picker (16.14–16.15) | `lab:m16_direction_picker`         | interactive-control-lab       | Ne    | Should S1 ✅ — `M16DirectionPickerLabBlock` + Feature Doc `M16_DIRECTION_PICKER_LAB.md` |
-| Launch gates (18.19)           | `diagram:m18_launch_gates`         | linear-process                | Taip  | Should S2 ✅ — tollgate barriers (≠ delivery corridor)                                  |
-| Chaos\|Control (18.1)          | comparison table / static          | content-block                 | Ne    | Should S3 ✅                                                                            |
-| Mini entities (18.4)           | static                             | illustration                  | Ne    | Should S3 ✅                                                                            |
-| `.env` contrast (18.17)        | `embed:toolChoiceBar:m18:18.17:s1` | embed (manipulation-contrast) | Ne    | Could C2 ✅ — M7/67 brother                                                             |
-| PACKET desk                    | `lab:m18_packet_desk`              | interactive-control-lab       | Ne    | Could C1 — Feature Doc (parked / sales gate)                                            |
+| Elementas                      | elementId / key                    | Pattern                       | Shell | Status                                                                                            |
+| ------------------------------ | ---------------------------------- | ----------------------------- | ----- | ------------------------------------------------------------------------------------------------- |
+| Direction picker (16.14–16.15) | `lab:m16_direction_picker`         | interactive-control-lab       | Ne    | Should S1 ✅ — `M16DirectionPickerLabBlock` + Feature Doc `M16_DIRECTION_PICKER_LAB.md`           |
+| Launch gates (18.19)           | `diagram:m18_launch_gates`         | linear-process                | Taip  | Should S2 ✅ — tollgate barriers (≠ delivery corridor)                                            |
+| Chaos\|Control (18.1)          | comparison table / static          | content-block                 | Ne    | Should S3 ✅                                                                                      |
+| Mini entities (18.4)           | static                             | illustration                  | Ne    | Should S3 ✅                                                                                      |
+| `.env` contrast (18.17)        | `embed:toolChoiceBar:m18:18.17:s1` | embed (manipulation-contrast) | Ne    | Could C2 ✅ — M7/67 brother                                                                       |
+| PACKET desk                    | `lab:m18_packet_desk`              | interactive-control-lab       | Ne    | Could C1 — won’t-now 2026-08-03 (static `m18_packet_stack` + Soft DoD path cover; no Feature Doc) |
 
 ## Priėmimo vartai
 

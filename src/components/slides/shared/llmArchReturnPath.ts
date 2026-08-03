@@ -16,11 +16,24 @@ export interface LlmArchPoint {
   y: number;
 }
 
-/** Route offset past the right edge of tool/DB (px). */
+/** Route offset past the right edge of tool/DB (px). Desktop default. */
 export const LLM_ARCH_RETURN_ROUTE_PAD = 48;
+
+/** Compact route pad when container width is below this (mobile stack). */
+export const LLM_ARCH_COMPACT_CONTAINER_WIDTH = 640;
+
+/** Route pad for narrow containers (mobile stack) — avoids forcing overflow. */
+export const LLM_ARCH_RETURN_ROUTE_PAD_COMPACT = 24;
 
 /** Label sits just outside the vertical return shaft. */
 export const LLM_ARCH_RETURN_LABEL_X_PAD = 10;
+
+/** Pick route pad from measured container width. */
+export function resolveReturnRoutePad(containerWidth: number): number {
+  return containerWidth < LLM_ARCH_COMPACT_CONTAINER_WIDTH
+    ? LLM_ARCH_RETURN_ROUTE_PAD_COMPACT
+    : LLM_ARCH_RETURN_ROUTE_PAD;
+}
 
 function routeGeometry(
   container: LlmArchRectLike,

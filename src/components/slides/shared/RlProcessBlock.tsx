@@ -116,6 +116,7 @@ export default function RlProcessBlock({
         >
           <div className="my-4">
             <EnlargeableDiagram
+              mobileBehavior="reflow"
               enlargeLabel={labels.enlargeLabel}
               renderContent={() => (
                 <RlProcessDiagram

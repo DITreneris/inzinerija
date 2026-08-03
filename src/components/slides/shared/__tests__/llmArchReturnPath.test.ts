@@ -4,6 +4,8 @@ import {
   getReturnPathLabelPoint,
   LLM_ARCH_RETURN_LABEL_X_PAD,
   LLM_ARCH_RETURN_ROUTE_PAD,
+  LLM_ARCH_RETURN_ROUTE_PAD_COMPACT,
+  resolveReturnRoutePad,
   returnPathRoutesOutside,
   type LlmArchRectLike,
 } from '../llmArchReturnPath';
@@ -55,5 +57,23 @@ describe('llmArchReturnPath', () => {
     const startY = db.top + db.height / 2;
     const endY = di.top + di.height / 2;
     expect(label.y).toBe((startY + endY) / 2);
+  });
+
+  it('uses compact routePad for narrow containers', () => {
+    expect(resolveReturnRoutePad(375)).toBe(LLM_ARCH_RETURN_ROUTE_PAD_COMPACT);
+    expect(resolveReturnRoutePad(639)).toBe(LLM_ARCH_RETURN_ROUTE_PAD_COMPACT);
+    expect(resolveReturnRoutePad(640)).toBe(LLM_ARCH_RETURN_ROUTE_PAD);
+    expect(resolveReturnRoutePad(1024)).toBe(LLM_ARCH_RETURN_ROUTE_PAD);
+
+    const narrow = rect(0, 0, 375, 640);
+    const diStack = rect(80, 80, 200, 120);
+    const dbStack = rect(90, 400, 180, 90);
+    const pad = resolveReturnRoutePad(narrow.width);
+    const d = computeReturnPath(narrow, diStack, dbStack, pad);
+    const routeX =
+      Math.max(dbStack.right, diStack.right) +
+      LLM_ARCH_RETURN_ROUTE_PAD_COMPACT;
+    expect(d).toContain(`L ${routeX}`);
+    expect(returnPathRoutesOutside(narrow, diStack, dbStack, pad)).toBe(true);
   });
 });

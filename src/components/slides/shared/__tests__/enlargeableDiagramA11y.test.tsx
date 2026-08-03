@@ -44,4 +44,35 @@ describe('EnlargeableDiagram mobile a11y wrapper', () => {
       'Scrollable test diagram'
     );
   });
+
+  it('scroll path shows swipe hint and minWidth shell', () => {
+    const { container } = renderWithProviders(
+      <EnlargeableDiagram
+        enlargeLabel="Scroll shell"
+        mobileMinWidth={520}
+        renderContent={() => <span>Wide diagram</span>}
+      />
+    );
+
+    expect(screen.getByText('Slinkite horizontaliai')).toBeInTheDocument();
+    const minWidthEl = container.querySelector('[style*="min-width"]');
+    expect(minWidthEl).toBeTruthy();
+    const px = Number.parseInt((minWidthEl as HTMLElement).style.minWidth, 10);
+    expect(px).toBeGreaterThanOrEqual(360);
+  });
+
+  it('reflow path skips minWidth scroll shell and swipe hint', () => {
+    const { container } = renderWithProviders(
+      <EnlargeableDiagram
+        mobileBehavior="reflow"
+        enlargeLabel="Reflow shell"
+        mobileMinWidth={520}
+        renderContent={() => <span>Stacked diagram</span>}
+      />
+    );
+
+    expect(screen.queryByText('Slinkite horizontaliai')).toBeNull();
+    expect(container.querySelector('[style*="min-width"]')).toBeNull();
+    expect(screen.getByText('Stacked diagram')).toBeInTheDocument();
+  });
 });

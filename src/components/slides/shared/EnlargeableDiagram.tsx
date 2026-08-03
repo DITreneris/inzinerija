@@ -138,9 +138,7 @@ export default function EnlargeableDiagram({
         hint={
           <div className="flex items-center gap-2 mt-1">
             <Maximize2 className="w-3.5 h-3.5 text-gray-400" aria-hidden />
-            <span className="text-xs text-gray-400">
-              {t('swipeToExplore', { defaultValue: 'Slinkite horizontaliai' })}
-            </span>
+            <span className="text-xs text-gray-400">{t('swipeToExplore')}</span>
           </div>
         }
       >

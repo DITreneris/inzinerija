@@ -49,6 +49,7 @@ export default function Schema3InteractiveBlock() {
       </p>
 
       <EnlargeableDiagram
+        mobileBehavior="reflow"
         enlargeLabel={blockLabels.enlargeLabel}
         renderContent={() => (
           <Schema3InteractiveDiagram

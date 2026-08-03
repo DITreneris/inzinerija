@@ -3,6 +3,12 @@
  * LLM agentinė sistema: Input → LLM → Output; Tool Use; Database.
  * Režimai: Bazinis, RAG, Agentinis (mode id 'tool' lieka).
  * Projekto spalvos: brand, accent, emerald (tailwind.config.js).
+ *
+ * Mobile topology (<lg / container <640px):
+ * - Spine = vertical Input → LLM → Output (single DOM tree; flex-col lg:flex-row)
+ * - Side chain = LLM → Tools → DB (unchanged under spine)
+ * - Return = llmArchReturnPath helper; compact routePad (24) when container width < 640
+ * Block uses EnlargeableDiagram mobileBehavior="reflow" (no 520px scroll shell).
  */
 
 export type Locale = 'lt' | 'en';

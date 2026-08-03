@@ -5,6 +5,8 @@
  * Locale-aware: pass locale for EN/LT strings.
  */
 import { useState } from 'react';
+import { Maximize2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import WorkflowComparisonDiagram from './WorkflowComparisonDiagram';
 import { useIsMobile } from '../../../utils/useIsMobile';
 import MobileDiagramScroller from './MobileDiagramScroller';
@@ -35,6 +37,7 @@ export default function WorkflowComparisonInteractiveBlock({
   const [mode, setMode] = useState<WorkflowMode>('basic');
   const [promptInput, setPromptInput] = useState('');
   const isMobile = useIsMobile();
+  const { t } = useTranslation('common');
 
   const workflowModes = getWorkflowModes(locale);
   const config = workflowModes[mode];
@@ -121,7 +124,22 @@ export default function WorkflowComparisonInteractiveBlock({
           }`}
         >
           {isMobile ? (
-            <MobileDiagramScroller minWidth={620} compactMinWidth={500}>
+            <MobileDiagramScroller
+              minWidth={540}
+              compactMinWidth={420}
+              showEdgeFade
+              hint={
+                <div className="flex items-center gap-2 mt-1">
+                  <Maximize2
+                    className="w-3.5 h-3.5 text-gray-400"
+                    aria-hidden
+                  />
+                  <span className="text-xs text-gray-400">
+                    {t('swipeToExplore')}
+                  </span>
+                </div>
+              }
+            >
               <WorkflowComparisonDiagram
                 locale={locale}
                 mode={mode}

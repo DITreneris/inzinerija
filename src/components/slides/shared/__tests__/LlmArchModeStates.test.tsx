@@ -72,4 +72,13 @@ describe('LlmArch mode states (W6)', () => {
     ).toHaveAttribute('aria-pressed', 'true');
     expect(getByText(/Aktyvus režimas/i).textContent).toMatch(/Agentinis/);
   });
+
+  it('spine is a single responsive tree with mobile down-arrow markers', () => {
+    const { getByTestId } = renderWithProviders(<LlmArchDiagramBlock />);
+    const spine = getByTestId('llm-arch-spine');
+    expect(spine.className).toMatch(/flex-col/);
+    expect(spine.className).toMatch(/lg:flex-row/);
+    expect(getByTestId('llm-arch-spine-arrow-down')).toBeTruthy();
+    expect(getByTestId('llm-arch-spine-arrow-down-out')).toBeTruthy();
+  });
 });

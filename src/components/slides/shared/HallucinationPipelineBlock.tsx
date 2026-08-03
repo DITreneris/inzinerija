@@ -88,6 +88,7 @@ export default function HallucinationPipelineBlock() {
       {/* Step announce = Shell status/explanation aria-live only (no second live region). */}
 
       <EnlargeableDiagram
+        mobileBehavior="reflow"
         enlargeLabel={ui.enlargeLabel}
         renderContent={() => (
           <HallucinationPipelineDiagram

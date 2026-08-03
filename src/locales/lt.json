@@ -26,7 +26,8 @@
     "viewFullSizeAria": "Išskleisti schemą: {{label}}",
     "diagramFullSizeAria": "Viso dydžio diagrama: {{label}}",
     "imageFullSize": "Vaizdas visame dydyje",
-    "imageFullSizeAria": "Vaizdas visame dydyje: {{label}}"
+    "imageFullSizeAria": "Vaizdas visame dydyje: {{label}}",
+    "swipeToExplore": "Slinkite horizontaliai"
   },
   "footer": {
     "brandName": "Promptų anatomija",
