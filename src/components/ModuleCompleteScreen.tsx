@@ -16,6 +16,7 @@ import CircularProgress from './CircularProgress';
 import Card from './ui/Card';
 import Badge from './ui/Badge';
 import CTAButton from './ui/CTAButton';
+import { ctaButtonClassName } from './ui/ctaButtonClasses';
 import IconChip from './ui/IconChip';
 import { track } from '../utils/analytics';
 import {
@@ -251,7 +252,7 @@ export function ModuleCompleteScreen({
                 {t(`module:unlockCertBodyTier${activeCertificateTier}`)}
               </p>
               <CTAButton
-                variant="primary"
+                variant="accent"
                 onClick={() => {
                   const lastSlide = module.slides?.[module.slides.length - 1];
                   track('cta_click', {
@@ -263,7 +264,7 @@ export function ModuleCompleteScreen({
                   });
                   onRequestCertificate!(activeCertificateTier);
                 }}
-                className="px-6 py-3 min-h-[48px] bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white border-0 shadow-md hover:shadow-lg transition-all"
+                className="px-6 py-3 min-h-[48px] shadow-md hover:shadow-lg transition-all"
                 aria-label={
                   t('module:unlockCertCta') +
                   ' ' +
@@ -555,7 +556,10 @@ export function ModuleCompleteScreen({
                     destination: 'external',
                   });
                 }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-accent-500 hover:bg-accent-600 text-white font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                className={ctaButtonClassName(
+                  'accent',
+                  'px-6 py-3 min-h-[48px] shadow-md hover:shadow-lg active:scale-95 transition-all'
+                )}
                 aria-label={t('module:upsellM3Aria')}
               >
                 {t('module:upsellM3Cta')}
@@ -597,7 +601,10 @@ export function ModuleCompleteScreen({
                     destination: 'external',
                   });
                 }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] rounded-xl bg-accent-500 hover:bg-accent-600 text-white font-semibold shadow-md hover:shadow-lg active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                className={ctaButtonClassName(
+                  'accent',
+                  'px-6 py-3 min-h-[48px] shadow-md hover:shadow-lg active:scale-95 transition-all'
+                )}
                 aria-label={t('module:upsellM6Aria')}
               >
                 {t('module:upsellM6Cta')}

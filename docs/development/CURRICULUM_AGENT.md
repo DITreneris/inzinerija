@@ -45,7 +45,7 @@
 
 **M13 I2V builder (2026-07-28):** interaktyvi **13.47** (`i2v-generatorius`) **po 13.4**, **prieš 13.5** (eilė 7a). Neperkelti prieš still generatorių (13.37) ar po įrankių matricos be pedagoginio sprendimo. Feature Doc: `M13_I2V_CLIP_BUILDER.md`.
 
-**M16–18 (2026-08):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas** (Path Test §3.4a1; stuburas = brief), **M18 = D3+D4+D5**; Cursor-first; soft DoD. Eilė + authoring JSON done; open TE MoSCoW (`TODO.md` §1.2g). JSON id: `16.101`/`16.201`/`18.101`/`18.201` (decimal collision). Corporate18 = Wave D3. **Ne** painioti su M7 optional viz (sk. 100–106).
+**M16–18 (2026-08):** Teorija → Testas → Projektas; žemėlapis **M16 = D1+D2**, **M17 = testas** (Path Test §3.4a1; stuburas = brief), **M18 = D3+D4+D5**; Cursor-first; soft DoD. Eilė + authoring + TE Must/Should/C2 + learner plain done; TE Could won’t-now (`TODO.md` §1.2g closed). JSON id: `16.101`/`16.201`/`18.101`/`18.201` (decimal collision). Corporate18 = Wave D3 Deferred. **Ne** painioti su M7 optional viz (sk. 100–106).
 
 Konfliktas: jei keičiasi **pedagoginė struktūra** (sekos, blokų skaičius, tikslai) – pirmiausia CURRICULUM_AGENT atnaujina turinio SOT arba pateikia rekomendacijas; CONTENT_AGENT užpildo **tekstus** pagal tą struktūrą.
 

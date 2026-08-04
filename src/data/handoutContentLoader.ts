@@ -18,6 +18,8 @@ import m1012Lt from './m1012HandoutContent.json';
 import m1012En from './m1012HandoutContent-en.json';
 import m1315Lt from './m1315HandoutContent.json';
 import m1315En from './m1315HandoutContent-en.json';
+import m1618Lt from './m1618HandoutContent.json';
+import m1618En from './m1618HandoutContent-en.json';
 
 export interface M1HandoutCoreBlock {
   label: string;
@@ -140,6 +142,27 @@ export interface M1315HandoutContent {
   footerText: string;
 }
 
+export interface M1618HandoutContent {
+  title: string;
+  subtitle: string;
+  briefSteps: string[];
+  packetChecklist: string[];
+  softDodChecks: string[];
+  promptPatterns: string[];
+  starterPrompt: string;
+  reflectionSummary: string;
+  nextPageHeading: string;
+  nextPageIntro: string;
+  primaryCtaLabel: string;
+  secondaryCtaLabels: {
+    decide: string;
+    map: string;
+  };
+  websiteUrl: string;
+  websiteCta: string;
+  footerText: string;
+}
+
 const m1LtData = m1Lt as M1HandoutContent;
 const m1EnData = m1En as M1HandoutContent;
 const m4LtData = m4Lt as M4HandoutContent;
@@ -154,6 +177,8 @@ const m1012LtData = m1012Lt as M1012HandoutContent;
 const m1012EnData = m1012En as M1012HandoutContent;
 const m1315LtData = m1315Lt as M1315HandoutContent;
 const m1315EnData = m1315En as M1315HandoutContent;
+const m1618LtData = m1618Lt as M1618HandoutContent;
+const m1618EnData = m1618En as M1618HandoutContent;
 
 export function getM1HandoutContent(locale: ModulesLocale): M1HandoutContent {
   return locale === 'en' ? m1EnData : m1LtData;
@@ -185,4 +210,10 @@ export function getM1315HandoutContent(
   locale: ModulesLocale
 ): M1315HandoutContent {
   return locale === 'en' ? m1315EnData : m1315LtData;
+}
+
+export function getM1618HandoutContent(
+  locale: ModulesLocale
+): M1618HandoutContent {
+  return locale === 'en' ? m1618EnData : m1618LtData;
 }

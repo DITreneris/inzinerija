@@ -1314,7 +1314,7 @@ Identifikuok:
 ```
 ROLE: Tu esi Python programuotojas, kuris rašo paprastus duomenų siurbimo (scraping) skriptus.
 TASK: Parašyk Python skriptą, kuris:
-1. Atidaro šį puslapį: [ĮLIKUOKITE_SVETAINĖS_NUORODĄ]
+1. Atidaro šį puslapį: [ĮKLIJUOK_SVETAINĖS_NUORODĄ]
 2. Ištraukia [KĄ_IŠTRAUKTI – pvz. lentelę su kainomis, sąrašą produktų, pavadinimus ir kainas]
 3. Išsaugo rezultatą į CSV failą (su lietuviškomis raidėmis UTF-8)
 

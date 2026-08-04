@@ -3,7 +3,12 @@ import { getT } from '../../../../i18n';
 import { CheckCircle, MapPin } from 'lucide-react';
 import { useLocale } from '../../../../contexts/LocaleContext';
 import { CopyButton } from '../../shared';
-import { typographyClasses } from '../../../../design-tokens';
+import CTAButton from '../../../ui/CTAButton';
+import {
+  focusRingClasses,
+  touchTargetClasses,
+  typographyClasses,
+} from '../../../../design-tokens';
 import type { PathStepContent } from '../../../../types/modules';
 
 /** path-step (kelio žingsnis) – Duomenų analizės kelias; badge atrakina žodynėlio terminus */
@@ -93,15 +98,15 @@ export function PathStepSlide({
         )}
       <div className="flex flex-wrap items-center gap-3">
         {!isCompleted ? (
-          <button
-            type="button"
+          <CTAButton
+            variant="accent"
             onClick={onMarkComplete}
-            className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium bg-accent-600 hover:bg-accent-700 dark:bg-accent-500 dark:hover:bg-accent-600 text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2"
+            className="px-4 py-2.5 font-medium"
             aria-label={t('markStepDoneAria')}
           >
             <CheckCircle className="w-5 h-5" aria-hidden />
             {isEn ? 'Mark as completed' : 'Pažymėjau kaip atliktą'}
-          </button>
+          </CTAButton>
         ) : (
           <p className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
             <CheckCircle className="w-5 h-5" aria-hidden />
@@ -114,7 +119,7 @@ export function PathStepSlide({
           <button
             type="button"
             onClick={onGoToSummary}
-            className="inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-medium border-2 border-brand-500 text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className={`inline-flex items-center gap-2 px-4 py-2.5 ${touchTargetClasses.minimumHeight} rounded-xl font-medium border-2 border-brand-500 text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors ${focusRingClasses.brand}`}
             aria-label={
               isEn ? 'Go to project summary' : 'Eiti į projekto santrauką'
             }

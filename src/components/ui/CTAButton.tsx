@@ -1,20 +1,16 @@
 /**
- * CTAButton – Design System v0.1 (A-S3).
- * CTA mygtukas su variantais pagal DESIGN_GUIDE, index.css btn-*.
- * Naudojimas: skaidrės CTA, navigacija, praktinės užduotys.
+ * CTAButton – Design System Waves C (self-contained Tailwind variants).
+ * Links: import `ctaButtonClassName` from `./ctaButtonClasses` for `<a>` upsells.
  */
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ctaButtonClassName, type CTAButtonVariant } from './ctaButtonClasses';
 
-export type CTAButtonVariant = 'primary' | 'secondary' | 'accent' | 'hero';
+export type { CTAButtonVariant };
 
-const variantClasses: Record<CTAButtonVariant, string> = {
-  primary: 'btn-primary',
-  secondary: 'btn-secondary',
-  accent: 'btn-accent',
-  hero: 'btn-primary btn-hero-cta',
-};
-
-interface CTAButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
+interface CTAButtonProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'className'
+> {
   variant?: CTAButtonVariant;
   children: ReactNode;
   className?: string;
@@ -27,11 +23,10 @@ export default function CTAButton({
   type = 'button',
   ...props
 }: CTAButtonProps) {
-  const baseClass = variantClasses[variant];
   return (
     <button
       type={type}
-      className={`${baseClass} inline-flex items-center justify-center gap-2 min-h-[44px] ${className}`.trim()}
+      className={ctaButtonClassName(variant, className)}
       {...props}
     >
       {children}

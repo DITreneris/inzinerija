@@ -75,6 +75,7 @@ import { EcosystemDeepenBlock } from '../../EcosystemDeepenBlock';
 import Banner from '../../ui/Banner';
 import CTAButton from '../../ui/CTAButton';
 import ChoiceControl from '../../ui/ChoiceControl';
+import StatusPanel from '../../ui/StatusPanel';
 import type { ModuleAccent } from '../../../types/modules';
 import { isContentTrackAccent } from '../shared/contentTrackTokens';
 
@@ -894,20 +895,20 @@ export function TestResultsSlide({
       <div className="space-y-6">
         {passed ? (
           <>
-            <div className="bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+            <StatusPanel
+              tone="success"
+              size="hero"
+              asStatus
+              icon={
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h3
-                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
-              >
-                {passedTitle}
-              </h3>
+              }
+              title={passedTitle}
+            >
               <p
                 className="text-gray-700 dark:text-gray-300 mb-6"
                 dangerouslySetInnerHTML={{ __html: passedMessageHtml }}
               />
-            </div>
+            </StatusPanel>
             {thresholdExplanation && (
               <Banner
                 variant="warning"
@@ -1155,19 +1156,19 @@ export function TestResultsSlide({
       <div className="space-y-6">
         {passed ? (
           <>
-            <div className="bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+            <StatusPanel
+              tone="success"
+              size="hero"
+              asStatus
+              icon={
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h3
-                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
-              >
-                {t('passedTitleDefault')}
-              </h3>
+              }
+              title={t('passedTitleDefault')}
+            >
               <p className="text-gray-700 dark:text-gray-300 mb-6">
                 {passedMessage}
               </p>
-            </div>
+            </StatusPanel>
             <div className="flex flex-wrap gap-3 justify-center">
               {onNextSlide && (
                 <CTAButton
@@ -1304,19 +1305,19 @@ export function TestResultsSlide({
       <div className="space-y-6">
         {passed ? (
           <>
-            <div className="bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+            <StatusPanel
+              tone="success"
+              size="hero"
+              asStatus
+              icon={
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h3
-                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
-              >
-                {t('passedTitleDefault')}
-              </h3>
+              }
+              title={t('passedTitleDefault')}
+            >
               <p className="text-gray-700 dark:text-gray-300 mb-6">
                 {passedMessage}
               </p>
-            </div>
+            </StatusPanel>
             {thresholdExplanation && (
               <Banner
                 variant="terms"
@@ -1493,19 +1494,19 @@ export function TestResultsSlide({
       <div className="space-y-6">
         {passed ? (
           <>
-            <div className="bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+            <StatusPanel
+              tone="success"
+              size="hero"
+              asStatus
+              icon={
                 <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h3
-                className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
-              >
-                {t('passedTitleDefault')}
-              </h3>
+              }
+              title={t('passedTitleDefault')}
+            >
               <p className="text-gray-700 dark:text-gray-300 mb-6">
                 {passedMessage}
               </p>
-            </div>
+            </StatusPanel>
             {thresholdExplanation && (
               <Banner
                 variant="terms"
@@ -1628,20 +1629,11 @@ export function TestResultsSlide({
   return (
     <div className="space-y-6">
       {/* F2-4: Animated score hero */}
-      <div
-        className={`p-8 rounded-xl border-2 text-center ${
-          passed
-            ? 'bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/20 dark:to-brand-900/20 border-emerald-200 dark:border-emerald-800'
-            : 'bg-gradient-to-r from-amber-50 to-brand-50 dark:from-amber-900/20 dark:to-brand-900/20 border-amber-200 dark:border-amber-800'
-        }`}
-      >
-        <div
-          className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${
-            passed
-              ? 'bg-emerald-100 dark:bg-emerald-900/30'
-              : 'bg-amber-100 dark:bg-amber-900/30'
-          }`}
-        >
+      <StatusPanel
+        tone={passed ? 'success' : 'warning'}
+        size="hero"
+        asStatus
+        icon={
           <span
             className={`${typographyClasses.metricSm} font-extrabold ${
               passed
@@ -1651,12 +1643,9 @@ export function TestResultsSlide({
           >
             {animatedScore}%
           </span>
-        </div>
-        <h3
-          className={`${typographyClasses.h2} mb-2 text-gray-900 dark:text-white`}
-        >
-          {passed ? t('testCompleteTitle') : t('resultLabel')}
-        </h3>
+        }
+        title={passed ? t('testCompleteTitle') : t('resultLabel')}
+      >
         <p className="text-gray-700 dark:text-gray-300">
           {passed
             ? t('wellDoneNextHint')
@@ -1672,7 +1661,7 @@ export function TestResultsSlide({
               : `Geriausias streak: ${getLastMaxStreak()} iš eilės`}
           </div>
         )}
-      </div>
+      </StatusPanel>
 
       {/* F2-2: Radar chart (Module 2 only, if data exists) */}
       {moduleId === 2 && hasRadarData && (
@@ -2372,10 +2361,12 @@ export function PracticeIntroSlide({
             </>
           )}
         </p>
-        <div className="bg-gradient-to-r from-emerald-50 to-accent-50 dark:from-emerald-900/20 dark:to-accent-900/20 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-800">
-          <h3 className="font-bold text-lg mb-1 text-gray-900 dark:text-white">
-            {t('projectOutcomeTitle')}
-          </h3>
+        <StatusPanel
+          tone="success"
+          size="compact"
+          className="p-6"
+          title={t('projectOutcomeTitle')}
+        >
           <p className={`${typographyClasses.bodyMuted} mb-4`}>
             {t('projectOutcomeDesc')}
           </p>
@@ -2390,7 +2381,7 @@ export function PracticeIntroSlide({
               </li>
             ))}
           </ul>
-        </div>
+        </StatusPanel>
         <details className="bg-white dark:bg-gray-800 rounded-xl border border-violet-200 dark:border-violet-800 overflow-hidden group">
           <summary className="list-none cursor-pointer p-4 font-bold text-gray-900 dark:text-white flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900/50">
             <span className="flex items-center gap-2">
@@ -2615,9 +2606,8 @@ export function PracticeIntroSlide({
 
   const isMod3 = moduleId === 3;
   const introContent = getPracticeIntroContent(slide);
-  const coverClasses = isMod3
-    ? 'bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/40 p-6 rounded-xl border-2 border-emerald-300 dark:border-emerald-700'
-    : 'bg-gradient-to-r from-accent-50 to-brand-50 dark:from-accent-900/20 dark:to-brand-900/20 p-6 rounded-xl border-2 border-accent-200 dark:border-accent-800';
+  const mod3CoverClasses =
+    'bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/40 p-6 rounded-xl border-2 border-emerald-300 dark:border-emerald-700';
   const progressTextClasses = isMod3
     ? 'text-emerald-700 dark:text-emerald-300'
     : 'text-accent-700 dark:text-accent-300';
@@ -2657,397 +2647,404 @@ export function PracticeIntroSlide({
         ]
       : null;
 
-  return (
-    <div className="space-y-6">
-      <div className={coverClasses}>
-        {usesGuidedIntro && introContent.meaningParagraph && (
+  const coverInner = (
+    <>
+      {usesGuidedIntro && introContent.meaningParagraph && (
+        <p
+          className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed"
+          role="region"
+          aria-label={t('moduleMeaningAria')}
+        >
+          {introContent.meaningParagraph}
+        </p>
+      )}
+      {usesGuidedIntro && introContent.primaryPathIntro && (
+        <div
+          className="mb-4 p-4 rounded-xl border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40"
+          role="region"
+          aria-label={t('m9PrimaryPathAria')}
+        >
+          <h4
+            className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-2`}
+          >
+            {isM12
+              ? locale === 'en'
+                ? 'Recommended start'
+                : 'Rekomenduojamas startas'
+              : t('m9PrimaryPathHeading')}
+          </h4>
           <p
-            className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed"
-            role="region"
-            aria-label={t('moduleMeaningAria')}
-          >
-            {introContent.meaningParagraph}
-          </p>
-        )}
-        {usesGuidedIntro && introContent.primaryPathIntro && (
-          <div
-            className="mb-4 p-4 rounded-xl border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40"
-            role="region"
-            aria-label={t('m9PrimaryPathAria')}
-          >
-            <h4
-              className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-2`}
+            className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
+            dangerouslySetInnerHTML={{
+              __html: introContent.primaryPathIntro.replace(
+                /\*\*(.*?)\*\*/g,
+                '<strong>$1</strong>'
+              ),
+            }}
+          />
+          {isM12 && onNavigateToSlideById && (
+            <CTAButton
+              variant="accent"
+              onClick={() => onNavigateToSlideById(124.5)}
+              className="mt-3 px-4 py-2 text-sm"
+              aria-label={
+                locale === 'en'
+                  ? 'Start with Coordinator plus two specialists'
+                  : 'Pradėk nuo Koordinatorius ir du specialistai skaidrės'
+              }
             >
-              {isM12
-                ? locale === 'en'
-                  ? 'Recommended start'
-                  : 'Rekomenduojamas startas'
-                : t('m9PrimaryPathHeading')}
-            </h4>
-            <p
-              className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
-              dangerouslySetInnerHTML={{
-                __html: introContent.primaryPathIntro.replace(
-                  /\*\*(.*?)\*\*/g,
-                  '<strong>$1</strong>'
-                ),
-              }}
-            />
-            {isM12 && onNavigateToSlideById && (
-              <button
-                type="button"
-                onClick={() => onNavigateToSlideById(124.5)}
-                className="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600"
-                aria-label={
-                  locale === 'en'
-                    ? 'Start with Coordinator plus two specialists'
-                    : 'Pradėk nuo Koordinatorius ir du specialistai skaidrės'
-                }
-              >
-                {locale === 'en'
-                  ? 'Start here: Coordinator + 2 specialists'
-                  : 'Pradėk čia: Koordinatorius + 2 specialistai'}
-              </button>
-            )}
-            {isM9 && onNavigateToSlideById && (
-              <button
-                type="button"
-                onClick={() => onNavigateToSlideById(93.1)}
-                className="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-xl bg-accent-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600"
-                aria-label={t('m9StartPracticeAria')}
-              >
-                {t('m9StartPracticeCta')}
-              </button>
-            )}
-          </div>
-        )}
-        {isM12 && usesGuidedIntro && introContent.primaryPathIntro && (
-          <div
-            className="mb-4 p-4 rounded-xl border-2 border-accent-400 dark:border-accent-600 bg-accent-50/90 dark:bg-accent-900/20"
-            role="region"
-            aria-label={t('m12RequiredPathAria')}
-          >
-            <h4
-              className={`${typographyClasses.h3} text-accent-900 dark:text-accent-100 mb-2`}
-            >
-              {t('m12RequiredPathHeading')}
-            </h4>
-            <p
-              className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
-            >
-              {t('m12RequiredPathBody')}
-            </p>
-          </div>
-        )}
-        {usesGuidedIntro &&
-          (introContent.meaningParagraph || introContent.primaryPathIntro) &&
-          whyBenefit && (
-            <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300 text-center max-w-2xl mx-auto">
-              {whyBenefit}
-            </p>
+              {locale === 'en'
+                ? 'Start here: Coordinator + 2 specialists'
+                : 'Pradėk čia: Koordinatorius + 2 specialistai'}
+            </CTAButton>
           )}
-        {!usesGuidedIntro && whyBenefit && (
-          <p
-            className={`text-sm font-medium mb-3 ${isMod3 ? 'text-emerald-700 dark:text-emerald-300' : 'text-accent-700 dark:text-accent-300'}`}
+          {isM9 && onNavigateToSlideById && (
+            <CTAButton
+              variant="accent"
+              onClick={() => onNavigateToSlideById(93.1)}
+              className="mt-3 px-4 py-2 text-sm"
+              aria-label={t('m9StartPracticeAria')}
+            >
+              {t('m9StartPracticeCta')}
+            </CTAButton>
+          )}
+        </div>
+      )}
+      {isM12 && usesGuidedIntro && introContent.primaryPathIntro && (
+        <div
+          className="mb-4 p-4 rounded-xl border-2 border-accent-400 dark:border-accent-600 bg-accent-50/90 dark:bg-accent-900/20"
+          role="region"
+          aria-label={t('m12RequiredPathAria')}
+        >
+          <h4
+            className={`${typographyClasses.h3} text-accent-900 dark:text-accent-100 mb-2`}
           >
+            {t('m12RequiredPathHeading')}
+          </h4>
+          <p
+            className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
+          >
+            {t('m12RequiredPathBody')}
+          </p>
+        </div>
+      )}
+      {usesGuidedIntro &&
+        (introContent.meaningParagraph || introContent.primaryPathIntro) &&
+        whyBenefit && (
+          <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300 text-center max-w-2xl mx-auto">
             {whyBenefit}
           </p>
         )}
-        {usesGuidedIntro &&
-          !introContent.meaningParagraph &&
-          !introContent.primaryPathIntro &&
-          whyBenefit && (
-            <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300">
-              {whyBenefit}
-            </p>
-          )}
-        {usesGuidedIntro && introContent.taskOneLiner && (
-          <div
-            className="mb-3 p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30 border-2 border-brand-400 dark:border-brand-600"
-            role="region"
-            aria-label={t('yourTaskAria')}
+      {!usesGuidedIntro && whyBenefit && (
+        <p
+          className={`text-sm font-medium mb-3 ${isMod3 ? 'text-emerald-700 dark:text-emerald-300' : 'text-accent-700 dark:text-accent-300'}`}
+        >
+          {whyBenefit}
+        </p>
+      )}
+      {usesGuidedIntro &&
+        !introContent.meaningParagraph &&
+        !introContent.primaryPathIntro &&
+        whyBenefit && (
+          <p className="text-sm font-medium mb-3 text-accent-700 dark:text-accent-300">
+            {whyBenefit}
+          </p>
+        )}
+      {usesGuidedIntro && introContent.taskOneLiner && (
+        <div
+          className="mb-3 p-3 rounded-xl bg-brand-100 dark:bg-brand-900/30 border-2 border-brand-400 dark:border-brand-600"
+          role="region"
+          aria-label={t('yourTaskAria')}
+        >
+          <p
+            className={`${typographyClasses.h3} text-brand-900 dark:text-brand-100`}
           >
-            <p
-              className={`${typographyClasses.h3} text-brand-900 dark:text-brand-100`}
-            >
-              {introContent.taskOneLiner}
-            </p>
-          </div>
-        )}
-        {isM9 && introContent.duration && (
-          <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
-            {t('durationLabel')} {introContent.duration}
+            {introContent.taskOneLiner}
           </p>
-        )}
-        {isM9 && introContent.audience && (
-          <p className={`${typographyClasses.bodyMuted} mb-2`}>
-            {introContent.audience}
-          </p>
-        )}
-        {isM9 && introContent.useCaseBlock && (
-          <Banner
-            variant="success"
-            className="p-3 mb-3"
-            ariaLabel={t('whereToApplyQAria')}
+        </div>
+      )}
+      {isM9 && introContent.duration && (
+        <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
+          {t('durationLabel')} {introContent.duration}
+        </p>
+      )}
+      {isM9 && introContent.audience && (
+        <p className={`${typographyClasses.bodyMuted} mb-2`}>
+          {introContent.audience}
+        </p>
+      )}
+      {isM9 && introContent.useCaseBlock && (
+        <Banner
+          variant="success"
+          className="p-3 mb-3"
+          ariaLabel={t('whereToApplyQAria')}
+        >
+          <h4
+            className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-1`}
           >
-            <h4
-              className={`${typographyClasses.h3} text-emerald-900 dark:text-emerald-100 mb-1`}
-            >
-              {locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}
-            </h4>
-            <p
-              className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
-            >
-              {introContent.useCaseBlock}
-            </p>
-          </Banner>
-        )}
-        {!isM9 && introContent.duration && (
-          <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
-            {t('durationLabel')} {introContent.duration}
+            {locale === 'en' ? 'Where to apply?' : 'Kur pritaikyti?'}
+          </h4>
+          <p
+            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300`}
+          >
+            {introContent.useCaseBlock}
           </p>
+        </Banner>
+      )}
+      {!isM9 && introContent.duration && (
+        <p className="text-sm font-semibold text-accent-700 dark:text-accent-300 mb-2">
+          {t('durationLabel')} {introContent.duration}
+        </p>
+      )}
+      {isMod3 && introContent.optionalInstruction && (
+        <Banner
+          variant="warning"
+          className="p-3 mb-3"
+          ariaLabel={t('optionalPracticeAria')}
+        >
+          <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
+            {introContent.optionalInstruction}
+          </p>
+        </Banner>
+      )}
+      {moduleId === 15 &&
+        onPathModeChange &&
+        introContent.howToUseModule?.short &&
+        introContent.howToUseModule?.full && (
+          <ChoiceControl
+            className="mb-3 animate-fade-in"
+            legend={
+              introContent.howToUseModule.heading ?? t('pathChoiceHeading')
+            }
+            columns={2}
+            size="compact"
+            value={pathMode}
+            onChange={onPathModeChange}
+            options={[
+              {
+                id: 'short' as const,
+                label: introContent.howToUseModule.short.label,
+                description: introContent.howToUseModule.short.description,
+                icon: Zap,
+              },
+              {
+                id: 'full' as const,
+                label: introContent.howToUseModule.full.label,
+                description: introContent.howToUseModule.full.description,
+                icon: Layers,
+              },
+            ]}
+            optionTone={
+              isContentTrackAccent(moduleAccent)
+                ? { short: 'rose', full: 'rose' }
+                : undefined
+            }
+            statusHint={
+              typeof visibleSlideCount === 'number' && visibleSlideCount > 0
+                ? t('pathVisibleCountHint', { count: visibleSlideCount })
+                : pathMode === 'short'
+                  ? t('pathShortActiveHint')
+                  : t('pathFullActiveHint')
+            }
+          />
         )}
-        {isMod3 && introContent.optionalInstruction && (
+      {!isM9 &&
+        (!isM12 || !introContent.primaryPathIntro) &&
+        introContent.recommendedStart &&
+        !(
+          moduleId === 15 &&
+          introContent.howToUseModule?.short &&
+          introContent.howToUseModule?.full
+        ) && (
           <Banner
             variant="warning"
             className="p-3 mb-3"
-            ariaLabel={t('optionalPracticeAria')}
+            ariaLabel={t('recommendedStartAria')}
           >
-            <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
-              {introContent.optionalInstruction}
-            </p>
-          </Banner>
-        )}
-        {moduleId === 15 &&
-          onPathModeChange &&
-          introContent.howToUseModule?.short &&
-          introContent.howToUseModule?.full && (
-            <ChoiceControl
-              className="mb-3 animate-fade-in"
-              legend={
-                introContent.howToUseModule.heading ?? t('pathChoiceHeading')
-              }
-              columns={2}
-              size="compact"
-              value={pathMode}
-              onChange={onPathModeChange}
-              options={[
-                {
-                  id: 'short' as const,
-                  label: introContent.howToUseModule.short.label,
-                  description: introContent.howToUseModule.short.description,
-                  icon: Zap,
-                },
-                {
-                  id: 'full' as const,
-                  label: introContent.howToUseModule.full.label,
-                  description: introContent.howToUseModule.full.description,
-                  icon: Layers,
-                },
-              ]}
-              optionTone={
-                isContentTrackAccent(moduleAccent)
-                  ? { short: 'rose', full: 'rose' }
-                  : undefined
-              }
-              statusHint={
-                typeof visibleSlideCount === 'number' && visibleSlideCount > 0
-                  ? t('pathVisibleCountHint', { count: visibleSlideCount })
-                  : pathMode === 'short'
-                    ? t('pathShortActiveHint')
-                    : t('pathFullActiveHint')
-              }
-            />
-          )}
-        {!isM9 &&
-          (!isM12 || !introContent.primaryPathIntro) &&
-          introContent.recommendedStart &&
-          !(
-            moduleId === 15 &&
-            introContent.howToUseModule?.short &&
-            introContent.howToUseModule?.full
-          ) && (
-            <Banner
-              variant="warning"
-              className="p-3 mb-3"
-              ariaLabel={t('recommendedStartAria')}
-            >
-              <p
-                className={`${typographyClasses.body} text-amber-800 dark:text-amber-200`}
-              >
-                {introContent.recommendedStart}
-              </p>
-            </Banner>
-          )}
-        {moduleId === 15 &&
-          introContent.howToUseModule?.short &&
-          introContent.recommendedStart && (
             <p
-              className={`${typographyClasses.small} text-slate-600 dark:text-slate-400 mb-3`}
+              className={`${typographyClasses.body} text-amber-800 dark:text-amber-200`}
             >
               {introContent.recommendedStart}
             </p>
-          )}
-        {recommendedNote && (
-          <Banner
-            variant="warning"
-            className="mb-3 rounded-lg bg-gray-100 dark:bg-gray-800/60 !border-accent-500 px-3 py-2"
-          >
-            {recommendedNote}
           </Banner>
         )}
-        {introContent.firstActionCTA && (
-          <div
-            className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 mb-3"
-            role="region"
-            aria-label={t('firstStepAria')}
-          >
-            <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
-              {t('firstStepLabel')}
-            </p>
-            <p className="text-sm text-emerald-700 dark:text-emerald-300">
-              {introContent.firstActionCTA}
-            </p>
-          </div>
-        )}
-        {isM12 && introContent.roiTemplate && (
-          <details className="group mb-3 overflow-hidden rounded-xl border-2 border-brand-200 bg-white/80 dark:border-brand-800 dark:bg-gray-900/40">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 font-bold text-gray-900 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset dark:text-white dark:hover:bg-brand-900/20">
-              <span className="flex items-center gap-2">
-                <BarChart2
-                  className="h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
-                {introContent.roiTemplate.heading ??
-                  (locale === 'en'
-                    ? 'Return on investment mini calculator'
-                    : 'Grąžos iš investicijų mini skaičiuoklė')}
-              </span>
-              <ChevronRight
-                className="h-5 w-5 shrink-0 text-gray-500 transition-transform group-open:rotate-90 dark:text-gray-400"
-                aria-hidden
-              />
-            </summary>
-            <div className="space-y-3 border-t border-brand-100 px-4 pb-4 pt-3 dark:border-brand-800/60">
-              {introContent.roiTemplate.body && (
-                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                  {introContent.roiTemplate.body}
-                </p>
-              )}
-              {introContent.roiTemplate.copyable && (
-                <CopyButton
-                  text={introContent.roiTemplate.copyable}
-                  size="sm"
-                  ariaLabel={
-                    locale === 'en'
-                      ? 'Copy return on investment template'
-                      : 'Kopijuoti grąžos iš investicijų šabloną'
-                  }
-                />
-              )}
-            </div>
-          </details>
-        )}
-        {introContent.learningOutcomes &&
-          introContent.learningOutcomes.length > 0 && (
-            <ul className="mb-3 space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-              {introContent.learningOutcomes.map((o, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <CheckCircle
-                    className="w-4 h-4 shrink-0 text-accent-600 dark:text-accent-400 mt-0.5"
-                    aria-hidden
-                  />
-                  <span>{o}</span>
-                </li>
-              ))}
-            </ul>
-          )}
-        {isM9 && (
+      {moduleId === 15 &&
+        introContent.howToUseModule?.short &&
+        introContent.recommendedStart && (
           <p
-            className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
-            role="note"
+            className={`${typographyClasses.small} text-slate-600 dark:text-slate-400 mb-3`}
           >
-            {t('m9WorkflowFirstFooter')}
+            {introContent.recommendedStart}
           </p>
         )}
-        {!isM9 && (
-          <>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <h3
-                className={`${typographyClasses.h2} text-gray-900 dark:text-white flex items-center gap-2.5`}
-              >
-                <Briefcase
-                  className="w-5 h-5 text-brand-600 dark:text-brand-400"
-                  strokeWidth={1.5}
-                />
-                {locale === 'en'
-                  ? 'Practical Application'
-                  : 'Praktinis Pritaikymas'}
-              </h3>
-              {isMod3 && (
-                <span
-                  className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50"
-                  aria-label={t('m3PortfolioChipAria', {
-                    done: completedCount,
-                    total: scenarioSlides?.length ?? 6,
-                    min: introContent.minScenariosToComplete ?? 2,
-                  })}
-                >
-                  {t('m3PortfolioChip', {
-                    done: completedCount,
-                    total: scenarioSlides?.length ?? 6,
-                  })}
-                </span>
-              )}
-            </div>
-            <p className="text-gray-700 dark:text-gray-300">
-              {isMod3 ? (
-                <>
-                  {locale === 'en'
-                    ? 'Now you will apply the 6-block system to real business scenarios.'
-                    : 'Dabar pritaikysite 6 blokų sistemą realiems verslo scenarijams.'}{' '}
-                  {locale === 'en'
-                    ? 'Each scenario has a different context and challenges.'
-                    : 'Kiekvienas scenarijus turi skirtingą kontekstą ir iššūkius.'}
-                </>
-              ) : isM12 ? (
-                <>
-                  {locale === 'en'
-                    ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
-                    : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
-                  {locale === 'en'
-                    ? 'Follow the linear order on the next slides and save artefacts before marking a practice done.'
-                    : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
-                </>
-              ) : (
-                <>
-                  {locale === 'en'
-                    ? 'You will work through practical scenarios—each has its own context, templates, and tasks.'
-                    : 'Eisi per praktinius scenarijus – kiekvienas turi savo kontekstą, šablonus ir užduotis.'}{' '}
-                  {locale === 'en'
-                    ? 'Use the copyable prompts and checklists on each slide.'
-                    : 'Naudok kopijuojamus šablonus ir kontrolinius sąrašus kiekvienoje skaidrėje.'}
-                </>
-              )}
-            </p>
-            {hasScenarioProgress && (
-              <p
-                className={`mt-3 text-sm font-semibold ${progressTextClasses}`}
-              >
-                {(isMod3 || isM12) &&
-                introContent.minScenariosToComplete != null
-                  ? locale === 'en'
-                    ? `${completedCount} of ${scenarioSlides!.length} scenarios completed (at least ${introContent.minScenariosToComplete} required)`
-                    : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta (bent ${introContent.minScenariosToComplete} privaloma)`
-                  : locale === 'en'
-                    ? `${completedCount} of ${scenarioSlides!.length} scenarios completed`
-                    : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta`}
+      {recommendedNote && (
+        <Banner
+          variant="warning"
+          className="mb-3 rounded-lg bg-gray-100 dark:bg-gray-800/60 !border-accent-500 px-3 py-2"
+        >
+          {recommendedNote}
+        </Banner>
+      )}
+      {introContent.firstActionCTA && (
+        <div
+          className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 mb-3"
+          role="region"
+          aria-label={t('firstStepAria')}
+        >
+          <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
+            {t('firstStepLabel')}
+          </p>
+          <p className="text-sm text-emerald-700 dark:text-emerald-300">
+            {introContent.firstActionCTA}
+          </p>
+        </div>
+      )}
+      {isM12 && introContent.roiTemplate && (
+        <details className="group mb-3 overflow-hidden rounded-xl border-2 border-brand-200 bg-white/80 dark:border-brand-800 dark:bg-gray-900/40">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-4 py-3 font-bold text-gray-900 hover:bg-brand-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset dark:text-white dark:hover:bg-brand-900/20">
+            <span className="flex items-center gap-2">
+              <BarChart2
+                className="h-5 w-5 shrink-0 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+              {introContent.roiTemplate.heading ??
+                (locale === 'en'
+                  ? 'Return on investment mini calculator'
+                  : 'Grąžos iš investicijų mini skaičiuoklė')}
+            </span>
+            <ChevronRight
+              className="h-5 w-5 shrink-0 text-gray-500 transition-transform group-open:rotate-90 dark:text-gray-400"
+              aria-hidden
+            />
+          </summary>
+          <div className="space-y-3 border-t border-brand-100 px-4 pb-4 pt-3 dark:border-brand-800/60">
+            {introContent.roiTemplate.body && (
+              <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                {introContent.roiTemplate.body}
               </p>
             )}
-          </>
+            {introContent.roiTemplate.copyable && (
+              <CopyButton
+                text={introContent.roiTemplate.copyable}
+                size="sm"
+                ariaLabel={
+                  locale === 'en'
+                    ? 'Copy return on investment template'
+                    : 'Kopijuoti grąžos iš investicijų šabloną'
+                }
+              />
+            )}
+          </div>
+        </details>
+      )}
+      {introContent.learningOutcomes &&
+        introContent.learningOutcomes.length > 0 && (
+          <ul className="mb-3 space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
+            {introContent.learningOutcomes.map((o, i) => (
+              <li key={i} className="flex items-start gap-2">
+                <CheckCircle
+                  className="w-4 h-4 shrink-0 text-accent-600 dark:text-accent-400 mt-0.5"
+                  aria-hidden
+                />
+                <span>{o}</span>
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
+      {isM9 && (
+        <p
+          className={`${typographyClasses.body} text-gray-700 dark:text-gray-300 mb-2`}
+          role="note"
+        >
+          {t('m9WorkflowFirstFooter')}
+        </p>
+      )}
+      {!isM9 && (
+        <>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <h3
+              className={`${typographyClasses.h2} text-gray-900 dark:text-white flex items-center gap-2.5`}
+            >
+              <Briefcase
+                className="w-5 h-5 text-brand-600 dark:text-brand-400"
+                strokeWidth={1.5}
+              />
+              {locale === 'en'
+                ? 'Practical Application'
+                : 'Praktinis Pritaikymas'}
+            </h3>
+            {isMod3 && (
+              <span
+                className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-400/50 dark:border-emerald-600/50"
+                aria-label={t('m3PortfolioChipAria', {
+                  done: completedCount,
+                  total: scenarioSlides?.length ?? 6,
+                  min: introContent.minScenariosToComplete ?? 2,
+                })}
+              >
+                {t('m3PortfolioChip', {
+                  done: completedCount,
+                  total: scenarioSlides?.length ?? 6,
+                })}
+              </span>
+            )}
+          </div>
+          <p className="text-gray-700 dark:text-gray-300">
+            {isMod3 ? (
+              <>
+                {locale === 'en'
+                  ? 'Now you will apply the 6-block system to real business scenarios.'
+                  : 'Dabar pritaikysite 6 blokų sistemą realiems verslo scenarijams.'}{' '}
+                {locale === 'en'
+                  ? 'Each scenario has a different context and challenges.'
+                  : 'Kiekvienas scenarijus turi skirtingą kontekstą ir iššūkius.'}
+              </>
+            ) : isM12 ? (
+              <>
+                {locale === 'en'
+                  ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
+                  : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
+                {locale === 'en'
+                  ? 'Follow the linear order on the next slides and save artefacts before marking a practice done.'
+                  : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
+              </>
+            ) : (
+              <>
+                {locale === 'en'
+                  ? 'You will work through practical scenarios—each has its own context, templates, and tasks.'
+                  : 'Eisi per praktinius scenarijus – kiekvienas turi savo kontekstą, šablonus ir užduotis.'}{' '}
+                {locale === 'en'
+                  ? 'Use the copyable prompts and checklists on each slide.'
+                  : 'Naudok kopijuojamus šablonus ir kontrolinius sąrašus kiekvienoje skaidrėje.'}
+              </>
+            )}
+          </p>
+          {hasScenarioProgress && (
+            <p className={`mt-3 text-sm font-semibold ${progressTextClasses}`}>
+              {(isMod3 || isM12) && introContent.minScenariosToComplete != null
+                ? locale === 'en'
+                  ? `${completedCount} of ${scenarioSlides!.length} scenarios completed (at least ${introContent.minScenariosToComplete} required)`
+                  : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta (bent ${introContent.minScenariosToComplete} privaloma)`
+                : locale === 'en'
+                  ? `${completedCount} of ${scenarioSlides!.length} scenarios completed`
+                  : `${completedCount} iš ${scenarioSlides!.length} scenarijų užbaigta`}
+            </p>
+          )}
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <div className="space-y-6">
+      {isMod3 ? (
+        <div className={mod3CoverClasses}>{coverInner}</div>
+      ) : (
+        <StatusPanel tone="outcome" size="compact" className="p-6">
+          {coverInner}
+        </StatusPanel>
+      )}
 
       {isM9 ? (
         <details className="group rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 overflow-hidden">
@@ -3632,7 +3629,7 @@ export function PracticeScenarioHubSlide({
           </p>
         </div>
       )}
-      <div className="bg-gradient-to-r from-accent-50 to-brand-50 dark:from-accent-900/20 dark:to-brand-900/20 p-6 rounded-xl border-2 border-accent-200 dark:border-accent-800">
+      <StatusPanel tone="outcome" size="compact" className="p-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">
@@ -3643,17 +3640,17 @@ export function PracticeScenarioHubSlide({
             </p>
           </div>
           {onGoToSummary && (
-            <button
-              type="button"
+            <CTAButton
+              variant="accent"
               onClick={onGoToSummary}
-              className="shrink-0 min-h-[44px] inline-flex items-center justify-center rounded-xl bg-accent-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:bg-accent-500 dark:hover:bg-accent-600 touch-manipulation"
+              className="shrink-0 px-4 py-2.5 text-sm touch-manipulation"
               aria-label={t('goToSummaryAria')}
             >
               {t('hubSkipToSummary')}
-            </button>
+            </CTAButton>
           )}
         </div>
-      </div>
+      </StatusPanel>
 
       {selectedLevel1 === null && (
         <p

@@ -32,6 +32,7 @@ describe('completionArtifacts registry', () => {
       'm79',
       'm1012',
       'm1315',
+      'm1618',
     ]);
     for (const artifact of artifacts) {
       expect(hasHandoutArtifactAction(artifact.key), artifact.key).toBe(true);
@@ -41,9 +42,9 @@ describe('completionArtifacts registry', () => {
   it('keeps earned handout modules aligned with current product behavior', () => {
     expect(
       getEarnedHandoutModuleIds([
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
       ])
-    ).toEqual([1, 4, 5, 6, 9, 12, 15]);
+    ).toEqual([1, 4, 5, 6, 9, 12, 15, 18]);
     expect(getEarnedHandoutArtifacts([1, 2, 3, 4]).map((a) => a.key)).toEqual([
       'm1',
       'm4',
@@ -58,6 +59,7 @@ describe('completionArtifacts registry', () => {
     expect(getHandoutForModuleComplete(9)?.key).toBe('m79');
     expect(getHandoutForModuleComplete(12)?.key).toBe('m1012');
     expect(getHandoutForModuleComplete(15)?.key).toBe('m1315');
+    expect(getHandoutForModuleComplete(18)?.key).toBe('m1618');
   });
 
   it('keeps certificate tiers and eligibility aligned with current rules', () => {

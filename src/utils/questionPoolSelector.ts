@@ -41,7 +41,7 @@ const CATEGORY_QUOTAS: Record<string, number> = {
   bendra: 2,
   workflow: 1,
   technikos: 1,
-  // scenario questions are marked with their subject category, 
+  // scenario questions are marked with their subject category,
   // they get picked up naturally
 };
 
@@ -49,8 +49,12 @@ const CATEGORY_QUOTAS: Record<string, number> = {
  * Select a balanced random set of questions from the pool.
  * Use locale to pick LT or EN pool when not passing pool explicitly.
  */
-export function selectQuestions(poolOrLocale?: TestQuestion[] | QuestionPoolLocale): TestQuestion[] {
-  const pool = Array.isArray(poolOrLocale) ? poolOrLocale : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
+export function selectQuestions(
+  poolOrLocale?: TestQuestion[] | QuestionPoolLocale
+): TestQuestion[] {
+  const pool = Array.isArray(poolOrLocale)
+    ? poolOrLocale
+    : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
   // Group by category
   const byCategory: Record<string, TestQuestion[]> = {};
   for (const cat of POOL_CATEGORIES) {
@@ -81,16 +85,24 @@ export function selectQuestions(poolOrLocale?: TestQuestion[] | QuestionPoolLoca
   }
 
   // Phase 2: Ensure type diversity – at least 1 matching, 1 ordering, 1 scenario, 1 true-false
-  const requiredTypes = ['matching', 'ordering', 'scenario', 'true-false'] as const;
+  const requiredTypes = [
+    'matching',
+    'ordering',
+    'scenario',
+    'true-false',
+  ] as const;
   for (const reqType of requiredTypes) {
     const hasType = selected.some((q) => (q.type || 'mcq') === reqType);
     if (!hasType) {
-      const candidate = pool.find((q) => (q.type || 'mcq') === reqType && !usedIds.has(q.id));
+      const candidate = pool.find(
+        (q) => (q.type || 'mcq') === reqType && !usedIds.has(q.id)
+      );
       if (candidate) {
         // Replace a random MCQ from the same category, or add if under limit
         if (selected.length >= TARGET_TOTAL) {
           const mcqIdx = selected.findIndex(
-            (q) => (q.type || 'mcq') === 'mcq' && q.category === candidate.category
+            (q) =>
+              (q.type || 'mcq') === 'mcq' && q.category === candidate.category
           );
           if (mcqIdx >= 0) {
             usedIds.delete(selected[mcqIdx].id);
@@ -119,18 +131,24 @@ export function selectQuestions(poolOrLocale?: TestQuestion[] | QuestionPoolLoca
   const finalSet = selected.slice(0, TARGET_TOTAL);
 
   // Shuffle final order but keep matching/ordering/scenario at the end for better UX flow
-  const mcqTf = shuffleArray(finalSet.filter((q) => {
-    const t = q.type || 'mcq';
-    return t === 'mcq' || t === 'true-false';
-  }));
-  const interactive = shuffleArray(finalSet.filter((q) => {
-    const t = q.type || 'mcq';
-    return t === 'matching' || t === 'ordering';
-  }));
-  const scenarios = shuffleArray(finalSet.filter((q) => {
-    const t = q.type || 'mcq';
-    return t === 'scenario';
-  }));
+  const mcqTf = shuffleArray(
+    finalSet.filter((q) => {
+      const t = q.type || 'mcq';
+      return t === 'mcq' || t === 'true-false';
+    })
+  );
+  const interactive = shuffleArray(
+    finalSet.filter((q) => {
+      const t = q.type || 'mcq';
+      return t === 'matching' || t === 'ordering';
+    })
+  );
+  const scenarios = shuffleArray(
+    finalSet.filter((q) => {
+      const t = q.type || 'mcq';
+      return t === 'scenario';
+    })
+  );
 
   return [...mcqTf, ...interactive, ...scenarios];
 }
@@ -143,7 +161,9 @@ export function selectQuestionsByCategory(
   n: number,
   poolOrLocale?: TestQuestion[] | QuestionPoolLocale
 ): TestQuestion[] {
-  const pool = Array.isArray(poolOrLocale) ? poolOrLocale : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
+  const pool = Array.isArray(poolOrLocale)
+    ? poolOrLocale
+    : getPool((poolOrLocale as QuestionPoolLocale) ?? 'lt');
   const filtered = pool.filter((q) => (q.category || 'bendra') === category);
   return shuffleArray(filtered).slice(0, Math.min(n, filtered.length));
 }
@@ -158,7 +178,9 @@ export interface SlideQuestionGroup {
   questions: TestQuestion[];
 }
 
-export function assignToSlides(questions: TestQuestion[]): SlideQuestionGroup[] {
+export function assignToSlides(
+  questions: TestQuestion[]
+): SlideQuestionGroup[] {
   const mcqTf = questions.filter((q) => {
     const t = q.type || 'mcq';
     return t === 'mcq' || t === 'true-false';
@@ -200,7 +222,7 @@ export function assignToSlides(questions: TestQuestion[]): SlideQuestionGroup[] 
   if (matching.length > 0) {
     groups.push({
       slideTitle: '6 Blokų sistema – Sujunk poras',
-      slideSubtitle: 'Sujunkite bloka su jo funkcija',
+      slideSubtitle: 'Sujunk bloką su jo funkcija',
       questions: matching,
     });
   }
@@ -209,7 +231,7 @@ export function assignToSlides(questions: TestQuestion[]): SlideQuestionGroup[] 
   if (ordering.length > 0) {
     groups.push({
       slideTitle: 'Prioritetu Rikiavimas',
-      slideSubtitle: 'Surikiuokite blokus pagal prioritetą',
+      slideSubtitle: 'Surikiuok blokus pagal prioritetą',
       questions: ordering,
     });
   }
@@ -218,7 +240,7 @@ export function assignToSlides(questions: TestQuestion[]): SlideQuestionGroup[] 
   if (scenarios.length > 0) {
     groups.push({
       slideTitle: 'Verslo scenarijai',
-      slideSubtitle: 'Pritaikykite zinias realiame scenarijuje',
+      slideSubtitle: 'Pritaikyk žinias realiame scenarijuje',
       questions: scenarios,
     });
   }

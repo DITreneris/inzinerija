@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { CopyButton } from '../../shared';
 import Banner from '../../../ui/Banner';
+import CTAButton from '../../../ui/CTAButton';
 import Eyebrow from '../../../ui/Eyebrow';
 import ChoiceControl from '../../../ui/ChoiceControl';
 import { isContentTrackAccent } from '../../shared/contentTrackTokens';
@@ -207,15 +208,16 @@ export function ActionIntroSlide({
             </>
           )}
           {hasReveal && !revealed && (
-            <button
+            <CTAButton
+              variant="hero"
               onClick={() => setRevealed(true)}
               aria-label={ctaLabel}
-              className="group mt-2 sm:mt-3 flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500 text-white font-bold text-base sm:text-lg shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/40 transition-all duration-300 hover:scale-[1.06] active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 focus:ring-offset-gray-900 min-h-[52px] animate-pulse-slow hover:animate-none"
+              className="group mt-2 sm:mt-3 px-7 py-4 text-base sm:text-lg shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/40 transition-all duration-300 hover:scale-[1.06] active:scale-95 focus:ring-offset-gray-900 animate-pulse-slow hover:animate-none"
             >
               <Zap className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
               <span>{ctaLabel}</span>
               <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </CTAButton>
           )}
         </div>
       </div>
@@ -322,7 +324,7 @@ export function ActionIntroSlide({
             </Banner>
           )}
           <div
-            className={`grid grid-cols-1 ${content.audience || content.duration || content.firstActionCTA ? 'sm:grid-cols-2' : ''} gap-6 ${hasReveal ? 'animate-fade-in' : ''}`}
+            className={`grid grid-cols-1 ${content.audience || content.duration || content.aboutText || (hasReveal && content.firstActionCTA) ? 'sm:grid-cols-2' : ''} gap-6 ${hasReveal ? 'animate-fade-in' : ''}`}
           >
             <Banner
               variant="info"
@@ -377,16 +379,6 @@ export function ActionIntroSlide({
             </Banner>
 
             <div className="flex flex-col gap-3">
-              {!hasReveal && content.firstActionCTA && (
-                <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 p-5 rounded-xl flex flex-col">
-                  <h4 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
-                    {t('firstStepLabel')}
-                  </h4>
-                  <p className="text-sm text-brand-600 dark:text-brand-400 font-medium">
-                    {content.firstActionCTA}
-                  </p>
-                </div>
-              )}
               {content.duration || content.audience || content.aboutText ? (
                 <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
                   <button

@@ -12,6 +12,7 @@ import {
 } from 'react';
 import { CheckCircle, type LucideIcon } from 'lucide-react';
 import { slideCardIconClasses } from '../../icons/iconSizes';
+import { focusRingClasses, touchTargetClasses } from '../../design-tokens';
 
 export type ChoiceOptionTone = 'brand' | 'amber' | 'rose' | 'slate';
 
@@ -195,7 +196,7 @@ export default function ChoiceControl<T extends string>({
                 }
                 onClick={() => onChange(option.id)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
-                className={`relative flex flex-col items-start text-left min-h-[44px] border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 ${sizeClasses[size]} ${stripe} ${
+                className={`relative flex flex-col items-start text-left ${touchTargetClasses.minimumHeight} border-2 transition-all duration-200 ${focusRingClasses.brandOnWhite} ${sizeClasses[size]} ${stripe} ${
                   isSelected
                     ? `${selectedTone.border} ${selectedTone.bg} shadow-sm ${selectedTone.ring}`
                     : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 hover:border-brand-300 dark:hover:border-brand-700 hover:shadow-md'

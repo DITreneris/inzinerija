@@ -2,7 +2,7 @@
  * Regression: M7–M9 EN language audit (scripts/audit-en-language-m7-m9.mjs --json).
  */
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
@@ -98,5 +98,19 @@ describe('M7–M9 EN language audit', () => {
     expect(report.counts.en_lt_token ?? 0).toBe(0);
     expect(report.counts.en_broken_phrase ?? 0).toBe(0);
     expect(report.counts.en_lt_heading ?? 0).toBe(0);
+  });
+
+  it('EN overlay has no LT bleed token or UK spelling outliers (US canon)', () => {
+    if (!existsSync(enOverlay)) return;
+    const raw = readFileSync(enOverlay, 'utf8');
+    expect(raw).not.toMatch(/\bblokas\b/i);
+    expect(raw).not.toMatch(/\bWhen pick the sources\b/);
+    expect(raw).not.toMatch(/\btemplates prompts\b/);
+    expect(raw).not.toMatch(/\bdeepen into\b/i);
+    expect(raw).not.toMatch(/\bvisualisation\b/i);
+    expect(raw).not.toMatch(/\bbehaviour\b/i);
+    expect(raw).not.toMatch(/\bdefence\b/i);
+    expect(raw).not.toMatch(/\bartefact\b/i);
+    expect(raw).not.toMatch(/\boptimisations\b/i);
   });
 });

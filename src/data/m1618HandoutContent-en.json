@@ -1,0 +1,41 @@
+{
+  "title": "Code engineering path handout (modules 16–18)",
+  "subtitle": "Brief → VSR → PACKET → Soft DoD – use this as a one-project checklist in Cursor.",
+  "briefSteps": [
+    "Goal sentence – what must work after 1–2 hours (not “improve the code”).",
+    "Bounds – files, stack, what not to touch, and when AI must ask instead of guessing.",
+    "Success criteria – 1–3 checkable signals (smoke, diff, manual check).",
+    "VSR phase – are you in Vibe (sketch), Skeleton (structure), or Refinement (tighten)?"
+  ],
+  "packetChecklist": [
+    "PROJECT_RULES.md – tone, bans, stack, and “don’t change without asking”.",
+    "Brief / task – one file or a clear agent message.",
+    "Context files – only what this slice needs.",
+    "Test or smoke – how you will know a commit is worth it.",
+    "Diff ritual – what you review before merge (no blind Accept All)."
+  ],
+  "softDodChecks": [
+    "Boot – app or script starts without an obvious error.",
+    "Smoke – 1–2 critical paths you checked yourself.",
+    "Diff – changes match the brief; no bonus refactor.",
+    "Journal – one line: what worked / what you will repeat next time."
+  ],
+  "promptPatterns": [
+    "Brief: goal, bounds, success criteria, VSR phase – no long backstory.",
+    "Rules: follow PROJECT_RULES; if context is missing – ask, don’t guess.",
+    "Diff: list files and risk; don’t touch unrelated modules.",
+    "Smoke: after the change, run [command] and report PASS/FAIL with a reason."
+  ],
+  "starterPrompt": "META: You are a coding assistant in Cursor. Goal – one vertical slice, not a large refactor.\nINPUT: Brief: [what must work]. Bounds: [files / do not touch]. Stack: [tech]. VSR phase: [Vibe / Skeleton / Refinement].\nOUTPUT: (1) 3–5 step plan, (2) file list, (3) smoke check, (4) short diff summary.\nQUALITY: If context is missing – ask. Don’t invent APIs or secrets. Soft DoD: boot + smoke + diff review before commit.",
+  "reflectionSummary": "Within 24–48h run one real brief in Cursor: PACKET + Soft DoD. Note which VSR phase you were in and one rule you will add to PROJECT_RULES.",
+  "nextPageHeading": "What to do in 48 hours",
+  "nextPageIntro": "The code path is done when you have more than a chat with AI: a brief, a PACKET, smoke, and a commit you can repeat.",
+  "primaryCtaLabel": "Ecosystem map (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Decide the next step (Decide)",
+    "map": "Review the ecosystem map (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Course and more: promptanatomy.app",
+  "footerText": "Prompt Anatomy – prompt structure training. © Course materials."
+}

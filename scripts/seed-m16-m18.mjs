@@ -76,7 +76,7 @@ function contentBlock({ id, title, subtitle, shortTitle, trumpai, daryk, patikra
 
 function buildM16() {
   const defs = [
-    { id: 16.2, title: 'Ką šiandien padarysi', subtitle: '1 problema · 1 naudotojas · 1 užduotis', shortTitle: 'Šiandien',
+    { id: 16.2, title: 'Ką šiandien padarysi', subtitle: '1 problema · 1 naudotojas · 1 funkcija', shortTitle: 'Šiandien',
       trumpai: 'Šiandien: 1 problema, 1 naudotojas, 1 pagrindinė funkcija ir greitas būdas patikrinti, ar prototipas veikia. Rezultatas – ne prezentacija.',
       daryk: 'Pasirink idėją (pvz. dienos prioritetų įrankis) ir užrašyk vienu sakiniu: kam ir ką sprendi.',
       patikra: 'Ar gali paaiškinti užduotį per 20 sekundžių be žodžio „app“?', nextN: 3, nextT: 'Proceso schema' },
@@ -155,18 +155,22 @@ function buildM16() {
       subtitle: 'Planavimas prieš Cursor',
       type: 'action-intro',
       content: {
-        whyBenefit: 'Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursime su DI.',
+        whyBenefit:
+          'Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursi su DI.',
         heroStat: 'Vibe coding',
         heroText: 'su disciplina.',
-        heroSubText: 'Promptų pamatai – Moduliuose 1–6. Čia – produkto užduotis ir siauras brief prieš generavimą.',
-        firstActionCTA: 'Per 2 min užrašyk vieną naudotoją ir vieną problemą savo idėjai (arba naudok dienos prioritetų pavyzdį).',
+        heroSubText:
+          'Promptų pamatai – Moduliuose 1–6. Čia vibe coding = greitas kūrimas su DI, bet pirmiausia siauras brief prieš Cursor generavimą.',
+        firstActionCTA:
+          'Per 2 min užrašyk vieną naudotoją ir vieną problemą (pirmas žingsnis; vertę ir 1 funkciją – kitose skaidrėse). Arba naudok dienos prioritetų pavyzdį.',
         outcomes: [
-          '1+1+1: naudotojas, problema, vertė, 1 funkcija',
+          'Naudotojas, problema, vertė ir 1 funkcija',
           'Kūrimo kortelė → 01_MVP_BRIEF.md',
           'Must / Won’t ir patikrinamas sėkmės kriterijus',
         ],
         duration: '~25–30 min',
-        audience: 'Skirta verslo ir produktų žmonėms – veikiantis prototipas be gilaus programavimo.',
+        audience:
+          'Skirta verslo ir produktų žmonėms – veikiantis prototipas be gilaus programavimo.',
         footer: footerNext(2, 'Ką šiandien padarysi'),
       },
     },

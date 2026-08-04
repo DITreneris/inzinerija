@@ -4,6 +4,7 @@
 
 ## Pamokos
 
+2026-08-03 | DS Waves A–B surfaces | Result/outcome chrome duplicated emerald→brand gradients + ad-hoc accent CTAs; hand-rolled `focus:ring-*` ≠ token `focus-visible` | `StatusPanel` (ne Banner.success / ne teaching contrast); CTA via `CTAButton` / `ctaButtonClassName`; migrate brand focus to `focusRingClasses` (GOLDEN §7); leave accent/emerald rings until token extend | StatusPanel.tsx, design-tokens.ts, TestPracticeSlides.tsx, AppNav.tsx
 2026-08-01 | M5 vs M16–18 cyan | Bazės M5 `accent: cyan` + code track `cyan` = tas pats token dviem prasmėm | Šiame cikle debt OK (track chrome + numeris); remap = product call; learn glyph atskirai (`Code` ≠ `Cpu`) | GOLDEN §6 debt, ModulesPage trackSectionClasses.cyan, modules.json M5/M16
 2026-08-01 | M16–18 cyan track | Temptation = full cyan Content-track (§6b clone) su TE Must schemas | Katalogas = `trackSectionClasses.cyan` only; signature schemas = brand palette (ne softRose); slide cyan tokens = Could C4 product call | ModulesPage.tsx, M16*Diagram.tsx, TODO.md §1.2g
 2026-07-31 | Typography Wave T0–T6 | „Skirtingi šriftai“ = dydžių/svorių chaosas + `font-black` (900 neįkrautas), ne kitos font family | Viena `typographyClasses` ladder + `audit:typography`; max weight extrabold; micro-px ban; portal/hero = dokumentuotos išimtys | design-tokens.ts, GOLDEN §1, audit-typography.mjs

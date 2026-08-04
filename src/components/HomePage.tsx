@@ -21,6 +21,7 @@ import CircularProgress from './CircularProgress';
 import { RetrievalDueCard } from './RetrievalDueCard';
 import { Badge, BrandMark, Card, CTAButton } from './ui';
 import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
+import { focusRingClasses, touchTargetClasses } from '../design-tokens';
 
 const QUICK_PROMPTS_LT = [
   {
@@ -337,7 +338,7 @@ export default function HomePage({
               <button
                 type="button"
                 onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded"
+                className={`text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 ${focusRingClasses.brand} rounded`}
               >
                 {t('home:feature1Cta')}
               </button>
@@ -377,7 +378,7 @@ export default function HomePage({
               <button
                 type="button"
                 onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded"
+                className={`text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline inline-flex items-center gap-1 ${focusRingClasses.brand} rounded`}
               >
                 {t('home:feature3Cta')}
               </button>
@@ -442,7 +443,7 @@ export default function HomePage({
               <button
                 type="button"
                 onClick={onStart}
-                className="text-brand-600 dark:text-brand-400 font-semibold hover:underline inline-flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 rounded px-2 py-1"
+                className={`text-brand-600 dark:text-brand-400 font-semibold hover:underline inline-flex items-center gap-1 ${focusRingClasses.brand} rounded px-2 py-1`}
               >
                 {t('common:viewModulesArrow')}
               </button>
@@ -510,7 +511,7 @@ export default function HomePage({
               {copiedQuickId === item.id ? (
                 <button
                   type="button"
-                  className="mt-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold min-h-[44px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"
+                  className={`mt-auto flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold ${touchTargetClasses.minimumHeight} bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300`}
                   aria-label={t('home:copyAria', { title: item.title })}
                 >
                   <Check className="w-4 h-4" />

@@ -27,7 +27,11 @@ import {
   getInputTextPositions,
   getCenterTextPosition,
 } from './llmAutoregressiveLayout';
-import { DIAGRAM_TOKENS, DIAGRAM_ROLE_COLORS } from './diagramTokens';
+import {
+  DIAGRAM_TOKENS,
+  DIAGRAM_ROLE_COLORS,
+  LLM_AUTOREGRESSIVE_ROLE_COLORS,
+} from './diagramTokens';
 
 const STEP_ACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.active;
 const STEP_INACTIVE_OPACITY = DIAGRAM_TOKENS.opacity.inactiveSoft;
@@ -40,16 +44,17 @@ const FEEDBACK_STROKE = DIAGRAM_ROLE_COLORS.accentDark;
 /** Forward shaft/tip – AgentWorkflow / SCHEME greyForward (ne blyškus slate) */
 const GREY_FORWARD = DIAGRAM_ROLE_COLORS.greyForward;
 const BORDER = DIAGRAM_TOKENS.colors.slate;
-const INPUT_BG = '#e2eef9';
-const INPUT_BORDER = '#2b5a8e';
-const LLM_BG = '#5a6575';
-const LLM_BG_BOTTOM = '#4a5568';
-const OUTPUT_BG = '#e0f2eb';
-const OUTPUT_BORDER = '#0d7a5c';
-const OUTPUT_LABEL = '#0a5c44';
-const PASIRINKTA_BG = '#fdf0e0';
-const PASIRINKTA_TEXT = '#a65a1a';
-const ACTIVE_GLOW = '#0ea5e9';
+const INPUT_BG = LLM_AUTOREGRESSIVE_ROLE_COLORS.inputBg;
+const INPUT_BORDER = LLM_AUTOREGRESSIVE_ROLE_COLORS.inputBorder;
+const LLM_BG = LLM_AUTOREGRESSIVE_ROLE_COLORS.llmBg;
+const LLM_BG_BOTTOM = LLM_AUTOREGRESSIVE_ROLE_COLORS.llmBgBottom;
+const OUTPUT_BG = LLM_AUTOREGRESSIVE_ROLE_COLORS.outputBg;
+const OUTPUT_BORDER = LLM_AUTOREGRESSIVE_ROLE_COLORS.outputBorder;
+const OUTPUT_LABEL = LLM_AUTOREGRESSIVE_ROLE_COLORS.outputLabel;
+const PASIRINKTA_BG = LLM_AUTOREGRESSIVE_ROLE_COLORS.pasirinktaBg;
+const PASIRINKTA_TEXT = LLM_AUTOREGRESSIVE_ROLE_COLORS.pasirinktaText;
+/** Selection glow — do not remap to brand/accent */
+const ACTIVE_GLOW = LLM_AUTOREGRESSIVE_ROLE_COLORS.activeGlow;
 
 function getRowAndPhase(step: number): { row: number; phase: number } {
   return { row: step < 4 ? 0 : 1, phase: step % 4 };

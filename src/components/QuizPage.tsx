@@ -9,6 +9,7 @@ import { buildRetrievalQuestions } from '../utils/retrievalQuestions';
 import { Card, CTAButton, LoadingSpinner } from './ui';
 import CircularProgress from './CircularProgress';
 import { QuizResultsView } from './QuizResultsView';
+import { focusRingClasses, touchTargetClasses } from '../design-tokens';
 
 interface QuizPageProps {
   onBack: () => void;
@@ -297,13 +298,13 @@ export default function QuizPage({
               <button
                 key={idx}
                 onClick={() => handleAnswerSelect(currentQ.id, idx)}
-                className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 min-h-[44px] touch-manipulation ${
+                className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 ${touchTargetClasses.minimumHeight} touch-manipulation ${
                   isSelected
                     ? isCorrect
                       ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 shadow-lg scale-[1.02]'
                       : 'border-rose-500 bg-rose-50 dark:bg-rose-900/30 shadow-lg scale-[1.02]'
                     : 'border-gray-200 dark:border-gray-700 hover:border-brand-300 dark:hover:border-brand-700 hover:bg-brand-50/50 dark:hover:bg-brand-900/10 bg-white dark:bg-gray-800'
-                } focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2`}
+                } ${focusRingClasses.brand}`}
                 aria-label={t('selectOptionAria', { option })}
                 aria-pressed={isSelected}
                 disabled={showExplanation}

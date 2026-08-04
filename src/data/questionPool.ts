@@ -54,7 +54,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     ],
     correct: 0,
     explanation:
-      'Meta blokas apibrėžia KAS esate, KOKIA patirtis ir KAM skirtas rezultatas.',
+      'Meta blokas apibrėžia KAS esi, KOKIA patirtis ir KAM skirtas rezultatas.',
     hint: 'Meta = kas aš esu, ką žinau, kam rašau.',
     bloomLevel: 1,
     relatedSlideId: 8,
@@ -456,7 +456,7 @@ export const QUESTION_POOL: TestQuestion[] = [
   {
     id: 'pool-bendra-3',
     type: 'matching',
-    question: 'Sujunkite kiekvieną bloką su jo pagrindine funkcija:',
+    question: 'Sujunk kiekvieną bloką su jo pagrindine funkcija:',
     matchPairs: [
       { left: 'Meta', right: 'Rolė, patirtis, auditorija' },
       { left: 'Input', right: 'Konkretūs duomenys ir faktai' },
@@ -476,7 +476,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     id: 'pool-bendra-4',
     type: 'ordering',
     question:
-      'Surikiuokite 6 blokus nuo svarbiausio iki mažiausiai svarbaus (pagal prioritetą):',
+      'Surikiuok 6 blokus nuo svarbiausio iki mažiausiai svarbaus (pagal prioritetą):',
     correctOrder: [
       'Meta (rolė ir kontekstas)',
       'Input (duomenys)',

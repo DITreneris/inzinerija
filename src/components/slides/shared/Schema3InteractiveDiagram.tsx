@@ -22,16 +22,21 @@ import {
 import type { Locale } from './schema3Labels';
 import { getSchema3DiagramTitles, getSchema3NodeLabels } from './schema3Labels';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
+import {
+  DIAGRAM_BG_LIGHT_END,
+  DIAGRAM_TOKENS,
+  DIAGRAM_TONE_COLORS,
+} from './diagramTokens';
 
-const BRAND = '#334e68';
-const BRAND_LIGHT = '#486581';
-const BORDER = '#bcccdc';
-const BG_LIGHT = '#f0f4f8';
-const BG_LIGHT_END = '#f1f5f9';
-const TEXT_DARK = '#102a43';
-const STORAGE_FILL = '#64748b';
-const STORAGE_STROKE = '#475569';
-const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
+const BRAND = DIAGRAM_TOKENS.colors.brand;
+const BRAND_LIGHT = DIAGRAM_TOKENS.colors.brandTop;
+const BORDER = DIAGRAM_TOKENS.colors.border;
+const BG_LIGHT = DIAGRAM_TOKENS.colors.bgStart;
+const BG_LIGHT_END = DIAGRAM_BG_LIGHT_END;
+const TEXT_DARK = DIAGRAM_TOKENS.colors.brandDark;
+const STORAGE_FILL = DIAGRAM_TONE_COLORS.slate.top;
+const STORAGE_STROKE = DIAGRAM_TOKENS.colors.slate;
+const FONT = DIAGRAM_TOKENS.font;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 const NODE_INDEX: Record<string, number> = {

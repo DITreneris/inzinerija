@@ -11,6 +11,8 @@ import {
   Map as MapIcon,
 } from 'lucide-react';
 import ChoiceControl from '../../ui/ChoiceControl';
+import CTAButton from '../../ui/CTAButton';
+import StatusPanel from '../../ui/StatusPanel';
 import { resolveLucideIcon } from '../../../icons/resolveIcon';
 import { useLocale } from '../../../contexts/LocaleContext';
 import { getT } from '../../../i18n';
@@ -184,7 +186,7 @@ export function PracticeQuestIntroSlide({
       />
 
       {selected && !confirmed && (
-        <div className="rounded-xl border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/90 dark:bg-emerald-950/30 p-4">
+        <StatusPanel tone="success" size="compact" className="p-4">
           <p
             className={`${typographyClasses.body} text-gray-800 dark:text-gray-200 mb-3`}
           >
@@ -193,15 +195,15 @@ export function PracticeQuestIntroSlide({
               selected.label
             )}
           </p>
-          <button
-            type="button"
+          <CTAButton
+            variant="primary"
             onClick={handleConfirm}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            className="px-4 py-2 text-sm"
           >
             <CheckCircle className="h-4 w-4" aria-hidden />
             {t('m9QuestConfirmCta')}
-          </button>
-        </div>
+          </CTAButton>
+        </StatusPanel>
       )}
 
       {questSteps.length > 0 && (
@@ -273,16 +275,16 @@ export function PracticeQuestIntroSlide({
       )}
 
       <div className="flex flex-col items-center gap-2">
-        <button
-          type="button"
+        <CTAButton
+          variant="accent"
           disabled={!confirmed}
           onClick={handleStart}
-          className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-accent-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-accent-500 dark:hover:bg-accent-600"
+          className="px-5 py-3 text-sm"
           aria-label={t('m9StartPracticeAria')}
         >
           {content.firstActionCTA ?? t('m9StartPracticeCta')}
           <ArrowRight className="h-4 w-4" aria-hidden />
-        </button>
+        </CTAButton>
         {!confirmed && (
           <p
             className={`${typographyClasses.small} text-slate-500 dark:text-slate-400`}

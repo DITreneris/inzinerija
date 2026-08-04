@@ -25,7 +25,7 @@
         "properties": {
           "key": {
             "type": "string",
-            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315"]
+            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315", "m1618"]
           },
           "earnOnModuleIds": {
             "type": "array",
@@ -59,7 +59,7 @@
           },
           "schemaKey": {
             "type": "string",
-            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315"]
+            "enum": ["m1", "m4", "m5", "m6", "m79", "m1012", "m1315", "m1618"]
           },
           "ctaI18nKey": {
             "type": "string",

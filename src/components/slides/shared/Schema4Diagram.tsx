@@ -18,18 +18,24 @@ import {
 } from './schema4Layout';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
 
-const BRAND = '#334e68';
-const BRAND_LIGHT = '#486581';
-const ACCENT = '#b8860b';
+import {
+  DIAGRAM_BG_LIGHT_END,
+  DIAGRAM_TOKENS,
+  DIAGRAM_TONE_COLORS,
+} from './diagramTokens';
+
+const BRAND = DIAGRAM_TOKENS.colors.brand;
+const BRAND_LIGHT = DIAGRAM_TOKENS.colors.brandTop;
+const ACCENT = DIAGRAM_TOKENS.colors.amber;
 const ACCENT_STROKE = '#7a5807';
-const BORDER = '#bcccdc';
-const BG_LIGHT = '#f0f4f8';
-const BG_LIGHT_END = '#f1f5f9';
-const TEXT_DARK = '#102a43';
-const INFRA_FILL = '#64748b';
-const INFRA_STROKE = '#475569';
+const BORDER = DIAGRAM_TOKENS.colors.border;
+const BG_LIGHT = DIAGRAM_TOKENS.colors.bgStart;
+const BG_LIGHT_END = DIAGRAM_BG_LIGHT_END;
+const TEXT_DARK = DIAGRAM_TOKENS.colors.brandDark;
+const INFRA_FILL = DIAGRAM_TONE_COLORS.slate.top;
+const INFRA_STROKE = DIAGRAM_TOKENS.colors.slate;
 const OPTIONAL_STROKE = '#94a3b8';
-const FONT = "'Plus Jakarta Sans', system-ui, sans-serif";
+const FONT = DIAGRAM_TOKENS.font;
 const PROCESS_ARROW = getProcessArrowMarkerGeom();
 
 function getNodeFill(id: string): {

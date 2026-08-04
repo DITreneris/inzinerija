@@ -37,7 +37,7 @@ const GATES_LT: StepLite[] = [
   { label: 'Problema', desc: 'Kas kenčia' },
   { label: 'Naudotojas', desc: 'Kam' },
   { label: 'Vertė', desc: 'Pokytis' },
-  { label: '1 funkcija', desc: 'Must branduolys' },
+  { label: '1 funkcija', desc: 'Pagrindinė funkcija' },
   { label: 'Prototipas', desc: 'Brief / MVP' },
   { label: 'Testas', desc: 'Patikra' },
 ];
@@ -45,7 +45,7 @@ const GATES_EN: StepLite[] = [
   { label: 'Problem', desc: 'Who hurts' },
   { label: 'User', desc: 'For whom' },
   { label: 'Value', desc: 'Outcome' },
-  { label: '1 feature', desc: 'Must core' },
+  { label: '1 feature', desc: 'Core feature' },
   { label: 'Prototype', desc: 'Brief / MVP' },
   { label: 'Test', desc: 'Check' },
 ];
@@ -117,18 +117,18 @@ export function getM16DeliveryGatesChrome(locale: M16Locale) {
   return chrome(
     locale,
     {
-      title: 'Delivery vartai',
-      hint: 'Paspausk vartus – paaiškinimas apačioje',
-      aria: 'Šeši delivery vartai: problema, naudotojas, vertė, 1 funkcija, prototipas, testas',
-      regionAria: 'Delivery vartai – šeši žingsniai',
-      enlargeLabel: 'Modulis 16 – delivery vartai',
+      title: 'Kelio žingsniai',
+      hint: 'Paspausk žingsnį – paaiškinimas apačioje',
+      aria: 'Šeši žingsniai: problema, naudotojas, vertė, 1 funkcija, prototipas, testas',
+      regionAria: 'Kelio žingsniai – šeši žingsniai',
+      enlargeLabel: 'Modulis 16 – kelio žingsniai',
     },
     {
-      title: 'Delivery gates',
-      hint: 'Tap a gate – explanation below',
-      aria: 'Six delivery gates: problem, user, value, one feature, prototype, test',
-      regionAria: 'Delivery gates – six steps',
-      enlargeLabel: 'Module 16 – delivery gates',
+      title: 'Path steps',
+      hint: 'Tap a step – explanation below',
+      aria: 'Six steps: problem, user, value, one feature, prototype, test',
+      regionAria: 'Path steps – six steps',
+      enlargeLabel: 'Module 16 – path steps',
     }
   );
 }
@@ -188,18 +188,18 @@ export function getM16VsrMaturityChrome(locale: M16Locale) {
   return chrome(
     locale,
     {
-      title: 'VSR brandos kopėčios',
+      title: 'Brief brandinimo žingsniai',
       hint: 'Paspausk pakopą – paaiškinimas apačioje',
-      aria: 'Trys brandos pakopos: Vibe, Skeleton, Refinement',
-      regionAria: 'VSR brandos kopėčios – trys pakopos',
-      enlargeLabel: 'Modulis 16 – VSR brandos kopėčios',
+      aria: 'Trys brief brandinimo žingsniai: Vibe, Skeleton, Refinement',
+      regionAria: 'Brief brandinimo žingsniai – trys pakopos',
+      enlargeLabel: 'Modulis 16 – brief brandinimo žingsniai',
     },
     {
-      title: 'VSR maturity ladder',
+      title: 'Brief maturity steps',
       hint: 'Tap a rung – explanation below',
-      aria: 'Three maturity rungs: Vibe, Skeleton, Refinement',
-      regionAria: 'VSR maturity ladder – three rungs',
-      enlargeLabel: 'Module 16 – VSR maturity ladder',
+      aria: 'Three brief maturity steps: Vibe, Skeleton, Refinement',
+      regionAria: 'Brief maturity steps – three rungs',
+      enlargeLabel: 'Module 16 – brief maturity steps',
     }
   );
 }

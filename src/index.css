@@ -205,31 +205,6 @@ details[open] > summary {
   @apply from-brand-300 to-gold;
 }
 
-/* Hero CTA – auksinis brand akcentas (sync su promptanatomy.app) */
-.btn-hero-cta {
-  @apply rounded-2xl py-6 text-xl min-h-[56px] font-semibold;
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
-  color: #0d0d0d;
-  box-shadow:
-    0 4px 18px rgba(243, 204, 48, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
-}
-.btn-hero-cta:hover {
-  background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
-  box-shadow: 0 6px 22px rgba(243, 204, 48, 0.35);
-}
-.dark .btn-hero-cta {
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #d4a520 100%);
-  color: #0d0d0d;
-  box-shadow:
-    0 4px 18px rgba(243, 204, 48, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
-}
-.dark .btn-hero-cta:hover {
-  background: linear-gradient(135deg, #e6bc4a 0%, #b8860b 100%);
-  box-shadow: 0 6px 22px rgba(243, 204, 48, 0.4);
-}
-
 /* Glass morphism cards */
 .glass-card {
   @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/50;
@@ -238,64 +213,6 @@ details[open] > summary {
 /* Hover card effect */
 .hover-card {
   @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
-}
-
-/* Button base styles */
-/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="primary" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
-.btn-primary {
-  @apply bg-gradient-to-r from-brand-500 to-brand-600 text-white px-6 py-3 rounded-xl font-semibold 
-         hover:from-brand-600 hover:to-brand-700 shadow-md shadow-brand-500/20 
-         hover:shadow-lg hover:shadow-brand-500/25 active:scale-95 
-         focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2;
-}
-
-/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="secondary" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
-.btn-secondary {
-  @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-xl font-semibold 
-         hover:bg-gray-200 dark:hover:bg-gray-700 active:scale-95 
-         focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2;
-}
-
-/* @deprecated v0.2 — JSX'e naudoti <CTAButton variant="accent" />. Klasė lieka kaip canonical primitive bekendas (src/components/ui/CTAButton.tsx). Migracija — v0.3. */
-.btn-accent {
-  @apply bg-gradient-to-r from-accent-400 to-accent-500 text-white px-6 py-3 rounded-xl font-semibold 
-         hover:from-accent-500 hover:to-accent-600 shadow-md shadow-accent-500/20 
-         hover:shadow-lg hover:shadow-accent-500/25 active:scale-95;
-}
-
-/* Card styles */
-/* @deprecated v0.2 — naudoti <Card /> (src/components/ui/Card.tsx). Migracija — v0.3. */
-.card {
-  @apply bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700;
-}
-
-/* @deprecated v0.2 — naudoti <Card /> + Tailwind hover:* utility'es. Migracija — v0.3. */
-.card-hover {
-  @apply card hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer;
-}
-
-/* Badge styles */
-/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
-.badge {
-  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
-}
-
-/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
-.badge-brand {
-  @apply badge bg-brand-100 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300;
-}
-
-/* @deprecated v0.2 — laukti Badge primitive (v0.3) arba inline Tailwind utility. */
-.badge-accent {
-  @apply badge bg-accent-100 text-accent-700 dark:bg-accent-900/30 dark:text-accent-300;
-}
-
-.badge-success {
-  @apply badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300;
-}
-
-.badge-slate {
-  @apply badge bg-slate-100 text-slate-700 dark:bg-slate-900/30 dark:text-slate-300;
 }
 
 /* Input styles */

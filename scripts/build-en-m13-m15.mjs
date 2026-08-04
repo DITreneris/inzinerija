@@ -7,6 +7,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { applyM13EnPlainOverrides } from './lib/m13-en-plain-overrides.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const lt = JSON.parse(readFileSync(join(root, 'src', 'data', 'modules.json'), 'utf8'));
@@ -43,23 +44,24 @@ const slideMeta = {
   13.2: ['Image prompt basics', 'What to describe: subject, style, ratio'],
   13.3: ['Style and ratios for images', 'Style controls look; ratio controls format'],
   13.31: ['Quick check: style and ratios', '3 questions before composition and the builder'],
-  13.32: ['Character / product consistency', '3–5 references + same-product lock'],
+  13.32: ['Product and character – the same look', '3–5 reference photos + a “same product” rule'],
   13.325: ['Lab: Consistency Drift', 'Tick refs, pick what drifted – copy fix + lock rule'],
-  13.33: ['Composition and framing (optional)', 'Rule of thirds, camera angle, shot types'],
+  13.33: ['Composition and framing', 'Rule of thirds, camera angle, shot types'],
   13.34: ['Practice: recognise style and ratios', '5 situations: style, ratio, composition, brand'],
-  13.35: ['Workflow and MASTER templates (optional)', '5-step pipeline, #1000Books, ready prompts'],
+  13.35: ['Workflow and MASTER templates', '5-step pipeline, #1000Books, ready prompts'],
   13.37: ['Image prompt builder', 'Campaign context, visual and text in one prompt'],
   13.36: ['Video generation', 'Section: script, format and tools'],
   13.4: ['Script for a short video', 'What happens, how long, what tone'],
-  13.5: ['Video tools and format', 'Horizontal or vertical; duration by tool'],
+  13.5: ['Video tools, format and CPI', '2026 matrix + cost per usable clip'],
   13.51: ['Quick check: video prompt and format', '3 questions before the music section'],
-  13.56: ['Music generation', 'Section: mood, style, rights and tools'],
-  13.6: ['Music description', 'Mood, style, tempo and use case'],
+  13.52: ['Edit after generation', 'AI = raw material; cut, colour, mix'],
+  13.56: ['Audio', 'Section: voice, effects, music – sound first'],
+  13.6: ['Audio-first: VO and music description', 'Sound first, then video cuts'],
   13.7: ['Audio effects and usage rights', 'Sound effects and licence'],
   13.101: ['Business and risks', 'Metrics, A/B, rights, QA and versions'],
   13.11: ['Workflow: from brief to publication', 'Brief -> prompt -> variants -> testing'],
-  13.8: ['Glossary (optional)', 'Content engineering terms'],
-  13.9: ['Module 13 summary', 'What you learned and what to do next'],
+  13.8: ['Glossary', 'Content engineering terms'],
+  13.9: ['Module 13 summary', 'What you learned – chain, same look, video, audio, rights'],
   140: ['Module 14 test', 'Content engineering knowledge'],
   140.5: ['Warm-up before the test', '3 questions: brand, audio-first, path to M15'],
   141: ['Questions', 'Images, video, audio, pipeline'],
@@ -78,6 +80,13 @@ const headingMap = new Map([
   ['Trumpai', 'In short'],
   ['Daryk dabar', 'Do this now'],
   ['Patikra', 'Check'],
+  ['Darbo eigos schema', 'Workflow diagram'],
+  ['Montažo schema', 'Edit diagram'],
+  ['Medijos grandinė', 'Media chain'],
+  ['Tas pats vaizdas serijoje', 'Same look in a series'],
+  ['Trumpas video (I2V)', 'Short video (I2V)'],
+  ['Pirma garsas', 'Sound first'],
+  ['Verslas ir teisės', 'Business and rights'],
   ['Kopijuojamas promptas', 'Copyable prompt'],
   ['Kopijuojamas promptų rinkinys', 'Copyable prompt pack'],
   ['Kopijuojamas šablonas (kompozicija + kadras)', 'Copyable template: composition and framing'],
@@ -131,7 +140,7 @@ const headingMap = new Map([
 ]);
 
 const genericBySlide = {
-  130: 'After this module you will know how to create images, short videos and music with AI: from prompts to tools and quality checks.',
+  130: 'After this module you will create images, short videos and audio with AI – from a clear brief to quality and rights checks.',
   13.1: 'Connect the campaign goal to the right visual choice: awareness, engagement or conversion.',
   13.2: 'A good image prompt describes the subject, context, style, ratio and what to avoid.',
   13.3: 'Use style, ratio and brand rules so the image does not look random.',
@@ -150,7 +159,7 @@ const genericBySlide = {
   13.101: 'Before publishing, measure results, test variants and check rights, brand safety and versions.',
   13.11: 'Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.',
   13.8: 'Learn the key terms used in content engineering.',
-  13.9: 'You learned the core image, video and music prompt patterns.',
+  13.9: 'You learned the 2026 content path: media chain, same look in a series, short I2V, sound first, and rights checks.',
   140: 'Answer 12 questions before starting the final content project.',
   140.5: 'Check brand/format, audio-first thinking, and what you will do first in Module 15.',
   142: 'Use your result to decide whether to review Module 13 or continue to the project.',
@@ -165,20 +174,34 @@ const genericBySlide = {
 };
 
 const copyableBySlide = {
+  13.1: `Goal (A/E/C): [awareness / engagement / conversion].
+Context: [product], platform [where], audience [who].
+Reply: 1) one goal, 2) what to emphasise visually (emotion / context / CTA), 3) 1 format.`,
   13.2:
     'Create an image: [DESCRIPTION]. Style: professional, bright, minimal. Ratio: 16:9. Do not add text inside the image.',
   13.3:
     'Image: [WHAT IS SHOWN]. Style: [photo / vector / 3D]. Ratio: [1:1 / 16:9 / 9:16]. Use a neutral scene and avoid text unless needed.',
   13.33:
     'Image: [SUBJECT and ACTION]. Setting: [CONTEXT]. Composition: rule of thirds, subject on the right intersection. Camera: [close-up / medium / wide]. Style: [STYLE]. Ratio: 16:9.',
-  13.35:
-    'Subject: [what is shown]. Goal: [awareness / engagement / conversion]. Audience: [who]. Style: [style]. Camera: [shot and angle]. Lighting: [lighting]. Colors: [palette]. Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].',
-  13.4:
-    'Short video, 5-10 seconds. Script: [describe what happens]. Tone: [professional / dynamic / calm]. Format: [16:9 / 9:16]. Optional: start from the hero image and keep the same style and colors.',
+  // Primary fallback; multi-copyable slides overridden in m13-en-plain-overrides (M13P-TRIM).
+  13.35: `Subject: [what is shown].
+Goal: [Awareness / Engagement / Conversion].
+Audience: [who].
+Style: [photorealistic / minimal / …].
+Composition + camera: [shot, angle].
+Light and colours: [lighting + palette / mood].
+Text in image (if needed): [text + placement].
+Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].`,
+  13.4: `Clip 3–5 s (no longer).
+Script: [what happens in this shot].
+Camera: [slow push-in / side / stable / crane up].
+Tone: [professional / dynamic / calm].
+Start: image-to-video from hero keyframe. Same style, same colors.`,
   13.5:
     'Video: [SHORT SCRIPT]. Format: [16:9 / 9:16]. Duration: 5-10 seconds. Style: [STYLE].',
-  13.6:
-    'Create a 30-60 second music fragment. Mood: [calm / energetic]. Style: [acoustic / electronic / piano]. Tempo: [slow / medium]. No vocals. Use as background music.',
+  13.6: `Create a background music fragment, 30–60 seconds.
+Mood: [calm / energetic]. Style: [acoustic / electronic / piano].
+Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial licence.`,
   13.7:
     'Create a short sound effect: [DESCRIPTION]. Format: MP3 or WAV. No music, sound effect only.',
   13.101:
@@ -378,7 +401,7 @@ const slide13_325Sections = [
   },
   {
     heading: 'Check',
-    body: 'Did you tick refs, pick a mode and copy the rule? If refs are missing – go back to Character / product consistency and collect 3–5 angles.',
+    body: 'Did you tick refs, pick a mode and copy the rule? If refs are missing – go back to “Product and character – the same look” and collect 3–5 angles.',
     blockVariant: 'accent',
   },
 ];
@@ -473,19 +496,37 @@ const recognitionBySlide = {
   },
 };
 
+/** Module-level transfer strings – walk() has no slideId and mangles LT (M13-PLAIN-EN). */
+const transferEnByModule = {
+  14: {
+    abilityBefore: 'Image/video/audio principles were unchecked.',
+    abilityAfter: 'You can check style, rights, and consistency before a mini campaign.',
+    firstAction24h: 'Within 24–48h generate one image from your brief and note usage rights.',
+    nextStepCTA: 'Go to Module 15 – quick start or a full mini campaign.',
+  },
+};
+
 const modules = lt.modules
   .filter((m) => [13, 14, 15].includes(m.id))
-  .map((module) => translateModule(module));
+  .map((module) => {
+    const translated = translateModule(module);
+    applyM13EnPlainOverrides(translated);
+    return translated;
+  });
 
 writeFileSync(outPath, `${JSON.stringify({ modules }, null, 2)}\n`);
 console.log(`Wrote ${outPath}`);
 
 function translateModule(module) {
-  return {
+  const translated = {
     ...walk(module, { moduleId: module.id, slideId: undefined, path: `M${module.id}` }),
     ...moduleMeta[module.id],
     slides: module.slides.map((slide) => translateSlide(slide, module.id)),
   };
+  if (transferEnByModule[module.id]) {
+    translated.transfer = { ...transferEnByModule[module.id] };
+  }
+  return translated;
 }
 
 function translateSlide(slide, moduleId) {
@@ -569,6 +610,14 @@ function translateSlide(slide, moduleId) {
   const shortTitleBySlide = {
     13.3: 'Style and ratios',
     13.4: 'Short video script',
+    13.31: 'Quick check: style',
+    13.32: 'Same look',
+    13.37: 'Image builder',
+    13.47: 'I2V builder',
+    13.51: 'Quick check: video',
+    13.52: 'Edit',
+    150.26: 'Checkpoint',
+    158: 'Project summary',
   };
   const shortTitle =
     shortTitleBySlide[slide.id] ??
@@ -662,7 +711,18 @@ function translateString(value, ctx) {
   if (key === 'heroSubText') return 'Visual and audio content with AI for marketing and communication work.';
   if (key === 'imageAlt') return 'AI content engineering diagram';
   if (key === 'option' || path.includes('.options[')) return toEnglishOption(value);
-  if (path.includes('.outcomes[')) return 'Use AI content prompts with tools, checks and business context.';
+  // Outcomes: never emit one identical stub for every index (M13-PLAIN-EN).
+  // Hand-tuned 130 outcomes land via applyM13EnPlainOverrides after walk.
+  if (path.includes('.outcomes[')) {
+    const idxMatch = path.match(/\.outcomes\[(\d+)\]/);
+    const idx = idxMatch ? Number(idxMatch[1]) : 0;
+    const fallbacks = [
+      'Understand the media chain from brief to a pre-publish check.',
+      'Keep the same product or style across a series and plan sound before cuts.',
+      'Know what to measure and what to check before publishing (rights, AI label).',
+    ];
+    return fallbacks[idx] ?? fallbacks[0];
+  }
   if (path.includes('.items[')) return 'Create, check and reuse the artefact with a clear prompt.';
   if (path.includes('.stats[')) return toEnglishTitle(value);
   return toEnglishTitle(value);

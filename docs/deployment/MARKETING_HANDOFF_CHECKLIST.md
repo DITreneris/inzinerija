@@ -2,10 +2,12 @@
 
 > **Tikslas:** Copy-paste užduotys marketingo monorepo komandai (Vercel, Stripe, Supabase). Mokymo turinys ir UI — **šis repo** (`inzinerija`); auth, mokėjimai, production env — **marketingo repo** (promptanatomy.app).  
 > **Susiję TODO ID:** MON-1, MON-2, MON-3, MON-4, MON-8 (žr. `TODO.md` §1.4).  
-> **Atnaujinta:** 2026-07-30  
+> **Atnaujinta:** 2026-08-04 (Caveats Closure CAV-B1/B2 sync)  
 > **Tier 9 memo:** [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)  
 > **Horizon B (M1–12):** training repo ready (`build:corporate12`, magic-link tier **12**). Cutover = marketing env/pin + Stripe/`access_tier=12` — žr. §1 / §2 / §3.  
-> **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**, provisional **€249**). Cutover = marketing env/pin + Stripe/`access_tier=15`.
+> **Horizon C (M1–15):** training repo ready (`build:corporate15`, magic-link tier **15**, provisional **€249**). Cutover = marketing env/pin + Stripe/`access_tier=15`.  
+> **Pin decision (CAV-B1):** learning freeze tag **v1.4.9** vs app HEAD **1.5.0** (corporate15 + M16–18 authoring). Default production stay on `build:production` M1–9 until SKU cutover; do not pin corporate18 (Wave D3 / CAV-C2 parked).  
+> **Analytics (CAV-B2 / MON-4):** training already emits events via `src/utils/analytics.ts` when `window.posthog` + `VITE_POSTHOG_KEY` exist — marketing must set env + snippet + dashboard.
 
 ---
 
@@ -68,11 +70,14 @@ Kontraktas: [INTEGRATION_OVERVIEW.md](INTEGRATION_OVERVIEW.md) § Verify-access 
 ## 4. Submodule pin (inzinerija)
 
 1. Po kiekvieno mokymo repo release — atnaujinti git submodule commit marketing monorepo.
-2. Patikrinti, kad submodule commit turi:
+2. **Pasirink pin target prieš deploy:**
+   - **v1.4.9** — learning QA freeze (safe default until marketing accepts 1.5.x).
+   - **1.5.0 / HEAD** — corporate12/15 repo-ready + M16–18 authoring (DEV ceiling 18; magic-link prod still ≤15).
+3. Patikrinti, kad submodule commit turi:
    - `AccessGateScreen` kai `maxAccessible === 0`
-   - Tier 9 magic link (`api/verify-access.ts`, `App.tsx`)
+   - Tier 9 / **12** / **15** magic link (`api/verify-access.ts`, `App.tsx`)
    - Nėra MVP fallback, kuris suteiktų tier 6 visiems
-3. Vercel build log — submodule SHA atitinka tikėtiną release; build naudoja `build:production`.
+4. Vercel build log — submodule SHA atitinka tikėtiną release; build naudoja `build:production` (arba `build:corporate12` / `corporate15` kai SKU live).
 
 Žr. [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md) §11.
 

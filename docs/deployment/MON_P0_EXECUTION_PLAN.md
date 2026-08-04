@@ -2,7 +2,7 @@
 
 > **Tikslas:** Uždaryti mokamą srautą M1–9 (tier 3 / 6 / 9). **Prioritetas:** M1–9 production; M10+ – ne šiame cikle.  
 > **SOT:** `TODO.md` §1.1, `MARKETING_HANDOFF_CHECKLIST.md`, `AUDIT_2026-06_SUMMARY.md`  
-> **Atnaujinta:** 2026-07-01 | **Po release:** training repo **1.4.2** (diagram kit, M7–9 EN)
+> **Atnaujinta:** 2026-08-04 | **Pin note (CAV-B1):** learning freeze **v1.4.9**; app HEAD **1.5.0** (corporate15 ready). Stale rows below still say 1.4.2 — use MARKETING_HANDOFF + TODO §1.4 for current pin.
 
 ---
 

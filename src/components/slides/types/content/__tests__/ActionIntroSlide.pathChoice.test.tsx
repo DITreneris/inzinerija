@@ -124,4 +124,33 @@ describe('ActionIntroSlide pathChoice', () => {
     expect(fullBtn.className).toMatch(/border-brand-500/);
     expect(fullBtn.className).not.toMatch(/border-rose-500/);
   });
+
+  it('shows firstActionCTA once on non-reveal intro (hero only)', () => {
+    const cta =
+      'Per 2 min užrašyk vieną naudotoją ir vieną problemą (pirmas žingsnis).';
+    const nonRevealContent: ActionIntroContent = {
+      whyBenefit: 'Po šio modulio turėsi aiškų MVP brief’ą.',
+      heroStat: 'Vibe coding',
+      heroText: 'su disciplina.',
+      heroSubText: 'Siauras brief prieš Cursor generavimą.',
+      firstActionCTA: cta,
+      outcomes: [
+        'Naudotojas, problema, vertė ir 1 funkcija',
+        'Kūrimo kortelė → 01_MVP_BRIEF.md',
+      ],
+      duration: '~25–30 min',
+      audience: 'Skirta verslo ir produktų žmonėms.',
+    };
+
+    renderWithProviders(
+      <ActionIntroSlide
+        content={nonRevealContent}
+        moduleId={16}
+        moduleAccent="cyan"
+        levelLabel="Mokymas"
+      />
+    );
+
+    expect(screen.getAllByText(cta)).toHaveLength(1);
+  });
 });

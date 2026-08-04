@@ -53,7 +53,9 @@ import { SlideLucideIcon } from '../../../icons/SlideLucideIcon';
 import SectionDivider from '../../ui/SectionDivider';
 import Banner from '../../ui/Banner';
 import ChoiceControl from '../../ui/ChoiceControl';
-import { typographyClasses } from '../../../design-tokens';
+import CTAButton from '../../ui/CTAButton';
+import StatusPanel from '../../ui/StatusPanel';
+import { surfaceGlass, typographyClasses } from '../../../design-tokens';
 import type { ModuleAccent } from '../../../types/modules';
 import type {
   ActionIntroJourneyContent,
@@ -273,20 +275,24 @@ export function ActionIntroJourneySlide({
 
       {/* Patvirtinimas + CTA po pasirinkimo */}
       {selected && !confirmed && (
-        <div className="animate-slide-in rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-200 dark:border-emerald-800 p-5 sm:p-6">
+        <StatusPanel
+          tone="success"
+          size="compact"
+          className="animate-slide-in rounded-2xl p-5 sm:p-6"
+        >
           <p className="text-sm sm:text-base text-gray-800 dark:text-gray-200 leading-relaxed mb-4">
             {confirmMessage.replace('{label}', selected.label)}
           </p>
-          <button
-            type="button"
+          <CTAButton
+            variant="hero"
             onClick={handleConfirm}
-            className="flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-accent-500 text-white font-bold shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2"
+            className="px-6 py-3.5 font-bold shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-accent-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Rocket className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
             <span>{ctaContinue}</span>
             <ArrowRight className="w-5 h-5 flex-shrink-0" />
-          </button>
-        </div>
+          </CTAButton>
+        </StatusPanel>
       )}
 
       {confirmed && (
@@ -2528,8 +2534,10 @@ export function SummarySlide({
 
       {/* ── Next Step CTA ── */}
       {(nextStepSection || content.nextStepCTA) && (
-        <div
-          className={`relative overflow-hidden rounded-2xl border-2 border-emerald-300 dark:border-emerald-700 bg-gradient-to-r from-emerald-50 to-brand-50 dark:from-emerald-900/30 dark:to-brand-900/20 p-6 lg:p-8 transition-all duration-500 ${
+        <StatusPanel
+          tone="success"
+          size="compact"
+          className={`relative overflow-hidden rounded-2xl p-6 lg:p-8 text-left transition-all duration-500 ${
             showContent
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-4'
@@ -2586,7 +2594,7 @@ export function SummarySlide({
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" />
             </span>
           </div>
-        </div>
+        </StatusPanel>
       )}
 
       {/* ── Motivational Footer ── */}
@@ -3176,7 +3184,9 @@ export function ProductivityInfographicSlide({
               </div>
             </div>
 
-            <div className="mt-auto relative z-10 bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+            <div
+              className={`mt-auto relative z-10 ${surfaceGlass.overlay} rounded-lg p-4`}
+            >
               <p className="text-xs lg:text-sm leading-relaxed italic">
                 &ldquo;{content.conclusion}&rdquo;
               </p>
@@ -3459,7 +3469,7 @@ export function PracticeSummarySlide({
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-emerald-50 to-accent-50 dark:from-emerald-900/20 dark:to-accent-900/20 p-8 rounded-xl border-2 border-emerald-200 dark:border-emerald-800 text-center">
+      <StatusPanel tone="success" size="hero" asStatus>
         <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-emerald-400 to-brand-500 mb-4">
           <span className="text-4xl">🎓</span>
         </div>
@@ -3510,7 +3520,7 @@ export function PracticeSummarySlide({
             )}
           </div>
         )}
-      </div>
+      </StatusPanel>
 
       {moduleId === 9 && c.kitChecklist && c.kitChecklist.length > 0 && (
         <div
@@ -3645,14 +3655,16 @@ export function PracticeSummarySlide({
       )}
 
       {(c as { nextStepCTA?: string }).nextStepCTA && (
-        <div className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 text-center">
-          <p className="font-bold text-emerald-800 dark:text-emerald-200 mb-1">
-            {t('nextStepHeading')}
-          </p>
+        <StatusPanel
+          tone="success"
+          size="compact"
+          className="p-4 text-center"
+          title={t('nextStepHeading')}
+        >
           <p className="text-sm text-gray-700 dark:text-gray-300">
             {(c as { nextStepCTA: string }).nextStepCTA}
           </p>
-        </div>
+        </StatusPanel>
       )}
       {moduleId === 9 && c.handoutDownloadLabel && (
         <div

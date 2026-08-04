@@ -35,14 +35,44 @@ import Badge from './Badge';
 
 ## CTAButton
 
-`variant?: 'primary' | 'secondary' | 'accent'` — mygtukas; viduje naudoja `.btn-*` CSS (deprecated tiesioginiam JSX).
+`variant?: 'primary' | 'secondary' | 'accent' | 'hero'` — mygtukas; self-contained Tailwind (Wave C/D; `.btn-*` CSS removed).
+
+`<a>` upsells: `ctaButtonClassName('accent')` from `./ctaButtonClasses` (komponentas lieka `<button>`).
 
 ```tsx
 import CTAButton from './CTAButton';
+import { ctaButtonClassName } from './ctaButtonClasses';
 
 <CTAButton variant="primary" onClick={onNext}>
   Toliau
 </CTAButton>;
+
+<a href="/modules" className={ctaButtonClassName('accent')}>
+  Toliau į kelią
+</a>;
+```
+
+---
+
+## StatusPanel
+
+`tone?: 'success' | 'warning' | 'outcome'` · `size?: 'hero' | 'compact'` — rezultatų / outcome gradient panelės (ne teaching contrast, ne lab embeds).
+
+```tsx
+import StatusPanel from './StatusPanel';
+import { CheckCircle } from 'lucide-react';
+
+<StatusPanel
+  tone="success"
+  size="hero"
+  asStatus
+  icon={
+    <CheckCircle className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+  }
+  title="Išlaikyta"
+>
+  <p>Trumpa žinutė</p>
+</StatusPanel>;
 ```
 
 ---

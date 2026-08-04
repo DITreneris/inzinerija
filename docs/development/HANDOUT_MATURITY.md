@@ -4,11 +4,11 @@
 
 ## Klasės
 
-| Klasė         | Artefaktai           | CTA intensyvumas                                     | Density (1 psl.)           |
-| ------------- | -------------------- | ---------------------------------------------------- | -------------------------- |
-| `value-only`  | M1, M4               | Be outbound nuorodų                                  | `regular`                  |
-| `footer`      | M5, M6               | Minimalus website footer (`doc.link` + label)        | M5=`compact`, M6=`regular` |
-| `path-funnel` | M7–9, M10–12, M13–15 | 2 psl.: value + ecosystem CTA (`utm_medium=handout`) | `compact`                  |
+| Klasė         | Artefaktai                   | CTA intensyvumas                                     | Density (1 psl.)           |
+| ------------- | ---------------------------- | ---------------------------------------------------- | -------------------------- |
+| `value-only`  | M1, M4                       | Be outbound nuorodų                                  | `regular`                  |
+| `footer`      | M5, M6                       | Minimalus website footer (`doc.link` + label)        | M5=`compact`, M6=`regular` |
+| `path-funnel` | M7–9, M10–12, M13–15, M16–18 | 2 psl.: value + ecosystem CTA (`utm_medium=handout`) | `compact`                  |
 
 > **M5:** pilnas body (įrankiai + promptai + seka + QC + slenksčiai) netelpa į A4 su `regular` (~55 mm overflow → footer overlap). Fit guard: `HANDOUT_CONTENT_BOTTOM` + `m5HandoutPdf.fit.test.ts`.
 
@@ -27,6 +27,7 @@
 | M7–9   | `ai-workflow-canvas-template`        |
 | M10–12 | `agent-orchestrator-operating-model` |
 | M13–15 | `prompt-anatomy-ecosystem-map`       |
+| M16–18 | `prompt-anatomy-ecosystem-map`       |
 
 Secondary „Decide“: hub URL su `utm_campaign=m{N}_handout_decide` (kol `.pro` nestabilus).
 

@@ -84,7 +84,7 @@
     },
     {
       "term": "Brief",
-      "definition": "A short brief before you start: topic, audience, goal, scope, and tone – the basis for a structured prompt.",
+      "definition": "A brief before you start: topic, audience, goal, scope, and tone – the basis for a structured prompt.",
       "moduleId": 5
     },
     {
@@ -351,7 +351,7 @@
     },
     {
       "term": "Meta block",
-      "definition": "Block that defines who you are (role), what experience, and who the result is for (audience).",
+      "definition": "Block that defines who you are (role), what experience you have, and who the result is for (audience).",
       "moduleId": 1
     },
     {
@@ -440,7 +440,7 @@
     },
     {
       "term": "Prompt injection",
-      "definition": "Harmful instructions hidden in input data (email, document, CSV) that try to change AI behaviour. Defence: keep system instructions separate from external text and validate input.",
+      "definition": "Harmful instructions hidden in input data (email, document, CSV) that try to change AI behavior. Defense: keep system instructions separate from external text and validate input.",
       "moduleId": 7,
       "unlockedBy": {
         "moduleId": 7,
@@ -578,7 +578,7 @@
       "moduleId": 9
     },
     {
-      "term": "Test / Invest / Kill (Kiss-Marry-Kill)",
+      "term": "Test / Invest / Drop (Kiss-Marry-Kill)",
       "definition": "Portfolio choice for options (products, channels, ideas): which to only test, which to grow, which to drop.",
       "moduleId": 7
     },

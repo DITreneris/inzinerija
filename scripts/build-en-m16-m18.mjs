@@ -6,6 +6,9 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyM16EnPlainOverrides } from './lib/m16-en-plain-overrides.mjs';
+import { applyM17EnPlainOverrides } from './lib/m17-en-plain-overrides.mjs';
+import { applyM18EnPlainOverrides } from './lib/m18-en-plain-overrides.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const lt = JSON.parse(readFileSync(join(root, 'src', 'data', 'modules.json'), 'utf8'));
@@ -34,24 +37,25 @@ const moduleMeta = {
 
 const slideMeta = {
   160: ['Code engineering path', 'Planning before Cursor'],
-  16.2: ['What you will do today', '1 problem · 1 user · 1 task'],
+  16.2: ['What you will do today', '1 problem · 1 user · 1 feature'],
   16.25: ['Stack map', 'Which layer when – not a tool fair'],
   16.3: ['Process map', 'From problem to test'],
   16.4: ['Problem before solution', 'Bad vs good start'],
   16.5: ['Problem formula', 'User · problem · situation · consequence'],
   16.6: ['Value is not a feature', 'Outcome vs product action'],
-  16.7: ['MVP scope', 'Must now · Later · Won’t'],
+  16.7: ['MVP scope', 'Must now · Can later · Won’t build'],
   16.8: ['Practice: creation card', '5 fields – bridge to the brief'],
-  16.9: ['Transition to the brief', 'From card to concept'],
-  16.101: ['Vibe → Skeleton → Refinement', 'Brief maturity phases'],
+  16.85: ['Card ready', 'Card → brief'],
+  16.101: ['Vibe → Skeleton → Refinement', 'Three brief maturity steps'],
   16.11: ['Product sentence', 'One line – for whom and why'],
   16.12: ['Three pillars and critique', 'Problem–user–value + Before/After'],
   16.14: ['Three directions', 'A / B / C – who, what, result'],
-  16.15: ['Pick the most testable', 'Score 1–5, not a radar'],
+  16.15: ['Pick the most testable', 'Pick the most testable direction in the lab'],
   16.16: ['User cycle', 'Trigger → Input → Action → Result → Next'],
   16.17: ['Screens from the flow', 'Max 3–5 screens'],
   16.18: ['Bounds and Now–Next–Later', 'Must ≤4 · Won’t on purpose'],
   16.201: ['Risks', '3 risks + mitigation'],
+  16.205: ['Ready check before the brief', '2–3 questions – ready for the brief?'],
   16.21: ['Practice: MVP brief', 'Fill 01_MVP_BRIEF.md (11 fields)'],
   16.22: ['Module 16 summary', 'Brief ready – next is the quiz'],
   170: ['Module 17 quiz', 'Brief and planning knowledge'],
@@ -116,7 +120,18 @@ const headingMap = new Map([
   ['Chaosas vs kontrolė', 'Chaos vs control'],
   ['Minimalios esybės', 'Minimal entities'],
   ['Delivery vartai', 'Delivery gates'],
+  ['Šeši žingsniai iki brief’o', 'Six steps to the brief'],
   ['VSR brandos kopėčios', 'VSR maturity ladder'],
+  ['Brief brandinimo žingsniai', 'Brief maturity steps'],
+  ['Užpildytas pavyzdys', 'Filled example'],
+  ['Blogas vs geras', 'Bad vs good'],
+  ['Trys atramos (iš kortelės)', 'Three pillars (from the card)'],
+  ['Prieš / Po', 'Before / After'],
+  ['Užpildytas ciklas (dienos prioritetai)', 'Filled cycle (daily priorities)'],
+  ['11 brief laukų', '11 brief fields'],
+  ['Pavyzdys (dienos prioritetai)', 'Example (daily priorities)'],
+  ['Orientyras 1–5 (pavyzdys)', 'Guide 1–5 (example)'],
+  ['Krypties lab', 'Direction lab'],
   ['Naudotojo ciklas', 'User cycle'],
   ['Naudotojo ciklas (flow)', 'User cycle (flow)'],
   ['BUILD PACKET sluoksniai', 'BUILD PACKET layers'],
@@ -172,7 +187,10 @@ const modules = lt.modules
   .filter((m) => m.id >= 16 && m.id <= 18)
   .map((mod) => {
     const meta = moduleMeta[mod.id];
-    const cloned = walk(structuredClone(mod));
+    const base = structuredClone(mod);
+    // Exact LT→EN map must run before mechanical DI→AI walk (keys are LT).
+    if (base.id === 18) applyM18EnPlainOverrides(base);
+    const cloned = walk(base);
     Object.assign(cloned, meta);
     cloned.slides = cloned.slides.map((slide) => {
       const pair = slideMeta[slide.id];
@@ -186,60 +204,24 @@ const modules = lt.modules
     return cloned;
   });
 
-/** Hand-tuned EN for 16.25 stack table – walk leaves LT cell text. */
-const slide1625En = {
-  sections: [
-    {
-      heading: 'In short',
-      body: 'Cursor-first path: brief can use chat AI; code – Cursor; proof – GitHub; host – later. Module 16 is not a build session yet.',
-      blockVariant: 'accent',
-    },
-    {
-      heading: 'Stack layers',
-      body: 'Not this path as the main stack: Lovable, Replit “write an app”, Claude Code, v0 – here we teach Cursor + PACKET discipline.',
-      blockVariant: 'brand',
-      table: {
-        headers: ['Layer', 'Tool', 'In M16 now', 'Later'],
-        rows: [
-          [
-            'Brief / plan',
-            'Chat AI (ChatGPT / Claude)',
-            'Draft, skeptic, brief helper',
-            '—',
-          ],
-          [
-            'Code with discipline',
-            'Cursor',
-            'Install / open; do not generate the whole app',
-            'M18 vertical slice',
-          ],
-          [
-            'Proof / versions',
-            'GitHub',
-            'Know you will need Soft DoD',
-            'M18 commit + repo',
-          ],
-          [
-            'Host / URL',
-            'Railway / Vercel / …',
-            'Do not touch yet',
-            'M18 publish',
-          ],
-        ],
-      },
-    },
-    {
-      heading: 'Do this now',
-      body: 'Write down: brief = chat AI; build = Cursor (Module 18); proof = GitHub. If you lack Cursor – download cursor.com (no generate session today).',
-      blockVariant: 'brand',
-    },
-    {
-      heading: 'Check',
-      body: 'Are you already putting a tech stack in the brief, or leaving stack for Module 18?',
-      blockVariant: 'accent',
-    },
+/** Hand-tuned EN for M16 action-intro – walk leaves LT body / DI→AI only. */
+const slide160En = {
+  whyBenefit:
+    'After this module you will have a clear MVP brief – who, what, and the limits for building with AI.',
+  heroStat: 'Vibe coding',
+  heroText: 'with discipline.',
+  heroSubText:
+    'Prompt foundations – Modules 1–6. Here vibe coding = fast building with AI, but a narrow brief first before Cursor generation.',
+  firstActionCTA:
+    'In 2 min write one user and one problem for your idea (first step; value and 1 feature come later). Or use the daily-priorities example.',
+  outcomes: [
+    'User, problem, value, and 1 feature',
+    'Build card → 01_MVP_BRIEF.md',
+    'Must / Won’t and a testable success criterion',
   ],
-  footer: 'Next – slide 4: Process map',
+  duration: '~25–30 min',
+  audience:
+    'For business and product people – a working prototype without deep programming.',
 };
 
 /** Hand-tuned EN for 18.17 (.env manipulation-contrast) – mechanical walk leaves LT. */
@@ -370,11 +352,11 @@ const summaryTransferSlide = { 16: 16.22, 17: null, 18: 18.24 };
 
 for (const mod of modules) {
   if (mod.id === 16) {
-    const slide = mod.slides.find((s) => s.id === 16.25);
-    if (slide?.content) {
-      slide.content.sections = slide1625En.sections;
-      slide.content.footer = slide1625En.footer;
+    const intro = mod.slides.find((s) => s.id === 160);
+    if (intro?.content) {
+      Object.assign(intro.content, slide160En);
     }
+    applyM16EnPlainOverrides(mod);
     for (let i = 0; i < mod.slides.length; i++) {
       const s = mod.slides[i];
       const f = s.content?.footer;
@@ -384,11 +366,23 @@ for (const mod of modules) {
       s.content.footer = `Next – slide ${i + 2}: ${next.title}`;
     }
   }
+  if (mod.id === 17) {
+    applyM17EnPlainOverrides(mod);
+  }
   if (mod.id === 18) {
+    // Durable map covers 18.17; keep hand-tuned block as final authority.
     const slide = mod.slides.find((s) => s.id === 18.17);
     if (slide?.content) {
       slide.content.sections = slide1817En.sections;
       slide.content.footer = slide1817En.footer;
+    }
+    for (let i = 0; i < mod.slides.length; i++) {
+      const s = mod.slides[i];
+      const f = s.content?.footer;
+      if (!f || (!f.includes('Next – slide') && !f.includes('Toliau – skaidrė'))) continue;
+      const next = mod.slides[i + 1];
+      if (!next) continue;
+      s.content.footer = `Next – slide ${i + 2}: ${next.title}`;
     }
   }
 

@@ -4,7 +4,7 @@
       "id": 1,
       "title": "6-Block System",
       "subtitle": "Role, data, format, reasoning, quality",
-      "description": "Six prompt structure blocks in one clear course – the full system from A to Z.",
+      "description": "Six prompt-structure blocks in one clear course – the full system from A to Z.",
       "icon": "BookOpen",
       "level": "learn",
       "duration": "25 min",
@@ -37,7 +37,7 @@
                 "url": "https://chat.openai.com",
                 "description": "General-purpose conversational AI – best for everyday writing, summaries, and idea generation.",
                 "useCases": [
-                  "Letters and email",
+                  "Letters and emails",
                   "Summaries and analysis",
                   "Brainstorming",
                   "Code help"
@@ -68,7 +68,7 @@
               {
                 "name": "Copilot (Microsoft)",
                 "url": "https://copilot.microsoft.com",
-                "description": "In the Microsoft stack – Outlook, Word, Teams; great for office work.",
+                "description": "In the Microsoft stack – Outlook, Word, Teams – great for office work.",
                 "useCases": [
                   "Outlook email",
                   "Word and PowerPoint",
@@ -92,7 +92,7 @@
                 "description": "Strong for coding, maths, and logic – good value for money.",
                 "useCases": [
                   "Code generation",
-                  "Math and analysis",
+                  "Maths and analysis",
                   "Long context",
                   "Technical writing"
                 ]
@@ -349,11 +349,11 @@
                 "name": "Role prompts",
                 "color": "violet",
                 "description": "Set tone, style, and audience.",
-                "example": "Imagine you're a company lead presenting the strategy to the team – short and convincing.",
+                "example": "Imagine you're a company leader presenting the strategy to the team – short and convincing.",
                 "result": "Text in a leader's voice – inspiring, forward-looking, motivating."
               }
             ],
-            "practicalTip": "Combine all three prompt types in one request to get the most precise, business-ready result. Especially important for strategy documents or analysis.",
+            "practicalTip": "Combine all three prompt types in one request to get the most precise, business-ready result. This is especially important for strategy documents or analysis.",
             "footer": "Next – slide 7: Prompting techniques"
           }
         },
@@ -613,7 +613,7 @@
           "subtitle": "Reasoning logic – how should AI think?",
           "type": "reasoning",
           "blockNumber": 4,
-          "keyQuestion": "How to think before answering?",
+          "keyQuestion": "How should AI think before answering?",
           "content": {
             "veiksmoIntro": {
               "trumpai": "**Benefit:** The Reasoning block tells AI how to think before answering. Without it – AI guesses. With it – AI justifies the answer step by step.",
@@ -638,7 +638,7 @@
           "subtitle": "Quality criteria – how to check?",
           "type": "quality",
           "blockNumber": 5,
-          "keyQuestion": "How to check result quality?",
+          "keyQuestion": "How do you check result quality?",
           "content": {
             "veiksmoIntro": {
               "trumpai": "**Benefit:** Quality Control – a safety net. AI checks its own answer before giving it. Reduces hallucinations and logic gaps.",
@@ -662,7 +662,7 @@
           "subtitle": "Advanced parameters – how to control precisely?",
           "type": "advanced",
           "blockNumber": 6,
-          "keyQuestion": "What model-specific parameters?",
+          "keyQuestion": "Which model-specific parameters should you set?",
           "content": {
             "veiksmoIntro": {
               "trumpai": "**Benefit:** Temperature controls creativity, Reasoning – depth of thought. You can try right away: pick one example below, copy and run AI.",
@@ -718,7 +718,7 @@
               {
                 "icon": "🔍",
                 "label": "Business analysis",
-                "copyText": "ADVANCED:\nTemperature: 0.2\nReasoning: Deep\n\nTask:\nAnalyze this company's process and provide 3 problems and 3 realistic optimization recommendations.",
+                "copyText": "ADVANCED:\nTemperature: 0.2\nReasoning: Deep\n\nTask:\nAnalyse this company's process and provide 3 problems and 3 realistic optimisation recommendations.",
                 "taskLabel": "Task:"
               },
               {
@@ -892,7 +892,7 @@
               },
               {
                 "term": "Role prompt",
-                "definition": "Shapes style and tone (e.g. \"Imagine you're a company lead…\")."
+                "definition": "Shapes style and tone (e.g. \"Imagine you're a company leader…\")."
               },
               {
                 "term": "Zero-shot",
@@ -1605,8 +1605,8 @@
           "subtitle": "Quarterly or half-year results overview for the board",
           "type": "practice-scenario",
           "scenario": {
-            "situation": "You're a lead and need to prepare a quarterly results overview for the board in a few days. The board will decide on priorities for the next quarters, so you need to clearly summarise numbers, risks, and suggest concrete steps.",
-            "context": "You're a lead. You need to prepare a quarterly or half-year results overview for the board or owners.",
+            "situation": "You're a team lead and need to prepare a quarterly results overview for the board in a few days. The board will decide on priorities for the next quarters, so you need to clearly summarise numbers and risks, and suggest concrete steps.",
+            "context": "You're a team lead. You need to prepare a quarterly or half-year results overview for the board or owners.",
             "data": "Q2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, company restructuring, new CRM.",
             "constraints": "Report due in 5 days. Board has 4 members. Max length: 2 pages.",
             "expectedFormat": "Executive Summary (1–2 pages), KPI dashboard, 3 priorities with recommendations"
@@ -1615,7 +1615,7 @@
             "title": "Create a full prompt for an executive strategy report",
             "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "templateLabel": "View full example",
-            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTone: factual. Format: business document",
+            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decision-making. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTone: factual. Format: business document",
             "explanation": "A strategy report requires decision logic, summaries, and clear recommendations.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1625,7 +1625,7 @@
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
                   "hint": "Role: executive. Goal: strategy report. Audience: board.",
-                  "partialSolution": "META:\nYou are a senior executive with 10+ years of experience in strategic decisions. Your goal is to prepare a quarterly results overview for the board."
+                  "partialSolution": "META:\nYou are a senior executive with 10+ years of experience in strategic decision-making. Your goal is to prepare a quarterly results overview for the board."
                 },
                 {
                   "step": 2,
@@ -1677,7 +1677,7 @@
           "scenario": {
             "situation": "Sales didn't meet plan and leadership wants to understand why quickly and get a concrete action list. You have data by segment and period – you need to turn it into insights and recommendations with owners and deadlines.",
             "context": "Sales growth, decline, or stagnation. You need to analyse the data and propose concrete actions to improve results.",
-            "data": "Q3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down -12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.",
+            "data": "Q3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.",
             "constraints": "Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.",
             "expectedFormat": "Analysis + 5 concrete actions with deadlines and owners"
           },
@@ -1692,36 +1692,36 @@
                   "step": 1,
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
-                  "hint": "Role: marketing lead. Goal: Q1 2025 marketing plan. Audience: CEO.",
-                  "partialSolution": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions."
+                  "hint": "Role: sales analyst. Goal: Q3 sales analysis and action plan. Audience: leadership.",
+                  "partialSolution": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyse Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners."
                 },
                 {
                   "step": 2,
                   "title": "INPUT block – Gather data",
                   "description": "List concrete numbers, metrics, and constraints",
-                  "hint": "Data: Q4 results, CAC, conversion, competitors. Constraints: 2 weeks, 3 people, B2B priority.",
-                  "partialSolution": "INPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment."
+                  "hint": "Data: Q3 revenue vs plan, B2B/B2C segments, average order. Constraints: 1 week, 2 analysts, 5 actions.",
+                  "partialSolution": "INPUT:\nQ3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.\n\nConstraints: Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners."
                 },
                 {
                   "step": 3,
                   "title": "OUTPUT block – Define format",
                   "description": "Specify what document you want",
-                  "hint": "Format: strategic document. Structure: action plan + KPI. Language: English, business tone.",
-                  "partialSolution": "OUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone."
+                  "hint": "Format: analysis + 5 actions. Structure: KPI, segments, causes, actions. Language: English, business tone.",
+                  "partialSolution": "OUTPUT:\nFormat: Sales analysis (3–4 pages). Structure: 1) Key KPI and trends, 2) Segment analysis (B2B vs B2C), 3) Causes and risks, 4) 5 concrete actions with owners and deadlines. Language: English, business tone."
                 },
                 {
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
-                  "description": "Specify how AI should think before creating the plan",
-                  "hint": "Use step by step (Chain of Thought) – one logical sequence. 1) Analyse Q4 results, 2) Assess competitor threat, 3) Set Q1 goals, 4) Formulate strategy.",
-                  "partialSolution": "REASONING (step by step):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority"
+                  "description": "Specify how AI should think before creating the analysis",
+                  "hint": "Go step by step. 1) KPI vs plan, 2) Segment comparison, 3) B2B decline causes, 4) 5 priority actions.",
+                  "partialSolution": "REASONING (step by step):\n1) Summarise Q3 KPI and compare with the plan (350k)\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline"
                 },
                 {
                   "step": 5,
                   "title": "QUALITY block – Set quality criteria",
                   "description": "Define how to check result quality",
-                  "hint": "Check: concrete KPI, budget allocation, B2B focus, feasibility.",
-                  "partialSolution": "QUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)"
+                  "hint": "Check: number accuracy, segment analysis, 5 actions with deadlines and owners.",
+                  "partialSolution": "QUALITY:\n✓ All numbers match the given data\n✓ Segment analysis is clear (B2B vs B2C)\n✓ Exactly 5 actions with deadlines and owners\n✓ Actions are doable in 1 week with a team of 2 analysts"
                 },
                 {
                   "step": 6,
@@ -1733,7 +1733,7 @@
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are a marketing lead with 10+ years of B2B experience. Your goal is to prepare the Q1 2025 strategic marketing plan for the CEO, who will make budget decisions.\n\nINPUT:\nQ4 2024 results: 45 new customers, CAC 6500 EUR, conversion 2.8%. Competitor growth: +25% and +18%. Planned Q1 budget: 300k EUR.\n\nConstraints: Plan due in 2 weeks. Team: 3 people. Priority – B2B segment.\n\nOUTPUT:\nFormat: Strategic document (5–7 pages). Structure: 1) Situation analysis, 2) Q1 goals and KPI, 3) Action plan by channel, 4) Budget allocation, 5) Risks and assumptions. Language: English, professional business tone.\n\nREASONING (step by step):\n1) Analyse Q4 2024 results and identify strengths/weaknesses\n2) Assess competitor growth threat and market trends\n3) Set Q1 2025 goals by budget (300k EUR) and B2B priority\n\nQUALITY:\n✓ All KPI concrete and measurable\n✓ Budget (300k EUR) allocated by channel\n✓ Plan focused on B2B segment\n✓ Actions doable in 2 weeks with 3 people\n✓ Document suitable for CEO (strategic level)\n\nADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
+            "template": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyse Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners.\n\nINPUT:\nQ3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.\n\nConstraints: Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.\n\nOUTPUT:\nFormat: Sales analysis (3–4 pages). Structure: 1) Key KPI and trends, 2) Segment analysis (B2B vs B2C), 3) Causes and risks, 4) 5 concrete actions with owners and deadlines. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise Q3 KPI and compare with the plan\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline\n\nQUALITY:\n✓ All numbers match the given data\n✓ Segment analysis is clear (B2B vs B2C)\n✓ Exactly 5 actions with deadlines and owners\n✓ Actions are doable in 1 week with a team of 2 analysts\n\nADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
           },
           "content": {
             "footer": "Next – slide 5: Scenario 3: Marketing campaign plan"
@@ -1762,36 +1762,36 @@
                   "step": 1,
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
-                  "hint": "Role: HR lead. Goal: survey analysis and recommendations. Audience: leadership.",
-                  "partialSolution": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan."
+                  "hint": "Role: product marketing lead. Goal: SmartFlow campaign plan Q2 2025. Audience: marketing team and leadership.",
+                  "partialSolution": "META:\nYou are a product marketing lead with 7+ years of B2B IT experience. Your goal is to prepare the Q2 2025 SmartFlow product campaign plan with channels, KPI, and budget allocation."
                 },
                 {
                   "step": 2,
                   "title": "INPUT block – Gather data",
                   "description": "List concrete numbers, metrics, and constraints",
-                  "hint": "Data: participation, satisfaction, problem areas, strengths. Constraints: budget 50k EUR, concrete action plan.",
-                  "partialSolution": "INPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses."
+                  "hint": "Data: product SmartFlow, budget 45k EUR, IT leads, channels, competitors. Constraints: 2 weeks, 2 people, KPI plan.",
+                  "partialSolution": "INPUT:\nCampaign: new product \"SmartFlow\". Budget: 45k EUR. Target audience: IT leads (companies with 100–500 employees). Channels: LinkedIn, events, email. Competitors: 2 main. Period: Q2 2025.\n\nConstraints: Plan in 2 weeks. Team: 2 people. Need KPI and measurement plan."
                 },
                 {
                   "step": 3,
                   "title": "OUTPUT block – Define format",
                   "description": "Specify what document you want",
-                  "hint": "Format: report. Structure: analysis + visuals + action plan. Language: English, sensitive tone.",
-                  "partialSolution": "OUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone."
+                  "hint": "Format: strategic campaign document. Structure: audience, channels, KPI, budget, timeline.",
+                  "partialSolution": "OUTPUT:\nFormat: Strategic campaign document (4–6 pages). Structure: 1) Audience profile, 2) Channel strategy (LinkedIn, events, email), 3) KPI and measurement plan, 4) Budget allocation (45k EUR), 5) Q2 2025 timeline. Language: English, business tone."
                 },
                 {
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
-                  "description": "Specify how AI should think before creating the analysis",
-                  "hint": "Use step by step (Chain of Thought). 1) Analyse problem areas, 2) Assess causes, 3) Formulate solutions, 4) Allocate budget.",
-                  "partialSolution": "REASONING (step by step):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions for each problem area"
+                  "description": "Specify how AI should think before creating the plan",
+                  "hint": "Go step by step. 1) Audience needs, 2) Channel and budget allocation, 3) KPI, 4) Q2 timeline.",
+                  "partialSolution": "REASONING (step by step):\n1) Define IT-lead audience needs and communication channels\n2) Allocate the budget (45k EUR) by channel and expected ROI\n3) Set measurable KPI for each channel"
                 },
                 {
                   "step": 5,
                   "title": "QUALITY block – Set quality criteria",
                   "description": "Define how to check result quality",
-                  "hint": "Check: sensitivity to data, concrete actions, budget allocation, feasibility.",
-                  "partialSolution": "QUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)"
+                  "hint": "Check: budget allocation, measurable KPI, audience, feasibility in 2 weeks.",
+                  "partialSolution": "QUALITY:\n✓ Budget (45k EUR) allocated by channel\n✓ KPI are concrete and measurable\n✓ Audience clearly defined (IT leads, 100–500 employees)\n✓ Plan is doable in 2 weeks with a team of 2"
                 },
                 {
                   "step": 6,
@@ -1803,7 +1803,7 @@
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an HR lead with 8+ years in employee experience. Your goal is to analyse the annual staff survey results and give concrete recommendations to leadership, who will decide on the action plan.\n\nINPUT:\n156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9).\n\nConstraints: Leadership wants a concrete action plan. Budget for initiatives: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report with visuals (6–8 pages). Structure: 1) Executive summary, 2) Problem area analysis, 3) Strengths, 4) Concrete action plan with budget allocation, 5) Expected outcomes. Language: English, professional but sensitive tone.\n\nREASONING (step by step):\n1) Analyse problem areas (career 5.8, work-life balance 6.1) and their causes\n2) Assess why strengths work (teamwork 8.4, manager support 7.9)\n3) Formulate concrete, actionable solutions per problem area\n\nQUALITY:\n✓ Sensitive handling of employee data (confidentiality)\n✓ Concrete, actionable steps per problem area\n✓ Budget (50k EUR) allocated by priority\n✓ Action plan has clear deadlines and owners\n✓ Document suitable for leadership (strategic level with concrete actions)\n\nADVANCED:\nTone: strategic with creativity.\nFormat: structured marketing document"
+            "template": "META:\nYou are a product marketing lead with 7+ years of B2B IT experience. Your goal is to prepare the Q2 2025 SmartFlow product campaign plan with channels, KPI, and budget allocation.\n\nINPUT:\nCampaign: new product \"SmartFlow\". Budget: 45k EUR. Target audience: IT leads (companies with 100–500 employees). Channels: LinkedIn, events, email. Competitors: 2 main. Period: Q2 2025.\n\nConstraints: Plan in 2 weeks. Team: 2 people. Need KPI and measurement plan.\n\nOUTPUT:\nFormat: Strategic campaign document (4–6 pages). Structure: 1) Audience profile, 2) Channel strategy (LinkedIn, events, email), 3) KPI and measurement plan, 4) Budget allocation (45k EUR), 5) Q2 2025 timeline. Language: English, business tone.\n\nREASONING (step by step):\n1) Define IT-lead audience needs and communication channels\n2) Allocate the budget (45k EUR) by channel and expected ROI\n3) Set measurable KPI for each channel\n\nQUALITY:\n✓ Budget (45k EUR) allocated by channel\n✓ KPI are concrete and measurable\n✓ Audience clearly defined (IT leads, 100–500 employees)\n✓ Plan is doable in 2 weeks with a team of 2\n\nADVANCED:\nTone: strategic with creativity.\nFormat: structured marketing document"
           },
           "content": {
             "footer": "Next – slide 6: Scenario 4: Internal comms document"
@@ -1815,7 +1815,7 @@
           "subtitle": "Change message to staff",
           "type": "practice-scenario",
           "scenario": {
-            "situation": "Big changes are happening – a new system rollout or restructuring – and staff are worried. Your job is to draft a message that clearly explains what's changing, why, what to do next, and answers the most common questions.",
+            "situation": "Big changes are happening – a new system rollout or restructuring – and staff are worried. Your job is to draft a message that clearly explains what's changing, why, and what to do next, and answers the most common questions.",
             "context": "Organisational change (strategy, restructuring, new system). You need a clear message staff can understand.",
             "data": "Company is moving to a new CRM. Changes start in 6 weeks. All 120 staff will have training. Most common question: \"Will we lose our jobs?\"",
             "constraints": "Message in 3 days. Max 500 words. Tone: caring, clear. Include a Q&A section.",
@@ -1943,7 +1943,7 @@
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individuals.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Tone: sensitive, professional. Format: HR report"
+            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Tone: sensitive, professional. Format: HR report"
           },
           "content": {
             "footer": "Next – slide 8: Scenario 6: Customer complaint handling"
@@ -2177,7 +2177,7 @@
             "reflectionPrompt": "META: You are a learning reflection assistant. Goal – help consolidate knowledge after Part 1.\nINPUT: I just finished 3 modules: 6-block system (Meta, Input, Output, Reasoning, Quality, Advanced), knowledge quiz, and 6 practice scenarios.\nOUTPUT: Ask 3 questions: (1) What can I apply at work today? (2) What was newest or most surprising? (3) What do I want to try first? After my answers – 1 concrete tip on how to start.",
             "tagline": "3 modules = 6 blocks + quiz + 6 scenarios – your foundation for what's next.",
             "abilityBefore": "You used AI without a clear 6-block system.",
-            "abilityAfter": "You finished part 1: structure, check, and practice – ready for the advanced path.",
+            "abilityAfter": "You finished Part 1: structure, check, and practice – ready for the advanced path.",
             "firstAction24h": "Today pick one work task and repeat a 6-block prompt without the training slides.",
             "nextStepCTA": "Open the core readiness check or Module 4."
           }

@@ -38,7 +38,7 @@ export function getDirectionPickerUiLabels(locale: DirectionLocale) {
       decisionRule:
         'Winner = fastest to validate in a day, with a clear user and one main action.',
       legend: 'Which direction wins?',
-      scoreHeading: 'Score mirror (1–5)',
+      scoreHeading: 'Scores after you pick (1–5)',
       speedLabel: 'Speed to test',
       clarityLabel: 'Clarity for user',
       riskLabel: 'Risk / complexity (1=low)',
@@ -53,11 +53,11 @@ export function getDirectionPickerUiLabels(locale: DirectionLocale) {
   }
   return {
     regionAria: 'Krypties pasirinkimo lab',
-    hint: 'Rinkis patikrinamiausią kryptį – ne gražiausią.',
+    hint: 'Rinkis tą kryptį, kurią gali patikrinti greičiausiai – ne gražiausią. Balai – orientyras, ne egzaminas.',
     decisionRule:
       'Nugalėtojas = greičiausiai patikrinamas per dieną, su aiškiu naudotoju ir viena pagrindine funkcija.',
     legend: 'Kuri kryptis laimi?',
-    scoreHeading: 'Balų veidrodis (1–5)',
+    scoreHeading: 'Balai po pasirinkimo (1–5)',
     speedLabel: 'Greitis patikrinti',
     clarityLabel: 'Aiškumas naudotojui',
     riskLabel: 'Rizika / sudėtingumas (1=maža)',

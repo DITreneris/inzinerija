@@ -69,6 +69,16 @@
       "schemaKey": "m1315",
       "ctaI18nKey": "module:m1315HandoutCtaLabel",
       "analyticsCtaId": "m1315_handout_pdf"
+    },
+    {
+      "key": "m1618",
+      "earnOnModuleIds": [18],
+      "surfaces": [{ "type": "module_complete", "moduleId": 18 }],
+      "contentLt": "m1618HandoutContent.json",
+      "contentEn": "m1618HandoutContent-en.json",
+      "schemaKey": "m1618",
+      "ctaI18nKey": "module:m1618HandoutCtaLabel",
+      "analyticsCtaId": "m1618_handout_pdf"
     }
   ],
   "certificates": [

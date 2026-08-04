@@ -1,8 +1,8 @@
 # Pedagoginės įžvalgos – atitiktis ir planas (Must–Should–Want)
 
 > **Paskirtis:** Lyginame 8 pedagogines įžvalgas su dabartiniu produktu; nustatome, kas jau padaryta, o kas lieka open.  
-> **Atnaujinta:** 2026-07-27 (PC-4 closed) · Būklė prieš [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md).  
-> **Open vykdymas:** learning P0/P2 uždaryta (Horizon A CORP-M3 Should → deferred). Marketing / CRO – [`TODO.md`](../../TODO.md) §1.4.
+> **Atnaujinta:** 2026-08-04 (Caveats CAV-D1) · Būklė prieš [`CODEBASE_WHAT_IS_DONE.md`](CODEBASE_WHAT_IS_DONE.md).  
+> **Open vykdymas:** learning P0/P2 uždaryta (Horizon A CORP-M3 Should → deferred). Marketing / CRO – [`TODO.md`](../../TODO.md) §1.4. Progress/org-memory = **CAV-D1** (revisit po MON-4).
 
 ---
 
@@ -16,7 +16,7 @@
 | 4. Role-first                    | M7 `journeyChoices` (6 keliai) + Lygis C overlay; branduolys be globalaus „pasirink rolę“ įėjimo                 | ⚠️ Dalinai M7 kelionėje; nėra product-wide role-first onboarding                                                |
 | 5. Vertinimas padėti, ne teisti  | Path Test Shell (M2/M8/M11/M14): intro → warm-up → graded → results + remediation; Ready check soft po M3        | ✅ Path Test lukštas diagnostinis; branduolio Quiz explanation OK; tonas „čia stipru / rizika“ – tobulinti copy |
 | 6. Per anksti per daug           | M1–9 production; M10–15 authoring; Docs Lean; ambicija = turinio kokybė, ne feature flood                        | ✅ Atitinka                                                                                                     |
-| 7. Organizacijos atmintis        | Progresas: unlocked / completed / test scores; nėra bandymų istorijos ar „kas suveikė“ žurnalo                   | ❌ Tik completion metadata                                                                                      |
+| 7. Organizacijos atmintis        | Progresas: unlocked / completed / test scores; retrievalSchedule + learningEvents local; nėra multi-device sync  | ❌ Tik local completion metadata (CAV-D1: export/import arba journal lite po MON-4; ne accounts rewrite)        |
 | 8. Teisinė/etinė by design       | Lokalu; M7 etikos blokai; M13 provenance/Legal skaidrės authoring                                                | ⚠️ Turinys yra; runtime apsaugos su realiu DI API – Want                                                        |
 
 ---
@@ -45,7 +45,7 @@
 
 - **PC-4.\*** ✅ (4.1 / 4.3 / 4.4 2026-07-27; 4.2 anksčiau).
 - Role-first įėjimas platesniu produktu (ne tik M7 journey) — **deferred** (Horizon A CORP-M3 ✅ 2026-07-28; revisit po MON cutover arba Horizon C seed).
-- Organizacijos atmintis (bandymų / „kas suveikė“ istorija) — **deferred** (tas pats trigger).
+- Organizacijos atmintis (bandymų / „kas suveikė“ istorija) — **deferred CAV-D1** (trigger: po MON-4 analytics; smallest slice = progress export/import arba learningEvents journal UI; ne sync backend).
 - Diagnostinis Quiz tonas visur (ne tik Path Test lukšte) — **deferred** (branduolys: Quiz formative + GOLDEN §3.7; platesnis = epic).
 
 > **CORP-M3:** smallest slice dabar nedaromas; M7 journey + Quiz formative dengia branduolį.

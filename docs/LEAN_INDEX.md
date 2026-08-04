@@ -1,8 +1,8 @@
 # Lean dokumentacijos branduolys (agentams)
 
-> **Atnaujinta:** 2026-08-01 (M16–18 TE Could open; docs A sync)  
+> **Atnaujinta:** 2026-08-04 (TE Could closed; learning P1 nėra)  
 > **Tikslas:** ≤25 keliai ~90% užduočių. Analizės / PLAN snapshot / backlog – ne čia. Žr. `DOCUMENTATION_QUICK_REF.md` (startas) · `DOCUMENTATION_INDEX.md` (katalogas) · `DOCS_MAINTENANCE.md` §1c.  
-> **Open P1** = `TE-M1618-C*` Could (`TODO.md` §1.2g); MON / marketing – ne lean branduolys.
+> **Open P1 (learning):** nėra. TE Could closed (won’t-now / C2 done). Open = MON §1.4 + D3 Deferred §1.5.
 
 ---
 
@@ -40,18 +40,18 @@
 
 ### Procesas ir agentai
 
-| Failas                                                 | Paskirtis                                         |
-| ------------------------------------------------------ | ------------------------------------------------- |
-| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline                                |
-| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA                                      |
-| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba                                    |
-| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika                                        |
-| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos                               |
-| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay                                    |
-| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y                                       |
-| `AGENTS.md`                                            | Agentų žemėlapis                                  |
-| `TODO.md` §1                                           | **Open** P1 Could `TE-M1618-C*`; MON out of scope |
-| `ROADMAP.md`                                           | Open gaps + turinio plėtra                        |
+| Failas                                                 | Paskirtis                                              |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| `docs/development/AGENT_ORCHESTRATOR.md`               | Routeris, pipeline                                     |
+| `docs/development/CONTENT_AGENT.md`                    | Turinys, CTA                                           |
+| `docs/development/PAPRASTOS_KALBOS_GAIRES.md`          | Paprasta kalba                                         |
+| `docs/development/CURRICULUM_AGENT.md`                 | Pedagogika                                             |
+| `docs/development/SCHEME_AGENT.md`                     | Schemos / diagramos                                    |
+| `docs/development/DATA_AGENT_DUOMENYS_ATNAUJINIMAS.md` | JSON / overlay                                         |
+| `docs/development/UI_UX_AGENT.md`                      | UI/UX, a11y                                            |
+| `AGENTS.md`                                            | Agentų žemėlapis                                       |
+| `TODO.md` §1                                           | Learning open nėra; MON §1.4 out of scope; D3 Deferred |
+| `ROADMAP.md`                                           | Open gaps + turinio plėtra                             |
 
 ---
 

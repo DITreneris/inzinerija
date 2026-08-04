@@ -6,7 +6,7 @@
     "Data preparation – clean formats, missing values and duplicates.",
     "Exploratory analysis (EDA) – check patterns, outliers and questions worth testing.",
     "Models and methods – choose the analysis method based on the question.",
-    "Visualisation – choose charts and metrics a manager can understand.",
+    "Visualization – choose charts and metrics a manager can understand.",
     "Publishing – turn insights into a clear report or decision."
   ],
   "masterPromptSteps": [
@@ -14,19 +14,19 @@
     "Data structure – describe tables, fields or documents.",
     "Cleaning – remove duplicates, align formats and mark gaps.",
     "Exploratory analysis (EDA) – ask for patterns, anomalies and hypotheses.",
-    "Visualisations – ask for chart ideas and what each one should show.",
+    "Visualizations – ask for chart ideas and what each one should show.",
     "Insights – explain what the data means for the business or team.",
     "Forecasts – name possible scenarios and risks.",
     "Recommendations – ask for 3–5 concrete actions."
   ],
   "workflowSteps": [
     "Collect data sources about the company, sector or question.",
-    "Prepare the methodology prompt: what to analyse and which metrics to use.",
+    "Prepare the methodology prompt: what to analyze and which metrics to use.",
     "Prepare a deep research prompt that works across several AI tools.",
     "Run the same research in 2–4 AI tools and save the outputs.",
     "Clean the outputs: remove duplicates and align dates and numbers.",
     "Merge the outputs into one structured document.",
-    "Ask for a visualisation specification: charts, colours and metrics.",
+    "Ask for a visualization specification: charts, colors and metrics.",
     "Generate a simple dashboard or a clear executive summary."
   ],
   "starterPrompt": "META: You are my data analysis assistant. Goal – prepare a clear executive summary in one cycle.\nINPUT: Topic: [insert]. Sources: [links / files / notes]. Constraints: [time, confidentiality].\nOUTPUT: (1) 5-point EDA summary, (2) 3 insights with a risk tag, (3) 3 recommendations with a first action.\nQUALITY: If data is missing – write \"I don't know\" and say what is needed. Do not cite sources that do not exist.",

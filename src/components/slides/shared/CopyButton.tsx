@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { focusRingClasses, touchTargetClasses } from '../../../design-tokens';
 
 interface CopyButtonProps {
   text: string;
@@ -49,15 +50,15 @@ export default function CopyButton({
   const showCopiedText = copied && copiedLabel;
   const isAccent = variant === 'accent';
   const buttonClasses = isAccent
-    ? 'min-h-[44px] rounded-xl bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-accent-500 dark:disabled:hover:bg-accent-500'
-    : 'min-h-[44px] min-w-[44px] rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent';
+    ? `${touchTargetClasses.minimumHeight} rounded-xl bg-accent-500 hover:bg-accent-600 dark:bg-accent-500 dark:hover:bg-accent-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-accent-500 dark:disabled:hover:bg-accent-500`
+    : `${touchTargetClasses.minimum} rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent`;
 
   return (
     <button
       type="button"
       onClick={handleCopy}
       disabled={disabled}
-      className={`${padding} flex items-center justify-center gap-1.5 ${buttonClasses} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 touch-manipulation ${className}`}
+      className={`${padding} flex items-center justify-center gap-1.5 ${buttonClasses} ${focusRingClasses.brand} touch-manipulation ${className}`}
       aria-label={showCopiedText ? copiedLabel : ariaLabelFinal}
       title={disabled ? ariaLabelFinal : title}
       aria-live="polite"

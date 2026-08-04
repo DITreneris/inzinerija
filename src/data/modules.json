@@ -354,12 +354,12 @@
               }
             ],
             "practicalTip": "Kombinuok visus tris promptų tipus viename užklausime, kad gautum maksimaliai tikslų ir verslo poreikius atitinkantį rezultatą. Tai ypač svarbu ruošiant strateginius dokumentus ar analizes.",
-            "footer": "Toliau – skaidrė 7: Prompting'o Technikos"
+            "footer": "Toliau – skaidrė 7: Promptingo technikos"
           }
         },
         {
           "id": 14,
-          "title": "Prompting'o Technikos",
+          "title": "Promptingo technikos",
           "subtitle": "6 bazinės technikos ir kopijuojami pavyzdžiai",
           "type": "prompt-techniques",
           "content": {
@@ -641,7 +641,7 @@
           "keyQuestion": "Kaip patikrinti rezultato kokybę?",
           "content": {
             "veiksmoIntro": {
-              "trumpai": "**Nauda:** Quality Control – saugos diržas. DI patikrina savo atsakymą prieš pateikdamas. Sumažina hallucinacijas ir loginius trūkumus.",
+              "trumpai": "**Nauda:** Quality Control – saugos diržas. DI patikrina savo atsakymą prieš pateikdamas. Sumažina haliucinacijas ir loginius trūkumus.",
               "darykDabar": "**Ką daryti:** Nukopijuok Inline QC šabloną žemiau ir pridėk prie savo prompto pabaigos. Paleisk DI – stebėk, ar atsakyme atsiranda prielaidų ir ribotumų žymėjimas.",
               "patikra": "Ar DI pažymėjo prielaidas? Ar nurodė neapibrėžtumus? Jei ne – stiprink QC instrukciją."
             },
@@ -778,7 +778,7 @@
           "type": "full-example",
           "practicalTask": {
             "title": "Sukurk savo pilną promptą",
-            "motivation": "💼 Panaudok ją savo darbe – sukurk struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
+            "motivation": "💼 Panaudok jį savo darbe – sukurk struktūruotą promptą realiai užduočiai iš savo darbo ar verslo.",
             "inputHint": "Įvesk visą promptą į lauką žemiau – visus blokus (META, INPUT, OUTPUT ir kt.) su savo žodžiais, ne tik pavienius žodžius iš placeholderių.",
             "placeholder": "META: Tu esi...\n\nINPUT: Duomenys...\n\nOUTPUT: Formatas...\n\nREASONING: Mąstymo seka...\n\nQUALITY: Kriterijai...\n\nADVANCED: Parametrai...",
             "explanation": "Naudok aukščiau pateiktą šabloną ir sukurk pilną promptą savo realiai užduočiai. Atmink: kiekvienas blokas papildo kitą ir sukuria aiškų kontekstą DI modeliui."
@@ -837,7 +837,7 @@
           "id": 13,
           "title": "Prieš ir Po",
           "shortTitle": "Prieš ir Po",
-          "subtitle": "Struktūruoto ir nestruktūruoto prompt palyginimas",
+          "subtitle": "Struktūruoto ir nestruktūruoto prompto palyginimas",
           "type": "comparison",
           "content": {
             "introText": "Kas lyginama: ta pati užduotis, bet skirtinga struktūra (be blokų vs su blokais).",
@@ -1067,7 +1067,7 @@
               ],
               "correct": 0,
               "explanation": "Meta blokas yra svarbiausias – jis nustato kontekstą visam likusiam promptui.",
-              "hint": "Pagalvok, kas nustato 'kas esu' ir 'kodėl rašau' kontekstą.",
+              "hint": "Pagalvok, kas nustato „kas esu“ ir „kodėl rašau“ kontekstą.",
               "bloomLevel": 1,
               "relatedSlideId": 8,
               "category": "meta"
@@ -1086,7 +1086,7 @@
             {
               "id": "q3",
               "type": "mcq",
-              "question": "Kas yra 'konkretus input'?",
+              "question": "Kas yra „konkretus input“?",
               "options": [
                 "Tikslūs skaičiai, datos, metrikos",
                 "Bendra nuotaika",
@@ -1129,7 +1129,7 @@
               "question": "Reasoning blokas reikalingas tik sudėtingiems klausimams – paprastiems užtenka Meta + Input + Output.",
               "isTrue": true,
               "explanation": "Teisingai! Minimalus promptas = Meta + Input + Output (3 blokai). Reasoning pridedamas, kai reikia sudėtingesnio mąstymo (pvz. analizuok, palygink, rekomenduok).",
-              "hint": "Pagalvok: ar paprastas klausimas 'Išversk šį sakinį' reikalauja mąstymo sekos?",
+              "hint": "Pagalvok: ar paprastas klausimas „Išversk šį sakinį“ reikalauja mąstymo sekos?",
               "bloomLevel": 4,
               "relatedSlideId": 11,
               "category": "reasoning"
@@ -1159,13 +1159,13 @@
         {
           "id": 23,
           "title": "6 Blokų Sistema – Sujunk poras",
-          "subtitle": "Sujunkite bloką su jo funkcija",
+          "subtitle": "Sujunk bloką su jo funkcija",
           "type": "test-section",
           "testQuestions": [
             {
               "id": "q7",
               "type": "matching",
-              "question": "Sujunkite kiekvieną bloką su jo pagrindine funkcija:",
+              "question": "Sujunk kiekvieną bloką su jo pagrindine funkcija:",
               "matchPairs": [
                 {
                   "left": "Meta",
@@ -1193,7 +1193,7 @@
                 }
               ],
               "explanation": "Kiekvienas iš 6 blokų turi aiškią atsakomybę. Kai visi veikia kartu – rezultatas nuspėjamas ir kokybiškas.",
-              "hint": "Pagalvok: kuris blokas atsako į 'kas esu?', 'ką turiu?', 'ko noriu?', 'kaip mąstyti?', 'ar gerai?', 'kokie nustatymai?'",
+              "hint": "Pagalvok: kuris blokas atsako į „kas esu?“, „ką turiu?“, „ko noriu?“, „kaip mąstyti?“, „ar gerai?“, „kokie nustatymai?“",
               "bloomLevel": 2,
               "relatedSlideId": 14,
               "category": "bendra"
@@ -1206,13 +1206,13 @@
         {
           "id": 24,
           "title": "Prioritetų Rikiavimas",
-          "subtitle": "Surikiuokite blokus pagal prioritetą",
+          "subtitle": "Surikiuok blokus pagal prioritetą",
           "type": "test-section",
           "testQuestions": [
             {
               "id": "q8",
               "type": "ordering",
-              "question": "Surikiuokite 6 blokus nuo svarbiausio iki mažiausiai svarbaus (pagal prioritetą):",
+              "question": "Surikiuok 6 blokus nuo svarbiausio iki mažiausiai svarbaus (pagal prioritetą):",
               "correctOrder": [
                 "Meta (rolė ir kontekstas)",
                 "Input (duomenys)",
@@ -1230,7 +1230,7 @@
                 "Reasoning (mąstymo logika)"
               ],
               "explanation": "Meta, Input, Output – privalomi (top 3). Reasoning, Quality, Advanced – papildomi, bet svarbūs sudėtingesnėms užduotims.",
-              "hint": "Pirmi trys blokai yra 'privalomas minimumas' aiškiam rezultatui gauti.",
+              "hint": "Pirmi trys blokai yra „privalomas minimumas“ aiškiam rezultatui gauti.",
               "bloomLevel": 3,
               "relatedSlideId": 14,
               "category": "bendra"
@@ -1294,13 +1294,13 @@
         {
           "id": 27,
           "title": "Verslo Scenarijus – Testas",
-          "subtitle": "Pritaikykite žinias realiame scenarijuje",
+          "subtitle": "Pritaikyk žinias realiame scenarijuje",
           "type": "test-section",
           "testQuestions": [
             {
               "id": "q12",
               "type": "scenario",
-              "scenarioContext": "Tu esi marketingo vadovas. Rašai promptą DI, kad sugeneruotų ketvirtinę pardavimų ataskaitą valdybai. Turi duomenis: 250k EUR pajamos, 1200 užsakymų, +15% augimas. Promptas prasideda: 'Esi vyresnysis verslo analitikas...' ir baigiasi: 'Rezultatą pateik lentelėje su 5 stulpeliais.'",
+              "scenarioContext": "Tu esi marketingo vadovas. Rašai promptą DI, kad sugeneruotų ketvirtinę pardavimų ataskaitą valdybai. Turi duomenis: 250k EUR pajamos, 1200 užsakymų, +15% augimas. Promptas prasideda: „Esi vyresnysis verslo analitikas...“ ir baigiasi: „Rezultatą pateik lentelėje su 5 stulpeliais.“",
               "question": "Kurio bloko trūksta šiame prompte?",
               "options": [
                 "Reasoning – nenurodyta, kaip analizuoti duomenis",
@@ -1318,11 +1318,11 @@
             {
               "id": "q13",
               "type": "scenario",
-              "scenarioContext": "Kolega parašė promptą: 'Parašyk man straipsnį apie DI.' Rezultatas – 3 puslapiai bendro teksto be struktūros, be šaltinių, anglų kalba (nors reikėjo lietuviškai).",
+              "scenarioContext": "Kolega parašė promptą: „Parašyk man straipsnį apie DI.“ Rezultatas – 3 puslapiai bendro teksto be struktūros, be šaltinių, anglų kalba (nors reikėjo lietuviškai).",
               "question": "Kas labiausiai pagerins šį promptą?",
               "options": [
                 "Pridėti Meta (rolė: žurnalistas), Output (1000 žodžių, lietuviškai, su šaltiniais) ir Quality (faktų tikslumas)",
-                "Pridėti tik 'rašyk lietuviškai'",
+                "Pridėti tik „rašyk lietuviškai“",
                 "Pakartoti tą patį promptą dar kartą",
                 "Pakeisti DI modelį į kitą"
               ],
@@ -1373,7 +1373,7 @@
               ],
               "correct": 0,
               "explanation": "Few-shots pateikia 1–2 pavyzdžius, po to prašo naujų. Zero-shot – be pavyzdžių.",
-              "hint": "'Few' reiškia 'keli' – tai technika, kuri naudoja kelis pavyzdžius.",
+              "hint": "„Few“ reiškia „keli“ – tai technika, kuri naudoja kelis pavyzdžius.",
               "bloomLevel": 1,
               "relatedSlideId": 5,
               "category": "technikos"
@@ -1418,7 +1418,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Chip’ai žemiau – priedai prie tavo užduoties ar teksto. Pasirink vieną, nukopijuok, pridėk prie savo prompto ir paleisk DI. Jei nori detaliau – išskleisk „Kas padarys tavo promptus išskirtinius“.",
+                "body": "Chipai žemiau – priedai prie tavo užduoties ar teksto. Pasirink vieną, nukopijuok, pridėk prie savo prompto ir paleisk DI. Jei nori detaliau – išskleisk „Kas padarys tavo promptus išskirtinius“.",
                 "blockVariant": "brand"
               },
               {
@@ -1504,7 +1504,7 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "Atsiprašomas atsakymas",
+                "heading": "Atsiprašantis atsakymas",
                 "body": "Nukopijuok ir paleisk DI – gausi mandagų atsakymą dėl vėlavimo.",
                 "copyable": "META: Tu esi klientų aptarnavimo specialistas. Tikslas – išlaikyti klientą.\nINPUT: Situacija – klientas skundžiasi dėl pavėluoto pristatymo. Tonas – mandagus, atsiprašantis.\nOUTPUT: El. laiško atsakymas, 80–120 žodžių, su konkrečiu sprendimu ir atsiprašymu.",
                 "collapsible": true,
@@ -1683,7 +1683,7 @@
             "situation": "Pardavimai nepakilo iki plano, o vadovybė nori greitai suprasti priežastis ir gauti konkrečių veiksmų sąrašą. Tu turi duomenis pagal segmentus ir laikotarpius – reikia iš jų išvesti įžvalgas ir rekomendacijas su atsakingais asmenimis ir terminais.",
             "context": "Pardavimų augimas, kritimas arba stagnacija. Reikia išanalizuoti duomenis ir pateikti konkrečius veiksmus rezultatams gerinti.",
             "data": "Q3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.",
-            "constraints": "Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais.",
+            "constraints": "Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais asmenimis.",
             "expectedFormat": "Analizė + 5 konkrečių veiksmų su terminais ir atsakingais asmenimis"
           },
           "practicalTask": {
@@ -1698,21 +1698,21 @@
                   "title": "META blokas - Pradėk nuo rolės",
                   "description": "Apibrėžk, kas esi ir kam skirtas dokumentas",
                   "hint": "Rolė: pardavimų analitikas. Tikslas: Q3 pardavimų analizė ir veiksmų planas. Auditorija: vadovybė.",
-                  "partialSolution": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei."
+                  "partialSolution": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais asmenimis vadovybei."
                 },
                 {
                   "step": 2,
                   "title": "INPUT blokas - Surink duomenis",
                   "description": "Išskirk konkrečius skaičius, metrikas ir apribojimus",
                   "hint": "Duomenys: Q3 pajamos vs planas, segmentai B2B/B2C, vidutinis čekis. Apribojimai: 1 savaitė, 2 analitikai, 5 veiksmai.",
-                  "partialSolution": "INPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais."
+                  "partialSolution": "INPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais asmenimis."
                 },
                 {
                   "step": 3,
                   "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Nurodyk, kokį dokumentą nori gauti",
                   "hint": "Formatas: analizė + 5 veiksmai. Struktūra: KPI, segmentai, priežastys, veiksmai. Kalba: lietuvių, verslo tonas.",
-                  "partialSolution": "OUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas."
+                  "partialSolution": "OUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais asmenimis ir terminais. Kalba: lietuvių, verslo tonas."
                 },
                 {
                   "step": 4,
@@ -1725,8 +1725,8 @@
                   "step": 5,
                   "title": "QUALITY blokas - Nustatyk kokybės kriterijus",
                   "description": "Apibrėžk, kaip patikrinti rezultato kokybę",
-                  "hint": "Tikrinimo kriterijai: skaičių tikslumas, segmentų analizė, 5 veiksmai su terminais ir atsakingais.",
-                  "partialSolution": "QUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda"
+                  "hint": "Tikrinimo kriterijai: skaičių tikslumas, segmentų analizė, 5 veiksmai su terminais ir atsakingais asmenimis.",
+                  "partialSolution": "QUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais asmenimis\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda"
                 },
                 {
                   "step": 6,
@@ -1738,7 +1738,7 @@
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais vadovybei.\n\nINPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais.\n\nOUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais ir terminais. Kalba: lietuvių, verslo tonas.\n\nREASONING (žingsnis po žingsnio):\n1) Apibendrinti Q3 KPI ir palyginti su planu\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n\nQUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda\n\nADVANCED:\nTonas: faktinis, analitinis.\nFormatas: struktūruota pardavimų analizė"
+            "template": "META:\nTu esi pardavimų analitikas su 8+ metų B2B/B2C patirtimi. Tavo tikslas – išanalizuoti Q3 2024 pardavimus ir pateikti 5 konkrečius veiksmus su terminais ir atsakingais asmenimis vadovybei.\n\nINPUT:\nQ3 2024: 320k EUR pajamos (planas 350k, -8.6%). 1450 užsakymų. Segmentai: B2B (38%), B2C (62%). B2B kritimas -12%, B2C +3%. Vidutinis čekis: B2B 890 EUR, B2C 165 EUR.\n\nApribojimai: Analizė per 1 savaitę. Komanda: 2 analitikai. Vadovybė nori 5 konkrečių veiksmų su terminais ir atsakingais asmenimis.\n\nOUTPUT:\nFormatas: Pardavimų analizė (3–4 puslapiai). Struktūra: 1) Pagrindiniai KPI ir tendencijos, 2) Segmentų analizė (B2B vs B2C), 3) Priežastys ir rizikos, 4) 5 konkrečių veiksmų su atsakingais asmenimis ir terminais. Kalba: lietuvių, verslo tonas.\n\nREASONING (žingsnis po žingsnio):\n1) Apibendrinti Q3 KPI ir palyginti su planu\n2) Išskaidyti rezultatus pagal segmentus (B2B -12%, B2C +3%)\n3) Identifikuoti pagrindines priežastis B2B kritimui\n\nQUALITY:\n✓ Visi skaičiai atitinka pateiktus duomenis\n✓ Segmentų analizė aiški (B2B vs B2C)\n✓ Tiksliai 5 veiksmai su terminais ir atsakingais asmenimis\n✓ Veiksmai įgyvendinami per 1 savaitę su 2 analitikų komanda\n\nADVANCED:\nTonas: faktinis, analitinis.\nFormatas: struktūruota pardavimų analizė"
           },
           "content": {
             "footer": "Toliau – skaidrė 5: Marketingo kampanijos planas"
@@ -1851,7 +1851,7 @@
                   "step": 3,
                   "title": "OUTPUT blokas - Apibrėžk formatą",
                   "description": "Vidinis pranešimas su Q&A",
-                  "hint": "Formatas: el. laiškas 300–500 žodžių. Structūra: kas keičiasi, kodėl, ką daryti toliau, Q&A.",
+                  "hint": "Formatas: el. laiškas 300–500 žodžių. Struktūra: kas keičiasi, kodėl, ką daryti toliau, Q&A.",
                   "partialSolution": "OUTPUT:\nFormatas: Vidinis pranešimas (300–500 žodžių). Struktūra: 1) Kas keičiasi, 2) Kodėl, 3) Kada ir ką daryti, 4) Q&A skyrius. Tonas: rūpestingas, skaidrus."
                 },
                 {
@@ -1859,7 +1859,7 @@
                   "title": "REASONING blokas - Nustatyk mąstymo seką",
                   "description": "Tonas, aiškumas, pasipriešinimo mažinimas",
                   "hint": "Žingsniai: 1) Kuo aiškiai paaiškinti, 2) Kaip atsakyti į baimę, 3) Ką darbuotojai turi žinoti.",
-                  "partialSolution": "REASONING (žingsnis po žingsnio):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Adresuoti baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkrečius žingsnius ir Q&A"
+                  "partialSolution": "REASONING (žingsnis po žingsnio):\n1) Paaiškinti pokyčius kuo aiškiau\n2) Atsakyti į baimę („Ar neprarasime darbo?“ ir pan.)\n3) Nurodyti konkrečius žingsnius ir Q&A"
                 },
                 {
                   "step": 5,
@@ -1872,13 +1872,13 @@
                   "step": 6,
                   "title": "ADVANCED blokas - Nustatyk toną ir formatą",
                   "description": "Nustatyk toną ir formatą (be API parametrų)",
-                  "hint": "Tonas: empatingas, profesionalus. Formatas: vidinis pranešimas.",
-                  "partialSolution": "ADVANCED:\nTonas: empatingas, profesionalus. Formatas: vidinis pranešimas"
+                  "hint": "Tonas: empatiškas, profesionalus. Formatas: vidinis pranešimas.",
+                  "partialSolution": "ADVANCED:\nTonas: empatiškas, profesionalus. Formatas: vidinis pranešimas"
                 }
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi vidaus komunikacijos vadovas. Tavo tikslas – parengti aiškų pranešimą darbuotojams apie CRM pakeitimus, mažinant nerimą.\n\nINPUT:\nĮmonė pereina prie naujos CRM. Pakeitimai per 6 savaites. 120 darbuotojų – mokymai. Dažniausias klausimas: „Ar neprarasime darbo?“ Apribojimai: 3 dienos, max 500 žodžių.\n\nOUTPUT:\nFormatas: Vidinis pranešimas (300–500 žodžių). Struktūra: 1) Kas keičiasi, 2) Kodėl, 3) Kada ir ką daryti, 4) Q&A. Tonas: rūpestingas, skaidrus.\n\nREASONING: 1) Paaiškinti aiškiai, 2) Adresuoti baimę, 3) Q&A skyrius.\n\nQUALITY: ✓ Tonas rūpestingas ✓ Q&A įtrauktas ✓ 300–500 žodžių\n\nADVANCED: Tonas: empatingas, profesionalus. Formatas: vidinis pranešimas"
+            "template": "META:\nTu esi vidaus komunikacijos vadovas. Tavo tikslas – parengti aiškų pranešimą darbuotojams apie CRM pakeitimus, mažinant nerimą.\n\nINPUT:\nĮmonė pereina prie naujos CRM. Pakeitimai per 6 savaites. 120 darbuotojų – mokymai. Dažniausias klausimas: „Ar neprarasime darbo?“ Apribojimai: 3 dienos, max 500 žodžių.\n\nOUTPUT:\nFormatas: Vidinis pranešimas (300–500 žodžių). Struktūra: 1) Kas keičiasi, 2) Kodėl, 3) Kada ir ką daryti, 4) Q&A. Tonas: rūpestingas, skaidrus.\n\nREASONING: 1) Paaiškinti aiškiai, 2) Atsakyti į baimę, 3) Q&A skyrius.\n\nQUALITY: ✓ Tonas rūpestingas ✓ Q&A įtrauktas ✓ 300–500 žodžių\n\nADVANCED: Tonas: empatiškas, profesionalus. Formatas: vidinis pranešimas"
           },
           "content": {
             "footer": "Toliau – skaidrė 7: Personalo sprendimų analizė"
@@ -1890,7 +1890,7 @@
           "subtitle": "Apklausos analizė ir veiksmų planas",
           "type": "practice-scenario",
           "scenario": {
-            "situation": "Metinė darbuotojų apklausa atlikta – matai, kur srityse pasitenkinimas silpnesnis, o kur stipresnis. Vadovybė nori ne tik skaičių, bet ir konkrečių priemonių: ką pradėti daryti, su kokiu biudžetu ir laikotarpiu.",
+            "situation": "Metinė darbuotojų apklausa atlikta – matai, kuriose srityse pasitenkinimas silpnesnis, o kur stipresnis. Vadovybė nori ne tik skaičių, bet ir konkrečių priemonių: ką pradėti daryti, su kokiu biudžetu ir laikotarpiu.",
             "context": "Darbuotojų apklausos rezultatai, motyvacija ar efektyvumo klausimai. Reikia išanalizuoti situaciją ir pateikti veiksmų planą vadovybei.",
             "data": "Dalyvavo 156/180 darbuotojų (87%). Bendras pasitenkinimas: 7.2/10 (+0.4 vs praėjusių metų). Probleminės sritys: karjeros galimybės (5.8), darbo/asmeninio gyvenimo balansas (6.1). Stipriosios pusės: komandinis darbas (8.4), vadovų palaikymas (7.9). Biudžetas iniciatyvoms: 50k EUR.",
             "constraints": "Vadovybė nori konkrečių veiksmų plano. Konfidencialumas: neatskleisti individualių atsakymų.",
@@ -2018,7 +2018,7 @@
               ]
             },
             "templateLabel": "Peržiūrėti pilną pavyzdį",
-            "template": "META:\nTu esi klientų aptarnavimo vadovas. Tavo tikslas – parengti empatišką atsakymą klientui ir vidinį veiksmų planą.\n\nINPUT:\nSkundas: vėlavimas 2 savaites, neaiški komunikacija. Klientas: B2B, 3 metai. Reputacinė rizika. Apribojimai: 24 val., empatiškas tonas.\n\nOUTPUT:\nFormatas: 1) El. laiškas klientui, 2) Vidinio plano 3–5 punktai. Kalba: lietuvių.\n\nREASONING: 1) Pripažinti problemą, 2) Pateikti sprendimą, 3) Vidinio planas.\n\nQUALITY: ✓ Empatija ✓ Atsakomybė ✓ Konkretūs veiksmai\n\nADVANCED: Tonas: empatiškas, kontroliuojamas. Formatas: klientų aptarnavimas"
+            "template": "META:\nTu esi klientų aptarnavimo vadovas. Tavo tikslas – parengti empatišką atsakymą klientui ir vidinį veiksmų planą.\n\nINPUT:\nSkundas: vėlavimas 2 savaites, neaiški komunikacija. Klientas: B2B, 3 metai. Reputacinė rizika. Apribojimai: 24 val., empatiškas tonas.\n\nOUTPUT:\nFormatas: 1) El. laiškas klientui, 2) Vidinio plano 3–5 punktai. Kalba: lietuvių.\n\nREASONING: 1) Pripažinti problemą, 2) Pateikti sprendimą, 3) Vidinis planas.\n\nQUALITY: ✓ Empatija ✓ Atsakomybė ✓ Konkretūs veiksmai\n\nADVANCED: Tonas: empatiškas, kontroliuojamas. Formatas: klientų aptarnavimas"
           },
           "content": {
             "footer": "Toliau – skaidrė 9: Praktikos Santrauka"
@@ -2222,7 +2222,7 @@
             "heroSubText": "Šiame modulyje išmoksi įtraukti šaltinius į promptus ir tikrinti atsakymus. RAG, haliucinacijos – kaip dirbti protingiau.",
             "ctaText": "Pamatyk, kas laukia – per 1 minutę!",
             "unstructuredPrompt": "Parašyk man ataskaitą apie Lietuvos BVP tendencijas.",
-            "structuredPrompt": "META: Tu esi ekonomistas analitikas. Tikslas: trumpa BVP tendencijų ataskaita.\n\nINPUT: Naudok tik šiuos šaltinius: Eurostat, Valstybės duomenų agentūra (anksčiau Statistikos departamentas). Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\n\nOUTPUT: 1 puslapis, 3–5 punktai, su nuorodomis į šaltinius. Kalba: lietuvių.",
+            "structuredPrompt": "META: Tu esi ekonomistas analitikas. Tikslas: trumpa BVP tendencijų ataskaita.\n\nINPUT: Naudok tik šiuos šaltinius: Eurostat, Valstybės duomenų agentūra (anksčiau Statistikos departamentas). Jei duomenų nėra – parašyk „Nežinau“, nespėliok.\n\nOUTPUT: 1 puslapis, 3–5 punktai, su nuorodomis į šaltinius. Kalba: lietuvių.",
             "aboutText": "Kai 6 blokai jau įprasti, RAG (atsakymai iš tavo dokumentų ir šaltinių) ir žinių patikrinimas leidžia dirbti su realiais duomenimis ir mažinti klaidas. Tokenų ekonomika – sutaupyti laiko ir išlaidas; manipuliacijų atpažinimas – etiška ir patikima nauda. Šis modulis paruoš vienam integruotam projektui (Modulis 6).",
             "outcomesHeading": "Po šio modulio galėsi:",
             "outcomes": [
@@ -2326,9 +2326,9 @@
               "bridgeText": "Kaip Dantė vaizdavo pasaulį ratais – taip ir čia: kuo giliau, tuo didingiau ir galingiau.",
               "left": {
                 "src": "/Dante_visata.png",
-                "label": "Dantės visata («Dieviškoji komedija») – XIV a.",
+                "label": "Dantės visata („Dieviškoji komedija“) – XIV a.",
                 "explanation": "Dantė vaizduoja pasaulį kaip hierarchinę struktūrą, kur kiekvienas lygmuo turi savo taisykles, ribas ir paskirtį.",
-                "source": "Dante Alighieri, Divina Commedia («Dieviškoji komedija»), ~1308–1321 m."
+                "source": "Dante Alighieri, Divina Commedia („Dieviškoji komedija“), ~1308–1321 m."
               },
               "right": {
                 "src": "/DI_visata.png",
@@ -2358,32 +2358,32 @@
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
                 "body": "Įklijuok šį promptą į DI įrankį ir paleisk:",
-                "copyable": "META: Tu esi edukacinis asistentas, paaiškinantis dirbtinio intelekto (DI) hierarchiją paprasta kalba.\n\nINPUT: Paaiškink DI visatą – hierarchiją nuo plačiausio iki siauriausio lygmens. Naudok metaforą (pvz. Dantės visatos „Dieviškoji komedija“), jei padeda suprasti.\n\nOUTPUT:\n• Schema: DI → Mašininis mokymasis → Neuroniniai tinklai → Gilusis mokymasis → Generatyvinis DI\n• 1–2 sakiniai kiekvienam lygiui + pavyzdys iš gyvenimo\n• Kodėl ChatGPT yra tik vienas sluoksnis, ne visa DI\n• Kalba: [lietuviškai arba angliškai]"
+                "copyable": "META: Tu esi edukacinis asistentas, paaiškinantis dirbtinio intelekto (DI) hierarchiją paprasta kalba.\n\nINPUT: Paaiškink DI visatą – hierarchiją nuo plačiausio iki siauriausio lygmens. Naudok metaforą (pvz. Dantės visatos „Dieviškoji komedija“), jei padeda suprasti.\n\nOUTPUT:\n• Schema: DI → Mašininis mokymasis → Neuroniniai tinklai → Gilusis mokymasis → Generatyvinis DI\n• 1–2 sakiniai kiekvienam lygiui + pavyzdys iš gyvenimo\n• Kodėl ChatGPT yra tik vienas sluoksnis, ne visas DI\n• Kalba: [lietuviškai arba angliškai]"
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
-                "body": "Peržiūrėk DI atsakymą ir atsakyk sau:\n\n• Ar **schema** aiški – nuo plačiausio iki siauriausio?\n• Ar kiekvienas **lygis** turi pavyzdį iš gyvenimo?\n• Ar aišku, kodėl **ChatGPT ≠ visa DI**?\n• Ar galėtum tai **paaiškinti kolegai** per 1 minutę?\n\n**Jei bent 2 „ne“ → grįžk prie prompto ir papildyk INPUT dalį, ne perrašyk visą promptą.**",
+                "body": "Peržiūrėk DI atsakymą ir atsakyk sau:\n\n• Ar **schema** aiški – nuo plačiausio iki siauriausio?\n• Ar kiekvienas **lygis** turi pavyzdį iš gyvenimo?\n• Ar aišku, kodėl **ChatGPT ≠ visas DI**?\n• Ar galėtum tai **paaiškinti kolegai** per 1 minutę?\n\n**Jei bent 2 „ne“ → grįžk prie prompto ir papildyk INPUT dalį, ne perrašyk visą promptą.**",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Esminė žinutė",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "body": "Abi visatos veikia tuo pačiu principu: **kuo giliau – tuo daugiau galios, bet ir daugiau atsakomybės.**\n\n• Ne visa DI yra ChatGPT – tai viena dažniausių klaidų\n• Generatyvinis DI – tik viena, giliausia DI visatos dalis\n• Metafora padeda susivokti «kur mes esame» ir paruošia tolesniam mokymui",
+                "body": "Abi visatos veikia tuo pačiu principu: **kuo giliau – tuo daugiau galios, bet ir daugiau atsakomybės.**\n\n• Ne visas DI yra ChatGPT – tai viena dažniausių klaidų\n• Generatyvinis DI – tik viena, giliausia DI visatos dalis\n• Metafora padeda susivokti „kur mes esame“ ir paruošia tolesniam mokymui",
                 "blockVariant": "terms"
               },
               {
                 "heading": "🔽 Terminai (1): DI, mašininis mokymasis, neuroniniai tinklai",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "body": "**Dirbtinis intelektas (DI / AI)** – plati sritis: kompiuterinės sistemos, kurios atlieka užduotis, paprastai reikalaujančias žmogaus mąstymo. Pavyzdys: el. pašto spam filtras, kuris pats išmoksta atskirti šiukšles nuo tikrų laiškų.\n\n**Mašininis mokymasis (ML – Machine Learning)** – DI dalis, kuri mokosi iš duomenų, o ne iš tiesioginių taisyklių. Pavyzdys: Netflix rekomenduoja filmus pagal tai, ką žiūrėjote anksčiau – niekas neprogramavo kiekvienos rekomendacijos rankomis.\n\n**Neuroniniai tinklai (Neural Networks)** – modeliai, įkvėpti žmogaus smegenų veikimo: daugelį mazgų (neuronų), sujungtų sluoksniais. Jie gali apdoroti vaizdus, garsą, tekstą ir kt. (tai vadinama multimodalumu). Pavyzdys: telefono veido atpažinimas – neuroninis tinklas išmoko atpažinti tavo veidą iš tūkstančių taškų.",
+                "body": "**Dirbtinis intelektas (DI / AI)** – plati sritis: kompiuterinės sistemos, kurios atlieka užduotis, paprastai reikalaujančias žmogaus mąstymo. Pavyzdys: el. pašto spam filtras, kuris pats išmoksta atskirti šiukšles nuo tikrų laiškų.\n\n**Mašininis mokymasis (ML – Machine Learning)** – DI dalis, kuri mokosi iš duomenų, o ne iš tiesioginių taisyklių. Pavyzdys: Netflix rekomenduoja filmus pagal tai, ką žiūrėjai anksčiau – niekas neprogramavo kiekvienos rekomendacijos rankomis.\n\n**Neuroniniai tinklai (Neural Networks)** – modeliai, įkvėpti žmogaus smegenų veikimo – sudaryti iš daugelio mazgų (neuronų), sujungtų sluoksniais. Jie gali apdoroti vaizdus, garsą, tekstą ir kt. (tai vadinama multimodalumu). Pavyzdys: telefono veido atpažinimas – neuroninis tinklas išmoko atpažinti tavo veidą iš tūkstančių taškų.",
                 "blockVariant": "terms"
               },
               {
                 "heading": "🔽 Terminai (2): Gilusis mokymasis, generatyvinis DI",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "body": "**Gilusis mokymasis (Deep Learning)** – pažangesni, daugiasluoksniai neuroniniai tinklai (10–100+ sluoksnių). Jie gali rasti sudėtingus dėsningumus dideliuose duomenyse. Pavyzdys: autonominių automobilių vaizdo atpažinimas – sistema mato kelio ženklus, pėsčiuosius, automobilus vienu metu.\n\n**Generatyvinis DI (Generative AI)** – DI tipas, kuris **kuria naują turinį**: tekstą, vaizdus, garsą, muziką. Tai yra giliausia visatos dalis ir būtent čia veikia ChatGPT, Claude, Gemini, DALL-E ir kiti įrankiai, su kuriais dirbi šiame modulyje. Pavyzdys: parašai promptą – DI sugeneravo straipsnį, prezentaciją ar paveikslėlį.",
+                "body": "**Gilusis mokymasis (Deep Learning)** – pažangesni, daugiasluoksniai neuroniniai tinklai (10–100+ sluoksnių). Jie gali rasti sudėtingus dėsningumus dideliuose duomenyse. Pavyzdys: autonominių automobilių vaizdo atpažinimas – sistema mato kelio ženklus, pėsčiuosius, automobilus vienu metu.\n\n**Generatyvinis DI (Generative AI)** – DI tipas, kuris **kuria naują turinį**: tekstą, vaizdus, garsą, muziką. Tai yra giliausia visatos dalis ir būtent čia veikia ChatGPT, Claude, Gemini, DALL-E ir kiti įrankiai, su kuriais dirbi šiame modulyje. Pavyzdys: parašei promptą – DI sugeneravo straipsnį, prezentaciją ar paveikslėlį.",
                 "blockVariant": "terms"
               }
             ],
@@ -2651,7 +2651,7 @@
               },
               {
                 "modality": "Tekstas → Vaizdas",
-                "tasks": "Iliustracijos, dizainas, konceptualus vaizdai, logotipai.",
+                "tasks": "Iliustracijos, dizainas, konceptualūs vaizdai, logotipai.",
                 "description": "Vaizdas generuojamas pagal tekstinį aprašymą (promptą).",
                 "examples": [
                   {
@@ -2742,7 +2742,7 @@
                     "name": "ChatGPT (GPT-4o)",
                     "url": "https://chat.openai.com",
                     "recommended": true,
-                    "tooltip": "Įkelkite vaizdą į pokalbį – DI jį aprašys"
+                    "tooltip": "Įkelk vaizdą į pokalbį – DI jį aprašys"
                   },
                   {
                     "name": "Claude",
@@ -2770,7 +2770,7 @@
                   {
                     "name": "Photoshop AI",
                     "url": "https://www.adobe.com/products/photoshop.html",
-                    "tooltip": "Generative Fill, objektu šalinimas"
+                    "tooltip": "Generative Fill, objektų šalinimas"
                   },
                   {
                     "name": "ControlNet",
@@ -3000,7 +3000,7 @@
                 "heading": "Užduotis 1: System prompt šablonas (6 blokų)",
                 "body": "Šablonas, kurį gali įsikelti norėdamas susikurti **Sistemą** (kaip DI elgiasi). Nukopijuok žemiau, įklijuok į DI kaip System/Instructions – pritaikyk tipinei auditorijai.",
                 "blockVariant": "violet",
-                "copyable": "META: Tu esi verslo asistentas. Elgiesi pagal žemiau nurodytas taisykles.\nINPUT: Priimsi užklausas ir kontekstą (duomenys, apribojimai).\nOUTPUT: Atsakymas lietuvių kalba – punktų sąrašas arba trumpos pastraipos.\nREASONING: Pirmiausia apibendrink užduotį, tada pateik sprendimą.\nQUALITY: Jei nežinai – parašyk „Nežinau“. Necituok nepatikrų šaltinių.\nADVANCED: Tonas profesionalus, glaustas."
+                "copyable": "META: Tu esi verslo asistentas. Elgiesi pagal žemiau nurodytas taisykles.\nINPUT: Priimsi užklausas ir kontekstą (duomenys, apribojimai).\nOUTPUT: Atsakymas lietuvių kalba – punktų sąrašas arba trumpos pastraipos.\nREASONING: Pirmiausia apibendrink užduotį, tada pateik sprendimą.\nQUALITY: Jei nežinai – parašyk „Nežinau“. Necituok nepatikrintų šaltinių.\nADVANCED: Tonas profesionalus, glaustas."
               },
               {
                 "heading": "Užduotis 2: Master prompt pavyzdys (6 blokų)",
@@ -3034,7 +3034,7 @@
                     [
                       "Ką apibrėžia",
                       "Kaip DI **turi veikti** – taisyklės, apribojimai, elgesys, formatas",
-                      "**Kas yra vartotojas** arba organizacija – kontekstas apie jus"
+                      "**Kas yra vartotojas** arba organizacija – kontekstas apie tave"
                     ],
                     [
                       "Tipinis turinys",
@@ -3207,11 +3207,7 @@
                 "workflowChains": [
                   {
                     "chain": ["ChatGPT", "Claude AI", "Gamma App"],
-                    "flow": [
-                      "Pradinis užklausa",
-                      "Apdorojimas",
-                      "Prezentacija"
-                    ],
+                    "flow": ["Pradinė užklausa", "Apdorojimas", "Prezentacija"],
                     "tag": "Turinys",
                     "expandInput": "Užklausa ir kontekstas",
                     "expandOutput": "Struktūruota prezentacija (Gamma)"
@@ -3687,7 +3683,7 @@
               },
               {
                 "heading": "Agentinis promptas – pavyzdys",
-                "body": "**Situacija:** Reikia surasti realius duomenis internete. **Įjunkite paiešką (Browse / Search).**",
+                "body": "**Situacija:** Reikia surasti realius duomenis internete. **Įjunk paiešką (Browse / Search).**",
                 "copyable": "Ieškok informacijos internete ir surask TOP 10 [sektoriaus] įmonių.\n\nKiekvienai įmonei pateik:\n- Pavadinimas\n- Vadovas\n- Metinės pajamos\n- Kontaktai (el. paštas, tinklalapis)\n\nFormatas: lentelė.\nŠaltiniai: nurodyk, iš kur radai.",
                 "blockVariant": "violet",
                 "collapsible": true,
@@ -3832,7 +3828,7 @@
               },
               {
                 "heading": "3️⃣ RLHF – paskatinamasis mokymas iš žmonių grįžtamojo ryšio",
-                "body": "Kas pasikeičia?\n👉 **Žmogus tampa atlygio šaltiniu**\n\nPaprastas paaiškinimas:\nDI mokosi ne tik iš skaičių, bet ir iš to, kuris atsakymas žmonėms atrodo geresnis.\n\nKaip tai veikia GPT atveju:\n• Žmonės lygina atsakymus\n• Pažymi „geresnius\"\n• Modelis išmoksta elgesio taisykles\n\n**Verslo situacija:** DI rašo atsakymus klientų el. laiškams.\n**Kaip mokosi:** Darbuotojai pažymi, kuris atsakymas geresnis klientui.\n**Atlygis:** Žmogaus pasirinkimas („tinka / netinka\").\n**Kada naudoti:** Kai svarbi kokybė, tonas ir pasitikėjimas, o ne tik skaičiai.",
+                "body": "Kas pasikeičia?\n👉 **Žmogus tampa atlygio šaltiniu**\n\nPaprastas paaiškinimas:\nDI mokosi ne tik iš skaičių, bet ir iš to, kuris atsakymas žmonėms atrodo geresnis.\n\nKaip tai veikia GPT atveju:\n• Žmonės lygina atsakymus\n• Pažymi „geresnius“\n• Modelis išmoksta elgesio taisykles\n\n**Verslo situacija:** DI rašo atsakymus klientų el. laiškams.\n**Kaip mokosi:** Darbuotojai pažymi, kuris atsakymas geresnis klientui.\n**Atlygis:** Žmogaus pasirinkimas („tinka / netinka“).\n**Kada naudoti:** Kai svarbi kokybė, tonas ir pasitikėjimas, o ne tik skaičiai.",
                 "blockVariant": "brand"
               },
               {
@@ -3880,13 +3876,13 @@
               },
               {
                 "heading": "🔽 Ryšys su GPT, promptais ir etika",
-                "body": "Kodėl tai svarbu mums?\n\nGPT ne „galvoja\", o optimizuoja atsakymus pagal:\n• naudą\n• saugumą\n• žmonių lūkesčius\n\n**Promptas** = signalas, pagal kurį modelis parenka išmoktą elgesį.",
+                "body": "Kodėl tai svarbu mums?\n\nGPT ne „galvoja“, o optimizuoja atsakymus pagal:\n• naudą\n• saugumą\n• žmonių lūkesčius\n\n**Promptas** = signalas, pagal kurį modelis parenka išmoktą elgesį.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
               {
-                "heading": "7️⃣ Vienos eilutės „aha\"",
+                "heading": "7️⃣ Vienos eilutės „aha“",
                 "body": "GPT atsakymai yra RLHF rezultatas – todėl formuluotė, tonas ir kontekstas keičia atsakymo kokybę. Jei DI neatsižvelgia į kontekstą – pridėk rolę ir taisykles (žr. 5 principus).",
                 "blockVariant": "accent"
               }
@@ -4006,7 +4002,7 @@
             "celebrationText": "Puiku! Pamatai paruošti – dabar atsakymai iš tavo šaltinių ir dokumentų.",
             "recap": {
               "heading": "Ką jau žinai?",
-              "lead": "Prieš RAG ir gilusį tyrimą – šie žingsniai jau įveikti.",
+              "lead": "Prieš RAG ir gilųjį tyrimą – šie žingsniai jau įveikti.",
               "items": [
                 "Moki, kaip DI naudoja įrankius ir paima duomenis iš šaltinių (suvienyta schema).",
                 "Supranti skirtumą: kada liepi „padaryk pats“, kada „ieškok ir atsakyk“.",
@@ -4328,7 +4324,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Pažymėk sau:\n• Ar žinau 1 pagrindinį įrankį šiai savaitei?\n• Ar žinau, kada jungti antrą (specializuotą)?\n• Ar renkusi pagal užduotį, ne pagal hype?\n\nJei bent 2 „ne“ – grįžk prie juostos ir pakartok pasirinkimą.",
+                "body": "Pažymėk sau:\n• Ar žinau 1 pagrindinį įrankį šiai savaitei?\n• Ar žinau, kada jungti antrą (specializuotą)?\n• Ar renkiesi pagal užduotį, ne pagal hype?\n\nJei bent 2 „ne“ – grįžk prie juostos ir pakartok pasirinkimą.",
                 "blockVariant": "accent"
               }
             ],
@@ -4377,7 +4373,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "🔽 Pasirinktinai: daugiau apie RAG ir multimodalinę įvestis",
+                "heading": "🔽 Pasirinktinai: daugiau apie RAG ir multimodalinę įvestį",
                 "body": "**Multimodalinė įvestis ir išvestis:** Kai kurie DI priima ne tik tekstą, bet ir vaizdą, garsą – naudinga analizei ir santraukoms.\n\n**RAG detaliau:** Kiek konteksto telpa į užklausą – skaidrėse Tokenų ekonomika. Pagalvok: kokie dokumentai darbe kartojasi? Užsirašyk vieną – naudosi Modulio 6 projekte.",
                 "blockVariant": "terms",
                 "collapsible": true,
@@ -5162,7 +5158,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**Nauda:** Per 5–10 min sujungsite **RAG** (atsakymas iš šaltinių) ir **Deep research** (gilinimas) – du promptai, viena tema. Šaltiniai + gilinimas viename mini-projekte.",
+                "body": "**Nauda:** Per 5–10 min sujungsi **RAG** (atsakymas iš šaltinių) ir **Deep research** (gilinimas) – du promptai, viena tema. Šaltiniai + gilinimas viename mini-projekte.",
                 "blockVariant": "accent"
               },
               {
@@ -5543,7 +5539,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "Išmoksi atpažinti **neigiamus promptus** (per neaiškūs, per trumpi, be tikslų, šališki) ir perrašyti juos į veiksmingus – su tikslu, kontekstu ir aiškia išvestimi.",
+                "body": "Išmoksi atpažinti **neigiamus promptus** (per neaiškius, per trumprus, be tikslų, šališkus) ir perrašyti juos į veiksmingus – su tikslu, kontekstu ir aiškia išvestimi.",
                 "blockVariant": "accent"
               },
               {
@@ -5835,7 +5831,7 @@
             ],
             "handoutPromise": "Po šio modulio galėsi parsisiųsti Modulio 5 atmintinę (PDF): sprintas, brief, storyline, 8 skaidrių šablonas, QC ir testo santrauka.",
             "unstructuredPrompt": "Parašyk 8 skaidrių prezentaciją apie [tema].",
-            "structuredPrompt": "Brief: tema [X], auditorija [Y], tikslas [Z]. Storyline: sprendimas + 3 argumentai. 8 skaidrės. Struktūra (teiginys-antraštė + 2 bullet), tada pilnas 3-ios skaidrės turinys. Kokybės patikra – 6 punktai."
+            "structuredPrompt": "Brief: tema [X], auditorija [Y], tikslas [Z]. Storyline: sprendimas + 3 argumentai. 8 skaidrės. Struktūra (teiginys-antraštė + 2 bullet), tada pilnas 3-iosios skaidrės turinys. Kokybės patikra – 6 punktai."
           },
           "footer": "Toliau – skaidrė 2: Kas yra 15 min sprintas ir ką daryti pirmiausia"
         },
@@ -5967,7 +5963,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "Turinį generuoji DI. Tada pasirinki **vieną** kelią skaidrėms. Rekomenduojama šiandien: DI tekstas → **Gamma**.",
+                "body": "Turinį generuoji DI. Tada pasirink **vieną** kelią skaidrėms. Rekomenduojama šiandien: DI tekstas → **Gamma**.",
                 "blockVariant": "accent"
               },
               {
@@ -6077,7 +6073,7 @@
               "question": "Ar šis brief pilnas? „Tema: BVP tendencijos. Auditorija: vadovybė.“",
               "options": [
                 "Taip – turime temą ir auditoriją",
-                "Ne – trūksta tikslas, skaidrių skaičius, tonas",
+                "Ne – trūksta tikslo, skaidrių skaičiaus, tono",
                 "Ne – trūksta tik vizualų stilius",
                 "Taip – pakanka tik temos"
               ],
@@ -6092,7 +6088,7 @@
               },
               {
                 "heading": "2️⃣ Daryk dabar (2–15 min)",
-                "body": "**Ką daryti:** Nukopijuok sprinto šabloną žemiau, užpildyk [Tema], [Auditorija], [Tikslas], paleisk DI. **Ką gausi:** 8 skaidrių struktūra + pilnas 3-ios skaidrės turinys + 6 punktų kokybės patikra.",
+                "body": "**Ką daryti:** Nukopijuok sprinto šabloną žemiau, užpildyk [Tema], [Auditorija], [Tikslas], paleisk DI. **Ką gausi:** 8 skaidrių struktūra + pilnas 3-iosios skaidrės turinys + 6 punktų kokybės patikra.",
                 "blockVariant": "brand"
               },
               {
@@ -6115,7 +6111,7 @@
             "footer": "Toliau – skaidrė 6: QC lab",
             "practicalTask": {
               "templateLabel": "📋 Sprinto šablonas (copy-paste)",
-              "template": "Tu esi DI prezentacijų rengėjas.\n\nTEMA: [įrašyk temą]\nAUDITORIJA: [kam skirta]\nTIKSLAS: [ką turi pasiekti prezentacija]\nTONAS: profesionalus, aiškus, be perteklinių tekstų\nAPIMTIS: 8 skaidrės\nFORMATAS: kiekvienai skaidrei pateik: 1) antraštę (teiginys), 2) 2 bullet (≤12 žodžių), 3) vieną vizualo idėją (schema / piktograma / lentelė).\n\nPirma sugeneruok 8 skaidrių struktūrą. Tada sugeneruok pilną 3-ios skaidrės turinį (išplėstai, su pavyzdžiu). Galiausiai pateik 6 punktų kokybės patikrą: aiškumas, auditorija, struktūra, faktai/prielaidos, ar antraštės teiginiai, ar CTA aiškus."
+              "template": "Tu esi DI prezentacijų rengėjas.\n\nTEMA: [įrašyk temą]\nAUDITORIJA: [kam skirta]\nTIKSLAS: [ką turi pasiekti prezentacija]\nTONAS: profesionalus, aiškus, be perteklinių tekstų\nAPIMTIS: 8 skaidrės\nFORMATAS: kiekvienai skaidrei pateik: 1) antraštę (teiginys), 2) 2 bullet (≤12 žodžių), 3) vieną vizualo idėją (schema / piktograma / lentelė).\n\nPirma sugeneruok 8 skaidrių struktūrą. Tada sugeneruok pilną 3-iosios skaidrės turinį (išplėstai, su pavyzdžiu). Galiausiai pateik 6 punktų kokybės patikrą: aiškumas, auditorija, struktūra, faktai/prielaidos, ar antraštės teiginiai, ar CTA aiškus."
             }
           }
         },
@@ -6375,7 +6371,7 @@
               "question": "Koks geriausias pirmas žingsnis?",
               "options": [
                 "Rescue: teiginiai-antraštės, maks. 2 bullet, pažymėti prielaidas, pridėti CTA",
-                "Keisti įrankį į kitą generatorių be keičiant turinį",
+                "Keisti įrankį į kitą generatorių nekeičiant turinio",
                 "Prašyti dar ilgesnio teksto",
                 "Ištrinti visas skaidres ir pradėti be brief"
               ],
@@ -6671,7 +6667,7 @@
                 "heading": "Daryk dabar"
               },
               {
-                "heading": "Prieš kurdami: konteksto inžinerijos schema (Modulio 4)",
+                "heading": "Prieš kurdamas: konteksto inžinerijos schema (Modulio 4)",
                 "body": "Prieš HTML generavimą paruošk kontekstą: **1)** RAG arba paieška – faktai į INPUT. **2)** Vizualus maketas (pvz. Figma) – papildo INPUT. **3)** 6 blokų promptas su surinktu kontekstu. Konteksto inžinerija = valdai, ką tieki DI.",
                 "blockVariant": "terms",
                 "collapsible": true,
@@ -6705,7 +6701,7 @@
                     ],
                     [
                       "#6 ADVANCED",
-                      "Tik validus HTML+CSS kodas, be markdown žymų. Konsistentus rezultatas (temperature žemas, jei galima)."
+                      "Tik validus HTML+CSS kodas, be markdown žymų. Nuoseklus rezultatas (temperature žemas, jei galima)."
                     ]
                   ]
                 }
@@ -6741,7 +6737,7 @@
                 "Užtenka paprašyti „gražaus tinklalapio“",
                 "META + INPUT + OUTPUT (+ REASONING/QUALITY/ADVANCED pagal užduotį)",
                 "Tik spalvų paletė be tikslo",
-                "Tik „padaryk professionaliai“ be formato"
+                "Tik „padaryk profesionaliai“ be formato"
               ],
               "correct": 1,
               "explanation": "6 blokai duoda rolę, įvestį ir aiškų OUTPUT (failas/formatas). Be to DI spėlioja ir rezultatas būna chaotiškas."
@@ -6907,7 +6903,7 @@
               },
               {
                 "heading": "4. Procesai",
-                "body": "Vizualizuok DI procesus (schemos, žingsniai) ir aprašyk vadovus pasikartojančioms užduotims – komanda naudoja DI nuosekliai. **Praktiškai:** vienas dokumentas ar schema „kaip mes darome X su DI“ – naujiems atėjusiems ar sau po pertraukos nebereikia atgalinėti."
+                "body": "Vizualizuok DI procesus (schemos, žingsniai) ir aprašyk vadovus pasikartojančioms užduotims – komanda naudoja DI nuosekliai. **Praktiškai:** vienas dokumentas ar schema „kaip mes darome X su DI“ – naujiems atėjusiems ar sau po pertraukos nebereikia pradėti iš naujo."
               },
               {
                 "heading": "5. Duomenų rinkiniai",
@@ -7306,7 +7302,7 @@
         {
           "id": 71,
           "title": "Duomenų analizė su DI – išmok ne klausti, o gauti atsakymą",
-          "subtitle": "Valdyk DI kaip analitiką – ne leisk spėlioti.",
+          "subtitle": "Valdyk DI kaip analitiką – neleisk spėlioti.",
           "type": "content-block",
           "content": {
             "sections": [
@@ -7337,7 +7333,7 @@
               {
                 "heading": "Daryk dabar – pirmas analitiko promptas",
                 "body": "Nukopijuok promptą žemiau į DI, paleisk ir palygink su „paprastu klausimu“.",
-                "copyable": "META: Tu esi verslo duomenų analitikas. Tikslas: trumpa BVP arba rinkos tendencijų ataskaita.\n\nINPUT: Naudok tik šiuos šaltinius: Eurostat, Valstybės duomenų agentūra (anksčiau Statistikos departamentas). Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\n\nOUTPUT: 1 puslapis, 3–5 punktai, su nuorodomis į šaltinius. Kalba: lietuvių.",
+                "copyable": "META: Tu esi verslo duomenų analitikas. Tikslas: trumpa BVP arba rinkos tendencijų ataskaita.\n\nINPUT: Naudok tik šiuos šaltinius: Eurostat, Valstybės duomenų agentūra (anksčiau Statistikos departamentas). Jei duomenų nėra – parašyk „Nežinau“, nespėliok.\n\nOUTPUT: 1 puslapis, 3–5 punktai, su nuorodomis į šaltinius. Kalba: lietuvių.",
                 "blockVariant": "accent"
               }
             ],
@@ -7512,7 +7508,7 @@
                     "value": "60–70%",
                     "tooltip": {
                       "explanation": "60–70% darbuotojų praneša, kad dirba greičiau naudodami DI.",
-                      "trend": "Individūalų produktyvumas auga, bet pelningumas ne."
+                      "trend": "Individualų produktyvumas auga, bet pelningumas ne."
                     }
                   }
                 ]
@@ -7671,7 +7667,7 @@
                   "num": "02",
                   "icon": "🔗",
                   "name": "Integracija",
-                  "description": "Sistemų sujungimas. Duomenų srautai be silosų ir „Excel rankinio darbo\"."
+                  "description": "Sistemų sujungimas. Duomenų srautai be silosų ir „Excel rankinio darbo“."
                 },
                 {
                   "num": "03",
@@ -7706,7 +7702,7 @@
                 },
                 {
                   "num": "03",
-                  "title": "Automatizuoti „nuobodžiausius\" procesus pirmiau",
+                  "title": "Automatizuoti „nuobodžiausius“ procesus pirmiau",
                   "body": "Pradėti nuo dokumentų apdorojimo, finansų rutinos, ataskaitų rengimo. Greitai matoma grąža kuria vidinį pasitikėjimą DI.",
                   "kpi": "KPI: Valandos · Klaidos · Vieneto savikaina",
                   "colorKey": "slate"
@@ -7813,7 +7809,7 @@
                     ],
                     [
                       "Publikavimas",
-                      "Paversi įžvalgą sprendimu ir veiksmais",
+                      "Paversti įžvalgą sprendimu ir veiksmais",
                       "3f – vadovų ataskaita"
                     ]
                   ]
@@ -7942,7 +7938,7 @@
               {
                 "heading": "Užduotis pagal tavo kelią",
                 "body": "Nukopijuok užduotį pagal savo kelią – tai pirmas praktinis žingsnis.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką pardavimų analizei.\nCONTEXT: Duomenys iš CRM, ERP, e-commerce apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (KPI / artefaktas).\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk 3 žingsnių įrankių seką pardavimų analizei.\nCONTEXT: Duomenys iš CRM, ERP, e-commerce apie [X].\nOUTPUT: 1) Įrankis 1 + tikslas 2) Įrankis 2 + tikslas 3) Įrankis 3 + rezultatas (KPI / artefaktas).\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               }
             ]
           }
@@ -8115,7 +8111,7 @@
                 "heading": "3️⃣ Kopijuojamas promptas",
                 "body": "ROLE + TASK + CONTEXT + rezultatas (5 punktai) + TONE. Įklijuok į DI.",
                 "blockVariant": "terms",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Atlik sentimentų analizę.\nCONTEXT: Įkeliu klientų / auditorijos atsiliepimus apie pardavimų [X].\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritiniai skundai (top 5 pagal riziką)\n5. 3 prioritetiniai veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Atlik sentimentų analizę.\nCONTEXT: Įkeliu klientų / auditorijos atsiliepimus apie pardavimų [X].\n\nOUTPUT:\n1. Bendra sentimentų struktūra (% teigiamų / neutralių / neigiamų)\n2. Dažniausios temos (su pasikartojimo skaičiumi)\n3. Emocijos intensyvumas (žemas / vidutinis / aukštas)\n4. Kritiniai skundai (top 5 pagal riziką)\n5. 3 prioritetiniai veiksmai\n\nTONE: Analitinis, konkretus, be bendrybių.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
@@ -8166,19 +8162,19 @@
               {
                 "heading": "3a. Duomenų kūrimas",
                 "body": "Struktūruotas pardavimų pavyzdys su stulpeliais ir formulėmis.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sukurk 20 eilučių pardavimų duomenų pavyzdį.\nCONTEXT: Tema [X]; reikia realistiškų stulpelių analizei.\nOUTPUT: Lentelė su stulpeliais + 20 eilučių + 2 apskaičiuoti rodikliai.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sukurk 20 eilučių pardavimų duomenų pavyzdį.\nCONTEXT: Tema [X]; reikia realistiškų stulpelių analizei.\nOUTPUT: Lentelė su stulpeliais + 20 eilučių + 2 apskaičiuoti rodikliai.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. Konkurentų analizė",
                 "body": "SWOT, silpnos vietos, galimybės, strategija.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Atlik konkurentų / alternatyvų analizę.\nCONTEXT: pardavimų rinka [X].\nOUTPUT: SWOT lentelė, 3 silpnos vietos, 3 galimybės, 30 dienų greito veiksmo planas.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Atlik konkurentų / alternatyvų analizę.\nCONTEXT: pardavimų rinka [X].\nOUTPUT: SWOT lentelė, 3 silpnos vietos, 3 galimybės, 30 dienų greito veiksmo planas.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. CFO asistentas",
                 "body": "EBITDA, marža, rizikos, optimizacija.",
-                "copyable": "ROLE: Tu esi CFO asistentas (pardavimų).\nTASK: Įvertink finansinius / kaštų rodiklius.\nCONTEXT: [įklijuok pardavimų skaičius arba aprašą]\nOUTPUT: 3 rizikos, 3 optimizavimo galimybės, kainų / biudžeto potencialas (%).\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi CFO asistentas (pardavimų).\nTASK: Įvertink finansinius / kaštų rodiklius.\nCONTEXT: [įklijuok pardavimų skaičius arba aprašą]\nOUTPUT: 3 rizikos, 3 optimizavimo galimybės, kainų / biudžeto potencialas (%).\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 2
               },
               {
@@ -8275,25 +8271,25 @@
               {
                 "heading": "3a. Tinka / Netinka (OK / Fail patikra)",
                 "body": "Greiti kokybės vartai: priimti ar atmesti.",
-                "copyable": "Įvertink šiuos duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk verslą, duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "Įvertink šiuos duomenis/rezultatą OK / Fail logika.\n\nKontekstas: [aprašyk verslą, duomenis, tikslą]\nDuomenys: [įklijuok]\n\nAtsakyk:\n1. Kas aiškiai tinka (OK)?\n2. Kas aiškiai netinka (Fail)?\n3. Kas neaišku?\n4. Kokia tikėtina kiekvieno „Fail“ priežastis?\n5. Ką taisyti pirmiausia?\n6. Galutinis verdiktas: Tinka / Netinka / Tinka su sąlygomis.\n\nBūk kritiškas – nesušvelnink silpnų vietų.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "3b. Kas svarbiausia? (Būtina / Svarbu / Norima / Ne dabar)",
                 "body": "Prioritetų sistema – kai idėjų ar užduočių daug.",
-                "copyable": "Suskirstyk šį sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar (šis metodas kartais vadinamas MoSCoW).\n\nKontekstas: [tikslas / projektas]\nSąrašas: [užduotys, funkcijos, idėjos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis verslui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "Suskirstyk šį sąrašą į 4 grupes: Būtina / Svarbu / Norima / Ne dabar (šis metodas kartais vadinamas MoSCoW).\n\nKontekstas: [tikslas / projektas]\nSąrašas: [užduotys, funkcijos, idėjos]\n\nKiekvienam punktui parašyk:\n1. Kodėl jis priklauso tai grupei\n2. Poveikis verslui\n3. Rizika, jei nedarysime\n4. Rekomenduojamas kitas žingsnis\n\nBūk negailestingas apimčiai – „Ne dabar“ grupė turi būti reali.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 1
               },
               {
                 "heading": "3c. Greiti laimėjimai (Low-hanging fruit)",
                 "body": "Kur mažai pastangų duoda greitą, matomą rezultatą.",
-                "copyable": "Rask greitus laimėjimus šiuose duomenyse.\n\nTikslas: [ką norime pagerinti]\nDuomenys: [problemos, galimybės, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada galima patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "Rask greitus laimėjimus šiuose duomenyse.\n\nTikslas: [ką norime pagerinti]\nDuomenys: [problemos, galimybės, metrikos]\n\nIeškok galimybių, kurios yra:\n1. Mažai pastangų\n2. Mažai kainuoja\n3. Greitai įgyvendinamos\n4. Duoda matomą rezultatą\n\nKiekvienai pateik: veiksmas, tikėtinas poveikis, pastangų lygis, kada galima patikrinti, rizika, kaip matuosime sėkmę.\n\nIšrink 5 svarbiausias.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 2
               },
               {
                 "heading": "3d. Testuok / Investuok / Atmesk (Kiss-Marry-Kill)",
                 "body": "Portfelio sprendimas – produktai, kanalai, klientai, idėjos.",
-                "copyable": "Įvertink šiuos variantus principu Testuok / Investuok / Atmesk (Kiss-Marry-Kill).\n\nKontekstas: [tikslas, biudžetas, terminas]\nVariantai: [produktai, kanalai, klientai, idėjos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža, blaškantis arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į verslo rezultatą.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "Įvertink šiuos variantus principu Testuok / Investuok / Atmesk (Kiss-Marry-Kill).\n\nKontekstas: [tikslas, biudžetas, terminas]\nVariantai: [produktai, kanalai, klientai, idėjos]\n\nKiekvienam variantui:\n1. Testuok – vertas mažo bandymo\n2. Investuok – stiprus kandidatas dideliam įsipareigojimui\n3. Atmesk – silpna grąža, blaškantis arba rizikingas\n\nPaaiškink: 1) kodėl toks priskyrimas, 2) įrodymai už/prieš, 3) kas pakeistų nuomonę, 4) kitas žingsnis, 5) kaip matuosime sėkmę.\n\nBūk tiesus, orientuokis į verslo rezultatą.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "linkedRowIndex": 3
               },
               {
@@ -8613,8 +8609,8 @@
               },
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
-                "body": "Įklijuok į DI; pakeisk [ĮLIKUOKITE_SVETAINĖS_NUORODĄ] ir [KĄ_IŠTRAUKTI] į savo reikšmes.",
-                "copyable": "ROLE: Tu esi Python programuotojas, kuris rašo paprastus duomenų siurbimo (scraping) skriptus.\nTASK: Parašyk Python skriptą, kuris:\n1. Atidaro šį puslapį: [ĮLIKUOKITE_SVETAINĖS_NUORODĄ]\n2. Ištraukia [KĄ_IŠTRAUKTI – pvz. lentelę su kainomis, sąrašą produktų, pavadinimus ir kainas]\n3. Išsaugo rezultatą į CSV failą (su lietuviškomis raidėmis UTF-8)\n\nReikalavimai:\n- Naudok requests ir BeautifulSoup (arba pandas.read_html jei lentelė).\n- Skriptas turi būti trumpas, su komentarais lietuviškai.\n- Pabaigoje atspausdink: kiek įrašų surinkta ir failo pavadinimą.\nPateik pilną skriptą – kad galėčiau nukopijuoti į failą ir paleisti: pip install requests beautifulsoup4, python scrape.py"
+                "body": "Įklijuok į DI; pakeisk [ĮKLIJUOK_SVETAINĖS_NUORODĄ] ir [KĄ_IŠTRAUKTI] į savo reikšmes.",
+                "copyable": "ROLE: Tu esi Python programuotojas, kuris rašo paprastus duomenų siurbimo (scraping) skriptus.\nTASK: Parašyk Python skriptą, kuris:\n1. Atidaro šį puslapį: [ĮKLIJUOK_SVETAINĖS_NUORODĄ]\n2. Ištraukia [KĄ_IŠTRAUKTI – pvz. lentelę su kainomis, sąrašą produktų, pavadinimus ir kainas]\n3. Išsaugo rezultatą į CSV failą (su lietuviškomis raidėmis UTF-8)\n\nReikalavimai:\n- Naudok requests ir BeautifulSoup (arba pandas.read_html jei lentelė).\n- Skriptas turi būti trumpas, su komentarais lietuviškai.\n- Pabaigoje atspausdink: kiek įrašų surinkta ir failo pavadinimą.\nPateik pilną skriptą – kad galėčiau nukopijuoti į failą ir paleisti: pip install requests beautifulsoup4, python scrape.py"
               },
               {
                 "heading": "Etika ir teisė",
@@ -8651,7 +8647,7 @@
               {
                 "heading": "Užduotis pagal tavo kelią",
                 "body": "Nukopijuok sisteminį promptą ir tyrimo temą pagal savo kelią.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas / tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu ištirti pardavimų veiksnius [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas / tyrėjas.\nTASK: Parašyk sisteminį promptą ir gilaus tyrimo temą.\nCONTEXT: Noriu ištirti pardavimų veiksnius [X].\nOUTPUT: 1) Sisteminis promptas (rolė + taisyklės) 2) Tyrimo tema 3) 5 klausimai, į kuriuos turiu gauti atsakymą.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               }
             ]
           }
@@ -8735,7 +8731,7 @@
                 "heading": "4️⃣ Daryk dabar",
                 "body": "Aprašyk vieną realią analizės užduotį ir paprašyk DI parodyti, kur jis gali padėti – prieš aktyvuodamas analitiko rolę.",
                 "blockVariant": "brand",
-                "copyable": "ROLE: Tu esi patyręs duomenų analitikas (pardavimai).\nTASK: Parodyk, kaip DI gali padėti mano pardavimų analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi patyręs duomenų analitikas (pardavimai).\nTASK: Parodyk, kaip DI gali padėti mano pardavimų analizės užduotyje.\nCONTEXT: Užduotis: [įrašyk]. Turimi duomenys: [įrašyk]. Sprendimas, kurį turiu priimti: [įrašyk].\nOUTPUT: 1) Ką DI gali padaryti pats 2) Ką turi patikrinti žmogus 3) Kokius duomenis dar reikia surinkti 4) Pirmas promptas, nuo kurio pradėti.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "5️⃣ Patikra (1 min)",
@@ -8770,7 +8766,7 @@
               },
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk Excel/CRM eksporto valymo planą.\nCONTEXT: Turiu pardavimų eksportą apie [X].\nOUTPUT: 1) Kokius stulpelius tikrinti 2) Tipinės klaidos 3) Valymo žingsniai 4) Kada duomenys „pakankamai švarūs“ analizei.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sudaryk Excel/CRM eksporto valymo planą.\nCONTEXT: Turiu pardavimų eksportą apie [X].\nOUTPUT: 1) Kokius stulpelius tikrinti 2) Tipinės klaidos 3) Valymo žingsniai 4) Kada duomenys „pakankamai švarūs“ analizei.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "body": ""
               },
               {
@@ -8928,7 +8924,7 @@
               },
               {
                 "heading": "4️⃣ Kopijuojamas promptas – ER ir KPI",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Padėk sukurti idealią duomenų bazės struktūrą.\nCONTEXT: pardavimų domenas (niša: [X]); šaltiniai: CRM, ERP, e-commerce; Saugykla: [įrankis iš §2; Redis/Valkey = tik greičio sluoksnis].\nOUTPUT: 1) 6 pagrindinės lentelės 2) Ryšiai (ER logika) 3) KPI, kuriuos verta stebėti 4) Pirmas žingsnis.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Padėk sukurti idealią duomenų bazės struktūrą.\nCONTEXT: pardavimų domenas (niša: [X]); šaltiniai: CRM, ERP, e-commerce; Saugykla: [įrankis iš §2; Redis/Valkey = tik greičio sluoksnis].\nOUTPUT: 1) 6 pagrindinės lentelės 2) Ryšiai (ER logika) 3) KPI, kuriuos verta stebėti 4) Pirmas žingsnis.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "body": ""
               },
               {
@@ -8991,7 +8987,7 @@
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
                 "blockVariant": "terms",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sugeneruok vizualizacijas ir įžvalgas.\nCONTEXT: Remdamasis šiais pardavimų duomenimis:\n[duomenys]\nOUTPUT:\n1. Pagrindinę tendencijos diagramą\n2. Segmentų palyginimą\n3. Rizikų / galimybių vaizdą\n4. 3 pagrindines įžvalgas\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sugeneruok vizualizacijas ir įžvalgas.\nCONTEXT: Remdamasis šiais pardavimų duomenimis:\n[duomenys]\nOUTPUT:\n1. Pagrindinę tendencijos diagramą\n2. Segmentų palyginimą\n3. Rizikų / galimybių vaizdą\n4. 3 pagrindines įžvalgas\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "body": ""
               },
               {
@@ -9102,7 +9098,7 @@
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
                 "blockVariant": "terms",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 6 mėn. prognozę.\nCONTEXT: Remiantis 24 mėn. pardavimų istorija:\n[duomenys arba nuoroda]\nOUTPUT:\n1. Prognozė (Q4, atsargos)\n2. Sezoniškumo įtaka\n3. Optimistinis ir pesimistinis scenarijus\n4. Pagrindinės rizikos\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 6 mėn. prognozę.\nCONTEXT: Remiantis 24 mėn. pardavimų istorija:\n[duomenys arba nuoroda]\nOUTPUT:\n1. Prognozė (Q4, atsargos)\n2. Sezoniškumo įtaka\n3. Optimistinis ir pesimistinis scenarijus\n4. Pagrindinės rizikos\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "body": ""
               },
               {
@@ -9221,7 +9217,7 @@
               {
                 "heading": "3c. Surinkti duomenis",
                 "body": "Priskirk rinkinius kategorijoms.",
-                "copyable": "Duomenys: [šaltinių lentelė arba sąrašas]\nPadaryk: priskirk šiuos rinkinius kategorijoms\nFormatas: kategorija | rinkinys | kodėl tinka | prioriteta",
+                "copyable": "Duomenys: [šaltinių lentelė arba sąrašas]\nPadaryk: priskirk šiuos rinkinius kategorijoms\nFormatas: kategorija | rinkinys | kodėl tinka | prioritetas",
                 "collapsible": true,
                 "collapsedByDefault": true
               },
@@ -9246,7 +9242,7 @@
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "Algoritmas padeda išvengti chaoso: pirmiausia šaltiniai ir struktūra, tada surinkimas, valymas ir tik tada eksportas.\n\n**Naudok, kai:** turi nešvarius arba skirtingų formatų duomenis; reikia sistemingai surinkti viešus šaltinius; ruoiesi analizei ir nori checklist prieš EDA.\n\n**Nenaudok, kai:** reikia tik vieno greito atsakymo; jau turi paruoštą, švarų CSV; reikia pilnos analizės nuo A iki Z – tada rinkis 6 žingsnių analizės eigą arba pilną analizės šabloną (MASTER PROMPTĄ).\n\n**Skirtumas:** 6 žingsnių eiga = visas kelias; 5 algoritmas = tik paruošimas; 8 žingsnių šablonas = pilna analizė su rekomendacijomis.",
+                "body": "Algoritmas padeda išvengti chaoso: pirmiausia šaltiniai ir struktūra, tada surinkimas, valymas ir tik tada eksportas.\n\n**Naudok, kai:** turi nešvarius arba skirtingų formatų duomenis; reikia sistemingai surinkti viešus šaltinius; ruošiesi analizei ir nori checklist prieš EDA.\n\n**Nenaudok, kai:** reikia tik vieno greito atsakymo; jau turi paruoštą, švarų CSV; reikia pilnos analizės nuo A iki Z – tada rinkis 6 žingsnių analizės eigą arba pilną analizės šabloną (MASTER PROMPTĄ).\n\n**Skirtumas:** 6 žingsnių eiga = visas kelias; 5 žingsnių algoritmas = tik paruošimas; 8 žingsnių šablonas = pilna analizė su rekomendacijomis.",
                 "blockVariant": "brand"
               }
             ]
@@ -9273,7 +9269,7 @@
                 "heading": "3️⃣ Kopijuojamas promptas (valymas)",
                 "body": "Įklijuok į DI prieš analizę – su savo duomenimis.",
                 "blockVariant": "terms",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Patikrink duomenis prieš analizę.\nCONTEXT: [įklijuok pardavimų eksportą]\nOUTPUT:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip užpildyti?\n5. Ar stulpelių tipai teisingi?\n6. Ar pridėtos laiko / regiono žymės?\nPateik valymo ataskaitą ir siūlomus veiksmus.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Patikrink duomenis prieš analizę.\nCONTEXT: [įklijuok pardavimų eksportą]\nOUTPUT:\n1. Ar reikalinga anonimizacija?\n2. Ar formatai suvienodinti (datos, skaičiai)?\n3. Ar pašalinti dubliavimai?\n4. Kur trūksta reikšmių ir kaip užpildyti?\n5. Ar stulpelių tipai teisingi?\n6. Ar pridėtos laiko / regiono žymės?\nPateik valymo ataskaitą ir siūlomus veiksmus.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
@@ -9519,7 +9515,7 @@
           "pathBranch": ["etika-plus"],
           "title": "Saugumas: prompt injection ir jailbreak",
           "shortTitle": "Promptų injekcija ir ribų apėjimas",
-          "subtitle": "Atpažink slapta instrukciją duomenyse; nukopijuok gynybos šabloną",
+          "subtitle": "Atpažink slaptą instrukciją duomenyse; nukopijuok gynybos šabloną",
           "type": "content-block",
           "content": {
             "sections": [
@@ -9530,7 +9526,7 @@
               },
               {
                 "heading": "2️⃣ Daryk dabar (2–3 min)",
-                "body": "1) Perskaityk scenarijų ir rask slapta instrukciją. 2) Nukopijuok gynybos promptą (žemiau) ir paleisk su savo DI – įklijuok bet kokį laišką ar eksportą į vietą „DUOMENYS“.",
+                "body": "1) Perskaityk scenarijų ir rask slaptą instrukciją. 2) Nukopijuok gynybos promptą (žemiau) ir paleisk su savo DI – įklijuok bet kokį laišką ar eksportą į vietą „DUOMENYS“.",
                 "blockVariant": "brand"
               },
               {
@@ -9815,7 +9811,7 @@
                 "id": "check-manip-3",
                 "question": "Kas yra haliucinacija DI kontekste?",
                 "options": [
-                  "Kai DI pateikia įtikinamu atrodantį, bet išgalvotą atsakymą (be šaltinių pagrindimo)",
+                  "Kai DI pateikia įtikinamai atrodantį, bet išgalvotą atsakymą (be šaltinių pagrindimo)",
                   "Kai DI dirba per lėtai",
                   "Kai DI atsako anglai, nors prašėte lietuviškai",
                   "Kai DI nepateikia jokio atsakymo"
@@ -9979,12 +9975,12 @@
               {
                 "heading": "3a. BI planas",
                 "body": "Pateik 4 žingsnių planą pagal BI schemą. Pakeisk [X] į temą.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Pateik 4 žingsnių BI planą temai [X].\nCONTEXT: pardavimų kontekstas; šaltiniai: CRM, ERP, e-commerce.\nOUTPUT:\n1. Surink – kokius šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir kam pateikti\n4. Prognozė – ką prognozuoti toliau (Q4, atsargos)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Pateik 4 žingsnių BI planą temai [X].\nCONTEXT: pardavimų kontekstas; šaltiniai: CRM, ERP, e-commerce.\nOUTPUT:\n1. Surink – kokius šaltinius naudoti\n2. Analizuok – kokius EDA ir įžvalgų žingsnius atlikti\n3. Ataskaita – kaip vizualizuoti ir kam pateikti\n4. Prognozė – ką prognozuoti toliau (Q4, atsargos)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "3b. Rinkos tendencijos",
                 "body": "5 tendencijos su poveikiu ir prognoze. Pakeisk [X] į sektorių.",
-                "copyable": "ROLE: Tu esi rinkos analitikas.\nTASK: Identifikuok 5 naujausias rinkos tendencijas [X] sektoriuje.\nCONTEXT: Vieši / oficialūs šaltiniai; jei nurodysiu kitus – naudok tik juos.\nOUTPUT:\n1. Tendencija\n2. Poveikis\n3. Rizika\n4. Prognozė 6 mėn.\n(pakartok 5 tendencijoms)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi rinkos analitikas.\nTASK: Identifikuok 5 naujausias rinkos tendencijas [X] sektoriuje.\nCONTEXT: Vieši / oficialūs šaltiniai; jei nurodysiu kitus – naudok tik juos.\nOUTPUT:\n1. Tendencija\n2. Poveikis\n3. Rizika\n4. Prognozė 6 mėn.\n(pakartok 5 tendencijoms)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
@@ -10014,7 +10010,7 @@
               {
                 "heading": "Užduotis pagal tavo kelią",
                 "body": "Nukopijuok 2–4 šaltinių užduotį pagal savo kelią.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – pardavimų [X].\nOUTPUT: Lentelė: šaltinis | tipas (viešas/vidinis) | ką duoda | kodėl svarbu.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk 2–4 šaltinių sąrašą lygiagrečiam tyrimui.\nCONTEXT: Tema – pardavimų [X].\nOUTPUT: Lentelė: šaltinis | tipas (viešas/vidinis) | ką duoda | kodėl svarbu.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               }
             ]
           }
@@ -10332,9 +10328,9 @@
               },
               {
                 "heading": "4️⃣ Kopijuojamas promptas (vadovybei)",
-                "body": "Nukopijuok ir įklijuok į DI – gausi 5 žingsnių planą, pagrindinių rodiklių sistemą ir vadovų elgesio gaires su Deming logika.",
+                "body": "Nukopijuok ir įklijuok į DI – gausi 5 žingsnių planą, pagrindinių rodiklių sistemą ir vadovų elgesio gaires su Demingo logika.",
                 "blockVariant": "terms",
-                "copyable": "Mūsų įmonėje sprendimai dažnai grindžiami intuicija.\n\nRemkis Deming logika: tobulinti sistemą (ne kaltinti žmones); skirti signalą nuo triukšmo; matuoti prieš spėjant.\n\nSukurk:\n1. 5 žingsnių planą perėjimui prie duomenimis grįstos kultūros\n2. Pagrindinių rodiklių sistemą (ką matuoti, kaip sekti)\n3. Vadovų elgesio pokyčių gaires (pavyzdžiai: „prašyti duomenų prieš sprendimą“, „ne spėti – matuoti\")"
+                "copyable": "Mūsų įmonėje sprendimai dažnai grindžiami intuicija.\n\nRemkis Demingo logika: tobulinti sistemą (ne kaltinti žmones); skirti signalą nuo triukšmo; matuoti prieš spėjant.\n\nSukurk:\n1. 5 žingsnių planą perėjimui prie duomenimis grįstos kultūros\n2. Pagrindinių rodiklių sistemą (ką matuoti, kaip sekti)\n3. Vadovų elgesio pokyčių gaires (pavyzdžiai: „prašyti duomenų prieš sprendimą“, „ne spėti – matuoti“)"
               },
               {
                 "heading": "5️⃣ Patikra (1 min)",
@@ -10426,7 +10422,7 @@
               {
                 "heading": "3️⃣ Kopijuojamas promptas",
                 "blockVariant": "terms",
-                "copyable": "META: Tu esi patyręs duomenų analitikas (pardavimai). Tikslas: pilna pardavimų analizė temai [X].\n\nINPUT: Tema – [X]. Duomenys: [įklijuok arba aprašyk šaltinius: CRM, ERP, e-commerce]. Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.\n\nOUTPUT: Pateik 8 blokus:\n1. Duomenų šaltiniai (CRM, ERP, e-commerce)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (top produktai, regionai, tendencijos)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (Q4, atsargos)\n8. Strateginės rekomendacijos",
+                "copyable": "META: Tu esi patyręs duomenų analitikas (pardavimai). Tikslas: pilna pardavimų analizė temai [X].\n\nINPUT: Tema – [X]. Duomenys: [įklijuok arba aprašyk šaltinius: CRM, ERP, e-commerce]. Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.\n\nOUTPUT: Pateik 8 blokus:\n1. Duomenų šaltiniai (CRM, ERP, e-commerce)\n2. Duomenų struktūra\n3. Valymas\n4. EDA (top produktai, regionai, tendencijos)\n5. Vizualizacijos pasiūlymai\n6. Įžvalgos\n7. Prognozės (Q4, atsargos)\n8. Strateginės rekomendacijos",
                 "body": ""
               },
               {
@@ -10499,7 +10495,7 @@
               {
                 "heading": "Užduotis pagal tavo kelią",
                 "body": "Nukopijuok sintezės užduotį pagal savo kelią.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pardavimų [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai komandai.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Sujunk 2 tyrimų atsakymus į sintezės lentelę.\nCONTEXT: Tema – pardavimų [X]. Įklijuoju 2 DI atsakymus.\nOUTPUT: 1) Kas sutampa 2) Kas skiriasi 3) 3 veiksmai komandai.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               }
             ]
           }
@@ -10519,7 +10515,7 @@
               {
                 "heading": "Užduotis pagal tavo kelią",
                 "body": "Nukopijuok duomenų masyvo užduotį pagal savo kelią.",
-                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pardavimų [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi pardavimų analitikas.\nTASK: Paruošk duomenų masyvą tolesnei analizei.\nCONTEXT: Turiu sintezės išvadas apie pardavimų [X].\nOUTPUT: 1) Lentelės stulpeliai 2) 5–10 pavyzdinių eilučių 3) 3 KPI, kuriuos skaičiuosiu toliau.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               }
             ]
           }
@@ -10659,22 +10655,22 @@
               {
                 "heading": "2. Vizualizacijos tipo parinkimas",
                 "body": "Rolė + TASK + CONTEXT + AUDIENCE + OUTPUT + TONE.",
-                "copyable": "ROLE: Tu esi senior duomenų vizualizacijos ekspertas ir UX dizaineris.\nTASK: Parink optimalų vizualizacijos tipą.\nCONTEXT: Turiu pardavimų duomenis pagal regionus ir mėnesius. Tikslas – parodyti augimo tendenciją ir regionų skirtumus.\nAUDIENCE: Vadovybė (ne analitikai).\nOUTPUT: 1) Pasiūlyk 3 variantus 2) Paaiškink kodėl kiekvienas tiktų 3) Įvardink rizikas (pvz. klaidinanti interpretacija)\nTONE: Strateginis, aiškus.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi senior duomenų vizualizacijos ekspertas ir UX dizaineris.\nTASK: Parink optimalų vizualizacijos tipą.\nCONTEXT: Turiu pardavimų duomenis pagal regionus ir mėnesius. Tikslas – parodyti augimo tendenciją ir regionų skirtumus.\nAUDIENCE: Vadovybė (ne analitikai).\nOUTPUT: 1) Pasiūlyk 3 variantus 2) Paaiškink kodėl kiekvienas tiktų 3) Įvardink rizikas (pvz. klaidinanti interpretacija)\nTONE: Strateginis, aiškus.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "3. Istorijos kūrimas iš duomenų",
                 "body": "Data storyteller – naratyvas su įžvalga, konfliktu, veiksmu.",
-                "copyable": "ROLE: Data storyteller.\nTASK: Sukurk naratyvą iš pateiktų duomenų.\nCONTEXT: Pardavimai augo 20%, bet 2 regionuose mažėjo.\nOUTPUT: 1) Pagrindinė įžvalga 2) Konfliktas / įtampa 3) Ką tai reiškia verslui 4) Rekomenduojamas veiksmas\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Data storyteller.\nTASK: Sukurk naratyvą iš pateiktų duomenų.\nCONTEXT: Pardavimai augo 20%, bet 2 regionuose mažėjo.\nOUTPUT: 1) Pagrindinė įžvalga 2) Konfliktas / įtampa 3) Ką tai reiškia verslui 4) Rekomenduojamas veiksmas\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "4. Power BI žingsnių generavimas",
                 "body": "Įkėlimas, duomenų struktūra lentelėse, vizualizacijos, metų-prieš-metus skaičiavimas (DAX), vizualinio skaidrumo principai.",
-                "copyable": "ROLE: Power BI specialistas.\nTASK: Pateik tikslius veiksmus.\nCONTEXT: CSV failas su stulpeliais: Date, Region, Sales, Category.\nOUTPUT: 1) Duomenų įkėlimas 2) Duomenų struktūros patikra 3) Vizualizacijos kūrimas 4) DAX formulė YOY augimui 5) Dizaino rekomendacijos (vizualinio grupavimo principai)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Power BI specialistas.\nTASK: Pateik tikslius veiksmus.\nCONTEXT: CSV failas su stulpeliais: Date, Region, Sales, Category.\nOUTPUT: 1) Duomenų įkėlimas 2) Duomenų struktūros patikra 3) Vizualizacijos kūrimas 4) DAX formulė YOY augimui 5) Dizaino rekomendacijos (vizualinio grupavimo principai)\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "5. Python vizualizacijos kodas",
                 "body": "Dataset, stulpelinė + linijinė, seaborn, anotacijos.",
-                "copyable": "Parašyk Python kodą, kuris: 1) Sugeneruoja pardavimų dataset 2) Nubraižo: stulpelinę diagramą regionams, linijinę tendenciją per laiką 3) Naudoja seaborn 4) Prideda anotacijas su pagrindinėmis įžvalgomis\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "Parašyk Python kodą, kuris: 1) Sugeneruoja pardavimų dataset 2) Nubraižo: stulpelinę diagramą regionams, linijinę tendenciją per laiką 3) Naudoja seaborn 4) Prideda anotacijas su pagrindinėmis įžvalgomis\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
@@ -10777,7 +10773,7 @@
                 "heading": "6️⃣ Super promptas",
                 "body": "Paleisk šį promptą, kai turi CSV ar bent aiškų duomenų aprašymą ir nori vieno analizės paketo.\n\n🔘 Kopijuoti promptą (žemiau)",
                 "blockVariant": "brand",
-                "copyable": "ROLE: Tu esi duomenų analitikas + vizualizacijos dizaineris + verslo strategas.\nTASK: Iš pateiktų duomenų sukurk pilną analizės paketą.\nCONTEXT: CSV failas arba lentelė su duomenimis: [aprašyk stulpelius, laikotarpį ir auditoriją].\nOUTPUT:\n1) Duomenų santrauka (3 pagrindinės įžvalgos)\n2) Siūlomi grafikai\n3) Power BI instrukcija\n4) Python kodo kryptis arba pavyzdys\n5) Istorijos tekstas vadovybei (iki 200 žodžių)\n6) Rekomenduojamas verslo veiksmas.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok."
+                "copyable": "ROLE: Tu esi duomenų analitikas + vizualizacijos dizaineris + verslo strategas.\nTASK: Iš pateiktų duomenų sukurk pilną analizės paketą.\nCONTEXT: CSV failas arba lentelė su duomenimis: [aprašyk stulpelius, laikotarpį ir auditoriją].\nOUTPUT:\n1) Duomenų santrauka (3 pagrindinės įžvalgos)\n2) Siūlomi grafikai\n3) Power BI instrukcija\n4) Python kodo kryptis arba pavyzdys\n5) Istorijos tekstas vadovybei (iki 200 žodžių)\n6) Rekomenduojamas verslo veiksmas.\n\nRULE: Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok."
               },
               {
                 "heading": "7️⃣ Alternatyvos",
@@ -10813,7 +10809,7 @@
               },
               {
                 "heading": "4️⃣ Patikra (1 min)",
-                "body": "• Ar aprašei stulpelius, laikotarpį ir auditoriją?\n• Ar paketas turi santrauką, grafikus ir veiksmą?\n• Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; ne spėliok.",
+                "body": "• Ar aprašei stulpelius, laikotarpį ir auditoriją?\n• Ar paketas turi santrauką, grafikus ir veiksmą?\n• Jei trūksta duomenų – parašyk „Nežinau“ ir nurodyk, ko reikia; nespėliok.",
                 "blockVariant": "accent"
               }
             ]
@@ -11383,7 +11379,7 @@
                 {
                   "step": 1,
                   "title": "Patvirtink sektorių",
-                  "description": "Sektorius jau pasirinktas analitinio rinkinio stole – žr. užuominą viršuje. Promptas naudos tavo sritį vietoj [įmonės / sektoriaus].",
+                  "description": "Sektorius jau pasirinktas analitinio rinkinio starte – žr. užuominą viršuje. Promptas naudos tavo sritį vietoj [įmonės / sektoriaus].",
                   "hint": "Reikia kitos srities? Grįžk ir patvirtink kitą kelią.",
                   "partialSolution": ""
                 },
@@ -11859,7 +11855,7 @@
                 },
                 {
                   "label": "Diagnostinė (Kodėl?)",
-                  "consequence": "Galima pradėti nuo priežasties – jei jau žinai, kad kažkas nutiko (pvz."
+                  "consequence": "Galima pradėti nuo priežasties – jei jau žinai, kad kažkas nutiko (pvz. Q3 kritimas)."
                 },
                 {
                   "label": "Nuspėjamoji (Kas gali įvykti?)",
@@ -11938,12 +11934,12 @@
         {
           "id": 107,
           "title": "Scenarijus: Stebėjimas socialiniuose tinkluose",
-          "subtitle": "Temos, nuotaika, įtakoję žmonės",
+          "subtitle": "Temos, nuotaika, įtakojantys žmonės",
           "type": "practice-scenario",
           "characterId": 2,
           "content": {
             "scenarioTitle": "Stebėjimas socialiniuose tinkluose",
-            "scenarioDescription": "Pagrindinės temos, nuotaika (%), įtakoję žmonės (daug sekėjų), reputacijos rizika.",
+            "scenarioDescription": "Pagrindinės temos, nuotaika (%), įtakojantys žmonės (daug sekėjų), reputacijos rizika.",
             "taskFrame": {
               "task": "Stebėk socialinius kanalus – temos, nuotaika, reputacijos rizika, atsako strategija.",
               "doneWhen": "Turi santrauką su temomis, nuotaika ir 2 savaičių strategija arba nukopijavai promptą ir gavai atsakymą iš DI."
@@ -12082,7 +12078,7 @@
             "context": "Mokymų naudingumas (grąža iš investicijų), skirstymas darbuotojų į grupes, kurios temos veikė, rekomendacijos.",
             "data": "Mokymų duomenys, produktyvumas, kaštai.",
             "constraints": "Grąža = (produktyvumo augimas – mokymų kaštai) / mokymų kaštai.",
-            "expectedFormat": "Įvertinimas, grupes, temos, pasiūlymai (nutraukti/plėsti/testuoti)."
+            "expectedFormat": "Įvertinimas, grupės, temos, pasiūlymai (nutraukti/plėsti/testuoti)."
           },
           "template": "1. Įvertink mokymų naudingumą: grąža = (produktyvumo augimas – mokymų kaštai) / mokymų kaštai. 2. Suskirstyk darbuotojus: Aukštas poveikis / Vidutinis / Nulinis. 3. Identifikuok: kurios temos veikė, kurios ne. 4. Pasiūlyk: ką nutraukti, ką plėsti, ką testuoti.",
           "practicalTask": {
@@ -14734,15 +14730,15 @@
           "subtitle": "Vaizdai, video, garsas",
           "type": "action-intro",
           "content": {
-            "whyBenefit": "Po šio modulio mokėsi kurti vaizdus, trumpus vaizdo įrašus ir garsą su DI – nuo pipeline ir promptų iki consistency, įrankių ir kokybės patikros.",
+            "whyBenefit": "Po šio modulio gebėsi kurti vaizdus, trumpus vaizdo įrašus ir garsą su DI – nuo užduoties aprašo iki kokybės ir teisių patikros.",
             "heroStat": "Vienas kelias.",
             "heroText": "Vaizdai, video, garsas.",
             "heroSubText": "Rinkodaros ir komunikacijos specialistams – vizualus ir garso turinys su DI.",
             "firstActionCTA": "Per 1–2 min atidaryk vieną vaizdų generavimo įrankį (pvz. ChatGPT su DALL·E arba Ideogram) ir sugeneruok vieną vaizdą pagal savo aprašymą.",
             "outcomes": [
-              "Pipeline: brief → stills → refs → I2V → garsas → montažas → QA",
-              "Praktika: consistency, audio-first, kopijuojami šablonai",
-              "Verslas: KPI, rizikos, C2PA/disclosure, kelias nuo brief iki publikacijos"
+              "Suprasi 6 žingsnių medijos grandinę – nuo užduoties aprašo (brief) iki patikros prieš publikaciją",
+              "Gebėsi išlaikyti tą patį produktą ar stilių serijoje ir planuoti garsą pirmiau už kirpimus",
+              "Žinosi, ką matuoti ir ką tikrinti prieš publikaciją (teisės, DI žyma)"
             ],
             "duration": "~25–30 min",
             "audience": "Skirta rinkodaros ir komunikacijos specialistams.",
@@ -14794,7 +14790,7 @@
               {
                 "heading": "Kopijuojamas šablonas",
                 "body": "Nukopijuok į DI pokalbį arba užpildyk pats – pasirink A/E/C savo vizualui.",
-                "copyable": "Padėk pasirinkti kampanijos tikslą (A/E/C) šiam vizualui.\n\nKontekstas: [produktas / tema], platforma [kur], auditorija [kam].\nTikslai: atpažįstamumas | įsitraukimas | konversija.\n\nAtsakyk trumpai:\n1) tikslas (vienas),\n2) kodėl (1 sakinys),\n3) ką pabrėžti vizuale (emocija / kontekstas / CTA),\n4) 1–2 tinkami formatai."
+                "copyable": "Tikslas (A/E/C): [atpažįstamumas / įsitraukimas / konversija].\nKontekstas: [produktas], platforma [kur], auditorija [kam].\nAtsakyk: 1) vienas tikslas, 2) ką pabrėžti vizuale (emocija / kontekstas / CTA), 3) 1 formatas."
               },
               {
                 "heading": "Patikra",
@@ -14820,7 +14816,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "2026 praktikoje laimi ne „geriausias modelis“, o aiški darbo grandinė. Vienas promptas tiesiai į video generatorių dažnai = brangūs bandymai iš naujo – todėl pirmiausia užrakink planą, kadrus ir referencus, tada trumpus klipus, garsą ir patikrą.",
+                "body": "Laimi ne „geriausias modelis“, o aiški darbo grandinė (eiga nuo užduoties iki patikros). Vienas promptas tiesiai į video dažnai = brangūs bandymai – pirmiausia užrakink planą, kadrus ir pavyzdžių nuotraukas, tada trumpus klipus, garsą ir patikrą.",
                 "blockVariant": "accent"
               },
               {
@@ -14868,13 +14864,13 @@
           "type": "section-break",
           "content": {
             "title": "Vaizdo generavimas",
-            "subtitle": "Toliau: promptų formulė, stilius ir proporcijos, brand consistency, tada generatorius. Įrankius rinksimės pagal užduotį — po stiliaus skaidrės.",
+            "subtitle": "Toliau: promptų formulė, stilius ir proporcijos, tas pats produktas serijoje, tada generatorius. Įrankius rinksimės pagal užduotį — po stiliaus skaidrės.",
             "sectionNumber": "1",
             "footer": "Toliau – skaidrė 5: Vaizdo prompto pagrindai",
             "nextSteps": [
               "Vaizdo prompto formulė: objektas + kontekstas + stilius",
               "Stilius, proporcijos ir kada rinktis kurį įrankį",
-              "Consistency — reference lock produktui / personažui",
+              "Tas pats produktas serijoje – 3–5 pavyzdžių nuotraukos (reference lock)",
               "Interaktyvus vaizdo generatorius praktikai"
             ],
             "recap": {
@@ -14948,7 +14944,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Stilius: fotorealistiškas, akrilas, 3D, piešinys. Proporcijos (aspect ratio): 1:1 kvadratas, 16:9 platus, 9:16 vertikalus (stories).",
+                "body": "Stilius: fotorealistiškas, akrilas, 3D, piešinys. Proporcijos (kadro plotis×aukštis, aspect ratio): 1:1 kvadratas, 16:9 platus, 9:16 vertikalus (stories).",
                 "blockVariant": "accent"
               },
               {
@@ -15087,15 +15083,15 @@
         },
         {
           "id": 13.32,
-          "title": "Character / product consistency",
-          "shortTitle": "Consistency",
-          "subtitle": "3–5 reference + same-product lock",
+          "title": "Produktas ir personažas – tas pats vaizdas",
+          "shortTitle": "Tas pats vaizdas",
+          "subtitle": "3–5 pavyzdžių nuotraukos + taisyklė „tas pats produktas“",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Vienas promptas neužrakina tapatybės. Marketinge reikia 3–5 reference (skirtingi kampai) ir taisyklės „same product / same style / same color palette“ – kitaip setas „plaukioja“.",
+                "body": "Vienas promptas neužrakina tapatybės. Marketinge reikia 3–5 pavyzdžių nuotraukų (reference) – skirtingi kampai – ir taisyklės „tas pats produktas / stilius / spalvos“, kitaip serija „plaukioja“.",
                 "blockVariant": "accent"
               },
               {
@@ -15114,7 +15110,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Surink arba sugeneruok bent 3 reference savo produktui ar personažui. Kitame Consistency lab pažymėk refs ir diagnozuok drift.",
+                "body": "Surink arba sugeneruok bent 3 pavyzdžių nuotraukas savo produktui ar personažui. Kitame Consistency lab pažymėk refs ir diagnozuok, kur „plaukioja“.",
                 "blockVariant": "brand"
               },
               {
@@ -15148,7 +15144,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar pažymėjai refs, pasirinkai režimą ir nukopijavai taisyklę? Jei trūksta refs – grįžk į Character / product consistency ir surink 3–5 kampus.",
+                "body": "Ar pažymėjai refs, pasirinkai režimą ir nukopijavai taisyklę? Jei trūksta refs – grįžk į „Produktas ir personažas – tas pats vaizdas“ ir surink 3–5 kampus.",
                 "blockVariant": "accent"
               }
             ],
@@ -15283,7 +15279,7 @@
         {
           "id": 13.35,
           "title": "Darbo eiga ir MASTER šablonai",
-          "subtitle": "5 žingsnių pipeline, #1000Books, ready prompts",
+          "subtitle": "5 žingsnių darbo eiga, #1000Books, paruošti promptai",
           "type": "content-block",
           "optional": true,
           "badgeVariant": "optional",
@@ -15291,7 +15287,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Optional biblioteka: jei užtenka vieno sprendimo – rinkis MASTER šabloną arba vieną ready promptą. Workflow ir 8 scenarijai – gilinimuisi (išskleisk).",
+                "body": "Papildoma biblioteka: jei užtenka vieno sprendimo – rinkis MASTER šabloną arba vieną paruoštą promptą. Darbo eiga ir 8 scenarijai – gilinimuisi (išskleisk).",
                 "blockVariant": "accent"
               },
               {
@@ -15311,7 +15307,7 @@
               {
                 "heading": "MASTER prompt šablonas",
                 "body": "Universalus šablonas – užpildyk laukus; visą tekstą nukopijuosi vienu mygtuku bloke.",
-                "copyable": "Subjektas: [ką rodoma].\nTikslas/use-case: [Awareness/Engagement/Conversion; pvz. social post, plakatas].\nAuditorija: [kam].\nStilius: [fotorealistiškas / minimalistinis / …].\nKompozicija/kamera: [kadras, kampas].\nApšvietimas: [natūralus / studija / aukso valanda].\nSpalvos/nuotaika: [paletė, jausmas].\nTekstas vizuale (jei reikia): tikslus tekstas + šriftas + vieta.\nFormat/ratio: [1:1 / 16:9 / 9:16].\nNeigiamas promptas: [ko vengti]."
+                "copyable": "Subjektas: [ką rodoma].\nTikslas: [Awareness / Engagement / Conversion].\nAuditorija: [kam].\nStilius: [fotorealistiškas / minimalistinis / …].\nKompozicija + kamera: [kadras, kampas].\nŠviesa ir spalvos: [apšvietimas + paletė / nuotaika].\nTekstas vizuale (jei reikia): [tekstas + vieta].\nFormatas: [1:1 / 16:9 / 9:16]. Vengti: [ko vengti]."
               },
               {
                 "heading": "Ready promptas: Logotipas",
@@ -15363,22 +15359,22 @@
           "type": "section-break",
           "content": {
             "title": "Video generavimas",
-            "subtitle": "Toliau: trumpas scenarijus, I2V praktika, formatas ir CPI. Įrankius rinksimės pagal užduotį — video įrankių skaidrėje.",
+            "subtitle": "Toliau: trumpas scenarijus, video iš kadro (I2V), formatas ir kaina už tinkamą klipą. Įrankius rinksimės video įrankių skaidrėje.",
             "sectionNumber": "2",
             "footer": "Toliau – skaidrė 15: Trumpas vaizdo scenarijus",
             "nextSteps": [
-              "Trumpas scenarijus – 3–5 s klipai, ne one-shot",
-              "I2V klipo generatorius praktikai",
-              "Video įrankiai, formatas ir CPI",
-              "Post-production – montažas po generavimo"
+              "Trumpas scenarijus – 3–5 s klipai, ne vienas ilgas bandymas",
+              "Video iš kadro (I2V) – generatorius praktikai",
+              "Video įrankiai, formatas ir kaina už tinkamą klipą (CPI)",
+              "Montažas po generavimo"
             ],
             "recap": {
               "heading": "Ką jau žinai?",
               "lead": "Vaizdų skyrius – pamatas video.",
               "items": [
                 "Vaizdo promptas = objektas + kontekstas + stilius.",
-                "Stilius, proporcijos ir brand consistency.",
-                "Reference lock – same product / same style serijai."
+                "Stilius, proporcijos ir tas pats produktas serijoje.",
+                "Pavyzdžių nuotraukos – same product / same style serijai."
               ]
             }
           }
@@ -15393,7 +15389,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trumpam vaizdo įrašui reikia aiškaus scenarijaus, tono ir kameros. Geriau 2–4 trumpi klipai (3–5 s) nei vienas ilgas one-shot – stills užrakink prieš brangų video.",
+                "body": "Trumpam vaizdo įrašui reikia aiškaus scenarijaus, tono ir kameros. Geriau 2–4 trumpi klipai (3–5 s) nei vienas ilgas bandymas – kadrus (stills) užrakink prieš brangų video.",
                 "blockVariant": "accent"
               },
               {
@@ -15423,7 +15419,7 @@
               {
                 "heading": "Kopijuojama grandinė – vaizdas → video",
                 "body": "Pirma hero, tada animacija; ilgesniam – keli keyframe.",
-                "copyable": "1) Sukurk hero vaizdą: [OBJEKTAS], aplinka [KONTEKSTAS], stilius [STILIUS], proporcijos 16:9 arba 9:16, be teksto vaizde.\n2) Animacija iš šio vaizdo: 3–5 sekundės. Kamera juda […], objektas [ką daro]. Same character/product, same style, same color palette.\n3) (Jei reikia ilgesnio) Pakartok 2) su antru keyframe – vėliau sumontuok."
+                "copyable": "1) Hero kadaras: [OBJEKTAS], [KONTEKSTAS], stilius [STILIUS], 16:9 arba 9:16.\n2) I2V 3–5 s iš šio kadro: kamera […], same product / same style.\n(Jei reikia ilgesnio – antras keyframe, tada montažas.)"
               },
               {
                 "heading": "Patikra",
@@ -15444,7 +15440,7 @@
         {
           "id": 13.47,
           "title": "I2V klipo generatorius",
-          "subtitle": "Keyframe → 3–5 s → kamera → same style",
+          "subtitle": "Video iš kadro (image-to-video): keyframe → 3–5 s → kamera → tas pats stilius",
           "type": "i2v-generatorius",
           "shortTitle": "I2V generatorius",
           "content": {
@@ -15462,7 +15458,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Video: formatas (16:9 / 9:16), trukmė 3–5 s, matuok CPI (kaina už tinkamą klipą) = generavimo + retry / tinkami klipai – ne tik €/s. Matrica – greitam pasirinkimui.",
+                "body": "Video: formatas (16:9 / 9:16), trukmė 3–5 s. Matuok kainą už tinkamą klipą (CPI) = generavimas + bandymai iš naujo / tinkami klipai – ne tik €/s. Matrica – greitam pasirinkimui.",
                 "blockVariant": "accent"
               },
               {
@@ -15553,9 +15549,9 @@
         },
         {
           "id": 13.52,
-          "title": "Post-production",
-          "shortTitle": "Post-prod",
-          "subtitle": "DI = žalia medžiaga; cut, grade, mix",
+          "title": "Montažas po generavimo",
+          "shortTitle": "Montažas",
+          "subtitle": "DI = žalia medžiaga; kirpimas, spalvos, garsas",
           "type": "content-block",
           "content": {
             "sections": [
@@ -15565,11 +15561,11 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Post-production schema",
+                "heading": "Montažo schema",
                 "body": "Keturi žingsniai – Cut → Grade → Mix → Export. Spausk etapą.",
                 "blockVariant": "brand",
                 "image": "m13_postprod_steps",
-                "imageAlt": "Post-production: cut, grade, mix, export"
+                "imageAlt": "Montažas: kirpimas, spalvos, garsas, eksportas"
               },
               {
                 "heading": "Minimalus checklist",
@@ -15598,26 +15594,26 @@
         {
           "id": 13.56,
           "title": "Garsas",
-          "subtitle": "Skyrius: VO, SFX, muzika – audio-first",
+          "subtitle": "Skyrius: balsas, efektai, muzika – pirma garsas",
           "type": "section-break",
           "content": {
             "title": "Garsas",
-            "subtitle": "Toliau: audio-first, VO / SFX / music ir licencijos komerciniam darbui. Įrankius rinksimės pagal užduotį — garso skaidrėse.",
+            "subtitle": "Toliau: pirma garsas (balsas ar fonas), tada kirpimai; balsas / efektai / muzika ir licencijos komerciniam darbui.",
             "sectionNumber": "3",
             "footer": "Toliau – skaidrė 21: Audio-first ir muzika",
             "nextSteps": [
-              "Audio-first – pirma VO arba bed trukmė",
-              "VO / SFX / music triada",
+              "Pirma garsas – balsas arba foninės muzikos trukmė, tada kirpimai",
+              "Balsas, efektai ir muzika – trys sluoksniai",
               "Licencijos komerciniam darbui",
-              "Loudness orientyras ir klausymosi patikra"
+              "Garsumo orientyras ir klausymosi patikra"
             ],
             "recap": {
               "heading": "Ką jau žinai?",
               "lead": "Video skyrius – prieš garsą.",
               "items": [
-                "Video = trumpi klipai + formatas + CPI.",
-                "Image→video grandinė su keyframe.",
-                "Post-prod – cut / grade / mix po generavimo."
+                "Video = trumpi klipai + formatas + kaina už tinkamą klipą.",
+                "Vaizdas → video grandinė su keyframe.",
+                "Montažas – kirpimas / spalvos / garsas po generavimo."
               ]
             }
           }
@@ -15631,7 +15627,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Audio-first: pirma VO (arba bed trukmė), tada video kirpimai pagal pacing. Muzikai aprašyk nuotaiką, stilių, tempą, instrumentus. Klientui / reklamai – licensed stack (ElevenMusic, Soundraw, Beatoven); Suno/Udio – demo, ne-client.",
+                "body": "Pirma garsas (audio-first): pirma balsas arba foninės muzikos trukmė, tada video kirpimai pagal ritmą. Muzikai aprašyk nuotaiką, stilių, tempą, instrumentus. Klientui / reklamai – licensed stack; Suno/Udio – demo, ne klientui.",
                 "blockVariant": "accent"
               },
               {
@@ -15658,7 +15654,9 @@
                 "heading": "Angliškas MASTER šablonas (universalus)",
                 "body": "Daug muzikos įrankių geriau supranta angliškus laukus. Pridėk license intent.",
                 "blockVariant": "brand",
-                "copyable": "Create a [genre] track,\nmood: [emotion],\ntempo: [bpm or speed],\ninstruments: [list],\nvocal: none,\nstructure: intro – bed – soft outro,\ntarget platform: [YouTube/TikTok/ads],\ngoal: background / branding,\nlicense intent: commercial,\nproduction quality: professional."
+                "copyable": "Create a [genre] track.\nMood: [emotion]. Tempo: [bpm or speed]. Instruments: [list].\nVocal: none. Use: background / ads. License intent: commercial.",
+                "collapsible": true,
+                "collapsedByDefault": true
               },
               {
                 "heading": "TOP audio įrankiai",
@@ -15723,7 +15721,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Prieš keliant kampanijos vizualus viešai: matuok rezultatus, testuok variantus ir įvertink teises bei riziką. Detalės – išskleidžiamuose blokuose žemiau.",
+                "body": "Prieš publikaciją žinosi, ką tikrinsi: rezultatus (KPI), teises, DI žymą (C2PA / disclosure) ir bent vieną A/B hipotezę. Detalės – žemiau.",
                 "blockVariant": "accent"
               },
               {
@@ -15789,15 +15787,15 @@
           "content": {
             "sections": [
               {
-                "heading": "Workflow diagrama",
+                "heading": "Trumpai",
+                "body": "Pilnas verslo ciklas: (1) Marketing brief (užduoties aprašas). (2) Prompt + brand + pavyzdžių nuotraukos. (3) 3–5 variantų / trumpi video iš kadro. (4) Iteracija. (5) Platforma. (6) Testas. (7) Optimizacija.",
+                "blockVariant": "accent"
+              },
+              {
+                "heading": "Darbo eigos schema",
                 "body": "7 žingsniai nuo brief iki optimizacijos. Paspausk žingsnį – paaiškinimas apačioje.",
                 "image": "turinio_workflow",
                 "blockVariant": "brand"
-              },
-              {
-                "heading": "Trumpai",
-                "body": "Pilnas verslo ciklas: (1) Marketing brief. (2) Prompt + brand + reference lock. (3) 3–5 variantų / trumpi I2V. (4) Iteracija (CPI video). (5) Adaptacija platformoms. (6) A/B. (7) Optimizacija + disclosure. Techninę medijos grandinę žr. MUST skaidrę „Generatyvinės medijos grandinė“; optional MASTER – „Darbo eiga ir MASTER šablonai“. Komandoje lygiagrečiai tik po bendro brief, brand ir (jei reikia) VO trukmės.",
-                "blockVariant": "accent"
               },
               {
                 "heading": "Daryk dabar",
@@ -15906,6 +15904,26 @@
               {
                 "term": "CPM (kaina už 1000 parodymų)",
                 "definition": "Kiek kainuoja 1000 reklamos ar vaizdo parodymų. Naudinga lyginti platformas."
+              },
+              {
+                "term": "CPI (kaina už tinkamą klipą)",
+                "definition": "Kiek kainuoja vienas tinkamas klipas, kai įskaičiuoji generavimą ir bandymus iš naujo (retry) – ne tik kaina už sekundę."
+              },
+              {
+                "term": "C2PA / DI žyma (Content Credentials)",
+                "definition": "Žyma ar įrodymas, kad turinys sukurtas ar redaguotas su DI – prieš publikaciją patikrink provenance ir, kur reikia, žmogui matomą DI žymą."
+              },
+              {
+                "term": "I2V (video iš kadro)",
+                "definition": "Image-to-video: iš vieno ar kelių užrakintų kadrų generuoji 3–5 s klipą, o ne ilgo „vienu šūviu“ video."
+              },
+              {
+                "term": "Audio-first (pirma garsas)",
+                "definition": "Pirma planuoji balsą (VO) arba foninės muzikos trukmę, tada kirpi video pagal ritmą – ne atvirkščiai."
+              },
+              {
+                "term": "Reference lock (pavyzdžių užraktas)",
+                "definition": "3–5 pavyzdžių nuotraukos skirtingais kampais + taisyklė „tas pats produktas / stilius“, kad serija neplaukiotų."
               }
             ],
             "footer": "Toliau – skaidrė 26: Modulio 13 santrauka"
@@ -15914,15 +15932,15 @@
         {
           "id": 13.9,
           "title": "Modulio 13 santrauka",
-          "subtitle": "Ką išmokai – vaizdai, video, muzika",
+          "subtitle": "Ką išmokai – grandinė, tas pats vaizdas, video, garsas, teisės",
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokai",
-            "introBody": "Sveikiname! Dabar išmokai kurti vaizdus, trumpus vaizdo įrašus ir muziką su DI – promptų principai, stilius, proporcijos, scenarijai ir naudojimo teisės.",
+            "introBody": "Sveikiname! Dabar moki 2026 turinio kelią: medijos grandinę, tą patį produktą serijoje, trumpus video iš kadro, garsą pirmiau ir patikrą prieš publikaciją (teisės, DI žyma).",
             "stats": [
               {
                 "label": "Blokai",
-                "value": "3"
+                "value": "5"
               },
               {
                 "label": "Šablonai ir generatoriai",
@@ -15935,37 +15953,58 @@
             ],
             "sections": [
               {
-                "heading": "Vaizdų promptai",
+                "heading": "Medijos grandinė",
                 "icon": "Image",
                 "color": "brand",
                 "items": [
-                  "Stilius, proporcijos, ko vengti",
-                  "CopyButton šablonai"
+                  "6 žingsniai: užduotis → kadrai → referencai → video → garsas → patikra",
+                  "Pirma planas ir kadrai, tada brangus generavimas"
                 ]
               },
               {
-                "heading": "Video scenarijus",
-                "icon": "Video",
-                "color": "violet",
-                "items": ["Scenarijus, formatas, trukmė", "Įrankiai"]
+                "heading": "Tas pats vaizdas serijoje",
+                "icon": "Image",
+                "color": "brand",
+                "items": [
+                  "3–5 pavyzdžių nuotraukos skirtingais kampais",
+                  "Taisyklė „tas pats produktas / stilius“ + Consistency lab"
+                ]
               },
               {
-                "heading": "Muzika ir garsai",
+                "heading": "Trumpas video (I2V)",
+                "icon": "Video",
+                "color": "violet",
+                "items": [
+                  "3–5 s klipai iš užrakinto kadro, ne vienas ilgas bandymas",
+                  "Formatas, įrankiai ir kaina už tinkamą klipą (CPI)"
+                ]
+              },
+              {
+                "heading": "Pirma garsas",
                 "icon": "Music",
                 "color": "amber",
                 "items": [
-                  "Nuotaika, stilius, naudojimo teisės",
-                  "Foninė muzika"
+                  "Balsas arba fonas pirmiau – tada kirpimai",
+                  "Licencijos komerciniam darbui"
+                ]
+              },
+              {
+                "heading": "Verslas ir teisės",
+                "icon": "Image",
+                "color": "brand",
+                "items": [
+                  "KPI, A/B, teisės ir DI žyma (C2PA) prieš publikaciją",
+                  "Darbo eiga nuo brief iki patikros"
                 ]
               }
             ],
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 13.\nINPUT: Ką tik baigiau mokymą apie turinio inžineriją – vaizdų, video ir muzikos promptai su DI, stilius, proporcijos ir naudojimo teisės.\nOUTPUT: Užduok 3 klausimus: (1) Kurį turinio tipą galėčiau pritaikyti šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – padėti įtvirtinti žinias po Modulio 13.\nINPUT: Ką tik baigiau mokymą apie turinio inžineriją – medijos grandinė, tas pats produktas serijoje, video iš kadro, pirma garsas, teisės ir DI žyma.\nOUTPUT: Užduok 3 klausimus: (1) Kurį grandinės žingsnį pritaikysiu šiandien? (2) Kas buvo naujausia? (3) Ką noriu išbandyti pirmiausia? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas",
-            "tagline": "Vaizdas + video + muzika = vienas kelias turinio inžinerijai.",
+            "tagline": "Grandinė + tas pats vaizdas + garsas pirmiau + teisės = vienas turinio kelias.",
             "nextStepCTA": "Pereik prie Modulio 14: Žinių patikrinimas (Turinio kelias)",
-            "firstAction24h": "Šiandien atidaryk vieną vaizdų generavimo įrankį ir sugeneruok vieną vaizdą pagal savo aprašymą (stilius, proporcijos).",
-            "abilityBefore": "Vaizdų/video promptus rašei be stiliaus, proporcijų ir teisių.",
-            "abilityAfter": "Moki kurti vaizdo, video ir muzikos promptus su consistency ir teisių sąmoningumu."
+            "firstAction24h": "Šiandien: (1) užrašyk 6 žingsnių grandinę savo temai arba (2) surink 3 pavyzdžių nuotraukas produktui – tada vieną vaizdą generuok su ta taisykle.",
+            "abilityBefore": "Vaizdus ar video generavai be aiškios grandinės, be pavyzdžių nuotraukų ir be teisių / DI žymos patikros.",
+            "abilityAfter": "Moki sudėlioti grandinę nuo užduoties iki patikros, išlaikyti tą patį vaizdą serijoje ir patikrinti teises bei DI žymą prieš publikaciją."
           }
         }
       ],
@@ -16676,13 +16715,13 @@
           "subtitle": "Planavimas prieš Cursor",
           "type": "action-intro",
           "content": {
-            "whyBenefit": "Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursime su DI.",
+            "whyBenefit": "Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursi su DI.",
             "heroStat": "Vibe coding",
             "heroText": "su disciplina.",
-            "heroSubText": "Promptų pamatai – Moduliuose 1–6. Čia – produkto užduotis ir siauras brief prieš generavimą.",
-            "firstActionCTA": "Per 2 min užrašyk vieną naudotoją ir vieną problemą savo idėjai (arba naudok dienos prioritetų pavyzdį).",
+            "heroSubText": "Promptų pamatai – Moduliuose 1–6. Čia vibe coding = greitas kūrimas su DI, bet pirmiausia siauras brief prieš Cursor generavimą.",
+            "firstActionCTA": "Per 2 min užrašyk vieną naudotoją ir vieną problemą (pirmas žingsnis; vertę ir 1 funkciją – kitose skaidrėse). Arba naudok dienos prioritetų pavyzdį.",
             "outcomes": [
-              "1+1+1: naudotojas, problema, vertė, 1 funkcija",
+              "Naudotojas, problema, vertė ir 1 funkcija",
               "Kūrimo kortelė → 01_MVP_BRIEF.md",
               "Must / Won’t ir patikrinamas sėkmės kriterijus"
             ],
@@ -16695,7 +16734,7 @@
           "id": 16.2,
           "title": "Ką šiandien padarysi",
           "shortTitle": "Šiandien",
-          "subtitle": "1 problema · 1 naudotojas · 1 užduotis",
+          "subtitle": "1 problema · 1 naudotojas · 1 funkcija",
           "type": "content-block",
           "content": {
             "sections": [
@@ -16706,7 +16745,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasirink idėją (pvz. dienos prioritetų įrankis) ir užrašyk vienu sakiniu: kam ir ką sprendi.",
+                "body": "Pasirink idėją (pvz. dienos prioritetų įrankis) ir užrašyk vienu sakiniu: kam ir ką sprendi.\n\nPavyzdys: „Vadovas rytą nežino, nuo ko pradėti → 3 prioritetai.“\nŠablonas: [Kas] negali [ką], kai [situacija].",
                 "blockVariant": "brand"
               },
               {
@@ -16728,12 +16767,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Kelias Cursor-first: brief gali chat DI; kodas – Cursor; proof – GitHub; host – vėliau. Modulyje 16 dar ne build.",
+                "body": "Šiandien tik planuoji. Kodą rašysi Modulio 18 su Cursor (DI kodavimo redaktorius). Hostingo nelieči.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Stack sluoksniai",
-                "body": "Ne šis kelias kaip pagrindas: Lovable, Replit „parašyk app“, Claude Code, v0 – čia mokome Cursor + PACKET discipliną.",
+                "body": "Ne Lovable/Replit kaip pagrindinis kelias šiame kurse – čia brief dabar, kodas vėliau su Cursor.",
                 "blockVariant": "brand",
                 "table": {
                   "headers": ["Sluoksnis", "Įrankis", "M16 dabar", "Vėliau"],
@@ -16741,38 +16780,32 @@
                     [
                       "Brief / planas",
                       "Chat DI (ChatGPT / Claude)",
-                      "Draftas, skeptikas, brief pagalbininkas",
+                      "Rašai brief’ą ir kritiką",
                       "—"
                     ],
                     [
-                      "Kodas su disciplina",
+                      "Kodas",
                       "Cursor",
-                      "Įsidiek / atidaryk; ne generuok visą app",
-                      "M18 vertikalus pjūvis"
+                      "Optional: atsisiųsk; ne generuok visą app",
+                      "M18 – rašysi kodą"
                     ],
                     [
-                      "Proof / versijos",
+                      "Įrodymas",
                       "GitHub",
-                      "Žinok Soft DoD poreikį",
+                      "Žinosi, kad reikės parodyti rezultatą (M18)",
                       "M18 commit + repo"
-                    ],
-                    [
-                      "Host / URL",
-                      "Railway / Vercel / …",
-                      "Nelieči",
-                      "M18 publish"
                     ]
                   ]
                 }
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Užsirašyk: brief = chat DI; build = Cursor (Modulis 18); proof = GitHub. Jei neturi Cursor – atsisiųsk cursor.com (be generate sesijos šiandien).",
+                "body": "Užsirašyk: brief dabar; Cursor diegimas optional; generate – ne šiandien.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar brief’e jau rašai tech stack, ar palieki stack Moduliui 18?",
+                "body": "Ar brief’e jau rašai tech stack? (Turėtų būti ne.)",
                 "blockVariant": "accent"
               }
             ],
@@ -16789,19 +16822,19 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Kelias: PROBLEMA → NAUDOTOJAS → VERTĖ → 1 FUNKCIJA → PROTOTIPAS → TESTAS. Cursor build – tik Modulyje 18.",
+                "body": "Einame: problema → žmogus → nauda → 1 funkcija → brief → patikra. Kodas – M18.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "Delivery vartai",
-                "body": "Šeši vartai iki brief/testo – Cursor build tik Modulyje 18. Spausk vartą diagramoje.",
+                "heading": "Šeši žingsniai iki brief’o",
+                "body": "Šeši žingsniai iki brief’o ir patikros. Spausk žingsnį diagramoje.",
                 "blockVariant": "brand",
                 "image": "m16_delivery_gates",
-                "imageAlt": "Delivery vartai: problema, naudotojas, vertė, 1 funkcija, prototipas, testas"
+                "imageAlt": "Kelio žingsniai: problema, naudotojas, vertė, 1 funkcija, prototipas, testas"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pažymėk, kuriame žingsnyje esi dabar.",
+                "body": "Diagramoje spausk žingsnį, kuriame esi dabar, ir garsiai pasakyk jo pavadinimą.",
                 "blockVariant": "brand"
               },
               {
@@ -16834,10 +16867,13 @@
                   "comparisonStyle": true,
                   "headers": ["Blogas", "Geras"],
                   "rows": [
-                    ["„Noriu app su DI“", "Konkreti naudotojo problema"],
+                    [
+                      "„Noriu app su DI“",
+                      "„Vadovas rytą 20 min skirsto užduotis ir vis tiek pradeda ne nuo svarbiausio.“"
+                    ],
                     [
                       "Fokusas – stack ir funkcijos",
-                      "Fokusas – situacija ir pasekmė"
+                      "Fokusas – situacija ir pasekmė (švaisto rytą / komanda laukia)"
                     ],
                     ["Neaišku, ką tikrinsi", "Aišku, ką prototipas patikrina"]
                   ]
@@ -16845,7 +16881,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Perrašyk savo idėją kaip problemą: kas kenčia, kada, kokia pasekmė.",
+                "body": "Perrašyk savo idėją: kas kenčia, kada, kokia verslo/asmeninė pasekmė.",
                 "blockVariant": "brand"
               },
               {
@@ -16867,17 +16903,22 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Formulė: [Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė]. Tikrink: dažnis, nepatogumas, ar prototipas patikrina dalį.",
+                "body": "Formulė: [Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė]. Mokėjimas – nebūtina šiame MVP.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Užpildytas pavyzdys",
+                "body": "Vadovas susiduria su prioritetų chaosu kai rytas prasideda nuo el. pašto, todėl švaisto 20 min ir komanda laukia.",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Užpildyk formulę. Mokėjimas – optional.",
+                "body": "Užpildyk šabloną: [Naudotojas] susiduria su [problema] kai [situacija], todėl [pasekmė].",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar prototipas gali patikrinti bent vieną skausmo dalį?",
+                "body": "Ar problema dažna? Ar skausmas aiškus? Ar galima patikrinti prototipu bent vieną dalį?",
                 "blockVariant": "accent"
               }
             ],
@@ -16899,7 +16940,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Parašyk porą: vertė + funkcija po vieną sakinį.",
+                "body": "Parašyk porą: vertė + funkcija po vieną sakinį.\n\nPavyzdys: vertė – „žino, nuo ko pradėti“; funkcija – „surikiuoja 3 užduotis“.",
                 "blockVariant": "brand"
               },
               {
@@ -16943,19 +16984,19 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Triage mapinasi į Must / Should / Won’t. Pirmam MVP – 1 fn + max 1–2 palaikančios.",
+                "body": "Trys stulpeliai: Būtina dabar / Galima vėliau / Nekuriame. Pirmam MVP – 1 pagrindinė funkcija (+ max 1–2 pagalbinės).",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Triage zonos",
-                "body": "Must = Būtina dabar. Should = Galima vėliau. Won’t = Nekuriame šiame MVP.",
+                "body": "Brief’e vėliau – Must / Should / Won’t (tos pačios zonos angliškai).",
                 "blockVariant": "brand",
                 "table": {
                   "headers": ["Zona", "Ką dedame", "Pavyzdys"],
                   "rows": [
                     [
                       "Būtina dabar",
-                      "1 pagrindinė fn + max 1–2 palaikančios",
+                      "1 pagrindinė funkcija + max 1–2 pagalbinės",
                       "Surikiuoti 3 dienos užduotis"
                     ],
                     [
@@ -16966,14 +17007,14 @@
                     [
                       "Nekuriame",
                       "Per anksti ar per platu pirmam MVP",
-                      "Auth, mokėjimai, admin panelė"
+                      "Prisijungimas (Auth), mokėjimai, admin panelė"
                     ]
                   ]
                 }
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Įmesk 5 idėjas į tris stulpelius. Auth ir mokėjimai – greičiausiai Nekuriame.",
+                "body": "Įmesk 5 savo idėjas į tris stulpelius (Būtina / Galima / Nekuriame).\nPavyzdys (dienos prioritetai): Būtina – Top 3; Galima – priminimas; Nekuriame – prisijungimas, mokėjimai, admin.",
                 "blockVariant": "brand"
               },
               {
@@ -16996,8 +17037,12 @@
             "pathLabel": "Kūrimo kortelė",
             "stepNumber": 1,
             "stepTotal": 1,
-            "body": "Užpildyk kortelę savo idėjai (arba dienos prioritetų įrankiui). Pažymėk, kai visi 5 laukai užrašyti – tai tiltas į brief.",
+            "body": "Rašyk Docs ar užrašinėje. Pažymėk čia, kai visi 5 laukai užrašyti – tai tiltas į brief.",
             "sections": [
+              {
+                "heading": "Pavyzdys (dienos prioritetai)",
+                "body": "1. Naudotojas: vadovas, kuris rytą skirsto komandos užduotis.\n2. Problema: 20 min skirsto ir vis tiek pradeda ne nuo svarbiausio.\n3. Vertė: per 2 min žino Top 3 – komanda nelaukia.\n4. Pagrindinė funkcija: surikiuoti 3 dienos užduotis.\n5. Kaip žinosime: per 2 min žmogus mato Top 3."
+              },
               {
                 "heading": "1. Naudotojas",
                 "body": "Kas naudoja ir kokiame kontekste?"
@@ -17012,11 +17057,11 @@
               },
               {
                 "heading": "4. Pagrindinė funkcija",
-                "body": "Viena pagrindinė funkcija (+ max 1–2 palaikančios)."
+                "body": "Viena pagrindinė funkcija (+ max 1–2 pagalbinės)."
               },
               {
                 "heading": "5. Kaip žinosime, kad veikia",
-                "body": "Patikrinamas sėkmės kriterijus (idealiai <2 min)."
+                "body": "Patikrinamas sėkmės kriterijus (pvz. „Per 2 min žmogus mato Top 3.“)."
               },
               {
                 "heading": "Patikra",
@@ -17030,95 +17075,70 @@
           "id": 16.85,
           "title": "Kortelė paruošta",
           "shortTitle": "Kortelė ✓",
-          "subtitle": "D1 baigta – toliau brief",
+          "subtitle": "Kortelė → brief",
           "type": "section-break",
           "content": {
             "title": "Kortelė paruošta",
-            "subtitle": "Toliau: VSR, kryptis, ciklas ir 01_MVP_BRIEF.md. Dar ne Cursor build.",
-            "sectionNumber": "D1→D2",
-            "celebrationText": "Puiku! 5 kortelės laukai – tiltas į brief.",
+            "subtitle": "Toliau išgryninsi idėją ir surašysi brief’ą (vienas dokumentas). Dar ne kodas.",
+            "sectionNumber": "1 dalis",
+            "celebrationText": "Puiku! 5 kortelės laukai – tiltas į brief. Checklist: naudotojas · problema · vertė · 1 funkcija · kaip žinosi.",
             "recap": {
               "heading": "Ką jau žinai?",
               "lead": "Pirmoji dalis – nuo problemos iki kortelės.",
               "items": [
                 "Problema prieš sprendimą – konkretus naudotojas ir pasekmė.",
                 "Vertė ≠ funkcija; triage: Būtina / Galima / Nekuriame.",
-                "Kūrimo kortelė: 5 laukai kaip įvestis į brief."
+                "Kūrimo kortelė: 5 laukai kaip įvestis į brief.",
+                "Checklist: naudotojas · problema · vertė · 1 funkcija · kaip žinosi."
               ],
               "itemGlossaryTerms": [
                 "",
                 "Triage (Būtina dabar / Galima vėliau / Nekuriame)",
+                "",
                 ""
               ]
             },
             "nextSteps": [
-              "Vibe → Skeleton → Refinement – brief fazės.",
-              "Produkto sakinys, kritika ir trys kryptys A/B/C.",
-              "Naudotojo ciklas, ekranai, ribos ir rizikos.",
-              "Praktika: 01_MVP_BRIEF.md (11 laukų)."
+              "Trys brief brandinimo žingsniai (Vibe → Skeleton → Refinement).",
+              "Sakinys + kritika + 3 kryptys.",
+              "Eiga ir ekranai.",
+              "11 laukų brief."
             ],
-            "footer": "Toliau – skaidrė 11: Perėjimas į brief"
-          }
-        },
-        {
-          "id": 16.9,
-          "title": "Perėjimas į brief",
-          "shortTitle": "Perėjimas",
-          "subtitle": "Iš kortelės į koncepciją",
-          "type": "content-block",
-          "content": {
-            "sections": [
-              {
-                "heading": "Trumpai",
-                "body": "Kortelė paruošta – toliau brief (kritika, kryptis, ribos).",
-                "blockVariant": "accent"
-              },
-              {
-                "heading": "Daryk dabar",
-                "body": "Pasidėk 5 kortelės laukus šalia.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Patikra",
-                "body": "Ar turi visus 5 kortelės laukus?",
-                "blockVariant": "accent"
-              }
-            ],
-            "footer": "Toliau – skaidrė 12: Vibe → Skeleton → Refinement"
+            "footer": "Toliau – skaidrė 11: Vibe → Skeleton → Refinement"
           }
         },
         {
           "id": 16.101,
           "title": "Vibe → Skeleton → Refinement",
-          "shortTitle": "VSR",
-          "subtitle": "Brief brandinimo fazės",
+          "shortTitle": "Brief fazės",
+          "subtitle": "Trys brief brandinimo žingsniai",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Vibe → Skeleton → Refinement – brief fazės, ne antras delivery kelias.",
+                "body": "Pirma užfiksuok kryptį (Vibe – idėjos jausmas), tada karkasą – ciklą ir ribas (Skeleton), tada smailink brief’ą (Refinement). Tai ne antras produkto kelias – tik brief brandinimas.",
                 "blockVariant": "accent"
               },
               {
-                "heading": "VSR brandos kopėčios",
-                "body": "Vibe → Skeleton → Refinement – brief fazės. Spausk pakopą.",
+                "heading": "Brief brandinimo žingsniai",
+                "body": "Vibe → Skeleton → Refinement. Spausk pakopą.",
                 "blockVariant": "brand",
                 "image": "m16_vsr_maturity",
-                "imageAlt": "VSR brandos kopėčios: Vibe, Skeleton, Refinement"
+                "imageAlt": "Brief brandinimo žingsniai: Vibe, Skeleton, Refinement"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Pasakyk, kurioje fazėje tavo idėja dabar.",
+                "body": "Pasakyk: mano idėja dabar Vibe / Skeleton / Refinement – ir kodėl vienu sakiniu.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar nešoki į Refinement be Skeleton ciklo?",
+                "body": "Ar jau turi ciklą prieš gludinant tekstą?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 13: Produkto sakinys"
+            "footer": "Toliau – skaidrė 12: Produkto sakinys"
           }
         },
         {
@@ -17135,8 +17155,13 @@
                 "blockVariant": "accent"
               },
               {
+                "heading": "Blogas vs geras",
+                "body": "Blogas: „Kuriu DI app prioritetams.“\nGeras: „Kuriu dienos prioritetų įrankį, kuris padeda vadovui greitai matyti Top 3, suteikdamas aiškumą per 2 min.“",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Parašyk produkto sakinį iš kortelės.",
+                "body": "Užpildyk formulę iš savo 5 laukų.",
                 "blockVariant": "brand"
               },
               {
@@ -17145,7 +17170,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 14: Trys atramos ir kritika"
+            "footer": "Toliau – skaidrė 13: Trys atramos ir kritika"
           }
         },
         {
@@ -17158,12 +17183,22 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trys atramos + skeptiška kritika be funkcijų spill. Prieš/Po: po kritikos sakinys siauresnis.",
+                "body": "Trys atramos: problema, naudotojas, vertė. Tada kritika – sakinys turi siaurėti.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "Trys atramos (iš kortelės)",
+                "body": "• Problema: rytinis prioritetų chaosas\n• Naudotojas: vadovas\n• Vertė: Top 3 per 2 min",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Prieš / Po",
+                "body": "Prieš: „Kuriu DI app prioritetams visiems.“\nPo: „Kuriu siaurą įrankį vadovui – Top 3 dienos prioritetai per 2 min.“",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Paleisk Skeptiko promptą ant savo idėjos ir perrašyk sakinį Po.",
+                "body": "Paleisk Skeptiko promptą ant savo idėjos ir įrašyk Po greta.",
                 "blockVariant": "brand"
               },
               {
@@ -17178,7 +17213,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 15: Trys kryptys",
+            "footer": "Toliau – skaidrė 14: Trys kryptys",
             "preCopyCheckBlock": {
               "question": "Prieš kopijuodamas Skeptiką – ko jis neturi daryti?",
               "options": [
@@ -17188,7 +17223,7 @@
                 "Pasiūlyti 20 naujų ekranų"
               ],
               "correct": 0,
-              "explanation": "Skeptikas siaurina prielaidas – ne meta funkcijų ar stack."
+              "explanation": "Skeptikas siaurina prielaidas – neprideda funkcijų ir stack."
             }
           }
         },
@@ -17202,12 +17237,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trys kryptys lentele: kam / ką daro / rezultatas. Ne 30 funkcijų.",
+                "body": "Trys siauros kryptys tai pačiai problemai – ne 30 funkcijų.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Trys kryptys A / B / C",
-                "body": "Užpildyk savo eilutes – ne 30 funkcijų.",
+                "body": "Pavyzdys (dienos prioritetai). Žemiau – savo A/B/C.",
                 "blockVariant": "brand",
                 "table": {
                   "headers": ["Kryptis", "Kam", "Ką daro", "Rezultatas"],
@@ -17228,14 +17263,14 @@
                       "C",
                       "Vadovas",
                       "Matuoja, kiek užduočių baigta",
-                      "Trumpa dienos santrauka"
+                      "Trumpa dienos santrauka (aiškumas)"
                     ]
                   ]
                 }
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Užpildyk A/B/C po vieną eilutę kiekvienam stulpeliui.",
+                "body": "Perrašyk 3 eilutes savo idėjai (kam / ką daro / rezultatas).",
                 "blockVariant": "brand"
               },
               {
@@ -17244,7 +17279,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 16: Rinkis patikrinamiausią"
+            "footer": "Toliau – skaidrė 15: Rinkis patikrinamiausią"
           }
         },
         {
@@ -17257,19 +17292,19 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Rinkis patikrinamiausią kryptį – ne gražiausią. Orientyras: greitis patikrinti, aiškumas, rizika (pavyzdys A≈11, B≈10, C≈9).",
+                "body": "Rinkis tą kryptį, kurią gali patikrinti greičiausiai – ne gražiausią. Balai – orientyras, ne egzaminas.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Krypties lab",
-                "body": "Pasirink A, B arba C. Po pasirinkimo – balų veidrodis ir kopijuojamas „kodėl patikrinamiausia“.",
+                "body": "Pasirink A, B arba C. Po pasirinkimo matai balus ir gali nukopijuoti kodėl.",
                 "blockVariant": "brand",
                 "image": "m16_direction_picker",
                 "imageAlt": "Krypties pasirinkimo lab: A/B/C, balai ir kopijuojamas kodėl"
               },
               {
                 "heading": "Orientyras 1–5 (pavyzdys)",
-                "body": "Jei nori lentelės – atverk. Lab’e jau matai balus po pasirinkimo.",
+                "body": "Trys kriterijai žmonių kalba: (1) Greitis patikrinti – ar gali išbandyti per dieną? (2) Aiškumas – ar naudotojas supranta be paaiškinimo? (3) Rizika – kiek sudėtingumo (1 = maža).",
                 "blockVariant": "default",
                 "collapsible": true,
                 "table": {
@@ -17283,12 +17318,17 @@
                 }
               },
               {
+                "heading": "Daryk dabar",
+                "body": "Pasirink A/B/C lab’e. Užrašyk nugalėtoją greta kortelės.",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Patikra",
                 "body": "Ar nugalėtojas patikrinamas per dieną, o ne per ketvirtį?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 17: Naudotojo ciklas"
+            "footer": "Toliau – skaidrė 16: Naudotojo ciklas"
           }
         },
         {
@@ -17301,7 +17341,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Viena schema visam keliui. Ciklas aprašo UX, ne funkcijų sąrašą.",
+                "body": "Aprašyk, kaip žmogus pereina nuo poreikio iki rezultato – 5 žingsniai. Tai ne funkcijų sąrašas.",
                 "blockVariant": "accent"
               },
               {
@@ -17312,17 +17352,22 @@
                 "imageAlt": "Naudotojo ciklas su grįžimu"
               },
               {
+                "heading": "Užpildytas ciklas (dienos prioritetai)",
+                "body": "1. Triggeris: rytas, reikia žinoti Top 3.\n2. Įvestis: įveda 3–5 užduotis.\n3. Veiksmas: sistema surikiuoja.\n4. Rezultatas: mato Top 3.\n5. Kitas: pradeda nuo pirmo / grįžta rytoj.",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Užrašyk 5 žingsnius savo nugalėtojai krypčiai.",
+                "body": "Tuščias šablonas nugalėtojai krypčiai: Triggeris → Įvestis → Veiksmas → Rezultatas → Kitas.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar „Rezultatas“ matomas naudotojui per <2 min?",
+                "body": "Ar „Rezultatas“ matomas naudotojui per <2 min? (Greita patikra = mažesnė rizika.)",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 18: Ekranai iš srauto"
+            "footer": "Toliau – skaidrė 17: Ekranai iš srauto"
           }
         },
         {
@@ -17335,12 +17380,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Ekranai kyla iš ciklo. Max 3–5. Ne DI fantazija su dešimtimi langų.",
+                "body": "Kiekvienas ekranas = ciklo žingsnis. Max 3–5 – kitaip MVP per platus.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Ekranas ← ciklo žingsnis",
-                "body": "Pavyzdys dienos prioritetų įrankiui – max 5.",
+                "body": "Pavyzdys (dienos prioritetai) – max 5.",
                 "blockVariant": "brand",
                 "table": {
                   "headers": ["Ekranas", "Ciklo žingsnis"],
@@ -17364,7 +17409,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 19: Ribos ir Now–Next–Later"
+            "footer": "Toliau – skaidrė 18: Ribos ir Now–Next–Later"
           }
         },
         {
@@ -17377,7 +17422,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Būtina/Galima/Nekuriame = Must≤4 / Should / Won’t. „Dabar“ = vienas trumpas ciklas – be Q roadmap.",
+                "body": "Tie patys trys stulpeliai brief kalba: Must (≤4) = Būtina · Should = Galima · Won’t = Nekuriame. „Dabar“ = vienas trumpas ciklas – be ketvirčio plano.",
                 "blockVariant": "accent"
               },
               {
@@ -17392,10 +17437,14 @@
                       "Surikiuoti 3 dienos užduotis",
                       "Dabar: vienas ciklas <2 min"
                     ],
-                    ["Should", "Priminimas ryte", "Toliau: po pirmo smoke"],
+                    [
+                      "Should",
+                      "Priminimas ryte",
+                      "Toliau: po pirmos greitos patikros (M18)"
+                    ],
                     [
                       "Won’t (≥3)",
-                      "Auth, Stripe, MCP",
+                      "Prisijungimas, mokėjimai (Stripe)",
                       "Vėliau / niekada šiame MVP"
                     ]
                   ]
@@ -17403,16 +17452,16 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Užpildyk Must (≤4), Should, Won’t (≥3) ir Dabar→Toliau→Vėliau.",
+                "body": "Užpildyk brief laukus: Must (≤4) / Should / Won’t (≥3) ir Dabar→Toliau→Vėliau.\nPavyzdys: Must – Top 3 per <2 min; Should – priminimas po pirmos patikros; Won’t – prisijungimas / mokėjimai.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Patikra",
-                "body": "Ar Auth/Stripe/MCP yra Won’t, jei jie neša pirmą ciklą?",
+                "body": "Ar prisijungimas/mokėjimai Won’t, jei jie neša pirmą ciklą?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 20: Rizikos"
+            "footer": "Toliau – skaidrė 19: Rizikos"
           }
         },
         {
@@ -17435,10 +17484,13 @@
                 "table": {
                   "headers": ["Rizika", "Kaip sumažinsi"],
                   "rows": [
-                    ["Per plati apimtis", "Must ≤4; Auth/Stripe → Won’t"],
+                    [
+                      "Per plati apimtis",
+                      "Must ≤4; prisijungimas/mokėjimai → Won’t"
+                    ],
                     [
                       "Nėra tikrų duomenų / užduočių",
-                      "Seed 3 pavyzdines užduotis prieš smoke"
+                      "Įdėk 3 pavyzdines užduotis prieš pirmą bandymą"
                     ],
                     [
                       "Naudotojas negrįžta",
@@ -17449,7 +17501,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Įrašyk 3 savo rizikas su po vieną mažinimo eilutę.",
+                "body": "Įrašyk 3 savo rizikas. Šablonas: „Rizika → Mažinu taip:“",
                 "blockVariant": "brand"
               },
               {
@@ -17458,7 +17510,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 21: Savitikra prieš brief"
+            "footer": "Toliau – skaidrė 20: Savitikra prieš brief"
           }
         },
         {
@@ -17471,10 +17523,10 @@
             "questions": [
               {
                 "id": "m16-wu-must",
-                "question": "Kiek Must punktų turėtų tilpti į pirmą MVP brief’ą?",
+                "question": "Ar „Būtina dabar“ (Must) telpa į ≤4 punktus pirmame MVP brief’e?",
                 "options": [
-                  "Must ≤4 – siaura apimtis",
-                  "Must ≥10 – kad nieko nepamirštum",
+                  "Taip – Must ≤4, siaura apimtis",
+                  "Ne – reikia ≥10, kad nieko nepamirštum",
                   "Must neribotas – viską įrašyk",
                   "Must tik tech stack"
                 ],
@@ -17491,22 +17543,22 @@
                   "Vertė = kiek ekranų turi"
                 ],
                 "correct": 0,
-                "explanation": "Vertė = pokytis; funkcija = kaip produktas veikia. Žr. skaidrę „Vertė ≠ funkcija“."
+                "explanation": "Vertė = pokytis; funkcija = kaip produktas veikia. Žr. skaidrę „Vertė nėra funkcija“."
               },
               {
                 "id": "m16-wu-cycle",
-                "question": "Kuo naudotojo ciklas skiriasi nuo funkcijų sąrašo?",
+                "question": "Ar turi 5 žingsnių eigą (ne funkcijų sąrašą)?",
                 "options": [
-                  "Ciklas aprašo UX eigą (triggeris → rezultatas → kitas), ne feature listą",
-                  "Ciklas yra ERD diagrama",
-                  "Ciklas = deploy checklist",
-                  "Ciklas reikalingas tik po GitHub"
+                  "Taip – triggeris → įvestis → veiksmas → rezultatas → kitas",
+                  "Pakanka funkcijų sąrašo be eigos",
+                  "Užtenka hosting plano",
+                  "Eiga reikalinga tik po GitHub"
                 ],
                 "correct": 0,
                 "explanation": "Ciklas = UX seka. Žr. skaidrę „Naudotojo ciklas“."
               }
             ],
-            "footer": "Toliau – skaidrė 22: Praktika: MVP brief"
+            "footer": "Toliau – skaidrė 21: Praktika: MVP brief"
           }
         },
         {
@@ -17519,19 +17571,24 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Brief = produkto sakinys, problema, naudotojas, vertė, ciklas, Must/Should/Won’t, ekranai ≤5, duomenys (high-level), Dabar→Toliau→Vėliau, 3 rizikos, sėkmės kriterijus. Alias M18: mvp_brief.md.",
+                "body": "Brief – vienas dokumentas prieš kodą. Žemiau 11 laukų. Stack ir ERD – ne čia. Tą patį dokumentą naudosime Modulio 18 projekte.",
                 "blockVariant": "accent"
               },
               {
+                "heading": "11 brief laukų",
+                "body": "1. Produkto sakinys\n2. Problema\n3. Tikslinis naudotojas\n4. Vertės pažadas\n5. Pagrindinis naudotojo ciklas\n6. MVP ribos (Must / Should / Won’t)\n7. Pagrindiniai ekranai (≤5)\n8. Duomenys (high-level; detalus modelis – M18)\n9. Dabar → Toliau → Vėliau\n10. 3 rizikos\n11. Sėkmės kriterijus",
+                "blockVariant": "brand"
+              },
+              {
                 "heading": "Daryk dabar",
-                "body": "Užpildyk 11 laukų. Jei užstrigai – nukopijuok Brief pagalbininką.",
+                "body": "Sukurk Docs failą `01_MVP_BRIEF.md` (arba užrašinės puslapį). Užpildyk 11. Jei užstrigai – Brief pagalbininkas.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Brief pagalbininkas",
                 "body": "Nukopijuok ir pritaikyk savo kontekstui.",
                 "blockVariant": "brand",
-                "copyable": "Padėk parašyti siaurą MVP brief lietuviškai.\nKontekstas: [kortelė / idėja].\nTaisyklės: Must ≤4; Won’t ≥3; max 3 spragos klausimais; be tech stack (stack – vėliau).\nGrąžink 11 laukų: produkto sakinys, problema, naudotojas, vertė, ciklas, Must/Should/Won’t, ekranai ≤5, duomenys (high-level), Dabar→Toliau→Vėliau, 3 rizikos, sėkmės kriterijus."
+                "copyable": "Padėk parašyti siaurą MVP brief lietuviškai.\nKontekstas: [kortelė / idėja].\nTaisyklės: Must ≤4; Won’t ≥3; max 3 spragos klausimais; be tech stack (stack – vėliau).\nGrąžink 11 laukų:\n1) produkto sakinys\n2) problema\n3) naudotojas\n4) vertė\n5) ciklas\n6) Must/Should/Won’t\n7) ekranai ≤5\n8) duomenys (high-level)\n9) Dabar→Toliau→Vėliau\n10) 3 rizikos\n11) sėkmės kriterijus."
               },
               {
                 "heading": "Patikra",
@@ -17539,7 +17596,7 @@
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Toliau – skaidrė 23: Modulio 16 santrauka",
+            "footer": "Toliau – skaidrė 22: Modulio 16 santrauka",
             "briefCheckBlock": {
               "question": "Kurio brief lauko trūksta, jei negali pasakyti, ar MVP „veikia“ per <2 min?",
               "options": [
@@ -17572,19 +17629,19 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokai",
-            "introBody": "Nuo miglotos idėjos iki 01_MVP_BRIEF.md – su Must/Won’t, ciklu ir patikrinamu sėkmės kriterijumi.",
+            "introBody": "Nuo miglotos idėjos iki siauro brief’o su ribomis ir patikra – prieš bet kokį generavimą.",
             "stats": [
               {
-                "label": "Kortelės laukai",
+                "label": "5 laukai",
                 "value": "5"
               },
               {
-                "label": "Brief laukai",
+                "label": "11 brief laukų",
                 "value": "11"
               },
               {
-                "label": "Kelias",
-                "value": "Kodo inž."
+                "label": "Prieš kodą",
+                "value": "✓"
               }
             ],
             "sections": [
@@ -17598,7 +17655,10 @@
                 "heading": "Triage",
                 "icon": "Layers",
                 "color": "violet",
-                "items": ["Būtina / Galima / Nekuriame", "Must ≤4"]
+                "items": [
+                  "Būtina / Galima / Nekuriame",
+                  "Ribos: ką darome / nedarome"
+                ]
               },
               {
                 "heading": "Ciklas ir ekranai",
@@ -17619,7 +17679,7 @@
                 "items": ["Skeptikas", "3 rizikos"]
               }
             ],
-            "tagline": "Vibe coding su disciplina prasideda brief’u – ne generavimu.",
+            "tagline": "Disciplina prasideda brief’u – ne generavimu.",
             "nextStepCTA": "Pereik prie Modulio 17: Žinių patikrinimas (Kodo kelias)",
             "abilityBefore": "Idėją laikiau „reikia app“ be ribų.",
             "abilityAfter": "Moku užpildyti MVP brief su Must/Won’t ir ciklu.",
@@ -17630,7 +17690,7 @@
       ],
       "businessExamples": [
         {
-          "title": "MVP brief",
+          "title": "Siaura užduotis / brief",
           "description": "Siaura užduotis su Must/Won’t"
         },
         {
@@ -17660,7 +17720,7 @@
         {
           "id": 170,
           "title": "Modulio 17 testas",
-          "subtitle": "Brief ir planavimo žinios",
+          "subtitle": "Brief ir planavimo žinios – ne kodas",
           "type": "test-intro",
           "content": {
             "whyBenefit": "Po testo žinosi, ar brief’as pakankamai siauras ir patikrinamas prieš Cursor projektą.",
@@ -17711,13 +17771,13 @@
                 "id": "m17-warm-3",
                 "question": "Po testo ką darysi pirmiausia Modulyje 18?",
                 "options": [
-                  "Sudėliosi BUILD PACKET iš brief’o (flow, rules, Cursor promptas) – ne „sukurk visą app“",
+                  "Sudėliosi BUILD PACKET (failų rinkinį prieš DI kodą: brief, flow, taisyklės, Cursor promptas) – ne „sukurk visą app“",
                   "Iš karto prašysi DI parašyti visą sistemą be PACKET",
                   "Praleisi brief ir eisi į multi-agent setup",
                   "Pradėsi nuo Heroku blue-green kurso"
                 ],
                 "correct": 0,
-                "explanation": "M18 ašis: brief → PACKET → Cursor pjūvis → proof. Ne chaotiškas generate."
+                "explanation": "M18 ašis: brief → PACKET (failų rinkinys) → Cursor pjūvis → įrodymas. Ne chaotiškas generate."
               }
             ],
             "footer": "Toliau – skaidrė 3: Klausimai"
@@ -17769,10 +17829,10 @@
             {
               "id": "m17-q4",
               "type": "ordering",
-              "question": "Surikiuok VSR fazes brief brandinimui (nuo pirmos iki paskutinės):",
+              "question": "Surikiuok brief brandinimo fazes Vibe → Skeleton → Refinement (nuo pirmos iki paskutinės):",
               "items": ["Skeleton", "Refinement", "Vibe"],
               "correctOrder": ["Vibe", "Skeleton", "Refinement"],
-              "explanation": "Kryptis (Vibe) → karkasas (Skeleton) → ribos/brief (Refinement).",
+              "explanation": "Vibe (idėjos jausmas) → Skeleton (ciklas + ribos) → Refinement (smailinimas).",
               "relatedSlideId": 16.101
             },
             {
@@ -17822,13 +17882,13 @@
               "type": "mcq",
               "question": "Ką duoti Cursor prieš generate?",
               "options": [
-                "PACKET / rules / vertikalų pjūvį",
+                "PACKET (failų rinkinys) / rules / vertikalų pjūvį – kontekstas prieš generate",
                 "Tik „sukurk app“",
                 "Tik memą",
                 "Tik kainų anekdotą"
               ],
               "correct": 0,
-              "explanation": "Kontekstas ir ribos prieš generavimą.",
+              "explanation": "Prieš generavimą – PACKET ir ribos, ne plikas „sukurk app“.",
               "relatedSlideId": 16.21
             },
             {
@@ -17836,7 +17896,7 @@
               "type": "mcq",
               "question": "Koks geras sėkmės kriterijus MVP brief’e?",
               "options": [
-                "Per 2 min galima patikrinti, ar pagrindinė fn veikia naudotojui",
+                "Per 2 min galima patikrinti, ar pagrindinė funkcija veikia naudotojui",
                 "„Bus modernu“ be matavimo",
                 "10 ekranų ir Auth kaip pirmas žingsnis",
                 "Coverage 80% prieš pirmą paleidimą"
@@ -17864,13 +17924,13 @@
               "type": "mcq",
               "question": "Po DI pakeitimo – kada skaityti diff?",
               "options": [
-                "Prieš commit: perskaityti diff, tada smoke, tada commit",
+                "Prieš commit: perskaityti diff, tada greita patikra (smoke), tada commit",
                 "Iškart commit + push be skaitymo",
                 "Tik po deploy URL",
                 "Nereikia, jei UI „atrodo gerai“"
               ],
               "correct": 0,
-              "explanation": "Diff ritualas: status → diff → smoke → commit → push.",
+              "explanation": "Diff ritualas: status → diff → greita patikra (smoke) → commit → push. Detaliau – Modulis 18.",
               "relatedSlideId": 18.201
             }
           ],
@@ -17884,10 +17944,16 @@
           "subtitle": "Ar brief’as paruoštas Moduliui 18?",
           "type": "test-results",
           "content": {
+            "passedMessage": "Sveikiname! Brief’as atrodo pakankamai siauras – gali eiti į Modulio 18 projektą.",
+            "failedMessage": "Verta grįžti prie Modulio 16: kortelės 5 laukų, triage (Būtina/Galima/Nekuriame), naudotojo ciklo ir 01_MVP_BRIEF.md.",
+            "thresholdExplanation": "Kai pasieksi ≥70 %, gali pereiti prie Modulio 18. Mažiau – peržiūrėk brief ribas, Vertė ≠ funkcija ir Vibe → Skeleton → Refinement.",
             "useCaseBlock": {
               "heading": "Kitas žingsnis: Modulis 18",
-              "body": "Jei ≥70 % – eik į projektą: BUILD PACKET, Cursor vertikalus pjūvis ir soft DoD. Jei mažiau – grįžk prie kortelės ir brief’o Modulio 16."
+              "body": "Jei ≥70 % – eik į projektą: sudėliok BUILD PACKET (failų rinkinį prieš DI kodą), padaryk vieną Cursor pjūvį ir surink minkštą baigties įrodymą (soft DoD – M18). Jei mažiau – grįžk prie kortelės ir brief’o Modulio 16.",
+              "blockVariant": "accent"
             },
+            "reflectionTitle": "Refleksijos promptas",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti brief planavimo žinias.\nINPUT: Ką tik baigiau Modulio 17 testą – brief siaurumą, triage, ciklą ir sėkmės kriterijų.\nOUTPUT: Užduok 3 klausimus: (1) Kurį brief lauką sutvirtinsiu per 24 val.? (2) Kas buvo naujausia? (3) Ką noriu padaryti pirmą M18 PACKET žingsnį? Po mano atsakymų duok 1 konkretų patarimą.",
             "footer": "Toliau – skaidrė 5: Bonus: brief checklist"
           }
         },
@@ -17903,7 +17969,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Patikrink brief prieš PACKET – 5 greiti punktai.",
+                "body": "Patikrink brief prieš PACKET (failų rinkinį prieš DI kodą) – 5 greiti punktai.",
                 "blockVariant": "accent"
               },
               {
@@ -17928,7 +17994,7 @@
               },
               {
                 "heading": "Patikra",
-                "body": "Ar gali pradėti PACKET be „sukurk visą app“?",
+                "body": "Ar gali pradėti PACKET (brief + flow + taisyklės) be „sukurk visą app“?",
                 "blockVariant": "accent"
               }
             ],
@@ -17950,7 +18016,7 @@
         "abilityBefore": "Brief’o kokybę tikrinai intuicija, be aiškių Must/Won’t vartų.",
         "abilityAfter": "Moki patikrinti, ar brief’as siauras ir patikrinamas prieš Cursor projektą.",
         "firstAction24h": "Per 24–48 val. pataisyk vieną silpną brief’o vietą ir eik į Modulį 18 su Must ≤4.",
-        "nextStepCTA": "Pereik prie Modulio 18 – BUILD PACKET ir soft DoD."
+        "nextStepCTA": "Pereik prie Modulio 18 – BUILD PACKET (failų rinkinys) ir minkštas baigties įrodymas (soft DoD)."
       }
     },
     {
@@ -17968,20 +18034,20 @@
         {
           "id": 180,
           "title": "Kodo inžinerijos projektas",
-          "subtitle": "PACKET → Cursor → soft DoD",
+          "subtitle": "PACKET → Cursor → minkštas baigties įrodymas",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "Po projekto turėsi BUILD PACKET ir įrodytą paleidžiamą (arba lokaliai veikiantį) MVP.",
+            "whyBenefit": "Po projekto turėsi BUILD PACKET (failų rinkinį prieš DI kodą) ir įrodytą paleidžiamą (arba lokaliai veikiantį) MVP.",
             "duration": "~45–90 min",
             "firstActionCTA": "Atidaryk savo 01_MVP_BRIEF.md (arba šabloną) ir pažymėk Must / Won’t.",
             "outcomes": [
-              "BUILD PACKET (brief, flow, rules, Cursor promptas)",
+              "BUILD PACKET – failų rinkinys: brief, flow, taisyklės, Cursor promptas",
               "Vertikalus pjūvis Cursor su planu prieš kodą",
-              "Soft DoD: URL arba lokalus proof + GitHub"
+              "Minkštas baigties įrodymas (soft DoD): URL arba lokalus proof + GitHub"
             ],
             "minScenariosToComplete": 1,
             "recommendedSlideIds": [18.12, 18.23],
-            "taskOneLiner": "Sudėliok PACKET, padaryk vieną Cursor pjūvį ir surink soft DoD įrodymą.",
+            "taskOneLiner": "Sudėliok PACKET, padaryk vieną Cursor pjūvį ir surink minkštą baigties įrodymą (soft DoD).",
             "footer": "Toliau – skaidrė 2: Refresh"
           }
         },
@@ -17995,7 +18061,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Turi brief. Čia nekartojame viso M16. Primename: 1 naudotojas, 1 problema, 1 fn – ir pereiname į PACKET.",
+                "body": "Turi brief. Čia nekartojame viso M16. Primename: 1 naudotojas, 1 problema, 1 funkcija – ir pereiname į PACKET (failų rinkinį prieš DI kodą).",
                 "blockVariant": "accent"
               },
               {
@@ -18022,12 +18088,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "DI siūlo daug. Žmogus riboja. Kontroliuojamas kūrimas = PACKET + vienas pjūvis.",
+                "body": "DI siūlo daug. Žmogus riboja. Kontroliuojamas kūrimas = PACKET (failų rinkinys) + vienas pjūvis.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Chaosas vs kontrolė",
-                "body": "Kontroliuojamas kūrimas = PACKET + vienas pjūvis.",
+                "body": "Kontroliuojamas kūrimas = PACKET + vienas pjūvis – ne „sukurk visą app“.",
                 "blockVariant": "brand",
                 "table": {
                   "comparisonStyle": true,
@@ -18067,7 +18133,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Pilnas Task Manager su Redis, WebSocket, AWS, Auth, Stripe – ne pirmas MVP.",
+                "body": "Pilnas Task Manager su Redis, WebSocket, AWS, Auth, Stripe – ne pirmas MVP. Palik vieną siaurą pjūvį.",
                 "blockVariant": "accent"
               },
               {
@@ -18165,7 +18231,7 @@
                     [
                       "Užduotis",
                       "pavadinimas, prioritetas, būsena",
-                      "Pagrindinė fn"
+                      "pagrindinė funkcija"
                     ],
                     ["Diena", "data, sąrašo id", "Rodyti „šiandien“"],
                     [
@@ -18243,7 +18309,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Trumpos taisyklės: stack hint, Must/Won’t, Done, LT, saugumas, approve gate.",
+                "body": "Trumpos taisyklės agentui: stack hint, Must/Won’t, Done, LT, saugumas, patvirtinimo vartai (approve) prieš kodą.",
                 "blockVariant": "accent"
               },
               {
@@ -18287,12 +18353,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Viena Must funkcija. Failų planas prieš kodą. Priėmimo kriterijai.",
+                "body": "Viena Must funkcija (vertikalus pjūvis). Failų planas prieš kodą. Priėmimo kriterijai.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Nukopijuok Cursor pjūvio promptą ir įrašyk savo 1 fn.",
+                "body": "Nukopijuok Cursor pjūvio promptą ir įrašyk savo 1 funkciją.",
                 "blockVariant": "brand"
               },
               {
@@ -18427,7 +18493,10 @@
                       "Klaida + failas + ką bandei"
                     ],
                     ["Keli failai pagal planą", "Vienas simptomas, vienas fix"],
-                    ["Po tavo „taip“ į planą", "Po smoke, kai kažkas neveikia"]
+                    [
+                      "Po tavo „taip“ į planą",
+                      "Po greita patikra (smoke), kai kažkas neveikia"
+                    ]
                   ]
                 }
               },
@@ -18460,12 +18529,12 @@
               },
               {
                 "heading": "5 žingsniai",
-                "body": "Kartok, kol Must funkcija praeina smoke.",
+                "body": "Kartok, kol Must funkcija praeina greitą patikrą (smoke – detaliau vėliau).",
                 "blockVariant": "brand",
                 "table": {
                   "headers": ["Žingsnis", "Tikslas"],
                   "rows": [
-                    ["Aprašyk", "Ką keisi (1 fn / 1 failų planas)"],
+                    ["Aprašyk", "Ką keisi (1 funkcija / 1 failų planas)"],
                     ["Generuok mažai", "Po „taip“ – ne visas app"],
                     ["Paleisk", "Ar pasileidžia?"],
                     ["Patikrink", "Ar Must ciklas veikia?"],
@@ -18541,7 +18610,7 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "PACKET failai: mvp_brief.md (alias 01_MVP_BRIEF.md), user_flow.md, optional schema, build_prompt.md, PROJECT_RULES.md.",
+                "body": "PACKET failai: tas pats brief kaip `01_MVP_BRIEF.md` (čia `mvp_brief.md`), user_flow.md, optional schema, build_prompt.md, PROJECT_RULES.md.",
                 "blockVariant": "accent"
               },
               {
@@ -18573,14 +18642,14 @@
           "type": "section-break",
           "content": {
             "title": "PACKET paruoštas",
-            "subtitle": "Toliau: vibe-debt, smoke, vartai, diff ir soft DoD.",
+            "subtitle": "Toliau: vibe-debt, greita patikra (smoke), paleidimo vartai, diff ir minkštas baigties įrodymas (soft DoD).",
             "sectionNumber": "A→B",
             "celebrationText": "PACKET sudėtas – toliau higiena ir įrodymas.",
             "recap": {
               "heading": "Ką jau turi?",
               "lead": "Build packet – kontekstas Cursor sesijai.",
               "items": [
-                "mvp_brief.md (alias 01_MVP_BRIEF.md) – siauras brief.",
+                "mvp_brief.md (tas pats dokumentas kaip 01_MVP_BRIEF.md) – siauras brief.",
                 "user_flow.md + PROJECT_RULES.md + Cursor build promptas.",
                 "Planas prieš kodą; iteracijos ciklas ir klaidos kontekstas."
               ],
@@ -18592,9 +18661,9 @@
             },
             "nextSteps": [
               "Kodas ≠ produktas – žmogus tikrina.",
-              "Smoke + kritinis kelias; edge ir .env.",
+              "greita patikra (smoke) + kritinis kelias; edge ir .env.",
               "Paleidimo vartai ir diff ritualas prieš commit.",
-              "Soft DoD: URL arba lokalus proof + GitHub."
+              "minkštas baigties įrodymas (soft DoD): URL arba lokalus proof + GitHub."
             ],
             "footer": "Toliau – skaidrė 17: Kodas ≠ produktas"
           }
@@ -18748,10 +18817,10 @@
           "type": "path-step",
           "content": {
             "title": "Smoke – kritinis kelias žalias",
-            "pathLabel": "Soft DoD kelias",
+            "pathLabel": "Smoke / greita patikra",
             "stepNumber": 1,
             "stepTotal": 2,
-            "body": "Aprašyk ir paleisk 3 smoke žingsnius. Pažymėk, kai paleidimas, UI/API ir pagrindinė fn – žali (1 raudona = nestartuojame giliau).",
+            "body": "Aprašyk ir paleisk 3 greitos patikros (smoke) žingsnius. Pažymėk, kai paleidimas, UI/API ir pagrindinė funkcija – žali (1 raudona = nestartuojame giliau).",
             "sections": [
               {
                 "heading": "1. Paleidimas",
@@ -18762,7 +18831,7 @@
                 "body": "Žalia: pagrindinis ekranas / endpoint atsako. Raudona: 404 / tuščia būsena be paaiškinimo."
               },
               {
-                "heading": "3. Pagrindinė fn",
+                "heading": "3. pagrindinė funkcija",
                 "body": "Žalia: brief ciklo rezultatas matomas. Raudona: fn neveikia arba klaidingas rezultatas."
               },
               {
@@ -18942,12 +19011,12 @@
             "sections": [
               {
                 "heading": "Trumpai",
-                "body": "Prieš didesnį DI pakeitimą – commit veikiančios versijos. Po DI: perskaityk diff, tada smoke, tada commit.",
+                "body": "Prieš didesnį DI pakeitimą – commit veikiančios versijos. Po DI: perskaityk diff, tada greita patikra (smoke), tada commit.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Diff ritualas",
-                "body": "Status → **diff** → smoke → commit → push. Spausk žingsnį – diff pabrėžtas.",
+                "body": "Status → **diff** → greita patikra (smoke) → commit → push. Spausk žingsnį – diff pabrėžtas.",
                 "blockVariant": "brand",
                 "image": "m18_diff_ritual",
                 "imageAlt": "Git diff ritualas su pabrėžtu diff žingsniu"
@@ -19085,15 +19154,15 @@
           "subtitle": "Įrodymas vartotojui arba lokaliai",
           "type": "path-step",
           "content": {
-            "title": "Soft DoD – įrodymas vartotojui arba lokaliai",
+            "title": "Soft DoD – minkštas baigties įrodymas",
             "pathLabel": "Soft DoD kelias",
             "stepNumber": 2,
             "stepTotal": 2,
-            "body": "Pažymėk, kai turi soft DoD įrodymą: GitHub + commit’ai, gitignore, README, PROJECT_RULES, ≥1 kritinės fn patikra, viešas URL arba lokalus proof, 1 pataisyta problema, rollback mintis.",
+            "body": "Pažymėk, kai turi soft DoD (minkštą baigties įrodymą): GitHub + commit’ai, gitignore, README, PROJECT_RULES, ≥1 kritinės funkcijos patikra, viešas URL arba lokalus paleidimo aprašas.",
             "sections": [
               {
                 "heading": "Soft DoD checklist",
-                "body": "GitHub + commit’ai · .gitignore · README · PROJECT_RULES.md · ≥1 kritinės fn patikra · viešas URL arba lokalus proof · 1 pataisyta problema · rollback mintis."
+                "body": "GitHub + commit’ai · .gitignore · README · PROJECT_RULES.md · ≥1 kritinės funkcijos patikra · viešas URL arba lokalus proof · 1 pataisyta problema · rollback mintis."
               },
               {
                 "heading": "Daryk dabar",
@@ -19116,14 +19185,14 @@
           "type": "summary",
           "content": {
             "introHeading": "Ką išmokai",
-            "introBody": "Sudėliojai BUILD PACKET, dirbai Cursor su planu prieš kodą ir surinkai soft DoD įrodymą.",
+            "introBody": "Sudėliojai BUILD PACKET (failų rinkinį), dirbai Cursor su planu prieš kodą ir surinkai minkštą baigties įrodymą (soft DoD).",
             "stats": [
               {
                 "label": "PACKET",
                 "value": "5 failai"
               },
               {
-                "label": "DoD",
+                "label": "Soft DoD",
                 "value": "soft"
               },
               {
@@ -19163,7 +19232,7 @@
                 "items": ["Siaurink kitą idėją", "Kartok PACKET ritualą"]
               }
             ],
-            "tagline": "Vibe coding su disciplina baigiasi, kai sistema patikimai veikia vartotojui (arba įrodytai lokaliai).",
+            "tagline": "Disciplina = PACKET + įrodymas – ne chaotiškas generate.",
             "nextStepCTA": "Pritaikyk PACKET kitai siaurai idėjai per 7 dienas.",
             "abilityBefore": "DI kodą paleisdavau be PACKET ir proof.",
             "abilityAfter": "Turiu PACKET ir soft DoD įrodymą (URL arba lokalus).",
@@ -19186,16 +19255,16 @@
         }
       ],
       "transfer": {
-        "abilityBefore": "DI kodą paleisdavau be PACKET ir proof.",
+        "abilityBefore": "DI kodą leidau be PACKET ir be baigties įrodymo.",
         "abilityAfter": "Turiu PACKET ir soft DoD įrodymą (URL arba lokalus).",
-        "firstAction24h": "Padaryk 1 commit + 1 smoke / proof savo MVP.",
+        "firstAction24h": "Padaryk 1 commit + 1 greitą patikrą / proof ant savo MVP.",
         "nextStepCTA": "Pritaikyk PACKET kitai siaurai idėjai"
       }
     }
   ],
   "quiz": {
     "title": "Branduolio pasitikrinimas",
-    "description": "Trumpas check, ar 6 blokų sistema tvirta eiti į pažangesnius modulius.",
+    "description": "Trumpas patikrinimas, ar 6 blokų sistema tvirta eiti į pažangesnius modulius.",
     "passingScore": 70,
     "questions": [
       {
@@ -19220,11 +19289,11 @@
           "Tik kokybės kriterijus"
         ],
         "correct": 1,
-        "explanation": "Meta blokas apibrėžia KAS esate, KOKIA patirtis ir KAM skirtas rezultatas. Pavyzdys: \\\"Tu esi marketingo vadovas (rolė) su 10 metų B2B patirtimi (patirtis). Tavo tikslas – parengti Q1 planą generaliniam direktoriui (auditorija).\\\""
+        "explanation": "Meta blokas apibrėžia KAS esi, KOKIA patirtis ir KAM skirtas rezultatas. Pavyzdys: \\\"Tu esi marketingo vadovas (rolė) su 10 metų B2B patirtimi (patirtis). Tavo tikslas – parengti Q1 planą generaliniam direktoriui (auditorija).\\\""
       },
       {
         "id": 3,
-        "question": "Kas yra 'konkretus input'?",
+        "question": "Kas yra „konkretus input“?",
         "options": [
           "Bendra nuotaika",
           "Tikslūs skaičiai, datos, metrikos",
@@ -19329,7 +19398,7 @@
       },
       {
         "id": 13,
-        "question": "Kokį Temperature reikšmę naudoti verslo ataskaitoms (Q3 pardavimų analizė)?",
+        "question": "Kokią Temperature reikšmę naudoti verslo ataskaitoms (Q3 pardavimų analizė)?",
         "options": [
           "0.8-1.0 (kūrybiškas)",
           "0.1-0.3 (faktinis, tikslus)",
@@ -19337,7 +19406,7 @@
           "1.2-1.5 (labai kūrybiškas)"
         ],
         "correct": 1,
-        "explanation": "Verslo ataskaitoms reikia tikslumo ir faktų, todėl Temperature 0.1-0.3 yra optimalus. Pavyzdys: Q3 pardavimų analizėje reikia tikslūs skaičiai (250k EUR, +15%), ne kūrybiški aprašymai. Kūrybai (šūkiai, idėjos) – 0.8-1.0."
+        "explanation": "Verslo ataskaitoms reikia tikslumo ir faktų, todėl Temperature 0.1-0.3 yra optimalus. Pavyzdys: Q3 pardavimų analizėje reikia tikslių skaičių (250k EUR, +15%), ne kūrybiški aprašymai. Kūrybai (šūkiai, idėjos) – 0.8-1.0."
       },
       {
         "id": 14,
@@ -19349,7 +19418,7 @@
           "Keičia kalbą"
         ],
         "correct": 0,
-        "explanation": "Frequency penalty (0.3-0.5) sumažina žodžių/frazės pasikartojimus. Pavyzdys: jei DI kartotų \\\"verslo analizė\\\" 10 kartų, Frequency penalty 0.5 paskatintų naudoti sinonimus. Tai svarbu ilgiems dokumentams."
+        "explanation": "Frequency penalty (0.3-0.5) sumažina žodžių / frazių pasikartojimus. Pavyzdys: jei DI kartotų \\\"verslo analizė\\\" 10 kartų, Frequency penalty 0.5 paskatintų naudoti sinonimus. Tai svarbu ilgiems dokumentams."
       },
       {
         "id": 15,
@@ -19365,7 +19434,7 @@
       },
       {
         "id": 16,
-        "question": "Kokį Max tokens reikšmę naudoti Executive Summary (1-2 puslapiai)?",
+        "question": "Kokią Max tokens reikšmę naudoti Executive Summary (1-2 puslapiai)?",
         "options": [
           "50-100 tokens",
           "150-300 tokens",
@@ -19397,7 +19466,7 @@
           "Kad būtų ilgesnis"
         ],
         "correct": 1,
-        "explanation": "Q3 pardavimų analizėje reikia tikslūs skaičių (250k EUR, +15%), ne kūrybiški aprašymai. Temperature 0.3 = faktinis, tikslus tonas. Jei būtų 0.8-1.0, DI galėtų \\\"kurti\\\" skaičius arba per daug kūrybiškai aprašyti tendencijas."
+        "explanation": "Q3 pardavimų analizėje reikia tikslių skaičių (250k EUR, +15%), ne kūrybiški aprašymai. Temperature 0.3 = faktinis, tikslus tonas. Jei būtų 0.8-1.0, DI galėtų \\\"kurti\\\" skaičius arba per daug kūrybiškai aprašyti tendencijas."
       },
       {
         "id": 19,

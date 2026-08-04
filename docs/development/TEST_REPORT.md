@@ -2,6 +2,43 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-04 – Pre-launch audit remediation
+
+**Statusas:** ✅ PASS (`audit:release-preflight` green).  
+**Apimtis:** EN M13 `(optional)` titles unblock · `m18_launch_gates` premium chrome · `audit:m1618` in preflight · docs metrics/stale-open sync.
+
+| Gate                                           | Rezultatas                                                                          |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `audit:slide-titles`                           | ✅ EN 13.33 / 13.35 / 13.8 clean titles                                             |
+| `audit:m1618` (now in preflight)               | ✅                                                                                  |
+| `npm run audit:release-preflight`              | ✅ schema · lint · tokens · m49/m1012/m1315/m1618 · journey · TE strict · typecheck |
+| `test:run`                                     | ✅ **160** failai / **966** testai                                                  |
+| Manual RELEASE_QA §§1–5d (PDF / mobile / dark) | ⬜ owner residual (WARN, not coding blocker)                                        |
+| Marketing MON / corporate18                    | Out of scope                                                                        |
+
+**Verdict:** Automated GO for this-repo learning ship. Metrics SOT **160/966** (supersedes 155/944). Commit only on explicit request.
+
+---
+
+## 2026-08-04 – Caveats Closure Program (CAV-A*/B*/C1)
+
+**Statusas:** ✅ PASS (this-repo deliverables); marketing B1/B2 + C2 pricing remain outside.  
+**Apimtis:** EN audit gates · @375 residual log · PDF handout unit/schema · M1618 path handout · handoff/TODO tracking.
+
+| Gate                                                                             | Rezultatas                                                                                       |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `audit:m49` · `audit:m1012` · `audit:m1315` · `audit:m1618` · `audit:nav-labels` | ✅ CAV-A1                                                                                        |
+| Mobile @375 `smoke-diag1-m1315.mjs` @ vite :3000                                 | ✅ CAV-A2 **40/40 PASS** (LT/EN light+dark spots incl. 13.325/13.37/13.47/Path Test/M15)         |
+| Handout schema + `m1618` PDF unit / content parity                               | ✅ CAV-A3 automated (schema + 21 vitest); owner open-PDF visual still RELEASE_QA §5d recommended |
+| Marketing pin/env/PostHog                                                        | Out of scope — docs synced CAV-B1/B2 · TODO §1.4 / §1.6                                          |
+| M1618 path-funnel handout (`completionArtifacts` key `m1618`)                    | ✅ CAV-C1                                                                                        |
+| Wave D3 corporate18                                                              | Parked intake CAV-C2                                                                             |
+| Progress / org memory                                                            | Deferred CAV-D1                                                                                  |
+
+**Verdict:** Caveats program closed for in-repo work. Buyer-facing magic-link/analytics still marketing; corporate18 waits pricing call.
+
+---
+
 ## 2026-08-03 – Pre-launch ship to inzinerija
 
 **Statusas:** ✅ PASS (`audit:release-preflight` green).  
@@ -163,7 +200,7 @@
 | Authoring ceiling docs | M1–18 full SOT / DEV 18; magic-link ≤15 |
 | Open TE status         | Could C1–C5 only (Must+Should done)     |
 
-**Verdict (superseded):** Was **154/940** on 2026-08-01. Current SOT = **155/944** (2026-08-02 mobile chrome — see sections above).
+**Verdict (superseded):** Was **154/940** on 2026-08-01 / **155/944** on 2026-08-02. Current SOT = **160/966** (2026-08-04 pre-launch audit remediation — see top entry).
 
 ## 2026-08-01 – Horizon D TE Should polish (S1/S2 + dens + M17)
 

@@ -1,7 +1,7 @@
 # Promptų anatomija - Cursor AI Rules
 
 ## Projekto kontekstas
-- Produktas: interaktyvus DI promptų inžinerijos mokymas. Moduliai `1–6` MVP pilnai; `7–9` korporatyvinis bundle (tier 9); `10–12` corporate12 + authoring (tier 12); `13–15` corporate15 + authoring (tier 15); `16–18` Kodo inžinerija authoring + TE Must + Should + C2 done; corporate18 / production cut = Wave D3 Deferred; open TE = C1 park `TODO.md` §1.2g (C3–C5 won’t-now).
+- Produktas: interaktyvus DI promptų inžinerijos mokymas. Moduliai `1–6` MVP pilnai; `7–9` korporatyvinis bundle (tier 9); `10–12` corporate12 + authoring (tier 12); `13–15` corporate15 + authoring (tier 15); `16–18` Kodo inžinerija authoring + TE Must + Should + C2 + M16 learner plain EN+B1–B4 done; corporate18 / production cut = Wave D3 Deferred; TE Could C1/C3–C5 won’t-now (`TODO.md` §1.2g); optional `M16-PLAIN-C` deferred.
 - Turinio šaltinis ir tiesa: `turinio_pletra.md` (M1–M3), `docs/turinio_pletra_moduliai_4_5_6.md` (M4–M6), `docs/turinio_pletra_moduliai_7_8_9.md` (M7–M9), `docs/turinio_pletra_moduliai_10_11_12.md` (M10–M12), `docs/turinio_pletra_moduliai_13_14_15.md` (M13–M15), `docs/turinio_pletra_moduliai_16_17_18.md` (M16–M18).
 - Duomenų architektūra (`A` modelis): full redagavimo SOT – `src/data/modules.json`, `glossary.json`, `tools.json`+`tools-en.json` (exact `name`; `npm run audit:tools`); build profiliai – `*-m1-m6.json` (MVP, `VITE_MVP_MODE=1`), `*-m1-m9.json` (production, `VITE_MAX_BUILD_MODULE=9`), `*-m1-m12.json` (corporate12) ir `*-m1-m15.json` (corporate15), generuojami per `npm run generate:core-data` (**be** M16+ spill); EN overlay M10–12 / M13–15 / M16–18 – `modules-en-m10-m12.json`, `modules-en-m13-m15.json`, `modules-en-m16-m18.json` (partial, merge kai kataloge modulis 10+/13+/16+).
 - UI/UX logika ir renderinimas: `src/components/*` (ypač `SlideContent.tsx`, `ModuleView.tsx`, `QuizPage.tsx`).
@@ -17,7 +17,7 @@
 - Dokumentų sinchronizacija yra privaloma: `README.md`, `docs/getting-started/QUICK_START.md`, `docs/deployment/DEPLOYMENT.md`, `docs/deployment/GITHUB_SETUP.md`, `ROADMAP.md`, `TODO.md` turi sutapti su realia konfigūracija (`vite.config.ts`, `package.json`).
 
 ## Roadmap/TODO integracija
-- Prioritetai = **open** P0/P1 [`TODO.md`](TODO.md) §1 ir [`ROADMAP.md`](ROADMAP.md) ladder (M79 ROI done; open P1 = `TE-M1618-C1` park §1.2g; C2 done; C3–C5 won’t-now; Wave D3 corporate18 Deferred §1.5) — ne visas istorinis failas.
+- Prioritetai = **open** P0/P1 [`TODO.md`](TODO.md) §1 ir [`ROADMAP.md`](ROADMAP.md) ladder (M79 ROI done; M16 plain EN+B1–B4 done; open P1 = optional `M16-PLAIN-C` only; TE Could C1/C3–C5 won’t-now; C2 done; Wave D3 corporate18 Deferred §1.5) — ne visas istorinis failas.
 - Done istorija → `docs/development/CODEBASE_WHAT_IS_DONE.md` / `docs/archive/` (pvz. `TODO_DONE_SPRINTS_2026-07.md`); **neatnaujink** Done lentelių TODO §1.
 - Kritiniai punktai (Error Boundary, duomenų migracija/validacija, testai) – aukščiausi prioritetai.
 - Jei užbaigi open užduotį: pažymėk TODO §1, atnaujink ROADMAP open gaps; Docs Lean taisyklės – `DOCS_MAINTENANCE.md` §1c.

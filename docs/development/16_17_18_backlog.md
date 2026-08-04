@@ -1,7 +1,7 @@
 # M16–M18 backlog (Kodo inžinerija / vibe-coding)
 
-> **Statusas:** `authoring done` + **TE Must + Should S1–S4 + C2 done** (2026-08-01) — `M1618-D0`…`F8` ✅ · `TE-M1618-0`…`M5` ✅ · S1–S4 ✅ · C2 ✅ · R1–R6 ✅. Could C1 won’t-now 2026-08-03; C3–C5 won’t-now [`TODO.md`](../../TODO.md) §1.2g. Wave D3 corporate18 Deferred.  
-> **Tikslas:** Vienas darbo sąrašas Kodo inžinerijos keliui. Authoring ticket’ai čia (F\*); open TE → TODO §1.2g.  
+> **Statusas:** `authoring done` + **TE Must + Should S1–S4 + C2 done** (2026-08-01) — `M1618-D0`…`F8` ✅ · `TE-M1618-0`…`M5` ✅ · S1–S4 ✅ · C2 ✅ · R1–R6 ✅. Could C1 won’t-now 2026-08-03; C3–C5 won’t-now [`TODO.md`](../../TODO.md) §1.2g closed. **Learner plain M16–18 ✅** 2026-08-04. **Open:** Wave D3 corporate18 Deferred §1.5.  
+> **Tikslas:** Vienas darbo sąrašas Kodo inžinerijos keliui. Authoring ticket’ai čia (F\*); TE MoSCoW closed → D3 Deferred.  
 > **SOT (gates):** [`turinio_pletra_moduliai_16_17_18.md`](../turinio_pletra_moduliai_16_17_18.md) §0 · §6 · **§8** (freeze lifted for F1–F8).  
 > **Ladder:** [`ROADMAP.md`](../../ROADMAP.md) Horizon D.  
 > **Agent route:** CURRICULUM → CONTENT → DATA → SCHEME/CODING → QA. Feature Doc **tik** jei ChoiceControl A/B/C arba progress-saved brief (SOT §5.3) — v1 = lentelės / copyables.  
@@ -89,7 +89,8 @@ Biudžetas: M16 ~18–22 sk. · M18 ~22–28 sk. (+ M17 Path Test shell) ≈ **4
 
 ## 4. Wave D3 — Corporate18 (future, parked)
 
-> **Ne pradėti dabar.** Prerequisite: F8 authoring brandumas **ir** atskiras product/pricing call.
+> **Ne pradėti dabar.** Prerequisite: F8 authoring brandumas **ir** atskiras product/pricing call.  
+> Intake: [`intake/M16_M18_CORPORATE18_INTAKE.md`](intake/M16_M18_CORPORATE18_INTAKE.md) (CAV-C2). Path handout CAV-C1 ✅.
 
 | Phase | ID           | Deliverable                                                        |
 | ----- | ------------ | ------------------------------------------------------------------ |

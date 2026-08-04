@@ -59,7 +59,7 @@ describe('QuizPage', () => {
       modules: [],
       quiz: {
         title: 'Branduolio pasitikrinimas',
-        description: 'Trumpas check',
+        description: 'Trumpas patikrinimas',
         passingScore: 70,
         questions: [],
       },

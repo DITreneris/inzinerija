@@ -2,12 +2,18 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.5.0 + M16–18 authoring/TE + docs/EN sync A+B  
-**Testai:** 155 failai / 944 testai (`@ HEAD` 2026-08-02; `@ tag 1.4.9` freeze = 130/825)  
-**Data:** 2026-08-01  
+**Baseline:** 1.5.0 + M16–18 authoring/TE/plain + pre-launch audit remediation  
+**Testai:** 160 failai / 966 testai (`@ HEAD` 2026-08-04 preflight; `@ tag 1.4.9` freeze = 130/825)  
+**Data:** 2026-08-04  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Pre-launch audit remediation – 2026-08-04
+
+| #   | Failas                                                        | Laukas        | Buvo    | Turi būti                                      | Done |
+| --- | ------------------------------------------------------------- | ------------- | ------- | ---------------------------------------------- | ---- |
+| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 155/944 | **160/966** po plain/handout + preflight green | [x]  |
 
 ### Docs A + EN B sync – 2026-08-01
 

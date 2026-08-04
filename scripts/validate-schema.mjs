@@ -634,6 +634,7 @@ function validateHandoutContents() {
     ['m79HandoutContent.schema.json', ['m79HandoutContent.json', 'm79HandoutContent-en.json']],
     ['m1012HandoutContent.schema.json', ['m1012HandoutContent.json', 'm1012HandoutContent-en.json']],
     ['m1315HandoutContent.schema.json', ['m1315HandoutContent.json', 'm1315HandoutContent-en.json']],
+    ['m1618HandoutContent.schema.json', ['m1618HandoutContent.json', 'm1618HandoutContent-en.json']],
   ];
   for (const [schemaFile, files] of handoutSchemaPairs) {
     const schema = loadJson(join(__dirname, 'schemas', schemaFile));

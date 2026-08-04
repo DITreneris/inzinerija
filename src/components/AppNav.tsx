@@ -12,7 +12,11 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '../contexts/LocaleContext';
-import { surfaceGlass } from '../design-tokens';
+import {
+  focusRingClasses,
+  surfaceGlass,
+  touchTargetClasses,
+} from '../design-tokens';
 import { BrandMark } from './ui';
 
 export type NavPage =
@@ -77,7 +81,7 @@ export function AppNav({
           <button
             type="button"
             onClick={() => nav('home')}
-            className="flex items-center gap-3 flex-shrink-0 rounded-xl transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px]"
+            className={`flex items-center gap-3 flex-shrink-0 rounded-xl transition-opacity hover:opacity-90 ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight}`}
             aria-label={t('appTitle')}
             aria-current={currentPage === 'home' ? 'page' : undefined}
           >
@@ -114,7 +118,7 @@ export function AppNav({
 
             <button
               onClick={onToggleDark}
-              className="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className={`p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
               aria-label={t('toggleDark')}
             >
               <Moon className="w-5 h-5 dark:hidden" strokeWidth={1.5} />
@@ -129,7 +133,7 @@ export function AppNav({
               <button
                 type="button"
                 onClick={() => setLocale('lt')}
-                className={`px-3 py-2 text-sm font-medium min-h-[44px] transition-colors ${
+                className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
                   locale === 'lt'
                     ? 'bg-brand-600 text-white dark:bg-brand-500'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -141,7 +145,7 @@ export function AppNav({
               <button
                 type="button"
                 onClick={() => setLocale('en')}
-                className={`px-3 py-2 text-sm font-medium min-h-[44px] transition-colors ${
+                className={`px-3 py-2 text-sm font-medium ${touchTargetClasses.minimumHeight} transition-colors ${
                   locale === 'en'
                     ? 'bg-brand-600 text-white dark:bg-brand-500'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -154,7 +158,7 @@ export function AppNav({
 
             <button
               onClick={() => nav('home')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px] min-w-[8.5rem] justify-center whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
                 currentPage === 'home'
                   ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
@@ -174,7 +178,7 @@ export function AppNav({
 
             <button
               onClick={() => nav('modules')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px] min-w-[8.5rem] justify-center whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
                 currentPage === 'modules' || currentPage === 'module'
                   ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
@@ -200,7 +204,7 @@ export function AppNav({
 
             <button
               onClick={() => nav('glossary')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px] min-w-[8.5rem] justify-center whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
                 currentPage === 'glossary'
                   ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
@@ -220,7 +224,7 @@ export function AppNav({
 
             <button
               onClick={() => nav('tools')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px] min-w-[8.5rem] justify-center whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
                 currentPage === 'tools'
                   ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
@@ -240,7 +244,7 @@ export function AppNav({
 
             <button
               onClick={() => nav('quiz')}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 min-h-[44px] min-w-[8.5rem] justify-center whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all ${focusRingClasses.brand} ${touchTargetClasses.minimumHeight} min-w-[8.5rem] justify-center whitespace-nowrap ${
                 currentPage === 'quiz'
                   ? 'bg-brand-600 dark:bg-brand-500 text-white shadow-lg shadow-brand-500/25 border-b-2 border-accent-500 rounded-b-xl'
                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 border-b-2 border-transparent'
@@ -284,7 +288,7 @@ export function AppNav({
 
             <button
               onClick={onToggleDark}
-              className="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className={`p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
               aria-label={t('toggleDark')}
             >
               <Moon className="w-5 h-5 dark:hidden" strokeWidth={1.5} />
@@ -293,7 +297,7 @@ export function AppNav({
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className={`p-2.5 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${touchTargetClasses.minimum} ${focusRingClasses.brand} flex items-center justify-center`}
               aria-label={isMobileMenuOpen ? t('menuClose') : t('menuOpen')}
               aria-expanded={isMobileMenuOpen}
             >

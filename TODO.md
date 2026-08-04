@@ -2,17 +2,18 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) · ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-03 (TE-M1618-C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-04 (M16–18 learner plain ✅ §1.2i–l; M13 plain ✅ + `M13P-TRIM` ✅ §1.2j; TE-M1618 C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
 
-**Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **155/944**; `build:corporate12` + `build:corporate15` žali.
+**Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **160/966**; `build:corporate12` + `build:corporate15` žali.
 
-**Produktiniai sprendimai (2026-07-31 + 2026-08-01):** (1) skaitomumas keliamas **išlaikant gylį**; (2) **M79-S\*** epic completed; (3) **formalus Density DoD / CI – ne**; (4) M13 **13.3 / 13.4** dens soft pass → **M1315-DENS done**; (5) UJ-MUST done; (6) **Horizon D un-park** — kitas kelias = Kodo inžinerija; (7) M16–18 TE = MoSCoW individual metaphors (S4-INDIV), ne thin VerticalFlow facades.
+**Produktiniai sprendimai (2026-07-31 + 2026-08-01):** (1) skaitomumas keliamas **išlaikant gylį**; (2) **M79-S\*** epic completed; (3) **formalus Density DoD / CI – ne**; (4) M13 **13.3 / 13.4** dens soft pass → **M1315-DENS done**; (5) UJ-MUST done; (6) **Horizon D un-park** — kitas kelias = Kodo inžinerija; (7) M16–18 TE = MoSCoW individual metaphors (S4-INDIV), ne thin VerticalFlow facades; (8) **Authoring+TE ≠ learner plain** — M16–18 plain/EN body ✅ (§1.2i–l); (9) **M13 TE/corporate ✅ + learner plain ✅ + M13P-TRIM ✅** — chrome/outcomes/EN + copyable fit (`M13_MATURITY_PLAN` / `M13_PROMPT_MATURITY`).
 
 **Learning / corporate vartai (šiame repo):**
 
 - **Open P0:** nėra.
-- **Open P1:** nėra (learning). D3 corporate18 Deferred §1.5. TE-M1618 Could C1–C5 all won’t-now / done; `M1618-R*` done §1.2h.
+- **Open P1:** nėra (learning). D3 corporate18 Deferred §1.5 (CAV-C2 intake parked). TE-M1618 Could C1–C5 all won’t-now / done; `M1618-R*` done §1.2h; M16–18 plain ✅; M13 plain + `M13P-TRIM` ✅.
 - **Open P2:** nėra.
+- **Caveats Closure (2026-08-04):** tracking §1.6 — A automated ✅ · B marketing handoff sync ✅ · C1 handout ✅ · C2/D parked.
 
 ---
 
@@ -115,7 +116,7 @@ Repo exit: `build:corporate12` + magic-link tier 12 + `audit:m1012` + docs. Mark
 
 1. PACKET assembly is **not** the sales/demo moment for Kodo kelias (static stack + Soft DoD path suffice).
 2. No capacity for full Feature Doc Contract (M9-like confirm lab) in this window.
-3. Outcome: **won’t-now** (same class as C3–C5). Learning open P1 empty (only D3 pricing / MON outside).
+3. Outcome: **won’t-now** (same class as C3–C5). Open learning P1 = nėra (`M13P-TRIM` ✅); D3 pricing / MON outside.
 
 #### Won’t
 
@@ -142,6 +143,61 @@ Repo exit: `build:corporate12` + magic-link tier 12 + `audit:m1012` + docs. Mark
 | **M1618-R5** | QA: schema · EN build · footer/interactivity · CHANGELOG / TEST_REPORT       | [x]    |
 | **M1618-R6** | Stretch: `18.16` → path-step smoke (1/2 su Soft DoD)                         | [x]    |
 
+### §1.2i P1 – M16 learner plain / EN body (authoring+TE ≠ skaitomumas)
+
+> Planas: [`M16_MATURITY_PLAN.md`](docs/development/M16_MATURITY_PLAN.md). Rubrika: pedagogika · nauda · praktiškumas · verslo nauda. Ne Density CI; ne naujas TE Pattern. **Done** 2026-08-04 (C merge ✅). M17/M18 → §1.2k / §1.2l.
+
+| ID               | Užduotis                                                                                    | Status |
+| ---------------- | ------------------------------------------------------------------------------------------- | ------ |
+| **M16-PLAIN-0**  | Plan freeze + rubrika                                                                       | [x]    |
+| **M16-PLAIN-EN** | M16 EN body (23 sk.) + griežtesnis EN language audit                                        | [x]    |
+| **M16-PLAIN-B1** | **16.25 · 16.3** (+ optional 160 outcomes[1–2] / 16.2 Daryk pavyzdys; **ne** intro rewrite) | [x]    |
+| **M16-PLAIN-B2** | 16.4–16.8 · 16.85 · 16.9 – D1 + kortelės etalonas                                           | [x]    |
+| **M16-PLAIN-B3** | 16.101 · 16.11–16.15 – VSR / kryptis plain                                                  | [x]    |
+| **M16-PLAIN-B4** | 16.16–16.21 · 16.205 · 16.22 – ciklas / brief 11 / summary                                  | [x]    |
+| **M16-PLAIN-C**  | Merge 16.85+16.9; 16.7↔16.18 role sharpen (22 sk.)                                          | [x]    |
+
+### §1.2k P1 – M17 learner plain (Path Test shell + bank bridges)
+
+> Planas: [`M17_MATURITY_PLAN.md`](docs/development/M17_MATURITY_PLAN.md). Shell lukštas ≈ M11; bank bridges (PACKET/VSR/smoke gloss). Ne naujas TE.
+
+| ID                  | Užduotis                                                        | Status |
+| ------------------- | --------------------------------------------------------------- | ------ |
+| **M17-PLAIN-0**     | Plan freeze + shell gap vs M11                                  | [x]    |
+| **M17-PLAIN-SHELL** | 172 results fields + CTA bridges                                | [x]    |
+| **M17-PLAIN-BANK**  | Warm/graded/bonus plain bridges (PACKET / VSR / greita patikra) | [x]    |
+| **M17-PLAIN-EN**    | Durable `m17-en-plain-overrides` + body audit module 17         | [x]    |
+| **M17-PLAIN-QA**    | Vitest shell + `audit:m1618` + CHANGELOG                        | [x]    |
+
+### §1.2l P1 – M18 learner plain (PACKET / Soft DoD earned + EN)
+
+> Planas: [`M18_MATURITY_PLAN.md`](docs/development/M18_MATURITY_PLAN.md). Bridge jargon – **nestripinti**. Optional dens C deferred.
+
+| ID               | Užduotis                                                            | Status   |
+| ---------------- | ------------------------------------------------------------------- | -------- |
+| **M18-PLAIN-0**  | Bridge freeze (PACKET / Soft DoD / smoke first-use)                 | [x]      |
+| **M18-PLAIN-B1** | 180 · 18.05 · 18.1 · 18.2                                           | [x]      |
+| **M18-PLAIN-B2** | 18.3–18.12 · 18.55 · 18.125                                         | [x]      |
+| **M18-PLAIN-B3** | 18.13–18.19                                                         | [x]      |
+| **M18-PLAIN-B4** | 18.201–18.24 · Soft DoD earned 18.23                                | [x]      |
+| **M18-PLAIN-EN** | Full EN 28 sk. (`m18-en-lt-map` + overrides) + body audit module 18 | [x]      |
+| **M18-PLAIN-C**  | Optional dens soft                                                  | deferred |
+| **M18-PLAIN-QA** | `audit:m1618` + CHANGELOG + lessons                                 | [x]      |
+
+### §1.2j P1 – M13 learner plain / chrome (TE+corporate ≠ skaitomumas)
+
+> Planas: [`M13_MATURITY_PLAN.md`](docs/development/M13_MATURITY_PLAN.md). **Etalonai:** [`M7_PROMPT_MATURITY.md`](docs/development/M7_PROMPT_MATURITY.md) · [`M4_PROMPT_MATURITY.md`](docs/development/M4_PROMPT_MATURITY.md) · [`M79_READABILITY_EXECUTION_PLAN.md`](docs/development/intake/M79_READABILITY_EXECUTION_PLAN.md) · ranking Top-N — **ne** M16 plan esė formatas. Copyable lieka [`M13_PROMPT_MATURITY.md`](docs/development/M13_PROMPT_MATURITY.md). Ne Density CI; ne naujas TE.
+
+| ID               | Užduotis                                                                                               | Status |
+| ---------------- | ------------------------------------------------------------------------------------------------------ | ------ |
+| **M13-PLAIN-0**  | Plan freeze + inventorius + meta wire                                                                  | [x]    |
+| **M13-PLAIN-B1** | 130 outcomes/whyBenefit · 13.32/13.52/13.56 titles · 13.11 order · breaks                              | [x]    |
+| **M13-PLAIN-B2** | 13.9 summary · 13.8 glossary · 13.101 Trumpai kiss                                                     | [x]    |
+| **M13-PLAIN-EN** | Kill EN outcomes stub build’e + hand-tune B1/B2 skaidrėms                                              | [x]    |
+| **M13-PLAIN-B3** | Soft gloss 13.3–13.6 / 13.5 / 13.35                                                                    | [x]    |
+| **M13P-TRIM**    | M13P copyable trim (−30 % pass): 13.4 chain · 13.6 EN MASTER · 13.35 kiss · 13.1 Micro; keep 13.2/13.3 | [x]    |
+| **M13-PLAIN-QA** | Walkthrough DoD + CHANGELOG + lessons + freeze                                                         | [x]    |
+
 ### §1.3 P2 – Horizon A: corporate micro (M1–9)
 
 **Closed 2026-07-28** (`CORP-M1` done · `CORP-M2` won’t-now · `CORP-M3` deferred-with-date) → archive [`TODO_DONE_SPRINTS_2026-07-28.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md).  
@@ -153,25 +209,39 @@ Open learning P2: **nėra** aktyvių ticket’ų.
 > **Horizon B cutover:** `build:corporate12` + `access_tier=12` — [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md).  
 > **Horizon C cutover:** `build:corporate15` + `access_tier=15` (provisional €249) — tas pats checklist.
 
-| ID        | Užduotis                                                                | Status | Pastaba                                                               |
-| --------- | ----------------------------------------------------------------------- | ------ | --------------------------------------------------------------------- |
-| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel                                                      |
-| **MON-2** | Submodule pin **v1.4.9** + deploy                                       | ⏳     | Marketing → pin tag **v1.4.9** (was 1.4.8); later 1.5.x + corporate15 |
-| **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15**                         |
-| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md)  |
-| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                   |
-| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]    | Marketing                                                             |
-| **MON-8** | Marketing prod: `build:production` M1–9 env                             | ⏳     | Vercel env; optional cutover → `build:corporate12` / `corporate15`    |
-| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]    | Marketing                                                             |
+| ID        | Užduotis                                                                | Status | Pastaba                                                                                                                  |
+| --------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel · CAV-B1                                                                                                |
+| **MON-2** | Submodule pin **v1.4.9** + deploy                                       | ⏳     | Learning pin **v1.4.9**; app HEAD **1.5.0** (+ corporate15 ready). Choose pin before cutover · CAV-B1                    |
+| **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15** (tier **18** = CAV-C2)                                                     |
+| **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) · CAV-B2; training events already in `analytics.ts` |
+| **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                                                                      |
+| **MON-7** | Baseline KPI po MON-4 (2–4 sav.)                                        | [ ]    | Marketing                                                                                                                |
+| **MON-8** | Marketing prod: `build:production` M1–9 env                             | ⏳     | Vercel env; optional cutover → `build:corporate12` / `corporate15`                                                       |
+| CRO       | Landing positioning / Hero CTA / trust / Pricing eilė                   | [ ]    | Marketing                                                                                                                |
 
 MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
 ### §1.5 Deferred
 
 - M10–15 marketing monetizacija – marketing repo (tier 12/15 cutover = §1.4).
-- **Horizon D Wave D3:** corporate18 (`build:corporate18`, magic-link tier 18, `audit:m1618`) — po F8 + atskiras pricing call. Authoring F1–F8 = §1.2f; TE MoSCoW = §1.2g.
+- **Horizon D Wave D3 / CAV-C2:** corporate18 (`build:corporate18`, magic-link tier 18, `audit:m1618`) — po pricing call. Intake [`docs/development/intake/M16_M18_CORPORATE18_INTAKE.md`](docs/development/intake/M16_M18_CORPORATE18_INTAKE.md). Authoring F1–F8 = §1.2f; TE MoSCoW = §1.2g; path handout CAV-C1 ✅.
 - M19–21 **DI politikos inžinerija** – Deferred (nėra SOT / katalogo).
 - M7 optional viz sk. 100–106 lieka M7 (≠ M16–18).
+- **CAV-D1 Progress / org memory:** localStorage sandbox stays; no sync backend. Revisit after MON-4 analytics (CORP-M3 class) — export/import or learningEvents journal lite only.
+
+### §1.6 Caveats Closure Program (2026-08-04)
+
+| ID         | Item                                     | Owner               | Status                                                                               |
+| ---------- | ---------------------------------------- | ------------------- | ------------------------------------------------------------------------------------ |
+| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x] gates green; owner visual EN spot optional                                       |
+| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x] `smoke-diag1-m1315` 40/40 PASS (see TEST_REPORT)                                 |
+| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] handout unit + schema (+ m1618); owner open-PDF visual still recommended §5d     |
+| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] handoff docs synced (pin 1.4.9 vs 1.5.0 / tier 12–15); execute in marketing repo |
+| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ] training `analytics.ts` wired; env/snippet/dashboard = marketing                 |
+| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                             |
+| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                         |
+| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                               |
 
 ---
 

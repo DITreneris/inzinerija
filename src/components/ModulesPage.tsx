@@ -33,6 +33,7 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
 import { LoadingSpinner, Card, Badge, CTAButton } from './ui';
 import Eyebrow from './ui/Eyebrow';
+import { focusRingClasses, touchTargetClasses } from '../design-tokens';
 import { HandoutDownloadButton } from './HandoutDownloadButton';
 import { downloadHandout } from '../utils/downloadHandout';
 import type { Module, ModuleAccent } from '../types/modules';
@@ -485,7 +486,7 @@ function ModulesPage({
                 key={`recovery-${id}`}
                 variant={id === 1 ? 'primary' : 'secondary'}
                 onClick={() => onModuleSelect(id)}
-                className="min-h-[44px]"
+                className={touchTargetClasses.minimumHeight}
                 aria-label={t('chapterStartChipAria', { n: id })}
               >
                 {t('chapterStartChip', { n: id })}
@@ -494,7 +495,7 @@ function ModulesPage({
             <CTAButton
               variant="secondary"
               onClick={handleDismissRecovery}
-              className="min-h-[44px]"
+              className={touchTargetClasses.minimumHeight}
             >
               {t('chapterRecoveryDismiss')}
             </CTAButton>
@@ -517,7 +518,7 @@ function ModulesPage({
                 key={`strip-${id}`}
                 type="button"
                 onClick={() => onModuleSelect(id)}
-                className="min-h-[44px] px-3 py-1.5 text-sm font-semibold rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-200 hover:bg-brand-100 dark:hover:bg-brand-900/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
+                className={`${touchTargetClasses.minimumHeight} px-3 py-1.5 text-sm font-semibold rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-200 hover:bg-brand-100 dark:hover:bg-brand-900/50 ${focusRingClasses.brandOnWhite}`}
                 aria-label={t('chapterStartChipAria', { n: id })}
               >
                 {t('chapterStartChip', { n: id })}
@@ -632,7 +633,7 @@ function ModulesPage({
                           onClick={() =>
                             handleMaterialHandoutDownload(moduleId)
                           }
-                          className="min-h-[44px]"
+                          className={touchTargetClasses.minimumHeight}
                           iconClassName="w-4 h-4"
                         />
                       );
@@ -643,7 +644,7 @@ function ModulesPage({
                           key={`certificate-${tier}`}
                           variant="secondary"
                           onClick={() => onRequestCertificate(tier)}
-                          className="min-h-[44px]"
+                          className={touchTargetClasses.minimumHeight}
                           aria-label={t(`certificateTier${tier}Aria`)}
                         >
                           <Award className="w-4 h-4" aria-hidden />
@@ -949,7 +950,7 @@ function ModulesPage({
 
                 {/* Decorative CTA — navigation only via card (single tab stop) */}
                 <span
-                  className={`w-full min-h-[44px] flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${
+                  className={`w-full ${touchTargetClasses.minimumHeight} flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${
                     locked
                       ? 'bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500'
                       : `bg-gradient-to-r ${ctaGradientClass} text-white shadow-md`

@@ -2,7 +2,9 @@
 
 > **Tikslas:** Vienas sąrašas idempotentinių M79 patch skriptų, paleidimo tvarka ir EN overlay taisyklės.
 > **Operacinis SOT:** iteraciniai UX polish pakeitimai fiksuojami čia + [`TEST_REPORT.md`](TEST_REPORT.md) + [`CHANGELOG.md`](../../CHANGELOG.md).
-> **Atnaujinta:** 2026-07-26
+> **Atnaujinta:** 2026-08-04
+
+**M7–M9 EN language polish (2026-08-04):** `patch-m79-en-language-polish.mjs` – Must/Should grammar + US spelling (`modules-en-m7-m9.json`, `m79HandoutContent-en.json`, `glossary-en.json` Kiss-Marry Kill→Drop). LT SOT neliečia. **Nenaudoti** `build:modules-en-m7-m9`. → `generate:core-data`.
 
 **Rankinis turinio polish (ne patch skriptas):** M7 sk. **67.5** (2026-07-24) – GOLDEN §3.2: scenarijus + copyable gynybos promptas; žodynas Promptų injekcija / Jailbreak. Failai: `modules.json`, `modules-en-m7-m9.json`, `glossary.json`, `glossary-en.json` → `generate:core-data`.
 
@@ -16,23 +18,24 @@
 
 ## 1. Skriptų lentelė
 
-| Skriptas                              | Paskirtis                                                                  | Kada paleisti                          | Priklausomybės                                    |
-| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------- |
-| `patch-m79-iterations.mjs`            | Ankstyvos M79 iteracijos (cross-ref, footer, kelio žemėlapis)              | Vienkartinis / legacy                  | `modules.json`                                    |
-| `patch-m79-en-overlay.mjs`            | EN overlay bazinis sync                                                    | Po didelių LT pakeitimų                | `modules-en-m7-m9.json`                           |
-| `patch-m79-patikra-batch2.mjs`        | M7 Patikra de-boilerplate (batch 2)                                        | Vienkartinis                           | `modules.json`                                    |
-| `patch-m79-phase2.mjs`                | Phase 2 LT (78.5, 93.1/93.2, footer B, macro)                              | Vienkartinis                           | `modules.json`                                    |
-| `patch-m79-phase2-en.mjs`             | Phase 2 EN overlay                                                         | Po `patch-m79-phase2.mjs`              | `modules-en-m7-m9.json`                           |
-| `patch-m79-phase2-audit.mjs`          | Phase 2 audit batch (M8/M9/M7 targeted)                                    | Po phase2                              | Abu JSON                                          |
-| `patch-m79-ux-polish.mjs`             | Top 5 UX polish LT (93, 94, 76, 89/73, 99/90)                              | Vienkartinis                           | `modules.json`                                    |
-| `patch-m79-ux-polish-en.mjs`          | Top 5 EN overlay                                                           | Po ux-polish LT                        | `modules-en-m7-m9.json`                           |
-| `patch-m79-p2-polish.mjs`             | P2 polish LT (etika, filtrai, M9, optional, sk. 74)                        | Vienkartinis                           | `modules.json`                                    |
-| `patch-m79-p2-polish-en.mjs`          | P2 polish EN overlay                                                       | Po p2-polish LT                        | `modules-en-m7-m9.json`                           |
-| `patch-m79-plain-w4-w5.mjs`           | A–C: sk. 97 inline principai + W4 (66.9) + W5 body batch (M79-44/45) LT+EN | Vienkartinis (jau paleista 2026-07-16) | Abu JSON; ne paleisti pakartotinai be diff review |
-| `patch-m79-everyday-closeness.mjs`    | M79-51…54 LT: M9 90/93.1/93.2/99 + M8 warm-up/vignette + sampleFile        | Vienkartinis (jau paleista 2026-07-16) | `modules.json`; `public/m9_sample_internal.csv`   |
-| `patch-m79-everyday-closeness-en.mjs` | M79-51…54 EN overlay veidrodis                                             | Po LT patch                            | `modules-en-m7-m9.json`                           |
-| `patch-m79-46-section46-residual.mjs` | CQ-M79-3 §4.6: EN 891 when-first + M7 #9 phrase batch LT+EN (#6/#8 verify) | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`          |
-| `patch-m9-quest-redesign.mjs`         | M9 quest intro + merge 94→93 + hub 12 + checklist (LT+EN)                  | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`          |
+| Skriptas                              | Paskirtis                                                                  | Kada paleisti                          | Priklausomybės                                     |
+| ------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------- | -------------------------------------------------- |
+| `patch-m79-iterations.mjs`            | Ankstyvos M79 iteracijos (cross-ref, footer, kelio žemėlapis)              | Vienkartinis / legacy                  | `modules.json`                                     |
+| `patch-m79-en-overlay.mjs`            | EN overlay bazinis sync                                                    | Po didelių LT pakeitimų                | `modules-en-m7-m9.json`                            |
+| `patch-m79-patikra-batch2.mjs`        | M7 Patikra de-boilerplate (batch 2)                                        | Vienkartinis                           | `modules.json`                                     |
+| `patch-m79-phase2.mjs`                | Phase 2 LT (78.5, 93.1/93.2, footer B, macro)                              | Vienkartinis                           | `modules.json`                                     |
+| `patch-m79-phase2-en.mjs`             | Phase 2 EN overlay                                                         | Po `patch-m79-phase2.mjs`              | `modules-en-m7-m9.json`                            |
+| `patch-m79-phase2-audit.mjs`          | Phase 2 audit batch (M8/M9/M7 targeted)                                    | Po phase2                              | Abu JSON                                           |
+| `patch-m79-ux-polish.mjs`             | Top 5 UX polish LT (93, 94, 76, 89/73, 99/90)                              | Vienkartinis                           | `modules.json`                                     |
+| `patch-m79-ux-polish-en.mjs`          | Top 5 EN overlay                                                           | Po ux-polish LT                        | `modules-en-m7-m9.json`                            |
+| `patch-m79-p2-polish.mjs`             | P2 polish LT (etika, filtrai, M9, optional, sk. 74)                        | Vienkartinis                           | `modules.json`                                     |
+| `patch-m79-p2-polish-en.mjs`          | P2 polish EN overlay                                                       | Po p2-polish LT                        | `modules-en-m7-m9.json`                            |
+| `patch-m79-plain-w4-w5.mjs`           | A–C: sk. 97 inline principai + W4 (66.9) + W5 body batch (M79-44/45) LT+EN | Vienkartinis (jau paleista 2026-07-16) | Abu JSON; ne paleisti pakartotinai be diff review  |
+| `patch-m79-everyday-closeness.mjs`    | M79-51…54 LT: M9 90/93.1/93.2/99 + M8 warm-up/vignette + sampleFile        | Vienkartinis (jau paleista 2026-07-16) | `modules.json`; `public/m9_sample_internal.csv`    |
+| `patch-m79-everyday-closeness-en.mjs` | M79-51…54 EN overlay veidrodis                                             | Po LT patch                            | `modules-en-m7-m9.json`                            |
+| `patch-m79-46-section46-residual.mjs` | CQ-M79-3 §4.6: EN 891 when-first + M7 #9 phrase batch LT+EN (#6/#8 verify) | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`           |
+| `patch-m9-quest-redesign.mjs`         | M9 quest intro + merge 94→93 + hub 12 + checklist (LT+EN)                  | Vienkartinis (jau paleista 2026-07-26) | `modules.json` + `modules-en-m7-m9.json`           |
+| `patch-m79-en-language-polish.mjs`    | EN Must/Should grammar + US spelling + glossary Kiss-Marry Drop            | Vienkartinis (jau paleista 2026-08-04) | `modules-en-m7-m9.json` + handout EN + glossary-en |
 
 **Paleidimo tvarka (jei reikia iš naujo):** LT patch → `npm run validate:schema` → EN patch → `npm run audit:m79` → `npm run generate:core-data` (jei M1–9 core).
 

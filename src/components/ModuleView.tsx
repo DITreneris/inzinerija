@@ -474,7 +474,7 @@ function ModuleView({
   const mobileCounterClass = isCompactNav ? 'py-1 px-3' : 'py-1.5 px-3';
   const mobileBottomShellClass = isCompactNav ? 'px-3 py-1.5' : 'px-4 py-2';
   const mobileNavButtonClass = isCompactNav
-    ? 'px-3 py-2 min-h-[44px]'
+    ? `px-3 py-2 ${touchTargetClasses.minimumHeight}`
     : 'px-4 py-3 min-h-[52px]';
   const mobileBottomSpacerClass = isCompactNav
     ? 'min-h-[3.75rem]'
@@ -1432,7 +1432,7 @@ function ModuleView({
             <button
               onClick={prevSlide}
               disabled={isFirstSlide}
-              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 touch-manipulation ${mobileNavButtonClass}`}
+              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60 hover:text-gray-900 dark:hover:text-gray-200 active:scale-95 ${focusRingClasses.brand} touch-manipulation ${mobileNavButtonClass}`}
               aria-label={t('prevSlide')}
             >
               <ChevronLeft className="w-5 h-5" />
@@ -1458,7 +1458,7 @@ function ModuleView({
               onClick={handleNextOrCompleteClick}
               disabled={isNextDisabled}
               title={nextSlideContextLabel ?? undefined}
-              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md hover:shadow-lg shadow-brand-500/20 hover:from-brand-600 hover:to-brand-700 hover:shadow-brand-500/25 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 touch-manipulation ${mobileNavButtonClass}`}
+              className={`flex-1 flex items-center justify-center gap-2 rounded-xl font-semibold bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md hover:shadow-lg shadow-brand-500/20 hover:from-brand-600 hover:to-brand-700 hover:shadow-brand-500/25 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 active:translate-y-0 ${focusRingClasses.brand} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 touch-manipulation ${mobileNavButtonClass}`}
               aria-label={
                 isLastSlide
                   ? t('completeAria')

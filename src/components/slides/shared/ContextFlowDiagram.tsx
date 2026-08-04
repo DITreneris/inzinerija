@@ -12,6 +12,7 @@ import {
 } from './contextFlowDiagramLabels';
 import { useCompactViewport } from '../../../utils/useCompactViewport';
 import { getProcessArrowMarkerGeom } from './processArrowMarker';
+import { DIAGRAM_TOKENS, DIAGRAM_TONE_COLORS } from './diagramTokens';
 
 const VIEWBOX_W = 640;
 const VIEWBOX_H = 200;
@@ -23,14 +24,14 @@ const ARROW_MARKER_LEN = PROCESS_ARROW.tipLen;
 const START_X = 40;
 const ROW_Y = 72;
 
-const BRAND = '#334e68';
-const BRAND_LIGHT = '#486581';
-const ACCENT = '#d4a520';
-const ACCENT_DARK = '#b8860b';
-const BORDER = '#bcccdc';
-const GREY_ARROW = '#64748b';
-const TEXT_DARK = '#102a43';
-const BG_LIGHT = '#f0f4f8';
+const BRAND = DIAGRAM_TOKENS.colors.brand;
+const BRAND_LIGHT = DIAGRAM_TOKENS.colors.brandTop;
+const ACCENT = DIAGRAM_TONE_COLORS.amber.top;
+const ACCENT_DARK = DIAGRAM_TOKENS.colors.amber;
+const BORDER = DIAGRAM_TOKENS.colors.border;
+const GREY_ARROW = DIAGRAM_TONE_COLORS.slate.top;
+const TEXT_DARK = DIAGRAM_TOKENS.colors.brandDark;
+const BG_LIGHT = DIAGRAM_TOKENS.colors.bgStart;
 
 const COMPACT_VIEWBOX_W = 300;
 const COMPACT_VIEWBOX_H = 344;

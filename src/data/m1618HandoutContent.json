@@ -1,0 +1,41 @@
+{
+  "title": "Kodo inžinerijos kelio atmintinė (moduliai 16–18)",
+  "subtitle": "Brief → VSR → PACKET → Soft DoD – naudok kaip vieno Cursor projekto kontrolinį lapą.",
+  "briefSteps": [
+    "Tikslo sakinys – ką turi veikti po 1–2 val. darbo (ne „pagerinti kodą“).",
+    "Ribos – failai, stack, ko neliesti, ir kur DI turi klausti, o ne spėti.",
+    "Sėkmės kriterijus – 1–3 patikrinami požymiai (smoke, diff, rankinė patikra).",
+    "VSR fazė – ar dabar Vibe (skicas), Skeleton (struktūra), ar Refinement (taikymas)."
+  ],
+  "packetChecklist": [
+    "PROJECT_RULES.md – tonas, draudimai, stack ir „nekeisk be klausimo“.",
+    "Brief / užduotis – vienas failas arba skaidri žinutė agentui.",
+    "Konteksto failai – tik tie, kurių reikia dabartiniam pjūviui.",
+    "Testas arba smoke – kaip žinosi, kad verta commitinti.",
+    "Diff ritualas – ką peržiūrėsi prieš merge (ne aklas Accept All)."
+  ],
+  "softDodChecks": [
+    "Paleidimas – app ar skriptas startuoja be akivaizdžios klaidos.",
+    "Smoke – 1–2 kritiniai keliai, kuriuos pats patikrinai.",
+    "Diff – pakeitimai atitinka brief; nėra „bonus“ refaktoriaus.",
+    "Žurnalas – viena eilutė: kas suveikė / ką kartosi kitą kartą."
+  ],
+  "promptPatterns": [
+    "Brief: tikslas, ribos, sėkmės kriterijus, VSR fazė – be ilgos istorijos.",
+    "Taisyklės: laikykis PROJECT_RULES; jei trūksta konteksto – klausk, nespėliok.",
+    "Diff: parodyk failų sąrašą ir riziką; nekeisk nesusijusių modulių.",
+    "Smoke: po pakeitimo paleisk [komandą] ir pranešk PASS/FAIL su priežastimi."
+  ],
+  "starterPrompt": "META: Tu esi kodo asistentas Cursor aplinkoje. Tikslas – vienas vertikalus pjūvis, ne didelis refaktorius.\nINPUT: Brief: [ką turi veikti]. Ribos: [failai / ko neliesti]. Stack: [technologijos]. VSR fazė: [Vibe / Skeleton / Refinement].\nOUTPUT: (1) 3–5 žingsnių planas, (2) failų sąrašas, (3) smoke patikra, (4) trumpas diff santrauka.\nQUALITY: Jei trūksta konteksto – klausk. Nespėliok API ar secretų. Soft DoD: paleidimas + smoke + diff peržiūra prieš commit.",
+  "reflectionSummary": "Per 24–48 val. paleisk vieną realų brief Cursor'yje: PACKET + Soft DoD. Užrašyk, kuri VSR fazė buvo ir vieną taisyklę, kurią įrašysi į PROJECT_RULES.",
+  "nextPageHeading": "Ką daryti per 48 val.",
+  "nextPageIntro": "Kodo kelias baigtas tada, kai turi ne tik pokalbį su DI, o brief, PACKET, smoke ir aiškų commitą, kurį gali pakartoti.",
+  "primaryCtaLabel": "Ekosistemos žemėlapis (blog)",
+  "secondaryCtaLabels": {
+    "decide": "Nuspręsk kitą žingsnį (Decide)",
+    "map": "Peržiūrėk ekosistemos žemėlapį (Map)"
+  },
+  "websiteUrl": "https://www.promptanatomy.app/",
+  "websiteCta": "Kursas ir daugiau: promptanatomy.app",
+  "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
+}

@@ -62,13 +62,13 @@ D1 kortelė ──► D2 brief ──► (patikra) ──► PACKET + rules + Cu
 - **OUTPUT:** Formatas ir Done kriterijai (ką grąžinti, kaip patikrinti).
 - **Quality:** Smoke, edge cases, necommitinti paslapčių; planas prieš refaktorių.
 
-**Nuoroda pirmose M16 skaidrėse:** „Promptų ir konteksto pamatai – Moduliuose 1–6. Čia fokusas – produkto užduotis ir vibe-coding su Cursor.“
+**Nuoroda pirmose M16 skaidrėse:** „Promptų pamatai – Moduliuose 1–6. Čia vibe coding = greitas kūrimas su DI, bet pirmiausia siauras brief prieš Cursor generavimą.“
 
 ### 1.4 whyBenefit
 
 | Modulis | Tipas          | whyBenefit (į JSON vėliau)                                                             |
 | ------- | -------------- | -------------------------------------------------------------------------------------- |
-| **16**  | action-intro   | Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursime su DI.   |
+| **16**  | action-intro   | Po šio modulio turėsi aiškų MVP brief’ą – kam, ką ir kokiomis ribomis kursi su DI.     |
 | **17**  | test-intro     | Po testo žinosi, ar brief’as pakankamai siauras ir patikrinamas prieš Cursor projektą. |
 | **18**  | practice-intro | Po projekto turėsi BUILD PACKET ir įrodytą paleidžiamą (arba lokaliai veikiantį) MVP.  |
 
@@ -89,7 +89,7 @@ Naudojamas M16–18 skaidrių pavyzdžiuose (ne kaip vienintelė leistina idėja
 | #     | Antraštė                 | Esminė žinutė                                                                                     |
 | ----- | ------------------------ | ------------------------------------------------------------------------------------------------- |
 | 16.1  | Kurso / modulio pažadas  | Veikiantis prototipas su DI; rezultatas ≠ prezentacija                                            |
-| 16.2  | Ką šiandien padarysi     | 1 problema · 1 naudotojas · 1 užduotis · greitas testas                                           |
+| 16.2  | Ką šiandien padarysi     | 1 problema · 1 naudotojas · 1 funkcija · greitas testas                                           |
 | 16.25 | Stack žemėlapis          | Sluoksniai: chat DI (brief) · Cursor (kodas M18) · GitHub (proof) · host vėliau – ne įrankių mugė |
 | 16.3  | Proceso schema (kelio)   | PROBLEMA → NAUDOTOJAS → VERTĖ → 1 FUNKCIJA → PROTOTIPAS → TESTAS                                  |
 | 16.4  | Problema prieš sprendimą | Blogas: „Noriu app su DI“ · Geras: konkreti naudotojo problema                                    |
@@ -119,7 +119,7 @@ Naudojamas M16–18 skaidrių pavyzdžiuose (ne kaip vienintelė leistina idėja
 
 | #     | Antraštė                     | Esminė žinutė                                                                         |
 | ----- | ---------------------------- | ------------------------------------------------------------------------------------- |
-| 16.9  | Perėjimas                    | D1 padaryta (kortelė) → D2: kritika, kryptis, ribos, brief                            |
+| 16.85 | Kortelė → brief (PLAIN-C)    | D1 padaryta → D2 (16.9 merge into section-break; checklist ant 16.85)                 |
 | 16.10 | Vibe → Skeleton → Refinement | Metodinė schema; active-step                                                          |
 | 16.11 | Produkto sakinys             | Kuriu [produktą], kuris padeda [žmogui] išspręsti [problemą], suteikdamas [rezultatą] |
 | 16.12 | Trys atramos + kritika       | Problema–naudotojas–vertė; skeptiškas promptas (be funkcijų spill)                    |

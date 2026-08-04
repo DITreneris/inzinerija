@@ -60,7 +60,7 @@ Canonical sluoksniai:
 - `tailwind.config.js` — product UI spalvos, šriftai, animacijos ir safelist.
 - `src/components/slides/shared/diagramTokens.ts` — SVG paletė, tipografija, stroke/radius/arrow; **LMS floors** (`opacity.inactive` 0.88, `stroke.flow` 3.5, title 17/700); `getDiagramPalette()` / `getDiagramToneColors()`; M10/M12: `DIAGRAM_ROLE_COLORS` / `getDiagramActiveStroke()`. `lmsCycle` = deprecated alias. DS v0.2 **B1** partially closed via this promote.
 - `src/components/slides/shared/diagramLayoutMath.ts` — `centerAxisStart`, shaft floor helpers (ne AgentWorkflow BOX clone).
-- `src/design-tokens.ts` — spacing, radius, **`typographyClasses`** (0.3.2), 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`).
+- `src/design-tokens.ts` — spacing, radius, **`typographyClasses`** (0.3.2), 44px touch target, focus ring, sticky stacking, z-index ir **`surfaceGlass`** (`shell` / `panel` / `overlay`). **Focus policy (Wave B):** chrome migrations use `focusRingClasses` (`focus-visible` only, GOLDEN §7) — not `focus:ring-*`.
 
 Baseline (istorinis startas): [`analysis/DESIGN_TOKENS_BASELINE_2026-07.md`](../archive/development/analysis/DESIGN_TOKENS_BASELINE_2026-07.md).  
 Revision tikslas: [`analysis/DESIGN_SYSTEM_REVISION_2026-07.md`](../archive/development/analysis/DESIGN_SYSTEM_REVISION_2026-07.md).
@@ -75,10 +75,10 @@ npm run audit:slide-icons          # Lucide raktų allowlist
 npm run audit:accent-budget        # GOLDEN §3.2
 ```
 
-**Gate baseline** (skripte `scripts/audit-design-tokens.mjs`, Horizon A Day 0 2026-07-28):  
-`hex ≤ 180` · `inlineStyle ≤ 7` · `svgFill ≤ 7` · `arbitraryClass ≤ 56` · `total ≤ 250`.
+**Gate baseline** (skripte `scripts/audit-design-tokens.mjs` `BASELINE`, sync po Content-track §6b):  
+`hex ≤ 202` · `inlineStyle ≤ 7` · `svgFill ≤ 7` · `arbitraryClass ≤ 56` · `total ≤ 272`.
 
-**Trend:** 539 → 417 (W7–W10) → ~344 → **250** (DS 0.3.2; gate PASS). Daugiausia „hex“ lieka kanoniniame `diagramTokens.ts` ir legacy diagramose — ne klaida, o v0.3 backlog.
+**Trend:** 539 → 417 (W7–W10) → ~344 → 250 → 272 (Content-track) → **~202** after Waves A–E (orphan Schema hex aliased; gate PASS vs BASELINE 272). Daugiausia „hex“ lieka kanoniniame `diagramTokens.ts` — ne klaida.
 
 ---
 
@@ -89,7 +89,7 @@ Canonical JSX: `src/components/ui/`. Dublikatų žemėlapis (istorinis): [`analy
 | Komponentas      | Paskirtis                                       | Statusas                                              |
 | ---------------- | ----------------------------------------------- | ----------------------------------------------------- |
 | `Card`           | Kortelės fonas / rėmelis                        | Canonical; `.card` CSS `@deprecated` → migracija v0.3 |
-| `CTAButton`      | Primary / secondary / accent                    | Canonical; viduje dar `.btn-*`                        |
+| `CTAButton`      | Primary / secondary / accent / hero             | Canonical; self-contained Tailwind (Wave C/D)         |
 | `Banner`         | Callout (`info`, `success`, `warning`, `terms`) | Canonical; plačiai M1–15                              |
 | `Table`          | Lentelės subkomponentai                         | Canonical                                             |
 | `LoadingSpinner` | Krautuvas                                       | Canonical                                             |
@@ -100,6 +100,7 @@ Canonical JSX: `src/components/ui/`. Dublikatų žemėlapis (istorinis): [`analy
 | `BrandMark`      | Ženklas (Zap + gold)                            | nav / hero / footer — §4a                             |
 | `SlideWorkspace` | `space-y-6` chrome content-block                | **Visi M1–15** (`SlideContent.tsx`)                   |
 | `Badge`          | Status / level chip                             | Canonical 0.3.2; `.badge-*` CSS lieka                 |
+| `StatusPanel`    | Result / outcome gradient panel (hero\|compact) | Canonical Waves A; ne teaching contrast / lab embeds  |
 
 API: [`src/components/ui/README.md`](../../src/components/ui/README.md).
 
@@ -192,14 +193,12 @@ Canonical kelias: [`DIAGRAM_KIT_STANDARD.md`](DIAGRAM_KIT_STANDARD.md).
 
 ## 7. Deprecations ir migracija
 
-| Legacy                                            | Canonical                     | Statusas                                      |
-| ------------------------------------------------- | ----------------------------- | --------------------------------------------- |
-| `.btn-primary` / `.btn-secondary` / `.btn-accent` | `<CTAButton />`               | CSS lieka; JSX → CTAButton (dalinė migracija) |
-| `.card` / `.card-hover`                           | `<Card />`                    | CSS lieka; migracija v0.3                     |
-| `.badge-*`                                        | `<Badge />`                   | CSS lieka; JSX migracija ✅ 0.3.2             |
-| Local SVG `style={{ background }}` ant diagramų   | `<linearGradient>` + `<rect>` | preferuoti (pvz. M10Orchestrator)             |
-
-`@deprecated` ≠ delete. Senas CSS veikia, kol v0.3 cleanup.
+| Legacy                                                              | Canonical                     | Statusas                             |
+| ------------------------------------------------------------------- | ----------------------------- | ------------------------------------ |
+| `.btn-primary` / `.btn-secondary` / `.btn-accent` / `.btn-hero-cta` | `<CTAButton />`               | Removed from `index.css` (Waves C–D) |
+| `.card` / `.card-hover`                                             | `<Card />`                    | Removed from `index.css` (Wave D)    |
+| `.badge-*`                                                          | `<Badge />`                   | Removed from `index.css` (Wave D)    |
+| Local SVG `style={{ background }}` ant diagramų                     | `<linearGradient>` + `<rect>` | preferuoti (pvz. M10Orchestrator)    |
 
 ---
 
@@ -242,9 +241,10 @@ Detalu: `CHANGELOG.md` `[Unreleased]` · **DS 0.3.3**.
 
 - LlmArch B3 / W6 etalon ✅ (2026-07)
 - `ContentSlides.tsx` arbitrary Tailwind cleanup (tipografija → 0.3.3 Wave; likęs non-type cleanup)
-- `.card` / `.btn-*` / `.badge*` CSS pašalinimas po JSX migracijos ✅ (0.3.3+)
+- `.card` / `.btn-*` / `.badge*` CSS pašalinimas po JSX migracijos ✅ (Waves C–D)
 - Badge primitive ✅ (0.3.2)
-- Schema3/4 / ContextFlow orphan hex → `DIAGRAM_TOKENS` (tik su TE registry)
+- `StatusPanel` + CTA/focus token adoption ✅ (Waves A–B)
+- Schema3/4 / ContextFlow orphan hex → `DIAGRAM_TOKENS` ✅ Wave E (archives + interactive orphans; InstructGpt accent; LlmAutoregressive role colors promoted)
 - Nauja paletė / „premium SaaS“ look — **neplanuota** be atskiro produkto sprendimo
 
 ---

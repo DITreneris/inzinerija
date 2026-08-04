@@ -3,6 +3,8 @@
  * Parent = modules catalog; current = module title (not a "Back" control).
  * @see docs/development/GOLDEN_STANDARD.md §8.6
  */
+import { focusRingClasses, touchTargetClasses } from '../../design-tokens';
+
 interface ModuleBreadcrumbProps {
   parentLabel: string;
   parentAriaLabel: string;
@@ -30,7 +32,7 @@ export default function ModuleBreadcrumb({
         type="button"
         onClick={onParentClick}
         aria-label={parentAriaLabel}
-        className="shrink-0 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 rounded-lg px-2 py-2 min-h-[44px]"
+        className={`shrink-0 text-sm font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline-offset-2 hover:underline ${focusRingClasses.brandOnWhite} rounded-lg px-2 py-2 ${touchTargetClasses.minimumHeight}`}
       >
         {parentLabel}
       </button>

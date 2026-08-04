@@ -4,7 +4,15 @@ export { default as Card } from './Card';
 export { default as Badge } from './Badge';
 export type { BadgeVariant } from './Badge';
 export { default as CTAButton } from './CTAButton';
+export { ctaButtonClassName } from './ctaButtonClasses';
+export type { CTAButtonVariant } from './ctaButtonClasses';
 export { default as Banner } from './Banner';
+export { default as StatusPanel } from './StatusPanel';
+export type {
+  StatusPanelTone,
+  StatusPanelSize,
+  StatusPanelProps,
+} from './StatusPanel';
 export { default as BrandMark } from './BrandMark';
 export type { BrandMarkVariant, BrandMarkProps } from './BrandMark';
 export { default as Eyebrow } from './Eyebrow';

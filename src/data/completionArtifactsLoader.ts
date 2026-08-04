@@ -15,7 +15,8 @@ export type HandoutArtifactKey =
   | 'm6'
   | 'm79'
   | 'm1012'
-  | 'm1315';
+  | 'm1315'
+  | 'm1618';
 export type HandoutSurfaceType = 'module_complete' | 'test_results';
 export type CertificateEligibilityKey =
   | 'tier1'

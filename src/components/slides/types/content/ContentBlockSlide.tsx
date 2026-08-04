@@ -88,6 +88,7 @@ const PREMIUM_DIAGRAM_IMAGE_KEYS = [
   'm16_user_cycle',
   'm18_packet_stack',
   'm18_diff_ritual',
+  'm18_launch_gates',
 ] as const;
 
 function isPremiumDiagramSection(image?: string) {

@@ -199,6 +199,27 @@ export const DIAGRAM_TONE_COLORS: Record<
 /** Dark amber ink on soft fills (gate / softInk NodeBox text). */
 export const DIAGRAM_AMBER_INK_SOFT = '#713f12';
 
+/**
+ * LlmAutoregressive role fills (live TE) — semantic stage colors, not track remaps.
+ * ACTIVE_GLOW stays cyan by design (selection cue ≠ brand/accent).
+ */
+export const LLM_AUTOREGRESSIVE_ROLE_COLORS = {
+  inputBg: '#e2eef9',
+  inputBorder: '#2b5a8e',
+  llmBg: '#5a6575',
+  llmBgBottom: '#4a5568',
+  outputBg: '#e0f2eb',
+  outputBorder: '#0d7a5c',
+  outputLabel: '#0a5c44',
+  pasirinktaBg: '#fdf0e0',
+  pasirinktaText: '#a65a1a',
+  /** Selection glow — do not remap to brand/accent */
+  activeGlow: '#0ea5e9',
+} as const;
+
+/** Near-miss bg end used by archived Schema3/4 / ContextFlow (≠ palette.bgEnd). */
+export const DIAGRAM_BG_LIGHT_END = '#f1f5f9';
+
 export const DIAGRAM_TONE_COLORS_DARK: Record<
   DiagramTone,
   { top: string; bottom: string; stroke: string; text: string; soft: string }

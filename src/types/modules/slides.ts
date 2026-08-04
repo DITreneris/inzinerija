@@ -132,7 +132,7 @@ export interface AiWorkflowStage {
   items: string[];
 }
 
-/** Vienas pavyzdinis įrankių grandinės žingsnis (pvz. ChatGPT – Pradinis užklausas) */
+/** Vienas pavyzdinis įrankių grandinės žingsnis (pvz. ChatGPT – Pradinė užklausa) */
 export interface AiWorkflowStep {
   tool: string;
   description: string;

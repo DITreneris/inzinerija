@@ -5,9 +5,10 @@
  */
 import { useTranslation } from 'react-i18next';
 import type { InstructGptQualityBlock as InstructGptQualityBlockType } from '../../../types/modules';
+import { DIAGRAM_TONE_COLORS } from './diagramTokens';
 
 const CHART_COLORS: Record<string, string> = {
-  accent: '#d4a520',
+  accent: DIAGRAM_TONE_COLORS.amber.top,
   emerald: '#10b981',
   violet: '#8b5cf6',
   slate: '#94a3b8',

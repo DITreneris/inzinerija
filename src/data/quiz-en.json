@@ -134,7 +134,7 @@
     },
     {
       "id": 13,
-      "question": "What Temperature value to use for business reports (Q3 sales analysis)?",
+      "question": "Which Temperature value should you use for business reports (Q3 sales analysis)?",
       "options": [
         "0.8–1.0 (creative)",
         "0.1–0.3 (factual, precise)",
@@ -158,14 +158,14 @@
     },
     {
       "id": 15,
-      "question": "What Reasoning depth to use for a complex business analysis?",
+      "question": "Which Reasoning depth should you use for a complex business analysis?",
       "options": ["Fast", "Normal (standard)", "Deep", "No need to specify"],
       "correct": 2,
       "explanation": "For complex analysis (Q3 sales with trends, comparisons, recommendations) use Deep reasoning. Fast – for simple questions, Normal – for standard tasks, Deep – for multi-step analysis."
     },
     {
       "id": 16,
-      "question": "What Max tokens value for an Executive Summary (1–2 pages)?",
+      "question": "What Max tokens value is right for an Executive Summary (1–2 pages)?",
       "options": [
         "50–100 tokens",
         "150–300 tokens",
@@ -201,7 +201,7 @@
     },
     {
       "id": 19,
-      "question": "When to use Presence penalty?",
+      "question": "When should you use Presence penalty?",
       "options": [
         "When you need more new topics",
         "When you need more repetition",

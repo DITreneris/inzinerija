@@ -8,9 +8,9 @@
 
 ---
 
-## Pilna seka (Modulis 16) – D1 + D2 · 23 sk.
+## Pilna seka (Modulis 16) – D1 + D2 · 22 sk.
 
-**Biudžetas:** ~18–22 (ši versija = **23**). D1 = 160 + 16.2–16.8 + 16.25 + 16.85 (10). D2 = 16.9–16.22 su 16.205 warm-up (13). Merge: 16.12+16.13 → 16.12; 16.18+16.19 → 16.18.
+**Biudžetas:** ~18–22 (ši versija = **22** po `M16-PLAIN-C`). D1 = 160 + 16.2–16.8 + 16.25 + 16.85 (10). D2 = 16.101–16.22 su 16.205 warm-up (12). Merge: 16.12+16.13 → 16.12; 16.18+16.19 → 16.18; **16.9 → 16.85** (PLAIN-C).
 
 | Eilė | ID                          | Skaidrė / tema                      | Tipas hint    | Kodėl čia?                                                    |
 | ---- | --------------------------- | ----------------------------------- | ------------- | ------------------------------------------------------------- |
@@ -23,20 +23,19 @@
 | 5    | 16.6                        | Vertė ≠ funkcija                    | content-block | Pokytis vs veiksmas                                           |
 | 6    | 16.7                        | MVP apimtis (triage)                | content-block | Būtina / Galima / Nekuriame                                   |
 | 7    | 16.8                        | Praktika: kūrimo kortelė            | **path-step** | **MUST** 5 laukai; pažymėk kai užrašyta (1/1)                 |
-| 8    | **16.85**                   | Kortelė paruošta – į brief          | section-break | D1→D2 breath (`sectionNumber: D1→D2`); `M1618-R1`             |
-| 9    | 16.9                        | Perėjimas į brief                   | content-block | D1 kortelė padaryta → D2                                      |
-| 10   | **16.101** (tema **16.10**) | Vibe → Skeleton → Refinement        | content-block | VSR process Shell; id 16.101 dėl JSON `16.10`≡`16.1`          |
-| 11   | 16.11                       | Produkto sakinys                    | content-block | Formulė                                                       |
-| 12   | 16.12                       | Trys atramos + kritika (Prieš/Po)   | content-block | Merge 16.12+16.13; Skeptikas copyable                         |
-| 13   | 16.14                       | Trys kryptys A/B/C                  | content-block | Lentelė (ne lab)                                              |
-| 14   | 16.15                       | Rinkis patikrinamiausią             | content-block | Lab primary; score lentelė antrinė / collapsible (`M1618-R2`) |
-| 15   | 16.16                       | Naudotojo ciklas                    | content-block | Triggeris→…→Kitas                                             |
-| 16   | 16.17                       | Ekranai iš srauto                   | content-block | Max 3–5                                                       |
-| 17   | 16.18                       | Ribos + Now–Next–Later              | content-block | Merge 16.18+16.19; Must≤4                                     |
-| 18   | **16.201** (tema **16.20**) | Rizikos (thin)                      | content-block | 3 + mažinimas; id 16.201 dėl JSON `16.20`≡`16.2`              |
-| 19   | **16.205**                  | Savitikra prieš brief               | warm-up-quiz  | 2–3 unscored prieš 16.21 (`M1618-R1`)                         |
-| 20   | 16.21                       | Praktika: `01_MVP_BRIEF.md`         | content-block | **MUST** 11 laukų; Brief copyable + embeds                    |
-| 21   | 16.22                       | Modulio 16 santrauka                | summary       | CTA → M17; abilityBefore/After                                |
+| 8    | **16.85**                   | Kortelė paruošta – į brief          | section-break | D1→D2 breath + checklist (PLAIN-C; 16.9 deleted); `M1618-R1`  |
+| 9    | **16.101** (tema **16.10**) | Vibe → Skeleton → Refinement        | content-block | VSR process Shell; id 16.101 dėl JSON `16.10`≡`16.1`          |
+| 10   | 16.11                       | Produkto sakinys                    | content-block | Formulė                                                       |
+| 11   | 16.12                       | Trys atramos + kritika (Prieš/Po)   | content-block | Merge 16.12+16.13; Skeptikas copyable                         |
+| 12   | 16.14                       | Trys kryptys A/B/C                  | content-block | Lentelė (ne lab)                                              |
+| 13   | 16.15                       | Rinkis patikrinamiausią             | content-block | Lab primary; score lentelė antrinė / collapsible (`M1618-R2`) |
+| 14   | 16.16                       | Naudotojo ciklas                    | content-block | Triggeris→…→Kitas                                             |
+| 15   | 16.17                       | Ekranai iš srauto                   | content-block | Max 3–5                                                       |
+| 16   | 16.18                       | Ribos + Now–Next–Later              | content-block | Brief labels + NNL (vs 16.7 LT zones); Must≤4                 |
+| 17   | **16.201** (tema **16.20**) | Rizikos (thin)                      | content-block | 3 + mažinimas; id 16.201 dėl JSON `16.20`≡`16.2`              |
+| 18   | **16.205**                  | Savitikra prieš brief               | warm-up-quiz  | 2–3 unscored prieš 16.21 (`M1618-R1`)                         |
+| 19   | 16.21                       | Praktika: `01_MVP_BRIEF.md`         | content-block | **MUST** 11 laukų; Brief copyable + embeds                    |
+| 20   | 16.22                       | Modulio 16 santrauka                | summary       | CTA → M17; abilityBefore/After                                |
 
 ### D1 artefaktas – kūrimo kortelė (16.8)
 

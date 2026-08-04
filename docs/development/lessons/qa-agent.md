@@ -4,6 +4,8 @@
 
 ## Pamokos
 
+2026-08-04 | M13 plain EN gate | Raw `modules-en-m13-m15.json` atrodo švarus, bet `audit:en-coverage` FAIL – `deepMerge` terms[] pagal indeksą; EN trumpesnis už LT → LT diacritics spill | Po rebuild: `npm run audit:m1315` (coverage+language); EN glossary/outcomes length = LT; ne tik grep EN failo | audit-en-coverage-m13-15.mjs, audit-en-merge.mjs, m13-en-plain-overrides.mjs
+2026-08-04 | Caveats Closure gates | `smoke-diag*.mjs` be running Vite → 0/N CONNECTION_REFUSED ≠ product FAIL; MON/B2B todos ≠ learning code P0 | A: start `vite` tada smoke; B: sync MARKETING_HANDOFF + TODO §1.4/§1.6, ne žymėti MON [x]; C2/D = parked intake, ne fake implement | smoke-diag1-m1315.mjs, TEST_REPORT.md, TODO.md §1.6, MARKETING_HANDOFF_CHECKLIST.md
 2026-08-01 | Docs lag vs M1–18 | README/DEPLOYMENT/CODEBASE sakė M1–15 + TE open; test counts 150/924 vs 152/932 | Po TE ship: sync authoring M1–18 + Could-only + vienas `test:run` SOT (154/940); dead archive retarget | CODEBASE_WHAT_IS_DONE.md, DOCUMENTATION_QUICK_REF.md, DOCS_SYNC_CHECKLIST.md
 2026-08-01 | M16–18 dens polish gate | Po dens lentelių / m17-q11 EN rebuild be `transferEnByModule` → `audit:m1618` language FAIL; bank 10→11 be vitest = false green | Rebuild + durable transfer EN; TE overlay `:sN`; m17 test 11 Q + ≤2 forward; TEST_REPORT; C1 vis dar park | build-en-m16-m18.mjs, TestPracticeSlides.m17.test.tsx, TEST_REPORT.md, teaching-elements-overlay.json
 2026-08-01 | M16–18 Should polish gate | Lab overlay be `LAB_IMAGE_KEYS` + dens/hygiene/M17 be TEST_REPORT = false done | Strict TE + `M16DirectionPicker` + `TestPracticeSlides.m17` + spot 16.15/18.19; open = Could; D3 ≠ polish | TEST_REPORT.md, TODO.md §1.2g, audit-teaching-elements.mjs

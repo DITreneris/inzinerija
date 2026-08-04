@@ -21,7 +21,7 @@
             "heroSubText": "In this module you'll learn to add sources to prompts and check answers. RAG, hallucinations – how to work smarter.",
             "ctaText": "See what's ahead – in 1 minute!",
             "unstructuredPrompt": "Write me a report on Lithuania's GDP trends.",
-            "structuredPrompt": "META: You are an economics analyst. Goal: a short GDP trends report.\n\nINPUT: Use only these sources: Eurostat, Statistics Lithuania. If data is missing – say \"I don't know\", don't guess.\n\nOUTPUT: 1 page, 3–5 bullet points, with links to sources. Language: English.",
+            "structuredPrompt": "META: You are an economic analyst. Goal: a short GDP trends report.\n\nINPUT: Use only these sources: Eurostat, Statistics Lithuania. If data is missing – say \"I don't know\", don't guess.\n\nOUTPUT: 1 page, 3–5 bullet points, with links to sources. Language: English.",
             "aboutText": "Once the 6 blocks are familiar, RAG (answers from your documents and sources) and fact-checking let you work with real data and reduce errors. Token economy – save time and cost; spotting manipulation – ethical, reliable use. This module prepares you for one integrated project (Module 6).",
             "outcomesHeading": "After this module you'll be able to:",
             "outcomes": [
@@ -168,7 +168,7 @@
                 "heading": "🔽 Key message",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "body": "Both universes work the same way: **the deeper you go – the more power, but also more responsibility.**\n\n• Not all AI is ChatGPT – that's one of the most common mix-ups\n• Generative AI is just one, deepest part of the AI universe\n• The metaphor helps you see \"where we are\" and prepares you for what comes next",
+                "body": "Both universes work the same way: **the deeper you go – the more power, but also more responsibility.**\n\n• Not all AI is ChatGPT – that's one of the most common mix-ups\n• Generative AI is just the deepest part of the AI universe\n• The metaphor helps you see \"where we are\" and prepares you for what comes next",
                 "blockVariant": "terms"
               },
               {
@@ -519,7 +519,7 @@
                     "name": "Runway Gen-3",
                     "url": "https://runwayml.com",
                     "recommended": true,
-                    "tooltip": "Vaizdo animavimas, efektai, redagavimas"
+                    "tooltip": "Video animation, effects, editing"
                   },
                   {
                     "name": "Pika Labs",
@@ -594,12 +594,12 @@
                     "name": "Whisper (OpenAI)",
                     "url": "https://openai.com/research/whisper",
                     "recommended": true,
-                    "tooltip": "Garso transkripcija (nemokama)"
+                    "tooltip": "Audio transcription (free)"
                   },
                   {
                     "name": "Google Speech-to-Text",
                     "url": "https://cloud.google.com/speech-to-text",
-                    "tooltip": "API transkripcijai"
+                    "tooltip": "API for transcription"
                   }
                 ]
               },
@@ -622,7 +622,7 @@
                   {
                     "name": "Meta AudioCraft",
                     "url": "https://ai.meta.com/resources/models-and-libraries/audiocraft/",
-                    "tooltip": "Atvirojo kodo (Meta)"
+                    "tooltip": "Open source (Meta)"
                   }
                 ]
               }
@@ -902,7 +902,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "2️⃣ Do now (2–7 min)",
+                "heading": "2️⃣ Do it now (2–7 min)",
                 "body": "👉 Describe in one or two sentences: **what you most often do with AI** at work (e.g. \"I prepare weekly reports\", \"I write emails to managers\", \"I prepare 5-slide intros for clients\"). Paste into the CONTEXT field below.\n\nAI will break it into **your** step sequence – a process you can reuse.\n\n🔘 Copy prompt (below)\n\n**Different from \"chain\":** here – **your** general way of working with AI, not a single chain (tool → tool → result).",
                 "blockVariant": "brand"
               },
@@ -946,7 +946,7 @@
                 "heading": "Example: Operations improvement",
                 "body": "Give a step-by-step process – e.g. for supply chain optimisation.",
                 "blockVariant": "terms",
-                "copyable": "Data: [operation, e.g. supply chain / retail]\nDo: step-by-step optimization process (cost, efficiency, tech)\nFormat: step | goal | KPI"
+                "copyable": "Data: [operation, e.g. supply chain / retail]\nDo: step-by-step optimisation process (cost, efficiency, tech)\nFormat: step | goal | KPI"
               },
               {
                 "heading": "Optional: Good vs bad process prompt",
@@ -1007,29 +1007,29 @@
                   },
                   {
                     "chain": ["GPT", "Figma"],
-                    "flow": ["Ideas", "Dizainas"],
-                    "tag": "Dizainas",
+                    "flow": ["Ideas", "Design"],
+                    "tag": "Design",
                     "expandInput": "Description or moodboard",
                     "expandOutput": "Mockups, UI skeleton"
                   },
                   {
                     "chain": ["GPT", "Gamma"],
-                    "flow": ["Turinys", "Slides"],
-                    "tag": "Turinys",
+                    "flow": ["Content", "Slides"],
+                    "tag": "Content",
                     "expandInput": "Topic and structure",
                     "expandOutput": "Ready slides with design"
                   },
                   {
                     "chain": ["Gemini", "Calendar"],
-                    "flow": ["Planavimas", "Renginiai"],
-                    "tag": "Planavimas",
+                    "flow": ["Planning", "Events"],
+                    "tag": "Planning",
                     "expandInput": "Date, time, description",
                     "expandOutput": "Calendar entries"
                   },
                   {
                     "chain": ["GPT", "Zapier", "Gmail"],
-                    "flow": ["Automatizavimas", "Siuntimas"],
-                    "tag": "Automatizacija",
+                    "flow": ["Automation", "Sending"],
+                    "tag": "Automation",
                     "expandInput": "Trigger + template",
                     "expandOutput": "Email sent by rule"
                   },
@@ -1307,7 +1307,7 @@
               {
                 "sectionLabel": "Youth",
                 "title": "Younger generation – AI pioneers",
-                "value": "63,8%",
+                "value": "63.8%",
                 "label": "Youth use AI daily",
                 "source": "Eurostat, 2025",
                 "colorKey": "emerald",
@@ -1319,7 +1319,7 @@
               {
                 "sectionLabel": "Lithuania",
                 "title": "Lithuanian companies use AI",
-                "value": "9,8%",
+                "value": "9.8%",
                 "label": "Company adoption (not resident usage)",
                 "source": "EC study, 2025",
                 "colorKey": "brand",
@@ -1368,17 +1368,17 @@
               "youthBars": [
                 {
                   "name": "For personal use",
-                  "pct": "44,2%",
+                  "pct": "44.2%",
                   "colorKey": "violet"
                 },
                 {
                   "name": "For learning / studies",
-                  "pct": "39,3%",
+                  "pct": "39.3%",
                   "colorKey": "amber"
                 },
                 {
                   "name": "At work",
-                  "pct": "~15,8%",
+                  "pct": "~15.8%",
                   "colorKey": "slate"
                 }
               ]
@@ -1535,7 +1535,7 @@
               },
               {
                 "heading": "Good vs bad: instruction wording",
-                "body": "**Good:** \"You are a business writing assistant. Tone: professional. Answers up to 200 words. Language: English.\" – clear role, tone, limits.\n\n**Bad:** \"Help me write.\" – unclear who for, what context, what length. AI guesses.\n\n**Good:** \"Goal: create meeting summaries for the team. Format: bullet points, what was decided and next steps.\" – concrete use case and format.\n\n**Bad:** \"Be helpful.\" – too vague, no quality criteria.",
+                "body": "**Good:** \"You are a business writing assistant. Tone: professional. Answers up to 200 words. Language: English.\" – clear role, tone, limits.\n\n**Bad:** \"Help me write.\" – unclear who it's for, what context, what length. AI guesses.\n\n**Good:** \"Goal: create meeting summaries for the team. Format: bullet points, what was decided and next steps.\" – concrete use case and format.\n\n**Bad:** \"Be helpful.\" – too vague, no quality criteria.",
                 "blockVariant": "brand"
               },
               {
@@ -1676,7 +1676,7 @@
               },
               {
                 "heading": "7️⃣ One-line takeaway",
-                "body": "GPT answers are an RLHF result – so wording, tone, and context change answer quality. If AI ignores context – add role and rules (see 5 principles).",
+                "body": "GPT answers are a result of RLHF – so wording, tone, and context change answer quality. If AI ignores context – add role and rules (see 5 principles).",
                 "blockVariant": "accent"
               }
             ],
@@ -1982,8 +1982,8 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
-                "body": "In the bar, pick what you are doing now (Write / Analyze / Office / Research / Slides). The table highlights the best-fit tool — note one choice for this week.",
+                "heading": "Do it now",
+                "body": "In the bar, pick what you are doing now (Write / Analyse / Office / Research / Slides). The table highlights the best-fit tool — note one choice for this week.",
                 "blockVariant": "brand"
               },
               {
@@ -2204,7 +2204,7 @@
               },
               {
                 "heading": "🔽 Other international sources",
-                "body": "data.gov (US) – US government data. World Bank open data – international statistics. For Baltic/EU audience Eurostat and data.europa.eu are used most.",
+                "body": "data.gov (US) – US government data. World Bank open data – international statistics. For a Baltic/EU audience, Eurostat and data.europa.eu are used most.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -2368,19 +2368,19 @@
                       "badgeVariant": "blue"
                     },
                     {
-                      "strengthBadge": "Dokumentai",
+                      "strengthBadge": "Documents",
                       "badgeVariant": "yellow"
                     },
                     {
-                      "strengthBadge": "Dokumentai",
+                      "strengthBadge": "Documents",
                       "badgeVariant": "yellow"
                     },
                     {
-                      "strengthBadge": "Atmintis + dokumentai",
+                      "strengthBadge": "Memory + documents",
                       "badgeVariant": "green"
                     },
                     {
-                      "strengthBadge": "Dokumentai",
+                      "strengthBadge": "Documents",
                       "badgeVariant": "yellow",
                       "isWarning": true
                     }
@@ -2602,7 +2602,7 @@
                 }
               },
               {
-                "heading": "2️⃣ Do now",
+                "heading": "2️⃣ Do it now",
                 "body": "Take a topic you are already researching (or your RAG sources). Run at least **1 step** from the table – Perplexity is enough to start. 🔘 **Copy prompt (below)**",
                 "blockVariant": "brand"
               },
@@ -2640,7 +2640,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Scan the pipeline: where is your risk (chunk size, metadata, cleaning)? Pick that step, copy the prompt, and run it on a piece of your document.",
                 "blockVariant": "brand"
               },
@@ -2684,7 +2684,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Copy **one** Micro prompt below (start with “Step-by-step”), fill the brackets, and run it in AI. Compare with your usual question.",
                 "blockVariant": "brand"
               },
@@ -2734,7 +2734,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Copy the COMBO example below (practical task). Swap in your business case and run it in AI. Goal — a 90-day plan + 3 risks, not generic phrases.",
                 "blockVariant": "brand"
               },
@@ -2787,7 +2787,7 @@
                   "A type of AI model"
                 ],
                 "correct": 0,
-                "explanation": "You get RAG: the answer comes from your sources (documents, data), not from memory. If wrong – see RAG slide (4.2), \"What is RAG?\""
+                "explanation": "Correct — with RAG, the answer comes from your sources (documents, data), not from memory. If wrong – see RAG slide (4.2), \"What is RAG?\""
               },
               {
                 "id": "check-rag-2",
@@ -2866,7 +2866,7 @@
                 "collapsedByDefault": true
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Copy the Deep Research prompt below. Replace [TOPIC], [GOAL], [SOURCES] and run it. In a hurry — use Quick start (research starter).",
                 "blockVariant": "brand"
               },
@@ -2997,7 +2997,7 @@
                   "Deep research doesn't use sources"
                 ],
                 "correct": 0,
-                "explanation": "You've got it – the difference between one query (RAG) and multi-step analysis (Deep research). If wrong – remember: Deep research = sub-questions + intermediate conclusions + final synthesis. In practice that means deeper but longer. If wrong – see slide \"Deep research\" (4.3), block \"What is Deep research?\""
+                "explanation": "You've got it – the difference between one query (RAG) and multi-step analysis (Deep research). If wrong – remember: Deep research = sub-questions + intermediate conclusions + final synthesis. In practice that means deeper results, but it takes longer. See slide \"Deep research\" (4.3), block \"What is Deep research?\""
               },
               {
                 "id": "check-dr-2",
@@ -3009,7 +3009,7 @@
                   "No AI tool"
                 ],
                 "correct": 0,
-                "explanation": "Good – you know the tools. Perplexity Research, ChatGPT Browse/ADA, Claude with tool use, Gemini all support multi-step research. If wrong – no problem: the main thing is knowing such tools exist and trying at least one. If wrong – see slide \"Deep research\" (4.3), block \"Where to find it?\""
+                "explanation": "Good – you know the tools. Perplexity Research, ChatGPT Browse/ADA, Claude with tool use, Gemini all support multi-step research. If wrong – no problem: the main thing is knowing such tools exist and trying at least one. See slide \"Deep research\" (4.3), block \"Where to find it?\""
               },
               {
                 "id": "check-dr-3",
@@ -3112,7 +3112,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Take one prompt you used recently. Check: can you cut 30% and add an output limit (“max 150 words” / “list only”)? Write down 1 change.",
                 "blockVariant": "brand"
               },
@@ -3185,8 +3185,8 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
-                "body": "In your next long chat, run a checkpoint: about every ~10 messages ask AI to summarize what you agreed. Re-state the top rule in the critical request.",
+                "heading": "Do it now",
+                "body": "In your next long chat, run a checkpoint: about every ~10 messages ask AI to summarise what you agreed. Re-state the top rule in the critical request.",
                 "blockVariant": "brand"
               },
               {
@@ -3340,11 +3340,11 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "One prompt – the AI will help you rewrite your query into a clear, controllable version (goal, context, result).",
                 "blockVariant": "terms",
-                "copyable": "ROLE: You are a prompt assistant – you rewrite weak requests.\nTASK: Rewrite my request into a good prompt: clear goal, context, output format; no vague verbs (“help”, “optimize”) without actions.\nCONTEXT: [Paste your bad / old request]\nOUTPUT:\nShort version: (1–2 sentences)\nFuller: goal + context + format\nIf info is missing – say what to add."
+                "copyable": "ROLE: You are a prompt assistant – you rewrite weak requests.\nTASK: Rewrite my request into a good prompt: clear goal, context, output format; no vague verbs (“help”, “optimise”) without actions.\nCONTEXT: [Paste your bad / old request]\nOUTPUT:\nShort version: (1–2 sentences)\nFuller: goal + context + format\nIf info is missing – say what to add."
               },
               {
                 "heading": "4️⃣ Quick check (1 min)",
-                "body": "Check the rewritten prompt:\n\n• Is it **clear** what I want (goal)?\n• Is there **context** (who for, where, limits)?\n• Is **every word** actionable, not abstract (\"analysis\", \"optimise\" without actions)?\n• Do I **know** when the result is good (format, length)?\n\nIf 2 or more \"no\" – go back to CONTEXT, add to your original query, then run the prompt again.",
+                "body": "Check the rewritten prompt:\n\n• Is it **clear** what I want (goal)?\n• Is there **context** (who it's for, where, limits)?\n• Is **every word** actionable, not abstract (\"analysis\", \"optimise\" without actions)?\n• Do I **know** when the result is good (format, length)?\n\nIf 2 or more \"no\" – go back to CONTEXT, add to your original query, then run the prompt again.",
                 "blockVariant": "accent"
               },
               {
@@ -3505,7 +3505,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Within 24–48 hours open the AI and ask one RAG or fact-check question with sources – e.g. \"From Eurostat data: GDP trend in Lithuania over 3 years. Cite the source.\" That reinforces what the module is for.",
                 "blockVariant": "brand"
               },
@@ -3542,7 +3542,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now: Module 5 test",
+                "heading": "Do it now: Module 5 test",
                 "body": "Go to Module 5 — a 15-min presentation sprint and a short comprehension test. Aim for ≥70%, then the Module 6 project will be clearer.",
                 "blockVariant": "brand"
               },
@@ -3955,7 +3955,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Pick **one** card below by risk and run the prompt on your draft.",
                 "blockVariant": "brand"
               },
@@ -3993,7 +3993,7 @@
               },
               {
                 "heading": "Quality check",
-                "body": "After a help card:\n• Did I apply **one** technique (not all four)?\n• Is it clear in the draft what is fact vs assumption?\n• Can I return to the QC lab?\n\nIf “no” — repeat Do now with another card.",
+                "body": "After a help card:\n• Did I apply **one** technique (not all four)?\n• Is it clear in the draft what is fact vs assumption?\n• Can I return to the QC lab?\n\nIf “no” — repeat Do it now with another card.",
                 "blockVariant": "accent"
               }
             ],
@@ -4382,7 +4382,7 @@
             "footer": "Next – slide 4: HTML page chain",
             "practicalTask": {
               "templateLabel": "📋 COMBO project example (copy-paste)",
-              "template": "You are a business analyst. Do a deep research on [topic]. Provide: 1) step-by-step methodology, 2) comparison (trends A vs B), 3) 1–2 page report with sources."
+              "template": "You are a business analyst. Do deep research on [topic]. Provide: 1) step-by-step methodology, 2) comparison (trends A vs B), 3) 1–2 page report with sources."
             }
           }
         },
@@ -4399,7 +4399,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Scan the example flow below. Note which step you will do first on your HTML project (brief → blocks → generate → check).",
                 "blockVariant": "brand"
               },
@@ -4447,7 +4447,7 @@
               {
                 "body": "First — spot the weak HTML prompt in the practice below (or “Show solution”). Then copy the full 6-block example and run it in AI for your topic.",
                 "blockVariant": "brand",
-                "heading": "Do now"
+                "heading": "Do it now"
               },
               {
                 "heading": "Before you build: context engineering flow (Module 4)",
@@ -4519,7 +4519,7 @@
               "options": [
                 "Asking for a “nice website” is enough",
                 "META + INPUT + OUTPUT (+ REASONING/QUALITY/ADVANCED as needed)",
-                "Only a color palette with no goal",
+                "Only a colour palette with no goal",
                 "Only “make it professional” with no format"
               ],
               "correct": 1,
@@ -4584,7 +4584,7 @@
                 "blockVariant": "accent"
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Tomorrow: open your AI tool and add one prompt from this module to your library. Or: use the same 6-block structure for another topic.",
                 "blockVariant": "brand"
               },
@@ -4735,7 +4735,7 @@
                 "body": "If you want **to create your own work assistant** (Custom GPT) with clear rules, limits and a test set."
               },
               {
-                "heading": "Do now",
+                "heading": "Do it now",
                 "body": "Scan the 8-step schema. Mark which step you are on now, and do only the next one step (not all at once).",
                 "blockVariant": "brand"
               },
@@ -4763,7 +4763,7 @@
           "optional": true,
           "badgeVariant": "optional",
           "scenario": {
-            "context": "Participant creates a Custom GPT (ChatGPT project) for their work: one clear task (e.g. answering customer emails, explaining internal procedures, creating presentation outlines).",
+            "context": "You create a Custom GPT (ChatGPT project) for your work: one clear task (e.g. answering customer emails, explaining internal procedures, creating presentation outlines).",
             "data": "Enter: 1) goal, 2) audience, 3) tone, 4) limits (what not to do), 5) 5 test prompts (normal, edge case, vague, manipulative, with sources).\n\nCopy-paste template:\nGOAL: [one task]\nAUDIENCE: [who it's for]\nROLE: [how AI should think]\nTONE: [e.g. professional, clear]\nLIMITS: 1) If you don't know – say \"I don't know\". 2) Don't invent facts; if needed – ask for sources or state assumptions. 3) Stick to the format.\nFORMAT: [e.g. 5 bullet points + short conclusion]\n\nTESTS (5):\n1) Normal: ... (what to expect)\n2) Edge case: ...\n3) Vague: ...\n4) Manipulative: ...\n5) With sources: ...",
             "constraints": "Rule: if you don't know – write \"I don't know\". If you need facts – ask for sources or state assumptions. Instructions must be short and clear.",
             "expectedFormat": "1 page of instructions + 5 test prompts with “what to expect“ description."
@@ -4834,7 +4834,7 @@
           "shortTitle": "Project summary",
           "content": {
             "introHeading": "What you learned",
-            "introBody": "Well done! You finished the Module 6 project: a research report with AI or a Custom GPT. You have an artifact, 6-block templates, COMBO/HTML technique cues, and a data-hygiene handout.",
+            "introBody": "Well done! You finished the Module 6 project: a research report with AI or a Custom GPT. You have an artefact, 6-block templates, COMBO/HTML technique cues, and a data-hygiene handout.",
             "stats": [
               {
                 "label": "Project",
@@ -4851,7 +4851,7 @@
             ],
             "sections": [
               {
-                "heading": "One artifact",
+                "heading": "One artefact",
                 "icon": "Target",
                 "color": "brand",
                 "items": [
@@ -4882,7 +4882,7 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artefact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
             "tagline": "One project + handout = a repeatable AI work rhythm",
             "abilityBefore": "You lacked a finished project with a prompt set and checks.",
             "abilityAfter": "You have a project artefact and know how to repeat the process for another topic.",
