@@ -1,29 +1,43 @@
 # Integracijos apžvalga: mokymo app kaip subproject (Vercel + marketingo repo)
 
 > **Tikslas:** Išoriniams agentams ir integratoriams – viena vieta suprasti, kas yra šis repo, kur production, kaip integruoti į marketingo monorepo ir ką marketingo pusė turi įgyvendinti.  
-> **Atnaujinta:** 2026-07-09
+> **Atnaujinta:** 2026-08-06 (corporate12 Supabase cutover kontraktas)
 
 ---
 
-## Production architektūra (2026-07-09)
+## Production architektūra (2026-08-06)
 
 **Production valdo marketing monorepo:** [DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy). Mokymų SPA – submodule `apps/prompt-anatomy/` (šis inzinerija repo).
 
-| Kanalas             | Marketing API                                                               | Training unlock                                                                              |
-| ------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **M1–6 (Stripe)**   | `api/success-redirect.js` → magic link `access_tier=3\|6`                   | [`App.tsx`](../src/App.tsx) → `GET /api/verify-access` → `localStorage.verified_access_tier` |
-| **M7–9 (Supabase)** | `api/generate-access-link.js` (email → Supabase `user_access` → magic link) | Tas pats verify kelias; `highest_plan` mapinamas į `access_tier` (pvz. 12→9)                 |
-| **Gate (tier 0)**   | —                                                                           | [`AccessGateScreen`](../src/components/AccessGateScreen.tsx)                                 |
+| Kanalas                       | Marketing API                                                               | Training unlock                                                                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| **M1–6 (Stripe)**             | `api/success-redirect.js` → magic link `access_tier=3\|6`                   | [`App.tsx`](../../src/App.tsx) → `GET /api/verify-access` → `localStorage.verified_access_tier`                                      |
+| **M7–9 (Supabase)**           | `api/generate-access-link.js` (email → Supabase `user_access` → magic link) | Tas pats verify kelias; `highest_plan` → `access_tier` **9**                                                                         |
+| **M10–12 (Supabase Phase 1)** | Tas pats `generate-access-link` + `highest_plan=12`                         | Po Horizon B cutover: map **12 → `access_tier=12`** (nebe cap 12→9). Žr. [06 memo](../../06_marketingo_memo_corporate12_supabase.md) |
+| **Gate (tier 0)**             | —                                                                           | [`AccessGateScreen`](../../src/components/AccessGateScreen.tsx)                                                                      |
 
 **Svarbu:** Supabase **neatrakina** training app tiesiogiai. Korporatyviniai klientai: Supabase upsert + vartotojas naudoja „Patikrink prieigą“ / `generate-access-link` → redirect su HMAC token.
 
-**Build prod:** marketing `scripts/vercel-build.sh` – `VITE_MAX_BUILD_MODULE=9`, `VITE_BASE_PATH=/anatomy/`, be `VITE_MVP_MODE`.
+**Build prod (šiandien, iki Horizon B cutover):** marketing `scripts/vercel-build.sh` – `VITE_MAX_BUILD_MODULE=9`, `VITE_BASE_PATH=/anatomy/`, be `VITE_MVP_MODE`.  
+**Build po Horizon B cutover:** `build:corporate12` / `VITE_MAX_BUILD_MODULE=12` (M1–12 bundle). Abu sluoksniai (build + `access_tier`) privalomi — žr. memo 06 §2.
+
+**Istorinis cap 12→9:** buvo teisingas, kol prod bundle buvo tik M1–9. Po `build:corporate12` cutover generatorius **privalo** siųsti `access_tier=12` kai `highest_plan=12`.
 
 ---
 
 ## Marketingo repo handoff
 
-Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, support): **[MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)**. Tier 9 / vienas build: **[05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)**. Submodule pin 1.4.4: **[MARKETING_SUBMODULE_PIN_1.4.4.md](MARKETING_SUBMODULE_PIN_1.4.4.md)**. PostHog: **[MON-4_POSTHOG_DEPLOY.md](MON-4_POSTHOG_DEPLOY.md)**. TODO ID: MON-1–MON-8 (`TODO.md` §1.1).
+Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, support): **[MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)**.
+
+| Tema                                   | Dokumentas                                                                                     |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Tier 9 / M1–9 vienas build             | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)     |
+| **Corporate12 / Supabase (be Stripe)** | [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md) |
+| Submodule pin 1.4.4 (M1–9)             | [MARKETING_SUBMODULE_PIN_1.4.4.md](MARKETING_SUBMODULE_PIN_1.4.4.md)                           |
+| **Submodule pin corporate12**          | [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md)               |
+| PostHog                                | [MON-4_POSTHOG_DEPLOY.md](MON-4_POSTHOG_DEPLOY.md)                                             |
+
+TODO ID: MON-1–MON-8 (`TODO.md` §1.4). Horizon B cutover = CAV-B1.
 
 ## Kas yra šis repo
 
@@ -55,23 +69,24 @@ Operacinės užduotys marketing komandai (env, Stripe redirect, smoke test, supp
 
 ## Kas reikalinga iš šio repo
 
-| Kas                | Aprašymas                                                                                                                                                                      |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Build output**   | Production (Vercel): `npm run build:production` → `dist/`. Dev/full SOT: `npm run build`. GitHub Pages demo: `VITE_MVP_MODE=1 npm run build`.                                  |
-| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`. |
-| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) – `VITE_MAX_BUILD_MODULE=9`, `VITE_VERIFY_ACCESS_URL`.                    |
-| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                   |
+| Kas                | Aprašymas                                                                                                                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Build output**   | Production (Vercel M1–9): `npm run build:production` → `dist/`. Horizon B: `npm run build:corporate12`. Dev/full SOT: `npm run build`. GitHub Pages demo: `VITE_MVP_MODE=1 npm run build`. |
+| **Base path**      | Env `VITE_BASE_PATH` – kelias, po kurio servinamas app (pvz. `/anatomy/`). **Vite production default:** `/inzinerija/` (GitHub Pages); monorepo build – nustatyti `/anatomy/`.             |
+| **Env lentelė**    | Žr. [DEPLOYMENT.md](DEPLOYMENT.md), [MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md) – `VITE_MAX_BUILD_MODULE=9\|12`, `VITE_VERIFY_ACCESS_URL`.                            |
+| **SEO / crawlers** | App kelias – `noindex`; GEO eksportas – [SEO_SUBMODULE.md](SEO_SUBMODULE.md). Root `robots.txt` / sitemap – marketingo repo.                                                               |
 
 ---
 
 ## Kas reikalinga iš marketingo repo
 
-| Užduotis                              | Aprašymas                                                                                                                                                   |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Servuoti training statiką**         | Po pasirinktu path (pvz. `/academy`). SPA fallback: `/academy` ir `/academy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
-| **Eksponuoti verify-access API**      | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Domain root `/api/verify-access`.                                                                    |
-| **Supabase → magic link (M7–9)**      | `GET /api/generate-access-link?email=...` – tikrina `user_access`, generuoja redirect su HMAC token.                                                        |
-| **Magic link redirect (Stripe M1–6)** | Po Stripe checkout: `api/success-redirect.js` → training URL `access_tier=3\|6`.                                                                            |
+| Užduotis                                   | Aprašymas                                                                                                                                                   |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Servuoti training statiką**              | Po pasirinktu path (pvz. `/anatomy`). SPA fallback: `/anatomy` ir `/anatomy/*` → training `index.html`. Statiniai failai (`assets/*`) – tiesiogiai iš dist. |
+| **Eksponuoti verify-access API**           | `GET /api/verify-access` pagal kontraktą (žr. žemiau). Domain root `/api/verify-access`.                                                                    |
+| **Supabase → magic link (M7–9)**           | `GET /api/generate-access-link?email=...` – tikrina `user_access`, generuoja redirect su HMAC token (`access_tier=9`).                                      |
+| **Supabase → magic link (M10–12 Phase 1)** | Tas pats endpoint; `highest_plan=12` → **`access_tier=12`** po corporate12 build cutover. Stripe Agentų SKU – Phase 2.                                      |
+| **Magic link redirect (Stripe M1–6)**      | Po Stripe checkout: `api/success-redirect.js` → training URL `access_tier=3\|6`.                                                                            |
 
 **Auth ir verify-access atsakomybė – marketingo app.** Šiame repo – tik kontrakto aprašas ir reference kodas.
 
@@ -84,13 +99,13 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 ### Endpoint
 
 - **Method/URL:** `GET /api/verify-access`
-- **Query params:** `access_tier` (Phase 2: `3`, `6`, or `9`), `expires` (Unix timestamp), `token` (Base64url HMAC).
+- **Query params:** `access_tier` (`3`, `6`, `9`, **`12`**; **`15`** = Horizon C, ne šio cutover scope), `expires` (Unix timestamp), `token` (Base64url HMAC).
 
 ### Validacija
 
 - Payload: `access_tier:expires` (string).
 - HMAC-SHA256 su slaptuoju (`ACCESS_TOKEN_SECRET`), rezultatas – Base64url (be padding).
-- Leidžiami tier: **3, 6, 9**. Tier 12 – vėliau, sinchronuojant frontend + docs + API.
+- Leidžiami tier (training reference): **3, 6, 9, 12, 15**. Parent API turi priimti bent **12** prieš Horizon B cutover smoke.
 
 ### Response
 
@@ -107,13 +122,14 @@ Kad marketingas galėtų realizuoti tą patį elgesį.
 
 ## Greitos nuorodos
 
-| Tikslas                                  | Dokumentas                                                                                           |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| SOT, duomenys, agentai                   | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                                     |
-| Marketing handoff (env, Stripe, smoke)   | [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)                     |
-| Tier 9 / vienas production build (memo)  | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)           |
-| Production audit santrauka (archyvas)    | [docs/archive/development/AUDIT_2026-06_SUMMARY.md](../archive/development/AUDIT_2026-06_SUMMARY.md) |
-| Kas įgyvendinta (duomenys, i18n, testai) | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md)                 |
-| Deploy, env, base path, production       | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                                       |
-| SEO / crawlers / GEO (submodulis)        | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                                 |
-| API kontraktas (verify-access)           | Šis dokumentas, skyrius „Verify-access API“                                                          |
+| Tikslas                                   | Dokumentas                                                                                           |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| SOT, duomenys, agentai                    | [docs/DOCUMENTATION_QUICK_REF.md](../DOCUMENTATION_QUICK_REF.md)                                     |
+| Marketing handoff (env, Stripe, smoke)    | [docs/deployment/MARKETING_HANDOFF_CHECKLIST.md](MARKETING_HANDOFF_CHECKLIST.md)                     |
+| Tier 9 / vienas production build (memo)   | [05_marketingo_memo_tier9_vienas_build.md](../../05_marketingo_memo_tier9_vienas_build.md)           |
+| **Corporate12 / Supabase Phase 1 (memo)** | [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md)       |
+| Production audit santrauka (archyvas)     | [docs/archive/development/AUDIT_2026-06_SUMMARY.md](../archive/development/AUDIT_2026-06_SUMMARY.md) |
+| Kas įgyvendinta (duomenys, i18n, testai)  | [docs/development/CODEBASE_WHAT_IS_DONE.md](../development/CODEBASE_WHAT_IS_DONE.md)                 |
+| Deploy, env, base path, production        | [docs/deployment/DEPLOYMENT.md](DEPLOYMENT.md)                                                       |
+| SEO / crawlers / GEO (submodulis)         | [docs/deployment/SEO_SUBMODULE.md](SEO_SUBMODULE.md)                                                 |
+| API kontraktas (verify-access)            | Šis dokumentas, skyrius „Verify-access API“                                                          |

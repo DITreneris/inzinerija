@@ -2,12 +2,21 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.5.0 + M16–18 authoring/TE/plain + pre-launch audit remediation  
+**Baseline:** 1.5.0 + M16–18 authoring/TE/plain + pre-launch audit remediation + corporate12 Supabase handoff memo  
 **Testai:** 160 failai / 966 testai (`@ HEAD` 2026-08-04 preflight; `@ tag 1.4.9` freeze = 130/825)  
-**Data:** 2026-08-04  
+**Data:** 2026-08-06  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Corporate12 Supabase handoff – 2026-08-06
+
+| #   | Failas                                                      | Laukas                  | Buvo                            | Turi būti                                            | Done |
+| --- | ----------------------------------------------------------- | ----------------------- | ------------------------------- | ---------------------------------------------------- | ---- |
+| 1   | `06_marketingo_memo_corporate12_supabase.md`                | Horizon B Phase 1 memo  | nėra                            | naujas memo (be Stripe)                              | [x]  |
+| 2   | `INTEGRATION_OVERVIEW.md`                                   | plan map / verify tiers | 12→9 kaip galutinė; tiers 3/6/9 | 12→12 po cutover; tiers 3/6/9/**12** (+15 Horizon C) | [x]  |
+| 3   | `MARKETING_HANDOFF` + `MARKETING_SUBMODULE_PIN_CORPORATE12` | cutover runbook         | tik Stripe/env hint             | §7b + pin 1.5.0 runbook                              | [x]  |
+| 4   | `README` / `DEPLOYMENT` / `TODO` CAV-B1 / `CHANGELOG`       | nuorodos                | tik memo 05                     | + memo 06 + pin corporate12                          | [x]  |
 
 ### Pre-launch audit remediation – 2026-08-04
 

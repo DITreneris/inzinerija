@@ -39,7 +39,8 @@ Detalios instrukcijos yra `README.md`:
 - **Build:** `npm run build:corporate12` (`VITE_MAX_BUILD_MODULE=12`, be `VITE_MVP_MODE`).
 - **Bundle:** `*-m1-m12.json` (generate:core-data); M10–12 EN overlay merge; M13–15 + Vaizdo/I2V slide stub’ai.
 - **Prieiga:** magic link `access_tier=12` → moduliai 1–12; `api/verify-access` + `MAGIC_LINK_TIERS` priima 3|6|9|12|15.
-- **Marketing cutover (ne šio repo P0):** Vercel build → `build:corporate12` (arba `VITE_MAX_BUILD_MODULE=12`); Stripe/Supabase generator siunčia `access_tier=12` už Agentų kelio produktą (€199). Default pin gali likti M1–9 iki cutover.
+- **Marketing cutover (ne šio repo P0):** pin **1.5.0** + Vercel `build:corporate12` + Supabase `highest_plan=12` → `access_tier=12` (Phase 1 be Stripe). Stripe Agentų €199 = Phase 2. Default pin gali likti M1–9 iki cutover.
+- **Handoff:** [06_marketingo_memo_corporate12_supabase.md](../../06_marketingo_memo_corporate12_supabase.md), [MARKETING_SUBMODULE_PIN_CORPORATE12.md](MARKETING_SUBMODULE_PIN_CORPORATE12.md).
 
 ### Corporate15 (M1–15) – Horizon C ready
 

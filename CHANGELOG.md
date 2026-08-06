@@ -44,13 +44,13 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
 - **Testai:** **160** failai / **966** testai (2026-08-04 preflight). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`), M10–12 `audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.5.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; marketing env: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.5.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
 
-_Caveats Closure 2026-08-04 · pre-launch audit remediation · M13 learner plain · M16–18 learner plain · M1618 path handout · Horizon D TE Must/Should + C2 done; C1 park; Horizon E / UJ-MUST done; M79 ROI done; corporate15 / tier 15; mobile @375 chrome._
+_Caveats Closure 2026-08-04 · corporate12 Supabase handoff memo 2026-08-06 · pre-launch audit remediation · M13 learner plain · M16–18 learner plain · M1618 path handout · Horizon D TE Must/Should + C2 done; C1 park; Horizon E / UJ-MUST done; M79 ROI done; corporate15 / tier 15; mobile @375 chrome._
 
 ### Fixed
 
@@ -58,6 +58,7 @@ _Caveats Closure 2026-08-04 · pre-launch audit remediation · M13 learner plain
 
 ### Added
 
+- **Corporate12 Supabase handoff memo (2026-08-06):** [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md) — Horizon B Phase 1 (be Stripe): pin 1.5.0 + `build:corporate12` + `highest_plan=12` → `access_tier=12`; pin runbook [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md). Docs sync: `INTEGRATION_OVERVIEW` (nebėra klaidingo 12→9 kaip galutinės tiesos), `MARKETING_HANDOFF` §7b / §7.3, DEPLOYMENT / README / TODO CAV-B1. Re-lock: `audit:m1012` ✅ · magicLink/accessTier 18/18 ✅ · `build:corporate12` ✅. Vykdymas = marketing repo.
 - **M13 learner maturity plan (2026-08-04):** [`M13_MATURITY_PLAN.md`](docs/development/M13_MATURITY_PLAN.md) — chrome/plain/outcomes/EN brandumas. **Etalonai:** M7P / M4P / M1P / M79 readability / ranking Top-N (ne M16 plan esė). Inventorius keep/kiss/rewrite; iteracijos `M13-PLAIN-0`…`QA` + optional `M13P-TRIM`; gairės vs M7. TODO §1.2j; `M13_PROMPT_MATURITY` pointer; QUICK_REF / ROADMAP v4.17.
 
 ### Changed

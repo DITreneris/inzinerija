@@ -206,8 +206,9 @@ Open learning P2: **nėra** aktyvių ticket’ų.
 ### §1.4 Out of scope – marketing handoff
 
 > Ne default agentų P0. Vykdymas / env / KPI → marketing repo. Runbook: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md).  
-> **Horizon B cutover:** `build:corporate12` + `access_tier=12` — [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md).  
-> **Horizon C cutover:** `build:corporate15` + `access_tier=15` (provisional €249) — tas pats checklist.
+> **Horizon B cutover:** `build:corporate12` + `access_tier=12` — [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md) + [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md) + [`MARKETING_HANDOFF_CHECKLIST.md`](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md) §7b.  
+> **Horizon C cutover:** `build:corporate15` + `access_tier=15` (provisional €249) — tas pats checklist.  
+> **Handoff memo (2026-08-06):** training-side docs synced (`06_…`, INTEGRATION_OVERVIEW be klaidingo 12→9 kaip galutinės tiesos); **vykdymas** lieka marketing repo (CAV-B1).
 
 | ID        | Užduotis                                                                | Status | Pastaba                                                                                                                  |
 | --------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
@@ -232,16 +233,16 @@ MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
 ### §1.6 Caveats Closure Program (2026-08-04)
 
-| ID         | Item                                     | Owner               | Status                                                                               |
-| ---------- | ---------------------------------------- | ------------------- | ------------------------------------------------------------------------------------ |
-| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x] gates green; owner visual EN spot optional                                       |
-| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x] `smoke-diag1-m1315` 40/40 PASS (see TEST_REPORT)                                 |
-| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] handout unit + schema (+ m1618); owner open-PDF visual still recommended §5d     |
-| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] handoff docs synced (pin 1.4.9 vs 1.5.0 / tier 12–15); execute in marketing repo |
-| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ] training `analytics.ts` wired; env/snippet/dashboard = marketing                 |
-| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                             |
-| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                         |
-| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                               |
+| ID         | Item                                     | Owner               | Status                                                                                                                                 |
+| ---------- | ---------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x] gates green; owner visual EN spot optional                                                                                         |
+| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x] `smoke-diag1-m1315` 40/40 PASS (see TEST_REPORT)                                                                                   |
+| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] handout unit + schema (+ m1618); owner open-PDF visual still recommended §5d                                                       |
+| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] training handoff memo **06** + pin runbook ready 2026-08-06; execute pin 1.5.0 + `build:corporate12` + map 12→12 in marketing repo |
+| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ] training `analytics.ts` wired; env/snippet/dashboard = marketing                                                                   |
+| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                                                                               |
+| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                                                                           |
+| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                                                                                 |
 
 ---
 

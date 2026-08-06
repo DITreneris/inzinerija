@@ -16,7 +16,7 @@ UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModul
 | **Corporate15**         | `npm run build:corporate15`     | M1–15            | Tier 15 magic link; Vaizdo/I2V live                           |
 | **Dev / authoring**     | `npm run build`                 | M1–18 (full SOT) | Turinio redagavimas; DEV unlock 18; magic-link ≤15            |
 
-Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md).
+Žr. [docs/deployment/DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md), [05_marketingo_memo_tier9_vienas_build.md](05_marketingo_memo_tier9_vienas_build.md), [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md) (Horizon B cutover, be Stripe).
 
 ## 🎯 Apie projektą
 
@@ -146,7 +146,7 @@ Push į `main` → GitHub Actions deploy. Prieiga: `https://ditreneris.github.io
 ### Production (Vercel)
 
 - [www.promptanatomy.app](https://www.promptanatomy.app) – git submodulis marketingo monorepo
-- Build: `npm run build:production`; env – [MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md)
+- Build: `npm run build:production` (M1–9) arba `npm run build:corporate12` (Horizon B); env – [MARKETING_HANDOFF_CHECKLIST.md](docs/deployment/MARKETING_HANDOFF_CHECKLIST.md); corporate12 memo – [06_marketingo_memo_corporate12_supabase.md](06_marketingo_memo_corporate12_supabase.md)
 
 Pilnas aprašas: [INTEGRATION_OVERVIEW.md](docs/deployment/INTEGRATION_OVERVIEW.md), [DEPLOYMENT.md](docs/deployment/DEPLOYMENT.md).
 

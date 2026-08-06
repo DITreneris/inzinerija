@@ -2,6 +2,21 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-06 – Corporate12 Supabase handoff re-lock
+
+**Statusas:** ✅ PASS (docs + readiness).  
+**Apimtis:** Memo `06_…` + INTEGRATION_OVERVIEW / MARKETING_HANDOFF / pin runbook; QA re-lock prieš marketing cutover.
+
+| Gate                                 | Rezultatas                              |
+| ------------------------------------ | --------------------------------------- |
+| `npm run audit:m1012`                | ✅                                      |
+| `magicLinkTier` + `accessTier` tests | ✅ 18/18                                |
+| `npm run build:corporate12`          | ✅ exit 0; `modules-m1-m12-*.js` bundle |
+
+**Verdict:** Training-side Horizon B handoff ready. Marketing executes pin 1.5.0 + `build:corporate12` + map 12→12 (CAV-B1).
+
+---
+
 ## 2026-08-04 – Pre-launch audit remediation
 
 **Statusas:** ✅ PASS (`audit:release-preflight` green).  
