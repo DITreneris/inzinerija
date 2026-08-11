@@ -264,16 +264,23 @@ MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
 > **Ne learning blokorius:** visi likę advisory yra build/test grandinėje ir **neįeina į siunčiamą bundle**. Vienintelis, kuris pasiekdavo mokinį (`jspdf` critical, handout PDF), jau uždarytas non-breaking `npm audit fix` (27 → 12). Etapais, nes kiekvienas žingsnis – MAJOR su savo blast radius.
 
-| ID             | Užduotis                                                                                                    | Status    | Pastaba                                                                            |
-| -------------- | ----------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------- |
-| **TOOL-0**     | Node 18/20 (EOL) → **24** Active LTS; CI matrica 22.x/24.x; `node-version-file`                             | [x]       | 2026-08-11; `@types/node` ^24                                                      |
-| **TOOL-1**     | Non-breaking advisory sweep: 27 → 12; `jspdf` 4.2.0→4.2.1 (critical, runtime)                               | [x]       | `package.json` nepakito – tik lockfile                                             |
-| **TOOL-2**     | `vitest` 1.6 → **4** (+ `@vitest/coverage-v8`, `@vitest/ui`, `jsdom` 23→30, `@testing-library/*`)           | [ ]       | Uždaro critical `vitest` advisory. Blast radius = **982 testai**; dev-only         |
-| **TOOL-3**     | `vite` 5 → **8** (+ `@vitejs/plugin-react` 6)                                                               | [ ]       | Uždaro `vite` high + `esbuild` moderate. Keičia **siunčiamą bundle** → po TOOL-2   |
-| **TOOL-4**     | `eslint` 8 (**EOL 2024-10**) → 9/10 flat config + `@typescript-eslint` 6 → 8                                | [ ]       | Uždaro `minimatch` high. `.eslintrc` → `eslint.config.js` migracija                |
-| **TOOL-DEFER** | `react` 18→19 · `tailwindcss` 3→4 (CSS-first = design system rewrite) · `typescript` 5.9→7 · `lucide-react` | won’t-now | **Atskiri epikai su product call** – Tailwind 4 perrašo token sistemą ir §6b tonus |
+| ID             | Užduotis                                                                                                                                                                   | Status    | Pastaba                                                                                                         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
+| **TOOL-0**     | Node 18/20 (EOL) → **24** Active LTS; CI matrica 22.x/24.x; `node-version-file`                                                                                            | [x]       | 2026-08-11; `@types/node` ^24                                                                                   |
+| **TOOL-1**     | Non-breaking advisory sweep: 27 → 12; `jspdf` 4.2.0→4.2.1 (critical, runtime)                                                                                              | [x]       | `package.json` nepakito – tik lockfile                                                                          |
+| **TOOL-2**     | **Atomiškai:** `vite` 5→**8** + `@vitejs/plugin-react` 4→**6** + `vitest` 1.6→**4** (+ `coverage-v8`, `ui`, `jsdom` 23→30, `@testing-library/react` 14→16, `jest-dom` 6→7) | [ ]       | Uždaro critical `vitest` + high `vite` + moderate `esbuild`. Blast radius = **982 testai ir siunčiamas bundle** |
+| **TOOL-4**     | `eslint` 8 (**EOL 2024-10**) → 9/10 flat config + `@typescript-eslint` 6 → 8                                                                                               | [ ]       | Uždaro `minimatch` high. `.eslintrc` → `eslint.config.js` migracija                                             |
+| **TOOL-DEFER** | `react` 18→19 · `tailwindcss` 3→4 (CSS-first = design system rewrite) · `typescript` 5.9→7 · `lucide-react`                                                                | won’t-now | **Atskiri epikai su product call** – Tailwind 4 perrašo token sistemą ir §6b tonus                              |
 
-**Eiliškumas ir kodėl:** TOOL-2 pirmas (dev-only, jokio poveikio produktui, bet didžiausias testų blast radius) → TOOL-3 (jau paliečia bundle, tad verifikacija turi būti po žalio testų paketo) → TOOL-4 (savarankiškas, tik lint). **Draudžiama:** `npm audit fix --force` (patrauktų visus MAJOR vienu ypu, be verifikacijos tarp žingsnių).
+**Kodėl vite ir vitest neatskiriami** (patikrinta `npm view` 2026-08-11; pradinis planas juos skyrė į TOOL-2/TOOL-3 ir buvo neteisingas):
+
+- `vitest@4` peer: `vite: ^6 || ^7 || ^8` → vitest kelti neperkėlus vite **negalima**.
+- `@vitejs/plugin-react@6` peer: `vite: ^8.0.0` → pluginas ir vite eina kartu.
+- `vitest@1.6.1` turi `vite` **dependencies**, ne peer, tad vien vite 8 kėlimas paliktų nested vite 5 po testais: build'as ir testai suktųsi ant skirtingų vite versijų. Nenaudinga tarpinė būsena.
+- **Prielaida jau patenkinta:** `vitest@4` engines = `^20 || ^22 || >=24`; `jsdom@30` = `^22.22.2 || ^24.15.0 || >=26` → **TOOL-0 (Node 24) buvo būtina sąlyga**, ne atskiras patogumas.
+- `@testing-library/react@16` peer priima **React 18**, tad React 19 čia **nereikalingas** (lieka TOOL-DEFER).
+
+**Eiliškumas:** TOOL-2 (atomiškai) → TOOL-4 (savarankiškas, tik lint). **Draudžiama:** `npm audit fix --force` – patrauktų visus MAJOR vienu ypu be verifikacijos tarp žingsnių.
 
 ---
 

@@ -60,7 +60,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 ### Security
 
 - **Non-breaking dependency advisory sweep (2026-08-11):** `npm audit fix` be `--force` – **27 → 12** advisory (4 → 0 kritinių, kurie pasiekia vartotoją). `package.json` **nepakito** (visi 73 pakeitimai – patch/minor esamose semver ribose), keitėsi tik `package-lock.json`. Svarbiausia: **`jspdf` 4.2.0 → 4.2.1 (critical)** – tai _runtime_ priklausomybė, generuojanti handout PDF, tad vienintelis advisory, kuris realiai pasiekdavo mokinį; taip pat `dompurify` 3.3.1 → 3.4.13, `postcss` 8.5.6 → 8.5.26, `rollup` 4.57.1 → 4.62.4, `@babel/*`, `ws`, `nanoid`, `yaml`, `js-yaml`, `ajv`, `form-data`. Vartai: typecheck · lint · `validate:schema` · 2× build · **161/982** (PDF handout testai įskaitomi).
-- **Liekantys 12 – tik dev-tooling, reikia MAJOR:** `vitest` <=3.2.5 (critical) → `vitest@4`; `vite` <=6.4.2 (high) + `esbuild` (moderate) → `vite@8`; `minimatch` 9.0.x (high) → `@typescript-eslint@8`. Nė vienas neįeina į siunčiamą bundle (build/test grandinė), todėl „critical“ svoris praktikoje mažesnis nei skaičius rodo. Etapais, atskirai – žr. `TODO.md` §1.7.
+- **Liekantys 12 – tik dev-tooling, reikia MAJOR:** `vitest` <=3.2.5 (critical) → `vitest@4`; `vite` <=6.4.2 (high) + `esbuild` (moderate) → `vite@8`; `minimatch` 9.0.x (high) → `@typescript-eslint@8`. Nė vienas neįeina į siunčiamą bundle (build/test grandinė), todėl „critical“ svoris praktikoje mažesnis nei skaičius rodo. `vite` ir `vitest` **neatskiriami** (`vitest@4` peer = `vite ^6||^7||^8`; `plugin-react@6` peer = `vite ^8`), tad keliami atomiškai – žr. `TODO.md` §1.7.
 
 ---
 
