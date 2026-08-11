@@ -61,7 +61,6 @@ if (typeof window !== 'undefined') {
 
 // Define global type for test environment
 declare global {
-  // eslint-disable-next-line no-var
   var global: typeof globalThis;
 }
 

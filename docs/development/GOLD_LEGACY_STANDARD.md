@@ -830,11 +830,12 @@ helmet: ['react-helmet-async']
 
 ### 14.3 ESLint konfigūracija
 
-**Failas:** `.eslintrc.cjs`
+**Failas:** `eslint.config.js` (flat config; ESLint 9 — `.eslintrc.cjs` pašalintas 2026-08-11)
 
-- `eslint:recommended` + `@typescript-eslint/recommended` + `react-hooks/recommended` + `react/recommended`
-- `react-refresh/only-export-components` (warn)
-- `@typescript-eslint/no-unused-vars` (error, ignore `^_`)
+- `js.configs.recommended` + `tseslint.configs.recommended` + `react.configs.flat.recommended`
+- `react-hooks`: **tik** `rules-of-hooks` (error) + `exhaustive-deps` (warn) — v7 `recommended` įtraukia 16 React Compiler taisyklių, tad jos neįjungtos sąmoningai (`TODO.md` §1.7 TOOL-5)
+- `react-refresh/only-export-components` (warn); išjungta `slides/shared/*Diagram.tsx` — geometrijos SOT eksportas
+- `@typescript-eslint/no-unused-vars` (error, ignore `^_`, įskaitant `caughtErrors`)
 - `react/react-in-jsx-scope` off
 - `@typescript-eslint/no-explicit-any` warn
 
@@ -1104,7 +1105,7 @@ Modulio 4 turinio ir tono pataisymai (`patch-m4-*.mjs`), žodynėlio/įrankių p
 | `tsconfig.node.json` | Node.js TypeScript (vite.config)    |
 | `tailwind.config.js` | CSS framework konfigūracija         |
 | `postcss.config.js`  | PostCSS plugins                     |
-| `.eslintrc.cjs`      | ESLint taisyklės                    |
+| `eslint.config.js`   | ESLint taisyklės (flat config)      |
 | `.prettierrc.json`   | Prettier formatavimas               |
 | `.prettierignore`    | Prettier ignore                     |
 | `.editorconfig`      | Editor nustatymai                   |
