@@ -7,7 +7,7 @@
 
 **Nuosavybė:** šis repo = turinio / pedagogikos / UI kokybės OS. Marketingas (env, PostHog, CRO) → kitas repo.  
 **Principas:** M1–9 production ([promptanatomy](https://github.com/DITreneris/promptanatomy)); **M10–12 corporate cut repo-ready** (`build:corporate12`); **M13–15 corporate cut repo-ready** (`build:corporate15`); M16–18 authoring + TE Must/Should + ritmas done · **M16–18 learner plain / EN body ✅** · **M13 learner plain ✅ + M13P-TRIM ✅** (§1.2j) · TE Could C1–C5 closed (won’t-now / C2 done).  
-**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **160/966**; default `build:production` = M1–9.
+**Production:** RC **1.5.0** (+ corporate15 / tier 15 repo-ready); learning pin **v1.4.9** until marketing cutover; automated **161/982**; default `build:production` = M1–9.
 
 ---
 

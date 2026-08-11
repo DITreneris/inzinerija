@@ -3,7 +3,7 @@
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
 **Baseline:** 1.5.0 + M16–18 authoring/TE/plain + pre-launch audit remediation + corporate12 Supabase handoff memo  
-**Testai:** 160 failai / 966 testai (`@ HEAD` 2026-08-04 preflight; `@ tag 1.4.9` freeze = 130/825)  
+**Testai:** 161 failai / 982 testai (`@ HEAD` 2026-08-11 preflight; `@ tag 1.4.9` freeze = 130/825)  
 **Data:** 2026-08-06  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
@@ -20,9 +20,9 @@
 
 ### Pre-launch audit remediation – 2026-08-04
 
-| #   | Failas                                                        | Laukas        | Buvo    | Turi būti                                      | Done |
-| --- | ------------------------------------------------------------- | ------------- | ------- | ---------------------------------------------- | ---- |
-| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 155/944 | **160/966** po plain/handout + preflight green | [x]  |
+| #   | Failas                                                        | Laukas        | Buvo    | Turi būti                                                          | Done |
+| --- | ------------------------------------------------------------- | ------------- | ------- | ------------------------------------------------------------------ | ---- |
+| 1   | `TEST_REPORT` / `TODO` / `ROADMAP` / `CODEBASE` / `CHANGELOG` | testų metrika | 160/966 | **161/982** po M10–12 remediacijos + kalbos vartų; preflight green | [x]  |
 
 ### Docs A + EN B sync – 2026-08-01
 

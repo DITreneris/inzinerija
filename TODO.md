@@ -4,7 +4,7 @@
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) · ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
 **Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-11 (M1012-DEEP ✅; M16–18 learner plain ✅ §1.2i–l; M13 plain ✅ + `M13P-TRIM` ✅ §1.2j; TE-M1618 C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
 
-**Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **160/966**; `build:corporate12` + `build:corporate15` žali.
+**Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **161/982**; `build:corporate12` + `build:corporate15` žali.
 
 **Produktiniai sprendimai (2026-07-31 + 2026-08-01):** (1) skaitomumas keliamas **išlaikant gylį**; (2) **M79-S\*** epic completed; (3) **formalus Density DoD / CI – ne**; (4) M13 **13.3 / 13.4** dens soft pass → **M1315-DENS done**; (5) UJ-MUST done; (6) **Horizon D un-park** — kitas kelias = Kodo inžinerija; (7) M16–18 TE = MoSCoW individual metaphors (S4-INDIV), ne thin VerticalFlow facades; (8) **Authoring+TE ≠ learner plain** — M16–18 plain/EN body ✅ (§1.2i–l); (9) **M13 TE/corporate ✅ + learner plain ✅ + M13P-TRIM ✅** — chrome/outcomes/EN + copyable fit (`M13_MATURITY_PLAN` / `M13_PROMPT_MATURITY`).
 
