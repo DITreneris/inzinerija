@@ -12,23 +12,24 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ### Versijų antraštės (turinio medis)
 
-| Skiltis                     | Ką rasite                                                                                              |
-| --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| **[Unreleased]**            | M16–18 ritmas/journey; authoring+TE+plain; M13 plain; pre-launch audit remediation; tests **160/966**. |
-| **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                |
-| **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                       |
-| **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight.                              |
-| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.                                        |
-| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.                                      |
-| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.                                    |
-| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.                                  |
-| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.                                        |
-| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.                                     |
-| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).                                   |
-| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel.                               |
-| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                                                |
-| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                                  |
-| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                              |
+| Skiltis                     | Ką rasite                                                                                                                                                                             |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **[Unreleased]**            | _Nėra neišleistų pakeitimų._                                                                                                                                                          |
+| **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
+| **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                               |
+| **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                                                                                                      |
+| **[1.4.8] – 2026-07-26**    | M9 quest redesign, M7 embeds, prompt maturity, tools/glossary, preflight.                                                                                                             |
+| **[1.4.7] – 2026-07-24**    | TE registry, Path Test Shell, practice closer, preflight fixes.                                                                                                                       |
+| **[1.4.6] – 2026-07-20**    | M79-31 6 keliai SOT, M10–12 Agent path, Lygis C, DS/accent gates.                                                                                                                     |
+| **[1.4.5] – 2026-07-15**    | M7–M9 P2 polish, M4 portal 2.1, preflight gates green, tag release.                                                                                                                   |
+| **[1.4.4] – 2026-07-09**    | P2 PDF/sertifikatai, DS W7–W10, cross-repo pre-launch docs ir vartai.                                                                                                                 |
+| **[1.4.3] – 2026-07-07**    | UX Banga 1, M13–15 EN overlay, M7–M12 consistency, audit gates.                                                                                                                       |
+| **[1.4.2] – 2026-07-01**    | DiagramKit M1–9, design tokens, M7–9 EN sweep, startup stabilumas.                                                                                                                    |
+| **[1.4.1] – 2026-06-30**    | M1–9 audit gates, LT/EN fixes, diagram i18n, M7–9 data sync (patch).                                                                                                                  |
+| **[1.4.0] – 2026-06-30**    | Tier 9, production M1–9, M10–12 authoring, ecosystem M7–12, CONV funnel.                                                                                                              |
+| **[1.3.0] – 2026-03-16**    | Production release: deploy, mokėjimai, pirmas pirkimas.                                                                                                                               |
+| **[1.2.0] – 2026-02-11**    | Ankstesnis pažymėtas leidinys (V1.2).                                                                                                                                                 |
+| **Ankstesnis 2.x ir 1.0.0** | Archyvas failo pabaigoje.                                                                                                                                                             |
 
 ---
 
@@ -43,12 +44,18 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **LT/EN (i18n):** Pilnas UI; turinys M1–M15 per loader merge; 20 namespace (`lt.json` top-level); schemos/diagramos lokalizuoti.
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
-- **Testai:** **160** failai / **966** testai (2026-08-04 preflight). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`), M10–12 `audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.5.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Testai:** **161** failai / **982** testai (2026-08-11 preflight). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`), M10–12 `audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.6.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
+
+_Nėra neišleistų pakeitimų._
+
+---
+
+## [1.6.0] – 2026-08-11
 
 _Caveats Closure 2026-08-04 · corporate12 Supabase handoff memo 2026-08-06 · pre-launch audit remediation · M13 learner plain · M16–18 learner plain · M1618 path handout · Horizon D TE Must/Should + C2 done; C1 park; Horizon E / UJ-MUST done; M79 ROI done; corporate15 / tier 15; mobile @375 chrome._
 

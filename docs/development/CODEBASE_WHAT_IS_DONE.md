@@ -1,6 +1,6 @@
 # Codebase: kas įgyvendinta (gilaus analizės santrauka)
 
-> **Tikslas:** Viena vieta – kas dabar veikia, kokie duomenys, kokybė, apimtis. Atnaujinta: 2026-08-11 (release **1.5.0** + M16–18 authoring/TE/plain + M13 plain + pre-launch audit remediation + M10–12 deep audit remediation + kalbos konvencijų vartai (GOLDEN §6c); tests **161/982**).
+> **Tikslas:** Viena vieta – kas dabar veikia, kokie duomenys, kokybė, apimtis. Atnaujinta: 2026-08-11 (release **1.6.0** + M16–18 authoring/TE/plain + M13 plain + pre-launch audit remediation + M10–12 deep audit remediation + kalbos konvencijų vartai (GOLDEN §6c); tests **161/982**).
 
 ---
 
