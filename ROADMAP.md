@@ -1,7 +1,7 @@
 # Promptų anatomija – Plėtros roadmap
 
 > **Atnaujinta:** 2026-08-11 | Roadmap **v4.21** (M1012-DEEP ✅ · M16–18 learner plain ✅ · M13 plain + M13P-TRIM ✅ · Horizon D TE Could closed)  
-> **App:** 1.5.0 · **Open fokusas:** marketing cutover (MON out of scope) · Wave D3 corporate18 Deferred.  
+> **App:** 1.6.0 · **Open fokusas:** marketing cutover (MON out of scope) · Wave D3 corporate18 Deferred.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md)  
 > **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D3 + M19–21) · §1.6 Caveats. M1618 handout CAV-C1 ✅. Authoring F1–F8 + TE Must/Should/ritmas + C2 done; Could C1 won’t-now; **M16–18 learner plain ✅**; **M13 TE/corporate ✅ · learner plain ✅ · M13P-TRIM ✅**.
 
