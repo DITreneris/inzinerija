@@ -12,7 +12,7 @@
 
 - **Open P0:** nėra.
 - **Open P1:** nėra (learning). D3 corporate18 Deferred §1.5 (CAV-C2 intake parked). TE-M1618 Could C1–C5 all won’t-now / done; `M1618-R*` done §1.2h; M16–18 plain ✅; M13 plain + `M13P-TRIM` ✅.
-- **Open P2:** nėra.
+- **Open P2:** `TOOL-2`…`TOOL-4` §1.7 — **infra, ne learning**: toolchain MAJOR upgrade'ai (vitest / vite / ESLint EOL). Likę advisory neįeina į siunčiamą bundle.
 - **Caveats Closure (2026-08-04):** tracking §1.6 — A automated ✅ · B marketing handoff sync ✅ · C1 handout ✅ · C2/D parked.
 
 ---
@@ -259,6 +259,21 @@ MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 | **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                                                                               |
 | **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                                                                           |
 | **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                                                                                 |
+
+### §1.7 P2 – Toolchain modernizacija / advisory sweep (2026-08)
+
+> **Ne learning blokorius:** visi likę advisory yra build/test grandinėje ir **neįeina į siunčiamą bundle**. Vienintelis, kuris pasiekdavo mokinį (`jspdf` critical, handout PDF), jau uždarytas non-breaking `npm audit fix` (27 → 12). Etapais, nes kiekvienas žingsnis – MAJOR su savo blast radius.
+
+| ID             | Užduotis                                                                                                    | Status    | Pastaba                                                                            |
+| -------------- | ----------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------- |
+| **TOOL-0**     | Node 18/20 (EOL) → **24** Active LTS; CI matrica 22.x/24.x; `node-version-file`                             | [x]       | 2026-08-11; `@types/node` ^24                                                      |
+| **TOOL-1**     | Non-breaking advisory sweep: 27 → 12; `jspdf` 4.2.0→4.2.1 (critical, runtime)                               | [x]       | `package.json` nepakito – tik lockfile                                             |
+| **TOOL-2**     | `vitest` 1.6 → **4** (+ `@vitest/coverage-v8`, `@vitest/ui`, `jsdom` 23→30, `@testing-library/*`)           | [ ]       | Uždaro critical `vitest` advisory. Blast radius = **982 testai**; dev-only         |
+| **TOOL-3**     | `vite` 5 → **8** (+ `@vitejs/plugin-react` 6)                                                               | [ ]       | Uždaro `vite` high + `esbuild` moderate. Keičia **siunčiamą bundle** → po TOOL-2   |
+| **TOOL-4**     | `eslint` 8 (**EOL 2024-10**) → 9/10 flat config + `@typescript-eslint` 6 → 8                                | [ ]       | Uždaro `minimatch` high. `.eslintrc` → `eslint.config.js` migracija                |
+| **TOOL-DEFER** | `react` 18→19 · `tailwindcss` 3→4 (CSS-first = design system rewrite) · `typescript` 5.9→7 · `lucide-react` | won’t-now | **Atskiri epikai su product call** – Tailwind 4 perrašo token sistemą ir §6b tonus |
+
+**Eiliškumas ir kodėl:** TOOL-2 pirmas (dev-only, jokio poveikio produktui, bet didžiausias testų blast radius) → TOOL-3 (jau paliečia bundle, tad verifikacija turi būti po žalio testų paketo) → TOOL-4 (savarankiškas, tik lint). **Draudžiama:** `npm audit fix --force` (patrauktų visus MAJOR vienu ypu, be verifikacijos tarp žingsnių).
 
 ---
 
