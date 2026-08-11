@@ -16,7 +16,9 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        # Maintenance LTS + Active LTS. Node 18/20 are EOL (no security patches).
+        # Keep in sync with .nvmrc (24) and package.json engines (>=22).
+        node-version: [22.x, 24.x]
 
     steps:
       - name: Checkout code
@@ -55,8 +57,10 @@ jobs:
       - name: Build corporate15 profile (M1–15)
         run: VITE_MAX_BUILD_MODULE=15 npm run build
 
+      # Guard must name a version present in the matrix above, otherwise coverage
+      # upload silently stops running while CI stays green.
       - name: Upload coverage reports
-        if: matrix.node-version == '20.x'
+        if: matrix.node-version == '24.x'
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage/coverage-final.json

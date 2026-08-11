@@ -137,7 +137,7 @@ prompt-anatomy-training/
 ├── .cursor/rules/           # Cursor AI taisyklės (agent orchestrator, content, scheme, etc.)
 ├── .github/workflows/       # CI/CD (deploy.yml, test.yml)
 ├── .husky/pre-commit        # Pre-commit hook (lint-staged)
-├── .nvmrc                   # Node.js versijos fiksavimas (22)
+├── .nvmrc                   # Node.js versijos fiksavimas (24)
 ├── api/                     # Serverless API (verify-access.ts)
 ├── docs/                    # Dokumentacija
 │   ├── deployment/          # Deployment gairės

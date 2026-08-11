@@ -13,19 +13,19 @@ GitHub Pages servina svetainę pagal **repo pavadinimą**: `https://<user>.githu
 
 **Atlikti pakeitimai:**
 
-| Failas | Pakeitimas |
-|--------|------------|
-| `.github/workflows/deploy.yml` | Visiems `npm run build` step'ams pridėtas `VITE_BASE_PATH: '/inzinerija/'` |
-| `vite.config.ts` | Numatytasis production base pakeistas iš `/anatomija/` į `/inzinerija/` |
-| `.env.example` | `VITE_BASE_PATH=/inzinerija/` + komentaras apie repo pavadinimą |
-| `package.json` | `repository.url` → `https://github.com/DITreneris/inzinerija.git`, `homepage` → `https://ditreneris.github.io/inzinerija/`, `bugs.url` → inzinerija/issues |
+| Failas                         | Pakeitimas                                                                                                                                                 |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.github/workflows/deploy.yml` | Visiems `npm run build` step'ams pridėtas `VITE_BASE_PATH: '/inzinerija/'`                                                                                 |
+| `vite.config.ts`               | Numatytasis production base pakeistas iš `/anatomija/` į `/inzinerija/`                                                                                    |
+| `.env.example`                 | `VITE_BASE_PATH=/inzinerija/` + komentaras apie repo pavadinimą                                                                                            |
+| `package.json`                 | `repository.url` → `https://github.com/DITreneris/inzinerija.git`, `homepage` → `https://ditreneris.github.io/inzinerija/`, `bugs.url` → inzinerija/issues |
 
 ---
 
 ## 2. CI/CD (deploy.yml) – santrauka
 
 - **Triggery:** `push` į `main`, `workflow_dispatch`.
-- **Quality gates:** checkout → Node 18, `npm ci` → `validate:schema` → `lint` → `test:run` → 2× build (default + core VITE_MVP_MODE=1), abu su **VITE_BASE_PATH=/inzinerija/**.
+- **Quality gates:** checkout → Node iš `.nvmrc` (24), `npm ci` → `validate:schema` → `lint` → `test:run` → 2× build (default + core VITE_MVP_MODE=1), abu su **VITE_BASE_PATH=/inzinerija/**.
 - **Deploy:** build-and-deploy naudoja core profilį (VITE_MVP_MODE=1), `dist/` → GitHub Pages artifact → deploy-pages.
 
 **Reikalavimai GitHub:** Repo Settings → Pages → Source: **GitHub Actions** (ne “Deploy from a branch”). Tai leidžia naudoti “Deploy to GitHub Pages” workflow.
@@ -72,7 +72,7 @@ Prieš push į `main` (arba prieš manual deploy):
 - [ ] **Lint:** `npm run lint` – be klaidų.
 - [ ] **Testai:** `npm run test:run` – visi žali.
 - [ ] **Lokalus production build:**  
-  `VITE_BASE_PATH=/inzinerija/ npm run build` (arba tik `npm run build`, jei default jau `/inzinerija/`), tada `npm run preview` – atidaryti `http://localhost:4173/inzinerija/` ir patikrinti, kad UI ir vaizdai rodomi.
+      `VITE_BASE_PATH=/inzinerija/ npm run build` (arba tik `npm run build`, jei default jau `/inzinerija/`), tada `npm run preview` – atidaryti `http://localhost:4173/inzinerija/` ir patikrinti, kad UI ir vaizdai rodomi.
 - [ ] **GitHub repo:** Pages šaltinis = GitHub Actions; jei reikia – environment `github-pages` sukurtas.
 
 ---

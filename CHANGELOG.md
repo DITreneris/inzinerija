@@ -14,7 +14,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                             |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | _Nėra neišleistų pakeitimų._                                                                                                                                                          |
+| **[Unreleased]**            | Node.js 24 (Active LTS) runtime bump; CI matrica 22.x / 24.x.                                                                                                                         |
 | **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
 | **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                               |
 | **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                                                                                                      |
@@ -51,7 +51,11 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ## [Unreleased]
 
-_Nėra neišleistų pakeitimų._
+### Changed
+
+- **Node.js 24 runtime bump (2026-08-11):** Node 18 (EOL 2025-04) ir 20 (EOL 2026-04) pakeisti į **24 (Active LTS)**. `.nvmrc` `18` → `24`; `engines` `node >=22` / `npm >=10` (žemiausia testuojama versija); `deploy.yml` abu job'ai skaito `node-version-file: .nvmrc` (viena tiesa, nebereikia dviejų hardcoded pinų); `test.yml` matrica `[18.x, 20.x]` → **`[22.x, 24.x]`** (Maintenance + Active LTS). Coverage `if:` vartas persuktas į `24.x` – matricoje neegzistuojanti versija būtų tyliai išjungusi upload'ą, o CI liktų žalias. `@types/node` `^20` → `^24` (runtime tipų atitikimas; TS 5.9.3 suderinamas). Docs sync: README reikalavimai, `PRE_DEPLOY_INZINERIJA` §quality gates, `GOLD_LEGACY_STANDARD` failų medis. **Toolchain nekeistas** (Vite 5 / Vitest 1.6 / ESLint 8 – atskiras epikas). Vartai: typecheck · lint · 2× build · **161/982** (lokaliai Node 22.23.2; Node 24 patvirtina CI matrica).
+  - **Ne** dėl `Node.js 20 is deprecated` CI warning'o: `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` jau veikia (actions **jau** vykdomi ant 24), o warning'as kyla iš pačių actions `action.yml` (`using: node20`) – `configure-pages@v5` / `deploy-pages@v4` naujesnio major neturi, `upload-artifact@ea165f8` net nėra mūsų workflow – jis įdėtas `upload-pages-artifact@v4` viduje. Nepataisoma iš mūsų pusės.
+  - **Atviri sekantys žingsniai:** `codecov-action@v3` (v4+ reikalauja `CODECOV_TOKEN` – nekeista, kad tyliai nenustotų veikti upload); Vercel `engines.node` – produkcija pinned `v1.4.9`, tad live deploy nepaliestas, bet prieš corporate12/15 cutover verta patikrinti Vercel Node nustatymą.
 
 ---
 

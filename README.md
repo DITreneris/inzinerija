@@ -57,7 +57,7 @@ Pagrindinis dėmesys – kaip šiuos 6 blokus pritaikyti realiuose darbo scenari
 
 ### Reikalavimai
 
-- Node.js 18+ (rekomenduojama `engines` iš `package.json`: node >=18, npm >=9)
+- Node.js 24 (Active LTS; fiksuota `.nvmrc`). Minimumas – `engines` iš `package.json`: node >=22, npm >=10. Node 18 / 20 nebepalaikomi (EOL).
 - npm arba yarn
 
 ### Instaliacija
