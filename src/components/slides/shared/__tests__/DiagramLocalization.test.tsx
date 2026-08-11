@@ -659,17 +659,27 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       expect(lt.textContent).not.toContain('Choose a business scenario');
     });
 
-    it('renders M12 three labs in both locales', () => {
+    it('renders M12 three labs in both locales with shell nav', () => {
       setLocale('en');
       const { container: en } = renderWithProviders(<M12ThreeLabsBlock />);
       expect(en.textContent).toContain('Three mandatory labs (3A)');
       expect(en.textContent).toContain('Human approves');
+      expect(en.textContent).toContain('Step 1 of 3');
+      expect(en.querySelectorAll('nav button')).toHaveLength(3);
+      expect(
+        en.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
       expect(en.textContent).not.toContain('Trys privalomos praktikos');
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M12ThreeLabsBlock />);
       expect(lt.textContent).toContain('Trys privalomos praktikos (3A)');
       expect(lt.textContent).toContain('Žmogus patvirtina');
+      expect(lt.textContent).toContain('Žingsnis 1 iš 3');
+      expect(lt.querySelectorAll('nav button')).toHaveLength(3);
+      expect(
+        lt.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+      ).toHaveLength(0);
     });
 
     it.each([

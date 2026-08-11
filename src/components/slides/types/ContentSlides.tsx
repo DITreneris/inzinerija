@@ -817,7 +817,7 @@ function getDefaultIntro(locale: string): IntroContent {
   return {
     aboutText: isEn
       ? 'This training will help you create effective prompts that produce consistent, professional results. You will learn a hierarchical structure that transforms chaotic AI communication into a systematic and manageable process.'
-      : 'Šis mokymas padės jums kurti efektyvius promptus, kurie duoda nuoseklius, profesionalius rezultatus. Išmoksite hierarchinę struktūrą, kuri paverčia chaotišką DI komunikaciją sistemingu ir valdomu procesu.',
+      : 'Šis mokymas padės jums kurti efektyvius promptus, kurie duoda nuoseklius, profesionalius rezultatus. Išmoksi hierarchinę struktūrą, kuri paverčia chaotišką DI komunikaciją sistemingu ir valdomu procesu.',
     tools: [
       { name: 'ChatGPT (OpenAI)', url: 'https://chat.openai.com' },
       { name: 'Claude (Anthropic)', url: 'https://claude.ai' },
@@ -841,7 +841,7 @@ function getDefaultIntro(locale: string): IntroContent {
       : 'Mokymuose dėmesys skiriamas promptų struktūrai, todėl tie patys principai veikia skirtinguose įrankiuose.',
     tip: isEn
       ? 'Think of one business task you would like to automate or improve using AI. We will use this example throughout the training.'
-      : 'Pagalvokite apie vieną verslo užduotį, kurią norėtumėte automatizuoti ar pagerinti naudojant DI. Šį pavyzdį naudosime viso mokymo metu.',
+      : 'Pagalvok apie vieną verslo užduotį, kurią norėtum automatizuoti ar pagerinti naudojant DI. Šį pavyzdį naudosime viso mokymo metu.',
   };
 }
 
@@ -924,7 +924,7 @@ export function IntroSlide({ content: contentProp }: IntroSlideProps) {
           <h4 className="font-bold text-emerald-900 dark:text-emerald-100 mb-3">
             {isEn
               ? 'After this training you will be able to:'
-              : 'Po šio mokymo galėsite:'}
+              : 'Po šio mokymo galėsi:'}
           </h4>
           <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
             {content.outcomes.map((item, idx) => (
@@ -1796,7 +1796,7 @@ function getDefaultHierarchy(locale: string): HierarchyContent {
     ],
     tip: isEn
       ? 'Try creating a prompt without structure (as you normally do). Save it – we will compare it with a structured version at the end.'
-      : 'Pabandykite sukurti promptą be struktūros (kaip paprastai darote). Išsaugokite - palyginsime su struktūruota versija pabaigoje.',
+      : 'Pabandyk sukurti promptą be struktūros (kaip paprastai darai). Išsaugok - palyginsime su struktūruota versija pabaigoje.',
   };
 }
 
@@ -2053,7 +2053,7 @@ function getDefaultSummary(locale: string): SummaryContent {
     introHeading: isEn ? 'What you learned' : 'Ką išmokote',
     introBody: isEn
       ? 'Congratulations! Now you know how to professionally structure prompts using the 6-block system, workflow concepts and prompting techniques.'
-      : 'Sveikiname! Dabar žinote, kaip profesionaliai struktūruoti promptus naudojant 6 blokų sistemą, workflow sampratą ir promptavimo technikas.',
+      : 'Sveikiname! Dabar žinai, kaip profesionaliai struktūruoti promptus naudojant 6 blokų sistemą, workflow sampratą ir promptavimo technikas.',
     stats: [
       { label: isEn ? 'Blocks' : 'Blokai', value: '6' },
       { label: isEn ? 'Techniques' : 'Technikos', value: '5' },
@@ -2074,9 +2074,9 @@ function getDefaultSummary(locale: string): SummaryContent {
               'Advanced – parameters (Temperature, Reasoning depth)',
             ]
           : [
-              'Meta - rolė, kontekstas ir tikslas (kas esate ir ką darote)',
-              'Input - duomenys, faktai ir apribojimai (ką turite)',
-              'Output - formatas, struktūra ir tonas (ko norite)',
+              'Meta - rolė, kontekstas ir tikslas (kas esi ir ką darai)',
+              'Input - duomenys, faktai ir apribojimai (ką turi)',
+              'Output - formatas, struktūra ir tonas (ko nori)',
               'Reasoning - mąstymo struktūra (CoT arba ToT)',
               'Quality - kokybės kriterijai (kaip patikrinti)',
               'Advanced - parametrai (Temperature, Reasoning depth)',
@@ -3332,10 +3332,10 @@ const DEFAULT_PRACTICE_SUMMARY_LT: PracticeSummaryContent = {
     'Kokybės kontrolę',
   ],
   nextStepsItems: [
-    'Praktikuokite kasdien',
-    'Kurkite šablonų biblioteką',
-    'Dalinkitės su komanda',
-    'Iteruokite ir tobulinkite',
+    'Praktikuok kasdien',
+    'Kurk šablonų biblioteką',
+    'Dalinkis su komanda',
+    'Iteruok ir tobulink',
   ],
   taglineTitle: 'Struktūra = Rezultatas',
   taglineSub: '5 minutės geram promptui = valandos sutaupytos vėliau',

@@ -47,17 +47,17 @@ const slideMeta = {
   13.32: ['Product and character – the same look', '3–5 reference photos + a “same product” rule'],
   13.325: ['Lab: Consistency Drift', 'Tick refs, pick what drifted – copy fix + lock rule'],
   13.33: ['Composition and framing', 'Rule of thirds, camera angle, shot types'],
-  13.34: ['Practice: recognise style and ratios', '5 situations: style, ratio, composition, brand'],
+  13.34: ['Practice: recognize style and ratios', '5 situations: style, ratio, composition, brand'],
   13.35: ['Workflow and MASTER templates', '5-step pipeline, #1000Books, ready prompts'],
   13.37: ['Image prompt builder', 'Campaign context, visual and text in one prompt'],
   13.36: ['Video generation', 'Section: script, format and tools'],
   13.4: ['Script for a short video', 'What happens, how long, what tone'],
   13.5: ['Video tools, format and CPI', '2026 matrix + cost per usable clip'],
   13.51: ['Quick check: video prompt and format', '3 questions before the music section'],
-  13.52: ['Edit after generation', 'AI = raw material; cut, colour, mix'],
+  13.52: ['Edit after generation', 'AI = raw material; cut, color, mix'],
   13.56: ['Audio', 'Section: voice, effects, music – sound first'],
   13.6: ['Audio-first: VO and music description', 'Sound first, then video cuts'],
-  13.7: ['Audio effects and usage rights', 'Sound effects and licence'],
+  13.7: ['Audio effects and usage rights', 'Sound effects and license'],
   13.101: ['Business and risks', 'Metrics, A/B, rights, QA and versions'],
   13.11: ['Workflow: from brief to publication', 'Brief -> prompt -> variants -> testing'],
   13.8: ['Glossary', 'Content engineering terms'],
@@ -148,16 +148,16 @@ const genericBySlide = {
   13.32: 'A single prompt does not lock identity – you need 3–5 reference angles and a same-product lock rule.',
   13.325: 'Tick the references you have, diagnose drift (or a fresh brief), then copy one prompt rule.',
   13.33: 'Composition and camera language help you control what the viewer sees first.',
-  13.34: 'Recognise which prompt field needs fixing: style, ratio, composition or brand consistency.',
+  13.34: 'Recognize which prompt field needs fixing: style, ratio, composition or brand consistency.',
   13.35: 'Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.',
   13.37: 'Build one ready image prompt from campaign context, visual choices and optional text.',
   13.4: 'For short video, describe the scene, duration, tone, movement and format.',
   13.5: 'Choose a tool, set the ratio and duration, then check whether you can use the output publicly.',
   13.51: 'Check whether a video prompt includes a scene, duration, format and rights check.',
   13.6: 'For music, describe mood, genre, tempo, instruments, voice and use case.',
-  13.7: 'Before using generated audio publicly, check the tool licence and usage rules.',
+  13.7: 'Before using generated audio publicly, check the tool license and usage rules.',
   13.101: 'Before publishing, measure results, test variants and check rights, brand safety and versions.',
-  13.11: 'Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.',
+  13.11: 'Move from brief to prompt, variants, iteration, platform adaptation, testing and optimization.',
   13.8: 'Learn the key terms used in content engineering.',
   13.9: 'You learned the 2026 content path: media chain, same look in a series, short I2V, sound first, and rights checks.',
   140: 'Answer 12 questions before starting the final content project.',
@@ -170,13 +170,13 @@ const genericBySlide = {
   151: 'Create a hero image or keyframe that can anchor the full path.',
   152: 'Use the hero image as a reference frame and animate it into a short clip.',
   153: 'Create background music or a sound cue that fits the visual mood.',
-  158: 'You now have a prompt and at least one usable content artefact.',
+  158: 'You now have a prompt and at least one usable content artifact.',
 };
 
 const copyableBySlide = {
   13.1: `Goal (A/E/C): [awareness / engagement / conversion].
 Context: [product], platform [where], audience [who].
-Reply: 1) one goal, 2) what to emphasise visually (emotion / context / CTA), 3) 1 format.`,
+Reply: 1) one goal, 2) what to emphasize visually (emotion / context / CTA), 3) 1 format.`,
   13.2:
     'Create an image: [DESCRIPTION]. Style: professional, bright, minimal. Ratio: 16:9. Do not add text inside the image.',
   13.3:
@@ -189,7 +189,7 @@ Goal: [Awareness / Engagement / Conversion].
 Audience: [who].
 Style: [photorealistic / minimal / …].
 Composition + camera: [shot, angle].
-Light and colours: [lighting + palette / mood].
+Light and colors: [lighting + palette / mood].
 Text in image (if needed): [text + placement].
 Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].`,
   13.4: `Clip 3–5 s (no longer).
@@ -201,18 +201,18 @@ Start: image-to-video from hero keyframe. Same style, same colors.`,
     'Video: [SHORT SCRIPT]. Format: [16:9 / 9:16]. Duration: 5-10 seconds. Style: [STYLE].',
   13.6: `Create a background music fragment, 30–60 seconds.
 Mood: [calm / energetic]. Style: [acoustic / electronic / piano].
-Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial licence.`,
+Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial license.`,
   13.7:
     'Create a short sound effect: [DESCRIPTION]. Format: MP3 or WAV. No music, sound effect only.',
   13.101:
-    'Evaluate this artefact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artefact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes.',
+    'Evaluate this artifact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artifact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes.',
   13.11:
     'Brief: Goal [awareness / engagement / conversion]. Audience: [describe]. Platform: [e.g. Instagram 1:1]. Image prompt: [subject] + [action/context] + [setting]. Brand: [colors and tone]. Variants: 3-5.',
   143: `You are a content pipeline assistant. Topic: [DESCRIBE].
 1) BRIEF: goal (A/E/C), audience, platform, ratios.
 2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).
 3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.
-4) RIGHTS: commercial licence; faces/voices – consent.
+4) RIGHTS: commercial license; faces/voices – consent.
 5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.
 OUTPUT: checklist table (step | status | risk) + 1 next action.`,
   150.5:
@@ -224,7 +224,7 @@ OUTPUT: checklist table (step | status | risk) + 1 next action.`,
   153:
     'Create a 30-60 second music fragment. Mood: [calm / energetic]. Style: [acoustic / electronic / piano]. No vocals. Use as background music.',
   158:
-    'Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.',
+    'Ask me 3 reflection questions: (1) Which artifact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.',
 };
 
 const slide13_3Copyable =
@@ -277,7 +277,7 @@ const slide13_3Sections = [
   },
   {
     heading: 'Brand consistency',
-    body: 'So AI does not generate a random look, specify in the prompt: colour system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).',
+    body: 'So AI does not generate a random look, specify in the prompt: color system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).',
     blockVariant: 'brand',
     collapsible: true,
     collapsedByDefault: true,
@@ -342,7 +342,7 @@ const slide13_4Sections = [
   },
   {
     heading: 'Check',
-    body: 'Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colours).',
+    body: 'Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colors).',
     blockVariant: 'accent',
   },
   {
@@ -389,7 +389,7 @@ const slide13_32Sections = [
 const slide13_325Sections = [
   {
     heading: 'In short',
-    body: 'After the reference lock diagram – practice: tick the refs you have, recognise drift (proportions, colour, label, style) or a new brief. One choice → one copyable rule.',
+    body: 'After the reference lock diagram – practice: tick the refs you have, recognize drift (proportions, color, label, style) or a new brief. One choice → one copyable rule.',
     blockVariant: 'accent',
   },
   {
@@ -414,7 +414,7 @@ const slide13_1Sections = [
   },
   {
     heading: 'Campaign goals diagram',
-    body: 'Pick a goal – each band shows what to emphasise: emotion at the top, clarity at the bottom.',
+    body: 'Pick a goal – each band shows what to emphasize: emotion at the top, clarity at the bottom.',
     blockVariant: 'brand',
     image: 'm13_aec_funnel',
     imageAlt: 'Campaign goals funnel: Awareness, Engagement, Conversion',
@@ -435,7 +435,7 @@ const slide13_1Sections = [
     heading: 'Copyable template',
     body: 'Paste into an AI chat or fill it yourself – pick A/E/C for your visual.',
     copyable:
-      'Help me choose a campaign goal (A/E/C) for this visual.\n\nContext: [product / topic], platform [where], audience [who].\nGoals: awareness | engagement | conversion.\n\nReply briefly:\n1) one goal,\n2) why (1 sentence),\n3) what to emphasise visually (emotion / context / CTA),\n4) 1–2 fitting formats.',
+      'Help me choose a campaign goal (A/E/C) for this visual.\n\nContext: [product / topic], platform [where], audience [who].\nGoals: awareness | engagement | conversion.\n\nReply briefly:\n1) one goal,\n2) why (1 sentence),\n3) what to emphasize visually (emotion / context / CTA),\n4) 1–2 fitting formats.',
   },
   {
     heading: 'Check',
@@ -452,7 +452,7 @@ const slide13_1Sections = [
 const bonus143Sections = [
   {
     heading: 'In short',
-    body: 'After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a licence and C2PA / disclosure.',
+    body: 'After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a license and C2PA / disclosure.',
     blockVariant: 'accent',
   },
   {
@@ -467,32 +467,32 @@ const bonus143Sections = [
   },
   {
     heading: 'Check',
-    body: 'If licence or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.',
+    body: 'If license or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.',
     blockVariant: 'accent',
   },
 ];
 
 const recognitionBySlide = {
   13.34: {
-    title: 'Recognise style and ratios',
+    title: 'Recognize style and ratios',
     task: 'Read 5 situations and choose the best answer for each one.',
     examples: [
       'You need a square LinkedIn post with a product image.',
-      'The same product should look like a premium catalogue photo.',
+      'The same product should look like a premium catalog photo.',
       'The hero image needs space for a headline on the left.',
-      'All campaign images must use the same colours and tone.',
+      'All campaign images must use the same colors and tone.',
       'A Stories format needs a vertical frame.',
     ],
     choices: ['Ratio: 1:1', 'Style', 'Composition', 'Brand consistency', 'Ratio: 9:16'],
     correctAnswers: [0, 1, 2, 3, 4],
     explanations: [
       'A square social post uses a 1:1 ratio.',
-      'A premium catalogue look is controlled mainly by style: light, texture, realism and tone.',
+      'A premium catalog look is controlled mainly by style: light, texture, realism and tone.',
       'Leaving space for a headline is a composition decision.',
-      'Repeating colours and tone protects brand consistency across images.',
+      'Repeating colors and tone protects brand consistency across images.',
       'Stories, Reels and similar mobile formats usually use a vertical 9:16 ratio.',
     ],
-    goal: 'Before using the builder, recognise which prompt field needs fixing.',
+    goal: 'Before using the builder, recognize which prompt field needs fixing.',
   },
 };
 
@@ -569,7 +569,7 @@ function translateSlide(slide, moduleId) {
         id: 'm14-warm-1',
         question: 'How do you reduce a chaotic brand look across a social image series?',
         options: [
-          'Specify brand colours, tone, visual identity and platform ratios',
+          'Specify brand colors, tone, visual identity and platform ratios',
           'Only write “make it pretty” and switch tools',
           'Specify only the file name',
           'Specify only music BPM',
@@ -585,7 +585,7 @@ function translateSlide(slide, moduleId) {
           'Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”',
           'Use only a music generator with no scene plan',
           'Always pick the longest track',
-          'Ignore licences if the audio is short',
+          'Ignore licenses if the audio is short',
         ],
         correct: 0,
         explanation:
@@ -602,7 +602,7 @@ function translateSlide(slide, moduleId) {
         ],
         correct: 0,
         explanation:
-          'Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artefact.',
+          'Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artifact.',
       },
     ];
     contentOverrides.footer = 'Next – slide 3: Questions';
@@ -668,21 +668,21 @@ function translateString(value, ctx) {
     key === 'description' ||
     key === 'introBody'
   ) {
-    return genericBySlide[slideId] ?? 'Use this step to create, check and improve your AI content artefact.';
+    return genericBySlide[slideId] ?? 'Use this step to create, check and improve your AI content artifact.';
   }
   if (key === 'whyBenefit') {
     return genericBySlide[slideId] ?? 'After this step you will have a clearer AI content workflow.';
   }
   if (key === 'firstActionCTA') {
     return slideId === 140
-      ? 'Answer 12 questions – images, video, audio, pipeline, audio-first, licences, C2PA, risks and workflow.'
+      ? 'Answer 12 questions – images, video, audio, pipeline, audio-first, licenses, C2PA, risks and workflow.'
       : 'Start with the quick path: create one hero image with the prompt you used.';
   }
   if (key === 'microWinPhrase') return 'Each correct answer shows that you can apply content prompts.';
   if (key === 'thresholdExplanation') return 'At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.';
   if (key === 'passedMessage') return 'Great work! You can continue to Module 15: Content engineering project.';
   if (key === 'failedMessage') {
-    return 'Review Module 13 again – pipeline, images, video, audio, licences and C2PA.';
+    return 'Review Module 13 again – pipeline, images, video, audio, licenses and C2PA.';
   }
   if (key === 'question') return translateQuestion(value, slideId);
   if (key === 'explanation') return 'The best answer uses a clear goal, context, format and quality check.';
@@ -723,7 +723,7 @@ function translateString(value, ctx) {
     ];
     return fallbacks[idx] ?? fallbacks[0];
   }
-  if (path.includes('.items[')) return 'Create, check and reuse the artefact with a clear prompt.';
+  if (path.includes('.items[')) return 'Create, check and reuse the artifact with a clear prompt.';
   if (path.includes('.stats[')) return toEnglishTitle(value);
   return toEnglishTitle(value);
 }
@@ -775,7 +775,7 @@ function translateQuestion(value, slideId) {
 
 function translateLabel(value) {
   if (value.includes('Scenarijai')) return 'Scenarios';
-  if (value.includes('Artefaktas')) return 'Artefact';
+  if (value.includes('Artefaktas')) return 'Artifact';
   if (value.includes('Promptas')) return 'Prompt';
   if (value.includes('Blokai') || value.includes('blokai')) return 'Blocks';
   if (value.includes('Šablonai') || value.includes('Sablonai')) return 'Templates';
@@ -792,7 +792,7 @@ function toEnglishOption(value) {
   if (value === 'Failo atsisiuntimo pavadinimas') return 'The downloaded file name';
   if (value === 'Klausimų skaičius teste') return 'The number of test questions';
   if (value === 'Modulio trukmė') return 'The module duration';
-  if (value.startsWith('Nurodyti spalvas')) return 'Specify colours, tone, typography direction and a clean visual identity';
+  if (value.startsWith('Nurodyti spalvas')) return 'Specify colors, tone, typography direction and a clean visual identity';
   if (value === 'Palikti promptą kuo bendresnį') return 'Keep the prompt as generic as possible';
   if (value === 'Nurodyti tik trukmę sekundėmis') return 'Specify only the duration in seconds';
   if (value === 'Naudoti tik muzikos įrankį') return 'Use only a music tool';
@@ -823,7 +823,7 @@ function toEnglishOption(value) {
     return 'Generate a hero image first, then use it in an image-to-video tool';
   }
   if (value.includes('brand spalvas')) {
-    return 'Specify brand colours, tone, visual identity and platform ratios';
+    return 'Specify brand colors, tone, visual identity and platform ratios';
   }
   if (value.includes('padaryk gražu')) return 'Only write “make it pretty” and switch tools';
   if (value.includes('VO, SFX') || value.includes('VO/SFX')) {

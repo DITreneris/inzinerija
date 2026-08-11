@@ -152,7 +152,6 @@ export default function M10HumanControlSimulatorBlock() {
         lowerLabel={ui.matrixLower}
         higherLabel={ui.matrixHigher}
         stakeChip={ui.stakeChip}
-        scenarios={scenarios}
         activeScenarioId={scenarioId}
         onSelectScenario={setScenarioId}
       />
@@ -331,7 +330,6 @@ function RiskStrip({
   lowerLabel,
   higherLabel,
   stakeChip,
-  scenarios,
   activeScenarioId,
   onSelectScenario,
 }: {
@@ -342,15 +340,10 @@ function RiskStrip({
   lowerLabel: string;
   higherLabel: string;
   stakeChip: { low: string; mid: string; critical: string };
-  scenarios: { id: HumanControlScenarioId; label: string }[];
   activeScenarioId: HumanControlScenarioId;
   onSelectScenario: (id: HumanControlScenarioId) => void;
 }) {
   const items = getRiskStripItems();
-  const labelById = Object.fromEntries(
-    scenarios.map((s) => [s.id, s.label])
-  ) as Record<HumanControlScenarioId, string>;
-
   return (
     <div className="rounded-xl border border-brand-200/70 bg-white/70 p-3 dark:border-brand-800/50 dark:bg-gray-900/40 sm:p-4">
       <h3 className="text-sm font-bold text-gray-900 dark:text-white">
@@ -366,7 +359,7 @@ function RiskStrip({
         role="group"
         aria-label={heading}
       >
-        {items.map((item) => {
+        {items.map((item, index) => {
           const id = item.scenarioId;
           const tone = scenarioIdToTone(id) as LabOptionTone;
           const toneCls = LAB_TONE_CLASSES[tone];
@@ -379,7 +372,11 @@ function RiskStrip({
             <button
               key={id}
               type="button"
+              tabIndex={-1}
+              aria-hidden="true"
+              data-scenario-shortcut={id}
               onClick={() => onSelectScenario(id)}
+              onMouseDown={(event) => event.preventDefault()}
               className={`min-w-[calc(50%-0.25rem)] flex-1 sm:min-w-[9.5rem] rounded-xl border-2 px-3 py-2.5 text-left transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
                 active
                   ? `${toneCls.selectedBorder} ${toneCls.selectedBg} ${toneCls.selectedRing} shadow-sm`
@@ -392,7 +389,7 @@ function RiskStrip({
                 {stakeChip[stake]}
               </span>
               <span className="block text-xs font-bold text-gray-900 dark:text-white">
-                {labelById[id]}
+                S{index + 1}
               </span>
               <span
                 className={`mt-1 block ${typographyClasses.small} leading-snug text-slate-500 dark:text-slate-400`}

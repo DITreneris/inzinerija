@@ -4,6 +4,7 @@
 > **Versija:** 2.3.20  
 > **Data:** 2026-07-29  
 > **2.3.20:** §3.1b/c – consumer `M10TeamReadinessLabBlock` (10.255 `m10_team_readiness_lab`: 3 dimensijų komandos DI praktikos nuotrauka; be balo; Shell=Ne).
+> **2.3.20:** §6c kalbos konvencijos – LT `tu` + EN American English; vartai `audit:lt-address` / `audit:en-spelling`.
 > **2.3.19:** §6b Content-track visual exception (M13–15); §3.1b path Choice `optionTone: rose` kai `moduleAccent === 'rose'`.
 > **2.3.18:** §3.1b/c – `M13ConsistencyLockLabBlock` Drift Lab (13.325: ref checklist + drift Choice ×5 + Simptomas|Fix; brand-only; Shell=Ne).
 > **2.3.17:** §3.1b/c – consumer `M13ConsistencyLockLabBlock` (13.325 `m13_consistency_lab`, brand-only; Shell=Ne) – superseded by 2.3.18 Drift enhancement.
@@ -733,6 +734,23 @@ Turinio kelias (vaizdai / video / marketing) gali turėti **scoped** warm track 
 **60/30/10:** ~60 % slate+brand · ~30 % soft rose track · ~10 % warm amber/coral stage. Flow arrows lieka `palette.flow`.
 
 **Shell chrome** (`InteractiveDiagramShell` nav): v1 **brand** (neliečiama).
+
+---
+
+### 6c Kalbos konvencijos (LT `tu` · EN American)
+
+> Vartai: `npm run audit:lt-address` + `npm run audit:en-spelling` (abu `audit:release-preflight`). Taisyklės: `scripts/lib/lt-address-rules.mjs`, `scripts/lib/en-spelling-map.mjs`.
+
+| Kalba  | Standartas                                                                | Pavyzdžiai                                                                                                 |
+| ------ | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **LT** | Kreipinys **`tu`** (niekada `Jūs`); be barbarizmų                         | `Pabandyk` (ne `Pabandykite`) · `Kas esi ir ką darai` · `visiškai` (ne `pilnai`) · `kitas` (ne `sekantis`) |
+| **EN** | **American English** visuose paviršiuose (`en-lt` ir `en-us` variantuose) | `artifact` · `behavior` · `optimize` · `catalog` · `defense` · `license`                                   |
+
+**Apimtis = visi paviršiai, ne tik JSON.** Komponentai turi hardcoded LT fallback'us prie EN dvynio (`locale === 'en' ? … : …`) ir `.ts` content modulius (`m10TeamReadinessContent.ts`), todėl vartai skaito ir `src/**` string literalus. Identifikatoriai nekeičiami – tikrinami tik string literalai.
+
+**Durability:** EN overlay generuojamas, todėl vien JSON patch neišlaiko – `build-en-*.mjs` + `*-en-plain-overrides.mjs` turi būti pataisyti, kitaip kitas `build:modules-en-*` grąžina BrE.
+
+**Išimtys:** `scripts/fixtures/lt-address-allowlist.json` (pvz. reklamos teksto pavyzdys) · `scripts/fixtures/en-spelling-allowlist.json` (tikriniai vardai, citatos).
 
 ---
 

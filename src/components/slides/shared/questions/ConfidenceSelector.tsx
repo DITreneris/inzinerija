@@ -1,6 +1,6 @@
 /**
  * F3-1: Metakognityvinis pasitikėjimo pasirinkimas prieš atsakant.
- * "Kaip esate tikri?" – Tikras / Spėju / Nežinau.
+ * "Kiek esi tikras?" – Tikras / Spėju / Nežinau.
  */
 import { ThumbsUp, HelpCircle, MinusCircle } from 'lucide-react';
 import { getConfidenceLabels, type ConfidenceLevel } from './confidenceLabels';
@@ -34,12 +34,12 @@ export function ConfidenceSelector({
   const labels = getConfidenceLabels(locale);
   const levels: ConfidenceLevel[] = ['sure', 'guess', 'unsure'];
   const resolvedAriaLabel =
-    ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?');
+    ariaLabel ?? (locale === 'en' ? 'How sure are you?' : 'Kiek esi tikras?');
 
   return (
     <div className="mb-4" role="group" aria-label={resolvedAriaLabel}>
       <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
-        {locale === 'en' ? 'How sure are you?' : 'Kaip esate tikri?'}
+        {locale === 'en' ? 'How sure are you?' : 'Kiek esi tikras?'}
       </p>
       <div className={`flex flex-wrap gap-2 ${compact ? 'gap-1.5' : ''}`}>
         {levels.map((level) => {

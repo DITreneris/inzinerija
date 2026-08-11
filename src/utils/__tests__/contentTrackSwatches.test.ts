@@ -13,12 +13,12 @@ describe('contentTrackSwatches', () => {
     expect(social).not.toEqual(eco);
   });
 
-  it('returns warm free-text chips when colour set without preset', () => {
+  it('returns warm free-text chips when color set without preset', () => {
     const chips = getContentTrackSwatches({ colorText: 'coral and blue' });
     expect(chips).toHaveLength(3);
   });
 
-  it('returns empty when no preset and empty colour', () => {
+  it('returns empty when no preset and empty color', () => {
     expect(getContentTrackSwatches({})).toEqual([]);
     expect(getContentTrackSwatches({ colorText: '  ' })).toEqual([]);
   });

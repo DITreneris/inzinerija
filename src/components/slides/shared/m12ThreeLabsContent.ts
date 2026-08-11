@@ -1,4 +1,5 @@
 import type { M10Locale } from './m10DiagramContent';
+import type { StepExplanation } from './stepExplanations';
 import type { DiagramTone } from './diagramTokens';
 
 export type M12ThreeLabsRow = {
@@ -13,12 +14,26 @@ export type M12ThreeLabsRow = {
 export function getM12ThreeLabsLabels(locale: M10Locale): {
   title: string;
   aria: string;
+  hint: string;
+  regionAria: string;
+  youAreHere: string;
+  stepOf: (n: number, total: number) => string;
+  navAria: string;
+  stepAria: (index: number, title: string) => string;
+  enlargeLabel: string;
   rows: M12ThreeLabsRow[];
 } {
   if (locale === 'en') {
     return {
       title: 'Three mandatory labs (3A)',
       aria: 'Three labs: Automatize, Augment, Autonomize — human gate highlighted on the chip flow',
+      hint: 'Tap a lab row – where the human gate sits',
+      regionAria: 'Three mandatory labs – comparison rows',
+      youAreHere: 'You are here:',
+      stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
+      navAria: 'Three labs selection',
+      stepAria: (index: number, title: string) => `Lab ${index + 1}: ${title}`,
+      enlargeLabel: 'Three labs (3A)',
       rows: [
         {
           label: '1 · Automatize',
@@ -47,6 +62,14 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
   return {
     title: 'Trys privalomos praktikos (3A)',
     aria: 'Trys praktikos: Automatize, Augment, Autonomize — žmogaus vartai paryškinti chip eigoje',
+    hint: 'Paspausk praktikos eilutę – kur yra žmogaus vartai',
+    regionAria: 'Trys privalomos praktikos – palyginimo eilutės',
+    youAreHere: 'Tu esi čia:',
+    stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
+    navAria: 'Trijų praktikų pasirinkimas',
+    stepAria: (index: number, title: string) =>
+      `Praktika ${index + 1}: ${title}`,
+    enlargeLabel: 'Trys praktikos (3A)',
     rows: [
       {
         label: '1 · Automatize',
@@ -71,4 +94,40 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
       },
     ],
   };
+}
+
+export function getM12ThreeLabsExplanations(
+  locale: M10Locale
+): StepExplanation[] {
+  if (locale === 'en') {
+    return [
+      {
+        title: 'Automatize',
+        body: '**Rules path** – form → CRM → email → Slack. Best when the decision is already clear and the human gate can stay outside the flow.',
+      },
+      {
+        title: 'Augment',
+        body: '**Human approves** – email → LLM → approve → send. Use it when DI helps prepare the answer, but a person keeps accountability.',
+      },
+      {
+        title: 'Autonomize',
+        body: '**Escalation / QA** – reviews → sentiment → escalation. Let the agent act only with limits and a clear handoff when risk appears.',
+      },
+    ];
+  }
+
+  return [
+    {
+      title: 'Automatize',
+      body: '**Taisyklių kelias** – forma → CRM → laiškas → Slack. Tinka, kai sprendimas jau aiškus, o žmogaus vartai gali likti už srauto.',
+    },
+    {
+      title: 'Augment',
+      body: '**Žmogus patvirtina** – laiškas → DI → patvirtinimas → siųsti. Rinkis, kai DI paruošia atsakymą, bet žmogus išlaiko atsakomybę.',
+    },
+    {
+      title: 'Autonomize',
+      body: '**Eskalacija / kokybė** – atsiliepimai → sentimentas → eskalacija. Agentui leisk veikti tik su ribomis ir aiškiu perdavimu atsiradus rizikai.',
+    },
+  ];
 }

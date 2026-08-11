@@ -59,7 +59,7 @@
       }
     },
     {
-      "term": "Artefact",
+      "term": "Artifact",
       "definition": "A ready-made end result – a report, Custom GPT, webpage, or other tangible output created with AI.",
       "moduleId": 6
     },
@@ -341,7 +341,7 @@
     },
     {
       "term": "Master prompt",
-      "definition": "A personalised prompt about you or your organisation (who you are, what you do, goals, style, audience), giving the AI context; differs from a system prompt, which defines how the AI should behave.",
+      "definition": "A personalized prompt about you or your organization (who you are, what you do, goals, style, audience), giving the AI context; differs from a system prompt, which defines how the AI should behave.",
       "moduleId": 4
     },
     {
@@ -449,7 +449,7 @@
     },
     {
       "term": "Prompt library",
-      "definition": "A personal or team store of templates – prompts organised by task and use case so you don’t have to write from scratch.",
+      "definition": "A personal or team store of templates – prompts organized by task and use case so you don’t have to write from scratch.",
       "moduleId": 6,
       "unlockedBy": {
         "moduleId": 6,
@@ -497,7 +497,7 @@
     },
     {
       "term": "RLHF",
-      "definition": "Reinforcement Learning from Human Feedback – reinforcement learning with human feedback; used to shape “better” answer behaviour in AI models.",
+      "definition": "Reinforcement Learning from Human Feedback – reinforcement learning with human feedback; used to shape “better” answer behavior in AI models.",
       "moduleId": 4
     },
     {

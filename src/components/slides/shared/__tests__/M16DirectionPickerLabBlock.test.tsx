@@ -32,7 +32,7 @@ describe('M16DirectionPickerLabBlock', () => {
     );
   });
 
-  it('reveals score strip and artefact after pick', () => {
+  it('reveals score strip and artifact after pick', () => {
     renderWithProviders(<M16DirectionPickerLabBlock />);
     fireEvent.click(screen.getByRole('radio', { name: /^A\b/i }));
     expect(

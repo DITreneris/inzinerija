@@ -132,7 +132,7 @@
               "right": {
                 "src": "/DI_visata.png",
                 "label": "AI universe",
-                "explanation": "Artificial intelligence is a broad field. The deeper you go, the more specialised, complex, and powerful the systems become.",
+                "explanation": "Artificial intelligence is a broad field. The deeper you go, the more specialized, complex, and powerful the systems become.",
                 "source": "Various educational AI schemas (IBM, Google, NVIDIA). Summary schema – 2023–2025."
               }
             },
@@ -175,7 +175,7 @@
                 "heading": "🔽 Terms (1): AI, machine learning, neural networks",
                 "collapsible": true,
                 "collapsedByDefault": true,
-                "body": "**Artificial intelligence (AI)** – broad field: computer systems that do tasks that usually need human thinking. Example: an email spam filter that learns to tell spam from real mail.\n\n**Machine learning (ML)** – part of AI that learns from data, not fixed rules. Example: Netflix recommends films based on what you watched – no one programmed each recommendation.\n\n**Neural networks** – models inspired by the brain: many nodes (neurons) in layers. They can handle images, sound, text, etc. (multimodal). Example: your phone's face unlock – a neural network learned to recognise your face from thousands of points.",
+                "body": "**Artificial intelligence (AI)** – broad field: computer systems that do tasks that usually need human thinking. Example: an email spam filter that learns to tell spam from real mail.\n\n**Machine learning (ML)** – part of AI that learns from data, not fixed rules. Example: Netflix recommends films based on what you watched – no one programmed each recommendation.\n\n**Neural networks** – models inspired by the brain: many nodes (neurons) in layers. They can handle images, sound, text, etc. (multimodal). Example: your phone's face unlock – a neural network learned to recognize your face from thousands of points.",
                 "blockVariant": "terms"
               },
               {
@@ -800,7 +800,7 @@
                 "heading": "Task 1: System prompt template (6 blocks)",
                 "body": "Template you can load to set up the **System** (how AI behaves). Copy below, paste into AI as System/Instructions – adapt for your typical audience.",
                 "blockVariant": "violet",
-                "copyable": "META: You are a business assistant. You follow the rules specified below.\nINPUT: You accept requests and context (data, constraints).\nOUTPUT: Answer in English – bullet list or short paragraphs.\nREASONING: First summarise the task, then give the solution.\nQUALITY: If you don't know – say \"I don't know\". Don't cite unverified sources.\nADVANCED: Tone professional, concise."
+                "copyable": "META: You are a business assistant. You follow the rules specified below.\nINPUT: You accept requests and context (data, constraints).\nOUTPUT: Answer in English – bullet list or short paragraphs.\nREASONING: First summarize the task, then give the solution.\nQUALITY: If you don't know – say \"I don't know\". Don't cite unverified sources.\nADVANCED: Tone professional, concise."
               },
               {
                 "heading": "Task 2: Master prompt example (6 blocks)",
@@ -833,8 +833,8 @@
                   "rows": [
                     [
                       "What it defines",
-                      "How AI **should behave** – rules, limits, behaviour, format",
-                      "**Who the user** or organisation is – context about you"
+                      "How AI **should behave** – rules, limits, behavior, format",
+                      "**Who the user** or organization is – context about you"
                     ],
                     [
                       "Typical content",
@@ -858,7 +858,7 @@
               },
               {
                 "heading": "Master prompt – what it includes",
-                "body": "**Personal profile:** Name, profession, experience, work style, goals, audience, tone.\n\n**Organisation profile:** Company, sector, mission, products, market, brand, communication style.",
+                "body": "**Personal profile:** Name, profession, experience, work style, goals, audience, tone.\n\n**Organization profile:** Company, sector, mission, products, market, brand, communication style.",
                 "blockVariant": "terms",
                 "collapsible": true
               },
@@ -876,7 +876,7 @@
               },
               {
                 "heading": "Why it's worth spending ~10 min on Master Prompt",
-                "body": "Time saved, more consistent results, personalised answers, more effective work from the first message.",
+                "body": "Time saved, more consistent results, personalized answers, more effective work from the first message.",
                 "blockVariant": "terms",
                 "collapsible": true
               }
@@ -944,9 +944,9 @@
               },
               {
                 "heading": "Example: Operations improvement",
-                "body": "Give a step-by-step process – e.g. for supply chain optimisation.",
+                "body": "Give a step-by-step process – e.g. for supply chain optimization.",
                 "blockVariant": "terms",
-                "copyable": "Data: [operation, e.g. supply chain / retail]\nDo: step-by-step optimisation process (cost, efficiency, tech)\nFormat: step | goal | KPI"
+                "copyable": "Data: [operation, e.g. supply chain / retail]\nDo: step-by-step optimization process (cost, efficiency, tech)\nFormat: step | goal | KPI"
               },
               {
                 "heading": "Optional: Good vs bad process prompt",
@@ -1105,7 +1105,7 @@
               "examples": [
                 "An email app automatically sorts messages into folders by predefined rules.",
                 "A bank system automatically flags suspicious transactions.",
-                "A program learns to recognise objects in photos from thousands of examples.",
+                "A program learns to recognize objects in photos from thousands of examples.",
                 "A voice-controlled system understands what the user said.",
                 "ChatGPT generates an email text for a client."
               ],
@@ -1147,7 +1147,7 @@
               "When to let AI search the web and use tools."
             ],
             "spinoffCta": {
-              "label": "Try the 8-prompt organisation library (~30 min)",
+              "label": "Try the 8-prompt organization library (~30 min)",
               "url": "https://www.promptanatomy.info/en/"
             },
             "recap": {
@@ -1248,7 +1248,7 @@
             "editorialBeats": [
               {
                 "id": "awareness-gap",
-                "title": "We use AI more often than we recognise it",
+                "title": "We use AI more often than we recognize it",
                 "body": "The issue isn't that AI hasn't arrived yet – we often don't notice it.",
                 "side": "left",
                 "accentKey": "accent",
@@ -1456,7 +1456,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Can you name at least one task where a loose “analyse the market” ask is **not enough**? Does your mode rule include **mode**, **condition**, and **check**?",
+                "body": "Can you name at least one task where a loose “analyze the market” ask is **not enough**? Does your mode rule include **mode**, **condition**, and **check**?",
                 "blockVariant": "accent"
               },
               {
@@ -1541,7 +1541,7 @@
               {
                 "heading": "Copyable prompt",
                 "body": "Use this template for ChatGPT or Custom GPT \"Instructions\" field. Fill in the [ ] fields for your goals (e.g. [business writing assistant], [up to 200 words]).",
-                "copyable": "Create an instruction for a ChatGPT assistant (Custom GPT) that I can paste into the \"Instructions\" field.\n\nMETA (role and behaviour):\n- You are [ENTER ROLE, e.g.: business writing assistant, customer service expert, training content planner].\n- Tone: [professional / friendly / concise – choose or describe].\n- Competence: [WHAT THE ASSISTANT KNOWS – topics, domain, limits].\n\nGoal:\n- [WHAT THE ASSISTANT IS FOR: e.g. meeting summaries, answering customer queries, creating training content plans].\n\nContext (if needed):\n- Audience: [WHO IT'S FOR – e.g. team members, clients].\n- Organisation / product: [BRIEF DESCRIPTION, if relevant].\n\nLimits:\n- Language: [EN / other / both].\n- Answer length: [e.g. up to 200 words; or \"as needed\"].\n- Avoid: [e.g. jargon, advertising, personal opinions].\n\nOutput format:\n- [e.g. bullet points, paragraphs, table; clear actions \"who / when\"].",
+                "copyable": "Create an instruction for a ChatGPT assistant (Custom GPT) that I can paste into the \"Instructions\" field.\n\nMETA (role and behavior):\n- You are [ENTER ROLE, e.g.: business writing assistant, customer service expert, training content planner].\n- Tone: [professional / friendly / concise – choose or describe].\n- Competence: [WHAT THE ASSISTANT KNOWS – topics, domain, limits].\n\nGoal:\n- [WHAT THE ASSISTANT IS FOR: e.g. meeting summaries, answering customer queries, creating training content plans].\n\nContext (if needed):\n- Audience: [WHO IT'S FOR – e.g. team members, clients].\n- Organization / product: [BRIEF DESCRIPTION, if relevant].\n\nLimits:\n- Language: [EN / other / both].\n- Answer length: [e.g. up to 200 words; or \"as needed\"].\n- Avoid: [e.g. jargon, advertising, personal opinions].\n\nOutput format:\n- [e.g. bullet points, paragraphs, table; clear actions \"who / when\"].",
                 "blockVariant": "terms"
               }
             ],
@@ -1590,11 +1590,11 @@
             },
             "correctPromptPractice": {
               "intro": "Practice: the prompt below breaks 5 principles. Spot the issues and rewrite for clarity, context, and action verbs – or press \"Show solution\" and compare.",
-              "badPrompt": "\"Think about strategy and maybe analyse competitors and prepare a plan with all the important stuff... just do something useful.\"",
+              "badPrompt": "\"Think about strategy and maybe analyze competitors and prepare a plan with all the important stuff... just do something useful.\"",
               "revealButtonLabel": "Show solution",
               "solutionAnalysis": "1) **Clarity** – several tasks at once, unclear goal. 2) **Simple → complex** – everything asked for straight away. 3) **Context** – no role, audience, sector. 4) **Word choice** – abstractions (\"think\", \"do something\") instead of action verbs.",
               "solutionCopyable": "Role: market analyst, 5 years in IT sector. Do a short analysis of 3 main competitors in the Lithuanian SaaS market. Provide: (1) each competitor's strength and weakness, (2) price comparison in a table. Format: table, English, business tone.",
-              "solutionSummary": "One goal (competitor analysis), clear context (IT/SaaS, Lithuania), clear structure (table), precise verbs (\"analyse\", \"give\"). You can copy this improved version and run it."
+              "solutionSummary": "One goal (competitor analysis), clear context (IT/SaaS, Lithuania), clear structure (table), precise verbs (\"analyze\", \"give\"). You can copy this improved version and run it."
             }
           }
         },
@@ -1608,7 +1608,7 @@
             "sections": [
               {
                 "heading": "1️⃣ In short (30 s)",
-                "body": "**RL (Reinforcement Learning)** – AI learns from reward.\nIf the result matches the goal (KPI, scores, success metrics) → it gets a \"plus\". If not → it adjusts behaviour.\n\n**RLHF (Reinforcement Learning from Human Feedback)** – AI learns from human ratings.\nPeople compare answers and say which is better.\nThe model learns what counts as a good answer.\n\n👉 GPT answer quality – result of RLHF.\n👉 Your prompt triggers and steers that learned behaviour.\n\n**Try it now**\n\nCopy one of the prompts below (5️⃣ or 6️⃣) and run it in AI.\nWatch how answer quality changes when you change the wording. #askifyouneed",
+                "body": "**RL (Reinforcement Learning)** – AI learns from reward.\nIf the result matches the goal (KPI, scores, success metrics) → it gets a \"plus\". If not → it adjusts behavior.\n\n**RLHF (Reinforcement Learning from Human Feedback)** – AI learns from human ratings.\nPeople compare answers and say which is better.\nThe model learns what counts as a good answer.\n\n👉 GPT answer quality – result of RLHF.\n👉 Your prompt triggers and steers that learned behavior.\n\n**Try it now**\n\nCopy one of the prompts below (5️⃣ or 6️⃣) and run it in AI.\nWatch how answer quality changes when you change the wording. #askifyouneed",
                 "blockVariant": "accent",
                 "collapsible": true,
                 "collapsedByDefault": false
@@ -1621,17 +1621,17 @@
               },
               {
                 "heading": "3️⃣ RLHF – reinforcement learning from human feedback",
-                "body": "What changes?\n👉 **The human becomes the source of reward**\n\nPlain explanation:\nAI learns not only from numbers but from which answer people prefer.\n\nHow it works for GPT:\n• People compare answers\n• Mark the \"better\" ones\n• Model learns behaviour rules\n\n**Business example:** AI drafts replies to customer emails.\n**How it learns:** Staff mark which reply is better for the customer.\n**Reward:** Human choice (\"fits / doesn't fit\").\n**When to use:** When quality, tone, and trust matter, not just numbers.",
+                "body": "What changes?\n👉 **The human becomes the source of reward**\n\nPlain explanation:\nAI learns not only from numbers but from which answer people prefer.\n\nHow it works for GPT:\n• People compare answers\n• Mark the \"better\" ones\n• Model learns behavior rules\n\n**Business example:** AI drafts replies to customer emails.\n**How it learns:** Staff mark which reply is better for the customer.\n**Reward:** Human choice (\"fits / doesn't fit\").\n**When to use:** When quality, tone, and trust matter, not just numbers.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "4️⃣ RL vs RLHF – comparison",
-                "body": "RL = optimising numbers. RLHF = optimising human judgement.",
+                "body": "RL = optimizing numbers. RLHF = optimizing human judgment.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": [
-                    "RL (optimises numbers)",
-                    "RLHF (optimises quality)"
+                    "RL (optimizes numbers)",
+                    "RLHF (optimizes quality)"
                   ],
                   "rows": [
                     [
@@ -1644,7 +1644,7 @@
                       "Improves tone, clarity, experience"
                     ],
                     [
-                      "Fits pricing, ads, process optimisation",
+                      "Fits pricing, ads, process optimization",
                       "Fits HR, marketing, customer service"
                     ],
                     [
@@ -1657,7 +1657,7 @@
               },
               {
                 "heading": "5️⃣ RL prompt example",
-                "body": "🔘 Copy the prompt (below).\n\n**Without human feedback.**\n\n**Business case:** Optimise an email by clear KPIs.\n**When to use:** When success can be defined by rules and numbers.",
+                "body": "🔘 Copy the prompt (below).\n\n**Without human feedback.**\n\n**Business case:** Optimize an email by clear KPIs.\n**When to use:** When success can be defined by rules and numbers.",
                 "blockVariant": "brand",
                 "copyable": "You are an AI optimizing business emails.\nGoal: an email that maximizes open likelihood.\nRules: under 100 words; clear value; clear CTA.\nOUTPUT: 3 variants + pick the best by “clearest and shortest” + 1 sentence why."
               },
@@ -1669,7 +1669,7 @@
               },
               {
                 "heading": "🔽 Link to GPT, prompts, and ethics",
-                "body": "Why does this matter for us?\n\nGPT doesn't \"think\" – it optimises answers by:\n• usefulness\n• safety\n• human expectations\n\n**Prompt** = the signal the model uses to select learned behaviour.",
+                "body": "Why does this matter for us?\n\nGPT doesn't \"think\" – it optimizes answers by:\n• usefulness\n• safety\n• human expectations\n\n**Prompt** = the signal the model uses to select learned behavior.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -1718,7 +1718,7 @@
                   "Comparisons and analogies",
                   "Self-check and critical review"
                 ],
-                "tip": "For complex tasks specify the method: \"First analyse, then compare, summarise at the end\"."
+                "tip": "For complex tasks specify the method: \"First analyze, then compare, summarize at the end\"."
               },
               {
                 "num": "3",
@@ -1737,7 +1737,7 @@
               {
                 "num": "4",
                 "name": "Manipulation",
-                "desc": "How you influence model behaviour: role, framing, tone. Powerful but risky.",
+                "desc": "How you influence model behavior: role, framing, tone. Powerful but risky.",
                 "priority": "What influence do you have?",
                 "color": "brand",
                 "concepts": [
@@ -1765,7 +1765,7 @@
               {
                 "num": "6",
                 "name": "Technical",
-                "desc": "Model behaviour: temperature, response length, penalties.",
+                "desc": "Model behavior: temperature, response length, penalties.",
                 "priority": "What do you control technically?",
                 "color": "emerald",
                 "concepts": [
@@ -1983,7 +1983,7 @@
               },
               {
                 "heading": "Do it now",
-                "body": "In the bar, pick what you are doing now (Write / Analyse / Office / Research / Slides). The table highlights the best-fit tool — note one choice for this week.",
+                "body": "In the bar, pick what you are doing now (Write / Analyze / Office / Research / Slides). The table highlights the best-fit tool — note one choice for this week.",
                 "blockVariant": "brand"
               },
               {
@@ -2004,7 +2004,7 @@
                       "rowIndex": 0
                     },
                     {
-                      "label": "Analysing",
+                      "label": "Analyzing",
                       "rowIndex": 1
                     },
                     {
@@ -2086,7 +2086,7 @@
               },
               {
                 "heading": "What questions to ask when choosing a tool?",
-                "body": "**1.** What's my main task type? (Writing? Analysing? Working with documents? Preparing slides?)\n\n**2.** Am I working with long, complex context? (If it's a 50+ page document or lots of data – you need long context.)\n\n**3.** Am I in a specific ecosystem? (If Word, Excel, Teams – Office integration matters.)\n\n**4.** Do I need multimodal? (Text + images + video – you need a more general model.)\n\n**5.** Is the output a presentation or proposal? (If the end product is slides, pick a tool that generates them.)",
+                "body": "**1.** What's my main task type? (Writing? Analyzing? Working with documents? Preparing slides?)\n\n**2.** Am I working with long, complex context? (If it's a 50+ page document or lots of data – you need long context.)\n\n**3.** Am I in a specific ecosystem? (If Word, Excel, Teams – Office integration matters.)\n\n**4.** Do I need multimodal? (Text + images + video – you need a more general model.)\n\n**5.** Is the output a presentation or proposal? (If the end product is slides, pick a tool that generates them.)",
                 "blockVariant": "terms",
                 "collapsible": true
               },
@@ -2310,7 +2310,7 @@
               },
               {
                 "heading": "4️⃣ Data prep – 80% of the result",
-                "body": "RAG will give weak answers if documents are messy, unlabelled, and you don't ask for sources.\n\n**Minimal business RAG standard:** clearly labelled sources (e.g. [Source 1 – 2026 Q1 Financial report], [Source 2 – Sales by region]) and a query that asks for citations.",
+                "body": "RAG will give weak answers if documents are messy, unlabelled, and you don't ask for sources.\n\n**Minimal business RAG standard:** clearly labeled sources (e.g. [Source 1 – 2026 Q1 Financial report], [Source 2 – Sales by region]) and a query that asks for citations.",
                 "blockVariant": "emerald",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -2322,7 +2322,7 @@
               },
               {
                 "heading": "6️⃣ Copyable prompt",
-                "body": "Paste documents labelled [Source 1], [Source 2] into the Data field. Expect rows: conclusion | source | quote.",
+                "body": "Paste documents labeled [Source 1], [Source 2] into the Data field. Expect rows: conclusion | source | quote.",
                 "blockVariant": "default",
                 "copyable": "Data: [paste text with [Source 1], [Source 2]…]\nDo: give conclusions only from these sources\nFormat: conclusion | source | quote / fragment\nIf data is missing – write “I don’t know” and what is missing."
               },
@@ -2341,7 +2341,7 @@
                       "Context is long-term and repeated."
                     ],
                     [
-                      "Need to analyse numbers",
+                      "Need to analyze numbers",
                       "Documents (external sources)",
                       "You need exact facts and tables."
                     ],
@@ -2480,7 +2480,7 @@
               {
                 "name": "Elicit",
                 "url": "https://elicit.com",
-                "description": "Finds and summarises research by topic. Enter a question – get trends, risks, examples.",
+                "description": "Finds and summarizes research by topic. Enter a question – get trends, risks, examples.",
                 "useCases": ["Synthesis", "Trend search"]
               },
               {
@@ -2740,7 +2740,7 @@
               },
               {
                 "heading": "COMBO = Structured query framework",
-                "body": "In one prompt you combine 4 layers: **1️⃣ Role** – who is analysing? **2️⃣ Process** – how do they think? **3️⃣ Alternative evaluation** – what is compared? **4️⃣ Clear output** – what exactly do I get? This isn't a question – it's a mini strategy session in one prompt. Copy below and try.",
+                "body": "In one prompt you combine 4 layers: **1️⃣ Role** – who is analyzing? **2️⃣ Process** – how do they think? **3️⃣ Alternative evaluation** – what is compared? **4️⃣ Clear output** – what exactly do I get? This isn't a question – it's a mini strategy session in one prompt. Copy below and try.",
                 "blockVariant": "terms"
               },
               {
@@ -2927,7 +2927,7 @@
               },
               {
                 "heading": "🔽 Want more detail? (3 templates – 3 situations)",
-                "body": "**1️⃣ Sequence** – Use when you need a clear action plan. Fits: market analysis, product launch, process optimisation. Logic: A → B → C → decision.\n\n**2️⃣ Chain (CoT)** – Use when decision logic matters. Fits: pricing justification, strategy argument, explaining a decision to management. Logic: each step clearly follows from the previous.\n\n**3️⃣ Idea tree (ToT)** – Use when you need to pick the best direction. Fits: investment decisions, evaluating several options, risk analysis. Logic: several branches → evaluation → best choice.",
+                "body": "**1️⃣ Sequence** – Use when you need a clear action plan. Fits: market analysis, product launch, process optimization. Logic: A → B → C → decision.\n\n**2️⃣ Chain (CoT)** – Use when decision logic matters. Fits: pricing justification, strategy argument, explaining a decision to management. Logic: each step clearly follows from the previous.\n\n**3️⃣ Idea tree (ToT)** – Use when you need to pick the best direction. Fits: investment decisions, evaluating several options, risk analysis. Logic: several branches → evaluation → best choice.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -2963,7 +2963,7 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "Two-step template – first RAG, then Deep research. Replace [topic] with yours.",
                 "blockVariant": "terms",
-                "copyable": "PROMPT 1 (RAG):\nAnalyse [topic]. Use only reliable sources (Eurostat, official portals, research papers). Give your answer with links for each conclusion. If information is missing – say I don't know.\n\nPROMPT 2 (Deep research):\nBased on the previous answer, extend the analysis. What are the 3 main gaps? What do the latest (2025–2026) studies say? Provide links."
+                "copyable": "PROMPT 1 (RAG):\nAnalyze [topic]. Use only reliable sources (Eurostat, official portals, research papers). Give your answer with links for each conclusion. If information is missing – say I don't know.\n\nPROMPT 2 (Deep research):\nBased on the previous answer, extend the analysis. What are the 3 main gaps? What do the latest (2025–2026) studies say? Provide links."
               },
               {
                 "heading": "4️⃣ Quick check (1 min)",
@@ -3033,7 +3033,7 @@
                   "When you have no sources"
                 ],
                 "correct": 0,
-                "explanation": "Deep research fits complex, multi-step questions. For a simple fact, RAG is enough. Rule: if the question can be answered in one sentence – RAG; if you need to analyse, compare, summarise – Deep research. If wrong – see slide \"Deep research\" (4.3), \"Task for the agent\" block."
+                "explanation": "Deep research fits complex, multi-step questions. For a simple fact, RAG is enough. Rule: if the question can be answered in one sentence – RAG; if you need to analyze, compare, summarize – Deep research. If wrong – see slide \"Deep research\" (4.3), \"Task for the agent\" block."
               },
               {
                 "id": "check-dr-5",
@@ -3160,7 +3160,7 @@
               },
               {
                 "heading": "5 tips for your token budget",
-                "body": "1) **Structure** – split topics into sub-topics (shorter conversations). 2) **Shorten** – precise, short prompts save tokens. 3) **Summarise** – in long chats ask for a summary. 4) **Limit output** – use max_tokens, \"max 150 words\", \"list only\". 5) **Templates** – system prompt with fixed instructions so you don't repeat.",
+                "body": "1) **Structure** – split topics into sub-topics (shorter conversations). 2) **Shorten** – precise, short prompts save tokens. 3) **Summarize** – in long chats ask for a summary. 4) **Limit output** – use max_tokens, \"max 150 words\", \"list only\". 5) **Templates** – system prompt with fixed instructions so you don't repeat.",
                 "blockVariant": "terms"
               },
               {
@@ -3186,7 +3186,7 @@
               },
               {
                 "heading": "Do it now",
-                "body": "In your next long chat, run a checkpoint: about every ~10 messages ask AI to summarise what you agreed. Re-state the top rule in the critical request.",
+                "body": "In your next long chat, run a checkpoint: about every ~10 messages ask AI to summarize what you agreed. Re-state the top rule in the critical request.",
                 "blockVariant": "brand"
               },
               {
@@ -3228,7 +3228,7 @@
               },
               {
                 "heading": "How to reduce the risk",
-                "body": "**1. Checkpoint method** – every ~10 messages ask the AI to summarise what we've agreed.\n\n**2. Isolate context** – use separate chat windows for different projects.\n\n**3. Repeat priorities** – restate the most important rules in each critical query (Prompt re-injection).\n\n**Try it:** Start your next long conversation with a 1–2 sentence summary – that reduces \"forgetting\" risk.",
+                "body": "**1. Checkpoint method** – every ~10 messages ask the AI to summarize what we've agreed.\n\n**2. Isolate context** – use separate chat windows for different projects.\n\n**3. Repeat priorities** – restate the most important rules in each critical query (Prompt re-injection).\n\n**Try it:** Start your next long conversation with a 1–2 sentence summary – that reduces \"forgetting\" risk.",
                 "blockVariant": "terms"
               },
               {
@@ -3268,7 +3268,7 @@
               },
               {
                 "id": "check-tok-2",
-                "question": "How do you optimise prompts for tokens?",
+                "question": "How do you optimize prompts for tokens?",
                 "options": [
                   "Shorten context, clear Output limits (max words), max_tokens",
                   "Write the longest possible prompts",
@@ -3340,16 +3340,16 @@
                 "heading": "3️⃣ Copyable prompt",
                 "body": "One prompt – the AI will help you rewrite your query into a clear, controllable version (goal, context, result).",
                 "blockVariant": "terms",
-                "copyable": "ROLE: You are a prompt assistant – you rewrite weak requests.\nTASK: Rewrite my request into a good prompt: clear goal, context, output format; no vague verbs (“help”, “optimise”) without actions.\nCONTEXT: [Paste your bad / old request]\nOUTPUT:\nShort version: (1–2 sentences)\nFuller: goal + context + format\nIf info is missing – say what to add."
+                "copyable": "ROLE: You are a prompt assistant – you rewrite weak requests.\nTASK: Rewrite my request into a good prompt: clear goal, context, output format; no vague verbs (“help”, “optimize”) without actions.\nCONTEXT: [Paste your bad / old request]\nOUTPUT:\nShort version: (1–2 sentences)\nFuller: goal + context + format\nIf info is missing – say what to add."
               },
               {
                 "heading": "4️⃣ Quick check (1 min)",
-                "body": "Check the rewritten prompt:\n\n• Is it **clear** what I want (goal)?\n• Is there **context** (who it's for, where, limits)?\n• Is **every word** actionable, not abstract (\"analysis\", \"optimise\" without actions)?\n• Do I **know** when the result is good (format, length)?\n\nIf 2 or more \"no\" – go back to CONTEXT, add to your original query, then run the prompt again.",
+                "body": "Check the rewritten prompt:\n\n• Is it **clear** what I want (goal)?\n• Is there **context** (who it's for, where, limits)?\n• Is **every word** actionable, not abstract (\"analysis\", \"optimize\" without actions)?\n• Do I **know** when the result is good (format, length)?\n\nIf 2 or more \"no\" – go back to CONTEXT, add to your original query, then run the prompt again.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "🔽 Want more detail?",
-                "body": "**What is a \"negative\" prompt?** A query that gives unstable or useless results: too vague (\"help\"), too short (no context), biased (pushing one answer), or full of abstract words without actions (\"optimise\", \"improve\"). Best practice: goal + context + clear output + concrete action words.",
+                "body": "**What is a \"negative\" prompt?** A query that gives unstable or useless results: too vague (\"help\"), too short (no context), biased (pushing one answer), or full of abstract words without actions (\"optimize\", \"improve\"). Best practice: goal + context + clear output + concrete action words.",
                 "blockVariant": "brand",
                 "collapsible": true
               },
@@ -3369,7 +3369,7 @@
                       "\"Write a 3-paragraph intro to [topic] for an article. Tone: accessible, no jargon. Max 150 words.\""
                     ],
                     [
-                      "\"Optimise the text.\"",
+                      "\"Optimize the text.\"",
                       "\"Shorten this text to 100 words. Keep the 3 main points. Purpose: email to client.\""
                     ],
                     [
@@ -3440,11 +3440,11 @@
               },
               {
                 "term": "Master prompt",
-                "definition": "A personalised prompt about the user or organisation (who you are, what you do, goals, style, audience), giving the AI context; differs from the system prompt, which defines how the AI should behave."
+                "definition": "A personalized prompt about the user or organization (who you are, what you do, goals, style, audience), giving the AI context; differs from the system prompt, which defines how the AI should behave."
               },
               {
                 "term": "System prompt",
-                "definition": "Instructions to the AI system on how it should behave – rules, limits, behaviour, format (not about the user, but about the model's role and limits)."
+                "definition": "Instructions to the AI system on how it should behave – rules, limits, behavior, format (not about the user, but about the model's role and limits)."
               }
             ],
             "footer": "Next – slide 39: Context engineering recap"
@@ -3471,7 +3471,7 @@
               "lead": "7 prompt techniques recap – the core of Module 4.",
               "items": [
                 "System prompt – role, tone, limits.",
-                "Master prompt – context about you / your organisation.",
+                "Master prompt – context about you / your organization.",
                 "Process prompt – steps and workflow.",
                 "Method and agent – when \"do it yourself\", when \"search and answer\".",
                 "RAG – answers from specified sources.",
@@ -3569,7 +3569,7 @@
       "businessExamples": [
         {
           "title": "Sources in your own data",
-          "description": "Data, sources, context optimisation"
+          "description": "Data, sources, context optimization"
         },
         {
           "title": "When AI errs or is manipulated",
@@ -4258,7 +4258,7 @@
           "subtitle": "From research report to reflection – 6 practical steps",
           "type": "practice-intro",
           "content": {
-            "whyBenefit": "After the project you'll have one ready artefact (research report or Custom GPT) and templates for further work.",
+            "whyBenefit": "After the project you'll have one ready artifact (research report or Custom GPT) and templates for further work.",
             "duration": "~25–35 min",
             "audience": "For those who have completed Modules 1–5 and want to apply the 6-block system, RAG and fact-checking in one project (research report or Custom GPT).",
             "firstActionCTA": "Pick one project (Research report or Custom GPT), fill the META block, and run AI. Scaffolding techniques – as needed.",
@@ -4287,7 +4287,7 @@
             "title": "Create a full prompt for a research report with RAG and Deep research",
             "placeholder": "META: You are...\n\nINPUT: Sources and constraints...\n\nOUTPUT: Format...\n\nREASONING: Research steps...\n\nQUALITY: Verification...\n\nADVANCED: Parameters...",
             "templateLabel": "View full example",
-            "template": "META:\nYou are a business analyst with 5+ years in market research. Your goal – prepare a short research report for leadership on trends in the chosen market 2024–2025. Audience: managers who will make strategic decisions.\n\nINPUT:\nSources: [paste 1–2 source summaries or key data – e.g. Eurostat, market overviews]. Constraints: report 1–2 pages, English, references to sources required.\n\nOUTPUT:\nFormat: research report (1–2 pages). Structure: 1) Summary, 2) Main trends (with sources), 3) Conclusions and recommendations. Language: English, business tone.\n\nREASONING (Deep research steps):\n1) Break the question into 2–3 sub-questions (e.g. trends, risks, opportunities)\n2) For each sub-question find answers from the given sources\n3) Synthesise into one coherent report with references\n\nQUALITY:\n✓ Every conclusion has a source reference ✓ If information is not in the sources – write \"I don't know\" or mark as assumption ✓ Numbers and dates accurate ✓ Length 1–2 pages.\n\nADVANCED:\nTemperature: 0.3 (factual tone). Use only the given context (RAG); if deeper analysis is needed – specify “based on these sources“.",
+            "template": "META:\nYou are a business analyst with 5+ years in market research. Your goal – prepare a short research report for leadership on trends in the chosen market 2024–2025. Audience: managers who will make strategic decisions.\n\nINPUT:\nSources: [paste 1–2 source summaries or key data – e.g. Eurostat, market overviews]. Constraints: report 1–2 pages, English, references to sources required.\n\nOUTPUT:\nFormat: research report (1–2 pages). Structure: 1) Summary, 2) Main trends (with sources), 3) Conclusions and recommendations. Language: English, business tone.\n\nREASONING (Deep research steps):\n1) Break the question into 2–3 sub-questions (e.g. trends, risks, opportunities)\n2) For each sub-question find answers from the given sources\n3) Synthesize into one coherent report with references\n\nQUALITY:\n✓ Every conclusion has a source reference ✓ If information is not in the sources – write \"I don't know\" or mark as assumption ✓ Numbers and dates accurate ✓ Length 1–2 pages.\n\nADVANCED:\nTemperature: 0.3 (factual tone). Use only the given context (RAG); if deeper analysis is needed – specify “based on these sources“.",
             "explanation": "A research report with RAG and Deep research needs a clear role, sources, stepwise analysis and fact-checking.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -4322,7 +4322,7 @@
                   "description": "Break the research into sub-questions and synthesis steps.",
                   "whenToProceed": "When to continue: once steps are laid out, go to QUALITY.",
                   "hint": "CoT: sub-questions → answers from sources → synthesis.",
-                  "partialSolution": "REASONING (Deep research steps):\n1) Break the question into 2–3 sub-questions\n2) For each sub-question find answers from the given sources\n3) Synthesise into one coherent report with references"
+                  "partialSolution": "REASONING (Deep research steps):\n1) Break the question into 2–3 sub-questions\n2) For each sub-question find answers from the given sources\n3) Synthesize into one coherent report with references"
                 },
                 {
                   "step": 5,
@@ -4451,7 +4451,7 @@
               },
               {
                 "heading": "Before you build: context engineering flow (Module 4)",
-                "body": "With **context engineering**, before generating HTML it helps to prepare context – then the 6-block prompt gets \"engineered\" input. **1)** Context set – gather information on the topic using **RAG** (sources, your documents) or search (e.g. ChatGPT Browse, Perplexity) → facts, content, CTA into INPUT. **2)** Visual context – prepare a mock-up (e.g. Figma): layout, colours, CTA placement → feeds INPUT. **3)** HTML generation – use the 6-block prompt with the gathered context and generate HTML (e.g. Claude, ChatGPT or another AI). Link to Module 4: context engineering = controlling what you feed the AI; RAG = answer from sources.",
+                "body": "With **context engineering**, before generating HTML it helps to prepare context – then the 6-block prompt gets \"engineered\" input. **1)** Context set – gather information on the topic using **RAG** (sources, your documents) or search (e.g. ChatGPT Browse, Perplexity) → facts, content, CTA into INPUT. **2)** Visual context – prepare a mock-up (e.g. Figma): layout, colors, CTA placement → feeds INPUT. **3)** HTML generation – use the 6-block prompt with the gathered context and generate HTML (e.g. Claude, ChatGPT or another AI). Link to Module 4: context engineering = controlling what you feed the AI; RAG = answer from sources.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -4519,7 +4519,7 @@
               "options": [
                 "Asking for a “nice website” is enough",
                 "META + INPUT + OUTPUT (+ REASONING/QUALITY/ADVANCED as needed)",
-                "Only a colour palette with no goal",
+                "Only a color palette with no goal",
                 "Only “make it professional” with no format"
               ],
               "correct": 1,
@@ -4683,7 +4683,7 @@
               },
               {
                 "heading": "4. Processes",
-                "body": "Visualise AI processes (diagrams, steps) and describe guides for repeatable tasks – the team uses AI consistently. **In practice:** one doc or diagram \"how we do X with AI\" – new joiners or you after a break don't have to reverse-engineer."
+                "body": "Visualize AI processes (diagrams, steps) and describe guides for repeatable tasks – the team uses AI consistently. **In practice:** one doc or diagram \"how we do X with AI\" – new joiners or you after a break don't have to reverse-engineer."
               },
               {
                 "heading": "5. Data sets",
@@ -4696,8 +4696,8 @@
               },
               {
                 "heading": "Helper prompt: data handling system",
-                "body": "Copy the prompt below and use it with AI – you'll get a proposal for organising prompts and data (library, versioning, documentation, processes, sample data). Paste your context into [fields].",
-                "copyable": "You are a work data and prompt management consultant. Help me organise my data and prompts. Suggest a simple data and archive system following best practices.\n\nMy context: [what I most often do with AI – e.g. reports, emails, templates; whether I work alone or in a team].\n\nProvide: 1) 5–6 concrete steps (library, versioning, documentation, processes, sample data – how to apply to me), 2) where to start today (1–2 actions), 3) what tools or structures I can use (simply – Notion, files, folders). English, brief and practical.",
+                "body": "Copy the prompt below and use it with AI – you'll get a proposal for organizing prompts and data (library, versioning, documentation, processes, sample data). Paste your context into [fields].",
+                "copyable": "You are a work data and prompt management consultant. Help me organize my data and prompts. Suggest a simple data and archive system following best practices.\n\nMy context: [what I most often do with AI – e.g. reports, emails, templates; whether I work alone or in a team].\n\nProvide: 1) 5–6 concrete steps (library, versioning, documentation, processes, sample data – how to apply to me), 2) where to start today (1–2 actions), 3) what tools or structures I can use (simply – Notion, files, folders). English, brief and practical.",
                 "blockVariant": "brand"
               },
               {
@@ -4748,7 +4748,7 @@
               },
               {
                 "heading": "Quality check",
-                "body": "1) Clear instructions (no fluff). 2) Limits: \"I don't know\" + sources. 3) 5 test prompts show stable behaviour.",
+                "body": "1) Clear instructions (no fluff). 2) Limits: \"I don't know\" + sources. 3) 5 test prompts show stable behavior.",
                 "blockVariant": "accent"
               }
             ],
@@ -4801,23 +4801,23 @@
                 {
                   "step": 4,
                   "title": "Master prompt – Context",
-                  "description": "6–10 lines about organisation, style, goals",
+                  "description": "6–10 lines about organization, style, goals",
                   "hint": "Short context: who, for whom, main guidelines.",
-                  "partialSolution": "MASTER PROMPT: [short description of company/organisation, style, main guidelines]. Sources: [upload documents or specify]."
+                  "partialSolution": "MASTER PROMPT: [short description of company/organization, style, main guidelines]. Sources: [upload documents or specify]."
                 },
                 {
                   "step": 5,
                   "title": "Test set – 5 test prompts",
                   "description": "Normal, edge case, vague, manipulative, with sources",
                   "hint": "For each – what to expect (1–2 sentences).",
-                  "partialSolution": "TESTS (5): 1) Normal: [question] – [what to expect]. 2) Edge: [e.g.] – [behaviour]. 3) Vague: [e.g.] – [ask for clarification]. 4) Manipulative: [e.g.] – [stick to limits]. 5) With sources: [question] – [answer from guidelines]."
+                  "partialSolution": "TESTS (5): 1) Normal: [question] – [what to expect]. 2) Edge: [e.g.] – [behavior]. 3) Vague: [e.g.] – [ask for clarification]. 4) Manipulative: [e.g.] – [stick to limits]. 5) With sources: [question] – [answer from guidelines]."
                 },
                 {
                   "step": 6,
                   "title": "Improvement – Iteration",
                   "description": "Refine rules based on 1–2 test runs",
                   "hint": "Run the tests and adjust the instructions.",
-                  "partialSolution": "IMPROVEMENT: Run the 5 test prompts. If the GPT behaves wrongly – add or clarify an instruction. Repeat until behaviour is stable."
+                  "partialSolution": "IMPROVEMENT: Run the 5 test prompts. If the GPT behaves wrongly – add or clarify an instruction. Repeat until behavior is stable."
                 }
               ]
             }
@@ -4834,7 +4834,7 @@
           "shortTitle": "Project summary",
           "content": {
             "introHeading": "What you learned",
-            "introBody": "Well done! You finished the Module 6 project: a research report with AI or a Custom GPT. You have an artefact, 6-block templates, COMBO/HTML technique cues, and a data-hygiene handout.",
+            "introBody": "Well done! You finished the Module 6 project: a research report with AI or a Custom GPT. You have an artifact, 6-block templates, COMBO/HTML technique cues, and a data-hygiene handout.",
             "stats": [
               {
                 "label": "Project",
@@ -4851,7 +4851,7 @@
             ],
             "sections": [
               {
-                "heading": "One artefact",
+                "heading": "One artifact",
                 "icon": "Target",
                 "color": "brand",
                 "items": [
@@ -4882,10 +4882,10 @@
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artefact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
+            "reflectionPrompt": "META: You are a learning reflection assistant. Goal – lock in Module 6 project results.\nINPUT: I just finished one project – a research report with AI or a Custom GPT (6 blocks, RAG, technique buffet).\nOUTPUT: Ask 3 questions: (1) Which artifact will I use at work first? (2) Where in the project was it hardest? (3) What will I add to my prompt library within 24h? After answers – 1 concrete tip.",
             "tagline": "One project + handout = a repeatable AI work rhythm",
             "abilityBefore": "You lacked a finished project with a prompt set and checks.",
-            "abilityAfter": "You have a project artefact and know how to repeat the process for another topic.",
+            "abilityAfter": "You have a project artifact and know how to repeat the process for another topic.",
             "firstAction24h": "Within 24–48h use the project result in real work (email, slide, or report).",
             "nextStepCTA": "Pick another path (e.g. Data analysis – Module 7) or repeat the project.",
             "ownWorkLabel": "Your project topic",

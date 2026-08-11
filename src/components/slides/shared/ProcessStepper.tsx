@@ -62,7 +62,7 @@ const CUSTOM_GPT_STEPS: ProcessStep[] = [
       'Įvesk pavadinimą, aprašymą, pagrindines instrukcijas ir personą – kaip GPT elgsis ir ką moka.',
     actionChecklist: [
       'Pavadinimas: aiškus ir trumpas.',
-      'Instructions: įklijuok arba parašyk instrukcijas (šabloną rasite šios skaidrės apačioje).',
+      'Instructions: įklijuok arba parašyk instrukcijas (šabloną rasi šios skaidrės apačioje).',
       'Conversation starters: 2–4 pavyzdinės užklausos.',
     ],
     tip: 'Instrukcijas rašyk taip, lyg aiškintum naujam darbuotojui – konkrečiai ir veiksmažodžiais.',

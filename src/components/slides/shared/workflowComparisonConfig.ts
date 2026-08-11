@@ -28,7 +28,7 @@ export const WORKFLOW_MODES: Record<WorkflowMode, WorkflowModeConfig> = {
     desc: 'Klausimas → Atsakymas',
     consequenceLine: 'Rezultatas bus laisvos formos.',
     diagramTitle: 'Pokalbis su DI',
-    noteText: 'Ribota kontrolė – DI spėlioja, ką norite.',
+    noteText: 'Ribota kontrolė – DI spėlioja, ką nori.',
     noteIcon: '⚠',
     outputTitle: 'Atsakymas (laisva forma)',
     outputExample:
@@ -398,7 +398,7 @@ const DIAGRAM_LABELS_LT: WorkflowDiagramLabels = {
     llmSub: 'apdoroja struktūriškai',
     outputDefaultLabel: 'Dokumentas',
     outputDefaultSub: 'struktūruotas',
-    bottomNoteBasic: '⚠ Ribota kontrolė – DI spėlioja, ką norite',
+    bottomNoteBasic: '⚠ Ribota kontrolė – DI spėlioja, ką nori',
     bottomNoteWorkflow:
       '✓ Struktūruotas rezultatas – DI dirba pagal tavo planą',
     llmClickAria: 'LLM informacija – paspausk daugiau',

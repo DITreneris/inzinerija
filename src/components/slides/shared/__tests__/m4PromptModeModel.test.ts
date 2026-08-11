@@ -72,7 +72,7 @@ describe('m4PromptModeModel', () => {
     expect(trade.errorTiming).toBe('after_draft');
   });
 
-  it('builds artefact parts for the prompt-mode rule', () => {
+  it('builds artifact parts for the prompt-mode rule', () => {
     const parts = buildPromptModeRuleParts('live_top10', 'agentive');
     expect(parts.isMismatch).toBe(false);
     expect(parts.conditionKey).toBe('need_live_list');
@@ -92,7 +92,7 @@ describe('m4PromptModeModel', () => {
 });
 
 describe('m4PromptModeContent', () => {
-  it('formats LT and EN artefacts with mode rule fields', () => {
+  it('formats LT and EN artifacts with mode rule fields', () => {
     const parts = buildPromptModeRuleParts('gather_then_analyze', 'sequence');
     const lt = formatPromptModeArtefact('lt', parts);
     const en = formatPromptModeArtefact('en', parts);

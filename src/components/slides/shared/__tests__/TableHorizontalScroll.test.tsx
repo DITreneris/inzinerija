@@ -26,7 +26,7 @@ describe('TableHorizontalScroll', () => {
       </TableHorizontalScroll>
     );
 
-    expect(screen.getByText('Slinkite horizontaliai')).toBeInTheDocument();
+    expect(screen.getByText('Slink horizontaliai')).toBeInTheDocument();
     expect(
       screen.getByRole('region', { name: 'Comparison table' })
     ).toBeInTheDocument();
@@ -49,6 +49,6 @@ describe('TableHorizontalScroll', () => {
       </TableHorizontalScroll>
     );
 
-    expect(screen.queryByText('Slinkite horizontaliai')).toBeNull();
+    expect(screen.queryByText('Slink horizontaliai')).toBeNull();
   });
 });

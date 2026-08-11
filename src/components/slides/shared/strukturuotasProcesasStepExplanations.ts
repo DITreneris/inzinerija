@@ -28,11 +28,11 @@ export const STRUKTUOTAS_PROCESAS_STEP_EXPLANATIONS_EN: StrukturuotasProcesasSte
     },
     {
       title: 'Processing',
-      body: '**What this is:** The LLM and tools do the work – analysis, synthesis, structure creation, optimisation. E.g. ChatGPT prepares content, Gamma formats slides. For each step you assign a **tool** (ChatGPT, Claude, Gamma, Figma, etc.) and get an **implementation instruction** – what to open, what to enter, what to copy.',
+      body: '**What this is:** The LLM and tools do the work – analysis, synthesis, structure creation, optimization. E.g. ChatGPT prepares content, Gamma formats slides. For each step you assign a **tool** (ChatGPT, Claude, Gamma, Figma, etc.) and get an **implementation instruction** – what to open, what to enter, what to copy.',
     },
     {
       title: 'Output',
-      body: '**What this is:** The final product – visualisation, presentation, document, video. A concrete output format (e.g. “5 slides”, “1-page summary”). These three steps fit any task.',
+      body: '**What this is:** The final product – visualization, presentation, document, video. A concrete output format (e.g. “5 slides”, “1-page summary”). These three steps fit any task.',
     },
   ];
 
@@ -119,11 +119,11 @@ const DIAGRAM_LABELS_EN: StrukturuotasProcesasDiagramLabels = {
     { title: 'Input', items: ['Text prompts', 'Initial data', 'Context'] },
     {
       title: 'Processing',
-      items: ['Analysis and synthesis', 'Structure creation', 'Optimisation'],
+      items: ['Analysis and synthesis', 'Structure creation', 'Optimization'],
     },
     {
       title: 'Output',
-      items: ['Visualisation', 'Presentation', 'Final product'],
+      items: ['Visualization', 'Presentation', 'Final product'],
     },
   ],
   regionAria:

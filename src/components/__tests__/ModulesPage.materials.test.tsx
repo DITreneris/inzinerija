@@ -73,7 +73,7 @@ describe('ModulesPage materials section', () => {
     localStorage.setItem(storageKey, 'lt');
   });
 
-  it('does not show materials section when no artefacts are earned', () => {
+  it('does not show materials section when no artifacts are earned', () => {
     renderWithProviders(
       <ModulesPage onModuleSelect={() => {}} progress={progress()} />
     );

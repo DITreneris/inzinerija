@@ -175,7 +175,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     correct: 0,
     explanation:
       'Output blokas nurodo TIKSLŲ formatą: lentelė, 5 stulpeliai, lietuvių kalba.',
-    hint: 'Output = KO norite (formatas, struktūra, kalba).',
+    hint: 'Output = KO nori (formatas, struktūra, kalba).',
     bloomLevel: 1,
     relatedSlideId: 10,
     category: 'output',
@@ -188,7 +188,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     isTrue: false,
     explanation:
       'Neteisingai. Be formato nurodymo (lentelė, sąrašas, ataskaita) DI pasirinks savo formatą, kuris gali netikti.',
-    hint: 'Ar norite, kad DI sprendžia už jus, koks bus rezultato formatas?',
+    hint: 'Ar nori, kad DI spręstų už tave, koks bus rezultato formatas?',
     bloomLevel: 3,
     relatedSlideId: 10,
     category: 'output',
@@ -620,7 +620,7 @@ export const QUESTION_POOL: TestQuestion[] = [
     correct: 0,
     explanation:
       'Promptas turi Meta (rolė), Input (duomenis) ir Output (lentelė), bet neturi Reasoning – kaip DI turėtų analizuoti.',
-    hint: 'Palyginkite: kas jau yra (rolė, duomenys, formatas) ir ko trūksta iš 6 blokų.',
+    hint: 'Palygink: kas jau yra (rolė, duomenys, formatas) ir ko trūksta iš 6 blokų.',
     bloomLevel: 4,
     relatedSlideId: 11,
     category: 'reasoning',

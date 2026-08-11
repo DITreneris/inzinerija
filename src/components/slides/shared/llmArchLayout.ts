@@ -137,7 +137,7 @@ export const LLM_ARCH_CARDS_EN: LlmArchCard[] = [
   },
   {
     num: '03 — Agent',
-    title: 'Control centre',
+    title: 'Control center',
     text: 'The LLM decides, calls tools (API), and feeds the result back into the flow.',
     tags: ['LLM', '→ Tools', '→ API → LLM'],
     mode: 'tool',

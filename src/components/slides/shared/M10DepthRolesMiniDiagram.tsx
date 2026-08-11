@@ -137,24 +137,12 @@ export default function M10DepthRolesMiniDiagram({
               />
               <text
                 x={pill.x + pill.width / 2}
-                y={pill.y + 22}
+                y={pill.y + 34}
                 textAnchor="middle"
-                fontSize={typography.rolesHub.label.compact}
+                fontSize={typography.rolesHub.subtitle.desktop}
                 fontWeight={typography.titleWeight}
                 fill={active ? palette.whiteText : palette.brandDark}
                 fontFamily={DIAGRAM_TOKENS.font}
-              >
-                {opt.label}
-              </text>
-              <text
-                x={pill.x + pill.width / 2}
-                y={pill.y + 40}
-                textAnchor="middle"
-                fontSize={typography.rolesHub.sub.compact}
-                fontWeight={typography.edgeLabel.weight}
-                fill={active ? palette.whiteText : palette.muted}
-                fontFamily={DIAGRAM_TOKENS.font}
-                opacity={active ? 0.9 : 0.85}
               >
                 {opt.code}
               </text>

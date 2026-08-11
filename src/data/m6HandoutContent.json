@@ -16,7 +16,7 @@
     },
     {
       "title": "2. Promptų versijavimas",
-      "practicalMeaning": "Kai pakeičiate promptą – išsaugokite kopiją su data arba v1, v2; vėliau matysite, kas veikė geriau."
+      "practicalMeaning": "Kai pakeiti promptą – išsaugok kopiją su data arba v1, v2; vėliau matysi, kas veikė geriau."
     },
     {
       "title": "3. Dokumentacija",
@@ -28,9 +28,9 @@
     },
     {
       "title": "5. Duomenų rinkiniai",
-      "practicalMeaning": "5–10 eilučių pavyzdys (pvz. klientų atsiliepimai) – pakeitėte promptą ir per 1 min patikrinate, ar rezultatas teisingas."
+      "practicalMeaning": "5–10 eilučių pavyzdys (pvz. klientų atsiliepimai) – pakeitei promptą ir per 1 min patikrini, ar rezultatas teisingas."
     }
   ],
-  "reflectionSummary": "Refleksija: (1) Kas buvo sunkiausia projekte? (2) Kurį įgūdį naudosite pirmiausia darbe? (3) Ką dar norėtumėte išmokti apie DI? Pirmas veiksmas per 24–48 val.: atidaryk savo DI įrankį ir įrašyk vieną promptą iš modulio į savo biblioteką arba panaudok 6 blokų struktūrą kitai temai.",
+  "reflectionSummary": "Refleksija: (1) Kas buvo sunkiausia projekte? (2) Kurį įgūdį naudosi pirmiausia darbe? (3) Ką dar norėtum išmokti apie DI? Pirmas veiksmas per 24–48 val.: atidaryk savo DI įrankį ir įrašyk vieną promptą iš modulio į savo biblioteką arba panaudok 6 blokų struktūrą kitai temai.",
   "footerText": "Promptų anatomija – promptų struktūros mokymas. © Kurso medžiaga."
 }

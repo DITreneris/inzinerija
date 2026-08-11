@@ -51,7 +51,7 @@ describe('M13ConsistencyLockLabBlock', () => {
     expect(region.className).toMatch(/bg-rose-50/);
   });
 
-  it('reveals drift artefact and contrast after choosing a drift mode', () => {
+  it('reveals drift artifact and contrast after choosing a drift mode', () => {
     renderWithProviders(<M13ConsistencyLockLabBlock />);
     fireEvent.click(
       screen.getByRole('radio', { name: /Išsipūtė \/ proporcijos/i })
@@ -76,7 +76,7 @@ describe('M13ConsistencyLockLabBlock', () => {
     expect(screen.getByText(/Reference lock:/i)).toBeInTheDocument();
   });
 
-  it('reveals fresh artefact without lock rule', () => {
+  it('reveals fresh artifact without lock rule', () => {
     renderWithProviders(<M13ConsistencyLockLabBlock />);
     fireEvent.click(screen.getByRole('radio', { name: /Brief keičiasi/i }));
     expect(

@@ -2,7 +2,7 @@
 
 **Nuosavybė:** šis repo = **turinys, pedagogika, UI/UX mokymosi patirtyje**, duomenų/authoring kokybė. Marketingas / monetizacija / PostHog / CRO → kitas repo ([`docs/deployment/`](docs/deployment/) handoff).  
 **Tikslas:** Open P0/P1 prioritetai (Docs Lean). Done istorija → [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md) · ankstesnis [`2026-07`](docs/archive/development/TODO_DONE_SPRINTS_2026-07.md). SOT indeksas: `docs/DOCUMENTATION_QUICK_REF.md`.  
-**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-04 (M16–18 learner plain ✅ §1.2i–l; M13 plain ✅ + `M13P-TRIM` ✅ §1.2j; TE-M1618 C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
+**Legenda:** **P0 = mokymosi kokybės blokoriai**, P1 = turinio/authoring kokybė + corporate cut, P2 = polish. MON ≠ P0. **Atnaujinta:** 2026-08-11 (M1012-DEEP ✅; M16–18 learner plain ✅ §1.2i–l; M13 plain ✅ + `M13P-TRIM` ✅ §1.2j; TE-M1618 C1 won’t-now; C2 done; C3–C5 won’t-now; Must/Should/R\* done; Density DoD = ne).
 
 **Dabartinis fokusas:** Wave D3 corporate18 Deferred · marketing cutover (MON, out of scope). Ladder: [`ROADMAP.md`](ROADMAP.md). Automated: **160/966**; `build:corporate12` + `build:corporate15` žali.
 
@@ -20,6 +20,22 @@
 ## 1. Aktualus pipeline (open only)
 
 > **Taisyklės:** [`DOCS_MAINTENANCE.md`](docs/development/DOCS_MAINTENANCE.md) §1c — §1 tik open; done → archive.
+
+### §1.0 P1 – M10–M12 gilus auditas (2026-08)
+
+> Auditas: [`M10_M12_DEEP_AUDIT_2026-08.md`](docs/development/M10_M12_DEEP_AUDIT_2026-08.md). Naujas remediacijos epikas po corporate12 lock; tikslas – turinio priklausomybės, įrankių sluoksnis, vertinimo padengimas ir schemų skola.
+
+| ID             | Užduotis                                                                                                                                           | Status |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| **M1012-DEEP** | Batch A–F remediacija: melagingi enlarge pažadai, dublikatai, žargonas, priklausomybės, M11 padengimas, G10 leading documents, įrankiai ir schemos | [x]    |
+
+### §1.0b P1 – Kalbos konvencijų SOT (2026-08)
+
+> Standartas: GOLDEN **§6c** – LT `tu`, EN American English. Vartai: `audit:lt-address` + `audit:en-spelling` (`audit:release-preflight`).
+
+| ID           | Užduotis                                                                                                                          | Status |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| **LANG-SOT** | LT `tu` + barbarizmai (71 pataisa) ir BrE→AmE visuose EN paviršiuose + durable `build-en-*`; repo-wide vartai + regresijos testas | [x]    |
 
 ### §1.1 P0 – Mokymosi kokybės blokoriai
 

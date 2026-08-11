@@ -248,7 +248,7 @@
               {
                 "icon": "Layers",
                 "title": "Structure",
-                "description": "How you organise information: context, data, format, priorities.",
+                "description": "How you organize information: context, data, format, priorities.",
                 "example": "Separate and number: 1) META 2) INPUT 3) OUTPUT 4) QUALITY. Briefly – what to write."
               },
               {
@@ -718,7 +718,7 @@
               {
                 "icon": "🔍",
                 "label": "Business analysis",
-                "copyText": "ADVANCED:\nTemperature: 0.2\nReasoning: Deep\n\nTask:\nAnalyse this company's process and provide 3 problems and 3 realistic optimisation recommendations.",
+                "copyText": "ADVANCED:\nTemperature: 0.2\nReasoning: Deep\n\nTask:\nAnalyze this company's process and provide 3 problems and 3 realistic optimization recommendations.",
                 "taskLabel": "Task:"
               },
               {
@@ -841,7 +841,7 @@
           "type": "comparison",
           "content": {
             "introText": "What's compared: the same task, different structure (no blocks vs with blocks).",
-            "unstructuredPrompt": "Create a training programme about AI for me. It should be interesting and practical.",
+            "unstructuredPrompt": "Create a training program about AI for me. It should be interesting and practical.",
             "structuredPrompt": "META: You are a training designer. Goal – prepare a 4-hour intro to AI. Audience – 12–15 beginners.\nINPUT: Constraints – 1 facilitator, no live tool demos.\nOUTPUT: Table with 5 columns: module, duration, goal, activity, result. Tone – clear, professional.",
             "unstructuredCons": [
               "Unclear target audience",
@@ -1128,7 +1128,7 @@
               "type": "true-false",
               "question": "The Reasoning block is only needed for complex questions – for simple ones Meta + Input + Output is enough.",
               "isTrue": true,
-              "explanation": "Correct! Minimal prompt = Meta + Input + Output (3 blocks). Add Reasoning when you need more complex thinking (e.g. analyse, compare, recommend).",
+              "explanation": "Correct! Minimal prompt = Meta + Input + Output (3 blocks). Add Reasoning when you need more complex thinking (e.g. analyze, compare, recommend).",
               "hint": "Think: does a simple 'Translate this sentence' need a reasoning sequence?",
               "bloomLevel": 4,
               "relatedSlideId": 11,
@@ -1145,7 +1145,7 @@
                 "Only to shorten text"
               ],
               "correct": 0,
-              "explanation": "The Reasoning block specifies the THOUGHT SEQUENCE: 1) Analyse 2) Compare 3) Recommend.",
+              "explanation": "The Reasoning block specifies the THOUGHT SEQUENCE: 1) Analyze 2) Compare 3) Recommend.",
               "hint": "Reasoning = thought sequence. Think about steps before the answer.",
               "bloomLevel": 1,
               "relatedSlideId": 11,
@@ -1303,13 +1303,13 @@
               "scenarioContext": "You're a marketing lead. You're writing a prompt to AI to generate a quarterly sales report for the board. You have: 250k EUR revenue, 1200 orders, +15% growth. The prompt starts: 'You are a senior business analyst...' and ends: 'Present the result in a table with 5 columns.'",
               "question": "Which block is missing from this prompt?",
               "options": [
-                "Reasoning – how to analyse the data is not specified",
+                "Reasoning – how to analyze the data is not specified",
                 "Meta – role not specified",
                 "Input – no data",
                 "Output – format not specified"
               ],
               "correct": 0,
-              "explanation": "The prompt has Meta (role: analyst), Input (data: 250k EUR), and Output (table, 5 columns), but no Reasoning – how should AI analyse: compare periods? Look for trends? Recommend actions?",
+              "explanation": "The prompt has Meta (role: analyst), Input (data: 250k EUR), and Output (table, 5 columns), but no Reasoning – how should AI analyze: compare periods? Look for trends? Recommend actions?",
               "hint": "Compare: what's already there (role, data, format) and what's missing from the 6 blocks.",
               "bloomLevel": 4,
               "relatedSlideId": 11,
@@ -1568,7 +1568,7 @@
             "minScenariosToComplete": 2,
             "optionalInstruction": "Choose at least 2 scenarios that match your role or interest – you can skip the rest.",
             "footer": "Next – slide 2: Warm-up",
-            "firstActionCTA": "Create artefacts in at least 2 scenarios: start with the Warm-up (2–3 min), then pick scenarios."
+            "firstActionCTA": "Create artifacts in at least 2 scenarios: start with the Warm-up (2–3 min), then pick scenarios."
           }
         },
         {
@@ -1605,7 +1605,7 @@
           "subtitle": "Quarterly or half-year results overview for the board",
           "type": "practice-scenario",
           "scenario": {
-            "situation": "You're a team lead and need to prepare a quarterly results overview for the board in a few days. The board will decide on priorities for the next quarters, so you need to clearly summarise numbers and risks, and suggest concrete steps.",
+            "situation": "You're a team lead and need to prepare a quarterly results overview for the board in a few days. The board will decide on priorities for the next quarters, so you need to clearly summarize numbers and risks, and suggest concrete steps.",
             "context": "You're a team lead. You need to prepare a quarterly or half-year results overview for the board or owners.",
             "data": "Q2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, company restructuring, new CRM.",
             "constraints": "Report due in 5 days. Board has 4 members. Max length: 2 pages.",
@@ -1615,7 +1615,7 @@
             "title": "Create a full prompt for an executive strategy report",
             "placeholder": "META: You are...\n\nINPUT: Data...\n\nOUTPUT: Format...\n\nREASONING: Thought sequence...\n\nQUALITY: Criteria...\n\nADVANCED: Tone / format...",
             "templateLabel": "View full example",
-            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decision-making. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTone: factual. Format: business document",
+            "template": "META:\nYou are a senior executive with 10+ years of experience in strategic decision-making. Your goal is to prepare a quarterly results overview for the board, who will decide on Q3 priorities.\n\nINPUT:\nQ2 2024: revenue 1.2M EUR (+8% vs Q1), margin 23%. Project \"X\" status: 70% done, risk – 2-week delay. Top 3 Q3 priorities: sales growth, restructuring, new CRM.\n\nConstraints: 5 days, 4 board members, max 2 pages.\n\nOUTPUT:\nFormat: Executive Summary (1–2 pages). Structure: 1) KPI dashboard, 2) Risks and project status, 3) 3 priorities with recommendations. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarize KPI and trends\n2) Assess risks and project status\n3) Prioritize and formulate recommendations\n\nQUALITY:\n✓ Numbers accurate ✓ Risks identified ✓ Recommendations clear ✓ Length 1–2 pages\n\nADVANCED:\nTone: factual. Format: business document",
             "explanation": "A strategy report requires decision logic, summaries, and clear recommendations.",
             "instructions": {
               "title": "Step-by-step instructions",
@@ -1644,9 +1644,9 @@
                 {
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
-                  "description": "Specify analysis and prioritisation logic",
+                  "description": "Specify analysis and prioritization logic",
                   "hint": "Steps: 1) KPI summary, 2) Risk assessment, 3) Priority recommendations.",
-                  "partialSolution": "REASONING (step by step):\n1) Summarise KPI and trends\n2) Assess risks and project status\n3) Prioritise and formulate recommendations"
+                  "partialSolution": "REASONING (step by step):\n1) Summarize KPI and trends\n2) Assess risks and project status\n3) Prioritize and formulate recommendations"
                 },
                 {
                   "step": 5,
@@ -1676,7 +1676,7 @@
           "type": "practice-scenario",
           "scenario": {
             "situation": "Sales didn't meet plan and leadership wants to understand why quickly and get a concrete action list. You have data by segment and period – you need to turn it into insights and recommendations with owners and deadlines.",
-            "context": "Sales growth, decline, or stagnation. You need to analyse the data and propose concrete actions to improve results.",
+            "context": "Sales growth, decline, or stagnation. You need to analyze the data and propose concrete actions to improve results.",
             "data": "Q3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.",
             "constraints": "Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.",
             "expectedFormat": "Analysis + 5 concrete actions with deadlines and owners"
@@ -1693,7 +1693,7 @@
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
                   "hint": "Role: sales analyst. Goal: Q3 sales analysis and action plan. Audience: leadership.",
-                  "partialSolution": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyse Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners."
+                  "partialSolution": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyze Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners."
                 },
                 {
                   "step": 2,
@@ -1714,7 +1714,7 @@
                   "title": "REASONING block – Set thought sequence",
                   "description": "Specify how AI should think before creating the analysis",
                   "hint": "Go step by step. 1) KPI vs plan, 2) Segment comparison, 3) B2B decline causes, 4) 5 priority actions.",
-                  "partialSolution": "REASONING (step by step):\n1) Summarise Q3 KPI and compare with the plan (350k)\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline"
+                  "partialSolution": "REASONING (step by step):\n1) Summarize Q3 KPI and compare with the plan (350k)\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline"
                 },
                 {
                   "step": 5,
@@ -1733,7 +1733,7 @@
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyse Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners.\n\nINPUT:\nQ3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.\n\nConstraints: Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.\n\nOUTPUT:\nFormat: Sales analysis (3–4 pages). Structure: 1) Key KPI and trends, 2) Segment analysis (B2B vs B2C), 3) Causes and risks, 4) 5 concrete actions with owners and deadlines. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarise Q3 KPI and compare with the plan\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline\n\nQUALITY:\n✓ All numbers match the given data\n✓ Segment analysis is clear (B2B vs B2C)\n✓ Exactly 5 actions with deadlines and owners\n✓ Actions are doable in 1 week with a team of 2 analysts\n\nADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
+            "template": "META:\nYou are a sales analyst with 8+ years of B2B/B2C experience. Your goal is to analyze Q3 2024 sales and give leadership 5 concrete actions with deadlines and owners.\n\nINPUT:\nQ3 2024: 320k EUR revenue (plan 350k, -8.6%). 1450 orders. Segments: B2B (38%), B2C (62%). B2B down 12%, B2C +3%. Average order: B2B 890 EUR, B2C 165 EUR.\n\nConstraints: Analysis in 1 week. Team: 2 analysts. Leadership wants 5 concrete actions with deadlines and owners.\n\nOUTPUT:\nFormat: Sales analysis (3–4 pages). Structure: 1) Key KPI and trends, 2) Segment analysis (B2B vs B2C), 3) Causes and risks, 4) 5 concrete actions with owners and deadlines. Language: English, business tone.\n\nREASONING (step by step):\n1) Summarize Q3 KPI and compare with the plan\n2) Break results down by segment (B2B down 12%, B2C +3%)\n3) Identify the main causes of the B2B decline\n\nQUALITY:\n✓ All numbers match the given data\n✓ Segment analysis is clear (B2B vs B2C)\n✓ Exactly 5 actions with deadlines and owners\n✓ Actions are doable in 1 week with a team of 2 analysts\n\nADVANCED:\nTone: factual, analytical.\nFormat: structured sales analysis"
           },
           "content": {
             "footer": "Next – slide 5: Scenario 3: Marketing campaign plan"
@@ -1816,7 +1816,7 @@
           "type": "practice-scenario",
           "scenario": {
             "situation": "Big changes are happening – a new system rollout or restructuring – and staff are worried. Your job is to draft a message that clearly explains what's changing, why, and what to do next, and answers the most common questions.",
-            "context": "Organisational change (strategy, restructuring, new system). You need a clear message staff can understand.",
+            "context": "Organizational change (strategy, restructuring, new system). You need a clear message staff can understand.",
             "data": "Company is moving to a new CRM. Changes start in 6 weeks. All 120 staff will have training. Most common question: \"Will we lose our jobs?\"",
             "constraints": "Message in 3 days. Max 500 words. Tone: caring, clear. Include a Q&A section.",
             "expectedFormat": "Internal message / email, 300–500 words, Q&A section"
@@ -1833,7 +1833,7 @@
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the message is for",
                   "hint": "Role: internal comms lead. Goal: message to staff. Audience: all employees.",
-                  "partialSolution": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about changes in the organisation, reducing worry and resistance."
+                  "partialSolution": "META:\nYou are an internal comms lead. Your goal is to prepare a clear message to staff about changes in the organization, reducing worry and resistance."
                 },
                 {
                   "step": 2,
@@ -1886,7 +1886,7 @@
           "type": "practice-scenario",
           "scenario": {
             "situation": "The annual staff survey is done – you can see where satisfaction is weaker and where it's stronger. Leadership wants not just numbers but concrete measures: what to start doing, with what budget and timeline.",
-            "context": "Staff survey results, motivation or effectiveness. You need to analyse the situation and propose an action plan to leadership.",
+            "context": "Staff survey results, motivation or effectiveness. You need to analyze the situation and propose an action plan to leadership.",
             "data": "156/180 employees participated (87%). Overall satisfaction: 7.2/10 (+0.4 vs last year). Problem areas: career opportunities (5.8), work-life balance (6.1). Strengths: teamwork (8.4), manager support (7.9). Budget for initiatives: 50k EUR.",
             "constraints": "Leadership wants a concrete action plan. Confidentiality: do not disclose individual responses.",
             "expectedFormat": "Report with analysis and action plan"
@@ -1903,7 +1903,7 @@
                   "title": "META block – Start with role",
                   "description": "Define who you are and who the document is for",
                   "hint": "Role: HR lead. Goal: survey analysis. Audience: leadership.",
-                  "partialSolution": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership."
+                  "partialSolution": "META:\nYou are an HR lead. Your goal is to analyze the survey results and propose an action plan to leadership."
                 },
                 {
                   "step": 2,
@@ -1923,8 +1923,8 @@
                   "step": 4,
                   "title": "REASONING block – Set thought sequence",
                   "description": "Data interpretation, priorities",
-                  "hint": "Steps: 1) Analyse problems, 2) Assess causes, 3) Formulate solutions.",
-                  "partialSolution": "REASONING (step by step):\n1) Analyse problem areas and causes\n2) Formulate concrete solutions\n3) Allocate budget by priority"
+                  "hint": "Steps: 1) Analyze problems, 2) Assess causes, 3) Formulate solutions.",
+                  "partialSolution": "REASONING (step by step):\n1) Analyze problem areas and causes\n2) Formulate concrete solutions\n3) Allocate budget by priority"
                 },
                 {
                   "step": 5,
@@ -1943,7 +1943,7 @@
               ]
             },
             "templateLabel": "View full example",
-            "template": "META:\nYou are an HR lead. Your goal is to analyse the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyse problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Tone: sensitive, professional. Format: HR report"
+            "template": "META:\nYou are an HR lead. Your goal is to analyze the survey results and propose an action plan to leadership.\n\nINPUT:\n156/180 participated (87%). Satisfaction 7.2/10 (+0.4). Problem areas: career 5.8, balance 6.1. Strengths: teamwork 8.4, managers 7.9. Budget: 50k EUR. Confidentiality: do not disclose individual responses.\n\nOUTPUT:\nFormat: Report (6–8 pp.). Structure: 1) Summary, 2) Problem areas, 3) Strengths, 4) Action plan with budget. Language: English, sensitive tone.\n\nREASONING: 1) Analyze problems, 2) Formulate solutions, 3) Allocate budget.\n\nQUALITY: ✓ Sensitivity ✓ Concrete actions ✓ Budget ✓ Confidentiality\n\nADVANCED: Tone: sensitive, professional. Format: HR report"
           },
           "content": {
             "footer": "Next – slide 8: Scenario 6: Customer complaint handling"
@@ -2084,7 +2084,7 @@
                 "icon": "ArrowRight",
                 "color": "emerald",
                 "items": [
-                  "You've finished the 3-module programme. You can move on to Module 4: Context engineering (RAG, Deep research, tokens) or start using your templates at work.",
+                  "You've finished the 3-module program. You can move on to Module 4: Context engineering (RAG, Deep research, tokens) or start using your templates at work.",
                   "Check the prompt library – ready-made templates by topic (Prompt library section on the main page)."
                 ]
               }

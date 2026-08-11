@@ -3416,7 +3416,7 @@
             "heroSidebarTeasers": [
               {
                 "eyebrow": "Tendencija",
-                "headline": "IT specialistai DI naudoja dažniau nei manytumėte",
+                "headline": "IT specialistai DI naudoja dažniau nei manytum",
                 "readMinutes": 4,
                 "scrollTarget": "portal-beat-awareness"
               },
@@ -5397,7 +5397,7 @@
               },
               {
                 "heading": "Daryk dabar",
-                "body": "Kitame ilgame pokalbyje padaryk checkpoint: kas ~10 žinučių paprašyk DI apibendrinti, kas sutarėte. Svarbiausią taisyklę pakartok kritinėje užklausoje.",
+                "body": "Kitame ilgame pokalbyje padaryk checkpoint: kas ~10 žinučių paprašyk DI apibendrinti, kas sutarta. Svarbiausią taisyklę pakartok kritinėje užklausoje.",
                 "blockVariant": "brand"
               },
               {
@@ -5415,7 +5415,7 @@
                     [
                       "**1-oji**",
                       "Įkeliama metinė strategija: „Prioritetas – **darbuotojų gerovė**“.",
-                      "**100 % tikslumas.** Modelis pilnai fokusuojasi į šią vertybę."
+                      "**100 % tikslumas.** Modelis visiškai fokusuojasi į šią vertybę."
                     ],
                     [
                       "**10-oji**",
@@ -6083,7 +6083,7 @@
             "sections": [
               {
                 "heading": "1️⃣ Trumpai (30 s)",
-                "body": "**Kodėl verta:** Vienas šablonas duoda 8 skaidrių struktūrą + 1 pilnai paruoštą skaidrę + QC. Tai juodraštis, ne polish.",
+                "body": "**Kodėl verta:** Vienas šablonas duoda 8 skaidrių struktūrą + 1 visiškai paruoštą skaidrę + QC. Tai juodraštis, ne polish.",
                 "blockVariant": "accent"
               },
               {
@@ -7508,7 +7508,7 @@
                     "value": "60–70%",
                     "tooltip": {
                       "explanation": "60–70% darbuotojų praneša, kad dirba greičiau naudodami DI.",
-                      "trend": "Individualų produktyvumas auga, bet pelningumas ne."
+                      "trend": "Individualus produktyvumas auga, bet pelningumas ne."
                     }
                   }
                 ]
@@ -8222,7 +8222,7 @@
                     {
                       "label": "Greiti laimėjimai",
                       "rowIndex": 2,
-                      "whenHint": "Kai ieškai greitų, mažos pastangos laimėjimų."
+                      "whenHint": "Kai ieškai greitų, mažų pastangų laimėjimų."
                     },
                     {
                       "label": "Portfelis",
@@ -8299,7 +8299,7 @@
               },
               {
                 "heading": "🔽 Nori suprasti detaliau?",
-                "body": "**ICE balas** – jei prioritetų grupės neužtenka ir reikia skaičiaus, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padauginki (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi.\n\n**Šiuos jau moki:** SWOT (stiprybės/silpnybės/galimybės/grėsmės) – skaidrė „Konkurentų analizė“; 80/20 principas (kas duoda daugiausia) – skaidrė „Aprašomoji“ (pajamų koncentracija); priežasčių gilinimas „Kodėl?“ – skaidrė „Diagnostinė“; Rizika ir nauda – skaidrė „CFO“ ir MASTER PROMPTAS.\n\n**Kur pritaikysi M9 projekte:** konkurentų analizė = SWOT; mokymų naudingumas = Testuok/Investuok/Atmesk; rizikų matrica = Rizika/Nauda.",
+                "body": "**ICE balas** – jei prioritetų grupės neužtenka ir reikia skaičiaus, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padaugink (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi.\n\n**Šiuos jau moki:** SWOT (stiprybės/silpnybės/galimybės/grėsmės) – skaidrė „Konkurentų analizė“; 80/20 principas (kas duoda daugiausia) – skaidrė „Aprašomoji“ (pajamų koncentracija); priežasčių gilinimas „Kodėl?“ – skaidrė „Diagnostinė“; Rizika ir nauda – skaidrė „CFO“ ir MASTER PROMPTAS.\n\n**Kur pritaikysi M9 projekte:** konkurentų analizė = SWOT; mokymų naudingumas = Testuok/Investuok/Atmesk; rizikų matrica = Rizika/Nauda.",
                 "blockVariant": "brand",
                 "collapsible": true
               }
@@ -9132,17 +9132,17 @@
                     {
                       "label": "Prekės ženklas",
                       "rowIndex": 0,
-                      "whenHint": "Kai tiriate prekės ženklo suvokimą."
+                      "whenHint": "Kai tiri prekės ženklo suvokimą."
                     },
                     {
                       "label": "Lojalumas",
                       "rowIndex": 1,
-                      "whenHint": "Kai matuojate lojalumą / pakartotinį pirkimą."
+                      "whenHint": "Kai matuoji lojalumą / pakartotinį pirkimą."
                     },
                     {
                       "label": "Pardavimai",
                       "rowIndex": 2,
-                      "whenHint": "Kai ieškote pardavimų kliūčių ar svirčių."
+                      "whenHint": "Kai ieškai pardavimų kliūčių ar svirčių."
                     }
                   ]
                 }
@@ -9630,7 +9630,7 @@
                       "Duok RAG / dokumentus; leisk sakyti „nežinau“"
                     ],
                     [
-                      "**Spragų užpildymas** – logiškai skambūs, bet klaidingi detalės",
+                      "**Spragų užpildymas** – logiškai skambančios, bet klaidingos detalės",
                       "Drausk išgalvotus skaičius, datas, citatas"
                     ],
                     [
@@ -9813,7 +9813,7 @@
                 "options": [
                   "Kai DI pateikia įtikinamai atrodantį, bet išgalvotą atsakymą (be šaltinių pagrindimo)",
                   "Kai DI dirba per lėtai",
-                  "Kai DI atsako anglai, nors prašėte lietuviškai",
+                  "Kai DI atsako angliškai, nors prašei lietuviškai",
                   "Kai DI nepateikia jokio atsakymo"
                 ],
                 "correct": 0,
@@ -10101,7 +10101,7 @@
                     {
                       "label": "PDF",
                       "rowIndex": 1,
-                      "whenHint": "Kai dirbate su PDF / dokumentais."
+                      "whenHint": "Kai dirbi su PDF / dokumentais."
                     },
                     {
                       "label": "Sintezė",
@@ -10116,12 +10116,12 @@
                     {
                       "label": "Mokslas",
                       "rowIndex": 4,
-                      "whenHint": "Kai ieškote mokslinių / peer-reviewed šaltinių."
+                      "whenHint": "Kai ieškai mokslinių / peer-reviewed šaltinių."
                     },
                     {
                       "label": "Tinklas",
                       "rowIndex": 5,
-                      "whenHint": "Kai mapinate temų tinklą ar ryšius."
+                      "whenHint": "Kai braižai temų tinklą ar ryšius."
                     }
                   ]
                 },
@@ -10443,7 +10443,7 @@
             "questions": [
               {
                 "id": "m7-warm-master-1",
-                "question": "Kiek žingsnių turi M7 MASTER PROMPTAS pilnai duomenų analizei?",
+                "question": "Kiek žingsnių turi M7 MASTER PROMPTAS visai duomenų analizei?",
                 "options": [
                   "8 žingsnius – nuo šaltinių iki strateginių rekomendacijų",
                   "6 žingsnius – kaip bendras pipeline",
@@ -11032,7 +11032,7 @@
             {
               "id": "m8-q3",
               "type": "mcq",
-              "question": "Kiek žingsnių turi MASTER PROMPTAS pilnai duomenų analizei?",
+              "question": "Kiek žingsnių turi MASTER PROMPTAS visai duomenų analizei?",
               "options": ["5", "6", "7", "8"],
               "correct": 3,
               "explanation": "MASTER PROMPTAS turi 8 žingsnius: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos.",
@@ -11934,12 +11934,12 @@
         {
           "id": 107,
           "title": "Scenarijus: Stebėjimas socialiniuose tinkluose",
-          "subtitle": "Temos, nuotaika, įtakojantys žmonės",
+          "subtitle": "Temos, nuotaika, įtakingi žmonės",
           "type": "practice-scenario",
           "characterId": 2,
           "content": {
             "scenarioTitle": "Stebėjimas socialiniuose tinkluose",
-            "scenarioDescription": "Pagrindinės temos, nuotaika (%), įtakojantys žmonės (daug sekėjų), reputacijos rizika.",
+            "scenarioDescription": "Pagrindinės temos, nuotaika (%), įtakingi žmonės (daug sekėjų), reputacijos rizika.",
             "taskFrame": {
               "task": "Stebėk socialinius kanalus – temos, nuotaika, reputacijos rizika, atsako strategija.",
               "doneWhen": "Turi santrauką su temomis, nuotaika ir 2 savaičių strategija arba nukopijavai promptą ir gavai atsakymą iš DI."
@@ -11948,12 +11948,12 @@
           "scenario": {
             "context": "Monitoringas socialiniuose tinkluose. 2 savaičių atsako strategija.",
             "data": "Mentions, komentarai, atsiliepimai.",
-            "constraints": "10 temų, nuotaika %, įtakojančių žmonių sąrašas.",
+            "constraints": "10 temų, nuotaika %, įtakingų žmonių sąrašas.",
             "expectedFormat": "Ataskaita + 2 sav. strategija."
           },
-          "template": "1. Išskirk top 10 temų 2. Įvertink nuotaiką (%) 3. Identifikuok įtakojančius žmones (daug sekėjų) 4. Nustatyk reputacijos riziką 5. Paruošk 2 savaičių atsako strategiją",
+          "template": "1. Išskirk top 10 temų 2. Įvertink nuotaiką (%) 3. Identifikuok įtakingus žmones (daug sekėjų) 4. Nustatyk reputacijos riziką 5. Paruošk 2 savaičių atsako strategiją",
           "practicalTask": {
-            "template": "1. Išskirk top 10 temų 2. Įvertink nuotaiką (%) 3. Identifikuok įtakojančius žmones (daug sekėjų) 4. Nustatyk reputacijos riziką 5. Paruošk 2 savaičių atsako strategiją",
+            "template": "1. Išskirk top 10 temų 2. Įvertink nuotaiką (%) 3. Identifikuok įtakingus žmones (daug sekėjų) 4. Nustatyk reputacijos riziką 5. Paruošk 2 savaičių atsako strategiją",
             "templateLabel": "Promptas šiam scenarijui – nukopijuok į DI",
             "title": "Paruošk monitoringo planą",
             "placeholder": "Įrašyk temas arba DI atsakymą.",

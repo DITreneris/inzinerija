@@ -58,7 +58,7 @@ const LINKS_M8: LinkSpec[] = [
     targetModuleId: 7,
     slideId: 86,
     labelLt: 'Vizualizacija',
-    labelEn: 'Visualisation',
+    labelEn: 'Visualization',
   },
   {
     targetModuleId: 7,
@@ -131,7 +131,7 @@ const LINKS_M14: LinkSpec[] = [
     targetModuleId: 13,
     slideId: 13.7,
     labelLt: 'Licencijos',
-    labelEn: 'Licences',
+    labelEn: 'Licenses',
   },
   {
     targetModuleId: 13,

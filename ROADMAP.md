@@ -1,6 +1,6 @@
 # Promptų anatomija – Plėtros roadmap
 
-> **Atnaujinta:** 2026-08-04 | Roadmap **v4.20** (M16–18 learner plain ✅ · M13 plain + M13P-TRIM ✅ · Horizon D TE Could closed)  
+> **Atnaujinta:** 2026-08-11 | Roadmap **v4.21** (M1012-DEEP ✅ · M16–18 learner plain ✅ · M13 plain + M13P-TRIM ✅ · Horizon D TE Could closed)  
 > **App:** 1.5.0 · **Open fokusas:** marketing cutover (MON out of scope) · Wave D3 corporate18 Deferred.  
 > **Done santrauka:** [`CODEBASE_WHAT_IS_DONE.md`](docs/development/CODEBASE_WHAT_IS_DONE.md) · [`CHANGELOG.md`](CHANGELOG.md) · archive [`TODO_DONE_SPRINTS_2026-07-31.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-31.md) · [`2026-07-28`](docs/archive/development/TODO_DONE_SPRINTS_2026-07-28.md)  
 > **Open darbai:** [`TODO.md`](TODO.md) §1.4 MON · §1.5 Deferred (D3 + M19–21) · §1.6 Caveats. M1618 handout CAV-C1 ✅. Authoring F1–F8 + TE Must/Should/ritmas + C2 done; Could C1 won’t-now; **M16–18 learner plain ✅**; **M13 TE/corporate ✅ · learner plain ✅ · M13P-TRIM ✅**.
@@ -20,7 +20,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
 | Horizon | Scope                          | Status                                                                                                                                                                                                            | Prioritetas  |
 | ------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
 | **A**   | M1–9 corporate micro polish    | **done** (triage 2026-07-28)                                                                                                                                                                                      | —            |
-| **B**   | M10–12 corporate production    | **done** (repo exit + B-V lock)                                                                                                                                                                                   | —            |
+| **B**   | M10–12 corporate production    | **done** (repo exit + B-V lock + **M1012-DEEP** audit remediation 2026-08-11)                                                                                                                                     | —            |
 | **C**   | M13–15 corporate production    | **done** (repo exit 2026-07-30) · **learner plain ✅** · **M13P-TRIM ✅** ([`M13_MATURITY_PLAN.md`](docs/development/M13_MATURITY_PLAN.md) / [`M13_PROMPT_MATURITY.md`](docs/development/M13_PROMPT_MATURITY.md)) | —            |
 | **M79** | M7–9 scheme / skaitomumo ROI   | **done** (Sprint 1–3 2026-07-31)                                                                                                                                                                                  | TODO §1.2d   |
 | **E**   | Transfer & Retention (UJ-MUST) | **done** (S1–S5 2026-07-31)                                                                                                                                                                                       | TODO §1.2e   |
@@ -61,6 +61,7 @@ M1–6 pilnai · M7–9 production tier 9 · M10–15 authoring brandumas ✅ ·
   4. Docs: `DEPLOYMENT.md` + marketing handoff note + CHANGELOG.
 - **Exit:** šiame repo žalias corporate12 build + gate testai ✅; marketing verify-access/env cutover = handoff (TODO §1.4).
 - **B-V verify/lock (2026-07-30):** preflight + `build:corporate12` + tier-12 tests + `audit:m1012` re-locked; handoff docs match code.
+- **M1012-DEEP remediation (2026-08-11):** Batch A–F applied; content gaps (MCP/connectors, injection, cost/model, JSON handoff, AI Act), M11 coverage, tools catalog, `m12_three_labs`, picker and renderer debt closed; `audit:release-preflight` green.
 - **SOT:** `turinio_pletra_moduliai_10_11_12.md`.
 
 ### Horizon C – M13–15 corporate production (DONE)

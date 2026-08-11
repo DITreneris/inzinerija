@@ -137,7 +137,7 @@ const STEPS_GRID_EN = buildMobileGrid(STEP_META_EN);
 const FORWARD_LABELS = ['sprendimas', 'atlikimas', 'rezultatas'] as const;
 const FORWARD_LABELS_EN = ['decision', 'execution', 'outcome'] as const;
 const FEEDBACK_LABEL = 'elgesio korekcija';
-const FEEDBACK_LABEL_EN = 'behaviour adjustment';
+const FEEDBACK_LABEL_EN = 'behavior adjustment';
 
 interface RlProcessDiagramProps {
   currentStep?: number;
@@ -203,7 +203,7 @@ export default function RlProcessDiagram({
     ? `RL process diagram.${isInteractive ? ' Click a step for explanation.' : ''}`
     : `RL proceso schema.${isInteractive ? ' Paspausk žingsnį, kad pamatytum paaiškinimą.' : ''}`;
   const feedbackPathTitle = isEn
-    ? 'Feedback: reward returns to agent and shapes behaviour'
+    ? 'Feedback: reward returns to agent and shapes behavior'
     : 'Grįžtamasis ryšys: atlygis grįžta į agentą ir keičia elgesį';
   const viewBox = isCompact ? VIEWBOX_MOBILE : VIEWBOX_DESKTOP;
   const vbWidth = isCompact ? VB_WIDTH_MOBILE : VB_WIDTH_DESKTOP;

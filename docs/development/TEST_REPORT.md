@@ -2,6 +2,44 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-11 – Kalbos konvencijos (LT `tu` · EN American) + repo-wide vartai
+
+**Statusas:** ✅ PASS (`audit:release-preflight` green).
+**Apimtis:** GOLDEN §6c standartas; LT 71 pataisa (JSON + `lt.json` + komponentų hardcoded fallback'ai); BrE→AmE visuose EN paviršiuose + durable `build-en-*.mjs` / overrides; nauji vartai.
+
+| Gate                                     | Rezultatas                                                              |
+| ---------------------------------------- | ----------------------------------------------------------------------- |
+| `audit:lt-address`                       | ✅ 16 duomenų + 393 source failai (1 allowlist: reklamos pavyzdys)      |
+| `audit:en-spelling`                      | ✅ 0 BrE (allowlist: tikriniai vardai)                                  |
+| `patch-en-american-spelling.mjs` dry-run | ✅ idempotent (0 findings po apply)                                     |
+| `audit:m79` / `audit:m46`                | ✅ po LT pusės praplėtimo (`lt-address-rules`)                          |
+| `validate:schema` · `generate:core-data` | ✅ (M10–12 tools + LT pataisos vienu regeneravimu)                      |
+| `lint` · `typecheck`                     | ✅                                                                      |
+| `npm run audit:release-preflight`        | ✅ visa grandinė su 2 naujais vartais                                   |
+| `test:run`                               | ✅ **161** failai / **982** testai (+`languageConventionGates.test.ts`) |
+
+**Rasta pakeliui:** `audit:en-language-m*` skaito tik savo 2 failus (LT pusėje – 5 literal šablonai), ASCII `\b` nemato `į…`, o `rewriteStringLiterals` `${…}` praleidimas nutrūkdavo iš karto (latentinė identifikatorių perrašymo rizika – patikrinta, nepasireiškė).
+
+**Verdict:** kalbos konvencijos = vartai, ne vienkartinis praėjimas. M10–12 remediacijos „green“ perpatikrintas po naujų vartų.
+
+---
+
+## 2026-08-11 – M10–M12 deep audit remediation
+
+**Statusas:** ✅ PASS (`audit:release-preflight` green).  
+**Apimtis:** Batch A–F: M10–12 content lies/duplicates, language cleanup, dependency inversions, M11 coverage, content gaps, tools catalog, `m12_three_labs`, picker dedupe, linear-process factory.
+
+| Gate                              | Rezultatas                                                                                                   |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Baseline pre-change suite         | ✅ schema · M10–12 audits · footer · TE strict · tools · slide-interactivity · lint · typecheck · `test:run` |
+| Per-wave gates                    | ✅ Batch A–F targeted gates green                                                                            |
+| `npm run audit:release-preflight` | ✅ schema · lint · token/typography gates · m49/m1012/m1315/m1618 · journey · footer · TE strict · typecheck |
+| `test:run`                        | ✅ **160** failai / **966** testai (perpatikrinta **161/982** po §6c kalbos vartų)                           |
+
+**Verdict:** M10–12 deep audit remediation closed in repo. Remaining marketing/corporate18 items stay out of scope.
+
+---
+
 ## 2026-08-06 – Corporate12 Supabase handoff re-lock
 
 **Statusas:** ✅ PASS (docs + readiness).  

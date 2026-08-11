@@ -1,0 +1,11 @@
+{
+  "_comment": "Sąmoningos išimtys LT kreipinio vartams. Numatyta – `tu` forma (AGENTS.md). Įrašyk tik tada, kai forma tikrai ne kreipinys į mokinį (pvz. reklaminio teksto pavyzdys, citata, tikrinis vardas), ir paaiškink lauke `why`.",
+  "entries": [
+    {
+      "file": "src/locales/lt.json",
+      "path": ".vaizdoGen.placeholderHeadline",
+      "hit": "Pajuskite",
+      "why": "Reklamos antraštės pavyzdys, kurį mokinys generuoja – kreipiamasi į reklamos auditoriją, ne į mokinį."
+    }
+  ]
+}

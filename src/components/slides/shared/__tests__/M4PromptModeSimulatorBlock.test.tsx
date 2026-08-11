@@ -31,7 +31,7 @@ describe('M4PromptModeSimulatorBlock', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('reveals recommendation, mismatch, error outcome and artefact after mode choice', () => {
+  it('reveals recommendation, mismatch, error outcome and artifact after mode choice', () => {
     renderWithProviders(<M4PromptModeSimulatorBlock />);
 
     fireEvent.click(screen.getByRole('radio', { name: /Laisvas klausimas/i }));

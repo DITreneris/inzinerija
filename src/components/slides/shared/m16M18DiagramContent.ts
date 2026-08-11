@@ -239,7 +239,7 @@ export function getM16UserCycleExplanations(
       },
       {
         title: '3. Action',
-        body: 'The one Must function of the product – not a feature catalogue.',
+        body: 'The one Must function of the product – not a feature catalog.',
       },
       {
         title: '4. Result',
@@ -322,7 +322,7 @@ export function getM18PacketStackExplanations(
     return [
       {
         title: '1. mvp_brief.md',
-        body: 'Same artefact as Module 16 `01_MVP_BRIEF.md` – keep Must/Won’t and success criteria.',
+        body: 'Same artifact as Module 16 `01_MVP_BRIEF.md` – keep Must/Won’t and success criteria.',
       },
       {
         title: '2. user_flow.md',

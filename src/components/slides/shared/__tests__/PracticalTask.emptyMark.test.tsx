@@ -17,7 +17,7 @@ describe('PracticalTask empty-mark honesty', () => {
     const onTaskComplete = vi.fn();
     const task: PracticalTaskType = {
       title: 'Test task',
-      placeholder: 'Enter artefact…',
+      placeholder: 'Enter artifact…',
       allowMarkWithoutAnswer: true,
     };
 

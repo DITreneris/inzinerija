@@ -102,7 +102,7 @@ export function OrderingQuestion({
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
           {en
             ? 'Use the arrows to reorder items in the correct order (top to bottom).'
-            : 'Naudokite rodykles, kad surikiuotumėte elementus teisinga tvarka (nuo viršaus žemyn).'}
+            : 'Naudok rodykles, kad surikiuotum elementus teisinga tvarka (nuo viršaus žemyn).'}
         </p>
       )}
 

@@ -10,7 +10,7 @@ export function getM7AnalysisTypeExplanations(
     return [
       {
         title: 'Descriptive – What happened?',
-        body: 'Summarise facts: top products, regions, trends, concentration. Use when leadership asks **what** happened.',
+        body: 'Summarize facts: top products, regions, trends, concentration. Use when leadership asks **what** happened.',
       },
       {
         title: 'Diagnostic – Why?',
@@ -118,7 +118,7 @@ export function getM7DataPrepExplanations(locale: M7Locale): StepExplanation[] {
     },
     {
       title: '2. Sukurti struktūrą',
-      body: 'Stulpeliai: kategorija, šaltinis, URL, atnaujinimo dažnis – kad DI ir tu naudotumėte tą pačią schemą.',
+      body: 'Stulpeliai: kategorija, šaltinis, URL, atnaujinimo dažnis – kad DI naudotų tą pačią schemą kaip ir tu.',
     },
     {
       title: '3. Surinkti į kategorijas',

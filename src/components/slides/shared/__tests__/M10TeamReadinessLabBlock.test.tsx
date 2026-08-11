@@ -26,7 +26,7 @@ describe('M10TeamReadinessLabBlock', () => {
     expect(screen.getAllByRole('radiogroup')).toHaveLength(3);
   });
 
-  it('reveals weakest-dimension guidance and copyable artefact', () => {
+  it('reveals weakest-dimension guidance and copyable artifact', () => {
     renderWithProviders(<M10TeamReadinessLabBlock />);
 
     const groups = screen.getAllByRole('radiogroup');
@@ -42,7 +42,7 @@ describe('M10TeamReadinessLabBlock', () => {
 
     expect(screen.getByText('Profilis paruoštas')).toBeInTheDocument();
     expect(
-      screen.getAllByText(/Sukurkite vieną prompto šabloną/i).length
+      screen.getAllByText(/Sukurk vieną prompto šabloną/i).length
     ).toBeGreaterThan(0);
     expect(screen.getByText(/Silpniausia dimensija/i)).toBeInTheDocument();
     expect(
@@ -64,9 +64,7 @@ describe('M10TeamReadinessLabBlock', () => {
       within(groups[2]).getByRole('radio', { name: /Sistemiškai/i })
     );
 
-    expect(
-      screen.getByText(/Pirma sutarkite bendrą bazę/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Pirma sutark bendrą bazę/i)).toBeInTheDocument();
     expect(
       screen.getByText(/vieno bendro naudojimo atvejo/i)
     ).toBeInTheDocument();

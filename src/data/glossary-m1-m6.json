@@ -101,7 +101,7 @@
     },
     {
       "term": "INPUT blokas",
-      "definition": "Duomenys, faktai, apribojimai – ką turite prieš pradedant.",
+      "definition": "Duomenys, faktai, apribojimai – ką turi prieš pradedant.",
       "moduleId": 1
     },
     {
@@ -156,7 +156,7 @@
     },
     {
       "term": "META blokas",
-      "definition": "Rolė (kas esate), kontekstas ir tikslas (ką sukurti), auditorija (kam).",
+      "definition": "Rolė (kas esi), kontekstas ir tikslas (ką sukurti), auditorija (kam).",
       "moduleId": 1
     },
     {
@@ -176,7 +176,7 @@
     },
     {
       "term": "OUTPUT blokas",
-      "definition": "Formatas, struktūra ir reikalavimai – ko norite gauti (lentelė, sąrašas, tonas).",
+      "definition": "Formatas, struktūra ir reikalavimai – ko nori gauti (lentelė, sąrašas, tonas).",
       "moduleId": 1
     },
     {

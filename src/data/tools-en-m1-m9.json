@@ -150,7 +150,7 @@
     {
       "name": "MongoDB",
       "url": "https://www.mongodb.com",
-      "description": "NoSQL document database for flexible data structures: catalogues, events, content apps, and fast MVPs.",
+      "description": "NoSQL document database for flexible data structures: catalogs, events, content apps, and fast MVPs.",
       "moduleId": 7,
       "category": "Databases"
     },

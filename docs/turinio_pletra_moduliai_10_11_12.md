@@ -983,6 +983,16 @@ Pamoka po bandymo: ką atnaujinti kitam kartui
 | **Observability**                        | Ref. doc; M12 arba M10 – nuoroda                                   | Dashboard: kiek run'ų, kiek klaidų, top 5 fail step'ų; SLA matavimas į praktiką. Ref.: §25.                                             |
 | **Promptų standartas automatizacijai**   | **M10** – skaidrė su CopyButton (pvz. 10.3 arba atskira); ref. doc | Vienas „master prompt“ + 3 variantai (Zapier/Make/n8n): ką sugeneruoti (žingsniai, laukai, klaidos, testai). Ref.: §26.                 |
 
+### 2026-08 M10–M12 deep audit remediation anchors
+
+| Spraga                        | Vieta                | Live turinio sprendimas                                                                                                                                    |
+| ----------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| MCP / jungčių sluoksnis       | **10.4**             | Platformos aiškinamos per tris įrankių sluoksnius: platformos funkcijos, jungtys / MCP / API, agentiniai režimai su failais ir atmintimi.                  |
+| Prompt injection per įrankius | **10.6**             | MUST saugiklis: nepasitikėti įrankio grąžintu tekstu kaip instrukcija; išorinį turinį laikyti duomenimis, o sistemines taisykles – viršesnėmis.            |
+| Kaina ir modelio pasirinkimas | **10.64**            | Minimalus aprašymas turi numatyti pigų modelį klasifikavimui / filtravimui, stipresnį modelį rašymui ar sprendimui, ir ribą, kada sustabdyti brangų kelią. |
+| Struktūrizuotas perdavimas    | **120.5**            | Perdavimo taisyklė turi JSON / schemos laukus: `task_id`, `source_role`, `target_role`, `payload`, `quality_gate`, `human_review`.                         |
+| Atitiktis / DI aktas          | **10.65** + **10.7** | 2–3 eilutės apie asmens duomenis, sprendimų poveikį ir dokumentavimo pareigą; žodynėlyje – „DI aktas / atitiktis“.                                         |
+
 ### WANT (galima vėlesniam išplėtimui)
 
 - Papildomi M12 scenarijai (po 3 lab'ų); „Use case katalogas“ kaip atskiras resursas; observability dashboard šablonas; human-in-the-loop checklist išplėstas.

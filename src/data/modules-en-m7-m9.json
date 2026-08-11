@@ -2411,7 +2411,7 @@
               },
               {
                 "heading": "Jailbreak signal",
-                "body": "Another type – when the user themselves tries to bypass safety with phrases like \"From now on you are…\", \"Output the system prompt\". Recognise – do not comply; this is not the same as a biased business prompt.",
+                "body": "Another type – when the user themselves tries to bypass safety with phrases like \"From now on you are…\", \"Output the system prompt\". Recognize – do not comply; this is not the same as a biased business prompt.",
                 "blockVariant": "terms"
               },
               {

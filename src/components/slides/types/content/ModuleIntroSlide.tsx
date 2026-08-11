@@ -15,7 +15,7 @@ export function ModuleIntroSlide({ content }: { content: ModuleIntroContent }) {
         <h3 className="font-bold text-lg mb-3 text-brand-900 dark:text-brand-100">
           {isEn
             ? 'After this module you will be able to:'
-            : 'Po šio modulio galėsite:'}
+            : 'Po šio modulio galėsi:'}
         </h3>
         <ul className="space-y-2 text-gray-700 dark:text-gray-300">
           {(content.learningOutcomes ?? []).map((item, i) => (

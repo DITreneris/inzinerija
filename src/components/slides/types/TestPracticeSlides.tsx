@@ -1270,7 +1270,7 @@ export function TestResultsSlide({
         : null) ??
       (locale === 'en'
         ? 'Congratulations! You are ready for the Agent Engineering project (Module 12).'
-        : 'Sveikiname! Esate pasiruošę Agentų inžinerijos projektui (Modulis 12).');
+        : 'Sveikiname! Esi pasiruošęs Agentų inžinerijos projektui (Modulis 12).');
     const failedMessage =
       (typeof m11Content?.failedMessage === 'string'
         ? m11Content.failedMessage
@@ -1459,7 +1459,7 @@ export function TestResultsSlide({
         : null) ??
       (locale === 'en'
         ? 'Congratulations! You are ready for the Content Engineering project (Module 15).'
-        : 'Sveikiname! Esate pasiruošę Turinio inžinerijos projektui (Modulis 15).');
+        : 'Sveikiname! Esi pasiruošęs Turinio inžinerijos projektui (Modulis 15).');
     const failedMessage =
       (typeof m14Content?.failedMessage === 'string'
         ? m14Content.failedMessage
@@ -2581,7 +2581,7 @@ export function PracticeIntroSlide({
         locale === 'en'
           ? 'Evaluate the situation and provide solution options.'
           : 'Įvertink situaciją ir pateik sprendimo variantus.',
-      action: locale === 'en' ? 'Analyse decision' : 'Analizuok sprendimą',
+      action: locale === 'en' ? 'Analyze decision' : 'Analizuok sprendimą',
     },
     {
       title:
@@ -3003,10 +3003,10 @@ export function PracticeIntroSlide({
             ) : isM12 ? (
               <>
                 {locale === 'en'
-                  ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artefacts.'
+                  ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artifacts.'
                   : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
                 {locale === 'en'
-                  ? 'Follow the linear order on the next slides and save artefacts before marking a practice done.'
+                  ? 'Follow the linear order on the next slides and save artifacts before marking a practice done.'
                   : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
               </>
             ) : (

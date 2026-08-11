@@ -60,7 +60,7 @@ describe('m10HumanControlModel', () => {
     expect(trade.errorTiming).toBe('at_exception');
   });
 
-  it('builds control-rule parts for the 10.64 artefact', () => {
+  it('builds control-rule parts for the 10.64 artifact', () => {
     const parts = buildControlRuleParts('refund', 'exception_gate');
     expect(parts.isMismatch).toBe(false);
     expect(parts.conditionKey).toBe('refund_limit');
@@ -80,7 +80,7 @@ describe('m10HumanControlModel', () => {
 });
 
 describe('m10HumanControlContent', () => {
-  it('formats LT and EN artefacts with the control contract fields', () => {
+  it('formats LT and EN artifacts with the control contract fields', () => {
     const parts = buildControlRuleParts('sensitive_payment', 'every_case');
     const lt = formatControlRuleArtefact('lt', parts);
     const en = formatControlRuleArtefact('en', parts);

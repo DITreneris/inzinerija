@@ -19,7 +19,7 @@ export const M9_DATA_WORKFLOW_STEPS_EN: { label: string; desc: string }[] = [
   { label: 'Run tools', desc: '1–4 AI' },
   { label: 'Cleaning', desc: 'Dedupe' },
   { label: 'Integration', desc: 'Single doc' },
-  { label: 'Charts', desc: 'Colours, charts' },
+  { label: 'Charts', desc: 'Colors, charts' },
   { label: 'Dashboard', desc: '.html' },
 ];
 
@@ -121,8 +121,8 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M9_EN: StepExplanation[] = [
     body: 'Merge four fragments into **one markdown** – sections: summary, facts, risks, sources; remove duplicates.',
   },
   {
-    title: '7. Visualisation',
-    body: '**Viz spec**: colours (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
+    title: '7. Visualization',
+    body: '**Viz spec**: colors (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -156,8 +156,8 @@ const M9_DATA_WORKFLOW_STEP_EXPLANATIONS_M7_EN: StepExplanation[] = [
     body: 'Merge four fragments into **one markdown** – sections: summary, facts, risks, sources; remove duplicates.',
   },
   {
-    title: '7. Visualisation',
-    body: '**Viz spec**: colours (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
+    title: '7. Visualization',
+    body: '**Viz spec**: colors (hex), axes, legend, two chart types, key metric (KPI) blocks – minimal code, clear AI instructions.',
   },
   {
     title: '8. Dashboard (.html)',
@@ -215,13 +215,13 @@ const M9_WORKFLOW_PROMPTS_LT: M9WorkflowPromptStep[] = [
     title: 'Deep research promptas',
     body: 'Paruošk gilaus tyrimo promptą – dar nepaliek DI.',
     copyable:
-      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra arba nežinai – parašyk „Nežinau“, ne spėliok. Kiekvieną skaičių susiek su šaltiniu.',
+      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra arba nežinai – parašyk „Nežinau“, nespėliok. Kiekvieną skaičių susiek su šaltiniu.',
   },
   {
     title: 'Paleidimas (1–4 DI)',
     body: 'Paleisk tą patį promptą 1–4 prieinamuose DI – pakanka 1–2.',
     copyable:
-      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.\nINSTRUKCIJA SAU: paleisk šį promptą 1–4 prieinamuose DI (ChatGPT, Gemini, DeepSeek, Grok – kiek turi; pakanka 1–2). Rezultatus vėliau sujungsi.',
+      'ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.\nTASK: Atlik gilųjį tyrimą (deep research) temoje: [X].\nUžduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?\nOUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, nespėliok.\nINSTRUKCIJA SAU: paleisk šį promptą 1–4 prieinamuose DI (ChatGPT, Gemini, DeepSeek, Grok – kiek turi; pakanka 1–2). Rezultatus vėliau sujungsi.',
   },
   {
     title: 'Duomenų valymas',
@@ -260,25 +260,25 @@ const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
     title: 'Methodology prompt',
     body: 'Prepare analysis methodology template – structure, KPIs.',
     copyable:
-      'ROLE: You are a business analyst preparing analysis methodology.\nTASK: Prepare an analysis methodology template for topic [X].\nCONTEXT: Need clear structure – what to analyse, which KPIs to use.\nOUTPUT: Table structure with columns – Source, KPI, Period, Note. Add 5–7 concrete KPIs and 3 sources with links.',
+      'ROLE: You are a business analyst preparing analysis methodology.\nTASK: Prepare an analysis methodology template for topic [X].\nCONTEXT: Need clear structure – what to analyze, which KPIs to use.\nOUTPUT: Table structure with columns – Source, KPI, Period, Note. Add 5–7 concrete KPIs and 3 sources with links.',
   },
   {
     title: 'Deep research prompt',
     body: 'Prepare the deep-research prompt – do not run tools yet.',
     copyable:
-      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing or unknown – write "I don\'t know", do not guess. Tie every number to a source.',
+      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyze trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing or unknown – write "I don\'t know", do not guess. Tie every number to a source.',
   },
   {
     title: 'Run tools (1–4 AI)',
     body: 'Run the same prompt on 1–4 available AI tools – 1–2 is enough.',
     copyable:
-      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyse trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write "I don\'t know", do not guess.\nSELF NOTE: run this prompt on 1–4 available AI tools (ChatGPT, Gemini, DeepSeek, Grok – whatever you have; 1–2 is enough). Merge results later.',
+      'ROLE: You are a senior business analyst. Use only reliable, cited sources.\nTASK: Perform deep research on: [X].\nTask: Analyze trends, key KPIs, risks and opportunities. Sub-questions: (1) What is happening in the market? (2) What are the main KPIs? (3) What are the top 3 risks?\nOUTPUT: Summary (max 1 page), fact list with dates, source links. If data is missing – write "I don\'t know", do not guess.\nSELF NOTE: run this prompt on 1–4 available AI tools (ChatGPT, Gemini, DeepSeek, Grok – whatever you have; 1–2 is enough). Merge results later.',
   },
   {
     title: 'Data cleaning',
     body: 'Checklist – same logic as Module 7 slide "Data preparation and work process".',
     copyable:
-      'Here are AI research outputs (1–4). Task:\n1. Clean: remove duplicates and repeated facts.\n2. Normalise dates (YYYY-MM-DD) and numbers (decimal format – specify).\n3. Mark missing values and claims without sources – if unknown, write "I don\'t know".\n4. Add metadata: source (which AI tool), date, topic.\nPre-analysis checklist: anonymisation (if needed), format normalisation, dedupe, missing values – see Module 7 slide "Data preparation and work process".',
+      'Here are AI research outputs (1–4). Task:\n1. Clean: remove duplicates and repeated facts.\n2. Normalize dates (YYYY-MM-DD) and numbers (decimal format – specify).\n3. Mark missing values and claims without sources – if unknown, write "I don\'t know".\n4. Add metadata: source (which AI tool), date, topic.\nPre-analysis checklist: anonymisation (if needed), format normalization, dedupe, missing values – see Module 7 slide "Data preparation and work process".',
   },
   {
     title: 'Data integration',
@@ -287,16 +287,16 @@ const M9_WORKFLOW_PROMPTS_EN: M9WorkflowPromptStep[] = [
       'Merge these 4 research fragments (from ChatGPT, Gemini, DeepSeek, Grok) into one document.\nRequirements: single markdown structure with sections (1. Summary, 2. Facts and KPIs, 3. Risks, 4. Sources). Each fact tagged [source: ChatGPT/Gemini/DeepSeek/Grok]. Remove all duplicates – keep only unique points. Add overall conclusions section (max 5 sentences).',
   },
   {
-    title: 'Visualisation',
-    body: 'Specify parameters – colours (hex), axes, legend, 2 chart types, KPI blocks.',
+    title: 'Visualization',
+    body: 'Specify parameters – colors (hex), axes, legend, 2 chart types, KPI blocks.',
     copyable:
-      'ROLE: You are a data visualisation expert. Minimal code – clear instructions.\nTASK: Prepare visualisation spec from integrated data.\nCONTEXT: I have one summary document (collected + cleaned + merged from 4 AI runs). Goal – executive dashboard.\nOUTPUT – specify:\n1. Colours: primary (hex), secondary (hex), accent (hex).\n2. Chart labels: X axis, Y axis, chart title, legend – specific to my data.\n3. Dynamics: which 2 charts? (e.g. time series, category comparison.) Type: bar / line / pie.\n4. KPI blocks: which 3–4 numbers to show on top?\nProvide concrete text I can copy into Claude or ChatGPT to get .html dashboard code.',
+      'ROLE: You are a data visualization expert. Minimal code – clear instructions.\nTASK: Prepare visualization spec from integrated data.\nCONTEXT: I have one summary document (collected + cleaned + merged from 4 AI runs). Goal – executive dashboard.\nOUTPUT – specify:\n1. Colors: primary (hex), secondary (hex), accent (hex).\n2. Chart labels: X axis, Y axis, chart title, legend – specific to my data.\n3. Dynamics: which 2 charts? (e.g. time series, category comparison.) Type: bar / line / pie.\n4. KPI blocks: which 3–4 numbers to show on top?\nProvide concrete text I can copy into Claude or ChatGPT to get .html dashboard code.',
   },
   {
     title: '.html dashboard',
     body: 'Full .html – copy to Notepad, save, open in browser.',
     copyable:
-      'Generate one complete .html file with embedded CSS and minimal JavaScript if needed (e.g. Chart.js via CDN) for dashboard topic: [X].\nRequirements: title, 2–3 KPI blocks (numbers or placeholders), 1–2 charts (bar or line). Code must be complete – copy to Notepad, save as .html, open in browser without extra files. Use colours and labels I specified [or: primary #2563eb, secondary #64748b, accent #10b981]. File comment: "Module 9 example – you can change data and colours."',
+      'Generate one complete .html file with embedded CSS and minimal JavaScript if needed (e.g. Chart.js via CDN) for dashboard topic: [X].\nRequirements: title, 2–3 KPI blocks (numbers or placeholders), 1–2 charts (bar or line). Code must be complete – copy to Notepad, save as .html, open in browser without extra files. Use colors and labels I specified [or: primary #2563eb, secondary #64748b, accent #10b981]. File comment: "Module 9 example – you can change data and colors."',
   },
 ];
 

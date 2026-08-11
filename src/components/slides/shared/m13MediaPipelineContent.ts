@@ -32,7 +32,7 @@ export function getM13MediaPipelineExplanations(
     return [
       {
         title: '1. Brief + brand',
-        body: 'Lock the goal (awareness / engagement / conversion), audience, platform, colours and tone **before** you generate. Without that, AI looks “nice” but not like your campaign.',
+        body: 'Lock the goal (awareness / engagement / conversion), audience, platform, colors and tone **before** you generate. Without that, AI looks “nice” but not like your campaign.',
       },
       {
         title: '2. Frames / storyboard',
@@ -48,11 +48,11 @@ export function getM13MediaPipelineExplanations(
       },
       {
         title: '5. Audio + edit',
-        body: 'Audio first: voice-over (or bed only) sets duration; then cut, colour grade and mix. Montage follows sound, not the other way around.',
+        body: 'Audio first: voice-over (or bed only) sets duration; then cut, color grade and mix. Montage follows sound, not the other way around.',
       },
       {
         title: '6. QA + AI label',
-        body: 'Check brand, message, format, rights and disclosure (C2PA / visible AI label). For the business cycle (brief → A/B → optimise), see the slide “Workflow: from brief to publication”.',
+        body: 'Check brand, message, format, rights and disclosure (C2PA / visible AI label). For the business cycle (brief → A/B → optimize), see the slide “Workflow: from brief to publication”.',
       },
     ];
   }

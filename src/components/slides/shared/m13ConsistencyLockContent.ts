@@ -12,7 +12,7 @@ const STEPS_EN = [
   { label: '3–5 refs', desc: 'Angles' },
   { label: 'Lock', desc: 'Same product' },
   { label: 'Generate', desc: 'New scene' },
-  { label: 'QA', desc: 'Label, colour' },
+  { label: 'QA', desc: 'Label, color' },
 ] as const;
 
 export function getM13ConsistencyLockSteps(locale: M10Locale) {
@@ -30,7 +30,7 @@ export function getM13ConsistencyLockExplanations(
       },
       {
         title: '2. Lock rule',
-        body: 'Prompt: same product, same proportions, same label placement, same colour palette, same style.',
+        body: 'Prompt: same product, same proportions, same label placement, same color palette, same style.',
       },
       {
         title: '3. Generate new scene',

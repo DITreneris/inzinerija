@@ -201,7 +201,7 @@ export function CertificateScreen({ tier, onBack }: CertificateScreenProps) {
               defaultValue:
                 locale === 'en'
                   ? 'Download failed. Please try again.'
-                  : 'Atsisiuntimas nepavyko. Bandykite dar kartą.',
+                  : 'Atsisiuntimas nepavyko. Bandyk dar kartą.',
             })}
           </p>
         )}

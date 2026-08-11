@@ -197,6 +197,13 @@
       "category": "Planavimas"
     },
     {
+      "name": "Google Forms",
+      "url": "https://forms.google.com",
+      "description": "Formų kūrimas ir atsakymų rinkimas – M12 praktikoje kaip darbo eigos paleidiklis prieš lentelę / CRM ir pranešimus.",
+      "moduleId": 12,
+      "category": "Produktyvumas"
+    },
+    {
       "name": "GPT-Image (OpenAI)",
       "url": "https://chatgpt.com",
       "description": "OpenAI vaizdų modelis ChatGPT – natūrali kalba, sudėtingi briefai, greitas marketingo juodraštis.",
@@ -244,6 +251,13 @@
       "description": "Lietuviškas DI detektorius, gerai aptinka populiarių LLM generuotą tekstą (~96 % tikslumas).",
       "moduleId": 4,
       "category": "DI turinio detektoriai"
+    },
+    {
+      "name": "Jira",
+      "url": "https://www.atlassian.com/software/jira",
+      "description": "Užklausų ir užduočių valdymas – M12 praktikoje eskalacijai iš atsiliepimų ar incidentų į komandai matomą darbą.",
+      "moduleId": 12,
+      "category": "Produktyvumas"
     },
     {
       "name": "Julius AI",
@@ -449,6 +463,13 @@
       "category": "Video generavimas"
     },
     {
+      "name": "Slack",
+      "url": "https://slack.com",
+      "description": "Komandos pranešimai – M12 praktikose naudojamas darbo eigos rezultatui, alertui ar eskalacijai perduoti komandai.",
+      "moduleId": 12,
+      "category": "Produktyvumas"
+    },
+    {
       "name": "SlidesAI",
       "url": "https://www.slidesai.io",
       "description": "Tekstas → skaidrės keliais paspaudimais. Google Slides integracija.",
@@ -496,6 +517,20 @@
       "description": "Greitas backend MVP: PostgreSQL + Auth + API + storage + real-time be didelės DevOps naštos.",
       "moduleId": 7,
       "category": "Duomenų bazės"
+    },
+    {
+      "name": "Teams",
+      "url": "https://www.microsoft.com/microsoft-teams/group-chat-software",
+      "description": "Microsoft komandos pokalbiai ir pranešimai – M12 praktikose kaip alternatyva Slack rezultatams ir eskalacijoms perduoti.",
+      "moduleId": 12,
+      "category": "Produktyvumas"
+    },
+    {
+      "name": "Typeform",
+      "url": "https://www.typeform.com",
+      "description": "Interaktyvios formos – M12 praktikoje kaip alternatyvus formos šaltinis automatizavimo grandinei.",
+      "moduleId": 12,
+      "category": "Produktyvumas"
     },
     {
       "name": "Trello",

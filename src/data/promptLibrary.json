@@ -8,13 +8,13 @@
           "id": "mini-zero-shot",
           "title": "Mini: Zero-shot šūkis",
           "goal": "Vienas sakinys, be pavyzdžių.",
-          "prompt": "Sukurk vieno sakinio produkto šūkį produktui [ĮRAŠYKITE]."
+          "prompt": "Sukurk vieno sakinio produkto šūkį produktui [ĮRAŠYK]."
         },
         {
           "id": "mini-few-shots",
           "title": "Mini: Few-shot šūkiai",
           "goal": "Perimti stilių.",
-          "prompt": "Pavyzdžiai:\n„[PAVYZDYS 1]“\n„[PAVYZDYS 2]“\nSukurk dar 3 panašaus stiliaus šūkius produktui [ĮRAŠYKITE]."
+          "prompt": "Pavyzdžiai:\n„[PAVYZDYS 1]“\n„[PAVYZDYS 2]“\nSukurk dar 3 panašaus stiliaus šūkius produktui [ĮRAŠYK]."
         }
       ]
     },
@@ -49,7 +49,7 @@
           "id": "mini-restrictions",
           "title": "Mini: Apribojimai",
           "goal": "Nustatyti ribas ir tai, ko vengti.",
-          "prompt": "Užduotis: [APRAŠYKITE UŽDUOTĮ].\nApribojimai:\nIlgis: [PVZ. Maks. 200 žodžių / 1 puslapis].\nKo vengti: [PVZ. žargonas, reklama, subjektyvūs įvertinimai].\nFormatas: [PVZ. punktai, lentelė, pastraipos].\nKalba: [KALBA]."
+          "prompt": "Užduotis: [APRAŠYK UŽDUOTĮ].\nApribojimai:\nIlgis: [PVZ. Maks. 200 žodžių / 1 puslapis].\nKo vengti: [PVZ. žargonas, reklama, subjektyvūs įvertinimai].\nFormatas: [PVZ. punktai, lentelė, pastraipos].\nKalba: [KALBA]."
         }
       ]
     },
@@ -60,7 +60,7 @@
         {
           "id": "daily-summary",
           "title": "Dienos santrauka",
-          "prompt": "META: Tu esi [ROLĖ].\nINPUT:\nDienos darbai: [ĮRAŠYKITE]\nRezultatai: [ĮRAŠYKITE]\nKliūtys: [ĮRAŠYKITE]\nRytojaus planas: [ĮRAŠYKITE]\nOUTPUT:\n5 punktų sąrašas\n1–2 sakiniai kiekvienam"
+          "prompt": "META: Tu esi [ROLĖ].\nINPUT:\nDienos darbai: [ĮRAŠYK]\nRezultatai: [ĮRAŠYK]\nKliūtys: [ĮRAŠYK]\nRytojaus planas: [ĮRAŠYK]\nOUTPUT:\n5 punktų sąrašas\n1–2 sakiniai kiekvienam"
         },
         {
           "id": "meeting-notes",
@@ -70,7 +70,7 @@
         {
           "id": "email-reply",
           "title": "El. laiško atsakymas",
-          "prompt": "META: Tu esi klientų aptarnavimo specialistas.\nINPUT: Gaunamas laiškas: [ĮRAŠYKITE]\nOUTPUT:\n4–6 sakiniai\nProfesionalus, mandagus tonas\nAiškus kitas veiksmas"
+          "prompt": "META: Tu esi klientų aptarnavimo specialistas.\nINPUT: Gaunamas laiškas: [ĮRAŠYK]\nOUTPUT:\n4–6 sakiniai\nProfesionalus, mandagus tonas\nAiškus kitas veiksmas"
         },
         {
           "id": "task-list",

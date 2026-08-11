@@ -24,7 +24,7 @@ export const slide132EnPlain = {
   sections: [
     {
       heading: 'In short',
-      body: 'A single prompt does not lock identity. In marketing you need 3–5 reference photos (different angles) and the rule “same product / same style / same colours” – otherwise the set drifts.',
+      body: 'A single prompt does not lock identity. In marketing you need 3–5 reference photos (different angles) and the rule “same product / same style / same colors” – otherwise the set drifts.',
       blockVariant: 'accent',
     },
     {
@@ -58,18 +58,18 @@ export const slide132EnPlain = {
 export const slide152EnPlain = {
   title: 'Edit after generation',
   shortTitle: 'Edit',
-  subtitle: 'AI = raw material; cut, colour, mix',
+  subtitle: 'AI = raw material; cut, color, mix',
 };
 
 export const slide156EnPlain = {
   title: 'Audio',
   subtitle: 'Section: voice, effects, music – sound first',
   contentSubtitle:
-    'Next: sound first (voice or bed), then cuts; voice / effects / music and licences for commercial work.',
+    'Next: sound first (voice or bed), then cuts; voice / effects / music and licenses for commercial work.',
   nextSteps: [
     'Sound first – voice or bed length, then cuts',
     'Voice, effects and music – three layers',
-    'Licences for commercial work',
+    'Licenses for commercial work',
     'Loudness guide and a listen-through check',
   ],
 };
@@ -185,7 +185,7 @@ export const slide19EnPlain = {
       heading: 'Sound first',
       icon: 'Music',
       color: 'amber',
-      items: ['Voice or bed first – then cuts', 'Licences for commercial work'],
+      items: ['Voice or bed first – then cuts', 'Licenses for commercial work'],
     },
     {
       heading: 'Business and rights',
@@ -327,7 +327,7 @@ export function applyM13EnPlainOverrides(mod) {
       for (const sec of s11.content.sections) {
         if (sec.image === 'turinio_workflow') {
           sec.heading = 'Workflow diagram';
-          sec.body = '7 steps from brief to optimisation. Tap a step – explanation below.';
+          sec.body = '7 steps from brief to optimization. Tap a step – explanation below.';
         }
         if (sec.heading === 'In short' || sec.heading === 'Trumpai') {
           sec.heading = 'In short';
@@ -436,7 +436,7 @@ function applyM13pTrimCopyables(mod) {
         heading: 'Copyable template',
         copyable: `Goal (A/E/C): [awareness / engagement / conversion].
 Context: [product], platform [where], audience [who].
-Reply: 1) one goal, 2) what to emphasise visually (emotion / context / CTA), 3) 1 format.`,
+Reply: 1) one goal, 2) what to emphasize visually (emotion / context / CTA), 3) 1 format.`,
       },
     ],
     13.4: [
@@ -463,19 +463,19 @@ Goal: [Awareness / Engagement / Conversion].
 Audience: [who].
 Style: [photorealistic / minimal / …].
 Composition + camera: [shot, angle].
-Light and colours: [lighting + palette / mood].
+Light and colors: [lighting + palette / mood].
 Text in image (if needed): [text + placement].
 Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].`,
       },
       {
         heading: 'Ready prompt: Logo',
         copyable:
-          'Create a logo for [business area] company [name]. Style [minimal/modern], colours [x], transparent/white background, deliver 3 variants.',
+          'Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants.',
       },
       {
         heading: 'Ready prompt: Social post',
         copyable:
-          'From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colours [x], format 1:1 or 4:5, no text / with CTA text [if needed].',
+          'From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed].',
       },
       {
         heading: 'Ready prompt: Poster',
@@ -488,7 +488,7 @@ Format: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid].`,
         heading: 'Prompt to copy – bed',
         copyable: `Create a background music fragment, 30–60 seconds.
 Mood: [calm / energetic]. Style: [acoustic / electronic / piano].
-Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial licence.`,
+Tempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial license.`,
       },
       {
         heading: 'Prompt to copy – VO',

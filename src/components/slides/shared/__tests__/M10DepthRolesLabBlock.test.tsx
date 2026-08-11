@@ -15,12 +15,18 @@ describe('M10DepthRolesLabBlock', () => {
   });
 
   it('renders four depth choices and waits for copy until depth is chosen', () => {
-    renderWithProviders(<M10DepthRolesLabBlock />);
+    const { container } = renderWithProviders(<M10DepthRolesLabBlock />);
     expect(
       screen.getByRole('region', { name: /Agentų gylis ir rolės/i })
     ).toBeInTheDocument();
     expect(screen.getByText('Gylio lygiai')).toBeInTheDocument();
     expect(screen.getAllByRole('radio')).toHaveLength(4);
+    expect(
+      container.querySelectorAll('svg [role="button"], svg [tabindex="0"]')
+    ).toHaveLength(0);
+    expect(container.querySelector('svg')?.textContent).not.toContain(
+      'Pokalbis'
+    );
     expect(screen.getByText(/Pirmiausia pasirink gylį/i)).toBeInTheDocument();
     expect(
       screen.queryByRole('button', { name: /Kopijuoti promptą/i })
@@ -30,7 +36,7 @@ describe('M10DepthRolesLabBlock', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('reveals team roles, router toggle and artefact after Komanda', () => {
+  it('reveals team roles, router toggle and artifact after Komanda', () => {
     renderWithProviders(<M10DepthRolesLabBlock />);
     fireEvent.click(screen.getByRole('radio', { name: /Komanda \(L2\)/i }));
     expect(screen.getByText(/Komandos rolės/i)).toBeInTheDocument();

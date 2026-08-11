@@ -71,9 +71,9 @@ export function getTeamReadinessUiLabels(locale: M10Locale) {
     profileHint:
       'Naudok šį profilį prieš pasirinkdamas žmogaus kontrolės taisyklę kitoje skaidrėje.',
     nextActionHeading: 'Kitas veiksmas',
-    tieHeading: 'Pirma sutarkite bendrą bazę',
+    tieHeading: 'Pirma sutark bendrą bazę',
     tieBody:
-      'Kelios dimensijos vienodai silpnos. Pradėkite nuo vieno bendro naudojimo atvejo, vieno prompto šablono ir vieno peržiūros ritmo – nevadinkite to brandos lygiu.',
+      'Kelios dimensijos vienodai silpnos. Pradėk nuo vieno bendro naudojimo atvejo, vieno prompto šablono ir vieno peržiūros ritmo – nevadink to brandos lygiu.',
     notScore: 'Be balo: kitą veiksmą lemia silpniausia pasirinkta dimensija.',
     incomplete: 'Dar neužpildyta',
     complete: 'Profilis paruoštas',
@@ -200,13 +200,13 @@ export function getTeamReadinessNextAction(
   }
   switch (gap) {
     case 'use':
-      return 'Sutarkite vieną bendrą naudojimo atvejį ir vieną „pakankamai gero“ rezultato pavyzdį prieš pridedant daugiau įrankių.';
+      return 'Sutark vieną bendrą naudojimo atvejį ir vieną „pakankamai gero“ rezultato pavyzdį prieš pridedant daugiau įrankių.';
     case 'structure':
-      return 'Sukurkite vieną prompto šabloną: rolė, kontekstas, užduotis, išvesties formatas ir ribos. Naudokite jį pasirinktam procesui.';
+      return 'Sukurk vieną prompto šabloną: rolė, kontekstas, užduotis, išvesties formatas ir ribos. Naudok jį pasirinktam procesui.';
     case 'learning':
-      return 'Paleiskite vieną rolių praktiką, palyginkite rezultatus ir užrašykite vieną taisyklę, ką keisti kitą kartą.';
+      return 'Paleisk vieną rolių praktiką, palygink rezultatus ir užrašyk vieną taisyklę, ką keisti kitą kartą.';
     case 'shared_baseline':
-      return 'Pasirinkite vieną bendrą procesą, vieną prompto šabloną ir 20 min. peržiūros ritmą. Tai padarykite prieš didindami autonomiją.';
+      return 'Pasirink vieną bendrą procesą, vieną prompto šabloną ir 20 min. peržiūros ritmą. Tai padaryk prieš didindamas autonomiją.';
   }
 }
 

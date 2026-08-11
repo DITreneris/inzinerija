@@ -1,7 +1,4 @@
-import { useLocale } from '../../../contexts/LocaleContext';
-import { useStepDiagram } from '../../../utils/useStepDiagram';
-import EnlargeableDiagram from './EnlargeableDiagram';
-import { InteractiveDiagramShell } from './diagramKit';
+import { createLinearProcessBlock } from './linearProcessBlockFactory';
 import M10WorkflowSpecDiagram from './M10WorkflowSpecDiagram';
 import { getM10WorkflowSpecStepExplanations } from './m10DiagramContent';
 
@@ -25,40 +22,18 @@ const LABELS = {
   },
 } as const;
 
-export default function M10WorkflowSpecBlock() {
-  const { locale } = useLocale();
-  const loc = locale === 'en' ? 'en' : 'lt';
-  const steps = getM10WorkflowSpecStepExplanations(loc);
-  const labels = LABELS[loc];
-  const { currentStep, setCurrentStep, step, totalSteps } =
-    useStepDiagram(steps);
-
-  return (
-    <EnlargeableDiagram
-      mobileBehavior="reflow"
-      renderContent={() => (
-        <InteractiveDiagramShell
-          density="hero"
-          regionAria={labels.regionAria}
-          statusLabel={labels.statusLabel}
-          currentStep={currentStep}
-          totalSteps={totalSteps}
-          currentTitle={step.title}
-          navAria={labels.navAria}
-          steps={steps}
-          onStepSelect={setCurrentStep}
-          stepAria={labels.stepAria}
-          explanationTitle={step.title}
-          explanation={<p>{step.body}</p>}
-        >
-          <M10WorkflowSpecDiagram
-            locale={loc}
-            currentStep={currentStep}
-            onStepClick={setCurrentStep}
-          />
-        </InteractiveDiagramShell>
-      )}
-      enlargeLabel={ENLARGE[loc]}
+const M10WorkflowSpecBlock = createLinearProcessBlock({
+  displayName: 'M10WorkflowSpecBlock',
+  enlarge: ENLARGE,
+  labels: LABELS,
+  getSteps: getM10WorkflowSpecStepExplanations,
+  renderDiagram: ({ locale, currentStep, onStepClick }) => (
+    <M10WorkflowSpecDiagram
+      locale={locale}
+      currentStep={currentStep}
+      onStepClick={onStepClick}
     />
-  );
-}
+  ),
+});
+
+export default M10WorkflowSpecBlock;

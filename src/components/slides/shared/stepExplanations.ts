@@ -7,7 +7,7 @@ export const DI_PREZENTACIJOS_STEP_EXPLANATIONS: StepExplanation[] = [
   },
   {
     title: 'Struktūra',
-    body: 'Naudok **8 skaidrių karkasą** (problema → sprendimas → nauda → CTA). Karkasą rasite žemiau šio bloko – nukopijuok į DI.',
+    body: 'Naudok **8 skaidrių karkasą** (problema → sprendimas → nauda → CTA). Karkasą rasi žemiau šio bloko – nukopijuok į DI.',
   },
   {
     title: 'Turinio generavimas',
@@ -37,7 +37,7 @@ export const DI_PREZENTACIJOS_STEP_EXPLANATIONS_EN: StepExplanation[] = [
     body: 'Enter a prompt with topic and audience – the LLM will generate text and ideas. Use **6-block principles** (META, INPUT, OUTPUT) from Module 1.',
   },
   {
-    title: 'Visualisation',
+    title: 'Visualization',
     body: 'A tool (Gamma, Canva, SlidesAI, etc.) will automatically apply layout and graphics. You only review and adjust as needed.',
   },
   {
@@ -100,7 +100,7 @@ export const RL_STEP_EXPLANATIONS_EN: StepExplanation[] = [
   },
   {
     title: 'Reward',
-    body: '**"Good" or "bad"** – numeric signal or score. The reward goes back to the agent and shapes its behaviour.',
+    body: '**"Good" or "bad"** – numeric signal or score. The reward goes back to the agent and shapes its behavior.',
   },
 ];
 

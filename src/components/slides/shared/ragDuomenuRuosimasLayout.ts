@@ -3,7 +3,12 @@
  * SCHEME_AGENT: colorKey per žingsnį; CONTENT_AGENT: label, phase, prompt, benefit.
  */
 
-export type RagStepColorKey = 'brand' | 'emerald' | 'violet' | 'amber' | 'slate';
+export type RagStepColorKey =
+  | 'brand'
+  | 'emerald'
+  | 'violet'
+  | 'amber'
+  | 'slate';
 
 export interface RagDuomenuRuosimasStep {
   label: string;
@@ -89,7 +94,7 @@ export const RAG_DUOMENU_RUOSIMAS_STEPS_EN: RagDuomenuRuosimasStep[] = [
     phase: '4. Segments',
     prompt:
       'Split this document into logical chunks (paragraphs or sections); add a short heading to each. Aim: ready for RAG retrieval.',
-    benefit: 'Optimises context window filling.',
+    benefit: 'Optimizes context window filling.',
     colorKey: 'amber',
   },
   {
@@ -102,8 +107,12 @@ export const RAG_DUOMENU_RUOSIMAS_STEPS_EN: RagDuomenuRuosimasStep[] = [
   },
 ];
 
-export function getRagDuomenuRuosimasSteps(locale: RagLocale): RagDuomenuRuosimasStep[] {
-  return locale === 'en' ? RAG_DUOMENU_RUOSIMAS_STEPS_EN : RAG_DUOMENU_RUOSIMAS_STEPS;
+export function getRagDuomenuRuosimasSteps(
+  locale: RagLocale
+): RagDuomenuRuosimasStep[] {
+  return locale === 'en'
+    ? RAG_DUOMENU_RUOSIMAS_STEPS_EN
+    : RAG_DUOMENU_RUOSIMAS_STEPS;
 }
 
 export interface RagDuomenuRuosimasBlockLabels {
@@ -131,7 +140,8 @@ const RAG_BLOCK_LT: RagDuomenuRuosimasBlockLabels = {
   benefitTitle: 'Kodėl tai svarbu?',
   diagramAria: 'RAG ruošimo magistralė.',
   diagramHint: ' Paspausk žingsnį, kad pamatytum promptą.',
-  diagramStepAria: (i, label) => `Žingsnis ${i + 1}: ${label}. Paspausk promptui.`,
+  diagramStepAria: (i, label) =>
+    `Žingsnis ${i + 1}: ${label}. Paspausk promptui.`,
 };
 
 const RAG_BLOCK_EN: RagDuomenuRuosimasBlockLabels = {
@@ -148,14 +158,23 @@ const RAG_BLOCK_EN: RagDuomenuRuosimasBlockLabels = {
   diagramStepAria: (i, label) => `Step ${i + 1}: ${label}. Click for prompt.`,
 };
 
-export function getRagDuomenuRuosimasBlockLabels(locale: RagLocale): RagDuomenuRuosimasBlockLabels {
+export function getRagDuomenuRuosimasBlockLabels(
+  locale: RagLocale
+): RagDuomenuRuosimasBlockLabels {
   return locale === 'en' ? RAG_BLOCK_EN : RAG_BLOCK_LT;
 }
 
 /** Pilnos Tailwind klasės pagal colorKey – vengti dinaminio bg-${color}-500 */
 export const RAG_STEP_COLOR_CLASSES: Record<
   RagStepColorKey,
-  { bg: string; border: string; text: string; bgLight: string; bgLightDark: string; textLight: string }
+  {
+    bg: string;
+    border: string;
+    text: string;
+    bgLight: string;
+    bgLightDark: string;
+    textLight: string;
+  }
 > = {
   brand: {
     bg: 'bg-brand-500',

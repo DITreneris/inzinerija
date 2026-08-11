@@ -58,7 +58,7 @@
               },
               {
                 "heading": "Campaign goals diagram",
-                "body": "Pick a goal – each band shows what to emphasise: emotion at the top, clarity at the bottom.",
+                "body": "Pick a goal – each band shows what to emphasize: emotion at the top, clarity at the bottom.",
                 "blockVariant": "brand",
                 "image": "m13_aec_funnel",
                 "imageAlt": "Campaign goals funnel: Awareness, Engagement, Conversion"
@@ -78,7 +78,7 @@
               {
                 "heading": "Copyable template",
                 "body": "Paste into an AI chat or fill it yourself – pick A/E/C for your visual.",
-                "copyable": "Goal (A/E/C): [awareness / engagement / conversion].\nContext: [product], platform [where], audience [who].\nReply: 1) one goal, 2) what to emphasise visually (emotion / context / CTA), 3) 1 format."
+                "copyable": "Goal (A/E/C): [awareness / engagement / conversion].\nContext: [product], platform [where], audience [who].\nReply: 1) one goal, 2) what to emphasize visually (emotion / context / CTA), 3) 1 format."
               },
               {
                 "heading": "Check",
@@ -109,34 +109,34 @@
               },
               {
                 "heading": "Grandines schema",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand",
                 "image": "m13_media_pipeline",
                 "imageAlt": "AI content engineering diagram"
               },
               {
                 "heading": "Kodel sie 6 zingsniai",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas sablonas",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "copyable": "Use the module template, fill the brackets, then check the result and improve one detail."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Where to use this",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -165,9 +165,9 @@
               "heading": "Ka jau zinai?",
               "lead": "Pries vaizdu skyriu – medijos grandine.",
               "items": [
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt."
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt."
               ]
             }
           }
@@ -237,7 +237,7 @@
               },
               {
                 "heading": "Brand consistency",
-                "body": "So AI does not generate a random look, specify in the prompt: colour system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).",
+                "body": "So AI does not generate a random look, specify in the prompt: color system (e.g. deep blue + orange accent), typography (minimal or classic serif), tone (professional, friendly) and visual identity (corporate style, clean background).",
                 "blockVariant": "brand",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -341,7 +341,7 @@
                 "id": "m13-warm-style-3",
                 "question": "How do you reduce a random, inconsistent brand look?",
                 "options": [
-                  "Specify colours, tone, typography direction and a clean visual identity",
+                  "Specify colors, tone, typography direction and a clean visual identity",
                   "Keep the prompt as generic as possible",
                   "Specify only the duration in seconds",
                   "Use only a music tool"
@@ -363,7 +363,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "A single prompt does not lock identity. In marketing you need 3–5 reference photos (different angles) and the rule “same product / same style / same colours” – otherwise the set drifts.",
+                "body": "A single prompt does not lock identity. In marketing you need 3–5 reference photos (different angles) and the rule “same product / same style / same colors” – otherwise the set drifts.",
                 "blockVariant": "accent"
               },
               {
@@ -404,7 +404,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "After the reference lock diagram – practice: tick the refs you have, recognise drift (proportions, colour, label, style) or a new brief. One choice → one copyable rule.",
+                "body": "After the reference lock diagram – practice: tick the refs you have, recognize drift (proportions, color, label, style) or a new brief. One choice → one copyable rule.",
                 "blockVariant": "accent"
               },
               {
@@ -496,7 +496,7 @@
         },
         {
           "id": 13.34,
-          "title": "Practice: recognise style and ratios",
+          "title": "Practice: recognize style and ratios",
           "shortTitle": "Atpazink stiliu",
           "subtitle": "5 situations: style, ratio, composition, brand",
           "type": "content-block",
@@ -504,28 +504,28 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Recognise which prompt field needs fixing: style, ratio, composition or brand consistency.",
+                "body": "Recognize which prompt field needs fixing: style, ratio, composition or brand consistency.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Do this now",
-                "body": "Recognise which prompt field needs fixing: style, ratio, composition or brand consistency.",
+                "body": "Recognize which prompt field needs fixing: style, ratio, composition or brand consistency.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Check",
-                "body": "Recognise which prompt field needs fixing: style, ratio, composition or brand consistency.",
+                "body": "Recognize which prompt field needs fixing: style, ratio, composition or brand consistency.",
                 "blockVariant": "accent"
               }
             ],
             "recognitionExercise": {
-              "title": "Recognise style and ratios",
+              "title": "Recognize style and ratios",
               "task": "Read 5 situations and choose the best answer for each one.",
               "examples": [
                 "You need a square LinkedIn post with a product image.",
-                "The same product should look like a premium catalogue photo.",
+                "The same product should look like a premium catalog photo.",
                 "The hero image needs space for a headline on the left.",
-                "All campaign images must use the same colours and tone.",
+                "All campaign images must use the same colors and tone.",
                 "A Stories format needs a vertical frame."
               ],
               "choices": [
@@ -538,12 +538,12 @@
               "correctAnswers": [0, 1, 2, 3, 4],
               "explanations": [
                 "A square social post uses a 1:1 ratio.",
-                "A premium catalogue look is controlled mainly by style: light, texture, realism and tone.",
+                "A premium catalog look is controlled mainly by style: light, texture, realism and tone.",
                 "Leaving space for a headline is a composition decision.",
-                "Repeating colours and tone protects brand consistency across images.",
+                "Repeating colors and tone protects brand consistency across images.",
                 "Stories, Reels and similar mobile formats usually use a vertical 9:16 ratio."
               ],
-              "goal": "Before using the builder, recognise which prompt field needs fixing."
+              "goal": "Before using the builder, recognize which prompt field needs fixing."
             },
             "footer": "Next slide"
           }
@@ -579,17 +579,17 @@
               {
                 "heading": "MASTER prompt template",
                 "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "Subject: [what is shown].\nGoal: [Awareness / Engagement / Conversion].\nAudience: [who].\nStyle: [photorealistic / minimal / …].\nComposition + camera: [shot, angle].\nLight and colours: [lighting + palette / mood].\nText in image (if needed): [text + placement].\nFormat: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid]."
+                "copyable": "Subject: [what is shown].\nGoal: [Awareness / Engagement / Conversion].\nAudience: [who].\nStyle: [photorealistic / minimal / …].\nComposition + camera: [shot, angle].\nLight and colors: [lighting + palette / mood].\nText in image (if needed): [text + placement].\nFormat: [1:1 / 16:9 / 9:16]. Avoid: [what to avoid]."
               },
               {
                 "heading": "Ready prompt: Logo",
                 "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "Create a logo for [business area] company [name]. Style [minimal/modern], colours [x], transparent/white background, deliver 3 variants."
+                "copyable": "Create a logo for [business area] company [name]. Style [minimal/modern], colors [x], transparent/white background, deliver 3 variants."
               },
               {
                 "heading": "Ready prompt: Social post",
                 "body": "Use one MASTER template or one ready prompt if you need a fast result; use the rest for deeper practice.",
-                "copyable": "From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colours [x], format 1:1 or 4:5, no text / with CTA text [if needed]."
+                "copyable": "From this text [paste], create a LinkedIn/Facebook illustration. Look [corporate], colors [x], format 1:1 or 4:5, no text / with CTA text [if needed]."
               },
               {
                 "heading": "Ready prompt: Poster",
@@ -644,9 +644,9 @@
               "heading": "Ka jau zinai?",
               "lead": "Vaizdu skyrius – pamatas video.",
               "items": [
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt."
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt."
               ]
             }
           }
@@ -695,7 +695,7 @@
               },
               {
                 "heading": "Check",
-                "body": "Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colours).",
+                "body": "Does the video start look like the hero? Did the product or character stay consistent? If not – simplify the scene or strengthen the reference (same product, style and colors).",
                 "blockVariant": "accent"
               },
               {
@@ -823,40 +823,40 @@
           "id": 13.52,
           "title": "Edit after generation",
           "shortTitle": "Edit",
-          "subtitle": "AI = raw material; cut, colour, mix",
+          "subtitle": "AI = raw material; cut, color, mix",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Edit diagram",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand",
                 "image": "m13_postprod_steps",
                 "imageAlt": "AI content engineering diagram"
               },
               {
                 "heading": "Minimalus checklist",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Kopijuojamas sablonas",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "copyable": "Use the module template, fill the brackets, then check the result and improve one detail."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "accent"
               }
             ],
@@ -870,22 +870,22 @@
           "type": "section-break",
           "content": {
             "title": "Audio",
-            "subtitle": "Next: sound first (voice or bed), then cuts; voice / effects / music and licences for commercial work.",
+            "subtitle": "Next: sound first (voice or bed), then cuts; voice / effects / music and licenses for commercial work.",
             "sectionNumber": "3",
             "footer": "Next slide",
             "nextSteps": [
               "Sound first – voice or bed length, then cuts",
               "Voice, effects and music – three layers",
-              "Licences for commercial work",
+              "Licenses for commercial work",
               "Loudness guide and a listen-through check"
             ],
             "recap": {
               "heading": "Ka jau zinai?",
               "lead": "Video skyrius – pries garsa.",
               "items": [
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt.",
-                "Create, check and reuse the artefact with a clear prompt."
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt.",
+                "Create, check and reuse the artifact with a clear prompt."
               ]
             }
           }
@@ -910,7 +910,7 @@
               {
                 "heading": "Prompt to copy – bed",
                 "body": "For music, describe mood, genre, tempo, instruments, voice and use case.",
-                "copyable": "Create a background music fragment, 30–60 seconds.\nMood: [calm / energetic]. Style: [acoustic / electronic / piano].\nTempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial licence."
+                "copyable": "Create a background music fragment, 30–60 seconds.\nMood: [calm / energetic]. Style: [acoustic / electronic / piano].\nTempo: [slow / medium]. No vocals. Use: [ads / presentation] – needs a commercial license."
               },
               {
                 "heading": "Prompt to copy – VO",
@@ -946,38 +946,38 @@
           "id": 13.7,
           "title": "Audio effects and usage rights",
           "shortTitle": "Licencijos ir loudness",
-          "subtitle": "Sound effects and licence",
+          "subtitle": "Sound effects and license",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Teisiu checklist (5 punktai)",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable prompt",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "copyable": "Create a short sound effect: [DESCRIPTION]. Format: MP3 or WAV. No music, sound effect only."
               },
               {
                 "heading": "Check",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Tools",
-                "body": "Before using generated audio publicly, check the tool licence and usage rules.",
+                "body": "Before using generated audio publicly, check the tool license and usage rules.",
                 "blockVariant": "terms"
               }
             ],
@@ -1011,7 +1011,7 @@
               {
                 "heading": "A/B hypothesis",
                 "body": "Before publishing, measure results, test variants and check rights, brand safety and versions.",
-                "copyable": "Evaluate this artefact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artefact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes."
+                "copyable": "Evaluate this artifact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artifact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes."
               },
               {
                 "heading": "Teises, rizikos ir verslas (placiau)",
@@ -1030,7 +1030,7 @@
               {
                 "heading": "Evaluation rubric",
                 "body": "Before publishing, measure results, test variants and check rights, brand safety and versions.",
-                "copyable": "Evaluate this artefact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artefact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes.",
+                "copyable": "Evaluate this artifact by 3 criteria: brand fit, message clarity, platform fit. Context: [goal, audience, platform]. Artifact: [describe or paste prompt]. Return: criterion, score 1-5, what works, 1-2 specific fixes.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -1060,33 +1060,33 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "Full business cycle: (1) Marketing brief. (2) Prompt + brand + reference photos. (3) 3–5 variants / short image-to-video. (4) Iteration. (5) Platform. (6) Test. (7) Optimisation.",
+                "body": "Full business cycle: (1) Marketing brief. (2) Prompt + brand + reference photos. (3) 3–5 variants / short image-to-video. (4) Iteration. (5) Platform. (6) Test. (7) Optimization.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Workflow diagram",
-                "body": "7 steps from brief to optimisation. Tap a step – explanation below.",
+                "body": "7 steps from brief to optimization. Tap a step – explanation below.",
                 "image": "turinio_workflow",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.",
+                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimization.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Brief into prompt",
-                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.",
+                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimization.",
                 "copyable": "Brief: Goal [awareness / engagement / conversion]. Audience: [describe]. Platform: [e.g. Instagram 1:1]. Image prompt: [subject] + [action/context] + [setting]. Brand: [colors and tone]. Variants: 3-5."
               },
               {
                 "heading": "Check",
-                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.",
+                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimization.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Platform, funnel and copy together",
-                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimisation.",
+                "body": "Move from brief to prompt, variants, iteration, platform adaptation, testing and optimization.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -1257,7 +1257,7 @@
                 "color": "amber",
                 "items": [
                   "Voice or bed first – then cuts",
-                  "Licences for commercial work"
+                  "Licenses for commercial work"
                 ]
               },
               {
@@ -1283,11 +1283,11 @@
       "businessExamples": [
         {
           "title": "Vaizdu generavimas",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         },
         {
           "title": "Video ir music",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         }
       ]
     },
@@ -1311,7 +1311,7 @@
           "content": {
             "whyBenefit": "Answer 12 questions before starting the final content project.",
             "duration": "~12–18 min",
-            "firstActionCTA": "Answer 12 questions – images, video, audio, pipeline, audio-first, licences, C2PA, risks and workflow.",
+            "firstActionCTA": "Answer 12 questions – images, video, audio, pipeline, audio-first, licenses, C2PA, risks and workflow.",
             "microWinPhrase": "Each correct answer shows that you can apply content prompts.",
             "thresholds": {
               "pass": 70,
@@ -1333,7 +1333,7 @@
                 "id": "m14-warm-1",
                 "question": "How do you reduce a chaotic brand look across a social image series?",
                 "options": [
-                  "Specify brand colours, tone, visual identity and platform ratios",
+                  "Specify brand colors, tone, visual identity and platform ratios",
                   "Only write “make it pretty” and switch tools",
                   "Specify only the file name",
                   "Specify only music BPM"
@@ -1348,7 +1348,7 @@
                   "Plan audio (VO, SFX, music) with pacing and frames – not only “add music at the end”",
                   "Use only a music generator with no scene plan",
                   "Always pick the longest track",
-                  "Ignore licences if the audio is short"
+                  "Ignore licenses if the audio is short"
                 ],
                 "correct": 0,
                 "explanation": "Strong: audio means VO + SFX + music and pacing. If you thought only “music” – go back to audio description and audio-first logic."
@@ -1363,7 +1363,7 @@
                   "Wait for AI to choose the campaign goal"
                 ],
                 "correct": 0,
-                "explanation": "Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artefact."
+                "explanation": "Forward bridge: Module 15 required minimum is the quick start (hero). Optional full path adds video, audio and edit. Do not burn time before you have a base artifact."
               }
             ],
             "footer": "Next – slide 3: Questions"
@@ -1557,7 +1557,7 @@
           "type": "test-results",
           "content": {
             "passedMessage": "Great work! You can continue to Module 15: Content engineering project.",
-            "failedMessage": "Review Module 13 again – pipeline, images, video, audio, licences and C2PA.",
+            "failedMessage": "Review Module 13 again – pipeline, images, video, audio, licenses and C2PA.",
             "thresholdExplanation": "At 70% or more, continue to Module 15. Below 70%, review the recommended Module 13 slides.",
             "useCaseBlock": {
               "heading": "Next step: Module 15",
@@ -1579,7 +1579,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a licence and C2PA / disclosure.",
+                "body": "After the test, spend 5 minutes on a mini pipeline: brief, stills/storyboard, then I2V or audio-first, and only then publish with a license and C2PA / disclosure.",
                 "blockVariant": "accent"
               },
               {
@@ -1590,11 +1590,11 @@
               {
                 "heading": "Copyable prompt",
                 "body": "Use this in one AI chat.",
-                "copyable": "You are a content pipeline assistant. Topic: [DESCRIBE].\n1) BRIEF: goal (A/E/C), audience, platform, ratios.\n2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).\n3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.\n4) RIGHTS: commercial licence; faces/voices – consent.\n5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.\nOUTPUT: checklist table (step | status | risk) + 1 next action."
+                "copyable": "You are a content pipeline assistant. Topic: [DESCRIBE].\n1) BRIEF: goal (A/E/C), audience, platform, ratios.\n2) STILLS / STORYBOARD: 2–3 frames (what, style, what to avoid).\n3) VIDEO OR AUDIO-FIRST: if video – I2V from hero; if audio – VO/SFX/music + pacing.\n4) RIGHTS: commercial license; faces/voices – consent.\n5) DISCLOSURE: C2PA / Content Credentials or a human-visible AI label.\nOUTPUT: checklist table (step | status | risk) + 1 next action."
               },
               {
                 "heading": "Check",
-                "body": "If licence or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.",
+                "body": "If license or disclosure is missing – do not publish; go back to audio rights and business/risk topics in Module 13. If the checklist is complete – you are ready for the Module 15 quick start.",
                 "blockVariant": "accent"
               }
             ],
@@ -1606,11 +1606,11 @@
       "businessExamples": [
         {
           "title": "Vaizdu ir video promptai",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         },
         {
           "title": "Turinio kelio zinios",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         }
       ],
       "transfer": {
@@ -1734,23 +1734,23 @@
             "pathLabel": "Turinio projekto",
             "stepNumber": 1,
             "stepTotal": 1,
-            "body": "Use this step to create, check and improve your AI content artefact.",
+            "body": "Use this step to create, check and improve your AI content artifact.",
             "sections": [
               {
                 "heading": "Greitas  (privalomas minimumas)",
-                "body": "Use this step to create, check and improve your AI content artefact."
+                "body": "Use this step to create, check and improve your AI content artifact."
               },
               {
                 "heading": "Pilnas  (neprivalomas)",
-                "body": "Use this step to create, check and improve your AI content artefact."
+                "body": "Use this step to create, check and improve your AI content artifact."
               },
               {
                 "heading": "Check",
-                "body": "Use this step to create, check and improve your AI content artefact."
+                "body": "Use this step to create, check and improve your AI content artifact."
               },
               {
                 "heading": "First action within 48 hours",
-                "body": "Use this step to create, check and improve your AI content artefact.",
+                "body": "Use this step to create, check and improve your AI content artifact.",
                 "blockVariant": "brand"
               }
             ],
@@ -1859,10 +1859,10 @@
           "badgeVariant": "optional",
           "content": {
             "scenarioTitle": "Montazas",
-            "scenarioDescription": "Use this step to create, check and improve your AI content artefact.",
+            "scenarioDescription": "Use this step to create, check and improve your AI content artifact.",
             "taskFrame": "Task",
             "scenario": {
-              "narrativeLead": "Use this step to create, check and improve your AI content artefact."
+              "narrativeLead": "Use this step to create, check and improve your AI content artifact."
             },
             "template": "Use the module template, fill the brackets, then check the result and improve one detail.",
             "templateLabel": "Prompt to copy",
@@ -1872,7 +1872,7 @@
                 {
                   "step": 1,
                   "title": "Sumontuok ir eksportuok",
-                  "description": "Use this step to create, check and improve your AI content artefact."
+                  "description": "Use this step to create, check and improve your AI content artifact."
                 }
               ]
             },
@@ -1888,14 +1888,14 @@
           "type": "summary",
           "content": {
             "introHeading": "Ka ismokai",
-            "introBody": "You now have a prompt and at least one usable content artefact.",
+            "introBody": "You now have a prompt and at least one usable content artifact.",
             "stats": [
               {
                 "label": "Quick start",
                 "value": "1"
               },
               {
-                "label": "Artefact",
+                "label": "Artifact",
                 "value": "1+"
               },
               {
@@ -1909,9 +1909,9 @@
                 "icon": "Image",
                 "color": "brand",
                 "items": [
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt."
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt."
                 ]
               },
               {
@@ -1919,9 +1919,9 @@
                 "icon": "Video",
                 "color": "violet",
                 "items": [
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt."
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt."
                 ]
               },
               {
@@ -1929,9 +1929,9 @@
                 "icon": "Music",
                 "color": "amber",
                 "items": [
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt."
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt."
                 ]
               },
               {
@@ -1939,16 +1939,16 @@
                 "icon": "ArrowRight",
                 "color": "emerald",
                 "items": [
-                  "Create, check and reuse the artefact with a clear prompt.",
-                  "Create, check and reuse the artefact with a clear prompt."
+                  "Create, check and reuse the artifact with a clear prompt.",
+                  "Create, check and reuse the artifact with a clear prompt."
                 ]
               }
             ],
             "reflectionTitle": "Reflection prompt",
-            "reflectionPrompt": "Ask me 3 reflection questions: (1) Which artefact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.",
+            "reflectionPrompt": "Ask me 3 reflection questions: (1) Which artifact or prompt will I use in 24 hours? (2) What would I improve in the next version? (3) Did I write down usage rights? Then give one practical suggestion.",
             "tagline": "Image + video + music = one content engineering path.",
             "nextStepCTA": "Open the modules list or repeat the project with another topic",
-            "firstAction24h": "You now have a prompt and at least one usable content artefact.",
+            "firstAction24h": "You now have a prompt and at least one usable content artifact.",
             "abilityBefore": "Neturejai mini kampanijos ar hero vaizdo su issaugotais promptais.",
             "abilityAfter": "Turi greito starto ar mini kampanijos artefakta ir gali ji pakartoti kitai temai.",
             "ownWorkLabel": "Tavo kampanijos / kanalo kontekstas",
@@ -1961,11 +1961,11 @@
       "businessExamples": [
         {
           "title": "Greitas startas",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         },
         {
           "title": "Mini kampanijos",
-          "description": "Use this step to create, check and improve your AI content artefact."
+          "description": "Use this step to create, check and improve your AI content artifact."
         }
       ]
     }

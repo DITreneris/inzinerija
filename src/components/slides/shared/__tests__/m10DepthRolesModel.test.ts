@@ -26,7 +26,7 @@ describe('m10DepthRolesModel', () => {
     expect(parts.code).toBe('L1');
   });
 
-  it('formats non-team artefact without roles block', () => {
+  it('formats non-team artifact without roles block', () => {
     const text = formatDepthRolesArtefact(
       'lt',
       buildDepthRolesArtefactParts('chat', false)
@@ -36,7 +36,7 @@ describe('m10DepthRolesModel', () => {
     expect(text).not.toContain('Koordinatorius');
   });
 
-  it('formats team artefact with three roles and optional router', () => {
+  it('formats team artifact with three roles and optional router', () => {
     const base = formatDepthRolesArtefact(
       'lt',
       buildDepthRolesArtefactParts('team', false)

@@ -163,7 +163,7 @@ export function getPromptModeScenarios(
       },
       {
         id: 'gather_then_analyze',
-        label: 'Gather, then analyse',
+        label: 'Gather, then analyze',
         description:
           'Collect fresh facts first, then produce a structured SWOT report.',
         stakeLabel: 'Live data needed · higher structure',
@@ -219,14 +219,14 @@ export function getPromptModes(
         label: 'Agentic → methodical',
         short: 'Sequence',
         description:
-          'First gather live facts with tools, then analyse inside a clear method frame.',
+          'First gather live facts with tools, then analyze inside a clear method frame.',
       },
       {
         id: 'vague_ask',
         label: 'Loose question',
         short: 'Loose',
         description:
-          '“Analyse the market” with no method and no tools – a weak teaching mode.',
+          '“Analyze the market” with no method and no tools – a weak teaching mode.',
       },
     ];
   }

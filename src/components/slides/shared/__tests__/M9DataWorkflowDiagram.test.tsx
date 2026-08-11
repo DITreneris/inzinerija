@@ -66,6 +66,6 @@ describe('M9DataWorkflowDiagram', () => {
     expect(container.textContent).toContain('MASTER: 8 analysis steps');
     expect(container.textContent).toContain('Charts');
     expect(container.textContent).toContain('Run tools');
-    expect(container.textContent).not.toContain('COLOURS, CHARTS');
+    expect(container.textContent).not.toContain('COLORS, CHARTS');
   });
 });

@@ -197,6 +197,13 @@
       "category": "Planning"
     },
     {
+      "name": "Google Forms",
+      "url": "https://forms.google.com",
+      "description": "Form building and response collection – used in M12 practice as a workflow trigger before a spreadsheet / CRM and notifications.",
+      "moduleId": 12,
+      "category": "Productivity"
+    },
+    {
       "name": "GPT-Image (OpenAI)",
       "url": "https://chatgpt.com",
       "description": "OpenAI image model in ChatGPT – natural language, complex briefs, fast marketing drafts.",
@@ -244,6 +251,13 @@
       "description": "Lithuanian AI detector, good at spotting text from popular LLMs (~96% accuracy).",
       "moduleId": 4,
       "category": "AI content detectors"
+    },
+    {
+      "name": "Jira",
+      "url": "https://www.atlassian.com/software/jira",
+      "description": "Issue and task management – used in M12 practice to escalate feedback or incidents into visible team work.",
+      "moduleId": 12,
+      "category": "Productivity"
     },
     {
       "name": "Julius AI",
@@ -304,7 +318,7 @@
     {
       "name": "MongoDB",
       "url": "https://www.mongodb.com",
-      "description": "NoSQL document database for flexible data structures: catalogues, events, content apps, and fast MVPs.",
+      "description": "NoSQL document database for flexible data structures: catalogs, events, content apps, and fast MVPs.",
       "moduleId": 7,
       "category": "Databases"
     },
@@ -449,6 +463,13 @@
       "category": "Video generation"
     },
     {
+      "name": "Slack",
+      "url": "https://slack.com",
+      "description": "Team messaging – used in M12 practice to pass a workflow result, alert, or escalation to the team.",
+      "moduleId": 12,
+      "category": "Productivity"
+    },
+    {
       "name": "SlidesAI",
       "url": "https://www.slidesai.io",
       "description": "Text → slides in a few clicks. Google Slides integration.",
@@ -496,6 +517,20 @@
       "description": "Fast MVP backend: PostgreSQL + Auth + API + storage + real-time with less DevOps overhead.",
       "moduleId": 7,
       "category": "Databases"
+    },
+    {
+      "name": "Teams",
+      "url": "https://www.microsoft.com/microsoft-teams/group-chat-software",
+      "description": "Microsoft team chat and notifications – used in M12 practice as an alternative to Slack for workflow results and escalations.",
+      "moduleId": 12,
+      "category": "Productivity"
+    },
+    {
+      "name": "Typeform",
+      "url": "https://www.typeform.com",
+      "description": "Interactive forms – used in M12 practice as an alternate form source for an automation chain.",
+      "moduleId": 12,
+      "category": "Productivity"
     },
     {
       "name": "Trello",

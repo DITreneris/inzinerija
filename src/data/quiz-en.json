@@ -68,7 +68,7 @@
         "To shorten the text"
       ],
       "correct": 1,
-      "explanation": "The Reasoning block specifies the THINKING SEQUENCE: 1) Analyse 2) Compare 3) Recommend. Example: \"REASONING: 1) Summarise the main metrics 2) Compare with Q2 3) Identify growth areas 4) Formulate 3 recommendations.\" This helps the AI think in a structured way."
+      "explanation": "The Reasoning block specifies the THINKING SEQUENCE: 1) Analyze 2) Compare 3) Recommend. Example: \"REASONING: 1) Summarize the main metrics 2) Compare with Q2 3) Identify growth areas 4) Formulate 3 recommendations.\" This helps the AI think in a structured way."
     },
     {
       "id": 7,
@@ -216,7 +216,7 @@
       "question": "Which block is optional but very useful for complex tasks?",
       "options": ["Meta", "Input", "Advanced Parameters", "Output"],
       "correct": 2,
-      "explanation": "Advanced Parameters is optional but very useful. It lets you control AI behaviour: Temperature (creativity), Reasoning depth (analysis depth), Max tokens (length), penalties (repetition). Meta, Input, Output are the minimum for a clear prompt."
+      "explanation": "Advanced Parameters is optional but very useful. It lets you control AI behavior: Temperature (creativity), Reasoning depth (analysis depth), Max tokens (length), penalties (repetition). Meta, Input, Output are the minimum for a clear prompt."
     }
   ]
 }

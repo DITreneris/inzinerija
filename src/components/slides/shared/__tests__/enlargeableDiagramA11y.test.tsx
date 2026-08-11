@@ -54,7 +54,7 @@ describe('EnlargeableDiagram mobile a11y wrapper', () => {
       />
     );
 
-    expect(screen.getByText('Slinkite horizontaliai')).toBeInTheDocument();
+    expect(screen.getByText('Slink horizontaliai')).toBeInTheDocument();
     const minWidthEl = container.querySelector('[style*="min-width"]');
     expect(minWidthEl).toBeTruthy();
     const px = Number.parseInt((minWidthEl as HTMLElement).style.minWidth, 10);
@@ -71,7 +71,7 @@ describe('EnlargeableDiagram mobile a11y wrapper', () => {
       />
     );
 
-    expect(screen.queryByText('Slinkite horizontaliai')).toBeNull();
+    expect(screen.queryByText('Slink horizontaliai')).toBeNull();
     expect(container.querySelector('[style*="min-width"]')).toBeNull();
     expect(screen.getByText('Stacked diagram')).toBeInTheDocument();
   });

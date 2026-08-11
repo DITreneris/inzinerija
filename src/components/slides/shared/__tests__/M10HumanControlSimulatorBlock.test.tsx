@@ -15,7 +15,9 @@ describe('M10HumanControlSimulatorBlock', () => {
   });
 
   it('renders LT labels and waits for a mode choice before feedback', () => {
-    renderWithProviders(<M10HumanControlSimulatorBlock />);
+    const { container } = renderWithProviders(
+      <M10HumanControlSimulatorBlock />
+    );
     expect(
       screen.getByRole('region', { name: /Žmogaus kontrolės simuliatorius/i })
     ).toBeInTheDocument();
@@ -24,6 +26,15 @@ describe('M10HumanControlSimulatorBlock', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Kur tu esi rizikoje')).toBeInTheDocument();
     expect(screen.queryByText(/Čia nėra scenarijaus/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /Rezultatų stebėsena/i })
+    ).not.toBeInTheDocument();
+    const scenarioRadios = within(
+      screen.getByRole('radiogroup', { name: /Pasirink verslo scenarijų/i })
+    ).getAllByRole('radio');
+    expect(
+      container.querySelectorAll('[data-scenario-shortcut][tabindex="-1"]')
+    ).toHaveLength(scenarioRadios.length);
     expect(
       screen.queryByText(/Rekomenduojama šiam scenarijui/i)
     ).not.toBeInTheDocument();
@@ -34,7 +45,7 @@ describe('M10HumanControlSimulatorBlock', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('reveals recommendation, mismatch, error outcome and artefact after mode choice', () => {
+  it('reveals recommendation, mismatch, error outcome and artifact after mode choice', () => {
     renderWithProviders(<M10HumanControlSimulatorBlock />);
 
     fireEvent.click(

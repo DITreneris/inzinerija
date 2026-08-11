@@ -58,7 +58,7 @@ export function getConsistencyLabUiLabels(locale: ConsistencyLabLocale) {
       beforeDriftLabel: 'Before (Drift)',
       beforeDriftHint: 'Muted, off-brand, proportions wander.',
       afterLockLabel: 'After (Ref lock)',
-      afterLockHint: 'On-set colour, shape and labels hold.',
+      afterLockHint: 'On-set color, shape and labels hold.',
       compareStripAria: 'Drift versus reference lock',
     };
   }
@@ -130,12 +130,12 @@ export function getConsistencyModeOptions(
       },
       {
         id: 'color',
-        label: 'Colour shifted',
+        label: 'Color shifted',
         description: 'Palette no longer matches the brand set.',
         driftSignal: 'Hue or saturation drifted from the reference palette.',
         fixCue:
-          'Re-attach colour refs; add “same color palette”; avoid new lighting looks.',
-        pill: 'Colour',
+          'Re-attach color refs; add “same color palette”; avoid new lighting looks.',
+        pill: 'Color',
       },
       {
         id: 'label',

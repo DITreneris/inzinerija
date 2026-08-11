@@ -101,7 +101,7 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `diagram:m10_trigger_flow`          | M10/10.15              | `linear-process`               | Taip  |        3 | M10TriggerFlowBlock                              |
 | `diagram:m10_workflow_spec`         | M10/10.65              | `linear-process`               | Taip  |        3 | M10WorkflowSpecBlock                             |
 | `diagram:m12_multi_agent_schema`    | M12/120.5              | `multi-agent-flow`             | Taip  |        4 | M12MultiAgentSchemaBlock                         |
-| `diagram:m12_three_labs`            | M12/120.25             | `comparison`                   | Ne    |        3 | M12ThreeLabsBlock                                |
+| `diagram:m12_three_labs`            | M12/120.25             | `comparison`                   | Taip  |        3 | M12ThreeLabsBlock                                |
 | `diagram:m13_aec_funnel`            | M13/13.1               | `funnel`                       | Taip  |        4 | M13AecFunnelBlock                                |
 | `diagram:m13_consistency_lock`      | M13/13.32              | `linear-process`               | Taip  |        4 | M13ConsistencyLockBlock                          |
 | `lab:m13_consistency_lab`           | M13/13.325             | `interactive-control-lab`      | Ne    |        3 | M13ConsistencyLockLabBlock (Drift + Ref)         |

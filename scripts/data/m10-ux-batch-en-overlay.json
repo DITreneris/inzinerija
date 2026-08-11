@@ -747,6 +747,16 @@
                 "copyable": "Minimal workflow brief:\n1) Trigger – what starts the flow.\n2) Input schema – which fields are required.\n3) Condition – which rule changes the path.\n4) Actions – 3–5 actions with tools.\n5) Output – what result must be created.\n6) Error handling – what to do if a step fails.\n7) Audit record – what to log: time, step, result.\n8) Human control rule – mode: [all cases / exceptions / after the fact / monitoring]; condition or threshold: […]; reject / escalate: […]; audit record: […].\n\nTest cases:\nB1 happy path: …\nB2 missing field: …\nB3 timeout / duplicate: …"
               },
               {
+                "heading": "Incident playbook (5 steps)",
+                "body": "Add these steps to your brief if the workflow touches customers, money, or personal data: **stop** the flow → **record** what happened → **assess** impact → **notify** the responsible person → **fix** the rule or prompt.",
+                "blockVariant": "brand"
+              },
+              {
+                "heading": "Cost and model choice",
+                "body": "Write which step can be cheap and which must be strong: **cheap model** – classification, filtering, duplicate checks; **stronger model** – customer-facing text, complex decisions, or risk assessment. If the task crosses the cost limit, stop or send it to a human.",
+                "blockVariant": "terms"
+              },
+              {
                 "heading": "Check",
                 "body": "Do you have **B** and **C** (not only happy path)? Does the human control rule include mode, condition, escalation and audit record? If finance / personal data are marked “never” – go back to “When does a human approve?”.",
                 "blockVariant": "accent"

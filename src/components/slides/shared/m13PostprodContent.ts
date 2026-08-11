@@ -10,7 +10,7 @@ const STEPS_LT = [
 
 const STEPS_EN = [
   { label: 'Cut', desc: 'Clips + hook' },
-  { label: 'Grade', desc: 'Colour' },
+  { label: 'Grade', desc: 'Color' },
   { label: 'Mix', desc: 'VO / bed' },
   { label: 'Export', desc: '9:16 / 16:9' },
 ] as const;
@@ -30,7 +30,7 @@ export function getM13PostprodExplanations(
       },
       {
         title: '2. Grade',
-        body: 'Match colours across clips so the set feels one campaign.',
+        body: 'Match colors across clips so the set feels one campaign.',
       },
       {
         title: '3. Mix',

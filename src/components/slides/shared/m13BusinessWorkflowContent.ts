@@ -43,7 +43,7 @@ export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_EN: StepExplanation[] = [
   },
   {
     title: 'Prompt generation',
-    body: 'From the brief and **brand consistency** (colours, tone, style) generate an image or video prompt. Use module templates (style, proportions, what to avoid).',
+    body: 'From the brief and **brand consistency** (colors, tone, style) generate an image or video prompt. Use module templates (style, proportions, what to avoid).',
   },
   {
     title: 'Variants',
@@ -62,7 +62,7 @@ export const M13_BUSINESS_WORKFLOW_EXPLANATIONS_EN: StepExplanation[] = [
     body: '**A/B testing** – hypothesis, KPIs (CTR, CVR, scroll stop). Compare variants and pick the best.',
   },
   {
-    title: 'Optimisation',
+    title: 'Optimization',
     body: 'Based on results – repeat the cycle. Use data for the next campaign.',
   },
 ];
@@ -119,14 +119,14 @@ const LABELS_EN: M13BusinessWorkflowDiagramLabels = {
     { label: 'Iteration', desc: 'Improve from feedback' },
     { label: 'Adaptation', desc: 'Platforms, formats' },
     { label: 'Testing', desc: 'A/B, KPI' },
-    { label: 'Optimisation', desc: 'Results → cycle' },
+    { label: 'Optimization', desc: 'Results → cycle' },
   ],
   title: 'From brief to publication',
   metaphorCaption: 'Business cycle – results loop back to brief',
   cycleReturnLabel: 'Repeat',
   hint: 'Click a step – explanation below',
   ariaBase:
-    'Content workflow cycle: from brief to optimisation with return to brief.',
+    'Content workflow cycle: from brief to optimization with return to brief.',
   ariaInteractiveSuffix: 'Click a step to see the explanation.',
   stepAria: (i, label) => `Step ${i + 1}: ${label}. Click for explanation.`,
 };

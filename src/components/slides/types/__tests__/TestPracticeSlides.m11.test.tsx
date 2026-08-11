@@ -38,13 +38,14 @@ describe('TestPracticeSlides M11 data contract', () => {
     expect(calculateScore(6, questions.length)).toBeLessThan(70);
   });
 
-  it('keeps taxonomy and multi-agent remediation links pointed at M10 source slides', () => {
+  it('keeps readiness remediation links pointed at M10 source slides', () => {
     const questionsById = new Map(
       getM11Questions().map((question) => [question.id, question])
     );
 
+    expect(questionsById.get('m11-q2')?.relatedSlideId).toBe(10.25);
     expect(questionsById.get('m11-q3')?.relatedSlideId).toBe(10.45);
-    expect(questionsById.get('m11-q5')?.relatedSlideId).toBe(10.45);
+    expect(questionsById.get('m11-q5')?.relatedSlideId).toBe(10.64);
     expect(questionsById.get('m11-q6')?.relatedSlideId).toBe(10.48);
     expect(questionsById.get('m11-q7')?.relatedSlideId).toBe(10.15);
     expect(questionsById.get('m11-q8')?.relatedSlideId).toBe(10.26);
@@ -68,6 +69,8 @@ describe('TestPracticeSlides M11 data contract', () => {
 
     expect(scenarioQuestions.map((question) => question.id)).toEqual([
       'm11-q1',
+      'm11-q2',
+      'm11-q5',
       'm11-q6',
       'm11-q8',
     ]);

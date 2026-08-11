@@ -4,6 +4,7 @@
  */
 
 import { LT_DIACRITICS } from './audit-en-merge.mjs';
+import { findLtAddressViolations, findLtBarbarisms } from './lt-address-rules.mjs';
 
 /** Machine-translation debris / known broken tokens in EN overlay. */
 export const EN_HYBRID_TOKENS = [
@@ -221,6 +222,16 @@ export function findLtTuFormViolations(value) {
   if (/\bgalite\b/i.test(value)) rules.push('lt_galite');
   if (/\bPaspauskite\b/.test(value)) rules.push('lt_paspauskite');
   if (/\bĮrašykite\b/.test(value)) rules.push('lt_irasykite');
+
+  // The five literal patterns above missed every other 2nd-person-plural form
+  // (`Kai tiriate`, `Gaunate RFP`, …), so the shared rules widen the check.
+  // Repo-wide LT surfaces are covered by `npm run audit:lt-address`.
+  for (const f of findLtAddressViolations(value)) {
+    if (!rules.includes(f.rule)) rules.push(f.rule);
+  }
+  for (const f of findLtBarbarisms(value)) {
+    if (!rules.includes(f.rule)) rules.push(f.rule);
+  }
   return rules;
 }
 

@@ -59,7 +59,7 @@ Based on this data:
 - 32.7% of EU residents used generative AI tools (Eurostat, 2025)
 - 98% of IT specialists used AI at work (MIT, 2025)
 
-Task: write a 5-bullet summary for the team — what this means for the organisation and one action to take this week.`;
+Task: write a 5-bullet summary for the team — what this means for the organization and one action to take this week.`;
 
 const LT: PortalBeatLabels = {
   awarenessGap: {
@@ -89,7 +89,7 @@ const LT: PortalBeatLabels = {
   },
   nextStepPrompt: {
     bridgeLine1:
-      'Skaidrėje matėte skaičius — kitas žingsnis ne dar viena statistika.',
+      'Skaidrėje matei skaičius — kitas žingsnis ne dar viena statistika.',
     bridgeLine2:
       'Tas pats 3 žingsnių modelis kaip sk. 43: įvestis → promptas → rezultatas. Promptas — tavo instrukcija DI.',
     promptLabel: 'Promptas komandos santraukai',
@@ -109,7 +109,7 @@ const EN: PortalBeatLabels = {
   awarenessGap: {
     leftTitle: 'Use AI features',
     leftCaption: 'Weather alerts, spam filters, text correction',
-    rightTitle: 'Recognise AI',
+    rightTitle: 'Recognize AI',
     rightCaption: 'Consciously treat the feature as an AI tool',
     leftStat: '86%',
     rightStat: '38%',
@@ -141,7 +141,7 @@ const EN: PortalBeatLabels = {
   },
   aria: {
     'awareness-gap':
-      'Diagram: 86 percent use AI-powered features, 38 percent recognise AI – approximately 48 pp illustrative awareness gap',
+      'Diagram: 86 percent use AI-powered features, 38 percent recognize AI – approximately 48 pp illustrative awareness gap',
     'lithuania-context':
       'Diagram: 69 percent in Lithuania use AI, EU average 32.7 percent – 36.3 pp above average',
     'next-step-prompt':

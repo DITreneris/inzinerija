@@ -13,7 +13,7 @@ import {
 } from '../cycleFeedbackGeometry';
 
 describe('DIAGRAM_TOKENS LMS floors (DS promote)', () => {
-  it('keeps inactive readable (no grey wash)', () => {
+  it('keeps inactive readable (no gray wash)', () => {
     expect(DIAGRAM_TOKENS.opacity.inactive).toBeGreaterThanOrEqual(0.85);
     expect(DIAGRAM_TOKENS.opacity.inactiveSoft).toBe(
       DIAGRAM_TOKENS.opacity.inactive

@@ -508,7 +508,7 @@ _Skaidrėje – optional „Ką toliau?“ arba collapsible; nesilaikyti tik ši
 
 ### 5.14 MASTER PROMPTAS (02_DA XIII)
 
-**Galutinis išgrynintas promptas – pilnai duomenų analizės struktūra. Kopijuojamas (CopyButton):**
+**Galutinis išgrynintas promptas – visos duomenų analizės struktūra. Kopijuojamas (CopyButton):**
 
 ```
 Rolė: Senior duomenų analitikas.
@@ -918,7 +918,7 @@ Jei bent 2 „ne“ → grįžk į lentelę viršuje, pasirink teisingą grupę.
 
 **Nori suprasti detaliau? (collapsible)**
 
-- **ICE balas** – jei MoSCoW grupės neužtenka ir reikia **skaičiaus**, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padauginki (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi. Naudinga, kai idėjų daug ir reikia greito reitingo.
+- **ICE balas** – jei MoSCoW grupės neužtenka ir reikia **skaičiaus**, ne kategorijos: įvertink kiekvieną idėją 1–10 pagal Poveikį, Pasitikėjimą ir Paprastumą, tada padaugink (Poveikis × Pasitikėjimas × Paprastumas) – didžiausias balas laimi. Naudinga, kai idėjų daug ir reikia greito reitingo.
 - **Šiuos jau moki:** SWOT (stiprybės/silpnybės/galimybės/grėsmės) – skaidrė 7.4c „Konkurentų analizė“; 80/20 principas (kas duoda daugiausia) – skaidrė 7.4a „Aprašomoji“ (pajamų koncentracija); priežasčių gilinimas „Kodėl?“ – skaidrė 7.4a „Diagnostinė“; Rizika ir nauda – skaidrė 7.4c „CFO“ ir 7.26 MASTER PROMPTAS.
 - **Kur pritaikysi M9 projekte:** Scenarijus 4 (konkurentai) = SWOT; Scenarijus 6 (mokymų naudingumas) = Testuok/Investuok/Atmesk principas; Scenarijus 7 (rizikų matrica) = Rizika/Nauda.
 
@@ -1091,7 +1091,7 @@ OUTPUT: Lentelės struktūra su stulpeliais – Šaltinis, Rodiklis, Laikotarpis
 ROLE: Tu esi vyresnysis verslo analitikas. Naudok tik patikimus, cituotus šaltinius.
 TASK: Atlik gilųjį tyrimą (deep research) temoje: [JŪSŲ TEMA – įmonė, sektorius arba verslo klausimas].
 Užduotis: Išanalizuok tendencijas, pagrindinius rodiklius, rizikas ir galimybes. Sub-klausimai: (1) Kas vyksta rinkoje? (2) Kokie pagrindiniai KPI? (3) Kokios 3 didžiausios rizikos?
-OUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, ne spėliok.
+OUTPUT: Santrauka (max 1 puslapis), faktų sąrašas su datomis, šaltinių nuorodos. Jei duomenų nėra – parašyk „Nežinau“, nespėliok.
 Tą patį promptą paleisk ChatGPT, Gemini, DeepSeek ir Grok (arba prieinamus iš šių) – rezultatus vėliau sujungsime į vieną dokumentą.
 ```
 
@@ -1611,7 +1611,7 @@ Mini role-quest principas (hub biblioteka): **12** scenarijų (produkto hub) sus
 | **EDA (Exploratory Data Analysis)**                | Tiriamoji duomenų analizė – „ką galiu suprasti iš duomenų?“; aprašomoji statistika, koreliacijos, anomalijos, hipotezės.                                           |
 | **3NF**                                            | Trečioji normalios formos – duomenų bazės normalizavimo principas (sumažinti dubliavimą ir priklausomybes).                                                        |
 | **Cache sluoksnis**                                | Greitas laikinas sluoksnis (pvz. Redis / Valkey) sesijoms, eilėms ir spartai; paprastai ne pagrindinė duomenų saugykla.                                            |
-| **MASTER PROMPTAS**                                | Galutinis 8 žingsnių promptas pilnai duomenų analizei: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos.                    |
+| **MASTER PROMPTAS**                                | Galutinis 8 žingsnių promptas visai duomenų analizei: šaltiniai, struktūra, valymas, EDA, vizualizacijos, įžvalgos, prognozės, rekomendacijos.                     |
 | **NoSQL**                                          | Duomenų bazės principas be griežtos lentelių schemos; tinka dokumentams, lankščiai struktūrai ir greitiems MVP.                                                    |
 | **SQL duomenų bazė**                               | Lentelėmis ir ryšiais paremta duomenų bazė; tinka struktūruotiems verslo duomenims, užklausoms ir ataskaitoms.                                                     |
 | **Sentimentų analizė**                             | Tekstinės nuotaikos įvertinimas (teigiamas / neutralus / neigiamas) + temos, intensyvumas, prioritetai, veiksmų rekomendacijos.                                    |
