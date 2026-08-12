@@ -1,7 +1,7 @@
 # Promptų anatomija – Interaktyvus DI mokymas
 
 **6 promptų struktūros blokai – interaktyvus mokymas nuo pamatų iki pažangių kelių.**  
-**Versija:** 1.6.0 (2026-08-11). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
+**Versija:** 1.6.1 (2026-08-12). **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) (Vercel; šis repo – **git submodulis** marketingo projekte). Learning pin lieka `v1.4.9` iki Horizon B cutover; corporate12 pin target – `v1.6.1`. Pakeitimai – [CHANGELOG.md](CHANGELOG.md).
 
 Interaktyvus mokymas apie DI (dirbtinio intelekto) promptų struktūrą ir konteksto inžineriją: **pilnai įgyvendinti moduliai 1–6** (MVP), **production bundle M1–9** (Duomenų analizės kelias, tier 9), **corporate12 M1–12**, **corporate15 M1–15** ir **full authoring katalogas M1–18** (dev; Kodo inžinerijos kelias). Kursas orientuotas į verslo problemų sprendimą ir **praktinius rezultatus**.  
 UI ir turinys palaiko **LT / EN** (M1–M18 authoring; M10–12 EN kai `maxModuleId >= 10`, M13–15 kai `>= 13`, M16–18 kai `>= 16`). Magic-link tiers lieka 3|6|9|12|15 (corporate18 Deferred).

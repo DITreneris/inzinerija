@@ -14,7 +14,8 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                             |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**.                                                                  |
+| **[Unreleased]**            | Tuščia po 1.6.1 release cut; nauji pakeitimai renkami viršuje.                                                                                                                        |
+| **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                       |
 | **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
 | **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                               |
 | **[1.4.9] – 2026-07-27**    | Learning QA closeout, PC-4, type gap fix, preflight **130/825**.                                                                                                                      |
@@ -45,11 +46,17 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 - **Sertifikatai, PDF atmintinės (M1/M4/M5/M6/M7–9/M10–12/M13–15), žodynėlis, apklausa, įrankiai, progresas:** Įgyvendinta. **Access tier** 3 / 6 / 9 / **12** / **15** (magic link); sertifikatai tier 1–5, įskaitant tier 4 po M10–12 + M11 ≥ 70 % ir tier 5 po M13–15 + M14 ≥ 70 %.
 - **Ekosistema M7–12:** `ECOSYSTEM_MAP.md`, blog deepen, spinoff analytics.
 - **Testai:** **161** failai / **982** testai (2026-08-11 preflight). Validacija: prebuild schema (+ `audit:tools`); release gate `npm run audit:release-preflight` (incl. `audit:m1618`, `audit:en-spelling`, `audit:lt-address`), M10–12 `audit:m1012`, M13–15 `audit:m1315`; M9 journey `validate:journey-m9`.
-- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release candidate **1.6.0** (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
+- **Produkcija:** [www.promptanatomy.app](https://www.promptanatomy.app) – Vercel submodulis ([DITreneris/promptanatomy](https://github.com/DITreneris/promptanatomy)); release **1.6.1** = corporate12 cutover pin target (+ corporate15 repo-ready 2026-07-30); learning pin **v1.4.9** iki marketing cutover. Stripe M1–6 + Supabase→magic link M7–9; Horizon B handoff: [`06_marketingo_memo_corporate12_supabase.md`](06_marketingo_memo_corporate12_supabase.md), [`MARKETING_SUBMODULE_PIN_CORPORATE12.md`](docs/deployment/MARKETING_SUBMODULE_PIN_CORPORATE12.md); tier 9: [`05_marketingo_memo_tier9_vienas_build.md`](05_marketingo_memo_tier9_vienas_build.md); vykdymas: [`MON_P0_EXECUTION_PLAN.md`](docs/deployment/MON_P0_EXECUTION_PLAN.md), [`MARKETING_SUBMODULE_PIN_1.4.4.md`](docs/deployment/MARKETING_SUBMODULE_PIN_1.4.4.md).
 
 ---
 
 ## [Unreleased]
+
+_Tuščia po 1.6.1 release cut._
+
+---
+
+## [1.6.1] – 2026-08-12
 
 ### Changed
 

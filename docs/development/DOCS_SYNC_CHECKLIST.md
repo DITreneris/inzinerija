@@ -2,12 +2,21 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.5.0 + M16–18 authoring/TE/plain + pre-launch audit remediation + corporate12 Supabase handoff memo  
+**Baseline:** 1.6.1 corporate12 cutover pin + M16–18 authoring/TE/plain + pre-launch audit remediation + corporate12 Supabase handoff memo  
 **Testai:** 161 failai / 982 testai (`@ HEAD` 2026-08-11 preflight; `@ tag 1.4.9` freeze = 130/825)  
-**Data:** 2026-08-06  
+**Data:** 2026-08-12  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Corporate12 cutover pin – 2026-08-12
+
+| #   | Failas                                                                               | Laukas             | Buvo                         | Turi būti                                        | Done |
+| --- | ------------------------------------------------------------------------------------ | ------------------ | ---------------------------- | ------------------------------------------------ | ---- |
+| 1   | `package.json` / `package-lock.json` / `README.md` / `CHANGELOG.md`                  | release truth      | 1.6.0 + Unreleased toolchain | **1.6.1** release cut                            | [x]  |
+| 2   | `06_marketingo_memo_corporate12_supabase.md`                                         | cutover pin        | app 1.5.0                    | tag **v1.6.1** + copy-paste checklist            | [x]  |
+| 3   | `DEPLOYMENT` + `MARKETING_HANDOFF_CHECKLIST` + `MARKETING_SUBMODULE_PIN_CORPORATE12` | marketing handoff  | pin 1.5.0                    | pin **v1.6.1**, build `corporate12`, tier **12** | [x]  |
+| 4   | `VERSION_ANALIZE.md` / `TODO.md` / `TEST_REPORT.md`                                  | release/QA summary | stale 1.5.0 / 1.6.0 wording  | **v1.6.1** Horizon B handoff                     | [x]  |
 
 ### Corporate12 Supabase handoff – 2026-08-06
 

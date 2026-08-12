@@ -1,6 +1,6 @@
 # Versijavimo analizė – ar galima identifikuoti ir keisti versiją?
 
-> **Data:** 2026-07-30 (procedūra; release truth = `package.json`)  
+> **Data:** 2026-08-12 (procedūra; release truth = `package.json`)  
 > **Klausimas:** Ar kodo bazėje galima vienareikšmiškai identifikuoti versiją ir ją pakeisti?
 
 ---
@@ -9,8 +9,8 @@
 
 | Vieta            | Dabartinė reikšmė                                        | Paskirtis                                                                             |
 | ---------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| **package.json** | `"version": "1.5.0"`                                     | NPM/projekto versija; vienintelė vieta, kurią build/tools gali skaityti automatiškai. |
-| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.5.0] – 2026-07-28` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                        |
+| **package.json** | `"version": "1.6.1"`                                     | NPM/projekto versija; vienintelė vieta, kurią build/tools gali skaityti automatiškai. |
+| **CHANGELOG.md** | `[Unreleased]` viršuje; `## [1.6.1] – 2026-08-12` toliau | Žmogaus skaitomas release istorija; Semver + Keep a Changelog.                        |
 | **progress.ts**  | `CURRENT_SCHEMA_VERSION = 2`                             | Tik localStorage progreso schema (v1 vs v2), ne produkto versija.                     |
 | **Kiti doc**     | Pvz. „GOLDEN_STANDARD 2.3.x“, DS v0.2.0                  | Dokumentų ar modulių vidinė versija, ne release versija.                              |
 
@@ -20,11 +20,11 @@
 
 ## 2. Dabartinė būsena
 
-- **Repo versija:** **1.5.0** (2026-07-28) – corporate12 / tier 12 bazė; `[Unreleased]` viršuje talpina Horizon C corporate15 ir vėlesnius pakeitimus.
-- **Marketing pin:** learning produkcija gali likti ties **v1.4.9** iki marketing cutover; tai nėra `package.json` versija.
-- **Ankstesni:** 1.4.8 … 1.4.0, 1.3.0 – žr. CHANGELOG.
+- **Repo versija:** **1.6.1** (2026-08-12) – corporate12 cutover pin target; toolchain advisories closed.
+- **Marketing pin:** learning produkcija gali likti ties **v1.4.9** iki marketing cutover; Horizon B cutover pin target = **v1.6.1**.
+- **Ankstesni:** 1.6.0, 1.5.0, 1.4.9 … 1.4.0, 1.3.0 – žr. CHANGELOG.
 
-Kitas žingsnis pagal Semver: **1.5.1** (patch) arba **1.6.0** (minor), kai Unreleased branduolys uždaromas.
+Kitas žingsnis pagal Semver: **1.6.2** (patch) arba **1.7.0** (minor), kai naujas Unreleased branduolys uždaromas.
 
 ---
 
@@ -41,8 +41,8 @@ Kitas žingsnis pagal Semver: **1.5.1** (patch) arba **1.6.0** (minor), kai Unre
 
 ## 4. Santrauka
 
-| Klausimas                            | Atsakymas                                                         |
-| ------------------------------------ | ----------------------------------------------------------------- |
-| Ar galima **identifikuoti** versiją? | Taip – **package.json `version`** (dabar **1.5.0**).              |
-| Ar **dar anksti** release 1.5.0?     | Ne – 1.5.0 jau yra repo versija; marketing pin gali likti v1.4.9. |
-| **Kitas release**                    | 1.5.1 (patch) arba 1.6.0 (minor) pagal Unreleased tipą.           |
+| Klausimas                              | Atsakymas                                                                              |
+| -------------------------------------- | -------------------------------------------------------------------------------------- |
+| Ar galima **identifikuoti** versiją?   | Taip – **package.json `version`** (dabar **1.6.1**).                                   |
+| Ar **dar anksti** corporate12 cutover? | Ne – `v1.6.1` yra tag'intinas pin target; marketing pin gali likti v1.4.9 iki cutover. |
+| **Kitas release**                      | 1.6.2 (patch) arba 1.7.0 (minor) pagal Unreleased tipą.                                |

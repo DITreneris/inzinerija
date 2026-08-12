@@ -229,7 +229,7 @@ Open learning P2: **nėra** aktyvių ticket’ų.
 | ID        | Užduotis                                                                | Status | Pastaba                                                                                                                  |
 | --------- | ----------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
 | **MON-1** | Prod env: nėra `VITE_MAX_ACCESSIBLE_MODULE=6`; `VITE_VERIFY_ACCESS_URL` | [ ]    | Marketing Vercel · CAV-B1                                                                                                |
-| **MON-2** | Submodule pin **v1.4.9** + deploy                                       | ⏳     | Learning pin **v1.4.9**; app HEAD **1.6.0** (+ corporate15 ready). Choose pin before cutover · CAV-B1                    |
+| **MON-2** | Submodule pin **v1.6.1** + corporate12 deploy                           | ⏳     | Learning pin **v1.4.9**; Horizon B pin target **v1.6.1** (+ corporate15 ready). Execute in marketing repo · CAV-B1       |
 | **MON-3** | Verify-access smoke (magic link → tier)                                 | ⏳     | Browser ⏳; po cutover — tier **12** / **15** (tier **18** = CAV-C2)                                                     |
 | **MON-4** | PostHog/GA4 production + funnel dashboard                               | [ ]    | [`MON-4_POSTHOG_DEPLOY.md`](docs/deployment/MON-4_POSTHOG_DEPLOY.md) · CAV-B2; training events already in `analytics.ts` |
 | **MON-5** | Gate regression browser (tier 0 → AccessGate)                           | ⏳     | Auto ✅; browser ⏳                                                                                                      |
@@ -249,16 +249,16 @@ MON-6 ✅ (client-side paywall riba) – žr. archive / CHANGELOG.
 
 ### §1.6 Caveats Closure Program (2026-08-04)
 
-| ID         | Item                                     | Owner               | Status                                                                                                                                 |
-| ---------- | ---------------------------------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x] gates green; owner visual EN spot optional                                                                                         |
-| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x] `smoke-diag1-m1315` 40/40 PASS (see TEST_REPORT)                                                                                   |
-| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] handout unit + schema (+ m1618); owner open-PDF visual still recommended §5d                                                       |
-| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] training handoff memo **06** + pin runbook ready 2026-08-06; execute pin 1.5.0 + `build:corporate12` + map 12→12 in marketing repo |
-| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ] training `analytics.ts` wired; env/snippet/dashboard = marketing                                                                   |
-| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                                                                               |
-| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                                                                           |
-| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                                                                                 |
+| ID         | Item                                     | Owner               | Status                                                                                                                                           |
+| ---------- | ---------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **CAV-A1** | EN automated audits + RELEASE_QA §5c log | QA                  | [x] gates green; owner visual EN spot optional                                                                                                   |
+| **CAV-A2** | Mobile @375 owner residual               | QA / owner          | [x] `smoke-diag1-m1315` 40/40 PASS (see TEST_REPORT)                                                                                             |
+| **CAV-A3** | PDF LT glyphs / links pre-release        | QA                  | [x] handout unit + schema (+ m1618); owner open-PDF visual still recommended §5d                                                                 |
+| **CAV-B1** | Magic link cutover                       | Marketing           | [ ] training handoff memo **06** + pin runbook updated for **v1.6.1**; execute submodule pin + `build:corporate12` + map 12→12 in marketing repo |
+| **CAV-B2** | PostHog MON-4                            | Marketing           | [ ] training `analytics.ts` wired; env/snippet/dashboard = marketing                                                                             |
+| **CAV-C1** | M1618 path handout                       | CONTENT→DATA→CODING | [x] `m1618` earn-on-complete path-funnel                                                                                                         |
+| **CAV-C2** | corporate18 + tier 18                    | Product + stack     | won’t-now until pricing call (intake parked)                                                                                                     |
+| **CAV-D1** | Progress lite / org memory               | Product             | deferred after B (no accounts rewrite)                                                                                                           |
 
 ### §1.7 P2 – Toolchain modernizacija / advisory sweep (2026-08)
 

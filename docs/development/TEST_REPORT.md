@@ -2,6 +2,23 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-12 – Release 1.6.1 / corporate12 cutover pin
+
+**Statusas:** ✅ READY FOR TAG (training-side).  
+**Apimtis:** `v1.6.1` uždaro post-1.6.0 toolchain/advisory darbus ir tampa Horizon B corporate12 pin target marketing repo submodule cutover'ui. Production learning pin `v1.4.9` lieka iki `promptanatomy` repo atliks submodule pin + Vercel env + Supabase map.
+
+| Gate / artefaktas                 | Rezultatas                                                                                                |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Release truth                     | ✅ `package.json` / lockfile / README / CHANGELOG → **1.6.1**                                             |
+| Corporate12 handoff docs          | ✅ memo 06 + pin runbook + marketing checklist → **v1.6.1**                                               |
+| Parent API contract reference     | ✅ training `api/verify-access.ts` priima tiers `3, 6, 9, 12, 15`                                         |
+| Marketing cutover smoke checklist | ✅ tier 0 AccessGate · tier 9 M1–9 · tier 12 M10 opens · `VITE_MAX_BUILD_MODULE=12` build log             |
+| Automated release gates           | ✅ `audit:release-preflight` (161/982), `audit:m1012`, `build:corporate12`, `npm audit` 0 vulnerabilities |
+
+**Verdict:** šiame repo ruošiamas `v1.6.1` tag; realus prod cutover lieka marketing repo (`promptanatomy`) vykdymas.
+
+---
+
 ## 2026-08-11 – TOOL-2 Vite 7 + Vitest 4 advisory closeout
 
 **Statusas:** ✅ PASS (`npm audit` 0 vulnerabilities).  
@@ -71,7 +88,7 @@
 | `magicLinkTier` + `accessTier` tests | ✅ 18/18                                |
 | `npm run build:corporate12`          | ✅ exit 0; `modules-m1-m12-*.js` bundle |
 
-**Verdict:** Training-side Horizon B handoff ready. Marketing executes pin 1.5.0 + `build:corporate12` + map 12→12 (CAV-B1).
+**Verdict:** Training-side Horizon B handoff ready. Current cutover pin target superseded to **v1.6.1** (see 2026-08-12 entry); marketing executes submodule pin + `build:corporate12` + map 12→12 (CAV-B1).
 
 ---
 
