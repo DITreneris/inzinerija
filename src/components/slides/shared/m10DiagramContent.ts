@@ -24,18 +24,18 @@ export function getM10TriggerFlowLabels(locale: M10Locale) {
   }
   return {
     title: 'Darbo eigos grandinė',
-    trigger: 'Trigger',
-    triggerSub: 'paleidžia srautą',
-    condition: 'Condition',
+    trigger: 'Paleidiklis',
+    triggerSub: 'įvykis pradeda eigą',
+    condition: 'Sąlyga',
     conditionSub: 'jei reikia',
-    action: 'Action',
+    action: 'Veiksmas',
     actionSub: 'veiksmas sistemoje',
-    typesLabel: 'Trigger tipai',
+    typesLabel: 'Paleidiklio tipai',
     typeForm: 'Forma',
     typeSchedule: 'Laikas',
-    typeWebhook: 'Webhook',
-    typesHint: 'Webhook = Trigger tipas',
-    aria: 'Darbo eiga: Trigger, Condition, Action; Webhook yra Trigger tipas',
+    typeWebhook: 'Pranešimas',
+    typesHint: 'Internetinis pranešimas (webhook) = paleidiklio tipas',
+    aria: 'Darbo eiga: Paleidiklis, Sąlyga, Veiksmas; internetinis pranešimas yra paleidiklio tipas',
   };
 }
 
@@ -53,7 +53,7 @@ export function getM10ThreeALabels(locale: M10Locale) {
       autonPct: '5 %',
       autonSub: 'Agents only with limits',
       hint: 'Tap a band – when to choose it',
-      aria: '3A strategy: Automatize eighty percent, Augment fifteen, Autonomize five',
+      aria: '3A strategy: Automate eighty percent, Augment fifteen, Autonomize five',
       regionAria: '3A strategy – three bands',
       youAreHere: 'You are here:',
       stepOf: (n: number, total: number) => `Step ${n} of ${total}`,
@@ -64,17 +64,17 @@ export function getM10ThreeALabels(locale: M10Locale) {
   }
   return {
     title: '3A strategija (80 / 15 / 5)',
-    auto: 'AUTOMATIZE',
+    auto: 'Automatizuoti',
     autoPct: '80 %',
     autoSub: 'Taisyklės – mažiau klaidų',
-    aug: 'AUGMENT',
+    aug: 'Asistuoti',
     augPct: '15 %',
     augSub: 'Žmogus sprendžia, DI padeda',
-    auton: 'AUTONOMIZE',
+    auton: 'Autonomizuoti',
     autonPct: '5 %',
     autonSub: 'Agentai tik su ribomis',
     hint: 'Paspausk juostą – kada rinktis',
-    aria: '3A strategija: Automatize 80 %, Augment 15 %, Autonomize 5 %',
+    aria: '3A strategija: Automatizuoti 80 %, Asistuoti 15 %, Autonomizuoti 5 %',
     regionAria: '3A strategija – trys juostos',
     youAreHere: 'Tu esi čia:',
     stepOf: (n: number, total: number) => `Žingsnis ${n} iš ${total}`,
@@ -104,15 +104,15 @@ export function getM10ThreeAExplanations(locale: M10Locale): StepExplanation[] {
   }
   return [
     {
-      title: 'AUTOMATIZE',
+      title: 'Automatizuoti',
       body: '**80 %** – taisyklėmis (be žmogaus kiekviename žingsnyje). Kodėl: mažiau klaidų, nuspėjama. Pvz.: forma → CRM → laiškas.',
     },
     {
-      title: 'AUGMENT',
+      title: 'Asistuoti',
       body: '**15 %** – žmogus sprendžia, DI padeda (santrauka, klasifikacija). Kodėl: reikia sprendimo / atsakomybės. Pvz.: juodraštis → žmogaus patvirtinimas → siuntimas.',
     },
     {
-      title: 'AUTONOMIZE',
+      title: 'Autonomizuoti',
       body: '**5 %** – agentai su ribomis ir eskalacija. Kodėl: brangu / rizikinga – tik siaura juosta. Pvz.: tyrimo agentas → kokybės kontrolė → eskalacija, jei neaišku.',
     },
   ];
@@ -134,7 +134,7 @@ export function getM10ToolTreeLeaves(locale: M10Locale): M10ToolLeaf[] {
     { id: 'm365', condition: 'Office 365 kasdien', tool: 'Power Automate' },
     { id: 'quick', condition: 'Netechninė komanda, greitai', tool: 'Zapier' },
     { id: 'logic', condition: 'Sudėtinga logika + kaina', tool: 'Make.com' },
-    { id: 'host', condition: 'Savihost / duomenys pas mus', tool: 'n8n' },
+    { id: 'host', condition: 'Savas serveris / duomenys pas mus', tool: 'n8n' },
     { id: 'ent', condition: 'Didelės įmonės valdymas', tool: 'Workato' },
   ];
 }
@@ -149,7 +149,7 @@ export function getM10ToolTreeLabels(locale: M10Locale) {
     };
   }
   return {
-    title: 'Įrankio pasirinkimas (workflow)',
+    title: 'Darbo eigos įrankio pasirinkimas',
     root: 'Tavo kontekstas?',
     pick: 'Paspausk šaką',
     aria: 'Sprendimų medis automatizavimo įrankiams',
@@ -176,16 +176,16 @@ export function getM10WorkflowSpecLabels(locale: M10Locale) {
   return {
     title: 'Vieno puslapio specifikacija (8 blokai)',
     blocks: [
-      'Trigger',
+      'Paleidiklis',
       'Įvestis',
-      'Condition',
+      'Sąlyga',
       'Veiksmai',
       'Išvestis',
       'SLA',
       'Klaidos',
       'Auditas',
     ],
-    aria: 'Vieno puslapio workflow specifikacija: Trigger, Įvestis, Condition, Veiksmai, Išvestis, SLA, Klaidos ir Auditas',
+    aria: 'Vieno puslapio darbo eigos specifikacija: Paleidiklis, Įvestis, Sąlyga, Veiksmai, Išvestis, paslaugos lygis, Klaidos ir Auditas',
   };
 }
 
@@ -230,7 +230,7 @@ export function getM10TriggerFlowStepExplanations(locale: M10Locale) {
     },
     {
       title: L.condition,
-      body: 'Neprivaloma šaka / filtras – kol Trigger + Action neveikia, dar neįtrauk.',
+      body: 'Papildoma šaka arba filtras – kol Paleidiklis ir Veiksmas neveikia, dar neįtrauk.',
     },
     {
       title: L.action,

@@ -102,6 +102,11 @@ Konfliktas: jei reikia pakeisti spalvas ar layout – pirmiausia UI_UX_AGENT rek
 - **Track antraštės:** accent pagal kelią – `trackSectionClasses` (brand / sky / fuchsia / rose); copy – CONTENT_AGENT + `module-description-criteria.mdc`.
 - **Bazė M1–6:** vienas track; po M1–M3 – tylesnė **subsection** „Kontekstas ir projektas (M4–M6)“ (`trackBaseCycle2*`), ne antras track.
 - **„Mano medžiaga“:** rodyti grid’e po paskutinio `id <= maxAccessible` modulio (`insertMaterialsAfterAccessible`); **ne** po visų tier-locked / coming-soon blokų. Sekvenciniai lock’ai tame pačiame tier’e lieka virš materials.
+- **Katalogas pirmiausia:** virš grid – vienas „Kitas tavo žingsnis“ arba recovery; kartojimas tik antrinis link, vertintojas – po katalogo kaip modulio praktika. FAIL: globali retention kortelė su dviem CTA virš modulių.
+- **Home retrieval:** Home nėra antras katalogas — hero CTA = vienintelis primary; kartojimas = antrinis linkas po CTA (ne `RetrievalDueCard` kortelė). Katalogas owns next-step.
+- **Progreso signalas:** bendras progresas kataloge = next-step status chip po pagrindiniu CTA, ne CTA, ne hero ir ne atskira „Bendra pažanga“ kortelė. Tekstas aiškesnis nei antra progress juosta (`X iš Y · Z %`).
+- **Premium next-step tankis:** kortelė turi turėti aiškų content/action grid, mažai tuščios erdvės, neutralų white/card paviršių ir vieną dešinės pusės CTA + statuso sistemą. V3 kryptis = mažiau softness, mažiau shadow, griežtesnis radius ir aiškesnis action/status stulpelis. FAIL: didelis LMS tipo floating containeris su atskirais, tarpusavyje nesusijusiais widget’ais.
+- **Responsive / CTA:** `md:grid-cols-2 xl:grid-cols-3`; 1024 px negrūsti 3 siaurų kortelių. Vienas accent primary CTA – next-step; praktikos kortelių CTA lieka level/track semantika.
 - **SOT:** `GOLDEN_STANDARD.md` §8.4; testai `ModulesPage.materials.test.tsx`.
 
 ---

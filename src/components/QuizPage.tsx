@@ -40,7 +40,6 @@ export default function QuizPage({
 }: QuizPageProps) {
   const { t } = useTranslation(['quiz', 'common']);
   const { locale } = useLocale();
-  const isEn = locale === 'en';
   const isRetrieval = mode === 'retrieval' && retrievalItem != null;
   const modulesData = getModulesDataSync(locale);
   const [hasStarted, setHasStarted] = useState(isRetrieval);
@@ -150,23 +149,15 @@ export default function QuizPage({
         </button>
         <Card className="p-4 sm:p-6 lg:p-10">
           <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            {isRetrieval
-              ? isEn
-                ? 'Spaced recall'
-                : 'Pakartotinė atmintis'
-              : t('title')}
+            {isRetrieval ? t('retrievalTitle') : t('title')}
           </h1>
           {isRetrieval ? (
             <>
               <p className="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">
-                {isEn
-                  ? 'A short formative check. Not a path test – practice recalling.'
-                  : 'Trumpa formuojanti patikra. Ne kelio testas – praktikuok prisiminimą.'}
+                {t('retrievalIntro')}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
-                {isEn
-                  ? 'About 5–8 questions. Weak spots come back tomorrow.'
-                  : 'Apie 5–8 klausimus. Silpnas vietas kartosime rytoj.'}
+                {t('retrievalHint')}
               </p>
             </>
           ) : (
@@ -195,13 +186,11 @@ export default function QuizPage({
             variant="primary"
             onClick={() => setHasStarted(true)}
             className="w-full sm:w-auto"
-            aria-label={t('introStartAria')}
+            aria-label={
+              isRetrieval ? t('retrievalStartAria') : t('introStartAria')
+            }
           >
-            {isRetrieval
-              ? isEn
-                ? 'Start recall'
-                : 'Pradėti pakartojimą'
-              : t('introStart')}
+            {isRetrieval ? t('retrievalStart') : t('introStart')}
             <ArrowRight className="w-5 h-5" />
           </CTAButton>
         </Card>

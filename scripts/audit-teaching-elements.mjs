@@ -9,6 +9,8 @@
  *   node scripts/audit-teaching-elements.mjs --json
  *   node scripts/audit-teaching-elements.mjs --strict
  *   node scripts/audit-teaching-elements.mjs --write-skeleton
+ *   node scripts/audit-teaching-elements.mjs --write-docs   (sync registry tables)
+ *   node scripts/audit-teaching-elements.mjs --check-docs    (fail if tables stale)
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -25,11 +27,17 @@ const overlayPath = join(
   root,
   'docs/development/teaching-elements-overlay.json'
 );
+const registryPath = join(
+  root,
+  'docs/development/TEACHING_ELEMENTS_REGISTRY.md'
+);
 
 const args = new Set(process.argv.slice(2));
 const wantJson = args.has('--json');
 const strict = args.has('--strict');
 const writeSkeleton = args.has('--write-skeleton');
+const writeDocs = args.has('--write-docs');
+const checkDocs = args.has('--check-docs');
 
 const EMBED_KEYS = [
   'recognitionExercise',
@@ -150,6 +158,7 @@ function findRendererKey(normalized, rendererKeys) {
 
 function walkCollect(data) {
   const images = [];
+  const questionImages = [];
   const embeds = [];
   const tables = [];
   const typeCounts = {};
@@ -160,6 +169,18 @@ function walkCollect(data) {
       totalSlides += 1;
       const t = slide.type ?? '(missing)';
       typeCounts[t] = (typeCounts[t] || 0) + 1;
+      for (const question of slide.testQuestions ?? []) {
+        if (typeof question?.imageKey === 'string' && question.imageKey) {
+          questionImages.push({
+            raw: question.imageKey,
+            normalized: normalizeImageKey(question.imageKey),
+            moduleId: mod.id,
+            slideId: slide.id,
+            questionId: question.id ?? '(missing)',
+            title: slide.title,
+          });
+        }
+      }
       const content = slide.content;
       if (!content || typeof content !== 'object') continue;
 
@@ -239,11 +260,12 @@ function walkCollect(data) {
     }
   }
 
-  return { images, embeds, tables, typeCounts, totalSlides };
+  return { images, questionImages, embeds, tables, typeCounts, totalSlides };
 }
 
 function buildInventory(data, rendererKeys) {
-  const { images, embeds, tables, typeCounts, totalSlides } = walkCollect(data);
+  const { images, questionImages, embeds, tables, typeCounts, totalSlides } =
+    walkCollect(data);
   const elements = [];
 
   const uniqueNorm = new Map();
@@ -331,6 +353,9 @@ function buildInventory(data, rendererKeys) {
     unmatchedImages: images.filter(
       (img) => !findRendererKey(img.normalized, rendererKeys)
     ),
+    unmatchedQuestionImages: questionImages.filter(
+      (img) => !findRendererKey(img.normalized, rendererKeys)
+    ),
   };
 }
 
@@ -400,6 +425,13 @@ function validate(inventory, overlay) {
       );
     }
   }
+  if (inventory.unmatchedQuestionImages.length) {
+    for (const img of inventory.unmatchedQuestionImages) {
+      errors.push(
+        `Question imageKey without renderer: M${img.moduleId}/${img.slideId} ${img.questionId} "${img.raw}"`
+      );
+    }
+  }
 
   if (strict) {
     for (const el of inventory.elements) {
@@ -421,6 +453,161 @@ function validate(inventory, overlay) {
   }
 
   return { errors, warnings };
+}
+
+/** Registry lentelių eiliškumas – kaip TE-4 scorecard istoriškai. */
+const KIND_ORDER = [
+  'diagram',
+  'embed',
+  'lab',
+  'off-renderer',
+  'orphaned',
+  'renderer-alias',
+  'slide-type',
+  'table',
+];
+
+/** Kind'ai, kuriems maturity ≤1 yra P0 (mokymo interaktyvo šerdis). */
+const P0_KINDS = new Set(['diagram', 'lab', 'off-renderer']);
+
+/**
+ * Markdown lentelė prettier formatu (padding iki stulpelio pločio, `---:`
+ * dešinei lygiuotei). Būtina: lint-staged leidžia docs per prettier, tai
+ * nesutampantis formatavimas iškart taptų „stale“ klaida.
+ */
+function mdTable(headers, rows, aligns) {
+  const all = [headers, ...rows];
+  const widths = headers.map((_, c) =>
+    Math.max(3, ...all.map((row) => [...String(row[c] ?? '')].length))
+  );
+  const line = (row) =>
+    `| ${row
+      .map((cell, c) => {
+        const text = String(cell ?? '');
+        const pad = ' '.repeat(widths[c] - [...text].length);
+        return aligns[c] === 'right' ? `${pad}${text}` : `${text}${pad}`;
+      })
+      .join(' | ')} |`;
+  const delimiter = `| ${widths
+    .map((w, c) => (aligns[c] === 'right' ? `${'-'.repeat(w - 1)}:` : '-'.repeat(w)))
+    .join(' | ')} |`;
+  return [line(headers), delimiter, ...rows.map(line)].join('\n');
+}
+
+function buildScorecard(inventory, overlay) {
+  const maturityById = new Map(
+    (overlay?.elements ?? []).map((e) => [e.elementId, e.maturity])
+  );
+  const byKind = new Map();
+  for (const el of inventory.elements) {
+    if (!byKind.has(el.kind)) byKind.set(el.kind, []);
+    byKind.get(el.kind).push(el);
+  }
+  const rank = (kind) => {
+    const i = KIND_ORDER.indexOf(kind);
+    return i < 0 ? KIND_ORDER.length : i;
+  };
+  const rows = [];
+  const p0 = [];
+  for (const kind of [...byKind.keys()].sort(
+    (a, b) => rank(a) - rank(b) || a.localeCompare(b)
+  )) {
+    const els = byKind.get(kind);
+    const scores = els.map((el) => Number(maturityById.get(el.elementId) ?? 0));
+    const avg = scores.reduce((sum, v) => sum + v, 0) / scores.length;
+    rows.push([
+      `\`${kind}\``,
+      String(els.length),
+      avg.toFixed(2),
+      String(scores.filter((v) => v <= 1).length),
+    ]);
+    if (!P0_KINDS.has(kind)) continue;
+    for (const el of els) {
+      if (Number(maturityById.get(el.elementId) ?? 0) <= 1) p0.push(el.elementId);
+    }
+  }
+  return { rows, p0 };
+}
+
+function buildDocBlocks(inventory, overlay) {
+  const t = inventory.totals;
+  const baseline = mdTable(
+    ['Bucket', 'N'],
+    [
+      ['Skaidrės', String(t.totalSlides)],
+      ['Naudoti SlideType', String(t.slideTypesUsed)],
+      ['Live `sections[].image` unique', String(t.uniqueImages)],
+      ['Live `sections[].image` fields', String(t.imageFields)],
+      ['`diagramRenderers` keys', String(t.rendererKeys)],
+      ['Off-renderer live šeimos', String(t.offRenderer)],
+      ['Orphaned', String(t.orphaned)],
+      ['ChoiceControl labai (audit)', String(t.labs)],
+      ['Embed katalogas', String(t.embeds)],
+      ['`section.table`', `${t.tables} / ${t.tableSlides} skaidrių`],
+      [
+        'Inventory / overlay elements',
+        `${inventory.elements.length} / ${overlay?.elements?.length ?? 0}`,
+      ],
+    ],
+    ['left', 'right']
+  );
+
+  const { rows, p0 } = buildScorecard(inventory, overlay);
+  const scorecard = [
+    mdTable(
+      ['Kind', 'N', 'Avg maturity', 'Maturity ≤1'],
+      rows,
+      ['left', 'right', 'right', 'right']
+    ),
+    '',
+    `**P0 (diagram/lab/off-renderer, maturity ≤1):** ${
+      p0.length ? p0.map((id) => `\`${id}\``).join(', ') : '_nėra_'
+    }.`,
+  ].join('\n');
+
+  return {
+    'te-baseline': [
+      baseline,
+      '',
+      `_Šaltinis: \`modules.json\` + \`diagramRenderers\`; overlay \`updatedAt\`: **${
+        overlay?.updatedAt ?? 'n/a'
+      }**._`,
+    ].join('\n'),
+    'te-scorecard': scorecard,
+  };
+}
+
+function replaceAutoBlock(src, name, body) {
+  const start = `<!-- AUTO:${name}:start -->`;
+  const end = `<!-- AUTO:${name}:end -->`;
+  const from = src.indexOf(start);
+  const to = src.indexOf(end);
+  if (from < 0 || to < 0 || to < from) return null;
+  return `${src.slice(0, from + start.length)}\n\n${body}\n\n${src.slice(to)}`;
+}
+
+/**
+ * Sinchronizuoja registry skaitines sekcijas su live inventory.
+ * Grąžina, kurios sekcijos pasenusios (`stale`) ir kurių markerių nėra.
+ */
+function syncRegistryDocs(inventory, overlay) {
+  const original = readFileSync(registryPath, 'utf8').replace(/\r\n/g, '\n');
+  const blocks = buildDocBlocks(inventory, overlay);
+  const missing = [];
+  const stale = [];
+  let next = original;
+
+  for (const [name, body] of Object.entries(blocks)) {
+    const applied = replaceAutoBlock(next, name, body);
+    if (applied == null) {
+      missing.push(name);
+      continue;
+    }
+    if (applied !== next) stale.push(name);
+    next = applied;
+  }
+
+  return { original, next, missing, stale };
 }
 
 function main() {
@@ -463,6 +650,30 @@ function main() {
 
   const overlay = loadOverlay();
   const { errors, warnings } = validate(inventory, overlay);
+
+  if (writeDocs || checkDocs) {
+    const { original, next, missing, stale } = syncRegistryDocs(
+      inventory,
+      overlay
+    );
+    for (const name of missing) {
+      errors.push(
+        `Registry marker missing: <!-- AUTO:${name}:start --> / :end in TEACHING_ELEMENTS_REGISTRY.md`
+      );
+    }
+    if (writeDocs) {
+      if (next !== original) writeFileSync(registryPath, next, 'utf8');
+      console.log(
+        next === original
+          ? 'Registry docs already in sync'
+          : `Registry docs updated: ${stale.join(', ')}`
+      );
+    } else if (stale.length) {
+      errors.push(
+        `Registry numbers stale (${stale.join(', ')}) – run \`npm run audit:teaching-elements:docs\``
+      );
+    }
+  }
 
   if (wantJson) {
     console.log(

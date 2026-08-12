@@ -26,7 +26,7 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
   if (locale === 'en') {
     return {
       title: 'Three mandatory labs (3A)',
-      aria: 'Three labs: Automatize, Augment, Autonomize — human gate highlighted on the chip flow',
+      aria: 'Three labs: Automate, Augment, Autonomize — human gate highlighted on the chip flow',
       hint: 'Tap a lab row – where the human gate sits',
       regionAria: 'Three mandatory labs – comparison rows',
       youAreHere: 'You are here:',
@@ -36,7 +36,7 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
       enlargeLabel: 'Three labs (3A)',
       rows: [
         {
-          label: '1 · Automatize',
+          label: '1 · Automate',
           tone: 'brand',
           steps: ['Form', 'CRM', 'Email', 'Slack'],
           humanStepIndex: null,
@@ -61,7 +61,7 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
   }
   return {
     title: 'Trys privalomos praktikos (3A)',
-    aria: 'Trys praktikos: Automatize, Augment, Autonomize — žmogaus vartai paryškinti chip eigoje',
+    aria: 'Trys praktikos: Automatizuoti, Asistuoti, Autonomizuoti — žmogaus vartai paryškinti chip eigoje',
     hint: 'Paspausk praktikos eilutę – kur yra žmogaus vartai',
     regionAria: 'Trys privalomos praktikos – palyginimo eilutės',
     youAreHere: 'Tu esi čia:',
@@ -72,21 +72,21 @@ export function getM12ThreeLabsLabels(locale: M10Locale): {
     enlargeLabel: 'Trys praktikos (3A)',
     rows: [
       {
-        label: '1 · Automatize',
+        label: '1 · Automatizuoti',
         tone: 'brand',
         steps: ['Forma', 'CRM', 'Laiškas', 'Slack'],
         humanStepIndex: null,
         humanNote: 'Mažai žmogaus sprendimų',
       },
       {
-        label: '2 · Augment',
+        label: '2 · Asistuoti',
         tone: 'emerald',
         steps: ['Laiškas', 'DI', 'Patvirtinimas', 'Siųsti'],
         humanStepIndex: 2,
         humanNote: 'Žmogus patvirtina',
       },
       {
-        label: '3 · Autonomize',
+        label: '3 · Autonomizuoti',
         tone: 'amber',
         steps: ['Atsiliepimai', 'Sentimentas', 'Eskalacija'],
         humanStepIndex: 2,
@@ -102,7 +102,7 @@ export function getM12ThreeLabsExplanations(
   if (locale === 'en') {
     return [
       {
-        title: 'Automatize',
+        title: 'Automate',
         body: '**Rules path** – form → CRM → email → Slack. Best when the decision is already clear and the human gate can stay outside the flow.',
       },
       {
@@ -118,15 +118,15 @@ export function getM12ThreeLabsExplanations(
 
   return [
     {
-      title: 'Automatize',
+      title: 'Automatizuoti',
       body: '**Taisyklių kelias** – forma → CRM → laiškas → Slack. Tinka, kai sprendimas jau aiškus, o žmogaus vartai gali likti už srauto.',
     },
     {
-      title: 'Augment',
+      title: 'Asistuoti',
       body: '**Žmogus patvirtina** – laiškas → DI → patvirtinimas → siųsti. Rinkis, kai DI paruošia atsakymą, bet žmogus išlaiko atsakomybę.',
     },
     {
-      title: 'Autonomize',
+      title: 'Autonomizuoti',
       body: '**Eskalacija / kokybė** – atsiliepimai → sentimentas → eskalacija. Agentui leisk veikti tik su ribomis ir aiškiu perdavimu atsiradus rizikai.',
     },
   ];

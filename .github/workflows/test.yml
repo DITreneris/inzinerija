@@ -65,3 +65,26 @@ jobs:
         with:
           files: ./coverage/coverage-final.json
           fail_ci_if_error: false
+
+  # Teaching-element / tools governance. Data-only checks, so one Node version is
+  # enough; runs in parallel with `test` instead of blocking it.
+  governance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Diagram/lab overlay coverage, registry number drift, tools parity and
+      # generated build-profile drift. Local equivalent: npm run audit:governance
+      - name: Audit schemes, labs and tools
+        run: npm run audit:governance

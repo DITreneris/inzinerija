@@ -78,6 +78,7 @@ import ChoiceControl from '../../ui/ChoiceControl';
 import StatusPanel from '../../ui/StatusPanel';
 import type { ModuleAccent } from '../../../types/modules';
 import { isContentTrackAccent } from '../shared/contentTrackTokens';
+import { renderDiagramSection } from './content/diagramRenderers';
 
 import type { CategoryScore } from './path-test/pathTestSession';
 import {
@@ -120,6 +121,19 @@ function getPracticeIntroContent(slide: Slide | undefined): {
     body?: string;
     copyable?: string;
   };
+  /** M12: kelio pasirinkimas vietoje scenarijų grid */
+  pathChoices?: {
+    id: string;
+    label: string;
+    description?: string;
+    statusHint?: string;
+    recommended?: boolean;
+    slideId?: number;
+  }[];
+  /** M12: default kelias, paryškintas kaip rekomenduojamas */
+  recommendedPathId?: string;
+  /** M12: tik šios praktikos skaičiuojamos kaip privalomos */
+  requiredSlideIds?: number[];
   /** Modulio 9: rekomenduojamų scenarijų slide id sąrašas */
   recommendedSlideIds?: number[];
   /** M3: bent kiek scenarijų privaloma užbaigti (jei nurodyta – rodoma „Pasirinkite bent N“) */
@@ -174,6 +188,23 @@ function getPracticeIntroContent(slide: Slide | undefined): {
                 copyable?: string;
               })
             : undefined,
+        pathChoices: Array.isArray(c.pathChoices)
+          ? (c.pathChoices as {
+              id: string;
+              label: string;
+              description?: string;
+              statusHint?: string;
+              recommended?: boolean;
+              slideId?: number;
+            }[])
+          : undefined,
+        recommendedPathId:
+          typeof c.recommendedPathId === 'string'
+            ? c.recommendedPathId
+            : undefined,
+        requiredSlideIds: Array.isArray(c.requiredSlideIds)
+          ? (c.requiredSlideIds as number[])
+          : undefined,
         recommendedSlideIds: Array.isArray(c.recommendedSlideIds)
           ? (c.recommendedSlideIds as number[])
           : undefined,
@@ -552,6 +583,10 @@ export function TestSectionSlide({
         const type = getQuestionType(q);
         const userAnswer = answers[q.id];
         const showHint = hints.has(q.id);
+        const stemVisual = renderDiagramSection(q.imageKey, undefined, {
+          moduleId,
+          imageAlt: q.question,
+        });
 
         switch (type) {
           case 'true-false':
@@ -642,6 +677,7 @@ export function TestSectionSlide({
                 }
                 onAnswer={handleAnswer}
                 onRequestHint={handleRequestHint}
+                stemVisual={stemVisual}
                 onRemediationLink={
                   onGoToModule ? handleRemediationLink : undefined
                 }
@@ -1270,7 +1306,7 @@ export function TestResultsSlide({
         : null) ??
       (locale === 'en'
         ? 'Congratulations! You are ready for the Agent Engineering project (Module 12).'
-        : 'Sveikiname! Esi pasiruošęs Agentų inžinerijos projektui (Modulis 12).');
+        : 'Sveikinu! Esi pasiruošęs Agentų inžinerijos projektui (Modulis 12).');
     const failedMessage =
       (typeof m11Content?.failedMessage === 'string'
         ? m11Content.failedMessage
@@ -2069,12 +2105,24 @@ export function PracticeIntroSlide({
   );
   const whyBenefit = getWhyBenefit(slide);
   const recommendedNote = getRecommendedNote(slide);
+  const introContent = getPracticeIntroContent(slide);
+  const isM9 = moduleId === 9;
+  const isM12 = moduleId === 12;
+  const m12PathChoices = isM12 ? (introContent.pathChoices ?? []) : [];
+  const defaultM12PathId =
+    introContent.recommendedPathId ??
+    m12PathChoices.find((choice) => choice.recommended)?.id ??
+    m12PathChoices[0]?.id ??
+    null;
   const [selfAssessment, setSelfAssessment] = useState<
     Record<number, SelfAssessmentValue>
   >(loadModule6SelfAssessment);
   const [m6ProjectId, setM6ProjectId] = useState<
     'report' | 'custom-gpt' | null
   >(null);
+  const [selectedM12PathId, setSelectedM12PathId] = useState<string | null>(
+    defaultM12PathId
+  );
 
   useEffect(() => {
     if (moduleId !== 6 || Object.keys(selfAssessment).length === 0) return;
@@ -2084,10 +2132,13 @@ export function PracticeIntroSlide({
     );
   }, [moduleId, selfAssessment]);
 
+  useEffect(() => {
+    setSelectedM12PathId(defaultM12PathId);
+  }, [defaultM12PathId]);
+
   const setModule6SelfAssessment = setSelfAssessment;
 
   if (moduleId === 6) {
-    const introContent = getPracticeIntroContent(slide);
     const hasM6Progress = Boolean(
       scenarioSlides?.length &&
       progress?.completedTasks &&
@@ -2605,15 +2656,12 @@ export function PracticeIntroSlide({
     : 0;
 
   const isMod3 = moduleId === 3;
-  const introContent = getPracticeIntroContent(slide);
   const mod3CoverClasses =
     'bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/40 p-6 rounded-xl border-2 border-emerald-300 dark:border-emerald-700';
   const progressTextClasses = isMod3
     ? 'text-emerald-700 dark:text-emerald-300'
     : 'text-accent-700 dark:text-accent-300';
 
-  const isM9 = moduleId === 9;
-  const isM12 = moduleId === 12;
   const usesGuidedIntro = isM9 || isM12;
   const recommendedIds = introContent.recommendedSlideIds ?? [];
   /** M9 / M12: rekomenduojami scenarijai pirmi (MUST lab'ai prieš SHOULD) */
@@ -2646,10 +2694,22 @@ export function PracticeIntroSlide({
           } as PracticeScenarioSlideInfo & { isHubLink?: boolean },
         ]
       : null;
+  const selectedM12Path =
+    m12PathChoices.find((choice) => choice.id === selectedM12PathId) ??
+    m12PathChoices[0];
+  const requiredSlideIds = isM12
+    ? (introContent.requiredSlideIds ?? [121, 122, 123])
+    : [];
+  const requiredCompletedCount =
+    isM12 && progress?.completedTasks && moduleId != null
+      ? requiredSlideIds.filter((slideId) =>
+          progress.completedTasks[moduleId]?.includes(slideId)
+        ).length
+      : 0;
 
   const coverInner = (
     <>
-      {usesGuidedIntro && introContent.meaningParagraph && (
+      {usesGuidedIntro && !isM12 && introContent.meaningParagraph && (
         <p
           className="text-base text-gray-800 dark:text-gray-200 mb-4 font-medium leading-relaxed"
           role="region"
@@ -2658,7 +2718,7 @@ export function PracticeIntroSlide({
           {introContent.meaningParagraph}
         </p>
       )}
-      {usesGuidedIntro && introContent.primaryPathIntro && (
+      {usesGuidedIntro && !isM12 && introContent.primaryPathIntro && (
         <div
           className="mb-4 p-4 rounded-xl border-2 border-emerald-400 dark:border-emerald-600 bg-emerald-50/90 dark:bg-emerald-950/40"
           role="region"
@@ -2710,22 +2770,70 @@ export function PracticeIntroSlide({
           )}
         </div>
       )}
-      {isM12 && usesGuidedIntro && introContent.primaryPathIntro && (
+      {isM12 && m12PathChoices.length > 0 && (
         <div
-          className="mb-4 p-4 rounded-xl border-2 border-accent-400 dark:border-accent-600 bg-accent-50/90 dark:bg-accent-900/20"
+          className="mb-4 rounded-2xl border border-brand-200 bg-white/85 p-4 shadow-sm dark:border-brand-800 dark:bg-gray-900/40 sm:p-5"
           role="region"
           aria-label={t('m12RequiredPathAria')}
         >
-          <h4
-            className={`${typographyClasses.h3} text-accent-900 dark:text-accent-100 mb-2`}
-          >
-            {t('m12RequiredPathHeading')}
-          </h4>
-          <p
-            className={`${typographyClasses.body} text-gray-800 dark:text-gray-200`}
-          >
-            {t('m12RequiredPathBody')}
-          </p>
+          <ChoiceControl
+            legend={t('m12PathChoiceHeading')}
+            columns={3}
+            size="compact"
+            value={selectedM12PathId}
+            onChange={setSelectedM12PathId}
+            options={m12PathChoices.map((choice, index) => ({
+              id: choice.id,
+              label: choice.label,
+              description: choice.description,
+              icon: index === 0 ? Layers : index === 1 ? Zap : Target,
+            }))}
+            statusHint={
+              selectedM12Path?.statusHint ??
+              (locale === 'en'
+                ? 'The recommended path stays selected by default.'
+                : 'Rekomenduojamas kelias parinktas pagal nutylėjimą.')
+            }
+          />
+          {selectedM12Path && (
+            <div className="mt-4 flex flex-col gap-3 rounded-xl border border-brand-100 bg-brand-50/70 p-3 dark:border-brand-800/70 dark:bg-brand-900/20 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p
+                  className={`${typographyClasses.label} text-brand-700 dark:text-brand-300`}
+                >
+                  {locale === 'en' ? 'Selected path' : 'Pasirinktas kelias'}
+                </p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                  {selectedM12Path.label}
+                </p>
+              </div>
+              {selectedM12Path.slideId && onNavigateToSlideById && (
+                <CTAButton
+                  variant="primary"
+                  onClick={() =>
+                    onNavigateToSlideById(selectedM12Path.slideId!)
+                  }
+                  className="px-4 py-2 text-sm"
+                  aria-label={
+                    locale === 'en'
+                      ? `Start selected path: ${selectedM12Path.label}`
+                      : `Pradėti pasirinktą kelią: ${selectedM12Path.label}`
+                  }
+                >
+                  {locale === 'en'
+                    ? 'Start selected path'
+                    : 'Pradėti pasirinktą kelią'}
+                </CTAButton>
+              )}
+            </div>
+          )}
+          {requiredSlideIds.length > 0 && (
+            <p className="mt-3 text-sm font-semibold text-accent-700 dark:text-accent-300">
+              {locale === 'en'
+                ? `${requiredCompletedCount}/${requiredSlideIds.length} required practices completed`
+                : `${requiredCompletedCount}/${requiredSlideIds.length} privalomų praktikų atlikta`}
+            </p>
+          )}
         </div>
       )}
       {usesGuidedIntro &&
@@ -2885,7 +2993,7 @@ export function PracticeIntroSlide({
           {recommendedNote}
         </Banner>
       )}
-      {introContent.firstActionCTA && (
+      {introContent.firstActionCTA && !isM12 && (
         <div
           className="bg-emerald-50 dark:bg-emerald-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 mb-3"
           role="region"
@@ -2960,7 +3068,7 @@ export function PracticeIntroSlide({
           {t('m9WorkflowFirstFooter')}
         </p>
       )}
-      {!isM9 && (
+      {!isM9 && !isM12 && (
         <>
           <div className="flex flex-wrap items-center gap-2 mb-3">
             <h3
@@ -3003,8 +3111,8 @@ export function PracticeIntroSlide({
             ) : isM12 ? (
               <>
                 {locale === 'en'
-                  ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automatize, Augment, Autonomize) on a platform or with prompt-only artifacts.'
-                  : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatize, Augment, Autonomize) platformoje arba keliu tik su promptais.'}{' '}
+                  ? 'First the linear quick start (prompts only: Coordinator + specialists, then Research agent). Then complete the three required 3A practices (Automate, Augment, Autonomize) on a platform or with prompt-only artifacts.'
+                  : 'Pirmiausia linijinis greitas startas (tik promptai: Koordinatorius + specialistai, tada Tyrimo agentas). Tada atlik tris privalomas 3A praktikas (Automatizuoti, Asistuoti, Autonomizuoti) platformoje arba keliu tik su promptais.'}{' '}
                 {locale === 'en'
                   ? 'Follow the linear order on the next slides and save artifacts before marking a practice done.'
                   : 'Sek linijinę skaidrių tvarką ir užfiksuok artefaktus prieš pažymėdamas praktiką atlikta.'}
@@ -3046,7 +3154,7 @@ export function PracticeIntroSlide({
         </StatusPanel>
       )}
 
-      {isM9 ? (
+      {isM12 ? null : isM9 ? (
         <details className="group rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/80 overflow-hidden">
           <summary className="list-none cursor-pointer px-4 py-3 font-bold text-gray-900 dark:text-white flex items-center justify-between gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-inset">
             <span className="flex items-center gap-2">

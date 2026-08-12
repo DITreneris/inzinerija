@@ -1,4 +1,11 @@
-import { useState, useEffect, useCallback, Suspense, lazy } from 'react';
+import {
+  useState,
+  useEffect,
+  useCallback,
+  Suspense,
+  lazy,
+  useRef,
+} from 'react';
 import { Helmet } from 'react-helmet-async';
 import Celebration from './components/Celebration';
 import { AppNav } from './components/AppNav';
@@ -20,6 +27,11 @@ import {
   logLearningEvent,
   hasLoggedFirstActionSuccess,
 } from './utils/learningEvents';
+import {
+  getLabInteractionsSnapshot,
+  hydrateLabInteractions,
+  subscribeLabInteractions,
+} from './utils/labInteractions';
 import { useTheme } from './utils/useTheme';
 import {
   loadModules,
@@ -117,6 +129,7 @@ function App() {
   const [, setAccessTierRefresh] = useState(0);
   const [retrievalSession, setRetrievalSession] =
     useState<RetrievalScheduleItem | null>(null);
+  const didHydrateLabInteractions = useRef(false);
 
   const replaceUrlWithoutMagicLinkParams = useCallback(() => {
     const cleanSearch = stripMagicLinkSearchParams(window.location.search);
@@ -177,6 +190,32 @@ function App() {
   useEffect(() => {
     saveProgress(progress);
   }, [progress]);
+
+  useEffect(() => {
+    if (didHydrateLabInteractions.current) return;
+    didHydrateLabInteractions.current = true;
+    hydrateLabInteractions(progress.interactions);
+  }, [progress.interactions]);
+
+  useEffect(
+    () =>
+      subscribeLabInteractions(() => {
+        const interactions = getLabInteractionsSnapshot();
+        setProgress((prev) => {
+          const previous = prev.interactions ?? {};
+          if (JSON.stringify(previous) === JSON.stringify(interactions)) {
+            return prev;
+          }
+          if (Object.keys(interactions).length === 0) {
+            const next = { ...prev };
+            delete next.interactions;
+            return next;
+          }
+          return { ...prev, interactions };
+        });
+      }),
+    []
+  );
 
   // Flush progress save on page unload to prevent data loss
   useEffect(() => {
@@ -576,7 +615,6 @@ function App() {
                   }}
                   progress={progress}
                   onStartRetrieval={handleStartRetrieval}
-                  onOpenEvalHabit={handleOpenEvalHabit}
                 />
               )}
               {currentPage === 'modules' && (

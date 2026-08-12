@@ -6,7 +6,8 @@
  * - Alphabetical sort (localeCompare 'lt')
  * - moduleId 1–18
  * - Category allowlists (reject legacy typos)
- * - Core profiles ⊆ full SOT and respect max moduleId
+ * - All four build profiles (m1-m6 / m9 / m12 / m15, LT + EN) ⊆ full SOT
+ *   and respect max moduleId
  *
  * Exit 0 = OK, 1 = FAIL.
  */
@@ -161,8 +162,12 @@ export function auditTools() {
   const enNames = new Set(enTools.map((t) => t.name));
   checkProfile('tools-m1-m6.json', ltNames, 6, errors);
   checkProfile('tools-m1-m9.json', ltNames, 9, errors);
+  checkProfile('tools-m1-m12.json', ltNames, 12, errors);
+  checkProfile('tools-m1-m15.json', ltNames, 15, errors);
   checkProfile('tools-en-m1-m6.json', enNames, 6, errors);
   checkProfile('tools-en-m1-m9.json', enNames, 9, errors);
+  checkProfile('tools-en-m1-m12.json', enNames, 12, errors);
+  checkProfile('tools-en-m1-m15.json', enNames, 15, errors);
 
   if (errors.length) {
     console.error('audit:tools FAILED:\n');

@@ -3,7 +3,7 @@ import M10TriggerFlowDiagram from './M10TriggerFlowDiagram';
 import { getM10TriggerFlowStepExplanations } from './m10DiagramContent';
 
 const ENLARGE = {
-  lt: 'Darbo eigos grandinė (Trigger → Condition → Action)',
+  lt: 'Darbo eigos grandinė (Paleidiklis → Sąlyga → Veiksmas)',
   en: 'Workflow chain (Trigger → Condition → Action)',
 } as const;
 

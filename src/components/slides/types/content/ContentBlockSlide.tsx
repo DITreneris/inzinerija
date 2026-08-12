@@ -30,6 +30,7 @@ import {
   WorkflowChainsBlock,
   ContextEngineeringPipelineDiagram,
   TableHorizontalScroll,
+  EnlargeableImage,
 } from '../../shared';
 import { extractFormatPreview } from '../../../../utils/extractFormatPreview';
 import { HandoutDownloadButton } from '../../../HandoutDownloadButton';
@@ -488,12 +489,13 @@ export function ContentBlockSlide({
             </div>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Kairė: Dantė – metafora (paprastas vaizdas, GOLDEN §3.2 enlarge nenaudoti) */}
+            {/* Kairė: Dantė – tanki iliustracija → EnlargeableImage (GOLDEN §3.2 dense exception) */}
             <div className="flex flex-col gap-2 p-4 rounded-xl bg-di-visata-dante-paper dark:bg-gray-800/80 border-t-4 border-t-di-visata-dante-accent border border-amber-100 dark:border-amber-900/30 shadow-sm">
-              <img
+              <EnlargeableImage
                 src={`${import.meta.env.BASE_URL || '/'}${content.comparisonImages.left.src.replace(/^\//, '')}`}
                 alt={content.comparisonImages.left.label || ''}
-                className="w-full h-auto object-contain rounded-lg border border-amber-200/60 dark:border-amber-800/40 max-h-64"
+                enlargeLabel={content.comparisonImages.left.label}
+                className="rounded-lg border-amber-200/60 dark:border-amber-800/40"
               />
               {content.comparisonImages.left.label && (
                 <p
@@ -517,12 +519,13 @@ export function ContentBlockSlide({
                 </p>
               )}
             </div>
-            {/* Dešinė: DI visata (paprastas vaizdas, GOLDEN §3.2 enlarge nenaudoti) */}
+            {/* Dešinė: DI visata – tanki schema su smulkiu tekstu → EnlargeableImage */}
             <div className="flex flex-col gap-2 p-4 rounded-xl bg-di-visata-ai-cool dark:bg-gray-800/80 border-t-4 border-t-di-visata-ai-accent border border-blue-100 dark:border-blue-900/30 shadow-sm">
-              <img
+              <EnlargeableImage
                 src={`${import.meta.env.BASE_URL || '/'}${content.comparisonImages.right.src.replace(/^\//, '')}`}
                 alt={content.comparisonImages.right.label || ''}
-                className="w-full h-auto object-contain rounded-lg border border-blue-200/60 dark:border-blue-800/40 max-h-64"
+                enlargeLabel={content.comparisonImages.right.label}
+                className="rounded-lg border-blue-200/60 dark:border-blue-800/40"
               />
               {content.comparisonImages.right.label && (
                 <p

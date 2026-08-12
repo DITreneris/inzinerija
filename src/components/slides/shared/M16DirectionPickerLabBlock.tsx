@@ -3,8 +3,9 @@
  * Pattern interactive-control-lab; Shell = Ne; brand-only (10.45 / 13.325 style).
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { useLabState } from '../../../utils/labInteractions';
 import ChoiceControl from '../../ui/ChoiceControl';
 import CopyButton from './CopyButton';
 import {
@@ -16,12 +17,27 @@ import {
 } from './m16DirectionPickerContent';
 import { LAB_SHELL_CLASS } from './m10DepthRolesLabTokens';
 
+const LAB_ID = 'm16_direction_picker';
+
 export default function M16DirectionPickerLabBlock() {
   const { locale } = useLocale();
   const loc = locale === 'en' ? 'en' : 'lt';
   const ui = getDirectionPickerUiLabels(loc);
   const directions = getDirectionOptions(loc);
-  const [picked, setPicked] = useState<DirectionId | null>(null);
+  const [labState, setLabState] = useLabState(LAB_ID);
+  const storedDirection = labState?.choices?.direction;
+  const picked =
+    directions.find((direction) => direction.id === storedDirection)?.id ??
+    null;
+
+  const setPicked = (direction: DirectionId) => {
+    setLabState({
+      choices: {
+        ...(labState?.choices ?? {}),
+        direction,
+      },
+    });
+  };
 
   const artefact = useMemo(() => {
     if (picked == null) return '';

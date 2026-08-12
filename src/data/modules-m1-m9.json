@@ -11149,7 +11149,7 @@
           "subtitle": "Toliau – projektas (Modulis 9)",
           "type": "test-results",
           "content": {
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Duomenų analizės kelio testo.\nINPUT: Ką tik baigiau Modulio 8 testą.\nOUTPUT: Užduok 3 klausimus: (1) Kurį M7 promptą pritaikysiu darbe? (2) Kas buvo sudėtingiausia? (3) Ką pakartoti Modulyje 9? Po mano atsakymų duok 1 konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti žinias po Duomenų analizės kelio testo.\nINPUT: Ką tik baigiau Modulio 8 testą.\nOUTPUT: Užduok 3 klausimus: (1) Kurį M7 promptą pritaikysiu darbe? (2) Kas buvo sudėtingiausia? (3) Ką pakartoti Modulyje 9? Po mano atsakymų duok vieną konkretų patarimą.",
             "reflectionTitle": "Refleksijos promptas"
           }
         },
@@ -11539,7 +11539,7 @@
                 "body": "Ką padarei? (What) — Ką tai reiškia tau ar komandai? (So What) — Ką darysi toliau? (Now What). Atsakyk trumpai savyje arba naudok žemiau esantį promptą DI."
               }
             ],
-            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Duomenų analizės kelio projekto rezultatus.\nINPUT: Ką tik baigiau Modulio 9 projektą – verslo analizę su DI (8 žingsnių ciklas; papildomas scenarijus – jei dariau).\nOUTPUT: Užduok 3 klausimus: (1) Ką padariau šiame projekte ir kur tai pritaikysiu? (2) Ką tai reiškia man ar komandai? (3) Ką darysiu per artimiausias 24–48 val.? Po mano atsakymų duok 1 konkretų patarimą.",
+            "reflectionPrompt": "META: Tu esi mokymų refleksijos asistentas. Tikslas – įtvirtinti Duomenų analizės kelio projekto rezultatus.\nINPUT: Ką tik baigiau Modulio 9 projektą – verslo analizę su DI (8 žingsnių ciklas; papildomas scenarijus – jei dariau).\nOUTPUT: Užduok 3 klausimus: (1) Ką padariau šiame projekte ir kur tai pritaikysiu? (2) Ką tai reiškia man ar komandai? (3) Ką darysiu per artimiausias 24–48 val.? Po mano atsakymų duok vieną konkretų patarimą.",
             "tagline": "Vienas rinkinys = katalogas + švarūs duomenys + 8 promptai + suvestinė.",
             "handoutDownloadLabel": "Parsisiųsti DA kelio atmintinę (PDF)",
             "kitChecklist": [

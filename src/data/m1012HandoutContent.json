@@ -9,9 +9,9 @@
     "Atnaujinimas – po bandymo pataisyk taisyklę, promptą, įgūdį arba testą."
   ],
   "threeAModel": [
-    "Automatize – taisyklėmis paremtas srautas, kai dauguma žingsnių kartojasi.",
-    "Augment – DI padeda žmogui, bet žmogus patvirtina svarbius sprendimus.",
-    "Autonomize – ribotos autonomijos agentas veikia pats, bet turi aiškias ribas ir eskalaciją."
+    "Automatizuoti – taisyklėmis paremtas srautas, kai dauguma žingsnių kartojasi.",
+    "Asistuoti – DI padeda žmogui, bet žmogus patvirtina svarbius sprendimus.",
+    "Autonomizuoti – ribotos autonomijos agentas veikia pats, bet turi aiškias ribas ir eskalaciją."
   ],
   "workflowSteps": [
     "Trigger – kas pradeda procesą: forma, laiškas, lentelė, failas arba rankinis veiksmas.",

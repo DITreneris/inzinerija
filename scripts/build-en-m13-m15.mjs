@@ -730,7 +730,7 @@ function translateString(value, ctx) {
 
 function shouldKeep(value, key, path) {
   if (key === 'id') return true;
-  if (['type', 'icon', 'color', 'blockVariant', 'image', 'badgeVariant', 'accent', 'identityIcon', 'level'].includes(key)) {
+  if (['type', 'icon', 'color', 'blockVariant', 'image', 'imageKey', 'badgeVariant', 'accent', 'identityIcon', 'level'].includes(key)) {
     return true;
   }
   if (path.includes('.correct') || path.includes('.relatedSlideId') || path.includes('.recommendedSlideIds')) return true;

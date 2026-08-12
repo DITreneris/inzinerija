@@ -143,6 +143,7 @@ Pagal `docs/development/GOLDEN_STANDARD.md` §3.2:
 | **summary**              | 5 blokai – žr. `docs/development/SUMMARY_SLIDE_SPEC.md`; introHeading „Ką išmokote“, stats, sections, reflectionPrompt, tagline, CTA                                            |
 | **content-block**        | Sekcijos (heading, body), Trumpai, Daryk dabar, Patikra, optional collapsible, CopyButton promptas (EN: In short, Do now, Quality check)                                        |
 | **test-intro**           | whyBenefit, trukmė, pirmas žingsnis; kelio vartams – žr. Path Test Contract žemiau                                                                                              |
+| **test-section**         | Klausimai + explanations; jei naudoji `imageKey`, schema turi būti kontekstas / skaitymo objektas, **ne atsakymo atskleidimas**                                                 |
 | **warm-up-quiz**         | 3 unscored (M8 leidžia 4); diagnostinis tonas **tu**; 1 forward bridge į projektą                                                                                               |
 | **test-results**         | passed/failed (žmogiškos temos), threshold, useCaseBlock → projektas, reflection; be curriculum ID learner copy                                                                 |
 | **practice-intro**       | whyBenefit, vertė, pirmas veiksmas                                                                                                                                              |

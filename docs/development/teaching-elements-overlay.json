@@ -1355,6 +1355,21 @@
       "slideId": 10.36
     },
     {
+      "elementId": "embed:toolChoiceBar:m10:10.37:s2",
+      "kind": "embed",
+      "key": "sections[2].toolChoiceBar",
+      "pattern": "embed",
+      "shell": "n/a",
+      "render": null,
+      "layoutSot": null,
+      "contentSot": "modules.json#10.37 + modules-en-m10-m12.json",
+      "maturity": 2,
+      "owner": "CONTENT",
+      "notes": "Ar reikia savo kodo – Taip / Ne sprendimas; autoSelect false + kontrastiniai whenHint",
+      "moduleId": 10,
+      "slideId": 10.37
+    },
+    {
       "elementId": "embed:preCopyCheckBlock:m12:120.25",
       "kind": "embed",
       "key": "preCopyCheckBlock",
@@ -1365,7 +1380,7 @@
       "contentSot": "modules.json#120.25 + modules-en-m10-m12.json",
       "maturity": 2,
       "owner": "CONTENT",
-      "notes": "Augment human chip (Patvirtinimas) – prieš linked Copy",
+      "notes": "Asistuoti human chip (Patvirtinimas) – prieš linked Copy",
       "moduleId": 12,
       "slideId": 120.25
     },

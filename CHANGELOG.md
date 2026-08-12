@@ -14,7 +14,7 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 | Skiltis                     | Ką rasite                                                                                                                                                                             |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **[Unreleased]**            | Tuščia po 1.6.1 release cut; nauji pakeitimai renkami viršuje.                                                                                                                        |
+| **[Unreleased]**            | Docs Lean + CATALOG-HOME; M10–12 content freeze; SCHEME-CENTRAL W1; katalogo UX; Home retrieval secondary. **Ne** retag 1.6.1.                                                        |
 | **[1.6.1] – 2026-08-12**    | Node.js 24 runtime bump; CI matrica 22.x / 24.x; ESLint 9 flat config; Vite 7 + Vitest 4; advisory sweep 27 → **0**; corporate12 cutover pin target **v1.6.1**.                       |
 | **[1.6.0] – 2026-08-11**    | M10–12 deep audit remediation; kalbos konvencijų vartai (LT `tu` / EN American, GOLDEN §6c); M13–18 learner plain; TE Must/Should + C2; corporate15 / tier 15; preflight **161/982**. |
 | **[1.5.0] – 2026-07-28**    | Corporate12 + tier 12 + M13 I2V; preflight **133/841**.                                                                                                                               |
@@ -52,7 +52,42 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ## [Unreleased]
 
-_Tuščia po 1.6.1 release cut._
+> Post-**v1.6.1** training HEAD. Corporate12 marketing pin lieka **v1.6.1** (never amend / never retag). Būsimas cut = **1.6.2** tik paprašius.
+
+### Changed
+
+- **Docs Lean + CATALOG-HOME (2026-08-12):** `TODO.md` §1 open-only; done → [`TODO_DONE_SPRINTS_2026-08.md`](docs/archive/development/TODO_DONE_SPRINTS_2026-08.md); ROADMAP **v4.22**; M10–12 content audit **FREEZE** (hygiene baseline 71). Home: kartojimas = antrinis linkas po hero CTA (ne `RetrievalDueCard` hero); katalogas owns next-step (GOLDEN §8.4).
+
+- **M10–12 deep-audit P2 (2026-08-12):** atskirtas M10/M11 warm-up turinys nuo kelio testo (`10.61` q2 agentas vs promptas; `110.5` q3 maršrutizatorius ≠ orkestratorius; `10.61` q3 nebekopijuoja `111` q1); pritaikytas LT/EN P2 polish; pašalinti nenaudojami EN M12 `practice-scenario` `content.*` veidrodžiai; `trigger` → `paleidiklis`; `120.55` copyable `1)` → `1.`; content-hygiene baseline **118 → 71**.
+
+- **M10–12 deep-audit P1 (2026-08-12):** suderintas intake žurnalas su §898 OK, pritaikyti LT/EN P0/P1 proofreading fixlist’ai, EN 3A `Automatize` → `Automate`, atskirtas M12 `description` / `hint` / `partialSolution` scaffold, sutvarkytas paleidiklio / veiksmo / sąlygos terminų kanonas ir orkestratoriaus–koordinatoriaus skirtis.
+
+- **Modulių katalogo kelionė (2026-08-12):** Modulių puslapis pertvarkytas į katalogo-first UX: virš modulių liko vienas „Kitas tavo žingsnis“ signalas su tyliu progreso chip po pagrindiniu CTA (`X iš Y · Z %`), kortelė sutankinta į premium content/action grid su griežtesniu radius, baltesniu surface ir minimaliu shadow, kartojimas tapo antriniu veiksmu, prompto vertintojas perkeltas į kontekstinę praktiką po katalogo, pašalinta dubliuota bendros pažangos kortelė ir 1024 px zonoje katalogas rodo 2 stulpelius vietoje suspaustų 3.
+
+- **M12 projekto įvado kelio pasirinkimas (2026-08-12):** skaidrė 120 vietoje penkių scenarijų grid dabar rodo aiškų kelio `ChoiceControl` su vienu rekomenduojamu default keliu, greito starto ir tiesioginio 3A kelio alternatyvomis. Privalomas progresas skaičiuojamas tik iš `121–123`, pašalintas pozicinis M3 scenarijų aprašų nutekėjimas, o ROI mini skaičiuoklė pataisyta į vienodus mėnesio vienetus.
+
+- **M10 intake 11 skaidrių max-ROI pataisos (2026-08-12):** `10.4`, `10.5`, `10.15`, `10.35`, `10.36`, `10.37`, `10.45`, `10.64`, `10.65`, `10.66` ir `10.7` sutvarkytos pagal plain-pedagogy intake. Įvestas LT-first darbo eigos terminų kanonas, pašalintos pseudo-nuorodos ir konkuruojantis Copy, `10.64` grąžintas į vieną A/B/C artefaktą, `10.37` gavo Taip / Ne sprendimą, o `10.15` / `10.35` schemos uždarytos su skaitomais inactive state ir pilnais šakų labeliais. Sinchronizuoti full SOT, EN build/overlay, žodynėliai ir schemų registras.
+
+- **M4 DI visata comparisonImages enlarge (2026-08-12):** Dantė + DI visata PNG vėl `EnlargeableImage` lightbox (tankūs, smulkus tekstas). CTA: LT „Peržiūrėti pilname dydyje“ / EN „View full size“; modalas iki ~72rem + scroll. GOLDEN §3.2 – dense `comparisonImages` išimtis; dekoratyvūs palyginimai lieka be enlarge.
+
+- **M10–12 3A juostų LT terminai (2026-08-12):** learner LT etiketės `Automatize / Augment / Autonomize` → **`Automatizuoti / Asistuoti / Autonomizuoti`** (diagramos, 10.25 copy, M11/M12 testai, M12 praktikos, handout, `lt.json`). EN overlay lieka angliškas. SOT `turinio_pletra_moduliai_10_11_12.md` §3b sinchronizuotas; Asistuoti ≠ RAG.
+
+### Added
+
+- **M10–12 turinio deep audit + P0 remediacija (2026-08-12):** naujas [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](docs/development/M10_M12_CONTENT_DEEP_AUDIT_2026-08.md) (47 sk. × 7 ašys, I7 kalibravimas), LT/EN fixlist'ai, `audit:m1012-content-hygiene` (+ regression gate preflight'e). P0: EN build `__EN_MISSING__` + post-merge filler assert (nebeįtikinamas užpildas), `m10-ux-batch-en-overlay` be filler, `taskFrame: "Task"` pašalintas, `123` → **Workflow testing and security**, `10.7` 22 terms + HITL, `128` completion claim LT+EN, M11 `transfer` EN.
+
+- **SCHEME-CENTRAL W1-D…F unlock (2026-08-12):** pridėtas saugus `interactions` persistavimo sluoksnis labams be `Progress` versijos bump'o (`version` lieka 2): `labInteractions` module-store + `useLabState`, `progress.ts` `interactions` pass-through/sanitizer, `App` bridge į esamą debounced `saveProgress`. Pirmi pilotai: `m16_direction_picker` (`choices.direction`) ir `m10_agent_taxonomy` (`choices.depth` + `flags.includeRouter`), abu su restore-after-remount testais. `validateProgress` nefail'ina dėl blogo lab payload – sugadintas `interactions` medis išmetamas, o `completedModules` / testų balai lieka.
+  - **Schemos klausimo kamiene:** `TestQuestion.imageKey` + MCQ `stemVisual` renderis `test-section` kelyje; pilotas `m17-q6` rodo `m16_user_cycle` kaip kontekstą (ne atsakymo leak). `audit-teaching-elements:check-docs` dabar fail'ina `testQuestions[].imageKey` be rendererio (negative control: typo → `Question imageKey without renderer`). EN M16–18 overlay perbuild'intas; `m17-en-plain-overrides` saugo tą patį `imageKey`.
+  - **Typed diagram keys:** `diagramRenderers` eksportuoja `DiagramKey` union (`as const satisfies readonly DiagramRenderer[]`), bet `renderDiagramSection(image: string)` lieka permissive, nes `sections[].image` dar palaiko realius `/path.svg` asset'us.
+
+- **Schemų / labų / įrankių vartai CI'uje (SCHEME-CENTRAL W1-A…C, 2026-08-12):** iki šiol nė vienas iš 26 diagramų / labų / įrankių auditų negalėjo sustabdyti PR – `audit:release-preflight` buvo rankinis ritualas, o `test.yml` leido tik `validate:schema`, `lint`, `typecheck`, `test:run` ir build'us. Pridėta viena agreguota komanda **`npm run audit:governance`** (core-data drift + `audit:tools` + TE strict/registry drift + slide titles + accent budget + footer numeriai) ir įjungta blokuojančiai dviejose vietose: naujas `governance` job `test.yml` (vienas Node 24.x, veikia paraleliai su `test`) ir žingsnis deploy `quality-gates` prieš build'us. Visi šeši auditai lokaliai žali prieš įjungimą (47 s), tad vartai kelti iš karto blokuojantys, ne `continue-on-error`.
+  - **`generate:core-data --check` (`npm run generate:core-data:check`):** regeneruoja 17 build profilių į atmintį ir lygina su repo – pagauna ranka redaguotą profilį arba užmirštą `generate:core-data`. Lyginama **kanoniniu JSON, ne baitais**: lint-staged po generavimo praleidžia `src/data/*.json` per prettier, kuris trumpus masyvus suglaudina į vieną eilutę, o `JSON.stringify(…, 2)` visada išskleidžia – baitų palyginimas nebūtų praėjęs niekada (patikrinta: `modules-m1-m6.json` skiriasi nuo 32199 simbolio, bet `deep equal parsed: true`).
+  - **`audit:tools` profilių apimtis:** buvo tikrinami tik `m1-m6` ir `m1-m9` (LT+EN); `tools-m1-m12` / `tools-m1-m15` (56 / 86 įrašai) buvo be vartų. Dabar visi aštuoni.
+  - **Registry skaičiai generuojami:** `TEACHING_ELEMENTS_REGISTRY.md` baseline ir TE-4 scorecard perkelti į `<!-- AUTO:te-baseline -->` / `<!-- AUTO:te-scorecard -->` blokus; rašymas – `npm run audit:teaching-elements:docs`, drift'as fail'ina per `--check-docs`. Lentelės generuojamos prettier formatu (patikrinta `npx prettier --check`), kad lint-staged jų neperformatuotų į „stale“.
+
+### Fixed
+
+- **Pasenę TE registry skaičiai (2026-08-12):** ranka vesta master lentelė rodė 6 iš 8 scorecard eilučių neteisingai ir prieštaravo sau (eilučių suma 145 vs deklaruoti 188 vs live 200). Po generavimo: baseline embed katalogas **44 → 46**, `section.table` **41 / 35 → 51 / 45 skaidrių**, inventory/overlay **188 → 200 / 200**; scorecard `diagram` **34 → 41**, `embed` **25 → 46**, `lab` **4 → 7**, `slide-type` **44 → 46**, `table` **29 → 51**. Svarbiausia – `table` „Maturity ≤1“ rodė **0**, nors overlay turi **5** M18 lenteles ties maturity 0; dabar rodoma tiesa.
 
 ---
 

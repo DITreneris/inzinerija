@@ -1,4 +1,5 @@
 import { logError, logWarning, logInfo } from './logger';
+import type { LabInteraction, LabInteractions } from './labInteractions';
 import { migrateModuleJourneyFocusLabelsToIds } from './moduleJourneyFocus';
 
 export type RetrievalInterval = 1 | 7 | 30;
@@ -33,6 +34,8 @@ export interface Progress {
   moduleJourneyFocus?: Record<number, string>;
   /** Spaced retrieval + eval habit schedule (UJ-MUST / Horizon E). */
   retrievalSchedule?: RetrievalSchedule;
+  /** Persisted ChoiceControl / lab decisions keyed by stable lab id. */
+  interactions?: LabInteractions;
 }
 
 // Internal storage format with versioning
@@ -45,6 +48,7 @@ interface ProgressV2 {
   moduleTestScores?: Record<number, number>;
   moduleJourneyFocus?: Record<number, string>;
   retrievalSchedule?: RetrievalSchedule;
+  interactions?: LabInteractions;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -59,6 +63,7 @@ interface ProgressV1 {
 
 const STORAGE_KEY = 'prompt-anatomy-progress';
 const CURRENT_SCHEMA_VERSION = 2;
+const MAX_INTERACTIONS = 50;
 
 /**
  * Check if data is ProgressV1 format (no version field)
@@ -88,6 +93,59 @@ function isProgressV2(data: unknown): data is ProgressV2 {
     'quizCompleted' in obj &&
     'quizScore' in obj
   );
+}
+
+function isStringRecord(value: unknown): value is Record<string, string> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return Object.values(value).every((item) => typeof item === 'string');
+}
+
+function isBooleanRecord(value: unknown): value is Record<string, boolean> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return Object.values(value).every((item) => typeof item === 'boolean');
+}
+
+function sanitizeInteractions(value: unknown): LabInteractions | undefined {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return undefined;
+  }
+
+  const entries: Array<[string, LabInteraction]> = [];
+  for (const [labId, raw] of Object.entries(value as Record<string, unknown>)) {
+    if (!labId || !raw || typeof raw !== 'object' || Array.isArray(raw)) {
+      continue;
+    }
+    const item = raw as Record<string, unknown>;
+    const next: LabInteraction = {
+      updatedAt:
+        typeof item.updatedAt === 'string'
+          ? item.updatedAt
+          : new Date(0).toISOString(),
+    };
+
+    if (isStringRecord(item.choices)) next.choices = item.choices;
+    if (isBooleanRecord(item.checks)) next.checks = item.checks;
+    if (isBooleanRecord(item.flags)) next.flags = item.flags;
+    if (isStringRecord(item.fields)) next.fields = item.fields;
+    if (typeof item.stepIndex === 'number' && Number.isFinite(item.stepIndex)) {
+      next.stepIndex = item.stepIndex;
+    }
+
+    const hasPayload =
+      next.choices ||
+      next.checks ||
+      next.flags ||
+      next.fields ||
+      next.stepIndex !== undefined;
+    if (hasPayload) entries.push([labId, next]);
+  }
+
+  if (!entries.length) return undefined;
+
+  const capped = entries
+    .sort((a, b) => b[1].updatedAt.localeCompare(a[1].updatedAt))
+    .slice(0, MAX_INTERACTIONS);
+  return Object.fromEntries(capped);
 }
 
 /**
@@ -235,6 +293,7 @@ function v2ToProgress(v2: ProgressV2): Progress {
   const moduleJourneyFocus = migrateModuleJourneyFocusLabelsToIds(
     v2.moduleJourneyFocus
   );
+  const interactions = sanitizeInteractions(v2.interactions);
   if (
     moduleJourneyFocus &&
     v2.moduleJourneyFocus &&
@@ -253,6 +312,7 @@ function v2ToProgress(v2: ProgressV2): Progress {
     moduleTestScores: v2.moduleTestScores,
     moduleJourneyFocus,
     retrievalSchedule: v2.retrievalSchedule,
+    ...(interactions ? { interactions } : {}),
   };
 }
 
@@ -390,6 +450,7 @@ export const saveProgress = (progress: Progress): void => {
   try {
     const existing = getExistingCreatedAt();
     const now = new Date().toISOString();
+    const interactions = sanitizeInteractions(progress.interactions);
 
     const v2: ProgressV2 = {
       version: CURRENT_SCHEMA_VERSION,
@@ -405,6 +466,7 @@ export const saveProgress = (progress: Progress): void => {
       ...(progress.retrievalSchedule?.items?.length
         ? { retrievalSchedule: progress.retrievalSchedule }
         : {}),
+      ...(interactions ? { interactions } : {}),
       updatedAt: now,
       createdAt: existing.createdAt || now,
     };

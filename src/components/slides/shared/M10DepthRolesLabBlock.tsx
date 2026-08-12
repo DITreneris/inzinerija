@@ -3,8 +3,9 @@
  * Pattern interactive-control-lab; Shell = Ne; static mini SVG OK (§2.2c exception).
  */
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useLocale } from '../../../contexts/LocaleContext';
+import { useLabState } from '../../../utils/labInteractions';
 import ChoiceControl from '../../ui/ChoiceControl';
 import CopyButton from './CopyButton';
 import M10DepthRolesMiniDiagram from './M10DepthRolesMiniDiagram';
@@ -20,20 +21,43 @@ import {
   type DepthId,
 } from './m10DepthRolesModel';
 
+const LAB_ID = 'm10_agent_taxonomy';
+
 export default function M10DepthRolesLabBlock() {
   const { locale } = useLocale();
   const loc = locale === 'en' ? 'en' : 'lt';
   const ui = getDepthRolesUiLabels(loc);
   const depths = getDepthOptions(loc);
+  const [labState, setLabState] = useLabState(LAB_ID);
+  const storedDepth = labState?.choices?.depth;
 
-  const [depth, setDepth] = useState<DepthId | null>(null);
-  const [includeRouter, setIncludeRouter] = useState(false);
+  const depth = depths.find((option) => option.id === storedDepth)?.id ?? null;
+  const includeRouter =
+    isTeamDepth(depth) && labState?.flags?.includeRouter === true;
 
-  useEffect(() => {
-    if (!isTeamDepth(depth)) {
-      setIncludeRouter(false);
-    }
-  }, [depth]);
+  const setDepth = (nextDepth: DepthId) => {
+    setLabState({
+      choices: {
+        ...(labState?.choices ?? {}),
+        depth: nextDepth,
+      },
+      flags: {
+        ...(labState?.flags ?? {}),
+        includeRouter: isTeamDepth(nextDepth)
+          ? labState?.flags?.includeRouter === true
+          : false,
+      },
+    });
+  };
+
+  const setIncludeRouter = (nextIncludeRouter: boolean) => {
+    setLabState({
+      flags: {
+        ...(labState?.flags ?? {}),
+        includeRouter: isTeamDepth(depth) ? nextIncludeRouter : false,
+      },
+    });
+  };
 
   const artefact = useMemo(() => {
     if (depth == null) return '';

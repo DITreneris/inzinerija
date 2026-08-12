@@ -2,6 +2,25 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-12 – Docs Lean + CATALOG-HOME (Unreleased post-v1.6.1)
+
+**Statusas:** ✅ PASS (training-side closeout). **Ne** 1.6.1 retag; **ne** 1.6.2 bump (tik paprašius).  
+**Apimtis:** M10–12 content FREEZE · Docs Lean archive · Home retrieval demote · `generate:core-data` sync · governance + hygiene gate.
+
+| Gate / artefaktas                  | Rezultatas                                                                                                                                                       |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lint`                             | ✅                                                                                                                                                               |
+| `audit:governance`                 | ✅ (po `generate:core-data`)                                                                                                                                     |
+| `audit:m1012-content-hygiene:gate` | ✅ no regression (baseline **71**)                                                                                                                               |
+| `test:run`                         | ✅ **165** failai / **1005** testai (izoliuotai flake’ai žali; pilname suite kartais timeout’ai `App.quiz` / `ToolsPage` / lėti auditai – Vitest 4 Windows load) |
+| M12 path-choice ROI label          | ✅ test sync → `miniskaičiuoklė`                                                                                                                                 |
+| Home retrieval                     | ✅ nėra `retrieval-due-card`; antrinis `home-recall-link`                                                                                                        |
+| Marketing pin                      | **v1.6.1** nepaliestas                                                                                                                                           |
+
+**Verdict:** Unreleased landed docs+UX; cutover pin lieka **v1.6.1**. Learning open P0/P1 = nėra.
+
+---
+
 ## 2026-08-12 – Release 1.6.1 / corporate12 cutover pin
 
 **Statusas:** ✅ READY FOR TAG (training-side).  

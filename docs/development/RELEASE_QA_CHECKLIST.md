@@ -8,7 +8,7 @@
 
 **Vykdymo gidas (rankinė + automatinė):** Žr. `docs/development/RELEASE_QA_RUN.md` – automatinės patikros rezultatai ir žingsnis po žingsnio 0.1, 0.2, 0.4.
 
-**Automatinis preflight (viena komanda):** `npm run audit:release-preflight` – schema, lint, M4–15 EN/LT auditai (`audit:m49`, `audit:m1012`, `audit:m1315`), M7/M9 journey guard'ai, footer numeriai, TE strict ir pilnas `test:run`. Paleisti prieš kiekvieną deploy; rankinės patikros (§§ žemiau ir MON-5 gate check `RELEASE_QA_RUN.md`) lieka žmogui.
+**Automatinis preflight (viena komanda):** `npm run audit:release-preflight` – schema, **build profilių drift** (`generate:core-data:check`), lint, M4–15 EN/LT auditai (`audit:m49`, `audit:m1012`, `audit:m1315`), M7/M9 journey guard'ai, footer numeriai, TE strict + registry skaičių drift (`audit:teaching-elements:check-docs`) ir pilnas `test:run`. Schemų / labų / įrankių poaibis (`npm run audit:governance`) nuo 2026-08-12 veikia ir GitHub CI, tad preflight jo nedubliuoja be reikalo. Paleisti prieš kiekvieną deploy; rankinės patikros (§§ žemiau ir MON-5 gate check `RELEASE_QA_RUN.md`) lieka žmogui.
 
 ---
 

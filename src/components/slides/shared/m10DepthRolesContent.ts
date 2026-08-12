@@ -29,8 +29,8 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
         'Rule: start from Agent – pick Team or Flow only when one agent is not enough or you need a trigger.',
       depthLegend: 'Choose depth for your process',
       teamRolesNote:
-        'Team needs three roles: coordinator, specialist, evaluator. Router only if you need triage before the coordinator.',
-      routerToggle: 'Add router (triage before coordinator)',
+        'Team needs three roles: coordinator, specialist, evaluator. Router only if you need sorting by request type before the coordinator.',
+      routerToggle: 'Add router (sorts requests by type before coordinator)',
       artefactHeading: 'Prompt for your process',
       artefactHint:
         'Copy and fill [X] with your process. Detail inputs/outputs on the next checkpoint.',
@@ -52,13 +52,13 @@ export function getDepthRolesUiLabels(locale: M10Locale) {
     diagramTitle: 'Gylio lygiai',
     rolesStripTitle: 'Komandos rolės',
     hint: 'Pagalvok apie vieną realų savo procesą.',
-    examples: 'pvz. laiškas · tyrimas · RFP · forma → CRM',
+    examples: 'pvz. laiškas · tyrimas · sutartis · forma → klientų sistema',
     decisionRule:
-      'Taisyklė: pradėk nuo Agentas – Komandą ar Srautą rinkis tik kai vienas agentas nebeužtenka arba reikia triggerio.',
+      'Pradėk nuo Agento. Komandą rinkis, kai reikia kelių rolių, o Srautą – kai veiksmus automatiškai paleidžia įvykis.',
     depthLegend: 'Pasirink gylį savo procesui',
     teamRolesNote:
-      'Komandai reikia trijų rolių: koordinatorius, specialistas, vertintojas. Maršrutizatorius – tik jei reikia triažo prieš koordinatorių.',
-    routerToggle: 'Pridėti maršrutizatorių (triažas prieš koordinatorių)',
+      'Komandai reikia trijų rolių: koordinatoriaus, specialisto ir vertintojo. Maršrutizatorių pridėk tik kai užklausas pirmiausia reikia išskirstyti pagal tipą.',
+    routerToggle: 'Pridėti maršrutizatorių (išskirsto pagal tipą)',
     artefactHeading: 'Promptas tavo procesui',
     artefactHint:
       'Nukopijuok ir užpildyk [X] savo procesu. Įvestis / išvestis – kitame kontroliniame taške.',
@@ -81,7 +81,7 @@ export function getDepthOptions(locale: M10Locale): DepthOptionCopy[] {
       {
         id: 'chat',
         label: 'Chat',
-        description: 'One question–answer is enough',
+        description: 'One question-and-answer exchange is enough',
         code: 'L0',
       },
       {
@@ -126,7 +126,7 @@ export function getDepthOptions(locale: M10Locale): DepthOptionCopy[] {
     {
       id: 'flow',
       label: 'Srautas',
-      description: 'Trigger → veiksmai (automatizavimas)',
+      description: 'Įvykis automatiškai paleidžia veiksmus',
       code: 'L3',
     },
   ];
@@ -167,7 +167,7 @@ export function formatDepthRolesArtefact(
     ];
     if (parts.includeRouter) {
       lines.push(
-        `4) ${ui.roleRouter} – how they triage before the coordinator (+ input / output)`
+        `4) ${ui.roleRouter} – how they sort requests by type before the coordinator (+ input / output)`
       );
     }
     lines.push('For each role – one sentence.');
@@ -184,7 +184,7 @@ export function formatDepthRolesArtefact(
   ];
   if (parts.includeRouter) {
     lines.push(
-      `4) ${ui.roleRouter} – kaip triažuoja prieš koordinatorių (+ įvestis / išvestis)`
+      `4) ${ui.roleRouter} – kaip išskirsto užklausas pagal tipą prieš koordinatorių (+ įvestis / išvestis)`
     );
   }
   lines.push('Kiekvienai rolei – vienas sakinys.');

@@ -173,6 +173,7 @@ export function applyM17EnPlainOverrides(mod) {
       ],
       correct: 0,
       explanation: 'The cycle describes the user experience.',
+      imageKey: 'm16_user_cycle',
       relatedSlideId: 16.16,
     },
     {

@@ -13,23 +13,23 @@
             "heroStat": "You already know the 6 blocks and context engineering.",
             "heroText": "Now – agent engineering.",
             "heroSubText": "Design agents for your processes – taxonomy, multi-agent coordination, no-code tools. Context – Module 4.",
-            "firstActionCTA": "On the next slide, copy the quick check: in one sentence, tell an agent apart from a simple question–answer.",
+            "firstActionCTA": "On the next slide, copy the quick check: in one sentence, tell an agent apart from a simple question-and-answer exchange.",
             "outcomes": [
               "Understand agent taxonomy (L0–L3) and multi-agent roles",
               "Use 5 workflow patterns and system prompts",
               "Know how to choose tools and limit risks"
             ],
             "duration": "~20–25 min",
-            "audience": "For business specialists and engineers who completed Modules 4–6 (Context engineering).",
+            "audience": "For business specialists and engineers who have completed Modules 4–6 (Context engineering).",
             "howToUseModule": {
-              "heading": "Agent engineering step",
+              "heading": "Choose a path",
               "short": {
-                "label": "Agent metric",
-                "description": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "label": "Short path",
+                "description": "Without the optional slides (GitHub deep dive, testing/security deep dive, glossary)."
               },
               "full": {
-                "label": "Agent metric",
-                "description": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "label": "Full path",
+                "description": "All slides, including the optional ones."
               }
             },
             "footer": "Next – slide 2: Path in this module"
@@ -38,7 +38,7 @@
         {
           "id": 10.1,
           "title": "Agent engineering path – what you will find here",
-          "subtitle": "Short overview; detail on later slides",
+          "subtitle": "Short overview; details on later slides",
           "type": "content-block",
           "content": {
             "sections": [
@@ -54,12 +54,12 @@
               },
               {
                 "heading": "Copyable prompt",
-                "body": "Copy into AI and adapt the example to your work.",
+                "body": "Copy it into AI and adapt the example to your work.",
                 "copyable": "Explain in one sentence how an AI agent differs from a simple question–answer. Give one example from my work where an agent is needed, not a single simple prompt."
               },
               {
                 "heading": "Check",
-                "body": "If the answer has no multiple steps or tools, it is still a simple prompt. On the next slide you will see the full agent cycle.",
+                "body": "If the answer shows neither multiple steps nor tool use, it is still a simple prompt. On the next slide you will see the full agent cycle.",
                 "blockVariant": "accent"
               }
             ],
@@ -76,23 +76,23 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "The diagram below – **five cycle steps**. Unlike a simple chat: the agent **autonomously** chooses actions and can call tools.",
+                "body": "The diagram below – **five cycle steps**. Unlike in a simple chat, the agent **autonomously** chooses actions and can call tools.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "How an AI agent works",
-                "body": "Click a step – explanation below. View full size – the same image opens in a modal.",
+                "body": "Click a step – explanation below. To view it full size, open the same image in the modal.",
                 "image": "agent_workflow_diagram",
                 "blockVariant": "default"
               },
               {
                 "heading": "API and looping",
-                "body": "**API** – a program’s “door” to data or actions: the agent calls CRM, email or another system through it, because it does not “have” that data itself.\n\n**Looping:** after the result the agent decides – repeat a step, call another tool, or finish. That is the feedback at the end of the cycle.",
+                "body": "**API** – a program’s “door” to data or actions: the agent calls your CRM, email or another system through it, because it does not “have” that data itself.\n\n**Looping:** after the result the agent decides – repeat a step, call another tool, or finish. That is the feedback at the end of the cycle.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "When to choose an agent",
-                "body": "More detail on when an agent vs a simple prompt – with examples – on **When to choose an agent vs a simple prompt**.",
+                "body": "More detail on when to use an agent instead of a simple prompt – with examples – on **When to choose an agent vs. a simple prompt**.",
                 "blockVariant": "terms"
               },
               {
@@ -103,7 +103,7 @@
               {
                 "heading": "Copyable prompt",
                 "body": "Fill [DESCRIBE] with your work.",
-                "copyable": "My process: [DESCRIBE, e.g. customer email triage].\nWalk the agent cycle: (1) what is the task, (2) what is the plan, (3) which tool will you call, (4) what environment / data do you read, (5) what is the result and whether to loop.\nIn one sentence: where in this process is a tool required (not only a text answer)?"
+                "copyable": "My process: [DESCRIBE, e.g. customer email sorting].\nWalk the agent cycle: (1) what is the task, (2) what is the plan, (3) which tool you will call, (4) what environment / data you read, (5) what is the result and whether to loop.\nIn one sentence: where in this process is a tool required (not only a text answer)?"
               },
               {
                 "heading": "Check",
@@ -118,23 +118,23 @@
         {
           "id": 10.21,
           "title": "Checkpoint: agent cycle",
-          "subtitle": "Agent engineering path step",
+          "subtitle": "Agent engineering path – step 1",
           "type": "path-step",
           "content": {
-            "title": "Agent cycle and architecture",
+            "title": "Agent cycle – I ran 1 agent request",
             "pathLabel": "Agent engineering path",
             "stepNumber": 1,
             "stepTotal": 3,
-            "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+            "body": "Run a short agent request with search or a tool. Mark this step when the answer shows not only text, but clear steps, sources, or a tool trace.",
             "sections": [
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
-                "copyable": "Role: agent assistant. Task: review the process, use tools only when needed, return a clear result and say what failed if data is missing."
+                "body": "Does the answer have at least 2 steps? Does it say which tool the AI used – or why it used none?",
+                "copyable": "Task: [DESCRIBE]. Use search or a tool if needed. Return the answer in 3 steps: what you did, which tool you used, what the result is. If you used no tool – explain why."
               },
               {
                 "heading": "If it fails",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed."
+                "body": "Add sentences to the task: “use search”, “cite sources”, “if you cannot find it – write Not found”."
               }
             ],
             "unlockedGlossaryTerms": ["AI agent", "Tool", "API", "ReAct"],
@@ -145,18 +145,18 @@
         {
           "id": 10.25,
           "title": "3A strategy",
-          "subtitle": "Automatize 80 % / Augment 15 % / Autonomize 5 %",
+          "subtitle": "Automate 80 % / Augment 15 % / Autonomize 5 %",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "3A is a **decision portfolio**, not “more agents = better”. Most work – rules (**fewer errors**, predictable); a smaller share – human + AI (judgment and ownership); the smallest – agents with limits (costly and risky). **80/15/5** protects speed and safety – not a maturity ladder to autopilot.",
+                "body": "3A is a **decision portfolio**, not “more agents = better”. Most work – rules (**fewer errors**, predictable); a smaller share – human + AI (judgment and ownership); the smallest – agents with limits (costly and risky). **80/15/5** protects speed and safety – it is not a maturity ladder to autopilot.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Three bands – when to choose",
-                "body": "**Automatize (80 %)** – how much: rules without a human at every step. Why: fewer errors, predictable. E.g.: form → CRM → email.\n\n**Augment (15 %)** – how much: human decides, AI helps. Why: ownership or context needed. E.g.: AI draft → human approves → send.\n\n**Autonomize (5 %)** – how much: agent with limits and escalation. Why: narrow band – higher risk. E.g.: feedback → sentiment → escalate to a human.",
+                "body": "**Automate (80 %)** – what it is: rules that do not need a human at every step. Why: fewer errors, predictable. E.g., form → CRM → email.\n\n**Augment (15 %)** – how much: human decides, AI helps. Why: ownership or context needed. E.g.: AI draft → human approves → send.\n\n**Autonomize (5 %)** – how much: agent with limits and escalation. Why: narrow band – higher risk. E.g.: feedback → sentiment → escalate to a human.",
                 "blockVariant": "brand"
               },
               {
@@ -167,7 +167,7 @@
               },
               {
                 "heading": "Example",
-                "body": "**Same process – two bands.** Customer email → reply: if a template “received / ticket #” → **Automatize**. If AI drafts and a human approves tone and facts → **Augment**. Choose Autonomize only with clear limits and escalation.",
+                "body": "**Same process – two bands.** Customer email → reply: if a template reply (“received / ticket #”) is enough → **Automate**. If AI drafts the reply and a human approves the tone and facts → **Augment**. Choose Autonomize only with clear limits and escalation.",
                 "blockVariant": "brand"
               },
               {
@@ -178,16 +178,16 @@
               {
                 "heading": "Copyable template",
                 "body": "Fill in three processes.",
-                "copyable": "Process 1: [PROCESS]. 3A band: Automatize / Augment / Autonomize. Why (1 sentence): [REASON]. Human approval: [YES/NO + when].\n\nProcess 2: [PROCESS]. 3A band: … Why: … Human approval: …\n\nProcess 3: [PROCESS]. 3A band: … Why: … Human approval: …"
+                "copyable": "Process 1: [PROCESS]. 3A band: Automate / Augment / Autonomize. Why (1 sentence): [REASON]. Human approval: [YES/NO + when].\n\nProcess 2: [PROCESS]. 3A band: … Why: … Human approval: …\n\nProcess 3: [PROCESS]. 3A band: … Why: … Human approval: …"
               },
               {
                 "heading": "Check",
-                "body": "Can you explain why at least one process is **not** Autonomize (5 %) if you chose Automatize or Augment? Can you name a process that **needs** a human? If not – go back to the diagram or example.",
+                "body": "Can you explain why at least one process is **not** in the Autonomize band (5 %) if you chose Automate or Augment? Can you name a process that **needs** a human? If not – go back to the diagram or example.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Where to apply",
-                "body": "**Portfolio rule:** first inventory ~10 processes – keep most on rules (**Automatize**); use agents only where value clearly outweighs error cost.\n\n**Band rule:** need a sign-off or tone/fact approval → **Augment**; stable template and cheap errors → **Automatize**; **Autonomize** – only with a limit, escalation and audit.\n\n**Next step:** when a human must approve – slide **When does a human approve?**",
+                "body": "**Portfolio rule:** first inventory ~10 processes – keep most on rules (**Automate**); use agents only where the value clearly outweighs the cost of an error.\n\n**Band rule:** need a sign-off or tone/fact approval → **Augment**; stable template and cheap errors → **Automate**; **Autonomize** – only with a limit, escalation and audit.\n\n**Next step:** when a human must approve – slide **When does a human approve?**",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": false
@@ -200,36 +200,36 @@
         {
           "id": 10.26,
           "title": "When does a human approve?",
-          "subtitle": "Agent engineering",
+          "subtitle": "Control mode by consequence and undo risk",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "Human control (industry term: **Human-in-the-loop / HITL**) is not a maturity ladder toward autopilot. It is **risk architecture**: the higher the consequence and the harder the action is to undo, the earlier a human must step in.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Do this now",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "Pick a scenario and a control mode. The simulator shows whether the choice fits, what happens on error, and builds a rule for the “Minimal workflow brief.”",
                 "image": "m10_human_control_simulator",
-                "imageAlt": "AI agent workflow step.",
+                "imageAlt": "Human-control mode simulator",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Check",
-                "body": "Use this step to design, test and improve an AI agent workflow with clear tools, limits and human approval where needed.",
+                "body": "Can you name at least one process where result monitoring alone is **not enough**? Will your “Minimal workflow brief” human-approval line include mode, condition, escalation, and an audit record?",
                 "blockVariant": "accent"
               }
             ],
-            "footer": "Next – slide 8: Role and system prompt"
+            "footer": "Next – slide 9: Role and system prompt"
           },
           "shortTitle": "When does a human approve?"
         },
         {
           "id": 10.48,
           "title": "5 workflow patterns for business",
-          "subtitle": "Chain, routing, parallel, coordinator, evaluator",
+          "subtitle": "Chain, routing, parallel work, coordinator, evaluator",
           "type": "content-block",
           "content": {
             "sections": [
@@ -240,7 +240,7 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Pick **one** pattern for your process. After you choose, you see only that plan – copy and fill it. After the warm-up – orchestration walkthrough (HOW, not only the pattern).",
+                "body": "Pick **one** pattern for your process. After you choose, you will see only that pattern’s plan – copy it and fill it in. After the warm-up – orchestration walkthrough (HOW, not only the pattern).",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
                   "question": "Which pattern will you apply to your process?",
@@ -268,7 +268,7 @@
                     {
                       "label": "Generator + evaluator",
                       "rowIndex": 4,
-                      "whenHint": "**Yes:** draft + QC (email, FAQ, report). **No:** low quality risk – Agent (L1) is enough."
+                      "whenHint": "**Yes:** draft + QC (email, FAQ, report). **No:** the quality risk is low – Agent (L1) is enough."
                     }
                   ]
                 }
@@ -294,7 +294,7 @@
               {
                 "heading": "Copyable plan – Coordinator",
                 "body": "Copy and fill [DESCRIBE].",
-                "copyable": "You are the coordinator. Task: [DESCRIBE].\nBreak into 2–3 sub-tasks. For each assign a role (specialist / evaluator),\ninput, output and handoff rule (when to pass to the next role).\nPresent the plan as a numbered list.",
+                "copyable": "You are the coordinator. Task: [DESCRIBE].\nBreak it into 2–3 subtasks. For each assign a role (specialist / evaluator),\ninput, output and handoff rule (when to pass to the next role).\nPresent the plan as a numbered list.",
                 "linkedRowIndex": 3
               },
               {
@@ -324,7 +324,7 @@
           "id": 10.485,
           "title": "Quick check: workflow patterns",
           "shortTitle": "Warm-up: workflow",
-          "subtitle": "3 questions about chain, routing and evaluator",
+          "subtitle": "3 questions about the chain, routing and evaluator patterns",
           "type": "warm-up-quiz",
           "content": {
             "questions": [
@@ -350,15 +350,15 @@
                   "Only the 3A strategy"
                 ],
                 "correct": 0,
-                "explanation": "Routing sends a request by type or category: complaint, inquiry, proposal and similar branches."
+                "explanation": "Routing directs a request by type or category: complaint, inquiry, proposal and similar."
               },
               {
                 "id": "m10-warm-workflow-3",
                 "question": "Which pattern is safest when you need a draft and a quality check?",
                 "options": [
                   "Generator + evaluator",
-                  "Only generator without checking",
-                  "Only router",
+                  "Only a generator, without a check",
+                  "Only a router",
                   "Only manual copy-paste"
                 ],
                 "correct": 0,
@@ -371,13 +371,13 @@
         {
           "id": 10.482,
           "title": "Agent orchestration simulation",
-          "subtitle": "Router ≠ orchestrator; Checker ≠ Evaluator; targeted retry",
+          "subtitle": "Router ≠ Orchestrator; Checker ≠ Evaluator; targeted retry",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "The orchestrator does not do specialist work itself – it owns the plan, state and fix loops. Three differences: **Router = WHERE**, **orchestrator = HOW**; **Checker** looks at format/sources, **Evaluator** decides Approve / Retry / Human; on error → **targeted** retry, not a full restart.",
+                "body": "The orchestrator does not do specialist work itself – it owns the plan, state and fix loops. Three differences: **Router = WHERE**, **orchestrator = HOW**; **Checker** looks at format/sources, while the **Evaluator** decides Approve / Retry / Human; on error → **targeted** retry, not a full restart.",
                 "blockVariant": "accent"
               },
               {
@@ -393,7 +393,7 @@
               },
               {
                 "heading": "Check",
-                "body": "In one sentence: how does the **router** (WHERE) differ from the **orchestrator** (HOW)? When does the evaluator say **Retry**, and when – **hand to a human**?",
+                "body": "In one sentence: how does the **router** (WHERE) differ from the **orchestrator** (HOW)? When does the evaluator say **Retry**, and when does it **hand the task to a human**?",
                 "blockVariant": "accent"
               },
               {
@@ -415,7 +415,7 @@
           "type": "section-break",
           "content": {
             "title": "Multi-agent → workflow",
-            "subtitle": "Patterns + orch differences – epilogue; next: learning loop and tools.",
+            "subtitle": "Patterns + orchestration differences – epilogue; next: the learning loop and tools.",
             "sectionNumber": "M10",
             "footer": "Next – slide 15: Closed learning loop",
             "celebrationText": "Great! 5 patterns and router ≠ orchestrator are in your toolkit.",
@@ -444,7 +444,7 @@
               ]
             },
             "spinoffCta": {
-              "label": "Deeper reading: agent workflows (EN)",
+              "label": "Deeper reading: agent workflows",
               "url": "https://www.promptanatomy.blog/articles/how-to-design-an-ai-agent-workflow/?utm_source=training&utm_medium=spinoff&utm_campaign=m10_10_48b"
             }
           },
@@ -453,18 +453,18 @@
         {
           "id": 10.151,
           "title": "Workflow → automation",
-          "subtitle": "Trigger, action, webhook – done. Next: platforms, hosting and testing.",
+          "subtitle": "Trigger, action, and webhook – done. Next: platforms, hosting, and testing.",
           "type": "section-break",
           "content": {
             "title": "Workflow → automation",
-            "subtitle": "Next: Zapier / Make / n8n, hosting (Railway-style) and optional spec/testing.",
+            "subtitle": "Next: Zapier / Make / n8n, hosting (Railway-style), and optional specification and testing.",
             "sectionNumber": "M10",
             "footer": "Next – slide 23: Automation tools",
             "celebrationText": "Nice! The workflow chain and core concepts are clear.",
             "nextSteps": [
-              "Business automation tools – when Zapier, Make, n8n or Power Automate.",
+              "Business automation tools – when to use Zapier, Make, n8n, or Power Automate.",
               "Hosting – where the agent / API runs (Railway, Render, Fly.io).",
-              "Optional: GitHub as code source; specification, testing, security.",
+              "Optional: GitHub as a code source; specification, testing, security.",
               "Module summary and test (Module 11)."
             ],
             "recap": {
@@ -473,7 +473,7 @@
               "items": [
                 "Trigger → Condition → Action – the core sequence.",
                 "Webhook – a Trigger type: real-time event between systems.",
-                "Integration, API, error handling and logs – for audit and debugging."
+                "Integration, API, error handling, and logs – for audit and debugging."
               ],
               "itemGlossaryTerms": ["Trigger", "Webhook", "Integration"]
             },
@@ -504,12 +504,12 @@
               },
               {
                 "heading": "Two system layers",
-                "body": "**Execution:** task → rules → roles → result.\n\n**Learning:** action history → check → lessons → update. One trial’s mistake becomes a better next trial.",
+                "body": "**Execution:** task → rules → roles → result.\n\n**Learning:** action history → check → lessons → update. A mistake in one trial makes the next trial better.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Blocks simply",
-                "body": "**Rules** – what AI does not do, when it asks a human.\n\n**Skills** – reusable abilities (search, writing, checking).\n\n**Action history** – task, steps, errors, notes.\n\n**Check** – whether the result met criteria.\n\n**Lessons** – what failed, what to change.\n\n**Update** – changed rule, prompt, skill or test.",
+                "body": "**Rules** – what AI does not do and when it asks a human.\n\n**Skills** – reusable abilities (search, writing, checking).\n\n**Action history** – task, steps, errors, notes.\n\n**Check** – whether the result met the criteria.\n\n**Lessons** – what failed, what to change.\n\n**Update** – changed rule, prompt, skill or test.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -521,7 +521,7 @@
               },
               {
                 "heading": "Copyable lesson template",
-                "body": "Use after practice or after any agent trial.",
+                "body": "Use it after practice or after any agent trial.",
                 "copyable": "Lesson after an agent trial:\n1) What happened?\n2) What was the cause?\n3) What do I update: rule, prompt, skill or test?\n4) How will I check next time?"
               },
               {
@@ -537,7 +537,7 @@
         {
           "id": 10.36,
           "title": "Where your app or agent runs",
-          "subtitle": "Workflow arranges – hosting runs",
+          "subtitle": "Choose where it runs and when it starts",
           "type": "content-block",
           "content": {
             "preCopyCheckBlock": {
@@ -546,7 +546,7 @@
               "options": [
                 "n8n runs the program 24/7; Railway arranges the flow",
                 "Both do the same thing – fast automation",
-                "n8n arranges the flow; Railway runs the program or agent",
+                "n8n builds the flow; Railway runs the program or agent",
                 "Railway is only needed for Zapier tools"
               ],
               "correct": 2,
@@ -555,7 +555,7 @@
             "sections": [
               {
                 "heading": "In short",
-                "body": "**One idea:** a workflow arranges steps; hosting (Railway, Render, Fly.io) runs the app, API or agent. **Analogy:** n8n = process lead · agent = worker · Railway = office.",
+                "body": "Separate two decisions: **hosting** is where your app or agent runs; **mode** is when it starts work. If you only use Zapier or Make as a cloud service, the platform usually provides hosting for you.",
                 "blockVariant": "accent"
               },
               {
@@ -568,17 +568,17 @@
                     [
                       "Workflow",
                       "Zapier, Make, n8n, Power Automate",
-                      "How do data move between systems?"
+                      "How does data move between systems?"
                     ],
                     [
-                      "RPA",
+                      "Robotic clicking (RPA)",
                       "UiPath",
                       "How do you click the UI when there is no API?"
                     ],
                     [
                       "AI agent",
                       "ChatGPT / Claude + tools",
-                      "What analyses and decides?"
+                      "What analyzes and decides?"
                     ],
                     [
                       "Hosting",
@@ -590,13 +590,13 @@
               },
               {
                 "heading": "Where to host (orientation)",
-                "body": "Three common choices (no prices). Open when you pick a concrete host.",
+                "body": "Three common choices (no prices). Open this only when you run your own app.",
                 "blockVariant": "terms",
                 "table": {
                   "headers": ["Place", "Best for"],
                   "rows": [
                     ["Railway", "API + database + agent for a fast start"],
-                    ["Render", "Simple web + worker"],
+                    ["Render", "Simple web app and background worker"],
                     [
                       "Fly.io",
                       "When you need to be near users in different countries"
@@ -608,7 +608,7 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Pick **one** mode – then copy only that template and fill the [ ] fields.",
+                "body": "First decide whether you need separate hosting at all. Then pick **one operating mode** and copy only its template.",
                 "blockVariant": "brand",
                 "toolChoiceBar": {
                   "question": "How should your program run?",
@@ -622,57 +622,57 @@
                     {
                       "label": "On a schedule (cron)",
                       "rowIndex": 1,
-                      "whenHint": "**Yes:** repeats on a timetable. **No:** must listen for messages continuously. E.g. price check in the morning."
+                      "whenHint": "**Yes:** repeats on a schedule. **No:** must listen for messages continuously. E.g. price check in the morning."
                     },
                     {
-                      "label": "Webhook + worker",
+                      "label": "Webhook + background worker",
                       "rowIndex": 2,
-                      "whenHint": "**Yes:** long task; quick “accepted” reply. **No:** short 2–3 step flow with no wait. E.g. PDF analysis, report."
+                      "whenHint": "**Yes:** a webhook starts a long background task. **No:** a short two- or three-step flow with no wait. E.g. PDF analysis, report."
                     }
                   ]
                 }
               },
               {
                 "heading": "Copyable template – Always-on",
-                "body": "Fill the [ ] fields. Mode is already set.",
-                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / not using\nMode: always-on\nWhy (1 sentence): [ ]",
+                "body": "Fill in the [ ] fields. Mode is already set.",
+                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / provided by the platform\nMode: always-on\nWhy (1 sentence): [ ]",
                 "linkedRowIndex": 0
               },
               {
                 "heading": "Copyable template – On a schedule (cron)",
-                "body": "Fill the [ ] fields. Mode is already set.",
-                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / not using\nMode: cron\nWhy (1 sentence): [ ]",
+                "body": "Fill in the [ ] fields. Mode is already set.",
+                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / provided by the platform\nMode: on a schedule (cron)\nWhy (1 sentence): [ ]",
                 "linkedRowIndex": 1
               },
               {
-                "heading": "Copyable template – Webhook + worker",
-                "body": "Fill the [ ] fields. Mode is already set.",
-                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / not using\nMode: webhook + worker\nWhy (1 sentence): [ ]",
+                "heading": "Copyable template – Webhook + background worker",
+                "body": "Fill in the [ ] fields. Mode is already set.",
+                "copyable": "Process: [PROCESS]\nWorkflow: Zapier / Make / n8n / Power Automate / none\nHosting: Railway / Render / Fly.io / provided by the platform\nMode: webhook + background worker\nWhy (1 sentence): [ ]",
                 "linkedRowIndex": 2
               },
               {
                 "heading": "More: hybrid and mistakes",
-                "body": "**Hybrid:** form → n8n → AI agent → Postgres → email; agent, API and DB run on hosting (e.g. Railway).\n\n**Avoid:** (1) AI agent where Zapier is enough; (2) RPA when an API exists; (3) serverless-only for a Discord bot – you need always-on.\n\n**Optional in the template:** RPA yes/no; code – GitHub / local / none.\n\n**Code:** if you write a program – see optional slide **GitHub as code source**.",
+                "body": "**Hybrid:** form → n8n → AI agent → PostgreSQL → email; agent, API and DB run on hosting (e.g. Railway).\n\n**Avoid:** (1) an AI agent where Zapier is enough; (2) RPA when an API exists; (3) serverless-only for a Discord bot – you need always-on.\n\n**Optional in the template:** RPA yes/no; code – GitHub / local / none.\n\n**Code:** if you write a program – see the optional slide **GitHub as a code source**.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
               }
             ],
-            "footer": "Next – slide 25: GitHub as code source"
+            "footer": "Next – slide 25: GitHub as a code source"
           },
           "shortTitle": "Where it runs"
         },
         {
           "id": 10.37,
-          "title": "GitHub as code source",
-          "subtitle": "GitHub stores – PaaS runs",
+          "title": "GitHub as a code source",
+          "subtitle": "Does your process need custom code?",
           "type": "content-block",
           "optional": true,
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "**GitHub** stores code and versions; **PaaS** (Railway / Render / Vercel) runs it. Typical flow: local work → GitHub → auto-deploy → live online. For no-code (Zapier/Make) GitHub is often **not needed**.",
+                "body": "**GitHub** stores code and its versions. A **platform as a service (PaaS)**, such as Railway or Render, runs that code online. If your whole process lives in Zapier or Make, you usually do not need GitHub.",
                 "blockVariant": "accent"
               },
               {
@@ -686,7 +686,7 @@
                       "GitHub",
                       "Code, versions, collaboration – project source"
                     ],
-                    ["Vercel", "Front-end, sites (e.g. Next.js)"],
+                    ["Vercel", "Front end, sites (e.g., Next.js)"],
                     ["Railway", "Backend, API, bots, AI agents, databases"],
                     ["Render", "Web services, backend, PostgreSQL"]
                   ]
@@ -694,13 +694,34 @@
               },
               {
                 "heading": "Do this now",
-                "body": "Does your scenario need a **GitHub repo**? Yes or no – one sentence why.",
+                "body": "Choose Yes or No. Base the decision on whether your process needs a custom app, API, or bot.",
+                "blockVariant": "brand",
+                "toolChoiceBar": {
+                  "question": "Does your process need custom code?",
+                  "autoSelect": false,
+                  "choices": [
+                    {
+                      "label": "No – the platform is enough",
+                      "rowIndex": 0,
+                      "whenHint": "**Example:** Zapier or Make handles form → CRM → email. The platform stores and runs the flow."
+                    },
+                    {
+                      "label": "Yes – I have an app or bot",
+                      "rowIndex": 1,
+                      "whenHint": "**Example:** a Telegram bot stores its code on GitHub, while Railway runs it continuously."
+                    }
+                  ]
+                }
+              },
+              {
+                "heading": "Two contrasting examples",
+                "body": "**No custom code:** Zapier receives a form, updates the CRM, and sends an email – no GitHub needed.\n\n**Custom code:** a bot processes messages using your program – GitHub stores the code and a hosting platform runs it.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable template",
-                "body": "Fill the [ ] fields; then copy into AI.",
-                "copyable": "Process: [PROCESS]\nCode on GitHub: yes / no / not yet\nHosting: Railway / Render / Vercel / not using\nWhy (1 sentence): [ ]\n\n---\nDo I need GitHub + auto-deploy, or are Zapier/Make enough? Answer in 3 lines."
+                "body": "Fill in your decision and get a short check.",
+                "copyable": "Process: [PROCESS]\nDo I have a custom app, API, or bot: [YES / NO]\nChoice: [ZAPIER / MAKE IS ENOUGH | GITHUB + HOSTING NEEDED]\nHosting: [RAILWAY / RENDER / VERCEL / NOT NEEDED]\nWhy (1 sentence): [ ]\n\nCheck my choice in 3 lines. If it is too complex, suggest a simpler path."
               },
               {
                 "heading": "Check",
@@ -709,7 +730,7 @@
               },
               {
                 "heading": "More: typical flow and mistakes",
-                "body": "**Flow in one line:** local → commit/push → GitHub → auto-deploy → PaaS.\n\n**Commands (if you already use git):** add → commit → push.\n\n**Replit** – fast prototype; not the same as production Railway/Render.\n\n**Avoid:** code only local when you need reliable hosting or team work.",
+                "body": "**Flow in one line:** local → commit/push → GitHub → auto-deploy → PaaS.\n\n**Commands (if you already use git):** add → commit → push.\n\n**Replit** – a fast prototype; not the same as production Railway / Render.\n\n**Avoid:** keeping code only on your machine when you need reliable hosting or teamwork.",
                 "blockVariant": "terms",
                 "collapsible": true,
                 "collapsedByDefault": true
@@ -717,48 +738,38 @@
             ],
             "footer": "Next – slide 26: Minimal workflow brief"
           },
-          "shortTitle": "GitHub as code source"
+          "shortTitle": "GitHub as a code source"
         },
         {
           "id": 10.64,
           "title": "Minimal workflow brief",
-          "subtitle": "1-page schema + 3 trials + when a human approves",
+          "subtitle": "1-page outline + 3 tests + when a human approves",
           "type": "content-block",
           "content": {
             "sections": [
               {
                 "heading": "In short",
-                "body": "Before Module 12 practice, fill a **minimal workflow brief**: 1-page schema + 3 test cases + a rule for when a human approves. Carry the same brief into the QC evaluator and practice.",
+                "body": "Before Module 12 practice, prepare a one-page workflow brief: the flow itself, three tests, and a rule for when a human decides. You will check this same artifact on the next slide and reuse it in practice.",
                 "blockVariant": "accent"
               },
               {
                 "heading": "Minimal brief",
-                "body": "**(A)** Spec 1 page: Trigger → error handling.\n**(B)** 3 test cases: happy path, missing field, API/timeout or webhook duplicate.\n**(C)** Human control rule – mode, condition / threshold, reject or escalate, audit record.",
+                "body": "**A. Flow:** trigger, required input, condition if needed, 3–5 actions, result, and failure path.\n\n**B. Three tests:** a success path, a missing field, and an unavailable or duplicate system event.\n\n**C. Human decision:** when to stop, who approves, and what to record.\n\n**Mini example:** form submitted → email validated → CRM record → email; if the email address is missing, stop and ask for that field.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Do this now",
-                "body": "Copy the template and fill it for your process. Later – slide **Agent QC evaluator**.",
+                "body": "Copy one template and fill it with your process. The quality evaluator in the next step will point to one place worth fixing.",
                 "blockVariant": "brand"
               },
               {
                 "heading": "Copyable template",
-                "body": "Minimal workflow brief.",
-                "copyable": "Minimal workflow brief:\n1) Trigger – what starts the flow.\n2) Input schema – which fields are required.\n3) Condition – which rule changes the path.\n4) Actions – 3–5 actions with tools.\n5) Output – what result must be created.\n6) Error handling – what to do if a step fails.\n7) Audit record – what to log: time, step, result.\n8) Human control rule – mode: [all cases / exceptions / after the fact / monitoring]; condition or threshold: […]; reject / escalate: […]; audit record: […].\n\nTest cases:\nB1 happy path: …\nB2 missing field: …\nB3 timeout / duplicate: …"
-              },
-              {
-                "heading": "Incident playbook (5 steps)",
-                "body": "Add these steps to your brief if the workflow touches customers, money, or personal data: **stop** the flow → **record** what happened → **assess** impact → **notify** the responsible person → **fix** the rule or prompt.",
-                "blockVariant": "brand"
-              },
-              {
-                "heading": "Cost and model choice",
-                "body": "Write which step can be cheap and which must be strong: **cheap model** – classification, filtering, duplicate checks; **stronger model** – customer-facing text, complex decisions, or risk assessment. If the task crosses the cost limit, stop or send it to a human.",
-                "blockVariant": "terms"
+                "body": "One page that you can hand to a colleague or an evaluator.",
+                "copyable": "Minimal workflow brief\n\nA. FLOW\nTrigger: [WHAT STARTS IT]\nRequired input: [FIELDS]\nCondition, if needed: [RULE]\nActions (3–5): [1] → [2] → [3]\nResult: [WHAT IS CREATED AND WHERE]\nIf it fails: [STOP / RETRY / NOTIFY]\n\nB. TESTS\n1) Success path: [INPUT → EXPECTED RESULT]\n2) Missing field: [EXPECTED RESPONSE]\n3) System unavailable or duplicate: [WHAT TO DO]\n\nC. HUMAN DECISION\nWhen to send to a human: [CONDITION]\nWho approves: [ROLE]\nWhat to record: [TIME, DECISION, RESULT]"
               },
               {
                 "heading": "Check",
-                "body": "Do you have **B** and **C** (not only happy path)? Does the human control rule include mode, condition, escalation and audit record? If finance / personal data are marked “never” – go back to “When does a human approve?”.",
+                "body": "Do you have all three parts: **A – flow, B – three tests, C – human decision**? From this page, could a colleague understand what happens and what to do on failure?",
                 "blockVariant": "accent"
               }
             ],

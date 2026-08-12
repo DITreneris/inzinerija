@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { Progress, type RetrievalScheduleItem } from '../utils/progress';
 import { COMING_SOON_MODULES } from '../data/comingSoonModules';
-import { RetrievalDueCard } from './RetrievalDueCard';
 import {
   getEarnedCertificateTiers,
   getEarnedHandoutArtifacts,
@@ -29,6 +28,8 @@ import {
   shouldShowChapterRecovery,
   shouldShowChapterStartBadge,
 } from '../utils/chapterStarts';
+import { pickModulesPageNextStep } from '../utils/modulesPageNextStep';
+import { getDueRetrieval } from '../utils/retrievalSchedule';
 import { getIsMvpMode } from '../utils/mvpMode';
 import { getTierForModule } from '../constants/pricing';
 import { LoadingSpinner, Card, Badge, CTAButton } from './ui';
@@ -46,9 +47,10 @@ import {
   resolveModuleIcon,
   trackSectionClasses,
 } from '../utils/moduleIdentity';
-import CircularProgress from './CircularProgress';
 import AccessGateScreen from './AccessGateScreen';
 import { moduleWord } from '../utils/ltPlural';
+import ModulesNextStepStrip from './ModulesNextStepStrip';
+import EvaluatorPracticeSection from './EvaluatorPracticeSection';
 
 interface ModulesPageProps {
   onModuleSelect: (moduleId: number) => void;
@@ -184,6 +186,13 @@ function ModulesPage({
     [progress.completedModules.length]
   );
   const totalModules = useMemo(() => modules?.length ?? 0, [modules?.length]);
+  const overallProgressPercent = useMemo(
+    () =>
+      totalModules === 0
+        ? 0
+        : Math.round((completedCount / totalModules) * 100),
+    [completedCount, totalModules]
+  );
 
   // Memoize module progress calculations
   const moduleProgressMap = useMemo(() => {
@@ -273,6 +282,39 @@ function ModulesPage({
       maxAccessible
     );
   }, [modules, progress.completedModules, maxAccessible]);
+
+  const nextStepModule = useMemo(() => {
+    if (!modules) return null;
+    return pickModulesPageNextStep({
+      modules,
+      completedModuleIds: progress.completedModules,
+      moduleProgressById: moduleProgressMap,
+      lockedModuleIds: lockedModules,
+      recommendedModuleIds,
+      maxAccessible,
+    });
+  }, [
+    lockedModules,
+    maxAccessible,
+    moduleProgressMap,
+    modules,
+    progress.completedModules,
+    recommendedModuleIds,
+  ]);
+
+  const nextStepModuleIndex = useMemo(
+    () =>
+      nextStepModule && modules
+        ? modules.findIndex((module) => module.id === nextStepModule.id)
+        : -1,
+    [modules, nextStepModule]
+  );
+
+  const primaryRetrievalDue = useMemo(
+    () =>
+      getDueRetrieval(progress).find((item) => item.kind !== 'eval') ?? null,
+    [progress]
+  );
 
   const chapterEntryIds = useMemo(
     () => getChapterEntryModuleIds(maxAccessible),
@@ -461,17 +503,6 @@ function ModulesPage({
         </p>
       </div>
 
-      {onStartRetrieval && (
-        <div className="max-w-3xl mx-auto">
-          <RetrievalDueCard
-            progress={progress}
-            isEn={locale === 'en'}
-            onStartRetrieval={onStartRetrieval}
-            onOpenEval={onOpenEvalHabit}
-          />
-        </div>
-      )}
-
       {showRecoveryCard && (
         <Card
           className="p-5 lg:p-6 border-2 border-brand-200 dark:border-brand-800 max-w-3xl mx-auto"
@@ -507,63 +538,31 @@ function ModulesPage({
         </Card>
       )}
 
-      {showChapterStrip && (
-        <div
-          className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 max-w-3xl mx-auto"
-          role="navigation"
-          aria-label={t('chapterStripAria')}
-        >
-          <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 text-center sm:text-left">
-            {t('chapterStripLabel')}
-          </span>
-          <div className="flex flex-wrap justify-center gap-2">
-            {chapterEntryIds.map((id) => (
-              <button
-                key={`strip-${id}`}
-                type="button"
-                onClick={() => onModuleSelect(id)}
-                className={`${touchTargetClasses.minimumHeight} px-3 py-1.5 text-sm font-semibold rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-200 hover:bg-brand-100 dark:hover:bg-brand-900/50 ${focusRingClasses.brandOnWhite}`}
-                aria-label={t('chapterStartChipAria', { n: id })}
-              >
-                {t('chapterStartChip', { n: id })}
-              </button>
-            ))}
-          </div>
+      {!showRecoveryCard && nextStepModule && nextStepModuleIndex >= 0 && (
+        <div className="max-w-4xl mx-auto">
+          <ModulesNextStepStrip
+            module={nextStepModule}
+            moduleNumber={nextStepModuleIndex + 1}
+            moduleProgress={getModuleProgress(nextStepModule.id)}
+            completedCount={completedCount}
+            totalModules={totalModules}
+            overallProgressPercent={overallProgressPercent}
+            retrievalItem={primaryRetrievalDue}
+            onModuleSelect={onModuleSelect}
+            onStartRetrieval={onStartRetrieval}
+            t={t}
+          />
         </div>
       )}
 
-      <div className="flex justify-center">
-        <Card className="px-8 py-4 inline-flex items-center gap-6">
-          <CircularProgress
-            progress={
-              totalModules === 0 ? 0 : (completedCount / totalModules) * 100
-            }
-            size={60}
-            strokeWidth={6}
-          />
-          <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              {t('overallProgress')}
-            </p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">
-              {t('modulesCount', {
-                done: completedCount,
-                total: totalModules,
-                modulesWord: moduleWord(locale, totalModules, 'genitive'),
-              })}
-            </p>
-          </div>
-        </Card>
-      </div>
-
       {/* Modules grid — materials after last id <= maxAccessible */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {displayGridItems.map((item) => {
           if (item.type === 'section') {
             return (
               <section
                 key={`section-${item.id}`}
-                className="lg:col-span-3 pt-2"
+                className="md:col-span-2 xl:col-span-3 pt-2"
                 aria-label={item.title}
               >
                 <div className={trackSectionClasses[item.accent]}>
@@ -582,7 +581,7 @@ function ModulesPage({
             return (
               <section
                 key={`subsection-${item.id}`}
-                className="lg:col-span-3 mt-2 pt-6 border-t border-brand-200/80 dark:border-brand-800/80"
+                className="md:col-span-2 xl:col-span-3 mt-2 pt-6 border-t border-brand-200/80 dark:border-brand-800/80"
                 aria-label={item.title}
               >
                 <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -597,7 +596,7 @@ function ModulesPage({
 
           if (item.type === 'materials') {
             return (
-              <div key="materials" className="lg:col-span-3">
+              <div key="materials" className="md:col-span-2 xl:col-span-3">
                 <Card
                   className="p-5 lg:p-6 border-2 border-brand-100 dark:border-brand-800"
                   aria-labelledby="my-materials-title"
@@ -695,7 +694,7 @@ function ModulesPage({
               : moduleProgress >= 100
                 ? t('ctaView')
                 : t('ctaContinue');
-          const isRecommendedNext = recommendedModuleIds.has(module.id);
+          const isRecommendedNext = nextStepModule?.id === module.id;
           const showChapterBadge =
             !locked &&
             shouldShowChapterStartBadge(
@@ -709,10 +708,7 @@ function ModulesPage({
             ? accentTopBarClasses[module.accent]
             : null;
           const ModuleIconCmp = resolveModuleIcon(module.icon);
-          const ctaGradientClass =
-            level === 'practice'
-              ? 'from-accent-500 to-accent-600'
-              : styles.gradient;
+          const ctaGradientClass = styles.gradient;
 
           const isMvpLocked7Plus =
             getIsMvpMode() && module.id > 6 && lockReason === 'tier';
@@ -829,7 +825,7 @@ function ModulesPage({
                           </Eyebrow>
                         )}
                         {isRecommendedNext && (
-                          <span className="hidden lg:inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
                             {t('recommendedNext')}
                           </span>
                         )}
@@ -851,11 +847,6 @@ function ModulesPage({
                           </Badge>
                         )}
                         {/* Mobile: one secondary – Rekomenduojama > Baigta > skyriaus startas > level */}
-                        {isRecommendedNext && (
-                          <span className="lg:hidden inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300">
-                            {t('recommendedNext')}
-                          </span>
-                        )}
                         {!isRecommendedNext && isCompleted && (
                           <Badge
                             variant="success"
@@ -979,6 +970,41 @@ function ModulesPage({
         })}
       </div>
 
+      {modules && (
+        <EvaluatorPracticeSection
+          modules={modules}
+          progress={progress}
+          maxAccessible={maxAccessible}
+          onOpenEvalHabit={onOpenEvalHabit}
+          t={t}
+        />
+      )}
+
+      {showChapterStrip && (
+        <div
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 max-w-3xl mx-auto"
+          role="navigation"
+          aria-label={t('chapterStripAria')}
+        >
+          <span className="text-sm font-semibold text-gray-600 dark:text-gray-400 text-center sm:text-left">
+            {t('chapterStripLabel')}
+          </span>
+          <div className="flex flex-wrap justify-center gap-2">
+            {chapterEntryIds.map((id) => (
+              <button
+                key={`strip-${id}`}
+                type="button"
+                onClick={() => onModuleSelect(id)}
+                className={`${touchTargetClasses.minimumHeight} px-3 py-1.5 text-sm font-semibold rounded-lg border border-brand-200 dark:border-brand-700 bg-brand-50 dark:bg-brand-900/30 text-brand-800 dark:text-brand-200 hover:bg-brand-100 dark:hover:bg-brand-900/50 ${focusRingClasses.brandOnWhite}`}
+                aria-label={t('chapterStartChipAria', { n: id })}
+              >
+                {t('chapterStartChip', { n: id })}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {comingSoonTracks.map((track) => {
         const accentUi = comingSoonAccentClasses[track.accent];
         return (
@@ -1004,7 +1030,7 @@ function ModulesPage({
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {track.modules.map((module) => {
                 const styles = levelStyles[module.level];
                 const ModuleIconCmp = resolveModuleIcon(module.icon);

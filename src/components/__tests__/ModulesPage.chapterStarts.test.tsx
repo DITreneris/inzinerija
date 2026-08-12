@@ -60,7 +60,7 @@ describe('ModulesPage chapter starts / recovery', () => {
     );
 
     expect(screen.getByText('Kur nori tęsti?')).toBeInTheDocument();
-    expect(screen.getByText('Skyrių startai')).toBeInTheDocument();
+    expect(screen.getByText('Pradėk nuo skyriaus')).toBeInTheDocument();
     expect(
       screen.getAllByRole('button', { name: /Pradėti nuo modulio 7/i }).length
     ).toBeGreaterThan(0);
@@ -73,7 +73,7 @@ describe('ModulesPage chapter starts / recovery', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Uždaryti' }));
     expect(screen.queryByText('Kur nori tęsti?')).not.toBeInTheDocument();
-    expect(screen.getByText('Skyrių startai')).toBeInTheDocument();
+    expect(screen.getByText('Pradėk nuo skyriaus')).toBeInTheDocument();
     expect(localStorage.getItem(CHAPTER_RECOVERY_DISMISSED_KEY)).toBe('1');
   });
 
@@ -86,7 +86,7 @@ describe('ModulesPage chapter starts / recovery', () => {
     );
 
     expect(screen.queryByText('Kur nori tęsti?')).not.toBeInTheDocument();
-    expect(screen.getByText('Skyrių startai')).toBeInTheDocument();
+    expect(screen.getByText('Pradėk nuo skyriaus')).toBeInTheDocument();
   });
 
   it('hides chapter strip when tier < 6', () => {
@@ -95,7 +95,7 @@ describe('ModulesPage chapter starts / recovery', () => {
       <ModulesPage onModuleSelect={() => {}} progress={emptyProgress()} />
     );
 
-    expect(screen.queryByText('Skyrių startai')).not.toBeInTheDocument();
+    expect(screen.queryByText('Pradėk nuo skyriaus')).not.toBeInTheDocument();
     expect(screen.queryByText('Kur nori tęsti?')).not.toBeInTheDocument();
   });
 

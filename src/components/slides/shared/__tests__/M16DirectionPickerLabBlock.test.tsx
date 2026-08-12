@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../test/test-utils';
+import { resetLabInteractions } from '../../../../utils/labInteractions';
 import M16DirectionPickerLabBlock from '../M16DirectionPickerLabBlock';
 
 const storageKey = 'prompt-anatomy-locale';
@@ -11,6 +12,7 @@ function setLocale(locale: 'lt' | 'en') {
 
 describe('M16DirectionPickerLabBlock', () => {
   beforeEach(() => {
+    resetLabInteractions();
     setLocale('lt');
   });
 
@@ -41,6 +43,18 @@ describe('M16DirectionPickerLabBlock', () => {
     expect(screen.getByText(/Pasirinkta: A/i)).toBeInTheDocument();
     expect(screen.getByText(/Nugalėtoja kryptis: A/i)).toBeInTheDocument();
     expect(screen.getByText(/suma 11/i)).toBeInTheDocument();
+  });
+
+  it('restores the picked direction after remount', () => {
+    const { unmount } = renderWithProviders(<M16DirectionPickerLabBlock />);
+    fireEvent.click(screen.getByRole('radio', { name: /^B\b/i }));
+    expect(screen.getByText(/Pasirinkta: B/i)).toBeInTheDocument();
+
+    unmount();
+    renderWithProviders(<M16DirectionPickerLabBlock />);
+
+    expect(screen.getByText(/Pasirinkta: B/i)).toBeInTheDocument();
+    expect(screen.getByText(/Nugalėtoja kryptis: B/i)).toBeInTheDocument();
   });
 
   it('uses brand-only shell (not rose Content-track)', () => {

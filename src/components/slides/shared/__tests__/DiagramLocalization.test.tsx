@@ -567,8 +567,10 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10TriggerFlowBlock />);
       expect(lt.textContent).toContain('Darbo eigos grandinė');
-      expect(lt.textContent).toContain('paleidžia srautą');
-      expect(lt.textContent).toContain('Webhook = Trigger tipas');
+      expect(lt.textContent).toContain('įvykis pradeda eigą');
+      expect(lt.textContent).toContain(
+        'Internetinis pranešimas (webhook) = paleidiklio tipas'
+      );
       expect(lt.textContent).toMatch(/1\s*\/\s*3/);
       expect(lt.querySelectorAll('nav button')).toHaveLength(3);
     });
@@ -595,10 +597,10 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
 
       setLocale('lt');
       const { container: lt } = renderWithProviders(<M10ThreeAStrategyBlock />);
-      expect(lt.textContent).toContain('AUTOMATIZE');
-      expect(lt.textContent).toContain('AUGMENT');
-      expect(lt.textContent).toContain('AUTONOMIZE');
-      expect(lt.textContent).not.toContain('AUGMEAUTONOMIZE');
+      expect(lt.textContent).toContain('Automatizuoti');
+      expect(lt.textContent).toContain('Asistuoti');
+      expect(lt.textContent).toContain('Autonomizuoti');
+      expect(lt.textContent).not.toContain('AsistuotiAutonomizuoti');
       expect(lt.textContent).toContain('mažiau klaidų');
       expect(lt.textContent).toContain('Žmogus sprendžia, DI padeda');
       expect(lt.textContent).toContain('5 %');
@@ -719,7 +721,7 @@ describe('Diagram localization (AgentWorkflow, StrukturuotasProcesas, TurinioWor
       const { container: lt } = renderWithProviders(
         <M10ToolDecisionTreeBlock />
       );
-      expect(lt.textContent).toContain('Įrankio pasirinkimas (workflow)');
+      expect(lt.textContent).toContain('Darbo eigos įrankio pasirinkimas');
       expect(lt.textContent).toContain('Paspausk šaką');
     });
 

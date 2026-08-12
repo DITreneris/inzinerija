@@ -1386,7 +1386,9 @@ function ModuleView({
                     : undefined
                 }
                 onNavigateToSlideById={
-                  moduleId === 9 ? onNavigateToSlideById : undefined
+                  moduleId === 9 || moduleId === 12
+                    ? onNavigateToSlideById
+                    : undefined
                 }
                 initialHubLevel1={
                   moduleId === 9 ? returnToHubWithLevel1 : undefined

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../test/test-utils';
+import { resetLabInteractions } from '../../../../utils/labInteractions';
 import M10DepthRolesLabBlock from '../M10DepthRolesLabBlock';
 
 const storageKey = 'prompt-anatomy-locale';
@@ -11,6 +12,7 @@ function setLocale(locale: 'lt' | 'en') {
 
 describe('M10DepthRolesLabBlock', () => {
   beforeEach(() => {
+    resetLabInteractions();
     setLocale('lt');
   });
 
@@ -54,6 +56,26 @@ describe('M10DepthRolesLabBlock', () => {
     fireEvent.click(
       screen.getByRole('checkbox', { name: /Pridėti maršrutizatorių/i })
     );
+    expect(screen.getByText(/4\) Maršrutizatorius/i)).toBeInTheDocument();
+  });
+
+  it('restores depth and router flag after remount', () => {
+    const { unmount } = renderWithProviders(<M10DepthRolesLabBlock />);
+    fireEvent.click(screen.getByRole('radio', { name: /Komanda \(L2\)/i }));
+    fireEvent.click(
+      screen.getByRole('checkbox', { name: /Pridėti maršrutizatorių/i })
+    );
+    expect(screen.getByText(/4\) Maršrutizatorius/i)).toBeInTheDocument();
+
+    unmount();
+    renderWithProviders(<M10DepthRolesLabBlock />);
+
+    expect(
+      screen.getByRole('checkbox', { name: /Pridėti maršrutizatorių/i })
+    ).toBeChecked();
+    expect(
+      screen.getByText(/Gylio lygis: Komanda \(L2\)/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/4\) Maršrutizatorius/i)).toBeInTheDocument();
   });
 

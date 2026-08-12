@@ -40,6 +40,11 @@ jobs:
       - name: Validate schema
         run: npm run validate:schema
 
+      # Schemes / labs / tools governance – never ship a build whose registry
+      # numbers, tools parity or generated profiles drifted from the SOT.
+      - name: Audit schemes, labs and tools
+        run: npm run audit:governance
+
       - name: Run linter
         run: npm run lint
 

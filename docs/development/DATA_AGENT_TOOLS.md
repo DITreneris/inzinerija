@@ -2,7 +2,7 @@
 
 > Šaltiniai ir procedūra, kad DATA_AGENT reguliariai galėtų rinkti įrankius, minimus mokymuose, ir atnaujinti skiltį **Įrankiai**.
 
-**Architektūra A:** `src/data/tools.json` yra full LT redagavimo SOT; `src/data/tools-en.json` – EN twin (tas pats `name` / `moduleId` / `url`). Core profiliai: `tools-m1-m6.json`, `tools-m1-m9.json` (+ EN) generuojami per `npm run generate:core-data`.
+**Architektūra A:** `src/data/tools.json` yra full LT redagavimo SOT; `src/data/tools-en.json` – EN twin (tas pats `name` / `moduleId` / `url`). Build profiliai: `tools-m1-m6.json`, `tools-m1-m9.json`, `tools-m1-m12.json`, `tools-m1-m15.json` (+ EN) generuojami per `npm run generate:core-data`; visi aštuoni tikrinami `npm run audit:tools`, o drift nuo SOT – `npm run generate:core-data:check`.
 
 **Produkto riba:** Įrankių skiltis = **mokymuose minimi / mokomi įrankiai**, ne rinkos blogroll. **Cursor** live @ `moduleId` 16 (LT+EN exact `name`; category Produktyvumas / Productivity). Kiti vibe stack (v0, Lovable…) – tik kai SOT/skaidrės juos moko; `audit-tools` `moduleId` 1–18.
 
@@ -26,7 +26,7 @@
 
 - Full LT: **src/data/tools.json**
 - Full EN: **src/data/tools-en.json** (exact `name` parity su LT)
-- Core: **tools-m1-m6.json**, **tools-en-m1-m6.json**, **tools-m1-m9.json**, **tools-en-m1-m9.json**
+- Build profiliai (generuojami, **neredaguojami ranka**): **tools-m1-m6**, **tools-m1-m9**, **tools-m1-m12**, **tools-m1-m15** (+ `tools-en-*` atitikmenys)
 - Schema: **scripts/schemas/tools.schema.json**
 - Laukai: `name` (privaloma), `moduleId` (privaloma, 1–18), `url`, `description`, `category` (allowlist – žr. `scripts/audit-tools.mjs`)
 

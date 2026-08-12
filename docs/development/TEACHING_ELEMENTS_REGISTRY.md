@@ -1,9 +1,10 @@
 # Teaching Elements Registry (master)
 
-> **Statusas:** aktyvus kontraktas (TE-0…TE-5, 2026-07-24).  
-> **Ticketai:** `TODO.md` §1.0g (`TE-0…5`).  
-> **Overlay (Pattern / Shell / maturity):** [`teaching-elements-overlay.json`](teaching-elements-overlay.json).  
+> **Statusas:** aktyvus kontraktas (TE-0…TE-5, 2026-07-24).
+> **Ticketai:** `TODO.md` §1.0g (`TE-0…5`).
+> **Overlay (Pattern / Shell / maturity):** [`teaching-elements-overlay.json`](teaching-elements-overlay.json).
 > **Audit:** `npm run audit:teaching-elements` (`--json`, `--strict`).
+> **Skaitinės sekcijos generuojamos:** `npm run audit:teaching-elements:docs`; CI vartai – `npm run audit:governance` (`--check-docs`).
 
 ## Tikslas
 
@@ -68,20 +69,27 @@ teaching-elements-overlay.json         ← curated Pattern / Shell / maturity
 
 ## Faktinė bazė (audito baseline)
 
-Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline 2026-08-01 (`audit:teaching-elements:strict`); overlay `updatedAt` **2026-08-01** (TE-M1618 Must + Should + C2 embed):
+Žemiau esantys blokai **generuojami** – `npm run audit:teaching-elements:docs`. Ranka neredaguoti: CI vartai (`audit:teaching-elements:check-docs`) fail'ina, jei skaičiai atsilieka nuo live `modules.json`.
+
+<!-- AUTO:te-baseline:start -->
 
 | Bucket                         |                N |
 | ------------------------------ | ---------------: |
 | Skaidrės                       |              336 |
 | Naudoti SlideType              |               42 |
 | Live `sections[].image` unique |               48 |
+| Live `sections[].image` fields |               50 |
 | `diagramRenderers` keys        |               50 |
 | Off-renderer live šeimos       |                5 |
 | Orphaned                       |                2 |
 | ChoiceControl labai (audit)    |                7 |
-| Embed katalogas                |               44 |
-| `section.table`                | 41 / 35 skaidrių |
-| Inventory / overlay elements   |              188 |
+| Embed katalogas                |               47 |
+| `section.table`                | 51 / 45 skaidrių |
+| Inventory / overlay elements   |        201 / 201 |
+
+_Šaltinis: `modules.json` + `diagramRenderers`; overlay `updatedAt`: **2026-08-01**._
+
+<!-- AUTO:te-baseline:end -->
 
 ## Diagramos, labai ir off-renderer (TE-2)
 
@@ -228,6 +236,7 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 | `embed:toolChoiceBar:m10:10.48:s1`     | `sections[1].toolChoiceBar`                         | M10/10.48           |
 | `embed:toolChoiceBar:m10:10.35:s2`     | `sections[2].toolChoiceBar`                         | M10/10.35           |
 | `embed:toolChoiceBar:m10:10.36:s3`     | `sections[3].toolChoiceBar`                         | M10/10.36           |
+| `embed:toolChoiceBar:m10:10.37:s2`     | `sections[2].toolChoiceBar`                         | M10/10.37           |
 | `embed:preCopyCheckBlock:m10:10.36`    | `preCopyCheckBlock`                                 | M10/10.36           |
 | `embed:toolChoiceBar:m12:120.25:s2`    | `sections[2].toolChoiceBar`                         | M12/120.25          |
 | `embed:preCopyCheckBlock:m12:120.25`   | `preCopyCheckBlock`                                 | M12/120.25          |
@@ -269,21 +278,26 @@ Atnaujinti po `npm run audit:teaching-elements` (ne rankiniu spėjimu). Baseline
 
 ## Kind × maturity scorecard (TE-4)
 
+<!-- AUTO:te-scorecard:start -->
+
 | Kind             |   N | Avg maturity | Maturity ≤1 |
 | ---------------- | --: | -----------: | ----------: |
-| `diagram`        |  34 |         3.24 |           0 |
-| `embed`          |  25 |         2.04 |           0 |
-| `lab`            |   4 |         3.25 |           0 |
+| `diagram`        |  41 |         3.24 |           0 |
+| `embed`          |  47 |         2.11 |           0 |
+| `lab`            |   7 |         3.14 |           0 |
 | `off-renderer`   |   5 |         2.80 |           0 |
 | `orphaned`       |   2 |         1.00 |           2 |
 | `renderer-alias` |   2 |         1.00 |           2 |
-| `slide-type`     |  44 |         2.00 |           0 |
-| `table`          |  29 |         2.00 |           0 |
+| `slide-type`     |  46 |         2.00 |           0 |
+| `table`          |  51 |         1.88 |           5 |
 
 **P0 (diagram/lab/off-renderer, maturity ≤1):** _nėra_.
 
+<!-- AUTO:te-scorecard:end -->
+
 ## Nedaryti
 
+- Redaguoti `<!-- AUTO:… -->` blokų turinį ranka (baseline / scorecard) – jie generuojami, o CI fail'ina drift'ą.
 - Merginti patch / completion / icon registry į šią lentelę.
 - Trinti orphaned Schema3 / ContextFlow be atskiro cleanup ticketo.
 - Force-META / M4P–M7P copy klases čia (lieka `M4_PROMPT_MATURITY.md`, `M7_PROMPT_MATURITY.md`).

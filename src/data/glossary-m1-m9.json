@@ -501,7 +501,7 @@
     },
     {
       "term": "Sisteminis promptas",
-      "definition": "Nustato DI darbo tikslą ir funkciją (pvz. „Tu esi rinkodaros analitikas…“).",
+      "definition": "Aukštesnio prioriteto instrukcija, kuri nustato DI vaidmenį, darbo taisykles ir ribas visam pokalbiui ar agentui. Ji skiriasi nuo vartotojo įvedamos konkrečios užduoties.",
       "moduleId": 1
     },
     {

@@ -15,7 +15,7 @@
 | 2    | 10.2       | Agentų ciklas ir architektūra                            | Proceso diagrama; ReAct-style ciklas; „Kada naudoti agentą“.                                                                             |
 | 2a   | **10.21**  | **Kontrolinis taškas: agentų ciklas**                    | **NAUJA** – path-step greita pergalė; dalyvis patikrina 1 agentinę užklausą prieš gilesnę teoriją.                                       |
 | 2b   | **10.22**  | **Savitikra: agentų ciklas**                             | Warm-up po 10.2 / 10.21; 3 klausimai apie agentinį ciklą, paprastą promptą ir klaidos pranešimą.                                         |
-| 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatize / Augment / Autonomize.                                                                    |
+| 3    | 10.25      | 3A strategija                                            | Verslo kontekstas prieš workflow – Automatizuoti / Asistuoti / Autonomizuoti.                                                            |
 | 3a0  | **10.255** | **Ar komanda pasirengusi agentiniam darbui?**            | Komandos DI praktikos nuotrauka po 3A: naudojimas, promptų struktūra, mokymosi ritmas; be balo; silpniausia dimensija → kitas veiksmas.  |
 | 3a   | **10.26**  | **Kada tvirtina žmogus?**                                | Po 3A – kontrolės lab (risk strip + režimai; pasekmė × atšaukimas); kopijuojama taisyklė lab viduje → 10.64 / M12. Be „HITL“ antraštėje. |
 | 3b   | **10.3**   | **Rolės ir sisteminio prompto šablonas**                 | Po ciklo + 3A + žmogaus kontrolė – paprastas sisteminis promptas **prieš** multi-agent taksonomiją.                                      |
@@ -58,17 +58,17 @@
 
 ## Modulis 12 (praktika) – skaidrių eilė
 
-| Eilė (UI 1…N) | ID         | Skaidrė / tipas   | Kodėl čia?                                                                                                |
-| ------------- | ---------- | ----------------- | --------------------------------------------------------------------------------------------------------- |
-| 1             | 120        | practice-intro    | whyBenefit; linijinis greitas startas **124.5 → 124**, tada 3A **121–123** (`minScenariosToComplete: 3`). |
-| 2             | 120.25     | content-block     | Trys praktikos (3A) – schema `m12_three_labs` + Trumpai/Daryk/Patikra. Footer → 120.5.                    |
-| 3             | 120.5      | content-block     | **Privaloma:** Verslo multi-agent schema + GOLDEN. Footer → 120.55.                                       |
-| 4             | **120.55** | path-step         | Kontrolinis taškas prieš greitą startą. Footer → **124.5**.                                               |
-| 5             | **124.5**  | practice-scenario | Greitas startas: Koordinatorius + 2 specialistai (tik promptai). Footer → 124.                            |
-| 6             | **124**    | practice-scenario | Tyrimo agentas (tik promptai). Footer → 121.                                                              |
-| 7–9           | 121–123    | practice-scenario | MUST lab'ai užbaigimui: Automatize, Augment, Autonomize (platforma arba kelias tik su promptais).         |
-| 10            | 125        | content-block     | Optional: M10 pakartojimas.                                                                               |
-| 11            | 128        | summary           | 5 blokų santrauka.                                                                                        |
+| Eilė (UI 1…N) | ID         | Skaidrė / tipas   | Kodėl čia?                                                                                                                                           |
+| ------------- | ---------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1             | 120        | practice-intro    | Kelio pasirinkimas su vienu rekomenduojamu default keliu; privalomas progresas tik 3A **121–123** (`minScenariosToComplete: 3`, `requiredSlideIds`). |
+| 2             | 120.25     | content-block     | Trys praktikos (3A) – schema `m12_three_labs` + Trumpai/Daryk/Patikra. Footer → 120.5.                                                               |
+| 3             | 120.5      | content-block     | **Privaloma:** Verslo multi-agent schema + GOLDEN. Footer → 120.55.                                                                                  |
+| 4             | **120.55** | path-step         | Kontrolinis taškas prieš greitą startą. Footer → **124.5**.                                                                                          |
+| 5             | **124.5**  | practice-scenario | Greitas startas: Koordinatorius + 2 specialistai (tik promptai). Footer → 124.                                                                       |
+| 6             | **124**    | practice-scenario | Tyrimo agentas (tik promptai). Footer → 121.                                                                                                         |
+| 7–9           | 121–123    | practice-scenario | MUST lab'ai užbaigimui: Automatizuoti, Asistuoti, Autonomizuoti (platforma arba kelias tik su promptais).                                            |
+| 10            | 125        | content-block     | Optional: M10 pakartojimas.                                                                                                                          |
+| 11            | 128        | summary           | 5 blokų santrauka.                                                                                                                                   |
 
 ---
 

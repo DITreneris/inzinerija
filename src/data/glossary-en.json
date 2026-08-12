@@ -20,6 +20,11 @@
       "moduleId": 1
     },
     {
+      "term": "Action",
+      "definition": "An action that the system performs, such as sending an email, writing to the CRM, or updating a table.",
+      "moduleId": 10
+    },
+    {
       "term": "Advanced Parameters",
       "definition": "Model settings: temperature, reasoning depth, response length, repetition control.",
       "moduleId": 1
@@ -33,6 +38,11 @@
       "term": "Agentic prompt",
       "definition": "Asks the AI to take action – search, use tools (Browse, Search, API), gather data; the AI acts as an agent; requires a platform with tool/search support (e.g. “find and list TOP10”).",
       "moduleId": 4
+    },
+    {
+      "term": "AI Act / compliance",
+      "definition": "EU AI Act and company governance requirements: know the system purpose, data used, human review, risk, and decision log, especially when people, money, or employment are affected.",
+      "moduleId": 10
     },
     {
       "term": "AI agent",
@@ -130,6 +140,11 @@
       "term": "Competitor analysis",
       "definition": "Structured comparison of competitors (products, prices, messages) with AI – to spot gaps and opportunities, not only “who does the same”.",
       "moduleId": 9
+    },
+    {
+      "term": "Condition",
+      "definition": "A rule that determines which workflow step to run next.",
+      "moduleId": 10
     },
     {
       "term": "Context capsule",
@@ -526,6 +541,16 @@
       "moduleId": 4
     },
     {
+      "term": "Synthesis",
+      "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
+      "moduleId": 7
+    },
+    {
+      "term": "Synthetic data",
+      "definition": "Artificially generated data for training or prototypes when real data is missing or cannot be shared. Use carefully – it is not a 1:1 real population.",
+      "moduleId": 9
+    },
+    {
       "term": "Smoke",
       "definition": "A quick check: it starts, UI/API responds, the core function works; one red = do not go deeper yet.",
       "moduleId": 18,
@@ -568,16 +593,6 @@
       }
     },
     {
-      "term": "Synthesis",
-      "definition": "Combining several sources or research outputs into one clear set of conclusions or summaries. AI helps merge different answers into one view.",
-      "moduleId": 7
-    },
-    {
-      "term": "Synthetic data",
-      "definition": "Artificially generated data for training or prototypes when real data is missing or cannot be shared. Use carefully – it is not a 1:1 real population.",
-      "moduleId": 9
-    },
-    {
       "term": "Test / Invest / Drop (Kiss-Marry-Kill)",
       "definition": "Portfolio choice for options (products, channels, ideas): which to only test, which to grow, which to drop.",
       "moduleId": 7
@@ -603,8 +618,8 @@
       "moduleId": 16
     },
     {
-      "term": "Trigger",
-      "definition": "An event that starts a workflow, such as a new email, form submission or uploaded file.",
+      "term": "Trigger (event)",
+      "definition": "An event that starts a workflow, such as a new email or form submission.",
       "moduleId": 10
     },
     {
@@ -643,7 +658,7 @@
     },
     {
       "term": "Webhook",
-      "definition": "Real-time data transfer between systems: an event immediately sends data to a specified address, usually through an API call.",
+      "definition": "A real-time message that another system sends to a specified address; in a workflow, it can act as a trigger type.",
       "moduleId": 10
     },
     {

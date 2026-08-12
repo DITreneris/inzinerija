@@ -43,13 +43,16 @@ describe('TestPracticeSlides M12 practice contract', () => {
   it('keeps the M12 intro completion gate aligned with the three required practices', () => {
     const intro = getM12Slides().find((slide) => slide.id === 120);
     const content = intro?.content as
-      | { minScenariosToComplete?: number; recommendedSlideIds?: number[] }
+      | {
+          minScenariosToComplete?: number;
+          requiredSlideIds?: number[];
+          recommendedPathId?: string;
+        }
       | undefined;
 
     expect(content?.minScenariosToComplete).toBe(3);
-    expect(content?.recommendedSlideIds).toEqual(
-      expect.arrayContaining([121, 122, 123])
-    );
+    expect(content?.requiredSlideIds).toEqual([121, 122, 123]);
+    expect(content?.recommendedPathId).toBe('guided');
   });
 
   it('counts only root scenario slides and keeps the M12 dedupe invariant', () => {
@@ -86,7 +89,7 @@ describe('TestPracticeSlides M12 practice contract', () => {
     expect(optionalRecap?.practicalTask).toBeUndefined();
   });
 
-  it('renders the high-ROI M12 intro path, ROI template, and start-here jump', () => {
+  it('renders the M12 path choice, required progress, and ROI template', () => {
     const intro = getM12Slides().find((slide) => slide.id === 120);
     const onNavigateToSlideById = vi.fn();
 
@@ -100,38 +103,55 @@ describe('TestPracticeSlides M12 practice contract', () => {
       />
     );
 
-    expect(screen.getByText('Rekomenduojamas startas')).toBeInTheDocument();
     expect(
-      screen.getByText(
-        /Privalomas kelias – 3 pagrindinės praktikos: Automatize/
-      )
+      screen.getByRole('radiogroup', { name: 'Pasirink M12 pradžios kelią' })
     ).toBeInTheDocument();
-    const requiredPath = screen.getByRole('region', {
+    expect(
+      screen.getByRole('radio', { name: /Rekomenduojama: vedamas kelias/i })
+    ).toHaveAttribute('aria-checked', 'true');
+    expect(
+      screen.getByText('0/3 privalomų praktikų atlikta')
+    ).toBeInTheDocument();
+    const pathChoice = screen.getByRole('region', {
       name: 'Privalomas Modulio 12 kelias',
     });
     expect(
-      within(requiredPath).getByText('Privalomas kelias')
+      within(pathChoice).getByText('Pasirinktas kelias')
     ).toBeInTheDocument();
     expect(
-      within(requiredPath).getByText(
-        /Koordinatorius \+ 2 specialistai|3 pagrindines 3A praktikas|kelias tik su promptais/
-      )
-    ).toBeInTheDocument();
+      within(pathChoice).getAllByText('Rekomenduojama: vedamas kelias')
+    ).toHaveLength(2);
+    expect(
+      screen.queryByText('🔥 6 Verslo Scenarijai')
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText('Generuok ataskaitą')).not.toBeInTheDocument();
+
     fireEvent.click(
-      screen.getByText('Grąžos iš investicijų (ROI) mini skaičiuoklė')
+      screen.getByText('Grąžos iš investicijų (ROI) miniskaičiuoklė')
     );
     expect(
       screen.getByRole('button', {
-        name: 'Kopijuoti grąžos iš investicijų šabloną',
+        name: /Kopijuoti grąžos iš investicijų/i,
       })
     ).toBeInTheDocument();
 
     fireEvent.click(
       screen.getByRole('button', {
-        name: 'Pradėk nuo Koordinatorius ir du specialistai skaidrės',
+        name: /Pradėti pasirinktą kelią: Rekomenduojama: vedamas kelias/,
       })
     );
+    expect(onNavigateToSlideById).toHaveBeenCalledWith(120.25);
 
+    fireEvent.click(
+      screen.getByRole('radio', {
+        name: /Greitas startas tik su promptais/i,
+      })
+    );
+    fireEvent.click(
+      screen.getByRole('button', {
+        name: /Pradėti pasirinktą kelią: Greitas startas tik su promptais/,
+      })
+    );
     expect(onNavigateToSlideById).toHaveBeenCalledWith(124.5);
   });
 

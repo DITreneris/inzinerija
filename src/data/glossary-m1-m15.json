@@ -20,11 +20,6 @@
       "moduleId": 13
     },
     {
-      "term": "Action",
-      "definition": "Veiksmas, kurį atlieka automatizavimo sistema (pvz. siųsti laišką, įrašyti į CRM, atnaujinti lentelę).",
-      "moduleId": 10
-    },
-    {
       "term": "Advanced Parameters",
       "definition": "Modelio nustatymai: temperature, reasoning gylis, atsakymo ilgis, pasikartojimų kontrolė.",
       "moduleId": 1
@@ -36,18 +31,13 @@
     },
     {
       "term": "Agentas (DI)",
-      "definition": "Sistema, kuri atlieka užduotis žingsniais ir gali naudoti įrankius (paieška, API, failai). Skiriasi nuo paprasto pokalbio – gali atlikti kelis veiksmus ir kreiptis į išorinius šaltinius.",
+      "definition": "Sistema, kuri atlieka užduotis žingsniais ir gali naudoti įrankius (paiešką, API, failus). Skiriasi nuo paprasto pokalbio – gali atlikti kelis veiksmus ir kreiptis į išorinius šaltinius.",
       "moduleId": 10
     },
     {
       "term": "Agentinis promptas",
       "definition": "Prašo DI atlikti veiksmus – ieškoti, naudoti įrankius (Browse, Search, API), surinkti duomenis; DI veikia kaip agentas; reikia platformos su įrankių/paieškos palaikymu (pvz. „ieškok ir surask TOP10“).",
       "moduleId": 4
-    },
-    {
-      "term": "Always-on paleidimas",
-      "definition": "Programa veikia be pertraukos ir klauso įvykių (pvz. Telegram botas). Skirtingai nuo cron (pagal laiką) ar vienkartinio webhook.",
-      "moduleId": 10
     },
     {
       "term": "API",
@@ -137,11 +127,6 @@
       "moduleId": 4
     },
     {
-      "term": "Condition",
-      "definition": "Sąlyga workflow'e – kada vykdyti kitą žingsnį (pvz. jei sumos vertė > 500 € – siųsti vadovui).",
-      "moduleId": 10
-    },
-    {
       "term": "Conversion (konversija)",
       "definition": "Kampanijos tikslas – vaizdas skatina veiksmą: produktas, pasiūlymas, kvietimas veikti (CTA); tipiniai formatai: reklamos maketas, landingo hero, „pirk dabar“ blokas.",
       "moduleId": 13,
@@ -207,6 +192,11 @@
       "term": "Deming principas",
       "definition": "„In God we trust, all others bring data“ – pirmiausia duomenys ir nuolatinis tobulinimas, ne vien intuicija. Pvz. prieš keisdamas procesą – parodyk matavimą.",
       "moduleId": 7
+    },
+    {
+      "term": "DI aktas / atitiktis",
+      "definition": "ES DI akto ir įmonės valdymo reikalavimai: žinoti sistemos tikslą ir naudojamus duomenis, numatyti žmogaus peržiūrą, įvertinti riziką ir fiksuoti sprendimus, ypač kai poveikis tenka žmonėms, pinigams ar darbui.",
+      "moduleId": 10
     },
     {
       "term": "DI atmintis (Memory)",
@@ -329,11 +319,6 @@
       "moduleId": 4
     },
     {
-      "term": "Hostingas (PaaS)",
-      "definition": "Vieta internete, kur programa, API ar DI agentas veikia nuolat (pvz. Railway, Render, Fly.io). Ne tas pats kaip Zapier / n8n – jie sudėlioja eigą; PaaS paleidžia.",
-      "moduleId": 10
-    },
-    {
       "term": "INPUT blokas",
       "definition": "Duomenys, faktai, apribojimai – ką turi prieš pradedant.",
       "moduleId": 1
@@ -341,6 +326,11 @@
     {
       "term": "Integracija",
       "definition": "Ryšys tarp DI ir išorinių duomenų ar paslaugų (API, duomenų bazė, el. paštas, CRM). Būtinas agentams ir workflow automatizavimui.",
+      "moduleId": 10
+    },
+    {
+      "term": "Internetinis pranešimas (webhook)",
+      "definition": "Internetinis pranešimas, kurį kita sistema realiu laiku atsiunčia į nurodytą adresą; darbo eigoje jis gali būti paleidiklio tipas.",
       "moduleId": 10
     },
     {
@@ -511,6 +501,11 @@
       }
     },
     {
+      "term": "Nuolatinis veikimas (always-on)",
+      "definition": "Programa veikia be pertraukos ir klauso įvykių (pvz. Telegram botas). Tai skiriasi nuo veikimo pagal laiką (cron) ar vienkartinio internetinio pranešimo (webhook).",
+      "moduleId": 10
+    },
+    {
       "term": "Nuotaika (mood)",
       "definition": "Jausmas, kurį skleidžia vaizdas ar muzika (ramus, energingas, įtemptas).",
       "moduleId": 13
@@ -529,6 +524,16 @@
       "term": "OUTPUT blokas",
       "definition": "Formatas, struktūra ir reikalavimai – ko nori gauti (lentelė, sąrašas, tonas).",
       "moduleId": 1
+    },
+    {
+      "term": "Paleidiklis (trigger)",
+      "definition": "Įvykis, kuris paleidžia darbo eigą (pvz., naujas laiškas ar formos pateikimas).",
+      "moduleId": 10
+    },
+    {
+      "term": "Paleidimo platforma (hostingas, PaaS)",
+      "definition": "Vieta internete, kur programa, API ar DI agentas veikia nuolat (pvz. Railway, Render, Fly.io). Ne tas pats kaip Zapier / n8n – jie sudėlioja eigą; PaaS paleidžia.",
+      "moduleId": 10
     },
     {
       "term": "Parametrų laukas",
@@ -653,7 +658,12 @@
     },
     {
       "term": "RPA",
-      "definition": "Robotizuota proceso automatizacija – botas spaudo mygtukus UI, kai nėra API (pvz. UiPath). Kai API yra – rinkis workflow, ne RPA.",
+      "definition": "Robotizuota procesų automatizacija – botas spaudo mygtukus naudotojo sąsajoje (UI), kai nėra API (pvz. UiPath). Kai API yra – rinkis workflow, ne RPA.",
+      "moduleId": 10
+    },
+    {
+      "term": "Sąlyga (condition)",
+      "definition": "Taisyklė, kuri nustato, kurį darbo eigos žingsnį vykdyti.",
       "moduleId": 10
     },
     {
@@ -697,7 +707,7 @@
     },
     {
       "term": "Sisteminis promptas",
-      "definition": "Nustato DI darbo tikslą ir funkciją (pvz. „Tu esi rinkodaros analitikas…“).",
+      "definition": "Aukštesnio prioriteto instrukcija, kuri nustato DI vaidmenį, darbo taisykles ir ribas visam pokalbiui ar agentui. Ji skiriasi nuo vartotojo įvedamos konkrečios užduoties.",
       "moduleId": 1
     },
     {
@@ -764,11 +774,6 @@
       "moduleId": 13
     },
     {
-      "term": "Trigger",
-      "definition": "Įvykis, kuris paleidžia workflow (pvz. naujas el. laiškas, formos pateikimas, failo įkėlimas).",
-      "moduleId": 10
-    },
-    {
       "term": "Vaidmens promptas",
       "definition": "Formuoja komunikacijos stilių ir toną (pvz. „Įsivaizduok, kad esi įmonės vadovas…“).",
       "moduleId": 1
@@ -784,13 +789,18 @@
       "moduleId": 10
     },
     {
+      "term": "Veiksmas (action)",
+      "definition": "Veiksmas, kurį atlieka automatizavimo sistema (pvz., laiško išsiuntimas, įrašas CRM ar lentelės atnaujinimas).",
+      "moduleId": 10
+    },
+    {
       "term": "Vertintojas",
       "definition": "Kelių agentų rolė, kuri tikrina rezultatą pagal kriterijus, taisykles ir rizikas; prireikus grąžina pataisymui.",
       "moduleId": 10
     },
     {
       "term": "Vykdymas (execution)",
-      "definition": "Žingsnių atlikimas – planavimas ir įrankių kvietimai. Agentas vykdo užduotį žingsnis po žingsnio ir gali naudoti įrankius.",
+      "definition": "Žingsnių atlikimas – planavimas ir įrankių iškvietimai. Agentas vykdo užduotį žingsnis po žingsnio ir gali naudoti įrankius.",
       "moduleId": 10
     },
     {
@@ -808,11 +818,6 @@
       "moduleId": 8
     },
     {
-      "term": "Webhook",
-      "definition": "Realaus laiko duomenų perdavimas tarp sistemų – įvykis iškart siunčia duomenis į nurodytą adresą (API kvietimas).",
-      "moduleId": 10
-    },
-    {
       "term": "Workflow",
       "definition": "Nuosekli žingsnių ar įrankių seka su aiškiu rezultatu; taisyklė „Užduotis → Įrankis → Workflow“. Gali apimti kelis DI įrankius vienoje grandinėje (pvz. analizė → formulavimas → skaidrės).",
       "moduleId": 1
@@ -824,7 +829,7 @@
     },
     {
       "term": "Žmogaus kontrolė (Human-in-the-loop / HITL)",
-      "definition": "Kai žmogus lieka patvirtinimo, išimčių peržiūros ar stebėsenos taške DI / agento darbo eigoje. Režimą renkame pagal pasekmę ir tai, ar klaidą sunku atšaukti – ne pagal „kuo daugiau autonomijos, tuo brandžiau“.",
+      "definition": "Darbo tvarka, kai žmogus lieka patvirtinimo, išimčių peržiūros ar stebėsenos taške DI / agento darbo eigoje. Režimą renkame pagal pasekmę ir tai, ar klaidą sunku atšaukti – ne pagal „kuo daugiau autonomijos, tuo brandžiau“.",
       "moduleId": 10,
       "unlockedBy": {
         "moduleId": 10,

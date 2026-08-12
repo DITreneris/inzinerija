@@ -128,7 +128,14 @@ export default function M10TriggerFlowDiagram({
         const active = currentStep < 0 || currentStep === b.step;
         const dim = currentStep >= 0 && currentStep !== b.step;
         return (
-          <g key={b.step} opacity={dim ? 0.4 : 1}>
+          <g
+            key={b.step}
+            opacity={
+              dim
+                ? DIAGRAM_TOKENS.opacity.inactive
+                : DIAGRAM_TOKENS.opacity.active
+            }
+          >
             <rect
               x={b.x}
               y={Y_MAIN}
@@ -201,7 +208,13 @@ export default function M10TriggerFlowDiagram({
         markerEnd={`url(#m10tf-fwd-${uid})`}
       />
 
-      <g opacity={typesDim ? 0.45 : 1}>
+      <g
+        opacity={
+          typesDim
+            ? DIAGRAM_TOKENS.opacity.inactive
+            : DIAGRAM_TOKENS.opacity.active
+        }
+      >
         <text
           x={typesStripX + typesStripW / 2}
           y={TYPES_LABEL_Y}

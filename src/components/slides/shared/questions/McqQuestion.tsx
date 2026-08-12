@@ -1,4 +1,5 @@
 import { CheckCircle, Lightbulb, ExternalLink } from 'lucide-react';
+import type { ReactNode } from 'react';
 import type { TestQuestion } from '../../../../types/modules';
 import { ConfidenceSelector } from './ConfidenceSelector';
 import type { ConfidenceLevel } from './ConfidenceSelector';
@@ -15,6 +16,8 @@ interface McqQuestionProps {
   onConfidence?: (level: ConfidenceLevel) => void;
   onAnswer: (questionId: string, optionIndex: number) => void;
   onRequestHint: (questionId: string) => void;
+  /** Optional scheme/diagram rendered as part of the question stem. */
+  stemVisual?: ReactNode;
   /** Nuoroda į skaidrę, kai atsakymas neteisingas (diagnostinė) */
   onRemediationLink?: (moduleId: number, slideId: number) => void;
 }
@@ -29,6 +32,7 @@ export function McqQuestion({
   onConfidence,
   onAnswer,
   onRequestHint,
+  stemVisual,
   onRemediationLink,
 }: McqQuestionProps) {
   const { locale } = useLocale();
@@ -55,6 +59,8 @@ export function McqQuestion({
           {question.question}
         </p>
       </div>
+
+      {stemVisual ? <div className="mb-4">{stemVisual}</div> : null}
 
       <ConfidenceSelector
         value={confidence}

@@ -3,6 +3,7 @@
  */
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { McqQuestion } from '../McqQuestion';
 import type { ConfidenceLevel } from '../ConfidenceSelector';
 import { LocaleProvider } from '../../../../../contexts/LocaleContext';
@@ -15,7 +16,7 @@ const baseQuestion = {
   explanation: 'Meta blokas.',
 };
 
-function renderMcq(confidence?: ConfidenceLevel) {
+function renderMcq(confidence?: ConfidenceLevel, stemVisual?: ReactNode) {
   const onAnswer = vi.fn();
   render(
     <LocaleProvider>
@@ -29,6 +30,7 @@ function renderMcq(confidence?: ConfidenceLevel) {
         onConfidence={vi.fn()}
         onAnswer={onAnswer}
         onRequestHint={vi.fn()}
+        stemVisual={stemVisual}
       />
     </LocaleProvider>
   );
@@ -48,5 +50,13 @@ describe('McqQuestion confidence gate', () => {
       screen.getByRole('button', { name: /Pasirinkimas: Meta/i })
     );
     expect(onAnswer).toHaveBeenCalledWith('q1', 0);
+  });
+
+  it('renders an optional stem visual before answer options', () => {
+    renderMcq(undefined, <div data-testid="scheme-stem">Schema</div>);
+    expect(screen.getByTestId('scheme-stem')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Pasirinkimas: Meta/i })
+    ).toBeInTheDocument();
   });
 });

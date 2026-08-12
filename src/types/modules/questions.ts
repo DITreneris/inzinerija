@@ -32,6 +32,8 @@ export interface TestQuestion {
   scenarioContext?: string;
   // Common fields
   explanation: string;
+  /** Optional scheme/diagram key rendered above the answer controls. */
+  imageKey?: string;
   /** Užuomina – rodoma po pirmo neteisingmo bandymo (progressive hint) */
   hint?: string;
   /** Bloom taksonomijos lygis: 1=Remember, 2=Understand, 3=Apply, 4=Analyze, 5=Evaluate, 6=Create */

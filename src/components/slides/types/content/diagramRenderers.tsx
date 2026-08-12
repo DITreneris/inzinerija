@@ -64,7 +64,7 @@ interface DiagramRenderer {
   render: (context: DiagramRenderContext) => ReactNode;
 }
 
-const DIAGRAM_RENDERERS: DiagramRenderer[] = [
+const DIAGRAM_RENDERERS = [
   {
     key: 'm7_macro_path_map',
     bodyPlacement: 'after',
@@ -322,7 +322,9 @@ const DIAGRAM_RENDERERS: DiagramRenderer[] = [
       />
     ),
   },
-];
+] as const satisfies readonly DiagramRenderer[];
+
+export type DiagramKey = (typeof DIAGRAM_RENDERERS)[number]['key'];
 
 function normalizeImageKey(image: string) {
   return image.replace(/^\//, '').toLowerCase();
@@ -337,7 +339,7 @@ function imageKeyMatches(normalizedImage: string, rendererKey: string) {
   );
 }
 
-export function getDiagramRendererKeys() {
+export function getDiagramRendererKeys(): readonly DiagramKey[] {
   return DIAGRAM_RENDERERS.map(({ key }) => key);
 }
 

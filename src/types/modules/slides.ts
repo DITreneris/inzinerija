@@ -1244,7 +1244,16 @@ export interface PracticeScenarioSlideContent {
   reflectionPromptAfter?: string;
 }
 
-/** Content skaidrei type 'practice-intro' (partial – UI skaito daugiau laukų runtime). */
+export interface PracticeIntroPathChoice {
+  id: string;
+  label: string;
+  description?: string;
+  statusHint?: string;
+  recommended?: boolean;
+  slideId?: number;
+}
+
+/** Content skaidrei type 'practice-intro'. */
 export interface PracticeIntroContent {
   whyBenefit?: string;
   duration?: string;
@@ -1252,6 +1261,12 @@ export interface PracticeIntroContent {
   firstActionCTA?: string;
   /** M3/M12/M15: bent kiek scenarijų privaloma (portfolio chip / chrome). */
   minScenariosToComplete?: number;
+  /** M12: aiškūs kelio pasirinkimai vietoje scenarijų katalogo. */
+  pathChoices?: PracticeIntroPathChoice[];
+  /** M12: default kelias, paryškintas kaip rekomenduojamas. */
+  recommendedPathId?: string;
+  /** M12: tik šios praktikos skaičiuojamos kaip privalomos. */
+  requiredSlideIds?: number[];
   howToUseModule?: {
     heading?: string;
     short?: { label: string; description?: string };

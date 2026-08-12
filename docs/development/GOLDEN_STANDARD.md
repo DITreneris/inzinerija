@@ -172,7 +172,7 @@
 
 **Collapsible naudojimas:** Collapsible **taupo vietą** – naudoti tik tada, kai turinys **ilgas** (kelios pastraipos arba ≥2 eilutės ir pakankamai teksto). Viena eilutė ar labai trumpas tekstas (pvz. „Kodėl verta 10 min“, „Prieš vs Po“ su vienu sakiniumi) **nerodomas** kaip collapsible – UI jau trumpas turinys rodo kaip paprastą bloką. Patikra: `node scripts/audit-collapsible-sections.mjs`.
 
-**Peržiūrėti pilname dydyje (enlarge):** Naudoti **tik tada**, kai vaizdas/diagrama **tanki** ir naudinga didinti: daug blokų/teksto schemoje, mažas šriftas, mobilus peržiūrėtojas. **Process / Shell schemos:** `EnlargeableDiagram` default = be desktop enlarge (`showEnlargeControl=false`) – interaktyvumas inline. **Nenaudoti** (paprastas `<img>` arba nuoroda „Atidaryti naujame lange“): palyginimo vaizdai (comparisonImages – du vaizdai šalia, dekoratyvūs), paprastos ilustracijos, vienas vaizdas jau aiškiai skaitomas normaliame dydyje, workflow paveikslėliai be smulkios informacijos. Taip sumažiname perteklinį UI ir dvigubą render (modal).
+**Peržiūrėti pilname dydyje (enlarge):** Naudoti **tik tada**, kai vaizdas/diagrama **tanki** ir naudinga didinti: daug blokų/teksto schemoje, mažas šriftas, mobilus peržiūrėtojas. **Process / Shell schemos:** `EnlargeableDiagram` default = be desktop enlarge (`showEnlargeControl=false`) – interaktyvumas inline. **Nenaudoti** (paprastas `<img>` arba nuoroda „Atidaryti naujame lange“): paprastos / dekoratyvios iliustracijos, vienas vaizdas jau aiškiai skaitomas normaliame dydyje, workflow paveikslėliai be smulkios informacijos. **comparisonImages išimtis:** kai abu (ar vienas) PNG tankūs su skaitomu smulkiu tekstu (pvz. M4 DI visata / Dantė) – `EnlargeableImage` lightbox leidžiamas; dekoratyviems palyginimams lieka paprastas `<img>`. Taip sumažiname perteklinį UI, bet neaukojame skaitomumo.
 
 **content-block viršuje (M5 ir pan.):** whyBenefit, duration, firstActionCTA – kaip action-intro.
 
@@ -289,6 +289,8 @@
 | duration                         | „~15 min“ arba panašiai      |
 | firstActionCTA / pirmas veiksmas | Trumpas, konkretus           |
 
+**M12 `practice-intro`:** kai įvadas yra kelio pasirinkimas, naudoti `ChoiceControl` su vienu rekomenduojamu default keliu (`recommendedPathId`), o ne scenarijų grid su keliomis „Rekomenduojama“ kortelėmis. Privalomų praktikų progresas skaičiuojamas tik iš `requiredSlideIds` (M12: `121`, `122`, `123`); ROI – vienas suskleistas antrinis blokas.
+
 ### 3.4e practice-quest-intro (M9 quest desk)
 
 **Paskirtis:** Capstone intro – srities ChoiceControl + 5-step quest map + vienas CTA. Ne briefing siena; hub ne first viewport.
@@ -321,6 +323,7 @@
 | Taisyklė | Reikalavimas                                                                                                            |
 | -------- | ----------------------------------------------------------------------------------------------------------------------- |
 | Warm-up  | 2 diagnostiniai + **1 forward bridge** į projektą (precedentas: M8 `m8-warm-4` → M9 šakutė)                             |
+| Schemos  | `testQuestions[].imageKey` leidžia schemą klausimo kamiene; schema turi duoti kontekstą, bet **neatskleisti atsakymo**  |
 | Results  | Žmogiškos `failedMessage` temos + `TestRemediationChips` sutampa su `relatedSlideId` aibe + reflection + CTA į projektą |
 | Bonus    | Trumpai → Daryk dabar → Copy → Patikra (§3.2); `optional` + `badgeVariant: "bonus"`                                     |
 | Balsas   | Kreipinys **tu**; be curriculum ID user-facing copy                                                                     |
@@ -800,10 +803,18 @@ Modulis N atrakintas, kai `progress.completedModules` turi (N-1).
 
 **UX taisyklės:**
 
-1. Reward (medžiaga) = primary; tier-lock / coming-soon = secondary – neatidėlioti materials po užrakintų kortelių.
-2. Ribą imti iš **access tier** (`maxAccessible`), ne iš sekencinio lock (sekvenciniai `<= maxAccessible` lieka virš materials).
-3. Bazės M1–6 lieka **vienas** track (pricing / sertifikatai); M4–M6 skiria tik subsection, ne atskiras kelias.
-4. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai).
+1. Virš katalogo gali būti tik vienas dominuojantis „Kitas tavo žingsnis“ signalas arba recovery kortelė tuščiai pažangai; nekrauti atskiros didelės kartojimo / vertintojo kortelės virš modulių.
+2. Bendra pažanga rodoma AppNav ir modulio kortelių progresuose; kataloge ji leidžiama tik kaip next-step meta chip po pagrindiniu CTA („Tavo pažanga: X iš Y · Z %“), ne kaip atskira didelė kortelė.
+3. Next-step kortelė turi būti premium tankio: kompaktiškas white/card paviršius, subtilus border/shadow, aiškus content/action grid ir viena dešinės pusės CTA + statuso sistema. Vėlesnis polish sprendžia tankį, radius ir surface separation – ne prideda dekoracijų.
+4. Papildoma centrinė „Bendra pažanga“ kortelė katalogo viršuje nekartojama.
+5. Kartojimas („Laikas pasikartoti“) kataloge yra antrinis veiksmas šalia next-step, o prompto vertintojas – kontekstinė papildoma praktika po katalogo, susieta su konkrečiu moduliu.
+6. Reward (medžiaga) = primary; tier-lock / coming-soon = secondary – neatidėlioti materials po užrakintų kortelių.
+7. Ribą imti iš **access tier** (`maxAccessible`), ne iš sekencinio lock (sekvenciniai `<= maxAccessible` lieka virš materials).
+8. Bazės M1–6 lieka **vienas** track (pricing / sertifikatai); M4–M6 skiria tik subsection, ne atskiras kelias.
+9. 1024 px pločio zonoje katalogas turi likti skaitomas: naudoti 2 stulpelius iki `xl`, o 3 stulpelius tik platesniame desktop.
+10. Testai: `ModulesPage.materials.test.tsx` (pozicija tier=6; download/sertifikatai), `ModulesPage.catalogUx.test.tsx` (next-step / kartojimas / vertintojas / progreso nedubliavimas).
+
+**Home vs katalogas:** katalogas valdo next-step (vienas primary „Kitas tavo žingsnis“). Home hero CTA lieka vienas primary (`Tęsti` / `Pradėti`); kartojimas Home = antrinis tekstinis linkas po hero CTA (tas pats balsas kaip `nextStepRecallCta`), **ne** atskira `RetrievalDueCard` hero kortelė. Nedėti antros next-step juostos Home.
 
 ### 8.5 Skaidrių navigacijos taškai (ModuleView)
 

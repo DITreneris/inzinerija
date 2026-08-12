@@ -52,13 +52,13 @@ describe('TestPracticeSlides M11 data contract', () => {
     expect(questionsById.get('m11-q9')?.relatedSlideId).toBe(10.49);
   });
 
-  it('checks human control mode selection in the Augment scenario', () => {
+  it('checks human control mode selection in the Asistuoti scenario', () => {
     const q8 = getM11Questions().find((question) => question.id === 'm11-q8');
 
     expect(q8?.type).toBe('scenario');
     expect(q8?.question).toMatch(/žmogaus kontrolės režimas/i);
     expect(q8?.options?.[0]).toMatch(/Išimčių peržiūra/i);
-    expect(q8?.explanation).toMatch(/Augment/i);
+    expect(q8?.explanation).toMatch(/Asistuoti/i);
     expect(q8?.relatedSlideId).toBe(10.26);
   });
 

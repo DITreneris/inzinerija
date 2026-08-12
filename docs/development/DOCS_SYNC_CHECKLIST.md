@@ -2,12 +2,23 @@
 
 > Tikslas: viena vieta po release ar didesnio Unreleased sprinto patikrinti, ar agentų įėjimo dokumentai, release/ops dokumentai ir techniniai registry atitinka faktinę kodo bazę.
 
-**Baseline:** 1.6.1 corporate12 cutover pin + M16–18 authoring/TE/plain + pre-launch audit remediation + corporate12 Supabase handoff memo  
-**Testai:** 161 failai / 982 testai (`@ HEAD` 2026-08-11 preflight; `@ tag 1.4.9` freeze = 130/825)  
+**Baseline:** 1.6.1 corporate12 cutover pin + Unreleased post-1.6.1 (content freeze · katalogas · SCHEME-CENTRAL W1 · CATALOG-HOME) + Docs Lean 2026-08  
+**Testai:** tag 1.6.1 = 161/982; Unreleased HEAD = **165/1005** (`TEST_REPORT` 2026-08-12 Docs Lean)  
 **Data:** 2026-08-12  
 **Šaltiniai:** `package.json`, `CHANGELOG.md`, `docs/development/RELEASE_QA_RUN.md`, `docs/development/RELEASE_QA_CHECKLIST.md`, `docs/development/DOCS_MAINTENANCE.md`.
 
 ## Sync lentelė
+
+### Unreleased post-1.6.1 / Docs Lean – 2026-08-12
+
+| #   | Failas                                                    | Laukas         | Buvo                    | Turi būti                                       | Done |
+| --- | --------------------------------------------------------- | -------------- | ----------------------- | ----------------------------------------------- | ---- |
+| 1   | `TODO.md` / archive `TODO_DONE_SPRINTS_2026-08.md`        | §1 open-only   | full done tables in §1  | lean §1; done → 2026-08 archive                 | [x]  |
+| 2   | `ROADMAP.md`                                              | version / gaps | v4.21 · „P1 nėra“ stale | **v4.22** · CATALOG-HOME done · content freeze  | [x]  |
+| 3   | `CODEBASE_WHAT_IS_DONE.md` / `DOCUMENTATION_QUICK_REF.md` | meta           | 1.6.0 / 08-11           | 2026-08-12 Unreleased + pin 1.6.1               | [x]  |
+| 4   | `CHANGELOG.md`                                            | Unreleased     | mixed                   | Home demote + Docs Lean; **ne** merge į [1.6.1] | [x]  |
+| 5   | M10–12 content audit + intake                             | status         | P2 open wording         | **CLOSED / FREEZE**                             | [x]  |
+| 6   | Marketing pin docs                                        | version        | v1.6.1                  | **lieka v1.6.1** (no retag)                     | [x]  |
 
 ### Corporate12 cutover pin – 2026-08-12
 
@@ -89,7 +100,7 @@
 | **Authoring / full CI default** | be MVP cap; full `modules.json`                                                                | M1–18              | `/` (dev)      |
 | **Prieiga (runtime)**           | magic link → `verified_access_tier`; **draudžiama** prod `VITE_MAX_ACCESSIBLE_MODULE=6\|9\|12` | tier 0/3/6/9/12/15 | —              |
 
-CI (`test.yml`) stato MVP + M1–9 + corporate12 + corporate15; Pages shipina tik MVP. Preflight (`audit:release-preflight`) platesnis už CI (DS gate, journey, M4–15 EN, footer numeriai, TE strict).
+CI (`test.yml`) stato MVP + M1–9 + corporate12 + corporate15; Pages shipina tik MVP. Nuo 2026-08-12 `test.yml` turi ir atskirą **`governance`** job'ą (`npm run audit:governance`: core-data drift, tools parity, TE strict + registry skaičių drift, slide titles, accent budget, footer numeriai); tas pats žingsnis yra deploy `quality-gates`. Preflight (`audit:release-preflight`) vis dar platesnis už CI (DS gate, journey, M4–15 EN, pilnas `test:run`).
 
 ### Docs Lean Pass DL-0…4 (Unreleased) – 2026-07-24
 

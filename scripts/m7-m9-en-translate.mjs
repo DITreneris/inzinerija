@@ -14,7 +14,7 @@ if (existsSync(mapPath)) {
   STRING_MAP = JSON.parse(readFileSync(mapPath, 'utf8'));
 }
 
-const SKIP_KEYS = new Set(['url', 'image', 'icon', 'badgeVariant', 'blockVariant', 'type', 'id', 'correct', 'bloomLevel', 'relatedSlideId', 'targetSlideId', 'branchIds', 'pathBranch', 'optional', 'cta_id', 'moduleId', 'level', 'unlocksAfter', 'accent', 'identityIcon']);
+const SKIP_KEYS = new Set(['url', 'image', 'imageKey', 'icon', 'badgeVariant', 'blockVariant', 'type', 'id', 'correct', 'bloomLevel', 'relatedSlideId', 'targetSlideId', 'branchIds', 'pathBranch', 'optional', 'cta_id', 'moduleId', 'level', 'unlocksAfter', 'accent', 'identityIcon']);
 
 /** Global post-processing for EN user-facing text. */
 export function postProcessEn(str) {

@@ -470,6 +470,90 @@ describe('progress.ts', () => {
     });
   });
 
+  describe('interactions', () => {
+    it('should save and load lab interactions correctly', () => {
+      const progress: Progress = {
+        completedModules: [16],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        interactions: {
+          m16_direction_picker: {
+            choices: { direction: 'a' },
+            updatedAt: '2026-08-12T08:00:00.000Z',
+          },
+        },
+      };
+
+      saveProgress(progress);
+      flushProgressSave();
+
+      const loaded = getProgress();
+      expect(loaded.interactions).toEqual({
+        m16_direction_picker: {
+          choices: { direction: 'a' },
+          updatedAt: '2026-08-12T08:00:00.000Z',
+        },
+      });
+    });
+
+    it('should drop malformed interactions without resetting core progress', () => {
+      localStorage.setItem(
+        'prompt-anatomy-progress',
+        JSON.stringify({
+          version: 2,
+          completedModules: [1, 2],
+          completedTasks: { 1: [1] },
+          quizCompleted: true,
+          quizScore: 80,
+          moduleTestScores: { 2: 90 },
+          interactions: {
+            broken: {
+              choices: { direction: 123 },
+              updatedAt: '2026-08-12T08:00:00.000Z',
+            },
+          },
+        })
+      );
+
+      const loaded = getProgress();
+      expect(loaded.completedModules).toEqual([1, 2]);
+      expect(loaded.quizCompleted).toBe(true);
+      expect(loaded.quizScore).toBe(80);
+      expect(loaded.moduleTestScores).toEqual({ 2: 90 });
+      expect(loaded.interactions).toBeUndefined();
+      expect(localStorage.getItem('prompt-anatomy-progress')).toBeTruthy();
+    });
+
+    it('should preserve interactions when updating other fields', () => {
+      const progress: Progress = {
+        completedModules: [16],
+        completedTasks: {},
+        quizCompleted: false,
+        quizScore: null,
+        interactions: {
+          m16_direction_picker: {
+            choices: { direction: 'b' },
+            updatedAt: '2026-08-12T08:00:00.000Z',
+          },
+        },
+      };
+
+      saveProgress(progress);
+      flushProgressSave();
+      const loaded = getProgress();
+      saveProgress({
+        ...loaded,
+        completedModules: [...loaded.completedModules, 17],
+      });
+      flushProgressSave();
+
+      const updated = getProgress();
+      expect(updated.completedModules).toEqual([16, 17]);
+      expect(updated.interactions).toEqual(progress.interactions);
+    });
+  });
+
   describe('isProgressV2', () => {
     it('should identify v2 format', () => {
       expect(

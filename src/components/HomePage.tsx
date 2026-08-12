@@ -10,6 +10,7 @@ import {
   Check,
   Lightbulb,
   Rocket,
+  RotateCcw,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Progress, type RetrievalScheduleItem } from '../utils/progress';
@@ -18,10 +19,10 @@ import { getIsMvpMode } from '../utils/mvpMode';
 import { useLocale } from '../contexts/LocaleContext';
 import PromptLibrary from './PromptLibrary';
 import CircularProgress from './CircularProgress';
-import { RetrievalDueCard } from './RetrievalDueCard';
 import { Badge, BrandMark, Card, CTAButton } from './ui';
 import { moduleWord, modulesCompletedWord } from '../utils/ltPlural';
 import { focusRingClasses, touchTargetClasses } from '../design-tokens';
+import { getDueRetrieval } from '../utils/retrievalSchedule';
 
 const QUICK_PROMPTS_LT = [
   {
@@ -81,7 +82,6 @@ interface HomePageProps {
   onGoToQuiz?: () => void;
   progress: Progress;
   onStartRetrieval?: (item: RetrievalScheduleItem) => void;
-  onOpenEvalHabit?: (moduleId: number, slideId: number) => void;
 }
 
 export default function HomePage({
@@ -89,9 +89,8 @@ export default function HomePage({
   onGoToQuiz,
   progress,
   onStartRetrieval,
-  onOpenEvalHabit,
 }: HomePageProps) {
-  const { t } = useTranslation(['home', 'common']);
+  const { t } = useTranslation(['home', 'common', 'modulesPage']);
   const { locale } = useLocale();
   const quickPrompts = locale === 'en' ? QUICK_PROMPTS_EN : QUICK_PROMPTS_LT;
   const [copiedQuickId, setCopiedQuickId] = useState<number | null>(null);
@@ -105,6 +104,10 @@ export default function HomePage({
     (sum, tasks) => sum + tasks.length,
     0
   );
+  const primaryRecall =
+    onStartRetrieval != null
+      ? (getDueRetrieval(progress).find((item) => item.kind !== 'eval') ?? null)
+      : null;
 
   return (
     <div className="space-y-12">
@@ -225,6 +228,19 @@ export default function HomePage({
                   : t('home:ctaStartNow')}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </CTAButton>
+          {primaryRecall && onStartRetrieval ? (
+            <button
+              type="button"
+              onClick={() => onStartRetrieval(primaryRecall)}
+              className={`mt-4 inline-flex items-center justify-center gap-2 rounded text-sm font-medium text-brand-800 hover:underline dark:text-brand-200 ${touchTargetClasses.minimumHeight} ${focusRingClasses.brandOnWhite}`}
+              data-testid="home-recall-link"
+            >
+              <RotateCcw className="w-4 h-4" aria-hidden />
+              {t('modulesPage:nextStepRecallCta', {
+                n: primaryRecall.moduleId ?? 1,
+              })}
+            </button>
+          ) : null}
         </div>
       </div>
 
@@ -303,15 +319,6 @@ export default function HomePage({
           </div>
         </Card>
       </div>
-
-      {onStartRetrieval && (
-        <RetrievalDueCard
-          progress={progress}
-          isEn={locale === 'en'}
-          onStartRetrieval={onStartRetrieval}
-          onOpenEval={onOpenEvalHabit}
-        />
-      )}
 
       <Card className="p-6 lg:p-10 animate-fade-in shadow-lg shadow-gray-200/40 dark:shadow-gray-900/40 border border-gray-100/80 dark:border-gray-700/50">
         <div className="text-center mb-10">

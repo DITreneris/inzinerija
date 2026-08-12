@@ -1,8 +1,8 @@
 # Dokumentacijos greita nuoroda (agentams)
 
 > **Tikslas:** Mažas kontekstas – SOT ir kritiniai keliai. **Lean:** `docs/LEAN_INDEX.md` (≤25). Pilnas: `docs/DOCUMENTATION_INDEX.md`.  
-> **Atnaujinta:** 2026-08-04 (M13 plain + `M13P-TRIM` ✅ §1.2j; M16–18 plain ✅). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
-> **Open:** learning P1 nėra (`M13P-TRIM` ✅). TE Could closed. Wave D3 corporate18 Deferred §1.5. Marketing / MON – ne default.
+> **Atnaujinta:** 2026-08-12 (Docs Lean · M10–12 content freeze · CATALOG-HOME ✅ · Unreleased post-v1.6.1). Archyvas = ne SOT. Taisyklės: `DOCS_MAINTENANCE.md` §1c.
+> **Open:** learning P0/P1 **nėra**. TOOL-5 P2 · Wave D3 Deferred §1.5 · Marketing / MON – ne default. Pin cutover = **v1.6.1**.
 
 ---
 
@@ -13,7 +13,7 @@
 | Turinys M1–3          | `turinio_pletra.md`                                                                                                                                                                                                                                                                          |
 | Turinys M4–6          | `docs/turinio_pletra_moduliai_4_5_6.md`                                                                                                                                                                                                                                                      |
 | Turinys M7–9          | `docs/turinio_pletra_moduliai_7_8_9.md`                                                                                                                                                                                                                                                      |
-| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė; ranks: `M10_SLIDE_RANKING_AUDIT.md`, `M11_M12_SLIDE_RANKING_AUDIT.md`)                                                                                                                                                                   |
+| Turinys M10–12        | `docs/turinio_pletra_moduliai_10_11_12.md` (+ eilė) · content freeze [`M10_M12_CONTENT_DEEP_AUDIT_2026-08.md`](development/M10_M12_CONTENT_DEEP_AUDIT_2026-08.md)                                                                                                                            |
 | Turinys M13–15        | `docs/turinio_pletra_moduliai_13_14_15.md` (corporate15 + authoring) + learner plain [`M13_MATURITY_PLAN.md`](development/M13_MATURITY_PLAN.md) (TE ✅; plain ✅; `M13P-TRIM` ✅ 2026-08-04; etalonai M7P/M4P/M79) + copyable [`M13_PROMPT_MATURITY.md`](development/M13_PROMPT_MATURITY.md) |
 | Turinys M16–18        | `docs/turinio_pletra_moduliai_16_17_18.md` + eilė `MODULIO_16_SKAIDRIU_EILES.md` + learner plain [`M16_MATURITY_PLAN.md`](development/M16_MATURITY_PLAN.md) (authoring+TE ✅; plain EN+B1–B4 ✅; optional C deferred)                                                                        |
 | Numeracija            | `docs/CONTENT_MODULIU_ATPAZINIMAS.md`                                                                                                                                                                                                                                                        |
@@ -27,7 +27,7 @@
 | M4 news-portal        | `NEWS_PORTAL_SLIDE_53_5.md`, `PORTAL_BEAT_DIAGRAMS.md`                                                                                                                                                                                                                                       |
 | M7–9 polish ops       | `M79_PATCH_REGISTRY.md` + `DOCS_MAINTENANCE.md` (backlog – ne pirmas load)                                                                                                                                                                                                                   |
 | Klaidos               | `docs/development/TEST_REPORT.md`                                                                                                                                                                                                                                                            |
-| Open prioritetai      | `TODO.md` §1.4 MON · `ROADMAP.md` ladder · D3 corporate18 Deferred §1.5 · pedagogika: `PEDAGOGINES_IZVALGOS_ROADMAP.md`                                                                                                                                                                      |
+| Open prioritetai      | `TODO.md` §1 (MON §1.4 · TOOL-5 · Deferred) · `ROADMAP.md` v4.22 · archive [`TODO_DONE_SPRINTS_2026-08.md`](archive/development/TODO_DONE_SPRINTS_2026-08.md)                                                                                                                                |
 
 **Konfliktas:** Turinio SOT → JSON → UI.
 

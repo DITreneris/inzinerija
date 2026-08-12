@@ -40,7 +40,7 @@ const slide10_45 = {
       },
       {
         heading: '3A susiejimas',
-        body: '**Automatize (80 %)** → dažniausiai L3 (srautas, be multi-agent). **Augment (15 %)** → L1 + žmogus (HITL). **Autonomize (5 %)** → L2 su vertintoju ir incident playbook.',
+        body: '**Automatizuoti (80 %)** → dažniausiai L3 (srautas, be multi-agent). **Asistuoti (15 %)** → L1 + žmogus (HITL). **Autonomizuoti (5 %)** → L2 su vertintoju ir incident playbook.',
         blockVariant: 'brand',
       },
       {
@@ -196,7 +196,7 @@ s108.content.sections = [
     heading: '3A ir automatizacija',
     icon: 'Workflow',
     color: 'brand',
-    items: ['Automatize 80 % / Augment 15 % / Autonomize 5 %', 'Trigger → Condition → Action', 'Zapier, Make, n8n, Power Automate'],
+    items: ['Automatizuoti 80 % / Asistuoti 15 % / Autonomizuoti 5 %', 'Paleidiklis → Sąlyga → Veiksmas', 'Zapier, Make, n8n, Power Automate'],
   },
   {
     heading: 'Promptai ir saugumas',
@@ -278,7 +278,7 @@ testResults.content.useCaseBlock.body =
 const practiceIntro = m12.slides.find((s) => s.id === 120);
 practiceIntro.content.recommendedSlideIds = [120.25, 120.5, 121, 122, 123, 124.5];
 practiceIntro.content.recommendedStart =
-  'Greitas startas: Koordinatorius + 2 specialistai (124.5). Privalomas kelias: 3 praktikos (Automatize, Augment, Autonomize). Papildomai: Tyrimo agentas ir M10 pakartojimo scenarijai.';
+  'Greitas startas: Koordinatorius + 2 specialistai (124.5). Privalomas kelias: 3 praktikos (Automatizuoti, Asistuoti, Autonomizuoti). Papildomai: Tyrimo agentas ir M10 pakartojimo scenarijai.';
 
 const s1205 = m12.slides.find((s) => s.id === 120.5);
 delete s1205.optional;
@@ -300,7 +300,7 @@ s1205.content = {
       blockVariant: 'accent',
     },
   ],
-  footer: 'Toliau – skaidrė 5: 1 praktika Automatize',
+  footer: 'Toliau – skaidrė 5: 1 praktika Automatizuoti',
 };
 
 const slide124_5 = {

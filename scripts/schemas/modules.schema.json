@@ -980,6 +980,7 @@
         "options": { "type": "array", "items": { "type": "string" } },
         "correct": { "type": "number" },
         "explanation": { "type": "string" },
+        "imageKey": { "type": "string" },
         "hint": { "type": "string" },
         "bloomLevel": { "type": "number" },
         "relatedSlideId": { "type": "number" },
