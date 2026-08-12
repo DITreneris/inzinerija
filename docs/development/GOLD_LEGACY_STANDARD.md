@@ -97,27 +97,27 @@ Interaktyvi mokymo programa (treniruoklis), mokanti kurti efektyvius DI promptus
 
 | Paketas                       | Versija  | Paskirtis                 |
 | ----------------------------- | -------- | ------------------------- |
-| `vite`                        | ^5.0.8   | Build ir dev serveris     |
+| `vite`                        | ^7.3.6   | Build ir dev serveris     |
 | `@vitejs/plugin-react`        | ^4.2.1   | React Vite plugin         |
 | `typescript`                  | ^5.2.2   | TypeScript kompiliatorius |
 | `tailwindcss`                 | ^3.3.6   | CSS framework             |
 | `postcss`                     | ^8.4.32  | PostCSS                   |
 | `autoprefixer`                | ^10.4.16 | Autoprefixer              |
-| `vitest`                      | ^1.1.0   | Testų framework           |
+| `vitest`                      | ^4.1.10  | Testų framework           |
 | `@testing-library/react`      | ^14.1.2  | React testų biblioteka    |
 | `@testing-library/jest-dom`   | ^6.1.5   | Jest-DOM matchers         |
 | `@testing-library/user-event` | ^14.5.1  | User event simuliavimas   |
-| `@vitest/coverage-v8`         | ^1.1.0   | Coverage reportai         |
-| `@vitest/ui`                  | ^1.1.0   | Vitest UI                 |
+| `@vitest/coverage-v8`         | ^4.1.10  | Coverage reportai         |
+| `@vitest/ui`                  | ^4.1.10  | Vitest UI                 |
 | `jsdom`                       | ^23.0.1  | DOM aplinka testams       |
 | `ajv`                         | ^8.17.1  | JSON schemos validacija   |
 | `ajv-formats`                 | ^3.0.1   | AJV formatų palaikymas    |
 | `axe-core`                    | ^4.11.1  | Accessibility testai      |
-| `eslint`                      | ^8.55.0  | Linteris                  |
+| `eslint`                      | ^9.39.5  | Linteris                  |
 | `eslint-plugin-react`         | ^7.37.5  | React ESLint taisyklės    |
-| `eslint-plugin-react-hooks`   | ^4.6.0   | React hooks taisyklės     |
-| `eslint-plugin-react-refresh` | ^0.4.5   | React refresh taisyklės   |
-| `@typescript-eslint/*`        | ^6.14.0  | TypeScript ESLint         |
+| `eslint-plugin-react-hooks`   | ^7.1.1   | React hooks taisyklės     |
+| `eslint-plugin-react-refresh` | ^0.5.4   | React refresh taisyklės   |
+| `typescript-eslint`           | ^8.67.0  | TypeScript ESLint         |
 | `husky`                       | ^9.x     | Pre-commit hooks          |
 | `lint-staged`                 | ^15.x    | Staged failų lint/format  |
 | `rollup-plugin-visualizer`    | ^5.x     | Bundle analysis           |
@@ -714,7 +714,7 @@ Visi PDF naudoja:
 
 ### 13.1 Konfigūracija
 
-**Framework:** Vitest ^1.1.0  
+**Framework:** Vitest ^4.1.10
 **Aplinka:** jsdom ^23.0.1  
 **Setup:** `src/test/setup.ts`  
 **Coverage:** v8 provider, reports: text, json, html

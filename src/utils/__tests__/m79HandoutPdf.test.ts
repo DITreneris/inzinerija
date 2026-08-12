@@ -22,29 +22,31 @@ const mockSplitTextToSize = vi.fn((text: string) => [text]);
 const mockGetNumberOfPages = vi.fn(() => 2);
 
 vi.mock('jspdf', () => ({
-  jsPDF: vi.fn().mockImplementation(() => ({
-    save: mockSave,
-    text: mockText,
-    link: mockLink,
-    setDrawColor: vi.fn(),
-    setLineWidth: vi.fn(),
-    line: vi.fn(),
-    setFontSize: mockSetFontSize,
-    setFont: mockSetFont,
-    setTextColor: mockSetTextColor,
-    setFillColor: mockSetFillColor,
-    rect: mockRect,
-    fill: mockFill,
-    addFileToVFS: mockAddFileToVFS,
-    addFont: mockAddFont,
-    addPage: mockAddPage,
-    setPage: mockSetPage,
-    splitTextToSize: mockSplitTextToSize,
-    getTextWidth: vi.fn((text: string) => text.length),
-    internal: {
-      getNumberOfPages: mockGetNumberOfPages,
-    },
-  })),
+  jsPDF: vi.fn().mockImplementation(function () {
+    return {
+      save: mockSave,
+      text: mockText,
+      link: mockLink,
+      setDrawColor: vi.fn(),
+      setLineWidth: vi.fn(),
+      line: vi.fn(),
+      setFontSize: mockSetFontSize,
+      setFont: mockSetFont,
+      setTextColor: mockSetTextColor,
+      setFillColor: mockSetFillColor,
+      rect: mockRect,
+      fill: mockFill,
+      addFileToVFS: mockAddFileToVFS,
+      addFont: mockAddFont,
+      addPage: mockAddPage,
+      setPage: mockSetPage,
+      splitTextToSize: mockSplitTextToSize,
+      getTextWidth: vi.fn((text: string) => text.length),
+      internal: {
+        getNumberOfPages: mockGetNumberOfPages,
+      },
+    };
+  }),
 }));
 
 beforeEach(() => {

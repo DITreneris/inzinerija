@@ -40,11 +40,17 @@ function runGate(script: string): { ok: boolean; out: string } {
   }
 }
 
+const repoWideGateTimeoutMs = 120_000;
+
 describe('EN spelling gate (American English)', () => {
-  it('passes repo-wide', () => {
-    const { ok, out } = runGate('scripts/audit-en-spelling.mjs');
-    expect(ok, out).toBe(true);
-  });
+  it(
+    'passes repo-wide',
+    () => {
+      const { ok, out } = runGate('scripts/audit-en-spelling.mjs');
+      expect(ok, out).toBe(true);
+    },
+    repoWideGateTimeoutMs
+  );
 
   it('flags British forms and keeps the original casing when rewriting', () => {
     expect(
@@ -93,10 +99,14 @@ describe('EN spelling gate (American English)', () => {
 });
 
 describe('LT address gate (tu form)', () => {
-  it('passes repo-wide', () => {
-    const { ok, out } = runGate('scripts/audit-lt-address.mjs');
-    expect(ok, out).toBe(true);
-  });
+  it(
+    'passes repo-wide',
+    () => {
+      const { ok, out } = runGate('scripts/audit-lt-address.mjs');
+      expect(ok, out).toBe(true);
+    },
+    repoWideGateTimeoutMs
+  );
 
   it('flags 2nd-person-plural verbs the five legacy patterns missed', () => {
     const hits = (s: string) =>

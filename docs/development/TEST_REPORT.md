@@ -2,6 +2,26 @@
 
 > **Tikslas:** QA_AGENT priima vartotojo testų klaidas, fiksuoja čia ir įrašo sprendimus į `TODO.md`.
 
+## 2026-08-11 – TOOL-2 Vite 7 + Vitest 4 advisory closeout
+
+**Statusas:** ✅ PASS (`npm audit` 0 vulnerabilities).  
+**Apimtis:** `vite` 5→7, `vitest` / `@vitest/coverage-v8` / `@vitest/ui` 1.6→4; `@vitejs/plugin-react`, `jsdom`, Testing Library nekeisti. Vite 8/Rolldown atidėtas kaip atskiras epikas.
+
+| Gate                           | Rezultatas                                                                                     |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `npm audit`                    | ✅ 0 vulnerabilities (6 → 0)                                                                   |
+| `lint` · `typecheck`           | ✅                                                                                             |
+| `test:run`                     | ✅ **161** failai / **982** testai (Vitest 4.1.10)                                             |
+| `validate:schema`              | ✅ schema + `audit:tools`                                                                      |
+| Build profiliai                | ✅ core MVP · production M1–9 · corporate12 · corporate15 · full authoring                     |
+| Rollup `manualChunks`          | ✅ output turi atskirus `vendor`, `icons`, `helmet` chunk'us                                   |
+| Dev smoke                      | ✅ `/` 200; `modules.json` 200 + `Cache-Control: no-store, no-cache, must-revalidate`          |
+| Vitest 4 suderinamumo pataisos | ✅ constructor-safe `jsPDF` mock'ai; scoped lėtų testų timeout'ai; non-critical prefetch catch |
+
+**Verdict:** TOOL-2 uždarytas be Vite 8/Rolldown migracijos. Vite 7 pakanka advisory uždarymui ir išlaiko esamą Rollup build architektūrą.
+
+---
+
 ## 2026-08-11 – Kalbos konvencijos (LT `tu` · EN American) + repo-wide vartai
 
 **Statusas:** ✅ PASS (`audit:release-preflight` green).

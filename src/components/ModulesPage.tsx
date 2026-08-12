@@ -170,8 +170,12 @@ function ModulesPage({
 
   // Preload ModuleView and SlideContent for faster navigation when user selects a module
   useEffect(() => {
-    import('./ModuleView');
-    import('./SlideContent');
+    if (import.meta.env.MODE === 'test') return;
+    void Promise.all([import('./ModuleView'), import('./SlideContent')]).catch(
+      () => {
+        // Prefetch is a performance hint only; navigation will import on demand.
+      }
+    );
   }, []);
 
   // Memoize completed count and total modules (hooks must be called before early return)

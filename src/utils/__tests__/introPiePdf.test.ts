@@ -43,7 +43,9 @@ function createMockDoc() {
 }
 
 vi.mock('jspdf', () => ({
-  jsPDF: vi.fn().mockImplementation(() => createMockDoc()),
+  jsPDF: vi.fn().mockImplementation(function () {
+    return createMockDoc();
+  }),
 }));
 
 beforeEach(() => {

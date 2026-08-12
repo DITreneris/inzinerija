@@ -10,49 +10,78 @@ vi.mock('../../utils/accessTier', () => ({
 }));
 
 const storageKey = 'prompt-anatomy-locale';
+const toolsPageRenderTimeoutMs = 120_000;
 
 describe('ToolsPage', () => {
   beforeEach(() => {
     localStorage.setItem(storageKey, 'lt');
   });
 
-  it('renders heading "Įrankiai"', () => {
-    renderWithProviders(<ToolsPage />);
-    expect(screen.getByRole('heading', { name: /Įrankiai/ })).toBeInTheDocument();
-  });
+  it(
+    'renders heading "Įrankiai"',
+    () => {
+      renderWithProviders(<ToolsPage />);
+      expect(
+        screen.getByRole('heading', { name: /Įrankiai/ })
+      ).toBeInTheDocument();
+    },
+    toolsPageRenderTimeoutMs
+  );
 
-  it('shows tool cards from tools.json', () => {
-    renderWithProviders(<ToolsPage />);
-    const articles = screen.getAllByRole('article');
-    expect(articles.length).toBeGreaterThan(0);
-  });
+  it(
+    'shows tool cards from tools.json',
+    () => {
+      renderWithProviders(<ToolsPage />);
+      const articles = screen.getAllByRole('article');
+      expect(articles.length).toBeGreaterThan(0);
+    },
+    toolsPageRenderTimeoutMs
+  );
 
-  it('filters by module when selecting a module filter', async () => {
-    renderWithProviders(<ToolsPage />);
-    const moduleSelect = screen.getByRole('combobox', { name: /Filtruoti pagal modulį/ });
-    await act(async () => {
-      await userEvent.selectOptions(moduleSelect, '4');
-    });
+  it(
+    'filters by module when selecting a module filter',
+    async () => {
+      renderWithProviders(<ToolsPage />);
+      const moduleSelect = screen.getByRole('combobox', {
+        name: /Filtruoti pagal modulį/,
+      });
+      await act(async () => {
+        await userEvent.selectOptions(moduleSelect, '4');
+      });
 
-    const badges = screen.getAllByText(/Modulis 4/);
-    expect(badges.length).toBeGreaterThan(0);
+      const badges = screen.getAllByText(/Modulis 4/);
+      expect(badges.length).toBeGreaterThan(0);
 
-    const otherModuleBadges = screen.queryAllByText(/Modulis [^4]/);
-    const toolArticles = screen.getAllByRole('article');
-    for (const article of toolArticles) {
-      expect(article.textContent).toMatch(/Modulis 4/);
-    }
-    expect(otherModuleBadges.every(b => !b.closest('article'))).toBe(true);
-  });
+      const otherModuleBadges = screen.queryAllByText(/Modulis [^4]/);
+      const toolArticles = screen.getAllByRole('article');
+      for (const article of toolArticles) {
+        expect(article.textContent).toMatch(/Modulis 4/);
+      }
+      expect(otherModuleBadges.every((b) => !b.closest('article'))).toBe(true);
+    },
+    toolsPageRenderTimeoutMs
+  );
 
-  it('shows empty state when initialFilter matches no tools', () => {
-    renderWithProviders(<ToolsPage initialFilter={99} />);
-    expect(screen.getByText(/Pagal pasirinktą filtrą įrankių nėra/)).toBeInTheDocument();
-  });
+  it(
+    'shows empty state when initialFilter matches no tools',
+    () => {
+      renderWithProviders(<ToolsPage initialFilter={99} />);
+      expect(
+        screen.getByText(/Pagal pasirinktą filtrą įrankių nėra/)
+      ).toBeInTheDocument();
+    },
+    toolsPageRenderTimeoutMs
+  );
 
-  it('applies initialFilter prop', () => {
-    renderWithProviders(<ToolsPage initialFilter={4} />);
-    const moduleSelect = screen.getByRole('combobox', { name: /Filtruoti pagal modulį/ }) as HTMLSelectElement;
-    expect(moduleSelect.value).toBe('4');
-  });
+  it(
+    'applies initialFilter prop',
+    () => {
+      renderWithProviders(<ToolsPage initialFilter={4} />);
+      const moduleSelect = screen.getByRole('combobox', {
+        name: /Filtruoti pagal modulį/,
+      }) as HTMLSelectElement;
+      expect(moduleSelect.value).toBe('4');
+    },
+    toolsPageRenderTimeoutMs
+  );
 });

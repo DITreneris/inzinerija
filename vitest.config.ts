@@ -1,6 +1,6 @@
+import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import os from 'os';
 
 const isCoreBuild = process.env.VITE_MVP_MODE === '1';
@@ -9,6 +9,9 @@ const isCorporate9Build = !isCoreBuild && maxBuildModule === '9';
 const isCorporate12Build = !isCoreBuild && maxBuildModule === '12';
 const isCorporate15Build = !isCoreBuild && maxBuildModule === '15';
 const isSlicedProductionBuild = isCorporate9Build || isCorporate12Build;
+
+const resolvePath = (value: string) =>
+  fileURLToPath(new URL(value, import.meta.url));
 
 function dataAlias(
   core: string,
@@ -26,7 +29,7 @@ function dataAlias(
         : isCorporate15Build
           ? corporate15
           : full;
-  return path.resolve(__dirname, relative);
+  return resolvePath(relative);
 }
 
 export default defineConfig({
@@ -55,7 +58,6 @@ export default defineConfig({
       '**/.cursor/extensions/**',
       '**/.vscode/extensions/**',
       // NB: Nenaudoti **/Desktop/** – projektas gali būti Desktop kataloge; include jau riboja į src/**
-      '**/../**',
     ],
     coverage: {
       provider: 'v8',
@@ -73,7 +75,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolvePath('./src'),
       '@modules-data': dataAlias(
         './src/data/modules-m1-m6.json',
         './src/data/modules-m1-m9.json',
@@ -102,26 +104,22 @@ export default defineConfig({
         './src/data/tools-en-m1-m15.json',
         './src/data/tools-en.json'
       ),
-      '@m9-characters-data': path.resolve(
-        __dirname,
+      '@m9-characters-data': resolvePath(
         isCoreBuild
           ? './src/data/m9Characters-empty.json'
           : './src/data/m9Characters.json'
       ),
-      '@ai-detectors-slide': path.resolve(
-        __dirname,
+      '@ai-detectors-slide': resolvePath(
         isCoreBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/AiDetectorsSlide.tsx'
       ),
-      '@vaizdo-generatorius-slide': path.resolve(
-        __dirname,
+      '@vaizdo-generatorius-slide': resolvePath(
         isCoreBuild || isSlicedProductionBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/VaizdoGeneratoriusSlide.tsx'
       ),
-      '@i2v-generatorius-slide': path.resolve(
-        __dirname,
+      '@i2v-generatorius-slide': resolvePath(
         isCoreBuild || isSlicedProductionBuild
           ? './src/components/stubs/UnavailableModuleSlide.tsx'
           : './src/components/I2vGeneratoriusSlide.tsx'
