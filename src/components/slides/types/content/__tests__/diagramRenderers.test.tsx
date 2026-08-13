@@ -147,7 +147,7 @@ describe('diagramRenderers registry contract', () => {
       'Team readiness body'
     );
     expect(teamReadiness.textContent).toContain('Team readiness body');
-    expect(teamReadiness.textContent).toContain('Komandos naudojimas');
+    expect(teamReadiness.textContent).toContain('Naudojimas');
     expect(teamReadiness.textContent).toContain('Be balo');
     expect(teamReadiness.querySelector('img')).toBeNull();
     expect(teamReadiness.querySelectorAll('nav button')).toHaveLength(0);
