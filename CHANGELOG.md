@@ -53,6 +53,10 @@ Failas didelis (keli tūkstančiai eilučių). **Naujausia istorija** prasideda 
 
 ## [Unreleased]
 
+### Fixed
+
+- **CI typecheck `m1012-hygiene-parity.mjs` (2026-08-13):** `m1012HygieneParity.test.ts` importavo `scripts/lib` be deklaracijos — `quality-gates` `tsc` exit 2. Tipai į `src/test/scripts-lib.d.ts` (tas pats šablonas kaip EN/LT gate `.mjs`).
+
 ### Added
 
 - **Promptų biblioteka 6 skirsnis – Micro po vertinimo (2026-08-13):** antras item’as `after-eval-one-action` šalia Flagship 5 principų vertintojo (`prompt-quality-5`). Vienas placeholderis, vienas klausimas (ką pataisyti ir paleisti darbe per 24–48 val.); nebekartoja lentelės ir perrašymo. LT+EN; tas pats kortelės lukštas. `validate:schema` dabar tikrina ir `promptLibrary-en.json`.

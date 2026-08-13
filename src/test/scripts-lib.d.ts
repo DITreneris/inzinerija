@@ -38,3 +38,16 @@ declare module '*/scripts/lib/lt-address-rules.mjs' {
   export function findLtBarbarisms(value: string): LtFinding[];
   export function ltWordPattern(word: string): RegExp;
 }
+
+declare module '*/scripts/lib/m1012-hygiene-parity.mjs' {
+  export function stripNumberNoise(text: string): string;
+  export function numbersIn(text: string): string[];
+  export function isRepeatableChrome(path: string): boolean;
+  export function isParityLtMissingExempt(path: string): boolean;
+  export function isSameSlideFillerRepeat(
+    hits: Array<{
+      slide?: { slideId?: string | number };
+      slideId?: string | number;
+    }>
+  ): boolean;
+}
